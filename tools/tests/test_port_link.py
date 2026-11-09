@@ -193,3 +193,13 @@ class ShippedBindings(unittest.TestCase):
         self.assertTrue(bindings)
         for sym, a in bindings.items():
             self.assertIn(f"0x{a:010x}", rows, sym)
+
+
+class BoundVtables(unittest.TestCase):
+    def test_a_placed_weak_vtable_is_bound_to_the_image(self):
+        # unk_handle::UnkHandle's vtable, emitted weak by every object that constructs one: the
+        # copy's slots name methods no source defines, so the image's (placed) replaces it
+        known = {"_ZTVN10unk_handle9UnkHandleE": 0x7101a209e0, "_ZTV3Foo": 0x7101000000}
+        symbols = [("V", "_ZTVN10unk_handle9UnkHandleE"), ("V", "_ZTV3Bar"), ("D", "_ZTV3Foo"),
+                   ("U", "_ZTV3Foo"), ("V", "_ZZ3fnvE1s")]
+        self.assertEqual(pl.bound_vtables(symbols, known), [("_ZTVN10unk_handle9UnkHandleE", 0x7101a209e0)])

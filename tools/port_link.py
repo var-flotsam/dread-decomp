@@ -1224,6 +1224,17 @@ def symbol_sizes(nm: str, path: Path) -> dict[str, int]:
 SPLIT_STATIC = "a static of a non-inline function, which the link cannot bind (it splits from the image's)"
 
 
+def bound_vtables(symbols: list[tuple[str, str]], known: dict[str, int]) -> list[tuple[str, int]]:
+    """The vtables to bind to the image: a class with an inline constructor and no key function has
+    its vtable emitted as a weak object in every object that constructs it, so the link would keep
+    that copy, whose slots name the placeholder methods the source declares (vf_0x0, Delete, ...)
+    and no source defines (traps), while lifted code and the image construct the same objects with
+    the original's. A vtable tools/port_addresses.py placed is bound there with --defsym, which
+    overrides the weak copy: the image's slots are translated to the port's functions by address
+    (unk_handle::UnkHandle: its Delete trapped on every boot)."""
+    return sorted((s, known[s]) for k, s in symbols if k == "V" and s.startswith("_ZTV") and s in known)
+
+
 def bound_statics(symbols: list[tuple[str, str]], sizes: dict[str, int], known: dict[str, int],
                   data_addresses: set[int]) -> tuple[list[tuple[str, int]], dict[str, list[str]]]:
     """The function-local statics of inline functions (and their guard variables) to bind to the
@@ -1876,9 +1887,11 @@ def main() -> int:
                and e.cls in ("function_alias", "data", "import", "vtable")]
     statics, statics_left = bound_statics(nm_symbols(nm, game_o), symbol_sizes(nm, game_o), known,
                                           {e.address for e in entries if e.cls == "data" and e.address is not None})
+    vtables = bound_vtables(nm_symbols(nm, game_o), known)
     aliases_rsp = out / "aliases.rsp"
     write_rsp(aliases_rsp, [f"--defsym={e.symbol}={e.target}" for e in aliases]
-              + [f"--defsym={s}=0x{a:x}" for s, a in statics])
+              + [f"--defsym={s}=0x{a:x}" for s, a in statics]
+              + [f"--defsym={s}=0x{a:x}" for s, a in vtables])
     traps_s, traps_o = out / "traps.s", out / "traps.o"
     for e in entries:
         if e.trap is not None and e.trap_fn == TRAP and e.trap == e.address and silent_range(e.address):
@@ -1917,6 +1930,7 @@ def main() -> int:
     print(f"silent: {silent_named + len(silent_extra)} nn::atk functions return zero ({silent_named} named, {len(silent_extra)} reached only through the game's code pointers)")
     print(f"statics: {len(statics)} function-local statics and guards of inline functions bound to the image"
           + "".join(f"; {len(v)} left in the executable, {k}" for k, v in sorted(statics_left.items())))
+    print(f"vtables: {len(vtables)} weak vtable copies replaced by the image's (address from matched code)")
     # Every split static (the risky class: the game and the port each keep their own copy), once:
     # a guard only when its static is not listed too.
     split = statics_left.get(SPLIT_STATIC, ())
@@ -1992,6 +2006,7 @@ def main() -> int:
                         "image_tables": rel(tables_s), "image_table_counts": tables,
                         "bound_statics": {"bound": [{"symbol": s, "address": f"0x{a:x}"} for s, a in statics],
                                           "left": dict(sorted(statics_left.items()))}},
+        "vtables_bound": [s for s, _ in vtables],
         "executable": exe_report,
         "link2": {"output": rel(whole_o), "bytes": whole_o.stat().st_size, "seconds": round(dt2, 2),
                   "undefined": len(whole.undefined), "residue": residue,
