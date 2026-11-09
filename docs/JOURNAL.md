@@ -143,6 +143,25 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**CEnvironmentData's move constructor, by hand (2026-11-08, branch `claude/environment-move`).**
+The scene's environment presets go into a `CRntDictionary<CStrId, CEnvironmentData>`. Its entry's move hook calls
+`fn_7100f44fd8`, the 0x3a8-byte value's move constructor (5,756 bytes). The port trapped on it: the oracle could not
+judge its lift, because the original faulted on every input it tried. It is now written by hand in
+`src/game/CEnvironmentData/CEnvironmentData_Move.cpp`.
+- The field list comes from mercury-engine-data-structures, and the offsets from the fields' reflected getters
+  (`registration_02.cpp`; each getter adds its field's offset). Twelve settings blocks each have a transition vector.
+- The defaults, the block copies (colours through `CVector4D`'s out-of-line assignment) and the twelve vector
+  copy-assignments follow the disassembly. Each vector is resized out of line or destroys its extra elements, then
+  assigns element by element: the id by reference count, then the value.
+- `UnkStrIdValueVec.h` gains the element's `operator=`, `refl_StrIdValueAssign` and an inline grow-at body. The fog and
+  vertical fog element types inline it; the others call their copies. `CFilePathStrId` gains a move assignment and an
+  empty default.
+- It is `m`: the same stores and calls in the same order (5,772 bytes against 5,756), but the original keeps member
+  addresses in stack slots, so its register allocation differs throughout. The clones that use the same header stay
+  1000/1000.
+
+With it, the boot passes the environment data. Next: `fn_71009cf8f8` (`CPickableItemComponent`, a lift the oracle
+rejected over a float argument's width) traps, then `refl_AssignHandle` faults near null while the scene's actors load.
 **The in-game menu: the game opened Lua's debug library instead of its table library (2026-11-08, branch `claude/ingame-menu`).**
 After the intro the boot faulted in `fn_7101188254`, the in-game menu's per-frame virtual (slot 0xa0 of the object at
 +0x498 of `fn_7100deee9c`'s), on a null `DebugIngameMenu` child (+0xf8). A gdb trace of its setter `fn_710118ae80`
