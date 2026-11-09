@@ -163,7 +163,7 @@ locking a zeroed mutex.
 - A scan of the generated tail calls (696 candidates) found only the x8 callees mattered: other tail calls pass
   their arguments in the same registers on both architectures.
 
-With the fix the boot reaches the loading screen of the first scenario (frame ~37,800), then traps on
+With the fix the boot reaches a loading screen with its spinner (frame ~37,800), then traps on
 `fn_7100b39950` (12 KB, `GUI::CMapMenuController`; the oracle can't judge its lift because the original faults
 on every input) and segfaults at 0xb5 in its caller's callee `fn_71011cdc30`.
 
