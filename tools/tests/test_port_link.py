@@ -38,6 +38,32 @@ class ArgumentClasses(unittest.TestCase):
         self.assertEqual(pl.signature_class(["float"], ["char*"], False)[0], "class_mismatch")
         self.assertEqual(pl.signature_class(["int", "float"], ["float", "float"], False)[0], "class_mismatch")
 
+    def test_facts_cover_a_lifted_definitions_extra_registers(self):
+        # fn_71001f530c's lift declares x0-x7 (it passes them on) but reads x0 only; a lifted caller
+        # passes (char*, float, float, float): every register it reads is set, so the call is safe
+        ref, dfn = ["char*", "float", "float", "float"], ["char*"] * 8
+        self.assertEqual(pl.signature_class(ref, dfn, False)[0], "class_mismatch")
+        sig, flags = pl.signature_class(ref, dfn, False, reads=(1, 0, 0))
+        self.assertEqual(sig, "ref_more_args")
+        self.assertIn("covered_by_facts", flags)
+        # fn_7100dfde4c's lift declares d0 (handed to a variadic callee) but reads no float argument
+        self.assertEqual(pl.signature_class(["char*", "unsigned long"], ["char*", "double"], False,
+                                            reads=(1, 0, 0))[0], "ref_more_args")
+
+    def test_facts_do_not_cover_a_register_the_caller_leaves_unset(self):
+        # the definition really reads x1, which a caller passing (char*, float) does not set
+        self.assertEqual(pl.signature_class(["char*", "float"], ["char*", "char*"], False, reads=(2, 0, 0))[0],
+                         "class_mismatch")
+
+    def test_facts_do_not_cover_aggregates_or_stack_arguments(self):
+        # a {float, float, float} by value is packed into two xmm registers on x86-64
+        self.assertEqual(pl.signature_class(["void*", "float", "float", "float"], ["void*", "CVector3D", "void*"],
+                                            False, reads=(2, 3, 0))[0], "class_mismatch")
+        # a function that reads its caller's stack: where each argument lands differs by architecture
+        ref, dfn = ["char*", "float", "float"], ["char*"] * 9
+        self.assertEqual(pl.signature_class(ref, dfn, False, reads=(1, 0, 0))[0], "ref_more_args")
+        self.assertEqual(pl.signature_class(ref, dfn, False, reads=(1, 0, 1))[0], "class_mismatch")
+
 
 class RuntimeOverloads(unittest.TestCase):
     CTORS = {"_ZN5movie6BufferC1Ev": "movie::Buffer::Buffer()",

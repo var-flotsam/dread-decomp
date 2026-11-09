@@ -136,6 +136,7 @@ Calling-convention facts of main's functions, read from their instructions.
 
 ```sh
 python tools/abi_facts.py --version 2.1.0 ADDR [ADDR...]   (prints the facts of each)
+python tools/abi_facts.py --version 2.1.0 --export-json build/port/abi_args.json
 ```
 
 ### `tools/compiler_matrix.py`

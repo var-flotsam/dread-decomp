@@ -37,11 +37,15 @@ Facts are None for functions that cannot be decoded or are larger than MAX_SIZE,
 Standard library plus capstone; the Ghidra export (tools/callgraph.py) gives the callers.
 
 Usage: python tools/abi_facts.py --version 2.1.0 ADDR [ADDR...]   (prints the facts of each)
+       python tools/abi_facts.py --version 2.1.0 --export-json build/port/abi_args.json
+           (every function's integer and float argument registers and stack slots, from the complete
+            table port_lift caches; tools/port_link.py reads it, in Docker, where capstone is missing)
 """
 
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import pickle
 import subprocess
@@ -913,10 +917,25 @@ def float_letter(orig: asmdiff.Original, address: int) -> str:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--version", required=True)
-    ap.add_argument("addresses", nargs="+")
+    ap.add_argument("addresses", nargs="*")
+    ap.add_argument("--export-json", metavar="PATH",
+                    help="write every function's (integer, float, stack slot) argument counts as JSON")
     args = ap.parse_args()
+    if not args.addresses and not args.export_json:
+        ap.error("give addresses or --export-json")
     af = AbiFacts(asmdiff.Original(args.version))
     af.version = args.version
+    if args.export_json:
+        cache = Path(__file__).resolve().parent.parent / "build" / "port" / f"abi_facts_v{CACHE_VERSION}.pickle"
+        af.complete(cache)
+        out = {}
+        for a in sorted(af.orig.sizes):
+            f = af.facts(a)
+            if f is not None:
+                out[f"{a:x}"] = [f.ints, f.floats, f.stack_slots if f.stack else 0]
+        Path(args.export_json).parent.mkdir(parents=True, exist_ok=True)
+        Path(args.export_json).write_text(json.dumps({"version": CACHE_VERSION, "functions": out}), encoding="utf-8")
+        print(f"{len(out)} functions -> {args.export_json}")
     for a in (int(s, 16) for s in args.addresses):
         f = af.facts(a)
         if f is None:
