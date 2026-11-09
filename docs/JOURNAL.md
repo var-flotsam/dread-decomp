@@ -153,6 +153,18 @@ lift passed a float in `s0` where the original passes a double (`fcvt d0, s0`) t
 `CRntString` at +0x10 and a use count at +0x44 (bumped and never given back), and the empty id reads as the
 global empty string `g_unk_7101d58d10`, which is now declared once in `base/global/CRntString.h`.
 
+Next, a segfault at 0x38 in `refl_AssignHandle<UnkClone_fn_7100234f78>`, from the `CStrId` to `CGameLink<CActor>`
+conversion `fn_7100248b38`. gdb showed its `rbx` (the destination) set to 0 by the hand-written `fn_710023b580`, a
+callee-saved register that function should have kept. The cause: `src/game/CActor.cpp` declared the reflected read
+`fn_7100ad7cc0` as returning a bare `UnkReflValue` (0x18 bytes), but the original builds 0x30 bytes through x8. On the
+Switch only the caller's frame size shows it (0x80 there, smaller in ours); in the port the lifted callee wrote 0x18
+bytes past the caller's slot, onto its saved registers. It now returns `UnkReflReadResult` (the value and 0x18
+bytes it zeroes). **Finding:** a by-value result declared smaller than what the original callee stores through x8
+is invisible to matching (an `m` with "the same behaviour") but corrupts the caller's frame in the port. Check the
+callee's highest x8 store whenever a hand-written caller declares a by-value result for a function that isn't
+matched. With both fixes the boot passes the scene's actor data, then glibc aborts on a damaged heap chunk during a
+GUI resource load called from Lua (`fn_7100084c68`); the corrupting write is earlier and not yet found.
+
 **CEnvironmentData's move constructor, by hand (2026-11-08, branch `claude/environment-move`).**
 The scene's environment presets go into a `CRntDictionary<CStrId, CEnvironmentData>`. Its entry's move hook calls
 `fn_7100f44fd8`, the 0x3a8-byte value's move constructor (5,756 bytes). The port trapped on it: the oracle could not
