@@ -1,12 +1,12 @@
 // Writes one of an object's named settings (a name, through the object at +0x40). Other keys go
 // to the base handler (fn_71010c4250). Layouts are placeholders.
+#include "base/global/CRntString.h"
 #include "../../game_s7/UnkPropS7.h"
 #include "game/UnkComponent.h"
 
 using namespace unk_prop;
 using base::global::CRntString;
 
-extern base::global::CRntString g_unk_7101d58d10;
 
 // A shared record with a name; the use count is a union member, so the owner's pointer is
 // reloaded after the increment.

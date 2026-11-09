@@ -1,10 +1,10 @@
 // CGameManager unit: starts the curve at +0x650 from the current value (+0x6a4) towards `target`
 // over `duration` with the modifiers in g_unk_7101d58d10, takes the target at once when the duration
 // is 0, then runs fn_7100df6688. Names and layouts are placeholders.
+#include "base/global/CRntString.h"
 #include "base/UnkTimedCurve.h"
 #include "types.h"
 
-extern base::global::CRntString g_unk_7101d58d10;
 
 struct UnkGameManagerFade {
     u8 pad_0x0[0x650];
