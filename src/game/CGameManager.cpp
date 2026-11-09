@@ -11,6 +11,17 @@ CStrId fn_7100dfbda4(UnkGameManager* self, const CStrId& id) {
     return id;
 }
 
+// The current scenario's blackboard section id (src/game/CScenario.cpp), or the empty id when there
+// is no scenario. The original tail-calls fn_71011a2fbc with the result slot passed through; the
+// generated version called it as a plain function, so on the port the callee built its result over
+// the scenario object.
+CStrId fn_71011a2fbc(UnkGameManagerSub_0x608* scenario);
+CStrId fn_7100de9c30(UnkGameManager* self) {
+    if (self->field_0x608)
+        return fn_71011a2fbc(self->field_0x608);
+    return g_unk_7101d470e0;
+}
+
 // The object behind +0x498 starts with a pointer-sized field, then a string.
 bool fn_7100deabe4(UnkGameManager* self) {
     char* object = static_cast<char*>(self->field_0x498);

@@ -25,6 +25,7 @@ except ImportError:  # pyelftools or capstone missing
 
 ADDR = 0x7100001000
 F, V, G = ADDR + 0x1000, ADDR + 0x1100, ADDR + 0x1200  # a plain callee, a variadic one, one reading x0-x1
+S = ADDR + 0x1300  # a callee that builds its result at x8
 STP, MOV_FP, LDP, RET = 0xA9BF7BFD, 0x910003FD, 0xA8C17BFD, 0xD65F03C0
 MOV_X19_X0 = 0xAA0003F3  # mov x19, x0
 MOV_X0_X19 = 0xAA1303E0  # mov x0, x19
@@ -52,9 +53,10 @@ class PassThrough(unittest.TestCase):
             F: abi_facts.Facts(args=frozenset({0}), stack=False),
             V: abi_facts.Facts(args=every, stack=False, wide=every),
             G: abi_facts.Facts(args=frozenset({0, 1}), stack=False, wide=frozenset({0, 1})),
+            S: abi_facts.Facts(args=frozenset({0, 8}), stack=False, wide=frozenset({0, 8})),
         }.get
 
-    def lifts(self, words, cls):
+    def lifts(self, words, cls, plain=False, expect=True):
         code = b"".join(struct.pack("<I", w) for w in words)
         orig = SimpleNamespace(function=lambda a: code, sizes={ADDR: len(code)}, plt_import=lambda a: None,
                                img=None, got_slot=lambda *a: None, version="test", module="main")
@@ -62,14 +64,25 @@ class PassThrough(unittest.TestCase):
         for returns in ("value", "void"):
             lifter = cls(orig, ADDR, 0, returns)
             lifter.opts = frozenset()
+            lifter.plain = plain
             r = lifter.lift()
             if r:
                 out.append(r[0])
-        self.assertTrue(out, "nothing lifted")
+        if expect:
+            self.assertTrue(out, "nothing lifted")
         return out
 
     def call_line(self, text, fn):
         return next(ln.strip() for ln in text.split("\n") if f"fn_{fn:x}(" in ln and "namespace" not in ln)
+
+    def test_plain_lift_refuses_a_callee_with_an_indirect_result(self):
+        # b S (S reads x8): a plain lift would call S as an ordinary function, which on x86-64
+        # makes its first argument the result slot (fn_7100de9c30 -> fn_71011a2fbc); it must not lift
+        words = [0x14000000 | ((S - ADDR) // 4)]
+        for cls in (gen_lift.Lifter, gen_lift.FlatLifter):
+            self.assertEqual(self.lifts(words, cls, plain=True, expect=False), [])
+            for text in self.lifts(words, cls):
+                self.assertIn(f"sret::fn_{S:x}(", text)
 
     def test_variadic_callee_gets_no_earlier_result(self):
         # stp; mov; bl F; bl V; ldp; ret: F passes x0 on, V's s0 is F's leftover, not a float result
@@ -169,6 +182,24 @@ class Rounds(unittest.TestCase):
     def test_plain_match_kept_when_nothing_better(self):
         chosen, _ = self.run_rounds({1: {1}}, {1: {1}})  # (later rounds: plain only, ignored)
         self.assertEqual(chosen, {1: "r0k1"})
+
+
+@unittest.skipIf(gen_lift is None, "pyelftools or capstone is not installed")
+class Definitions(unittest.TestCase):
+    """defined_outside's line match: leading attributes, nested parentheses included, are skipped,
+    so a hand-written `__attribute__((visibility("hidden"))) void fn_X() {` counts as defining fn_X
+    (src/engine/UnkStartupCallbacks.cpp's fn_7100001714 was lifted a second time)."""
+
+    def name(self, line):
+        m = gen_lift.NAME_RE.match(gen_lift.ATTR_RE.sub("", line))
+        return m and m.group(1)
+
+    def test_attribute_with_nested_parentheses(self):
+        self.assertEqual(self.name('__attribute__((visibility("hidden"))) void fn_7100001714() {'), "7100001714")
+
+    def test_several_attributes(self):
+        self.assertEqual(self.name('__attribute__((noinline)) __attribute__((visibility("hidden"))) u32 fn_7100001718(int x) {'),
+                         "7100001718")
 
 
 if __name__ == "__main__":

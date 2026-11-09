@@ -2377,7 +2377,7 @@ address,size,name,name_source,subsystem,status
 0x7100b79df4,260,fn_7100b79df4,unknown,unknown,O
 0x7100b79ef8,4088,fn_7100b79ef8,unknown,unknown,U
 0x7100b7aef0,140,"std::__1::basic_stringstream<char, std::__1::char_traits<char>, std::__1::allocator<char>>::~basic_stringstream",symbol,runtime,L
-0x7100b7af7c,196,fn_7100b7af7c,unknown,runtime?,U
+0x7100b7af7c,196,fn_7100b7af7c,unknown,runtime?,O
 0x7100b7b040,28,fn_7100b7b040,unknown,runtime?,O
 0x7100b7b05c,140,"non-virtual thunk to std::__1::basic_stringstream<char, std::__1::char_traits<char>, std::__1::allocator<char>>::~basic_stringstream",symbol,runtime?,L
 0x7100b7b0e8,148,"virtual thunk to std::__1::basic_stringstream<char, std::__1::char_traits<char>, std::__1::allocator<char>>::~basic_stringstream",symbol,runtime?,L

@@ -89,7 +89,7 @@ NAME_RE = re.compile(r"^[A-Za-z_][\w:<>,*& ]*\bfn_([0-9a-f]{10})\(")  # a declar
 TAGGED_DIRS = ("reflection", "reflection_types", "reflection_statics", "clones", "tables")  # generator outputs
 TAG_RE = re.compile(r"(?:UnkRefl_fn_|UnkClone_fn_|UnkTable_fn_|DREAD_REFL_\w*GETTER\()([0-9a-f]{10})\b")  # tagged definitions
 ALIAS_RE = re.compile(r"\.set fn_([0-9a-f]{10}),")  # asm aliases naming a template instance's code
-ATTR_RE = re.compile(r"^(?:__attribute__\(\(.*?\)\)\s*)+")  # leading attributes of a definition
+ATTR_RE = re.compile(r"^(?:__attribute__\(\((?:[^()]|\([^()]*\))*\)\)\s*)+")  # leading attributes of a definition
 MACRO_USE_RE = re.compile(r"^([A-Z][A-Z0-9_]*)\((?:fn_)?([0-9a-f]{10})\b")  # a macro given an address first
 MACRO_RE = re.compile(r"^#define ([A-Z][A-Z0-9_]*)\(((?:[^\n]*\\\n)*[^\n]*)", re.M)  # a #define and its body
 # (minimum call arguments, return mode): tried in this order. Return modes: "value" returns x0
@@ -1204,7 +1204,16 @@ class Lifter:
     def sret_callee(self, a: int) -> bool:
         """Whether the callee at a builds its result at x8 (abi_facts), in semantic mode and in
         byte mode's pass-through (where the call then names x8 too: see sret_call, sret_tail)."""
-        if self.facts is None or ("semantic" not in self.opts and self.plain):
+        if self.facts is None:
+            return False
+        if "semantic" not in self.opts and self.plain:
+            # A plain lift calls it as an ordinary function. On AArch64 the bytes are the same (x8
+            # passes through the call untouched), but on x86-64 the result pointer is the hidden
+            # first argument, so the callee would build its result over the first argument named:
+            # fn_7100de9c30's tail call to fn_71011a2fbc wrote a CStrId over the scenario object.
+            f = self.facts(a)
+            if f is not None and f.sret:
+                raise Unsupported("plain lift of a call to a callee with an indirect result (x8)")
             return False
         f = self.facts(a)
         if f is None and "semantic" in self.opts and self.orig.plt_import(a) in SRET_IMPORTS:

@@ -38,6 +38,8 @@ typedef s32 __attribute__((may_alias)) a_s32;
 typedef f32 __attribute__((may_alias)) a_f32;
 typedef f64 __attribute__((may_alias)) a_f64;
 
+struct lift_at_t {}; inline void* operator new(decltype(sizeof 0), void* p, lift_at_t) noexcept { return p; }
+
 namespace callee { char* fn_7100083c00(char*); }
 namespace callee { char* fn_7100b72688(char*); }
 char* fn_7100b727a0(char* p0) {
@@ -1919,6 +1921,63 @@ char* fn_7100b79dd0(char* p0) {
     char* r1_0 = callee::fn_71011d8e90(p0);
     char* r2_0 = r0_19;
     return callee::fn_7100083c00(r2_0);
+}
+
+extern char g_unk_7101d47310[];
+namespace callee { char* fn_710007ecd4(char*); }
+namespace callee { char* fn_710007f120(u64, char*); }
+namespace sret { UnkResult fn_7100df703c(u32); }
+namespace wret { u32 fn_710007f120(u64, char*); }
+void fn_7100b7af7c(char* p0) {
+    alignas(16) char stk[0x30];
+    u64 X0 = (u64)p0;
+    u64 X1;
+    u64 X8;
+    u64 X19;
+    u64 X20;
+    u64 X21;
+    u64 X22;
+    X8 = (u64)((char*)g_unk_7101d47310);
+    X8 = (u64)((u64)*(u64*)((char*)(((char*)X8)) + 0));
+    X19 = (u64)(((char*)X0));
+    X0 = (u64)((u32)(u64)(0));
+    X20 = (u64)((u64)(u64)(X8) + (u64)(2032));
+    X8 = (u64)((stk + 0x0));
+    new ((void*)(((char*)X8)), lift_at_t{}) UnkResult(sret::fn_7100df703c(((u32)X0)));
+    X1 = (u64)((stk + 0x0));
+    X0 = (u64)(X20);
+    X0 = wret::fn_710007f120(X0, ((char*)X1));
+    X21 = (u64)((u32)(u64)((u32)X0));
+    X0 = (u64)((stk + 0x0));
+    X0 = (u64)(callee::fn_710007ecd4(((char*)X0)));
+    X22 = (u64)((u32)(u64)(0));
+    if (!(((u64)((u32)X21) >> 0 & 1) == 0)) goto L_7100b7b028;
+    X8 = (u64)((stk + 0x0));
+    X0 = (u64)(0x1);
+    X22 = (u64)(0x1);
+    new ((void*)(((char*)X8)), lift_at_t{}) UnkResult(sret::fn_7100df703c(((u32)X0)));
+    X1 = (u64)((stk + 0x0));
+    X0 = (u64)(X20);
+    X0 = wret::fn_710007f120(X0, ((char*)X1));
+    X21 = (u64)((u32)(u64)((u32)X0));
+    X0 = (u64)((stk + 0x0));
+    X0 = (u64)(callee::fn_710007ecd4(((char*)X0)));
+    if (!(((u64)((u32)X21) >> 0 & 1) == 0)) goto L_7100b7b028;
+    X8 = (u64)((stk + 0x0));
+    X0 = (u64)(0x2);
+    X22 = (u64)(0x2);
+    new ((void*)(((char*)X8)), lift_at_t{}) UnkResult(sret::fn_7100df703c(((u32)X0)));
+    X1 = (u64)((stk + 0x0));
+    X0 = (u64)(X20);
+    X0 = wret::fn_710007f120(X0, ((char*)X1));
+    X20 = (u64)((u32)(u64)((u32)X0));
+    X0 = (u64)((stk + 0x0));
+    X0 = (u64)(callee::fn_710007ecd4(((char*)X0)));
+    if (!(((u64)((u32)X20) >> 0 & 1) != 0)) goto L_7100b7b02c;
+L_7100b7b028:;
+    *(u32*)((char*)(((char*)X19)) + 560) = (u32)(u64)((u32)X22);
+L_7100b7b02c:;
+    return;
 }
 
 extern char g_unk_7172766bd0[];
