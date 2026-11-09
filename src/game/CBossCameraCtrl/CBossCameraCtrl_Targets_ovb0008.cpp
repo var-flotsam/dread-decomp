@@ -28,7 +28,8 @@ extern CStrId g_unk_7172710f50 __attribute__((visibility("hidden")));
 
 void fn_7100e03a78(UnkGameManager*, void*);
 void fn_7100e8f9a0(char* self, bool remove, base::global::CStrId* key);
-void fn_7100fdb9e0(void* manager, f32 a, f32 b, s32 kind, bool flag);
+struct UnkMgr_0xf18;
+void fn_7100fdb9e0(UnkMgr_0xf18* manager, u32 kind, u32 flag, f32 a, f32 b);
 UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 
 struct UnkFixedCamera_fc;
@@ -140,7 +141,7 @@ void fn_710074f80c(UnkBossCameraCtrl_ovb0008* self) {
     g_unk_7101d47310->field_0x2230 = g_unk_7101d470e0;
     UnkMusicState_ovb0008* state = static_cast<UnkMusicManagerView_ovb0008*>(MusicManager())->state;
     if (state && state->kind == 7)
-        fn_7100fdb9e0(MusicManager(), -1.0f, 0.5f, 1, false);
+        fn_7100fdb9e0(reinterpret_cast<UnkMgr_0xf18*>(MusicManager()), 1, 0, -1.0f, 0.5f);
     fn_7100e03a78(g_unk_7101d47310, &g_unk_7172710f30);
 }
 
@@ -180,7 +181,7 @@ void fn_710074f6c4(UnkBossCameraCtrl_ovb0008* self) {
             manager->field_0x2230 = *reinterpret_cast<CStrId* (*)(void*)>(fn_710112bf20)(child);
         }
     }
-    fn_7100fdb9e0(MusicManager(), -1.0f, 0.5f, 7, false);
+    fn_7100fdb9e0(reinterpret_cast<UnkMgr_0xf18*>(MusicManager()), 7, 0, -1.0f, 0.5f);
 }
 
 struct UnkBossState_ovb0008 {

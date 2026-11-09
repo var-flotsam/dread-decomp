@@ -26,7 +26,8 @@ void fn_71009f1910(UnkBreakableTileGroup_b46a2* self);
 struct UnkNode;
 void fn_7100023854(UnkNode* node);
 void fn_71011a91c4(UnkModelManager* self, void* handle, u32 id);
-void fn_71010c422c(void* self);
+struct UnkMorphBallLauncher_b57;
+void fn_71010c422c(UnkMorphBallLauncher_b57* self);
 void fn_7100146dac(UnkSwitchObject* self, bool enable);
 void fn_7100339d48(UnkRenderPool* pool, const CFilePathStrId* path, UnkSwitchObject** out, const CStrId* name);
 
@@ -99,7 +100,7 @@ void fn_710080f624(UnkScorpiusFX_ovb0008* self) {
 
 void fn_710080f710(UnkScorpiusFX_ovb0008* self) {
     ReleaseGas(self);
-    fn_71010c422c(self);
+    fn_71010c422c(reinterpret_cast<UnkMorphBallLauncher_b57*>(self));
 }
 
 void fn_710080f4c8(UnkScorpiusFX_ovb0008* self) {
