@@ -6,6 +6,7 @@
 // display object itself, and returns no results. Names and layouts are placeholders.
 #include "../../../lib/lua/lua.h"
 #include "../../game_s7/UnkPropBagS7.h"
+#include "base/UnkCloneRecords.h"
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
@@ -490,14 +491,15 @@ struct UnkGameManagerRequests_b0007 {
     u8 pad_0x0[0x2128];
     u8 field_0x2128[1];
 };
-void fn_7100456b7c(void* list, UnkIdRequest_b0007* request);
+struct UnkMlogMessage_b42a1;
+void fn_7100456b7c(void* list, const UnkMlogMessage_b42a1* request);
 
 int fn_710109b1a0(lua_State* L) {
     const char* name = g_unk_710162e2ed;
     if (fn_71010c0270(L, "s", &name)) {
         CStrId id(name, true);
         UnkIdRequest_b0007 request(id);
-        fn_7100456b7c(reinterpret_cast<UnkGameManagerRequests_b0007*>(g_unk_7101d47310)->field_0x2128, &request);
+        fn_7100456b7c(reinterpret_cast<UnkGameManagerRequests_b0007*>(g_unk_7101d47310)->field_0x2128, reinterpret_cast<const UnkMlogMessage_b42a1*>(&request));
     }
     return 0;
 }
@@ -507,7 +509,6 @@ void* fn_710109e770(lua_State* L, int index);
 int fn_71010a4900(lua_State* L, int narg);
 s32 fn_7101202300(const base::global::CRntString* name);  // an event's kind from its name
 void fn_7100b33f90(void* self, void** object);
-void fn_71011cf394(void* a0, void* a1, void* holder, void* a3, u32 a4);
 
 extern char g_unk_7101caf688[];
 
