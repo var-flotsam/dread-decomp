@@ -136,6 +136,7 @@ TU_MAP = ROOT / "data" / "tu_map.csv"  # tools/tu_map.py: the units and their st
 RUNTIME_SRC = ROOT / "port" / "runtime" / "src"
 NVN_DIR = ROOT / "port" / "nvn"  # the NVN shim over Vulkan (M2), linked with --nvn
 ADDRESSES = ROOT / "build" / "port" / "addresses.json"  # tools/port_addresses.py
+ABI_ARGS = ROOT / "build" / "port" / "abi_args.json"  # tools/abi_facts.py --export-json
 BINDINGS = ROOT / "port" / "bindings.tsv"  # constructors and destructors placed by hand (read_bindings)
 # The executable's base. The compiled game code reaches 5,467 data symbols PC-relatively, from
 # 0x71015af379 to 0x7172a112e8, so its code must lie within 2 GB of both ends: between about
@@ -693,8 +694,15 @@ def returns_class_by_value(demangled: str) -> bool:
     return not (ret == "void" or ret.endswith(("*", "&")) or SCALAR_RE.match(ret) or FLOAT_RE.match(ret))
 
 
-def signature_class(ref: list[str] | None, dfn: list[str] | None, dfn_qualified: bool) -> tuple[str, list[str]]:
-    """How a call through the reference's signature lands on the definition's (ABI_NOTE)."""
+def signature_class(ref: list[str] | None, dfn: list[str] | None, dfn_qualified: bool,
+                    reads: tuple[int, int, int] | None = None) -> tuple[str, list[str]]:
+    """How a call through the reference's signature lands on the definition's (ABI_NOTE).
+    `reads` is what the definition's original reads (tools/abi_facts.py: integer and float argument
+    registers, stack slots): a call whose classes interleave differently from the definition's
+    declaration is still safe when the caller sets every register the function reads ("covered by
+    facts"): a lifted definition declares registers it only passes on (an indirect call's x0-x7, a
+    variadic callee's d0). Not for by-value aggregates, which x86-64 packs unlike AArch64, nor for
+    a function that reads stack arguments."""
     flags: list[str] = []
     if ref is None or dfn is None:
         return "unmangled_definition", flags
@@ -733,6 +741,9 @@ def signature_class(ref: list[str] | None, dfn: list[str] | None, dfn_qualified:
             return "ref_more_args", flags
         if ri <= di and rf <= df:
             return "ref_fewer_args", flags
+        if reads is not None and reads[2] == 0 and ri >= reads[0] and rf >= reads[1]:
+            flags.append("covered_by_facts")
+            return "ref_more_args", flags
         return "class_mismatch", flags
     return ("ref_more_args" if len(cr) > len(cd) else "ref_fewer_args"), flags
 
@@ -927,6 +938,16 @@ def runtime_overload(candidates: list[str], reference: str, demangled: dict[str,
     return min(candidates, key=rank)
 
 
+def load_abi_reads(path: Path) -> dict[int, tuple[int, int, int]]:
+    """address -> (integer, float argument registers, stack slots) its original reads, from
+    tools/abi_facts.py --export-json (run on the host: the Docker image has no capstone). Empty
+    without the file."""
+    if not path.is_file():
+        return {}
+    data = json.loads(path.read_text(encoding="utf-8"))
+    return {int(a, 16): tuple(v) for a, v in data["functions"].items()}
+
+
 def import_mangled(version: str, addresses: list[int]) -> dict[int, str]:
     """address -> the console's mangled name of each import PLT stub in `addresses` (the dump's GOT
     slot and dynamic symbol table, asmdiff.Original.plt_import). Empty without the dump."""
@@ -1020,14 +1041,17 @@ def import_names(version: str, addresses: list[int]) -> dict[int, str]:
 
 def classify(lk: Link, runtime_by_name: dict[str, list[str]], runtime_symbols: set[str],
              alias_mismatch: bool = False, known: dict[str, int] | None = None,
-             imported: dict[int, str] | None = None, host_cxx: dict[int, str] | None = None) -> list[Entry]:
+             imported: dict[int, str] | None = None, host_cxx: dict[int, str] | None = None,
+             abi_reads: dict[int, tuple[int, int, int]] | None = None) -> list[Entry]:
     """One Entry per undefined symbol of `lk`. A called function alias with a class_mismatch
     verdict is trapped unless `alias_mismatch`. `known` (tools/port_addresses.py) gives the
     original address of a vtable or a name without one: the vtable becomes an absolute symbol
     there, the name a reference to that address like any fn_<addr>. `imported` (import_names)
     gives the console's demangled name of an import whose runtime name is overloaded. `host_cxx`
-    (host_cxx_imports) the host's libc++ symbol for an import of the C++ library: a jump to it."""
+    (host_cxx_imports) the host's libc++ symbol for an import of the C++ library: a jump to it.
+    `abi_reads` (load_abi_reads) what each function's original reads, for signature_class."""
     known = known or {}
+    abi_reads = abi_reads or {}
     imported = imported or {}
     host_cxx = host_cxx or {}
     res = lk.resolver
@@ -1086,7 +1110,8 @@ def classify(lk: Link, runtime_by_name: dict[str, list[str]], runtime_symbols: s
             ref_params = param_list(dem)
             ranked = []
             for d in cands:
-                sig, flags = signature_class(ref_params, param_list(d.demangled), class_qualified(d.demangled))
+                sig, flags = signature_class(ref_params, param_list(d.demangled), class_qualified(d.demangled),
+                                             abi_reads.get(addr))
                 by_value = len(cands) > 1 and d.tag == "tag" and returns_class_by_value(d.demangled)
                 ranked.append((sig == "class_mismatch", by_value, SIGNATURE_ORDER.index(sig), 0 if d.kind == "T" else 1,
                                d.symbol, sig, flags, d))
@@ -1628,6 +1653,10 @@ def main() -> int:
                     help="tools/port_addresses.py's output: original addresses of vtables and names without one"
                          " (default build/port/addresses.json, used when present)")
     ap.add_argument("--no-addresses", action="store_true", help="ignore --addresses")
+    ap.add_argument("--abi-args", default=str(ABI_ARGS),
+                    help="tools/abi_facts.py --export-json's output: the argument registers each function reads, which"
+                         " clears a call whose classes interleave unlike its lifted definition's (default"
+                         " build/port/abi_args.json, used when present)")
     ap.add_argument("--bindings", default=str(BINDINGS),
                     help="constructors and destructors placed by hand (default port/bindings.tsv, used when present)")
     ap.add_argument("--no-bindings", action="store_true", help="ignore --bindings")
@@ -1647,6 +1676,9 @@ def main() -> int:
                          " game's PC-relative data, above the image's .bss)")
     args = ap.parse_args()
     known: dict[str, int] = {}
+    abi_reads = load_abi_reads(Path(args.abi_args))
+    if abi_reads:
+        print(f"abi args: {len(abi_reads)} functions ({rel(Path(args.abi_args))})")
     if not args.no_addresses and Path(args.addresses).is_file():
         placed = json.loads(Path(args.addresses).read_text(encoding="utf-8"))
         known = {sym: int(e["address"], 16) for sym, e in placed.get("resolved", {}).items()}
@@ -1752,7 +1784,8 @@ def main() -> int:
           f" runtime: {len(runtime_symbols)} functions")
 
     # d. classification
-    entries = classify(lk, runtime_by_name, runtime_symbols, args.alias_mismatch, known, imported, host_cxx)
+    entries = classify(lk, runtime_by_name, runtime_symbols, args.alias_mismatch, known, imported, host_cxx,
+                       abi_reads)
     summary = summarize(entries, args.examples, keep_empty=True)
     assert sum(d["symbols"] for d in summary.values()) == len(entries) == len(lk.undefined)
     print()
@@ -1812,7 +1845,8 @@ def main() -> int:
         if new_names:
             demangled.update(asmdiff.demangle(new_names, strip=False))
         lk = Link(lsyms, demangled, resolver, relocations(objdump, lifted_o), known)
-        entries = classify(lk, runtime_by_name, runtime_symbols, args.alias_mismatch, known, imported, host_cxx)
+        entries = classify(lk, runtime_by_name, runtime_symbols, args.alias_mismatch, known, imported, host_cxx,
+                       abi_reads)
         game_o = lifted_o
         print()
         lifted_slice = boot_slice(args.version, lk, entries, runtime_by_name, out / "boot_unlifted.csv",
@@ -1898,7 +1932,8 @@ def main() -> int:
         print("\n".join(r.stderr.splitlines()[:40]))
         return 1
     whole = Link(nm_symbols(nm, whole_o), demangled, resolver, relocations(objdump, whole_o), known)
-    residue_entries = classify(whole, runtime_by_name, runtime_symbols, args.alias_mismatch, known)
+    residue_entries = classify(whole, runtime_by_name, runtime_symbols, args.alias_mismatch, known,
+                               abi_reads=abi_reads)
     residue = summarize(residue_entries, args.examples, keep_empty=False)
     print(f"link 2: {rel(whole_o)} in {dt2:.1f} s ({whole_o.stat().st_size / 1e6:.1f} MB)")
     print_summary("residue", residue, args.examples)
