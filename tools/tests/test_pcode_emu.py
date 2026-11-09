@@ -245,6 +245,41 @@ class Snapshots(unittest.TestCase):
         self.assertIsNone(rec(m, B + 0x300, B + 0x300, False))
         self.assertIn("the real run's", m.replay_end)
 
+    def test_a_port_core_snapshot(self):
+        # port_link --capture: registers at our addresses (nothing translated) and the writable memory in
+        # a core file beside the header, each region at its offset; a hole reads as zero, an address in
+        # no region is not captured
+        import json
+        import os
+        import tempfile
+        P, B = pcode_emu.PAGE, pcode_emu.BASE
+        d = tempfile.mkdtemp()
+        heap, image = 0x7F0000000000, B + 0x80000
+        core = bytearray(3 * P)  # image: one page (zero); heap: two pages, the second with data
+        core[2 * P + 8:2 * P + 16] = (B + 0x1230).to_bytes(8, "little")
+        with open(os.path.join(d, "fn_7100000000.core"), "wb") as f:
+            f.write(core)
+        head = {"format": "port-core", "core": "fn_7100000000.core", "x": [hex(heap + P)] + ["0"] * 30,
+                "q": ["0"] * 32, "sp": "7ffd0000", "stack": "", "pages": 0,
+                "regions": [[hex(image), hex(image + P), "0"], [hex(heap), hex(heap + 2 * P), hex(P)]]}
+        snap = os.path.join(d, "fn_7100000000.snap")
+        with open(snap, "wb") as f:
+            f.write(pcode_emu.SNAP_MAGIC + json.dumps(head).encode() + b"\n")
+        try:
+            s = pcode_emu.load_snapshot(snap, 0x100000)
+            self.assertEqual(s.x[0], heap + P)
+            self.assertIn(image // P, s.pages)
+            self.assertEqual(s.pages[image // P], bytes(P))
+            self.assertEqual(int.from_bytes(s.pages[heap // P + 1][8:16], "little"), B + 0x1230)
+            self.assertNotIn(heap // P + 2, s.pages)
+            s.pages._map.close()
+            s.pages._file.close()
+        finally:
+            pcode_emu._snapshots.pop(snap, None)
+            for n in os.listdir(d):
+                os.unlink(os.path.join(d, n))
+            os.rmdir(d)
+
 
 @unittest.skipIf(pcode_emu is None, "pyelftools is not installed")
 class AbiGarbage(unittest.TestCase):

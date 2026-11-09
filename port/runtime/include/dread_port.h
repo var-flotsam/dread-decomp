@@ -58,6 +58,16 @@ extern "C" void dread_port_map_game_image();
 extern "C" bool dread_port_game_heap_ready();
 extern "C" bool dread_port_in_game_heap(const void* ptr);
 
+// For snapshots of the game's state (src/capture.cpp): the memory heap's base and the bytes of it handed
+// out, and the end of the mapped image (its .bss), 0 before it is mapped.
+extern "C" void dread_port_game_heap(const char** base, u64* used);
+extern "C" u64 dread_port_image_end;
+
+// Called by a capture thunk (tools/port_link.py --capture) before the missing-function trap: with
+// $DREAD_SNAPSHOTS set, writes the function's entry state there once (src/capture.cpp). `regs` holds
+// rdi, rsi, rdx, rcx, r8, r9, then xmm0-xmm7 (16 bytes each), then the entry rsp.
+extern "C" void dread_port_capture(u64 address, const u64* regs);
+
 // The user's dump, laid out as orig/<version>/ (exefs/, romfs/): $DREAD_ORIG, else orig/2.1.0
 // under the working directory. The data loader reads exefs/main from it, nn::fs mounts romfs/ as
 // "rom".

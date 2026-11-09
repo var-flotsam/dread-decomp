@@ -32,7 +32,8 @@ address passed to a callee is compared by the bytes the function wrote around it
 frames are laid out differently.
 
 A snapshot (load_snapshot: the registers and memory pages a real run held at the function's entry, captured
-from the Dread recomp by tools/recomp_trace.py) can stand in for the seed's made-up state: its pages read as
+from the Dread recomp by tools/recomp_trace.py, or from the port itself: port_link --capture, the "port-core"
+format, whose pages are its writable memory read from a core file on demand) can stand in for the seed's made-up state: its pages read as
 they were (the module's own pages too), anything it did not capture as the seed gives, and the recomp's
 addresses of the module are moved to ours. Its calls file (load_calls) replays the real calls in order:
 their results, the out-parameters they wrote in the frame and their other memory writes, while each call
@@ -233,6 +234,39 @@ class Snapshot:
 _snapshots: dict[str, Snapshot] = {}
 
 
+class CorePages:
+    """The pages of a port snapshot (format "port-core", port/runtime/src/capture.cpp), read from its
+    core file on demand: `n in pages` and `pages[n]` by page number, as Snapshot.pages. The core file
+    holds each captured region at its offset (start, end, offset); pages it left as holes read as
+    zero, as they were."""
+
+    def __init__(self, path: str, regions: list[tuple[int, int, int]]):
+        import mmap
+        self._file = open(path, "rb")
+        self._map = mmap.mmap(self._file.fileno(), 0, access=mmap.ACCESS_READ)
+        self.regions = sorted(regions)
+        self._starts = [r[0] for r in self.regions]
+
+    def _offset(self, n: int) -> int | None:
+        import bisect
+        a = n * PAGE
+        i = bisect.bisect_right(self._starts, a) - 1
+        if i >= 0:
+            start, end, off = self.regions[i]
+            if start <= a < end:
+                return off + (a - start)
+        return None
+
+    def __contains__(self, n: int) -> bool:
+        return self._offset(n) is not None
+
+    def __getitem__(self, n: int) -> bytes:
+        off = self._offset(n)
+        if off is None:
+            raise KeyError(n)
+        return self._map[off:off + PAGE].ljust(PAGE, b"\0")
+
+
 def load_snapshot(path: str, module_size: int) -> Snapshot:
     """A capture file (tools/recomp_trace.py snapshot): the magic, one JSON header line ({"x": 31
     values, "q": 32, "sp", "stack": hex bytes above sp, "pages": n}), then n records of an 8-byte page
@@ -249,6 +283,15 @@ def load_snapshot(path: str, module_size: int) -> Snapshot:
         raise ValueError(f"{path}: not a snapshot")
     nl = raw.index(b"\n", len(SNAP_MAGIC))
     head = json.loads(raw[len(SNAP_MAGIC):nl])
+    if head.get("format") == "port-core":
+        # The port's own capture: the image at our addresses (nothing to translate), its writable
+        # memory in the core file beside it, read on demand.
+        regions = [(int(a, 16), int(b, 16), int(o, 16)) for a, b, o in head["regions"]]
+        pages = CorePages(os.path.join(os.path.dirname(path), head["core"]), regions)
+        snap = Snapshot([int(v, 16) for v in head["x"]], [int(v, 16) for v in head["q"]],
+                        bytes.fromhex(head.get("stack", "")), pages, int(head.get("sp", "0"), 16))
+        _snapshots[path] = snap
+        return snap
     lo, hi = RECOMP_MAIN, RECOMP_MAIN + module_size
 
     def tr(v: int) -> int:
