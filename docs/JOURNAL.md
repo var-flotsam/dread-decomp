@@ -60,6 +60,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - A counter compared in 32 bits beside a 64-bit array index: a separate `u64` index for the destination: same entry.
 
 **Lifter and generators**
+- A lift the oracle can't judge because the original faults on every made-up input can be judged on a state the port captures at the trap (`port_link --capture`, `port/runtime/src/capture.cpp`, format "port-core"): [snapshots from the port](#session-log-newest-first).
 - Alias, sort and copy rewrite rounds; "the generic lifter is near its limit": work log item 1.
 - Semantic mode and its P-code oracle; four flat-mode bugs byte identity hid; the oracle's reach (mutation test): [port M1 step 3](#session-log-newest-first).
 - Five hand-matching agents at once on address slices (about 15 functions per agent-hour); gen_lift must see macro, attribute and alias definitions: [round 27](#session-log-newest-first).
@@ -148,6 +149,22 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - An import name the runtime overloads (`movie::Buffer::Buffer` four times) must resolve by the dump's mangled name (the PLT stub's GOT slot), not by the reference's argument classes: a lifted call passes `this` as an argument, and a copy constructor looks like `Buffer(u64)`: [movie VP9](#session-log-newest-first).
 
 ## Session log (newest first)
+
+**Snapshots from the port (2026-11-09, branch `claude/port-capture`, stacked on `claude/boot-traps`).** The oracle
+judges a lift on made-up memory; functions that walk real game objects fault on every such input and stay
+inconclusive (the map menu's set-up, the AI manager's update, `fn_7100e9e164`, `fn_7100212a80`). Snapshots used to come
+from an instrumented Dread recomp played by hand. Now the port captures them itself: `port_link --capture ADDR,...`
+links a trap thunk that saves rdi..r9, xmm0-xmm7 and the entry rsp, and `dread_port_capture` writes, under
+`$DREAD_SNAPSHOTS`, a sparse core of the game's writable memory (the image's writable segments, the heap's handed-out
+part, the thread's stack: about 3.2 GB, 1.7 GB of it data) and a "port-core" header the oracle reads, its pages on
+demand. Only functions whose arguments are all in those registers are captured (no stack arguments, no x8 result).
+- `fn_7100e9e164` (minimap, 8,812 bytes) is accepted on its captured state: 10 inputs, 15% of its instructions covered,
+  the snapshot run cut off by the step limit in both runs. In the local lift set `build/port/lifted_all20`.
+- `fn_7100212a80` (the bounding-volume builder) still faults on every input, its captured state included; not yet
+  looked into.
+- With handles released since the vtable binding, one boot of three crashed in the movie worker
+  (`fn_7100225fd0` locking a stream's mutex from the "input ready" handler, on the title loop): most likely a stream
+  freed while its holders are still linked. Not yet looked into.
 
 **The boot's traps (2026-11-09, branch `claude/boot-traps`).** With the mismatches cleared, four calls still trapped on
 every boot.
