@@ -152,7 +152,7 @@ void fn_7100359118(void* self);
 UnkListedObj* fn_7100e0b770(char* self);
 UnkListedObj** fn_7100e0a5ec(UnkPtrList* list, u32 index);
 void fn_710020c4b8(UnkToggle* self, bool value);
-void fn_710020c8ac(UnkToggle* self, bool value);
+void fn_710020c8ac(void*, bool);
 
 // A light the light manager hands out; its switch at +0x28.
 struct UnkShotLight_b0011 {
@@ -241,7 +241,8 @@ void fn_7100ede44c(base::UnkVector<UnkShotEffect_b0011>* self, const UnkShotEffe
 struct UnkValue_b0011 {
     u8 data[0x40];
 };
-void fn_7100edbef4(UnkValue_b0011* self, const UnkValue_b0011* other);  // copy assignment
+struct UnkSlot_0x40;
+void fn_7100edbef4(UnkSlot_0x40* self, UnkSlot_0x40* other);  // copy assignment
 
 // Either a key and a value held here (kind 1) or pointers to them elsewhere (kind 2); kind 0 is
 // empty. The key is stored bytewise, so the kind is read again after it.
@@ -271,11 +272,11 @@ UnkKeyValueRef_b0011* fn_7100edc7cc(UnkKeyValueRef_b0011* self, UnkKeyValueRef_b
     if (self != other) {
         if (other->kind == 1) {
             self->SetKey(other->own.key);
-            fn_7100edbef4(self->Value(), &other->own.value);
+            fn_7100edbef4(reinterpret_cast<UnkSlot_0x40*>(self->Value()), reinterpret_cast<UnkSlot_0x40*>(&other->own.value));
         } else if (other->kind == 2) {
             self->SetKey(*other->ref.key);
             UnkValue_b0011* value = other->ref.value;
-            fn_7100edbef4(self->Value(), value);
+            fn_7100edbef4(reinterpret_cast<UnkSlot_0x40*>(self->Value()), reinterpret_cast<UnkSlot_0x40*>(value));
         }
     }
     return self;
@@ -332,7 +333,7 @@ void fn_7100edc1f0(CFilePathStrId* ids) {
 struct UnkFunctor_b0011 {
     u8 data[0x40];
 };
-void fn_7100ed977c(UnkFunctor_b0011* self);  // destructor
+void fn_7100ed977c(UnkSlot_0x40* self);  // destructor
 
 // An id and an object, and either a held functor (kind 1) or a binding to the object (kind 2: a
 // pointer back to the callback and the object).
@@ -355,7 +356,7 @@ struct UnkCallback_b0011 {
 
     void Reset() {
         if (kind == 1) {
-            fn_7100ed977c(&functor);
+            fn_7100ed977c(reinterpret_cast<UnkSlot_0x40*>(&functor));
             kind = 0;
         } else if (kind == 2) {
             kind = 0;

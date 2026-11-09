@@ -329,7 +329,8 @@ void fn_710074a0d4(UnkSwarmController_ovb6* self, f32 dt) {
 }
 
 bool fn_7100744e1c(UnkSwarmMember_ovb6* member);
-void fn_7100745440(UnkSwarmMember_ovb6* member, void* arg, bool flag);
+struct UnkTarget;
+void fn_7100745440(UnkTarget* target, void* effect, u32 flag);
 
 // Every live member that vf_0x228 accepts for `arg` gets fn_7100745440 and `value` at +0x64.
 void fn_710074e190(void* controller, void* arg, f32 value) {
@@ -340,7 +341,7 @@ void fn_710074e190(void* controller, void* arg, f32 value) {
             UnkSwarmMember_ovb6* member = group->members[j];
             if (member && fn_7100744e1c(member) &&
                 self->Slot<UnkSwarmController_ovb6::AcceptsFn>(0x228)(self, member, arg)) {
-                fn_7100745440(member, arg, false);
+                fn_7100745440(reinterpret_cast<UnkTarget*>(member), arg, 0);
                 member->field_0x64 = value;
             }
         }

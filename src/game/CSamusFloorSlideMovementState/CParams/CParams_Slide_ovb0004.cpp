@@ -37,7 +37,7 @@ struct UnkSamusSettings {
 };
 extern UnkSamusSettings g_unk_7172740de0;
 
-extern const CStrId g_unk_717273b7c0 __attribute__((visibility("hidden")));  // the slide collider's name
+extern const base::global::CStrId g_unk_717273b7c0 __attribute__((visibility("hidden")));  // the slide collider's name
 extern const CStrId g_unk_717273b7b8 __attribute__((visibility("hidden")));
 extern const CStrId g_unk_717273b7c8 __attribute__((visibility("hidden")));
 extern const CStrId g_unk_717273b7d0 __attribute__((visibility("hidden")));

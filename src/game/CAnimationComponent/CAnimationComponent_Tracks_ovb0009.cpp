@@ -33,6 +33,7 @@ struct UnkCutsceneTimeline;
 struct UnkObj_710117af10;
 struct UnkCls_710117af10;
 struct UnkTrackBlend;
+struct UnkTrackAction_1444;
 
 s64 fn_710007cf30(void* stream, const char* format, ...);
 void fn_710006663c(u64* out, const char* str);
@@ -44,7 +45,7 @@ f32 fn_710070d890(UnkTrack* track);
 f32 fn_710070d89c(UnkTrack* track);
 UnkCls_710117af10** fn_710070d7f8(UnkObj_710117af10* obj);
 bool fn_710070d830(UnkObj_710117af10* obj);
-bool fn_7100c97930(UnkTrackAction* action, const CClass* cls, f32 frames);
+bool fn_7100c97930(UnkTrackAction_1444* action, const base::reflection::CClass* cls, f32 value);
 
 extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
 extern UnkTrackBlend g_unk_7172769770;
@@ -150,7 +151,7 @@ struct UnkAnimComponent_ovb0009 {
     bool field_0x4ba;  // requests are refused while set
 };
 
-bool fn_710024fbc8(UnkAnimComponent_ovb0009* self);
+bool fn_710024fbc8(void*);
 
 // Sends a request to `data`'s track: refused while the component's flag is set or without a
 // track; bit 0x2000 is added to the mode unless fn_710024fbc8 holds.
@@ -432,7 +433,7 @@ struct UnkAnimComponent_b1c8 {
         for (UnkTrackEntry** it = tracks->field_0xf0.values; it != tracks->field_0xf0.End(); ++it) {
             UnkTrack* track = (*it)->field_0x70;
             UnkTrackAction* action = fn_710070d500(track);
-            if (action && fn_7100c97930(action, cls, fn_710070d89c(track)))
+            if (action && fn_7100c97930(reinterpret_cast<UnkTrackAction_1444*>(action), cls, fn_710070d89c(track)))
                 return true;
         }
         return false;
@@ -783,7 +784,7 @@ static inline bool PlayingTrackOfClass(UnkAnimComponent_a994* self, const CClass
     UnkTrackLookup& playing = self->tracks->field_0xf0;
     for (UnkTrackEntry** it = playing.values; it != self->tracks->field_0xf0.End(); ++it) {
         UnkTrackAction* action = fn_710070d500((*it)->field_0x70);
-        if (action && fn_7100c97930(action, cls, frames))
+        if (action && fn_7100c97930(reinterpret_cast<UnkTrackAction_1444*>(action), cls, frames))
             return true;
     }
     return false;
