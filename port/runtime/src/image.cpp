@@ -69,6 +69,8 @@ u8* ReadMain(u64* size) {
 
 }  // namespace
 
+extern "C" u64 dread_port_image_end = 0;
+
 extern "C" const char* dread_port_orig_directory() {
     const char* orig = std::getenv("DREAD_ORIG");
     return orig && *orig ? orig : kDefaultOrig;
@@ -93,6 +95,8 @@ extern "C" void dread_port_map_game_image() {
     DreadPortImageInfo info;
     const DreadPortLoadStatus status = dread_port_load_image(nso, size, &options, &host, &info);
     std::free(nso);  // the image is a copy; names of unresolved imports point into the mapped .rodata
+    if (status == DreadPortLoad_Ok)
+        dread_port_image_end = info.base + info.bss_end;
     if (status != DreadPortLoad_Ok) {
         char detail[64];
         std::snprintf(detail, sizeof(detail), "value 0x%llx", static_cast<unsigned long long>(info.first_bad_value));

@@ -203,3 +203,28 @@ class BoundVtables(unittest.TestCase):
         symbols = [("V", "_ZTVN10unk_handle9UnkHandleE"), ("V", "_ZTV3Bar"), ("D", "_ZTV3Foo"),
                    ("U", "_ZTV3Foo"), ("V", "_ZZ3fnvE1s")]
         self.assertEqual(pl.bound_vtables(symbols, known), [("_ZTVN10unk_handle9UnkHandleE", 0x7101a209e0)])
+
+
+class Capture(unittest.TestCase):
+    def test_which_functions_can_be_captured(self):
+        # the argument registers must all be rdi..r9 and xmm0-xmm7: no stack arguments, no x8 result
+        self.assertIsNone(pl.capturable((6, 0, 0, 0)))
+        self.assertIsNone(pl.capturable((3, 8, 0)))
+        self.assertIn("x8", pl.capturable((3, 0, 0, 1)))
+        self.assertIn("beyond", pl.capturable((7, 0, 0, 0)))
+        self.assertIn("beyond", pl.capturable((2, 0, 1, 0)))
+        self.assertIn("facts", pl.capturable(None))
+
+    def test_a_capture_thunk_saves_the_state_before_the_trap(self):
+        import tempfile
+        from pathlib import Path
+        e = pl.Entry("_Z13fn_7100212a80v", "fn_7100212a80()", "")
+        e.trap, e.trap_fn = 0x7100212a80, pl.TRAP
+        with tempfile.TemporaryDirectory() as d:
+            path = Path(d) / "traps.s"
+            pl.write_traps(path, [e], capture={0x7100212a80})
+            text = path.read_text()
+        body = text[text.index("_Z13fn_7100212a80v:"):]
+        self.assertLess(body.index("%rdi, 0x0(%rsp)"), body.index("call\tdread_port_capture"))
+        self.assertLess(body.index("call\tdread_port_capture"), body.index(f"jmp\t{pl.TRAP}"))
+        self.assertIn("%xmm7, 0xa0(%rsp)", body)

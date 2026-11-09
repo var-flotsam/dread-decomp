@@ -10,6 +10,7 @@
 add_library(dread_runtime STATIC
   src/account.cpp
   src/audio.cpp
+  src/capture.cpp
   src/diag.cpp
   src/fault.cpp
   src/fs.cpp
