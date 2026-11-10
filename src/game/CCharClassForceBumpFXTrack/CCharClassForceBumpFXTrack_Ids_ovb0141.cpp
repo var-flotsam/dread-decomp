@@ -29,8 +29,9 @@ struct UnkIdTokens_b0141 {
     u32 field_0x68;
     bool field_0x6c;
 };
-void fn_71000fc570(const char* text, const char* separator, UnkIdTokens_b0141* out);
-void fn_71000fc7cc(UnkIdTokens_b0141* self);
+struct UnkTunableTokens;
+void fn_71000fc570(const char*, const char*, UnkTunableTokens*);
+void fn_71000fc7cc(UnkTunableTokens*);
 
 union UnkIdSlot_b0141 {
     CStrId id;
@@ -83,12 +84,12 @@ void fn_7100c1dc78(UnkBumpTrack_b0141* self, const CStrId* src) {
     __builtin_memcpy(&uses, text + 0x44, 4);
     ++uses;
     __builtin_memcpy(text + 0x44, &uses, 4);
-    fn_71000fc570(*reinterpret_cast<const char* const*>(reinterpret_cast<const char*>(src->data) + 0x10), ",", &tokens);
+    fn_71000fc570(*reinterpret_cast<const char* const*>(reinterpret_cast<const char*>(src->data) + 0x10), ",", reinterpret_cast<UnkTunableTokens*>(&tokens));
     for (UnkIdToken_b0141* t = tokens.head; t; t = t->next) {
         UnkIdSlot_b0141 slot;
         fn_7100000850(&slot.id, *reinterpret_cast<const CRntString*>(t), true);
         PushBackMove(&self->ids, slot.id);
         slot.id.~CStrId();
     }
-    fn_71000fc7cc(&tokens);
+    fn_71000fc7cc(reinterpret_cast<UnkTunableTokens*>(&tokens));
 }
