@@ -60,6 +60,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - A counter compared in 32 bits beside a 64-bit array index: a separate `u64` index for the destination: same entry.
 
 **Lifter and generators**
+- A lift the oracle can't judge because the original faults on every made-up input can be judged on a state the port captures at the trap (`port_link --capture`, `port/runtime/src/capture.cpp`, format "port-core"): [snapshots from the port](#session-log-newest-first).
 - Alias, sort and copy rewrite rounds; "the generic lifter is near its limit": work log item 1.
 - Semantic mode and its P-code oracle; four flat-mode bugs byte identity hid; the oracle's reach (mutation test): [port M1 step 3](#session-log-newest-first).
 - Five hand-matching agents at once on address slices (about 15 functions per agent-hour); gen_lift must see macro, attribute and alias definitions: [round 27](#session-log-newest-first).
@@ -106,6 +107,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - The NVN globals `g_unk_716e29xxxx` are named by the loader's GOT slots and their relative relocations (`data/nvn_procs.csv`); count GOT-slot call sites with a short window, not adjacent pairs; never write into a game-owned NVN object's storage: [NVN shim's start-up path](#session-log-newest-first).
 
 **Port: runtime and loader**
+- A class with an inline constructor and no key function gets a weak vtable copy in each object that constructs it; its slots name placeholder methods no source defines. `port_link` binds a vtable `port_addresses` placed to the image's: [the boot's traps](#session-log-newest-first).
 - A trapped class mismatch is often a false alarm: a lifted definition declares registers it only passes on. `port_link --abi-args` (from `abi_facts --export-json`) links a call that sets every register the original reads; aggregates and stack arguments stay trapped: [calls covered by the facts](#session-log-newest-first).
 - A game thread can finalise an `nn::os` object after the game freed it and reused its memory (the movie worker's queued "off" entry); the runtime keeps a host-side table by address so finalise and unlink never read or write the game's memory there: [the movie worker's stale holders](#session-log-newest-first).
 - Same-shaped library functions that differ only in what they point to (luaopen_table and luaopen_debug) need their referenced strings to be told apart, and two unique matches of one address are a conflict, not a match (`sigmatch.binary_strings`): [The in-game menu](#session-log-newest-first).
@@ -186,6 +188,46 @@ per-function results with blockers, the tips sheet and the drafts of near-misses
     `.bss`, as the existing `fn_7100adcf10.cpp` does.
   - One definition is `__attribute__((weak))` (`fn_71007121e0`).
   - Several definitions return a value where an older declaration says `void` (the mangled name is unchanged).
+**Snapshots from the port (2026-11-09, branch `claude/port-capture`, stacked on `claude/boot-traps`).** The oracle
+judges a lift on made-up memory; functions that walk real game objects fault on every such input and stay
+inconclusive (the map menu's set-up, the AI manager's update, `fn_7100e9e164`, `fn_7100212a80`). Snapshots used to come
+from an instrumented Dread recomp played by hand. Now the port captures them itself: `port_link --capture ADDR,...`
+links a trap thunk that saves rdi..r9, xmm0-xmm7 and the entry rsp, and `dread_port_capture` writes, under
+`$DREAD_SNAPSHOTS`, a sparse core of the game's writable memory (the image's writable segments, the heap's handed-out
+part, the thread's stack: about 3.2 GB, 1.7 GB of it data) and a "port-core" header the oracle reads, its pages on
+demand. Only functions whose arguments are all in those registers are captured (no stack arguments, no x8 result).
+- `fn_7100e9e164` (minimap, 8,812 bytes) is accepted on its captured state: 10 inputs, 15% of its instructions covered,
+  the snapshot run cut off by the step limit in both runs. In the local lift set `build/port/lifted_all20`.
+- `fn_7100212a80` (the bounding-volume builder) still faults on every input, its captured state included; not yet
+  looked into.
+- With handles released since the vtable binding, one boot of three crashed in the movie worker
+  (`fn_7100225fd0` locking a stream's mutex from the "input ready" handler, on the title loop): most likely a stream
+  freed while its holders are still linked. Not yet looked into.
+
+**The boot's traps (2026-11-09, branch `claude/boot-traps`).** With the mismatches cleared, four calls still trapped on
+every boot.
+- `unk_handle::UnkRefCounted::Delete()`: `unk_handle::UnkHandle` (`src/game_s7/UnkHandleS7.h`) has an inline constructor
+  and no key function, so two objects emitted its vtable weak, and the link kept that copy, whose slots name the
+  placeholder `vf_0x0`, `vf_0x8` and `Delete` that no source defines. `port_addresses` had placed the vtable at
+  0x7101a209e0 (19 uses), but `port_link` only placed vtables nothing defined. It now binds a placed weak vtable to the
+  image's with `--defsym`, as it does for inline functions' statics; the image's slots are translated to the port's
+  functions by address. With handles released, the boot reaches gameplay by frame 3,000 instead of about 38,000; the
+  prologue and visor movies no longer play in the scripted run (A pressed every 120 frames), which still needs
+  checking against the console.
+- `fn_7100da92b0`, `CAIManager`'s per-frame update (1,760 bytes), is written for the port
+  (`src/game/CAIManager/CAIManager_Update.cpp`, **M**): its seven subsystems, two timers, the EMMI state check, and two
+  lists of screen labels.
+
+Left: `fn_7100212a80` (a recursive bounding-volume builder, 2,296 bytes), `fn_7100e9e164` (minimap, 8,812 bytes) and
+`fn_7100eb9b90` (minimap icons, 3,844 bytes, the stack-layout mismatch). The first two are inconclusive lifts for the
+same reason as the AI manager's: the original faults on every random input the oracle tries.
+
+**Drafting pilot (2026-11-09).** Two local subagents drafted functions from the pilot sample (`build/pilot/`), graded by
+`trymatch.py`, at most three attempts each. Group A, functions only `src/lifted` defines (24-256 bytes): 23 of 25 matched
+on the first try, 24 within three (about 6k tokens each). Group B, undecompiled functions (152-748 bytes): 5 matched on the
+first try, 10 within three, 1 more above 90% (about 16k tokens each). Misses were code shape (store order, stack slots,
+loop form, branch layout), not logic; over about 500 bytes drafts stayed far off. All 34 matches were re-graded
+independently.
 
 **Calls covered by the ABI facts (2026-11-09, branch `claude/class-mismatch`).** With the movie abort fixed, the boot
 runs to the time limit, logging the calls it skips. Four were mismatched calls (`port_link` traps a call whose

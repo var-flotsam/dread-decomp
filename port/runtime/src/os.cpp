@@ -811,6 +811,11 @@ extern "C" bool dread_port_game_heap_ready() {
     return nn::os::g_heap_used != 0;
 }
 
+extern "C" void dread_port_game_heap(const char** base, u64* used) {
+    *base = nn::os::g_heap;
+    *used = nn::os::g_heap_used;
+}
+
 extern "C" bool dread_port_in_game_heap(const void* ptr) {
     const char* p = static_cast<const char*>(ptr);
     return nn::os::g_heap && p >= nn::os::g_heap && p < nn::os::g_heap + nn::os::g_heap_used;

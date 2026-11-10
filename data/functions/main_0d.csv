@@ -4824,7 +4824,7 @@ address,size,name,name_source,subsystem,status
 0x7100da9260,44,fn_7100da9260,unknown,unknown,O
 0x7100da928c,16,fn_7100da928c,unknown,unknown,O
 0x7100da929c,20,fn_7100da929c,unknown,unknown,O
-0x7100da92b0,1760,fn_7100da92b0,unknown,unknown,U
+0x7100da92b0,1760,fn_7100da92b0,unknown,unknown,M
 0x7100da9990,580,fn_7100da9990,unknown,unknown,U
 0x7100da9bd4,692,fn_7100da9bd4,unknown,unknown,U
 0x7100da9e88,216,fn_7100da9e88,unknown,unknown,O

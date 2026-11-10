@@ -38,7 +38,7 @@ Standard library plus capstone; the Ghidra export (tools/callgraph.py) gives the
 
 Usage: python tools/abi_facts.py --version 2.1.0 ADDR [ADDR...]   (prints the facts of each)
        python tools/abi_facts.py --version 2.1.0 --export-json build/port/abi_args.json
-           (every function's integer and float argument registers and stack slots, from the complete
+           (every function's integer and float argument registers, stack slots and x8 result, from the complete
             table port_lift caches; tools/port_link.py reads it, in Docker, where capstone is missing)
 """
 
@@ -932,7 +932,7 @@ def main() -> int:
         for a in sorted(af.orig.sizes):
             f = af.facts(a)
             if f is not None:
-                out[f"{a:x}"] = [f.ints, f.floats, f.stack_slots if f.stack else 0]
+                out[f"{a:x}"] = [f.ints, f.floats, f.stack_slots if f.stack else 0, int(f.sret)]
         Path(args.export_json).parent.mkdir(parents=True, exist_ok=True)
         Path(args.export_json).write_text(json.dumps({"version": CACHE_VERSION, "functions": out}), encoding="utf-8")
         print(f"{len(out)} functions -> {args.export_json}")
