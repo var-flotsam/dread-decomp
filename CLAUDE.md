@@ -154,6 +154,10 @@ Toolchain:
   `REGRESSION`, `DUPLICATE` or hand-written `RELOC` lines. A function is `O` only when its bytes match
   and every callee, global and GOT slot it names is the original's. Subsystems ending in `?` were
   inferred from neighbours.
+- **Empty compiler barriers.** Inline asm with instructions in it is never allowed. An empty barrier is, when it
+  is the only way to reproduce the original's ordering: the register form `asm("" : "+r"(x))` or the memory
+  form `asm volatile("" ::: "memory")`. Neither emits an instruction. Put a one-line comment directly above
+  it saying what it preserves (e.g. `// reads data70 again after the calls, as the original does`).
 - Inferred-role names use a `refl_` prefix (e.g. `CActor::refl_GetClass`) or `vf_<slot>` for
   vtable slots. These are not Mercury's real method names.
 - **One declaration per shared symbol.** A function or global used by more than one file is declared
