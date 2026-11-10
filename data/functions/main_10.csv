@@ -2773,7 +2773,7 @@ address,size,name,name_source,subsystem,status
 0x7101078df0,100,lua_bind::DeleteProfile,string,script/bindings,U
 0x7101078e60,140,lua_bind::CreateProfile,string,script/bindings,U
 0x7101078ef0,144,lua_bind::LoadProfile,string,script/bindings,U
-0x7101078f80,164,lua_bind::GetProfileName,string,script/bindings,U
+0x7101078f80,164,lua_bind::GetProfileName,string,script/bindings,O
 0x7101079030,164,lua_bind::GetProfileDescription,string,script/bindings,U
 0x71010790e0,36,lua_bind::RetrieveSlotsInfo,string,script/bindings,O
 0x7101079110,136,lua_bind::LoadGameDataPackage,string,script/bindings,U
@@ -4334,7 +4334,7 @@ address,size,name,name_source,subsystem,status
 0x71010d7624,180,fn_71010d7624,unknown,unknown,O
 0x71010d76d8,412,fn_71010d76d8,unknown,unknown,U
 0x71010d7874,112,fn_71010d7874,unknown,unknown,O
-0x71010d78e4,208,fn_71010d78e4,unknown,unknown,U
+0x71010d78e4,208,fn_71010d78e4,unknown,unknown,O
 0x71010d79b4,4,fn_71010d79b4,unknown,unknown,U
 0x71010d79b8,112,fn_71010d79b8,unknown,unknown,O
 0x71010d7a28,60,fn_71010d7a28,unknown,unknown,O

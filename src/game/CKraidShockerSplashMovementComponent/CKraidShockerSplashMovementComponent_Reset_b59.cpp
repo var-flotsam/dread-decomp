@@ -27,7 +27,7 @@ struct UnkSplash_b59a4 {
     u32 field_0x4c0;
 };
 
-void fn_7100ac82c0(UnkSplash_b59a4* self, void* other);
+s32 fn_7100ac82c0(UnkSplash_b59a4* self, void* other);
 
 void fn_710060768c(UnkSplash_b59a4* self, void* other) {
     fn_7100861148(self->owner->field_0x2a0);
