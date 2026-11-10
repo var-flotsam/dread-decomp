@@ -14,6 +14,10 @@ Relocation targets are checked as in check.py: a function that matches byte-for-
 has to name the original's callees, globals and GOT slots, or it gets a `RELOC` line under
 its MATCH line and counts as not matching (`--no-reloc` skips this).
 
+A function that differs gets a `KIND` line saying what to fix first (asmdiff.classify): calls, control
+flow, operations, or registers only. Work on them in that order; only a registers-only difference is
+worth a permuter or compiler-state experiments.
+
 Usage:
   python tools/trymatch.py --version 2.1.0 src/flag_id/fn_7100227448.cpp
   python tools/trymatch.py --version 2.1.0 scratch.cpp -v              # side-by-side diff
@@ -68,6 +72,8 @@ def main() -> int:
         status = "MATCH" if res.matching else f"{res.score:5.1%}"
         print(f"{status:>6}  {res.address:#x}  {names.get(res.symbol, res.symbol)}  "
               f"orig {res.orig_size} B, ours {res.our_size} B, {len(res.diff_insns)} differing insns")
+        if not res.bytes_match:
+            print(f"  KIND   {asmdiff.classify(original.function(res.address), codes[res.symbol])}")
         if args.verbose and not res.matching:
             asmdiff.print_side_by_side(res, original, codes[res.symbol])
         if res.matching and not args.no_reloc:

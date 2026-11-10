@@ -327,6 +327,18 @@ python tools/decl_check.py --json                 # the counts as JSON (tools/ve
 python tools/decl_check.py --base origin/main     # the same counts for the tree at <ref>; exit 1 if the
 ```
 
+### `tools/fakematch.py`
+
+Fake-match patterns in the hand-written sources: byte-identical code that a programmer would not have written, which usually points at a missing helper, a wrong type or two variables merged into one.
+
+```sh
+python tools/fakematch.py                     # counts per kind; exit 0
+python tools/fakematch.py --list [--kind K]   # every hit: file:line, kind, function
+python tools/fakematch.py --base origin/main  # only files changed since <ref> (a branch's or a PR's)
+python tools/fakematch.py --strict            # exit 1 on any barrier-no-comment
+python tools/fakematch.py PATH...             # only these files or directories
+```
+
 ### `tools/dashboard_export.py`
 
 Status tables for the project dashboard, written to build/dashboard/ (counts only, no code).
