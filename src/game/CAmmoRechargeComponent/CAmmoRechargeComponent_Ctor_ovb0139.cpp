@@ -5,8 +5,7 @@
 
 using base::global::CStrId;
 
-struct UnkRechargeBase_ovb0139;
-void fn_7100a9e244(UnkRechargeBase_ovb0139* self);
+void fn_7100a9e244(void*);
 extern void* g_unk_7101a903b0[];
 
 struct UnkRecharge_ovb0139 {
@@ -26,7 +25,7 @@ static inline void UnkSetEmptyId(CStrId* id) {
 }
 
 void fn_7100a773e0(UnkRecharge_ovb0139* self) {
-    fn_7100a9e244(reinterpret_cast<UnkRechargeBase_ovb0139*>(self));
+    fn_7100a9e244(self);
     self->id_0x540.data = nullptr;
     self->vtable = &g_unk_7101a903b0[2];
     UnkSetEmptyId(&self->id_0x540);
