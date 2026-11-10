@@ -15,6 +15,8 @@ from tools.tests import _path  # noqa: F401
 import asmdiff
 import trymatch
 
+RET, BL = bytes.fromhex("c0035fd6"), bytes.fromhex("00000094")  # ret; bl (little-endian words)
+
 
 def res(symbol, address, matching=True):
     return asmdiff.FunctionResult(symbol, address, 8, 8, [] if matching else [1])
@@ -46,7 +48,8 @@ class Main(unittest.TestCase):
                   mock.patch.object(trymatch.subprocess, "run", lambda *a, **k: self.build),
                   mock.patch.object(trymatch.check, "load_csv", lambda: ({}, {})),
                   mock.patch.object(trymatch.asmdiff, "read_object", lambda obj: self.objects),
-                  mock.patch.object(trymatch.asmdiff, "Original", lambda v: None),
+                  mock.patch.object(trymatch.asmdiff, "Original",
+                                    lambda v: types.SimpleNamespace(function=lambda a: RET)),
                   mock.patch.object(trymatch.check, "diff_with_targets", diff_with_targets),
                   mock.patch.object(trymatch.asmdiff, "check_relocs",
                                     lambda r, o, t: types.SimpleNamespace(mismatches=self.reloc_mismatches)),
@@ -89,9 +92,11 @@ class Main(unittest.TestCase):
 
     def test_mismatch_is_exit_1(self):
         self.results = [res("fn_7100000100", 0x7100000100), res("fn_7100000200", 0x7100000200, False)]
+        self.objects.append(asmdiff.ObjFunction("fn_7100000200", BL + RET, {}))
         rc, out = self.run_main(str(self.src))
         self.assertEqual(rc, 1)
         self.assertIn("50.0%  0x7100000200", out)
+        self.assertIn("KIND   calls (original 0, ours 1)", out)
         self.assertIn("1/2 functions match", out)
 
     def test_wrong_relocation_target_counts_as_mismatch(self):

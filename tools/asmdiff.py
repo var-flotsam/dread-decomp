@@ -524,6 +524,99 @@ def reloc_rejects(results: list[FunctionResult], limit: int = 10) -> list[str]:
     return lines
 
 
+_COND_BRANCHES = ("cbz", "cbnz", "tbz", "tbnz")
+
+
+def shape(code: bytes) -> dict[str, int]:
+    """Counts of the instructions that make a function's call set and control flow: calls (bl, blr),
+    conditional branches, other jumps (b, br) and returns."""
+    import capstone
+    cs = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
+    n = {"calls": 0, "branches": 0, "jumps": 0, "returns": 0}
+    for i in cs.disasm(code, 0):
+        m = i.mnemonic
+        if m in ("bl", "blr"):
+            n["calls"] += 1
+        elif m.startswith("b.") or m in _COND_BRANCHES:
+            n["branches"] += 1
+        elif m in ("b", "br"):
+            n["jumps"] += 1
+        elif m == "ret":
+            n["returns"] += 1
+    return n
+
+
+def classify(orig: bytes, ours: bytes) -> str:
+    """Which kind of difference separates two versions of a function, checked in the order that decides
+    what to fix first (a later kind is only meaningful once the earlier ones agree):
+
+    calls        a different number of calls: a missing or extra inline helper, or an incomplete body
+    control flow different branch, jump or return counts: guard shape, early returns, loop form
+    conditions   only branch conditions and compares differ: guard polarity, compare operand order, or
+                 a bool tested as an int (tbz versus cbz)
+    operations   same calls and control flow, different instructions: widths, types, expressions
+    registers    the same instructions in another order or with other registers: local lifetimes,
+                 declaration and statement order (the only kind a permuter can help with)
+    match        the bytes are the same (relocation targets are checked separately)
+    """
+    if orig == ours:
+        return "match"
+    a, b = shape(orig), shape(ours)
+    if a["calls"] != b["calls"]:
+        return f"calls (original {a['calls']}, ours {b['calls']})"
+    keys = ("branches", "jumps", "returns")
+    if any(a[k] != b[k] for k in keys):
+        diff = ", ".join(f"{k} {a[k]} vs {b[k]}" for k in keys if a[k] != b[k])
+        return f"control flow ({diff}, original first)"
+    ma, mb = _register_free(orig), _register_free(ours)
+    if ma != mb:
+        extra = (Counter(ma) - Counter(mb)) + (Counter(mb) - Counter(ma))
+        if all(_is_test(x) for x in extra):
+            return "conditions (branch or compare differ: guard polarity, operand order, or a bool tested as an int)"
+        return f"operations ({len(ma)} vs {len(mb)} instructions, original first)"
+    return "registers (same instructions, other order or registers)"
+
+
+def _is_test(insn: str) -> bool:
+    m = insn.split(" ", 1)[0]
+    return m.startswith("b.") or m in _COND_BRANCHES or m in ("cmp", "cmn", "tst", "ccmp", "ccmn", "cset", "csel")
+
+
+_REG = re.compile(r"\b(?:[xwqdsbhv]\d+|[xw]zr|sp|lr|fp)(?:\.\w+)?\b")
+_BASE = re.compile(r"\[(\w+)")
+_MEM0 = re.compile(r"\[r\]")
+_IMM = re.compile(r"#-?(?:0x[0-9a-f]+|\d+)")
+
+
+def _register_free(code: bytes) -> list[str]:
+    """The function's instructions with registers and branch targets blanked out, sorted: equal lists
+    mean the two versions differ only in register choice and instruction order. Immediates and memory
+    offsets are kept (a different field offset or constant is an operations difference), except the low
+    12 bits of an address an adrp started: those are a relocated field in our object, filled in only in
+    the original."""
+    import capstone
+    cs = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
+    out = []
+    pages: set[str] = set()  # registers holding an adrp page address
+    for i in cs.disasm(code, 0):
+        m = i.mnemonic
+        regs = [r.strip() for r in i.op_str.split(",")]
+        base = _BASE.search(i.op_str)
+        base = base.group(1) if base else (regs[1] if m == "add" and len(regs) > 2 else None)
+        lo12 = base in pages
+        if m == "adrp":
+            pages.add(regs[0])
+        elif regs and regs[0] in pages:
+            pages.discard(regs[0])
+        ops = "" if (m in ("b", "bl", "adrp", "adr") or m.startswith("b.")) else _REG.sub("r", i.op_str)
+        if lo12:  # ours prints a zero offset as [x8], the original as [x8, #0x120]
+            ops = _IMM.sub("#lo12", _MEM0.sub("[r, #0]", ops))
+        if m in _COND_BRANCHES:
+            ops = ops.rsplit(",", 1)[0]  # drop the branch target, keep the tested bit
+        out.append(f"{m} {ops}")
+    return sorted(out)
+
+
 def print_side_by_side(res: FunctionResult, original: Original, code: bytes) -> None:
     import capstone
     cs = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)

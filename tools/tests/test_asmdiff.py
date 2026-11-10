@@ -86,5 +86,56 @@ class SelfDiff(unittest.TestCase):
         self.assertEqual(res[0].diff_insns, [0])
 
 
+
+def _code(*words: int) -> bytes:
+    return b"".join(struct.pack("<I", w) for w in words)
+
+
+RET, BL, NOP, CBZ, BEQ = 0xD65F03C0, 0x94000000, 0xD503201F, 0xB4000040, 0x54000040
+LDR_W0, LDRB_W0, LDR_W0_4 = 0xB9400000, 0x39400000, 0xB9400400
+ADD_W0, ADD_W1 = 0x11000400, 0x11000421
+
+
+@unittest.skipIf(asmdiff is None, "pyelftools not installed")
+class ClassifyTest(unittest.TestCase):
+    """asmdiff.classify on hand-assembled instruction words (no game data, no compiler)."""
+
+    def kind(self, orig, ours) -> str:
+        return asmdiff.classify(_code(*orig), _code(*ours)).split(" ")[0]
+
+    def test_same_bytes(self):
+        self.assertEqual(self.kind([ADD_W0, RET], [ADD_W0, RET]), "match")
+
+    def test_call_count_first(self):
+        # A missing call outranks the branch difference that comes with it.
+        self.assertEqual(self.kind([BL, CBZ, RET], [RET]), "calls")
+
+    def test_control_flow(self):
+        self.assertEqual(self.kind([CBZ, LDR_W0, RET], [LDR_W0, RET]), "control")
+        self.assertEqual(self.kind([BEQ, RET, RET], [BEQ, NOP, RET]), "control")
+
+    def test_conditions(self):
+        tbz = 0x36000040  # tbz w0, #0, +8
+        self.assertEqual(self.kind([tbz, LDR_W0, RET], [CBZ, LDR_W0, RET]), "conditions")
+        bne = 0x54000041  # b.ne +8
+        self.assertEqual(self.kind([BEQ, LDR_W0, RET], [bne, LDR_W0, RET]), "conditions")
+
+    def test_operations(self):
+        self.assertEqual(self.kind([LDR_W0, RET], [LDRB_W0, RET]), "operations")  # width
+        self.assertEqual(self.kind([LDR_W0, RET], [LDR_W0_4, RET]), "operations")  # field offset
+
+    def test_registers_and_order(self):
+        self.assertEqual(self.kind([ADD_W0, RET], [ADD_W1, RET]), "registers")
+        self.assertEqual(self.kind([ADD_W0, LDR_W0, RET], [LDR_W0, ADD_W0, RET]), "registers")
+
+    def test_page_offsets_are_relocations(self):
+        # adrp x8; add x8, x8, #lo12: our object has 0 where the original has the address's low bits.
+        adrp, add_lo, add_0 = 0x90000008, 0x91004108, 0x91000108
+        self.assertEqual(self.kind([adrp, add_lo, ADD_W0, RET], [adrp, add_0, ADD_W1, RET]), "registers")
+        # Once the full address is formed, an offset from it is a real field offset again.
+        ldr_x8_8, ldr_x8_10 = 0xF9400508, 0xF9400908  # ldr x8, [x8, #8] / [x8, #16]
+        self.assertEqual(self.kind([adrp, add_lo, ldr_x8_8, RET], [adrp, add_0, ldr_x8_10, RET]), "operations")
+
+
 if __name__ == "__main__":
     unittest.main()
