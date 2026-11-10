@@ -2865,7 +2865,7 @@ address,size,name,name_source,subsystem,status
 0x710107ec40,160,lua_bind::Exists,string,script/bindings,U
 0x710107ece0,200,lua_bind::GetFirstInstanceOfCharClass,string,script/bindings,U
 0x710107edb0,200,lua_bind::GetFirstAliveInstanceOfCharClass,string,script/bindings,U
-0x710107ee80,196,lua_bind::GetNumberOfAliveInstancesOfCharClass,string,script/bindings,U
+0x710107ee80,196,lua_bind::GetNumberOfAliveInstancesOfCharClass,string,script/bindings,O
 0x710107ef50,84,lua_bind::PrintCharClasses,string,script/bindings,U
 0x710107efb0,8,lua_bind::MetroidRadarForceStateOnBegin,string,script/bindings,O
 0x710107efc0,8,lua_bind::MetroidRadarForceStateOnEnd,string,script/bindings,O

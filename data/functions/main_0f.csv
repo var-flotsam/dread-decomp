@@ -6509,7 +6509,7 @@ address,size,name,name_source,subsystem,status
 0x7100ffc800,12,fn_7100ffc800,unknown,unknown,O
 0x7100ffc80c,8,fn_7100ffc80c,unknown,unknown,O
 0x7100ffc814,8,fn_7100ffc814,unknown,unknown,O
-0x7100ffc81c,248,fn_7100ffc81c,unknown,unknown,U
+0x7100ffc81c,248,fn_7100ffc81c,unknown,unknown,O
 0x7100ffc914,236,fn_7100ffc914,unknown,unknown,O
 0x7100ffca00,200,fn_7100ffca00,unknown,unknown,O
 0x7100ffcac8,48,fn_7100ffcac8,unknown,unknown,O
