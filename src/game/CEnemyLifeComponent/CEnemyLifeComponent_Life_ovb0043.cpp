@@ -250,7 +250,9 @@ struct UnkEnemyLifeComponent3_ovb0043 {
 void fn_710115fc5c(char*);
 f32 fn_71008bce1c(void* obj);
 void fn_7101156fe8(void* obj);
-void fn_7100da9bd4(UnkManager_71726af468* self, UnkEnemyLifeActor3_ovb0043* actor);
+struct UnkAIManager_da92b0;
+struct UnkAITarget_da92b0;
+void fn_7100da9bd4(UnkAIManager_da92b0* self, UnkAITarget_da92b0* target);
 
 // The reset: the life component's (fn_710115fc5c), both values at +0x50/+0x54 from fn_71008bce1c, the
 // AI blackboard's property (id table +0xf80) zeroed, fn_7101156fe8 on the actor's +0x280 and the actor
@@ -286,5 +288,5 @@ void fn_710115ab50(UnkEnemyLifeComponent3_ovb0043* self) {
         fn_7100da7e2c(manager);
         g_unk_71726af468 = manager;
     }
-    fn_7100da9bd4(manager, self->actor);
+    fn_7100da9bd4(reinterpret_cast<UnkAIManager_da92b0*>(manager), reinterpret_cast<UnkAITarget_da92b0*>(self->actor));
 }
