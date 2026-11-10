@@ -62,9 +62,11 @@ void fn_71001e8e7c(UnkProps_ovb0259* self, void* type, const f32* value) {
         f32 v = value[0];
         bool in_range = (v > 0.5f) & (v < 1.5f);
         u8 prev = self->field_0x16f;
-        // the original compares the value again for the reset rather than reusing the flag
         f32 again = v;
+        // the original compares the value again for the reset rather than reusing the flag
+#if defined(__aarch64__)
         asm("" : "+w"(again));
+#endif
         if (!prev) {
             if (again > 0.5f && again < 1.5f)
                 self->field_0x164 = 0;

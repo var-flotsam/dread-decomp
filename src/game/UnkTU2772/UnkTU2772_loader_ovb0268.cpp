@@ -1,5 +1,7 @@
 // nn::atk-ish unit 2772: sound-archive loader lookups and wave-table copy, a sample ring-buffer write and the
 // voice wave queue start. Names and layouts are placeholders.
+#include <stddef.h>
+
 #include <nn/audio.h>
 
 #include "types.h"

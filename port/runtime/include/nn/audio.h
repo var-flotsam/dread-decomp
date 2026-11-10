@@ -35,9 +35,36 @@ Result OpenDefaultAudioOut(AudioOut* out, os::SystemEvent* event, const AudioOut
 void CloseAudioOut(AudioOut* out);
 Result SetAudioDeviceOutputVolume(const AudioDeviceName* device, f32 volume);
 
-// Voices (nn::atk's voice priority, src/atk_id/nn_atk_VoicePriority_b48a3.cpp); opaque to the port.
-struct VoiceType;
+// Voices (nn::atk's voice priority, src/atk_id/nn_atk_VoicePriority_b48a3.cpp, and its wave
+// voices, src/game/UnkTU2772/UnkTU2772_loader_ovb0268.cpp). The console's layout: one pointer to
+// the renderer's voice state, which the port does not read.
+struct VoiceType {
+    enum PlayState {
+        PlayState_Play,
+        PlayState_Stop,
+        PlayState_Pause,
+    };
+    void* info;
+};
+static_assert(sizeof(VoiceType) == 0x8, "nn::audio::VoiceType");
+
+// A buffer of samples queued on a voice (the console's layout).
+struct WaveBuffer {
+    const void* buffer;
+    u64 size;
+    s32 start_sample_offset;
+    s32 end_sample_offset;
+    bool loop;
+    bool is_end_of_stream;
+    const void* context;
+    u64 context_size;
+};
+static_assert(sizeof(WaveBuffer) == 0x30, "nn::audio::WaveBuffer");
+
 bool IsVoiceValid(const VoiceType* voice);
 void SetVoicePriority(VoiceType* voice, s32 priority);
+VoiceType::PlayState GetVoicePlayState(const VoiceType* voice);
+void SetVoicePlayState(VoiceType* voice, VoiceType::PlayState state);
+bool AppendWaveBuffer(VoiceType* voice, const WaveBuffer* buffer);
 
 }  // namespace nn::audio

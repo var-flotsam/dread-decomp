@@ -41,6 +41,14 @@ struct BitFlagStorage<64> {
 template <int N, typename Tag>
 struct BitFlagSet {
     typename BitFlagStorage<N>::Type bits;
+
+    // Sets or clears flag `index` (src/game/UnkTU46/UnkTU46_NpadInit_ovb0232.cpp).
+    BitFlagSet& Set(int index, bool on = true) {
+        using T = typename BitFlagStorage<N>::Type;
+        T mask = T(1) << index;
+        bits = on ? T(bits | mask) : T(bits & ~mask);
+        return *this;
+    }
 };
 
 }  // namespace nn::util
