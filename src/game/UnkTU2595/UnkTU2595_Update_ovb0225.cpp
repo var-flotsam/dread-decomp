@@ -24,14 +24,16 @@ struct UnkSingleton2595_b0225 {
 bool fn_7101053a98(void* state);
 void fn_7100ec9e38(UnkSingleton2595_b0225* self, f32 dt);
 
-extern UnkSingleton2595_b0225* g_unk_71729dc210;
+struct UnkSingleton2595_b49a6;
+extern UnkSingleton2595_b49a6* g_unk_71729dc210;
 
 static inline UnkSingleton2595_b0225* Singleton2595() {
-    if (!g_unk_71729dc210) {
+    UnkSingleton2595_b0225*& slot = reinterpret_cast<UnkSingleton2595_b0225*&>(g_unk_71729dc210);
+    if (!slot) {
         void* mem = fn_71000839a0(sizeof(UnkSingleton2595_b0225), 0x3f);
-        g_unk_71729dc210 = new (mem) UnkSingleton2595_b0225();
+        slot = new (mem) UnkSingleton2595_b0225();
     }
-    return g_unk_71729dc210;
+    return slot;
 }
 
 struct UnkSmState_b0225 {
