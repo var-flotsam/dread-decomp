@@ -1043,7 +1043,7 @@ address,size,name,name_source,subsystem,status
 0x7100b1e804,456,fn_7100b1e804,unknown,gui?,O
 0x7100b1e9cc,352,GUI::CExitToMainMenuButton::refl_InitClass,reflection,gui,O
 0x7100b1eb2c,196,fn_7100b1eb2c,unknown,gui?,O
-0x7100b1ebf0,400,fn_7100b1ebf0,unknown,gui?,U
+0x7100b1ebf0,400,fn_7100b1ebf0,unknown,gui?,O
 0x7100b1ed80,28,fn_7100b1ed80,unknown,gui?,O
 0x7100b1ed9c,124,fn_7100b1ed9c,unknown,gui?,O
 0x7100b1ee18,132,fn_7100b1ee18,unknown,gui?,O
@@ -1061,7 +1061,7 @@ address,size,name,name_source,subsystem,status
 0x7100b1f4dc,352,GUI::CFloatTunableButton::refl_InitClass,reflection,gui,O
 0x7100b1f63c,204,fn_7100b1f63c,unknown,gui?,O
 0x7100b1f708,260,fn_7100b1f708,unknown,gui?,O
-0x7100b1f80c,340,fn_7100b1f80c,unknown,gui?,U
+0x7100b1f80c,340,fn_7100b1f80c,unknown,gui?,O
 0x7100b1f960,660,fn_7100b1f960,unknown,gui?,U
 0x7100b1fbf4,28,fn_7100b1fbf4,unknown,gui?,O
 0x7100b1fc10,124,fn_7100b1fc10,unknown,gui?,O
@@ -1316,7 +1316,7 @@ address,size,name,name_source,subsystem,status
 0x7100b320d0,352,GUI::CIntTunableButton::refl_InitClass,reflection,gui,O
 0x7100b32230,208,fn_7100b32230,unknown,gui?,O
 0x7100b32300,260,fn_7100b32300,unknown,gui?,O
-0x7100b32404,372,fn_7100b32404,unknown,gui?,U
+0x7100b32404,372,fn_7100b32404,unknown,gui?,O
 0x7100b32578,692,fn_7100b32578,unknown,gui?,U
 0x7100b3282c,28,fn_7100b3282c,unknown,gui?,O
 0x7100b32848,124,fn_7100b32848,unknown,gui?,O
@@ -1358,7 +1358,7 @@ address,size,name,name_source,subsystem,status
 0x7100b33370,36,fn_7100b33370,unknown,gui?,O
 0x7100b33394,52,fn_7100b33394,unknown,gui?,O
 0x7100b333c8,4,fn_7100b333c8,unknown,gui?,O
-0x7100b333cc,388,fn_7100b333cc,unknown,gui?,U
+0x7100b333cc,388,fn_7100b333cc,unknown,gui?,O
 0x7100b33550,40,fn_7100b33550,unknown,gui?,O
 0x7100b33578,668,fn_7100b33578,unknown,gui?,U
 0x7100b33814,28,fn_7100b33814,unknown,gui?,O
@@ -1373,8 +1373,8 @@ address,size,name,name_source,subsystem,status
 0x7100b33974,244,GUI::CLoadCheckPointButton::refl_GetClass,reflection,gui,O
 0x7100b33a68,4,fn_7100b33a68,unknown,gui?,O
 0x7100b33a6c,352,GUI::CLoadCheckPointButton::refl_InitClass,reflection,gui,O
-0x7100b33bcc,348,fn_7100b33bcc,unknown,gui?,U
-0x7100b33d28,268,fn_7100b33d28,unknown,gui?,U
+0x7100b33bcc,348,fn_7100b33bcc,unknown,gui?,O
+0x7100b33d28,268,fn_7100b33d28,unknown,gui?,O
 0x7100b33e34,28,fn_7100b33e34,unknown,gui?,O
 0x7100b33e50,36,fn_7100b33e50,unknown,gui?,O
 0x7100b33e74,8,fn_7100b33e74,unknown,gui?,O
@@ -1395,7 +1395,7 @@ address,size,name,name_source,subsystem,status
 0x7100b34324,4,fn_7100b34324,unknown,gui?,O
 0x7100b34328,352,GUI::CMainMenu::refl_InitClass,reflection,gui,O
 0x7100b34488,632,fn_7100b34488,unknown,gui?,U
-0x7100b34700,400,fn_7100b34700,unknown,gui?,U
+0x7100b34700,400,fn_7100b34700,unknown,gui?,O
 0x7100b34890,20,fn_7100b34890,unknown,gui?,O
 0x7100b348a4,36,fn_7100b348a4,unknown,gui?,O
 0x7100b348c8,172,fn_7100b348c8,unknown,gui?,O
@@ -1408,7 +1408,7 @@ address,size,name,name_source,subsystem,status
 0x7100b35e38,140,fn_7100b35e38,unknown,gui?,O
 0x7100b35ec4,140,fn_7100b35ec4,unknown,gui?,O
 0x7100b35f50,1116,fn_7100b35f50,unknown,gui?,U
-0x7100b363ac,304,fn_7100b363ac,unknown,gui?,U
+0x7100b363ac,304,fn_7100b363ac,unknown,gui?,O
 0x7100b364dc,660,fn_7100b364dc,unknown,gui?,U
 0x7100b36770,92,fn_7100b36770,unknown,gui?,O
 0x7100b367cc,28,fn_7100b367cc,unknown,gui?,O
@@ -1432,7 +1432,7 @@ address,size,name,name_source,subsystem,status
 0x7100b36a98,352,GUI::CMainMenuComposition::refl_InitClass,reflection,gui,O
 0x7100b36bf8,144,fn_7100b36bf8,unknown,gui?,O
 0x7100b36c88,152,fn_7100b36c88,unknown,gui?,O
-0x7100b36d20,456,fn_7100b36d20,unknown,gui?,U
+0x7100b36d20,456,fn_7100b36d20,unknown,gui?,O
 0x7100b36ee8,208,fn_7100b36ee8,unknown,gui?,O
 0x7100b36fb8,44,fn_7100b36fb8,unknown,gui?,O
 0x7100b36fe4,156,fn_7100b36fe4,unknown,gui?,O
@@ -1941,8 +1941,8 @@ address,size,name,name_source,subsystem,status
 0x7100b5d838,4,fn_7100b5d838,unknown,gui?,O
 0x7100b5d83c,352,GUI::CNewGameButton::refl_InitClass,reflection,gui,O
 0x7100b5d99c,4,fn_7100b5d99c,unknown,gui?,O
-0x7100b5d9a0,460,fn_7100b5d9a0,unknown,gui?,U
-0x7100b5db6c,444,fn_7100b5db6c,unknown,gui?,U
+0x7100b5d9a0,460,fn_7100b5d9a0,unknown,gui?,O
+0x7100b5db6c,444,fn_7100b5db6c,unknown,gui?,O
 0x7100b5dd28,200,fn_7100b5dd28,unknown,gui?,O
 0x7100b5ddf0,608,fn_7100b5ddf0,unknown,gui?,U
 0x7100b5e050,28,fn_7100b5e050,unknown,gui?,O
@@ -2014,7 +2014,7 @@ address,size,name,name_source,subsystem,status
 0x7100b61670,216,fn_7100b61670,unknown,gui?,O
 0x7100b61748,620,fn_7100b61748,unknown,gui?,U
 0x7100b619b4,344,fn_7100b619b4,unknown,gui?,O
-0x7100b61b0c,360,fn_7100b61b0c,unknown,gui?,U
+0x7100b61b0c,360,fn_7100b61b0c,unknown,gui?,O
 0x7100b61c74,252,fn_7100b61c74,unknown,gui?,O
 0x7100b61d70,68,fn_7100b61d70,unknown,gui?,O
 0x7100b61db4,28,fn_7100b61db4,unknown,gui?,O
@@ -2397,7 +2397,7 @@ address,size,name,name_source,subsystem,status
 0x7100b7b770,60,fn_7100b7b770,unknown,runtime?,O
 0x7100b7b7ac,12,fn_7100b7b7ac,unknown,runtime?,O
 0x7100b7b7c0,272,"std::__1::basic_ostream<char, std::__1::char_traits<char>>& std::__1::__put_character_sequence<char, std::__1::char_traits<char>>",symbol,runtime,L
-0x7100b7b8d0,360,fn_7100b7b8d0,unknown,runtime?,U
+0x7100b7b8d0,360,fn_7100b7b8d0,unknown,runtime?,O
 0x7100b7ba38,328,"std::__1::basic_stringbuf<char, std::__1::char_traits<char>, std::__1::allocator<char>>::str",symbol,runtime,L
 0x7100b7bb80,160,fn_7100b7bb80,unknown,unknown,O
 0x7100b7bc20,4,fn_7100b7bc20,unknown,unknown,O
@@ -2811,7 +2811,7 @@ address,size,name,name_source,subsystem,status
 0x7100b88cc4,288,fn_7100b88cc4,unknown,unknown,O
 0x7100b88de4,296,fn_7100b88de4,unknown,unknown,O
 0x7100b88f0c,4,fn_7100b88f0c,unknown,unknown,O
-0x7100b88f10,300,fn_7100b88f10,unknown,unknown,U
+0x7100b88f10,300,fn_7100b88f10,unknown,unknown,O
 0x7100b8903c,116,fn_7100b8903c,unknown,unknown,O
 0x7100b890b0,68,fn_7100b890b0,unknown,unknown,O
 0x7100b890f4,28,fn_7100b890f4,unknown,unknown,O
@@ -3380,7 +3380,7 @@ address,size,name,name_source,subsystem,status
 0x7100b9d990,4,fn_7100b9d990,unknown,game/characters?,O
 0x7100b9d994,36,fn_7100b9d994,unknown,game/characters?,O
 0x7100b9d9b8,460,fn_7100b9d9b8,unknown,game/characters?,U
-0x7100b9db84,264,fn_7100b9db84,unknown,game/characters?,U
+0x7100b9db84,264,fn_7100b9db84,unknown,game/characters?,O
 0x7100b9dc8c,28,fn_7100b9dc8c,unknown,game/characters?,O
 0x7100b9dca8,12,fn_7100b9dca8,unknown,game/characters?,O
 0x7100b9dcb4,8,fn_7100b9dcb4,unknown,game/characters?,O
@@ -3522,11 +3522,11 @@ address,size,name,name_source,subsystem,status
 0x7100ba0a98,244,CCharClassCollisionMaterialFXCreateAndLinkEvent::refl_GetClass,reflection,game/characters,O
 0x7100ba0b8c,4,fn_7100ba0b8c,unknown,game/characters?,O
 0x7100ba0b90,388,CCharClassCollisionMaterialFXCreateAndLinkEvent::refl_InitClass,reflection,game/characters,O
-0x7100ba0d14,412,fn_7100ba0d14,unknown,game/characters?,U
+0x7100ba0d14,412,fn_7100ba0d14,unknown,game/characters?,O
 0x7100ba0eb0,28,fn_7100ba0eb0,unknown,game/characters?,O
 0x7100ba0ecc,36,fn_7100ba0ecc,unknown,game/characters?,O
 0x7100ba0ef0,4,fn_7100ba0ef0,unknown,game/characters?,O
-0x7100ba0ef4,352,fn_7100ba0ef4,unknown,game/characters?,U
+0x7100ba0ef4,352,fn_7100ba0ef4,unknown,game/characters?,O
 0x7100ba1054,4,fn_7100ba1054,unknown,game/characters?,U
 0x7100ba1058,12,fn_7100ba1058,unknown,game/characters?,O
 0x7100ba1064,8,fn_7100ba1064,unknown,game/characters?,O
@@ -3537,7 +3537,7 @@ address,size,name,name_source,subsystem,status
 0x7100ba12ec,12,fn_7100ba12ec,unknown,game/characters?,O
 0x7100ba12f8,48,fn_7100ba12f8,unknown,game/characters?,O
 0x7100ba1328,48,fn_7100ba1328,unknown,game/characters?,O
-0x7100ba1358,476,fn_7100ba1358,unknown,game/characters?,U
+0x7100ba1358,476,fn_7100ba1358,unknown,game/characters?,O
 0x7100ba1540,160,fn_7100ba1540,unknown,game/characters?,O
 0x7100ba15e0,232,fn_7100ba15e0,unknown,game/characters?,O
 0x7100ba16c8,244,CCharClassCollisionMaterialFXDeleteEvent::refl_GetClass,reflection,game/characters,O
@@ -4081,7 +4081,7 @@ address,size,name,name_source,subsystem,status
 0x7100bb1510,500,fn_7100bb1510,unknown,game/characters?,O
 0x7100bb1704,32,fn_7100bb1704,unknown,game/characters?,O
 0x7100bb1724,28,fn_7100bb1724,unknown,game/characters?,O
-0x7100bb1740,280,fn_7100bb1740,unknown,game/characters?,U
+0x7100bb1740,280,fn_7100bb1740,unknown,game/characters?,O
 0x7100bb1858,36,fn_7100bb1858,unknown,game/characters?,O
 0x7100bb187c,12,fn_7100bb187c,unknown,game/characters?,O
 0x7100bb1888,8,fn_7100bb1888,unknown,game/characters?,O
@@ -4092,7 +4092,7 @@ address,size,name,name_source,subsystem,status
 0x7100bb1a50,12,fn_7100bb1a50,unknown,game/characters?,O
 0x7100bb1a5c,48,fn_7100bb1a5c,unknown,game/characters?,O
 0x7100bb1a8c,48,fn_7100bb1a8c,unknown,game/characters?,O
-0x7100bb1abc,372,fn_7100bb1abc,unknown,game/characters?,U
+0x7100bb1abc,372,fn_7100bb1abc,unknown,game/characters?,O
 0x7100bb1c30,160,fn_7100bb1c30,unknown,game/characters?,O
 0x7100bb1cd0,232,fn_7100bb1cd0,unknown,game/characters?,O
 0x7100bb1db8,244,CCharClassFXLinkEvent::refl_GetClass,reflection,game/characters,O
@@ -4693,7 +4693,7 @@ address,size,name,name_source,subsystem,status
 0x7100bc2ee8,244,CCharClassPlayAudioPresetEvent::refl_GetClass,reflection,game/characters,O
 0x7100bc2fdc,4,fn_7100bc2fdc,unknown,game/characters?,O
 0x7100bc2fe0,388,CCharClassPlayAudioPresetEvent::refl_InitClass,reflection,game/characters,O
-0x7100bc3164,420,fn_7100bc3164,unknown,game/characters?,U
+0x7100bc3164,420,fn_7100bc3164,unknown,game/characters?,O
 0x7100bc3308,28,fn_7100bc3308,unknown,game/characters?,O
 0x7100bc3324,36,fn_7100bc3324,unknown,game/characters?,O
 0x7100bc3348,4,fn_7100bc3348,unknown,game/characters?,O
@@ -4714,7 +4714,7 @@ address,size,name,name_source,subsystem,status
 0x7100bc3b64,244,CCharClassPlayAudioPresetWithMaterialEvent::refl_GetClass,reflection,game/characters,O
 0x7100bc3c58,4,fn_7100bc3c58,unknown,game/characters?,O
 0x7100bc3c5c,388,CCharClassPlayAudioPresetWithMaterialEvent::refl_InitClass,reflection,game/characters,O
-0x7100bc3de0,440,fn_7100bc3de0,unknown,game/characters?,U
+0x7100bc3de0,440,fn_7100bc3de0,unknown,game/characters?,O
 0x7100bc3f98,28,fn_7100bc3f98,unknown,game/characters?,O
 0x7100bc3fb4,36,fn_7100bc3fb4,unknown,game/characters?,O
 0x7100bc3fd8,12,fn_7100bc3fd8,unknown,game/characters?,O
@@ -4842,7 +4842,7 @@ address,size,name,name_source,subsystem,status
 0x7100bca684,12,fn_7100bca684,unknown,game/characters?,O
 0x7100bca690,48,fn_7100bca690,unknown,game/characters?,O
 0x7100bca6c0,48,fn_7100bca6c0,unknown,game/characters?,O
-0x7100bca6f0,420,fn_7100bca6f0,unknown,game/characters?,U
+0x7100bca6f0,420,fn_7100bca6f0,unknown,game/characters?,O
 0x7100bca8a0,188,fn_7100bca8a0,unknown,game/characters?,O
 0x7100bca95c,232,fn_7100bca95c,unknown,game/characters?,O
 0x7100bcaa44,244,CCharClassPopSetupEvent::refl_GetClass,reflection,game/characters,O
@@ -5288,7 +5288,7 @@ address,size,name,name_source,subsystem,status
 0x7100bd87f8,12,fn_7100bd87f8,unknown,game/characters?,O
 0x7100bd8804,48,fn_7100bd8804,unknown,game/characters?,O
 0x7100bd8834,48,fn_7100bd8834,unknown,game/characters?,O
-0x7100bd8864,428,fn_7100bd8864,unknown,game/characters?,U
+0x7100bd8864,428,fn_7100bd8864,unknown,game/characters?,O
 0x7100bd8a10,160,fn_7100bd8a10,unknown,game/characters?,O
 0x7100bd8ab0,232,fn_7100bd8ab0,unknown,game/characters?,O
 0x7100bd8b98,244,CCharClassSetModelHiddenEvent::refl_GetClass,reflection,game/characters,O
@@ -5573,8 +5573,8 @@ address,size,name,name_source,subsystem,status
 0x7100be42fc,380,fn_7100be42fc,unknown,game/characters?,O
 0x7100be4478,320,fn_7100be4478,unknown,game/characters?,O
 0x7100be45b8,36,fn_7100be45b8,unknown,game/characters?,O
-0x7100be45dc,388,fn_7100be45dc,unknown,game/characters?,U
-0x7100be4760,380,fn_7100be4760,unknown,game/characters?,U
+0x7100be45dc,388,fn_7100be45dc,unknown,game/characters?,O
+0x7100be4760,380,fn_7100be4760,unknown,game/characters?,O
 0x7100be48dc,28,fn_7100be48dc,unknown,game/characters?,O
 0x7100be48f8,12,fn_7100be48f8,unknown,game/characters?,O
 0x7100be4904,8,fn_7100be4904,unknown,game/characters?,O
@@ -5874,7 +5874,7 @@ address,size,name,name_source,subsystem,status
 0x7100bee2cc,1320,fn_7100bee2cc,unknown,unknown,O
 0x7100bee7f4,364,ICharClassPlayAudioPresetEvent::refl_InitClass,reflection,unknown,O
 0x7100bee960,380,fn_7100bee960,unknown,unknown,O
-0x7100beeadc,388,fn_7100beeadc,unknown,unknown,U
+0x7100beeadc,388,fn_7100beeadc,unknown,unknown,O
 0x7100beec60,12,fn_7100beec60,unknown,unknown,O
 0x7100beec6c,8,fn_7100beec6c,unknown,unknown,O
 0x7100beec74,28,fn_7100beec74,unknown,unknown,O

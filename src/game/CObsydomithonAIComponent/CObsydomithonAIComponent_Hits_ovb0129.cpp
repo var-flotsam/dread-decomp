@@ -71,7 +71,7 @@ void fn_710062e6c4(UnkObsydomithonAI_b0129a* self, UnkActor* actor, UnkObsydomit
 }
 
 extern "C" f32 atan2f(f32 y, f32 x);
-extern base::global::CStrId g_unk_71726f9428 __attribute__((visibility("hidden")));
+extern CStrId g_unk_71726f9428 __attribute__((visibility("hidden")));
 
 struct UnkObsyVec_b0129b {
     f32 x, y, z;

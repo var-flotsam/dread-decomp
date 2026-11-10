@@ -150,6 +150,15 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Parallel decompilation run, second part: 393 more functions (2026-11-09/10, branch `claude/overnight-decomp-20261109`).**
+The same coordinator and worker setup as in the entry below continued after #341 merged. It reran the 8 batches that
+had been stopped, then 23 more (b0116-b0138), and halted when the account's weekly usage limit cut off the workers
+mid-batch. Those half-done files are local only (`build/overnight/partial/`), and 125 batches stay queued in
+`build/overnight/ledger.json`. Results: 393 functions matched. `check.py --update` reports no REGRESSION, DUPLICATE
+or RELOC lines, and `decl_check.py --base origin/main` passes. New matching tips are collected in
+`build/overnight/tips.md`, and declarations elsewhere that block matches are listed in
+`build/overnight/header_fixes.txt` (both local).
+
 **Parallel decompilation run, 1,607 functions (2026-11-09, branch `claude/overnight-decomp-20261109`, PR #341).**
 A coordinator ran up to 8 parallel workers. Each took a batch of about 30 status-`U` functions of 24-600 bytes from
 one translation unit (`data/tu_map.csv`), drafted each function, graded it with `tools/trymatch.py`, and kept only
