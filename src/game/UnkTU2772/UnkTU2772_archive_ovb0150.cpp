@@ -114,7 +114,8 @@ bool fn_7101206ed4(UnkAtkArchive* archive, u32 id, UnkAtkInfo_b0150* out);
 u64 fn_710121212c(UnkAtkLoader* self, u32 file_id, void* dst, u64 size, u32 flag, void* arg);
 u32 fn_7101212f5c(UnkAtkInfo_b0150* info);
 u32 fn_7101212f04(UnkAtkInfo_b0150* info);
-void fn_7101212f94(UnkAtkInfo_b0150* info, void* data, u32 mode);
+struct UnkAtkWave_b0150;
+void fn_7101212f94(UnkAtkWave_b0150* w, void* data, u32 mode);
 void fn_7101213168(UnkAtkInfo_b0150* info);
 
 void* fn_7101211fc8(UnkAtkLoader* self, u32 id, UnkAtkHeap_b0150* heap, void* arg) {
@@ -147,7 +148,7 @@ void* fn_7101211fc8(UnkAtkLoader* self, u32 id, UnkAtkHeap_b0150* heap, void* ar
     if (fn_710121212c(self, file_id, buf, size, 0, arg) != size)
         return nullptr;
     *(u32*)(buf + size) = 0x54415746;
-    fn_7101212f94(&info, buf, 1);
+    fn_7101212f94(reinterpret_cast<UnkAtkWave_b0150*>(&info), buf, 1);
     fn_7101213168(&info);
     self->Register(file_id, buf);
     return buf;

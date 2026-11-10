@@ -36,12 +36,12 @@ struct UnkSubAreaMgr_b190 {
 };
 static_assert(__builtin_offsetof(UnkSubAreaMgr_b190, objects) == 0x830, "layout");
 
-UnkNamedObjectPtr_b190& fn_7100eee97c(base::UnkVector<UnkNamedObjectPtr_b190>* v, u32 index);
+UnkNamedObjectPtr_b190* fn_7100eee97c(base::UnkVector<UnkNamedObjectPtr_b190>* v, u32 index);
 void fn_7100fb4b4c(UnkNamedObject_b190* self);
 
 UnkNamedObject_b190* fn_7100eeebb0(UnkSubAreaMgr_b190* self, const CStrId* id) {
     for (u32 i = 0; i < self->objects.count; ++i) {
-        UnkNamedObject_b190* o = fn_7100eee97c(&self->objects, i).ptr;
+        UnkNamedObject_b190* o = fn_7100eee97c(&self->objects, i)->ptr;
         if (o->name.data == id->data)
             return o;
     }

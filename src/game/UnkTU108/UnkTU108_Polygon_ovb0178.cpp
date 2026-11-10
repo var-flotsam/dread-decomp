@@ -340,32 +340,6 @@ void fn_7100118c78(UnkPolygon_b61* self) {
 }
 
 // ---- Winding and edge queries ----
-
-// Sets a polygon's winding direction (state 1 or 2), reversing the point list when the signed area
-// disagrees with the requested direction.
-void fn_7100119d3c(UnkPolygon_b61* self, bool flag) {
-    u32 state = self->state;
-    if (flag) {
-        if (state == 2)
-            return;
-    } else if (state == 1) {
-        return;
-    }
-    if (self->closed) {
-        f32 area = 0.0f;
-        UnkPolyPoint* points = static_cast<UnkPolyPoint*>(self->vertices);
-        for (u64 i = 0; i != self->count; ++i) {
-            u64 next = i < self->count - 1 ? i + 1 : 0;
-            UnkPolyPoint a = points[i];
-            UnkPolyPoint b = points[next];
-            area += (b.x - a.x) * 0.5f * (a.y + b.y);
-        }
-        if ((area >= 0.0f) ^ flag)
-            fn_7100118c78(self);
-    }
-    self->state = flag ? 2 : 1;
-}
-
 struct UnkTarget108 : UnkPolygonBase {};
 
 // The signed area of the polygon (the shoelace sum over its points).
@@ -396,55 +370,6 @@ void fn_7100119c1c(UnkTarget108* target) {
         target->state = 1;
     }
 }
-
-// An empty std::function's layout (callable storage, then the callable pointer); passed in memory.
-struct alignas(16) UnkEmptyCallback {
-    u8 storage[0x20];
-    void* callable;
-    u8 pad_0x28[8];
-    UnkEmptyCallback() : callable(nullptr) {}
-    UnkEmptyCallback(const UnkEmptyCallback&) {}
-};
-using UnkPointFilter = UnkEmptyCallback;
-using UnkEdgeVisitor = UnkEmptyCallback;
-
-struct UnkPolygon2D;
-void fn_7100117ba0(const UnkPolygon2D* polygon, const CVector2D* point, s32* edge, f32* t, CVector2D* closest,
-                   f32* distance, bool flag, UnkPointFilter filter, UnkEdgeVisitor visit);
-
-struct UnkPolygon2D_l118124 : UnkPolygonBase {};
-
-// Finds the polygon edge nearest a point and, when the closest point is at an edge end, reports the
-// neighbouring edge and which end it shares.
-bool fn_7100118124(const UnkPolygon2D_l118124* polygon, const CVector2D* point, s32* edge, f32* t,
-                   CVector2D* closest, f32* distance, s32* out_edge, f32* out_end) {
-    CVector2D found = {};
-    fn_7100117ba0((const UnkPolygon2D*)polygon, point, edge, t, &found, distance, false, UnkPointFilter(),
-                  UnkEdgeVisitor());
-    if (closest)
-        closest->x = found.x, closest->y = found.y;
-    if (!out_edge || !out_end)
-        return false;
-    f32 lo = *t - 0.001f;
-    f32 hi = *t + 0.001f;
-    if (hi >= 0.0f && lo <= 0.0f) {
-        s32 e = *edge;
-        if (e == 0)
-            e = polygon->EdgeCount();
-        *out_edge = e - 1;
-        const u32 one = 0x3f800000;
-        __builtin_memcpy(out_end, &one, 4);
-    } else {
-        if (!(hi >= 1.0f && lo <= 1.0f))
-            return false;
-        s32 e = *edge;
-        *out_edge = (polygon->EdgeCount() - 1 == e) ? 0 : e + 1;
-        const u32 zero = 0;
-        __builtin_memcpy(out_end, &zero, 4);
-    }
-    return true;
-}
-
 struct UnkPolygon2D : UnkPolygonBase {};
 
 // The edge before or after vertex along dir: its index is stored in *a, the dot product in *b.
