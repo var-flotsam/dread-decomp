@@ -31,7 +31,7 @@ address,size,name,name_source,subsystem,status
 0x7100f03270,128,fn_7100f03270,unknown,unknown,O
 0x7100f032f0,8,fn_7100f032f0,unknown,unknown,O
 0x7100f032f8,4,fn_7100f032f8,unknown,unknown,O
-0x7100f032fc,4,fn_7100f032fc,unknown,unknown,U
+0x7100f032fc,4,fn_7100f032fc,unknown,linker,L
 0x7100f03300,140,fn_7100f03300,unknown,unknown,O
 0x7100f0338c,4,fn_7100f0338c,unknown,unknown,O
 0x7100f03390,244,CHearingSensor::refl_GetClass,reflection,game,O
@@ -47,7 +47,7 @@ address,size,name,name_source,subsystem,status
 0x7100f038ec,12,fn_7100f038ec,unknown,game?,O
 0x7100f038f8,324,fn_7100f038f8,unknown,game?,O
 0x7100f03a3c,4,fn_7100f03a3c,unknown,game?,O
-0x7100f03a40,4,fn_7100f03a40,unknown,game?,U
+0x7100f03a40,4,fn_7100f03a40,unknown,linker,L
 0x7100f03a50,160,fn_7100f03a50,unknown,game?,O
 0x7100f03af0,108,fn_7100f03af0,unknown,game?,O
 0x7100f03b5c,128,fn_7100f03b5c,unknown,game?,O
@@ -97,7 +97,7 @@ address,size,name,name_source,subsystem,status
 0x7100f04c70,140,fn_7100f04c70,unknown,game?,O
 0x7100f04cfc,324,fn_7100f04cfc,unknown,game?,U
 0x7100f04e40,56,fn_7100f04e40,unknown,game?,O
-0x7100f04e78,4,fn_7100f04e78,unknown,game?,U
+0x7100f04e78,4,fn_7100f04e78,unknown,linker,L
 0x7100f04e7c,72,fn_7100f04e7c,unknown,game?,O
 0x7100f04ed0,140,fn_7100f04ed0,unknown,game?,O
 0x7100f04f5c,4,fn_7100f04f5c,unknown,game?,O

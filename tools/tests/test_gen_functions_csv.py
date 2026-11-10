@@ -82,6 +82,43 @@ class Statuses(unittest.TestCase):
         self.assertFalse(g.DECOMP_STATUSES & {"U", "L"})
 
 
+class FakeImage:
+    """What non_code reads from image.Image: the module's bytes and little-endian words."""
+
+    def __init__(self, words: list[int]):
+        self.data = b"".join(w.to_bytes(4, "little") for w in words)
+
+    def u32(self, off: int) -> int:
+        return int.from_bytes(self.data[off:off + 4], "little")
+
+
+class NonCode(unittest.TestCase):
+    PLT = [0x90000010, 0xF9400211, 0x91000210, 0xD61F0220]  # adrp x16; ldr x17, [x16]; add x16, x16; br x17
+    RET, NOP, FILL = 0xD65F03C0, 0xD503201F, 0xE7FFDEFE
+
+    def kind(self, words: list[int], off: int, size: int):
+        return g.non_code(FakeImage(words), g.BASE + off, size)
+
+    def test_import_placeholders_lie_past_the_module(self):
+        self.assertEqual(self.kind([self.RET], 0x100, 1), "import")
+
+    def test_plt_stub(self):
+        self.assertEqual(self.kind(self.PLT, 0, 16), "linker")
+
+    def test_padding(self):
+        self.assertEqual(self.kind([self.RET, self.NOP], 4, 4), "linker")
+        self.assertEqual(self.kind([self.FILL, self.FILL], 0, 8), "linker")
+
+    def test_code_is_left_alone(self):
+        self.assertIsNone(self.kind([self.RET], 0, 4))
+        self.assertIsNone(self.kind([self.NOP, self.RET], 0, 8))  # a body that starts with a nop
+        self.assertIsNone(self.kind(self.PLT[:3] + [self.RET], 0, 16))
+
+    def test_both_are_library_status(self):
+        self.assertTrue(g.is_library("import", "unknown"))
+        self.assertTrue(g.is_library("linker", "unknown"))
+
+
 class GenericNames(unittest.TestCase):
     def test_ghidra_placeholders(self):
         for name in ("FUN_7100000010", "thunk_FUN_7100000010", "_INIT_3", "LAB_7100000010", "entry"):

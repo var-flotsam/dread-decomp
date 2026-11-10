@@ -646,7 +646,7 @@ address,size,name,name_source,subsystem,status
 0x7100016cfc,280,fn_7100016cfc,unknown,unknown,O
 0x7100016e14,372,fn_7100016e14,unknown,unknown,O
 0x7100016f88,532,fn_7100016f88,unknown,unknown,O
-0x710001719c,4,fn_710001719c,unknown,unknown,U
+0x710001719c,4,fn_710001719c,unknown,linker,L
 0x71000171a0,476,fn_71000171a0,unknown,unknown,O
 0x710001737c,20,fn_710001737c,unknown,unknown,O
 0x7100017390,80,fn_7100017390,unknown,unknown,O
@@ -984,7 +984,7 @@ address,size,name,name_source,subsystem,status
 0x7100025240,344,base::core::CDefinition::refl_InitClass,reflection,engine/base,O
 0x7100025398,196,fn_7100025398,unknown,unknown,O
 0x710002545c,124,fn_710002545c,unknown,unknown,O
-0x71000254d8,4,fn_71000254d8,unknown,unknown,U
+0x71000254d8,4,fn_71000254d8,unknown,linker,L
 0x71000254dc,28,fn_71000254dc,unknown,unknown,O
 0x71000254f8,8,fn_71000254f8,unknown,unknown,O
 0x7100025500,8,fn_7100025500,unknown,unknown,O
@@ -1230,7 +1230,7 @@ address,size,name,name_source,subsystem,status
 0x710002cff8,224,fn_710002cff8,unknown,unknown,U
 0x710002d0d8,448,fn_710002d0d8,unknown,unknown,U
 0x710002d298,132,fn_710002d298,unknown,unknown,O
-0x710002d31c,4,fn_710002d31c,unknown,unknown,U
+0x710002d31c,4,fn_710002d31c,unknown,linker,L
 0x710002d320,8,fn_710002d320,unknown,unknown,O
 0x710002d328,96,fn_710002d328,unknown,unknown,O
 0x710002d388,88,fn_710002d388,unknown,unknown,O
@@ -1411,7 +1411,7 @@ address,size,name,name_source,subsystem,status
 0x7100067ea4,24,fn_7100067ea4,unknown,unknown,O
 0x7100067ebc,24,fn_7100067ebc,unknown,unknown,O
 0x7100067ed4,4,fn_7100067ed4,unknown,unknown,O
-0x7100067ed8,4,fn_7100067ed8,unknown,unknown,U
+0x7100067ed8,4,fn_7100067ed8,unknown,linker,L
 0x7100067edc,28,fn_7100067edc,unknown,unknown,O
 0x7100067ef8,12,fn_7100067ef8,unknown,unknown,O
 0x7100067f04,8,fn_7100067f04,unknown,unknown,O
@@ -1588,7 +1588,7 @@ address,size,name,name_source,subsystem,status
 0x710006f044,480,fn_710006f044,unknown,unknown,U
 0x710006f224,12,fn_710006f224,unknown,unknown,O
 0x710006f230,212,fn_710006f230,unknown,unknown,O
-0x710006f304,4,fn_710006f304,unknown,unknown,U
+0x710006f304,4,fn_710006f304,unknown,linker,L
 0x710006f310,128,fn_710006f310,unknown,unknown,O
 0x710006f390,328,fn_710006f390,unknown,unknown,M
 0x710006f4d8,424,fn_710006f4d8,unknown,unknown,O

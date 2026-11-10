@@ -6079,7 +6079,7 @@ address,size,name,name_source,subsystem,status
 0x71004fd090,8,fn_71004fd090,unknown,unknown,O
 0x71004fd098,356,fn_71004fd098,unknown,unknown,O
 0x71004fd1fc,120,fn_71004fd1fc,unknown,unknown,O
-0x71004fd274,4,fn_71004fd274,unknown,unknown,U
+0x71004fd274,4,fn_71004fd274,unknown,linker,L
 0x71004fd278,84,fn_71004fd278,unknown,unknown,O
 0x71004fd2cc,348,fn_71004fd2cc,unknown,unknown,O
 0x71004fd428,8,fn_71004fd428,unknown,unknown,O

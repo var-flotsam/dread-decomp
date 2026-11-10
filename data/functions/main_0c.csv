@@ -4833,9 +4833,9 @@ address,size,name,name_source,subsystem,status
 0x7100c9c950,248,fn_7100c9c950,unknown,unknown,O
 0x7100c9ca50,248,fn_7100c9ca50,unknown,unknown,O
 0x7100c9cb50,524,fn_7100c9cb50,unknown,unknown,m
-0x7100c9cd5c,4,fn_7100c9cd5c,unknown,unknown,U
+0x7100c9cd5c,4,fn_7100c9cd5c,unknown,linker,L
 0x7100c9cd60,780,fn_7100c9cd60,unknown,unknown,O
-0x7100c9d06c,4,fn_7100c9d06c,unknown,unknown,U
+0x7100c9d06c,4,fn_7100c9d06c,unknown,linker,L
 0x7100c9d070,780,fn_7100c9d070,unknown,unknown,O
 0x7100c9d380,1676,fn_7100c9d380,unknown,unknown,U
 0x7100c9da0c,268,fn_7100c9da0c,unknown,unknown,O
@@ -6618,7 +6618,7 @@ address,size,name,name_source,subsystem,status
 0x7100cdc14c,364,CCharClassSoundBaseEvent::refl_InitClass,reflection,game/characters,O
 0x7100cdc2b8,48,fn_7100cdc2b8,unknown,game/characters?,O
 0x7100cdc2e8,4,fn_7100cdc2e8,unknown,game/characters?,O
-0x7100cdc2ec,4,fn_7100cdc2ec,unknown,game/characters?,U
+0x7100cdc2ec,4,fn_7100cdc2ec,unknown,linker,L
 0x7100cdc2f0,1568,fn_7100cdc2f0,unknown,game/characters?,U
 0x7100cdc910,908,fn_7100cdc910,unknown,game/characters?,U
 0x7100cdcc9c,28,fn_7100cdcc9c,unknown,game/characters?,O

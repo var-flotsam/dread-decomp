@@ -17,7 +17,9 @@ each file stays under the 1 MB pre-commit limit. Columns: address,size,name,name
                  O matching, m non-matching (minor), M non-matching (major), W work in progress,
                  U not decompiled, L library (excluded from progress).
                O/m/M/W are set by tools/check.py from src/ and preserved here; every other
-               function is L if its subsystem is a library, else U.
+               function is L if its subsystem is a library, else U. Entries that are not written
+               code are L too, with subsystem "import" (Ghidra's placeholders for imported
+               functions, past the end of the module) or "linker" (PLT stubs and padding).
 
 Usage: python tools/gen_functions_csv.py --version 2.1.0
 """
@@ -77,7 +79,29 @@ SUBSYSTEM_RULES = [
 # Code we don't decompile as game code: vendored upstream (Lua, dlmalloc), Nintendo
 # middleware/SDK (nn::atk, nn::), and the C/C++ runtime. Marked L, like BotW's
 # "library function" status, and excluded from progress.
-LIBRARY_SUBSYSTEMS = {"middleware/nn-atk", "sdk", "runtime", "lua", "dlmalloc"}
+LIBRARY_SUBSYSTEMS = {"middleware/nn-atk", "sdk", "runtime", "lua", "dlmalloc", "import", "linker"}
+# Entries that are not code anyone wrote, so there is nothing to decompile (status L):
+#   import  Ghidra's placeholders for imported functions (`<EXTERNAL>::...`), at addresses past the
+#           end of the module; the import itself is declared in a header and, in the port, provided
+#           by port/runtime or trapped by tools/port_link.py.
+#   linker  PLT stubs (adrp x16; ldr x17; add x16; br x17), which the linker generates for every
+#           imported function, and padding between functions (nop, or the 0xe7ffdefe filler).
+PADDING_WORDS = {0xD503201F, 0xE7FFDEFE, 0x00000000}
+
+
+def non_code(img: Image, addr: int, size: int) -> str | None:
+    """"import" or "linker" for an entry that is not written code (see LIBRARY_SUBSYSTEMS), else None."""
+    off = addr - BASE
+    if off >= len(img.data):  # by address: Ghidra also gives PLT stubs and some thunks <EXTERNAL>:: names
+        return "import"
+    if size == 16 and off + 16 <= len(img.data):
+        w = [img.u32(off + 4 * i) for i in range(4)]
+        if (w[0] & 0x9F00001F == 0x90000010 and w[1] & 0xFFC003FF == 0xF9400211
+                and w[2] & 0xFFC003FF == 0x91000210 and w[3] == 0xD61F0220):
+            return "linker"
+    if size % 4 == 0 and 0 < size <= 16 and off + size <= len(img.data)             and all(img.u32(off + i) in PADDING_WORDS for i in range(0, size, 4)):
+        return "linker"
+    return None
 # Subsystems where a neighbour's inferred subsystem ("lua?") does not make a function library code:
 # the game added its own functions to Lua's auxiliary library (luaL_testudata, ...), between ones
 # tools/sigmatch.py matches to lib/lua, and nothing in lib/lua provides them. Only a matched name is
@@ -234,6 +258,11 @@ def main() -> int:
         if sub[ordered[left]] == sub[ordered[right]] and right - left <= 64:
             for i in range(left + 1, right):
                 sub.setdefault(ordered[i], sub[ordered[left]] + "?")
+
+    for a in ordered:
+        kind = non_code(img, a, funcs[a])
+        if kind:
+            sub[a] = kind
 
     # One file per MiB of address space keeps each under the 1 MB pre-commit limit.
     out_dir = ROOT / "data" / "functions"
