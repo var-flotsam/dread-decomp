@@ -84,6 +84,8 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - A keyed array's lookup: `Find` returns `&values[i]` or `&values[count]`, the caller compares with `&values[count]`, ids compared as raw `u64`; a `u8` flag with `__builtin_expect(f & 1, 1)` gives `tbz`: [boot hubs, round 1](#session-log-newest-first).
 - Clang 9 ignores an `asm` label on a constructor or destructor: alias the C1/D1 symbols to `fn_<addr>` under `__clang_major__ <= 9`: [boot hubs, round 1](#session-log-newest-first).
 - A const global read as words: reading it through a `reinterpret_cast<const u32*>` of the const object kept the original's reloads, with no barrier: [boot hubs, round 2](#session-log-newest-first).
+- Empty compiler barriers (`asm("" : "+r"(x))`, `asm volatile("" ::: "memory")`) are allowed when they are the only way to
+  match, each with a comment saying what ordering it keeps: [barrier convention](#session-log-newest-first).
 - An out-of-line hash-map or vector initialiser: a nested map-head struct makes the stores relative to the map base; an `asm("" : "+r"(p))` on a pointer to a far field hoists its `add` as the original does: [boot hubs, round 2](#session-log-newest-first).
 - An agent's "behaviour identical" on a 10-45% minor is worth an adversarial check (decompile, `abi_facts.py`, the `-v` diff): round 2's ten all held, and the review found a `void` declaration that really returns its first argument: [boot hubs, round 2](#session-log-newest-first).
 - When the callee is in the same unit the original compiler infers facts about it (nocapture, a by-value argument left alone, a constant result) that change the caller; `__attribute__((noescape))`, `inline __attribute__((noinline))` and definitions kept in address order (dead-argument elimination walks them in order) reproduce some: [port M1 boot-match](#session-log-newest-first).
@@ -149,6 +151,13 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - An import name the runtime overloads (`movie::Buffer::Buffer` four times) must resolve by the dump's mangled name (the PLT stub's GOT slot), not by the reference's argument classes: a lifted call passes `this` as an argument, and a copy constructor looks like `Buffer(u64)`: [movie VP9](#session-log-newest-first).
 
 ## Session log (newest first)
+
+**Barrier convention (2026-11-10).** The owner allowed the empty memory barrier `asm volatile("" ::: "memory")`
+next to the register form `asm("" : "+r"(x))`, which until now was the only one named. 23 files already used the memory
+form, and #344's fn_71010d78e4 matched with it. Neither form emits an instruction or changes behaviour, and the
+port builds with Clang, so both carry over. The condition is readability: each barrier gets a one-line comment
+saying what it preserves. CLAUDE.md's conventions now say so; fn_71010d78e4 has its comment. The 23 earlier uses
+were left as they are.
 
 **Parallel decompilation run, second part: 393 more functions (2026-11-09/10, branch `claude/overnight-decomp-20261109`).**
 The same coordinator and worker setup as in the entry below continued after #341 merged. It reran the 8 batches that

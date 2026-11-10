@@ -46,6 +46,7 @@ void fn_71010d78e4(UnkBufferSet* self) {
             for (u64 i = 1; i < self->count78; i++) {
                 fn_71002874dc(self->data70 + i * 4);
             }
+            // Reads data70 again for the free below, as the original does, instead of reusing `data`.
             asm volatile("" ::: "memory");
             data = self->data70;
         }
