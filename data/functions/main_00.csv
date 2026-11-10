@@ -645,16 +645,16 @@ address,size,name,name_source,subsystem,status
 0x7100016c44,184,fn_7100016c44,unknown,unknown,O
 0x7100016cfc,280,fn_7100016cfc,unknown,unknown,O
 0x7100016e14,372,fn_7100016e14,unknown,unknown,O
-0x7100016f88,532,fn_7100016f88,unknown,unknown,U
+0x7100016f88,532,fn_7100016f88,unknown,unknown,O
 0x710001719c,4,fn_710001719c,unknown,unknown,U
-0x71000171a0,476,fn_71000171a0,unknown,unknown,U
+0x71000171a0,476,fn_71000171a0,unknown,unknown,O
 0x710001737c,20,fn_710001737c,unknown,unknown,O
 0x7100017390,80,fn_7100017390,unknown,unknown,O
 0x71000173e0,1176,fn_71000173e0,unknown,unknown,U
 0x7100017878,180,fn_7100017878,unknown,unknown,O
 0x710001792c,28,fn_710001792c,unknown,unknown,O
 0x7100017948,600,fn_7100017948,unknown,unknown,m
-0x7100017ba0,328,fn_7100017ba0,unknown,unknown,U
+0x7100017ba0,328,fn_7100017ba0,unknown,unknown,O
 0x7100017ce8,1060,fn_7100017ce8,unknown,unknown,m
 0x710001810c,312,fn_710001810c,unknown,unknown,O
 0x7100018244,524,fn_7100018244,unknown,unknown,U
@@ -2573,7 +2573,7 @@ address,size,name,name_source,subsystem,status
 0x71000987c8,340,base::reflection::CCollectionType::refl_InitClass,reflection,engine/reflection,O
 0x710009891c,4,fn_710009891c,unknown,engine/reflection?,O
 0x7100098920,36,fn_7100098920,unknown,engine/reflection?,O
-0x7100098944,420,fn_7100098944,unknown,engine/reflection?,U
+0x7100098944,420,fn_7100098944,unknown,engine/reflection?,O
 0x7100098ae8,180,fn_7100098ae8,unknown,engine/reflection?,O
 0x7100098b9c,28,fn_7100098b9c,unknown,engine/reflection?,O
 0x7100098bb8,12,fn_7100098bb8,unknown,engine/reflection?,O
@@ -5510,7 +5510,7 @@ address,size,name,name_source,subsystem,status
 0x71000e88b4,4,fn_71000e88b4,unknown,engine/reflection?,O
 0x71000e88b8,4,fn_71000e88b8,unknown,engine/reflection?,O
 0x71000e88bc,4,fn_71000e88bc,unknown,engine/reflection?,O
-0x71000e88c0,408,base::reflection::CVariable::refl_GetClass,reflection,engine/reflection,U
+0x71000e88c0,408,base::reflection::CVariable::refl_GetClass,reflection,engine/reflection,O
 0x71000e8a58,4,fn_71000e8a58,unknown,unknown,O
 0x71000e8a5c,244,base::res::CRes::refl_GetClass,reflection,engine/base,O
 0x71000e8b50,4,fn_71000e8b50,unknown,engine/base?,O
