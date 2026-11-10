@@ -159,6 +159,28 @@ port builds with Clang, so both carry over. The condition is readability: each b
 saying what it preserves. CLAUDE.md's conventions now say so; fn_71010d78e4 has its comment. The 23 earlier uses
 were left as they are.
 
+**Parallel decompilation run, third part: about 1,700 more functions (2026-11-10/11, branch `claude/overnight-decomp-part3`).**
+The remaining 125 queued batches of the first two parts ran to the end, with the worker setup changed after the measured
+test run (`build/lean/REPORT.md`): workers ran on Sonnet, one batch per worker; grading used the short-diff wrapper
+`build/overnight/try.py` instead of `trymatch -v`; at most 2 attempts per function; near-misses of 90% or better were
+saved as drafts (`build/overnight/drafts/`, 203 files); and empty barriers (`asm("" : "+r"(x))`, `asm volatile("" ::: "memory")`)
+were allowed with a one-line comment (CLAUDE.md, #345). Functions a worker skipped without trying were requeued once as
+new batches (b0264-b0285). After the queue, one Opus pass took the near-miss drafts in 21 batches of 10 with 2 attempts each.
+- **Totals:** 6,796 function attempts recorded in the ledger over the three parts; 3,706 matched, so about 1,700 are new in
+  this part (about 1,650 from the Sonnet queue, 55 from the Opus pass of 203 near-misses). `check.py --update` reports no
+  REGRESSION, DUPLICATE or RELOC lines (two functions defined twice by batch b0178 were removed first), and
+  `decl_check.py --base origin/main` passes (the copies-of-local-declarations warning grows). O coverage is 66.77% of code.
+- **Findings:** workers often returned early with "skipped for time" until the brief said that attempting every function was
+  required; near-misses are mostly `cbz`/`tbz` choice, `ccmp` operand order, register allocation and store scheduling. The
+  Opus pass matched 55 of 203 drafts (27%), so the remaining drafts are mostly stubborn.
+- **Review before relying on these files:** a few matches use workarounds for existing wrong declarations, listed in the
+  local `build/overnight/header_fixes.txt`: calls through function-pointer casts where a callee is declared `void` but
+  returns a value (fn_7100fbc4e0 and others), `asm`-label aliases for symbols whose declared parameters differ, and one
+  function whose uninitialised first argument is needed to match (fn_71011990e8). The case-to-target order of one switch
+  (fn_7100b532a0 in `UnkTU1703_Title_ovb0215.cpp`) and two string literals in `UnkTU1176_Central_ovb0230.cpp`
+  (fn_7100775358) were read from a truncated listing and are not verified. Correcting the existing declarations is the
+  next step for the functions that matched in scratch only with a different signature (workers left those out of `src/`).
+
 **Parallel decompilation run, second part: 393 more functions (2026-11-09/10, branch `claude/overnight-decomp-20261109`).**
 The same coordinator and worker setup as in the entry below continued after #341 merged. It reran the 8 batches that
 had been stopped, then 23 more (b0116-b0138), and halted when the account's weekly usage limit cut off the workers

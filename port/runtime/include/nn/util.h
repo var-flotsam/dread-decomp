@@ -34,3 +34,10 @@ extern float Float1Divided2Pi;
 }  // namespace detail
 
 }  // namespace nn::util
+
+namespace nn::detail {
+// The console library's report for a `switch` that reaches a case it rules out; does not return.
+[[noreturn]] void UnexpectedDefaultImpl(const char* condition, const char* function, int line);
+}  // namespace nn::detail
+
+#define NN_UNEXPECTED_DEFAULT nn::detail::UnexpectedDefaultImpl("", "", 0)
