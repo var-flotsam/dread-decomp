@@ -1594,10 +1594,10 @@ address,size,name,name_source,subsystem,status
 0x7100c29ed4,124,fn_7100c29ed4,unknown,game/characters?,O
 0x7100c29f50,12,fn_7100c29f50,unknown,game/characters?,O
 0x7100c29f5c,68,fn_7100c29f5c,unknown,game/characters?,O
-0x7100c29fa0,204,fn_7100c29fa0,unknown,game/characters?,U
+0x7100c29fa0,204,fn_7100c29fa0,unknown,game/characters?,O
 0x7100c2a06c,100,fn_7100c2a06c,unknown,game/characters?,O
 0x7100c2a0d0,68,fn_7100c2a0d0,unknown,game/characters?,O
-0x7100c2a114,204,fn_7100c2a114,unknown,game/characters?,U
+0x7100c2a114,204,fn_7100c2a114,unknown,game/characters?,O
 0x7100c2a1e0,100,fn_7100c2a1e0,unknown,game/characters?,O
 0x7100c2a250,160,fn_7100c2a250,unknown,game/characters?,O
 0x7100c2a2f0,232,fn_7100c2a2f0,unknown,game/characters?,O
@@ -3883,7 +3883,7 @@ address,size,name,name_source,subsystem,status
 0x7100c5ec78,9152,fn_7100c5ec78,unknown,game/characters?,O
 0x7100c61038,388,CCharClassTweakPlayRateTrack::CTunableCharClassTweakPlayRateTrack::refl_InitClass,reflection,game/characters,O
 0x7100c611bc,696,fn_7100c611bc,unknown,game/characters?,O
-0x7100c61474,232,fn_7100c61474,unknown,game/characters?,U
+0x7100c61474,232,fn_7100c61474,unknown,game/characters?,O
 0x7100c6155c,232,fn_7100c6155c,unknown,game/characters?,O
 0x7100c61644,244,CCharClassTweakPlayRateTrack::refl_GetClass,reflection,game/characters,O
 0x7100c61738,356,fn_7100c61738,unknown,game/characters?,O
@@ -4789,7 +4789,7 @@ address,size,name,name_source,subsystem,status
 0x7100c9a690,388,CSamusAimAction::refl_InitClass,reflection,game/ai,O
 0x7100c9a814,4,fn_7100c9a814,unknown,game/ai?,O
 0x7100c9a818,1444,fn_7100c9a818,unknown,game/ai?,U
-0x7100c9adbc,260,fn_7100c9adbc,unknown,game/ai?,U
+0x7100c9adbc,260,fn_7100c9adbc,unknown,game/ai?,O
 0x7100c9aec0,120,fn_7100c9aec0,unknown,game/ai?,O
 0x7100c9af38,28,fn_7100c9af38,unknown,game/ai?,O
 0x7100c9af54,12,fn_7100c9af54,unknown,game/ai?,O
@@ -5248,7 +5248,7 @@ address,size,name,name_source,subsystem,status
 0x7100cae384,388,CCharClassCameraFXPresetEvent::refl_InitClass,reflection,game/characters,O
 0x7100cae508,124,fn_7100cae508,unknown,game/characters?,O
 0x7100cae584,132,fn_7100cae584,unknown,game/characters?,O
-0x7100cae608,208,fn_7100cae608,unknown,game/characters?,U
+0x7100cae608,208,fn_7100cae608,unknown,game/characters?,O
 0x7100cae6d8,28,fn_7100cae6d8,unknown,game/characters?,O
 0x7100cae6f4,12,fn_7100cae6f4,unknown,game/characters?,O
 0x7100cae700,8,fn_7100cae700,unknown,game/characters?,O
@@ -5670,7 +5670,7 @@ address,size,name,name_source,subsystem,status
 0x7100cbbd80,388,CCharClassForceUpdateEnvironmentEvent::refl_InitClass,reflection,game/characters,O
 0x7100cbbf04,4,fn_7100cbbf04,unknown,game/characters?,O
 0x7100cbbf08,36,fn_7100cbbf08,unknown,game/characters?,O
-0x7100cbbf2c,204,fn_7100cbbf2c,unknown,game/characters?,U
+0x7100cbbf2c,204,fn_7100cbbf2c,unknown,game/characters?,O
 0x7100cbbff8,28,fn_7100cbbff8,unknown,game/characters?,O
 0x7100cbc014,12,fn_7100cbc014,unknown,game/characters?,O
 0x7100cbc020,8,fn_7100cbc020,unknown,game/characters?,O
@@ -6636,7 +6636,7 @@ address,size,name,name_source,subsystem,status
 0x7100cde6ac,428,fn_7100cde6ac,unknown,game/characters?,O
 0x7100cde858,848,fn_7100cde858,unknown,game/characters?,O
 0x7100cdeba8,36,fn_7100cdeba8,unknown,game/characters?,O
-0x7100cdebcc,184,fn_7100cdebcc,unknown,game/characters?,U
+0x7100cdebcc,184,fn_7100cdebcc,unknown,game/characters?,O
 0x7100cdec84,28,fn_7100cdec84,unknown,game/characters?,O
 0x7100cdeca0,12,fn_7100cdeca0,unknown,game/characters?,O
 0x7100cdecac,8,fn_7100cdecac,unknown,game/characters?,O
@@ -7510,7 +7510,7 @@ address,size,name,name_source,subsystem,status
 0x7100cf61c4,244,CCharClassFireActionBaseTrack::refl_GetClass,reflection,game/characters,O
 0x7100cf62b8,1236,fn_7100cf62b8,unknown,game/characters?,O
 0x7100cf678c,360,CCharClassFireActionBaseTrack::refl_InitClass,reflection,game/characters,O
-0x7100cf68f4,176,fn_7100cf68f4,unknown,game/characters?,U
+0x7100cf68f4,176,fn_7100cf68f4,unknown,game/characters?,O
 0x7100cf69a4,340,fn_7100cf69a4,unknown,game/characters?,O
 0x7100cf6af8,36,fn_7100cf6af8,unknown,game/characters?,O
 0x7100cf6b1c,28,fn_7100cf6b1c,unknown,game/characters?,O

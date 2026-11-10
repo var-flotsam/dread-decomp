@@ -412,7 +412,7 @@ using UnkOut_71008651c8 = base::UnkVector<UnkStruct_71008651c8_Entry*>;
 void fn_71008651c8(UnkStruct_71008651c8*, void* const*, UnkOut_71008651c8*);
 
 extern char g_unk_7101649bb8[];  // the locator's name
-extern base::global::CStrId g_unk_71726d86f0 __attribute__((visibility("hidden")));
+extern CStrId g_unk_71726d86f0 __attribute__((visibility("hidden")));
 extern void* const g_unk_71726d86f8 __attribute__((visibility("hidden")));
 
 struct UnkCooldownXBoundsOwner_ovb0088 {

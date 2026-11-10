@@ -148,6 +148,45 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Parallel decompilation run, 1,607 functions (2026-11-09, branch `claude/overnight-decomp-20261109`, PR #341).**
+A coordinator ran up to 8 parallel workers. Each took a batch of about 30 status-`U` functions of 24-600 bytes from
+one translation unit (`data/tu_map.csv`), drafted each function, graded it with `tools/trymatch.py`, and kept only
+those that match with no RELOC line. At most 3 tries and about 8 minutes went to each function. Workers wrote only
+new files (`src/<subsystem>/<Unit>/<Unit>_<what>_ov<batch>.cpp`) and never edited existing ones. The run stopped
+early, at the owner's request, after 116 of the 264 batches (the 143 named-unit batches came first). The ledger,
+per-function results with blockers, the tips sheet and the drafts of near-misses are local only, under
+`build/overnight/` (`ledger.json`, `results/`, `tips.md`, `header_fixes.txt`, `scratch/`).
+- **Totals:** 2,768 functions listed in the done batches; 2,301 attempted, 1,607 matched (70% of attempted, 58% of
+  listed). O coverage went from 60.52% to 63.09% of code (O 90,944 -> 92,551 functions). `check.py --update` reports no REGRESSION, DUPLICATE
+  or RELOC lines, and `decl_check.py --base 1dc1fd93` passes. Copies of local declarations still grow (a
+  warning): many callees have no header yet.
+- **By size band** (matched / attempted): 24-100 bytes 49/88 (56%); 100-300 bytes 804/1,124 (72%); 300-600 bytes
+  754/1,089 (69%). 427 of the 1,516 listed functions of 300-600 bytes were skipped for time.
+- **Usual blockers for near-misses:**
+  - Register allocation (x19/x20 swaps) and instruction scheduling.
+  - Store merging and store order in constructors.
+  - Block layout: a ccmp folds two tests, or return blocks are merged or duplicated.
+  - Loop shape: rotation, strength reduction, or a peeled first iteration.
+  - Values the original keeps in registers across a call because the callee is in the same unit (callee not in the file).
+  - Existing declarations elsewhere with wrong parameters: missing self or argument, `bool` vs `u32`, `void` returns.
+    These block functions that otherwise match. The list is in `build/overnight/header_fixes.txt`. Fixing those
+    declarations, together with headers for the struct copies the new files repeat (`UnkResolvedValue`, `UnkRef_c3`,
+    `UnkFxObject_ovb0041`), is the follow-up.
+- **Techniques that closed many matches:**
+  - Untyped stores (`__builtin_memcpy`/`memset`, a `char*`, or a union member) to get the original's reloads past
+    type-based alias analysis.
+  - Function-local statics in non-static `inline` functions for guarded statics reached through the GOT.
+  - `__attribute__((noinline))`/`flatten`/`always_inline` to reproduce the original's inlining.
+  - Splitting a caller and its callee into separate files when Clang drops unread arguments.
+  - `noescape` on callee pointer parameters to bring back tail calls.
+  - Negated float compares (`!(x <= 0)`) for `b.hi`/`b.ls`.
+  - libc++ `std::find_if` over `UnkIter` for linear searches.
+- **Weak spots to know about:**
+  - Some matches rely on relocations `trymatch` leaves unchecked: function-local `static CStrId`s in their own
+    `.bss`, as the existing `fn_7100adcf10.cpp` does.
+  - One definition is `__attribute__((weak))` (`fn_71007121e0`).
+  - Several definitions return a value where an older declaration says `void` (the mangled name is unchanged).
+
 **Calls covered by the ABI facts (2026-11-09, branch `claude/class-mismatch`).** With the movie abort fixed, the boot
 runs to the time limit, logging the calls it skips. Four were mismatched calls (`port_link` traps a call whose
 argument classes interleave unlike the definition's declaration: it returns 0 without running). Two were false
