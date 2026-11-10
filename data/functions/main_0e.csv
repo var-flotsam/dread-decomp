@@ -369,7 +369,7 @@ address,size,name,name_source,subsystem,status
 0x7100e10aac,716,fn_7100e10aac,unknown,unknown,m
 0x7100e10d78,8,fn_7100e10d78,unknown,unknown,O
 0x7100e10d80,9400,fn_7100e10d80,unknown,unknown,U
-0x7100e13238,616,fn_7100e13238,unknown,unknown,U
+0x7100e13238,616,fn_7100e13238,unknown,unknown,O
 0x7100e134a0,4,fn_7100e134a0,unknown,unknown,O
 0x7100e134a4,660,fn_7100e134a4,unknown,unknown,U
 0x7100e13738,76,fn_7100e13738,unknown,unknown,O
