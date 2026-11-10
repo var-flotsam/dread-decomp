@@ -386,7 +386,7 @@ address,size,name,name_source,subsystem,status
 0x7100515db8,288,fn_7100515db8,unknown,ai/behaviortree?,O
 0x7100515ed8,236,fn_7100515ed8,unknown,ai/behaviortree?,O
 0x7100515fc4,28,fn_7100515fc4,unknown,ai/behaviortree?,O
-0x7100515fe0,4,fn_7100515fe0,unknown,ai/behaviortree?,U
+0x7100515fe0,4,fn_7100515fe0,unknown,linker,L
 0x7100515fe4,4,operator.delete,symbol,ai/behaviortree?,O
 0x7100515fe8,20,fn_7100515fe8,unknown,ai/behaviortree?,O
 0x7100515ffc,532,fn_7100515ffc,unknown,ai/behaviortree?,U
@@ -493,7 +493,7 @@ address,size,name,name_source,subsystem,status
 0x710051db44,4,fn_710051db44,unknown,unknown,O
 0x710051db48,900,fn_710051db48,unknown,unknown,U
 0x710051decc,28,fn_710051decc,unknown,unknown,O
-0x710051dee8,4,fn_710051dee8,unknown,unknown,U
+0x710051dee8,4,fn_710051dee8,unknown,linker,L
 0x710051deec,8,fn_710051deec,unknown,unknown,O
 0x710051def4,8,fn_710051def4,unknown,unknown,O
 0x710051defc,28,fn_710051defc,unknown,unknown,O
@@ -509,7 +509,7 @@ address,size,name,name_source,subsystem,status
 0x710051e924,380,fn_710051e924,unknown,game/characters?,O
 0x710051eaa0,300,fn_710051eaa0,unknown,game/characters?,O
 0x710051ebcc,204,fn_710051ebcc,unknown,game/characters?,O
-0x710051ec98,4,fn_710051ec98,unknown,game/characters?,U
+0x710051ec98,4,fn_710051ec98,unknown,linker,L
 0x710051ec9c,40,fn_710051ec9c,unknown,game/characters?,O
 0x710051ecc4,8,fn_710051ecc4,unknown,game/characters?,O
 0x710051eccc,8,fn_710051eccc,unknown,game/characters?,O

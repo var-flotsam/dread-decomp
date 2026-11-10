@@ -1064,7 +1064,7 @@ address,size,name,name_source,subsystem,status
 0x710082f90c,364,CBeamGun::refl_InitClass,reflection,game,O
 0x710082fa78,48,fn_710082fa78,unknown,game?,O
 0x710082faa8,4,fn_710082faa8,unknown,game?,O
-0x710082faac,4,fn_710082faac,unknown,game?,U
+0x710082faac,4,fn_710082faac,unknown,linker,L
 0x710082fab0,588,fn_710082fab0,unknown,game?,U
 0x710082fcfc,28,fn_710082fcfc,unknown,game?,O
 0x710082fd18,8,fn_710082fd18,unknown,game?,O
@@ -1259,7 +1259,7 @@ address,size,name,name_source,subsystem,status
 0x71008352a4,364,CGun::refl_InitClass,reflection,game,O
 0x7100835410,428,fn_7100835410,unknown,unknown,O
 0x71008355bc,640,fn_71008355bc,unknown,unknown,U
-0x710083583c,4,fn_710083583c,unknown,unknown,U
+0x710083583c,4,fn_710083583c,unknown,linker,L
 0x7100835840,12,fn_7100835840,unknown,unknown,O
 0x710083584c,104,fn_710083584c,unknown,unknown,O
 0x71008358b4,84,fn_71008358b4,unknown,unknown,O
@@ -1883,7 +1883,7 @@ address,size,name,name_source,subsystem,status
 0x710085719c,364,CPrimaryGun::refl_InitClass,reflection,game,O
 0x7100857308,52,fn_7100857308,unknown,unknown,O
 0x710085733c,4,fn_710085733c,unknown,unknown,O
-0x7100857340,4,fn_7100857340,unknown,unknown,U
+0x7100857340,4,fn_7100857340,unknown,linker,L
 0x7100857344,212,fn_7100857344,unknown,unknown,O
 0x7100857418,64,fn_7100857418,unknown,unknown,O
 0x7100857458,28,fn_7100857458,unknown,unknown,O
@@ -1967,7 +1967,7 @@ address,size,name,name_source,subsystem,status
 0x710085c664,364,CSecondaryGun::refl_InitClass,reflection,game,O
 0x710085c7d0,68,fn_710085c7d0,unknown,game?,O
 0x710085c814,196,fn_710085c814,unknown,game?,O
-0x710085c8d8,4,fn_710085c8d8,unknown,game?,U
+0x710085c8d8,4,fn_710085c8d8,unknown,linker,L
 0x710085c8dc,124,fn_710085c8dc,unknown,game?,O
 0x710085c958,732,fn_710085c958,unknown,game?,U
 0x710085cc34,96,fn_710085cc34,unknown,game?,O
@@ -4939,7 +4939,7 @@ address,size,name,name_source,subsystem,status
 0x71008eee98,380,fn_71008eee98,unknown,game/components?,O
 0x71008ef014,56,fn_71008ef014,unknown,game/components?,O
 0x71008ef04c,4,fn_71008ef04c,unknown,game/components?,O
-0x71008ef050,4,fn_71008ef050,unknown,game/components?,U
+0x71008ef050,4,fn_71008ef050,unknown,linker,L
 0x71008ef054,4,fn_71008ef054,unknown,game/components?,O
 0x71008ef058,28,fn_71008ef058,unknown,game/components?,O
 0x71008ef074,12,fn_71008ef074,unknown,game/components?,O
