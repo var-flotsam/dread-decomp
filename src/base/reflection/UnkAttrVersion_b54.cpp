@@ -3,6 +3,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU85.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;

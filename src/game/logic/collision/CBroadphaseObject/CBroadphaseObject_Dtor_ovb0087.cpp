@@ -6,6 +6,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/CGameObject.h"
+#include "game/logic/collision/CBroadphaseObject.h"
 #include "types.h"
 
 using base::global::UnkStringData;

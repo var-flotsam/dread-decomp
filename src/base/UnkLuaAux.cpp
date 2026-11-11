@@ -7,6 +7,7 @@
 
 #include "../../lib/lua/lua.h"
 #include "../../lib/lua/lauxlib.h"
+#include "game/UnkTU2676.h"
 
 // The error printer the game may replace (reached through the GOT); fn_71010a5a70 until then.
 extern int (*g_unk_7101caf838)(const char* fmt, ...);

@@ -5,6 +5,7 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/UnkTU108.h"
 #include "types.h"
 
 template <class T>

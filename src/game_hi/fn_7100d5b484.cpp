@@ -1,5 +1,6 @@
 // Queries a 2D bounding-volume tree and its sub-trees for objects overlapping a shape placed with
 // an extra transform, filtered by a layer mask; returns whether anything reported a hit.
+#include "game/UnkTU2510.h"
 #include "types.h"
 
 struct UnkFlags {

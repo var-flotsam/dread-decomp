@@ -7,6 +7,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CCharClassWaterPoolComponent.h"
+#include "game/CFreezeRoomComponent.h"
 #include "game/CPlayerInfo.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkXformNode.h"

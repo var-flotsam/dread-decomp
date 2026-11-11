@@ -2,6 +2,7 @@
 // (game/UnkSphere.h; its destructor is src/game_s1/fn_71001bd92c.cpp) that follows the object at
 // +0x78. Holds fn_71001bdc3c.
 #include "game/UnkSphere.h"
+#include "game/UnkTU251.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 

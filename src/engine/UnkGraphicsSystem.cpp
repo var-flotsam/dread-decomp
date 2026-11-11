@@ -30,6 +30,7 @@
 #include "game/UnkTU211.h"
 #include "game/UnkTU223.h"
 #include "game/UnkTU230.h"
+#include "game/UnkTU259.h"
 #include "types.h"
 
 using base::color::CColor4F;

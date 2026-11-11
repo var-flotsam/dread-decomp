@@ -1,6 +1,7 @@
 // Unit 285 of tools/tu_map.py (no class hint): whether the object is active: only while its value at
 // +0x114 is positive, by asking fn_71001932dc about the object at +0x78 of the one at +0x108 with
 // that value; the answer is kept at +0xfd and returned. Names and layouts are placeholders.
+#include "game/UnkTU285.h"
 #include "types.h"
 
 struct UnkUnit285Target_b46a1;

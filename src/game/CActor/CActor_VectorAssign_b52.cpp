@@ -4,6 +4,7 @@
 // fn_71002458a4), then append a copy of each entry (fn_7100246ba8). Names and layouts are
 // placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 // The move constructor and the entry, typed as CActor_VectorCopy_b41.cpp types them (one declaration

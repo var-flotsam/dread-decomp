@@ -2,6 +2,7 @@
 // object changed (+0xa8), optionally clears its three optional settings, takes each setting the argument has,
 // then copies the third setting's value (or zero) into the current value at +0x58. Names and layouts are
 // placeholders.
+#include "game/UnkTU1124.h"
 #include "types.h"
 
 struct UnkVec3_b69a4 {

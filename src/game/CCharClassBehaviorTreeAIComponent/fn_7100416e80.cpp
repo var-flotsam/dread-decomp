@@ -2,6 +2,7 @@
 // a lazily created manager, resets it to a shared global id, releases it, then runs the base
 // class destructor.
 #include "base/UnkVector.h"
+#include "game/CCharClassBehaviorTreeAIComponent.h"
 #include "game/UnkPathRegistry.h"
 #include "base/global/CFilePathStrId.h"
 #include "types.h"

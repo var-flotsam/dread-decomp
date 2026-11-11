@@ -7,6 +7,7 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CName.h"
 #include "game/CActorComponent.h"
+#include "game/CDoorCentralUnitLifeComponent.h"
 #include "game/UnkTU794.h"
 #include "types.h"
 

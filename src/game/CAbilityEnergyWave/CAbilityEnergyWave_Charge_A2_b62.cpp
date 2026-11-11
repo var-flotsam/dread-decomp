@@ -5,6 +5,7 @@
 // placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
+#include "game/CAbilityEnergyWave.h"
 #include "game/CAbilityMultiLockon.h"
 #include "game/UnkActor.h"
 #include "game/UnkTUProperty.h"

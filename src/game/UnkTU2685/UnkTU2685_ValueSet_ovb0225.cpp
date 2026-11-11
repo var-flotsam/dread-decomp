@@ -9,6 +9,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU2685.h"
 #include "types.h"
 
 using base::global::CRntString;

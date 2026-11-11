@@ -7,6 +7,7 @@
 #include "base/core/CAsset.h"
 #include "base/global/CStrId.h"
 #include "base/global/CFilePathStrId.h"
+#include "game/UnkTU2647.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;

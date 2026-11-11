@@ -13,6 +13,7 @@
 #include "base/UnkCloneCalls.h"
 #include "base/UnkVector.h"
 #include "base/reflection/CType.h"
+#include "base/reflection/UnkReflTypeDtors.h"
 #include "game/UnkTU83.h"
 
 extern char unk_7101a1b3a0[];

@@ -1,6 +1,7 @@
 // Finds an item with the given id in one of two grouped item lists (chosen by `primary`) that
 // also accepts the query through a virtual check; null if there is none.
 #include "base/UnkVector.h"
+#include "game/CGunComponent.h"
 #include "types.h"
 
 struct UnkItem_710083e9d4 {

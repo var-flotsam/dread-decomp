@@ -8,6 +8,7 @@
 #include "base/math/CVector4D.h"
 #include "game/UnkGlobal_710b372a98.h"
 #include "game/UnkSlots.h"
+#include "game/UnkTU253.h"
 #include "types.h"
 
 using base::color::CColor4F;

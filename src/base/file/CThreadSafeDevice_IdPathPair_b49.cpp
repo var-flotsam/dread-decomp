@@ -4,6 +4,7 @@
 // a file-path id built from the text. fn_710008d2ec takes the text of a file-path id (counting a
 // use in its pool entry, +0x44), fn_710008d4c0 a string whose text is its first word. Names and
 // layouts are placeholders.
+#include "base/file/CThreadSafeDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "types.h"

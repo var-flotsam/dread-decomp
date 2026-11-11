@@ -12,6 +12,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU1600.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"

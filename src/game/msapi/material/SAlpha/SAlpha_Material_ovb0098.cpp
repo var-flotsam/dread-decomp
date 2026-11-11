@@ -20,6 +20,7 @@
 #include "game/UnkTU230.h"
 #include "game/UnkTU85.h"
 #include "game/UnkTUInit.h"
+#include "game/msapi/material/SAlpha.h"
 #include "types.h"
 
 using base::global::CRntFile;

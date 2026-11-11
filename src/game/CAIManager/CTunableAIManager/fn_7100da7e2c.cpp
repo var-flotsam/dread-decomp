@@ -5,6 +5,7 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkManager_71726af468.h"
 #include "types.h"
 
 using base::global::CStrId;

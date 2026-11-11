@@ -6,6 +6,7 @@
 #include <stdio.h>
 
 #include "base/UnkVector.h"
+#include "game/CAbilityEnergyWave.h"
 #include "game/UnkTU2677.h"
 
 // A 64-bit name hash (CRC-64 of the string), built out of line. The value is a union member:

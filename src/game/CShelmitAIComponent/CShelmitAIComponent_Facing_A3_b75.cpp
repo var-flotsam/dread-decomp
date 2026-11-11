@@ -3,6 +3,7 @@
 // fn_7101178524), sets id 4 and clears 8 (or the other way round) as CShakernautAIComponent_Flip_b53.cpp sends
 // them. Names and layouts are placeholders.
 #include "game/CAnimationComponent.h"
+#include "game/CShelmitAIComponent.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 

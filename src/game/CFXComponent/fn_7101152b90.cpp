@@ -2,6 +2,7 @@
 // from its parallel arrays at +0x50 (0x20-byte entries whose first word is the effect) and +0x58 (the
 // names, whose hash is at +0x30 of the string), or null; and switching that effect on or off
 // (fn_710114fe8c). Names and layouts are placeholders.
+#include "game/CFXComponent.h"
 #include "game/UnkTU132.h"
 #include "types.h"
 

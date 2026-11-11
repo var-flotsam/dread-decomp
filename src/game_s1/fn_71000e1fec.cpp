@@ -4,6 +4,7 @@
 // freeing a node's children frees theirs through the same function (fn_710026ead0 calls itself).
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
+#include "game/navmesh/CFixedDynamicSmartLinkRule.h"
 #include "types.h"
 
 template <class T, u64 Offset>

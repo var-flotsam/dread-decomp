@@ -5,6 +5,7 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CChangeStageNavMeshItemComponent.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
 

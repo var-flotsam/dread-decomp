@@ -2,6 +2,7 @@
 // +0x8..+0x20, nodes of value and next), the same shape as src/game_lo/fn_710070f240.cpp. Names and
 // layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU2732.h"
 #include "types.h"
 
 struct UnkListedObject_b52 {

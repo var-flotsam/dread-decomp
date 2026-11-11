@@ -9,6 +9,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2640.h"
 #include "types.h"
 
 using base::global::CStrId;

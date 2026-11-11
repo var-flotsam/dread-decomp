@@ -15,6 +15,7 @@
 #include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2689.h"
 #include "game/UnkTU365.h"
 #include "game/UnkTU56.h"
 #include "game/UnkTU785.h"

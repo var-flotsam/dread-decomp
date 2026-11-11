@@ -1,6 +1,7 @@
 // A step in the CActor unit (unit 341 of tools/tu_map.py): calls the virtual at 0x60 of each object
 // in the actor's map at +0xa0 (its values, as src/game/CActor/fn_710023341c.cpp looks them up), then
 // the actor's own virtual at 0x78. Names and layouts are placeholders.
+#include "game/UnkTU341.h"
 #include "types.h"
 
 struct UnkActorPart_71002329e8;

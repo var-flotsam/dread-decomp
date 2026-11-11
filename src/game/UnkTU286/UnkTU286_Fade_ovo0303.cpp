@@ -5,6 +5,7 @@
 #include "game/UnkSphere.h"
 #include "game/UnkTU223.h"
 #include "game/UnkTU254.h"
+#include "game/UnkTU286.h"
 #include "types.h"
 
 using base::color::CColor4F;

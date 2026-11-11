@@ -3,6 +3,7 @@
 // with the default vector; the angle part only clears the angles, the scale part only the scale.
 // Names and layouts are placeholders.
 #include "base/math/UnkZeroVector3.h"
+#include "game/UnkTU1141.h"
 #include "game/UnkTU32.h"
 #include "game/UnkXformNode.h"
 #include "types.h"

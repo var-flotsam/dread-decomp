@@ -7,6 +7,7 @@
 #include <math.h>
 
 #include "base/math/UnkZeroVector3.h"
+#include "game/CGooplotAIComponent.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/CMovementComponent.h"
 #include "game/UnkActor.h"

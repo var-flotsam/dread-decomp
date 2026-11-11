@@ -1,6 +1,7 @@
 // CLifeComponent unit: adding and taking life. A positive amount moves the life at +0x54 (bounded
 // above by the maximum at +0x50 for healing, needing some life left for damage) through vtable slot
 // 0x168 with the new and the old value; the result says whether it did. Names are placeholders.
+#include "game/CLifeComponent.h"
 #include "types.h"
 
 struct UnkLifeValues {

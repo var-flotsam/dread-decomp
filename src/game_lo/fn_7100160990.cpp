@@ -1,6 +1,7 @@
 // Sets the state of one of 16 per-slot entries; on a change, records the kind of transition
 // (from/to the {0,1} or {2,3} state groups) and flags the entry as dirty.
 #include "game/UnkGraphicsState.h"
+#include "game/UnkTU182.h"
 #include "types.h"
 
 void fn_7100160990(u32 index, s32 state, u32 slot) {

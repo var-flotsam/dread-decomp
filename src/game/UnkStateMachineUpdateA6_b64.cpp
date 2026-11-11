@@ -1,6 +1,7 @@
 // Component updates around the small state machine update (template copied from
 // src/game/UnkStateMachineUpdateA5_b62.cpp, fn_7100886c10): applies the pending state, then updates the
 // current state and applies what it asked for, at most ten times, while marked busy. Names are placeholders.
+#include "game/CUsableComponent.h"
 #include "game/UnkTU1450.h"
 #include "game/UnkTU2538.h"
 #include "game/UnkTU2577.h"

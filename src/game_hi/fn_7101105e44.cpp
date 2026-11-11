@@ -7,6 +7,7 @@
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU2523.h"
+#include "game/UnkTU2702.h"
 
 using base::global::CStrId;
 

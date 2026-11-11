@@ -152,6 +152,46 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Declarations round: unit headers, the data map, definitions against declarations (2026-11-11).** The work the
+review put in front of more bulk runs, in seven pull requests (#360 to #366). No function's status changed.
+- *One header per translation unit* (#360, #362). `tools/decl_plan.py` plans the shared declarations whose move
+  needs no judgement and `tools/hub_migrate.py` moves them, keeping a file only when it builds to the same output:
+  1,353 functions and 672 globals now have their one declaration in 655 unit headers (`include/game/CFoo.h` for a
+  unit with a class name, `include/game/UnkTU<index>.h` otherwise). Symbols declared in more than one file went
+  from 3,554 to 1,527, extra copies from 9,309 to 4,367. What could not move is listed by reason in
+  `docs/known_declaration_faults.md`.
+- *Data follows the units' order.* `tools/data_map.py` finds a global's unit: the original lays `.data` and `.bss`
+  out in the link order of `.text`, so a data address that only one unit's functions name is that unit's (99.3%
+  and 99.6% of such addresses are in unit order). `data/data_map.csv` holds each unit's span;
+  `python tools/data_map.py --address <addr>` answers for one address.
+- *A migration drops comments.* `hub_migrate` removes a prototype with the comment at the end of its line and
+  leaves one that stood above it: #360 lost 357 and stranded 71. #361 put 151 descriptions into the headers;
+  `decl_plan.py --write` now lists what the copies say (`build/decl_plans/comments.tsv`) so the next pass carries
+  them, as #362 did.
+- *A visibility attribute is not in a signature.* `decl_check`'s signature drops attributes, and `HIDDEN` is a
+  macro each file defines. Two copies with one signature can still differ in code; `decl_plan` plans a global only
+  when its copies are the same text with the macros written out.
+- *Definitions were never compared with declarations* (#363). `decl_check` skipped definitions, and a defining file
+  did not have to include its function's header. `fn_7100e791a4` was defined `void`, declared `void` with other
+  parameters and called through a cast for the count it returns. `tools/decl_check.py --definitions` now lists every
+  hand-written definition whose result or parameters differ from a declaration in how the function is called, and
+  `--base` fails on a new one. It found 312: on AArch64 such a pair still matches because the registers hold the
+  right values; in the port the call is wrong.
+- *100 of them settled* (#364): 96 definitions return a value where a declaration said `void` (the declarations
+  took the result type), 4 the other way round. 216 are left: 95 with a parameter of another class, 68 `void`
+  against a value (46 of them because a file stores the function's address in a pointer typed for the `void`
+  form), 34 with another number of parameters, 19 with a result of another class.
+- *291 defining files include the header that declares their function* (#366), so the compiler compares the two.
+- *Reading a signature off the original*, as done for `fn_7100e791a4`: a caller that reads `w0` after the call
+  means a result; `mov w2, wzr` for an argument means a 32-bit integer where a null pointer would be
+  `mov x2, xzr`; `and w3, w3, #1` before passing an argument on means the parameter is a `bool`. A wrapper that
+  only forwards its registers matches under any parameter types, so its callers are the evidence.
+- *Reflected members as a table* (#365). `tools/gen_fields.py` reads the member registrations already in
+  `src/reflection/` into `data/reflection_fields.csv`: 6,087 members of 1,135 classes with name, offset and type
+  (91% by name). `python tools/gen_fields.py --class <Class>` prints a layout with the bases' members.
+- Still before bulk runs: struct headers generated from that table, and the 40-function test of whether shared
+  headers raise the match rate (an agent run; the owner's call). 22 merged remote branches were deleted.
+
 **Independent maintenance review and the owner's decisions (2026-11-11).** A reviewing session rebuilt and
 rechecked `main` at `bdbc0337` from an empty cache (`check.py` passes: `O` 94,688, `m` 461, `M` 13, `W` 1) and
 recomputed the numbers: 66.83% of the game's code matches, 43.76% of the boot slice; hand-written `O` code is

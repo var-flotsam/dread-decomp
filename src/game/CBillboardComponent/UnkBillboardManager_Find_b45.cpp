@@ -2,6 +2,7 @@
 // declares it): a hash map of nodes in buckets (id modulo the bucket count), each node holding its
 // id, the entry at +8 and the next node at +0x68. None when the map is empty or the id is absent.
 // Names and layouts are placeholders.
+#include "game/UnkTU2560.h"
 #include "types.h"
 
 // As src/game/CBillboardComponent/CBillboardComponent_b39.cpp declares it.

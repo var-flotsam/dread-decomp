@@ -3,6 +3,7 @@
 // relatives): fn_710000ccd8 checks a file's version header against the registered one, and
 // fn_7100010c60 parses a value of a given type into a scratch target and drops it (skipping it;
 // the reader types are in base/reflection/UnkReflObjectRead.h). Names and layouts are placeholders.
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CRntFile.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkReflCast.h"

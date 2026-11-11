@@ -2,6 +2,7 @@
 // child object of an array is called through a virtual slot with the argument passed on. A float
 // to slot 0x30, the array at 0x40 (fn_710014be78) or 0x38 (fn_710014bec8, fn_710014bf18), and a
 // bool to slot 0x118, the array at 0xa0 with its count at 0xb0 (fn_7100233584).
+#include "game/UnkTU341.h"
 #include "game/UnkTU85.h"
 #include "types.h"
 

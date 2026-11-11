@@ -3,6 +3,7 @@
 // in, or zero when there is no component or no entry.
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CModelUpdaterComponent.h"
 #include "types.h"
 
 using base::reflection::CType;

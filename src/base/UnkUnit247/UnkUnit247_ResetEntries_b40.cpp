@@ -2,6 +2,8 @@
 // word at +0x10 of every present entry in the array of the object at 0x78. The word has no type-based
 // alias information (the original reloads the array after each store). Names and layouts are
 // placeholders.
+#include "game/UnkTU247.h"
+#include "game/UnkTU253.h"
 #include "types.h"
 
 struct UnkResetEntry {

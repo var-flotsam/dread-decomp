@@ -29,6 +29,7 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2577.h"
 #include "game/UnkTU365.h"
 #include "types.h"
 #include "UnkLeftoverReg.h"

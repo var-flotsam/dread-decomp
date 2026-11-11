@@ -12,6 +12,7 @@
 #include "game/UnkTU811.h"
 #include "game/UnkXformNode.h"
 #include "game/behaviortree/CEmmyPatrolAction.h"
+#include "game/behaviortree/CEmmyPatrolBaseAction.h"
 #include "types.h"
 
 struct UnkNodeAllocator_ovb0118 {

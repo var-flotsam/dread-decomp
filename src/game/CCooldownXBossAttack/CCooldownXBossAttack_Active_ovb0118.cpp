@@ -3,6 +3,7 @@
 // +0x30 of the +0xf0 and +0xf8 entries of the attack's definition at +0x28) on the owner's timeline
 // (+0x2e8) to the all-flags mask. Names and layouts are placeholders.
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CCooldownXBossAttack.h"
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
 

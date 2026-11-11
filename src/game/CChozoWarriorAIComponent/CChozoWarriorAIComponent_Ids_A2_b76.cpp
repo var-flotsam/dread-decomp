@@ -2,6 +2,7 @@
 // (+0x220) through fn_71011785a8 / fn_7101178564, choosing which goes through which by the flag at +0x14999 and a
 // query on the owner's +0x228 object. Names and layouts are placeholders.
 #include "game/CAnimationComponent.h"
+#include "game/CChozoWarriorAIComponent.h"
 #include "types.h"
 
 // As src/game/CShakernautAIComponent/CShakernautAIComponent_Flip_b53.cpp declares them.

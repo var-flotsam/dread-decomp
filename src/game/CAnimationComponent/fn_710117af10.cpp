@@ -3,6 +3,7 @@
 // track reports busy (fn_71011782ec).
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU1134.h"
 #include "types.h"

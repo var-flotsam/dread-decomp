@@ -1,5 +1,6 @@
 // Unit 101 (no reflected class): a sound voice's fade/volume state. Names and layouts are placeholders.
 #include "base/snd/UnkSoundSystemATK.h"
+#include "game/UnkTU101.h"
 #include "types.h"
 
 using base::snd::UnkSoundSystemATK;

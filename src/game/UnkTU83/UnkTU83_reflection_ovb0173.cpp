@@ -16,6 +16,7 @@
 #include "base/reflection.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU83.h"
 #include "game/UnkTU85.h"
 #include "types.h"
 

@@ -2,6 +2,7 @@
 // third column of its transform's matrix, fn_710002614c): calls fn_7101178e08 with mode 5 for a
 // negative value (4 otherwise) and fn_710117662c with the opposite mode.
 #include "base/UnkMatrix44.h"
+#include "game/CChozoWarriorAIComponent.h"
 #include "types.h"
 
 struct UnkAttack;

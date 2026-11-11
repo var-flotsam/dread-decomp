@@ -2,6 +2,7 @@
 // string of the id at field_0x7a0, then with one of two fixed suffixes for each of two flags.
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CEmmyGrabSamusAttack.h"
 #include "types.h"
 
 using base::global::CRntString;

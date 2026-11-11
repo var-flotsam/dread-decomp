@@ -4,6 +4,7 @@
 // the duration. When it bounces (+0xd5), mode 2 turns it round at either end and mode 1 at the end
 // only, stepping it back by what it overshot first. Names and layouts are placeholders.
 #include "base/UnkTimedCurve.h"
+#include "game/UnkTU2567.h"
 
 struct UnkBouncingCurve {
     UnkTimedCurve curve;

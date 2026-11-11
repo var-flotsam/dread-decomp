@@ -7,6 +7,7 @@
 #include <math.h>
 #include <stdlib.h>
 
+#include "game/UnkTU53.h"
 #include "types.h"
 
 // A random factor in 0..1.

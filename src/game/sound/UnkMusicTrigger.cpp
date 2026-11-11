@@ -2,6 +2,7 @@
 // constructs it, destroys it (fn_71011867d4) and passes the name to the music manager's
 // singleton (fn_71011867ec, which then runs an optional callback). Seven classes build on it.
 #include "base/global/CRntString.h"
+#include "game/UnkTU2725.h"
 #include "types.h"
 
 extern void* unk_7101cb5030[];  // vtable (reached through the GOT)

@@ -2,6 +2,7 @@
 // new values, maps each into a second numbering (0-3 -> 1-4, 4-5 -> 9-10, 6-9 -> 5-8), and
 // passes the mapped pair, twice, to a global callback.
 #include "game/UnkGraphicsState.h"
+#include "game/UnkTU177.h"
 #include "types.h"
 
 static inline void Map_710015a500(s32 v, s32* out) {

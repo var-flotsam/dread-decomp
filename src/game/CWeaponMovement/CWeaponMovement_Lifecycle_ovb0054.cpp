@@ -10,6 +10,7 @@
 #include "base/UnkVector.h"
 #include "game/CCentralUnitCannonBeamMovementComponent.h"
 #include "game/CMovementComponent.h"
+#include "game/CWeaponMovement.h"
 #include "game/UnkTU1370.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"

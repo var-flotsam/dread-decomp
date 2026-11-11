@@ -48,7 +48,7 @@ include/game/                    game headers shared by several files (UnkActor,
 tools/gen_class_getters.py, tools/port_sweep.py   class-getter header generator; host compile sweep of src/ for the port
 port/                            the PC port layer: CMake project, runtime stubs (M0; see docs/PORT_PLAN.md)
 lib/lua/, lib/dlmalloc/, lib/libcxx/   vendored upstream code with READMEs; lib/nnsdk, lib/musl submodules
-data/                            functions/ CSVs, reflection_types.csv, tu_map.csv, library_symbols.csv, hashes, pins
+data/                            functions/ CSVs, reflection_types.csv, reflection_fields.csv, tu_map.csv, data_map.csv, library_symbols.csv, hashes, pins
 docs/                            this page, PORT_PLAN.md, JOURNAL.md, recon.md, compiler.md, references.md, maintaining.md
 ```
 

@@ -7,6 +7,7 @@
 #include "game/CEnemyMovement.h"
 #include "game/UnkObject_0x100.h"
 #include "game/UnkTU1130.h"
+#include "game/UnkTU1442.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 #include "base/math/CVector.h"

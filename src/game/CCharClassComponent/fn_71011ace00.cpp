@@ -2,6 +2,7 @@
 // restore the vtable, destroy the entries (fn_71011ad580), free the array and run the base
 // destructor (fn_710025373c); the deleting one then frees the object.
 #include "base/UnkVector.h"
+#include "game/CCharClassComponent.h"
 #include "types.h"
 
 struct UnkBase_0x30_710025373c {

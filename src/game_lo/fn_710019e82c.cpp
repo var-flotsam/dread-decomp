@@ -2,6 +2,7 @@
 // fn_710001737c when it drops to zero) and a string id at +8; it has no base destructor.
 #include "base/UnkCountedResource.h"
 #include "base/UnkDestructors.h"
+#include "game/UnkTU226.h"
 #include "types.h"
 
 using base::UnkStrIdMember;

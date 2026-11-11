@@ -9,6 +9,7 @@
 #include "game/CCollisionComponent.h"
 #include "game/CComponent.h"
 #include "game/CUsableComponent.h"
+#include "game/CWeightActivatedPlatformSmartObjectComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU2772.h"

@@ -3,6 +3,7 @@
 // item (or only on those that accept it) that is true when fewer than two were found and
 // `force_off` is clear; with two or more, also runs a follow-up. Finally updates two attached
 // components of the owner.
+#include "game/CAbilityEnergyWave.h"
 #include "types.h"
 
 struct UnkTarget_71002fda50 {

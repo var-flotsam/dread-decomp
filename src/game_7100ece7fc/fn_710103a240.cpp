@@ -3,6 +3,7 @@
 #include "base/UnkResPathVec.h"
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
+#include "game/UnkTU2647.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;

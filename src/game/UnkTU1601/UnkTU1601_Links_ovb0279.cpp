@@ -7,6 +7,7 @@
 #include "game/CActorComponent.h"
 #include "game/CDoorShieldLifeComponent.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU1601.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 

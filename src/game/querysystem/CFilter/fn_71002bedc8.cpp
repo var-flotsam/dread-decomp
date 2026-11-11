@@ -4,6 +4,7 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/querysystem/CFilter.h"
 #include "types.h"
 
 using base::global::UnkStrId;

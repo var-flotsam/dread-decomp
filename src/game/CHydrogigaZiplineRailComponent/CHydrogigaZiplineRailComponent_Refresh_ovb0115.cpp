@@ -4,6 +4,7 @@
 // owner's model, with a 0.2 fade. Names and layouts are placeholders.
 #include "game/CBossAIComponent.h"
 #include "game/CHydrogigaZiplineComponent.h"
+#include "game/CHydrogigaZiplineRailComponent.h"
 #include "game/UnkTU253.h"
 #include "game/UnkTU883.h"
 #include "game/UnkTimelineComponent.h"

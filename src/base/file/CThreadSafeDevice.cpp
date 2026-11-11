@@ -1,6 +1,7 @@
 // base::file::CThreadSafeDevice's unit (tools/tu_map.py unit 68: 0x710008c7d4-0x710008ef54). Holds
 // fn_710008d680, which builds a string id and file-path id pair (base/UnkStrIdPathPair.h) from a
 // path. Names and layouts are placeholders.
+#include "base/file/CThreadSafeDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "types.h"

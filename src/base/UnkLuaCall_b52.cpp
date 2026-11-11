@@ -3,6 +3,7 @@
 
 #include "../../lib/lua/lua.h"
 #include "../../lib/lua/lauxlib.h"
+#include "game/UnkTU2677.h"
 #include "types.h"
 
 s32 fn_710109cef0(lua_State* L, s32 nargs, s32 nresults, s32 errfunc);

@@ -1,5 +1,6 @@
 // nn::atk-ish unit 2772: small accessors on packed parameter blocks, a flag word followed by optional
 // values. Names and layouts are placeholders.
+#include "game/UnkTU2772.h"
 #include "types.h"
 
 extern "C" int __cxa_guard_acquire(u64* guard);

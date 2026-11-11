@@ -8,6 +8,7 @@
 #include "base/global/CRntString.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CComponent.h"
+#include "game/CLifeComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1370.h"
 #include "game_s2/UnkWeakHandle.h"

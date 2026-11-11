@@ -7,6 +7,7 @@
 
 #include "base/UnkDefaultAllocator.h"
 #include "base/UnkErasedVector.h"
+#include "game/UnkTU324.h"
 #include "types.h"
 
 struct UnkMovieRef_b0217 {

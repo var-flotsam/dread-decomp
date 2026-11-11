@@ -1,5 +1,6 @@
 // CAnimationComponent unit (tools/tu_map.py): whether any entry of the array at +0x48 (count at +0x50) has a
 // given bit set at +0x60. Names and layouts are placeholders.
+#include "game/CAnimationComponent.h"
 #include "types.h"
 
 struct UnkAnimEntry_b47a3 {

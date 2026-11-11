@@ -2,6 +2,7 @@
 // on first use from the owner's (+0x30) object at +0x2a0 through fn_710086406c with a type at
 // 0x7172a03e28. Names and layouts are placeholders.
 #include "game/CCollisionComponent.h"
+#include "game/UnkTU2689.h"
 #include "types.h"
 
 struct UnkPlayerMovementSource;

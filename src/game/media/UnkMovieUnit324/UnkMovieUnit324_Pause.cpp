@@ -4,6 +4,7 @@
 // callback each) under the inner lock. Answers 0 when it did, 2 when already in state 7 and 3
 // otherwise. Names and layouts are placeholders.
 #include "base/UnkDefaultAllocator.h"
+#include "game/UnkTU324.h"
 #include "types.h"
 
 struct UnkMedia324;

@@ -2,6 +2,7 @@
 // object's class's 0xb0-byte entries in its array at +0xe8, with the class and the object as the
 // context. The callers (constructors that finish with it) name the object UnkNode. Names are
 // placeholders.
+#include "base/core/CBaseObject.h"
 #include "base/reflection/CClass.h"
 #include "game/UnkTU85.h"
 #include "types.h"

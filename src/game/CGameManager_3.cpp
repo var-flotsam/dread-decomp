@@ -3,6 +3,7 @@
 // with something at +0x248 becomes the reference. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkGameManager.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 

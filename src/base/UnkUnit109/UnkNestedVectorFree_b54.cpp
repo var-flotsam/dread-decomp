@@ -3,6 +3,7 @@
 // fields need no destruction). One instantiation per record type. Names and layouts are
 // placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU109.h"
 #include "types.h"
 
 template <int Tag>

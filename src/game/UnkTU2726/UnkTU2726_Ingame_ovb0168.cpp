@@ -23,6 +23,7 @@
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2656.h"
+#include "game/UnkTU2726.h"
 #include "game/UnkTU2730.h"
 #include "game/UnkTU2768.h"
 #include "game/UnkTU39.h"

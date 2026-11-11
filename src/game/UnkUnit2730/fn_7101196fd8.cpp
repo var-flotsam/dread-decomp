@@ -1,5 +1,6 @@
 // From unit 2730 of tools/tu_map.py (0x7101196284-0x710119acb0, no reflected class): whether the
 // object at +0x58 is in state 2, 3 or 6 (its word at +0x4b0); false when there is none.
+#include "game/UnkTU2730.h"
 #include "types.h"
 
 struct UnkStateHolder_7101196fd8 {

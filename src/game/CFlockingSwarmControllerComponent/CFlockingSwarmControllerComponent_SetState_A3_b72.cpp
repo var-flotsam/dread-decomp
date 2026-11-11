@@ -1,6 +1,7 @@
 // CFlockingSwarmControllerComponent unit (tools/tu_map.py, the name from reflection): fn_710073f7bc changes
 // the state at +0x390. Leaving state 3 calls vf_0x2a0 first; entering states 0-3 calls vf_0x260, vf_0x270,
 // vf_0x280 or vf_0x290. Names and layouts are placeholders.
+#include "game/CFlockingSwarmControllerComponent.h"
 #include "types.h"
 
 struct UnkFlockingSwarm_A3_b72 {

@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CBlackboard.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU1102.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 

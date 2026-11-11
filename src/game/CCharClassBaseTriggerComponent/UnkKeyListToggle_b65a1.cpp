@@ -2,6 +2,7 @@
 // fn_710002fd10 adds, fn_710002ffb4 removes); the same shape as
 // src/game/CAimComponent/UnkAimKeyListToggle_b43.cpp. Called by CCharClassBaseTriggerComponent_b43.cpp.
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU39.h"
 
 void fn_7100030128(char* self, bool flag, void* arg) {
     UnkGuiKeyList* list = reinterpret_cast<UnkGuiKeyList*>(self);

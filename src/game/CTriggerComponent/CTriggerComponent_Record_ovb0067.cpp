@@ -4,6 +4,7 @@
 // move-assignment (the ids released and taken over, the plain fields copied, the array taken over
 // after its elements are destroyed). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CTriggerComponent.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
 
