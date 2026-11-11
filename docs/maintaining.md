@@ -24,10 +24,12 @@ Keep personal data out from now on:
 - `tools/policy_check.py` (and CI) rejects home-directory paths with a user name and personal
   email addresses.
 
-**Current state: private until the owner decides to publish.** It was briefly public on
-2026-10-18 (no forks were made). To publish: make it public, then check that the `main` ruleset
-is still there (`gh api repos/var-flotsam/dread-decomp/rulesets`) and re-create it if not
-(below). The settings in the next section are already applied.
+**Current state: public** (the owner's decision: the project needs outside help; one fork on
+2026-11-11). The `main` ruleset is active and requires `policy`, `compile` and `check`
+(`gh api repos/var-flotsam/dread-decomp/rulesets`); if the repository is ever made private and
+public again, check that the ruleset is still there and re-create it if not (below). The settings
+in the next section are applied. Because it is public, every push to a `claude/*` branch and every
+Actions log is published.
 
 ## Repository settings
 
@@ -62,8 +64,9 @@ gh api repos/var-flotsam/dread-decomp/rulesets --method POST --input .github/rul
 | Bypass | Repository admins, **through a pull request only**: the maintainer can merge their own PR without a second reviewer, but still can't push to `main` directly |
 
 When there are other maintainers, require one approving code-owner review again and remove the bypass, so
-every change gets a second pair of eyes. Until then the user's "merge" in the thread is the review (`CLAUDE.md`,
-"Pushing and merging").
+every change gets a second pair of eyes. Until then the required checks are the review, and the coordinator of
+a piece of work merges it; the owner merges major, sweeping revisions of `main` (`CLAUDE.md`, "Pushing and
+merging"; owner, 2026-11-11).
 To change the ruleset, edit the JSON, then
 `gh api repos/var-flotsam/dread-decomp/rulesets/<id> --method PUT --input .github/rulesets/main.json`
 (`gh api repos/var-flotsam/dread-decomp/rulesets` lists the id).
@@ -148,10 +151,10 @@ nothing outside `docs/` and Markdown files (its `docs-only` job decides).
 - To retire it: `config.cmd remove --token <token from gh api ... /actions/runners/remove-token>`,
   delete the scheduled task, then the folder.
 
-Required status checks need a ruleset or branch protection, which a private repository without
-GitHub Pro cannot have (`maintaining.md`, "Repository settings"). Until the repository is public:
-merge a pull request only when its `check` job is green (or run `check.py` locally), and re-run
-the job after merging `main` into the branch. `workflow_dispatch` lets you start a run by hand
+The ruleset makes `check` a required status check now that the repository is public. A skipped
+`check` (a fork's pull request, or one that changes nothing the matching build reads) counts as
+passing, so for a fork's pull request still run `check.py` locally, and re-run the job after
+merging `main` into a branch. `workflow_dispatch` lets you start a run by hand
 from the Actions tab.
 
 For a stacked PR (based on another PR's branch), change its base to `main` *before* merging and
