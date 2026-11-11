@@ -12,7 +12,8 @@ reference to the wrong function or object, or one name used for different things
 
 A name with internal linkage by construction (a function-local static or its guard) is compared within
 its own source only. References the original does not encode as a whole address (an unpaired page or
-low part) are left out.
+low part) are left out. A function that is one branch to another (the 4-byte thunks in front of the
+imports' stubs) counts as the function it branches to.
 
 Usage:
   python tools/name_check.py --version 2.1.0            # the report; exit 0
@@ -37,6 +38,17 @@ SENTINEL = 0x10
 def is_local(symbol: str) -> bool:
     """A symbol that names something else in every object: a function-local static, its guard, a label."""
     return symbol.startswith(("_ZZ", "_ZGV", ".L"))
+
+
+def through_thunks(address: int, size_of, word_at) -> int:
+    """The address a call to `address` ends at when `address` is a 4-byte function holding one `b`."""
+    for _ in range(3):
+        word = word_at(address) if size_of(address) == 4 else None
+        if word is None or word & 0xFC000000 != 0x14000000:
+            break
+        offset = word & 0x3FFFFFF
+        address += (offset - (1 << 26) if offset & (1 << 25) else offset) << 2
+    return address
 
 
 def inconsistent(uses: dict[tuple[str, str], list[tuple[int, str, int]]]) -> list[tuple[str, int, list]]:
@@ -75,6 +87,10 @@ def collect(version: str) -> tuple[dict, dict[str, str]]:
     for i in range(0, len(ordered), 4000):
         names.update(asmdiff.demangle(ordered[i:i + 4000], strip=False))
     uses: dict[tuple[str, str], list[tuple[int, str, int]]] = defaultdict(list)
+
+    def word_at(address: int) -> int | None:
+        data = original.data_at(address, 4)
+        return int.from_bytes(data, "little") if data else None
     for src, functions in loaded:
         rel = src.relative_to(ROOT).as_posix()
         diffs, _n, _f, targets = check.diff_with_targets(functions, original, by_name, names)
@@ -92,8 +108,10 @@ def collect(version: str) -> tuple[dict, dict[str, str]]:
                 continue
             for m in asmdiff.check_relocs(res, original, resolve).mismatches:
                 if m.symbol in unresolved and m.kind in WHOLE and m.actual is not None and m.expected is not None:
-                    uses[(rel if is_local(m.symbol) else "", m.symbol)].append(
-                        (m.actual - (m.expected - SENTINEL), rel, res.address))
+                    target = m.actual - (m.expected - SENTINEL)
+                    if m.kind in ("call26", "jump26"):
+                        target = through_thunks(target, original.sizes.get, word_at)
+                    uses[(rel if is_local(m.symbol) else "", m.symbol)].append((target, rel, res.address))
     return uses, names
 
 

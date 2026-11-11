@@ -32,6 +32,13 @@ class Inconsistent(unittest.TestCase):
                 ("src/b.cpp", "_ZZ1fvE1s"): [(0x7101d00040, "src/b.cpp", 0x7100003000)]}
         self.assertEqual(name_check.inconsistent(uses), [])
 
+    def test_a_thunk_counts_as_its_target(self):
+        words = {0x7100001000: 0x14000004, 0x7100001010: 0xD65F03C0, 0x7100002000: 0x17FFFC00}
+        sizes = {0x7100001000: 4, 0x7100001010: 4, 0x7100002000: 12}
+        self.assertEqual(name_check.through_thunks(0x7100001000, sizes.get, words.get), 0x7100001010)   # b +0x10
+        self.assertEqual(name_check.through_thunks(0x7100001010, sizes.get, words.get), 0x7100001010)   # a ret
+        self.assertEqual(name_check.through_thunks(0x7100002000, sizes.get, words.get), 0x7100002000)   # 12 bytes
+
 
 if __name__ == "__main__":
     unittest.main()
