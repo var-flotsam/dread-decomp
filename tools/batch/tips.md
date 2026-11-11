@@ -1,0 +1,65 @@
+# Matching tips gathered by earlier batches this run
+- Reloads the original does after a store (TBAA): do that store through an untyped path (__builtin_memcpy/memset, u8* pointer) or make the field a union member (refcounts).
+- Guarded statics reached through the GOT: a function-local static inside a non-static `inline` function; or an explicit __cxa_guard_acquire wrapped in __builtin_expect(...,0) with object+guard in one hidden {obj; guard} struct.
+- Template helpers called out of line in the original: __attribute__((noinline)); inlined ones that won't inline: __attribute__((flatten)).
+- An out-of-line call to a known address from a template: declare the specialization with asm("fn_<addr>") and leave it undefined.
+- Caller and callee in one file can make Clang drop unread arguments or keep values in registers across the call: split them across files (or join them) to match the original's behaviour.
+- Choosing among values: Clang 9 emits compares in reverse source case order; reorder the switch cases.
+- Float compares with b.hi / b.ls: write the condition negated, e.g. !(x <= 0).
+- CStrId temporaries whose destructor must fold away: build them with UnkStrId and move-assign.
+- Inlined lookups building an iterator in place: put the out-of-range case first.
+- Element-copy loops: walking dst/src pointers and a u32 counter; a zeroed key: give it a constructor and assign `data[i] = T()`.
+- Raw pointer arrays inside objects declared as raw byte storage read via reinterpret_cast fixed base-register differences.
+- State-machine template: needs the empty register barrier asm("" : "+r"(x)) like src/game/UnkStateMachine*_b*.cpp.
+- Linear searches in some units only match as libc++ std::find_if/find_if_not over src/game_s7/UnkIter.h.
+- Missing tail call after address-taken locals: declare the callee's pointer params __attribute__((noescape)).
+- Class checks: the original calls the object's vf_0x0 before the refl_GetClass getter; a helper templated on the getter keeps that order.
+- To force a reload, a char-pointer store or memset works; a u8 struct field does not (struct-path TBAA).
+- A separate address calc for a member slot: compute from raw bytes ((u8*)self + off).
+- Missing 8-byte stack slot: often the 8-byte type-id argument struct, or a 16-byte struct with an unset last word.
+- 3-component zero constructors keep the original store order; brace-init reverses it.
+- Scope a local so its lifetime ends early to reproduce stack slot sharing.
+- Linear search vs end without folding: Find() returns &values[count] on a miss; compare with &table->values[table->count] through the table pointer.
+- Load order before an indirect call: copy args into locals first.
+- A function both defined alone and inlined into a caller in the same file: __attribute__((always_inline)) on it keeps both matching.
+- Two stores emitted in reverse of source order: write them reversed; load vector components into locals before filling a struct.
+- cmp/ccmp with a hoisted flag load: pass the object as a reference (T&) so the pointer is dereferenceable.
+- Unmerged FLT_MAX stores: write some as integer bits (u32 0x7f7fffff) to reproduce the original's store merging.
+- Index erase over a polymorphic vector: write it like fn_71004bf588 (u64 counter, moved-from element destroyed through a reloaded array pointer; index from pointer difference against the collection pointer).
+- Arrays of unique_ptr: UnkOwnedPtr from game_s2/UnkOwnedList.h. Copy ctors with PushBackCopy need __attribute__((flatten)).
+- fmin vs fminnm: '!(v >= 1.0f) ? v : 1.0f' gives fmin; 'v < 1.0f ? v : 1.0f' gives fminnm.
+- Load order around a temporary string id: compare through an inline helper taking both ids by const&.
+- alignas(8) on a u32 temporary passed by address reproduces an 8-byte stack slot; a RAII mutex-lock struct fixed register allocation in sound play functions.
+- Element-move loops: 'Entry* old = src++; old->~Entry();' fixed register scheduling.
+- Clang devirtualizes calls on a polymorphic member object: model it as its own struct and call through a pointer.
+- Byte arrays whose count is reloaded after an element store: u8 elements, not bool.
+- Allocas: first-declared = highest address; write nested string concatenations directly in the body to reproduce temporary order.
+- (a == empty) ^ (b == empty) reproduces cset/eor/tbz with the original's compare order.
+- Inlined constructors: __attribute__((flatten)) on a function doing 'new (self) T;' (not T(), which zero-fills).
+- Tables reached by adrp+add (not GOT) need __attribute__((visibility("hidden"))). A flag set in the ctor body vs the init list changes stp pairing.
+- One 64-bit load of two u32 fields: a struct holding one u64 with accessors. u32 fields copied through a u32 array get plain int alias info (forces reloads).
+- Unit static initialisers (_GLOBAL__sub_I-style fn_): see game/UnkTUInit.h. unique_ptr-with-std::function tables match with plain libc++ types.
+- One call with two arguments on two paths: write a separate call on each branch instead of a ?: argument.
+- Hash compares turned into a switch: put the id compare between them; read the hash lazily via an inline helper.
+- Branch layout: __builtin_expect(cond, 1) can fix which block falls through.
+- 'Add one, return last' (GrowAt-style): 'T* end = &data[n]; return n ? end[-1] : *end;' (data[n-1] folds to the old count).
+- Out-of-line callee typed with the element's own pointer type (not void*) lets Clang reuse the element pointer after the call.
+- Temporaries passed by && built in the call (f(T())) destroy straight after the call.
+- Guarded statics via the GOT: inline-function statics named with asm("g_unk_...") resolve to the original's symbols.
+- UnkVector::Insert/EmplaceBack inline fully with __attribute__((flatten)); GrowAt needs UNK_VECTOR_GROW_AT_ATTR set to always_inline. Clear a callback pair with __builtin_memset(&cb,0,16).
+- 12-byte result returned in x8: UnkVec3f as return type (user copy ctor makes it non-trivial).
+- Lookup by name: std::find_if over UnkIter with the lambda capturing the key by value ([key]) reproduces the key copy after begin/end and the peeled loop.
+- cmp/ccmp with a hoisted load: non-short-circuit (p == nullptr) | (x == 1) inside a helper taking the block by reference.
+- Bool to float: 'return flag;' gives the original fcsel order; 'flag ? 1.0f : 0.0f' swaps it.
+- Identity matrix: zero it, then set the diagonal in reverse (m[15], m[10], m[5], m[0]).
+- Out-flags: u8* instead of bool* reproduces reloads after the flag store (bool has its own alias type).
+- static helpers get argument promotion (loads move above stores); make the helper non-static inline to keep the original order.
+- fadd operand order: 'x = a; x += b;'. A local declared in a switch body before a later case label gets no lifetime markers (own stack slot).
+- Switch cases the original keeps separate: put the per-case body in a macro, not an inline helper (helper calls merge across cases before inlining).
+- '!(t < 0.0f) ? t : 0.0f' gives fmax; 't > 0 ? t : 0' gives fmaxnm. Initializer-list ctor args arrive as (x1 ptr, x2 size).
+- Two-step string-id release in destructors: CStrId::Reset(). Implicit copy-assign: __builtin_memcpy blocks + this != &other guard.
+- Passing a picked pointer by reference (*p) into a helper deletes the original's null path: use pointer parameters.
+- Deleting destructors drop their last dead store only with __builtin_operator_delete. Guarded id-table singleton g_unk_7101d552d0: function-local static of UnkGameManagerIdTable with asm-labelled ctor/dtor.
+- Constructor store order: build members via placement-new with ctors using member-initializer lists.
+- fcmp register order: 'node_x < a' vs 'a > node_x' matters.
+- Direction between two actors: Pos(a) - Pos(b) with an inline Pos() returning a 3-float struct and operator- taking const refs.
