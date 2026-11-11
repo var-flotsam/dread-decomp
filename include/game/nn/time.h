@@ -6,6 +6,6 @@
 #include "types.h"
 
 struct UnkSoundHolder;
-void fn_710006cd9c(UnkSoundHolder* holder);
+void fn_710006cd9c(UnkSoundHolder* holder);  // Constructor.
 void fn_710006b6a4(void* self);
 void fn_710006cea8(UnkSoundHolder* holder, bool value);

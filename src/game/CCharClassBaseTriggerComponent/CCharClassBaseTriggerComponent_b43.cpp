@@ -8,8 +8,6 @@
 
 using base::reflection::UnkReflValue;
 
-// Declared as src/game/CPlayerInfo/CPlayerInfo_b40.cpp does.
-
 static inline __attribute__((always_inline)) void* ArgPtr_b43a2(UnkReflValue* arg) {
     if (!arg->type)
         return nullptr;

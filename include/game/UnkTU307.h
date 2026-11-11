@@ -6,4 +6,4 @@
 #include "types.h"
 
 struct UnkBounded;
-void fn_7100215f60(UnkBounded* self, const void* point);
+void fn_7100215f60(UnkBounded* self, const void* point);  // Grows the bounds to hold a point.

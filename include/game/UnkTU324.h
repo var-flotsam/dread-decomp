@@ -9,6 +9,6 @@ struct UnkMedia324;
 struct UnkMediaInstance;
 struct UnkRefObj;
 void fn_710021ea60(UnkRefObj* self);
-bool fn_710021eec0(UnkMediaInstance* instance, s32 state);
+bool fn_710021eec0(UnkMediaInstance* instance, s32 state);  // Whether an instance is in `state`.
 u32 fn_710021f950(UnkMedia324* self);
 void fn_710021fafc(UnkRefObj* self);

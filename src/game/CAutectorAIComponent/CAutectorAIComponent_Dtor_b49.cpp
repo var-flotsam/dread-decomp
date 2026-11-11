@@ -7,8 +7,6 @@
 extern void* g_unk_7101a2b930[];  // the component's vtable
 
 struct UnkAutsharpAIBase_b47;
-// As src/game/CAutsharpAIComponent/CAutsharpAIComponent_Dtor_b47.cpp declares it: a thunk to the base
-// AI component's destructor (fn_7100369380).
 
 struct UnkAutectorAI_b49 {
     void** vtable;

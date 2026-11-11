@@ -8,5 +8,5 @@
 struct UnkEntry;
 struct UnkEntryVector;
 void fn_71008ab4e0(UnkEntryVector* v, u32 n);
-UnkEntry* fn_71008a84e4(void* self, u32 key);
+UnkEntry* fn_71008a84e4(void* self, u32 key);  // Finds or adds the entry for a key (one copy per map type).
 void fn_71008ab6b4(UnkEntryVector* v, const UnkEntry* value);

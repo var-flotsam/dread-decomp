@@ -8,7 +8,7 @@
 struct UnkTileOutline;
 struct UnkTileOutlines;
 void fn_7100d62bd8(void* p);
-void fn_7100d62b04(void*);
+void fn_7100d62b04(void*);  // The POLYCOLLECTION2D shape's constructor.
 void fn_7100d62d40(UnkTileOutlines* self, UnkTileOutline* outline);
 void fn_7100d62b68(char*, const char*);
 void fn_7100d633ec(UnkTileOutlines* self);

@@ -6,5 +6,5 @@
 #include "types.h"
 
 struct UnkSphereShape_ovb0135;
-void fn_7100d61664(void* shape);
+void fn_7100d61664(void* shape);  // The CIRCLE shape's constructor.
 void fn_7100d618f8(UnkSphereShape_ovb0135* self, f32 radius);

@@ -4,5 +4,5 @@
 // 0x7100000030-0x710000147c). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
-void fn_7100000790(const char* name, const char* fmt, ...);
-void fn_71000003d4(void*, const char*, bool);
+void fn_7100000790(const char* name, const char* fmt, ...);  // Calls a script function.
+void fn_71000003d4(void*, const char*, bool);  // The string-id constructor (base/global/CStrId.h).

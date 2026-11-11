@@ -5,4 +5,4 @@
 // Names and layouts are placeholders.
 #include "types.h"
 void fn_71005dbdd4(void* self);
-void fn_71005dbe04(void* self);
+void fn_71005dbe04(void* self);  // Derived classes call it as their base's destructor.

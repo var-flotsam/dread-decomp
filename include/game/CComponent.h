@@ -9,7 +9,7 @@ struct UnkHandleOwner_71010c4230;
 struct UnkMorphBallLauncher_b57;
 struct UnkParent;
 struct UnkStateObject;
-void fn_71010c4148(UnkStateObject* self);
+void fn_71010c4148(UnkStateObject* self);  // The component base's constructor.
 void fn_71010c424c(UnkParent*);
 void fn_71010c4228(UnkParent*);
 void fn_71010c4230(UnkHandleOwner_71010c4230* self);

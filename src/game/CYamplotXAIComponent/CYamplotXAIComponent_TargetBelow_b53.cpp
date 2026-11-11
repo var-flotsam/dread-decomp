@@ -13,8 +13,6 @@ using base::math::CVector2D;
 using base::math::CVector3D;
 using base::reflection::UnkReflObject;
 
-// As src/game/CAreaFXComponent/CAreaFXComponent_b41.cpp declares it.
-
 struct UnkYamplotLimits_b53 {
     u8 pad_0x0[0x90];
     f32 field_0x90;

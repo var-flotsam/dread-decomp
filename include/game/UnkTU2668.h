@@ -5,4 +5,4 @@
 // Names and layouts are placeholders.
 #include "types.h"
 void fn_710109d0a0();
-void fn_710109c9e0();
+void fn_710109c9e0();  // Pops the scratch array the last run pushed (and frees it).

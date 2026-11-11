@@ -6,5 +6,5 @@
 #include "types.h"
 
 struct UnkSegmentShape;
-void fn_7100d6936c(void* shape);
+void fn_7100d6936c(void* shape);  // The SEGMENT2D shape's constructor.
 void fn_7100d69400(UnkSegmentShape* self);

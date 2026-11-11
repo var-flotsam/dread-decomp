@@ -16,8 +16,6 @@ struct UnkRenderTargetSlot {
 };
 static_assert(sizeof(UnkRenderTargetSlot) == 0x18, "UnkRenderTargetSlot placeholder layout");
 
-// Fills a target's description from its format, size and options.
-
 // The slots' array (base::UnkVector's layout). Its elements are copied as raw words (the original's
 // stores may alias the array's own fields: its count is read again after each one).
 struct UnkRenderTargetSlots : base::UnkVector<UnkRenderTargetSlot> {

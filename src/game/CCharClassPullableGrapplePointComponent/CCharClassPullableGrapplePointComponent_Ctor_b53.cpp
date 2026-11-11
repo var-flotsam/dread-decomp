@@ -11,7 +11,6 @@
 using base::global::CStrId;
 
 extern char g_unk_7101a76348[];
-// Signature as CCharClassPullableGrapplePointComponent_b43.cpp declares it.
 
 struct UnkPullableGrapplePoint_b53 {
     void** vtable;

@@ -10,5 +10,8 @@ struct UnkSelf;
 struct UnkSwarmController_A5_b68;
 struct UnkTarget;
 void fn_710074bdd4(UnkSwarmController_A5_b68* self, u32 index, f32 delay);
+
+// Derived classes call it as their base's handler.
 bool fn_710074ddd8(UnkSelf* self, UnkTarget* target, UnkMessage* message);
+
 void fn_710074e190(void* self, void* effect, f32 value);

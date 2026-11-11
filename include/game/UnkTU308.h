@@ -4,4 +4,4 @@
 // 0x710021685c-0x7100216dfc). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
-void fn_710021685c(void*);
+void fn_710021685c(void*);  // UnkSphere's constructor.

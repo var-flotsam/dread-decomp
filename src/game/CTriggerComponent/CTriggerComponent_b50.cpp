@@ -56,9 +56,6 @@ struct UnkTrigger_b50a5 {
     bool field_0x205;
 };
 
-// The entry is passed by address. The original's unit defines fn_7100a5fdcc, so the compiler knows
-// it doesn't keep the address (noescape here), which lets the last call be a tail call.
-
 static inline void RemoveLast_b50a5(UnkTrigger_b50a5* self) {
     UnkTriggerEntry_b50a5* e = (self->entries - 1) + self->count;
     fn_7100a5fdcc(self, &e);

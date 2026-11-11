@@ -6,9 +6,6 @@
 #include "game/UnkTU182.h"
 #include "types.h"
 
-// Signatures as their definitions in src/engine/UnkGfxSamplerSlots.cpp and the declarations in
-// src/engine/UnkGraphicsSystem.cpp give them.
-
 struct UnkSamplerOwner165_b68a1 {
     u8 pad_0x0[0x40];
     u32 count;  // 0x40

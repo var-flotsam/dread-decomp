@@ -9,5 +9,5 @@ struct UnkChangeSetupLogicActionDef;
 struct UnkLogicActionBase;
 struct UnkTutoExitAction_b47;
 void fn_7100a55ac8(UnkTutoExitAction_b47* self);
-void fn_7100a55aa4(UnkChangeSetupLogicActionDef* self);
-void fn_7100a55ab8(UnkLogicActionBase*);
+void fn_7100a55aa4(UnkChangeSetupLogicActionDef* self);  // The logic-action base's constructor.
+void fn_7100a55ab8(UnkLogicActionBase*);  // Derived classes call it as their base's destructor.

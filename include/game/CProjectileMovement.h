@@ -15,4 +15,4 @@ bool fn_7100ac3108(UnkKraidBouncingCreaturesMovement2* self, UnkKraidCreatureArg
 bool fn_7100ac4c60(UnkBossComponent* self, u64 a, u64 b, u64 c, u64 d);
 void fn_7100ac2c5c(void* self);
 void fn_7100ac3a78(UnkNailongThornMovement*, f32);
-void fn_7100ac38fc(void* self);
+void fn_7100ac38fc(void* self);  // Takes the component (it reads the rate at +0x7c itself).

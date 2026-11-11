@@ -5,5 +5,5 @@
 // Names and layouts are placeholders.
 #include "types.h"
 f32 fn_7100076020(f32 t, const char* modifiers);
-f32 fn_71000768f0(f32 y);
-f32 fn_71000768c0(f32 x);
+f32 fn_71000768f0(f32 y);  // A clip-space coordinate moved by half a pixel of the viewport's width or height.
+f32 fn_71000768c0(f32 x);  // A clip-space coordinate moved by half a pixel of the viewport's width or height.

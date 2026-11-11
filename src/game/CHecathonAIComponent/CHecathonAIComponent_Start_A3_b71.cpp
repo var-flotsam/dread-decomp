@@ -16,8 +16,6 @@ using base::reflection::UnkTunable;
 // As src/game/CHecathonAIComponent/CHecathonAIComponent_Timeline_b60.cpp declares it.
 extern UnkTunable g_unk_71726e8d00;
 
-// As src/game/CPoisonFlyAIComponent/CPoisonFlyAIComponent_Invoke.cpp declares it.
-
 void fn_71005ac994(void* set, void* value);  // removes a value from the set
 
 struct UnkRefl_fn_71005aad7c;

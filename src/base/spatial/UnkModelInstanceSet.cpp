@@ -163,8 +163,6 @@ struct UnkMediaInstance {
     s32 state;      // 0x2c
 };
 
-// Whether an instance is in `state`.
-
 struct UnkMediaRef {
     UnkMediaInstance* ptr;
 

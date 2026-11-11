@@ -6,8 +6,6 @@
 #include "base/global/timeline/CEvent.h"
 #include "types.h"
 
-// src/base/global/timeline/CEvent/UnkPrime.cpp.
-
 struct UnkPrimeBucket_b43a3;
 
 struct UnkPrimeHashTable_b43a3 {

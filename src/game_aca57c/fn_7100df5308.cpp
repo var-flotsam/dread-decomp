@@ -94,7 +94,6 @@ bool fn_7100df5874(UnkPlayer* self) { return IsInState6<fn_710033b6a4, fn_710033
 bool fn_7100df5a4c(UnkPlayer* self) { return IsInState6<fn_7100327d14, fn_71003255a4>(self); }
 
 // Whether the ghost aura's state (fn_7100309568) is 3 to 6.
-
 bool fn_7100df5630(UnkPlayer* self) {
     UnkAbility* ability = GetAbility<fn_7100308c74, fn_71003013ec, fn_7100306914>(self);
     if (!ability)

@@ -5,5 +5,5 @@
 // Names and layouts are placeholders.
 #include "types.h"
 void fn_710019e76c(void* self);
-void fn_710019e95c(void* self, void* owner);
+void fn_710019e95c(void* self, void* owner);  // Gives a new object its owner.
 void fn_710019e82c(void* self);

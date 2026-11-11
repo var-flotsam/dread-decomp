@@ -6,4 +6,4 @@
 #include "types.h"
 
 struct UnkAnimTreeIdPairs_b49a1;
-void fn_71002da674(UnkAnimTreeIdPairs_b49a1* self, u32 capacity);
+void fn_71002da674(UnkAnimTreeIdPairs_b49a1* self, u32 capacity);  // Reserve.

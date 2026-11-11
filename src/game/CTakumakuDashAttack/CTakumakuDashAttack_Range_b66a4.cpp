@@ -8,8 +8,6 @@
 #include "game/UnkTU2702.h"
 #include "types.h"
 
-// As src/game/CTakumakuAIComponent/CTakumakuAIComponent_b34.cpp declares it.
-
 struct UnkTakumakuDashAttack_b66a4 {
     u8 pad_0x0[0x40];
     f32 range;  // 0x40

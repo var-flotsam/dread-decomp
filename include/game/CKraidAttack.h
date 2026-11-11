@@ -7,7 +7,7 @@
 
 struct UnkKraidAttack;
 struct UnkSelf_kt41;
-void fn_71005f2018(char* self);
+void fn_71005f2018(char* self);  // Derived classes call it as their base's restart (a thunk to fn_71003608ac).
 bool fn_71005f20e4(UnkSelf_kt41*);
 bool fn_71005f2014(UnkSelf_kt41* self, void* a, void* b);
 void fn_71005f201c(UnkKraidAttack* self, f32 dt);

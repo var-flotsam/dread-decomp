@@ -62,8 +62,6 @@ struct UnkRegistryDesc {
     CStrId id;
 };
 
-// The entry's default callbacks, as base::res's type record's (src/base/UnkResRegistry.cpp).
-
 // Copied member by member (the original reloads the source after each store).
 struct UnkRegistryCallback {
     void* context;

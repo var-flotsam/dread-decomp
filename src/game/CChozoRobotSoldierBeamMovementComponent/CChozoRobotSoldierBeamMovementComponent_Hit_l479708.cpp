@@ -12,7 +12,6 @@
 
 struct UnkObj;
 struct UnkSplash_b59a4;
-// Declared returning void elsewhere; it returns 1 when the hit was taken.
 
 struct UnkBeamLevel_l479708 {
     u8 pad_0x0[0x10];

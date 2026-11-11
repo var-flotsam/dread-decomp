@@ -8,9 +8,6 @@
 
 struct UnkEnergyWave_b65a4;
 
-// Takes the component (it reads +0x7c itself); declared as src/game/CEmmyWaveMovementComponent/fn_71005028e4.cpp
-// declares it.
-
 // As src/game/CKraidAcidBlobsMovementComponent/CKraidAcidBlobsMovementComponent.cpp declares it.
 struct UnkBossComponent;
 

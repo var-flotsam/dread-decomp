@@ -6,5 +6,5 @@
 #include "types.h"
 
 struct UnkCameraCtrl_ovb0049;
-void fn_7101043934(UnkCameraCtrl_ovb0049*);
-void fn_7101043904(void*);
+void fn_7101043934(UnkCameraCtrl_ovb0049*);  // Derived classes call it as their base's destructor.
+void fn_7101043904(void*);  // Derived classes call it as their base's constructor.

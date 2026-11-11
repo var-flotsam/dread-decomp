@@ -12,5 +12,5 @@ struct UnkFixedCamera_fc;
 struct UnkGrabCameraCtrl;
 void fn_71010ed044(UnkBase_7100763ed4*);
 void fn_71010ed98c(UnkFixedCamera_fc* self, UnkArg_fc* arg, u32 flag);
-void fn_71010edd64(UnkGrabCameraCtrl* self);
-void fn_71010ee17c(UnkChozoCommanderDropCameraCtrl* self);
+void fn_71010edd64(UnkGrabCameraCtrl* self);  // Derived classes call it as their base's deactivation.
+void fn_71010ee17c(UnkChozoCommanderDropCameraCtrl* self);  // The camera-controller base's step.

@@ -7,4 +7,4 @@
 void fn_71000853b8(void* member);
 void fn_7100085d68(void* member);
 void fn_7100085d8c(void* member);
-char** fn_7100086810(char* set, u32 bucket);
+char** fn_7100086810(char* set, u32 bucket);  // The address of a bucket.

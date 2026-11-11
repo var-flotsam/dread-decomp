@@ -72,6 +72,19 @@ class Plan(unittest.TestCase):
         self.assertEqual([sorted(p.symbol for p in part) for part in parts],
                          [["fn_7100000310"], ["fn_7100000110", "fn_7100000111"]])
 
+    def test_comments_on_the_copies(self):
+        files = tree(
+            a="struct UnkA;\n// Sets up the two.\nvoid fn_7100000112(UnkA*);\n"
+              "void fn_7100000110(UnkA*);  // the base constructor\n",
+            b="struct UnkA;\n\nvoid fn_7100000110(UnkA*);  // the base constructor\nvoid fn_7100000112(UnkA*);\n",
+            c="struct UnkA;\n// Not about them.\n\nvoid fn_7100000110(UnkA*);\n")
+        planned, _ = self.plan(files)
+        self.assertEqual(decl_plan.copy_comments(decl_check.Report(files), files, planned), [
+            ("fn_7100000110", "include/game/CFoo.h", 2, "line", "the base constructor"),
+            ("fn_7100000110", "include/game/CFoo.h", 1, "above", "Sets up the two."),
+            ("fn_7100000112", "include/game/CFoo.h", 1, "above", "Sets up the two."),
+        ])
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -61,8 +61,6 @@ void fn_71001cdba4(UnkOwner_71001cdba4* self, UnkEntry_71001cdba4* entry) {
     ++v.count;
 }
 
-// The default set (generated, src/lifted/).
-
 // Drops the last entry and binds the one before it, or the default set when none is left.
 void fn_71001cdd18(UnkOwner_71001cdba4* self) {
     base::UnkVector<UnkEntry_71001cdba4>& v = self->entries;

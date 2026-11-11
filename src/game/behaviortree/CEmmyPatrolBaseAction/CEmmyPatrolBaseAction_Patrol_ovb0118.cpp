@@ -173,7 +173,6 @@ static inline __attribute__((always_inline)) void ClearPatrol(UnkPatrolBase_ovb0
 }
 
 // Removes the action's registration from its deferred set (base::UnkDeferredSet<..>::Remove).
-
 static inline void Unregister(UnkPatrolRegistration_ovb0118* reg) {
     if (reg->set) {
         fn_7100514b7c(reg->set, reg);

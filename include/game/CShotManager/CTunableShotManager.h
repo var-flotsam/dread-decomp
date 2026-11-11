@@ -10,6 +10,9 @@ struct UnkSlot_0x40;
 void fn_7100ed78c0(void* player);
 void fn_7100ed6af0(void* manager, u32 id, u32 slot);
 void fn_7100ed8144(void* it);
-void fn_7100ed977c(UnkSlot_0x40* self);
+void fn_7100ed977c(UnkSlot_0x40* self);  // Destructor.
+
+// Assignment (its callers use it as copy and as move assignment).
 void fn_7100edbef4(UnkSlot_0x40* self, UnkSlot_0x40* other);
-void fn_7100eddc68(UnkObj290_b43a3* self, UnkObj290_b43a3* other);
+
+void fn_7100eddc68(UnkObj290_b43a3* self, UnkObj290_b43a3* other);  // Move constructor.

@@ -6,7 +6,7 @@
 #include "types.h"
 
 struct UnkUserDataOwner;
-void fn_710120320c(UnkUserDataOwner* self);
+void fn_710120320c(UnkUserDataOwner* self);  // Constructor.
 void fn_7101203854(UnkUserDataOwner* self);
 void fn_7101203768(UnkUserDataOwner* self);
 s32 fn_7101203620(UnkUserDataOwner* self);

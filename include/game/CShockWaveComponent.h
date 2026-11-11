@@ -7,4 +7,4 @@
 
 struct UnkShockWaveMember;
 void fn_71009f35b0(char* self);
-void fn_71009f3bf8(UnkShockWaveMember* self, const UnkShockWaveMember* other);
+void fn_71009f3bf8(UnkShockWaveMember* self, const UnkShockWaveMember* other);  // Assignment.

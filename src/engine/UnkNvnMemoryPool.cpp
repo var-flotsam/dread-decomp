@@ -54,8 +54,6 @@ struct UnkNvnPoolBuilder {
 
 struct UnkPool;
 
-// The graphics device (src/game_s7/fn_71001587f0.cpp).
-
 // A memory pool with its storage (the type fn_71001587f0 passes as UnkPool).
 struct UnkNvnMemoryPool {
     u64 field_0x0;

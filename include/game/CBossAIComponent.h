@@ -13,6 +13,6 @@ struct UnkZiplineLinkTarget_b49;
 struct UnkZiplineLink_b49;
 UnkZiplineLinkTarget_b49** fn_71003b0c4c(UnkZiplineLink_b49*);
 void fn_71003ace0c(UnkNode*);
-void fn_71003ac388(void*);
+void fn_71003ac388(void*);  // Derived classes call it as their base's destructor.
 void fn_71003acb5c(UnkCoreXAI_A2_b73*);
 u32 fn_71003adaf8(UnkQuetzoaXAI_b58*, UnkQuetzoaXMessage_b58*);

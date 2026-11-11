@@ -9,8 +9,13 @@ struct UnkEntry_7100d92158;
 struct UnkFactoryEntry;
 struct UnkRegistryKey;
 struct UnkRegistry_7100d92158;
+
+// One of a record's two default callbacks: each forwards its second argument (fn_710001a0ac, fn_710001a39c).
 void fn_71000204c4(void* context, void* arg);
+
+// One of a record's two default callbacks: each forwards its second argument (fn_710001a0ac, fn_710001a39c).
 void fn_71000204cc(void* context, void* arg);
+
 void fn_710002002c(UnkRegistry_7100d92158* registry, const UnkEntry_7100d92158& entry);
-void fn_7100020164(char* self);
+void fn_7100020164(char* self);  // The entry's destructor.
 UnkFactoryEntry* fn_7100020320(UnkRegistry_7100d92158* registry, const UnkRegistryKey* key);

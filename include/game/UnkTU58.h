@@ -8,5 +8,5 @@
 struct UnkGfxFrameSource;
 struct UnkTimer_7100080c40;
 void* fn_71000810b0(u32 value);
-s64 fn_7100080b7c(UnkGfxFrameSource* timer);
+s64 fn_7100080b7c(UnkGfxFrameSource* timer);  // The timer's time in microseconds.
 s64 fn_7100080fb4(const UnkTimer_7100080c40* self);

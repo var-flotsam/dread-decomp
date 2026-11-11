@@ -10,7 +10,7 @@ struct UnkNode;
 struct UnkSclawkAI_b44a2;
 struct UnkSclawkMessage_b44a2;
 struct UnkWarriorSend_b58;
-void fn_7100369380(void*);
+void fn_7100369380(void*);  // The base AI component's destructor.
 u32 fn_710036974c(UnkSclawkAI_b44a2* self, UnkSclawkMessage_b44a2* msg);
 void fn_710036932c(UnkComponent* self);
 void fn_7100369d80(UnkWarriorSend_b58* self, void* arg);

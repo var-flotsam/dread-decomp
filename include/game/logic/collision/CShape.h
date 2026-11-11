@@ -12,6 +12,6 @@ void fn_7100d6a2f0();
 void fn_7100d6a8d4();
 void fn_7100d6b240();
 void fn_7100d6b824();
-void fn_7100d6bfd8(void* self);
+void fn_7100d6bfd8(void* self);  // The shape base's constructor.
 void fn_7100d6c034(UnkShape2D_b46a3* self, const void* transform);
 void fn_7100d6e22c();

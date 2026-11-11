@@ -136,8 +136,6 @@ void fn_71011c1410(UnkGuiButtonInit_ovb0000* self) {
     self->vf_0x18();
 }
 
-// As the menu entry item renderers forward (src/game/GUI/UnkMenuEntryItemRenderer_Draw_b65a6.cpp).
-
 void fn_71011c00c0(void* a, void* b, void* c, bool d, bool e, bool f) {
     if (f)
         fn_71011d9e90(a, b, c, d, e, true);

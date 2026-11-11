@@ -26,8 +26,6 @@ struct UnkCollisionShape {
     virtual void vf_0x20(void* stream);  // reads the shape
 };
 
-// The shapes' constructors.
-
 struct UnkShapeOwner;
 // Gives the shape to its owner (which then owns it).
 void fn_7100d36da4(UnkShapeOwner* self, UnkCollisionShape* shape, bool owned);

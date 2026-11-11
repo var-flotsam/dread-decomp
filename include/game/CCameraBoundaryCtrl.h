@@ -11,7 +11,7 @@ struct UnkBossCameraCtrl_b49a3;
 struct UnkCamVec3_b0101;
 struct UnkPureFollowCameraCtrl;
 struct UnkStruct_7100763ed4;
-void fn_7100763ed4(UnkStruct_7100763ed4* self);
+void fn_7100763ed4(UnkStruct_7100763ed4* self);  // Derived classes call it as their base's constructor.
 void fn_7100763f74(UnkBossCameraCtrl_b49a3* self);
 void fn_7100763f9c(CSynchronizedBlockCameraCtrl*, f32);
 void fn_7100764388(UnkPureFollowCameraCtrl* self);

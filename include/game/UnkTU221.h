@@ -8,4 +8,4 @@
 struct UnkBillboardDrawable;
 struct UnkStruct_710019ab0c;
 void fn_710019ab0c(UnkStruct_710019ab0c* self);
-void fn_710019a4e8(UnkBillboardDrawable* self, u32 a, u32 b);
+void fn_710019a4e8(UnkBillboardDrawable* self, u32 a, u32 b);  // The drawable's constructor.

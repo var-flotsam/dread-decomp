@@ -19,7 +19,6 @@ struct UnkSource {
 };
 
 struct UnkSourceList;
-// The element at `index`, growing the list when it is growable (base::UnkVector::GrowAt).
 
 struct UnkSourceList {
     u8 pad_0x0[0x8];

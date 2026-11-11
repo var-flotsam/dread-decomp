@@ -20,7 +20,6 @@ extern void* g_unk_716e34c2e0;
 void fn_710016a8dc(void* self, void* arg);
 struct UnkKeyOwner;
 void* fn_710019964c(void* self);
-// Gives the new object its owner.
 
 struct UnkPoolNode_ovb0176 {
     u64 key;

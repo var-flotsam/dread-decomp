@@ -6,5 +6,5 @@
 #include "types.h"
 
 struct UnkCollisionShape;
-void fn_7100d5e1b4(void* shape);
+void fn_7100d5e1b4(void* shape);  // The AABOX2D shape's constructor.
 void fn_7100d5e2c8(UnkCollisionShape* self);

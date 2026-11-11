@@ -18,6 +18,11 @@ With --write the headers are created (a comment, `types.h`, the forward declarat
 appends the declarations) and the plan is written in chunks of whole headers, one hub_migrate run each.
 Run it on a clean tree: a header it created counts as existing the next time.
 
+hub_migrate removes a prototype together with the comment at the end of its line, and leaves a comment
+that stood above it. --write therefore also lists what the copies say about each planned function
+(build/decl_plans/comments.tsv: symbol, header, files, where, text): write one description beside the
+declaration in the header, and remove or re-attach the comments left in the sources.
+
 Usage:
   python tools/decl_plan.py                                   # what would be planned and what is left out
   python tools/decl_plan.py --write [--exclude FILE] [--units N] [--chunk 380]   # headers + build/decl_plans/chunk_<k>.tsv
@@ -120,6 +125,32 @@ def plan(report: decl_check.Report, files: dict[str, str], units: list[dict]) ->
     return out, why
 
 
+def copy_comments(report: decl_check.Report, files: dict[str, str], planned: list[Planned]) -> list[tuple]:
+    """What the copies of each planned declaration say about it: (symbol, header, files, where, text) per
+    distinct text, `where` being `line` (the comment that ends the prototype's line) or `above` (the comment
+    block over the prototype, or over the group of prototypes it stands in)."""
+    out = []
+    for p in planned:
+        seen: Counter = Counter()
+        for d in report.decls[p.symbol]:
+            lines = files[d.path].replace("\r\n", "\n").split("\n")
+            text = "\n".join(lines)
+            rest = text[d.end:].split("\n", 1)[0].strip()
+            if rest.startswith("//"):
+                seen[("line", rest[2:].strip())] += 1
+            above = text.count("\n", 0, d.start) - 1
+            while above >= 0 and lines[above].strip() and not lines[above].lstrip().startswith("//"):
+                above -= 1                        # the other prototypes of its group
+            block = []
+            while above >= 0 and lines[above].lstrip().startswith("//"):
+                block.insert(0, lines[above].strip()[2:].strip())
+                above -= 1
+            if block:
+                seen[("above", " ".join(block))] += 1
+        out += [(p.symbol, p.header, n, where, text) for (where, text), n in seen.most_common()]
+    return out
+
+
 def header_text(header: str, mine: list[Planned]) -> str:
     unit = mine[0].unit
     types: dict[str, str] = {}
@@ -190,6 +221,10 @@ def main() -> int:
         (OUT / f"chunk_{k}.tsv").write_bytes(text.encode("utf-8"))
     print(f"{len(headers)} headers created; {len(parts)} plan files in {OUT.relative_to(ROOT).as_posix()}/: "
           + ", ".join(str(len(p)) for p in parts) + " symbols")
+    said = copy_comments(report, files, planned)
+    (OUT / "comments.tsv").write_bytes("".join("\t".join(map(str, row)) + "\n" for row in said).encode("utf-8"))
+    print(f"{len({row[0] for row in said})} of the symbols have a comment on a copy, listed in "
+          f"{OUT.relative_to(ROOT).as_posix()}/comments.tsv: the migration drops or strands these, so put one in the header")
     return 0
 
 

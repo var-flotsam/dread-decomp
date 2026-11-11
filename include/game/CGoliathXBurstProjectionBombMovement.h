@@ -7,5 +7,5 @@
 
 struct UnkPushedVector;
 struct UnkValues3;
-void fn_710058c768(UnkPushedVector* self, const UnkValues3* value);
+void fn_710058c768(UnkPushedVector* self, const UnkValues3* value);  // PushBack.
 void fn_710058a2b8(void* self);

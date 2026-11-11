@@ -4,6 +4,9 @@
 // 0x7100fe119c-0x7101007b10). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
+
+// Out-of-line destructor of a music preset map's values (src/game/sound/UnkMusicPresets.cpp).
 void fn_7100fee034(void*);
+
 void fn_7100ffaa88(void*);
 void fn_7100fefde0(void*);

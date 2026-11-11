@@ -6,4 +6,4 @@
 #include "types.h"
 
 struct UnkEngineObject_0xf0;
-void fn_7100075db8(UnkEngineObject_0xf0* self);
+void fn_7100075db8(UnkEngineObject_0xf0* self);  // Constructor.

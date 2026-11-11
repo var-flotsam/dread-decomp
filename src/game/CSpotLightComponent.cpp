@@ -34,8 +34,6 @@ struct UnkLightNode {
     virtual void vf_0x90();
 };
 
-// Passes the part's object on (fn_71001bd9f0).
-
 // A counted resource reference (base/UnkCountedResource.h).
 struct UnkSpotLightResRef {
     UnkCountedResource* ptr;

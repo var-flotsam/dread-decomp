@@ -348,8 +348,6 @@ void fn_71008aa158(UnkHolder* self, UnkHolder* other) {
     MoveHolder(self, other);
 }
 
-// Finds or adds the entry for a key (one copy per map type).
-
 template <UnkEntry* (*Get)(void*, u32)>
 static inline __attribute__((always_inline)) void SetEntry(void* self, const u32* key, UnkEntry* value) {
     *Get(self, *key) = static_cast<UnkEntry&&>(*value);

@@ -32,8 +32,6 @@ struct UnkLightNode {
     virtual void vf_0x90();
 };
 
-// Passes the part's object at +0x108 on (fn_71001bd9f0).
-
 // A counted resource reference (base/UnkCountedResource.h), as src/game/UnkEnvironmentFade.cpp's.
 struct UnkLightResRef {
     UnkCountedResource* ptr;

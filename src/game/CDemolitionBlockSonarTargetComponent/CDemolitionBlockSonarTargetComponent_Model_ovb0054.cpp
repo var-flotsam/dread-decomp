@@ -18,8 +18,6 @@
 
 using base::global::CFilePathStrId;
 
-// Signature as src/clones/clones_03.cpp declares it.
-
 extern char g_unk_7101a8b8f0[];
 
 struct UnkSonarTargetEntry_ovb0054 {

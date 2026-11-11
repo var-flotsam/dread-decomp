@@ -7,7 +7,7 @@
 
 struct UnkDoorGrapplePoint_A5_b66;
 struct UnkPullableGrapplePoint_b54;
-bool fn_710082cb24(void* self, void* arg, void* msg);
+bool fn_710082cb24(void* self, void* arg, void* msg);  // The base test (both pull components share it).
 void fn_710082cee4(UnkPullableGrapplePoint_b54* self, bool);
 void fn_710082cf08(UnkPullableGrapplePoint_b54* self, bool);
 void fn_710082ccec(UnkDoorGrapplePoint_A5_b66* self, void*, bool);
