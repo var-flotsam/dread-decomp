@@ -18,7 +18,6 @@ checked against the original. Remove an entry when its declaration is corrected,
 | `fn_7100fbc4e0` | `void` | returns a value; called through a function-pointer cast in `UnkTU2666_lua_ovb0157`/`ovb0159` | b0157 |
 | `fn_71011a32d8`, `fn_71011a3574` | `void` | return values that are used; reached as `bool` through `asm`-label aliases in `UnkTU2577_SubAreaMgr_ovb0189.cpp` | b0189 |
 | `fn_7100ef0cdc`, `fn_7100ef11f4` | `void()` in `function_inits_02.cpp` | not stated | b0189 |
-| `fn_7100e791a4` | `void` | returns `u32` (`fn_7100e95130` matches with `u32`; its draft is in `drafts/`) | later batch |
 
 ## Wrong parameters
 
@@ -106,3 +105,15 @@ functions) into unit headers on 2026-11-11, each global into the header of the u
 Not tried in this pass: 328 globals whose type comes from a shared header (`UnkReflType`, `UnkConverter`,
 `CStrId`, `UnkProperty`, `UnkTUHeader`), 95 that lie between two units' data spans, 92 with conflicting
 signatures, and 2 whose copies differ in a visibility attribute.
+
+## Definitions that disagree with their declaration
+
+`python tools/decl_check.py --definitions` lists every hand-written definition whose result or parameters
+are not what a declaration of the same function in another file says: 311 on 2026-11-11 (168 where one
+side returns a value and the other is `void`, 90 with a parameter of another class, 34 with another
+number of parameters, 19 with a result of another class). `fn_7100e791a4` was one of them: defined
+`void`, declared `void` with other parameters, and called through a cast for the count it returns. On
+AArch64 such a pair still matches, because the registers hold the right values anyway; in the PC port the
+call is wrong. `tools/decl_check.py --base` fails when a pull request adds one. To settle one, read what
+the original does with the result and argument registers on both sides of the call, give the header the
+true signature, and make the defining file include that header.

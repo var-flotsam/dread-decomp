@@ -30,15 +30,27 @@ default argument (`X x = X{}`) ends the statement early, so that prototype is dr
 branch is scanned, so alternative declarations of one symbol show as a conflict; in
 `void fn_a(int), fn_b(int);` only fn_a is recorded. CRLF is accepted.
 
+Definitions are compared too, in one respect: how the function is called. A hand-written definition
+`T fn_<addr>(...) {` at the start of a line, with external linkage, is read as a declaration, and its
+call shape (the class of the result and of each parameter: void, bool, an integer by width, float,
+double, a pointer or reference, a type passed by value) is compared with the shape of every declaration
+of the same function in other files. Another name for a pointed-to struct is the same call; a `void`
+definition of a function declared to return a value, a missing parameter, or a `u32` where the
+declaration has a pointer is not. The match on AArch64 does not see such a difference when the registers
+happen to hold the right values; the PC port calls the function wrongly. Not seen: a definition inside a
+namespace, or one whose first line starts with an attribute.
+
 Usage:
   python tools/decl_check.py                        # counts and the top conflicting symbols; exit 0 (report)
   python tools/decl_check.py --list [--top N]       # every multiply-declared symbol with its signatures
   python tools/decl_check.py --symbol fn_7100d7c990 # each declaration of one symbol: file:line, scope, signature
   python tools/decl_check.py --json                 # the counts as JSON (tools/verify.py prints them)
+  python tools/decl_check.py --definitions          # every definition called differently than a declaration says
   python tools/decl_check.py --base origin/main     # the same counts for the tree at <ref>; exit 1 if the
                                                     # conflicting-symbol count or the extra signatures grew, or
                                                     # a symbol declared under include/ is re-declared in a file
-                                                    # where <ref> had no such re-declaration (CI runs this on
+                                                    # where <ref> had no such re-declaration, or a function's
+                                                    # definition newly differs from its declaration (CI runs this on
                                                     # pull requests); growth of identical extra copies (multi-file
                                                     # symbols, extra copies) only warns, unless --strict
 Standard library and git only, no game data, so CI can run it. <ref>'s files are read with one
@@ -55,7 +67,7 @@ import re
 import subprocess
 import sys
 import time
-from collections import defaultdict
+from collections import Counter, defaultdict
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -507,6 +519,91 @@ def compare(cur: Report, base: Report, ref: str, strict: bool = False) -> tuple[
     return reasons, warnings
 
 
+DEFINITION = re.compile(r"^((?:[A-Za-z_][\w:<>,*& \t]*?[\s*&])?fn_[0-9a-f]{10}\s*\([^{};]*\))\s*\{", re.M)
+CLASSES = {"void": "void", "bool": "bool", "char": "i8", "s8": "i8", "u8": "i8", "s16": "i16", "u16": "i16",
+           "short": "i16", "int": "i32", "s32": "i32", "u32": "i32", "unsigned": "i32", "wchar_t": "i32",
+           "s64": "i64", "u64": "i64", "long": "i64", "size_t": "i64", "float": "f32", "f32": "f32",
+           "double": "f64", "f64": "f64"}
+
+
+def definitions(text: str, path: str) -> list[Decl]:
+    """The file's top-level function definitions `T fn_<addr>(...) {` with external linkage, as declarations."""
+    text = strip(text)
+    out: list[Decl] = []
+    for m in DEFINITION.finditer(text):
+        head = m.group(1)
+        if re.match(r"\s*(static|inline|template)\b", head) or "::fn_" in head:
+            continue
+        line = text.count("\n", 0, m.start(1)) + 1
+        out += [Decl(d.name, d.signature, path, line, d.scope) for d in scan(head + ";", path)]
+    return out
+
+
+def type_class(text: str) -> str:
+    text = text.strip()
+    if text == "...":
+        return "..."
+    if any(c in text for c in "*&(["):
+        return "pointer"
+    words = [w for w in re.findall(r"[A-Za-z_]\w*", text) if w not in ("const", "volatile", "signed", "enum", "extern", "C")]
+    return CLASSES[words[-1]] if words and all(w in CLASSES for w in words) else "by value"
+
+
+def call_shape(signature: str, symbol: str) -> tuple[str, tuple[str, ...]] | None:
+    """(class of the result, class of each parameter) of a normalised function signature; None when the
+    symbol is not declared as a plain function there (an asm label on another name, or a variable)."""
+    result, rest = signature.split(symbol, 1)
+    if not rest.lstrip().startswith("(") or ")" not in rest:
+        return None
+    inner = rest[rest.index("(") + 1:rest.rindex(")")]
+    params, depth, cur = [], 0, ""
+    for ch in inner:
+        depth += ch in "<(["
+        depth -= ch in ">)]"
+        if ch == "," and depth == 0:
+            params.append(cur)
+            cur = ""
+        else:
+            cur += ch
+    params = [type_class(x) for x in params + [cur] if x.strip()]
+    return type_class(result), tuple(params)
+
+
+def definition_mismatches(files: dict[str, str], report: Report) -> dict[str, tuple[str, str, str, str]]:
+    """{function: (what differs, the defining file, the definition's signature, a declaration's signature)} for
+    the hand-written definitions whose call shape is not the shape of a declaration in another file."""
+    out: dict[str, tuple[str, str, str, str]] = {}
+    for path, text in files.items():
+        if path.startswith("include/") or "fn_" not in text:
+            continue
+        for d in definitions(text, path):
+            mine = call_shape(d.signature, d.name)
+            for other in report.sigs.get(d.name, []):
+                theirs = call_shape(other, d.name)
+                if theirs is None or mine is None or theirs == mine:
+                    continue
+                if (mine[0] == "void") != (theirs[0] == "void"):
+                    what = "one returns a value, the other is void"
+                elif mine[0] != theirs[0]:
+                    what = "the result's class"
+                elif len(mine[1]) != len(theirs[1]):
+                    what = "the number of parameters"
+                else:
+                    what = "a parameter's class"
+                out[d.name] = (what, path, d.signature, other)
+                break
+    return out
+
+
+def print_definitions(found: dict[str, tuple[str, str, str, str]]) -> None:
+    kinds = Counter(v[0] for v in found.values())
+    print(f"{len(found)} hand-written definitions are called differently than a declaration of the same function says:")
+    for what, n in kinds.most_common():
+        print(f"  {n:5}  {what}")
+    for symbol, (what, path, mine, theirs) in sorted(found.items(), key=lambda kv: (kv[1][0], kv[0])):
+        print(f"{symbol}  {what}\n    defined   {mine}  ({path})\n    declared  {theirs}")
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--base", metavar="REF", help="also count the tree at REF; exit 1 if the conflicting-signature "
@@ -515,14 +612,20 @@ def main() -> int:
     ap.add_argument("--strict", action="store_true", help="with --base: growth of extra copies fails too")
     ap.add_argument("--list", action="store_true", help="list every multiply-declared symbol and its signatures")
     ap.add_argument("--symbol", metavar="NAME", help="list every declaration of NAME with file:line")
+    ap.add_argument("--definitions", action="store_true",
+                    help="list every definition whose result or parameters are not what a declaration of it says")
     ap.add_argument("--json", action="store_true", help="print the counts (and the top symbols) as JSON")
     ap.add_argument("--top", type=int, default=10, help="how many conflicting symbols to show (default 10)")
     args = ap.parse_args()
 
     start = time.time()
     try:
-        cur = Report(tree_files(None))
-        base = Report(tree_files(args.base)) if args.base else None
+        cur_files = tree_files(None)
+        cur = Report(cur_files)
+        cur_defs = definition_mismatches(cur_files, cur)
+        base_files = tree_files(args.base) if args.base else None
+        base = Report(base_files) if args.base else None
+        base_defs = definition_mismatches(base_files, base) if args.base else {}
     except subprocess.CalledProcessError as e:
         print(f"FAIL decl_check: git {' '.join(e.cmd[1:3])} failed: {e.stderr.decode('utf-8', 'replace').strip()}")
         return 2
@@ -531,14 +634,22 @@ def main() -> int:
     if args.symbol:
         print_symbol(cur, args.symbol)
         return 0
+    if args.definitions:
+        print_definitions(cur_defs)
+        return 0
 
-    result: dict = {**cur.counts(), "seconds": round(secs, 2),
+    result: dict = {**cur.counts(), "definition_mismatches": len(cur_defs), "seconds": round(secs, 2),
                     "top": [{"symbol": s, "signatures": n, "files": f} for s, n, f in cur.top(args.top)]}
     reasons: list[str] = []
     warnings: list[str] = []
     if base is not None:
         reasons, warnings = compare(cur, base, args.base, args.strict)
-        result["base"] = {"ref": args.base, **base.counts()}
+        new_defs = sorted(set(cur_defs) - set(base_defs))
+        if new_defs:
+            reasons.append(f"{len(new_defs)} definitions newly differ from a declaration of the same function in how it "
+                           "is called: " + "; ".join(f"{s} in {cur_defs[s][1]} ({cur_defs[s][0]})" for s in new_defs[:5])
+                           + (" ..." if len(new_defs) > 5 else "") + " (`--definitions` shows both signatures)")
+        result["base"] = {"ref": args.base, **base.counts(), "definition_mismatches": len(base_defs)}
         result["result"] = "FAIL" if reasons else "PASS"
         result["reasons"] = reasons
         result["warnings"] = warnings
@@ -547,6 +658,8 @@ def main() -> int:
         return 1 if reasons else 0
 
     print(cur.line("HEAD") + f" ({secs:.1f} s)")
+    print(f"decl_check: {len(cur_defs)} definitions are called differently than a declaration of the same function "
+          "says (`--definitions` lists them)")
     if base is not None:
         print(base.line(args.base))
     if args.list:
@@ -573,7 +686,8 @@ def main() -> int:
     print(f"PASS decl_check: vs {args.base}: conflicting {b['conflicting']} -> {c['conflicting']} "
           f"({b['extra_signatures']} -> {c['extra_signatures']} extra signatures), multi-file {b['multi_file']} -> "
           f"{c['multi_file']} ({b['extra_files']} -> {c['extra_files']} extra copies), header re-declarations "
-          f"{b['header_redeclared']} -> {c['header_redeclared']}, none new")
+          f"{b['header_redeclared']} -> {c['header_redeclared']}, definitions that differ from a declaration "
+          f"{len(base_defs)} -> {len(cur_defs)}, none new")
     return 0
 
 

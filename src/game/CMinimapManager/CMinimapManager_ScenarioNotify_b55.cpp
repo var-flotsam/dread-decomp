@@ -22,7 +22,7 @@ static inline void NotifyIfCurrent_b55(UnkMinimapScenarioOwner_b55* self, void* 
     const base::global::CStrId* current = fn_7100de9bf8(g_unk_7101d47310);
     if (self->field_0x110.data != current->data)
         return;
-    fn_7100e791a4(self->field_0x118, arg, Kind, 0, nullptr);
+    fn_7100e791a4(self->field_0x118, arg, Kind, false, nullptr);
 }
 
 void fn_7100e95038(UnkMinimapScenarioOwner_b55* self, void* arg) { NotifyIfCurrent_b55<6>(self, arg); }
