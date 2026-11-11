@@ -1,5 +1,6 @@
 // Units 271 and 281 (tools/tu_map.py): handlers that pass the object held at a fixed offset, if
 // any, to a function of their unit, reporting whether there was one.
+#include "base/reflection.h"
 #include "types.h"
 
 void fn_71001ebb34(void* obj, void* entry, s32 tag);  // src/game/UnkSpherePool_SetTag.cpp

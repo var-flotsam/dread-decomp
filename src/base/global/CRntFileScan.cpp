@@ -10,6 +10,7 @@
 #include <string.h>
 
 #include "base/global/CRntFile.h"
+#include "game/UnkTU56.h"
 #include "types.h"
 
 using base::global::CRntFile;

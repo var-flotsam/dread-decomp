@@ -2,6 +2,7 @@
 // and stores a copy of the reflected value `value` in the entry fn_71000f0f38 finds or makes for
 // its type. Names and layouts are placeholders.
 #include "base/reflection/UnkReflCast.h"
+#include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
 

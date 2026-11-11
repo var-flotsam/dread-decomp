@@ -3,6 +3,7 @@
 // frees the byte buffer.
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "game/CCutsceneComponent.h"
 #include "types.h"
 
 struct UnkValue_71007a8eec;

@@ -2,6 +2,7 @@
 // building each one's argument with fn_71000a1710 and converting through fn_710009d5d4. Names and
 // layouts are placeholders.
 #include "base/UnkCloneHelpers.h"
+#include "base/reflection.h"
 #include "types.h"
 
 struct UnkReflValueArg;

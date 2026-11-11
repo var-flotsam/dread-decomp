@@ -1,6 +1,7 @@
 // A lookup in the CCameraComponent unit (unit 2691 of tools/tu_map.py): the camera controller an id
 // names in the holder's map of parallel arrays at +0x80 (base/UnkParallelFind.h), or null.
 #include "base/UnkParallelFind.h"
+#include "game/CCameraComponent.h"
 #include "game/UnkCameraCtrl.h"
 
 struct UnkCameraCtrlMap {

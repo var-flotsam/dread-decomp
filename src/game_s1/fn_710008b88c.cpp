@@ -1,6 +1,7 @@
 // Constructor of a 0xb0-byte state object: three allocator handles, counters and flags set to
 // their defaults, and an embedded sub-object at +0x58.
 #include "base/UnkCloneHelpers.h"
+#include "base/file/UnkFileDevice.h"
 #include "types.h"
 
 using base::UnkAllocator;

@@ -3,6 +3,7 @@
 // placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU377.h"
 
 struct UnkRefVectorHolder_b47 {
     base::UnkRefPtrMember ref;    // 0x0

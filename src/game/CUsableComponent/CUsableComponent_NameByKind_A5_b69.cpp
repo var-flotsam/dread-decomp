@@ -2,6 +2,7 @@
 // a kind (1: slot 0x218, 3: 0x1f0, 4: 0x1f8, 5: 0x208, 6: 0x200, 7: 0x210), or the global empty id.
 // Names are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CUsableComponent.h"
 
 using base::global::CStrId;
 

@@ -1,5 +1,6 @@
 // CCharClassRobotAIComponent's unit (tools/tu_map.py unit 621): a state code from the actor's
 // component at +0x2f8: 4 without one, else 5 or 4 by fn_710092b6f8. Names are placeholders.
+#include "game/CCharClassRobotAIComponent.h"
 #include "game/CMeleeComponent.h"
 #include "types.h"
 

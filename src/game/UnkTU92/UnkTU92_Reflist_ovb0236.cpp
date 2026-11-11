@@ -9,6 +9,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU92.h"
 #include "types.h"
 
 using base::reflection::CType;

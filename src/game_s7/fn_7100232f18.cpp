@@ -2,6 +2,7 @@
 // repeats at other addresses: fn_7100232f18.
 // An object's weak handle, created on first use, and a setter making the weak reference at 0x398
 // refer to another object's handle.
+#include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
 
 UnkWeakHandle* fn_7100232f18(UnkWeakTarget* self) { return GetWeakHandle(self); }

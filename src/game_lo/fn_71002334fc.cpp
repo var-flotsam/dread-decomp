@@ -1,5 +1,6 @@
 // Sets a flag and, when it changed, passes the new value on to every child in the object's
 // list (virtual slot 0xe8).
+#include "game/UnkTU341.h"
 #include "types.h"
 
 struct UnkChild_71002334fc {

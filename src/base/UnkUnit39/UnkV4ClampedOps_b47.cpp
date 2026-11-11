@@ -1,6 +1,7 @@
 // Unit 39 (tools/tu_map.py): four-component colour/vector operators returned by value (through x8: the
 // type has a user-written copy constructor): the component-wise sum and product, each clamped below at
 // zero. Names are placeholders.
+#include "game/UnkTU39.h"
 #include "types.h"
 struct UnkV4_b47 {
     f32 x, y, z, w;

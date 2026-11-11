@@ -6,6 +6,7 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/SDropProbabilities.h"
 #include "types.h"
 
 struct UnkPair_dp {

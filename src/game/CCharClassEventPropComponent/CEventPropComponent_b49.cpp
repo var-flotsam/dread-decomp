@@ -5,6 +5,7 @@
 // not yet launched slot 0x168. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
+#include "game/CCharClassEventPropComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"

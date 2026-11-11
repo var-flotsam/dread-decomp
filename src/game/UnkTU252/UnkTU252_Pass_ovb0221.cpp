@@ -7,6 +7,7 @@
 #include "base/math/CVector4D.h"
 #include "game/UnkTU182.h"
 #include "game/UnkTU204.h"
+#include "game/UnkTU252.h"
 #include "types.h"
 
 using base::color::CColor4F;

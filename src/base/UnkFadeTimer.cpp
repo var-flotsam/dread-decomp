@@ -2,6 +2,7 @@
 // value that runs down to zero (+0x94, clamped to 10) and the time it was last set (+0x8c), a hook run
 // once (+0x60) and a listener (+0x58) told when the value runs out or a flag changes. Names and
 // layouts are placeholders inferred from the code.
+#include "game/UnkTU50.h"
 #include "types.h"
 
 struct UnkFadeListener {

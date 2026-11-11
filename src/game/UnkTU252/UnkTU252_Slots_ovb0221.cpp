@@ -1,6 +1,7 @@
 // Unit 252 (0x71001bdeac-0x71001c071c, no reflected class): the slot `index` of the slot array (16-byte elements:
 // a word and a flag), growing it with empty slots when it is past the end (base::UnkVector::GrowAt; the original
 // shape of src/engine/UnkUnit252/UnkUnit252_SetSlotFlag.cpp's array). Names and layouts are placeholders.
+#include "game/UnkTU252.h"
 #include "types.h"
 
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))

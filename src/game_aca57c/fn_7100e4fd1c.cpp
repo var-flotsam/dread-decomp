@@ -6,6 +6,7 @@
 #include "base/UnkCloneRecords.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2563.h"
 #include "types.h"
 
 using base::global::UnkStringData;

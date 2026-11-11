@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CAttack.h"
+#include "game/CChozoWarriorAttack.h"
 #include "game/CGunComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"

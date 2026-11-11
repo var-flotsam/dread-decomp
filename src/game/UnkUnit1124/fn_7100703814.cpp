@@ -1,6 +1,7 @@
 // From unit 1124 of tools/tu_map.py (0x710070368c-0x7100703cf4, no reflected class): the constructor
 // of a 0xb0-byte object with an id at +0x10 and an embedded object (its own vtable) at +0x70; the rest
 // is cleared, with 2 and 1 at +0x28 and +0x2c. Names and layouts are placeholders.
+#include "game/UnkTU1124.h"
 #include "game/behaviortree/CSwitchBetweenAIModesAction.h"
 #include "types.h"
 

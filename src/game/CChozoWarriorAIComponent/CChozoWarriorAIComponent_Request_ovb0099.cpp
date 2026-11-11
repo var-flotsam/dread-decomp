@@ -1,6 +1,7 @@
 // CChozoWarriorAIComponent unit (tools/tu_map.py). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CChozoWarriorAIComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "../../game_s2/UnkSpitSend.h"

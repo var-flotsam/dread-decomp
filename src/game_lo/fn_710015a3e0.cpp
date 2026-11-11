@@ -1,6 +1,7 @@
 // Sets a global flag; when it changes, also sets two other global flags and calls a global
 // function pointer for each of the eight slots 0-7 of a global object with the new value.
 #include "game/UnkGraphicsState.h"
+#include "game/UnkTU177.h"
 #include "types.h"
 
 void fn_710015a3e0(bool value) {

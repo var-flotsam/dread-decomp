@@ -3,6 +3,7 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/UnkTU2201.h"
 #include "types.h"
 
 using base::global::CStrId;

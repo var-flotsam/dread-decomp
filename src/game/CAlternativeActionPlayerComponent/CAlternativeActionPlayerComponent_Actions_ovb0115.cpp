@@ -10,6 +10,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CAlternativeActionPlayerComponent.h"
 #include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"

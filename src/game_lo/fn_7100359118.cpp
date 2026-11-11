@@ -4,6 +4,7 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/UnkTU437.h"
 #include "types.h"
 
 extern char g_unk_7101aa9b20[];  // vtable

@@ -1,6 +1,7 @@
 // For every active entry whose target matches the given id, asks the manager to fade it out over
 // the given time, or over the entry's own time when the given time is negative.
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkReflValue.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 #include "game/sound/CMusicManager.h"

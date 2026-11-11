@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCollisionComponent.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkGameManager.h"
 #include "types.h"

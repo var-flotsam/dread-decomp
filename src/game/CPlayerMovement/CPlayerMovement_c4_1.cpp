@@ -1,6 +1,7 @@
 // CPlayerMovement unit: resetting the player's movement state.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/UnkTU2689.h"
 #include "types.h"
 
 struct UnkPlayerMovement_c4;

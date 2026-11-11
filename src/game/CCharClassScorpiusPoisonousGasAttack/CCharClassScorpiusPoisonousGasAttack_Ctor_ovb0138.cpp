@@ -5,6 +5,7 @@
 // first when there is none), then the attack's name, "PoisonousGas", at +0xc8. Names and layouts are
 // placeholders.
 #include "base/global/CStrId.h"
+#include "game/CCharClassScorpiusPoisonousGasAttack.h"
 #include "types.h"
 
 using base::global::UnkStrId;

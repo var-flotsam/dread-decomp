@@ -2,6 +2,7 @@
 // repeats at other addresses: fn_710012431c.
 // Resolve a 32-bit handle to a 0x48-byte pool slot; the slot index lives in
 // bits 16..30 of the handle.
+#include "game/UnkTU109.h"
 #include "types.h"
 
 struct UnkStruct_0x48 {

@@ -5,6 +5,7 @@
 // Holds fn_71001bab30 and the frustum's update, fn_71001b83f8.
 #include "game/UnkTU204.h"
 #include "game/UnkTU225.h"
+#include "game/UnkTU244.h"
 #include "game/UnkTU308.h"
 #include "types.h"
 

@@ -4,6 +4,7 @@
 
 #include "base/reflection/UnkReflAttributes.h"  // g_unk_7101d470e0, the shared id
 #include "game/CCharClassComponent.h"
+#include "game/CCharClassLifeComponent.h"
 #include "types.h"
 
 // A pooled string's record with a plain reference count (CStrId.h makes the count a union

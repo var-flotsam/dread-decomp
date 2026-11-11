@@ -1,5 +1,6 @@
 // Destructor of three string ids (released in reverse order). Three identical copies.
 #include "base/UnkDestructors.h"
+#include "game/CChozoCommanderKiGrabAttack.h"
 #include "types.h"
 
 struct UnkStrIdTriple {

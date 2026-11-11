@@ -1,5 +1,6 @@
 // Constructor of a small record: an empty string id followed by a null/zero 8-byte field.
 #include "base/global/CStrId.h"
+#include "game/UnkTUProperty.h"
 #include "types.h"
 
 using base::global::CStrId;

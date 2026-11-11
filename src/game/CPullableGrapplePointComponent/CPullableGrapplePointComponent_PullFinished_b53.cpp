@@ -6,6 +6,7 @@
 #include "base/UnkCloneHelpers.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CFXComponent.h"
+#include "game/CPullableGrapplePointComponent.h"
 #include "types.h"
 
 struct UnkScriptCaller;

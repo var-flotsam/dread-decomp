@@ -4,6 +4,7 @@
 // +0x8), projected to 2D with fn_710007b430; the result is 0 minus the 2D minimum's y. Names and
 // layouts are placeholders.
 #include "base/math/CVector.h"
+#include "game/CCharacterMovement.h"
 #include "types.h"
 
 using base::math::CVector2D;

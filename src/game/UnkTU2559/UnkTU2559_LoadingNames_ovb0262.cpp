@@ -6,6 +6,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU2557.h"
+#include "game/UnkTU2559.h"
 #include "types.h"
 
 struct UnkLoadingScreen;

@@ -19,6 +19,7 @@
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU56.h"
 #include "types.h"

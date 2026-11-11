@@ -1,12 +1,14 @@
 // Unit 32 of tools/tu_map.py (0x71000255c4-0x7100027774, see src/base/UnkUnit32/UnkTransformNode.cpp):
 // the transform record every node embeds at +0x28 (base/UnkInitRecord_0x5c.h) and the node's
 // constructor. Names and layouts are placeholders.
+#include "base/UnkInitRecord_0x5c.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkZeroVector3.h"
 #include "game/UnkTU25.h"
+#include "game/UnkTU32.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 

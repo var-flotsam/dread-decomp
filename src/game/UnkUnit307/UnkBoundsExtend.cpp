@@ -2,6 +2,7 @@
 // (three min/max ranges at +0x8) to contain a point. A range whose minimum is not at most its maximum is
 // empty and becomes the point. Called by fn_7100212040 (src/game_s1/fn_7100212040.cpp), which
 // passes its own second argument through. Names and layouts are placeholders.
+#include "game/UnkTU307.h"
 #include "types.h"
 
 struct UnkRange {

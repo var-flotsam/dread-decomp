@@ -1,5 +1,6 @@
 // Sets an enabled flag and, when the combined "active" state (flag set and the linked
 // object ready) changes, calls the matching activate/deactivate virtual.
+#include "game/CActorComponent.h"
 #include "types.h"
 
 struct UnkStruct_710024fa0c_Link {

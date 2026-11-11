@@ -1,5 +1,6 @@
 // tools/tu_map.py unit 182 (no class hint): a render target's description filled in by its format;
 // each format kind has its own filler. Names are placeholders.
+#include "game/UnkTU182.h"
 #include "types.h"
 
 struct UnkRenderTargetSlot;

@@ -3,6 +3,7 @@
 // (+0x2e8) to the all-flags mask, as src/game/CShelmitAIComponent/CShelmitAIComponent_Timeline_b59.cpp.
 // Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CGooshockerAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkTimelineCalls.h"
 #include "types.h"

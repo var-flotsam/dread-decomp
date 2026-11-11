@@ -7,6 +7,7 @@
 #include "base/UnkErasedVector.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCutsceneComponent.h"
 #include "types.h"
 
 using base::global::CStrId;

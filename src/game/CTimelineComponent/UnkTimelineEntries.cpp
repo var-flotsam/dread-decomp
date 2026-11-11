@@ -3,6 +3,7 @@
 // src/game/CActorComponent/fn_71002519a8.cpp). Names and the layout are placeholders.
 #include "base/UnkCloneCalls.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 struct UnkTimelineEntry {

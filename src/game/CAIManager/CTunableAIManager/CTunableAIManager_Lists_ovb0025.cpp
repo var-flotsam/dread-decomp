@@ -11,6 +11,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAIManager/CTunableAIManager.h"
 #include "game/CActorComponent.h"
 #include "game/CAnimationComponent.h"
 #include "game/UnkGameManager.h"

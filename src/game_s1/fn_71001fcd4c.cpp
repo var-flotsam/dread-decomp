@@ -4,6 +4,7 @@
 // The arguments between the array and the id reach the handlers untouched (fn_7100202eb0 hands x2-x4
 // on to fn_71001ef660; tools/forwarded_args.py --calls).
 #include "base/reflection.h"
+#include "game/UnkTU280.h"
 #include "types.h"
 
 struct UnkItem {

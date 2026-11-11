@@ -6,6 +6,7 @@
 
 #include "base/UnkDefaultAllocator.h"
 #include "base/UnkVector.h"
+#include "game/operator_new.h"
 
 using base::UnkDefaultAllocator;
 

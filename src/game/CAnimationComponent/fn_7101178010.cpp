@@ -1,5 +1,6 @@
 // Passes a flag to the object of the track whose name hash is `key` (fn_710070d884), if there is such
 // an entry with an object; the lookup is fn_7101177cac's (src/game/CAnimationComponent/fn_710117af10.cpp).
+#include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 

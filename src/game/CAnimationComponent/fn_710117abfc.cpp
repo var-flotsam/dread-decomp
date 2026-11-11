@@ -1,6 +1,7 @@
 // Adds `id` to (fn_710002fd10) or removes it from (fn_710002ffb4) the key list at +0xb0 of the object
 // of the track whose name hash is `key`, if there is such an entry with an object; the lookup is
 // fn_7101177cac's (src/game/CAnimationComponent/fn_710117af10.cpp).
+#include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGuiRoot.h"
 #include "types.h"

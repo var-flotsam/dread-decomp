@@ -1,4 +1,5 @@
 // Forwards a request record (unless its id is -1) with the entry found by key and the default all-bits mask.
+#include "game/CAnimationComponent.h"
 #include "types.h"
 
 struct UnkEntry_7101176ea8 {

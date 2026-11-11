@@ -6,6 +6,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CCameraCtrl.h"
 #include "game/CGameObject.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU0.h"

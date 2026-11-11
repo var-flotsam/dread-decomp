@@ -2,6 +2,7 @@
 // current value to the target (optionally scaled by the previous value), otherwise it jumps
 // there. Unless muted, a listener is then told the value now at +0xec (the transition's start,
 // or the new value).
+#include "game/UnkTU101.h"
 #include "types.h"
 
 struct UnkListener_7100105d34;

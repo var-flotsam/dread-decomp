@@ -16,6 +16,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CActorComponent.h"
 #include "game/CComponent.h"
+#include "game/CGrabComponent.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"

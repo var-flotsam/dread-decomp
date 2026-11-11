@@ -3,6 +3,7 @@
 // +0xc0 object, removes the id vf_0xe8 returns and sets the id vf_0xd8 returns to the all-flags mask.
 // Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CAbility.h"
 #include "game/UnkActor.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"

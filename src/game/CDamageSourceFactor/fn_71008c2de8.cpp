@@ -1,6 +1,7 @@
 // Returns the multiplier for a set of damage-type flags from a table of factors: the first
 // flag tested that is set selects its factor (some have a variant for flag 0x100 when one of
 // the flags 0x400 / 0x8000000 is also set); 1.0 when none applies.
+#include "game/CDamageSourceFactor.h"
 #include "types.h"
 
 struct UnkStruct_71008c2de8 {

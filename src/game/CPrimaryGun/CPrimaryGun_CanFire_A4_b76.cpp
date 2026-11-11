@@ -4,6 +4,7 @@
 // src/game/CAbilityEnergyWave/CAbilityEnergyWave_HasCentralUnitEnergy_A2_b71.cpp tests it); otherwise the result
 // of fn_7100835a14. Names and layouts are placeholders.
 #include "game/CGun.h"
+#include "game/CPrimaryGun.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"

@@ -3,6 +3,7 @@
 // (src/game/UnkUnit223/fn_710019c4fc.cpp); and its blend mode (fn_710019dbf4). Names and layouts are
 // placeholders.
 #include "base/color/CColor4F.h"
+#include "game/UnkTU223.h"
 
 struct UnkColorLayer224 {
     u8 pad_0x0[0x150];

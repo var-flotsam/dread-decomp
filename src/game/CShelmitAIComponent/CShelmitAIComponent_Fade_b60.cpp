@@ -5,6 +5,7 @@
 // (+0x138, fn_71001c2764). Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/math/CVector4D.h"
+#include "game/CShelmitAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkSlots.h"
 #include "game/UnkTimelineComponent.h"

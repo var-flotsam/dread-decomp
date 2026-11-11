@@ -1,6 +1,7 @@
 // Picks one of three tunable values at random: the three floats at +0xf4, +0xf8 and +0xfc of the
 // object the owner's accessor (vtable slot 0xd8 of the object at +0x29ee0) returns, chosen by
 // rand() & 0x7fff modulo 3.
+#include "game/UnkTU811.h"
 #include "types.h"
 
 struct UnkTunables {

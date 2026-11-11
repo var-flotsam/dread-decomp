@@ -1,6 +1,7 @@
 // Unit 2550 of tools/tu_map.py (no reflected class): a constructor that only sets defaults: two
 // cleared words, -1, the floats 0.01, 3.5, 0.2, 1, 1, -1, 1, 1, 1, 0.8, 3.5, 0.2, 16.3, 13.7, 1 and
 // 5, a set flag and two cleared ones. Names and the layout are placeholders.
+#include "game/UnkTU2550.h"
 #include "types.h"
 
 struct UnkUnit2550Settings_b46a3 {

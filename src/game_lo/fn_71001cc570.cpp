@@ -1,5 +1,6 @@
 // Applies three stored settings and three flags through fn_7100159660, unless both of the
 // first two flags are clear and the third setting is zero.
+#include "game/UnkTU259.h"
 #include "types.h"
 
 void fn_71001597a0(u32 value);

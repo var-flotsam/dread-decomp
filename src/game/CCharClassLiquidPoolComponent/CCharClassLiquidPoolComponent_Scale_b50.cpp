@@ -1,6 +1,7 @@
 // CCharClassLiquidPoolComponent unit (tools/tu_map.py, the name from reflection): the Y scale of the
 // actor's model (the transform at +0x38 of the object at +0x50 of its model updater, fn_7100233684),
 // kept within [0, 1]; 1 when there is no model updater. Names and layouts are placeholders.
+#include "game/CCharClassLiquidPoolComponent.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 

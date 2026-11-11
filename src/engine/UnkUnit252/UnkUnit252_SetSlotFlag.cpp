@@ -1,6 +1,7 @@
 // tools/tu_map.py unit 252 (no class hint): for a slot below 5 and below the array's count (+0xf8),
 // sets the flag +0x8 of the array element (+0xf0) that fn_71001c04bc returns. Names are
 // placeholders.
+#include "game/UnkSceneObject.h"
 #include "game/UnkTU252.h"
 #include "types.h"
 

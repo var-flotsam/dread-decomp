@@ -2,6 +2,7 @@
 // +0x3c of each listener in the list at +0xab0, and the five flags at +0xb04 when any is set. Names
 // and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CInputComponent.h"
 #include "types.h"
 
 struct UnkInputListener {

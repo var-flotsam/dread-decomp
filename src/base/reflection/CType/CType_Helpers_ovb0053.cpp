@@ -9,6 +9,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
+#include "base/reflection/CType.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"

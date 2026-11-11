@@ -1,6 +1,7 @@
 // From unit 229 of tools/tu_map.py (msapi::material::CMaterial and its state types): restoring parts
 // of a material's render state from the copy kept at +0xc0, one group per flag bit. The groups'
 // meanings are not known; names and layouts are placeholders.
+#include "game/msapi/material/SAlpha.h"
 #include "types.h"
 
 // The render state (0x90 bytes; the live one at +0x30, the saved one at +0xc0).

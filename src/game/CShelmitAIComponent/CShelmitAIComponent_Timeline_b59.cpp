@@ -3,6 +3,7 @@
 // g_unk_710164a728) to the all-flags mask (as src/game/CKraidAIComponent/fn_7100600c98.cpp).
 // Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CShelmitAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkTimelineCalls.h"
 #include "types.h"

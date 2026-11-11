@@ -1,5 +1,6 @@
 // CBigkranXAIComponent's unit (tools/tu_map.py unit 600): sets the flag +0x55 of the part at +0x14b4c;
 // turning it on from off also clears the part's first word. Names are placeholders.
+#include "game/CBigkranXAIComponent.h"
 #include "types.h"
 
 struct UnkBigkranXPart600 {

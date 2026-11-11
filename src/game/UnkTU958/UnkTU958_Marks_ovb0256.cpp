@@ -4,6 +4,7 @@
 // layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU958.h"
 #include "game/UnkTUProperty.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"

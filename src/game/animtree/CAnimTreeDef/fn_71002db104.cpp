@@ -2,6 +2,7 @@
 // repeats at other addresses: fn_71002db104, fn_710058a2b8.
 // Releases two string ids of an object, in the given order. Three objects.
 #include "base/UnkDestructors.h"
+#include "game/CGoliathXBurstProjectionBombMovement.h"
 #include "types.h"
 
 template <u32 First, u32 Second>

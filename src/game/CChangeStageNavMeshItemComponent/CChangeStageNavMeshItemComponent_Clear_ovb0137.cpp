@@ -3,6 +3,7 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CChangeStageNavMeshItemComponent.h"
 #include "types.h"
 
 // Two parallel arrays sharing a count: a list of ids for each entry (0x28-byte arrays) and an id.

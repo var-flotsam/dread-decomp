@@ -1,6 +1,7 @@
 // A function in the CCollisionComponent unit: finds the entry of the pointer array at +0x70 (count at
 // +0x78) whose key at +0x18 is the one at +0x30 of the argument's object. Names and layouts are
 // placeholders.
+#include "game/CCollisionComponent.h"
 #include "types.h"
 
 struct UnkCollisionEntry {

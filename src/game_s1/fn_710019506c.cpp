@@ -5,6 +5,7 @@
 
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU212.h"
 #include "types.h"
 
 struct UnkObject_710019506c {

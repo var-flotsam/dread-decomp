@@ -1,6 +1,7 @@
 // Returns an object to its fixed pool (0x4000 slots): clears it, releases its buffer and its
 // up to 16 child objects (each back to their own pool), then swap-removes it from the pool's
 // list of live objects. Null, an empty pool or an object not in the pool do nothing.
+#include "game/UnkTU182.h"
 #include "types.h"
 
 struct UnkFlags_7100161b90 {

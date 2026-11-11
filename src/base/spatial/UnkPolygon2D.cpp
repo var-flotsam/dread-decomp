@@ -10,6 +10,7 @@
 
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
+#include "game/UnkTU108.h"
 #include "types.h"
 
 using base::math::CVector2D;

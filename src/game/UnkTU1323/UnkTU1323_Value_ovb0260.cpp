@@ -3,6 +3,7 @@
 // placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU1323.h"
 #include "types.h"
 
 using base::global::CStrId;

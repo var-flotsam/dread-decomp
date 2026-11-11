@@ -8,6 +8,7 @@
 #include "base/UnkVector.h"
 #include "engine/UnkGraphicsSystem.h"
 #include "game/UnkGlobal_710b372a98.h"
+#include "game/UnkTU167.h"
 #include "game/UnkTU244.h"
 #include "types.h"
 

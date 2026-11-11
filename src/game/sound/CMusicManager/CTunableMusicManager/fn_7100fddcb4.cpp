@@ -5,6 +5,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/sound/CMusicManager.h"
 #include "types.h"
 
 // A string id over the given pool whose destructor decrements and then re-tests the count.

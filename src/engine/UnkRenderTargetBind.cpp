@@ -2,6 +2,7 @@
 // fn_71001587f0 starts): a set of up to 16 colour targets and a depth target goes to the
 // command buffer and is remembered as the current set. The names are placeholders.
 #include "game/UnkTU172.h"
+#include "game/UnkTU179.h"
 #include "game/UnkTU182.h"
 #include "types.h"
 

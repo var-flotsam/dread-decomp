@@ -8,6 +8,7 @@
 
 #include "base/UnkDefaultAllocator.h"
 #include "base/global/CStrId.h"
+#include "base/snd/CSoundSystem.h"
 #include "game/UnkTU101.h"
 #include "types.h"
 

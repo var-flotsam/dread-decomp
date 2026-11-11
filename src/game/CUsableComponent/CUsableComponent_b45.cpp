@@ -2,6 +2,7 @@
 // virtuals (kind 1: slot 0x1b8; 4 to 7: slots 0x198 to 0x1b0), else the empty id
 // (g_unk_7101d470e0). Names are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CUsableComponent.h"
 #include "types.h"
 
 using base::global::CStrId;

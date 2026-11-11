@@ -7,6 +7,7 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CLightsDef.h"
 #include "types.h"
 
 using base::global::UnkStringData;

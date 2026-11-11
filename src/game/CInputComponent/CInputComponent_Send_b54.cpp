@@ -3,6 +3,7 @@
 // at +0x30, with mode 1, under UnkSpitSend's kind, descriptors and mask
 // (src/game_s2/UnkSpitSend.h). Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CInputComponent.h"
 #include "types.h"
 
 struct UnkInputHashHolder_b54 {

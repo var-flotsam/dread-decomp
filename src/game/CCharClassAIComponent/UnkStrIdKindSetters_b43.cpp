@@ -6,6 +6,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/UnkNodeOwner.h"
+#include "game/CCharClassAIComponent.h"
 #include "types.h"
 
 using base::global::CRntString;

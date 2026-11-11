@@ -1,6 +1,7 @@
 // Removes a 64-bit key from the hash set at +8 (buckets indexed by the key's low 32 bits modulo
 // the bucket capacity) and appends it to the array at +0x90. Returns whether the key was there.
 #include "base/UnkVector.h"
+#include "game/UnkTU225.h"
 
 extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
 

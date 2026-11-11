@@ -1,5 +1,6 @@
 // GUI::CTutorialComposition (unit 1727 of tools/tu_map.py). Names and layouts are placeholders.
 #include "game/GUI/CArchivesInspectorComposition.h"
+#include "game/GUI/CTutorialComposition.h"
 #include "types.h"
 
 struct UnkTutorialRequest {

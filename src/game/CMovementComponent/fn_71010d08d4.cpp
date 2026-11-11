@@ -1,6 +1,7 @@
 // A setter in the CMovementComponent unit (unit 2688 of tools/tu_map.py): stores a vector at +0x1d8
 // and, when its y is above 0.001 and `start` is set, raises the flag at +0xf9 (once) through the
 // virtual at 0x260. Names and layouts are placeholders.
+#include "game/CMovementComponent.h"
 #include "types.h"
 
 struct UnkMovement_71010d08d4;

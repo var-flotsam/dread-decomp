@@ -2,6 +2,7 @@
 // part held at +0x78 the parameters 0, 6 and 7 (mode 0) or 1 (mode 1) through fn_710019c258
 // (src/game/UnkUnit223/UnkUnit223_SetParams.cpp). Like fn_71001c39c8 (unit 255). Names are
 // placeholders.
+#include "game/UnkTU254.h"
 #include "types.h"
 
 struct UnkParams223;

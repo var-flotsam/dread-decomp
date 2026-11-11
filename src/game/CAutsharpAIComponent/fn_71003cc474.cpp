@@ -3,6 +3,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CAutsharpAIComponent.h"
 #include "game/UnkTU1370.h"
 #include "types.h"
 

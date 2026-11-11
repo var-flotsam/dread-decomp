@@ -1,5 +1,6 @@
 // Unit 222 (0x710019b5ec-0x710019bd2c): a one-shot shutdown over two arrays (0x98-byte entries,
 // then the owner's child pointers). Names and layouts are placeholders.
+#include "game/UnkTU222.h"
 #include "types.h"
 
 struct UnkEntry_0x98 {

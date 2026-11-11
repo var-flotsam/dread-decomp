@@ -1,6 +1,7 @@
 // Unit 259 of tools/tu_map.py (the graphics system's unit): sets a colour from its four float
 // components (stored at +0x40-0x4c) and its packed 8-bit RGBA form at +0x50 (red in the top byte).
 // Names and layouts are placeholders.
+#include "game/UnkTU259.h"
 #include "types.h"
 
 struct UnkColorHolder_b46a1 {

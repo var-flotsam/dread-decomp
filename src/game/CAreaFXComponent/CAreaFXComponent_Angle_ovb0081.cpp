@@ -2,6 +2,7 @@
 // (CAreaFXComponent_b41.cpp, CAreaFXComponent_b52.cpp): when an angle is set (+0x414) and differs from
 // the owner's (its transform's cached angles, within 0.001 per axis), flags the owner's object at
 // +0x240 (+0x16e6) and turns the owner (vtable slot 0xd8). Names and layouts are placeholders.
+#include "game/CAreaFXComponent.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 

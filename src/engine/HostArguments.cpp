@@ -10,6 +10,7 @@
 #include <nn/os.h>
 
 #include "base/reflection.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2550.h"
 #include "game/UnkTU2557.h"
 #include "game/UnkTU2578.h"

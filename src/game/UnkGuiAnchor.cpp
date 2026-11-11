@@ -7,6 +7,7 @@
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "base/tunable/CTunable.h"
+#include "game/UnkTU2755.h"
 #include "types.h"
 
 using base::math::CVector2D;

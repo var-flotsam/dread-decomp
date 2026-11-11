@@ -4,6 +4,7 @@
 #include "base/UnkVector.h"
 #include "game/UnkTU177.h"
 #include "game/UnkTU179.h"
+#include "game/UnkTU259.h"
 #include "types.h"
 
 struct UnkPair_71001cdba4 {

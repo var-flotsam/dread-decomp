@@ -1,6 +1,7 @@
 // Sets an interpolated integer of the block (at +0x64) from a level converted through
 // fn_710010aaa0, capped at 16000 (-1 also meaning 16000): with a zero time it jumps there and
 // tells the listener the new value, otherwise it starts a transition from the current value.
+#include "game/UnkTU101.h"
 #include "types.h"
 
 struct UnkListener_7100105f94;

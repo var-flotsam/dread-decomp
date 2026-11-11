@@ -4,6 +4,7 @@
 // (base/math/UnkSegment2D.h) and hands back one word of it: the first leg its first word, the last
 // leg its third. Names and layouts are placeholders.
 #include "base/math/UnkSegment2D.h"
+#include "game/UnkTU2702.h"
 
 using base::math::CVector2D;
 
