@@ -152,6 +152,23 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Independent maintenance review and the owner's decisions (2026-11-11).** A reviewing session rebuilt and
+rechecked `main` at `bdbc0337` from an empty cache (`check.py` passes: `O` 94,688, `m` 461, `M` 13, `W` 1) and
+recomputed the numbers: 66.83% of the game's code matches, 43.76% of the boot slice; hand-written `O` code is
+3.38 MB, 18.0% of the game's code, 1.93 MB of it in agent-batch files; `U` is 5.72 MB, 4.74 MB of it in functions
+over 600 bytes. Its report is outside the repository. Findings to know when working here:
+- `check.py` does not compare the contents of string literals or compiled constant tables, and does not verify a
+  callee or static whose name is not address-based (16,097 such references in hand-written matches). A changed
+  string, a changed lookup table and two swapped callees under made-up names all still graded MATCH. Eleven wrong
+  string references were corrected in #352; `src/flag_id/fn_710037415c.cpp` keeps one.
+- Hand-written `.cpp` files define 18,992 structs, 10,952 with a batch id in the name, against 418 in `include/`;
+  copies of declarations went from 4,874 to 9,308 between 2026-11-09 and 11-11 while `decl_check --base` passed.
+- The owner decided: the repository is public on purpose; decompilation is complete when every function is
+  hand-written, readable and byte-matching, with generated and equivalent code as stepping stones; a template family
+  counts once its template reads as source; `nn::atk` is decompiled (#353); bulk agent runs are on hold until the
+  content check and generated class and declaration headers exist (`CLAUDE.md`, "Purpose"; `docs/HANDOFF.md`,
+  "Direction").
+
 **Barrier convention (2026-11-10).** The owner allowed the empty memory barrier `asm volatile("" ::: "memory")`
 next to the register form `asm("" : "+r"(x))`, which until now was the only one named. 23 files already used the memory
 form, and #344's fn_71010d78e4 matched with it. Neither form emits an instruction or changes behaviour, and the

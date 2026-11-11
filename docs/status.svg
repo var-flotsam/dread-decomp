@@ -2,14 +2,14 @@
 <text class="h" x="0" y="22">Decompilation</text>
 <text class="l" x="0" y="49" dy="0.35em">Whole binary</text>
 <rect class="t" x="180" y="43" width="340" height="12" rx="6"/>
-<rect class="m" x="180" y="43" width="214.3" height="12" rx="6"/>
-<rect class="o" x="180" y="43" width="205.8" height="12" rx="6"/>
-<text class="n" x="534" y="49" dy="0.35em">60.5% matching · 63.0% usable</text>
+<rect class="m" x="180" y="43" width="235.9" height="12" rx="6"/>
+<rect class="o" x="180" y="43" width="227.2" height="12" rx="6"/>
+<text class="n" x="534" y="49" dy="0.35em">66.8% matching · 69.4% usable</text>
 <text class="l" x="0" y="79" dy="0.35em">Boot path</text>
 <rect class="t" x="180" y="73" width="340" height="12" rx="6"/>
-<rect class="m" x="180" y="73" width="154.0" height="12" rx="6"/>
-<rect class="o" x="180" y="73" width="118.8" height="12" rx="6"/>
-<text class="n" x="534" y="79" dy="0.35em">34.9% matching · 45.3% usable</text>
+<rect class="m" x="180" y="73" width="184.6" height="12" rx="6"/>
+<rect class="o" x="180" y="73" width="148.8" height="12" rx="6"/>
+<text class="n" x="534" y="79" dy="0.35em">43.8% matching · 54.3% usable</text>
 <text class="h" x="0" y="116">PC port</text>
 <text class="l" x="0" y="143" dy="0.35em">Lifts, every U function</text>
 <rect class="t" x="180" y="137" width="340" height="12" rx="6"/>
@@ -26,7 +26,7 @@
 <text class="l" x="0" y="263" dy="0.35em">Semantic lifts, real boot to the title screen</text>
 <text class="s" x="180" y="263" dy="0.35em">Every function the boot enters before the title screen has an accepted lift</text>
 <text class="l" x="0" y="293" dy="0.35em">Port, Linux executable</text>
-<text class="s" x="180" y="293" dy="0.35em">Reaches the frame loop: all 10 boot milestones, first frame done, 2,165 lifts, no crash in 900 s</text>
+<text class="s" x="180" y="293" dy="0.35em">Boots into gameplay</text>
 <text class="l" x="0" y="323" dy="0.35em">Port M2 (graphics)</text>
 <text class="s" x="180" y="323" dy="0.35em">Shim complete for the start-up</text>
 <text class="l" x="0" y="353" dy="0.35em">Windows</text>
