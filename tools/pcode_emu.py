@@ -697,6 +697,7 @@ class Machine:
         self.steps = 0
         self.scale = 1  # MAX_STEPS, MAX_EVENTS and MAX_SNAPSHOT times this (port_lift raises it to retry a cut-off run)
         self.visited: set[int] = set()
+        self.outcomes: set[tuple[int, bool]] = set()  # (address of a conditional branch, taken)
         for a, v in preset.items():
             self.store(a, 1, v, track=False)
         self.own = lift.data if lift else (0, 0)
@@ -1404,6 +1405,11 @@ class Machine:
                     # tail call is the same word before its relocation, lift.branch.)
                     self.finish("hang")
                     return
+                if (w & 0xFF000010) == 0x54000000 or (w & 0x7C000000) == 0x34000000:
+                    # Which way each conditional branch went (b.cond, cbz/cbnz, tbz/tbnz): for a caller
+                    # that wants both ways of every branch run before it trusts an agreement, as
+                    # `visited` says which instructions ran.
+                    self.outcomes.add((pc, kind == "jump"))
                 if ((w & 0xFF000010) == 0x54000000 or (w & 0x7C000000) == 0x34000000) \
                         and (kind != "jump" or self.inside(target)):
                     # b.cond, cbz/cbnz/tbz/tbnz within the function: what was written for an unknown
