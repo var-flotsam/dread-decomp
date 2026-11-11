@@ -2,11 +2,10 @@
 // camera-controller base constructor (fn_7100763ed4), sets the vtable (g_unk_7101a89a80), clears its own
 // fields (-1 at +0x2a8) and sets three base fields. Names and layouts are placeholders.
 #include "game/CCameraBoundaryCtrl.h"
+#include "game/CRailCameraCtrl.h"
 #include "types.h"
 
 struct UnkStruct_7100763ed4;
-
-extern void* g_unk_7101a89a80[];  // vtable
 
 struct UnkRailCameraCtrl_A5_b73 {
     void* vtable;

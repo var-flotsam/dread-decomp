@@ -3,11 +3,10 @@
 // at 0x18, the bytes 0x20 and 0x21 set and a cleared pointer at 0x28. Names are placeholders.
 #include "base/core/CBaseObject.h"
 #include "base/global/CStrId.h"
+#include "game/CActorComponentDef.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-extern char g_unk_7101a20ba8[];
 
 struct UnkComponentDefEntry {
     void* vtable;

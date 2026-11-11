@@ -49,7 +49,6 @@ void fn_7101132a20(UnkSpawnIdList_ovb0171* self, u32 n) {
 }
 
 struct UnkManager_7100863a8c;
-extern UnkManager_7100863a8c* g_unk_71726a4788;
 void fn_7100d46804(UnkManager_7100863a8c* self);
 
 struct UnkSpawnCollider_ovb0171 {
@@ -147,7 +146,6 @@ struct UnkCameraHolder_ovb0171 {
     base::UnkRefHandle handle;
 };
 
-extern void* g_unk_7101a20998[];
 extern void* g_unk_7101cb2880[];
 
 // The callback set behind the camera's lazily resolved handle: callbacks at +0x8, the state at

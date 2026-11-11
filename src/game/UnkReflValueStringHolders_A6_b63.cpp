@@ -4,12 +4,11 @@
 // vtable (g_unk_7101a9cd68) and destroys its reflected value at +0x18 (fn_71000a1c60). Names and layouts are placeholders.
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU1691.h"
+#include "game/UnkTU1734.h"
 #include "types.h"
 
 using base::global::CRntString;
-
-extern void* g_unk_7101a9cd68[];  // the base part's vtable
-extern char g_unk_7101aa01f0[];
 
 struct UnkValueStringHolder_A6_b63 {
     void** vtable;

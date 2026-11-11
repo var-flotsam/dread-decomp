@@ -5,13 +5,12 @@
 // placeholders.
 #include "base/UnkCountedResource.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2527.h"
 #include <new>
 
 #include "types.h"
 
 using base::global::CStrId;
-
-extern char g_unk_71727b9e30[];
 
 struct UnkResRef_b0187q {
     UnkCountedResource* ptr;

@@ -66,7 +66,6 @@ void fn_710000f750(UnkParseContext* self, void* root);
 
 // The object read and its type.
 extern base::reflection::CType g_unk_7172756e50;
-extern u8 g_unk_7172757530[];
 
 // Parses the file into the target, starting from its last entry's node.
 static inline void Parse(UnkFileReader* reader, UnkReadTarget* target) {

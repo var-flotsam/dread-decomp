@@ -5,6 +5,7 @@
 // "checkpoint" or "current" (fn_71010750e0). Names and layouts are placeholders.
 #include "../../../lib/lua/lua.h"
 #include "base/UnkVector.h"
+#include "base/file/nx/CDeviceNX.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
@@ -24,7 +25,6 @@ struct UnkStrIdHandle;
 void fn_7100ae986c(UnkStrIdHandle* self, const CStrId& id);
 bool fn_71010474f4(CBlackboard* self, const CStrId& section, const CStrId& name);
 void fn_7101048940(void* groups, const CStrId& key);
-extern void* g_unk_7101a1a070[];
 
 // The game manager's group table, after its blackboard.
 static inline void* Groups_ovb0073(UnkGameManager* manager) {

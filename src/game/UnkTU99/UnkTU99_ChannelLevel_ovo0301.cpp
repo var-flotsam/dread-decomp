@@ -10,10 +10,9 @@
 #include "base/snd/UnkSoundSystemATK.h"
 #include "base/tunable/CTunable.h"
 #include "game/UnkTU101.h"
+#include "game/UnkTU99.h"
 
 using base::snd::UnkSoundSystemATK;
-
-extern u8 g_unk_7108b6ab60 __attribute__((visibility("hidden")));
 
 // fn_71000faac4 (include/base/snd/UnkSoundSystemATK.h) under a local name whose payload parameter is
 // marked noescape, as src/base/snd/CSoundSystemATK/CSoundSystemATK_Setters.cpp does.

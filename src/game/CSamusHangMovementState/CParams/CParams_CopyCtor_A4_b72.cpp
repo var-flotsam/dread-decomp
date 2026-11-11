@@ -2,9 +2,9 @@
 // counterparts of the copy-assignment in fn_71009a3048.cpp. The base part (vtable g_unk_7101a22cb8) is copied
 // first, then the derived vtable (g_unk_7101a22c88) is stored after its first fields and the rest copied; the last word of the segment at
 // +0x84 is not copied but reset to -1. Names and layouts are placeholders.
+#include "game/CAbilityGhostAura.h"
 #include "types.h"
 
-extern void* g_unk_7101a22cb8[];
 extern void* g_unk_7101a22c88[];
 
 struct UnkHangParams_A4_b72 {

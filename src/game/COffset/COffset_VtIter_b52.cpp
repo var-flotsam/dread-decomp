@@ -6,8 +6,8 @@
 #include "UnkClone.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU936.h"
 
-extern char g_unk_7101a56178[];
 void fn_7100617f20(void* it);
 
 struct UnkOffsetElemTag_b52;

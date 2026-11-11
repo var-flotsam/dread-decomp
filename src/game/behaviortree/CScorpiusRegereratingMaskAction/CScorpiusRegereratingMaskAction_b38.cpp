@@ -3,6 +3,7 @@
 // listening (the link at +0x38) through the weak handle at +0x50 and resets the tunable value at
 // +0xac of g_unk_7172790a08 to 1. Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
+#include "game/CCharClassTweakPlayRateTrack.h"
 #include "game/UnkActor.h"
 #include "game/UnkBehaviorTree.h"
 #include "game_s2/UnkParams.h"
@@ -38,7 +39,6 @@ struct UnkMaskTunable {
 };
 
 struct UnkGlobal2;
-extern UnkGlobal2 g_unk_7172790a08;
 
 struct UnkMaskAction {
     u8 pad_0x0[0x18];

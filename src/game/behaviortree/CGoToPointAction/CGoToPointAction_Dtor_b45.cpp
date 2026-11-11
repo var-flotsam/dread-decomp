@@ -4,10 +4,9 @@
 // layouts are placeholders.
 #include "base/UnkDestructors.h"
 #include "game/behaviortree/CBaseAction.h"
+#include "game/behaviortree/CGoToPointAction.h"
 #include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
-
-extern void* g_unk_7101a25e50[];  // the node's vtable
 
 // As src/game/navmesh/SNavMeshPath/fn_71002ad0dc.cpp defines it.
 struct UnkObject_71002ad0dc;

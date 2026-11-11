@@ -5,10 +5,9 @@
 // placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU65.h"
 #include "types.h"
 
-extern void* g_unk_7101a1b058[];                                    // the pack's vtable
-extern s32 g_unk_7101d5954c __attribute__((visibility("hidden")));  // the next pack serial number
 void fn_710008c91c(char* reader);
 void fn_710008c85c(char* reader);
 

@@ -10,6 +10,7 @@
 #include "base/global/CStrId.h"
 #include "game/UnkGlobal_710b372a98.h"
 #include "game/UnkSphere.h"
+#include "game/UnkTU211.h"
 #include "game/UnkTU221.h"
 #include "game/UnkTU228.h"
 #include "game/UnkTU308.h"
@@ -22,7 +23,6 @@ using base::global::CStrId;
 // declarations are src/base/spatial/UnkDecalProjector.cpp's, which sees the same resources).
 struct UnkDecalResource;
 struct UnkDecalResourceMgr;
-extern UnkDecalResourceMgr* g_unk_716e352450;
 UnkDecalResource* fn_710019ffe8(UnkDecalResourceMgr* mgr, const CFilePathStrId* path, bool flag);
 struct UnkBillboardMaterial {
     u8 pad_0x0[0x20];

@@ -6,6 +6,7 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/UnkTU204.h"
 #include "game/UnkTU225.h"
 #include "game/UnkTU226.h"
 #include "types.h"
@@ -13,7 +14,6 @@
 extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
 
 struct UnkKeyOwner;
-extern void* g_unk_716e34c2e0;
 void fn_7100195680(void* self);
 void fn_7100196480(void* self);
 

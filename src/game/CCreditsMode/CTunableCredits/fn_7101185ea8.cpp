@@ -4,6 +4,7 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/CCreditsMode/CTunableCredits.h"
 #include "types.h"
 
 struct UnkRefObj {
@@ -36,9 +37,6 @@ struct UnkNode {
     u64 field_0x0;
     UnkNode* next;
 };
-
-extern void* g_unk_7101cb4ef8[];
-extern void* g_unk_7101cb5010[];
 
 struct UnkNodeList_0x40 {
     void** vtable;

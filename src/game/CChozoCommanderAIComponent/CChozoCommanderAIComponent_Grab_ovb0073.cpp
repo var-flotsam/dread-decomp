@@ -6,6 +6,8 @@
 #include "base/UnkVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CCharClassLifeComponent.h"
 #include "game/CComponent.h"
 #include "game/CShotManager/CTunableShotManager.h"
 #include "game/UnkActor.h"
@@ -122,9 +124,7 @@ template <u32 Offset>
 struct UnkSmGrab_A1_b64;
 void fn_7100440f5c(UnkSmGrab_A1_b64<0x88>*);
 void fn_71004330cc(void* attack);
-extern void* g_unk_71726af0b0;
 struct UnkGroupIds;
-extern UnkGroupIds g_unk_717272fd38;
 
 class UnkCommanderAttack_ovb0073 {
 public:

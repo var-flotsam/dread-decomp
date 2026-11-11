@@ -1,14 +1,12 @@
 // Guarded initialisers of global ids (inline variables), copies of fn_7100464520: each constructs
 // its id once and registers its destructor to run at exit.
+#include "game/UnkTU1091.h"
+#include "game/UnkTU881.h"
 #include "game/UnkTUInit.h"
 
 extern "C" int __cxa_guard_acquire(u64* guard);
 extern "C" void __cxa_guard_release(u64* guard);
 
-extern u64 g_unk_71726eb3d8;
-extern u8 g_unk_71726eb3d0[];
-extern u64 g_unk_717270aea8;
-extern u8 g_unk_717270aea0[];
 extern u64 g_unk_717272d618;
 extern u8 g_unk_717272d610[];
 

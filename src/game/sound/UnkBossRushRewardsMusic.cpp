@@ -7,6 +7,8 @@
 #include "../../game_aca57c/UnkBufferString.h"
 #include "base/UnkNamedRegistry.h"
 #include "base/global/CRntString.h"
+#include "game/UnkTU1691.h"
+#include "game/UnkTU1734.h"
 #include "game/UnkTU2725.h"
 #include "types.h"
 
@@ -106,12 +108,6 @@ struct UnkBossRushRewards : UnkMusicTriggerBase {
 static_assert(__builtin_offsetof(UnkBossRushRewards, part2) == 0x270, "UnkBossRushRewards layout");
 static_assert(__builtin_offsetof(UnkBossRushRewards, part3) == 0x3d8, "UnkBossRushRewards layout");
 static_assert(sizeof(UnkBossRushRewards) == 0x558, "UnkBossRushRewards layout");
-
-extern char g_unk_7101aa00d8[];  // the trigger's vtable
-extern char g_unk_7101a9cdc0[];  // the part list's
-extern char g_unk_7101aa0190[];  // the parts'
-extern char g_unk_7101aa01f0[];
-extern char g_unk_7101aa0250[];
 
 inline void UnkRewardsPartList::Add(UnkRewardsPart* part) {
     UnkRewardsPartPtr* end = parts + count;

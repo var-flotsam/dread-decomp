@@ -3,12 +3,11 @@
 // Names and layouts are placeholders.
 #include "base/core/CBaseObject.h"
 #include "game/CCameraBoundaryCtrl.h"
+#include "game/CRailCameraCtrl.h"
 #include "types.h"
 
 struct UnkStruct_7100763ed4;
 struct UnkNode;
-
-extern void* g_unk_7101a89a80[];  // vtable
 
 struct UnkRailCameraCtrl_ovb0049 {
     void* vtable;

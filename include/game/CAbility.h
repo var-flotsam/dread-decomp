@@ -1,6 +1,6 @@
 #pragma once
 
-// CAbility: functions of this translation unit that other files call (tools/tu_map.py unit 427,
+// CAbility: functions and globals of this translation unit that other files use (tools/tu_map.py unit 427,
 // 0x71002f8194-0x71002facc0). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
@@ -18,3 +18,4 @@ void fn_71002fa070(UnkSmAbility3_A2_b63*);
 void fn_71002f9f18(UnkSmLockon_A1_b64*, s32 kind);
 void fn_71002fa068(UnkSmLockon_A1_b64* self);
 void fn_71002fa2bc(UnkOpticAbility_ovb0059* self);
+extern void* g_unk_7101a223f8[];  // CAbility's vtable.

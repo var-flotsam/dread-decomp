@@ -8,6 +8,15 @@
 // g_unk_<addr> + 0x10 (the second base's further on). Names and layouts are placeholders.
 #include "base/UnkCountedResource.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU116.h"
+#include "game/UnkTU125.h"
+#include "game/UnkTU127.h"
+#include "game/UnkTU128.h"
+#include "game/UnkTU129.h"
+#include "game/UnkTU130.h"
+#include "game/UnkTU131.h"
+#include "game/UnkTU133.h"
+#include "game/UnkTU140.h"
 #include "game/UnkTU32.h"
 #include "types.h"
 
@@ -49,9 +58,6 @@ static inline void DestroyResetSub(UnkTaggedHeader* self) {
     ReleaseTagged(self);
 }
 
-extern char g_unk_7101a1c030[];
-extern char g_unk_7101a1c1b8[];
-extern char g_unk_7101a1c4a8[];
 void fn_7100142c0c(UnkTaggedHeader* self) { DestroyResetSub<g_unk_7101a1c030>(self); }
 void fn_7100142c7c(UnkTaggedHeader* self) {
     DestroyResetSub<g_unk_7101a1c030>(self);
@@ -91,7 +97,6 @@ void fn_7100145780(UnkTaggedHeader* self) {
 }
 
 // Unit 140: the member at +0x138.
-extern char g_unk_7101a1cbe8[];
 void fn_71001faf68(void* sub);
 
 static inline void DestroyUnit140(UnkTaggedHeader* self) {
@@ -112,7 +117,6 @@ void fn_71001480ac(UnkTaggedHeader* self) {
 // ---- two bases ----
 
 // Unit 116 (second vtable + 0x1d0): the member at +0x1c0, then the sub-object.
-extern char g_unk_7101a1be28[];
 void fn_71001f4efc(void* sub);
 
 static inline void DestroyUnit116(UnkTaggedHeader* self) {
@@ -137,7 +141,6 @@ void fn_7100140dc8(void** base2) {
 
 // Unit 133 (second vtable + 0x1d0): the object the pointer at +0x130 holds, the member at +0x168,
 // then the sub-object.
-extern char g_unk_7101a1c7d8[];
 void fn_71001c08dc(void* object);
 void fn_7100207258(void* sub);
 
@@ -190,7 +193,6 @@ struct UnkTaggedClass {
 };
 
 // Unit 127.
-extern char g_unk_7101a1c170[];
 void fn_710020d334(void* sub);
 void fn_710020d1bc(void* sub);
 using UnkTagged127 = UnkTaggedClass<g_unk_7101a1c170, 0, fn_710020d334, 0x140, fn_710020d1bc>;
@@ -198,7 +200,6 @@ void fn_71001433bc(UnkTaggedHeader* self) { UnkTagged127::Destroy(self); }
 void fn_7100143434(UnkTaggedHeader* self) { UnkTagged127::Delete(self); }
 
 // Unit 129.
-extern char g_unk_7101a1c2f8[];
 using UnkTagged129 = UnkTaggedClass<g_unk_7101a1c2f8, 0x178, fn_710020c63c, 0x148, fn_710020c4dc>;
 void fn_7100144244(UnkTaggedHeader* self) { UnkTagged129::Destroy(self); }
 void fn_71001442c4(void** base2) { UnkTagged129::Destroy(FromSecondBase(base2)); }
@@ -206,7 +207,6 @@ void fn_7100144344(UnkTaggedHeader* self) { UnkTagged129::Delete(self); }
 void fn_71001443d0(void** base2) { UnkTagged129::Delete(FromSecondBase(base2)); }
 
 // Unit 131.
-extern char g_unk_7101a1c5e8[];
 void fn_7100205d98(void* sub);
 void fn_7100205ca0(void* sub);
 using UnkTagged131 = UnkTaggedClass<g_unk_7101a1c5e8, 0, fn_7100205d98, 0x138, fn_7100205ca0>;

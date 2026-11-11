@@ -11,6 +11,7 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CGrabComponent.h"
 #include "game/UnkTU108.h"
 #include "game/UnkTU109.h"
@@ -131,7 +132,6 @@ struct __attribute__((packed)) UnkHitRecord {
     UnkRefObject* field_0x8;
     u8 pad_0x10[0x38];
 };
-extern void* g_unk_7101a23478[];
 
 static inline void ReleaseRef(UnkRefObject* p) {
     if (p && --p->ref_count == 0)

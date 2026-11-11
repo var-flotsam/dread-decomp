@@ -6,11 +6,11 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/CCharClassBehaviorTreeAIComponent.h"
+#include "game/CCharClassVulkranAIComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-extern void* g_unk_7101a687e8[];
 struct UnkObject_7100416db8;
 
 struct UnkVulkranRecord_ovb0142 {

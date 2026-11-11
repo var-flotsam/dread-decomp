@@ -7,6 +7,7 @@
 
 #include "base/UnkVector.h"
 #include "game/UnkTU109.h"
+#include "game/logic/collision/CPolygonCollectionShape.h"
 #include "game/logic/collision/CShape.h"
 #include "types.h"
 
@@ -21,7 +22,6 @@ struct UnkPolygonShape_b46a3 {
 };
 
 struct UnkPolygonCollectionShape_b42a3;  // CPolygonCollectionShape_b42.cpp
-extern char g_unk_7101aa8b80[];
 
 UnkPolygonShape_b46a3* fn_7100d6350c(const UnkPolygonShape_b46a3* other) {
     auto* self = static_cast<UnkPolygonShape_b46a3*>(__builtin_operator_new(0x120));

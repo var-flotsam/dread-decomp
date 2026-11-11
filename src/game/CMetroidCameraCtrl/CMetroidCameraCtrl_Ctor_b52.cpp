@@ -5,12 +5,11 @@
 #include <cfloat>
 #include <new>
 #include "game/CCameraBoundaryCtrl.h"
+#include "game/CMetroidCameraCtrl.h"
 #include "types.h"
 
 struct UnkStruct_7100763ed4;
 void fn_710002f4e4(void*);                      // member constructor
-
-extern char g_unk_7101a83ad0[];  // vtable
 
 struct UnkMetroidCameraMember_b52 {
     u64 unk_0x0[0xb0 / 8];

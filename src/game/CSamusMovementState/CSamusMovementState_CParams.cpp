@@ -1,9 +1,8 @@
 // CSamusMovementState::CParams: its copy constructor (fn_71009b2e58). Stores the vtable, then copies the
 // members field by field, +0x10 to +0x2c as one block; the word at +0x34 is padding. Names and
 // layouts are placeholders.
+#include "game/CAbilityGhostAura.h"
 #include "types.h"
-
-extern void* g_unk_7101a22cb8[];
 
 struct UnkSamusMovementParams {
     void** vtable;

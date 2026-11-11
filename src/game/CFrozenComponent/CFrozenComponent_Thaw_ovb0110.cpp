@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"
 #include "game/CFrozenComponent.h"
 #include "game/UnkAnimationComponent.h"
@@ -158,7 +159,6 @@ void fn_71007f95b8(CFrozenComponent2* component, f32 weight) {
 }
 
 extern void* g_unk_7101a740d0[];
-extern void* g_unk_7101a22d48[];
 extern char g_unk_7101a74370[];
 extern void* g_unk_7101a743c8[];
 

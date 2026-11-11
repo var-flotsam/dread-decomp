@@ -11,12 +11,14 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/CActorComponent.h"
 #include "game/CCharacterMovement.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU1501.h"
 #include "game/UnkTU1728.h"
 #include "game/UnkTU25.h"
 #include "game/UnkTU2523.h"
@@ -41,7 +43,6 @@ struct UnkSamusSettings {
     u8 pad_0x3c[0x3c];
     bool field_0x78;
 };
-extern UnkSamusSettings g_unk_7172740de0;
 
 extern const base::global::CStrId g_unk_717273b7c0 __attribute__((visibility("hidden")));  // the slide collider's name
 extern const CStrId g_unk_717273b7b8 __attribute__((visibility("hidden")));
@@ -551,9 +552,6 @@ bool fn_71009954ec(UnkSlideState_ovb0004* self, UnkTrackTransition* out) {
 }
 
 // ---- fn_7100994c08: an event while sliding ----
-
-extern void* g_unk_7101a22cb8[];
-extern void* g_unk_7101a22d18[];
 
 struct UnkDesc16_ovb0004 {
     u64 a, b;

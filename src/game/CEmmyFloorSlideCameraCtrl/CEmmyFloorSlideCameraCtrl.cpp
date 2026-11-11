@@ -4,11 +4,11 @@
 // (fn_7100023854). Names and layouts are placeholders.
 #include "base/core/CBaseObject.h"
 #include "game/CCameraCtrl.h"
+#include "game/CEmmyFloorSlideCameraCtrl.h"
 #include "types.h"
 
 struct UnkNode;
 struct UnkBase_7100763ed4;
-extern void* g_unk_7101a72188[];
 
 struct UnkEmmyFloorSlideCameraCtrl {
     void** vtable;

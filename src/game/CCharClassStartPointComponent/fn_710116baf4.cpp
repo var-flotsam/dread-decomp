@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/UnkVector.h"
 #include "game/CCharClassBehaviorTreeAIComponent.h"
+#include "game/CCharClassShelmitAIComponent.h"
 #include "game/CCharClassSluggerSpitAttack.h"
 #include "game/GUI/CButton.h"
 #include "types.h"
@@ -61,7 +62,6 @@ struct UnkStruct_7100416e80;
 
 void fn_71006b2dc0(void* self);
 
-extern void* g_unk_7101a63ad0[];
 extern void* g_unk_7101a64f60[];
 extern void* g_unk_7101a9a200[];
 

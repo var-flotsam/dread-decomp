@@ -12,7 +12,8 @@ address (tools/data_map.py, read from data/data_map.csv).
 A symbol is planned when it is declared in more than one file with one signature, at global scope, in
 no header under include/ yet, and its types are builtin or plain structs the declaring file
 forward-declares or defines (those are forward-declared in the header). A global's copies must also be
-the same text: the signature leaves attributes out, and a visibility attribute changes the code. Left
+the same text once the macros their files define are written out (the signature leaves attributes out,
+and a visibility attribute changes the code). Left
 out, and counted: signatures that conflict, declarations inside a namespace, signatures with namespaced,
 template or function-pointer types or an asm label, globals between two units' data spans, global arrays
 of a struct type (an array needs the type's definition), a unit whose header exists and was not made by
@@ -90,6 +91,15 @@ def unit_finder(units: list[dict]):
     return find
 
 
+def spelled_out(statement: str, text: str) -> str:
+    """A declaration on one line, with the object-like macros its file defines (HIDDEN) written out, so it
+    means the same in a header."""
+    def body(m: re.Match) -> str:
+        d = re.search(rf"^[ \t]*#[ \t]*define[ \t]+{m.group(0)}[ \t]+(.+)$", text, re.M)
+        return d.group(1).strip() if d else m.group(0)
+    return " ".join(IDENT.sub(body, statement).split())
+
+
 def plan(report: decl_check.Report, files: dict[str, str], units: list[dict],
          data_unit=None) -> tuple[list[Planned], Counter]:
     """(what can move, why the rest of the multiply-declared symbols cannot). `data_unit` gives the index of
@@ -130,7 +140,7 @@ def plan(report: decl_check.Report, files: dict[str, str], units: list[dict],
             continue
         if is_global:
             address = ADDRESS.search(sym)
-            texts = {" ".join(files[d.path].replace("\r\n", "\n")[d.start:d.end].split()) for d in ds}
+            texts = {spelled_out(t[d.start:d.end], t) for d in ds for t in [files[d.path].replace("\r\n", "\n")]}
             if len(texts) != 1:
                 why["a global whose copies differ in their attributes"] += 1
                 continue
@@ -147,7 +157,7 @@ def plan(report: decl_check.Report, files: dict[str, str], units: list[dict],
             if unit is None:
                 why["in no unit"] += 1
                 continue
-        out.append(Planned(sym, f"include/{unit_dir(unit)}.h", " ".join(text[ds[0].start:ds[0].end].split()),
+        out.append(Planned(sym, f"include/{unit_dir(unit)}.h", spelled_out(text[ds[0].start:ds[0].end], text),
                            len(report.paths[sym]), types, unit))
     out.sort(key=lambda p: (-p.copies, p.symbol))
     return out, why

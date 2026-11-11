@@ -2,11 +2,11 @@
 // fn_710036a3e4 (src/game/CBehaviorTreeAIComponent/CBehaviorTreeAIComponent_Ctor_A2_b76.cpp) without the
 // class-entry pass: the base constructor (fn_71010f813c), the vtable, and the 7 bytes at +0x146ac and the 16
 // at +0x146b8 cleared. Names and layouts are placeholders.
+#include "game/CBehaviorTreeAIComponent.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
 
 struct UnkBtAI_A2_b76;
-extern void* g_unk_7101a24230[];
 
 struct UnkBtAI_ovb0016 {
     void* vtable;

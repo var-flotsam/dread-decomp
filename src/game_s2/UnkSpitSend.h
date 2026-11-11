@@ -4,6 +4,7 @@
 // (fn_7101176690): a mode, two global descriptors and an all-bits mask whose statics are guarded.
 
 #include "base/reflection/UnkReflStatics.h"
+#include "game/UnkTU1730.h"
 #include "types.h"
 
 // A small flag value whose constructors are not constexpr, so its statics are guarded.
@@ -29,7 +30,6 @@ inline const UnkMask_SpitSend& UnkAll_SpitSend() {
 
 struct UnkDesc_SpitSend;
 extern UnkDesc_SpitSend g_unk_710164b958;  // reached through the GOT
-extern UnkDesc_SpitSend g_unk_7172769740;  // reached through the GOT
 
 // Sends a request with mode 0 under the two ids.
 inline void UnkSpitSend(void* target, u64 hash, u64 kind) {

@@ -3,6 +3,7 @@
 #include "../../../game_s7/UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTUInit.h"
+#include "game/animtree/CAnimTreeRes.h"
 
 using namespace unk_static_init;
 
@@ -22,7 +23,6 @@ struct UnkStatics_71002e0370 {
 };
 extern UnkStatics_71002e0370 g_unk_71726aadc8 __attribute__((visibility("hidden")));
 extern char g_unk_71726aad40[];
-extern char g_unk_71726aad48[];
 
 void fn_71002e0370() {
     InitHeaderIds(&g_unk_71726aadc8.ids);

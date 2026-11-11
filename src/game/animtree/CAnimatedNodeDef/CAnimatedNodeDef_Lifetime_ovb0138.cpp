@@ -9,13 +9,11 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/animtree/CAnimatedNodeDef.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::UnkStrIdMember;
-
-extern void* g_unk_7101a216e8[];  // the class's vtable
-extern void* g_unk_7101a21718[];  // the base class's vtable
 
 struct UnkAnimatedNodeDef_ovb0138 {
     char* vtable;

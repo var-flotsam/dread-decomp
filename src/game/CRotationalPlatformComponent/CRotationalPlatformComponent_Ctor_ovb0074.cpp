@@ -5,12 +5,12 @@
 // +0xd0 (0, the component and the callback fn_71009d9638), then the post-construction virtual call
 // (slot 3). The fields are addressed by offset. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CCentralUnitAIComponent.h"
 #include "game/CComponent.h"
+#include "game/UnkTU341.h"
 
 struct UnkStateObject;
 extern void* g_unk_7101a89c50[];  // the component's vtables
-extern void* g_unk_7101a20998[];  // the callback list base's vtable
-extern void* g_unk_7101a33fa0[];  // the callback list's vtable
 
 struct UnkRotationalPlatform_ovb0074 {
     void** vtable;

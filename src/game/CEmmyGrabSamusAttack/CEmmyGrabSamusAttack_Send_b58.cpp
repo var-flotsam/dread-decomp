@@ -9,6 +9,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAIManager/CTunableAIManager.h"
+#include "game/CAbilityEnergyWave.h"
 #include "game/CEmmyGrabSamusAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
@@ -19,7 +20,6 @@ struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 struct UnkEmmyRegistry_b55;
-extern UnkEmmyRegistry_b55* g_unk_71726af0a8;
 
 struct UnkGrabVec_b58a3 {
     f32 x, y, z;

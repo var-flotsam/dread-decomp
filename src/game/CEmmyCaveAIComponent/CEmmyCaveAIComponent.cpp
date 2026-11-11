@@ -1,13 +1,13 @@
 // A constructor in the CEmmyCaveAIComponent unit: the base constructor fn_710053e5c0, the vtable,
 // a cleared word at +0x2a6f8, the list at +0x2a700 (fn_71004f112c), then the post-construction
 // virtual call (slot 3). Names and layouts are placeholders.
+#include "game/CEmmyCaveAIComponent.h"
 #include "game/UnkTU811.h"
 #include "types.h"
 
 // Declared as src/game/CEmmyProtoAIComponent/fn_71004faad4.cpp does.
 struct UnkComponent;
 void fn_71004f112c(void* self);
-extern void* g_unk_7101a43038[];
 
 struct UnkEmmyCaveDef {
     void** vtable;

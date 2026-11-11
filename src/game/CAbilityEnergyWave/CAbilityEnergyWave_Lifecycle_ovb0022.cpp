@@ -137,8 +137,6 @@ void fn_71002fd944(UnkEnergyWaveCtl_ovb22* self) {
 }
 
 extern void* g_unk_7101a22690[];
-extern void* g_unk_7101a22878[];
-extern void* g_unk_7101a22858[];
 void fn_7100872908(void*, void*);
 
 struct UnkEnergyWavePart_ovb22d {

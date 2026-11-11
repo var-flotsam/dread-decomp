@@ -6,18 +6,14 @@
 
 #include "base/global/CStrId.h"
 #include "game/CGameObject.h"
+#include "game/CReserveTankInfo.h"
 #include "game/UnkGameBlackboard.h"
 #include "types.h"
 
-extern char g_unk_7101caa4d0[];
 extern char g_unk_7101caa520[];
 extern char g_unk_7101caa5c0[];
 
 struct UnkDef_7100fc4b34;  // src/game_s7/fn_7100fc4b34.cpp
-extern UnkDef_7100fc4b34 g_unk_71729dbc40;
-extern UnkDef_7100fc4b34 g_unk_71729dbc80;
-extern UnkDef_7100fc4b34 g_unk_71729dbd40;
-extern UnkDef_7100fc4b34 g_unk_71729dbd80;
 
 // The view of a definition this file uses.
 struct UnkDefView_b55 : UnkIdSource {

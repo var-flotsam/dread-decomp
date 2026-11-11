@@ -6,6 +6,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
+#include "game/UnkTU341.h"
 #include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
@@ -15,7 +16,6 @@ struct UnkStatics_710024cc40 {
     u8 pad_0x18[0x18];
     u8 field_0x30[8];
 };
-extern UnkStatics_710024cc40 g_unk_717269f420 __attribute__((visibility("hidden")));
 extern char g_unk_717269a348[];
 extern char g_unk_717269a349[];
 UnkEnumType* fn_71002295ac();

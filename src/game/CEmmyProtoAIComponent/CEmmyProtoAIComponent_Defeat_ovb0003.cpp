@@ -12,6 +12,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/CChozoCommanderAIComponent.h"
+#include "game/CEmmyProtoAIComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU811.h"
 #include "types.h"
@@ -54,8 +55,6 @@ void fn_71004fc7ec(void* self, void* arg) {
     fn_7100456b7c(reinterpret_cast<u8*>(g_unk_7101d47310) + 0x2128, &message);
     fn_7100554740(self, arg);
 }
-
-extern void* g_unk_7101a45710[];
 
 void fn_71004fd510(base::UnkDeferredSet<void>* set, void* item);
 

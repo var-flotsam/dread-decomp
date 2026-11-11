@@ -18,8 +18,10 @@
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
+#include "game/UnkTU1730.h"
 #include "game/UnkTU365.h"
 #include "game/UnkTU39.h"
+#include "game/UnkTU58.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -155,7 +157,6 @@ void fn_7100979144(UnkCharacterMovement_ovb0021* self, UnkWeakTarget* target, f3
 struct UnkOwner_710027a41c;
 bool fn_710027a5f0(UnkOwner_710027a41c* self, const CVector2D* point, u16 index);
 u32 fn_710027a320(UnkNavMesh* mesh);
-extern u32 g_unk_7101d58e48;  // the current frame
 
 struct UnkCharacterMovementCell_ovb0021 {
     u8 unk_0x0[0x420];
@@ -209,7 +210,6 @@ UnkNavMeshCell* fn_7100979b30(UnkCharacterMovementCell_ovb0021* self) {
 
 // ----
 struct UnkManager_7100863a8c;
-extern UnkManager_7100863a8c* g_unk_71726a4788;
 void fn_7100d46804(UnkManager_7100863a8c* self);
 
 // The collision manager's two parallel lists that share one count: entries at +0x118, the owners they
@@ -327,7 +327,6 @@ void fn_71009765d8(UnkHeldMovement_ovb0021* self) {
 // ----
 struct UnkDesc_SpitSend;
 extern UnkDesc_SpitSend g_unk_710164b958;
-extern UnkDesc_SpitSend g_unk_7172769740;
 
 struct UnkTrackTime_ovb0021 {
     u64 key;

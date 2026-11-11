@@ -9,6 +9,8 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/UnkSphere.h"
+#include "game/UnkTU204.h"
+#include "game/UnkTU211.h"
 #include "game/UnkTU228.h"
 #include "game/UnkTU308.h"
 #include "types.h"
@@ -16,10 +18,6 @@
 using base::global::CFilePathStrId;
 
 extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
-
-// The registry of src/base/spatial/UnkFrustumCull.cpp (UnkCullRegistry there): a chained hash set of
-// pointers, buckets indexed by the key's low 32 bits modulo the capacity, and a list of all nodes.
-extern void* g_unk_716e34c2e0;
 
 struct UnkProjectorNode {
     u64 key;
@@ -80,7 +78,6 @@ struct UnkDecalResource {
     s32 field_0x18;
 };
 struct UnkDecalResourceMgr;
-extern UnkDecalResourceMgr* g_unk_716e352450;
 UnkDecalResource* fn_710019ffe8(UnkDecalResourceMgr* mgr, const CFilePathStrId* path, bool flag);
 
 // The 0x88-byte object: its resource and whether that resource's word at +0x18 is not 1.

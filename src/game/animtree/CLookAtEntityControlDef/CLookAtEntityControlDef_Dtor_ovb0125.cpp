@@ -4,6 +4,8 @@
 // its record (fn_71002e6134: the three string ids with CStrId's copy assignment, the words between them
 // copied plainly). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/animtree/CAnimatedNodeDef.h"
+#include "game/animtree/CLookAtEntityControlDef.h"
 #include <new>
 #include "types.h"
 
@@ -15,9 +17,7 @@
 using base::global::CStrId;
 using base::global::UnkStringPool;
 
-extern void* g_unk_7101a21718[];
 extern void* g_unk_7101a21af8[];
-extern void* g_unk_7101a21ef0[];
 
 struct UnkLookAtDef_ovb0125 {
     void** vtable;

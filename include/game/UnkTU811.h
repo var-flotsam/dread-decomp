@@ -1,6 +1,6 @@
 #pragma once
 
-// UnkTU811: functions of this translation unit that other files call (tools/tu_map.py unit 811,
+// UnkTU811: functions and globals of this translation unit that other files use (tools/tu_map.py unit 811,
 // 0x7100537bf0-0x710056a378). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
@@ -33,3 +33,6 @@ f32 fn_7100552e3c(UnkEmmyAI* ai);
 void fn_7100554740(void* self, void* arg);
 void fn_7100556c00(UnkEmmyAI_b0068* ai, bool pending, const UnkEmmySearchCallback_b0068* a, const UnkEmmySearchCallback_b0068* b, u32 c, void* data, const UnkEmmySearchCallback_b0068& d);
 void fn_710056a010(void* set, const void* value);
+extern char g_unk_7101a48bc0[];
+extern void* g_unk_7101a48c20[];
+extern char g_unk_71726e20a8[] __attribute__((visibility("hidden")));

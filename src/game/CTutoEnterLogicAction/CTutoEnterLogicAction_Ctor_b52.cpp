@@ -9,6 +9,8 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/CTriggerLogicAction.h"
+#include "game/CTutoEnterLogicAction.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -18,9 +20,6 @@ using base::global::UnkStringData;
 struct UnkChangeSetupLogicActionDef;
 struct UnkTutoEnterAction_b48;
 u32 fn_7100a59074(UnkTutoEnterAction_b48* self);
-extern char g_unk_7101a8f518[];
-extern void* g_unk_7101a20998[];  // the callback set's base vtable
-extern void* g_unk_7101a20950[];  // the callback set's vtable
 
 struct UnkTutoEnterCallable_b52;
 

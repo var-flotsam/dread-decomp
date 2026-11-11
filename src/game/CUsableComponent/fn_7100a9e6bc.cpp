@@ -5,7 +5,9 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/CChozoCommanderKiGrabAttack.h"
+#include "game/CPullOffGrapplePointComponent.h"
 #include "game/CTimelineComponent.h"
+#include "game/CUsableComponent.h"
 #include "game/UnkComponent.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
@@ -67,10 +69,7 @@ struct UnkStateObject : UnkBaseComponent {
 static_assert(__builtin_offsetof(UnkStateObject, states) == 0x1b0, "layout");
 static_assert(__builtin_offsetof(UnkStateObject, field_0x530) == 0x530, "layout");
 
-extern void* g_unk_7101a94220[];
-extern void* g_unk_7101a77000[];
 extern void* g_unk_7101a946c0[];
-extern void* g_unk_7101a94718[];
 
 static inline void Release(UnkRefObject* p) {
     if (p && --p->ref_count == 0)

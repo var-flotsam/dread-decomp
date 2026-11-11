@@ -9,6 +9,7 @@
 #include "base/math/CVector.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU1370.h"
+#include "game/UnkTU785.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -17,8 +18,6 @@ struct UnkStruct_71008c0c74;
 struct UnkBase_71003cc474;
 struct UnkRequest;
 void fn_71008c1538(UnkRequest* request, f32 value);
-
-extern void* g_unk_71726dbf68;
 
 struct UnkImpactRequest_ovb0262y {
     u8 pad_0x0[0x18];

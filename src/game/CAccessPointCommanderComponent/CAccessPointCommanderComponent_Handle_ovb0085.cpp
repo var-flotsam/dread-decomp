@@ -8,9 +8,11 @@
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CCentralUnitAIComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU2656.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -22,8 +24,6 @@ void fn_7100a6b0f0(void* registration, void** slot);
 void fn_7100a6b280(void* registration, void** slot);
 void fn_7100a6ce48(void* self);  // the base destructor
 extern char g_unk_7101a8fa30[];   // the component's vtable
-extern void* g_unk_7101a20998[];  // the handle source's base vtable
-extern void* g_unk_7101a33fa0[];  // the handle source's vtable
 extern void* g_unk_7101d47360;
 void fn_7100ee1f34(void*);
 // As src/game/CCreditsMode/CTunableCredits/CTunableCredits_Colors_ovb0070.cpp declares it.

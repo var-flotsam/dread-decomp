@@ -2,6 +2,7 @@
 #include "base/UnkBlockFreeList.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2729.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -63,8 +64,6 @@ void fn_71011957b0(UnkMap_b0246* self, UnkMapNode_b0246* node) {
     self->allocator->vf_0x48(node);
     self->version++;
 }
-
-extern char g_unk_7101cb5270[];
 
 void fn_7101192ee8(void* member);
 void fn_71011954cc(void* map);

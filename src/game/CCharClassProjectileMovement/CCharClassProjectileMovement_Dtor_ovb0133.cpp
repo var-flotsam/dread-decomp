@@ -7,15 +7,14 @@
 #include "base/UnkDestructors.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassGoliathXBurstProjectionBombMovement.h"
 #include "game/CCharClassMovementComponent.h"
+#include "game/CCharClassProjectileMovement.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-extern void* g_unk_7101a4bcf8[];
-extern void* g_unk_7101a96758[];
 
 struct UnkProjectileMovementClass_ovb0133 {
     void** vtable;

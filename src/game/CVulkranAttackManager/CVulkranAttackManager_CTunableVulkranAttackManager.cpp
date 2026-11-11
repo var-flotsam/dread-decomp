@@ -1,10 +1,9 @@
 // A deleting destructor in the CVulkranAttackManager::CTunableVulkranAttackManager unit (copy of
 // fn_71006bd00c): restore the vtable, destroy the member at +0x18 (fn_710059c7b8), drop the counted
 // reference at +0x8 and free the object. Names and layouts are placeholders.
+#include "game/CVulkranAttackManager/CTunableVulkranAttackManager.h"
 #include "game/UnkTU852.h"
 #include "game_s2/UnkWeakHandle.h"
-
-extern void* g_unk_7101a69098[];
 
 struct UnkObject_71006de820 {
     void** vtable;

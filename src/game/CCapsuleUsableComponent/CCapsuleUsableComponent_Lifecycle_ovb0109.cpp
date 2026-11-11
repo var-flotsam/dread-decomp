@@ -8,15 +8,15 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/CCentralUnitAIComponent.h"
+#include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 void fn_7100a819ac(void* self);
 void fn_710007e6c4(void* self);  // an empty CRntString
 extern void* g_unk_7101a90770[];  // CCapsuleUsableComponent's vtable
-extern void* g_unk_7101a20998[];  // the callback lists' base vtable
-extern void* g_unk_7101a33fa0[];  // their vtable
-extern void* g_unk_7101a22d48[];  // the listener's vtable
 
 struct UnkCapsuleUsableComponent_ovb0109 {
     void** vtable;

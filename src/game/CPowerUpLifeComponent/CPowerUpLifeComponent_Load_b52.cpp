@@ -5,15 +5,15 @@
 // on it and fn_7100232f18 gives the object referenced (+8 counts its references; vtable slot 0x10
 // frees it). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU2729.h"
 #include "game/UnkTU341.h"
+#include "game/UnkTU344.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkActorDefFactory;
 struct UnkEntityState;
-extern UnkActorDefFactory* g_unk_71726a0220;  // as src/game/UnkActorDefFactory.cpp declares it
-extern u32 g_unk_7172a0ba48;
 
 // Counters raised through accesses that may alias anything: the original reloads the pointers it
 // reached them through.

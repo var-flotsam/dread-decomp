@@ -4,10 +4,9 @@
 // post-construction virtual call (slot 3). Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "game/CCharClassBaseTriggerComponent.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a20950[];
 extern void* g_unk_7101a8df00[];
 
 struct UnkCutsceneTriggerComponent {

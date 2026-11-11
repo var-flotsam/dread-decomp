@@ -5,16 +5,15 @@
 // the request (fn_710098ae04), and the movement's flags at +0x2324/+0x2325 are set when fn_71010d1598
 // or fn_71010d15ac holds. Names and layouts are placeholders.
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1730.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 struct UnkDesc_SpitSend;
 extern UnkDesc_SpitSend g_unk_710164b958;
-extern UnkDesc_SpitSend g_unk_7172769740;
-extern void* g_unk_7101a22cb8[];
-extern char g_unk_7101a22ce8[];
 extern const u64 g_unk_710164b380;  // the key while fn_7100df5874 holds
 extern const u64 g_unk_710164b388;
 struct UnkAirTarget_B71a6;

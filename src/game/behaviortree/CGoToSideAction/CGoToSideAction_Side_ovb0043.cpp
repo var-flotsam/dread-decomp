@@ -3,10 +3,9 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/behaviortree/CGoToSideAction.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
-
-extern void* g_unk_7101a25fb0[];
 
 // The kind-6 parameter block (as src/game/CCaterzillaAIComponent/fn_71003f832c.cpp), with a callback.
 struct UnkGoToSideParams_ovb0043 {

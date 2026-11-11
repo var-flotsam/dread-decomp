@@ -2,9 +2,8 @@
 // count at +0x8 followed directly by 0x48-byte records (4-byte aligned), each holding two intrusive references
 // (count at +0x8, released through slot 0x10). The second reference of a record goes first. Names and layouts
 // are placeholders.
+#include "game/CGrappleBeamComponent.h"
 #include "types.h"
-
-extern void* g_unk_7101a75548[];
 
 struct UnkGrappleRefObj_A5_b70 {
     void** vtable;

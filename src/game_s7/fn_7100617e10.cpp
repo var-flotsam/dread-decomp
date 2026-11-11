@@ -4,12 +4,11 @@
 // state 2 holds nothing to destroy. Both go back to state 0; any other state is left alone.
 // Six copies, one per element type.
 #include "base/global/CStrId.h"
+#include "game/UnkTU936.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-extern char g_unk_7101a56178[];  // the elements' base vtable
 
 struct UnkIdValueBase_0x18 {
     char* vtable;
@@ -53,4 +52,3 @@ static inline void Reset(UnkValueHolder<StateOffset>* self) {
 void fn_7100617e10(UnkValueHolder<0x38>* self) { Reset(self); }
 
 void fn_7100618288(UnkValueHolder<0x38>* self) { Reset(self); }
-

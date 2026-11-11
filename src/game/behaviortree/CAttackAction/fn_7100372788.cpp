@@ -6,6 +6,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/UnkBehaviorTree.h"
+#include "game/behaviortree/CAttackAction.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -17,8 +18,6 @@ struct UnkNode : UnkBehaviorTreeNodeBase {
     UnkStringData* field_0x60;
     u16 field_0x68;
 };
-
-extern void* g_unk_7101a25010[];
 
 void fn_7100372788(UnkNode* self) {
     fn_7100393e68(self);

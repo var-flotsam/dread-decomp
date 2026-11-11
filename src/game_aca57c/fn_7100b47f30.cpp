@@ -1,10 +1,8 @@
 // Deleting destructor of an object (vtable 0x7101a9cb48) holding a reference at 0xf0, over a
 // base (vtable 0x7101a9c8e0) with two strings (at 0x28, and one with inline storage at 0x70).
 #include "base/global/CRntString.h"
+#include "game/UnkTU1689.h"
 #include "types.h"
-
-extern void* g_unk_7101a9cb48[];  // the object's vtable
-extern void* g_unk_7101a9c8e0[];  // the base's vtable
 
 struct UnkRefObject {
     virtual void vf_0x0();

@@ -7,6 +7,7 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/UnkRefHandle.h"
 #include "game/CAutoolAIComponent.h"
+#include "game/CFootstepPlatformComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
@@ -36,8 +37,6 @@ struct UnkEvacPart_b61;
 struct UnkEvacTimeline_b61;
 
 struct UnkFootstepStatic_b45a2;
-__attribute__((visibility("hidden"))) extern UnkFootstepStatic_b45a2* g_unk_717271fae0;
-__attribute__((visibility("hidden"))) extern UnkFootstepStatic_b45a2* g_unk_717271fad8;
 extern u64 g_unk_710164ab58;
 
 struct UnkFootstepOwner_A5_b63 {

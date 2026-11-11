@@ -3,11 +3,11 @@
 // base::core::CBaseObject (fn_7100023854). Names and layouts are placeholders.
 #include "base/core/CBaseObject.h"
 #include "game/CCharClassComponent.h"
+#include "game/CCharClassMovementComponent.h"
 #include "types.h"
 
 struct UnkNode;
 struct UnkStruct_71008bca30;
-extern void* g_unk_7101a85840[];
 
 struct UnkCharClassMovementComponent {
     void** vtable;

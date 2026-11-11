@@ -3,10 +3,8 @@
 // set). Names and layouts are placeholders.
 #include "base/UnkDefaultAllocator.h"
 #include "base/tunable/CTunable.h"
+#include "game/UnkTU99.h"
 #include "types.h"
-
-// Declared as in src/base/snd/CSoundSystemATK.cpp.
-extern u8 g_unk_7108b6ab60 __attribute__((visibility("hidden")));
 
 struct UnkSoundSystemVoiceCount {
     u8 pad_0x0[0x3f8];

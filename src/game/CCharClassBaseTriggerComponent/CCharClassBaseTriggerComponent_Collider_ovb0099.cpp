@@ -7,10 +7,13 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CCharClassActivatableComponent.h"
 #include "game/CComponent.h"
 #include "game/CDemolitionBlockComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU341.h"
+#include "game/UnkTU365.h"
 #include "game/logic/collision/CCollider.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -79,7 +82,6 @@ static_assert(__builtin_offsetof(UnkBaseTrigger, shape_ref.handle) == 0xa08, "la
 
 // The collision manager (as src/game/CBreakableTileGroup_Reset_b49.cpp declares it).
 struct UnkManager_7100863a8c;
-extern UnkManager_7100863a8c* g_unk_71726a4788;
 void fn_7100d46804(UnkManager_7100863a8c* self);
 struct UnkCollisionObject;
 void fn_7100d46c60(UnkManager_7100863a8c* self, UnkCollisionObject* entry);
@@ -255,10 +257,7 @@ UnkBaseTriggerWeakRecord& UnkBaseTriggerWeakRecord::operator=(const UnkBaseTrigg
 
 struct UnkStateObject;
 void fn_710002f4e4(void*);
-extern void* g_unk_7101a7ac20[];
 extern void* g_unk_7101a8ebc8[];
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a20950[];
 
 // An allocator-backed list (base vtable, empty array with step 10 and flags 0xf, allocator, final
 // vtable), as in src/game/CAIComponent/UnkAIDeviceList.cpp.

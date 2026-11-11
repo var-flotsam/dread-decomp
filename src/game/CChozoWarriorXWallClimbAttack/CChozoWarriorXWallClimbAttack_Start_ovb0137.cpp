@@ -4,6 +4,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAutsharpAIComponent.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSceneObject.h"
@@ -25,8 +26,6 @@ struct UnkTrailColor_ovb0137 {
     UnkTrailColor_ovb0137(const UnkTrailColor_ovb0137& o) : r(o.r), g(o.g), b(o.b), a(o.a) {}
 };
 void fn_7100148190(UnkSceneObject* self, u32 kind, UnkTrailColor_ovb0137 color, bool flag, f32 a, f32 b, f32 c);
-
-extern void* g_unk_7101a2e208[];
 
 struct UnkWallClimbParams_ovb0137 {
     void** vtable;

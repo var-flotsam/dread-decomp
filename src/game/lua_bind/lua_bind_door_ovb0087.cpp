@@ -14,13 +14,13 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkTU1629.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2677.h"
+#include "game/UnkTU2704.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::math::CVector3D;
-
-extern u32 g_unk_71727bebb8;
 
 struct UnkLuaDoorObj {
     virtual void vf_0x0();
@@ -73,7 +73,6 @@ struct __attribute__((packed)) UnkLuaIdList {
     CStrId items[1];
 };
 struct UnkStruct_7172a0768c;
-extern UnkStruct_7172a0768c g_unk_7172a0768c;  // the id list's count, its ids after it
 
 int fn_7100fbb9e0(lua_State* L) {
     const char* name;

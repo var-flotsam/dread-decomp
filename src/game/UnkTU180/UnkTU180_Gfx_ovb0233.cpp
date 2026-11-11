@@ -7,6 +7,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
 #include "game/UnkTU172.h"
+#include "game/UnkTU180.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -80,7 +81,6 @@ static_assert(sizeof(UnkGfxProgram_b0233d4) == 0x150, "layout");
 
 struct UnkGfxProgram;
 extern UnkGfxProgram* g_unk_716e2a1440[0x400];
-extern u32 g_unk_716e2a3440;
 extern u64 (*g_unk_716e29b088)(void*);
 extern void (*g_unk_716e29aef0)(void* sync, void* device);
 extern void (*g_unk_716e29af08)(void* sync, u32 count, void* descs);
@@ -207,7 +207,6 @@ struct UnkGfxRecord_b0233d6 {
 
 struct UnkGfxRecord_0xc0;
 extern UnkGfxRecord_0xc0* g_unk_716e29d438[];
-extern u32 g_unk_716e2a1438;
 
 void fn_710015c770(UnkGfxRecord_b0233d6* self) {
     if (!self)

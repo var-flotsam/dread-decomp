@@ -3,14 +3,13 @@
 // destructor stores its vtable, detaches itself from the owner of the counted link at +0x18 and drops the
 // link's reference; the second of each pair is the deleting form. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/CAbilityOpticCamouflage.h"
+#include "game/CAutclastChargeAttack.h"
 #include "game/CEnemyMovement.h"
 #include "game/CGunComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-extern void* g_unk_7101a22d48[];
-extern void* g_unk_7101a23280[];
-extern void* g_unk_7101a2aef8[];
 
 struct UnkLink_b40 {
     virtual void vf_0x0();

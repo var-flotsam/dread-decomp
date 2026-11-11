@@ -1,6 +1,6 @@
 #pragma once
 
-// CProjectileMovement: functions of this translation unit that other files call (tools/tu_map.py unit 1623,
+// CProjectileMovement: functions and globals of this translation unit that other files use (tools/tu_map.py unit 1623,
 // 0x7100ac2430-0x7100ac6c44). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
@@ -16,3 +16,4 @@ bool fn_7100ac4c60(UnkBossComponent* self, u64 a, u64 b, u64 c, u64 d);
 void fn_7100ac2c5c(void* self);
 void fn_7100ac3a78(UnkNailongThornMovement*, f32);
 void fn_7100ac38fc(void* self);  // Takes the component (it reads the rate at +0x7c itself).
+extern void* g_unk_7101a96b30[];

@@ -203,7 +203,6 @@ using base::global::UnkStringPool;
 
 // A text of 32-bit characters (game/UnkGuiLabel.h's UnkGuiText): the characters at +0x8, null when
 // empty, and their count at +0x10.
-void fn_7100066a50(void* self, const char32_t* text);
 struct UnkWideStr_0x20;
 struct UnkLayoutText {
     u8 unk_0x0[0x8];
@@ -227,7 +226,6 @@ struct UnkTextCommand {
 // command, a substring (from `start`, `count` characters, -1 for the rest) and the conversion to a
 // string.
 void fn_7100066d4c(UnkLayoutText* self, const UnkLayoutText* other);
-void fn_7100066af0(UnkLayoutText* self, const char32_t* text);
 void fn_7100067430(UnkLayoutText* self, u32 c);
 void fn_71000673e8(UnkLayoutText* self, const UnkTextCommand* command);
 UnkLayoutText fn_7100067484(const UnkLayoutText* self, u32 start, u32 count);

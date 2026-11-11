@@ -4,6 +4,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/UnkNamedRegistry.h"
 #include "base/global/CRntString.h"
+#include "game/CGameManager/CTunableGameManager.h"
 #include "game/UnkTU57.h"
 #include "types.h"
 
@@ -11,8 +12,6 @@ using base::global::CRntString;
 
 struct UnkEntry_b0235;
 void fn_7100fc6fc0(UnkEntry_b0235* self, const UnkEntry_b0235* other);
-
-extern char g_unk_7101aa9ac0[];  // the list's base vtable
 
 struct UnkRequestListNode_b0246 {
     void* value;

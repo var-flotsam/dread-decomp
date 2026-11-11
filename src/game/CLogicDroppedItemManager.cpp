@@ -10,7 +10,10 @@
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "base/math/UnkZeroVector3.h"
+#include "game/CDroppableComponent.h"
+#include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU2517.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -23,11 +26,9 @@ struct UnkDroppableTunable {
     u32 field_0x90;
     u32 field_0x94;
 };
-extern UnkDroppableTunable g_unk_71727c10c8;
 
 // The manager the mean position goes to (a singleton reached through the GOT).
 struct UnkDropTarget;
-extern UnkDropTarget* g_unk_7101d47318;
 
 struct UnkDropEntry {
     u8 data[0x18];
@@ -112,7 +113,6 @@ struct __attribute__((packed)) UnkDropHitRecord {
     UnkRefObject* field_0x8;
     u8 pad_0x10[0x38];
 };
-extern void* g_unk_7101a70eb0[];
 
 static inline void ReleaseRef(UnkRefObject* p) {
     if (p && --p->ref_count == 0)

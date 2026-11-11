@@ -3,10 +3,9 @@
 // (released through vtable slot 0x10 at zero); fn_71006f538c is the deleting form, freeing the object with
 // fn_7100083c00. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CAINavigationComponent.h"
 #include "game/CAttackComponent.h"
 #include "types.h"
-
-extern void* g_unk_7101a6b780[];
 
 struct UnkLinkOwner_ain;
 

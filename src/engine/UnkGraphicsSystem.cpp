@@ -26,6 +26,8 @@
 #include "game/UnkTU180.h"
 #include "game/UnkTU182.h"
 #include "game/UnkTU194.h"
+#include "game/UnkTU204.h"
+#include "game/UnkTU211.h"
 #include "game/UnkTU223.h"
 #include "game/UnkTU230.h"
 #include "types.h"
@@ -1108,8 +1110,6 @@ extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, i
 // Singletons the set-up creates on first use (through the GOT): the decal resource manager
 // (src/base/spatial/UnkDecalProjector.cpp; 0x40c8 bytes) and the scene registry (0xb8 bytes).
 struct UnkDecalResourceMgr;
-extern UnkDecalResourceMgr* g_unk_716e352450;
-extern void* g_unk_716e34c2e0;
 void fn_71001d7548(UnkDecalResourceMgr* self);
 void fn_710019dcac(UnkGfxSceneRegistry* self);
 void fn_710016999c(UnkRegistry_710014c790* self);

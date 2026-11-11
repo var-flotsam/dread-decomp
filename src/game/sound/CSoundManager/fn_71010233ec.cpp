@@ -2,14 +2,12 @@
 // object with a table member at 0x68: restore the vtables, clear the table (fn_710102bcf8) and
 // free its two arrays, then the secondary base clears its array (fn_710102be04) and frees it.
 #include "base/UnkVector.h"
+#include "game/sound/CSoundManager.h"
 #include "types.h"
 
 struct UnkBase_0x8 {
     void** vtable;
 };
-
-extern void* g_unk_7101cac5d8[];
-extern void* g_unk_7101cac6e8[];
 
 struct UnkSecondaryBase_0x30;
 void fn_710102be04(base::UnkVector<u64>* array);

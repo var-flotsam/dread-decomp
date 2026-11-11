@@ -3,10 +3,8 @@
 // Names are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkNodeOwner.h"
+#include "game/UnkTU852.h"
 #include "types.h"
-
-extern void* g_unk_7101a4d8f8[];
-extern void* g_unk_7101a4d918[];
 
 __attribute__((always_inline)) inline void UnkDestroyRefNode_A3_b69(UnkListNode<8>* node) {
     reinterpret_cast<base::UnkRefPtrMember*>(node)->~UnkRefPtrMember();

@@ -2,12 +2,10 @@
 // fn_71007ce2ec (CXParasiteStayOnPlaceBehavior_Dtor_b49a3.cpp) with their own vtable. The vtable, then
 // the callback set at +0x20; fn_7100c04454 also frees the object. Names and layouts are placeholders.
 #include "base/UnkErasedVector.h"
+#include "game/SCameraRailNode.h"
+#include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-extern char g_unk_7101aa2888[];
-extern void* g_unk_7101a20950[];
-extern void* g_unk_7101a20998[];
 
 struct UnkCameraRailCallbackSet_b52 {
     void** vtable;  // 0x20

@@ -8,6 +8,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CEnemyMovement.h"
+#include "game/behaviortree/CSwitchBetweenAIModesAction.h"
 #include "types.h"
 
 struct UnkVec3_b257c {
@@ -37,8 +38,6 @@ struct UnkSinkParams_b257c {
     UnkOpt_b257c<UnkVec3_b257c> field_0x28;
     u32 kind;  // 0x38
 };
-
-extern void* g_unk_7101a24b80[];
 
 struct UnkEffectSink;
 

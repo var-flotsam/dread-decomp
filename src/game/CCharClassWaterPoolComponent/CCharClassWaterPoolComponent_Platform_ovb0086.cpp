@@ -7,7 +7,9 @@
 #include "base/UnkStrIdTable.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassWaterPoolComponent.h"
 #include "game/UnkComponent.h"
+#include "game/UnkTU365.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -128,14 +130,12 @@ void fn_7100909368(UnkWaterPoolComponent_b0086* self) {
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-extern void* g_unk_7101a80ed8[];  // CCharClassWaterPoolComponent's vtable
 void fn_7100900414(UnkBaseComponent* self);
 struct UnkCallbackSetVector;
 void fn_710090d2f4(UnkCallbackSetVector* v, u32 size);  // Truncate
 
 // The collision manager, created on first use (as src/game/CSubAreaManager.cpp declares it).
 struct UnkManager_7100863a8c;
-extern UnkManager_7100863a8c* g_unk_71726a4788;
 void fn_7100d46804(UnkManager_7100863a8c* self);  // constructor
 struct UnkCollisionObject;
 void fn_7100d46c60(UnkManager_7100863a8c* self, UnkCollisionObject* obj);

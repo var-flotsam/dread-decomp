@@ -3,6 +3,7 @@
 // the base (fn_7100792448). The shape of fn_71009b99e8 (CChangeStageNavMeshItemComponent).
 #include "base/global/CStrId.h"
 #include "game/CCharClassModelUpdaterComponent.h"
+#include "game/CCharClassMultiModelUpdaterComponent.h"
 #include "types.h"
 
 using base::global::UnkStringPool;
@@ -13,8 +14,6 @@ using UnkFilePathReleasedStrId = UnkReleasedStrIdT<&g_unk_7101d47200>;
 template <class Value>
 struct UnkIdTable;
 void fn_71000db40c(UnkIdTable<UnkFilePathReleasedStrId>* self);
-
-extern void* g_unk_7101a6f6b8[];
 
 struct UnkModelRegistry {
     void** vtable;

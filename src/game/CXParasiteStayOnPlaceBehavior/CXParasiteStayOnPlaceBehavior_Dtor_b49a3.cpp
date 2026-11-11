@@ -3,12 +3,10 @@
 // array of type-erased callbacks at +0x28); fn_71007ce2ec also frees the object. Names and layouts are
 // placeholders.
 #include "base/UnkErasedVector.h"
+#include "game/CXParasiteStayOnPlaceBehavior.h"
+#include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-extern char g_unk_7101a71848[];
-extern void* g_unk_7101a20950[];
-extern void* g_unk_7101a20998[];
 
 struct UnkCallbackSet_b49a3 {
     void** vtable;  // 0x20

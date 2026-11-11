@@ -5,11 +5,11 @@
 // The fields are addressed by offset: the original's stores are scheduled by the constant pool of
 // the whole function, which struct member stores don't reproduce.
 #include "game/CBehaviorTreeAIComponent.h"
+#include "game/CCentralUnitAIComponent.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 extern void* g_unk_7101a337d8[];
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a33fa0[];
 
 // Only the vtable at +0x0 is named; the size 1 keeps offsets from folding into element strides.
 struct UnkComponent {

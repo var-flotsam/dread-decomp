@@ -3,12 +3,12 @@
 // to 1, the member at +0x58 (fn_7100925b38), then the post-construction virtual call (slot 3).
 // Names and layouts are placeholders.
 #include "game/CComponent.h"
+#include "game/CMagnetSurfaceHuskComponent.h"
 #include "game/UnkComponent.h"
 #include "types.h"
 
 struct UnkStateObject;
 void fn_7100925b38(void* self);
-extern void* g_unk_7101a831e0[];
 
 struct UnkMagnetSurfaceHusk : UnkBaseComponent {
     u32 field_0x40;

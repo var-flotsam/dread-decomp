@@ -8,12 +8,14 @@
 #include "base/UnkVector.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU1442.h"
 #include "game/UnkTU1444.h"
 #include "game/UnkXformNode.h"
+#include "game/behaviortree/CSwitchBetweenAIModesAction.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -21,7 +23,6 @@
 // (+0x700, none 0x7fffffff; +0x838, none 5), the three arrays at +0x7b8, the sub-objects and the listener
 // at +0x1be8.
 extern void* g_unk_7101cb0218[];
-extern void* g_unk_7101a22d48[];
 extern void* g_unk_7101cb05f0[];
 extern void* g_unk_7101cb0720[];
 extern void* g_unk_7101cb0688[];
@@ -185,7 +186,6 @@ void fn_71010c7920(UnkEnemyMovement_t* self) {
 
 // fn_71010c7b70: the destructor, the constructor's work undone in reverse before the base's (fn_7100975f10).
 extern void* g_unk_7101cb0218[];
-extern void* g_unk_7101a22d48[];
 extern void* g_unk_7101cb06e0[];
 extern void* g_unk_7101cb0720[];
 extern void* g_unk_7101cb0648[];
@@ -313,8 +313,6 @@ struct UnkSinkParams_7de4 {
     UnkOpt_7de4<UnkVec3_7de4> field_0x28;
     u32 kind;  // 0x38
 };
-
-extern void* g_unk_7101a24b80[];
 
 struct UnkEffectSink;
 

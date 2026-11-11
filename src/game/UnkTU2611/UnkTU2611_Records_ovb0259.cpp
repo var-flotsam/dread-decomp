@@ -14,8 +14,10 @@
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CBlackboard.h"
 #include "game/CHeatRoomComponent.h"
+#include "game/CNavMeshItemComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2611.h"
 #include "types.h"
 
 using namespace unk_static_init;
@@ -155,7 +157,6 @@ void fn_7100fac120(UnkSubArea* area, UnkMask mask, bool a, bool b, void* other, 
 
 // The definition the setup chain is read under (src/game/UnkSubareaSetupState.cpp names it the same).
 struct UnkSetupNamedDef : UnkPropertyEx<0x160> {};
-extern UnkSetupNamedDef g_unk_71729ee018;
 
 struct UnkNamePart_ovb0259 {
     u8 pad_0x0[0x44];
@@ -256,8 +257,6 @@ bool fn_7100fab880(UnkNameSet_ovb0259* self_, bool flag) {
 }
 
 extern HeaderIds g_unk_71729ee1a0 __attribute__((visibility("hidden")));
-extern void* g_unk_7101a889c8[];
-extern void* g_unk_7101a8d830[];
 UnkEnumType* fn_710009ffd4();
 
 void fn_7100fad9d0() {

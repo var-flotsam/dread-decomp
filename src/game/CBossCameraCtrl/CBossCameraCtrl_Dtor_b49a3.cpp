@@ -2,6 +2,7 @@
 // references at +0x2a0 (each dropped, then the array freed), then the base destructor fn_7100763f74;
 // fn_710074f058 also frees the object. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CBossCameraCtrl.h"
 #include "game/CCameraBoundaryCtrl.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -16,8 +17,6 @@ struct UnkRefSlot_b49a3 {
         }
     }
 };
-
-extern void* g_unk_7101a6df08[];
 
 struct UnkBossCameraCtrl_b49a3 {
     void** vtable;

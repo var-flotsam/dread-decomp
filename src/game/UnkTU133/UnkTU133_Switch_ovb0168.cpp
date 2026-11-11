@@ -2,6 +2,7 @@
 // functions as unit 116's (src/game/UnkTU116/UnkTU116_Switch_ovb0168.cpp) with this unit's layout
 // (the later members sit 0x58 bytes earlier) and callees. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU133.h"
 #include "game/UnkTU284.h"
 #include "game/UnkTU32.h"
 #include "types.h"
@@ -84,8 +85,6 @@ struct UnkTaggedObject133_ovb0168 {
 };
 static_assert(__builtin_offsetof(UnkTaggedObject133_ovb0168, member) == 0x168, "layout");
 static_assert(__builtin_offsetof(UnkTaggedObject133_ovb0168, state) == 0x244, "layout");
-
-extern char g_unk_7101a1c7d8[];
 
 void fn_7100145bdc(UnkSonarModel_ovb0085* obj, const CStrId* name) {
     UnkTaggedObject133_ovb0168* self = reinterpret_cast<UnkTaggedObject133_ovb0168*>(obj);

@@ -4,12 +4,12 @@
 // (three 1.0f scales at +0x604), then makes the post-construction virtual call (slot 3). Defined under the `void()`
 // symbol src/reflection/CCharClassShootActivatorHidrogigaComponent.cpp declares. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CCentralUnitAIComponent.h"
+#include "game/CCharClassShootActivatorHidrogigaComponent.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 void fn_710088fce4(void* self);
-extern void* g_unk_7101a7c850[];
-extern void* g_unk_7101a20998[];  // the callback lists' base vtable
-extern void* g_unk_7101a33fa0[];  // their vtable
 
 struct UnkHidrogigaCtor_A4_b72 {
     void** vtable;

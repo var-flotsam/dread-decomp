@@ -9,6 +9,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiLabel.h"
+#include "game/UnkTU2615.h"
 #include "game/UnkTU2733.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
@@ -106,8 +107,6 @@ struct UnkSoundHandle {
         return nullptr;
     }
 };
-
-extern void* g_unk_71729efa48;
 
 UnkSoundHandle fn_7100fcdf00(void* player, f32 volume, const CStrId& name, bool arg3);
 

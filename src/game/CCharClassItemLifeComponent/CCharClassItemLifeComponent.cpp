@@ -1,11 +1,10 @@
 // Constructor of a component in the CCharClassItemLifeComponent unit: the base constructor
 // fn_71008bca30, the vtable, the member at +0xa8 (fn_71008c2da8), the word at +0x118 set to 1, then
 // the post-construction virtual call (slot 3). Names and layouts are placeholders.
+#include "game/CCharClassItemLifeComponent.h"
 #include "game/CCharClassLifeComponent.h"
 #include "game/CDamageSourceFactor.h"
 #include "types.h"
-
-extern void* g_unk_7101a7de58[];
 
 struct UnkItemLifeComponent {
     void** vtable;

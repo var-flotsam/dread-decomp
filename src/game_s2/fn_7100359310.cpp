@@ -2,6 +2,7 @@
 #include "../game_s7/UnkStaticInitS7.h"
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/UnkTU437.h"
 
 using namespace unk_static_init;
 
@@ -41,7 +42,6 @@ struct __attribute__((packed)) UnkAimTunable {
     u64 field_0x84;
     u64 field_0x8c;
 };
-extern UnkAimTunable g_unk_71726b1438;
 // UnkAimTunable is the full (packed) view of a tunable; fn_7100136ecc (game/UnkTUProperty.h) builds its base.
 extern void* g_unk_7101a23c28[];
 extern UnkEnumType g_unk_71726b1508;

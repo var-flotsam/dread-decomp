@@ -9,11 +9,13 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CCharClassTweakPlayRateTrack.h"
 #include "game/CCooldownXBossAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
@@ -32,12 +34,10 @@ struct UnkWindTunnelFlag {
     f32 field_0x40;
 };
 struct UnkGlobal2;
-extern UnkGlobal2 g_unk_7172790a08;
 extern const base::global::CStrId g_unk_71726d8108 __attribute__((visibility("hidden")));
 extern base::global::CStrId g_unk_71726d8110 __attribute__((visibility("hidden")));
 
 struct UnkWeakTarget;
-extern u32 g_unk_71727bebb8;
 UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 
 struct UnkWindTunnelEnd_ovb0265 {

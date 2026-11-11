@@ -6,6 +6,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/CComponent.h"
+#include "game/UnkTU101.h"
 #include "game/UnkTU25.h"
 #include "types.h"
 
@@ -21,7 +22,6 @@ struct UnkSoundHandle {
     UnkSoundRef* ref;
     s64 serial;
 };
-extern const UnkSoundHandle g_unk_7108b6c460;  // the empty handle
 
 extern char g_unk_717271ab80[] __attribute__((visibility("hidden")));
 

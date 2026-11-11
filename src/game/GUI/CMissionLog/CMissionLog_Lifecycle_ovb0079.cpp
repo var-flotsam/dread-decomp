@@ -14,6 +14,7 @@
 #include "game/CChozoCommanderAIComponent.h"
 #include "game/CTutoEnterLogicAction.h"
 #include "game/GUI/CButton.h"
+#include "game/GUI/CMissionLog.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
 #include "types.h"
@@ -138,9 +139,6 @@ void fn_7100b599f0(void* self, u32 index, const UnkMissionLogButtonText_ovb0079*
     fn_71011ecfbc(fn_71011c08dc(button), text->text);
     fn_710007ecd4(reinterpret_cast<CRntString*>(&name));
 }
-
-extern char g_unk_7101a9d490[];
-extern char g_unk_7101a9d4b0[];
 
 struct UnkMissionLogPool_ovb0079 {
     char* vtable;

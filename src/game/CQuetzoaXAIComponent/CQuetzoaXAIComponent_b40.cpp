@@ -5,14 +5,13 @@
 // as fn_7100a1482c (src/game/CAutsharpSpawnPointComponent/CAutsharpSpawnPointComponent.cpp). Names and
 // layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/CQuetzoaXAIComponent.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 void fn_7100649b44(void* self);
 void fn_710063d620(void* member);
-extern void* g_unk_7101a58f80[];
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a20950[];
-extern void* g_unk_7101a22d48[];
 
 struct UnkQuetzoaXAIComponent {
     void** vtable;

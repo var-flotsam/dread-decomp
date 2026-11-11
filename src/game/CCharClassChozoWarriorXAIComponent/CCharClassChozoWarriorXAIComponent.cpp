@@ -2,6 +2,7 @@
 // constructor fn_7100497584, the vtable, then six members from +0x808 (0xf0 bytes apart). Names and
 // layouts are placeholders.
 #include "game/CCharClassChozoWarriorAIComponent.h"
+#include "game/CCharClassChozoWarriorXAIComponent.h"
 #include "game/CCharClassChozoWarriorXChangeWallAttack.h"
 #include "game/CCharClassChozoWarriorXGlaiveSpinAttack.h"
 #include "game/CCharClassChozoWarriorXLandAttack.h"
@@ -11,7 +12,6 @@
 #include "types.h"
 
 struct UnkNode;
-extern void* g_unk_7101a3b748[];
 
 struct UnkChozoWarriorXDef {
     void** vtable;

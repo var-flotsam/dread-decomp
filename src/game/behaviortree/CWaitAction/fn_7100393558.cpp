@@ -3,9 +3,8 @@
 // object's own virtual slot 3 (a tail call).
 #include "game/UnkBehaviorTree.h"
 #include "game/UnkTU0.h"
+#include "game/behaviortree/CWaitAction.h"
 #include "types.h"
-
-extern void* g_unk_7101a26cb0[];
 
 struct UnkSelf : UnkBehaviorTreeNodeBase {
     f32 field_0x2c;

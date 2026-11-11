@@ -12,6 +12,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPoolBody.h"
+#include "game/CAutsharpAIComponent.h"
 #include "game/CElectricReactionComponent.h"
 #include "game/CElevatorUsableComponent.h"
 #include "game/UnkGameManager.h"
@@ -63,7 +64,6 @@ struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager* self);
 void fn_7100e01fc8(UnkGameManager* self);
 struct UnkDoorRegistry_b61;
-extern UnkDoorRegistry_b61* g_unk_71726bee10;
 void fn_7100ddb9a4(UnkDoorRegistry_b61* self, UnkStartPointSelf* component);
 
 // A string id's entry as this reads it: the text at +0x10 and a use count at +0x44, a union member because its

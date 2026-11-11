@@ -5,6 +5,8 @@
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
 #include "base/UnkVector.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CDroppableComponent.h"
+#include "game/CHydrogigaAIComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1501.h"
@@ -184,8 +186,6 @@ struct UnkTree;
 struct UnkShape;
 struct UnkMtx44;
 extern UnkMatrix44 g_unk_7101a1a680;  // the identity matrix
-extern void* g_unk_71726eb3e8;
-extern void* g_unk_7101a70eb0[];
 
 struct __attribute__((packed)) UnkBeamHitRecord_ovb0127 {
     UnkRefObject* field_0x0;

@@ -42,7 +42,6 @@ using base::reflection::UnkReflValue;
 // ---- Construction and start ----
 
 struct UnkStateObject;
-extern void* g_unk_7101a887d0[];  // the component's vtable (the second one at +0x198)
 
 struct UnkNavMeshItemFields_ovb0100 {
     base::UnkVector<void*> field_0x48{0xf};
@@ -189,7 +188,6 @@ void fn_71009c4aa0(UnkDeferredSet<UnkDeferredCallback<u64>>* s, const u64* arg);
 
 // The global descriptor (as src/game/CNavMeshItemComponent/CNavMeshItemComponent_b36.cpp declares it).
 struct UnkSourceDesc;
-extern __attribute__((visibility("hidden"))) UnkSourceDesc* g_unk_717273ee10;
 
 struct UnkNavLinkObject_ovb0100 {
     u8 pad_0x0[0x30];

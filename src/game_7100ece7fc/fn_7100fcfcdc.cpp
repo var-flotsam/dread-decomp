@@ -1,6 +1,7 @@
 // Constructor of an object with eight 0x150-byte entries: runs the base constructor
 // (fn_7100fe1028), sets both vtables, constructs each entry with its kind (fn_7100fd10cc) and
 // gives all but the first a derived vtable.
+#include "game/UnkTU2635.h"
 #include "types.h"
 #include "game/sound/CMusicManager.h"
 
@@ -28,7 +29,6 @@ struct UnkObject_7100fcfcdc {
     f32 field_0xb70;
 };
 
-extern void* g_unk_7101cabfa8[];
 extern void* g_unk_7101cabe10[];
 extern void* g_unk_7101cabd88[];
 extern void* g_unk_7101cabd00[];

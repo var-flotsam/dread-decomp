@@ -6,6 +6,7 @@
 #include "base/UnkBlockFreeList.h"
 #include "base/UnkNodeOwner.h"
 #include "base/UnkVector.h"
+#include "base/file/nx/CDeviceNX.h"
 #include "base/global/CRntString.h"
 #include "types.h"
 
@@ -13,7 +14,6 @@ using base::global::CRntString;
 
 using UnkSetupStrList = UnkStrList30;
 void fn_71000730a0(const char* str, const char* separators, UnkSetupStrList* out);
-extern void* g_unk_7101a1a070[];
 
 // The list the rules text is split into, kept between calls (a guarded static, destroyed by
 // fn_71000732d4).

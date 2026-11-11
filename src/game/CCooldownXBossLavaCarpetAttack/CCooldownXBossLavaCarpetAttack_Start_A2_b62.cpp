@@ -10,6 +10,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CBossAIComponent.h"
+#include "game/CCharClassTweakPlayRateTrack.h"
 #include "game/CCooldownXBossAttack.h"
 #include "game/UnkTU2772.h"
 #include "game/UnkTUProperty.h"
@@ -31,7 +32,6 @@ struct UnkZiplineLink_b49;
 struct UnkZiplineLinkTarget_b49;
 extern UnkTunable g_unk_71726d1f48;
 struct UnkGlobal2;
-extern UnkGlobal2 g_unk_7172790a08;
 
 struct UnkCarpetStartAI_b62a2 {
     virtual const CClass* vf_0x0();

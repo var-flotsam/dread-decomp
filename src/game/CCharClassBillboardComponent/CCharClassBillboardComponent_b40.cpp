@@ -4,11 +4,11 @@
 // lists at +0xe0 and +0x108 from the render manager (fn_71002199d8) and empties both lists. Names and
 // layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CDizzeanSwarmControllerComponent.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU2560.h"
 #include "types.h"
 
-extern void* g_unk_71726da048;
 void fn_7100e1ceb0(void* manager, const u64* key);
 
 struct UnkKeyed_bb {

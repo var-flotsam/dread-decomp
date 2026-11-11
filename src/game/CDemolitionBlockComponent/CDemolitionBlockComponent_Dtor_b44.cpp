@@ -9,16 +9,16 @@
 #include "base/UnkStrIdTable.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassActivatableComponent.h"
+#include "game/CMagnetSurfaceHuskComponent.h"
 #include "game/UnkComponent.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-extern void* g_unk_7101a7ac20[];  // the activatable component's vtable
 extern void* g_unk_7101a72d70[];  // CEmmyWakeUpComponent unit
 extern void* g_unk_7101a80778[];  // CCharClassLavaPoolComponent unit
-extern void* g_unk_7101a831e0[];  // CMagnetSurfaceHuskComponent unit
 
 void fn_7100900414(UnkBaseComponent* self);
 

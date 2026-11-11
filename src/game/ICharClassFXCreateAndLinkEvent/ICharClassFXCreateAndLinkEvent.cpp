@@ -7,6 +7,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"
+#include "game/CCharClassCollisionMaterialFXCreateAndLinkEvent.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -27,8 +28,6 @@ struct UnkFXCreateAndLinkEvent {
     bool field_0x68;
     f32 field_0x6c;
 };
-
-extern char g_unk_7101aa08c8[];
 
 void fn_7100bebf70(UnkFXCreateAndLinkEvent* self) {
     fn_7100067ea4(self);

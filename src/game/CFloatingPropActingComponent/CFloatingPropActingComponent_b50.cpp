@@ -4,13 +4,12 @@
 // names, under the unit's id (g_unk_717271f800). Names and layouts are placeholders.
 #include "base/UnkTimedCurve.h"
 #include "game/CComponent.h"
+#include "game/CFloatingPropActingComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 #include "../../game_s7/UnkPropBagS7.h"
 
 struct UnkParent;
-
-extern char g_unk_717271f800[] __attribute__((visibility("hidden")));
 
 struct UnkFloatingProp_b50 {
     u8 pad_0x0[0x40];

@@ -1,6 +1,6 @@
 #pragma once
 
-// CUsableComponent: functions of this translation unit that other files call (tools/tu_map.py unit 1607,
+// CUsableComponent: functions and globals of this translation unit that other files use (tools/tu_map.py unit 1607,
 // 0x7100a9bc70-0x7100aa4b74). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
@@ -22,3 +22,6 @@ u64 fn_7100aa1888(UnkShipRecharge_A5_b73* self, u32 state);
 u64 fn_7100aa1f50(UnkShipRecharge_A5_b73* self, u32 state);
 void fn_7100aa2570(UnkUsableDialog_A6_b62* self, bool show);
 void fn_7100aa30bc(UnkUsable_b48* self, u32 arg);
+extern u8 g_unk_7172753148[];  // A UnkProperty.
+extern void* g_unk_7101a94220[];
+extern void* g_unk_7101a94718[];

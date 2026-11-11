@@ -24,8 +24,6 @@
 #include <new>
 #include "types.h"
 
-extern bool g_unk_717269c4d8;  // reached through the GOT
-
 class UnkActorPart_71002324f0 {
 public:
     virtual void vf_0x0();
@@ -66,8 +64,6 @@ void fn_71002324f0(void* entity) {
         self->parts[static_cast<u32>(i)]->vf_0x78();
 }
 
-
-extern bool g_unk_717269c4d8;  // reached through the GOT
 
 class UnkActorPart_710023272c {
 public:
@@ -992,7 +988,6 @@ struct UnkStatics_710024cc40 {
     u32 clear_mask;
     u8 pad_0x4[0x34];
 };
-extern UnkStatics_710024cc40 g_unk_717269f420 __attribute__((visibility("hidden")));
 
 struct UnkXformRecord_7100233f84 {
     u32 field_0x0;
@@ -1233,9 +1228,6 @@ bool fn_7100232160(UnkActor_7100232160* self, const UnkSource_7100232160* other)
 }
 
 
-extern char g_unk_7101a20a30[];
-extern char g_unk_7101a20a50[];
-
 struct UnkTag_7100240594;
 template <>
 struct base::UnkPoolListTraits<UnkTag_7100240594> {
@@ -1440,9 +1432,6 @@ UnkIterValue_7100245dfc* fn_7100245dfc(UnkIterValue_7100245dfc* self, UnkIterVal
     return self;
 }
 
-
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a20950[];
 
 struct UnkCountedLink_b0226 : base::UnkRefCounted {
     void* field_0x10;

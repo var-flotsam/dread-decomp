@@ -4,13 +4,13 @@
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/behaviortree/CSwitchBetweenAIModesAction.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
 
 using base::reflection::CType;
 using base::reflection::UnkReflValue;
 
-extern void* g_unk_7101a24b58[];
 extern base::reflection::CClass g_unk_717270d1c0;
 
 struct UnkQuery {

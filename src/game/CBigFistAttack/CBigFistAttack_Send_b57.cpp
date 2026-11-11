@@ -2,6 +2,7 @@
 // the hash at +0x30 of that sub-object's +0x2b8 (refl_EmitU32, base/reflection/UnkReflStatics.h), then
 // clears the word at +0x30. Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CCharClassBigFistAttack.h"
 #include "types.h"
 
 struct UnkBigFistHashed_b57 {
@@ -39,7 +40,6 @@ struct UnkBigFistTunable_b57 {
 };
 // The BigFist tunable (registered in src/reflection/CCharClassBigFistAttack.cpp).
 struct UnkTunable;
-extern UnkTunable g_unk_71726c06a8;
 
 struct UnkBigFistState_b57 {
     u8 pad_0x0[0x8];

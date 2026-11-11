@@ -136,8 +136,6 @@ static_assert(sizeof(UnkCollisionHit) == 0x48, "UnkCollisionHit layout");
 
 // The segment query's callback object: the closest hit so far and the segment's origin. The
 // vtables (reached through the GOT) are the callback's and its base's.
-extern void* g_unk_7101a20fa8[];
-extern void* g_unk_7101a20ed8[];
 struct UnkSegmentHitQuery {
     void** vtable;
     UnkCollisionHit hit;

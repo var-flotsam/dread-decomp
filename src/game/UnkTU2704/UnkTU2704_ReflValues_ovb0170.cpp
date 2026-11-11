@@ -19,6 +19,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2704.h"
 #include "game/UnkTU341.h"
+#include "game/UnkTU365.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -285,7 +286,6 @@ void fn_7101127e78(UnkSpawnPoint_7e78* self) {
 // ---- Collision tracker teardown
 
 struct UnkManager_7100863a8c;
-extern UnkManager_7100863a8c* g_unk_71726a4788;
 void fn_7100d46804(UnkManager_7100863a8c* self);
 struct UnkCollisionObject;
 void fn_7100d46c60(UnkManager_7100863a8c* self, UnkCollisionObject* entry);
@@ -390,7 +390,6 @@ bool fn_710112baa0(void* actor) {
 
 struct UnkClone_fn_710112e7e0;
 extern void* g_unk_7101cb2880[];
-extern void* g_unk_7101a20998[];
 template <>
 struct base::UnkCallbackTraits<UnkClone_fn_710112e7e0> {
     static char* vtable() { return reinterpret_cast<char*>(g_unk_7101cb2880); }

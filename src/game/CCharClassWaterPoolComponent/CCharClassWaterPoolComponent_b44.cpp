@@ -4,10 +4,9 @@
 // and -1 at +0x40. Fields are addressed by offset, as in
 // src/game/CCentralUnitAIComponent/fn_71004076e4.cpp. Names and layout are placeholders.
 #include "base/UnkVector.h"
+#include "game/CCentralUnitAIComponent.h"
+#include "game/UnkTU341.h"
 #include "types.h"
-
-extern void* g_unk_7101a20998[];  // the object's base vtable
-extern void* g_unk_7101a33fa0[];  // its vtable
 
 struct UnkWaterPoolList_b44a2 {
     u8 unk_0x0;

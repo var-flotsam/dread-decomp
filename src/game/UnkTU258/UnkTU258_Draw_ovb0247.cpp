@@ -13,10 +13,10 @@
 #include "game/UnkTU182.h"
 #include "game/UnkTU194.h"
 #include "game/UnkTU230.h"
+#include "game/UnkTU259.h"
 #include "types.h"
 
 extern UnkMatrix44 g_unk_7101a1a680;
-extern u32 g_unk_716e554938;
 
 struct UnkRenderItem_b0247 {
     u8 pad_0x0[0x18];

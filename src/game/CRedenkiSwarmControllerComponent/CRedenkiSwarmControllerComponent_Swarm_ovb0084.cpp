@@ -10,6 +10,7 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CDizzeanSwarmControllerComponent.h"
 #include "game/CFlockingSwarmControllerComponent.h"
 #include "game/CRedenkiSwarmControllerComponent.h"
 #include "game/CSwarmControllerComponent.h"
@@ -297,7 +298,6 @@ struct UnkParent_71007455dc;
 struct UnkRedenkiSwarmController;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 UnkVec3Result fn_7100745e24(UnkParent_71007455dc* parent);
-extern void* g_unk_71726da048;
 extern char g_unk_710164a408[];
 
 // As src/game/CRedenkiSwarmControllerComponent/CRedenkiSwarmControllerComponent_Update_b65a4.cpp
@@ -815,7 +815,6 @@ bool fn_7100658310(UnkRedenkiSwarm_ovb0084* self, UnkRedenkiPath_ovb0084* path, 
 extern "C" int rand();
 
 struct UnkTarget;
-extern void* g_unk_71726da048;
 extern char g_unk_710164a428[];
 extern f32 g_unk_7101a5aed0;
 
@@ -1062,7 +1061,6 @@ struct UnkMessage;
 struct UnkSwarmMember_ovb6;
 struct UnkRedenkiController_b55;
 void fn_7100655280(UnkRedenkiController_b55* self, UnkTarget* target);
-extern void* g_unk_71726da048;
 extern char g_unk_710164a438[];
 
 struct UnkRedenkiHandler_ovb0084 {

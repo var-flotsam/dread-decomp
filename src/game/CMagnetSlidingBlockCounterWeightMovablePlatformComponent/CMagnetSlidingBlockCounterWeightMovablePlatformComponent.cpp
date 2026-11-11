@@ -2,11 +2,11 @@
 // container at +0x258 (base vtable, empty array with step 10 and flags 0xf, final vtable, allocator),
 // then the post-construction virtual call (slot 3). Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CCentralUnitAIComponent.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 void fn_710091aae0(void* self);
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a33fa0[];
 extern void* g_unk_7101a81ff8[];
 
 struct UnkMagnetSlidingBlockCounterWeightMovablePlatformComponent_a710 {

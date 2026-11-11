@@ -5,10 +5,9 @@
 // present. Names and layouts are placeholders.
 #include "base/UnkNodeOwner.h"
 #include "base/UnkSList.h"
+#include "game/UnkTU604.h"
 #include "types.h"
 
-extern void* g_unk_7101a32660[];  // the node list's derived part's vtable
-extern void* g_unk_7101a32680[];  // the node list's base part's vtable
 extern void* g_unk_7101a522b8[];  // unit 893's set
 
 template <u32 Next>
@@ -56,4 +55,3 @@ void fn_71005ccfa8(UnkNodeSetDeleted_b44a2<g_unk_7101a522b8>* self) {
     __builtin_operator_delete(self);
 }
 void fn_71005cd094(UnkNodeSet_b44a2* self, u64 v) { self->Add(v); }
-

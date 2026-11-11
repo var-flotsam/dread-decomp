@@ -2,6 +2,7 @@
 // keeps the device, a copy of the path id (a CFilePathStrId) and the file, builds the reader at +0x28,
 // takes the next serial number and hands the file to the reader. Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
+#include "game/UnkTU65.h"
 #include <new>
 
 #include "types.h"
@@ -10,8 +11,6 @@ struct UnkMountedPack;
 struct UnkPackManagerView;
 struct UnkPackPathKey;
 
-extern void* g_unk_7101a1b058[];                                      // the pack's vtable
-extern s32 g_unk_7101d5954c __attribute__((visibility("hidden")));    // the next pack serial number
 void fn_710008c7d4(void* reader);
 void fn_710008cbe8(void* reader, void* file);
 

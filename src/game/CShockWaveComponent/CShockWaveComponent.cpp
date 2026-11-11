@@ -4,7 +4,9 @@
 // destructor (fn_71010c4194). Names and the layout are placeholders.
 #include "base/UnkVector.h"
 #include "game/CAutsharpAIComponent.h"
+#include "game/CShockWaveComponent.h"
 #include "game/UnkComponent.h"
+#include "game/UnkTU604.h"
 #include "types.h"
 
 struct UnkShockWaveMember;
@@ -18,9 +20,6 @@ struct UnkShockWaveNode {
     u64 field_0x0;
     UnkShockWaveNode* next;
 };
-
-extern void* g_unk_7101a8a820[];  // the component's vtable
-extern void* g_unk_7101a32680[];  // the node list's vtable
 
 struct UnkShockWaveList {
     void** vtable;

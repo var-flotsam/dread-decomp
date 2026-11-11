@@ -9,6 +9,7 @@
 
 #include "base/UnkVector.h"
 #include "base/reflection/CClass.h"
+#include "game/CCharClassBlockableWarningRadius.h"
 #include "game/CComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkManager_71726af468.h"
@@ -35,7 +36,6 @@ struct UnkAITunables_ovb0001 {
     u8 pad_0x5c[0x4];
     UnkAITunablesValue_ovb0001 field_0x60;
 };
-extern UnkAITunables_ovb0001 g_unk_71726c4890;
 
 struct UnkPoisonFlyCharClass_ovb0001 {
     u8 pad_0x0[0x608];

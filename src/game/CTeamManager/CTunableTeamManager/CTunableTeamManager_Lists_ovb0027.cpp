@@ -11,6 +11,7 @@
 #include "base/UnkVector.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU2523.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -30,10 +31,8 @@ template <>
 base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRefl_fn_710031caf8>(void*);
 
 extern void* g_unk_7101cb55e8[];  // the member list's vtable
-extern void* g_unk_7101cb5608[];  // the base part's of the member list
 extern void* g_unk_7101cb5628[];  // the sorted list's vtable
 extern void* g_unk_7101cb5648[];  // the pooled part's of the sorted list
-extern void* g_unk_7101cb5668[];  // the base part's of the sorted list
 
 // The AI component of a member actor.
 struct UnkTeamAI {

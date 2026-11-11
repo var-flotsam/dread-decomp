@@ -8,8 +8,6 @@
 #include "game/UnkTU341.h"
 
 struct UnkClone_fn_710023ac4c;
-extern void* g_unk_7101a20950[];
-extern void* g_unk_7101a20998[];
 template <>
 struct base::UnkCallbackTraits<UnkClone_fn_710023ac4c> {
     static char* vtable() { return reinterpret_cast<char*>(g_unk_7101a20950); }

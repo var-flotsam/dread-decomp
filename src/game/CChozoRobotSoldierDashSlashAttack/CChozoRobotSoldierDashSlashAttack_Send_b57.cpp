@@ -4,11 +4,11 @@
 // Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU1730.h"
 #include "types.h"
 
 // The blend setting (as in src/game/CCharClassToStateTrack/CCharClassToStateTrack_Fill.cpp).
 struct UnkTrackBlend;
-extern UnkTrackBlend g_unk_7172769770;
 
 struct UnkCrsDashOwner_b57 {
     u8 pad_0x0[0x220];

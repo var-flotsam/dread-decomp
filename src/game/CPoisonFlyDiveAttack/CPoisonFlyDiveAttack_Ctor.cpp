@@ -2,12 +2,12 @@
 // the vtable, a cleared word at +0x28, three vectors at +0x30, +0x3c and +0x48 set to the zero vector
 // g_unk_7101647790, cleared fields up to +0x6c and a member at +0x70 (vtable g_unk_7101a2aef8) with
 // its fields cleared. Names and layouts are placeholders.
+#include "game/CAutclastChargeAttack.h"
 #include "types.h"
 
 void fn_710036069c(void* self);
 extern char g_unk_7101647790[];
 extern void* g_unk_7101a57f68[];
-extern void* g_unk_7101a2aef8[];
 
 struct UnkPoisonFlyDiveVec {
     f32 x;

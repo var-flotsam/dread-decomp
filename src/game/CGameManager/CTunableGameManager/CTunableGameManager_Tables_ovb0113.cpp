@@ -6,6 +6,7 @@
 #include "base/UnkKeyedStrIds.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CGameManager/CTunableGameManager.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -17,8 +18,6 @@ struct UnkIdRecordTable;
 template <class T, void (*Destroy)(T*)>
 struct UnkOwned;
 void fn_7100ae31f8(UnkIdRecordTable<UnkOwned<UnkKeyedStrIds, fn_7100ae2df8>>* self);
-
-extern char g_unk_7101aa9aa0[];  // the object's vtable
 
 struct UnkRecordTable_b43a3;  // as CTunableGameManager_Dtor_b43.cpp lays it out
 

@@ -3,6 +3,7 @@
 // copies the empty sound handle (g_unk_7108b6c460) to +0x98 and hooks the callback fn_7100485918 (link at
 // +0xa8, handle at +0xc0) up to the object the owner (+0x8) tracks at +0x220, as
 // src/game/CChozoWarriorXGlaiveSpinAttack/UnkAttackTrackLink_b54.cpp. Names and layouts are placeholders.
+#include "game/UnkTU101.h"
 #include "game/UnkTU2772.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -18,7 +19,6 @@ struct UnkSoundHandle {
     UnkSoundRef* ref;
     s64 serial;
 };
-extern const UnkSoundHandle g_unk_7108b6c460;  // the empty handle
 
 struct UnkSpitTrackLink_A2_b72 {
     u8 pad_0x0[0x8];

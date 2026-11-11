@@ -13,6 +13,7 @@
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "game/UnkTU109.h"
+#include "game/logic/collision/CPolygonCollectionShape.h"
 #include "game/logic/collision/CShape.h"
 #include "game/malloc.h"
 #include "types.h"
@@ -572,8 +573,6 @@ struct UnkPolygonCollectionShapeView {
     base::UnkVector<u64> field_0xf0;  // allocation flags 7
 };
 static_assert(__builtin_offsetof(UnkPolygonCollectionShapeView, field_0xf0) == 0xf0, "UnkPolygonCollectionShapeView layout");
-
-extern char g_unk_7101aa8b80[];  // the shape's vtable
 
 // NON_MATCHING(minor): the same stores, paired and ordered differently (the original stores the
 // array pointer alone and the flag at +0xe8 among the array's fields). The behaviour is the same.

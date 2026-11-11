@@ -8,9 +8,6 @@
 #include "game/UnkTU426.h"
 #include "types.h"
 
-extern char g_unk_7101a222e8[];
-extern void* g_unk_7101a22398[];
-
 struct UnkUnit426Member68 {
     void* buffer_b;  // 0x68
     void* buffer_a;  // 0x70

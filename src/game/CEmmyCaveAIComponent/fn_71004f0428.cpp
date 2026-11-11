@@ -4,12 +4,11 @@
 #include "base/UnkStrIdTable.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CEmmyCaveAIComponent.h"
 #include "game/UnkTU811.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-extern void* g_unk_7101a43038[];
 
 struct UnkTailBlock {
     CStrId field_0x0;

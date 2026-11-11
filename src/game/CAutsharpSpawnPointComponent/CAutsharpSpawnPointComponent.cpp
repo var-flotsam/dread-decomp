@@ -3,10 +3,9 @@
 // then the post-construction virtual call (slot 3). Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "game/UnkTU2704.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a20950[];
 extern void* g_unk_7101a8c108[];
 
 struct UnkAutsharpSpawnPointComponent_482c {

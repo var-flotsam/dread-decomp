@@ -6,7 +6,10 @@
 // destructor (fn_7100a55ab8). Names are placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
+#include "game/CEmmyOverrideDeathPositionDef.h"
+#include "game/CSPBTutoLogicAction.h"
 #include "game/CTriggerLogicAction.h"
+#include "game/UnkTU341.h"
 #include "game/UnkTU811.h"
 #include "types.h"
 
@@ -15,11 +18,6 @@ struct UnkLogicActionBase;
 struct UnkTutoHandle;
 
 void fn_7100a53508(char* self);
-
-extern void* g_unk_7101a20950[];
-extern void* g_unk_7101a20998[];
-extern char g_unk_7101a8f418[];  // CSPBTutoLogicAction
-extern u32 g_unk_71726e1ee8;
 
 struct UnkSPBTutoCallbacks_b54;
 template <>

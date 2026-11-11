@@ -7,13 +7,14 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/snd/UnkSound.h"
+#include "game/GUI/CMainMenu.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkTU101.h"
 #include "game/UnkTU2578.h"
 #include "types.h"
 
 extern char g_unk_7101a9d190[];  // the member's vtable
-extern char g_unk_7101a9c360[];  // its base's vtable
 
 struct UnkSoundRef {
     UnkSound* object;
@@ -23,7 +24,6 @@ struct UnkSoundHandle {
     UnkSoundRef* ref;
     s64 serial;
 };
-extern const UnkSoundHandle g_unk_7108b6c460;  // the empty handle
 
 // Tells the playing sound to fade out and forgets it.
 static inline void FadeOut(UnkSoundHandle* handle) {

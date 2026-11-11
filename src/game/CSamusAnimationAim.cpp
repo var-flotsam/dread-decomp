@@ -4,6 +4,7 @@
 // Holds fn_7100713e2c.
 #include "../game_s7/UnkPropBagS7.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU437.h"
 #include "game/UnkTU54.h"
 #include "types.h"
 
@@ -12,7 +13,6 @@ using base::global::CStrId;
 // The aim tunables (reached through the GOT; src/game_s2/fn_7100359310.cpp declares the global so):
 // the limits read at +0xa8..+0xc0.
 struct UnkAimTunable;
-extern UnkAimTunable g_unk_71726b1438;
 static inline f32 AimLimit(u64 offset) {
     return *reinterpret_cast<const f32*>(reinterpret_cast<const u8*>(&g_unk_71726b1438) + offset);
 }

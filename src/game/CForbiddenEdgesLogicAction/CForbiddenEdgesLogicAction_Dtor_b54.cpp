@@ -4,15 +4,13 @@
 // (fn_7100a55ab8). Names are placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
+#include "game/CCentralUnitAIComponent.h"
+#include "game/CForbiddenEdgesLogicAction.h"
 #include "game/CTriggerLogicAction.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 struct UnkLogicActionBase;
-
-extern void* g_unk_7101a20950[];
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a33fa0[];
-extern char g_unk_7101a8f2d8[];  // CForbiddenEdgesLogicAction
 
 struct UnkForbiddenEdgesCallbacks_b54;
 template <>

@@ -6,6 +6,7 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkNamedRegistry.h"
 #include "base/UnkVector.h"
+#include "base/file/nx/CDeviceNX.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -20,9 +21,12 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU2523.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2669.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU52.h"
+#include "game/UnkTU92.h"
 #include "game/UnkXformNode.h"
 #include "game/malloc.h"
 #include "game/sound/CMusicManager.h"
@@ -44,7 +48,6 @@ void fn_7100fbc4e0(lua_State* L, void* arg);
 static inline s32 PushObject(lua_State* L, void* arg) {
     return reinterpret_cast<s32 (*)(lua_State*, void*)>(fn_7100fbc4e0)(L, arg);
 }
-extern u32 g_unk_71727bebb8;
 
 void fn_7100dfc344(UnkGameManager* manager, const char* const& a, const char* const& b, const base::global::CRntString& name,
                    bool flag);
@@ -198,7 +201,6 @@ s32 fn_710107edb0(lua_State* L) {
     return 0;
 }
 
-extern void* g_unk_71727b85d0;
 extern void* g_unk_717275c380;
 void fn_710101eee8(void* self, const CFilePathStrId* path, bool flag, u32 mode, f32 a, f32 b, f32 c);
 void fn_7100fc8dec(void* self, const CFilePathStrId* path, bool flag, u32 mode, f32 a, f32 b, f32 c);
@@ -663,8 +665,6 @@ s32 fn_71010935b0(lua_State*) {
     return 0;
 }
 
-extern void* g_unk_7101a1a070[];
-
 // A list of strings (nodes linked through +0x30), emptied when it goes.
 struct UnkLuaNameList_b0160 {
     void** vtable;
@@ -690,7 +690,6 @@ struct UnkLuaNameList_b0160 {
 };
 
 struct UnkScriptManager_ovb0085;
-extern UnkScriptManager_ovb0085* g_unk_71727bed90;
 void fn_710109dc90(UnkScriptManager_ovb0085* self, UnkLuaNameList_b0160* out);
 
 s32 fn_7101077770(lua_State* L) {
@@ -706,7 +705,6 @@ s32 fn_7101077770(lua_State* L) {
 }
 
 struct UnkEnumInfo;
-extern UnkEnumInfo g_unk_7101d67c10;
 
 UnkReflValue fn_7100fbdfd0(lua_State* L, s32 index);
 

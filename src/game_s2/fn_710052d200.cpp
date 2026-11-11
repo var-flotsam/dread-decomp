@@ -3,10 +3,10 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/CCharClassChozoRobotSoldierAIComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
-extern void* g_unk_7101a38c40[];
 extern void* g_unk_7101a481e8[];
 
 struct UnkStateIds {

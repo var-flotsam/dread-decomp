@@ -92,7 +92,6 @@ void fn_7100aa54c0(UnkWaterPlatformUsable_b0105* self) {
 }
 
 struct UnkEmmyRegistry_b55;
-extern UnkEmmyRegistry_b55* g_unk_71726af0a8;
 void fn_710021a0b4(UnkRenderManager* self, const u64* hash, const base::math::CVector4D* value);
 struct UnkScriptCaller;
 

@@ -10,6 +10,7 @@
 #include "base/UnkNodeOwner.h"
 #include "base/UnkVector.h"
 #include "game/behaviortree/CBehaviorTree.h"
+#include "game/behaviortree/CParallel.h"
 #include "types.h"
 
 struct UnkClone_fn_710039657c;
@@ -80,7 +81,6 @@ s32 fn_71003a8044(UnkParallel_ovb0116* self) {
     return self->running_count == 0 ? 6 : 4;
 }
 
-extern void* g_unk_7101a29148[];
 extern void* g_unk_7101a291f8[];  // the running list's derived part's vtable
 extern void* g_unk_7101a29218[];  // its base part's
 struct UnkBehaviorNode_ovb0116;

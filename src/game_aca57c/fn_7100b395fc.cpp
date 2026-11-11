@@ -5,15 +5,13 @@
 // at 0xf8.
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU1689.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-extern void* g_unk_7101a9c8e0[];
-extern void* g_unk_7101a9ca40[];
-extern void* g_unk_7101a9cb48[];
 extern void* g_unk_7101a9c938[];
 
 // A string id whose destructor reloads the id after the decrement.

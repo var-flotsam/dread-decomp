@@ -1,8 +1,8 @@
 // Copy constructor of a layered class.
+#include "game/CDredhedDiveAttack.h"
 #include "types.h"
 
 extern void* g_unk_7101a24060[];
-extern void* g_unk_7101a418d0[];
 
 void fn_71004e62bc(char* self, const char* other) {
     *reinterpret_cast<void***>(self) = &g_unk_7101a24060[2];

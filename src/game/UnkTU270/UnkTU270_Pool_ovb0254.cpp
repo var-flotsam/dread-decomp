@@ -10,6 +10,7 @@
 #include "base/UnkVector.h"
 #include "game/UnkSphere.h"
 #include "game/UnkTU307.h"
+#include "game/UnkTU58.h"
 #include "types.h"
 
 // A box with virtual accessors (0x20 bytes): its minimum and maximum corners.
@@ -120,7 +121,6 @@ struct UnkSeenObject_ovb0254 {
 
 struct UnkFrustum_ovb0254;
 bool fn_71001ba188(UnkFrustum_ovb0254* view, UnkSphere* sphere);        // whether the sphere is inside the view
-extern u32 g_unk_7101d58e48;  // the current frame
 
 // The entries of both tables whose sphere is in the view: appended to `out1`, and their objects (when they want
 // to be told, once a frame) to `out2`. The fourth and sixth parameters are not read.

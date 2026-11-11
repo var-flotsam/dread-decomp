@@ -10,13 +10,13 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAIAttackComponent.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/CAttack.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
 void fn_710036069c(void* self);
 extern void* g_unk_7101a62b48[];
-extern void* g_unk_7101a22d48[];
 
 struct UnkShakernautVec3_ovb0037 {
     f32 x, y, z;

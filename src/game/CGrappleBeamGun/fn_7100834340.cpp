@@ -2,6 +2,7 @@
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CGrappleBeamGun.h"
 #include "game/UnkTUProperty.h"
 
 using namespace unk_static_init;
@@ -32,7 +33,6 @@ extern UnkConversion g_unk_7172725ba0;
 void fn_71008340c8() __attribute__((visibility("hidden")));
 void fn_71008340d4() __attribute__((visibility("hidden")));
 extern char g_unk_7172725bc0[];
-extern UnkTunable g_unk_7172725bc8;
 extern void* g_unk_7101a77950[];
 
 void fn_7100834340() {

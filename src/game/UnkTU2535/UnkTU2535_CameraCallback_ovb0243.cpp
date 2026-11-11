@@ -5,6 +5,7 @@
 #include "base/UnkErasedVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -34,8 +35,6 @@ union UnkBuilt_a4dcc {
     UnkBuilt_a4dcc() {}
     ~UnkBuilt_a4dcc() { values.~UnkOwnedErasedVector(); }
 };
-
-extern void* g_unk_7101a20998[];
 
 struct UnkCameraCallbackBase_ovb0070 {
     void** vtable;

@@ -2,6 +2,7 @@
 // platform, the timed update of its state machine and the destructor. Names and layouts are placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"
 #include "game/CCharacterMovement.h"
 #include "game/CLifeComponent.h"
@@ -166,7 +167,6 @@ void fn_710088c47c(UnkMushroomTimer_ov110* self) {
 }
 
 extern void* g_unk_7101a7c210[];
-extern void* g_unk_7101a22d48[];
 extern char g_unk_7101a7c450[];
 extern void* g_unk_7101a7c4a8[];
 

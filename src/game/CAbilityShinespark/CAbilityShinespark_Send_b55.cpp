@@ -5,6 +5,7 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityShinespark.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
@@ -72,7 +73,6 @@ struct UnkShinesparkTunable_b55 {
     f32 field_0x24;
 };
 struct UnkTunable;
-extern UnkTunable g_unk_71726b0378;
 
 struct UnkShinesparkFxHolder_b55 {
     u8 pad_0x0[0x228];

@@ -3,6 +3,7 @@
 // The same shape as slice 5's (src/game_aca57c/fn_7100c9c750.cpp).
 #include "base/global/CStrId.h"
 #include "game/CCharClassComponent.h"
+#include "game/CCharClassPickableComponent.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -70,8 +71,6 @@ void fn_710086e288(UnkIdRecord_0x28* self) {
     for (int i = 5; i-- > 0;)
         self->ids[i].~UnkStaticId();
 }
-
-extern void* g_unk_7101a89160[];  // vtable
 
 struct UnkIdObject {
     void* vtable;

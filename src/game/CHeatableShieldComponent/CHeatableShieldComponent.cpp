@@ -4,12 +4,12 @@
 // Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "game/CComponent.h"
+#include "game/CHeatableShieldComponent.h"
 #include "game/UnkComponent.h"
 #include "types.h"
 
 struct UnkStateObject;
 void fn_710086abb4(void* self);
-extern void* g_unk_7101a7a260[];
 
 struct UnkHeatableShield : UnkBaseComponent {
     u64 field_0x40;

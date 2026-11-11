@@ -4,14 +4,13 @@
 // two members destroyed by fn_71003606c0, then the base's destructor fn_71003ac388. Names are placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/CBossAIComponent.h"
+#include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 extern void* g_unk_7101a5a240[];
-extern void* g_unk_7101a20950[];
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a22d48[];
 void fn_71003606c0(void*);  // as src/game_5821e4/CAttackDtor.h declares it
 
 struct UnkQuetzoaDtor_A4_b70;

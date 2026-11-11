@@ -10,6 +10,7 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CBlackboard.h"
+#include "game/CUsableComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiLabel.h"
@@ -130,7 +131,6 @@ UnkGuiObj* fn_7100b4190c(UnkMapMenuController* self, const CStrId* key, CStrId n
 // The blackboard property name of a marker: fn_71004f1748 builds it in place, as it builds the
 // registry tables' values (base/reflection/UnkReflStatics.h), from an owner and the marker's key:
 // 16 bytes, the name's string first, then the owner.
-extern u8 g_unk_7172753148[];
 void fn_71004f1748(base::reflection::UnkReflRegistryMap::Value* value, base::reflection::UnkReflRegistryItem* item,
                    const base::global::CStrId& name);
 

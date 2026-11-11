@@ -5,11 +5,11 @@
 #include "base/global/CName.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
 
 struct UnkWeakTarget;
-extern u32 g_unk_71727bebb8;
 UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 
 void fn_7100bcda3c(void* self) {

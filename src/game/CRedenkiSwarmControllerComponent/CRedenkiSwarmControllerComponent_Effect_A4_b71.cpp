@@ -5,6 +5,7 @@
 #include "base/UnkVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CDizzeanSwarmControllerComponent.h"
 #include "game/CSwarmControllerComponent.h"
 #include "game/UnkTU2560.h"
 #include "types.h"
@@ -37,7 +38,6 @@ struct UnkRedenkiController_A4_b71 {
     UnkRedenkiChain1_A4_b71* field_0xe8;
 };
 
-extern void* g_unk_71726da048;
 extern char g_unk_710164a420[];
 
 void fn_7100656bd0(UnkRedenkiController_A4_b71* self) {

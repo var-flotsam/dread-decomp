@@ -2,10 +2,10 @@
 // releases four string ids, then runs the base destructor.
 #include "base/UnkDeferredSet.h"
 #include "base/UnkDestructors.h"
+#include "game/GUI/CButton.h"
 #include "game/UnkGuiDisplayObject.h"
 
 struct UnkTag_71011bf1a4;
-extern char g_unk_7101cb5908[];
 
 template <>
 struct base::UnkDtorTraits<UnkTag_71011bf1a4> {

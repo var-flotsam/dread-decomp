@@ -5,9 +5,8 @@
 #include "base/UnkDestructors.h"
 #include "base/global/CRntString.h"
 #include "game/behaviortree/CBaseAction.h"
+#include "game/behaviortree/CStoreStringInBlcAction.h"
 #include "types.h"
-
-extern void* g_unk_7101a25640[];  // the node's vtable
 
 struct CStoreStringInBlcActionDtorTag_b45a1;
 template <>

@@ -4,6 +4,7 @@
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
+#include "game/CKraidSpinningNailsDef.h"
 #include "game/UnkTUProperty.h"
 
 using namespace unk_static_init;
@@ -19,7 +20,6 @@ struct UnkStatics_71005ef820 {
 };
 extern UnkStatics_71005ef820 g_unk_71726f20c0 __attribute__((visibility("hidden")));
 extern char g_unk_71726f0b08[];
-extern UnkTunable g_unk_71726f0b10;
 extern void* g_unk_7101a53958[];
 extern UnkEnumType g_unk_71726f0b40;
 void fn_71005e7e04(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);

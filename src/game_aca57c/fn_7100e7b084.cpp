@@ -7,10 +7,10 @@
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection.h"
 #include "types.h"
 
-extern void* g_unk_7101a1a5a8[];
 using UnkString200 = UnkBufferString<0x200, g_unk_7101a1a5a8>;
 static_assert(sizeof(UnkString200) == 0x248, "UnkString200 layout");
 

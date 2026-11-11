@@ -6,6 +6,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkTU811.h"
+#include "game/behaviortree/CEmmySearchingAction.h"
 #include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
@@ -208,8 +209,6 @@ struct UnkSearch_b0068 {
     u32 mode;  // 0x162c
 };
 static_assert(__builtin_offsetof(UnkSearch_b0068, mode) == 0x162c, "layout");
-
-extern void* g_unk_7101a47f88[];
 
 struct UnkCollectOwner_A3_b70;
 struct UnkCollectList_A3_b70;

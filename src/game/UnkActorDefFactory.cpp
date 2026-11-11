@@ -14,7 +14,12 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU1643.h"
+#include "game/UnkTU2527.h"
 #include "game/UnkTU27.h"
+#include "game/UnkTU2729.h"
+#include "game/UnkTU344.h"
+#include "game/animtree/CAnimTreeRes.h"
 #include "types.h"
 
 using base::UnkBlockPool;
@@ -77,7 +82,6 @@ struct UnkActorDefFactory {
 };
 static_assert(sizeof(UnkActorDefFactory) == 0x1c8, "UnkActorDefFactory layout");
 
-extern char g_unk_7101cb5270[];  // the factory's vtable (its second base's at +0x60)
 // The maps' initialisers (each called with 0x80 and 0x200).
 void fn_7101194c84(UnkActorDefMap* map, u32 a, u32 b);
 void fn_7101194e50(UnkActorDefMap* map, u32 a, u32 b);
@@ -169,9 +173,6 @@ static inline const UnkEntry_7100d92158& AsRegistryEntry(const UnkActorDefEntry&
     return *reinterpret_cast<const UnkEntry_7100d92158*>(&entry);
 }
 
-extern char g_unk_71727b9530[];               // the "actordef" category
-extern UnkActorDefFactory* g_unk_71726a0220;  // the factory (created by fn_710119307c)
-
 // The factory's registry interface, if the factory exists.
 static inline UnkActorDefResFactory* ResFactory() {
     return g_unk_71726a0220 ? &g_unk_71726a0220->res_factory : nullptr;
@@ -185,9 +186,7 @@ void fn_71011930c8() {
 // The same registration in units 2542 and 2624 of tools/tu_map.py, for factories of the same shape (the
 // registry interface at +8) held in their own singletons, each with its category's record. The
 // startup (src/engine/UnkStartupManagers.cpp) passes fn_7100db256c its singleton, which it ignores.
-extern void* g_unk_7172758b18;     // unit 2542's factory
 extern void* g_unk_71729f0148;     // unit 2624's factory
-extern char g_unk_71726aad48[];    // the "animtree" category (src/game/animtree/CAnimTreeRes/fn_71002e0370.cpp)
 extern CStrId g_unk_71727b9d30;    // unit 2624's category
 
 static inline UnkActorDefResFactory* ResFactoryOf(void* factory) {

@@ -4,15 +4,15 @@
 // 0xf, default allocator), then the post-construction virtual call (slot 3). Names and layouts are
 // placeholders.
 #include "base/UnkVector.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/CCharClassActivatableComponent.h"
 #include "game/CComponent.h"
 #include "game/CDemolitionBlockComponent.h"
 #include "types.h"
 
 struct UnkStateObject;
 void fn_71007b15f4(char* self);
-extern void* g_unk_7101a7ac20[];
 extern void* g_unk_7101a70380[];
-extern void* g_unk_7101a22d48[];
 
 struct UnkDemolitionBlockComponent {
     void** vtable;

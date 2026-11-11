@@ -13,6 +13,7 @@
 #include "game/UnkTU182.h"
 #include "game/UnkTU230.h"
 #include "game/UnkTU259.h"
+#include "game/UnkTU58.h"
 #include "types.h"
 
 struct UnkStruct_71001cdd74;
@@ -25,8 +26,6 @@ extern char g_unk_7101a1e738[];
 extern f32 g_unk_7101a1e720[] __attribute__((visibility("hidden")));
 extern f32 g_unk_7101a1e610[];
 extern u32 g_unk_716e554910;
-extern u32 g_unk_7101d58e48;
-extern u32 g_unk_716e554938;
 extern void* g_unk_716e589b58 __attribute__((visibility("hidden")));
 extern void* g_unk_716e589b60 __attribute__((visibility("hidden")));
 

@@ -5,10 +5,9 @@
 // The fields are addressed by offset, as in src/game/CCentralUnitAIComponent/fn_71004076e4.cpp.
 // Names and layouts are placeholders.
 #include "game/CBehaviorTreeAIComponent.h"
+#include "game/CYamplotXAIComponent.h"
 #include "game/UnkObject_0x100.h"
 #include "types.h"
-
-extern void* g_unk_7101a6ae18[];
 
 // Declared as src/game/CCentralUnitAIComponent/fn_71004076e4.cpp defines it.
 struct UnkComponent;

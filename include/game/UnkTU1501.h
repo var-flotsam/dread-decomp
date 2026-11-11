@@ -1,10 +1,11 @@
 #pragma once
 
-// UnkTU1501: functions of this translation unit that other files call (tools/tu_map.py unit 1501,
+// UnkTU1501: functions and globals of this translation unit that other files use (tools/tu_map.py unit 1501,
 // 0x71009dc3bc-0x71009f16a8). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkSamusSettings;
 struct UnkFlagged;
 struct UnkHelper;
 struct UnkSamusMovement;
@@ -19,3 +20,4 @@ void fn_71009e4598(UnkSamusMovementUpdate* self);
 bool fn_71009e84e4(char* self);
 void fn_71009e85f4(void* self, bool flag);
 void fn_71009eaa88(void*);
+extern UnkSamusSettings g_unk_7172740de0;

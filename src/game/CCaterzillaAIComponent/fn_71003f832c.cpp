@@ -3,10 +3,9 @@
 // (vtable g_unk_7101a25fb0, kind 6, carrying that flag) to fn_71006f4b0c and stores three components of
 // the owner's matrix as a vector at +0x146e0.
 #include "base/UnkMatrix44.h"
+#include "game/behaviortree/CGoToSideAction.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
-
-extern void* g_unk_7101a25fb0[];
 
 struct UnkOwner {
     u8 pad_0x0[0x38];

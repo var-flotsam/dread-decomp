@@ -1,6 +1,6 @@
 #pragma once
 
-// UnkTU259: functions of this translation unit that other files call (tools/tu_map.py unit 259,
+// UnkTU259: functions and globals of this translation unit that other files use (tools/tu_map.py unit 259,
 // 0x71001c6960-0x71001d948c). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
@@ -22,3 +22,4 @@ void fn_71001ced08(UnkRenderTargetA1* target, u8 value);
 void fn_71001d0b70(UnkRenderTargetA1* target, void* p, u32 n, s32 a, s32 b);
 void fn_71001d0d10(void* self, UnkMaskedEntry_b67a1* entry);
 void fn_71001d1e78(UnkRenderTargetA1* target, f32 a, f32 b, f32 c, f32 d);
+extern u32 g_unk_716e554938;

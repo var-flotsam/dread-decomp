@@ -8,10 +8,12 @@
 // the object's flag at +0xf9 is cleared through its slot 0x260. The state ends at 0x7fffffff. Names and
 // layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CAutsharpAIComponent.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkActor.h"
 #include "game/UnkAttack.h"
 #include "game/UnkManager_71726af468.h"
+#include "game/behaviortree/CGoToSideAction.h"
 #include "game_s2/UnkParams.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -20,7 +22,6 @@ void fn_71006bd4f0(void* self, UnkActor* actor);
 struct UnkActorTarget;
 void fn_7101178e08(UnkActorTarget*, u32, u32, u32, f32);
 struct UnkEffectSink;
-extern void* g_unk_7101a2e208[];
 
 struct CShelmitPlasmaRayAttack;
 void fn_71006b4900(CShelmitPlasmaRayAttack* self);
@@ -149,7 +150,6 @@ void fn_71006b46c8(UnkPlasmaRayStop_ovb0126* self) {
 // src/game/behaviortree/CGoToSideAction/CGoToSideAction_Side_ovb0043.cpp builds one) toward the target's
 // side (the key g_unk_710164a6d0 when the target is to the left, g_unk_710164a6dc otherwise), called back
 // through fn_71006b6dc8 (src/game/CShelmitPlasmaRayAttack/CShelmitPlasmaRayAttack_Nav_b65a4.cpp).
-extern void* g_unk_7101a25fb0[];
 struct UnkPlasmaRayKey_ovb0126 {
     u8 bytes[12];
 };

@@ -3,6 +3,7 @@
 // 0x40-byte entries at +0xac0, then runs the base destructor fn_7100a46b64; fn_7100a2fedc also frees
 // the object. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CCharClassSoundProofTriggerComponent.h"
 #include "game/UnkComponent.h"
 
 struct UnkSoundProofEntry_b52 {
@@ -11,8 +12,6 @@ struct UnkSoundProofEntry_b52 {
 };
 
 void fn_7100a46b64(char*);
-
-extern void* g_unk_7101a8e0f8[];
 
 struct UnkSoundProofTriggerComponent_b52 {
     void* vtable;

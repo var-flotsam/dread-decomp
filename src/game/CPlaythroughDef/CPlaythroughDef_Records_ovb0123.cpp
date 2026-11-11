@@ -9,14 +9,13 @@
 #include "base/core/CAsset.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CPlaythroughDef.h"
 #include "game/UnkTU83.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
-
-extern void* g_unk_7101a22240[];  // the holder's vtable
 
 struct UnkIdListHolder_ovb0123 {
     void** vtable;
@@ -101,8 +100,6 @@ struct UnkPlaythroughNode_ovb0123 {
     base::UnkStrIdVec ids;  // 0xa8
 };
 static_assert(__builtin_offsetof(UnkPlaythroughNode_ovb0123, ids) == 0xa8, "layout");
-
-extern void* g_unk_7101a22280[];  // the record's vtable
 
 // The record's copy constructor.
 void fn_71002f4c38(UnkPlaythroughNode_ovb0123* self, const UnkPlaythroughNode_ovb0123* other) {

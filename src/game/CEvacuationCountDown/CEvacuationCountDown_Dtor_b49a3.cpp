@@ -5,10 +5,9 @@
 // CDemolitionBlockComponent_Dtor_b44.cpp). Names and layouts are placeholders.
 #include "base/UnkKeyedStrIds.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU1246.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-extern void* g_unk_7101a72ba8[];
 
 template <u32 IdOffset>
 struct UnkActivatable_b44a2;

@@ -4,6 +4,8 @@
 // dropped-item manager g_unk_71726eb3e8 exists, hands the squares of the tunable g_unk_71727c10c8's two
 // distances to its eight billboards (+0x48c of each; the first six get the first, the last two the
 // second). Each returns an empty result of kind 2. Names and layouts are placeholders.
+#include "game/CHydrogigaAIComponent.h"
+#include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"
 #include "types.h"
 
 struct UnkValueSet_ddb {
@@ -44,9 +46,7 @@ struct UnkDroppedItemManager_ddb {
     UnkBillboard_ddb* billboards[8];
 };
 
-extern void* g_unk_71726eb3e8;
 struct UnkDroppableTunable;
-extern UnkDroppableTunable g_unk_71727c10c8;
 
 static inline __attribute__((always_inline)) const u32* PickArg_ddb(UnkValueSource_ddb* src) {
     if (src->kind == 1 || src->set->count >= 9)

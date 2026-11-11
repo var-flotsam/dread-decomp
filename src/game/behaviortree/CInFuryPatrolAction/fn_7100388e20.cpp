@@ -2,7 +2,9 @@
 // a second vtable-bearing sub-object at +0x70 and makes the two string ids at +0x90 and +0x98 the
 // empty string (creating the pool first when there is none).
 #include "base/global/CStrId.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/UnkBehaviorTree.h"
+#include "game/behaviortree/CInFuryPatrolAction.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -27,9 +29,6 @@ struct UnkNode : UnkBehaviorTreeNodeBase {
     u64 field_0x90;
     UnkStringData* field_0x98;
 };
-
-extern void* g_unk_7101a265d0[];
-extern void* g_unk_7101a22d48[];
 
 void fn_7100388e20(UnkNode* self) {
     fn_7100393e68(self);

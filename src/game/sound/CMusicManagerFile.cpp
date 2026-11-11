@@ -10,6 +10,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
@@ -37,7 +38,6 @@ bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base:
 extern UnkParseCallbacks g_unk_71729f08d0 __attribute__((visibility("hidden")));
 extern base::global::CFilePathStrId g_unk_71729f08a8 __attribute__((visibility("hidden")));
 extern base::reflection::CType g_unk_7172756e50;
-extern u8 g_unk_7172757530[];
 
 void fn_710000f750(UnkParseContext* self, void* root);
 

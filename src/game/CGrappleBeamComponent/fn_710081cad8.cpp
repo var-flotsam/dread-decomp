@@ -2,13 +2,13 @@
 // Destructor of an array of records (count at +0x8, each record 0x48 bytes starting at +0xc and
 // holding two reference-counted pointers at its start): sets its vtable, releases both pointers of
 // every record and empties the array.
+#include "game/CDroppableComponent.h"
+#include "game/CGrappleBeamComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 
 extern void* g_unk_7101a86478[];
 extern void* g_unk_7101a85cd8[];
 extern void* g_unk_7101a7eae0[];
-extern void* g_unk_7101a75548[];
-extern void* g_unk_7101a70eb0[];
 extern void* g_unk_7101a6ba70[];
 
 struct __attribute__((packed)) UnkRecord {
@@ -81,4 +81,3 @@ void fn_71007bafa8(UnkSelf* self) {
     }
     self->field_0x8 = 0;
 }
-

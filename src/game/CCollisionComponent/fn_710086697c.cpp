@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkTU365.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -38,7 +39,6 @@ static_assert(__builtin_offsetof(UnkColliderNode, parent_count) == 0x164, "UnkCo
 // for an owner under a name.
 struct UnkManager_7100863a8c;
 void fn_7100d46804(UnkManager_7100863a8c* self);
-extern UnkManager_7100863a8c* g_unk_71726a4788;
 UnkColliderNode* fn_71008625a0(UnkManager_7100863a8c* self, void* owner, const CStrId* name);
 
 static inline UnkManager_7100863a8c* GetManager() {

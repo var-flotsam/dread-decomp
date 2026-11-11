@@ -6,10 +6,10 @@
 // in game_5821e4/CAttackDtor.h; the base constructor (fn_710036069c) is called out of line.
 
 #include "base/UnkVector.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/CBigkranXSpitAttack.h"
 #include "types.h"
 
-extern void* g_unk_7101a31348[];  // the class's vtable
-extern void* g_unk_7101a22d48[];  // the embedded listener's vtable
 void fn_710036069c(void* attack);  // CAttack's constructor
 
 struct UnkSpitAttackListener {

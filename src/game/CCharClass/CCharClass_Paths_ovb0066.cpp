@@ -6,6 +6,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntFile.h"
+#include "game/UnkTU63.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -14,7 +15,6 @@ using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
 extern void* g_unk_7101cb57b8[];
-extern void* g_unk_7101a1b030[];
 
 struct UnkResIdTable;
 void fn_71011ac8e8(UnkResIdTable* self);

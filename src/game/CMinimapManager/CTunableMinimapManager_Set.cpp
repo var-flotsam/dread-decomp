@@ -3,9 +3,8 @@
 // entries or kind 1) is stored at +0xd641c4 of the object at 8 when it differs; then the unit's cached
 // flag (g_unk_71727cc998, also read by src/game/CMinimapManager.cpp) and the byte two after it are
 // cleared. Returns an empty result of kind 2. Names and layouts are placeholders.
+#include "game/UnkTU2566.h"
 #include "types.h"
-
-extern bool g_unk_71727cc998 __attribute__((visibility("hidden")));
 
 struct UnkValueSet_mmt {
     u8 unk_0x0[0x18];

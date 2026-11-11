@@ -14,6 +14,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU218.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU56.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -349,7 +350,6 @@ namespace base::reflection {
 class UnkReflObject;
 }
 base::reflection::UnkReflObject* fn_7100233684(UnkStruct_7100233684* self);
-extern u32 g_unk_71727bebb8;
 
 struct UnkTriple_ovb0032 {
     f32 x, y, z;

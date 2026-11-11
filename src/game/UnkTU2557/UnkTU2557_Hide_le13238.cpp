@@ -5,6 +5,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2557.h"
 #include "game/UnkTU2747.h"
 #include "types.h"
 
@@ -60,7 +61,6 @@ HIDDEN void* g_unk_71727c08e8;
 HIDDEN void* g_unk_71727c08f0;
 HIDDEN void* g_unk_71727c08f8;
 HIDDEN void* g_unk_71727c0900;
-extern void* g_unk_71727c0708;
 
 static inline void RemoveGui(void*& object) {
     if (object) {

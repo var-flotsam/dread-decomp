@@ -4,6 +4,9 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CFXComponent.h"
+#include "game/CGameManager/CTunableGameManager.h"
+#include "game/CModelUpdaterComponent.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -68,9 +71,6 @@ struct UnkIdList {
 };
 
 extern void* g_unk_7101cb38a8[];
-extern void* g_unk_7101cb38e8[];
-extern void* g_unk_7101cb46a0[];
-extern void* g_unk_7101aa9ae0[];
 
 template <void** Vtable, class Node, u32 Pad>
 struct UnkIdListOwner {

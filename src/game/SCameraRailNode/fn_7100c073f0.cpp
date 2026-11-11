@@ -1,6 +1,7 @@
 // Constructor of an array of 0x50-byte polymorphic elements with the given allocator flags,
 // reserving `n` elements up front.
 #include "base/UnkVector.h"
+#include "game/SCameraRailNode.h"
 #include "types.h"
 
 using base::UnkAllocator;
@@ -23,8 +24,6 @@ struct UnkMovedArray {
         other.capacity = 0;
     }
 };
-
-extern void* g_unk_7101aa28d8[];
 
 struct UnkElem50 {
     virtual void vf_0x0();

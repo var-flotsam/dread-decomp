@@ -3,6 +3,7 @@
 // reference and free the node through the list's allocator, then empty the list (the deleting
 // ones then free the object).
 #include "base/UnkVector.h"
+#include "game/UnkTU2578.h"
 #include "types.h"
 
 struct UnkRefObj {
@@ -57,9 +58,6 @@ struct UnkList {
         tail = nullptr;
     }
 };
-
-extern void* g_unk_7101caa208[];
-extern void* g_unk_7101caa228[];
 
 template <void** Vtable, class Node>
 struct UnkRefListOwner {

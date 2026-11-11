@@ -19,7 +19,9 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU1134.h"
+#include "game/UnkTU1643.h"
 #include "game/UnkTU1728.h"
+#include "game/UnkTU1730.h"
 #include "game/UnkTU56.h"
 #include "game/UnkTU83.h"
 #include "game/UnkXformNode.h"
@@ -53,7 +55,6 @@ f32 fn_710070d89c(UnkTrack* track);
 bool fn_7100c97930(UnkTrackAction_1444* action, const base::reflection::CClass* cls, f32 value);
 
 extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
-extern UnkTrackBlend g_unk_7172769770;
 
 // A request's mode (passed by value, through memory).
 struct UnkFlags_7101176ea8 {
@@ -653,7 +654,6 @@ struct UnkOwnedPtr {
     }
 };
 
-extern void* g_unk_7172758b18;
 UnkOwnedPtr<UnkAnimTracks_617c> fn_7100db27a8(void* factory);
 
 struct UnkAnimComponent_617c {

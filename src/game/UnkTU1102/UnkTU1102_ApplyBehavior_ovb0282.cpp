@@ -9,12 +9,12 @@
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1102.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkWeakTarget;
-extern u32 g_unk_71727bebb8;
 UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 
 struct UnkParasiteBehavior_b0282 : base::reflection::UnkReflObject {

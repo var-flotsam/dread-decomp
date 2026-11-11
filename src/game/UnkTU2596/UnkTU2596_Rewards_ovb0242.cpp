@@ -11,6 +11,8 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"
+#include "game/CBossAIComponent.h"
+#include "game/CInputComponent.h"
 #include "game/CPhotoModeCameraCtrl.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
@@ -28,7 +30,6 @@
 using base::global::CRntString;
 using base::global::CStrId;
 
-extern u8* g_unk_71726bc558;
 f32 fn_7100ec73b4(u8* self);
 u32 fn_7100f14e80();
 bool fn_7100f14f80(s32 kind, s32 variant);
@@ -166,7 +167,6 @@ struct UnkListedItem;
 struct UnkItemListTag;
 using UnkItemList = base::UnkSList<UnkItemListTag>;
 void fn_710119ba7c(UnkItemList* self, UnkListedItem* item);
-extern void* g_unk_7172729910;  // the item list singleton
 void fn_7101053968(void* effects, UnkVec3f* a, UnkVec3f* b, f32 x, f32 y, f32 z);
 extern const char* const g_unk_7101cab038[][3] __attribute__((visibility("hidden")));
 

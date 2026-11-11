@@ -3,13 +3,13 @@
 // collider. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/global/CStrId.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/CBossAIComponent.h"
 #include "game/UnkTU2702.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 extern void* g_unk_7101a3fc88[];  // the component's vtable
-extern void* g_unk_7101a22d48[];  // the listener's vtable
 
 struct UnkCoreXAI_ovb0095;
 

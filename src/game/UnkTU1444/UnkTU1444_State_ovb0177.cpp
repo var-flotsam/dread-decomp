@@ -13,6 +13,7 @@
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
+#include "game/UnkTU1130.h"
 #include "game/UnkTU1440.h"
 #include "game/UnkTU1444.h"
 #include "game/UnkXformNode.h"
@@ -31,9 +32,6 @@ void fn_71002b57bc(UnkObject_0x100* self);
 UnkObject_0x100* fn_71002b5c90(UnkObject_0x100* self, const UnkObject_0x100* other);
 bool fn_71010faac0(UnkTrackSelf_b0143* self);
 void fn_7101110030(UnkGroundAI_ovb0146* self);
-
-extern void* g_unk_7101a853b8[];  // the class's vtable
-extern void* g_unk_7101a6bff8[];  // the member's vtable
 
 struct UnkUnit1444Msg_ovb0177 {
     u8 pad_0x0[0x38];

@@ -2,11 +2,11 @@
 // (fn_71002ad0dc), the listener at +0x30 (its own vtable and unregister function fn_71010cb2fc;
 // game_5821e4/CAttackDtor.h), then CAttack's destructor. Names and layouts are placeholders.
 #include "../../game_5821e4/CAttackDtor.h"
+#include "game/CAutclastChargeAttack.h"
+#include "game/CAutsniperShootAttack.h"
 #include "game/CEnemyMovement.h"
 #include "game/navmesh/SNavMeshPath.h"
 
-extern void* g_unk_7101a2e5d0[];  // the attack's vtable
-extern void* g_unk_7101a2aef8[];  // the listener's vtable
 struct UnkObject_71002ad0dc;
 
 struct UnkAutsniperShootAttack_b49 {

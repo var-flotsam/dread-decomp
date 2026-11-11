@@ -1,10 +1,11 @@
 #pragma once
 
-// UnkTU341: functions of this translation unit that other files call (tools/tu_map.py unit 341,
+// UnkTU341: functions and globals of this translation unit that other files use (tools/tu_map.py unit 341,
 // 0x710022739c-0x710024e2e8). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkStatics_710024cc40;
 struct UnkActor_71002329e8;
 struct UnkBoundObj;
 struct UnkKeyMap_b60;
@@ -33,3 +34,10 @@ UnkReflType* fn_710023e498();  // base::reflection::refl_GetType<CActorComponent
 void fn_71002430e8(UnkKeyMap_b60* map, UnkKeyNode_b60* node);
 void fn_7100246d70(void* self, const void* other);
 void fn_7100248ce8(UnkKeyedStrIdMapA_ovb0062* self, u32 capacity);  // The keyed array's reserve.
+extern void* g_unk_7101a20998[];  // The callback set's base vtable.
+extern void* g_unk_7101a20950[];  // The callback set's vtable.
+extern char g_unk_7101a20a30[];
+extern char g_unk_7101a20a50[];
+extern bool g_unk_717269c4d8;
+extern UnkStatics_710024cc40 g_unk_717269f420 __attribute__((visibility("hidden")));
+extern char g_unk_717269f450[] __attribute__((visibility("hidden")));

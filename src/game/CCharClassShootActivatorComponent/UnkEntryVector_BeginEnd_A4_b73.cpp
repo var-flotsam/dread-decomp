@@ -7,10 +7,9 @@
 #include "base/global/CStrId.h"
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
+#include "game/CCentralUnitAIComponent.h"
+#include "game/UnkTU341.h"
 #include "types.h"
-
-extern void* g_unk_7101a20998[];  // the callback sets' base vtable
-extern void* g_unk_7101a33fa0[];  // their vtable
 
 void fn_71008933d4(char*);
 void fn_71008a939c(char*);
@@ -119,4 +118,3 @@ void fn_71008ac02c(UnkIterVector_A4_b73* self, UnkEntryIter_A4_b73<fn_71008a939c
 void fn_71008ac204(UnkIterVector_A4_b73* self, UnkEntryIter_A4_b73<fn_71008a939c>* out) {
     *out = UnkEntryIter_A4_b73<fn_71008a939c>(self->count, self->data + self->count);
 }
-

@@ -10,6 +10,7 @@
 #include "game/CSceneComponent.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU253.h"
+#include "game/UnkTU2661.h"
 #include "game/UnkTU39.h"
 #include "types.h"
 
@@ -136,8 +137,6 @@ void fn_710106cdb0(UnkCutscene_b0181* self, UnkSharedStr_b0181* name, bool flag,
         }
     }
 }
-
-extern void* g_unk_7101cac988[];
 
 // A 0x30-byte holder: a destructor slot, a word and a 27-byte payload.
 struct UnkHolder_b0181;

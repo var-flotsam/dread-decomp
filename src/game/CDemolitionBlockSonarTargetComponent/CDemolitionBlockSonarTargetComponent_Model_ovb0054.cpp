@@ -10,6 +10,7 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
+#include "game/CDemolitionBlockSonarTargetComponent.h"
 #include "game/CSonarTargetComponent.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkRenderManager.h"
@@ -17,8 +18,6 @@
 #include "types.h"
 
 using base::global::CFilePathStrId;
-
-extern char g_unk_7101a8b8f0[];
 
 struct UnkSonarTargetEntry_ovb0054 {
     virtual void vf_0x0();

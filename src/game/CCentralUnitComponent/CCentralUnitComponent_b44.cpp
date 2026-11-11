@@ -5,10 +5,8 @@
 // Names and layout are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU341.h"
 #include "types.h"
-
-extern void* g_unk_7101a20998[];  // the objects' base vtable
-extern void* g_unk_7101a20950[];  // their vtable
 
 struct UnkCentralUnitPair_b44a2 {
     u8 unk_0x0;

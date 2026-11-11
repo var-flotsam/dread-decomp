@@ -3,11 +3,10 @@
 // object at +0x14b60 (fn_7100586078), then the base's destructor fn_7100590b6c. Names are placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 extern void* g_unk_7101a4b428[];
-extern void* g_unk_7101a20950[];
-extern void* g_unk_7101a20998[];
 
 // As src/game/CGoliathXSlamAttack/fn_7100587280.cpp defines it.
 struct UnkAttack_7100587280;

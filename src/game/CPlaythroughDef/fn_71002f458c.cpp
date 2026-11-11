@@ -6,10 +6,9 @@
 #include "base/UnkVector.h"
 #include "base/core/CAsset.h"
 #include "base/global/CStrId.h"
+#include "game/CPlaythroughDef.h"
 
 using base::global::CStrId;
-
-extern void* g_unk_7101a22240[];  // the object's vtable
 
 struct UnkIdArrayHolder {
     void** vtable;

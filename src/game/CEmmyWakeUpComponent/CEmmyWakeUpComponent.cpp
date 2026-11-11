@@ -3,18 +3,16 @@
 // vtable, three cleared flags at +0x78, an allocator-backed object at +0x80 (base and own vtables,
 // three small defaults, the allocator from fn_7100083990), an object at +0xb8 (its vtable and three
 // cleared words), then the object's own vf_0x18. Names and layouts are placeholders.
+#include "game/CAbilityGhostAura.h"
 #include "game/CComponent.h"
 #include "game/CEmmyWakeUpComponent.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 #include "base/UnkVector.h"
 
 struct UnkStateObject;
 extern void* g_unk_7101a72d70[];
-extern void* g_unk_7101a72a18[];
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a20950[];
-extern void* g_unk_7101a22d48[];
 
 struct UnkEmmyWakeUpComponent {
     void** vtable;

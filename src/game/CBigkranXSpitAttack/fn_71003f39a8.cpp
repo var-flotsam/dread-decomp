@@ -3,8 +3,7 @@
 // part (fn_71003606c0).
 #include "../../game_5821e4/CAttackDtor.h"
 #include "base/UnkVector.h"
-
-extern void* g_unk_7101a31348[];  // the class's vtable
+#include "game/CBigkranXSpitAttack.h"
 
 struct UnkSpitAttackDtor {
     void** vtable;

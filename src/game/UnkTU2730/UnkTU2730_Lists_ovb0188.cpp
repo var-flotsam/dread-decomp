@@ -10,11 +10,15 @@
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CBlackboard.h"
 #include "game/CHeatRoomComponent.h"
+#include "game/CInputComponent.h"
+#include "game/CNavMeshItemComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU1643.h"
 #include "game/UnkTU2728.h"
+#include "game/UnkTU2730.h"
 #include "game/UnkTU2732.h"
 #include "game/UnkTUInit.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -230,7 +234,6 @@ struct UnkGameManagerNamedDef : UnkIdSource {
     u64 field_0x8;
     UnkQualifiedName name;
 };
-extern UnkGameManagerNamedDef g_unk_7172a0bb10;
 
 const UnkSubId_7100fc4b34& fn_710119a610(UnkQualifiedName* self, const void* path);
 bool fn_7100a68fb0(CBlackboard::CSection* section, const void* name, u32* out);
@@ -282,7 +285,6 @@ u32 fn_710119882c(void* manager, const CFilePathStrId* path) {
 struct UnkEventTable_b0188;
 
 u32 fn_7100f0cc48(UnkEventTable_b0188* table, u32 value);
-extern void* g_unk_7172729910;
 
 struct UnkEventEntry_b0188 {
     u32 id;
@@ -420,7 +422,6 @@ void fn_710119a9bc(base::UnkVector<UnkRefPtr_b0188>* v, u32 n) {
 }
 
 struct UnkGameManagerNamedDef;
-extern UnkGameManagerNamedDef g_unk_7172a0bb10;
 extern CStrId g_unk_7172a0bc98;
 
 // The unit's header data, then two floats and a flag the unit's statics read.
@@ -432,8 +433,6 @@ struct UnkCutsceneUnitHeader {
 };
 extern UnkCutsceneUnitHeader g_unk_7172a0bcb8 __attribute__((visibility("hidden")));
 
-extern void* g_unk_7101a8d830[];
-extern void* g_unk_7101a889c8[];
 void fn_710119ab20_init();
 
 void fn_710119ab20() {
@@ -533,7 +532,6 @@ struct UnkPlayer;
 struct UnkComponentOwner;
 
 struct UnkDropTarget;
-extern UnkDropTarget* g_unk_7101d47318;
 struct UnkSubAreaDropTargetView {
     virtual void vf_0x0();
     virtual void vf_0x8();
@@ -549,7 +547,6 @@ extern UnkRumbleManager* g_unk_7101d47348;
 void fn_7100073f48(UnkRumbleManager* self, u32 a, u32 b);
 UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 void fn_7100d7ae80(UnkComponentOwner* self);
-extern void* g_unk_7172758b20;
 void fn_7101192a4c(void* self);
 void fn_7100219c44(UnkRenderManager* self, u32 value);
 void fn_710021a09c(UnkRenderManager* self, u32 value);

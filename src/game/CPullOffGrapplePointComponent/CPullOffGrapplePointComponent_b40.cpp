@@ -2,10 +2,9 @@
 // src/game/CAINavigationComponent/CAINavigationComponent_b39.cpp (fn_71006f4344, fn_71006f538c) with this
 // unit's vtable and detach call (fn_7100a2d4d0). Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CPullOffGrapplePointComponent.h"
 #include "game/CTimelineComponent.h"
 #include "types.h"
-
-extern void* g_unk_7101a77000[];
 
 struct UnkLinkOwner_pog;
 

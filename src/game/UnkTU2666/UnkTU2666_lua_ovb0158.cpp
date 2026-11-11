@@ -10,6 +10,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/snd/CSoundSystem.h"
+#include "game/CBossAIComponent.h"
 #include "game/CCharClassEventScenarioComponent.h"
 #include "game/CCollisionMaterialCacheComponent.h"
 #include "game/CDrop.h"
@@ -19,6 +20,8 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2669.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU2768.h"
@@ -29,8 +32,6 @@ using base::global::CRntString;
 using base::global::CStrId;
 
 struct lua_State;
-
-extern u32 g_unk_71727bebb8;
 
 inline void* FindByName_b0158(UnkGameManager* manager, const char* name) {
     u32 kind_value = g_unk_71727bebb8;
@@ -196,7 +197,6 @@ s32 fn_7101084e70(lua_State* L) {
 
 struct UnkUserDataOwner;
 
-extern UnkUserDataOwner* g_unk_7101d47308;
 bool fn_7101203760(UnkUserDataOwner* self);
 bool fn_7100dfe364(UnkGameManager* self);
 void* fn_7100deab70(UnkGameManager*, const CRntString&);
@@ -388,7 +388,6 @@ s32 fn_7101082f90(lua_State* L) {
 }
 
 void fn_710109e1ac(UnkScriptManager_ovb0085* self, const base::UnkNamedEntry* key, s32 arg, bool flag);
-extern UnkScriptManager_ovb0085* g_unk_71727bed90;
 
 s32 fn_71010772c0(lua_State* L) {
     bool flag = true;
@@ -416,7 +415,6 @@ struct UnkSettings_b0158 {
     base::UnkAllocator* field_0x20;
     u64 field_0x28;
 };
-extern UnkSettings_b0158* g_unk_71726bc568;
 
 s32 fn_7101085480(lua_State* L) {
     bool flag = true;

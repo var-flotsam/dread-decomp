@@ -11,6 +11,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/CCollisionComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
@@ -19,6 +20,8 @@
 #include "game/UnkComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2509.h"
+#include "game/UnkTU365.h"
+#include "game/UnkTU58.h"
 #include "game/UnkXformNode.h"
 #include "game/logic/collision/CBroadphaseObject.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -184,7 +187,6 @@ void fn_710086023c(char* self, u32 capacity, u32 step, u32 flags) {
 // Handing every collider group and every record's object back to the collision manager.
 
 struct UnkManager_7100863a8c;
-extern UnkManager_7100863a8c* g_unk_71726a4788;
 void fn_7100d46804(UnkManager_7100863a8c* self);
 void fn_7100d46c60(UnkManager_7100863a8c* self, UnkCollisionObject* entry);
 void fn_7100d46e4c(UnkManager_7100863a8c* self, UnkCollisionObject* group);
@@ -290,7 +292,6 @@ UnkCollisionObject* fn_7100863814(UnkCollisionContainer* self, const CStrId* id,
 
 // Passing an object's flags through the manager's mask table to the component's filters.
 struct UnkManager_7100863a8c;
-extern UnkManager_7100863a8c* g_unk_71726a4788;
 void fn_7100d46804(UnkManager_7100863a8c* self);
 
 struct UnkCollisionNode_ovb0107;
@@ -361,7 +362,6 @@ done:
 // Creating a collider group under a name and keeping it.
 struct UnkColliderNode;
 struct UnkManager_7100863a8c;
-extern UnkManager_7100863a8c* g_unk_71726a4788;
 void fn_7100d46804(UnkManager_7100863a8c* self);
 UnkColliderNode* fn_71008625a0(UnkManager_7100863a8c* self, void* owner, const CStrId* name);
 
@@ -386,8 +386,6 @@ UnkColliderNode* fn_7100862400(UnkCollisionComponent_Groups_ovb0107* self, const
 }
 
 // The destructor.
-extern void* g_unk_7101a79c50[];
-extern void* g_unk_7101a22d48[];
 
 struct UnkCollisionComponent_Clear_ovb0107;
 void fn_7100860524(UnkCollisionComponent_Clear_ovb0107* self);
@@ -463,7 +461,6 @@ struct UnkShape;
 UnkMatrix44 fn_7100d36a2c(UnkShape* shape);
 
 struct UnkShapeTester_A5_b68;
-extern UnkShapeTester_A5_b68* g_unk_71726a47a0;
 
 struct UnkVisitResult_b0040 {
     s32 value;
@@ -471,8 +468,6 @@ struct UnkVisitResult_b0040 {
     UnkVisitResult_b0040(const UnkVisitResult_b0040& other) = default;
     ~UnkVisitResult_b0040() {}
 };
-extern UnkVisitResult_b0040 g_unk_71726a4778;  // the "skip" result
-extern u64 g_unk_71726a4780;                   // its guard
 
 static inline void InitSkip() {
     if (__builtin_expect(!(__atomic_load_n(reinterpret_cast<u8*>(&g_unk_71726a4780), __ATOMIC_ACQUIRE) & 1), 0)) {
@@ -567,7 +562,6 @@ bool fn_7100d5a930(UnkTracker_7100863a8c* self, UnkCollisionObject* obj);
 void fn_7100d5abfc(UnkTracker_7100863a8c* self, UnkCollisionObject* obj);
 
 struct UnkManager_7100863a8c;
-extern UnkManager_7100863a8c* g_unk_71726a4788;
 void fn_7100d46804(UnkManager_7100863a8c* self);
 void fn_7100d46c60(UnkManager_7100863a8c* self, UnkCollisionObject* entry);
 
@@ -740,7 +734,6 @@ inline UnkGameManagerIdTable& GameManagerIdTable() {
 struct UnkEntity;
 bool fn_71011735e8(UnkEntity* entity, const void* key, UnkMatrix44* out, u32 flags);
 void fn_71000774fc(UnkXform* x);
-extern u32 g_unk_7101d58e48;  // the current frame
 
 struct UnkCollisionPlaced_ovb0107 {
     virtual void vf_0x0();

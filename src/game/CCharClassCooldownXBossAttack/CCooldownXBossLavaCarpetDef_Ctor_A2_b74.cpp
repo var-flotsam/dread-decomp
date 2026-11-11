@@ -3,13 +3,13 @@
 // 10 at +0x110, a set flag at +0x114, flags 15 at +0x118, the default allocator), then 0.1 and 0.5 at +0x128 and
 // +0x12c. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU740.h"
 #include "types.h"
 
 #include <new>
 
 struct UnkCooldownXBossAttackDef;
 void fn_71004a09b4(UnkCooldownXBossAttackDef* self);
-extern void* g_unk_7101a3dfc0[];
 
 struct UnkLavaCarpetDef_A2_b74 {
     void** vtable;

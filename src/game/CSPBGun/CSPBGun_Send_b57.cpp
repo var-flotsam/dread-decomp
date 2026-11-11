@@ -7,11 +7,10 @@
 // placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "../UnkNamedSend_b54.h"
+#include "game/CAbilityEnergyWave.h"
 #include "game/CShotManager/CTunableShotManager.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
-
-extern void* g_unk_71726af0b0;
 
 
 struct UnkSPBGunOwner_b57 {

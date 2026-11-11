@@ -5,6 +5,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/input/UnkRumbleManager.h"
+#include "game/UnkTU50.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -23,9 +24,6 @@ struct UnkHandle {
     UnkHandleTarget* target;
     u64 serial;
 };
-
-// The null handle.
-extern UnkHandle g_unk_7101d586c0;
 
 // The rumble manager, created on first use.
 extern UnkRumbleManager* g_unk_7101d47348;

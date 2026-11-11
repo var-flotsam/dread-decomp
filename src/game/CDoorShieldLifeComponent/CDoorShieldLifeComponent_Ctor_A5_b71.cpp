@@ -7,6 +7,7 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
+#include "game/CDoorShieldLifeComponent.h"
 #include "game/CItemLifeComponent.h"
 #include "types.h"
 
@@ -14,7 +15,6 @@ using base::global::CRntString;
 
 struct UnkLifeComponent_A5_b71;
 void fn_710007e6c4(void*);
-extern void* g_unk_7101a7ebf8[];
 
 struct UnkDoorShieldLifeCtor_A5_b71 {
     void** vtable;

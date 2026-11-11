@@ -8,9 +8,6 @@
 #include "types.h"
 
 struct UnkResourceManager;
-extern UnkResourceManager* g_unk_71726ae8a8;
-extern char g_unk_7101a222e8[];
-extern void* g_unk_7101a22398[];
 extern void* g_unk_7101a22378[];
 void fn_71002f66c8(UnkResourceManager* self);
 

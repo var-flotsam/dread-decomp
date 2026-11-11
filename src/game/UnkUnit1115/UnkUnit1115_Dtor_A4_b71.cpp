@@ -2,9 +2,8 @@
 // string ids at +0x40, a plain array at +0x18 and a string id at +0x10. Names are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU1115.h"
 #include "types.h"
-
-extern void* g_unk_7101a6b7f8[];
 
 struct UnkUnit1115Dtor_A4_b71;
 

@@ -10,6 +10,7 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassCollisionComponent.h"
 #include "game/CCharClassComponent.h"
 #include "types.h"
 
@@ -45,7 +46,6 @@ struct UnkColMatDict_ovb0046 {
 
 struct UnkStruct_71008bca30;
 void fn_710007e6c4(void* self);  // an empty CRntString
-extern void* g_unk_7101a6fd78[];
 
 struct UnkCollisionDefCtor_ovb0046 {
     void** vtable;

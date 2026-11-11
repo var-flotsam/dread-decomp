@@ -6,6 +6,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CBigkranXAIComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -28,8 +29,6 @@ struct UnkComponent {
     u64 field_0x14b98;
     u16 field_0x14ba0;
 };
-
-extern void* g_unk_7101a31448[];
 
 void fn_71003e5994(UnkComponent* self);
 void fn_71003ea504(void* member);

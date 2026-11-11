@@ -1,10 +1,9 @@
 // The complete-object destructor beside fn_71006bd00c (same unnamed unit, 0x71006bcf84-0x71006bd63c):
 // restore the vtable, destroy the member at +0x10 (fn_710059c7b8) and drop the counted reference at
 // +0x8. Names and layouts are placeholders.
+#include "game/UnkTU1055.h"
 #include "game/UnkTU852.h"
 #include "game_s2/UnkWeakHandle.h"
-
-extern void* g_unk_7101a64388[];
 
 struct UnkObject_71006bcfb0 {
     void** vtable;

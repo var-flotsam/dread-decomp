@@ -2,6 +2,7 @@
 // busy-flag setter, the binder of its link at +0x1c0 (as fn_7100143790 does for unit 127), the
 // constructor and a copy-out of a 0x5c-byte block. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU116.h"
 #include "game/UnkTU275.h"
 #include "game/UnkTU32.h"
 #include "types.h"
@@ -91,8 +92,6 @@ struct UnkTaggedObject116_ovb0168 {
     s32 state;        // 0x29c
 };
 static_assert(__builtin_offsetof(UnkTaggedObject116_ovb0168, member) == 0x1c0, "layout");
-
-extern char g_unk_7101a1be28[];
 
 void fn_7100140bbc(UnkTaggedObject116_ovb0168* self, const CStrId* name) {
     self->flags = 0xff09f000;

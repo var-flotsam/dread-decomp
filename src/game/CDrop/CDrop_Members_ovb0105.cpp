@@ -10,7 +10,9 @@
 #include "game/CDrop.h"
 #include "game/CGameObject.h"
 #include "game/CLifeComponent.h"
+#include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU365.h"
 #include "types.h"
 
@@ -109,7 +111,6 @@ void fn_71007bfa70(UnkDrop_b0105* self) {
 }
 
 struct UnkDroppableTunable;
-extern UnkDroppableTunable g_unk_71727c10c8;
 
 // The drop amount multipliers of the tunable g_unk_7172a0a0a8, by item id.
 struct UnkDropScaleTunable_b0105 {
@@ -180,7 +181,6 @@ struct UnkSpawnRegistered_ovb0065;
 struct UnkBreakablePart;
 struct UnkBreakableTarget;
 const CStrId* fn_7100d7ba84(UnkSpawnedActor_ovb0065*);
-extern u32 g_unk_71727bebb8;
 
 struct UnkDropTargetData_b0105 {
     u8 pad_0x0[0x10];

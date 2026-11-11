@@ -2,9 +2,11 @@
 // (fn_7100969000; cf. src/game/UnkUnit1442/UnkUnit1442_Refresh_b50.cpp and unit 1444). Its destructor, the
 // checks and steps around the 0x100-byte object at +0xb48 and the owner's navigation, and the transform
 // copy of a turn. Names and layouts are placeholders.
+#include "game/CAbilityGhostAura.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkObject_0x100.h"
+#include "game/UnkTU1130.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 #include "base/math/CVector.h"
@@ -17,7 +19,6 @@
 
 // ---- a110 ----
 extern void* g_unk_7101a85218[];
-extern void* g_unk_7101a22d48[];
 
 struct UnkUnit1444Base;
 void fn_7100969058(UnkUnit1444Base* self);
@@ -135,7 +136,6 @@ bool fn_710096ccb4(char* raw) {
 
 // ---- b8fc ----
 struct UnkEffectSink;
-extern void* g_unk_7101a6bff8[];
 
 bool fn_710096ccb4(char* self);
 void fn_71002b57bc(UnkObject_0x100* self);

@@ -10,9 +10,11 @@
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/math/UnkZeroVector3.h"
 #include "base/snd/UnkSound.h"
+#include "game/CDizzeanSwarmControllerComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkModelManager.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU1102.h"
 #include "game/UnkTU2560.h"
@@ -176,7 +178,6 @@ struct UnkSoundHandle {
     UnkSoundRef* ref;
     s64 serial;
 };
-extern const UnkSoundHandle g_unk_7108b6c460;  // the empty handle
 
 struct UnkDropManagerE_ovb0208 {
     UnkDropElem_ovb0208 elems[128];  // 0x0
@@ -323,7 +324,6 @@ struct UnkDropPickup_ovb0208 {
     f32 amount;  // 0x78
 };
 struct UnkDropTarget;
-extern UnkDropTarget* g_unk_7101d47318;
 
 static inline void* Holder(UnkDropPlayer_ovb0208* player) {
     if (!player)
@@ -504,9 +504,6 @@ void fn_7100e2eda8(UnkDropManager5_ovb0208* self, f32 scale_value, const UnkVec3
 }
 
 // ---- Requests ----
-
-// The singleton (0xe0 bytes) that plays the requests below.
-extern void* g_unk_71726da048;
 
 struct UnkDropRequest_ovb0208 {
     CStrId id;  // 0x0

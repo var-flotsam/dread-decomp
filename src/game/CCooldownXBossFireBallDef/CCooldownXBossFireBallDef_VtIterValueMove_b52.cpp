@@ -3,9 +3,8 @@
 // base::refl_IterValueMove: the (index, element) pair a value owns or refers to is copied in, the
 // element's vtable (unk_7101a3e2b0) set. Names are placeholders.
 #include "base/UnkCollectionIter.h"
+#include "game/CCooldownXBossFireBallDef.h"
 #include "types.h"
-
-extern char g_unk_7101a3e2b0[];
 
 // Two words and a flag, copied as one 9-byte block (packed: the copy skips the tail padding).
 struct __attribute__((packed)) UnkFireBallData_b52 {

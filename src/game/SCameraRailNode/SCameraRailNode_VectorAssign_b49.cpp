@@ -7,9 +7,8 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/SCameraRailNode.h"
 #include "types.h"
-
-extern char g_unk_7101aa2888[];
 
 // The move constructor, typed as CCentralUnitComponent's 0x40-byte half (one declaration per symbol).
 struct UnkHalf_cu {

@@ -2,6 +2,7 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/CCooldownXBossAttack.h"
 #include "game/logic/collision/CPolygonCollectionShape.h"
 #include "game_s2/UnkTwoStepStrId.h"
@@ -34,7 +35,6 @@ struct UnkNode {
 };
 
 extern void* g_unk_7101a3e5b8[];
-extern void* g_unk_7101a22d48[];
 
 void fn_71004c3590(UnkNode* self) {
     fn_71004c1894(self);

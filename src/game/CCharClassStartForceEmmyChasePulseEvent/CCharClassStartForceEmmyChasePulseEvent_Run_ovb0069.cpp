@@ -4,13 +4,13 @@
 // (fn_7100775610, on). Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CAutsharpAIComponent.h"
 #include "game/UnkTU2547.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkDoorRegistry_b61;
-extern UnkDoorRegistry_b61* g_unk_71726bee10;
 struct UnkUnit2547;
 struct UnkCentralUnit;
 void fn_7100775610(UnkCentralUnit* unit, bool on, const CStrId* id);

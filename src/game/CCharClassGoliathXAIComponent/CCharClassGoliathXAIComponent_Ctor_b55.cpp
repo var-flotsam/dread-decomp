@@ -4,14 +4,14 @@
 // +0x628 and +0x720 (fn_7100583588, fn_710058397c), a few flags and a 1.2f factor, and finally the
 // virtual at slot 3. Names and layouts are placeholders.
 #include "game/CCharClassBaseBigFistAIComponent.h"
+#include "game/CCharClassGoliathAIComponent.h"
+#include "game/CCharClassGoliathXAIComponent.h"
 #include "types.h"
 
 struct UnkGoliathXAI_b55;
 void fn_710058d960(void* self);
 void fn_7100583588(void* self);
 void fn_710058397c(void* self);
-extern void* g_unk_7101a4b340[];
-extern void* g_unk_7101a4c200[];
 
 struct UnkGoliathXAI_b55 {
     void** vtable;

@@ -4,6 +4,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
 
 using namespace base::reflection;
@@ -19,7 +20,6 @@ struct UnkReflReadResult {
 static_assert(sizeof(UnkReflReadResult) == 0x30, "UnkReflReadResult layout");
 UnkReflReadResult fn_7100ad7cc0(void* member);
 // The class of the actor (a CClass object, initialised by CActor::refl_GetClass).
-extern char g_unk_717269f450[] __attribute__((visibility("hidden")));
 
 namespace {
 

@@ -5,13 +5,12 @@
 // destructor runs (fn_71010c4194). Names and layouts are placeholders.
 #include "base/UnkDeferredSet.h"
 #include "base/UnkVector.h"
+#include "game/CCentralUnitAIComponent.h"
+#include "game/CFrozenPlatformComponent.h"
 #include "game/UnkComponent.h"
+#include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-extern void* g_unk_7101a89908[];  // the class's vtable
-extern void* g_unk_7101a33fa0[];  // the member's vtable
-extern void* g_unk_7101a20998[];  // the member's base's vtable
 
 // A type-erased callback: storage and the manager that destroys it.
 struct UnkCallbackManager_b0119 {

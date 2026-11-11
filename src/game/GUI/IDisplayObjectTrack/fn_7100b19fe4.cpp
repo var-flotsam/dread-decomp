@@ -5,11 +5,10 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
+#include "game/GUI/IDisplayObjectTrack.h"
 #include "types.h"
 
 using base::global::CRntString;
-
-extern void* g_unk_7101a9a628[];
 
 struct UnkNamedRecord38 {
     u64 field_0x0;

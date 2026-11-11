@@ -5,10 +5,9 @@
 #include "base/global/CStrId.h"
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
+#include "game/CCentralUnitAIComponent.h"
+#include "game/UnkTU341.h"
 #include "types.h"
-
-extern void* g_unk_7101a20998[];  // the callback sets' base vtable
-extern void* g_unk_7101a33fa0[];  // their vtable
 
 
 struct UnkClearEntry_A4_b75 {

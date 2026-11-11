@@ -10,6 +10,7 @@
 #include "game/CBossAIComponent.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkActor.h"
+#include "game/behaviortree/CSwitchBetweenAIModesAction.h"
 #include "types.h"
 
 struct UnkVec3_b58a4 {
@@ -33,8 +34,6 @@ struct UnkSinkParams_b58a4 {
     UnkOpt_b58a4<UnkVec3_b58a4> field_0x28;
     u32 kind;  // 0x38
 };
-
-extern void* g_unk_7101a24b80[];
 
 struct UnkEffectSink;
 

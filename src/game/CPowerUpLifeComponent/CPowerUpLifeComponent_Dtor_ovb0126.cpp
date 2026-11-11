@@ -5,15 +5,14 @@
 // destructor (fn_71008e05e8). Names and layouts are placeholders.
 #include "base/UnkErasedVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCentralUnitAIComponent.h"
 #include "game/CItemLifeComponent.h"
+#include "game/CPowerUpLifeComponent.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-extern void* g_unk_7101a20998[];  // the list base's vtable
-extern void* g_unk_7101a33fa0[];  // the list's vtable
-extern char g_unk_7101a7f4c0[];   // the component's vtable
 
 struct UnkPowerUpLifeTarget_ovb0126 {
     void Notify() {

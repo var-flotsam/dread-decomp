@@ -8,6 +8,8 @@
 #include "base/global/CStrId.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2523.h"
+#include "game/UnkTU2615.h"
 #include "game/malloc.h"
 #include "types.h"
 
@@ -60,9 +62,7 @@ struct UnkSoundManager_ovb0039 {
 struct UnkStateSink;
 extern UnkStateSink* g_unk_717275c380;
 void fn_7100fca0f0(UnkStateSink* self);
-extern void* g_unk_71727b85d0;
 void fn_710101e7d8(void* self);
-extern void* g_unk_71729efa48;
 void fn_7100fcd7f0(void* self);
 
 struct UnkStatsObject;

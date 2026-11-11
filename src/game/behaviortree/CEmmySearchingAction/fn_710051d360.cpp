@@ -4,14 +4,11 @@
 //
 // The fields are addressed by offset: the original's stores are scheduled by the constant pool of
 // the whole function, which struct member stores don't reproduce.
+#include "game/CAbilityGhostAura.h"
+#include "game/behaviortree/CEmmySearchingAction.h"
 #include "game/behaviortree/CEmmyStateAction.h"
 #include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
-
-extern void* g_unk_7101a47e90[];
-extern void* g_unk_7101a22d48[];
-extern void* g_unk_7101a47f48[];
-extern void* g_unk_7101a47f88[];
 
 // Only the vtable at +0x0 is named; the size 1 keeps offsets from folding into element strides.
 struct UnkComponent {

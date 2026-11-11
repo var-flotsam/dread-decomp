@@ -3,6 +3,8 @@
 // layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
+#include "game/UnkTU811.h"
+#include "game/behaviortree/CEmmyChaseAction.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -20,9 +22,6 @@ inline UnkGameManagerIdTable& GameManagerIdTable() {
 }
 
 bool fn_710051d464(CBlackboard::CSection* section, const void* name, CStrId* out);
-
-extern char g_unk_71726e20a8[] __attribute__((visibility("hidden")));
-extern char g_unk_71726debd0[];
 
 struct UnkEmmyAIComponent_b46a1;
 

@@ -11,13 +11,13 @@
 #include "base/math/CVector.h"
 #include "base/math/UnkZeroVector3.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CAutsharpAIComponent.h"
 #include "game/UnkTU2509.h"
 #include "game/UnkTU2547.h"
 #include "game/UnkTU365.h"
 #include "types.h"
 
 struct UnkDoorRegistry_b61;
-extern UnkDoorRegistry_b61* g_unk_71726bee10;
 struct UnkUnit2547;
 struct UnkCentralUnit;
 struct UnkBreakablePart;
@@ -28,7 +28,6 @@ template <>
 base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRefl_fn_710028aca8>(void*);
 
 struct UnkShapeTester_A5_b68;
-extern UnkShapeTester_A5_b68* g_unk_71726a47a0;
 
 // Returned in memory (not trivially copyable); only bit 0 of the first word is read.
 struct UnkShapeHit_A5_b68 {

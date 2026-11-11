@@ -11,6 +11,7 @@
 #include "game/CTriggerLogicAction.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -18,7 +19,6 @@ using base::global::CRntString;
 struct UnkTutoExitAction_b47;
 
 u64* fn_7100066630(u64* out, const CRntString* str);
-extern u32 g_unk_71727bebb8;
 struct UnkScriptCaller;
 bool fn_71009cde54(void* script, const char* name, const char* fmt, ...);
 

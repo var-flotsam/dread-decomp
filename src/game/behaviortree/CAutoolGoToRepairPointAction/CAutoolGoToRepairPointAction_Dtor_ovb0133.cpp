@@ -6,12 +6,12 @@
 // placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/behaviortree/CBaseAction.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 extern void* g_unk_7101a2cf58[];
-extern void* g_unk_7101a22d48[];
 extern void* g_unk_7101a2d008[];
 extern char g_unk_7101a2d0a0[];
 

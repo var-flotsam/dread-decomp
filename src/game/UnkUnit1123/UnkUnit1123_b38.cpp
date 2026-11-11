@@ -4,6 +4,7 @@
 // sending side of unit 1123, fn_71007033c8, is not matched yet). Names and layouts are placeholders.
 #include "game/CEnemyMovement.h"
 #include "game/UnkTU1124.h"
+#include "game/behaviortree/CSwitchBetweenAIModesAction.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
 
@@ -174,8 +175,6 @@ struct UnkSinkParams {
     UnkOpt<UnkVec3> field_0x28;
     u32 kind;  // 0x38
 };
-
-extern void* g_unk_7101a24b80[];
 
 struct UnkEffectSink;
 

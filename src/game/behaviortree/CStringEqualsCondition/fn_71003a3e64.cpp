@@ -6,6 +6,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/UnkBehaviorTree.h"
+#include "game/behaviortree/CStringEqualsCondition.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -17,8 +18,6 @@ struct UnkNode_71003a3e64 : UnkBehaviorTreeNode {
 
     void vf_0x18() { reinterpret_cast<void (*)(UnkNode_71003a3e64*)>(vtable[3])(this); }
 };
-
-extern void* g_unk_7101a28ac0[];
 
 void fn_71003a3e64(UnkNode_71003a3e64* self) {
     fn_71003944e8(self);

@@ -4,12 +4,12 @@
 // the base destructor. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "game/CCharClassBossAIComponent.h"
+#include "game/CCharClassCooldownXBossAIComponent.h"
 #include "game/CDamageSourceFactor.h"
 #include "game/UnkBossAIComponent.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
 
-extern void* g_unk_7101a3ebe8[];
 struct UnkGoliathXBase;
 void fn_71004a17c0(void* member);
 void fn_71004b9ec0(void* member);

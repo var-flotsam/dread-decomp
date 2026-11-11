@@ -4,6 +4,7 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/SCameraRailNode.h"
 #include "game_s2/UnkItem50.h"
 #include "types.h"
 
@@ -35,7 +36,6 @@ void fn_710105a224(UnkPolyArrayOwner_710105a224& self) {
 
 // The same destructors for an array of 0x58-byte polymorphic elements, with another vtable
 // (fn_7100c04570, fn_7100c0461c).
-extern void* g_unk_7101aa28d8[];
 
 struct UnkPolyElem_0x58 {
     virtual void vf_0x0();

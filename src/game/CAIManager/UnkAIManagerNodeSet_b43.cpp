@@ -9,10 +9,9 @@
 #include "base/UnkVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU604.h"
 #include "types.h"
 
-extern void* g_unk_7101a32660[];  // the node list's derived part's vtable
-extern void* g_unk_7101a32680[];  // the node list's base part's vtable
 extern void* g_unk_7101a49720[];  // unit 822's set
 extern void* g_unk_7101a501b8[];  // unit 867's set
 

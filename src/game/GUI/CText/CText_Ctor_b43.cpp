@@ -3,6 +3,7 @@
 // word, two layout texts built empty (fn_7100066af0) and two flags set. Names and layouts are
 // placeholders.
 #include "base/global/CStrId.h"
+#include "base/global/timeline/CEvent.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU2747.h"
 #include "types.h"
@@ -11,7 +12,6 @@ using base::global::CStrId;
 
 // As src/game/GUI/CLabel.cpp declares them.
 struct UnkLayoutText;
-void fn_7100066af0(UnkLayoutText* self, const char32_t* text);
 
 const CStrId& fn_71011b8920(UnkGuiRoot* root);
 

@@ -3,6 +3,10 @@
 #include "base/UnkCountedResource.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/global/CRntString.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/CEmmyProtoAIComponent.h"
+#include "game/CSamusHangMovementState/CParams.h"
 #include "game/UnkTU39.h"
 #include "types.h"
 #include "base/global/CStrId.h"
@@ -75,12 +79,7 @@ void fn_7100988dfc(void* p);
 void fn_71010d7874(void* p);
 
 extern void* g_unk_7101a8a048[];
-extern void* g_unk_7101a22d48[];
-extern void* g_unk_7101a87000[];
 extern void* g_unk_7101a8a498[];
-extern void* g_unk_7101a46040[];
-extern void* g_unk_7101a22858[];
-extern void* g_unk_7101a22878[];
 
 struct UnkListenerOwner : UnkRefObject {
     UnkWeakTarget* field_0x10;

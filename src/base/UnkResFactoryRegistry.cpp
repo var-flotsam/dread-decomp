@@ -6,6 +6,7 @@
 // registers the three, each with a factory created on first use (their deleting destructors are in
 // src/game_s1/fn_7100022518.cpp). Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "base/curves/CCurveResource.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU27.h"
@@ -181,7 +182,6 @@ extern char unk_7101a19630[];
 extern char unk_7101a19690[];
 // The categories: "curve" (src/base/animation/CAnimationResource/fn_7100005700.cpp), "anim" (the same file) and "blendspace"
 // (src/base/animation/CBlendSpaceResource/fn_71000113b0.cpp).
-extern char g_unk_7101d4f338[];
 extern char g_unk_7101d4b418[];
 extern char g_unk_7101d4c138[];
 // The factories' set-up functions.

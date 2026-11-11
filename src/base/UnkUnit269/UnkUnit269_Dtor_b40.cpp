@@ -3,9 +3,8 @@
 // fn_7100216934 (in reverse order), and its deleting form. Names and layouts are placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU269.h"
 #include "types.h"
-
-extern char g_unk_7101a1ee90[];
 
 struct UnkEntry269 {
     char storage[0xa0];

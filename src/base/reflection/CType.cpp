@@ -5,6 +5,7 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkReflTypedPtr.h"
+#include "game/UnkTU83.h"
 
 // The object's dynamic type through `type`'s getter (CType+0x68), null when it has none.
 char* fn_710009dcd8(char* type, void* obj) {
@@ -92,7 +93,6 @@ bool fn_710009d7a8(const base::reflection::CType* type, base::reflection::UnkTyp
 
 #include "base/reflection/UnkReflAttributes.h"
 
-extern u32 g_unk_7101d5bdd8;    // set in editor builds: types get the "_EditorOnly" attribute
 extern void* g_unk_7101d5bdc0;  // the registry's list of types (linked through CType+0x88)
 using base::reflection::UnkReflAttrKey;
 const UnkReflAttrKey& fn_710000d120();  // "_EditorOnly"

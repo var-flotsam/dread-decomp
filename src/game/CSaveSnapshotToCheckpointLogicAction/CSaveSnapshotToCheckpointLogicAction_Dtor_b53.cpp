@@ -4,16 +4,14 @@
 // destructor (fn_7100a55ab8). Names are placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
+#include "game/CMarkMinimapLogicAction.h"
+#include "game/CSaveGameLogicAction.h"
+#include "game/CSaveSnapshotToCheckpointLogicAction.h"
 #include "game/CTriggerLogicAction.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 struct UnkLogicActionBase;
-
-extern void* g_unk_7101a20950[];
-extern void* g_unk_7101a20998[];
-extern char g_unk_7101a8e6c0[];  // CSaveSnapshotToCheckpointLogicAction
-extern char g_unk_7101a8e540[];  // CMarkMinimapLogicAction
-extern char g_unk_7101a8e640[];  // CSaveGameLogicAction
 
 struct UnkLogicActionCallbacks_b53;
 template <>

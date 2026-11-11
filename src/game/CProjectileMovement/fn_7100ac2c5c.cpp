@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CProjectileMovement.h"
 #include "game/CWeaponMovement.h"
 #include "types.h"
 
@@ -61,7 +62,6 @@ struct UnkComponent_0x5b8 {
 };
 static_assert(sizeof(UnkComponent_0x5b8) == 0x5b8, "layout");
 
-extern void* g_unk_7101a96b30[];
 void fn_7100ac6a44();
 
 static inline void AddRef(UnkStringData* d, base::global::UnkStringPool* pool) {

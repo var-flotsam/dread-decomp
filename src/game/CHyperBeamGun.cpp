@@ -9,6 +9,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/snd/UnkSound.h"
+#include "game/CAbilityEnergyWave.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
@@ -155,7 +156,6 @@ struct UnkHyperBeamGun {
 };
 static_assert(__builtin_offsetof(UnkHyperBeamGun, field_0x18fc) == 0x18fc, "");
 
-extern void* g_unk_71726af0b0;  // what plays the sounds at a position
 // The timeline ids of the shot's ends.
 extern const u64 g_unk_710164acb0;
 extern const u64 g_unk_710164acb8;

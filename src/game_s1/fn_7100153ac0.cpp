@@ -1,6 +1,7 @@
 // The static initialiser of a unit with a small polymorphic object (a vtable and a pointer) and
 // five 0x130-byte objects that each end with such an object, destroyed by fn_7100153998.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "game/UnkTU170.h"
 
 using namespace unk_static_init;
 
@@ -37,12 +38,6 @@ __attribute__((always_inline)) inline void InitObject(UnkObject_0x130* o) {
 }
 
 extern HeaderIds2 g_unk_716e275790 __attribute__((visibility("hidden")));
-extern UnkPtrHolder g_unk_716e275190;
-extern UnkObject_0x130 g_unk_716e2751a0;
-extern UnkObject_0x130 g_unk_716e2752d0;
-extern UnkObject_0x130 g_unk_716e275400;
-extern UnkObject_0x130 g_unk_716e275530;
-extern UnkObject_0x130 g_unk_716e275660;
 
 void fn_7100153ac0() {
     InitHeaderIds(&g_unk_716e275790);

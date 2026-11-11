@@ -5,12 +5,11 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/CBossCameraCtrl.h"
 #include "game/CCameraBoundaryCtrl.h"
 #include "types.h"
 
 struct UnkStruct_7100763ed4;
-
-extern void* g_unk_7101a6df08[];  // vtable
 
 struct UnkBossCameraBase_b54 {
     void** vtable;

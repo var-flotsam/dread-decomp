@@ -5,12 +5,11 @@
 
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/GUI/CModel3D.h"
 #include "game/UnkGuiDisplayObject.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
-
-extern char g_unk_7101cb6608[];  // CModel3D's vtable
 
 struct UnkGuiModel3D {
     char* vtable;

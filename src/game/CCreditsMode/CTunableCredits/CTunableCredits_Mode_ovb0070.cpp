@@ -7,6 +7,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiLabel.h"
+#include "game/UnkTU2538.h"
 #include "game/UnkTU2656.h"
 #include "game/UnkTU2737.h"
 #include "game/UnkTU99.h"
@@ -121,12 +122,10 @@ struct UnkObj_71011a50cc {
     u8 unk_0x0[0x98];
     UnkObj_71011a50cc();  // fn_71011a50cc
 };
-extern UnkObj_71011a50cc* g_unk_71727bc260;
 
 struct UnkSoundMgr;
 extern UnkSoundMgr* g_unk_7101d4d820;
 struct UnkTunable;
-extern UnkTunable g_unk_7101d68580;  // base::snd::CSoundSystemATK's tunable; a float at +0x2c
 // A mode word passed by address (the word after it is not set).
 struct UnkMusicMode {
     u32 kind;

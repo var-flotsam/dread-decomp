@@ -4,9 +4,8 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/UnkTU2563.h"
 #include "types.h"
-
-extern void* g_unk_7101aa9d38[];
 
 struct UnkUnit2565Base_A6_b74 {
     char* vtable;

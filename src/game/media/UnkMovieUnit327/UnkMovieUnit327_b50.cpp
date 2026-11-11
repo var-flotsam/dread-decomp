@@ -8,6 +8,7 @@
 #include "base/UnkDefaultAllocator.h"
 #include "base/global/timeline/CEvent.h"
 #include "game/UnkTU327.h"
+#include "game/msapi/res/CRenderRes.h"
 #include "types.h"
 #include "UnkLeftoverReg.h"
 
@@ -24,8 +25,6 @@ void LinkMultiWaitHolder(MultiWaitType* multiWait, MultiWaitHolderType* holder);
 }  // namespace os
 }  // namespace nn
 
-
-extern void* g_unk_7101a20570[];  // the ring's vtable
 
 namespace {
 
@@ -258,7 +257,6 @@ void fn_7100222ab4(UnkMovieWorker_b50* thread) {
 
 void fn_7100225fd0(UnkMovieEventOwner_b50* owner, s32 index);
 struct UnkPlayer;
-extern UnkPlayer* g_unk_716e554378;  // as declared in src/game/UnkRenderManager.cpp
 void fn_7100224904(UnkPlayer* player, UnkMovieEventOwner_b50* owner);
 
 // Kind 0: takes the decoder's ready input buffers (the first and then `remaining` more), each handed

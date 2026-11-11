@@ -2,6 +2,7 @@
 // fn_71010cf1e8 (src/game/CFakePhysicsMovement/fn_71010cf260.cpp): restore the vtables, free the
 // nodes (0x10 bytes, linked at 8) and run the base destructor fn_71011d8e90.
 #include "base/UnkVector.h"
+#include "game/GUI/CScrollMenuEntryItemRenderer.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "types.h"
 
@@ -9,9 +10,6 @@ struct UnkScrollEntryNode {
     u64 field_0x0;
     UnkScrollEntryNode* next;
 };
-
-extern void* g_unk_7101a9ebd8[];  // the object's vtable
-extern void* g_unk_7101a9ee50[];  // the list's vtable
 
 struct UnkScrollEntryNodeList {
     void** vtable;

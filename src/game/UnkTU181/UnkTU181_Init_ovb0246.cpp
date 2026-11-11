@@ -6,6 +6,8 @@
 #include "base/global/CStrId.h"
 #include "game/UnkGraphicsState.h"
 #include "game/UnkTU172.h"
+#include "game/UnkTU180.h"
+#include "game/UnkTU182.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -20,10 +22,7 @@ UnkObject_0x130* fn_7100153a90(s32 index);
 void fn_7100094798(void* vector);
 void fn_710015e9a4(void* arrays);
 
-extern UnkPool g_unk_716e2a7580;
 extern UnkObject_0x130* g_unk_716e2a76a0;
-extern UnkGfxHeap* g_unk_716e2a76a8;
-extern UnkGfxHeap* g_unk_716e2a76b0;
 extern base::UnkPairArrays g_unk_716e2a9708;
 
 struct UnkEntry181_b0246 {
@@ -134,8 +133,6 @@ void fn_710015ef10() {
     } while (++p != slots + 48);
 }
 
-extern u8 g_unk_716e2a3450;    // set when any uniform block changed
-
 // A uniform block: one buffer per frame (from +0x40) and the handles at +0xb0, the size checked at
 // +0x38, a dirty flag.
 struct UnkFlushBlock_b0246 {
@@ -160,7 +157,6 @@ struct UnkFlushState_b0246 {
 };
 
 struct UnkGfxProgram;
-extern UnkGfxProgram* g_unk_716e2a3448;
 extern void (*g_unk_716e29ba58)(void* context, void* handle, u64 size, u64 offset, u64 length, void* data);
 
 static inline __attribute__((always_inline)) void FlushStage_b0246(UnkFlushStage_b0246* stage) {

@@ -12,12 +12,12 @@
 #include "base/tunable/CTunable.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU27.h"
+#include "game/UnkTU99.h"
 
 using base::snd::UnkSoundSystemATK;
 extern void* g_unk_7101a1b750[];
 
 // A flag that turns the queue off (its meaning is unverified); a direct (not GOT) access.
-extern u8 g_unk_7108b6ab60 __attribute__((visibility("hidden")));
 // The payload size of each command.
 extern const s32 g_unk_7101647a0c[] __attribute__((visibility("hidden")));
 
@@ -102,7 +102,6 @@ struct UnkIdMap {
 };
 static_assert(__builtin_offsetof(UnkIdMap, head) == 0x40, "UnkIdMap layout");
 
-extern UnkIdMap* g_unk_7101d685c8;
 // The scratch buffer the sanitised name is built in.
 extern char g_unk_7108b6b910[] __attribute__((visibility("hidden")));
 
@@ -775,7 +774,6 @@ static inline void* Allocate(UnkAtkHeap* heap, u64 size, u64 align) {
 // (0x600000, 0x800000 and 0x6000000 bytes). The sound system is published in g_unk_7101d685c8.
 extern base::UnkSubAllocator g_unk_7108b69000;
 extern char g_unk_7101d69000[];
-extern UnkAtkHeap g_unk_7108b69038;
 extern char g_unk_7102369000[];
 extern UnkAtkHeap g_unk_7108b690a8;
 extern char g_unk_7102b69000[];

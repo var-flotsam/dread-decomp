@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU1633.h"
 #include "game/UnkTU437.h"
 #include "types.h"
 #include "game/sound/CMusicManager.h"
@@ -23,11 +24,6 @@ __attribute__((always_inline)) static inline UnkReflValue MakeValue(const CType*
 }
 
 const CType* fn_7100010e58();  // an 8-byte type's getter
-
-extern u32 g_unk_7172756b90 __attribute__((visibility("hidden")));
-extern u32 g_unk_7172756cbc __attribute__((visibility("hidden")));
-extern u64 g_unk_7172756b98 __attribute__((visibility("hidden")));
-extern u32 g_unk_7172756ba0 __attribute__((visibility("hidden")));
 
 // Whether the word at 0x24 of the argument's object is 2.
 struct UnkStateObject {
@@ -140,7 +136,6 @@ const CType* fn_7100ad62d4();  // base::reflection::refl_GetType<CEnvironmentMan
 const CType* fn_7100ad6644();  // base::reflection::refl_GetType<sound::CMusicManager*>
 extern void* g_unk_7101d47360;
 extern void* g_unk_7101d47368;
-extern void* g_unk_71726b1688;
 extern void* g_unk_71726bc560;
 
 template <void** Instance, u64 Size, void (*Construct)(void*), const CType* (*GetType)(), u32 Flags = 0x3f>

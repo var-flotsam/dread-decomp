@@ -2,13 +2,12 @@
 // record of fn_71007f1e6c in CBarelyFrozenIceInfo_Ctor_b44.cpp); two identical copies. Names are
 // placeholders.
 #include "base/global/CStrId.h"
+#include "game/CBarelyFrozenIceInfo.h"
 #include "types.h"
 
 #include <new>
 
 using base::global::CStrId;
-
-extern void* g_unk_7101a73e10[];  // the record's vtable
 
 struct UnkFrozenIceRecord_A5_b65 {
     void* vtable;

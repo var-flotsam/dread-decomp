@@ -12,6 +12,7 @@
 #include "game/UnkTU101.h"
 #include "game/UnkTU1176.h"
 #include "game/UnkTU2523.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2677.h"
 #include "game/sound/CMusicManager.h"
 #include "base/global/UnkStringPool.h"
@@ -31,8 +32,6 @@ using base::global::CStrId;
 using base::global::CFilePathStrId;
 struct lua_State;
 using base::reflection::UnkReflObject;
-
-extern u32 g_unk_71727bebb8;
 
 struct UnkNamedKey_b0163 {
     u8 pad_0x0[0x30];

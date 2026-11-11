@@ -6,6 +6,7 @@
 #include "base/color/CColor4F.h"
 #include "base/math/CVector4D.h"
 #include "game/UnkTU182.h"
+#include "game/UnkTU204.h"
 #include "types.h"
 
 using base::color::CColor4F;
@@ -94,7 +95,6 @@ extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, i
 struct UnkPass213Activate;
 void fn_710019545c(void* self);
 void fn_7100195548(UnkPass213Activate* self, u32 width, u32 height);
-extern void* g_unk_716e34c2e0;
 
 struct UnkPoolNode_b54a1 {
     u64 key;

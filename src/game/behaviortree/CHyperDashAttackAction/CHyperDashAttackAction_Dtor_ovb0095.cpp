@@ -5,13 +5,12 @@
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/UnkTU2702.h"
 #include "game/behaviortree/CBaseAction.h"
+#include "game/behaviortree/CHyperDashAttackAction.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-extern void* g_unk_7101a36838[];  // the action's vtable
-extern void* g_unk_7101a22d48[];  // the listener's vtable
 
 // A listener holding a weak handle to what it listens to; it unregisters on destruction.
 struct UnkHyperDashListener_ovb0095 {

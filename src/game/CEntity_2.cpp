@@ -11,6 +11,11 @@
 #include "game/CCharacterMovement.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU101.h"
+#include "game/UnkTU2523.h"
+#include "game/UnkTU50.h"
+#include "game/UnkTU604.h"
+#include "game/UnkTU63.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -60,13 +65,11 @@ struct UnkSoundHandle {
     UnkSoundRef* ref;
     s64 serial;
 };
-extern const UnkSoundHandle g_unk_7108b6c460;  // the empty handle
 struct UnkHandleTarget;
 struct UnkHandle {
     UnkHandleTarget* target;
     u64 serial;
 };
-extern UnkHandle g_unk_7101d586c0;  // the null handle
 
 struct UnkEntitySoundComponent;
 struct CRumbleComponent;
@@ -133,7 +136,6 @@ UnkHandle fn_7100d7c770(UnkEntityWithSound* self, void* a, void* b, void* c) {
 // The same through the sound component, falling back to the static sound players by kind.
 UnkSoundHandle fn_710071bae8(UnkEntitySoundComponent* self, const u32* params, bool a, bool b, bool c);
 extern void* g_unk_717275c380;
-extern void* g_unk_71727b85d0;
 UnkSoundHandle fn_7100fca8cc(void* player, const u32* params);
 UnkSoundHandle fn_710101f154(void* player, const u32* params);
 
@@ -451,8 +453,6 @@ UnkVec3f fn_7100d7c7a0(const UnkEntityCollided* self) {
 // The entity's destructor body: releases the counted object at +0x398, empties both node lists
 // (+0x348 of paths, +0x318), then runs the base destructor.
 extern void* g_unk_7101aa8e80[];
-extern void* g_unk_7101a1b030[];
-extern void* g_unk_7101a32680[];
 struct UnkCounted {
     virtual void vf_0x0();
     u32 count;

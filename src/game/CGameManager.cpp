@@ -2,6 +2,7 @@
 #include "base/global/CRntString.h"
 #include "game/CCameraComponent.h"
 #include "game/CCharClassStartPointComponent.h"
+#include "game/CGameManager/CTunableGameManager.h"
 #include "game/CTriggerComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU0.h"
@@ -13,6 +14,7 @@
 #include "game/UnkTU2768.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU57.h"
+#include "game/UnkTU63.h"
 #include "game/UnkTU83.h"
 #include "game/UnkTU99.h"
 #include "game/nn/time.h"
@@ -329,7 +331,6 @@ struct UnkListedPath {
     UnkListedPathId id;
     UnkListedPath* next;
 };
-extern void* g_unk_7101a1b030[];
 // A list of path ids (its destructor is fn_7100087cf8).
 struct UnkFilePathList {
     void** vtable;
@@ -445,7 +446,6 @@ static inline UnkSubId_7100fc4b34 SubId(UnkGameManagerNamedDef& def, const CStrI
         fn_7100ae9d7c(&def.name, &def, g_unk_7101d470e0);
     return fn_71003327a4(&def.name, &name);
 }
-extern UnkGameManagerNamedDef g_unk_7172a0bb10;  // the definition the cutscene's sub-id is read under
 
 bool fn_7100a68fb0(CBlackboard::CSection* section, const void* name, u32* out);
 // Reads the u32 under `def`'s sub-id `name`.
@@ -537,7 +537,6 @@ struct UnkSoundHolder;  // 0x48 bytes (src/game/GUI/CIngameMenu/fn_7100b2de48.cp
 extern UnkSoundHolder* g_unk_7101d47340;
 extern void* g_unk_71726bc560;  // the music manager (game/sound/CMusicManager.h)
 extern void* g_unk_7101d47330;
-extern UnkTunable g_unk_7101d68580;  // base::snd::CSoundSystemATK's tunable; a float at +0x28
 
 void fn_71011a2770(UnkGameManagerSub_0x608* points, void* object);
 void fn_7100df31b8(UnkGameManager* self, u32 a, bool b, bool c, CStrId id, u32 d);
@@ -755,7 +754,6 @@ void fn_7100df19c0(UnkGameManager* self) {
 
 // The user data's owner (created on first use; src/game_aca57c/fn_7100dc8828.cpp).
 struct UnkUserDataOwner;
-extern UnkUserDataOwner* g_unk_7101d47308;
 
 void fn_7100dee46c(UnkGameManager* self);
 
@@ -771,7 +769,6 @@ struct UnkLoadCallback {
 };
 
 // A list of pointers (vtable g_unk_7101aa9ac0), its nodes from `allocator` with `flags`.
-extern char g_unk_7101aa9ac0[];
 struct UnkPtrListNode {
     void* value;
     UnkPtrListNode* next;

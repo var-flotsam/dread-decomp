@@ -5,13 +5,10 @@
 // call (slot 3). Defined under the `void()` symbol src/reflection/CItemLifeComponent.cpp declares. Names and
 // layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/CItemLifeComponent.h"
 #include "game/CLifeComponent.h"
 #include "types.h"
-
-// base::refl_StrIdListCtor<..>, instantiated in src/clones (UnkClone_fn_71008e266c).
-extern void* g_unk_7101a7f028[];
-extern void* g_unk_7101a22d48[];
 
 struct UnkItemLifeCtor_A4_b72 {
     void** vtable;

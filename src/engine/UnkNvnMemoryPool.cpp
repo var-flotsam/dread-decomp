@@ -8,6 +8,7 @@
 #include <stdlib.h>
 
 #include "base/UnkDefaultAllocator.h"
+#include "game/UnkTU170.h"
 #include "game/UnkTU172.h"
 #include "types.h"
 
@@ -25,12 +26,6 @@ struct UnkObject_0x130 {
     UnkPtrHolder field_0x118;
     u16 field_0x128;
 };
-extern UnkPtrHolder g_unk_716e275190;
-extern UnkObject_0x130 g_unk_716e2751a0;
-extern UnkObject_0x130 g_unk_716e2752d0;
-extern UnkObject_0x130 g_unk_716e275400;
-extern UnkObject_0x130 g_unk_716e275530;
-extern UnkObject_0x130 g_unk_716e275660;
 
 // NVN entry points the graphics start-up loads (data addresses only; that they are the memory-pool
 // builder's and the pool's initialiser is inferred from the call sequence).
@@ -45,7 +40,6 @@ struct UnkPoolCount {
     u32 count;
     u32 peak;
 };
-extern UnkPoolCount g_unk_716e275794 __attribute__((visibility("hidden")));
 
 // The builder, on the stack.
 struct UnkNvnPoolBuilder {

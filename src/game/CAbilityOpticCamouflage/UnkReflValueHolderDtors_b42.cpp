@@ -3,11 +3,10 @@
 // the three pairs at +0x30..+0x60 clear themselves (last first), the class's vtable is set back and
 // the reflected value at +0x18 is destroyed (fn_71000a1c60, a tail call). Names are placeholders.
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityMultiLockon.h"
+#include "game/CAbilityShinespark.h"
+#include "game/CAbilitySpeedBooster.h"
 #include "types.h"
-
-extern char g_unk_7101a22fe8[];
-extern char g_unk_7101a234f8[];
-extern char g_unk_7101a239c8[];
 
 struct UnkClearedPair_b42a1 {
     u64 a, b;

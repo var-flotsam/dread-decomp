@@ -6,11 +6,10 @@
 #include "base/UnkVector.h"
 #include "game/CComponent.h"
 #include "game/CShockWaveComponent.h"
+#include "game/UnkTU604.h"
 #include "types.h"
 
 struct UnkStateObject;
-extern void* g_unk_7101a8a820[];  // the component's vtable
-extern void* g_unk_7101a32680[];  // the node list's vtable
 
 struct UnkShockWaveComponentCtor {
     void** vtable;

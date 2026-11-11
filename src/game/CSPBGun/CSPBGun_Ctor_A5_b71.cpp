@@ -4,6 +4,7 @@
 // runs the class entries (fn_7100023854). Defined under the `void()` symbol src/reflection/CSPBGun.cpp declares.
 // Names and layouts are placeholders.
 #include "base/core/CBaseObject.h"
+#include "game/UnkTU101.h"
 #include "types.h"
 
 struct UnkNode;
@@ -16,7 +17,6 @@ struct UnkSoundHandle {
     UnkSoundRef* ref;
     s64 serial;
 };
-extern const UnkSoundHandle g_unk_7108b6c460;  // the empty handle
 
 struct UnkSPBGunCtor_A5_b71 {
     void* vtable;

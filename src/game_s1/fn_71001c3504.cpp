@@ -3,9 +3,8 @@
 // others.
 
 #include "base/UnkDestructors.h"
+#include "game/UnkTU204.h"
 #include "types.h"
-
-extern void* g_unk_716e34c2e0;
 
 struct UnkPart_71001c3504 {
     u8 pad_0x0[0x150];

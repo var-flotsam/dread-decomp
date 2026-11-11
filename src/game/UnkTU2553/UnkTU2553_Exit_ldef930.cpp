@@ -4,6 +4,8 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CHydrogigaAIComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkRenderManager.h"
@@ -13,6 +15,8 @@
 #include "game/UnkTU2562.h"
 #include "game/UnkTU2669.h"
 #include "game/UnkTU341.h"
+#include "game/UnkTU344.h"
+#include "game/UnkTU365.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -45,11 +49,6 @@ void fn_7100d46804(UnkManager_7100863a8c* self);
 void fn_7100d46c5c(UnkManager_7100863a8c* self);
 void fn_7100defd08(UnkGameManager* self);
 
-extern void* g_unk_71726eb3e8;
-extern void* g_unk_71726af0b0;
-extern UnkScriptManager_ovb0085* g_unk_71727bed90;
-extern UnkActorDefFactory* g_unk_71726a0220;
-extern UnkManager_7100863a8c* g_unk_71726a4788;
 extern UnkSubAreaGuiCache* g_unk_71727254f8;
 
 // The script environment behind +0x608 (its +0x18 holds the environment's name and a use count).

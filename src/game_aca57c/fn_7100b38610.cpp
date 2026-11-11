@@ -8,11 +8,11 @@
 #include "UnkBufferString.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU1689.h"
 #include "types.h"
 
 using base::global::CRntString;
 
-extern void* g_unk_7101a9c8e0[];
 extern void* g_unk_7101a9c888[];
 extern void* g_unk_7101a1b5a0[];
 using UnkString20 = UnkBufferString<0x20, g_unk_7101a1b5a0>;
@@ -68,7 +68,6 @@ static_assert(sizeof(UnkNamedWithEmptyId) == 0x108, "UnkNamedWithEmptyId layout"
 void fn_7100b38610(UnkNamedWithEmptyId* self) { new (self) UnkNamedWithEmptyId(); }
 
 // The class with vtable 0x7101a9ca40: a word, the empty string id, a word and a flag.
-extern void* g_unk_7101a9ca40[];
 
 struct UnkNamedWithIdFlag : UnkNamedBase {
     u32 field_0xf0;

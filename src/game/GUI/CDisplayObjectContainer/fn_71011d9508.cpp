@@ -4,6 +4,8 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CMeleeComponent.h"
+#include "game/GUI/CDisplayObjectContainer.h"
 
 using base::global::CStrId;
 using base::global::UnkStringData;
@@ -63,8 +65,6 @@ struct UnkDisplayObject_71011d9508 {
 
 void fn_71009319dc(const char* str, const char* sep, UnkTokenList_0x70* out);
 void fn_7100931c34(UnkTokenList_0x70* list);
-extern char g_unk_7101a838c8[];
-extern char g_unk_7172a0f120[] __attribute__((visibility("hidden")));
 
 UnkDisplayObject_71011d9508* fn_71011d9508(UnkDisplayObject_71011d9508* self, const char* const* path) {
     UnkTokenList_0x70 list;

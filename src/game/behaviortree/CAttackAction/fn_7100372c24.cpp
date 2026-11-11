@@ -4,6 +4,8 @@
 // fn_7100394530).
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/behaviortree/CAttackAction.h"
+#include "game/behaviortree/CStringEqualsCondition.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -39,9 +41,6 @@ struct UnkBase_7100394530 {
     u8 unk_0x8[0x30];
     ~UnkBase_7100394530();  // fn_7100394530
 };
-
-extern void* g_unk_7101a25010[];
-extern void* g_unk_7101a28ac0[];
 
 struct UnkObject_7100372c24 : UnkBase_7100393ea0 {
     CRntString field_0x30;

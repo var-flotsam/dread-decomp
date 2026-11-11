@@ -3,13 +3,13 @@
 // -1, the member at +0x648 (fn_71007c7ddc), then the post-construction virtual call (slot 3). Names
 // and layouts are placeholders.
 #include "game/CCharClassBehaviorTreeAIComponent.h"
+#include "game/CCharClassShelmitAIComponent.h"
 #include "game/SDropProbabilities.h"
 #include "types.h"
 
 // Declared as src/game/CCharClassGooplotAIComponent/CCharClassGooplotAIComponent.cpp does.
 struct UnkObject_7100416db8;
 void fn_71006b2d74(void* self);
-extern void* g_unk_7101a63ad0[];
 
 struct UnkShelmitDef {
     void** vtable;

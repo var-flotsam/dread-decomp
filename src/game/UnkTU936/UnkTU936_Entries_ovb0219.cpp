@@ -7,13 +7,12 @@
 
 #include "base/UnkVector.h"
 #include "game/CCharClassBehaviorTreeAIComponent.h"
+#include "game/UnkTU936.h"
 #include "game_s2/UnkOwnedList.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-extern char g_unk_7101a56178[];
 
 struct UnkEntry_ovb0219 {
     void (**vtable)(UnkEntry_ovb0219*);
@@ -168,7 +167,6 @@ UNK_ERASE_OVB0219(710061de3c)
 struct UnkObject_7100416db8;
 void fn_710060a504(void* self);
 void fn_7100624194(void* self);
-extern void* g_unk_7101a561c8[];
 
 struct UnkComponent_ovb0219 {
     void** vtable;

@@ -10,8 +10,6 @@
 
 using base::reflection::UnkReflValue;
 
-void fn_7100066a50(void* text, const char32_t* value);
-
 struct UnkNumberText_b41a3 {
     u8 unk_0x0[0x20];
 };

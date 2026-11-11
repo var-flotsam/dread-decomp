@@ -5,6 +5,7 @@
 // it) and keeps the new handle. Returns whether it started. Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/math/UnkZeroVector3.h"
+#include "game/CAbilityEnergyWave.h"
 #include "game/UnkActor.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
@@ -28,7 +29,6 @@ struct UnkHyperBeamSoundHandle {
 };
 
 UnkHyperBeamSoundHandle fn_7100ed6910(void* player, const CVector3D* pos, u32 id, u32 kind, bool flag);
-extern void* g_unk_71726af0b0;  // what plays the sounds at a position
 
 struct UnkSPBGun_A5_b63;
 bool fn_710085e6d4(UnkSPBGun_A5_b63* self);

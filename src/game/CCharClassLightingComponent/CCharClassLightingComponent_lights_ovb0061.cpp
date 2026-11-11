@@ -10,6 +10,7 @@
 #include "game/CCharClassLightingComponent.h"
 #include "game/UnkComponent.h"
 #include "game/UnkTU25.h"
+#include "game/UnkTU2527.h"
 #include "types.h"
 
 struct UnkLightDesc_ovb0061 {
@@ -102,7 +103,6 @@ void fn_710007eb20(CRntString* self, const UnkPooledStrId* id);
 void fn_710007f564(void* self, const char* str);
 struct UnkPathIds;
 struct UnkInlineString;
-extern char g_unk_71727b9f30[];  // the "lightsdef" type name's id
 
 // The component (as CCharClassLightingComponent_b36.cpp declares the function).
 struct UnkLightingComponent3;

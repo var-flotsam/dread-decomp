@@ -1,6 +1,7 @@
 // CShipRechargeComponent unit (tools/tu_map.py): when the sound handle at +0x540 still names a live
 // sound, has the owner entity (+0x30) stop it (fn_7100d7c510, 0.25 fade) and empties the handle.
 // Names and layouts are placeholders.
+#include "game/UnkTU101.h"
 #include "game/UnkTU2523.h"
 #include "types.h"
 
@@ -19,7 +20,6 @@ struct UnkSoundHandle {
         return nullptr;
     }
 };
-extern const UnkSoundHandle g_unk_7108b6c460;  // the empty handle
 
 struct UnkShipRechargeEntity_b49a4;
 

@@ -2,9 +2,9 @@
 // token list src/game/GUI/CDisplayObjectContainer/fn_71011d9508.cpp splits a path into, nodes linked
 // at 0x88 and freed with their text, and this unit's two vtables.
 #include "base/UnkNodeOwner.h"
+#include "game/CMeleeComponent.h"
 
 struct UnkTokenList_0x70;
-extern char g_unk_7101a838c8[];   // derived part's vtable
 extern void* g_unk_7101a838e8[];  // base part's vtable
 
 void fn_7100931c34(UnkTokenList_0x70* list) {

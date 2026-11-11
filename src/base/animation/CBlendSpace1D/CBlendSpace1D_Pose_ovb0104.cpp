@@ -229,9 +229,6 @@ __attribute__((always_inline)) static inline void ConstructShared(UnkSharedFnPtr
     r->release();
 }
 
-extern char g_unk_7101a19230[];
-extern char g_unk_7101a19268[];
-
 void fn_7100008bbc(UnkSharedFnPtr<UnkSharedFnPointee>* self,
                    std::unique_ptr<UnkSharedFnPointee, std::function<void(UnkSharedFnPointee*)>>* r) {
     ConstructShared<UnkSharedFnPointee, g_unk_7101a19230>(self, r);

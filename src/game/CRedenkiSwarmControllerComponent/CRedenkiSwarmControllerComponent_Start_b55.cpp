@@ -7,6 +7,7 @@
 #include "base/UnkVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CDizzeanSwarmControllerComponent.h"
 #include "game/UnkTU1159.h"
 #include "game/UnkTU2560.h"
 #include "types.h"
@@ -49,7 +50,6 @@ struct UnkTarget {
     u8 field_0x180;
 };
 
-extern void* g_unk_71726da048;
 extern char g_unk_710164a430[];
 u8 fn_71007452a4(UnkTarget* target);
 void fn_71007456fc(UnkTarget* target, u8 value);

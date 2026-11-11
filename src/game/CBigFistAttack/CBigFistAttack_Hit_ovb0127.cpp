@@ -9,6 +9,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAttack.h"
 #include "game/CBaseBigFistAIComponent.h"
+#include "game/CCharClassBigFistAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
@@ -19,7 +20,6 @@ struct UnkBigFistAI_gla;
 // The BigFist tunable (registered in src/reflection/CCharClassBigFistAttack.cpp); its +0x30 is a
 // distance.
 struct UnkTunable;
-extern UnkTunable g_unk_71726c06a8;
 
 static inline f32 TunableDistance() {
     return *reinterpret_cast<const f32*>(reinterpret_cast<const char*>(&g_unk_71726c06a8) + 0x30);

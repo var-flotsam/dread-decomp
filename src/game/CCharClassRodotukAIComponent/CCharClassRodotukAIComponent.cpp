@@ -3,6 +3,7 @@
 #include "base/UnkCollectionIter.h"
 #include "base/UnkVector.h"
 #include "game/CCharClassBehaviorTreeAIComponent.h"
+#include "game/CCharClassRodotukAIComponent.h"
 #include "game/CCharClassRodotukSuckAttack.h"
 #include "types.h"
 
@@ -22,7 +23,6 @@ void fn_7100671864(const base::UnkVector<UnkRecord_7100671864>* v, UnkRecordIter
 
 // Declared as src/game/CCharClassYamplotXAIComponent/CCharClassYamplotXAIComponent.cpp does.
 struct UnkObject_7100416db8;
-extern void* g_unk_7101a5db38[];
 
 struct UnkRodotukDef {
     void** vtable;

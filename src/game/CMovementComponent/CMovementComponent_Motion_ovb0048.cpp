@@ -14,6 +14,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1141.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU365.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -488,7 +489,6 @@ void fn_71010d1e88(UnkMovement3_ovb0048* self, void* a, void* b, f32 t, void* c,
 
 
 struct UnkWeakTarget;
-extern u32 g_unk_71727bebb8;
 UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 
 // A string id built from a string out of line (fn_7100000850), released like CStrId.

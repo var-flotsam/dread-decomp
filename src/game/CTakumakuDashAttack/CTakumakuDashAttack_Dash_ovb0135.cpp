@@ -12,14 +12,13 @@
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkXformNode.h"
+#include "game/behaviortree/CSwitchBetweenAIModesAction.h"
 #include "game_s2/UnkParams.h"
 #include "game_s2/UnkSpitAttack.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::reflection::UnkReflObject;
-
-extern void* g_unk_7101a24b58[];
 
 struct UnkTakumakuDir_b58 {
     f32 x, y, z;

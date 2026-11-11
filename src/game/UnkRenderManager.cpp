@@ -9,6 +9,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU280.h"
+#include "game/msapi/res/CRenderRes.h"
 #include "types.h"
 
 extern char unk_7101a20260[];  // the render manager's vtable (reached through the GOT)
@@ -75,7 +76,6 @@ static_assert(sizeof(UnkPlayerData) == 0x1278, "UnkPlayerData");
 }  // namespace
 
 struct UnkPlayer;
-extern UnkPlayer* g_unk_716e554378;
 extern char unk_7101a20280[];  // reached through the GOT
 void fn_71002236ac(UnkPlayer* self);
 

@@ -7,11 +7,11 @@
 #include "base/UnkVector.h"
 #include "game/CComponent.h"
 #include "game/CEmmyWakeUpComponent.h"
+#include "game/UnkTU1246.h"
 #include "types.h"
 
 struct UnkStateObject;
 extern void* g_unk_7101a72d70[];
-extern void* g_unk_7101a72ba8[];
 
 struct UnkEventPropComponent {
     void** vtable;

@@ -1,4 +1,5 @@
 // CDredhedAIComponent unit (tools/tu_map.py): one of two tuning values, picked by whether the character class's word at +0x600 is zero. Names and layouts are placeholders.
+#include "game/CCharClassBlockableWarningRadius.h"
 #include "types.h"
 
 // The AI tuning constants (g_unk_71726c4890), as far as these units read them. Each pair of values is
@@ -19,7 +20,6 @@ struct UnkAITunables_ovb0001 {
     u8 pad_0x5c[0x4];
     UnkAITunablesValue_ovb0001 field_0x60;
 };
-extern UnkAITunables_ovb0001 g_unk_71726c4890;
 
 struct UnkDredhedCharClass_ovb0001 {
     u8 pad_0x0[0x600];

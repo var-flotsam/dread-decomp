@@ -16,8 +16,10 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/CBreakableVignetteComponent.h"
 #include "game/CCharClassBreakableScenarioComponent.h"
+#include "game/CCharClassTunnelTrapMorphballComponent.h"
 #include "game/CInputComponent.h"
 #include "game/CNavMeshItemComponent.h"
 #include "game/UnkActor.h"
@@ -209,9 +211,6 @@ bool fn_7100a44788(UnkTunnelTrapComponent2_ovb0136* self, const s32* state) {
     }
     return true;
 }
-
-extern void* g_unk_7101a8e700[];
-extern void* g_unk_7101a22d48[];
 
 // A part of the trap: a polymorphic 0x40-byte record destroyed through its vtable.
 struct UnkTunnelTrapPart2_ovb0136 {

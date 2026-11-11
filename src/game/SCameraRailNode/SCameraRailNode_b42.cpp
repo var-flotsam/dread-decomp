@@ -5,12 +5,10 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/SCameraRailNode.h"
 #include "game/UnkCallbackSetVector.h"
+#include "game/UnkTU341.h"
 #include "types.h"
-
-extern char g_unk_7101aa2888[];
-extern void* g_unk_7101a20998[];  // the callback set's base vtable
-extern void* g_unk_7101a20950[];  // the callback set's vtable
 
 struct UnkCameraRailNode_b42a3 {
     void* vtable;

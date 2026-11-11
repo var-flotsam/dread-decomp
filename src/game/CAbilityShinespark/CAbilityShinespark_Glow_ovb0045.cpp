@@ -36,7 +36,6 @@ static inline UnkV4_b47 operator*(const UnkV4_b47& a, f32 s) { return fn_7100030
 static inline UnkV4_b47 operator+(const UnkV4_b47& a, const UnkV4_b47& b) { return fn_7100030770(&a, &b); }
 
 struct UnkTunable;
-extern UnkTunable g_unk_71726b0378;
 
 struct UnkShinesparkTunable_b0045 {
     u8 pad_0x0[0x28];
@@ -97,8 +96,6 @@ struct UnkVisitResult_b0040 {
     UnkVisitResult_b0040(const UnkVisitResult_b0040& other) = default;
     ~UnkVisitResult_b0040() {}
 };
-extern UnkVisitResult_b0040 g_unk_71726a4778;  // the "skip" result
-extern u64 g_unk_71726a4780;                   // its guard
 
 static inline UnkVisitResult_b0040 Skip_b0045() {
     if (__builtin_expect(!(__atomic_load_n(reinterpret_cast<u8*>(&g_unk_71726a4780), __ATOMIC_ACQUIRE) & 1), 0)) {

@@ -21,6 +21,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2656.h"
 #include "game/UnkTU2730.h"
 #include "game/UnkTU2768.h"
@@ -271,7 +272,6 @@ using base::global::CStrId;
 using base::input::UnkRumbleManager;
 
 struct UnkUserDataOwner;
-extern UnkUserDataOwner* g_unk_7101d47308;
 CBlackboard* fn_710120384c(UnkUserDataOwner* self);
 bool fn_71010474f4(CBlackboard* self, const CStrId& section, const CStrId& name);
 extern UnkRumbleManager* g_unk_7101d47348;

@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU365.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -20,7 +21,6 @@ struct UnkManager_7100863a8c {
 };
 void fn_7100d46804(UnkManager_7100863a8c* self);
 void fn_7100d46c60(UnkManager_7100863a8c* self, UnkCollisionObject* obj);
-extern UnkManager_7100863a8c* g_unk_71726a4788;  // the manager instance (reached through the GOT)
 
 static inline UnkManager_7100863a8c* GetManager() {
     if (!g_unk_71726a4788) {

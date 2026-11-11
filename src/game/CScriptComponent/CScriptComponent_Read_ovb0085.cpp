@@ -12,6 +12,7 @@
 #include "base/global/CRntString.h"
 #include "game/CActorComponent.h"
 #include "game/UnkComponent.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2669.h"
 #include "types.h"
 
@@ -27,7 +28,6 @@ struct UnkUnit2669Str;
 
 // The script manager (0x88 bytes), created on first use.
 struct UnkScriptManager_ovb0085;
-extern UnkScriptManager_ovb0085* g_unk_71727bed90;
 void fn_710109d890(UnkScriptManager_ovb0085* self, CRntString* name);
 
 extern char g_unk_7101cb30b8[];  // the component's vtable

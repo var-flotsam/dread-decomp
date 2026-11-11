@@ -1,9 +1,8 @@
 // CSamusMovementState::CParams: the second copy of its copy constructor (fn_71009b2e58 in
 // CSamusMovementState_CParams.cpp), reached through the reflection descriptor's slot 0x38. Stores the
 // vtable, then copies the members field by field. Names and layouts are placeholders.
+#include "game/CAbilityGhostAura.h"
 #include "types.h"
-
-extern void* g_unk_7101a22cb8[];
 
 struct UnkSamusMovementParamsCopy {
     void** vtable;

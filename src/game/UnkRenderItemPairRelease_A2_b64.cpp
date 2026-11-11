@@ -3,9 +3,8 @@
 // to the render manager's pool (fn_71002199d8, layer 0) and cleared, the second first. Names and
 // layouts are placeholders.
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU441.h"
 #include "types.h"
-
-extern u32 g_unk_71726b21d4 __attribute__((visibility("hidden")));  // live pairs
 
 struct UnkRenderItemPair_b64a2 {
     UnkItemBase_71011a91c4* first;

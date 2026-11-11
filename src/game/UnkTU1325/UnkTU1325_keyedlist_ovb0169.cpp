@@ -2,12 +2,11 @@
 // timer, an inner list (vtable g_unk_7101a46040) of plain values and two flags. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CEmmyProtoAIComponent.h"
+#include "game/UnkTU1325.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-extern void* g_unk_7101a7a548[];
-extern void* g_unk_7101a46040[];
 
 struct UnkInnerNode_b0169 {
     u32 value;

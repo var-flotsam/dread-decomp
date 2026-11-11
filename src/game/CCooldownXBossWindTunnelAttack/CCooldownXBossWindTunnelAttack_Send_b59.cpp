@@ -4,13 +4,13 @@
 // and sends its character class (+0x220) a request (descriptors as UnkSpitSend). Names are placeholders.
 #include "base/global/CStrId.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
 #include "../../game_s2/UnkSpitSend.h"
 #include "types.h"
 
 struct UnkWeakTarget;
-extern u32 g_unk_71727bebb8;
 UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 extern const u64 g_unk_7101649b38;  // reached through the GOT
 extern base::global::CStrId g_unk_71726d8110 __attribute__((visibility("hidden")));

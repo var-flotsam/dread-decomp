@@ -3,6 +3,7 @@
 // destructors (its six value holders at +0xe8, the member at +0x10, then fn_7101043934; inlined in
 // CAbilityOpticCamouflage's deleting destructor). Names and layouts are placeholders.
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbility.h"
 #include "game/CGameObject.h"
 #include "game/CSpecialEnergyComponent.h"
 #include "types.h"
@@ -44,7 +45,6 @@ bool fn_71002f92d4(UnkAbilityAmount_ovb0095* self) {
     return false;
 }
 
-extern void* g_unk_7101a223f8[];  // CAbility's vtable
 extern void* g_unk_7101a225f8[];  // the value holders' vtable
 extern void* g_unk_7101a22650[];  // the vtable of the member at +0x10
 

@@ -6,6 +6,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
+#include "game/UnkTU2704.h"
 
 using namespace unk_static_init;
 
@@ -104,7 +105,6 @@ inline const CStrId& StaticName_71726b2228() {
 struct UnkStruct_7172a0768c {
     u32 field_0x0;
 };
-extern UnkStruct_7172a0768c g_unk_7172a0768c;
 void fn_71011258dc(void* self);  // its destructor, as registered
 
 void fn_7101132ba0() {

@@ -5,11 +5,11 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU1730.h"
 #include "types.h"
 
 struct UnkDesc_SpitSend;
 extern UnkDesc_SpitSend g_unk_710164b958;
-extern UnkDesc_SpitSend g_unk_7172769740;
 
 struct UnkTrackTime_ovb0082 {
     u64 key;

@@ -1,6 +1,7 @@
 // Returns a pooled object to its pool: finalises it, frees its memory block from one of two
 // heaps (chosen by flag bit 0), and swaps it with the last live entry of the pool's slot table,
 // marking it unused (-1).
+#include "game/UnkTU174.h"
 #include "types.h"
 
 struct UnkHeap_71001541a0;
@@ -16,8 +17,6 @@ struct UnkObj_71001541a0 {
     u8 field_0x38;
 };
 
-extern u32 g_unk_716e29ab40;                    // live count
-extern UnkObj_71001541a0* g_unk_716e27ab38[];   // slot table
 extern UnkHeap_71001541a0* g_unk_716e29ab50;
 extern UnkHeap_71001541a0* g_unk_716e29ab58;
 extern void (*g_unk_716e29b078)(void* data);   // finaliser

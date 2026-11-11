@@ -4,14 +4,13 @@
 // fn_71003606c0), then CQuetzoaAIComponent's destructor fn_7100649ca8. Names are placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/CQuetzoaXAIComponent.h"
+#include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-extern void* g_unk_7101a58f80[];
 extern void* g_unk_7101a58d90[];
-extern void* g_unk_7101a20950[];
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a22d48[];
 void fn_71003606c0(void*);  // as src/game_5821e4/CAttackDtor.h declares it
 void fn_7100649ca8(char* self);  // CQuetzoaAIComponent's destructor
 

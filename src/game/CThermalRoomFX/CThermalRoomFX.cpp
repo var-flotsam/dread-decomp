@@ -3,13 +3,13 @@
 // (fn_71007b1528), a cleared flag and word), then its own vtable and the class-entry pass of
 // base::core::CBaseObject (fn_7100023854). Names and layouts are placeholders.
 #include "base/core/CBaseObject.h"
+#include "game/CCharClassActivatableComponent.h"
 #include "game/CComponent.h"
 #include "game/CDemolitionBlockComponent.h"
 #include "types.h"
 
 struct UnkStateObject;
 struct UnkNode;
-extern void* g_unk_7101a7ac20[];
 extern void* g_unk_7101a7b1e0[];
 
 struct UnkThermalRoomFX {

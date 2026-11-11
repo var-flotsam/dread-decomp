@@ -5,9 +5,8 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkBehaviorTree.h"
+#include "game/UnkTU1095.h"
 #include "types.h"
-
-extern void* g_unk_7101a69e10[];
 
 struct UnkXParasiteGoToPointAction : UnkBehaviorTreeNodeBase {
     u8 pad_0x2c[4];

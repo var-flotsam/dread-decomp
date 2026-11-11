@@ -3,6 +3,7 @@
 
 #include "base/global/CStrId.h"
 #include "game/CCharClassChozoWarriorAIComponent.h"
+#include "game/CCharClassChozoWarriorXAIComponent.h"
 #include "game/CCharClassChozoWarriorXChangeWallAttack.h"
 #include "game/CCharClassChozoWarriorXGlaiveSpinAttack.h"
 #include "game/CCharClassChozoWarriorXLandAttack.h"
@@ -17,8 +18,6 @@ using base::global::UnkStrId;
 struct UnkNode {
     void** vtable;
 };
-
-extern void* g_unk_7101a3b748[];
 
 void fn_710048da20(UnkNode* self) {
     fn_7100497584(self);

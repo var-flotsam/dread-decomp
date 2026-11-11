@@ -2,11 +2,11 @@
 // entry of the Emmy registry's inline list (registry +0x8: a u32 count followed directly by the
 // pointers), passing each entry's +0x10 (null for an empty slot); fn_7100aa5718 does the same through
 // fn_710110f97c unless its flag at +0x5c5 is set. Names and layouts are placeholders.
+#include "game/CAbilityEnergyWave.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
 
 struct UnkEmmyRegistry_b55;
-extern UnkEmmyRegistry_b55* g_unk_71726af0a8;
 
 void fn_710110f97c(void* emmy, void* block);
 

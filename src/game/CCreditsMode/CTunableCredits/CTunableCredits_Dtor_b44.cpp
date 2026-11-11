@@ -3,6 +3,7 @@
 // destroys a member (fn_710119ad3c) and a list of plain nodes, then runs the base destructor
 // (fn_71011867d4). Names and layouts are placeholders, as in fn_7101185ea8.cpp.
 #include "base/UnkVector.h"
+#include "game/CCreditsMode/CTunableCredits.h"
 #include "game/UnkTU2725.h"
 #include "game/UnkTU2732.h"
 #include "types.h"
@@ -37,9 +38,6 @@ struct UnkCreditsNode_b44a3 {
     u64 field_0x0;
     UnkCreditsNode_b44a3* next;
 };
-
-extern void* g_unk_7101cb4ef8[];
-extern void* g_unk_7101cb5010[];
 
 struct UnkCreditsNodeList_b44a3 {
     void** vtable;

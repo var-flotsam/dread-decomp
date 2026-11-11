@@ -88,7 +88,7 @@ class Plan(unittest.TestCase):
     def test_globals_go_to_the_unit_whose_data_span_holds_them(self):
         spans = {0x7101a00010: "7", 0x7101a00020: "8", 0x7101a00030: "7", 0x7101a00040: "7"}
         both = ("struct UnkA;\nextern UnkA* g_unk_7101a00010;\n"
-                'extern char g_unk_7101a00020[] __attribute__((visibility("hidden")));\n'
+                '#define HIDDEN __attribute__((visibility("hidden")))\nextern char g_unk_7101a00020[] HIDDEN;\n'
                 "extern UnkA g_unk_7101a00040[];\nextern int g_unk_7101a00050;\n")
         files = tree(a=both + "extern int g_unk_7101a00030;\n",
                      b=both + 'extern int g_unk_7101a00030 __attribute__((visibility("hidden")));\n')

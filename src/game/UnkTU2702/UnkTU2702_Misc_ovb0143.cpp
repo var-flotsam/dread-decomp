@@ -21,6 +21,7 @@
 #include "game/UnkGuiRoot.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU108.h"
+#include "game/UnkTU2702.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -410,7 +411,6 @@ struct UnkRinkaControl_ruc;
 UnkComponent* fn_7101152b90(UnkObject*, u64);
 bool fn_710114e668(UnkObject*, u8);
 void fn_7100146dac(UnkSwitchObject*, bool);
-extern u8* g_unk_7172a062e0 __attribute__((visibility("hidden")));
 
 struct UnkEffectOwner_b0143 {
     u8 pad_0x0[0x280];

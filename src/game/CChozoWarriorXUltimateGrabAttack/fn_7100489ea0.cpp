@@ -3,6 +3,7 @@
 // otherwise the object at 0x1d0 (when there is one) gets the tunable duration at 0x2c.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCharClassChozoWarriorXUltimateGrabAttack.h"
 #include "game/CChozoWarriorXUltimateGrabAttack.h"
 #include "game/CLifeComponent.h"
 #include "types.h"
@@ -29,7 +30,6 @@ struct UnkTunable {
     f32 field_0x2c;
 };
 
-extern UnkTunable g_unk_71726ce7d0;
 void fn_710048fc80(UnkAIComponent* component);
 
 void fn_7100489ea0(UnkSelf* self) {

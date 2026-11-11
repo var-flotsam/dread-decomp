@@ -8,11 +8,10 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/animtree/CAnimatedNodeDef.h"
+#include "game/animtree/CBoneFilterNodeDef.h"
 
 using base::global::CStrId;
-
-extern void* g_unk_7101a21718[];
-extern void* g_unk_7101a21c70[];
 
 struct UnkBoneFilterNodeDef_A2_b76 {
     char* vtable;

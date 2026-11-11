@@ -1,9 +1,8 @@
 // Destructor of an array of records (count at +0x8, each record 0x48 bytes starting at +0xc and
 // holding two reference-counted pointers at its start): sets its vtable, releases both pointers of
 // every record and empties the array.
+#include "game/UnkTU437.h"
 #include "game_s2/UnkWeakHandle.h"
-
-extern void* g_unk_7101a23c80[];
 
 struct __attribute__((packed)) UnkRecord {
     UnkRefObject* field_0x0;

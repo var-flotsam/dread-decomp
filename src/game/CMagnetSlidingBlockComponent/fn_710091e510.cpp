@@ -1,7 +1,9 @@
 // Destructor body: releases the two callback lists (each with a ref-counted owner), the pooled
 // arrays and string ids, resets the five embedded sub-objects, then runs the base destructor.
 #include "base/UnkStrIdTable.h"
+#include "game/CCentralUnitAIComponent.h"
 #include "game/UnkComponent.h"
+#include "game/UnkTU341.h"
 #include "game/UnkTU39.h"
 #include "types.h"
 #include "base/global/CStrId.h"
@@ -61,8 +63,6 @@ struct UnkRefCounted {
 };
 
 extern void* g_unk_7101a82960[];
-extern void* g_unk_7101a33fa0[];
-extern void* g_unk_7101a20998[];
 extern void* g_unk_7101a82c58[];
 extern void* g_unk_7101a82c00[];
 

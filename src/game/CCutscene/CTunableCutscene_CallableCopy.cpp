@@ -1,8 +1,7 @@
 // Copy constructors of two small polymorphic holders in the CCutscene::CTunableCutscene unit: the
 // vtable, one word, then a 27-byte payload copied as raw bytes. Names and layouts are placeholders.
+#include "game/UnkTU2661.h"
 #include "types.h"
-
-extern void* g_unk_7101cac988[];
 
 struct UnkCutsceneHolder {
     char* vtable;

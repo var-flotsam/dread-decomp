@@ -4,10 +4,9 @@
 // layouts are placeholders.
 #include "base/CDeviceQueue.h"
 #include "base/UnkVector.h"
+#include "game/CCharClassBigkranXSpitAttack.h"
 #include "game/UnkComponent.h"
 #include "types.h"
-
-extern void* g_unk_7101a312d0[];
 
 void fn_7100364430(UnkBaseComponent* self);
 

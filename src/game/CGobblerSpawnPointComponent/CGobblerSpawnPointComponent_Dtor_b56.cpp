@@ -4,12 +4,11 @@
 // Names are placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
+#include "game/CCentralUnitAIComponent.h"
+#include "game/CGobblerSpawnPointComponent.h"
 #include "game/UnkTU2704.h"
+#include "game/UnkTU341.h"
 #include "types.h"
-
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a33fa0[];
-extern char g_unk_7101a8c8d8[];  // CGobblerSpawnPointComponent
 
 struct UnkGobblerCallbacks_b56;
 template <>

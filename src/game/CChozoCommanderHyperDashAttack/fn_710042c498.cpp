@@ -1,10 +1,10 @@
 // Copy constructor of a layered class.
+#include "game/CChozoCommanderHyperDashAttack.h"
 #include "types.h"
 
 extern void* g_unk_7101a24060[];
 extern void* g_unk_7101a35248[];
 extern void* g_unk_7101a356c8[];
-extern void* g_unk_7101a357e0[];
 
 struct UnkRefObj {
     virtual void vf_0x0();

@@ -4,7 +4,9 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/UnkBehaviorTree.h"
+#include "game/behaviortree/CInPathPatrolAction.h"
 #include "types.h"
 
 using base::global::UnkStrId;
@@ -47,9 +49,6 @@ struct UnkNode : UnkBehaviorTreeNodeBase {
         reinterpret_cast<void (*)(UnkNode*)>(vtable[3])(this);
     }
 };
-
-extern void* g_unk_7101a26730[];
-extern void* g_unk_7101a22d48[];
 
 void fn_710038d404(UnkNode* self) {
     fn_7100393e68(self);

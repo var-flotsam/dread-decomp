@@ -2,9 +2,8 @@
 // the word at +0x8, then the 23 floats from +0x10 copied as a block. Names and layouts are placeholders.
 #include <new>
 
+#include "game/CDamageSourceFactor.h"
 #include "types.h"
-
-extern void* g_unk_7101a7e198[];
 
 struct UnkDamageFactors {
     f32 factors[23];

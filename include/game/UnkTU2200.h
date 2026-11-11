@@ -1,6 +1,6 @@
 #pragma once
 
-// UnkTU2200: functions of this translation unit that other files call (tools/tu_map.py unit 2200,
+// UnkTU2200: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2200,
 // 0x7100c8137c-0x7100c932c4). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
@@ -17,3 +17,29 @@ void fn_7100c8554c();
 void fn_7100c86aa4();
 void fn_7100c87094();
 void fn_7100c8b758(UnkElem40Array_b42a3* self, u32 capacity);
+extern char g_unk_71727930c8;
+extern char g_unk_71727930c9;
+extern char g_unk_71727930ca;
+extern char g_unk_71727930cb;
+extern char g_unk_7172793208;
+extern char g_unk_7172793209;
+extern char g_unk_7172793348;
+extern char g_unk_7172793349;
+extern char g_unk_71727934c0;
+extern char g_unk_71727934c1;
+extern char g_unk_71727934c2;
+extern char g_unk_71727934c3;
+extern char g_unk_7172793600;
+extern char g_unk_7172793601;
+extern char g_unk_7172793740;
+extern char g_unk_7172793741;
+extern char g_unk_71727938b8;
+extern char g_unk_71727938b9;
+extern char g_unk_71727938ba;
+extern char g_unk_71727938bb;
+extern char g_unk_71727939f8;
+extern char g_unk_71727939f9;
+extern char g_unk_7172793b38;
+extern char g_unk_7172793b39;
+extern char g_unk_7172793cb0;
+extern char g_unk_7172793cb1;

@@ -17,6 +17,7 @@
 #include "game/UnkTU2553.h"
 #include "game/UnkTU365.h"
 #include "game/UnkTU56.h"
+#include "game/UnkTU785.h"
 #include "game/UnkTimelineCalls.h"
 #include "game_s2/UnkChargeComponent.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -258,7 +259,6 @@ void fn_71010d80e8(UnkPlayerMovementD_b0204* self, u32 kind);
 void fn_71010d9f88(UnkPlayerMovementD_b0204* self);
 void fn_71010d7d0c(UnkPlayerMovementD_b0204* self, u32 kind);
 void fn_71010da220(UnkPlayerMovementD_b0204* self, f32 a, f32 b, f32 c);
-extern void* g_unk_71726dbf68;
 extern CStrId g_unk_71726dda50;
 extern base::reflection::UnkTunable g_unk_7172a03d80;
 

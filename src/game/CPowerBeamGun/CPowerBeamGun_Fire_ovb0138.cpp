@@ -6,6 +6,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CAbilityEnergyWave.h"
 #include "game/CModelUpdaterComponent.h"
 #include "types.h"
 
@@ -19,7 +20,6 @@ struct UnkHyperBeamSoundHandle {
 
 struct UnkGrappleAnswer_b50;
 UnkHyperBeamSoundHandle fn_7100ed6910(void* player, const CVector3D* pos, u32 id, u32 kind, bool flag);
-extern void* g_unk_71726af0b0;  // what plays the sounds at a position
 
 struct UnkBeamVec_ovb0138 {
     f32 x, y, z;

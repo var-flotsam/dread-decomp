@@ -2,6 +2,7 @@
 // system time in microseconds, and scales the step. Names and layouts are placeholders.
 #include <nn/os/os_TickTypes.h>
 
+#include "game/UnkTU58.h"
 #include "types.h"
 
 struct UnkFrameTimer_b260 {
@@ -19,8 +20,6 @@ struct UnkFrameTimer_b260 {
     f32 inverse;    // 0x44
     bool use_inverse;  // 0x48
 };
-
-extern u32 g_unk_7101d58e48;  // the current frame
 
 static inline s64 DivideBy1000(s64 x) {
     const u64 lo = static_cast<u32>(x);

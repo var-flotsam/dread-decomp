@@ -9,12 +9,11 @@
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CPlaythroughDef.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
-
-extern void* g_unk_7101a222a8[];  // the string list's vtable
 
 using UnkPlaythroughTokens_ovb0123 = UnkNodeOwner<UnkListNode<0x68>, UnkDestroyStrNode<0x68>>;
 void fn_71002f2974(UnkNodeOwner<UnkListNode<0x68>, UnkDestroyStrNode<0x68>>* self);

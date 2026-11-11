@@ -5,10 +5,10 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkTU811.h"
+#include "game/behaviortree/CEmmyPatrolAction.h"
 #include "types.h"
 
 struct UnkEmmyActor_b55;
-extern char g_unk_71726ded60[];
 
 struct UnkEmmySearchingAI_A3_b64 {
     virtual const base::reflection::CClass* vf_0x0();

@@ -4,12 +4,11 @@
 // fn_7100712538, +0x98: fn_71007124d8), then the post-construction virtual call (slot 3). The fields
 // are addressed by offset. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/CAlternativeActionPlayerComponent.h"
 #include "game/CComponent.h"
 
 struct UnkStateObject;
-extern void* g_unk_7101a6c0b8[];
-extern void* g_unk_7101a22d48[];
 
 struct UnkAlternativeActionPlayer {
     void** vtable;

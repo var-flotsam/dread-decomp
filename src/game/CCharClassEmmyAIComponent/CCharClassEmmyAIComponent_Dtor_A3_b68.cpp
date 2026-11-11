@@ -4,9 +4,9 @@
 // placeholders.
 #include "base/UnkDestructors.h"
 #include "game/CCharClassBehaviorTreeAIComponent.h"
+#include "game/CCharClassEmmyAIComponent.h"
 #include "types.h"
 
-extern void* g_unk_7101a480a8[];
 // Defined in src/lifted/ with this signature.
 char* fn_7100504bcc(char* p0);
 // As src/clones/clones_01.cpp declares it.

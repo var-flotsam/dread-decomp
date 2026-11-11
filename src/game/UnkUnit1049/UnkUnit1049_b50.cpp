@@ -3,6 +3,7 @@
 // empty id, the entry at +0x628 of the id table (fn_7100031894) and constant options. Names and
 // layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CShelmitPlasmaRayAttack.h"
 #include "types.h"
 
 struct UnkIdTable_b50_1049 {
@@ -16,8 +17,6 @@ inline UnkIdTable_b50_1049& IdTable_b50_1049() {
     static UnkIdTable_b50_1049 s_table;
     return s_table;
 }
-
-extern char g_unk_7172706938[] __attribute__((visibility("hidden")));
 
 struct UnkTarget_b50_1049 {
     virtual void vf_0();

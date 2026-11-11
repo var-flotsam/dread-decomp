@@ -567,7 +567,6 @@ struct UnkGrabFx4_b61 {
     bool field_0x790;
 };
 struct UnkGrabArg_b61;
-extern UnkGrabArg_b61 g_unk_71726de5a0 __attribute__((visibility("hidden")));
 
 void fn_710050e9e4(UnkGrabFx4_b61* self, f32 dt) {
     self->timer += dt;

@@ -12,6 +12,7 @@
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU63.h"
 #include "types.h"
 
 using base::UnkStrIdMemberOf;
@@ -144,7 +145,6 @@ struct UnkListedPath {
     UnkStrIdMemberOf<g_unk_7101d47200> id;
     UnkListedPath* next;
 };
-extern void* g_unk_7101a1b030[];
 // A list of path ids (as src/base/file/CPackManagerDevice.cpp has it).
 struct UnkFilePathList {
     void** vtable;

@@ -13,12 +13,12 @@
 #include "game/UnkActor.h"
 #include "game/UnkTU811.h"
 #include "game/UnkTUProperty.h"
+#include "game/behaviortree/CEmmyChaseAction.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkEmmyActor_b55;
-extern char g_unk_71726debd0[];
 
 // A typed value as the section setter takes it (as in src/game/CDoorLifeComponent.cpp).
 struct UnkTypedValue {

@@ -7,13 +7,13 @@
 
 #include "base/global/CStrId.h"
 #include "game/CCharClassComponent.h"
+#include "game/CCharClassFrozenComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkFrozenIceBase_b44a2;
 struct UnkStruct_71008bca30;
-extern void* g_unk_7101a73dc0[];
 
 struct UnkCharClassFrozen_ov110 {
     u64 vtable;  // an integer, so the id stores don't make its store move (as fn_71007ee89c)

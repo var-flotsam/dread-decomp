@@ -6,6 +6,7 @@
 
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CBTObserverComponent.h"
 #include "game/CNavMeshItemComponent.h"
 #include "types.h"
 
@@ -13,8 +14,6 @@ using base::global::CRntString;
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-extern void* g_unk_7101a889c8[];
-extern void* g_unk_7101aa52d0[];
 extern void* g_unk_7101ca9ea0[];
 
 // A string id whose destructor reloads the id after the decrement.

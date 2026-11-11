@@ -6,6 +6,7 @@
 #include "base/UnkVector.h"
 #include "game/UnkTU170.h"
 #include "game/UnkTU172.h"
+#include "game/UnkTU180.h"
 #include "types.h"
 
 // The default allocator (base/UnkDefaultAllocator.h) up to its slot 0x90: the free size, summed over
@@ -77,10 +78,7 @@ struct UnkPool;  // the memory pool type of src/game_s7/fn_71001587f0.cpp
 
 // The pools (all reached through the GOT).
 extern UnkGfxRecord_0xc0* g_unk_716e29d438[/* 0x800; unsized: x86-64 would assume 16-byte alignment */];
-extern u32 g_unk_716e2a1438;  // live records of the first table
 extern UnkGfxProgram* g_unk_716e2a1440[0x400];
-extern u32 g_unk_716e2a3440;           // live programs
-extern UnkGfxProgram* g_unk_716e2a3448;  // the bound program
 extern u8 g_unk_716e2a3458[];          // a sync object
 extern UnkPool g_unk_716e29d318;
 
@@ -132,8 +130,6 @@ void* fn_710015d720(const UnkGfxTriple* self, s32 which) {
 // ---- fn_710015e1f0: setting a uniform's values ----
 
 #include <string.h>
-
-extern u8 g_unk_716e2a3450;   // set when any uniform block changed
 
 // A uniform block: one buffer per frame (from +0x40), the size checked at +0x38, a dirty flag.
 struct UnkGfxUniformBlock {

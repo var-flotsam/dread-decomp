@@ -13,6 +13,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiHandle.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU101.h"
 #include "game/UnkTU2725.h"
 #include "game/UnkTU2747.h"
 #include "game/UnkTU57.h"
@@ -32,7 +33,6 @@ struct UnkSoundHandle {
     UnkSoundRef* ref;
     s64 serial;
 };
-extern const UnkSoundHandle g_unk_7108b6c460;  // the empty handle
 extern void* g_unk_7101cb51b8[];               // the menu's vtable
 
 struct UnkCompared_0x30;

@@ -6,11 +6,10 @@
 
 #include "base/global/CStrId.h"
 #include "game/CCharClassGrapplePointComponent.h"
+#include "game/CCharClassPullableGrapplePointComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-extern char g_unk_7101a76348[];
 
 struct UnkPullableGrapplePoint_b53 {
     void** vtable;

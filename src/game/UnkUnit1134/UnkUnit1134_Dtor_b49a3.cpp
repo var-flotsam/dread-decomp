@@ -3,14 +3,13 @@
 // to zero), then the counted reference at +0x28 dropped; fn_710070d434 also frees the object. Names and
 // layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU1134.h"
 #include "game/UnkTU39.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-extern void* g_unk_7101a6c048[];
 
 struct UnkUnit1134Object_b49a3 {
     void** vtable;

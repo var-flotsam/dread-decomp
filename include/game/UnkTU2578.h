@@ -1,6 +1,6 @@
 #pragma once
 
-// UnkTU2578: functions of this translation unit that other files call (tools/tu_map.py unit 2578,
+// UnkTU2578: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2578,
 // 0x7100ef3494-0x7100f02740). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
@@ -12,3 +12,5 @@ void fn_7100f00714(UnkStruct_0x128* self);
 void fn_7100f00f4c(UnkStruct_0x128*, u32, bool);
 void fn_7100f003e8(UnkStruct_0x128* self, s32 value);
 bool fn_7100f00a24(UnkStruct_0x128* self, u32 mode);
+extern void* g_unk_7101caa208[];
+extern void* g_unk_7101caa228[];

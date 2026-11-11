@@ -16,6 +16,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/GUI/CMissionLog.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
 #include "types.h"
@@ -134,9 +135,6 @@ void fn_71011d9e20(UnkDisplayObjectContainer_ovb0032* self, void* context, bool 
 }
 
 // --- The children as a pool list ---
-
-extern char g_unk_7101a9d490[];
-extern char g_unk_7101a9d4b0[];
 
 struct UnkChildPoolListTag_ovb0032;
 template <>

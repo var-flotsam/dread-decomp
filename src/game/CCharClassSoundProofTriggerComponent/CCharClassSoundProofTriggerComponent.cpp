@@ -3,11 +3,10 @@
 // allocator from fn_7100083990), the class vtable, a word 9, two floats 1.0, a cleared flag, then
 // the object's own vf_0x18. Names and layouts are placeholders.
 #include "game/CCharClassBaseTriggerComponent.h"
+#include "game/CCharClassSoundProofTriggerComponent.h"
 #include "types.h"
 
 #include "base/UnkVector.h"
-
-extern void* g_unk_7101a8e0f8[];
 
 struct UnkSoundProofTrigger {
     void** vtable;

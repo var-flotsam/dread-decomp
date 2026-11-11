@@ -13,6 +13,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntStringAssign.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2668.h"
 #include "game/UnkTU2669.h"
 #include "types.h"
@@ -79,7 +80,6 @@ struct UnkLuaScratchStack {
     u32 count;
     UnkLuaScratch entries[1];  // the real number is unknown
 };
-extern UnkLuaScratchStack g_unk_7172a025a0 __attribute__((visibility("hidden")));
 
 // Pops the scratch array the last run pushed (and frees it).
 s32 fn_71010a59a0(lua_State* L, const char* s);
@@ -194,7 +194,6 @@ extern "C" lua_State* luaL_newstate(void);
 extern "C" int (*lua_atpanic(lua_State* L, int (*panicf)(lua_State*)))(lua_State*);
 
 extern lua_State* g_unk_7172a01d18;
-extern UnkScriptManager_ovb0085* g_unk_71727bed90;
 extern void* (*g_unk_7101caf820)(u64 size);
 extern void (*g_unk_7101caf828)(void* ptr);
 extern void (*g_unk_7101caf830)(const char* format, ...);

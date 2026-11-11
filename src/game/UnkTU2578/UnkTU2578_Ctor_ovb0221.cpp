@@ -7,10 +7,8 @@
 
 #include "base/UnkChainedMap.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU2578.h"
 #include "types.h"
-
-extern void* g_unk_7101caa208[];
-extern void* g_unk_7101caa228[];
 
 struct UnkSoundIdNodeA;
 struct UnkSoundIdNodeB;

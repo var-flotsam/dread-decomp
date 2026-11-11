@@ -7,6 +7,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CRntStringAssign.h"
 #include "base/global/CStrId.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -57,7 +58,6 @@ UnkPathId_ovb0109 fn_710008dd5c(const UnkDevicePath_ovb0109* self) {
 
 s32 fn_710007facc(const CRntString* self, char c, u32 start);
 s32 fn_710007fb10(const base::global::CRntString* self, char c, s32 start);
-extern void* g_unk_7101a1a5a8[];
 
 // A substring, on 0x200 bytes of inline storage.
 struct UnkPathPart_ovb0109 : UnkBufferString<0x200, g_unk_7101a1a5a8> {

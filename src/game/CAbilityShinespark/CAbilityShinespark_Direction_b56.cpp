@@ -14,7 +14,6 @@ struct UnkShinesparkAngles_b56 {
     f32 angle_0x64;
 };
 struct UnkTunable;
-extern UnkTunable g_unk_71726b0378;
 
 struct UnkDirOut_b56 {
     f32 x;

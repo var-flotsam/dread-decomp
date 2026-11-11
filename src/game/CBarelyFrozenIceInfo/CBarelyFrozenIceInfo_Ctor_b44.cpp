@@ -4,11 +4,11 @@
 // default allocator), then the vtable's slot at +0x18 on itself. Names and layout are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CBarelyFrozenIceInfo.h"
 #include "game/CCharClassFrozenComponent.h"
 #include "types.h"
 
 struct UnkFrozenIceBase_b44a2;
-extern void* g_unk_7101a73e38[];  // the class's vtable
 
 typedef u64 UnkU64Align4_b44a2 __attribute__((aligned(4)));
 
@@ -58,7 +58,6 @@ void fn_71007f3100(UnkFrozenIceInfo_b44a2* self) {
 
 // A record of two copies of the empty string id (+0x8, +0x10) and a scale of 1 (+0x18): its
 // constructor, with the ids copied as in fn_71007f3100.
-extern void* g_unk_7101a73e10[];  // the record's vtable
 
 struct UnkFrozenIceRecord_b44a2 {
     void** vtable;

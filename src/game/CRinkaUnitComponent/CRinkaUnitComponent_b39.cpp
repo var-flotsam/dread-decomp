@@ -4,6 +4,7 @@
 // (+0x228, +0x50) to the value g_unk_7101647634 (fn_71001c2764). Names and layouts are placeholders.
 #include "base/math/CVector.h"
 #include "game/CFXComponent.h"
+#include "game/CRinkaUnitComponent.h"
 #include "game/UnkSlots.h"
 #include "types.h"
 
@@ -14,7 +15,6 @@ struct UnkRinkaEntry_ruc {
 
 struct UnkRinkaControl_ruc;
 
-extern UnkRinkaEntry_ruc* g_unk_71726fd110[2] __attribute__((visibility("hidden")));
 extern const base::math::CVector4D g_unk_7101647634;
 
 struct UnkRinkaTarget_ruc {

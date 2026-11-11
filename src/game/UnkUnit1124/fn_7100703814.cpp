@@ -1,10 +1,10 @@
 // From unit 1124 of tools/tu_map.py (0x710070368c-0x7100703cf4, no reflected class): the constructor
 // of a 0xb0-byte object with an id at +0x10 and an embedded object (its own vtable) at +0x70; the rest
 // is cleared, with 2 and 1 at +0x28 and +0x2c. Names and layouts are placeholders.
+#include "game/behaviortree/CSwitchBetweenAIModesAction.h"
 #include "types.h"
 
 extern void* g_unk_7101a6bd88[];  // the object's vtable
-extern void* g_unk_7101a24b58[];  // the embedded object's vtable
 
 struct UnkUnit1124Object {
     void** vtable;

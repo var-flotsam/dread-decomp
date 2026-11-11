@@ -10,8 +10,6 @@
 
 using base::global::CStrId;
 
-extern char g_unk_7101cb5908[];  // CButton's vtable
-
 struct UnkGuiButton {
     char* vtable;
     u8 base_0x8[0x228];

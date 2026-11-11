@@ -11,6 +11,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 using base::global::UnkStrId;
@@ -24,8 +25,6 @@ struct UnkInventory;
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 
 extern char g_unk_7101a7ccb0[];  // vtable
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a20950[];
 
 // An allocator-backed list (as src/game/CAIComponent/UnkAIDeviceList.cpp): the base vtable is
 // stored first, then the final one.

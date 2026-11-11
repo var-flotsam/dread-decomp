@@ -4,6 +4,7 @@
 // Holds fn_7100fc7920.
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
+#include "game/CGameManager/CTunableGameManager.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -15,7 +16,6 @@ struct UnkRequestListNode {
     void* value;
     UnkRequestListNode* next;
 };
-extern char g_unk_7101aa9ac0[];  // the list's base vtable (as src/game/CGameManager.cpp declares it)
 
 struct UnkRequestList {
     void** vtable;

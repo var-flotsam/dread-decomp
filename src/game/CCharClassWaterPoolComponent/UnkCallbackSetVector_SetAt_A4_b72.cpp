@@ -6,10 +6,9 @@
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
 #include "base/UnkVector.h"
+#include "game/CCentralUnitAIComponent.h"
+#include "game/UnkTU341.h"
 #include "types.h"
-
-extern void* g_unk_7101a20998[];  // the callback lists' base vtable
-extern void* g_unk_7101a33fa0[];  // their vtable
 
 struct UnkSetElem_A4_b72 {
     void* vtable;

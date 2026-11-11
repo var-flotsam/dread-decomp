@@ -4,9 +4,8 @@
 // placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/GUI/CDisplayObjectContainer.h"
 #include "types.h"
-
-extern char g_unk_7172a0f120[] __attribute__((visibility("hidden")));
 
 struct UnkContainer_71011da0c0;
 

@@ -5,11 +5,11 @@
 // and slide (+0x1dc, +0x1e8) slots, then the base step runs (fn_71010ed98c, as in
 // src/game/CFixedCameraCtrl/CFixedCameraCtrl_b40.cpp). Names and layouts are placeholders.
 #include "game/CCameraCtrl.h"
+#include "game/CEmmyFloorSlideCameraCtrl.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 struct UnkBase_7100763ed4;
-extern void* g_unk_7101a72188[];  // the class's vtable
 
 struct UnkFixedCamera_fc;
 struct UnkArg_fc;

@@ -24,7 +24,6 @@ using base::global::UnkStringPool;
 
 // A localized text (0x20 bytes: the UTF-32 characters at +0x8, null when empty, and their count at
 // +0x10), with its constructors and destructor.
-void fn_7100066a50(void* self, const char32_t* text);
 struct UnkLanguageText {
     u8 unk_0x0[0x8];
     const char32_t* chars;

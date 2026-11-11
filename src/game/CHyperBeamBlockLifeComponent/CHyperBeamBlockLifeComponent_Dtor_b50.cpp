@@ -6,12 +6,12 @@
 // released (fn_7100565ef0) and the slot cleared; then the base destructor fn_71008e05e8. Names and
 // layouts are placeholders.
 #include "game/CItemLifeComponent.h"
+#include "game/CPullOffGrapplePointComponent.h"
 #include "game/CTimelineComponent.h"
 #include "game/UnkTU811.h"
 #include "types.h"
 
 extern void* g_unk_7101a7ee28[];
-extern void* g_unk_7101a77000[];
 
 struct UnkTutoHandle;
 

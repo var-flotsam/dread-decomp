@@ -5,6 +5,7 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
+#include "game/GUI/IDisplayObjectTrack.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -35,7 +36,6 @@ extern void* g_unk_7101a9a508[];
 extern void* g_unk_7101a9a4c0[];
 extern void* g_unk_7101a9a598[];
 extern void* g_unk_7101a9a550[];
-extern void* g_unk_7101a9a628[];
 extern void* g_unk_7101a9a5e0[];
 
 void fn_7100b16dfc(UnkNamedList* self) { Construct<g_unk_7101a9a508, g_unk_7101a9a4c0>(self); }

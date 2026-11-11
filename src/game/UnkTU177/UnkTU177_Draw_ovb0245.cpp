@@ -5,6 +5,7 @@
 #include "game/UnkGraphicsState.h"
 #include "game/UnkTU172.h"
 #include "game/UnkTU174.h"
+#include "game/UnkTU177.h"
 #include "types.h"
 
 struct UnkDrawState_ovb0245 {
@@ -72,7 +73,6 @@ void fn_7100159f90(u32 count, u32 value) {
 
 
 extern bool g_unk_7101a1d7d8;
-extern u8 g_unk_716e29c680[];
 
 // ---- fn_7100159660 ----
 
@@ -118,10 +118,7 @@ void fn_7100159660(bool a, bool b, bool c) {
 
 
 extern s32 g_unk_7101a1d7e8;
-extern bool g_unk_7101a1d7e4;
-extern s32 g_unk_7101a1d7ec;
 extern void (*g_unk_716e29b6a0)(void* object, s32 value);
-extern u8 g_unk_716e29c6a8[];
 
 void fn_710015a8c0(u32 mode) {
     if (g_unk_7101a1d7e8 == (s32)mode)
@@ -179,11 +176,8 @@ struct UnkBlendStack_ovb0245 {
 };
 
 extern UnkBlendStack_ovb0245 g_unk_716e29c6d0 __attribute__((visibility("hidden")));
-extern u8 g_unk_716e29c691;
-extern bool g_unk_7101a1d7e4;
 extern void (*g_unk_716e29b6a8)(void* object, u8 value);
 extern s32 g_unk_716e29c694;
-extern s32 g_unk_7101a1d7f0;
 extern void (*g_unk_716e29b6b0)(void* object, s32 which, s32 value);
 extern s32 g_unk_716e29c240;
 extern void (*g_unk_716e29b9b8)(void* context, s32 which, s32 value);

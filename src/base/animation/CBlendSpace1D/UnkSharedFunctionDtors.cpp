@@ -8,6 +8,7 @@
 #include <memory>
 
 #include "base/UnkVector.h"
+#include "base/animation/CBlendSpace1D.h"
 #include "types.h"
 
 struct UnkSharedFnPointee;
@@ -44,8 +45,6 @@ __attribute__((always_inline)) static inline void OnZeroShared(UnkSharedFnBlock<
     self->data.first().second().~function();
 }
 
-extern char g_unk_7101a19230[];
-extern char g_unk_7101a19268[];
 void fn_7100008d6c(UnkSharedFnBlock<g_unk_7101a19230>* self) { DestroyBlock(self); }
 void fn_7100008dc8(UnkSharedFnBlock<g_unk_7101a19230>* self) { DeleteBlock(self); }
 void fn_7100008e2c(UnkSharedFnBlock<g_unk_7101a19230>* self) { OnZeroShared(self); }

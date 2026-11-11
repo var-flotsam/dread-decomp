@@ -3,6 +3,7 @@
 // allocator) at 0xf0 and 0x118. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "game/CCharClassKraidAttack.h"
+#include "game/CKraidSpinningNailsDef.h"
 #include "types.h"
 
 struct UnkGrowArray_b62a3 {
@@ -20,8 +21,6 @@ struct UnkLaunchPattern_b62a3 {
     UnkGrowArray_b62a3 field_0xf0;
     UnkGrowArray_b62a3 field_0x118;
 };
-
-extern void* g_unk_7101a538e0[];
 
 void fn_71005eaafc(UnkLaunchPattern_b62a3* self) {
     fn_71005dbdd4(self);

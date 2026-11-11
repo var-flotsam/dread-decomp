@@ -4,9 +4,8 @@
 // allocator at +0x38): frees every value's array, then the two arrays. fn_710006dc28 and its
 // identical copy fn_710006f230. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU46.h"
 #include "types.h"
-
-extern void* g_unk_7101a1a2b0[];
 
 struct UnkInputMapA1 {
     void* vtable;

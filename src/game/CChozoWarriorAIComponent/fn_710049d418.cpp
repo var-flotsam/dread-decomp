@@ -3,12 +3,11 @@
 // vtable's slot at +0x18 on itself.
 //
 // The fields are addressed by offset.
+#include "game/CAbilityGhostAura.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 extern void* g_unk_7101a3cbc8[];
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a20950[];
-extern void* g_unk_7101a22d48[];
 
 // Only the vtable at +0x0 is named; the rest is addressed by offset.
 struct UnkComponent {

@@ -4,12 +4,12 @@
 // (fn_7100023854). Defined under the `void()` symbol src/reflection/CCameraBoundaryCtrl.cpp declares. Names and
 // layouts are placeholders.
 #include "base/core/CBaseObject.h"
+#include "game/CCameraBoundaryCtrl.h"
 #include "game/CCameraCtrl.h"
 #include "types.h"
 
 struct UnkNode;
 struct UnkBase_7100763ed4;
-extern void* g_unk_7101a6e6e8[];
 
 struct UnkCameraBoundaryCtrl_A5_b71 {
     void* vtable;

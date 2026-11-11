@@ -5,13 +5,12 @@
 #include "base/UnkErasedVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkCallbackSetVector.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 extern void* g_unk_7101a6ec50[];
-extern void* g_unk_7101a20950[];
-extern void* g_unk_7101a20998[];
 void fn_71002b24e8(void* node);
 
 struct UnkCentralUnitEdges_ovb0259 {

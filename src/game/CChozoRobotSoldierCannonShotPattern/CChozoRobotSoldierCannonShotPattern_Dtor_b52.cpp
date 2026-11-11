@@ -2,11 +2,10 @@
 // CXParasiteDropComponent_Dtor_b49a3.cpp) in CChozoRobotSoldierCannonShotPattern's unit: the
 // vtable, the list of owned objects at +0xf0 destroyed, then the base destructor fn_7100364430;
 // fn_710045ef18 also frees the object. Names and layouts are placeholders.
+#include "game/CChozoRobotSoldierCannonShotPattern.h"
 #include "game/UnkComponent.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
-
-extern void* g_unk_7101a38100[];
 
 void fn_7100364430(UnkBaseComponent* self);
 

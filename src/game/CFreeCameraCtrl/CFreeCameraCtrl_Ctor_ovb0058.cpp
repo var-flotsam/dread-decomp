@@ -12,10 +12,12 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/CCameraCtrl.h"
+#include "game/CInputComponent.h"
 #include "game/CPhotoModeCameraCtrl.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU2732.h"
+#include "game/UnkTU315.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -23,7 +25,6 @@ using base::global::CStrId;
 struct UnkBase_7100763ed4;
 struct UnkFreeCameraCtrl_b0058;
 extern void* g_unk_7101cb1860[];
-extern void* g_unk_7101a202e0[];
 extern CStrId g_unk_7172a04a30 __attribute__((visibility("hidden")));
 void fn_7100219dbc(UnkRenderManager* manager, const CStrId* key, bool on);
 void fn_71010ed260(UnkFreeCameraCtrl_b0058* self);
@@ -218,7 +219,6 @@ struct UnkCameraEvent_b0058 {
 void fn_7100eecf7c(void* manager, bool on, const UnkCameraEvent_b0058* event);
 struct UnkGrabCameraCtrl;
 void fn_7100decc74(UnkGameManager* self);
-extern void* g_unk_7172729910;
 UnkFreeCameraCallback_b0058** fn_71009cb3e0(base::UnkVector<UnkFreeCameraCallback_b0058*>* self, u32 index);
 void fn_7100e8f9a0(char* self, bool remove, base::global::CStrId* key);
 extern CStrId g_unk_7172a04a38 __attribute__((visibility("hidden")));

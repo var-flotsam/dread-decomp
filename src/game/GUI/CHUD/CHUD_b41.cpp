@@ -4,12 +4,12 @@
 // value. Names and layouts are placeholders.
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
 
 struct UnkWeakTarget;
-extern u32 g_unk_71727bebb8;
 UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 
 UnkReflValue fn_71011e68e8(void*, char*, UnkReflValue* const* args) {

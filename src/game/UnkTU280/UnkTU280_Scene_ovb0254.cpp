@@ -5,10 +5,10 @@
 #include "UnkClone.h"
 #include "base/UnkVector.h"
 #include "base/reflection.h"
+#include "game/UnkTU280.h"
 #include "types.h"
 
 struct UnkSceneManager;
-extern UnkSceneManager* g_unk_716e598008 __attribute__((visibility("hidden")));
 
 struct UnkItem {
     s32 id;

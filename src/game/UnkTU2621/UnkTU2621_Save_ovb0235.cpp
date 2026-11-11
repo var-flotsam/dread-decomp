@@ -13,6 +13,8 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CGameManager/CTunableGameManager.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2768.h"
 #include "types.h"
 
@@ -107,8 +109,6 @@ u64 fn_7100fc3510() {
 
 // ---- entry
 
-
-extern char g_unk_7101aa9ac0[];
 
 struct UnkEntryListNode_b0235 {
     void* value;
@@ -255,7 +255,6 @@ void fn_7100fc6e20(base::UnkVector<UnkEntry_b0235>* self, const UnkEntry_b0235* 
 
 // ---- 36d4
 struct UnkUserDataOwner;
-extern UnkUserDataOwner* g_unk_7101d47308;
 struct UnkUserDataOwnerFlag_b48a3;
 void fn_71012037fc(UnkUserDataOwnerFlag_b48a3* self, bool flag);
 bool fn_7100132f60();

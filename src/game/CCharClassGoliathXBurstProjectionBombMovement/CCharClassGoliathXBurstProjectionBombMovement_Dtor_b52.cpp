@@ -5,14 +5,13 @@
 // operator delete). Names and layouts are placeholders.
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassGoliathXBurstProjectionBombMovement.h"
 #include "game/CCharClassMovementComponent.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-extern void* g_unk_7101a4bcf8[];
 
 struct UnkBurstBombObject_b52 {
     void** vtable;

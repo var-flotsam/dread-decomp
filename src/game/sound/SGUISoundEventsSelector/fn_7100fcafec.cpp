@@ -6,6 +6,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/sound/SGUISoundEventsSelector.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -34,9 +35,6 @@ struct UnkIdEntry_0x10 {
     u64 field_0x0;
     UnkEntryId id;
 };
-
-extern void* g_unk_7101caba40[];
-extern void* g_unk_7101cabad0[];
 
 struct UnkNamedBase_0x38 {
     void** vtable;

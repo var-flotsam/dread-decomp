@@ -18,13 +18,14 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/snd/UnkSoundSystemATK.h"
 #include "base/tunable/CTunable.h"
+#include "game/UnkTU101.h"
+#include "game/UnkTU99.h"
 #include "game/operator_new.h"
 
 using base::global::CFilePathStrId;
 using base::global::UnkStringData;
 using base::snd::UnkSoundSystemATK;
 
-extern u8 g_unk_7108b6ab60 __attribute__((visibility("hidden")));
 void fn_71000fbaf8(UnkSoundSystemATK* sys, s32 command, const void* payload);
 
 // A sound the system plays: the path id's data (its hash is at +0x30), three flags and a level.
@@ -254,7 +255,6 @@ struct UnkFreeHookHost_b0185 {
 };
 
 struct UnkAtkHeap;
-extern UnkAtkHeap g_unk_7108b69038;
 void fn_71000f4414(void* sound);
 void fn_7100081420(base::UnkSubAllocator* self, void* ptr);
 
@@ -343,7 +343,6 @@ struct UnkSoundHandle {
     UnkSoundRef* ref;
     s64 serial;
 };
-extern const UnkSoundHandle g_unk_7108b6c460;  // the empty handle
 
 struct UnkPlayingHandle_ovb0074 {
     void* ref;

@@ -15,6 +15,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU63.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -203,7 +204,6 @@ struct UnkListedPath {
     UnkStrIdMemberOf<g_unk_7101d47200> id;
     UnkListedPath* next;
 };
-extern void* g_unk_7101a1b030[];
 // A list of path ids (its destructor is fn_7100087cf8; src/game/UnkResourceGroup.cpp has the same).
 struct UnkFilePathList {
     void** vtable;

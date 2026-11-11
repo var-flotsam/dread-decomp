@@ -2,6 +2,7 @@
 // levels each hold a string id (copied by taking another reference), the last a block of
 // plain data.
 #include <new>
+#include "game/animtree/CAnimatedNodeDef.h"
 #include "types.h"
 #include "base/global/CStrId.h"
 
@@ -14,7 +15,6 @@ static inline void CopyId(UnkStringData*& dst, UnkStringData* src) {
         ++src->ref_count;
 }
 
-extern void* g_unk_7101a21718[];
 extern void* g_unk_7101a21af8[];
 extern void* g_unk_7101a21fc8[];
 

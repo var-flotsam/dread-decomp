@@ -7,12 +7,12 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "base/global/timeline/CTrack.h"
+#include "game/CCharClassFXControlTrack.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 extern void* g_unk_7101a1a138[];  // the base's vtable
-extern void* g_unk_7101aa6f40[];  // the class's vtable
 
 struct UnkFXControlTrack_ovb0139 {
     void** vtable;

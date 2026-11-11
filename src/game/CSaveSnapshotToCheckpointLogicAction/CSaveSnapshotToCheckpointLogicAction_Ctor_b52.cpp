@@ -6,16 +6,15 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CSaveSnapshotToCheckpointLogicAction.h"
 #include "game/CTriggerLogicAction.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 
 // The base constructor, as src/game/CChangeSetupLogicAction/CChangeSetupLogicAction_b35.cpp declares it.
 struct UnkChangeSetupLogicActionDef;
-extern char g_unk_7101a8e6c0[];
-extern void* g_unk_7101a20998[];  // the callback set's base vtable
-extern void* g_unk_7101a20950[];  // the callback set's vtable
 
 struct UnkSaveSnapshotCallable_b52;
 

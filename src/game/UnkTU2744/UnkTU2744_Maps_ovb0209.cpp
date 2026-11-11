@@ -22,6 +22,8 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2669.h"
 #include "game/UnkTU2768.h"
 #include "game/UnkTU39.h"
@@ -326,7 +328,6 @@ void fn_71011b9968(void* self, const char* const* name) {
 
 // ---- fn_71011b3778: whether the GUI is free of a pending focus ----
 struct UnkUserDataOwner;
-extern UnkUserDataOwner* g_unk_7101d47308;
 
 struct UnkGuiFlags_b0209 {
     u8 pad_0x0[0xca8];
@@ -465,7 +466,6 @@ struct UnkMovedStr_b0209 {
 UnkPathText_b0209 fn_71011b659c(void* self, const char* const* name);
 struct UnkUnit2669Str;
 struct UnkScriptManager_ovb0085;
-extern UnkScriptManager_ovb0085* g_unk_71727bed90;
 UnkWeakTarget* fn_71011b5f5c(u32 unused, const char* const* path, const CRntString* name, void* arg);
 
 static inline UnkScriptManager_ovb0085* ScriptManager() {

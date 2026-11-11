@@ -4,12 +4,12 @@
 // (fn_71000a1c60). Names are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityGhostAura.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 extern void* g_unk_7101a87850[];
 extern void* g_unk_7101a879b8[];
-extern void* g_unk_7101a22d48[];
 
 struct UnkSamusParamsMember_A4_b76;
 void fn_71009b08c8(UnkSamusParamsMember_A4_b76* self);

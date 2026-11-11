@@ -6,6 +6,7 @@
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
+#include "game/UnkTU2565.h"
 #include "game/UnkTU57.h"
 #include "types.h"
 
@@ -148,7 +149,6 @@ void fn_7100e78060(UnkLinkedCell_e* self) {
 struct UnkCharMap : base::UnkVector<u8> {
     UnkCharMap() = delete;
 };
-extern UnkCharMap g_unk_71727c8f58;
 
 struct UnkRowCell_b0238 {
     u8 unk_0x0[8];

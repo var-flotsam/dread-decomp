@@ -15,6 +15,8 @@
 #include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2538.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2669.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU99.h"
@@ -84,7 +86,6 @@ s32 fn_710108e200(lua_State* L) {
 }
 
 struct UnkTunable;
-extern UnkTunable g_unk_7101d68580;  // base::snd::CSoundSystemATK's tunable
 
 s32 fn_7101092690(lua_State* L) {
     f32 scale = 1.0f;
@@ -349,7 +350,6 @@ s32 fn_7101093c10(lua_State* L) {
 
 // ---- other singletons, created on first use ----
 struct UnkScriptManager_ovb0085;
-extern UnkScriptManager_ovb0085* g_unk_71727bed90;
 void fn_710109d890(UnkScriptManager_ovb0085* self, CRntString* name);
 
 s32 fn_7101077240(lua_State* L) {
@@ -370,7 +370,6 @@ s32 fn_7101077240(lua_State* L) {
 }
 
 struct UnkObj_71011a50cc;
-extern UnkObj_71011a50cc* g_unk_71727bc260;
 void fn_71011a50cc(UnkObj_71011a50cc* self);
 void fn_71011a5cdc(UnkObj_71011a50cc* self, const CRntString& name);
 

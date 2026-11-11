@@ -5,6 +5,7 @@
 // +0x1890 or +0x678 is set, fn_7100818978 refuses the target at +0x1888 or fn_71008408b0 accepts.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CGrappleBeamGun.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -23,7 +24,6 @@ inline UnkGameManagerIdTable& GrappleIdTable() {
 }
 
 struct UnkTunable;
-extern UnkTunable g_unk_7172725bc8;
 
 struct UnkGrappleTunableView_ovb0132 {
     u8 pad_0x0[0x2c];

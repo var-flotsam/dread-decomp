@@ -10,6 +10,7 @@
 #include "base/UnkVector.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbility.h"
+#include "game/CAbilityOpticCamouflage.h"
 #include "game/CGameObject.h"
 #include "game/CGunComponent.h"
 #include "game/UnkTU39.h"
@@ -17,8 +18,6 @@
 #include "types.h"
 
 extern void* g_unk_7101a230a8[];  // the ability's vtable
-extern void* g_unk_7101a23280[];  // the listener's vtable
-extern void* g_unk_7101a223f8[];  // CAbility's vtable
 extern void* g_unk_7101a225f8[];  // the value holders' vtable
 extern void* g_unk_7101a22650[];  // the vtable of the member at +0x10
 

@@ -4,6 +4,7 @@
 // src/base/reflection/UnkReflResolve.cpp does the rest). Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/global/CRntString.h"
+#include "base/reflection.h"
 #include <new>
 
 #include "base/UnkCloneHelpers.h"
@@ -120,7 +121,6 @@ void fn_71000a179c(UnkReflValue* self, const UnkReflValue* other);  // copy cons
 void fn_71000a1ae4(UnkReflValue* out, const UnkTypedRef* ref, u32 a, u32 b);
 bool fn_710009d5d4(const char* type, base::reflection::UnkTypedRef* dst, const base::reflection::UnkTypedRef* src);
 extern base::reflection::CType g_unk_7172756e50;
-extern u8 g_unk_7172757530[];
 
 // A resolved value (0x30 bytes), as src/base/reflection/UnkReflResolve.cpp defines it, built here from a
 // reflected value.

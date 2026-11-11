@@ -3,11 +3,10 @@
 // g_unk_7101a22cb8) is copied first, then the derived vtable (g_unk_7101a874f0) is stored and the rest copied;
 // the word at +0x74 is reset to -1 and the two counted pointers (+0x80, +0x88) are shared. Names and layouts
 // are placeholders.
+#include "game/CAbilityGhostAura.h"
+#include "game/CSamusMagnetGloveMovementState/CParams.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-extern void* g_unk_7101a22cb8[];
-extern void* g_unk_7101a874f0[];
 
 struct UnkMagnetVec3_ovb0082 {
     f32 x, y, z;

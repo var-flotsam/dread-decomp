@@ -3,6 +3,7 @@
 // global blend settings (by the mode at +0x24, when +0x20 is set) or none with the frame count
 // (+0x28) as a float; flag 2 when +0x2c is set, and the duration (+0x30) when it is not negative.
 // Names and layouts are placeholders.
+#include "game/UnkTU1730.h"
 #include "types.h"
 
 struct __attribute__((packed, aligned(4))) UnkTrackBlend {
@@ -16,7 +17,6 @@ struct UnkTrackOptional {
     u64 bits;
 };
 extern UnkTrackBlend g_unk_7172769758;
-extern UnkTrackBlend g_unk_7172769770;
 
 struct UnkTrackStateName {
     u8 unk_0x0[0x30];

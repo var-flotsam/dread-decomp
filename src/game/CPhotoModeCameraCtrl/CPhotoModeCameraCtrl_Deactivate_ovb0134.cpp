@@ -8,6 +8,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/CCameraCtrl.h"
+#include "game/CInputComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU131.h"
@@ -23,7 +24,6 @@ void fn_7100145388(void* scene, void* value);
 struct UnkGrabCameraCtrl;
 bool fn_7100decc5c(UnkGameManager*);
 void fn_7100decc74(UnkGameManager*);
-extern void* g_unk_7172729910;
 UnkFreeCameraCallback_b0058** fn_71009cb3e0(base::UnkVector<UnkFreeCameraCallback_b0058*>*, u32);
 void fn_7100e8f9a0(char*, bool, base::global::CStrId*);
 extern CStrId g_unk_717273f970 __attribute__((visibility("hidden")));

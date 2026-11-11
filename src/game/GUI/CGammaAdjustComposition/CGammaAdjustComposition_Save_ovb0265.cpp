@@ -10,6 +10,7 @@
 #include "game/CBlackboard.h"
 #include "game/GUI/CIngameMenu.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2768.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
@@ -18,7 +19,6 @@ using base::global::CStrId;
 using base::reflection::UnkReflObject;
 
 struct UnkUserDataOwner;
-extern UnkUserDataOwner* g_unk_7101d47308;
 CBlackboard* fn_710120384c(UnkUserDataOwner* self);
 bool fn_7100deac24(UnkGameManager* self);
 UnkReflObject* fn_7100e033a8(UnkGameManager*);

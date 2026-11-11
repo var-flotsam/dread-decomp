@@ -3,12 +3,11 @@
 // flags 0xf. The two classes differ in their vtables and in how many arrays each sub-object has.
 #include <new>
 #include "base/UnkVector.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 extern void* g_unk_7101a48298[];
 extern void* g_unk_7101a48270[];
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a20950[];
 
 struct UnkLayerA {
     void** vtable;

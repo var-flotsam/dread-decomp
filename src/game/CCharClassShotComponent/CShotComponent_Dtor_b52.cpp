@@ -3,14 +3,13 @@
 // owned objects at +0x58 (game_s2/UnkOwnedList.h) destroyed, then the base destructor fn_71011acd74;
 // fn_71009f8c70 also frees the object. Names and layouts are placeholders.
 #include "game/CCharClassComponent.h"
+#include "game/CCharClassShotComponent.h"
 #include "game/UnkComponent.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
 
 // Signature as src/game/CCharClassCollisionComponent/CCharClassCollisionComponent.cpp declares it.
 struct UnkIdObject;
-
-extern void* g_unk_7101a8ab40[];
 
 struct UnkCShotComponent_b52 : UnkBaseComponent {
     u8 pad_0x40[0x18];

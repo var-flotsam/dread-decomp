@@ -3,13 +3,12 @@
 // reference and destroys its values, then the base destructor (fn_71007d70d8). Names and layouts are placeholders.
 #include "base/UnkErasedVector.h"
 #include "base/UnkVector.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/CEmmyWakeUpComponent.h"
+#include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-extern void* g_unk_7101a72a18[];
-extern void* g_unk_7101a22d48[];
-extern void* g_unk_7101a20950[];
-extern void* g_unk_7101a20998[];
 template <u32 IdOffset>
 struct UnkActivatable_b44a2;
 void fn_71007d70d8(UnkActivatable_b44a2<0x48>* self);  // the activatable component's destructor

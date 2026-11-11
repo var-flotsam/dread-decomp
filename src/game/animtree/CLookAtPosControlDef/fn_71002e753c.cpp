@@ -5,6 +5,7 @@
 
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/animtree/CAnimatedNodeDef.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -23,7 +24,6 @@ struct UnkNode {
     UnkPair field_0x30;
 };
 
-extern void* g_unk_7101a21718[];
 extern void* g_unk_7101a21af8[];
 extern void* g_unk_7101a21fc8[];
 

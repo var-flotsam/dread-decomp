@@ -2,11 +2,10 @@
 // entry (+0x1874) in the manager g_unk_71726af0b0 for the three slots 0, 2 and 1 (fn_7100ed6af0), then
 // gives the actor (+0x18) the timeline key at +0xb0 or +0xa8 (chosen by `second`) unless it is -1
 // (fn_7100d7c828). Names and layouts are placeholders.
+#include "game/CAbilityEnergyWave.h"
 #include "game/CShotManager/CTunableShotManager.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
-
-extern void* g_unk_71726af0b0;
 
 struct UnkGun_gn {
     u8 pad_0x0[0x18];

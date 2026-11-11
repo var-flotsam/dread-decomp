@@ -228,7 +228,6 @@ struct UnkMinimapStatics {
     u8 unk_0x78[0x88];
     UnkMinimapDrawList lists[4];
 };
-extern UnkMinimapStatics g_unk_71729cdaa0 HIDDEN;
 
 struct UnkLinkedCell_e;
 void fn_7100e78180(UnkLinkedCell_e* self);

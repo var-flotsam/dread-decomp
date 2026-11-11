@@ -3,6 +3,7 @@
 // the empty string) and returns it; 0 when nothing is found.
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkTunableRegistry.h"
+#include "game/CCharClassLifeComponent.h"
 #include "types.h"
 
 using base::reflection::UnkTunableRegistry;
@@ -25,7 +26,6 @@ struct UnkGroupIds {
     UnkNamedString* group;
 };
 
-extern UnkGroupIds g_unk_717272fd38;
 void fn_710013c7e0(UnkTunableRegistry* registry, const char* group, const char* name, f32* value);
 
 f32 fn_7100408770(UnkSelf* self) {

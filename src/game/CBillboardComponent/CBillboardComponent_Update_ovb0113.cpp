@@ -7,12 +7,13 @@
 #include "base/UnkVector.h"
 #include "game/CAudioComponent.h"
 #include "game/CComponent.h"
+#include "game/CDizzeanSwarmControllerComponent.h"
+#include "game/UnkTU101.h"
 #include "game/UnkTU243.h"
 #include "game/UnkTU2560.h"
 #include "game/UnkTU272.h"
 #include "types.h"
 
-extern void* g_unk_71726da048;
 struct UnkHandleOwner_71010c4230;
 
 struct UnkBillboardData_ovb0113 {
@@ -57,7 +58,6 @@ struct UnkSoundHandle {
     UnkSoundRef* ref;
     s64 serial;
 };
-extern const UnkSoundHandle g_unk_7108b6c460;  // the empty handle
 
 struct UnkBillboardOwner_ovb0113 {
     u8 pad_0x0[0x2b8];

@@ -2,10 +2,9 @@
 // the ids at g_unk_71726e5120) while the animation (+0x220 of the owner at +0x30) plays a
 // CCharClassGobblerEyeOpenTrack (fn_7100c20848). Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CGobblerAIComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
-
-extern u64 g_unk_71726e5120[2] __attribute__((visibility("hidden")));  // the two gobbler source ids
 
 struct UnkGobblerSource_b54 {
     u8 pad_0x0[0x20];
