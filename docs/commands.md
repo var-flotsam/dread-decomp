@@ -236,6 +236,16 @@ Generate include/base/reflection/UnkClassGetters.h: one declaration per reflecte
 python tools/gen_class_getters.py [--version 2.1.0]
 ```
 
+### `tools/gen_fields.py`
+
+The reflected members of every class, as a table: data/reflection_fields.csv.
+
+```sh
+python tools/gen_fields.py [--version 2.1.0]   # write the table (--version also names type objects, from the dump)
+python tools/gen_fields.py --class CActor      # the class's layout: its members and its bases', by offset
+python tools/gen_fields.py --member vBones     # every class with a member of that name
+```
+
 ## Matching
 
 ### `tools/trymatch.py`

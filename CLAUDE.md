@@ -75,7 +75,7 @@ files over 1 MB, `.nso/.nro/.nca/.nsp/.xci/.nsz/.xcz/.keys/.elf`, and anything u
 | `tools/` | yes | Python tooling; `tools/ghidra/` holds headless Ghidra scripts; `tools/hooks/` holds git hooks |
 | `src/`, `include/` | yes | reconstructed C++17 game code; shared declarations and layouts live in `include/` (one per symbol) |
 | `lib/` | yes | vendored upstream Lua 5.1.4 (`lib/lua`), dlmalloc 2.8.4, one libc++ sort; submodules `lib/nnsdk`, `lib/musl` (headers only) |
-| `data/` | yes | metadata only: `hashes.json`, `functions/main_XX.csv`, `reflection_types.csv`, `tu_map.csv`, `library_symbols.csv`, `toolchains.json`, `sources.json`; never code bytes |
+| `data/` | yes | metadata only: `hashes.json`, `functions/main_XX.csv`, `reflection_types.csv`, `reflection_fields.csv`, `tu_map.csv`, `data_map.csv`, `library_symbols.csv`, `toolchains.json`, `sources.json`; never code bytes |
 | `docs/` | yes | `HANDOFF.md` (state), `PORT_PLAN.md`, `reference.md` (stable facts), `commands.md` (generated), `JOURNAL.md` (history), `recon.md`, `compiler.md`, `maintaining.md`, `references.md` |
 | `port/` | yes | PC port layer (Route B): CMake project (`dread_game`, `dread_libs`, `dread_runtime`, `dread`, `sweep`, `link_report`), the port's own `nn::` runtime under `runtime/`, `sample_duplicates.txt`; `port/README.md` has the layout, the sweep and the link |
 
@@ -96,6 +96,8 @@ python tools/trymatch.py --version <ver> <file.cpp> -v # build and diff one sour
 python tools/hubs.py --version <ver> --boot | --ready --boot | --callers <fn>   # what to match next
 python tools/gen_lift.py --version <ver> --best ADDR,...   # closest lifted draft -> build/lift_best/ (hand-matching start)
 python tools/tu_map.py --function <addr|name>          # the unit a function belongs to, and its file name
+python tools/data_map.py --address <addr>              # the unit a global belongs to
+python tools/gen_fields.py --class <Class>             # a reflected class's members by offset, bases included
 python tools/decl_check.py --base origin/main          # one declaration per shared symbol (CI)
 python tools/fakematch.py --base origin/main [--list]  # fake-match forms a branch adds; review before a PR
 python -m unittest discover -s tools/tests -t .       # tool tests, no game data (CI)
