@@ -42,8 +42,8 @@ struct UnkActorBlock {
 extern const u64 g_unk_71726db100[] __attribute__((visibility("hidden")));
 extern const u64 g_unk_71726db108[] __attribute__((visibility("hidden")));
 void fn_71004e8ea0(void* state, char* data);
-void fn_7100149930(UnkRenderPool* pool, void* a, UnkSceneObject** out, base::global::CStrId* name);
-void fn_71001be020(UnkSceneObjectSub* target, const u64* key);
+void* fn_7100149930(UnkRenderPool* pool, void* a, UnkSceneObject** out, base::global::CStrId* name);
+void* fn_71001be020(UnkSceneObjectSub* target, const u64* key);
 
 __attribute__((always_inline)) static inline void CreateEffect(UnkSceneObject*& slot, const u64* key) {
     UnkRenderManager* manager = g_unk_7101d47300;

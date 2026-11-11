@@ -6,7 +6,7 @@
 #include "types.h"
 
 struct UnkBehaviorNode_A2_b69;
-void fn_7100394b30(UnkBehaviorNode_A2_b69* node, f32 value, s32 state);
+s32 fn_7100394b30(UnkBehaviorNode_A2_b69* node, f32 value, s32 state);
 
 struct UnkPendingEntry_A2_b69 {
     void* vtable;

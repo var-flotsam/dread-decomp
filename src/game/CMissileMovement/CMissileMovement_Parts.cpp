@@ -35,7 +35,7 @@ struct UnkPart;
 UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 bool fn_710114e668(UnkWorld* world, u8 id);
 void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
-void fn_7100146c50(UnkMissilePart* part, u32 a, void* data, u32 b);
+bool fn_7100146c50(UnkMissilePart* part, u32 a, void* data, u32 b);
 
 void fn_7100abaee8(UnkMissileMovement* self) {
     bool active = (self->field_0x3fc & 0x8000400) != 0;

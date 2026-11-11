@@ -38,7 +38,7 @@ struct UnkStringEqualsCondition_A2_b72 {
     CStrId field_0x68;
 };
 
-void fn_7100395044(UnkStringEqualsCondition_A2_b72* self, CStrId* id, UnkInlineString_A2_b72* out);
+bool fn_7100395044(UnkStringEqualsCondition_A2_b72* self, CStrId* id, UnkInlineString_A2_b72* out);
 
 bool fn_71003a3c88(UnkStringEqualsCondition_A2_b72* self) {
     if (self->field_0x68.data == &g_unk_7101d47108->empty)

@@ -14,7 +14,7 @@ UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32*
 
 struct UnkDoorLock;
 UnkDoorLock* fn_71002af860(UnkWeakTarget* entity);
-void fn_71008d586c(UnkDoorLock* door, bool locked, u32 mode, CStrId* name);
+bool fn_71008d586c(UnkDoorLock* door, bool locked, u32 mode, CStrId* name);
 
 struct UnkSetDoorLockedEvent {
     u8 unk_0x0[0x10];

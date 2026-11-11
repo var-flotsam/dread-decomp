@@ -37,7 +37,7 @@ struct UnkWaitAction_b0105 {
 };
 
 struct UnkSelf;
-void fn_7100394e2c(UnkSelf* self, void* key, f32* value);
+bool fn_7100394e2c(UnkSelf* self, void* key, f32* value);
 
 template <class T>
 static inline bool IsSet(T* data) {

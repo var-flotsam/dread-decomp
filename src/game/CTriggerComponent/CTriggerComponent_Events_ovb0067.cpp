@@ -88,7 +88,7 @@ struct UnkTriggerComponent_ovb0067 {
 };
 
 bool fn_7100dfbe3c(UnkGameManager*);
-void fn_7100dfaf88(UnkGameManager* self, void* name, const CRntString& tag, bool flag);
+bool fn_7100dfaf88(UnkGameManager* self, void* name, const CRntString& tag, bool flag);
 
 // The text of a string id, counting the use.
 static inline __attribute__((always_inline)) const CRntString* UseText(UnkTriggerName_ovb0067* const& id) {

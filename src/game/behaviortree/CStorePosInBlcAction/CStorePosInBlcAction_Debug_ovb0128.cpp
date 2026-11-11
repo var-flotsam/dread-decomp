@@ -18,7 +18,7 @@ CRntString fn_710007ef90(const CRntString* a, const char* b);  // concatenation
 // Signature as other files declare it (the original returns whether the value was found).
 struct UnkStringEqualsCondition_A2_b72;
 struct UnkInlineString_A2_b72;
-void fn_7100395044(UnkStringEqualsCondition_A2_b72* self, CStrId* id, UnkInlineString_A2_b72* out);
+bool fn_7100395044(UnkStringEqualsCondition_A2_b72* self, CStrId* id, UnkInlineString_A2_b72* out);
 
 struct UnkBlcName_ovb0128 {
     u8 pad_0x0[0x10];

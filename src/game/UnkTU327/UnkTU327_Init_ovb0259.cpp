@@ -20,7 +20,7 @@ void LinkMultiWaitHolder(MultiWaitType* multiWait, MultiWaitHolderType* holder);
 }  // namespace os
 }  // namespace nn
 
-void fn_7100066744(void* thread, const char* name, void (*entry)(void*), u32 a, u32 b, void* arg);
+bool fn_7100066744(void* thread, const char* name, void (*entry)(void*), u32 a, u32 b, void* arg);
 
 struct UnkMovieWorker_b50;
 void fn_7100222ab4(UnkMovieWorker_b50* thread);

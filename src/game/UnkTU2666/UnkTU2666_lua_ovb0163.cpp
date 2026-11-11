@@ -787,7 +787,7 @@ bool fn_7101096d68(s32 first, s32 second) {
 }
 
 extern UnkRegistry_0x70* g_unk_7101d4b5a0;
-void fn_71000878f0(UnkRegistry_0x70* self, const UnkStrPair_0x10* path, u32 flags, void* out);
+bool fn_71000878f0(UnkRegistry_0x70* self, const UnkStrPair_0x10* path, u32 flags, void* out);
 void fn_7100df9728(UnkGameManager* self);
 void fn_7100133020();
 

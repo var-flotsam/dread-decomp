@@ -73,8 +73,8 @@ struct UnkZiplineLink_b49;
 struct UnkZiplineLinkTarget_b49;
 struct UnkDoorLock;
 UnkDoorLock* fn_71002af860(UnkWeakTarget*);
-void fn_71008d564c(UnkDoorLock* door, u32 value, const CStrId* id);
-void fn_71008d586c(UnkDoorLock*, bool, u32, CStrId*);
+bool fn_71008d564c(UnkDoorLock* door, u32 value, const CStrId* id);
+bool fn_71008d586c(UnkDoorLock*, bool, u32, CStrId*);
 
 struct UnkBossDoorLink_ovb0102 {
     u8 pad_0x0[0x40];
@@ -395,7 +395,7 @@ struct UnkModeFlags {
 extern UnkModeFlags* g_unk_71726bc570;
 
 bool fn_7100dfbe3c(UnkGameManager*);
-void fn_7100dfaf88(UnkGameManager* self, void* name, const CRntString& tag, bool flag);
+bool fn_7100dfaf88(UnkGameManager* self, void* name, const CRntString& tag, bool flag);
 void fn_710007f564(void*, const char*);
 
 // The pooled data behind an id as its text accessor sees it: the text at +0x10 and a count of the

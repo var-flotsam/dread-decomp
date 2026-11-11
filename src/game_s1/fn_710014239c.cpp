@@ -37,7 +37,7 @@ struct UnkKeyOwner {
     base::UnkVector<u64> moved;  // +0x88
 };
 
-void fn_7100142504(UnkKeySet* set, const u64* key);  // erases the key
+void* fn_7100142504(UnkKeySet* set, const u64* key);  // erases the key
 
 bool fn_710014239c(UnkKeyOwner* self, u64 key) {
     if (self->set.buckets.size == 0)

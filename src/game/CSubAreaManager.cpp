@@ -373,7 +373,7 @@ inline UnkGameManagerIdTable& GameManagerIdTable() {
 
 // The camera holder fn_7100defcec gives and its current camera controller (game/UnkCameraCtrl.h).
 void fn_7100723120(void* holder);
-bool fn_71010e4168(void* holder, const CStrId* id, bool flag);
+void fn_71010e4168(void* holder, const CStrId* id, bool flag);
 bool fn_7100023d00(const UnkCameraCtrl* object, const base::reflection::CClass* cls);
 
 struct UnkPlayerSub {
@@ -397,8 +397,8 @@ struct UnkScenario {
 
 // Helpers that take an empty value first (their callers leave x0 as it is).
 struct UnkSubAreaTag : UnkLeftoverReg {};
-void* fn_7100eea4c8(UnkSubAreaTag, UnkSubArea* area, bool a, bool b, UnkMask mask);
-void* fn_7100eea618(UnkSubAreaTag, UnkSubArea* area, bool flag);
+void fn_7100eea4c8(UnkSubAreaTag, UnkSubArea* area, bool a, bool b, UnkMask mask);
+void fn_7100eea618(UnkSubAreaTag, UnkSubArea* area, bool flag);
 
 void fn_7100eead58(CSubAreaManager* self, const CStrId& prev_a, const CStrId& prev_b, const CStrId& cur_a,
                    const CStrId& cur_b);
@@ -524,8 +524,8 @@ extern void* g_unk_7101d47330;
 #include "game/UnkSubAreaGuiCache.h"
 extern UnkSubAreaGuiCache* g_unk_71727254f8;
 void fn_710119a110(void* root, const UnkPathIdMember* id);
-void fn_710119e684(UnkSubAreaGuiCache* self, const base::UnkStrIdMember* id, bool flag);
-void fn_710119d9b8(UnkSubAreaGuiCache* self, const base::UnkStrIdMember* id, bool flag);
+bool fn_710119e684(UnkSubAreaGuiCache* self, const base::UnkStrIdMember* id, bool flag);
+bool fn_710119d9b8(UnkSubAreaGuiCache* self, const base::UnkStrIdMember* id, bool flag);
 void fn_710119d910(UnkSubAreaGuiCache* self);
 void fn_7100de6ee8(UnkGameManager* self);
 void fn_71011aa820(UnkModelManager* self);
@@ -877,7 +877,7 @@ void fn_7100ee2ebc(CSubAreaManager* self, const char* path) {
 
 // A list of file-path ids (base/UnkResPathVec.h), assigned by fn_71000d0958.
 #include "base/UnkResPathVec.h"
-void fn_71000d0958(UnkResPathVec* self, const UnkResPathVec* other);
+void* fn_71000d0958(UnkResPathVec* self, const UnkResPathVec* other);
 
 // The file-path ids of a sub-area's resources (or of the same list in another object).
 void fn_7100ee7e74(void* source, UnkResPathVec* out);

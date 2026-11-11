@@ -348,7 +348,7 @@ static_assert(sizeof(UnkInlineString_b0235) == 0x148, "UnkInlineString_b0235 lay
 
 UnkDirIter_b0235 fn_7100fc7b3c(UnkSaveCommand_b0235* command);
 bool fn_7100fc7c5c(UnkDirIter_b0235* it);
-void fn_7100fc7b78(UnkDirIter_b0235* it);
+bool fn_7100fc7b78(UnkDirIter_b0235* it);
 UnkInlineString_b0235 fn_7100fc7c7c(UnkDirIter_b0235* it);
 void fn_7100fc7d88(UnkDirIter_b0235* it, base::global::CRntFile* file);
 void fn_710007c080(base::global::CRntFile* file, void* data, u32 flags, u64 size);

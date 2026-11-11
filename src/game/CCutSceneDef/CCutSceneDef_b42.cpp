@@ -23,8 +23,8 @@ struct UnkElem40Array_b42a3 {
 
 void fn_7100c8b894(UnkElem40Array_b42a3* self, const UnkElem40_b42a3* value);
 void fn_7100c9115c(UnkElem40_b42a3* self);  // the element's constructor, after it is cleared
-void fn_7100c91450(void*, const void*);  // the element's copy assignment, as src/clones/clones_04.cpp declares it
-void fn_7100c9165c(void*, const void*);  // the element's move assignment, as src/clones/clones_04.cpp declares it
+void* fn_7100c91450(void*, const void*);  // the element's copy assignment, as src/clones/clones_04.cpp declares it
+void* fn_7100c9165c(void*, const void*);  // the element's move assignment, as src/clones/clones_04.cpp declares it
 
 static inline void AppendAll_b42a3(UnkElem40Array_b42a3* self, const UnkElem40Array_b42a3& other) {
     fn_7100c8b758(self, other.capacity);

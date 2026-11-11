@@ -616,7 +616,7 @@ bool fn_7100234320(void* self, UnkBlock_7100234320* dst) {
 
 
 struct lua_State;
-void fn_7100fbc4e0(lua_State* L, void* arg);
+int fn_7100fbc4e0(lua_State* L, void* arg);
 
 using base::reflection::CType;
 using base::reflection::UnkReflObject;

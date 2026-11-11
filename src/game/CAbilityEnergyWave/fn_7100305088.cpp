@@ -32,7 +32,7 @@ struct lua_State;
 extern lua_State* g_unk_7172a01d18;
 
 s32 fn_71010c0bb0(lua_State* L, const char* name);
-void fn_7100fbc4e0(lua_State* L, void* arg);
+int fn_7100fbc4e0(lua_State* L, void* arg);
 s32 fn_71010bf400(lua_State* L, const char* fmt, va_list args);
 
 bool fn_7100305088(UnkScriptCaller* self, const char* name, const char* fmt, ...) {

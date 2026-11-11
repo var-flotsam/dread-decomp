@@ -14,7 +14,7 @@ using base::reflection::UnkReflValue;
 
 struct UnkDoorLife_b44a2;
 struct UnkDoorLock;
-void fn_71008d586c(UnkDoorLock* door, bool locked, u32 mode, CStrId* name);
+bool fn_71008d586c(UnkDoorLock* door, bool locked, u32 mode, CStrId* name);
 
 static inline __attribute__((always_inline)) void* ArgPtr_A5_b67(UnkReflValue* arg) {
     if (arg->field_0x14 == 1 || *reinterpret_cast<const u64*>(arg->type + 0x18) > 8)

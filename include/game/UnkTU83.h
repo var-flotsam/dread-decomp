@@ -12,7 +12,7 @@ struct UnkVec3_cs;
 struct UnkVersionEntry;
 struct UnkVersionRegistry;
 UnkVersionEntry* fn_71000a5118(UnkVersionRegistry* self, const u64* id);
-void fn_71000ce19c(UnkStruct_0x28* self, const UnkStruct_0x28* other);
+void* fn_71000ce19c(UnkStruct_0x28* self, const UnkStruct_0x28* other);
 void fn_71000cbae4(UnkPart48* self_, const UnkPart48* other_);
 UnkVec3_cs* fn_71000cc374(void* array, u32 index);
 void fn_71000e0524(UnkStrVector* self, UnkStrVector* other);

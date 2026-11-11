@@ -9,7 +9,7 @@ struct UnkStruct_0x128;
 void fn_7100ef3494(UnkStruct_0x128* self);
 void fn_7100f01838(UnkStruct_0x128* self, u32 channel);
 void fn_7100f00714(UnkStruct_0x128* self);
-void fn_7100f00f4c(UnkStruct_0x128*, u32, bool);
+bool fn_7100f00f4c(UnkStruct_0x128*, u32, bool);
 void fn_7100f003e8(UnkStruct_0x128* self, s32 value);
 bool fn_7100f00a24(UnkStruct_0x128* self, u32 mode);
 extern void* g_unk_7101caa208[];

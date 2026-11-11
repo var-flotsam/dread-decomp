@@ -13,7 +13,7 @@ using base::color::CColor4F;
 using base::math::CVector4D;
 
 struct UnkDoorLifeA5_b61;
-void fn_71001c287c(void* target, u32 a, u32 b, CVector4D* colour, u32 c);
+bool fn_71001c287c(void* target, u32 a, u32 b, CVector4D* colour, u32 c);
 void* fn_71008d89b0(void* owner);
 
 struct UnkGameManagerIdKey_b0251 {

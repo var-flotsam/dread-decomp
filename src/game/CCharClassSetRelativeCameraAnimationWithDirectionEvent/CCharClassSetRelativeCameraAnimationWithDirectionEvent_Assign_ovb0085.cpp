@@ -58,7 +58,7 @@ void fn_7100bddff8(UnkSetRelativeCameraAnimationWithDirectionEvent_ovb0085* self
     fn_710001a270(&self->path_0x88, refl_GlobalRntString(), true);
 }
 
-void fn_7100bdb724(UnkSetRelativeCameraAnimationWithDirectionEvent_ovb0085* self,
+void* fn_7100bdb724(UnkSetRelativeCameraAnimationWithDirectionEvent_ovb0085* self,
                    const UnkSetRelativeCameraAnimationWithDirectionEvent_ovb0085* other);
 
 UnkSetRelativeCameraAnimationWithDirectionEvent_ovb0085* fn_7100bde2c4(

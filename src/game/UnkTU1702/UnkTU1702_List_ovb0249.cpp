@@ -87,7 +87,7 @@ struct UnkProfileSaveArg {
     void* field_0x0;
     void* field_0x8;
 };
-void fn_7100df99f8(UnkGameManager* self, u32 a, const UnkProfileSaveArg* arg, u32 b);
+s32 fn_7100df99f8(UnkGameManager* self, u32 a, const UnkProfileSaveArg* arg, u32 b);
 void fn_7100b5fd6c(void* object, base::global::UnkStringData** name, void* block, bool a, bool b);
 
 extern UnkPropertyEx<> g_unk_717275ad68;  // "ShowNewItemPopUp"

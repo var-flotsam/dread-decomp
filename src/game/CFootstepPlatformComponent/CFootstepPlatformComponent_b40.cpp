@@ -10,7 +10,7 @@
 struct lua_State;
 extern lua_State* g_unk_7172a01d18;
 s32 fn_71010c0bb0(lua_State* L, const char* name);
-void fn_7100fbc4e0(lua_State* L, void* arg);
+int fn_7100fbc4e0(lua_State* L, void* arg);
 struct UnkHandleOwner_71010c4230;
 
 // A string entry of the pool: the text at +0x10, a use count at +0x44.

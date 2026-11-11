@@ -1197,7 +1197,7 @@ static inline void DestroyMap(UnkNavLoadMap<V>* map, Clear clear) {
 }
 
 struct UnkNavMeshTree;  // the bounding-box tree at +0x400
-void fn_710010ddc4(UnkNavMeshTree* self, base::global::CRntFile* file);
+bool fn_710010ddc4(UnkNavMeshTree* self, base::global::CRntFile* file);
 // The walk round a corner of a cell from one of its sides (forwards or backwards): the cell and
 // side it ends on, or 0xffff and 0xff.
 void fn_7100279fac(UnkNavMesh* self, const u16* cell, const u8* side, bool forward, bool flag, u16* out_cell,

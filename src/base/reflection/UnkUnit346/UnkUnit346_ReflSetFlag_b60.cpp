@@ -52,7 +52,7 @@ struct UnkKeyedRecords_b60 {
     }
 };
 
-void fn_71002613ac(UnkKeyedRecords_b60* records, UnkRecord60_b60* record);
+void* fn_71002613ac(UnkKeyedRecords_b60* records, UnkRecord60_b60* record);
 
 static inline __attribute__((always_inline)) void* ArgPtr_b60(UnkReflValue* arg) {
     if (!arg->type)

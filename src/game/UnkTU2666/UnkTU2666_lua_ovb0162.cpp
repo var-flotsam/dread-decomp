@@ -698,7 +698,7 @@ s32 fn_7101077930(lua_State* L) {
 
 // ---- save game ----
 bool fn_7100dfbe3c(UnkGameManager*);
-void fn_7100dfaf88(UnkGameManager* self, void* name, const CRntString& tag, bool flag);
+bool fn_7100dfaf88(UnkGameManager* self, void* name, const CRntString& tag, bool flag);
 struct UnkSaveGamePair_b54;
 void fn_7100dfd174(UnkGameManager* self, CRntString* name, CRntString* tag, bool flag, u32 kind,
                    const UnkSaveGamePair_b54& extra);

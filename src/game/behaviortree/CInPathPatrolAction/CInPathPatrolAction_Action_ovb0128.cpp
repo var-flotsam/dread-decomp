@@ -37,7 +37,7 @@ __attribute__((flatten)) void fn_710038d180(char* self) {
 
 
 struct UnkSelf;
-void fn_7100394e2c(UnkSelf* self, void* record, f32* out);
+bool fn_7100394e2c(UnkSelf* self, void* record, f32* out);
 
 struct UnkInPathPatrol_ovb0128 {
     u8 pad_0x0[0x78];

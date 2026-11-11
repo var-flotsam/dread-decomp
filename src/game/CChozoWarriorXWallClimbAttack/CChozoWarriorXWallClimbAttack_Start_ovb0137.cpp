@@ -16,7 +16,7 @@ struct UnkAttackBase;
 struct UnkEffectSink;
 void fn_71003608ac(UnkAttackBase* self);
 base::global::CStrId fn_710049c2f4(UnkReflObject* ai, f32 facing);
-void fn_7100149930(UnkRenderPool*, void*, UnkSceneObject**, base::global::CStrId*);
+void* fn_7100149930(UnkRenderPool*, void*, UnkSceneObject**, base::global::CStrId*);
 void fn_71001beee4(UnkSceneObjectSub* target, u32 mode);
 
 // A colour (its copy constructor makes it passed through memory).

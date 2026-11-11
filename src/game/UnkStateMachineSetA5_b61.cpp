@@ -373,7 +373,7 @@ struct UnkLinkList;
 void fn_71002aeb9c(UnkLinkList*, UnkLinkList**);
 void fn_71007738c8();
 struct UnkCentralUnitA5_b61;
-void fn_7100773b74(UnkCentralUnitA5_b61* self, void* object);
+u32 fn_7100773b74(UnkCentralUnitA5_b61* self, void* object);
 
 struct UnkCentralUnitTarget_b61 {
     u8 pad_0x0[0x10];

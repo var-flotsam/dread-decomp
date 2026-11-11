@@ -145,7 +145,7 @@ struct UnkProfileSaveArg {
     void* field_0x0;
     void* field_0x8;
 };
-void fn_7100df99f8(UnkGameManager* self, u32 a, const UnkProfileSaveArg* arg, u32 b);
+s32 fn_7100df99f8(UnkGameManager* self, u32 a, const UnkProfileSaveArg* arg, u32 b);
 
 static inline void FormatUuid(char* buffer, const nn::util::Uuid& u) {
     nn::util::TSNPrintf(buffer, 0x40, "%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x%02x",

@@ -58,8 +58,8 @@ using base::reflection::CType;
 extern CType g_unk_7172754a80 __attribute__((visibility("hidden")));  // the class's type
 extern const u64 g_unk_7172754a68[] __attribute__((visibility("hidden")));
 
-void fn_7100149930(UnkRenderPool* pool, void* a, UnkSceneObject** out, base::global::CStrId* name);
-void fn_71001be020(UnkSceneObjectSub* target, const u64* key);
+void* fn_7100149930(UnkRenderPool* pool, void* a, UnkSceneObject** out, base::global::CStrId* name);
+void* fn_71001be020(UnkSceneObjectSub* target, const u64* key);
 
 struct UnkLockOnCharClass_ovb0121 {
     u8 pad_0x0[0xd4];

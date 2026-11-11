@@ -197,7 +197,7 @@ done:
 struct UnkSmartObjectUserA;
 struct UnkSmartObjectActor;
 void fn_7100861fc8(void* part, bool flag);
-void fn_71001c287c(void*, u32, u32, CVector4D*, u32);
+bool fn_71001c287c(void*, u32, u32, CVector4D*, u32);
 struct UnkRinkaControl_ruc;
 extern const u64 g_unk_710164b4c0;
 extern const u64 g_unk_710164b4c8;

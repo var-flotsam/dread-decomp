@@ -35,7 +35,7 @@ struct UnkSubAreaEntityList {
 };
 
 extern UnkSubAreaGuiCache* g_unk_71727254f8;
-void fn_710119e4ec(UnkSubAreaGuiCache* self, const CStrId* id, bool flag);
+bool fn_710119e4ec(UnkSubAreaGuiCache* self, const CStrId* id, bool flag);
 void fn_710111b040(base::reflection::UnkReflObject* component, const CStrId* id);
 
 void fn_7100ee96f0(UnkSubAreaMgr_b190* self, UnkIdSource_b190* source) {

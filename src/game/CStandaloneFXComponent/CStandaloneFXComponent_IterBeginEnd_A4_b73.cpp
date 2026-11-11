@@ -9,7 +9,7 @@
 #include "game/UnkModelManager.h"
 #include "types.h"
 
-void fn_71011a91c4(UnkModelManager* self, void* handle, u32 id);
+bool fn_71011a91c4(UnkModelManager* self, void* handle, u32 id);
 struct UnkStruct_710081348c;
 
 struct UnkFxRecordDesc_A4_b73 {

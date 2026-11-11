@@ -183,7 +183,7 @@ UnkReflValue fn_71009c2b04(void*, char* obj, UnkReflValue* const* values) {
 struct UnkZiplineLinkTarget_b49;
 struct UnkZiplineLink_b49;
 
-void fn_7100ec1278(UnkNavMeshManager* self, const base::global::CStrId* name);
+void* fn_7100ec1278(UnkNavMeshManager* self, const base::global::CStrId* name);
 void fn_71009c4aa0(UnkDeferredSet<UnkDeferredCallback<u64>>* s, const u64* arg);
 
 // The global descriptor (as src/game/CNavMeshItemComponent/CNavMeshItemComponent_b36.cpp declares it).

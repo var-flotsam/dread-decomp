@@ -421,10 +421,10 @@ s32 fn_7101088250(lua_State* L) {
     return 0;
 }
 
-void fn_7100fbc4e0(lua_State* L, void* arg);
-// fn_7100fbc4e0 hands back the number of results it pushed; its other users declare it without one.
+int fn_7100fbc4e0(lua_State* L, void* arg);
+// fn_7100fbc4e0 hands back the number of results it pushed.
 static inline s32 PushObject(lua_State* L, void* arg) {
-    return reinterpret_cast<s32 (*)(lua_State*, void*)>(fn_7100fbc4e0)(L, arg);
+    return fn_7100fbc4e0(L, arg);
 }
 void* fn_71011986a8(void* gui, const CStrId* id);
 void* fn_71011986b8(void* gui, const CStrId* id);

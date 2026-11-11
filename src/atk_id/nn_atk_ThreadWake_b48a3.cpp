@@ -5,7 +5,7 @@
 
 #include "types.h"
 
-void fn_7101238990(void* self, void* a, u32 b);
+u32 fn_7101238990(void* self, void* a, u32 b);
 
 struct UnkAtkThread_b48a3 {
     u8 pad_0x0[0x8];

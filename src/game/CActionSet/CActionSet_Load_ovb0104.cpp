@@ -157,7 +157,7 @@ struct UnkActionSet_b0104 {
     char actions[0x80];  // 0x68: a hash map
 };
 
-void fn_7100b8a428(CRntFile* file, void* out);
+u64 fn_7100b8a428(CRntFile* file, void* out);
 void fn_7100b8c2cc(char* map, u32 buckets, u32 nodes);
 void fn_7100b8c420(UnkActionSet_b0104* self, CRntFile* file);
 

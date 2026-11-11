@@ -6,5 +6,5 @@
 #include "types.h"
 
 struct UnkVec2f_A5;
-char* fn_710096b8fc(char* self);
+void fn_710096b8fc(char* self);
 UnkVec2f_A5 fn_710096ee98(void* source);

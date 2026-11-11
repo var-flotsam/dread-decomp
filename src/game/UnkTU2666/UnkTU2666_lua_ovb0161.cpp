@@ -48,7 +48,7 @@ __attribute__((always_inline)) static inline T* Singleton_b0161(T*& instance) {
 }
 
 struct UnkWeakTarget;
-void fn_7100fbc4e0(lua_State* L, void* arg);
+int fn_7100fbc4e0(lua_State* L, void* arg);
 UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 
 // ---- the stats object ----
@@ -741,7 +741,7 @@ s32 fn_710107f290(lua_State* L) {
 
 // Returns the number of values the callee left on the script stack.
 static inline s32 PushObject_b0161(lua_State* L, void* object) {
-    return reinterpret_cast<s32 (*)(lua_State*, void*)>(fn_7100fbc4e0)(L, object);
+    return fn_7100fbc4e0(L, object);
 }
 
 s32 fn_710107c990(lua_State* L) {

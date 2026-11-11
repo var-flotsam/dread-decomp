@@ -16,7 +16,7 @@ using base::global::CStrId;
 
 struct UnkStruct_0x128;
 extern UnkStruct_0x128* g_unk_7101d47320;
-void fn_7100f00af4(UnkStruct_0x128* self, u32 channel, const CFilePathStrId* path, bool flag);
+bool fn_7100f00af4(UnkStruct_0x128* self, u32 channel, const CFilePathStrId* path, bool flag);
 
 static inline UnkStruct_0x128* SceneState() {
     UnkStruct_0x128* s = g_unk_7101d47320;

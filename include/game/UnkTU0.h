@@ -8,7 +8,7 @@
 struct UnkDropTarget;
 struct UnkUserDataOwner;
 
-void fn_7100000790(const char* name, const char* fmt, ...);  // Calls a script function.
+bool fn_7100000790(const char* name, const char* fmt, ...);  // Calls a script function.
 void fn_71000003d4(void*, const char*, bool);  // The string-id constructor (base/global/CStrId.h).
 extern UnkUserDataOwner* g_unk_7101d47308;
 extern UnkDropTarget* g_unk_7101d47318;

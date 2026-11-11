@@ -357,7 +357,7 @@ struct UnkActor_710023259c;
 void fn_710023259c(UnkActor_710023259c* self);
 base::reflection::UnkReflObject* fn_710023341c(void* owner, const base::global::CStrId& name);
 void fn_710023231c(UnkActor_710023259c* self);
-void fn_7100233230(UnkActor_710023259c* self, base::reflection::UnkReflObject* component);
+bool fn_7100233230(UnkActor_710023259c* self, base::reflection::UnkReflObject* component);
 void fn_7100232320(UnkActor_710023259c* self, base::reflection::UnkReflObject* component);
 void fn_71002323e0(UnkActor_710023259c* self, bool flag);
 struct UnkStrIdArray {

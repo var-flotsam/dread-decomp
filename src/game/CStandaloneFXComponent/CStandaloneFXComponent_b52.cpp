@@ -42,7 +42,7 @@ struct UnkStandaloneFx {
     void* field_0x38;             // the effect the model manager holds for it
 };
 
-void fn_71011a91c4(UnkModelManager* manager, void* handle, u32 kind);
+bool fn_71011a91c4(UnkModelManager* manager, void* handle, u32 kind);
 
 static inline UnkModelManager* GetManager() {
     if (!g_unk_71726b0cd8) {

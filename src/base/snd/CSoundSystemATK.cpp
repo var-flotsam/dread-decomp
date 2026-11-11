@@ -848,7 +848,7 @@ void fn_71000f8b30(UnkSoundSystemATK* self);
 void fn_71000f9450(UnkSoundSystemATK* self);
 void fn_7100104600(void* self);
 void fn_71000f95b0(void* arg);
-void fn_7100066744(void* thread, const char* name, void (*entry)(void*), u32 a, u32 b, void* arg);
+bool fn_7100066744(void* thread, const char* name, void (*entry)(void*), u32 a, u32 b, void* arg);
 
 // The resource registry's entry the sound category is added with (as src/game/UnkActorDefFactory.cpp
 // lays it out: the category's record, no factory, three ids and two callbacks).

@@ -7,7 +7,7 @@
 #include "game/UnkModelManager.h"
 
 // Defined in game_hi with its own view of the manager (its container half).
-void fn_71011a91c4(UnkModelManager* self, void* handle, u32 id);
+bool fn_71011a91c4(UnkModelManager* self, void* handle, u32 id);
 
 static inline UnkModelManager* GetManager() {
     if (!g_unk_71726b0cd8) {

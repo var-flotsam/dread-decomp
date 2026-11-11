@@ -25,7 +25,7 @@ struct UnkModeFlags {
 extern UnkModeFlags* g_unk_71726bc570;
 
 bool fn_7100dfbe3c(UnkGameManager*);
-void fn_7100dfaf88(UnkGameManager* self, void* name, const CRntString& tag, bool flag);
+bool fn_7100dfaf88(UnkGameManager* self, void* name, const CRntString& tag, bool flag);
 
 struct UnkSaveGamePair_b54 {
     u64 first;

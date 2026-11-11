@@ -8,7 +8,7 @@ struct UnkStruct_0x68;
 void fn_7100394bd0(UnkStruct_0x68*);
 // Signature as src/game/behaviortree/CStopWatchAction/fn_7100392704.cpp declares it.
 struct UnkSelf;
-void fn_7100394e2c(UnkSelf* self, void* record, f32* out);
+bool fn_7100394e2c(UnkSelf* self, void* record, f32* out);
 
 struct UnkStopWatch_A2_b72 {
     u8 pad_0x0[0x30];

@@ -107,7 +107,7 @@ struct UnkFlags_b0237 {
         flags = static_cast<u16>(x | (y << 8));
     }
 };
-void fn_710015b650(UnkFlags_b0237* p);
+bool fn_710015b650(UnkFlags_b0237* p);
 
 struct UnkRenderOwner_b0237 {
     u8 pad_0x0[0x8];

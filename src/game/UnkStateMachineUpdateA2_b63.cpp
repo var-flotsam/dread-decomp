@@ -210,7 +210,7 @@ struct UnkSmAbility2_A2_b63 {
     UnkSmMachine_A2_b63 machine;
 };
 
-void fn_7100300bd0(void*, u32);
+void* fn_7100300bd0(void*, u32);
 void fn_710033bc80(UnkSmAbility2_A2_b63*, f32);
 void fn_710033bf64(UnkSmAbility2_A2_b63*, f32);
 

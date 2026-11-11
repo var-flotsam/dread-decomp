@@ -12,7 +12,7 @@
 using base::math::CVector4D;
 using base::reflection::UnkReflObject;
 
-void fn_71001c287c(void* target, u32 a, u32 b, CVector4D* colour, u32 c);
+bool fn_71001c287c(void* target, u32 a, u32 b, CVector4D* colour, u32 c);
 
 
 struct UnkSlotOwner_b0231 {

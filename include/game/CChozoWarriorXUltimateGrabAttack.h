@@ -9,4 +9,4 @@ struct UnkEffect;
 struct UnkSelf;
 void fn_7100488990(UnkEffect* self, u32 id, f32 time);
 void fn_7100489f3c(UnkSelf* self);
-void fn_710048a070(UnkSelf* self);
+bool fn_710048a070(UnkSelf* self);

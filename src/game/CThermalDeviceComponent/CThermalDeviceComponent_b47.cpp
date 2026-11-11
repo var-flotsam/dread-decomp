@@ -8,7 +8,7 @@
 typedef u32 __attribute__((may_alias)) a_u32;
 
 bool fn_7100dfbe3c(UnkGameManager* manager);
-void fn_7100dfbe78(UnkGameManager* manager, void* record);
+bool fn_7100dfbe78(UnkGameManager* manager, void* record);
 
 struct UnkThermalRecord {
     u8 pad_0x0[0x10];

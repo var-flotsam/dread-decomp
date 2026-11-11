@@ -8,7 +8,7 @@
 #include "types.h"
 
 struct UnkCaptionId;
-void fn_7101192838(void* player, UnkCaptionId* caption, bool a, bool b, bool c, f32 value);
+bool fn_7101192838(void* player, UnkCaptionId* caption, bool a, bool b, bool c, f32 value);
 
 struct UnkCaptionVoiceEvent {
     u8 unk_0x0[0x10];

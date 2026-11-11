@@ -48,7 +48,7 @@ struct UnkUsableName_b48 {
     };
 };
 const base::global::CStrId* fn_7100de9bf8(UnkGameManager* self);
-void fn_7100dfaf88(UnkGameManager* self, void* name, const CRntString& tag, bool flag);
+bool fn_7100dfaf88(UnkGameManager* self, void* name, const CRntString& tag, bool flag);
 
 struct UnkUsableValue_b48 {
     UnkPropertyName name;

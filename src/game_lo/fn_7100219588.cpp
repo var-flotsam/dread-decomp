@@ -21,7 +21,7 @@ struct UnkStruct_7100219588_View {
     void* field_0x108;
 };
 
-void fn_71001fd7b4(void* views, UnkStruct_7100219588_Xform* xform, u32 a, u32 b);
+bool fn_71001fd7b4(void* views, UnkStruct_7100219588_Xform* xform, u32 a, u32 b);
 void fn_7100150d30(void* camera, UnkStruct_7100219588_Xform* xform, const void* pos, s32* x, s32* y, bool flag);
 u32 fn_7100132f80();
 u32 fn_7100132f90();

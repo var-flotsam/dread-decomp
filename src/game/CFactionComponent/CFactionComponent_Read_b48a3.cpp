@@ -13,7 +13,7 @@ struct UnkFactionKey_b48a3 {
 };
 
 struct UnkFactionComponent_b48a3;
-void fn_710113906c(UnkFactionComponent_b48a3* self, UnkFactionKey_b48a3* key);
+bool fn_710113906c(UnkFactionComponent_b48a3* self, UnkFactionKey_b48a3* key);
 
 void fn_7101139014(UnkFactionComponent_b48a3* self, void* stream) {
     fn_710024fc08();

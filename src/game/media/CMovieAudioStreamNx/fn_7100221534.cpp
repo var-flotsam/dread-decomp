@@ -128,7 +128,7 @@ u64 fn_7100221938(UnkPlayer_7100221938* self) {
 }
 
 void fn_7100225b84(UnkPlayer_7100221938* self);
-void fn_7100066744(void* thread, const char* name, void (*entry)(void*), u32 a, u32 b, void* arg);
+bool fn_7100066744(void* thread, const char* name, void (*entry)(void*), u32 a, u32 b, void* arg);
 void fn_710022162c(void* arg);
 u64 fn_7100221698(UnkPlayer_7100221938* self, u32 a, u32 b, bool c);
 

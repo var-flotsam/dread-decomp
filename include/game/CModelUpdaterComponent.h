@@ -11,6 +11,6 @@ struct UnkGrappleAnswer_b50;
 void fn_7101172764(UnkFlagTarget* target, const char* name);
 void fn_7101172780(UnkFlagTarget* target, const char* name);
 void fn_71011738f8(UnkEnergyWaveFxComp_b49* comp, void* id, u32 flags);
-void fn_710117364c(void* target, const u64* id, UnkGrappleAnswer_b50* out);
+bool fn_710117364c(void* target, const u64* id, UnkGrappleAnswer_b50* out);
 bool fn_7101173964(void* self);
 extern void* g_unk_7101cb46a0[];

@@ -41,7 +41,7 @@ struct UnkNailongMsg_b46a2 {
     bool flag;
 };
 
-void fn_71001c287c(void* target, u32 a, u32 b, CVector4D* colour, u32 c);
+bool fn_71001c287c(void* target, u32 a, u32 b, CVector4D* colour, u32 c);
 
 u32 fn_71006220bc(UnkNailongAI_b46a2* self, UnkNailongMsg_b46a2* msg) {
     u32 r = fn_7101111dc8(self, msg);
