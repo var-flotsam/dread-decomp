@@ -14,7 +14,7 @@ using base::math::CVector3D;
 
 struct UnkSelf;
 void fn_7100ac3880(UnkSelf*);
-void fn_7100149930(UnkRenderPool*, void*, UnkSceneObject**, base::global::CStrId*);
+void* fn_7100149930(UnkRenderPool*, void*, UnkSceneObject**, base::global::CStrId*);
 void fn_71001beee4(UnkSceneObjectSub* target, u32 mode);
 
 struct UnkRGB_710050f26c {

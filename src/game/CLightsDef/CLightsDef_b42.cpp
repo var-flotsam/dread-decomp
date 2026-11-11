@@ -24,7 +24,7 @@ struct UnkLightsArray_b42a3 {
 };
 
 void fn_7100d9b128(UnkLightsElem_b42a3* self);
-void fn_7100d9b27c(UnkLightsElem_b42a3* self, UnkLightsElem_b42a3* other);
+void* fn_7100d9b27c(UnkLightsElem_b42a3* self, UnkLightsElem_b42a3* other);
 
 static inline void Grow_b42a3(UnkLightsArray_b42a3* self, u32 index) {
     u32 capacity = self->capacity;

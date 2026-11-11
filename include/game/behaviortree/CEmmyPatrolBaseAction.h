@@ -6,4 +6,4 @@
 #include "types.h"
 
 struct UnkPatrolBase_b55;
-void fn_710051564c(UnkPatrolBase_b55* self, bool flag);
+bool fn_710051564c(UnkPatrolBase_b55* self, bool flag);

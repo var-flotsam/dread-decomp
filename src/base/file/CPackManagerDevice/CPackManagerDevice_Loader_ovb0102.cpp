@@ -84,7 +84,7 @@ struct UnkPackManagerView;
 struct UnkPackPathKey;
 // The pack manager's mount and unmount (src/base/file/CPackManagerDevice_3.cpp, where the mount
 // returns whether a pack is mounted; src/engine/UnkEngineStart.cpp declares it without the result).
-void fn_710008aa90(UnkDevice* packs, const CFilePathStrId& path);
+bool fn_710008aa90(UnkDevice* packs, const CFilePathStrId& path);
 using UnkPackMountFn = bool (*)(UnkDevice* packs, const CFilePathStrId& path);
 bool fn_710008ad4c(UnkPackManagerView* self, const UnkPackPathKey& path, bool force);
 

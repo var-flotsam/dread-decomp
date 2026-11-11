@@ -16,7 +16,7 @@ struct UnkPlayReportRecord_b49 {
 };
 
 // Assigns another record array (out of line).
-void fn_7100ec55ac(base::UnkVector<UnkPlayReportRecord_b49>* self, const base::UnkVector<UnkPlayReportRecord_b49>* other);
+void* fn_7100ec55ac(base::UnkVector<UnkPlayReportRecord_b49>* self, const base::UnkVector<UnkPlayReportRecord_b49>* other);
 
 // An empty id: the string id constructor for "" (the length folded) inlined.
 __attribute__((always_inline)) static inline void InitEmptyId(CStrId* id) {

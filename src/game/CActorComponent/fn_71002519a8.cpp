@@ -21,8 +21,8 @@ u64* fn_71000d92a8(UnkValuesByKey* a, const u64* key) { return FindValue(a, key)
 
 // Removal of the value stored for a key, when present (the removal itself is a separate function per type):
 // fn_71000d9234, fn_71000dac68.
-void fn_71000d9de8(UnkValuesByKey* a, u64* value);
-void fn_71000db82c(UnkValuesByKey* a, u64* value);
+void* fn_71000d9de8(UnkValuesByKey* a, u64* value);
+void* fn_71000db82c(UnkValuesByKey* a, u64* value);
 
 void fn_71000d9234(UnkValuesByKey* a, const u64* key) {
     u64* p = a->Find(*key);
@@ -51,7 +51,7 @@ u32* fn_710079c41c(UnkWordsByKey* a, const u64* key) {
     return p == a->End() ? nullptr : p;
 }
 
-void fn_71000df750(UnkWordsByKey* a, u32* value);
+u32* fn_71000df750(UnkWordsByKey* a, u32* value);
 
 // Removal over 4-byte values (fn_71000ded44).
 void fn_71000ded44(UnkWordsByKey* a, const u64* key) {
@@ -61,7 +61,7 @@ void fn_71000ded44(UnkWordsByKey* a, const u64* key) {
 }
 
 // The same removal in another unit, with its own out-of-line removal (fn_710079c3a4).
-void fn_710079ccb8(UnkWordsByKey* a, u32* value);
+u32* fn_710079ccb8(UnkWordsByKey* a, u32* value);
 void fn_710079c3a4(UnkWordsByKey* a, const u64* key) {
     u32* p = a->Find(*key);
     if (p != a->End())
@@ -120,7 +120,7 @@ struct UnkKeyedValues_71009046bc;
 struct UnkKeyedValues_7100e6095c;
 using UnkValues10ByKey = base::UnkKeyedArray<UnkKeyedValues_71009046bc, u64, UnkValue_0x10>;
 using UnkValues80ByKey = base::UnkKeyedArray<UnkKeyedValues_7100e6095c, u64, UnkValue_0x80>;
-void fn_7100901264(UnkValues10ByKey* a, UnkValue_0x10* value);
+void* fn_7100901264(UnkValues10ByKey* a, UnkValue_0x10* value);
 void fn_7100e6164c(UnkValues80ByKey* a, UnkValue_0x80* value);
 
 template <class A>

@@ -29,7 +29,7 @@ static inline __attribute__((always_inline)) const char* const& Text(UnkSnapshot
     return id->text;
 }
 
-void fn_7100dfc344(UnkGameManager* manager, const char* const& a, const char* const& b,
+bool fn_7100dfc344(UnkGameManager* manager, const char* const& a, const char* const& b,
                    const base::global::CRntString& name, bool flag);
 
 struct UnkSnapshotActor_b53 {

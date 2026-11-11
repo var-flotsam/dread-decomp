@@ -131,7 +131,7 @@ int fn_7101099a60(lua_State* L) {
     return 0;
 }
 
-void fn_7100dfaf88(UnkGameManager* self, void* name, const CRntString& tag, bool flag);
+bool fn_7100dfaf88(UnkGameManager* self, void* name, const CRntString& tag, bool flag);
 
 int fn_710109a820(lua_State* L) {
     const char* a = g_unk_710162e2ed;

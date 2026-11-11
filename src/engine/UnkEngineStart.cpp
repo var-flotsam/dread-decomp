@@ -196,10 +196,10 @@ void fn_7100087800(UnkRegistry_0x70* self);
 // set table it loads.
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
 void fn_71000895c8(UnkFileDevice* self, UnkDevice* packs);
-void fn_7100089c1c(UnkFileDevice* self, const CFilePathStrId& path);
+bool fn_7100089c1c(UnkFileDevice* self, const CFilePathStrId& path);
 // Loads the cache's file table; mounts a pack.
-void fn_7100087124(UnkDevice* cache, const CFilePathStrId& path);
-void fn_710008aa90(UnkDevice* packs, const CFilePathStrId& path);
+bool fn_7100087124(UnkDevice* cache, const CFilePathStrId& path);
+bool fn_710008aa90(UnkDevice* packs, const CFilePathStrId& path);
 
 static inline UnkDevice* NewHostDevice(const char* name, const char* path) {
     UnkDevice* device = static_cast<UnkDevice*>(fn_71000839a0(0x48, 3));

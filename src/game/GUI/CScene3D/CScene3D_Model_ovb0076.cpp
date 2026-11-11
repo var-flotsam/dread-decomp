@@ -342,7 +342,7 @@ struct UnkScenePathId_ovb0076 : base::global::UnkFilePathStrIdBase {
     ~UnkScenePathId_ovb0076() { reinterpret_cast<base::global::CFilePathStrId*>(this)->~CFilePathStrId(); }
 };
 
-void fn_7100089ef4(base::file::UnkFileDevice* self, const base::global::UnkFilePathStrIdBase* path);  // unloads
+bool fn_7100089ef4(base::file::UnkFileDevice* self, const base::global::UnkFilePathStrIdBase* path);  // unloads
 void fn_71002191a4(UnkRenderManager* self, u32 value);
 void fn_71011f5cd0(UnkGuiFrame* frame);
 

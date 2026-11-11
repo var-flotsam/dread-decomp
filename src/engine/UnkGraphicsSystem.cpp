@@ -1122,7 +1122,7 @@ void fn_710019a16c();
 bool fn_71001587f0();
 void fn_7100132f70(f32 scale, u32 width, u32 height, u32 render_width, u32 render_height);
 void fn_7100066674(void* event, bool flag);
-void fn_7100066744(void* thread, const char* name, void (*entry)(void*), u32 a, u32 b, void* arg);
+bool fn_7100066744(void* thread, const char* name, void (*entry)(void*), u32 a, u32 b, void* arg);
 void fn_71001c7d80(void* arg);  // the loading screen thread
 
 // The render scale from the settings (g_unk_7101a1e75c is the resolution scale).

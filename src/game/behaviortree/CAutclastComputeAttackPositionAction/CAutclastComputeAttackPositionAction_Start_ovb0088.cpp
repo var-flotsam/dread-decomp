@@ -48,7 +48,7 @@ struct UnkAutclastTunable_ovb0088 {
 struct UnkSelf;
 struct UnkStruct_0x68;
 void fn_7100394bd0(UnkStruct_0x68*);
-void fn_710039525c(UnkSelf* self, void* arg, UnkVec3f* out);
+bool fn_710039525c(UnkSelf* self, void* arg, UnkVec3f* out);
 
 struct UnkAutclastBody_ovb0088 {
     u8 pad_0x0[0x44];

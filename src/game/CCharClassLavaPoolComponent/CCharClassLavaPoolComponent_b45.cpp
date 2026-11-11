@@ -5,7 +5,7 @@
 
 struct UnkStruct_710024fa0c;
 struct UnkLavaPool_b45a2;
-void fn_71009025d8(UnkLavaPool_b45a2* self, bool on);
+bool fn_71009025d8(UnkLavaPool_b45a2* self, bool on);
 
 u32 fn_71008fc70c(UnkLavaPool_b45a2* self, bool on) {
     fn_71009025d8(self, on);

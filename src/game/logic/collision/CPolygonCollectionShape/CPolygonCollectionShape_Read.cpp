@@ -9,10 +9,10 @@
 using base::global::CRntFile;
 
 struct UnkNavMeshTree;
-void fn_710010ddc4(UnkNavMeshTree* self, base::global::CRntFile* file);
+bool fn_710010ddc4(UnkNavMeshTree* self, base::global::CRntFile* file);
 
 struct UnkPolygonCollectionShape;
-void fn_7100d6c288(UnkPolygonCollectionShape* self, CRntFile* file);
+bool fn_7100d6c288(UnkPolygonCollectionShape* self, CRntFile* file);
 void fn_7100d62ec0(UnkPolygonCollectionShape* self, CRntFile* file);
 
 struct UnkPolygonCollectionShape {

@@ -45,7 +45,7 @@ bool fn_7100a04210(UnkSmartObject_ovb0094* self, void* stream) {
 struct lua_State;
 extern lua_State* g_unk_7172a01d18;
 s32 fn_71010c0bb0(lua_State* L, const char* str);
-void fn_7100fbc4e0(lua_State* L, void* arg);
+int fn_7100fbc4e0(lua_State* L, void* arg);
 struct UnkKraidGrab_b57a4;
 
 // A string id's pooled data as these callers see it: the hash at +0x30.

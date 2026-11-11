@@ -7,7 +7,7 @@
 
 // Signature as src/game/behaviortree/CStopWatchAction/fn_7100392704.cpp declares it.
 struct UnkSelf;
-void fn_7100394e2c(UnkSelf* self, void* record, f32* out);
+bool fn_7100394e2c(UnkSelf* self, void* record, f32* out);
 
 struct UnkRandomCondition_A2_b68 {
     u8 pad_0x0[0x38];

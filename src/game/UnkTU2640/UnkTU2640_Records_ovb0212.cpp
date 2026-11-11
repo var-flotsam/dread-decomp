@@ -154,7 +154,7 @@ void fn_7101000384(void* dst, const void* src) {
 }
 
 struct UnkPartFfca00;
-void fn_7100ffbad8(UnkPartFfca00* self, const UnkPartFfca00* other);
+UnkPartFfca00* fn_7100ffbad8(UnkPartFfca00* self, const UnkPartFfca00* other);
 
 struct UnkAssignRec78_b0212 {
     u32 field_0x0;

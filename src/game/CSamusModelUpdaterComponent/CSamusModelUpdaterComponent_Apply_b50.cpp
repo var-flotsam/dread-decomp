@@ -10,7 +10,7 @@
 
 struct UnkOwner;
 UnkOwner* fn_7100defcd4(UnkGameManager* manager);
-void fn_7100938ebc(void* updater, const u64* id);
+bool fn_7100938ebc(void* updater, const u64* id);
 
 struct UnkRefl_fn_710083a2ac;
 extern template base::reflection::UnkReflObject*

@@ -15,7 +15,7 @@ void fn_710002fb80(void*, f32);
 UnkV4_b47 fn_7100030770(const UnkV4_b47* a, const UnkV4_b47* b);
 UnkV4_b47 fn_7100030830(const UnkV4_b47* a, f32 s);
 void fn_710002f588(void* self, const void* other);  // Copy constructor.
-void fn_710002f90c(void* dst, const void* src);
+void* fn_710002f90c(void* dst, const void* src);
 void fn_7100030128(char* self, bool flag, void* arg);
 void fn_7100030a50(UnkMoveSlot_0xb0*);
 void fn_7100030ce0(void*);

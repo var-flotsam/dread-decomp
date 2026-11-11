@@ -8,7 +8,7 @@ struct UnkMember_710058644c {
     u8 unk_0x0[0x28];
 };
 
-void fn_7100241c78(UnkMember_710058644c* self, const UnkMember_710058644c* other);
+UnkMember_710058644c* fn_7100241c78(UnkMember_710058644c* self, const UnkMember_710058644c* other);
 
 struct UnkBlock32_710058644c {
     u64 field_0x0;

@@ -421,7 +421,7 @@ void fn_7101104f9c(u8* raw) {
 }
 
 // ---- n ----
-void fn_71002b27d4(void* e, u32 a, u32 b, f32* value);
+f32 fn_71002b27d4(void* e, u32 a, u32 b, f32* value);
 void fn_71002b2c80(void* e, u32 a, u32 b, f32* value);
 
 struct UnkSlot_n {

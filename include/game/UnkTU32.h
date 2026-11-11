@@ -12,7 +12,7 @@ void fn_71000255c4(void* member);  // A member's constructor.
 void fn_7100025884(void* member, void* owner);  // Registers the owner with the member.
 
 // Assigns `other` to `self` (move assignment).
-void fn_7100027118(UnkStrIdPathResource* self, UnkStrIdPathResource* other);
+UnkStrIdPathResource* fn_7100027118(UnkStrIdPathResource* self, UnkStrIdPathResource* other);
 
 bool fn_710002589c(void* link, UnkLinkTarget127_b66a1* target, u32 mode, void* extra);
 void fn_7100027464(UnkStrIdPathRecord_b48* self, const UnkStrIdPathRecord_b48* other);  // Copy constructor.

@@ -4,7 +4,7 @@
 #include "types.h"
 
 struct UnkPartFfca00;
-void fn_7100ffbad8(UnkPartFfca00* self, const UnkPartFfca00* other);
+UnkPartFfca00* fn_7100ffbad8(UnkPartFfca00* self, const UnkPartFfca00* other);
 
 struct UnkPart_A6 {
     u64 unk_0x0[5];

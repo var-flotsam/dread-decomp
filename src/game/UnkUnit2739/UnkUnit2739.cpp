@@ -9,7 +9,7 @@
 struct UnkStruct_71011a91c4;
 struct UnkItem_71011a91c4;
 struct UnkModelManager;
-void fn_71011a91c4(UnkModelManager* self, void* item, u32 flag);
+bool fn_71011a91c4(UnkModelManager* self, void* item, u32 flag);
 
 struct UnkQueueOwner;
 

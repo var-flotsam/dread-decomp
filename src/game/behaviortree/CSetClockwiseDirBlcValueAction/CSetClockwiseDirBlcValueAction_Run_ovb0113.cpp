@@ -10,7 +10,7 @@
 // Signature as src/game/behaviortree/CStopWatchAction/fn_7100392704.cpp declares it (it returns whether the
 // property is set).
 struct UnkSelf;
-void fn_7100394e2c(UnkSelf* self, void* record, f32* out);
+bool fn_7100394e2c(UnkSelf* self, void* record, f32* out);
 void fn_71003954fc(UnkSelf* behavior, void* record, f32 value);
 struct UnkPool_0x48;
 struct UnkStruct_0x48;

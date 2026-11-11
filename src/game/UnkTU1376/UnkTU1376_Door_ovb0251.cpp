@@ -204,7 +204,7 @@ __attribute__((flatten)) void fn_71008cec30(UnkDoorVecSet_b0251* self) {
 struct lua_State;
 extern lua_State* g_unk_7172a01d18;
 s32 fn_71010c0bb0(lua_State* L, const char* name);
-void fn_7100fbc4e0(lua_State* L, void* arg);
+int fn_7100fbc4e0(lua_State* L, void* arg);
 struct UnkBreakablePart;
 struct UnkBreakableTarget;
 extern UnkProperty g_unk_71727310c0;
@@ -413,7 +413,7 @@ bool fn_71008d1c50(UnkDoorHandles_b0251* self, void* target) {
 
 struct UnkDoorLock;
 struct UnkDoorLife_b44a2;
-void fn_71008d586c(UnkDoorLock* door, bool locked, u32 mode, CStrId* name);
+bool fn_71008d586c(UnkDoorLock* door, bool locked, u32 mode, CStrId* name);
 
 struct UnkDoorFlow_b0251 {
     u8 pad_0x0[0x30];

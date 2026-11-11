@@ -9,7 +9,7 @@
 
 using base::reflection::UnkReflValue;
 
-void fn_710117b1c8(char* self, void* a, void* b);
+bool fn_710117b1c8(char* self, void* a, void* b);
 struct UnkStruct_710117af10;
 struct UnkCls_710117af10;
 bool fn_7101177898(char* self, void* a, void* b);

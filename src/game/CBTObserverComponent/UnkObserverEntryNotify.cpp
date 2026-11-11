@@ -10,7 +10,7 @@ struct UnkObserverEntryMap_7100ca79f0 {
     u32 count;      // 0xa0
 };
 
-void fn_7100ca3518(void* entry, bool flag);
+bool fn_7100ca3518(void* entry, bool flag);
 
 void fn_7100ca79f0(UnkObserverEntryMap_7100ca79f0* manager, u32 id, bool flag) {
     void** slot = UnkParallelFindSlotByValue(manager, id);

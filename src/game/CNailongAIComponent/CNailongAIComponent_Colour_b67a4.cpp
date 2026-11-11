@@ -10,7 +10,7 @@ using base::math::CVector4D;
 // As src/game/CNailongAIComponent/CNailongAIComponent_b46.cpp declares them.
 struct UnkStruct_71001436f4;
 bool fn_71001436f4(UnkStruct_71001436f4* self, u32 a, const base::math::CVector4D* b, u32 c);
-void fn_71001c287c(void* target, u32 a, u32 b, CVector4D* colour, u32 c);
+bool fn_71001c287c(void* target, u32 a, u32 b, CVector4D* colour, u32 c);
 
 struct UnkNailongSlots_b67a4 {
     u8 pad_0x0[0x138];

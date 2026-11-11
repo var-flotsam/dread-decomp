@@ -360,7 +360,7 @@ struct UnkFilePathList {
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
 extern UnkSoundMgr* g_unk_7101d4d820;
 void fn_7100089eec(base::file::UnkFileDevice* self, const CFilePathStrId* path, UnkFilePathList* out);
-void fn_7100089ef4(base::file::UnkFileDevice* self, const base::global::UnkFilePathStrIdBase* path);
+bool fn_7100089ef4(base::file::UnkFileDevice* self, const base::global::UnkFilePathStrIdBase* path);
 void fn_7100108c94(UnkSoundMgr* self, const CFilePathStrId* path);
 
 static inline base::file::UnkFileDevice* PackSets_e00b48() {

@@ -7,7 +7,7 @@
 using base::global::CRntFile;
 
 struct UnkPolygonCollectionShape;
-void fn_7100d6c288(UnkPolygonCollectionShape* self, CRntFile* file);
+bool fn_7100d6c288(UnkPolygonCollectionShape* self, CRntFile* file);
 
 struct UnkCapsuleShape2D_ovb0015 {
     virtual void vf_0x0();

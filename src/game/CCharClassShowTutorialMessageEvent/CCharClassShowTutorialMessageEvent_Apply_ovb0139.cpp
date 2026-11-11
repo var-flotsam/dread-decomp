@@ -11,7 +11,7 @@
 using base::global::CStrId;
 
 struct UnkTutorialComposition;
-void fn_7100b88f10(UnkTutorialComposition* self, const CStrId* text);
+bool fn_7100b88f10(UnkTutorialComposition* self, const CStrId* text);
 
 struct UnkMlogMessage_b42a1;
 

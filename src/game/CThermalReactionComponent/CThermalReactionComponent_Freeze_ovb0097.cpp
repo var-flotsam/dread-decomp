@@ -21,10 +21,10 @@ struct UnkThermalComponent_ovb0097 {
 UnkThermalComponent_ovb0097* fn_7100a29260(UnkWeakTarget* entity);
 UnkThermalComponent_ovb0097* fn_710063337c(UnkWeakTarget* entity);
 UnkThermalComponent_ovb0097* fn_7100a290a8(UnkWeakTarget* entity);
-void fn_7100a928ec(UnkThermalComponent_ovb0097* component, bool frozen);
-void fn_7100a8f448(UnkThermalComponent_ovb0097* component, bool frozen);
+bool fn_7100a928ec(UnkThermalComponent_ovb0097* component, bool frozen);
+u32 fn_7100a8f448(UnkThermalComponent_ovb0097* component, bool frozen);
 void fn_71008d6320(UnkDoorLock* component, bool frozen);
-void fn_71007b6b38(UnkThermalComponent_ovb0097* component, bool frozen);
+u32 fn_71007b6b38(UnkThermalComponent_ovb0097* component, bool frozen);
 
 struct UnkThermalReaction_ovb0097 {
     u8 pad_0x0[0x30];

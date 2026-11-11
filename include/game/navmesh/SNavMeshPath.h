@@ -9,5 +9,5 @@ struct UnkObject_71002ad0dc;
 void fn_71002acfe4(void* sub);
 void fn_71002ad0dc(UnkObject_71002ad0dc* self);
 void fn_71002adc8c(void* member);
-void fn_71002ad4f4(void* self, const void* other);
-void fn_71002ad420(void* self, const void* other);
+void* fn_71002ad4f4(void* self, const void* other);
+void* fn_71002ad420(void* self, const void* other);

@@ -80,7 +80,7 @@ extern lua_State* g_unk_7172a01d18;
 extern UnkSuffixHolder_b0269* g_unk_7172a06300 __attribute__((visibility("hidden")));
 
 s32 fn_71010c0bb0(lua_State* L, const char* name);
-void fn_7100fbc4e0(lua_State* L, void* arg);
+int fn_7100fbc4e0(lua_State* L, void* arg);
 
 void fn_71011051fc(UnkScriptAI_b0269* self) {
     if (UnkHandler_b0269* handler = self->handler)

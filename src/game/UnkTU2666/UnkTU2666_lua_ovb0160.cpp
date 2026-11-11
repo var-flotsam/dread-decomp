@@ -42,14 +42,14 @@ using base::reflection::UnkReflValue;
 using base::reflection::UnkTypedRef;
 
 struct lua_State;
-void fn_7100fbc4e0(lua_State* L, void* arg);
+int fn_7100fbc4e0(lua_State* L, void* arg);
 
-// fn_7100fbc4e0 hands back the number of results it pushed; its other users declare it without one.
+// fn_7100fbc4e0 hands back the number of results it pushed.
 static inline s32 PushObject(lua_State* L, void* arg) {
-    return reinterpret_cast<s32 (*)(lua_State*, void*)>(fn_7100fbc4e0)(L, arg);
+    return fn_7100fbc4e0(L, arg);
 }
 
-void fn_7100dfc344(UnkGameManager* manager, const char* const& a, const char* const& b, const base::global::CRntString& name,
+bool fn_7100dfc344(UnkGameManager* manager, const char* const& a, const char* const& b, const base::global::CRntString& name,
                    bool flag);
 
 // fn_7100dfc344 answers with a flag; its other user declares it without one.
@@ -508,8 +508,8 @@ struct UnkLuaOwner_b0160 {
     u8 pad_0x0[0x1b8];
     UnkLuaPart_b0160* field_0x1b8;
 };
-void fn_71011603a4(UnkLuaPart_b0160* part, f32 value);
-void fn_7101160214(UnkLuaPart_b0160* part, f32 value);
+bool fn_71011603a4(UnkLuaPart_b0160* part, f32 value);
+bool fn_7101160214(UnkLuaPart_b0160* part, f32 value);
 extern void* g_unk_7101d47330;
 void fn_71011991c4(void* self, UnkReflObject* object);
 void fn_7101198450(void* self, UnkReflObject* object);

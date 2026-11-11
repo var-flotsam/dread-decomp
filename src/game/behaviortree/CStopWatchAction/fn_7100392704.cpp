@@ -13,7 +13,7 @@ struct UnkSelf {
     f32 field_0x5c;
 };
 
-void fn_7100394e2c(UnkSelf* self, void* record, f32* out);
+bool fn_7100394e2c(UnkSelf* self, void* record, f32* out);
 void fn_71003954fc(UnkSelf* self, void* record, f32 value);
 
 u32 fn_7100392704(UnkSelf* self, f32 delta) {

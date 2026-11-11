@@ -32,7 +32,7 @@ UnkFxPooledObject** fn_7100852548(base::UnkVector<UnkFxPooledObject*>* array, u3
 void fn_7100140bbc(UnkTaggedObject116_ovb0168* self, const CStrId* name);
 void fn_7100145818(UnkOverlayModel* model, u32 flag);
 void fn_7100140e4c(UnkSwitchObject116* self, bool enable);
-void fn_7100a0feac(UnkRenderPool* pool, CFilePathStrId* path, UnkOverlayModel** out, base::global::CStrId* id);
+void* fn_7100a0feac(UnkRenderPool* pool, CFilePathStrId* path, UnkOverlayModel** out, base::global::CStrId* id);
 void fn_71011ab1d0(char* self);
 
 using UnkRumbleFileKey_b0192 = base::UnkStrIdMemberOf<g_unk_7101d47200>;
@@ -345,7 +345,7 @@ void* fn_71011a9c2c(void* self, u32 kind, const void* path, u32 a, u32 b) {
     }
 }
 
-void fn_71011a91c4(UnkModelManager* self, void* handle, u32 id);
+bool fn_71011a91c4(UnkModelManager* self, void* handle, u32 id);
 struct UnkQueueOwner;
 
 struct UnkPoolValue_a9390 {

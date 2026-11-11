@@ -26,7 +26,7 @@ struct UnkSelf {
     UnkVec3f field_0x40;
 };
 
-void fn_710039525c(UnkSelf* self, void* arg, UnkVec3f* out);
+bool fn_710039525c(UnkSelf* self, void* arg, UnkVec3f* out);
 
 #define UNK_NEAR(a, b) ((a) - 0.001f <= (b) && (a) + 0.001f >= (b))
 

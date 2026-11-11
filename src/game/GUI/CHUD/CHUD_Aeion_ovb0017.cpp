@@ -23,7 +23,7 @@ struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 struct UnkLifeComponent;
 void fn_7100b5fd6c(void* object, base::global::UnkStringData** name, void* block, bool a, bool b);
-void fn_7100dfaf88(UnkGameManager* self, void* name, const CRntString& tag, bool flag);
+bool fn_7100dfaf88(UnkGameManager* self, void* name, const CRntString& tag, bool flag);
 
 // A HUD item: its event slot (vtable 0x1e8) plays the named animation event.
 struct UnkHudItem_ovb0017 {

@@ -41,7 +41,7 @@ struct UnkFloatCondition_ovb0121c {
 };
 
 struct UnkSelf;
-void fn_7100394e2c(UnkSelf*, void*, f32*);
+bool fn_7100394e2c(UnkSelf*, void*, f32*);
 void fn_710013c7e0(UnkTunableRegistry* registry, const char* group, const char* name, f32* value);
 
 static inline void Resolve(UnkFloatCondition_ovb0121c* self, UnkFloatOperand_ovb0121c& operand, f32* out) {

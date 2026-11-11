@@ -187,7 +187,7 @@ bool fn_7100089668(UnkFileDevice* self, const UnkPathRequestArgs& args) {
 // Waits on a light event (the engine's wrapper).
 void fn_710006669c(nn::os::LightEventType* event);
 // Serves the queued requests.
-void fn_71000898c8(UnkFileDevice* self);
+bool fn_71000898c8(UnkFileDevice* self);
 
 // The "PackLoaderThread" entry (fn_71000895c8 starts it): serves the requests each time the event
 // is signalled, while the object runs.

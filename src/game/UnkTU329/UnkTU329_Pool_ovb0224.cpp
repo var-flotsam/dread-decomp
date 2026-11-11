@@ -119,7 +119,7 @@ __attribute__((visibility("hidden"))) void* fn_7100223980(void* pointer, u64 siz
 void fn_7100223b8c(void* arg);
 struct UnkRenderTargetOwner;
 void fn_7100223c2c(UnkRenderTargetOwner* self);
-void fn_7100066744(void* thread, const char* name, void (*entry)(void*), u32 a, u32 b, void* arg);
+bool fn_7100066744(void* thread, const char* name, void (*entry)(void*), u32 a, u32 b, void* arg);
 extern char g_unk_716e599f08[] __attribute__((visibility("hidden")));
 extern char g_unk_7171799f08[] __attribute__((visibility("hidden")));
 

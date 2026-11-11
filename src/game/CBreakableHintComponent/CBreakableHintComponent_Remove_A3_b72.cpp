@@ -29,7 +29,7 @@ struct UnkBreakableHint_A3_b72 {
     UnkBreakableHintMap_A3_b72 map;  // 0x48
 };
 
-void fn_7100752a78(UnkBreakableHintMap_A3_b72* map, UnkBreakableHintEntry_A3_b72* it);
+void* fn_7100752a78(UnkBreakableHintMap_A3_b72* map, UnkBreakableHintEntry_A3_b72* it);
 
 bool fn_710075312c(UnkBreakableHint_A3_b72* self, u64 key) {
     UnkBreakableHintEntry_A3_b72* it = self->map.Find(key);

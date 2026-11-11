@@ -32,7 +32,7 @@ void fn_7100239e0c(char*);
 void fn_710023ac4c(void* self);  // Re-points `current` at (index, element).
 UnkReflType* fn_710023e498();  // base::reflection::refl_GetType<CActorComponent*>.
 void fn_71002430e8(UnkKeyMap_b60* map, UnkKeyNode_b60* node);
-void fn_7100246d70(void* self, const void* other);
+void* fn_7100246d70(void* self, const void* other);
 void fn_7100248ce8(UnkKeyedStrIdMapA_ovb0062* self, u32 capacity);  // The keyed array's reserve.
 extern void* g_unk_7101a20998[];  // The callback set's base vtable.
 extern void* g_unk_7101a20950[];  // The callback set's vtable.

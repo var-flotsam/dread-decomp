@@ -46,7 +46,7 @@ struct UnkLuaDoorState {
     bool enabled;  // 0x10
 };
 UnkLuaDoorState* fn_7100acc8a8(UnkLuaDoorTarget* target, const CStrId& name);
-void fn_7100acc5ec(UnkLuaDoorTarget* target, void* object);
+void* fn_7100acc5ec(UnkLuaDoorTarget* target, void* object);
 
 struct UnkLuaStrData {
     u8 pad_0x0[0x30];

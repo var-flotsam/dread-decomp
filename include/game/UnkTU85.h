@@ -23,5 +23,5 @@ bool fn_71000e7a80(UnkReflField* field, const UnkReflFieldObject* obj, UnkReflVa
 void fn_71000e70c4(UnkRecordB0_b44a1* self);
 bool fn_71000e6ce0(UnkVersionEntry* self, u16* major, u16* minor);
 void fn_71000e6fd8(void* self, void* other);
-void fn_71000e7b5c(UnkClassEntry* entry, UnkClassEntryContext* context);
+bool fn_71000e7b5c(UnkClassEntry* entry, UnkClassEntryContext* context);
 void fn_71000e82a8(UnkElem_0xb0*, void*);

@@ -6,5 +6,5 @@
 #include "types.h"
 
 struct UnkFileReader;
-void fn_710000ccd8(UnkFileReader* self);
+bool fn_710000ccd8(UnkFileReader* self);
 void* fn_710000ffd0();

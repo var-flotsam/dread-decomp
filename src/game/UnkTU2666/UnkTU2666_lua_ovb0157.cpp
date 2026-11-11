@@ -193,11 +193,11 @@ SET_FLAG_BINDING(fn_7101078120, 0x39)
 SET_FLAG_BINDING(fn_71010781a0, 0x3b)
 
 extern u32 g_unk_71727bebb8;
-void fn_7100fbc4e0(lua_State* L, void* arg);
+int fn_7100fbc4e0(lua_State* L, void* arg);
 
-// fn_7100fbc4e0 hands back the number of results it pushed; its other users declare it without one.
+// fn_7100fbc4e0 hands back the number of results it pushed.
 static inline s32 PushObject(lua_State* L, void* arg) {
-    return reinterpret_cast<s32 (*)(lua_State*, void*)>(fn_7100fbc4e0)(L, arg);
+    return fn_7100fbc4e0(L, arg);
 }
 
 s32 fn_710107a070(lua_State* L) {

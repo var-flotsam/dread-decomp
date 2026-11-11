@@ -24,7 +24,7 @@ struct UnkRecord {
     u32 field_0x50;
 };
 
-void fn_71002cbddc(UnkPart* dst, UnkPart* src);
+UnkPart* fn_71002cbddc(UnkPart* dst, UnkPart* src);
 
 static inline a_u32* FirstOf(UnkRecord* record) {
     return record->field_0x50 == 2 ? *reinterpret_cast<a_u32**>(record) : reinterpret_cast<a_u32*>(record);

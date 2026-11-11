@@ -12,7 +12,7 @@ void fn_710115f7bc(void* self);
 void fn_710115fc5c(char*);
 void fn_710115fe20(UnkHolder* holder);
 void fn_7101160078(UnkCommanderLife_A5_b63* self, f32 dt);
-void fn_7101160348(void* object, f32 duration);
+bool fn_7101160348(void* object, f32 duration);
 void fn_710115f91c(void* self);
 void fn_710115fe1c(char*);
 bool fn_7101160408(UnkCharacterLife_b0050* self);

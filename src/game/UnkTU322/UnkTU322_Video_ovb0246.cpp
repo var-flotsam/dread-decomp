@@ -127,7 +127,7 @@ struct UnkStruct_710020a5a0;
 struct UnkMinimapVec3;
 struct UnkBlendLayer_710019c284;
 
-void fn_710021d3d4(void* a, void* b, UnkWidget** out, const CStrId* id);
+void* fn_710021d3d4(void* a, void* b, UnkWidget** out, const CStrId* id);
 void fn_71001c3504(UnkRender* render, void* p);
 void* fn_71001d086c(UnkGraphicsSystem* self, const CStrId* key);
 void fn_71001606c0(void* obj, u32* a, u32* b);

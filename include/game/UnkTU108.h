@@ -16,7 +16,7 @@ struct UnkPolygon_b61;
 struct UnkTarget108;
 struct UnkTileOutline;
 struct UnkVec3;
-void fn_710011dac0(UnkPartsRecord* self, const UnkPartsRecord* other);
+void* fn_710011dac0(UnkPartsRecord* self, const UnkPartsRecord* other);
 bool fn_7100116de0(UnkEntry* entry, void* arg, u32 a, u32 b, f32 scale);
 void* fn_7100118b94(void* sink, UnkVec3* point);
 void fn_710011d8b4(UnkPart0* self, const UnkPart0* other);

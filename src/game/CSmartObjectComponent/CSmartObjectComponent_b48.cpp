@@ -11,7 +11,7 @@
 struct lua_State;
 extern lua_State* g_unk_7172a01d18;
 s32 fn_71010c0bb0(lua_State* L, const char* str);
-void fn_7100fbc4e0(lua_State* L, void* arg);
+int fn_7100fbc4e0(lua_State* L, void* arg);
 
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);

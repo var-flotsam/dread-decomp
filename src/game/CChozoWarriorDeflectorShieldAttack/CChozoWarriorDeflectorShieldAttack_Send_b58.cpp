@@ -13,7 +13,7 @@
 #include "types.h"
 
 void fn_71010fc554(base::reflection::UnkReflObject* component, f32* out);
-void fn_71010fc5fc(base::reflection::UnkReflObject* component, f32* out);
+bool fn_71010fc5fc(base::reflection::UnkReflObject* component, f32* out);
 
 struct UnkDeflectorOwner_b58 {
     u8 pad_0x0[0x38];
