@@ -2,6 +2,7 @@
 // default allocator, several empty string ids and a block of defaults (-1.0f sentinels, flags).
 #include <new>
 
+#include "game/CCharClassAttack.h"
 #include "game/UnkVtable_7101a24158.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"

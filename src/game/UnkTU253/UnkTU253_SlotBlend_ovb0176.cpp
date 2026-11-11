@@ -9,6 +9,7 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkSlots.h"
 #include "game/UnkTU23.h"
+#include "game/UnkTU253.h"
 #include "game/UnkTU308.h"
 #include "types.h"
 

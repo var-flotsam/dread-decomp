@@ -5,6 +5,7 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/querysystem/CEvaluator.h"
 #include "types.h"
 
 using base::global::CStrId;

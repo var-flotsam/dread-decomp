@@ -3,6 +3,7 @@
 // object at +0x78, with the new value and the two floats, which travel on untouched in s0/s1 (the
 // helper's value and fade time; tools/forwarded_args.py --calls). The signature is the one
 // src/game/UnkAdamDialog.cpp declares.
+#include "game/UnkTU101.h"
 #include "types.h"
 
 struct UnkSoundSystemATK;

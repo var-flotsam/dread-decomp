@@ -5,6 +5,7 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 

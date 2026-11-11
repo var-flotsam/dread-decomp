@@ -5,6 +5,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CType.h"
+#include "base/reflection/UnkReflTypeDtors.h"
 #include "game/UnkTU85.h"
 #include "types.h"
 

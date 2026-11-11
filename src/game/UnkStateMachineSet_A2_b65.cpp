@@ -9,6 +9,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbility.h"
 #include "game/CAnimationComponent.h"
+#include "game/CChozoWarriorXUltimateGrabAttack.h"
 #include "game/UnkBehaviorTree.h"
 #include "game/UnkGameManager.h"
 #include "game_s2/UnkWeakHandle.h"

@@ -1,4 +1,5 @@
 // Looks up an entry by key in a parallel key/value array, then forwards the request with the entry's field_0x70.
+#include "base/reflection/UnkReflStatics.h"
 #include "types.h"
 
 struct UnkEntry_7101176690 {

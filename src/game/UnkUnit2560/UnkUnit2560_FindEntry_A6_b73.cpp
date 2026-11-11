@@ -3,6 +3,7 @@
 // at +0x30; the found node (bucket chain at Chain) holds a packed list at +8 (u32 count, then
 // Stride-byte entries from +0xc) whose entries start with a pointer to an object hashed the same
 // way. Returns the entry whose hash equals `inner`, or null. Names and layouts are placeholders.
+#include "game/UnkTU2560.h"
 #include "types.h"
 
 namespace {

@@ -1,6 +1,7 @@
 // Two more copies of fn_71002dacc0 (src/game_s2/): the constructor of a pair of string ids, both
 // the empty string (creating the pool first when there is none).
 #include "base/global/CStrId.h"
+#include "game/UnkTU1600.h"
 #include "types.h"
 
 using base::global::UnkStringData;

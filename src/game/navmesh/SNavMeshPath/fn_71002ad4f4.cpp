@@ -1,6 +1,7 @@
 // Copy assignment of a record: assigns its base part at +0x8 (fn_71002ae2f0), copies the plain fields
 // at +0x1194c from `other`, then (unless it is assigned to itself) makes the weak reference at +0x11968
 // refer to what the other one refers to.
+#include "game/navmesh/SNavMeshPath.h"
 #include "game_s2/UnkWeakHandle.h"
 
 struct __attribute__((packed)) UnkTail {

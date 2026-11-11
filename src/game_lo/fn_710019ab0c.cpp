@@ -1,4 +1,5 @@
 // Rebuilds a 16-bit mask (0x10) with one bit per index the source object reports as set.
+#include "game/UnkTU221.h"
 #include "types.h"
 
 struct UnkSource_710019ab0c;

@@ -7,6 +7,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CProjectileMovement.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU285.h"

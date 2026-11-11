@@ -3,6 +3,7 @@
 // (+0x10), skipping empty entries. Names and layouts are placeholders.
 #include "game/CAudioComponent.h"
 #include "game/UnkTU1176.h"
+#include "game/UnkTU2547.h"
 #include "types.h"
 
 struct UnkCentralUnitState {

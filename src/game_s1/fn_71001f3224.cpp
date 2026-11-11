@@ -1,6 +1,7 @@
 // Sets the shown flag of a widget-like object; when it changes, tells the listener about the
 // enabled and the effective-visible state (two notifier calls, the second one a tail call).
 #include "engine/scene/UnkToggle.h"
+#include "game/UnkTU272.h"
 
 void fn_71001f3224(UnkToggle* self, bool on) {
     if (on != self->flag_0xf9) {

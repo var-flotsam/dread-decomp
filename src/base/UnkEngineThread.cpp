@@ -9,6 +9,7 @@
 #include <nn/os.h>
 
 #include "base/UnkVector.h"
+#include "base/global/timeline/CEvent.h"
 #include "types.h"
 
 struct UnkEngineThread {

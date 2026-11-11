@@ -1,6 +1,7 @@
 // CAlternativeActionPlayerComponent unit (tools/tu_map.py): fn_71007124d8 copies each entry's current pair
 // into its previous pair over the 0x10-byte entries at +0x48 (count at +0x58), unless the passed-by-value
 // argument's flag (byte 4) is set; returns 0. Names are placeholders.
+#include "game/CAlternativeActionPlayerComponent.h"
 #include "types.h"
 
 struct UnkPair_b69a4 {

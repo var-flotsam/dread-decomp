@@ -5,6 +5,7 @@
 // unless it is guarded (+0x5c) and not above it, calls fn_7100dcdc18 on g_unk_71726bc570 and returns
 // whether the life component's state (+0x70) is 2; true without a player or life component. Names and
 // layouts are placeholders.
+#include "game/CChozoWarriorXUltimateGrabAttack.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1370.h"
 #include "game_s2/UnkWeakHandle.h"

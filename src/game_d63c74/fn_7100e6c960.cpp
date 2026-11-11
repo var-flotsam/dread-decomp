@@ -3,6 +3,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPool.h"
+#include "game/UnkTU2564.h"
 #include "types.h"
 
 using namespace base::global;

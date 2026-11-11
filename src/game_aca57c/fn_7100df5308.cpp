@@ -9,6 +9,7 @@
 #include "game/CAbilityMultiLockon.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CAbilitySpeedBooster.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::reflection::CClass;

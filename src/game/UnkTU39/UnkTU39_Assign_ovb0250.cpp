@@ -8,6 +8,7 @@
 #include "base/UnkDeferredSet.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU39.h"
 
 using base::UnkDeferredCallback;
 using base::UnkDeferredSet;

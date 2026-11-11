@@ -1,6 +1,7 @@
 // animtree::CLayerNode (unit 414): advancing the layer by `dt`: the object at +0x28 first, then the
 // node itself (fn_71002dfaf0 with both flags set). Names are placeholders.
 #include "game/animtree/CAnimTreeNode.h"
+#include "game/animtree/CLayerNode.h"
 #include "types.h"
 
 struct UnkLayerChild;

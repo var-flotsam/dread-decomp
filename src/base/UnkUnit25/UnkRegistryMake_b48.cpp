@@ -2,6 +2,7 @@
 // (g_unk_7101d4bbc0): the factory entry's callback (+0x40, with its context at +0x38) when the key is
 // registered, else an empty object (fn_710008d2a0). Names and layouts are placeholders.
 #include "base/file/CThreadSafeDevice.h"
+#include "game/UnkTU25.h"
 #include "game/UnkTU27.h"
 #include "types.h"
 

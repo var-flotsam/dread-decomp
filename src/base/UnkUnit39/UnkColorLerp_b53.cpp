@@ -2,6 +2,7 @@
 // (`a` below 0, `b` from 1 up); every component of the result is clamped to 0 from below. The
 // colour is returned in memory (it has a user-written copy constructor), as in
 // UnkV4ClampedOps_b47.cpp. Names are placeholders.
+#include "base/color/CColor4F.h"
 #include "types.h"
 
 struct UnkColor_b53 {

@@ -3,6 +3,7 @@
 #include <stdio.h>
 
 #include "base/global/UnkStringHeap.h"
+#include "base/global/UnkStringPool.h"
 
 using base::global::UnkStringBlock;
 using base::global::UnkStringBlockClass;

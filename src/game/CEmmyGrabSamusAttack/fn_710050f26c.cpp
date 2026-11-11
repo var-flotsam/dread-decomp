@@ -3,6 +3,7 @@
 // colours and timings, then runs a follow-up.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CEmmyGrabSamusAttack.h"
 #include "game/UnkSceneObject.h"
 #include "types.h"
 

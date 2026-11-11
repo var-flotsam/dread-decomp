@@ -6,6 +6,7 @@
 
 #include "../UnkUnit211/UnkPtrArrayHolder_b70.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU218.h"
 #include "game/UnkTU226.h"
 #include "types.h"
 

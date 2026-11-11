@@ -3,6 +3,7 @@
 // src/game/CCollisionComponent/fn_7100863a8c.cpp does) through fn_7100d47d1c. Names and layouts
 // are placeholders.
 #include "base/UnkVector.h"
+#include "game/CCharacterMovement.h"
 #include "game/UnkTU365.h"
 #include "types.h"
 

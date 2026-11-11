@@ -3,6 +3,7 @@
 // sub-object, sends the +0x220 sub-object a zero (refl_EmitU32 written out, for its stack slots) and sets the stage at +0x58 to 1.
 // Names are placeholders.
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CChozoCommanderLandingSlamAttack.h"
 #include "game_s2/UnkParams.h"
 #include "../../game_s2/UnkSpitSend.h"
 #include "types.h"

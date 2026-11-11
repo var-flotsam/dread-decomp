@@ -1,5 +1,6 @@
 // The string pool's heap setup: a function-local static heap, published through
 // g_unk_7101d58d40, with a fixed number of blocks per size class.
+#include "base/global/CStrId.h"
 #include "base/global/UnkStringHeap.h"
 #include "base/global/UnkStringPool.h"
 

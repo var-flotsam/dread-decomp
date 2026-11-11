@@ -7,6 +7,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CBTObserverComponent.h"
+#include "game/CBreakableTileManager/CTunableBreakableTileManager.h"
 #include "game/CNavMeshItemComponent.h"
 #include "types.h"
 

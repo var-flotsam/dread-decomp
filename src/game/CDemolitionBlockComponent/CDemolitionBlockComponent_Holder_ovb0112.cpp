@@ -9,6 +9,7 @@
 #include "base/UnkRefHandle.h"
 #include "base/UnkVector.h"
 #include "game/CCentralUnitAIComponent.h"
+#include "game/CDemolitionBlockComponent.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 

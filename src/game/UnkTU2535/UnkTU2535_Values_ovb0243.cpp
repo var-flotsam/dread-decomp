@@ -5,6 +5,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU2535.h"
 #include "types.h"
 
 using base::reflection::CType;

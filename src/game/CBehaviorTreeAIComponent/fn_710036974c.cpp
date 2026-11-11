@@ -2,6 +2,7 @@
 // notifies it (flag set in the message) or updates and resets a pending timer.
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CBehaviorTreeAIComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 

@@ -1,6 +1,7 @@
 // Two prime helpers in unit 41 of tools/tu_map.py (base::global::timeline::CEvent's unit; the hash
 // tables size their bucket arrays with them): a primality test by trial division over odd divisors,
 // and the next prime at or above a number.
+#include "base/global/timeline/CEvent.h"
 #include "types.h"
 
 // Whether `n` is prime (2 and 3 are; 1 and the even numbers past 2 are not).

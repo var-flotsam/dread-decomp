@@ -1,6 +1,7 @@
 // Destroys an object's inline array of 12-byte elements (each with an out-of-line destructor),
 // clears the count, then releases the refcounted pointer at +0x58.
 #include "base/UnkDestructors.h"
+#include "game/UnkTU357.h"
 #include "types.h"
 
 using base::UnkRefPtrMember;

@@ -9,6 +9,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "../UnkUnit2601/UnkUnit2601_VecCopy_b56.h"
+#include "game/UnkTU2640.h"
 #include "types.h"
 
 using base::global::CStrId;

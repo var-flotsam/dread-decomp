@@ -3,6 +3,7 @@
 // at +0x8 (fn_71000e1fec); 0x50-byte records starting with a string at +0x10 (fn_710026ead0).
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
+#include "game/navmesh/CFixedDynamicSmartLinkRule.h"
 #include "types.h"
 
 template <class T, u64 Offset>

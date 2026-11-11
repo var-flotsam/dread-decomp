@@ -1,6 +1,7 @@
 // Loops over the tracks of the component's set: adding `id` to (fn_710002fd10) or removing it from
 // (fn_710002ffb4) the key list at +0xb0 of every track (fn_710117ab64), and whether any playing track
 // reports what fn_710070d820 tests (fn_710117ad58); and that test for one track (fn_710117adc0). The end is reread after each call.
+#include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGuiRoot.h"
 #include "types.h"

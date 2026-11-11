@@ -2,6 +2,7 @@
 // CCharClassMeleeTrack (fn_7100d1ab58; through its animation component at +0x220). Names
 // and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CMeleeComponent.h"
 #include "game/UnkAnimationComponent.h"
 
 struct UnkMeleeOwner {

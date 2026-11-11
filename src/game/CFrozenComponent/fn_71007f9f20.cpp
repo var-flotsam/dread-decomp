@@ -4,6 +4,7 @@
 // its animation component at +0x220) is playing a CCharClassIgnoreRecoveryFrozenTrack. Names and
 // layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CFrozenComponent.h"
 #include "game/UnkAnimationComponent.h"
 
 struct UnkFrozenState {

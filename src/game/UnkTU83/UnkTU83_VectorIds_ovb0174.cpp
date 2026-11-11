@@ -22,6 +22,7 @@
 #include "base/reflection/UnkReflConverter.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CBlackboard.h"
+#include "game/UnkTU83.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 

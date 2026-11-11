@@ -5,6 +5,7 @@
 // continues with fn_71002addd4.
 #include "base/UnkDestructors.h"
 #include "game/UnkNavMeshPath.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
 void fn_71002aeb9c(void* set, void* item);

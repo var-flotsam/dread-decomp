@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2565.h"
+#include "game/UnkTU2566.h"
 #include "types.h"
 
 const base::global::CStrId* fn_7100de9bf8(UnkGameManager* self);

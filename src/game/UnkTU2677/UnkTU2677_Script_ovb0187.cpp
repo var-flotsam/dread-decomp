@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "../../../lib/lua/lua.h"
+#include "game/UnkTU2677.h"
 #include "types.h"
 
 s32 fn_71010c02f0(lua_State* L, s32 mode, bool flag, const char* fmt, va_list args);

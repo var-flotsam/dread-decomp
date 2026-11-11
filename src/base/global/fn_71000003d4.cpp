@@ -6,6 +6,7 @@
 #include "base/global/CFilePathStrId.h"  // g_unk_710162e2ed: the empty string passed when a CRntString has no text
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU0.h"
 
 using base::global::CRntString;
 using base::global::UnkStrIdBase;

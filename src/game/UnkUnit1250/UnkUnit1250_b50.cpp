@@ -4,6 +4,7 @@
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CNavMeshItemComponent.h"
+#include "game/CQuarentineDoorComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkTU372.h"

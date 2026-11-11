@@ -1,6 +1,7 @@
 // Unregisters an id: unless forced, a locked id is refused; otherwise any running entries for it
 // are stopped (fn_7100f011c4) and its registration node is removed. Returns false if not found.
 #include "base/UnkVector.h"
+#include "game/UnkTU2578.h"
 #include "game/UnkTU324.h"
 #include "game/UnkTU58.h"
 #include "types.h"

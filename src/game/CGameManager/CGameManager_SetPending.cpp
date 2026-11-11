@@ -3,6 +3,7 @@
 // +0x780. Names and layouts are placeholders.
 #include "base/UnkDefaultAllocator.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 struct UnkGameManagerPendingBlock;

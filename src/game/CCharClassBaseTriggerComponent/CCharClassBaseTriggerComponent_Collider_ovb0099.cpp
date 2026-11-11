@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CCharClassActivatableComponent.h"
+#include "game/CCharClassBaseTriggerComponent.h"
 #include "game/CComponent.h"
 #include "game/CDemolitionBlockComponent.h"
 #include "game/UnkBroadphaseObject.h"

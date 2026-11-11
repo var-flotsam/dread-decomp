@@ -1,5 +1,6 @@
 // In the CPullableGrapplePointComponent unit: adds (fn_7100d7c828) or removes (fn_7100d7c94c) one
 // timeline id on the actor (+0x30). Names and layouts are placeholders.
+#include "game/CPullableGrapplePointComponent.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 

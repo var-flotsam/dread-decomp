@@ -1,5 +1,6 @@
 // CActionSet's unit (unit 1729 of tools/tu_map.py, the name from reflection): the lookup in its hash
 // map of actions keyed by two hashes. Names and layouts are placeholders.
+#include "game/CActionSet.h"
 #include "types.h"
 
 // A node: the two keys, the value from +0x10 and the next node in the bucket at +0x1e0.

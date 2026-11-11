@@ -2,6 +2,7 @@
 // with an id taken from the description at field_0x0, then releases the path id at field_0x8.
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "game/CStandaloneFXComponent.h"
 #include "types.h"
 
 #include "game/UnkModelManager.h"

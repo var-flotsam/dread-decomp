@@ -7,6 +7,7 @@
 #include "base/UnkCollectionIter.h"
 #include "base/UnkFreedVectorPair.h"
 #include "base/UnkKeyedStrIds.h"
+#include "base/UnkStrIdTable.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/CGameBlackboard.h"

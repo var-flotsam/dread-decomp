@@ -3,6 +3,7 @@
 // starts the entry at +0x157f0 on it (fn_7101134420, with -1 and no options). Names and layouts are
 // placeholders.
 #include "game/CAIAttackComponent.h"
+#include "game/CChozoCommanderAIComponent.h"
 #include "types.h"
 
 struct UnkCommanderPlayer_b67a2 {

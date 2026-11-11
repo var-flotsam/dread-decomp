@@ -1,3 +1,4 @@
+#include "game/CCharClassBaseDamageTriggerComponent.h"
 #include "types.h"
 
 struct UnkRequest;

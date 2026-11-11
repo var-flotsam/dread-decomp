@@ -12,6 +12,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityShinespark.h"
+#include "game/CBreakableTileGroup.h"
 #include "game/CGrabComponent.h"
 #include "game/UnkTU108.h"
 #include "game/UnkTU109.h"

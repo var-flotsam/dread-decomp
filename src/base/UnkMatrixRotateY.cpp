@@ -5,6 +5,7 @@
 #include <math.h>
 
 #include "base/UnkMatrix44.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 

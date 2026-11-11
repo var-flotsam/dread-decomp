@@ -2,6 +2,7 @@
 // new state, refreshes a block of values from the object's description, notifies itself through
 // a virtual hook, and mirrors the flag into the description.
 #include "engine/scene/UnkToggle.h"
+#include "game/UnkTU290.h"
 
 void fn_710020c8ac(UnkToggle* self, bool value) {
     if (value == self->flag_0xf9)

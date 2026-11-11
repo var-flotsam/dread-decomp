@@ -1,6 +1,7 @@
 // Constructs an object holding three chained hash maps (and a zeroed counter after the first),
 // each starting with 11 empty buckets.
 #include "base/UnkChainedMap.h"
+#include "game/UnkTU2560.h"
 #include "types.h"
 
 // A chained map (base/UnkChainedMap.h) that starts with 11 empty buckets.

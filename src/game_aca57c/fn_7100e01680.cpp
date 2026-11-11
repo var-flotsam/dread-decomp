@@ -4,6 +4,7 @@
 #include "../game_s7/UnkPropBagS7.h"
 #include "base/global/CRntString.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 
 using namespace unk_prop_bag;
 

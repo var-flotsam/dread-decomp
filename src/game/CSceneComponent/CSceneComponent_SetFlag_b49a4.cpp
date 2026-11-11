@@ -1,5 +1,6 @@
 // CSceneComponent unit (tools/tu_map.py): stores a flag at +0x44 when it changes and, when the
 // owner's byte at +0x1b3 is set, forwards it to the virtual at +0x168. Names are placeholders.
+#include "game/CSceneComponent.h"
 #include "types.h"
 
 struct UnkSceneOwner_b49a4 {

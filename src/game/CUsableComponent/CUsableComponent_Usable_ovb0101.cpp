@@ -13,6 +13,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CBlackboard.h"
 #include "game/CReserveTankInfo.h"
+#include "game/CUsableComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"

@@ -2,6 +2,7 @@
 // looked up by name hash, or 0 when there is no such entry, track or action. The action getter is
 // called twice, once for the test and once for the value, as in the original.
 #include "game/CActionSet.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 

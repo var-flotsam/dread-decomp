@@ -5,6 +5,7 @@
 // +0x318367b is set. Holds fn_7100147960 and fn_71001479dc.
 #include "base/math/CVector.h"
 #include "game/UnkGlobal_710b372a98.h"
+#include "game/UnkTU135.h"
 #include "types.h"
 
 using base::math::CVector2D;

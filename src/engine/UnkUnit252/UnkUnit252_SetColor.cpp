@@ -4,6 +4,7 @@
 // and layouts are placeholders.
 #include "base/color/CColor4F.h"
 #include "base/math/CVector4D.h"
+#include "game/UnkTU252.h"
 #include "types.h"
 
 using base::math::CVector4D;

@@ -2,6 +2,7 @@
 // each of its two sound handles (+0xa8, +0xb8) that still names a live sound has the owner entity (+0xc8) stop it
 // (fn_7100d7c510, no fade) and empties the handle. Names and layouts are placeholders.
 #include "game/UnkTU101.h"
+#include "game/UnkTU1323.h"
 #include "game/UnkTU2523.h"
 #include "types.h"
 

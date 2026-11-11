@@ -3,8 +3,10 @@
 #include <ctype.h>
 #include <string.h>
 
+#include "base/UnkNamedRegistry.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU57.h"
 
 using base::global::CRntString;
 

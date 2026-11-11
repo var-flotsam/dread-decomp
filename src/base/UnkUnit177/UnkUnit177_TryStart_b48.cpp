@@ -2,6 +2,7 @@
 // are active (+0x1c and +0x10), runs fn_7100161250 and fn_7100159ce0 and returns true. Names
 // and layouts are placeholders.
 #include "game/UnkTU174.h"
+#include "game/UnkTU177.h"
 #include "types.h"
 
 struct UnkUnit182Singleton {

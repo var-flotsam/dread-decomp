@@ -1,6 +1,7 @@
 // CAudioComponent unit (tools/tu_map.py, the name from reflection): the sound handle of the entry
 // (0xd0 bytes each, array at +0x48, count at +0x50) whose key at +0x28 equals *key, or the empty
 // handle. Names and layouts are placeholders.
+#include "game/CAudioComponent.h"
 #include "game/UnkTU101.h"
 #include "types.h"
 

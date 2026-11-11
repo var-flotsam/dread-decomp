@@ -6,6 +6,7 @@
 
 #include "base/UnkChainedMap.h"
 #include "base/UnkCloneHelpers.h"
+#include "game/UnkTU2669.h"
 
 struct UnkPooledChainedMap {
     UnkChainedMap map;

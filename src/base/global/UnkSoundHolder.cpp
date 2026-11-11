@@ -2,6 +2,7 @@
 // singleton g_unk_7101d47340 that the engine start-up, the per-frame update and the in-game menu
 // create (src/engine/UnkEngineStart.cpp; src/game/GUI/CIngameMenu/fn_7100b2de48.cpp names its first
 // word, a sound group). Everything is cleared and the flag at +0x40 set. The layout is a placeholder.
+#include "game/nn/time.h"
 #include "types.h"
 
 struct UnkSoundHolder;

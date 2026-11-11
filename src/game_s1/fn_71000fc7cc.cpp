@@ -3,6 +3,7 @@
 // linked at 0x30 and destroyed by fn_710007ecd4 alone).
 #include "base/UnkNodeOwner.h"
 #include "base/file/nx/CDeviceNX.h"
+#include "game/UnkTU99.h"
 
 void fn_71000fc7cc(UnkNodeOwner<UnkListNode<0x148>, UnkDestroyStrNode<0x148>>* self) {
     self->Destroy(g_unk_7101a1bcd0, g_unk_7101a1bcf0);

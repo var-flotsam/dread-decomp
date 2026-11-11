@@ -6,6 +6,7 @@
 #include "base/UnkVector.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkTU2702.h"
+#include "game/UnkTU357.h"
 #include "types.h"
 
 struct UnkEntry_7100286798 {

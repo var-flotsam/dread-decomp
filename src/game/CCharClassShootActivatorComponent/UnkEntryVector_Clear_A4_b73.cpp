@@ -8,6 +8,7 @@
 #include "base/UnkRefHandle.h"
 #include "game/CBeamBoxComponent.h"
 #include "game/CCentralUnitAIComponent.h"
+#include "game/CCharClassShootActivatorComponent.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 

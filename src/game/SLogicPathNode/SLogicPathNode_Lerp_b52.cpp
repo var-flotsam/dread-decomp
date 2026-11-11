@@ -1,6 +1,7 @@
 // SLogicPathNode unit (unit 2657 of tools/tu_map.py): a point along a list of 0x20-byte nodes whose
 // fourth virtual (+0x18) gives the node's position. Names and layouts are placeholders.
 #include "base/math/CVector.h"
+#include "game/SLogicPathNode.h"
 #include "types.h"
 
 using base::math::CVector3D;

@@ -7,6 +7,7 @@
 #include "../../lib/lua/lua.h"
 #include "../../lib/lua/lauxlib.h"
 #include "base/math/CVector.h"
+#include "game/UnkTU2677.h"
 #include "types.h"
 
 extern lua_State* g_unk_7172a01d18;

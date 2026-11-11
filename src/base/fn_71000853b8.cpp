@@ -1,4 +1,5 @@
 #include "base/UnkHashMap.h"
+#include "base/file/CFileCacheDevice.h"
 char** fn_7100085afc(char* set, u32 index);
 void fn_7100085478(char* set);
 struct UnkTag_71000853b8;

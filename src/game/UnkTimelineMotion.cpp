@@ -8,6 +8,7 @@
 // Holds fn_7100b8b3bc.
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/UnkTU1728.h"
 #include "types.h"
 
 // A timeline event (base::global::timeline; as src/game/CCutscene.cpp's): its class, then the

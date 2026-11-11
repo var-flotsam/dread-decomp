@@ -3,6 +3,7 @@
 // at the first element or one past the last, its cached value re-pointed by the iterator's sync
 // function), Reserve, Truncate, Erase and Insert of a moved element.
 #include "game/UnkCallbackSetVector.h"
+#include "game/UnkCallbackSetVectorFwd.h"
 
 // Three copies (one per array type), each with its own sync function. End's braces matter: they
 // evaluate the count before the data, as the original does.

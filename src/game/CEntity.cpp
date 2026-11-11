@@ -10,6 +10,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU2517.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkTU365.h"
 #include "types.h"
 

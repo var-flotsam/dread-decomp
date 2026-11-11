@@ -2,6 +2,7 @@
 // placeholders.
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU1632.h"
 #include "types.h"
 
 using base::global::CRntString;

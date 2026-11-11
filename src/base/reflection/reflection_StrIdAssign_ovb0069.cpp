@@ -2,6 +2,7 @@
 // type at +0x8), checked to be a string id (refl_GetType<base::global::CStrId>, fn_7100009658). Names and
 // layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
