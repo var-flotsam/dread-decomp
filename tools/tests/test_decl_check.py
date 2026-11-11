@@ -50,5 +50,39 @@ class Counting(unittest.TestCase):
         self.assertEqual(r.counts()["declared"], 2)
 
 
+class Definitions(unittest.TestCase):
+    def mismatches(self, files):
+        return {s: v[0] for s, v in decl_check.definition_mismatches(files, decl_check.Report(files)).items()}
+
+    def test_call_shape(self):
+        self.assertEqual(decl_check.call_shape("u32 fn_7100000100(UnkA*, const UnkB&, bool, f32, UnkC, ...)", "fn_7100000100"),
+                         ("i32", ("pointer", "pointer", "bool", "f32", "by value", "...")))
+        self.assertEqual(decl_check.call_shape("void fn_7100000100()", "fn_7100000100"), ("void", ()))
+        self.assertIsNone(decl_check.call_shape('void Ctor(void*) asm("fn_7100000100")', "fn_7100000100"))
+
+    def test_a_definition_is_compared_with_the_declarations_of_other_files(self):
+        files = {
+            "include/game/A.h": "struct UnkA;\nu32 fn_7100000110(UnkA* self, u32 kind);\nvoid fn_7100000120(UnkA*);\n"
+                                "void fn_7100000130(UnkA*, u32);\nvoid fn_7100000140(void*, u32);\n"
+                                "void fn_7100000150(int);\n",
+            "src/game/a.cpp": "struct UnkLocal;\n"
+                              "void fn_7100000110(UnkLocal* self, u32 kind) {\n}\n"          # void, declared u32
+                              "void fn_7100000120(UnkLocal* self) {\n}\n"                    # another struct name: same call
+                              "void fn_7100000130(UnkLocal* self) {\n}\n"                    # a parameter short
+                              "void fn_7100000140(void* self, void* context) {\n}\n"         # a pointer for a u32
+                              "static void fn_7100000150(long a) {\n}\n"                     # internal linkage: not compared
+                              "void fn_7100000160(int) {\n}\n",                              # nobody declares it
+        }
+        self.assertEqual(self.mismatches(files), {
+            "fn_7100000110": "one returns a value, the other is void",
+            "fn_7100000130": "the number of parameters",
+            "fn_7100000140": "a parameter's class",
+        })
+
+    def test_the_definition_gets_its_line(self):
+        found = decl_check.definitions("// a comment\n\nbool fn_7100000170(const char* name,\n    u32 n) {\n    return n;\n}\n", "src/x.cpp")
+        self.assertEqual([(d.name, d.signature, d.line) for d in found], [("fn_7100000170", "bool fn_7100000170(const char*, u32)", 3)])
+
+
 if __name__ == "__main__":
     unittest.main()
