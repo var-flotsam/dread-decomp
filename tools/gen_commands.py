@@ -21,7 +21,8 @@ OUT = ROOT / "docs" / "commands.md"
 # Group of each tool, in the order a new clone needs them. A tool not listed lands in "Other",
 # which the check reports, so a new tool gets a group when it is added.
 GROUPS: list[tuple[str, list[str]]] = [
-    ("Setup and the dump", ["setup", "verify_dump", "nso2elf", "fetch_toolchains", "fetch_sources", "build_libvpx"]),
+    ("Setup and the dump", ["setup", "verify_dump", "nso2elf", "fetch_toolchains", "fetch_sources", "build_libvpx",
+                            "worktree_setup"]),
     ("Reconnaissance", ["recon/run", "ghidra/analyze", "ghidra/export", "ghidra/decompile", "gen_functions_csv",
                         "sigmatch", "tu_map", "callgraph", "abi_facts", "compiler_matrix", "libcheck_lua"]),
     ("Generators (maintenance)", ["gen_reflection", "gen_types", "gen_statics", "gen_clones", "gen_tables",

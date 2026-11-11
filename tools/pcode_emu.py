@@ -359,9 +359,20 @@ class LiftObject:
     words: set = field(default_factory=set)
 
 
-def load_object(path, resolve, demangled: dict[str, str]) -> LiftObject:
+def load_object(path, resolve, demangled: dict[str, str], anchor=None) -> LiftObject:
     """Lay out every allocatable section of an AArch64 ELF object (text first, then data), apply
-    its relocations, and resolve undefined symbols with `resolve(demangled name) -> address`."""
+    its relocations, and resolve undefined symbols with `resolve(demangled name) -> address`.
+
+    `anchor`, for an object whose own data and functions stand for the original's (a hand-written
+    source; a lift names the original's addresses itself): asked for every relocation against
+    something the object defines, `anchor(symbol, section, offset, kind)` with the mangled name of
+    the symbol referred to (None for an unnamed place in a section, a string literal say), its
+    ELF section, the offset within the symbol (within the section when unnamed) and the symbol's
+    type ("STT_FUNC", "STT_OBJECT", ...). It returns the address in the original image that place
+    stands for, None to keep the object's own copy, or False when the place must be the
+    original's and its address is not known: that relocation is then listed in `unresolved`, so
+    the function containing it is inconclusive. A reference from a function into itself, or to
+    the middle of a function (a jump table's), is never asked about: it stays the object's own."""
     lo = LiftObject()
     with open(path, "rb") as fh:
         elf = ELFFile(fh)
@@ -409,6 +420,24 @@ def load_object(path, resolve, demangled: dict[str, str]) -> LiftObject:
                     lo.functions[int(m[3:], 16)] = (sym_addr[-1], s["st_size"])
             if s.name.startswith("_ZGV") and isinstance(sh, int) and sh in place:
                 lo.guards.append(sym_addr[-1])
+        # Named symbols by section, to name what a section-relative reference points at (anchor).
+        named: dict[int, list] = {}
+        if anchor is not None:
+            for s in syms:
+                sh = s["st_shndx"]
+                if isinstance(sh, int) and sh in place and s.name and not s.name.startswith("$") \
+                        and s["st_info"]["type"] != "STT_SECTION":
+                    named.setdefault(sh, []).append((s["st_value"], max(s["st_size"], 1), s.name, s["st_info"]["type"]))
+
+        def covering(sh: int, off: int) -> tuple:
+            """(symbol, offset within it, type) of the named symbol covering `off` in section `sh`,
+            (None, off, None) when none does. A function is preferred to a label inside it."""
+            best = None
+            for value, size, name, kind in named.get(sh, ()):
+                if value <= off < value + size and (best is None or kind == "STT_FUNC"):
+                    best = (name, off - value, kind)
+            return best or (None, off, None)
+
         got: dict[int, int] = {}
         got_base = (addr + 15) & ~15
         got_words: list[int] = []
@@ -432,6 +461,21 @@ def load_object(path, resolve, demangled: dict[str, str]) -> LiftObject:
                     lo.unresolved.setdefault(P, []).append(demangled.get(s.name, s.name))
                     continue
                 v = S + r["r_addend"]
+                sh = s["st_shndx"]
+                if anchor is not None and isinstance(sh, int) and sh in place:
+                    if s["st_info"]["type"] == "STT_SECTION":
+                        name, off, kind = covering(sh, r["r_addend"])
+                    else:
+                        name, off, kind = s.name, r["r_addend"], s["st_info"]["type"]
+                    here = covering(rs["sh_info"], r["r_offset"])[0]
+                    if not (kind == "STT_FUNC" and (name == here or off != 0)):
+                        there = anchor(name, all_secs[sh], off, kind)
+                        if there is False:
+                            what = demangled.get(name, name) if name else f"{all_secs[sh].name}+{off:#x}"
+                            lo.unresolved.setdefault(P, []).append(f"{what} (no address in the original)")
+                            continue
+                        if there is not None:
+                            v = there
                 ins = struct.unpack_from("<I", buf, o)[0] if o + 4 <= len(buf) else 0
                 if t in (282, 283):  # JUMP26, CALL26: the target is kept aside (it may be far)
                     lo.branch[P] = v
@@ -653,6 +697,7 @@ class Machine:
         self.steps = 0
         self.scale = 1  # MAX_STEPS, MAX_EVENTS and MAX_SNAPSHOT times this (port_lift raises it to retry a cut-off run)
         self.visited: set[int] = set()
+        self.outcomes: set[tuple[int, bool]] = set()  # (address of a conditional branch, taken)
         for a, v in preset.items():
             self.store(a, 1, v, track=False)
         self.own = lift.data if lift else (0, 0)
@@ -1360,6 +1405,11 @@ class Machine:
                     # tail call is the same word before its relocation, lift.branch.)
                     self.finish("hang")
                     return
+                if (w & 0xFF000010) == 0x54000000 or (w & 0x7C000000) == 0x34000000:
+                    # Which way each conditional branch went (b.cond, cbz/cbnz, tbz/tbnz): for a caller
+                    # that wants both ways of every branch run before it trusts an agreement, as
+                    # `visited` says which instructions ran.
+                    self.outcomes.add((pc, kind == "jump"))
                 if ((w & 0xFF000010) == 0x54000000 or (w & 0x7C000000) == 0x34000000) \
                         and (kind != "jump" or self.inside(target)):
                     # b.cond, cbz/cbnz/tbz/tbnz within the function: what was written for an unknown

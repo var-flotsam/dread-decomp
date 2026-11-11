@@ -59,6 +59,17 @@ Build libvpx's VP9 decoder as a static library for the port's movie runtime.
 python tools/build_libvpx.py --print-dir [--target T]                    # where the build goes
 ```
 
+### `tools/worktree_setup.py`
+
+Give a git worktree the local, untracked inputs the tools need, from the checkout this runs in.
+
+```sh
+python tools/worktree_setup.py ../dread-decomp-topic --new claude/topic   # git worktree add -b <branch> <path> origin/main, then set it up
+python tools/worktree_setup.py ../dread-decomp-topic                      # set up a worktree that exists
+python tools/worktree_setup.py ../dread-decomp-topic --oracle             # also the oracle's caches
+python tools/worktree_setup.py ../dread-decomp-topic --check              # only report; exit 1 if something is missing
+```
+
 ## Reconnaissance
 
 ### `tools/recon/run.py`
