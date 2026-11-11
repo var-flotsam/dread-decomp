@@ -61,8 +61,8 @@ they already own. Hand-typed code is the completion metric; lifted code is scaff
 
 **Owner decisions, 2026-11-11** (after the independent maintenance review; `CLAUDE.md`, "Purpose"): the repository is
 public, to get outside help. Decompilation is complete when every function is hand-written, readable and
-byte-matching: generated code, `src/lifted` included, is a stepping stone, and equivalent non-matching code is
-acceptable only for now. A template family (the reflection boilerplate) counts as hand-written once its template
+proven equivalent: a byte match, or a registers-only difference that a machine test confirms (three tiers,
+`CLAUDE.md`); readability outranks a match. Generated code, `src/lifted` included, is a stepping stone. A template family (the reflection boilerplate) counts as hand-written once its template
 reads as source. `nn::atk` is decompiled as its own library (`docs/reference.md`). **Bulk agent runs are on hold**
 until `check.py` compares string and constant contents and class and declaration headers are generated for workers
 to share; `nn::atk` is the exception.

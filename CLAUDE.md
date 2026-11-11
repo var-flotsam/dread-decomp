@@ -25,9 +25,20 @@ generated code verify correctness but do not count toward the goal. The rule tha
 disassembly or decompiler output you need, copy none of it into tracked files.
 
 **Completion (owner, 2026-11-11).** There are two measures. Decompilation is complete when every function
-of the game is hand-written, human-readable and byte-matching; it is measured over all of the game's code
-(`L` excluded). Generated code, `src/lifted` included, is a stepping stone and must eventually be replaced;
-code that is equivalent but does not match (`NON_MATCHING(minor)`) is acceptable only for now. A family
+of the game is hand-written, human-readable and proven equivalent to the original; it is measured over all
+of the game's code (`L` excluded). Generated code, `src/lifted` included, is a stepping stone and must
+eventually be replaced. The proof has tiers:
+1. *Matching.* A byte match, tried first for every function and still the direction for all of them.
+2. *Verified equivalent.* The difference from the original is in register choice or instruction order only
+   (`trymatch.py`'s `KIND` line says registers), and a machine test runs the original and ours on the same
+   inputs with the same writes and calls. It counts as done; a permuter, not model attempts, turns it into
+   a match later.
+3. *Unverified.* Anything else that does not match. It does not count.
+
+Readability outranks a match: when a function matches only with a union around a member, an empty barrier
+or an inlining attribute, commit the readable version as tier 2 instead. Both figures, matching and done,
+are reported side by side. The machine test for hand-written functions and the permuter do not exist yet;
+until the test does, every `NON_MATCHING` function is tier 3. A family
 stamped out of one template or macro (the reflection boilerplate) counts as hand-written once the template
 reads as source: no `fn_<addr>` or `Unk` names in its interface, each use names the class and its members
 with no addresses, and a field takes one line. Today's reflection templates do not meet that yet. The port

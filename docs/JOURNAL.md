@@ -164,10 +164,15 @@ over 600 bytes. Its report is outside the repository. Findings to know when work
 - Hand-written `.cpp` files define 18,992 structs, 10,952 with a batch id in the name, against 418 in `include/`;
   copies of declarations went from 4,874 to 9,308 between 2026-11-09 and 11-11 while `decl_check --base` passed.
 - The owner decided: the repository is public on purpose; decompilation is complete when every function is
-  hand-written, readable and byte-matching, with generated and equivalent code as stepping stones; a template family
+  hand-written, readable and proven equivalent, by a byte match or by a registers-only difference that a machine test
+  confirms (three tiers; readability outranks a match), with generated code as a stepping stone; a template family
   counts once its template reads as source; `nn::atk` is decompiled (#353); bulk agent runs are on hold until the
   content check and generated class and declaration headers exist (`CLAUDE.md`, "Purpose"; `docs/HANDOFF.md`,
   "Direction").
+- A measurement behind the tiers: of 202 kept near-miss drafts for functions still `U`, 99 differ from the
+  original in register choice or instruction order only (median 3 instructions) and 17 in compare or branch form
+  only; 27 differ in control flow, most of them the large-function drafts. Four match as they are and were never
+  merged (`fn_7100ad3404`, `fn_7100df31b8`, `fn_7100df81fc`, `fn_7100eeaed0`).
 
 **Barrier convention (2026-11-10).** The owner allowed the empty memory barrier `asm volatile("" ::: "memory")`
 next to the register form `asm("" : "+r"(x))`, which until now was the only one named. 23 files already used the memory
