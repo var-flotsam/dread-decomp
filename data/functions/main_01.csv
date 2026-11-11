@@ -3393,7 +3393,7 @@ address,size,name,name_source,subsystem,status
 0x71001a7310,256,fn_71001a7310,unknown,unknown,U
 0x71001a7410,700,fn_71001a7410,unknown,unknown,U
 0x71001a76cc,216,fn_71001a76cc,unknown,unknown,O
-0x71001a77a4,648,fn_71001a77a4,unknown,unknown,U
+0x71001a77a4,648,fn_71001a77a4,unknown,unknown,O
 0x71001a7a2c,464,fn_71001a7a2c,unknown,unknown,O
 0x71001a7bfc,460,fn_71001a7bfc,unknown,unknown,O
 0x71001a7dc8,392,fn_71001a7dc8,unknown,unknown,O
