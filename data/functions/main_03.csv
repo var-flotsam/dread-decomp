@@ -1192,7 +1192,7 @@ address,size,name,name_source,subsystem,status
 0x710035e544,60,fn_710035e544,unknown,unknown,O
 0x710035e580,64,fn_710035e580,unknown,unknown,O
 0x710035e5c0,56,fn_710035e5c0,unknown,unknown,O
-0x710035e5f8,736,fn_710035e5f8,unknown,unknown,U
+0x710035e5f8,736,fn_710035e5f8,unknown,unknown,m
 0x710035e8d8,2416,fn_710035e8d8,unknown,unknown,m
 0x710035f248,696,fn_710035f248,unknown,unknown,U
 0x710035f500,524,fn_710035f500,unknown,unknown,O
