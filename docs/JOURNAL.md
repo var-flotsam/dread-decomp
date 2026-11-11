@@ -152,6 +152,14 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**`nn::atk` will be decompiled (owner, 2026-11-11).** After the independent maintenance review, the owner reversed
+the decision that `nn::atk` stays undecompiled and closed `docs/PORT_PLAN.md` decision 4 (lift or replace): it is
+decompiled as its own library, and the port writes `nn::audio` over a PC mixer. `docs/reference.md` ("Decisions
+made") has the reasons and the size: 1,152 `L` functions, 0.17 MB, median 68 bytes, 280 named from RTTI or symbols,
+188 called directly from game code. In the same address range 229 functions are already `O` and 63 are `U`, and
+`src/atk_id/` already holds batch files for the library, so part of the work is giving what exists a home. Nothing
+in `src/`, `tools/` or the statuses changes in this entry's pull request.
+
 **Barrier convention (2026-11-10).** The owner allowed the empty memory barrier `asm volatile("" ::: "memory")`
 next to the register form `asm("" : "+r"(x))`, which until now was the only one named. 23 files already used the memory
 form, and #344's fn_71010d78e4 matched with it. Neither form emits an instruction or changes behaviour, and the
