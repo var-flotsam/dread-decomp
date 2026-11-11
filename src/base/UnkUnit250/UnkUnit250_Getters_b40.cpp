@@ -12,7 +12,7 @@ struct UnkRntVector250 {
 
     T& operator[](u32 i) {
         if (size <= i)
-            __assert_fail("i < m_iSize", "..\Base/global/RntVector.h", 0x15b, "operator[]");
+            __assert_fail("i < m_iSize", "..\\Base/global/RntVector.h", 0x15b, "operator[]");
         return data[i];
     }
 };

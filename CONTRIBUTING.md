@@ -89,6 +89,7 @@ Dump the base game and the 2.1.0 update from your own console. Then import and v
 .venv/Scripts/python tools/setup.py --version 2.1.0 --exefs <your exefs dir> --romfs <your romfs dir>
 .venv/Scripts/python tools/verify_dump.py --version 2.1.0
 .venv/Scripts/python tools/nso2elf.py orig/2.1.0/exefs/main orig/2.1.0/main.elf
+.venv/Scripts/python tools/recon/run.py --version 2.1.0     # build/recon/2.1.0: the function bounds check.py diffs against
 .venv/Scripts/python tools/check.py --version 2.1.0
 ```
 

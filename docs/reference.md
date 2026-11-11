@@ -33,7 +33,7 @@ tools/sigmatch.py                names vendored-library functions in main -> dat
 tools/gen_reflection.py, refl_attrs.py, gen_types.py, gen_statics.py, gen_clones.py, gen_tables.py, gen_lift.py
                                  generators (maintenance); regenerate, never hand-edit their output
 tools/policy_check.py, hooks/    content rules (CI and pre-commit)
-.github/                         CI: policy + decl_check (hosted); check-local.yml (self-hosted check.py, inert until enabled)
+.github/                         CI: policy + decl_check, compile + tool tests (hosted); check-local.yml (self-hosted check.py, enabled: "Known issues")
 src/compiler_id/, flag_id/, atk_id/   Phase 3 samples (frozen)
 src/reflection/, reflection_types/, reflection_statics/, clones/, lifted/, tables/   GENERATED
 src/base/                        hand-written engine code: string ids, pool, CRC64, allocator, reflected functions

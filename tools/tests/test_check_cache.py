@@ -42,8 +42,10 @@ class FakeOriginal:
 class Depfile(unittest.TestCase):
     def test_posix(self):
         text = "/b/x.o: /s/x.cpp /i/a.h \\\n  /i/with\\ space.h /i/hash\\#.h /i/dollar$$.h\n"
-        self.assertEqual(check.depfile_inputs(text),
-                         ["/s/x.cpp", "/i/a.h", "/i/with space.h", "/i/hash#.h", "/i/dollar$.h"])
+        # abspath is patched as below: on Windows it would put the current drive before a POSIX path.
+        with mock.patch.object(check.os.path, "abspath", lambda p: p):
+            self.assertEqual(check.depfile_inputs(text),
+                             ["/s/x.cpp", "/i/a.h", "/i/with space.h", "/i/hash#.h", "/i/dollar$.h"])
 
     def test_windows_target_and_backslashes(self):
         # A drive letter's colon is not the rule's separator; path backslashes stay.
