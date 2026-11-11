@@ -168,9 +168,11 @@ Clang 9.0.1 has no arm64 macOS build; the x86_64 build runs under Rosetta 2. Bef
 - `llvm-readelf` isn't in the LLVM Windows build; use `llvm-readobj --elf-output-style=GNU`.
 - Constructors compile to two aliased symbols (C1/C2). `check.py` counts them once (by address);
   objdiff counts both.
-- **Relocation check limits:** section-relative references (switch tables, string literals),
-  conditional branches and unresolved symbols are not checked (about 128,000 relocations), so a
-  wrong string literal is still not caught. A callee with no address is unresolved: write the
+- **Relocation check limits:** the content of string literals and constant-pool entries is compared
+  with the original's since 2026-11-11 (a `RELOC ... string` or `const` line). Still not checked,
+  about 92,000 relocations: unresolved symbols (callees, statics and vtables whose name is not
+  address-based), jump tables and lookup tables outside the constant pool, wide strings, and
+  conditional branches. So a callee declared under a made-up name is not verified. A callee with no address is unresolved: write the
   atexit stub as `fn_7100000250`, not `__cxa_atexit`. Every generator verifies targets itself
   (`asmdiff.diff_object(strict=True)`), so a `RELOC` line in a generated file means a generator
   regression: fix the generator, never the output.

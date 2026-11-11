@@ -137,5 +137,111 @@ class ClassifyTest(unittest.TestCase):
         self.assertEqual(self.kind([adrp, add_lo, ldr_x8_8, RET], [adrp, add_0, ldr_x8_10, RET]), "operations")
 
 
+class MemoryOriginal:
+    """An original whose function loads an address (adrp + lo12) and whose image holds `memory`."""
+
+    def __init__(self, code: bytes, memory: dict[int, bytes], readable: bool = True):
+        self.code, self.memory = code, memory
+        if readable:
+            self.data_at = self._data_at
+
+    def function(self, address: int) -> bytes:
+        return self.code
+
+    def _data_at(self, address: int, size: int):
+        for start, blob in self.memory.items():
+            if start <= address and address + size <= start + len(blob):
+                return blob[address - start:address - start + size]
+        return None
+
+
+@unittest.skipIf(asmdiff is None, "pyelftools not installed")
+class ContentTest(unittest.TestCase):
+    """check_relocs on a string literal and a constant-pool entry: the bytes our object points at must
+    be the bytes at the address the original's adrp + lo12 pair encodes (hand-assembled, no compiler)."""
+
+    ADDRESS = 0x7100001000
+    WHERE = 0x7100003120  # two pages on, +0x120
+    ADRP_0, ADRP_2 = 0x90000000, 0xD0000000  # adrp x0, <this page> / <two pages on>
+    ADD_0, ADD_120 = 0x91000000, 0x91048000  # add x0, x0, #0 / #0x120
+    LDR_0, LDR_120 = 0xFD400000, 0xFD409000  # ldr d0, [x0] / [x0, #0x120]
+
+    def report(self, section, data, memory, lo12=(277, ADD_0, ADD_120), readable=True, pair=True):
+        rtype, ours, theirs = lo12
+        relocs = {0: asmdiff.ObjReloc(275, section, 0, section=True, data=data)}
+        if pair:
+            relocs[4] = asmdiff.ObjReloc(rtype, section, 0, section=True, data=data)
+        res = asmdiff.FunctionResult("fn_7100001000", self.ADDRESS, 12, 12, relocs=relocs)
+        original = MemoryOriginal(_code(self.ADRP_2, theirs, RET), {self.WHERE: memory}, readable)
+        self.assertEqual(len(_code(self.ADRP_0, ours, RET)), 12)
+        return asmdiff.check_relocs(res, original)
+
+    def test_same_string(self):
+        rep = self.report(".rodata.str1.1", b"abc\0", b"abc\0")
+        self.assertEqual((dict(rep.checked), rep.mismatches, dict(rep.unchecked)), ({"string": 1}, [], {}))
+
+    def test_other_string(self):
+        rep = self.report(".rodata.str1.1", b"abc\0", b"abd\0")
+        self.assertEqual([(m.kind, m.actual, m.offset) for m in rep.mismatches], [("string", self.WHERE, 0)])
+        self.assertEqual(asmdiff.format_mismatch(rep.mismatches[0]),
+                         '"abc" -> original "abd"  at 0x7100003120  +0x0  string')
+
+    def test_longer_original_string(self):
+        # The terminator is part of the comparison: ".bcpt" is not ".bcptl".
+        rep = self.report(".rodata.str1.1", b"x.bcpt\0", b"x.bcptl\0")
+        self.assertEqual(len(rep.mismatches), 1)
+        self.assertIn('"x.bcpt" -> original "x.bcptl"...', asmdiff.format_mismatch(rep.mismatches[0]))
+
+    def test_constant(self):
+        ldr = (286, self.LDR_0, self.LDR_120)
+        one, two = struct.pack("<d", 1.0), struct.pack("<d", 2.0)
+        self.assertEqual(dict(self.report(".rodata.cst8", one, one, ldr).checked), {"const": 1})
+        rep = self.report(".rodata.cst8", one, two, ldr)
+        self.assertEqual([m.kind for m in rep.mismatches], ["const"])
+        self.assertIn(f"{one.hex()} -> original {two.hex()}", asmdiff.format_mismatch(rep.mismatches[0]))
+
+    def test_outside_the_image(self):
+        original = self.report(".rodata.str1.1", b"abc\0", b"")
+        self.assertIn("nothing (outside the image)", asmdiff.format_mismatch(original.mismatches[0]))
+
+    def test_unchecked_without_content_image_or_pair(self):
+        # A reference with no captured bytes (a jump table, a wide string), an original that cannot
+        # be read (the generators' test stand-ins), and a page load with no lo12 half.
+        for kwargs in ({"data": None}, {"readable": False}, {"pair": False}):
+            args = {"section": ".rodata.str1.1", "data": b"abc\0", "memory": b"abd\0", **kwargs}
+            rep = self.report(**args)
+            self.assertEqual((dict(rep.checked), rep.mismatches, dict(rep.unchecked)), ({}, [], {"string": 1}), kwargs)
+        rep = self.report(".rodata", None, b"")
+        self.assertEqual(dict(rep.unchecked), {"section": 1})
+
+
+CONTENT_FIXTURE = """
+extern "C" const char* fn_7100000300() { return "hello"; }
+extern "C" int fn_7100000400(int x) {
+    switch (x) { case 0: return 7; case 1: return 5; case 2: return 1; case 3: return 6; }
+    return 0;
+}
+"""
+
+
+@unittest.skipUnless(asmdiff and fetch_toolchains.clang_path(buildcfg.COMPILER).is_file(),
+                     "needs the project compiler and pyelftools")
+class ObjectContent(unittest.TestCase):
+    """read_object records the bytes a string or constant-pool reference points at."""
+
+    def test_pointed_at_bytes(self):
+        import subprocess
+        d = Path(tempfile.mkdtemp())
+        src, obj = d / "content.cpp", d / "content.o"
+        src.write_text(CONTENT_FIXTURE, encoding="utf-8")
+        subprocess.run(buildcfg.cxx_command(src, obj), check=True)
+        fns = {f.symbol: f for f in asmdiff.read_object(obj)}
+        string = {r.data for r in fns["fn_7100000300"].relocs.values()}
+        self.assertEqual(string, {b"hello\0"})
+        # A four-entry switch becomes a 16-byte lookup table in the constant pool.
+        table = {r.data for r in fns["fn_7100000400"].relocs.values()}
+        self.assertEqual(table, {struct.pack("<4i", 7, 5, 1, 6)})
+
+
 if __name__ == "__main__":
     unittest.main()
