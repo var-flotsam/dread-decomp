@@ -1,22 +1,26 @@
 #!/usr/bin/env python3
-"""Plan the move of shared function declarations into one header per translation unit.
+"""Plan the move of shared declarations into one header per translation unit.
 
-A function that several hand-written files call was declared in each of them (9,309 copies beyond the
-first on 2026-11-11). This finds the ones whose move is mechanical, names a header for each by the unit
-the function belongs to (tools/tu_map.py: `include/game/CFoo.h` for a unit with a class name,
+A function or global that several hand-written files use was declared in each of them (9,309 copies
+beyond the first on 2026-11-11). This finds the ones whose move is mechanical, names a header for each by
+the unit the symbol belongs to (`include/game/CFoo.h` for a unit with a class name,
 `include/game/UnkTU<index>.h` otherwise), and writes the plan tools/hub_migrate.py --plan takes.
-hub_migrate does the edits and keeps a file only when its compiled output is unchanged.
+hub_migrate does the edits and keeps a file only when its compiled output is unchanged. A function's
+unit is the one its address is in (tools/tu_map.py); a global's is the one whose data span holds its
+address (tools/data_map.py, read from data/data_map.csv).
 
-A function is planned when it is declared in more than one file with one signature, at global scope,
-in no header under include/ yet, and its parameter types are builtin or plain structs the declaring
-file forward-declares or defines (those are forward-declared in the header). Left out, and counted:
-globals (they have no unit), signatures that conflict, declarations inside a namespace, signatures
-with namespaced, template or function-pointer types or an asm label, a unit whose header exists
-already, and the symbols listed in --exclude (the ones an earlier run could not move).
+A symbol is planned when it is declared in more than one file with one signature, at global scope, in
+no header under include/ yet, and its types are builtin or plain structs the declaring file
+forward-declares or defines (those are forward-declared in the header). A global's copies must also be
+the same text: the signature leaves attributes out, and a visibility attribute changes the code. Left
+out, and counted: signatures that conflict, declarations inside a namespace, signatures with namespaced,
+template or function-pointer types or an asm label, globals between two units' data spans, global arrays
+of a struct type (an array needs the type's definition), a unit whose header exists and was not made by
+this tool, and the symbols listed in --exclude (the ones an earlier run could not move).
 
 With --write the headers are created (a comment, `types.h`, the forward declarations; hub_migrate
-appends the declarations) and the plan is written in chunks of whole headers, one hub_migrate run each.
-Run it on a clean tree: a header it created counts as existing the next time.
+appends the declarations), a unit header that exists gets the forward declarations it lacks, and the
+plan is written in chunks of whole headers, one hub_migrate run each.
 
 hub_migrate removes a prototype together with the comment at the end of its line, and leaves a comment
 that stood above it. --write therefore also lists what the copies say about each planned function
@@ -41,16 +45,21 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import data_map  # noqa: E402
 import decl_check  # noqa: E402
 import tu_map  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "build" / "decl_plans"
 BUILTIN = frozenset("""void bool char int unsigned signed short long float double const volatile u8 u16 u32 u64
-s8 s16 s32 s64 f32 f64 extern C""".split())
+s8 s16 s32 s64 f32 f64 wchar_t char16_t char32_t extern C""".split())
 TOP_LEVEL = {"base", "engine", "game"}
 NAMED_SOURCES = ("reflection", "init_call", "names", "library")
 IDENT = re.compile(r"[A-Za-z_]\w*")
+ADDRESS = re.compile(r"71[0-9a-f]{8}")
+UNIT_HEADER = "(tools/tu_map.py unit "        # in the comment of a header this tool made
+FUNCTIONS_ONLY = "functions of this translation unit that other files call"
+WITH_GLOBALS = "functions and globals of this translation unit that other files use"
 
 
 @dataclass
@@ -81,13 +90,17 @@ def unit_finder(units: list[dict]):
     return find
 
 
-def plan(report: decl_check.Report, files: dict[str, str], units: list[dict]) -> tuple[list[Planned], Counter]:
-    """(what can move, why the rest of the multiply-declared symbols cannot)."""
+def plan(report: decl_check.Report, files: dict[str, str], units: list[dict],
+         data_unit=None) -> tuple[list[Planned], Counter]:
+    """(what can move, why the rest of the multiply-declared symbols cannot). `data_unit` gives the index of
+    the unit a data address belongs to, or None (data_map.finder); without it no global is planned."""
     find = unit_finder(units)
+    by_index = {str(u["index"]): u for u in units}
     out: list[Planned] = []
     why: Counter = Counter()
     for sym in report.multi:
-        if not sym.startswith("fn_"):
+        is_global = not sym.startswith("fn_")
+        if is_global and data_unit is None:
             why["a global, not a function"] += 1
             continue
         if len(report.sigs[sym]) != 1:
@@ -115,10 +128,25 @@ def plan(report: decl_check.Report, files: dict[str, str], units: list[dict]) ->
         if types is None:
             why["a type that is not a plain struct declared in the file"] += 1
             continue
-        unit = find(int(sym[3:], 16))
-        if unit is None:
-            why["in no unit"] += 1
-            continue
+        if is_global:
+            address = ADDRESS.search(sym)
+            texts = {" ".join(files[d.path].replace("\r\n", "\n")[d.start:d.end].split()) for d in ds}
+            if len(texts) != 1:
+                why["a global whose copies differ in their attributes"] += 1
+                continue
+            if types and "[" in sig and "*" not in sig:
+                why["a global array of a struct type"] += 1
+                continue
+            index = data_unit(int(address.group(0), 16)) if address else None
+            unit = by_index.get(str(index)) if index is not None else None
+            if unit is None:
+                why["a global in no unit's data span"] += 1
+                continue
+        else:
+            unit = find(int(sym[3:], 16))
+            if unit is None:
+                why["in no unit"] += 1
+                continue
         out.append(Planned(sym, f"include/{unit_dir(unit)}.h", " ".join(text[ds[0].start:ds[0].end].split()),
                            len(report.paths[sym]), types, unit))
     out.sort(key=lambda p: (-p.copies, p.symbol))
@@ -157,11 +185,34 @@ def header_text(header: str, mine: list[Planned]) -> str:
     for p in mine:
         types.update(p.types)
     name = header.rsplit("/", 1)[-1][:-2]
+    what = FUNCTIONS_ONLY if all(p.symbol.startswith("fn_") for p in mine) else WITH_GLOBALS
     lines = ["#pragma once", "",
-             f"// {name}: functions of this translation unit that other files call (tools/tu_map.py unit {unit['index']},",
-             f"// {unit['start']}-{unit['end']}). One declaration per function: include this instead of declaring one.",
+             f"// {name}: {what} {UNIT_HEADER}{unit['index']},",
+             f"// {unit['start']}-{unit['end']}). One declaration per symbol: include this instead of declaring one.",
              "// Names and layouts are placeholders.", '#include "types.h"', ""]
     return "\n".join(lines + [f"{k} {t};" for t, k in sorted(types.items())]) + "\n"
+
+
+def extended(text: str, mine: list[Planned]) -> str:
+    """An existing unit header's text with the forward declarations `mine` needs and it lacks."""
+    types: dict[str, str] = {}
+    for p in mine:
+        types.update(p.types)
+    lines = text.replace("\r\n", "\n").split("\n")
+    new = [f"{k} {t};" for t, k in sorted(types.items())
+           if not re.search(rf"^\s*(struct|class|union)\s+{t}\b", text, re.M)]
+    if any(not p.symbol.startswith("fn_") for p in mine):
+        lines = [ln.replace(FUNCTIONS_ONLY, WITH_GLOBALS) for ln in lines]
+    if new:
+        at = lines.index('#include "types.h"') + 1
+        if at < len(lines) and not lines[at].strip():
+            at += 1
+        else:
+            new.insert(0, "")
+        if at < len(lines) and lines[at].strip() and not re.match(r"(struct|class|union)\s+\w+;", lines[at]):
+            new.append("")
+        lines[at:at] = new
+    return "\n".join(lines)
 
 
 def chunks(planned: list[Planned], size: int) -> list[list[Planned]]:
@@ -185,16 +236,18 @@ def main() -> int:
 
     files = decl_check.tree_files(None)
     report = decl_check.Report(files)
-    planned, why = plan(report, files, tu_map.load_map())
+    data_unit = data_map.finder(data_map.load()) if data_map.OUT.is_file() else None
+    planned, why = plan(report, files, tu_map.load_map(), data_unit)
     print(f"{len(report.multi)} symbols declared in more than one file; {len(planned)} can move "
           f"({sum(p.copies for p in planned)} local copies)")
     for k, v in why.most_common():
         print(f"  {v:5}  left out: {k}")
-    existing = sorted({p.header for p in planned if (ROOT / p.header).exists()})
-    if existing:
-        print(f"  {len(existing):5}  headers exist already; their {sum(1 for p in planned if p.header in existing)} "
-              "symbols are left out")
-    planned = [p for p in planned if p.header not in existing]
+    existing = {p.header for p in planned if (ROOT / p.header).exists()}
+    foreign = sorted(h for h in existing if UNIT_HEADER not in (ROOT / h).read_text(encoding="utf-8")[:600])
+    if foreign:
+        print(f"  {len(foreign):5}  headers exist and are not unit headers of this tool; their "
+              f"{sum(1 for p in planned if p.header in foreign)} symbols are left out")
+    planned = [p for p in planned if p.header not in foreign]
     if args.exclude:
         skip = set(args.exclude.read_text(encoding="utf-8").split())
         planned = [p for p in planned if p.symbol not in skip]
@@ -213,13 +266,16 @@ def main() -> int:
     for old in OUT.glob("chunk_*.tsv"):
         old.unlink()
     for h in headers:
+        mine = [p for p in planned if p.header == h]
         (ROOT / h).parent.mkdir(parents=True, exist_ok=True)
-        (ROOT / h).write_bytes(header_text(h, [p for p in planned if p.header == h]).encode("utf-8"))
+        text = extended((ROOT / h).read_text(encoding="utf-8"), mine) if h in existing else header_text(h, mine)
+        (ROOT / h).write_bytes(text.encode("utf-8"))
     parts = chunks(planned, args.chunk)
     for k, part in enumerate(parts, 1):
         text = "".join(f"{p.symbol}\t{p.header}\t{p.declaration}\n" for p in part)
         (OUT / f"chunk_{k}.tsv").write_bytes(text.encode("utf-8"))
-    print(f"{len(headers)} headers created; {len(parts)} plan files in {OUT.relative_to(ROOT).as_posix()}/: "
+    print(f"{len(headers) - len(existing & set(headers))} headers created, {len(existing & set(headers))} extended; "
+          f"{len(parts)} plan files in {OUT.relative_to(ROOT).as_posix()}/: "
           + ", ".join(str(len(p)) for p in parts) + " symbols")
     said = copy_comments(report, files, planned)
     (OUT / "comments.tsv").write_bytes("".join("\t".join(map(str, row)) + "\n" for row in said).encode("utf-8"))

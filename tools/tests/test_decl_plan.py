@@ -85,6 +85,40 @@ class Plan(unittest.TestCase):
             ("fn_7100000112", "include/game/CFoo.h", 1, "above", "Sets up the two."),
         ])
 
+    def test_globals_go_to_the_unit_whose_data_span_holds_them(self):
+        spans = {0x7101a00010: "7", 0x7101a00020: "8", 0x7101a00030: "7", 0x7101a00040: "7"}
+        both = ("struct UnkA;\nextern UnkA* g_unk_7101a00010;\n"
+                'extern char g_unk_7101a00020[] __attribute__((visibility("hidden")));\n'
+                "extern UnkA g_unk_7101a00040[];\nextern int g_unk_7101a00050;\n")
+        files = tree(a=both + "extern int g_unk_7101a00030;\n",
+                     b=both + 'extern int g_unk_7101a00030 __attribute__((visibility("hidden")));\n')
+        planned, why = decl_plan.plan(decl_check.Report(files), files, UNITS, spans.get)
+        self.assertEqual([(p.symbol, p.header, p.declaration, p.types) for p in planned], [
+            ("g_unk_7101a00010", "include/game/CFoo.h", "extern UnkA* g_unk_7101a00010;", {"UnkA": "struct"}),
+            ("g_unk_7101a00020", "include/game/UnkTU8.h",
+             'extern char g_unk_7101a00020[] __attribute__((visibility("hidden")));', {}),
+        ])
+        self.assertEqual(dict(why), {"a global whose copies differ in their attributes": 1,     # ..30
+                                     "a global array of a struct type": 1,                      # ..40
+                                     "a global in no unit's data span": 1})                     # ..50
+        text = decl_plan.header_text("include/game/CFoo.h", planned[:1])
+        self.assertIn("CFoo: functions and globals of this translation unit that other files use (tools/tu_map.py unit 7,",
+                      text)
+
+    def test_an_existing_unit_header_is_extended(self):
+        files = tree(a="struct UnkA;\nstruct UnkB;\nvoid fn_7100000110(UnkA*, UnkB*);\nextern UnkB* g_unk_7101a00010;\n",
+                     b="struct UnkA;\nstruct UnkB;\nvoid fn_7100000110(UnkA*, UnkB*);\nextern UnkB* g_unk_7101a00010;\n")
+        planned, _ = decl_plan.plan(decl_check.Report(files), files, UNITS, {0x7101a00010: "7"}.get)
+        old = ("#pragma once\n\n// CFoo: functions of this translation unit that other files call (tools/tu_map.py unit 7,\n"
+               '// 0x7100000100-0x71000001ff).\n#include "types.h"\n\nstruct UnkA;\nvoid fn_7100000111(UnkA*);\n')
+        self.assertEqual(decl_plan.extended(old, planned), (
+            "#pragma once\n\n// CFoo: functions and globals of this translation unit that other files use "
+            '(tools/tu_map.py unit 7,\n// 0x7100000100-0x71000001ff).\n#include "types.h"\n\nstruct UnkB;\nstruct UnkA;\n'
+            "void fn_7100000111(UnkA*);\n"))
+        bare = '#pragma once\n#include "types.h"\nvoid fn_7100000111();\n'
+        self.assertEqual(decl_plan.extended(bare, planned),
+                         '#pragma once\n#include "types.h"\n\nstruct UnkA;\nstruct UnkB;\n\nvoid fn_7100000111();\n')
+
 
 if __name__ == "__main__":
     unittest.main()
