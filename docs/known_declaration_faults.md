@@ -129,3 +129,21 @@ another number of parameters, 19 with a result of another class. The 68:
 
 **12: the definition is `void`, a declaration returns a value, and a hand-written caller uses it. The definition has to return the value (most forward a callee's result), which needs the callee's result settled first.**
 `fn_7100017ba0` `fn_71000e88c0` `fn_7100202e7c` `fn_710025f17c` `fn_7100362324` `fn_71005026d0` `fn_710063c670` `fn_71007038f4` `fn_710081b510` `fn_7100d8e0a0` `fn_7100e4fd1c` `fn_7100e5493c`
+
+## Names that point to more than one address
+
+`python tools/name_check.py --version 2.1.0` compares, for every name `tools/check.py` cannot resolve to an
+address (a named constructor, a vtable by class name, a local static), where the original points at each
+reference to it. On 2026-11-11, 109,340 references under 11,763 names agree, and 8 names do not (27
+references). Each is a reference to the wrong thing, or one name used for different things:
+
+| Name | Usually | Also | Reading |
+|---|---|---|---|
+| `base::refl_IterSync<UnkOwnedList, unsigned int>` | five addresses, two uses each | | Five instantiations over five file-local types all called `UnkOwnedList` (`CAcidBlobsLaunchPattern/fn_71005da4f8.cpp`, `CCooldownXBossFireBallDef/fn_71004bf9a8.cpp`, `fn_71004bfaa8.cpp`): the port's link sees one symbol. |
+| vtables of `unk_any_props::UnkPropAny`, `UnkPropList`, `UnkEntry` | five addresses each | | Five sets of classes under one name, one per file (`fn_7100442780.cpp`, `fn_710048b740.cpp`, `fn_71004c8f58.cpp`, `fn_7100510548.cpp` and the first user). |
+| `nn::os::LockMutex` | `0x710006691c` (4 uses) | the import's stub `0x71012392d0` (2, `UnkTU2772_archive_ovb0150.cpp`) | The four call a function of `main` under the SDK's name; it should be `fn_710006691c`. |
+| `nn::os::FinalizeLightEvent` | the import's stub `0x7101239250` (2 uses) | `0x7100066694` (`UnkTU324_Media_ovb0217.cpp`) | The one calls a function of `main` under the SDK's name. |
+| `base::global::CRntString::~CRntString` | `0x710007ecd4` (593 uses) | `0x710026ead0`, inside `fn_710026ead0` itself (`src/game_s1/fn_71000e1fec.cpp`) | The original calls itself there; the destructor's name stands for another function. |
+| `std::__1::__throw_bad_function_call` | `0x7100a2e300` (4 uses) | `0x7100008bb0` (2, `CBlendSpace1D/UnkSharedFunctionDtors.cpp`) | The original has two copies; the two uses name the other one. |
+
+`--strict` makes the tool fail on any of them; it is not a gate yet.
