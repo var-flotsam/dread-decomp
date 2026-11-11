@@ -152,6 +152,18 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Names that are not addresses, checked for consistency (2026-11-11, #368, #369).** `check.py` counts a
+reference as unchecked when its symbol is not `fn_<addr>`/`g_unk_<addr>` or a name in `data/functions/`: 92,122
+of them, the review's second gate hole. `tools/name_check.py` uses what the original still says: where each such
+reference points. One name must point to one place. Over every matching function, 109,340 references under
+11,764 names agree and 5 names do not (22 references): a second copy of `std::__throw_bad_function_call` in the
+original, and two groups of file-local types that share a name across five files (`UnkOwnedList` and the
+`unk_any_props` classes), which the port's link would merge. A sixth was a real wrong callee: `fn_710026ead0`
+frees a tree of 0x50-byte nodes by calling itself, and the source called `CRntString`'s destructor for each
+element (#369). A 4-byte function that only branches on counts as its target, or every import called both through
+its thunk and its stub would show up. The tool reports only; `--strict` is for the self-hosted `check` job once
+the five are settled (`docs/known_declaration_faults.md`).
+
 **Declarations round: unit headers, the data map, definitions against declarations (2026-11-11).** The work the
 review put in front of more bulk runs, in seven pull requests (#360 to #366). No function's status changed.
 - *One header per translation unit* (#360, #362). `tools/decl_plan.py` plans the shared declarations whose move
