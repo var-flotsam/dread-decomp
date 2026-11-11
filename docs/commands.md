@@ -358,6 +358,15 @@ python tools/decl_check.py --definitions          # every definition called diff
 python tools/decl_check.py --base origin/main     # the same counts for the tree at <ref>; exit 1 if the
 ```
 
+### `tools/name_check.py`
+
+Does every name that is not an address stand for one address of the original?
+
+```sh
+python tools/name_check.py --version 2.1.0            # the report; exit 0
+python tools/name_check.py --version 2.1.0 --strict   # exit 1 when a name points to more than one address
+```
+
 ### `tools/fakematch.py`
 
 Fake-match patterns in the hand-written sources: byte-identical code that a programmer would not have written, which usually points at a missing helper, a wrong type or two variables merged into one.
