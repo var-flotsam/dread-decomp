@@ -64,8 +64,9 @@ gh api repos/var-flotsam/dread-decomp/rulesets --method POST --input .github/rul
 | Bypass | Repository admins, **through a pull request only**: the maintainer can merge their own PR without a second reviewer, but still can't push to `main` directly |
 
 When there are other maintainers, require one approving code-owner review again and remove the bypass, so
-every change gets a second pair of eyes. Until then the user's "merge" in the thread is the review (`CLAUDE.md`,
-"Pushing and merging").
+every change gets a second pair of eyes. Until then the required checks are the review, and the coordinator of
+a piece of work merges it; the owner merges major, sweeping revisions of `main` (`CLAUDE.md`, "Pushing and
+merging"; owner, 2026-11-11).
 To change the ruleset, edit the JSON, then
 `gh api repos/var-flotsam/dread-decomp/rulesets/<id> --method PUT --input .github/rulesets/main.json`
 (`gh api repos/var-flotsam/dread-decomp/rulesets` lists the id).

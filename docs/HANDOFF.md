@@ -64,8 +64,9 @@ public, to get outside help. Decompilation is complete when every function is ha
 proven equivalent: a byte match, or a registers-only difference that a machine test confirms (three tiers,
 `CLAUDE.md`); readability outranks a match. Generated code, `src/lifted` included, is a stepping stone. A template family (the reflection boilerplate) counts as hand-written once its template
 reads as source. `nn::atk` is decompiled as its own library (`docs/reference.md`). **Bulk agent runs are on hold**
-until `check.py` compares string and constant contents and class and declaration headers are generated for workers
-to share; `nn::atk` is the exception.
+until class and declaration headers are generated for workers to share (`check.py` compares string and constant
+contents since #355); `nn::atk` is the exception. The coordinator of a piece of work merges it; the owner merges
+sweeping revisions of `main`.
 
 Route B (`docs/PORT_PLAN.md`): one program now, lifted code as a bridge that matching replaces. Hubs
 first along the boot slice; one declaration per shared symbol in `include/`; files by unit, not by

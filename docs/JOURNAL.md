@@ -157,18 +157,19 @@ rechecked `main` at `bdbc0337` from an empty cache (`check.py` passes: `O` 94,68
 recomputed the numbers: 66.83% of the game's code matches, 43.76% of the boot slice; hand-written `O` code is
 3.38 MB, 18.0% of the game's code, 1.93 MB of it in agent-batch files; `U` is 5.72 MB, 4.74 MB of it in functions
 over 600 bytes. Its report is outside the repository. Findings to know when working here:
-- `check.py` does not compare the contents of string literals or compiled constant tables, and does not verify a
+- `check.py` did not compare the contents of string literals or compiled constant tables, and does not verify a
   callee or static whose name is not address-based (16,097 such references in hand-written matches). A changed
   string, a changed lookup table and two swapped callees under made-up names all still graded MATCH. Eleven wrong
-  string references were corrected in #352; `src/flag_id/fn_710037415c.cpp` keeps one.
+  string references were corrected in #352 and the last in #355, which added the content comparison (a `RELOC`
+  line of kind `string` or `const`). The callees and statics under made-up names are still unverified.
 - Hand-written `.cpp` files define 18,992 structs, 10,952 with a batch id in the name, against 418 in `include/`;
   copies of declarations went from 4,874 to 9,308 between 2026-11-09 and 11-11 while `decl_check --base` passed.
 - The owner decided: the repository is public on purpose; decompilation is complete when every function is
   hand-written, readable and proven equivalent, by a byte match or by a registers-only difference that a machine test
   confirms (three tiers; readability outranks a match), with generated code as a stepping stone; a template family
-  counts once its template reads as source; `nn::atk` is decompiled (#353); bulk agent runs are on hold until the
-  content check and generated class and declaration headers exist (`CLAUDE.md`, "Purpose"; `docs/HANDOFF.md`,
-  "Direction").
+  counts once its template reads as source; `nn::atk` is decompiled (#353); bulk agent runs are on hold until
+  generated class and declaration headers exist; the coordinator of a piece of work merges it and the owner merges
+  sweeping revisions of `main` (`CLAUDE.md`, "Purpose" and "Pushing and merging"; `docs/HANDOFF.md`, "Direction").
 - A measurement behind the tiers: of 202 kept near-miss drafts for functions still `U`, 99 differ from the
   original in register choice or instruction order only (median 3 instructions) and 17 in compare or branch form
   only; 27 differ in control flow, most of them the large-function drafts. Four match as they are and were never

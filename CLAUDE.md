@@ -118,10 +118,12 @@ Prime Trilogy recomp. Never push this repo there.)
 **Pushing and merging.**
 - Pushing a `claude/*` feature branch to this repository and opening, editing or assigning its pull
   request is allowed without asking. Any other branch, and every other repository, still needs the user's OK.
-- Never merge to `main` without the user's explicit OK in the thread ("merge"). Once they have said it and
-  the required checks (`policy`, `compile`, `check`) are green, run `gh pr merge <n> --merge` yourself
-  (add `--admin` only if the ruleset still blocks it). The gates don't change: `check.py` must pass and a
-  function is `O` only when its bytes match.
+- **Who merges (owner, 2026-11-11).** The coordinator of a piece of work merges its pull requests: the
+  session that coordinates that work, once the required checks (`policy`, `compile`, `check`) are green,
+  with `gh pr merge <n> --merge` (add `--admin` only if the ruleset still blocks it). The owner merges
+  major, sweeping revisions of `main`. A session that is not the coordinator of the work does not merge
+  it; when it is unclear whether a change is sweeping, ask the owner. The gates don't change: `check.py`
+  must pass and a function is `O` only when its bytes match.
 - `.claude/settings.json` allowlists these commands so they don't prompt; a user-level or
   `.claude/settings.local.json` deny or ask rule overrides it.
 
