@@ -132,8 +132,6 @@ void fn_7100f89450(void*, const UnkEntry_0x30* path) {
     fn_710007c0e4(&reader.file);
 }
 
-// The values of the two maps (out-of-line destructors).
-
 // The maps' key: a string id released in two steps (base/UnkDestructors.h).
 using UnkPresetKey = base::UnkStrIdMember;
 

@@ -14,8 +14,6 @@ struct UnkPlayerInfoValue_b52 {
     u8 raw[0xb0];
 };
 
-// As src/game/UnkUnit1134/UnkUnit1134_Dtor_b49a3.cpp declares it.
-
 void fn_7100f0f980(UnkPropertyArrays* self, u32 capacity) {
     if (self->capacity < capacity) {
         UnkPlayerInfoValue_b52* values = static_cast<UnkPlayerInfoValue_b52*>(

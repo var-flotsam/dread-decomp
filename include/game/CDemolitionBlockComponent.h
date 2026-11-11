@@ -5,4 +5,4 @@
 // Names and layouts are placeholders.
 #include "types.h"
 void fn_71007b1528(char* self);
-void fn_71007b1928(void*, void*);
+void fn_71007b1928(void*, void*);  // Moves the entry at the second pointer into the first.

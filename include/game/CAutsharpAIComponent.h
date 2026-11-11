@@ -6,4 +6,4 @@
 #include "types.h"
 
 struct UnkShockWaveMember;
-void fn_71003cc474(UnkShockWaveMember* self);
+void fn_71003cc474(UnkShockWaveMember* self);  // Destructor.

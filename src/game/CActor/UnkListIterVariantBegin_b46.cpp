@@ -5,8 +5,6 @@
 #include "game/UnkTU341.h"
 #include "types.h"
 
-// Signature as src/clones/clones_00.cpp declares it.
-
 template <u32 N>
 struct UnkListNode_b46a1 {
     u8 unk_0x0[N];

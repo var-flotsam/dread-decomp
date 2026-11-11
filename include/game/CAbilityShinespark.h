@@ -9,4 +9,4 @@ struct UnkDirOut_b56;
 struct UnkShinespark_b56;
 u64 fn_7100327d14();
 void fn_7100331c7c(void* self, const void* other);
-u32 fn_710032f678(UnkShinespark_b56* self, const UnkDirOut_b56* dir);
+u32 fn_710032f678(UnkShinespark_b56* self, const UnkDirOut_b56* dir);  // The state for the direction.

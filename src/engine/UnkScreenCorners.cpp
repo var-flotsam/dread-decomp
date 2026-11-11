@@ -8,8 +8,6 @@
 // The corners as (x, y) pairs: (-1, -1), (-1, 1), (1, 1), (1, -1) (reached through the GOT).
 extern f32 unk_7101a1e1b8[/* 8; unsized: x86-64 would assume 16-byte alignment */];
 
-// A clip-space coordinate moved by half a pixel of the viewport's width or height (src/lifted).
-
 // Sets the corners, moved by half a pixel when `half_pixel` is set.
 void fn_710019c198(void* /*camera*/, bool half_pixel) {
     f32* c = unk_7101a1e1b8;

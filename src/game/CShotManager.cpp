@@ -245,7 +245,6 @@ struct UnkShotIdRecordSet {
 
 struct UnkIdPair;
 void fn_7100026f70(UnkIdPair* pair);
-// Assigns `other` to `self` (move-assignment; out of line, not decompiled yet).
 
 // The record set's constructor.
 void fn_7100ede778(UnkShotIdRecordSet* self) {

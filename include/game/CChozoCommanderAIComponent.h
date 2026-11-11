@@ -8,5 +8,5 @@
 struct UnkComponent;
 struct UnkMlogMessage_b42a1;
 void fn_7100456b7c(void* callbacks, const UnkMlogMessage_b42a1* message);
-void fn_71004567dc(void*, void**);
+void fn_71004567dc(void*, void**);  // Unregisters.
 void fn_71004554d8(UnkComponent* component);

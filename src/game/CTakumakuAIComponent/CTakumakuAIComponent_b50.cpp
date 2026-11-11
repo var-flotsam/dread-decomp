@@ -13,8 +13,6 @@
 struct UnkSclawkAI_b44a2;
 struct UnkSclawkMessage_b44a2;
 
-// As src/game/CAutsniperShootAttack/fn_71003d5a14.cpp declares it.
-
 extern char g_unk_7172709c30[] __attribute__((visibility("hidden")));
 
 struct UnkTakumakuOwner_b50 {

@@ -16,7 +16,7 @@ void fn_710015a090(s32 a, s32 b, s32 c, s32 d);
 void fn_710015ab00(u32 value);
 void fn_7100159800(s32 value);
 bool fn_71001598c0();
-UnkEntry_71001cdba4* fn_7100159aa0();
+UnkEntry_71001cdba4* fn_7100159aa0();  // The default set.
 void fn_710015a860(u32 value);
 void fn_710015a8c0(u32 value);
 void fn_710015aa20(u32 value);

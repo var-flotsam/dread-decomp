@@ -155,8 +155,6 @@ struct UnkVFogValue_b0196 {
 struct UnkFogTag_b0196;
 struct UnkVFogTag_b0196;
 
-// The arrays' resizes (below), called out of line.
-
 template <>
 struct base::UnkStrIdValueTraits<UnkFogTag_b0196> {
     static char* base_vtable() { return g_unk_7101cab1f8; }

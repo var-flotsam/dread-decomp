@@ -11,4 +11,7 @@ struct UnkTriggerOwned_b56;
 struct UnkTrigger_b50a5;
 void fn_7100a632e8(UnkTriggerOwned_b56* self);
 UnkHandleList* fn_7100a5e1dc();
+
+// The original's unit defines it, so the compiler knows it doesn't keep `entry`'s address; noescape says so here,
+// which lets a caller's last call be a tail call.
 void fn_7100a5fdcc(UnkTrigger_b50a5* self, UnkTriggerEntry_b50a5** __attribute__((noescape)) entry);

@@ -21,9 +21,6 @@ extern u8 g_unk_7108b6ab60 __attribute__((visibility("hidden")));
 // The payload size of each command.
 extern const s32 g_unk_7101647a0c[] __attribute__((visibility("hidden")));
 
-// Probably whether the caller is on the sound thread (it compares a stored thread id with the
-// current one); the result is not used here.
-
 void fn_71000faac4(UnkSoundSystemATK* self, s32 command, const void* payload) {
     // The hint only steers the block layout: the original keeps the return next to the test.
     if (__builtin_expect(g_unk_7108b6ab60 & 1, 1))

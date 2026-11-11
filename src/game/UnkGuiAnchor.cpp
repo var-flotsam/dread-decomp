@@ -86,8 +86,6 @@ struct UnkGuiItemState {
     f32 scale_y;
 };
 
-// The screen's two aspect factors (thunks of fn_71001329e0 and fn_71001329d0).
-
 // A position scaled by the state's scale and, when it has an angle, rotated by it (y divided out of
 // and back into the screen's aspect around the rotation).
 UnkGuiPos fn_71011f61bc(const UnkGuiItemState* state, const UnkGuiPos* pos) {

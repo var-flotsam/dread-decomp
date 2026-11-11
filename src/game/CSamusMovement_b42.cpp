@@ -12,7 +12,6 @@ using base::math::CVector3D;
 
 struct UnkFlagged;
 struct UnkShape;
-// Declared as src/game/CEntity_2.cpp does.
 
 struct UnkBox3D_sm42 {
     CVector3D min;

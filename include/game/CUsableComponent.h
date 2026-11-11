@@ -11,7 +11,7 @@ struct UnkUsableComponent_A6_b62;
 struct UnkUsableDialog_A6_b62;
 struct UnkUsableVirt_A6_b62;
 struct UnkUsable_b48;
-void fn_7100a9e244(void*);
+void fn_7100a9e244(void*);  // Derived classes call it as their base's constructor.
 void fn_7100a9f7f0(char* self);
 bool fn_7100aa0b04(UnkUsableVirt_A6_b62* self, u64 a, u64 b, const u8* c);
 bool fn_7100aa2948(UnkUsableComponent_A6_b62*);

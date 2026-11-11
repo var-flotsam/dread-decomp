@@ -7,4 +7,4 @@
 
 struct UnkUnit1124Object;
 void fn_7100703814(UnkUnit1124Object* self, u32 id);
-u64 fn_71007038f4(void* self, void* params, bool reset);
+u64 fn_71007038f4(void* self, void* params, bool reset);  // Its first argument is the handler, its second the block.

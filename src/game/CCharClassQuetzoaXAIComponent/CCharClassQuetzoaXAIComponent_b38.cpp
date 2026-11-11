@@ -25,9 +25,6 @@ struct UnkQuetzoaXInfo {
     u32 flags;  // 0xb4
 };
 
-// The base character class's check, called with the same arguments (declared without them in its
-// generated definition).
-
 u32 fn_710063ee0c(UnkQuetzoaXCharClass* self, UnkActor* actor, void* arg, UnkQuetzoaXInfo* info) {
     if (self->field_0x50c)
         return fn_7100414168();

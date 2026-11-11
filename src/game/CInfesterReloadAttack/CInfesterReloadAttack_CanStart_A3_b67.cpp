@@ -8,8 +8,6 @@
 #include "types.h"
 #include "game/CAttack.h"
 
-// As src/game/behaviortree/CInfesterFleeFromTargetAction/CInfesterFleeFromTargetAction.cpp declares it.
-
 struct UnkInfesterAttack_A3_b67 {
     void** vtable;
     UnkActor* owner;

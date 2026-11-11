@@ -25,7 +25,6 @@ void fn_7100836578(UnkGunSoundOwner_A5_b66* self, u32 flags, void* sound, void*,
 }
 
 // Same with the mode passed in, then the game manager's deferred set at +0x20a8 is told about the sound.
-
 void fn_7100836340(UnkGunSoundOwner_A5_b66* self, u32 flags, void* sound, u32 mode, UnkGunSoundParams_A5_b66* params) {
     asm("" : "+r"(self));
     u32 kind = GunSoundKind_A5_b66(flags);

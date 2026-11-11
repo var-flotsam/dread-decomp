@@ -19,8 +19,6 @@ struct UnkTutorialComposition {
     }
 };
 
-// Queues the callbacks at +0x230 with `request` (generated, src/clones/).
-
 // Leaves the tutorial unless the request was already handled: sends "OnExit", runs the exit
 // callbacks with the request and marks it handled.
 void fn_7100b8903c(UnkTutorialComposition* self, UnkTutorialRequest* request) {

@@ -4,4 +4,4 @@
 // 0x7100072564-0x7100075db8). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
-void fn_7100075104(void* self);
+void fn_7100075104(void* self);  // A destructor (its callers register it).

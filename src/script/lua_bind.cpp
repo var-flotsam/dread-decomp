@@ -21,9 +21,6 @@
 using base::global::CRntString;
 using base::global::CStrId;
 
-// Pushes the values `fmt` names (one letter each) and returns how many it pushed; the variadic
-// front of fn_71010bf400, which takes them as a va_list.
-
 // The managers, each a global pointer set on first use (allocated with fn_71000839a0(size, 0x3f),
 // then constructed in place), and their constructors. The declarations repeat the other files'.
 struct UnkUserDataOwner;  // src/game/CGameManager.cpp

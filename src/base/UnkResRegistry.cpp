@@ -26,8 +26,6 @@ using base::global::UnkStringPool;
 
 struct UnkResFactory;
 
-// The record's default callbacks: each forwards its second argument (fn_710001a0ac, fn_710001a39c).
-
 // The record's list of file-path ids (base/UnkResPathVec.h): its copy reserves the source's
 // capacity (fn_7100018450) and appends the ids one by one.
 __attribute__((always_inline)) inline UnkResPathVec::UnkResPathVec(const UnkResPathVec& other)

@@ -6,4 +6,4 @@
 #include "types.h"
 
 struct UnkNavPathNode;
-void fn_71002872f4(UnkNavPathNode* self);
+void fn_71002872f4(UnkNavPathNode* self);  // The node's destructor (destroys the payload).

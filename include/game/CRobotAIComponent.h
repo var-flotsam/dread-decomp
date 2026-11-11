@@ -6,4 +6,4 @@
 #include "types.h"
 
 struct UnkAutsharpAIBase_b47;
-void fn_7100661914(UnkAutsharpAIBase_b47* self);
+void fn_7100661914(UnkAutsharpAIBase_b47* self);  // A thunk to the base AI component's destructor (fn_7100369380).

@@ -34,8 +34,6 @@ struct UnkPullSwitcher_b50 {
     bool field_0x98;
 };
 
-// The base test (both pull components share it).
-
 bool fn_71008261e0(UnkPullSwitcher_b50* self, void* arg, UnkPullMessage_b50* msg) {
     if (!fn_710082cb24(self, arg, msg) || self->field_0x98)
         return false;

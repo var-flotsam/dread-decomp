@@ -8,4 +8,4 @@
 struct UnkFanBombList_ovb0122;
 struct UnkPbMovementBase_ovb0015;
 UnkFanBombList_ovb0122* fn_7100aa9ecc();
-void fn_7100aa9f3c(UnkPbMovementBase_ovb0015*);
+void fn_7100aa9f3c(UnkPbMovementBase_ovb0015*);  // Derived classes call it as their base's destructor.

@@ -66,8 +66,6 @@ struct UnkWordVec {
     UnkOpt<UnkVec3> field_0x8;
 };
 
-// Its first argument is the handler, its second the block.
-
 template <class Tail>
 __attribute__((always_inline)) static inline void TakeCommon(UnkHandler<Tail>* self, UnkHandlerParams<Tail>* params,
                                                              bool reset) {

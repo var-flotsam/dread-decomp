@@ -6,8 +6,6 @@
 #include "game/CDemolitionBlockComponent.h"
 #include "types.h"
 
-// As src/clones/clones_04.cpp declares it: moves the entry at the second pointer into the first.
-
 struct UnkEntry_b43a3 {
     virtual ~UnkEntry_b43a3();
     u8 pad_0x8[0x38];

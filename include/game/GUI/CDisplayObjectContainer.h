@@ -12,7 +12,7 @@ struct UnkNewGameScreen;
 struct UnkPanel_71011dfeb0;
 struct UnkSmArg_A6_b62;
 struct UnkSmBase_A6_b62;
-void fn_71011d9b3c(UnkPanel_71011dfeb0* self);
+void fn_71011d9b3c(UnkPanel_71011dfeb0* self);  // The base composition's set-up.
 void fn_71011d9a44(UnkSmBase_A6_b62*, UnkSmArg_A6_b62*);
 void fn_71011d8fe4(UnkNewGameScreen* self, f32 dt);
 UnkDisplayObject_ovb0032* fn_71011d932c(UnkDisplayObjectContainer_ovb0032* self, UnkDisplayObject_ovb0032* child);

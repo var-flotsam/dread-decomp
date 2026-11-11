@@ -20,10 +20,13 @@ u32 fn_71001622f0(u32 a, u32 b);
 void fn_7100161800(void* object);
 void fn_7100161960(UnkObj_7100161b90** out, u32 size, void* data, const u32* count);
 void fn_7100161d60(UnkGfxBuffer252* buffer);
+
+// Fills a target's description from its format, size and options.
 void fn_710015f810(UnkRenderTargetSlot* out, u32 format, u32 width, u32 height, u32 a, void* b, void* c, u32 d, u32 e);
+
 void fn_7100160590(u64 slot);
 void fn_71001606f0(s32 a, s32 b, bool c);
 void fn_7100160810(s32 a, s32 b, bool c);
 void fn_7100160890(s32 a, s32 b, bool c);
-void* fn_71001611e0(void* object);
+void* fn_71001611e0(void* object);  // A target's NVN texture.
 u32 fn_71001622e0(UnkGfxBuffer252* buffer);

@@ -35,8 +35,6 @@ struct UnkUserDataOwner {
 };
 static_assert(sizeof(UnkUserDataOwner) == 0x2b8, "UnkUserDataOwner layout");
 
-// The loader's constructor (src/game/UnkScenarioLoadRequest.cpp's unit).
-
 // Clears the flags and the fields the owner tests before its first load; the event and the mutexes
 // are set up elsewhere.
 void fn_710120320c(UnkUserDataOwner* self) {

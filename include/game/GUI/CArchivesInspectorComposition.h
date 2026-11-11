@@ -6,4 +6,4 @@
 #include "types.h"
 
 struct UnkTutorialRequest;
-void fn_7100af3364(void* set, UnkTutorialRequest* const* request);
+void fn_7100af3364(void* set, UnkTutorialRequest* const* request);  // Queues the set's callbacks with `request`.

@@ -10,4 +10,4 @@ void fn_71011258e4(void* self);
 void fn_7101129b08(UnkObj_7101129240* self, bool flag);
 void fn_7101125c90(char*);
 void fn_7101126af4(void* self);
-void fn_710112e7e0(void* self);
+void fn_710112e7e0(void* self);  // Re-points `current` at (index, element).

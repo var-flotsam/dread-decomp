@@ -6,6 +6,6 @@
 #include "types.h"
 
 struct UnkCancelOwner_ovb0128;
-void fn_71011a664c(char* instance);
+void fn_71011a664c(char* instance);  // Constructs the instance.
 void fn_71011a710c(char* instance);
 void fn_71011a75f0(char* instance, UnkCancelOwner_ovb0128* owner);

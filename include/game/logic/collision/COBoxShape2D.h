@@ -4,4 +4,4 @@
 // 0x7100d6736c-0x7100d6936c). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
-void fn_7100d682dc(void* shape);
+void fn_7100d682dc(void* shape);  // The OBOX2D shape's constructor.

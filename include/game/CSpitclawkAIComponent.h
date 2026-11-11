@@ -6,4 +6,4 @@
 #include "types.h"
 
 struct UnkShockWavePoolMember;
-void fn_71006c9404(UnkShockWavePoolMember* self);
+void fn_71006c9404(UnkShockWavePoolMember* self);  // Destructor.

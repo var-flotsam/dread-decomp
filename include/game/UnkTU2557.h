@@ -6,7 +6,7 @@
 #include "types.h"
 
 struct UnkLoadingScreen;
-void fn_7100e0f89c(UnkLoadingScreen* self);
+void fn_7100e0f89c(UnkLoadingScreen* self);  // Constructor.
 void fn_7100e0f028();
 void fn_7100e1389c() __attribute__((visibility("hidden")));
 void fn_7100e138a8() __attribute__((visibility("hidden")));

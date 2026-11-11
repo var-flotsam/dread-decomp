@@ -8,4 +8,4 @@
 struct UnkObj_71007e44b8;
 struct UnkTriggerCollider_b0058;
 void fn_7100d36d30(UnkTriggerCollider_b0058* self, void* shape);
-void fn_7100d36624(UnkObj_71007e44b8* self);
+void fn_7100d36624(UnkObj_71007e44b8* self);  // Constructor.

@@ -7,8 +7,6 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-// Signature as src/clones/clones_03.cpp declares it.
-
 extern char g_unk_7101a8b8f0[];
 
 struct UnkSonarTargetEntry_b52 {

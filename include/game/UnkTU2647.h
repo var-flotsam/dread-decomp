@@ -6,5 +6,5 @@
 #include "types.h"
 
 struct UnkPathIdListPair_710103a240;
-void fn_7101036e34(void* value);
+void fn_7101036e34(void* value);  // The value's destructor.
 void fn_710103a240(UnkPathIdListPair_710103a240* self, const UnkPathIdListPair_710103a240* other);

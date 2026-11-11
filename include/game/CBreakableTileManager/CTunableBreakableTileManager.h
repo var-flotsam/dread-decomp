@@ -9,4 +9,4 @@ void fn_7100ca3c84();
 void fn_7100ca408c();
 void fn_7100ca50bc();
 void fn_7100ca56a0();
-void fn_7100ca5e60(void*) __attribute__((visibility("hidden")));
+void fn_7100ca5e60(void*) __attribute__((visibility("hidden")));  // Destroys g_unk_7172796d70.

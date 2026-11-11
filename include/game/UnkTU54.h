@@ -7,6 +7,6 @@
 
 struct UnkAim;
 struct UnkMat4f;
-f32 fn_710007a1d0(f32 angle);
+f32 fn_710007a1d0(f32 angle);  // Wraps an angle into (-pi, pi].
 void fn_7100077bbc(UnkMat4f* m);
 void fn_710007a170(UnkAim* aim, f32 current);

@@ -19,4 +19,4 @@ void fn_7100fdcf2c(void* manager, u32 a, u32 b, f32 value);
 f32 fn_7100fd7b3c(void* manager);
 void fn_7100fd7c3c(UnkMgr_0xf18*, u32, UnkRequest*, f32, UnkKind, UnkMask);
 void fn_7100fde4d8(UnkArray*, u32);
-void fn_7100fde6c4(UnkNode_0x68*);
+void fn_7100fde6c4(UnkNode_0x68*);  // A node's destructor.

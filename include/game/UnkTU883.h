@@ -7,5 +7,5 @@
 
 struct UnkCallback;
 struct UnkZiplineRailPart_b49;
-void fn_71005c41bc(void*, UnkCallback*);
+void fn_71005c41bc(void*, UnkCallback*);  // Registers.
 UnkZiplineRailPart_b49* fn_71005c3084(void* object);

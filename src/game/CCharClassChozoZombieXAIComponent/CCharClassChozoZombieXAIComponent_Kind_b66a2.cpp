@@ -7,9 +7,6 @@
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
-// As src/game/CCharClassSluggerAIComponent/CCharClassSluggerAIComponent_b38.cpp declares it (called with
-// the same arguments).
-
 struct UnkChozoZombieXInfo_b66a2 {
     u8 pad_0x0[0xb6];
     u8 flags;

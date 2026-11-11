@@ -6,4 +6,4 @@
 #include "types.h"
 
 struct UnkEnemyLifeDtor_ovb0043;
-void fn_7101158c4c(UnkEnemyLifeDtor_ovb0043* self);
+void fn_7101158c4c(UnkEnemyLifeDtor_ovb0043* self);  // Derived classes call it as their base's destructor.

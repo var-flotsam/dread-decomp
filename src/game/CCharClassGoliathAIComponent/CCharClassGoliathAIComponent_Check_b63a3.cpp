@@ -30,9 +30,6 @@ struct UnkGoliathInfo_b63a3 {
     u32 flags;  // 0xb4
 };
 
-// The base character class's check, called with the same arguments (declared without them in its
-// generated definition).
-
 u32 fn_710059049c(UnkGoliathCharClass_b63a3* self, UnkActor* actor, void* arg, UnkGoliathInfo_b63a3* info) {
     u32 result = fn_7100414168();
     UnkGoliathAI_b63a3* ai = static_cast<UnkGoliathAI_b63a3*>(actor->field_0x240);

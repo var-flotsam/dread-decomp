@@ -10,4 +10,4 @@ struct UnkPathPairTemp_b45a1;
 struct UnkStrPair_0x10;
 void fn_710008d4c0(UnkStrPair_0x10* s, const UnkEntry_0x30* e);
 void fn_710008d680(UnkStrPair_0x10* s, const char* path);
-void fn_710008d2a0(UnkPathPairTemp_b45a1* self);
+void fn_710008d2a0(UnkPathPairTemp_b45a1* self);  // The empty pair's constructor.

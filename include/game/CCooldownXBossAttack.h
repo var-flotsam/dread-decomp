@@ -13,5 +13,8 @@ struct UnkWhipSend_b58;
 void fn_71004c1944(UnkSelf* self);
 void fn_71004c1894(UnkNode*);
 void fn_71004c196c(UnkCooldownXBossAttack_b62a2* self);
+
+// Derived classes call it as their base's update (a thunk to fn_71003609a8).
 void fn_71004c1968(UnkWhipSend_b58* self, f32 dt);
+
 void fn_71004c1e08(UnkLaserBite_b59* self);

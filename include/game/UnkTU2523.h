@@ -27,4 +27,4 @@ UnkEntityBox fn_7100d7bc70(const UnkEntityBounds* self);
 void fn_7100d7add4(UnkActor_7101105e44* actor, bool value);
 void fn_7100d7babc(UnkWeakTarget* entity, bool flag, f32 value);
 void fn_7100d7c48c(void* target, void* name, f32 a, f32 b);
-void fn_7100d80b84(void* self);
+void fn_7100d80b84(void* self);  // Re-points `current` at (index, element).

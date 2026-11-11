@@ -14,7 +14,6 @@
 extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
 
 void fn_71001a9f84(void* self);
-// Gives the new object its owner.
 
 struct UnkPoolNode_b54a1 {
     u64 key;
