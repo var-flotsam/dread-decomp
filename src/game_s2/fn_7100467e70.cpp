@@ -1,12 +1,12 @@
 // Guarded initialiser of the global id "spinjump2attack_dashslash" (an inline variable): constructs it
 // once and registers its destructor to run at exit.
+#include "game/UnkTU681.h"
 #include "game/UnkTUInit.h"
 
 extern "C" int __cxa_guard_acquire(u64* guard);
 extern "C" void __cxa_guard_release(u64* guard);
 
 extern u64 g_unk_71726cbba0;
-extern u8 g_unk_71726cbb98[];
 
 void fn_7100467e70() {
     if (!(__atomic_load_n(reinterpret_cast<u8*>(&g_unk_71726cbba0), __ATOMIC_ACQUIRE) & 1)) {

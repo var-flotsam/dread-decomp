@@ -6,16 +6,12 @@
 #include "base/UnkCloneRecords.h"
 #include "base/UnkVector.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/UnkTU1449.h"
 #include "game_s2/UnkWeakHandle.h"
 
 #include "base/global/CStrId.h"
 #include "types.h"
-
-extern void* g_unk_7101a85bd8[];
-extern void* g_unk_7101a85d58[];
-extern void* g_unk_7101a85db0[];
-extern void* g_unk_7101a85c80[];
-extern void* g_unk_7101a22d48[];
 
 struct UnkLink_b0197 {
     virtual void vf_0x0();

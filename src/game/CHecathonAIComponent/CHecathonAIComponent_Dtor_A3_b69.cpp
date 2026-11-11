@@ -4,11 +4,9 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
 #include "game/CBehaviorTreeAIComponent.h"
+#include "game/CHecathonAIComponent.h"
+#include "game/UnkTU341.h"
 #include "types.h"
-
-extern void* g_unk_7101a4f7f0[];
-extern void* g_unk_7101a20950[];
-extern void* g_unk_7101a20998[];
 
 struct UnkHecathonDtor_A3_b69;
 

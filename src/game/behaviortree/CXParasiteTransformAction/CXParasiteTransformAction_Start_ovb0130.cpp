@@ -5,6 +5,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -16,7 +17,6 @@ struct UnkStruct_0x68;
 void fn_7100394bd0(UnkStruct_0x68* self);
 // As src/game/CCharClassDissolveFanMudEvent/CCharClassDissolveFanMudEvent_Execute_A6_b63.cpp declares them.
 struct UnkWeakTarget;
-extern u32 g_unk_71727bebb8;
 UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 
 // A string with 0x100 bytes of inline storage (0x148 bytes), as in

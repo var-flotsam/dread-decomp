@@ -16,6 +16,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
 #include "../../game_s7/UnkGuiS7.h"
+#include "game/UnkTU2747.h"
 #include "game/UnkTU57.h"
 #include "types.h"
 
@@ -566,7 +567,6 @@ void fn_71011cd158(UnkGuiDisplayObject* object, const CStrId* name, const UnkGui
 
 struct UnkTag_71011ccfb4;
 struct UnkCameraCtrl_ovb0049;
-extern char g_unk_7101cb5b90[];  // GUI::CDisplayObject's vtable
 
 void fn_7100b03a74(void* state);
 void fn_7100b1e048(void* slots);

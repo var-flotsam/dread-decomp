@@ -16,23 +16,23 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAnimationComponent.h"
+#include "game/GUI/CModel3D.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2747.h"
 #include "game/UnkTU341.h"
+#include "game/UnkTU344.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
 
-extern char g_unk_7101cb6608[];  // CModel3D's vtable
 void fn_71011cdfa8(UnkGuiDisplayObject* self, f32 dt);
 struct UnkActorDefFactory;
-extern UnkActorDefFactory* g_unk_71726a0220;
 struct UnkRemovedValue_b60;
 void fn_7100debc28(UnkGameManager*, UnkRemovedValue_b60*);
 struct UnkDropTarget;
-extern UnkDropTarget* g_unk_7101d47318;
 struct UnkTreeNode;
 struct UnkModelUpdater_ovb0032;
 void fn_7101171a08(UnkModelUpdater_ovb0032*, const void*, const CRntString*);

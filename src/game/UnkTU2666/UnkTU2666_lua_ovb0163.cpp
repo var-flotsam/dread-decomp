@@ -13,12 +13,18 @@
 #include "base/global/CStrId.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1370.h"
+#include "game/UnkTU1643.h"
 #include "game/UnkTU2201.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2676.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU2685.h"
 #include "game/UnkTU2728.h"
+#include "game/UnkTU315.h"
+#include "game/UnkTU426.h"
+#include "game/UnkTU785.h"
 #include "game/lua_lib.h"
+#include "game/msapi/res/CRenderRes.h"
 #include "game/sound/CMusicManager.h"
 #include "base/global/UnkStringPool.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -45,7 +51,6 @@ struct UnkBase_71003cc474;
 UnkPlayer* fn_7100dec788(UnkGameManager* self);
 
 extern CStrId g_unk_71726dda50;
-extern void* g_unk_71726dbf68;
 
 struct UnkImpactRequest_b0163 {
     u8 pad_0x0[0x18];
@@ -151,7 +156,6 @@ UnkPackRef_b0163 fn_7101197008(UnkPackManager_b0163* self, const CFilePathStrId&
                                bool flag);
 void fn_7101192ae8(UnkPackLoader_b0163* self);
 extern void* g_unk_7101d47330;
-extern void* g_unk_7172758b20;
 
 s32 fn_7101088470(lua_State* L) {
     const char* name;
@@ -588,7 +592,6 @@ s32 fn_7101083c30(lua_State* L) {
 }
 
 
-extern UnkPlayer* g_unk_716e554378;
 struct UnkStrPair_0x10 {
     void* a;
     void* b;
@@ -653,7 +656,6 @@ s32 fn_7101095780(lua_State* L) {
     UnkRcBinding_b0163 binding = {fn_710021dee4(), &ref};
     return fn_7100fbd320(L, &binding, 0, 2);
 }
-extern u32 g_unk_71727bebb8;
 
 inline void* FindByName_b0163(UnkGameManager* manager, const char* name) {
     u32 kind_value = g_unk_71727bebb8;
@@ -749,7 +751,6 @@ s32 fn_7101088bc0(lua_State* L) {
 
 
 struct UnkResourceManager;
-extern UnkResourceManager* g_unk_71726ae8a8;
 bool fn_71002f70b0(UnkResourceManager* self, const CStrId* first, const CStrId* second);
 void fn_7101097030();
 
@@ -785,7 +786,6 @@ bool fn_7101096d68(s32 first, s32 second) {
     return result;
 }
 
-extern void* g_unk_7101a202e0[];
 extern UnkRegistry_0x70* g_unk_7101d4b5a0;
 void fn_71000878f0(UnkRegistry_0x70* self, const UnkStrPair_0x10* path, u32 flags, void* out);
 void fn_7100df9728(UnkGameManager* self);

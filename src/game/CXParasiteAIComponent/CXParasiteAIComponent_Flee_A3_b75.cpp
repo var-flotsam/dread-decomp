@@ -7,6 +7,7 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
+#include "game/CXParasiteAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU1102.h"
 #include "game/UnkTUProperty.h"
@@ -22,7 +23,6 @@ struct UnkTypedValue {
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 extern base::global::CStrId g_unk_71726b7cb8;
 // As src/game_s7/fn_71006e1010.cpp declares it.
-extern u8 g_unk_717270b870[];
 
 struct UnkXParasiteAI_A3_b75 {
     u8 pad_0x0[0x30];

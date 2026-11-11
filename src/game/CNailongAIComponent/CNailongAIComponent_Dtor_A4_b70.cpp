@@ -7,11 +7,10 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "game/CBehaviorTreeAIComponent.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 extern void* g_unk_7101a562b0[];
-extern void* g_unk_7101a20950[];
-extern void* g_unk_7101a20998[];
 void fn_7100624974(char* self);
 struct UnkAttack_710060b114;
 void fn_710060b114(UnkAttack_710060b114* self);  // as src/game/CNailongThornsAttack/fn_710060b114.cpp defines it

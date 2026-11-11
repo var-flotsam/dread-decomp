@@ -25,8 +25,11 @@
 #include "game/UnkItemProperties.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSubAreaGuiCache.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU2506.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2768.h"
+#include "game/UnkTU344.h"
 #include "game/UnkTU57.h"
 #include "game/UnkTU83.h"
 #include "game/UnkTUProperty.h"
@@ -175,7 +178,6 @@ struct UnkSmallFunction_b205 {
             target->DestroyDeallocate();
     }
 };
-extern char g_unk_7101aa87e8[];
 void fn_7100dec38c(UnkGameManager* self, UnkSmallFunction_b205* f, bool a, u32 b, u32 c);
 void fn_7100d8be38(void* self, f32 t);
 
@@ -618,7 +620,6 @@ void fn_7100e00f74(UnkGameManager* manager, bool value) {
 
 // ---- fn_7100de9ae4
 struct UnkUserDataOwner;
-extern UnkUserDataOwner* g_unk_7101d47308;
 CBlackboard* fn_710120384c(UnkUserDataOwner* self);
 bool fn_7100a68fb0(CBlackboard::CSection* section, const void* name, u32* out);
 
@@ -762,8 +763,6 @@ void fn_710119deb8(UnkSubAreaGuiCache* self);
 void fn_7100ed5a04(void* player);
 void fn_7101193370(UnkActorDefFactory* factory, bool flag);
 extern UnkSubAreaGuiCache* g_unk_71727254f8;
-extern UnkActorDefFactory* g_unk_71726a0220;
-extern void* g_unk_71726af0b0;
 extern const u8 g_unk_710164bda8[] __attribute__((visibility("hidden")));
 
 void fn_7100dfff10(UnkGameManager* manager) {

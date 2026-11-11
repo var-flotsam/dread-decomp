@@ -24,7 +24,6 @@ struct UnkMmOwner_o0313 {
 
 const base::global::CStrId* fn_7100de9bf8(UnkGameManager* self);
 // Declared void elsewhere; it returns the item count, read here through a typed pointer.
-extern u8 g_unk_71727cc99c[] HIDDEN;
 
 void fn_7100e95130(UnkMapData* map, u64 id) {
     UnkMmOwner_o0313* self = (UnkMmOwner_o0313*)map;

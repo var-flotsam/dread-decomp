@@ -3,11 +3,10 @@
 // flags 0xf), the list clears its fields, stores its own vtable and default-constructs the id.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCentralUnitAIComponent.h"
+#include "game/UnkTU341.h"
 
 using base::global::UnkStringData;
-
-extern void* g_unk_7101a20998[];  // the base's vtable
-extern void* g_unk_7101a33fa0[];  // the list's vtable
 
 struct UnkCallbackIdList {
     char* vtable;

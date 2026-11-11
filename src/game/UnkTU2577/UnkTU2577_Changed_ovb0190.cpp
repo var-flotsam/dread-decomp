@@ -3,6 +3,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CAutsharpAIComponent.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2547.h"
 #include "game/UnkTU2577.h"
@@ -49,7 +50,6 @@ struct UnkSubAreaChange_b190 {
 void fn_7100eeac18(UnkSubAreaChange_b190* self);
 
 struct UnkDoorRegistry_b61;
-extern UnkDoorRegistry_b61* g_unk_71726bee10;
 struct UnkUnit2547;
 void fn_7100ddb7bc(UnkUnit2547* self, void* a, void* b, void* c, void* d, bool e);
 

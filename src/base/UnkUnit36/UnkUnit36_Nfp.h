@@ -5,6 +5,7 @@
 
 #include <nn/os.h>
 
+#include "game/UnkTU36.h"
 #include "types.h"
 
 struct UnkStateMachine_710002c1b0 {
@@ -51,7 +52,6 @@ struct UnkUnit36Request {
 struct UnkUnit36Object;  // UnkUnit36.cpp's view of the worker object
 struct UnkUnit36Static;  // the worker object, g_unk_7101d4fc30
 
-extern UnkStateMachine_710002c1b0 g_unk_7101a19948;
 extern UnkUnit36Request g_unk_7101d4f508;
 
 inline UnkUnit36Machine& UnkUnit36GetMachine() {

@@ -9,11 +9,11 @@
 #include "base/UnkDeferredSet.h"
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
+#include "game/GUI/CMainMenu.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "types.h"
 
 extern char g_unk_7101a9c0f0[];  // the menu's vtable
-extern char g_unk_7101a9c360[];  // the listeners' vtable
 extern char g_unk_7101a9cf08[];  // the reference pair's vtable
 
 struct UnkMainMenuMember3e0_ovb0126;

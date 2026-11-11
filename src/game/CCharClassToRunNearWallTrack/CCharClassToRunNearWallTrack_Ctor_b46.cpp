@@ -6,6 +6,7 @@
 
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CCharClassToRunNearWallTrack.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -22,7 +23,6 @@ struct UnkNearWallTrack_b46a3 {
 
 extern char g_unk_717278e3a8[] __attribute__((visibility("hidden")));
 void fn_7100d2a844(void* self, void* descriptor);
-extern void* g_unk_7101aa4890[];
 
 void fn_7100c54548(UnkNearWallTrack_b46a3* self) {
     fn_7100c53d88();

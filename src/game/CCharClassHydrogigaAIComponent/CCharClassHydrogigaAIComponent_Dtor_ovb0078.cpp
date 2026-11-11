@@ -5,6 +5,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/CCharClassBossAIComponent.h"
+#include "game/CCharClassHydrogigaAIComponent.h"
 #include "game/CDamageSourceFactor.h"
 #include "game/UnkBossAIComponent.h"
 #include "game_s2/UnkOwnedList.h"
@@ -12,7 +13,6 @@
 
 using base::global::CStrId;
 
-extern void* g_unk_7101a50aa0[];
 struct UnkGoliathXBase;
 void fn_71005ad544(void* member);
 void fn_71005ad92c(void* member);

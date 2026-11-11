@@ -4,6 +4,7 @@
 // +0x148), then runs the base destructor fn_7100d35944. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "game/logic/collision/CBroadphaseObject.h"
+#include "game/logic/collision/CCollider.h"
 #include "types.h"
 
 struct UnkColliderListNode {
@@ -32,9 +33,6 @@ struct UnkColliderDtor {
 
     void vf_0x38() { reinterpret_cast<void (*)(UnkColliderDtor*)>(vtable[7])(this); }
 };
-
-extern char g_unk_7101aa85b0[];
-extern char g_unk_7101aa8660[];
 
 void fn_7100d3b4c8(UnkColliderDtor* self) {
     self->vtable = reinterpret_cast<void**>(g_unk_7101aa85b0 + 0x10);

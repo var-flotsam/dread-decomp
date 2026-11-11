@@ -4,6 +4,7 @@
 // record to the pool). fn_7100153f40 creates the pool during the device set-up (fn_71001587f0).
 // Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU174.h"
 #include "types.h"
 
 // A record: only its flags are cleared here (bit 0 says which heap its block came from).
@@ -18,8 +19,6 @@ constexpr u32 kGfxBlockCount = 0x4000;
 
 // The record as src/game_lo/fn_71001541a0.cpp sees it, and the globals both files use.
 struct UnkObj_71001541a0;
-extern u32 g_unk_716e29ab40;                   // live count
-extern UnkObj_71001541a0* g_unk_716e27ab38[];  // the table
 extern UnkGfxBlock* g_unk_716e29ab38;          // the records
 
 // The default allocator (base/UnkDefaultAllocator.h) up to its slot 0x90: the free size, summed over

@@ -4,6 +4,7 @@
 #include "base/UnkStrIdPathPair.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CProjectileMovement.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -41,7 +42,6 @@ struct UnkComponent_0x5b8 {
     void* field_0x5b0;
 };
 
-extern void* g_unk_7101a96b30[];
 void fn_71005c4828(void* callback, void** slot);
 void fn_7100ac72a4(UnkComponent_0x5b8* self);
 

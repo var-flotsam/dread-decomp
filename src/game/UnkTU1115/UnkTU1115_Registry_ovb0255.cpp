@@ -7,10 +7,8 @@
 #include "base/UnkCloneRecords.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU1115.h"
 #include "types.h"
-
-extern void* g_unk_7101a6b820[];  // the registry vtable
-extern void* g_unk_7101a6b7f8[];  // the object vtable
 
 struct UnkWorldGraphEntries_b47a3;
 s32 fn_7100acca04(UnkWorldGraphEntries_b47a3* self, const u64* key);

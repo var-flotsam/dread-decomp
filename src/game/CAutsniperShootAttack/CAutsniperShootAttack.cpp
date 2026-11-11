@@ -1,12 +1,12 @@
 // Two identical constructors in the CAutsniperShootAttack unit (fn_71003d377c, fn_71003d84a8): the
 // base constructor fn_710036069c, the vtable, cleared words, a member at +0x28 whose vtable is set
 // at +0x30, and the sub-object at +0xd0 (fn_71002acfe4). Names and layouts are placeholders.
+#include "game/CAutclastChargeAttack.h"
+#include "game/CAutsniperShootAttack.h"
 #include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
 void fn_710036069c(void* self);
-extern void* g_unk_7101a2e5d0[];
-extern void* g_unk_7101a2aef8[];
 
 struct UnkAutsniperNode {
     void** vtable;

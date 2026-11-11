@@ -5,6 +5,7 @@
 // branch, through a second function the linker folded into it. Names are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypedPtr.h"
+#include "game/GUI/CDisplayObjectContainer.h"
 #include "game_s2/UnkWeakHandle.h"
 
 using base::reflection::UnkReflTypedPtr;
@@ -13,7 +14,6 @@ using base::reflection::UnkReflTypedPtr;
 struct folded {
     static const base::reflection::CClass* fn_71011d7b84();
 };
-extern char g_unk_7172a0f120[] __attribute__((visibility("hidden")));
 
 UnkReflTypedPtr fn_71011da640(UnkWeakHandle* const* handle) {
     UnkWeakHandle* h = *handle;

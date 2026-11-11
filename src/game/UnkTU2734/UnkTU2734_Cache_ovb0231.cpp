@@ -12,6 +12,7 @@
 #include "game/UnkTU2729.h"
 #include "game/UnkTU2734.h"
 #include "game/UnkTU341.h"
+#include "game/UnkTU344.h"
 #include <stdio.h>
 
 #include "types.h"
@@ -20,7 +21,6 @@
 using base::global::CStrId;
 
 struct UnkActorDefFactory;
-extern UnkActorDefFactory* g_unk_71726a0220;
 
 struct UnkGuiDef_b52;
 

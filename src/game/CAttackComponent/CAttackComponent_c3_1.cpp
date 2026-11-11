@@ -9,12 +9,10 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/CAttackComponent.h"
 #include "game/CComponent.h"
 #include "game/UnkComponent.h"
 #include "types.h"
-
-extern void* g_unk_7101cb2cb8[];
-extern void* g_unk_7101cb2ec0[];
 
 struct UnkStateObject;
 

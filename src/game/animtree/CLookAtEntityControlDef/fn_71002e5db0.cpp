@@ -4,6 +4,8 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/animtree/CAnimatedNodeDef.h"
+#include "game/animtree/CLookAtEntityControlDef.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -26,9 +28,7 @@ __attribute__((always_inline)) static inline void CopyId(UnkId& dst, const UnkId
         ++dst.data->ref_count;
 }
 
-extern void* g_unk_7101a21718[];
 extern void* g_unk_7101a21af8[];
-extern void* g_unk_7101a21ef0[];
 extern void* g_unk_7101a21fc8[];
 
 struct UnkLevelA {

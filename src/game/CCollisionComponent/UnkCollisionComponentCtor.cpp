@@ -5,13 +5,13 @@
 // +0xd0, a cleared half-word at +0x100, a listener at +0x108 and a cleared flag at +0x128. Names and
 // layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/CCollisionComponent.h"
 #include "game/CComponent.h"
 #include "types.h"
 
 struct UnkStateObject;
 void fn_710086023c(char* self, u32 a, u32 b, u32 c);
-extern void* g_unk_7101a79c50[];
-extern void* g_unk_7101a22d48[];
 
 struct UnkCollisionComponent {
     void** vtable;

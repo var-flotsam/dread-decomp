@@ -12,6 +12,7 @@
 #include "base/UnkRefHandle.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 struct UnkHalf_cu {
@@ -62,8 +63,6 @@ base::UnkVector<UnkEntry_cu>* fn_710077a82c(base::UnkVector<UnkEntry_cu>* self,
 }
 
 extern void* g_unk_7101a6ec50[];
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a20950[];
 void fn_71002b22ac(void* member, const base::global::CStrId* name, f32 min, f32 max);
 
 struct UnkRanged_cu {

@@ -5,12 +5,12 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/CCharClassChozoRobotSoldierAIComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 extern void* g_unk_7101a84fc0[];
-extern void* g_unk_7101a38c40[];
 
 struct UnkMovementWalkingAnims_ovb0262l {
     void** vtable;

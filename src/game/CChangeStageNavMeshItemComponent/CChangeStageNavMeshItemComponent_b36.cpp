@@ -5,8 +5,6 @@
 #include "game/UnkComponent.h"
 #include "types.h"
 
-extern void* g_unk_7101a88328[];
-
 struct UnkNavMeshRegistry2 {
     void** vtable;
     void Release(void* handle) {

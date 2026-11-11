@@ -4,6 +4,7 @@
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CCharClassBehaviorTreeAIComponent.h"
+#include "game/CCharClassEmmyAIComponent.h"
 #include <new>
 
 #include "types.h"
@@ -13,7 +14,6 @@ using base::global::CStrId;
 // Declared as src/game/CCharClassGooplotAIComponent/CCharClassGooplotAIComponent.cpp does.
 struct UnkObject_7100416db8;
 void fn_7100504b9c(void* self);
-extern void* g_unk_7101a480a8[];
 
 struct UnkEmmyDef_b55 {
     void** vtable;

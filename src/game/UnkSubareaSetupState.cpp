@@ -15,6 +15,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2611.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -304,7 +305,6 @@ static inline UnkSubId_7100fc4b34 SubId(UnkSetupNamedDef& def, const CStrId& nam
         fn_7100ae9d7c(&def.name, &def, g_unk_7101d470e0);
     return fn_71003327a4(&def.name, &name);
 }
-extern UnkSetupNamedDef g_unk_71729ee018;  // the definition the setup chain is read under
 
 // A string (header of 0x30 bytes) with 0x100 bytes of inline storage (as src/game/CGameManager.cpp's).
 struct UnkSetupStrStorage {

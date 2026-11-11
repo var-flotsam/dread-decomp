@@ -6,6 +6,7 @@
 // layouts are placeholders.
 #include "base/color/CColor4F.h"
 #include "base/core/CBaseObject.h"
+#include "game/UnkTU101.h"
 #include "types.h"
 
 struct UnkNode;
@@ -18,7 +19,6 @@ struct UnkSoundHandle {
     UnkSoundRef* ref;
     s64 serial;
 };
-extern const UnkSoundHandle g_unk_7108b6c460;  // the empty handle
 
 struct UnkHyperRef_A5_b71 {
     void* ref;

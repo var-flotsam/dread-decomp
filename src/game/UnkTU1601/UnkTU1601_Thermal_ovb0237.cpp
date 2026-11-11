@@ -4,10 +4,12 @@
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
 #include "base/UnkVector.h"
+#include "game/CCentralUnitAIComponent.h"
 #include "game/CChangeStateDoorsLogicAction.h"
 #include "game/CCharClassWaterPoolComponent.h"
 #include "game/CUsableComponent.h"
 #include "game/UnkTU1601.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 
@@ -297,9 +299,6 @@ void fn_7100a95868(UnkCallbackSetVector* v, const UnkCallbackSetElem* value) {
     v->PushBackCopy<fn_7100a956b8>(*value);
 }
 
-extern void* g_unk_7101a20998[];  // the callback lists' base vtable
-extern void* g_unk_7101a33fa0[];  // their vtable
-
 struct UnkSetElem_b0237 {
     void* vtable;
     UnkErasedValue_0x10* list_data;  // 0x8, an UnkErasedVector written as flat members
@@ -396,7 +395,6 @@ void fn_7100a952b8(UnkSetVector_b0237* self, const u32* index, UnkSetElem_b0237*
 
 using base::global::CStrId;
 
-extern void* g_unk_7101a92ed0[];
 void fn_7100a959a0(UnkCallbackSetVector* v, u32 size);
 
 struct UnkThermalComp_b0237 {

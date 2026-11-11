@@ -4,13 +4,13 @@
 #include "base/global/CStrId.h"
 #include "base/UnkVector.h"
 #include "base/reflection/CClass.h"
+#include "game/UnkTU365.h"
 #include "game/logic/collision/CCollider.h"
 #include <new>
 #include "game/UnkBroadphaseObject.h"
 #include "types.h"
 
 struct UnkManager_7100863a8c;
-extern UnkManager_7100863a8c* g_unk_71726a4788;
 void fn_7100d46804(UnkManager_7100863a8c* self);
 
 struct UnkSpawnCollider_l129064 {

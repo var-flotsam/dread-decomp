@@ -8,11 +8,11 @@
 #include "game/UnkTU2729.h"
 #include "game/UnkTU2734.h"
 #include "game/UnkTU341.h"
+#include "game/UnkTU344.h"
 #include "types.h"
 #include "UnkLeftoverReg.h"
 
 struct UnkActorDefFactory;
-extern UnkActorDefFactory* g_unk_71726a0220;  // as src/game/UnkActorDefFactory.cpp declares it
 
 struct UnkSweepEntry_b49;
 // As src/game/UnkUnit2734/UnkUnit2734_Sweep_b49.cpp declares them: the first argument is unused.

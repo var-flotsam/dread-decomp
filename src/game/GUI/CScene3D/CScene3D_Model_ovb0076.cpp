@@ -13,6 +13,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
+#include "game/CInputComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiFrames.h"
@@ -212,7 +213,6 @@ struct UnkListedItem;
 struct UnkItemListTag;
 using UnkItemList = base::UnkSList<UnkItemListTag>;
 void fn_710119ba7c(UnkItemList* self, UnkListedItem* item);
-extern void* g_unk_7172729910;  // the item list singleton
 
 static inline void* ItemList_ovb0076() {
     if (!g_unk_7172729910) {

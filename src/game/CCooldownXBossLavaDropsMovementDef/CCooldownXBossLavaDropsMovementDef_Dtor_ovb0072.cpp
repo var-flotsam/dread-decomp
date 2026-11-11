@@ -6,12 +6,12 @@
 // of owned definitions deleted through their vtables. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "game/CCharClassCooldownXBossAttack.h"
+#include "game/CCooldownXBossLavaDropsMovementDef.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
 
 struct UnkCooldownXBossAttackDef;
 extern char g_unk_7101a3e0b8[];
-extern void* g_unk_7101a3e090[];
 
 struct UnkLavaDropsPolyEntry_ovb0072 {
     virtual void vf_0x0();

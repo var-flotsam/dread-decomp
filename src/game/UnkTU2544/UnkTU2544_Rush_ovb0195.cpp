@@ -7,10 +7,13 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/snd/CSoundSystem.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/CBlackboard.h"
+#include "game/CBossAIComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2544.h"
 #include "game/UnkTU2656.h"
 #include "game/UnkTU2768.h"
@@ -426,7 +429,6 @@ struct UnkRushBoard_b0195 {
     }
 };
 struct UnkSettings_b0158;
-extern UnkSettings_b0158* g_unk_71726bc568;
 
 void fn_7100e8f9a0(char* world, bool remove, base::global::CStrId* key);
 extern CStrId g_unk_71727bdb88 __attribute__((visibility("hidden")));
@@ -535,7 +537,6 @@ __attribute__((always_inline)) static inline void DestroyParam_b0195(UnkRushPara
 
 extern void* g_unk_7101aa94b8[];
 extern void* g_unk_7101aa9660[];
-extern void* g_unk_7101a22d48[];
 void fn_7100dd27ec(UnkRushSub_b0195* sub);
 struct UnkRushRecord_b0195;
 void fn_7100db8374(UnkRushRecord_b0195* record);
@@ -582,7 +583,6 @@ void fn_7100db8154(UnkRush_b0195* self) {
 
 // The user data's owner, created on first use (as src/game/CBossRushManager_SurvivalReset_b49.cpp has it).
 struct UnkUserDataOwner;
-extern UnkUserDataOwner* g_unk_7101d47308;
 CBlackboard* fn_710120384c(UnkUserDataOwner* self);
 
 static inline UnkUserDataOwner* GetOwner() {

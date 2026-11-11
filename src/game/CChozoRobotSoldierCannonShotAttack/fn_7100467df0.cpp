@@ -1,12 +1,12 @@
 // Guarded initialiser of the global id "attackdashslash4m" (an inline variable): constructs it
 // once and registers its destructor to run at exit.
+#include "game/CChozoRobotSoldierCannonShotAttack.h"
 #include "game/UnkTUInit.h"
 
 extern "C" int __cxa_guard_acquire(u64* guard);
 extern "C" void __cxa_guard_release(u64* guard);
 
 extern u64 g_unk_71726cbb90;
-extern u8 g_unk_71726cbb88[];
 
 void fn_7100467df0() {
     if (!(__atomic_load_n(reinterpret_cast<u8*>(&g_unk_71726cbb90), __ATOMIC_ACQUIRE) & 1)) {

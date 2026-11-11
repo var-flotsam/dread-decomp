@@ -10,6 +10,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU2517.h"
+#include "game/UnkTU365.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -43,8 +44,6 @@ struct UnkGroundHitRef {
 
 // The segment query's callback object (the closest hit so far, 0x48 bytes from +0x8, and the
 // segment's origin); the vtables, reached through the GOT, are the callback's and its base's.
-extern void* g_unk_7101a20fa8[];
-extern void* g_unk_7101a20ed8[];
 struct UnkGroundHitQuery {
     void** vtable;
     UnkGroundHitRef object;

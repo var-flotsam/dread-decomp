@@ -133,6 +133,15 @@ python tools/tu_map.py --report               # coverage, confidence histogram, 
 python tools/tu_map.py --top 20               # the largest units
 ```
 
+### `tools/data_map.py`
+
+Recover which translation unit each address of main's .data and .bss belongs to, so a global can be declared in its unit's header and, later, defined in its unit's source.
+
+```sh
+python tools/data_map.py --version 2.1.0        # scan the original, write data/data_map.csv, print the evidence
+python tools/data_map.py --address 7101a1e1b8   # the unit of a data address (reads data/ only)
+```
+
 ### `tools/callgraph.py`
 
 Call graph of main, shared by tools/progress.py (--slice) and tools/hubs.py.
@@ -379,7 +388,7 @@ python tools/gen_commands.py --check    # exit 1 if docs/commands.md is out of d
 
 ### `tools/decl_plan.py`
 
-Plan the move of shared function declarations into one header per translation unit.
+Plan the move of shared declarations into one header per translation unit.
 
 ```sh
 python tools/decl_plan.py                                   # what would be planned and what is left out

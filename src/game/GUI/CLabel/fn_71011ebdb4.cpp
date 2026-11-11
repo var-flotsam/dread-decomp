@@ -1,6 +1,7 @@
 // Constructor of a GUI class: runs the base constructor, then initialises three arrays, two
 // wide strings, a string id, a string, a list and assorted defaults.
 #include "base/global/timeline/CEvent.h"
+#include "game/GUI/CLabel.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
@@ -65,8 +66,6 @@ struct UnkStruct_71011ebdb4 {
 };
 
 void fn_710007e6c4(void* self);
-extern char g_unk_7101cb6380[];
-extern char g_unk_7101cb65e8[];
 
 void fn_71011ebdb4(UnkStruct_71011ebdb4* self) {
     fn_71011cce1c(reinterpret_cast<UnkGuiDisplayObject*>(self));

@@ -6,10 +6,10 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU811.h"
+#include "game/behaviortree/CEmmyPatrolAction.h"
 #include "types.h"
 
 struct UnkEmmyActor_b55;
-extern char g_unk_71726ded60[];
 void fn_7100547428(UnkEmmyActor_b55* self, bool a, UnkActor* target, bool b);
 
 struct UnkEmmyAICast_b63a3 {

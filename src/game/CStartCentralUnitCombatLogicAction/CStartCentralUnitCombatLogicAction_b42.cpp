@@ -6,13 +6,12 @@
 
 #include "base/UnkVector.h"
 #include "game/CTriggerLogicAction.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 // The base constructor, as src/game/CChangeSetupLogicAction/CChangeSetupLogicAction_b35.cpp declares it.
 struct UnkChangeSetupLogicActionDef;
 extern char g_unk_7101cab190[];
-extern void* g_unk_7101a20998[];  // the member's base vtable
-extern void* g_unk_7101a20950[];  // the member's vtable
 
 struct UnkCombatLogicElem_b42a3;
 

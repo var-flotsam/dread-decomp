@@ -9,6 +9,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
 #include "game/CComponent.h"
+#include "game/CInventoryComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
@@ -71,7 +72,6 @@ void fn_7101141378(UnkInvOwner_ovb0094* self) {
 struct UnkHandleOwner_71010c4230;
 struct UnkSpawnGroupKey;
 void fn_7100de9730(UnkGameManager* manager, UnkSpawnGroupKey* key, void* object);
-extern u64 g_unk_7172a092b0 __attribute__((visibility("hidden")));
 
 struct UnkInvRelease_ovb0094 {
     u8 unk_0x0[0x98];
@@ -199,7 +199,6 @@ void fn_71011406cc(UnkInvMissiles_ovb0094* self) {
 }
 
 struct UnkStateObject;
-extern void* g_unk_7101cb33c8[];
 
 // The component the destructor fn_7101141558 tears down, with its fields written out flat.
 struct UnkInvComponent_ovb0094 {

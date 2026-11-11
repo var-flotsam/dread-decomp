@@ -1,6 +1,6 @@
 #pragma once
 
-// UnkTU2563: functions of this translation unit that other files call (tools/tu_map.py unit 2563,
+// UnkTU2563: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2563,
 // 0x7100e31c18-0x7100e65204). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
@@ -19,3 +19,4 @@ void fn_7100e51078(void* dst, void* src);
 void fn_7100e54ad8(UnkRecord60Array*, u32);
 void fn_7100e4ea08(UnkPolyVector* self, const UnkPolyValues* value);  // PushBack.
 void fn_7100e56814(void*, u32);
+extern void* g_unk_7101aa9d38[];

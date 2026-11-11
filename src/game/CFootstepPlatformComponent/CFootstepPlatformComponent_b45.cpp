@@ -2,15 +2,13 @@
 // shape (fn_71007e88c4 the original). When the event's sender (+0x18, its object at +0x10, that
 // object's id at +0x18) is the id (+0x30) of one of two unit statics, clears a flag and a counter;
 // then sets the flag in front of them. Returns 0. Names and layouts are placeholders.
+#include "game/CFootstepPlatformComponent.h"
 #include "types.h"
 
 struct UnkFootstepStatic_b45a2 {
     u8 pad_0x0[0x30];
     u64 id;
 };
-
-__attribute__((visibility("hidden"))) extern UnkFootstepStatic_b45a2* g_unk_717271fae0;
-__attribute__((visibility("hidden"))) extern UnkFootstepStatic_b45a2* g_unk_717271fad8;
 
 struct UnkFootstepSenderObject_b45a2 {
     u8 pad_0x0[0x18];

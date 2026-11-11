@@ -5,6 +5,7 @@
 #include "base/global/timeline/CEvent.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiLabel.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU32.h"
 #include "types.h"
 
@@ -20,7 +21,6 @@ struct UnkSoundHandle {
     s64 serial;
 };
 
-extern UnkDropTarget* g_unk_7101d47318;
 extern UnkStrIdPathRecord_b48 g_unk_71727bdfb0 __attribute__((visibility("hidden")));
 struct UnkWideStr_0x20;
 void fn_7100026f70(UnkIdPair* pair);

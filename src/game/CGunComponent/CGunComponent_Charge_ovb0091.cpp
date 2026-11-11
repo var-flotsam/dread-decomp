@@ -9,6 +9,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCharClassTweakPlayRateTrack.h"
 #include "game/CComponent.h"
 #include "game/CGunComponent.h"
 #include "game/CSamusModelUpdaterComponent.h"
@@ -39,7 +40,6 @@ bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 void* fn_7100df5460(UnkGameManager*);
 void fn_7100841838(UnkGunListeners_b53* self, void* value);
 void fn_710007ca94(CRntFile*, char*);
-extern UnkGlobal2 g_unk_7172790a08;
 
 // The game manager's id table (fn_7100031894 builds it; src/game/CGameManager.cpp has the same
 // definition).

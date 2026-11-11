@@ -5,11 +5,10 @@
 // then append a copy of each node (fn_7100c090cc). The shape of fn_7100246a94
 // (src/game/CActor/CActor_VectorCopy_b41.cpp). Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/SCameraRailNode.h"
 #include "types.h"
 
 #include <new>
-
-extern char g_unk_7101aa2888[];
 
 // The move constructor, typed as CCentralUnitComponent's 0x40-byte half (one declaration per symbol).
 struct UnkHalf_cu {

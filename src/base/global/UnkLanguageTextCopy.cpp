@@ -5,13 +5,11 @@
 #include <stddef.h>
 
 #include "base/UnkVector.h"
+#include "base/global/timeline/CEvent.h"
 #include "types.h"
 
 extern "C" size_t wcslen(const wchar_t* s);
 extern "C" wchar_t* wcscpy(wchar_t* dst, const wchar_t* src);
-
-// The text's vtable (reached through the GOT; the object points 0x10 past it).
-extern char g_unk_7101a1a0d0[];
 
 struct UnkWideText {
     void* vtable;

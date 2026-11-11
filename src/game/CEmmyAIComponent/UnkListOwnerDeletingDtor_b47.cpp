@@ -4,11 +4,10 @@
 // dropped). fn_710055fc44 is in the CEmmyAIComponent unit (tools/tu_map.py unit 811), fn_710051c5dc in
 // the behaviortree::CEmmySearchingAction unit (unit 805). Names are placeholders.
 #include "base/UnkDestructors.h"
+#include "game/UnkTU811.h"
+#include "game/behaviortree/CEmmySearchingAction.h"
 
 extern char g_unk_7101a48b80[];
-extern char g_unk_7101a48bc0[];
-extern void* g_unk_7101a47f48[];
-extern void* g_unk_7101a47f88[];
 
 template <auto* Vtable>
 struct UnkListBaseTag_b47;

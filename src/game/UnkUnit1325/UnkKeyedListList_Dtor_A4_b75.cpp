@@ -4,10 +4,9 @@
 // (fn_710086f394, fn_710086f4a0). Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CEmmyProtoAIComponent.h"
+#include "game/UnkTU1325.h"
 #include "types.h"
-
-extern void* g_unk_7101a7a548[];
-extern void* g_unk_7101a46040[];
 
 struct UnkInnerNode_A4_b75 {
     u64 value;

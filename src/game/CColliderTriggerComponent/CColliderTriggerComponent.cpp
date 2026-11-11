@@ -2,11 +2,10 @@
 // container at +0x428 (base vtable, empty array with step 10 and flags 0xf, final vtable, allocator),
 // then the post-construction virtual call (slot 3). Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 void fn_7100a5dac0(void* self);
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a20950[];
 extern void* g_unk_7101a8f070[];
 
 struct UnkColliderTriggerComponent_cb9c {

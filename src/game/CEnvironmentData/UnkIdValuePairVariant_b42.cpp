@@ -6,10 +6,9 @@
 // Names and layouts are placeholders.
 #include "UnkClone.h"
 #include "base/UnkCloneHelpers.h"
+#include "game/UnkTU2599.h"
+#include "game/UnkTU2601.h"
 #include "types.h"
-
-extern char g_unk_7101cab220[];
-extern char g_unk_7101cab400[];
 
 template <char* Vtable>
 struct UnkIdValuePairTag_b42a3;

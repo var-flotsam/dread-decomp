@@ -3,11 +3,11 @@
 // base constructor (fn_71011acd10) it sets the vtable and builds the list of owned objects at +0x58
 // (game_s2/UnkOwnedList.h: allocator flags 0xf) with room for ten. Names and layouts are placeholders.
 #include "game/CCharClassComponent.h"
+#include "game/CCharClassShotComponent.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
 
 struct UnkStruct_71008bca30;
-extern void* g_unk_7101a8ab40[];
 
 struct UnkCShotComponent_csc {
     void** vtable;

@@ -5,6 +5,8 @@
 // are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
+#include "game/UnkTU811.h"
+#include "game/behaviortree/CEmmyPatrolAction.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -24,11 +26,9 @@ inline UnkGameManagerIdTable& GameManagerIdTable() {
 
 bool fn_710051d464(CBlackboard::CSection* section, const void* name, CStrId* out);
 
-extern char g_unk_71726e20a8[] __attribute__((visibility("hidden")));
 // The ids compared with, declared as raw storage (as CEmmyStateOverrideLogicAction_SetUp_b55.cpp does
 // g_unk_71726ded60).
 extern char g_unk_71726df1a0[];
-extern char g_unk_71726ded60[];
 extern char g_unk_71726df038[];
 
 struct UnkEmmyStateIdTest_b56a3 {

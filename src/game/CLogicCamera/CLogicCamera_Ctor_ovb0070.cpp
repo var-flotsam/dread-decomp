@@ -5,11 +5,12 @@
 #include "base/UnkRefHandle.h"
 #include "base/global/CStrId.h"
 #include "game/CGameObject.h"
+#include "game/CLogicCamera.h"
+#include "game/CLogicCameraComponent.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-extern void* g_unk_7101a81678[];
 
 struct UnkLogicCamera_ovb0070 {
     void** vtable;
@@ -84,9 +85,6 @@ void fn_71010515c8(UnkLogicCamera_ovb0070* self, const UnkLogicCamera_ovb0070* o
     self->field_0x44 = other->field_0x44;
     self->field_0x48 = other->field_0x48;
 }
-
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101cac850[];
 
 struct UnkCameraVtable_ovb0070 {
     void** vtable;

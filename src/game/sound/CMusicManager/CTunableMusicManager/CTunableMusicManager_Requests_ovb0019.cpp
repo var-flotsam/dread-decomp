@@ -21,7 +21,6 @@ struct UnkMgr_0xf18;
 struct UnkTunable;
 
 extern UnkSoundMgr* g_unk_7101d4d820;
-extern UnkTunable g_unk_7101d68580;  // base::snd::CSoundSystemATK's tunable
 
 void fn_7100108a84(UnkMgr*, UnkHandle*, f32);
 

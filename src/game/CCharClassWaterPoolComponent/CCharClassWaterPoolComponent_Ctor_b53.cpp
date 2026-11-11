@@ -4,9 +4,8 @@
 // members, then the object's own slot 3 (vf_0x18). Names and layout are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassWaterPoolComponent.h"
 #include "types.h"
-
-extern void* g_unk_7101a80ed8[];
 
 struct UnkWaterPoolComponent_b53;
 void fn_71009000bc(UnkWaterPoolComponent_b53* self);

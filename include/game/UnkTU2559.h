@@ -1,6 +1,6 @@
 #pragma once
 
-// UnkTU2559: functions of this translation unit that other files call (tools/tu_map.py unit 2559,
+// UnkTU2559: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2559,
 // 0x7100e16e60-0x7100e1bc3c). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
@@ -16,3 +16,6 @@ void fn_7100e1b5e0() __attribute__((visibility("hidden")));
 void fn_7100e1b5ec() __attribute__((visibility("hidden")));
 void fn_7100e1b5f8() __attribute__((visibility("hidden")));
 void fn_7100e1b604() __attribute__((visibility("hidden")));
+extern char g_unk_71727c0cd8;
+extern char g_unk_71727c0e10;
+extern char g_unk_71727c0f70;

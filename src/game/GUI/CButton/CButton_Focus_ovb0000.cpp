@@ -91,8 +91,6 @@ void fn_71011bf660(UnkGuiButtonFocus_ovb0000* self) {
 
 using base::global::CStrId;
 
-extern char g_unk_7101cb5908[];  // CButton's vtable
-
 struct UnkGuiButtonInit_ovb0000 {
     char* vtable;
     u8 base_0x8[0x228];

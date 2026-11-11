@@ -8,6 +8,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
 #include "game/CGameObject.h"
+#include "game/CReserveTankInfo.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTUProperty.h"
@@ -15,12 +16,9 @@
 
 using base::global::CStrId;
 
-extern char g_unk_7101caa4d0[];
 extern char g_unk_7101caa570[];
 
 struct UnkDef_7100fc4b34;  // src/game_s7/fn_7100fc4b34.cpp
-extern UnkDef_7100fc4b34 g_unk_71729dbcc0;
-extern UnkDef_7100fc4b34 g_unk_71729dbd00;
 
 // The view of a definition this file uses.
 struct UnkDefView_ov110 : UnkIdSource {

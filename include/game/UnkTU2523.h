@@ -1,6 +1,6 @@
 #pragma once
 
-// UnkTU2523: functions of this translation unit that other files call (tools/tu_map.py unit 2523,
+// UnkTU2523: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2523,
 // 0x7100d70c1c-0x7100d8b794). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
@@ -28,3 +28,4 @@ void fn_7100d7add4(UnkActor_7101105e44* actor, bool value);
 void fn_7100d7babc(UnkWeakTarget* entity, bool flag, f32 value);
 void fn_7100d7c48c(void* target, void* name, f32 a, f32 b);
 void fn_7100d80b84(void* self);  // Re-points `current` at (index, element).
+extern void* g_unk_71727b85d0;

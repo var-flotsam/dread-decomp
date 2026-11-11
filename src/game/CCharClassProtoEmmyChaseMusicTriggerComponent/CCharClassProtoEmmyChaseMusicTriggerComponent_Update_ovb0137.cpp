@@ -3,6 +3,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CAbilityEnergyWave.h"
 #include "game/CActorComponent.h"
 #include "game/CCharClassBaseTriggerComponent.h"
 #include "game/UnkGameBlackboard.h"
@@ -26,7 +27,6 @@ bool fn_7100fd76d4(void* manager, const CRntString* name);
 
 extern void* g_unk_71726bc560;
 struct UnkEmmyRegistry_b55;
-extern UnkEmmyRegistry_b55* g_unk_71726af0a8;
 
 // The channel mask as src/game/UnkLoadingScreen.cpp defines it (passed through a copy).
 struct UnkLoadingMask {

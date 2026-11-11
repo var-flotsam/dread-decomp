@@ -8,6 +8,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/animtree/CAnimTreeDef.h"
+#include "game/animtree/CAnimatedNodeDef.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
 
@@ -144,7 +145,6 @@ void* fn_71002d9994(void* dst, void* src) {
 }
 
 extern void* g_unk_7101a21898[];
-extern void* g_unk_7101a21718[];
 
 // An array of pairs of string ids (base::UnkVector's layout), truncated out of line.
 struct UnkTreeIdPairs_ovb0120 {

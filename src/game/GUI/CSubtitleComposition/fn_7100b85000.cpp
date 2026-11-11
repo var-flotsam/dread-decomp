@@ -3,6 +3,7 @@
 // emptied and freed, then the base destructor (fn_71011d8e90 for the first
 // two) runs.
 #include "base/UnkVector.h"
+#include "game/CMissileBaseGun.h"
 #include "game/UnkComponent.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "types.h"
@@ -60,7 +61,6 @@ void fn_7100b88de4(UnkLinkOwner<g_unk_7101a9fd08>* self) {
 // fn_71010c4194, and fn_710085c814) and the vectors at 0x58 and 0x18a0.
 void fn_710085c814(char*);
 
-extern void* g_unk_7101a786e0[];
 extern void* g_unk_7101a8d098[];
 
 void fn_710084e8fc(UnkLinkOwner<g_unk_7101a786e0, 0x18a0>* self) { Destroy<g_unk_7101a786e0, 0x18a0, char, fn_710085c814>(self); }

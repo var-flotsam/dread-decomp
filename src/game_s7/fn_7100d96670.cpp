@@ -1,6 +1,7 @@
 // Static initialiser of a reflected unit: the header ids, then the unit's own statics and
 // registrations (helpers in UnkStaticInitS7.h). Layouts are placeholders.
 #include "UnkStaticInitS7.h"
+#include "game/UnkTU2527.h"
 
 using namespace unk_static_init;
 
@@ -18,7 +19,6 @@ extern char g_unk_71727b9330[];
 extern char g_unk_71727b93b0[];
 extern char g_unk_71727b9430[];
 extern char g_unk_71727b94b0[];
-extern char g_unk_71727b9530[];
 extern char g_unk_71727b95b0[];
 extern char g_unk_71727b9630[];
 extern char g_unk_71727b96b0[];
@@ -36,9 +36,7 @@ extern char g_unk_71727b9c30[];
 extern char g_unk_71727b9cb0[];
 extern char g_unk_71727b9d30[];
 extern char g_unk_71727b9db0[];
-extern char g_unk_71727b9e30[];
 extern char g_unk_71727b9eb0[];
-extern char g_unk_71727b9f30[];
 extern char g_unk_71727b9fb0[];
 extern char g_unk_71727ba030[];
 extern char g_unk_71727ba0b0[];

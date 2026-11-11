@@ -1,6 +1,7 @@
 // CAbilityOpticCamouflage unit (tools/tu_map.py unit 432): after the base step (fn_71002fa298), when the
 // state at +0xb4 is 6 (or 7 with the sub-state at +0x20 in 6), calls vtable slot 0xa0 with whether the
 // owner's +0xb8 differs from the global at 0x71726dbf68. Names and layouts are placeholders.
+#include "game/UnkTU785.h"
 #include "types.h"
 
 struct UnkOpticSubState_b47 {
@@ -41,7 +42,6 @@ struct UnkOpticAbility_b47 {
     u32 state;  // 0xb4
 };
 
-extern void* g_unk_71726dbf68;
 void fn_71002fa298(UnkOpticAbility_b47* self, UnkOpticOwner_b47* owner);
 
 void fn_7100324284(UnkOpticAbility_b47* self, UnkOpticOwner_b47* owner) {

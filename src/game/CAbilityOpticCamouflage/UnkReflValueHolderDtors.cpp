@@ -5,11 +5,10 @@
 #include <new>
 
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityMultiLockon.h"
+#include "game/CAbilityShinespark.h"
+#include "game/CAbilitySpeedBooster.h"
 #include "types.h"
-
-extern char g_unk_7101a22fe8[];
-extern char g_unk_7101a234f8[];
-extern char g_unk_7101a239c8[];
 
 struct UnkReflValueHolder {
     char* vtable;

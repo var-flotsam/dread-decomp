@@ -1,10 +1,12 @@
 #pragma once
 
-// UnkTU182: functions of this translation unit that other files call (tools/tu_map.py unit 182,
+// UnkTU182: functions and globals of this translation unit that other files use (tools/tu_map.py unit 182,
 // 0x710015f100-0x7100162a48). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkGfxHeap;
+struct UnkPool;
 struct UnkGfxBuffer252;
 struct UnkObj_7100161b90;
 struct UnkRenderTargetSlot;
@@ -30,3 +32,6 @@ void fn_7100160810(s32 a, s32 b, bool c);
 void fn_7100160890(s32 a, s32 b, bool c);
 void* fn_71001611e0(void* object);  // A target's NVN texture.
 u32 fn_71001622e0(UnkGfxBuffer252* buffer);
+extern UnkPool g_unk_716e2a7580;  // The descriptors' memory.
+extern UnkGfxHeap* g_unk_716e2a76a8;  // The heap for textures.
+extern UnkGfxHeap* g_unk_716e2a76b0;  // The heap for render targets.

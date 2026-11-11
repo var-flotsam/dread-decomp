@@ -9,6 +9,7 @@
 #include "base/reflection.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/lua_lib.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -24,7 +25,6 @@ void* fn_71010a4740(lua_State* L, int index, const char* name);
 
 // The unit's small stack visitor (vtable 0x7101cab628, address point 0x7101cab638), as in
 // src/script/lua_lib_PushTyped_A6_b72.cpp.
-extern void* g_unk_7101cab638[] __attribute__((visibility("hidden")));
 
 struct UnkLuaVisitor_ovb0016 {
     void** vtable;

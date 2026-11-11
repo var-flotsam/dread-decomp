@@ -14,6 +14,8 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU101.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU290.h"
 #include "game/UnkTU437.h"
@@ -94,13 +96,11 @@ struct UnkSoundHandle {
     UnkSoundRef* ref;
     s64 serial;
 };
-extern const UnkSoundHandle g_unk_7108b6c460;  // the empty handle
 
 struct UnkPlayer;
 struct UnkActor;
 struct UnkEntityWithSound;
 struct UnkDropTarget;
-extern UnkDropTarget* g_unk_7101d47318;
 
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 UnkSoundHandle fn_7100d7c42c(UnkEntityWithSound* self, void* a, void* b, void* c, void* d);
@@ -150,7 +150,6 @@ void fn_7100ed6af0(UnkShotManager_b0011* self, u32 type, u32 variant) {
         fn_7101025560(g_unk_7101d47318, ids, 0.2f, 0.0f);
 }
 
-extern void* g_unk_71726b1688;  // the light manager
 UnkListedObj* fn_7100e0b770(char* self);
 void fn_710020c4b8(UnkToggle* self, bool value);
 

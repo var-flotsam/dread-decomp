@@ -1,6 +1,6 @@
 #pragma once
 
-// reflection: functions of this translation unit that other files call (tools/tu_map.py unit 2525,
+// reflection: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2525,
 // 0x7100d8c56c-0x7100d911d8). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
@@ -42,3 +42,27 @@ void fn_7100b7d05c();
 void fn_7100b7db14();
 void fn_7100b7e0f8();
 void fn_7100d8efd0(void* self, bool a, bool b, bool c);
+extern u8 g_unk_7172757530[];
+extern char g_unk_7172758254;
+extern char g_unk_7172758255;
+extern char g_unk_7172758256;
+extern char g_unk_717275dfb8;
+extern char g_unk_717275dfb9;
+extern char g_unk_7172766268;
+extern char g_unk_7172766269;
+extern char g_unk_717276626a;
+extern char g_unk_717276626b;
+extern char g_unk_71727663a8;
+extern char g_unk_71727663a9;
+extern char g_unk_71727664e8;
+extern char g_unk_71727664e9;
+extern char g_unk_7172766660;
+extern char g_unk_7172767138;
+extern char g_unk_7172767139;
+extern char g_unk_717276713a;
+extern char g_unk_717276713b;
+extern char g_unk_7172767278;
+extern char g_unk_7172767279;
+extern char g_unk_71727673b8;
+extern char g_unk_71727673b9;
+extern char g_unk_7172767530;

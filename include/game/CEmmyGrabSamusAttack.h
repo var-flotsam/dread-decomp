@@ -1,6 +1,6 @@
 #pragma once
 
-// CEmmyGrabSamusAttack: functions of this translation unit that other files call (tools/tu_map.py unit 800,
+// CEmmyGrabSamusAttack: functions and globals of this translation unit that other files use (tools/tu_map.py unit 800,
 // 0x7100504d5c-0x7100511964). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
@@ -26,3 +26,4 @@ bool fn_710050a500(UnkGrabAttack_b59a3* self, const UnkGrabId_b59a3* id);
 void fn_710050afd0(UnkGrabFx4_b61* self, UnkGrabArg_b61* arg);
 void fn_710050cd98(UnkSelf* self);
 void fn_710050d150(UnkGrabAttack_A3_b68* self);
+extern UnkGrabArg_b61 g_unk_71726de5a0 __attribute__((visibility("hidden")));

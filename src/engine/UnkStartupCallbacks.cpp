@@ -2,12 +2,12 @@
 // src/base/global/): the two callbacks of the start-up settings record that src/engine/HostArguments.cpp
 // builds, taken there PC-relatively. Names are placeholders.
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU0.h"
 #include "types.h"
 
 // The manager at g_unk_7101d47318 as far as it is called here (src/game/CSubAreaManager.cpp calls
 // the same slot).
 struct UnkDropTarget;
-extern UnkDropTarget* g_unk_7101d47318;
 struct UnkStartupDropTargetView {
     virtual void vf_0x0();
     virtual void vf_0x8();

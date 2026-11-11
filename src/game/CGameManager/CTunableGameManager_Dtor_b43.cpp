@@ -3,6 +3,7 @@
 // its two arrays are freed through its allocator, the second first. Names and layouts are placeholders.
 #include "base/UnkKeyedStrIds.h"
 #include "base/UnkVector.h"
+#include "game/CGameManager/CTunableGameManager.h"
 #include "types.h"
 
 // As src/game/CActorComponent/fn_71002520fc.cpp declares it.
@@ -11,8 +12,6 @@ struct UnkIdRecordTable;
 template <class T, void (*Destroy)(T*)>
 struct UnkOwned;
 void fn_7100ae31f8(UnkIdRecordTable<UnkOwned<UnkKeyedStrIds, fn_7100ae2df8>>* self);
-
-extern char g_unk_7101aa9aa0[];  // the object's vtable
 
 struct UnkRecordTable_b43a3 {
     void* keys;

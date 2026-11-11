@@ -12,6 +12,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU344.h"
 #include "types.h"
 
 // ---- Adding the factory's resource for a key ----
@@ -64,7 +65,6 @@ struct UnkInserted_caed8 {
     UnkInserted_caed8(const UnkInserted_caed8&);
 };
 
-extern UnkActorDefFactory* g_unk_71726a0220;
 UnkNode_caed8** fn_7100ecba2c(UnkMap_caed8* self, u32 index);
 UnkRef_caed8 fn_71011934b0(UnkActorDefFactory* self, UnkKey_caed8* const* key);
 UnkInserted_caed8 fn_7100ecbc08(UnkMap_caed8* self, UnkKey_caed8* const* key, const UnkRef_caed8* value);

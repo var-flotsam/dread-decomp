@@ -1,6 +1,6 @@
 #pragma once
 
-// CTunableAIManager: functions of this translation unit that other files call (tools/tu_map.py unit 2540,
+// CTunableAIManager: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2540,
 // 0x7100da7404-0x7100daf1cc). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
@@ -21,3 +21,6 @@ void fn_7100dab9bc() __attribute__((visibility("hidden")));
 void fn_7100dab9c8() __attribute__((visibility("hidden")));
 void fn_7100dab9d4() __attribute__((visibility("hidden")));
 void fn_7100dab9e0() __attribute__((visibility("hidden")));
+extern char g_unk_71727bc3a8;
+extern char g_unk_71727bc508;
+extern char g_unk_71727bc550;

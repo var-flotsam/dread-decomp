@@ -2,11 +2,10 @@
 // CCharClassShootActivatorComponent.cpp): this unit's own copy of its constructor.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCentralUnitAIComponent.h"
+#include "game/UnkTU341.h"
 
 using base::global::UnkStringData;
-
-extern void* g_unk_7101a20998[];  // the base's vtable
-extern void* g_unk_7101a33fa0[];  // the list's vtable
 
 namespace {
 struct UnkCallbackIdList {

@@ -8,6 +8,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
+#include "game/CReserveTankInfo.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkTU57.h"
@@ -86,17 +87,10 @@ extern UnkDef_7100fc4b34 g_unk_717275b080;
 extern UnkDef_7100fc4b34 g_unk_7172758cf0;
 extern UnkDef_7100fc4b34 g_unk_7172758d30;
 extern UnkDef_7100fc4b34 g_unk_7172758db0;
-extern UnkDef_7100fc4b34 g_unk_71729dbc00;
 extern UnkDef_7100fc4b34 g_unk_7172759cd0;
 extern UnkDef_7100fc4b34 g_unk_7172759d10;
 extern UnkDef_7100fc4b34 g_unk_7172759dd0;
 extern UnkDef_7100fc4b34 g_unk_71727594b8;
-extern UnkDef_7100fc4b34 g_unk_71729dbc40;
-extern UnkDef_7100fc4b34 g_unk_71729dbc80;
-extern UnkDef_7100fc4b34 g_unk_71729dbcc0;
-extern UnkDef_7100fc4b34 g_unk_71729dbd00;
-extern UnkDef_7100fc4b34 g_unk_71729dbd40;
-extern UnkDef_7100fc4b34 g_unk_71729dbd80;
 extern UnkDef_7100fc4b34 g_unk_717275b108;
 extern UnkDef_7100fc4b34 g_unk_717275b148;
 extern UnkNamedDef_7100fc4b34 g_unk_7172759e10;

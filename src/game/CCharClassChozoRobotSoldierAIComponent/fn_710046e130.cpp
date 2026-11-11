@@ -2,6 +2,7 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/CCharClassChozoRobotSoldierAIComponent.h"
 #include "game/CDamageSourceFactor.h"
 #include "game/UnkBossAIComponent.h"
 #include "game_s2/UnkTwoStepStrId.h"
@@ -26,7 +27,6 @@ void fn_710045ee14(void*);
 void fn_71004623f0(void*);
 void fn_71004632ac(void*);
 void fn_710046424c(void*);
-extern void* g_unk_7101a38c40[];
 void fn_71002c6c6c(void*);
 
 void fn_710046e130(UnkNode* self) {

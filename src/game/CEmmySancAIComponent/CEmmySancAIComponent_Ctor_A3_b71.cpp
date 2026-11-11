@@ -5,14 +5,12 @@
 // Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
+#include "game/CEmmySancAIComponent.h"
+#include "game/UnkTU341.h"
 #include "game/UnkTU811.h"
 #include "types.h"
 
 #include <new>
-
-extern void* g_unk_7101a46180[];
-extern void* g_unk_7101a20950[];
-extern void* g_unk_7101a20998[];
 
 // As src/game/CEmmyCaveAIComponent/CEmmyCaveAIComponent.cpp declares it.
 struct UnkComponent;

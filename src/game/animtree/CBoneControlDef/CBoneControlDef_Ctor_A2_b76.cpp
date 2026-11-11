@@ -7,11 +7,11 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/animtree/CAnimatedNodeDef.h"
 
 using base::global::CStrId;
 using base::global::UnkStringData;
 
-extern void* g_unk_7101a21718[];
 extern void* g_unk_7101a21af8[];
 
 struct UnkBoneControlDef_A2_b76 {

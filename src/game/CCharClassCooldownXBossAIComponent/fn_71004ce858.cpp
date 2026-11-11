@@ -5,6 +5,7 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/CCharClassCooldownXBossAIComponent.h"
 #include "game/CDamageSourceFactor.h"
 #include "game/UnkBossAIComponent.h"
 #include "types.h"
@@ -19,7 +20,6 @@ void fn_71004b42b8(void*);
 void fn_71004b4ee8(void*);
 void fn_71004b9cc4(void*);
 void fn_71004a1790(void*);
-extern void* g_unk_7101a3ebe8[];
 
 template <class T>
 static inline void St(UnkNode* self, u32 off, T value) {

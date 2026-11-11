@@ -3,6 +3,7 @@
 #include "base/UnkMatrix44.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2689.h"
+#include "game/UnkTU437.h"
 #include <math.h>
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -288,7 +289,6 @@ struct UnkAimTunable {
     u8 pad_0xac[0xc];
     f32 field_0xb8;
 };
-extern UnkAimTunable g_unk_71726b1438;
 
 struct UnkAimState_b0153 {
     u8 pad_0x0[0x10];

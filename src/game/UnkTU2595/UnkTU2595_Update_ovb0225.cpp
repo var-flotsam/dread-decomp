@@ -8,6 +8,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU2595.h"
 #include "game/UnkTU2656.h"
 #include "game/UnkTU2725.h"
 #include "game/malloc.h"
@@ -28,7 +29,6 @@ struct UnkSingleton2595_b0225 {
 void fn_7100ec9e38(UnkSingleton2595_b0225* self, f32 dt);
 
 struct UnkSingleton2595_b49a6;
-extern UnkSingleton2595_b49a6* g_unk_71729dc210;
 
 static inline UnkSingleton2595_b0225* Singleton2595() {
     UnkSingleton2595_b0225*& slot = reinterpret_cast<UnkSingleton2595_b0225*&>(g_unk_71729dc210);

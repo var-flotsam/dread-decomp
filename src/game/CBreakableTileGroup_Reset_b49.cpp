@@ -3,11 +3,11 @@
 // tile array at +0x48 (0xa8-byte tiles, destroyed by fn_7100c9dd20) and the arrays at +0x58 and +0x50
 // are deleted, and the counters are cleared. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU365.h"
 #include "types.h"
 
 // The collision manager (as src/game/CCharacterMovement_2.cpp declares it).
 struct UnkManager_7100863a8c;
-extern UnkManager_7100863a8c* g_unk_71726a4788;
 void fn_7100d46804(UnkManager_7100863a8c* self);
 struct UnkCollisionObject;
 void fn_7100d46c60(UnkManager_7100863a8c* self, UnkCollisionObject* entry);

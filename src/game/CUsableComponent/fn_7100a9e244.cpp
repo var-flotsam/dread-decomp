@@ -5,6 +5,8 @@
 
 #include "base/global/CStrId.h"
 #include "game/CComponent.h"
+#include "game/CPullOffGrapplePointComponent.h"
+#include "game/CUsableComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -19,8 +21,6 @@ inline const UnkStaticZero_7172716dcc& UnkGetStaticZero_7172716dcc() {
     static UnkStaticZero_7172716dcc s_value;
     return s_value;
 }
-
-extern void* g_unk_7101a94718[];
 
 struct UnkState {
     void** vtable;
@@ -105,9 +105,7 @@ static_assert(__builtin_offsetof(UnkStateObject, states) == 0x1b0, "layout");
 static_assert(__builtin_offsetof(UnkStateObject, field_0x4f8) == 0x4f8, "layout");
 static_assert(__builtin_offsetof(UnkStateObject, listener_vtable) == 0x518, "layout");
 
-extern void* g_unk_7101a94220[];
 extern void* g_unk_7101a94668[];
-extern void* g_unk_7101a77000[];
 void fn_7100aa3ad0(void* self);
 
 static inline void InitState(UnkState* s, u32 id) {

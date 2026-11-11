@@ -5,6 +5,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/input/UnkRumbleManager.h"
 #include "base/math/UnkZeroVector3.h"
+#include "game/UnkTU50.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -28,7 +29,6 @@ struct UnkHandle {
     }
 };
 
-extern UnkHandle g_unk_7101d586c0;
 extern UnkRumbleManager* g_unk_7101d47348;
 struct UnkRumbleParams;
 UnkHandle fn_7100074354(UnkRumbleManager* self, const UnkRumbleParams* params);

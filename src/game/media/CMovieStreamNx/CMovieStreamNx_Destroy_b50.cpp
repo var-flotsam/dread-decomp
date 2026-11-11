@@ -2,6 +2,7 @@
 // (fn_7100225aac). The layout is the one of src/game/media/CMovieStreamNx.cpp: a movie::Decoder at
 // +0x50 and two fixed rings of 64 entries (4-byte words at +0x2c0, 24-byte records at +0x408), each
 // with a vtable of its own; a ring's destructor walks its entries and empties it. Names are placeholders.
+#include "game/media/CMovieStreamNx.h"
 #include "types.h"
 
 namespace movie {
@@ -10,10 +11,6 @@ public:
     ~Decoder();
 };
 }  // namespace movie
-
-extern void* g_unk_7101a20650[];  // the stream's vtable
-extern void* g_unk_7101a206d0[];  // the rings' vtables
-extern void* g_unk_7101a20700[];
 
 namespace {
 

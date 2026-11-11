@@ -5,6 +5,7 @@
 #include "base/math/CVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/GUI/CSprite.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiFrames.h"
 #include "game/UnkGuiRoot.h"
@@ -15,8 +16,6 @@
 
 using base::global::CRntString;
 using base::global::CStrId;
-
-extern const char* const g_unk_7101cb6858[2];
 
 struct UnkMinimapView;
 void fn_71011bab80(UnkGuiRoot* root, void* object, s32 frame);

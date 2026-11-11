@@ -3,6 +3,7 @@
 // under this file's names. Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
+#include "game/CAbilityEnergyWave.h"
 #include "game/CCharClassEmmyValveComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "base/reflection/UnkReflAttributes.h"
@@ -114,7 +115,6 @@ __attribute__((always_inline)) static inline void RequestState_A5v_b64(UnkSmMach
 
 struct UnkSmBase_b60;
 struct UnkEmmyRegistry_b55;
-extern UnkEmmyRegistry_b55* g_unk_71726af0a8;
 
 CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 extern UnkDesc_SpitSend g_unk_7172769794;  // reached through the GOT

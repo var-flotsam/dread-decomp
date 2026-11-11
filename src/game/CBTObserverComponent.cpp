@@ -7,6 +7,7 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkPairArrays.h"
 #include "base/UnkVector.h"
+#include "game/CBTObserverComponent.h"
 #include "types.h"
 
 // A callback on the observer (fn_7100caacd0, fn_7100caad50, fn_7100caadb0).
@@ -32,7 +33,6 @@ struct UnkBTObserver {
 };
 static_assert(sizeof(UnkBTObserver) == 0x150, "UnkBTObserver placeholder layout");
 
-extern char g_unk_7101aa52b0[];  // the observer's vtable
 // Sizes the map: its buckets and its pool of nodes.
 void fn_7100caab7c(UnkChainedMap* map, u32 buckets, u32 nodes);
 // Reserves room for `capacity` pairs.

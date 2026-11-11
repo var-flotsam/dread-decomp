@@ -7,7 +7,9 @@
 #include "base/UnkCollectionIter.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "game/CCentralUnitAIComponent.h"
 #include "game/UnkTU2523.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 // --- a map from string ids to arrays of 0x40-byte polymorphic elements (copy of fn_71002488f4) ---
@@ -73,8 +75,6 @@ void fn_7100d8a27c(const UnkEntityArrayMap_b54* map, UnkEntityArrayMapIter_b54* 
 // --- an array of callback lists (copy of fn_71002476ec) ---
 
 struct UnkEntityCallbacks_b54;
-extern void* g_unk_7101a33fa0[];
-extern void* g_unk_7101a20998[];
 template <>
 struct base::UnkCallbackTraits<UnkEntityCallbacks_b54> {
     static char* vtable() { return reinterpret_cast<char*>(g_unk_7101a33fa0); }

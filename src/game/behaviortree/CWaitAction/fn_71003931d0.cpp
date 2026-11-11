@@ -4,6 +4,7 @@
 
 #include "base/global/CStrId.h"
 #include "game/UnkBehaviorTree.h"
+#include "game/behaviortree/CWaitAction.h"
 #include "types.h"
 
 using base::global::UnkStrId;
@@ -15,8 +16,6 @@ struct UnkNode : UnkBehaviorTreeNodeBase {
     UnkStrId field_0x40;
     u8 field_0x48[0xb];
 };
-
-extern void* g_unk_7101a26cb0[];
 
 void fn_71003931d0(UnkNode* self) {
     fn_7100393e68(self);

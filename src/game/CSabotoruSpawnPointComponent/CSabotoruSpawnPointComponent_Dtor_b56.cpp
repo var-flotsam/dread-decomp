@@ -4,13 +4,11 @@
 // (fn_7101125c90). Names are placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
+#include "game/CCentralUnitAIComponent.h"
+#include "game/CSabotoruSpawnPointComponent.h"
 #include "game/UnkTU2704.h"
+#include "game/UnkTU341.h"
 #include "types.h"
-
-extern void* g_unk_7101a20950[];
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a33fa0[];
-extern void* g_unk_7101a8cc00[];  // CSabotoruSpawnPointComponent
 
 struct UnkSabotoruCallbacks_b56;
 template <>

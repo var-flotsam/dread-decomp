@@ -6,10 +6,10 @@
 #include "base/UnkCountedResource.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU275.h"
 #include "types.h"
 
 extern void* g_unk_7101a1f000[];
-extern void* g_unk_7101a1f218[];
 
 void fn_71001be078(char*);
 

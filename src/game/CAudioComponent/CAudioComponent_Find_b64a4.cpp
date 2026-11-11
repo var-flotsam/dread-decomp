@@ -1,6 +1,7 @@
 // CAudioComponent unit (tools/tu_map.py, the name from reflection): the sound handle of the entry
 // (0xd0 bytes each, array at +0x48, count at +0x50) whose key at +0x28 equals *key, or the empty
 // handle. Names and layouts are placeholders.
+#include "game/UnkTU101.h"
 #include "types.h"
 
 struct UnkSoundRef;
@@ -8,7 +9,6 @@ struct UnkSoundHandle {
     UnkSoundRef* ref;
     s64 serial;
 };
-extern const UnkSoundHandle g_unk_7108b6c460;  // the empty handle
 
 struct UnkAudioEntry_b64a4 {
     u8 pad_0x0[0x28];

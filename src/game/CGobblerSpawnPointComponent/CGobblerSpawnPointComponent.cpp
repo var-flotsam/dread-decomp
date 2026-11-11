@@ -8,13 +8,12 @@
 // stores its flag through it, unlike the original.
 #include "base/UnkVector.h"
 #include "base/core/CBaseObject.h"
+#include "game/CCentralUnitAIComponent.h"
+#include "game/CGobblerSpawnPointComponent.h"
 #include "game/UnkTU2704.h"
+#include "game/UnkTU341.h"
 
 struct UnkNode;
-
-extern char g_unk_7101a8c8d8[];  // the component's vtable
-extern void* g_unk_7101a20998[];  // the callback list base's vtable
-extern void* g_unk_7101a33fa0[];  // the callback list's vtable
 
 template <class T>
 static inline T& At(void* base, u64 offset) {

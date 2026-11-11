@@ -5,13 +5,11 @@
 // src/game/CAutsharpSpawnPointComponent/CAutsharpSpawnPointComponent.cpp. Names and layouts are
 // placeholders.
 #include "base/UnkVector.h"
+#include "game/CCentralUnitAIComponent.h"
+#include "game/CSabotoruSpawnPointComponent.h"
 #include "game/UnkTU2704.h"
+#include "game/UnkTU341.h"
 #include "types.h"
-
-extern void* g_unk_7101a8cc00[];
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a33fa0[];
-extern void* g_unk_7101a20950[];
 
 // The containers' fields are written out flat: as sub-objects, Clang addresses one byte store
 // from the container's base instead of the component's.

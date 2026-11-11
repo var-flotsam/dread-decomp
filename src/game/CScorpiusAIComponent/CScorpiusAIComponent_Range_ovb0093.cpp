@@ -12,6 +12,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityEnergyWave.h"
 #include "game/CAnimationComponent.h"
 #include "game/CScorpiusAIComponent.h"
 #include "game/CShotManager/CTunableShotManager.h"
@@ -73,7 +74,6 @@ using base::global::CStrId;
 using base::reflection::UnkReflObject;
 
 struct UnkLayerNode;
-extern void* g_unk_71726af0b0;
 extern CStrId g_unk_71727041b0;  // the collision object's name
 extern __attribute__((visibility("hidden"))) u64 g_unk_7172704218;  // the layer node's key
 void fn_7100ed77b8(void* player, UnkCollisionObject* object);

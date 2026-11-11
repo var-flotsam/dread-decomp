@@ -3,6 +3,7 @@
 #include <new>
 #include "base/UnkRefHandle.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -44,9 +45,6 @@ bool fn_7100a30948(base::UnkVector<UnkLink_ovb0130>* self, UnkLink_ovb0130* link
     }
     return false;
 }
-
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a20950[];
 
 // The link's base: a vtable and a list allocating with flags 0xf.
 struct UnkLinkBase_ovb0130 {

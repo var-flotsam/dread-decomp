@@ -4,6 +4,9 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/CRodotukSuckAttack.h"
+#include "game/CTeamManager/CTunableTeamManager.h"
+#include "game/UnkTU852.h"
 #include "types.h"
 
 struct UnkRefObj {
@@ -54,8 +57,6 @@ struct UnkRefList {
     }
 };
 
-extern void* g_unk_7101cb5608[];
-extern void* g_unk_7101cb5668[];
 extern void* g_unk_7101cb58e8[];
 
 template <void** Vtable, class Node, u32 Pad>
@@ -96,8 +97,6 @@ void fn_71011bbdc0(UnkOwnerC& self) {
 
 // The same destructors in two other units, the allocator right after the tail, with their own
 // vtables: fn_710059d82c and fn_710059d8c0, fn_710066a41c and fn_710066cad0.
-extern void* g_unk_7101a4d918[];
-extern void* g_unk_7101a5db18[];
 
 using UnkOwnerD = UnkRefListOwner<g_unk_7101a4d918, UnkRefNode_0x10, 0>;
 using UnkOwnerE = UnkRefListOwner<g_unk_7101a5db18, UnkRefNode_0x10, 0>;

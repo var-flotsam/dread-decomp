@@ -4,9 +4,8 @@
 // fn_7100ec2fe4 the deleting one. Names and layouts are placeholders.
 #include "base/UnkCountedResource.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU2568.h"
 #include "types.h"
-
-extern void* g_unk_7101ca9f90[];
 
 struct UnkRefNode_A6_b72 {
     void* field_0x0;

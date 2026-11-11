@@ -18,7 +18,6 @@ using base::global::CRntString;
 using base::global::CStrId;
 
 CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
-extern u8 g_unk_7172753148[];  // a UnkProperty
 
 // A typed value as the section setter takes it (as in src/game/CDoorLifeComponent.cpp).
 struct UnkTypedValue {

@@ -2,9 +2,8 @@
 // g_unk_7101a32680, nodes from the default allocator with flags 0x13) through fn_710111b230 and
 // frees it again. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU604.h"
 #include "types.h"
-
-extern void* g_unk_7101a32680[];  // vtable (reached through the GOT)
 
 struct UnkList_71011199cc {
     struct Node {

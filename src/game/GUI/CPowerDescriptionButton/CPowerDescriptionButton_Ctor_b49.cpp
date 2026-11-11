@@ -4,11 +4,11 @@
 // layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/GUI/CButton.h"
+#include "game/GUI/CPowerDescriptionButton.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-extern char g_unk_7101a9dcb0[];  // CPowerDescriptionButton's vtable
 struct UnkGuiButton;
 void fn_710007e6c4(void*);               // the string's default constructor
 

@@ -2,6 +2,7 @@
 // constructor, sets the vtable, copies the default id and default-initialises the rest.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CCharClassProjectileMovement.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -23,7 +24,6 @@ struct UnkComponent_0x138 {
     u16 field_0x130;
 };
 
-extern void* g_unk_7101a96758[];
 void fn_7100ab38a0(UnkComponent_0x138* self);
 
 // CStrId's default constructor: the pool's empty string, creating the pool if needed.

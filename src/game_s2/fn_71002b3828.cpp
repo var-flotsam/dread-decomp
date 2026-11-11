@@ -4,6 +4,7 @@
 // reference to what it finds in the entry, and sets one of the flags at +0x1e8..+0x1ea from the kind
 // of the object's component.
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU372.h"
 #include "game_s2/UnkWeakHandle.h"
 
@@ -43,7 +44,6 @@ struct UnkOwner {
     UnkLinkList* field_0x1f0;
 };
 
-extern u32 g_unk_71727bebb8;
 extern char g_unk_71726a4bc0[] __attribute__((visibility("hidden")));
 
 void* fn_7100ca719c(void* manager, u32 id);

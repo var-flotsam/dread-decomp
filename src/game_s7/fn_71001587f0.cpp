@@ -9,6 +9,7 @@
 #include "base/UnkVector.h"
 #include "game/UnkTU170.h"
 #include "game/UnkTU172.h"
+#include "game/UnkTU177.h"
 #include "game/UnkTU179.h"
 #include "game/UnkTU182.h"
 #include "types.h"
@@ -121,15 +122,7 @@ extern UnkHandle* g_unk_716e29c170[2];
 extern void* g_unk_716e29bcc0;
 extern UnkPool g_unk_716e29bcd0[];
 extern u8 g_unk_716e29c1d8[];
-extern u8 g_unk_716e29c680[];
-extern u8 g_unk_716e29c6a8[];
 extern u8 g_unk_716e29c6b0[];
-extern u8 g_unk_716e29c6cc[];
-extern u8 g_unk_716e29c690;
-extern u8 g_unk_7101a1d7e5;
-extern u8 g_unk_716e29c691;
-extern s32 g_unk_7101a1d7ec;
-extern s32 g_unk_7101a1d7f0;
 extern s32 g_unk_7101a1d7f4;
 extern s32 g_unk_7101a1d7f8;
 extern s32 g_unk_7101a1d7fc;

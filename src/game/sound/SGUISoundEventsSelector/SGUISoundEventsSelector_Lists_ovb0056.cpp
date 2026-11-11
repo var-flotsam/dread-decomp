@@ -12,6 +12,8 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU0.h"
+#include "game/sound/SGUISoundEventsSelector.h"
 #include "types.h"
 
 using base::UnkAllocator;
@@ -54,8 +56,6 @@ void fn_7100fcb190(UnkSoundList_ovb56* self) {
     fn_7100083c00(self);
 }
 
-extern void* g_unk_7101cabad0[];  // the base class's vtable
-extern void* g_unk_7101caba40[];  // the selector's vtable
 extern void* g_unk_7101a1b750[];
 
 // The selector: a name with 0x80 bytes of inline storage (the string, then its inline allocator)
@@ -154,7 +154,6 @@ struct UnkSoundHandle {
     s64 serial;
 };
 struct UnkDropTarget;
-extern UnkDropTarget* g_unk_7101d47318;
 UnkSoundHandle fn_7101024e28(UnkDropTarget* self, const UnkStrIdPathPair* ids, void* a, bool b);
 struct UnkIdPair;
 void fn_7100026f70(UnkIdPair* pair);

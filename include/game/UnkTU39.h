@@ -1,6 +1,6 @@
 #pragma once
 
-// UnkTU39: functions of this translation unit that other files call (tools/tu_map.py unit 39,
+// UnkTU39: functions and globals of this translation unit that other files use (tools/tu_map.py unit 39,
 // 0x710002f4e4-0x7100065d24). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
@@ -21,3 +21,5 @@ void fn_7100030a50(UnkMoveSlot_0xb0*);
 void fn_7100030ce0(void*);
 f32 fn_7100030dec(UnkFloatList_b46a1* list);
 void fn_710003152c(void* self, const f32* value);
+extern void* g_unk_7101a1a090[];
+extern void* g_unk_7101a1a0b0[];

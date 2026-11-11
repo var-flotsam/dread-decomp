@@ -5,13 +5,10 @@
 // layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CRinkaUnitComponent.h"
 #include "game/UnkComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-extern void* g_unk_7101a5bc30[];
-extern void* g_unk_7101a5be58[];
-extern void* g_unk_7101a5be00[];
 
 struct UnkRinkaPair_b68a4 {
     u64 a, b;

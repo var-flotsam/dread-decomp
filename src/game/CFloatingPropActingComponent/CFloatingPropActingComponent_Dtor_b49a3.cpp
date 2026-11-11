@@ -1,10 +1,9 @@
 // CFloatingPropActingComponent's deleting destructor (fn_71007e6358): the body of fn_71007e62f0
 // (CFloatingPropActingComponent.cpp) followed by operator delete. Names and layouts are placeholders.
 #include "base/global/CRntString.h"
+#include "game/CFloatingPropActingComponent.h"
 #include "game/UnkComponent.h"
 #include "game_s2/UnkWeakHandle.h"
-
-extern void* g_unk_7101a73768[];
 
 struct UnkFloatingPropActingComponent_b49a3 : UnkBaseComponent {
     UnkRefObject* field_0x40;

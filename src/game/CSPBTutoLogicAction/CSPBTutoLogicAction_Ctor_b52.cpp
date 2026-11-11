@@ -7,7 +7,9 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/CSPBTutoLogicAction.h"
 #include "game/CTriggerLogicAction.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 // The base constructor, as src/game/CChangeSetupLogicAction/CChangeSetupLogicAction_b35.cpp declares it.
@@ -15,9 +17,6 @@ struct UnkChangeSetupLogicActionDef;
 struct UnkSPRTutoLogicAction_b52;
 void fn_7100a5340c(UnkSPRTutoLogicAction_b52* self);
 void fn_7100a52ebc();
-extern char g_unk_7101a8f418[];
-extern void* g_unk_7101a20998[];  // the callback set's base vtable
-extern void* g_unk_7101a20950[];  // the callback set's vtable
 
 struct UnkSPBTutoCallable_b52;
 

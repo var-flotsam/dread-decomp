@@ -127,9 +127,6 @@ struct UnkInterp6 {
 
 }  // namespace env_move
 
-extern char g_unk_7101cab220[];  // SFogTransition's
-extern char g_unk_7101cab338[];  // SVerticalFogTransition's
-
 // The vectors' out-of-line resizes and grow-at accessors, one per element type.
 void fn_7100f79bb0(void*, u32);
 void fn_7100f79db4(void*, u32);

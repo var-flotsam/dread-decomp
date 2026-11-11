@@ -3,9 +3,8 @@
 // Names and layouts are placeholders.
 #include <new>
 
+#include "game/CDamageSourceFactor.h"
 #include "types.h"
-
-extern void* g_unk_7101a7e198[];
 
 struct UnkDamageFactors2 {
     f32 factors[23];

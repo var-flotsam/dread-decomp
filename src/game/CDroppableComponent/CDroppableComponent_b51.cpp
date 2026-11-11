@@ -4,6 +4,7 @@
 // drops the unit's live count. Names and layouts are placeholders.
 #include "base/UnkStrIdPathPair.h"
 #include "game/CComponent.h"
+#include "game/UnkTU101.h"
 #include "game/UnkTU2523.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -47,7 +48,6 @@ struct UnkSoundHandle {
     UnkSoundRef* ref;
     s64 serial;
 };
-extern const UnkSoundHandle g_unk_7108b6c460;  // the empty handle
 extern s32 g_unk_717271ab44;
 
 struct UnkSoundEntry_b51 {

@@ -5,14 +5,13 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/CMarkMinimapLogicAction.h"
 #include "game/CTriggerLogicAction.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 // The base constructor, as src/game/CChangeSetupLogicAction/CChangeSetupLogicAction_b35.cpp declares it.
 struct UnkChangeSetupLogicActionDef;
-extern char g_unk_7101a8e540[];
-extern void* g_unk_7101a20998[];  // the callback set's base vtable
-extern void* g_unk_7101a20950[];  // the callback set's vtable
 
 struct UnkMarkMinimapCallable_b52;
 

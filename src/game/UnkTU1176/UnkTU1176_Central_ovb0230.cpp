@@ -17,11 +17,14 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/global/CStrId.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CCentralUnitAIComponent.h"
 #include "game/CInventoryComponent.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1176.h"
 #include "game/UnkTU1376.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2566.h"
 #include "game/UnkTU341.h"
 #include "game/UnkXformNode.h"
@@ -260,10 +263,6 @@ __attribute__((always_inline)) static inline void SwitchToKind2(UnkCentralFsm_b0
     }
     self->field_0xd4 = 8;
 }
-
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a33fa0[];
-extern u32 g_unk_71727bebb8;
 
 struct UnkCountedCentral_b0230 : base::UnkRefCounted {
     void* field_0x10;
@@ -563,7 +562,6 @@ void fn_71007717c0(UnkCentralUnit_b49* self);
 void fn_71007727f0(UnkCentralUnit* unit);
 struct UnkMapData;
 void fn_7100e8f9a0(char*, bool, base::global::CStrId*);
-extern void* g_unk_71726af0b0;
 
 struct UnkCavesHolder_b0230 {
     u8 pad_0x0[0x10];

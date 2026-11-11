@@ -9,7 +9,6 @@
 
 struct UnkTag_71011412e4;
 struct UnkObject_7101141558;
-extern void* g_unk_7101cb33c8[];  // the class's vtable
 
 void fn_71009168e0(char*);
 void fn_7101141468(char*);

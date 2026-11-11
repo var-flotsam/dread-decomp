@@ -5,6 +5,8 @@
 // the list's allocator.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU39.h"
+#include "game/UnkTU63.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -59,10 +61,7 @@ struct UnkIdList {
     }
 };
 
-extern void* g_unk_7101a1a090[];
-extern void* g_unk_7101a1a0b0[];
 extern void* g_unk_7101a1a160[];
-extern void* g_unk_7101a1b030[];
 
 template <void** Vtable, class Node, u32 Pad>
 struct UnkIdListOwner {

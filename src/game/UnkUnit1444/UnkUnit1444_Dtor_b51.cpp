@@ -4,9 +4,8 @@
 // placeholders.
 #include "base/UnkVector.h"
 #include "game/UnkObject_0x100.h"
-
-extern void* g_unk_7101a853b8[];
-extern void* g_unk_7101a6bff8[];
+#include "game/UnkTU1130.h"
+#include "game/UnkTU1444.h"
 
 struct UnkUnit1444Base;
 void fn_7100969058(UnkUnit1444Base* self);

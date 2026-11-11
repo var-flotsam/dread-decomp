@@ -2,13 +2,11 @@
 // fn_710082ca34, the vtable, the member at +0x90 (fn_710082eba4), an allocator-backed container at
 // +0xc8 (base vtable, then its own), two cleared words, a listener at +0x110 (vtable and cleared
 // words), then the post-construction virtual call (slot 3). Names and layouts are placeholders.
+#include "game/CCentralUnitAIComponent.h"
+#include "game/CPullOffGrapplePointComponent.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 #include "base/UnkVector.h"
-
-extern void* g_unk_7101a76dc0[];
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a33fa0[];
-extern void* g_unk_7101a77000[];
 
 void fn_710082ca34(char*);
 void fn_710082eba4(char*);

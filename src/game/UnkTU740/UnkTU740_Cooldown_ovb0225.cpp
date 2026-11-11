@@ -4,11 +4,11 @@
 // placeholders.
 #include "base/UnkVector.h"
 #include "game/CCharClassCooldownXBossAttack.h"
+#include "game/UnkTU740.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
 
 struct UnkCooldownXBossAttackDef;
-extern void* g_unk_7101a3dfc0[];
 
 struct UnkLavaCarpetDef_b0225 {
     void** vtable;

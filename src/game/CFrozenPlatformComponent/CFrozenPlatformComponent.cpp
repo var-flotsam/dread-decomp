@@ -4,12 +4,12 @@
 // list's vtable and cleared fields), then the post-construction virtual call (slot 3). The fields are
 // addressed by offset. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CCentralUnitAIComponent.h"
 #include "game/CComponent.h"
+#include "game/CFrozenPlatformComponent.h"
+#include "game/UnkTU341.h"
 
 struct UnkStateObject;
-extern void* g_unk_7101a89908[];  // the component's vtable
-extern void* g_unk_7101a20998[];   // the callback list base's vtable
-extern void* g_unk_7101a33fa0[];   // the callback list's vtable
 
 struct UnkFrozenPlatform {
     void** vtable;

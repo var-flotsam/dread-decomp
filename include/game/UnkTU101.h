@@ -1,10 +1,11 @@
 #pragma once
 
-// UnkTU101: functions of this translation unit that other files call (tools/tu_map.py unit 101,
+// UnkTU101: functions and globals of this translation unit that other files use (tools/tu_map.py unit 101,
 // 0x7100104ef4-0x71001061f4). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkSoundHandle;
 struct UnkInterp_7100105d34;
 struct UnkInterp_7100105f94;
 struct UnkPlayingSound_ovb0074;
@@ -19,3 +20,4 @@ void fn_710010519c(UnkSoundVoice2_b56* voice, void* system, u32 seq, bool flag);
 void fn_7100105c00(UnkPlayingSound_ovb0074* sound, f32 value);
 void fn_7100105f94(UnkInterp_7100105f94* self, s32 level, f32 time);
 void fn_7100106024(UnkSoundObject_b50*, const void*);
+extern const UnkSoundHandle g_unk_7108b6c460;  // The empty handle.

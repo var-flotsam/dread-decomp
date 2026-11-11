@@ -24,7 +24,7 @@ GROUPS: list[tuple[str, list[str]]] = [
     ("Setup and the dump", ["setup", "verify_dump", "nso2elf", "fetch_toolchains", "fetch_sources", "build_libvpx",
                             "worktree_setup"]),
     ("Reconnaissance", ["recon/run", "ghidra/analyze", "ghidra/export", "ghidra/decompile", "gen_functions_csv",
-                        "sigmatch", "tu_map", "callgraph", "abi_facts", "compiler_matrix", "libcheck_lua"]),
+                        "sigmatch", "tu_map", "data_map", "callgraph", "abi_facts", "compiler_matrix", "libcheck_lua"]),
     ("Generators (maintenance)", ["gen_reflection", "gen_types", "gen_statics", "gen_clones", "gen_tables",
                                   "gen_lift", "gen_class_getters"]),
     ("Matching", ["trymatch", "asmdiff", "nearcopy", "hubs", "shape_census", "objdiff_gen"]),

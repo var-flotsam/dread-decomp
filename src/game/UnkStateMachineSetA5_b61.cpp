@@ -9,6 +9,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAutsharpAIComponent.h"
 #include "game/CCharClassEventPropComponent.h"
 #include "game/CCharClassShootActivatorHidrogigaComponent.h"
 #include "game/CCharacterMovement.h"
@@ -338,7 +339,6 @@ void fn_7100897f48(UnkHidrogigaActivatorA5_b61* self) {
 struct UnkDoorRegistry_b61;
 struct UnkDoorLifeA5_b61;
 void fn_7100ddb6f8(UnkDoorRegistry_b61* self, UnkDoorLifeA5_b61* door);
-extern UnkDoorRegistry_b61* g_unk_71726bee10;
 s32 fn_71008e22c8(UnkDoorLifeA5_b61* self);
 
 struct UnkDoorLifeA5_b61 {

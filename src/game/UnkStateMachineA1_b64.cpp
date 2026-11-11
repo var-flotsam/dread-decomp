@@ -5,11 +5,14 @@
 // array from the owner (UnkSmStatesAt_A1_b64), as the original does. Names are placeholders.
 #include "game/CAbility.h"
 #include "game/CAbilitySpeedBooster.h"
+#include "game/CCharClassCentralUnitCannonAIComponent.h"
+#include "game/CCharClassChozoWarriorXUltimateGrabAttack.h"
 #include "game/CChozoWarriorXUltimateGrabAttack.h"
 #include "game/CGunComponent.h"
 #include "game/CLifeComponent.h"
 #include "game/CSamusGunComponent.h"
 #include "game/UnkTU1501.h"
+#include "game/UnkTU437.h"
 #include "types.h"
 #include <math.h>
 #include "base/UnkVector.h"
@@ -310,7 +313,6 @@ struct UnkAimTunable {
     u8 pad_0x0[0xb8];
     f32 field_0xb8;
 };
-extern UnkAimTunable g_unk_71726b1438;
 
 struct UnkSmVec3_A1_b64 {
     f32 x;
@@ -419,7 +421,6 @@ void fn_710033dcdc(UnkSmBooster_A1_b64* self) {
 // CCentralUnitCannonAIComponent's unit again: the AI object's class test (its result unused, as in
 // fn_71003fd0b0), then a timer that counts up to the tunable at +0x30 before state 3 is requested.
 struct UnkTunable;
-extern UnkTunable g_unk_71726c32a0;
 
 struct UnkSmCannonObject_A1_b64 {
     virtual const base::reflection::CClass* vf_0x0();
@@ -765,7 +766,6 @@ void fn_7100489850(UnkSmGrab_A1_b64<0x80>*, UnkSmGrabMsg_A1_b64* msg);
 struct UnkAIComponent;
 struct UnkSelf;
 void fn_710048fc80(UnkAIComponent* component);
-extern UnkTunable g_unk_71726ce7d0;
 
 struct UnkSmWarriorAI_A1_b64 {
     virtual const base::reflection::CClass* vf_0x0();

@@ -4,13 +4,12 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU222.h"
+#include "game/UnkTU58.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
-
-extern u32 g_unk_7101d58e48;  // the current frame
 
 struct UnkBoneArray;
 

@@ -17,8 +17,11 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "../../game_s7/UnkPropBagS7.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU2768.h"
+#include "game/UnkTU604.h"
 #include "game/nn/time.h"
 #include "types.h"
 
@@ -26,7 +29,6 @@ using base::global::CStrId;
 using unk_prop_bag::UnkPropBag;
 
 struct lua_State;
-extern u32 g_unk_71727bebb8;
 
 // The object the game manager knows under a name (the name's CRC64 and the kind g_unk_71727bebb8).
 static inline void* FindByName(UnkGameManager* manager, const char* name) {
@@ -54,7 +56,6 @@ struct UnkStrIdHandle_b0164 {
 };
 
 // A temporary list of objects (vtable g_unk_7101a32680, nodes from the default allocator with flags 0x13).
-extern void* g_unk_7101a32680[];  // vtable (reached through the GOT)
 
 struct UnkList_b0164 {
     struct Node {
@@ -415,7 +416,6 @@ s32 fn_7101084b60(lua_State* L) {
 }
 
 struct UnkUserDataOwner;
-extern UnkUserDataOwner* g_unk_7101d47308;
 CBlackboard* fn_710120384c(UnkUserDataOwner* self);
 extern CStrId g_unk_7172a01968[2] __attribute__((visibility("hidden")));
 

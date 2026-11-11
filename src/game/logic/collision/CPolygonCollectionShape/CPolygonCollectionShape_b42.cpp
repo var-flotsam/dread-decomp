@@ -6,6 +6,7 @@
 
 #include "base/UnkVector.h"
 #include "game/UnkTU109.h"
+#include "game/logic/collision/CPolygonCollectionShape.h"
 #include "game/logic/collision/CShape.h"
 #include "types.h"
 
@@ -18,8 +19,6 @@ struct UnkPolygonCollectionShape_b42a3 {
     bool field_0xe8;
     base::UnkVector<UnkPolygonElem_b42a3*> field_0xf0;
 };
-
-extern char g_unk_7101aa8b80[];
 
 // Signatures as src/reflection/game_logic_collision_CPolygonCollectionShape.cpp declares them.
 void fn_7100d665c8(void* dst, const void* src) {

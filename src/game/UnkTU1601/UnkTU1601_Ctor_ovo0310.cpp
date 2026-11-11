@@ -6,13 +6,12 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/CUsableComponent.h"
+#include "game/UnkTU1601.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkCallbackSetElem;
-
-extern void* g_unk_7101a92ed0[];
 
 struct UnkThermalComp_b0237 {
     void** vtable;

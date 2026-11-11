@@ -7,16 +7,15 @@
 // placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
+#include "game/CCentralUnitAIComponent.h"
+#include "game/CCharClassShootActivatorHidrogigaComponent.h"
+#include "game/CMagmaKraidScenarioControllerComponent.h"
 #include "game/UnkComponent.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 struct UnkShootActivatorBase_b54;
 void fn_7100890010(UnkShootActivatorBase_b54*);
-
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a33fa0[];
-extern void* g_unk_7101a7c850[];  // fn_7100897040's class
-extern void* g_unk_7101a81aa0[];  // fn_7100917758's class
 
 struct UnkComponentCallbacks_b54;
 template <>

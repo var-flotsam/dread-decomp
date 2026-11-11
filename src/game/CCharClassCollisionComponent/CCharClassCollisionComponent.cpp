@@ -5,6 +5,7 @@
 
 #include "base/UnkKeyedStrIds.h"
 #include "base/global/CRntString.h"
+#include "game/CCharClassCollisionComponent.h"
 #include "game/CCharClassComponent.h"
 #include "types.h"
 
@@ -13,7 +14,6 @@ using base::global::CRntString;
 struct UnkObject_71011ace00;
 struct UnkIdObject;
 void fn_710079b944(UnkKeyedStrIds* self);
-extern void* g_unk_7101a6fd78[];
 
 struct UnkCollisionBase {
     void** vtable;

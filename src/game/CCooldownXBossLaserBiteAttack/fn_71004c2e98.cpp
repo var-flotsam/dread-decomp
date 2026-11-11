@@ -1,10 +1,10 @@
 // Copy constructor of a three-level class whose last level also holds a refcounted pointer.
+#include "game/CAbilityGhostAura.h"
 #include "types.h"
 
 extern void* g_unk_7101a24060[];
 extern void* g_unk_7101a3e3a8[];
 extern void* g_unk_7101a3e4b0[];
-extern void* g_unk_7101a22d48[];
 
 struct UnkRefObj {
     virtual void vf_0x0();

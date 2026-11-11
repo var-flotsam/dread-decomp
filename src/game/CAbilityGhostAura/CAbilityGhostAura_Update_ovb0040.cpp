@@ -334,7 +334,6 @@ struct UnkGhostAuraBase_b0040;
 void fn_71002f8414(UnkGhostAuraBase_b0040* self);
 void fn_7100314d94(void* self);
 extern void* g_unk_7101a22a88[];
-extern void* g_unk_7101a22d48[];
 
 template <class T>
 static inline T& At_b0040(void* base, u64 offset) {
@@ -487,8 +486,6 @@ struct UnkVisitResult_b0040 {
     UnkVisitResult_b0040(const UnkVisitResult_b0040& other) = default;
     ~UnkVisitResult_b0040() {}
 };
-extern UnkVisitResult_b0040 g_unk_71726a4778;  // the "skip" result
-extern u64 g_unk_71726a4780;  // its guard
 
 static inline UnkVisitResult_b0040 Skip_b0040() {
     if (__builtin_expect(!(__atomic_load_n(reinterpret_cast<u8*>(&g_unk_71726a4780), __ATOMIC_ACQUIRE) & 1), 0)) {

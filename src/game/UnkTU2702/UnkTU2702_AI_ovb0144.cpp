@@ -132,7 +132,6 @@ struct UnkRinkaControl_ovb0090;
 struct UnkRinkaControl_ruc;
 struct UnkFxObject_ovb0041;
 
-extern u8* g_unk_7172a062e0 __attribute__((visibility("hidden")));
 extern char g_unk_7172a062e8[] __attribute__((visibility("hidden")));
 
 UnkComponent* fn_7101152b90(UnkObject*, u64);

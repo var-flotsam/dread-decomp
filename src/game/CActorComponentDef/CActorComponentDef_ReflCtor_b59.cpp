@@ -3,12 +3,11 @@
 // (fn_71002536b0, inlined here), then the object's own vtable slot 3. Names are placeholders.
 #include "base/core/CBaseObject.h"
 #include "base/global/CStrId.h"
+#include "game/CActorComponentDef.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::global::UnkStringData;
-
-extern char g_unk_7101a20ba8[];
 
 
 struct UnkComponentDefEntry_b59 {

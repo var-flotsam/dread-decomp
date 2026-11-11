@@ -3,12 +3,11 @@
 // defaults and the allocator from fn_7100083990, then its own vtable g_unk_7101a33fa0, a cleared word
 // and a cleared pointer. The same object is built inline at +0x80 of CEmmyWakeUpComponent
 // (fn_71007d7724). Names and layouts are placeholders.
+#include "game/CCentralUnitAIComponent.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 #include "base/UnkVector.h"
-
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a33fa0[];
 
 struct UnkThermalDeviceList {
     void** vtable;

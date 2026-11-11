@@ -10,7 +10,6 @@
 #include "types.h"
 
 struct UnkBase_7100763ed4;
-extern void* g_unk_7101a89018[];
 extern const char g_unk_71015dca2c[] __attribute__((visibility("hidden")));  // the class name string
 
 struct UnkPhotoModeCameraCtrl_A4_b72 {

@@ -42,8 +42,6 @@ struct UnkEntryId {
     }
 };
 
-extern void* g_unk_7101cb33c8[];
-
 struct UnkObject_7101141558;
 
 struct UnkObject_7101141558 : UnkBase_0x40 {

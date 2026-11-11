@@ -1,11 +1,10 @@
 // CFloatingPropActingComponent's unit: writes 0 under the unit's id into the property bag of the
 // object the weak handle at +0x40 names (as fn_71007e664c in CFloatingPropActingComponent_b50.cpp).
 // Names are placeholders.
+#include "game/CFloatingPropActingComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 #include "../../game_s7/UnkPropBagS7.h"
-
-extern char g_unk_717271f800[] __attribute__((visibility("hidden")));
 
 struct UnkFloatingProp_A5_b65 {
     u8 pad_0x0[0x40];

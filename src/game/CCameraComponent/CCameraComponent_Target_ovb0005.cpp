@@ -16,6 +16,7 @@
 #include "base/reflection/UnkReflValue.h"
 #include "game/CCameraComponent.h"
 #include "game/CComponent.h"
+#include "game/CInputComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkCameraCtrl.h"
 #include "game/UnkGameManager.h"
@@ -282,7 +283,6 @@ void fn_71010e6278(UnkCamComp8_ovb5* self, UnkCamTarget2_ovb5* target, f32 a, f3
     self->field_0x264 = b;
 }
 
-extern void* g_unk_7172729910;
 struct UnkHandleOwner_71010c4230;
 
 struct UnkCamObj_ovb5 {

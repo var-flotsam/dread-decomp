@@ -11,6 +11,7 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU223.h"
 #include "game/UnkTU287.h"
+#include "game/UnkTU441.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -18,8 +19,6 @@ using base::global::CStrId;
 
 extern "C" int __cxa_guard_acquire(u64* guard);
 extern "C" void __cxa_guard_release(u64* guard);
-
-extern u32 g_unk_71726b21d4 __attribute__((visibility("hidden")));  // live pairs
 
 struct UnkWhiteTexture_ovb0259 {
     CFilePathStrId id;

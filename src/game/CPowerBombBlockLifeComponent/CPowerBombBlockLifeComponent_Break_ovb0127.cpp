@@ -6,17 +6,16 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/CLifeComponent.h"
 #include "game/CModelUpdaterComponent.h"
+#include "game/CPowerBombBlockLifeComponent.h"
+#include "game/CPullOffGrapplePointComponent.h"
 #include "game/CTimelineComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkGameManager.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-extern void* g_unk_7101a7f280[];  // the class's vtable
-extern void* g_unk_7101a77000[];
-extern void* g_unk_7101a22d48[];
 
 // A listener holding a counted link to what it listens to; on destruction it detaches itself from
 // the link's target (with `detach`) and drops the link.

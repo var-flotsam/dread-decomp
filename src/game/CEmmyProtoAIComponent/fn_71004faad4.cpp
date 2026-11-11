@@ -3,10 +3,9 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/CEmmyProtoAIComponent.h"
 #include "game/UnkTU811.h"
 #include "types.h"
-
-extern void* g_unk_7101a45710[];
 
 struct UnkComponent {
     void** vtable;

@@ -8,6 +8,7 @@
 #include "base/reflection/UnkReflStatics.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2510.h"
+#include "game/UnkTU365.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -34,7 +35,6 @@ struct UnkTree;
 struct UnkShape;
 struct UnkMtx44;
 
-extern void* g_unk_7101a20ed8[];
 extern void* g_unk_7101a82e88[];
 
 struct UnkSlideHitObj_ovb0133 {

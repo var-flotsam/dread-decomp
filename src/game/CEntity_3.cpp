@@ -3,6 +3,7 @@
 // when the entity has none. The signature is the one src/game/CHyperBeamGun.cpp calls it with.
 // The three flags are bools (only bit 0 is passed on). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU50.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -19,7 +20,6 @@ struct UnkHandle {
     UnkHandleTarget* target;
     u64 serial;
 };
-extern UnkHandle g_unk_7101d586c0;  // the null handle
 
 struct CRumbleComponent;
 struct UnkEntityWithRumble {

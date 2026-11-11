@@ -14,6 +14,7 @@
 #include "game/CDrop.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2566.h"
 #include "game/UnkTU2656.h"
 #include "game/UnkTU2669.h"
@@ -31,7 +32,6 @@ using base::reflection::UnkReflObject;
 struct lua_State;
 
 extern void* g_unk_71726bc560;
-extern u32 g_unk_71727bebb8;
 extern void* g_unk_7101d47330;
 
 // Creates the object on first use: storage from the default allocator, built by its constructor function.
@@ -78,7 +78,6 @@ s32 fn_710108d440(lua_State* L) {
 
 struct UnkScriptManager_ovb0085;
 struct UnkUnit2669Str;
-extern UnkScriptManager_ovb0085* g_unk_71727bed90;
 
 s32 fn_7101077360(lua_State* L) {
     bool flag = true;

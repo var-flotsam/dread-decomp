@@ -5,14 +5,14 @@
 #include <new>
 
 #include "game/CCharClassBossAIComponent.h"
+#include "game/CCharClassGoliathAIComponent.h"
+#include "game/CCharClassGoliathXAIComponent.h"
 #include "types.h"
 
 struct UnkGoliathXBase;
 void fn_710058d990(void* self);
 void fn_71005835c0(void* self);
 void fn_71005839ac(void* self);
-extern void* g_unk_7101a4b340[];
-extern void* g_unk_7101a4c200[];
 
 struct UnkGoliathXAI {
     void** vtable;

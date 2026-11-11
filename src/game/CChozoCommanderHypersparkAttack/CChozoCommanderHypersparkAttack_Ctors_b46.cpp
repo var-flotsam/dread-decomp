@@ -2,11 +2,11 @@
 // objects on the same base (fn_710042baa8): the vtable, a cleared run at +0x5c-0x70 and an embedded
 // listener at +0x78 (vtable g_unk_7101a22d48) with its fields cleared. Names and layouts are
 // placeholders.
+#include "game/CAbilityGhostAura.h"
 #include "game/CChozoCommanderGroundAttack.h"
 #include "types.h"
 
 extern void* g_unk_7101a358f8[];
-extern void* g_unk_7101a22d48[];  // the listener's vtable
 
 struct UnkHypersparkListener_b46a1 {
     void** vtable;

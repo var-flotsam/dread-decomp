@@ -64,7 +64,6 @@ struct UnkLuaScratchStack {
     u32 count;
     UnkLuaScratch entries[1];  // the real number is unknown
 };
-extern UnkLuaScratchStack g_unk_7172a025a0 __attribute__((visibility("hidden")));
 
 // The error report: the message, then two words (both 2 here).
 typedef void (*UnkLuaReportFn)(const char* message, s32 a, s32 b);

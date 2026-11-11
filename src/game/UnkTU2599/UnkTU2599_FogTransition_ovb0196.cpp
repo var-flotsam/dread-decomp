@@ -142,9 +142,6 @@ void* fn_7100f6f614(void* dst, const void* src) {
     return self;
 }
 
-extern char g_unk_7101cab220[];
-extern char g_unk_7101cab338[];
-
 struct UnkFogValue_b0196 {
     f32 a, b, c, d;
 };

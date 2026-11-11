@@ -2,10 +2,8 @@
 // destructors of two fixed-capacity lists in the CPowerBombMovement unit (vtables g_unk_7101a23c80, g_unk_7101a23c58):
 // a u32 count at +0x8 followed by 0x48-byte records (4-byte aligned), each holding two intrusive references (count at
 // +0x8, released through slot 0x10). Names and layouts are placeholders.
+#include "game/UnkTU437.h"
 #include "types.h"
-
-extern void* g_unk_7101a23c80[];
-extern void* g_unk_7101a23c58[];
 
 namespace {
 struct UnkPbRefObj_A5_b72 {
@@ -64,4 +62,3 @@ void fn_7100ab2084(UnkPbRecordList_A5_b72<64>* self) {
     Destroy_A5_b72(self, g_unk_7101a23c58);
     __builtin_operator_delete(self);
 }
-

@@ -4,9 +4,8 @@
 // base's destructor (fn_7100369380).
 #include "../../game_5821e4/CAttackDtor.h"
 #include "game/CBehaviorTreeAIComponent.h"
+#include "game/CYamplotXAIComponent.h"
 #include "game/UnkObject_0x100.h"
-
-extern void* g_unk_7101a6ae18[];  // the object's vtable
 
 struct UnkRefPtrRaw_71006ef2c0 {
     UnkAttackOwner* ptr;

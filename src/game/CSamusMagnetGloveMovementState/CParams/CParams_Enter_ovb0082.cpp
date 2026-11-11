@@ -27,7 +27,6 @@ struct UnkHandle {
     }
 };
 
-extern UnkHandle g_unk_7101d586c0;
 extern UnkTunable g_unk_717273c650;
 struct UnkSlidingBlockMovement;
 struct UnkSmTarget_b60;

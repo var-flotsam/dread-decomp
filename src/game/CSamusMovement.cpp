@@ -7,6 +7,7 @@
 #include "game/CCharacterMovement.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU1501.h"
 #include "game/UnkTU39.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -73,7 +74,6 @@ struct UnkSamusSettings {
     u8 pad_0x0[0x78];
     bool field_0x78;
 };
-extern UnkSamusSettings g_unk_7172740de0;
 
 // The two leg keys fn_71009eee34 is given.
 struct UnkLegKeys {

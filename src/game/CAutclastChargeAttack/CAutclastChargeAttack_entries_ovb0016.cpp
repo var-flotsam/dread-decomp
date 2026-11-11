@@ -7,12 +7,10 @@
 
 #include "../../game_5821e4/CAttackDtor.h"
 #include "base/UnkVector.h"
+#include "game/CAutclastChargeAttack.h"
 #include "game/CEnemyMovement.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-extern void* g_unk_7101a2ae00[];  // the attack's vtable
-extern void* g_unk_7101a2aef8[];  // the listener's vtable
 
 struct UnkChargePos_ovb0016 {
     f32 x, y, z;

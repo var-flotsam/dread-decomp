@@ -3,7 +3,9 @@
 // listener its vtable.
 #include "base/UnkNamedRegistry.h"
 #include "base/global/CStrId.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/UnkBehaviorTree.h"
+#include "game/behaviortree/CHyperDashAttackAction.h"
 #include "types.h"
 
 using base::global::UnkStrIdBase;
@@ -35,9 +37,6 @@ struct UnkNode : UnkBehaviorTreeNodeBase {
     u64 field_0xb8;
     u32 field_0xc0;
 };
-
-extern void* g_unk_7101a36838[];
-extern void* g_unk_7101a22d48[];  // the listener's vtable
 
 void fn_71004495a8(UnkNode* self) {
     fn_7100393e68(self);

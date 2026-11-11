@@ -14,6 +14,7 @@
 #include "game/CCharacterMovement.h"
 #include "game/CChozoCommanderLandingSlamAttack.h"
 #include "game/UnkActor.h"
+#include "game/behaviortree/CSwitchBetweenAIModesAction.h"
 #include "game_s2/UnkParams.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "game_s2/UnkChozoCommanderAttack.h"
@@ -24,8 +25,6 @@ using base::reflection::UnkReflObject;
 struct UnkFlagged;
 void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
 void fn_710117b3e8(UnkWeakTarget* target, void* link);
-
-extern void* g_unk_7101a24b58[];
 
 struct UnkSlamUpdate_A2_b75;
 void fn_710043764c(UnkSlamUpdate_A2_b75* self);

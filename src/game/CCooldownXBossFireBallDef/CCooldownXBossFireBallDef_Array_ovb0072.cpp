@@ -7,9 +7,8 @@
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
 #include "base/UnkCollectionIter.h"
 #include "base/UnkVector.h"
+#include "game/CCooldownXBossFireBallDef.h"
 #include "types.h"
-
-extern char g_unk_7101a3e2b0[];
 
 
 

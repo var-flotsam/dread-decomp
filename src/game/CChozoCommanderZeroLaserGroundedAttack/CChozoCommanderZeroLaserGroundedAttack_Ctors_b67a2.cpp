@@ -3,11 +3,11 @@
 // and the listener at +0xa0 (vtable g_unk_7101a22d48) with its fields cleared. The destructors are in
 // CChozoCommanderZeroLaserGroundedAttack_Dtor_b49.cpp. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/CChozoCommanderGroundAttack.h"
 #include "types.h"
 
 extern void* g_unk_7101a36718[];  // the attack's vtable
-extern void* g_unk_7101a22d48[];  // the listener's vtable
 
 struct UnkZeroLaserListener_b67a2 {
     void** vtable;

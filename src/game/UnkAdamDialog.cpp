@@ -16,6 +16,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU101.h"
+#include "game/UnkTU2615.h"
 #include "game/UnkTU2733.h"
 #include "game/UnkTUProperty.h"
 #include "game/sound/CMusicManager.h"
@@ -41,7 +42,6 @@ struct UnkSoundHandle {
         return nullptr;
     }
 };
-extern const UnkSoundHandle g_unk_7108b6c460;  // the empty handle
 
 struct UnkWordPair {
     u64 field_0x0;
@@ -168,7 +168,6 @@ static inline const char* IdText(const CStrId& id) {
 }
 
 // The sound player (reached through the GOT) and the voice calls.
-extern void* g_unk_71729efa48;
 UnkSoundHandle fn_7100fcdf00(void* player, f32 volume, const CStrId& name, bool arg3);
 
 // The music manager (game/sound/CMusicManager.h), created on first use, and its level.

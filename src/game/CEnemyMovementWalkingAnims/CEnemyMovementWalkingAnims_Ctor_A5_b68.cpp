@@ -4,11 +4,10 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/CCharClassChozoRobotSoldierAIComponent.h"
 #include "types.h"
 
 using base::global::UnkStrId;
-
-extern void* g_unk_7101a38c40[];
 
 struct UnkEnemyMovementWalkingAnims_A5_b68 {
     void** vtable;

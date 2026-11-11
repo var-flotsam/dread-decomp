@@ -9,13 +9,13 @@
 #include <stddef.h>
 
 #include "base/UnkVector.h"
+#include "base/global/timeline/CEvent.h"
 #include "types.h"
 
 extern "C" size_t wcslen(const wchar_t* s);
 extern "C" void* memcpy(void* dst, const void* src, size_t n);
 extern "C" wchar_t* wcscpy(wchar_t* dst, const wchar_t* src);
 
-extern char g_unk_7101a1a0d0[];
 // The shared empty text (L"").
 extern const wchar_t g_unk_7101647684[] __attribute__((visibility("hidden")));
 

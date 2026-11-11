@@ -15,6 +15,7 @@
 #include "base/math/CVector.h"
 #include "base/math/CVector4D.h"
 #include "base/tunable/CTunable.h"
+#include "game/CAbilityEnergyWave.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2566.h"
 #include "game/UnkTU287.h"
@@ -388,7 +389,6 @@ struct UnkMinimapStatics {
 };
 static_assert(__builtin_offsetof(UnkMinimapStatics, cell_size_guard) == 0x70, "UnkMinimapStatics layout");
 static_assert(__builtin_offsetof(UnkMinimapStatics, lists) == 0x100, "UnkMinimapStatics layout");
-extern UnkMinimapStatics g_unk_71729cdaa0 HIDDEN;
 
 bool fn_7100eb7f6c(const UnkMinimapItem* item);
 void fn_7100eb9b90(UnkMinimapDrawList* lists0, UnkMinimapDrawList* lists3, UnkMinimapDrawList* lists1,
@@ -489,7 +489,6 @@ extern "C" int __cxa_guard_acquire(u64* guard);
 extern "C" void __cxa_guard_release(u64* guard);
 
 extern const f32 g_unk_710164be30;
-extern u8 g_unk_71727cc99c[] HIDDEN;
 
 void fn_7100e79fa4(void* field_0x118, const UnkMinimapRect* view, u32 flags, u32* count, void* out);
 bool fn_71001bb54c(UnkMinimapCameraSub* sub, UnkMinimapVec2* size);
@@ -567,7 +566,6 @@ void fn_7100e93e04(UnkMinimapOwner* self) {
 
 extern const u32 g_unk_7101648bb8;  // the screen's width and height in pixels
 extern const u32 g_unk_7101648bbc;
-extern bool g_unk_71727cc998 HIDDEN;
 
 f32 fn_71001d7320(UnkGlobal_710b372a98* self);
 struct UnkStruct_710020a5a0;
@@ -788,10 +786,7 @@ void fn_710002f4e4(void* self);                       // a timer's constructor
 void fn_7100eb2cc0(void* self, u32 a, u32 b);         // sets up the pooled set at 0xd64210
 
 // The vtables (GOT 0x7101cd03a8, 0x7101d298c8, 0x7101cd05f8, 0x7101cd05f0).
-extern void* g_unk_7101a22398[];
 extern void* g_unk_7101ca9e38[];
-extern void* g_unk_7101a22878[];
-extern void* g_unk_7101a22858[];
 
 // The owner's callbacks (reached through the GOT).
 void fn_7100eb30b0(void* self);

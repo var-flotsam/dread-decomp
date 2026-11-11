@@ -3,11 +3,10 @@
 // at +0x30, then the array freed), the counted reference at +0x40 dropped, then the base destructor
 // fn_7100a1082c and operator delete. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CDemolitionBlockSonarTargetComponent.h"
 #include "game/CSonarTargetComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-extern char g_unk_7101a8b8f0[];
 
 struct UnkSonarTargetEntry_b52 {
     virtual void vf_0x0();

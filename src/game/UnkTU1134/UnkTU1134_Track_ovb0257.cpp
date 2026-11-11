@@ -5,6 +5,7 @@
 // cleared and the default masks (guarded statics) at +0x16c and +0x170. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CActionInstance.h"
+#include "game/UnkTU1134.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
 #include "game/UnkTU39.h"
@@ -158,8 +159,6 @@ void fn_710070d5dc(UnkTU1134_b257a* self) {
     self->field_0x160 = 0.0f;
     self->field_0x164 = 1.0f;
 }
-
-extern void* g_unk_7101a6c048[];
 
 struct UnkMaskZero8_b257a {
     u32 value;

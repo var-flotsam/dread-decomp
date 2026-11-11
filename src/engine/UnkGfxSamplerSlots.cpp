@@ -8,6 +8,7 @@
 #include "base/UnkVector.h"
 #include "game/UnkTU170.h"
 #include "game/UnkTU172.h"
+#include "game/UnkTU182.h"
 #include "types.h"
 
 // The default allocator (base/UnkDefaultAllocator.h) up to its slot 0x90: the free size, summed over
@@ -69,8 +70,6 @@ struct UnkPool;  // the memory pool type of src/game_s7/fn_71001587f0.cpp: its N
 // The records and the descriptor pools (all reached through the GOT).
 extern UnkGfxTexture* g_unk_716e2a3568[/* 0x800; unsized: x86-64 would assume 16-byte alignment */];
 extern u32 g_unk_716e2a7568;   // live records
-extern UnkGfxHeap* g_unk_716e2a76a8;  // the heap for textures
-extern UnkGfxHeap* g_unk_716e2a76b0;  // the heap for render targets
 extern u32 g_unk_7101a1d814;   // free texture descriptor ids (2048 at start)
 extern s32 g_unk_716e2a7574;   // reserved texture descriptors (device info 0x11)
 extern s32 g_unk_716e2a7578;   // reserved sampler descriptors (device info 0x12)
@@ -78,7 +77,6 @@ extern s32 g_unk_716e2a7708[/* 0x800; unsized: x86-64 would assume 16-byte align
 extern s32 g_unk_716e2a756c;   // the next free sampler id
 extern s32 g_unk_716e2a7570;   // the last sampler id
 extern s32 g_unk_716e2a76e0;   // the first sampler id (the reserved ones come before it)
-extern UnkPool g_unk_716e2a7580;  // the descriptors' memory
 extern u8 g_unk_716e2a76b8[];  // the sampler pool
 extern u8 g_unk_716e2a76e8[];  // the texture pool
 

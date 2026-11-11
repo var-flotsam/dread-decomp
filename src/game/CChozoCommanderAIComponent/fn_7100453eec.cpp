@@ -3,8 +3,10 @@
 // +0x218, the object at +0x228 is called six times with a name each, and the manager's current index
 // selects a float that is passed to fn_7100dcdce4 together with its integer part.
 #include "base/UnkVector.h"
+#include "game/CAutsharpAIComponent.h"
 #include "game/CEnemyMovement.h"
 #include "game/CModelUpdaterComponent.h"
+#include "game/behaviortree/CSetAnimDependsOnDirAction.h"
 #include "types.h"
 
 struct UnkNode {
@@ -94,8 +96,6 @@ struct UnkParamsLarge {
     u8 field_0x52;
 };
 
-extern void* g_unk_7101a2e208[];
-extern void* g_unk_7101a24db8[];
 extern UnkManager* g_unk_71726bc570;
 extern UnkTuning* g_unk_7101a37310[];
 extern char g_unk_71727bd078[];

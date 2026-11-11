@@ -2,13 +2,13 @@
 // changes, marks two dirty flags, maps modes 0 and 1 to 2 and 1 (other modes keep the stored value) and passes
 // the value to an NVN callback. Shaped like fn_710015a7d0 (UnkUnit177_Mode2_A1_b71.cpp). Names are placeholders.
 #include "game/UnkGraphicsState.h"
+#include "game/UnkTU177.h"
 #include "types.h"
 
 extern s32 g_unk_716e29c6c8;
 extern bool g_unk_7101a1d801;
 extern s32 g_unk_7101a1d80c;
 extern void (*g_unk_716e29b658)(void* object, s32 value);
-extern u8 g_unk_716e29c6cc[];
 
 void fn_710015aa80(u32 mode) {
     if (g_unk_716e29c6c8 == (s32)mode)

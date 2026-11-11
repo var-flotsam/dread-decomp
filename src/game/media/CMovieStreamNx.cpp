@@ -6,6 +6,7 @@
 // Holds fn_710022586c (the constructor).
 #include <new>
 
+#include "game/media/CMovieStreamNx.h"
 #include "types.h"
 
 // The SDK's movie library, as far as this unit calls it (the port declares the same names in
@@ -61,10 +62,6 @@ struct UnkMovieStreamNx {
     UnkMovieRing<UnkMovieEntry_0x18, 64> field_0x408;
 };
 static_assert(__builtin_offsetof(UnkMovieStreamNx, field_0x408) == 0x408, "UnkMovieStreamNx placeholder layout");
-
-extern void* g_unk_7101a20650[];  // the stream's vtable
-extern void* g_unk_7101a206d0[];  // the rings' vtables
-extern void* g_unk_7101a20700[];
 
 // The base constructor: stores `source` at +0x38 and `extra` at +0x30.
 void fn_710021b774(UnkMovieStreamNx* self, UnkMovieSource* source, void* extra);

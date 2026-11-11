@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/GUI/CSprite.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -82,7 +83,6 @@ UnkReflValue fn_71011faedc(void*, char* obj, UnkReflValue* const* args) {
 // The matching getters: the name of the enum value at +0x1b8 / +0x1c0 / +0x1c4 (from the tables
 // g_unk_7101cb6858, two names, and g_unk_7101cb6868, four), or the empty id when it is out of range,
 // as a reflected string id (fn_7100009658).
-extern const char* const g_unk_7101cb6858[2];
 
 template <u32 Offset, s32 Last, const char* const* Names>
 static inline __attribute__((always_inline)) UnkReflValue GetEnumName_b41a3(char* obj) {

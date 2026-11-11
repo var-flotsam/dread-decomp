@@ -3,6 +3,7 @@
 // CTakumakuAIComponent_Above_b66a4.cpp, inlined here) and flag 9 is clear, and clears it when the owner is
 // below and flag 9 is set. Names and layouts are placeholders.
 #include "game/CAnimationComponent.h"
+#include "game/CTakumakuAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU2689.h"
 #include "types.h"
@@ -17,8 +18,6 @@ struct UnkShakernautId_b53 {
 struct UnkAnimFlagsHolder_b47a3;
 // As src/game/CPlayerMovement/CPlayerMovement_CachedComponent.cpp defines it.
 struct UnkPlayerMovementCache;
-
-extern f32 g_unk_7101a67de8;
 
 namespace {
 struct UnkTakumakuBounds_A3_b76 {

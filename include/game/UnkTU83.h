@@ -1,6 +1,6 @@
 #pragma once
 
-// UnkTU83: functions of this translation unit that other files call (tools/tu_map.py unit 83,
+// UnkTU83: functions and globals of this translation unit that other files use (tools/tu_map.py unit 83,
 // 0x71000a4598-0x71000e5f9c). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
@@ -18,3 +18,4 @@ UnkVec3_cs* fn_71000cc374(void* array, u32 index);
 void fn_71000e0524(UnkStrVector* self, UnkStrVector* other);
 void fn_71000bce50(void*);
 void fn_71000be6c0(void*);
+extern u32 g_unk_7101d5bdd8;  // The default of a class's "_EditorOnly" attribute (nonzero: true).

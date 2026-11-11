@@ -6,11 +6,11 @@
 #include "game/UnkSphere.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU167.h"
+#include "game/UnkTU275.h"
 #include "game/UnkTU308.h"
 #include "types.h"
 
 extern void* g_unk_7101a1f000[];
-extern void* g_unk_7101a1f218[];
 
 struct UnkWidgetArg;
 struct UnkWidgetMember {

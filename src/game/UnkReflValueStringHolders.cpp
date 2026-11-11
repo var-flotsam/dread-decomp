@@ -4,11 +4,11 @@
 // reflected value at +0x18 (fn_71000a1c60). Names and layouts are placeholders.
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU1691.h"
+#include "game/UnkTU1734.h"
 #include "types.h"
 
 using base::global::CRntString;
-
-extern void* g_unk_7101a9cd68[];  // the base part's vtable
 
 struct UnkValueHolderBase {
     void** vtable;
@@ -34,8 +34,6 @@ struct UnkValueStringHolder : UnkValueHolderBase {
     }
 };
 
-extern char g_unk_7101aa0190[];
-extern char g_unk_7101aa0250[];
 using UnkValueStringHolderB0 = UnkValueStringHolder<g_unk_7101aa0190, 0xb0, 0xf8>;
 using UnkValueStringHolderB8 = UnkValueStringHolder<g_unk_7101aa0250, 0xb8, 0x100>;
 

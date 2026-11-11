@@ -3,10 +3,10 @@
 // src/game/CCollisionComponent/fn_7100863a8c.cpp does) through fn_7100d47d1c. Names and layouts
 // are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU365.h"
 #include "types.h"
 
 struct UnkManager_7100863a8c;
-extern UnkManager_7100863a8c* g_unk_71726a4788;
 void fn_7100d46804(UnkManager_7100863a8c* self);
 void fn_7100d47d1c(UnkManager_7100863a8c* self, void* owner, void* block);
 

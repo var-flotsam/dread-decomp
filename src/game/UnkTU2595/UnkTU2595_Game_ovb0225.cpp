@@ -5,6 +5,7 @@
 
 #include "base/UnkVector.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2595.h"
 #include "game/UnkTU2656.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
@@ -20,7 +21,6 @@ struct UnkSingleton2595_b0225 {
 
 
 struct UnkSingleton2595_b49a6;
-extern UnkSingleton2595_b49a6* g_unk_71729dc210;
 
 static inline UnkSingleton2595_b0225* Singleton2595() {
     UnkSingleton2595_b0225*& slot = reinterpret_cast<UnkSingleton2595_b0225*&>(g_unk_71729dc210);

@@ -5,9 +5,8 @@
 // layouts are placeholders.
 #include "base/UnkVector.h"
 #include "game/UnkTU852.h"
+#include "game/UnkTU958.h"
 #include "types.h"
-
-extern void* g_unk_7101a58cd8[];
 
 struct UnkUnit958Entry;
 

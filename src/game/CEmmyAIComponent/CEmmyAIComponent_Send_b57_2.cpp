@@ -7,11 +7,11 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/UnkTU794.h"
 #include "game/UnkTU811.h"
+#include "game/behaviortree/CEmmyChaseAction.h"
+#include "game/behaviortree/CEmmyPatrolAction.h"
 #include "types.h"
 
 struct UnkEmmyActor_b55;
-extern char g_unk_71726ded60[];
-extern char g_unk_71726debd0[];
 
 struct UnkDoorLifeOwner_b56;
 struct UnkDoorLifePart_b56;

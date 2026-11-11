@@ -22,8 +22,6 @@ struct UnkSelf {
     UnkVec3 field_0x7c;
 };
 
-extern char g_unk_71726bf850[] __attribute__((visibility("hidden")));
-
 // NON_MATCHING(minor): the state range test is `cmp #3; b.hs` in the original, `cmp #2; b.hi` here.
 void fn_71003d5a14(UnkSelf* self, bool force) {
     UnkVec3 v;

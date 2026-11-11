@@ -23,8 +23,6 @@ struct UnkHandle {
     }
 };
 
-extern UnkHandle g_unk_7101d586c0;
-
 struct UnkMagnetSurfaceOwner_ovb0082 {
     u8 pad_0x0[0x220];
     UnkAnimationComponent* animation;

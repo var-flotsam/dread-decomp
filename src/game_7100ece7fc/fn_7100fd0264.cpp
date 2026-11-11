@@ -4,6 +4,7 @@
 // (fn_7100fe1050).
 #include <new>
 
+#include "game/UnkTU2635.h"
 #include "types.h"
 
 struct UnkEntry_0x150 {
@@ -18,7 +19,6 @@ struct UnkBase_0x30_7100fe1050 {
 };
 
 extern void* g_unk_7101cac080[];
-extern void* g_unk_7101cabfa8[];
 
 struct UnkSecondaryBase_0x30 {
     void** vtable;

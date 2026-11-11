@@ -5,15 +5,15 @@
 // virtual call (slot 3). Defined under the `void()` symbol src/reflection/CChozoCommanderXLifeComponent.cpp
 // declares. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/CCentralUnitAIComponent.h"
 #include "game/CLifeComponent.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 struct UnkLifeBase_A5_b71;
 void fn_71008bfca4(void* self);
 extern void* g_unk_7101a7df38[];
-extern void* g_unk_7101a22d48[];
-extern void* g_unk_7101a20998[];  // the callback lists' base vtable
-extern void* g_unk_7101a33fa0[];  // their vtable
 
 struct UnkXLifeCtor_A5_b71 {
     void** vtable;

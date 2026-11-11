@@ -3,6 +3,7 @@
 // remembers the plane that last rejected it and the test starts there, walking the planes in the
 // order a next-plane table gives. Names and layouts are placeholders.
 // Holds fn_71001bab30 and the frustum's update, fn_71001b83f8.
+#include "game/UnkTU204.h"
 #include "game/UnkTU225.h"
 #include "game/UnkTU308.h"
 #include "types.h"
@@ -72,7 +73,6 @@ extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, i
 // layout of base/UnkHashMap.h: buckets indexed by the key's low 32 bits modulo the capacity, and a
 // list of all nodes). src/game_lo/fn_710019e100.cpp removes a key from it.
 struct UnkKeyOwner;
-extern void* g_unk_716e34c2e0;
 
 struct UnkCullNode {
     u64 key;

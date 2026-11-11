@@ -11,10 +11,9 @@
 #include "game/CTakumakuAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/behaviortree/CSwitchBetweenAIModesAction.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
-
-extern void* g_unk_7101a24b58[];
 
 struct UnkTakumakuDir_b58 {
     f32 x, y, z;

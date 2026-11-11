@@ -23,6 +23,7 @@
 #include "game/UnkItemProperties.h"
 #include "game/UnkTU1370.h"
 #include "game/UnkTU2523.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU2704.h"
 #include "game/UnkTU341.h"
@@ -35,8 +36,6 @@ using base::global::CRntString;
 using base::global::CStrId;
 
 struct UnkWeakTarget;
-
-extern u32 g_unk_71727bebb8;
 
 template <class T, u64 Size, void (*Ctor)(T*)>
 __attribute__((always_inline)) static inline T* Singleton_b0161(T*& instance) {
@@ -476,7 +475,6 @@ s32 fn_710107e840(lua_State* L) {
 }
 
 // ---- an effect at a position ----
-extern void* g_unk_71727b85d0;
 void fn_710101f3d4(void* fx, const CFilePathStrId* id, const f32* position, bool a, bool b, f32 c, f32 d, f32 e, f32 f,
                    f32 g);
 

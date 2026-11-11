@@ -3,10 +3,8 @@
 // unk_7101a203f8, an atomic count at +0x8 cleared with release order), then the stream's vtable
 // (unk_7101a20380), its source (+0x38), the extra argument (+0x30) and cleared fields. Names and
 // layouts are placeholders.
+#include "game/media/CMediaStream.h"
 #include "types.h"
-
-extern char g_unk_7101a203f8[];
-extern char g_unk_7101a20380[];
 
 struct UnkMovieSource;
 

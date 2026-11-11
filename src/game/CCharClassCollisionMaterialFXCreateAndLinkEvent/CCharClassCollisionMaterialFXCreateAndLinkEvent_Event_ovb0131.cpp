@@ -9,6 +9,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"
+#include "game/CCharClassCollisionMaterialFXCreateAndLinkEvent.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -33,8 +34,6 @@ struct UnkReleasedId_ovb0131 {
 };
 using UnkReleasedStrId_ovb0131 = UnkReleasedId_ovb0131<&g_unk_7101d47108>;
 using UnkReleasedPathId_ovb0131 = UnkReleasedId_ovb0131<&g_unk_7101d47200>;
-
-extern char g_unk_7101aa08c8[];
 
 struct UnkMaterialFXEvent_ovb0131 {
     char* vtable;

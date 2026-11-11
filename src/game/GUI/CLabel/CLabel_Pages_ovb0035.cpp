@@ -35,8 +35,6 @@ using base::global::CStrId;
 // As src/game/GUI/CLabel.cpp declares them.
 struct UnkLayoutText;
 struct UnkLabelLayout;
-void fn_7100066a50(void* text, const char32_t* value);
-void fn_7100066af0(UnkLayoutText* self, const char32_t* text);
 void* fn_71011b882c(UnkGuiRoot*, const CStrId*);
 void fn_71011bab80(UnkGuiRoot* root, void* object, s32 frame);
 
@@ -50,9 +48,6 @@ s32 fn_71011eedd0(UnkLabelFontView_b52* self);
 // The language singleton (src/game/UnkLanguage.cpp) and its current language.
 struct UnkLanguage;
 extern UnkLanguage* g_unk_7101d47358;
-
-extern char g_unk_7101cb6380[];  // the label's vtable
-extern char g_unk_7101cb65e8[];  // its line list's vtable
 
 // ---------------------------------------------------------------------------------------------
 // A number shown as the label's text.

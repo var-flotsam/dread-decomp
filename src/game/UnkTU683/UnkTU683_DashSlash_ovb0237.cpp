@@ -2,11 +2,13 @@
 // attack motion's end offset, and its start. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CAnimationComponent.h"
+#include "game/CChozoRobotSoldierCannonShotAttack.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAIComponent.h"
 #include "game/UnkTU1728.h"
 #include "game/UnkTU2702.h"
+#include "game/UnkTU681.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
 
@@ -29,8 +31,6 @@ struct UnkGoliathAI_b58a3;
 // a cast.
 
 
-extern u8 g_unk_71726cbb98[];
-extern u8 g_unk_71726cbb88[];
 extern u8 g_unk_71726cb118[];
 
 struct UnkHydrogigaAttack_b47;

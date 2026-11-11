@@ -23,6 +23,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAIManager/CTunableAIManager.h"
+#include "game/CAbilityEnergyWave.h"
 #include "game/CBreakableTileGroup.h"
 #include "game/CEmmyGrabSamusAttack.h"
 #include "game/CModelUpdaterComponent.h"
@@ -101,7 +102,6 @@ struct UnkGrabFx4_b61;
 struct UnkGrabArg_b61;
 struct UnkEmmyAI_b61;
 extern UnkGrabArg_b61 g_unk_71726de598 __attribute__((visibility("hidden")));
-extern UnkGrabArg_b61 g_unk_71726de5a0 __attribute__((visibility("hidden")));
 
 struct UnkGrabAttack2_ovb0014 {
     u8 pad_0x0[0x8];
@@ -125,7 +125,6 @@ void fn_710050c914(UnkGrabAttack2_ovb0014* self) {
 }
 
 struct UnkEmmyRegistry_b55;
-extern UnkEmmyRegistry_b55* g_unk_71726af0a8;
 struct UnkGrabVec_b58a3 {
     f32 x, y, z;
 };

@@ -8,13 +8,11 @@
 // layouts are placeholders.
 #include "UnkClone.h"
 #include "base/UnkCloneHelpers.h"
+#include "game/UnkTU2599.h"
+#include "game/UnkTU2601.h"
 #include "types.h"
 
 #include <new>
-
-extern char g_unk_7101cab220[];
-extern char g_unk_7101cab338[];
-extern char g_unk_7101cab400[];
 
 template <char* Vtable>
 struct UnkIdValueVecTag_b43a3;

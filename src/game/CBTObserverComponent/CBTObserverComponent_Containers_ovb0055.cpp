@@ -20,6 +20,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CBTObserverComponent.h"
 #include "game/CBreakableTileGroup.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
@@ -619,8 +620,6 @@ void fn_7100ca6dd0(UnkObserverReset_ovb0055* self) {
 }
 
 // ---- Destruction and set-up ----
-
-extern char g_unk_7101aa52b0[];  // the observer's vtable
 
 struct UnkLinkList;
 struct UnkCallback;

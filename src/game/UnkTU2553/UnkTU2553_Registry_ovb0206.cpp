@@ -25,7 +25,10 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CBlackboard.h"
+#include "game/CBossAIComponent.h"
 #include "game/CDroppableLifeComponent.h"
+#include "game/CGameManager/CTunableGameManager.h"
+#include "game/GUI/CLoadCheckPointButton.h"
 #include "game/GUI/CTutorialComposition.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
@@ -33,6 +36,7 @@
 #include "game/UnkItemProperties.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSubAreaGuiCache.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2559.h"
 #include "game/UnkTU2571.h"
@@ -40,6 +44,7 @@
 #include "game/UnkTU2768.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU57.h"
+#include "game/UnkTU63.h"
 #include "game/UnkTU83.h"
 #include "game/UnkTUProperty.h"
 #include "game/sound/CMusicManager.h"
@@ -138,7 +143,6 @@ void fn_7100089894(base::file::UnkFileDevice* self);
 void fn_7100dec088(UnkGameManager* self);
 void fn_7100232864(UnkEntityState* entity, bool value);
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
-extern u32 g_unk_71727bebb8;
 
 struct UnkNode_decc8c {
     struct UnkEntry {
@@ -269,8 +273,6 @@ using base::global::CStrId;
 
 struct UnkEntity_b0165;
 struct UnkPoolListTag_deb914;
-extern char g_unk_7101a20a30[];
-extern char g_unk_7101a20a50[];
 template <>
 struct base::UnkPoolListTraits<UnkPoolListTag_deb914> {
     static char* vtable() { return g_unk_7101a20a30; }
@@ -328,7 +330,6 @@ struct UnkListedPath {
     UnkStrIdMemberOf<g_unk_7101d47200> id;
     UnkListedPath* next;
 };
-extern void* g_unk_7101a1b030[];
 struct UnkFilePathList {
     void** vtable;
     u32 count;
@@ -625,7 +626,6 @@ using base::global::CStrId;
 
 // The user data's owner, created on first use (as src/game/CBossRushManager.cpp has it).
 struct UnkUserDataOwner;
-extern UnkUserDataOwner* g_unk_7101d47308;
 CBlackboard* fn_710120384c(UnkUserDataOwner* self);
 bool fn_71010474f4(CBlackboard* self, const CStrId& section, const CStrId& name);
 bool fn_7100395b34(CBlackboard::CSection* section, const void* name, f32* out);
@@ -926,9 +926,6 @@ using base::global::CRntString;
 struct UnkUserDataOwner;
 struct UnkLoadCheckPointSingleton_ovb0118;
 struct UnkMgr_0xf18;
-extern UnkUserDataOwner* g_unk_7101d47308;
-extern UnkLoadCheckPointSingleton_ovb0118* g_unk_7172763578;
-extern u8* g_unk_71726bc558;
 extern void* g_unk_7101d47330;
 extern void* g_unk_71726bc560;
 void fn_7100dee46c(UnkGameManager* self);
@@ -1151,11 +1148,9 @@ void fn_7100dfa010(UnkGameManager* manager, UnkLoadRequest_dfa010* request) {
 using base::global::CRntString;
 
 struct UnkUserDataOwner;
-extern UnkUserDataOwner* g_unk_7101d47308;
 void fn_7100dee46c(UnkGameManager* self);
 
 // A list of pointers (vtable g_unk_7101aa9ac0), its nodes from `allocator` with `flags`.
-extern char g_unk_7101aa9ac0[];
 struct UnkPtrListNode {
     void* value;
     UnkPtrListNode* next;

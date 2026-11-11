@@ -15,6 +15,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU2729.h"
+#include "game/UnkTU344.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -43,7 +44,6 @@ void fn_7100254e84(void* object) {
 
 struct UnkActorDefFactory;
 struct UnkGuiDef_b52;
-extern UnkActorDefFactory* g_unk_71726a0220;
 
 // The definition's parts, created from the names.
 struct UnkActorDefPart_ovb0118 {

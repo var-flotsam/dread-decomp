@@ -7,13 +7,13 @@
 
 #include "base/global/CStrId.h"
 #include "game/CCharClassComponent.h"
+#include "game/CCharClassFrozenComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkCharClass_A5_b71;
 struct UnkStruct_71008bca30;
-extern void* g_unk_7101a73dc0[];
 
 struct UnkCharClassFrozenCtor_A5_b71 {
     u64 vtable;  // an integer, so the id stores don't make the slot load reread it

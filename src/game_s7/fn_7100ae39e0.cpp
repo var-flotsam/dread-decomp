@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CEmmyProtoAIComponent.h"
 #include "game/CHeatRoomComponent.h"
+#include "game/CNavMeshItemComponent.h"
 #include "game/UnkItemProperties.h"
 
 using namespace unk_static_init;
@@ -28,8 +29,6 @@ extern UnkPropertyEx<> g_unk_7172758d70;
 extern UnkPropertyEx<> g_unk_7172758db0;
 extern UnkPropertyEx<> g_unk_7172758df0;
 extern UnkPropertyEx<0x160> g_unk_7172758e30;
-extern void* g_unk_7101a889c8[];
-extern void* g_unk_7101a8d830[];
 extern UnkPropertyEx<> g_unk_7172758fb8;
 extern UnkPropertyEx<> g_unk_7172758ff8;
 extern UnkPropertyEx<> g_unk_7172759038;

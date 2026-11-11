@@ -8,6 +8,7 @@
 #include "base/UnkMatrix44.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CBigkranXAIComponent.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -16,7 +17,6 @@
 // +0x149c0 (its listener at +0x38, then CAttack's part), then the base component (fn_71003e59d0).
 // Names and layouts are placeholders.
 
-extern void* g_unk_7101a31448[];  // the component's vtable
 extern void* g_unk_7101a31160[];  // the magma rain attack's vtable
 
 struct UnkSpitAttackDtor;

@@ -7,11 +7,10 @@
 
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"
+#include "game/CCharClassShowTutorialMessageEvent.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-extern char g_unk_7101aa1d88[];
 
 struct UnkShowTutorialMessageEvent_b42a3 {
     void* vtable;

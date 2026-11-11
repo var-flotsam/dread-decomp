@@ -11,6 +11,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/GUI/CIngameMenu.h"
+#include "game/GUI/CLoadCheckPointButton.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiEvent.h"
 #include "game/UnkTU2559.h"
@@ -71,7 +72,6 @@ void fn_7100b30d70(UnkLoadCheckPointMenu_ovb0118* menu, bool flag);
 
 // A lazily created singleton (0x28 bytes).
 struct UnkLoadCheckPointSingleton_ovb0118;
-extern UnkLoadCheckPointSingleton_ovb0118* g_unk_7172763578;
 void fn_7100dff93c(UnkGameManager* manager);
 
 void fn_7100b33d28(UnkLoadCheckPointButton_ovb0118* self) {

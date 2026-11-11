@@ -2,11 +2,10 @@
 // words, defaults 10, 1 and 15, and a pointer from fn_7100083990), the second one without
 // its first vtable.
 #include "base/UnkVector.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 extern void* g_unk_7101a48248[];
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a20950[];
 
 struct UnkPair {
     u64 field_0x0;

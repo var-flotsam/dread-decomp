@@ -2,11 +2,9 @@
 // vtable 0x7101a9ee50; the nodes are freed through the list's allocator), then the base's
 // destructor (fn_71011d8e90).
 #include "base/UnkVector.h"
+#include "game/GUI/CScrollMenuEntryItemRenderer.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "types.h"
-
-extern void* g_unk_7101a9ebd8[];  // the object's vtable
-extern void* g_unk_7101a9ee50[];  // the list's vtable
 
 struct UnkListNode {
     u64 field_0x0;

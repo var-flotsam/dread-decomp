@@ -23,6 +23,7 @@
 #include "game/UnkGuiEvent.h"
 #include "game/UnkGuiHandle.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2669.h"
 #include "game/UnkTU92.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -267,7 +268,6 @@ void fn_71011b97bc(UnkRecordOwner_b0210* self, const CRntString* name) {
 s32 fn_710007fb10(const base::global::CRntString* self, char c, s32 start);
 
 struct UnkScriptManager_ovb0085;
-extern UnkScriptManager_ovb0085* g_unk_71727bed90;
 struct UnkUnit2669Str;
 UnkWeakTarget* fn_71011b5f5c(u32 script, const char* const* name, const CRntString* source, void* bag);
 

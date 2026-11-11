@@ -35,7 +35,6 @@ struct UnkSelf {
     UnkHandle field_0x400;
 };
 
-extern UnkHandle g_unk_7101d586c0;
 void fn_710114fe8c(UnkObject* object, u64 hash, u32 a, u32 b);
 
 void fn_71003053c4(UnkSelf* self) {

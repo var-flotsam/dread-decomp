@@ -3,6 +3,7 @@
 // g_unk_7101a19c50 with the argument, and when the handler moved to another state, notes the step
 // it happened on; then it records the state it ran and clears the word at +0x21c. Names and
 // layouts are placeholders.
+#include "game/UnkTU36.h"
 #include "types.h"
 
 struct UnkStateMachine_710002c1b0 {
@@ -20,7 +21,6 @@ struct UnkStateHandler_710002c1b0 {
     void* (*run)(void* arg);
 };
 
-extern UnkStateMachine_710002c1b0 g_unk_7101a19948;
 extern UnkStateHandler_710002c1b0 g_unk_7101a19c50[] __attribute__((visibility("hidden")));
 
 void* fn_710002c1b0(void* arg) {

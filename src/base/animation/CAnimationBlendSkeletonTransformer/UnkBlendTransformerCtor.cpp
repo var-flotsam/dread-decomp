@@ -1,12 +1,11 @@
 // A constructor in the CAnimationBlendSkeletonTransformer unit, emitted twice (complete and base
 // object, byte-identical): the base part (fn_7100005a88), the vtable, two members built by
 // fn_7100014d94, then a block of plain fields. Names and layouts are placeholders.
+#include "base/animation/CAnimationBlendSkeletonTransformer.h"
 #include "game/UnkTU23.h"
 #include "types.h"
 
 void fn_7100005a88(void* self);
-
-extern char g_unk_7101a19018[];
 
 struct UnkBlendTransformer {
     char* vtable;

@@ -6,6 +6,7 @@
 #include <stdint.h>
 
 #include "base/UnkDefaultAllocator.h"
+#include "game/UnkTU327.h"
 #include "types.h"
 
 namespace nn {
@@ -20,8 +21,6 @@ void LinkMultiWaitHolder(MultiWaitType* multiWait, MultiWaitHolderType* holder);
 }  // namespace nn
 
 void fn_7100066744(void* thread, const char* name, void (*entry)(void*), u32 a, u32 b, void* arg);
-
-extern void* g_unk_7101a20570[];  // the ring's vtable
 
 struct UnkMovieWorker_b50;
 void fn_7100222ab4(UnkMovieWorker_b50* thread);

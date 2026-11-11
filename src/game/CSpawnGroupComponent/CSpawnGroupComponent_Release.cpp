@@ -3,6 +3,7 @@
 // set, which it then clears) and another (fn_7100de9730), then runs fn_71010c4230. Names and
 // layouts are placeholders.
 #include "game/CComponent.h"
+#include "game/CSpawnGroupComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -10,7 +11,6 @@ struct UnkHandleOwner_71010c4230;
 
 struct UnkSpawnGroupKey;
 extern UnkSpawnGroupKey g_unk_7172a067b8 __attribute__((visibility("hidden")));
-extern UnkSpawnGroupKey g_unk_7172a067c0 __attribute__((visibility("hidden")));
 void fn_7100de9730(UnkGameManager* manager, UnkSpawnGroupKey* key, void* object);
 
 struct UnkSpawnGroupElem {

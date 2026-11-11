@@ -5,13 +5,12 @@
 // (src/game/CSamusMagnetGloveMovementState/CParams/CParams_Fall_ovb0082.cpp). Names and layouts are
 // placeholders.
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/UnkTU1730.h"
 #include "types.h"
 
 struct UnkDesc_SpitSend;
 extern UnkDesc_SpitSend g_unk_710164b958;
-extern UnkDesc_SpitSend g_unk_7172769740;
-extern void* g_unk_7101a22cb8[];
-extern void* g_unk_7101a22d18[];
 struct UnkAirTarget_B71a6;
 struct UnkAirRequest_B71a6;
 void fn_710098ae04(UnkAirTarget_B71a6* target, UnkAirRequest_B71a6* req);
@@ -69,4 +68,3 @@ void fn_7100990e14(UnkCrouchState_ovb0131* self) {
     UnkCrouchRequest_ovb0131 req;
     fn_710098ae04(self->target, reinterpret_cast<UnkAirRequest_B71a6*>(&req));
 }
-

@@ -4,11 +4,10 @@
 // string id and 0x10 bytes. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "../../game_5821e4/UnkKeyedHolder.h"
+#include "game/UnkTU936.h"
 #include "types.h"
 
 using base::global::UnkStringData;
-
-extern char g_unk_7101a56178[];  // the elements' base vtable
 
 struct UnkOffsetIdValue {
     char* vtable;

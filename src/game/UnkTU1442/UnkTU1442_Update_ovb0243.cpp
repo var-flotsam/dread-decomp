@@ -3,6 +3,7 @@
 // sink and movement told of a new kind (a kind-2 block and the zero vector). Names and layouts are placeholders.
 #include "base/math/UnkZeroVector3.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CAutsharpAIComponent.h"
 #include "game/CEnemyMovement.h"
 #include "game/CMovementComponent.h"
 #include "game/UnkAIComponent.h"
@@ -18,7 +19,6 @@ struct UnkUnit1444_ovb0177;
 struct UnkMovement_71010d08d4;
 struct UnkMovementVec_71010d08d4;
 struct UnkUnit1442Update;
-extern void* g_unk_7101a2e1c0[];
 
 struct UnkUnit1444_Event;
 void fn_710096b720(UnkUnit1442Update* self);

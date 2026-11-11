@@ -4,13 +4,13 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU0.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
 
 struct UnkDropTarget;
-extern UnkDropTarget* g_unk_7101d47318;
 
 struct UnkPathHolder_b260 {
     u8 unk_0x0[0x10];

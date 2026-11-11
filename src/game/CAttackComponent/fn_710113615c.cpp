@@ -2,6 +2,7 @@
 // owns three arrays: restores the vtables, clears the u16 at 0x48, frees the arrays, runs the
 // base destructor (fn_71010c4194) and frees the object.
 #include "base/UnkVector.h"
+#include "game/CAttackComponent.h"
 #include "types.h"
 
 struct UnkBase_0x40 {
@@ -15,9 +16,6 @@ struct UnkSecondaryBase_0x58 {
     u16 field_0x8;
     u8 unk_0xa[0x4e];
 };
-
-extern void* g_unk_7101cb2cb8[];
-extern void* g_unk_7101cb2ec0[];
 
 struct UnkArrays_0x80 {
     void** vtable;

@@ -11,6 +11,7 @@
 #include "game/CEnemyMovement.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkXformNode.h"
+#include "game/behaviortree/CSetAnimDependsOnDirAction.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -98,8 +99,6 @@ void fn_71011051fc(UnkScriptAI_b0269* self) {
         fn_71010c0d80(g_unk_7172a01d18, 1, out, 0x100, nullptr, nullptr);
     }
 }
-
-extern void* g_unk_7101a24db8[];
 
 struct UnkEffectSink;
 

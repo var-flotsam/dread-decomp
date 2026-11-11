@@ -15,6 +15,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkTU2509.h"
+#include "game/UnkTU365.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -48,8 +49,6 @@ struct UnkVisitResult_b0040 {
     UnkVisitResult_b0040(const UnkVisitResult_b0040& other) = default;
     ~UnkVisitResult_b0040() {}
 };
-extern UnkVisitResult_b0040 g_unk_71726a4778;
-extern u64 g_unk_71726a4780;
 
 static inline void InitSkip() {
     if (__builtin_expect(!(__atomic_load_n(reinterpret_cast<u8*>(&g_unk_71726a4780), __ATOMIC_ACQUIRE) & 1), 0)) {
@@ -422,7 +421,6 @@ struct UnkShape;
 UnkMatrix44 fn_7100d36a2c(UnkShape* shape);
 
 struct UnkShapeTester_A5_b68;
-extern UnkShapeTester_A5_b68* g_unk_71726a47a0;
 
 static inline UnkShapeTester_A5_b68* Tester() {
     UnkShapeTester_A5_b68* t = g_unk_71726a47a0;

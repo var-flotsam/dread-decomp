@@ -10,6 +10,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU83.h"
 
 using base::global::CStrId;
 using base::global::UnkStringData;
@@ -20,7 +21,6 @@ using base::reflection::UnkReflAttrs;
 using base::reflection::UnkReflFunction;
 
 extern char g_unk_7101a1b460[];  // UnkReflFunction's virtual table (its address point is +0x10)
-extern u32 g_unk_7101d5bdd8;     // the default of a class's "_EditorOnly" attribute (nonzero: true)
 const UnkReflAttrKey& fn_710000d120();  // "_EditorOnly"
 
 namespace refl_add_function {

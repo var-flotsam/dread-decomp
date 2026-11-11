@@ -19,6 +19,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
+#include "game/UnkTU2568.h"
 #include "game/UnkTU357.h"
 #include "game/UnkTU39.h"
 #include "game/navmesh/SNavMeshPath.h"
@@ -118,7 +119,6 @@ void* fn_7100ec0dc4(UnkNavMeshManager* self, const CStrId* key) {
 // ---- The node pool's destructor ----
 
 extern char g_unk_7101ca9f70[];
-extern void* g_unk_7101ca9f90[];
 
 struct UnkNavNode_af414 {
     u8 pad_0x0[0x8];

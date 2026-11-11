@@ -16,6 +16,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAudioComponent.h"
+#include "game/CCentralUnitAIComponent.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU341.h"
@@ -24,9 +25,6 @@
 
 using base::global::CStrId;
 using base::reflection::UnkReflObject;
-
-extern void* g_unk_7101a20998[];  // the callback sets' base vtable
-extern void* g_unk_7101a33fa0[];  // their vtable
 
 // ---- Insertion at an index of two singly linked lists (the shape of fn_710023fedc,
 // src/game/CActor/CActor_SListInsertAt_A1_b74.cpp) ----

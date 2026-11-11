@@ -4,14 +4,13 @@
 // through its vtable slot at +0x8) destroyed, then the base destructor fn_71011acd74;
 // fn_71009c7d24 also frees the object. Names and layouts are placeholders.
 #include "game/CCharClassComponent.h"
+#include "game/CCharClassPerceptionComponent.h"
 #include "game/UnkComponent.h"
 #include "base/UnkVector.h"
 #include "types.h"
 
 // Signature as src/game/CCharClassCollisionComponent/CCharClassCollisionComponent.cpp declares it.
 struct UnkIdObject;
-
-extern void* g_unk_7101a88c60[];
 
 struct UnkPerceptionOwned_b52 {
     virtual void vf_0x0();

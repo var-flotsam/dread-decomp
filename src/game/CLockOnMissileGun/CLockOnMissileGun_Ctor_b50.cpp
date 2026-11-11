@@ -3,6 +3,7 @@
 // registration fn_7100023854 last. Names and layouts are placeholders.
 #include "base/core/CBaseObject.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CMissileBaseGun.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -39,7 +40,6 @@ void fn_710084e848(UnkLockOnMissileGun* self);  // the base constructor
 // The base destructor, with the signature src/game/GUI/CSubtitleComposition/fn_7100b85000.cpp defines it with.
 template <void** Vtable, u32 At>
 struct UnkLinkOwner;
-extern void* g_unk_7101a786e0[];
 void fn_710084e8fc(UnkLinkOwner<g_unk_7101a786e0, 0x18a0>* self);
 
 void fn_710084d9d0(UnkLockOnMissileGun* self) {

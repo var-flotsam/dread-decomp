@@ -3,12 +3,12 @@
 // destroyed inline. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
 #include "game/CGameObject.h"
+#include "game/CLogicCameraComponent.h"
 #include "types.h"
 
 struct UnkCameraCtrl_ovb0049;
 struct UnkBaseComponent;
 void fn_710024f6d4(UnkBaseComponent*);
-extern void* g_unk_7101a81678[];
 extern void* g_unk_7101a81540[];
 
 struct UnkLogicCamera_ovb0106 {

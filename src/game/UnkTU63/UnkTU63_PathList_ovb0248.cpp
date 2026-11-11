@@ -7,6 +7,7 @@
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
+#include "game/UnkTU63.h"
 #include "types.h"
 
 using base::UnkStrIdMemberOf;
@@ -33,7 +34,6 @@ struct UnkListedPath_b0248 {
     UnkListedPath_b0248* next;
 };
 
-extern void* g_unk_7101a1b030[];
 struct UnkFilePathList_b0248 {
     void** vtable;
     u32 count;

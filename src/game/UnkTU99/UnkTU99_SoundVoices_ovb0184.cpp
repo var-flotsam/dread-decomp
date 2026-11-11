@@ -13,10 +13,9 @@
 #include "game/UnkTU101.h"
 #include "game/UnkTU2772.h"
 #include "game/UnkTU58.h"
+#include "game/UnkTU99.h"
 
 using base::snd::UnkSoundSystemATK;
-
-extern u8 g_unk_7108b6ab60 __attribute__((visibility("hidden")));
 
 struct UnkInterp_7100105d34;
 struct UnkPlayingSound_ovb0074;
@@ -302,7 +301,6 @@ struct UnkSoundTimeSystem_b0184 {
     u8 pad_0x380[0x400528 - 0x380];
     nn::os::MutexType mutex;  // 0x400528
 };
-extern UnkIdMap* g_unk_7101d685c8;
 
 extern "C" int __cxa_guard_acquire(u64* guard);
 extern "C" void __cxa_guard_release(u64* guard);

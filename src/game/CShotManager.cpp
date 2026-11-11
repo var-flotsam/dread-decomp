@@ -11,6 +11,7 @@
 #include "base/UnkVector.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CFilePathStrId.h"
+#include "base/reflection.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU25.h"
@@ -289,7 +290,6 @@ bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base:
 void fn_710000f750(UnkParseContext* self, void* root);
 extern UnkParseCallbacks g_unk_71729da548 __attribute__((visibility("hidden")));  // this unit's callbacks
 extern base::reflection::CType g_unk_7172756e50;
-extern u8 g_unk_7172757530[];
 
 // The shot kinds (15) and the presets of each kind (8), as indices.
 extern const u32 g_unk_710164bec0[15];

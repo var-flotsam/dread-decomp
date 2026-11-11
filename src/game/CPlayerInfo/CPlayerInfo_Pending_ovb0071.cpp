@@ -133,7 +133,6 @@ struct UnkPlayerInfoMsg_ovb0071 {
     bool field_0xc;
 };
 
-extern UnkHandle g_unk_7101d586c0;
 UnkTimedEntry_ovb0071* fn_7100f0ca9c(UnkTimedMap_ovb0071* self, UnkTimedEntry_ovb0071* it);
 void fn_7100840f50(void* target, void** slot);
 void fn_7100841270(void* target, void** slot);

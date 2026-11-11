@@ -2,10 +2,8 @@
 // +0x38) of a reflected class built on a shared object (base vtable unk_7101a203f8, an atomic count
 // at +0x8 cleared with release order) whose own vtable is unk_7101a20380; both copy the fields from
 // +0x10 on. Names and layouts are placeholders.
+#include "game/media/CMediaStream.h"
 #include "types.h"
-
-extern char g_unk_7101a203f8[];
-extern char g_unk_7101a20380[];
 
 struct UnkStreamBlock16_b52 {
     u64 words[2];

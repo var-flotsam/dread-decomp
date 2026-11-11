@@ -5,13 +5,13 @@
 // +0xc0 (fn_7100216934), then the component base (fn_71010c4194). Names and layouts are placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkVector.h"
+#include "game/CDizzeanSwarmControllerComponent.h"
 #include "game/UnkComponent.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU2560.h"
 #include "types.h"
 
 extern void* g_unk_7101a6d218[];
-extern void* g_unk_71726da048;
 void fn_7100e1c9d8(void* manager, u32 id);
 
 struct UnkEntry_bbd {

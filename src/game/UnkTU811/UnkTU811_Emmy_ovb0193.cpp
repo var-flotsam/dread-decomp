@@ -21,6 +21,7 @@
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
+#include "game/UnkTU101.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU39.h"
 #include "game/UnkTU811.h"
@@ -173,7 +174,6 @@ struct UnkSoundHandle {
     UnkSoundRef* ref;
     s64 serial;
 };
-extern const UnkSoundHandle g_unk_7108b6c460;  // the empty handle
 
 static inline UnkSound* GetSound_b0193(const UnkSoundHandle* handle) {
     if (handle->ref && handle->ref->serial == handle->serial && handle->serial != -1)

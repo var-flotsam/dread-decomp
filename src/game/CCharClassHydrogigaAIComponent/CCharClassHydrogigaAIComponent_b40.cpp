@@ -3,6 +3,7 @@
 // tuning floats, the members from +0x578 (each by its own constructor), and the flags at +0x409,
 // +0x40b, +0x4dc and +0x4fc. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CCharClassHydrogigaAIComponent.h"
 #include "game/CDamageSourceFactor.h"
 #include "game/UnkBossAIComponent.h"
 #include "types.h"
@@ -24,7 +25,6 @@ struct UnkOwnedPtr_hg {
     }
 };
 
-extern void* g_unk_7101a50aa0[];
 void fn_71005ad514(void* member);
 void fn_71005ad8fc(void* member);
 void fn_71005af734(void* member);

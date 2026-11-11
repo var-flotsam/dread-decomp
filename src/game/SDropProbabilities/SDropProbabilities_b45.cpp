@@ -1,6 +1,7 @@
 // SDropProbabilities' unit (tools/tu_map.py; the name from reflection): one of two float settings
 // of the droppable tunable g_unk_71727c10c8 (+0x68 when the state at +0x84 is 2, else +0x64).
 // Names are placeholders.
+#include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"
 #include "types.h"
 
 // The tunable (CTunableDroppableBillboard's instance), declared as src/game/CLogicDroppedItemManager.cpp
@@ -13,7 +14,6 @@ struct UnkDroppableTunable {
     u32 field_0x90;
     u32 field_0x94;
 };
-extern UnkDroppableTunable g_unk_71727c10c8;
 
 struct UnkDropOwner_b45a2 {
     u8 pad_0x0[0x84];

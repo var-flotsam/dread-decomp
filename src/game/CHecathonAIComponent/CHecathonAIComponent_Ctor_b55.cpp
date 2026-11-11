@@ -5,12 +5,11 @@
 // cleared runs, then the virtual at slot 3. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "game/CBehaviorTreeAIComponent.h"
+#include "game/CHecathonAIComponent.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 struct UnkComponent;
-extern void* g_unk_7101a4f7f0[];  // the component's vtable
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a20950[];
 
 struct UnkHecathonList_b55 {
     void** vtable;

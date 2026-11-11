@@ -6,17 +6,17 @@
 // sub-objects, Clang addresses a byte store from the container's base). Names and layouts are
 // placeholders.
 #include "base/UnkVector.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/CCentralUnitAIComponent.h"
+#include "game/CCharClassActivatableComponent.h"
 #include "game/CComponent.h"
 #include "game/CDemolitionBlockComponent.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 struct UnkStateObject;
 void fn_7100a7f434(char* self);
-extern void* g_unk_7101a7ac20[];
 extern void* g_unk_7101a90f90[];
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a33fa0[];
-extern void* g_unk_7101a22d48[];
 
 struct UnkPowerGeneratorComponent {
     void** vtable;

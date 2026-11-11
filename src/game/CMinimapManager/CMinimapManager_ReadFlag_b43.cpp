@@ -6,6 +6,7 @@
 #include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2566.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -22,7 +23,6 @@ struct UnkNamedDef_b43a3 : UnkIdSource {
     u64 field_0x8;
     UnkQualifiedName name;
 };
-extern UnkNamedDef_b43a3 g_unk_71727c9f88;
 extern CStrId g_unk_71727cc990;  // the blackboard section
 
 struct UnkMinimapTunable_b43a3 {

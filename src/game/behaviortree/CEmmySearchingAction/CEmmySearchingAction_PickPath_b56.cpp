@@ -4,6 +4,8 @@
 // +0x12cc, pointers from +0x12d0) and pushes a copy of every node of the chain it starts (linked
 // through +0x10) to the front of the list. The list follows the node-list shape of
 // CEmmyPatrolBaseAction_Start_b55.cpp. Names and layouts are placeholders.
+#include "game/UnkTU811.h"
+#include "game/behaviortree/CEmmySearchingAction.h"
 #include "types.h"
 
 extern "C" int rand();
@@ -90,9 +92,6 @@ static inline __attribute__((always_inline)) void PickPath_b56a3(UnkPathOwner_b5
         }
     }
 }
-
-extern void* g_unk_7101a47fa8[];
-extern void* g_unk_7101a48c20[];
 
 void fn_710051cb3c(UnkPathOwner_b56a3* self, UnkPathList_b56a3* list) {
     PickPath_b56a3(self, list, reinterpret_cast<char*>(g_unk_7101a47fa8) + 0x10);

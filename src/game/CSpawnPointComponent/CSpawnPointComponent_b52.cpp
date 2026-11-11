@@ -1,10 +1,10 @@
 // CSpawnPointComponent unit (tools/tu_map.py, the name from reflection). Names and layouts are placeholders.
 #include "base/UnkResKey.h"
+#include "game/UnkTU344.h"
 #include "game/operator_new.h"
 #include "types.h"
 
 struct UnkActorDefFactory;
-extern UnkActorDefFactory* g_unk_71726a0220;  // as src/game/UnkActorDefFactory.cpp declares it
 
 // A counted reference like UnkResRef (base/UnkResKey.h) whose destructor reads the pointer once.
 struct UnkSpawnDefRef_b52 {

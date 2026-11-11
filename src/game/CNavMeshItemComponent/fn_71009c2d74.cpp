@@ -51,9 +51,6 @@ UnkReflValue fn_71009c2d74(void*, char* obj, UnkReflValue* const* args) {
     return refl_EmptyValue();
 }
 
-// The descriptor whose id fn_71009c28b8 looks for (a global pointer in .bss).
-extern __attribute__((visibility("hidden"))) UnkSourceDesc* g_unk_717273ee10;
-
 struct UnkSourceArg;
 
 // Passes the argument (null when it has no type) to the first listed source with that id.

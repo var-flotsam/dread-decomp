@@ -7,6 +7,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU1730.h"
 #include "types.h"
 
 // As src/game/CCharClassToStateTrack/CCharClassToStateTrack_Fill.cpp declares it.
@@ -14,7 +15,6 @@ struct __attribute__((packed, aligned(4))) UnkTrackBlend {
     u64 kind;
     f32 value;
 };
-extern UnkTrackBlend g_unk_7172769770;
 
 struct UnkAirOwner_b52 {
     u8 pad_0x0[0x220];

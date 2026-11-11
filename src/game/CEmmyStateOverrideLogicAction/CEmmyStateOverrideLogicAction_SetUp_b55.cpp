@@ -7,9 +7,11 @@
 // the flag. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/UnkRefHandle.h"
+#include "game/CAbilityEnergyWave.h"
 #include "game/CTriggerLogicAction.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU811.h"
+#include "game/behaviortree/CEmmyPatrolAction.h"
 #include "types.h"
 
 struct UnkTutoExitAction_b47;
@@ -20,7 +22,6 @@ struct UnkEmmyActor_b55 {
 
 void fn_7100541dc8(UnkEmmyActor_b55* self, bool on);
 void fn_7100545138(UnkEmmyActor_b55* self);
-extern char g_unk_71726ded60[];
 
 struct UnkEmmyEntry_b55 : base::UnkRefCounted {
     u8 pad_0xc[4];
@@ -60,7 +61,6 @@ struct UnkEmmyRegistry_b55 {
     u8 pad_0x0[8];
     UnkEmmyList_b55 list;  // 0x8
 };
-extern UnkEmmyRegistry_b55* g_unk_71726af0a8;
 
 struct UnkEmmyStateOverrideAction_b55 {
     u8 pad_0x0[0x10];

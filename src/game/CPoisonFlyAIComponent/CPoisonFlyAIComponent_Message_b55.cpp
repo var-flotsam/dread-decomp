@@ -7,6 +7,7 @@
 // CPoisonFlyAIComponent_b36.cpp). Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAutsharpAIComponent.h"
 #include "game/CBehaviorTreeAIComponent.h"
 #include "game/CBlackboard.h"
 #include "game/CEnemyMovement.h"
@@ -29,7 +30,6 @@ struct UnkSclawkMessage_b44a2;
 void fn_710063a748(u8* part, UnkActor* actor);
 
 struct UnkEffectSink;
-extern void* g_unk_7101a2e208[];
 
 extern base::global::CStrId g_unk_71726b7cb8;                                    // the blackboard section
 extern UnkPropertyName g_unk_71726fa598 __attribute__((visibility("hidden")));  // the property in it

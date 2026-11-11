@@ -4,9 +4,9 @@
 #include <nn/hid.h>
 
 #include "base/UnkVector.h"
+#include "game/UnkTU46.h"
 #include "types.h"
 
-extern void* g_unk_7101a1a2b0[];
 extern void* g_unk_7101a1a218[];
 
 struct UnkSoundGroup_710006cdb8;

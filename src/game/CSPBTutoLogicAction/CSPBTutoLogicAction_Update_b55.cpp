@@ -14,6 +14,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CChozoCommanderAIComponent.h"
+#include "game/CEmmyOverrideDeathPositionDef.h"
 #include "game/CTriggerLogicAction.h"
 #include "game/GUI/CTutorialComposition.h"
 #include "game/UnkCameraCtrl.h"
@@ -48,8 +49,6 @@ struct UnkInput_b55 {
     virtual void vf_0x28();
     virtual bool IsPressed(u32 button, u32 mask);
 };
-
-extern u32 g_unk_71726e1ee8;
 
 struct UnkSPBInner_b55;
 void fn_7100a5377c(UnkSPBInner_b55* self, void* arg);

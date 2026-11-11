@@ -2,6 +2,7 @@
 // at +0x10 of every entry's (0x40 bytes, +0x30) target in the list at +0x15658 to fn_7100232c68, calls
 // fn_7100ed78c0 on the sound player g_unk_71726af0b0 and passes the component to fn_7101199818 (as
 // CChozoCommanderAIComponent_Step_A2_b69.cpp). Names and layouts are placeholders.
+#include "game/CAbilityEnergyWave.h"
 #include "game/CBossAIComponent.h"
 #include "game/CShotManager/CTunableShotManager.h"
 #include "game/UnkTU2730.h"
@@ -10,7 +11,6 @@
 
 struct UnkNode;
 
-extern void* g_unk_71726af0b0;
 extern void* g_unk_7101d47330;
 
 struct UnkCooldownTarget_A2_b70 {

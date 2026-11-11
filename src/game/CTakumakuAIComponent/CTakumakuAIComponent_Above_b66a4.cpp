@@ -3,14 +3,13 @@
 // y, or the middle of the bounds its +0x200's cached component (fn_71010d7aac) keeps, refreshed
 // (vf_0x98) when flagged. False without the owner, its +0x220 or a target. Names and layouts are
 // placeholders.
+#include "game/CTakumakuAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU2689.h"
 #include "types.h"
 
 // As src/game/CPlayerMovement/CPlayerMovement_CachedComponent.cpp defines it.
 struct UnkPlayerMovementCache;
-
-extern f32 g_unk_7101a67de8;
 
 struct UnkTakumakuBounds_b66a4 {
     virtual void vf_0x0();

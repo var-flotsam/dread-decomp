@@ -3,10 +3,9 @@
 // through the global caption player (0x40 bytes, created on first use). Names and layouts are
 // placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU1643.h"
 #include "game/UnkTU2728.h"
 #include "types.h"
-
-extern void* g_unk_7172758b20;
 
 struct UnkCaptionId;
 void fn_7101192838(void* player, UnkCaptionId* caption, bool a, bool b, bool c, f32 value);

@@ -3,12 +3,11 @@
 // refined once through fn_710009dcd8 before fn_71000a1784 walks it. Names are placeholders.
 #include "base/reflection.h"
 #include "base/reflection/UnkReflTypedPtr.h"
+#include "game/lua_lib.h"
 #include "types.h"
 
 struct UnkFormatArgs;
 struct UnkTextBuffer200;
-
-extern void* g_unk_7101cab638[] __attribute__((visibility("hidden")));
 
 struct UnkTypedPair_A6_b72 {
     char* type;

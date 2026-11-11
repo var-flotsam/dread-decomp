@@ -9,14 +9,14 @@
 
 #include "base/UnkCloneRecords.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassLogicSoundEvent.h"
+#include "game/CCharClassPlayEntityTimelineEvent.h"
+#include "game/CCharClassSetMaterialPropertyEvent.h"
+#include "game/CCharClassShowTutorialMessageEvent.h"
+#include "game/CCharClassStaticLUACallback1Event.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-extern char g_unk_7101aa1648[];
-extern char g_unk_7101aa1d88[];
-extern char g_unk_7101aa5d10[];
-extern char g_unk_7101aa6410[];
 
 struct UnkTwoIdsEvent {
     char* vtable;
@@ -70,7 +70,6 @@ void fn_7100cba158(UnkFadeInEvent* self, const UnkFadeInEvent* other) { CopyFade
 void fn_7100cba1b4(UnkFadeInEvent* self, const UnkFadeInEvent* other) { CopyFadeIn<g_unk_7101aa5920>(self, other); }
 
 // A string id at 0x10, then 0x1c plain bytes: CCharClassSetMaterialPropertyEvent's unit.
-extern char g_unk_7101aa6108[];
 
 struct UnkIdBytesEvent {
     char* vtable;

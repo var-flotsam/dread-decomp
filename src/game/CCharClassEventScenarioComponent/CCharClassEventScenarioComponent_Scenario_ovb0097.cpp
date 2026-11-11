@@ -15,6 +15,7 @@
 #include "game/CComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU365.h"
 #include "game/behaviortree/CEmmyPatrolAction.h"
 #include "game/logic/collision/CCollider.h"
 #include "types.h"
@@ -33,7 +34,6 @@ struct UnkEventScenario_b49a2;
 // The collision manager (as src/game/CColliderTriggerComponent/CColliderTriggerComponent_Shape_ovb0058.cpp
 // declares it).
 struct UnkManager_7100863a8c;
-extern UnkManager_7100863a8c* g_unk_71726a4788;
 void fn_7100d46804(UnkManager_7100863a8c* self);
 struct UnkCollisionObject;
 void fn_7100d46c60(UnkManager_7100863a8c* self, UnkCollisionObject* entry);

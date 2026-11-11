@@ -7,6 +7,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CKraidAttack.h"
+#include "game/CKraidSpinningNailsDef.h"
 #include "game/UnkTU2772.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -18,7 +19,6 @@ void fn_710117b3e8(UnkWeakTarget* target, void* link);
 void fn_71005f7968();
 
 struct UnkTunable;
-extern UnkTunable g_unk_71726f0b10;
 
 struct UnkKraidNailsLink_A3_b73 {
     u8 pad_0x0[0x8];

@@ -8,9 +8,11 @@
 #include "base/UnkDeferredSet.h"
 #include "base/UnkRefHandle.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CCentralUnitAIComponent.h"
 #include "game/CTriggerLogicAction.h"
 #include "game/GUI/CTutorialComposition.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 struct UnkPlayer;
@@ -85,8 +87,6 @@ struct UnkLogicActionBase;
 struct UnkTutoExitAction_b47;
 
 extern char g_unk_7101a8e480[];
-extern void* g_unk_7101a33fa0[];
-extern void* g_unk_7101a20998[];
 
 struct UnkFreeAimTutoCallbacks_b53;
 template <>

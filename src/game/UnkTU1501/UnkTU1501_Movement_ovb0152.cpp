@@ -23,6 +23,8 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU1501.h"
+#include "game/UnkTU1730.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2689.h"
 #include "game/UnkTU363.h"
@@ -200,7 +202,6 @@ struct UnkSamusSettings {
     f32 field_0x74;
     bool field_0x78;
 };
-extern UnkSamusSettings g_unk_7172740de0;
 extern base::reflection::UnkTunable g_unk_71726b0fc0;
 extern base::reflection::UnkTunable g_unk_717273ba88;
 
@@ -287,9 +288,6 @@ inline UnkGameManagerIdTable& GameManagerIdTable() {
 // the reflected params base holding an unset track request, then a derived part.
 struct UnkDesc_SpitSend;
 extern UnkDesc_SpitSend g_unk_710164b958;
-extern UnkDesc_SpitSend g_unk_7172769740;
-extern void* g_unk_7101a22cb8[];
-extern void* g_unk_7101a22d18[];
 extern void* g_unk_7101a86900[];
 struct UnkAirTarget_B71a6;
 struct UnkAirRequest_B71a6;

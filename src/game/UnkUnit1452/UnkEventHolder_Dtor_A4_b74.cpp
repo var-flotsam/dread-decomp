@@ -4,12 +4,9 @@
 // placeholders.
 #include "base/UnkVector.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU1449.h"
+#include "game/UnkTU1452.h"
 #include "types.h"
-
-extern void* g_unk_7101a85e98[];
-extern void* g_unk_7101a85f98[];
-extern void* g_unk_7101a85ff0[];
-extern void* g_unk_7101a85c80[];
 
 namespace {
 

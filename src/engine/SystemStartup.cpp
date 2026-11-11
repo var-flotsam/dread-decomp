@@ -10,6 +10,7 @@
 // Results are taken as s32, which is how they come back in w0.
 
 #include "base/UnkVector.h"
+#include "game/malloc.h"
 #include "types.h"
 
 namespace nn {
@@ -83,10 +84,8 @@ extern u8 g_unk_710ab71000[];  // the graphics driver's 8 MB
 extern u64 g_unk_710b371018;   // the RomFS cache's size
 extern void* g_unk_710b371020;  // the RomFS cache
 extern nn::account::UserHandle g_unk_710b371040;
-extern u64 g_unk_710b371030[2];  // the user id
 extern nn::util::Uuid g_unk_710b371058;  // the session id
 extern u8 g_unk_710b37106c;
-extern s32 g_unk_710b371068;  // the operation mode (refreshed by fn_71001327c0)
 
 // The graphics allocator's callbacks (the heap as `user`) and nn::fs's allocator: this unit's own
 // (their addresses are taken PC-relatively, not through the GOT).

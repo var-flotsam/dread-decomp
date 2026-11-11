@@ -1,6 +1,7 @@
 // Functions in the CNavMeshItemComponent unit (tools/tu_map.py). Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CNavMeshItemComponent.h"
 #include "types.h"
 #include "game/UnkComponent.h"
 
@@ -15,7 +16,6 @@ struct UnkNavMeshItemOwner {
 };
 
 void fn_71009bf9a8(UnkNavMeshItemOwner* self, UnkSourceDesc** desc);
-extern __attribute__((visibility("hidden"))) UnkSourceDesc* g_unk_717273ee10;
 
 // Calls the base method, caches the object at +0x10 when it is a CCharClassNavMeshItemComponent,
 // then passes the global descriptor to fn_71009bf9a8.

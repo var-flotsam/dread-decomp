@@ -5,6 +5,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/CCharClassModelUpdaterComponent.h"
+#include "game/CCharClassMultiModelUpdaterComponent.h"
 #include "types.h"
 
 using base::global::UnkStringPool;
@@ -15,8 +16,6 @@ using UnkFilePathReleasedStrId = UnkReleasedStrIdT<&g_unk_7101d47200>;
 template <class Value>
 struct UnkIdTable;
 void fn_71000db40c(UnkIdTable<UnkFilePathReleasedStrId>* self);
-
-extern void* g_unk_7101a6f6b8[];
 
 struct UnkModelRegistry_ovb0044 {
     virtual void vf_0x0();

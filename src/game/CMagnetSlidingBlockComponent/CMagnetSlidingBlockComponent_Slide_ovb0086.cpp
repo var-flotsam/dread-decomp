@@ -43,9 +43,6 @@ struct UnkHandle {
     }
 };
 
-// The null handle.
-extern UnkHandle g_unk_7101d586c0;
-
 // The rumble manager, created on first use.
 extern UnkRumbleManager* g_unk_7101d47348;
 

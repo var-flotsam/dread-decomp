@@ -16,6 +16,7 @@
 #include "game/CAttack.h"
 #include "game/CCameraComponent.h"
 #include "game/CCharClassAttack.h"
+#include "game/CReserveTankInfo.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiRoot.h"
@@ -25,6 +26,7 @@
 #include "game/UnkTU0.h"
 #include "game/UnkTU1176.h"
 #include "game/UnkTU2523.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU2730.h"
 #include "game/UnkTU2733.h"
@@ -37,8 +39,6 @@ using base::global::CFilePathStrId;
 using base::global::CRntString;
 using base::global::CStrId;
 using unk_prop_bag::UnkPropBag;
-
-extern u32 g_unk_71727bebb8;
 
 inline void* FindByName_b0162(UnkGameManager* manager, const char* name) {
     u32 kind_value = g_unk_71727bebb8;
@@ -233,7 +233,6 @@ s32 fn_7101077d50(lua_State*) {
 
 struct UnkSoundMgr;
 extern UnkSoundMgr* g_unk_7101d4d820;
-extern UnkTunable g_unk_7101d68580;  // base::snd::CSoundSystemATK's tunable
 struct UnkSoundEntry_A5_b76 {
     void* playing;
     u64 id;
@@ -284,7 +283,6 @@ static inline const UnkQualifiedId& GetQualifiedId_b0162(UnkPropertyEx<>& item) 
 }
 
 struct UnkDef_7100fc4b34;
-extern UnkDef_7100fc4b34 g_unk_71729dbc00;
 extern UnkPropertyEx<> g_unk_7172758df0;
 
 struct UnkTypedValue {

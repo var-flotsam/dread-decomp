@@ -19,9 +19,12 @@
 #include "game/CBatalloonAIComponent.h"
 #include "game/CBlackboard.h"
 #include "game/CComponent.h"
+#include "game/CSpawnGroupComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2704.h"
 #include "game/UnkTU341.h"
+#include "game/UnkTU604.h"
 #include "game/UnkTUProperty.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -172,7 +175,6 @@ void fn_7101119e4c(UnkSpawnGroupHolders_ovb0065* self) {
 
 // The class id the game manager lists the groups under, and the class's type (TU data).
 struct UnkSpawnGroupKey;
-extern UnkSpawnGroupKey g_unk_7172a067c0 __attribute__((visibility("hidden")));
 extern base::reflection::CType g_unk_7172a067c8 __attribute__((visibility("hidden")));
 
 struct UnkSpawnKeyData_ovb0065 {
@@ -224,8 +226,6 @@ void fn_710111952c(const u64* id, base::UnkVector<UnkSpawnGroupHolders_ovb0065*>
 // allocator with flags 0x13) through fn_710111b230, frees it again and returns an empty value, as
 // fn_71011199cc (CSpawnGroupComponent_Collect_b51.cpp) does. Names and layouts are placeholders.
 
-
-extern void* g_unk_7101a32680[];  // vtable (reached through the GOT)
 
 struct UnkCollectList_ovb0065 {
     struct Node {
@@ -578,7 +578,6 @@ void fn_710111c470(UnkSpawnGroupEach_ovb0065* self, UnkSpawnEachFn_ovb0065 fn) {
 // (src/game_s7/fn_71011141e8.cpp). Names and layouts are placeholders.
 
 
-extern void* g_unk_7101a20998[];  // the base part's vtable (reached through the GOT)
 extern void* g_unk_7101cb2880[];  // the holder's vtable (reached through the GOT)
 
 struct UnkSpawnHolderBase_ovb0065 {
@@ -621,8 +620,6 @@ void fn_710111fd80(UnkSpawnHolderMoved_ovb0065* self, UnkSpawnHolderMoved_ovb006
 // without going below 0. The actor's +0x240 is then told (vtable slot 0x170) and the actor handed to
 // fn_7100232c68. Names and layouts are placeholders.
 
-
-extern u32 g_unk_71727bebb8;
 
 struct UnkSpawnActorState_ovb0065 {
     u8 pad_0x0[0x70];

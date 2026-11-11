@@ -3,10 +3,10 @@
 // event's id (+0x10, looked up in the game manager with the global kind) unless the id is -1;
 // then it is the event's own entity (`*owner`). Names and layouts are placeholders.
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 struct UnkWeakTarget;
-extern u32 g_unk_71727bebb8;
 UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 
 struct UnkEntityState;

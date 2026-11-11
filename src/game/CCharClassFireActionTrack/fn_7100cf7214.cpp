@@ -10,6 +10,8 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CCharClassFXControlTrack.h"
+#include "game/CCharClassToRunNearWallTrack.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -207,7 +209,6 @@ void fn_7100d0094c(UnkRootWordIds<g_unk_7101aa7080, 2>* self, const UnkRootWordI
 // A class on another middle class (vtable 0x7101aa8090) with three string ids from 0x38 and a
 // word; its vtable is 0x7101aa4890.
 extern void* g_unk_7101aa8090[];
-extern void* g_unk_7101aa4890[];
 
 // (The middle class copies its two words and word as one 0x14-byte block.)
 struct UnkWords2Word {
@@ -374,7 +375,6 @@ struct UnkRootTwoIdArrays : UnkRoot {
 
 extern void* g_unk_7101aa7008[];
 extern void* g_unk_7101aa7030[];
-extern void* g_unk_7101aa6f40[];
 extern void* g_unk_7101aa7c38[];
 extern UnkClass g_unk_71727a4ed8 __attribute__((visibility("hidden")));
 extern UnkClass g_unk_71727a5038 __attribute__((visibility("hidden")));

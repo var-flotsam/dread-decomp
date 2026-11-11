@@ -2,6 +2,7 @@
 // (fn_7100ed659c) and, when the handle is still live and the parameters ask for it (+0x14b), sets the
 // sound's level (+0x14c) at once (fn_7100105f94). Names are placeholders.
 #pragma once
+#include "game/CAbilityEnergyWave.h"
 #include "game/UnkTU101.h"
 #include "types.h"
 
@@ -73,7 +74,6 @@ __attribute__((always_inline)) static inline u32 GunSoundMode_A5_b66(UnkGunSound
     return 0;
 }
 
-extern void* g_unk_71726af0b0;  // what plays the sounds
 UnkGunSoundHandle_A5_b66 fn_7100ed659c(void* player, void* sound, u32 id, u32 kind, u32 mode);
 
 __attribute__((always_inline)) static inline void PlayGunSoundId_A5_b66(void* player, void* sound, u32 id, u32 kind,

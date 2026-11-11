@@ -1,6 +1,7 @@
 // CSubAreaManager::CTunableSubAreaManager unit (tools/tu_map.py unit 2577): fn_7100ee4d34: steps the sub-area change by its state: state 1 fades the two render item lists by the elapsed time, state 2 waits for the effect player. Names and layouts are placeholders.
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2577.h"
 #include "game/UnkTU2656.h"
 #include "types.h"
 
@@ -23,7 +24,6 @@ struct UnkTunable {
     f32 field_0x24;
     f32 field_0x28;
 };
-extern UnkTunable g_unk_71729da878;
 
 void fn_7100ee5bc4(CSubAreaManager* self);
 void fn_7100ee5dcc(CSubAreaManager* self);

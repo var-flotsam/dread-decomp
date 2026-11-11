@@ -5,6 +5,7 @@
 // release sound plays at the hooked object's position when the owner has its component at +0x1e0.
 // Names and layouts are placeholders.
 #include "base/math/UnkZeroVector3.h"
+#include "game/CAbilityEnergyWave.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
@@ -108,7 +109,6 @@ struct UnkGrappleBeamGun {
     UnkGrappleRef* hooked;  // 0x1888
 };
 
-extern void* g_unk_71726af0b0;  // what plays the sounds at a position
 void fn_7100232864(UnkEntityState* entity, bool value);
 void fn_71011a2770(UnkGameManagerSub_0x608* points, void* object);
 void fn_71008189a4(UnkGrappleObject* obj);

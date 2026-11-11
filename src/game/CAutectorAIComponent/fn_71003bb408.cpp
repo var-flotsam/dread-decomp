@@ -1,6 +1,7 @@
 // Looks up two entries by key in the owner's collision component (the object at +0x2a0 of the
 // owner when it is of that class) and, when both exist, runs fn_7100d35a98 on the second with 0 and
 // on the first with 1.
+#include "game/CAutectorAIComponent.h"
 #include "game/UnkCollisionRecord.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -24,8 +25,6 @@ struct UnkSelf {
 };
 
 struct UnkEntry;
-
-extern u64 g_unk_71726bd8d0[2] __attribute__((visibility("hidden")));
 
 #include "game/UnkBehaviorTree.h"
 #include "game/UnkBroadphaseObject.h"

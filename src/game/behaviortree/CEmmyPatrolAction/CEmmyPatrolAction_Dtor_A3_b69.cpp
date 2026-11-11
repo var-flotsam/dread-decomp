@@ -14,7 +14,6 @@
 extern void* g_unk_7101a47c98[];
 extern void* g_unk_7101a47c78[];
 extern void* g_unk_7101a21050[];
-extern void* g_unk_7101a47c40[];
 
 struct UnkPatrolOwnerDtor_A3_b69;
 struct UnkPatrolMemberDtor_A3_b69;

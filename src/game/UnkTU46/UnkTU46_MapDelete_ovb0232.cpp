@@ -2,9 +2,8 @@
 // src/base/input/UnkInputMap_Dtor_A1_b76.cpp (vtable unk_7101a1a2b0): frees every value, the two arrays, then itself.
 // Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU46.h"
 #include "types.h"
-
-extern void* g_unk_7101a1a2b0[];
 
 struct UnkInputMapB0232 {
     void* vtable;

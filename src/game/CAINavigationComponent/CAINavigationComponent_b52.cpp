@@ -3,7 +3,9 @@
 // at +0x68 and +0x88 (vtable, the component, a member-function pointer: fn_71006f540c and fn_71006f549c
 // of CAINavigationComponent_b50.cpp, with a zero adjustment). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CAINavigationComponent.h"
 #include "game/CAttackComponent.h"
+#include "game/CAutclastChargeAttack.h"
 #include "game/CComponent.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkComponent.h"
@@ -14,8 +16,6 @@ using base::global::UnkStringPool;
 
 struct UnkStateObject;
 extern void* g_unk_7101a6b608[];  // the component's vtable
-extern void* g_unk_7101a2aef8[];  // the callback's vtable
-extern void* g_unk_7101a6b780[];  // the second callback's vtable
 
 struct UnkNavComponent_b50;
 bool fn_71006f540c(UnkNavComponent_b50* self, u32 value);

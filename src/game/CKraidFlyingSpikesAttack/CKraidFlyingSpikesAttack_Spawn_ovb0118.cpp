@@ -8,6 +8,8 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CKraidAttack.h"
+#include "game/UnkTU2729.h"
+#include "game/UnkTU344.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -16,8 +18,6 @@ using base::reflection::UnkReflObject;
 struct UnkActorDefFactory;
 struct UnkPowerUpLifeEntry_b52;
 struct UnkPowerUpLifeType_b52;
-extern UnkActorDefFactory* g_unk_71726a0220;
-extern u32 g_unk_7172a0ba48;
 UnkPowerUpLifeEntry_b52* fn_710119438c(UnkActorDefFactory* factory, const char* path, CStrId* id, const UnkPowerUpLifeType_b52& type,
                                        void* arg);
 

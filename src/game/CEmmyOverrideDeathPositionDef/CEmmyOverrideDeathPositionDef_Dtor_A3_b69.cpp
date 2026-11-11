@@ -5,13 +5,12 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkVector.h"
 #include "game/UnkObject_0x100.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 extern void* g_unk_7101a48248[];
 extern void* g_unk_7101a48270[];
 extern void* g_unk_7101a48298[];
-extern void* g_unk_7101a20950[];
-extern void* g_unk_7101a20998[];
 
 struct UnkDeathPositionLists_A3_b69;
 

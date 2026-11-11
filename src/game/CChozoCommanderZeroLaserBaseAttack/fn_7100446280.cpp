@@ -1,9 +1,9 @@
 // Copy constructor of a layered class.
+#include "game/CChozoCommanderZeroLaserBaseAttack.h"
 #include "types.h"
 
 extern void* g_unk_7101a24060[];
 extern void* g_unk_7101a35248[];
-extern void* g_unk_7101a36600[];
 
 void fn_7100446280(char* self, const char* other) {
     *reinterpret_cast<void***>(self) = &g_unk_7101a24060[2];

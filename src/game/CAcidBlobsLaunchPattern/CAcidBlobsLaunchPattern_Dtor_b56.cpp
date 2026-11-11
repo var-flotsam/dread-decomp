@@ -3,6 +3,8 @@
 // owned-object lists after the string id freed (at +0x110 and +0xf8), the string id at +0xf0
 // released, then the shared base's destructor fn_71005dbe04. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CAcidBlobsLaunchPattern.h"
+#include "game/CBouncingCreaturesLaunchPattern.h"
 #include "game/CCharClassKraidAttack.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
@@ -29,9 +31,6 @@ struct UnkPatternStrId_b56a3 {
         }
     }
 };
-
-extern void* g_unk_7101a53428[];
-extern void* g_unk_7101a53618[];
 
 struct UnkLaunchPatternBase_b56a3 {
     void** vtable;

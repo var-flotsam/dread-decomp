@@ -3,6 +3,7 @@
 // asks the source for items (fn_7100560d14) and handles each node (fn_7100560e8c). Names and layouts
 // are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU811.h"
 #include "types.h"
 
 struct UnkEmmyTarget_b0275 {
@@ -57,8 +58,6 @@ struct UnkEmmyComp_b0275 {
 void fn_7100560b98(UnkEmmyComp_b0275* self);
 void fn_7100560d14(UnkEmmyTarget_b0275* target, u8 flag, u32 mode, UnkEmmyList_b0275* list);
 void fn_7100560e8c(UnkEmmyComp_b0275* self, UnkEmmyNode_b0275* node);
-
-extern char g_unk_7101a48bc0[];
 
 static inline __attribute__((always_inline)) bool SameOwner(UnkEmmyComp_b0275* self, UnkEmmyTarget_b0275* target) {
     UnkEmmyHolder_b0275* holder = self->holder;

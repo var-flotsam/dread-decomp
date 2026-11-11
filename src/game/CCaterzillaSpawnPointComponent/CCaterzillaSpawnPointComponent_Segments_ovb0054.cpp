@@ -19,6 +19,7 @@
 #include "base/math/CVector.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU2704.h"
+#include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -140,8 +141,6 @@ void fn_7100a16554(UnkCaterzillaSpawn2_ovb0054* self, f32 dt) {
 }
 
 
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a20950[];
 extern char g_unk_7101a8c428[];
 
 struct UnkCaterzillaCallbacks_ovb0054;

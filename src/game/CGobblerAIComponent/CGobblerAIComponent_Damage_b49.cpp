@@ -5,6 +5,7 @@
 // counted hit with flag 0x40 from such a source applies the owner's life factor (+0x54 of +0x1b8;
 // fn_71008c1538). Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CGobblerAIComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
@@ -13,7 +14,6 @@ struct UnkSluggerAI;
 struct UnkSluggerEvent;
 struct UnkRequest;
 void fn_71008c1538(UnkRequest*, f32);
-extern u64 g_unk_71726e5120[2] __attribute__((visibility("hidden")));  // the two gobbler source ids
 
 struct UnkGobblerSource_b49 {
     u8 pad_0x0[0x20];

@@ -4,6 +4,7 @@
 
 #include "base/UnkVector.h"
 #include "game/UnkTU109.h"
+#include "game/logic/collision/CPolygonCollectionShape.h"
 #include "game/logic/collision/CShape.h"
 #include "types.h"
 
@@ -17,8 +18,6 @@ struct UnkPolygonShape_ovb0044 {
     bool field_0xe8;
     base::UnkVector<UnkPolygonElem_ovb0044*> field_0xf0;
 };
-
-extern char g_unk_7101aa8b80[];
 
 // The copy constructor: the base shape copied, the vtable, the polygon list at +0xa8 copied, the
 // flag at +0xe8, and an empty array (allocator flags 7) at +0xf0.

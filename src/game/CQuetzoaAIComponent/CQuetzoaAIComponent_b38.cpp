@@ -4,10 +4,9 @@
 #include "base/UnkMatrix44.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU2702.h"
+#include "game/behaviortree/CSwitchBetweenAIModesAction.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
-
-extern void* g_unk_7101a24b58[];
 
 struct UnkQuery {
     void** vtable;

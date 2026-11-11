@@ -14,6 +14,8 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/SCameraRailNode.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 using base::reflection::CType;
@@ -22,10 +24,6 @@ using base::reflection::UnkReflValue;
 using base::UnkAllocator;
 
 extern char g_unk_717277cb68[] __attribute__((visibility("hidden")));
-extern void* g_unk_7101aa28d8[];
-extern void* g_unk_7101a20950[];
-extern void* g_unk_7101a20998[];
-extern char g_unk_7101aa2888[];
 
 UnkReflValue fn_7100c07c58(void*, char* obj, UnkReflValue* const* args);
 void fn_710011ddc0(UnkReflFunction* fn);

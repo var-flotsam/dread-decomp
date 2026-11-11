@@ -8,13 +8,12 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/CCharClassComponent.h"
+#include "game/CCharClassGrabComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkStruct_71008bca30;
-extern void* g_unk_7101a6f508[];
-extern void* g_unk_7101a6f558[];
 
 // A zero whose constructor isn't constexpr, so the static is guarded.
 struct UnkGrabClassStaticZero_ovb0120 {

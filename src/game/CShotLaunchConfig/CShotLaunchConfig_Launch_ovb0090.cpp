@@ -7,6 +7,7 @@
 // Names and layouts are placeholders.
 #include "game/CShotLaunchConfig.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU58.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -68,7 +69,6 @@ bool fn_71009f9ea8(const UnkShotCandidate_ovb0090* a, const UnkShotCandidate_ovb
 }
 
 struct UnkShotLaunchState;
-extern u32 g_unk_7101d58e48;
 
 struct UnkShotLaunch_ovb0090 {
     UnkVec3f origin;     // 0x0

@@ -4,12 +4,12 @@
 // src/game/CAbilityGhostAura/UnkListenerDtors_b40.cpp); the handle at +0xc10 is released
 // (fn_7100565ef0) and the slot cleared; then the base destructor fn_71008ceda0. Names and layouts are
 // placeholders.
+#include "game/CAbilityGhostAura.h"
 #include "game/UnkTU811.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 extern void* g_unk_7101a7e628[];
-extern void* g_unk_7101a22d48[];
 
 struct UnkTutoHandle;
 void fn_71008ceda0(void* self);

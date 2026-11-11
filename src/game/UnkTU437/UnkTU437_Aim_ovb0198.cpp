@@ -11,6 +11,7 @@
 #include "game/UnkItemProperties.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU365.h"
+#include "game/UnkTU437.h"
 #include "game/UnkTU54.h"
 #include "types.h"
 
@@ -21,7 +22,6 @@
 // the tunable limit band of the given region (0..6). Limits are read at +0xa4..+0xb8 of the aim
 // tunables (g_unk_71726b1438). Names are placeholders.
 struct UnkAimTunable;
-extern UnkAimTunable g_unk_71726b1438;
 static inline f32 AimLimit(u64 offset) {
     return *reinterpret_cast<const f32*>(reinterpret_cast<const u8*>(&g_unk_71726b1438) + offset);
 }
@@ -385,8 +385,6 @@ struct UnkVisitResult_b0040 {
     UnkVisitResult_b0040(const UnkVisitResult_b0040& other) = default;
     ~UnkVisitResult_b0040() {}
 };
-extern UnkVisitResult_b0040 g_unk_71726a4778;  // the "skip" result
-extern u64 g_unk_71726a4780;                   // its guard
 
 static inline UnkVisitResult_b0040 Skip_ovb0198l() {
     if (__builtin_expect(!(__atomic_load_n(reinterpret_cast<u8*>(&g_unk_71726a4780), __ATOMIC_ACQUIRE) & 1), 0)) {

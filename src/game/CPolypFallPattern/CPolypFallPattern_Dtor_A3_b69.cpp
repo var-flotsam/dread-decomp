@@ -3,10 +3,10 @@
 // base's destructor fn_71005acee8. Names are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "game/CPolypFallPattern.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
 
-extern char g_unk_7101a50368[];
 void fn_71005acee8(char* self);  // the base's destructor
 
 struct UnkPolypFallDtor_A3_b69;

@@ -1,10 +1,12 @@
 #pragma once
 
-// UnkTU2566: functions of this translation unit that other files call (tools/tu_map.py unit 2566,
+// UnkTU2566: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2566,
 // 0x7100e7cdfc-0x7100eb695c). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkMinimapStatics;
+struct UnkNamedDef_b43a3;
 struct UnkMapData;
 struct UnkMapTimersView_b43a3;
 struct UnkMinimapOwner;
@@ -25,3 +27,7 @@ void fn_7100e957a8(UnkMinimapOwner* self);
 void fn_7100ea585c(UnkMmOwner_b0199* self);
 void fn_7100ea5d7c(char*, void*);
 void fn_7100ea7c6c(void*);
+extern UnkNamedDef_b43a3 g_unk_71727c9f88;
+extern bool g_unk_71727cc998 __attribute__((visibility("hidden")));
+extern u8 g_unk_71727cc99c[] __attribute__((visibility("hidden")));
+extern UnkMinimapStatics g_unk_71729cdaa0 __attribute__((visibility("hidden")));

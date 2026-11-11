@@ -4,9 +4,8 @@
 // constructed (fn_7100594308 at +0x146e0, fn_7100596858 at +0x14768, fn_71005999c0 at +0x14800 with
 // 10, 0, 0x13, 0) and the rest cleared. Names and layout are placeholders.
 #include "game/CBehaviorTreeAIComponent.h"
+#include "game/CGooplotAIComponent.h"
 #include "types.h"
-
-extern void* g_unk_7101a4d0c8[];  // the component's vtable
 
 struct UnkComponent;
 void fn_7100594308(void* self);

@@ -4,6 +4,7 @@
 // by at most the tunable at 0x24 times `scale`. fn_71003fd194 then gets the current value.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCharClassCentralUnitCannonAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU54.h"
 #include "types.h"
@@ -30,7 +31,6 @@ struct UnkTunable {
     f32 field_0x24;
 };
 
-extern UnkTunable g_unk_71726c32a0;
 extern "C" f32 atan2f(f32 y, f32 x);
 void fn_71003fd194(UnkSelf* self, f32 current);
 

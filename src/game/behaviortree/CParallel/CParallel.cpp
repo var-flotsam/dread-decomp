@@ -2,11 +2,11 @@
 // the vtable, the policy word at +0x60 (1), the array at +0x68 (fn_71003a7c9c: capacity 10,
 // growth 4), two cleared fields, then the post-construction virtual call (slot 3). Names and
 // layouts are placeholders.
+#include "game/behaviortree/CParallel.h"
 #include "types.h"
 
 void fn_710039618c(void* self);
 void fn_71003a7c9c(void* self, u32 capacity, u32 field_2, u32 growth, void* field_4);
-extern void* g_unk_7101a29148[];
 
 struct UnkParallelNode {
     void** vtable;

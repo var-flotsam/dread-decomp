@@ -3,12 +3,11 @@
 // destructor (fn_71010c4194). Names and layouts are placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
+#include "game/CCentralUnitAIComponent.h"
+#include "game/CFootstepPlatformComponent.h"
 #include "game/UnkComponent.h"
+#include "game/UnkTU341.h"
 #include "types.h"
-
-extern void* g_unk_7101a73a70[];   // the class's vtable (the second one at +0x1a0)
-extern void* g_unk_7101a20998[];  // the callback lists' base vtable
-extern void* g_unk_7101a33fa0[];  // the callback lists' vtable
 
 struct UnkFootstepCallbacks_ovb0138;
 template <>

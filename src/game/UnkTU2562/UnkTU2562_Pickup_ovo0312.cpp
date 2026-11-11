@@ -6,17 +6,16 @@
 #include "base/color/CColor4F.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CDizzeanSwarmControllerComponent.h"
 #include "game/CLifeComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU1102.h"
 #include "game/UnkTU2560.h"
 #include "game/sound/CSoundManager.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-// The singleton (0xe0 bytes) that plays the requests below.
-extern void* g_unk_71726da048;
 
 struct UnkDropTarget_ovb0208;
 
@@ -140,7 +139,6 @@ struct UnkDropManager_o0312 {
     u8 entries[0x18 * 4];  // 0xa068
 };
 struct UnkDropTarget;
-extern UnkDropTarget* g_unk_7101d47318;
 
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 void* fn_71006eb2cc(void* h);

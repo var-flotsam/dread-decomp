@@ -5,6 +5,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/UnkBehaviorTree.h"
+#include "game/behaviortree/CStoreStringInBlcAction.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -19,8 +20,6 @@ struct UnkNode : UnkBehaviorTreeNodeBase {
 
     void vf_0x18() { reinterpret_cast<void (*)(UnkNode*)>(vtable[3])(this); }
 };
-
-extern void* g_unk_7101a25640[];
 
 void fn_71003771a8(UnkNode* self) {
     fn_7100393e68(self);

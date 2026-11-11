@@ -1,9 +1,9 @@
 // CHydrogigaAIComponent unit: fn_71005c3d38 handles one message id (the global id g_unk_71726eb3d0): it clears a
 // flag of the lazily created manager g_unk_7101d47360 and reports the message handled. Names are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU881.h"
 #include "types.h"
 
-extern u8 g_unk_71726eb3d0[];
 extern void* g_unk_7101d47360;
 void fn_7100ee1f34(void*);
 

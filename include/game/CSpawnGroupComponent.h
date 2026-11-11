@@ -1,10 +1,12 @@
 #pragma once
 
-// CSpawnGroupComponent: functions of this translation unit that other files call (tools/tu_map.py unit 2703,
+// CSpawnGroupComponent: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2703,
 // 0x71011173fc-0x7101120afc). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkSpawnGroupKey;
 struct UnkSubAreaEntityList;
 UnkSubAreaEntityList* fn_7101119514();
 void fn_7101119a50(void* p);
+extern UnkSpawnGroupKey g_unk_7172a067c0 __attribute__((visibility("hidden")));

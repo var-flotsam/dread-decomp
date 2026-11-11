@@ -5,6 +5,7 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU204.h"
 #include "game/UnkTU207.h"
 #include "game/UnkTU218.h"
 #include "game/UnkTU225.h"
@@ -14,8 +15,6 @@
 using base::global::CStrId;
 
 extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
-
-extern void* g_unk_716e34c2e0;
 
 void fn_710016a8dc(void* self, void* arg);
 struct UnkKeyOwner;

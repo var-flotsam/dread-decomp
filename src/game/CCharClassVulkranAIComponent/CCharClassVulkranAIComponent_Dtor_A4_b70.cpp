@@ -5,9 +5,9 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "game/CCharClassBehaviorTreeAIComponent.h"
+#include "game/CCharClassVulkranAIComponent.h"
 #include "types.h"
 
-extern void* g_unk_7101a687e8[];
 struct UnkStruct_7100416e80;
 
 struct UnkVulkranValues_A4_b70 : base::UnkVector<u32> {

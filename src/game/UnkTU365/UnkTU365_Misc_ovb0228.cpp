@@ -12,6 +12,7 @@
 #include "base/math/UnkSegment2D.h"
 #include "game/CGameObject.h"
 #include "game/UnkTU109.h"
+#include "game/UnkTU365.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -109,7 +110,6 @@ void fn_71002a6488(UnkEntryArray_b0228* self, u32 new_count) {
 // ---- fn_7100289554 ----
 extern char g_unk_7101a20e98[];
 extern char g_unk_7101a20f00[];
-extern char g_unk_7101a20f88[];
 
 struct UnkSubNode_b0228 {
     u8 pad_0x0[0x10];
@@ -644,8 +644,6 @@ void fn_71002a9df0(UnkPair16Storage_b0228* self, const UnkPair16Storage_b0228* o
 }
 
 // ---- fn_71002a9558 ----
-extern char g_unk_7101a20f48[];
-extern char g_unk_7101a20f68[];
 
 // An object built and destroyed out of line (fn_7100123eb4, fn_7100123fb0).
 struct UnkTileOutlineList;

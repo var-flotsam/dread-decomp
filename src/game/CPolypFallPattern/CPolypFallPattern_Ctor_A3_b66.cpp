@@ -2,10 +2,10 @@
 // constructor (fn_71005aceb8), the vtable 0x7101a50368, a -1 and three fives, then three empty
 // arrays with flags 0xf. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CPolypFallPattern.h"
 #include "types.h"
 
 void fn_71005aceb8(void* self);
-extern char g_unk_7101a50368[];
 
 struct UnkPolypPattern_A3_b66 {
     void** vtable;

@@ -4,6 +4,8 @@
 // is none) and set up the array after it (capacity 10, growth 15, default allocator).
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CAcidBlobsLaunchPattern.h"
+#include "game/CBouncingCreaturesLaunchPattern.h"
 #include "game/CCharClassKraidAttack.h"
 #include "types.h"
 
@@ -25,8 +27,6 @@ struct UnkLaunchPattern_71005d69b8 {
     u8 unk_0xf8[0x18];
     UnkGrowArray_71005d69b8 field_0x110;
 };
-
-extern void* g_unk_7101a53428[];
 
 void fn_71005d69b8(UnkLaunchPattern_71005d69b8* self) {
     fn_71005dbdd4(self);
@@ -50,8 +50,6 @@ struct UnkLaunchPattern_71005dfcc4 {
     UnkStringData* field_0xf0;
     UnkGrowArray_71005d69b8 field_0xf8;
 };
-
-extern void* g_unk_7101a53618[];
 
 void fn_71005dfcc4(UnkLaunchPattern_71005dfcc4* self) {
     fn_71005dbdd4(self);

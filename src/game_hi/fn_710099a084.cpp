@@ -2,6 +2,9 @@
 // (each a vtable'd object holding callback slot arrays and small reset-on-destroy records) and a
 // last record, then runs the base destructor.
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/UnkTU1449.h"
+#include "game/UnkTU1452.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -75,14 +78,6 @@ struct UnkListener {
 };
 
 extern void* g_unk_7101a86c60[];
-extern void* g_unk_7101a85e98[];
-extern void* g_unk_7101a85f98[];
-extern void* g_unk_7101a85ff0[];
-extern void* g_unk_7101a85c80[];
-extern void* g_unk_7101a85bd8[];
-extern void* g_unk_7101a22d48[];
-extern void* g_unk_7101a85d58[];
-extern void* g_unk_7101a85db0[];
 extern void* g_unk_7101a86030[];
 extern void* g_unk_7101a86130[];
 extern void* g_unk_7101a861e0[];

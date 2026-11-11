@@ -4,10 +4,9 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "game/CCharClassKraidAttack.h"
+#include "game/CKraidSpinningNailsDef.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
-
-extern void* g_unk_7101a538e0[];
 
 struct UnkSpinningNailsDtor_A3_b69;
 

@@ -13,14 +13,13 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CHeatableShieldComponent.h"
 #include "game/UnkComponent.h"
 #include "game/UnkTU1323.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::reflection::UnkReflValue;
-
-extern void* g_unk_7101a7a260[];
 
 struct UnkHeatableEntryD_b0080;
 struct UnkHeatableExtra_b0080;

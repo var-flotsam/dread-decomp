@@ -5,6 +5,7 @@
 // (fn_7100d7c990) is flagged, then hooks the callback fn_710042e2dc (link at +0x78, handle at +0x90) up to the
 // object the owner tracks (+0x220), as src/game/CChozoWarriorXGlaiveSpinAttack/UnkAttackTrackLink_b54.cpp.
 // Names and layouts are placeholders.
+#include "game/CAutsharpAIComponent.h"
 #include "game/CChozoCommanderGroundAttack.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkActor.h"
@@ -22,7 +23,6 @@ void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
 void fn_710117b3e8(UnkWeakTarget* target, void* link);
 void fn_710042e2dc();
 
-extern void* g_unk_7101a2e208[];
 extern base::global::CStrId g_unk_71726c79c0 __attribute__((visibility("hidden")));
 
 struct UnkHypersparkParams_A2_b73 {

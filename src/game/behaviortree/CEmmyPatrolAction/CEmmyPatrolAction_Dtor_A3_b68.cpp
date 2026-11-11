@@ -4,9 +4,8 @@
 // UnkVector::Free). fn_7100514880 is the plain form, fn_7100514a70 the deleting one. Names are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "game/behaviortree/CEmmyPatrolAction.h"
 #include "types.h"
-
-extern void* g_unk_7101a47c40[];
 
 struct UnkPatrolElem_A3_b68 {
     virtual ~UnkPatrolElem_A3_b68();

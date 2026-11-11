@@ -3,6 +3,7 @@
 // id as started. Returns false when disabled or when nothing could be started.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/msapi/res/CRenderRes.h"
 #include "types.h"
 
 struct UnkRefObj {
@@ -190,7 +191,6 @@ struct UnkPathKey {
 };
 
 struct UnkPlayer;
-extern UnkPlayer* g_unk_716e554378;
 
 UnkRef fn_710021cab8(UnkPlayer*, const UnkPathKey&, u32, u32);
 

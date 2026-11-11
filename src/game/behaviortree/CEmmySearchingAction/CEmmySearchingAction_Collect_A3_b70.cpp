@@ -3,6 +3,8 @@
 // owner's source (+0x8) for its items into a temporary array (flags 0xf), and appends one node per
 // item that records the item, the owner and the owner's +0x18 value. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU811.h"
+#include "game/behaviortree/CEmmySearchingAction.h"
 #include "types.h"
 
 struct UnkCollectNode_A3_b70 {
@@ -75,9 +77,6 @@ static inline __attribute__((always_inline)) void Collect_A3_b70(UnkCollectOwner
     }
     items.Free();
 }
-
-extern void* g_unk_7101a47fa8[];
-extern void* g_unk_7101a48c20[];
 
 void fn_710051cdd8(UnkCollectOwner_A3_b70* self, bool flag, u32 mode, UnkCollectList_A3_b70* list) {
     Collect_A3_b70<fn_7100ad0380>(self, flag, mode, list, reinterpret_cast<char*>(g_unk_7101a47fa8) + 0x10);

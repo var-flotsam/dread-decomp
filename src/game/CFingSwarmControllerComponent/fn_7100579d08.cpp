@@ -6,6 +6,7 @@
 #include "base/UnkVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CDizzeanSwarmControllerComponent.h"
 #include "game/CSwarmControllerComponent.h"
 #include "game/UnkTU1159.h"
 #include "game/UnkTU2560.h"
@@ -57,7 +58,6 @@ struct UnkTarget {
     u8 field_0x180;
 };
 
-extern void* g_unk_71726da048;
 extern u8 g_unk_7101649f60[];
 
 bool fn_7100579d08(UnkSelf* self, UnkTarget* target, UnkMessage* message) {

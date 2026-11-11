@@ -4,9 +4,9 @@
 // Names are placeholders.
 #include <nn/oe.h>
 
+#include "game/malloc.h"
 #include "types.h"
 
-extern s32 g_unk_710b371068;  // the operation mode (src/engine/SystemStartup.cpp)
 extern bool g_unk_710b371010;  // exit requested
 extern void (*g_unk_710b371008)();  // the per-frame callback
 

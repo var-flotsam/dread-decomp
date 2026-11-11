@@ -30,9 +30,7 @@
 #include "types.h"
 
 extern char g_unk_7101a23798[];  // the ability's vtable
-extern char g_unk_7101a239c8[];  // the value holders' vtable
 extern char g_unk_7101a23a20[];  // the vtable of the member at +0x3a8
-extern void* g_unk_7101a223f8[];  // CAbility's vtable
 extern void* g_unk_7101a225f8[];  // CAbility's value holders' vtable
 extern void* g_unk_7101a22650[];  // the vtable of CAbility's member at +0x10
 struct UnkCameraCtrl_ovb0049;

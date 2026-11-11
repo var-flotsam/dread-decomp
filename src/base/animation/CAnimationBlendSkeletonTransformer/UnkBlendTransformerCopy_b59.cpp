@@ -7,11 +7,11 @@
 #include <memory>
 #include <new>
 
+#include "base/animation/CAnimationBlendSkeletonTransformer.h"
 #include "game/UnkTU23.h"
 #include "types.h"
 
 extern char g_unk_7101a190e8[];
-extern char g_unk_7101a19018[];
 
 struct UnkBlendMember_b59 {
     alignas(8) u8 data[0x38];

@@ -13,6 +13,7 @@
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkSwitchObject.h"
+#include "game/behaviortree/CSwitchBetweenAIModesAction.h"
 #include "game_s2/UnkParams.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -24,7 +25,6 @@ void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
 void fn_710117b3e8(UnkWeakTarget* target, void* link);
 void fn_710042a7e0();
 
-extern void* g_unk_7101a24b58[];
 extern const u64 g_unk_7101649430;  // reached through the GOT
 extern const u64 g_unk_7101649438;  // reached through the GOT
 extern const u64 g_unk_7101649440;  // reached through the GOT

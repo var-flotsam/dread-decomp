@@ -2,10 +2,9 @@
 // the string member, drop the counted reference and run the component destructor fn_71010c4194.
 // Names and layouts are placeholders.
 #include "base/global/CRntString.h"
+#include "game/CFloatingPropActingComponent.h"
 #include "game/UnkComponent.h"
 #include "game_s2/UnkWeakHandle.h"
-
-extern void* g_unk_7101a73768[];
 
 struct UnkFloatingPropActingComponent : UnkBaseComponent {
     UnkRefObject* field_0x40;

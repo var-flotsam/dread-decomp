@@ -1,10 +1,9 @@
 // The destructor of the inline functor of a callback slot, out of line (the slot's own copies
 // inline it: src/game_7100ece7fc/fn_710106d7f8.cpp): restores the base vtable, detaches itself from
 // its object if attached, then releases the object (fn_7100232124).
+#include "game/UnkTU2661.h"
 #include "game/UnkTU341.h"
 #include "types.h"
-
-extern void* g_unk_7101cac988[];
 
 struct UnkBoundObj {
     u8 unk_0x0[0xc8];

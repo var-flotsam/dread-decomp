@@ -7,6 +7,7 @@
 #include "game/UnkGuiRoot.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU244.h"
+#include "game/UnkTU2557.h"
 #include "game/UnkTU2578.h"
 #include "game/UnkTU286.h"
 #include "game/UnkTU58.h"
@@ -95,7 +96,6 @@ void fn_71002199b4(UnkRenderManager* self);
 void fn_7100219974(UnkRenderManager* self, u32 value);
 void fn_7100e13238(UnkLoadingScreen* self);
 void fn_71011b6b5c(UnkGuiRoot* root, u32 value);
-extern void* g_unk_71727c0708;  // a render object the loading screen keeps (pool 0)
 
 // Closes the loading screen: the fade node goes from black to clear over 0.3, then is hidden; the
 // render objects go back to the render manager, the scene state is restored once (state 0x50) with

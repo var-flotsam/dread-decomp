@@ -31,8 +31,6 @@ struct UnkStruct_71001cdd74 {
     UnkState_71001cdd74 state;
 };
 
-extern u32 g_unk_716e554938;
-
 void fn_71001cdd74(UnkStruct_71001cdd74* self, const UnkViewport_71001cdd74* vp) {
     UnkState_71001cdd74* state = &self->state;
     fn_7100159490(vp->x, vp->y, vp->width, vp->height, vp->min_depth, vp->max_depth);

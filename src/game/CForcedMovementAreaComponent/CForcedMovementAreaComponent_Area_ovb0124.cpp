@@ -15,6 +15,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CActorComponent.h"
+#include "game/CAutsharpAIComponent.h"
 #include "game/CChozoCommanderSentenceSphereAttack.h"
 #include "game/CForcedMovementAreaComponent.h"
 #include "game/UnkBroadphaseObject.h"
@@ -144,14 +145,12 @@ using base::math::CVector2D;
 using base::math::CVector3D;
 
 struct UnkDoorRegistry_b61;
-extern UnkDoorRegistry_b61* g_unk_71726bee10;
 struct UnkUnit2547;
 struct UnkCentralUnit;
 struct UnkBreakablePart;
 struct UnkBreakableTarget;
 struct UnkTracker;
 struct UnkShapeTester_A5_b68;
-extern UnkShapeTester_A5_b68* g_unk_71726a47a0;
 
 // Returned in memory (not trivially copyable); only bit 0 of the first word is read.
 struct UnkShapeHit_A5_b68 {
@@ -306,7 +305,6 @@ void fn_71007e9a60(UnkForcedAreaUpdate_ovb0124* self, f32 dt) {
 }
 
 struct UnkDoorRegistry_b61;
-extern UnkDoorRegistry_b61* g_unk_71726bee10;
 struct UnkScenarioObject_ovb0032;
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
@@ -351,7 +349,6 @@ __attribute__((noinline)) void fn_71007ea408(UnkForcedMovementArea_A5_b68e* area
 }
 
 struct UnkDoorRegistry_b61;
-extern UnkDoorRegistry_b61* g_unk_71726bee10;
 struct UnkUnit2547;
 struct UnkCentralUnit;
 struct UnkWeakTarget;
@@ -434,9 +431,6 @@ UnkMatrix44_7100078c9c fn_7100078cd8(const UnkVec3f& t);
 struct UnkTree;
 struct UnkShape;
 struct UnkMtx44;
-
-extern void* g_unk_7101a20fa8[];
-extern void* g_unk_7101a20ed8[];
 
 struct UnkAreaHitObj_ovb0124 {
     virtual void vf_0x0();
@@ -594,7 +588,6 @@ bool fn_71007ecc08(UnkForcedAreaBounds_ovb0124* self, const UnkAreaBox_ovb0124* 
 using base::math::CVector3D;
 
 struct UnkDoorRegistry_b61;
-extern UnkDoorRegistry_b61* g_unk_71726bee10;
 struct UnkUnit2547;
 struct UnkCentralUnit;
 struct UnkPlayer;

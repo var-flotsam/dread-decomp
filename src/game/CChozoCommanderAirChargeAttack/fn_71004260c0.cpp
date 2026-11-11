@@ -1,7 +1,7 @@
 // Copy constructor of a layered class with a refcounted pointer at +0x80.
+#include "game/CAbilityGhostAura.h"
 #include "types.h"
 
-extern void* g_unk_7101a22d48[];
 extern void* g_unk_7101a24060[];
 extern void* g_unk_7101a35018[];
 extern void* g_unk_7101a35130[];

@@ -3,12 +3,11 @@
 #include "base/UnkBlockFreeList.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU604.h"
 #include "types.h"
 
 using base::UnkAllocator;
 
-extern void* g_unk_7101a32660[];
-extern void* g_unk_7101a32680[];
 extern char g_unk_7101a326a0[];
 
 struct UnkPoolNodeList_b256;

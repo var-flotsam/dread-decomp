@@ -3,11 +3,10 @@
 // layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"
+#include "game/CCharClassLogicSoundEvent.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-extern char g_unk_7101aa5d10[];
 
 struct UnkLogicSoundEvent {
     void** vtable;

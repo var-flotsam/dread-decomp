@@ -3,15 +3,14 @@
 // allocator at +0x50): the strings are destroyed and freed, then the ids released and freed. Names and
 // layouts are placeholders.
 #include "base/UnkVector.h"
+#include "base/file/nx/CDeviceNX.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CGameManager/CTunableGameManager.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
-
-extern void* g_unk_7101a1a070[];
-extern void* g_unk_7101aa9ae0[];
 
 struct UnkStrNode_b257b {
     CRntString str;

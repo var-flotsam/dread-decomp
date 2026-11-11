@@ -3,6 +3,7 @@
 // nothing, each polygon is tried by its first vertex (inside the box?) and by its outline around the
 // box's centre. Names and layouts are placeholders.
 #include "game/UnkTU108.h"
+#include "game/UnkTU365.h"
 #include "game/UnkXformNode.h"
 #include "game/logic/collision/CAABoxShape2D.h"
 #include "game/logic/collision/CShape.h"
@@ -27,8 +28,6 @@ struct UnkContact {
 };
 
 struct UnkVisitResult_b0040;
-extern UnkVisitResult_b0040 g_unk_71726a4778;  // the shared "nothing" result (a UnkContact here)
-extern u64 g_unk_71726a4780;                   // its guard
 extern "C" int __cxa_guard_acquire(u64*);
 extern "C" void __cxa_guard_release(u64*);
 

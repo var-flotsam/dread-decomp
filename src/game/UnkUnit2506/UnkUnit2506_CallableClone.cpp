@@ -3,9 +3,8 @@
 // Names and layouts are placeholders.
 #include <new>
 
+#include "game/UnkTU2506.h"
 #include "types.h"
-
-extern char g_unk_7101aa87e8[];
 
 struct UnkUnit2506Capture {
     void* owner;

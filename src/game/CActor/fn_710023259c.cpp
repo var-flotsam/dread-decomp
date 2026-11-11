@@ -1,9 +1,8 @@
 // A step in the CActor unit (unit 341 of tools/tu_map.py): calls the virtual at 0x90 of each object
 // in the actor's map at +0xa0 (its values, as src/game/CActor/fn_71002329e8.cpp walks them), with
 // the global flag g_unk_717269c4d8 set for the duration. Names and layouts are placeholders.
+#include "game/UnkTU341.h"
 #include "types.h"
-
-extern bool g_unk_717269c4d8;  // reached through the GOT
 
 class UnkActorPart_710023259c {
 public:

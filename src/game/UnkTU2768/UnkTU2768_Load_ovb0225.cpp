@@ -4,6 +4,7 @@
 
 #include "base/UnkDefaultAllocator.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2622.h"
 #include "game/UnkTU2768.h"
 #include "types.h"
@@ -51,7 +52,6 @@ struct UnkUserDataOwner {
 };
 static_assert(sizeof(UnkUserDataOwner) == 0x2b8, "UnkUserDataOwner layout");
 
-extern UnkUserDataOwner* g_unk_7101d47308;
 void fn_7100fc73f4(UnkLoader_b0225* loader, u64 arg);
 void fn_7100fc7500(UnkLoader_b0225* loader, u64 a1, u64 a2, u64 a3, u64 a4, u64 a5, u64 a6, u64 a7, u64 a8, u64 a9);
 void fn_7100fc7b70(UnkLoader_b0225* loader);

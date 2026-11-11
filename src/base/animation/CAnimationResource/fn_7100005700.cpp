@@ -3,6 +3,7 @@
 // file extension and source extension) added to a registry under a category, the registry being
 // destroyed at exit (as at the end of fn_7100e72680 in ../game_s7/fn_7100e72680.cpp).
 #include "../../../game_s7/UnkStaticInitS7.h"
+#include "base/curves/CCurveResource.h"
 #include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
@@ -45,7 +46,6 @@ void fn_7100005700() {
 
 extern UnkResourceStatics g_unk_7101d4f3b8 __attribute__((visibility("hidden")));
 extern char g_unk_7101d4f330[];
-extern char g_unk_7101d4f338[];
 
 void fn_7100029f20() {
     InitResource(&g_unk_7101d4f3b8, fn_7100029a50, g_unk_7101d4f330, "base::curves::CCurveResource", ".bcurv",

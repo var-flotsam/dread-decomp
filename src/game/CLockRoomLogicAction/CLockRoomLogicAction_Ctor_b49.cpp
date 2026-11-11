@@ -4,16 +4,15 @@
 // layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCentralUnitAIComponent.h"
+#include "game/CLockRoomLogicAction.h"
 #include "game/CTriggerLogicAction.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkChangeSetupLogicActionDef;
-
-extern char g_unk_7101aa9180[];  // CLockRoomLogicAction's vtable
-extern void* g_unk_7101a20998[];  // the callback list's base vtable
-extern void* g_unk_7101a33fa0[];  // the callback list's vtable
 
 struct UnkLockRoomCallable {
     u64 storage;

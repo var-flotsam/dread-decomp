@@ -27,6 +27,9 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU2553.h"
+#include "game/UnkTU365.h"
 #include "types.h"
 #include "UnkLeftoverReg.h"
 
@@ -59,7 +62,6 @@ void fn_710000f750(UnkParseContext* self, void* root);
 
 // The object read and its type.
 extern base::reflection::CType g_unk_7172756e50;
-extern u8 g_unk_7172757530[];
 
 // Parses the file into the target, starting from its last entry's node.
 static inline void Parse(UnkFileReader* reader, UnkReadTarget* target) {
@@ -493,7 +495,6 @@ update:
 }
 
 // What the reset (fn_7100ee34f0) calls. Names are placeholders.
-extern u32 g_unk_71727bebb8;  // the kind the main camera is looked up with
 base::reflection::UnkReflObject* fn_7100d786c0(void* entity);  // its "CAMERA" component
 void fn_71010ea4fc(UnkCameraCtrl* ctrl);
 
@@ -542,7 +543,6 @@ void fn_710111b138(base::reflection::UnkReflObject* component, const base::UnkSt
 
 // The manager at g_unk_7101d47318 as far as it is called here.
 struct UnkDropTarget;
-extern UnkDropTarget* g_unk_7101d47318;
 struct UnkSubAreaDropTargetView {
     virtual void vf_0x0();
     virtual void vf_0x8();
@@ -561,7 +561,6 @@ void fn_71002191a4(UnkRenderManager* self, u32 value);
 
 // The collision manager singleton (src/game/CCollisionComponent/fn_7100863a8c.cpp).
 struct UnkManager_7100863a8c;
-extern UnkManager_7100863a8c* g_unk_71726a4788;
 void fn_7100d46804(UnkManager_7100863a8c* self);  // constructor
 void fn_7100d46c60(UnkManager_7100863a8c* self, UnkCollisionObject* obj);
 void fn_7100d476e4(UnkManager_7100863a8c* self, void* obj);

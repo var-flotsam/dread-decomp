@@ -2,10 +2,8 @@
 // callback list at +0x20 (base vtable with an empty array of callables: step 10, flags 0xf; then the
 // list's vtable and its cleared fields). Names and layouts are placeholders.
 #include "base/UnkVector.h"
-
-extern char g_unk_7101a71848[];  // the behaviour's vtable
-extern void* g_unk_7101a20998[];  // the callback list base's vtable
-extern void* g_unk_7101a20950[];  // the callback list's vtable
+#include "game/CXParasiteStayOnPlaceBehavior.h"
+#include "game/UnkTU341.h"
 
 struct UnkCallbackListRaw {
     char* vtable;

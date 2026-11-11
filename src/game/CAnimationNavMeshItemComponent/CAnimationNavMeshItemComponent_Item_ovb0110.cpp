@@ -3,6 +3,7 @@
 // src/game/CNavMeshItemComponent/CNavMeshItemComponent_Containers_ovb0100.cpp constructs it). Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CNavMeshItemComponent.h"
 #include "game/UnkComponent.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
@@ -70,8 +71,6 @@ UnkAnimId_ov110 fn_71009b7c9c(UnkAnimationNavMeshItem_ov110* self) {
         result.Assign(fallback->animation);
     return result;
 }
-
-extern void* g_unk_7101a887d0[];
 
 // An element of the array at +0x188 (0x40 bytes, destroyed through its vtable).
 struct UnkNavMeshEntry_ov110 {

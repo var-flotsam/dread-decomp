@@ -14,6 +14,7 @@
 #include "game/CAudioComponent.h"
 #include "game/CComponent.h"
 #include "game/UnkTU101.h"
+#include "game/UnkTU50.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -44,8 +45,6 @@ struct UnkSoundHandle {
     UnkSoundRef* ref;
     s64 serial;
 };
-extern const UnkSoundHandle g_unk_7108b6c460;  // the empty handle
-extern s32 g_unk_717270f61c;                   // the live sound count (reached through the GOT)
 
 // The object a handle names while it is still the one the handle was made for.
 static inline UnkSoundObject_b50* Resolve_ovb0015(const UnkSoundHandle* handle) {
@@ -60,7 +59,6 @@ struct UnkHandle {
     UnkHandleTarget* target;
     u64 serial;
 };
-extern UnkHandle g_unk_7101d586c0;  // the null handle
 
 // The eight sound groups (their bit numbers in a group mask).
 extern const s32 g_unk_710164a8ec[8];

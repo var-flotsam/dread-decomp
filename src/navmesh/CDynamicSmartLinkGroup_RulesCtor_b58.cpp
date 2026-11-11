@@ -9,9 +9,8 @@
 #include "base/UnkVector.h"
 #include "base/core/CAsset.h"
 #include "base/global/CFilePathStrId.h"
+#include "game/navmesh/CDynamicSmartLinkGroup.h"
 #include "types.h"
-
-extern void* g_unk_7101a20cc0[];  // the object's vtable
 
 struct UnkSmartLinkRules_b58 {
     void** vtable;

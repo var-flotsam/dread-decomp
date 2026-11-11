@@ -4,11 +4,10 @@
 // placeholders.
 #include "base/UnkVector.h"
 #include "game/CTriggerLogicAction.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 struct UnkChangeSetupLogicActionDef;
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a20950[];
 extern void* g_unk_7101a8f3d8[];
 
 struct UnkSetActorEnabledLogicActionDef {

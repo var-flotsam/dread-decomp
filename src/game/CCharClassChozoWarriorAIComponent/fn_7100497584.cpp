@@ -2,6 +2,7 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/CCharClassChozoWarriorAIComponent.h"
 #include "game/CCharClassChozoWarriorDeflectorShieldAttack.h"
 #include "game/CCharClassChozoWarriorGlaiveSpinAttack.h"
 #include "game/CCharClassChozoWarriorGlaiveWalljumpAttack.h"
@@ -15,8 +16,6 @@ struct UnkNode : UnkBossAIComponent {
     u8 pad_0x528[0x2d0];
     u8 field_0x7f8;
 };
-
-extern void* g_unk_7101a3cab0[];
 
 void fn_7100497584(UnkNode* self) {
     fn_710041a198(self);

@@ -2,9 +2,9 @@
 // vtable, the array of 0x40-byte polymorphic entries at +0x60 (each destroyed through its vtable, then
 // the array freed), then the member at +0x20 (fn_710023ae38). Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CXParasiteGoTransformBehavior.h"
 #include "types.h"
 
-extern void* g_unk_7101a71818[];
 void fn_710023ae38(void* self);
 
 struct UnkGoTransformEntry_b49a3 {

@@ -6,6 +6,7 @@
 
 #include "base/UnkVector.h"
 #include "game/UnkTU109.h"
+#include "game/logic/collision/CPolygonCollectionShape.h"
 #include "game/logic/collision/CShape.h"
 #include "types.h"
 
@@ -21,8 +22,6 @@ struct UnkPolygonCollectionShapeView2 {
     base::UnkVector<u64> field_0xf0;
 };
 static_assert(__builtin_offsetof(UnkPolygonCollectionShapeView2, field_0xf0) == 0xf0, "layout");
-
-extern char g_unk_7101aa8b80[];
 
 void fn_7100d66568(void* block) {
     UnkPolygonCollectionShapeView2* self = static_cast<UnkPolygonCollectionShapeView2*>(block);

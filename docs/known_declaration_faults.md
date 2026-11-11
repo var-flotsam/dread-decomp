@@ -86,3 +86,23 @@ this list; remove a symbol here when it has moved.)
 
 **6: a file uses a type the header does not bring.**
 `fn_71007142e8` `fn_7100872908` `fn_710099d6f0` `fn_71009a1f40` `fn_71009b0800` `fn_71010d1598`
+
+## Shared globals the mechanical header migration could not move
+
+`tools/decl_plan.py` and `tools/hub_migrate.py` moved 674 shared symbols' declarations (672 globals and two
+functions) into unit headers on 2026-11-11, each global into the header of the unit whose data span holds it
+(`tools/data_map.py`). These 37 globals were tried and left with every local copy in place. (They are in the
+`--exclude` list with the functions above; remove a symbol here when it has moved.)
+
+**19: the header's forward declaration of the global's type clashes with a type of the same name in a namespace that a file opens (the compiler: "reference is ambiguous").**
+`g_unk_7101a45f90` `g_unk_7101a45fe8` `g_unk_7108b6d8f0` `g_unk_71726dfca0` `g_unk_71727115d0` `g_unk_7172731200` `g_unk_71727313a4` `g_unk_71729f0188` `g_unk_71729f0190` `g_unk_71729f0198` `g_unk_71729f01a0` `g_unk_71729f01a8` `g_unk_71729f01c8` `g_unk_71729f0228` `g_unk_71729f0238` `g_unk_71729f0240` `g_unk_71729f0248` `g_unk_71729f0298` `g_unk_71729f02a8`
+
+**15: the global's unit header also declares a function that one of the files declares with another return type (the functions of the list above), so that file cannot include the header.**
+`g_unk_7101d47100` `g_unk_7101d47320` `g_unk_7101d47328` `g_unk_7101d47330` `g_unk_7101d47338` `g_unk_7101d47340` `g_unk_7101d47358` `g_unk_7101d47368` `g_unk_7101d47370` `g_unk_7101d47378` `g_unk_7101d47380` `g_unk_7101d4b418` `g_unk_7101d4bbc0` `g_unk_7101d4c138` `g_unk_7101d4c8d0`
+
+**3: a file's `using` declaration or typedef clashes with the header's forward declaration.**
+`g_unk_7172730858` `g_unk_7172735f58` `g_unk_7172795e08`
+
+Not tried in this pass: 328 globals whose type comes from a shared header (`UnkReflType`, `UnkConverter`,
+`CStrId`, `UnkProperty`, `UnkTUHeader`), 95 that lie between two units' data spans, 92 with conflicting
+signatures, and 2 whose copies differ in a visibility attribute.

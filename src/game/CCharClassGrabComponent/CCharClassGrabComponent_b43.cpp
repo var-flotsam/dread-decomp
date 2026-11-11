@@ -6,14 +6,13 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/CCharClassComponent.h"
+#include "game/CCharClassGrabComponent.h"
 #include "game/CChozoCommanderKiGrabAttack.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-extern void* g_unk_7101a6f508[];
-extern void* g_unk_7101a6f558[];
 // Signatures as src/game/CCharClassCollisionComponent/CCharClassCollisionComponent.cpp and
 // src/game/CUsableComponent/fn_7100a9e6bc.cpp declare them.
 struct UnkIdObject;

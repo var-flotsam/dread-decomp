@@ -4,13 +4,13 @@
 // under the `void()` symbol src/reflection/CBehaviorTreeAIComponent.cpp declares (the b64a4 alias pattern, as
 // src/game/CBatalloonAIComponent/CBatalloonAIComponent_Ctor_b67a2.cpp). Names and layouts are placeholders.
 #include "base/core/CBaseObject.h"
+#include "game/CBehaviorTreeAIComponent.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
 
 struct UnkNode;
 
 struct UnkBtAI_A2_b76;
-extern void* g_unk_7101a24230[];
 
 struct UnkBtAI_A2_b76 {
     void* vtable;

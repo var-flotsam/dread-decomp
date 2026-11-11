@@ -4,14 +4,13 @@
 // weak handle at +0xc0 and the handle released, the string ids at +0x90, +0x88, +0x80, +0x78, +0x70 and +0x68
 // released, then the base's destructor fn_7100393ea0. Same shape as fn_710036be88. Names are placeholders.
 #include "base/UnkDestructors.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/behaviortree/CBaseAction.h"
+#include "game/behaviortree/CInPathPatrolAction.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 extern "C" int rand();
-
-extern void* g_unk_7101a26730[];  // the node's vtable
-extern void* g_unk_7101a22d48[];  // the listener's vtable
 
 struct UnkInPathPatrolDtor_ovb0128;
 template <>

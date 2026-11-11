@@ -4,11 +4,9 @@
 // placeholders.
 #include "base/UnkErasedVector.h"
 #include "base/UnkVector.h"
+#include "game/CXParasiteGoTransformBehavior.h"
+#include "game/UnkTU341.h"
 #include "types.h"
-
-extern void* g_unk_7101a71818[];
-extern void* g_unk_7101a20950[];
-extern void* g_unk_7101a20998[];
 
 struct UnkGoRefCounted_ovb0124 {
     virtual void vf_0x0();

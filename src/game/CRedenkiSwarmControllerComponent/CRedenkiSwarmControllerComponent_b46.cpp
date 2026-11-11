@@ -3,9 +3,8 @@
 // The repeated zero stores are the original's (value-initialised members then their constructors).
 // Names are placeholders.
 #include "base/UnkVector.h"
+#include "game/CRedenkiSwarmControllerComponent.h"
 #include "types.h"
-
-extern char g_unk_7101a5af00[];
 
 struct UnkRedenkiHeader_b46a2 {
     u32 count;

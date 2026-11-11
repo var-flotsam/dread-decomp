@@ -3,10 +3,9 @@
 // bytes (an identity matrix at 0x818 and a sphere at 0x858 each, built by fn_710021685c, and a -1 index after it), and the
 // words after them. Names and layouts are placeholders; fields are written by offset in the order the
 // original stores them.
+#include "game/UnkTU269.h"
 #include "game/UnkTU308.h"
 #include "types.h"
-
-extern char g_unk_7101a1ee90[];
 
 void fn_71001ea42c(char* self) {
     *(char**)(self + 0x0) = g_unk_7101a1ee90 + 0x10;

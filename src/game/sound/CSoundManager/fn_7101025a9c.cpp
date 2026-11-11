@@ -3,6 +3,7 @@
 // delete the owned objects (fn_710102796c) and free their array, then run the base destructor
 // (fn_7100016f88); the deleting one then frees the object.
 #include "base/UnkVector.h"
+#include "game/sound/CSoundManager.h"
 #include "types.h"
 
 struct UnkBase_0x58 {
@@ -49,8 +50,6 @@ struct UnkTable_0x28 {
             allocator->vf_0x48(field_0x0);
     }
 };
-
-extern void* g_unk_7101cac688[];
 
 struct UnkObject_7101025a9c : UnkBase_0x58 {
     union {

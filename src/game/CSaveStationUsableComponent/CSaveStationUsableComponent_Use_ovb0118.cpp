@@ -13,6 +13,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU101.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTimelineComponent.h"
 #include "game/sound/CMusicManager.h"
@@ -57,7 +58,6 @@ struct UnkSoundHandle {
         return nullptr;
     }
 };
-extern const UnkSoundHandle g_unk_7108b6c460;  // the empty handle
 
 struct UnkShipRechargeEntity_b49a4;
 

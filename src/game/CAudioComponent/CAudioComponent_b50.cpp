@@ -29,7 +29,6 @@ struct UnkSoundHandle {
     UnkSoundRef* ref;
     s64 serial;
 };
-extern const UnkSoundHandle g_unk_7108b6c460;  // the empty handle
 
 // The object a handle names while it is still the one the handle was made for.
 inline UnkSoundObject_b50* GetSoundObject_b50(const UnkSoundHandle* handle) {

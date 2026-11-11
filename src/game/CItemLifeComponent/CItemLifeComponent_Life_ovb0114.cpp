@@ -3,13 +3,10 @@
 // and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/math/CVector4D.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/CItemLifeComponent.h"
 #include "game/CLifeComponent.h"
 #include "types.h"
-
-// base::refl_StrIdListCtor<..>, instantiated in src/clones (UnkClone_fn_71008e266c).
-extern void* g_unk_7101a7f028[];
-extern void* g_unk_7101a22d48[];
 
 struct UnkItemLifeCtor_ovb0114 {
     void** vtable;

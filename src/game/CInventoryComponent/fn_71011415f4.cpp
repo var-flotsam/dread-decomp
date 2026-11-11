@@ -3,6 +3,7 @@
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
+#include "game/CInventoryComponent.h"
 #include "game/UnkGameManager.h"
 
 using base::global::CStrId;
@@ -68,8 +69,6 @@ struct UnkComponent_71011415f4 {
     void Refresh();                  // fn_71010c4228
     void Apply(void* section_data);  // fn_710114433c
 };
-
-extern u64 g_unk_7172a092b0 __attribute__((visibility("hidden")));
 
 extern CStrId g_unk_7172a092b8 __attribute__((visibility("hidden")));
 extern CStrId g_unk_7172a092c0 __attribute__((visibility("hidden")));

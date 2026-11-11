@@ -4,6 +4,7 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/CCooldownXBossLavaDropsMovementDef.h"
 #include "types.h"
 
 struct UnkPolyElem_0x18 {
@@ -13,7 +14,6 @@ struct UnkPolyElem_0x18 {
 };
 
 extern void* g_unk_7101caa380[];
-extern void* g_unk_7101a3e090[];
 extern void* g_unk_7101a3e2d8[];
 
 // The two copies' elements have their destructor in the second vtable slot.

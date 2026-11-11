@@ -3,11 +3,10 @@
 // owner's matrix (fn_710002614c). Finishes with fn_7100426b54 on a fixed key.
 #include "base/UnkMatrix44.h"
 #include "game/CChozoCommanderGroundAttack.h"
+#include "game/behaviortree/CSwitchBetweenAIModesAction.h"
 #include "game_s2/UnkChozoCommanderAttack.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
-
-extern void* g_unk_7101a24b58[];
 
 struct UnkQuery {
     void** vtable;

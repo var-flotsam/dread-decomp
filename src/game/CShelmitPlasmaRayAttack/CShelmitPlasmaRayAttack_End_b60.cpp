@@ -7,13 +7,12 @@
 // middle of the shape's box bottom (vf_0x10) and scaled by the box height / 100 (vf_0x20); then the
 // collider is removed (fn_7100863e04) and the flag at +0x72 cleared. Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CShelmitPlasmaRayAttack.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU285.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
-
-extern char g_unk_7172706938[] __attribute__((visibility("hidden")));
 
 struct UnkPlasmaRayKey_b60a4;
 extern UnkPlasmaRayKey_b60a4 g_unk_710164a700;  // reached through the GOT

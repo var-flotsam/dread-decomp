@@ -79,7 +79,6 @@ struct UnkResourceHandle {
     }
 };
 struct UnkResourceManager;
-extern UnkResourceManager* g_unk_71726ae8a8;
 
 struct UnkEnumType;
 UnkEnumType* fn_71002ea9dc();

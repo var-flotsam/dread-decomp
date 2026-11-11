@@ -2,10 +2,8 @@
 // a pool only gives its allocator). Names and layouts are placeholders.
 #include "base/UnkBlockFreeList.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU852.h"
 #include "types.h"
-
-extern void* g_unk_7101a4d918[];
-extern void* g_unk_7101a4d8f8[];
 
 struct UnkCounted_b260 {
     virtual void vf_0x0();

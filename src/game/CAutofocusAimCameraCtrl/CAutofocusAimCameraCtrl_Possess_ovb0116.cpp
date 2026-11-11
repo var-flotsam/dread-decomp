@@ -15,11 +15,14 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/math/CVector4D.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CAutsharpAIComponent.h"
 #include "game/CCameraCtrl.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2547.h"
+#include "game/UnkTU437.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -33,7 +36,6 @@ UnkPlayer* fn_7100dec788(UnkGameManager*);
 char* fn_71003440dc(char* p0, u32 p1, char* p2, char* p3, char* p4, char* p5);
 
 struct UnkDoorRegistry_b61;
-extern UnkDoorRegistry_b61* g_unk_71726bee10;
 struct UnkUnit2547;
 void fn_7100ddbb7c(UnkUnit2547* self, u32 expected);
 void fn_7100ddbabc(UnkUnit2547* self, u32 state, f32 value);
@@ -41,7 +43,6 @@ struct UnkFixedCamera_fc;
 struct UnkArg_fc;
 extern base::reflection::UnkTunable g_unk_717270f910;
 struct UnkAimTunable;
-extern UnkAimTunable g_unk_71726b1438;
 
 // The aim tunables' colours (g_unk_71726b1438).
 struct UnkAimColours_afc {
@@ -75,7 +76,6 @@ struct UnkEmmyList_afc {
 };
 
 struct UnkEmmyRegistry_b55;
-extern UnkEmmyRegistry_b55* g_unk_71726af0a8;
 
 struct UnkPlayerAim_afc {
     u8 pad_0x0[0x2b0];

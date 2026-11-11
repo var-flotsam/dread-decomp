@@ -11,6 +11,7 @@
 #include "base/math/CVector.h"
 #include "game/CBombMovement.h"
 #include "game/CComponent.h"
+#include "game/CPullOffGrapplePointComponent.h"
 #include "game/CTimelineComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
@@ -18,7 +19,6 @@
 #include "types.h"
 
 extern void* g_unk_7101a95348[];  // the movement's vtable
-extern void* g_unk_7101a77000[];  // the listener's vtable
 
 struct UnkBombMovement;
 void fn_7100aa9ee4(UnkBombMovement* self);  // the base constructor

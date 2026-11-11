@@ -5,6 +5,7 @@
 #include "base/UnkVector.h"
 #include "game/CSpitclawkAIComponent.h"
 #include "game/UnkComponent.h"
+#include "game/UnkTU604.h"
 #include "types.h"
 
 struct UnkShockWavePoolMember;
@@ -20,7 +21,6 @@ struct UnkShockWavePoolNode_ovb0069 {
 };
 
 extern void* g_unk_7101a8a9b0[];  // the component's vtable
-extern void* g_unk_7101a32680[];  // the node list's vtable
 
 struct UnkShockWavePoolList_ovb0069 {
     void** vtable;

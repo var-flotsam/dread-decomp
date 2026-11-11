@@ -2,6 +2,7 @@
 // vtables, free the nodes and run the base destructor (fn_71010d092c); the deleting one then
 // frees the object.
 #include "base/UnkVector.h"
+#include "game/CGooplotAIComponent.h"
 #include "types.h"
 
 struct UnkBase_0x238 {
@@ -17,7 +18,6 @@ struct UnkNode_0x18 {
 };
 
 extern void* g_unk_7101cb0740[];
-extern void* g_unk_7101a4d8b8[];
 
 struct UnkNodeList_0x28 {
     void** vtable;

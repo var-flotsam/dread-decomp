@@ -2,10 +2,9 @@
 // (fn_7101043904), the vtable 0x7101caa4d0, two members at +0x10 and +0x20 (fn_71002ef5bc), then
 // the post-construction virtual call (slot 3). Names and layouts are placeholders.
 #include "game/CGameObject.h"
+#include "game/CReserveTankInfo.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
-
-extern char g_unk_7101caa4d0[];
 
 struct UnkReserveTankObj {
     void** vtable;

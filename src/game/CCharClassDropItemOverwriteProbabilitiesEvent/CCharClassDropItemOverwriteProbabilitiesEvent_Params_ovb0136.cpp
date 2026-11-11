@@ -11,6 +11,7 @@
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"
 #include "game/CCharClassDropItemCrazyEvent.h"
+#include "game/CCharClassDropItemOverwriteProbabilitiesEvent.h"
 #include "game/SDropProbabilities.h"
 #include "game/UnkTU83.h"
 #include "types.h"
@@ -230,8 +231,6 @@ struct UnkReleasedId_ovb0136 {
         }
     }
 };
-
-extern char g_unk_7101aa5860[];
 
 struct UnkOverwriteEventDtor_ovb0136 {
     void** vtable;

@@ -4,15 +4,14 @@
 // Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU1730.h"
 #include "types.h"
 
 struct UnkDesc_SpitSend;
 extern UnkDesc_SpitSend g_unk_710164b958;
-extern UnkDesc_SpitSend g_unk_7172769740;
 extern UnkDesc_SpitSend g_unk_710164b968;
-extern void* g_unk_7101a22cb8[];
-extern char g_unk_7101a22ce8[];
 struct UnkAirTarget_B71a6;
 struct UnkAirRequest_B71a6;
 void fn_710098ae04(UnkAirTarget_B71a6* target, UnkAirRequest_B71a6* req);

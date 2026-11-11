@@ -42,7 +42,6 @@ struct UnkAutsniperIds_ovb0122 {
     u8 anim[0x8];
 };
 extern UnkAutsniperIds_ovb0122 g_unk_71726bf838 __attribute__((visibility("hidden")));
-extern char g_unk_71726bf850[] __attribute__((visibility("hidden")));
 
 struct UnkAutsniperVec3_ovb0122 {
     u32 x, y, z;

@@ -240,9 +240,6 @@ void fn_71004e081c(UnkDaivoFade_b0012* self, UnkFadeGroup_b0012* group) {
 
 // ---- fn_71004e2630: the destructor ----
 
-// As src/game/CRedenkiSwarmControllerComponent/CRedenkiSwarmControllerComponent_b46.cpp declares it.
-extern char g_unk_7101a5af00[];
-
 // An array that frees itself when destroyed.
 template <class T>
 struct UnkOwnedVector_b0012 : base::UnkVector<T> {

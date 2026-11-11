@@ -23,8 +23,11 @@
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
 #include "base/snd/CSoundSystem.h"
+#include "game/UnkTU101.h"
 #include "game/UnkTU25.h"
 #include "game/UnkTU32.h"
+#include "game/sound/CSoundManager.h"
+#include "game/sound/SGUISoundEventsSelector.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -380,8 +383,6 @@ void fn_7101028988(UnkSoundOwnedArray_b0038* self, u32 capacity, u32 flags) {
     self->Reserve(capacity);
 }
 
-extern void* g_unk_7101cac688[];
-
 // sound::CSoundEventsDef (its constructor is the reflected class's fn_0x28): the owning pointers at
 // +0x58 and a table at +0x80.
 struct UnkSoundOwnerObject_b0038 {
@@ -416,9 +417,7 @@ void fn_710102890c(UnkSoundOwnerObject_b0038* self) {
 
 void fn_710102b608(UnkSoundOwnedArray_b0038* self) { self->Free(); }
 
-extern void* g_unk_7101cac5d8[];
 extern void* g_unk_7101cac6c8[];
-extern void* g_unk_7101cac6e8[];
 void fn_710102849c(void* self, void* alloc, u32 flags);
 
 // An object with two vtables, a bucket table at +0x10 (fn_710102849c, flags 0xe) and a table at +0x68
@@ -656,7 +655,6 @@ void fn_710102ab40(UnkStrIdMap_A6_b75<UnkSoundRecord18_b0038>* self,
     UnkStrIdMapEnd_A6_b75(self, out);
 }
 
-extern void* g_unk_7101cabad0[];
 extern void* g_unk_7101a1b750[];
 
 // A string with 0x80 bytes of inline storage (as in src/base/snd/CSoundSystemATK.cpp).
@@ -722,7 +720,6 @@ struct UnkSoundHandle {
     UnkSoundRef* ref;
     s64 serial;
 };
-extern const UnkSoundHandle g_unk_7108b6c460;  // the empty handle
 
 struct UnkSoundRequest_b50;  // src/game/CAudioComponent/CAudioComponent_b50.cpp
 

@@ -8,6 +8,7 @@
 #include "game/CAbilityEnergyWave.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CAbilityShinespark.h"
+#include "game/CFootstepPlatformComponent.h"
 #include "game/CSamusMagnetGloveMovementState/CParams.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
@@ -26,8 +27,6 @@ struct UnkFootstepStatic_b45a2 {
     u8 pad_0x0[0x30];
     u64 id;
 };
-__attribute__((visibility("hidden"))) extern UnkFootstepStatic_b45a2* g_unk_717271fae0;
-__attribute__((visibility("hidden"))) extern UnkFootstepStatic_b45a2* g_unk_717271fad8;
 
 struct UnkStepMode_ovb0138 {
     u8 pad_0x0[0x10];

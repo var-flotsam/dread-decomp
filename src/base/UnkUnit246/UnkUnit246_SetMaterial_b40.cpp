@@ -4,6 +4,7 @@
 // whether the load succeeded. The slot is written through a pointer to it (the original reloads the
 // part afterwards). Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
+#include "game/UnkTU211.h"
 #include "game/UnkTU228.h"
 #include "types.h"
 
@@ -11,7 +12,6 @@ using base::global::CFilePathStrId;
 
 struct UnkDecalResource;
 struct UnkDecalResourceMgr;
-extern UnkDecalResourceMgr* g_unk_716e352450;
 UnkDecalResource* fn_710019ffe8(UnkDecalResourceMgr* mgr, const CFilePathStrId* path, bool flag);
 
 struct UnkMaterial246 {

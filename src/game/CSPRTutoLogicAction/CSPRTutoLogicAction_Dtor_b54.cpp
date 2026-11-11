@@ -6,17 +6,15 @@
 #include "UnkClone.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
+#include "game/CSPRTutoLogicAction.h"
 #include "game/CTriggerLogicAction.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 struct UnkLogicActionBase;
 
 struct UnkLinkList;
 void fn_71002aeb9c(UnkLinkList* list, UnkLinkList** slot);
-
-extern void* g_unk_7101a20950[];
-extern void* g_unk_7101a20998[];
-extern char g_unk_7101a8f458[];  // CSPRTutoLogicAction
 
 struct UnkSPRTutoCallbacks_b54;
 template <>

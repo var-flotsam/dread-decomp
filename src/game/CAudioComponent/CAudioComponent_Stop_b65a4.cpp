@@ -3,6 +3,8 @@
 // whose handle (+0x78) still names `object` gets the empty handle and its flag at +0xc0 set, and the
 // live count g_unk_717270f61c drops by one; each 0xb0-byte entry of the second array whose handle
 // (+0x0) names it gets its flag at +0xa9 set. Names and layouts are placeholders.
+#include "game/CAudioComponent.h"
+#include "game/UnkTU101.h"
 #include "types.h"
 
 // As src/game/CAudioComponent/CAudioComponent_b50.cpp defines them.
@@ -15,9 +17,6 @@ struct UnkSoundHandle {
     UnkSoundRef* ref;
     s64 serial;
 };
-extern const UnkSoundHandle g_unk_7108b6c460;  // the empty handle
-
-extern s32 g_unk_717270f61c;  // the live sound count (reached through the GOT)
 
 static inline UnkSoundObject_b50* Resolve_b65a4(const UnkSoundHandle* handle) {
     if (handle->ref && handle->ref->serial == handle->serial && handle->serial != -1)

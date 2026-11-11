@@ -5,12 +5,10 @@
 // layouts are placeholders.
 #include "base/UnkVector.h"
 #include "../../game_5821e4/CAttackDtor.h"
+#include "game/CRodotukSuckAttack.h"
 #include "game/logic/collision/CPolygonCollectionShape.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-extern void* g_unk_7101a5da10[];
-extern void* g_unk_7101a5db18[];
 
 struct UnkRefNode_b49a3 {
     UnkRefObject* ref;

@@ -5,6 +5,7 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/UnkTU204.h"
 #include "types.h"
 
 extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
@@ -62,7 +63,6 @@ struct UnkPool_b0202 {
     }
 
 };
-extern void* g_unk_716e34c2e0;
 
 struct UnkHolder_b0202 {
     u8 pad_0x0[0x78];

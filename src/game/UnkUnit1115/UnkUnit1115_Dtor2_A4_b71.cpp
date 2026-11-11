@@ -4,9 +4,9 @@
 // +0x18 and releases the string id at +8. Names are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU1115.h"
 #include "types.h"
 
-extern void* g_unk_7101a6b820[];
 void fn_71006f9148(void* self, u32 index);  // removes the entry at index
 
 namespace {

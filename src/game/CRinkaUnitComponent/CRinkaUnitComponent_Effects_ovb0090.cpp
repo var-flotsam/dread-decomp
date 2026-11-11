@@ -16,6 +16,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CFXComponent.h"
+#include "game/CRinkaUnitComponent.h"
 #include "game/UnkComponent.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkSwitchObject.h"
@@ -24,10 +25,6 @@
 #include "types.h"
 
 using base::global::CFilePathStrId;
-
-extern void* g_unk_7101a5bc30[];  // the component's vtable
-extern void* g_unk_7101a5be00[];  // the value holders' vtable
-extern void* g_unk_7101a5be58[];  // the member's vtable
 
 struct UnkRinkaPair_ovb0090 {
     u64 a, b;
@@ -117,7 +114,6 @@ void fn_7100146d84(UnkFxObject_ovb0041* fx, const UnkVec3f* position);
 void fn_7100146d98(UnkFxObject_ovb0041* fx, const UnkVec3f* angle);
 
 struct UnkRinkaEntry_ruc;
-extern UnkRinkaEntry_ruc* g_unk_71726fd110[2] __attribute__((visibility("hidden")));
 
 struct UnkRinkaControl_ovb0090;
 

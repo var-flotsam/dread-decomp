@@ -15,6 +15,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "engine/scene/UnkToggle.h"
+#include "game/CAutsharpAIComponent.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
@@ -443,7 +444,6 @@ UnkIdValuesVector_b0200* fn_7100eafb70(UnkIdValuesVector_b0200* self, const UnkI
 }
 
 struct UnkDoorRegistry_b61;
-extern UnkDoorRegistry_b61* g_unk_71726bee10;
 
 struct UnkNamedDef_b0200c : UnkIdSource {
     u64 field_0x8;
@@ -451,7 +451,6 @@ struct UnkNamedDef_b0200c : UnkIdSource {
 };
 // As src/game/CMinimapManager/CMinimapManager_ReadFlag_b43.cpp declares it.
 struct UnkNamedDef_b43a3;
-extern UnkNamedDef_b43a3 g_unk_71727c9f88;
 extern CStrId g_unk_71727cc990;
 
 static inline UnkSubId_7100fc4b34 SubId(UnkNamedDef_b0200c& def, const CStrId& name) {

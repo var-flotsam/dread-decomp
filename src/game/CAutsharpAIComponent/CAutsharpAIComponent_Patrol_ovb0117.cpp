@@ -11,13 +11,17 @@
 #include "base/math/UnkSegment2D.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAutsharpAIComponent.h"
 #include "game/CEnemyMovement.h"
 #include "game/CMovementComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkBehaviorTree.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2510.h"
+#include "game/UnkTU365.h"
 #include "game/UnkXformNode.h"
+#include "game/behaviortree/CGoToSideAction.h"
+#include "game/behaviortree/CSetAnimDependsOnDirAction.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
 
@@ -155,8 +159,6 @@ struct UnkCollisionHit_b0117 {
           flags(0), field_0x40(0) {}
 };
 
-extern void* g_unk_7101a20fa8[];
-extern void* g_unk_7101a20ed8[];
 struct UnkSegmentHitQuery_b0117 {
     void** vtable;
     UnkCollisionHit_b0117 hit;
@@ -369,9 +371,6 @@ void fn_71003c94b0(UnkAutsharpAI_b0117* self, f32 dt) {
     }
 }
 
-extern void* g_unk_7101a24db8[];
-extern void* g_unk_7101a25fb0[];
-
 void fn_71003c9eac(UnkAutsharpAI_b0117* self, bool flag) {
     reinterpret_cast<void (*)(UnkAutsharpAI_b0117*)>(self->vtable[0x3d8 / 8])(self);
     UnkEffectSink* sink = static_cast<UnkEffectSink*>(self->owner->field_0x218);
@@ -526,7 +525,6 @@ void fn_71003cb148(UnkAutsharpAI_b0117* self) {
 }
 
 void fn_71003cbd2c(UnkAutsharpAI_b61a2* self, bool on);
-extern void* g_unk_7101a2e1c0[];
 
 struct UnkEffectParams2_b0117 {
     void** vtable;
@@ -666,7 +664,6 @@ void fn_71003cc7dc(UnkAutsharpAI_b0117* self, UnkAutsharpMove_b0117* move) {
 }
 
 s32 fn_7100661e24(UnkAutsharpAI_b0117* self, void* event);
-extern void* g_unk_7101a2e208[];
 
 struct UnkAutsharpEvent_b0117 {
     u8 pad_0x0[0xb4];

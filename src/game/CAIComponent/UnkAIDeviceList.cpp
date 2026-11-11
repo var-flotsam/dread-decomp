@@ -1,12 +1,10 @@
 // A copy of fn_7100a94384 (src/game/CThermalDeviceComponent/CThermalDeviceComponent_Ctor.cpp) in
 // the CAIComponent unit: the same allocator-backed object with its own final vtable. Names and
 // layouts are placeholders.
+#include "game/UnkTU341.h"
 #include "types.h"
 
 #include "base/UnkVector.h"
-
-extern void* g_unk_7101a20998[];
-extern void* g_unk_7101a20950[];
 
 struct UnkAIDeviceList {
     void** vtable;

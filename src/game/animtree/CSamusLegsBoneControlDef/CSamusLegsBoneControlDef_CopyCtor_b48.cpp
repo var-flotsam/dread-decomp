@@ -6,11 +6,10 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/animtree/CAnimatedNodeDef.h"
+#include "game/animtree/CSamusLegsBoneControlDef.h"
 
 using base::global::CStrId;
-
-extern void* g_unk_7101a21718[];
-extern char g_unk_7101a221d0[];
 
 struct UnkBoneControlDefFields {
     u64 field_0x10;

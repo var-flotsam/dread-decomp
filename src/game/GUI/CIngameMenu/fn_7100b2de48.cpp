@@ -172,7 +172,6 @@ void fn_7100fc9d78(UnkStateSink* sink, UnkStateKey* key, void* state);
 extern base::global::CStrId g_unk_7172762fd8 __attribute__((visibility("hidden")));
 void fn_7100e9b464(void* target, bool value);
 void fn_7100e9b1f8(void* target, bool value);
-void fn_7100066a50(void* text, const char32_t* value);
 void fn_7100b2cb44(UnkStateOwner* self);
 void fn_7100af1bfc(UnkComposition* composition);
 void fn_7100b2c6a0(UnkStateOwner* self);
@@ -541,7 +540,6 @@ struct UnkResourceHandle {
     }
 };
 struct UnkResourceManager;
-extern UnkResourceManager* g_unk_71726ae8a8;
 void fn_7100b2c58c(UnkStateOwner* self);
 
 // Start of the playthrough state: one setting is changed, the menu at 0x2d0 (created when

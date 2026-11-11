@@ -13,7 +13,9 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/UnkTU1450.h"
+#include "game/UnkTU1730.h"
 #include "types.h"
 
 using base::reflection::CType;
@@ -21,9 +23,6 @@ using base::reflection::UnkReflValue;
 
 struct UnkDesc_SpitSend;
 extern UnkDesc_SpitSend g_unk_710164b958;
-extern UnkDesc_SpitSend g_unk_7172769740;
-extern void* g_unk_7101a22cb8[];
-extern void* g_unk_7101a22d18[];
 
 struct UnkStandTrackTime_ovb0280 {
     u64 key;

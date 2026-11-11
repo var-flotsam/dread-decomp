@@ -3,6 +3,7 @@
 // vtable and sub-object constructor (fn_7100205bc4); fn_7100e13928 calls it with the object's name.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU131.h"
 #include "game/UnkTU32.h"
 #include "types.h"
 
@@ -26,8 +27,6 @@ struct UnkTaggedSubObject131 {
     u64 field_0x130;
     u8 member[0x8];   // 0x138, size unknown
 };
-
-extern char g_unk_7101a1c5e8[];
 
 void fn_710014520c(UnkCreatedSceneObj* obj, const CStrId* name) {
     UnkTaggedSubObject131* self = (UnkTaggedSubObject131*)obj;
