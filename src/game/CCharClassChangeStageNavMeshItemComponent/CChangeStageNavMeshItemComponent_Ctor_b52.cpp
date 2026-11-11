@@ -3,10 +3,10 @@
 // constructor (fn_71011acd10), the vtable, then two empty string ids at +0x58 and +0x60. Names and
 // layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CCharClassComponent.h"
 #include "types.h"
 
 struct UnkStruct_71008bca30;
-void fn_71011acd10(UnkStruct_71008bca30*);
 extern char g_unk_7101a884a0[];
 
 struct UnkChangeStageNavMeshItem {

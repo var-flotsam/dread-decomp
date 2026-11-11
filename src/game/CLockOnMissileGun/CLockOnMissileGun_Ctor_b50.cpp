@@ -1,12 +1,12 @@
 // CLockOnMissileGun unit (tools/tu_map.py, the name from reflection): the constructor and destructor. The constructor: the base
 // (fn_710084e848), this class's vtable (g_unk_7101a784a8), its default state, and the node
 // registration fn_7100023854 last. Names and layouts are placeholders.
+#include "base/core/CBaseObject.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkNode;
-void fn_7100023854(UnkNode*);
 
 extern char g_unk_7101a784a8[];
 

@@ -13,13 +13,15 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
+#include "game/CUsableComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU1176.h"
+#include "game/UnkTU2611.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 extern void* g_unk_7101a90bd0[];
-void fn_7100a9e6bc(char*);
 
 struct UnkElectricGenerator_ovb0120 {
     char* vtable;
@@ -42,8 +44,6 @@ void fn_7100faa3d8(UnkSubAreaRecord_0x188* self);
 
 // A 0x188-byte record built, moved and destroyed out of line.
 struct UnkGeneratorRecord_ovb0120;
-void fn_7100fa99bc(UnkGeneratorRecord_ovb0120* self);
-void fn_7100fab18c(UnkGeneratorRecord_ovb0120* self, UnkGeneratorRecord_ovb0120* other);
 struct UnkGeneratorRecord_ovb0120 {
     u8 data[0x188];
     UnkGeneratorRecord_ovb0120() { fn_7100fa99bc(this); }
@@ -60,7 +60,6 @@ using base::math::CVector4D;
 void fn_710021a0bc(UnkRenderManager* self, const u64* hash, CVector4D* value);
 void fn_710021a0b4(UnkRenderManager* self, const u64* hash, const base::math::CVector4D* value);
 struct UnkScenarioObject_ovb0032;
-void* fn_7100774014(UnkScenarioObject_ovb0032* actor);
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 

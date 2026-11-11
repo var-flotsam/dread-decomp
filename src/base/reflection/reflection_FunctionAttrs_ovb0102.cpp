@@ -8,6 +8,7 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
@@ -129,7 +130,6 @@ void fn_71000a1710(UnkReflValueArg* out, const UnkReflValue* value);
 // A value converted to `type` (returned through x8).
 UnkReflValue fn_71000a1774(const UnkReflValueRef* value, const CType* type);
 struct UnkAssignedRecord_a1ba4;
-void fn_71000a1ba4(UnkAssignedRecord_a1ba4* self, const UnkAssignedRecord_a1ba4* other);
 
 // The arguments of a call: reflected values.
 struct UnkReflCallArgs_ovb0102 {

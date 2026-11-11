@@ -5,6 +5,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CMovementComponent.h"
 #include "types.h"
 
 using base::reflection::CType;
@@ -52,7 +53,6 @@ void fn_71009b0adc(UnkSamusParamsHolder_b0105* self, UnkReflObject* obj) {
 
 struct UnkMovement_71010d08d4;
 struct UnkMovementVec_71010d08d4;
-void fn_71010d08d4(UnkMovement_71010d08d4* self, const UnkMovementVec_71010d08d4* v, bool start);
 
 struct UnkSamusVec_b0105 {
     f32 x, y, z;

@@ -19,6 +19,8 @@
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CBlackboard.h"
+#include "game/UnkTU83.h"
+#include "game/UnkTU92.h"
 #include "types.h"
 
 struct UnkClone_fn_710104afb4;
@@ -454,7 +456,6 @@ UnkSectionArray_b0026* fn_710104b114(UnkSectionArray_b0026* self, const UnkSecti
 struct UnkVersionRegistry;
 struct UnkVersionEntry;
 extern UnkVersionRegistry* g_unk_7101d4c8d0;
-UnkVersionEntry* fn_71000a5118(UnkVersionRegistry* self, const u64* id);
 
 // A typed pointer to a value the reader fills (a CName id here).
 struct UnkReadArg_b0026 {
@@ -524,7 +525,6 @@ struct UnkWriteRoot_b0026 {
     void* object;
 };
 
-void fn_71000ee314(UnkWriteStack_b0026* self, UnkWriteRoot_b0026* root, u32 count);
 void* fn_71000edd0c(UnkWriter_b0026* self);
 struct UnkWriteCallbacks_b0026 {
     u64 words[6];

@@ -7,11 +7,12 @@
 // the flag. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/UnkRefHandle.h"
+#include "game/CTriggerLogicAction.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU811.h"
 #include "types.h"
 
 struct UnkTutoExitAction_b47;
-void fn_7100a55ac8(UnkTutoExitAction_b47* self);
 
 struct UnkEmmyActor_b55 {
     virtual void vf_0();
@@ -19,8 +20,6 @@ struct UnkEmmyActor_b55 {
 
 void fn_7100541dc8(UnkEmmyActor_b55* self, bool on);
 void fn_7100545138(UnkEmmyActor_b55* self);
-void fn_7100541de4(UnkEmmyActor_b55* self);
-void fn_7100544a34(UnkEmmyActor_b55* self, char* data, bool on);
 extern char g_unk_71726ded60[];
 
 struct UnkEmmyEntry_b55 : base::UnkRefCounted {

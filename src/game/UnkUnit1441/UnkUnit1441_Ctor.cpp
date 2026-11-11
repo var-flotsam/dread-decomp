@@ -2,9 +2,9 @@
 // of unit 1440 (fn_7100969000): the vtable, the member at +0x90 (its vtable, cleared flags and runs, mode
 // 2), the listener at +0xd0 (vtable unk_7101a22d48) and cleared fields after it. Names and layouts are
 // placeholders.
+#include "game/UnkTU1440.h"
 #include "types.h"
 
-void fn_7100969000(char* self, u32 arg);
 extern void* g_unk_7101a85148[];  // the class's vtable
 extern void* g_unk_7101a2e1c0[];  // the member's vtable
 extern void* g_unk_7101a22d48[];  // the embedded listener's vtable

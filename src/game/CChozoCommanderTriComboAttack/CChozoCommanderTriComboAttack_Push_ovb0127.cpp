@@ -5,11 +5,11 @@
 #include "base/UnkMatrix44.h"
 #include "base/math/CVector.h"
 #include "game/CAttack.h"
+#include "game/CCollisionComponent.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
 struct UnkPlayerMovementSource;
-void* fn_710086406c(UnkPlayerMovementSource*, const void*);
 struct UnkVec3;
 void fn_710007b444(void*, const UnkVec3*);
 

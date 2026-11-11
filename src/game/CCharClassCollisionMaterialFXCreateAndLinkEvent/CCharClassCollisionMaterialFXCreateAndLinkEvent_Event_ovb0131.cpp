@@ -8,6 +8,7 @@
 // layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/global/timeline/CEvent.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -32,8 +33,6 @@ struct UnkReleasedId_ovb0131 {
 };
 using UnkReleasedStrId_ovb0131 = UnkReleasedId_ovb0131<&g_unk_7101d47108>;
 using UnkReleasedPathId_ovb0131 = UnkReleasedId_ovb0131<&g_unk_7101d47200>;
-
-void fn_7100067ed4(void* self);  // the base's destructor
 
 extern char g_unk_7101aa08c8[];
 

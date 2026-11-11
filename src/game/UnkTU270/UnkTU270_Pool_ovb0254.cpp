@@ -9,6 +9,7 @@
 #include "base/UnkMatrix44.h"
 #include "base/UnkVector.h"
 #include "game/UnkSphere.h"
+#include "game/UnkTU307.h"
 #include "types.h"
 
 // A box with virtual accessors (0x20 bytes): its minimum and maximum corners.
@@ -174,7 +175,6 @@ void fn_71001ec680(base::UnkVector<UnkTreeNode_ovb0254>* self, u32 n) { self->Re
 
 void fn_7100215dac(UnkPoolBox* self);                                  // its default constructor
 struct UnkBounded;
-void fn_7100215f60(UnkBounded* self, const void* point);                  // grows it to hold a point
 UnkVec3f fn_7100215ef4(UnkPoolBox* self);                              // its centre
 UnkVec3f fn_7100215e38(UnkPoolBox* self);                              // its size
 

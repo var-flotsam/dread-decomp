@@ -3,6 +3,7 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/UnkTU2640.h"
 #include "game_s2/UnkTwoStepStrId.h"
 #include "types.h"
 
@@ -12,9 +13,7 @@ struct UnkNode {
     UnkStrIdTwoStep field_0x0;
 };
 
-void fn_7100ffaa88(void*);
 void fn_7101002998(UnkNode* self) {
     fn_7100ffaa88(reinterpret_cast<char*>(self) + 0x8);
     self->field_0x0.~UnkStrIdTwoStep();
 }
-

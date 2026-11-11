@@ -1,10 +1,10 @@
 // CChozoCommanderAIComponent unit (tools/tu_map.py): for every entry of the list fn_710045bc94
 // returns, resets its sentence-sphere movement (+0x10; null for an empty slot) with
 // fn_710045c5e8(..., 0). Names and layouts are placeholders.
+#include "game/CChozoCommanderSentenceSphereMovementComponent.h"
 #include "types.h"
 
 struct UnkSentenceSphereMovement_b46a1;
-void fn_710045c5e8(UnkSentenceSphereMovement_b46a1*, u32);
 
 struct UnkSentenceSphereEntry {
     u8 pad_0x0[0x10];

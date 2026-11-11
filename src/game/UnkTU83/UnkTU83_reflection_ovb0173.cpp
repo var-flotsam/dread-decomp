@@ -13,8 +13,10 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU85.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -323,7 +325,6 @@ u32* fn_71000df750(UnkIdVals_ovb0173* self, u32* it) {
 // ---- Keyed array of 0xb0-byte records (as src/base/reflection/UnkReflKeyedB0_b44.cpp) ----
 
 struct UnkRecordB0_b44a1;
-void fn_71000e70c4(UnkRecordB0_b44a1* self);
 // As src/game_s1/fn_71000dbc34.cpp declares it.
 void fn_7100097d18(void* self, void* other);
 
@@ -457,7 +458,6 @@ void fn_71000dd04c(UnkRecArr_ovb0173* self, UnkRecArr_ovb0173::Iter* out) { self
 void fn_71000dd160(UnkRecArr_ovb0173* self, UnkRecArr_ovb0173::Iter* out) { self->End(out); }
 
 // 0xb8-byte function data (destroyed by fn_710009aae8).
-void fn_710009aae8(void* self);
 struct UnkFuncData_ovb0173 {
     u64 words[0xb8 / 8];
     ~UnkFuncData_ovb0173() { fn_710009aae8(this); }

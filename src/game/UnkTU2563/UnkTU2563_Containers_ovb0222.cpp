@@ -8,6 +8,7 @@
 #include "base/UnkFreedVectorPair.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU83.h"
 #include "game_s2/UnkItem50.h"
 #include "types.h"
 
@@ -92,7 +93,6 @@ void* fn_7100e45040(void* self, void* key) {
 
 // A record of ten words, two string ids and a trailing array copied out of line (fn_71000ce19c).
 struct UnkStruct_0x28;
-void fn_71000ce19c(UnkStruct_0x28*, const UnkStruct_0x28*);
 struct UnkIdRecord_ovb0222 {
     u32 f[10];
     CStrId a;

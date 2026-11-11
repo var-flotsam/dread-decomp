@@ -13,6 +13,8 @@
 #include "base/UnkHashStream.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
+#include "base/animation/CBlendSpaceResource.h"
+#include "base/core/CDefinition.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
@@ -21,6 +23,8 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU25.h"
+#include "game/UnkTU2564.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -42,7 +46,6 @@ struct UnkPathPairTemp_b45a1 {
     void* path;
     ~UnkPathPairTemp_b45a1() { fn_710008d8e8(reinterpret_cast<UnkStrIdPathPair*>(this)); }
 };
-UnkPathPairTemp_b45a1 fn_710001ab24(void* path);
 
 // The file read into memory and two words the opener sets (+0x38 is zero after a good read).
 struct UnkFileReader {
@@ -52,7 +55,6 @@ struct UnkFileReader {
 };
 
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
-void fn_710000ccd8(UnkFileReader* self);
 void fn_710000f750(UnkParseContext* self, void* root);
 
 // This unit's parser callbacks.
@@ -307,8 +309,6 @@ struct UnkIdsString40Typed_b0234 {
     UnkWords5Typed_b0234 field_0xb0;
 };
 
-void fn_7100e6c960(char*);  // the record's destructor
-
 // The record's copy assignment.
 UnkIdsString40Copy_b0234* fn_7100e6e1b0(UnkIdsString40Copy_b0234* self, const UnkIdsString40Copy_b0234* other) {
     self->field_0x0 = other->field_0x0;
@@ -540,7 +540,6 @@ void fn_7100e6ef18(void* self, const void* other) {
 extern void* g_unk_7101aa9d58[];
 
 void fn_7100025398(void* self);  // the base's constructor
-void fn_710002545c(void* self);  // the base's destructor
 
 // A string id, a file-path id and the resource the path resolves to, starting empty.
 struct UnkIdPathResource_b0234 {

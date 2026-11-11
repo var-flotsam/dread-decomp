@@ -2,9 +2,8 @@
 // identical "can start" test per class. Names are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CChozoWarriorAttack.h"
 #include "types.h"
-
-bool fn_7100493b00(void* self, void* arg, u32 mode);
 
 namespace {
 

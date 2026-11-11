@@ -8,6 +8,8 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU83.h"
+#include "game/UnkTU85.h"
 #include "types.h"
 
 using base::reflection::CType;
@@ -25,9 +27,7 @@ struct UnkFileReader {
 struct UnkVersionRegistry;
 struct UnkVersionEntry;
 extern UnkVersionRegistry* g_unk_7101d4c8d0;
-UnkVersionEntry* fn_71000a5118(UnkVersionRegistry* self, const u64* id);
 // The entry's version (major, minor); false when it has none.
-bool fn_71000e6ce0(UnkVersionEntry* self, u16* major, u16* minor);
 
 // Reads the file's id and, when it is registered, its version; sets field_0x38 from the comparison
 // (a file without an id is taken as current). True when the version is the registered one.

@@ -4,14 +4,15 @@
 // tracks at +0x60 (count at +0x68), a lock at +0x960 and a player at +0xad8. Names and layouts are
 // placeholders.
 #include "base/UnkDefaultAllocator.h"
+#include "game/UnkTU324.h"
+#include "game/UnkTU325.h"
+#include "game/media/CMediaStream.h"
 #include "types.h"
 
 struct UnkMediaInstance;
-bool fn_710021eec0(UnkMediaInstance* instance, s32 state);
 
 struct UnkMediaTrack330;
 void fn_710021b7d4(UnkMediaTrack330* track);
-void fn_710021b860(UnkMediaTrack330* track, bool a, bool b);
 void fn_710021b9a8(UnkMediaTrack330* track);
 
 struct UnkMediaPlayer330 {
@@ -69,9 +70,6 @@ bool fn_7100224fbc(UnkMedia330* self, void* arg) {
     fn_7100066920(&self->lock);
     return true;
 }
-
-void fn_710021b8a4(void* entry);  // as src/game/UnkUnit330/UnkUnit330Flush.cpp declares it
-void fn_71002207bc(void* part);
 
 // Stops it: each track first (fn_710021b8a4), the player (vf_0x40 with nothing), the timer at
 // +0xae0, then each track again (fn_710021b7d4), under the lock.

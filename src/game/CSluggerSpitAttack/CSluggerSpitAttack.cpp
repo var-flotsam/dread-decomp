@@ -2,9 +2,8 @@
 // listener's owner (listener at +0x38, owner at +0x50), hands the actor's object at +0x2d0 (when
 // there is one) to fn_71009f92d0, then runs fn_71006c0930. The shape of fn_71003f38f8.
 #include "../../game_5821e4/CAttackDtor.h"
+#include "game/CShotComponent.h"
 #include "game/UnkAttack.h"
-
-void fn_71009f92d0(void* object);
 
 struct UnkSluggerAttackOwnerObject {
     u8 pad_0x0[0x2d0];

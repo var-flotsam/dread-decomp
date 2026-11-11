@@ -4,6 +4,7 @@
 // resource, the sub-object at +0x20 built from the argument (fn_710020c38c), the self pointer, the
 // flags' low bit and top byte (the class's kind), then the sub-object's mode (fn_710020c46c) and a
 // copy of its +0x108 into its +0x118. Names and layouts are placeholders.
+#include "game/UnkTU32.h"
 #include "types.h"
 
 struct UnkTaggedSubArg;
@@ -46,8 +47,6 @@ void fn_7100144bac(UnkTaggedSubObject* self, UnkTaggedSubArg* arg) { ConstructTa
 
 // ---- the same with a member at +0x140/+0x148 that registers with the object (units 127, 129) ----
 
-void fn_71000255c4(void* member);                // the member's constructor
-void fn_7100025884(void* member, void* owner);  // registers the owner with it
 void fn_710020d0dc(void* sub, UnkTaggedSubArg* arg);
 
 // Unit 127: one base, its own sub-object constructor, kind 0x11.

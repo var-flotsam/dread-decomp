@@ -2,6 +2,8 @@
 // of children at +0x164: a u32 count followed directly by the pointers) forwards the change to every
 // child (slot 0xa0); a leaf tells its owner at +0x30 the old and the new mask. Names and layouts are
 // placeholders.
+#include "game/UnkTU2510.h"
+#include "game/logic/collision/CBroadphaseObject.h"
 #include "types.h"
 
 struct UnkCollider_A6_b70 {
@@ -40,9 +42,7 @@ struct UnkColliderNode_A6_b70 : UnkCollider_A6_b70 {
 };
 #pragma pack(pop)
 
-void fn_7100d35af4(UnkColliderNode_A6_b70* self);
 void fn_7100d35b00(UnkColliderNode_A6_b70* self, u32 mask);
-void fn_7100d5c888(void* owner, UnkColliderNode_A6_b70* collider, u32 old_mask, u32 new_mask);
 
 void fn_7100d370e4(UnkColliderNode_A6_b70* self, u32 mask) {
     u32 old_mask = self->mask;

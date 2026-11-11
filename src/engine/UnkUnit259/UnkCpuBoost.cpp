@@ -6,6 +6,7 @@
 #include <nn/os.h>
 
 #include "base/UnkDefaultAllocator.h"
+#include "game/UnkTU177.h"
 #include "types.h"
 
 #define HIDDEN __attribute__((visibility("hidden")))
@@ -18,7 +19,6 @@ enum CpuBoostMode {
 void SetCpuBoostMode(CpuBoostMode mode);
 }  // namespace nn::oe
 
-bool fn_71001598c0();
 void fn_7100066698(nn::os::LightEventType* event);
 
 // The flag; the mutex is 0x14c bytes after it (8-byte aligned there, so not a member of one struct).

@@ -3,11 +3,12 @@
 // has its object at +0x5f0 and the group accepts the request (virtual slot 0x30 with 0x2000, 0xfd),
 // pass that object to fn_7100b26470. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/GUI/CGlobalMapComposition.h"
+#include "game/nn/time.h"
 #include "types.h"
 
 struct UnkSoundHolder;
 extern UnkSoundHolder* g_unk_7101d47340;
-void fn_710006cd9c(UnkSoundHolder*);
 
 struct UnkMapSoundGroup {
     virtual void vf_0x0();
@@ -26,7 +27,6 @@ struct UnkGlobalMapComposition {
     u8 unk_0x0[0x5f0];
     void* field_0x5f0;
 };
-void fn_7100b26470(UnkGlobalMapComposition* self, void* object, bool flag);
 
 __attribute__((always_inline)) static inline UnkMapSoundHolder* Holder() {
     UnkSoundHolder* holder = g_unk_7101d47340;

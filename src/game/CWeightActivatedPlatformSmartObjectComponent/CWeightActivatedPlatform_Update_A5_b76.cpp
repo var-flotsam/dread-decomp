@@ -14,6 +14,13 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CAbilityShinespark.h"
+#include "game/CElectricReactionComponent.h"
+#include "game/CFXComponent.h"
+#include "game/CInputComponent.h"
+#include "game/CSmartObjectComponent.h"
+#include "game/CWeightActivatedPlatformSmartObjectComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkSlots.h"
@@ -24,22 +31,17 @@ using base::global::CStrId;
 using base::math::CVector4D;
 
 struct UnkPlatformSm_A5_b72;
-bool fn_7100a04768(UnkPlatformSm_A5_b72* self);
 struct UnkPlayer;
 struct UnkAbilitySet;
 struct UnkAbility;
 UnkPlayer* fn_7100dec788(UnkGameManager* manager);
-UnkAbility* fn_71003013ec(UnkAbilitySet* set, u64 id);
-u64 fn_7100327d14();
 s32 fn_7101177da8(void*, u64);
 struct UnkWeightPlatform_b49a4;
-void fn_7100a09cd4(UnkWeightPlatform_b49a4* self);
 struct UnkPlatformUpdate_A5_b76;
 void fn_7100a09bf8(UnkPlatformUpdate_A5_b76* self, bool a, f32 progress);
 
 bool fn_7100a0ad9c(UnkPlatformUpdate_A5_b76* self);
 struct UnkInputComponent;
-void fn_7100872460(UnkInputComponent* self, bool enable, bool reset, void* arg);
 void fn_710094b508(void* object);
 extern CStrId g_unk_7172743570 __attribute__((visibility("hidden")));
 
@@ -194,11 +196,9 @@ done:
 // the watch at +0x540 with the game manager's set at +0x1da8.
 struct UnkSmartObjectUserA;
 struct UnkSmartObjectActor;
-UnkSmartObjectUserA* fn_71007cfd8c(UnkSmartObjectActor* actor);
 void fn_7100861fc8(void* part, bool flag);
 void fn_71001c287c(void*, u32, u32, CVector4D*, u32);
 struct UnkRinkaControl_ruc;
-void fn_710114ffb8(UnkRinkaControl_ruc*, void*, u32, u32);
 extern const u64 g_unk_710164b4c0;
 extern const u64 g_unk_710164b4c8;
 

@@ -15,9 +15,18 @@
 #include "base/reflection/CEnumType.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAISmartObjectComponent.h"
+#include "game/CCameraComponent.h"
+#include "game/CCollisionMaterialCacheComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU1370.h"
+#include "game/UnkTU2523.h"
+#include "game/UnkTU2677.h"
+#include "game/UnkTU2704.h"
+#include "game/UnkTU341.h"
+#include "game/malloc.h"
 #include "game/sound/CMusicManager.h"
 #include "types.h"
 
@@ -28,9 +37,6 @@ using base::global::CStrId;
 struct UnkWeakTarget;
 
 extern u32 g_unk_71727bebb8;
-
-s32 fn_71010c0270(lua_State* L, const char* fmt, ...);
-int fn_71010c0b40(lua_State* L, const char* fmt, ...);
 
 template <class T, u64 Size, void (*Ctor)(T*)>
 __attribute__((always_inline)) static inline T* Singleton_b0161(T*& instance) {
@@ -49,7 +55,6 @@ UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32*
 // ---- the stats object ----
 struct UnkStatsObject;
 extern UnkStatsObject* g_unk_7101d47100;
-void fn_7100131f48(UnkStatsObject* self);
 f32 fn_7100132240(UnkStatsObject* self, const CStrId& name);
 
 static inline f32 StatByName_b0161(UnkStatsObject* stats, const char* name) {
@@ -331,7 +336,6 @@ s32 fn_71010866b0(lua_State* L) {
 
 // ---- a camera controller by name ----
 struct UnkCameraCtrl;
-UnkCameraCtrl* fn_71010e389c(void* holder, void* key);
 bool fn_7101043a04(UnkCameraCtrl* controller, const char* name, lua_State* L, s32 mode);
 
 s32 fn_7101086df0(lua_State* L) {
@@ -362,9 +366,7 @@ static inline void* FindByName_b0161(UnkGameManager* manager, const char* name) 
 }
 
 struct UnkObj_7101129240;
-void fn_7101129b08(UnkObj_7101129240* self, bool flag);
 struct UnkSpawnRegistered_ovb0065;
-UnkSpawnRegistered_ovb0065* fn_7100360044(void* object);
 
 // The text of a string id's data, which counts its readers at +0x44.
 struct UnkStringText_b0161 {
@@ -422,7 +424,6 @@ s32 fn_71010846e0(lua_State* L) {
 }
 
 struct UnkStruct_710024fa0c;
-UnkStruct_710024fa0c* fn_7100798eec(void* object);
 void fn_7101156058(void* self, u64 hash, f32 x, f32 y, bool a, bool b, f32 z);
 
 s32 fn_710108fe30(lua_State* L) {
@@ -500,8 +501,6 @@ extern UnkEnumType g_unk_7172730858;
 s32 fn_710009976c(const base::reflection::CEnumType* self, const base::global::CStrId* name);
 struct UnkStruct_71008c0c74;
 struct UnkBase_71003cc474;
-void fn_71008c0c74(UnkStruct_71008c0c74* self);
-void fn_71008c1558(UnkBase_71003cc474* self);
 
 struct UnkPlayerRequest_b0161 {
     u8 pad_0x0[0x18];
@@ -580,7 +579,6 @@ struct UnkRegisteredNode_b0161 {
 struct UnkNameHolder_b0161 {
     unk_prop_bag::UnkName* name;
 };
-UnkNameHolder_b0161* fn_7100232fcc(void* object);
 
 s32 fn_710107ccd0(lua_State* L) {
     unk_prop_bag::UnkPropBag bag;
@@ -723,8 +721,6 @@ s32 fn_7101080650(lua_State* L) {
     }
     return 0;
 }
-
-void fn_7100d7babc(UnkWeakTarget* entity, bool flag, f32 value);
 
 s32 fn_710107f290(lua_State* L) {
     u64 key;

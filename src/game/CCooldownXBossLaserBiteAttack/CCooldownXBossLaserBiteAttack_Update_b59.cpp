@@ -5,19 +5,18 @@
 // flag at +0x3a8 set and the owner's +0x228 answers a fixed id with a height within the limit at +0x104 of
 // the tunables at +0x68 of the actor's. Names are placeholders.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CCooldownXBossAttack.h"
+#include "game/CModelUpdaterComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "../../game_s2/UnkSpitSend.h"
 #include "types.h"
 
 struct UnkWhipSend_b58;
-void fn_71004c1968(UnkWhipSend_b58* self, f32 dt);  // the base update
 struct UnkGrappleAnswer_b50;
-void fn_710117364c(void* target, const u64* id, UnkGrappleAnswer_b50* out);
 
 struct UnkLaserBite_b59;
 void fn_71004c1f18(UnkLaserBite_b59* self);
-void fn_71004c1e08(UnkLaserBite_b59* self);
 
 struct UnkLaserBiteAnswer_b59 {
     f32 field_0x0;

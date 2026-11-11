@@ -4,10 +4,10 @@
 // default allocator), then the vtable's slot at +0x18 on itself. Names and layout are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassFrozenComponent.h"
 #include "types.h"
 
 struct UnkFrozenIceBase_b44a2;
-void fn_71007ee4c8(UnkFrozenIceBase_b44a2* self);
 extern void* g_unk_7101a73e38[];  // the class's vtable
 
 typedef u64 UnkU64Align4_b44a2 __attribute__((aligned(4)));

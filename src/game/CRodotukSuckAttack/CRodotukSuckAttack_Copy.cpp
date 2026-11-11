@@ -3,13 +3,13 @@
 // g_unk_7101a24060, 0x20 bytes at +0x8), then its own vtable g_unk_7101a5da10, the member at +0x28
 // (fn_710066c9d8), 0x12 bytes at +0x58 and the member at +0x70
 // (fn_7100d62b68). Names and layouts are placeholders.
+#include "game/logic/collision/CPolygonCollectionShape.h"
 #include "types.h"
 
 extern void* g_unk_7101a24060[];
 extern void* g_unk_7101a5da10[];
 
 void fn_710066c9d8(char* self, const char* other);
-void fn_7100d62b68(char* self, const char* other);
 
 namespace {
 __attribute__((always_inline)) inline void CopyConstruct(char* self, const char* other) {

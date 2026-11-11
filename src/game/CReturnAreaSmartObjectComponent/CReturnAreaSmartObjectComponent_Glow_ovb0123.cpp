@@ -6,8 +6,10 @@
 // argument, or by +0x68 with the glow on). Names and layouts are placeholders.
 #include "base/color/CColor4F.h"
 #include "base/global/CStrId.h"
+#include "game/CGrabComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkSlots.h"
+#include "game/UnkTU253.h"
 #include "types.h"
 
 using base::color::CColor4F;
@@ -16,9 +18,7 @@ using base::global::CStrId;
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 bool fn_71001c2bac(UnkSlots* self, u64 key, u32 kind, CColor4F* out, u32 mode);
-void fn_71001c3040(void* object, u64 hash, u32 a, const f32* values, u32 count, f32 f);
 struct UnkKraidGrab_b57a4;
-void fn_710113d940(void* grabber, UnkKraidGrab_b57a4* grab, void* owner);
 
 struct UnkReturnAreaKey_ovb0123 {
     u8 pad_0x0[0x30];
@@ -156,4 +156,3 @@ void fn_7100a05fec(UnkReturnAreaSmartObject_ovb0123* self, const CStrId* name) {
     self->grab.field_0x2b = false;
     fn_710113d940(player->grabber, reinterpret_cast<UnkKraidGrab_b57a4*>(&self->grab), self->owner);
 }
-

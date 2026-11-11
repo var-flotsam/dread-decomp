@@ -5,6 +5,7 @@
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/GUI/CMainMenu.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "types.h"
@@ -20,7 +21,6 @@ using base::global::CRntString;
 using UnkGuiObj = UnkGuiDisplayObject;
 UnkGuiObj* fn_71011d9508(UnkGuiObj* self, const char* const* path);
 struct UnkMenuTarget;
-void fn_7100b364dc(UnkMenuTarget* target);
 
 struct UnkListScreen_b0249 {
     u8 pad_0x0[0x270];

@@ -2,6 +2,7 @@
 // timeline (+0x2e8) removes the id vf_0xd0 returns when it is there, then sets the id vf_0xe0 (`on`) or vf_0xe8
 // returns to the all-flags mask; in every case ends with fn_71002f9460(self, 0). Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CAbility.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTimelineCalls.h"
@@ -11,7 +12,6 @@
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkSelf;
-void fn_71002f9460(UnkSelf*, u32);
 
 namespace {
 struct UnkAbilityState_b62a2 {

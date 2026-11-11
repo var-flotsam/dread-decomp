@@ -8,8 +8,14 @@
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkManager_71726af468.h"
+#include "game/UnkTU2562.h"
+#include "game/UnkTU2677.h"
+#include "game/UnkTU2728.h"
+#include "game/UnkTU2768.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -17,21 +23,15 @@ using base::global::CStrId;
 
 // Pushes the values `fmt` names (one letter each) and returns how many it pushed; the variadic
 // front of fn_71010bf400, which takes them as a va_list.
-int fn_71010c0b40(lua_State* L, const char* fmt, ...);
 
 // The managers, each a global pointer set on first use (allocated with fn_71000839a0(size, 0x3f),
 // then constructed in place), and their constructors. The declarations repeat the other files'.
 struct UnkUserDataOwner;  // src/game/CGameManager.cpp
 extern UnkUserDataOwner* g_unk_7101d47308;
-void fn_710120320c(UnkUserDataOwner* self);
 extern char* g_unk_71726b2398;
-void fn_71011a664c(char* instance);
 extern void* g_unk_7172758b20;
-void fn_7101192628(void* self);
 extern void* g_unk_7101d47368;
-void fn_7100d8ced8(void* self);
 extern void* g_unk_71726eb3e8;
-void fn_7100e211cc(void* self);
 extern void* g_unk_7101d47360;  // the sub-area manager (src/game/CSubAreaManager.cpp)
 void fn_7100ee1f34(void* self);
 

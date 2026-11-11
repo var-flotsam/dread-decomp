@@ -4,6 +4,8 @@
 //
 // The fields are addressed by offset: the original's stores are scheduled by the constant pool of
 // the whole function, which struct member stores don't reproduce.
+#include "game/behaviortree/CEmmyStateAction.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
 extern void* g_unk_7101a47e90[];
@@ -16,8 +18,6 @@ struct UnkComponent {
     u8 unk_0x0;
 };
 
-void fn_710051dab0(UnkComponent* self);
-void fn_71002acfe4(void* member);
 void* fn_7100083990_alloc();
 
 template <class T>

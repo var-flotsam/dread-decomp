@@ -3,9 +3,9 @@
 // position (the translation column of its transform at +0x38, within 0.001 per axis), it flags the
 // owner's object at +0x240 (+0x16e6) and moves the owner there (vtable slot 0xd0), then runs
 // fn_7100802108 and fn_7100802244. Names and layouts are placeholders.
+#include "game/CAreaFXComponent.h"
+#include "game/CEnemyMovement.h"
 #include "types.h"
-
-u32 fn_71010cc3a4(void*);
 
 struct UnkFlagHolder_af41 {
     u8 pad_0x0[0x16e6];
@@ -62,7 +62,6 @@ struct UnkSelf_af41 {
     f32 pos[3];  // 0x428
 };
 
-void fn_7100802108(UnkSelf_af41* self);
 void fn_7100802244(UnkSelf_af41* self);
 
 static inline bool Near_af41(f32 a, f32 b) {

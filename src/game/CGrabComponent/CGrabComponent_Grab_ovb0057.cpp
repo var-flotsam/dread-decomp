@@ -14,6 +14,9 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CActorComponent.h"
+#include "game/CComponent.h"
+#include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkSubAreaGuiCache.h"
@@ -27,12 +30,8 @@ using base::reflection::UnkReflObject;
 struct UnkStateObject;
 struct UnkKraidGrab_b57a4;
 
-void fn_71010c4148(UnkStateObject* self);
 UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
-bool fn_710024fbc8(void*);
 void fn_71010ff850(void* target, bool flag, void* arg);
-void fn_71011a664c(char* instance);  // constructs the instance
-void fn_71011a710c(char* instance);
 bool fn_710119dc88(UnkSubAreaGuiCache* self, void* actor, bool flag);
 
 extern void* g_unk_7101cb3230[];  // the component's vtable

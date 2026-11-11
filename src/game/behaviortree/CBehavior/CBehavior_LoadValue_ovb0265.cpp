@@ -11,6 +11,7 @@
 #include "base/math/CVector.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU85.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -22,7 +23,6 @@ using base::reflection::UnkReflTypedPtr;
 struct UnkReflField;
 struct UnkReflFieldObject;
 struct UnkReflValueArg;
-bool fn_71000e78e0(UnkReflField* field, const UnkReflFieldObject* obj, UnkReflValueArg* value);  // gets
 
 extern base::global::CStrId g_unk_71726b7cb8;
 

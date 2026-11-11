@@ -5,6 +5,8 @@
 // (fn_710106bcfc). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU2661.h"
+#include "game/UnkTU83.h"
 #include "types.h"
 
 struct UnkVec3_cs {
@@ -33,9 +35,6 @@ struct UnkCutsceneComponent_cs {
 };
 
 void* fn_710106cf74(UnkCutsceneObject_cs* object, const base::global::CStrId* name);
-u32 fn_7101068c80(UnkCutsceneObject_cs* object, void* entry);
-UnkVec3_cs* fn_71000cc374(void* array, u32 index);
-void fn_710106bcfc(UnkCutsceneObject_cs* object, const UnkVec3_cs& pos);
 
 void fn_71007a9d8c(UnkCutsceneComponent_cs* self) {
     UnkCutsceneObject_cs* object = self->object;

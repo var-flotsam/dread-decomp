@@ -14,9 +14,19 @@
 #include "base/math/UnkZeroVector3.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CActorComponent.h"
+#include "game/CChozoCommanderSentenceSphereAttack.h"
+#include "game/CForcedMovementAreaComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU1176.h"
+#include "game/UnkTU2509.h"
+#include "game/UnkTU2510.h"
+#include "game/UnkTU2547.h"
+#include "game/UnkTU365.h"
+#include "game/UnkTU811.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -134,20 +144,14 @@ using base::math::CVector2D;
 using base::math::CVector3D;
 
 struct UnkDoorRegistry_b61;
-void fn_7100ddb6dc(UnkDoorRegistry_b61* self);
 extern UnkDoorRegistry_b61* g_unk_71726bee10;
 struct UnkUnit2547;
 struct UnkCentralUnit;
-UnkCentralUnit* fn_7100ddb768(UnkUnit2547* self);
 struct UnkBreakablePart;
 struct UnkBreakableTarget;
-UnkBreakableTarget** fn_71002a76a4(UnkBreakablePart* part);
 struct UnkTracker;
-UnkTracker* fn_710028aca8(void*);
 struct UnkShapeTester_A5_b68;
-void fn_7100d5134c(UnkShapeTester_A5_b68* self);
 extern UnkShapeTester_A5_b68* g_unk_71726a47a0;
-void* fn_710043acb4(void* key);
 
 // Returned in memory (not trivially copyable); only bit 0 of the first word is read.
 struct UnkShapeHit_A5_b68 {
@@ -238,7 +242,6 @@ void fn_71007e98c8(UnkForcedArea_ovb0124* self) {
 using base::global::CStrId;
 using base::reflection::UnkReflObject;
 
-void* fn_710043acb4(void* key);
 extern CStrId g_unk_717271fde8[2] __attribute__((visibility("hidden")));
 
 struct UnkAreaHit_ovb0124 {
@@ -303,11 +306,8 @@ void fn_71007e9a60(UnkForcedAreaUpdate_ovb0124* self, f32 dt) {
 }
 
 struct UnkDoorRegistry_b61;
-void fn_7100ddb6dc(UnkDoorRegistry_b61* self);
 extern UnkDoorRegistry_b61* g_unk_71726bee10;
-bool fn_7100ddb938(UnkDoorRegistry_b61* self);
 struct UnkScenarioObject_ovb0032;
-void* fn_7100774014(UnkScenarioObject_ovb0032*);
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkGeneratorTarget_ovb0120;
@@ -351,23 +351,17 @@ __attribute__((noinline)) void fn_71007ea408(UnkForcedMovementArea_A5_b68e* area
 }
 
 struct UnkDoorRegistry_b61;
-void fn_7100ddb6dc(UnkDoorRegistry_b61* self);
 extern UnkDoorRegistry_b61* g_unk_71726bee10;
 struct UnkUnit2547;
 struct UnkCentralUnit;
-UnkCentralUnit* fn_7100ddb768(UnkUnit2547* self);
 struct UnkWeakTarget;
 struct UnkThermalComponent_ovb0097;
-UnkThermalComponent_ovb0097* fn_71007ea250(UnkWeakTarget*);
 void* fn_71007ea32c(void* actor);
-bool fn_710024fbc8(void*);
 struct UnkEmmyAIComponent_b46a1;
-bool fn_71005436e8(UnkEmmyAIComponent_b46a1*);
 extern void* g_unk_7101d47360;
 void fn_7100ee1f34(void*);
 bool fn_7100eea7b0(void* manager);
 struct UnkForcedMovementArea_A5_b68e;
-void fn_71007ea408(UnkForcedMovementArea_A5_b68e* self);
 
 struct UnkAreaUnitLink_ovb0124 {
     u8 pad_0x0[0x10];
@@ -432,8 +426,6 @@ void fn_71007ec21c(UnkForcedAreaEmmy_ovb0124* self) {
 
 using base::global::CStrId;
 
-void* fn_710043acb4(void* key);
-
 struct UnkMatrix44_7100078c9c {
     f32 m[16];
 };
@@ -442,7 +434,6 @@ UnkMatrix44_7100078c9c fn_7100078cd8(const UnkVec3f& t);
 struct UnkTree;
 struct UnkShape;
 struct UnkMtx44;
-bool fn_7100d5b484(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, void* arg, u16 arg2);
 
 extern void* g_unk_7101a20fa8[];
 extern void* g_unk_7101a20ed8[];
@@ -545,8 +536,6 @@ bool fn_71007ec35c(UnkForcedAreaQuery_ovb0124* self, const CStrId* name) {
 
 using base::global::CStrId;
 
-void* fn_710043acb4(void* key);
-
 struct UnkAreaBox_ovb0124 {
     f32 min_x;
     f32 min_y;
@@ -605,16 +594,13 @@ bool fn_71007ecc08(UnkForcedAreaBounds_ovb0124* self, const UnkAreaBox_ovb0124* 
 using base::math::CVector3D;
 
 struct UnkDoorRegistry_b61;
-void fn_7100ddb6dc(UnkDoorRegistry_b61* self);
 extern UnkDoorRegistry_b61* g_unk_71726bee10;
 struct UnkUnit2547;
 struct UnkCentralUnit;
-UnkCentralUnit* fn_7100ddb768(UnkUnit2547* self);
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkEntityState;
 void fn_7100232864(UnkEntityState*, bool);
-void fn_7100000790(const char*, const char*, ...);
 
 struct UnkAreaPosition_ovb0124 {
     u8 pad_0x0[0x44];

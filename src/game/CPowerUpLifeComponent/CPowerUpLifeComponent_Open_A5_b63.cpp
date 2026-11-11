@@ -6,19 +6,19 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/UnkRefHandle.h"
 #include "base/global/CStrId.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CActorComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 struct UnkScriptCaller;
-bool fn_7100305088(UnkScriptCaller* self, const char* name, const char* fmt, ...);
 struct UnkEntityState;
 void fn_7100232864(UnkEntityState* entity, bool value);
 void fn_71011a2770(UnkGameManagerSub_0x608* points, void* object);
-void fn_7100d7b054(void* target, f32 delay);
 struct UnkStruct_710024fa0c;
-void fn_710024fa0c(UnkStruct_710024fa0c*, bool);
 
 struct UnkPowerUpPos_A5_b63 {
     f32 x, y, z;

@@ -3,6 +3,7 @@
 // context. The callers (constructors that finish with it) name the object UnkNode. Names are
 // placeholders.
 #include "base/reflection/CClass.h"
+#include "game/UnkTU85.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -23,8 +24,6 @@ struct UnkClassEntryContext {
 struct UnkClassEntry {
     u8 data[0xb0];
 };
-
-void fn_71000e7b5c(UnkClassEntry* entry, UnkClassEntryContext* context);
 
 void fn_7100023854(UnkNode* node) {
     auto* self = reinterpret_cast<UnkBaseObjectView*>(node);

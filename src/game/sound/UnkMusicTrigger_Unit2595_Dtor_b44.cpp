@@ -2,13 +2,12 @@
 // (each its vtable, four cleared word pairs and its reflected value), a list header (cleared), then the
 // music trigger base's destructor (fn_71011867d4). Names and layouts are placeholders.
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU2725.h"
 #include "types.h"
 
 extern char g_unk_7101caa6d8[];  // the trigger's vtable
 extern char g_unk_7101caa7e8[];  // the parts'
 extern char g_unk_7101caa840[];  // the list header's
-
-void fn_71011867d4(void* self);  // the music trigger base's destructor
 
 struct UnkTrigger2595Base_b44a3 {
     char* vtable;

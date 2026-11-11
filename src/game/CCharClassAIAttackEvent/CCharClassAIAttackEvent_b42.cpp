@@ -5,12 +5,12 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "base/global/timeline/CEvent.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 extern char g_unk_7101aa5500[];
-void fn_7100067ea4(void* self);  // the event base constructor
 
 struct UnkAIAttackEvent_b42a3 {
     void* vtable;

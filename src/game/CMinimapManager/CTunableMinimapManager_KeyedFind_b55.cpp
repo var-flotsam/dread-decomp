@@ -2,12 +2,12 @@
 // (values at +0, keys at +8, count at +0x10), the shape of fn_71000dc0c8 (value or null) and
 // fn_71000ddafc (erase when present) with u32 keys and 0x248- or 0x118-byte values. Names and
 // layouts are placeholders.
+#include "game/UnkTU2566.h"
 #include "types.h"
 
 struct UnkString200Array;  // src/game_aca57c/fn_7100e7b084.cpp
 struct UnkString200;
 UnkString200* fn_7100e7c0f0(UnkString200Array* self, UnkString200* pos);
-void fn_7100ea5d7c(char*, void*);
 
 template <u64 Size>
 struct UnkU32KeyedArray_b55 {

@@ -9,6 +9,8 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/UnkSphere.h"
+#include "game/UnkTU228.h"
+#include "game/UnkTU308.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -80,7 +82,6 @@ struct UnkDecalResource {
 struct UnkDecalResourceMgr;
 extern UnkDecalResourceMgr* g_unk_716e352450;
 UnkDecalResource* fn_710019ffe8(UnkDecalResourceMgr* mgr, const CFilePathStrId* path, bool flag);
-void fn_71001a080c(UnkDecalResourceMgr* mgr, UnkDecalResource* resource);
 
 // The 0x88-byte object: its resource and whether that resource's word at +0x18 is not 1.
 struct UnkDecal {
@@ -92,8 +93,6 @@ struct UnkDecal {
 };
 static_assert(sizeof(UnkDecal) == 0x88, "UnkDecal layout");
 void fn_710019a2b8(UnkDecal* self);  // its constructor
-
-void fn_710021685c(void* self);  // UnkSphere's constructor
 
 struct UnkDecalProjector {
     u32 field_0x0;  // 0x10000 once built (8 for the view of UnkFrustumCull.cpp)

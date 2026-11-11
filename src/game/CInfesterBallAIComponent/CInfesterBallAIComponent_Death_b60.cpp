@@ -8,11 +8,10 @@
 #include "base/global/CStrId.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkTimelineCalls.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
-
-void fn_7100d7b054(void* target, f32 delay);
 
 struct UnkInfesterBallKey_b60;
 extern UnkInfesterBallKey_b60 g_unk_710164a120;  // reached through the GOT

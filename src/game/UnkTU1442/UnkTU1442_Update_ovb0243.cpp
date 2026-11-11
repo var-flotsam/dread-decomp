@@ -3,8 +3,13 @@
 // sink and movement told of a new kind (a kind-2 block and the zero vector). Names and layouts are placeholders.
 #include "base/math/UnkZeroVector3.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CEnemyMovement.h"
+#include "game/CMovementComponent.h"
 #include "game/UnkAIComponent.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU1440.h"
+#include "game/UnkTU1442.h"
+#include "game/UnkTU1444.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
 
@@ -15,14 +20,8 @@ struct UnkMovementVec_71010d08d4;
 struct UnkUnit1442Update;
 extern void* g_unk_7101a2e1c0[];
 
-void fn_7100969148(UnkUnit1444_ovb0177* self);
-u32 fn_71010cc3a4(void*);
 struct UnkUnit1444_Event;
-void fn_7100974798(UnkUnit1444_Event* self, u32 mode);
 void fn_710096b720(UnkUnit1442Update* self);
-char* fn_710096b8fc(char* self);
-void fn_71010c7e6c(UnkEffectSink* sink, void* params, u32 flags);
-void fn_71010d08d4(UnkMovement_71010d08d4*, const UnkMovementVec_71010d08d4*, bool);
 
 struct UnkAI_b5a4 {
     void** vtable;
@@ -122,4 +121,3 @@ void fn_710096b5a4(UnkUnit1442Update* self) {
     fn_71010d08d4(reinterpret_cast<UnkMovement_71010d08d4*>(self->target),
                   reinterpret_cast<const UnkMovementVec_71010d08d4*>(&g_unk_710164779c), true);
 }
-

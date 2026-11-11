@@ -14,11 +14,11 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
+#include "game/CGameBlackboard.h"
 #include "types.h"
 
 using namespace base::global;
 
-void fn_7100aef674(void* self);
 template <class Value>
 struct UnkIdRecordTable;
 template <class T, void (*Destroy)(T*)>

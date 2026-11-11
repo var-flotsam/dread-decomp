@@ -3,11 +3,10 @@
 #include <math.h>
 
 #include "base/spatial/COBox2D.h"
+#include "game/UnkTU54.h"
 #include "types.h"
 
 using base::spatial::COBox2D;
-
-f32 fn_710007a1d0(f32 angle);  // wraps an angle into (-pi, pi]
 
 void fn_7100110664(COBox2D* self, f32 angle) {
     self->angle = fn_710007a1d0(angle);

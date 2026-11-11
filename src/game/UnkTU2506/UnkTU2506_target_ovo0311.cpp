@@ -1,7 +1,6 @@
+#include "game/CAbilityShinespark.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-void fn_7100331c7c(void* self, const void* other);
 
 struct UnkRec48_b0244 {
     u64 unk_0x0[9];

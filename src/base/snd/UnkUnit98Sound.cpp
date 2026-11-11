@@ -3,6 +3,7 @@
 // flag at +0x72 is set. Its setters clamp and forward a value (fn_71000f3d4c, fn_71000f3d7c,
 // fn_71000f3db8) or switch players (fn_71000f3df4). Names and layouts are placeholders.
 #include "base/math/UnkSimd.h"
+#include "game/UnkTU2772.h"
 #include "types.h"
 
 struct UnkAtkPlayer98 {
@@ -72,8 +73,6 @@ void fn_71000f3df4(UnkSoundControl98* self, bool first) {
 // The frame source (its frame rate at +0x40), as src/base/input/UnkVibrationThread.cpp declares it.
 struct UnkGfxFrameSource;
 extern UnkGfxFrameSource* g_unk_7101d47328;
-
-void fn_7101206678(UnkAtkPlayer98* player, bool on, s32 frames);
 
 static inline s32 Frames(f32 time) {
     f32 rate = *reinterpret_cast<const f32*>(reinterpret_cast<const u8*>(g_unk_7101d47328) + 0x40);

@@ -5,6 +5,7 @@
 #include "base/UnkVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAttackComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -37,7 +38,6 @@ struct UnkScourgeTargetList {
     base::UnkAllocator* allocator;
 };
 
-bool fn_7101136308(void* object);
 UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 
 static inline UnkScourgeTarget* TargetOf(UnkWeakHandle* handle) {

@@ -9,6 +9,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/global/timeline/CEvent.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGuiDisplayObject.h"
@@ -20,9 +21,7 @@ using base::global::CStrId;
 
 using UnkGuiObj = UnkGuiDisplayObject;
 UnkGuiObj* fn_71011d9508(UnkGuiObj* self, const char* const* path);
-void fn_7100066e44(void* text);
 struct UnkWideStr_0x20;
-void fn_7100066b38(UnkWideStr_0x20* self, const char* str);
 void fn_71011ef0c8(UnkGuiDisplayObject*, bool);
 
 // A string id's pooled data as these reads see it.

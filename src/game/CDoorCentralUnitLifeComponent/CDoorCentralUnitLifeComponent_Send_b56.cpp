@@ -9,14 +9,14 @@
 // 0; then calls fn_71007e9ea0(1) on the owner's object fn_710030a820 finds, if any.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CName.h"
+#include "game/CActorComponent.h"
+#include "game/CDoorCentralUnitLifeComponent.h"
+#include "game/UnkTU794.h"
 #include "types.h"
 
 struct UnkCentralUnitDoor_b46a2;
-void fn_71008ca700(UnkCentralUnitDoor_b46a2* door, bool open);
 
 struct UnkStruct_710024fa0c;
-void fn_710024fa0c(UnkStruct_710024fa0c*, bool);
-bool fn_710024fbc8(void*);
 
 struct UnkDoorLifeOwner_b56 {
     u8 pad_0x0[0x220];
@@ -24,7 +24,6 @@ struct UnkDoorLifeOwner_b56 {
 };
 
 struct UnkDoorLifePart_b56;
-UnkDoorLifePart_b56* fn_71005012bc(UnkDoorLifeOwner_b56* owner);
 void fn_710086c768(UnkDoorLifePart_b56* part);
 
 struct UnkDoorLife_b56 {

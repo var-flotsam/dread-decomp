@@ -2,6 +2,11 @@
 // fixed run of its methods, plus one property query. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
+#include "base/tunable/CTunable.h"
+#include "game/UnkTU177.h"
+#include "game/UnkTU179.h"
+#include "game/UnkTU182.h"
+#include "game/UnkTU259.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -22,20 +27,9 @@ extern u32 g_unk_716e596050[16] __attribute__((visibility("hidden")));
 extern u8 g_unk_7101a1e970 __attribute__((visibility("hidden")));
 
 void fn_71001cdd6c(UnkRenderTargetA1* target, CStrId id);
-void fn_71001cdd70(UnkRenderTargetA1* target);
-void fn_71001cdd74(UnkRenderTargetA1* target, void* block);
-void fn_71001cdba4(UnkRenderTargetA1* target, void* block);
-void fn_71001cdd18(UnkRenderTargetA1* target);
-void fn_71001cde48(UnkRenderTargetA1* target);
-void fn_71001cb604(UnkRenderTargetA1* target, u32 a, void* b, void* c, void* d, void* e);
-void* fn_710015c450(UnkBoundTarget* target);
 void* fn_710015abd0();
 void fn_710015b8a0(bool flag);
-void fn_710015f770(s32 slot, void* object, bool clear);
-void fn_71001ce704(UnkRenderTargetA1* target, u32 value);
-void fn_71001ced08(UnkRenderTargetA1* target, u8 value);
 void fn_71001d6b94(UnkRenderTargetA1* target);
-void fn_71001d0b70(UnkRenderTargetA1* target, void* p, u32 n, s32 a, s32 b);
 void fn_71001cde84(UnkRenderTargetA1* target, bool a, bool b, bool c);
 void fn_71001d0ae4(UnkRenderTargetA1* target);
 void fn_71001d0c84(UnkRenderTargetA1* target, void* p, u32 n, s32 a, s32 b);
@@ -45,18 +39,10 @@ void fn_71001d09fc(UnkRenderTargetA1* target, u8 value);
 void fn_71001d54e0(UnkRenderTargetA1* target, void* a, void* b, void** c, u32 n);
 bool fn_71001d48cc(UnkRenderTargetA1* target, void* a, f32 b);
 void fn_71001d476c(UnkRenderTargetA1* target, f32 a, f32 b, f32 c, f32 d);
-void fn_710015a3e0(u32 value);
-void fn_710015a680(u32 value);
-void fn_710015a500(u32 a, u32 b);
-void fn_7100160ab0(u32 index, s32 mode, u32 group);
-void fn_7100160990(s32 a, s32 b, bool c);
 void fn_71001d4dbc(UnkRenderTargetA1* target, void* a, void* b);
 void fn_71001d09a8(UnkRenderTargetA1* target);
 void fn_71001d09b8(UnkRenderTargetA1* target, f32 a, f32 b);
 void fn_71001d09d0(UnkRenderTargetA1* target, f32 a);
-void fn_71001cc550(UnkRenderTargetA1* target, u32 a, u32 b, u32 c);
-void fn_71001d1e78(UnkRenderTargetA1* target, f32 a, f32 b, f32 c, f32 d);
-void fn_71001cc570(UnkRenderTargetA1* target);
 
 struct __attribute__((packed)) UnkU64P_b0237 {
     u64 v;
@@ -69,7 +55,6 @@ f32 fn_71001d0ac0(UnkRenderTargetA1* target);
 bool fn_71001d206c(UnkRenderTargetA1* target);
 bool fn_71001cb51c(UnkRenderTargetA1* target);
 void fn_71001d44bc(UnkRenderTargetA1* target, void* a);
-void fn_710015a090(s32 a, s32 b, s32 c, s32 d);
 struct UnkRenderOwner_b0237;
 void fn_71001da83c(UnkRenderOwner_b0237* self, bool a, bool b, u32* values, f32 scale);
 
@@ -102,8 +87,6 @@ f32 fn_71001d0a70(UnkRenderTargetA1* target);
 f32 fn_71001d0a7c(UnkRenderTargetA1* target);
 f32 fn_71001d0a34(UnkRenderTargetA1* target);
 void fn_710014cff0(UnkSetupSub_b0237* sub, void* a, void* b, u32 c);
-u32 fn_7100132fc0();
-u32 fn_7100132fd0();
 
 
 // The list handed to fn_71001cdba4: a count, packed 8-byte entries and a trailing pointer.

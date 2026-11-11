@@ -6,10 +6,10 @@
 
 #include "UnkTempIterValue_b44.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU85.h"
 #include "types.h"
 
 struct UnkRecordB0_b44a1;
-void fn_71000e70c4(UnkRecordB0_b44a1* self);
 // As src/game_s1/fn_71000dbc34.cpp declares it.
 void fn_7100097d18(void* self, void* other);
 

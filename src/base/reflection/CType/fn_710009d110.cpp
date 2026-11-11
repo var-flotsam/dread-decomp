@@ -1,6 +1,7 @@
 // State checksum of an object: tag 0x14, a 64-bit value from its first reference, the same
 // value from an optional second one (-1 if absent) and the hash of an optional third (-1).
 #include "base/UnkHashStream.h"
+#include "game/UnkTU70.h"
 
 struct UnkInner {
     u8 pad_0x0[0x30];
@@ -19,8 +20,6 @@ struct UnkHashed_710009d110 {
     UnkNode* node_0x78;
     void* ref_0x80;
 };
-
-u32 fn_7100093bb8(void* ref);
 
 u32 fn_710009d110(UnkHashed_710009d110* self) {
     UnkScopedHashStream s(0x16, nullptr);

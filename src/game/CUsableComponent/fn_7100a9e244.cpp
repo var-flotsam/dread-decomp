@@ -4,6 +4,7 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/CComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -107,7 +108,6 @@ static_assert(__builtin_offsetof(UnkStateObject, listener_vtable) == 0x518, "lay
 extern void* g_unk_7101a94220[];
 extern void* g_unk_7101a94668[];
 extern void* g_unk_7101a77000[];
-void fn_71010c4148(UnkStateObject* self);
 void fn_7100aa3ad0(void* self);
 
 static inline void InitState(UnkState* s, u32 id) {

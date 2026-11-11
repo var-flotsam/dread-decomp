@@ -5,6 +5,7 @@
 // result that is itself a pointer becomes a reference to the object it points to.
 // Holds fn_7100ad7db8. Names and layouts are placeholders.
 #include "base/UnkCloneHelpers.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
@@ -24,7 +25,6 @@ using base::reflection::UnkTypedRef;
 struct UnkAssignedRecord_a1ba4 {
     u64 unk_0x0[0x18 / 8];
 };
-void fn_71000a1ba4(UnkAssignedRecord_a1ba4* self, const UnkAssignedRecord_a1ba4* other);
 
 void fn_71000a1760(base::reflection::UnkTypedRef* out, const base::reflection::UnkTypedRef* in);
 // The object a pointer value points to, with its dynamic type.

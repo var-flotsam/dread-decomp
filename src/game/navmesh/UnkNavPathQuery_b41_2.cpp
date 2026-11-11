@@ -2,9 +2,8 @@
 // owner (+0x10), builds the three paths (+0x30, +0x12ab8, +0x25540, fn_71002acfe4) and two embedded
 // listeners at +0x37ff8 and +0x38020 that point back at the query. Names and layouts are
 // placeholders.
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
-
-void fn_71002acfe4(void*);
 
 extern void* g_unk_7101a6bfd8[];
 extern void* g_unk_7101a6bfa0[];

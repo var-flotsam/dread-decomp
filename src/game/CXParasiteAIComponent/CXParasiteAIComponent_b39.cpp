@@ -4,6 +4,7 @@
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
+#include "game/UnkTU1102.h"
 #include "types.h"
 
 struct UnkTarget_xpa {
@@ -134,8 +135,6 @@ struct UnkXParasiteGrab_xpa {
     u8 pad_0x14798[0x21];
     bool released;  // 0x147b9
 };
-
-void fn_71006e892c(UnkXParasiteGrab_xpa* self);
 
 void fn_71006ea160(UnkXParasiteGrab_xpa* self) {
     UnkGrabLink_xpa* link = self->link;

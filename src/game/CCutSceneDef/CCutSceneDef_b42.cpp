@@ -4,6 +4,7 @@
 // (fn_7100c8a490) first. The shape of fn_71010012d4 (src/game/GUI/CMissionLog/fn_7100b5bfdc.cpp).
 // Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU2200.h"
 #include "types.h"
 
 struct UnkElem40_b42a3 {
@@ -20,9 +21,7 @@ struct UnkElem40Array_b42a3 {
     base::UnkAllocator* allocator;
 };
 
-void fn_7100c8b758(UnkElem40Array_b42a3* self, u32 capacity);
 void fn_7100c8b894(UnkElem40Array_b42a3* self, const UnkElem40_b42a3* value);
-void fn_7100c8a490(void*);  // the element's destructor
 void fn_7100c9115c(UnkElem40_b42a3* self);  // the element's constructor, after it is cleared
 void fn_7100c91450(void*, const void*);  // the element's copy assignment, as src/clones/clones_04.cpp declares it
 void fn_7100c9165c(void*, const void*);  // the element's move assignment, as src/clones/clones_04.cpp declares it
@@ -100,7 +99,6 @@ struct UnkElemA0Array_b42a3 {
     base::UnkAllocator* allocator;
 };
 
-void fn_7100c8b9c8(UnkElemA0Array_b42a3* self, u32 capacity);
 void fn_7100c8d58c(UnkElemA0_b42a3* self);
 void fn_7100c8d9c0(void*, const void*);  // as src/clones/ declares it
 void fn_7100c8e034(void*, const void*);  // as src/clones/ declares it

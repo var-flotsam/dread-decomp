@@ -1,10 +1,10 @@
 // Functions in the CSamusMovement unit that walk its state list (a u32 count at +0x2d18 followed
 // directly by the pointers, at +0x2d1c). Names and layouts are placeholders.
+#include "game/CComponent.h"
+#include "game/UnkTU39.h"
 #include "types.h"
 
 struct UnkHandleOwner_71010c4230;
-void fn_71010c4230(UnkHandleOwner_71010c4230* self);
-void fn_710002fa90(void* timer);
 struct UnkLinkList;
 void fn_71002aeb9c(UnkLinkList* list, UnkLinkList** slot);
 

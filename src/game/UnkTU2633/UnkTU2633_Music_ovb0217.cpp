@@ -2,6 +2,7 @@
 // while its state is 5. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 struct UnkMusicState_b0217 {
@@ -20,8 +21,6 @@ struct UnkMusicMgr_b0217 {
 };
 
 extern UnkMgr_0xf18* g_unk_71726bc560;
-
-void fn_7100fdb9e0(UnkMgr_0xf18*, u32, u32, f32, f32);
 
 void fn_7100fcf6bc() {
     if (!g_unk_71726bc560) {

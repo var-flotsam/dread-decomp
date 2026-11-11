@@ -1,6 +1,8 @@
 // Static initialiser of CFrozenAsFrostbiteComponent's unit.
 #include "../../game_5821e4/UnkStaticInit.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CGoliathXBurstProjectionBombMovement.h"
 #include "game/UnkTUProperty.h"
 
 using namespace unk_static_init;
@@ -17,12 +19,10 @@ struct UnkStatics_71007f80b0 {
     u8 field_0x188[8];
 };
 extern UnkStatics_71007f80b0 g_unk_7172720e00 __attribute__((visibility("hidden")));
-void fn_710058a2b8(void* self);
 extern char g_unk_7172720db8[];
 extern char g_unk_7172720db9[];
 extern UnkTunable g_unk_7172720dc0;
 extern void* g_unk_7101a740a0[];
-void fn_7100075104(void* self);
 
 void fn_71007f80b0() {
     InitHeaderIds(&g_unk_7172720e00.ids);

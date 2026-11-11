@@ -6,16 +6,16 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CBossAIComponent.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU2702.h"
+#include "game/UnkTU2704.h"
+#include "game/UnkTU341.h"
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
 
-void fn_710110cca4(void* self, void* arg);
-void fn_7101126af4(void* self);
-void fn_7100232c68(void* target);
 struct UnkZiplineLinkTarget_b49;
 struct UnkZiplineLink_b49;
-UnkZiplineLinkTarget_b49** fn_71003b0c4c(UnkZiplineLink_b49* self);
 
 struct UnkGobblerKey_b60;
 extern UnkGobblerKey_b60 g_unk_7101649fa8;  // reached through the GOT

@@ -3,14 +3,13 @@
 // 6 the one at +0x68) picks the branch to run. The tree (+0x10) starts a child (fn_71003aab64), drops a
 // pending one (fn_71003aad48) and is told when the node changes state (fn_71003aac0c). Names and layouts
 // are placeholders.
+#include "game/behaviortree/CBehaviorTree.h"
 #include "types.h"
 
 struct UnkSelectorTree_A2_b68;
 struct UnkSelectorNode_A2_b68;
-void fn_71003aab64(UnkSelectorTree_A2_b68*, UnkSelectorNode_A2_b68*);
 struct UnkInverterTarget_b66a2;
 struct UnkInverter_b66a2;
-void fn_71003aac0c(UnkInverterTarget_b66a2* target, UnkInverter_b66a2* node, s32 status);
 struct UnkStruct_71003aad48;
 bool fn_71003aad48(UnkStruct_71003aad48* self, void* key);
 

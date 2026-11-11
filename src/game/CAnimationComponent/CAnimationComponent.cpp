@@ -2,10 +2,10 @@
 // id of the component's list at +0x4d0 in turn (fn_71002a6bdc of the entry's word), then under the
 // key and the id -1; null when none does. CAnimationComponent's unit; the action set's lookup is
 // src/game/CActionSet.cpp's. Names and layouts are placeholders.
+#include "game/CActionSet.h"
 #include "types.h"
 
 struct UnkActionSetMap;
-void* fn_7100b8c61c(UnkActionSetMap* self, const u64* key1, const u64* key2);
 u64 fn_71002a6bdc(u32 value);
 
 struct UnkAnimIdNode {

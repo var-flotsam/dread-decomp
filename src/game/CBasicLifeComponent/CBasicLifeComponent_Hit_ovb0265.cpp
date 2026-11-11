@@ -2,15 +2,15 @@
 // component accept (vf_0x1d8, vf_0x1e0) or reject (vf_0x1e8) it, otherwise resolves it (vf_0x1a8). Names and layouts
 // are placeholders.
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CActorComponent.h"
+#include "game/CDamageSourceFactor.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 struct UnkRobotSoldierTable_A2_b69;
-f32 fn_71008c2de8(UnkRobotSoldierTable_A2_b69* table, u32 flags);
 struct UnkRequest;
 void fn_71008c1538(UnkRequest* request, f32 value);
-bool fn_710024fbc8(void* life);
 extern u64 g_unk_710164af70;
 
 struct UnkLifeHit_ovb0265 {

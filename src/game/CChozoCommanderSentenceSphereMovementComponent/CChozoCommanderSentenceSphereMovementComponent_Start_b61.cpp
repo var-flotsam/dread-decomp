@@ -4,6 +4,7 @@
 // timeline (+0x2e8) to the all-flags mask and registers itself with the game manager under g_unk_71726ca0e8.
 // Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CCollisionComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
@@ -12,7 +13,6 @@
 struct UnkSelf;
 void fn_7100ac3880(UnkSelf* self);  // as src/game/CChozoCommanderEnergyShardsSphereMovementComponent/fn_7100459e6c.cpp
 struct UnkStruct_71008618cc;
-void fn_71008618cc(void* self);  // as src/game/CEmmyWaveMovementComponent/fn_7100502628.cpp declares it
 struct UnkSentenceSphere_b61a2;
 void fn_710045b8e0(UnkSentenceSphere_b61a2* self);
 extern u64 g_unk_71726ca0e8 __attribute__((visibility("hidden")));

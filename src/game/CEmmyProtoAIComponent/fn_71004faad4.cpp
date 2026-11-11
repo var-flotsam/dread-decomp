@@ -3,6 +3,7 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/UnkTU811.h"
 #include "types.h"
 
 extern void* g_unk_7101a45710[];
@@ -39,7 +40,6 @@ struct UnkRecord : UnkComponent {
     UnkCallback field_0x2a6f8;
 };
 
-void fn_710053e5c0(UnkComponent* self);
 void fn_71004fd50c();
 
 void fn_71004faad4(UnkRecord* self) {

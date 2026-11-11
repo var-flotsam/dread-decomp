@@ -8,6 +8,8 @@
 #include "base/UnkDeferredSet.h"
 #include "base/UnkRefHandle.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CTriggerLogicAction.h"
+#include "game/GUI/CTutorialComposition.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -19,7 +21,6 @@ UnkRef fn_7100353be8(void* source);
 
 struct UnkTutorialComposition;
 struct UnkTutorialRequest;
-void fn_7100b8903c(UnkTutorialComposition* self, UnkTutorialRequest* request);
 
 struct UnkDemolitionBlockLife_b48;
 bool fn_71008c5970(UnkDemolitionBlockLife_b48* self);
@@ -81,9 +82,7 @@ void fn_71002aeb9c(UnkLinkList* list, UnkLinkList** slot);
 void fn_71002af070(UnkLinkList* list, UnkLinkList** slot);
 
 struct UnkLogicActionBase;
-void fn_7100a55ab8(UnkLogicActionBase*);
 struct UnkTutoExitAction_b47;
-void fn_7100a55ac8(UnkTutoExitAction_b47* self);
 
 extern char g_unk_7101a8e480[];
 extern void* g_unk_7101a33fa0[];

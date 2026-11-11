@@ -2,10 +2,10 @@
 // (fn_7100ed659c) and, when the handle is still live and the parameters ask for it (+0x14b), sets the
 // sound's level (+0x14c) at once (fn_7100105f94). Names are placeholders.
 #pragma once
+#include "game/UnkTU101.h"
 #include "types.h"
 
 struct UnkInterp_7100105f94;
-void fn_7100105f94(UnkInterp_7100105f94* self, s32 level, f32 time);
 
 struct UnkGunSoundRef_A5_b66 {
     UnkInterp_7100105f94* sound;

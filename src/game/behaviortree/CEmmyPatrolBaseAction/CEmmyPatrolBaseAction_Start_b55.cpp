@@ -4,6 +4,7 @@
 // fn_710051564c(self, 1). Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/behaviortree/CEmmyPatrolBaseAction.h"
 #include "types.h"
 
 struct UnkNodeAllocator_b55 {
@@ -72,8 +73,6 @@ struct UnkPatrolBase_b55 {
     u8 pad_0xd4[0x48];
     bool field_0x11c;
 };
-
-void fn_710051564c(UnkPatrolBase_b55* self, bool flag);
 
 void fn_7100515cc8(UnkPatrolBase_b55* self) {
     self->field_0x11c = false;

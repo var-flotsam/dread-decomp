@@ -3,12 +3,12 @@
 // weak handle at +0xb0 and the handle released, the string ids at +0x70, +0x60, +0x58, +0x40, +0x38 and +0x30
 // released, then the base's destructor fn_7100393ea0. Names are placeholders.
 #include "base/UnkDestructors.h"
+#include "game/behaviortree/CBaseAction.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 extern void* g_unk_7101a24aa8[];  // the node's vtable
 extern void* g_unk_7101a22d48[];  // the listener's vtable
-void fn_7100393ea0(void*);         // the base's destructor
 
 struct UnkSwitchAIModesDtor_ovb0092;
 template <>

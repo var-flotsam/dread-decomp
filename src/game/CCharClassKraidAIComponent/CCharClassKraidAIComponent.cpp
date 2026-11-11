@@ -2,6 +2,7 @@
 // the boss base constructor, the vtable, then eleven members constructed in place (the launch
 // patterns of src/game/CAcidBlobsLaunchPattern among them) and three flags. The fields are
 // addressed by offset; names are placeholders.
+#include "game/CDamageSourceFactor.h"
 #include "game/UnkBossAIComponent.h"
 #include "types.h"
 
@@ -11,7 +12,6 @@ struct UnkKraidAIComponent : UnkBossAIComponent {};
 
 struct UnkLaunchPattern_71005d69b8;
 struct UnkLaunchPattern_71005dfcc4;
-void fn_71008c2da8(void* member);
 void fn_71005eaafc(void* member);
 void fn_71005dc924(void* member);
 void fn_71005e56bc(void* member);

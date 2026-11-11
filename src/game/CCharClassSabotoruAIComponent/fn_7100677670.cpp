@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CCharClassSabotoruAIComponent::ESubspecies enum.
 #include "../../game_5821e4/UnkStaticInit.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTUProperty.h"
 
@@ -25,7 +26,6 @@ extern char g_unk_7172700820[];
 extern char g_unk_7172700821[];
 extern UnkTunable g_unk_7172700828;
 extern void* g_unk_7101a5e950[];
-void fn_7100075104(void* self);  // its destructor, as registered
 
 void fn_7100677670() {
     InitHeaderIds(&g_unk_7172700860.ids);

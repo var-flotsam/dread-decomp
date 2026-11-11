@@ -1,12 +1,12 @@
 // Unit 811 (hint CEmmyAIComponent): the base side check (fn_710110f3cc) refused when the navmesh cell's
 // edge on that side (fn_71002afbe4) points up steeply. Names and layouts are placeholders.
+#include "game/UnkTU2702.h"
 #include "types.h"
 #include "base/UnkVector.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
 
 struct UnkChozoRobotSoldierAI_b66a2;
-bool fn_710110f3cc(UnkChozoRobotSoldierAI_b66a2* self, u16 id, u32 a2, void* a3, void* a4, void* a5, u32 a6, u32 a7);
 
 bool fn_71005575c4(UnkChozoRobotSoldierAI_b66a2* self, u16 id, u8 side, void* a3, void* a4, void* a5, u32 a6, u32 a7) {
     UnkNavMeshManager* manager = g_unk_71726a4510;

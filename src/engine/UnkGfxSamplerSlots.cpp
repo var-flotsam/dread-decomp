@@ -6,6 +6,8 @@
 // are placeholders.
 #include "game/UnkGraphicsState.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU170.h"
+#include "game/UnkTU172.h"
 #include "types.h"
 
 // The default allocator (base/UnkDefaultAllocator.h) up to its slot 0x90: the free size, summed over
@@ -80,16 +82,12 @@ extern UnkPool g_unk_716e2a7580;  // the descriptors' memory
 extern u8 g_unk_716e2a76b8[];  // the sampler pool
 extern u8 g_unk_716e2a76e8[];  // the texture pool
 
-void* fn_7100153cd0();  // the device
 void* fn_7100153de0();
-void* fn_7100153df0();  // the texture builder
 void fn_71001604e0(void* builder, s32 format);
 // Allocates `size` bytes of a heap at an alignment, copying the old block's bytes when there is one.
 void* fn_7100153a10(UnkGfxHeap* heap, void* old, u64 size, u64 align);
-void fn_710015385c(UnkPool* pool, u64 size, s32 flags, void* device);
 // Reserves `size` bytes of a pool at the given alignment; returns their offset (declared without
 // its result in src/game_s7/fn_71001587f0.cpp).
-void fn_7100153968(UnkPool* pool, u64 size, u64 align);
 
 // NVN entry points (the device info query as src/game_s7/fn_71001587f0.cpp declares it).
 extern void (*g_unk_716e29ac78)(void* device, s32 name, s32* value);
@@ -150,8 +148,6 @@ static_assert(sizeof(UnkGfxSamplerSlot) == sizeof(UnkGraphicsSlot), "sampler slo
 static inline UnkGfxSamplerSlot& Slot(u32 group, u32 index) {
     return reinterpret_cast<UnkGfxSamplerSlot&>(g_unk_716e2a9730[group][index]);
 }
-
-void* fn_7100153d50();  // the context the unbind callback takes
 
 // A slot's default state: unbound values, every mode at its default, marked dirty.
 static inline void ResetSlot(UnkGfxSamplerSlot& s) {

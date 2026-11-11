@@ -8,6 +8,8 @@
 #include "game/UnkGlobal_710b372a98.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSlots.h"
+#include "game/UnkTU23.h"
+#include "game/UnkTU308.h"
 #include "types.h"
 
 using base::color::CColor4F;
@@ -145,9 +147,6 @@ void fn_71001c1030(UnkSlotsOwner_ovb0176* self, bool force, f32 dt) {
         fn_71001c113c(self, step);
     }
 }
-
-void fn_710021685c(void* sphere);
-void fn_7100014d94(void* self, u32 flag);
 
 struct UnkBlendInit_ovb0176 {
     CColor4F from;

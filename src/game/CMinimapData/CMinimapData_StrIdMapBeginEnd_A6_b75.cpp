@@ -1,9 +1,9 @@
 // Unit 2563 (tools/tu_map.py): begin/end slots of a CStrId-keyed flat map of 0x60-byte records
 // (destroyed by fn_7100e4a1d0). Shape in UnkStrIdIterBeginEnd_A6_b75.h.
 #include "UnkStrIdIterBeginEnd_A6_b75.h"
+#include "game/UnkTU2563.h"
 
 struct UnkRecord60;
-void fn_7100e4a1d0(UnkRecord60*);
 
 struct alignas(8) UnkMinimapRecord60_A6_b75 {
     u8 data[0x60];

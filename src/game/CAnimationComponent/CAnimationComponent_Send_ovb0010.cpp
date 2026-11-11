@@ -5,12 +5,12 @@
 // all-bits mask. Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CActionSet.h"
 #include "types.h"
 
 extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
 
 struct UnkActionSetMap;
-void* fn_7100b8c61c(UnkActionSetMap* self, const u64* key1, const u64* key2);
 
 struct UnkNamed_ovb0010 {
     u8 pad_0x0[0x30];

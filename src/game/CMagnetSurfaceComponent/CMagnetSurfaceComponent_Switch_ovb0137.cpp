@@ -4,9 +4,13 @@
 #include "base/color/CColor4F.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CChozoCommanderSentenceSphereAttack.h"
+#include "game/CMaterialFXComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkTU365.h"
 #include "game/UnkXformNode.h"
+#include "game/logic/collision/CCollider.h"
 #include "types.h"
 
 using base::color::CColor4F;
@@ -15,7 +19,6 @@ using base::math::UnkVector4D;
 
 struct UnkStruct_7100233684;
 base::reflection::UnkReflObject* fn_7100233684(UnkStruct_7100233684* self);
-void* fn_710043acb4(void* key);
 bool fn_7100199d88(void* table, const u64* key, u32* id);
 
 struct UnkRefl_fn_710092482c;
@@ -37,9 +40,7 @@ struct UnkMatrix44_7100078c9c {
 UnkMatrix44_7100078c9c fn_7100078cd8(const UnkVec3f& t);
 
 struct UnkTracker;
-UnkTracker* fn_710028aca8(void* link);
 struct UnkTriggerCollider_b0058;
-void fn_7100d36d30(UnkTriggerCollider_b0058* self, void* shape);
 
 struct UnkMagnetColorChange_b0086 {
     u32 kind;
@@ -56,7 +57,6 @@ struct UnkMagnetColorChange_b0086 {
 struct UnkMagnetFx_b0086;
 void fn_71009272c4(UnkMagnetColorChange_b0086* self, u32 index, bool flag, const UnkVector4D* from,
                    const UnkVector4D* to, f32 time);
-void fn_7100926aa0(UnkMagnetFx_b0086* fx, UnkMagnetColorChange_b0086* change);
 
 struct UnkSurfaceMaterial_ovb0137 {
     u8 pad_0x0[0x14c];

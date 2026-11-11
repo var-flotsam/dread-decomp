@@ -5,12 +5,12 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkStruct_71008bca30;
-void fn_71011acd10(UnkStruct_71008bca30* self);
 
 extern void* g_unk_7101a88c60[];  // the component's vtable
 extern void* g_unk_7101a88cb0[];  // the perception's base vtable

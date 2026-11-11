@@ -6,6 +6,7 @@
 #include "base/UnkRegistry.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU25.h"
 #include "types.h"
 
 extern UnkRegistry_0x70* g_unk_7101d4b5a0;
@@ -16,7 +17,6 @@ struct UnkPathPairTemp_b45a1 {
     void* path;
     ~UnkPathPairTemp_b45a1() { fn_710008d8e8(reinterpret_cast<UnkStrIdPathPair*>(this)); }
 };
-UnkPathPairTemp_b45a1 fn_710001ab24(void* path);
 
 struct UnkCurveObject_b45a1 {
     virtual ~UnkCurveObject_b45a1();

@@ -5,10 +5,10 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/UnkTU226.h"
 #include "types.h"
 
 extern char g_unk_7101a1e278[];
-void fn_710019e76c(void* self);
 
 struct UnkIdentity44_224_b69a1 {
     f32 m[16];

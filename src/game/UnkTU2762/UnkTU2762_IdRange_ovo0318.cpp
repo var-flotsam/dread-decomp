@@ -3,6 +3,7 @@
 // Names and layouts are placeholders.
 #include "base/UnkHashStream.h"
 #include "base/UnkStrIdPathPair.h"
+#include "base/file/CThreadSafeDevice.h"
 #include "base/global/CRntString.h"
 #include "types.h"
 
@@ -18,7 +19,6 @@ struct UnkStrPair_0x10 {
     void* b;
 };
 
-void fn_710008d4c0(UnkStrPair_0x10* s, const UnkEntry_0x30* e);
 void fn_710007c144(UnkHashStream_0x38*);
 
 // The file read into memory: the in-memory file and two words the opener sets.

@@ -20,14 +20,16 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkMapMenuController.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU1689.h"
+#include "game/UnkTU2547.h"
+#include "game/UnkTU2566.h"
+#include "game/UnkTU39.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
 using namespace base::global;
 
 struct UnkIdValuesArray;
-
-void fn_7100b48af4(UnkIdValuesArray* self, u32 capacity);
 
 // A string id that starts out as the empty id.
 struct UnkSlotId_b0200 {
@@ -246,7 +248,6 @@ struct UnkKeyOwner_b0200 {
 // As src/game/CMinimapManager/fn_7100ea5c40.cpp declares it.
 struct UnkRecord;
 struct UnkRecordBuckets;
-UnkRecord** fn_7100eb3814(UnkRecordBuckets* set, u32 bucket);
 UnkKeyIter_b0200 fn_7100eb39f0(UnkKeyBuckets_b0200* buckets, const CStrId* key);
 void fn_7100e94608(UnkKeyOwner_b0200* self, u32 unused, void* arg, void* value);
 
@@ -381,7 +382,6 @@ u32 fn_7100e9be04(UnkSelf_b0200* self, base::reflection::UnkReflObject* object) 
 }
 
 struct UnkIdValuesArray;
-void fn_7100b48af4(UnkIdValuesArray* self, u32 capacity);
 
 struct UnkIdValues_b0200 {
     base::global::UnkStringData* id;
@@ -443,8 +443,6 @@ UnkIdValuesVector_b0200* fn_7100eafb70(UnkIdValuesVector_b0200* self, const UnkI
 }
 
 struct UnkDoorRegistry_b61;
-void fn_7100ddb6dc(UnkDoorRegistry_b61* self);
-bool fn_7100ddb938(UnkDoorRegistry_b61* self);
 extern UnkDoorRegistry_b61* g_unk_71726bee10;
 
 struct UnkNamedDef_b0200c : UnkIdSource {
@@ -554,7 +552,6 @@ void fn_7100eafeb8(base::UnkVector<UnkIdWords_b0200c>* self, UnkIdWords_b0200c* 
     ++self->count;
 }
 
-bool fn_710002fb70(void* timer);
 bool fn_7100deabc4(UnkGameManager* manager);
 struct UnkMinimapOwner;
 void fn_7100e8f6bc(UnkMinimapOwner* self);

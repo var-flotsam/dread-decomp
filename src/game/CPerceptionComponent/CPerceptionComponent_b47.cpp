@@ -1,11 +1,11 @@
 // CPerceptionComponent unit: after the base update, every perceiver in the list at +0x48 copies the owner's
 // three sensing parameters. Names and layouts are placeholders.
+#include "game/CComponent.h"
 #include "types.h"
 
 typedef u32 __attribute__((may_alias)) a_u32;
 
 struct UnkParent;
-void fn_71010c424c(UnkParent*);
 
 struct UnkPerceptionParams {
     u8 pad_0x0[0x44];

@@ -14,11 +14,20 @@
 #include "base/color/CColor4F.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/global/timeline/CEvent.h"
 #include "base/math/CVector4D.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "base/tunable/CTunable.h"
 #include "engine/UnkGraphicsSystem.h"
+#include "game/UnkTU174.h"
+#include "game/UnkTU177.h"
+#include "game/UnkTU180.h"
+#include "game/UnkTU182.h"
+#include "game/UnkTU194.h"
+#include "game/UnkTU223.h"
+#include "game/UnkTU230.h"
 #include "types.h"
 
 using base::color::CColor4F;
@@ -358,7 +367,6 @@ static_assert(sizeof(UnkGraphicsSystem) == 0x3183718, "graphics system size");
 bool fn_7100132a10();  // whether the console is docked (the 1.0 scale) or handheld (0.8)
 u32 fn_7100132f80();   // the display width
 u32 fn_7100132f90();   // the display height
-bool fn_71001598c0();
 u32 fn_71001598d0(u32 max, u32* sizes);  // the display sizes (width, height pairs) and their count
 void fn_7100159910();
 void fn_7100159920();
@@ -373,31 +381,16 @@ void fn_710015be40(u32 value);
 void fn_710016eae4();
 
 // Render state setters of the device layer (the last argument is always true here).
-void fn_71001606f0(s32 a, s32 b, bool c);
-void fn_7100160810(s32 a, s32 b, bool c);
-void fn_7100160890(s32 a, s32 b, bool c);
-void fn_7100160990(s32 a, s32 b, bool c);
-void fn_7100160ab0(u32 a, s32 b, u32 c);
 void fn_7100160bd0(u32 a, f32 value, u32 c);
 void fn_7100160c90(u32 a, f32 value, u32 c);
-void fn_7100160d50(u32 a, s32 b, u32 c);
 void fn_7100160e50(s32 a, s32 b, bool c);
 void fn_710015a0e0(u32 value);
 void fn_710015a260(u32 value);
-void fn_710015a3e0(u32 value);
-void fn_710015a500(u32 a, u32 b);
-void fn_710015a680(u32 value);
 void fn_710015a760(u32 value);
-void fn_710015a860(u32 value);
-void fn_710015a8c0(u32 value);
-void fn_710015aa20(u32 value);
-void fn_710015ab00(u32 value);
 void* fn_710015db80();
 void fn_710015d900(void* a, u32 b, u32 c);
 // Sets `count` vectors (four floats each, or one float) of a uniform at `location` of a program state.
-void fn_710015e1f0(void* state, u32 stage, u64 location, u32 count, const f32* values);
 // The location of uniform `id` of a program's stage, if it has one.
-bool fn_71001aa0b4(void* program, u32 stage, u32 id, u64* location);
 
 // The program registry (reached through the GOT; src/game_lo/fn_710014c790.cpp) and the overlay
 // program's key.
@@ -1123,17 +1116,13 @@ void fn_710016999c(UnkRegistry_710014c790* self);
 void fn_710016a414();
 void fn_710019e088(UnkGfxSceneRegistry* self);
 void fn_710019fe7c(UnkDecalResourceMgr* self);
-void fn_710019bd2c(void* camera);
 void fn_710019c198(void* camera, bool half_pixel);  // src/engine/UnkScreenCorners.cpp
 void fn_710016e75c();
 void fn_710019a16c();
 bool fn_71001587f0();
 void fn_7100132f70(f32 scale, u32 width, u32 height, u32 render_width, u32 render_height);
-u32 fn_7100132fc0();
-void fn_7100159490(s32 x, s32 y, s32 width, s32 height, f32 min_depth, f32 max_depth);
 void fn_7100066674(void* event, bool flag);
 void fn_7100066744(void* thread, const char* name, void (*entry)(void*), u32 a, u32 b, void* arg);
-void fn_7100066828(void* thread, u32 a);
 void fn_71001c7d80(void* arg);  // the loading screen thread
 
 // The render scale from the settings (g_unk_7101a1e75c is the resolution scale).
@@ -1363,20 +1352,13 @@ void fn_71001c9718(UnkGraphicsSystem* self, UnkGfxSettings* settings, void* /*un
 
 // The draw modes (fn_71001cb604).
 void fn_710015a7d0(u32 value);
-void fn_710015aa80(u32 value);
-void fn_710015f770(s32 slot, void* object, bool clear);
 void fn_710015b160();
 s32 fn_710015c460();
-u32 fn_7100167cc0(u32 index);  // a uniform id
 // The location of the uniform named `name` of a program's stage, 0 when it has none.
-void fn_71001aa0cc(void* program, u32 stage, const UnkGfxStrId* name, u64* location);
 // Sets `count` matrices of a uniform at `location` of a program state.
 void fn_710015e4b0(void* state, u32 stage, u64 location, u32 count, u32 a, const UnkMatrix44* values, u32 b);
 void fn_710019c474(void*, const UnkMatrix44*);
 void fn_710015bf40(UnkMatrix44*, f32);
-void fn_7100161800(void* object);
-void fn_7100154420(void* object);
-f32 fn_7100132fa0();
 f32 fn_7100132fb0();  // the display's aspect correction
 void fn_71001ccdd8(UnkGraphicsSystem* self);
 void fn_71001cd3a0(UnkGraphicsSystem* self);

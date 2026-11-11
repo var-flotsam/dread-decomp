@@ -3,6 +3,8 @@
 // and otherwise to the game manager (g_unk_7101d47310). Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2730.h"
+#include "game/UnkTU2737.h"
 #include "types.h"
 
 struct UnkObj_71011a50cc {
@@ -12,9 +14,7 @@ struct UnkObj_71011a50cc {
 
 extern UnkObj_71011a50cc* g_unk_71727bc260;
 extern void* g_unk_7101d47330;
-bool fn_7101196fd8(void*);
 void fn_7101197e2c(void* gui, f32 value);
-void fn_71011a5798(UnkObj_71011a50cc* self, u32 index, f32 value);
 void fn_7100dec1d8(UnkGameManager* self, f32 value, bool flag);
 
 void fn_7101190784(f32 value) {

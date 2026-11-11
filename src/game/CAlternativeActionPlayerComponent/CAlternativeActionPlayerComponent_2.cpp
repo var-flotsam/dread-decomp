@@ -4,18 +4,16 @@
 // fn_7100712538, +0x98: fn_71007124d8), then the post-construction virtual call (slot 3). The fields
 // are addressed by offset. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CAlternativeActionPlayerComponent.h"
+#include "game/CComponent.h"
 
 struct UnkStateObject;
-void fn_71010c4148(UnkStateObject* self);
 extern void* g_unk_7101a6c0b8[];
 extern void* g_unk_7101a22d48[];
 
 struct UnkAlternativeActionPlayer {
     void** vtable;
 };
-
-void fn_71007124d8(UnkAlternativeActionPlayer* self);
-void fn_7100712538(UnkAlternativeActionPlayer* self);
 
 template <class T>
 static inline T& At(void* base, u64 offset) {

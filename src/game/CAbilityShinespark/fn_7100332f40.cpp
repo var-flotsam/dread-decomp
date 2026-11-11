@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the EShinesparkTravellingDirection, TShinesparkTravellingDirectionFlagSet, ECoolShinesparkSituation, TCoolShinesparkSituation.
 #include "../../game_s7/UnkStaticInitS7.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "game/UnkTUProperty.h"
@@ -25,7 +26,6 @@ extern char g_unk_71726b0370[];
 extern char g_unk_71726b0371[];
 extern UnkTunable g_unk_71726b0378;
 extern void* g_unk_7101a23448[];
-void fn_7100075104(void* self);  // its destructor, as registered
 extern UnkEnumType g_unk_71726b0410;
 void fn_7100327688(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71003272fc();

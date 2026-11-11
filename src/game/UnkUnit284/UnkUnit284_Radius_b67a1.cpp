@@ -4,10 +4,10 @@
 // Names and layouts are placeholders.
 #include <float.h>
 
+#include "game/UnkTU253.h"
 #include "types.h"
 
 struct UnkSource_710020c780;
-bool fn_71001c32bc(UnkSource_710020c780* source, const u64* key, u32 flag, f32* out);
 void fn_71001c3200(UnkSource_710020c780* source);
 
 struct UnkOwner284_b67a1 {

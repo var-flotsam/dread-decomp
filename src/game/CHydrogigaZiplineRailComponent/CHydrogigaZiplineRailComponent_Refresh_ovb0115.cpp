@@ -2,6 +2,10 @@
 // (+0x3d): the owner's timeline key (g_unk_710164b218 dead, g_unk_710164b220 alive), every linked part
 // (as CHydrogigaZiplineRailComponent_b49.cpp walks them) and the material 0xb712c6b2c8a50af6 of the
 // owner's model, with a 0.2 fade. Names and layouts are placeholders.
+#include "game/CBossAIComponent.h"
+#include "game/CHydrogigaZiplineComponent.h"
+#include "game/UnkTU253.h"
+#include "game/UnkTU883.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -10,16 +14,11 @@ extern u64 g_unk_710164b220;
 extern const f32 g_unk_710164b228[] __attribute__((visibility("hidden")));
 extern const f32 g_unk_710164b238[] __attribute__((visibility("hidden")));
 
-void fn_71001c3040(void* object, u64 hash, u32 a, const f32* values, u32 count, f32 f);
-
 // Typed as CHydrogigaZiplineRailComponent_b49.cpp declares them (one signature per symbol).
 struct UnkZiplineRail_b49;
 struct UnkZiplineLink_b49;
 struct UnkZiplineLinkTarget_b49;
-UnkZiplineLinkTarget_b49** fn_71003b0c4c(UnkZiplineLink_b49* self);
 struct UnkZiplineRailPart_b49;
-UnkZiplineRailPart_b49* fn_71005c3084(void* object);
-void fn_710091c994(UnkZiplineRailPart_b49* self, bool dead);
 
 struct UnkZiplineTarget_ovb0115 {
     u8 pad_0x0[0x10];

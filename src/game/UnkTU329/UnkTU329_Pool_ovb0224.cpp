@@ -9,6 +9,8 @@
 
 #include "base/UnkDefaultAllocator.h"
 #include "base/UnkVector.h"
+#include "base/global/timeline/CEvent.h"
+#include "game/UnkTU182.h"
 #include "types.h"
 
 // A pooled slot (0x18 bytes): the object it holds, a two-word key and an in-use flag.
@@ -59,8 +61,6 @@ struct UnkMovieUnit327_b50;
 struct UnkMovieUnit322_b50;
 void fn_7100222bb0(UnkMovieUnit327_b50* self);
 void fn_710021c808(UnkMovieUnit322_b50* self);
-void fn_710006686c(void* thread);
-void fn_7100160590(u64 slot);
 void fn_7100081378(void* allocator);
 extern char g_unk_7101a20630[];  // the pool owner's vtable base
 

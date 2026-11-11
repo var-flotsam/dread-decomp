@@ -5,13 +5,13 @@
 #include "base/UnkAtExit.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU102.h"
+#include "game/UnkTU2730.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 extern void* g_unk_7101d47330;
-u32 fn_7100106820(const char* name);
-void fn_7101199ac4(void* gui, void* target, const u32* mask, f32 a, f32 b);
 
 // The id table (fn_7100031894 builds it; as src/game/CAbilityEnergyWave/CAbilityEnergyWave_Effect_ovb0022.cpp).
 struct UnkGameManagerIdTable {

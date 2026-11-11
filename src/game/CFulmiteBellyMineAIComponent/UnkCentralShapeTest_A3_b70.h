@@ -11,24 +11,23 @@
 #include "base/math/CVector.h"
 #include "base/math/UnkZeroVector3.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/UnkTU2509.h"
+#include "game/UnkTU2547.h"
+#include "game/UnkTU365.h"
 #include "types.h"
 
 struct UnkDoorRegistry_b61;
-void fn_7100ddb6dc(UnkDoorRegistry_b61* self);
 extern UnkDoorRegistry_b61* g_unk_71726bee10;
 struct UnkUnit2547;
 struct UnkCentralUnit;
-UnkCentralUnit* fn_7100ddb768(UnkUnit2547* self);
 struct UnkBreakablePart;
 struct UnkBreakableTarget;
-UnkBreakableTarget** fn_71002a76a4(UnkBreakablePart* part);
 
 struct UnkRefl_fn_710028aca8;
 template <>
 base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRefl_fn_710028aca8>(void*);
 
 struct UnkShapeTester_A5_b68;
-void fn_7100d5134c(UnkShapeTester_A5_b68* self);
 extern UnkShapeTester_A5_b68* g_unk_71726a47a0;
 
 // Returned in memory (not trivially copyable); only bit 0 of the first word is read.

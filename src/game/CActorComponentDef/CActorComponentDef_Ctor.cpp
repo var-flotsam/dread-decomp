@@ -1,13 +1,13 @@
 // From unit 343 (CActorComponentDef): a constructor over the base fn_7100023838 builds (vtable
 // g_unk_7101a20ba8 + 0x10): two string ids copied from the empty id g_unk_7101d470e0, a cleared word
 // at 0x18, the bytes 0x20 and 0x21 set and a cleared pointer at 0x28. Names are placeholders.
+#include "base/core/CBaseObject.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 extern char g_unk_7101a20ba8[];
-void fn_7100023838(void* self);  // as src/base/tunable/CTunable/fn_7100138090.cpp declares it
 
 struct UnkComponentDefEntry {
     void* vtable;

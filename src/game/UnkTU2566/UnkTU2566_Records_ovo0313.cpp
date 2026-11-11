@@ -3,6 +3,8 @@
 // table of ids and words (fn_7100e98348). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2565.h"
+#include "game/UnkTU2566.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -22,8 +24,6 @@ struct UnkMmOwner_o0313 {
 
 const base::global::CStrId* fn_7100de9bf8(UnkGameManager* self);
 // Declared void elsewhere; it returns the item count, read here through a typed pointer.
-void fn_7100e791a4(void* self, void* arg, u32 kind, u32 a, void* b);
-void fn_7100e951d4(UnkMinimapOwner* self, u32 count, void* items, u32 field_0x3);
 extern u8 g_unk_71727cc99c[] HIDDEN;
 
 void fn_7100e95130(UnkMapData* map, u64 id) {

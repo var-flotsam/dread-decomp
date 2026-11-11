@@ -4,6 +4,7 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "base/global/timeline/CEvent.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -19,7 +20,6 @@ struct UnkFXLinkEvent {
     UnkStringData* field_0x40;
 };
 
-void fn_7100067ea4(void* self);  // the base constructor
 extern void* g_unk_7101aa0f58[];
 
 void fn_7100bb2894(UnkFXLinkEvent* self) {

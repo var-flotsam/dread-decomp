@@ -5,7 +5,9 @@
 
 #include "base/UnkVector.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2656.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 struct UnkSingleton2595_b0225 {
@@ -30,7 +32,6 @@ static inline UnkSingleton2595_b0225* Singleton2595() {
 }
 
 struct UnkVec;
-void fn_7101053850(void* effects, UnkVec* position, u32 flag, f32 duration, f32 scale);
 
 // The channel mask as src/base/reflection/reflection_environment_ovb0056.cpp defines it.
 struct UnkLoadingMask {
@@ -48,7 +49,6 @@ inline const UnkLoadingMask& UnkLoadingMaskAll() {
     return s;
 }
 extern void* g_unk_71726bc560;
-void fn_7100fd7b44(void* manager, UnkLoadingMask channels, UnkLoadingMask mask, f32 time);
 
 struct UnkVec3_b0225 {
     u64 xy;

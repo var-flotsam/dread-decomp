@@ -10,10 +10,12 @@
 #include "base/math/CVector4D.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CBossAIComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkCameraCtrl.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkSlots.h"
+#include "game/UnkTU0.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -69,7 +71,6 @@ UnkZiplineLinkTarget_b49** fn_71003b0c4c(UnkZiplineLink_b49* link) {
 
 struct UnkZiplineLink_b49;
 struct UnkZiplineLinkTarget_b49;
-UnkZiplineLinkTarget_b49** fn_71003b0c4c(UnkZiplineLink_b49*);
 struct UnkDoorLock;
 UnkDoorLock* fn_71002af860(UnkWeakTarget*);
 void fn_71008d564c(UnkDoorLock* door, u32 value, const CStrId* id);
@@ -257,7 +258,6 @@ counted:
 
 struct UnkSelf;
 void fn_71003ad8e4(UnkSelf* self);
-void fn_7100000790(const char* name, const char* fmt, ...);
 
 struct UnkBossAITimers_ovb0102 {
     u8 pad_0x0[0x147f4];
@@ -396,7 +396,6 @@ extern UnkModeFlags* g_unk_71726bc570;
 
 bool fn_7100dfbe3c(UnkGameManager*);
 void fn_7100dfaf88(UnkGameManager* self, void* name, const CRntString& tag, bool flag);
-void fn_7100000790(const char* name, const char* fmt, ...);
 void fn_710007f564(void*, const char*);
 
 // The pooled data behind an id as its text accessor sees it: the text at +0x10 and a count of the

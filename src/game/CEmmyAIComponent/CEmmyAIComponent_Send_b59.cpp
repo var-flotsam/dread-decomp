@@ -5,15 +5,14 @@
 // (src/game_s2/UnkSpitSend.h). Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CAnimationComponent.h"
+#include "game/CCharacterMovement.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
-
-bool fn_7100979ef0(void* tracked);
 
 // As in src/game/CGoliathXBurstProjectionBombsAttack/CGoliathXBurstProjectionBombsAttack_Send_b57.cpp.
 struct UnkStruct_710117af10;
 struct UnkCls_710117af10;
-bool fn_710117af10(UnkStruct_710117af10* self, UnkCls_710117af10** name, bool skipBusy);
 extern UnkCls_710117af10* g_unk_71726df420;  // reached through the GOT
 
 struct UnkEmmySearchOwner_b59a3 {

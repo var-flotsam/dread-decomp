@@ -3,6 +3,7 @@
 #include "base/UnkDeferredSet.h"
 #include "base/UnkStrIdTable.h"
 #include "base/global/CRntString.h"
+#include "game/CPickableItemComponent.h"
 #include "types.h"
 #include "base/global/CStrId.h"
 
@@ -41,7 +42,6 @@ struct UnkAllocator {
 };
 
 struct UnkTree;
-void fn_71009d3dc4(void* root, UnkTree* tree);
 
 struct UnkTree {
     base::UnkDeferredSet<void>* root;

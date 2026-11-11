@@ -4,6 +4,7 @@
 // through its weak handle at +0x90, which the end drops. Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CScorpiusAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game_s2/UnkParams.h"
@@ -146,7 +147,6 @@ void fn_710068872c(UnkGasAttack* self) {
         SendFacing(owner, target);
 }
 
-void fn_7100686960(UnkGasAttack* self, const void* name, u32 arg, f32 a, f32 b);
 extern __attribute__((visibility("hidden"))) char g_unk_7172703308[];
 
 // In state 4, when the track allows the attack to succeed: fn_7100686960 with the name at

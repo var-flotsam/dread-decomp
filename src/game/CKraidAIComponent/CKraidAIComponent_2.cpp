@@ -6,6 +6,8 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU1501.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 struct UnkRequest;
@@ -38,10 +40,8 @@ struct UnkKraidAI2 {
     bool field_0x14a14;
 };
 
-void fn_7101105c90(UnkKraidAI2* self, void* arg, UnkKraidRequest* request);
 struct UnkVec3;
 void fn_710007b444(void* dst, const UnkVec3* value);
-bool fn_71009e6434(UnkHelper* helper);
 void fn_71008c1538(UnkRequest* request, f32 value);
 
 void fn_7100600b94(UnkKraidAI2* self, void* arg, UnkKraidRequest* request) {

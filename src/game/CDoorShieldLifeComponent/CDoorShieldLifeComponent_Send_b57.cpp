@@ -6,17 +6,17 @@
 // gives the owner's weak target (fn_71002b3b84) a second hash (fn_71009c0f1c) and, when the time is
 // not positive, calls fn_71008de71c with the delay. Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CActorComponent.h"
+#include "game/CNavMeshItemComponent.h"
+#include "game/UnkTU372.h"
 #include "types.h"
 
 struct UnkStruct_710024fa0c;
-void fn_710024fa0c(UnkStruct_710024fa0c*, bool);
 
 struct UnkStruct_7101176ea8;
 void* fn_7101176d34(UnkStruct_7101176ea8* self, void* arg);
 
 struct UnkWeakTarget;
-void* fn_71002b3b84(UnkWeakTarget*);
-void fn_71009c0f1c(void* object, u64 id);
 
 struct UnkDoorShieldOwner_b57 {
     u8 pad_0x0[0x220];

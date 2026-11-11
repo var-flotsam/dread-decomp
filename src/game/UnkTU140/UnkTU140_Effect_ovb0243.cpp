@@ -10,14 +10,13 @@
 #include "base/global/CStrId.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSceneObject.h"
+#include "game/UnkTU32.h"
 #include "types.h"
 
 extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
 
 extern char g_unk_7101a1cbe8[];
 void fn_71001fae8c(void* sub, const base::global::CStrId* name);
-void fn_71000255c4(void* member);
-void fn_7100025884(void* member, void* owner);
 
 // A counted reference to a resource, set as base::core::CAssetLink's (src/base/core/CAssetLink.cpp).
 static inline void SetCountedRef(UnkCountedResource*& ref, UnkCountedResource* res) {

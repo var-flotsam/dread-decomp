@@ -1,6 +1,7 @@
 // CWeightActivatedPlatformSmartObjectComponent unit (tools/tu_map.py): while the component is enabled
 // (+0x558), runs fn_7100a0a2dc when switched on and the object at +0x190 is not in state 6, or
 // fn_7100a09cd4 when switched off and there is no object or it is in state 6. Names are placeholders.
+#include "game/CWeightActivatedPlatformSmartObjectComponent.h"
 #include "types.h"
 
 struct UnkWeightPlatformState_b49a4 {
@@ -16,7 +17,6 @@ struct UnkWeightPlatform_b49a4 {
 };
 
 void fn_7100a0a2dc(UnkWeightPlatform_b49a4* self);
-void fn_7100a09cd4(UnkWeightPlatform_b49a4* self);
 
 bool fn_7100a0d480(UnkWeightPlatform_b49a4* self, bool on) {
     if (self->enabled) {

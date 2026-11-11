@@ -8,10 +8,18 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkTunableRegistry.h"
+#include "base/snd/CSoundSystem.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2669.h"
+#include "game/UnkTU2677.h"
+#include "game/UnkTU99.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -21,9 +29,6 @@ struct UnkSoundMgr;
 struct UnkSoundHandle_b46a1;
 struct UnkStruct_71002fda50;
 
-s32 fn_71010c0270(lua_State* L, const char* fmt, ...);
-int fn_71010c0b40(lua_State* L, const char* fmt, ...);
-s32 fn_71010c0ad0(lua_State* L, int first, int count, const char* format, ...);
 extern UnkSoundMgr* g_unk_7101d4d820;
 
 // ---- game manager, one name key ----
@@ -57,7 +62,6 @@ s32 fn_7101082ab0(lua_State* L) {
 
 // ---- sound manager ----
 void fn_7100108b90(char* self, u32 id, const UnkSoundHandle_b46a1& handle, f32 value);
-void fn_71000fbe1c(void* self, u32 a, f32 b, f32 c);
 
 s32 fn_710108e3a0(lua_State* L) {
     s32 id;
@@ -141,7 +145,6 @@ s32 fn_71010771d0(lua_State* L) {
 }
 
 void* fn_7100df5440(UnkGameManager* manager);
-void fn_71002fda50(UnkStruct_71002fda50* self, bool all, bool force_off);
 
 s32 fn_7101093a90(lua_State* L) {
     if (void* object = fn_7100df5440(g_unk_7101d47310)) {
@@ -206,8 +209,6 @@ s32 fn_710107a070(lua_State* L) {
 
 // ---- the music manager singleton, created on first use ----
 extern void* g_unk_71726bc560;
-f32 fn_7100fd7b3c(void* manager);
-void fn_7100fd7af8(void* manager, f32 level, f32 time);
 void fn_7100fd8404(void* manager, bool flag, f32 value);
 
 static inline void* MusicManager() {
@@ -237,7 +238,6 @@ struct UnkMusicVtable_b0157 {
     virtual void vf_0x8();
     virtual void vf_0x10(f32 value);
 };
-void fn_710010806c(UnkSoundMgr* self, f32 value);
 
 s32 fn_710108e130(lua_State* L) {
     f32 value;
@@ -350,7 +350,6 @@ s32 fn_7101093c10(lua_State* L) {
 // ---- other singletons, created on first use ----
 struct UnkScriptManager_ovb0085;
 extern UnkScriptManager_ovb0085* g_unk_71727bed90;
-void fn_710109d810(UnkScriptManager_ovb0085* self);
 void fn_710109d890(UnkScriptManager_ovb0085* self, CRntString* name);
 
 s32 fn_7101077240(lua_State* L) {
@@ -393,8 +392,6 @@ s32 fn_710108b170(lua_State* L) {
 }
 
 extern void* g_unk_7101d47368;
-void fn_7100d8ced8(void* self);
-void fn_7100d8efd0(void* self, bool a, bool b, bool c);
 
 s32 fn_7101083db0(lua_State* L) {
     bool third = false;
@@ -424,7 +421,6 @@ struct UnkHolder_0x100_b0157 {
 };
 
 extern char* g_unk_71726b2398;
-void fn_71011a664c(char* instance);
 
 s32 fn_710107cb80(lua_State* L) {
     UnkHolder_0x100_b0157* holder = reinterpret_cast<UnkHolder_0x100_b0157*>(g_unk_71726b2398);

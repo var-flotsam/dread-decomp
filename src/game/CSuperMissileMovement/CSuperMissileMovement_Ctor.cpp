@@ -2,11 +2,11 @@
 // +0x448, the vtable, the colour at +0x4d8 set to (0, 1, 0.1, 1) through the colour's assignment, a set
 // flag at +0x4e8, then virtual slot 3. Names and layouts are placeholders.
 #include "base/color/CColor4F.h"
+#include "game/CMissileMovement.h"
 #include "types.h"
 
 struct UnkSuperMissileMovement;
 struct UnkMissileMovement;
-void fn_7100aba0c0(UnkMissileMovement* self);
 extern void* g_unk_7101a96378[];
 
 struct UnkSuperMissileMovement {

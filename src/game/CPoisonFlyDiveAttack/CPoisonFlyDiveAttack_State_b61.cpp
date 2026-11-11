@@ -3,11 +3,10 @@
 // (as src/game_s2/UnkSpitSend.h); state 4 hands the owner's +0x298 a kind-5 block (game_s2/UnkParams.h)
 // carrying the vector at +0x48; state 5 goes on in fn_7100631c90. Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CPoisonFlyDiveAttack.h"
 #include "game/UnkActor.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
-
-void fn_7100631c90(void* self);
 
 struct UnkPoisonFlyTrack_b61 {
     u8 pad_0x0[0x30];

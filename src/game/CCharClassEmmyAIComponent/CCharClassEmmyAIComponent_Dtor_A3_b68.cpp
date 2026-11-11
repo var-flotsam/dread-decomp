@@ -3,6 +3,7 @@
 // (0x7101a480a8), the string ids at +0x618 and +0x608, the member at +0x510 (fn_7100504bcc), then the base destructor fn_7100416e80. Names are
 // placeholders.
 #include "base/UnkDestructors.h"
+#include "game/CCharClassBehaviorTreeAIComponent.h"
 #include "types.h"
 
 extern void* g_unk_7101a480a8[];
@@ -10,7 +11,6 @@ extern void* g_unk_7101a480a8[];
 char* fn_7100504bcc(char* p0);
 // As src/clones/clones_01.cpp declares it.
 struct UnkStruct_7100416e80;
-void fn_7100416e80(UnkStruct_7100416e80*);  // as the other CCharClass*AIComponent destructors declare it
 
 using base::UnkStrIdMember;
 

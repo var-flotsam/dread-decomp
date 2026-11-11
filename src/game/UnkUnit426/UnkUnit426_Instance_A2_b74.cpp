@@ -4,6 +4,7 @@
 // word, then the final vtables, the cleared buffer pair at +0x68, +0x78, growth 10 / flags 14, the default
 // allocator and an empty resource), then hands it to fn_71002f66c8. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU426.h"
 #include "types.h"
 
 struct UnkResourceManager;
@@ -11,7 +12,6 @@ extern UnkResourceManager* g_unk_71726ae8a8;
 extern char g_unk_7101a222e8[];
 extern void* g_unk_7101a22398[];
 extern void* g_unk_7101a22378[];
-void fn_71002f75ac(void* self, void* arg, u32 flags);
 void fn_71002f66c8(UnkResourceManager* self);
 
 struct UnkUnit426Instance_A2_b74 {

@@ -5,6 +5,7 @@
 // vtable, cleared), then the music trigger base (fn_71011867d4). Names and layouts are placeholders.
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU2725.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -16,8 +17,6 @@ extern char g_unk_7101aa0190[];  // the parts'
 extern char g_unk_7101aa01f0[];
 extern char g_unk_7101aa0250[];
 extern void* g_unk_7101a9cd68[];  // the part base's
-
-void fn_71011867d4(void* self);  // the music trigger base's destructor
 
 struct UnkRewardsPartRaw_b43a3 {
     char* vtable;

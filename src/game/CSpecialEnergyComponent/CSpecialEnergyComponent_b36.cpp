@@ -1,6 +1,7 @@
 // Functions in the CSpecialEnergyComponent unit (tools/tu_map.py). Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU1501.h"
 #include "types.h"
 
 struct UnkEnergyHolder {
@@ -21,8 +22,6 @@ struct UnkSpecialEnergyComponent {
     u8 pad_0x0[0x30];
     UnkSpecialEnergyActor* actor;  // 0x30
 };
-
-bool fn_71009e1390(void* obj);
 
 // True when the owner is in a CCharClassMakingNoiseTrack track (only asked when fn_71009e1390
 // holds for its +0x208), else whether its energy holder has more than FLT_EPSILON left.

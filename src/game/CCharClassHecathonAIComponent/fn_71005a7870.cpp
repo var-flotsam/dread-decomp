@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CCharClassHecathonAIComponent::ESubspecies enum.
 #include "../../game_5821e4/UnkStaticInit.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTUProperty.h"
 
@@ -25,7 +26,6 @@ extern char g_unk_71726e8cf8[];
 extern char g_unk_71726e8cf9[];
 extern UnkTunable g_unk_71726e8d00;
 extern void* g_unk_7101a4f768[];
-void fn_7100075104(void* self);  // its destructor, as registered
 
 void fn_71005a7870() {
     InitHeaderIds(&g_unk_71726e8d70.ids);

@@ -4,7 +4,9 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CEnemyMovement.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -57,9 +59,6 @@ bool fn_7100219588(UnkRenderManager*, const void*, u32, u32);
 struct UnkBigFistAI3_ovb0050;
 struct UnkBigFistKind_ovb0050;
 struct UnkBigFistLimit_ovb0050;
-bool fn_71010fc864(UnkBigFistAI3_ovb0050* self, UnkBigFistKind_ovb0050* kind, UnkBigFistLimit_ovb0050* min,
-                   UnkBigFistLimit_ovb0050* max);
-u32 fn_71010cc3a4(void* movement);
 
 static inline f32 Bits(u32 v) {
     f32 f;

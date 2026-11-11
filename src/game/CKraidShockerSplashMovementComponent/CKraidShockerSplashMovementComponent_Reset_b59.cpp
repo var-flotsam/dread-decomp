@@ -3,11 +3,12 @@
 // g_unk_710164a2a8 on the owner's timeline (+0x2e8) to the all-flags mask (as
 // src/game/CKraidAIComponent/fn_7100600c98.cpp) and clears +0x4b8 and +0x4c0. Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CCollisionComponent.h"
+#include "game/CWeaponMovement.h"
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
 
 struct UnkStruct_7100861148;
-void fn_7100861148(UnkStruct_7100861148* self);
 
 struct UnkSplashKey_b59a4;
 extern UnkSplashKey_b59a4 g_unk_710164a2a8;  // reached through the GOT
@@ -26,8 +27,6 @@ struct UnkSplash_b59a4 {
     u64 field_0x4b8;
     u32 field_0x4c0;
 };
-
-s32 fn_7100ac82c0(UnkSplash_b59a4* self, void* other);
 
 void fn_710060768c(UnkSplash_b59a4* self, void* other) {
     fn_7100861148(self->owner->field_0x2a0);

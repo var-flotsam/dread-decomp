@@ -6,7 +6,10 @@
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
 #include "base/UnkVector.h"
+#include "game/CBeamBoxComponent.h"
+#include "game/CCharClassShootActivatorComponent.h"
 #include "game/UnkCallbackSetVectorFwd.h"
+#include "game/UnkTU2702.h"
 
 using base::global::CStrId;
 using base::global::UnkStringData;
@@ -184,9 +187,6 @@ struct UnkMovedEntry {
 struct UnkEntryVector;
 // Reserve and PushBack of a copy (one copy each per array type)
 void fn_7100895498(UnkEntryVector* v, u32 n);
-void fn_71008ab4e0(UnkEntryVector* v, u32 n);
-void fn_710089566c(UnkEntryVector* v, const UnkEntry* value);
-void fn_71008ab6b4(UnkEntryVector* v, const UnkEntry* value);
 
 struct UnkEntryVector {
     UnkEntry* data;
@@ -278,7 +278,6 @@ struct UnkEntryVector {
 static inline void Reserve_71011143d8(UnkEntryVector* v, u32 n) {
     fn_71011143d8(reinterpret_cast<UnkCallbackSetVector*>(v), n);
 }
-void fn_7101114588(UnkEntryVector* v, const UnkEntry* value);
 void fn_71011141e8(UnkEntryVector* self, const UnkEntryVector* other) {
     self->CopyConstruct<Reserve_71011143d8, fn_7101114588>(*other);
 }
@@ -312,8 +311,6 @@ static inline __attribute__((always_inline)) void MoveHolder(UnkHolder* self, Un
 }
 
 // Finds or adds the entry for a key (one copy per map type).
-UnkEntry* fn_7100892528(void* self, u32 key);
-UnkEntry* fn_71008a84e4(void* self, u32 key);
 
 template <UnkEntry* (*Get)(void*, u32)>
 static inline __attribute__((always_inline)) void SetEntry(void* self, const u32* key, UnkEntry* value) {
@@ -333,4 +330,3 @@ static inline __attribute__((always_inline)) UnkHolder* AssignHolder(UnkHolder* 
     }
     return self;
 }
-

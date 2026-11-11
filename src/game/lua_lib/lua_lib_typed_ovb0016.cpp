@@ -6,6 +6,7 @@
 #include "../../../lib/lua/lua.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
@@ -18,8 +19,6 @@ using base::reflection::UnkReflValue;
 struct UnkFormatArgs;
 struct UnkTextBuffer200;
 struct UnkCompared_0x18;
-void fn_71000a1784(UnkFormatArgs* args, UnkTextBuffer200* out);
-bool fn_71000a1ed4(const UnkCompared_0x18*, const UnkCompared_0x18*);
 // The userdata at `index` when its metatable is the registry's `name`, else null.
 void* fn_71010a4740(lua_State* L, int index, const char* name);
 

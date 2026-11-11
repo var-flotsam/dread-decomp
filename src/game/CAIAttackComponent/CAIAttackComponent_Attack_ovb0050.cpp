@@ -9,6 +9,7 @@
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CEnemyMovement.h"
 #include "game/UnkActor.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -17,8 +18,6 @@ using base::global::CRntFile;
 using base::global::CRntString;
 using base::global::CStrId;
 
-void fn_71010cb2fc(void*, void*);
-void fn_71010cb2f4(void* target, void* link);
 void fn_71006f552c(void* source, UnkWeakHandle** slot);
 
 struct UnkAIAttackOwner2_ovb0050 {
@@ -90,7 +89,6 @@ void fn_710113420c(UnkAIAttackComponent3_ovb0050* self, CRntFile* file) {
     self->field_0x198 = value;
 }
 
-u32 fn_71010cc3a4(void*);
 struct UnkGoliathXSlamAttack_b58a3;
 CStrId fn_71003627f8(UnkGoliathXSlamAttack_b58a3*, UnkActor*);
 

@@ -3,6 +3,7 @@
 // fn_7100a8e07c, src/game_s7/fn_7100a8e07c.cpp; released when done), then refresh the controller
 // (vf_0x20). fn_7100b477c4 reports the event handled. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU1600.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -10,7 +11,6 @@ using base::global::CStrId;
 // The pair (as fn_7100a8e07c.cpp has it): its constructor out of line; the second id is released in
 // two steps (CStrId::Reset), then the first by its destructor.
 struct UnkIdPair_7100a8e07c;
-void fn_7100a8e07c(UnkIdPair_7100a8e07c* self);
 
 struct UnkIdPair_b49 {
     union {
@@ -29,8 +29,6 @@ struct UnkIdPair_b49 {
         first.~CStrId();
     }
 };
-
-void fn_7100a8f34c(void* object, u32 kind, UnkIdPair_b49* out);
 
 struct UnkMapMenuSource {
     u8 pad_0x0[0x10];

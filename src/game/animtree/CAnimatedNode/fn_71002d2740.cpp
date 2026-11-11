@@ -2,6 +2,7 @@
 // +0x18: when the count has reached the capacity, both arrays are reallocated (the capacity grows
 // by the step). The new key is the owner itself; the value comes from a global object.
 #include "base/UnkPairArrays.h"
+#include "game/animtree/CAnimTreeElement.h"
 
 struct UnkValueSource {
     u8 pad_0x0[0x30];
@@ -17,8 +18,6 @@ struct UnkPairOwner {
     u8 pad_0x0[0x18];
     UnkPairData* field_0x18;
 };
-
-UnkValueSource** fn_71002dba48(UnkPairOwner* self);  // from the object's +0x10
 
 // NON_MATCHING(minor): the copy loop compares the widened index in 64 bits (the original compares 32 bits), and the
 // first allocation call sets up its alignment argument one instruction later; behaviour is identical

@@ -3,6 +3,8 @@
 // +0x218, the object at +0x228 is called six times with a name each, and the manager's current index
 // selects a float that is passed to fn_7100dcdce4 together with its integer part.
 #include "base/UnkVector.h"
+#include "game/CEnemyMovement.h"
+#include "game/CModelUpdaterComponent.h"
 #include "types.h"
 
 struct UnkNode {
@@ -104,10 +106,6 @@ extern char g_unk_71016496d8[];
 extern char g_unk_71016496e0[];
 extern char g_unk_71016496e8[];
 
-void fn_71010c7e6c(UnkEffectSink* sink, void* params, u32 flags);
-void fn_71010cc214(UnkEffectSink* sink, u32 mode);
-void fn_7101172780(UnkFlagTarget* target, const char* name);
-void fn_7101172764(UnkFlagTarget* target, const char* name);
 void fn_7100dcdce4(UnkManager* manager, s32 value, f32 scale);
 
 // NON_MATCHING(minor): the original tests the state against 2 first and lays the state-1 path out ahead of the

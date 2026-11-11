@@ -8,6 +8,7 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
@@ -17,7 +18,6 @@ using base::reflection::UnkReflValue;
 extern char unk_7101a1b260[];
 // UnkReflFunctionData's constructor and destructor, called on the base subobject.
 void fn_710009a5b4(void* self);
-void fn_710009aae8(void* self);
 void fn_7100094fc0(void* self, void* owner, void* x2);
 
 struct UnkOwnedReflValue_7100095bdc : UnkReflValue {

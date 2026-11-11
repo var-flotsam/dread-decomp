@@ -4,6 +4,10 @@
 // flag at +0x148e8 defers it; a pending move (+0x148e1) goes to the owner's AI (fn_71010d08d4). Names and
 // layouts are placeholders.
 #include "base/snd/UnkSound.h"
+#include "game/CElectrifyingAreaComponent.h"
+#include "game/CGooplotAIComponent.h"
+#include "game/CGooshockerAIComponent.h"
+#include "game/CMovementComponent.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
@@ -13,10 +17,6 @@ struct UnkGooplotOwner_b55;
 struct UnkMovement_71010d08d4;
 struct UnkMovementVec_71010d08d4;
 char* fn_71003be154(UnkActor*);
-void fn_71007d29d4(char* part);
-void fn_710059aa2c(UnkGooplotAI_b55* ai, UnkGooplotOwner_b55* owner);
-void fn_710059e4f0(UnkGooshockerState* self, bool mode);
-void fn_71010d08d4(UnkMovement_71010d08d4*, const UnkMovementVec_71010d08d4*, bool);
 
 // A sound slot the handle refers to while its id still matches.
 struct UnkGooshockerSoundSlot_ovb0125 {

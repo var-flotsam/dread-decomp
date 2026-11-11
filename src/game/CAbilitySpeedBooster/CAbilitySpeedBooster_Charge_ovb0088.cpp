@@ -19,8 +19,12 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbility.h"
+#include "game/CAbilitySpeedBooster.h"
+#include "game/CGameObject.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU39.h"
 #include "game/UnkTimelineComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
@@ -32,12 +36,9 @@ extern void* g_unk_7101a223f8[];  // CAbility's vtable
 extern void* g_unk_7101a225f8[];  // CAbility's value holders' vtable
 extern void* g_unk_7101a22650[];  // the vtable of CAbility's member at +0x10
 struct UnkCameraCtrl_ovb0049;
-void fn_7101043934(UnkCameraCtrl_ovb0049*);
 
 struct UnkMoveSlot_0xb0;
-void fn_7100030a50(UnkMoveSlot_0xb0*);
 struct UnkOpticAbility_ovb0059;
-void fn_71002fa2bc(UnkOpticAbility_ovb0059* self);
 
 struct UnkClearedPair_ovb0088 {
     u64 a, b;
@@ -177,7 +178,6 @@ static_assert(__builtin_offsetof(UnkSpeedBoosterAbility_ovb0088, charge) == 0x39
 
 void fn_710033c350(UnkSpeedBoosterAbility_ovb0088* self);
 struct UnkSmAbility2_A2_b63;
-bool fn_710033c174(UnkSmAbility2_A2_b63*);
 
 void fn_710033bc80(UnkSpeedBoosterAbility_ovb0088* self, f32 dt) {
     if (fn_710033c174(reinterpret_cast<UnkSmAbility2_A2_b63*>(self))) {
@@ -303,8 +303,6 @@ struct UnkV4_b47 {
     UnkV4_b47(f32 x_, f32 y_, f32 z_, f32 w_) : x(x_), y(y_), z(z_), w(w_) {}
     UnkV4_b47(const UnkV4_b47& o) : x(o.x), y(o.y), z(o.z), w(o.w) {}
 };
-UnkV4_b47 fn_7100030770(const UnkV4_b47*, const UnkV4_b47*);
-UnkV4_b47 fn_7100030830(const UnkV4_b47*, f32);
 
 static inline UnkV4_b47 operator*(const UnkV4_b47& a, f32 s) { return fn_7100030830(&a, s); }
 static inline UnkV4_b47 operator+(const UnkV4_b47& a, const UnkV4_b47& b) { return fn_7100030770(&a, &b); }

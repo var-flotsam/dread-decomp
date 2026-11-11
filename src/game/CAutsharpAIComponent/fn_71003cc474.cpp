@@ -3,6 +3,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU1370.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -39,7 +40,6 @@ struct UnkMember_71003cc474 {
 struct UnkBase_71003cc474 {
     u8 unk_0x0[0x138];
 };
-void fn_71008c1558(UnkBase_71003cc474* self);
 
 struct UnkStruct_71003cc474 {
     void** vtable;

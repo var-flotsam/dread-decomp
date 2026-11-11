@@ -4,9 +4,8 @@
 // layouts are placeholders.
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
+#include "game/UnkTU341.h"
 #include "types.h"
-
-void fn_7100246d70(void* self, const void* other);
 
 struct UnkGoTransformParams {
     void** vtable;

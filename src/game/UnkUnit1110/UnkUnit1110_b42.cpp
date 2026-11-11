@@ -1,10 +1,10 @@
 // Unit 1110 (tools/tu_map.py, no name hint). fn_71006f3390: the constructor of an object holding two
 // polygon collection shapes (fn_7100d62b04 builds each) followed by an id -1, a cleared word, a float
 // 1000 and a count 20. Names and layouts are placeholders.
+#include "game/logic/collision/CPolygonCollectionShape.h"
 #include "types.h"
 
 extern void* g_unk_7101a6b5e0[];
-void fn_7100d62b04(void*);
 
 struct UnkTwoShapeHolder_b42 {
     void** vtable;

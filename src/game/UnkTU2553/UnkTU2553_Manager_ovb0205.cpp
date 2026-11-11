@@ -17,12 +17,18 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityEnergyWave.h"
 #include "game/CBlackboard.h"
+#include "game/CCentralUnitCannonBeamMovementComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSubAreaGuiCache.h"
+#include "game/UnkTU2553.h"
+#include "game/UnkTU2768.h"
+#include "game/UnkTU57.h"
+#include "game/UnkTU83.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -62,7 +68,6 @@ inline UnkGameManagerIdTable& GameManagerIdTable() {
 
 struct UnkAbility;
 struct UnkAbilitySet;
-UnkAbility* fn_71003012f8(UnkAbilitySet* set, u64 id);
 
 extern char g_unk_71727bee18[] __attribute__((visibility("hidden")));
 
@@ -116,7 +121,6 @@ UnkReflObject* fn_7100df5460(UnkTgm_b205* self) {
 void fn_7100df2b68(void* self);
 void fn_7100dec7a0(void* self);
 struct UnkWeaponDamage_ovb0054;
-void fn_7100400364(UnkWeaponDamage_ovb0054* dst, const UnkWeaponDamage_ovb0054* src);
 
 // ---- fn_7100df2acc
 struct UnkTgmStart_b205 {
@@ -299,7 +303,6 @@ void fn_7100e010a0(UnkGameManager* self, u32 value) {
 // ---- fn_7100dfaf88
 struct UnkStepCallbacks;
 struct UnkStepCallback;
-UnkStepCallback* fn_7100dfc428(UnkStepCallbacks* self, u32 index);
 bool fn_7100dfc0c8(UnkGameManager* self, const base::UnkNamedEntry* a, const base::UnkNamedEntry* b, bool c, bool d,
                    bool e, bool f, bool g, s32 mode);
 struct UnkTgmCallback_b205 {
@@ -474,7 +477,6 @@ struct UnkTgmStrVector_b205 {
     }
 };
 struct UnkStrVector;
-void fn_71000e0524(UnkStrVector* self, UnkStrVector* other);
 s32 fn_7100dfeb10(UnkGameManager* self, bool flag);
 void fn_7100e0621c();
 struct UnkTgmHooks_b205 {
@@ -499,8 +501,6 @@ s32 fn_7100dfecec(UnkGameManager* manager, s32 flag) {
 struct UnkStepCallbacks;
 struct UnkStepCallback;
 struct UnkCompared_0x30;
-bool fn_710007f120(const UnkCompared_0x30* a, const UnkCompared_0x30* b);
-UnkStepCallback* fn_7100dfc428(UnkStepCallbacks* self, u32 index);
 bool fn_7100dfc0c8(UnkGameManager* self, const base::UnkNamedEntry* a, const base::UnkNamedEntry* b, bool c, bool d,
                    bool e, bool f, bool g, s32 mode);
 void fn_7100dfc638(UnkGameManager* self, CBlackboard* blackboard, const CRntString* name, const CRntString* tag);
@@ -619,7 +619,6 @@ void fn_7100e00f74(UnkGameManager* manager, bool value) {
 // ---- fn_7100de9ae4
 struct UnkUserDataOwner;
 extern UnkUserDataOwner* g_unk_7101d47308;
-void fn_710120320c(UnkUserDataOwner* self);
 CBlackboard* fn_710120384c(UnkUserDataOwner* self);
 bool fn_7100a68fb0(CBlackboard::CSection* section, const void* name, u32* out);
 
@@ -647,7 +646,6 @@ s32 fn_7100de9ae4() {
 
 // ---- fn_7100dee270
 struct UnkCompared_0x30;
-bool fn_710007f120(const UnkCompared_0x30* a, const UnkCompared_0x30* b);
 void fn_7100d7afa8(void* player, CRntString* previous, const CRntString* next);
 
 struct UnkTgmMode_b205 {
@@ -758,7 +756,6 @@ struct UnkTgmSub_b205;
 void fn_7100df2b68(void* self);
 void fn_7100e0005c(void* self);
 void* fn_7100e0014c(void* self);
-void fn_7100df492c(void* self, void* a, const void* b, void* c);
 void fn_7100e003ac(void* self);
 void fn_7100e00640(void* self);
 void fn_710119deb8(UnkSubAreaGuiCache* self);
@@ -871,5 +868,3 @@ bool fn_7100de8e18(const CStrId& id) {
     ++reinterpret_cast<UnkIdTextData*>(id.data)->reads;
     return reinterpret_cast<UnkIdHashData*>(id.data)->hash == g_unk_71727bef58;
 }
-
-

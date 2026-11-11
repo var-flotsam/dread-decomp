@@ -2,9 +2,9 @@
 // base of unit 1440 (fn_7100969000): the vtable, the member at +0x90 (its vtable, cleared flags and
 // runs, mode 3) and the flag at +0xcd. The same shape as unit 1441's (src/game/UnkUnit1441).
 // Names and layouts are placeholders.
+#include "game/UnkTU1440.h"
 #include "types.h"
 
-void fn_7100969000(char* self, u32 arg);
 extern void* g_unk_7101a852e8[];  // the class's vtable
 extern void* g_unk_7101a2e208[];  // the member's vtable
 

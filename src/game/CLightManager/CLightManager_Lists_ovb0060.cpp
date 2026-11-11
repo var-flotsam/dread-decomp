@@ -12,7 +12,10 @@
 // A fourth copy of the list pair of src/game/CLightManager/fn_7100e0babc.cpp, at +0xf0
 // (fn_7100e0bf48, fn_7100e0b9a0). Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "base/core/CAsset.h"
 #include "base/global/CStrId.h"
+#include "game/CLightsDef.h"
+#include "game/UnkTU290.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -20,7 +23,6 @@ using base::global::UnkStringPool;
 
 // As src/game/CLightManager/fn_7100e0ccf8.cpp declares it.
 struct UnkClearedArray;
-void fn_7100da0870(UnkClearedArray* self, u32 count);  // resizes
 
 struct UnkLightHashView_ovb0060 {
     u8 pad_0x0[0x30];
@@ -74,7 +76,6 @@ struct UnkLightPathId_ovb0060 {
 };
 
 extern void* g_unk_7101aa9140[];
-void fn_7100016ad8(void* self);
 
 struct UnkLightValue_ovb0060 {
     void** vtable;
@@ -199,8 +200,6 @@ struct UnkListPair_ovb0060 {
 };
 
 UnkListedObj** fn_7100e0a88c(UnkPtrList_ovb0060* list, u32 index);
-
-void fn_710020c8ac(void* flag, bool value);
 
 void fn_7100e0bf48(char* self, UnkListedObj* obj) {
     if (!obj)

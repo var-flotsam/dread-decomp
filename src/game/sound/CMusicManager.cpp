@@ -6,6 +6,7 @@
 
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
 
+#include "base/snd/CSoundSystem.h"
 #include "game/sound/CMusicManager.h"
 
 struct UnkSoundMgr;
@@ -124,8 +125,6 @@ struct UnkMusicEntryView {
     u8 pad_0x34[0x2c];
 };
 static_assert(sizeof(UnkMusicEntryView) == 0x60, "UnkMusicEntryView layout");
-
-void fn_7100108a98(UnkSoundMgr* mgr, u64 handle, bool flag, f32 value);
 
 // Sets the flag of request `index` when it is active and the flag changes, and tells the sound
 // manager; returns whether it did.

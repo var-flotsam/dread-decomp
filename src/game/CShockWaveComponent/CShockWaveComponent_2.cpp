@@ -4,11 +4,11 @@
 // 0x250 (vtable, default allocator, 0x13) and cleared fields after it. The layout follows
 // CShockWaveComponent.cpp. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CComponent.h"
+#include "game/CShockWaveComponent.h"
 #include "types.h"
 
 struct UnkStateObject;
-void fn_71010c4148(UnkStateObject* self);
-void fn_71009f35b0(char* self);
 extern void* g_unk_7101a8a820[];  // the component's vtable
 extern void* g_unk_7101a32680[];  // the node list's vtable
 

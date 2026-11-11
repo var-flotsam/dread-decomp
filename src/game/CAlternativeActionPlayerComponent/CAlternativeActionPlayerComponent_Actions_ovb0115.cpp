@@ -10,6 +10,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
@@ -19,7 +20,6 @@ using base::global::UnkStringData;
 // As src/game/CAnimationComponent/fn_7101176ea8.cpp declares it (the key is a hash).
 struct UnkStruct_7101176ea8;
 struct UnkRequest_7101176ea8;
-bool fn_7101176ea8(UnkStruct_7101176ea8* self, const UnkRequest_7101176ea8* req, u64 key);
 
 struct UnkClone_fn_710071294c;
 using UnkAltActionRemoveSet_ovb0115 = base::UnkDeferredSet<UnkClone_fn_710071294c>;

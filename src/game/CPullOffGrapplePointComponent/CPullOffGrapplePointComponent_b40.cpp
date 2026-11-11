@@ -2,6 +2,7 @@
 // src/game/CAINavigationComponent/CAINavigationComponent_b39.cpp (fn_71006f4344, fn_71006f538c) with this
 // unit's vtable and detach call (fn_7100a2d4d0). Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CTimelineComponent.h"
 #include "types.h"
 
 extern void* g_unk_7101a77000[];
@@ -21,8 +22,6 @@ struct UnkListener_pog {
     u8 pad_0x8[0x10];
     UnkLink_pog* link;  // 0x18
 };
-
-void fn_7100a2d4d0(void* target, void* listener);
 
 static inline __attribute__((always_inline)) void Destroy_pog(UnkListener_pog* self) {
     self->vtable = &g_unk_7101a77000[2];

@@ -3,12 +3,12 @@
 // fn_710037d138, on the file-path pool). Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassComponent.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 
 struct UnkStruct_71008bca30;
-void fn_71011acd10(UnkStruct_71008bca30* self);
 extern void* g_unk_7101a7b560[];
 
 struct UnkFanDef {

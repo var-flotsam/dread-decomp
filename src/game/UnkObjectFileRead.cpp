@@ -6,6 +6,7 @@
 // base/reflection/UnkReflObjectRead.h); names and layouts are placeholders.
 // Holds fn_7101062398.
 #include "base/UnkHashStream.h"
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkReflCast.h"
@@ -28,7 +29,6 @@ struct UnkFileReader {
 
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path,
                    const base::global::CRntString* mode);
-void fn_710000ccd8(UnkFileReader* self);
 
 // This unit's parser callbacks.
 extern UnkParseCallbacks g_unk_7172a000d0 __attribute__((visibility("hidden")));

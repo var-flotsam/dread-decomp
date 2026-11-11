@@ -3,6 +3,7 @@
 // sub-object at 0x50 and clears the trailing record at 0x12ad8 (a pair of words and a byte).
 #include "base/global/CStrId.h"
 #include "game/UnkBehaviorTree.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -25,7 +26,6 @@ struct UnkNode : UnkBehaviorTreeNodeBase {
     UnkTrailer field_0x12ad8;
 };
 
-void fn_71002acfe4(void* sub);
 extern void* g_unk_7101a25e50[];
 
 void fn_710037fe18(UnkNode* self) {

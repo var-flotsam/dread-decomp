@@ -6,6 +6,7 @@
 // Holds fn_71011f6044, fn_71011f61bc, fn_71011f6240 and fn_71011f6344.
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
+#include "base/tunable/CTunable.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -86,8 +87,6 @@ struct UnkGuiItemState {
 };
 
 // The screen's two aspect factors (thunks of fn_71001329e0 and fn_71001329d0).
-f32 fn_7100132ff0();
-f32 fn_7100132fe0();
 
 // A position scaled by the state's scale and, when it has an angle, rotated by it (y divided out of
 // and back into the screen's aspect around the rotation).

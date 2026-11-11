@@ -8,7 +8,9 @@
 #include <utility>
 
 #include "base/UnkVector.h"
+#include "game/CComponent.h"
 #include "game/UnkComponent.h"
+#include "game/UnkTU1134.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -73,8 +75,6 @@ static_assert(__builtin_offsetof(UnkTimelineComponentFull_ovb0089, tracks) == 0x
 static_assert(__builtin_offsetof(UnkTimelineComponentFull_ovb0089, timed_allocator) == 0x198, "layout");
 
 struct UnkParent;
-void fn_71010c4228(UnkParent*);
-void fn_710070d5dc(u64 value);
 
 // Drops every track, then calls the base method.
 void fn_7100a2bb4c(UnkTimelineComponentFull_ovb0089* self) {

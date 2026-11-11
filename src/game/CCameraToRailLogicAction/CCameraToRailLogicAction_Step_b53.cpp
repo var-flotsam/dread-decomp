@@ -6,13 +6,14 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CCameraComponent.h"
+#include "game/CTriggerLogicAction.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkTutoExitAction_b47;
-void fn_7100a55ac8(UnkTutoExitAction_b47* self);
 
 struct UnkRailCameraCtrl_b53 {
     void** vtable;
@@ -22,7 +23,6 @@ struct UnkRailCameraCtrl_b53 {
     const void* vf_0x0() { return reinterpret_cast<const void* (*)(UnkRailCameraCtrl_b53*)>(vtable[0])(this); }
 };
 struct UnkCameraCtrl;
-UnkCameraCtrl* fn_71010e389c(void* holder, void* key);
 bool fn_71010e4168(void* holder, const CStrId* id, bool flag);
 
 struct UnkRefl_fn_7100a4df20;

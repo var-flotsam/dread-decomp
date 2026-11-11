@@ -7,9 +7,8 @@
 #include <memory>
 #include <new>
 
+#include "game/UnkTU23.h"
 #include "types.h"
-
-void fn_7100014dfc(void* self, const void* other);
 
 extern char g_unk_7101a190e8[];
 extern char g_unk_7101a19018[];

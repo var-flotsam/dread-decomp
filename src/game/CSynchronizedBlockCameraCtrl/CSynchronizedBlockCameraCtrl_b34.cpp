@@ -1,3 +1,4 @@
+#include "game/CCameraBoundaryCtrl.h"
 #include "types.h"
 
 struct UnkSyncBlockOwner {
@@ -13,8 +14,6 @@ struct CSynchronizedBlockCameraCtrl {
     u8 unk_0x2e9[0x304 - 0x2e9];
     f32 remaining;  // 0x304
 };
-
-void fn_7100763f9c(CSynchronizedBlockCameraCtrl* self, f32 dt);
 
 // The base camera update, then counts the remaining time down while there is a target; marks the
 // control finished when it runs out.

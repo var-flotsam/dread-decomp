@@ -12,7 +12,11 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CChangeStageNavMeshItemComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU2577.h"
+#include "game/UnkTU2611.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -280,8 +284,6 @@ UnkReflValue fn_7100ef11f4(void*, char* obj, UnkReflValue* const* args) {
 
 // ---- fn_7100ef1d24: sets the number of sub-area records ----
 struct UnkGeneratorRecord_ovb0120;
-void fn_7100fab18c(UnkGeneratorRecord_ovb0120*, UnkGeneratorRecord_ovb0120*);
-void fn_7100fa99bc(UnkGeneratorRecord_ovb0120*);
 struct UnkSubAreaRecord_0x188;
 void fn_7100faa3d8(UnkSubAreaRecord_0x188* self);
 struct UnkSubAreaRecord_0x188 {
@@ -561,9 +563,7 @@ struct UnkChangeEvent_b189 {
     ~UnkChangeEvent_b189() {}
 };
 
-void fn_7100000790(const char*, const char*, ...);
 struct UnkSubAreaChange_b190;
-void fn_7100ef1608(void*, const UnkSubAreaChange_b190*);
 
 static inline const char* TextOf(const CStrId& id) {
     const UnkStrIdView_b189& v = reinterpret_cast<const UnkStrIdView_b189&>(id);
@@ -584,7 +584,6 @@ void fn_7100eead58(CSubAreaManager* self, const CStrId& prev_a, const CStrId& pr
 struct UnkIdSet;
 struct UnkPoppedRequest;
 
-void fn_7100ee8044(CSubAreaManager* self, void* prev, void* cur, UnkIdSet* set);
 void fn_7100ee6884(CSubAreaManager* self);
 
 // What the request id's lookup hands back (+0x38 holds the previous state's data).
@@ -619,8 +618,6 @@ struct UnkNamedObjectPtr_b190;
 UnkNamedObjectPtr_b190* fn_7100eee97c(base::UnkVector<UnkNamedObjectPtr_b190>*, u32);
 void fn_7100eee1f8(void*, CStrId*, const CStrId*, bool, bool);
 struct UnkSubAreaEntityList_b190;
-UnkSubAreaEntityList_b190* fn_71009ba31c();
-void fn_71009b9ee8(void*);
 
 struct UnkSetCounts_b189 {
     u8 pad_0x0[0x30];

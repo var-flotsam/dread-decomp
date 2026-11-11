@@ -4,11 +4,11 @@
 // (fn_710007ecd4), then the member at +8 (fn_71008c1558). Names are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/global/CRntString.h"
+#include "game/UnkTU1370.h"
 #include "types.h"
 
 extern void* g_unk_7101a664a0[];
 struct UnkBase_71003cc474;
-void fn_71008c1558(UnkBase_71003cc474*);  // as src/game/CAutsharpAIComponent/fn_71003cc474.cpp declares it
 
 struct UnkSpitclawkDtor_A4_b70;
 

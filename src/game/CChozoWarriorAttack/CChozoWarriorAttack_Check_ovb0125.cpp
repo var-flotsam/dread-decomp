@@ -6,12 +6,12 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CAttack.h"
+#include "game/CGunComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
 struct UnkStruct_710083e9d4;
 struct UnkItem_710083e9d4;
-UnkItem_710083e9d4* fn_710083e9d4(UnkStruct_710083e9d4* self, const u64* id, bool primary);
 
 // The gun the item list answers, as this file uses it.
 struct UnkChozoWarriorGun_ovb0125 : base::reflection::UnkReflObject {

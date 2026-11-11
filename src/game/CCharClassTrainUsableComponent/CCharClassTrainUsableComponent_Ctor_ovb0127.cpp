@@ -2,10 +2,10 @@
 // fn_7100a7b494, the vtable, then twelve copies of the empty string id g_unk_7101d470e0 at +0x1b8).
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CCharClassUsableComponent.h"
 #include "types.h"
 
 struct UnkShipRechargeDef;
-void fn_7100a7b494(UnkShipRechargeDef* self);
 extern void* g_unk_7101a93690[];  // the class's vtable
 
 using UnkTrainIdData_ovb0127 = base::global::UnkStringData;

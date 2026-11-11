@@ -1,4 +1,5 @@
 // Static initialiser of the unit of the CCharClassRodotukAIComponent::SAbsorbConfig::EType, CCharClassRodotukAIComponent::SAbsorbConfig, base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TKeyElementConstIterator::value_type, CCharClassRodotukAIComponent::TVAbsorbConfigs reflected types.
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -19,7 +20,6 @@ extern char g_unk_71726fede8[];
 extern char g_unk_71726fede9[];
 extern UnkTunable g_unk_71726fedf0;
 extern void* g_unk_7101a5dc20[];
-void fn_7100075104(void* self);  // its destructor, as registered
 extern UnkEnumType g_unk_71726fee48;
 void fn_710066e054(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_710066de48();

@@ -12,24 +12,31 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CActorComponent.h"
 #include "game/CAttack.h"
+#include "game/CCameraComponent.h"
+#include "game/CCharClassAttack.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU1176.h"
+#include "game/UnkTU2523.h"
+#include "game/UnkTU2677.h"
+#include "game/UnkTU2730.h"
+#include "game/UnkTU2733.h"
+#include "game/UnkTU99.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 using base::global::CRntString;
 using base::global::CStrId;
 using unk_prop_bag::UnkPropBag;
-
-s32 fn_71010c0270(lua_State* L, const char* fmt, ...);
-int fn_71010c0b40(lua_State* L, const char* fmt, ...);
-s32 fn_71010c0ad0(lua_State* L, int first, int count, const char* format, ...);
 
 extern u32 g_unk_71727bebb8;
 
@@ -81,7 +88,6 @@ s32 fn_710107d020(lua_State* L) {
 }
 
 struct UnkCameraCtrl;
-UnkCameraCtrl* fn_71010e389c(void* holder, void* key);
 void fn_7101043f74(UnkCameraCtrl* self, UnkPropBag* bag);
 void fn_710104418c(UnkCameraCtrl* self, UnkPropBag* bag);
 
@@ -215,7 +221,6 @@ struct UnkLoadingMaskOf_b0162 {
     }
 };
 struct UnkLoadingMaskTag_b0162;
-void fn_7100fd7b44(void* manager, UnkLoadingMask channels, UnkLoadingMask mask, f32 time);
 void fn_7100deac9c(UnkGameManager* self, const CRntString& name);
 
 s32 fn_7101077d50(lua_State*) {
@@ -239,7 +244,6 @@ struct UnkSoundRef_A5_b76 {
 };
 UnkSoundRef_A5_b76 fn_7100108aa4(UnkSoundMgr* self, const CFilePathStrId* path, bool flag);
 void fn_7100fdc7e0(void* music, const CFilePathStrId* path, f32 value);
-void fn_71000fbe1c(void* self, u32 a, f32 b, f32 c);
 
 s32 fn_7101092ca0(lua_State* L) {
     const char* name;
@@ -497,7 +501,6 @@ struct UnkCentralUnitList {
     UnkCentralUnitEntry** data;
     u32 count;
 };
-UnkCentralUnitList* fn_7100772c98();
 void fn_7100772698(UnkReflObject* component, const CStrId* id, f32 value);
 void fn_7100772610(UnkReflObject* component, const CStrId* id, f32 a, f32 b);
 
@@ -545,7 +548,6 @@ struct UnkStrIdHash_b0162 {
 };
 struct UnkWeakTarget;
 UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
-void fn_7100d7c48c(void* target, void* name, f32 a, f32 b);
 
 static inline UnkWeakTarget* FindByStrId_b0162(UnkGameManager* manager, const CStrId& id) {
     u32 kind_value = g_unk_71727bebb8;
@@ -594,7 +596,6 @@ s32 fn_710108ddc0(lua_State* L) {
 
 base::reflection::UnkReflObject* fn_710023341c(void* owner, const base::global::CStrId& name);
 struct UnkStruct_710024fa0c;
-void fn_710024fa0c(UnkStruct_710024fa0c* self, bool enabled);
 
 s32 fn_710107dbc0(lua_State* L) {
     const char* actor;
@@ -662,12 +663,9 @@ s32 fn_7101082b70(lua_State* L) {
 // ---- the language ----
 struct UnkLanguage;
 extern UnkLanguage* g_unk_7101d47358;
-void fn_710119c020(UnkLanguage* language);
-s32 fn_710119c9f4(UnkLanguage* language);
 s32 fn_710119be24(const CRntString* name);
 void fn_710119cb14(UnkLanguage* language, s32 index);
 void fn_71011b6b5c(UnkGuiRoot* root, u32 value);
-void fn_7100000790(const char* name, const char* fmt, ...);
 
 static inline UnkLanguage* Language_b0162() {
     UnkLanguage* language = g_unk_7101d47358;
@@ -734,7 +732,6 @@ s32 fn_7101078950(lua_State* L) {
 
 // ---- GUI: a value for a named target, with the mask of every layer ----
 extern void* g_unk_7101d47330;
-void fn_7101199ac4(void* gui, void* target, const u32* mask, f32 a, f32 b);
 
 template <class T>
 struct UnkLayerMaskOf_b0162 {
@@ -770,7 +767,6 @@ struct UnkAttackTarget_A2_b68;
 struct UnkAttackListSelf_b0143;
 CAttack* fn_7101105148(UnkAttackListSelf_b0143* self, const char* name);
 s32 fn_71003623a4(CAttack* attack);
-void fn_71003646b0(UnkAttackTarget_A2_b68* target, u32 value);
 
 struct UnkAttackEntry_b0162 {
     u8 pad_0x0[0x10];

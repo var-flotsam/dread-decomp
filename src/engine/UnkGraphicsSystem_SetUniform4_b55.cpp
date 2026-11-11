@@ -1,11 +1,11 @@
 // Unit 259 (tools/tu_map.py; the graphics system of src/engine/UnkGraphicsSystem.cpp): set a
 // four-float uniform of the current program, its id mapped from an index by fn_7100167cc0 or
 // fn_7100167ce0, when the program's stage (1 or 0) has it.
+#include "game/UnkTU180.h"
+#include "game/UnkTU194.h"
+#include "game/UnkTU230.h"
 #include "types.h"
 
-void fn_710015e1f0(void* state, u32 stage, u64 location, u32 count, const f32* values);
-bool fn_71001aa0b4(void* program, u32 stage, u32 id, u64* location);
-u32 fn_7100167cc0(u32 index);  // a uniform id
 s32 fn_7100167ce0(u32 value);
 
 struct UnkGfxUniformTarget {

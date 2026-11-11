@@ -4,7 +4,13 @@
 
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CAbilityShinespark.h"
+#include "game/CCharacterMovement.h"
+#include "game/CMovementComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1501.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 struct UnkFlagged;
@@ -171,16 +177,10 @@ struct UnkRelocateManager {
 };
 static_assert(__builtin_offsetof(UnkRelocateManager, field_0x29c0) == 0x29c0, "layout");
 
-bool fn_71009e75e8(UnkFlagged*);
 bool fn_71009e12d0(void*);
-u64 fn_7100327d14();
-UnkAbility* fn_71003013ec(UnkAbilitySet* set, u64 id);
 UnkVec3_sm42 fn_71009e83fc(UnkSamusMovement_sm42* self);
-void fn_7100df492c(void* self, void* a, const void* b, void* c);
-void fn_71010d08d4(UnkMovement_71010d08d4*, const UnkMovementVec_71010d08d4*, bool);
 void fn_7101167da0(char* p0);
 char* fn_71008721dc(char* p0);
-UnkShape* fn_7100976588(UnkFlagged* flagged);
 bool fn_7100977e50(UnkCharacterMovement* self, f32 max_dot, f32 extra, f32 step, f32 back, u32 mask,
                    const CVector3D* pos, CVector3D* out_point, UnkCollisionHit* out_hit, const CVector3D* dir);
 void fn_7100a601cc(void* child, UnkRelocateActor* to, UnkRelocateActor* from);

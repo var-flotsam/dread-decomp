@@ -1,13 +1,14 @@
 // Unit 372 (no reliable name): a navmesh item's key list reporting and its reader and destructor. Names and layouts are placeholders.
 #include "game/UnkGuiRoot.h"
 #include "game/UnkNavMeshCell.h"
+#include "game/UnkTU372.h"
+#include "game/UnkTU39.h"
 #include "types.h"
 #include "base/UnkVector.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CStrId.h"
 #include "game_s2/UnkWeakHandle.h"
 
-bool fn_710002fb70(void*);
 u16* fn_71000d1d24(void* vec, u32 index);
 void fn_71002af93c(void* cell, bool flag);
 void fn_710027daa4(void* mesh, const void* arg, bool first);
@@ -75,9 +76,6 @@ using base::global::CStrId;
 struct UnkNavMeshItem;
 struct UnkLinkList;
 
-void fn_710002fa90(void* list);
-void fn_710002f67c(void* list);
-void fn_71002b46ec(UnkLinkList* list, UnkLinkList** slot);
 struct UnkNavLoadLink;
 void fn_71002b52a4(UnkNavLoadLink*);
 

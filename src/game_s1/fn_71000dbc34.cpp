@@ -3,6 +3,8 @@
 // 0xb0-byte elements: fn_71000dbc34 (fn_7100097d18), fn_71000dbd7c (fn_71000e6fd8).
 // 0xc8-byte elements: fn_7100260bd0 (fn_710025b278), fn_7100260df8 (fn_7100260718).
 #include "base/UnkCollectionIter.h"
+#include "game/UnkTU2647.h"
+#include "game/UnkTU85.h"
 #include "types.h"
 
 template <void (*Move)(void*, void*), u64 Size>
@@ -13,7 +15,6 @@ struct UnkMovedElem {
 };
 
 void fn_7100097d18(void* self, void* other);
-void fn_71000e6fd8(void* self, void* other);
 void fn_710025b278(void* self, void* other);
 void fn_7100260718(void* self, void* other);
 
@@ -35,7 +36,6 @@ __attribute__((flatten)) void fn_7100260df8(void* dst, const void* src) {
 
 // The same move for elements copied by fn_710103a240 (a pair of path id lists), in another unit.
 struct UnkPathIdListPair_710103a240;
-void fn_710103a240(UnkPathIdListPair_710103a240* self, const UnkPathIdListPair_710103a240* other);
 
 static void CopyPathIdListPair(void* self, void* other) {
     fn_710103a240(static_cast<UnkPathIdListPair_710103a240*>(self), static_cast<const UnkPathIdListPair_710103a240*>(other));

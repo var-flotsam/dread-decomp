@@ -13,18 +13,20 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CChozoCommanderAIComponent.h"
+#include "game/CTriggerLogicAction.h"
+#include "game/GUI/CTutorialComposition.h"
 #include "game/UnkCameraCtrl.h"
 #include "game/UnkGameManager.h"
+#include "game/nn/time.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkTutoExitAction_b47;
-void fn_7100a55ac8(UnkTutoExitAction_b47* self);
 
 struct UnkTutorialComposition;
 struct UnkTutorialRequest;
-void fn_7100b8903c(UnkTutorialComposition* self, UnkTutorialRequest* request);
 void fn_7100b88f10(UnkTutorialComposition* self, const CStrId* text);
 
 struct UnkGrabAttack_b55 {
@@ -36,7 +38,6 @@ s32 fn_710050b910(UnkGrabAttack_b55* self);
 
 struct UnkSoundHolder;
 extern UnkSoundHolder* g_unk_7101d47340;
-void fn_710006cd9c(UnkSoundHolder* holder);
 
 struct UnkInput_b55 {
     virtual void vf_0x0();
@@ -54,7 +55,6 @@ struct UnkSPBInner_b55;
 void fn_7100a5377c(UnkSPBInner_b55* self, void* arg);
 
 struct UnkMlogMessage_b42a1;
-void fn_7100456b7c(void* callbacks, const UnkMlogMessage_b42a1* message);
 
 // The message's text id: copied like a CStrId, released in two steps like base::UnkStrIdMember.
 struct UnkMlogText_b55 : base::global::UnkStrIdBase {

@@ -9,8 +9,11 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/GUI/CButton.h"
+#include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "../../../game_s7/UnkGuiS7.h"
+#include "game/UnkTU2747.h"
 #include "types.h"
 
 
@@ -23,8 +26,6 @@ extern UnkEnumType g_unk_71729f0188;
 void fn_71011f9878(UnkGuiDisplayObject* sprite);
 
 struct UnkGuiButtonFocus_ovb0000;
-void fn_71011cf630(UnkGuiButtonFocus_ovb0000* self);
-void fn_71011d9ab4(UnkGuiButtonFocus_ovb0000* self);
 
 struct UnkButtonColor_ovb0000 {
     f32 r, g, b, a;
@@ -91,7 +92,6 @@ void fn_71011bf660(UnkGuiButtonFocus_ovb0000* self) {
 using base::global::CStrId;
 
 extern char g_unk_7101cb5908[];  // CButton's vtable
-void fn_71011c14e0();            // the bound callback
 
 struct UnkGuiButtonInit_ovb0000 {
     char* vtable;
@@ -137,8 +137,6 @@ void fn_71011c1410(UnkGuiButtonInit_ovb0000* self) {
 }
 
 // As the menu entry item renderers forward (src/game/GUI/UnkMenuEntryItemRenderer_Draw_b65a6.cpp).
-void fn_71011d9e90(void* a, void* b, void* c, bool d, bool e, bool f);
-void fn_71011cff5c(void* a, void* b, void* c, bool d, bool e, bool f);
 
 void fn_71011c00c0(void* a, void* b, void* c, bool d, bool e, bool f) {
     if (f)

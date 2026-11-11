@@ -10,6 +10,9 @@
 #include "base/global/CStrId.h"
 #include "game/UnkGlobal_710b372a98.h"
 #include "game/UnkSphere.h"
+#include "game/UnkTU221.h"
+#include "game/UnkTU228.h"
+#include "game/UnkTU308.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -21,7 +24,6 @@ struct UnkDecalResource;
 struct UnkDecalResourceMgr;
 extern UnkDecalResourceMgr* g_unk_716e352450;
 UnkDecalResource* fn_710019ffe8(UnkDecalResourceMgr* mgr, const CFilePathStrId* path, bool flag);
-void fn_71001a080c(UnkDecalResourceMgr* mgr, UnkDecalResource* resource);
 struct UnkBillboardMaterial {
     u8 pad_0x0[0x20];
     CStrId field_0x20;
@@ -50,8 +52,6 @@ struct UnkBillboardPart {
 };
 static_assert(sizeof(UnkBillboardPart) == 0x20, "UnkBillboardPart placeholder layout");
 void fn_7100196e64(UnkBillboardPart* self, UnkBillboardDrawable* drawable, void* a, void* b);
-void fn_710019a4e8(UnkBillboardDrawable* self, u32 a, u32 b);  // the drawable's constructor
-void fn_710021685c(void* self);  // UnkSphere's constructor
 
 struct UnkColor4 {
     f32 r;

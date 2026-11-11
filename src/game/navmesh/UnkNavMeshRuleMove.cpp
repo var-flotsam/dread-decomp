@@ -4,9 +4,8 @@
 // fn_710026ead0, taken over from the source) and a 0x15-byte block at +0x38. Names and layouts are
 // placeholders.
 #include "base/UnkVector.h"
+#include "game/navmesh/CFixedDynamicSmartLinkRule.h"
 #include "types.h"
-
-void fn_710026ead0(void* self);
 
 namespace {
 struct UnkNavRuleEntry {

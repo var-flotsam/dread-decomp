@@ -5,6 +5,10 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU207.h"
+#include "game/UnkTU218.h"
+#include "game/UnkTU225.h"
+#include "game/UnkTU226.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -13,14 +17,10 @@ extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, i
 
 extern void* g_unk_716e34c2e0;
 
-void fn_710016ae30(void* self);
 void fn_710016a8dc(void* self, void* arg);
 struct UnkKeyOwner;
-bool fn_710019e100(UnkKeyOwner* self, u64 key);
 void* fn_710019964c(void* self);
-void fn_7100198aac(void* self);
 // Gives the new object its owner.
-void fn_710019e95c(void* self, void* owner);
 
 struct UnkPoolNode_ovb0176 {
     u64 key;

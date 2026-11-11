@@ -4,6 +4,10 @@
 // constructor: empty links and name, the member at +0x38 and the list at +0xb0 initialised, the start time
 // cleared and the default masks (guarded statics) at +0x16c and +0x170. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CActionInstance.h"
+#include "game/UnkTU1141.h"
+#include "game/UnkTU1728.h"
+#include "game/UnkTU39.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -128,18 +132,12 @@ struct UnkTU1134_b257a {
     u16 field_0x174;
 };
 
-bool fn_7100c95ed8(UnkPlayer_b42*);
 s32 fn_7100c95f28(UnkPlayer_b42*);
 f32 fn_7100c95f34(UnkPlayer_b42*);
-f32 fn_7100b8aff0(f32, const UnkAnimTiming*);
-void fn_7100b8b3bc(UnkTimeline*, void*, UnkMotionTracks*, const u32*, f32, f32);
 void fn_71007142e8(UnkStruct_71007142e8*);
-void fn_71007143c8(UnkStruct_71007142e8*, UnkFlags_71007142e8);
 void fn_7100714808(void* part, UnkStruct_71007142e8* motion, bool flag);
-void fn_7100714eb4(void* part, const u32* flags);
 void fn_7100714dac(void* part);
 void fn_7100c976e4(UnkRefObj_b257a* self, UnkArgs_b257a* args);
-void fn_710002fa90(void* list);
 void fn_710002f4e4(void*);
 
 void fn_710070d5dc(UnkTU1134_b257a* self) {

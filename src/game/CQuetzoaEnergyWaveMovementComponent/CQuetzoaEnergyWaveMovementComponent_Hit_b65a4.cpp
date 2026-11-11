@@ -2,6 +2,7 @@
 // and runs fn_7100ac38fc; unless the word at +0x5ec is set, a hit whose normal (+0x2c of the third
 // argument) points up by less than 0.75 goes to the base handler fn_7100ac4c60, a steeper one to
 // fn_710064cc30. Always returns true. Names and layouts are placeholders.
+#include "game/CProjectileMovement.h"
 #include "types.h"
 #include "UnkLeftoverReg.h"
 
@@ -9,11 +10,9 @@ struct UnkEnergyWave_b65a4;
 
 // Takes the component (it reads +0x7c itself); declared as src/game/CEmmyWaveMovementComponent/fn_71005028e4.cpp
 // declares it.
-void fn_7100ac38fc(void* self);
 
 // As src/game/CKraidAcidBlobsMovementComponent/CKraidAcidBlobsMovementComponent.cpp declares it.
 struct UnkBossComponent;
-bool fn_7100ac4c60(UnkBossComponent* self, u64 a, u64 b, u64 c, u64 d);
 
 struct UnkEnergyWaveHit_b65a4 {
     u8 pad_0x0[0x2c];

@@ -3,13 +3,12 @@
 // Near copy of fn_71006c54dc (src/game/CCharClassStartPointComponent/fn_710116baf4.cpp).
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassMovementComponent.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-void fn_710097b294(void* self);
 
 extern void* g_unk_7101a4bcf8[];
 

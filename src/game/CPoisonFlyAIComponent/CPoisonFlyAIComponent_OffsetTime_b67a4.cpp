@@ -5,13 +5,13 @@
 // is set, the time at +0x14774 restarts, else it grows by `dt`. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "game/UnkManager_71726af468.h"
+#include "game/UnkTU958.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
 // As src/game/behaviortree/CPoisonFlyRequestAttackOffset/CPoisonFlyRequestAttackOffset_Update_b65a4.cpp
 // declares them.
-void fn_71002acfe4(void* member);
 struct UnkObject_71002ad0dc;
-void fn_71002ad0dc(UnkObject_71002ad0dc* self);
 
 struct UnkOffsetScratch_b65a4 {
     u8 data[0x12a88];
@@ -22,8 +22,6 @@ struct UnkOffsetScratch_b65a4 {
 struct UnkOffsetVec_b65a4 {
     f32 x, y, z;
 };
-
-bool fn_710063b1b0(u8* registry, void* owner, u32 flags, UnkOffsetVec_b65a4* pos, UnkOffsetScratch_b65a4* scratch);
 
 struct UnkPoisonFlyAI_b67a4 {
     u8 pad_0x0[0x30];

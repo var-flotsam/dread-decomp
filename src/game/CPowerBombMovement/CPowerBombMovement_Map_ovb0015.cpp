@@ -9,6 +9,9 @@
 #include "base/UnkHashMap.h"
 #include "base/UnkVector.h"
 #include "base/math/CVector.h"
+#include "game/CBombMovement.h"
+#include "game/CComponent.h"
+#include "game/CTimelineComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkGameManager.h"
@@ -16,14 +19,11 @@
 
 extern void* g_unk_7101a95348[];  // the movement's vtable
 extern void* g_unk_7101a77000[];  // the listener's vtable
-void fn_7100a2d4d0(void* target, void* listener);
 
 struct UnkBombMovement;
 void fn_7100aa9ee4(UnkBombMovement* self);  // the base constructor
 struct UnkPbMovementBase_ovb0015;
-void fn_7100aa9f3c(UnkPbMovementBase_ovb0015* self);  // the base destructor
 struct UnkHandleOwner_71010c4230;
-void fn_71010c4230(UnkHandleOwner_71010c4230*);
 // Flashes the screen through the game manager's effect player (+0x1078): colour, two zeros, time.
 void fn_7101053c14(void* fx, const base::math::CVector3D* color, f32 a, f32 b, f32 time);
 

@@ -6,14 +6,12 @@
 // (fn_7101137c8c). Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CBreakableTileGroup.h"
+#include "game/CGrabComponent.h"
+#include "game/UnkTU39.h"
 #include "types.h"
 
 struct UnkQueryObj;
-u32 fn_7100c9e960(UnkQueryObj* obj);
-void fn_7100c9ea08(UnkQueryObj* obj);
-void fn_7100c9e6ac(UnkQueryObj* obj, u32 state, bool a, bool b);
-bool fn_710113d83c(void*);
-bool fn_710002fb70(void*);
 
 struct UnkTileQuery_A3_b64 {
     u8 pad_0x0[0x38];

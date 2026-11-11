@@ -3,6 +3,7 @@
 // Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU2702.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
 
@@ -38,8 +39,6 @@ struct UnkQuetzoaAIComponent {
     u8 pad_0x0[0x30];
     UnkActor* owner;
 };
-
-void fn_7101108124(UnkQuetzoaAIComponent* self, void* arg);
 
 void fn_710064a838(UnkQuetzoaAIComponent* self, void* arg) {
     fn_7101108124(self, arg);

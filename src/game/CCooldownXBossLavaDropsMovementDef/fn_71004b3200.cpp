@@ -1,4 +1,5 @@
 // Static initialiser of the unit of the ELavaDropArm, ELavaDropArmPos, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>, base::reflection::CollectionTypeMapper<base::global::CRntVector<CCooldownXBossLavaDropsMovementDef>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<CCooldownXBossLavaDropsMovementDef>>::TKeyElementConstIterator::value_type, base::global::CRntVector<CCooldownXBossLavaDropsMovementDef>.
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
 #include "../../game_s7/UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -22,7 +23,6 @@ extern UnkStatics_71004b3200 g_unk_71726d4d68 __attribute__((visibility("hidden"
 extern char g_unk_71726d37b0[];
 extern UnkTunable g_unk_71726d37b8;
 extern void* g_unk_7101a3e130[];
-void fn_7100075104(void* self);  // its destructor, as registered
 extern UnkEnumType g_unk_71726d37e8;
 void fn_71004aacc0(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71004aaab4();

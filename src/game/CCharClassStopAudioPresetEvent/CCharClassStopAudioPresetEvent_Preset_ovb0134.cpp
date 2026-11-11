@@ -9,6 +9,8 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU25.h"
+#include "game/UnkTU2523.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -17,8 +19,6 @@ using base::global::CStrId;
 CRntString fn_710007f050(const char* a, const CRntString* b);   // concatenation
 struct UnkPathIds;
 struct UnkInlineString;
-void fn_710001f074(UnkPathIds* out, const UnkInlineString* path);
-void fn_7100d7c548(UnkActor* self, const UnkStrIdPathPair* ids, f32 blend, f32 start);
 
 // The ids the builder fills in place, destroyed in reverse order (as in CDroppableComponent_b50.cpp).
 struct UnkPresetIds_ovb0134 {

@@ -9,6 +9,8 @@
 #include "base/global/CStrId.h"
 #include "engine/scene/UnkToggle.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU223.h"
+#include "game/UnkTU287.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -27,12 +29,9 @@ extern UnkWhiteTexture_ovb0259 g_unk_71726b21e8 __attribute__((visibility("hidde
 
 struct UnkQuadNode_ovb0259;
 void fn_710035d9e0(void* map, const CFilePathStrId* path, UnkQuadNode_ovb0259** out, const CStrId* id);
-void fn_710019c564(void* target, f32 a, f32 b, f32 c, f32 d);
 struct UnkMinimapVec3;
-void fn_710020a4c4(void* p, const UnkMinimapVec3& pos);
 struct UnkStruct_710020a5a0;
 void fn_710020a5a0(UnkStruct_710020a5a0* self, const base::math::CVector2D* scale);
-void fn_710020ad90(void* self, s32 value);
 
 struct UnkQuadRender_ovb0259 {
     u8 pad_0x0[0x78];

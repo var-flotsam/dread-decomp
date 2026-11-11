@@ -5,6 +5,7 @@
 // impact; the capsule tests try the capsule's two end circles and its straight body in turn. Names
 // and layouts are placeholders (the types are declared as src/game/UnkCollisionContacts.cpp does).
 #include "base/math/UnkSegment2D.h"
+#include "game/malloc.h"
 #include "types.h"
 
 struct UnkShape8Geometry;
@@ -111,7 +112,6 @@ bool fn_710012c7d0(const UnkCircle2D* a, const void* b, UnkContactBuffer<2>* out
     return hit;
 }
 
-bool fn_710012f260(const UnkCircle2D* a, void* x5, const void* b, UnkContactPoint* out);
 bool fn_710012ce70(const UnkBox2D* box, const UnkVec2Result& step, const UnkSegment2D* seg, UnkContact2D* out);
 
 bool fn_710012f6a0(const void* b, void* x5, const UnkCircle2D* a, UnkContactPoint* out) {
@@ -172,7 +172,6 @@ struct UnkCapsule2D_b42 {
     }
 };
 
-bool fn_710012dd70(const UnkCircle2D* a, void* x5, const UnkCircle2D& b, UnkContactPoint* out);
 bool fn_710012deb0(const UnkCircle2D* circle, const UnkVec2Result* delta, const UnkBox2D* box, UnkContact2D* out);
 bool fn_710012e5c0(const UnkBox2D* box, const UnkVec2Result* delta, const UnkCircle2D* circle, UnkContact2D* out);
 

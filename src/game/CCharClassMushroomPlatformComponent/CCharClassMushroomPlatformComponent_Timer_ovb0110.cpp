@@ -2,8 +2,12 @@
 // platform, the timed update of its state machine and the destructor. Names and layouts are placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAnimationComponent.h"
+#include "game/CCharacterMovement.h"
+#include "game/CLifeComponent.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU58.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -11,7 +15,6 @@ struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkFlagged;
 struct UnkShape;
-UnkShape* fn_7100976588(UnkFlagged* flagged);
 struct UnkBox2D;
 struct UnkContactPoint_ov110 {
     u8 data[0x2c];
@@ -27,9 +30,7 @@ bool fn_7100d5bfbc(void* tracker, u32 mask, UnkCollisionObject* object, void* ar
 struct UnkGfxFrameSource;
 extern UnkGfxFrameSource* g_unk_7101d47328;
 struct UnkTimer_7100080c40;
-s64 fn_7100080fb4(const UnkTimer_7100080c40* self);
 struct UnkActorTarget;
-void fn_7101176a88(UnkActorTarget* target, u32 value);
 
 extern base::global::CStrId g_unk_717272c198 __attribute__((visibility("hidden")));
 
@@ -171,7 +172,6 @@ extern void* g_unk_7101a7c4a8[];
 
 struct UnkMushroomLinkTarget_ov110;
 void fn_710088c874(UnkMushroomLinkTarget_ov110* list, UnkMushroomLinkTarget_ov110** slot);
-void fn_710115f91c(void* self);
 
 struct UnkMushroomHolderTag_ov110;
 using UnkMushroomHolder_ov110 = base::UnkValueHolder<UnkMushroomHolderTag_ov110>;

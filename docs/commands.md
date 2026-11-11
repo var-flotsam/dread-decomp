@@ -377,6 +377,16 @@ python tools/gen_commands.py --check    # exit 1 if docs/commands.md is out of d
 
 ## Refactoring (header migrations, file moves)
 
+### `tools/decl_plan.py`
+
+Plan the move of shared function declarations into one header per translation unit.
+
+```sh
+python tools/decl_plan.py                                   # what would be planned and what is left out
+python tools/decl_plan.py --write [--exclude FILE] [--units N] [--chunk 380]   # headers + build/decl_plans/chunk_<k>.tsv
+python tools/hub_migrate.py --version 2.1.0 --plan build/decl_plans/chunk_1.tsv
+```
+
 ### `tools/hub_migrate.py`
 
 Mechanical canonical-header migration of fn_/g_unk_ symbols, verified by tools/baseline.py.

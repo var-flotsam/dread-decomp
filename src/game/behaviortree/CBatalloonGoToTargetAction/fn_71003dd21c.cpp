@@ -2,6 +2,7 @@
 // a few zeroed members, constructs the sub-object at +0x50 (fn_71002acfe4), clears 17 bytes at
 // +0x12ad8, stores a second pair of -1 floats at +0x12aec and finishes in vtable slot 0x18.
 #include "game/UnkBehaviorTree.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
 typedef u64 u64_a4 __attribute__((aligned(4)));
@@ -24,7 +25,6 @@ struct UnkNode : UnkBehaviorTreeNodeBase {
     void vf_0x18() { reinterpret_cast<void (*)(UnkNode*)>(vtable[3])(this); }
 };
 
-void fn_71002acfe4(void* sub);
 extern void* g_unk_7101a2f0d8[];
 
 // NON_MATCHING(minor): the stores at +0x3c and +0x40 are made in the other order

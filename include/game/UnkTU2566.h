@@ -1,0 +1,27 @@
+#pragma once
+
+// UnkTU2566: functions of this translation unit that other files call (tools/tu_map.py unit 2566,
+// 0x7100e7cdfc-0x7100eb695c). One declaration per function: include this instead of declaring one.
+// Names and layouts are placeholders.
+#include "types.h"
+
+struct UnkMapData;
+struct UnkMapTimersView_b43a3;
+struct UnkMinimapOwner;
+struct UnkMinimapRect;
+struct UnkMmOwner_b0199;
+struct UnkRecord;
+struct UnkRecord118;
+struct UnkRecordBuckets;
+void fn_7100ea7034(UnkRecord118* self);
+UnkMapData* fn_7100e8d8b0();
+UnkRecord** fn_7100eb3814(UnkRecordBuckets* set, u32 bucket);
+void fn_7100e94054(UnkMapTimersView_b43a3* self, f32 zoom);
+UnkMinimapRect fn_7100e948b4(UnkMinimapOwner* self, bool flag);
+void fn_7100e95038(void* world, void* object);
+void fn_7100e950b4(void* world, void* object);
+void fn_7100e951d4(UnkMinimapOwner* self, u32 count, void* items, u32 field_0x3);
+void fn_7100e957a8(UnkMinimapOwner* self);
+void fn_7100ea585c(UnkMmOwner_b0199* self);
+void fn_7100ea5d7c(char*, void*);
+void fn_7100ea7c6c(void*);

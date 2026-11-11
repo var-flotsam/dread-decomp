@@ -6,7 +6,10 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "base/snd/CSoundSystem.h"
+#include "game/UnkTU99.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 struct UnkSoundMgr;
@@ -20,10 +23,7 @@ struct UnkTunable;
 extern UnkSoundMgr* g_unk_7101d4d820;
 extern UnkTunable g_unk_7101d68580;  // base::snd::CSoundSystemATK's tunable
 
-void fn_7100108a98(UnkSoundMgr* mgr, u64 handle, bool flag, f32 value);
 void fn_7100108a84(UnkMgr*, UnkHandle*, f32);
-void fn_7100108b0c(UnkSoundMgr*, u32, f32);
-void fn_71000fbe1c(void* self, u32 a, f32 b, f32 c);
 
 struct UnkMask {
     u32 bits;
@@ -233,8 +233,6 @@ struct UnkMusicEntry_b0019 {
     UnkTuneStr_b0019* name;  // 0x58
 };
 
-void fn_7100fde4d8(UnkArray*, u32);
-
 struct UnkEntryArray_b0019 {
     UnkMusicEntry_b0019* data;
     u32 count;
@@ -264,9 +262,6 @@ struct UnkMusicMgr_b0019 {
     u8 pad_0xd0[0x180];
     u32 slot_count;  // 0x250
 };
-
-void fn_7100fd7c3c(UnkMgr_0xf18*, u32, UnkRequest*, f32, UnkKind, UnkMask);
-void fn_7100108b0c(UnkSoundMgr*, u32, f32);
 
 static inline UnkRequest* Request(UnkMusicMgr_b0019* self, u64 i) {
     return reinterpret_cast<UnkRequest*>(&self->entries[i]);

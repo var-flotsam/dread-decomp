@@ -3,6 +3,7 @@
 // destroyed and freed, then the command, then the string id is released. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2685.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -11,7 +12,6 @@ struct UnkCharClassEntry_ovb0127;
 struct UnkPropBag;
 struct UnkCommand_b0163;
 void fn_710050e8e4(UnkPropBag*);
-void fn_71010c7328(UnkCommand_b0163* self);
 
 // An entry of a character class table: an id, an owned property bag and a command.
 struct UnkEntryBody_b0216 {

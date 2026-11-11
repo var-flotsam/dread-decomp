@@ -4,11 +4,11 @@
 // (its vf_0x8), then new objects are constructed up to the new count. Names and layouts are
 // placeholders.
 #include "base/UnkVector.h"
+#include "game/logic/collision/CCollider.h"
 #include "types.h"
 
 // As src/game/CCharClassEventScenarioComponent/fn_71007e44b8.cpp declares it.
 struct UnkObj_71007e44b8;
-void fn_7100d36624(UnkObj_71007e44b8* self);  // constructor
 
 struct UnkObj188_b43a3 {
     virtual void vf_0x0();

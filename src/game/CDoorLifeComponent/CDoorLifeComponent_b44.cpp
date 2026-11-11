@@ -3,18 +3,15 @@
 // changed, the door opens (fn_71008d0ef4) or closes (fn_71008d498c), as CMagnetSlidingBlockComponent
 // does with its list. Names and layout are placeholders.
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU1376.h"
+#include "game/UnkTU39.h"
 #include "types.h"
-
-bool fn_710002fb70(void*);
-bool fn_71008d0ef4(void*);
 
 struct UnkDoorLife_b44a2 {
     u8 pad_0x0[0xaf8];
     u8 field_0xaf8[0x10];
     UnkGuiKeyList* keys() { return reinterpret_cast<UnkGuiKeyList*>(field_0xaf8); }
 };
-
-void fn_71008d498c(UnkDoorLife_b44a2* self, u32 a, u32 b, u32 c);
 
 void fn_71008d0740(UnkDoorLife_b44a2* self, bool add, base::global::CStrId* key) {
     UnkGuiKeyList* list = self->keys();

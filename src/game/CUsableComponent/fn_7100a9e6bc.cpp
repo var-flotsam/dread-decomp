@@ -4,6 +4,8 @@
 #include "base/UnkStrIdTable.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CChozoCommanderKiGrabAttack.h"
+#include "game/CTimelineComponent.h"
 #include "game/UnkComponent.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
@@ -69,8 +71,6 @@ extern void* g_unk_7101a94220[];
 extern void* g_unk_7101a77000[];
 extern void* g_unk_7101a946c0[];
 extern void* g_unk_7101a94718[];
-void fn_7100a2d4d0(void* target, void* listener);
-void fn_7100431cec(void* self);
 
 static inline void Release(UnkRefObject* p) {
     if (p && --p->ref_count == 0)

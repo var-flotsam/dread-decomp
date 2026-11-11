@@ -7,6 +7,7 @@
 #include "base/UnkHashStream.h"
 #include "base/UnkNamedRegistry.h"
 #include "base/UnkStrIdPathPair.h"
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CStrId.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
@@ -14,6 +15,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU25.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
@@ -30,7 +32,6 @@ struct UnkPathPairTemp_b45a1 {
     void* path;
     ~UnkPathPairTemp_b45a1() { fn_710008d8e8(reinterpret_cast<UnkStrIdPathPair*>(this)); }
 };
-UnkPathPairTemp_b45a1 fn_710001ab24(void* path);
 
 // The file read into memory and two words the opener sets (+0x38 is zero after a good read).
 struct UnkFileReader {
@@ -40,7 +41,6 @@ struct UnkFileReader {
 };
 
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
-void fn_710000ccd8(UnkFileReader* self);
 void fn_710000f750(UnkParseContext* self, void* root);
 
 // This unit's parser callbacks.

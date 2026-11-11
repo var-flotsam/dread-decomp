@@ -9,6 +9,9 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CBouncingCreaturesLaunchPattern.h"
+#include "game/CKraidAttack.h"
+#include "game/UnkTU2772.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -16,10 +19,8 @@ using base::reflection::UnkReflObject;
 
 void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
 void fn_710117b3e8(UnkWeakTarget* target, void* link);
-void fn_71005f2018(char* self);
 void fn_71005f3e4c();
 bool fn_7100600c90(UnkReflObject* ai);
-int fn_71012395a0();
 
 struct UnkTunable;
 extern UnkTunable g_unk_71726ef3f0;
@@ -40,7 +41,6 @@ struct UnkKraidBouncingSet_b62a4 {
 
 // Typed as CKraidBouncingCreaturesAttack_Update_b57.cpp declares it (one signature per symbol).
 struct UnkKraidBouncingList_b57a4;
-void** fn_71005e2c08(UnkKraidBouncingList_b57a4* list, u32 index);
 
 struct UnkKraidBouncingLink_b62a4 {
     u8 pad_0x0[0x8];

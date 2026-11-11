@@ -2,12 +2,16 @@
 // Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
 #include "base/global/CStrId.h"
+#include "game/CAbilityShinespark.h"
 #include "game/UnkAnimationComponent.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU341.h"
+#include "game/UnkTU365.h"
+#include "game/UnkTU54.h"
 #include "types.h"
 
 #include <cmath>
@@ -74,7 +78,6 @@ bool fn_7100342ee4(u32 region, f32 x, f32 y) {
 // Unit 437: turns the angle at out[0] toward the angle at out[1] at the speed of the object at
 // +0x2b0 (its +0x64) times `step`, taking the short way round and stopping on the target; wraps the
 // result. Without the flag at +0x570 only clears out[0]. Names and layouts are placeholders.
-f32 fn_710007a1d0(f32 angle);  // wraps an angle into (-pi, pi]
 
 struct UnkAimSpeed_ovb0198g {
     u8 pad_0x0[0x64];
@@ -191,7 +194,6 @@ struct UnkAimTarget_ovb0198f {
 };
 
 struct UnkNameHolder_b0161;
-UnkNameHolder_b0161* fn_7100232fcc(void* object);
 
 bool fn_710033fe10(UnkAimTarget_ovb0198f* target) {
     if (!target)
@@ -227,9 +229,7 @@ bool fn_710033fe10(UnkAimTarget_ovb0198f* target) {
 // flag at +0x2d4 and the step at +0x2d0 are set. The result is wrapped to 0..2pi, and the owner's
 // object at +0x1f0 is told the side (sign of the value at +0x330, else of the transform's third
 // component). Names and layouts are placeholders.
-f32 fn_710007a1d0(f32 angle);  // wraps an angle into (-pi, pi]
 struct UnkAim;
-void fn_710007a170(UnkAim* value, f32 reference);
 
 struct UnkAimTunable_ovb0198p {
     u8 pad_0x0[0x7c];
@@ -403,7 +403,6 @@ struct UnkAssignedSlot {
 
     UnkAssignedSlot& operator=(const UnkAssignedSlot& other);
 };
-void fn_71002a5d1c(UnkAssignedSlot* self, const UnkAssignedSlot* other);
 __attribute__((always_inline)) inline UnkAssignedSlot& UnkAssignedSlot::operator=(const UnkAssignedSlot& other) {
     fn_71002a5d1c(this, &other);
     return *this;
@@ -746,8 +745,6 @@ static inline UnkVisitResult_b0040 Skip_ovb0198s() {
     }
     return g_unk_71726a4778;
 }
-
-void fn_7100331c7c(void* self, const void* other);
 
 #pragma pack(push, 4)
 struct UnkAimRecord_ovb0198s {

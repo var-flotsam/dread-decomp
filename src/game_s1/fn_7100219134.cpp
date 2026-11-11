@@ -10,6 +10,9 @@
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
+#include "game/CChozoCommanderKiGrabAttack.h"
+#include "game/logic/collision/CPolygonCollectionShape.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 extern char unk_7101a202e0[];
@@ -99,8 +102,6 @@ void fn_71011d2a74(UnkNodeList_7100219134* self) {
 extern char unk_7101a6f558[];
 extern char unk_7101aa4fb0[];
 extern char unk_7101cb2618[];
-void fn_7100431cec(void* node);
-void fn_7100d62bd8(void* node);
 
 static inline void DestroyNode_7100790f50(char* node) { fn_7100431cec(node); }
 static inline void DestroyNode_7100c75d5c(char* node) { fn_7100d62bd8(node); }
@@ -126,7 +127,6 @@ struct UnkNodeList28 {
 extern char unk_7101a9e948[];
 extern char unk_7101cac270[];
 struct UnkNode_0x68;
-void fn_7100fde6c4(UnkNode_0x68* node);  // as src/game/sound/CMusicManager/CTunableMusicManager/fn_7100fd8720.cpp declares it
 
 static inline void DestroyNode_7100fde39c(char* node) { fn_7100fde6c4(reinterpret_cast<UnkNode_0x68*>(node)); }
 

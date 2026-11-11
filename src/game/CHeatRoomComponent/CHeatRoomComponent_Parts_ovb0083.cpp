@@ -5,12 +5,19 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "base/snd/CSoundSystem.h"
+#include "game/CActorComponent.h"
+#include "game/CCharClassBaseDamageTriggerComponent.h"
+#include "game/CHeatRoomComponent.h"
+#include "game/CPlayerInfo.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU365.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -78,15 +85,11 @@ struct UnkHeatRoom_ovb0083 {
 static_assert(__builtin_offsetof(UnkHeatRoom_ovb0083, sound_path) == 0xc50, "UnkHeatRoom_ovb0083 layout");
 
 struct UnkHeatRoom_b49;
-void fn_7100a26828(UnkHeatRoom_b49* self);
 void fn_7100a45cec(UnkHeatRoom_ovb0083* self);
 struct UnkSoundMgr;
 struct UnkPathNode;
 extern UnkSoundMgr* g_unk_7101d4d820;
-void fn_7100108094(UnkSoundMgr*, UnkPathNode*);
 struct UnkStruct_710024fa0c;
-void fn_710024fa0c(UnkStruct_710024fa0c*, bool);
-UnkBreakableTarget** fn_71002a76a4(UnkBreakablePart*);
 void* fn_710082e510(void* key);
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
@@ -178,7 +181,6 @@ bool fn_7100a279fc(UnkHeatRoom_ovb0083* self) {
 
 struct UnkEnvironmentManager;
 extern void* g_unk_7101d47368;
-void fn_7100d8ced8(void* self);
 void fn_7100d8e32c(UnkEnvironmentManager* self, const CStrId* id, bool a, bool b);
 const CStrId* fn_7100d8efc8(UnkEnvironmentManager* self);
 struct UnkHeatActor_ovb0083;
@@ -222,7 +224,6 @@ void fn_7100a27718(UnkHeatRoom_ovb0083* self, UnkHeatActor_ovb0083* actor) {
 struct UnkLiquidPoolEnter_ovb0075;
 struct UnkLiquidPoolActor_ovb0075;
 void fn_7100a45f08(UnkLiquidPoolEnter_ovb0075*, UnkLiquidPoolActor_ovb0075*, const UnkVec3f*);
-void fn_7100f0e98c(void* manager_0x38, void* class_0x98, void* owner_0x30, void* actor_0x30);
 
 // The base handler first; then, when the room is hot (+0x9b8 clear) and set to change the
 // environment, an actor (state at +0x1b8 not 2) switches the manager back to the kept environment
@@ -264,7 +265,6 @@ static_assert(__builtin_offsetof(UnkHeatRoomMembers_ovb0083, sound_path) == 0xc5
 
 extern char g_unk_7101a8d620[];
 struct UnkLiquidPoolDtor_ovb0075;
-void fn_7100a45a84(UnkLiquidPoolDtor_ovb0075*);
 
 // The destructor: the ids, then the parts, then the base's (fn_7100a45a84).
 __attribute__((flatten)) void fn_7100a26518(UnkHeatRoomMembers_ovb0083* self) {

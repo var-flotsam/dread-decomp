@@ -2,6 +2,7 @@
 // manager is busy (fn_7100ded930), only when both checks of the info pass (fn_7100f10960, fn_7100f10a2c)
 // and the manager's word at +0x17c is clear; when its word at +0x180 is set, also only when the player's
 // inventory (fn_7100df55e4) holds the Varia suit (fn_71011428bc). Names and layout are placeholders.
+#include "game/CReserveTankInfo.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
@@ -14,8 +15,6 @@ bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 void* fn_7100df55e4(UnkGameManager*);
 
 struct UnkReserveTankInfo_b49a6;
-bool fn_7100f10960(UnkReserveTankInfo_b49a6* self);
-bool fn_7100f10a2c(UnkReserveTankInfo_b49a6* self);
 
 struct UnkGameManagerWords_b49a6 {
     u8 pad_0x0[0x17c];

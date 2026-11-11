@@ -2,9 +2,8 @@
 // of an array of 0x138-byte elements destroyed by fn_7100e4e310, whose iterator assignment
 // src/clones/clones_05.cpp instantiates. Names and layouts are placeholders.
 #include "base/UnkCollectionIter.h"
+#include "game/UnkTU2563.h"
 #include "types.h"
-
-void fn_7100e4e310(char*);
 
 struct UnkElem138_b56 {
     u64 unk_0x0[0x138 / 8];

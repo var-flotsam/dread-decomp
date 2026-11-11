@@ -2,6 +2,7 @@
 // src/engine/UnkGfxSlotSetters_b50.cpp): the constructor of a pooled graphics object's first 0xb8 bytes
 // and the refresh of the dirty slots of the three slot groups. Names and layouts are placeholders.
 #include "game/UnkGraphicsState.h"
+#include "game/UnkTU172.h"
 #include "types.h"
 
 // A zero whose constructor isn't constexpr, so the statics are guarded.
@@ -67,8 +68,6 @@ void fn_7100161654(UnkGfxObject* obj) {
 
 bool fn_710015bd80();
 s32 fn_710015e9fc(s32* state);
-void* fn_7100153cd0();  // the device
-void* fn_7100153d50();  // the command buffer
 extern void* (*g_unk_716e29ac90)(void* device, u32 a, u32 b);
 
 struct UnkSlotBound_ovb0224 {

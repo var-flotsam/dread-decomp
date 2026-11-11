@@ -6,10 +6,9 @@
 // Names and layouts are placeholders.
 #include <math.h>
 
+#include "game/UnkTU251.h"
+#include "game/UnkTU290.h"
 #include "types.h"
-
-void fn_710020c9ac(void* self, f32 value);
-void fn_71001bdc3c(void* object);
 
 // The store may alias any other access: the owner pointer is read again after it.
 typedef f32 __attribute__((may_alias)) UnkAliasF32_b0187i;

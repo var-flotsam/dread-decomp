@@ -1,8 +1,7 @@
 // Unit 99 (the sound system's): setters that queue a (voice id, value) command for a voice, one
 // command for a voice with the flag at +0x120 set and another for the rest.
 #include "base/snd/UnkSoundSystemATK.h"
-
-bool fn_7100132cd0();
+#include "base/tunable/CTunable.h"
 
 using base::snd::UnkSoundSystemATK;
 

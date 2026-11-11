@@ -1,10 +1,10 @@
 // Two identical constructors in the CCooldownXBossWindTunnelAttack unit (fn_71004cb480,
 // fn_71004cc988): the base constructor fn_71004c1894, the vtable, then cleared fields from +0x68 to
 // +0x90. Names and layouts are placeholders.
+#include "game/CCooldownXBossAttack.h"
 #include "types.h"
 
 struct UnkNode;
-void fn_71004c1894(UnkNode* self);
 extern void* g_unk_7101a3eae0[];
 
 struct UnkWindTunnelNode {

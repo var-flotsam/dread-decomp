@@ -3,10 +3,9 @@
 // fn_710092b6f8 of the object at +0x2f8 of the actor the owner acts against (fn_7100d7c990); false
 // without either.
 // Names and layouts are placeholders.
+#include "game/CMeleeComponent.h"
 #include "game/UnkActor.h"
 #include "types.h"
-
-bool fn_710092b6f8(void*);
 
 struct UnkCommanderSlot_A2_b68 {
     u8 pad_0x0[0x1a0];

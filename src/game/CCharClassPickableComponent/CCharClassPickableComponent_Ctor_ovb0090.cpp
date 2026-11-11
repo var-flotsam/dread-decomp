@@ -6,13 +6,13 @@
 
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassComponent.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
 
 struct UnkStruct_71008bca30;
-void fn_71011acd10(UnkStruct_71008bca30* self);
 extern void* g_unk_7101a89160[];  // the class's vtable
 
 struct UnkPickableDef_ovb0090 {

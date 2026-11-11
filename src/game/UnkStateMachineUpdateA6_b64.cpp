@@ -1,6 +1,10 @@
 // Component updates around the small state machine update (template copied from
 // src/game/UnkStateMachineUpdateA5_b62.cpp, fn_7100886c10): applies the pending state, then updates the
 // current state and applies what it asked for, at most ten times, while marked busy. Names are placeholders.
+#include "game/UnkTU1450.h"
+#include "game/UnkTU2577.h"
+#include "game/UnkTU2656.h"
+#include "game/UnkTU2737.h"
 #include "types.h"
 
 struct UnkSmState_A6_b64 {
@@ -182,7 +186,6 @@ struct UnkObj_71011a50cc {
 };
 
 extern UnkObj_71011a50cc* g_unk_71727bc260;
-void fn_71011a5798(UnkObj_71011a50cc* self, u32 index, f32 value);
 
 struct UnkFlagOwner_A6_b64 {
     u8 pad_0x0[0x50];
@@ -205,7 +208,6 @@ void fn_7100f1380c(UnkFlagOwner_A6_b64* self, f32 dt) {
 
 extern void* g_unk_7101d47360;
 void fn_7100ee1f34(void*);
-bool fn_7100eef674(void*);
 extern const u64 g_unk_710164b648[];
 extern const u64 g_unk_710164b650[];
 
@@ -245,7 +247,6 @@ void fn_7100a9fad8(UnkUsableOwner_A6_b64* self, f32 dt) {
 // values (+0x1d8 -> +0x9f0/+0x9f4) is out of range, then updates the machine with a pointer argument.
 struct UnkUnit1452Owner_b56;
 struct UnkUnit1452_b56;
-UnkUnit1452Owner_b56* fn_710097f1b8(UnkUnit1452_b56* self);
 
 struct UnkUnit1454Values_A6_b64 {
     u8 pad_0x0[0x9f0];
@@ -282,7 +283,6 @@ void fn_7100985b88(UnkUnit1454_A6_b64* self, void* arg) {
 
 using base::global::CRntString;
 
-bool fn_7101053a98(void* state);
 void fn_7100deac9c(UnkGameManager* manager, const CRntString& mode);
 
 struct UnkUnit1734_A6_b64 {

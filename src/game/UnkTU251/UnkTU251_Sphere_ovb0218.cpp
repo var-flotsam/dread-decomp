@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkSphere.h"
+#include "game/UnkTU226.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -49,7 +50,6 @@ using base::reflection::UnkReflObject;
 extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
 
 void fn_710019fa64(void* self);
-void fn_710019e95c(void* self, void* owner);
 
 struct UnkSourceNode_b218 {
     u64 key;

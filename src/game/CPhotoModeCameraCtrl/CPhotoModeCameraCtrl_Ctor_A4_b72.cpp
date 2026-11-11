@@ -5,11 +5,11 @@
 // post-construction virtual call (slot 3). Defined under the `void()` symbol src/reflection/CPhotoModeCameraCtrl.cpp
 // declares. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CCameraCtrl.h"
+#include "game/CPhotoModeCameraCtrl.h"
 #include "types.h"
 
 struct UnkBase_7100763ed4;
-void fn_71010ed044(UnkBase_7100763ed4*);  // as CCameraBoundaryCtrl_Ctor_A5_b71.cpp declares it
-void fn_71009ca9fc(void* self, const char* name, u32 flags);
 extern void* g_unk_7101a89018[];
 extern const char g_unk_71015dca2c[] __attribute__((visibility("hidden")));  // the class name string
 

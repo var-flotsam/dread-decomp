@@ -1,6 +1,5 @@
+#include "game/UnkTU2772.h"
 #include "types.h"
-
-int fn_71012395a0();
 
 struct CPolypFallPatternList {
     void** data;

@@ -3,12 +3,12 @@
 // hands it the id's hash (+0x30 of the string data), the colour at +0x18 and the value at +0x28
 // (fn_71008e7e98, CCharClassLightingComponent_2.cpp). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CCharClassLightingComponent.h"
+#include "game/UnkTU1376.h"
 #include "types.h"
 
 struct UnkUnit2186Object;
 struct UnkLightingComponent2;
-UnkUnit2186Object* fn_71008d5d2c(void* owner);
-void fn_71008e7e98(UnkLightingComponent2* self, const u64* id, void* arg, f32 value);
 
 struct UnkLightingColor_b51 {
     u64 rg;

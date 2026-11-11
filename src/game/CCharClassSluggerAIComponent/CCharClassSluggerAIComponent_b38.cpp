@@ -4,6 +4,7 @@
 // matrix), else 1. Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CCharClassAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
@@ -18,7 +19,6 @@ struct UnkSluggerPos {
 
 // The base character class's check, called with the same arguments (declared without them in its
 // generated definition).
-u32 fn_7100414160();
 UnkSluggerPos fn_71011008a8(void* ai, u32 index);
 
 u32 fn_71006c53a8(void* self, UnkActor* actor, UnkActor* other) {

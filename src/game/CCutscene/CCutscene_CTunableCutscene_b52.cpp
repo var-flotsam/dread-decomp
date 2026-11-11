@@ -1,10 +1,10 @@
 // CCutscene unit (tools/tu_map.py; CCutscene::CTunableCutscene by reflection). Names and layouts are
 // placeholders; the cutscene is src/game/CCutscene.cpp's UnkCutscene.
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU1134.h"
 #include "types.h"
 
 struct UnkTrackObject_71011781f4;
-void fn_710070d874(UnkTrackObject_71011781f4* obj, bool flag, bool flag2);
 struct UnkObj_7101066878;
 void fn_7101066878(UnkObj_7101066878* self, f32 time, bool flag, bool flag2);
 struct UnkCutscene;

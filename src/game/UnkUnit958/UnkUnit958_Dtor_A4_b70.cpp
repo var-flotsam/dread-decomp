@@ -3,10 +3,10 @@
 // array of 0x30-byte polymorphic elements at +8. Names are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU852.h"
 #include "types.h"
 
 extern void* g_unk_7101a58cd8[];
-void fn_710059c7b8(void*);  // as src/game/CVulkranAttackManager/CVulkranAttackManager_Dtor_b49a3.cpp declares it
 
 struct UnkUnit958Dtor_A4_b70;
 

@@ -9,7 +9,9 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU811.h"
 #include "game/UnkXformNode.h"
+#include "game/behaviortree/CEmmyPatrolAction.h"
 #include "types.h"
 
 struct UnkNodeAllocator_ovb0118 {
@@ -121,8 +123,6 @@ struct UnkPatrolBase_b55;
 
 struct UnkEmmyAI_b0068;
 struct UnkEmmySearchCallback_b0068;
-void fn_7100556c00(UnkEmmyAI_b0068* ai, bool pending, const UnkEmmySearchCallback_b0068* a,
-                   const UnkEmmySearchCallback_b0068* b, u32 c, void* data, const UnkEmmySearchCallback_b0068& d);
 void fn_71005554a0(UnkEmmyPatrol_ovb0118* patrol, const base::math::CVector2D* target, bool flag);
 void fn_7100516468(UnkPatrolBase_ovb0118* self);
 void fn_7100516474(UnkPatrolBase_ovb0118* self);
@@ -173,7 +173,6 @@ static inline __attribute__((always_inline)) void ClearPatrol(UnkPatrolBase_ovb0
 }
 
 // Removes the action's registration from its deferred set (base::UnkDeferredSet<..>::Remove).
-void fn_7100514b7c(void* set, void* item);
 
 static inline void Unregister(UnkPatrolRegistration_ovb0118* reg) {
     if (reg->set) {

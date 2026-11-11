@@ -1,7 +1,6 @@
 // CMissileMovement's unit (tools/tu_map.py unit 1618). Names and layouts are placeholders.
+#include "game/UnkTU341.h"
 #include "types.h"
-
-void fn_7100232c68(void* target);
 
 // An intrusively counted result (count at +8, deleted through its slot 2).
 struct UnkMissileMoveResult_ovb0070 {

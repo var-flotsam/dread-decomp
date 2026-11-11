@@ -4,6 +4,7 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/CTriggerLogicAction.h"
 #include "types.h"
 
 using base::global::UnkStrId;
@@ -17,7 +18,6 @@ struct UnkChangeSetupLogicActionDef {
     bool field_0x1a;
 };
 
-void fn_7100a55aa4(UnkChangeSetupLogicActionDef* self);
 extern void* g_unk_7101a8e380[];
 
 void fn_7100a377a4(UnkChangeSetupLogicActionDef* self) {

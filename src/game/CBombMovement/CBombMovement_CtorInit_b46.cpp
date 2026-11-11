@@ -4,6 +4,7 @@
 #include <new>
 
 #include "base/global/CFilePathStrId.h"
+#include "game/CWeaponMovement.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -20,7 +21,6 @@ struct UnkBombMovement_b46a3 {
 };
 
 struct UnkComponent_0x5b8;  // src/game/CProjectileMovement/fn_7100ac2c5c.cpp
-void fn_7100ac7224(UnkComponent_0x5b8* self);  // the base constructor
 extern void* g_unk_7101a94c90[];
 
 void fn_7100aac26c(UnkBombMovement_b46a3* self) {

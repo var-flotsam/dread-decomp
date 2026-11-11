@@ -15,11 +15,16 @@
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/global/timeline/CEvent.h"
 #include "base/math/CVector.h"
+#include "game/GUI/CLabel.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiFrames.h"
 #include "game/UnkGuiLabel.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU135.h"
+#include "game/UnkTU2733.h"
+#include "game/UnkTU2747.h"
 #include "types.h"
 
 using base::UnkDeferredCallback;
@@ -32,17 +37,10 @@ struct UnkLayoutText;
 struct UnkLabelLayout;
 void fn_7100066a50(void* text, const char32_t* value);
 void fn_7100066af0(UnkLayoutText* self, const char32_t* text);
-void fn_7100066e44(void* text);
 void* fn_71011b882c(UnkGuiRoot*, const CStrId*);
-u32 fn_71001479dc(void* font, u32 c);
-void fn_71011ed1e8(UnkLabelLayout* self, bool only_if_shown);
-void fn_71011ec768(UnkLabelLayout* self);
-void fn_71011ec314(UnkLabelLayout* self);
 void fn_71011bab80(UnkGuiRoot* root, void* object, s32 frame);
 
-void fn_71011cd4b4(void* self);  // the display object's set-up (src/game/GUI/CText/CText_Ctor_b43.cpp)
 const CStrId& fn_71011b8920(UnkGuiRoot* root);
-void fn_71011ccfb4(char*);  // the display object's destructor
 void fn_71000303c0(UnkDeferredSet<UnkDeferredCallback<bool>>* s, const bool* arg);
 struct UnkSprite_spr;
 void fn_71011cf8d0(UnkSprite_spr* self, const base::math::CVector2D* size);
@@ -52,8 +50,6 @@ s32 fn_71011eedd0(UnkLabelFontView_b52* self);
 // The language singleton (src/game/UnkLanguage.cpp) and its current language.
 struct UnkLanguage;
 extern UnkLanguage* g_unk_7101d47358;
-void fn_710119c020(UnkLanguage* language);
-s32 fn_710119c9f4(UnkLanguage* language);
 
 extern char g_unk_7101cb6380[];  // the label's vtable
 extern char g_unk_7101cb65e8[];  // its line list's vtable

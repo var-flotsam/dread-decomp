@@ -9,6 +9,7 @@
 #include "base/UnkCountedResource.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "base/core/CAsset.h"
 #include "base/global/CRntString.h"
 #include "game/UnkComponent.h"
 #include "types.h"
@@ -19,7 +20,6 @@ using base::global::UnkStringPool;
 extern char unk_7101a19fc0[];
 extern char unk_7101a1f380[];
 extern char unk_7101a20d68[];
-void fn_7100016f88(void* self);
 
 struct UnkNamedId_710002ddc0 {
     char* vtable;

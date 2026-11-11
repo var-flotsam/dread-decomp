@@ -6,15 +6,14 @@
 
 #include "base/UnkVector.h"
 #include "base/snd/UnkSoundSystemATK.h"
-
-bool fn_7100132cd0();
+#include "base/tunable/CTunable.h"
+#include "game/UnkTU101.h"
+#include "game/operator_new.h"
 
 struct UnkKeyUseTable;  // src/game/UnkUnit100/UnkUnit100Release.cpp
 void fn_7100104ae4(UnkKeyUseTable* self, const u32* key);
 void fn_7100104ef4();
 struct UnkSoundVoice2_b56;
-void fn_7100104f08(void* voice);
-void fn_710010519c(UnkSoundVoice2_b56* voice, void* system, u32 seq, bool flag);
 
 struct UnkSoundVoice2_b56 {
     u8 pad_0x0[0xb4];
@@ -27,7 +26,6 @@ struct UnkSoundVoice2_b56 {
 
 struct UnkVoicePool_b56;
 void* fn_7100083804(UnkVoicePool_b56* self);
-u64 fn_7100083854(UnkVoicePool_b56* self, UnkSoundVoice2_b56* voice);
 void fn_7100083834(UnkVoicePool_b56* self, UnkSoundVoice2_b56* voice);
 
 struct UnkVoiceStat_b56 {

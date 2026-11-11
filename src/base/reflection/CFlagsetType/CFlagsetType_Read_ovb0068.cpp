@@ -4,6 +4,7 @@
 #include "base/global/CRntFile.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/UnkTU85.h"
 #include "types.h"
 
 using base::global::CRntFile;
@@ -12,7 +13,6 @@ using base::reflection::CType;
 struct UnkReflField;
 struct UnkReflFieldObject;
 struct UnkReflValueArg;
-bool fn_71000e7a80(UnkReflField* field, const UnkReflFieldObject* obj, UnkReflValueArg* value);  // sets
 const CType* fn_7100010e58();  // an 8-byte type's getter
 
 struct UnkFlagsetType_b0068 {

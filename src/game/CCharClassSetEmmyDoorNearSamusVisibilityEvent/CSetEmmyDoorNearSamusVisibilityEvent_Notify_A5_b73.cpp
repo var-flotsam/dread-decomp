@@ -2,6 +2,7 @@
 // and the third column of its matrix to the E.M.M.I. registry (fn_7100daeb50) with the event's kind (+0xc), as
 // src/game/CEmmyGrabSamusAttack/CEmmyGrabSamusAttack_Send_b58.cpp does. Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
+#include "game/CAIManager/CTunableAIManager.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
@@ -11,8 +12,6 @@ extern UnkEmmyRegistry_b55* g_unk_71726af0a8;
 struct UnkGrabVec_b58a3 {
     f32 x, y, z;
 };
-void fn_7100daeb50(UnkEmmyRegistry_b55* registry, u32 kind, const UnkGrabVec_b58a3* pos,
-                   const UnkGrabVec_b58a3* dir);
 
 static inline __attribute__((always_inline)) const UnkGrabVec_b58a3* Addr_A5_b73(const UnkGrabVec_b58a3& v) {
     return &v;

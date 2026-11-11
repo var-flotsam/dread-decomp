@@ -6,14 +6,12 @@
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using base::global::CRntString;
 
-void fn_710007f634(void* self, u32 value);  // appends a number
-
 struct UnkCompared_0x30;
-bool fn_710007f120(const UnkCompared_0x30* a, const UnkCompared_0x30* b);
 
 struct UnkRecord_b0238 {
     CRntString name;

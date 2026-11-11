@@ -6,9 +6,8 @@
 #include <math.h>
 
 #include "game/UnkActor.h"
+#include "game/UnkTU54.h"
 #include "types.h"
-
-f32 fn_710007a1d0(f32 angle);  // wraps an angle into (-pi, pi]
 
 struct UnkFakeVec3_b0119 {
     f32 x, y, z;

@@ -4,16 +4,15 @@
 // vector at +0xb4 of its definition (+0x130) go to the current (+0x68, +0x74), start (+0x38, +0x44)
 // and slide (+0x1dc, +0x1e8) slots, then the base step runs (fn_71010ed98c, as in
 // src/game/CFixedCameraCtrl/CFixedCameraCtrl_b40.cpp). Names and layouts are placeholders.
+#include "game/CCameraCtrl.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 struct UnkBase_7100763ed4;
-void fn_71010ed044(UnkBase_7100763ed4*);
 extern void* g_unk_7101a72188[];  // the class's vtable
 
 struct UnkFixedCamera_fc;
 struct UnkArg_fc;
-void fn_71010ed98c(UnkFixedCamera_fc* self, UnkArg_fc* arg, u32 flag);
 
 struct UnkSlideDef_b44a2 {
     u8 pad_0x0[0xb4];

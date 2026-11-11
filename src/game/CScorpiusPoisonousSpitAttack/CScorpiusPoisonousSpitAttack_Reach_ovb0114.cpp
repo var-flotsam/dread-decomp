@@ -5,12 +5,11 @@
 // layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCharacterMovement.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
-
-f32 fn_7100977b20(void*);
 
 struct UnkScorpiusSpitAI_ovb0114 {
     virtual void vf_0x0();

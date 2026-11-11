@@ -11,6 +11,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
+#include "game/UnkTU2599.h"
 #include "types.h"
 
 using base::math::CVector4D;
@@ -155,8 +156,6 @@ struct UnkFogTag_b0196;
 struct UnkVFogTag_b0196;
 
 // The arrays' resizes (below), called out of line.
-void fn_7100f799b0(void* v, u32 n);
-void fn_7100f7a7c8(void* v, u32 n);
 
 template <>
 struct base::UnkStrIdValueTraits<UnkFogTag_b0196> {

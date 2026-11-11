@@ -3,8 +3,7 @@
 // fn_710063c670 and returns what that returns. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "game/UnkManager_71726af468.h"
-
-void* fn_710063c670(void* member);
+#include "game/UnkTU958.h"
 
 void* fn_7100633198() {
     UnkManager_71726af468* manager = g_unk_71726af468;

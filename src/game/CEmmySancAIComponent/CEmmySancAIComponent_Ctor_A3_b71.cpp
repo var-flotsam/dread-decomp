@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
+#include "game/UnkTU811.h"
 #include "types.h"
 
 #include <new>
@@ -15,7 +16,6 @@ extern void* g_unk_7101a20998[];
 
 // As src/game/CEmmyCaveAIComponent/CEmmyCaveAIComponent.cpp declares it.
 struct UnkComponent;
-void fn_710053e5c0(UnkComponent* self);
 
 // A file-path id copied in (as src/base/UnkUnit25/UnkIdPathIterAssign.cpp's UnkUnit25PathId).
 struct UnkSancPathId_A3_b71 {

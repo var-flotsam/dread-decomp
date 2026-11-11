@@ -3,12 +3,12 @@
 // two copies of its copy constructor (fn_7100c97ae4, fn_7100c97bb4) and the setter of its time
 // (fn_7100c967c8), which snaps to the end, wraps past it and converts to frames (fn_7100b8aff0).
 // Names and layouts are placeholders.
+#include "game/UnkTU1728.h"
 #include "types.h"
 
 extern char g_unk_7101aa50e0[];
 
 struct UnkAnimTiming;
-f32 fn_7100b8aff0(f32 seconds, const UnkAnimTiming* timing);
 extern "C" f32 fmodf(f32 x, f32 y);
 
 struct UnkActionAnim_ovb0073 {

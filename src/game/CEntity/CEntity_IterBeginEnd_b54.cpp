@@ -7,6 +7,7 @@
 #include "base/UnkCollectionIter.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU2523.h"
 #include "types.h"
 
 // --- a map from string ids to arrays of 0x40-byte polymorphic elements (copy of fn_71002488f4) ---
@@ -82,8 +83,6 @@ struct base::UnkCallbackTraits<UnkEntityCallbacks_b54> {
 
 using UnkEntityCallbackList_b54 = base::UnkCallbackListShort<UnkEntityCallbacks_b54>;
 static_assert(sizeof(UnkEntityCallbackList_b54) == 0x40, "UnkEntityCallbackList_b54 layout");
-
-void fn_7100d80b84(void* self);  // re-points `current` at (index, element)
 
 struct UnkEntityCallbackIter_b54 {
     u32 index;

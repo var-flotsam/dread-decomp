@@ -1,4 +1,5 @@
 // Static initialiser of the unit of the ESpinningNailsState, ESpinningNailsSpeed, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>> reflected types.
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -20,7 +21,6 @@ extern UnkStatics_71005ef820 g_unk_71726f20c0 __attribute__((visibility("hidden"
 extern char g_unk_71726f0b08[];
 extern UnkTunable g_unk_71726f0b10;
 extern void* g_unk_7101a53958[];
-void fn_7100075104(void* self);  // its destructor, as registered
 extern UnkEnumType g_unk_71726f0b40;
 void fn_71005e7e04(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71005e7b38();

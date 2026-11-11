@@ -13,6 +13,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU1450.h"
 #include "types.h"
 
 using base::reflection::CType;
@@ -70,9 +71,7 @@ struct UnkStandRequest_ovb0280 : UnkStandParamsVtable_ovb0280 {
 
 struct UnkUnit1452_b56;
 struct UnkUnit1452Owner_b56;
-UnkUnit1452Owner_b56* fn_710097f1b8(UnkUnit1452_b56* self);
 struct UnkPositionSource_b0249;
-UnkPositionSource_b0249* fn_710097f1e0(UnkUnit1452_b56* self);
 void fn_710097f71c(UnkUnit1452_b56* self, void* arg, UnkReflValue* value);
 void fn_710097fe58(UnkUnit1452_b56* self, void* arg);
 
@@ -277,7 +276,6 @@ struct UnkSmOther_b60 {
     u8 pad_0x0[0x3a8];
     bool field_0x3a8;
 };
-UnkSmOther_b60* fn_710097f198(UnkSmBase_b60*);
 
 struct UnkSm1452_b0280 {
     u8 pad_0x0[0x30];

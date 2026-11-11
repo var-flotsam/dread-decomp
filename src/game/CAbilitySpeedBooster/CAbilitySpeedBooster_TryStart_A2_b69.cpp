@@ -4,16 +4,16 @@
 // (fn_7100030dec) when the list is not empty, else the tunable's +0x2c (g_unk_71726b0fc0).
 // Names and layouts are placeholders.
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbility.h"
+#include "game/UnkTU39.h"
 #include "types.h"
 
 struct UnkFloatList_b46a1 {
     void* data;
     u32 count;
 };
-f32 fn_7100030dec(UnkFloatList_b46a1* list);
 
 struct UnkSmAbility3_A2_b63;
-void fn_71002fa070(UnkSmAbility3_A2_b63*);
 
 extern base::reflection::UnkTunable g_unk_71726b0fc0;
 

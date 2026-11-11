@@ -4,6 +4,7 @@
 // descriptors as UnkSpitSend (src/game_s2/UnkSpitSend.h). Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
+#include "game/CAnimationComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -51,7 +52,6 @@ void fn_71005521a0(UnkEmmyAI_b57a3* self, UnkEmmyIdEvent_b57a3* event) {
 
 struct UnkStruct_710117af10;
 struct UnkCls_710117af10;
-bool fn_710117af10(UnkStruct_710117af10* self, UnkCls_710117af10** name, bool skipBusy);
 extern CStrId g_unk_71726e1fc0 __attribute__((visibility("hidden")));
 
 struct UnkEmmyAIStagger_b57a3 {

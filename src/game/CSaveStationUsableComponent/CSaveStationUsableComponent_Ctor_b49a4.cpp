@@ -1,13 +1,13 @@
 // CSaveStationUsableComponent unit (tools/tu_map.py): the constructor on the usable base
 // (fn_7100a9e244): an empty handle at +0x540 (null, id -1), cleared flags and words, 0.5 and 1.0
 // settings, then fn_7100023854 on the object. Names and layouts are placeholders.
+#include "base/core/CBaseObject.h"
+#include "game/CUsableComponent.h"
 #include "types.h"
 
 extern char g_unk_7101a92300[];  // the component's vtable
 
-void fn_7100a9e244(void* self);  // the base constructor
 struct UnkNode;
-void fn_7100023854(UnkNode*);
 
 struct UnkSaveStationUsable_b49a4 {
     char* vtable;

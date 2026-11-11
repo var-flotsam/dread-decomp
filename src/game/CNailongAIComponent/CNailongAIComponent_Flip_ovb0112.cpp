@@ -2,6 +2,7 @@
 // transform (+0x38, fn_710002614c; its x axis, outside a 0.01 band), the facing is flipped, and on a
 // change of side (+0x1483c) the owner's controller (+0x220) gets ids 4 and 8 the other way round (as
 // CNailongAIComponent_Facing_A3_b75.cpp). Names and layouts are placeholders.
+#include "game/CAnimationComponent.h"
 #include "types.h"
 #include "base/UnkMatrix44.h"
 
@@ -10,8 +11,6 @@ struct UnkShakernautId_b53 {
     u32 value;
     u32 unk_0x4;
 };
-void fn_71011785a8(UnkShakernautCtrl_b53*, const UnkShakernautId_b53*, bool, bool);
-void fn_7101178564(UnkShakernautCtrl_b53* self, const UnkShakernautId_b53* id, bool a, bool b);
 
 struct UnkNailongFlipOwner_ovb0112 {
     u8 pad_0x0[0x38];

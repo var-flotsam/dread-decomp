@@ -6,6 +6,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/UnkTU25.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -14,7 +15,6 @@ using base::global::CStrId;
 CRntString fn_710007f050(const char* a, const CRntString* b);
 struct UnkPathIds;
 struct UnkInlineString;
-void fn_710001f074(UnkPathIds* out, const UnkInlineString* path);
 
 // The ids the builder fills in place, destroyed in reverse order (as in CDroppableComponent_b50.cpp).
 struct UnkPresetBuiltIds_ovb0135 {

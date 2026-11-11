@@ -7,6 +7,7 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU1370.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -21,8 +22,6 @@ UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 struct UnkRequest;
 struct UnkStruct_71008c0c74;
 struct UnkBase_71003cc474;
-void fn_71008c0c74(UnkStruct_71008c0c74* self);
-void fn_71008c1558(UnkBase_71003cc474* self);
 void fn_71008c1538(UnkRequest* request, f32 value);
 
 struct UnkSniperRequest_A2_b71 {

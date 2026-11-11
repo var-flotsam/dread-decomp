@@ -11,6 +11,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
+#include "game/msapi/material/SAlpha.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -57,7 +58,6 @@ void fn_710016b34c(base::UnkVector<UnkEntry_u207>* self, u32 index) {
 // ---- Restoring a material set and dropping its entries ----
 
 struct UnkMaterial;
-void fn_71001a6ec8(UnkMaterial* self, u32 flags);
 
 struct UnkMaterialSet_ad60 {
     u8 pad_0x0[0x2c];

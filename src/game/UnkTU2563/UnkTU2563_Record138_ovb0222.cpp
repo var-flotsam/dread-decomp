@@ -6,16 +6,13 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2563.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-void fn_7100e4e310(char*);
-void fn_7100e51078(void*, void*);
 struct UnkPolyVector;
 struct UnkArraysRecord;
-UnkPolyVector* fn_7100e4e898(UnkPolyVector*, const UnkPolyVector*);
-UnkArraysRecord* fn_7100e4f444(UnkArraysRecord*, const UnkArraysRecord*);
 void fn_7100e62e24(void*, u32);
 
 struct alignas(8) UnkRecord138_ovb0222 {

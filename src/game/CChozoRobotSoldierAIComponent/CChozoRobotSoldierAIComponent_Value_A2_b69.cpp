@@ -2,10 +2,10 @@
 // of three tables of the part at +0x149a0, chosen by fn_71011057fc and the flag at +0x27790 (+0xb48 or +0xad8 when
 // fn_71011057fc answers, else +0xa68 when the flag is set), into *out; false when there is none.
 // Names and layouts are placeholders.
+#include "game/CDamageSourceFactor.h"
 #include "types.h"
 
 struct UnkRobotSoldierTable_A2_b69;
-f32 fn_71008c2de8(UnkRobotSoldierTable_A2_b69* table, u32 index);
 
 struct UnkRobotSoldierPart_A2_b69 {
     u8 pad_0x0[0xa68];

@@ -8,6 +8,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU280.h"
 #include "types.h"
 
 extern char unk_7101a20260[];  // the render manager's vtable (reached through the GOT)
@@ -103,7 +104,6 @@ void fn_71002182c0(const UnkRenderSetup* setup, const CFilePathStrId* root) {
 
 // The pass list's forwarders (clones of base::refl_FindByIdCall, src/clones/): they find the
 // pass whose id is the given argument and hand it the rest.
-void fn_71001fc7bc(void* passes, u64 hash, const f32* value, u32 count);
 void fn_71001fd8dc(void* passes, f32* rect, f32* x, f32* y, u32 view);
 void fn_71001fd868(void* passes, const f32* rect, u32 view, f32 x, f32 y);
 
@@ -234,7 +234,6 @@ void fn_7100219340(UnkRenderManager* self) {
 }
 
 // The items' scene nodes taken off their layers (game/UnkRenderManager.h).
-bool fn_71001fc69c(void* passes, u32 layer);
 
 // The pass list's flag setters (src/game_s1/fn_71001fcd4c.cpp), on the item of a layer.
 struct UnkPtrArray;

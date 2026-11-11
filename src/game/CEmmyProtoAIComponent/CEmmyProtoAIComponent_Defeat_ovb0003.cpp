@@ -11,7 +11,9 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CChozoCommanderAIComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU811.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -46,9 +48,6 @@ struct UnkMlogMessage_b42a1 {
         args.Free();
     }
 };
-
-void fn_7100456b7c(void* callbacks, const UnkMlogMessage_b42a1* message);
-void fn_7100554740(void* self, void* arg);
 
 void fn_71004fc7ec(void* self, void* arg) {
     UnkMlogMessage_b42a1 message(CStrId("#MLOG_DEFEAT_PROTOEMMY_CAVE", true));
@@ -88,8 +87,6 @@ struct UnkComponent {
     void** vtable;
     u8 pad_0x8[0x2a6f0];
 };
-
-void fn_710053f510(UnkComponent* self);
 
 struct UnkProtoBase_ovb0003 : UnkComponent {
     ~UnkProtoBase_ovb0003() { fn_710053f510(this); }

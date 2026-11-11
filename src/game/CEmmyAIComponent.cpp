@@ -3,6 +3,7 @@
 // picks how one of its checks is decided. Names and layouts are placeholders; the older per-function
 // sources of the unit are under src/game_s2/.
 // Holds fn_710055b444.
+#include "game/UnkTU811.h"
 #include "game_s2/UnkChargeComponent.h"
 #include "types.h"
 
@@ -26,9 +27,6 @@ struct UnkEmmyTunableView {
 static inline const UnkEmmyTunableView& Tunable() {
     return reinterpret_cast<const UnkEmmyTunableView&>(g_unk_71726e0aa8);
 }
-
-bool fn_710054ad2c(UnkEmmyAIView* self);
-bool fn_7100543b30(UnkEmmyAIView* self);
 
 // The check the tunable's mode selects: 1 always, 2 while the value at +0x2a250 is within the
 // tunable's threshold, 3 when the flag at +0x27720 is set and fn_710054ad2c says no, 4 what

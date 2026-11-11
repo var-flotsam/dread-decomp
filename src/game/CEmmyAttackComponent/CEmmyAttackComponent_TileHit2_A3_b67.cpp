@@ -6,16 +6,13 @@
 // layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CBreakableTileGroup.h"
+#include "game/CGrabComponent.h"
 #include "types.h"
 
 // As src/game/CEmmyAttackComponent/CEmmyAttackComponent_TileHit_A3_b64.cpp declares them.
 struct UnkQueryObj;
-u32 fn_7100c9e960(UnkQueryObj* obj);
-void fn_7100c9ea08(UnkQueryObj* obj);
-void fn_7100c9e6ac(UnkQueryObj* obj, u32 state, bool a, bool b);
-bool fn_710113d83c(void*);
 // As src/game/CBTObserverComponent/CBTObserverComponent_Find.cpp declares it.
-UnkQueryObj* fn_7100ca2048(void*, void*, u32);
 
 struct UnkTileQuery_A3_b67 {
     u8 pad_0x0[0x38];

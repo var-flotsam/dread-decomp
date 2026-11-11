@@ -4,6 +4,7 @@
 // at +0x28; fn_7100b8aff0 turns seconds into frames and fn_7100b8af0c frames into seconds, through
 // its table of (frame, second, rate) points. Names and layouts are placeholders.
 // Holds fn_7100b8deec and fn_7100b8dff0.
+#include "game/UnkTU1728.h"
 #include "types.h"
 
 // The units a time can be in.
@@ -19,7 +20,6 @@ struct UnkAnimTiming {
     f32 length;
 };
 
-f32 fn_7100b8aff0(f32 seconds, const UnkAnimTiming* timing);  // seconds -> frames
 f32 fn_7100b8af0c(f32 frames, const UnkAnimTiming* timing);   // frames -> seconds
 
 struct UnkAnimTime {

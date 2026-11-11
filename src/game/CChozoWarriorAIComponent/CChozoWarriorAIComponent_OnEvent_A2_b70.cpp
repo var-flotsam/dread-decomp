@@ -3,10 +3,10 @@
 // with a fixed hash while the record at +0x149cc is armed (+0x4c), marks it (+0x4d); for the unit's static
 // id object instead, sets the record's state to 3 and runs fn_710049d190. Returns true. Names and layouts
 // are placeholders.
+#include "game/CChozoWarriorAIComponent.h"
 #include "types.h"
 
 struct UnkWarriorTurn_b58;
-void fn_710049d094(UnkWarriorTurn_b58* self);
 
 struct UnkWarriorEventId_A2_b70 {
     u8 pad_0x0[0x30];

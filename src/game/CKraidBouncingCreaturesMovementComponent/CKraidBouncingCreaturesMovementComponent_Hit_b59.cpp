@@ -9,6 +9,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CProjectileMovement.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTimelineCalls.h"
@@ -16,7 +17,6 @@
 #include "UnkLeftoverReg.h"
 
 struct UnkObj;
-bool fn_7100ac4ec0(UnkObj* self, void* a1, void* a2, void* a3, void* a4, void* a5);
 
 struct UnkBouncingKey_b59a4;
 extern UnkBouncingKey_b59a4 g_unk_710164a290;  // reached through the GOT

@@ -6,6 +6,10 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAnimationComponent.h"
+#include "game/CAutsniperShootAttack.h"
+#include "game/CEnemyMovement.h"
+#include "game/UnkTU2523.h"
 #include "game_s2/UnkSpitAttack.h"
 #include "types.h"
 
@@ -28,15 +32,9 @@ struct UnkSoundHandle {
 struct UnkEntityWithSound;
 struct UnkShipRechargeEntity_b49a4;
 UnkSoundHandle fn_7100d7c590(UnkEntityWithSound* self, void* a);
-void fn_7100d7c510(UnkShipRechargeEntity_b49a4* entity, UnkSoundHandle* handle, f32 fade, f32 delay);
-void fn_710117abfc(void* target, u32 a1, void* a2, u64 id);
 struct UnkSelf;
 struct UnkVec3;
-void fn_71003d5450(UnkSelf* self, const UnkVec3* v, u32 a2);
-u32 fn_71010cc3a4(void*);
 extern const base::math::CVector2D g_unk_7101647780;
-
-bool fn_71010cab0c(void* movement);
 
 // The aim sound's id (+0x0) and the shot's animation id (+0x18).
 struct UnkAutsniperIds_ovb0122 {

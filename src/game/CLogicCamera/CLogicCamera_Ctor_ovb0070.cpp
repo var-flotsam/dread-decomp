@@ -4,11 +4,11 @@
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
 #include "base/global/CStrId.h"
+#include "game/CGameObject.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-void fn_7101043904(void*);
 extern void* g_unk_7101a81678[];
 
 struct UnkLogicCamera_ovb0070 {

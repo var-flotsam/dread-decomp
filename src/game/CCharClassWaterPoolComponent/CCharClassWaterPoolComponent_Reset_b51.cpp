@@ -3,6 +3,8 @@
 // passing what each names to fn_71007e670c, before the shared reset fn_7100901260. Names and
 // layouts are placeholders.
 #include "base/UnkRefHandle.h"
+#include "game/CCharClassLiquidPoolComponent.h"
+#include "game/CCharClassSteamJetComponent.h"
 #include "game/UnkTimelineComponent.h"
 
 struct UnkCountedWater_b51 : base::UnkRefCounted {
@@ -20,11 +22,9 @@ struct UnkRef {
 UnkRef fn_7100353be8(void* from);
 
 struct UnkWaterTarget;
-UnkWaterTarget* fn_710089a1b0(void* object);
 void fn_71007e670c(UnkWaterTarget* target, f32 value);
 
 struct UnkLavaPool_b48;
-void fn_7100901260(UnkLavaPool_b48* self);
 
 extern u64 g_unk_710164b1e8;
 extern u64 g_unk_710164b1f0;

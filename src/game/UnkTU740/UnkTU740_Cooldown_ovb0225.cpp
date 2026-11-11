@@ -3,11 +3,11 @@
 // CCharClassCooldownXBossAttack base's destructor (fn_71004a0a10) runs. Names and layouts are
 // placeholders.
 #include "base/UnkVector.h"
+#include "game/CCharClassCooldownXBossAttack.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
 
 struct UnkCooldownXBossAttackDef;
-void fn_71004a0a10(UnkCooldownXBossAttackDef* self);
 extern void* g_unk_7101a3dfc0[];
 
 struct UnkLavaCarpetDef_b0225 {

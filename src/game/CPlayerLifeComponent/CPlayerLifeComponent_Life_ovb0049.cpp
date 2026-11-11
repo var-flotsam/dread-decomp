@@ -8,9 +8,15 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CCharacterLifeComponent.h"
+#include "game/CLifeComponent.h"
+#include "game/CMovementComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkManager_71726af468.h"
+#include "game/UnkTU1370.h"
+#include "game/UnkTU2656.h"
+#include "game/UnkTU39.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -22,16 +28,8 @@ using base::global::UnkStringPool;
 struct UnkInventory;
 struct UnkStruct_71008c0c74;
 struct UnkBase_71003cc474;
-void fn_71008c0c74(UnkStruct_71008c0c74* self);
-void fn_71008c1558(UnkBase_71003cc474* self);
 void fn_7100d7c94c(UnkActor* self, const u64* key);
-void fn_710115fc5c(char*);
-void fn_710002fa90(void* timer);
-void fn_710002f67c(void* self);
 void fn_710002f4e4(void*);
-void fn_710002fb80(void* timer, f32 dt);
-void fn_710002f90c(void* dst, const void* src);
-bool fn_7101053a0c(void* player);
 bool fn_7100da9254(UnkManager_71726af468* self);
 void fn_7101142a28(UnkInventory* inventory, const UnkQualifiedId& item, bool a, bool b, bool c, f32 amount,
                    f32 extra);
@@ -74,7 +72,6 @@ struct UnkLifeTarget_ovb0049 {
 
 struct UnkMovement_71010d08d4;
 struct UnkMovementVec_71010d08d4;
-void fn_71010d08d4(UnkMovement_71010d08d4*, const UnkMovementVec_71010d08d4*, bool);
 
 struct UnkPlayerLifeActor_ovb0049 {
     u8 pad_0x0[0x200];
@@ -161,7 +158,6 @@ void fn_7101164cc0(UnkPlayerLife_ovb0049* self);
 void fn_7101165180(UnkPlayerLife_ovb0049* self);
 void fn_7101158cb8(UnkPlayerLife_ovb0049* self, f32 dt);
 struct UnkEnemyLifeDtor_ovb0043;
-void fn_7101158c4c(UnkEnemyLifeDtor_ovb0043*);  // the base destructor
 void fn_7101158c18(UnkPlayerLife_ovb0049* self);
 
 void fn_71011647b0(UnkPlayerLife_ovb0049* self) {

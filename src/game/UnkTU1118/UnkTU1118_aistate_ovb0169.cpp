@@ -1,8 +1,7 @@
 // Unit 1118 (no class hint): an AI state object. Names and layouts are placeholders.
 #include "game/UnkAIComponent.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
-
-void fn_71002adc8c(void* member);
 
 struct UnkStateOwnerSub_b0169 {
     u8 pad_0x0[0x1f0];

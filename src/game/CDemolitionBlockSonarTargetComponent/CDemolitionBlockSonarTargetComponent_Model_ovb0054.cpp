@@ -10,6 +10,7 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
+#include "game/CSonarTargetComponent.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkRenderManager.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -18,7 +19,6 @@
 using base::global::CFilePathStrId;
 
 // Signature as src/clones/clones_03.cpp declares it.
-void fn_7100a1082c(char*);
 
 extern char g_unk_7101a8b8f0[];
 

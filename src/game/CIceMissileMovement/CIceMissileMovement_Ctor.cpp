@@ -1,13 +1,13 @@
 // CIceMissileMovement: its constructor. The base constructor fn_7100aba0c0, the vtable, a set flag at
 // +0x620 and 0x18 at +0x448, then the class-entry pass of base::core::CBaseObject (fn_7100023854).
 // Names and layouts are placeholders.
+#include "base/core/CBaseObject.h"
+#include "game/CMissileMovement.h"
 #include "types.h"
 
 struct UnkNode;
 struct UnkIceMissileMovement;
 struct UnkMissileMovement;
-void fn_7100aba0c0(UnkMissileMovement* self);
-void fn_7100023854(UnkNode* node);
 extern void* g_unk_7101a95730[];
 
 struct UnkIceMissileMovement {

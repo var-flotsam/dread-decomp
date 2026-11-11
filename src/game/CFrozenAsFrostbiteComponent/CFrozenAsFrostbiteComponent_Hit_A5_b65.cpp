@@ -2,13 +2,10 @@
 // +0x10 of +8 is the owner at +0x30) breaks the ice (state 3, fn_71007f9428) when the owner's component
 // at +0x240 allows it (vtable slot 0x4b8), the component is frozen (fn_71007f9f20) and neither
 // fn_71007f9fb0 nor fn_71007f9fd0 holds. Always answers false. Names are placeholders.
+#include "game/CFrozenComponent.h"
 #include "types.h"
 
 struct UnkFrostbiteComponent;
-bool fn_71007f9f20(void*);
-bool fn_71007f9fb0(UnkFrostbiteComponent*);
-bool fn_71007f9fd0(UnkFrostbiteComponent*);
-void fn_71007f9428(UnkFrostbiteComponent* self, u32 state);
 
 struct UnkFrostbiteGate_A5_b65 {
     virtual void vf_0x0();

@@ -11,9 +11,12 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CActorComponent.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU811.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -373,8 +376,6 @@ void fn_7100da8f00(UnkSlotOwner_b0025* self, UnkSwitchObject* object) {
 struct UnkListedItem;
 base::UnkVector<UnkListedItem*>* fn_7100552d7c();
 struct UnkEmmyAIComponent_b46a1;
-bool fn_71005436e8(UnkEmmyAIComponent_b46a1*);
-bool fn_710024fbc8(void*);
 bool fn_710112baa0(void* actor);
 
 struct UnkListedEntry_b0025 {
@@ -416,7 +417,6 @@ UnkPlayer* fn_7100dec788(UnkGameManager*);
 bool fn_71009e12d0(void*);
 struct UnkStruct_710117af10;
 struct UnkCls_710117af10;
-bool fn_710117af10(UnkStruct_710117af10*, UnkCls_710117af10**, bool);
 
 struct UnkFallMovement_b0025 {
     virtual void vf_0x0();

@@ -3,13 +3,13 @@
 // character class (+0x220) runs the class fn_7100ce9338 names, else 1 while it runs the class fn_7100bfca98
 // names (the same pattern as CCharClassShakernautAIComponent_b39.cpp). Names are placeholders.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CCharClassRobotAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
 // Declared as src/game/CCharClassRobotAIComponent/CCharClassRobotAIComponent_State.cpp defines it.
 struct UnkActor621;
-u32 fn_710041b180(void* self, void* arg, UnkActor621* actor);
 
 u32 fn_71003ba368(void* self, UnkActor* arg, UnkActor621* actor) {
     u32 state = fn_710041b180(self, arg, actor);

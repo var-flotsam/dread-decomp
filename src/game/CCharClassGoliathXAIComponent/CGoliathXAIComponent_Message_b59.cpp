@@ -12,6 +12,8 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU2523.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 // As in src/game/CKraidBouncingCreaturesMovementComponent/CKraidBouncingCreaturesMovementComponent_3.cpp.
@@ -21,10 +23,8 @@ struct UnkKraidCreatureVec {
     f32 z;
     UnkKraidCreatureVec(const UnkKraidCreatureVec& other) : x(other.x), y(other.y), z(other.z) {}
 };
-UnkKraidCreatureVec fn_7100d7be08(void* actor);
 
 struct UnkGoliathAI_b58a3;
-void fn_71010fc68c(UnkGoliathAI_b58a3* ai, f32* out);
 
 struct UnkGoliathXRotation_b59a3 {
     f32 x, y, z;

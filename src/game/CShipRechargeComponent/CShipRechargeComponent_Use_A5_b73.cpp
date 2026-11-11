@@ -4,19 +4,17 @@
 // component's state machine at +0x100 ("none" 8). Names and layouts are placeholders.
 #include "../UnkSmRequest_A5_b73.h"
 #include "base/global/CRntString.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CUsableComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkScriptCaller;
-bool fn_7100305088(UnkScriptCaller* self, const char* name, const char* fmt, ...);
 UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 struct UnkUsableVirt_A6_b62;
-bool fn_7100aa0b04(UnkUsableVirt_A6_b62* self, u64 a, u64 b, const u8* c);
 extern const u8 g_unk_710164b5d8[] __attribute__((visibility("hidden")));
 
 struct UnkShipRecharge_A5_b73;
-u64 fn_7100aa1f50(UnkShipRecharge_A5_b73* self, u32 state);
-u64 fn_7100aa1888(UnkShipRecharge_A5_b73* self, u32 state);
 
 struct UnkShipRechargeOwner_A5_b73 {
     u8 pad_0x0[0x1e0];

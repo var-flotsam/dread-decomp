@@ -2,12 +2,12 @@
 // (+0xae8, +0xaf0) is missing, takes the owner's (+0x30) object at +0x280 into +0xae0 and, when there is one,
 // creates them (fn_710087f138, fn_710087f22c); starts both effects on it (fn_7101152c0c), then runs the four
 // per-frame steps. Names and layouts are placeholders.
+#include "game/CCharClassBaseTriggerComponent.h"
+#include "game/CFXComponent.h"
 #include "types.h"
 
 struct UnkObject;
-void fn_7101152c0c(UnkObject* self, void* effect, u32 on, u32 restart);
 struct UnkFan_A4_b74;
-void fn_7100a474f8(UnkFan_A4_b74* self, f32 dt);
 void fn_710087f138(UnkFan_A4_b74* self);
 void fn_710087f22c(UnkFan_A4_b74* self);
 void fn_710087e378(UnkFan_A4_b74* self);

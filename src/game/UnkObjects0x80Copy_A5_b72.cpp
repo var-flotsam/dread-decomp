@@ -3,11 +3,10 @@
 // destroyed by fn_7100ad04c4): the other's step, flags and allocator, its capacity reserved, then each object
 // appended. Names are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU1629.h"
 #include "types.h"
 
-void fn_7100acf988(void*, void*);
 void fn_7100acfb14(void*, const void*);
-void fn_7100ad04c4(void*);
 
 struct UnkObject0x80_A5_b72 {
     u64 unk_0x0[0x10];

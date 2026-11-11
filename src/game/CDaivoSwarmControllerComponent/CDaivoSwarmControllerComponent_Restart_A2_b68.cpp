@@ -2,11 +2,11 @@
 // state 3 through vtable slot 0x2e8. In mode 2 (+0x390) with the word at +0x530 equal to 2 it does so at once;
 // otherwise only with the word at +0x2d8 set, and (unless it's in mode 1 with time left at +0x568) after
 // fn_710073f7bc gets 2. Names and layouts are placeholders.
+#include "game/CFlockingSwarmControllerComponent.h"
 #include "types.h"
 
 // As src/game/CRedenkiSwarmControllerComponent/CRedenkiSwarmControllerComponent.cpp declares it.
 struct UnkRedenkiSwarmController;
-void fn_710073f7bc(UnkRedenkiSwarmController* self, u32 value);
 
 struct UnkDaivoSwarm_A2_b68 {
     void** vtable;

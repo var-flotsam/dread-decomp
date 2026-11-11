@@ -6,6 +6,9 @@
 // empty one. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "base/snd/CSoundSystem.h"
+#include "game/CComponent.h"
+#include "game/UnkTU101.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
@@ -41,8 +44,6 @@ struct UnkSoundRequest_b50 {
 };
 
 u32 fn_7100108254(UnkSoundMgr* mgr, const void* kind);
-UnkSoundHandle fn_71001080b0(UnkSoundMgr* mgr, const UnkSoundRequest_b50* request);
-void fn_7100106024(UnkSoundObject_b50* object, const void* position);
 
 struct UnkSoundLimiter_b50 : UnkReflObject {
     u8 pad_0x8[0x154];
@@ -131,7 +132,6 @@ UnkSoundHandle fn_710071a7dc(UnkAudio_b50* self, const UnkSoundRequest_b50* requ
 // flag 0x1000) when the owner (+0x30) has its component at +0x200, then resets the volumes at +0xec
 // to 1 and the values after them to 0.
 struct UnkParent;
-void fn_71010c4228(UnkParent*);
 
 struct UnkAudioOwner2_b50 {
     u8 pad_0x0[0x200];

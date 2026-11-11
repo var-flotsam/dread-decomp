@@ -3,9 +3,9 @@
 // src/base/tunable/CTunable/fn_7100138090.cpp): the base constructor (fn_7100067ea4), the vtable,
 // two string ids built from "" and the value fields, with a float of 1 at +0x38 or +0x3c. Names
 // and the layouts are placeholders.
+#include "base/global/timeline/CEvent.h"
+#include "game/UnkTU0.h"
 #include "types.h"
-
-void fn_71000003d4(void* self, const char* s, bool flag);
 
 struct UnkFXMaterialEvent {
     void** vtable;
@@ -20,7 +20,6 @@ struct UnkFXMaterialEvent {
     f32 field_0x3c;
 };
 
-void fn_7100067ea4(void* self);  // the base constructor
 extern void* g_unk_7101aa5b60[];
 extern void* g_unk_7101aa5b90[];
 

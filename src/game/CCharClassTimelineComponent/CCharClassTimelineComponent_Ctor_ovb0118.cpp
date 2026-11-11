@@ -3,11 +3,11 @@
 // after it, then the enum default zero (a guarded static) at +0x70. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CCharClassComponent.h"
 #include "types.h"
 
 
 struct UnkStruct_71008bca30;
-void fn_71011acd10(UnkStruct_71008bca30* self);
 extern void* g_unk_7101a6f8a0[];  // the class's vtable
 
 struct UnkCharClassTimeline_ovb0118 {

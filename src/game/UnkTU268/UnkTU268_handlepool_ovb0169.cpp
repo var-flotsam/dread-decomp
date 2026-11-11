@@ -1,9 +1,9 @@
 // Unit 268 (no class hint): a manager of pooled handles: small pools of preallocated handles and the list of the
 // ones handed out to owners. Names and layouts are placeholders.
+#include "game/UnkTU179.h"
 #include "types.h"
 
 struct UnkHandle;
-void fn_710015c1e0(UnkHandle** out, s32 width, s32 height, s32 count, const s32& format);
 void fn_710015c250(char* p0);
 void fn_71001e9f40(void* self);
 

@@ -5,6 +5,8 @@
 // answers 0x10 to vtable slot 0x18, whose 0x48-byte entries are tested in turn (fn_7100116de0 with
 // 0, 1 and a scale of 1). Names and layouts are placeholders.
 #include "base/math/CVector.h"
+#include "game/UnkTU108.h"
+#include "game/UnkTU365.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -14,9 +16,6 @@ struct UnkBreakablePart;
 struct UnkBreakableTarget;
 struct UnkTracker;
 struct UnkEntry;
-UnkBreakableTarget** fn_71002a76a4(UnkBreakablePart* part);
-UnkTracker* fn_710028aca8(void* link);
-bool fn_7100116de0(UnkEntry* entry, void* arg, u32 a, u32 b, f32 scale);
 
 struct UnkShapeEntry_cce {
     u8 data[0x48];

@@ -4,6 +4,8 @@
 // is enabled; fn_710021a114 and fn_7100218b68 set pass parameters. Names and layouts are placeholders.
 #include "base/math/CVector4D.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU280.h"
+#include "game/UnkTU311.h"
 #include "types.h"
 
 // Per-type payload; each node type has its own layout with the handed-over member at Offset.
@@ -18,7 +20,6 @@ void* NodeMember(const UnkSceneNode* node) {
     return static_cast<UnkPayload_b0231<Type, Offset>*>(node->field_0x10)->member;
 }
 
-bool fn_7100217e50(u32 flags, u32 mask);
 void fn_71001fd490(void* list, void* obj, u32 layer);
 
 bool fn_7100219a34(UnkRenderManager* self, UnkSceneNode* entry) {
@@ -38,8 +39,6 @@ bool fn_7100219a34(UnkRenderManager* self, UnkSceneNode* entry) {
     fn_71001fd490(self->field_0x220, obj, layer);
     return true;
 }
-
-void fn_71001fc7bc(void* passes, u64 hash, const f32* value, u32 count);
 
 // Zeroes the two pass parameters with these hashes (fn_710021a210, src/game/UnkRenderManager.cpp, inlined).
 static inline void ZeroPair(UnkRenderManager* self) {

@@ -1,6 +1,8 @@
 // CSubAreaManager::CTunableSubAreaManager unit (tools/tu_map.py unit 2577): fn_7100ee4704: handles a sub-area request that names an entry of the current sub-area: with the set of changes it makes non-empty the manager switches to it (fn_7100ee6884); otherwise the objects of that name are told the ids (fn_7100eee61c). Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CChangeStageNavMeshItemComponent.h"
+#include "game/UnkTU2577.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -84,12 +86,9 @@ UnkSubareaNamedEntry* fn_7100fab838(UnkSubareaNamedList* self, const CStrId* id)
 bool fn_7100fad994(UnkSubareaIdLists* self, const CStrId* id);
 void fn_7100faa9ec(UnkSubAreaRecord_0x188* self, UnkSubArea* area);
 void fn_7100fad0bc(UnkSubAreaRecord_0x188* self, const CStrId* id, bool flag, bool other);
-void fn_7100ee8044(CSubAreaManager* self, void* prev, void* cur, UnkIdSet* set);
 void fn_7100ee6884(CSubAreaManager* self);
 UnkNamedObjectPtr_b190* fn_7100eee97c(base::UnkVector<UnkNamedObjectPtr_b190>* v, u32 index);
 void fn_7100eee61c(void* manager, CStrId* a, CStrId* b, bool flag, bool other);
-UnkSubAreaEntityList_b190* fn_71009ba31c();
-void fn_71009b9ee8(void* p);
 
 void fn_7100ee4704(CSubAreaManager* self_, const UnkPoppedRequest* request_, bool a, bool b) {
     UnkSubAreaMgr_b190* self = reinterpret_cast<UnkSubAreaMgr_b190*>(self_);

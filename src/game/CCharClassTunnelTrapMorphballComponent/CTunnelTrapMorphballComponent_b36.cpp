@@ -1,5 +1,6 @@
 // Functions in the CCharClassTunnelTrapMorphballComponent unit (tools/tu_map.py; the
 // CTunnelTrapMorphballComponent side). Names and layouts are placeholders.
+#include "game/CCharClassTunnelTrapMorphballComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -10,7 +11,6 @@ struct UnkTunnelTrapMorphball {
 };
 
 void fn_7100a44074(UnkTunnelTrapMorphball* self);
-void fn_7100a443c8(UnkTunnelTrapMorphball* self);
 
 // Unregisters from the target (when the handle still has one) and drops the handle, then runs
 // fn_7100a44074 or fn_7100a443c8 by `flag`.

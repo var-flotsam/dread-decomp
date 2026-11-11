@@ -3,17 +3,18 @@
 // (vf_0x1e0) on to +0x18a0; fn_710084eb44 is whether the gun can fire: not while the current ability is in
 // state 6 below full charge (+0x3d8), only with ammunition, when fn_7100835a14 holds and the sub-area GUI cache
 // counts the gun's name (+0x10). Names and layouts are placeholders.
+#include "game/CGun.h"
 #include "game/UnkGameBlackboard.h"
 #include "base/UnkVector.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkSubAreaGuiCache.h"
+#include "game/UnkTU39.h"
 #include "types.h"
 
 struct UnkInventory;
 f32 fn_7101142928(UnkInventory* inventory, const UnkQualifiedId& item);
 void fn_7101142a28(UnkInventory* inventory, const UnkQualifiedId& item, bool a, bool b, bool c, f32 amount,
                    f32 extra);
-void fn_710003152c(void* self, const f32* value);
 
 struct UnkMissileGunOwner_ovb0103 {
     u8 pad_0x0[0x270];
@@ -57,7 +58,6 @@ extern UnkSubAreaGuiCache* g_unk_71727254f8;
 s32 fn_710119db04(UnkSubAreaGuiCache* self, const base::global::CStrId* name);
 void* fn_7100df5460(UnkGameManager*);
 struct UnkPrimaryGun_A4_b76;
-bool fn_7100835a14(UnkPrimaryGun_A4_b76* self);
 struct UnkLockOnMissileGun_b49a4;
 
 struct UnkMissileGunState_ovb0103 {

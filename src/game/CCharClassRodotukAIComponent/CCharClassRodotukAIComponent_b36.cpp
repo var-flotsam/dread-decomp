@@ -1,12 +1,12 @@
 // In the CCharClassRodotukAIComponent unit: the constructor without the post-construction call (as
 // fn_71006707e8, CCharClassRodotukAIComponent.cpp). Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CCharClassBehaviorTreeAIComponent.h"
+#include "game/CCharClassRodotukSuckAttack.h"
 #include "types.h"
 
 // Declared as src/game/CCharClassYamplotXAIComponent/CCharClassYamplotXAIComponent.cpp does.
 struct UnkObject_7100416db8;
-void fn_7100416db8(UnkObject_7100416db8* self);
-void fn_7100669dec(void* self);
 extern void* g_unk_7101a5db38[];
 
 // The array at +0x518: data, count, capacity, growth, a flag, then the allocator.

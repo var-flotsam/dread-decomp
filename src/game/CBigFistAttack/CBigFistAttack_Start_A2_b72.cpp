@@ -6,6 +6,7 @@
 // (fn_7101178010). +0x58 records whether that happened. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAnimationComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -16,7 +17,6 @@ void fn_71003608ac(UnkAttackBase* self);
 void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
 void fn_710117b3e8(UnkWeakTarget* target, void* link);
 void fn_710111094c(UnkReflObject* ai, u32 value);
-void fn_7101178010(void* target, u64 id, bool flag, f32 time);
 void fn_71003e181c();
 
 struct UnkBigFistTrackLink_A2_b72 {

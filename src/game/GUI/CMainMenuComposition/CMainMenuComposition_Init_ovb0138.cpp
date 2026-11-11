@@ -4,6 +4,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
 #include "types.h"
@@ -11,7 +12,6 @@
 using base::global::CStrId;
 
 struct UnkPanel_71011dfeb0;
-void fn_71011d9b3c(UnkPanel_71011dfeb0* self);  // the base composition's set-up
 struct UnkPtrList_A6;
 void fn_7100b774b8(UnkPtrList_A6* self);
 UnkPtrList_A6* fn_71011b90a8(UnkGuiRoot* root, const CStrId* name);

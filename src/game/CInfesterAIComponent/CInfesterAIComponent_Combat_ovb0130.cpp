@@ -6,6 +6,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CBlackboard.h"
+#include "game/CEnemyMovement.h"
+#include "game/CFrozenComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
@@ -14,7 +16,6 @@ using base::reflection::CType;
 using base::reflection::UnkReflObject;
 
 extern CType g_unk_71726ec448 __attribute__((visibility("hidden")));  // CInfesterAIComponent's type
-u32 fn_71010cc3a4(void*);
 
 struct UnkInfesterOwner_ovb0130 {
     u8 pad_0x0[0x44];
@@ -76,7 +77,6 @@ struct UnkTypedValue {
     void* value;
 };
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
-bool fn_71007f9f20(void* component);
 
 extern base::global::CStrId g_unk_71726b7cb8;
 

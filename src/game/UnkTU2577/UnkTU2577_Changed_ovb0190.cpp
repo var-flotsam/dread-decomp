@@ -3,6 +3,9 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU2547.h"
+#include "game/UnkTU2577.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -45,13 +48,10 @@ struct UnkSubAreaChange_b190 {
 };
 void fn_7100eeac18(UnkSubAreaChange_b190* self);
 
-void fn_7100000790(const char* name, const char* fmt, ...);
 struct UnkDoorRegistry_b61;
-void fn_7100ddb6dc(UnkDoorRegistry_b61* self);
 extern UnkDoorRegistry_b61* g_unk_71726bee10;
 struct UnkUnit2547;
 void fn_7100ddb7bc(UnkUnit2547* self, void* a, void* b, void* c, void* d, bool e);
-void fn_7100ef1608(void* set, const UnkSubAreaChange_b190* change);
 
 void fn_7100eeaa48(CSubAreaManager* self, const CStrId& prev_a, const CStrId& prev_b, const CStrId& cur_a,
                    const CStrId& cur_b, bool flag) {

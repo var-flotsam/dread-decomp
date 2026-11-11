@@ -4,6 +4,7 @@
 // +0x50c is set, 2 or 3 by bit 15 of the info's flags at +0xb4. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCharClassAIComponent.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
@@ -31,7 +32,6 @@ struct UnkGoliathInfo_b63a3 {
 
 // The base character class's check, called with the same arguments (declared without them in its
 // generated definition).
-u32 fn_7100414168();
 
 u32 fn_710059049c(UnkGoliathCharClass_b63a3* self, UnkActor* actor, void* arg, UnkGoliathInfo_b63a3* info) {
     u32 result = fn_7100414168();

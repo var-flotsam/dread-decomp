@@ -7,8 +7,12 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU1728.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
+#include "game/animtree/CLayerNode.h"
 #include "types.h"
 
 // ---- fn_71006d6038: the layer weight ----
@@ -18,7 +22,6 @@ using base::reflection::UnkReflObject;
 
 // As src/game/CAutsniperAIComponent/CAutsniperAIComponent_LayerLookup_b55.cpp declares it.
 struct UnkLayerNode;
-void fn_71002e465c(UnkLayerNode* self, f32 dt);
 
 struct UnkTakumakuNodeMap_b0012 {
     u8 pad_0x0[0x78];
@@ -79,7 +82,6 @@ using base::global::CStrId;
 
 // As src/game/CTakumakuAIComponent/CTakumakuAIComponent_b35.cpp declares it.
 struct UnkTakumakuComponent;
-bool fn_7101178e6c(UnkTakumakuComponent* component, u32 kind);
 
 extern __attribute__((visibility("hidden"))) CStrId g_unk_7172709b58[2];
 extern __attribute__((visibility("hidden"))) CStrId g_unk_7172709b68;
@@ -148,7 +150,6 @@ struct UnkMat4f {
 };
 UnkVec3f fn_7100078170(const UnkMat4f* m, const UnkVec3f* v);
 UnkMat4f fn_7100079c60(const UnkVec3f* from, const UnkVec3f* to);
-void fn_7100077bbc(UnkMat4f* m);
 extern __attribute__((visibility("hidden"))) const UnkVec3f g_unk_710164a7f0;
 
 // As src/game/CSamusFloorSlideMovementState/CParams/CParams_Slide_ovb0004.cpp defines them.
@@ -184,8 +185,6 @@ struct UnkTimeline {
 };
 
 void fn_71007142e8(UnkStruct_71007142e8* self);
-void fn_7100b8b3bc(UnkTimeline* self, void* target, UnkMotionTracks* tracks, const u32* flags, f32 from,
-                   f32 to);
 
 struct UnkTakumakuMotion_b0012 {
     UnkStruct_71007142e8 motion;

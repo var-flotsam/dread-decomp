@@ -5,13 +5,13 @@
 // id at +0x6d8 set to the empty string. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassBehaviorTreeAIComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 extern void* g_unk_7101a687e8[];
 struct UnkObject_7100416db8;
-void fn_7100416db8(UnkObject_7100416db8*);
 
 struct UnkVulkranRecord_ovb0142 {
     base::UnkVector<u32> values{15};

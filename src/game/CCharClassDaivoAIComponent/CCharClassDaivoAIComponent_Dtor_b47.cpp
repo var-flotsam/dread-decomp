@@ -4,14 +4,14 @@
 // inlined: its vtable, the string id at +0x640, the member at +0x510 (fn_71006c0074), then its own
 // base destructor (fn_7100416e80). Names and member types are placeholders.
 #include "base/UnkDestructors.h"
+#include "game/CCharClassBehaviorTreeAIComponent.h"
+#include "game/CCharClassSluggerSpitAttack.h"
 
 struct UnkTag_71004dea0c;
 extern char g_unk_7101a40860[];  // the class's vtable
 extern void* g_unk_7101a64f60[];  // the base's vtable
 
 struct UnkStruct_7100416e80;
-void fn_7100416e80(UnkStruct_7100416e80* self);
-void fn_71006c0074(void* self);
 void fn_71004dbc70(void* self);
 
 template <>

@@ -4,6 +4,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/UnkNamedRegistry.h"
 #include "base/global/CRntString.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -86,7 +87,6 @@ __attribute__((noinline)) void fn_7100fc7d94(base::UnkVector<UnkEntryRaw_b0246>*
 
 struct UnkScenarioLoadEntry;
 struct UnkString_7100fc4b34;
-void fn_710007eba0(UnkString_7100fc4b34* self, u32 value);
 
 // The part of an entry from +0x150 on: a flag, then buffers that start zeroed.
 struct UnkEntryTail_b0246 {

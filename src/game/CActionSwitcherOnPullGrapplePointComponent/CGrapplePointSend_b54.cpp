@@ -10,14 +10,13 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "../UnkNamedSend_b54.h"
 #include "base/global/CStrId.h"
+#include "game/CPullableGrapplePointComponent.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 struct UnkPullableGrapplePoint_b54;
 void fn_710082cce8(UnkPullableGrapplePoint_b54* self);
 void fn_710082cacc(UnkPullableGrapplePoint_b54* self, s32 state);
-void fn_710082cee4(UnkPullableGrapplePoint_b54* self, bool flag);
-void fn_710082cf08(UnkPullableGrapplePoint_b54* self, bool flag);
 
 extern const u64 g_unk_710164ac20 __attribute__((visibility("hidden")));
 

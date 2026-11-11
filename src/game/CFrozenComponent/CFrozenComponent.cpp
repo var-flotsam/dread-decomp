@@ -3,13 +3,13 @@
 // the definition's timeline id (+0x60, +0x30; fn_7100d7c828) and, when the actor has a movement
 // component (+0x218), stops it with a unit-local zero vector (fn_71010d08d4). Names and layouts are
 // placeholders.
+#include "game/CMovementComponent.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 // Declared as src/game/CMovementComponent/fn_71010d08d4.cpp defines it.
 struct UnkMovement_71010d08d4;
 struct UnkMovementVec_71010d08d4;
-void fn_71010d08d4(UnkMovement_71010d08d4* self, const UnkMovementVec_71010d08d4* v, bool start);
 
 extern const u8 g_unk_710164aba8[] __attribute__((visibility("hidden")));
 

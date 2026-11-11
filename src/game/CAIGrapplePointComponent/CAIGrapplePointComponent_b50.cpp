@@ -4,6 +4,7 @@
 // (+0x2a0) must be enabled (+0x6a) with flag 0x80 of its vf_0x58 set, and the pull must come from
 // that grapple point. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CPullableGrapplePointComponent.h"
 #include "game/UnkCollisionRecord.h"
 #include "types.h"
 
@@ -58,7 +59,6 @@ struct UnkAIPull_b50 {
 };
 
 // The base test (both pull components share it).
-bool fn_710082cb24(void* self, void* arg, void* msg);
 
 bool fn_7100827978(UnkAIPull_b50* self, void* arg, UnkAIPullMessage_b50* msg) {
     if (!fn_710082cb24(self, arg, msg))

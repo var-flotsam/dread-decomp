@@ -11,6 +11,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU324.h"
 #include "types.h"
 
 extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
@@ -163,7 +164,6 @@ struct UnkMediaInstance {
 };
 
 // Whether an instance is in `state`.
-bool fn_710021eec0(UnkMediaInstance* instance, s32 state);
 
 struct UnkMediaRef {
     UnkMediaInstance* ptr;

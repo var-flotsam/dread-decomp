@@ -4,9 +4,12 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "base/global/timeline/CEvent.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiLabel.h"
+#include "game/nn/time.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 struct UnkHms {
@@ -17,8 +20,6 @@ struct UnkHms {
 void fn_7100081040(u32 total, UnkHms* out);
 
 struct UnkWideStr_0x20;
-void fn_7100066b38(UnkWideStr_0x20* self, const char* str);
-void fn_7100066e44(void* text);
 using UnkGuiObj = UnkGuiDisplayObject;
 void fn_71011cfba8(UnkGuiObj* object, f32 alpha);
 
@@ -122,11 +123,9 @@ inline const UnkLoadingMask& UnkMaskAll9() {
     return s;
 }
 extern void* g_unk_71726bc560;
-void fn_7100fd7b44(void* manager, UnkLoadingMask channels, UnkLoadingMask mask, f32 time);
 
 struct UnkSoundHolder;
 extern UnkSoundHolder* g_unk_7101d47340;
-void fn_710006cd9c(UnkSoundHolder* holder);
 
 struct UnkInput_b0277 {
     virtual void vf_0x0();

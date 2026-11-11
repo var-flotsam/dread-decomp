@@ -3,12 +3,12 @@
 // (fn_710086406c) and clears the flag of every entry in the group's packed list (u32 count at +0x124,
 // pointers from +0x128) through fn_7100d35a98. Names are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CChozoCommanderSentenceSphereAttack.h"
+#include "game/CCollisionComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "types.h"
 
 struct UnkPlayerMovementSource;
-void* fn_710043acb4(void* key);
-void* fn_710086406c(UnkPlayerMovementSource* source, const void* type);
 
 #pragma pack(push, 4)
 struct UnkSwifterGroup_A5_b72 {

@@ -11,6 +11,8 @@
 #include "base/UnkVector.h"
 #include "base/color/CColor4F.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU108.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -86,7 +88,6 @@ static_assert(__builtin_offsetof(UnkHydrogigaAI_b0166, entry) == 0x14e00, "layou
 // Declared with the Quetzoa component's types in src/game/CQuetzoaXAIComponent/CQuetzoaXAIComponent_List_ovb0134.cpp.
 struct UnkQuetzoaXAI_ovb0134;
 struct UnkQuetzoaOther_ovb0134;
-void fn_710110bb4c(UnkQuetzoaXAI_ovb0134* self, UnkQuetzoaOther_ovb0134* other, void* arg, bool flag);
 
 static inline s32 IndexOf(UnkHydrogigaList_b0166* list, u64 v) {
     u32 i = 0;
@@ -153,7 +154,6 @@ struct UnkTable;
 struct UnkKey;
 struct UnkVec4;
 struct UnkPolygon2D;
-void fn_7100119b88(UnkPolygon2D* self);
 char* fn_71005c1008(u64 id);
 void fn_7100926874(UnkTable* self, const UnkKey& key, u32 id, const UnkVec4& a, const UnkVec4& b, u32 kind, u32 value,
                    f32 weight);

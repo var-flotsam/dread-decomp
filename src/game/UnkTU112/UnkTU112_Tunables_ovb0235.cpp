@@ -8,6 +8,7 @@
 
 #include "base/UnkHashStream.h"
 #include "base/UnkVector.h"
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -15,6 +16,8 @@
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU112.h"
+#include "game/UnkTU85.h"
 #include "types.h"
 
 using base::UnkAllocator;
@@ -203,7 +206,6 @@ struct UnkTunableObject {
     virtual char* GetClass();
 };
 struct UnkTunableRegistry;
-UnkTunableObject* fn_710013c5cc(UnkTunableRegistry* self, const char* name, bool qualified);
 
 // The field calls' argument: a value's type and where it is.
 struct UnkTunableValue {
@@ -213,7 +215,6 @@ struct UnkTunableValue {
 struct UnkReflField;
 struct UnkReflFieldObject;
 struct UnkReflValueArg;
-bool fn_71000e78e0(UnkReflField* field, const UnkReflFieldObject* obj, UnkReflValueArg* value);  // gets
 s32 fn_7100024140(const base::reflection::CType* type);  // the type's letter (b, f, i, s, v)
 
 // Sets a tunable's field to a value of the same kind.
@@ -251,7 +252,6 @@ struct UnkFileReader {
 };
 
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
-void fn_710000ccd8(UnkFileReader* self);
 void fn_710000f750(UnkParseContext* self, void* root);
 
 extern UnkParseCallbacks g_unk_710b372778 __attribute__((visibility("hidden")));  // this unit's callbacks

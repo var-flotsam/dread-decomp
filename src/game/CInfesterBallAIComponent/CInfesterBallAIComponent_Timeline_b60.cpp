@@ -5,10 +5,9 @@
 // fn_71005cfa94. Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU2702.h"
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
-
-void fn_710110cca4(void* self, void* arg);
 
 struct UnkInfesterBallKey_b60;
 extern UnkInfesterBallKey_b60 g_unk_710164a120;  // reached through the GOT

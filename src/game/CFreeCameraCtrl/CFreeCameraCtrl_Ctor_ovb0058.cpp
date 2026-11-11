@@ -11,21 +11,21 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CCameraCtrl.h"
+#include "game/CPhotoModeCameraCtrl.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2732.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkBase_7100763ed4;
 struct UnkFreeCameraCtrl_b0058;
-void fn_71010ed044(UnkBase_7100763ed4*);  // as CCameraBoundaryCtrl_Ctor_A5_b71.cpp declares it
-void fn_71009ca9fc(void* self, const char* name, u32 flags);
 extern void* g_unk_7101cb1860[];
 extern void* g_unk_7101a202e0[];
 extern CStrId g_unk_7172a04a30 __attribute__((visibility("hidden")));
 void fn_7100219dbc(UnkRenderManager* manager, const CStrId* key, bool on);
-void fn_710119ad3c(void* self);
 void fn_71010ed260(UnkFreeCameraCtrl_b0058* self);
 
 // What the array at +0x1d8 holds: callbacks run (and dropped when empty) on deactivation.
@@ -217,11 +217,8 @@ struct UnkCameraEvent_b0058 {
 };
 void fn_7100eecf7c(void* manager, bool on, const UnkCameraEvent_b0058* event);
 struct UnkGrabCameraCtrl;
-void fn_71010edd64(UnkGrabCameraCtrl* self);  // the base deactivation
 void fn_7100decc74(UnkGameManager* self);
 extern void* g_unk_7172729910;
-void fn_710119aee8(void* self);
-void fn_710119ae24(void* self, void* item, bool flag);
 UnkFreeCameraCallback_b0058** fn_71009cb3e0(base::UnkVector<UnkFreeCameraCallback_b0058*>* self, u32 index);
 void fn_7100e8f9a0(char* self, bool remove, base::global::CStrId* key);
 extern CStrId g_unk_7172a04a38 __attribute__((visibility("hidden")));
@@ -288,4 +285,3 @@ void fn_71010ef41c(UnkFreeCameraCtrl_b0058* self) {
     }
     fn_7100e8f9a0(static_cast<char*>(g_unk_7101d47310->field_0x2228), true, &g_unk_7172a04a38);
 }
-

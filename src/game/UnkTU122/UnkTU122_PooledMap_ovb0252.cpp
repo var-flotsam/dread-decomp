@@ -5,6 +5,8 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkCountedResource.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU127.h"
+#include "game/UnkTU291.h"
 #include "types.h"
 #include <new>
 struct UnkPooledChainedMap_b0252 {
@@ -28,8 +30,6 @@ void fn_71001420d8(UnkPooledChainedMap_b0252* self) {
 
 struct UnkTaggedSubObject127;
 struct UnkTaggedSubArg;
-void fn_710014333c(UnkTaggedSubObject127* self, UnkTaggedSubArg* arg);
-char* fn_710020d32c(char* p0);
 
 extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
 

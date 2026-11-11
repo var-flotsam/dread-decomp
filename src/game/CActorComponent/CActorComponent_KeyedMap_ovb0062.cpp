@@ -4,6 +4,8 @@
 // this unit's own helpers), and a component's enable toggle (fn_710024f918). Names and layouts
 // are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CActorComponentDef.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -17,7 +19,6 @@ struct UnkKeyedStrIdMapA_ovb0062 {
 };
 
 void fn_7100251f78(UnkKeyedStrIdMapA_ovb0062* self);
-void fn_7100248ce8(UnkKeyedStrIdMapA_ovb0062* self, u32 capacity);  // the keyed-array reserve
 
 UnkKeyedStrIdMapA_ovb0062* fn_7100251e10(UnkKeyedStrIdMapA_ovb0062* self, const UnkKeyedStrIdMapA_ovb0062* other) {
     if (self == other)
@@ -42,8 +43,6 @@ UnkKeyedStrIdMapA_ovb0062* fn_7100251e10(UnkKeyedStrIdMapA_ovb0062* self, const 
     }
     return self;
 }
-
-f32 fn_7100253ad4(void* source);
 
 struct UnkToggleOwner_ovb0062 {
     u8 unk_0x0[0x1a8];

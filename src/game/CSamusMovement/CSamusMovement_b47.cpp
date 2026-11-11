@@ -2,11 +2,10 @@
 // member at +0x38 says so (fn_7100f0ca8c), or when the owner's animation is in a
 // CCharClassIgnoreHangTrack. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CPlayerInfo.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
-
-bool fn_7100f0ca8c(void* member);
 
 struct UnkSamusMovementOwnerB47 {
     u8 pad_0x0[0x220];

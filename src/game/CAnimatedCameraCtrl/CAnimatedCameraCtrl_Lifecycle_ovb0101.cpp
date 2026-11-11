@@ -11,9 +11,15 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CCameraBoundaryCtrl.h"
+#include "game/CCameraCtrl.h"
+#include "game/CInputComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU2523.h"
+#include "game/UnkTU39.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -88,8 +94,6 @@ struct UnkAnimatedCameraCtrl_b0101 {
 };
 static_assert(__builtin_offsetof(UnkAnimatedCameraCtrl_b0101, target) == 0x4b8, "UnkAnimatedCameraCtrl_b0101 layout");
 
-void fn_7100764a50(UnkAnimatedCameraCtrl_b0101* self, UnkCamVec3_b0101* from, UnkCamVec3_b0101* to, bool reset);
-
 static inline bool IgnoresBoundaries(UnkAnimatedCameraCtrl_b0101* self) {
     UnkCamTargetHandle_b0101* target = self->target;
     if (!target || !target->actor)
@@ -120,7 +124,6 @@ void fn_71010ea3e4(UnkAnimatedCameraCtrl_b0101* self, bool reset) {
 
 extern void* g_unk_7101d47360;
 void fn_7100ee1f34(void*);
-void fn_7100000790(const char* name, const char* fmt, ...);
 
 // A bit mask passed by value (copied into a temporary), and its two guarded constants (as in
 // src/game/UnkLoadingScreen.cpp).
@@ -158,15 +161,10 @@ static inline void* CameraManager() {
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkInputComponent;
-void fn_7100872460(UnkInputComponent* self, bool enable, bool reset, void* arg);
 extern __attribute__((visibility("hidden"))) char g_unk_7172a04768[];
-void fn_710002fa90(void*);
 struct UnkGrabCameraCtrl;
-void fn_71010edd64(UnkGrabCameraCtrl* self);
 
 struct UnkBossCameraCtrl_b49a3;
-void fn_7100763f74(UnkBossCameraCtrl_b49a3* self);
-void fn_710002f67c(void*);
 extern void* g_unk_7101cb1550[];
 
 // A reference-counted object released through its vtable (slot 2).
@@ -295,10 +293,8 @@ void fn_71010e85bc(UnkAnimatedCameraEnd_b0101* self) {
 // ----
 
 struct UnkDropCameraVec3;
-const UnkDropCameraVec3* fn_7100d7c9f4(UnkPlayer* player);
 struct UnkFixedCamera_fc;
 struct UnkArg_fc;
-void fn_71010ed98c(UnkFixedCamera_fc* self, UnkArg_fc* arg, u32 flag);
 
 // The camera definition the argument points at (+0x130).
 struct UnkCamDef_b0101 {

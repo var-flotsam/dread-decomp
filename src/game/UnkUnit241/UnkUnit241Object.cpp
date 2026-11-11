@@ -3,9 +3,8 @@
 // fn_710021685c), an array at +0x80 and the value 30 at +0xc0; the same shape as unit 254's
 // (src/game/UnkUnit254/fn_71001c33cc.cpp). Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU308.h"
 #include "types.h"
-
-void fn_710021685c(void* self);  // UnkSphere's constructor
 
 struct UnkUnit241Object {
     u32 field_0x0;

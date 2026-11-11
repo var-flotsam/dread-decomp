@@ -3,6 +3,8 @@
 // duration is about zero, or applies the start colour. Names and layouts are placeholders.
 #include "base/color/CColor4F.h"
 #include "game/UnkSphere.h"
+#include "game/UnkTU223.h"
+#include "game/UnkTU254.h"
 #include "types.h"
 
 using base::color::CColor4F;
@@ -48,9 +50,6 @@ struct UnkFade_b256 {
 };
 static_assert(__builtin_offsetof(UnkFade_b256, from) == 0x118, "layout");
 static_assert(__builtin_offsetof(UnkFade_b256, sphere) == 0x80, "layout");
-
-void fn_710019c564(void* target, f32 a, f32 b, f32 c, f32 d);
-void fn_71001c34f4(void* target, f32 value);
 
 struct UnkFadeColor;
 

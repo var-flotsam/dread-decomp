@@ -1,6 +1,7 @@
 // nn::atk (tools/tu_map.py, library unit): walks the intrusive list at +0x8 (link at +0x288 of each
 // element) and runs fn_710122cf1c on every element whose state (+0x278) is 0; the next link is read
 // first, so the call may unlink the element. Names and layout are placeholders.
+#include "game/UnkTU2772.h"
 #include "types.h"
 
 struct UnkAtkLink_b48a3 {
@@ -17,7 +18,6 @@ struct UnkAtkListed_b48a3 {
 
 // As src/atk_id/nn_atk.cpp declares it.
 struct UnkAtkListOwner;
-void fn_710122cf1c(UnkAtkListOwner* self);
 
 struct UnkAtkListOwner_b48a3 {
     u8 pad_0x0[0x8];

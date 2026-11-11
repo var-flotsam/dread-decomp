@@ -3,12 +3,12 @@
 // out-of-line functions (fn_71005c4c5c, fn_71005c5048), then the string id at +0x510 is released
 // and the base destructor (fn_7100416e80) runs. Member types are placeholders.
 #include "base/UnkDestructors.h"
+#include "game/CCharClassBehaviorTreeAIComponent.h"
 
 struct UnkTag_71005ca278;
 extern char g_unk_7101a51a08[];  // the component's vtable
 
 struct UnkStruct_7100416e80;
-void fn_7100416e80(UnkStruct_7100416e80*);
 void fn_71005c4c5c(char*);
 void fn_71005c5048(char*);
 

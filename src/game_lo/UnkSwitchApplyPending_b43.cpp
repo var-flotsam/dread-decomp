@@ -5,11 +5,10 @@
 // placeholders.
 #include "base/UnkCloneCalls.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU275.h"
+#include "game/UnkTU284.h"
+#include "game/UnkTU285.h"
 #include "types.h"
-
-void fn_71001f7388(void* obj, bool flag);
-void fn_7100208004(void* obj, bool flag);
-void fn_7100208bb4(void* obj, bool flag);
 
 // Unit 116's layout (as in src/game_lo/fn_7100145e94.cpp): the later members sit 0x58 bytes further.
 struct UnkSwitchObject116_b43 {

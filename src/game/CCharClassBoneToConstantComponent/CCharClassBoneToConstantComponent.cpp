@@ -1,12 +1,12 @@
 // CCharClassBoneToConstantComponent: its constructor (fn_71008053d8). The base constructor
 // fn_71011acd10, the vtable, two invalid (all-ones) words at +0x58, a cleared word at +0x1c, then the
 // class-entry pass of base::core::CBaseObject (fn_7100023854). Names and layouts are placeholders.
+#include "base/core/CBaseObject.h"
+#include "game/CCharClassComponent.h"
 #include "types.h"
 
 struct UnkNode;
 struct UnkStruct_71008bca30;
-void fn_71011acd10(UnkStruct_71008bca30* self);
-void fn_7100023854(UnkNode* node);
 extern void* g_unk_7101a74a48[];
 
 struct UnkBoneToConstantComponent {

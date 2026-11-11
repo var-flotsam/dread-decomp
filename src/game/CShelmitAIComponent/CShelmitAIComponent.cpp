@@ -3,6 +3,7 @@
 // 0.001 of zero, advances the block's value at +0xd4 by the rate times the frame time, clamped to the
 // range at +0x634/+0x638 of the block's object (reaching a bound stops the rate), and applies it
 // (fn_71006badf4). Ends with fn_71006ba90c.
+#include "game/CShelmitAIComponent.h"
 #include "types.h"
 #include "game/UnkBehaviorTree.h"
 
@@ -27,9 +28,7 @@ struct UnkShelmitAI {
 
 // Declared as its other caller declares it (src/game/CGobblerAIComponent/fn_71005820c4.cpp); it also takes dt.
 struct UnkGobblerComponent;
-void fn_71006ba194(UnkShelmitAI* self);
 void fn_71006ba7ec(UnkShelmitAI* self, f32 dt);
-void fn_71006badf4(UnkShelmitAI* self);
 void fn_71006ba90c(UnkShelmitAI* self);
 
 void fn_71006ba718(UnkShelmitAI* self, f32 dt) {

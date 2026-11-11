@@ -4,6 +4,8 @@
 // the path point nearest the owner. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAttackComponent.h"
+#include "game/CEnemyMovement.h"
 #include "game/UnkActor.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -12,10 +14,7 @@ using base::reflection::UnkReflObject;
 
 struct UnkLinkOwner_ain;
 struct UnkListener_ain;
-void fn_71010cb2fc(void*, void*);
-void fn_71010cb2f4(void* target, void* link);
 void fn_71006f552c(void* source, UnkWeakHandle** slot);
-void fn_7101137c84(UnkLinkOwner_ain* owner, UnkListener_ain* listener);
 void fn_7101137c7c(void* target, void* link);
 void fn_71006f5630(void* source, UnkWeakHandle** slot);
 

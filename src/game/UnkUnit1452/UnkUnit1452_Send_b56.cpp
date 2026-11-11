@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU1450.h"
 #include "types.h"
 
 struct UnkSendParams_b56 {
@@ -29,7 +30,6 @@ struct UnkUnit1452Owner_b56 {
 };
 
 struct UnkUnit1452_b56;
-UnkUnit1452Owner_b56* fn_710097f1b8(UnkUnit1452_b56* self);
 
 struct UnkUnit1452Message_b56 : base::reflection::UnkReflObject {
     base::global::UnkStringData* field_0x8;

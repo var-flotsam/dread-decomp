@@ -6,8 +6,12 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
+#include "game/CCollisionComponent.h"
+#include "game/CComponent.h"
+#include "game/CUsableComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2772.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -188,7 +192,6 @@ void fn_7100fdb8b8(UnkSmDelayedOwner_b61& self, void* /*a*/, void* /*b*/) {
 // The request after a base call: CUsableComponent (fn_7100a9f1f8) and CAccessPointComponent, which
 // calls it as its base.
 struct UnkParent;
-void fn_71010c4228(UnkParent*);
 
 __attribute__((noinline)) void fn_7100a9f1f8(UnkSmOwner_b61<0x100>* self) {
     fn_71010c4228(reinterpret_cast<UnkParent*>(self));
@@ -230,7 +233,6 @@ void fn_7100a8524c(UnkUsableSm_b61* self) {
 
 // After the base call and the request: hands +0x40 to the owner's object (fn_71008656d8), then passes a
 // copy of a string id to fn_7100ac9530.
-void fn_71008656d8(void* object, u32 a, u32 b, void* arg);
 struct UnkSmIdHolder_b61 {
     u8 pad_0x0[0x30];
     CStrId id;
@@ -289,7 +291,6 @@ void fn_7100aba644(UnkLockOnSm_b61*);
 void fn_7100aba68c(UnkLockOnSm_b61*);
 void fn_7100ab6bb8(UnkLockOnSm_b61*);
 void fn_7100ab9838(void*);
-int fn_71012395a0();
 
 struct UnkLockOnItem_b61 {
     u64 field_0x0;
@@ -370,7 +371,6 @@ struct UnkTypedValue {
 void fn_7100332c80(CBlackboard::CSection*, UnkPropertyName*, const UnkTypedValue*);
 CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 extern UnkProperty g_unk_71727434e0;
-void fn_7100aa0034(void*);
 
 struct UnkPlatformValue_b61 {
     UnkPropertyName name;

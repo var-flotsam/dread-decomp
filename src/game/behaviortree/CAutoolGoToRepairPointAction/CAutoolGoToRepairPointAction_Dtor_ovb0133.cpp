@@ -6,6 +6,7 @@
 // placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/behaviortree/CBaseAction.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -74,8 +75,6 @@ struct UnkAutoolGoToRepairPoint_ovb0133 {
     UnkAutoolListener_ovb0133 listener;  // 0x380
 };
 static_assert(__builtin_offsetof(UnkAutoolGoToRepairPoint_ovb0133, listener) == 0x380, "layout");
-
-void fn_7100393ea0(void*);
 
 void fn_71003c22d4(UnkAutoolGoToRepairPoint_ovb0133* self) {
     self->vtable = &g_unk_7101a2cf58[2];

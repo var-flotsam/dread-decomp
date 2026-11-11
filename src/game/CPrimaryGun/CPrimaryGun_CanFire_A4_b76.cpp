@@ -3,6 +3,7 @@
 // inventory (+0x270) holds ITEM_CENTRAL_UNIT_DECAYED_ENERGY (fn_71011428bc, as
 // src/game/CAbilityEnergyWave/CAbilityEnergyWave_HasCentralUnitEnergy_A2_b71.cpp tests it); otherwise the result
 // of fn_7100835a14. Names and layouts are placeholders.
+#include "game/CGun.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
@@ -41,8 +42,6 @@ struct UnkPrimaryGun_A4_b76 {
     u8 pad_0x0[0x18];
     UnkPrimaryGunOwner_A4_b76* owner;  // 0x18
 };
-
-bool fn_7100835a14(UnkPrimaryGun_A4_b76* self);
 
 // As src/flag_id/fn_7100843474.cpp declares it.
 bool fn_7100857344(void* object) {

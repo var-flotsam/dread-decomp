@@ -5,6 +5,7 @@
 // (fn_7100097d18) and the old one destroyed (fn_71000e70c4), the keys copied through the aliasing
 // word type (the count and the key pointer are reloaded). Names are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU85.h"
 #include "types.h"
 
 typedef u64 __attribute__((may_alias)) UnkAliasWord_71000dc190;
@@ -24,7 +25,6 @@ struct UnkKeyedArray_71000dc190 {
 };
 
 struct UnkRecordB0_b44a1;  // the record as src/base/reflection/UnkReflKeyedB0_b44.cpp names it
-void fn_71000e70c4(UnkRecordB0_b44a1* self);
 // As src/game_s1/fn_71000dbc34.cpp declares it.
 void fn_7100097d18(void* self, void* other);
 

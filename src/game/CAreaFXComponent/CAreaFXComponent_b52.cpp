@@ -1,9 +1,9 @@
 // CAreaFXComponent unit: fn_71007ff654, the update step of CAreaFXComponent_b41.cpp's fn_71007ff7bc without
 // its last call (it ends with fn_7100802108). The layouts repeat that file's. Names and layouts are
 // placeholders.
+#include "game/CAreaFXComponent.h"
+#include "game/CEnemyMovement.h"
 #include "types.h"
-
-u32 fn_71010cc3a4(void*);
 
 struct UnkFlagHolder_af41 {
     u8 pad_0x0[0x16e6];
@@ -59,8 +59,6 @@ struct UnkSelf_af41 {
     u8 pad_0x425[3];
     f32 pos[3];  // 0x428
 };
-
-void fn_7100802108(UnkSelf_af41* self);
 
 static inline bool Near_af41(f32 a, f32 b) {
     f32 lo = a - 0.001f;

@@ -2,8 +2,10 @@
 // read three floats from the argument's stream into a vector of the object at 8 (at +0x100 or
 // +0x10c), run the virtual at 0xa8, and return the int 1 as a reflected value. Names are placeholders.
 #include "../../game_s7/UnkPropS7.h"
+#include "base/global/timeline/CEvent.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU218.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
@@ -11,9 +13,6 @@ using base::reflection::UnkReflValue;
 struct Vec3_b40a3 {
     f32 x, y, z;
 };
-
-void fn_710006663c(u64* out, const char* str);
-void fn_7100199420(void* self, const u64* hash, bool value);
 
 template <u32 Offset>
 static inline __attribute__((always_inline)) UnkReflValue ReadVector_b40a3(char* obj, UnkReflValue* const* args) {

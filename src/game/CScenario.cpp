@@ -8,10 +8,14 @@
 // 2660's reader), fn_71011a2500 (switches to the active collider the blackboard names, or to the
 // default one) and fn_71011a4050 (the scenario's start).
 #include "base/UnkStrIdPathPair.h"
+#include "base/file/CThreadSafeDevice.h"
 #include "base/global/CStrId.h"
+#include "base/global/timeline/CEvent.h"
 #include "game/CBlackboard.h"
+#include "game/GUI/CLabel.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2733.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -38,7 +42,6 @@ struct UnkStrPair_0x10 {
     void* a;
     void* b;
 };
-void fn_710008d680(UnkStrPair_0x10* s, const char* path);
 
 // Unit 2660's reader (src/game/UnkObjectFileRead.cpp): no state, and an empty constructor and
 // destructor.
@@ -186,10 +189,7 @@ const base::global::CStrId* fn_7100de9bf8(UnkGameManager* self);
 // gives localized texts.
 struct UnkLanguage;
 extern UnkLanguage* g_unk_7101d47358;
-void fn_710119c020(UnkLanguage* language);
 bool fn_710119c9fc(UnkLanguage* language);
-s32 fn_710119c9f4(UnkLanguage* language);
-void fn_7100066e44(void* text);
 // The text the label is given (game/UnkGuiLabel.h), with its destructor.
 struct UnkDialogText : UnkGuiText {
     ~UnkDialogText() { fn_7100066e44(this); }
@@ -276,7 +276,6 @@ static inline void Setup(UnkGuiRoot* root, UnkGuiDisplayObject* object, const CS
 
 // A GUI::CLabel (0x340 bytes) and a GUI::CSprite (0x1f0 bytes): their constructors.
 struct UnkStruct_71011ebdb4;
-void fn_71011ebdb4(UnkStruct_71011ebdb4* self);
 void fn_71011f890c(UnkGuiDisplayObject* self);
 void fn_71011ed150(UnkGuiDisplayObject* label, const CStrId& font);
 void fn_71011ef0c8(UnkGuiDisplayObject* label, bool value);

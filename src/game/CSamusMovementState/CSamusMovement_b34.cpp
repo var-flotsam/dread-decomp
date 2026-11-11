@@ -1,7 +1,7 @@
+#include "game/UnkTU1501.h"
 #include "types.h"
 
 struct UnkSamusMovement;
-void fn_71009e0160(UnkSamusMovement* self, bool flag, f32 dt);
 void fn_71010d1c9c();
 
 // Runs fn_71010d1c9c, then the legs' override update with the flag cleared. The original passes

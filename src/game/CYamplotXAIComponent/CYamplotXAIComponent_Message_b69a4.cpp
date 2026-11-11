@@ -4,6 +4,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
+#include "game/UnkTU2702.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -11,7 +12,6 @@ using base::global::CStrId;
 
 struct UnkNailongAI_b46a2;
 struct UnkNailongMsg_b46a2;
-u32 fn_7101111dc8(UnkNailongAI_b46a2* self, UnkNailongMsg_b46a2* msg);
 
 // A typed value as the section setter takes it (as in src/game/CDoorLifeComponent.cpp).
 struct UnkTypedValue {

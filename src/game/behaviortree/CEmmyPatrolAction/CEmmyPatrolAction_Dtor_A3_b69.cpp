@@ -7,15 +7,15 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkNodeOwner.h"
 #include "base/UnkVector.h"
+#include "game/behaviortree/CBaseAction.h"
+#include "game/behaviortree/CEmmyPatrolAction.h"
 #include "types.h"
 
 extern void* g_unk_7101a47c98[];
 extern void* g_unk_7101a47c78[];
 extern void* g_unk_7101a21050[];
 extern void* g_unk_7101a47c40[];
-void fn_7100393ea0(void*);  // the base's destructor
 // base::UnkDeferredSet<..>::Remove, instantiated in src/clones (UnkClone_fn_7100514b7c).
-void fn_7100514b7c(void* set, void* item);
 
 struct UnkPatrolOwnerDtor_A3_b69;
 struct UnkPatrolMemberDtor_A3_b69;

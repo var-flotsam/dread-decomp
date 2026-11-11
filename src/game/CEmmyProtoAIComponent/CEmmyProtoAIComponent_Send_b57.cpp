@@ -3,11 +3,11 @@
 // request with mode 0 to the owner's sub-object (+0x220) between fn_71009746ac(+0x17a0 of it, 1) and
 // (.., 0); descriptors as UnkSpitSend (src/game_s2/UnkSpitSend.h). Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CEnemyMovement.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 struct UnkEmmyCaveAIStart_b49;
-void fn_7101103aa8(UnkEmmyCaveAIStart_b49* self, f32 speed);
-u32 fn_71010cc3a4(void*);
 void fn_71009746ac(void* self, bool flag);
 
 struct UnkEmmyProtoSpeed_b57a3 {

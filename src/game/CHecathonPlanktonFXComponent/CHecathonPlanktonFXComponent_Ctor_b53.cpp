@@ -6,6 +6,7 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
+#include "game/CSceneComponent.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -14,7 +15,6 @@ extern char g_unk_7101a74d08[];
 
 struct UnkBreakableTileGroup_b46a2;
 // Signature as src/game/CBreakableTileGroupComponent/CBreakableTileGroupComponent_b46.cpp declares it.
-void fn_71009f1910(UnkBreakableTileGroup_b46a2* self);
 
 struct UnkPlanktonFX_b53 {
     void** vtable;

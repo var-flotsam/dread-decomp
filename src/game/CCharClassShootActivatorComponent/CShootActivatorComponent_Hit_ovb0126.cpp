@@ -9,17 +9,20 @@
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CActorComponent.h"
+#include "game/CGunComponent.h"
+#include "game/CInputComponent.h"
 #include "game/UnkCameraCtrl.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1176.h"
 #include "game/UnkTimelineComponent.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-bool fn_710024fbc8(void*);
 struct UnkStruct_71002fda50;
-void fn_71002fda50(UnkStruct_71002fda50* self, bool all, bool force_off);
 void* fn_7100df5440(UnkGameManager* manager);
 extern const u64 g_unk_710164aed8;  // reached through the GOT
 
@@ -86,7 +89,6 @@ bool fn_7100891c8c(UnkShootActivatorHit_ovb0126* self, const UnkShootHit_ovb0126
 // fn_7100a7d594 (src/game/CElectricGeneratorComponent/CElectricGeneratorComponent_Arrays_ovb0120.cpp) does,
 // here asking for the player again for the angle and without null tests.
 struct UnkScenarioObject_ovb0032;
-void* fn_7100774014(UnkScenarioObject_ovb0032* actor);
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkGeneratorTarget_ovb0120;
@@ -127,13 +129,11 @@ void fn_71008919c4(UnkShootPlace_ovb0126* self) {
 // id at +0x4d0, the input component is switched off with it, the id released, and the scenario object placed
 // (fn_71008919c4).
 struct UnkInputComponent;
-void fn_7100872460(UnkInputComponent* self, bool enable, bool reset, void* arg);
 bool fn_7100023d00(const UnkCameraCtrl* object, const base::reflection::CClass* cls);
 struct UnkShootPlayerPart_ovb0126 {
     u8 pad_0x0[0x178];
     bool field_0x178;
 };
-void fn_7100839b00(char* self, bool value);
 
 struct UnkShootCameraAnim_ovb0126 {
     u8 pad_0x0[0x10];

@@ -3,19 +3,18 @@
 // text to fn_7100b868b0; returns an empty value. Names and layouts are placeholders.
 #include <wchar.h>
 
+#include "base/global/timeline/CEvent.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/GUI/CText.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
 
 void fn_7100066a50(void* text, const char32_t* value);
-void fn_7100066e44(void* text);
 
 struct UnkNumberText_b41a3 {
     u8 unk_0x0[0x20];
 };
-
-void fn_7100b868b0(char* self, UnkNumberText_b41a3* text);
 
 UnkReflValue fn_7100b874cc(void*, char* obj, UnkReflValue* const* args) {
     UnkReflValue* a = args[0];

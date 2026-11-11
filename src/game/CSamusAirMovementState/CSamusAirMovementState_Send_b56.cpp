@@ -4,15 +4,15 @@
 // object at +0x38 with a zero vector (fn_71010d08d4). Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CMovementComponent.h"
+#include "game/UnkTU1501.h"
 #include "types.h"
 
 struct UnkFlagged;
-bool fn_71009e75e8(UnkFlagged*);
 
 // Declared as src/game/CMovementComponent/fn_71010d08d4.cpp defines it.
 struct UnkMovement_71010d08d4;
 struct UnkMovementVec_71010d08d4;
-void fn_71010d08d4(UnkMovement_71010d08d4* self, const UnkMovementVec_71010d08d4* v, bool start);
 
 struct UnkAirSendId_b56 {
     u8 pad_0x0[0x30];

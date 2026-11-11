@@ -2,6 +2,7 @@
 // base test (fn_710082cb24) passes and the switcher isn't on (+0x98), a pull counts when it comes
 // from the grapple point its definition (+0x90) names (+0x78) and is at least as strong (+0x20 of
 // the message, by size) as the definition's threshold (+0xa0). Names and layouts are placeholders.
+#include "game/CPullableGrapplePointComponent.h"
 #include "types.h"
 
 struct UnkPullSource_b50 {
@@ -34,7 +35,6 @@ struct UnkPullSwitcher_b50 {
 };
 
 // The base test (both pull components share it).
-bool fn_710082cb24(void* self, void* arg, void* msg);
 
 bool fn_71008261e0(UnkPullSwitcher_b50* self, void* arg, UnkPullMessage_b50* msg) {
     if (!fn_710082cb24(self, arg, msg) || self->field_0x98)

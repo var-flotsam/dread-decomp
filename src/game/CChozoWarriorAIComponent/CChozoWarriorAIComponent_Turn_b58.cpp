@@ -5,6 +5,7 @@
 // to 3. Names are placeholders.
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CChozoWarriorAIComponent.h"
 #include "game/UnkActor.h"
 #include "../../game_s2/UnkSpitSend.h"
 #include "types.h"
@@ -31,9 +32,6 @@ struct UnkWarriorTurn_b58 {
     u8 pad_0x149d0[0x14b40 - 0x149d0];
     u64 field_0x14b40;
 };
-
-void fn_710049d094(UnkWarriorTurn_b58* self);
-void fn_7100498db8(UnkSelf* self);
 
 void fn_71004994f4(UnkWarriorTurn_b58* self) {
     UnkWarriorTurnOwner_b58* owner = self->owner;

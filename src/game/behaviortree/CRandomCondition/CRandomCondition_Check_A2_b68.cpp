@@ -2,13 +2,12 @@
 // +0x38, which a set blackboard property (+0x40, a string id) overrides through fn_7100394e2c; a random value in
 // 0..1 is compared with it. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU2772.h"
 #include "types.h"
 
 // Signature as src/game/behaviortree/CStopWatchAction/fn_7100392704.cpp declares it.
 struct UnkSelf;
 void fn_7100394e2c(UnkSelf* self, void* record, f32* out);
-
-int fn_71012395a0();  // rand
 
 struct UnkRandomCondition_A2_b68 {
     u8 pad_0x0[0x38];

@@ -23,6 +23,8 @@
 #include "game/UnkGuiEvent.h"
 #include "game/UnkGuiHandle.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU2669.h"
+#include "game/UnkTU92.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -266,9 +268,7 @@ s32 fn_710007fb10(const base::global::CRntString* self, char c, s32 start);
 
 struct UnkScriptManager_ovb0085;
 extern UnkScriptManager_ovb0085* g_unk_71727bed90;
-void fn_710109d810(UnkScriptManager_ovb0085* self);
 struct UnkUnit2669Str;
-u32 fn_710109dd6c(void* self, void* source, UnkUnit2669Str* name, bool a, bool b);
 UnkWeakTarget* fn_71011b5f5c(u32 script, const char* const* name, const CRntString* source, void* bag);
 
 static inline UnkScriptManager_ovb0085* ScriptManager() {
@@ -312,7 +312,6 @@ struct UnkButtonTemplate_ovb0108;
 
 struct UnkWriteStack_b0026;
 struct UnkWriteRoot_b0026;
-void fn_71000ee314(UnkWriteStack_b0026* self, UnkWriteRoot_b0026* root, u32 count);
 
 // The objects to copy: up to 100 entries of three values each (UnkWriteStack_b0026's layout).
 struct UnkCopyEntry_b0210 {

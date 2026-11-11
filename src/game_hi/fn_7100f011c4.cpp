@@ -2,6 +2,8 @@
 // first and hiding two items for flagged ids), then forwards the id to fn_7100f00f4c.
 #include "base/UnkVector.h"
 #include "engine/scene/UnkToggle.h"
+#include "game/UnkTU2578.h"
+#include "game/UnkTU324.h"
 #include "types.h"
 
 struct UnkRefObj {
@@ -111,9 +113,6 @@ struct UnkStruct_0x128 {
         return n;
     }
 };
-
-void fn_710021fafc(UnkRefObj*);
-void fn_7100f00f4c(UnkStruct_0x128*, u32, bool);
 
 void fn_7100f011c4(UnkStruct_0x128* self, u32 id) {
     if (self->field_0x121)

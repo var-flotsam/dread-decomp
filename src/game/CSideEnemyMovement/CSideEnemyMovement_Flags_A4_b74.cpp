@@ -2,6 +2,7 @@
 // the two flag bits named by the config at +0x1c20 (+0x160, +0x164): whichever is set (fn_7101178524) is
 // cleared (fn_7101178564) and the other set (fn_71011785a8), as CShakernautAIComponent_Flip_b53.cpp sends them.
 // Names and layouts are placeholders.
+#include "game/CAnimationComponent.h"
 #include "types.h"
 
 // As src/game/CShakernautAIComponent/CShakernautAIComponent_Flip_b53.cpp declares them.
@@ -10,11 +11,8 @@ struct UnkShakernautId_b53 {
     u32 value;
     u32 unk_0x4;
 };
-void fn_71011785a8(UnkShakernautCtrl_b53*, const UnkShakernautId_b53*, bool, bool);
-void fn_7101178564(UnkShakernautCtrl_b53* self, const UnkShakernautId_b53* id, bool a, bool b);
 // As src/game/CAnimationComponent/CAnimationComponent_Flags_b47a3.cpp defines it.
 struct UnkAnimFlagsHolder_b47a3;
-bool fn_7101178524(UnkAnimFlagsHolder_b47a3* self, u32 bit);
 
 struct UnkSideEnemyOwner_A4_b74 {
     u8 pad_0x0[0x220];

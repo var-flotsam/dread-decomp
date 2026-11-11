@@ -5,6 +5,8 @@
 // (+0x64c) and its value at +0x648. Names and layouts are placeholders.
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CFrozenComponent.h"
+#include "game/CTentacle.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "types.h"
@@ -16,9 +18,6 @@ using base::math::CVector3D;
 struct UnkHydrogigaTarget_b62a3;
 struct UnkHydrogigaOwner_b62a3;
 struct UnkHydrogigaKey_b62a3;
-void fn_7100709f20(UnkHydrogigaTarget_b62a3* target, UnkHydrogigaOwner_b62a3* owner, UnkHydrogigaKey_b62a3* key,
-                   f32 value);
-bool fn_71007f9f20(void*);
 UnkEntry* fn_7100709e9c(void* part, void* owner);
 
 struct UnkScourgeTongue_A4_b71 {

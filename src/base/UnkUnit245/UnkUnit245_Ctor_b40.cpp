@@ -2,9 +2,8 @@
 // object, the header words of unit 248's (src/base/UnkUnit248/UnkUnit248.cpp) with a sphere (+0x20,
 // fn_710021685c), two scales of 1 and zeroed pointers after it. Names and layouts are placeholders;
 // fields are written by offset in the order the original stores them.
+#include "game/UnkTU308.h"
 #include "types.h"
-
-void fn_710021685c(void*);
 
 void fn_71001bb60c(char* self) {
     *(u64*)(self + 0x0) = 0;

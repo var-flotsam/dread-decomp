@@ -1,9 +1,8 @@
 // Two identical copy assignments in the CXParasiteGoSpawnBehavior unit: the three words at +0x8
 // are copied as a block and the member at +0x20 is assigned by fn_7100246d70. Names and layouts are
 // placeholders.
+#include "game/UnkTU341.h"
 #include "types.h"
-
-void fn_7100246d70(void* self, const void* other);
 
 struct UnkGoSpawnParams {
     void** vtable;

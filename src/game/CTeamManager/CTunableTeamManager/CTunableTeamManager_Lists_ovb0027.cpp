@@ -12,6 +12,7 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU2523.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -21,7 +22,6 @@ using base::math::CVector3D;
 UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 struct UnkPlayer;
 struct UnkDropCameraVec3;
-const UnkDropCameraVec3* fn_7100d7c9f4(UnkPlayer* player);
 struct UnkComponent_71011058a8;
 bool fn_71011058a8(UnkComponent_71011058a8* self);
 

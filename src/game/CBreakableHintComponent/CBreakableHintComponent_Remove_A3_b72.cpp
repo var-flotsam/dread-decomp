@@ -2,6 +2,7 @@
 // stored under a key from the flat map at +0x48 (0x18-byte values, 8-byte keys at +0x50, count at +0x58,
 // erase fn_7100752a78); once the map is empty it sets the flag at +0x41 and calls fn_71007523e8. Always
 // returns false. Names and layouts are placeholders.
+#include "game/CBreakableHintComponent.h"
 #include "types.h"
 
 struct UnkBreakableHintEntry_A3_b72 {
@@ -29,7 +30,6 @@ struct UnkBreakableHint_A3_b72 {
 };
 
 void fn_7100752a78(UnkBreakableHintMap_A3_b72* map, UnkBreakableHintEntry_A3_b72* it);
-void fn_71007523e8(UnkBreakableHint_A3_b72* self);
 
 bool fn_710075312c(UnkBreakableHint_A3_b72* self, u64 key) {
     UnkBreakableHintEntry_A3_b72* it = self->map.Find(key);

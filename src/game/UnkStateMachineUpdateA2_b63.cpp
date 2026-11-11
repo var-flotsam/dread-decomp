@@ -3,6 +3,11 @@
 // current state and applies what it asked for, at most ten times, while marked busy) and requests (the
 // template of src/game/UnkStateMachineSet_b60.cpp). A machine far into its owner (+0x14978) reads its states
 // array from the owner (UnkSmStatesAt_A2_b63), as the original does. Names are placeholders.
+#include "game/CAbility.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CAbilitySpeedBooster.h"
+#include "game/CChozoWarriorAttack.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 #include "game_s2/UnkSpitAttack.h"
 #include "base/UnkVector.h"
@@ -180,7 +185,6 @@ UNK_SM_UPDATE_RATE_A2_B63(710048770c, fn_71003609a8(reinterpret_cast<UnkSpitAtta
 // CCentralUnitCannonAIComponent's unit: nothing while the game manager's check holds, else the base update
 // and the machine's (far into the owner).
 struct UnkSelf_7100369c44;
-void fn_71011000e0(UnkSelf_7100369c44*, f32);
 
 void fn_71003fc438(UnkSmOwner_A2_b63<0x14978>* self, f32 dt) {
     if (fn_7100deabe4(g_unk_7101d47310))
@@ -206,7 +210,6 @@ struct UnkSmAbility2_A2_b63 {
     UnkSmMachine_A2_b63 machine;
 };
 
-bool fn_710033c174(UnkSmAbility2_A2_b63*);
 void fn_7100300bd0(void*, u32);
 void fn_710033bc80(UnkSmAbility2_A2_b63*, f32);
 void fn_710033bf64(UnkSmAbility2_A2_b63*, f32);
@@ -244,8 +247,6 @@ void fn_710033b99c(UnkSmAbility2_A2_b63* self, f32 dt) {
 // machine's update; then the last step.
 struct UnkAbility;
 struct UnkAbilitySet;
-UnkAbility* fn_71003012f8(UnkAbilitySet* set, u64 id);
-u64 fn_710033b6a4();
 
 struct UnkSmFacing_A2_b63 {
     u8 pad_0x0[0x9ec];
@@ -279,7 +280,6 @@ struct UnkSmAbility3_A2_b63 {
 };
 
 void fn_7100328b3c(UnkSmAbility3_A2_b63*);
-void fn_71002fa070(UnkSmAbility3_A2_b63*);
 void fn_7100328e68(UnkSmAbility3_A2_b63*, f32);
 
 void fn_7100328784(UnkSmAbility3_A2_b63* self, f32 dt) {
@@ -487,7 +487,6 @@ void fn_710043e9f4(UnkSmLinked_A2_b63<0x88>* self) {
 }
 
 struct UnkSelf;
-void fn_71004936a0(UnkSelf* self);
 
 void fn_710048758c(UnkSmLinked_A2_b63<0x80>* self) {
     fn_71004936a0(reinterpret_cast<UnkSelf*>(self));

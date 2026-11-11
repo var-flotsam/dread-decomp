@@ -4,6 +4,7 @@
 // PushBack (fn_71001fdacc, fn_71001fe390). Names and layouts are placeholders.
 #include "UnkClone.h"
 #include "base/UnkVector.h"
+#include "base/reflection.h"
 #include "types.h"
 
 struct UnkSceneManager;
@@ -56,10 +57,6 @@ struct UnkItemOwner_ovb0254 {
 
 bool fn_7100150e70();
 void fn_7100150c50(f32 a, f32 b, f32 c, f32 d, f32 e);
-void* fn_7100202574(UnkItem* item);
-void fn_710020014c(UnkItem* item, bool value);
-void fn_7100200138(UnkItem* item, bool value);
-void fn_7100200160(UnkSceneItem* item, f32 dt);
 void fn_71002003ec(UnkItem* item);
 
 __attribute__((always_inline)) static inline UnkItem* Find_ovb0254(const UnkPtrArray_ovb0254* items, s32 id) {
@@ -261,4 +258,3 @@ base::UnkVector<UnkSceneEntry>* fn_71001fdacc(base::UnkVector<UnkSceneEntry>* se
     }
     return self_;
 }
-

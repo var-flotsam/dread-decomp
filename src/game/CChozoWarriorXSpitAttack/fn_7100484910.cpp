@@ -4,6 +4,7 @@
 // calls fn_7100105a80 on its target with 0.2 and 0.
 #include "base/global/CStrId.h"
 #include "base/snd/UnkSound.h"
+#include "game/CFXComponent.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkSwitchObject.h"
 #include "types.h"
@@ -37,7 +38,6 @@ struct UnkSelf {
 
 extern const base::global::CStrId g_unk_71726cf1e0[] __attribute__((visibility("hidden")));
 UnkComponent* fn_7101152b90(UnkObject* object, u64 hash);
-bool fn_710114e680(UnkObject* object, u8 kind);
 bool fn_710114e668(UnkObject* object, u8 kind);
 
 void fn_7100484910(UnkSelf* self) {

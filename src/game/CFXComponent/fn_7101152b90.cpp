@@ -2,6 +2,7 @@
 // from its parallel arrays at +0x50 (0x20-byte entries whose first word is the effect) and +0x58 (the
 // names, whose hash is at +0x30 of the string), or null; and switching that effect on or off
 // (fn_710114fe8c). Names and layouts are placeholders.
+#include "game/UnkTU132.h"
 #include "types.h"
 
 struct UnkComponent;
@@ -38,9 +39,6 @@ UnkComponent* fn_7101152b90(UnkObject* self, u64 hash) {
 }
 
 // ---- fn_710114fe8c: switching an effect on or off ----
-
-void fn_71001457fc(void* effect, void* scene, u32 flag);  // attaches it to the scene
-void fn_710014580c(void* effect);                         // detaches it
 
 // An effect as the switch reads it: its kind (+0xb; 4 is attached to the scene) and whether it is
 // on (+0x119), with its virtual setter (vf_0x40) and its restart (vf_0x118).

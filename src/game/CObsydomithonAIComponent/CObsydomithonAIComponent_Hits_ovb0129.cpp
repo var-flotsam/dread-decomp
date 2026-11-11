@@ -12,8 +12,11 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CFrozenComponent.h"
+#include "game/CObsydomithonAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU2702.h"
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
 
@@ -21,9 +24,7 @@ using base::global::CStrId;
 
 struct UnkWarLotusAI;
 struct UnkCollisionContainer;
-void fn_7101105c94(UnkWarLotusAI* self);
 CStrId* fn_7100864018(UnkCollisionContainer* self, void* object);
-bool fn_71007f9f20(void* obj);
 extern CStrId g_unk_71726f9438 __attribute__((visibility("hidden")));
 extern u64 g_unk_710164a338;
 
@@ -163,7 +164,6 @@ void fn_710062cd74(UnkObsydomithonAI_b0129b* self, f32 angle) {
 extern CStrId g_unk_71726f9428 __attribute__((visibility("hidden")));
 struct UnkObsyAI_A3_b75;
 void fn_710062cf68(UnkObsyAI_A3_b75* self);
-void fn_710062a268(void* attack, bool value);
 bool fn_7100c978dc(void* track, const base::reflection::CClass* cls);
 
 struct UnkObsyCtrl_b0129c {

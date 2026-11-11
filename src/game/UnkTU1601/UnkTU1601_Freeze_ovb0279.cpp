@@ -8,8 +8,11 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
 #include "game/CBlackboard.h"
+#include "game/CDoorShieldLifeComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU1601.h"
 #include "game/UnkTUProperty.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -17,11 +20,9 @@
 using base::global::CStrId;
 using base::math::CVector4D;
 
-void fn_7100000790(const char*, const char*, ...);
 struct UnkDoorLock;
 UnkDoorLock* fn_71002af860(UnkWeakTarget*);
 struct UnkDoorShieldStore_A4_b76;
-void fn_71008db4e4(UnkDoorShieldStore_A4_b76* self);
 CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 void fn_710021a0b4(UnkRenderManager* self, const u64* hash, const base::math::CVector4D* value);
 extern const u64 g_unk_710164b5f0 __attribute__((visibility("hidden")));
@@ -31,7 +32,6 @@ extern const CVector4D g_unk_7101a92ec0;
 extern u8 g_unk_7172753148[];  // a UnkProperty
 
 struct UnkThermalDevice_A5_b73;
-void fn_7100a925a0(UnkThermalDevice_A5_b73* self);
 struct UnkThermalDevice_b0279;
 void fn_7100a92424(UnkThermalDevice_b0279* self);
 

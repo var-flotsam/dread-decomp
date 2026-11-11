@@ -7,7 +7,9 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CCharClassLightingComponent.h"
 #include "game/UnkComponent.h"
+#include "game/UnkTU25.h"
 #include "types.h"
 
 struct UnkLightDesc_ovb0061 {
@@ -100,12 +102,10 @@ void fn_710007eb20(CRntString* self, const UnkPooledStrId* id);
 void fn_710007f564(void* self, const char* str);
 struct UnkPathIds;
 struct UnkInlineString;
-void fn_710001f074(UnkPathIds* out, const UnkInlineString* path);
 extern char g_unk_71727b9f30[];  // the "lightsdef" type name's id
 
 // The component (as CCharClassLightingComponent_b36.cpp declares the function).
 struct UnkLightingComponent3;
-void fn_71008e756c(UnkLightingComponent3* self, void* arg);
 
 // An id as a string (fn_710007eb20), destroyed as one.
 struct UnkLightIdText_ovb0061 {

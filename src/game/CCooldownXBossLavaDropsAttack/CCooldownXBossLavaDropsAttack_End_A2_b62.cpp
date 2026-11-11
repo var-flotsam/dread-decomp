@@ -4,6 +4,7 @@
 // g_unk_7101649b00 on the owner's (+0x8) timeline (+0x2e8) to the all-flags mask; switches the object at +0x320
 // off. Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CCooldownXBossAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSwitchObject.h"
@@ -123,7 +124,6 @@ static_assert(__builtin_offsetof(UnkLavaDrops_b62a2, machine.pending) == 0x10c, 
 
 // The attack base's step every CCooldownXBoss attack calls first (one opaque type for all callers).
 struct UnkCooldownXBossAttack_b62a2;
-void fn_71004c196c(UnkCooldownXBossAttack_b62a2* self);
 
 void fn_71004c7864(UnkLavaDrops_b62a2* self) {
     fn_71004c196c(reinterpret_cast<UnkCooldownXBossAttack_b62a2*>(self));

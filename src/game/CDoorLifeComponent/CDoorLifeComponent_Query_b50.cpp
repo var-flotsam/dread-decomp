@@ -4,13 +4,13 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU1376.h"
 #include "types.h"
 
 using base::reflection::CType;
 using base::reflection::UnkReflValue;
 
 struct UnkDoorLife;
-bool fn_71008d5c1c(UnkDoorLife* self);  // as src/game/CDoorLifeComponent.cpp declares it
 
 bool fn_71008d5b80(char* self, void*, UnkReflValue* out) {
     bool value = fn_71008d5c1c(reinterpret_cast<UnkDoorLife*>(self));

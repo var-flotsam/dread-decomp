@@ -3,10 +3,9 @@
 // owner's target is left of the owner; descriptors as UnkSpitSend (src/game_s2/UnkSpitSend.h). Names
 // are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CHydrogigaAttack.h"
 #include "game/UnkActor.h"
 #include "types.h"
-
-void fn_71005b2c58(void* self);
 
 struct UnkTentacleBashAttack_b57a3 {
     u8 pad_0x0[0x8];

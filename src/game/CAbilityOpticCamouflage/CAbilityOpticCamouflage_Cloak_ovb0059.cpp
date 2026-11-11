@@ -9,6 +9,10 @@
 
 #include "base/UnkVector.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbility.h"
+#include "game/CGameObject.h"
+#include "game/CGunComponent.h"
+#include "game/UnkTU39.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -30,13 +34,9 @@ struct UnkV4_b47 {
     UnkV4_b47(const UnkV4_b47& o) : x(o.x), y(o.y), z(o.z), w(o.w) {}
 };
 
-void fn_710083b0bc(void* owner, UnkListener_b40* listener);
 struct UnkCameraCtrl_ovb0049;
-void fn_7101043934(UnkCameraCtrl_ovb0049*);
 bool fn_7100a1f84c(UnkSpecialEnergyComponent* self);
 f32 fn_7100301700(void* p);
-UnkV4_b47 fn_7100030770(const UnkV4_b47* a, const UnkV4_b47* b);
-UnkV4_b47 fn_7100030830(const UnkV4_b47* a, f32 s);
 UnkComponent* fn_7101152b90(UnkObject*, u64);
 bool fn_710114e674(UnkObject* model, u8 index);
 void fn_71001bc10c(void* p, const UnkV4_b47* colour, bool flag);
@@ -128,8 +128,6 @@ struct UnkOpticAbility_ovb0059 {
 static_assert(__builtin_offsetof(UnkOpticAbility_ovb0059, holders) == 0xe8, "layout");
 static_assert(__builtin_offsetof(UnkOpticAbility_ovb0059, phase) == 0x394, "layout");
 static_assert(__builtin_offsetof(UnkOpticAbility_ovb0059, listener) == 0x3a0, "layout");
-
-void fn_71002fa2bc(UnkOpticAbility_ovb0059* self);
 
 void fn_71003247cc(UnkOpticAbility_ovb0059* self) {
     self->vtable = &g_unk_7101a230a8[2];

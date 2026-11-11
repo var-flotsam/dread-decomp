@@ -22,6 +22,10 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/CEnumType.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CBossAIComponent.h"
+#include "game/CComponent.h"
+#include "game/CNavMeshItemComponent.h"
+#include "game/CNavMeshItemStage.h"
 #include "game/UnkNavMeshManager.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
@@ -38,7 +42,6 @@ using base::reflection::UnkReflValue;
 // ---- Construction and start ----
 
 struct UnkStateObject;
-void fn_71010c4148(UnkStateObject* self);
 extern void* g_unk_7101a887d0[];  // the component's vtable (the second one at +0x198)
 
 struct UnkNavMeshItemFields_ovb0100 {
@@ -80,9 +83,6 @@ struct UnkSource;
 struct UnkSourceList;
 struct UnkOwner;
 struct UnkSourceArg;
-UnkSource*& fn_71009c0bf0(UnkSourceList* self, u32 index);
-void fn_71009bfda8(UnkOwner* self, UnkSource* src);
-void fn_71009c5ab8(UnkSource* src, UnkSourceArg* arg);
 
 // CNavMeshItemStage::ESide's enum type (src/game/CElectricGeneratorComponent/fn_7100a7dd80.cpp).
 struct UnkEnumType;
@@ -181,10 +181,8 @@ UnkReflValue fn_71009c2b04(void*, char* obj, UnkReflValue* const* values) {
     return refl_EmptyValue();
 }
 
-void fn_71009c5d6c(UnkSource* src);
 struct UnkZiplineLinkTarget_b49;
 struct UnkZiplineLink_b49;
-UnkZiplineLinkTarget_b49** fn_71003b0c4c(UnkZiplineLink_b49* self);
 
 void fn_7100ec1278(UnkNavMeshManager* self, const base::global::CStrId* name);
 void fn_71009c4aa0(UnkDeferredSet<UnkDeferredCallback<u64>>* s, const u64* arg);

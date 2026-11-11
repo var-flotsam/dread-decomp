@@ -2,6 +2,7 @@
 // (its hash is the xor of two words at +0x30), and returns a counted reference to it. A missing entry is
 // created through the table's vtable slot at +0x48.
 #include "base/UnkCache.h"
+#include "game/UnkTU426.h"
 #include "types.h"
 
 struct UnkRefCounted {
@@ -47,7 +48,6 @@ struct UnkTable {
     u32 field_0x14;
 };
 
-UnkNode** fn_71002f7a2c(void* buckets, u32 index);
 void fn_7100017390(UnkRefCounted* object, base::UnkLoadRequest* visitor);
 
 UnkRef fn_71002f7324(UnkTable* self, UnkKey* key, u32 a, void* b) {

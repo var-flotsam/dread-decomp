@@ -10,6 +10,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1370.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -131,9 +132,7 @@ extern base::reflection::UnkTunable g_unk_7172716160;
 extern CStrId g_unk_71726f4628 __attribute__((visibility("hidden")));
 bool fn_7100952694();
 UnkPlayer* fn_7100dec788(UnkGameManager* manager);
-void fn_71008c0c74(UnkStruct_71008c0c74* self);
 void fn_71008c1538(UnkRequest* request, f32 value);
-void fn_71008c1558(UnkBase_71003cc474* self);
 
 static inline bool GrabsPlatform(UnkSpikePlayer* player, UnkKraidSpikePlatform* self) {
     if (UnkSpikeMovement* movement = player->field_0x208)

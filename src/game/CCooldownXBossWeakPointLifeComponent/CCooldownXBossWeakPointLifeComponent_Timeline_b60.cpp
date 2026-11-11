@@ -5,6 +5,7 @@
 // Names are placeholders.
 #include "base/UnkVector.h"
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkActor.h"
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
@@ -15,7 +16,6 @@ struct UnkWeakPointLife_b60a2 {
 };
 
 u32 fn_71008a3c48(UnkWeakPointLife_b60a2* self, void* arg);
-void fn_71011a664c(char* instance);  // constructs the instance
 extern char* g_unk_71726b2398;       // the instance, reached through the GOT
 
 struct UnkWeakPointLink_b60a2 {

@@ -4,6 +4,7 @@
 // +0x37c, y the difference of their shapes' lower bounds (each shape's collider at +0x158 gives a 3D
 // box through slot 0x28); otherwise zero. Names and layouts are placeholders.
 #include "base/math/CVector.h"
+#include "game/CCharacterMovement.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -12,7 +13,6 @@ using base::math::CVector3D;
 struct UnkFlagged;
 struct UnkShape;
 // Declared as src/game/CEntity_2.cpp does.
-UnkShape* fn_7100976588(UnkFlagged* flagged);
 
 struct UnkBox3D_sm42 {
     CVector3D min;

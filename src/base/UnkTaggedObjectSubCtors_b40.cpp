@@ -3,14 +3,13 @@
 // vtable and sub-object constructor (fn_7100205bc4); fn_7100e13928 calls it with the object's name.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU32.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkCreatedSceneObj;
 
-void fn_71000255c4(void*);
-void fn_7100025884(void*, void*);
 struct UnkWidget;
 struct UnkWidgetArg;
 void fn_7100205bc4(UnkWidget* self, UnkWidgetArg* a);

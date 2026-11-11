@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CAbilityOpticCamouflage::ESelectionMode, CAbilityOpticCamouflage::ESelectionInput.
 #include "../../game_s7/UnkStaticInitS7.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTUProperty.h"
 
@@ -36,7 +37,6 @@ void fn_7100324aa4() __attribute__((visibility("hidden")));
 extern char g_unk_71726affb8[];
 extern UnkTunable g_unk_71726affc0;
 extern void* g_unk_7101a23250[];
-void fn_7100075104(void* self);  // its destructor, as registered
 
 void fn_7100325290() {
     InitHeaderIds(&g_unk_71726b00b8.ids);

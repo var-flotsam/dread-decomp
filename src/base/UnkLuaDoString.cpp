@@ -12,6 +12,7 @@
 #include "base/UnkFormat.h"
 #include "base/UnkVector.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU2668.h"
 #include "types.h"
 
 extern lua_State* g_unk_7172a01d18;
@@ -66,7 +67,6 @@ struct UnkLuaScratchStack {
 extern UnkLuaScratchStack g_unk_7172a025a0 __attribute__((visibility("hidden")));
 
 // Pops the scratch array the last run pushed (and frees it).
-void fn_710109c9e0();
 
 // The error report: the message, then two words (both 2 here).
 typedef void (*UnkLuaReportFn)(const char* message, s32 a, s32 b);

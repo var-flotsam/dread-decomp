@@ -10,13 +10,13 @@
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2566.h"
 #include "types.h"
 
 using base::global::CRntString;
 
 // As src/game/logic/collision/CCollider/fn_7100d3d424.cpp declares it.
 struct UnkRecord118;
-void fn_7100ea7034(UnkRecord118* self);
 
 struct UnkMovedStrId118 {
     base::global::UnkStringData* data;

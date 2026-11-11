@@ -7,12 +7,11 @@
 
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/global/timeline/CEvent.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
-
-void fn_7100067ea4(void* self);  // the base constructor
 
 
 template <class Id, class Tail>

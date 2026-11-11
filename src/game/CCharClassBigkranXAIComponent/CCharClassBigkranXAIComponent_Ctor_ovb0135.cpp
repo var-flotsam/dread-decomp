@@ -6,6 +6,8 @@
 #include <new>
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassBaseBigFistAIComponent.h"
+#include "game/CCharClassBossAIComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -14,8 +16,6 @@ using base::global::CStrId;
 // CCharClassCooldownXBossAIComponent_Dtor_ovb0102.cpp declare them).
 struct UnkGoliathXAI_b55;
 struct UnkGoliathXBase;
-void fn_71003e8db0(UnkGoliathXAI_b55* self);
-void fn_710041a230(UnkGoliathXBase* self);
 extern void* g_unk_7101a31ca8[];
 
 struct UnkBigkranXSpitAttackDef;

@@ -5,6 +5,7 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/CCameraFX_Shake.h"
 #include "types.h"
 
 using base::global::UnkStrId;
@@ -18,7 +19,6 @@ struct UnkRandShakeDef {
     u64 field_0x70;
 };
 
-void fn_71010f3d20(UnkRandShakeDef* self);
 extern void* g_unk_7101cb1c98[];
 
 void fn_71010f2b68(UnkRandShakeDef* self) {

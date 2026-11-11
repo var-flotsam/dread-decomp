@@ -2,12 +2,11 @@
 // (fn_710115fc5c), clears the state at +0x269..+0x270 and builds the table at +0x278 named after a copy
 // of the id at +0x30 of the object at +0x18 (refl_RegistryMapInit). Names are placeholders.
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CLifeComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::reflection::UnkReflRegistryMap;
-
-void fn_710115fc5c(char*);
 
 struct UnkRefl_fn_71008bd878;
 extern template bool base::reflection::refl_RegistryMapInit<UnkRefl_fn_71008bd878>(UnkReflRegistryMap*,

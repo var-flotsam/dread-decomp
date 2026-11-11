@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
+#include "game/CBeamBoxComponent.h"
 #include "types.h"
 
 extern void* g_unk_7101a20998[];  // the callback sets' base vtable
@@ -114,7 +115,6 @@ struct UnkPushEntry_A4_b73 {
 
 struct UnkEntryVector;
 void fn_7100895498(UnkEntryVector* v, u32 n);
-void fn_71008ab4e0(UnkEntryVector* v, u32 n);
 
 struct UnkPushVector_A4_b73 {
     UnkPushEntry_A4_b73* data;
@@ -167,4 +167,3 @@ void fn_710089566c(UnkPushVector_A4_b73* v, const UnkPushEntry_A4_b73* value) {
 void fn_71008ab6b4(UnkPushVector_A4_b73* v, const UnkPushEntry_A4_b73* value) {
     v->PushBack<fn_71008ab4e0>(value);
 }
-

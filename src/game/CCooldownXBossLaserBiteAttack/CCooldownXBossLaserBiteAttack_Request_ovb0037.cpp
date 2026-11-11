@@ -2,10 +2,10 @@
 // animation component (+0x220): flags +0x49 and +0xc8, a direction at +0x4c picked by the component's
 // id-4 test (fn_7101178e6c) from two constants, and 1.0 at +0x50. Names and layouts are placeholders.
 
+#include "game/CAnimationComponent.h"
 #include "types.h"
 
 struct UnkTakumakuComponent;
-bool fn_7101178e6c(UnkTakumakuComponent*, u32);
 
 // As src/game/CBatalloonAIComponent/fn_71003de7b4.cpp declares them.
 struct UnkVec3 {

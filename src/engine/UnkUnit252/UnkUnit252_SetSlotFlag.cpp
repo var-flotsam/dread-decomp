@@ -1,6 +1,7 @@
 // tools/tu_map.py unit 252 (no class hint): for a slot below 5 and below the array's count (+0xf8),
 // sets the flag +0x8 of the array element (+0xf0) that fn_71001c04bc returns. Names are
 // placeholders.
+#include "game/UnkTU252.h"
 #include "types.h"
 
 struct UnkSlot252 {
@@ -12,8 +13,6 @@ struct UnkSlotArray252 {
     u8 pad_0x0[0x8];
     u32 count;  // 0x8
 };
-
-UnkSlot252* fn_71001c04bc(UnkSlotArray252* array, u32 index);
 
 struct UnkSlotOwner252 {
     u8 pad_0x0[0xf0];

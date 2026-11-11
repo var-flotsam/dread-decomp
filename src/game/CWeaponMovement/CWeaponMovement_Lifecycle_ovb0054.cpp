@@ -8,17 +8,16 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/CCentralUnitCannonBeamMovementComponent.h"
+#include "game/CMovementComponent.h"
+#include "game/UnkTU1370.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 // Signatures as the other hand-written callers declare them.
 struct UnkCharacterMovementFull_ovb0021;
-void fn_71010d0754(UnkCharacterMovementFull_ovb0021*);
-void fn_71010d092c(UnkCharacterMovementFull_ovb0021*);
 struct UnkStruct_71008c0c74;
-void fn_71008c0c74(UnkStruct_71008c0c74*);
 struct UnkBase_71003cc474;
-void fn_71008c1558(UnkBase_71003cc474*);
 UnkWeakHandle* fn_7100d78378(UnkWeakTarget*);
 
 extern char g_unk_7101a96ea8[];  // the CWeaponMovement vtable
@@ -64,7 +63,6 @@ struct UnkWeaponMovement_ovb0054 {
 static_assert(__builtin_offsetof(UnkWeaponMovement_ovb0054, field_0x478) == 0x478, "UnkWeaponMovement_ovb0054 layout");
 
 void fn_71010d0b78(UnkWeaponMovement_ovb0054* self);
-void fn_7100400364(UnkWeaponDamage_ovb0054* dst, const UnkWeaponDamage_ovb0054* src);
 
 static inline UnkStruct_71008c0c74* AsCtorArg(UnkWeaponDamage_ovb0054* d) {
     return reinterpret_cast<UnkStruct_71008c0c74*>(d);

@@ -3,6 +3,7 @@
 // and the listener at +0xa0 (vtable g_unk_7101a22d48) with its fields cleared. The destructors are in
 // CChozoCommanderZeroLaserGroundedAttack_Dtor_b49.cpp. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CChozoCommanderGroundAttack.h"
 #include "types.h"
 
 extern void* g_unk_7101a36718[];  // the attack's vtable
@@ -27,7 +28,6 @@ struct UnkZeroLaserGroundedAttack_b67a2 {
 
 // Typed as CChozoCommanderHypersparkAttack_Ctors_b46.cpp declares it (one signature per symbol).
 struct UnkHypersparkAttack_b46a1;
-void fn_710042baa8(UnkHypersparkAttack_b46a1* self);
 
 static inline __attribute__((always_inline)) void Construct(UnkZeroLaserGroundedAttack_b67a2* self) {
     fn_710042baa8(reinterpret_cast<UnkHypersparkAttack_b46a1*>(self));

@@ -4,6 +4,8 @@
 // fn_710015c520 during the device set-up (fn_71001587f0); and the uniform setter fn_710015e1f0.
 // Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU170.h"
+#include "game/UnkTU172.h"
 #include "types.h"
 
 // The default allocator (base/UnkDefaultAllocator.h) up to its slot 0x90: the free size, summed over
@@ -82,8 +84,6 @@ extern UnkGfxProgram* g_unk_716e2a3448;  // the bound program
 extern u8 g_unk_716e2a3458[];          // a sync object
 extern UnkPool g_unk_716e29d318;
 
-void* fn_7100153cd0();  // the device
-void fn_710015385c(UnkPool* pool, u64 size, s32 flags, void* device);
 // NVN's sync initialiser (as src/game_s7/fn_71001587f0.cpp declares it).
 extern void (*g_unk_716e29bbb0)(void* sync, void* device);
 
@@ -133,7 +133,6 @@ void* fn_710015d720(const UnkGfxTriple* self, s32 which) {
 
 #include <string.h>
 
-u32 fn_7100153da0();          // the current frame's buffer index
 extern u8 g_unk_716e2a3450;   // set when any uniform block changed
 
 // A uniform block: one buffer per frame (from +0x40), the size checked at +0x38, a dirty flag.

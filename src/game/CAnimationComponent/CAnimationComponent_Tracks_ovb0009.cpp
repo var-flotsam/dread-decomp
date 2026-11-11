@@ -7,14 +7,24 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/timeline/CEvent.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CActorComponent.h"
+#include "game/CAnimationComponent.h"
+#include "game/CComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU1134.h"
+#include "game/UnkTU1728.h"
+#include "game/UnkTU56.h"
+#include "game/UnkTU83.h"
 #include "game/UnkXformNode.h"
+#include "game/animtree/CAnimTreeElement.h"
+#include "game/animtree/CAnimatedNode.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -35,16 +45,11 @@ struct UnkCls_710117af10;
 struct UnkTrackBlend;
 struct UnkTrackAction_1444;
 
-s64 fn_710007cf30(void* stream, const char* format, ...);
-void fn_710006663c(u64* out, const char* str);
 void* fn_7101176d34(UnkStruct_7101176ea8* self, void* arg);
-f32 fn_7100b8aff0(f32 seconds, const UnkAnimTiming* timing);
 UnkCutsceneTimeline* fn_710070d4e8(UnkTrack* track);
 f32 fn_710070d850(UnkTrack* track);
 f32 fn_710070d890(UnkTrack* track);
 f32 fn_710070d89c(UnkTrack* track);
-UnkCls_710117af10** fn_710070d7f8(UnkObj_710117af10* obj);
-bool fn_710070d830(UnkObj_710117af10* obj);
 bool fn_7100c97930(UnkTrackAction_1444* action, const base::reflection::CClass* cls, f32 value);
 
 extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
@@ -150,8 +155,6 @@ struct UnkAnimComponent_ovb0009 {
     u8 pad_0x48[0x472];
     bool field_0x4ba;  // requests are refused while set
 };
-
-bool fn_710024fbc8(void*);
 
 // Sends a request to `data`'s track: refused while the component's flag is set or without a
 // track; bit 0x2000 is added to the mode unless fn_710024fbc8 holds.
@@ -421,7 +424,6 @@ UnkReflValue fn_710117bef8(char* obj, UnkReflValue* const* args) {
 struct UnkVersionRegistry;
 struct UnkVersionEntry;
 extern UnkVersionRegistry* g_unk_7101d4c8d0;
-UnkVersionEntry* fn_71000a5118(UnkVersionRegistry* self, const u64* id);
 
 struct UnkAnimComponent_b1c8 {
     u8 pad_0x0[0x40];
@@ -500,7 +502,6 @@ struct UnkMtx44_b46a2 {
     f32 m[16];
 };
 
-void fn_7101179878(UnkAnimActionSetsOwner* anim, void* entry, u32 a, u64 key, UnkMtx44_b46a2* out, u32 b, f32 c);
 UnkVec3f fn_710007a320(const UnkVec3f* v, f32 angle);
 
 // fn_7101179878 for the action `id` names, at `seconds` turned into frames on its clock.
@@ -685,8 +686,6 @@ void fn_710117662c(UnkActorTarget* self, u32 value, u32 extra, bool apply, bool 
         fn_7101178c88(reinterpret_cast<UnkAnimationComponent*>(self), flag, time);
 }
 
-void fn_71002d296c(void* self);
-
 struct UnkAnimArray {
     u8 pad_0x0[0xc8];
     void** data;
@@ -697,9 +696,7 @@ struct UnkAnimArray {
 void fn_71002d596c(UnkAnimArray* self);
 
 struct UnkMorphBallLauncher_b57;
-void fn_71010c422c(UnkMorphBallLauncher_b57* self);
 struct UnkHandleOwner_71010c4230;
-void fn_71010c4230(UnkHandleOwner_71010c4230* self);
 
 struct UnkAnimComponent_b1c {
     u8 pad_0x0[0x40];
@@ -843,7 +840,6 @@ struct UnkAnimListeners_b52;
 void fn_710117eb1c(UnkAnimListeners_b52* self, void* value);
 struct UnkPairOwner;
 struct UnkValueSource;
-UnkValueSource** fn_71002dba48(UnkPairOwner* self);
 
 // A copied string id released in two steps (the original reloads `data` and the count after the
 // decrement), as CStrId::Reset does.

@@ -5,6 +5,7 @@
 
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 extern void* unk_7101a20c78[];  // vtable (reached through the GOT)
@@ -48,7 +49,6 @@ struct UnkNode_710025ad0c {
 };
 
 struct UnkNodeMap_710025ad0c;
-void fn_71002486a8(UnkNodeMap_710025ad0c* map, UnkNode_710025ad0c* node);  // removes a node
 
 struct UnkNodeMap_710025ad0c {
     u64 field_0x0;

@@ -5,7 +5,11 @@
 // (fn_71005c3084) told the mark (fn_710091c994). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
+#include "game/CBossAIComponent.h"
+#include "game/CHydrogigaZiplineComponent.h"
+#include "game/CHydrogigaZiplineRailComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU883.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -35,10 +39,7 @@ struct UnkZiplineLinkTarget_b49 {
 struct UnkZiplineLink_b49 {
     u8 pad_0x0[0x40];
 };
-UnkZiplineLinkTarget_b49** fn_71003b0c4c(UnkZiplineLink_b49* self);
 struct UnkZiplineRailPart_b49;
-UnkZiplineRailPart_b49* fn_71005c3084(void* object);
-void fn_710091c994(UnkZiplineRailPart_b49* self, bool dead);
 
 struct UnkZiplineRail_b49 {
     u8 pad_0x0[0x3d];
@@ -47,8 +48,6 @@ struct UnkZiplineRail_b49 {
     UnkZiplineLink_b49* links;
     u32 count;
 };
-
-void fn_710091d4bc(UnkZiplineRail_b49* self);
 
 void fn_710091d2fc(UnkZiplineRail_b49* self) {
     UnkGameManager* manager = g_unk_7101d47310;

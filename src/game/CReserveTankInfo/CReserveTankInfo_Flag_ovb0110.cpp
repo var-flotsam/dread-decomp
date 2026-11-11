@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
+#include "game/CGameObject.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTUProperty.h"
@@ -14,7 +15,6 @@
 
 using base::global::CStrId;
 
-void fn_7101043904(void*);
 extern char g_unk_7101caa4d0[];
 extern char g_unk_7101caa570[];
 

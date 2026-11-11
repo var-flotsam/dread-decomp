@@ -1,6 +1,7 @@
 // CPullOffGrapplePointComponent's unit: after the pull components' base test (fn_710082cb24), a pull
 // counts when it comes from the unit's grapple source (g_unk_7172725078) and is strong enough (|+0x20|
 // at least 0.94). Shape of fn_7100827978 (CAIGrapplePointComponent_b50.cpp). Names are placeholders.
+#include "game/CPullableGrapplePointComponent.h"
 #include "types.h"
 
 struct UnkPullOffSource_A5_b65 {
@@ -20,8 +21,6 @@ struct UnkPullOffMessage_A5_b65 {
 };
 
 extern void* g_unk_7172725078 __attribute__((visibility("hidden")));
-
-bool fn_710082cb24(void* self, void* arg, void* msg);
 
 bool fn_710082e1cc(void* self, void* arg, UnkPullOffMessage_A5_b65* msg) {
     if (!fn_710082cb24(self, arg, msg))

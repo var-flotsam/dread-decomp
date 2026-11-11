@@ -4,6 +4,7 @@
 // with an array of id/word records.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/timeline/CTrack.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -51,8 +52,6 @@ struct UnkReleasedArray {
         }
     }
 };
-
-void fn_710006b5dc(void* self);  // the base's destructor
 
 template <void** Vtable>
 struct UnkIdListHolder {

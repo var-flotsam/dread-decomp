@@ -3,12 +3,12 @@
 // member at +0xa10 of the object at 8 and returns the empty value; a copy of fn_7100f0f428
 // (src/game/CPlayerInfo/CPlayerInfo_b40.cpp). Names are placeholders.
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU39.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
 
 // Declared as src/game/CPlayerInfo/CPlayerInfo_b40.cpp does.
-void fn_7100030128(char* self, bool flag, void* arg);
 
 static inline __attribute__((always_inline)) void* ArgPtr_b43a2(UnkReflValue* arg) {
     if (!arg->type)

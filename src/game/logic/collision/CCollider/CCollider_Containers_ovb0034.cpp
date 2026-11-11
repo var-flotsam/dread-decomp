@@ -7,6 +7,7 @@
 
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "game/logic/collision/CBroadphaseObject.h"
 #include "types.h"
 
 struct UnkColliderDtor;
@@ -41,8 +42,6 @@ static_assert(__builtin_offsetof(UnkCollider_ovb0034, field_0x164) == 0x164, "Un
 
 extern char g_unk_7101aa85b0[];
 extern char g_unk_7101aa8660[];
-void fn_7100d35a74(UnkColliderDtor* self);
-void fn_7100d35944(UnkColliderDtor* self);
 
 void fn_7100d3b58c(UnkCollider_ovb0034* self) {
     self->vtable = reinterpret_cast<void**>(g_unk_7101aa85b0 + 0x10);

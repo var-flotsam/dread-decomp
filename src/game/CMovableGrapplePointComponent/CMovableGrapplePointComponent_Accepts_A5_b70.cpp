@@ -2,6 +2,7 @@
 // when it is strong enough (|+0x20| at least 0.96) and comes from the source fn_710082a500 picks for the side the
 // puller is on (the sign of its +0x44 x against the point's position, virtual slot 0x188). Shape of fn_710082e1cc
 // (CPullOffGrapplePointComponent_Accepts_A5_b65.cpp). Names and layouts are placeholders.
+#include "game/CPullableGrapplePointComponent.h"
 #include "types.h"
 
 struct UnkMovablePullSource_A5_b70 {
@@ -38,7 +39,6 @@ struct UnkMovableGrapplePoint_A5_b70 {
     }
 };
 
-bool fn_710082cb24(void* self, void* arg, void* msg);
 void** fn_710082a500(UnkMovableGrapplePoint_A5_b70* self, f32 side);
 
 bool fn_710082a444(UnkMovableGrapplePoint_A5_b70* self, UnkMovablePuller_A5_b70* puller,

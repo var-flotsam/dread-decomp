@@ -14,6 +14,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU2509.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -421,7 +422,6 @@ struct UnkShape;
 UnkMatrix44 fn_7100d36a2c(UnkShape* shape);
 
 struct UnkShapeTester_A5_b68;
-void fn_7100d5134c(UnkShapeTester_A5_b68* self);
 extern UnkShapeTester_A5_b68* g_unk_71726a47a0;
 
 static inline UnkShapeTester_A5_b68* Tester() {

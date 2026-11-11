@@ -9,10 +9,19 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/snd/CSoundSystem.h"
+#include "game/CCharClassEventScenarioComponent.h"
+#include "game/CCollisionMaterialCacheComponent.h"
+#include "game/CDrop.h"
+#include "game/CSpawnGroupComponent.h"
+#include "game/CThermalReactionComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2669.h"
+#include "game/UnkTU2677.h"
+#include "game/UnkTU2768.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -20,9 +29,6 @@ using base::global::CRntString;
 using base::global::CStrId;
 
 struct lua_State;
-
-s32 fn_71010c0270(lua_State* L, const char* fmt, ...);
-int fn_71010c0b40(lua_State* L, const char* fmt, ...);
 
 extern u32 g_unk_71727bebb8;
 
@@ -86,12 +92,7 @@ s32 fn_710107db20(lua_State* L) {
 
 struct UnkWeakTarget;
 struct UnkThermalComponent_ovb0097;
-UnkThermalComponent_ovb0097* fn_7100a2933c(UnkWeakTarget* object);
-void* fn_71007c04f0(void* object);
-UnkWeakTarget* fn_71007e4924(void* object);
 struct UnkStruct_710024fa0c;
-UnkStruct_710024fa0c* fn_7100798eec(void* object);
-void fn_7101119a50(void* p);
 void fn_710111b634(void* p);
 void fn_7101152008(void* p, bool value);
 
@@ -196,7 +197,6 @@ s32 fn_7101084e70(lua_State* L) {
 struct UnkUserDataOwner;
 
 extern UnkUserDataOwner* g_unk_7101d47308;
-void fn_710120320c(UnkUserDataOwner* self);
 bool fn_7101203760(UnkUserDataOwner* self);
 bool fn_7100dfe364(UnkGameManager* self);
 void* fn_7100deab70(UnkGameManager*, const CRntString&);
@@ -307,7 +307,6 @@ extern UnkSoundMgr* g_unk_7101d4d820;
 void fn_7100df5cec(UnkGameManager*, void*);
 void fn_7100e03a78(UnkGameManager*, void*);
 void fn_7100df21e8(UnkGameManager* self, CStrId* id);
-void fn_710010808c(UnkSoundMgr*, UnkPathNode*);
 
 s32 fn_710107d2d0(lua_State* L) {
     const char* name;
@@ -388,7 +387,6 @@ s32 fn_7101082f90(lua_State* L) {
     return fn_71010c0b40(L, "b", result);
 }
 
-void fn_710109d810(UnkScriptManager_ovb0085*);
 void fn_710109e1ac(UnkScriptManager_ovb0085* self, const base::UnkNamedEntry* key, s32 arg, bool flag);
 extern UnkScriptManager_ovb0085* g_unk_71727bed90;
 

@@ -9,7 +9,9 @@
 #include "base/color/CColor4F.h"
 #include "base/math/CVector.h"
 #include "base/math/CVector4D.h"
+#include "base/reflection.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU290.h"
 #include "types.h"
 
 using base::color::CColor4F;
@@ -183,9 +185,7 @@ struct UnkEnvManager {
     UnkEnvFadeOwner* owner;  // 0x498
 };
 
-void fn_7100d8ced8(void* self);
 extern void* g_unk_7101d47368;
-void fn_710020c9ac(void* self, f32 value);
 
 static inline u32 Bits(f32 v) {
     u32 b;

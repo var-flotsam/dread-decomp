@@ -4,7 +4,9 @@
 #include <new>
 
 #include "base/global/CFilePathStrId.h"
+#include "game/CAudioComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU56.h"
 #include "types.h"
 
 struct UnkCueEntity {
@@ -18,8 +20,6 @@ struct UnkCueEntity {
 struct UnkPlayer;
 struct UnkEntitySoundComponent;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
-void fn_710071a524(UnkEntitySoundComponent*, void*, f32, f32);
-s64 fn_710007cf30(void* stream, const char* format, ...);
 
 bool fn_7100d7cd4c(UnkCueEntity* self, void* stream) {
     f32 value;

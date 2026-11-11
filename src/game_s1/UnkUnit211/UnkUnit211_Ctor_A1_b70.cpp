@@ -7,10 +7,10 @@
 
 #include "UnkPtrArrayHolder_b70.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU226.h"
 #include "types.h"
 
 extern void* g_unk_7101a1dc70[];
-void fn_710019e76c(void* self);
 void fn_71000231f4(base::UnkVector<u8>* vector, u32 capacity);
 
 namespace {

@@ -1,5 +1,6 @@
 // Adds or updates an entry (key, two ids, two 4-float values, a weight) in a fixed table of 50,
 // reusing the last entry with the same key and ids, then pushes the first value to the target slot.
+#include "game/UnkTU1273.h"
 #include "types.h"
 #include "base/global/CStrId.h"
 
@@ -36,8 +37,6 @@ struct UnkSlots {
     UnkVec4 field_0x240[10];
     UnkSlotTarget* field_0x2e0[10];
 };
-
-UnkSlots* fn_710080fa28(UnkKey* key);
 
 struct UnkEntry {
     u32 field_0x0;

@@ -4,6 +4,8 @@
 // Names are placeholders.
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU1376.h"
+#include "game/UnkTU39.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
@@ -40,9 +42,6 @@ UnkReflValue fn_71008dc34c(void*, char* obj, UnkReflValue* const* args) {
 // closes (fn_71008d498c).
 struct UnkGuiKeyList;
 struct UnkDoorLife_b44a2;
-bool fn_710002fb70(void*);
-bool fn_71008d0ef4(void*);
-void fn_71008d498c(UnkDoorLife_b44a2* self, u32 a, u32 b, u32 c);
 
 struct UnkDoorShieldLife_A5_b69 {
     u8 pad_0x0[0xaf8];

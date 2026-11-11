@@ -12,14 +12,19 @@
 #include "base/UnkRegistry.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
+#include "base/file/CThreadSafeDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/math/UnkSegment2D.h"
+#include "base/tunable/CTunable.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2669.h"
+#include "game/UnkTU2768.h"
+#include "game/UnkTU39.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -292,7 +297,6 @@ struct UnkEntry_0x30;
 struct UnkStrPair_0x10;
 UnkTextTemp_b0209 fn_71011b8a80();
 UnkTextTemp_b0209 fn_71011b965c();
-void fn_710008d4c0(UnkStrPair_0x10* s, const UnkEntry_0x30* e);
 void fn_71011b8dc4(UnkGuiRoot* root, const UnkStrPair_0x10* path);
 void fn_71011b9ce4(UnkGuiRoot* root, const UnkStrPair_0x10* path);
 
@@ -323,9 +327,6 @@ void fn_71011b9968(void* self, const char* const* name) {
 // ---- fn_71011b3778: whether the GUI is free of a pending focus ----
 struct UnkUserDataOwner;
 extern UnkUserDataOwner* g_unk_7101d47308;
-void fn_710120320c(UnkUserDataOwner* self);  // constructor
-u32 fn_71012037dc(UnkUserDataOwner* self);
-bool fn_710002fb70(void*);
 
 struct UnkGuiFlags_b0209 {
     u8 pad_0x0[0xca8];
@@ -357,8 +358,6 @@ bool fn_71011b3778(UnkGuiFlags_b0209* self) {
 
 
 // ---- fn_71011b33cc: the scale of the second layout against the screen size ----
-u32 fn_7100132fc0();
-u32 fn_7100132fd0();
 
 struct UnkGuiWidget_b0209 {
     virtual void vf_0x0();
@@ -465,10 +464,8 @@ struct UnkMovedStr_b0209 {
 
 UnkPathText_b0209 fn_71011b659c(void* self, const char* const* name);
 struct UnkUnit2669Str;
-u32 fn_710109dd6c(void* self, void* source, UnkUnit2669Str* name, bool a, bool b);
 struct UnkScriptManager_ovb0085;
 extern UnkScriptManager_ovb0085* g_unk_71727bed90;
-void fn_710109d810(UnkScriptManager_ovb0085* self);
 UnkWeakTarget* fn_71011b5f5c(u32 unused, const char* const* path, const CRntString* name, void* arg);
 
 static inline UnkScriptManager_ovb0085* ScriptManager() {

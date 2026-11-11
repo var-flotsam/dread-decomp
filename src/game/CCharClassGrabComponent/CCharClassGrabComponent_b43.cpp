@@ -5,6 +5,8 @@
 // and the base destructor fn_71011acd74. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassComponent.h"
+#include "game/CChozoCommanderKiGrabAttack.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -15,8 +17,6 @@ extern void* g_unk_7101a6f558[];
 // Signatures as src/game/CCharClassCollisionComponent/CCharClassCollisionComponent.cpp and
 // src/game/CUsableComponent/fn_7100a9e6bc.cpp declare them.
 struct UnkIdObject;
-void fn_71011acd74(UnkIdObject* self);
-void fn_7100431cec(void* self);
 
 struct UnkListNode_grab_b43a2 {
     u8 pad_0x0[0x88];

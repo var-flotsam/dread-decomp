@@ -5,18 +5,18 @@
 // (fn_7100d7c990) is flagged, then hooks the callback fn_710042e2dc (link at +0x78, handle at +0x90) up to the
 // object the owner tracks (+0x220), as src/game/CChozoWarriorXGlaiveSpinAttack/UnkAttackTrackLink_b54.cpp.
 // Names and layouts are placeholders.
+#include "game/CChozoCommanderGroundAttack.h"
+#include "game/CEnemyMovement.h"
 #include "game/UnkActor.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1501.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkSelf;
 struct UnkEffectSink;
 struct UnkFlagged;
-void fn_710042bb3c(UnkSelf* self);
-void fn_71010c7e6c(UnkEffectSink* sink, void* params, u32 flags);
-bool fn_71009e75e8(UnkFlagged*);
 bool fn_7100df5630(UnkGameManager* manager);
 void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
 void fn_710117b3e8(UnkWeakTarget* target, void* link);

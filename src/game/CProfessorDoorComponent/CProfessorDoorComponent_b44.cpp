@@ -3,13 +3,13 @@
 // gets fn_71009c0f1c with one of two hashed ids picked by the bool. Returns the empty value.
 // Names and layout are placeholders.
 #include "base/reflection/UnkReflValue.h"
+#include "game/CNavMeshItemComponent.h"
+#include "game/UnkTU372.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
 
 struct UnkWeakTarget;
-void* fn_71002b3b84(UnkWeakTarget*);
-void fn_71009c0f1c(void* object, u64 id);
 
 struct UnkProfessorDoorOwner_b44a2 {
     u8 pad_0x0[0x30];

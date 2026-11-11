@@ -6,11 +6,10 @@
 #include <math.h>
 
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU251.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
-
-void fn_71001bdc3c(void* object);
 
 static inline __attribute__((always_inline)) void* ArgPtr_A5_b67(UnkReflValue* arg) {
     if (arg->field_0x14 == 1 || *reinterpret_cast<const u64*>(arg->type + 0x18) > 8)

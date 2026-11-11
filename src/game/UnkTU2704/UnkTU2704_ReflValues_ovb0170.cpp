@@ -11,9 +11,14 @@
 #include "base/UnkHashStream.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CActorComponentDef.h"
+#include "game/CComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2704.h"
+#include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -22,9 +27,7 @@ using base::reflection::UnkReflObject;
 using base::reflection::UnkReflValue;
 
 struct UnkBoundObj;
-void fn_7100232124(UnkBoundObj* obj);
 struct UnkAssignedRecord_a1ba4;
-void fn_71000a1ba4(UnkAssignedRecord_a1ba4* self, const UnkAssignedRecord_a1ba4* other);
 void fn_71000a179c(UnkReflValue* self, const UnkReflValue* other);
 
 // Releases the payload a value owns (shared by the holders below).
@@ -203,7 +206,6 @@ struct UnkValueHolder_c3dc {
     u32 count;             // 0x398
 };
 
-f32 fn_7100253ad4(void* object);
 void fn_710024fb64(UnkValueHolder_c3dc* self);
 
 bool fn_710112c3dc(void* obj) {
@@ -270,7 +272,6 @@ struct UnkSpawnPoint_7e78 {
 };
 
 struct UnkParent;
-void fn_71010c4228(UnkParent* self);
 void fn_7101127f2c(void* sub, const CStrId* name);
 
 void fn_7101127e78(UnkSpawnPoint_7e78* self) {
@@ -398,8 +399,6 @@ struct base::UnkCallbackTraits<UnkClone_fn_710112e7e0> {
 
 using UnkSpawnCallbackList_248c = base::UnkCallbackListShort<UnkClone_fn_710112e7e0>;
 static_assert(sizeof(UnkSpawnCallbackList_248c) == 0x40, "layout");
-
-void fn_710112e7e0(void* self);  // re-points `current` at (index, element)
 
 struct UnkSpawnCallbackIter_248c {
     u32 index;

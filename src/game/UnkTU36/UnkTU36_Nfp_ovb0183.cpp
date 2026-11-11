@@ -7,6 +7,7 @@
 
 #include "../../base/UnkUnit36/UnkUnit36_Nfp.h"
 #include "base/UnkVector.h"
+#include "game/nn/time.h"
 #include "types.h"
 
 // The sound holder singleton (src/engine/UnkEngineStart.cpp); its first word is a sound group.
@@ -46,7 +47,6 @@ void ClearSystemEvent(SystemEventType* event);
 void DestroySystemEvent(SystemEventType* event);
 }
 
-void fn_710006cd9c(UnkSoundHolder* holder);
 void fn_710002ccfc(UnkUnit36Static* self, void* slot);
 void fn_710002d3e0(UnkUnit36Object* self, nn::os::EventType* done);
 UnkUnit36Static* fn_710002cc34();

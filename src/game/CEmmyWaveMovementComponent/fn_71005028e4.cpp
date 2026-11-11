@@ -1,9 +1,9 @@
 // Per-frame step of the charge: sets the rate at +0x7c (as fn_7100502628 does), runs the two update
 // helpers, then moves the charge at +0x5dc toward the tunable's limit by 100 per second (via
 // fn_71005026d0, capped at the limit). Returns the limit when the charge is already there.
+#include "game/CProjectileMovement.h"
 #include "game_s2/UnkChargeComponent.h"
 
-void fn_7100ac38fc(void* self);  // reads the rate at +0x7c itself
 void fn_7100ac40fc(UnkChargeComponent* self, f32 time);
 f32 fn_71005026d0(UnkChargeComponent* self, u32 mode, f32 value);
 

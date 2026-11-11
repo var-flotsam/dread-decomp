@@ -6,6 +6,14 @@
 // the id-0 path. Names are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CActorComponent.h"
+#include "game/CCharClassEmmyValveComponent.h"
+#include "game/CCharClassEventPropComponent.h"
+#include "game/CCollisionComponent.h"
+#include "game/CComponent.h"
+#include "game/CGunComponent.h"
+#include "game/CHydrogigaPolypsAttack.h"
+#include "game/UnkTU1450.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -127,15 +135,9 @@ struct UnkEvacuationCountDown;
 struct UnkMorphBallLauncher_b57;
 struct UnkLinkList;
 struct UnkSmBase_b60;
-void fn_71010c4228(UnkParent*);
 void fn_71007dbeac(UnkSmBase_b60*);
-void fn_710024facc(UnkSmBase_b60*);
 void fn_7100818bc0(UnkSmBase_b60*, void* point);  // src/game/CGrappleBeamComponent/CGrappleBeamComponent_b52.cpp
-void fn_71007dc10c(UnkEvacuationCountDown*);
-void fn_71010c422c(UnkMorphBallLauncher_b57*);
 void fn_71002aeb9c(UnkLinkList*, UnkLinkList**);
-void fn_71008656d8(void*, u32, u32, void*);
-bool fn_71007b3318(UnkSmBase_b60*);
 
 #define UNK_SM_SET_AFTER_B60(addr, base, basetype, offset, id, last, none) \
     void fn_##addr(UnkSmOwner_b60<offset>* self) {                           \
@@ -258,7 +260,6 @@ struct UnkSmOther_b60 {
     u8 pad_0x0[0x3a8];
     bool field_0x3a8;
 };
-UnkSmOther_b60* fn_710097f198(UnkSmBase_b60*);
 
 void fn_7100980cd0(UnkSmOwner_b60<0x30>* self) {
     if (fn_710097f198(reinterpret_cast<UnkSmBase_b60*>(self))->field_0x3a8)
@@ -395,7 +396,6 @@ struct UnkSmTarget_b60 {
     u8 pad_0x0[0x30];
     void* field_0x30;
 };
-UnkSmTarget_b60* fn_71005b6320(void*);
 
 struct UnkSmTimerUp_b60 {
     u8 pad_0x0[0x30];
@@ -460,7 +460,6 @@ void fn_710088bd1c(UnkTimerSm_b60* self, f32 dt) {
 
 struct UnkComponent;
 struct UnkCameraCtrl;
-void* fn_710083cd30(UnkComponent*);
 bool fn_7100023d00(const UnkCameraCtrl*, const base::reflection::CClass*);
 
 bool fn_7100888c24(UnkLauncherSm2_b60* self, s32 event) {

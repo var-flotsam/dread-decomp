@@ -6,6 +6,7 @@
 #include "base/UnkTimedCurve.h"
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CSmartObjectComponent.h"
 #include "types.h"
 
 struct UnkRefl_fn_710033dc00;
@@ -13,7 +14,6 @@ template <>
 base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRefl_fn_710033dc00>(void*);
 
 struct UnkPlatformSm_A5_b72;
-bool fn_7100a04768(UnkPlatformSm_A5_b72* self);
 
 struct UnkWaterPlatform_A5_b73;
 bool fn_7100aa5980(UnkWaterPlatform_A5_b73* self);

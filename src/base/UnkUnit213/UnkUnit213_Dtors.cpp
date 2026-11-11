@@ -3,15 +3,14 @@
 // returns its two pooled objects (+0x28, +0x30) and clears them and the word at +0x20. Names and
 // layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU174.h"
+#include "game/UnkTU182.h"
+#include "game/UnkTU226.h"
 #include "types.h"
 
 struct UnkObj_7100161b90;
 struct UnkObj_71001541a0;
 struct UnkStruct_710019e82c;
-
-void fn_7100161b90(void* obj);
-void fn_71001541a0(UnkObj_71001541a0* obj);
-void fn_710019e82c(void* self);
 
 extern char g_unk_7101a1dfe8[];  // vtable (reached through the GOT)
 

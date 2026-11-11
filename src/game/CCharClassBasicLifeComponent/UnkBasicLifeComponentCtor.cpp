@@ -4,10 +4,10 @@
 // post-construction virtual call (slot 3); a near copy of fn_71008b4d80
 // (src/game/CCharClassItemLifeComponent/CCharClassItemLifeComponent.cpp). Names and layouts are
 // placeholders.
+#include "game/CCharClassLifeComponent.h"
+#include "game/CDamageSourceFactor.h"
 #include "types.h"
 
-void fn_71008bca30(void* self);
-void fn_71008c2da8(void* member);
 extern void* g_unk_7101a7db40[];
 
 struct UnkBasicLifeComponent {

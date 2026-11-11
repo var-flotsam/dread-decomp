@@ -1,6 +1,7 @@
 // CGameManager (unit of CGameManager::CTunableGameManager): clears a flag on every trigger.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CTriggerComponent.h"
 #include "types.h"
 
 namespace {
@@ -18,7 +19,6 @@ struct TriggerView {
 }  // namespace
 
 struct UnkHandleList;
-UnkHandleList* fn_7100a5e1dc();
 
 void fn_7100e01fc8() {
     struct List {

@@ -1,10 +1,10 @@
 // tools/tu_map.py unit 127 (no class hint): binds the receiver's link at +0x140 to what a source's
 // virtual returns, once (nothing when the link is already bound or there is no source). Names and
 // layouts are placeholders.
+#include "game/UnkTU32.h"
 #include "types.h"
 
 struct UnkLinkTarget127_b66a1;
-bool fn_710002589c(void* link, UnkLinkTarget127_b66a1* target, u32 mode, void* extra);
 
 struct UnkLinkSource127_b66a1 {
     void** vtable;

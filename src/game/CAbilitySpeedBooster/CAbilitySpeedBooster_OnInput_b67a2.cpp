@@ -3,13 +3,13 @@
 // flag clear, ends the boost (fn_710033cd50 with 1) when the input points against the facing direction (the
 // constant at 0x7101647920, or 0x71016478d0 when the byte at +0x3a0 is set). Names and layouts are placeholders.
 #include "base/math/CVector.h"
+#include "game/CAbilitySpeedBooster.h"
 #include "types.h"
 
 using base::math::CVector2D;
 
 // As src/game/UnkUnit435/UnkUnit435_OnSameId.cpp declares it.
 struct UnkUnit435Self;
-void fn_710033cd50(UnkUnit435Self* self, u32 arg);
 
 extern const CVector2D g_unk_71016478d0 __attribute__((visibility("hidden")));
 extern const CVector2D g_unk_7101647920 __attribute__((visibility("hidden")));

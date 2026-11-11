@@ -4,6 +4,7 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "base/core/CBaseObject.h"
 #include "types.h"
 
 struct UnkNode {
@@ -17,7 +18,6 @@ struct UnkNode {
 };
 
 void fn_71002dba08(UnkNode*);
-void fn_7100023854(UnkNode*);
 extern void* g_unk_7101a21948[];
 extern void* g_unk_7101a21d78[];
 

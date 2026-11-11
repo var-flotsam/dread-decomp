@@ -1,10 +1,12 @@
 // Copies of fn_7100b87488 (src/game_aca57c/fn_7100ad4b54.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_71005abe98, fn_71005abf48.
 // Getters building a value of kind 2 (fn_71000a18d4 fills in the rest from the type the value is
 // described by): words of the translation unit's globals, a zero, flags of an object and a vector.
+#include "base/reflection.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU437.h"
 #include "types.h"
 #include "game/sound/CMusicManager.h"
 
@@ -135,8 +137,6 @@ __attribute__((always_inline)) static inline UnkReflValue GetDef(UnkArgument<Unk
 // Values of kind 2 holding a manager singleton, created on first use (allocated with flags 0x3f or
 // 3, and constructed in place).
 void fn_7100ee1f34(void* self);
-void fn_7100d8ced8(void* self);
-void fn_7100359118(void* self);
 const CType* fn_7100ad61f8();  // base::reflection::refl_GetType<CSubAreaManager*>
 const CType* fn_7100ad62d4();  // base::reflection::refl_GetType<CEnvironmentManager*>
 const CType* fn_7100ad6644();  // base::reflection::refl_GetType<sound::CMusicManager*>

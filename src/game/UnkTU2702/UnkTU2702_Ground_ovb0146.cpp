@@ -2,6 +2,7 @@
 // nothing the hit is filled in by hand (the owner's own shape, a point one extent below it along its
 // up axis) before it is handed to the movement. Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
+#include "game/CCharacterMovement.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -16,8 +17,6 @@ struct UnkWeakRefAt;
 
 bool fn_7100977e50(UnkCharacterMovement* self, f32 max_dot, f32 extra, f32 step, f32 back, u32 mask,
                    const CVector3D* pos, CVector3D* out_point, UnkCollisionHit* out_hit, const CVector3D* dir);
-UnkShape* fn_7100976588(UnkFlagged* flagged);
-f32 fn_7100977b20(void*);
 void fn_710092ef94(UnkWeakRefAt<0>* self, UnkWeakTarget* other);
 
 struct UnkGroundRef_ovb0146 {

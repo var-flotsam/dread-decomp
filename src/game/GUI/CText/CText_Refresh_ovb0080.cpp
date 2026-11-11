@@ -8,6 +8,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiFrames.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU257.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -31,8 +32,6 @@ void* fn_71011b882c(UnkGuiRoot* root, const CStrId* id);
 void fn_71011cee10(UnkGuiDisplayObject* self);
 void fn_71011baba0(UnkGuiRoot* root, void* object, s32 frame);
 void fn_71011bab10(UnkGuiRoot* root, UnkLabelTextObject** out, s32 frame);
-void fn_71001c3ec0(UnkLabelTextNode* node, void* font_data);
-void fn_71001c4418(void* self, const s32* value);
 u32 fn_71001c4510(UnkLabelTextNode* node);
 f32 fn_71001bd59c(void* self);
 

@@ -3,11 +3,11 @@
 // (fn_710002fb70) it is advanced instead; otherwise the player's current entry (+0x10) and the value at
 // +0x64 go to fn_710070ddf8, and the player, held by a counted reference, is given the member at +0x38.
 // Names and layouts are placeholders.
+#include "game/CActionInstance.h"
+#include "game/UnkTU39.h"
 #include "types.h"
 
 struct UnkPlayer_b42;
-bool fn_7100c95ed8(UnkPlayer_b42*);
-bool fn_710002fb70(void*);
 
 struct UnkUnit1134Player_b68a4 {
     virtual void vf_0x0();
@@ -29,7 +29,6 @@ struct UnkUnit1134Upd_b68a4 {
     u8 field_0xb0[0x8];
 };
 
-void fn_710002fb80(void* self, f32 dt);
 void fn_710070ddf8(UnkUnit1134Upd_b68a4* self, void* entry, f32 value, f32 dt);
 void fn_7100c96870(UnkUnit1134Player_b68a4* player, void* arg);
 

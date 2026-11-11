@@ -3,10 +3,8 @@
 // names is destroyed, each later one moved down one and the moved-from one destroyed. The index goes through a
 // byte offset from the vector itself (build/b67/b67a6.md). Names are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU2563.h"
 #include "types.h"
-
-void fn_7100e4e310(char*);
-void fn_7100e51078(void*, void*);
 
 struct alignas(8) UnkRecord138_A6_b76 {
     u8 data[0x138];

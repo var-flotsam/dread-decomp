@@ -10,8 +10,11 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/global/timeline/CEvent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU218.h"
+#include "game/UnkTU56.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -171,8 +174,6 @@ struct UnkModelUpdater_ovb0032 {
     CFilePathStrId loaded_path;  // 0x48
     UnkModel_ovb0032* model;  // 0x50
 };
-
-void fn_7100199420(void* self, const u64* hash, bool value);
 
 struct UnkShowNodeComponentB;
 struct UnkShowNodeEvent;
@@ -348,8 +349,6 @@ namespace base::reflection {
 class UnkReflObject;
 }
 base::reflection::UnkReflObject* fn_7100233684(UnkStruct_7100233684* self);
-s64 fn_710007cf30(void* stream, const char* format, ...);
-void fn_710006663c(u64* out, const char* str);
 extern u32 g_unk_71727bebb8;
 
 struct UnkTriple_ovb0032 {

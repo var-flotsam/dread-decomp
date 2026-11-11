@@ -9,6 +9,7 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/nn/time.h"
 #include "types.h"
 
 struct UnkHyperBeamOwner_b56 {
@@ -25,7 +26,6 @@ struct UnkHyperBeamGun_b56 {
 
 struct UnkSoundHolder;
 extern UnkSoundHolder* g_unk_7101d47340;
-void fn_710006cd9c(UnkSoundHolder* holder);
 
 struct UnkInput_b56hb {
     virtual void vf_0x0();

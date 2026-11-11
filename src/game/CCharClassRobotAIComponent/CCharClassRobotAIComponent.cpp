@@ -6,6 +6,7 @@
 
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassBehaviorTreeAIComponent.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -13,7 +14,6 @@ using base::global::CStrId;
 
 // Declared as src/game/CCharClassGooplotAIComponent/CCharClassGooplotAIComponent.cpp does.
 struct UnkObject_7100416db8;
-void fn_7100416db8(UnkObject_7100416db8* self);
 extern void* g_unk_7101a34550[];
 
 struct UnkRobotAIDef {

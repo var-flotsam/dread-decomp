@@ -3,6 +3,9 @@
 // second object, and hands both to the drawable (src/game/UnkTU252/UnkTU252_Setup_ovb0221.cpp has the
 // same calls on a holder). Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
+#include "game/UnkTU174.h"
+#include "game/UnkTU182.h"
+#include "game/UnkTU221.h"
 #include "types.h"
 
 struct UnkObj_7100161b90;
@@ -11,19 +14,11 @@ struct UnkGfxBuffer252;
 struct UnkBillboardDrawable;
 struct UnkStruct_710019ab0c;
 
-void fn_7100161960(UnkObj_7100161b90** out, u32 size, void* data, const u32* count);
-void fn_7100154020(UnkObj_71001541a0** out, u32 size, const u32* count, void* data, u32 a, u32 b);
 void fn_710019b184(UnkBillboardDrawable* self, u32 index, u32 part, const UnkMatrix44* matrix);
-void fn_7100161d70(UnkGfxBuffer252*);
-u32 fn_71001622f0(u32, u32);
-void fn_7100161e60(UnkGfxBuffer252*, u32, u32, u32, u32, const void*, u32, u32);
-void fn_7100161dc0(UnkGfxBuffer252*);
-void fn_7100161d60(UnkGfxBuffer252*);
 void fn_7100154380(UnkObj_71001541a0* self, u32 a, u32 b);
 void fn_7100154270(UnkObj_71001541a0* self);
 void fn_71001542f0(UnkObj_71001541a0* self, u32 a, u32 b, const void* data);
 void fn_71001542d0(UnkObj_71001541a0* self);
-void fn_710019ab0c(UnkStruct_710019ab0c* self);
 extern UnkMatrix44 g_unk_7101a1a680;
 extern char g_unk_7101a1e0d8[];
 extern char g_unk_7101a1e138[];

@@ -2,11 +2,11 @@
 // nine flags there and, unless the value at +0x170 is within 0.1 of zero, hands the record at +0x158
 // and `source` (or the default at +0xd0) to the manager at g_unk_7101d47318 (fn_7101024b28).
 // Names and layouts are placeholders.
+#include "game/sound/CSoundManager.h"
 #include "types.h"
 
 struct UnkDropTarget;
 extern UnkDropTarget* g_unk_7101d47318;
-void fn_7101024b28(UnkDropTarget* self, void* record, void* source, void* a, u32 b);
 
 struct UnkUnit2573_b51 {
     u8 unk_0x0[0xd0];

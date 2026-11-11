@@ -1,6 +1,7 @@
 // From unit 343 (CActorComponentDef): the reflected class's construct-in-place slot (0x28 of
 // src/reflection/CActorComponentDef.cpp): the constructor CActorComponentDef_Ctor.cpp matches
 // (fn_71002536b0, inlined here), then the object's own vtable slot 3. Names are placeholders.
+#include "base/core/CBaseObject.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -8,7 +9,6 @@ using base::global::CStrId;
 using base::global::UnkStringData;
 
 extern char g_unk_7101a20ba8[];
-void fn_7100023838(void* self);  // as src/base/tunable/CTunable/fn_7100138090.cpp declares it
 
 
 struct UnkComponentDefEntry_b59 {

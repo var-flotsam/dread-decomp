@@ -11,10 +11,17 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CBreakableTileGroup.h"
+#include "game/CCharacterMovement.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU218.h"
+#include "game/UnkTU25.h"
+#include "game/UnkTU2553.h"
+#include "game/UnkTU2689.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -241,10 +248,6 @@ struct UnkMorphBall_dcf0 {
 };
 
 struct UnkHitInfo_b152;
-bool fn_71010d9638(UnkMove_b152* self, UnkHitInfo_b152* hit, u64* out);
-bool fn_7100df5874(UnkPlayer*);
-UnkQueryObj* fn_7100ca2048(void*, void*, u32);
-UnkHitFlags_b152 fn_7100301c0c(void*, void*, void*);
 
 struct UnkStaticZero_dcf0 {
     u32 value;
@@ -373,10 +376,7 @@ using base::global::CStrId;
 CRntString fn_710007f050(const char* a, const CRntString* b);  // concatenation
 struct UnkPathIds;
 struct UnkInlineString;
-void fn_710001f074(UnkPathIds* out, const UnkInlineString* path);
 struct UnkMove_b152;
-void fn_71009796dc(UnkMove_b152* self);
-void fn_7100199420(void*, const u64*, bool);
 
 struct UnkMorphBall_eb64;
 void fn_710093ed64(UnkMorphBall_eb64* self);

@@ -1,11 +1,11 @@
 // CRockDiverSpawnPointComponent: its constructor (fn_7100a1b6b4). The spawn point base constructor
 // fn_71011258e4, the vtable and cleared fields from +0x3b8, then the class-entry pass of
 // base::core::CBaseObject (fn_7100023854). Names and layouts are placeholders.
+#include "base/core/CBaseObject.h"
+#include "game/UnkTU2704.h"
 #include "types.h"
 
 struct UnkNode;
-void fn_71011258e4(void* self);
-void fn_7100023854(UnkNode* node);
 extern void* g_unk_7101a8ca70[];
 
 struct UnkRockDiverSpawnPoint {

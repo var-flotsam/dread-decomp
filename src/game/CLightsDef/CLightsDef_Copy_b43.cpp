@@ -5,6 +5,7 @@
 // inlined, as base::UnkVector::PushBack. The shape of fn_7100c8b688
 // (src/game/CCutSceneDef/CCutSceneDef_CopyA0_b43.cpp). Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CLightsDef.h"
 #include "types.h"
 
 // As src/game/CLightsDef/CLightsDef_b42.cpp declares them.
@@ -22,11 +23,8 @@ struct UnkLightsArray_b42a3 {
     base::UnkAllocator* allocator;
 };
 
-void fn_7100da1508(UnkLightsArray_b42a3* self, u32 capacity);
-
 // As src/game/CLightManager/fn_7100e0ccf8.cpp declares it.
 struct UnkClearedArray;
-void fn_7100da0870(UnkClearedArray* self, u32 count);  // resizes
 
 void fn_7100d9bffc(UnkLightsElem_b42a3* self, const UnkLightsElem_b42a3* other);  // the element's copy constructor
 

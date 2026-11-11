@@ -3,10 +3,10 @@
 // the vtable and clears the fields from +0x146d8 to +0x14708 (two of them set to -1), then runs the class entries
 // (fn_7100023854). Defined under the `void()` symbol src/reflection/CBatalloonAIComponent.cpp declares (the b64a4
 // alias pattern). Names and layouts are placeholders.
+#include "base/core/CBaseObject.h"
 #include "types.h"
 
 struct UnkNode;
-void fn_7100023854(UnkNode* node);
 
 struct UnkBatalloonAI_b67a2;
 void fn_71005a2480(UnkBatalloonAI_b67a2* self);

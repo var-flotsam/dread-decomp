@@ -12,12 +12,13 @@
 
 #include "base/UnkVector.h"
 #include "base/math/CVector.h"
+#include "game/UnkTU108.h"
+#include "game/logic/collision/CPolygonCollectionShape.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "../../game_5821e4/CAttackDtor.h"
 #include "types.h"
 
 extern void* g_unk_7101a3e5b8[];  // the attack's vtable
-void fn_7100d62bd8(void* p);
 
 struct UnkLavaCarpetAttack_ovb0059 {
     void** vtable;
@@ -49,8 +50,6 @@ void fn_71004c5678(UnkLavaCarpetAttack_ovb0059* self) {
 extern void* g_unk_7101a24060[];  // the first base's vtable
 extern void* g_unk_7101a3e3a8[];  // the second base's vtable
 extern void* g_unk_7101a3e5b8[];  // the attack's vtable
-
-void fn_7100d62b68(char*, const char*);
 
 struct UnkLavaVec3_ovb0059 {
     u32 x, y, z;
@@ -178,8 +177,6 @@ void fn_71004c5820(UnkLavaAttack_ovb0059* self, const UnkLavaAttack_ovb0059* oth
 struct UnkVec3;
 struct UnkTileOutlines;
 struct UnkTileOutline;
-void* fn_7100118b94(void* sink, UnkVec3* point);
-void fn_7100d62d40(UnkTileOutlines* self, UnkTileOutline* outline);
 
 struct UnkLavaPoint_ovb0059 {
     f32 x, y, z;

@@ -4,8 +4,12 @@
 // and the removal of one node (fn_7101157324). Names and layouts are placeholders.
 #include "base/UnkParentPoolList.h"
 #include "base/global/CStrId.h"
+#include "game/CActorComponent.h"
+#include "game/CComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkModelManager.h"
+#include "game/UnkTU132.h"
+#include "game/UnkTU247.h"
 #include "types.h"
 
 // ---- the container of string ids ----
@@ -105,14 +109,9 @@ struct UnkPlayer;
 struct UnkObject;
 struct UnkResetOwner;
 struct UnkBinderNames_71001bbfa8;
-void fn_71010c424c(UnkParent*);
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 void fn_710114fe8c(UnkObject*, u64, u32, u32);
-void fn_71001bc068(UnkResetOwner* self);
 void fn_71001bbfa8(UnkBinderNames_71001bbfa8* self, const base::global::CStrId* name);
-void fn_71001457fc(void* effect, void* scene, u32 flag);
-void fn_710014580c(void* effect);
-bool fn_710024fbc8(void*);
 
 struct UnkFXSceneHolder_b0052 {
     u8 unk_0x0[0x50];

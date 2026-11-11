@@ -3,9 +3,9 @@
 // fn_710113906c and destroys it (fn_710007ecd4). Names and layout are placeholders.
 #include "base/UnkNamedRegistry.h"
 #include "base/global/CRntString.h"
+#include "game/CActorComponent.h"
 #include "types.h"
 
-void fn_710024fc08();
 s64 fn_710007cee4(void* stream, const char** out);
 
 struct UnkFactionKey_b48a3 {

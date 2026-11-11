@@ -3,14 +3,14 @@
 // (the float at +0x14754 set to -1), then the class-entry pass of base::core::CBaseObject
 // (fn_7100023854). The fields are addressed by offset, as in
 // src/game/CCentralUnitAIComponent/fn_71004076e4.cpp. Names and layout are placeholders.
+#include "base/core/CBaseObject.h"
+#include "game/CBehaviorTreeAIComponent.h"
 #include "types.h"
 
 extern void* g_unk_7101a524b8[];  // the component's vtable
 
 struct UnkComponent;
 struct UnkNode;
-void fn_710036932c(UnkComponent* self);
-void fn_7100023854(UnkNode* node);
 
 typedef u64 UnkU64Align4_b44a2 __attribute__((aligned(4)));
 

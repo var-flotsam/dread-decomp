@@ -5,6 +5,7 @@
 // placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
+#include "game/CAbilityMultiLockon.h"
 #include "game/UnkActor.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkTimelineCalls.h"
@@ -15,7 +16,6 @@ using base::global::CStrId;
 struct UnkEnergyWaveKey_b60a2;
 extern UnkEnergyWaveKey_b60a2 g_unk_7101648cf8;  // reached through the GOT
 extern UnkTunable g_unk_71726af8b0;
-u64 fn_71003182d8();
 struct UnkEntry;
 struct UnkOwner;
 UnkEntry* fn_7100300970(UnkOwner* self, const CStrId* id);

@@ -1,10 +1,10 @@
 // From unit 2702 of tools/tu_map.py (CAIComponent): starts something once: not while one is held at
 // +0x1148, nor while the object at +0x30's +0x278 reports busy (fn_7101136308); otherwise takes the
 // one vf_0x218 gives and clears the two flags after it. Names and layouts are placeholders.
+#include "game/CAttackComponent.h"
 #include "types.h"
 
 struct UnkBusy_71011058a8;
-bool fn_7101136308(void* object);
 
 struct UnkOwnerData_71011058a8 {
     u8 pad_0x0[0x278];

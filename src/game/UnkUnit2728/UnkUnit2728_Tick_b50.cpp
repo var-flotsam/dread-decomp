@@ -3,15 +3,15 @@
 // notifies the game manager's object at +0x2278 and fires its stored callback once. Names and
 // layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/GUI/CSubtitleComposition.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 extern void* g_unk_71726bc560;
 #include "game/UnkGameManager.h"
 
-void fn_7100fd7af8(void* music, f32 volume, f32 time);
 struct UnkUnit2728Target;
-void fn_7100b8538c(UnkUnit2728Target*);
 
 struct UnkHandleTarget_7101192944 {
     void* obj;

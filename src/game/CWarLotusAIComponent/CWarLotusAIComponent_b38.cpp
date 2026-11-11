@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 #include "../../game_s7/UnkPropBagS7.h"
 
@@ -58,8 +59,6 @@ static inline void WriteFactor(UnkWarLotusAI* self, UnkBumpState* bump) {
 
 struct UnkSluggerAI;
 struct UnkSluggerEvent;
-u32 fn_7101105e44(UnkSluggerAI* self, UnkSluggerEvent* event);
-void fn_7101105c94(UnkWarLotusAI* self);
 void fn_71006e0acc(UnkWarLotusAI* self);
 
 struct UnkWarLotusEvent {

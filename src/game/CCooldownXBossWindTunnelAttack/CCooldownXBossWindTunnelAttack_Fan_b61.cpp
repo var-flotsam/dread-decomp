@@ -6,6 +6,7 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CBossAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
@@ -37,7 +38,6 @@ struct UnkWindTunnelHandle_b61a2 {
 // Typed as CHydrogigaZiplineRailComponent_b49.cpp declares it (one signature per symbol).
 struct UnkZiplineLink_b49;
 struct UnkZiplineLinkTarget_b49;
-UnkZiplineLinkTarget_b49** fn_71003b0c4c(UnkZiplineLink_b49* source);
 
 struct UnkWindTunnelAI_b61a2 {
     virtual const CClass* vf_0x0();

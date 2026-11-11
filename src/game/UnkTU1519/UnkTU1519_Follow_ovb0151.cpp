@@ -1,5 +1,6 @@
 // Unit 1519: helpers of an object that follows a target (placeholders for names and layouts): the
 // detach of its effect and the constructor holding weak handles of two targets.
+#include "game/UnkTU132.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -22,8 +23,6 @@ struct UnkFollowEffect_b0151 {
     u8 pad_0x10[0x8];
     void* scene;  // 0x18
 };
-
-void fn_710014580c(void* effect);
 
 void fn_7100a0f1f0(UnkFollowEffect_b0151* self) {
     reinterpret_cast<void (*)(void*, void*)>(fn_710014580c)(self->scene, self->parent->owner->field_0x228->effect);

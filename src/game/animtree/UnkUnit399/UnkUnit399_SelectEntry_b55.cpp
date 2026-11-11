@@ -2,10 +2,10 @@
 // (values +0x78, keys +0x80, count +0x88), hands it to fn_71002dfa18, refreshes the node
 // (fn_71002dfaf0), then passes the entry's +0x28 object to the owner's (+0x70) listener at +0x8.
 // Names are placeholders.
+#include "game/animtree/CAnimTreeNode.h"
 #include "types.h"
 
 struct UnkLayerNode;
-void fn_71002dfaf0(UnkLayerNode* node, bool a, f32 dt, bool b);
 
 struct UnkEntry399 {
     u8 pad_0x0[0x28];

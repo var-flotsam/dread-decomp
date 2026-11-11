@@ -5,13 +5,11 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU2702.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
-
-bool fn_71010fc778(void*, f32*);
-bool fn_71010fc39c(void*, f32*);
 
 struct UnkKiStrikeAI3_ovb0114 {
     u8 pad_0x0[0x15ed0];

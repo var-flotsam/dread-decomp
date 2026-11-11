@@ -2,11 +2,9 @@
 // 134's): UnkSwitchSet in game/UnkSwitchObject.h, with unit 116's copies.
 #include "base/UnkCloneCalls.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU275.h"
+#include "game/UnkTU284.h"
 #include "types.h"
-
-void fn_7100208004(void* obj, bool flag);
-
-void fn_71001f7388(void* obj, bool flag);
 
 void fn_7100145e94(UnkSwitchObject* self, bool enable) { UnkSwitchSet<fn_7100208004>(self, enable); }
 void fn_71001464f0(UnkSwitchObject* self, bool enable) { UnkSwitchSet<fn_7100208004>(self, enable); }

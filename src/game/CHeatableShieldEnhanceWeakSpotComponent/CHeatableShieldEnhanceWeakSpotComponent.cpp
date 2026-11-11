@@ -2,12 +2,12 @@
 // constructor fn_71010c4148, the flags at +0x3d (set) and +0x3e (clear) as one halfword, the vtable, the
 // byte at +0x48, then the class-entry pass of base::core::CBaseObject (fn_7100023854). Names and
 // layouts are placeholders.
+#include "base/core/CBaseObject.h"
+#include "game/CComponent.h"
 #include "types.h"
 
 struct UnkStateObject;
 struct UnkNode;
-void fn_71010c4148(UnkStateObject* self);
-void fn_7100023854(UnkNode* node);
 extern void* g_unk_7101a72500[];
 
 struct UnkHeatableShieldEnhanceWeakSpot {

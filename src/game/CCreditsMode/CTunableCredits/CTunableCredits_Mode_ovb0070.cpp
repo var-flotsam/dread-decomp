@@ -7,7 +7,11 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiLabel.h"
+#include "game/UnkTU2656.h"
+#include "game/UnkTU2737.h"
+#include "game/UnkTU99.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -32,7 +36,6 @@ struct UnkLoadingMaskOf {
     }
 };
 struct UnkLoadingMaskTag;
-void fn_7100fd7b44(void* manager, UnkLoadingMask channels, UnkLoadingMask mask, f32 time);
 
 // The music manager (game/sound/CMusicManager.h), created on first use.
 static inline void* MusicManager() {
@@ -48,7 +51,6 @@ static inline void* MusicManager() {
 using base::global::CRntString;
 
 struct UnkVec;
-void fn_7101053850(void* effects, UnkVec* position, u32 flag, f32 duration, f32 scale);
 
 struct UnkCreditsPosition_ovb0070 {
     u64 xy;
@@ -120,13 +122,11 @@ struct UnkObj_71011a50cc {
     UnkObj_71011a50cc();  // fn_71011a50cc
 };
 extern UnkObj_71011a50cc* g_unk_71727bc260;
-void fn_71011a5798(UnkObj_71011a50cc* self, u32 index, f32 value);
 
 struct UnkSoundMgr;
 extern UnkSoundMgr* g_unk_7101d4d820;
 struct UnkTunable;
 extern UnkTunable g_unk_7101d68580;  // base::snd::CSoundSystemATK's tunable; a float at +0x2c
-void fn_71000fbe1c(void* self, u32 a, f32 b, f32 c);
 // A mode word passed by address (the word after it is not set).
 struct UnkMusicMode {
     u32 kind;

@@ -4,6 +4,8 @@
 // last blend id (the stack at +0x128) is applied to them. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU287.h"
+#include "game/UnkTU324.h"
 #include "types.h"
 
 struct UnkSoundIdInstance {
@@ -46,10 +48,8 @@ struct UnkSoundIdList {
 };
 
 struct UnkRefObj;
-void fn_710021fafc(UnkRefObj* self);
 struct UnkSoundIdRegistry;
 void fn_7100f004dc(UnkSoundIdRegistry* self);
-void fn_710020ad90(void* self, s32 value);
 
 struct UnkSoundIdItemHolder {
     u8 pad_0x0[0x18];

@@ -7,12 +7,12 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
+#include "game/CItemLifeComponent.h"
 #include "types.h"
 
 using base::global::CRntString;
 
 struct UnkLifeComponent_A5_b71;
-void fn_71008e04e8(UnkLifeComponent_A5_b71* self);
 void fn_710007e6c4(void*);
 extern void* g_unk_7101a7ebf8[];
 

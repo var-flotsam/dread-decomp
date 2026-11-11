@@ -9,6 +9,8 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU243.h"
+#include "game/UnkTU83.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -16,12 +18,10 @@ using base::global::CStrId;
 extern "C" int rand();
 
 struct UnkPart48;
-void fn_71000cbae4(UnkPart48* self, const UnkPart48* other);
 struct UnkUnit2560Record;
 void fn_7100e1d538(UnkUnit2560Record* self);
 struct UnkCharClassBillboardLists_ovb0020;
 void fn_71007302e4(UnkCharClassBillboardLists_ovb0020* self, char* item);
-void fn_71001b7128(void* target, void* resource, u32 index);
 
 // base::UnkVector's layout; the elements of the u32 and u8 arrays are copied inline.
 template <class T>

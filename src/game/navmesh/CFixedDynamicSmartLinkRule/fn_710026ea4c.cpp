@@ -4,6 +4,7 @@
 // 0x88: restore the vtable, release the id, destroy the member and run the base destructor (fn_710026a9fc); the
 // deleting one then frees the object.
 #include "base/global/CStrId.h"
+#include "game/navmesh/CFixedDynamicSmartLinkRule.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -14,8 +15,6 @@ struct UnkBase_0x20 {
     u8 unk_0x8[0x18];
     ~UnkBase_0x20();  // fn_710026a9fc
 };
-
-void fn_710026ead0(void* self);
 
 struct UnkMember_0x68 {
     u8 unk_0x0[0x68];

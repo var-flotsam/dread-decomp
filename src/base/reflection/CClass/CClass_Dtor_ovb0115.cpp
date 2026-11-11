@@ -4,16 +4,16 @@
 // each array through its allocator; then the CType part (fn_710009cc04). Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "base/reflection/CType.h"
+#include "game/UnkTU85.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
 extern void* g_unk_7101a1b2e0[];  // CClass's vtable
-void fn_710009cc04(char*);
 
 struct UnkRecordB0_b44a1;
-void fn_71000e70c4(UnkRecordB0_b44a1* self);
 
 struct UnkClassFunction_ovb0115 {
     virtual void vf_0x0();

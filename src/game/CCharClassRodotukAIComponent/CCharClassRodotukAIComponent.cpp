@@ -2,6 +2,8 @@
 // of fn_71000d4c68 (src/game_s7/fn_71000d2e54.cpp).
 #include "base/UnkCollectionIter.h"
 #include "base/UnkVector.h"
+#include "game/CCharClassBehaviorTreeAIComponent.h"
+#include "game/CCharClassRodotukSuckAttack.h"
 #include "types.h"
 
 struct UnkRecord_7100671864 {
@@ -20,8 +22,6 @@ void fn_7100671864(const base::UnkVector<UnkRecord_7100671864>* v, UnkRecordIter
 
 // Declared as src/game/CCharClassYamplotXAIComponent/CCharClassYamplotXAIComponent.cpp does.
 struct UnkObject_7100416db8;
-void fn_7100416db8(UnkObject_7100416db8* self);
-void fn_7100669dec(void* self);
 extern void* g_unk_7101a5db38[];
 
 struct UnkRodotukDef {

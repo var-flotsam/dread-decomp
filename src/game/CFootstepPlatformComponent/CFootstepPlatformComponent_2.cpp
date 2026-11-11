@@ -2,6 +2,7 @@
 // reached through the part at +0x40 of the component:
 // marks the flag at +0xc8 when the player's movement stands on something, then runs vf_0x168.
 // Names and layouts are placeholders.
+#include "game/CSamusMagnetGloveMovementState/CParams.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -28,7 +29,6 @@ struct UnkFootstepPlayer {
 
 UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 u32 fn_71009a60fc();
-bool fn_71009ae798(UnkFootstepMode* mode);
 bool fn_71009e12d0(void* obj);
 
 struct UnkFootstepPlatform {

@@ -5,6 +5,7 @@
 // g_unk_710164a568 when there is a timeline, then calls its own virtual at 0x518. Names are
 // placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CScorpiusAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
@@ -29,8 +30,6 @@ struct UnkScorpiusAI_b59a4 {
     u8 pad_0x14cc1[0x14cd4 - 0x14cc1];
     u32 field_0x14cd4;
 };
-
-void fn_710069409c(UnkScorpiusAI_b59a4* self, const UnkScorpiusKey_b59a4* id, bool flag, f32 a, f32 b);
 
 void fn_7100696b48(UnkScorpiusAI_b59a4* self) {
     self->field_0x14cc0 = true;

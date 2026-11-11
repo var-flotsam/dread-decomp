@@ -1,11 +1,11 @@
 // CCharClassChozoCommanderXLifeComponent: its constructor (fn_71008ae790). The base constructor
 // fn_71008bca30, the vtable, the floats 10 and 0.7 at +0xa4, 3500 at +0x18, then the class-entry pass
 // of base::core::CBaseObject (fn_7100023854). Names and layouts are placeholders.
+#include "base/core/CBaseObject.h"
+#include "game/CCharClassLifeComponent.h"
 #include "types.h"
 
 struct UnkNode;
-void fn_71008bca30(void* self);
-void fn_7100023854(UnkNode* node);
 extern void* g_unk_7101a7dbf0[];
 
 struct UnkChozoCommanderXLife {

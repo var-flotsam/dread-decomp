@@ -5,6 +5,9 @@
 // inferred from the code.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU112.h"
+#include "game/UnkTU85.h"
+#include "game/UnkTU99.h"
 #include "types.h"
 
 using base::UnkAllocator;
@@ -190,7 +193,6 @@ struct UnkTunableObject {
     virtual char* GetClass();
 };
 struct UnkTunableRegistry;
-UnkTunableObject* fn_710013c5cc(UnkTunableRegistry* self, const char* name, bool qualified);
 
 // A reflected field (0xb0 bytes): its type at +0x10.
 struct UnkTunableField {
@@ -228,7 +230,6 @@ struct UnkReflField;
 struct UnkReflFieldObject;
 struct UnkReflValueArg;
 struct UnkEnumType;
-bool fn_71000e7a80(UnkReflField* field, const UnkReflFieldObject* obj, UnkReflValueArg* value);  // sets
 bool fn_71000e79a8(UnkReflField* field, const UnkReflFieldObject* obj, UnkReflValueArg* value);  // gets
 bool fn_71000e74bc(UnkReflField* field);  // whether a field without an accessor can be set
 // The member object a field of `obj` holds.
@@ -271,8 +272,6 @@ struct UnkTunableTokens {
     bool field_0x6c;
 };
 static_assert(sizeof(UnkTunableTokens) == 0x70, "");
-void fn_71000fc570(const char* text, const char* separator, UnkTunableTokens* out);
-void fn_71000fc7cc(UnkTunableTokens* self);
 
 // Looks up the tunable a header names: prefix, then `middle`, then the name.
 static inline UnkTunableObject* FindTunable(UnkTunableRegistry* self, const UnkTunableLine& prefix,

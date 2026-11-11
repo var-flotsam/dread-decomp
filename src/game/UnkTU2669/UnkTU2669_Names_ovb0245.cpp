@@ -9,6 +9,8 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntStringAssign.h"
+#include "game/UnkTU2669.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -86,8 +88,6 @@ struct UnkNameListView_ovb0245 {
     u32 flags;  // 0x28
 };
 
-u32 fn_710109dd6c(void* self, void* source, UnkUnit2669Str* name, bool a, bool b);
-
 void fn_710109dc90(UnkScriptManager_ovb0085* self_, UnkLuaNameList_b0160* out_) {
     auto* self = reinterpret_cast<UnkScriptManagerView_ovb0245*>(self_);
     auto* out = reinterpret_cast<UnkNameListView_ovb0245*>(out_);
@@ -146,7 +146,6 @@ struct UnkScriptTable_ovb0245 {
 };
 
 struct UnkCompared_0x30;
-bool fn_710007f120(const UnkCompared_0x30*, const UnkCompared_0x30*);
 
 // Removes `key`'s item from the table; returns the item after it in the list, or null.
 UnkScriptItem_ovb0245* fn_710109da60(UnkScriptTable_ovb0245* self, UnkScriptItem_ovb0245* key) {

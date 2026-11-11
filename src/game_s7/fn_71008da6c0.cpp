@@ -1,6 +1,7 @@
 // Static initialiser of the unit of CDoorLifeComponent::SState: the header ids, then the unit's
 // own statics and registrations (helpers in UnkStaticInitS7.h). Layouts are placeholders.
 #include "UnkStaticInitS7.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTUProperty.h"
 
@@ -62,7 +63,6 @@ extern char g_unk_7172731360[];
 extern char g_unk_7172731361[];
 extern UnkTunable g_unk_7172731368;
 extern void* g_unk_7101a7eab0[];
-void fn_7100075104(void* self);  // its destructor, as registered
 struct UnkStruct_71727313a4 {
     f32 field_0x0;
     f32 field_0x4;

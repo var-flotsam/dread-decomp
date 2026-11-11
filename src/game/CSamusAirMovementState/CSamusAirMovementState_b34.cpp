@@ -1,3 +1,4 @@
+#include "game/CSamusMovementState/CParams.h"
 #include "types.h"
 
 struct UnkVec3Zero {
@@ -16,8 +17,6 @@ struct CSamusAirMovementState {
     bool field_0x218;
     bool field_0x219;
 };
-
-void fn_71009b0ce4(CSamusAirMovementState* self, void* arg);
 
 // Runs the base state's step, then clears the air state's fields.
 void fn_710098923c(CSamusAirMovementState* self, void* arg) {

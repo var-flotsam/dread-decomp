@@ -6,6 +6,7 @@
 
 #include "base/UnkDestructors.h"
 #include "base/math/CVector.h"
+#include "game/SCameraRailNode.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -206,7 +207,6 @@ UnkSetStatus fn_7100c08060(void* self, UnkValueHolder* holder, UnkValueArg* cons
 }
 
 struct UnkInsertTarget;
-void fn_7100c0c10c(UnkInsertTarget* target, const UnkArgObj* obj, u32 value);
 
 struct UnkInsertOwner {
     u8 unk_0x0[0x8];

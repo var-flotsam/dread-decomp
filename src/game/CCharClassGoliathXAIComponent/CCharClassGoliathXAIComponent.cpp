@@ -4,10 +4,10 @@
 // Names and layouts are placeholders.
 #include <new>
 
+#include "game/CCharClassBossAIComponent.h"
 #include "types.h"
 
 struct UnkGoliathXBase;
-void fn_710041a230(UnkGoliathXBase* self);
 void fn_710058d990(void* self);
 void fn_71005835c0(void* self);
 void fn_71005839ac(void* self);

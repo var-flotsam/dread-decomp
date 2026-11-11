@@ -7,6 +7,12 @@
 #include "base/UnkMatrix44.h"
 #include "base/math/CVector4D.h"
 #include "game/UnkGlobal_710b372a98.h"
+#include "game/UnkTU174.h"
+#include "game/UnkTU177.h"
+#include "game/UnkTU180.h"
+#include "game/UnkTU182.h"
+#include "game/UnkTU194.h"
+#include "game/UnkTU230.h"
 #include "types.h"
 
 extern UnkMatrix44 g_unk_7101a1a680;
@@ -104,17 +110,8 @@ struct UnkGfx258_b0247 {
     u8 field_0x318366b;
 };
 
-bool fn_7100159c80();
-void fn_7100159f90(u32 a, u32 b);
-void fn_710015a3e0(u32 value);
-void fn_710015a500(u32 a, u32 b);
-void fn_710015a680(u32 value);
-u32 fn_7100167cc0(u32 index);
-void fn_710015e1f0(void* state, u32 stage, u64 location, u32 count, const f32* values);
-bool fn_71001aa0b4(void* program, u32 stage, u32 id, u64* location);
 void fn_71001a7bfc(UnkRenderItem_b0247* item, u32 mode);
 bool fn_7100196e80(UnkRenderCmd_b0247* cmd);
-void fn_710015ab00(u32 value);
 void fn_71001d010c(UnkGfx258_b0247* self, UnkRenderItem_b0247* item, bool flag);
 void fn_71001d03f8(UnkGfx258_b0247* self, void* arg, bool a, bool b);
 
@@ -211,11 +208,6 @@ struct UnkCachedMatrix_7100196674;  // src/game_s1/fn_7100196674.cpp
 struct UnkSize_7100196674;
 UnkMatrix44* fn_7100196674(UnkCachedMatrix_7100196674* self, const UnkSize_7100196674* size);
 void fn_710015e4b0(void* state, u32 stage, u64 location, u32 count, u32 a, const UnkMatrix44* values, u32 b);
-void fn_7100160990(s32 a, s32 b, bool c);
-void fn_7100160ab0(u32 a, s32 b, u32 c);
-void fn_710015f770(s32 slot, void* object, bool clear);
-void fn_7100161800(void* object);
-void fn_7100154420(void* object);
 extern const base::math::CVector4D g_unk_7101647b1c __attribute__((visibility("hidden")));
 
 void fn_71001c5114(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
@@ -255,7 +247,6 @@ void fn_71001c5114(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
 }
 
 UnkMatrix44* fn_7100196248(UnkDrawState2_b0247* self, const void* size);
-void fn_7100160d50(u32 a, s32 b, u32 c);
 
 void fn_71001c52d4(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
     UnkDrawState2_b0247* cmd = reinterpret_cast<UnkDrawState2_b0247*>(entry->cmd);

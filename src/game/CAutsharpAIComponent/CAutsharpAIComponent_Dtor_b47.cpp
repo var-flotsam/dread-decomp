@@ -1,6 +1,7 @@
 // CAutsharpAIComponent unit (tools/tu_map.py unit 572): the destructor and the deleting destructor of a
 // class there: its vtable, the list link at +0x146f0, then the base destructor (fn_7100661914). Names are
 // placeholders.
+#include "game/CRobotAIComponent.h"
 #include "types.h"
 
 struct UnkLinkList;
@@ -24,7 +25,6 @@ struct UnkListLink_b47 {
 };
 
 struct UnkAutsharpAIBase_b47;
-void fn_7100661914(UnkAutsharpAIBase_b47* self);  // the base destructor
 
 extern void* g_unk_7101a2d9e8[];  // the class's vtable
 

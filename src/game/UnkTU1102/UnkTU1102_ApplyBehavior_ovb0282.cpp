@@ -8,6 +8,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1102.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -45,10 +46,8 @@ struct UnkXParasiteAI_b64a4;
 struct UnkXParasiteAI_A3_b75;
 struct UnkXParasiteMode_A3_b75;
 struct UnkXParasiteSelect_9fcc;
-void fn_71006ea3fc(UnkXParasiteAI_b64a4* self, bool flag);
 void fn_71006ea584(UnkParasiteAI_b0282* self, void* inner);
 void fn_71006ea824(UnkXParasiteSelect_9fcc* self, UnkActor* target);
-void fn_71006e9384(UnkXParasiteAI_A3_b75* self, const UnkXParasiteMode_A3_b75* mode);
 CStrId fn_71007cd398(void* behavior);
 
 void fn_71006ea210(UnkParasiteAI_b0282* self, UnkParasiteBehavior_b0282* behavior) {

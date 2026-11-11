@@ -6,6 +6,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CProjectileMovement.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
@@ -25,7 +26,6 @@ struct UnkKraidBouncingCreaturesMovement2 {
 };
 
 extern base::reflection::UnkTunable g_unk_7172716160;
-bool fn_7100ac3108(UnkKraidBouncingCreaturesMovement2* self, UnkKraidCreatureArg* arg);
 struct UnkRequest;
 void fn_71008c1538(UnkRequest* request, f32 value);
 

@@ -7,17 +7,17 @@
 // placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
+#include "game/CModelUpdaterComponent.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkQuetzoaAIComponent;
-void fn_7101108124(UnkQuetzoaAIComponent* self, void* arg);
 struct UnkActorTarget;
 void fn_7101178e08(UnkActorTarget*, u32, u32, u32, f32);
 void fn_710117662c(UnkActorTarget*, u32, u32, u32, u32, f32);
 struct UnkFlagTarget;
-void fn_7101172780(UnkFlagTarget* target, const char* name);
 
 struct UnkInfesterOwner_b57a3 {
     u8 pad_0x0[0x220];

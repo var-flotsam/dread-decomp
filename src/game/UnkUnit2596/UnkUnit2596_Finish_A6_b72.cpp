@@ -1,13 +1,12 @@
 // Unit 2596 (tools/tu_map.py): runs fn_7100f17714 on the object, then fn_7100f00714 on the scene state at
 // g_unk_7101d47320 (created on first use, as in src/game/UnkLoadingScreen.cpp), then the object's callback at
 // +0x48 if it has one. Names and layouts are placeholders.
+#include "game/UnkTU2578.h"
 #include "types.h"
 
 #include "base/UnkVector.h"
 struct UnkStruct_0x128;
 extern UnkStruct_0x128* g_unk_7101d47320;
-void fn_7100ef3494(UnkStruct_0x128* self);
-void fn_7100f00714(UnkStruct_0x128* self);
 
 struct UnkUnit2596_A6_b72 {
     u8 pad_0x0[0x48];

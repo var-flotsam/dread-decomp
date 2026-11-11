@@ -6,14 +6,14 @@
 // hash (fn_71009c0f1c), clear +0x1ec and set +0x1e9. Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CName.h"
+#include "game/CNavMeshItemComponent.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU372.h"
 #include "types.h"
 
 extern UnkDesc_SpitSend g_unk_7172769794;  // reached through the GOT
 
 struct UnkWeakTarget;
-void* fn_71002b3b84(UnkWeakTarget*);
-void fn_71009c0f1c(void* object, u64 id);
 
 struct UnkSensorDoorOwner_b57 {
     u8 pad_0x0[0x220];

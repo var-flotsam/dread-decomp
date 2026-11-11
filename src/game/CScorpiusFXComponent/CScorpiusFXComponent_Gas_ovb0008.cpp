@@ -7,8 +7,11 @@
 // to the model manager. Reading the array past its count grows it with zeroed slots. Names and
 // layouts are placeholders.
 #include "base/UnkVector.h"
+#include "base/core/CBaseObject.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CComponent.h"
+#include "game/CSceneComponent.h"
 #include "game/UnkComponent.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkRenderManager.h"
@@ -22,12 +25,9 @@ extern char g_unk_7101a74e88[];  // vtable
 
 struct UnkBreakableTileGroup_b46a2;
 // Signature as src/game/CBreakableTileGroupComponent/CBreakableTileGroupComponent_b46.cpp declares it.
-void fn_71009f1910(UnkBreakableTileGroup_b46a2* self);
 struct UnkNode;
-void fn_7100023854(UnkNode* node);
 void fn_71011a91c4(UnkModelManager* self, void* handle, u32 id);
 struct UnkMorphBallLauncher_b57;
-void fn_71010c422c(UnkMorphBallLauncher_b57* self);
 void fn_7100146dac(UnkSwitchObject* self, bool enable);
 void fn_7100339d48(UnkRenderPool* pool, const CFilePathStrId* path, UnkSwitchObject** out, const CStrId* name);
 

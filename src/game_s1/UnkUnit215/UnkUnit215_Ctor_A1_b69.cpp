@@ -5,12 +5,11 @@
 #include <new>
 
 #include "base/UnkInitRecord_0x5c.h"
+#include "game/UnkTU226.h"
+#include "game/UnkTU53.h"
 #include "types.h"
 
 extern void* g_unk_7101a1e078[];
-void fn_710019e76c(void* self);
-f32 fn_71000768c0(f32 x);
-f32 fn_71000768f0(f32 y);
 
 // The corners as (x, y) pairs (reached through the GOT).
 extern f32 unk_7101a1e048[];

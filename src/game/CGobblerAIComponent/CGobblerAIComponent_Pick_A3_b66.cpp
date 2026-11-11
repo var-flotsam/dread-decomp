@@ -5,12 +5,12 @@
 // fn_710092b6f8; else 4. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CMeleeComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
 
-bool fn_710092b6f8(void*);
 bool fn_71005824cc(UnkReflObject* ai, void* arg);
 
 struct UnkGobblerActor_A3_b66 {

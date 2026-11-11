@@ -5,11 +5,10 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU811.h"
 #include "types.h"
 
 struct UnkEmmyActor_b55;
-void fn_7100541de4(UnkEmmyActor_b55* self);
-void fn_7100544a34(UnkEmmyActor_b55* self, char* data, bool on);
 extern char g_unk_71726ded60[];
 void fn_7100547428(UnkEmmyActor_b55* self, bool a, UnkActor* target, bool b);
 

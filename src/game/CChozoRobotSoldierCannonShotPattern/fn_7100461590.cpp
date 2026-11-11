@@ -1,4 +1,5 @@
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>.
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
 #include "../../game_s7/UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -47,7 +48,6 @@ void fn_71004603f0() __attribute__((visibility("hidden")));
 extern char g_unk_71726ca680[];
 extern UnkTunable g_unk_71726ca688;
 extern void* g_unk_7101a38178[];
-void fn_7100075104(void* self);  // its destructor, as registered
 extern char g_unk_71726ca6c1[];
 
 void fn_7100461590() {

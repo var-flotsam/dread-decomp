@@ -1,9 +1,8 @@
 // Unit 2528 (no name hint, between the light definitions' units): two identical constructors of a 0x60-byte
 // record: a word 1, string ids "Light" and "", cleared values and two floats of 1 (+0x3c and +0x58).
 // Names and the layout are placeholders.
+#include "game/UnkTU0.h"
 #include "types.h"
-
-void fn_71000003d4(void* self, const char* s, bool flag);
 
 struct UnkLightRecord_A6_b68 {
     u64 field_0x0;

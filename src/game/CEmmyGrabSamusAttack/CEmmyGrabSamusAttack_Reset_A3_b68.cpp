@@ -5,6 +5,7 @@
 // player's +0x1c0 object has its flag at +0x5c set, looks the id's hash up in the player's
 // animation (+0x220) and stores that entry's +0x28 minus 0.3 at 0x6c0. Names are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CEmmyGrabSamusAttack.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -20,9 +21,6 @@ struct UnkStrId_71005077f8 {
 struct UnkStruct_71005077f8;
 struct UnkGrabAttack_b59a3;
 struct UnkGrabId_b59a3;
-
-UnkStrId_71005077f8 fn_71005077f8(UnkStruct_71005077f8* self, u32 kind);
-bool fn_710050a500(UnkGrabAttack_b59a3* self, const UnkGrabId_b59a3* id);
 
 struct UnkKindSource_A3_b68 {
     u8 pad_0x0[0x10];
@@ -41,9 +39,7 @@ struct UnkGrabAttack_A3_b68 {
     f32 field_0x6c0;
 };
 
-void fn_710050d150(UnkGrabAttack_A3_b68* self);
 struct UnkSelf;
-void fn_710050cd98(UnkSelf* self);
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkStruct_7101176ea8;

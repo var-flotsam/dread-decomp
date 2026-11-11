@@ -1,21 +1,21 @@
 // Plays a cutscene actor track on the owner's character class and shows or hides the owner to
 // match it. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CActorComponent.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU1134.h"
+#include "game/UnkTU1728.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 UnkTrack* fn_71011771e0(void* handle, u64 key);
 struct UnkTrackObject_71011781f4;
-void fn_710070d874(UnkTrackObject_71011781f4* obj, bool flag, bool flag2);
 struct UnkCutsceneTimeline;
 UnkCutsceneTimeline* fn_710070d4e8(UnkTrack* track);
 struct UnkAnimTiming;
-f32 fn_7100b8aff0(f32 seconds, const UnkAnimTiming* timing);
 bool fn_710117aaac(void* cls, const base::reflection::CClass* track_class, f32 frames);
 struct UnkStruct_71002334fc;
-void fn_71002334fc(UnkStruct_71002334fc* entity, bool value);
 struct UnkStruct_710024fa0c;
-void fn_710024fa0c(UnkStruct_710024fa0c*, bool);
 
 struct UnkActor_7101066878 {
     u8 pad_0x0[0x1b3];

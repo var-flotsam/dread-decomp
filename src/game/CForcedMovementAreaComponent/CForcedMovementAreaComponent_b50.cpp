@@ -2,6 +2,8 @@
 // (fn_710024f918), hands +0x30 to the object fn_710043acb4 finds for +0x18 (fn_71008656d8),
 // resets +0x48 (fn_71007e9580), drops the references in the list at +0x70 (count +0x78) and
 // registers itself with the game manager under the unit's id. Names and layouts are placeholders.
+#include "game/CChozoCommanderSentenceSphereAttack.h"
+#include "game/CCollisionComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -29,8 +31,6 @@ struct UnkForcedMovementArea_b50 {
 };
 
 void fn_710024f918(UnkForcedMovementArea_b50* self);
-void* fn_710043acb4(void* key);
-void fn_71008656d8(void* object, u32 a, u32 b, void* arg);
 void fn_71007e9580(void* self);
 
 void fn_71007e94c0(UnkForcedMovementArea_b50* self) {

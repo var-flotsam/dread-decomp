@@ -5,8 +5,10 @@
 // the countdown (0.33 s, after a player call, unless the effect object at +0x1040 of the manager is
 // busy) or runs it down and calls vtable slot 0x180 of the player object when it expires.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CChozoWarriorXUltimateGrabAttack.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2656.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -47,10 +49,6 @@ struct UnkVec {
 extern const u64 g_unk_7101649988 __attribute__((visibility("hidden")));
 UnkOwner* fn_7100defcd4(UnkGameManager* manager);
 UnkPlayer* fn_7100dec788(UnkGameManager* manager);
-void fn_710048a070(UnkSelf* self);
-bool fn_7101053a7c(void* effects);
-bool fn_7101053a0c(void* effects);
-void fn_7101053850(void* effects, UnkVec* position, u32 flag, f32 duration, f32 scale);
 
 void fn_710048a194(UnkSelf* self, f32 delta) {
     self->field_0x138 = self->field_0x138 + delta;

@@ -4,6 +4,7 @@
 // Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/color/CColor4F.h"
+#include "game/CMaterialFXComponent.h"
 #include "types.h"
 
 using base::color::CColor4F;
@@ -53,7 +54,6 @@ struct UnkMagnetColorChange_b0086;
 struct UnkMagnetFx_b0086;
 void fn_71009272c4(UnkMagnetColorChange_b0086* self, u32 index, bool flag, const UnkVector4D* from,
                    const UnkVector4D* to, f32 time);
-void fn_7100926aa0(UnkMagnetFx_b0086* fx, UnkMagnetColorChange_b0086* change);
 
 struct UnkGlowOwner_ovb0133 {
     u8 pad_0x0[0x228];

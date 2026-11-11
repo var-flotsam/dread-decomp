@@ -8,15 +8,16 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CAnimationComponent.h"
 #include "game/CBlackboard.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU811.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkEmmyActor_b55;
-void fn_7100544a34(UnkEmmyActor_b55* self, char* data, bool on);
 extern char g_unk_71726debd0[];
 
 // A typed value as the section setter takes it (as in src/game/CDoorLifeComponent.cpp).
@@ -31,7 +32,6 @@ extern UnkPropertyName g_unk_71726debd8;
 
 struct UnkActorTarget;
 void fn_710117662c(UnkActorTarget*, u32, u32, u32, u32, f32);
-void fn_7101176a88(UnkActorTarget* target, u32 value);
 extern u32 g_unk_7101649db8;
 extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
 

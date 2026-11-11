@@ -7,6 +7,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkComponent.h"
+#include "game/UnkTU372.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -15,7 +16,6 @@ using base::global::UnkStringPool;
 extern char g_unk_7101a6e3d8[];
 
 struct UnkLinkList;
-void fn_71002b46ec(UnkLinkList* list, UnkLinkList** slot);
 void fn_71007586b0(void* member);
 
 struct UnkBreakableTileGroup_b52 : UnkBaseComponent {

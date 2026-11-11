@@ -7,6 +7,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CNavMeshItemStage.h"
 #include "types.h"
 
 using base::reflection::refl_ArgValue;
@@ -16,7 +17,6 @@ using base::reflection::UnkReflValue;
 
 struct UnkSource;
 struct UnkSourceArg;
-void fn_71009c5ab8(UnkSource* src, UnkSourceArg* arg);
 
 struct UnkStageDesc_A4_b75 {
     u8 pad_0x0[0x30];

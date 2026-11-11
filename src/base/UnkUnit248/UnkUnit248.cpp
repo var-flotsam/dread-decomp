@@ -3,9 +3,8 @@
 // owner link to itself at +0x10. Names and layouts are placeholders; fields are written by offset
 // in the order the original stores them.
 #include "base/UnkInitRecord_0x5c.h"
+#include "game/UnkTU308.h"
 #include "types.h"
-
-void fn_710021685c(void* sphere);
 
 void fn_71001bc2dc(char* self) {
     *(u64*)(self + 0x0) = 0;

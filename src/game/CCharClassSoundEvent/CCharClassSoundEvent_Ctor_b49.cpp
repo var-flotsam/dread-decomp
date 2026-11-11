@@ -8,6 +8,7 @@
 
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassSoundBaseEvent.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -36,7 +37,6 @@ struct UnkSoundEvent_b49 {
 };
 static_assert(__builtin_offsetof(UnkSoundEvent_b49, field_0x98) == 0x98, "layout");
 
-void fn_7100cdc2b8(void* self);  // the base constructor
 extern void* g_unk_7101aa63e0[];
 
 void fn_7100cde6ac(UnkSoundEvent_b49* self) {

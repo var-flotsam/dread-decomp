@@ -3,6 +3,7 @@
 #include "base/UnkCountedResource.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/global/CRntString.h"
+#include "game/UnkTU39.h"
 #include "types.h"
 #include "base/global/CStrId.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -55,7 +56,6 @@ struct UnkRefSlot {
 };
 
 void fn_71002aeb9c(void* root, void* tree);
-void fn_710002f67c(void* p);
 void fn_7100872908(void* p, void* handler);
 void fn_71009a1f40(void* p);
 void fn_71009b0800(void* p);

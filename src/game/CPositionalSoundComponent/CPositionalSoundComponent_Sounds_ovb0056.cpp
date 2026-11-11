@@ -2,8 +2,11 @@
 // +0x50..+0x68 (handed to and back from the sound manager, or one picked at random) and the two sound
 // handles at +0x88/+0x98 (stopped or forgotten). Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
+#include "base/snd/CSoundSystem.h"
 #include "base/snd/UnkSound.h"
+#include "game/CActorComponent.h"
 #include "game/UnkComponent.h"
+#include "game/UnkTU101.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -12,10 +15,6 @@ struct UnkSoundMgr;
 struct UnkPathNode;
 struct UnkLightingComponent3;
 extern UnkSoundMgr* g_unk_7101d4d820;
-void fn_7100108094(UnkSoundMgr* self, UnkPathNode* node);  // releases a path
-void fn_710010808c(UnkSoundMgr* self, UnkPathNode* node);  // takes a path
-void fn_710024f910(UnkLightingComponent3* self);
-void fn_7100105034(void* sound);
 
 struct UnkSoundRef {
     UnkSound* object;

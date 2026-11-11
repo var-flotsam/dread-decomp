@@ -5,10 +5,10 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 // As src/game/CTakumakuAIComponent/CTakumakuAIComponent_b34.cpp declares it.
-bool fn_71010fc778(void* self, f32* out);
 
 struct UnkTakumakuDashAttack_b66a4 {
     u8 pad_0x0[0x40];

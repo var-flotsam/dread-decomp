@@ -4,6 +4,7 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkStrIdTable.h"
+#include "game/CTimelineComponent.h"
 #include "types.h"
 
 extern void* g_unk_7101a76dc0[];   // the class's vtable
@@ -11,7 +12,6 @@ extern void* g_unk_7101a77000[];  // the listener's vtable
 extern void* g_unk_7101a20998[];  // the callback list's base vtable
 extern void* g_unk_7101a33fa0[];  // the callback list's vtable
 
-void fn_7100a2d4d0(void* target, void* listener);
 void fn_710082ca68(char*);
 
 struct UnkPullOffCallbacks_ovb0138;

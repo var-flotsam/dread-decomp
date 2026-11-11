@@ -1,5 +1,6 @@
 // CChangeStageNavMeshItemComponent's destructor body (vtable g_unk_7101a88328): the member at 0x48
 // is destroyed, both handles still held are released through the registry at 0x68, then the base.
+#include "game/CChangeStageNavMeshItemComponent.h"
 #include "game/UnkComponent.h"
 #include "types.h"
 
@@ -15,8 +16,6 @@ struct UnkNavMeshRegistry {
 struct UnkNavMeshItemMember {
     void* handle;
 };
-
-void fn_71009ba68c(UnkNavMeshItemMember* self);
 
 struct CChangeStageNavMeshItemComponent {
     void** vtable;

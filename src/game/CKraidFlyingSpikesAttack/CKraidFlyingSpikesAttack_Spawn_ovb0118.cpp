@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CKraidAttack.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -104,10 +105,6 @@ void fn_71005f5250(UnkKraidSpikesAttack_ovb0118* self) {
 }
 
 struct UnkSelf_kt41;
-bool fn_71005f2014(UnkSelf_kt41* self, void* a, void* b);
-bool fn_71005f2024(UnkSelf_kt41* self);
-bool fn_71005f2084(UnkSelf_kt41* self);
-bool fn_71005f20e4(UnkSelf_kt41* self);
 bool fn_71005ff8c0(UnkReflObject* ai);
 bool fn_71005fdb70(UnkKraidAI_ovb0118* ai);
 

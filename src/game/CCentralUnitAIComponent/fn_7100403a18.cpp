@@ -4,6 +4,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkBehaviorTree.h"
+#include "game/UnkTU399.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -34,7 +35,6 @@ struct UnkSelf : UnkBehaviorTreeAI {
 
 extern __attribute__((visibility("hidden"))) char g_unk_71726c40d8[];
 extern __attribute__((visibility("hidden"))) char g_unk_71726c40e0[];
-UnkEntry* fn_71002d57ac(void* registry, const void* key);
 
 void fn_7100403a18(UnkSelf* self) {
     fn_71003695b8(self);

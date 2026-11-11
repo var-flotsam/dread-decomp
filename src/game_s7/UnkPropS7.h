@@ -8,6 +8,7 @@
 
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU56.h"
 
 namespace unk_prop {
 
@@ -85,6 +86,5 @@ inline bool IsName(UnkProp* p, const base::global::CRntString& name) {
 }  // namespace unk_prop
 
 // Formatted stream access ("i" integer, "b" bool, "f" float, "s" string; reads take pointers).
-s64 fn_710007cf30(void* stream, const char* format, ...);  // read
 s64 fn_710007cb4c(void* stream, const char* format, ...);  // write
 s64 fn_710007cee4(void* stream, const char** out);          // the next string, in place

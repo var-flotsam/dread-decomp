@@ -3,6 +3,7 @@
 // CMagmaKraidScenarioControllerComponent_b45.cpp's fn_710091793c) and stores `value` at +0x2f8 of what
 // fn_7100897b0c finds for the object the handle names. Names and layouts are placeholders.
 #include "base/UnkRefHandle.h"
+#include "game/CCharClassShootActivatorHidrogigaComponent.h"
 #include "types.h"
 
 struct UnkCountedHidrogiga_b47 : base::UnkRefCounted {
@@ -27,7 +28,6 @@ struct UnkHidrogigaTarget_b47 {
     bool field_0x2f8;
 };
 struct UnkHidrogigaPart_b44a2;  // CCharClassShootActivatorHidrogigaComponent_b44.cpp
-UnkHidrogigaPart_b44a2* fn_7100897b0c(void* object);
 
 struct UnkShootActivatorHidrogiga_b47 {
     u8 pad_0x0[0x5c8];

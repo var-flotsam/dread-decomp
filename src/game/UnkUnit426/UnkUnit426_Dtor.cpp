@@ -5,6 +5,7 @@
 // placeholders.
 #include "base/UnkCountedResource.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU426.h"
 #include "types.h"
 
 extern char g_unk_7101a222e8[];
@@ -31,7 +32,6 @@ struct UnkUnit426Object {
 };
 
 void fn_71002f7930(UnkUnit426Member68* member);
-void fn_71002f6ac0(void* member);
 
 void fn_71002f650c(UnkUnit426Object* self) {
     self->vtable = g_unk_7101a222e8 + 0x10;

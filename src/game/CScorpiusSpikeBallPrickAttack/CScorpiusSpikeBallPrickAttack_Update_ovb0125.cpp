@@ -5,17 +5,17 @@
 // layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CScorpiusAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU1501.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
 
 struct UnkHelper;
-bool fn_71009e6434(UnkHelper* helper);
 struct UnkGasAttack;
-void fn_7100686960(UnkGasAttack* self, const void* name, u32 arg, f32 a, f32 b);
 extern __attribute__((visibility("hidden"))) char g_unk_71727037a0[];
 
 struct UnkScorpiusPathAI_ovb0125 : UnkReflObject {

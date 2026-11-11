@@ -1,8 +1,11 @@
 // Static initialiser of a reflected unit: the header ids, then the unit's own statics and
 // registrations (helpers in UnkStaticInitS7.h). Layouts are placeholders.
 #include "UnkStaticInitS7.h"
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CEmmyProtoAIComponent.h"
+#include "game/CHeatRoomComponent.h"
 #include "game/UnkItemProperties.h"
 
 using namespace unk_static_init;
@@ -14,7 +17,6 @@ extern UnkStatics_7100ae39e0 g_unk_717275b550 __attribute__((visibility("hidden"
 extern UnkPropertyEx<> g_unk_7172758b70;
 extern void* g_unk_7101a45fe8[];
 extern void* g_unk_7101a45f90[];
-void fn_71004fa3b8(void* p);
 extern UnkPropertyEx<> g_unk_7172758bb0;
 extern UnkPropertyEx<> g_unk_7172758bf0;
 extern UnkPropertyEx<> g_unk_7172758c30;
@@ -28,7 +30,6 @@ extern UnkPropertyEx<> g_unk_7172758df0;
 extern UnkPropertyEx<0x160> g_unk_7172758e30;
 extern void* g_unk_7101a889c8[];
 extern void* g_unk_7101a8d830[];
-void fn_7100a24a50(void* p);
 extern UnkPropertyEx<> g_unk_7172758fb8;
 extern UnkPropertyEx<> g_unk_7172758ff8;
 extern UnkPropertyEx<> g_unk_7172759038;
@@ -121,7 +122,6 @@ void fn_7100ae2c9c(void* p);
 void fn_7100ae08d8(void* p);
 extern UnkPropertyEx<> g_unk_717275b108;
 extern UnkPropertyEx<> g_unk_717275b148;
-void* fn_710000ffd0();
 extern UnkPropertyEx<> g_unk_717275b188;
 extern UnkPropertyEx<> g_unk_717275b1c8;
 extern UnkPropertyEx<> g_unk_717275b208;

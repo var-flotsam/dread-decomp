@@ -7,15 +7,15 @@
 // Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CCharClassEventScenarioComponent.h"
+#include "game/CInputComponent.h"
 #include "game/UnkGameManager.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-UnkWeakTarget* fn_71007e4924(void*);
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkInputComponent;
-void fn_7100872460(UnkInputComponent* self, bool enable, bool reset, void* arg);
 
 extern __attribute__((visibility("hidden"))) char g_unk_71727519c0[];
 

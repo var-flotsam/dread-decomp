@@ -3,6 +3,7 @@
 // unless it already is and is active. Names and layouts are placeholders.
 #include "base/UnkParallelFind.h"
 #include "base/global/CStrId.h"
+#include "game/CCameraComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -115,7 +116,6 @@ static inline bool SameId(const CStrId& a, const CStrId& b) {
 
 struct UnkCamComp2_ovb5;
 struct UnkCamEntry_ovb5;
-void fn_71010e41e0(UnkCamComp2_ovb5* self, UnkCamEntry_ovb5* entry, bool flag);
 
 void fn_71010e5da4(UnkCamComp6_ovb5* self, UnkCamCtrl_ovb5* ctrl, bool flag, bool a, bool b) {
     UnkCamObject_l0e5da4* object = UnkParallelFind(self, ctrl->id);

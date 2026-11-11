@@ -3,6 +3,7 @@
 // fn_7100d35a74), clears +0x164, empties the node list at +0x128 (nodes freed through the allocator at
 // +0x148), then runs the base destructor fn_7100d35944. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/logic/collision/CBroadphaseObject.h"
 #include "types.h"
 
 struct UnkColliderListNode {
@@ -34,8 +35,6 @@ struct UnkColliderDtor {
 
 extern char g_unk_7101aa85b0[];
 extern char g_unk_7101aa8660[];
-void fn_7100d35a74(UnkColliderDtor* self);
-void fn_7100d35944(UnkColliderDtor* self);
 
 void fn_7100d3b4c8(UnkColliderDtor* self) {
     self->vtable = reinterpret_cast<void**>(g_unk_7101aa85b0 + 0x10);

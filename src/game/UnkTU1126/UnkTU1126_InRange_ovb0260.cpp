@@ -2,9 +2,9 @@
 // Names and layouts are placeholders.
 #include <math.h>
 
+#include "game/CEnemyMovement.h"
 #include "types.h"
 
-u32 fn_71010cc3a4(void*);
 bool fn_71007080dc(void* self);
 
 struct UnkTrackEntry_b260 {

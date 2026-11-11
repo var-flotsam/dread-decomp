@@ -15,9 +15,11 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CFXComponent.h"
 #include "game/UnkComponent.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU285.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -111,7 +113,6 @@ __attribute__((noinline)) const CFilePathStrId* fn_710065f690(UnkRinkaUnitKind_o
 struct UnkFxObject_ovb0041;
 UnkFxObject_ovb0041* fn_71003b7db0(UnkModelManager* self, const void* path, bool a, bool b);
 void fn_7100146dac(UnkSwitchObject* self, bool enable);
-void fn_7100208a40(void*);
 void fn_7100146d84(UnkFxObject_ovb0041* fx, const UnkVec3f* position);
 void fn_7100146d98(UnkFxObject_ovb0041* fx, const UnkVec3f* angle);
 
@@ -119,7 +120,6 @@ struct UnkRinkaEntry_ruc;
 extern UnkRinkaEntry_ruc* g_unk_71726fd110[2] __attribute__((visibility("hidden")));
 
 struct UnkRinkaControl_ovb0090;
-void fn_7101152988(UnkRinkaControl_ovb0090* self, UnkFxObject_ovb0041* fx, UnkRinkaEntry_ruc** table, void* a, u32 b);
 
 struct UnkRinkaActor_ovb0090 {
     u8 pad_0x0[0x38];

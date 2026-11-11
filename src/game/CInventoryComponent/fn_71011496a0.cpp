@@ -1,6 +1,7 @@
 // Static initialiser of a reflected unit: the header ids, then the unit's own statics and
 // registrations (helpers in UnkStaticInitS7.h). Layouts are placeholders.
 #include "../../game_s7/UnkStaticInitS7.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTUProperty.h"
 
@@ -65,7 +66,6 @@ inline const CStrId& StaticName_71727b85b0() {
 extern char g_unk_7172a09260[];
 extern UnkTunable g_unk_7172a09268;
 extern void* g_unk_7101cb3540[];
-void fn_7100075104(void* self);  // its destructor, as registered
 extern char g_unk_7172a09291[];
 
 void fn_71011496a0() {

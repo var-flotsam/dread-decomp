@@ -4,6 +4,8 @@
 // argument and assigns it to the second: the value and the pointer are copied and the target's pair is rebound to the
 // target's own members (or reset). The in-place second value is destroyed out of line. Two record sizes.
 #include "base/global/CRntString.h"
+#include "game/UnkTU1629.h"
+#include "game/navmesh/CFixedDynamicSmartLinkRule.h"
 #include "types.h"
 
 template <class X, class Y>
@@ -79,8 +81,6 @@ struct UnkDestroyed {
     __attribute__((always_inline)) ~UnkDestroyed() { Destroy(this); }
 };
 
-void fn_7100ad04c4(void* self);
-void fn_710026ead0(void* self);
 // The 0x30-byte values are strings (base/global/CRntString.h).
 inline void DestroyString(void* self) { fn_710007ecd4(static_cast<base::global::CRntString*>(self)); }
 

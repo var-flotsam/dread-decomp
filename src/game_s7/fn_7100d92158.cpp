@@ -2,6 +2,7 @@
 // (created on first use). Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU27.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
@@ -44,7 +45,6 @@ struct UnkEntry_7100d92158 {
 
 struct UnkRegistry_7100d92158;
 extern UnkRegistry_7100d92158* g_unk_7101d4bbc0;
-void fn_710002002c(UnkRegistry_7100d92158* registry, const UnkEntry_7100d92158& entry);
 
 // A factory: a vtable and a 0x50-byte member, zeroed and then set up by its own function.
 struct UnkFactory_7100d92158 {

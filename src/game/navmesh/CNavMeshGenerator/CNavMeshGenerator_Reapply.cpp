@@ -1,6 +1,7 @@
 // Unit 364 of tools/tu_map.py: clears every side of every cell (fn_7100288634 for each cell index
 // and side) and then applies the entries of an array of cell/side pairs (fn_7100288320), as the
 // neighbouring fn_7100288904 and fn_71002885e8 do for one array. Names and layouts are placeholders.
+#include "game/UnkTU364.h"
 #include "types.h"
 
 struct UnkEntry_0x4_7100288950 {
@@ -25,8 +26,6 @@ struct UnkGenerator_7100288950 {
 };
 
 UnkCell_7100288950* fn_7100287de8(UnkGenerator_7100288950* self, u32 index);
-void fn_7100288320(void* self, u16 a, u8 b);
-void fn_7100288634(void* self, u16 a, u8 b);
 
 void fn_7100288950(UnkGenerator_7100288950* self, const UnkArray_0x4_7100288950* entries) {
     for (u16 i = 0; i < self->cell_count; ++i) {

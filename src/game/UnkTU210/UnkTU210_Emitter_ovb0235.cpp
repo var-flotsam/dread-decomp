@@ -3,6 +3,7 @@
 // lifetime are swapped out of the live range) and hands its two buffers back to the free list;
 // fn_710016e910 creates the 0x400 resource slots and their handles. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU182.h"
 #include "types.h"
 
 extern u32 g_unk_716e352430;
@@ -97,12 +98,6 @@ struct UnkSlot_b0235 {
 extern UnkSlot_b0235* g_unk_716e34e420;
 extern UnkSlot_b0235* g_unk_716e34c420[];
 extern u32 g_unk_716e34e428;
-
-void fn_7100161960(UnkObj_7100161b90** out, u32 size, void* a, const u32* kind);
-void fn_7100161d70(UnkGfxBuffer252* resource);
-u32 fn_71001622f0(u32 a, u32 b);
-void fn_7100161e60(UnkGfxBuffer252* resource, u32 a, u32 b, u32 c, u32 d, const void* data, u32 flags, u32 e);
-void fn_7100161dc0(UnkGfxBuffer252* resource);
 
 void fn_710016e910() {
     u8 zeros[0x24000];

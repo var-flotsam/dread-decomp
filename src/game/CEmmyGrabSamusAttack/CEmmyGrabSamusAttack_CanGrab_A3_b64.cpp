@@ -8,9 +8,9 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU39.h"
 #include "types.h"
 
-bool fn_710002fb70(void* timer);
 bool fn_7101179c3c(UnkAnimationComponent* self, u64 key);
 
 struct UnkGrabKind2_A3_b64 {

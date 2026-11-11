@@ -1,4 +1,5 @@
 // nn::atk (unit 2772 of tools/tu_map.py): small setters. Names and layouts are placeholders.
+#include "game/UnkTU2772.h"
 #include "types.h"
 
 struct UnkAtkDirtyFlags {
@@ -81,7 +82,6 @@ struct UnkAtkListNode {
     UnkAtkListNode* next;
 };
 struct UnkAtkListOwner;
-void fn_710122cf1c(UnkAtkListOwner* owner);
 
 struct UnkAtkOwnerList {
     u8 pad_0x0[0x8];

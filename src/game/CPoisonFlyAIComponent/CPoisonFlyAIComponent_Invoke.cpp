@@ -6,11 +6,11 @@
 #include "base/UnkVector.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkManager_71726af468.h"
+#include "game/UnkTU2702.h"
+#include "game/UnkTU958.h"
 #include "types.h"
 
 void fn_710063cab8(u8* part);
-void* fn_710063c670(void* part);
-void fn_71010ff2b8(char* self);
 
 template <u32 Flags>
 static inline __attribute__((always_inline)) UnkManager_71726af468* GetManager() {

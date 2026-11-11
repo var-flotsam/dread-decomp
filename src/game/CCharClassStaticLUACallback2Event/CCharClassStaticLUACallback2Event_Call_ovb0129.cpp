@@ -8,6 +8,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU0.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -15,7 +16,6 @@ using base::global::UnkStrIdBase;
 
 extern "C" int __cxa_guard_acquire(u64* guard);
 extern "C" void __cxa_guard_release(u64* guard);
-void fn_7100000790(const char*, const char*, ...);
 
 // A string id's pooled data: its text at +0x10 and a count of reads at +0x44 (a union member: the
 // original reloads the id's data pointer after the increment).

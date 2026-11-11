@@ -11,6 +11,8 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCharacterMovement.h"
+#include "game/CChozoCommanderLandingSlamAttack.h"
 #include "game/UnkActor.h"
 #include "game_s2/UnkParams.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -20,7 +22,6 @@
 using base::reflection::UnkReflObject;
 
 struct UnkFlagged;
-f32 fn_7100977bec(UnkFlagged*);
 void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
 void fn_710117b3e8(UnkWeakTarget* target, void* link);
 
@@ -30,7 +31,6 @@ struct UnkSlamUpdate_A2_b75;
 void fn_710043764c(UnkSlamUpdate_A2_b75* self);
 void fn_71004385ac();
 struct UnkSlamAttack_A2_b72;
-void fn_7100437c44(UnkSlamAttack_A2_b72* self);
 
 struct UnkSlamDir_A2_b75 {
     f32 x, y, z;

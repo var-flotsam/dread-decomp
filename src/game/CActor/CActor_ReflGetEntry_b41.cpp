@@ -4,12 +4,12 @@
 // fn_710023e498. Names are placeholders.
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
 
 struct UnkReflType;
-UnkReflType* fn_710023e498();  // the signature src/game/CActorComponent/fn_7100252240.cpp declares
 
 namespace {
 

@@ -12,6 +12,8 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU2544.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -20,7 +22,6 @@ using base::global::UnkStringData;
 
 extern void* g_unk_7101a1b5a0[];
 using UnkButtonName_ovb0108 = UnkBufferString<0x20, g_unk_7101a1b5a0>;
-void fn_710007f634(void* self, u32 value);  // appends a number
 
 struct UnkButtonTemplate_ovb0108 {
     u8 pad_0x0[0x28];
@@ -100,8 +101,6 @@ struct UnkModeFlags {
 };
 extern UnkModeFlags* g_unk_71726bc570;
 struct UnkRush_b0195;
-void fn_7100dcc2cc(UnkRush_b0195* self);
-void fn_7100dcc404(UnkRush_b0195* self, bool a, bool b, bool c);
 
 struct UnkDefinition_b0202 {
     u8 pad_0x0[0x551];

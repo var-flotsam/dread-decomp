@@ -13,9 +13,18 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CAbility.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CAbilityShinespark.h"
+#include "game/CAbilitySpeedBooster.h"
+#include "game/CFXComponent.h"
+#include "game/CGrabComponent.h"
+#include "game/CModelUpdaterComponent.h"
+#include "game/CSpecialEnergyComponent.h"
 #include "game/UnkComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU1428.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -46,12 +55,6 @@ struct UnkEnergyWaveFxComp_b49;
 
 UnkOwner* fn_7100defcd4(UnkGameManager*);
 UnkPlayer* fn_7100dec788(UnkGameManager*);
-void fn_710113f270(UnkEnergyWaveCompA_b49* comp, void* object);
-void fn_710094f8f0(UnkEnergyWaveCompB_b49* comp, UnkEnergyWaveObject_b49* object);
-void fn_71002fda50(UnkStruct_71002fda50* self, bool all, bool force_off);
-void fn_71002f8848(UnkWaveChild_A2_b72* child);
-void fn_710115372c(UnkWorld* world);
-void fn_71011738f8(UnkEnergyWaveFxComp_b49* comp, void* id, u32 flags);
 extern char g_unk_7101648d28[];
 extern const u64 g_unk_7101648d18;
 
@@ -201,7 +204,6 @@ bool fn_71002fdbc0(UnkAbilitySet_ovb22* self, bool) {
 }
 
 struct UnkSelf;
-void fn_71002f9460(UnkSelf* self, u32 on);
 
 // Toggles the ability named `id` (fn_71002f9460).
 void fn_71003018f4(UnkAbilitySet_ovb22* self, const CStrId* id, bool on) {
@@ -228,8 +230,6 @@ static inline UnkReflValue BoolValue(bool value) {
     return r;
 }
 
-void fn_71002f9694(UnkAbilityC_A2_b69* ability, bool on);
-
 void fn_710030275c(char* obj, UnkReflValue* const* args) {
     UnkReflValue* a = args[0];
     UnkAbilitySet_ovb22* self = *reinterpret_cast<UnkAbilitySet_ovb22**>(obj + 8);
@@ -252,8 +252,6 @@ UnkReflValue fn_7100302928(void*, char* obj, UnkReflValue* const* args) {
 
 UnkEntry* fn_7100301cf0(UnkOwner* self, const CStrId* id);
 UnkEntry* fn_7100301e20(UnkOwner* self, const CStrId* id);
-u64 fn_710033b6a4();
-u64 fn_7100327d14();
 
 // A set of flags (a u32) that starts empty; the empty set is a shared constant.
 struct UnkEnergyWaveFlags_ovb22 {
@@ -301,7 +299,6 @@ struct UnkEnergyWave_ovb22 {
     UnkEnergyWaveLifeHolder_ovb22* holder;  // 0xe8
 };
 
-void fn_7100a1fa98(UnkLifeComponent* life, bool a, bool b, f32 value);
 void fn_71002fe5f8(UnkEnergyWave_ovb22* self, f32 dt);
 
 // Updates the wave without time passing, then sets the energy to its current value (+0x40).
@@ -325,12 +322,10 @@ struct UnkEnergyWaveTunables_ovb22 {
 };
 extern UnkEnergyWaveTunables_ovb22 g_unk_71726aeb90;
 bool fn_71002f8da8(UnkAbility_ovb22* ability);
-void fn_71002fa070(UnkSmAbility3_A2_b63*);
 void fn_710113f3fc(UnkEnergyWaveCompA_b49* comp);
 void fn_710113f378(UnkEnergyWaveCompA_b49* comp);
 void fn_710094fa7c(UnkEnergyWaveCompB_b49* comp);
 void fn_710094f9f8(UnkEnergyWaveCompB_b49* comp);
-f32 fn_7100a1ff18(UnkLifeComponent* life);
 
 struct UnkAbility2_ovb22 {
     void** vtable;
@@ -395,4 +390,3 @@ void fn_7100300ec0(UnkEnergyWaveFull_ovb22* self) {
     if (self->hold.mode != 1)
         self->hold = {1, 0.0f};
 }
-

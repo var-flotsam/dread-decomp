@@ -5,13 +5,12 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 using base::reflection::CClass;
 
 struct UnkChozoWarriorAI_b66a2;
-void fn_71010fc284(UnkChozoWarriorAI_b66a2* self, f32* out);
-void fn_71010fc31c(UnkChozoWarriorAI_b66a2* self, f32* out);
 
 struct UnkScratchComponent_ov110 {
     void** vtable;

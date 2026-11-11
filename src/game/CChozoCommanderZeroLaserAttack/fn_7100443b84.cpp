@@ -1,6 +1,7 @@
 // Passes the request on to fn_7100424b50 when the object is above its target's position by more
 // than the component's offset (at 0x10c of the setup at 0x50) and horizontally further away than its
 // limit (at 0x108); otherwise answers false.
+#include "game/CChozoCommanderAirAttack.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
@@ -16,8 +17,6 @@ struct UnkRequester {
     u8 pad_0x10[0x40];
     UnkSetup* field_0x50;
 };
-
-bool fn_7100424b50(UnkRequester* self, void* request, u32 flag);
 
 bool fn_7100443b84(UnkRequester* self, void* request, u32 flag) {
     UnkActor* me = self->field_0x8;

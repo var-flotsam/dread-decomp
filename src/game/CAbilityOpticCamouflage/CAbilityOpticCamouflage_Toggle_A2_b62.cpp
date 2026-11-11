@@ -3,6 +3,7 @@
 // vf_0xe0 (`on`) or vf_0xe8 returns to the all-flags mask; in every case ends with fn_71002f9460(self, 0). The
 // shape of fn_71002fa078 (src/game/CAbility/CAbility_Toggle_A2_b62.cpp). Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CAbility.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTimelineCalls.h"
@@ -12,7 +13,6 @@
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkSelf;
-void fn_71002f9460(UnkSelf*, u32);
 
 namespace {
 struct UnkAbilityState_b62a2o {
@@ -70,4 +70,3 @@ void fn_7100323b60(UnkAbility_b62a2o* self, bool on) {
     }
     fn_71002f9460(reinterpret_cast<UnkSelf*>(self), 0);
 }
-

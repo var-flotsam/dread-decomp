@@ -4,14 +4,15 @@
 
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CGameObject.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU272.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
 
-void fn_7101043904(void*);
 extern char g_unk_7101a77980[];
 
 // One of the gun's 150 colour slots.
@@ -135,7 +136,6 @@ UnkBillboardFlags* fn_71001b7100(UnkBillboardFlags* self, bool value);
 void fn_71001b7584(char* self, u32 mode);
 void fn_71001b7550(char* self, u32 value);
 void fn_71001b75e8(char* self, u32 value);
-void fn_71001f3224(void* object, u32 value);
 
 struct UnkGunBillboard_ovb0049 {
     u8 pad_0x0[0x284];

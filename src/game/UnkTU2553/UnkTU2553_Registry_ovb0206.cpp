@@ -20,18 +20,30 @@
 #include "base/global/CRntStringAssign.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPool.h"
+#include "base/global/timeline/CEvent.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CBlackboard.h"
+#include "game/CDroppableLifeComponent.h"
+#include "game/GUI/CTutorialComposition.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiLabel.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSubAreaGuiCache.h"
+#include "game/UnkTU2553.h"
+#include "game/UnkTU2559.h"
+#include "game/UnkTU2571.h"
+#include "game/UnkTU2733.h"
+#include "game/UnkTU2768.h"
+#include "game/UnkTU341.h"
+#include "game/UnkTU57.h"
+#include "game/UnkTU83.h"
 #include "game/UnkTUProperty.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -41,7 +53,6 @@
 using base::global::CStrId;
 
 struct UnkMgr_0xf18;
-void fn_7100fdb9e0(UnkMgr_0xf18* manager, u32 kind, u32 flag, f32 a, f32 b);
 void fn_7100fd0e74(void* bank);
 extern void* g_unk_71726bc560;
 
@@ -282,8 +293,6 @@ struct UnkEnvView_deb914 {
 };
 
 void fn_7100de5f98(UnkPoolList_deb914* self, u32 n, u32 a, u32 flags, base::UnkAllocator* allocator);
-UnkNameHolder_b0161* fn_7100232fcc(void* object);
-void* fn_71007bb940(UnkEntity_b0165* entity);
 
 struct UnkSecond_deb914 {
     u8 pad_0x0[0x70];
@@ -384,8 +393,6 @@ using base::global::CStrId;
 
 struct UnkLanguage;
 extern UnkLanguage* g_unk_7101d47358;
-void fn_710119c020(UnkLanguage* language);
-void fn_7100066e44(void* text);
 // The text the language gives (as src/game/CScenario.cpp declares it).
 struct UnkDialogText : UnkGuiText {
     ~UnkDialogText() { fn_7100066e44(this); }
@@ -619,7 +626,6 @@ using base::global::CStrId;
 // The user data's owner, created on first use (as src/game/CBossRushManager.cpp has it).
 struct UnkUserDataOwner;
 extern UnkUserDataOwner* g_unk_7101d47308;
-void fn_710120320c(UnkUserDataOwner* self);  // constructor
 CBlackboard* fn_710120384c(UnkUserDataOwner* self);
 bool fn_71010474f4(CBlackboard* self, const CStrId& section, const CStrId& name);
 bool fn_7100395b34(CBlackboard::CSection* section, const void* name, f32* out);
@@ -740,7 +746,6 @@ using base::reflection::CClass;
 
 struct UnkKeyMap_b60;
 struct UnkKeyNode_b60;
-void fn_71002430e8(UnkKeyMap_b60* map, UnkKeyNode_b60* node);
 void fn_7100d8ba60(void* holder, void* entity);
 
 struct UnkObjectListTag_dea304;
@@ -837,12 +842,9 @@ struct UnkActorTable_b43a3;
 struct UnkActorWithDef_b43a3;
 struct UnkActor_71002329e8;
 struct UnkBoundObj;
-void fn_71002430e8(UnkKeyMap_b60* map, UnkKeyNode_b60* node);
 void fn_7100d8ba60(void* holder, void* entity);
 void fn_7101198450(void* gui, UnkReflObject* entity);
 bool fn_710119dd94(UnkActorTable_b43a3* self, UnkActorWithDef_b43a3* actor);
-void fn_71002329e8(UnkActor_71002329e8* self);
-void fn_7100232124(UnkBoundObj* obj);
 extern void* g_unk_7101d47330;
 extern UnkSubAreaGuiCache* g_unk_71727254f8;
 
@@ -929,17 +931,11 @@ extern UnkLoadCheckPointSingleton_ovb0118* g_unk_7172763578;
 extern u8* g_unk_71726bc558;
 extern void* g_unk_7101d47330;
 extern void* g_unk_71726bc560;
-void fn_710120320c(UnkUserDataOwner* self);  // constructor
-void fn_7101203768(UnkUserDataOwner* self);
 void fn_7100dee46c(UnkGameManager* self);
-void fn_7100def888(char* p0);
 void fn_7101198978(void* gui);
 void fn_7101198c0c(void* gui);
 void fn_7101047068(CBlackboard* a, CBlackboard* b);
 void fn_7100dfe560(UnkGameManager* self, bool flag);
-void fn_7100e17cc8(UnkLoadCheckPointSingleton_ovb0118* self);
-void fn_7100e19954(UnkLoadCheckPointSingleton_ovb0118* self, bool flag);
-void fn_7100ec65fc(u8* self);
 void fn_7100ec7364(u8* self);
 void fn_7100fdd250(UnkMgr_0xf18* manager, u32 kind, f32 time);
 
@@ -1027,7 +1023,6 @@ struct UnkPopUpEvent_ovb0085;
 struct UnkTutorialComposition;
 struct UnkTutorialRequest;
 void fn_7100b5ed84(UnkPopUpComposition_ovb0085* self, UnkPopUpEvent_ovb0085* event);
-void fn_7100b8903c(UnkTutorialComposition* self, UnkTutorialRequest* request);
 void fn_7101047ea8(void* self);
 
 // A blackboard seen through its vtable (called through a pointer, so the call stays virtual).
@@ -1057,7 +1052,6 @@ struct UnkNamedUser {
 };
 // String equality (the declaration is src/game_s1/fn_71000d4d50.cpp's, over a record of CRntString's size).
 struct UnkCompared_0x30;
-bool fn_710007f120(const UnkCompared_0x30* a, const UnkCompared_0x30* b);
 static inline bool Equal(const CRntString* a, const CRntString* b) {
     return fn_710007f120(reinterpret_cast<const UnkCompared_0x30*>(a), reinterpret_cast<const UnkCompared_0x30*>(b));
 }
@@ -1158,10 +1152,7 @@ using base::global::CRntString;
 
 struct UnkUserDataOwner;
 extern UnkUserDataOwner* g_unk_7101d47308;
-void fn_710120320c(UnkUserDataOwner* self);  // constructor
-void fn_7101203768(UnkUserDataOwner* self);
 void fn_7100dee46c(UnkGameManager* self);
-void fn_7100df7468();
 
 // A list of pointers (vtable g_unk_7101aa9ac0), its nodes from `allocator` with `flags`.
 extern char g_unk_7101aa9ac0[];
@@ -1223,7 +1214,6 @@ struct UnkPtrList {
 };
 
 struct UnkStrVector;
-void fn_71000e0524(UnkStrVector* self, UnkStrVector* other);
 s32 fn_71012034b0(UnkUserDataOwner* self, u32 kind, const CRntString* scenario, const CRntString* name,
                   UnkPtrList* blackboards, bool a, void (*fn)(), bool b, const CRntString* c);
 

@@ -2,6 +2,7 @@
 // their hash), else loads the chunk and, when that fails, formats and reports the error message.
 #include <stdarg.h>
 #include "base/global/CRntString.h"
+#include "game/UnkTU2677.h"
 #include "types.h"
 
 struct UnkAllocator {
@@ -105,7 +106,6 @@ struct lua_State;
 extern lua_State* g_unk_7172a01d18;
 s32 fn_71010c0bb0(lua_State* L, const char* str);
 s32 fn_71010bf400(lua_State* L, const char* fmt, va_list args);
-s32 fn_71010c0d80(lua_State* L, s32 a, char* buf, u32 size, void* x, void* y);
 
 // NON_MATCHING(minor): the hash vector's element-copy loop compares its index as 64-bit (32-bit in the
 // original) and one move is scheduled differently; same behaviour.

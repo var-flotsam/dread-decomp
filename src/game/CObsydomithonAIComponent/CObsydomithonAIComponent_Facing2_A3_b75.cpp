@@ -1,5 +1,6 @@
 // CObsydomithonAIComponent's unit (tools/tu_map.py): the owner's (+0x30) controller (+0x220) is sent ids 4 and 8
 // (swapped by the sign of the movement object's (+0x1f0) vector, past +-0.001). Names and layouts are placeholders.
+#include "game/CAnimationComponent.h"
 #include "types.h"
 
 // As src/game/CShakernautAIComponent/CShakernautAIComponent_Flip_b53.cpp declares them.
@@ -8,8 +9,6 @@ struct UnkShakernautId_b53 {
     u32 value;
     u32 unk_0x4;
 };
-void fn_71011785a8(UnkShakernautCtrl_b53*, const UnkShakernautId_b53*, bool, bool);
-void fn_7101178564(UnkShakernautCtrl_b53* self, const UnkShakernautId_b53* id, bool a, bool b);
 
 // Returned in memory: the type is not trivially copyable.
 struct UnkObsyVec_A3_b75 {

@@ -2,11 +2,11 @@
 // unregisters the component from the game manager under one key (only while the flag at +0x140 is
 // set, which it then clears) and another (fn_7100de9730), then runs fn_71010c4230. Names and
 // layouts are placeholders.
+#include "game/CComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
 struct UnkHandleOwner_71010c4230;
-void fn_71010c4230(UnkHandleOwner_71010c4230* self);
 
 struct UnkSpawnGroupKey;
 extern UnkSpawnGroupKey g_unk_7172a067b8 __attribute__((visibility("hidden")));

@@ -1,6 +1,7 @@
 // CBreakableVignetteComponent's unit: breaks the vignette once (+0x39): hides its object through the
 // render manager until it no longer answers 2 (as fn_7100763318), runs fn_7100762f64, then passes
 // the word at +0x18 to the list at +0x60 (fn_710076371c). Names and layouts are placeholders.
+#include "game/CBreakableVignetteComponent.h"
 #include "game/UnkRenderManager.h"
 #include "types.h"
 
@@ -21,9 +22,6 @@ struct UnkBreakableVignette_A5_b66 {
     u8 pad_0x48[0x18];
     u8 field_0x60[1];
 };
-
-void fn_7100762f64(UnkBreakableVignette_A5_b66* self);
-void fn_710076371c(void* list, const u64* value);
 
 void fn_710076351c(UnkBreakableVignette_A5_b66* self) {
     if (self->field_0x39)

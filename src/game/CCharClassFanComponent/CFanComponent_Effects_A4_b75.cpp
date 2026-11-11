@@ -5,13 +5,12 @@
 // src/game/CCharClassSteamJetComponent/CSteamJetComponent_Effects_A4_b75.cpp. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/math/UnkZeroVector3.h"
+#include "game/CFXComponent.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 extern char g_unk_7101647790[];
 
-char* fn_71011520a8(char* p0, u32 p1, char* p2, u32 p3);
-void fn_7101153c6c(void* object, void* effect);
 void fn_7100207be8(UnkXformNode* self, const UnkVec3f* v);
 void fn_710115217c(void* object, void* effect, u32 a, u32 b, const base::global::CStrId* name,
                    const base::math::CVector3D& offset, const base::math::CVector3D& rotation, void* extra);

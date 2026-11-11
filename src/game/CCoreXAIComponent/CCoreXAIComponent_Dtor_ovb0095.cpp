@@ -3,6 +3,8 @@
 // collider. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/global/CStrId.h"
+#include "game/CBossAIComponent.h"
+#include "game/UnkTU2702.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -10,7 +12,6 @@ extern void* g_unk_7101a3fc88[];  // the component's vtable
 extern void* g_unk_7101a22d48[];  // the listener's vtable
 
 struct UnkCoreXAI_ovb0095;
-void fn_71003ac388(void*);
 
 // A listener holding a weak handle to what it listens to; it unregisters on destruction.
 struct UnkCoreXListener_ovb0095 {
@@ -63,8 +64,6 @@ using base::global::CStrId;
 struct UnkGoliathAI_b55;
 struct UnkGoliathHitInfo_b55;
 struct UnkGoliathHitTarget_b55;
-u32 fn_71011061ac(UnkGoliathAI_b55* self, u32* out, void* arg2, UnkGoliathHitInfo_b55* info,
-                  UnkGoliathHitTarget_b55** hit);
 bool fn_7101161088(void* object);
 struct UnkCollisionContainer;
 CStrId* fn_7100864018(UnkCollisionContainer* self, void* object);

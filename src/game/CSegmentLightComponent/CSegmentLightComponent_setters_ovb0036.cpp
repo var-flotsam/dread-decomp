@@ -4,6 +4,7 @@
 #include "base/color/CColor4F.h"
 #include "base/math/CVector4D.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU290.h"
 #include "types.h"
 
 using base::color::CColor4F;
@@ -11,8 +12,6 @@ using base::math::CVector4D;
 using base::reflection::UnkReflValue;
 using base::reflection::refl_ArgValue;
 using base::reflection::refl_EmptyValue;
-
-void fn_710020c9ac(void* block, f32 value);
 
 static inline __attribute__((always_inline)) f32 NonNegative_ovb0036(f32 v) {
     return v <= 0.0f ? 0.0f : v;

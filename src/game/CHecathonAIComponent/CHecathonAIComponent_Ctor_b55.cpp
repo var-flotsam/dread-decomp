@@ -4,10 +4,10 @@
 // src/game/CAIComponent/UnkAIDeviceList.cpp, base vtable 0x7101a20998, final 0x7101a20950) and two
 // cleared runs, then the virtual at slot 3. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CBehaviorTreeAIComponent.h"
 #include "types.h"
 
 struct UnkComponent;
-void fn_710036932c(UnkComponent* self);
 extern void* g_unk_7101a4f7f0[];  // the component's vtable
 extern void* g_unk_7101a20998[];
 extern void* g_unk_7101a20950[];

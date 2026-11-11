@@ -2,12 +2,12 @@
 // attack (vtable 0x7101a57f68) at +0x146c8: the attack's destructor (its listener at +0x70, with
 // its own vtable and unregister function, then CAttack's), then the base's (fn_7100369380).
 #include "../../game_5821e4/CAttackDtor.h"
+#include "game/CBehaviorTreeAIComponent.h"
+#include "game/CEnemyMovement.h"
 
 extern void* g_unk_7101a58510[];  // the object's vtable
 extern void* g_unk_7101a57f68[];  // attack (vtable 0x7101a57f68)'s vtable
 
-void fn_7100369380(void* self);
-void fn_71010cb2fc(void* owner, void* listener);
 extern void* g_unk_7101a2aef8[];  // the listener's vtable
 
 struct UnkAttack_710063904c {

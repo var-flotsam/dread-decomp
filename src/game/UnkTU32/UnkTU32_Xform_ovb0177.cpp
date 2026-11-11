@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkZeroVector3.h"
+#include "game/UnkTU25.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -87,7 +88,6 @@ UnkStrIdPathResource* fn_7100027118(UnkStrIdPathResource* self, UnkStrIdPathReso
 struct UnkPathIds;
 struct UnkInlineString;
 struct UnkIdPair;
-void fn_710001f074(UnkPathIds* out, const UnkInlineString* path);
 void fn_7100026f70(UnkIdPair* pair);
 
 // The ids the builder fills in place (the members start out unset), destroyed in reverse order.

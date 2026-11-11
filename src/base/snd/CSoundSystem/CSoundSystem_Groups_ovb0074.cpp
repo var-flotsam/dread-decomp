@@ -8,6 +8,7 @@
 
 #include "base/UnkDefaultAllocator.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU101.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -144,12 +145,9 @@ struct UnkSoundSystemPlayView_ovb0074 {
 
 UnkPlayingHandle_ovb0074 fn_71000fe418(void* member, UnkStringData** path, u32 flags);
 void fn_71000fd9f8(void* member, UnkPlayingRef_ovb0074* ref, u64 serial, UnkSoundDesc_ovb0074* desc);
-void fn_7100105034(void*);
 u32 fn_71000fef18(void* member, u32 mask);
 UnkPlayingHandle_ovb0074 fn_71000fd43c(void* member, UnkSoundDesc_ovb0074* desc);
 struct UnkInterp_7100105d34;
-void fn_7100105d34(UnkInterp_7100105d34*, f32, bool, f32);
-void fn_7100105c00(UnkPlayingSound_ovb0074* sound, f32 value);
 UnkPlayingHandle_ovb0074 fn_71000fdb1c(void* member, UnkSoundDesc_ovb0074* desc, void* arg);
 bool fn_71001087a8(UnkSoundSystemPlayView_ovb0074* self, u32 group);
 

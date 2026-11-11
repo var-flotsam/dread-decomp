@@ -3,16 +3,16 @@
 // callback fn_7100448f28 (link at +0xa0, handle at +0xb8) up to the object the owner (+0x8) tracks at +0x220
 // (as src/game/CChozoWarriorXGlaiveSpinAttack/UnkAttackTrackLink_b54.cpp) and sends the request
 // 0x8f4e8a524ebacc1b (fn_7100426b54, mode 0). Names and layouts are placeholders.
+#include "game/CChozoCommanderGroundAttack.h"
+#include "game/UnkTU2772.h"
 #include "game_s2/UnkChozoCommanderAttack.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkSelf;
-void fn_710042bb3c(UnkSelf* self);
 void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
 void fn_710117b3e8(UnkWeakTarget* target, void* link);
 void fn_7100448f28();
-int fn_71012395a0();
 
 struct UnkZeroLaserTrackLink_A2_b72 {
     u8 pad_0x0[0x8];

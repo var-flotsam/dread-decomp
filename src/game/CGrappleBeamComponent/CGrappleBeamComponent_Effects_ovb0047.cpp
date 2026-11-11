@@ -6,15 +6,17 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CFXComponent.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU127.h"
+#include "game/UnkTU253.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 struct UnkRinkaControl_ruc;
 struct UnkWorld;
-void fn_710114ffb8(UnkRinkaControl_ruc*, void*, u32, u32);
 void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
 void fn_7100219e10(UnkRenderManager* self, u64 object);
 
@@ -72,8 +74,6 @@ using base::global::CFilePathStrId;
 struct UnkModel;
 struct UnkModelData;
 void fn_71006cae2c(UnkRenderPool* pool, const CFilePathStrId& path, UnkModel** out, base::global::CStrId* name);
-void fn_71001436a0(UnkModel* model, u32 flag);
-void fn_71001c0968(UnkModelData* data, u32 flag);
 
 struct UnkGrappleModel_ovb0047 {
     u8 pad_0x0[0x138];

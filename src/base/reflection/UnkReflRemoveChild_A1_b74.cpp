@@ -1,9 +1,8 @@
 // tools/tu_map.py unit 281 (base::reflection): drops a pointer from the owner's packed pointer list (data at 0xa8,
 // count at 0xb0; the gap is closed with memcpy as in the original), then hands it to the object at 0xa0
 // (fn_71001eed18) when there is one. Names and layout are placeholders.
+#include "base/reflection.h"
 #include "types.h"
-
-void fn_71001eed18(void* self, void* item);
 
 struct UnkReflRemoveOwner_A1_b74 {
     u8 pad_0x0[0xa0];

@@ -2,13 +2,13 @@
 // fn_71010c4148, the base class's vtable, the string-id list at +0x40 (fn_71007d762c), three cleared
 // flags at +0x78, then its own vtable and the class-entry pass of base::core::CBaseObject
 // (fn_7100023854). Names and layouts are placeholders.
+#include "base/core/CBaseObject.h"
+#include "game/CComponent.h"
+#include "game/CEmmyWakeUpComponent.h"
 #include "types.h"
 
 struct UnkStateObject;
 struct UnkNode;
-void fn_71010c4148(UnkStateObject* self);
-void fn_71007d762c(char* self);
-void fn_7100023854(UnkNode* node);
 extern void* g_unk_7101a72d70[];
 extern void* g_unk_7101a72ff8[];
 

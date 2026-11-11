@@ -2,6 +2,8 @@
 // request of src/game/CInputComponent/CInputComponent.cpp (fn_7100872460, inlined): arguments `enable`, `reset`
 // and a pointer, with the object at +8; answers the empty status {0, 0, 2, 1}. Names are placeholders.
 #include "base/reflection/UnkReflValue.h"
+#include "game/CInputComponent.h"
+#include "game/UnkTU1325.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
@@ -10,10 +12,6 @@ struct UnkInputComponent {
     u8 pad_0x0[0xad0];
     u8 field_0xad0[1];
 };
-
-void fn_7100872268(UnkInputComponent* self);
-void fn_710086f870(void* block, void* arg);
-void fn_7100870150(void* block, void* arg);
 
 static inline __attribute__((always_inline)) void* ArgPtr_A5_b69(UnkReflValue* arg) {
     if (arg->field_0x14 == 1 || *reinterpret_cast<const u64*>(arg->type + 0x18) > 8)

@@ -3,6 +3,7 @@
 // under this file's names. Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassEmmyValveComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
@@ -112,7 +113,6 @@ __attribute__((always_inline)) static inline void RequestState_A5v_b64(UnkSmMach
 }
 
 struct UnkSmBase_b60;
-bool fn_71007b3318(UnkSmBase_b60*);
 struct UnkEmmyRegistry_b55;
 extern UnkEmmyRegistry_b55* g_unk_71726af0a8;
 

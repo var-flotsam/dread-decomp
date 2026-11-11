@@ -8,11 +8,11 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
+#include "game/CGameObject.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
 #include "types.h"
 
-void fn_7101043904(void*);
 struct UnkLinkGroups;  // the member at +0x10 (src/game/navmesh/CNavMesh/fn_710027514c.cpp)
 void fn_710027497c(UnkLinkGroups* self);
 extern char g_unk_7101a20e58[];  // navmesh::CNavMesh's vtable

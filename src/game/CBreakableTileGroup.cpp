@@ -11,6 +11,13 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CGrabComponent.h"
+#include "game/UnkTU108.h"
+#include "game/UnkTU109.h"
+#include "game/UnkTU1501.h"
+#include "game/UnkTU2510.h"
+#include "game/logic/collision/CAABoxShape2D.h"
+#include "game/logic/collision/CPolygonCollectionShape.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
@@ -190,18 +197,14 @@ struct UnkListedItem {
 };
 
 void fn_7100d5e1f8(UnkCollisionShape* self, const UnkBox2D* box);
-void fn_7100d5e2c8(UnkCollisionShape* self);
 // The collision query (src/game_hi/fn_7100d5b484.cpp, whose names for the tree, the shape and the
 // matrix these are).
 struct UnkTree;
 struct UnkShape;
 struct UnkMtx44;
-bool fn_7100d5b484(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, void* arg, u16 arg2);
 void* fn_7100c9ff5c(void* p);
 UnkPlayer* fn_7100dec788(UnkGameManager* manager);
-bool fn_710113d83c(void* p);
 bool fn_71009e12d0(UnkHelper* helper);
-bool fn_71009e6434(UnkHelper* helper);
 UnkVec3f fn_71009ebe68(UnkHelper* helper);
 base::UnkVector<UnkListedItem*>* fn_7100552d7c();
 
@@ -546,14 +549,8 @@ struct UnkTileOutlineList {
 struct UnkEntry;
 struct UnkVec3;
 #include "game/UnkBroadphaseObject.h"
-void* fn_7100118b94(void* sink, UnkVec3* point);
-void fn_7100119f98(UnkTileOutline* outline, u32 value);
-void fn_7100123eb4(UnkTileOutlineList* self);
-void fn_7100123fb0(UnkTileOutlineList* self);
 bool fn_7100ca2f9c(UnkTileGroup* self, bool* region, bool* visited, u32 x, u32 y, bool solid);
-void fn_7100d62d40(UnkTileOutlines* self, UnkTileOutline* outline);
 void fn_7100d62e04(UnkTileOutlines* self, UnkTileOutline* outline);
-void fn_7100d633ec(UnkTileOutlines* self);
 
 // Whether the cell holds a tile that is not broken.
 static inline bool IsTileAt(const UnkTileGrid* g, s32 x, s32 y) {

@@ -2,6 +2,7 @@
 // appended, and then with "_border" appended as well.
 #include "UnkBufferString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using base::global::UnkStrIdBase;
@@ -37,8 +38,6 @@ struct UnkAssignedStrId {
 };
 
 extern u8 g_unk_71729cdad8[] __attribute__((visibility("hidden")));
-void fn_710007eb6c(void* self, const void* other);
-void fn_710007f634(void* self, u32 value);       // appends a number
 void fn_710007f564(void* self, const char* str);  // appends a string
 
 struct UnkNumberedIds {

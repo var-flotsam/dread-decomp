@@ -5,10 +5,10 @@
 // (state 2), the variant of src/game/CTriggerComponent/CTriggerComponent_OwnedIterSync_b56.cpp. Names
 // and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CTriggerComponent.h"
 #include "types.h"
 
 struct UnkTriggerOwned_b56;
-void fn_7100a632e8(UnkTriggerOwned_b56* self);
 
 static inline void DestroyOwned(UnkTriggerOwned_b56* p) {
     if (p) {

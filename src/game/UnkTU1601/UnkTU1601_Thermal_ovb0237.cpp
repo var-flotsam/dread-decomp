@@ -4,6 +4,10 @@
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
 #include "base/UnkVector.h"
+#include "game/CChangeStateDoorsLogicAction.h"
+#include "game/CCharClassWaterPoolComponent.h"
+#include "game/CUsableComponent.h"
+#include "game/UnkTU1601.h"
 #include "types.h"
 
 
@@ -126,14 +130,9 @@ inline UnkIter<Sync>::UnkIter(u32 index, UnkCallbackSetElem* element) : index(in
     Sync(this);
 }
 
-void fn_710090b1c8(void* self);
-void fn_7100a39fec(void* self);
-void fn_7100a93bc4(void* self);
-
 // Reserve (one copy per array type).
 struct UnkCallbackSetVector;
 void fn_710090d00c(UnkCallbackSetVector* v, u32 n);
-void fn_7100a3b8e0(UnkCallbackSetVector* v, u32 n);
 void fn_7100a956b8(UnkCallbackSetVector* v, u32 n);
 // PushBack of a copy (one per array type)
 void fn_710090d1bc(UnkCallbackSetVector* v, const UnkCallbackSetElem* value);
@@ -399,7 +398,6 @@ using base::global::CStrId;
 
 extern void* g_unk_7101a92ed0[];
 void fn_7100a959a0(UnkCallbackSetVector* v, u32 size);
-void fn_7100a9e6bc(char*);
 
 struct UnkThermalComp_b0237 {
     void** vtable;
@@ -441,5 +439,3 @@ void fn_7100a91f00(UnkThermalComp_b0237* self) {
     }
     fn_7100a9e6bc(reinterpret_cast<char*>(self));
 }
-
-

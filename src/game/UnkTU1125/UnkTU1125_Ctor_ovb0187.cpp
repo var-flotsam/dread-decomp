@@ -1,9 +1,9 @@
 // Unit 1125: the constructor of an object built on the unit 1124 object (fn_7100703814, which takes the id),
 // with an embedded kind-8 block (its own vtable) at +0xb0. Names and layouts are placeholders.
+#include "game/UnkTU1124.h"
 #include "types.h"
 
 struct UnkUnit1124Object;
-void fn_7100703814(UnkUnit1124Object* self, u32 id);
 
 extern void* g_unk_7101a6be90[];  // the object's vtable
 extern void* g_unk_7101a6bf40[];  // the embedded block's vtable

@@ -9,6 +9,8 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CBehaviorTreeAIComponent.h"
+#include "game/CHecathonPlanktonFXComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkSwitchObject.h"
 #include "types.h"
@@ -19,13 +21,11 @@ extern UnkTunable g_unk_71726e8d00;
 
 struct UnkSclawkAI_b44a2;
 struct UnkSclawkMessage_b44a2;
-u32 fn_710036974c(UnkSclawkAI_b44a2* self, UnkSclawkMessage_b44a2* msg);
 
 struct UnkRefl_fn_71005aad7c;
 template <>
 base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRefl_fn_71005aad7c>(void*);
 struct UnkPlanktonFX_A3_b71;
-void fn_710080c5d4(UnkPlanktonFX_A3_b71* self, f32 value);
 
 struct UnkWorld;
 struct UnkPart;
@@ -123,4 +123,3 @@ u32 fn_71005abb48(UnkHecathonMsg_ovb0131* self, UnkHecathonMessage_ovb0131* msg)
     }
     return result;
 }
-

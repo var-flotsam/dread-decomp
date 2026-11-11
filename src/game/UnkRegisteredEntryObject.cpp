@@ -6,11 +6,10 @@
 
 #include "base/global/CStrId.h"
 #include "game/UnkGlobal_710b372a98.h"
+#include "game/UnkTU151.h"
 #include "types.h"
 
 extern void* unk_7101a1d2c0[];  // vtable (reached through the GOT)
-
-void fn_710014d9e8(void* block, u32 arg);
 
 namespace {
 

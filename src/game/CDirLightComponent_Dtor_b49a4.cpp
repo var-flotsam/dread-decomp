@@ -2,13 +2,13 @@
 // reflection): the vtable, the scene object at +0x58 handed back to the render manager
 // (fn_71002199d8, null when there is none), then the light base destructor (fn_71008ef04c); the
 // deleting forms free the object after. Names and layouts are placeholders.
+#include "game/CBaseLightComponent.h"
 #include "game/UnkRenderManager.h"
 #include "types.h"
 
 extern char g_unk_7101a7fb98[];  // CDirLightComponent's vtable
 extern char g_unk_7101a802b8[];  // CSegmentLightComponent's vtable
 struct UnkLightBaseB47;
-void fn_71008ef04c(UnkLightBaseB47* self);
 
 struct UnkLightObjectB49a4 {
     void** vtable;

@@ -2,6 +2,7 @@
 // `source` (fn_710109e0a0, whose first argument is an empty tag) and, when the result is not empty,
 // runs fn_710109dd6c with it and the two flags. Names and layouts are placeholders.
 #include "base/global/CRntString.h"
+#include "game/UnkTU2669.h"
 #include "types.h"
 #include "UnkLeftoverReg.h"
 
@@ -36,7 +37,6 @@ struct UnkUnit2669Str {
 
 struct UnkUnit2669Tag : UnkLeftoverReg {};
 void fn_710109e0a0(UnkUnit2669Tag tag, void* source, UnkUnit2669Str* out);
-u32 fn_710109dd6c(void* self, void* source, UnkUnit2669Str* name, bool a, bool b);
 
 u32 fn_710109e1ac(void* self, void* source, bool a, bool b) {
     UnkUnit2669Str name;

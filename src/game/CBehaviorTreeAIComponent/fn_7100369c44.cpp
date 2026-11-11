@@ -4,7 +4,9 @@
 // fn_71003697f0 when it expires. Otherwise it runs a one-shot virtual the first frame after the
 // flag at +6 was set, then updates an optional helper.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CFrozenComponent.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 #include "game/UnkBehaviorTree.h"
 
@@ -13,7 +15,6 @@ using base::reflection::CClass;
 }
 
 bool fn_710117adc0(void* obj, u64 hash);
-bool fn_71007f9f20(void* obj);
 
 struct UnkHelper_7100369c44;
 void fn_71003aa7c4(UnkHelper_7100369c44* helper, f32 dt);
@@ -50,7 +51,6 @@ struct UnkSelfVtbl_7100369c44 {
     void (*vf_0x370)(UnkSelf_7100369c44* self);
 };
 
-void fn_71011000e0(UnkSelf_7100369c44* self, f32 dt);
 void fn_71003697f0(UnkSelf_7100369c44* self);
 
 void fn_7100369c44(UnkSelf_7100369c44* self, f32 dt) {

@@ -5,10 +5,10 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/CCharClassComponent.h"
 #include "types.h"
 
 struct UnkStruct_71008bca30;
-void fn_71011acd10(UnkStruct_71008bca30* self);
 extern void* g_unk_7101a7bd50[];  // the class's vtable
 
 struct UnkMorphBallLauncherDef_b44a2 {

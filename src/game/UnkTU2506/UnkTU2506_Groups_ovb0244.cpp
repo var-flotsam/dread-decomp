@@ -11,6 +11,7 @@
 #include "base/UnkSList.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CAbilityShinespark.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -186,8 +187,6 @@ UnkNamed_ovb0244* fn_7100d475ec(UnkNamedList_ovb0244* self, base::UnkStrIdMember
     obj->id = *id;
     return obj;
 }
-
-void fn_7100331c7c(void* self, const void* other);
 
 struct UnkRec48_ovb0244 {
     u64 unk_0x0[9];

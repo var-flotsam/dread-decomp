@@ -7,12 +7,11 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU42.h"
+#include "game/nn/time.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-void fn_7100068eb4(void* self);
-void fn_710006b6a4(void* self);
 
 struct UnkArray_b49 {
     void* data = nullptr;

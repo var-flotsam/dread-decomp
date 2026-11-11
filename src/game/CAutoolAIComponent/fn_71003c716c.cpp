@@ -1,6 +1,7 @@
 // Event handler: for an event of kind 3 whose payload's name hash (+0x30 of the object reached through
 // +0x10 and +0x38) is 0xe3d785cc963782a5, runs two updates (fn_71003c4e64, fn_71003c5b10) and drops the weak
 // handle at +0x147b0 after telling its target to forget the listener at +0x14798. Always reports handled.
+#include "game/CAutoolAIComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 
 struct UnkNamed {
@@ -30,7 +31,6 @@ struct UnkSelf {
     UnkWeakHandle* field_0x147b0;
 };
 
-void fn_71003c4e64(UnkSelf* self, u32 flag);
 void fn_71003c5b10(UnkSelf* self, u32 flag);
 
 bool fn_71003c716c(UnkSelf* self, UnkEvent* event) {

@@ -5,6 +5,7 @@
 // capacity grows to the next multiple of the step, and a count that can't grow hangs, as in
 // base::UnkVector::PushBack. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU2200.h"
 #include "types.h"
 
 #include <new>
@@ -24,11 +25,7 @@ struct UnkElemA0Array_b42a3 {
     base::UnkAllocator* allocator;
 };
 
-void fn_7100c8b9c8(UnkElemA0Array_b42a3* self, u32 capacity);
-
 void fn_7100c8bba4(UnkElemA0_b42a3* self, const UnkElemA0_b42a3* other);  // the element's copy constructor
-
-void fn_7100c886c0(void*);  // the element's destructor, as src/game_s7/fn_71000d2e54.cpp declares it
 
 // Appends a copy of each of the other's elements after reserving its capacity.
 static inline __attribute__((always_inline)) void AppendAll_b43a3(UnkElemA0Array_b42a3* self,

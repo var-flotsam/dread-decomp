@@ -6,6 +6,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPoolBody.h"
+#include "base/snd/CSoundSystem.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -69,7 +70,6 @@ struct UnkPlayingHandle_ovb0074 {
     UnkPlayingRef_ovb0074* ref;
     u64 serial;
 };
-UnkPlayingHandle_ovb0074 fn_7100108620(UnkSoundSystemPlayView_ovb0074* self, UnkSoundDesc_ovb0074* desc);
 struct UnkSoundMgr;
 extern UnkSoundMgr* g_unk_7101d4d820;
 

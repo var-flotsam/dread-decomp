@@ -2,12 +2,11 @@
 // at +0x230 (+0x10) and one whose part at +0x1b8 says so (fn_7101161088); otherwise it forwards to
 // fn_7100ac4ec0 when `other` has a part at +0x240 or +0x200, else to fn_7100ac4c60. Names and layouts
 // are placeholders.
+#include "game/CProjectileMovement.h"
 #include "types.h"
 
 struct UnkObj;
 struct UnkBossComponent;
-bool fn_7100ac4ec0(UnkObj* self, void* a1, void* a2, void* a3, void* a4, void* a5);
-bool fn_7100ac4c60(UnkBossComponent* self, u64 a, u64 b, u64 c, u64 d);
 bool fn_7101161088(void* part);
 
 struct UnkKraidAcidBlobsHeld {

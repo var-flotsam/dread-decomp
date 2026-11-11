@@ -3,6 +3,7 @@
 // is in mode 1 or its type is wider than 8 bytes), stores it at +0x2c of the target and, when set,
 // moves state 1 to 3 and 2 to 4 before fn_7100119c1c. Answers a 0x18-byte status {0, 0, 2, 1}.
 // Names and layouts are placeholders.
+#include "game/UnkTU108.h"
 #include "types.h"
 
 struct UnkValueType108 {
@@ -38,8 +39,6 @@ struct UnkStatus108 {
     u32 field_0x10;
     u32 field_0x14;
 };
-
-void fn_7100119c1c(UnkTarget108* target);
 
 UnkStatus108 fn_710011dd10(void* context, UnkOwner108* owner, UnkValue108* const* value) {
     UnkValue108* v = *value;

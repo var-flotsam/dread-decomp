@@ -3,6 +3,9 @@
 // (fn_71003be154 -> fn_71007d29d4) and sets the flag at +0x148e8, or clears it and, while the
 // counter at +0x147f8 is positive, sets the "on" timeline (fn_710059e4f0) once the flag at +0x148e9
 // allows it, else calls fn_710059aa2c. Names and layouts are placeholders.
+#include "game/CElectrifyingAreaComponent.h"
+#include "game/CGooplotAIComponent.h"
+#include "game/CGooshockerAIComponent.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
@@ -12,9 +15,6 @@ struct UnkGooplotOwner_b55;
 
 u32 fn_710059b8d4(void* self, void* event);
 char* fn_71003be154(UnkActor*);
-void fn_71007d29d4(char* part);
-void fn_710059aa2c(UnkGooplotAI_b55* ai, UnkGooplotOwner_b55* owner);
-void fn_710059e4f0(UnkGooshockerState* self, bool mode);
 
 struct UnkGooshockerEvent_b63a3 {
     u8 pad_0x0[0x8];

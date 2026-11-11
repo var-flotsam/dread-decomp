@@ -4,22 +4,21 @@
 #include "base/UnkStrIdPathPair.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU101.h"
+#include "game/UnkTU2523.h"
+#include "game/UnkTU32.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
 struct UnkInterp_7100105d34;
-void fn_7100105d34(UnkInterp_7100105d34* self, f32 value, bool relative, f32 time);
-void fn_7100105da8(UnkInterp_7100105d34* self, f32 value, f32 time);
 void fn_71001059f0(UnkInterp_7100105d34* self, f32 time);
 
 struct UnkSoundHandle;
 struct UnkEntityWithSound;
-UnkSoundHandle fn_7100d7c45c(UnkEntityWithSound* self, void* a, void* b, void* c);
 
 struct UnkStrIdPathRecord_b48;
-void fn_7100027464(UnkStrIdPathRecord_b48* self, const UnkStrIdPathRecord_b48* other);  // copy ctor
 
 // A string id released in one step (decrement and test together).
 struct UnkMineSoundId_ovb0132 {

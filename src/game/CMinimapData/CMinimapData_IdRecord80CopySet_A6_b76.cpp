@@ -3,10 +3,10 @@
 // (CStrId's copy assignment), the 0x60-byte array part assigned out of line (fn_7100e4f444) and a word. The b72
 // shape (src/game/CNavMeshItemComponent/UnkReflFlatMapSet_A4_b72.cpp). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU2563.h"
 #include "types.h"
 
 struct UnkArraysRecord;
-UnkArraysRecord* fn_7100e4f444(UnkArraysRecord*, const UnkArraysRecord*);
 
 struct UnkIdRecord80_A6_b76 {
     u32 field_0x0;

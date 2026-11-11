@@ -3,12 +3,11 @@
 // (src/game/CGroundShockerAIComponent/CGroundShockerAIComponent_Busy_A3_b62.cpp), calling fn_71005a4510 when it
 // drops. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CFrozenComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
 struct UnkFrostbiteComponent;
-bool fn_71007f9f20(void*);
-bool fn_71007f9fd0(UnkFrostbiteComponent*);
 
 struct UnkShockerState_ovb0121 {
     u8 pad_0x0[0x70];

@@ -1,6 +1,8 @@
 // CStandaloneFXComponent (unit 1274): setting the effect's path. Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "base/UnkVector.h"
+#include "game/CActorComponent.h"
+#include "game/CStandaloneFXComponent.h"
 #include "game/UnkModelManager.h"
 
 using base::global::UnkStringData;
@@ -40,9 +42,7 @@ struct UnkStandaloneFx {
     void* field_0x38;             // the effect the model manager holds for it
 };
 
-bool fn_710024fbc8(void* self);
 void fn_71011a91c4(UnkModelManager* manager, void* handle, u32 kind);
-void fn_7100811f28(UnkStandaloneFx* self);
 
 static inline UnkModelManager* GetManager() {
     if (!g_unk_71726b0cd8) {

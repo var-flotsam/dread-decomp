@@ -2,9 +2,9 @@
 // arrays (base/UnkVector.h): bytes at +0x40, and at +0x18 0x40-byte records destroyed by fn_71002b67e8
 // (src/game/UnkUnit377/UnkRefVectorHolder_Dtor_b47.cpp). Names are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU377.h"
 
 struct UnkRefVectorHolder_b47;
-void fn_71002b67e8(UnkRefVectorHolder_b47* self);
 
 // A 0x40-byte element whose destructor is out of line (fn_71002b67e8: frees its array, releases its
 // counted object).

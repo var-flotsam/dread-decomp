@@ -3,13 +3,13 @@
 // for 5), a cleared pair, a callback bound to the component (fn_71007610bc), a member built out of
 // line at +0xc0 and a cleared word at +0xf8. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CSceneComponent.h"
 #include "types.h"
 
 extern char g_unk_7101a6e3d8[];
 
 struct UnkBreakableTileGroup_b46a2;
 void fn_71007610bc();
-void fn_71009f1910(UnkBreakableTileGroup_b46a2* self);
 void fn_710075d058(void* member);
 
 struct UnkBreakableTileGroup_b46a2 {

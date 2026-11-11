@@ -4,6 +4,7 @@
 // fn_7100d88e14). Names are placeholders.
 #include "base/UnkErasedVector.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU2523.h"
 
 
 struct UnkRefCounted {
@@ -223,7 +224,6 @@ static inline __attribute__((always_inline)) void Begin(const UnkCallbackSetVect
     *out = UnkIter<Sync>(0, v->data);
 }
 
-void fn_7100d80b84(void* self);
 void fn_7100d88e14(const UnkCallbackSetVector* v, UnkIter<fn_7100d80b84>* out) {
     Begin(v, out);
 }

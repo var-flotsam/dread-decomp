@@ -3,6 +3,7 @@
 // a cleared result); on a hit it runs virtual slot 0x318 when the flag at +0xf9 is set, then slot
 // 0x380. Names and layouts are placeholders.
 #include "base/math/CVector.h"
+#include "game/CCharacterMovement.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
@@ -13,7 +14,6 @@ struct UnkProbeResult {
     u32 field_0x8;
 };
 
-void fn_7100978f58(char* self, const void* arg);  // reads three words at `arg`
 bool fn_71010d15d0(char* self, const CVector3D* pos, UnkProbeResult* result, f32 radius);
 
 // `arg` (x1) reaches fn_7100978f58 untouched in the original (tools/forwarded_args.py).

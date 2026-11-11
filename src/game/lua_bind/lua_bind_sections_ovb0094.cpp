@@ -5,12 +5,11 @@
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2677.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-s32 fn_71010c0270(lua_State* L, const char* format, ...);
-int fn_71010c0b40(lua_State*, const char*, ...);
 struct UnkStrIdHandle;
 void fn_7100ae986c(UnkStrIdHandle* self, const CStrId& id);
 bool fn_71010474f4(CBlackboard* self, const CStrId& section, const CStrId& name);

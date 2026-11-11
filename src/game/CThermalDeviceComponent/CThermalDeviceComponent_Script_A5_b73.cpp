@@ -1,12 +1,11 @@
 // CThermalDeviceComponent unit (tools/tu_map.py, unit 1601): runs fn_7100a925a0, then, when the component names
 // a script function (+0x570), calls it with the owner (fn_7100000790, "o"). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU1601.h"
 #include "types.h"
 
-void fn_7100000790(const char*, const char*, ...);
-
 struct UnkThermalDevice_A5_b73;
-void fn_7100a925a0(UnkThermalDevice_A5_b73* self);
 
 // The script name's string data: the text at +0x10 and a use count at +0x44 (bumped when the text is read).
 struct UnkThermalName_A5_b73 {

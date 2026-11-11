@@ -4,6 +4,7 @@
 // Nothing happens without a player or a gun. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CActorComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -12,7 +13,6 @@ using base::reflection::UnkReflObject;
 struct UnkPlayer;
 struct UnkStruct_710024fa0c;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
-void fn_710024fa0c(UnkStruct_710024fa0c*, bool);
 UnkReflObject* fn_71010e37f4(void* camera);
 bool fn_71008598c0(UnkReflObject* gun);
 

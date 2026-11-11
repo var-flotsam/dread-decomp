@@ -8,6 +8,7 @@
 // the object's flag at +0xf9 is cleared through its slot 0x260. The state ends at 0x7fffffff. Names and
 // layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CEnemyMovement.h"
 #include "game/UnkActor.h"
 #include "game/UnkAttack.h"
 #include "game/UnkManager_71726af468.h"
@@ -19,7 +20,6 @@ void fn_71006bd4f0(void* self, UnkActor* actor);
 struct UnkActorTarget;
 void fn_7101178e08(UnkActorTarget*, u32, u32, u32, f32);
 struct UnkEffectSink;
-void fn_71010c7e6c(UnkEffectSink* sink, void* params, u32 flags);
 extern void* g_unk_7101a2e208[];
 
 struct CShelmitPlasmaRayAttack;

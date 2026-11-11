@@ -1,14 +1,15 @@
 // CDoorGrapplePointComponent's unit: after the base step (fn_710082ccec), when grabbed, tells the
 // owner's door lock (fn_71002af860 -> fn_71008d0ef4), adds one timeline id to the owner and sends the
 // game manager an event with (-1, 0, 0); otherwise adds another id. Names are placeholders.
+#include "game/CPullableGrapplePointComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1376.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 struct UnkWeakTarget;
 struct UnkDoorLock;
 UnkDoorLock* fn_71002af860(UnkWeakTarget*);
-bool fn_71008d0ef4(void*);
 
 // A 12-byte zeroed argument (as src/game_s2/fn_710035131c.cpp's).
 struct UnkVec {
@@ -29,8 +30,6 @@ struct UnkDoorGrapplePoint_A5_b66 {
         UnkWeakTarget* weak_owner;
     };
 };
-
-void fn_710082ccec(UnkDoorGrapplePoint_A5_b66* self, void* arg, bool grabbed);
 
 void fn_71008298e4(UnkDoorGrapplePoint_A5_b66* self, void* arg, bool grabbed) {
     fn_710082ccec(self, arg, grabbed);

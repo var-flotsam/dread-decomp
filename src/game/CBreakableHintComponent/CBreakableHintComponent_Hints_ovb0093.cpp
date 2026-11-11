@@ -15,6 +15,9 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CActorComponent.h"
+#include "game/CBreakableHintComponent.h"
+#include "game/CCharacterMovement.h"
 #include "game/UnkComponent.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"
@@ -131,7 +134,6 @@ extern void* g_unk_7101a81968[];
 // As src/game/CBreakableHintComponent/CBreakableHintComponent_Remove_A3_b72.cpp declares them.
 struct UnkBreakableHint_A3_b72;
 bool fn_710075312c(UnkBreakableHint_A3_b72* self, u64 key);
-void fn_71007523e8(UnkBreakableHint_A3_b72* self);
 
 struct UnkHintWords_ovb0093 {
     u32 x, y, z;
@@ -276,9 +278,7 @@ void fn_7100752208(UnkBreakableHint_ovb0093* self) {
 
 struct UnkPlayer;
 struct UnkMinimapManagerState;
-void fn_710024fb24(void*);
 UnkPlayer* fn_7100dec788(UnkGameManager* manager);
-bool fn_7100979ef0(void*);
 void fn_7100e9d654(UnkMinimapManagerState* self);
 
 struct UnkHintWorld_ovb0093 {

@@ -2,11 +2,11 @@
 // string ids at +0xb8 and +0xb0, then the base destructor fn_71007ee5bc). Names and layout are
 // placeholders.
 #include "base/global/CStrId.h"
+#include "game/CCharClassFrozenComponent.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
 
 extern void* g_unk_7101a73e38[];  // the class's vtable
-void fn_71007ee5bc(char*);
 
 struct UnkFrozenIceInfo_ovb0127 {
     void** vtable;

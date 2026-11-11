@@ -14,10 +14,15 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CCameraComponent.h"
+#include "game/CComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkCameraCtrl.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2523.h"
+#include "game/UnkTU2732.h"
+#include "game/UnkTU39.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -117,8 +122,6 @@ struct UnkCamComp2_ovb5 {
 };
 static_assert(__builtin_offsetof(UnkCamComp2_ovb5, field_0xc38) == 0xc38, "layout");
 
-void fn_71010e41e0(UnkCamComp2_ovb5* self, UnkCamEntry_ovb5* entry, bool flag);
-
 void fn_71010e4168(UnkCamComp2_ovb5* self, const CStrId* id, bool flag) {
     UnkCamEntry_ovb5** slot = UnkParallelFindSlot(self, *id);
     if (slot != &self->values[self->count] && (*slot)->field_0x10)
@@ -149,7 +152,6 @@ void fn_71010e20b0(UnkCamComp2_ovb5* self) {
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 struct UnkDropCameraVec3;
-const UnkDropCameraVec3* fn_7100d7c9f4(UnkPlayer* player);
 
 struct UnkCamComp3_ovb5 {
     u8 pad_0x0[0x4c];
@@ -281,11 +283,7 @@ void fn_71010e6278(UnkCamComp8_ovb5* self, UnkCamTarget2_ovb5* target, f32 a, f3
 }
 
 extern void* g_unk_7172729910;
-void fn_710119aee8(void* self);
-void fn_710119ae24(void* self, void* item, bool flag);
-void fn_7100030ce0(void*);
 struct UnkHandleOwner_71010c4230;
-void fn_71010c4230(UnkHandleOwner_71010c4230* self);
 
 struct UnkCamObj_ovb5 {
     virtual void vf_0x0();

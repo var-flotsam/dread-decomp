@@ -2,14 +2,12 @@
 // (src/engine/UnkGfxSamplerSlots.cpp) for each of the object's `count` (+0x40) slots: mode 1 for slot 0
 // and 2 for the others through fn_7100160ab0 and fn_7100160990, value 1 through fn_7100160d50, all in
 // group 1; then fn_710015a3e0(0). Names and layouts are placeholders.
+#include "game/UnkTU177.h"
+#include "game/UnkTU182.h"
 #include "types.h"
 
 // Signatures as their definitions in src/engine/UnkGfxSamplerSlots.cpp and the declarations in
 // src/engine/UnkGraphicsSystem.cpp give them.
-void fn_7100160ab0(u32 index, s32 mode, u32 group);
-void fn_7100160990(s32 a, s32 b, bool c);
-void fn_7100160d50(u32 index, s32 value, u32 group);
-void fn_710015a3e0(u32 value);
 
 struct UnkSamplerOwner165_b68a1 {
     u8 pad_0x0[0x40];

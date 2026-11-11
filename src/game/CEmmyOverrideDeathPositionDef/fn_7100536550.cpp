@@ -2,10 +2,12 @@
 // CEmmyAIComponent::ETargetPerceptionType and others: the header ids, then the unit's own statics
 // and registrations (helpers in UnkStaticInitS7.h). Layouts are placeholders.
 #include "../../game_s7/UnkStaticInitS7.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
+#include "game/CEmmyProtoAIComponent.h"
 #include "game/UnkTUProperty.h"
 #include "game_s2/UnkChargeComponent.h"
 
@@ -113,7 +115,6 @@ void fn_71005318e0();
 extern UnkPropertyEx<> g_unk_71726dfe00;
 extern void* g_unk_7101a45fe8[];
 extern void* g_unk_7101a45f90[];
-void fn_71004fa3b8(void* p);
 extern char g_unk_71726dfe40[];
 extern char g_unk_71726dfe41[];
 UnkEnumType* fn_71005321d8();
@@ -195,7 +196,6 @@ void fn_710055fb88() __attribute__((visibility("hidden")));
 void fn_7100536450(void*) __attribute__((visibility("hidden")));  // the array's destructor
 extern char g_unk_71726e0aa0[];
 extern void* g_unk_7101a48b50[];
-void fn_7100075104(void* self);  // its destructor, as registered
 extern char g_unk_71726e0bb1[];
 extern UnkStrIdBase g_unk_71726e0bb8;
 

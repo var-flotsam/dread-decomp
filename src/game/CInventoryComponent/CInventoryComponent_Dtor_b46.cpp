@@ -4,13 +4,13 @@
 // released, the member at +0x40 is destroyed (fn_7101141468) and the component base destructor (fn_71010c4194) runs. Member
 // types and offsets are placeholders.
 #include "base/UnkDestructors.h"
+#include "game/CInventoryComponent.h"
 #include "game/UnkComponent.h"
 
 struct UnkTag_71011412e4;
 struct UnkObject_7101141558;
 extern void* g_unk_7101cb33c8[];  // the class's vtable
 
-void fn_7101141378(UnkObject_7101141558*);
 void fn_71009168e0(char*);
 void fn_7101141468(char*);
 

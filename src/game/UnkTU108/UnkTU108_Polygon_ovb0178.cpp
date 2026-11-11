@@ -8,6 +8,7 @@
 #include "base/UnkVector.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
+#include "game/UnkTU108.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -129,7 +130,6 @@ __attribute__((flatten)) UnkPathLink* fn_7100122590(base::UnkVector<UnkPathLink>
 // ---- The polygon array ----
 
 struct UnkPart0;
-void fn_710011d8b4(UnkPart0* self, const UnkPart0* other);
 
 // base::UnkVector's layout with plain members.
 struct UnkVertexArray {

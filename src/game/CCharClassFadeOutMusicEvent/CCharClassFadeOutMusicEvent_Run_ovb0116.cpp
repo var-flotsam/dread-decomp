@@ -4,6 +4,7 @@
 // src/game/UnkLoadingScreen.cpp's. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 extern void* g_unk_71726bc560;
@@ -27,7 +28,6 @@ struct UnkLoadingMaskOf {
     }
 };
 struct UnkLoadingMaskTag;
-void fn_7100fd7b44(void* manager, UnkLoadingMask channels, UnkLoadingMask mask, f32 time);
 
 // The music manager, created on first use.
 static inline void* MusicManager() {

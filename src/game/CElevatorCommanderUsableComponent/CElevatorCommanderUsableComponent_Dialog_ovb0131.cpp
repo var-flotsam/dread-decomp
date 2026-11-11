@@ -12,6 +12,12 @@
 // owner's +0x228 object is switched off (fn_710024fa0c). Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
+#include "game/CActorComponent.h"
+#include "game/CCollisionComponent.h"
+#include "game/CInputComponent.h"
+#include "game/CUsableComponent.h"
+#include "game/CWeightActivatedPlatformSmartObjectComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
@@ -58,18 +64,11 @@ void fn_7100a80930(UnkElevatorCommander_ovb0131* self) {
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkInputComponent;
-void fn_7100872460(UnkInputComponent* self, bool enable, bool reset, void* arg);
 extern void* g_unk_7101d47368;
-void fn_7100d8ced8(void*);
-void* fn_7100d8e0a0(void*);
 struct UnkUsableDialog_A6_b62;
-void fn_7100aa2570(UnkUsableDialog_A6_b62* self, bool show);
 struct UnkPlatformSm_b61;
-void fn_7100a0a08c(UnkPlatformSm_b61*);
 struct UnkStruct_7100861148;
-void fn_7100861148(UnkStruct_7100861148*);
 struct UnkStruct_710024fa0c;
-void fn_710024fa0c(UnkStruct_710024fa0c*, bool);
 
 struct UnkElevatorInputArg_ovb0131;
 extern UnkElevatorInputArg_ovb0131 g_unk_7172750640 __attribute__((visibility("hidden")));

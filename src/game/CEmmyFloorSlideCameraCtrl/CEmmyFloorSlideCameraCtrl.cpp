@@ -2,12 +2,12 @@
 // fn_71010ed044, the vtable, a cleared flag at +0x1d8 and 24 bytes at +0x1dc, 3 at +0x28, a set flag at
 // +0x35, the floats 0 and 0.3 at +0x1f4, then the class-entry pass of base::core::CBaseObject
 // (fn_7100023854). Names and layouts are placeholders.
+#include "base/core/CBaseObject.h"
+#include "game/CCameraCtrl.h"
 #include "types.h"
 
 struct UnkNode;
 struct UnkBase_7100763ed4;
-void fn_71010ed044(UnkBase_7100763ed4* self);
-void fn_7100023854(UnkNode* node);
 extern void* g_unk_7101a72188[];
 
 struct UnkEmmyFloorSlideCameraCtrl {

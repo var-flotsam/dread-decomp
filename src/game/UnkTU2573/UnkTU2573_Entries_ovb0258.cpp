@@ -5,6 +5,7 @@
 #include "base/math/UnkZeroVector3.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU1370.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -59,8 +60,6 @@ static_assert(__builtin_offsetof(UnkAttackData_b0258e, field_0x70) == 0x70, "lay
 
 struct UnkStruct_71008c0c74;
 struct UnkBase_71003cc474;
-void fn_71008c0c74(UnkStruct_71008c0c74* self);
-void fn_71008c1558(UnkBase_71003cc474* self);
 
 struct UnkDamageReq_b0258e {
     u8 pad_0x0[0x8];

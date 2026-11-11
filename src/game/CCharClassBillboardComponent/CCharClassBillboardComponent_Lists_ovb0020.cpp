@@ -6,9 +6,9 @@
 // fn_71001f32b0) and removes it from the list at +0x108. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "engine/scene/UnkToggle.h"
+#include "game/UnkTU272.h"
 #include "types.h"
 
-void fn_71001f3224(void* object, u32 value);
 void fn_71001f32b0(UnkToggle* self, bool on);
 
 struct UnkValueSet_ovb0020 {

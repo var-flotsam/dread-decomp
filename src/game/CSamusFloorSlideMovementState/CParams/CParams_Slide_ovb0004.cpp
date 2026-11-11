@@ -11,10 +11,16 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CActorComponent.h"
+#include "game/CCharacterMovement.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU1728.h"
+#include "game/UnkTU25.h"
+#include "game/UnkTU2523.h"
+#include "game/UnkTU39.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -44,20 +50,15 @@ extern const CStrId g_unk_717273b7d0 __attribute__((visibility("hidden")));
 
 struct UnkFlagged;
 struct UnkShape;
-UnkShape* fn_7100976588(UnkFlagged* flagged);
 struct CSamusMovementState;
 bool fn_71009b2d0c(CSamusMovementState* self);
 struct UnkGroundPlayer_b52;
 bool fn_71010d1598(UnkGroundPlayer_b52*);
-bool fn_710024fbc8(void*);
 struct UnkInventory;
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 struct UnkStandState_A6_b70;
 void fn_710099d6f0(UnkStandState_A6_b70* self);
 struct UnkActor;
-void fn_7100d7c548(UnkActor* self, const UnkStrIdPathPair* ids, f32 blend, f32 start);
-void fn_710002fa90(void* timer);
-void fn_710002f67c(void* self);
 void fn_710002f4e4(void* self);
 struct UnkAirTarget_B71a6;
 struct UnkAirRequest_B71a6;
@@ -649,8 +650,6 @@ struct UnkTimeline {
 };
 
 void fn_71007142e8(UnkStruct_71007142e8* self);
-void fn_7100b8b3bc(UnkTimeline* self, void* target, UnkMotionTracks* tracks, const u32* flags, f32 from,
-                   f32 to);
 
 f32 fn_7100991e30(void* self, UnkTimeline* timeline) {
     UnkStruct_71007142e8 motion;
@@ -665,7 +664,6 @@ f32 fn_7100991e30(void* self, UnkTimeline* timeline) {
 
 struct UnkPathIds;
 struct UnkInlineString;
-void fn_710001f074(UnkPathIds* out, const UnkInlineString* path);
 
 // The ids the builder fills in place (the members start out unset), destroyed in reverse order
 // (as in src/base/UnkStrIdPathResource_Ctor_b45.cpp).

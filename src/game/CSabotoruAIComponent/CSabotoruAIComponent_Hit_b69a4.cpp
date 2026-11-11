@@ -6,18 +6,18 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CBossAIComponent.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 // Declared as src/game/CKraidAIComponent/CKraidAIComponent_2.cpp does.
 struct UnkKraidAI2;
 struct UnkKraidRequest;
-void fn_7101105c90(UnkKraidAI2* self, void* arg, UnkKraidRequest* request);
 
 // Declared as src/game/CGobblerAIComponent/CGobblerAIComponent_Spawn_b60.cpp does.
 struct UnkZiplineLinkTarget_b49;
 struct UnkZiplineLink_b49;
-UnkZiplineLinkTarget_b49** fn_71003b0c4c(UnkZiplineLink_b49* self);
 
 extern const base::math::CVector3D g_unk_710164a4f8 __attribute__((visibility("hidden")));  // {-1, 0, 0}
 extern const base::math::CVector3D g_unk_710164a504 __attribute__((visibility("hidden")));  // {1, 0, 0}

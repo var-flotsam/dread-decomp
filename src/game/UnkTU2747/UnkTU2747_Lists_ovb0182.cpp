@@ -11,9 +11,12 @@
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CGameObject.h"
+#include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
 #include "../../game_s7/UnkGuiS7.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 struct UnkClone_fn_71011d3180;
@@ -257,7 +260,6 @@ void fn_71011d33c4(const UnkList_ovb0182* list, UnkListIter_ovb0182* out) {
 // --- parameter blocks of a display object ---
 
 struct UnkCompared_0x30;
-bool fn_710007f120(const UnkCompared_0x30* a, const UnkCompared_0x30* b);
 void fn_710120280c(void* param, void* owner);
 void fn_7101202d1c(void* param, void* owner);
 
@@ -371,7 +373,6 @@ void fn_71011cee40(UnkGuiDisplayObject* object);
 
 struct UnkDisplayObjectContainer_ovb0032;
 struct UnkDisplayObject_ovb0032;
-UnkDisplayObject_ovb0032* fn_71011d932c(UnkDisplayObjectContainer_ovb0032*, UnkDisplayObject_ovb0032*);
 
 // The members the parent change touches.
 struct UnkGuiChildLinks_ovb0182 {
@@ -569,7 +570,6 @@ extern char g_unk_7101cb5b90[];  // GUI::CDisplayObject's vtable
 
 void fn_7100b03a74(void* state);
 void fn_7100b1e048(void* slots);
-void fn_7101043934(UnkCameraCtrl_ovb0049*);
 
 template <>
 struct base::UnkDtorTraits<UnkTag_71011ccfb4> {

@@ -1,6 +1,7 @@
 // nn::atk-ish unit 2772: sound-system helpers: the audio renderer's sink setup and update, the voice
 // pool's channel lists and a few small accessors on parameter blocks. Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
+#include "game/UnkTU2772.h"
 #include "types.h"
 
 extern "C" int __cxa_guard_acquire(u64* guard);
@@ -8,8 +9,6 @@ extern "C" void __cxa_guard_release(u64* guard);
 
 void* fn_71001039f8();
 struct UnkAtkLock;
-void fn_71012392d0(UnkAtkLock* lock);
-void fn_71012392e0(UnkAtkLock* lock);
 
 struct UnkAtkListLink_b0148 {
     UnkAtkListLink_b0148* prev;
@@ -230,8 +229,6 @@ u32 fn_710123a3c0(void* config, void* sink, void* mix, const s8* input, s32 inpu
                   u64 buffer_size, s32 format);
 u64 fn_710123a400(void* handle0, void* handle1, void* config);
 [[noreturn]] void fn_71012390c0(const char* a, const char* b, const char* c, u32 line);
-[[noreturn]] void fn_71012390d0(const char* a, const char* b, const char* c, u32 line, const u32* result,
-                                const char* format);
 
 struct UnkAtkRenderer_b0148 {
     u8 pad_0x0[0x8];
@@ -353,7 +350,6 @@ struct UnkAtkEntryIndex_b0148 {
     u32 index;  // 0x0
     u8 pad_0x4[0x1c];
 };
-bool fn_7101206ad8(UnkAtkArchive_b0148* archive, UnkAtkEntryIndex_b0148* out, s32 key);
 struct UnkAtkEntryInfo_b0148 {
     u32 id;  // 0x0
     u32 field_0x4;
@@ -385,7 +381,6 @@ struct UnkAtkLoaderObject_b0148 {
     UnkAtkLoaderVtable_b0148* vtable;  // 0x0
     UnkAtkArchive_b0148* archive;  // 0x8
 };
-void fn_710121279c(UnkAtkLoaderObject_b0148* self, u32 index, void* out);
 
 void fn_71012126dc(UnkAtkLoaderObject_b0148* self, s32 key, void* out) {
     if (key == -1)
@@ -439,11 +434,7 @@ struct UnkAtkPoolOwner_b0148 {
 };
 
 void fn_710122b9c0(UnkAtkPoolItem_b0148* item, u32 mode, s32 arg);
-void fn_710122c43c(UnkListItem* item, u32 state);
-void fn_710122c958(UnkListOwner* owner, UnkListItem* item);
 void* fn_710120f310(void* object);
-void fn_710122ae00(void* owner, void* object);
-void fn_710122b868(void* item);
 
 static inline UnkAtkPoolItem_b0148* PoolItemOf(UnkAtkListLink_b0148* link) {
     return reinterpret_cast<UnkAtkPoolItem_b0148*>(reinterpret_cast<u8*>(link) - 0x3d8);
@@ -565,4 +556,3 @@ void fn_710122ef60(UnkAtkChannelSet_b0148* self) {
     }
     self->active = false;
 }
-

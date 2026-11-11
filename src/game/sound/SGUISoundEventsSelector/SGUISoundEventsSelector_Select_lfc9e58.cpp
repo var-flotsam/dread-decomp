@@ -3,12 +3,12 @@
 #include "base/UnkCountedResource.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU32.h"
 #include "types.h"
 
 struct UnkStrIdPathResource;
 struct UnkIdPair;
 void fn_7100026f70(UnkIdPair* pair);
-void fn_7100027118(UnkStrIdPathResource* self, UnkStrIdPathResource* other);
 
 
 // The id/path resource record; released out of line (fn_7100026f70), so the ids sit in a union.

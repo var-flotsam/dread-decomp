@@ -9,17 +9,18 @@
 #include "base/UnkDefaultAllocator.h"
 #include "base/snd/UnkSound.h"
 #include "base/snd/UnkSoundSystemATK.h"
+#include "base/tunable/CTunable.h"
+#include "game/UnkTU101.h"
+#include "game/UnkTU2772.h"
+#include "game/UnkTU58.h"
 
 using base::snd::UnkSoundSystemATK;
 
-bool fn_7100132cd0();
 extern u8 g_unk_7108b6ab60 __attribute__((visibility("hidden")));
 
 struct UnkInterp_7100105d34;
-void fn_7100105d34(UnkInterp_7100105d34*, f32, bool, f32);
 struct UnkPlayingSound_ovb0074;
 void fn_7100105bac(UnkPlayingSound_ovb0074* sound, f32 value);
-void fn_7100105c00(UnkPlayingSound_ovb0074* sound, f32 value);
 void fn_7100105c9c(UnkPlayingSound_ovb0074* sound, f32 value);
 void fn_7100105cf0(UnkPlayingSound_ovb0074* sound, f32 value);
 
@@ -263,9 +264,6 @@ struct UnkOwner_b0184 {
     UnkEffectRef_b0184* ref;  // 0x28
 };
 
-void fn_710120e660(UnkEffect_b0184* effect, f32 value, u32 index);
-void fn_710120e658(UnkEffect_b0184* effect, f32 value);
-
 void fn_71000f5260(UnkOwner_b0184* self, f32 value, bool enable, f32 time) {
     if (!self->ref)
         return;
@@ -310,7 +308,6 @@ extern "C" int __cxa_guard_acquire(u64* guard);
 extern "C" void __cxa_guard_release(u64* guard);
 
 bool fn_7100132a90();
-s64 fn_7100080b7c(UnkGfxFrameSource* timer);
 
 // The function-local static (the time of the last call) and its guard, then the time of this call.
 struct UnkTimeStatic_b0184 {

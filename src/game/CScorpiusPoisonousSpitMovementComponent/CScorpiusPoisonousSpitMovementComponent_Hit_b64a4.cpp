@@ -1,10 +1,10 @@
 // CScorpiusPoisonousSpitMovementComponent unit (tools/tu_map.py, the name from reflection): rejects
 // hits once done (+0x5d8) and on the object held at +0x230 (+0x10); otherwise forwards to
 // fn_7100ac4ec0 and then notes the hit (fn_71006993e0). Names and layouts are placeholders.
+#include "game/CProjectileMovement.h"
 #include "types.h"
 
 struct UnkObj;
-bool fn_7100ac4ec0(UnkObj* self, void* a1, void* a2, void* a3, void* a4, void* a5);
 
 struct UnkSpitHeld_b64a4 {
     u8 pad_0x0[0x10];

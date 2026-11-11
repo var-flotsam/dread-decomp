@@ -7,8 +7,10 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
+#include "game/CEnemyMovement.h"
 #include "game/UnkBehaviorTree.h"
 #include "game/UnkTUProperty.h"
+#include "game/behaviortree/CBaseAction.h"
 #include "game_s2/UnkParams.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -18,8 +20,6 @@ using base::global::CStrId;
 extern base::global::CStrId g_unk_71726b7cb8;
 extern void* g_unk_7101a265d0[];  // the action's vtable
 extern void* g_unk_7101a22d48[];  // the listener's vtable
-void fn_7100393ea0(void*);         // the base's destructor
-u32 fn_71010cc3a4(void*);
 
 // A typed value as the section setter takes it (as in src/game/CDoorLifeComponent.cpp).
 struct UnkTypedValue {

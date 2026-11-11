@@ -4,14 +4,13 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CEnemyMovement.h"
 #include "game/UnkNavMeshCell.h"
+#include "game/UnkTU811.h"
 #include "types.h"
 
 struct UnkEmmyAIView;
-bool fn_710054ad2c(UnkEmmyAIView*);
 struct UnkEmmyAI2_b62a3;
-bool fn_710054aecc(UnkEmmyAI2_b62a3*);
-u32 fn_71010cc38c(void*);
 void* fn_7100964f50(void* self, void* owner);
 
 struct UnkEmmyTarget_ovb0259 {

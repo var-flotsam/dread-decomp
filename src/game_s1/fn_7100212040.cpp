@@ -1,5 +1,6 @@
 // Rebuilds the quantised bounds of an object: after the base update, reads its minimum and
 // maximum corner through two virtual getters and stores each component times ten as an int.
+#include "game/UnkTU307.h"
 #include "types.h"
 
 struct UnkVec3f {
@@ -22,8 +23,6 @@ struct UnkBounded {
     s32 min_x10, min_y10, min_z10;
     s32 max_x10, max_y10, max_z10;
 };
-
-void fn_7100215f60(UnkBounded* self, const void* arg);  // reads the point (src/game/UnkUnit307/UnkBoundsExtend.cpp) at `arg`
 
 // `arg` (x1) reaches the base update untouched in the original (tools/forwarded_args.py).
 void fn_7100212040(UnkBounded* self, const void* arg) {

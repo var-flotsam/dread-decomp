@@ -9,6 +9,7 @@
 #include "base/snd/UnkSound.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkTU2578.h"
 #include "types.h"
 
 extern char g_unk_7101a9d190[];  // the member's vtable
@@ -35,12 +36,8 @@ static inline void FadeOut(UnkSoundHandle* handle) {
 
 struct UnkStruct_0x128;
 extern UnkStruct_0x128* g_unk_7101d47320;
-void fn_7100ef3494(UnkStruct_0x128* self);
 void fn_7100f011c4(UnkStruct_0x128* self, u32 mode);
-void fn_7100f01838(UnkStruct_0x128* self, u32 mode);
-void fn_7100f00714(UnkStruct_0x128* self);
 bool fn_7100f00778(UnkStruct_0x128* self);
-void fn_7100f003e8(UnkStruct_0x128* self, s32 value);
 
 static inline UnkStruct_0x128* Music() {
     UnkStruct_0x128* m = g_unk_7101d47320;

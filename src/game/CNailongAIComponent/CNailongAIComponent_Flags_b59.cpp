@@ -5,13 +5,12 @@
 // (+0x2e8) knows its id (g_unk_710164a2f8 or g_unk_710164a2f0), sets that id to the all-flags mask
 // (as src/game/CKraidAIComponent/fn_7100600c98.cpp). Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CModelUpdaterComponent.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 struct UnkFlagTarget;
-void fn_7101172780(UnkFlagTarget* target, const char* name);
-void fn_7101172764(UnkFlagTarget* target, const char* name);
 
 struct UnkNailongKey_b59a4;
 extern UnkNailongKey_b59a4 g_unk_710164a2f8;  // reached through the GOT

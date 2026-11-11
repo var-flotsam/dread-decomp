@@ -3,14 +3,13 @@
 // +0x228 sets one of two flags and clears the other (fn_7101172764, fn_7101172780), by whether the
 // value is non-zero; returns an empty value. Names and layouts are placeholders.
 #include "base/reflection/UnkReflValue.h"
+#include "game/CModelUpdaterComponent.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
 
 // As src/game/CGooplotAIComponent/CGooplotAIComponent_Reset_b49.cpp declares them.
 struct UnkFlagTarget;
-void fn_7101172780(UnkFlagTarget* target, const char* name);
-void fn_7101172764(UnkFlagTarget* target, const char* name);
 extern char g_unk_710164a738[];
 extern char g_unk_710164a730[];
 

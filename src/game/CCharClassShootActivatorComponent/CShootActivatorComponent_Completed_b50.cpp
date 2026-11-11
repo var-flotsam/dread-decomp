@@ -4,9 +4,8 @@
 // notifies one of two deferred listener sets (g_unk_717272c9c0, the second at +0x80 when the flag is
 // clear) with this component. Names and layouts are placeholders.
 #include "base/UnkCloneHelpers.h"
+#include "game/UnkTU0.h"
 #include "types.h"
-
-void fn_7100000790(const char* name, const char* format, ...);  // calls a script function
 
 extern char g_unk_717272c9c0[];
 

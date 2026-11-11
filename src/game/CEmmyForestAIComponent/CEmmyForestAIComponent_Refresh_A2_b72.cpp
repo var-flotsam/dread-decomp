@@ -3,6 +3,7 @@
 // owner reached through +0x29558 (+0x10 of it; fn_7100772cb0) and passes each one found (+0x58 of it) to
 // fn_710110f8ac. Returns the empty value. Names and layouts are placeholders.
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -11,7 +12,6 @@ using base::reflection::UnkReflValue;
 struct UnkNamedEntry_7100772cb0;
 struct UnkNamedList_7100772cb0;
 UnkNamedEntry_7100772cb0* fn_7100772cb0(UnkNamedList_7100772cb0* self, const CStrId* id);
-void fn_710110f8ac(void* self, void* object);
 extern CStrId g_unk_71726dbe18 __attribute__((visibility("hidden")));
 extern CStrId g_unk_71726dbe20 __attribute__((visibility("hidden")));
 

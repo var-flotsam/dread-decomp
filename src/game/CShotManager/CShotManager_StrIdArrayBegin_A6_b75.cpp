@@ -3,6 +3,8 @@
 // (0, the first element), set to refer to it only when the element is non-null, assigned to the result (re-pointed out
 // of line), then destroyed. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CShotManager/CTunableShotManager.h"
+#include "game/UnkTU2612.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -78,9 +80,6 @@ struct UnkPathIter_A6_b75 {
         return *this;
     }
 };
-
-void fn_7100ed8144(void* it);
-void fn_7100fb0000(void* it);
 
 using UnkFilePathElem_A6_b75 = UnkPathElem_A6_b75<g_unk_7101d47200>;
 using UnkStrIdElem_A6_b75 = UnkPathElem_A6_b75<g_unk_7101d47108>;

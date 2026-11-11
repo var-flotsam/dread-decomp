@@ -5,12 +5,12 @@
 // another with the all-flags mask. Names and layouts are placeholders.
 #include "../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
+#include "game/CActorComponent.h"
+#include "game/CChozoCommanderSentenceSphereAttack.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
-bool fn_710024fbc8(void*);
-void* fn_710043acb4(void* key);
 using base::global::CStrId;
 extern CStrId g_unk_7172737ef8 __attribute__((visibility("hidden")));
 extern u64 g_unk_710164b258;

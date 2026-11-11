@@ -3,6 +3,7 @@
 // the owner's object at +0x280 and, unless it is already on, switches it on. Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CName.h"
+#include "game/CFXComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTimelineCalls.h"
@@ -16,7 +17,6 @@ struct UnkComponent {
 struct UnkObject;
 // As src/game/CChozoWarriorXAIComponent/fn_710048ecbc.cpp declares them.
 UnkComponent* fn_7101152b90(UnkObject* object, u64 hash);
-bool fn_710114e680(UnkObject* object, u8 kind);
 
 struct UnkBeamBurstOwner_b61a2 {
     u8 pad_0x0[0x280];

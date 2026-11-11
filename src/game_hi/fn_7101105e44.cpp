@@ -3,8 +3,10 @@
 // reports whether the owner's shield currently absorbs it (2) or not (0).
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CCharClassAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU2523.h"
 
 using base::global::CStrId;
 
@@ -76,8 +78,6 @@ struct UnkStruct_7101105e44 {
     bool field_0x11e0;
 };
 
-void fn_7100d7add4(UnkActor_7101105e44* actor, bool value);
-u32 fn_7100414070(const char* str);
 void fn_71008c1538(UnkDamage_7101105e44* d, f32 amount);
 bool fn_7101161088(UnkShield_7101105e44* shield);
 

@@ -2,11 +2,10 @@
 // CTakumakuDashAttack at +0x146d0: the attack's destructor (its listener at +0x40, then CAttack's),
 // then the base's (fn_7100369380).
 #include "../../game_5821e4/CAttackDtor.h"
+#include "game/CBehaviorTreeAIComponent.h"
 
 extern void* g_unk_7101a67e00[];  // the object's vtable
 extern void* g_unk_7101a67a90[];  // CTakumakuDashAttack's vtable
-
-void fn_7100369380(void* self);
 
 struct UnkAttack_71006d40e4 {
     void** vtable;

@@ -3,6 +3,7 @@
 // then, when the actor has a controller (+0x220), clears one of ids 4/8 (fn_7101178564), sets the other
 // (fn_71011785a8) and records the side (+0x147f8 +0xc: 1 when dir.x is past +0.001), and stores `dir` as the
 // state's direction (+0x18, fn_710007b444). Names and layouts are placeholders.
+#include "game/CAnimationComponent.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
 
@@ -12,8 +13,6 @@ struct UnkShakernautId_b53 {
     u32 value;
     u32 unk_0x4;
 };
-void fn_71011785a8(UnkShakernautCtrl_b53*, const UnkShakernautId_b53*, bool, bool);
-void fn_7101178564(UnkShakernautCtrl_b53* self, const UnkShakernautId_b53* id, bool a, bool b);
 
 // As src/game/CBatalloonAIComponent/fn_71003de7b4.cpp declares them.
 struct UnkVec3 {

@@ -7,6 +7,7 @@
 #include <new>
 
 #include "base/UnkDefaultAllocator.h"
+#include "base/global/timeline/CEvent.h"
 #include "types.h"
 
 struct UnkMovieBuffer_7100221938 {
@@ -95,7 +96,6 @@ struct UnkPlayer_7100221938 {
     void* field_0xd18;
 };
 
-void fn_710006686c(void* thread);
 extern "C" void free(void* p);
 u64 fn_7100225d2c(UnkPlayer_7100221938* self);
 

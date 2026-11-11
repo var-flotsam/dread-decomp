@@ -1,9 +1,9 @@
 // A copy of fn_71000e00a0 (src/base/reflection/UnkReflArrayEqual.cpp): equality of two arrays of
 // 0x48-byte values compared by fn_71011136b8 (src/game_s1/fn_71000d4d50.cpp). Names are placeholders.
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 struct UnkCompared_0x48;
-bool fn_71011136b8(const UnkCompared_0x48* a, const UnkCompared_0x48* b);
 
 struct UnkCompared48Array_710111410c {
     u8* data;  // 0x48-byte values

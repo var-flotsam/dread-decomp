@@ -2,6 +2,7 @@
 #include "base/UnkStrIdPathPair.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU1501.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
@@ -107,7 +108,6 @@ struct UnkSamusMovementUpdate {
 static_assert(__builtin_offsetof(UnkSamusMovementUpdate, field_0x51d4) == 0x51d4, "placeholder layout");
 
 void fn_71010dae00(UnkSamusMovementUpdate* self, f32 dt);  // the base update
-void fn_71009e4598(UnkSamusMovementUpdate* self);
 
 // The update: after the base step, hands +0x280 to the listener at +0x2d08, clears +0x396, runs
 // virtual slot 98, keeps the vector at +0x1d8 at +0x2380, then runs fn_71009e4598 when +0x51d4 is set.

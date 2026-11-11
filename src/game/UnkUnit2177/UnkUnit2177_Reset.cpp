@@ -3,6 +3,7 @@
 // through its vtable slot 0x48; a node's next link is at +0x120), empties the list and destroys the
 // elements of the global array g_unk_7172791e48. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/logic/collision/CPolygonCollectionShape.h"
 #include "types.h"
 
 // The collision manager singleton (src/game/CCollisionComponent/fn_7100863a8c.cpp).
@@ -19,8 +20,6 @@ struct UnkElem188 {
     u8 unk_0x8[0x180];
 };
 extern base::UnkVector<UnkElem188> g_unk_7172791e48;
-
-void fn_7100d62bd8(void*);
 
 struct UnkUnit2177Node {
     u8 pad_0x0[0x120];

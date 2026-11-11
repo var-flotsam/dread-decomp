@@ -4,6 +4,7 @@
 // (+0x14bcc) is above 10. The list helpers are base::UnkSList's (the erase as in
 // src/game/CGrabComponent/CGrabComponent_Grab_ovb0057.cpp). Names and layouts are placeholders.
 #include "base/UnkSList.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 struct UnkQuetzoaListTag_ovb0134;
@@ -22,8 +23,6 @@ struct UnkQuetzoaXAI_ovb0134 {
     f32 value;  // 0x14bcc
 };
 static_assert(__builtin_offsetof(UnkQuetzoaXAI_ovb0134, value) == 0x14bcc, "layout");
-
-void fn_710110bb4c(UnkQuetzoaXAI_ovb0134* self, UnkQuetzoaOther_ovb0134* other, void* arg, bool flag);
 
 static inline s32 IndexOf(UnkQuetzoaList_ovb0134* list, u64 v) {
     u32 i = 0;

@@ -5,6 +5,7 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkCollectionIter.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU341.h"
 
 struct UnkClone_fn_710023ac4c;
 extern void* g_unk_7101a20950[];
@@ -17,8 +18,6 @@ struct base::UnkCallbackTraits<UnkClone_fn_710023ac4c> {
 
 using UnkActorCallbackList_b49a1 = base::UnkCallbackListShort<UnkClone_fn_710023ac4c>;
 static_assert(sizeof(UnkActorCallbackList_b49a1) == 0x40, "UnkActorCallbackList_b49a1 layout");
-
-void fn_710023ac4c(void* self);  // re-points `current` at (index, element)
 
 struct UnkActorCallbackIter_b49a1 {
     u32 index;

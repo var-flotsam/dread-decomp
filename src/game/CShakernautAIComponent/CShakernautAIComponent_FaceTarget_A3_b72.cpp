@@ -4,12 +4,12 @@
 // target is negative. Names and layouts are placeholders.
 #include <math.h>
 
+#include "game/CBehaviorTreeAIComponent.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
 // Declared as src/game/CChozoWarriorAIComponent/CChozoWarriorAIComponent_Send_b58.cpp does.
 struct UnkWarriorSend_b58;
-void fn_7100369d80(UnkWarriorSend_b58*, void*);
 
 struct UnkShakernautAI_A3_b72 {
     u8 pad_0x0[0x30];

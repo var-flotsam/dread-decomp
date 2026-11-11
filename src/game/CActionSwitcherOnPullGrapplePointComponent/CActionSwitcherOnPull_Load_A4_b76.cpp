@@ -5,6 +5,7 @@
 // src/game/CDoorLifeComponent/CDoorLifeComponent_b49.cpp. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
+#include "game/CPullableGrapplePointComponent.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -12,8 +13,6 @@ using base::global::CStrId;
 
 extern UnkProperty g_unk_71727235d0;  // "Used"
 struct UnkPullableGrapplePoint_b54;
-void fn_710082cee4(UnkPullableGrapplePoint_b54* self, bool flag);
-void fn_710082cf08(UnkPullableGrapplePoint_b54* self, bool flag);
 
 struct UnkGrappleUsedValue_A4_b76 {
     CStrId id;

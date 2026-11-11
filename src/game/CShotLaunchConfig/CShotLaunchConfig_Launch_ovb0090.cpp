@@ -5,6 +5,7 @@
 // and the launch setup (fn_71009fa098: resets the launch state (fn_71009f9dc0), stores the three
 // vectors, two flags, a value, the current frame word g_unk_7101d58e48 and the owner; returns true).
 // Names and layouts are placeholders.
+#include "game/CShotLaunchConfig.h"
 #include "game/UnkActor.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -67,7 +68,6 @@ bool fn_71009f9ea8(const UnkShotCandidate_ovb0090* a, const UnkShotCandidate_ovb
 }
 
 struct UnkShotLaunchState;
-void fn_71009f9dc0(UnkShotLaunchState* self);
 extern u32 g_unk_7101d58e48;
 
 struct UnkShotLaunch_ovb0090 {

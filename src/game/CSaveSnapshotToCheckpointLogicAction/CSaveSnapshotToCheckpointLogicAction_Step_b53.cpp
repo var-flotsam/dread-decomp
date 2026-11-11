@@ -6,12 +6,12 @@
 // placeholders.
 #include "base/UnkRefHandle.h"
 #include "base/global/CRntString.h"
+#include "game/CTriggerLogicAction.h"
 #include "game/UnkGameManager.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkTutoExitAction_b47;
-void fn_7100a55ac8(UnkTutoExitAction_b47* self);
 
 // A string-id entry as read here: the text pointer at +0x10, a use count at +0x44 (a union member:
 // the original reloads the id after the increment).

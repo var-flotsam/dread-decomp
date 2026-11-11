@@ -4,6 +4,7 @@
 // reference to what it finds in the entry, and sets one of the flags at +0x1e8..+0x1ea from the kind
 // of the object's component.
 #include "game/UnkGameManager.h"
+#include "game/UnkTU372.h"
 #include "game_s2/UnkWeakHandle.h"
 
 struct UnkKeyed {
@@ -49,10 +50,7 @@ void* fn_7100ca719c(void* manager, u32 id);
 UnkEntryInfo* fn_7100ca1ea8(void* entry, u8 sub);
 void fn_71002b3aa0(UnkOwner* self, bool flag, void* arg);
 UnkLinkList* fn_7100ca7a64(void* manager, u16 id);
-void fn_71002b46ec(UnkLinkList* list, UnkLinkList** slot);
-void fn_71002b4538(UnkLinkList* list, UnkLinkList** slot);
 UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
-void* fn_71002b3b84(UnkWeakTarget* object);
 void fn_71009c1130(void* component, u32 value, void* owner);
 s32 fn_71009c0b8c(void* component);
 

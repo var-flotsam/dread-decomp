@@ -6,15 +6,15 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/UnkTU218.h"
+#include "game/UnkTU223.h"
+#include "game/UnkTU226.h"
 #include "types.h"
 
 extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
 
 void fn_71001a9f84(void* self);
-void fn_710019bd2c(void*);  // as src/engine/UnkGraphicsSystem.cpp declares it
-void fn_7100198aac(void* self);
 // Gives the new object its owner.
-void fn_710019e95c(void* self, void* owner);
 
 struct UnkPoolNode_b54a1 {
     u64 key;

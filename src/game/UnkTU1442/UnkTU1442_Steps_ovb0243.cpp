@@ -2,6 +2,8 @@
 // (fn_7100969000; cf. src/game/UnkUnit1442/UnkUnit1442_Refresh_b50.cpp and unit 1444). Its destructor, the
 // checks and steps around the 0x100-byte object at +0xb48 and the owner's navigation, and the transform
 // copy of a turn. Names and layouts are placeholders.
+#include "game/CAbilityShinespark.h"
+#include "game/CEnemyMovement.h"
 #include "game/UnkObject_0x100.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -138,7 +140,6 @@ extern void* g_unk_7101a6bff8[];
 bool fn_710096ccb4(char* self);
 void fn_71002b57bc(UnkObject_0x100* self);
 UnkObject_0x100* fn_71002b5c90(UnkObject_0x100* self, const UnkObject_0x100* other);
-void fn_71010c7e6c(UnkEffectSink* sink, void* params, u32 flags);
 
 struct UnkEvent_1442 {
     void** vtable;
@@ -217,7 +218,6 @@ struct UnkRecord_aadc;
 bool fn_7100977e50(UnkCharacterMovement* self, f32 max_dot, f32 extra, f32 step, f32 back, u32 mask,
                    const CVector3D* pos, CVector3D* out_point, UnkCollisionHit* out_hit, const CVector3D* dir);
 UnkVec3f fn_7100d7c7a0(const UnkEntityCollided* self);
-void fn_7100331c7c(void* self, const void* other);
 
 struct UnkRef_aadc {
     UnkRefObject* ptr;

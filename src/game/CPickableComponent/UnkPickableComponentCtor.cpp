@@ -6,13 +6,13 @@
 
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CComponent.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
 
 struct UnkStateObject;
-void fn_71010c4148(UnkStateObject* self);
 extern void* g_unk_7101a891b0[];
 
 struct UnkPickableComponent {

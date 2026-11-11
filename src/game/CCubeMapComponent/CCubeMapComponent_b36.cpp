@@ -1,5 +1,6 @@
 // Functions in the CCubeMapComponent unit (tools/tu_map.py). Names and layouts are placeholders.
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU273.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
@@ -7,7 +8,6 @@ using base::reflection::refl_ArgValue;
 using base::reflection::refl_EmptyValue;
 
 struct UnkCubeMapArg;
-void fn_71001f3964(void* target, const UnkCubeMapArg* value);
 
 struct UnkCubeMapTarget {
     u8 pad_0x0[0x50];

@@ -4,14 +4,12 @@
 // fade between two levels written to the model's colour, +0x174 with a callback when it runs out), then
 // lets the model update. Names and layouts are placeholders.
 #include "game/UnkSphere.h"
+#include "game/UnkTU252.h"
 #include "types.h"
 
 struct UnkLockonModel_ovb0092;
 struct UnkColor_ovb0092;
 struct UnkSource_710020c780;
-void fn_71001bff28(UnkLockonModel_ovb0092* model, u32 index, UnkColor_ovb0092* color);
-void fn_71001bfea4(UnkLockonModel_ovb0092* model, u32 index, const UnkColor_ovb0092* color);
-void fn_71001bffc4(UnkSource_710020c780* source, f32 dt);
 f32 fn_7100150e50();
 struct UnkTimedEffect_ovo0303;
 void fn_71001f530c(UnkTimedEffect_ovo0303* self);

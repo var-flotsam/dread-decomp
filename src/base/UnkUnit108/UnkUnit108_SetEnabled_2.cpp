@@ -1,6 +1,7 @@
 // Unit 108 of tools/tu_map.py: the direct form of the reflected setter in UnkUnit108_SetEnabled.cpp:
 // stores the flag at +0x2c and, when set, moves state 1 to 3 and 2 to 4, then runs fn_7100119c1c.
 // Names and layouts are placeholders.
+#include "game/UnkTU108.h"
 #include "types.h"
 
 struct UnkTargetState108 {
@@ -11,7 +12,6 @@ struct UnkTargetState108 {
 };
 
 struct UnkTarget108;  // src/base/UnkUnit108/UnkUnit108_SetEnabled.cpp
-void fn_7100119c1c(UnkTarget108* target);
 
 void fn_7100119f98(UnkTargetState108* self, bool enabled) {
     self->enabled = enabled;

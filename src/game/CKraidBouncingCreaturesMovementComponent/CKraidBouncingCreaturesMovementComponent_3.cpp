@@ -4,6 +4,7 @@
 // its flag at +0x11a, adds that actor's velocity (fn_7100d7be08) scaled by the definition's +0x11c to
 // the vector at +0x4b8. Names and layouts are placeholders.
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2523.h"
 #include "types.h"
 
 // Returned in memory (x8): the copy constructor is user-provided.
@@ -16,7 +17,6 @@ struct UnkKraidCreatureVec {
 
 struct UnkSelf;
 void fn_7100ac3880(UnkSelf* self);
-UnkKraidCreatureVec fn_7100d7be08(void* actor);
 extern u64 g_unk_71726f41d0 __attribute__((visibility("hidden")));
 
 struct UnkKraidCreatureHeld {

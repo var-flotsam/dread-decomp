@@ -2,6 +2,7 @@
 // (+0x220), sends it id 0x40 through fn_71011785a8 if the game manager's fn_7100df5740 holds, else through
 // fn_7101178564 (as CShakernautAIComponent_Flip_b53.cpp); then the base update fn_710054d16c.
 // Names and layouts are placeholders.
+#include "game/CAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -11,8 +12,6 @@ struct UnkShakernautId_b53 {
     u32 value;
     u32 unk_0x4;
 };
-void fn_71011785a8(UnkShakernautCtrl_b53*, const UnkShakernautId_b53*, bool, bool);
-void fn_7101178564(UnkShakernautCtrl_b53* self, const UnkShakernautId_b53* id, bool a, bool b);
 bool fn_7100df5740(UnkGameManager*);
 
 struct UnkEmmyForestOwner_A2_b70 {

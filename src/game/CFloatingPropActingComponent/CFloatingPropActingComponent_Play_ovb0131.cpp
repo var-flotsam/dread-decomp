@@ -2,13 +2,13 @@
 // on the object at +0x40 (its +0x10) through fn_7101176ea8 with key 0x459ee01c881801a, a random start
 // in [0, 1] and the all-flags mask, then sets the flag at +0x9c. Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CAnimationComponent.h"
 #include "types.h"
 
 extern "C" int rand();
 
 struct UnkStruct_7101176ea8;
 struct UnkRequest_7101176ea8;
-bool fn_7101176ea8(UnkStruct_7101176ea8* self, const UnkRequest_7101176ea8* req, u64 key);
 
 struct UnkFloatingPropDesc_ovb0131 {
     u64 a, b;

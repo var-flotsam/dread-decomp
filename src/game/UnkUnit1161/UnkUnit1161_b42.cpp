@@ -3,12 +3,12 @@
 // Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/math/CVector.h"
+#include "game/UnkTU1160.h"
 #include "types.h"
 
 extern void* g_unk_7101a6da30[];
 
 struct UnkMember_e8_b42;
-void fn_7100745804(UnkMember_e8_b42*);
 
 struct UnkHolder_1161_b42 {
     void** vtable;

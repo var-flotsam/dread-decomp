@@ -6,6 +6,7 @@
 // step and reports the owner's +0x220 bag value (fn_710033187c). Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "../../game_s7/UnkPropBagS7.h"
+#include "game/CLifeComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
@@ -17,7 +18,6 @@ extern u64 g_unk_710164aff8;
 extern char g_unk_71727302a8[] __attribute__((visibility("hidden")));  // the bag key
 
 struct UnkCommanderLife_A5_b63;
-void fn_7101160078(UnkCommanderLife_A5_b63* self, f32 dt);
 
 
 struct UnkCommanderOwner_A5_b63 {

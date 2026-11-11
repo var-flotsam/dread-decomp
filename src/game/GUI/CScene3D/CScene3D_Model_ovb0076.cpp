@@ -18,14 +18,13 @@
 #include "game/UnkGuiFrames.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2732.h"
 #include "types.h"
 
 using base::global::CRntString;
 
 extern void* g_unk_7101a9e968[];  // the scene's vtable
 extern void* g_unk_7101a9ebb8[];  // the node list's vtable
-
-void fn_710119ad3c(void* self);
 
 struct UnkScene3DNode_ovb0076 {
     void* value;
@@ -214,8 +213,6 @@ struct UnkItemListTag;
 using UnkItemList = base::UnkSList<UnkItemListTag>;
 void fn_710119ba7c(UnkItemList* self, UnkListedItem* item);
 extern void* g_unk_7172729910;  // the item list singleton
-void fn_710119aee8(void* self);
-void fn_710119ae24(void* self, void* item, bool flag);
 
 static inline void* ItemList_ovb0076() {
     if (!g_unk_7172729910) {

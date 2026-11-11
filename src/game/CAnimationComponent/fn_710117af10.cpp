@@ -4,6 +4,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU1134.h"
 #include "types.h"
 
 struct UnkClsStr_710117af10 {
@@ -37,9 +38,6 @@ struct UnkStruct_710117af10 {
     u8 unk_0x0[0x40];
     UnkList_710117af10* field_0x40;
 };
-
-UnkCls_710117af10** fn_710070d7f8(UnkObj_710117af10* obj);
-bool fn_710070d830(UnkObj_710117af10* obj);
 
 bool fn_710117af10(UnkStruct_710117af10* self, UnkCls_710117af10** name, bool skipBusy) {
     for (UnkElem_710117af10** it = self->field_0x40->items;

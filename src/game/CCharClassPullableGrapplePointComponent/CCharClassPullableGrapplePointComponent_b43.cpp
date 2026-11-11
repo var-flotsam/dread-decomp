@@ -4,6 +4,7 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/CCharClassGrapplePointComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -12,7 +13,6 @@ extern char g_unk_7101a76348[];
 // Signatures as src/game/CCharClassHangableGrappleSurfaceComponent/CCharClassHangableGrappleSurfaceComponent.cpp
 // and src/game/CCharClassActionSwitcherOnPullGrapplePointComponent/CCharClassActionSwitcherOnPullGrapplePointComponent_b41.cpp
 // declare them.
-void fn_7100816b28(char* self);
 struct UnkSelf_as41;
 
 struct UnkPullableGrapplePoint_b43a2 {

@@ -4,11 +4,10 @@
 // is none) and set up the array after it (capacity 10, growth 15, default allocator).
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassKraidAttack.h"
 #include "types.h"
 
 using base::global::UnkStringData;
-
-void fn_71005dbdd4(void* self);
 
 struct UnkGrowArray_71005d69b8 {
     void* data;

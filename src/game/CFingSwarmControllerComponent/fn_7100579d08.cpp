@@ -6,6 +6,9 @@
 #include "base/UnkVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CSwarmControllerComponent.h"
+#include "game/UnkTU1159.h"
+#include "game/UnkTU2560.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -56,10 +59,6 @@ struct UnkTarget {
 
 extern void* g_unk_71726da048;
 extern u8 g_unk_7101649f60[];
-void fn_7100e1bca4(void* manager);
-void* fn_7100e1cb50(void* manager, u64* key, void* arg);
-void fn_7100745440(UnkTarget* target, void* effect, u32 flag);
-bool fn_710074ddd8(UnkSelf* self, UnkTarget* target, UnkMessage* message);  // the base handler
 
 bool fn_7100579d08(UnkSelf* self, UnkTarget* target, UnkMessage* message) {
     if (fn_710074ddd8(self, target, message))

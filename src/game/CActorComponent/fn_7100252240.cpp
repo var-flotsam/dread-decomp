@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
+#include "game/UnkTU341.h"
 #include "game/UnkTUInit.h"
 
 // The shared helpers see a reflected type through the placeholder layout (UnkReflType).
@@ -25,7 +26,6 @@ extern UnkReflType g_unk_717269f810;
 extern char g_unk_717269f980;
 extern char g_unk_717269f981;
 extern char g_unk_717269f982;
-UnkReflType* fn_710023e498();  // base::reflection::refl_GetType<CActorComponent*>
 UnkReflType* fn_710024e644();
 UnkReflType* fn_710024e720();
 void fn_710024eb80(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);

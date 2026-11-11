@@ -4,6 +4,7 @@
 // fn_7100552a34 with the result and the flag. Returns whether a pair of state bytes at +0x14c34
 // allows the transition (running fn_7100544fb8 when the first byte is clear).
 #include "base/math/CVector.h"
+#include "game/CCharacterMovement.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
@@ -46,7 +47,6 @@ struct UnkStepper {
     u8 field_0x14c35;
 };
 
-UnkVec3Bits fn_7100979a60(UnkPlace* place);
 bool fn_71005528fc(UnkStepper* self, const CVector2D* point);
 void fn_7100552a34(UnkStepper* self, bool a, bool b);
 void fn_7100544fb8(UnkStepper* self, u32 arg);

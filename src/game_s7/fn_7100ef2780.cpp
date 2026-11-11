@@ -2,8 +2,10 @@
 // ids, then the unit's own statics and registrations (helpers in UnkStaticInitS7.h). Layouts are
 // placeholders.
 #include "UnkStaticInitS7.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
+#include "game/UnkTU2577.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkTUSymbols.h"
 
@@ -59,7 +61,6 @@ void fn_7100edf654();
 extern char g_unk_71729da870[];
 extern UnkTunable g_unk_71729da878;
 extern void* g_unk_7101caa168[];
-void fn_7100075104(void* self);  // its destructor, as registered
 extern UnkEnumType g_unk_71729da8b0;
 void fn_7100ee0df0(UnkEnumType* type, const CStrId& name, void*, void*, void (*)(), void*);
 void fn_7100ee021c();
@@ -67,7 +68,6 @@ extern char g_unk_71729da9e8[];
 extern char g_unk_71729da9e9[];
 UnkEnumType* fn_7100ad61f8();
 extern UnkStrIdBase g_unk_71729da9f0[9];
-void fn_7100ee1548(void* self);  // the array's destructor, as registered
 extern UnkStrIdBase g_unk_71729daa38[/* 9; unsized: x86-64 would assume 16-byte alignment */];
 
 void fn_7100ef2780() {

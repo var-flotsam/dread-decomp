@@ -4,18 +4,17 @@
 // (fn_7100552d94) and +0x6c8 from both. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CEmmyGrabSamusAttack.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU811.h"
 #include "types.h"
 
 // As src/game/UnkStateMachineSetA3_b61.cpp declares it.
 struct UnkEmmyAI_b61;
-f32 fn_7100552ee4(UnkEmmyAI_b61* ai);
 // As src/game_s2/fn_7100552d94.cpp defines it.
 struct UnkSelf;
-f32 fn_7100552d94(UnkSelf* self);
 
 struct UnkEmmyGrabAttack_A3_b67;
-void fn_71005068c8(UnkEmmyGrabAttack_A3_b67* self, f32 a, f32 b, f32 c, bool d, bool e);
 
 struct UnkEmmyGrabAttack_A3_b67 {
     u8 pad_0x0[0x8];

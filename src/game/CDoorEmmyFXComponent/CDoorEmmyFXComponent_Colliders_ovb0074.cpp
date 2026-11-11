@@ -3,13 +3,12 @@
 // and its "doorcooldown" collider set to `on` (fn_71008640a4, fn_7100d35a98). Names and layouts are
 // placeholders.
 #include "base/global/CStrId.h"
+#include "game/CChozoCommanderSentenceSphereAttack.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-void* fn_710043acb4(void* key);
 
 struct UnkDoorEmmyFX;
 

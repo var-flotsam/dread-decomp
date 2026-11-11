@@ -2,9 +2,9 @@
 // container at +0x570 (base vtable, empty array with step 10 and flags 0xf, final vtable, allocator),
 // then the post-construction virtual call (slot 3). Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CTrainUsableComponent.h"
 #include "types.h"
 
-void fn_7100a9948c(void* self);
 extern void* g_unk_7101a20998[];
 extern void* g_unk_7101a33fa0[];
 extern void* g_unk_7101a93aa0[];

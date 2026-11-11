@@ -4,10 +4,10 @@
 // Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "game/behaviortree/CBaseAction.h"
 #include "types.h"
 
 extern void* g_unk_7101a69e10[];
-void fn_7100393ea0(void*);  // the base's destructor
 
 // An array of plain values: freeing it destroys nothing.
 struct UnkPlainArrayMember_b49a3 {

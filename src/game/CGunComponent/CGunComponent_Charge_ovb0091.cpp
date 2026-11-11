@@ -9,10 +9,15 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CComponent.h"
+#include "game/CGunComponent.h"
+#include "game/CSamusModelUpdaterComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU1501.h"
+#include "game/UnkTU56.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -31,14 +36,9 @@ struct UnkGlobal2;
 struct UnkGunListeners_b53;
 void fn_710083f32c(UnkSamusGunComponent*, const CStrId*, bool, bool, bool);
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
-bool fn_71009e75e8(UnkFlagged*);
 void* fn_7100df5460(UnkGameManager*);
-void fn_71010c4228(UnkParent*);
-void fn_71010c424c(UnkParent*);
 void fn_7100841838(UnkGunListeners_b53* self, void* value);
 void fn_710007ca94(CRntFile*, char*);
-s64 fn_710007cf30(void*, const char*, ...);
-void fn_7100839b00(char* self, bool flag);
 extern UnkGlobal2 g_unk_7172790a08;
 
 // The game manager's id table (fn_7100031894 builds it; src/game/CGameManager.cpp has the same
@@ -199,7 +199,6 @@ struct UnkChargeTimes_ovb0091 {
 };
 const UnkChargeTimes_ovb0091* fn_7100837220(s32 mode);
 bool fn_710113db74(void* object);
-void fn_710083ad6c(UnkSamusGunComponent* gun);
 void fn_710083d27c(UnkSamusGunComponent* gun, bool flag);
 void fn_710083a034(UnkGun_ovb0091* self, bool flag, bool now);
 void* fn_71007bad34(void* object);
@@ -652,7 +651,6 @@ bool fn_710084017c(char* object, const void* stream) {
 }
 
 void* fn_710083a2ac(UnkGunActor_ovb0091* actor);
-void fn_710093aad0(void*);
 
 void fn_7100839d70(UnkGun_ovb0091* self) {
     CancelCharge(self);

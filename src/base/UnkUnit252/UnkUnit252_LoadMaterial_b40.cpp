@@ -3,6 +3,7 @@
 // and the part's copy at 0x118, releases the one it replaced and returns the new one. Names and
 // layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
+#include "game/UnkTU228.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -11,7 +12,6 @@ struct UnkDecalResource;
 struct UnkDecalResourceMgr;
 extern UnkDecalResourceMgr* g_unk_716e352450;
 UnkDecalResource* fn_710019ffe8(UnkDecalResourceMgr* mgr, const CFilePathStrId* path, bool flag);
-void fn_71001a080c(UnkDecalResourceMgr* mgr, UnkDecalResource* resource);
 
 struct UnkObject252 {
     u8 pad_0x0[0xe8];

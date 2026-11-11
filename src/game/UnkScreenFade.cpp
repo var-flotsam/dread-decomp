@@ -6,6 +6,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGlobal_710b372a98.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU286.h"
 #include "types.h"
 
 struct UnkFadeColor {
@@ -68,9 +69,7 @@ struct UnkModeHolder {
 
 void fn_71001c9048(UnkGlobal_710b372a98* self);
 void fn_7100219fe4(UnkRenderManager* self, u32 layer, const UnkFadeColor& color);
-void fn_7100209968(void* node, f32 duration, const UnkFadeColor* to, const UnkFadeColor* from);
 bool fn_7100209960(void* node);
-void fn_7100209fec(void* node, bool visible);
 
 static inline f32 NonNegative(f32 v) {
     return v <= 0.0f ? 0.0f : v;

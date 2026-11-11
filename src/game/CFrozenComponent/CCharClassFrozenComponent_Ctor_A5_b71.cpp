@@ -6,13 +6,13 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/CCharClassComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkCharClass_A5_b71;
 struct UnkStruct_71008bca30;
-void fn_71011acd10(UnkStruct_71008bca30* self);  // as the other CCharClass constructors declare it
 extern void* g_unk_7101a73dc0[];
 
 struct UnkCharClassFrozenCtor_A5_b71 {

@@ -3,6 +3,11 @@
 #include "base/UnkCountedResource.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU174.h"
+#include "game/UnkTU182.h"
+#include "game/UnkTU221.h"
+#include "game/UnkTU228.h"
+#include "game/UnkTU239.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -13,8 +18,6 @@ struct UnkDecalResourceMgr;
 struct UnkCountedObject259;
 extern UnkDecalResourceMgr* g_unk_716e352450;
 UnkDecalResource* fn_710019ffe8(UnkDecalResourceMgr* mgr, const CFilePathStrId* path, bool flag);
-void fn_71001a080c(UnkDecalResourceMgr* mgr, UnkDecalResource* resource);
-void* fn_71001b363c(UnkCountedObject259* resource);
 void fn_71001a8d38(void* target, u32 index, void* value, u32 flag);
 
 struct UnkLoaded_b260 {
@@ -89,11 +92,8 @@ void fn_71001b5178(UnkHolder_b260* self, UnkResource_b260* res) {
 }
 
 
-void fn_7100161b90(void* obj);
 struct UnkObj_71001541a0;
-void fn_71001541a0(UnkObj_71001541a0* obj);
 struct UnkStruct_710019ab0c;
-void fn_710019ab0c(UnkStruct_710019ab0c* obj);
 extern s32 g_unk_716e5546f0;
 
 struct UnkSlot_b260 {

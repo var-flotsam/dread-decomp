@@ -7,6 +7,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CKraidAttack.h"
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
 
@@ -28,7 +29,6 @@ struct UnkKraidSpikesAttack_b59a4 {
     u32 field_0x30;
 };
 
-void fn_71005f2018(char* self);  // the base restart (a thunk to fn_71003608ac)
 void fn_71005ff8f0(base::reflection::UnkReflObject* ai);
 
 void fn_71005f7d60(UnkKraidSpikesAttack_b59a4* self) {

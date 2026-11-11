@@ -17,12 +17,13 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/snd/UnkSoundSystemATK.h"
+#include "base/tunable/CTunable.h"
+#include "game/operator_new.h"
 
 using base::global::CFilePathStrId;
 using base::global::UnkStringData;
 using base::snd::UnkSoundSystemATK;
 
-bool fn_7100132cd0();
 extern u8 g_unk_7108b6ab60 __attribute__((visibility("hidden")));
 void fn_71000fbaf8(UnkSoundSystemATK* sys, s32 command, const void* payload);
 
@@ -351,7 +352,6 @@ struct UnkPlayingHandle_ovb0074 {
 
 struct UnkVoicePool_b56;
 struct UnkSoundVoice2_b56;
-u64 fn_7100083854(UnkVoicePool_b56* self, UnkSoundVoice2_b56* voice);
 
 // A slot of the voice statistics: what the handle of a voice points at.
 struct UnkVoiceStat_b0185 {

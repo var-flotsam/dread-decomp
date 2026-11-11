@@ -7,6 +7,8 @@
 #include "base/UnkVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU1159.h"
+#include "game/UnkTU2560.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -49,9 +51,6 @@ struct UnkTarget {
 
 extern void* g_unk_71726da048;
 extern char g_unk_710164a430[];
-void fn_7100e1bca4(void* manager);
-void* fn_7100e1cb50(void* manager, u64* key, void* arg);
-void fn_7100745440(UnkTarget* target, void* effect, u32 flag);
 u8 fn_71007452a4(UnkTarget* target);
 void fn_71007456fc(UnkTarget* target, u8 value);
 

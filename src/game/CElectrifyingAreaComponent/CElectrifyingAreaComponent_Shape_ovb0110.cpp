@@ -2,7 +2,10 @@
 // layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/math/CVector.h"
+#include "game/CLifeComponent.h"
 #include "game/UnkNavMeshManager.h"
+#include "game/UnkTU108.h"
+#include "game/UnkTU365.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -16,11 +19,7 @@ struct UnkBreakablePart;
 struct UnkBreakableTarget;
 struct UnkElectrifyingAreaA5_b61;
 
-void fn_7100119b88(UnkPolygon2D* self);
 bool fn_7100118be8(const UnkPolyline108_b67a1* self);
-bool fn_7100117aa8(UnkPolygon109* polygon, void* query, f32 distance);
-void fn_710115fe20(UnkHolder* holder);
-UnkBreakableTarget** fn_71002a76a4(UnkBreakablePart* part);
 
 struct UnkAreaVertex_ov110 {
     f32 x, y, z;

@@ -5,6 +5,9 @@
 #include "base/global/CRntString.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2656.h"
+#include "game/UnkTU2677.h"
+#include "game/UnkTU53.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -15,8 +18,6 @@ struct UnkVec;
 struct UnkSoundSystemMasks_ovb0074;
 struct UnkObserverEntryMap_7100ca79f0;
 
-s32 fn_71010c0270(lua_State* L, const char* fmt, ...);
-int fn_71010c0b40(lua_State* L, const char* fmt, ...);
 extern UnkSoundMgr* g_unk_7101d4d820;
 
 // Reads an int and a string argument and does nothing with them.
@@ -271,8 +272,6 @@ s32 fn_710108e320(lua_State* L) {
     return 0;
 }
 
-f32 fn_7100076020(f32 t, const char* modifiers);
-
 s32 fn_7101090c60(lua_State* L) {
     f32 t;
     const char* modifiers;
@@ -280,8 +279,6 @@ s32 fn_7101090c60(lua_State* L) {
         return 0;
     return fn_71010c0b40(L, "f", (f64)fn_7100076020(t, modifiers));
 }
-
-void fn_7101053850(void* effects, UnkVec* position, u32 flag, f32 duration, f32 scale);
 
 struct UnkPos_ovb0156 {
     f32 x, y, z;

@@ -1,8 +1,7 @@
 // tools/tu_map.py unit 342 (no class hint): attaches a source once, records a flag from a virtual
 // and starts both values from the source's current one. Names and layouts are placeholders.
+#include "game/CActorComponentDef.h"
 #include "types.h"
-
-f32 fn_7100253ad4(void* source);
 
 struct UnkAttach342_b66a1 {
     virtual void vf_0x0();

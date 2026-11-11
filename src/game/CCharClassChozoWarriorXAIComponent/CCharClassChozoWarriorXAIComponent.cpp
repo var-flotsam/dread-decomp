@@ -1,16 +1,16 @@
 // A constructor in the CCharClassChozoWarriorXAIComponent unit: the CCharClassChozoWarriorAIComponent
 // constructor fn_7100497584, the vtable, then six members from +0x808 (0xf0 bytes apart). Names and
 // layouts are placeholders.
+#include "game/CCharClassChozoWarriorAIComponent.h"
+#include "game/CCharClassChozoWarriorXChangeWallAttack.h"
+#include "game/CCharClassChozoWarriorXGlaiveSpinAttack.h"
+#include "game/CCharClassChozoWarriorXLandAttack.h"
+#include "game/CCharClassChozoWarriorXSpitAttack.h"
+#include "game/CCharClassChozoWarriorXUltimateGrabAttack.h"
+#include "game/CCharClassChozoWarriorXWallClimbAttack.h"
 #include "types.h"
 
 struct UnkNode;
-void fn_7100497584(UnkNode* self);
-void fn_710047c6b4(void* self);
-void fn_7100480114(void* self);
-void fn_710047d830(void* self);
-void fn_710047ba88(void* self);
-void fn_710047e698(void* self);
-void fn_710047f4d4(void* self);
 extern void* g_unk_7101a3b748[];
 
 struct UnkChozoWarriorXDef {

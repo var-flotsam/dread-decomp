@@ -3,11 +3,11 @@
 // and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/math/CVector4D.h"
+#include "game/CItemLifeComponent.h"
+#include "game/CLifeComponent.h"
 #include "types.h"
 
-void fn_710115f7bc(void* self);  // as CPowerBombBlockLifeComponent.cpp declares it
 // base::refl_StrIdListCtor<..>, instantiated in src/clones (UnkClone_fn_71008e266c).
-void fn_71008e266c(char* self);
 extern void* g_unk_7101a7f028[];
 extern void* g_unk_7101a22d48[];
 
@@ -78,7 +78,6 @@ using base::math::UnkVector4D;
 
 struct UnkCommanderLife_A5_b63;
 struct UnkColorLerp_A4_b75;
-void fn_7101160078(UnkCommanderLife_A5_b63* self, f32 dt);
 UnkVector4D fn_71008c6b0c(UnkColorLerp_A4_b75* self, f32 dt);
 
 struct UnkItemLifeTint_ovb0114 {

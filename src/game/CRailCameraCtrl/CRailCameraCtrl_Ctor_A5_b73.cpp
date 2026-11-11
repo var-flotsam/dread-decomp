@@ -1,10 +1,10 @@
 // CRailCameraCtrl unit (tools/tu_map.py, unit 1497): the rail camera controller's constructor. It runs the shared
 // camera-controller base constructor (fn_7100763ed4), sets the vtable (g_unk_7101a89a80), clears its own
 // fields (-1 at +0x2a8) and sets three base fields. Names and layouts are placeholders.
+#include "game/CCameraBoundaryCtrl.h"
 #include "types.h"
 
 struct UnkStruct_7100763ed4;
-void fn_7100763ed4(UnkStruct_7100763ed4* self);  // base constructor
 
 extern void* g_unk_7101a89a80[];  // vtable
 

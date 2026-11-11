@@ -1,10 +1,10 @@
 // COmniLightComponent (unit 1390): after the base update, follows the owner's position (the
 // translation column of its transform) and reports each change through vtable slot 0x168.
 // Names and layouts are placeholders.
+#include "game/CComponent.h"
 #include "types.h"
 
 struct UnkParent;
-void fn_71010c424c(UnkParent*);
 
 struct UnkOmniVec3 {
     f32 x, y, z;

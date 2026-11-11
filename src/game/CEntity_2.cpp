@@ -5,6 +5,11 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "base/snd/CSoundSystem.h"
+#include "game/CActorComponent.h"
+#include "game/CAudioComponent.h"
+#include "game/CCharacterMovement.h"
+#include "game/CEnemyMovement.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -75,7 +80,6 @@ struct UnkEntityWithSound {
 UnkSoundHandle fn_710071c080(UnkEntitySoundComponent* self, void* a, void* b, void* c, void* d);
 UnkSoundHandle fn_710071a8d0(UnkEntitySoundComponent* self, void* a, void* b, bool c, bool d, bool e);
 UnkSoundHandle fn_710071ce1c(UnkEntitySoundComponent* self, void* a, void* b, void* c);
-UnkSoundHandle fn_710071a338(UnkEntitySoundComponent* self, void* a);
 UnkHandle fn_71009db0f4(CRumbleComponent* self, void* a, void* b, bool c, bool d, bool e);
 UnkHandle fn_71009db2e0(CRumbleComponent* self, void* a, bool b, bool c, bool d);
 UnkHandle fn_71009db4b8(CRumbleComponent* self, void* a, bool b, bool c, bool d);
@@ -154,7 +158,6 @@ UnkSoundHandle fn_7100d7c3b0(UnkEntityWithSound* self, const u32* params, bool a
 // pass the call on to the player.
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
-void fn_710071a524(UnkEntitySoundComponent* self, void* a, f32 x, f32 y);
 
 struct UnkEntityWithLinks {
     u8 pad_0x0[0x208];
@@ -247,7 +250,6 @@ UnkEntityBox fn_7100d7bc70(const UnkEntityBounds* self) { return EntityBox(self)
 // CCharacterMovement with a shape; else the sphere of the collider behind +0x228; else the box above.
 struct UnkFlagged;
 struct UnkShape;
-UnkShape* fn_7100976588(UnkFlagged* flagged);
 struct UnkEntityShape {
     virtual void vf_0x0();
     u8 pad_0x8[0x38];
@@ -336,7 +338,6 @@ struct UnkEntityPos {
     u8 pad_0x94[0x238 - 0x94];
     UnkEntityPosSource* field_0x238;
 };
-bool fn_710024fbc8(void* self);
 
 UnkVec3f fn_7100d7b7dc(const UnkEntityPos* self) {
     if (self->field_0x238 && fn_710024fbc8(self->field_0x238)) return self->field_0x238->pos;
@@ -399,8 +400,6 @@ struct UnkEntityPaths {
 };
 struct UnkSoundMgr;
 extern UnkSoundMgr* g_unk_7101d4d820;
-void fn_7100719064(UnkEntitySoundComponent* self, bool a, bool b, bool c, bool d);
-void fn_7100108094(UnkSoundMgr* self, UnkPathNode* node);
 void fn_7100232bf0(UnkEntityPaths* self);
 
 void fn_7100d78108(UnkEntityPaths* self) {
@@ -431,7 +430,6 @@ void fn_7100d78108(UnkEntityPaths* self) {
 
 // The position of the entity's collision shape (the translation of its matrix) unless the collider
 // at +0x218 is of kind 3 or has no shape; else the transform's.
-u32 fn_71010cc3a4(void* object);
 UnkMatrix44 fn_7100d36a2c(UnkShape* shape);
 struct UnkEntityCollided {
     u8 pad_0x0[0x38];
@@ -528,4 +526,3 @@ void fn_7100d7cecc(UnkEntityDtor* self) {
     self->nodes.tail = nullptr;
     fn_7100231e80(self);
 }
-

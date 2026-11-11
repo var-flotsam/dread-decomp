@@ -1,8 +1,11 @@
 // Update of a GUI screen that starts a new game when asked (flag at 0x2ac): unless
 // fn_7101053a98 vetoes it, the screen's GUI key is dropped and the script function
 // Init.CreateAndInitNewGame is called for the cave start point, then the request is cleared.
+#include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU2656.h"
 #include "types.h"
 
 struct UnkNewGameScreen {
@@ -12,10 +15,7 @@ struct UnkNewGameScreen {
 
 extern base::global::CStrId g_unk_71727659c0 __attribute__((visibility("hidden")));
 
-void fn_71011d8fe4(UnkNewGameScreen* self, f32 dt);
-bool fn_7101053a98(void* state);
 s32 fn_7100dffc58(UnkGameManager* manager);
-void fn_7100000790(const char* name, const char* format, ...);  // calls a script function
 
 // `dt` (s0) reaches the base update untouched in the original (tools/forwarded_args.py).
 void fn_7100b6503c(UnkNewGameScreen* self, f32 dt) {

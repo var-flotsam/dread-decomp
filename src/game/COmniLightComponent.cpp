@@ -6,6 +6,7 @@
 
 #include "base/UnkCountedResource.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU290.h"
 #include "types.h"
 
 // The scene object's part at +0x28 (constructed by fn_710020c38c) with a virtual update.
@@ -32,7 +33,6 @@ struct UnkLightNode {
 };
 
 // Passes the part's object at +0x108 on (fn_71001bd9f0).
-void fn_710020c634(UnkLightNode* self);
 
 // A counted resource reference (base/UnkCountedResource.h), as src/game/UnkEnvironmentFade.cpp's.
 struct UnkLightResRef {

@@ -5,11 +5,11 @@
 // shape (fn_71007c1edc) and one drop spawn (fn_71007c3874). Names and layouts are placeholders.
 #include <math.h>
 #include "base/global/CStrId.h"
+#include "game/CCharacterMovement.h"
+#include "game/CDropComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
-
-void fn_71007c21e8(char* self, char* part, void* extra);
 
 // Copied member by member.
 struct UnkDropSpawnVec3_ovb0096 {
@@ -208,7 +208,6 @@ void fn_71007c24a4(UnkDropSpawnComp_ovb0096* self, UnkDropSpawnRequest_ovb0096* 
 
 struct UnkShape;
 struct UnkFlagged;
-UnkShape* fn_7100976588(UnkFlagged* flagged);
 
 struct UnkDropBounds_ovb0096 {
     f32 min_x, min_y, min_z;

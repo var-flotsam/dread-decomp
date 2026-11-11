@@ -5,13 +5,13 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/CCharClassGrapplePointComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 extern char g_unk_7101a76348[];
 // Signature as CCharClassPullableGrapplePointComponent_b43.cpp declares it.
-void fn_7100816b28(char* self);
 
 struct UnkPullableGrapplePoint_b53 {
     void** vtable;

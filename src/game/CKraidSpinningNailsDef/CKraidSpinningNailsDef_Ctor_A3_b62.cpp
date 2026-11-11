@@ -2,9 +2,8 @@
 // fn_71005dbdd4, as CAcidBlobsLaunchPattern.cpp) with two growing arrays (capacity 10, growth 15, default
 // allocator) at 0xf0 and 0x118. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CCharClassKraidAttack.h"
 #include "types.h"
-
-void fn_71005dbdd4(void* self);
 
 struct UnkGrowArray_b62a3 {
     void* data;

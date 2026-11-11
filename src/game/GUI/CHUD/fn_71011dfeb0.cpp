@@ -10,6 +10,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "../../../game_s7/UnkHandleS7.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -66,7 +67,6 @@ struct UnkPanel_71011dfeb0;
 static inline UnkGuiObj_71011dfeb0* FindChildById(UnkPanel_71011dfeb0* self, u64 id) {
     return reinterpret_cast<UnkGuiObj_71011dfeb0*>(fn_71011d98ec(reinterpret_cast<UnkGuiDisplayObject*>(self), id));
 }
-void fn_71011d9b3c(UnkPanel_71011dfeb0* self);
 void fn_71011e1404(UnkPanel_71011dfeb0* self);
 void fn_71011ec3fc(UnkLabel_71011dfeb0* label, bool value);
 extern CStrId g_unk_71727b9d30;

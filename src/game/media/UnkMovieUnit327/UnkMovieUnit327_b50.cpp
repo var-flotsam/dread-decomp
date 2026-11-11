@@ -6,6 +6,8 @@
 #include <stdint.h>
 
 #include "base/UnkDefaultAllocator.h"
+#include "base/global/timeline/CEvent.h"
+#include "game/UnkTU327.h"
 #include "types.h"
 #include "UnkLeftoverReg.h"
 
@@ -21,9 +23,6 @@ uintptr_t GetMultiWaitHolderUserData(const MultiWaitHolderType* holder);
 void LinkMultiWaitHolder(MultiWaitType* multiWait, MultiWaitHolderType* holder);
 }  // namespace os
 }  // namespace nn
-
-void fn_710006686c(void* thread);
-void fn_7100066828(void*, u32);
 
 
 extern void* g_unk_7101a20570[];  // the ring's vtable
@@ -221,7 +220,6 @@ public:
 
 // Their first parameter is an empty object (passed in x0 with nothing set).
 struct UnkMovieEmpty_b50 : UnkLeftoverReg {};
-s32 fn_7100222f14(UnkMovieEmpty_b50 tag, UnkMovieEventOwner_b50* owner);
 u32 fn_7100223014(UnkMovieEmpty_b50 tag, UnkMovieEventOwner_b50* owner);
 void fn_710021b9e4(UnkMovieEventOwner_b50* owner);
 void fn_7100222d94(UnkMovieUnit327_b50* self);

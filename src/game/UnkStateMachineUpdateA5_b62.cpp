@@ -2,6 +2,9 @@
 // update of src/game/UnkStateMachineSet_b61.cpp, fn_7100a0a584, whose template is copied here):
 // applies the pending state, then updates the current state and applies what it asked for, at most ten
 // times, while marked busy. Each one's own unit. Names are placeholders.
+#include "game/CActorComponent.h"
+#include "game/CComponent.h"
+#include "game/UnkTU1176.h"
 #include "types.h"
 
 struct UnkSmState_A5_b62 {
@@ -116,7 +119,6 @@ __attribute__((always_inline)) static inline void Update_A5_b62(UnkSmMachine_A5_
 }
 
 struct UnkParent;
-void fn_71010c424c(UnkParent*);
 
 #define UNK_SM_UPDATE_AFTER_A5_B62(addr, offset, last, none)     \
     void fn_##addr(UnkSmOwner_A5_b62<offset>* self, f32 dt) {    \
@@ -181,9 +183,7 @@ void fn_71007f9910(UnkSmOwner_A5_b62<0x228>* self, f32 dt) {
 
 // CCentralUnitComponent's unit: base update fn_710024fb24, then two more updates of the unit's own.
 struct UnkCentralUnit_b46a2;
-void fn_710024fb24(void*);
 void fn_7100771ea4(UnkSmOwner_A5_b62<0x30>*, f32);
-void fn_71007722f4(UnkCentralUnit_b46a2*, f32);
 
 void fn_7100771a34(UnkSmOwner_A5_b62<0x30>* self, f32 dt) {
     fn_710024fb24(self);

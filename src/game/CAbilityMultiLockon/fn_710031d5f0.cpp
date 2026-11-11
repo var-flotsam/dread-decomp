@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CAbilityMultiLockon::SSubState enum.
 #include "../../game_s7/UnkStaticInitS7.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTUProperty.h"
 
@@ -29,7 +30,6 @@ extern char g_unk_71726af8a8[];
 extern char g_unk_71726af8a9[];
 extern UnkTunable g_unk_71726af8b0;
 extern void* g_unk_7101a22f60[];
-void fn_7100075104(void* self);  // its destructor, as registered
 
 void fn_710031d5f0() {
     InitHeaderIds(&g_unk_71726af948.ids);

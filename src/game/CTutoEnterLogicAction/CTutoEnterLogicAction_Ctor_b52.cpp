@@ -8,6 +8,7 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CTriggerLogicAction.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -15,7 +16,6 @@ using base::global::UnkStringData;
 
 // The base constructor, as src/game/CChangeSetupLogicAction/CChangeSetupLogicAction_b35.cpp declares it.
 struct UnkChangeSetupLogicActionDef;
-void fn_7100a55aa4(UnkChangeSetupLogicActionDef*);
 struct UnkTutoEnterAction_b48;
 u32 fn_7100a59074(UnkTutoEnterAction_b48* self);
 extern char g_unk_7101a8f518[];

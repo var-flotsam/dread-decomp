@@ -5,16 +5,16 @@
 #include "base/UnkStrIdPathPair.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CComponent.h"
+#include "game/UnkTU25.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkParent;
-void fn_71010c4228(UnkParent*);
 
 struct UnkPathIds;
 struct UnkInlineString;
-void fn_710001f074(UnkPathIds* out, const UnkInlineString* path);
 
 struct UnkSoundRef;
 struct UnkSoundHandle {

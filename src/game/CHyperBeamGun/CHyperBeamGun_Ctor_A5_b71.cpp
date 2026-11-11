@@ -5,10 +5,10 @@
 // (fn_7100023854). Defined under the `void()` symbol src/reflection/CHyperBeamGun.cpp declares. Names and
 // layouts are placeholders.
 #include "base/color/CColor4F.h"
+#include "base/core/CBaseObject.h"
 #include "types.h"
 
 struct UnkNode;
-void fn_7100023854(UnkNode* node);
 struct UnkWaveBeamGun_A5_b71;
 void fn_7100867aa0(UnkWaveBeamGun_A5_b71* self);
 extern void* g_unk_7101a77de8[];

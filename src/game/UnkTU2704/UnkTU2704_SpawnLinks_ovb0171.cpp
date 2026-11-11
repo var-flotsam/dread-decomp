@@ -6,6 +6,10 @@
 // object (fn_710112d438, fn_710112d91c), the weak handle setter fn_7101127c24 and the setup from the two
 // resolved links (fn_710112b7c4). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CBatalloonAIComponent.h"
+#include "game/UnkTU341.h"
+#include "game/UnkTU365.h"
+#include "game/logic/collision/CCollider.h"
 #include "types.h"
 #include "base/UnkVector.h"
 #include "base/reflection/CClass.h"
@@ -84,7 +88,6 @@ struct UnkObj_71007e44b8;
 UnkObj_71007e44b8* fn_71007e44b8(UnkStruct_71007e44b8* self, void* owner, const base::global::CStrId* name, u32 index);
 void* fn_7100d475ec(UnkStruct_71007e44b8* self, const base::global::CStrId* name, u32 flag);
 struct UnkTriggerCollider_b0058;
-void fn_7100d36d30(UnkTriggerCollider_b0058* self, void* shape);
 using base::reflection::UnkReflObject;
 struct UnkTracker_71008618cc;
 void fn_7100d59994(UnkTracker_71008618cc*, UnkReflObject*);
@@ -135,8 +138,6 @@ struct UnkRef_c3 {
             delete ptr;
     }
 };
-
-UnkRef_c3 fn_71003df480(void* from);
 
 struct UnkCameraHolder_ovb0171 {
     u8 pad_0x0[0x8];
@@ -253,7 +254,6 @@ __attribute__((flatten)) bool fn_710113111c(const UnkLinkIterValueCopy_ovb0171* 
 }
 
 struct UnkBoundObj;
-void fn_7100232124(UnkBoundObj* obj);
 extern "C++" void operator delete(void*);
 
 // A reflected value that releases the object it holds when it dies: through fn_7100232124 while
@@ -331,7 +331,6 @@ void fn_7101127c24(UnkSpawnWatcher_ovb0171* self, UnkWeakTarget* first, bool a, 
 }
 
 struct UnkTracker;
-UnkTracker* fn_710028aca8(void* link);
 struct UnkSpawnPoint_l129064;
 void fn_7101129064(UnkSpawnPoint_l129064* self, void* shape);
 

@@ -1,6 +1,7 @@
 // Removes the entry with the given id (-1 = none) from a keyed table: right away (after
 // notifying fn_710070d5dc) unless the table is locked, in which case the id is queued.
 #include "base/UnkVector.h"
+#include "game/UnkTU1134.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -35,7 +36,6 @@ static inline void AppendBitwise(base::UnkVector<T>& a, const T& value) {
     ++a.count;
 }
 
-void fn_710070d5dc(u64 value);
 void fn_7100a2d054(UnkKeyedTable* table, UnkTableEntry* entry);  // erase
 
 // NON_MATCHING(minor): register allocation in the two lookups (the original keeps the found

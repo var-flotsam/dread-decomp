@@ -3,6 +3,7 @@
 // count of 1, a copy of the empty string id and an empty id of its own, flag bits and a few bytes.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CCharClassBehaviorTreeAIComponent.h"
 #include <new>
 
 #include "types.h"
@@ -11,7 +12,6 @@ using base::global::CStrId;
 
 // Declared as src/game/CCharClassGooplotAIComponent/CCharClassGooplotAIComponent.cpp does.
 struct UnkObject_7100416db8;
-void fn_7100416db8(UnkObject_7100416db8* self);
 void fn_7100504b9c(void* self);
 extern void* g_unk_7101a480a8[];
 

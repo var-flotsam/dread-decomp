@@ -3,13 +3,13 @@
 // string at +0x38 (fn_710007f120); false for an empty id. Names and layouts are placeholders.
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
 
 struct UnkCompared_0x30;
-bool fn_710007f120(const UnkCompared_0x30*, const UnkCompared_0x30*);
 
 // A string with 0x100 bytes of inline storage (0x148 bytes), as in src/base/UnkLuaDoString_b50.cpp.
 struct UnkInlineString_A2_b72 {

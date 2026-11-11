@@ -3,6 +3,8 @@
 // else its own at +0xc11), moves its registration (+0xbe8) to the game manager's deferred set at
 // +0x1e28 and runs fn_7100900cf4. Names and layout are placeholders.
 #include "base/UnkDeferredSet.h"
+#include "game/CCharClassBaseDamageTriggerComponent.h"
+#include "game/CCharClassLiquidPoolComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -13,9 +15,6 @@ struct UnkLiquidPool_b44a2 {
     u8 pad_0xbf0[0x21];
     bool field_0xc11;
 };
-
-void fn_7100a45cac(UnkLiquidPool_b44a2* self);
-void fn_7100900cf4(UnkLiquidPool_b44a2* self);
 
 void fn_7100901144(UnkLiquidPool_b44a2* self) {
     fn_7100a45cac(self);

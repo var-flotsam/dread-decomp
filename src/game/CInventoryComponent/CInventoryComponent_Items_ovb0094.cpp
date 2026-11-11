@@ -8,9 +8,11 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
+#include "game/CComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU56.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -67,7 +69,6 @@ void fn_7101141378(UnkInvOwner_ovb0094* self) {
 }
 
 struct UnkHandleOwner_71010c4230;
-void fn_71010c4230(UnkHandleOwner_71010c4230* self);
 struct UnkSpawnGroupKey;
 void fn_7100de9730(UnkGameManager* manager, UnkSpawnGroupKey* key, void* object);
 extern u64 g_unk_7172a092b0 __attribute__((visibility("hidden")));
@@ -91,7 +92,6 @@ void fn_71011423c4(UnkInvRelease_ovb0094* self) {
 
 using base::global::CStrId;
 
-s64 fn_710007cf30(void* stream, const char* format, ...);
 struct UnkStrIdHandle;
 void fn_7100ae986c(UnkStrIdHandle* self, const CStrId& id);
 struct UnkInventory;
@@ -199,7 +199,6 @@ void fn_71011406cc(UnkInvMissiles_ovb0094* self) {
 }
 
 struct UnkStateObject;
-void fn_71010c4148(UnkStateObject* self);
 extern void* g_unk_7101cb33c8[];
 
 // The component the destructor fn_7101141558 tears down, with its fields written out flat.

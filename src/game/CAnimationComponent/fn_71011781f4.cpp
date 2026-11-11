@@ -2,10 +2,10 @@
 // there is such an entry with an object; the lookup is fn_7101177cac's
 // (src/game/CAnimationComponent/fn_710117af10.cpp).
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU1134.h"
 #include "types.h"
 
 struct UnkTrackObject_71011781f4;
-void fn_710070d874(UnkTrackObject_71011781f4* obj, bool flag, bool flag2);
 
 void fn_71011781f4(UnkAnimationComponent* self, u64 key, bool flag) {
     UnkTrackSet* set = self->field_0x40;

@@ -7,6 +7,7 @@
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
 #include "base/UnkVector.h"
+#include "game/CChangeStateDoorsLogicAction.h"
 #include "types.h"
 
 extern void* g_unk_7101a20998[];  // the callback lists' base vtable
@@ -52,7 +53,6 @@ struct UnkDoorSetElem_ovb0087 {
 static_assert(sizeof(UnkDoorSetElem_ovb0087) == 0x48, "layout");
 
 struct UnkCallbackSetVector;
-void fn_7100a3b8e0(UnkCallbackSetVector* v, u32 n);
 
 struct UnkDoorSetVector_ovb0087 {
     UnkDoorSetElem_ovb0087* data;

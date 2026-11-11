@@ -5,11 +5,10 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU2772.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
-
-int fn_71012395a0();
 
 // Four ids, interleaved: [0] and [2] of each (0x...62a8 and 0x...62b8; 0x...62b0 and 0x...62c0).
 extern CFilePathStrId g_unk_71727062a8[3] __attribute__((visibility("hidden")));

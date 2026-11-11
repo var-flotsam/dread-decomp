@@ -10,6 +10,9 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAttack.h"
+#include "game/CAutsharpAIComponent.h"
+#include "game/CBaseBigFistAIComponent.h"
+#include "game/CShockWaveComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
@@ -17,8 +20,6 @@
 using base::reflection::UnkReflObject;
 
 struct UnkBigFistAI_gla;
-bool fn_71003e6c04(UnkBigFistAI_gla* self, f32 distance);
-bool fn_71003e60ac(UnkBigFistAI_gla* self, s32* out);
 
 struct UnkGoliathTunables_gla {
     u8 pad_0x0[0x30];
@@ -51,8 +52,6 @@ bool fn_710058e488(CAttack* self, void* arg, u32 mode) {
 // The shot description fn_71009f35b0 builds (0x210 bytes, its file path at +0x1d8) and
 // fn_71003cc474 destroys.
 struct UnkShockWaveMember;
-void fn_71009f35b0(char* self);
-void fn_71003cc474(UnkShockWaveMember* self);
 void fn_71009f5470(char* self, void* owner);
 
 // The Goliath AI's vtable slot 0x850 gives the path of its shot.

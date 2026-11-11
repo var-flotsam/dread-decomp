@@ -67,3 +67,22 @@ The same struct written out in more than one `.cpp`, each a separate definition 
 `UnkResolvedValue` (b0106), `UnkRef_c3` (b0065), `UnkFxObject_ovb0041` (b0041, b0046), `UnkShotWeakRef` (b0006),
 `UnkSamusSettings` (b0004). These are the ones the workers noticed; `tools/decl_check.py` does not look at
 struct definitions, and 1,020 struct names are defined in more than one file.
+
+## Shared functions the mechanical header migration could not move
+
+`tools/decl_plan.py` and `tools/hub_migrate.py` moved 1,353 shared functions' declarations into unit headers on
+2026-11-11. These 75 were tried and left with every local copy in place, because moving them changed a
+file or stopped it compiling. Each needs a person to settle the type. (`tools/decl_plan.py --exclude` takes
+this list; remove a symbol here when it has moved.)
+
+**48: the header's forward declaration clashes with a type of another kind that a file defines under the same name (a typedef, a template alias, a type in a namespace).**
+`fn_710007b444` `fn_710007cee4` `fn_710007f564` `fn_7100083804` `fn_710009fb38` `fn_710009ffd4` `fn_71000fbce0` `fn_71001039f8` `fn_71002295ac` `fn_7100229688` `fn_7100231b40` `fn_7100232864` `fn_710026d2e4` `fn_710027fc88` `fn_7100287598` `fn_71002af070` `fn_71002af6fc` `fn_71002b3114` `fn_71002b3328` `fn_71002b52a4` `fn_71002f239c` `fn_7100353be8` `fn_7100407170` `fn_7100d45fc4` `fn_7100d45fd4` `fn_7100d46804` `fn_7100d46c60` `fn_7100d476e4` `fn_7100d59dd8` `fn_7100ee34f0` `fn_7100ee62bc` `fn_7100ee6884` `fn_7100ef1e1c` `fn_7100f84868` `fn_7100f85f00` `fn_7100f86020` `fn_7100f86254` `fn_7100faa3d8` `fn_7100fac120` `fn_7100ffbad8` `fn_7101005d8c` `fn_710119a110` `fn_710120806c` `fn_710120b198` `fn_710120e5d0` `fn_7101233f2c` `fn_7101234588` `fn_7101234dcc`
+
+**13: a file defines it, or declares it in a way the declaration check does not see, with another return type than the shared declaration (the compiler: "functions that differ only in their return type").**
+`fn_7100017ce8` `fn_710002384c` `fn_7100026f70` `fn_7100108a84` `fn_7100108abc` `fn_7100108ae8` `fn_7100969058` `fn_710096cdec` `fn_710096d788` `fn_7100d8d854` `fn_7100d8db30` `fn_7100d8e398` `fn_7100f011c4`
+
+**8: the file's compiled output changed.**
+`fn_71005c1008` `fn_7100895498` `fn_710098ae04` `fn_71009a60fc` `fn_71009a64cc` `fn_71009cde54` `fn_710111b230` `fn_71011201e4`
+
+**6: a file uses a type the header does not bring.**
+`fn_71007142e8` `fn_7100872908` `fn_710099d6f0` `fn_71009a1f40` `fn_71009b0800` `fn_71010d1598`

@@ -8,9 +8,8 @@
 #include "base/UnkMatrix44.h"
 #include "base/UnkVector.h"
 #include "game/UnkSphere.h"
+#include "game/UnkTU308.h"
 #include "types.h"
-
-void fn_710021685c(void* self);  // UnkSphere's constructor
 
 // A box with virtual accessors (0x20 bytes): its minimum and maximum corners.
 struct UnkPoolBox {

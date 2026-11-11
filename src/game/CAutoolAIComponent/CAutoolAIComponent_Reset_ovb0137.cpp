@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/math/UnkZeroVector3.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAutoolAIComponent.h"
 #include "game/UnkBehaviorTree.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -13,7 +14,6 @@
 using base::global::CStrId;
 
 struct UnkSelf;
-void fn_71003c4e64(UnkSelf* self, u32 flag);
 void fn_7100662110(void* self);
 struct UnkObject;
 struct UnkComponent;

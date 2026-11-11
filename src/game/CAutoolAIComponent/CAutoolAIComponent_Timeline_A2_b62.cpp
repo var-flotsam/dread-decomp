@@ -4,13 +4,13 @@
 // the empty name. Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CName.h"
+#include "game/CAutoolAIComponent.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 struct UnkEvacPart_b61;
 struct UnkEvacTimeline_b61;
-UnkEvacTimeline_b61* fn_71003c6c3c(UnkEvacPart_b61* part);
 
 struct UnkAutoolInner_b62a2 {
     u8 pad_0x0[0x30];

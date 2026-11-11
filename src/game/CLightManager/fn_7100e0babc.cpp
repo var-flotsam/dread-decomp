@@ -4,6 +4,8 @@
 // original. The two lists sit at `Offset` + 8 and `Offset` + 0x30. Three more take the last
 // object off the first list, set its flag and append it to the second.
 #include "base/UnkVector.h"
+#include "game/CLightManager.h"
+#include "game/UnkTU290.h"
 #include "types.h"
 
 struct UnkListedObj;
@@ -24,8 +26,6 @@ struct UnkListPair {
     UnkPtrList pending;
 };
 
-void fn_710020c8ac(void* flag, bool value);
-
 template <u32 Offset, u32 Flag, UnkListedObj** (*Get)(UnkPtrList*, u32)>
 __attribute__((always_inline)) static inline void Activate(char* self, UnkListedObj* obj) {
     if (!obj)
@@ -41,7 +41,6 @@ __attribute__((always_inline)) static inline void Activate(char* self, UnkListed
 }
 
 UnkListedObj** fn_7100e0a49c(UnkPtrList* list, u32 index);
-UnkListedObj** fn_7100e0a5ec(UnkPtrList* list, u32 index);
 UnkListedObj** fn_7100e0a73c(UnkPtrList* list, u32 index);
 
 void fn_7100e0babc(char* self, UnkListedObj* obj) { Activate<0x0, 0x20, fn_7100e0a49c>(self, obj); }

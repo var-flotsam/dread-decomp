@@ -2,12 +2,11 @@
 // the source's first two lists hold (fn_7100161b90, fn_71001541a0), then the holder's own state
 // (fn_71001ad4fc), and drops the reference it keeps at +0x18. Names and layouts are placeholders.
 #include "base/UnkCountedResource.h"
+#include "game/UnkTU174.h"
+#include "game/UnkTU182.h"
 #include "types.h"
 
 struct UnkObj_71001541a0;
-
-void fn_7100161b90(void* obj);
-void fn_71001541a0(UnkObj_71001541a0* obj);
 
 struct UnkPooledNode_b0231 {
     void* object;

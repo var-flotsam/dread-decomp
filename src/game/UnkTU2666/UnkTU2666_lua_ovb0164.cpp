@@ -7,21 +7,25 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CActorComponent.h"
 #include "game/CBlackboard.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/UnkStringPool.h"
+#include "game/CChozoCommanderAIComponent.h"
+#include "game/CDrop.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "../../game_s7/UnkPropBagS7.h"
+#include "game/UnkTU2677.h"
+#include "game/UnkTU2768.h"
+#include "game/nn/time.h"
 #include "types.h"
 
 using base::global::CStrId;
 using unk_prop_bag::UnkPropBag;
 
 struct lua_State;
-s32 fn_71010c0270(lua_State* L, const char* fmt, ...);
-int fn_71010c0b40(lua_State* L, const char* fmt, ...);
 extern u32 g_unk_71727bebb8;
 
 // The object the game manager knows under a name (the name's CRC64 and the kind g_unk_71727bebb8).
@@ -144,8 +148,6 @@ s32 fn_710108f050(lua_State* L) {
     return result;
 }
 
-bool fn_710024fbc8(void*);
-
 struct UnkCompEntry_b0164 {
     u8 pad_0x0[0x10];
     base::reflection::UnkReflObject* object;  // 0x10
@@ -265,7 +267,6 @@ s32 fn_71010888b0(lua_State* L) {
 
 struct UnkSoundHolder;
 extern UnkSoundHolder* g_unk_7101d47340;
-void fn_710006cd9c(UnkSoundHolder* holder);
 struct UnkSoundGroup_b0164 {
     virtual void vf_0x0();
     virtual void vf_0x8();
@@ -370,7 +371,6 @@ struct UnkMlogMessage_b0164 {
 };
 
 struct UnkMlogMessage_b42a1;
-void fn_7100456b7c(void* callbacks, const UnkMlogMessage_b42a1* message);
 void fn_7100e00cc0(UnkGameManager* self, u8 flag);
 
 s32 fn_7101081c50(lua_State* L) {
@@ -386,7 +386,6 @@ s32 fn_7101081c50(lua_State* L) {
     return 0;
 }
 
-void* fn_71007c04f0(void* object);
 struct UnkComponent_71011199cc;
 struct UnkList_71011199cc;
 void fn_710111b230(UnkComponent_71011199cc* self, UnkList_71011199cc* out);
@@ -417,7 +416,6 @@ s32 fn_7101084b60(lua_State* L) {
 
 struct UnkUserDataOwner;
 extern UnkUserDataOwner* g_unk_7101d47308;
-void fn_710120320c(UnkUserDataOwner* self);
 CBlackboard* fn_710120384c(UnkUserDataOwner* self);
 extern CStrId g_unk_7172a01968[2] __attribute__((visibility("hidden")));
 

@@ -4,13 +4,12 @@
 // placeholders.
 #include "base/UnkVector.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2768.h"
+#include "game/UnkTU39.h"
 #include "types.h"
 
 struct UnkUserDataOwner;
 extern UnkUserDataOwner* g_unk_7101d47308;
-void fn_710120320c(UnkUserDataOwner* self);  // constructor
-u32 fn_71012037dc(UnkUserDataOwner* self);
-bool fn_710002fb70(void*);
 
 static inline UnkUserDataOwner* GetOwner() {
     if (!g_unk_7101d47308) {

@@ -3,6 +3,7 @@
 // setup id and disabling, then nudges the manager g_unk_7101d47368. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -10,8 +11,6 @@ using base::global::CStrId;
 extern void* g_unk_7101d47360;
 extern void* g_unk_7101d47368;
 void fn_7100ee1f34(void*);
-void fn_7100d8ced8(void* self);
-void fn_7100d8ef04(void* self, f32 v);
 void fn_7100eeeda4(void* manager, const CStrId* setup, bool enable, const u32* mask);
 
 struct UnkSubareaStaticZero_ovb0139 {

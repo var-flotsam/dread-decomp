@@ -10,7 +10,9 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
+#include "game/CActorComponent.h"
 #include "game/UnkComponent.h"
+#include "game/UnkTU2669.h"
 #include "types.h"
 
 using namespace unk_prop;
@@ -20,15 +22,12 @@ using base::global::CRntString;
 // As src/game/CTargetComponent/CTargetComponent_c2_2.cpp declares it.
 void fn_710007ca94(CRntFile* file, char* buf);
 // As src/game/CFactionComponent/CFactionComponent_Read_b48a3.cpp declares it: the base read.
-void fn_710024fc08();
 // As src/game/UnkUnit2669/UnkUnit2669_LoadByName.cpp declares it.
 struct UnkUnit2669Str;
-u32 fn_710109dd6c(void* self, void* source, UnkUnit2669Str* name, bool a, bool b);
 
 // The script manager (0x88 bytes), created on first use.
 struct UnkScriptManager_ovb0085;
 extern UnkScriptManager_ovb0085* g_unk_71727bed90;
-void fn_710109d810(UnkScriptManager_ovb0085* self);
 void fn_710109d890(UnkScriptManager_ovb0085* self, CRntString* name);
 
 extern char g_unk_7101cb30b8[];  // the component's vtable

@@ -1,11 +1,11 @@
 // CCharClassAINavigationComponent's unit (tools/tu_map.py): the constructor (fn_71006f7a78). Names and
 // layouts are placeholders.
+#include "base/core/CBaseObject.h"
+#include "game/CCharClassComponent.h"
 #include "types.h"
 
 struct UnkStruct_71008bca30;
-void fn_71011acd10(UnkStruct_71008bca30*);
 struct UnkNode;
-void fn_7100023854(UnkNode*);
 extern void* g_unk_7101a6b7a0[];
 
 struct UnkAINavigationComponent_ovb0043 {

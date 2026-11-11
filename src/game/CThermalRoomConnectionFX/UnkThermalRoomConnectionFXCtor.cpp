@@ -5,11 +5,11 @@
 // is clear, the virtual call at slot 17, and the post-construction virtual call (slot 3). The
 // containers' fields are written out flat. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CComponent.h"
+#include "game/CDemolitionBlockComponent.h"
 #include "types.h"
 
 struct UnkStateObject;
-void fn_71010c4148(UnkStateObject* self);
-void fn_71007b1528(char*);
 extern void* g_unk_7101a7ac20[];
 extern void* g_unk_7101a7b058[];
 extern void* g_unk_7101a20998[];

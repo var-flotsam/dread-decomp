@@ -4,6 +4,8 @@
 #include "base/UnkStrIdPathPair.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CActorComponent.h"
+#include "game/CCharClassLightingComponent.h"
 #include "types.h"
 #include "game/UnkComponent.h"
 
@@ -40,7 +42,6 @@ struct UnkLightingComponent3 {
 };
 
 void fn_71008e61f4(UnkLightingLight3* light, f32 a, f32 b);
-void fn_710024f910(UnkLightingComponent3* self);  // the base destructor body
 
 // Applies `a` and `b` (fn_71008e61f4) to each light whose definition is `id`.
 void fn_71008e7f98(UnkLightingComponent3* self, const u64* id, f32 a, f32 b) {
@@ -83,7 +84,6 @@ void fn_71008e7bc0(UnkLightingComponent3* self) {
     fn_710024f910(self);
 }
 
-void fn_71008e756c(UnkLightingComponent3* self, void* arg);
 extern __attribute__((visibility("hidden"))) base::reflection::CClass g_unk_7172732948;  // its class
 
 // Calls the base method; when the object at +0x10 is a CCharClassLightingComponent, caches it at

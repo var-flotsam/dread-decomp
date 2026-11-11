@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CBigkranXAIComponent.h"
 #include "game/UnkAttack.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -15,7 +16,6 @@ struct UnkMagmaRainAI_b49 {
     void** vtable;
     const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkMagmaRainAI_b49*)>(vtable[0])(this); }
 };
-void fn_71003f4f0c(UnkMagmaRainAI_b49* ai, u32 state);
 
 struct UnkMagmaRainActor_b49 {
     u8 pad_0x0[0x240];

@@ -11,13 +11,16 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCollisionComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2509.h"
 #include "game/UnkXformNode.h"
+#include "game/logic/collision/CBroadphaseObject.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -29,10 +32,8 @@ using base::global::CRntString;
 // Refreshing every record through vf_0x170 (or clearing its +0x1c) and resetting every registered object.
 UnkReflObject*& fn_7100862088(base::UnkVector<UnkReflObject*>* self, u32 index);
 struct UnkColliderNode_A6_b70;
-void fn_7100d35af4(UnkColliderNode_A6_b70* self);
 void fn_7100860c64(UnkCollisionContainer* self);
 void fn_71008615b4(UnkCollisionContainer* self);
-void fn_71008618cc(void* self);
 
 typedef void (*UnkCollisionRefresh_ovb0107)(UnkCollisionContainer* self, UnkCollisionRecord* record, s32 mode);
 typedef u32 (*UnkCollisionQuery_ovb0107)(UnkCollisionObject* object);
@@ -91,8 +92,6 @@ void* fn_710117b130(UnkAnimationComponent* self, const CClass* cls);
 void fn_7100861bb4(UnkCollisionContainer* self, void* track);
 void fn_7100861e38(UnkCollisionContainer* self, void* track);
 struct UnkStruct_7100861148;
-void fn_7100861148(UnkStruct_7100861148* self);
-void fn_71008618cc(void* self);
 
 struct UnkCollisionComponent_ovb0107 {
     u8 unk_0x0[0x30];
@@ -464,7 +463,6 @@ struct UnkShape;
 UnkMatrix44 fn_7100d36a2c(UnkShape* shape);
 
 struct UnkShapeTester_A5_b68;
-void fn_7100d5134c(UnkShapeTester_A5_b68* self);
 extern UnkShapeTester_A5_b68* g_unk_71726a47a0;
 
 struct UnkVisitResult_b0040 {

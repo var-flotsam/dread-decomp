@@ -6,6 +6,9 @@
 // placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
+#include "game/CActorComponent.h"
+#include "game/CFreezeRoomComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -13,13 +16,9 @@ using base::global::CStrId;
 // Signatures as src/game/CFreezeRoomComponent/CFreezeRoomComponent_b34.cpp and
 // src/game/CSubAreaManager.cpp declare them.
 struct UnkStruct_710024fa0c;
-void fn_710024fa0c(UnkStruct_710024fa0c* self, bool enabled);  // CActorComponent: enable or disable
 struct CFreezeRoomComponent;
-void fn_7100a238f4(CFreezeRoomComponent* self);
-f32 fn_7100a232d4(CFreezeRoomComponent* self);
 struct UnkEnvironmentManager;
 extern void* g_unk_7101d47368;
-void fn_7100d8ced8(void* self);  // constructor
 void fn_7100d8e32c(UnkEnvironmentManager* self, const CStrId* id, bool a, bool b);  // slot 6
 const CStrId* fn_7100d8efc8(UnkEnvironmentManager* self);
 

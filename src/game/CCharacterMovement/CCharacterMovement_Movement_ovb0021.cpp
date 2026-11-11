@@ -12,10 +12,14 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCharacterMovement.h"
+#include "game/CMovementComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
+#include "game/UnkTU365.h"
+#include "game/UnkTU39.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -26,7 +30,6 @@ using base::math::CVector2D;
 using base::math::CVector3D;
 
 struct UnkMovement_71010d0e38;
-bool fn_71010d0e38(UnkMovement_71010d0e38* self);
 
 // ----
 // A weak reference with a countdown (16 bytes): the list at CCharacterMovement's +0x3f8.
@@ -167,7 +170,6 @@ struct UnkVec3Bits {
     UnkVec3Bits(const UnkVec3Bits& other) : x(other.x), y(other.y), z(other.z) {}
 };
 struct UnkPlace;
-UnkVec3Bits fn_7100979a60(UnkPlace* place);
 
 static inline UnkNavMeshManager* NavManager() {
     UnkNavMeshManager* manager = g_unk_71726a4510;
@@ -269,7 +271,6 @@ void fn_710097973c(UnkCharacterMovementOwner_ovb0021* self) {
 
 // ----
 struct UnkMovement_71010d0e38;
-bool fn_71010d0e38(UnkMovement_71010d0e38* self);
 
 struct UnkHoldState_ovb0021 {
     u8 pad_0x0[0x70];
@@ -526,7 +527,6 @@ struct UnkMoveSlot_0xb0 {
     u8 data[0xb0];
 };
 void fn_71000309ac(UnkMoveSlot_0xb0* self);
-void fn_7100030a50(UnkMoveSlot_0xb0* self);
 
 struct UnkMoveTracker_ovb0021 {
     u8 data[0x8];
@@ -535,8 +535,6 @@ void fn_7100d4c17c(UnkMoveTracker_ovb0021* self);
 void fn_7100d4c190(UnkMoveTracker_ovb0021* self);
 
 struct UnkCharacterMovementFull_ovb0021;
-void fn_71010d0754(UnkCharacterMovementFull_ovb0021* self);
-void fn_71010d092c(UnkCharacterMovementFull_ovb0021* self);
 
 static inline void Release(UnkRefObject* p) {
     if (p) {
@@ -588,7 +586,6 @@ void fn_7100975f10(UnkCharacterMovementFull_ovb0021* self) {
 struct UnkAssignedSlot {
     void* ptr;
 };
-void fn_71002a5d1c(UnkAssignedSlot* self, const UnkAssignedSlot* other);
 
 // A large object built once, with an id at +0x20f0.
 struct UnkIdTable_ovb0021 {

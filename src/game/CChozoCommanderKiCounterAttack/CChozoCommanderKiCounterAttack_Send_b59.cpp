@@ -5,11 +5,10 @@
 // +0x50, sends the actor's class a request (descriptors as UnkSpitSend) and sets the flags at +0x58 and
 // +0x5b. Returns false. Names are placeholders.
 #include "base/UnkMatrix44.h"
+#include "game/CMeleeComponent.h"
 #include "game/UnkActor.h"
 #include "../../game_s2/UnkSpitSend.h"
 #include "types.h"
-
-bool fn_710092b6f8(void*);
 
 struct UnkKiCounterTunables_b59 {
     u8 pad_0x0[0x100];

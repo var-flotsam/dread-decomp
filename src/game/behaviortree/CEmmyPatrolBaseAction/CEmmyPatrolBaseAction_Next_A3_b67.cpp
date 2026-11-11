@@ -4,11 +4,11 @@
 // (fn_71006fa894) moves on (fn_710051564c(self, 1)). Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/behaviortree/CEmmyPatrolBaseAction.h"
 #include "types.h"
 
 // As src/game/behaviortree/CEmmyPatrolBaseAction/CEmmyPatrolBaseAction_Start_b55.cpp declares it.
 struct UnkPatrolBase_b55;
-void fn_710051564c(UnkPatrolBase_b55* self, bool flag);
 
 u32 fn_71006fa894(void* path);
 

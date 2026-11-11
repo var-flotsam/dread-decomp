@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/malloc.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -66,7 +67,6 @@ void fn_7100fcd7f0(void* self);
 
 struct UnkStatsObject;
 extern UnkStatsObject* g_unk_7101d47100;
-void fn_7100131f48(UnkStatsObject* self);
 void fn_7100132248(UnkStatsObject* self, const CStrId& name, f32 value);
 
 // Removes element i, moving the later ones down.

@@ -5,9 +5,8 @@
 #include <memory>
 
 #include "base/UnkVector.h"
+#include "game/UnkTU23.h"
 #include "types.h"
-
-void fn_7100014e88(void* member);
 
 extern char g_unk_7101a190e8[];
 

@@ -1,6 +1,8 @@
 // Unit 322 (no reliable name): a player's media object creation and the widget it adds for a video. Names and layouts are placeholders.
 #include <new>
 #include "base/UnkVector.h"
+#include "game/UnkTU223.h"
+#include "game/UnkTU287.h"
 #include "types.h"
 #include "base/UnkPairArrays.h"
 #include "base/global/CStrId.h"
@@ -130,10 +132,6 @@ void fn_71001c3504(UnkRender* render, void* p);
 void* fn_71001d086c(UnkGraphicsSystem* self, const CStrId* key);
 void fn_71001606c0(void* obj, u32* a, u32* b);
 void fn_710020a5a0(UnkStruct_710020a5a0* self, const base::math::CVector2D* scale);
-void fn_710020a4c4(void* p, const UnkMinimapVec3& pos);
-void fn_710019c284(UnkBlendLayer_710019c284* self);
-void fn_710019c564(void* target, f32 a, f32 b, f32 c, f32 d);
-void fn_710020ad90(void* self, s32 value);
 void fn_710021d58c(base::UnkPairArrays* self, u32 n);
 
 struct UnkCd80Render_b0246 {

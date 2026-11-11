@@ -8,6 +8,7 @@
 #include "base/math/CVector4D.h"
 #include "game/UnkSlots.h"
 #include "game/UnkSphere.h"
+#include "game/UnkTU222.h"
 #include "game/UnkXformNode.h"
 
 using base::color::CColor4F;
@@ -65,8 +66,6 @@ struct UnkBoneDriver {
     virtual void vf_0x10();
     virtual void vf_0x18(UnkBoneArrayHolder* holder);
 };
-
-void fn_710019b9c8(UnkBoneArray* bones);
 
 bool fn_71001c1b70(UnkBoneOwner* self, u32 index, UnkMatrix44* out) {
     UnkBoneArray* bones = self->holder->bones;

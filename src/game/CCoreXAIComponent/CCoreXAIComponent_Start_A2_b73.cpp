@@ -5,12 +5,12 @@
 // +0x50) and +0x220, hooks the callback fn_71004db7f8 (link at +0x149d8, handle at +0x149f0) up to the object
 // the owner tracks (+0x220), as src/game/CChozoWarriorXGlaiveSpinAttack/UnkAttackTrackLink_b54.cpp, and sets
 // the +0x50 object's +0x114 when its +0x11c is set. Names and layouts are placeholders.
+#include "game/CBossAIComponent.h"
 #include "game/UnkActor.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkCoreXAI_A2_b73;
-void fn_71003acb5c(UnkCoreXAI_A2_b73* self);
 void fn_71003aff64(UnkCoreXAI_A2_b73* self, u32 a, u32 b);
 void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
 void fn_710117b3e8(UnkWeakTarget* target, void* link);

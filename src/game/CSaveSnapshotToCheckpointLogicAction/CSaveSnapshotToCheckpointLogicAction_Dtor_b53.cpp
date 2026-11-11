@@ -4,10 +4,10 @@
 // destructor (fn_7100a55ab8). Names are placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
+#include "game/CTriggerLogicAction.h"
 #include "types.h"
 
 struct UnkLogicActionBase;
-void fn_7100a55ab8(UnkLogicActionBase*);
 
 extern void* g_unk_7101a20950[];
 extern void* g_unk_7101a20998[];

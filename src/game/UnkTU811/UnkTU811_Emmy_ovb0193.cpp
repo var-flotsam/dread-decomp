@@ -11,7 +11,9 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAudioComponent.h"
 #include "game/CBlackboard.h"
+#include "game/CCharacterMovement.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkCollisionRecord.h"
@@ -19,6 +21,9 @@
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
+#include "game/UnkTU2523.h"
+#include "game/UnkTU39.h"
+#include "game/UnkTU811.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -169,7 +174,6 @@ struct UnkSoundHandle {
     s64 serial;
 };
 extern const UnkSoundHandle g_unk_7108b6c460;  // the empty handle
-void fn_7100d7c510(UnkShipRechargeEntity_b49a4* entity, UnkSoundHandle* handle, f32 fade, f32 delay);
 
 static inline UnkSound* GetSound_b0193(const UnkSoundHandle* handle) {
     if (handle->ref && handle->ref->serial == handle->serial && handle->serial != -1)
@@ -219,7 +223,6 @@ extern base::global::CStrId g_unk_71726b7cb8;
 extern char g_unk_71726debe0[];
 bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
 bool fn_7101110268(void* self);
-bool fn_710002fb70(void*);
 
 struct UnkTrackedVtbl_b0193 {
     void* unk_0x0[0x2d0 / 8];
@@ -274,7 +277,6 @@ bool fn_71005579b0(UnkChaseAI_b0193* self, UnkChaseArgs_b0193* args) {
 }
 
 // ---- 7100541e64
-void fn_7100719894(void* player, UnkSoundHandle handle, f32 a, f32 b);
 
 struct UnkHandleOwner_b0193 {
     u8 unk_0x0[0x2b8];
@@ -308,7 +310,6 @@ using base::global::CStrId;
 struct UnkEmmyRelaxAI_b59;
 struct UnkFlagged;
 struct UnkShape;
-UnkShape* fn_7100976588(UnkFlagged* flagged);
 
 struct UnkDoorList_b0193 {
     base::reflection::UnkReflObject** items;
@@ -418,10 +419,6 @@ struct UnkRangeAI_b0193 {
 struct UnkEmmyAIView;
 struct UnkEmmyAI2_b62a3;
 struct UnkEmmyAIComponent_b46a1;
-bool fn_710054ad2c(UnkEmmyAIView*);
-bool fn_710054aecc(UnkEmmyAI2_b62a3*);
-bool fn_7100543b30(UnkEmmyAIView*);
-bool fn_71005436e8(UnkEmmyAIComponent_b46a1*);
 
 f32 fn_71005592ac(UnkRangeAI_b0193* self) {
     UnkActor* player = reinterpret_cast<UnkActor*>(fn_7100dec788(g_unk_7101d47310));

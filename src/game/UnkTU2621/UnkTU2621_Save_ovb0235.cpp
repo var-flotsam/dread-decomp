@@ -8,10 +8,12 @@
 #include "base/UnkRegistry.h"
 #include "base/UnkVector.h"
 #include "base/UnkHashStream.h"
+#include "base/file/nx/CDeviceNX.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2768.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -254,7 +256,6 @@ void fn_7100fc6e20(base::UnkVector<UnkEntry_b0235>* self, const UnkEntry_b0235* 
 // ---- 36d4
 struct UnkUserDataOwner;
 extern UnkUserDataOwner* g_unk_7101d47308;
-void fn_710120320c(UnkUserDataOwner* self);
 struct UnkUserDataOwnerFlag_b48a3;
 void fn_71012037fc(UnkUserDataOwnerFlag_b48a3* self, bool flag);
 bool fn_7100132f60();
@@ -356,7 +357,6 @@ void fn_710007c144(UnkHashStream_0x38* s);
 u32 fn_710002ed98(void* table, base::global::CRntString* path, void* out, u32 b, void* allocator, u32 align, u32 flags);
 bool fn_7100fc7d58(UnkDirIter_b0235* it);
 void fn_7100fc7cfc(UnkDirIter_b0235* it, base::global::CRntFile* file);
-s32 fn_710002eec8(void* table, void* path, void* data, u64 size, bool commit, bool create);
 extern const char g_unk_710164784b;  // the path separator
 extern u8 g_unk_71729f0020[] __attribute__((visibility("hidden")));
 u32 fn_710002ec40(void* table, CRntString* path);

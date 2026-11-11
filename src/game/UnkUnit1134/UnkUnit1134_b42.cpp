@@ -4,6 +4,7 @@
 // current entry, flag 0x40 is set while the current state (+0x14) is not 1, or the player
 // (fn_7100c95ed8) is not done, the request's priority (+0x20) is lower and flag 1 is clear. Names and
 // layouts are placeholders.
+#include "game/CActionInstance.h"
 #include "types.h"
 
 struct UnkEntry_b42 {
@@ -20,8 +21,6 @@ struct UnkPlayer_b42 {
     u8 pad_0x0[0x10];
     UnkEntry_b42* current;  // 0x10
 };
-
-bool fn_7100c95ed8(UnkPlayer_b42*);
 
 struct UnkRequest_b42 {
     UnkEntry_b42* entry;

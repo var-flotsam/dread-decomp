@@ -5,10 +5,10 @@
 // the flag at +0x1a is set, else fn_7100eea334. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CTriggerLogicAction.h"
 #include "types.h"
 
 struct UnkTutoExitAction_b47;
-void fn_7100a55ac8(UnkTutoExitAction_b47* self);
 
 extern void* g_unk_7101d47360;
 void fn_7100ee1f34(void*);

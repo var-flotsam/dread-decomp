@@ -3,10 +3,10 @@
 // the next pattern at +0x44: 0 when the owner (+0x30) has one pattern (+0x118), otherwise a random one
 // different from the current. The single-pattern case is laid out first (hence the expect). Names and
 // layouts are placeholders.
+#include "game/CKraidAttack.h"
 #include "types.h"
 
 extern "C" int rand();
-void fn_71005f2018(char*);
 
 struct UnkKraidAcidOwner_b54 {
     u8 pad_0x0[0x118];

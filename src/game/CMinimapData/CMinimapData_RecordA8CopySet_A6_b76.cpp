@@ -3,12 +3,12 @@
 // is copied with its set flag raised, the leading array assigned out of line (fn_710011dac0), a word copied and
 // the trailing arrays assigned out of line (fn_7100e4f444). The b72 shape
 // (src/game/CNavMeshItemComponent/UnkReflFlatMapSet_A4_b72.cpp). Names and layouts are placeholders.
+#include "game/UnkTU108.h"
+#include "game/UnkTU2563.h"
 #include "types.h"
 
 struct UnkPartsRecord;
 struct UnkArraysRecord;
-void fn_710011dac0(UnkPartsRecord*, const UnkPartsRecord*);
-UnkArraysRecord* fn_7100e4f444(UnkArraysRecord*, const UnkArraysRecord*);
 
 struct alignas(8) UnkRecordA8Copy_A6_b76 {
     u8 field_0x0[0x28];

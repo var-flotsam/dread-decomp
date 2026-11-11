@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CBigkranXAIComponent.h"
 #include "game/UnkActor.h"
 #include "../../game_s2/UnkSpitSend.h"
 #include "types.h"
@@ -15,7 +16,6 @@
 using base::reflection::CClass;
 
 struct UnkMagmaRainAI_b49;
-void fn_71003f4f0c(UnkMagmaRainAI_b49* ai, u32 state);
 
 struct UnkMagmaRainTunables_b59 {
     u8 pad_0x0[0xec];

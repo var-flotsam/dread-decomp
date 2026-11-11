@@ -6,6 +6,7 @@
 // assignment does nothing); the moving one then move-assigns the element (fn_7100d9b27c). The shape of
 // fn_7100c92080 (src/game/CCutSceneDef/CCutSceneDef_b42.cpp). Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CLightsDef.h"
 #include "types.h"
 
 struct UnkLightsElem_b42a3 {
@@ -22,7 +23,6 @@ struct UnkLightsArray_b42a3 {
     base::UnkAllocator* allocator;
 };
 
-void fn_7100da1508(UnkLightsArray_b42a3* self, u32 capacity);
 void fn_7100d9b128(UnkLightsElem_b42a3* self);
 void fn_7100d9b27c(UnkLightsElem_b42a3* self, UnkLightsElem_b42a3* other);
 

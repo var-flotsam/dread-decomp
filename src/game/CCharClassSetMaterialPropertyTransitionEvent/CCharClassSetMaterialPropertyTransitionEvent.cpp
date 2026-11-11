@@ -3,9 +3,9 @@
 // floats of 1 (as the FX material events in
 // src/game/CCharClassFXSetMaterialPropertyEvent/CCharClassFXSetMaterialPropertyEvent.cpp, with one
 // id). Names and the layout are placeholders.
+#include "base/global/timeline/CEvent.h"
+#include "game/UnkTU0.h"
 #include "types.h"
-
-void fn_71000003d4(void* self, const char* s, bool flag);
 
 struct UnkMaterialTransitionEvent {
     void** vtable;
@@ -19,7 +19,6 @@ struct UnkMaterialTransitionEvent {
     f32 field_0x34;
 };
 
-void fn_7100067ea4(void* self);  // the base constructor
 extern void* g_unk_7101aa6138[];
 
 void fn_7100cd5c4c(UnkMaterialTransitionEvent* self) {

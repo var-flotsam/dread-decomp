@@ -9,9 +9,13 @@
 #include "base/input/UnkRumbleManager.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CBlackboard.h"
+#include "game/CHeatRoomComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU2728.h"
+#include "game/UnkTU2732.h"
 #include "game/UnkTUInit.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -278,9 +282,6 @@ u32 fn_710119882c(void* manager, const CFilePathStrId* path) {
 struct UnkEventTable_b0188;
 
 u32 fn_7100f0cc48(UnkEventTable_b0188* table, u32 value);
-void fn_7100000790(const char* name, const char* fmt, ...);
-void fn_710119ae24(void*, void*, bool);
-void fn_710119aee8(void*);
 extern void* g_unk_7172729910;
 
 struct UnkEventEntry_b0188 {
@@ -433,7 +434,6 @@ extern UnkCutsceneUnitHeader g_unk_7172a0bcb8 __attribute__((visibility("hidden"
 
 extern void* g_unk_7101a8d830[];
 extern void* g_unk_7101a889c8[];
-void fn_7100a24a50(void* self);
 void fn_710119ab20_init();
 
 void fn_710119ab20() {
@@ -550,7 +550,6 @@ void fn_7100073f48(UnkRumbleManager* self, u32 a, u32 b);
 UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 void fn_7100d7ae80(UnkComponentOwner* self);
 extern void* g_unk_7172758b20;
-void fn_7101192628(void* self);
 void fn_7101192a4c(void* self);
 void fn_7100219c44(UnkRenderManager* self, u32 value);
 void fn_710021a09c(UnkRenderManager* self, u32 value);

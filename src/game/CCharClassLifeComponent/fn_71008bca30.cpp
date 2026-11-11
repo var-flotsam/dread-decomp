@@ -3,6 +3,7 @@
 #include <new>
 
 #include "base/reflection/UnkReflAttributes.h"  // g_unk_7101d470e0, the shared id
+#include "game/CCharClassComponent.h"
 #include "types.h"
 
 // A pooled string's record with a plain reference count (CStrId.h makes the count a union
@@ -33,8 +34,6 @@ struct UnkStruct_71008bca30 {
     UnkStrId_71008bca30 ids[9];
     bool field_0xa0;
 };
-
-void fn_71011acd10(UnkStruct_71008bca30* self);  // base constructor
 
 void fn_71008bca30(UnkStruct_71008bca30* self) {
     fn_71011acd10(self);

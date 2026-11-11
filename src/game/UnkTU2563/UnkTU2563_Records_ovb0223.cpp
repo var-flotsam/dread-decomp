@@ -12,6 +12,7 @@
 #include "base/UnkNamedRegistry.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -21,7 +22,13 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CChangeStageNavMeshItemComponent.h"
+#include "game/CCharClassWaterPoolComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU25.h"
+#include "game/UnkTU2563.h"
+#include "game/UnkTU365.h"
+#include "game/UnkTU83.h"
 #include "types.h"
 // The CMinimapData unit (unit 2563): arrays of 0x138-byte records (copy construction, copy assignment and
 // inserts, with the record's special members out of line) and the room components that rebuild a point record
@@ -30,8 +37,6 @@
 
 
 struct UnkRec138_b0223;
-void fn_7100e51078(void* dst, void* src);
-void fn_7100e4e310(char* self);
 void fn_7100e50e20(void* dst, void* src);
 
 struct UnkRec138_b0223 {
@@ -236,11 +241,9 @@ struct UnkTracker_b0223 {
     UnkShape_b0223* shape;
 };
 struct UnkTracker;
-UnkTracker* fn_710028aca8(void*);
 
 struct UnkFreezeRoom_ovb0106;
 struct UnkFreezeList_ovb0106;
-UnkFreezeList_ovb0106* fn_71009088a0(UnkFreezeRoom_ovb0106*);
 UnkHandleList_b0223* fn_7100914230(UnkRoom_b0223* self);
 UnkHandleList_b0223* fn_7100a26740(UnkRoom_b0223* self);
 void fn_7100131020(void* shape, UnkBoundsRec_b0223* rec, void* v, bool flag);
@@ -444,7 +447,6 @@ struct UnkPart48 {
         }
     }
 };
-void fn_71000cbae4(UnkPart48* self, const UnkPart48* other);
 inline UnkPart48::UnkPart48(const UnkPart48& other) { fn_71000cbae4(this, &other); }
 
 // base::UnkVector<u16>'s layout.
@@ -531,8 +533,6 @@ struct UnkRec60IdArray_b0223 {
     base::UnkAllocator* allocator;
 };
 
-void fn_7100e56814(void*, u32);
-
 void fn_7100e56634(UnkRec60IdArray_b0223* self, const UnkRec60IdArray_b0223* other) {
     self->data = nullptr;
     self->ids = nullptr;
@@ -566,7 +566,6 @@ struct UnkRec60Array_b0223 {
 };
 
 struct UnkRecord60Array;
-void fn_7100e54ad8(UnkRecord60Array* self, u32 capacity);
 void fn_7100e54ef0(UnkSecondPtrArray<UnkFreedVectorPair>* self);
 
 UnkRec60Array_b0223* fn_7100e54cc4(UnkRec60Array_b0223* self, const UnkRec60Array_b0223* other) {
@@ -629,9 +628,7 @@ struct UnkStrIdVecMap_b0223 {
     base::UnkAllocator* allocator;
 };
 
-void fn_71009ba838(void*, u32);
 struct UnkNavMeshItemMember;
-void fn_71009ba68c(UnkNavMeshItemMember* self);
 void fn_7100e5dd0c(UnkStrIdVecMap_b0223* self);
 
 void fn_7100e5d924(UnkStrIdVecMap_b0223* self, const UnkStrIdVecMap_b0223* other) {
@@ -691,7 +688,6 @@ struct UnkPathPairTemp_b45a1 {
     void* path;
     ~UnkPathPairTemp_b45a1() { fn_710008d8e8(reinterpret_cast<UnkStrIdPathPair*>(this)); }
 };
-UnkPathPairTemp_b45a1 fn_710001ab24(void* path);
 
 // The file read into memory and two words the opener sets (+0x38 is zero after a good read).
 struct UnkFileReader {
@@ -701,7 +697,6 @@ struct UnkFileReader {
 };
 
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
-void fn_710000ccd8(UnkFileReader* self);
 void fn_710000f750(UnkParseContext* self, void* root);
 
 // The parser's callbacks of this unit.
@@ -917,7 +912,6 @@ struct UnkListItem_b0223 {
 static_assert(sizeof(UnkListItem_b0223) == 0x60, "layout");
 
 struct UnkRecord60;
-void fn_7100e4a1d0(UnkRecord60*);
 inline UnkListItem_b0223::~UnkListItem_b0223() { fn_7100e4a1d0(reinterpret_cast<UnkRecord60*>(this)); }
 
 UnkListItem_b0223* fn_7100e5a5f8(UnkKeyedItems_b0223<UnkListItem_b0223>* self, UnkListItem_b0223* it) {

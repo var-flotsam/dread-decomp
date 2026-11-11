@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityEnergyWave.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSceneObject.h"
@@ -30,7 +31,6 @@ struct UnkLockOnMovement_ovb0121 {
 struct UnkAbility;
 struct UnkAbilitySet;
 // The ability named by the id `id` points at (src/game/CProjectileMovement/CProjectileMovement_HitAbility_b46.cpp).
-UnkAbility* fn_71003012f8(UnkAbilitySet*, u64);
 void fn_710031c7b8(UnkReflObject* ability, void* lock);
 
 void fn_7100ab6bb8(UnkLockOnMovement_ovb0121* self) {

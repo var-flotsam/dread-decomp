@@ -2,6 +2,7 @@
 // initialisers): the elements are released last to first, each only while the pool exists.
 // The same shape as slice 5's (src/game_aca57c/fn_7100c9c750.cpp).
 #include "base/global/CStrId.h"
+#include "game/CCharClassComponent.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -78,8 +79,6 @@ struct UnkIdObject {
     UnkStaticPathId field_0x58;
     UnkStaticId ids[6];
 };
-
-void fn_71011acd74(UnkIdObject* self);  // base destructor
 
 // A destructor: releases the ids, then runs the base destructor.
 void fn_71009cc6cc(UnkIdObject* self) {

@@ -1,6 +1,8 @@
 // CSamusMovement's unit: after fn_71010dbcbc, sends id 2 to the actor's +0x220 controller (when there is
 // one) through fn_7101178564 while the flag at +0x7e4 is set, else through fn_71011785a8, then runs
 // fn_71009e4598. Names and layouts are placeholders.
+#include "game/CAnimationComponent.h"
+#include "game/UnkTU1501.h"
 #include "types.h"
 
 struct UnkShakernautCtrl_b53;
@@ -8,11 +10,8 @@ struct UnkShakernautId_b53 {
     u32 value;
     u32 unk_0x4;
 };
-void fn_71011785a8(UnkShakernautCtrl_b53* self, const UnkShakernautId_b53* id, bool a, bool b);
-void fn_7101178564(UnkShakernautCtrl_b53* self, const UnkShakernautId_b53* id, bool a, bool b);
 
 struct UnkSamusMovementUpdate;
-void fn_71009e4598(UnkSamusMovementUpdate* self);
 
 struct UnkSamusMovementActor_A5_b69 {
     u8 unk_0x0[0x220];

@@ -2,13 +2,13 @@
 // or for event 12 the unit's id (g_unk_71727071d8) when the owner's (+0x30) animation component
 // (+0x220) is in state 12 (fn_7101178e6c). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CAnimationComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 // As src/game/CTakumakuAIComponent/CTakumakuAIComponent_b35.cpp declares it.
 struct UnkTakumakuComponent;
-bool fn_7101178e6c(UnkTakumakuComponent* component, u32 kind);
 
 extern CStrId g_unk_71727071d8 __attribute__((visibility("hidden")));
 

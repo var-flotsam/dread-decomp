@@ -5,11 +5,11 @@
 #include "base/UnkVector.h"
 #include "../reflection/UnkTempIterValue_b44.h"
 #include "base/global/CRntString.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 // As src/base/reflection/UnkReflArrayEqual.cpp declares it.
 struct UnkCompared_0x30;
-bool fn_710007f120(const UnkCompared_0x30*, const UnkCompared_0x30*);
 
 using UnkKey30_b44a1 = base::global::CRntString;
 

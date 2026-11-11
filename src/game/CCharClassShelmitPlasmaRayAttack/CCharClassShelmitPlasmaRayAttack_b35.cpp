@@ -1,10 +1,10 @@
 // Two identical constructors in the CCharClassShelmitPlasmaRayAttack unit: the attack base constructor
 // fn_71003641fc, the vtable, six floats of -1 at +0xec, the flag at +0x54 set. Names and layouts are
 // placeholders.
+#include "game/CCharClassAttack.h"
 #include "types.h"
 
 struct UnkStruct_71003641fc;
-void fn_71003641fc(UnkStruct_71003641fc* self);
 extern void* g_unk_7101a63730[];
 
 struct UnkShelmitPlasmaRayAttackDef {

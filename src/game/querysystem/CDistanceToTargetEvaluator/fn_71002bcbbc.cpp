@@ -1,6 +1,7 @@
 // Constructor of a query-system parameter named "DTGT": runs the base constructor, sets the vtable, initialises its fields
 // and names the parameter with the string id built from its tag.
 #include "base/global/CStrId.h"
+#include "game/querysystem/CEvaluator.h"
 #include "types.h"
 
 using base::global::UnkStrId;
@@ -14,7 +15,6 @@ struct UnkQueryParam {
 };
 
 extern void* g_unk_7101a212d8[];
-void fn_71002b7fb0(UnkQueryParam* self);
 
 void fn_71002bcbbc(UnkQueryParam* self) {
     fn_71002b7fb0(self);

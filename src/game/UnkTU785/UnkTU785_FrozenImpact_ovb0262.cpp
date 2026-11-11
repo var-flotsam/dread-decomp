@@ -8,16 +8,15 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU1370.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkStruct_71008c0c74;
 struct UnkBase_71003cc474;
-void fn_71008c0c74(UnkStruct_71008c0c74* self);
 struct UnkRequest;
 void fn_71008c1538(UnkRequest* request, f32 value);
-void fn_71008c1558(UnkBase_71003cc474* self);
 
 extern void* g_unk_71726dbf68;
 

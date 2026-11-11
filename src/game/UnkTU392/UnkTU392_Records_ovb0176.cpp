@@ -1,5 +1,6 @@
 // Unit 392 (no reflected class): a vector of 0x40-byte records that each need tearing down. Names and
 // layouts are placeholders.
+#include "game/UnkTU377.h"
 #include "types.h"
 
 struct UnkRecord_ovb0176 {
@@ -7,7 +8,6 @@ struct UnkRecord_ovb0176 {
 };
 
 struct UnkRefVectorHolder_b47;
-void fn_71002b67e8(UnkRefVectorHolder_b47* record);
 
 struct UnkRecordVector_ovb0176 {
     u8 pad_0x0[0x18];

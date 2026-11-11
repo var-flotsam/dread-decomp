@@ -9,12 +9,12 @@
 #include "game/UnkGuiHandle.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkHandleMenu.h"
+#include "game/UnkTU2747.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::reflection::CClass;
 
-void fn_71011cf364(void* composition, s32 value);
 // The header's fn_71011d968c (container, child), called through an untyped view: calling it with
 // the typed arguments changes the NON_MATCHING(minor) functions below (the last reloads of the slot
 // lose the x20 address).
@@ -71,7 +71,6 @@ void fn_7100b2cb44(UnkMenu<0x2b0>* self) { SetUp<0x2b0, -1, true>(self, "Control
 // fn_7100b2c458) and set up the same way through them, once; the power description also gets
 // vf_0x78(-2000, true).
 void fn_7100b2c458(UnkGuiHandle* dst, const UnkGuiHandle& src);
-void fn_71011cef74(void* composition, void* owner);
 
 template <u32 Offset, bool Vf78>
 __attribute__((always_inline)) static inline void SetUpHandle(UnkHandleMenu<Offset>* self, const char* name) {

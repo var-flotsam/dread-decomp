@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkXformNode.h"
+#include "game/logic/collision/CCircleShape2D.h"
 #include "game_s2/UnkChargeComponent.h"
 #include "types.h"
 
@@ -15,7 +16,6 @@ struct UnkPart;
 UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 
 struct UnkSphereShape_ovb0135;
-void fn_7100d618f8(UnkSphereShape_ovb0135* shape, f32 size);
 
 // The collision object's name.
 extern base::global::CStrId g_unk_71726ddc40 __attribute__((visibility("hidden")));

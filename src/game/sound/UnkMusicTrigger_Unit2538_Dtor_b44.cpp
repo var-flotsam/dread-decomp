@@ -6,11 +6,13 @@
 #include "base/global/CRntString.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU2725.h"
+#include "game/UnkTU2730.h"
+#include "game/nn/time.h"
 #include "types.h"
 
 extern char g_unk_7101aa91c0[];  // the trigger's vtable
 
-void fn_71011867d4(void* self);  // the music trigger base's destructor
 void fn_7100da635c(char* self);
 
 struct UnkMusicTrigger2538_b44a3;
@@ -57,11 +59,8 @@ void fn_7100da62a4(UnkMusicTrigger2538Fields_b44a3* self, const base::UnkStrIdMe
 
 struct UnkSoundHolder;
 extern UnkSoundHolder* g_unk_7101d47340;
-void fn_710006cd9c(UnkSoundHolder* holder);
-void fn_71011867ec(char* self);
 void fn_71011b3768(UnkGuiRoot* root);
 extern void* g_unk_7101d47330;  // src/engine/HostArguments.cpp calls it the GUI root
-void fn_71011994e0(void* root, bool value);
 
 // The trigger's activation: the base's step (fn_71011867ec), the sound holder created on first use, an
 // "Ingame" string id built and dropped, the two GUI objects told (fn_71011b3768, fn_71011994e0 with

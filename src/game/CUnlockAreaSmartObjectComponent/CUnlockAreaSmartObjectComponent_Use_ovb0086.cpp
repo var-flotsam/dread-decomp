@@ -5,9 +5,13 @@
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/global/timeline/CEvent.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CGrabComponent.h"
+#include "game/CInputComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2733.h"
 #include "types.h"
 
 struct UnkIdHolder_b0086ua {
@@ -52,7 +56,6 @@ using base::global::CStrId;
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkKraidGrab_b57a4;
-void fn_710113d940(void* grabber, UnkKraidGrab_b57a4* grab, void* owner);
 
 struct UnkUnlockAreaPlayer_b0086 {
     u8 pad_0x0[0x260];
@@ -111,14 +114,11 @@ struct UnkIdData_b0086ua {
 };
 
 struct UnkInputComponent;
-bool fn_710087238c(UnkInputComponent*);
 
 // The language singleton (as src/game/UnkAdamDialog.cpp declares it): created on first use, it
 // gives localized texts.
 struct UnkLanguage;
 extern UnkLanguage* g_unk_7101d47358;
-void fn_710119c020(UnkLanguage* language);
-void fn_7100066e44(void* text);
 struct UnkDialogText {
     u8 unk_0x0[0x20];
     ~UnkDialogText() { fn_7100066e44(this); }

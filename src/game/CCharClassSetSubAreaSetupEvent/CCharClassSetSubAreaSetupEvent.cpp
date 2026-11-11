@@ -3,13 +3,13 @@
 // string ids copied from the empty id g_unk_7101d470e0, then a cleared flag. Names and
 // layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "base/global/timeline/CEvent.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::global::UnkStringData;
 
 extern char g_unk_7101aa62c0[];
-void fn_7100067ea4(void* self);  // the event base constructor
 
 struct UnkSubAreaSetupEvent {
     void* vtable;

@@ -6,18 +6,19 @@
 // destructor (fn_710041a230). Names and layouts are placeholders.
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassBossAIComponent.h"
+#include "game/CCharClassScorpiusPoisonousGasAttack.h"
+#include "game/CDamageSourceFactor.h"
 #include "game/UnkBossAIComponent.h"
 #include "types.h"
 
 extern void* g_unk_7101a60e40[];
 void fn_710007e6c4(void*);
-void fn_71008c2da8(void* member);
 void fn_7100685f90(void* member);
 void fn_7100684150(void* member);
 void fn_7100682fd0(void* member);
 void fn_710067ecc0(void* member);
 void fn_710068504c(void* member);
-void fn_7100681a6c(void* member);
 void fn_71006807f8(void* member);
 void fn_710067f9a8(void* member);
 
@@ -60,8 +61,6 @@ void fn_7100690498(UnkCharClassScorpiusAIComponent* self) {
 }
 
 struct UnkGoliathXBase;
-void fn_710041a230(UnkGoliathXBase*);
-void fn_71008c2de0(void* member);
 void fn_7100685fc0(void* member);
 void fn_7100684214(void* member);
 void fn_7100683000(void* member);

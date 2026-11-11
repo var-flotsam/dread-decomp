@@ -4,6 +4,7 @@
 // summed) or the product's translation divided by the larger weight.
 #include "base/UnkMatrix44.h"
 #include "base/math/CVector.h"
+#include "game/UnkTU1141.h"
 #include "types.h"
 
 using base::math::CVector3D;
@@ -54,8 +55,6 @@ struct UnkWeighted_7100714808 {
     CVector3D pos;
     f32 weight;
 };
-
-void fn_7100714604(UnkWeighted_7100714808* self, const UnkWeighted_7100714808* other);  // assigns
 
 // NON_MATCHING(minor): in the weighted average, four of the multiplications by the inverse
 // total weight are scheduled in a different order.

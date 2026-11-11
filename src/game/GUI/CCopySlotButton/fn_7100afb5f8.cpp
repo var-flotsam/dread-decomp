@@ -4,15 +4,14 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CChozoCommanderAIComponent.h"
+#include "game/CTutoEnterLogicAction.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
 using base::reflection::CClass;
 using base::reflection::CType;
 using base::reflection::UnkReflObject;
-
-void fn_71004567dc(void* set, void** slot);  // unregisters
-void fn_7100a58e80(void* set, void** slot);  // registers
 
 struct UnkCallbackSlot {
     void* set;

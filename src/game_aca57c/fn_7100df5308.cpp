@@ -4,6 +4,11 @@
 // CAbilityOpticCamouflage, CAbilitySpeedBooster, CAbilityMultiLockon).
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/CAbilityMultiLockon.h"
+#include "game/CAbilityShinespark.h"
+#include "game/CAbilitySpeedBooster.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -39,13 +44,7 @@ __attribute__((always_inline)) static inline UnkAbility* GetAbility(UnkPlayer* s
     return fn_710009d50c(ability->vf_0x0(), Class()) ? ability : nullptr;
 }
 
-UnkAbility* fn_71003013ec(UnkAbilitySet* set, u64 id);
-UnkAbility* fn_71003012f8(UnkAbilitySet* set, u64 id);
-u64 fn_7100327d14();
-u64 fn_7100308c74();
 u64 fn_7100323590();
-u64 fn_710033b6a4();
-u64 fn_71003182d8();
 
 UnkAbility* fn_7100df5308(UnkPlayer* self) {
     return GetAbility<fn_7100327d14, fn_71003013ec, fn_71003255a4>(self);
@@ -95,7 +94,6 @@ bool fn_7100df5874(UnkPlayer* self) { return IsInState6<fn_710033b6a4, fn_710033
 bool fn_7100df5a4c(UnkPlayer* self) { return IsInState6<fn_7100327d14, fn_71003255a4>(self); }
 
 // Whether the ghost aura's state (fn_7100309568) is 3 to 6.
-u32 fn_7100309568(UnkAbility* ability);
 
 bool fn_7100df5630(UnkPlayer* self) {
     UnkAbility* ability = GetAbility<fn_7100308c74, fn_71003013ec, fn_7100306914>(self);

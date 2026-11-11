@@ -4,9 +4,9 @@
 // nodes per block, flags 0, allocation flags 0x13, the default allocator), then the vtable's slot
 // at +0x18 on itself. Names and layout are placeholders.
 #include "base/UnkVector.h"
+#include "game/CCharClassBaseTriggerComponent.h"
 #include "types.h"
 
-void fn_7100a46a68(char*);
 void fn_710087dc1c(void* list, u32 block, u32 flags, u32 alloc_flags, base::UnkAllocator* allocator);
 void fn_710087dd34(void* list, u32 block, u32 flags, u32 alloc_flags, base::UnkAllocator* allocator);
 extern void* g_unk_7101a7b368[];  // the class's vtable

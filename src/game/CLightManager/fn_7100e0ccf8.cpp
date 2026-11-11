@@ -4,6 +4,7 @@
 // copies.
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "game/CLightsDef.h"
 #include "types.h"
 
 struct UnkBase_0x58 {
@@ -13,7 +14,6 @@ struct UnkBase_0x58 {
 };
 
 struct UnkClearedArray;
-void fn_7100da0870(UnkClearedArray* self, u32 count);  // resizes
 
 // base::UnkVector's layout; cleared out of line before its storage is freed.
 struct UnkClearedArray {

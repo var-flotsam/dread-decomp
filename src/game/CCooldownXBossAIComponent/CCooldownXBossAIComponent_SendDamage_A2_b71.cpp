@@ -3,6 +3,7 @@
 // id at +0xb8 and hands it to that component (virtual 0x188); always returns true. Names and layouts are
 // placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU1370.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -12,8 +13,6 @@ extern CStrId g_unk_71726d8738 __attribute__((visibility("hidden")));
 struct UnkRequest;
 struct UnkStruct_71008c0c74;
 struct UnkBase_71003cc474;
-void fn_71008c0c74(UnkStruct_71008c0c74* self);
-void fn_71008c1558(UnkBase_71003cc474* self);
 void fn_71008c1538(UnkRequest* request, f32 value);
 
 struct UnkCooldownRequest_A2_b71 {

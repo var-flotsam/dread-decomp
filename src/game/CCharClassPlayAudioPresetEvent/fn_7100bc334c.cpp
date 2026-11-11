@@ -6,6 +6,7 @@
 #include "base/UnkStrIdPathPair.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/global/timeline/CEvent.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -43,8 +44,6 @@ struct UnkShared54Ptr {
         }
     }
 };
-
-void fn_7100067ed4(void* self);  // the base's destructor
 
 template <char* Vtable>
 struct UnkPathRefBase {

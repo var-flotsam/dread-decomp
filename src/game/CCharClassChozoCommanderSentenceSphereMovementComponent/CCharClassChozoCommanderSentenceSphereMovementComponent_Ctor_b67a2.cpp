@@ -4,10 +4,10 @@
 // tunables at +0x134..+0x14c (90, pi/2, 30, 90, 200, 1, 4), then runs the class entries (fn_7100023854). Defined
 // under the `void()` symbol the generated reflection file declares (the b64a4 alias pattern). Names and layouts are
 // placeholders.
+#include "base/core/CBaseObject.h"
 #include "types.h"
 
 struct UnkNode;
-void fn_7100023854(UnkNode* node);
 
 // As src/game/CCharClassProjectileMovement/fn_7100ac14f8.cpp defines it.
 struct UnkComponent_0x138;

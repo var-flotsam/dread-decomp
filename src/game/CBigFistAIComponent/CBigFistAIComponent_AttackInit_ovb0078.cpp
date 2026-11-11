@@ -10,6 +10,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
@@ -20,8 +21,6 @@ extern "C" void __cxa_guard_release(u64* guard);
 
 struct UnkStruct_710117af10;
 struct UnkCls_710117af10;
-bool fn_710117af10(UnkStruct_710117af10* self, UnkCls_710117af10** name, bool skipBusy);
-void fn_7101178010(void* target, u64 id, bool flag, f32 time);
 
 struct UnkBigFistAttack2_ovb0078 : base::reflection::UnkReflObject {
     u8 pad_0x8[0x50];

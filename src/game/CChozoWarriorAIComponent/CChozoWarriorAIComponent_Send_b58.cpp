@@ -3,6 +3,7 @@
 // runs fn_7100369d80. Names are placeholders.
 #include "base/reflection/UnkReflStatics.h"
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CBehaviorTreeAIComponent.h"
 #include "types.h"
 
 struct UnkWarriorSendOwner_b58 {
@@ -17,8 +18,6 @@ struct UnkWarriorSend_b58 {
     u8 pad_0x38[0x1499c - 0x38];
     f32 field_0x1499c;
 };
-
-void fn_7100369d80(UnkWarriorSend_b58* self, void* arg);
 
 void fn_7100499e2c(UnkWarriorSend_b58* self, void* arg) {
     void* target = self->owner->field_0x220;

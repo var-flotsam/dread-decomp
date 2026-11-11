@@ -1,5 +1,6 @@
 // nn::atk-ish unit 2772: voice pool release, loader helper, object creation, wave queue refill.
 // Names and layouts are placeholders.
+#include "game/UnkTU2772.h"
 #include "types.h"
 
 void* fn_71001039f8();
@@ -57,8 +58,6 @@ void fn_7101230180(UnkAtkVoicePool_b0149* self, UnkAtkVoiceItem_b0149* item) {
 
 struct UnkAtkLoader;
 struct UnkAtkArchive;
-u32 fn_71012069f8(UnkAtkArchive* archive, u32 id);
-void* fn_7101211d30(UnkAtkLoader* self, u32 file_id, void* heap, void* arg, u32 unk);
 bool fn_7101206d0c(UnkAtkArchive* archive, u32 id, u32* out);
 
 struct UnkAtkLoaderVt_b0149 {
@@ -110,9 +109,7 @@ struct UnkAtkObj_b0149 {
     UnkAtkLink_b0149 link;  // 0x3d8
 };
 void* fn_710122ade8(void* pool);
-void fn_710122ae00(void* pool, void* item);
 void fn_710122b710(void* item);
-void fn_710122b868(void* item);
 void fn_710120f188(void* a, void* b, void* c, void* d);
 
 UnkAtkObj_b0149* fn_710122ca14(UnkAtkChain_b0149* self) {
@@ -225,4 +222,3 @@ void fn_710122fce4(UnkAtkWaveVoice_b0149* self) {
     if (fn_710123a6e0(out, &param))
         self->cursor = self->cursor->next;
 }
-

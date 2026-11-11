@@ -1,6 +1,8 @@
 // Functions in the CSynchronizedBlockCameraCtrl unit (tools/tu_map.py). Names and layouts are
 // placeholders.
+#include "game/CCameraCtrl.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2523.h"
 
 struct UnkPlayer;
 struct UnkDropCameraVec3;
@@ -27,9 +29,7 @@ struct UnkSynchronizedBlockCameraCtrl {
     UnkBlockCameraVec3 field_0x324;
 };
 
-void fn_71010ee17c(UnkChozoCommanderDropCameraCtrl* self);  // the camera-controller base step
 UnkPlayer* fn_7100dec788(UnkGameManager* manager);
-const UnkDropCameraVec3* fn_7100d7c9f4(UnkPlayer* player);
 
 // As fn_7100797df0 (CChozoCommanderDropCameraCtrl): after the base step, clears the vector at
 // +0x324 and, when there is a player, copies its position to +0x244 and +0x238; then copies

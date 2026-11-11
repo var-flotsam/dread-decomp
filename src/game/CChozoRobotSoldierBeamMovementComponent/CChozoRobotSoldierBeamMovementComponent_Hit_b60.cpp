@@ -3,12 +3,12 @@
 // (+0x30) has a timeline (+0x2e8), sets one of two fixed ids (by the flag at +0x5d8) to the all-flags
 // mask. Always true. Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CProjectileMovement.h"
 #include "game/UnkActor.h"
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
 
 struct UnkBossComponent;
-bool fn_7100ac4c60(UnkBossComponent* self, u64 a, u64 b, u64 c, u64 d);
 
 struct UnkSoldierBeam_b60a2 {
     u8 pad_0x0[0x30];

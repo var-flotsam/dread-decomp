@@ -15,13 +15,15 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/math/CVector4D.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CCameraCtrl.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU2547.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 struct UnkGrabCameraCtrl;
-void fn_71010edd64(UnkGrabCameraCtrl* self);
 void fn_710021a0b4(UnkRenderManager* self, const u64* hash, const base::math::CVector4D* value);
 extern const base::math::CVector4D g_unk_71016477b4;
 extern const u64 g_unk_710164a910 __attribute__((visibility("hidden")));
@@ -31,15 +33,12 @@ UnkPlayer* fn_7100dec788(UnkGameManager*);
 char* fn_71003440dc(char* p0, u32 p1, char* p2, char* p3, char* p4, char* p5);
 
 struct UnkDoorRegistry_b61;
-void fn_7100ddb6dc(UnkDoorRegistry_b61* self);
 extern UnkDoorRegistry_b61* g_unk_71726bee10;
 struct UnkUnit2547;
 void fn_7100ddbb7c(UnkUnit2547* self, u32 expected);
 void fn_7100ddbabc(UnkUnit2547* self, u32 state, f32 value);
-void fn_7100000790(const char* name, const char* fmt, ...);
 struct UnkFixedCamera_fc;
 struct UnkArg_fc;
-void fn_71010ed98c(UnkFixedCamera_fc* self, UnkArg_fc* arg, u32 flag);
 extern base::reflection::UnkTunable g_unk_717270f910;
 struct UnkAimTunable;
 extern UnkAimTunable g_unk_71726b1438;

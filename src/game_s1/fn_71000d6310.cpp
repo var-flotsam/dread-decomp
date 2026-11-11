@@ -3,6 +3,7 @@
 // and a record held either in place or by reference (state 2), from another such pair: the id is moved (released,
 // taken, the other's left empty) and the record assigned out of line (fn_71000a1ba4).
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
 #include "types.h"
 
 template <class X, class Y>
@@ -66,7 +67,6 @@ struct UnkAssignedRecord_a1ba4 {
     u64 unk_0x0[0x18 / 8];
     UnkAssignedRecord_a1ba4& operator=(const UnkAssignedRecord_a1ba4& other);
 };
-void fn_71000a1ba4(UnkAssignedRecord_a1ba4* self, const UnkAssignedRecord_a1ba4* other);
 __attribute__((always_inline)) inline UnkAssignedRecord_a1ba4& UnkAssignedRecord_a1ba4::operator=(
     const UnkAssignedRecord_a1ba4& other) {
     fn_71000a1ba4(this, &other);

@@ -4,6 +4,7 @@
 // Names are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
+#include "game/UnkTU1323.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -14,7 +15,6 @@ struct UnkHeatableValue_0xd0 {
 };
 
 void fn_710086dbb0(UnkHeatableValue_0xd0* self, const UnkHeatableValue_0xd0* other);  // copy constructor
-void fn_710086e0ac(UnkHeatableValue_0xd0* self);                                      // destructor
 
 void fn_710086da20(UnkPropertyArrays* self, u32 capacity) {
     if (self->capacity < capacity) {

@@ -3,6 +3,7 @@
 // empty id, resets the member at +0xb0, stores {0, 1.0f} at +0x160 and finishes with the member at +0x38
 // (fn_7100714dd0). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU39.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -33,7 +34,6 @@ struct UnkUnit1134_b68a4 {
     f32 field_0x164;
 };
 
-void fn_710002fa90(void*);
 void fn_7100714dd0(void* self);
 
 void fn_710070d508(UnkUnit1134_b68a4* self) {

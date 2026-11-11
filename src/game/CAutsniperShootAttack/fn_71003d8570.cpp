@@ -1,6 +1,7 @@
 // Copy assignment of a record: copies its plain fields from `other`, makes the weak reference at +0x48
 // refer to what the other one refers to (unless it is assigned to itself), copies the rest, assigns the
 // sub-record at +0xd0 (fn_71002ad420) and copies the flag byte at +0x12b58.
+#include "game/navmesh/SNavMeshPath.h"
 #include "game_s2/UnkWeakHandle.h"
 
 struct UnkRecord {
@@ -30,8 +31,6 @@ struct UnkRecord {
     u8 field_0xd0[0x12a88];
     u8 field_0x12b58;
 };
-
-void fn_71002ad420(void* self, const void* other);
 
 UnkRecord* fn_71003d8570(UnkRecord* self, const UnkRecord* other) {
     __builtin_memcpy(self->field_0x8, other->field_0x8, 32);

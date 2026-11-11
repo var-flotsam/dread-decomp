@@ -4,6 +4,7 @@
 // they agree and the owner is past the edge of the hit shape, the offset is added to both of two
 // fields of the output.
 #include "base/UnkMatrix44.h"
+#include "game/CCharacterMovement.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
@@ -46,7 +47,6 @@ struct UnkOutput {
     f32 field_0x6c;
 };
 
-UnkShape* fn_7100976588(UnkFlagged* flagged);
 extern char g_unk_7101649570[];
 bool fn_71011735e8(UnkEntity* entity, const void* key, UnkMatrix44* out, u32 flags);
 

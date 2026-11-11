@@ -5,13 +5,13 @@
 // layouts are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "base/core/CAsset.h"
+#include "game/CLightsDef.h"
 #include "types.h"
 
 // Signatures as src/base/file/nx/CDeviceNX/fn_710002ddc0.cpp and
 // src/game/CLightManager/fn_7100e0ccf8.cpp declare them.
-void fn_7100016f88(void* self);
 struct UnkClearedArray;
-void fn_7100da0870(UnkClearedArray* self, u32 count);  // resizes
 
 extern void* g_unk_7101aa9140[];
 

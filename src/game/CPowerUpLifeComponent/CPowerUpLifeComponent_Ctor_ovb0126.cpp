@@ -8,6 +8,7 @@
 #include "base/UnkErasedVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CItemLifeComponent.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -17,7 +18,6 @@ extern void* g_unk_7101a33fa0[];  // the list's vtable
 extern char g_unk_7101a7f4c0[];   // the component's vtable
 
 struct UnkLifeComponent_A5_b71;
-void fn_71008e04e8(UnkLifeComponent_A5_b71* self);
 
 struct UnkPowerUpLifeListBase_ovb0126 {
     char* vtable;

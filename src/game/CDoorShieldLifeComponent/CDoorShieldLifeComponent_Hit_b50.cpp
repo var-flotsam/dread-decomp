@@ -2,14 +2,14 @@
 // (fn_710115fe1c), passes the game manager's blackboard (+0x968) to virtual slot 0x140, then, when the
 // actor at +0x30 has its flag at +0x1b5 set, sends message 0xa6a4b8f65b760be7 to what it resolves to
 // (fn_71002b3b84, fn_71009c0f1c); otherwise it runs fn_71008de628. Names are placeholders.
+#include "game/CLifeComponent.h"
+#include "game/CNavMeshItemComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU372.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-void fn_710115fe1c(char* self);
 void fn_71008de628(char* self);
-void* fn_71002b3b84(UnkWeakTarget*);
-void fn_71009c0f1c(void* object, u64 id);
 
 void fn_71008de5a8(char* self) {
     fn_710115fe1c(self);

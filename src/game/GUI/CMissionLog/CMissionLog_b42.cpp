@@ -8,6 +8,7 @@
 // (src/game/CCutSceneDef/CCutSceneDef_b42.cpp). Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU83.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -38,7 +39,6 @@ struct UnkMissionLogRecord;
 UnkMissionLogRecord* fn_7100b5b31c(UnkMissionLogRecord* self, UnkMissionLogRecord* other);
 // The id array's copy assignment, as src/game/CGameManager.cpp declares it.
 struct UnkStruct_0x28;
-void fn_71000ce19c(UnkStruct_0x28*, const UnkStruct_0x28*);
 
 struct UnkMissionLogRecord_b42a3 {
     u32 field_0x0;

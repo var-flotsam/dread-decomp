@@ -2,12 +2,12 @@
 // both points at +0x238 and +0x244 start at the pair at +0x68 (z cleared) and the word at +0x70 is copied
 // to +0x258; when there is a player (fn_7100dec788 of the game manager), both take its x and y instead.
 // Names and layouts are placeholders.
+#include "game/CCameraBoundaryCtrl.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
 struct UnkPlayer;
 struct UnkPureFollowCameraCtrl;
-void fn_7100764388(UnkPureFollowCameraCtrl* self);
 UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 
 struct UnkRailPoint {

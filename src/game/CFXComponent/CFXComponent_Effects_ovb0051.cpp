@@ -6,24 +6,24 @@
 #include "../../game_s7/UnkPropS7.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/timeline/CEvent.h"
+#include "game/CActorComponent.h"
+#include "game/CFXComponent.h"
+#include "game/CSceneComponent.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU132.h"
+#include "game/UnkTU218.h"
+#include "game/UnkTU247.h"
+#include "game/UnkTU253.h"
+#include "game/UnkTU285.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 
 extern "C" int rand();
-void fn_710014580c(void* effect);
-void fn_71001457fc(void* effect, void* scene, u32 flag);
 void fn_7100206fac(void* part, f32 t, u32 a, u32 b, f32 from, f32 to);
-void fn_7100208a40(void* part);
-void fn_710006663c(u64* out, const char* str);
-void fn_7100199420(void* self, const u64* hash, bool value);
-void fn_71001c3040(void* object, u64 hash, u32 a, const f32* values, u32 count, f32 f);
-bool fn_71009f1988(void* self);
-bool fn_710024fbc8(void*);
 struct UnkResetOwner;
-void fn_71001bc068(UnkResetOwner*);
 
 // Calls the virtual function at byte offset `Off` of `obj`'s vtable.
 template <u32 Off, class R = void, class... A>
@@ -468,7 +468,6 @@ bool fn_7101156ac4(UnkFXComponent_ovb51* self, void* stream) {
 
 // Drops `effect` from the component's list and hands it back to the manager.
 struct UnkRinkaControl_ruc;
-void fn_710115596c(UnkRinkaControl_ruc*, void*);
 
 static inline void Release(UnkFXComponent_ovb51* self, UnkFXEffect_ovb51* effect) {
     fn_710115596c(reinterpret_cast<UnkRinkaControl_ruc*>(self), effect);

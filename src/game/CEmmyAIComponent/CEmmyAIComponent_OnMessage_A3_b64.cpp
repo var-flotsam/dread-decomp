@@ -6,14 +6,13 @@
 // fn_710054efb0 for 2 with the tunable's +0xec. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CCharacterMovement.h"
+#include "game/CEnemyMovement.h"
+#include "game/CGrabComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game_s2/UnkChargeComponent.h"
 #include "types.h"
-
-bool fn_7100979ef0(void*);
-u32 fn_71010cc3a4(void*);
-bool fn_710113d83c(void*);
 
 struct UnkEmmyMsgRecord_A3_b64 {
     u32 state;

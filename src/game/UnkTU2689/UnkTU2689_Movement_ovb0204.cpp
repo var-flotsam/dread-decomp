@@ -10,7 +10,13 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CBreakableTileGroup.h"
+#include "game/CGrabComponent.h"
+#include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
+#include "game/UnkTU365.h"
+#include "game/UnkTU56.h"
 #include "game/UnkTimelineCalls.h"
 #include "game_s2/UnkChargeComponent.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -84,9 +90,7 @@ void fn_71010d956c(UnkPlayerMovement_b0204* self) {
 }
 
 struct UnkQueryObj;
-u32 fn_7100c9e960(UnkQueryObj* obj);
 struct UnkPlayer;
-bool fn_7100df5874(UnkPlayer* self);
 
 struct UnkTileQuery_A3_b64 {
     u8 pad_0x0[0x38];
@@ -185,7 +189,6 @@ void fn_71010d98bc(UnkPlayerMovementC_b0204* self, UnkWeakTarget* target) {
         AssignRef(&self->handle, static_cast<UnkWeakHandle*>(nullptr));
 }
 
-void fn_71011a664c(char* instance);  // constructs the instance
 extern char* g_unk_71726b2398;       // the instance, reached through the GOT
 
 struct UnkSceneLink_b0204 {
@@ -294,7 +297,6 @@ inline u32 UnkMoveDefaultMask() {
     return s_mask;
 }
 
-bool fn_710113d83c(void* p);
 extern u64 g_unk_710164cf08;
 
 struct UnkMoveOwner_b0204 {
@@ -341,7 +343,6 @@ void fn_71010da7e8(UnkMoveHold_b0204* self, f32 dt) {
 
 extern const base::reflection::CClass g_unk_7172a03fd0 __attribute__((visibility("hidden")));
 struct UnkAssignedSlot;
-void fn_71002a5d1c(UnkAssignedSlot* self, const UnkAssignedSlot* other);
 
 struct UnkMoveCopy_b0204 {
     void** vtable;
@@ -405,7 +406,6 @@ void fn_71010da468(UnkMoveCopy_b0204* self, UnkMoveSource_b0204* other) {
     }
 }
 
-s64 fn_710007cf30(void* stream, const char* format, ...);
 void fn_710006c76c(void* member, const CStrId* id);
 
 struct UnkMovementTarget_b0204 {

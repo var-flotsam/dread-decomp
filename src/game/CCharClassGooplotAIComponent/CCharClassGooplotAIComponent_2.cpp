@@ -2,13 +2,13 @@
 // (CCharClassGooplotAIComponent.cpp) without the post-construction virtual call: the base
 // constructor fn_7100416db8, the vtable, the members at +0x510 and +0x600, the float at +0x3ac set
 // to pi. Names and layouts are placeholders.
+#include "game/CCharClassBehaviorTreeAIComponent.h"
+#include "game/CCharClassGooplotJumpAttack.h"
+#include "game/CCharClassGooplotUndoJumpAttack.h"
 #include "types.h"
 
 // Declared as src/game/CCharClassGooplotAIComponent/CCharClassGooplotAIComponent.cpp does.
 struct UnkObject_7100416db8;
-void fn_7100416db8(UnkObject_7100416db8* self);
-void fn_71005931d8(void* self);
-void fn_7100593de8(void* self);
 extern void* g_unk_7101a4cfa8[];
 
 struct UnkGooplotDef2 {

@@ -7,10 +7,10 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU399.h"
 #include "types.h"
 
 struct UnkEntry;
-UnkEntry* fn_71002d57ac(void* registry, const void* key);
 
 struct UnkWaterEntry_b57 {
     void** vtable;

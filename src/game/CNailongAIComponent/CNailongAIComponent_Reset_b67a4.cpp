@@ -3,6 +3,7 @@
 // velocity (+0x30 -> +0x1f0, its vf_0x210) and, when its x is clearly negative or positive, sends id 4
 // or 8 to the owner's +0x220 controller (fn_7101178564, as CShakernautAIComponent_Flip_b53.cpp).
 // Names and layouts are placeholders.
+#include "game/CAnimationComponent.h"
 #include "game/UnkBehaviorTree.h"
 #include "types.h"
 
@@ -12,7 +13,6 @@ struct UnkShakernautId_b53 {
     u32 value;
     u32 unk_0x4;
 };
-void fn_7101178564(UnkShakernautCtrl_b53* self, const UnkShakernautId_b53* id, bool a, bool b);
 
 struct UnkNailongVec_b67a4 {
     f32 x, y, z;

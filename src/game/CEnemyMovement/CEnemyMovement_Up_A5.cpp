@@ -2,6 +2,7 @@
 // object at +0x8e8 (fn_710096ee98, fn_71009704c8) while the owner's flag (+0x1c18, its +0x1b1) is
 // clear and the state at +0x848 is 1; straight up otherwise. Both are returned in memory (their copy
 // is written out). Names and layouts are placeholders.
+#include "game/UnkTU1442.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -30,7 +31,6 @@ struct UnkEnemyMovement_A5 {
 };
 static_assert(__builtin_offsetof(UnkEnemyMovement_A5, owner) == 0x1c18, "UnkEnemyMovement_A5 layout");
 
-UnkVec2f_A5 fn_710096ee98(void* source);
 UnkVec3f fn_71009704c8(void* source);
 
 static inline bool FromSource(UnkEnemyMovement_A5* self) {

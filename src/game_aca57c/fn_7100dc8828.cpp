@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
+#include "game/UnkTU2768.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -19,9 +20,7 @@ struct UnkTypedValue {
 };
 
 extern UnkUserDataOwner* g_unk_7101d47308;
-void fn_710120320c(UnkUserDataOwner* self);  // constructor
 CBlackboard* fn_710120384c(UnkUserDataOwner* self);
-void fn_7101203854(UnkUserDataOwner* self);
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 static inline UnkUserDataOwner* GetOwner() {

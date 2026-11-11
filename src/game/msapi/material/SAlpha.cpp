@@ -7,8 +7,10 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "base/core/CBaseObject.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CStrId.h"
+#include "game/msapi/material/SAlpha.h"
 #include "types.h"
 
 using base::global::CRntFile;
@@ -65,7 +67,6 @@ struct UnkMaterialValuesVector : base::UnkVector<UnkMaterialValues> {
         return n ? end - 1 : end;
     }
 };
-void fn_71001a9bd0(UnkMaterialValuesVector* v, u32 n);
 
 // A string id built in place to be moved into an element (so never destroyed).
 struct UnkMovedId {
@@ -114,7 +115,6 @@ struct UnkMaterialPass {
 };
 static_assert(sizeof(UnkMaterialPass) == 0x60, "UnkMaterialPass placeholder layout");
 extern char unk_7101a1e358[];
-void fn_7100023838(void* self);
 
 // The material as this reads it: the header blocks read in place and their copies, the values at
 // 0x330, the passes at 0x358 and the ids at 0x3a8 that are emptied after the read.

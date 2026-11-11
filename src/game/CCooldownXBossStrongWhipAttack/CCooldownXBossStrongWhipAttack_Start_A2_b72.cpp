@@ -2,11 +2,11 @@
 // (src/game/CChozoWarriorXGlaiveSpinAttack/UnkAttackTrackLink_b54.cpp): after fn_71004c1944 and setting +0x70
 // to -1, hooks the callback fn_71004cb0e8 (link at +0x78, handle at +0x90) up to the object the owner (+0x8)
 // tracks at +0x220. Names and layouts are placeholders.
+#include "game/CCooldownXBossAttack.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkSelf;
-void fn_71004c1944(UnkSelf* self);
 void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
 void fn_710117b3e8(UnkWeakTarget* target, void* link);
 void fn_71004cb0e8();

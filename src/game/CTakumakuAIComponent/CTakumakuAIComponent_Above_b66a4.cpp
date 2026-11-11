@@ -4,11 +4,11 @@
 // (vf_0x98) when flagged. False without the owner, its +0x220 or a target. Names and layouts are
 // placeholders.
 #include "game/UnkActor.h"
+#include "game/UnkTU2689.h"
 #include "types.h"
 
 // As src/game/CPlayerMovement/CPlayerMovement_CachedComponent.cpp defines it.
 struct UnkPlayerMovementCache;
-void* fn_71010d7aac(UnkPlayerMovementCache* self);
 
 extern f32 g_unk_7101a67de8;
 

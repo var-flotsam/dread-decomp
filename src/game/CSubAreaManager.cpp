@@ -10,14 +10,18 @@
 #include "base/UnkHashStream.h"
 #include "base/UnkRegistry.h"
 #include "base/UnkStrIdPathPair.h"
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CCameraComponent.h"
+#include "game/CSpawnGroupComponent.h"
 #include "game/UnkCameraCtrl.h"
 #include "base/input/UnkRumbleManager.h"
 #include "game/UnkGameManager.h"
@@ -47,7 +51,6 @@ struct UnkFileReader {
 };
 
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
-void fn_710000ccd8(UnkFileReader* self);
 
 // This unit's parser callbacks.
 extern UnkParseCallbacks g_unk_71729daf80 __attribute__((visibility("hidden")));
@@ -492,7 +495,6 @@ update:
 // What the reset (fn_7100ee34f0) calls. Names are placeholders.
 extern u32 g_unk_71727bebb8;  // the kind the main camera is looked up with
 base::reflection::UnkReflObject* fn_7100d786c0(void* entity);  // its "CAMERA" component
-UnkCameraCtrl* fn_71010e389c(void* holder, void* key);
 void fn_71010ea4fc(UnkCameraCtrl* ctrl);
 
 // A request taken off the queue: the id moved out of the queued one (released as CStrId is), and
@@ -536,7 +538,6 @@ struct UnkSubAreaEntityList {
     UnkSubAreaEntity** data;
     u32 count;
 };
-UnkSubAreaEntityList* fn_7101119514();
 void fn_710111b138(base::reflection::UnkReflObject* component, const base::UnkStrIdMember* id);
 
 // The manager at g_unk_7101d47318 as far as it is called here.
@@ -745,7 +746,6 @@ struct UnkLeftoverArg : UnkLeftoverReg {};
 // The singleton and its constructor keep the untyped declarations the other files share.
 struct UnkEnvironmentManager;
 extern void* g_unk_7101d47368;
-void fn_7100d8ced8(void* self);  // constructor
 void fn_7100d8e32c(UnkEnvironmentManager* self, const CStrId* id, bool a, bool b);  // slot 6
 void fn_7100d8dac0(UnkEnvironmentManager* self, const CStrId* id, bool a, bool b);  // slot 7
 void fn_7100d8df84(UnkEnvironmentManager* self, const CStrId* id, bool a, bool b);  // slot 8

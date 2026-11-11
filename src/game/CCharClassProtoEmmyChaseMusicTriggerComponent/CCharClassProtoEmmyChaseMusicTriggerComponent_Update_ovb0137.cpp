@@ -3,16 +3,18 @@
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CActorComponent.h"
+#include "game/CCharClassBaseTriggerComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 using base::global::CRntString;
 
 struct UnkFan_A4_b74;
-void fn_7100a474f8(UnkFan_A4_b74*, f32);
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkInventory;
@@ -20,7 +22,6 @@ bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 struct UnkActor;
 bool fn_7100d7bea0(UnkActor* owner, bool flag);
 struct UnkStruct_710024fa0c;
-void fn_710024fa0c(UnkStruct_710024fa0c* self, bool enabled);
 bool fn_7100fd76d4(void* manager, const CRntString* name);
 
 extern void* g_unk_71726bc560;
@@ -34,7 +35,6 @@ struct UnkLoadingMask {
     UnkLoadingMask(u32 b) : bits(b) {}
     UnkLoadingMask(const UnkLoadingMask& o) : bits(o.bits) {}
 };
-void fn_7100fd7b44(void* manager, UnkLoadingMask channels, UnkLoadingMask mask, f32 time);
 
 // The music manager, created on first use.
 static inline void* MusicManager() {

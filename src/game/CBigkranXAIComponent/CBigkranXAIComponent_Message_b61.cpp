@@ -4,15 +4,15 @@
 // (+0x30) +0x220 object and timeline (+0x2e8) present, sets g_unk_7101649398 (the object in kind 0xb) or
 // g_unk_71016493a0 on the timeline to the all-flags mask. Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CAnimationComponent.h"
+#include "game/CBehaviorTreeAIComponent.h"
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
 
 // As src/game/CObsydomithonAIComponent/CObsydomithonAIComponent_Message_b60.cpp declares them.
 struct UnkSclawkAI_b44a2;
 struct UnkSclawkMessage_b44a2;
-u32 fn_710036974c(UnkSclawkAI_b44a2* self, UnkSclawkMessage_b44a2* msg);
 struct UnkTakumakuComponent;
-bool fn_7101178e6c(UnkTakumakuComponent* component, u32 kind);
 
 struct UnkBigkranXKey_b61a2;
 extern UnkBigkranXKey_b61a2 g_unk_7101649398;  // reached through the GOT

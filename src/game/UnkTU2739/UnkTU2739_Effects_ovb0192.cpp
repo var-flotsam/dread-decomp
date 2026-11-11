@@ -13,8 +13,10 @@
 #include "base/UnkResKey.h"
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
+#include "game/CFXPool/CDefinition.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2739.h"
 #include "game/UnkTUInit.h"
 #include "types.h"
 
@@ -178,7 +180,6 @@ __attribute__((noinline)) void fn_71011ab88c(UnkFxObjectPool_ovb0192* self, CFil
 }
 
 struct UnkFxObjectPool_ovb0135;
-void fn_710104da24(UnkFxObjectPool_ovb0135* self);
 struct UnkFxCache;
 
 struct UnkFxPoolNode_ovb0192 {
@@ -346,7 +347,6 @@ void* fn_71011a9c2c(void* self, u32 kind, const void* path, u32 a, u32 b) {
 
 void fn_71011a91c4(UnkModelManager* self, void* handle, u32 id);
 struct UnkQueueOwner;
-void fn_71011a9980(UnkQueueOwner* self);
 
 struct UnkPoolValue_a9390 {
     virtual void vf_0x0();

@@ -13,9 +13,14 @@
 #include "base/math/CVector.h"
 #include "base/math/UnkZeroVector3.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CComponent.h"
+#include "game/CFlockingSwarmControllerComponent.h"
+#include "game/CSwarmControllerComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1159.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 using base::math::CVector3D;
@@ -165,10 +170,7 @@ struct UnkSwarmMember_ovb6 {
 
 struct UnkGroup_fs;
 struct UnkArray_fs;
-UnkGroup_fs* fn_71007410a4(UnkArray_fs* array, u32 index);
 struct UnkSwarmController_A5_b68;
-void fn_710074bdd4(UnkSwarmController_A5_b68* self, u32 index, f32 delay);
-void fn_7100232c68(void*);
 
 // The list a group is in (the shape of fn_71007410a4's result).
 struct UnkSwarmGroupList_ovb6 {
@@ -284,7 +286,6 @@ void fn_710074a200(UnkSwarmController_ovb6* self, f32 dt) {
 
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
-char* fn_71010c4234(char*);
 
 struct UnkSwarmPlayer_ovb6 {
     u8 pad_0x0[0x220];
@@ -328,9 +329,7 @@ void fn_710074a0d4(UnkSwarmController_ovb6* self, f32 dt) {
     fn_710074a360(self, dt);
 }
 
-bool fn_7100744e1c(UnkSwarmMember_ovb6* member);
 struct UnkTarget;
-void fn_7100745440(UnkTarget* target, void* effect, u32 flag);
 
 // Every live member that vf_0x228 accepts for `arg` gets fn_7100745440 and `value` at +0x64.
 void fn_710074e190(void* controller, void* arg, f32 value) {

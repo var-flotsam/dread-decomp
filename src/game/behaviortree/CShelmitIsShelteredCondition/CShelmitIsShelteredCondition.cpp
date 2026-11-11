@@ -3,6 +3,7 @@
 // Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CShelmitAIComponent.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
@@ -17,8 +18,6 @@ struct UnkShelmitCondition_sis {
     u8 pad_0x0[0x18];
     UnkActor* owner;  // 0x18
 };
-
-s32 fn_71006bc178(UnkShelmitAI_sis* ai);
 
 bool fn_71006b8588(UnkShelmitCondition_sis* self) {
     UnkActor* owner = self->owner;

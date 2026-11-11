@@ -4,16 +4,15 @@
 // (fn_7100775610, on). Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2547.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkDoorRegistry_b61;
-void fn_7100ddb6dc(UnkDoorRegistry_b61* self);
 extern UnkDoorRegistry_b61* g_unk_71726bee10;
 struct UnkUnit2547;
 struct UnkCentralUnit;
-UnkCentralUnit* fn_7100ddb768(UnkUnit2547* self);
 void fn_7100775610(UnkCentralUnit* unit, bool on, const CStrId* id);
 
 struct UnkChasePulseEvent_ovb0069 {

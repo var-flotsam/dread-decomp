@@ -4,6 +4,7 @@
 // old one left empty, then released), and the old arrays freed. Names are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
+#include "game/UnkTU39.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -13,9 +14,7 @@ struct UnkPlayerInfoValue_b52 {
     u8 raw[0xb0];
 };
 
-void fn_710002f588(void* self, const void* other);  // copy constructor
 // As src/game/UnkUnit1134/UnkUnit1134_Dtor_b49a3.cpp declares it.
-void fn_710002f67c(void* self);
 
 void fn_7100f0f980(UnkPropertyArrays* self, u32 capacity) {
     if (self->capacity < capacity) {

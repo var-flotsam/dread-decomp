@@ -3,6 +3,7 @@
 // at +0x260 of the label at 8; when it changes, it clears the word at +0x298 and runs the virtual at
 // 0x88. Returns the empty value. Names are placeholders.
 #include "base/global/CStrId.h"
+#include "base/global/timeline/CEvent.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkGuiLabel.h"
 #include "types.h"
@@ -31,7 +32,6 @@ UnkReflValue fn_71011efb58(void*, char* obj, UnkReflValue* const* args) {
 }
 
 void fn_7100066c00(void* self, const void* source);
-void fn_7100066e44(void*);
 
 static inline __attribute__((always_inline)) void* ArgPtr_b40a3(UnkReflValue* arg) {
     if (!arg->type)

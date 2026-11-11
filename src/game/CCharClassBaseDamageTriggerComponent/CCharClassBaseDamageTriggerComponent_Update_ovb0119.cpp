@@ -6,7 +6,9 @@
 // slot 0x1f8 runs with the argument. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCharClassBaseTriggerComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1370.h"
 #include "types.h"
 #include "game_s2/UnkWeakHandle.h"
 
@@ -79,13 +81,10 @@ UnkPlayer* fn_7100dec788(UnkGameManager*);
 UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 
 struct UnkFan_A4_b74;
-void fn_7100a474f8(UnkFan_A4_b74*, f32);
 struct UnkRequest;
 void fn_71008c1538(UnkRequest* request, f32 value);
 struct UnkGooplotRequest_b63a3;
-void fn_71008c1090(UnkGooplotRequest_b63a3*, const UnkGooplotRequest_b63a3*);
 struct UnkBase_71003cc474;
-void fn_71008c1558(UnkBase_71003cc474* self);
 void fn_710116a168(void* target, void* key);
 
 // The damage request (0x100 bytes): its source handle at +0x8.

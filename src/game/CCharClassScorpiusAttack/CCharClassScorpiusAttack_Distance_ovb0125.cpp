@@ -4,12 +4,11 @@
 // 20 of the point. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCharacterMovement.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
-
-f32 fn_7100977b20(void*);
 
 struct UnkScorpiusCharClass_ovb0125 : UnkReflObject {
     u8 pad_0x8[0x11c];

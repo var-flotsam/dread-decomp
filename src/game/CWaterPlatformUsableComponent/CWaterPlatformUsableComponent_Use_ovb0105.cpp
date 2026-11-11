@@ -7,15 +7,18 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CActorComponent.h"
+#include "game/CUsableComponent.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2702.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkSmBase_b60;
-void fn_710024facc(UnkSmBase_b60*);
 
 // The platform's two collision object names (the second right after the first).
 extern CStrId g_unk_71727537e8[2] __attribute__((visibility("hidden")));
@@ -90,10 +93,8 @@ void fn_7100aa54c0(UnkWaterPlatformUsable_b0105* self) {
 
 struct UnkEmmyRegistry_b55;
 extern UnkEmmyRegistry_b55* g_unk_71726af0a8;
-void fn_710110fae4(void* emmy, void* block);
 void fn_710021a0b4(UnkRenderManager* self, const u64* hash, const base::math::CVector4D* value);
 struct UnkScriptCaller;
-bool fn_7100305088(UnkScriptCaller* self, const char* name, const char* fmt, ...);
 
 struct UnkEmmyEntry_b0105 {
     u8 pad_0x0[0x10];
@@ -128,7 +129,6 @@ struct UnkWaterPlatform2_b0105 {
 };
 static_assert(__builtin_offsetof(UnkWaterPlatform2_b0105, block) == 0x5c8, "layout");
 
-void fn_7100aa0034(void*);
 void fn_7100aa6a2c(UnkWaterPlatform2_b0105* self, f32 t);
 
 static inline void Ease(UnkTimedCurve* curve, f32 start, f32 target, f32 duration,

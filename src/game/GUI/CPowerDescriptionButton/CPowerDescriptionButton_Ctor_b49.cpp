@@ -3,13 +3,13 @@
 // string's default constructor fn_710007e6c4), two empty string ids and three cleared words. Names and
 // layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/GUI/CButton.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 extern char g_unk_7101a9dcb0[];  // CPowerDescriptionButton's vtable
 struct UnkGuiButton;
-void fn_71011bf0ec(UnkGuiButton* self);  // CButton's constructor
 void fn_710007e6c4(void*);               // the string's default constructor
 
 // An empty id: the string id constructor for "" (the length folded) inlined.

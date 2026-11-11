@@ -5,11 +5,11 @@
 // derived component on that one (inlined): its own vtable, two cleared ranges, two containers on the
 // default allocator, then the same virtual call. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CComponent.h"
+#include "game/CEmmyWakeUpComponent.h"
 #include "types.h"
 
 struct UnkStateObject;
-void fn_71010c4148(UnkStateObject* self);
-void fn_71007d762c(char*);
 extern void* g_unk_7101a72d70[];
 extern void* g_unk_7101a72ba8[];
 

@@ -3,15 +3,15 @@
 // classes (fn_710117b348), runs fn_71004ee590 and sends the animation component a fixed hash with mode 0 (UnkSpitSend).
 // Names are placeholders.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CDropterAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 struct UnkWarLotusAI;
-void fn_7101105c94(UnkWarLotusAI* self);
 struct UnkDropterHit_b58;
-void fn_71004ee590(UnkDropterHit_b58* self);
 
 struct UnkDropterHitOwner_b58 {
     u8 pad_0x0[0x220];

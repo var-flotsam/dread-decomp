@@ -4,12 +4,13 @@
 #include "base/UnkInitRecord_0x5c.h"
 #include "base/UnkVector.h"
 #include "game/UnkSphere.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU167.h"
+#include "game/UnkTU308.h"
 #include "types.h"
 
 extern void* g_unk_7101a1f000[];
 extern void* g_unk_7101a1f218[];
-void fn_71000003d4(void* self, const char* s, bool flag);
-void fn_710021685c(void* self);
 
 struct UnkWidgetArg;
 struct UnkWidgetMember {
@@ -17,7 +18,6 @@ struct UnkWidgetMember {
     UnkWidgetMember() {}
     UnkWidgetMember(const UnkWidgetMember&) {}
 };
-UnkWidgetMember fn_7100151360(UnkWidgetArg* a);
 
 struct UnkWidgetBuffer {
     s64 field_0x0, field_0x8;

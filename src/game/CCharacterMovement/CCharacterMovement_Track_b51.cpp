@@ -1,10 +1,10 @@
 // CCharacterMovement (unit 1445): the flag at +0x3aa that says the owner is held by a track or
 // state (see fn_710117b348). Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CMovementComponent.h"
 #include "game/UnkAnimationComponent.h"
 
 struct UnkMovement_71010d0e38;
-bool fn_71010d0e38(UnkMovement_71010d0e38* self);
 
 struct UnkHoldState_1445 {
     u8 pad_0x0[0x70];

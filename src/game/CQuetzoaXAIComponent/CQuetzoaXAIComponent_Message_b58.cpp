@@ -7,6 +7,8 @@
 // 0x2800041c, or arrive while +0x14bc8 is clear, answer 2. Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/UnkMatrix44.h"
+#include "game/CBossAIComponent.h"
+#include "game/CEnemyMovement.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
@@ -35,7 +37,6 @@ struct UnkSinkParams_b58a4 {
 extern void* g_unk_7101a24b80[];
 
 struct UnkEffectSink;
-void fn_71010c7e6c(UnkEffectSink* sink, void* params, u32 flags);
 
 struct UnkQuetzoaXOwner_b58;
 struct UnkQuetzoaXOwnerVtbl_b58 {
@@ -57,8 +58,6 @@ struct UnkQuetzoaXMessage_b58 {
     u8 pad_0x0[0xb4];
     u32 flags;
 };
-
-u32 fn_71003adaf8(UnkQuetzoaXAI_b58* self, UnkQuetzoaXMessage_b58* msg);
 
 u32 fn_710063f944(UnkQuetzoaXAI_b58* self, UnkQuetzoaXMessage_b58* msg) {
     u32 result = fn_71003adaf8(self, msg);

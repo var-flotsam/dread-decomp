@@ -9,9 +9,8 @@
 #include "base/UnkDefaultAllocator.h"
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
+#include "game/UnkTU2622.h"
 #include "types.h"
-
-void fn_7100fc71ac(void* loader);
 
 struct UnkStringList_b49 {
     u64 field_0x0;

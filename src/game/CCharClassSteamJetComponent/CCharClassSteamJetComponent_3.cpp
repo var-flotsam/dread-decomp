@@ -5,6 +5,7 @@
 // +0x98 is set and the factor at +0xbc8 to one. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCharClassBaseTriggerComponent.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -38,7 +39,6 @@ struct UnkSteamJetComponent {
 };
 
 extern CClass g_unk_717272d7d0 __attribute__((visibility("hidden")));
-bool fn_7100a46e00(UnkSteamJetComponent* self, UnkSteamJetArg* arg);
 void fn_71008c1538(UnkRequest* request, f32 value);
 
 static inline const CClass* SteamJetClass() {

@@ -11,6 +11,9 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CAudioComponent.h"
+#include "game/CComponent.h"
+#include "game/UnkTU101.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -19,21 +22,17 @@ using base::global::UnkStringPool;
 // ---- Shared declarations ----
 
 struct UnkEntitySoundComponent;
-void fn_7100719064(UnkEntitySoundComponent* self, bool a, bool b, bool c, bool d);
 
 struct UnkIdPair;
 void fn_7100026f70(UnkIdPair* pair);
 
 struct UnkStateObject;
-void fn_71010c4148(UnkStateObject* self);
 extern void* g_unk_7101a6cca0[];  // the component's vtables
 
 struct UnkStruct_710071faf4;
 void fn_710071faf4(UnkStruct_710071faf4* self, const UnkStruct_710071faf4* other);
 
 struct UnkInterp_7100105f94;
-void fn_7100105f94(UnkInterp_7100105f94* self, s32 level, f32 time);
-void fn_7100105034(void* sound);
 
 // As src/game/CAudioComponent/CAudioComponent_Stop_b65a4.cpp has them.
 struct UnkSoundObject_b50;

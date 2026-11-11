@@ -3,12 +3,11 @@
 // owner's (+0x30) sub-object at +0x220 hash 0xfb70eec0a98665b3 under the usual track kind with mode 1
 // (descriptors as UnkSpitSend, src/game_s2/UnkSpitSend.h). Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CShelmitAIComponent.h"
 #include "types.h"
 
 struct UnkShelmitAI;
 void fn_710110ed88(void* self);
-void fn_71006ba194(UnkShelmitAI* self);
-void fn_71006ba4fc(void* self);
 
 struct UnkShelmitOwner_b57a4 {
     u8 pad_0x0[0x220];

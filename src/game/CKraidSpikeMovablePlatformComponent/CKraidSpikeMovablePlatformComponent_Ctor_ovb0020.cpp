@@ -1,10 +1,10 @@
 // CKraidSpikeMovablePlatformComponent unit (tools/tu_map.py unit 931): the constructor (fn_7100609010): the base
 // (fn_71009516a0), the vtable, the platform's fields cleared (the config at +0x250 through the state at +0x280),
 // then the class-entry pass of base::core::CBaseObject (fn_7100023854). Names and layouts are placeholders.
+#include "base/core/CBaseObject.h"
 #include "types.h"
 
 struct UnkNode;
-void fn_7100023854(UnkNode* node);
 void fn_71009516a0(void* self);
 extern void* g_unk_7101a55bd0[];
 

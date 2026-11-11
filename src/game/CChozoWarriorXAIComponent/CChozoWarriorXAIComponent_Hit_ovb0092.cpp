@@ -9,6 +9,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAIAttackComponent.h"
 #include "game/UnkManager_71726af468.h"
 #include "types.h"
 
@@ -23,7 +24,6 @@ void fn_71004990ac(UnkWarriorXAI_ovb0092* self);
 struct UnkSelf;
 void fn_710048ecbc(UnkSelf* self);
 struct UnkCommanderPlayer_b67a2;
-void fn_7101134420(UnkCommanderPlayer_b67a2* player, void* entry, u32 arg2, u32 arg3, void* arg4, f32 arg5);
 
 static inline UnkManager_71726af468* Manager_ovb0092() {
     UnkManager_71726af468* m = g_unk_71726af468;

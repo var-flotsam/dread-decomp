@@ -2,6 +2,9 @@
 // entries with another, fn_7100c77a9c tests a path (on a copy with a reset bounding box) against a
 // target, and fn_7100c778f8 keeps the nearer of two targets that pass. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU108.h"
+#include "game/UnkTU109.h"
+#include "game/UnkTU365.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -18,7 +21,6 @@ void fn_7100119e14(UnkEntryArray108* self, const UnkEntry108* entry);
 struct UnkPool_0x48;
 struct UnkStruct_0x48;
 UnkStruct_0x48* fn_7100124344(UnkPool_0x48* pool, u32 handle);
-UnkStruct_0x48* fn_710012431c(UnkPool_0x48* pool, u32 handle);
 
 struct UnkPath_b0255 {
     UnkEntry108* data;  // 0x0
@@ -57,11 +59,9 @@ void fn_7100c66b50(UnkPathOwner_b0255* self, UnkPathOwner_b0255* other) {
 }
 
 struct UnkPart0;
-void fn_710011d8b4(UnkPart0* self, const UnkPart0* other);
 
 struct UnkPool_0x48;
 struct UnkStruct_0x48;
-UnkStruct_0x48* fn_710012431c(UnkPool_0x48* pool, u32 handle);
 
 struct UnkPathCopy_b0255 {
     u8 points[0x28];  // 0x0, a base::UnkVector<UnkVec3f>
@@ -145,7 +145,6 @@ struct UnkAssignedSlot {
 
     UnkAssignedSlot& operator=(const UnkAssignedSlot& other);
 };
-void fn_71002a5d1c(UnkAssignedSlot* self, const UnkAssignedSlot* other);
 __attribute__((always_inline)) inline UnkAssignedSlot& UnkAssignedSlot::operator=(const UnkAssignedSlot& other) {
     fn_71002a5d1c(this, &other);
     return *this;

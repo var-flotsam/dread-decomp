@@ -2,14 +2,14 @@
 // the floating prop found for the actor (+0x30, fn_71007e4924; cached at +0x88) through
 // fn_710117ad18, then plays the actor's timeline key g_unk_710164ae00 at a level of 1 or
 // more, or g_unk_710164adf8 at 0 or less (fn_7100d7c828). Names are placeholders.
+#include "game/CAnimationComponent.h"
+#include "game/CCharClassEventScenarioComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 struct UnkWeakTarget;
-UnkWeakTarget* fn_71007e4924(void* owner);
 struct UnkActionSwitcherAnimation_b48;
-void fn_710117ad18(UnkActionSwitcherAnimation_b48* self, bool flag, f32 value);
 
 extern u64 g_unk_710164adf8;
 extern u64 g_unk_710164ae00;

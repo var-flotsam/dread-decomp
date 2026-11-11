@@ -6,13 +6,13 @@
 // src/game_s2/UnkSpitSend.h). Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CActorComponent.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
-void fn_710110cca4(void* self, void* arg);
 struct UnkStruct_710024fa0c;
-void fn_710024fa0c(UnkStruct_710024fa0c*, bool);
-void fn_710117ab64(UnkAnimationComponent* self, u32 value, const void* arg);
 extern char g_unk_71726fd808[] __attribute__((visibility("hidden")));
 
 struct UnkRockDiverOwner_b57a4 {

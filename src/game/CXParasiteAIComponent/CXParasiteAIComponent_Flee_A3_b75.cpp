@@ -8,6 +8,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU1102.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -36,7 +37,6 @@ struct UnkXParasiteMode_A3_b75 {
     u32 unk_0x4;
     u64 unk_0x8;
 };
-void fn_71006e9384(UnkXParasiteAI_A3_b75* self, const UnkXParasiteMode_A3_b75* mode);
 
 struct UnkXParasiteVec_A3_b75 {
     f32 x, y, z;

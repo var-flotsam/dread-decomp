@@ -7,6 +7,7 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/animtree/CAnimTreeDef.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
 
@@ -17,7 +18,6 @@ struct UnkIdPair10Array;
 void fn_71002db388(UnkIdPair10Array* self, u32 n);  // truncate
 
 struct UnkAnimTreeIdPairs_b49a1;
-void fn_71002da674(UnkAnimTreeIdPairs_b49a1* self, u32 capacity);  // reserve
 
 struct UnkIdPairRaw_ovb0120 {
     UnkStringData* first;

@@ -6,11 +6,11 @@
 #include <new>
 
 #include "base/UnkDestructors.h"
+#include "game/UnkTU182.h"
+#include "game/UnkTU226.h"
 #include "types.h"
 
 extern char unk_7101a1e248[];
-void fn_7100161b90(void* obj);
-void fn_710019e82c(void* self);
 
 struct UnkPooledPair_710019bfb8 {
     char* vtable;

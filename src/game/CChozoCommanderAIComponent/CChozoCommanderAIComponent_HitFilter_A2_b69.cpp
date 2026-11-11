@@ -3,15 +3,14 @@
 // have 0x4000 set writes 0 to *out and returns 1, unless the component's +0x1140 is set and the owner's object
 // at +0x260 is missing or fn_710113d83c refuses it; everything else defers to fn_71011061ac.
 // Names and layouts are placeholders.
+#include "game/CGrabComponent.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 // As src/game/CGoliathAIComponent/CGoliathAIComponent_HitFilter_b55.cpp declares it.
 struct UnkGoliathAI_b55;
 struct UnkGoliathHitInfo_b55;
 struct UnkGoliathHitTarget_b55;
-u32 fn_71011061ac(UnkGoliathAI_b55* self, u32* out, void* arg2, UnkGoliathHitInfo_b55* info,
-                  UnkGoliathHitTarget_b55** hit);
-bool fn_710113d83c(void*);
 
 struct UnkChozoCommanderOwner_A2_b69 {
     u8 pad_0x0[0x260];

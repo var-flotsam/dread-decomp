@@ -3,9 +3,15 @@
 // the loading screen. Names and layouts are placeholders.
 // Holds fn_7100e10aac (closes the loading screen) and fn_7100e0fc00 (the tips' labels).
 #include "base/UnkVector.h"
+#include "game/GUI/CLabel.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU244.h"
+#include "game/UnkTU2578.h"
+#include "game/UnkTU286.h"
+#include "game/UnkTU58.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 // A fade colour (the same definition as src/game/UnkScreenFade.cpp's).
@@ -59,9 +65,7 @@ static_assert(__builtin_offsetof(UnkLoadingScreen, field_0x1e8) == 0x1e8, "UnkLo
 // UnkStruct_0x128).
 struct UnkStruct_0x128;
 extern UnkStruct_0x128* g_unk_7101d47320;
-void fn_7100ef3494(UnkStruct_0x128* self);
 void fn_7100f011c4(UnkStruct_0x128* self, u32 id);
-void fn_7100f00714(UnkStruct_0x128* self);
 static inline UnkStruct_0x128* SceneState() {
     UnkStruct_0x128* s = g_unk_7101d47320;
     if (!s) {
@@ -74,7 +78,6 @@ static inline UnkStruct_0x128* SceneState() {
 
 // The music manager (game/sound/CMusicManager.h), created on first use.
 extern void* g_unk_71726bc560;
-void fn_7100fd7b44(void* manager, UnkLoadingMask channels, UnkLoadingMask mask, f32 time);
 void fn_7100fdca28(void* manager, u32 value);
 static inline void* MusicManager() {
     void* manager = g_unk_71726bc560;
@@ -90,9 +93,6 @@ struct UnkItemBase_71011a91c4;
 void fn_71002199b0(UnkRenderManager* self);
 void fn_71002199b4(UnkRenderManager* self);
 void fn_7100219974(UnkRenderManager* self, u32 value);
-void* fn_71000810b0(u32 value);
-void fn_7100209968(void* node, f32 duration, const UnkFadeColor* to, const UnkFadeColor* from);
-void fn_7100209fec(void* node, bool visible);
 void fn_7100e13238(UnkLoadingScreen* self);
 void fn_71011b6b5c(UnkGuiRoot* root, u32 value);
 extern void* g_unk_71727c0708;  // a render object the loading screen keeps (pool 0)
@@ -199,7 +199,6 @@ struct UnkCreatedSceneObj {
 };
 static_assert(__builtin_offsetof(UnkCreatedSceneObj, field_0x128) == 0x128, "UnkCreatedSceneObj placeholder layout");
 void fn_710014520c(UnkCreatedSceneObj* self, const CStrId* name);  // the constructor
-void fn_71001b7a60(UnkCullView* self);
 
 // The set: buckets of nodes by key, the nodes also in a list in insertion order.
 struct UnkSceneObjNode {
@@ -282,7 +281,6 @@ void fn_7100e13928(void* set_, void* model_, UnkSceneObj_71010e2278** out, const
 // A GUI::CLabel's constructor and the setters the headers above leave out (as
 // src/game/CScenario.cpp declares them).
 struct UnkStruct_71011ebdb4;
-void fn_71011ebdb4(UnkStruct_71011ebdb4* self);
 bool fn_71011ceac0(UnkGuiDisplayObject* self);
 bool fn_71011ceb34(UnkGuiDisplayObject* self);
 void fn_71011b5598(UnkGuiRoot* root, UnkGuiDisplayObject* object);

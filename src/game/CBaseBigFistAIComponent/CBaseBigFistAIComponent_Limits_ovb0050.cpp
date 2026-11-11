@@ -2,11 +2,12 @@
 // fn_71010fc864 for the limits of kind 1. An owner whose x lies outside them is put back inside, a
 // radius (+0x37c) away from the nearer limit, its flag at +0x3b0 set, and turned to face away from that
 // limit (a y angle of +/- pi/2); then the flag at +0x3c0 is set. Names and layouts are placeholders.
+#include "game/CBossAIComponent.h"
+#include "game/UnkTU2702.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 struct UnkCoreXAI_A2_b73;
-void fn_71003acb5c(UnkCoreXAI_A2_b73*);
 
 // A point of the limits fn_71010fc864 reports (zero unless set).
 struct UnkBigFistLimit_ovb0050 {
@@ -35,8 +36,6 @@ struct UnkBigFistAI3_ovb0050 {
     u8 pad_0x0[0x30];
     UnkBigFistActor_ovb0050* owner;  // 0x30
 };
-
-bool fn_71010fc864(UnkBigFistAI3_ovb0050* self, UnkBigFistKind_ovb0050* kind, UnkBigFistLimit_ovb0050* min, UnkBigFistLimit_ovb0050* max);
 
 void fn_71003e5d80(UnkBigFistAI3_ovb0050* self) {
     fn_71003acb5c(reinterpret_cast<UnkCoreXAI_A2_b73*>(self));

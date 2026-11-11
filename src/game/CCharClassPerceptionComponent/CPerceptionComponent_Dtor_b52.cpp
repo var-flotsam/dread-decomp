@@ -3,13 +3,13 @@
 // owned objects at +0x58 (the layout of game_s2/UnkOwnedList.h, but each element destroyed
 // through its vtable slot at +0x8) destroyed, then the base destructor fn_71011acd74;
 // fn_71009c7d24 also frees the object. Names and layouts are placeholders.
+#include "game/CCharClassComponent.h"
 #include "game/UnkComponent.h"
 #include "base/UnkVector.h"
 #include "types.h"
 
 // Signature as src/game/CCharClassCollisionComponent/CCharClassCollisionComponent.cpp declares it.
 struct UnkIdObject;
-void fn_71011acd74(UnkIdObject* self);
 
 extern void* g_unk_7101a88c60[];
 

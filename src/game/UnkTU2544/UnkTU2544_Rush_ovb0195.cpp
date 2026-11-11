@@ -6,10 +6,14 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/snd/CSoundSystem.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU2544.h"
+#include "game/UnkTU2656.h"
+#include "game/UnkTU2768.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkGameManager.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -338,7 +342,6 @@ struct UnkVec {
     u64 xy;
     u32 z;
 };
-void fn_7101053850(void* effects, UnkVec* position, u32 flag, f32 duration, f32 scale);
 
 void fn_7100dcdc2c(UnkRush_b0195* self) {
     self->flag_0xa45 = true;
@@ -368,9 +371,6 @@ struct UnkRushScoreRow_b0195 {
 static inline UnkRushScoreRow_b0195* ScoreRowAt_b0195(UnkRush_b0195* self, s32 index) {
     return reinterpret_cast<UnkRushScoreRow_b0195*>(reinterpret_cast<char*>(self) + 0xc * (s64)index);
 }
-
-void fn_7100dcc2cc(UnkRush_b0195* self);
-void fn_7100dcc404(UnkRush_b0195* self, bool a, bool b, bool c);
 
 void fn_7100dcc110(UnkRush_b0195* self) {
     ++self->count_0xc74;
@@ -432,7 +432,6 @@ void fn_7100e8f9a0(char* world, bool remove, base::global::CStrId* key);
 extern CStrId g_unk_71727bdb88 __attribute__((visibility("hidden")));
 struct UnkSoundMgr;
 extern UnkSoundMgr* g_unk_7101d4d820;
-void fn_710010806c(UnkSoundMgr* self, f32 amount);
 
 void fn_7100dcc2cc(UnkRush_b0195* self) {
     fn_7100e8f9a0(static_cast<char*>(g_unk_7101d47310->field_0x2228), true, &g_unk_71727bdb88);
@@ -584,9 +583,7 @@ void fn_7100db8154(UnkRush_b0195* self) {
 // The user data's owner, created on first use (as src/game/CBossRushManager_SurvivalReset_b49.cpp has it).
 struct UnkUserDataOwner;
 extern UnkUserDataOwner* g_unk_7101d47308;
-void fn_710120320c(UnkUserDataOwner* self);  // constructor
 CBlackboard* fn_710120384c(UnkUserDataOwner* self);
-void fn_7101203854(UnkUserDataOwner* self);
 
 static inline UnkUserDataOwner* GetOwner() {
     if (!g_unk_7101d47308) {

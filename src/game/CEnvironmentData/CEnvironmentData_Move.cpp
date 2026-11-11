@@ -14,6 +14,7 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/math/CVector4D.h"
+#include "game/UnkTU2599.h"
 #include "types.h"
 
 using base::UnkStrIdValueElem;
@@ -130,14 +131,12 @@ extern char g_unk_7101cab220[];  // SFogTransition's
 extern char g_unk_7101cab338[];  // SVerticalFogTransition's
 
 // The vectors' out-of-line resizes and grow-at accessors, one per element type.
-void fn_7100f799b0(void*, u32);
 void fn_7100f79bb0(void*, u32);
 void fn_7100f79db4(void*, u32);
 void fn_7100f79fb8(void*, u32);
 void fn_7100f7a1bc(void*, u32);
 void fn_7100f7a3c0(void*, u32);
 void fn_7100f7a5c4(void*, u32);
-void fn_7100f7a7c8(void*, u32);
 void fn_7100f7a9d8(void*, u32);
 void fn_7100f7abdc(void*, u32);
 void fn_7100f7ade4(void*, u32);

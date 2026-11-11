@@ -10,6 +10,7 @@
 #include "base/global/CStrId.h"
 #include "base/input/UnkRumbleManager.h"
 #include "base/math/UnkZeroVector3.h"
+#include "game/UnkTU50.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -92,7 +93,6 @@ struct UnkRumbleComponent_ovb0083 {
 };
 
 struct UnkRumbleRecords;
-void fn_7100072328(void*, f32, f32);
 
 // Destroys the entries past `n` and keeps the first n.
 void fn_71009dbbb4(UnkRumbleEntries_ovb0083* self, u32 n) {

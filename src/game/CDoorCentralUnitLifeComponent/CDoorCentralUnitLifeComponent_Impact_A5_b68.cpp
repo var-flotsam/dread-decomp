@@ -3,13 +3,13 @@
 // src/game/CDoorGrapplePointComponent/CDoorGrapplePointComponent_Attach_A5_b66.cpp). Returns false. Names are
 // placeholders.
 #include "base/global/CStrId.h"
+#include "game/CDoorCentralUnitLifeComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkCentralUnitDoor_b46a2;
-void fn_71008ca700(UnkCentralUnitDoor_b46a2* door, bool open);
 
 // A 12-byte zeroed argument (as src/game_s2/fn_710035131c.cpp's).
 struct UnkVec {

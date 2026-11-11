@@ -6,10 +6,15 @@
 #include "base/UnkVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CEmmyGrabSamusAttack.h"
+#include "game/CInputComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1501.h"
+#include "game/UnkTU811.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "game_s2/UnkChargeComponent.h"
 #include "types.h"
 
@@ -180,7 +185,6 @@ extern void* g_unk_7101d47360;
 void fn_7100ee1f34(void*);
 void fn_7100df6c78(UnkGameManager* self, f32 a, f32 b);
 struct UnkInputComponent;
-void fn_7100872460(UnkInputComponent* self, bool enable, bool reset, void* arg);
 struct UnkGrabInputArg_b61;
 extern UnkGrabInputArg_b61 g_unk_71726de5d0 __attribute__((visibility("hidden")));
 
@@ -215,7 +219,6 @@ void fn_710050be58(UnkGrabSm_b61* self, f32 dt) {
 }
 
 struct UnkEmmyAI_b61;
-f32 fn_7100552ee4(UnkEmmyAI_b61* ai);
 
 // Grab hold, second form: after the countdown, state 9 when the E.M.M.I. AI's value (fn_7100552ee4) is
 // positive, else state 8.
@@ -254,8 +257,6 @@ struct UnkColor_710050f26c {
     f32 a;
 };
 struct UnkStruct_710050f26c;
-void fn_710050f26c(UnkStruct_710050f26c* self, f32 time, const UnkColorIn_710050f26c* color, f32 time2,
-                   const UnkColor_710050f26c* color2, f32 offset);
 
 struct UnkGrabFx_b61 {
     u8 pad_0x0[0x28];
@@ -420,8 +421,6 @@ void fn_71005b7a3c(UnkHydrogigaAttackSelf_b61* self) {
 // target's +0x208). Then refreshes the hold time when the value at +0x149d0 reaches +0x568, and unless the
 // target is held, counts it up to the tunable (clamped at zero from below).
 struct UnkHelper;
-bool fn_71009e6f9c(UnkHelper*);
-bool fn_71009e6434(UnkHelper*);
 
 struct UnkHydrogigaParams2_b61 {
     u8 pad_0x0[0x550];
@@ -481,7 +480,6 @@ void fn_71005c27f8(UnkHydrogigaSm2_b61* self, f32 dt) {
 // Once the timer reaches its tunable (+0x550), asks for state 1 and makes two calls of fn_7100fdcf2c on
 // the music manager with 0.2 (as src/game/CHydrogigaAIComponent/CHydrogigaAIComponent_Send_b59_2.cpp).
 extern void* g_unk_71726bc560;
-void fn_7100fdcf2c(void* manager, u32 a, u32 b, f32 value);
 
 static inline void* MusicManager_b61() {
     if (!g_unk_71726bc560) {
@@ -570,7 +568,6 @@ struct UnkGrabFx4_b61 {
 };
 struct UnkGrabArg_b61;
 extern UnkGrabArg_b61 g_unk_71726de5a0 __attribute__((visibility("hidden")));
-void fn_710050afd0(UnkGrabFx4_b61* self, UnkGrabArg_b61* arg);
 
 void fn_710050e9e4(UnkGrabFx4_b61* self, f32 dt) {
     self->timer += dt;

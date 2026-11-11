@@ -7,12 +7,11 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "base/core/CAsset.h"
 #include "base/global/CFilePathStrId.h"
 #include "types.h"
 
 extern void* g_unk_7101a20cc0[];  // the object's vtable
-
-void fn_7100016ad8(void* self);
 
 struct UnkSmartLinkRules_b58 {
     void** vtable;

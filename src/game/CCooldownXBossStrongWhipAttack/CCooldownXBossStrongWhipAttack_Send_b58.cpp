@@ -3,13 +3,13 @@
 // once it runs out (or straight away otherwise) the owner's (+0x8) sub-object at +0x220 is sent a zero
 // (refl_EmitU32) and the timer is set to -1. Names are placeholders.
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CCooldownXBossAttack.h"
 #include "game/UnkActor.h"
 #include "../../game_s2/UnkSpitSend.h"
 #include "types.h"
 
 
 struct UnkWhipSend_b58;
-void fn_71004c1968(UnkWhipSend_b58* self, f32 dt);  // the base update (a thunk to fn_71003609a8)
 bool fn_7101161088(void*);
 
 struct UnkWhipSendOwner_b58 {

@@ -4,19 +4,18 @@
 // Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CHydrogigaAttack.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU1501.h"
 #include "types.h"
 
 struct UnkHelper;
-bool fn_71009e6f9c(UnkHelper*);
-bool fn_71009e6434(UnkHelper*);
 
 struct UnkHydrogigaPolypsAttack_b63a3 {
     u8 pad_0x0[0x8];
     UnkActor* owner;
 };
 struct UnkHydrogigaAttack_b63a3;
-bool fn_71005b2ec4(UnkHydrogigaAttack_b63a3* self, void* arg, u32 mode);
 
 struct UnkHydrogigaPolypsAICast_b63a3 {
     void** vtable;

@@ -2,6 +2,7 @@
 // arrays and string ids, resets the five embedded sub-objects, then runs the base destructor.
 #include "base/UnkStrIdTable.h"
 #include "game/UnkComponent.h"
+#include "game/UnkTU39.h"
 #include "types.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
@@ -97,8 +98,6 @@ struct UnkCallbackList {
         }
     }
 };
-
-void fn_710002f67c(void* p);
 
 // An embedded sub-object (0x70 bytes) with its own vtable.
 struct UnkSub {

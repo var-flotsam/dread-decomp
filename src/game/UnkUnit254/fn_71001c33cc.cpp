@@ -1,9 +1,8 @@
 // From unit 254 of tools/tu_map.py (0x71001c33cc-0x71001c383c, no reflected class): the constructor of
 // an object whose +0x10 points back at itself, with an embedded part at +0x20 (fn_710021685c), two
 // scales of one at +0xa0 and two counts set to 0x80 and 1. Names and layouts are placeholders.
+#include "game/UnkTU308.h"
 #include "types.h"
-
-void fn_710021685c(void* part);
 
 struct UnkUnit254Object {
     u32 field_0x0;

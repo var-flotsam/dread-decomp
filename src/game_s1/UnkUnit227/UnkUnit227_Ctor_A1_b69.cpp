@@ -4,10 +4,10 @@
 // then the diagonal set from the last element) and a few flags. Names and layouts are placeholders.
 #include <new>
 
+#include "game/UnkTU226.h"
 #include "types.h"
 
 extern void* g_unk_7101a1e2f8[];
-void fn_710019e76c(void* self);
 
 struct UnkIdentity44_227_b69a1 {
     f32 m[16];

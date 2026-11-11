@@ -3,15 +3,15 @@
 // (fn_7100d35a98), and the owner's object (fn_71002b3b84) gets one of two ids (fn_71009c0f1c).
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CNavMeshItemComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkTU372.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkWeakTarget;
-void* fn_71002b3b84(UnkWeakTarget*);
-void fn_71009c0f1c(void* object, u64 id);
 
 struct UnkDoorOwner_b50 {
     u8 pad_0x0[0x2a0];

@@ -10,9 +10,15 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CAbility.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CFXComponent.h"
+#include "game/CGrabComponent.h"
+#include "game/CModelUpdaterComponent.h"
 #include "game/UnkComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU1428.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -43,12 +49,6 @@ struct UnkEnergyWaveFxComp_b49;
 
 UnkOwner* fn_7100defcd4(UnkGameManager*);
 UnkPlayer* fn_7100dec788(UnkGameManager*);
-void fn_710113f270(UnkEnergyWaveCompA_b49* comp, void* object);
-void fn_710094f8f0(UnkEnergyWaveCompB_b49* comp, UnkEnergyWaveObject_b49* object);
-void fn_71002fda50(UnkStruct_71002fda50* self, bool all, bool force_off);
-void fn_71002f8848(UnkWaveChild_A2_b72* child);
-void fn_710115372c(UnkWorld* world);
-void fn_71011738f8(UnkEnergyWaveFxComp_b49* comp, void* id, u32 flags);
 extern char g_unk_7101648d28[];
 extern const u64 g_unk_7101648d18;
 
@@ -68,7 +68,6 @@ inline UnkGameManagerIdTable& GameManagerIdTable() {
 
 UnkComponent* fn_7101152b90(UnkObject*, u64);
 bool fn_710114e668(UnkObject*, u8);
-bool fn_710114e680(UnkObject*, u8);
 void fn_710114fe8c(UnkObject* object, u64 hash, u32 a, u32 b);
 void fn_71002078e4(void* fade, f32 target, f32 from, f32 to, bool a, bool b);
 
@@ -101,4 +100,3 @@ void fn_7100301600(void* self, u64 hash, bool on, UnkObject* world) {
     if (part && fn_710114e680(world, part->kind) && part->active)
         fn_71002078e4(part->fade, 0.15f, 0.0f, 1.0f, true, true);
 }
-

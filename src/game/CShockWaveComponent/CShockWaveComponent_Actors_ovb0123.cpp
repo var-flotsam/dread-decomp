@@ -14,7 +14,9 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "base/math/CVector.h"
+#include "game/CShockWaveComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -97,7 +99,6 @@ bool fn_7100d5b714(void* tree, u32 mask, const UnkVec3f* from, const UnkVec3f* t
                    bool closest, bool flag, f32 radius);
 
 struct UnkShockWaveMember;
-void fn_71009f3bf8(UnkShockWaveMember* self, const UnkShockWaveMember* other);
 
 // A reference to a counted object.
 struct UnkShockWaveHitSlot_ovb0123 {
@@ -215,7 +216,6 @@ struct UnkEntityBox {
     base::math::CVector3D max;
 };
 struct UnkEntityBounds;
-UnkEntityBox fn_7100d7bc70(const UnkEntityBounds* self);
 bool fn_7100126af0(const UnkVec3f* center, const UnkEntityBox* box, f32 radius);
 
 struct UnkShockWaveActor_ovb0123 {

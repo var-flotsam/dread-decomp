@@ -1,0 +1,21 @@
+#pragma once
+
+// UnkTU2563: functions of this translation unit that other files call (tools/tu_map.py unit 2563,
+// 0x7100e31c18-0x7100e65204). One declaration per function: include this instead of declaring one.
+// Names and layouts are placeholders.
+#include "types.h"
+
+struct UnkArraysRecord;
+struct UnkPolyValues;
+struct UnkPolyVector;
+struct UnkRecord60;
+struct UnkRecord60Array;
+void fn_7100e4a1d0(UnkRecord60* record);
+UnkArraysRecord* fn_7100e4f444(UnkArraysRecord* self, const UnkArraysRecord* other);
+UnkPolyVector* fn_7100e4e898(UnkPolyVector* self, const UnkPolyVector* other);
+void fn_7100e4e310(char* self);
+UnkRecord60* fn_7100e4fd1c(UnkRecord60* self, const UnkRecord60* other);
+void fn_7100e51078(void* dst, void* src);
+void fn_7100e54ad8(UnkRecord60Array*, u32);
+void fn_7100e4ea08(UnkPolyVector* self, const UnkPolyValues* value);
+void fn_7100e56814(void*, u32);

@@ -5,6 +5,7 @@
 // placeholders.
 #include "../UnkSmRequest_A5_b73.h"
 #include "base/UnkRefHandle.h"
+#include "game/CCutsceneComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -13,7 +14,6 @@ void fn_7100e047f4(UnkGameManager* self, f32 a, f32 b);
 void fn_7100e04814(UnkGameManager* self, f32 a, f32 b);
 void fn_7100e04834(UnkGameManager* self, f32 a, f32 b);
 void* fn_71004067a4(void* owner);
-void fn_71007a8280(void* object);
 extern void* g_unk_7101d47360;
 void fn_7100ee1f34(void*);
 void fn_7100eed85c(void* self, void* key, bool a, bool b);

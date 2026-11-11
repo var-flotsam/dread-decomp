@@ -5,6 +5,7 @@
 // past the block. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkHashStream.h"
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CRntFile.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
@@ -23,7 +24,6 @@ struct UnkFileReader {
 
 void fn_710007beac(base::global::CRntFile* self, const base::global::CRntFile* other, u32 flags,
                    base::UnkAllocator* allocator);
-void fn_710000ccd8(UnkFileReader* self);
 void fn_710000f750(UnkParseContext* self, void* root);
 
 // This unit's parser callbacks.

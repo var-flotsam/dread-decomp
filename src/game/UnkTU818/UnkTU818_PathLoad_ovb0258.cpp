@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkXformNode.h"
@@ -52,7 +53,6 @@ using base::global::CStrId;
 bool fn_710054abf4(void* holder);
 struct UnkStruct_710117af10;
 struct UnkCls_710117af10;
-bool fn_710117af10(UnkStruct_710117af10*, UnkCls_710117af10**, bool);
 
 struct UnkWatchHolder_b0258w {
     u8 pad_0x0[0x30];

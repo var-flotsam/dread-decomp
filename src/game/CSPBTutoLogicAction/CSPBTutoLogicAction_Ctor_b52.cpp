@@ -7,11 +7,11 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/CTriggerLogicAction.h"
 #include "types.h"
 
 // The base constructor, as src/game/CChangeSetupLogicAction/CChangeSetupLogicAction_b35.cpp declares it.
 struct UnkChangeSetupLogicActionDef;
-void fn_7100a55aa4(UnkChangeSetupLogicActionDef*);
 struct UnkSPRTutoLogicAction_b52;
 void fn_7100a5340c(UnkSPRTutoLogicAction_b52* self);
 void fn_7100a52ebc();

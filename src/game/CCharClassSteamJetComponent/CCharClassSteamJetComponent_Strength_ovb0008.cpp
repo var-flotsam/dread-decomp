@@ -6,6 +6,8 @@
 // restart (fn_710089eed0). Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CAudioComponent.h"
+#include "game/CCharClassBaseDamageTriggerComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
@@ -16,8 +18,6 @@ using base::global::UnkStrId;
 struct UnkBaseDamageTrigger3;
 void fn_7100a45a30(UnkBaseDamageTrigger3* self);
 struct UnkLiquidPool_b44a2;
-void fn_7100a45cac(UnkLiquidPool_b44a2* self);
-void fn_710071a398(void* target, u32* mask, f32 a, f32 b);
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkInventory;

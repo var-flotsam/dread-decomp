@@ -2,13 +2,12 @@
 // at +0x28 through fn_71000ce19c, and (unless assigned to itself) shares the weak handle of what
 // the other one's +0x88 refers to. Near copy of fn_710058644c (src/game/CGoliathXBurstProjectionBombsAttack/), itself a copy of fn_71004963fc
 // (src/game/CChozoWarriorGlaiveWalljumpAttack/fn_71004963fc.cpp).
+#include "game/UnkTU83.h"
 #include "game_s2/UnkWeakHandle.h"
 
 struct UnkStruct_0x28 {
     u8 unk_0x0[0x28];
 };
-
-void fn_71000ce19c(UnkStruct_0x28* self, const UnkStruct_0x28* other);
 
 struct UnkBlock32_71005b4494 {
     u64 field_0x0;

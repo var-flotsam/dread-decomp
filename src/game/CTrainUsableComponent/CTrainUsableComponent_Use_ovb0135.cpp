@@ -4,9 +4,11 @@
 // runs fn_7100e015b8; the player's input component (+0x1d8) is then re-enabled. The mask types are
 // src/game/UnkLoadingScreen.cpp's. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CInputComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 struct UnkUsableComponent2_A6_b62;
@@ -33,7 +35,6 @@ struct UnkLoadingMaskOf {
     }
 };
 struct UnkLoadingMaskTag;
-void fn_7100fd7b44(void* manager, UnkLoadingMask channels, UnkLoadingMask mask, f32 time);
 
 // A copy of `mask` with `bit` flipped.
 static inline UnkLoadingMask Flipped(const UnkLoadingMask& mask, u32 bit) {
@@ -76,7 +77,6 @@ struct UnkTrainPlayer_ovb0135 {
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkInputComponent;
-void fn_7100872460(UnkInputComponent* self, bool enable, bool reset, void* arg);
 void fn_7100e015b8(UnkGameManager* manager);
 
 void fn_7100a99ba4(UnkTrainUsable_ovb0135* self) {

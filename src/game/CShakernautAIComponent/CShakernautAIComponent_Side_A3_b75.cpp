@@ -2,6 +2,7 @@
 // direction (+0x147f8 +0x18, as src/game/CShakernautAIComponent/CShakernautAIComponent_Flip_b53.cpp lays it
 // out) clears one of ids 4/8 on the actor's controller (fn_7101178564), sets the other (fn_71011785a8) and
 // records the side (+0xc: 1 past +0.001, 0 below it, 2 otherwise). Names and layouts are placeholders.
+#include "game/CAnimationComponent.h"
 #include "types.h"
 
 // As src/game/CShakernautAIComponent/CShakernautAIComponent_Flip_b53.cpp declares them.
@@ -10,8 +11,6 @@ struct UnkShakernautId_b53 {
     u32 value;
     u32 unk_0x4;
 };
-void fn_71011785a8(UnkShakernautCtrl_b53*, const UnkShakernautId_b53*, bool, bool);
-void fn_7101178564(UnkShakernautCtrl_b53* self, const UnkShakernautId_b53* id, bool a, bool b);
 
 struct UnkShakernautSideState_A3_b75 {
     u8 unk_0x0[0xc];

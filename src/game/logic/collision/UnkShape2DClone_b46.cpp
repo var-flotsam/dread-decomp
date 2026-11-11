@@ -3,6 +3,7 @@
 // by the shape base constructor from the source's transform (fn_7100d6c034, from +0x8), the
 // class's vtable, a cleared flag (+0xb8) and the source's four words at +0xa8. Names and layouts
 // are placeholders.
+#include "game/logic/collision/CShape.h"
 #include "types.h"
 
 struct UnkShape2D_b46a3 {
@@ -14,8 +15,6 @@ struct UnkShape2D_b46a3 {
     u32 field_0xb4;
     bool field_0xb8;
 };
-
-void fn_7100d6c034(UnkShape2D_b46a3* self, const void* transform);
 
 template <char* Vtable>
 static inline UnkShape2D_b46a3* Clone(const UnkShape2D_b46a3* other) {

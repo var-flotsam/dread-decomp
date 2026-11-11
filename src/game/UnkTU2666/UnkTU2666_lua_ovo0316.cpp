@@ -7,6 +7,12 @@
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CAudioComponent.h"
+#include "game/CCharClassStartPointComponent.h"
+#include "game/UnkTU101.h"
+#include "game/UnkTU1176.h"
+#include "game/UnkTU2523.h"
+#include "game/UnkTU2677.h"
 #include "game/sound/CMusicManager.h"
 #include "base/global/UnkStringPool.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -24,8 +30,6 @@ using base::global::CRntString;
 using base::global::CStrId;
 using base::global::CFilePathStrId;
 struct lua_State;
-s32 fn_71010c0270(lua_State* L, const char* fmt, ...);
-int fn_71010c0b40(lua_State* L, const char* fmt, ...);
 using base::reflection::UnkReflObject;
 
 extern u32 g_unk_71727bebb8;
@@ -42,10 +46,7 @@ struct UnkSoundHandle {
     s64 serial;
 };
 struct UnkEntitySoundComponent;
-UnkSoundHandle fn_710071a338(UnkEntitySoundComponent* component, void* a);
 struct UnkInterp_7100105d34;
-void fn_7100105d34(UnkInterp_7100105d34* self, f32 value, bool relative, f32 time);
-void fn_7100105da8(UnkInterp_7100105d34* self, f32 value, f32 time);
 
 struct UnkSoundRef_b0163 {
     UnkInterp_7100105d34* sound;
@@ -147,9 +148,6 @@ s32 fn_710107d500(lua_State* L) {
 }
 
 struct UnkScenarioObject_ovb0032;
-void* fn_7100774014(UnkScenarioObject_ovb0032* actor);
-void fn_710116c5dc(void* target, void* object);
-void fn_7100d7babc(UnkWeakTarget* entity, bool flag, f32 value);
 void fn_71010e46cc(void* object, bool value);
 
 

@@ -2,12 +2,12 @@
 // line by fn_71007a8eec; the same shape as fn_71000d5f4c (src/game_s1/fn_71000d5888.cpp).
 #include "base/UnkCollectionIter.h"
 #include "base/UnkVector.h"
+#include "game/CCutsceneComponent.h"
 #include "types.h"
 
 using base::UnkVector;
 
 struct UnkStruct_71007a8eec;
-void fn_71007a8eec(void* self);
 
 struct UnkCutsceneElement {
     u64 unk_0x0[0x88 / 8];

@@ -3,12 +3,10 @@
 
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "base/file/CFileCacheDevice.h"
 #include "types.h"
 
 extern char unk_7101a1aeb0[];
-void fn_7100085d8c(void* member);
-void fn_7100085d68(void* member);
-void fn_71000853b8(void* member);
 
 struct UnkObject_7100086e1c {
     char* vtable;

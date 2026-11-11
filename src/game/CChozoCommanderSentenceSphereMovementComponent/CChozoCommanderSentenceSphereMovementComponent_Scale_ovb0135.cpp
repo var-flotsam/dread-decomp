@@ -9,6 +9,7 @@
 #include "game/UnkActor.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkXformNode.h"
+#include "game/logic/collision/CCircleShape2D.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -23,7 +24,6 @@ struct UnkSphereShape_ovb0135 {
     s32 vf_0x18() { return reinterpret_cast<s32 (*)(UnkSphereShape_ovb0135*)>(vtable[0x18 / 8])(this); }
     void vf_0x78() { reinterpret_cast<void (*)(UnkSphereShape_ovb0135*)>(vtable[0x78 / 8])(this); }
 };
-void fn_7100d618f8(UnkSphereShape_ovb0135* self, f32 radius);
 
 struct UnkSphereCollider_ovb0135 {
     void** vtable;
@@ -137,4 +137,3 @@ void fn_710045b8e0(UnkSentenceSphereMovement_ovb0135* self) {
         }
     }
 }
-

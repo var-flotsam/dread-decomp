@@ -5,13 +5,13 @@
 // value and frees the node; a stale iterator is reset to the end first.
 #include "base/UnkVector.h"
 #include "base/global/UnkStringPool.h"
+#include "game/UnkTU2566.h"
 
 using base::global::UnkPoolIter;
 
 // The address of a bucket (declared as src/game_aca57c/fn_7100e9bf60.cpp does).
 struct UnkRecord;
 struct UnkRecordBuckets;
-UnkRecord** fn_7100eb3814(UnkRecordBuckets* set, u32 bucket);
 static inline char** Bucket(char* set, u32 bucket) {
     return reinterpret_cast<char**>(fn_7100eb3814(reinterpret_cast<UnkRecordBuckets*>(set), bucket));
 }

@@ -4,10 +4,10 @@
 // the base update (fn_7100515904). Names are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU811.h"
 #include "types.h"
 
 struct UnkEmmyActor_b55;
-void fn_7100544a34(UnkEmmyActor_b55* self, char* data, bool on);
 extern char g_unk_71726ded60[];
 
 struct UnkEmmySearchingAI_A3_b64 {

@@ -4,6 +4,9 @@
 #include "UnkClone.h"
 #include "base/UnkCloneCalls.h"
 #include "base/UnkVector.h"
+#include "game/CFXPool/CDefinition.h"
+#include "game/UnkTU2566.h"
+#include "game/UnkTU2640.h"
 
 struct UnkBeginIdArrayOwner;
 
@@ -22,10 +25,6 @@ __attribute__((always_inline)) static inline void Begin(const base::UnkVector<El
         Sync(out);
     }
 }
-
-void fn_7100ea7c6c(void*);  // CMinimapManager's unit
-void fn_710104e720(void*);  // CFXPool::CDefinition's unit
-void fn_7100fefde0(void*);
 
 void fn_7100eb01cc(const base::UnkVector<UnkBeginIdElem_0x10>* v, base::UnkCollectionIter<UnkBeginIdElem_0x10>* out) {
     Begin<UnkBeginIdElem_0x10, fn_7100ea7c6c>(v, out);

@@ -8,6 +8,7 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU223.h"
 #include "types.h"
 
 using base::UnkAllocator;
@@ -114,7 +115,6 @@ struct UnkSoundIdItem {
     u8 pad_0x0[0x178];
     UnkSoundIdItemModel* model;
 };
-void fn_710019c564(void* target, f32 a, f32 b, f32 c, f32 d);
 
 static inline void SetColor(UnkSoundIdItem* item, f32 rgb, f32 alpha) {
     fn_710019c564(item->model->field_0x78, rgb, rgb, rgb, alpha);

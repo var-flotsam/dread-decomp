@@ -16,7 +16,10 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CGameObject.h"
 #include "game/UnkCallbackSetVector.h"
+#include "game/UnkTU32.h"
+#include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
 #include <new>
 #include "types.h"
@@ -781,10 +784,8 @@ using base::global::UnkStringPool;
 
 extern char g_unk_7101a207b0[];
 
-void fn_710002572c(void* member);  // a member's destructor
 void fn_7100231fd4(void* member);  // the destructor of the component map at +0xa0
 struct UnkCameraCtrl_ovb0049;
-void fn_7101043934(UnkCameraCtrl_ovb0049*);  // the base destructor
 
 // A string id (of the pool `Pool` points to) whose destructor decrements and tests in two steps
 // (the original reloads the id after the decrement).
@@ -1091,7 +1092,6 @@ using base::global::CStrId;
 using base::global::UnkStringData;
 
 struct UnkKeyedStrIdMapA_ovb0062;
-void fn_7100248ce8(UnkKeyedStrIdMapA_ovb0062* self, u32 capacity);  // the keyed-array reserve
 void fn_71000269c4(UnkStrIdPathResource* self, UnkCountedResource* resource);
 
 struct UnkActor_7100232160;
@@ -1507,4 +1507,3 @@ UnkLinkCallbackSet_b0226* fn_7100248b38(UnkLinkCallbackSet_b0226* self, const Un
     }
     return self;
 }
-

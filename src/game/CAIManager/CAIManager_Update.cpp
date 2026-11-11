@@ -10,8 +10,11 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAIManager/CTunableAIManager.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU257.h"
+#include "game/UnkTU811.h"
 #include "game/UnkTUProperty.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -26,9 +29,6 @@ struct UnkListedItem {
     base::reflection::UnkReflObject* field_0x10;
 };
 base::UnkVector<UnkListedItem*>* fn_7100552d7c();
-bool fn_71005436e8(UnkEmmyAIComponent_b46a1* self);
-void fn_7100da9194(UnkTimedRef* self);
-void fn_71001c4418(void* text, const s32* string);
 
 extern UnkTunable g_unk_71727bc558;  // the AI tunables: +0x30 shows the debug labels
 
@@ -178,7 +178,6 @@ void fn_71006dee0c(void* subsystem, f32 dt);
 void fn_71006bd5a8(void* subsystem, f32 dt);
 void fn_71006a1ef0(void* subsystem, f32 dt);
 void fn_7100da9990(UnkAIManager_da92b0* self, bool a, bool b, bool c);
-void fn_7100da9bd4(UnkAIManager_da92b0* self, UnkAITarget_da92b0* object);
 // The render manager's projection of a world position to screen coordinates, and its screen size.
 void fn_7100219698(UnkRenderManager* self, const f32* position, s32* a, s32* b, u32 c, u32 d, u32 e);
 u32 fn_7100219780(UnkRenderManager* self);

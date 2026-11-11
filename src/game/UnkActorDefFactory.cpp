@@ -14,6 +14,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU27.h"
 #include "types.h"
 
 using base::UnkBlockPool;
@@ -136,9 +137,6 @@ struct UnkActorDefEntryId {
     }
 };
 
-void fn_71000204c4(void* context, void* arg);
-void fn_71000204cc(void* context, void* arg);
-
 struct UnkActorDefEntryCallback {
     void* context;
     void (*function)();
@@ -166,7 +164,6 @@ static_assert(sizeof(UnkActorDefEntry) == 0x48, "UnkActorDefEntry layout");
 struct UnkRegistry_7100d92158;
 struct UnkEntry_7100d92158;
 extern UnkRegistry_7100d92158* g_unk_7101d4bbc0;
-void fn_710002002c(UnkRegistry_7100d92158* registry, const UnkEntry_7100d92158& entry);
 
 static inline const UnkEntry_7100d92158& AsRegistryEntry(const UnkActorDefEntry& entry) {
     return *reinterpret_cast<const UnkEntry_7100d92158*>(&entry);

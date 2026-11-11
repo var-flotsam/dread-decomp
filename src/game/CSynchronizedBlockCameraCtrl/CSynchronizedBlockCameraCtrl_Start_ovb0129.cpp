@@ -7,6 +7,8 @@
 
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CCameraBoundaryCtrl.h"
+#include "game/CCameraCtrl.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -17,7 +19,6 @@ struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 struct UnkStruct_7100763ed4;
-void fn_7100763ed4(UnkStruct_7100763ed4* self);  // base constructor
 
 extern void* g_unk_7101a8d240[];  // vtable
 
@@ -99,8 +100,6 @@ struct UnkFixedCamera_fc;
 struct UnkArg_fc;
 struct UnkVec;
 struct UnkGrabCameraCtrl;
-void fn_71010ed98c(UnkFixedCamera_fc* self, UnkArg_fc* arg, u32 flag);
-void fn_71010edd64(UnkGrabCameraCtrl* self);
 void fn_7100e038b0(UnkGameManager*, void*, UnkVec*, u64);
 void fn_7100e03a78(UnkGameManager*, void*);
 void fn_7100df6c78(UnkGameManager* self, f32 a, f32 b);

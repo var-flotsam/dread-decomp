@@ -5,11 +5,11 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/CCharClassComponent.h"
+#include "game/SDropProbabilities.h"
 #include "types.h"
 
 struct UnkStruct_71008bca30;
-void fn_71011acd10(UnkStruct_71008bca30* self);
-void fn_71007c7ddc(void*);
 extern void* g_unk_7101a71518[];  // the class's vtable
 
 typedef u64 UnkU64Align4_b44a2 __attribute__((aligned(4)));

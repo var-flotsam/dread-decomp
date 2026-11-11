@@ -2,10 +2,9 @@
 // counted reference at +0x146d0 and runs the base AI component's destructor (fn_7100369380).
 // Names and layouts are placeholders.
 #include "../../game_5821e4/CAttackDtor.h"
+#include "game/CBehaviorTreeAIComponent.h"
 
 extern void* g_unk_7101a31d90[];  // the component's vtable
-
-void fn_7100369380(void*);
 
 struct UnkCaterzillaAI_b49 {
     void** vtable;

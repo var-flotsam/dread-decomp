@@ -6,6 +6,7 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CChozoCommanderAIComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -40,7 +41,6 @@ struct UnkMlogMessage_ovb0138 {
 };
 
 struct UnkMlogMessage_b42a1;
-void fn_7100456b7c(void* callbacks, const UnkMlogMessage_b42a1* message);
 void fn_710048e708(void* self, void* arg);
 
 void fn_710047ad94(void* self, void* arg) {

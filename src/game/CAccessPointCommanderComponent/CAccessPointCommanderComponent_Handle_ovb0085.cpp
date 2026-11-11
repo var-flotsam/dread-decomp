@@ -10,6 +10,7 @@
 #include "base/global/CStrId.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU2656.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -48,7 +49,6 @@ UnkRef fn_7100353be8(void* from);
 
 // As src/game/CChozoWarriorXUltimateGrabAttack/fn_710048a194.cpp declares it.
 struct UnkVec;
-void fn_7101053850(void* effects, UnkVec* position, u32 flag, f32 duration, f32 scale);
 
 struct UnkGfxFrameSource;
 extern UnkGfxFrameSource* g_unk_7101d47328;

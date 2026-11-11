@@ -4,6 +4,7 @@
 // Otherwise the request takes the actor's whole life when the AI component (virtual slot 152) says so,
 // else at most the life minus one; when it didn't kill, the breaking flag goes to +0x3f4 and the state
 // to 2. Names and layouts are placeholders.
+#include "game/CFrozenComponent.h"
 #include "types.h"
 
 struct UnkRequest;
@@ -188,12 +189,6 @@ struct UnkFrostbiteComponent {
     bool field_0x3f4;
 };
 
-bool fn_71007fb280(UnkFrostbiteComponent* self, UnkFrostbiteRequest* request);
-bool fn_71007f9f20(void* component);
-bool fn_71007f9fd0(UnkFrostbiteComponent* self);
-bool fn_71007f9fb0(UnkFrostbiteComponent* self);
-void fn_71007fa130(UnkFrostbiteComponent* self);
-void fn_71007f9428(UnkFrostbiteComponent* self, u32 state);
 void fn_71008c1538(UnkRequest* request, f32 value);
 
 bool fn_71007ff914(UnkFrostbiteComponent* self, UnkFrostbiteRequest* request) {

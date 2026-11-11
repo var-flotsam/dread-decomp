@@ -1,6 +1,7 @@
 // Liquid pool (unit 1394, CCharClassLiquidPoolComponent): turns a height into a ratio of the pool's extent and
 // passes it on to the simulation at +0xc88's +0x10. The three virtual getters (slots 0x180 and 0x178) return a
 // vector through x8. Names and layouts are placeholders.
+#include "game/CLiquidSimulationComponent.h"
 #include "types.h"
 
 struct UnkLiquidVec_A5_b70 {
@@ -25,8 +26,6 @@ struct UnkLiquidPool_A5_b70 {
         return reinterpret_cast<UnkLiquidVec_A5_b70 (*)(UnkLiquidPool_A5_b70*)>(vtable[0x178 / 8])(this);
     }
 };
-
-void fn_7100905d8c(void* sim, f32 ratio, u32 a, bool b);
 
 void fn_7100901900(UnkLiquidPool_A5_b70* self, const f32* height, u32 a, bool b) {
     f32 h = *height;

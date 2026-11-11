@@ -14,7 +14,12 @@
 #include "base/global/CRntString.h"
 #include "base/math/CVector.h"
 #include "base/math/CVector4D.h"
+#include "base/tunable/CTunable.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2566.h"
+#include "game/UnkTU287.h"
+#include "game/UnkTU39.h"
+#include "game/UnkTU426.h"
 #include "game/UnkXformNode.h"
 #include "game/UnkGlobal_710b372a98.h"
 #include "game/UnkMapMenuController.h"
@@ -443,9 +448,7 @@ void fn_7100ea9b04(UnkMinimapModifiers* self, u32 size) {
 }
 
 const base::global::CStrId* fn_7100de9bf8(UnkGameManager* self);
-bool fn_710002fb70(void* timer);
 UnkMinimapRect fn_7100e94e10();
-UnkMinimapRect fn_7100e948b4(UnkMinimapOwner* self, bool flag);
 void fn_7100205f98(void* xform, const UnkMinimapVec3* eye, f32 fov, f32 near, f32 far);
 void fn_7100145400(UnkMinimapCamera* camera, const UnkMinimapVec3* target);
 
@@ -489,7 +492,6 @@ extern const f32 g_unk_710164be30;
 extern u8 g_unk_71727cc99c[] HIDDEN;
 
 void fn_7100e79fa4(void* field_0x118, const UnkMinimapRect* view, u32 flags, u32* count, void* out);
-void fn_7100e951d4(UnkMinimapOwner* self, u32 count, void* items, u32 field_0x3);
 bool fn_71001bb54c(UnkMinimapCameraSub* sub, UnkMinimapVec2* size);
 
 // Starts a frame: resets three draw lists, gathers and adds the items in view, and hands the
@@ -567,13 +569,9 @@ extern const u32 g_unk_7101648bb8;  // the screen's width and height in pixels
 extern const u32 g_unk_7101648bbc;
 extern bool g_unk_71727cc998 HIDDEN;
 
-f32 fn_7100132ff0();
-u32 fn_7100132fc0();
-f32 fn_7100132fe0();
 f32 fn_71001d7320(UnkGlobal_710b372a98* self);
 struct UnkStruct_710020a5a0;
 void fn_710020a5a0(UnkStruct_710020a5a0* self, const base::math::CVector2D* scale);
-void fn_710020a4c4(void* node, const UnkMinimapVec3& pos);
 
 // Fits the map's viewport to the screen: the size ratios go to the render manager and the view, the
 // node is scaled and placed, and outside the editor the render manager gets the map's opacity (1
@@ -725,7 +723,6 @@ void fn_7100ea4504(UnkMinimapOwner* self) {
 
 // The ids of the icon kinds that fn_7100e9d1f8 can show again are game/UnkMinimapIconKinds.h's.
 void fn_71000ce604(base::UnkVector<base::global::CStrId>* self, base::global::CStrId* it);  // erases
-void fn_7100e957a8(UnkMinimapOwner* self);
 
 // Removes a kind from the hidden ones (`count` ids at `data`) and refreshes the map when it was
 // there.
@@ -787,7 +784,6 @@ void fn_7100e9d1f8(UnkMinimapOwner* self, s32 kind) {
 
 #include "base/UnkBlockFreeList.h"
 
-void fn_71002f75ac(void* self, void* arg, u32 flags);  // the base class's member at +8
 void fn_710002f4e4(void* self);                       // a timer's constructor
 void fn_7100eb2cc0(void* self, u32 a, u32 b);         // sets up the pooled set at 0xd64210
 

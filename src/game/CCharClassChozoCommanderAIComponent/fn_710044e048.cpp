@@ -2,6 +2,7 @@
 // (each by its own constructor) and sets a few defaults (four pairs of tuning floats and two flags).
 //
 // The fields are addressed by offset.
+#include "game/CDamageSourceFactor.h"
 #include "game/UnkBossAIComponent.h"
 #include "types.h"
 
@@ -26,7 +27,6 @@ void fn_7100424690(void* member);
 void fn_710041f538(void* member);
 void fn_710042315c(void* member);
 void fn_71004206fc(void* member);
-void fn_71008c2da8(void* member);
 
 template <class T>
 static inline T& At(void* base, u64 offset) {

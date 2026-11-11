@@ -6,12 +6,11 @@
 // (build/b67/b67a6.md). Names are placeholders.
 #include "base/UnkCloneRecords.h"
 #include "base/UnkVector.h"
+#include "game/CDemolitionBlockComponent.h"
 #include "types.h"
 
 extern void* g_unk_7101a20998[];
 extern void* g_unk_7101a33fa0[];
-
-void fn_71007b1928(void*, void*);
 
 // The entry's destructor chain, written out with always_inline so the erase inlines it as the original does
 // (the out-of-line copy is base::UnkCallbackEntry's, fn_71008933d4).

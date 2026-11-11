@@ -4,13 +4,13 @@
 // placeholders.
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
 #include "base/UnkVector.h"
+#include "base/reflection.h"
 #include "types.h"
 
 struct UnkUnit280ItemA1;
 
 void fn_7100202cf0(UnkUnit280ItemA1* item, void* arg);
 struct UnkItem;
-bool fn_7100202d24(UnkItem* item, void* arg);  // as game_s1/fn_71001fcd4c.cpp declares it
 
 void fn_71001fcf54(base::UnkVector<UnkUnit280ItemA1*>* items, void* arg) {
     fn_7100202cf0(items->GrowAt(0), arg);

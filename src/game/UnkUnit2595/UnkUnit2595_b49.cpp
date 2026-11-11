@@ -4,6 +4,7 @@
 // Names and layout are placeholders.
 #include "base/UnkVector.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2656.h"
 #include "types.h"
 
 struct UnkSingleton2595_b49a6 {
@@ -16,7 +17,6 @@ struct UnkSingleton2595_b49a6 {
 
 // As src/game/CChozoWarriorXUltimateGrabAttack/fn_710048a194.cpp declares it.
 struct UnkVec;
-void fn_7101053850(void* effects, UnkVec* position, u32 flag, f32 duration, f32 scale);
 void fn_7100ec9640(UnkSingleton2595_b49a6* self);
 
 extern UnkSingleton2595_b49a6* g_unk_71729dc210;

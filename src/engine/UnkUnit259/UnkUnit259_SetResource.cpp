@@ -4,6 +4,7 @@
 #include "base/UnkCountedResource.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU239.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
@@ -19,8 +20,6 @@ struct UnkResourceSlot259 {
     UnkCountedObject259* resource;
     void* converted;
 };
-
-void* fn_71001b363c(UnkCountedObject259* resource);
 
 void fn_71001d5434(char* self, UnkCountedObject259* const* source) {
     UnkResourceSlot259* slot = reinterpret_cast<UnkResourceSlot259*>(self + 0x317ac98);

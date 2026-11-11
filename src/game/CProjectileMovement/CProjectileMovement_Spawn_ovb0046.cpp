@@ -9,6 +9,8 @@
 #include "base/global/CStrId.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU285.h"
+#include "game/UnkTU341.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -76,7 +78,6 @@ struct UnkFxObject_ovb0041 {
 };
 UnkFxObject_ovb0041* fn_71003b7db0(UnkModelManager* self, const void* path, bool a, bool b);
 void fn_71011a9bb4(UnkModelManager* self, UnkFxObject_ovb0041* fx);
-void fn_71002093c8(void* p, bool value);
 
 struct UnkSpawnedFx_ovb0046 {
     u8 pad_0x0[0x108];
@@ -125,7 +126,6 @@ void fn_7100ac46f0(UnkProjectileFx_ovb0046* self, const UnkVec3f* at, const UnkV
 extern const u8 g_unk_710164b89c[] __attribute__((visibility("hidden")));
 
 UnkVec3f fn_710007a7f0(UnkVec3f dir);  // direction to rotation angles (src/game_s1/fn_71001bc8a4.cpp)
-void fn_7100232c68(void* target);
 
 // An intrusively counted result (count at +8, deleted through its slot 2).
 struct UnkMoveResult_ovb0046 {

@@ -2,12 +2,12 @@
 // camera id at +0x1d8 and clears it; while the timer at +0x1ec runs, resets the manager's blend
 // (fn_7100df6c78) and clears the timer and the id at +0x1f8. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CCameraCtrl.h"
 #include "game/UnkGameManager.h"
 
 using base::global::CStrId;
 
 struct UnkGrabCameraCtrl;
-void fn_71010edd64(UnkGrabCameraCtrl* self);
 void fn_7100df6c78(UnkGameManager* self, f32 a, f32 b);
 void fn_7100e03a78(UnkGameManager*, void*);
 

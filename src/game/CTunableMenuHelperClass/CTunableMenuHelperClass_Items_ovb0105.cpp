@@ -5,13 +5,12 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CGameObject.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-void fn_7101043904(void*);
 struct UnkCameraCtrl_ovb0049;
-void fn_7101043934(UnkCameraCtrl_ovb0049*);
 extern char g_unk_7101a975f0[];  // the item's vtable
 
 // An item: the base object (fn_7101043904 / fn_7101043934), three ids, the child items and two flags.

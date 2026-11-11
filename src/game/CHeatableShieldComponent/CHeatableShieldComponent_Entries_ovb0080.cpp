@@ -14,6 +14,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkComponent.h"
+#include "game/UnkTU1323.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -25,7 +26,6 @@ struct UnkHeatableEntryD_b0080;
 struct UnkHeatableExtra_b0080;
 void fn_710086ae60(UnkHeatableExtra_b0080* self);
 struct UnkHeatableValue_0xd0;
-void fn_710086e0ac(UnkHeatableValue_0xd0*);
 
 struct UnkHeatableEntryD_b0080 {
     u8 unk_0x0[0xd0];

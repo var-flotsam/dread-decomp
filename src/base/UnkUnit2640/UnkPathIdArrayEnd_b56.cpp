@@ -5,11 +5,10 @@
 #include "UnkClone.h"
 #include "base/UnkCloneCalls.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU2640.h"
 
 struct UnkBeginIdArrayOwner;
 using UnkEndFilePathIdElem_0x18 = UnkCloneStrIdElem<UnkBeginIdArrayOwner, 0, 0x18, UnkCloneStrIdB<UnkBeginIdArrayOwner>>;
-
-void fn_7100fefde0(void*);
 
 void fn_7100ffc398(const base::UnkVector<UnkEndFilePathIdElem_0x18>* v,
                    base::UnkCollectionIter<UnkEndFilePathIdElem_0x18>* out) {

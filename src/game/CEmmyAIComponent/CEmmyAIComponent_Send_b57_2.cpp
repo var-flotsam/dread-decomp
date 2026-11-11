@@ -5,16 +5,16 @@
 // UnkSpitSend, src/game_s2/UnkSpitSend.h), calls fn_710086c7a8 on the part and enters state g_unk_71726debd0;
 // then fn_710054095c. Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/UnkTU794.h"
+#include "game/UnkTU811.h"
 #include "types.h"
 
 struct UnkEmmyActor_b55;
-void fn_7100544a34(UnkEmmyActor_b55* self, char* data, bool on);
 extern char g_unk_71726ded60[];
 extern char g_unk_71726debd0[];
 
 struct UnkDoorLifeOwner_b56;
 struct UnkDoorLifePart_b56;
-UnkDoorLifePart_b56* fn_71005012bc(UnkDoorLifeOwner_b56* owner);
 void fn_710086c7a8(UnkDoorLifePart_b56* part, void* id, bool on);
 extern char g_unk_71726e1f90[] __attribute__((visibility("hidden")));
 

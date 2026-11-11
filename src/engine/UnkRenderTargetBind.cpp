@@ -1,10 +1,9 @@
 // Binding the render targets (unit 179 of tools/tu_map.py, part of the graphics layer that
 // fn_71001587f0 starts): a set of up to 16 colour targets and a depth target goes to the
 // command buffer and is remembered as the current set. The names are placeholders.
+#include "game/UnkTU172.h"
+#include "game/UnkTU182.h"
 #include "types.h"
-
-void* fn_7100153d50();                 // the command buffer
-void* fn_71001611e0(void* object);     // a target's NVN texture
 
 // A target: the texture is at +8.
 struct UnkBoundTarget {

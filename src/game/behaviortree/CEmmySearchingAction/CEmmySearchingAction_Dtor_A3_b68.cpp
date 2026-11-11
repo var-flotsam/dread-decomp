@@ -4,6 +4,8 @@
 // +0x68 (fn_71002ad0dc), the linked secondary base at +0x40 (refl_ReleaseLink), then the base's destructor
 // fn_7100393ea0. Names are placeholders.
 #include "base/UnkDestructors.h"
+#include "game/behaviortree/CBaseAction.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -11,11 +13,9 @@ extern void* g_unk_7101a47e90[];
 extern void* g_unk_7101a22d48[];
 extern void* g_unk_7101a47f48[];
 extern void* g_unk_7101a47f88[];
-void fn_7100393ea0(void*);  // the base's destructor
 
 // As src/game/navmesh/SNavMeshPath/fn_71002ad0dc.cpp defines it.
 struct UnkObject_71002ad0dc;
-void fn_71002ad0dc(UnkObject_71002ad0dc* self);
 
 struct UnkEmmySearchingDtor_A3_b68;
 struct UnkEmmySearchingList_A3_b68;

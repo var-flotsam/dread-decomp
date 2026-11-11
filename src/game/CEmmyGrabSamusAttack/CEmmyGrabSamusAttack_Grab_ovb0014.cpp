@@ -22,11 +22,19 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAIManager/CTunableAIManager.h"
+#include "game/CBreakableTileGroup.h"
+#include "game/CEmmyGrabSamusAttack.h"
+#include "game/CModelUpdaterComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSceneObject.h"
+#include "game/UnkTU2523.h"
+#include "game/UnkTU2702.h"
+#include "game/UnkTU280.h"
+#include "game/UnkTU811.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -46,9 +54,6 @@ struct UnkStrId_71005077f8 {
 struct UnkStruct_71005077f8;
 struct UnkGrabAttack_b59a3;
 struct UnkGrabId_b59a3;
-
-UnkStrId_71005077f8 fn_71005077f8(UnkStruct_71005077f8* self, u32 kind);
-bool fn_710050a500(UnkGrabAttack_b59a3* self, const UnkGrabId_b59a3* id);
 
 struct UnkKindSource_ovb0014 {
     u8 pad_0x0[0x10];
@@ -97,8 +102,6 @@ struct UnkGrabArg_b61;
 struct UnkEmmyAI_b61;
 extern UnkGrabArg_b61 g_unk_71726de598 __attribute__((visibility("hidden")));
 extern UnkGrabArg_b61 g_unk_71726de5a0 __attribute__((visibility("hidden")));
-void fn_710050afd0(UnkGrabFx4_b61* self, UnkGrabArg_b61* arg);
-f32 fn_7100552ee4(UnkEmmyAI_b61* ai);
 
 struct UnkGrabAttack2_ovb0014 {
     u8 pad_0x0[0x8];
@@ -126,10 +129,7 @@ extern UnkEmmyRegistry_b55* g_unk_71726af0a8;
 struct UnkGrabVec_b58a3 {
     f32 x, y, z;
 };
-void fn_7100daeb50(UnkEmmyRegistry_b55* registry, u32 kind, const UnkGrabVec_b58a3* pos,
-                   const UnkGrabVec_b58a3* dir);
 struct UnkGrabAttack_A3_b68;
-void fn_710050d150(UnkGrabAttack_A3_b68* self);
 
 struct UnkGrabAttack3_ovb0014 {
     u8 pad_0x0[0x8];
@@ -196,7 +196,6 @@ void fn_710050e384(UnkGrabAttack2_ovb0014* self) {
 }
 
 struct UnkEmmyAI;
-f32 fn_7100552e3c(UnkEmmyAI* ai);
 
 struct UnkGrabAttack7_ovb0014 {
     u8 pad_0x0[0x8];
@@ -231,9 +230,6 @@ struct UnkGrabSm_b61;
 struct UnkStruct_710050f26c;
 struct UnkColorIn_710050f26c;
 struct UnkColor_710050f26c;
-
-void fn_710050f26c(UnkStruct_710050f26c* self, f32 time, const UnkColorIn_710050f26c* color, f32 time2,
-                   const UnkColor_710050f26c* color2, f32 offset);
 
 struct UnkColor_ovb0014 {
     f32 r, g, b, a;
@@ -378,7 +374,6 @@ using base::math::CVector2D;
 using base::math::CVector3D;
 
 struct UnkGrappleAnswer_b50;
-void fn_710117364c(void* target, const u64* id, UnkGrappleAnswer_b50* out);
 
 struct UnkKraidCreatureVec {
     f32 x;
@@ -386,7 +381,6 @@ struct UnkKraidCreatureVec {
     f32 z;
     UnkKraidCreatureVec(const UnkKraidCreatureVec& other) : x(other.x), y(other.y), z(other.z) {}
 };
-UnkKraidCreatureVec fn_7100d7be08(void* actor);
 
 struct UnkGrabOwner_ovb0014 {
     u8 pad_0x0[0x38];
@@ -452,7 +446,6 @@ UnkGrabAim_ovb0014 fn_710050bd10(UnkGrabAttack6_ovb0014* self) {
 }
 
 struct UnkStruct_7100219588_View;
-UnkStruct_7100219588_View* fn_71001fce38(void* views, u32 a, u32 b);
 UnkVec3f fn_7100076acc(const UnkXform* x);
 
 // The screen as fn_7100219bcc describes it: its size in pixels at +0x8.
@@ -527,9 +520,7 @@ void fn_710050a1b0(UnkStruct_710050f26c* attack) {
 }
 
 struct UnkSelf;
-f32 fn_7100552d94(UnkSelf* self);
 struct UnkEmmyGrabAttack_A3_b67;
-void fn_71005068c8(UnkEmmyGrabAttack_A3_b67* self, f32 a, f32 b, f32 c, bool d, bool e);
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkOwner;
@@ -537,7 +528,6 @@ UnkOwner* fn_7100defcd4(UnkGameManager*);
 bool fn_7100df34c8(UnkGameManager* self, void* a, void* b, void* c, void* d, bool e, bool f);
 void fn_7100df31b8(UnkGameManager* self, u32 a, bool b, bool c, CStrId id, u32 d);
 struct UnkGrabAttack_b58a3;
-void fn_7100507d24(UnkGrabAttack_b58a3* self);
 
 struct UnkGrabPart_ovb0014 {
     void** vtable;
@@ -592,9 +582,7 @@ void fn_710050c06c(UnkGrabAttack10_ovb0014* self) {
 }
 
 struct UnkComponent_7100286798;
-void* fn_71010fb398(UnkComponent_7100286798* self);
 struct UnkQueryObj;
-u32 fn_7100c9e960(UnkQueryObj* self);
 
 bool fn_71002882d0(void* map, u16 cell, u8 side);
 bool fn_71002b007c(UnkNavMeshCell* cell);

@@ -5,11 +5,11 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/CCharClassAttack.h"
 #include "types.h"
 
 // Declared as src/game/CCharClassAttack/fn_71003641fc.cpp defines it.
 struct UnkStruct_71003641fc;
-void fn_71003641fc(UnkStruct_71003641fc* self);
 extern void* g_unk_7101a38100[];
 
 struct UnkCannonShotAttackDef {

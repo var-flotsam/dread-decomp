@@ -2,13 +2,12 @@
 // CDoorLifeComponent_Set_A5_b65.cpp): two bool arguments, the empty status {0, 0, 2, 1} as in
 // CEmmyValveComponent_ReflInvoker_A5_b65.cpp. Names are placeholders.
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU1376.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
 
 struct UnkDoorLife_b44a2;
-bool fn_71008d0ef4(void*);
-void fn_71008d498c(UnkDoorLife_b44a2* self, u32 a, u32 b, u32 c);
 
 static inline __attribute__((always_inline)) void* ArgPtr_A5_b66(UnkReflValue* arg) {
     if (arg->field_0x14 == 1 || *reinterpret_cast<const u64*>(arg->type + 0x18) > 8)

@@ -4,7 +4,10 @@
 // then calls slot 0x78 on every child (+0x40, count +0x48), clears +0xcc, sets +0xd8 to -1 and, when
 // the world behind the manager's +0x29a0 (+0x10, +0x280) has the object with hash 0xb1489dc93c1d38dd,
 // releases it (fn_710114fe8c, as in fn_7100300bd0.cpp). Names and layouts are placeholders.
+#include "game/CAbilityEnergyWave.h"
+#include "game/CGrabComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1428.h"
 #include "types.h"
 
 struct UnkStruct_71002fda50;
@@ -13,16 +16,13 @@ struct UnkPart;
 struct UnkEnergyWaveCompA_b49;
 struct UnkEnergyWaveCompB_b49;
 
-void fn_71002fda50(UnkStruct_71002fda50* self, bool all, bool force_off);
 UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
-void fn_710113f270(UnkEnergyWaveCompA_b49* comp, void* object);
 
 struct UnkEnergyWaveObject_b49 {
     void** vtable;
     void vf_0x90() { reinterpret_cast<void (*)(UnkEnergyWaveObject_b49*)>(vtable[0x90 / 8])(this); }
 };
-void fn_710094f8f0(UnkEnergyWaveCompB_b49* comp, UnkEnergyWaveObject_b49* object);
 
 struct UnkEnergyWaveChild_b49 {
     void** vtable;

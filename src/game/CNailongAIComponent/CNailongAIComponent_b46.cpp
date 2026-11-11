@@ -3,13 +3,14 @@
 // sets the slot colour through the owner's +0x228 chain: white with alpha cleared in state 2 (+0x148c8)
 // after a second call on its +0x138, else opaque black. Names are placeholders.
 #include "base/math/CVector4D.h"
+#include "game/CAttackComponent.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 using base::math::CVector4D;
 
 struct UnkStruct_71001436f4;
 bool fn_71001436f4(UnkStruct_71001436f4* self, u32 a, const base::math::CVector4D* b, u32 c);
-bool fn_7101136308(void*);
 
 struct UnkNailongSlots_b46a2 {
     u8 pad_0x0[0x138];
@@ -40,7 +41,6 @@ struct UnkNailongMsg_b46a2 {
     bool flag;
 };
 
-u32 fn_7101111dc8(UnkNailongAI_b46a2* self, UnkNailongMsg_b46a2* msg);
 void fn_71001c287c(void* target, u32 a, u32 b, CVector4D* colour, u32 c);
 
 u32 fn_71006220bc(UnkNailongAI_b46a2* self, UnkNailongMsg_b46a2* msg) {

@@ -2,6 +2,7 @@
 // size, a flag-copy helper and the mixer's per-frame lock/update. Names and layouts are placeholders.
 #include <nn/os.h>
 
+#include "game/UnkTU2772.h"
 #include "types.h"
 
 struct UnkAtkSrc_b0150 {
@@ -109,14 +110,9 @@ struct UnkAtkInfoFull_b0150 {
     u8 pad_0x10[0x1c];
 };
 
-u32 fn_71012069f8(UnkAtkArchive* archive, u32 id);
-bool fn_7101206ed4(UnkAtkArchive* archive, u32 id, UnkAtkInfo_b0150* out);
 u64 fn_710121212c(UnkAtkLoader* self, u32 file_id, void* dst, u64 size, u32 flag, void* arg);
-u32 fn_7101212f5c(UnkAtkInfo_b0150* info);
 u32 fn_7101212f04(UnkAtkInfo_b0150* info);
 struct UnkAtkWave_b0150;
-void fn_7101212f94(UnkAtkWave_b0150* w, void* data, u32 mode);
-void fn_7101213168(UnkAtkInfo_b0150* info);
 
 void* fn_7101211fc8(UnkAtkLoader* self, u32 id, UnkAtkHeap_b0150* heap, void* arg) {
     u32 file_id = fn_71012069f8(self->archive, id);
@@ -171,12 +167,9 @@ struct UnkAtkWaveHeader_b0150 {
     u8 body[0x34]; // 0xc
 };
 
-u64 fn_71012131a0(UnkAtkWave_b0150* w, u32 index);
 u32 fn_7101213218(UnkAtkWave_b0150* w, u32 index);
 u32 fn_710121323c(UnkAtkWave_b0150* w, u32 index);
-u64 fn_7101213294(UnkAtkWave_b0150* w, u32 index, void* data);
 void fn_7101215460(void* data, u64 size);
-void fn_7101212f94(UnkAtkWave_b0150* w, void* data, u32 mode);
 
 bool fn_7101211e48(UnkAtkLoader* self, u32 id, u32 index, UnkAtkHeap_b0150* heap, void* arg) {
     u32 file_id = fn_71012069f8(self->archive, id);
@@ -233,7 +226,6 @@ struct UnkAtkCursor_b0150 {
 void fn_7101215788(UnkAtkCursor_b0150* cursor, void* data);
 UnkAtkGroup_b0150* fn_7101215a38(UnkAtkCursor_b0150* cursor);
 UnkAtkRefs_b0150* fn_7101207090(UnkAtkArchive* archive, u32 id);
-void* fn_7101211d30(UnkAtkLoader* self, u32 file_id, void* heap, void* arg, u32 unk);
 
 bool fn_7101211a64(UnkAtkLoader* self, u32 id, void* heap, u32 flags, void* arg) {
     u32 file_id = fn_71012069f8(self->archive, id);
@@ -278,10 +270,7 @@ bool fn_7101211a64(UnkAtkLoader* self, u32 id, void* heap, u32 flags, void* arg)
 }
 
 struct UnkAtkItemRefs;
-bool fn_7101206b4c(UnkAtkArchive* archive, UnkAtkItemRefs* refs, u32 id);
-bool fn_7101206e60(UnkAtkArchive* archive, u32* out, u32 id);
 struct UnkAtkLoaderObject_b0148;
-void fn_710121279c(UnkAtkLoaderObject_b0148* self, u32 id, void* arg);
 
 struct UnkAtkItemRefs {
     u32 field_0x0;

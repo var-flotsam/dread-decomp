@@ -1,7 +1,7 @@
 // True when the first check passes and the second returns zero.
+#include "game/CPrimaryGun.h"
 #include "types.h"
 
-bool fn_7100857344(void* self);
 s32 fn_71008434b8(void* self);
 
 bool fn_7100843474(void* self) {

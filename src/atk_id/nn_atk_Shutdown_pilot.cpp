@@ -1,6 +1,7 @@
 // Shuts an object down once: every item in its list (linked through the node at +0x3d8 of each item)
 // is stopped (fn_710122bee4), set to state 3 and removed (fn_710122c958); then the two sub-objects and
 // the object itself are released with fn_710122ad74. Names and layouts are placeholders.
+#include "game/UnkTU2772.h"
 #include "types.h"
 
 struct UnkListNode {
@@ -27,8 +28,6 @@ struct UnkListOwner {
 };
 
 void fn_710122bee4(UnkListItem* item);
-void fn_710122c43c(UnkListItem* item, u32 state);
-void fn_710122c958(UnkListOwner* self, UnkListItem* item);
 void fn_710122ad74(void* object);
 
 void fn_710122c8c0(UnkListOwner* self) {

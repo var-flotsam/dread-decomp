@@ -4,6 +4,7 @@
 // as clockwise. When the blackboard property (+0x30) is set (fn_7100394e2c), it is given +0x38 with that sign
 // (fn_71003954fc). Running (5) then, failed (6) otherwise. Names and layouts are placeholders.
 #include "game/UnkActor.h"
+#include "game/UnkTU109.h"
 #include "types.h"
 
 // Signature as src/game/behaviortree/CStopWatchAction/fn_7100392704.cpp declares it (it returns whether the
@@ -13,7 +14,6 @@ void fn_7100394e2c(UnkSelf* self, void* record, f32* out);
 void fn_71003954fc(UnkSelf* behavior, void* record, f32 value);
 struct UnkPool_0x48;
 struct UnkStruct_0x48;
-UnkStruct_0x48* fn_710012431c(UnkPool_0x48* pool, u32 handle);
 
 struct UnkDirVec2_ovb0113 {
     f32 x, y;

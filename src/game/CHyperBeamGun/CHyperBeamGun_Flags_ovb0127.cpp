@@ -7,6 +7,10 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1501.h"
+#include "game/UnkTU2510.h"
+#include "game/UnkTU2523.h"
+#include "game/UnkTU2562.h"
 #include "types.h"
 #include "base/UnkMatrix44.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -14,7 +18,6 @@
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkFlagged;
-bool fn_71009e75e8(UnkFlagged*);
 bool fn_71009e85b4(UnkFlagged*);
 bool fn_71009ebf5c(UnkFlagged*);
 bool fn_71009e6940(UnkFlagged*);
@@ -71,7 +74,6 @@ struct UnkPart;
 UnkPart* fn_7101152b90(UnkWorld*, u64);
 struct UnkSoundHandle;
 struct UnkShipRechargeEntity_b49a4;
-void fn_7100d7c510(UnkShipRechargeEntity_b49a4* owner, UnkSoundHandle* handle, f32 fade, f32 delay);
 
 struct UnkHyperBeamPart_ovb0127 {
     virtual void vf_0x0();
@@ -181,10 +183,8 @@ UnkHyperBeamEntry_ovb0127* fn_7100848ab8(UnkHyperBeamEntries_ovb0127* self, u32 
 struct UnkTree;
 struct UnkShape;
 struct UnkMtx44;
-bool fn_7100d5b484(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, void* arg, u16 arg2);
 extern UnkMatrix44 g_unk_7101a1a680;  // the identity matrix
 extern void* g_unk_71726eb3e8;
-void fn_7100e211cc(void* self);
 extern void* g_unk_7101a70eb0[];
 
 struct __attribute__((packed)) UnkBeamHitRecord_ovb0127 {

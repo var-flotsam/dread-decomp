@@ -7,18 +7,19 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkObject_0x100.h"
+#include "game/UnkTU357.h"
+#include "game/UnkTU363.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 void fn_71002b57bc(UnkObject_0x100* self);
 struct UnkMsg_b152;
-void fn_71002878dc(UnkMsg_b152* msg);
-void fn_7100287954(UnkMsg_b152* msg);
 
 struct UnkRecord_b0194 {
     u64 raw[0x20];
@@ -125,7 +126,6 @@ static inline R CallVf_b0194(void* self, u32 offset, A... args) {
 }
 
 struct UnkTakumakuComponent;
-bool fn_7101178e6c(UnkTakumakuComponent* component, u32 kind);
 
 struct UnkTunable_b0194 {
     u8 pad_0x0[0xa8];
@@ -218,9 +218,6 @@ struct UnkActor_7100286798;
 struct UnkStruct_7100286624;
 struct UnkOwner;
 
-void fn_710028659c(UnkNavQuery* self);
-void fn_7100286798(UnkStruct_7100286798* self, UnkActor_7100286798* actor);
-void fn_7100286624(UnkStruct_7100286624* self);
 void fn_7100286920(UnkNavQuery* self, const CVector2D* point, u16 cell, u8 side);
 UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 f32 fn_7100569f34(UnkOwner* self, void* unused, u32 key, f32 value);

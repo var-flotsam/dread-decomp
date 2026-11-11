@@ -3,6 +3,7 @@
 // part with the hash 0x1aaebf634dea2cd1 (fn_7101152b90). When the message's flag at +8 is set, the
 // part's vf_0x58 result is kept at +0x146ee and, when true, the part gets vf_0x40(false); when it
 // is clear and the kept flag is set, the part gets vf_0x40(true). Names and layout are placeholders.
+#include "game/CBehaviorTreeAIComponent.h"
 #include "types.h"
 
 struct UnkObject;
@@ -40,8 +41,6 @@ struct UnkSclawkAI_b44a2 {
     u8 pad_0x38[0x146ee - 0x38];
     bool field_0x146ee;
 };
-
-u32 fn_710036974c(UnkSclawkAI_b44a2* self, UnkSclawkMessage_b44a2* msg);
 
 u32 fn_710067d314(UnkSclawkAI_b44a2* self, UnkSclawkMessage_b44a2* msg) {
     u32 result = fn_710036974c(self, msg);

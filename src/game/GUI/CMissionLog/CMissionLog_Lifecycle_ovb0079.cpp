@@ -11,6 +11,9 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CChozoCommanderAIComponent.h"
+#include "game/CTutoEnterLogicAction.h"
+#include "game/GUI/CButton.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
 #include "types.h"
@@ -26,7 +29,6 @@ struct UnkElemArray;
 using UnkElem38Array = UnkElemArray<UnkElem38>;
 
 void fn_7100b55d4c(UnkElem38Array* self);
-void fn_71004567dc(void* set, void** slot);
 extern char g_unk_7101a9d220[];
 
 struct UnkMissionLog_ovb0079 {
@@ -61,7 +63,6 @@ void fn_7100b55bdc(UnkMissionLog_ovb0079* self) {
 
 
 extern CStrId g_unk_7172765068 __attribute__((visibility("hidden")));
-void fn_7100a58e80(void* set, void** slot);
 
 struct UnkMissionLogTarget_ovb0079 {
     u8 unk_0x0[0x260];
@@ -112,8 +113,6 @@ struct UnkMissionLogButton_ovb0079 {
     u8 unk_0x0[0x130];
     CStrId field_0x130;
 };
-
-UnkGuiObj* fn_71011c08dc(UnkMissionLogButton_ovb0079* self);
 
 struct UnkMissionLogName_ovb0079 {
     const char* data;

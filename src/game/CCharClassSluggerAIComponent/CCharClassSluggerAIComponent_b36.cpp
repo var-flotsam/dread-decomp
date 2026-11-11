@@ -3,13 +3,13 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/CCharClassBehaviorTreeAIComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 // Declared as src/game/CCharClassGooplotAIComponent/CCharClassGooplotAIComponent.cpp does.
 struct UnkObject_7100416db8;
-void fn_7100416db8(UnkObject_7100416db8* self);
 void fn_71006c0044(void* self);
 extern void* g_unk_7101a64f60[];
 

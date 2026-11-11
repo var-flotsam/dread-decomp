@@ -1,12 +1,12 @@
 // CBaseDamageTriggerComponent's constructor (fn_7100a45a30): on the trigger base (fn_7100a46a68), its
 // vtable, the damage request at +0xac0 (fn_71008c0c74) and cleared timing fields, with the damage cap
 // at +0xbd4 at the largest float. Names and layouts are placeholders.
+#include "game/CCharClassBaseTriggerComponent.h"
+#include "game/UnkTU1370.h"
 #include "types.h"
 
 extern char g_unk_7101a8e968[];
-void fn_7100a46a68(char*);
 struct UnkStruct_71008c0c74;
-void fn_71008c0c74(UnkStruct_71008c0c74* self);
 
 struct UnkBaseDamageTrigger3 {
     void* vtable;

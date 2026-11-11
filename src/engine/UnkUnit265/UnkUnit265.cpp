@@ -3,11 +3,10 @@
 // and the graphics system (g_unk_710b372a98) at +0x180. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "game/UnkGlobal_710b372a98.h"
+#include "game/UnkTU244.h"
 #include "types.h"
 
 struct UnkCullView;
-void fn_71001b76ec(UnkCullView* self);
-void fn_71001b7a60(UnkCullView* self);
 
 struct UnkCullViewWeight265 {
     u8 pad_0x0[0x94];

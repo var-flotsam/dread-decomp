@@ -5,10 +5,10 @@
 // for the set's two animations (fn_71006dac40, fn_71006dac4c), else 0.002. Names and layouts are
 // placeholders.
 #include "base/global/CStrId.h"
+#include "game/behaviortree/CVulkranChaseAction.h"
 #include "types.h"
 
 struct UnkVulkranChaseAction;
-bool fn_71006d7f78(UnkVulkranChaseAction* self);
 
 struct UnkVulkranTarget_ovb0120;
 

@@ -6,18 +6,18 @@
 // and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU1501.h"
+#include "game/UnkTU399.h"
 #include "types.h"
 
 using base::reflection::CClass;
 
 struct UnkSamusMovement;
-void fn_71009e0160(UnkSamusMovement* self, bool flag, f32 dt);
 struct UnkLinkList;
 void fn_71002aeb9c(UnkLinkList* list, UnkLinkList** slot);
 void fn_71002af070(UnkLinkList*, UnkLinkList**);
 
 struct UnkEntry;
-UnkEntry* fn_71002d57ac(void*, const void*);
 
 struct UnkBoneControl_B71a6 {
     virtual const CClass* vf_0x0();

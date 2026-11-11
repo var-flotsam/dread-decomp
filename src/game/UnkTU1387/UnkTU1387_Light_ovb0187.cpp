@@ -4,10 +4,10 @@
 // (+0x1b8), then updates the +0x138 object (fn_71001bdc3c). Names and layouts are placeholders.
 #include <math.h>
 
+#include "game/UnkTU251.h"
 #include "types.h"
 
 void fn_710020ca64(void* member);
-void fn_71001bdc3c(void* object);
 
 struct UnkLight_b0187j {
     u8 pad_0x0[0x30];

@@ -2,6 +2,7 @@
 // functor inline. The assignment copies the id and the target, drops what the slot held (kind
 // 1: the inline functor, which detaches itself from its object; kind 2: a plain binding), then
 // binds the slot to the new target (kind 2) if there is one.
+#include "game/UnkTU341.h"
 #include "types.h"
 
 extern void* g_unk_7101cac988[];
@@ -10,8 +11,6 @@ struct UnkBoundObj {
     u8 unk_0x0[0xc8];
     void* field_0xc8;  // the functor attached to it
 };
-
-void fn_7100232124(UnkBoundObj* obj);
 
 struct UnkInlineFunctor {
     void** vtable;

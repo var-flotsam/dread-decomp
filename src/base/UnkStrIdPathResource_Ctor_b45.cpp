@@ -6,6 +6,7 @@
 #include "base/UnkStrIdPathPair.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU25.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -13,7 +14,6 @@ using base::global::CStrId;
 // As src/game/CShotManager.cpp declares the builder.
 struct UnkPathIds;
 struct UnkInlineString;
-void fn_710001f074(UnkPathIds* out, const UnkInlineString* path);
 
 // The ids the builder fills in place (the members start out unset), destroyed in reverse order.
 struct UnkBuiltPathIds_b45a1 {

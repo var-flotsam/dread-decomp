@@ -9,6 +9,7 @@
 #include "UnkClone.h"
 #include "base/UnkNodeOwner.h"
 #include "base/UnkVector.h"
+#include "game/behaviortree/CBehaviorTree.h"
 #include "types.h"
 
 struct UnkClone_fn_710039657c;
@@ -17,7 +18,6 @@ extern template UnkParallelChild_ovb0116& base::UnkVector<UnkParallelChild_ovb01
 
 struct UnkSelectorTree_A2_b68;
 struct UnkSelectorNode_A2_b68;
-void fn_71003aab64(UnkSelectorTree_A2_b68* tree, UnkSelectorNode_A2_b68* child);
 
 struct UnkParallelEntry_ovb0116 {
     UnkSelectorNode_A2_b68* node;

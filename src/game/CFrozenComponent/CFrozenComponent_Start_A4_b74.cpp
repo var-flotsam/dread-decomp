@@ -2,11 +2,11 @@
 // object at +0x220, hooks the callback fn_71007fb694 (link at +0x48, handle at +0x60) up to it, as the track-link
 // family (src/game/CCooldownXBossStrongWhipAttack/CCooldownXBossStrongWhipAttack_Start_A2_b72.cpp). Names and
 // layouts are placeholders.
+#include "game/CComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkParent;
-void fn_71010c4228(UnkParent*);  // as the other component files declare it
 void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
 void fn_710117b3e8(UnkWeakTarget* target, void* link);
 void fn_71007fb694();

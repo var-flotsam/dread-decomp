@@ -4,14 +4,12 @@
 // by the first of four state tests that holds, else 0. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU39.h"
+#include "game/UnkTU811.h"
 #include "types.h"
 
 struct UnkEmmyAIView;
 struct UnkEmmyAIComponent_b46a1;
-bool fn_710054ad2c(UnkEmmyAIView*);
-bool fn_71005436e8(UnkEmmyAIComponent_b46a1*);
-bool fn_7100543b30(UnkEmmyAIView*);
-bool fn_710002fb70(void*);
 
 struct UnkEmmyOwner2_b62a3 {
     u8 pad_0x0[0x220];
@@ -24,8 +22,6 @@ struct UnkEmmyAI2_b62a3 {
     u8 pad_0x38[0x14c14 - 0x38];
     bool field_0x14c14;
 };
-
-bool fn_710054aecc(UnkEmmyAI2_b62a3* self);
 
 bool fn_710054aa5c(UnkEmmyAI2_b62a3* self) {
     if (!self->field_0x14c14)
