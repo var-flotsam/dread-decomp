@@ -15,9 +15,13 @@ target the original instruction encodes:
   ADRP + ADD/LDST lo12   the absolute address (pairs on the same symbol+addend; an
                          unpaired half checks only its page or its low 12 bits)
   ADR_GOT_PAGE + LD64_GOT_LO12_NC   the slot's RELATIVE relocation (or the import's name)
-Conditional branches, section-relative references (switch tables, string
-literals) and symbols that do not resolve are counted as unchecked by kind,
-never as a mismatch.
+Contents are checked for the two kinds of data a function reaches by a section-relative
+ADRP + lo12 pair: a string literal (`.rodata.str*` with one-byte characters) and a constant-pool
+entry (`.rodata.cst*`: floating-point constants, vector constants, the lookup table a switch
+compiles to). The bytes in our object must equal the bytes at the address the original's
+instructions encode, the string's terminator included, so a longer original string differs too.
+Conditional branches, other section-relative references (jump tables, wide strings, local
+data) and symbols that do not resolve are counted as unchecked by kind, never as a mismatch.
 
 Usage:
   python tools/asmdiff.py --version 2.1.0 build/obj/foo.o [-v] [--no-reloc]
@@ -97,6 +101,10 @@ class ObjReloc:
                   # covers the target in that section, else the section's name (section=True)
     addend: int   # relative to `symbol`
     section: bool = False
+    # For a section-relative reference into .rodata.str* (one-byte characters) or .rodata.cst*: the
+    # bytes it points at in our object (a string with its terminator; a constant up to the end of
+    # its entry), which check_relocs compares with the original's. None for every other reference.
+    data: bytes | None = None
 
 
 @dataclass
@@ -144,6 +152,7 @@ class RelocMismatch:
     expected: int | None  # what our symbol+addend resolves to (None when only a name is known)
     actual: int | None    # what the original encodes (None when it names an import instead)
     actual_name: str | None = None  # the import the original's PLT stub or GOT slot names
+    detail: str | None = None       # string/const: `ours -> original theirs`, both as short excerpts
 
 
 @dataclass
@@ -169,6 +178,13 @@ class Original:
     def function(self, address: int) -> bytes:
         size = self.sizes[address]
         off = address - BASE
+        return self.img.data[off:off + size]
+
+    def data_at(self, address: int, size: int) -> bytes | None:
+        """`size` bytes of the module's image at an absolute address, None outside it."""
+        off = address - BASE
+        if off < 0 or off + size > len(self.img.data):
+            return None
         return self.img.data[off:off + size]
 
     def got_slot(self, slot: int) -> tuple[int | None, str | None]:
@@ -239,6 +255,25 @@ def read_object(path: Path) -> list[ObjFunction]:
         for v in in_section.values():
             v.sort()
 
+        blobs: dict[int, bytes] = {}
+
+        def pointed_at(shndx: int, addend: int) -> bytes | None:
+            """ObjReloc.data for a reference to `addend` in section `shndx`."""
+            sec = elf.get_section(shndx)
+            ent = sec["sh_entsize"]
+            string = sec.name.startswith(".rodata.str") and ent == 1
+            if not string and not (sec.name.startswith(".rodata.cst") and ent):
+                return None
+            if shndx not in blobs:
+                blobs[shndx] = sec.data()
+            blob = blobs[shndx]
+            if not 0 <= addend < len(blob):
+                return None
+            if string:
+                end = blob.find(b"\0", addend)
+                return blob[addend:end + 1] if end >= 0 else None
+            return blob[addend:(addend // ent + 1) * ent]
+
         def describe(r) -> ObjReloc:
             s = syms[r["r_info_sym"]]
             addend = r["r_addend"]
@@ -248,7 +283,8 @@ def read_object(path: Path) -> list[ObjFunction]:
             for value, size, name in reversed(in_section.get(shndx, [])):
                 if value <= addend < value + max(size, 1):
                     return ObjReloc(r["r_info_type"], name, addend - value)
-            return ObjReloc(r["r_info_type"], elf.get_section(shndx).name, addend, section=True)
+            return ObjReloc(r["r_info_type"], elf.get_section(shndx).name, addend, section=True,
+                            data=pointed_at(shndx, addend))
 
         relocs_by_section: dict[int, dict[int, ObjReloc]] = {}
         for sec in elf.iter_sections():
@@ -345,8 +381,9 @@ def diff_functions(functions: list[ObjFunction], original: Original, resolve=Non
 
     With strict=True, each function whose bytes match is also checked for its relocation targets
     (check_relocs through object_resolver): the mismatches go in FunctionResult.reloc_mismatches
-    and make `matching` False. Section-relative and string relocations, conditional branches and
-    symbols that do not resolve stay unchecked, never a failure.
+    and make `matching` False; so does a string literal or constant-pool entry whose content
+    differs. Other section-relative relocations, conditional branches and symbols that do not
+    resolve stay unchecked, never a failure.
     """
     results = []
     for fn in functions:
@@ -441,7 +478,21 @@ def check_relocs(res: FunctionResult, original: Original, resolve=default_resolv
             continue  # the lo12 half: handled with its page relocation
         pc = res.address + off
         if r.section:
-            rep.unchecked["string" if r.symbol.startswith(".rodata.str") else "section"] += 1
+            kind = "string" if r.symbol.startswith(".rodata.str") else "section"
+            read = getattr(original, "data_at", None)
+            if r.data is None or read is None or r.type not in ADRP_TYPES or off not in partner:
+                rep.unchecked[kind] += 1
+                continue
+            # The content of a string literal or constant-pool entry: the bytes at the address the
+            # original's ADRP + lo12 pair encodes must be the ones our object points at.
+            where = adrp_target(insn(off), pc) + lo12_field(insn(partner[off]), res.relocs[partner[off]].type)
+            theirs = read(where, len(r.data))
+            kind = "string" if kind == "string" else "const"
+            if theirs == r.data:
+                rep.checked[kind] += 1
+            else:
+                detail = f"{_excerpt(r.data, kind)} -> original {_excerpt(theirs, kind)}"
+                rep.mismatches.append(RelocMismatch(off, kind, r.symbol, r.addend, None, where, detail=detail))
             continue
         if r.type in (CONDBR19, TSTBR14):
             rep.unchecked["condbr19" if r.type == CONDBR19 else "tstbr14"] += 1
@@ -492,8 +543,24 @@ def check_relocs(res: FunctionResult, original: Original, resolve=default_resolv
     return rep
 
 
+def _excerpt(data: bytes | None, kind: str, limit: int = 48) -> str:
+    """A short printable form of a string literal or constant for a RELOC line. A string whose
+    bytes do not end at a terminator (the original's goes on past ours) gets `...` after the quote."""
+    if data is None:
+        return "nothing (outside the image)"
+    if kind != "string":
+        return data[:16].hex() + ("..." if len(data) > 16 else "")
+    text = data.split(b"\0", 1)[0].decode("latin-1")
+    more = "" if b"\0" in data else "..."
+    text = text if len(text) <= limit else text[:limit] + "..."
+    return json.dumps(text) + more
+
+
 def format_mismatch(m: RelocMismatch, name: str | None = None) -> str:
-    """`sym+addend -> original 0x... (kind) +offset`, with the import's name where the original has one."""
+    """`sym+addend -> original 0x... (kind) +offset`, with the import's name where the original has one;
+    for a string or constant whose content differs, `ours -> original theirs  at 0x...  +offset  kind`."""
+    if m.detail is not None:
+        return f"{m.detail}  at {m.actual:#x}  {m.offset:+#x}  {m.kind}"
     sym = name or m.symbol
     if m.addend:
         sym += f"{m.addend:+#x}"

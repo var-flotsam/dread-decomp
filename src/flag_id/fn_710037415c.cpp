@@ -1,5 +1,5 @@
-// Constructor: base, vtable, a name member built from a literal, a -1 default, then
-// a virtual initialisation call (slot 3).
+// Constructor: base, vtable, a name member built from a literal (the empty string), a -1 default,
+// then a virtual initialisation call (slot 3).
 #include "types.h"
 
 struct UnkName {
@@ -23,6 +23,6 @@ struct Unk_fn_710037415c : UnkBase_7100393e68 {
     f32 field_0x38;
 };
 
-Unk_fn_710037415c::Unk_fn_710037415c() : name("unk", true), field_0x38(-1.0f) {
+Unk_fn_710037415c::Unk_fn_710037415c() : name("", true), field_0x38(-1.0f) {
     Init();
 }

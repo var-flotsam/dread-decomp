@@ -21,9 +21,11 @@ mapping above), when its demangled name is `fn_<addr>` or `g_unk_<addr>` (the ol
 `unk_<addr>` too; in any namespace: callee::, folded::, noret::), or when that name is unique in
 data/functions/; the address plus the addend must equal what the original encodes
 (BL/B offset, ADRP+lo12 address, or the GOT slot's RELATIVE relocation). Imports are
-compared by name through the original's PLT stub or GOT slot. Section-relative
-references (switch tables, string literals), conditional branches and symbols that do
-not resolve are counted as unchecked, never as a mismatch. Each mismatch prints one
+compared by name through the original's PLT stub or GOT slot. The content of a string
+literal and of a constant-pool entry (a floating-point or vector constant, a switch's
+lookup table) must equal the original's at the address its instructions encode. Other
+section-relative references (jump tables, wide strings), conditional branches and symbols
+that do not resolve are counted as unchecked, never as a mismatch. Each mismatch prints one
 line, `RELOC  <addr>  <symbol> -> original <target>  +<offset>  <kind>  <source>`, and
 the function is demoted from O to W (m/M when annotated), so a RELOC line on a
 function that was O is also a REGRESSION. Generated sources are held to the same rule:

@@ -33,7 +33,7 @@ tools/sigmatch.py                names vendored-library functions in main -> dat
 tools/gen_reflection.py, refl_attrs.py, gen_types.py, gen_statics.py, gen_clones.py, gen_tables.py, gen_lift.py
                                  generators (maintenance); regenerate, never hand-edit their output
 tools/policy_check.py, hooks/    content rules (CI and pre-commit)
-.github/                         CI: policy + decl_check (hosted); check-local.yml (self-hosted check.py, inert until enabled)
+.github/                         CI: policy + decl_check, compile + tool tests (hosted); check-local.yml (self-hosted check.py, enabled: "Known issues")
 src/compiler_id/, flag_id/, atk_id/   Phase 3 samples (frozen)
 src/reflection/, reflection_types/, reflection_statics/, clones/, lifted/, tables/   GENERATED
 src/base/                        hand-written engine code: string ids, pool, CRC64, allocator, reflected functions
@@ -140,7 +140,8 @@ Clang 9.0.1 has no arm64 macOS build; the x86_64 build runs under Rosetta 2. Bef
 | Upstream Clang **9.0.1** with the flags in `tools/buildcfg.py` | Each flag is backed by a fingerprint and matching results (`docs/compiler.md`); the SDK compiler is off-limits |
 | Status codes from **zeldaret/botw** (`O m M W U L`), derived by `tools/check.py` | No hand-edited outputs; `O` regressions fail the check; `L` is never overwritten |
 | **A match includes its relocation targets** (2026-10-24) | `asmdiff` masks relocated fields, so a function was `O` with the wrong pool or callee; two such slips were found by hand. Generated files are reported only until their generators are fixed |
-| `L` for `nn::atk`, SDK, runtime, Lua stdlib, dlmalloc | Library code isn't game progress; `nn::atk` is Nintendo middleware and stays undecompiled (the port replaces or lifts it) |
+| `L` for `nn::atk`, SDK, runtime, Lua stdlib, dlmalloc | Library code isn't game progress. Until 2026-11-11 `nn::atk` was also to stay undecompiled; see the next row |
+| **`nn::atk` is decompiled, as its own library** (owner, 2026-11-11; replaces "stays undecompiled") | The goal is no translation layer and every function hand-written, so lifting it could never be the end state, and a replacement player could only be tuned by ear where a decompiled library is checked byte for byte. It follows the MusyX precedent (`docs/references.md`). The port writes `nn::audio` (149 imports) over a PC mixer. Size on 2026-11-11: 1,152 `L` functions from 0x71012046c0, 0.17 MB, median 68 bytes; game code calls 188 of them directly. Its functions keep `L` and get their own progress line, apart from the game's. Not yet done: that line, a home for the sources (the batch files under `src/atk_id/` belong there), and names for the 872 unnamed functions |
 | 30–60 minute time-box per function, except reflection boilerplate | Owner-approved matching standard |
 | Function list split per MiB; CSV statuses regenerated, never hand-merged | 1 MB pre-commit limit; parallel streams |
 | objdiff per `src/` unit with synthesized targets; whole-binary and boot-slice progress from the CSV | No byte-identical relink is possible on Switch |
@@ -168,9 +169,11 @@ Clang 9.0.1 has no arm64 macOS build; the x86_64 build runs under Rosetta 2. Bef
 - `llvm-readelf` isn't in the LLVM Windows build; use `llvm-readobj --elf-output-style=GNU`.
 - Constructors compile to two aliased symbols (C1/C2). `check.py` counts them once (by address);
   objdiff counts both.
-- **Relocation check limits:** section-relative references (switch tables, string literals),
-  conditional branches and unresolved symbols are not checked (about 128,000 relocations), so a
-  wrong string literal is still not caught. A callee with no address is unresolved: write the
+- **Relocation check limits:** the content of string literals and constant-pool entries is compared
+  with the original's since 2026-11-11 (a `RELOC ... string` or `const` line). Still not checked,
+  about 92,000 relocations: unresolved symbols (callees, statics and vtables whose name is not
+  address-based), jump tables and lookup tables outside the constant pool, wide strings, and
+  conditional branches. So a callee declared under a made-up name is not verified. A callee with no address is unresolved: write the
   atexit stub as `fn_7100000250`, not `__cxa_atexit`. Every generator verifies targets itself
   (`asmdiff.diff_object(strict=True)`), so a `RELOC` line in a generated file means a generator
   regression: fix the generator, never the output.

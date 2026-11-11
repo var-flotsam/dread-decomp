@@ -310,6 +310,10 @@ structured exception handling wait until Linux reaches the title screen; that se
    (`tools/bshdat.py`, 2026-10-26), and the sources use no bindless handles: each stage binds at
    most five uniform blocks and samplers at fixed slots (declared 0 to 12, arrays reaching 13), so
    NVN's texture handles become combined image-sampler descriptors, one descriptor set per stage.
-4. `nn::atk`: lift it for the port (keeps "not decompiled") or replace it.
+4. ~~`nn::atk`: lift it for the port (keeps "not decompiled") or replace it.~~ **Decided 2026-11-11 by
+   the owner: decompile it, as its own library**, and write `nn::audio` over a PC mixer for the port
+   (`docs/reference.md`, "Decisions made"). Neither a lift nor a replacement: a lift is a translation
+   layer that could never leave the product, and a replacement cannot be checked against the original.
+   The "Audio renderer" row of the surface table above predates this.
 5. Pull-request size and review: with the self-hosted check job (`.github/workflows/check-local.yml`)
    the owner can merge on green instead of reading each diff.

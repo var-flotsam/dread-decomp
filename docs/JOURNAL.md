@@ -173,6 +173,13 @@ over 600 bytes. Its report is outside the repository. Findings to know when work
   original in register choice or instruction order only (median 3 instructions) and 17 in compare or branch form
   only; 27 differ in control flow, most of them the large-function drafts. Four match as they are and were never
   merged (`fn_7100ad3404`, `fn_7100df31b8`, `fn_7100df81fc`, `fn_7100eeaed0`).
+**`nn::atk` will be decompiled (owner, 2026-11-11).** After the independent maintenance review, the owner reversed
+the decision that `nn::atk` stays undecompiled and closed `docs/PORT_PLAN.md` decision 4 (lift or replace): it is
+decompiled as its own library, and the port writes `nn::audio` over a PC mixer. `docs/reference.md` ("Decisions
+made") has the reasons and the size: 1,152 `L` functions, 0.17 MB, median 68 bytes, 280 named from RTTI or symbols,
+188 called directly from game code. In the same address range 229 functions are already `O` and 63 are `U`, and
+`src/atk_id/` already holds batch files for the library, so part of the work is giving what exists a home. Nothing
+in `src/`, `tools/` or the statuses changes in this entry's pull request.
 
 **Barrier convention (2026-11-10).** The owner allowed the empty memory barrier `asm volatile("" ::: "memory")`
 next to the register form `asm("" : "+r"(x))`, which until now was the only one named. 23 files already used the memory
