@@ -18,7 +18,6 @@ checked against the original. Remove an entry when its declaration is corrected,
 | `fn_7100fbc4e0` | `void` | returns a value; called through a function-pointer cast in `UnkTU2666_lua_ovb0157`/`ovb0159` | b0157 |
 | `fn_71011a32d8`, `fn_71011a3574` | `void` | return values that are used; reached as `bool` through `asm`-label aliases in `UnkTU2577_SubAreaMgr_ovb0189.cpp` | b0189 |
 | `fn_7100ef0cdc`, `fn_7100ef11f4` | `void()` in `function_inits_02.cpp` | not stated | b0189 |
-| `fn_7100e791a4` | `void` | returns `u32` (`fn_7100e95130` matches with `u32`; its draft is in `drafts/`) | later batch |
 
 ## Wrong parameters
 

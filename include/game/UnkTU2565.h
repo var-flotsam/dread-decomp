@@ -11,7 +11,11 @@ void fn_7100e76a5c(void* self);
 void fn_7100e76c50();
 void fn_7100e77234();
 void fn_7100e77a0c();
-void fn_7100e791a4(void* self, void* arg, u32 kind, u32 a, void* b);
+
+// Wraps `arg` in a small visitor and visits the items of `kind` with it; returns the item count
+// (src/game/UnkUnit2565/UnkUnit2565_Visit.cpp).
+u32 fn_7100e791a4(void* self, void* arg, u32 kind, bool flag, void* extra);
+
 extern UnkCharMap g_unk_71727c8f58;
 extern char g_unk_71727c8f80;
 extern char g_unk_71727c8f81;

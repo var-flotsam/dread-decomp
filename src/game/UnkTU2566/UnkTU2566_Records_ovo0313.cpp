@@ -23,7 +23,6 @@ struct UnkMmOwner_o0313 {
 };
 
 const base::global::CStrId* fn_7100de9bf8(UnkGameManager* self);
-// Declared void elsewhere; it returns the item count, read here through a typed pointer.
 
 void fn_7100e95130(UnkMapData* map, u64 id) {
     UnkMmOwner_o0313* self = (UnkMmOwner_o0313*)map;
@@ -32,7 +31,7 @@ void fn_7100e95130(UnkMapData* map, u64 id) {
     const CStrId* current = fn_7100de9bf8(g_unk_7101d47310);
     if (self->field_0x110.data != current->data)
         return;
-    u32 count = reinterpret_cast<u32 (*)(void*, void*, u32, u32, void*)>(fn_7100e791a4)((u8*)self + 0x118, (void*)id, 0, 1, g_unk_71727cc99c);
+    u32 count = fn_7100e791a4((u8*)self + 0x118, (void*)id, 0, true, g_unk_71727cc99c);
     fn_7100e951d4((UnkMinimapOwner*)self, count, g_unk_71727cc99c, 1);
 }
 
