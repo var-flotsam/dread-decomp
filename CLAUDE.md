@@ -120,10 +120,12 @@ Prime Trilogy recomp. Never push this repo there.)
   request is allowed without asking. Any other branch, and every other repository, still needs the user's OK.
 - **Who merges (owner, 2026-11-11).** The coordinator of a piece of work merges its pull requests: the
   session that coordinates that work, once the required checks (`policy`, `compile`, `check`) are green,
-  with `gh pr merge <n> --merge` (add `--admin` only if the ruleset still blocks it). The owner merges
-  major, sweeping revisions of `main`. A session that is not the coordinator of the work does not merge
-  it; when it is unclear whether a change is sweeping, ask the owner. The gates don't change: `check.py`
-  must pass and a function is `O` only when its bytes match.
+  with `gh pr merge <n> --merge`. Never pass `--admin`: the bypass also skips the required checks, and the
+  ruleset no longer needs it (the last-push approval, which one account can never give, is off since
+  2026-11-11). A pull request GitHub will not merge without it is not ready: say why and stop. The owner
+  merges major, sweeping revisions of `main`. A session that is not the coordinator of the work does not
+  merge it; when it is unclear whether a change is sweeping, ask the owner. The gates don't change:
+  `check.py` must pass and a function is `O` only when its bytes match.
 - `.claude/settings.json` allowlists these commands so they don't prompt; a user-level or
   `.claude/settings.local.json` deny or ask rule overrides it.
 

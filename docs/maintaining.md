@@ -61,7 +61,7 @@ gh api repos/var-flotsam/dread-decomp/rulesets --method POST --input .github/rul
 | Block force pushes | History on `main` can't be rewritten |
 | Require a pull request | No direct pushes; no approving review required (every PR is opened under the maintainer's account, so a code-owner approval could never be given); all review threads resolved; merge commits only |
 | Require status checks | `policy` (`.github/workflows/policy.yml`), `compile` (`build.yml`) and `check` (`check-local.yml`, self-hosted: it stays pending while the runner is offline, and reports as passing when `SELF_HOSTED_CHECK` is unset) must pass |
-| Bypass | Repository admins, **through a pull request only**: the maintainer can merge their own PR without a second reviewer, but still can't push to `main` directly |
+| Bypass | Repository admins, **through a pull request only**: the maintainer can merge their own PR without a second reviewer, but still can't push to `main` directly. The bypass also skips the required checks, so sessions never use it (`gh pr merge --admin`; `CLAUDE.md`, "Pushing and merging"): with the last-push approval off (2026-11-11) a green pull request merges without it |
 
 When there are other maintainers, require one approving code-owner review again and remove the bypass, so
 every change gets a second pair of eyes. Until then the required checks are the review, and the coordinator of
