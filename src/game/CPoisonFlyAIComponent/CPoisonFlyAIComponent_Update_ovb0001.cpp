@@ -9,8 +9,10 @@
 
 #include "base/UnkVector.h"
 #include "base/reflection/CClass.h"
+#include "game/CComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkManager_71726af468.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
@@ -51,7 +53,6 @@ f32 fn_71006396dc(UnkPoisonFlyAI_ovb0001* self) {
 
 // As src/game/CAbilityEnergyWave/fn_71002ffea8.cpp declares it.
 struct UnkParent;
-void fn_71010c424c(UnkParent*);
 // As src/game/CPoisonFlyAIComponent/CPoisonFlyAIComponent_OffsetTime_b67a4.cpp declares it.
 struct UnkPoisonFlyAI_b67a4;
 void fn_71006393d4(UnkPoisonFlyAI_b67a4* self, f32 dt);
@@ -136,7 +137,6 @@ void fn_71006392cc(UnkPoisonFlyAI1_ovb0001* self, f32 dt) {
 
 // As src/game/CInfesterAIComponent/CInfesterAIComponent_Send_b57.cpp declares it.
 struct UnkQuetzoaAIComponent;
-void fn_7101108124(UnkQuetzoaAIComponent* self, void* arg);
 // As src/game/CBigFistAttack/CBigFistAttack_Start_A2_b72.cpp declares it.
 void fn_710111094c(UnkReflObject* ai, u32 value);
 

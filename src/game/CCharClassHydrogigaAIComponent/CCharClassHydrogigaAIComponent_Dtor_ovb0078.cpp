@@ -4,6 +4,8 @@
 // Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassBossAIComponent.h"
+#include "game/CDamageSourceFactor.h"
 #include "game/UnkBossAIComponent.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
@@ -12,8 +14,6 @@ using base::global::CStrId;
 
 extern void* g_unk_7101a50aa0[];
 struct UnkGoliathXBase;
-void fn_710041a230(UnkGoliathXBase*);
-void fn_71008c2de0(void* member);
 void fn_71005ad544(void* member);
 void fn_71005ad92c(void* member);
 void fn_71005af7e4(void* member);

@@ -3,12 +3,13 @@
 // list is re-read after each), then the id is passed on to the map data (fn_7100e8d8b0, fn_7100e9c43c).
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CAbility.h"
+#include "game/UnkTU2566.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkMapData;
-UnkMapData* fn_7100e8d8b0();
 void fn_7100e9c43c(UnkMapData* map, const CStrId* id);
 
 struct UnkAbilityDef_A2_b69 {
@@ -20,8 +21,6 @@ struct UnkAbilityC_A2_b69 {
     u8 pad_0x0[0xc8];
     UnkAbilityDef_A2_b69* def;  // +0xc8
 };
-
-void fn_71002f9694(UnkAbilityC_A2_b69* ability, bool on);
 
 struct UnkAbilityOwnerC_A2_b69 {
     u8 pad_0x0[0x40];

@@ -15,6 +15,7 @@
 #include "base/math/UnkSegment2D.h"
 #include "base/spatial/COBox2D.h"
 #include "game/UnkXformNode.h"
+#include "game/malloc.h"
 #include "types.h"
 #include "UnkLeftoverReg.h"
 
@@ -555,7 +556,6 @@ UnkContact fn_7100d54d78(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, 
 
 bool fn_71001271d0(const void* b, const UnkCircle2D* a, UnkContactBuffer<2>* out, bool flag);
 bool fn_7100128510(const UnkBox2D* a, const void* b, UnkContactBuffer<2>* out, bool flag);
-bool fn_710012f260(const UnkCircle2D* a, void* x5, const void* b, UnkContactPoint* out);
 bool fn_710012f6a0(const void* b, void* x5, const UnkCircle2D* a, UnkContactPoint* out);
 bool fn_710012ce70(const UnkBox2D* box, const UnkVec2Result& step, const UnkSegment2D* seg, UnkContact2D* out);
 bool fn_710012d6b0(const void* b, void* x5, const UnkBox2D* a, UnkContactPoint* out);
@@ -705,7 +705,6 @@ UnkContact fn_7100d556d0(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void*
 }
 
 bool fn_7100127720(const UnkCircle2D* a, const UnkCircle2D& b, UnkContactBuffer<2>* out, bool flag);
-bool fn_710012dd70(const UnkCircle2D* a, void* x5, const UnkCircle2D& b, UnkContactPoint* out);
 
 // The circle `a` against the circle `b`, as fn_7100d556d0 (b as a circle at the origin).
 // NON_MATCHING(minor): the placed circle's radius is stored after its centre instead of before.

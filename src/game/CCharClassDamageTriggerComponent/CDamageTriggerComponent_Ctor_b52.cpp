@@ -6,6 +6,7 @@
 
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -14,7 +15,6 @@ using base::global::UnkStringData;
 // The base constructor, as src/game/CMagnetSurfaceHuskComponent/CMagnetSurfaceHuskComponent_Ctor_b51.cpp
 // declares it.
 struct UnkStruct_71008bca30;
-void fn_71011acd10(UnkStruct_71008bca30*);
 extern char g_unk_7101a8f020[];
 
 struct UnkDamageTriggerComponent_b52 {

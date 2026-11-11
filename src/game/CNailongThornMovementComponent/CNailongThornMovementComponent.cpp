@@ -4,6 +4,7 @@
 // one at +0x40. Then the base update fn_7100ac3a78 runs. Names and layouts are placeholders.
 #include <math.h>
 
+#include "game/CProjectileMovement.h"
 #include "types.h"
 
 struct UnkNailongThornMovement {
@@ -23,8 +24,6 @@ struct UnkNailongThornMovement {
     f32 amplitude;
     f32 speed;
 };
-
-void fn_7100ac3a78(UnkNailongThornMovement* self, f32 dt);
 
 void fn_7100623080(UnkNailongThornMovement* self, f32 dt) {
     if (self->swaying) {

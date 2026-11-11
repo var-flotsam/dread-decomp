@@ -10,6 +10,8 @@
 #include "base/UnkVector.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
+#include "game/SLogicPathNode.h"
+#include "game/UnkTU2563.h"
 #include "game_s2/UnkItem50.h"
 #include "types.h"
 
@@ -18,8 +20,6 @@ using base::math::CVector3D;
 
 // The entry's out-of-line special members (declared as the generated src/clones/ ones are): the
 // move constructor, the destructor and the implicit default constructor run after zeroing.
-void fn_7100e51078(void* dst, void* src);
-void fn_7100e4e310(char* self);
 void fn_7100e50c98(void* self);
 
 // An entry of the array (0x138 bytes; its members are not spelled out).
@@ -49,7 +49,6 @@ struct UnkMinimapPathPoint {
     CVector3D v;
     ~UnkMinimapPathPoint() {}
 };
-UnkMinimapPathPoint fn_71010596ac(void* path, u32 index, f32 t);
 static inline void Project(CVector2D* out, const UnkMinimapPathPoint& point) {
     fn_710007b430(out, &point.v);
 }

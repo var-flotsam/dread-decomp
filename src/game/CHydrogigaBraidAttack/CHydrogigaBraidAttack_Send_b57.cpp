@@ -8,11 +8,10 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU1501.h"
 #include "types.h"
 
 struct UnkHelper;
-bool fn_71009e6434(UnkHelper* helper);
-bool fn_71009e6f9c(UnkHelper* helper);
 
 struct UnkBraidAIComponent_b57a3 {
     void** vtable;

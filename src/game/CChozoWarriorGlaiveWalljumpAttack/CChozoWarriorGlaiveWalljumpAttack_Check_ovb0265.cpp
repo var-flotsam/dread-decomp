@@ -5,6 +5,7 @@
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CChozoWarriorAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
@@ -27,7 +28,6 @@ struct UnkWarriorAI {
     u8 pad_0x0[8];
 };
 
-bool fn_7100493b00(void* self, void* arg, u32 mode);
 f32 fn_710049b2fc(UnkWarriorAI* ai);
 f32 fn_710049b360(UnkWarriorAI* ai);
 bool fn_710049cbd8(UnkWarriorAI* ai);

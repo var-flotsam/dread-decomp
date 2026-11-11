@@ -7,6 +7,9 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/math/CVector.h"
+#include "game/CAttackComponent.h"
+#include "game/CComponent.h"
+#include "game/CEnemyMovement.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
@@ -77,8 +80,6 @@ base::global::CStrId fn_71006b1d64(UnkShakernautFlags_sna* self) {
 }
 
 struct UnkParent;
-void fn_71010c424c(UnkParent* self);
-bool fn_7101136308(void* object);
 bool fn_71009e12d0(void* obj);
 
 struct UnkShakernautParams_sna {
@@ -143,7 +144,6 @@ struct UnkActorPosition {
 };
 
 UnkActorPosition fn_7100d7b7a8(UnkActor* actor);
-u32 fn_71010cc3a4(void* object);
 
 struct UnkEnemyMovement_sna {
     void** vtable;

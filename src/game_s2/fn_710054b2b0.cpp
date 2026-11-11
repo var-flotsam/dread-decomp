@@ -5,6 +5,7 @@
 // 0x29f26 is clear; then the sub-object decides (fn_7100573d54).
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU39.h"
 #include "types.h"
 
 struct UnkTrackOwner {
@@ -26,7 +27,6 @@ struct UnkSelf {
     u8 field_0x29f26;
 };
 
-bool fn_710002fb70(void* timer);
 bool fn_7100573d54(void* sub, void* a1);
 
 __attribute__((always_inline)) static inline bool Check(UnkSelf* self, void* sub, void* a1) {

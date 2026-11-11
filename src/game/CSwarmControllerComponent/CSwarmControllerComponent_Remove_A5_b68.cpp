@@ -2,11 +2,12 @@
 // fn_71007410a4 gives the group, as src/game/CFlockingSwarmControllerComponent/CFlockingSwarmControllerComponent_b40.cpp),
 // closing the gap with memcpy (as the original does); when the group is left empty, hands it to fn_710074bdd4 with 1.5. Names and layouts
 // are placeholders.
+#include "game/CFlockingSwarmControllerComponent.h"
+#include "game/CSwarmControllerComponent.h"
 #include "types.h"
 
 struct UnkGroup_fs;
 struct UnkArray_fs;
-UnkGroup_fs* fn_71007410a4(UnkArray_fs* array, u32 index);
 
 struct UnkSwarmGroup_A5_b68 {
     void** data;
@@ -17,8 +18,6 @@ struct UnkSwarmController_A5_b68 {
     u8 pad_0x0[0x1a8];
     u8 field_0x1a8[0x10];
 };
-
-void fn_710074bdd4(UnkSwarmController_A5_b68* self, u32 index, f32 delay);
 
 void fn_7100748370(UnkSwarmController_A5_b68* self, void* member, u32 index) {
     UnkSwarmGroup_A5_b68* group = reinterpret_cast<UnkSwarmGroup_A5_b68*>(

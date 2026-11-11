@@ -7,11 +7,11 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/UnkTU23.h"
 #include "types.h"
 
 extern char unk_7101a1cda0[];
 extern char unk_7101a1cd10[];
-void fn_7100014e88(void* member);
 
 // The base: a vtable, a word and the array.
 struct UnkArrayBase_710014a86c {

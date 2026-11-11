@@ -1,13 +1,12 @@
 // Unit 213 of tools/tu_map.py, beside UnkUnit213_Dtors.cpp (same layout): activates the pass once,
 // creating its two pooled objects (+0x28 by fn_7100161960, +0x30 by fn_7100154020) for a pair of sizes
 // that it keeps at +0x20. Names and layouts are placeholders.
+#include "game/UnkTU174.h"
+#include "game/UnkTU182.h"
 #include "types.h"
 
 struct UnkObj_7100161b90;
 struct UnkObj_71001541a0;
-
-void fn_7100161960(UnkObj_7100161b90** out, u32 size, void* data, const u32* count);
-void fn_7100154020(UnkObj_71001541a0** out, u32 size, const u32* count, void* data, u32 a, u32 b);
 
 struct UnkPass213Activate {
     u8 pad_0x0[0x20];

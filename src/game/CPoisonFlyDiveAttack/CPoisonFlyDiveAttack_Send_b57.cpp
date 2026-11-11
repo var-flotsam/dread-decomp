@@ -4,10 +4,9 @@
 // src/game_s2/UnkSpitSend.h), and moves to state 5 around two calls of fn_7100631c90. Names are
 // placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CPoisonFlyDiveAttack.h"
 #include "game/UnkActor.h"
 #include "types.h"
-
-void fn_7100631c90(void* self);
 
 struct UnkPoisonFlyDive_b57a4 {
     u8 pad_0x0[0x8];
@@ -29,4 +28,3 @@ void fn_7100632ee4(UnkPoisonFlyDive_b57a4* self, void* unused, UnkActor* actor) 
     self->field_0x54 = 5;
     fn_7100631c90(self);
 }
-

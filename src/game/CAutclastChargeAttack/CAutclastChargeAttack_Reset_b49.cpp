@@ -2,11 +2,10 @@
 // game/UnkAttack.h), then the attack unregisters its listener (+0x38) from the object behind the weak
 // handle at +0x50 (fn_71010cb2fc) and drops the handle, and drops the reference each of its entries
 // (+0x90, count +0x98, 0x28 bytes each) holds at +0x20. Names and layouts are placeholders.
+#include "game/CEnemyMovement.h"
 #include "game/UnkAttack.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-void fn_71010cb2fc(void*, void*);
 
 struct UnkChargeEntry_b49 {
     u8 pad_0x0[0x20];

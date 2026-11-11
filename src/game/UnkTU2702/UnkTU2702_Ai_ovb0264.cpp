@@ -9,8 +9,18 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAnimationComponent.h"
+#include "game/CAttackComponent.h"
+#include "game/CCharacterMovement.h"
+#include "game/CEnemyMovement.h"
+#include "game/CFrozenComponent.h"
+#include "game/CInputComponent.h"
+#include "game/CMovementComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU2523.h"
+#include "game/UnkTU2702.h"
+#include "game/UnkTU53.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkParams.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -60,11 +70,8 @@ struct UnkAIOwner_e {
     u8 pad_0x1618[0x14674 - 0x1618 + 0x1466c - 0x1466c];
 };
 
-bool fn_71007f9f20(void* comp);
 struct UnkFrostbiteComponent;
-bool fn_71007f9fd0(UnkFrostbiteComponent* comp);
 bool fn_7100d7bea0(UnkActor* actor, bool v);
-u32 fn_71010cc3a4(void*);
 
 void fn_710110603c(UnkAIOwner_e* self) {
     UnkAIState_e* s = reinterpret_cast<UnkAIState_e*>(reinterpret_cast<u8*>(self) + 0x1466c);
@@ -118,8 +125,6 @@ void fn_710110603c(UnkAIOwner_e* self) {
 
 // ---- g ----
 struct UnkActor_7101105e44;
-void fn_7100d7add4(UnkActor_7101105e44* actor, bool value);
-bool fn_7100979ef0(void* tracked);
 struct UnkVec3 {
     u32 a;
     u32 b;
@@ -308,7 +313,6 @@ f32 fn_71010ff140(UnkSpeedSelf_h* self) {
 // ---- i ----
 struct UnkEntityState;
 struct UnkActorTarget;
-void fn_7101176a88(UnkActorTarget* self, u32 restart);
 void fn_7100232864(UnkEntityState* entity, bool value);
 extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
 
@@ -363,7 +367,6 @@ using base::global::CStrId;
 
 struct UnkEnergyWaveTargetComp_b49;
 void fn_7100872908(void*, void*);
-void fn_7100872860(UnkEnergyWaveTargetComp_b49* comp, void* link);
 struct CAttack;
 const u64* fn_7100360890(CAttack* attack);
 
@@ -420,7 +423,6 @@ void fn_7101104f9c(u8* raw) {
 // ---- n ----
 void fn_71002b27d4(void* e, u32 a, u32 b, f32* value);
 void fn_71002b2c80(void* e, u32 a, u32 b, f32* value);
-bool fn_71010cab0c(void*);
 
 struct UnkSlot_n {
     u8 pad_0x0[2];
@@ -503,7 +505,6 @@ f32 fn_710110f4f4(UnkSelf_n* self, UnkOther_n* other, u32 a, u32 b, f32* pair, U
 struct UnkAttack_A2_b68;
 struct UnkCancelAttack_ovb0128;
 void* fn_7100362324(UnkCancelAttack_ovb0128* self, u32 value);
-bool fn_7101136308(void* object);
 struct UnkLocalNode_w {
     void* first;
     UnkLocalNode_w* next;
@@ -629,8 +630,6 @@ void fn_71010ffc38(UnkTargetSelf_w* self, f32 dt) {
 // ---- fn_710110030c ----
 struct UnkMovement_71010d08d4;
 struct UnkMovementVec_71010d08d4;
-void fn_71010d08d4(UnkMovement_71010d08d4*, const UnkMovementVec_71010d08d4*, bool);
-f32 fn_7100076020(f32 t, const char* modifiers);
 extern f32 g_unk_7101cb1db8;
 
 struct UnkRamp_j {
@@ -706,7 +705,6 @@ void fn_710110030c(UnkRampSelf_j* self, f32 dt) {
 // ---- fn_7101107e94 ----
 struct UnkFlyAI_z;
 struct UnkAIBB_b0144;
-void fn_7101108004(UnkAIBB_b0144* self, void* arg);
 
 struct UnkFlyMoveVtbl_z {
     u8 pad_0x0[0x358];

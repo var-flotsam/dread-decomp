@@ -3,11 +3,11 @@
 // owner's animation (+0x220 of the entity at +0x30; fn_7101176ea8 with key 0xf4061ff25a2163d6, as in
 // src/game/CSamusMovementState/CSamusMovementState_b34.cpp), and runs virtual slot 0x318.
 // Names are placeholders.
+#include "game/CAnimationComponent.h"
 #include "types.h"
 
 struct UnkStruct_7101176ea8;
 struct UnkRequest_7101176ea8;
-bool fn_7101176ea8(UnkStruct_7101176ea8* self, const UnkRequest_7101176ea8* req, u64 key);
 
 struct UnkAnimRequest8438 {
     s64 id;  // -1 when unset

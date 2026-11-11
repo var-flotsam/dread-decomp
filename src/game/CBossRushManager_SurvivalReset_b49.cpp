@@ -8,6 +8,7 @@
 #include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU2768.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -15,9 +16,7 @@ using base::global::CStrId;
 
 struct UnkUserDataOwner;
 extern UnkUserDataOwner* g_unk_7101d47308;
-void fn_710120320c(UnkUserDataOwner* self);  // constructor
 CBlackboard* fn_710120384c(UnkUserDataOwner* self);
-void fn_7101203854(UnkUserDataOwner* self);
 
 static inline UnkUserDataOwner* GetOwner() {
     if (!g_unk_7101d47308) {

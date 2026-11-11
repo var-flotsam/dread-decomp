@@ -19,6 +19,8 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 using base::UnkAllocator;
@@ -41,8 +43,6 @@ void fn_710026059c(UnkStrIdMap_A6_b75<UnkReflRecord60_ovb0036>* self,
                    UnkStrIdIterValue_A6_b75<UnkReflRecord60_ovb0036>* out) {
     UnkStrIdMapEnd_A6_b75(self, out);
 }
-
-void fn_71000003d4(void*, const char*, bool);
 
 template <u32 Flags>
 struct UnkAllocatorHandle_ovb0036 {
@@ -308,7 +308,6 @@ UnkMapRecord_ovb0036* fn_710025bb90(UnkRecordMapOwner_ovb0036* self, const UnkMa
 
 struct UnkNodeMap_710025ad0c;
 struct UnkNode_710025ad0c;
-void fn_71002486a8(UnkNodeMap_710025ad0c* map, UnkNode_710025ad0c* node);  // removes a node
 
 struct UnkHashedKeyData_ovb0036 {
     u8 pad_0x0[0x30];

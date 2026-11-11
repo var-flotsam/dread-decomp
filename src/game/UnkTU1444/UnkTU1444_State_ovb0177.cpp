@@ -5,12 +5,16 @@
 
 #include "base/UnkVector.h"
 #include "base/math/UnkSegment2D.h"
+#include "game/CCollisionComponent.h"
+#include "game/CFrozenComponent.h"
 #include "game/UnkAIComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
+#include "game/UnkTU1440.h"
+#include "game/UnkTU1444.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkParams.h"
 #include "game/UnkObject_0x100.h"
@@ -20,10 +24,8 @@ struct UnkUnit1444Msg_ovb0177;
 struct UnkTrackSelf_b0143;
 struct UnkGroundAI_ovb0146;
 
-void fn_7100969000(char* self, u32 arg);
 struct UnkUnit1441Apply_A4_b74;
 struct UnkUnit1441Msg_A4_b74;
-void fn_71009690a0(UnkUnit1441Apply_A4_b74* self, const UnkUnit1441Msg_A4_b74* msg, bool reset);
 void fn_7100707ef0(void* member, const UnkUnit1444Msg_ovb0177* msg, bool reset);
 void fn_71002b57bc(UnkObject_0x100* self);
 UnkObject_0x100* fn_71002b5c90(UnkObject_0x100* self, const UnkObject_0x100* other);
@@ -107,11 +109,8 @@ void fn_710097170c(UnkUnit1444_ovb0177* self, const UnkUnit1444Msg_ovb0177* msg,
 
 void fn_71009738ec(UnkUnit1444_ovb0177* self);
 struct UnkUnit1444_Event;
-bool fn_7100971ee8(UnkUnit1444_Event* self);
 void fn_7100973f30(UnkUnit1444_ovb0177* self);
-void fn_7100969148(UnkUnit1444_ovb0177* self);
 bool fn_7101179c3c(UnkAnimationComponent* self, u64 key);
-bool fn_71007f9f20(void* component);
 
 // Tells the owner's AI about the pending state: the kind is 2 when the stored object's byte at +0x1c is
 // set, else 1 (slot 0x5a8).
@@ -271,7 +270,6 @@ struct UnkStruct_71008651c8;
 using UnkOut_71008651c8 = base::UnkVector<UnkStruct_71008651c8_Entry*>;
 void fn_71008651c8(UnkStruct_71008651c8* self, void* const* key, UnkOut_71008651c8* out);
 struct UnkPlayerMovementSource;
-void* fn_710086406c(UnkPlayerMovementSource*, const void*);
 
 extern void* const g_unk_717273a790 __attribute__((visibility("hidden")));
 extern void* const g_unk_717273a788 __attribute__((visibility("hidden")));

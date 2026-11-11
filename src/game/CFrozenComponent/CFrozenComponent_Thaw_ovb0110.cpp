@@ -6,8 +6,11 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAnimationComponent.h"
+#include "game/CFrozenComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkComponent.h"
+#include "game/animtree/CLayerNode.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -18,13 +21,10 @@ using base::global::UnkStringPool;
 struct CFrozenComponent2;
 template <u32 Offset>
 struct UnkSmOwner_A5_b62;  // src/game/UnkStateMachineUpdateA5_b62.cpp
-void fn_71007f95b8(CFrozenComponent2* self, f32 value);
 // As src/game/CAutsniperShootAttack/fn_71003d5a14.cpp declares it.
-void fn_710117abfc(void*, u32, void*, u64);
 bool fn_7101179c3c(UnkAnimationComponent* self, u64 key);
 
 struct UnkLayerNode;
-void fn_71002e465c(UnkLayerNode* self, f32 dt);
 void fn_7101177a70(void* handle, u64 key);
 
 extern char g_unk_7172721120[] __attribute__((visibility("hidden")));

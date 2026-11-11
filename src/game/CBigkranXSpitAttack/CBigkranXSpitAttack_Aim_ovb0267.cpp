@@ -3,6 +3,7 @@
 #include "base/UnkMatrix44.h"
 
 #include "game/UnkActor.h"
+#include "game/UnkTU365.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -38,7 +39,6 @@ struct UnkHandleB_ovb0267 {
 };
 
 struct UnkAssignedSlot;
-void fn_71002a5d1c(UnkAssignedSlot* self, const UnkAssignedSlot* other);
 inline UnkHandleA_ovb0267& UnkHandleA_ovb0267::operator=(const UnkHandleA_ovb0267& o) {
     fn_71002a5d1c(reinterpret_cast<UnkAssignedSlot*>(this), reinterpret_cast<const UnkAssignedSlot*>(&o));
     return *this;

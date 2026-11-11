@@ -3,6 +3,8 @@
 // fn_71007ba580 stops the playing sound (the handle at +0x78), releases the path at +0x88 and
 // drops the unit's live count. Names and layouts are placeholders.
 #include "base/UnkStrIdPathPair.h"
+#include "game/CComponent.h"
+#include "game/UnkTU2523.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -39,7 +41,6 @@ bool fn_71007ba2d4(UnkDroppable_b51* self) {
 }
 
 struct UnkHandleOwner_71010c4230;
-void fn_71010c4230(UnkHandleOwner_71010c4230* self);
 
 struct UnkSoundRef;
 struct UnkSoundHandle {
@@ -55,7 +56,6 @@ struct UnkSoundEntry_b51 {
 };
 
 struct UnkShipRechargeEntity_b49a4;  // the owner as CShipRechargeComponent_StopSound_b49a4.cpp names it
-void fn_7100d7c510(UnkShipRechargeEntity_b49a4* owner, UnkSoundHandle* handle, f32 fade, f32 delay);
 
 struct UnkDroppableStop_b51 {
     u8 pad_0x0[0x30];

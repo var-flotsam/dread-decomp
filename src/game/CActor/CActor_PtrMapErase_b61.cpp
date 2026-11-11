@@ -3,11 +3,11 @@
 // is unlinked from its bucket chain (+0x40) and from the list of all nodes (prev +0x30, next +0x38; the
 // map's ends at +0x40 and +0x38), then released through fn_71002486a8, and the count drops.
 // Names and layouts are placeholders.
+#include "game/UnkTU341.h"
 #include "types.h"
 
 struct UnkNodeMap_710025ad0c;
 struct UnkNode_710025ad0c;
-void fn_71002486a8(UnkNodeMap_710025ad0c* map, UnkNode_710025ad0c* node);  // removes a node
 
 struct UnkHashedObject_b61 {
     u8 pad_0x0[0x30];

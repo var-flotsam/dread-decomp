@@ -7,6 +7,8 @@
 #include "base/math/CVector4D.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CComponent.h"
+#include "game/CFrozenComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkSwitchObject.h"
@@ -109,8 +111,6 @@ void fn_71007f4278(UnkFrozenAsFrostbite_ovb0114* self) {
     self->objects.count = 0;
 }
 
-bool fn_71007f900c(void* self, void* arg);
-
 // After the base step: caches the character class (a CCharClassFrozenAsFrostbiteComponent) and
 // makes room in the object list for one object per part of it.
 bool fn_71007f4170(UnkFrozenAsFrostbite_ovb0114* self, void* arg) {
@@ -135,8 +135,6 @@ bool fn_71007f4170(UnkFrozenAsFrostbite_ovb0114* self, void* arg) {
 }
 
 struct UnkParent;
-void fn_71010c424c(UnkParent*);
-bool fn_71007f9f20(void* component);
 void fn_71007f4514(UnkFrozenAsFrostbite_ovb0114* self);
 
 extern UnkTunable g_unk_7172720dc0;
@@ -298,11 +296,6 @@ void fn_71007f46e8(UnkFrozenAsFrostbite_ovb0114* self, f32 dt) {
 struct UnkFrostbiteComponent;
 struct UnkFrostbiteRequest;
 struct UnkRequest;
-bool fn_71007fb280(UnkFrostbiteComponent* self, UnkFrostbiteRequest* request);
-bool fn_71007f9fb0(UnkFrostbiteComponent* self);
-bool fn_71007f9fd0(UnkFrostbiteComponent* self);
-void fn_71007fa130(UnkFrostbiteComponent* self);
-void fn_71007f9428(UnkFrostbiteComponent* self, u32 state);
 void fn_71008c1538(UnkRequest* request, f32 value);
 
 // A damage request as the hit handler sees it.

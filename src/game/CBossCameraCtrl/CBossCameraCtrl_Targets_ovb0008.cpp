@@ -11,11 +11,14 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCameraCtrl.h"
+#include "game/CLifeComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkXformNode.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -29,12 +32,10 @@ extern CStrId g_unk_7172710f50 __attribute__((visibility("hidden")));
 void fn_7100e03a78(UnkGameManager*, void*);
 void fn_7100e8f9a0(char* self, bool remove, base::global::CStrId* key);
 struct UnkMgr_0xf18;
-void fn_7100fdb9e0(UnkMgr_0xf18* manager, u32 kind, u32 flag, f32 a, f32 b);
 UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 
 struct UnkFixedCamera_fc;
 struct UnkArg_fc;
-void fn_71010ed98c(UnkFixedCamera_fc* self, UnkArg_fc* arg, u32 flag);
 
 // A counted reference to a weak handle: the elements of the target list.
 struct UnkHandlePtr_ovb0008 {
@@ -159,7 +160,6 @@ struct UnkBossHolder_ovb0008 {
     UnkBossChild_ovb0008* field_0x48;
 };
 struct UnkHolder;
-void fn_710115fe20(UnkHolder* holder);
 // Declared without its argument in src/game/CBossAIComponent/fn_71003ad8e4.cpp; this caller passes
 // the holder's child object.
 CStrId* fn_710112bf20();

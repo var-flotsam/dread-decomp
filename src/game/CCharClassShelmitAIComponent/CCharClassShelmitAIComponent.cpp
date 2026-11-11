@@ -2,13 +2,13 @@
 // fn_7100416db8, the vtable, the member at +0x510 (fn_71006b2d74), eleven floats from +0x618 set to
 // -1, the member at +0x648 (fn_71007c7ddc), then the post-construction virtual call (slot 3). Names
 // and layouts are placeholders.
+#include "game/CCharClassBehaviorTreeAIComponent.h"
+#include "game/SDropProbabilities.h"
 #include "types.h"
 
 // Declared as src/game/CCharClassGooplotAIComponent/CCharClassGooplotAIComponent.cpp does.
 struct UnkObject_7100416db8;
-void fn_7100416db8(UnkObject_7100416db8* self);
 void fn_71006b2d74(void* self);
-void fn_71007c7ddc(void* self);
 extern void* g_unk_7101a63ad0[];
 
 struct UnkShelmitDef {

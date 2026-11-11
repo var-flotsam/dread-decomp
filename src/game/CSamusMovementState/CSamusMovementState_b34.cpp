@@ -1,8 +1,10 @@
+#include "game/CAnimationComponent.h"
+#include "game/CCharacterMovement.h"
+#include "game/CSamusFloorSlideMovementState/CParams.h"
 #include "types.h"
 
 struct UnkFlagged;
 struct UnkShape;
-UnkShape* fn_7100976588(UnkFlagged* flagged);
 
 extern u64 g_unk_717273caf0 __attribute__((visibility("hidden")));
 
@@ -24,7 +26,6 @@ bool fn_71009b2d0c(CSamusMovementState* self) {
 
 struct UnkStruct_7101176ea8;
 struct UnkRequest_7101176ea8;
-bool fn_7101176ea8(UnkStruct_7101176ea8* self, const UnkRequest_7101176ea8* req, u64 key);
 
 struct UnkMovementRequest {
     u8 unk_0x0[0x8];
@@ -37,7 +38,6 @@ struct UnkMovementEntity {
 };
 
 struct UnkMovementTransitions;
-void fn_7100997128(UnkMovementTransitions* self, const u32* state);
 
 struct CSamusMovementState2 {
     u8 unk_0x0[0x30];

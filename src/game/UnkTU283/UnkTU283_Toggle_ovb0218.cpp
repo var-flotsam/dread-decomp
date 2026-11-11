@@ -3,10 +3,10 @@
 // source's block (+0x80) to fn_710016ae30, and the float at +0x124 is cleared. Names and layouts are
 // placeholders.
 #include "engine/scene/UnkToggle.h"
+#include "game/UnkTU207.h"
 #include "types.h"
 
 struct UnkPart132;
-void fn_710016ae30(void* self);
 
 void fn_7100206ecc(UnkPart132* part, bool on) {
     UnkToggle* self = reinterpret_cast<UnkToggle*>(part);

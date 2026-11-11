@@ -1,6 +1,7 @@
 // CChangeStageNavMeshItemComponent's deleting destructor: the destructor body of fn_71009b99e8
 // (CChangeStageNavMeshItemComponent_b34.cpp), then the memory is freed (fn_7100083c00).
 #include "base/UnkVector.h"
+#include "game/CChangeStageNavMeshItemComponent.h"
 #include "game/UnkComponent.h"
 #include "types.h"
 
@@ -16,8 +17,6 @@ struct UnkNavMeshRegistry2 {
 struct UnkNavMeshItemMember {
     void* handle;
 };
-
-void fn_71009ba68c(UnkNavMeshItemMember* self);
 
 struct UnkChangeStageNavMeshItem {
     void** vtable;

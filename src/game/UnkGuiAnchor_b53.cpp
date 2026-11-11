@@ -2,6 +2,7 @@
 // corners of a GUI item. Its types are repeated here as they are defined there. Names and layouts are
 // placeholders.
 #include "base/math/UnkSegment2D.h"
+#include "base/tunable/CTunable.h"
 #include "types.h"
 
 // From src/game/UnkGuiAnchor.cpp (the same definitions).
@@ -30,8 +31,6 @@ struct UnkGuiItemState {
 };
 
 // The screen's two aspect factors.
-f32 fn_7100132ff0();
-f32 fn_7100132fe0();
 
 // As fn_71011f61bc: a position scaled by the state's scale and rotated by its angle.
 static inline UnkGuiPos Transform_b53(const UnkGuiItemState* state, const UnkGuiPos& pos) {
@@ -62,4 +61,3 @@ void fn_71011f6624(const UnkGuiItemState* state, UnkGuiPos* corners) {
         corners[i] = UnkGuiPos(p.x + o.x, p.y + o.y);
     }
 }
-

@@ -11,9 +11,8 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/navmesh/CFixedDynamicSmartLinkRule.h"
 #include "types.h"
-
-void fn_710026ead0(void* self);
 
 namespace navmesh {
 struct UnkNavRuleValue_A1_b75;
@@ -22,7 +21,6 @@ struct UnkNavRuleValues_A1_b75;
 
 // The array's reserve, copy constructor and copy assignment.
 struct UnkSmartLinkEntryArray;  // the array as CFixedDynamicSmartLinkRule_PushBack.cpp names it
-void fn_7100272474(UnkSmartLinkEntryArray* self, u32 capacity);
 void fn_71002726e8(navmesh::UnkNavRuleValues_A1_b75* self, const navmesh::UnkNavRuleValues_A1_b75* other);
 // Spelled as fn_7100272bbc.cpp declares it (one signature per symbol).
 using UnkAssignedArray = navmesh::UnkNavRuleValues_A1_b75;

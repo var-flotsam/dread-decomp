@@ -4,6 +4,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/math/CVector.h"
+#include "game/CBombMovement.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
@@ -36,7 +37,6 @@ struct UnkLauncherList_ovb0123 {
     u32 count;
 };
 struct UnkFanBombList_ovb0122;
-UnkFanBombList_ovb0122* fn_7100aa9ecc();
 
 static inline UnkLauncherList_ovb0123* List() {
     return reinterpret_cast<UnkLauncherList_ovb0123*>(fn_7100aa9ecc());

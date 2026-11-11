@@ -2,12 +2,12 @@
 // object at +0x58 handed back to the render manager (fn_71002199d8), the counted resource at +0x60
 // released, then the light base destructor (fn_71008ef04c). Names and layouts are placeholders.
 #include "base/UnkCountedResource.h"
+#include "game/CBaseLightComponent.h"
 #include "game/UnkRenderManager.h"
 #include "types.h"
 
 extern char g_unk_7101a80518[];  // the component's vtable
 struct UnkLightBaseB47;
-void fn_71008ef04c(UnkLightBaseB47* self);
 
 struct UnkSpotLightObjectB47 {
     void** vtable;

@@ -9,8 +9,10 @@
 #include "base/UnkMatrix44.h"
 #include "base/UnkVector.h"
 #include "base/math/CVector.h"
+#include "game/CCharacterMovement.h"
 #include "game/UnkActor.h"
 #include "game/UnkNavMeshManager.h"
+#include "game/UnkTU357.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -275,15 +277,10 @@ struct UnkStruct_7100286798;  // the query as src/game_lo/fn_7100286798.cpp name
 struct UnkActor_7100286798;
 struct UnkStruct_7100286624;  // the query as src/game_lo/fn_7100286624.cpp names it
 
-void fn_710028659c(UnkNavQuery* self);
-void fn_7100286798(UnkStruct_7100286798* self, UnkActor_7100286798* actor);
-void fn_7100286624(UnkStruct_7100286624* self);
 void fn_7100286920(UnkNavQuery* self, const CVector2D* point, u16 cell, u8 side);
 void fn_7100286964(UnkNavQuery* self, const CVector2D* start, u16 cell, UnkNavMeshHits* hits);
 bool fn_7100ebfa6c(UnkNavMeshManager* self, UnkNavQuery* query, void* path);
 bool fn_7101109e8c(UnkAIComponent* self, UnkNavMeshHit* side);
-bool fn_7100979ef0(void* tracked);
-UnkAIReach fn_7100977b90(void* tracked);
 
 // The component's handlers the query calls back.
 void fn_7100708034();

@@ -20,6 +20,8 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSceneObject.h"
+#include "game/UnkTU127.h"
+#include "game/UnkTU2566.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -329,15 +331,11 @@ struct UnkEntryList_p {
 // As src/game/CMinimapManager/fn_7100ea5c40.cpp and src/game_aca57c/fn_7100e9bf60.cpp declare them.
 struct UnkRecord;
 struct UnkRecordBuckets;
-UnkRecord** fn_7100eb3814(UnkRecordBuckets* set, u32 bucket);
 void fn_7100ea5c40(char* set, UnkPoolIter* it);
 struct UnkRecord118;
-void fn_7100ea7034(UnkRecord118* self);
 
 // As src/game/CMinimapManager/CTunableMinimapManager_KeyedFind_b55.cpp and the same unit's other batch declare them.
-void fn_7100ea5d7c(char* list, void* entry);
 struct UnkMmOwner_b0199;
-void fn_7100ea585c(UnkMmOwner_b0199* self);
 
 struct UnkMinimapOwner_p {
     u8 unk_0x0[0xd64210];
@@ -502,8 +500,6 @@ struct UnkStrPair_0x10 {
 void fn_710008d2ec(UnkStrPair_0x10* self, const base::global::CFilePathStrId* path);
 extern UnkRegistry_0x70* g_unk_7101d4b5a0;
 void fn_71006cae2c(UnkRenderPool*, const CFilePathStrId&, UnkModel**, base::global::CStrId*);
-void fn_71001436a0(UnkModel* model, u32 flag);
-void fn_710014364c(UnkModel* model, u32 flag);
 struct UnkModel_ovb0032;
 void fn_7100143578(UnkModel_ovb0032* model, const UnkVec3f* v);
 

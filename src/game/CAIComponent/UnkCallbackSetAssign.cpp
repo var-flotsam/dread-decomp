@@ -3,12 +3,12 @@
 // truncates the array to nothing, reserves the source's capacity and pushes a copy of each source
 // element, through this type's own Truncate, Reserve and PushBack. Names are placeholders.
 #include "game/UnkCallbackSetVector.h"
+#include "game/UnkTU2702.h"
 
 struct UnkEntryVector;
 struct UnkEntry;
 
 void fn_71011146c0(UnkCallbackSetVector* v, u32 size);
-void fn_7101114588(UnkEntryVector* v, const UnkEntry* value);
 
 UnkCallbackSetVector* fn_71011142ec(UnkCallbackSetVector* self, const UnkCallbackSetVector* other) {
     if (self != other) {

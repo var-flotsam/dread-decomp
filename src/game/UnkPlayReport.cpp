@@ -13,6 +13,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -102,7 +103,6 @@ static inline const UnkQualifiedId& Qid(UnkPropertyEx<>& item) {
 // The string the profile id is read into (base::global::CRntString's layout, built with a reserved
 // size and destroyed out of line).
 struct UnkString_7100fc4b34;
-void fn_710007eba0(UnkString_7100fc4b34* self, u32 size);
 bool fn_7100ec50e4(CBlackboard::CSection* section, const void* name, UnkString_7100fc4b34* out);
 struct UnkReportString {
     union {

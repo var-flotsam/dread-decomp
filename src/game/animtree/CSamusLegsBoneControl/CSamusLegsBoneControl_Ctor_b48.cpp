@@ -1,10 +1,10 @@
 // animtree::CSamusLegsBoneControl unit (tools/tu_map.py): the constructor: the base (fn_71002e3b24),
 // this class's vtable (g_unk_7101a22128), cleared state, an index of -1, and the node registration
 // fn_7100023854 last. Names and layouts are placeholders.
+#include "base/core/CBaseObject.h"
 #include "types.h"
 
 struct UnkNode;
-void fn_7100023854(UnkNode*);
 
 extern char g_unk_7101a22128[];
 

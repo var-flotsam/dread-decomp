@@ -6,7 +6,11 @@
 // sound handles (+0xad8..+0xaf8) that still refers to it is emptied (fn_71011815a8, and
 // fn_7101181664 for the listener base at +0xad0).
 #include "base/global/CFilePathStrId.h"
+#include "base/snd/CSoundSystem.h"
 #include "base/snd/UnkSound.h"
+#include "game/CActorComponent.h"
+#include "game/CCharClassBaseTriggerComponent.h"
+#include "game/UnkTU101.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -18,10 +22,6 @@ struct UnkLightingComponent3;
 struct UnkSteamJetComponent;
 struct UnkSteamJetArg;
 extern UnkSoundMgr* g_unk_7101d4d820;
-void fn_7100108094(UnkSoundMgr* self, UnkPathNode* node);  // releases a path
-void fn_710010808c(UnkSoundMgr* self, UnkPathNode* node);  // takes a path
-void fn_710024f910(UnkLightingComponent3* self);
-bool fn_7100a46e00(UnkSteamJetComponent*, UnkSteamJetArg*);
 
 struct UnkAreaSoundComponent_ovb0062 {
     u8 unk_0x0[0xb08];
@@ -88,7 +88,6 @@ void fn_7101181664(u8* listener, UnkSound* sound) {
 }
 
 struct UnkSoundObject_b50;
-void fn_7100106024(UnkSoundObject_b50*, const void*);
 void fn_71007181b8(void* self);
 extern char g_unk_7101cb48a0[];  // CAreaSoundComponent's vtables
 

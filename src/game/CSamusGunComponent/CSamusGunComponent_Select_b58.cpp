@@ -8,6 +8,7 @@
 #include "base/global/CName.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CSamusGunComponent.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -18,7 +19,6 @@ u64 fn_7100859798(UnkEnergyGun_b52* self);
 
 struct UnkSamusGun_b58;
 u64 fn_710085961c(UnkSamusGun_b58* self);
-void fn_7100859938(UnkSamusGun_b58* self);
 
 struct UnkSamusGunOwner_b58 {
     u8 pad_0x0[0x220];

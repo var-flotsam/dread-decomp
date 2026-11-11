@@ -3,6 +3,7 @@
 // to destroy), destroys it (vtables 0x7101a4d898 and 0x7101a4d8b8), then the members at +0x14768
 // (fn_710059688c) and +0x146e0 (fn_7100594370) and the base (fn_7100369380). Names are placeholders.
 #include "base/UnkNodeOwner.h"
+#include "game/CBehaviorTreeAIComponent.h"
 #include "types.h"
 
 extern void* g_unk_7101a4d0c8[];
@@ -10,7 +11,6 @@ extern void* g_unk_7101a4d898[];
 extern void* g_unk_7101a4d8b8[];
 char* fn_710059688c(char* self);
 void fn_7100594370(char* self);
-void fn_7100369380(void*);  // the base's destructor
 
 __attribute__((always_inline)) inline void UnkDestroyNothing_A3_b69(UnkListNode<0x10>*) {}
 

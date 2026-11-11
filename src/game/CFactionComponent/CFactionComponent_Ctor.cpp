@@ -4,13 +4,13 @@
 #include <new>
 
 #include "base/global/CRntString.h"
+#include "game/CComponent.h"
 #include "types.h"
 
 using base::global::CRntString;
 
 extern char g_unk_7101cb2ee0[];  // CFactionComponent's vtable
 struct UnkStateObject;
-void fn_71010c4148(UnkStateObject* self);  // the component base constructor
 
 struct UnkFactionComponent {
     char* vtable;

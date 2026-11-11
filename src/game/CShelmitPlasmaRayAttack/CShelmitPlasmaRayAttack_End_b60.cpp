@@ -9,6 +9,7 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU285.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -19,7 +20,6 @@ extern UnkPlasmaRayKey_b60a4 g_unk_710164a700;  // reached through the GOT
 
 // As src/game/UnkUnit285/UnkUnit285_UpdateActive_b46.cpp defines it.
 struct UnkUnit285_b46a1;
-bool fn_71002084b4(UnkUnit285_b46a1* self);
 // As src/game/behaviortree/CParticleEnableEmission/CParticleEnableEmission_Start_b49.cpp declares it.
 void fn_7100146dac(UnkSwitchObject* self, bool enable);
 // As src/game/CAbilityEnergyWave/fn_7100300bd0.cpp declares them.

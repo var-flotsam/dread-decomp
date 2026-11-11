@@ -4,12 +4,18 @@
 #include "../../../lib/lua/lauxlib.h"
 #include "base/UnkVector.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CCharClassAIComponent.h"
+#include "game/CDroppableLifeComponent.h"
+#include "game/CLifeComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkManager_71726af468.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "../../game_s7/UnkPropBagS7.h"
+#include "game/UnkTU1370.h"
+#include "game/UnkTU2677.h"
+#include "game/UnkTU2730.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -18,8 +24,6 @@ using base::global::UnkStringPool;
 using base::global::UnkStringData;
 using base::reflection::UnkReflValue;
 using unk_prop_bag::UnkPropBag;
-
-int fn_71010c0b40(lua_State* L, const char* fmt, ...);
 
 s32 fn_710108ea80(lua_State* L) {
     UnkPropBag bag;
@@ -35,20 +39,14 @@ s32 fn_710108ea80(lua_State* L) {
 struct UnkStruct_71008c0c74;
 struct UnkBase_71003cc474;
 struct UnkCharacterLife_b0050;
-void fn_71008c0c74(UnkStruct_71008c0c74* self);
-void fn_71008c1558(UnkBase_71003cc474* self);
 
-bool fn_7101196fd8(void*);
 bool fn_7101161088(void*);
-bool fn_7101160408(UnkCharacterLife_b0050* self);
-s32 fn_7100413fe0(void*);
 bool fn_7100da9254(UnkManager_71726af468* self);
 extern void* g_unk_7101d47330;
 
 struct UnkEntity_b0165;
 void* fn_7100362248(UnkEntity_b0165* entity);
 void* fn_710077368c(UnkEntity_b0165* entity);
-void* fn_71007bb940(UnkEntity_b0165* entity);
 void* fn_7100ba4680(UnkEntity_b0165* entity);
 void* fn_710031caf8(UnkEntity_b0165* entity);
 

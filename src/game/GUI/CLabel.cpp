@@ -4,11 +4,18 @@
 // at 0xfb, the viewport's +0x113, marks a pending update, and the view at +0x178 whose rectangle
 // fn_71001c36c0 applies).
 // Holds fn_71011ee5a8.
+#include "base/global/timeline/CEvent.h"
 #include "base/math/CVector.h"
 #include "engine/scene/UnkToggle.h"
+#include "game/GUI/CLabel.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkGuiFrames.h"
+#include "game/UnkTU135.h"
+#include "game/UnkTU254.h"
+#include "game/UnkTU257.h"
+#include "game/UnkTU2733.h"
+#include "game/UnkTU287.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -20,11 +27,9 @@ struct UnkMinimapView {
     base::math::CVector2D size;
 };
 void fn_71001c36c0(UnkMinimapView* view, const base::math::CVector2D* pos, const base::math::CVector2D* size);
-void fn_71001c3770(UnkMinimapView* view, bool value);
 
 struct UnkStruct_710020a5a0;
 void fn_710020a5a0(UnkStruct_710020a5a0* self, const base::math::CVector2D* scale);
-void fn_710020ad90(void* self, s32 value);
 
 // A viewport an entry shows (laid out as src/game/CMinimapManager.cpp's UnkMinimapViewport).
 struct UnkLabelViewport {
@@ -95,7 +100,6 @@ struct UnkLabel {
 };
 static_assert(__builtin_offsetof(UnkLabel, groups) == 0x2d0, "UnkLabel placeholder layout");
 
-void fn_71001c4418(void* self, const s32* value);
 UnkLabelSource* fn_71011b9fac(UnkGuiRoot* root, const void* key);
 void fn_71011baa38(UnkGuiRoot* root, char* source, UnkLabelViewport** out, s32 frame);
 UnkLabelVec2 fn_7100b82b18(const UnkLabelSource* source, s32 frame);
@@ -200,9 +204,7 @@ using base::global::UnkStringPool;
 // A text of 32-bit characters (game/UnkGuiLabel.h's UnkGuiText): the characters at +0x8, null when
 // empty, and their count at +0x10.
 void fn_7100066a50(void* self, const char32_t* text);
-void fn_7100066e44(void* text);
 struct UnkWideStr_0x20;
-void fn_7100066b38(UnkWideStr_0x20* self, const char* str);
 struct UnkLayoutText {
     u8 unk_0x0[0x8];
     const char32_t* chars;
@@ -313,7 +315,6 @@ struct UnkLabelTextObject {
     void* font;
 };
 void fn_71011bab10(UnkGuiRoot* root, UnkLabelTextObject** out, s32 frame);
-void fn_71001c3ec0(UnkLabelTextNode* node, void* font_data);
 
 // A run (0x70 bytes; CLabel.cpp's UnkLabelItem).
 struct UnkLabelRun {
@@ -402,13 +403,11 @@ struct UnkLabelStateWidth {
     f32 width;
 };
 
-void fn_71011ec314(UnkLabelLayout* self);
 // The font the root has for an id, and its name.
 void* fn_71011b882c(UnkGuiRoot* root, const CStrId* id);
 CRntString fn_71011b8790(UnkGuiRoot* root, const CStrId* id);
 // A character's advance and height in a font.
 u32 fn_7100147960(void* font, u32 c);
-u32 fn_71001479dc(void* font, u32 c);
 // Scales a size into the frame's units.
 // A font glyph's metrics (the advance at +0x8); false when the font has no such glyph.
 struct UnkGlyphMetrics {
@@ -421,8 +420,6 @@ bool fn_71011b89dc(UnkGuiRoot* root, u8 font, const CStrId* font_id, u32 code, U
 // The language singleton (src/game/UnkLanguage.cpp) and its current language.
 struct UnkLanguage;
 extern UnkLanguage* g_unk_7101d47358;
-void fn_710119c020(UnkLanguage* language);
-s32 fn_710119c9f4(UnkLanguage* language);
 static inline UnkLanguage* LabelLanguage() {
     UnkLanguage* language = g_unk_7101d47358;
     if (!language) {

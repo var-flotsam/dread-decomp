@@ -3,6 +3,8 @@
 // fn_7100df5630 asks of the player. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CAbilityGhostAura.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -11,9 +13,6 @@ struct UnkAbility {
     virtual const CClass* vf_0x0();
 };
 struct UnkAbilitySet;
-UnkAbility* fn_71003013ec(UnkAbilitySet* set, u64 id);
-u64 fn_7100308c74();
-u32 fn_7100309568(UnkAbility* ability);
 
 struct UnkMovementOwner_b50a5 {
     u8 unk_0x0[0x2e0];

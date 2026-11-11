@@ -8,6 +8,8 @@
 #include "base/UnkMatrix44.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
+#include "game/CEnemyMovement.h"
+#include "game/UnkTU2677.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -78,7 +80,6 @@ extern UnkSuffixHolder_b0269* g_unk_7172a06300 __attribute__((visibility("hidden
 
 s32 fn_71010c0bb0(lua_State* L, const char* name);
 void fn_7100fbc4e0(lua_State* L, void* arg);
-s32 fn_71010c0d80(lua_State* L, s32 count, char* out, u32 out_size, void* a, void* b);
 
 void fn_71011051fc(UnkScriptAI_b0269* self) {
     if (UnkHandler_b0269* handler = self->handler)
@@ -101,7 +102,6 @@ void fn_71011051fc(UnkScriptAI_b0269* self) {
 extern void* g_unk_7101a24db8[];
 
 struct UnkEffectSink;
-void fn_71010c7e6c(UnkEffectSink* sink, void* params, u32 flags);
 
 struct UnkEffectObject_b0269 {
     void** vtable;

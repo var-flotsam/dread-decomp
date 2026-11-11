@@ -4,6 +4,7 @@
 // +0x50) up to the class, as src/game/CChozoWarriorXGlaiveSpinAttack/UnkAttackTrackLink_b54.cpp, and hands the
 // owner's navigation object (+0x298) a kind-5 parameter block (game_s2/UnkParams.h, fn_71006f4b0c with 1).
 // Names and layouts are placeholders.
+#include "game/CSabotoruTurnInDoorAttack.h"
 #include "game_s2/UnkParams.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -37,8 +38,6 @@ struct UnkSabotoruAttack_A3_b73 {
     UnkWeakHandle* handle;             // 0x50
     UnkActorTarget* anim;              // 0x58
 };
-
-void fn_710067342c(UnkSabotoruAttack_A3_b73* self, bool value);
 
 void fn_71006732b4(UnkSabotoruAttack_A3_b73* self) {
     fn_71003608ac(reinterpret_cast<UnkAttackBase*>(self));

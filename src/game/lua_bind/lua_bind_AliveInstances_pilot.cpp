@@ -2,14 +2,13 @@
 // (fn_7100deb830) and pushes the integer answer. Names are placeholders.
 #include "base/global/CStrId.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2677.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct lua_State;
 
-s32 fn_71010c0270(lua_State* L, const char* fmt, ...);
-int fn_71010c0b40(lua_State* L, const char* fmt, ...);
 s32 fn_7100deb830(UnkGameManager* manager, const CStrId& id);
 
 s32 fn_710107ee80(lua_State* L) {

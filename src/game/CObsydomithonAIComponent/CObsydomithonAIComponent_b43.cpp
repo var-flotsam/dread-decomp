@@ -2,12 +2,12 @@
 // request after the base attack's (fn_7101105c90) and clears the request's flag at +0x2a when its
 // source (+0x98) carries the id the unit keeps in g_unk_71726f9440 (at the source's +0x20). Names and
 // layouts are placeholders.
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 // Declared as src/game/CKraidAIComponent/CKraidAIComponent_2.cpp does.
 struct UnkKraidAI2;
 struct UnkKraidRequest;
-void fn_7101105c90(UnkKraidAI2* self, void* arg, UnkKraidRequest* request);
 
 extern __attribute__((visibility("hidden"))) u64 g_unk_71726f9440;
 

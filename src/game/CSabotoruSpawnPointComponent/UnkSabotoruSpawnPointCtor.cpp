@@ -5,9 +5,9 @@
 // src/game/CAutsharpSpawnPointComponent/CAutsharpSpawnPointComponent.cpp. Names and layouts are
 // placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU2704.h"
 #include "types.h"
 
-void fn_71011258e4(void* self);
 extern void* g_unk_7101a8cc00[];
 extern void* g_unk_7101a20998[];
 extern void* g_unk_7101a33fa0[];

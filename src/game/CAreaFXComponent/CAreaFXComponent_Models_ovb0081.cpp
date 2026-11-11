@@ -10,8 +10,11 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CComponent.h"
 #include "game/UnkComponent.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU127.h"
+#include "game/UnkTU253.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -25,11 +28,7 @@ struct UnkModelData;
 void fn_71009f194c(char*);
 void fn_7100219e58(UnkRenderManager*, u64, bool);
 void fn_7100219e18(UnkRenderManager*, UnkModel*, bool);
-void fn_71001436a0(UnkModel* model, u32 flag);
-void fn_710014364c(UnkModel* model, u32 flag);
 void fn_71006cae2c(UnkRenderPool*, const CFilePathStrId&, UnkModel**, base::global::CStrId*);
-void fn_71010c422c(UnkMorphBallLauncher_b57*);
-void fn_71001c0968(UnkModelData* data, u32 flag);
 UnkMatrix44 fn_71000791a8(const UnkVec3f& translation, const UnkVec3f& angle, const UnkVec3f& scale);
 void fn_7100219dd0(UnkRenderManager* self, u64 model, const UnkMatrix44* m, u32 a, u32 b, u64* instance, u32 c);
 

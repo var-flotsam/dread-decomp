@@ -12,6 +12,9 @@
 #include "base/UnkVector.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
+#include "game/UnkTU109.h"
+#include "game/logic/collision/CShape.h"
+#include "game/malloc.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -334,7 +337,6 @@ UnkSegment2D fn_710012436c(const UnkPolygonCollection2D* polygons, u32 handle);
 bool fn_7100129910(const void* b, const UnkShape8Geometry* a, UnkContactBuffer<4>* out, bool flag);
 struct UnkPool_0x48;
 struct UnkStruct_0x48;
-UnkStruct_0x48* fn_710012431c(UnkPool_0x48* pool, u32 handle);
 
 // The type-8 shape against a leaf's edge: every point found is reported to the query's sink (with
 // no sink, the first stops the walk). False when the walk is to stop.
@@ -519,7 +521,6 @@ static inline UnkContact SweepEdges(UnkPolygonCollection2D* self, const Shape* s
     return result;
 }
 
-bool fn_710012f260(const UnkCircle2D* a, void* x5, const void* b, UnkContactPoint* out);
 bool fn_710012ce70(const UnkBox2D* box, const UnkVec2Result& step, const UnkSegment2D* seg, UnkContact2D* out);
 bool fn_710012f750(const UnkShape8Geometry* shape, const UnkVec2Result& step, const UnkSegment2D* seg,
                    UnkContactPoint* out);
@@ -562,7 +563,6 @@ UnkContact fn_7100d658e0(UnkPolygonCollection2D* self, const UnkShape8Geometry* 
 struct UnkTileOutlineList {
     u8 data[0x40];
 };
-void fn_7100123eb4(UnkTileOutlineList* self);
 
 struct UnkPolygonCollectionShapeView {
     char* vtable;
@@ -574,7 +574,6 @@ struct UnkPolygonCollectionShapeView {
 static_assert(__builtin_offsetof(UnkPolygonCollectionShapeView, field_0xf0) == 0xf0, "UnkPolygonCollectionShapeView layout");
 
 extern char g_unk_7101aa8b80[];  // the shape's vtable
-void fn_7100d6bfd8(void* self);  // the shape base's constructor
 
 // NON_MATCHING(minor): the same stores, paired and ordered differently (the original stores the
 // array pointer alone and the flag at +0xe8 among the array's fields). The behaviour is the same.

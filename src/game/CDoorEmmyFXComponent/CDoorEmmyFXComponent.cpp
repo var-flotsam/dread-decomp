@@ -2,13 +2,13 @@
 // fn_71010c4148, the vtable, a pair of floats (-1, 75) at +0x40, a link at +0x58 (owner and the callback
 // fn_71007b70d8), the member at +0x70 (fn_710002f4e4), cleared fields, then the class-entry pass of
 // base::core::CBaseObject (fn_7100023854). Names and layouts are placeholders.
+#include "base/core/CBaseObject.h"
+#include "game/CComponent.h"
 #include "types.h"
 
 struct UnkStateObject;
 struct UnkNode;
-void fn_71010c4148(UnkStateObject* self);
 void fn_710002f4e4(void* self);
-void fn_7100023854(UnkNode* node);
 extern void* g_unk_7101a70870[];
 void fn_71007b70d8(void* owner);
 

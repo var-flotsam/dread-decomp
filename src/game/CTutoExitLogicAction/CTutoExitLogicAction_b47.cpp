@@ -3,6 +3,7 @@
 // handle takes its value and 2 after; the shape of CMagmaKraidScenarioControllerComponent_b45.cpp's
 // fn_710091793c) and switches the entity the handle names off too. Names and layouts are placeholders.
 #include "base/UnkRefHandle.h"
+#include "game/CTriggerLogicAction.h"
 #include "types.h"
 
 struct UnkEntityState;
@@ -34,8 +35,6 @@ struct UnkTutoExitAction_b47 {
     u32 pad_0x44;
     base::UnkRefHandle handle;
 };
-
-void fn_7100a55ac8(UnkTutoExitAction_b47* self);
 
 void fn_7100a597f4(UnkTutoExitAction_b47* self) {
     fn_7100a55ac8(self);

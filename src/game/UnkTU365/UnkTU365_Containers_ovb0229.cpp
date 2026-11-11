@@ -12,6 +12,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkObject_0x100.h"
+#include "game/UnkTU109.h"
 #include "types.h"
 
 // ---- The record array copy ----
@@ -270,7 +271,6 @@ u32 fn_7100297250(UnkNavGenerator_ovb0229* self, void* arg, UnkNavRegions_ovb022
 // the copy constructor of an object made of two
 // copied sub-objects (fn_7100123f58) at +0 and +0xa8, a third at +0x118, and three reflected linked lists
 // (+0x48, +0x78, +0xe8) whose nodes are copied one by one. Names and layouts are placeholders.
-void fn_7100123f58(void* self, void* other);
 extern char g_unk_7101a20f48[];
 extern char g_unk_7101a20f68[];
 extern char g_unk_7101a20f88[];
@@ -438,4 +438,3 @@ void fn_71002a9710(UnkShape_ovb0229* self, UnkShape_ovb0229* other) {
         self->third.PushBackCopy(*n);
     fn_7100123f58(self->field_0x118, other->field_0x118);
 }
-

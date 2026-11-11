@@ -6,8 +6,11 @@
 #include "base/math/UnkZeroVector3.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCharClassLavaPoolComponent.h"
+#include "game/CModelUpdaterComponent.h"
 #include "game/UnkGameManager.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU2550.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -19,7 +22,6 @@ using base::reflection::UnkReflObject;
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkGrappleAnswer_b50;
-void fn_710117364c(void* target, const u64* id, UnkGrappleAnswer_b50* out);
 struct UnkMagmaArea_b50;
 bool fn_7100a47e00(UnkMagmaArea_b50*, const CVector2D*);
 
@@ -52,7 +54,6 @@ struct UnkIceMissileMovement_ovb0122 {
 
 // As src/game/CVulkranMagmaBallMovementComponent/CVulkranMagmaBallMovementComponent_b50.cpp declares it.
 struct UnkMagmaList_b50;
-UnkMagmaList_b50* fn_71008fbdb4();
 void fn_7100aba584(UnkIceMissileMovement_ovb0122* self);
 
 // With the player (fn_7100dec788), asks its component at +0x228 for the position under the id
@@ -85,7 +86,6 @@ void fn_7100ab46ac(UnkIceMissileMovement_ovb0122* self) {
 // As src/engine/HostArguments.cpp declares them.
 struct UnkGameObject_0x150;
 extern UnkGameObject_0x150* g_unk_7101d47370;
-void fn_7100dde0c8(UnkGameObject_0x150* self);
 
 struct UnkIceVec3_ovb0122 {
     u32 x, y, z;

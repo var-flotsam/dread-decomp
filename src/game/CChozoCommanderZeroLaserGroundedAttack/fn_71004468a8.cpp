@@ -3,6 +3,7 @@
 // the list at +0x78 (when the owner has a manager at +0x280), unregisters the counted reference at
 // 0xb8 and releases it.
 #include "base/global/CStrId.h"
+#include "game/CChozoCommanderGroundAttack.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkSwitchObject.h"
 #include "game_s2/UnkChozoCommanderAttack.h"
@@ -36,7 +37,6 @@ struct UnkSelf {
 };
 
 extern __attribute__((visibility("hidden"))) base::global::CStrId g_unk_71726c8da8;
-void fn_710042bb40(UnkSelf* self);
 void** fn_7100443d5c(void* list, u32 index);
 
 void fn_71004468a8(UnkSelf* self) {

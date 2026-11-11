@@ -8,13 +8,14 @@
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CEmmyWakeUpComponent.h"
+#include "game/UnkTU811.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 void fn_7100a55ac0(void* self, void* arg);
 
 struct UnkTutoHandle;
-void fn_7100565ef0(UnkTutoHandle* handle, UnkTutoHandle** slot);
 void fn_7100565d38(UnkTutoHandle* handle, UnkTutoHandle** slot);
 
 struct UnkRefl_fn_71005012bc;
@@ -23,7 +24,6 @@ base::reflection::UnkReflObject*
 base::reflection::refl_FindTyped<UnkRefl_fn_71005012bc>(void*);
 
 struct UnkCentralUnitProto;
-UnkCentralUnitProto* fn_71007d74b0(void* actor);
 
 void fn_7100a53778(void* self, void* arg);
 

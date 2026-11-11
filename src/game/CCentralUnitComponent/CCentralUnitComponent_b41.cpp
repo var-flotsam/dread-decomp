@@ -5,6 +5,7 @@
 #include "base/math/CVector4D.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU39.h"
 #include "types.h"
 
 struct UnkSpawnGroupKey;
@@ -13,7 +14,6 @@ void fn_7100de9730(UnkGameManager* manager, UnkSpawnGroupKey* key, void* object)
 void fn_710021a0b4(UnkRenderManager* self, const u64* hash, const base::math::CVector4D* value);
 extern const base::math::CVector4D g_unk_71016477b4;
 extern const u64 g_unk_710164aa90;
-void fn_710002fa90(void*);
 
 struct UnkSelf_cu41 {
     u8 pad_0x0[0x7f8];
@@ -22,7 +22,6 @@ struct UnkSelf_cu41 {
 };
 
 void fn_710024fad0(UnkSelf_cu41* self);
-void fn_7100030ce0(void*);
 
 void fn_7100770354(UnkSelf_cu41* self) {
     fn_710024fad0(self);

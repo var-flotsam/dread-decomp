@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CModelUpdaterComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -31,7 +32,6 @@ extern char g_unk_710164b4f8[];
 extern char g_unk_710164b500[];
 
 void fn_710112b7c4(UnkAutsharpSpawnPoint_ovb0023* self);
-void fn_7101172764(UnkFlagTarget* target, const char* name);
 
 void fn_7100a14190(UnkAutsharpSpawnPoint_ovb0023* self) {
     fn_710112b7c4(self);

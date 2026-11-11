@@ -3,6 +3,7 @@
 // stored object asks for it, snapped to the owner's own x or y. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/math/UnkSegment2D.h"
+#include "game/CCharacterMovement.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkObject_0x100.h"
@@ -46,7 +47,6 @@ struct UnkShape {
     UnkShapeInner_o0309* field_0x158;
 };
 struct UnkFlagged;
-UnkShape* fn_7100976588(UnkFlagged* flagged);
 
 UnkVec3f fn_7100973658(UnkUnit1444_o0309* self) {
     UnkTempObject_o0309 stored;

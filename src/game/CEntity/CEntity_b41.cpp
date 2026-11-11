@@ -4,6 +4,7 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CModelUpdaterComponent.h"
 #include "game/UnkRenderManager.h"
 #include "types.h"
 
@@ -32,7 +33,6 @@ UnkReflValue fn_7100d823f4(void*, char* obj) {
 // else what fn_7100729978 says of the object fn_7100d7c214 finds for it; else whether the render
 // manager's test (fn_7100219588) passes for the entity's position (+0x44, +0x54, +0x64).
 
-bool fn_7101173964(void* self);
 void* fn_7100d7c214(char* self);
 bool fn_7100729978(void* self);
 bool fn_7100219588(UnkRenderManager* self, const void* pos, u32 a, u32 b);

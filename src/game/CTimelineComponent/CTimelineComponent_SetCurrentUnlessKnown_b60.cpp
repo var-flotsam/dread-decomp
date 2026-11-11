@@ -3,12 +3,12 @@
 // known (fn_7100a2be94), sets the id at +0x50 to the all-flags mask. Names and layouts are
 // placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/UnkTU1134.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 struct UnkObj_710117af10;
 struct UnkCls_710117af10;
-UnkCls_710117af10** fn_710070d7f8(UnkObj_710117af10*);
 
 struct UnkTimelineClass_b60 {
     u8 unk_0x0[0x30];

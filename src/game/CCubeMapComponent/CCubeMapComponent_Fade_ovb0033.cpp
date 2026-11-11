@@ -18,6 +18,7 @@
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkComponent.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU273.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -29,7 +30,6 @@ using base::reflection::UnkReflObject;
 using base::reflection::UnkReflValue;
 
 struct UnkCubeMapArg;
-void fn_71001f3964(void* target, const UnkCubeMapArg* value);
 
 extern void* g_unk_7101a6fdc8[];
 

@@ -3,6 +3,13 @@
 // current state and applies what it asked for, at most ten times, while marked busy) and requests (the
 // template of src/game/UnkStateMachineSet_b60.cpp). A machine far into its owner (+0x14978) reads its states
 // array from the owner (UnkSmStatesAt_A1_b64), as the original does. Names are placeholders.
+#include "game/CAbility.h"
+#include "game/CAbilitySpeedBooster.h"
+#include "game/CChozoWarriorXUltimateGrabAttack.h"
+#include "game/CGunComponent.h"
+#include "game/CLifeComponent.h"
+#include "game/CSamusGunComponent.h"
+#include "game/UnkTU1501.h"
 #include "types.h"
 #include <math.h>
 #include "base/UnkVector.h"
@@ -360,7 +367,6 @@ void fn_710032f810(UnkSmShinespark_A1_b64* self, f32 dt) {
 // base state 6, a timeline key by the owner's flag; then by its own state, state 3 is requested once the
 // owner's mover stops, or the next step runs while it still moves.
 struct UnkUnit435Self;
-void fn_710033cd50(UnkUnit435Self*, u32);
 extern const u64 g_unk_7101648ff8;
 extern const u64 g_unk_7101649000;
 
@@ -758,9 +764,7 @@ void fn_7100489588(UnkSmGrab_A1_b64<0x80>*, UnkSmGrabMsg_A1_b64* msg);
 void fn_7100489850(UnkSmGrab_A1_b64<0x80>*, UnkSmGrabMsg_A1_b64* msg);
 struct UnkAIComponent;
 struct UnkSelf;
-void fn_7100489f3c(UnkSelf* self);
 void fn_710048fc80(UnkAIComponent* component);
-void fn_7101160348(void* object, f32 duration);
 extern UnkTunable g_unk_71726ce7d0;
 
 struct UnkSmWarriorAI_A1_b64 {
@@ -862,7 +866,6 @@ struct UnkSamusGun_b58;
 const base::global::CStrId& fn_7100840844(UnkSamusGunComponent*);
 using base::global::CStrId;
 void fn_710083f32c(UnkSamusGunComponent* self, const CStrId* name, bool a, bool b, bool c);
-void fn_7100859938(UnkSamusGun_b58* self);
 extern const base::global::CStrId g_unk_71726af978 __attribute__((visibility("hidden")));
 
 struct UnkSmGunClass_A1_b64 {
@@ -913,9 +916,6 @@ struct UnkSmLockon_A1_b64 {
     UnkSmLockonEntry_A1_b64 entries[1];
 };
 
-void fn_71002f9f18(UnkSmLockon_A1_b64*, s32 kind);  // src/game/CAbility/CAbility_Timeline_b60.cpp
-void fn_71009eaa88(void*);
-
 // `kind` (w1) reaches the ability's enter (fn_71002f9f18) untouched in the original (tools/forwarded_args.py).
 void fn_7100319cb8(UnkSmLockon_A1_b64* self, s32 kind) {
     fn_71002f9f18(self, kind);
@@ -936,7 +936,6 @@ void fn_7100319cb8(UnkSmLockon_A1_b64* self, s32 kind) {
 // The same unit: unless the gun component holds the lock-on gun, state 1; otherwise state 1 when its
 // controller (a CLockOnMissileGun) is not busy, then the next step.
 bool fn_710084088c(UnkSamusGunComponent*);
-void* fn_710083cd30(UnkComponent*);
 void fn_710031c208(UnkSmLockon_A1_b64*);
 
 void fn_710031c530(UnkSmLockon_A1_b64* self) {
@@ -968,7 +967,6 @@ struct UnkSmLockonActor_A1_b64 {
     UnkSmLockonAI_A1_b64* ai;
 };
 
-void fn_71002fa068(UnkSmLockon_A1_b64*);
 void fn_710031a13c(UnkSmLockon_A1_b64*, u64, bool);
 void fn_7100725610(UnkSmLockonAI_A1_b64*, UnkWeakTarget*);
 

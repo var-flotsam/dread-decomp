@@ -1,6 +1,7 @@
 // A handler taking reflected values and returning a status record {0, 0, 2, 1}: as
 // fn_710105d328 (src/game/SLogicPathNode/fn_710105d328.cpp), it calls fn_7100122b2c with a value and an
 // optional pointer and marks the owner dirty (another owner layout): fn_710011e1e8.
+#include "game/UnkTU108.h"
 #include "types.h"
 
 struct UnkValueType {
@@ -64,7 +65,6 @@ struct UnkInsertOwner {
     bool dirty;
 };
 
-void fn_7100122b2c(UnkInsertTarget* target, const UnkArgObj* obj, u32 value);
 UnkSetStatus fn_710011e1e8(void* self, UnkValueHolder* holder, UnkValueArg* const* arg) {
     UnkInsertOwner* owner = reinterpret_cast<UnkInsertOwner*>(holder->owner);
     const UnkValueArg* args = *arg;

@@ -4,13 +4,13 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/CCharClassAttack.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 // Declared as src/game/CCharClassAttack/fn_71003641fc.cpp defines it.
 struct UnkStruct_71003641fc;
-void fn_71003641fc(UnkStruct_71003641fc* self);
 extern void* g_unk_7101a3de78[];
 
 struct UnkCooldownXBossAttackDef {

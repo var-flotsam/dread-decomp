@@ -2,13 +2,13 @@
 // functions as unit 116's (src/game/UnkTU116/UnkTU116_Switch_ovb0168.cpp) with this unit's layout
 // (the later members sit 0x58 bytes earlier) and callees. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU284.h"
+#include "game/UnkTU32.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkLinkTarget127_b66a1;
-bool fn_710002589c(void* link, UnkLinkTarget127_b66a1* target, u32 mode, void* extra);
-void fn_7100208004(void* obj, bool flag);
 
 struct UnkLinkSource133_ovb0168 {
     void** vtable;
@@ -59,8 +59,6 @@ struct UnkSonarModel_ovb0085;
 struct UnkWidget;
 struct UnkWidgetArg;
 void fn_710020716c(UnkWidget* self, UnkWidgetArg* a);
-void fn_71000255c4(void* member);
-void fn_7100025884(void* member, void* owner);
 
 struct UnkTaggedPart133_ovb0168 {
     u8 pad_0x0[0x362];

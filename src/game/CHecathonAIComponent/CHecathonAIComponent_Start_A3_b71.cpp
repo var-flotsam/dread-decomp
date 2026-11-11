@@ -7,7 +7,9 @@
 
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CHecathonPlanktonFXComponent.h"
 #include "game/UnkManager_71726af468.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 using base::reflection::UnkTunable;
@@ -15,7 +17,6 @@ using base::reflection::UnkTunable;
 extern UnkTunable g_unk_71726e8d00;
 
 // As src/game/CPoisonFlyAIComponent/CPoisonFlyAIComponent_Invoke.cpp declares it.
-void fn_71010ff2b8(char* self);
 
 void fn_71005ac994(void* set, void* value);  // removes a value from the set
 
@@ -27,7 +28,6 @@ template <>
 void base::reflection::refl_SendTypeId<UnkRefl_fn_71005aa108>(void*);
 
 struct UnkPlanktonFX_A3_b71;
-void fn_710080c5d4(UnkPlanktonFX_A3_b71* self, f32 value);
 
 struct UnkHecathonAI_A3_b71 {
     u8 pad_0x0[0x18];

@@ -4,6 +4,7 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU811.h"
 #include "types.h"
 
 extern void* g_unk_7101a46180[];
@@ -12,7 +13,6 @@ extern void* g_unk_7101a20998[];
 
 // As src/game/CEmmyCaveAIComponent/fn_71004f0428.cpp declares it.
 struct UnkComponent;
-void fn_710053f510(UnkComponent* self);
 
 struct UnkSancDtor_A3_b69;
 

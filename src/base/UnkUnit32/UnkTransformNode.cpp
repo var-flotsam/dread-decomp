@@ -4,6 +4,7 @@
 // slot at +0xc4 (-1 when detached; the parent counts the negative ones at +0xc8) and a flag at
 // +0xcc. It leaves its parent and detaches every child; fn_71000257e0 only leaves the parent (with
 // `reset`, after resetting its transform at +0x28 and updating it). Names and layouts are placeholders.
+#include "game/UnkTU32.h"
 #include "types.h"
 
 struct UnkTransformNode {
@@ -67,7 +68,6 @@ void fn_710002572c(void* member) {
 }
 
 // Resets the transform record at +0x28 (base/UnkInitRecord_0x5c.h's layout) and updates the node.
-void fn_7100025a98(void* record);
 bool fn_7100025bd0(UnkTransformNode* node);
 
 void fn_71000257e0(UnkTransformNode* self, bool reset) {

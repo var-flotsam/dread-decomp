@@ -3,13 +3,13 @@
 // (unk_7101a91170) and four string ids (+0x1b8 to +0x1d0) set to the empty id; the second also calls
 // the object's own vtable slot 3, as a tail call. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CCharClassUsableComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::global::UnkStringData;
 
 struct UnkShipRechargeDef;
-void fn_7100a7b494(UnkShipRechargeDef* self);
 extern char g_unk_7101a91170[];
 
 struct UnkElevatorUsableDef_ovb0072 {

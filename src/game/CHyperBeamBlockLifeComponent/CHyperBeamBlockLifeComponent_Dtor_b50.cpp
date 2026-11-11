@@ -5,15 +5,15 @@
 // owner of its counted link (fn_7100a2d4d0) and drops the link's reference; the handle at +0x388 is
 // released (fn_7100565ef0) and the slot cleared; then the base destructor fn_71008e05e8. Names and
 // layouts are placeholders.
+#include "game/CItemLifeComponent.h"
+#include "game/CTimelineComponent.h"
+#include "game/UnkTU811.h"
 #include "types.h"
 
 extern void* g_unk_7101a7ee28[];
 extern void* g_unk_7101a77000[];
 
 struct UnkTutoHandle;
-void fn_7100565ef0(UnkTutoHandle* handle, UnkTutoHandle** slot);
-void fn_7100a2d4d0(void* target, void* listener);
-void fn_71008e05e8(void* self);
 
 struct UnkBlockLink {
     virtual void vf_0x0();

@@ -4,9 +4,9 @@
 // a container at +0x30 set up by fn_710059c644, and cleared fields at +0xa0 and +0xb0. Names and
 // layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU852.h"
 #include "types.h"
 
-void fn_710059c644(u8* container, u32 a, u32 b, u32 c, u64 d);
 extern void* g_unk_7101a58cd8[];
 
 struct UnkUnit958Entry;

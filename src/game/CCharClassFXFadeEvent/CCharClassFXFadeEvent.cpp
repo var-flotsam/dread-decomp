@@ -1,9 +1,9 @@
 // A constructor in CCharClassFXFadeEvent's unit: the base constructor (fn_7100067ea4), the
 // vtable, a string id built from "" and the fade's fields (two floats of 1 and two cleared flags).
 // Names and the layout are placeholders.
+#include "base/global/timeline/CEvent.h"
+#include "game/UnkTU0.h"
 #include "types.h"
-
-void fn_71000003d4(void* self, const char* s, bool flag);
 
 struct UnkFXFadeEvent {
     void** vtable;
@@ -16,7 +16,6 @@ struct UnkFXFadeEvent {
     bool field_0x25;
 };
 
-void fn_7100067ea4(void* self);  // the base constructor
 extern void* g_unk_7101aa5aa0[];
 
 void fn_7100cbe13c(UnkFXFadeEvent* self) {

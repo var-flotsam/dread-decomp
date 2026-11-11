@@ -23,15 +23,18 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CActorComponent.h"
 #include "game/CBlackboard.h"
+#include "game/CCharClassBaseDamageTriggerComponent.h"
+#include "game/CCharClassBaseTriggerComponent.h"
+#include "game/CCharClassLiquidPoolComponent.h"
+#include "game/CLiquidSimulationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 struct UnkLiquidPool_b44a2;
 struct CFreezeRoomComponent;
-void fn_7100a46e78(CFreezeRoomComponent* self);
-void fn_7100900cf4(UnkLiquidPool_b44a2* self);
 
 struct UnkLiquidPoolOwner_ovb0075 {
     u8 pad_0x0[0x388];
@@ -339,8 +342,6 @@ struct UnkLiquidPoolDtor_ovb0075 {
 };
 static_assert(__builtin_offsetof(UnkLiquidPoolDtor_ovb0075, shared) == 0xc88, "layout");
 
-void fn_7100a45a84(UnkLiquidPoolDtor_ovb0075* self);
-
 void fn_7100900414(UnkLiquidPoolDtor_ovb0075* self) {
     self->vtable = &g_unk_7101a80ae8[2];
     if (self->owned) {
@@ -367,7 +368,6 @@ using base::reflection::UnkReflObject;
 
 struct UnkSteamJetComponent;
 struct UnkSteamJetArg;
-bool fn_7100a46e00(UnkSteamJetComponent* self, UnkSteamJetArg* arg);
 
 // A file-path id copied as CStrId's assignment, on the file-path pool.
 struct UnkLiquidPathId_ovb0075 {
@@ -452,8 +452,6 @@ struct UnkLiquidPoolEnter_ovb0075 {
     f32 SurfaceY() { return vf_0x180().y + vf_0x178().y * 0.5f; }
     inline void SetRatio(const f32* height, u32 a, bool b);
 };
-
-void fn_7100905d8c(void*, f32, u32, bool);
 
 // fn_7100901900 (CLiquidPool_SetLevelRatio_A5_b70.cpp), inlined here.
 inline void UnkLiquidPoolEnter_ovb0075::SetRatio(const f32* height, u32 a, bool b) {
@@ -550,9 +548,6 @@ void fn_7100901dd4(UnkLiquidPoolEnter_ovb0075* self, UnkLiquidPoolActor_ovb0075*
 struct UnkLiquidPoolLevel;
 struct UnkStruct_710024fa0c;
 struct UnkActivatable_b48;
-void fn_7100900928(UnkLiquidPoolLevel* self);
-void fn_710024fa0c(UnkStruct_710024fa0c*, bool);
-bool fn_710024fb2c(UnkActivatable_b48*);
 
 struct UnkLiquidPoolShape_ovb0075 {
     void** vtable;

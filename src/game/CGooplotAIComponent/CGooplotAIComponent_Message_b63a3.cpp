@@ -3,25 +3,23 @@
 // (fn_71008c0c74) with flags 0x800, or 0x40000 when the argument's +0x2f8 object passes
 // fn_710092b6f8, copies it (fn_71008c1090) and hands the copy to fn_710059bea4. Names and layouts
 // are placeholders.
+#include "game/CEnemyMovement.h"
+#include "game/CMeleeComponent.h"
+#include "game/UnkTU1370.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 struct UnkDaivoArg_b46a1;
 struct UnkDaivoAIComponent_b46a1;
-bool fn_7101108c9c(UnkDaivoAIComponent_b46a1* self, UnkDaivoArg_b46a1* arg);
-u32 fn_71010cc3a4(void*);
-bool fn_710092b6f8(void*);
 
 struct UnkStruct_71008c0c74;
 struct UnkBase_71003cc474;
-void fn_71008c0c74(UnkStruct_71008c0c74* self);
-void fn_71008c1558(UnkBase_71003cc474* self);
 
 struct UnkGooplotRequest_b63a3 {
     u8 pad_0x0[0xb4];
     u32 flags;  // 0xb4
     u8 pad_0xb8[0x100 - 0xb8];
 };
-void fn_71008c1090(UnkGooplotRequest_b63a3* self, const UnkGooplotRequest_b63a3* other);
 
 struct UnkGooplotOwner_b63a3 {
     u8 pad_0x0[0x218];

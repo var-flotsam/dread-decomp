@@ -4,10 +4,10 @@
 // placeholders.
 #include "base/UnkDestructors.h"
 #include "base/global/CRntString.h"
+#include "game/behaviortree/CBaseAction.h"
 #include "types.h"
 
 extern void* g_unk_7101a25640[];  // the node's vtable
-void fn_7100393ea0(void*);         // the base's destructor
 
 struct CStoreStringInBlcActionDtorTag_b45a1;
 template <>

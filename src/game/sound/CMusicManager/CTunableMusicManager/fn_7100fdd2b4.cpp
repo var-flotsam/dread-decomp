@@ -1,6 +1,7 @@
 // For every active entry whose target matches the given id, asks the manager to fade it out over
 // the given time, or over the entry's own time when the given time is negative.
 #include "base/global/CStrId.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 #include "game/sound/CMusicManager.h"
 
@@ -34,8 +35,6 @@ struct UnkArray {
 
     UnkEntry_0x60& operator[](u64 i);
 };
-
-void fn_7100fde4d8(UnkArray*, u32);
 
 inline UnkEntry_0x60& UnkArray::operator[](u64 i) {
     if (autoGrow && i >= count) {

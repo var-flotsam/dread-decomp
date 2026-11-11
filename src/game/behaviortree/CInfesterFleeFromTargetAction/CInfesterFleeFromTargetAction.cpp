@@ -3,6 +3,7 @@
 // parameter block to fn_71006f4b0c with 1.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CEnemyMovement.h"
 #include "game/UnkBehaviorTree.h"
 #include "game_s2/UnkParams.h"
 
@@ -22,8 +23,6 @@ struct UnkFleeAction {
     u8 field_0x59;
     u8 field_0x5a;
 };
-
-u32 fn_71010cc3a4(void* object);
 
 void fn_71005c8780(UnkFleeAction* self) {
     fn_7100394bd4(self);

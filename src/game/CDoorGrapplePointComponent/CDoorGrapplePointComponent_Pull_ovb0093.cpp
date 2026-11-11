@@ -7,12 +7,12 @@
 #include <math.h>
 
 #include "../../game_s7/UnkIter.h"
+#include "game/CPullableGrapplePointComponent.h"
 #include "types.h"
 
 struct UnkWeakTarget;
 struct UnkDoorLock;
 
-bool fn_710082cb24(void* self, void* arg, void* msg);
 UnkDoorLock* fn_71002af860(UnkWeakTarget* entity);
 bool fn_71008d5e28(UnkDoorLock* door);
 

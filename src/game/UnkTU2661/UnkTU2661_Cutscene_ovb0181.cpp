@@ -7,7 +7,10 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CSceneComponent.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU253.h"
+#include "game/UnkTU39.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -103,9 +106,7 @@ struct UnkCutsceneActor_b0181 {
     void* field_0x280;
 };
 
-void fn_71009f19b0(void* object, bool flag);
 struct UnkResetOwner;
-void fn_71001c3270(UnkResetOwner* object);
 
 // The same lookup, then applies the flags to the object found.
 void fn_710106cdb0(UnkCutscene_b0181* self, UnkSharedStr_b0181* name, bool flag, bool flag2) {
@@ -337,7 +338,6 @@ struct UnkRefObj_b0181 {
 struct UnkInner_b0181 {
     u8 data[0xb0];
 };
-void fn_710002f90c(void* dst, const void* src);
 
 struct UnkBigState_b0181 {
     void* vtable;          // 0x0

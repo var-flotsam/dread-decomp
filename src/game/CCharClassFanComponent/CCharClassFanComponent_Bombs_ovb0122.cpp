@@ -8,6 +8,7 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CBombMovement.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
@@ -78,8 +79,6 @@ struct UnkFan_ovb0122 {
     u32 alloc_flags;                // 0xba0
 };
 static_assert(__builtin_offsetof(UnkFan_ovb0122, alloc_flags) == 0xba0, "layout");
-
-UnkFanBombList_ovb0122* fn_7100aa9ecc();
 
 static inline bool Contains_ovb0122(UnkFan_ovb0122* self, UnkFanBomb_ovb0122* bomb) {
     for (UnkFanNode_ovb0122* n = self->head; n; n = n->next) {

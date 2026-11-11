@@ -6,6 +6,8 @@
 #include "base/UnkDestructors.h"
 #include "base/math/CVector.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2510.h"
+#include "game/UnkTU365.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -16,7 +18,6 @@ using base::math::CVector3D;
 struct UnkAssignedSlot {
     void* ptr;
 };
-void fn_71002a5d1c(UnkAssignedSlot* self, const UnkAssignedSlot* other);
 
 // A reference to a counted object (base::UnkRefCounted), released when the count drops to zero.
 // The second one keeps its pointer in a union: the original reloads it after the count increment.
@@ -173,7 +174,6 @@ struct UnkHitSegment {
 // The tree query (src/game_hi/fn_7100d5c518.cpp, whose names for the tree and the box these are).
 struct UnkTree;
 struct UnkBox;
-bool fn_7100d5c518(UnkTree* self, u32 mask, const UnkBox* box, void* arg, u32 arg2);
 
 // A 3D point projected onto the plane (fn_710007b430 builds it in place).
 struct UnkProbePoint2D : CVector2D {

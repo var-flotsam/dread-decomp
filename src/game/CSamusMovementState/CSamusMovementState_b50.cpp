@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
@@ -14,9 +16,6 @@ struct UnkAbility {
     virtual const CClass* vf_0x0();
 };
 struct UnkAbilitySet;
-UnkAbility* fn_71003013ec(UnkAbilitySet* set, u64 id);
-u64 fn_7100308c74();
-u32 fn_7100309568(UnkAbility* ability);
 bool fn_71009e1310(void* self);
 
 struct UnkSamusFlags_b50a5 {

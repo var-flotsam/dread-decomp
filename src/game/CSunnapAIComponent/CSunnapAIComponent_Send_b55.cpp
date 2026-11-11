@@ -3,10 +3,10 @@
 // component's fn_7101105c94, then sends the owner's (+0x30) sub-object at +0x220 a fixed hash with
 // mode 0 (UnkSpitSend, src/game_s2/UnkSpitSend.h). Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 struct UnkWarLotusAI;
-void fn_7101105c94(UnkWarLotusAI* self);
 
 struct UnkSunnapOwner_b55 {
     u8 pad_0x0[0x220];

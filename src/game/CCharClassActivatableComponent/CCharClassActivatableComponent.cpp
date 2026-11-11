@@ -1,11 +1,11 @@
 // Constructor of a component in the CCharClassActivatableComponent unit: the component base
 // constructor fn_71010c4148, the vtable, the string-id list at +0x40 (fn_71007b1528), a cleared flag
 // and word, then the post-construction virtual call (slot 3). Names and layouts are placeholders.
+#include "game/CComponent.h"
+#include "game/CDemolitionBlockComponent.h"
 #include "types.h"
 
 struct UnkStateObject;
-void fn_71010c4148(UnkStateObject* self);
-void fn_71007b1528(char* self);
 extern void* g_unk_7101a7ac20[];
 
 struct UnkActivatableComponent {

@@ -8,6 +8,7 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CTakumakuAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game_s2/UnkParams.h"
@@ -59,7 +60,6 @@ struct UnkTakumakuStartAttack_b58 {
     bool field_0x64;
 };
 
-bool fn_71006d44a0(void*);
 UnkTakumakuEntry_b58** fn_71006d3f50(void*);
 
 bool fn_71006cfcac(UnkTakumakuStartAttack_b58* self) {

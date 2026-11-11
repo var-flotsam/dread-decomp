@@ -3,6 +3,7 @@
 // destroyed) and the old arrays freed.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2563.h"
 #include "types.h"
 
 using base::UnkAllocator;
@@ -90,8 +91,6 @@ struct UnkRecord60 {
 
     UnkRecord60(UnkRecord60&& other) = default;
 };
-
-void fn_7100e4a1d0(UnkRecord60* record);  // destructor
 
 struct UnkRecordTable {
     UnkRecord60* records;

@@ -1,5 +1,6 @@
 // A constructor in the CShotLaunchConfig unit: clears 0x50-0x60 and 0x20, sets the index at +0x60 to
 // -1, clears 0x64-0x94 and 0x0-0x20, then finishes with fn_71009f9dc0. Names and layouts are placeholders.
+#include "game/CShotLaunchConfig.h"
 #include "types.h"
 
 struct UnkShotLaunchState {
@@ -10,8 +11,6 @@ struct UnkShotLaunchState {
     s32 field_0x60;
     u8 field_0x64[0x30];
 };
-
-void fn_71009f9dc0(UnkShotLaunchState* self);
 
 void fn_71009f9d8c(UnkShotLaunchState* self) {
     __builtin_memset(self->field_0x50, 0, sizeof(self->field_0x50));

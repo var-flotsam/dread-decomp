@@ -3,13 +3,13 @@
 // vtable, three cleared flags at +0x78, an allocator-backed object at +0x80 (base and own vtables,
 // three small defaults, the allocator from fn_7100083990), an object at +0xb8 (its vtable and three
 // cleared words), then the object's own vf_0x18. Names and layouts are placeholders.
+#include "game/CComponent.h"
+#include "game/CEmmyWakeUpComponent.h"
 #include "types.h"
 
 #include "base/UnkVector.h"
 
 struct UnkStateObject;
-void fn_71010c4148(UnkStateObject*);
-void fn_71007d762c(char* self);
 extern void* g_unk_7101a72d70[];
 extern void* g_unk_7101a72a18[];
 extern void* g_unk_7101a20998[];

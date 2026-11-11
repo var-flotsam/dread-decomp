@@ -1,6 +1,7 @@
 // Unit 99: the switch with a fade of UnkUnit98Sound.cpp's fn_71000f3e30, for a controller whose flags
 // sit at +0x16c (active) and +0x16d (switched on) and which always drives the player at +0x30.
 // Names and layouts are placeholders.
+#include "game/UnkTU2772.h"
 #include "types.h"
 
 struct UnkAtkPlayer99;
@@ -21,7 +22,6 @@ static_assert(__builtin_offsetof(UnkSoundControl99, field_0x16d) == 0x16d, "layo
 
 // As src/base/snd/UnkUnit98Sound.cpp declares them.
 struct UnkAtkPlayer98;
-void fn_7101206678(UnkAtkPlayer98* player, bool on, s32 frames);
 struct UnkGfxFrameSource;
 extern UnkGfxFrameSource* g_unk_7101d47328;
 

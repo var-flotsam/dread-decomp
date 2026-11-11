@@ -2,10 +2,10 @@
 // (g_unk_7101a6b858) and a sub-object (+0xb0, g_unk_7101a59f90) after its base (fn_7100703814, which
 // takes the id the constructor was given).
 // Names and layouts are placeholders.
+#include "game/UnkTU1124.h"
 #include "types.h"
 
 struct UnkUnit1124Object;
-void fn_7100703814(UnkUnit1124Object* self, u32 id);
 
 extern void* g_unk_7101a6b858[];
 extern void* g_unk_7101a59f90[];

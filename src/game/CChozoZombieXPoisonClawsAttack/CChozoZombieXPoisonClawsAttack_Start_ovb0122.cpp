@@ -1,5 +1,6 @@
 // CChozoZombieXPoisonClawsAttack's unit (tools/tu_map.py unit 735): the attack's start and the length it
 // reads from its animation. Names and layouts are placeholders.
+#include "game/UnkTU1728.h"
 #include "game_s2/UnkParams.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -114,8 +115,6 @@ struct UnkTimeline {
 };
 
 void fn_71007142e8(UnkStruct_71007142e8* self);
-void fn_7100b8b3bc(UnkTimeline* self, void* target, UnkMotionTracks* tracks, const u32* flags, f32 from,
-                   f32 to);
 
 struct UnkPoisonClawsOwner_ovb0122 {
     u8 pad_0x0[0x220];

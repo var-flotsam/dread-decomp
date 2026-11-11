@@ -6,6 +6,7 @@
 // src/game/CBehaviorTreeAIComponent/fn_7100369650.cpp does). Always returns 2. Names and layouts are
 // placeholders.
 #include "base/UnkVector.h"
+#include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkActor.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -102,8 +103,6 @@ struct UnkCheckCancelAttackOrder_ovb0128 {
 };
 
 void* fn_7100362324(UnkCancelAttack_ovb0128* attack, u32 mode);
-void fn_71011a664c(char* instance);  // constructs the instance
-void fn_71011a75f0(char* instance, UnkCancelOwner_ovb0128* owner);
 
 // The instance, reached through the GOT.
 extern char* g_unk_71726b2398;

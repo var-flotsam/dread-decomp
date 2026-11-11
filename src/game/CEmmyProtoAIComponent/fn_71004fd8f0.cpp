@@ -3,6 +3,7 @@
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CEmmyProtoAIComponent.h"
 
 using namespace unk_static_init;
 
@@ -20,7 +21,6 @@ extern UnkStatics_71004fd8f0 g_unk_71726dd1e0 __attribute__((visibility("hidden"
 extern UnkPropertyEx<> g_unk_71726dd158;
 extern void* g_unk_7101a45fe8[];
 extern void* g_unk_7101a45f90[];
-void fn_71004fa3b8(void* p);
 extern char g_unk_71726dd198[];
 
 void fn_71004fd8f0() {

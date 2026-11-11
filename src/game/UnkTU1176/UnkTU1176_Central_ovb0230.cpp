@@ -17,7 +17,13 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/global/CStrId.h"
+#include "game/CInventoryComponent.h"
+#include "game/CModelUpdaterComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1176.h"
+#include "game/UnkTU1376.h"
+#include "game/UnkTU2566.h"
+#include "game/UnkTU341.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "../../game_s2/UnkSpitSend.h"
@@ -427,7 +433,6 @@ void fn_7100772b50(UnkCentralSources_b0230* self) {
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkScenarioObject_ovb0032;
-void* fn_7100774014(UnkScenarioObject_ovb0032*);
 struct UnkGeneratorTarget_ovb0120;
 void fn_710116c128(UnkGeneratorTarget_ovb0120*, const UnkVec3f*, const UnkVec3f*, bool);
 
@@ -557,9 +562,7 @@ void fn_71007754b8(UnkCentralUnit_b49* unit);
 void fn_71007717c0(UnkCentralUnit_b49* self);
 void fn_71007727f0(UnkCentralUnit* unit);
 struct UnkMapData;
-UnkMapData* fn_7100e8d8b0();
 void fn_7100e8f9a0(char*, bool, base::global::CStrId*);
-void fn_71008cdf84(UnkDoorLock* door);
 extern void* g_unk_71726af0b0;
 
 struct UnkCavesHolder_b0230 {
@@ -660,7 +663,6 @@ void fn_710077a96c(UnkPairVec_b0230* self, const UnkSetPair_b0230* value, u32 in
 struct UnkCentralUnit;
 struct UnkPowerUpLifeRef_b52;
 struct UnkPowerUpLifeEntry_b52;
-UnkPowerUpLifeRef_b52* fn_7100232f18(UnkPowerUpLifeEntry_b52*);
 
 struct UnkSourcePair_b0230 {
     UnkSource_b0230 first;
@@ -723,7 +725,6 @@ void fn_7100775918(UnkCentralUnit* unit, void* arg) {
 struct UnkInventory;
 f32 fn_7101142928(UnkInventory*, const UnkQualifiedId&);
 struct UnkEnergyWaveFxComp_b49;
-void fn_71011738f8(UnkEnergyWaveFxComp_b49* comp, void* id, u32 flags);
 extern char g_unk_710164aa98[];
 extern char g_unk_710164aaa0[];
 
@@ -778,7 +779,6 @@ void fn_710077045c() {
 
 struct UnkCentralUnit;
 struct UnkStrIdHandle;
-void fn_71011437bc(void*, const UnkStrIdHandle&);
 extern UnkPropertyEx<> g_unk_717275ac58;
 extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
 struct UnkOwner;

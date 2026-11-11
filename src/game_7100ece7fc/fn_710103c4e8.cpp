@@ -4,6 +4,7 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
+#include "game/UnkTU2647.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -12,8 +13,6 @@ struct UnkPathIdListPair_710103a240 {
     base::UnkVector<CFilePathStrId> first{0xf};
     base::UnkVector<CFilePathStrId> second{0xf};
 };
-
-void fn_710103a240(UnkPathIdListPair_710103a240* self, const UnkPathIdListPair_710103a240* other);
 
 struct UnkPathIdTable_710103c4e8 {
     UnkPathIdListPair_710103a240 slots[16];

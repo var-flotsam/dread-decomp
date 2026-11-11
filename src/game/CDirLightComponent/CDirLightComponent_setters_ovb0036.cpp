@@ -8,6 +8,8 @@
 #include "base/color/CColor4F.h"
 #include "base/math/CVector4D.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU251.h"
+#include "game/UnkTU290.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -16,9 +18,6 @@ using base::math::CVector4D;
 using base::reflection::UnkReflValue;
 using base::reflection::refl_ArgValue;
 using base::reflection::refl_EmptyValue;
-
-void fn_710020c740(void* block, f32 value);
-void fn_710020c494(void* block, bool value);
 
 static inline __attribute__((always_inline)) f32 NonNegative_ovb0036(f32 v) {
     return v <= 0.0f ? 0.0f : v;
@@ -67,10 +66,8 @@ UnkReflValue fn_71008ebc44(void*, char* obj, UnkReflValue* const* args) {
 
 struct UnkMat4f;
 
-void fn_710020c8ac(void*, bool);
 UnkMatrix44 fn_7100078fc8(const UnkMatrix44& m);
 UnkVec3f fn_7100078170(const UnkMat4f* m, const UnkVec3f* v);
-void fn_71001bdc3c(void* object);
 
 // Whether `a` is within 0.001 of `b`.
 static inline __attribute__((always_inline)) bool Near_ovb0036(f32 a, f32 b) {

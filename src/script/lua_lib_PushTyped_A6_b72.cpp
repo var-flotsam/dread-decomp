@@ -1,12 +1,12 @@
 // lua_lib unit (tools/tu_map.py): a reflected value visited with a small stack visitor (vtable 0x7101cab628, address point 0x7101cab638, unit-local)
 // that carries the first argument and two words; its result word is returned. The typed pair's type is
 // refined once through fn_710009dcd8 before fn_71000a1784 walks it. Names are placeholders.
+#include "base/reflection.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "types.h"
 
 struct UnkFormatArgs;
 struct UnkTextBuffer200;
-void fn_71000a1784(UnkFormatArgs* args, UnkTextBuffer200* out);
 
 extern void* g_unk_7101cab638[] __attribute__((visibility("hidden")));
 

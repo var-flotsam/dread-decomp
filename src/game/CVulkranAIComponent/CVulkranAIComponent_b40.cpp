@@ -4,13 +4,13 @@
 // the third argument telling whether the object at +0x218 is in a state other than 4. Ends with
 // fn_71006dd25c. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CEnemyMovement.h"
 #include "game/UnkManager_71726af468.h"
 #include "types.h"
 
 struct UnkActorTarget;
 void fn_710117662c(UnkActorTarget* target, u32 a, u32 b, u32 c, u32 d, f32 value);
 void fn_7101178e08(UnkActorTarget* target, u32 a, u32 b, u32 c, f32 value);
-u32 fn_71010cc3a4(void*);
 
 struct UnkOwner_vk {
     u8 pad_0x0[0x218];

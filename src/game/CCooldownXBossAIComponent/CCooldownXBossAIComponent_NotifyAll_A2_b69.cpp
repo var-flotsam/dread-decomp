@@ -2,13 +2,12 @@
 // +0xc48) to fn_7100709f20 with the owner (+0x30), the key g_unk_7101649ba0 and 60, as the CHydrogigaAIComponent
 // message handler does for one (src/game/CHydrogigaAIComponent/CHydrogigaAIComponent_Spawn_A3_b62.cpp).
 // Names and layouts are placeholders.
+#include "game/CTentacle.h"
 #include "types.h"
 
 struct UnkHydrogigaKey_b62a3;
 struct UnkHydrogigaOwner_b62a3;
 struct UnkHydrogigaTarget_b62a3;
-void fn_7100709f20(UnkHydrogigaTarget_b62a3* target, UnkHydrogigaOwner_b62a3* owner, UnkHydrogigaKey_b62a3* key,
-                   f32 value);
 
 extern UnkHydrogigaKey_b62a3 g_unk_7101649ba0 __attribute__((visibility("hidden")));
 

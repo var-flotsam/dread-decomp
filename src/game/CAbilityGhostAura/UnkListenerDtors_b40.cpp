@@ -3,6 +3,8 @@
 // destructor stores its vtable, detaches itself from the owner of the counted link at +0x18 and drops the
 // link's reference; the second of each pair is the deleting form. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CEnemyMovement.h"
+#include "game/CGunComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -23,9 +25,6 @@ struct UnkListener_b40 {
     u8 pad_0x8[0x10];
     UnkLink_b40* link;  // 0x18
 };
-
-void fn_710083b0bc(void* owner, UnkListener_b40* listener);
-void fn_71010cb2fc(void*, void*);
 
 static inline __attribute__((always_inline)) void Detach_b40(UnkListener_b40* self, void** vtable, int which) {
     self->vtable = vtable;

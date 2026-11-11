@@ -1,6 +1,7 @@
 // game::logic::collision::CTrigger's unit (tools/tu_map.py unit 2519): two destructors (complete and deleting)
 // of a trigger-side object that holds a counted reference (+0x18) and an array of counted references
 // (+0x28, count at +0x24). Names and layouts are placeholders.
+#include "game/CGameObject.h"
 #include "types.h"
 
 struct UnkTriggerRef_ovb0083;
@@ -25,7 +26,6 @@ struct UnkTriggerRefs_ovb0083 {
 
 extern char g_unk_7101aa8e40[];
 struct UnkCameraCtrl_ovb0049;
-void fn_7101043934(UnkCameraCtrl_ovb0049*);  // the base destructor
 
 static inline void Release(UnkTriggerRef_ovb0083* ref) {
     s32* count = &ref->ref_count;

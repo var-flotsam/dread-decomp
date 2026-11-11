@@ -4,12 +4,12 @@
 // mode 1 or 3 (+0x2d08, +0x10); without it, when the +0x210 object's +0x118 is at most 100 or the +0x200
 // object's speed (+0x10c) points along the facing direction (negative with the byte at +0x3a0 set, else
 // positive). Names and layouts are placeholders.
+#include "game/CAbilitySpeedBooster.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
 // As src/game/UnkUnit435/UnkUnit435_OnSameId.cpp declares it.
 struct UnkUnit435Self;
-void fn_710033cd50(UnkUnit435Self* self, u32 arg);
 
 struct UnkSpeedBoosterMode2_A2_b71 {
     u8 pad_0x0[0x10];

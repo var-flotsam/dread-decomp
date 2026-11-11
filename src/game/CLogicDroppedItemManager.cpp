@@ -11,6 +11,8 @@
 #include "base/math/UnkSegment2D.h"
 #include "base/math/UnkZeroVector3.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2510.h"
+#include "game/UnkTU2517.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -143,9 +145,7 @@ struct __attribute__((packed)) UnkDropHitList {
 struct UnkTree;
 struct UnkShape;
 struct UnkMtx44;
-bool fn_7100d5b484(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, void* arg, u16 arg2);
 void fn_7100d693ac(UnkSegmentShape* self, const UnkSegment2D* seg);
-void fn_7100d69400(UnkSegmentShape* self);
 
 static inline void SetIdentity(UnkMatrix44* m) {
     *m = UnkMatrix44{};

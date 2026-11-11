@@ -1,6 +1,8 @@
 // Sets an entry's 4-bit state field to a new value when the owner's list knows that value and
 // the state differs, then, for enabled entries, forwards the type-specific sub-object to the list.
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU280.h"
+#include "game/UnkTU311.h"
 #include "types.h"
 
 // Per-type payload; each node type has its own layout with the forwarded member at Offset.
@@ -15,8 +17,6 @@ void* NodeMember(const UnkSceneNode* node) {
     return static_cast<UnkPayload_7100219ae0<Type, Offset>*>(node->field_0x10)->member;
 }
 
-bool fn_71001fc69c(void* list, u32 value);
-bool fn_7100217e50(u32 flags, u32 mask);
 void fn_71001fd458(void* list, void* obj, u32 value);
 
 bool fn_7100219ae0(UnkRenderManager* self, UnkSceneNode* entry, u32 value) {

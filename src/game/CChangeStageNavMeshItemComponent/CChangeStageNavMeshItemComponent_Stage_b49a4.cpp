@@ -3,13 +3,12 @@
 // it the id of the stage name at +0x58 or +0x60 of the settings (+0x40) when that is not empty
 // (fn_71009c0f1c), then refreshes it (fn_71009bffdc). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CNavMeshItemComponent.h"
+#include "game/UnkTU372.h"
 #include "types.h"
 
 struct UnkWeakTarget;
 struct UnkOwner;
-void* fn_71002b3b84(UnkWeakTarget*);
-void fn_71009c0f1c(void* object, u64 id);
-void fn_71009bffdc(UnkOwner* self, bool arg);
 
 struct UnkStageNameData_b49a4 {
     u8 pad_0x0[0x30];

@@ -2,6 +2,7 @@
 // registration, the ESurfaceType enum with its converters to and from int, the tunable's
 // registration and the tunable itself, and the state's names and looping vibration file.
 #include "base/global/CFilePathStrId.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTUInit.h"
@@ -36,7 +37,6 @@ void fn_71009af338() __attribute__((visibility("hidden")));
 extern char g_unk_717273c648;
 extern UnkTunable g_unk_717273c650;
 extern char g_unk_7101a87688[];
-void fn_7100075104(void* self);
 
 // The registration helpers see a type through the placeholder layout (UnkReflType).
 static inline UnkReflType* AsUnk(base::reflection::CType* t) {

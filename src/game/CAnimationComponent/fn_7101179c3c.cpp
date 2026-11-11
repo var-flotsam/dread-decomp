@@ -2,9 +2,8 @@
 // `key`, or false when there is no such entry or object; the lookup is fn_7101177cac's
 // (src/game/CAnimationComponent/fn_710117af10.cpp).
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU39.h"
 #include "types.h"
-
-bool fn_710002fb70(void* timer);
 
 bool fn_7101179c3c(UnkAnimationComponent* self, u64 key) {
     UnkTrackSet* set = self->field_0x40;

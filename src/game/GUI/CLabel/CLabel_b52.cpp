@@ -6,11 +6,11 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiFrames.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU135.h"
 #include "types.h"
 
 using base::global::CStrId;
 void* fn_71011b882c(UnkGuiRoot*, const CStrId*);  // as src/game/GUI/CLabel.cpp declares it
-u32 fn_71001479dc(void* font, u32 c);  // as src/game/GUI/CLabel.cpp declares it
 
 struct UnkLabelFontView_b52 {
     u8 pad_0x0[0x260];

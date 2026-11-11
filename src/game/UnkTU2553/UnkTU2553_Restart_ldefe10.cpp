@@ -10,6 +10,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkXformNode.h"
+#include "game/nn/time.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -37,8 +38,6 @@ void fn_7100debf3c(UnkGameManager* self);
 void fn_7100de6ee8(UnkGameManager* self);
 void fn_7100089894(base::file::UnkFileDevice* self);
 void fn_710008989c(base::file::UnkFileDevice* self);
-void fn_710006cd9c(UnkSoundHolder* holder);
-void fn_710006cea8(UnkSoundHolder* holder, bool value);
 void fn_7100def930(UnkGameManager* self, u32 flags);
 void fn_71002191a4(UnkRenderManager* self, u32 value);
 CRntString fn_710007f050(const char* a, const CRntString* b);

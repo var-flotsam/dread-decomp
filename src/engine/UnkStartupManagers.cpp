@@ -9,10 +9,19 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
+#include "base/reflection.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2550.h"
+#include "game/UnkTU2557.h"
+#include "game/UnkTU2560.h"
+#include "game/UnkTU2578.h"
+#include "game/UnkTU2728.h"
+#include "game/UnkTU2732.h"
+#include "game/UnkTU2768.h"
+#include "game/UnkTU437.h"
 #include "game/sound/CMusicManager.h"
 #include "types.h"
 
@@ -35,7 +44,6 @@ __attribute__((always_inline)) static inline T* Singleton(T*& instance) {
 // steps (the types are defined in the files named).
 struct UnkUserDataOwner;  // src/game/CGameManager.cpp
 extern UnkUserDataOwner* g_unk_7101d47308;
-void fn_710120320c(UnkUserDataOwner* self);
 void fn_7101203248(UnkUserDataOwner* self);
 
 struct UnkDropTarget;  // src/game/CLogicDroppedItemManager.cpp
@@ -53,26 +61,21 @@ extern void* g_unk_71726bc560;  // the music manager (game/sound/CMusicManager.h
 void fn_7100fd4db8(void* self, bool flag);
 
 extern void* g_unk_7172729910;
-void fn_710119aee8(void* self);
 void fn_710119b048(void* self);
 
 extern void* g_unk_71726b1688;
-void fn_7100359118(void* self);
 void fn_7100e09794(void* self);
 
 struct UnkGameObject_0x150;  // src/engine/HostArguments.cpp
 extern UnkGameObject_0x150* g_unk_7101d47370;
-void fn_7100dde0c8(UnkGameObject_0x150* self);
 void fn_7100dde0e4(UnkGameObject_0x150* self);
 
 struct UnkStruct_0x128;  // the scene state, src/game/UnkLoadingScreen.cpp
 extern UnkStruct_0x128* g_unk_7101d47320;
-void fn_7100ef3494(UnkStruct_0x128* self);
 void fn_7100ef378c(UnkStruct_0x128* self);
 
 struct UnkGameObject_0x60;  // src/engine/HostArguments.cpp
 extern UnkGameObject_0x60* g_unk_7101d47378;
-void fn_7100dde718(UnkGameObject_0x60* self);
 void fn_7100dde79c(UnkGameObject_0x60* self);
 
 void fn_710109cc50(u32 mode, const CRntString& str);
@@ -96,11 +99,9 @@ void fn_7100d46804(UnkManager_7100863a8c* self);
 void fn_7100ebf558(UnkNavMeshManager* self);
 
 extern void* g_unk_71726da048;
-void fn_7100e1bca4(void* self);
 void fn_7100e1bf64(void* self);
 
 extern void* g_unk_7101d47368;  // the environment manager
-void fn_7100d8ced8(void* self);
 void fn_7100d8d0c4(void* self);
 
 extern void* g_unk_7101d47360;  // the sub-area manager
@@ -111,7 +112,6 @@ void fn_71011b1f30(UnkGuiRoot* self);
 void fn_71011b2f58(UnkGuiRoot* self);
 
 extern void* g_unk_7172758b20;
-void fn_7101192628(void* self);
 void fn_710119265c(void* self);
 
 extern void* g_unk_717274ea80;
@@ -120,7 +120,6 @@ void fn_7100fb7a14(void* self);
 
 struct UnkLoadingScreen;  // src/game/UnkLoadingScreen.cpp
 extern UnkLoadingScreen* g_unk_7101d47380;
-void fn_7100e0f89c(UnkLoadingScreen* self);
 void fn_7100e0f984(UnkLoadingScreen* self);
 
 void fn_7100219974(UnkRenderManager* self, u32 value);

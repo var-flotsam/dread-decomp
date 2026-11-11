@@ -8,13 +8,13 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU83.h"
 #include "types.h"
 
 struct UnkReadArg_b0026;
 struct UnkVersionRegistry;
 struct UnkVersionEntry;
 extern UnkVersionRegistry* g_unk_7101d4c8d0;
-UnkVersionEntry* fn_71000a5118(UnkVersionRegistry* self, const u64* id);
 void fn_71000ee9fc(void* reader, u32 flags, UnkReadArg_b0026* arg, const base::global::CStrId* name);
 const base::reflection::CType* fn_710009c640(base::reflection::UnkReflObject* obj);
 

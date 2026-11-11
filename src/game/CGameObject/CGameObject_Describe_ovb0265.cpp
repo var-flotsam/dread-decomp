@@ -6,6 +6,7 @@
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflTypedPtr.h"
+#include "game/UnkTU85.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -17,7 +18,6 @@ using unk_prop_bag::UnkPropBag;
 struct UnkReflField;
 struct UnkReflFieldObject;
 struct UnkReflValueArg;
-bool fn_71000e78e0(UnkReflField* field, const UnkReflFieldObject* obj, UnkReflValueArg* value);  // gets
 s32 fn_7100024140(const base::reflection::CType* type);  // the type's letter (b, f, i, s, v)
 
 struct UnkObjField {

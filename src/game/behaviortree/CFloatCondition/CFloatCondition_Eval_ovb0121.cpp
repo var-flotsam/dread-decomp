@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkTunableRegistry.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using base::reflection::UnkTunableRegistry;
@@ -120,7 +121,6 @@ struct UnkFloatCondition_ovb0121 {
 extern const char* const g_unk_7101a27b98[] __attribute__((visibility("hidden")));
 
 void fn_710007f564(void*, const char*);
-void fn_710007f5e0(void* self, f32 value);  // appends a number
 
 struct UnkText_ovb0121 {
     u8 unk_0x0[0x30];

@@ -2,13 +2,13 @@
 // (CXParasiteDropComponent_Dtor_b49a3.cpp) with their own vtable and base. The vtable, the list of
 // owned objects at +0x58 (game_s2/UnkOwnedList.h) destroyed, then the base destructor fn_71011acd74;
 // fn_71009f8c70 also frees the object. Names and layouts are placeholders.
+#include "game/CCharClassComponent.h"
 #include "game/UnkComponent.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
 
 // Signature as src/game/CCharClassCollisionComponent/CCharClassCollisionComponent.cpp declares it.
 struct UnkIdObject;
-void fn_71011acd74(UnkIdObject* self);
 
 extern void* g_unk_7101a8ab40[];
 

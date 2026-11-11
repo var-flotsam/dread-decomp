@@ -5,6 +5,7 @@
 #include "base/UnkMatrix44.h"
 #include "base/UnkVector.h"
 #include "game/UnkNavMeshManager.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 struct UnkEntry_7100286798 {
@@ -65,7 +66,6 @@ struct UnkComponent_7100286798 {
     u8 unk_0x0[0x1610];
     UnkSource_7100286798* source;
 };
-void* fn_71010fb398(UnkComponent_7100286798* self);
 void* fn_71010fb288(UnkComponent_7100286798* self);
 
 struct UnkActor_7100286798 {

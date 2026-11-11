@@ -2,6 +2,7 @@
 // the owner (+0x30) to the angles (0, -1.57, 0) through its transform (+0x38, game/UnkXformNode.h) and
 // its slot 0x118 (with mode 2), sets its +0x3c0 and zeroes three speeds (fn_7101103aa8 on the
 // component, slot 0x98 of the owner's +0x298 and +0x218). Names and layouts are placeholders.
+#include "game/UnkTU2702.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -34,7 +35,6 @@ struct UnkEmmyCaveAIStart_b49 {
 };
 
 void fn_710055b1e8(UnkEmmyCaveAIStart_b49* self);
-void fn_7101103aa8(UnkEmmyCaveAIStart_b49* self, f32 speed);
 
 void fn_71004f0c90(UnkEmmyCaveAIStart_b49* self) {
     self->field_0x29f24 = true;

@@ -5,12 +5,12 @@
 // layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2677.h"
 #include "types.h"
 
 struct lua_State;
 extern lua_State* g_unk_7172a01d18;
 s32 fn_71010c0bb0(lua_State* L, const char* str);
-s32 fn_71010c0d80(lua_State* L, s32 count, char* out, u32 out_size, void* a, void* b);
 void fn_7100fbc4e0(lua_State* L, void* arg);
 
 struct UnkPlayer;

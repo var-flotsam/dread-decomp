@@ -1,8 +1,8 @@
 // CMagnetMovablePlatformComponent (unit 1407).
+#include "game/UnkTU811.h"
 #include "game_s2/UnkWeakHandle.h"
 
 struct UnkSlidingBlockMovement;
-UnkSlidingBlockMovement* fn_710054a2cc(void*);
 
 struct UnkMagnetMovablePlatform {
     u8 pad_0x0[0x250];

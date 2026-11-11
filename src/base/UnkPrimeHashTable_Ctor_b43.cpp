@@ -3,11 +3,10 @@
 #include <string.h>
 
 #include "base/UnkVector.h"
+#include "base/global/timeline/CEvent.h"
 #include "types.h"
 
 // src/base/global/timeline/CEvent/UnkPrime.cpp.
-bool fn_71000669a0(u32 n);
-u32 fn_7100066930(u32 n);
 
 struct UnkPrimeBucket_b43a3;
 

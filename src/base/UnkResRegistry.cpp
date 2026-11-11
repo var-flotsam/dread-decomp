@@ -14,6 +14,7 @@
 #include "base/file/UnkFileCacheSet.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU27.h"
 #include "types.h"
 
 using base::UnkAllocator;
@@ -26,8 +27,6 @@ using base::global::UnkStringPool;
 struct UnkResFactory;
 
 // The record's default callbacks: each forwards its second argument (fn_710001a0ac, fn_710001a39c).
-void fn_71000204c4(void* context, void* arg);
-void fn_71000204cc(void* context, void* arg);
 
 // The record's list of file-path ids (base/UnkResPathVec.h): its copy reserves the source's
 // capacity (fn_7100018450) and appends the ids one by one.

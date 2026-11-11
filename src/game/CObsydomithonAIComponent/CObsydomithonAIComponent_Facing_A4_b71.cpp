@@ -2,6 +2,7 @@
 // movement object (+0x1f0), takes the x of the object's vector (virtual slot 0x210) and sends ids 4 and 8
 // (swapped by sign, past +-0.001) through fn_71011785a8 and fn_7101178564 (as
 // CShakernautAIComponent_Flip_b53.cpp). Names and layouts are placeholders.
+#include "game/CAnimationComponent.h"
 #include "types.h"
 
 // As src/game/CShakernautAIComponent/CShakernautAIComponent_Flip_b53.cpp declares them.
@@ -10,8 +11,6 @@ struct UnkShakernautId_b53 {
     u32 value;
     u32 unk_0x4;
 };
-void fn_71011785a8(UnkShakernautCtrl_b53*, const UnkShakernautId_b53*, bool, bool);
-void fn_7101178564(UnkShakernautCtrl_b53* self, const UnkShakernautId_b53* id, bool a, bool b);
 
 // Returned in memory: the type is not trivially copyable.
 struct UnkObsyVec_A4_b71 {

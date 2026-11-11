@@ -3,10 +3,10 @@
 // period, sends its name (+0x50) to the owner's +0x1e0 object (fn_71009cde54), then stops (one-shot timers)
 // or takes a period off. Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
+#include "game/CComponent.h"
 #include "types.h"
 
 struct UnkParent;
-void fn_71010c424c(UnkParent*);
 bool fn_71009cde54(void*, const char*, const char*, ...);
 
 struct UnkTimerOwner_ovb0125 {

@@ -3,6 +3,7 @@
 // deferring, frees the nodes, clears the list and finishes with fn_71011a9980. Names and layouts
 // are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU2739.h"
 #include "types.h"
 
 struct UnkStruct_71011a91c4;
@@ -11,7 +12,6 @@ struct UnkModelManager;
 void fn_71011a91c4(UnkModelManager* self, void* item, u32 flag);
 
 struct UnkQueueOwner;
-void fn_71011a9980(UnkQueueOwner* self);
 
 struct UnkQueueNode {
     UnkItem_71011a91c4* item;

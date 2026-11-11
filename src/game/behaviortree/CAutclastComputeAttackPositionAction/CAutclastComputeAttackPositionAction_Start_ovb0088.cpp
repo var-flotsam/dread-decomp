@@ -10,13 +10,13 @@
 #include "base/UnkDestructors.h"
 #include "base/math/CVector.h"
 #include "game/UnkActor.h"
+#include "game/behaviortree/CBaseAction.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
 extern void* g_unk_7101a2ad48[];  // the node's vtable
-void fn_7100393ea0(void*);         // the base's destructor
 
 struct UnkObject_71002ad0dc;
-void fn_71002ad0dc(UnkObject_71002ad0dc* self);
 
 struct UnkPathMember_ovb0088 {
     ~UnkPathMember_ovb0088() { fn_71002ad0dc(reinterpret_cast<UnkObject_71002ad0dc*>(this)); }

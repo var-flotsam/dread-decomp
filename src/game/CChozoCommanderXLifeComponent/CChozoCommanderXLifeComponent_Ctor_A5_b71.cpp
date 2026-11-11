@@ -5,10 +5,10 @@
 // virtual call (slot 3). Defined under the `void()` symbol src/reflection/CChozoCommanderXLifeComponent.cpp
 // declares. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CLifeComponent.h"
 #include "types.h"
 
 struct UnkLifeBase_A5_b71;
-void fn_710115f7bc(void* self);  // as CPowerBombBlockLifeComponent.cpp declares it
 void fn_71008bfca4(void* self);
 extern void* g_unk_7101a7df38[];
 extern void* g_unk_7101a22d48[];

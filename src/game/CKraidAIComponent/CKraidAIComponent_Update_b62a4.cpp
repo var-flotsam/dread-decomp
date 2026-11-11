@@ -10,11 +10,11 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU1501.h"
+#include "game/UnkTU2772.h"
 #include "types.h"
 
 struct UnkHelper;
-bool fn_71009e6434(UnkHelper* helper);
-int fn_71012395a0();
 
 struct UnkKraidUpdateAI_b62a4;
 void fn_71003ad414(UnkKraidUpdateAI_b62a4* self);

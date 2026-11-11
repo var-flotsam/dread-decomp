@@ -2,6 +2,13 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/CCharClassChozoWarriorAIComponent.h"
+#include "game/CCharClassChozoWarriorXChangeWallAttack.h"
+#include "game/CCharClassChozoWarriorXGlaiveSpinAttack.h"
+#include "game/CCharClassChozoWarriorXLandAttack.h"
+#include "game/CCharClassChozoWarriorXSpitAttack.h"
+#include "game/CCharClassChozoWarriorXUltimateGrabAttack.h"
+#include "game/CCharClassChozoWarriorXWallClimbAttack.h"
 #include "game_s2/UnkTwoStepStrId.h"
 #include "types.h"
 
@@ -11,14 +18,7 @@ struct UnkNode {
     void** vtable;
 };
 
-void fn_7100497584(UnkNode*);
 extern void* g_unk_7101a3b748[];
-void fn_710047c6b4(void*);
-void fn_7100480114(void*);
-void fn_710047d830(void*);
-void fn_710047ba88(void*);
-void fn_710047e698(void*);
-void fn_710047f4d4(void*);
 
 void fn_710048da20(UnkNode* self) {
     fn_7100497584(self);

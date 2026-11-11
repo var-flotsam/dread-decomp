@@ -1,4 +1,5 @@
 // Static initialiser of the unit of the ELavaCarpetState, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>.
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
 #include "../game_s7/UnkStaticInitS7.h"
 #include "base/UnkNamedRegistry.h"
@@ -31,7 +32,6 @@ extern UnkStatics_71004a9c40 g_unk_71726d3398 __attribute__((visibility("hidden"
 extern char g_unk_71726d1f40[];
 extern UnkTunable g_unk_71726d1f48;
 extern void* g_unk_7101a3e038[];
-void fn_7100075104(void* self);  // its destructor, as registered
 extern UnkEnumType g_unk_71726d1f78;
 void fn_71004a2404(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71004a2138();

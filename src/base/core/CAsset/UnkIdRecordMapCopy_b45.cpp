@@ -5,6 +5,7 @@
 // path copied, counting a use of each. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "base/core/CAsset.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -16,7 +17,6 @@ struct UnkIdMap;
 struct UnkRecord80;
 using UnkIdRecordMap = UnkIdMap<UnkRecord80>;
 void fn_7100017948(UnkIdRecordMap* self, u32 capacity);  // Reserve
-UnkRecord80* fn_7100017ba0(UnkRecord80* self, const UnkRecord80* other);
 
 struct UnkRecord80Bytes_b45a1 {
     u64 words[0x80 / 8];

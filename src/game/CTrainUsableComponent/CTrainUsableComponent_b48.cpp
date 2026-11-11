@@ -9,6 +9,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
+#include "game/CUsableComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
@@ -61,8 +62,6 @@ struct UnkUsable_b48 {
     u64* keys;
     u32 count;
 };
-
-void fn_7100aa30bc(UnkUsable_b48* self, u32 arg);
 
 // The name of the id, counting the use.
 static inline void* UseName(const CStrId* id) {

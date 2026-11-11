@@ -1,5 +1,6 @@
 // Resets each of 15 slots to a freshly constructed value: builds a zeroed temporary,
 // initialises it, move-assigns it into the slot and destroys it.
+#include "game/CShotManager/CTunableShotManager.h"
 #include "types.h"
 
 struct UnkSlot_0x40 {
@@ -7,8 +8,6 @@ struct UnkSlot_0x40 {
 };
 
 void fn_7100eda600(UnkSlot_0x40* self);                             // constructor
-void fn_7100edbef4(UnkSlot_0x40* self, UnkSlot_0x40* other);        // move assignment
-void fn_7100ed977c(UnkSlot_0x40* self);                             // destructor
 
 struct UnkSlotTable_7100edce2c {
     UnkSlot_0x40 slots[15];

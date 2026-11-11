@@ -7,6 +7,9 @@
 // otherwise the game manager's map view (+0x2228) gets the zoom (+0x7c8) and the value at +0x8a0.
 // Names and layouts are placeholders.
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1689.h"
+#include "game/UnkTU2566.h"
+#include "game/UnkTU2567.h"
 #include "types.h"
 
 // As src/game/GUI/CIngameMenu/fn_7100b2de48.cpp and
@@ -20,18 +23,14 @@ void fn_7100fc9d78(UnkStateSink* sink, UnkStateKey* key, void* state);
 
 // As src/game/GUI/CMapMenuController.cpp and src/game/GUI/CMapMenuController_Close.cpp declare them.
 struct UnkMapData;
-UnkMapData* fn_7100e8d8b0();
 struct UnkMapMenuControllerClose;
-void fn_7100b3e5ac(UnkMapMenuControllerClose* self, s32 entry, u32 mode);
 
 void fn_7100ea6488(UnkMapData* self);
-bool fn_7100eb7470(void* transition, f32 dt);
 
 struct UnkMapTimersView_b43a3 {
     u8 pad_0x0[0xb8];
     u32 field_0xb8;
 };
-void fn_7100e94054(UnkMapTimersView_b43a3* self, f32 zoom);
 
 struct UnkMapTimersEntry_b43a3 {
     u8 pad_0x0[0x10];

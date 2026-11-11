@@ -4,6 +4,7 @@
 // builds the object at +0x147c8 (fn_71002b57bc), clears +0x148c8 and finishes with vtable slot 0x18.
 // The fields are addressed by offset, as in src/game/CCentralUnitAIComponent/fn_71004076e4.cpp.
 // Names and layouts are placeholders.
+#include "game/CBehaviorTreeAIComponent.h"
 #include "game/UnkObject_0x100.h"
 #include "types.h"
 
@@ -11,7 +12,6 @@ extern void* g_unk_7101a6ae18[];
 
 // Declared as src/game/CCentralUnitAIComponent/fn_71004076e4.cpp defines it.
 struct UnkComponent;
-void fn_710036932c(UnkComponent* self);
 void fn_71002b57bc(UnkObject_0x100* self);
 void fn_71006ec9f0(void* member);
 void fn_71006ed608(void* member);

@@ -19,6 +19,9 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
+#include "game/UnkTU357.h"
+#include "game/UnkTU39.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -282,13 +285,8 @@ struct UnkNavMeshHits;
 struct UnkStruct_7100286624;
 struct UnkObject_71002ad0dc;
 
-void fn_710028659c(UnkNavQuery* self);
-void fn_7100286624(UnkStruct_7100286624* self);
 void fn_7100286920(UnkNavQuery* self, const CVector2D* point, u16 cell, u8 side);
 void fn_7100286964(UnkNavQuery* self, const CVector2D* start, u16 cell, UnkNavMeshHits* hits);
-void fn_71002acfe4(void* member);
-void fn_71002ad0dc(UnkObject_71002ad0dc* self);
-bool fn_710002fb70(void*);
 
 struct UnkLocalQuery_ec1710 : UnkNavQuery {
     UnkLocalQuery_ec1710() { fn_710028659c(this); }

@@ -21,6 +21,9 @@
 #include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2566.h"
+#include "game/UnkTU2567.h"
+#include "game/UnkTU39.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -74,10 +77,8 @@ struct UnkMmOwner_b0199 {
 // (fn_71000ce604) and refreshes the map (fn_7100e957a8). Find() returns the slot past the last kind
 // when there is none, and callers compare it with the end through the vector.
 void fn_71000ce604(base::UnkVector<base::global::CStrId>* self, base::global::CStrId* it);  // erases
-void fn_7100e957a8(UnkMinimapOwner* self);
 void fn_7100e9565c(base::UnkVector<CStrId>* self, const CStrId* id);
 const base::global::CStrId* fn_7100de9bf8(UnkGameManager* self);
-void fn_7100eb7680(void* part);
 
 extern CStrId g_unk_71727c83a8;
 extern CStrId g_unk_71727c83c8;
@@ -252,7 +253,6 @@ void fn_7100e9b4b0(void* self_) {
 // ---- fn_7100ea5960 ----
 // Sets the value of the keyed record and refreshes (fn_7100ea585c).
 void fn_7100ea09a0(UnkMinimapOwner* self, void* record, u32 flag);
-void fn_7100ea585c(UnkMmOwner_b0199* self);
 
 struct UnkMmRecord_b0199 {
     u32 field_0x0;
@@ -346,8 +346,6 @@ void fn_7100e9b6ac(void* world, void* item) {
 
 // ---- fn_7100e910fc ----
 // Moves the map to a position: the camera offset from the view centre, then the new view rectangle.
-bool fn_710002fb70(void* timer);
-UnkMinimapRect fn_7100e948b4(UnkMinimapOwner* self, bool flag);
 void fn_7100e90e6c(UnkMinimapOwner* self);
 
 void fn_7100e910fc(UnkMmOwner_b0199* self, const f32* pos) {
@@ -410,7 +408,6 @@ void fn_7100e9867c(void* world, const CStrId& area) {
 // ---- fn_7100e9d578 ----
 // A component callback: for a grapple point component adds its two kinds and refreshes the map.
 void fn_7100e9565c(base::UnkVector<CStrId>* self, const CStrId* id);
-void fn_7100e957a8(UnkMinimapOwner* self);
 extern CStrId g_unk_71727c8358;
 extern CStrId g_unk_71727c8360;
 extern CStrId g_unk_71727c8368;

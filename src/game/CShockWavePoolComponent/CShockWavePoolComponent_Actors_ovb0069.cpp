@@ -9,6 +9,7 @@
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2523.h"
 #include "types.h"
 
 struct UnkOwner;
@@ -66,7 +67,6 @@ struct UnkEntityBox {
     base::math::CVector3D max;
 };
 struct UnkEntityBounds;
-UnkEntityBox fn_7100d7bc70(const UnkEntityBounds* self);
 
 struct UnkBox2D {
     f32 x0, y0;

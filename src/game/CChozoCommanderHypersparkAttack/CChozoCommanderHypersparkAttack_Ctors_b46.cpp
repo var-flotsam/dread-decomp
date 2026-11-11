@@ -2,6 +2,7 @@
 // objects on the same base (fn_710042baa8): the vtable, a cleared run at +0x5c-0x70 and an embedded
 // listener at +0x78 (vtable g_unk_7101a22d48) with its fields cleared. Names and layouts are
 // placeholders.
+#include "game/CChozoCommanderGroundAttack.h"
 #include "types.h"
 
 extern void* g_unk_7101a358f8[];
@@ -23,8 +24,6 @@ struct UnkHypersparkAttack_b46a1 {
     u8 pad_0x70[8];
     UnkHypersparkListener_b46a1 listener;
 };
-
-void fn_710042baa8(UnkHypersparkAttack_b46a1* self);
 
 static inline __attribute__((always_inline)) void Construct(UnkHypersparkAttack_b46a1* self) {
     fn_710042baa8(self);

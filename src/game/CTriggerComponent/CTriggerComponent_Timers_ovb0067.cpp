@@ -6,13 +6,13 @@
 #include <math.h>
 #include <stdlib.h>
 
+#include "game/CActorComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
-bool fn_710024fbc8(void*);
 
 struct UnkTriggerPlayerPos_ovb0067 {
     u8 pad_0x0[0x44];

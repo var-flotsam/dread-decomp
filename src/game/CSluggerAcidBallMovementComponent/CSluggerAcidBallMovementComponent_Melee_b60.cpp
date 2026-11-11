@@ -4,12 +4,12 @@
 // (+0x2e8) to the all-flags mask (as CSluggerAcidBallMovementComponent_Hit_b59.cpp). Names and layouts are
 // placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CMeleeComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
 
 struct UnkMeleeComponent;
-bool fn_710092b604(UnkMeleeComponent* self);
 
 struct UnkSluggerBallMeleeOther_b60a4 {
     u8 pad_0x0[0x2f8];

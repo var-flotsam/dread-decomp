@@ -6,13 +6,13 @@
 #include "base/global/CRntFile.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU83.h"
 #include "types.h"
 
 // The registry of reflected types by 64-bit id (as src/base/global/UnkTimelineTracks.cpp declares it).
 struct UnkVersionRegistry;
 struct UnkVersionEntry;
 extern UnkVersionRegistry* g_unk_7101d4c8d0;
-UnkVersionEntry* fn_71000a5118(UnkVersionRegistry* self, const u64* id);
 
 struct UnkTimelineEvent;
 

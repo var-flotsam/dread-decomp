@@ -2,7 +2,10 @@
 // box is moved into the collection's frame and run through the collection's tree; when that finds
 // nothing, each polygon is tried by its first vertex (inside the box?) and by its outline around the
 // box's centre. Names and layouts are placeholders.
+#include "game/UnkTU108.h"
 #include "game/UnkXformNode.h"
+#include "game/logic/collision/CAABoxShape2D.h"
+#include "game/logic/collision/CShape.h"
 #include "types.h"
 
 struct UnkCollider;
@@ -122,8 +125,6 @@ struct UnkLocalQuery_d52bd0 {
     }
 };
 
-void fn_7100d6c0e4(UnkPolygonCollectionShape_b42a3* self, const UnkPolygonCollectionShape_b42a3* other);
-void fn_7100d5e2c8(UnkCollisionShape* self);
 void fn_7100d5e570(UnkBoxShape2D_7100d5e570* self, const f32* delta);
 struct UnkBoxShape_d52bd0;
 bool fn_7100d5e5b4(const UnkBoxShape_d52bd0* self, UnkPoint2D_d52bd0 point);
@@ -176,7 +177,6 @@ struct UnkCollectionShape_d52bd0 {
 };
 
 UnkContact fn_7100d63870(UnkShape10* self, const UnkBox2D* box, UnkLocalQuery* query, bool flag);
-bool fn_7100116de0(UnkEntry* entry, void* query, u32 a, u32 b, f32 scale);
 
 UnkContact fn_7100d52bd0(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* sink, u32 x6) {
     UnkCollectionShape_d52bd0* collection = reinterpret_cast<UnkCollectionShape_d52bd0*>(a);

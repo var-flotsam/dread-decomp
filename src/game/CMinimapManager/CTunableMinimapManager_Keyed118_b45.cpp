@@ -5,11 +5,11 @@
 // destroyed by fn_7100ea7034. Names and layouts are placeholders.
 #include "../../base/reflection/UnkTempIterValue_b44.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU2566.h"
 #include "types.h"
 
 // As src/game/logic/collision/CCollider/fn_7100d3d424.cpp declares it.
 struct UnkRecord118;
-void fn_7100ea7034(UnkRecord118* self);
 
 struct UnkRecord118_b45a3 {
     u64 words[0x118 / 8];

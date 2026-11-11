@@ -5,15 +5,15 @@
 // +0x54. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CComponent.h"
+#include "game/CSpecialEnergyComponent.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU1501.h"
 #include "types.h"
 
 extern base::reflection::UnkTunable g_unk_7172745770;  // CTunableSpecialEnergyComponent
 
 struct UnkLifeComponent;
-void fn_7100a1fa98(UnkLifeComponent* life, bool a, bool b, f32 value);
-char* fn_71010c4234(char* p0);
-bool fn_71009e1390(void* obj);
 
 struct UnkEnergyHolder_b48 {
     u8 pad_0x0[0x118];

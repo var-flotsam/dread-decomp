@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the EInputAimDir.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
@@ -43,7 +44,6 @@ struct __attribute__((packed)) UnkAimTunable {
 extern UnkAimTunable g_unk_71726b1438;
 // UnkAimTunable is the full (packed) view of a tunable; fn_7100136ecc (game/UnkTUProperty.h) builds its base.
 extern void* g_unk_7101a23c28[];
-void fn_7100075104(void* self);  // its destructor, as registered
 extern UnkEnumType g_unk_71726b1508;
 void fn_7100342d64(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_7100342a38();

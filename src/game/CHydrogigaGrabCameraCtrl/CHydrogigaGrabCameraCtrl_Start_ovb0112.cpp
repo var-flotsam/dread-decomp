@@ -6,6 +6,7 @@
 // blend is reset and the shared settings at +0x1f8 are handed over with a reference (as
 // CCharClassSetSlomoCustomEvent_Execute.cpp). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CCameraCtrl.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -15,7 +16,6 @@ using base::global::CStrId;
 struct UnkFixedCamera_fc;
 struct UnkArg_fc;
 struct UnkVec;
-void fn_71010ed98c(UnkFixedCamera_fc* self, UnkArg_fc* arg, u32 flag);
 void fn_7100e038b0(UnkGameManager*, void*, UnkVec*, u64);
 void fn_7100df6c78(UnkGameManager* self, f32 a, f32 b);
 void fn_7100df6d3c(UnkGameManager* self, void* settings, f32 a, f32 b);

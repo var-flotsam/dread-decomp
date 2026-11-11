@@ -5,6 +5,7 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCharClassLavaPoolComponent.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -26,7 +27,6 @@ struct UnkMagmaList_b50 {
     u32 count;
 };
 
-UnkMagmaList_b50* fn_71008fbdb4();
 bool fn_7100a47e00(UnkMagmaArea_b50* area, const CVector2D* point);
 
 struct UnkMagmaOwner_b50 {

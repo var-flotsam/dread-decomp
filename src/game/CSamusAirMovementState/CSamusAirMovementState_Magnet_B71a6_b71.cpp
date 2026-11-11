@@ -6,6 +6,7 @@
 // placeholders.
 #include "base/UnkDestructors.h"
 #include "base/global/CStrId.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
@@ -14,7 +15,6 @@
 struct UnkInventory;
 f32 fn_7101142928(UnkInventory*, const UnkQualifiedId&);
 struct UnkAbility;
-u32 fn_7100309568(UnkAbility*);
 u32 fn_71009a60fc();
 UnkAbility* fn_7100df554c(UnkGameManager* manager);
 
@@ -125,4 +125,3 @@ void fn_710098b590(UnkAirState_B71a6* self, void*, const u64* value) {
     if (fn_71009a64cc(state, &words, 1, &req, 1))
         fn_710098ae04(self->target, &req);
 }
-

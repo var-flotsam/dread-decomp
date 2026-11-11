@@ -5,6 +5,8 @@
 #include "base/global/CStrId.h"
 #include "base/UnkVector.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU127.h"
+#include "game/UnkTU253.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -39,8 +41,6 @@ static_assert(__builtin_offsetof(UnkProjectiles, field_0x198) == 0x198, "");
 static_assert(__builtin_offsetof(UnkProjectiles, field_0x230) == 0x230, "");
 
 void fn_71006cae2c(UnkRenderPool* pool, const CFilePathStrId& path, UnkModel** out, base::global::CStrId* name);
-void fn_71001436a0(UnkModel* model, u32 flag);
-void fn_71001c0968(UnkModelData* data, u32 flag);
 void fn_7100ecf978(u64* field, u32 value);
 void fn_7100ed7634(UnkProjectiles* self);
 

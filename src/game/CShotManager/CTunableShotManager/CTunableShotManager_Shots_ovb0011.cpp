@@ -9,9 +9,15 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "engine/scene/UnkToggle.h"
+#include "game/CLightManager.h"
+#include "game/CShotManager/CTunableShotManager.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2523.h"
+#include "game/UnkTU290.h"
+#include "game/UnkTU437.h"
+#include "game/sound/CSoundManager.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -97,10 +103,7 @@ struct UnkDropTarget;
 extern UnkDropTarget* g_unk_7101d47318;
 
 UnkPlayer* fn_7100dec788(UnkGameManager*);
-UnkSoundHandle fn_7100d7c45c(UnkEntityWithSound* self, void* a, void* b, void* c);
 UnkSoundHandle fn_7100d7c42c(UnkEntityWithSound* self, void* a, void* b, void* c, void* d);
-void fn_7101024b28(UnkDropTarget* self, void* record, void* source, void* a, u32 b);
-void fn_7100d7c548(UnkActor* self, const UnkStrIdPathPair* ids, f32 blend, f32 start);
 UnkSoundHandle fn_7101024e28(UnkDropTarget* self, const UnkStrIdPathPair* ids, void* a, bool b);
 void fn_7101025560(UnkDropTarget* self, const UnkStrIdPathPair* ids, f32 blend, f32 start);
 
@@ -148,11 +151,8 @@ void fn_7100ed6af0(UnkShotManager_b0011* self, u32 type, u32 variant) {
 }
 
 extern void* g_unk_71726b1688;  // the light manager
-void fn_7100359118(void* self);
 UnkListedObj* fn_7100e0b770(char* self);
-UnkListedObj** fn_7100e0a5ec(UnkPtrList* list, u32 index);
 void fn_710020c4b8(UnkToggle* self, bool value);
-void fn_710020c8ac(void*, bool);
 
 // A light the light manager hands out; its switch at +0x28.
 struct UnkShotLight_b0011 {
@@ -242,7 +242,6 @@ struct UnkValue_b0011 {
     u8 data[0x40];
 };
 struct UnkSlot_0x40;
-void fn_7100edbef4(UnkSlot_0x40* self, UnkSlot_0x40* other);  // copy assignment
 
 // Either a key and a value held here (kind 1) or pointers to them elsewhere (kind 2); kind 0 is
 // empty. The key is stored bytewise, so the kind is read again after it.
@@ -333,7 +332,6 @@ void fn_7100edc1f0(CFilePathStrId* ids) {
 struct UnkFunctor_b0011 {
     u8 data[0x40];
 };
-void fn_7100ed977c(UnkSlot_0x40* self);  // destructor
 
 // An id and an object, and either a held functor (kind 1) or a binding to the object (kind 2: a
 // pointer back to the callback and the object).
@@ -522,8 +520,6 @@ struct UnkObj290_b43a3 {
     u8 pad_0x8[0x288];
 };
 static_assert(sizeof(UnkObj290_b43a3) == 0x290, "UnkObj290_b43a3 layout");
-
-void fn_7100eddc68(UnkObj290_b43a3* self, UnkObj290_b43a3* other);  // move constructor
 
 // Reallocates to n shots, moving each over and destroying the old one.
 static inline void ReallocShots_b0011(base::UnkVector<UnkObj290_b43a3>* self, u32 n) {

@@ -3,10 +3,10 @@
 // (reflection), else null. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CGunComponent.h"
 #include "types.h"
 
 struct UnkComponent;
-void* fn_710083cd30(UnkComponent* component);
 
 struct UnkGrappleOwnerActor_b49a4 {
     u8 pad_0x0[0x2a8];

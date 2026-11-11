@@ -6,13 +6,12 @@
 
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CNavMeshItemComponent.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-void fn_71009c172c(void* self);
 
 extern void* g_unk_7101a889c8[];
 extern void* g_unk_7101aa52d0[];

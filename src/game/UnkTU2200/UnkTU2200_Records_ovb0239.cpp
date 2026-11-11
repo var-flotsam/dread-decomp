@@ -4,6 +4,7 @@
 // records read from a direct or an indirect source. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
+#include "game/UnkTU2200.h"
 #include "types.h"
 
 #include <new>
@@ -31,8 +32,6 @@ struct UnkElem40Array_b42a3 {
     u32 flags;
     base::UnkAllocator* allocator;
 };
-
-void fn_7100c8b758(UnkElem40Array_b42a3* self, u32 capacity);
 
 void fn_7100c90fb0(void* dst, const void* src) {
     new (dst) UnkElem40_b42a3(*static_cast<const UnkElem40_b42a3*>(src));
@@ -234,8 +233,6 @@ struct UnkElemA0Array_b42a3 {
     base::UnkAllocator* allocator;
 };
 
-void fn_7100c8b9c8(UnkElemA0Array_b42a3* self, u32 capacity);
-void fn_7100c886c0(void*);
 struct UnkKeyedStrIds;
 void fn_71000df22c(UnkKeyedStrIds*, u32);
 void fn_7100c8bd98(UnkStrIdMap_b239* self, const UnkStrIdMap_b239* other);
@@ -377,4 +374,3 @@ void fn_7100c91c58(void* dst_in, const void* src_in) {
         break;
     }
 }
-

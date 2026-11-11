@@ -3,6 +3,7 @@
 // handing each point to fn_7100118b94 until a point lies further out than the limit, where the
 // run ends with a point on the limit line (and a last one level with the origin). The sign of the
 // direction's y picks the side. The unused first parameter is the owner.
+#include "game/UnkTU108.h"
 #include "types.h"
 
 struct UnkVec2 {
@@ -15,8 +16,6 @@ struct UnkVec3 {
     f32 y;
     f32 z;
 };
-
-void* fn_7100118b94(void* sink, UnkVec3* point);
 
 // One step: the point at (radius * a, radius * b) from the origin, mirrored by the direction's sign.
 #define STEP(A, B)                                                                       \

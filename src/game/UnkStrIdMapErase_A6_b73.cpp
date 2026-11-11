@@ -10,6 +10,9 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
+#include "game/UnkTU2604.h"
+#include "game/UnkTU2640.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -89,10 +92,6 @@ static inline __attribute__((always_inline)) void* Erase(void* map, const CStrId
 
 }  // namespace
 
-void fn_7100d8f9e4(void*);
-void fn_7100d90304(void*);
-void fn_7100fee034(void*);
-void fn_7100f8da4c(void*);
 void fn_7100fed6cc(char*);
 void fn_7100e0da38(void*);
 void fn_7101005d8c(void*);

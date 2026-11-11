@@ -16,11 +16,18 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CBreakableVignetteComponent.h"
+#include "game/CCharClassBreakableScenarioComponent.h"
+#include "game/CInputComponent.h"
+#include "game/CNavMeshItemComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2689.h"
+#include "game/UnkTU365.h"
+#include "game/UnkTU372.h"
 #include "game/UnkTimelineComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "../../game_s2/UnkSpitSend.h"
@@ -114,17 +121,9 @@ UnkOwner* fn_7100defcd4(UnkGameManager*);
 struct UnkEnergyWavePlayer2_ovb22;
 bool fn_7100df5c20(UnkGameManager*, UnkEnergyWavePlayer2_ovb22*);
 struct UnkForcedMovementTarget_A5_b68;
-void fn_71010db850(UnkForcedMovementTarget_A5_b68* p, void* q);
-void fn_7100872858(void* p, void* q);
 void fn_71008659c4(UnkCollisionContainer*, u32, u32, void*);
-void* fn_71002b3b84(UnkWeakTarget*);
-void fn_71009c0f1c(void*, u64);
-void fn_71009c0974(void*, bool);
 struct UnkBreakablePart;
 struct UnkBreakableTarget;
-UnkBreakableTarget** fn_71002a76a4(UnkBreakablePart* part);
-void* fn_7100751520(void* key);
-void fn_710076351c(void* obj);
 
 // The id handed to the player's +0x1d8 object (a hidden static of the unit).
 extern u8 g_unk_717274a6f0[] __attribute__((visibility("hidden")));

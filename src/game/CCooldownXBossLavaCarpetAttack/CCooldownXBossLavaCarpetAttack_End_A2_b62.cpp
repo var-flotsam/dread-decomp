@@ -8,6 +8,8 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CBossAIComponent.h"
+#include "game/CCooldownXBossAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTimelineCalls.h"
@@ -18,13 +20,10 @@
 using base::reflection::CClass;
 
 struct UnkCooldownXBossAttack_b62a2;
-void fn_71004c196c(UnkCooldownXBossAttack_b62a2* self);
 struct UnkLaserBite_b59;
-void fn_71004c1e08(UnkLaserBite_b59* self);
 // Typed as CHydrogigaZiplineRailComponent_b49.cpp declares it (one signature per symbol).
 struct UnkZiplineLink_b49;
 struct UnkZiplineLinkTarget_b49;
-UnkZiplineLinkTarget_b49** fn_71003b0c4c(UnkZiplineLink_b49* source);
 struct UnkCarpetAI_b62a2;
 void fn_71004d4a28(UnkCarpetAI_b62a2* ai);
 void fn_710116a170(void* self, void* item);

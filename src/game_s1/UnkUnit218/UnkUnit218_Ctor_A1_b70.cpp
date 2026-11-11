@@ -6,10 +6,10 @@
 
 #include "../UnkUnit211/UnkPtrArrayHolder_b70.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU226.h"
 #include "types.h"
 
 extern void* g_unk_7101a1e0a8[];
-void fn_710019e76c(void* self);
 
 namespace {
 

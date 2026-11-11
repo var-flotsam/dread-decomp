@@ -3,6 +3,7 @@
 // set, then hands each entry of the two arrays (0xb0-byte entries at +0xe8, the functions, 0xb8
 // bytes each, at +0x110) with the class to fn_71000e7420 and fn_710009ad4c. Names are placeholders.
 #include "base/reflection/CClass.h"
+#include "game/UnkTU85.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -38,7 +39,6 @@ void fn_7100096f30(CClass* self) {
 
 // Hands each entry of the array at +0xe8 to fn_71000e82a8 with a null second argument.
 struct UnkElem_0xb0;  // the entry, as src/engine/render/anim/CSkeletalAnimTree/fn_710014be78.cpp names it
-void fn_71000e82a8(UnkElem_0xb0*, void*);
 void fn_7100097c84(CClass* self) {
     UnkReflClassEntry* entries = static_cast<UnkReflClassEntry*>(self->m_array_0xe8.data);
     for (UnkReflClassEntry* it = entries, *end = entries + self->m_array_0xe8.count; it != end; ++it)

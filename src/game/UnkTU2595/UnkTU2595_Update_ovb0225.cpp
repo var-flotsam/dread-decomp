@@ -8,6 +8,10 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU2656.h"
+#include "game/UnkTU2725.h"
+#include "game/malloc.h"
+#include "game/nn/time.h"
 #include "game/sound/CMusicManager.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
@@ -21,7 +25,6 @@ struct UnkSingleton2595_b0225 {
     UnkSingleton2595_b0225();  // fn_7100ec7aec
 };
 
-bool fn_7101053a98(void* state);
 void fn_7100ec9e38(UnkSingleton2595_b0225* self, f32 dt);
 
 struct UnkSingleton2595_b49a6;
@@ -156,10 +159,7 @@ void fn_7100f14118(UnkSmOwner_b0225* self, f32 dt) {
 
 struct UnkSoundHolder;
 extern UnkSoundHolder* g_unk_7101d47340;
-void fn_710006cd9c(UnkSoundHolder* holder);
-void fn_71011867ec(char* self);
 void fn_71011b3768(UnkGuiRoot* root);
-void fn_7100132aa0(bool on);
 extern void* g_unk_71726bc560;
 extern base::global::CRntString g_unk_71729dc240 __attribute__((visibility("hidden")));
 struct UnkMusicMode {

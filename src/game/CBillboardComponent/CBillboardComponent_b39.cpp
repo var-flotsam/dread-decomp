@@ -3,10 +3,10 @@
 // src/game/CFingSwarmControllerComponent/fn_7100579d08.cpp) has the flag at +0x10d of its data clear.
 // Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU2560.h"
 #include "types.h"
 
 extern void* g_unk_71726da048;
-void fn_7100e1bca4(void* manager);
 
 struct UnkBillboardData_bbc {
     u8 pad_0x0[0x10d];
@@ -17,8 +17,6 @@ struct UnkBillboardEntry_bbc {
     u8 pad_0x0[0x10];
     UnkBillboardData_bbc* data;  // 0x10
 };
-
-UnkBillboardEntry_bbc* fn_7100e1caf0(void* manager, u32 id);
 
 struct UnkBillboard_bbc {
     u8 pad_0x0[0x48];

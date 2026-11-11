@@ -5,6 +5,7 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "base/core/CAsset.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 
@@ -12,8 +13,6 @@ using base::global::CFilePathStrId;
 using base::global::CStrId;
 
 extern void* g_unk_7101a22200[];  // the object's vtable
-
-void fn_7100016ad8(void* self);
 
 // Two zeroed blocks of two words, the step and mode, and an allocator.
 struct UnkModeArray {

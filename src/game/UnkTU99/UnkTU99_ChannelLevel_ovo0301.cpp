@@ -8,10 +8,11 @@
 #include "base/UnkDefaultAllocator.h"
 #include "base/UnkVector.h"
 #include "base/snd/UnkSoundSystemATK.h"
+#include "base/tunable/CTunable.h"
+#include "game/UnkTU101.h"
 
 using base::snd::UnkSoundSystemATK;
 
-bool fn_7100132cd0();
 extern u8 g_unk_7108b6ab60 __attribute__((visibility("hidden")));
 
 // fn_71000faac4 (include/base/snd/UnkSoundSystemATK.h) under a local name whose payload parameter is
@@ -24,7 +25,6 @@ struct UnkSoundHandle_b46a1 {
     UnkSoundHandle_b46a1(const UnkSoundHandle_b46a1& other) : value(other.value) {}
 };
 extern const f32 g_unk_71016479f8[] __attribute__((visibility("hidden")));  // level values
-void fn_7100105ef4(void* sound, f32 time, f32 step, bool arg3);
 
 struct UnkSndChannelVoice_o0301 {
     u8 pad_0x0[0xb0];

@@ -4,12 +4,12 @@
 // another hash, then gives the owner's weak target (fn_71002b3b84) the id 0xa2f2cc13b58b67b4
 // (fn_71009c0f1c) and copies the word at +0x46c to +0x468. Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CNavMeshItemComponent.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU372.h"
 #include "types.h"
 
 struct UnkWeakTarget;
-void* fn_71002b3b84(UnkWeakTarget*);
-void fn_71009c0f1c(void* object, u64 id);
 
 struct UnkMushroomOwner_b54 {
     u8 pad_0x0[0x220];

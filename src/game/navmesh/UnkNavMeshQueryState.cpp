@@ -13,6 +13,7 @@
 #include "base/math/CVector.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkObject_0x100.h"
+#include "game/UnkTU358.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -27,7 +28,6 @@ UnkObject_0x100* fn_71002b5c90(UnkObject_0x100* self, const UnkObject_0x100* oth
 struct UnkNavPathNode;
 struct UnkNavPathPoint;
 void fn_71002871cc(UnkNavPathNode* self);  // the node's constructor
-void fn_71002872f4(UnkNavPathNode* self);  // the node's destructor (destroys the payload)
 // Sets the cell, side, kind and position (and, with a mesh and a cell, +0x108 from the cell).
 void fn_7100287298(UnkNavPathNode* self, UnkNavMesh* mesh, u16 cell, u8 side, u32 kind, const UnkNavPathPoint* pos);
 // Sets the three costs (+0x11c, +0x114, +0x118).

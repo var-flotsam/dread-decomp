@@ -9,6 +9,7 @@
 #include "base/UnkRefHandle.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CTriggerLogicAction.h"
 #include "game/UnkGameManager.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -16,7 +17,6 @@
 using base::global::CRntString;
 
 struct UnkTutoExitAction_b47;
-void fn_7100a55ac8(UnkTutoExitAction_b47* self);
 
 struct UnkModeFlags {
     u8 unk_0x0[0xb8];

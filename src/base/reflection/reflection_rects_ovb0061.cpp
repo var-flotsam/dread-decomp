@@ -9,6 +9,8 @@
 #include "base/UnkNamedRegistry.h"
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
+#include "base/reflection.h"
+#include "base/tunable/CTunable.h"
 #include "types.h"
 
 using base::UnkAllocator;
@@ -276,7 +278,6 @@ static_assert(__builtin_offsetof(UnkRectOwner_ovb0061, field_0x144) == 0x144, "U
 
 u32 fn_7100132f80();  // the display width
 u32 fn_7100132f90();  // the display height
-u32 fn_7100132fc0();
 void fn_71001ffd58(UnkRectOwner_ovb0061* self);
 
 // The constructor: pushes the parent, takes its +0x40 value, and without `flag` sizes the fallback
@@ -322,7 +323,6 @@ void fn_71002028c4(UnkRectOwner_ovb0061* self, UnkRectValue_ovb0061* out, u32 i)
         *out = self->fallback;
 }
 
-void fn_71001eed18(void* self, void* item);
 void fn_71001fd700(void* item);
 void fn_71001ee6f8(void* view);
 void fn_71001eefb4(void* view);

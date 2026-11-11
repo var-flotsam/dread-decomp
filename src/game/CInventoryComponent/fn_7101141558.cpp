@@ -2,6 +2,7 @@
 // the member at 0x90 (fn_71009168e0), the string id at 0x88 and the member at 0x40
 // (fn_7101141468), runs the base destructor (fn_71010c4194) and frees the object.
 #include "base/global/CStrId.h"
+#include "game/CInventoryComponent.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -44,7 +45,6 @@ struct UnkEntryId {
 extern void* g_unk_7101cb33c8[];
 
 struct UnkObject_7101141558;
-void fn_7101141378(UnkObject_7101141558* self);
 
 struct UnkObject_7101141558 : UnkBase_0x40 {
     UnkMember_0x48 field_0x40;

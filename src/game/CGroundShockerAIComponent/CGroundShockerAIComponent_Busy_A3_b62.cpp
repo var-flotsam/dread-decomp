@@ -3,12 +3,11 @@
 // the frost-bite component (+0x2c8) is frozen (fn_71007f9f20) and not yet thawing (fn_71007f9fd0).
 // Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CFrozenComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
 struct UnkFrostbiteComponent;
-bool fn_71007f9f20(void*);
-bool fn_71007f9fd0(UnkFrostbiteComponent*);
 
 struct UnkShockerOwner_b62a3 {
     u8 pad_0x0[0x220];

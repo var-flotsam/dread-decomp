@@ -5,6 +5,7 @@
 // object as the context, as fn_7100023854 does. Names are placeholders.
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/UnkTU85.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -23,8 +24,6 @@ struct UnkClassEntryContext {
 struct UnkClassEntry {
     u8 data[0xb0];
 };
-
-void fn_71000e7b5c(UnkClassEntry* entry, UnkClassEntryContext* context);
 
 struct UnkBaseObject_7100024e38 {
     void** vtable;

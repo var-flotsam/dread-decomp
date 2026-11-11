@@ -8,6 +8,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CSpecialEnergyComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
@@ -21,7 +22,6 @@ using base::global::UnkStringData;
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 struct UnkLifeComponent;
-void fn_7100a1fa98(UnkLifeComponent* life, bool a, bool b, f32 value);
 void fn_7100b5fd6c(void* object, base::global::UnkStringData** name, void* block, bool a, bool b);
 void fn_7100dfaf88(UnkGameManager* self, void* name, const CRntString& tag, bool flag);
 

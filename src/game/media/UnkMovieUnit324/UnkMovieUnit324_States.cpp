@@ -6,6 +6,9 @@
 // 6, 7, 9 or 13 to 8 after pausing, keeping the state at +0x34). Names and layouts are
 // placeholders.
 #include "base/UnkDefaultAllocator.h"
+#include "base/global/timeline/CEvent.h"
+#include "game/UnkTU324.h"
+#include "game/media/CMediaStream.h"
 #include "types.h"
 
 struct UnkMedia324;
@@ -68,9 +71,7 @@ struct UnkMedia324 {
 static_assert(__builtin_offsetof(UnkMedia324, lock) == 0x960, "UnkMedia324 layout");
 static_assert(__builtin_offsetof(UnkMedia324, loop_mode) == 0xad0, "UnkMedia324 layout");
 
-void fn_7100066828(void* thread, u32 a);
 void fn_7100066698(nn::os::LightEventType* event);
-void fn_710021b860(UnkMediaTrack330* track, bool a, bool b);
 
 // As src/game/UnkUnit330/UnkUnit330Flush.cpp defines it.
 struct UnkUnit330Object;
@@ -85,11 +86,9 @@ void fn_7100224de4(UnkMedia330* self);
 bool fn_7100224fbc(UnkMedia330* self, void* arg);
 void fn_7100224f2c(UnkMedia330* self);
 // UnkMovieUnit324_Pause.cpp.
-u32 fn_710021f950(UnkMedia324* self);
 void fn_710021fe0c(UnkMedia324* self);
 // As src/game_hi/fn_7100f00f4c.cpp declares it.
 struct UnkRefObj;
-void fn_710021ea60(UnkRefObj* self);
 
 static inline void SetState(UnkMedia324* self, s32 state) {
     fn_710006691c(&self->listener_lock);

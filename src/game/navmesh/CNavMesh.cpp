@@ -11,10 +11,12 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "base/file/CThreadSafeDevice.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
+#include "game/UnkTU0.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -772,9 +774,7 @@ struct UnkStrPair_0x10 {
     void* b;
 };
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
-void fn_710008d680(UnkStrPair_0x10* s, const char* path);
 s64 fn_710007cee4(void* stream, const char** out);  // reads a string, returns it in *out
-void fn_71000003d4(void*, const char*, bool);       // the string-id constructor (base/global/CStrId.h)
 
 // A string id built out of line from a C string (fn_71000003d4), released on scope exit.
 struct UnkNavLoadId {

@@ -6,14 +6,14 @@
 // (fn_71009c0f1c), then sets the flag at +0x2a1. Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CName.h"
+#include "game/CNavMeshItemComponent.h"
+#include "game/CQuarentineDoorComponent.h"
+#include "game/UnkTU372.h"
 #include "types.h"
 
 struct UnkQuarentineDoor_b54;
-void fn_71007df12c(UnkQuarentineDoor_b54* self, bool flag);
 
 struct UnkWeakTarget;
-void* fn_71002b3b84(UnkWeakTarget*);
-void fn_71009c0f1c(void* object, u64 id);
 
 struct UnkQuarentineOwner_b54 {
     u8 pad_0x0[0x220];

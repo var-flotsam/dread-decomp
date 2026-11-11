@@ -13,6 +13,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkTU2578.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -23,11 +24,7 @@ using base::global::CStrId;
 
 struct UnkStruct_0x128;
 extern UnkStruct_0x128* g_unk_7101d47320;
-void fn_7100ef3494(UnkStruct_0x128* self);
-bool fn_7100f00a24(UnkStruct_0x128* self, u32 mode);
-void fn_7100f00f4c(UnkStruct_0x128* self, u32 mode, bool flag);
 void fn_7100f011c4(UnkStruct_0x128* self, u32 mode);
-void fn_7100f01838(UnkStruct_0x128* self, u32 mode);
 
 static inline UnkStruct_0x128* Music() {
     UnkStruct_0x128* m = g_unk_7101d47320;

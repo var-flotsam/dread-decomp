@@ -4,6 +4,8 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/CGoliathXBurstProjectionBombMovement.h"
+#include "game/UnkTU2563.h"
 #include "types.h"
 
 template <class T>
@@ -115,7 +117,6 @@ struct UnkValues3 {
 struct UnkPushedVector : UnkCopiedVector<UnkValues3> {
     UnkPushedVector& operator=(const UnkPushedVector& other);
 };
-void fn_710058c768(UnkPushedVector* self, const UnkValues3* value);  // PushBack
 
 __attribute__((always_inline)) inline UnkPushedVector& UnkPushedVector::operator=(const UnkPushedVector& other) {
     if (this != &other) {
@@ -186,7 +187,6 @@ struct UnkPolyValues {
 };
 
 struct UnkPolyVector : UnkCopiedVector<UnkPolyValues> {};
-void fn_7100e4ea08(UnkPolyVector* self, const UnkPolyValues* value);  // PushBack
 
 UnkPolyVector* fn_7100e4e898(UnkPolyVector* self, const UnkPolyVector* other) {
     if (self != other) {

@@ -3,6 +3,7 @@
 // while the area contains the position in 2D (its vf_0x50), the time at +0x56c grows by `dt`, else
 // it is cleared; then the base step fn_7100741aa8. Names and layouts are placeholders.
 #include "base/math/CVector.h"
+#include "game/CRedenkiSwarmControllerComponent.h"
 #include "types.h"
 
 // As src/game/CRedenkiSwarmControllerComponent/CRedenkiSwarmControllerComponent_b38.cpp defines it.
@@ -32,7 +33,6 @@ struct UnkSwarmHold_b66a4 {
     }
 };
 
-UnkVec3Result fn_710064fef8(UnkSwarmHold_b66a4* self);
 void fn_7100741aa8(UnkSwarmHold_b66a4* self, f32 dt);
 
 void fn_710064fe44(UnkSwarmHold_b66a4* self, f32 dt) {

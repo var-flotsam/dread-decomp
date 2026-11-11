@@ -6,9 +6,11 @@
 // are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/UnkRefHandle.h"
+#include "game/CAutoolAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkTU1376.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
@@ -30,10 +32,8 @@ UnkRef fn_7100353be8(void* from);
 struct UnkWeakTarget;
 struct UnkDoorLock;
 UnkDoorLock* fn_71002af860(UnkWeakTarget*);
-bool fn_71008d0ef4(void*);
 struct UnkEvacPart_b61;
 struct UnkEvacTimeline_b61;
-UnkEvacTimeline_b61* fn_71003c6c3c(UnkEvacPart_b61* part);
 
 struct UnkFootstepStatic_b45a2;
 __attribute__((visibility("hidden"))) extern UnkFootstepStatic_b45a2* g_unk_717271fae0;

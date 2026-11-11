@@ -3,13 +3,12 @@
 // (fn_710024fbc8); then counts the step up to 3, clearing the flag at +0x42c on reaching it. Names and
 // layouts are placeholders.
 #include "base/global/CRntString.h"
+#include "game/CActorComponent.h"
 #include "types.h"
 
 using base::global::CRntString;
 
 struct UnkStruct_710024fa0c;
-void fn_710024fa0c(UnkStruct_710024fa0c* self, bool enabled);
-bool fn_710024fbc8(void*);
 
 // A string id's pooled data as the comparison sees it: its key and a read count.
 struct UnkSwifterIdData_ovb0114 {

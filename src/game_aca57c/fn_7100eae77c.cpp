@@ -4,6 +4,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2566.h"
 #include "types.h"
 
 using base::UnkAllocator;
@@ -115,8 +116,6 @@ struct UnkRecord118 {
     __attribute__((always_inline)) ~UnkRecord118() {}
 };
 static_assert(sizeof(UnkRecord118) == 0x118, "UnkRecord118 layout");
-
-__attribute__((noinline)) void fn_7100ea7034(UnkRecord118* record);
 
 // The record's destructor.
 void fn_7100ea7034(UnkRecord118* record) { record->~UnkRecord118(); }

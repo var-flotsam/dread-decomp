@@ -2,6 +2,7 @@
 // update of src/game/UnkStateMachineSet_b61.cpp, fn_7100a0a584, whose template is copied here):
 // applies the pending state, then updates the current state and applies what it asked for, at most ten
 // times, while marked busy. Each one's own unit. Names are placeholders.
+#include "game/CComponent.h"
 #include "types.h"
 
 struct UnkSmState_B63a4 {
@@ -115,8 +116,6 @@ __attribute__((always_inline)) static inline void Update_B63a4(UnkSmMachine_B63a
     self->busy = false;
 }
 
-
-char* fn_71010c4234(char*);
 
 void fn_710065fb20(UnkSmOwner_B63a4<0x1a8>* self, f32 dt) {
     fn_71010c4234(reinterpret_cast<char*>(self));

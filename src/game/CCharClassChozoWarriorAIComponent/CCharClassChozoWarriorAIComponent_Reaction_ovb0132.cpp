@@ -3,14 +3,13 @@
 #include "base/UnkMatrix44.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CMeleeComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkCollisionRecord.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-bool fn_710092b6f8(void*);
 
 struct UnkChozoWarriorActorView_ovb0132 {
     u8 pad_0x0[0x2a0];

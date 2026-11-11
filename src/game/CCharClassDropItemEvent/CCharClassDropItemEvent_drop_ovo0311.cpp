@@ -11,6 +11,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkXformNode.h"
 #include <new>
 #include "types.h"
@@ -26,7 +27,6 @@ struct UnkXformAtF0;
 
 bool fn_71011735e8(UnkEntity* entity, const void* key, UnkMatrix44* out, u32 flags);
 UnkVec3f fn_7100076acc(const UnkXform* x);
-const UnkDropCameraVec3* fn_7100d7c9f4(UnkPlayer* player);
 char* fn_71004dad10(UnkActor*);
 void fn_710110e278(UnkSwarmSelf_b0143* self, void* a, void* b, void* c, bool flag);
 void fn_71007c1ab0x(UnkDropSpawnComp_ovb0096* self, void* unused) asm("fn_71007c1fb0");

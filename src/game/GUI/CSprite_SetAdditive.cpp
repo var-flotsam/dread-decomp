@@ -2,10 +2,10 @@
 // sprite has a render object (+0x190), the same flag on that object's blend layer, which then
 // re-derives its blend mode (fn_710019c284, src/game/UnkUnit224/fn_710019db08.cpp). Names and
 // layouts are placeholders.
+#include "game/UnkTU223.h"
 #include "types.h"
 
 struct UnkBlendLayer_710019c284;
-void fn_710019c284(UnkBlendLayer_710019c284* self);
 
 struct UnkSpriteBlendLayer {
     u8 pad_0x0[0x181];

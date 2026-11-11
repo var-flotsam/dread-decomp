@@ -4,10 +4,10 @@
 // fn_7100c9e960. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CBreakableTileGroup.h"
 #include "types.h"
 
 struct UnkQueryObj;
-u32 fn_7100c9e960(UnkQueryObj*);
 struct UnkTileQuery_A3_b64;
 UnkTileQuery_A3_b64* fn_7100ca1ecc(base::reflection::UnkReflObject*, const void*, void*, bool);
 

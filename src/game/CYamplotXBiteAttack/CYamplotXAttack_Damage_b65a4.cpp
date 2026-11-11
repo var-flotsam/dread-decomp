@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CFrozenComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -19,7 +20,6 @@ extern CStrId g_unk_717270bef0[2] __attribute__((visibility("hidden")));
 // src/game/CAreaFXComponent/CAreaFXComponent.cpp declare them.
 struct UnkRequest;
 void fn_71008c1538(UnkRequest* request, f32 value);
-bool fn_71007f9f20(void*);
 
 f32 fn_7100789f5c(const CStrId* id);
 

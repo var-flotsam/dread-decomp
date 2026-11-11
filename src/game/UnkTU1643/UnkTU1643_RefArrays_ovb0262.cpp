@@ -2,6 +2,7 @@
 // inline array of such records plus three more arrays of its own. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU107.h"
 #include "types.h"
 
 struct UnkRefObj_ovb0262a {
@@ -52,8 +53,6 @@ __attribute__((noinline)) void fn_7100ae01d0(UnkHolder_ovb0262a* self) {
     self->a.Clear(&self->alloc_a);
     self->id.Reset();
 }
-
-void fn_710010d9f4(void* p);
 
 struct UnkPlainArray_ovb0262a {
     void* data;

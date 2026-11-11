@@ -3,10 +3,10 @@
 // (0x7101a4c200) and its member at +0x530 (fn_710058d960), then this class's vtable and its members at
 // +0x628 and +0x720 (fn_7100583588, fn_710058397c), a few flags and a 1.2f factor, and finally the
 // virtual at slot 3. Names and layouts are placeholders.
+#include "game/CCharClassBaseBigFistAIComponent.h"
 #include "types.h"
 
 struct UnkGoliathXAI_b55;
-void fn_71003e8db0(UnkGoliathXAI_b55* self);
 void fn_710058d960(void* self);
 void fn_7100583588(void* self);
 void fn_710058397c(void* self);

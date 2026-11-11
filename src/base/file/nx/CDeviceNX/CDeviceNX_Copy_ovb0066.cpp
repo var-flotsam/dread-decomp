@@ -2,6 +2,7 @@
 // (fn_710002ed98, 8-byte aligned, flags 0x16) and written out under the destination path by
 // fn_710002eec8, then the buffer is deleted. Kept apart from fn_710002ed98's file so its unused
 // argument is still passed. Names and layouts are placeholders.
+#include "base/file/nx/CDeviceNX.h"
 #include "base/global/CRntString.h"
 #include "types.h"
 
@@ -19,8 +20,6 @@ public:
     virtual void* vf_0x28();
     virtual u64 vf_0x30();
 };
-
-s32 fn_710002eec8(void* table, void* path, void* data, u64 size, bool commit, bool create);
 
 s32 fn_710002ecdc(void* table, CRntString* path, void* dest, bool commit) {
     UnkSaveBuffer_ovb0066* buffer = nullptr;

@@ -9,12 +9,11 @@
 #include "base/UnkDeferredSet.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU39.h"
 
 using base::UnkDeferredCallback;
 using base::UnkDeferredSet;
 using base::global::CStrId;
-
-void fn_710003152c(void* s, const f32* arg);
 
 struct UnkKeyNode_b0250 {
     CStrId id;

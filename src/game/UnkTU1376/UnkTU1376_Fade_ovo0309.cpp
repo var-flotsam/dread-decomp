@@ -3,6 +3,7 @@
 // (0 when busy or closed, 1 in state 3); otherwise restarts the timer at 0.2. Names and layouts are placeholders.
 #include <math.h>
 
+#include "game/UnkTU1376.h"
 #include "types.h"
 #include "base/color/CColor4F.h"
 #include "base/math/CVector4D.h"
@@ -12,7 +13,6 @@ using base::color::CColor4F;
 using base::math::CVector4D;
 
 struct UnkDoorLifeA5_b61;
-void fn_71008d0c24(UnkDoorLifeA5_b61* self, f32 target, f32 speed);
 void fn_71001c287c(void* target, u32 a, u32 b, CVector4D* colour, u32 c);
 void* fn_71008d89b0(void* owner);
 

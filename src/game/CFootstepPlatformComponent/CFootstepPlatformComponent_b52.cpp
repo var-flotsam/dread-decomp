@@ -1,6 +1,7 @@
 // CFootstepPlatformComponent (unit 1255): the constructor. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -10,7 +11,6 @@ extern void* g_unk_7101a20998[];  // the lists' base vtable
 extern void* g_unk_7101a33fa0[];  // the lists' vtable
 
 struct UnkStateObject;
-void fn_71010c4148(UnkStateObject* self);
 
 struct UnkFootstepList {
     void** vtable;

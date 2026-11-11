@@ -4,6 +4,8 @@
 // (0x80-byte elements destroyed by fn_7100ad04c4 and moved by fn_7100acf988, 0x40-byte ones
 // destroyed by fn_7100c8a490, 0xa0-byte ones by fn_7100c886c0), and of an array of words.
 #include "base/UnkCollectionIter.h"
+#include "game/UnkTU1629.h"
+#include "game/UnkTU2200.h"
 #include "types.h"
 
 template <u32 Size, void (*Destroy)(void*), void (*Move)(void*, void*) = nullptr>
@@ -14,12 +16,8 @@ struct UnkOutOfLineElement {
     ~UnkOutOfLineElement() { Destroy(this); }
 };
 
-void fn_7100ad04c4(void* self);
-void fn_7100acf988(void* self, void* other);
-void fn_7100c8a490(void* self);
 using UnkElement80 = UnkOutOfLineElement<0x80, fn_7100ad04c4, fn_7100acf988>;
 using UnkElement40 = UnkOutOfLineElement<0x40, fn_7100c8a490>;
-void fn_7100c886c0(void* self);
 using UnkElementA0 = UnkOutOfLineElement<0xa0, fn_7100c886c0>;
 
 using UnkElement80Iter = base::UnkCollectionIter<UnkElement80>;
@@ -54,4 +52,3 @@ void fn_71000d4c68(const base::UnkVector<u32>* v, UnkWordIter* out) { *out = Unk
 void fn_7100a35b54(const base::UnkVector<u32>* v, UnkWordIter* out) { *out = UnkWordIter(v->count, v->data + v->count); }
 
 void fn_7100a36a34(const base::UnkVector<u32>* v, UnkWordIter* out) { *out = UnkWordIter(v->count, v->data + v->count); }
-

@@ -15,12 +15,15 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CAttack.h"
+#include "game/CEnemyMovement.h"
+#include "game/CScourgeAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkXformNode.h"
+#include "game/logic/collision/CPolygonCollectionShape.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -36,7 +39,6 @@ struct UnkScourgeSlash_b0115 {
 bool fn_710069a8e8(UnkScourgeSlash_b0115* self, void* a, void* b);
 
 bool fn_7101161088(void* object);
-bool fn_71010cab0c(void* object);
 bool fn_71006a22b0(void* list, UnkActor* actor);
 
 bool fn_710069a8e8(UnkScourgeSlash_b0115* self, void* a, void* b);
@@ -153,7 +155,6 @@ struct UnkScourgeCharClass_ovb0115 : base::reflection::UnkReflObject {
 };
 
 struct UnkScourgeAI_b58a4;
-void fn_710069f604(UnkScourgeAI_b58a4* self, f32 value, f32 distance);
 
 struct UnkScourgeAI_ovb0115 : base::reflection::UnkReflObject {
     u8 pad_0x8[0x8];
@@ -213,7 +214,6 @@ extern UnkMatrix44 g_unk_7101a1a680;
 
 struct UnkTileOutlines;
 struct UnkTileOutline;
-void fn_7100d62d40(UnkTileOutlines* self, UnkTileOutline* outline);
 
 struct UnkScourgeShape_ovb0115 {
     virtual void vf_0x0();

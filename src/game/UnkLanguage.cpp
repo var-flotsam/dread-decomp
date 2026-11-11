@@ -8,10 +8,12 @@
 #include "base/UnkHashStream.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
+#include "base/file/CThreadSafeDevice.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPoolBody.h"
+#include "base/global/timeline/CEvent.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -23,8 +25,6 @@ using base::global::UnkStringPool;
 // A localized text (0x20 bytes: the UTF-32 characters at +0x8, null when empty, and their count at
 // +0x10), with its constructors and destructor.
 void fn_7100066a50(void* self, const char32_t* text);
-void fn_7100066cac(void* self, const void* other);
-void fn_7100066e44(void* text);
 struct UnkLanguageText {
     u8 unk_0x0[0x8];
     const char32_t* chars;
@@ -175,7 +175,6 @@ struct UnkStrPair_0x10 {
     void* a;
     void* b;
 };
-void fn_710008d680(UnkStrPair_0x10* s, const char* path);
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
 // Closes the file.
 void fn_710007c144(UnkHashStream_0x38* s);

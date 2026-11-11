@@ -10,11 +10,15 @@
 #include "base/UnkHashStream.h"
 #include "base/UnkRegistry.h"
 #include "base/UnkStrIdPathPair.h"
+#include "base/animation/CBlendSpaceResource.h"
+#include "base/file/CThreadSafeDevice.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU2640.h"
 #include "game/sound/CMusicManager.h"
 #include "types.h"
 
@@ -44,7 +48,6 @@ struct UnkStrPair_0x10 {
     void* b;
 };
 
-void fn_710008d4c0(UnkStrPair_0x10* s, const UnkEntry_0x30* e);
 extern UnkRegistry_0x70* g_unk_7101d4b5a0;
 
 // The file read into memory and two words the opener sets (+0x38 is zero after a good read).
@@ -55,7 +58,6 @@ struct UnkFileReader {
 };
 
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
-void fn_710000ccd8(UnkFileReader* self);
 
 // This unit's parser callbacks.
 extern UnkParseCallbacks g_unk_71729ea458 __attribute__((visibility("hidden")));
@@ -131,8 +133,6 @@ void fn_7100f89450(void*, const UnkEntry_0x30* path) {
 }
 
 // The values of the two maps (out-of-line destructors).
-void fn_7100d90304(void* value);
-void fn_7100fee034(void* value);
 
 // The maps' key: a string id released in two steps (base/UnkDestructors.h).
 using UnkPresetKey = base::UnkStrIdMember;

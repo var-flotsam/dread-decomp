@@ -7,6 +7,9 @@
 #include "../../../game_aca57c/UnkBufferString.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CAIAttackComponent.h"
+#include "game/CAttackComponent.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -42,9 +45,6 @@ struct UnkScorpiusAI_b69a4;
 struct UnkCommanderPlayer_b67a2;
 void fn_7100394bd0(UnkStruct_0x68* self);
 void fn_7100395044(UnkStringEqualsCondition_A2_b72* self, CStrId* id, UnkInlineString_A2_b72* out);
-void* fn_7101109df4(UnkScorpiusAI_b69a4* ai, void* id);
-bool fn_7101136308(void* object);
-void fn_7101134420(UnkCommanderPlayer_b67a2* player, void* entry, u32 arg2, u32 arg3, void* arg4, f32 arg5);
 
 // The owner's attack player.
 void* fn_71003729a8(UnkAttackActor_ovb0128* actor);

@@ -1,7 +1,7 @@
+#include "game/UnkTU811.h"
 #include "types.h"
 
 struct UnkSlidingBlockMovement;
-UnkSlidingBlockMovement* fn_710054a2cc(void* entity);  // the entity's typed component lookup
 void fn_710092103c(UnkSlidingBlockMovement* movement, f32 speed);
 
 struct UnkSlidingBlockParams {

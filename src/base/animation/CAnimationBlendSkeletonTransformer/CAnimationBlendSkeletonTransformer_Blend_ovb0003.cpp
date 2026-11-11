@@ -15,10 +15,10 @@
 #include <new>
 
 #include "base/UnkMatrix44.h"
+#include "game/UnkTU23.h"
 #include "types.h"
 
 void fn_7100002cd0(void* p);
-void fn_7100014e5c(void* self, const void* other);
 
 struct UnkBlendArray_ovb0003 {
     u32 count;

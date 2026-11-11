@@ -4,6 +4,7 @@
 // with the flag clear (fn_710093a6d4) or set (fn_710093a780). Names are placeholders.
 #include "../../game_aca57c/UnkBufferString.h"
 #include "base/global/CRntString.h"
+#include "game/UnkTU218.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -12,7 +13,6 @@ extern void* g_unk_7101a1b678[];
 
 void fn_710093a130(char* self, char* entry, CRntString* out);
 u64* fn_7100066630(u64* out, const CRntString* str);
-void fn_7100199420(void* self, const u64* hash, bool value);
 
 static inline __attribute__((always_inline)) void ShowPart(char* self, char* entry, bool value) {
     UnkBufferString<0x40, g_unk_7101a1b678> name;

@@ -4,6 +4,11 @@
 
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CActorComponent.h"
+#include "game/CSamusModelUpdaterComponent.h"
+#include "game/CSmartObjectComponent.h"
+#include "game/UnkTU1376.h"
+#include "game/UnkTU2704.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
@@ -109,7 +114,6 @@ UnkReflValue fn_71008fa2f4(void*, char* obj) { return SubFlag<0x20>(obj); }
 void fn_71006004d4(void* self);
 void fn_71008d5200(void* self);
 bool fn_71007aa610(void* self);
-bool fn_71008d0ef4(void* self);
 
 UnkReflValue fn_71006020c0(void*, char* obj) {
     fn_71006004d4(Target(obj));
@@ -122,7 +126,6 @@ UnkReflValue fn_71008dcbb8(void*, char* obj) {
 UnkReflValue fn_71007adbe8(void*, char* obj) { return MakeValue<fn_710000d228, bool>(fn_71007aa610(Target(obj))); }
 UnkReflValue fn_71008dcc08(void*, char* obj) { return MakeValue<fn_710000d228, bool>(fn_71008d0ef4(Target(obj))); }
 
-void fn_7101126af4(void* self);
 bool fn_710112c3dc(void* self);
 
 UnkReflValue fn_7101132928(void*, char* obj) {
@@ -132,10 +135,7 @@ UnkReflValue fn_7101132928(void*, char* obj) {
 UnkReflValue fn_71011329bc(void*, char* obj) { return MakeValue<fn_710000d228, bool>(fn_710112c3dc(Target(obj))); }
 
 // More of the same in other units.
-void fn_710093aad0(void* self);
-void fn_7100a03118(void* self);
 void fn_71011269c0(void* self);
-bool fn_710024fbc8(void* self);
 
 UnkReflValue fn_710093b104(void*, char* obj) {
     fn_710093aad0(Target(obj));

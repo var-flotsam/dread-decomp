@@ -2,11 +2,11 @@
 // voices in the first list, read under the voice mutex (0 while the global flag g_unk_7108b6ab60 is
 // set). Names and layouts are placeholders.
 #include "base/UnkDefaultAllocator.h"
+#include "base/tunable/CTunable.h"
 #include "types.h"
 
 // Declared as in src/base/snd/CSoundSystemATK.cpp.
 extern u8 g_unk_7108b6ab60 __attribute__((visibility("hidden")));
-bool fn_7100132cd0();
 
 struct UnkSoundSystemVoiceCount {
     u8 pad_0x0[0x3f8];

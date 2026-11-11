@@ -4,9 +4,8 @@
 // (fn_7101125c90). Names are placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
+#include "game/UnkTU2704.h"
 #include "types.h"
-
-void fn_7101125c90(char*);
 
 extern void* g_unk_7101a20950[];
 extern void* g_unk_7101a20998[];

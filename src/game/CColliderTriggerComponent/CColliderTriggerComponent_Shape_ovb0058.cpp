@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/logic/collision/CCollider.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -75,7 +76,6 @@ void fn_7100d46c60(UnkManager_7100863a8c* self, UnkCollisionObject* entry);
 struct UnkStruct_71007e44b8;
 struct UnkObj_71007e44b8;
 UnkObj_71007e44b8* fn_71007e44b8(UnkStruct_71007e44b8* self, void* owner, const base::global::CStrId* name, u32 index);
-void fn_7100d36d30(UnkTriggerCollider_b0058* self, void* shape);
 
 static inline UnkManager_7100863a8c* Manager() {
     UnkManager_7100863a8c* m = g_unk_71726a4788;

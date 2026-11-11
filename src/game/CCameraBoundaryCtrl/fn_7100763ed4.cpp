@@ -1,11 +1,11 @@
 // Constructor of an unidentified class: runs the base constructor, sets the vtable and clears
 // its own members (a 1.0 / 0.01 pair and a flag set to 1 aside).
+#include "game/CCameraCtrl.h"
 #include "types.h"
 
 struct UnkBase_7100763ed4 {
     u8 unk_0x0[0x1d8];
 };
-void fn_71010ed044(UnkBase_7100763ed4* self);
 
 extern void* g_unk_7101a6e6e8[];  // vtable
 

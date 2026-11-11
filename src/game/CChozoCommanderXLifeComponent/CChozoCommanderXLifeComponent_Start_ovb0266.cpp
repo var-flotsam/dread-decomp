@@ -9,8 +9,11 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
+#include "game/CCutsceneComponent.h"
+#include "game/CLifeComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2730.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -18,10 +21,8 @@ using base::global::CStrId;
 
 CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 
-void fn_710115fe1c(char*);
 void fn_7100e8f9a0(char*, bool, base::global::CStrId*);
 void* fn_71004067a4(void* owner);
-void fn_71007a8280(void* object);
 void fn_71008bdd84(void* self, bool flag);
 void fn_71008c0000();
 extern __attribute__((visibility("hidden"))) char g_unk_71727302a0[];
@@ -31,7 +32,6 @@ struct UnkCallback_kr {
     void* object;
     void (*fn)();
 };
-void fn_71011995c0(void* owner, const UnkCallback_kr& callback);
 
 struct UnkCountedA5_b76 : base::UnkRefCounted {
     union {

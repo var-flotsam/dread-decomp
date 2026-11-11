@@ -6,10 +6,11 @@
 // CCentralUnitComponent_b46.cpp and CDoorCentralUnitLifeComponent_Send_b56.cpp say u32.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CName.h"
+#include "game/CActorComponent.h"
+#include "game/UnkTU794.h"
 #include "types.h"
 
 struct UnkStruct_710024fa0c;
-void fn_710024fa0c(UnkStruct_710024fa0c*, bool);
 
 struct UnkDoorLifeOwner_b56 {
     u8 pad_0x0[0x220];
@@ -17,7 +18,6 @@ struct UnkDoorLifeOwner_b56 {
 };
 
 struct UnkDoorLifePart_b56;
-UnkDoorLifePart_b56* fn_71005012bc(UnkDoorLifeOwner_b56* owner);
 
 struct UnkCentralUnitDoor_b46a2 {
     u8 pad_0x0[0x30];

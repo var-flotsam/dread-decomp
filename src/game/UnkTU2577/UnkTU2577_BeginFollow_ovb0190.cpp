@@ -2,6 +2,8 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkCameraCtrl.h"
 #include "game/UnkGameManager.h"
@@ -18,8 +20,6 @@ struct UnkAbility {
     virtual const CClass* vf_0x0();
 };
 struct UnkAbilitySet;
-UnkAbility* fn_71003013ec(UnkAbilitySet* set, u64 id);
-u64 fn_7100308c74();
 bool fn_710030a7b8(UnkAbility* ability);
 
 struct UnkForcedMovementTarget_A5_b68;

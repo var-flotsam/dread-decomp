@@ -6,11 +6,11 @@
 // of src/game/CFreeAimTutoLogicAction/CFreeAimTutoLogicAction_b53.cpp. Names and layouts are placeholders.
 #include "base/UnkRefHandle.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CTriggerLogicAction.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkTutoExitAction_b47;
-void fn_7100a55ac8(UnkTutoExitAction_b47* self);
 
 using UnkRef = base::UnkRefPtrMember;
 UnkRef fn_7100353be8(void* source);

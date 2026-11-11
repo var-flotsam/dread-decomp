@@ -9,9 +9,12 @@
 #include "base/UnkMatrix44.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU25.h"
+#include "game/UnkTU32.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -243,7 +246,6 @@ struct UnkShotIdRecordSet {
 struct UnkIdPair;
 void fn_7100026f70(UnkIdPair* pair);
 // Assigns `other` to `self` (move-assignment; out of line, not decompiled yet).
-void fn_7100027118(UnkStrIdPathResource* self, UnkStrIdPathResource* other);
 
 // The record set's constructor.
 void fn_7100ede778(UnkShotIdRecordSet* self) {
@@ -285,7 +287,6 @@ struct UnkFileReader {
     u32 field_0x3c;
 };
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
-void fn_710000ccd8(UnkFileReader* self);
 void fn_710000f750(UnkParseContext* self, void* root);
 extern UnkParseCallbacks g_unk_71729da548 __attribute__((visibility("hidden")));  // this unit's callbacks
 extern base::reflection::CType g_unk_7172756e50;
@@ -298,7 +299,6 @@ extern const u32 g_unk_710164befc[8];
 // A path string's ids (src/game/GUI/CIngameMenu/fn_7100b2de48.cpp declares the builder so).
 struct UnkPathIds;
 struct UnkInlineString;
-void fn_710001f074(UnkPathIds* out, const UnkInlineString* path);
 
 using UnkPresetText = UnkBufferString<0x100, g_unk_7101a194b8>;
 

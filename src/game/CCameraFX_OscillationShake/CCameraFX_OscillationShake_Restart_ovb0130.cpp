@@ -1,11 +1,11 @@
 // CCameraFX_OscillationShake's unit (tools/tu_map.py, unit 1170). Names and layouts are placeholders.
+#include "game/CCameraFX_Shake.h"
 #include "types.h"
 
 extern "C" int rand();
 
 // As src/game/CCameraFX_RandShake/CCameraFX_RandShake_Offset_ovb0131.cpp declares it.
 struct UnkRandShake_ovb0131;
-void fn_71010f3e94(UnkRandShake_ovb0131*);
 
 struct UnkShakeRange_ovb0130 {
     f32 base;

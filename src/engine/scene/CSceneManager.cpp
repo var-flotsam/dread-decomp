@@ -4,6 +4,7 @@
 // at +0xfe8, and the object at +0x28 that draws them. The members are placeholders.
 #include "UnkClone.h"
 #include "base/UnkVector.h"
+#include "base/reflection.h"
 #include "game/UnkGlobal_710b372a98.h"
 #include "types.h"
 
@@ -109,8 +110,6 @@ bool fn_71001fc69c(void* passes, u32 layer) {
 
 // The flag at +0x142 (the declaration is src/game_s1/fn_71001fcd4c.cpp's, over its item view).
 struct UnkItem;
-bool fn_7100200144(UnkItem* item);
-void fn_7100200160(UnkSceneItem* item, f32 dt);
 
 // Advances every item whose flag at +0x142 is set by `dt` (nothing below 1e-6).
 void fn_71001fcca0(UnkSceneManager* self, f32 dt) {

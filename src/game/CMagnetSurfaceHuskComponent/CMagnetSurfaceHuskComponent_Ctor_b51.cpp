@@ -3,10 +3,10 @@
 // then pointed at the pool's empty string, creating the pool first when there is none; the shape
 // of CNailuggerAcidBallMovementComponent_b40.cpp). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CCharClassComponent.h"
 #include "types.h"
 
 struct UnkStruct_71008bca30;
-void fn_71011acd10(UnkStruct_71008bca30*);
 extern void* g_unk_7101a83028[];
 
 struct UnkMagnetSurfaceHusk {

@@ -2,9 +2,8 @@
 // (base::reflection::refl_GetSingleton), +0x23b0 when the owner's AI (+0x218) is in state 4 (fn_71010cc3a4),
 // +0x23a8 otherwise. Names are placeholders.
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CEnemyMovement.h"
 #include "types.h"
-
-u32 fn_71010cc3a4(void*);
 
 struct UnkAutclastOwner_ovb0103 {
     u8 pad_0x0[0x218];

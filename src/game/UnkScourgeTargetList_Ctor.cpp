@@ -3,10 +3,10 @@
 // constructor fn_71006f3390, the class vtable, two containers set up by fn_710059c644 (at +0x260
 // and +0x2d8) around the cleared current-target handle at +0x2d0, and the float 645 at +0x258.
 // Names and layouts are placeholders.
+#include "game/UnkTU852.h"
 #include "types.h"
 
 void fn_71006f3390(char* self);
-void fn_710059c644(u8* container, u32 a, u32 b, u32 c, u64 d);
 extern void* g_unk_7101a62938[];
 
 struct UnkScourgeTargetOwner {

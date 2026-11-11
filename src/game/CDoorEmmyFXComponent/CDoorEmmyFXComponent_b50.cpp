@@ -6,11 +6,10 @@
 #include "base/global/CStrId.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU39.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-bool fn_710002fb70(void*);
 
 // As src/engine/HostArguments.cpp declares it.
 struct UnkPlayer;

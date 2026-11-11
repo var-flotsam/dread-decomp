@@ -4,12 +4,12 @@
 // src/game/CBarelyFrozenIceInfo/CBarelyFrozenIceInfo_Ctor_b44.cpp) at +0x58 and +0x60, a cleared
 // half-word at +0x68, then the vtable's slot at +0x18 on itself. Names and layout are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CCharClassComponent.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 
 struct UnkStruct_71008bca30;
-void fn_71011acd10(UnkStruct_71008bca30* self);
 extern void* g_unk_7101a7aa50[];  // the class's vtable
 
 struct UnkActionSwitcherDef_b44a2 {

@@ -3,6 +3,7 @@
 // optional at +0x10 set to 1.0 and the word at +0x34 to 1; the block's reflected value (+0x70) is
 // destroyed afterwards. Names and layouts are placeholders.
 #include "base/reflection/UnkReflCast.h"
+#include "game/CChozoCommanderLandingSlamAttack.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
 
@@ -73,8 +74,6 @@ struct UnkSlamAttack_A2_b72 {
     u8 pad_0x0[0x8];
     UnkSlamOwner_A2_b72* owner;
 };
-
-void fn_7100437c44(UnkSlamAttack_A2_b72* self);
 
 void fn_71004385c4(UnkSlamAttack_A2_b72* self) {
     fn_7100437c44(self);

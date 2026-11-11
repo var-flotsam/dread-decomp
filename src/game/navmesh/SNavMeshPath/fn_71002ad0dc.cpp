@@ -2,12 +2,12 @@
 // nine registrations (each removes itself from the set it was added to), then destroys the
 // secondary base at +0x10, which clears its inline array of 0x120-byte polymorphic elements.
 #include "base/UnkDestructors.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
 extern char g_unk_7101a211b8[];  // vtable of the object
 extern char g_unk_7101a21168[];  // vtable of the base at +0x10
 
-void fn_71002adc8c(void* self);
 void fn_71002aed2c(void* set, void* item);
 void fn_71002aeb9c(void* set, void* item);
 void fn_71002aea0c(void* set, void* item);

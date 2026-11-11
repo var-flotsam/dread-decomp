@@ -9,6 +9,7 @@
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CSabotoruTurnInDoorAttack.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -79,7 +80,6 @@ struct UnkSabotoruAttack2_ovb0118 {
 };
 
 struct UnkSabotoruAttack_A3_b73;
-void fn_710067342c(UnkSabotoruAttack_A3_b73* self, bool value);
 
 // fn_710067342c takes a state (1 or 3 here), declared elsewhere with a bool.
 static inline void SetTurnState(UnkSabotoruAttack2_ovb0118* self, s32 state) {

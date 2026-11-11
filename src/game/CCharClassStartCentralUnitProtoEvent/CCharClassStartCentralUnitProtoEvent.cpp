@@ -3,6 +3,7 @@
 // +0x10) whose definition (+0x18) is named "PRP_CV_CentralUnitProto" (its id at +0x30). Names and layouts are
 // placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU1176.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -27,9 +28,6 @@ struct UnkCentralUnitList {
     UnkCentralUnitProtoEntry** data;
     u32 count;
 };
-
-UnkCentralUnitList* fn_7100772c98();
-void fn_710077561c(UnkCentralUnitProto* unit);
 
 void fn_7100be1e0c(void* self, void* const* context) {
     if (!*context)

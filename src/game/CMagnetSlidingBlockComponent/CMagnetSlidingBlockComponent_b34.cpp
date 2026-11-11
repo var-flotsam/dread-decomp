@@ -1,9 +1,8 @@
+#include "game/CMagnetSlidingBlockComponent.h"
+#include "game/UnkTU39.h"
 #include "types.h"
 
-bool fn_710002fb70(void* timer);
-
 struct CMagnetSlidingBlockComponent;
-void fn_71009210d4(CMagnetSlidingBlockComponent* self, f32 speed);
 
 struct CMagnetSlidingBlockComponent {
     u8 unk_0x0[0x358];

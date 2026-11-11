@@ -1,9 +1,8 @@
 // CCharClassSabotoruAIComponent's unit (tools/tu_map.py; the name from reflection): a state code
 // from the actor's component at +0x2f8 while the state at +0x600 is 1: 1 when fn_710092b6f8 holds,
 // else 4 (the shape of fn_71003bd180). Names are placeholders.
+#include "game/CMeleeComponent.h"
 #include "types.h"
-
-bool fn_710092b6f8(void*);
 
 struct UnkSabotoruAI_b45a2 {
     u8 pad_0x0[0x600];

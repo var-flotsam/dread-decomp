@@ -3,6 +3,7 @@
 // third column of the owner's matrix and starts the movement with it (fn_71010d08d4).
 // Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
+#include "game/CMovementComponent.h"
 #include "game/UnkActor.h"
 #include "types.h"
 #include "game/UnkBehaviorTree.h"
@@ -10,7 +11,6 @@
 // Declared as src/game/CMovementComponent/fn_71010d08d4.cpp defines it.
 struct UnkMovement_71010d08d4;
 struct UnkMovementVec_71010d08d4;
-void fn_71010d08d4(UnkMovement_71010d08d4* self, const UnkMovementVec_71010d08d4* v, bool start);
 
 // The behaviour tree's update (declared elsewhere without the time step; called with it).
 struct UnkGobblerComponent;

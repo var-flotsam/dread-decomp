@@ -5,6 +5,7 @@
 // to the manager when it is not empty. Each returns an empty result of kind 2. Names and layouts are
 // placeholders.
 #include "base/global/CFilePathStrId.h"
+#include "base/snd/CSoundSystem.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -14,8 +15,6 @@ using base::global::UnkStringPool;
 struct UnkSoundMgr;
 struct UnkPathNode;
 extern UnkSoundMgr* g_unk_7101d4d820;
-void fn_7100108094(UnkSoundMgr* self, UnkPathNode* node);  // releases a path
-void fn_710010808c(UnkSoundMgr* self, UnkPathNode* node);  // takes a path
 
 struct UnkValueSet_psc {
     u8 unk_0x0[0x18];

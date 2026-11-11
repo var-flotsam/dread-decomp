@@ -3,9 +3,9 @@
 // (base vtable, empty array with step 10 and flags 0xf, final vtable, allocator), two flags, then the
 // post-construction virtual call (slot 3). Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CCharClassBaseTriggerComponent.h"
 #include "types.h"
 
-void fn_7100a46a68(char*);
 extern void* g_unk_7101a20998[];
 extern void* g_unk_7101a20950[];
 extern void* g_unk_7101a8df00[];

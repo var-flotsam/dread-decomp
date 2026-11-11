@@ -4,6 +4,8 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU25.h"
+#include "game/UnkTU2523.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -14,11 +16,9 @@ CRntString fn_710007f050(const char* a, const CRntString* b);
 
 struct UnkPathIds;
 struct UnkInlineString;
-void fn_710001f074(UnkPathIds* out, const UnkInlineString* path);
 
 struct UnkSoundHandle;
 struct UnkEntityWithSound;
-UnkSoundHandle fn_7100d7c45c(UnkEntityWithSound* self, void* a, void* b, void* c);
 
 // A pooled string's record: the text at +0x10 and a use count at +0x44.
 struct UnkStringRecord_ovb0137 {

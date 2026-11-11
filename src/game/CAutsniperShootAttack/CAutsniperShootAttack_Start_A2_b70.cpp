@@ -1,11 +1,11 @@
 // CAutsniperShootAttack's unit (the name from reflection): the attack starts when CAttack's test passes and
 // the state of the owner's (+0x8) object at +0x218 is not 2; then the character class at +0x220, if any,
 // stops layer 6 and plays layer 0xb. Names and layouts are placeholders.
+#include "game/CEnemyMovement.h"
 #include "types.h"
 #include "game/CAttack.h"
 
 struct UnkSelf;
-u32 fn_71010cc3a4(void*);
 struct UnkActorTarget;
 void fn_7101178e08(UnkActorTarget*, u32, u32, u32, f32);
 void fn_710117662c(UnkActorTarget*, u32, u32, u32, u32, f32);

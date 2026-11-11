@@ -3,6 +3,7 @@
 // (+0x58 of it) to fn_710110f8ac; while the flag at +0x27720 is clear, mode 0 (+0x29ef0) sends the first
 // and mode 1 the second to fn_710110f744 instead. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -10,7 +11,6 @@ using base::global::CStrId;
 struct UnkNamedEntry_7100772cb0;
 struct UnkNamedList_7100772cb0;
 UnkNamedEntry_7100772cb0* fn_7100772cb0(UnkNamedList_7100772cb0* self, const CStrId* id);
-void fn_710110f8ac(void* self, void* object);
 void fn_710110f744(void* self, void* object);
 extern CStrId g_unk_71726dbe18 __attribute__((visibility("hidden")));
 extern CStrId g_unk_71726dbe20 __attribute__((visibility("hidden")));

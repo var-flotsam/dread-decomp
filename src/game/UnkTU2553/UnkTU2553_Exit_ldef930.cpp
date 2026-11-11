@@ -8,6 +8,11 @@
 #include "game/UnkModelManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSubAreaGuiCache.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU2553.h"
+#include "game/UnkTU2562.h"
+#include "game/UnkTU2669.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -24,19 +29,14 @@ void fn_7100219804(UnkRenderManager* self, u32 layer);
 namespace callee { char* fn_71011a2d7c(u64); }
 void fn_71011a19a4(void* self);
 void fn_7100def678(UnkGameManager* self, const CRntString& name, const char* fmt, ...);
-void fn_7100def888(char* p0);
 char* fn_7100d7820c(char* p0, u32 p1, u32 p2, u32 p3, u32 p4);
-void fn_71002329e8(UnkActor_71002329e8* self);
 void fn_7100de6ee8(UnkGameManager* self);
 void fn_7100de70a8(UnkGameManager* self);
 void fn_7101047ea8(void* self);
-void fn_7100e211cc(void* self);
 void fn_7100e2c28c(void* self);
 char* fn_7100ed779c(char* p0);
 void fn_7100ed6bc4(void* self);
 void fn_7100e8efac(void* world);
-void fn_7100000790(const char* name, const char* fmt, ...);
-void fn_710109d810(UnkScriptManager_ovb0085* self);
 void fn_710109d890(UnkScriptManager_ovb0085* self, CRntString* name);
 CRntString fn_710007ef90(const CRntString* a, const char* b);
 void fn_710119d584(UnkSweepList_b49* self, bool flag);

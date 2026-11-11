@@ -5,19 +5,18 @@
 // source and word to the holder. Always answers false. Names and layouts are placeholders.
 #define UNK_VECTOR_GROW_AT_ATTR
 #include "base/UnkVector.h"
+#include "game/UnkTU221.h"
+#include "game/UnkTU252.h"
 #include "types.h"
 #include "base/UnkMatrix44.h"
 
 struct UnkPassOwner252;
 struct UnkSlotArray252;
 struct UnkSlot252;
-UnkSlot252* fn_71001c04bc(UnkSlotArray252* array, u32 index);
 struct UnkBillboardDrawable;
 struct UnkStruct_710019ab0c;
 struct UnkPass213Activate;
 void fn_710019b184(UnkBillboardDrawable* self, u32 index, u32 part, const UnkMatrix44* matrix);
-void fn_710019a4e8(UnkBillboardDrawable* self, u32 a, u32 b);
-void fn_710019ab0c(UnkStruct_710019ab0c* self);
 void fn_71001bef34(UnkPassOwner252* self, u32 index, u32 width, u32 height);
 extern UnkMatrix44 g_unk_7101a1a680;
 

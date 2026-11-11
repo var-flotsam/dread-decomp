@@ -6,6 +6,7 @@
 // both to fn_71007c1ce0 and clears +0x270. Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU341.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
@@ -14,7 +15,6 @@ struct UnkLifeBase_A5_b63;
 struct UnkLifeArg_A5_b63;
 struct UnkHitInfo_A5_b63;
 void fn_710116064c(UnkLifeBase_A5_b63* self, UnkLifeArg_A5_b63* arg, UnkHitInfo_A5_b63* info);
-void fn_7100232c68(void*);
 char* fn_71004dad10(UnkActor*);
 void fn_71007c1ce0(char* p, UnkHitInfo_A5_b63* info);
 

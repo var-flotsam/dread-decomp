@@ -3,9 +3,9 @@
 // "opened" with mode 2 (../CSensorDoorComponent/UnkDoorStateMachine_b58.h), then fn_71007df12c(1).
 // Names are placeholders.
 #include "../CSensorDoorComponent/UnkDoorStateMachine_b58.h"
+#include "game/CQuarentineDoorComponent.h"
 
 struct UnkQuarentineDoor_b54;
-void fn_71007df12c(UnkQuarentineDoor_b54* self, bool flag);
 
 struct UnkQuarentineOwner_b58 {
     u8 pad_0x0[0x220];

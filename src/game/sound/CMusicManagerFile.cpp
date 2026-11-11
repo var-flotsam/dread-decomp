@@ -6,6 +6,7 @@
 // Holds fn_7100fd51a0 and fn_7100fd6f74 (whether a music request is already playing).
 #include "base/UnkHashStream.h"
 #include "base/UnkStrIdPathPair.h"
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
@@ -31,7 +32,6 @@ struct UnkFileReader {
 };
 
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
-void fn_710000ccd8(UnkFileReader* self);
 
 // This unit's parser callbacks, the file's path and the object read with its type.
 extern UnkParseCallbacks g_unk_71729f08d0 __attribute__((visibility("hidden")));

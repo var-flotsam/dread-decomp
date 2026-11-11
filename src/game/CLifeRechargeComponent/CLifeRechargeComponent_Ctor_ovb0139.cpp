@@ -1,11 +1,11 @@
 // CLifeRechargeComponent's unit (tools/tu_map.py): the constructor. After the recharge base constructor (fn_7100a9e244) it sets the vtable and three
 // empty string ids (+0x540, +0x548, +0x550; the pool is made first when there is none). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CUsableComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-void fn_7100a9e244(void*);
 extern void* g_unk_7101a91940[];
 
 struct UnkRecharge_ovb0139 {

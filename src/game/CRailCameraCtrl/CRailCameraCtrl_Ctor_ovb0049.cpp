@@ -1,12 +1,12 @@
 // CRailCameraCtrl unit (tools/tu_map.py unit 1497): the constructor of fn_71009d63bc
 // (CRailCameraCtrl_Ctor_A5_b73.cpp) followed by the base object's class-entry pass (fn_7100023854).
 // Names and layouts are placeholders.
+#include "base/core/CBaseObject.h"
+#include "game/CCameraBoundaryCtrl.h"
 #include "types.h"
 
 struct UnkStruct_7100763ed4;
-void fn_7100763ed4(UnkStruct_7100763ed4* self);  // base constructor
 struct UnkNode;
-void fn_7100023854(UnkNode* node);
 
 extern void* g_unk_7101a89a80[];  // vtable
 

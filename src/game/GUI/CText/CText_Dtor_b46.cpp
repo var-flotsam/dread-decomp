@@ -4,12 +4,11 @@
 // (fn_71011ccfb4) runs. Member types are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/global/CRntString.h"
+#include "base/global/timeline/CEvent.h"
+#include "game/UnkTU2747.h"
 
 struct UnkTag_7100b86668;
 extern char g_unk_7101a9fa90[];  // the class's vtable
-
-void fn_7100066e44(void*);
-void fn_71011ccfb4(char*);
 
 template <>
 struct base::UnkDtorTraits<UnkTag_7100b86668> {

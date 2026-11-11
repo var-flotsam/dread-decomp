@@ -3,11 +3,10 @@
 // listener sits at +0x38: the attack's destructor (its listener, then CAttack's), then the base's
 // (fn_7100369380). fn_710049fdc0 destroys, fn_710049fe64 also frees.
 #include "../../game_5821e4/CAttackDtor.h"
+#include "game/CBehaviorTreeAIComponent.h"
 
 extern void* g_unk_7101a3d6b0[];  // the object's vtable
 extern void* g_unk_7101a3d4d0[];  // CChozoZombieXPoisonClawsAttack's vtable
-
-void fn_7100369380(void* self);
 
 struct UnkAttack_710049fdc0 {
     void** vtable;

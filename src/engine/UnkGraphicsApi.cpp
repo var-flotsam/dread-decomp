@@ -8,6 +8,7 @@
 #include "base/UnkVector.h"
 #include "engine/UnkGraphicsSystem.h"
 #include "game/UnkGlobal_710b372a98.h"
+#include "game/UnkTU244.h"
 #include "types.h"
 
 static inline UnkGraphicsSystem*& Graphics() {
@@ -45,7 +46,6 @@ struct UnkWidgetMember {
 struct UnkBillboard;
 struct UnkCullView;
 void fn_71001b4aac(UnkBillboard* self);
-void fn_71001b76ec(UnkCullView* self);
 void fn_71001c071c(void* self);
 void fn_71001bc2dc(void* self);
 void fn_71001bdeac(void* self);

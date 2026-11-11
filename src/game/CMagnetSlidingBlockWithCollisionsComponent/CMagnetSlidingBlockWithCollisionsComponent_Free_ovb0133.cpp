@@ -7,6 +7,7 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2510.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -32,7 +33,6 @@ UnkMatrix44_7100078c9c fn_7100078cd8(const UnkVec3f& t);
 struct UnkTree;
 struct UnkShape;
 struct UnkMtx44;
-bool fn_7100d5b484(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, void* arg, u16 arg2);
 
 extern void* g_unk_7101a20ed8[];
 extern void* g_unk_7101a82e88[];

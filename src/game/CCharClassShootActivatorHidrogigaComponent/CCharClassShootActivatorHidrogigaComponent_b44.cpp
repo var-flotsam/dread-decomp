@@ -5,6 +5,7 @@
 // passes that object's component (fn_7100897b0c) to fn_71008a1598 with true. Names and layout are
 // placeholders.
 #include "base/UnkRefHandle.h"
+#include "game/CCharClassShootActivatorHidrogigaComponent.h"
 #include "types.h"
 
 // The handle's target (base::UnkRefCounted's layout); the object is at +0x10 (tested as a word and
@@ -28,7 +29,6 @@ struct UnkRef {
 UnkRef fn_7100353be8(void* from);
 
 struct UnkHidrogigaPart_b44a2;
-UnkHidrogigaPart_b44a2* fn_7100897b0c(void* object);
 void fn_71008a1598(UnkHidrogigaPart_b44a2* part, bool on);
 
 struct UnkHidrogigaActivator_b44a2 {

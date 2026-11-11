@@ -12,7 +12,11 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPoolBody.h"
+#include "game/CElectricReactionComponent.h"
+#include "game/CElevatorUsableComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2547.h"
+#include "game/UnkTU2677.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -21,7 +25,6 @@ struct lua_State;
 extern lua_State* g_unk_7172a01d18;
 s32 fn_71010c0bb0(lua_State* L, const char* name);
 void fn_7100fbc4e0(lua_State* L, void* arg);
-s32 fn_71010c0d80(lua_State* L, s32 count, char* out, u32 out_size, void* a, void* b);
 CRntString fn_710007ef90(const CRntString*, const char*);
 
 union UnkStringSlot {
@@ -38,8 +41,6 @@ struct UnkStartPointComponentA {
 struct UnkSmartObjectActor;
 struct UnkSmartObjectUserA;
 struct UnkSmartObjectUserB;
-UnkSmartObjectUserB* fn_7100a81ed0(UnkSmartObjectActor* actor);
-UnkSmartObjectUserA* fn_71007cfd8c(UnkSmartObjectActor* actor);
 
 struct UnkStartPointActor {
     u8 pad_0x0[0x1e0];
@@ -63,7 +64,6 @@ UnkPlayer* fn_7100dec788(UnkGameManager* self);
 void fn_7100e01fc8(UnkGameManager* self);
 struct UnkDoorRegistry_b61;
 extern UnkDoorRegistry_b61* g_unk_71726bee10;
-void fn_7100ddb6dc(UnkDoorRegistry_b61* self);
 void fn_7100ddb9a4(UnkDoorRegistry_b61* self, UnkStartPointSelf* component);
 
 // A string id's entry as this reads it: the text at +0x10 and a use count at +0x44, a union member because its

@@ -1,6 +1,7 @@
 // Unit 177 (tools/tu_map.py): when both singletons (fn_7100162980, fn_7100154470) exist and both
 // are active (+0x1c and +0x10), runs fn_7100161250 and fn_7100159ce0 and returns true. Names
 // and layouts are placeholders.
+#include "game/UnkTU174.h"
 #include "types.h"
 
 struct UnkUnit182Singleton {
@@ -14,7 +15,6 @@ struct UnkUnit174Singleton {
 };
 
 UnkUnit182Singleton* fn_7100162980();
-UnkUnit174Singleton* fn_7100154470();
 void fn_7100161250();
 void fn_7100159ce0();
 

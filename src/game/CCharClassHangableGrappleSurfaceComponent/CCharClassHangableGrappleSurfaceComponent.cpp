@@ -4,11 +4,11 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/CCharClassGrapplePointComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-void fn_7100816b28(char* self);
 extern void* g_unk_7101a758d8[];
 
 struct UnkHangableGrappleSurface {

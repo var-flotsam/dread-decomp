@@ -5,6 +5,8 @@
 // 0.2 (fn_7100105da8, fn_7100105d34); otherwise a positive amount has the owner (+0x30) play the sound named at
 // +0x450 (fn_7100d7c45c). Names and layouts are placeholders.
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/UnkTU101.h"
+#include "game/UnkTU2523.h"
 #include "types.h"
 
 using base::reflection::UnkTunable;
@@ -12,18 +14,14 @@ using base::reflection::UnkTunable;
 extern UnkTunable g_unk_717272c450;
 
 struct UnkInterp_7100105d34;
-void fn_7100105d34(UnkInterp_7100105d34* self, f32 value, bool relative, f32 time);
-void fn_7100105da8(UnkInterp_7100105d34* self, f32 value, f32 time);
 
 struct UnkItemLifeUpdate_ovb0114;
 void fn_71008e1174(UnkItemLifeUpdate_ovb0114* self, f32 dt);
 struct UnkActor;
 struct UnkStrIdPathPair;
-void fn_7100d7c548(UnkActor* self, const UnkStrIdPathPair* ids, f32 blend, f32 start);
 
 struct UnkSoundHandle;
 struct UnkEntityWithSound;
-UnkSoundHandle fn_7100d7c45c(UnkEntityWithSound* self, void* a, void* b, void* c);
 
 // CShootActivatorComponent::CTunableShootActivatorComponent's fields (reflection).
 struct UnkShootTunable_ovb0126 {
@@ -103,4 +101,3 @@ void fn_71008923cc(UnkShootActivator_ovb0126* self, f32 amount) {
         self->sound = reinterpret_cast<Play>(&fn_7100d7c45c)(self->owner, self->sound_name, nullptr, false);
     }
 }
-

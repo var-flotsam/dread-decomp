@@ -10,6 +10,7 @@
 #include "base/UnkCollectionIter.h"
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
+#include "game/CFXPool/CDefinition.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -35,8 +36,6 @@ UnkFXPathEntry_b0068* fn_71010504d4(UnkFXPathEntry_b0068* self, UnkFXPathEntry_b
 // The entries as the reflected iterator sees them (the element type of the Begin in
 // src/base/reflection/UnkIdArrayBegin.cpp).
 using UnkFxPathIdElem_b0068 = UnkCloneStrIdElem<UnkBeginIdArrayOwner, 0, 0x10, UnkCloneStrIdB<UnkBeginIdArrayOwner>>;
-
-void fn_710104e720(void*);  // CFXPool::CDefinition's unit
 
 // The iterator past the last entry, synced by the unit's out-of-line fn_710104e720.
 void fn_71010501b0(const base::UnkVector<UnkFxPathIdElem_b0068>* v,

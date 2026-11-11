@@ -2,11 +2,10 @@
 // its settings at +0x60 (the value at +0xf0 less one), picks a count in [+0xf4, +0xf8) at random
 // (the lower bound when the range is empty) and resets the index at +0x70. Names and layouts are
 // placeholders.
+#include "game/CHydrogigaAttack.h"
 #include "types.h"
 
 extern "C" int rand();
-
-void fn_71005b2c58(void* self);
 
 struct UnkPolypsSettings {
     u8 pad_0x0[0xf0];

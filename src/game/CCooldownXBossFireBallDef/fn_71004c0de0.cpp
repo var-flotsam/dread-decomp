@@ -4,6 +4,7 @@
 // base::global::CRntVector<CCooldownXBossFireBallDef>: the header ids, then the unit's own statics
 // and registrations (helpers in UnkStaticInitS7.h). Layouts are placeholders.
 #include "../../game_s7/UnkStaticInitS7.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
@@ -91,7 +92,6 @@ extern char g_unk_71726d6430[];
 extern char g_unk_71726d6431[];
 extern UnkTunable g_unk_71726d6438;
 extern void* g_unk_7101a3e378[];
-void fn_7100075104(void* self);  // its destructor, as registered
 extern char g_unk_71726d6469[];
 
 void fn_71004c0de0() {

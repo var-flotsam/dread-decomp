@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CAnimationComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -13,7 +14,6 @@ extern "C" int rand();
 
 struct UnkStruct_710117af10;
 struct UnkCls_710117af10;
-bool fn_710117af10(UnkStruct_710117af10* self, UnkCls_710117af10** name, bool skipBusy);
 
 // Four animation hashes, one picked at random.
 extern const u64 g_unk_7101647ce8[4] __attribute__((visibility("hidden")));

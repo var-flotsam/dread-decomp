@@ -2,6 +2,7 @@
 // has an object at +0x298, sends it a query record whose direction is the third column of the
 // owner's matrix (fn_710002614c). Finishes with fn_7100426b54 on a fixed key.
 #include "base/UnkMatrix44.h"
+#include "game/CChozoCommanderGroundAttack.h"
 #include "game_s2/UnkChozoCommanderAttack.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
@@ -54,8 +55,6 @@ struct UnkSelf {
     u8 pad_0x59[3];
     u8 field_0x5c[0x20];
 };
-
-void fn_710042bb3c(UnkSelf* self);
 
 // The bit pattern of a float (by value: the by-reference form the other callers use changes this
 // non-matching function's code).

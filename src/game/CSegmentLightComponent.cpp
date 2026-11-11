@@ -7,6 +7,7 @@
 
 #include "base/UnkCountedResource.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU290.h"
 #include "types.h"
 
 // The scene object's part at +0x20 with a virtual update.
@@ -35,7 +36,6 @@ struct UnkSegmentLightNode {
 // Passes the part's object at +0x108 on (fn_71001bd9f0). Declared by src/game/COmniLightComponent.cpp
 // over its own node type.
 struct UnkLightNode;
-void fn_710020c634(UnkLightNode* self);
 
 // A counted resource reference (base/UnkCountedResource.h).
 struct UnkSegmentLightResRef {

@@ -2,6 +2,7 @@
 // (fn_71010c4250). Layouts are placeholders.
 #include "UnkPropS7.h"
 #include "game/UnkComponent.h"
+#include "game/UnkTU2704.h"
 
 using namespace unk_prop;
 using base::global::CRntString;
@@ -20,8 +21,6 @@ struct UnkObj_7101129240 {
     u8 unk_0x114[0x274];
     s32 field_0x388;
 };
-
-void fn_7101129b08(UnkObj_7101129240* self, bool flag);
 
 u32 fn_7101129240(UnkObj_7101129240* self, UnkProp* p) {
     if (!p->set && Is(p, Key(0x1758)))

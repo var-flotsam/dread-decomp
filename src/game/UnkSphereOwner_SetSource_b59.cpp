@@ -5,6 +5,7 @@
 // says so (fn_710019fd88). Nothing happens without an object. Names and layouts are placeholders.
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkSphere.h"
+#include "game/UnkTU225.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -15,7 +16,6 @@ struct UnkSphereSource;
 struct UnkSource_710020c780;  // the owner, as src/game_71001e2acc/fn_710020c780.cpp names it
 
 extern void* g_unk_716e34c2e0;
-bool fn_710019e100(UnkKeyOwner* self, u64 key);
 void fn_710019fc40(UnkSphereSource* self, UnkVec3f* center, f32* radius);
 UnkSphereSource* fn_71001bd7bc(void* registry, void* key, UnkReflObject* obj, u32 kind);
 bool fn_710019fd88(UnkSphereSource* self);

@@ -2,6 +2,7 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/CDamageSourceFactor.h"
 #include "game/UnkBossAIComponent.h"
 #include "game_s2/UnkTwoStepStrId.h"
 #include "types.h"
@@ -27,7 +28,6 @@ void fn_71004632ac(void*);
 void fn_710046424c(void*);
 extern void* g_unk_7101a38c40[];
 void fn_71002c6c6c(void*);
-void fn_71008c2da8(void*);
 
 void fn_710046e130(UnkNode* self) {
     fn_710041a198(self);

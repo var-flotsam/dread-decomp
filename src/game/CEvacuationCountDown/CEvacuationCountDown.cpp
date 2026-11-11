@@ -1,6 +1,7 @@
 // CEvacuationCountDown: fn_71007da578 runs fn_71007dc10c, then, unless the flag at +0x79 is set
 // and the one at +0x7a is clear, sends "OnHide" to the GUI object at +0x10 of +0x80 (its
 // vf_0x1e8); otherwise it runs its own vf_0x168. Names and layouts are placeholders.
+#include "game/CCharClassEventPropComponent.h"
 #include "types.h"
 
 struct UnkCountDownGui {
@@ -25,8 +26,6 @@ struct UnkEvacuationCountDown {
     u8 pad_0x7b[5];
     UnkCountDownGuiHolder* field_0x80;
 };
-
-void fn_71007dc10c(UnkEvacuationCountDown* self);
 
 void fn_71007da578(UnkEvacuationCountDown* self) {
     fn_71007dc10c(self);

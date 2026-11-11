@@ -7,6 +7,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CFXPool/CDefinition.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSwitchObject.h"
@@ -69,7 +70,6 @@ void fn_7100852698(UnkFxObjectPool_ovb0135* self, const CFilePathStrId* path, u3
 struct UnkFxCache;
 struct UnkFxObjectPool_ovb0135Base;
 bool fn_71011aa9d0(UnkFxCache* cache);
-void fn_710104da24(UnkFxObjectPool_ovb0135* self);
 
 struct UnkFxPoolNode_ovb0135 {
     CFilePathStrId key;

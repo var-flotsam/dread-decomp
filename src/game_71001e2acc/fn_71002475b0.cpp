@@ -5,6 +5,10 @@
 // src/game_aca57c/fn_7100d88e14.cpp, fn_7101132350 in src/game_s7/fn_7101132350.cpp.
 #include "base/UnkErasedVector.h"
 #include "base/UnkVector.h"
+#include "game/CChangeStateDoorsLogicAction.h"
+#include "game/CCharClassWaterPoolComponent.h"
+#include "game/UnkTU1601.h"
+#include "game/UnkTU341.h"
 
 
 struct UnkRefCounted {
@@ -124,14 +128,9 @@ inline UnkIter<Sync>::UnkIter(u32 index, UnkCallbackSetElem* element) : index(in
     Sync(this);
 }
 
-void fn_710090b1c8(void* self);
-void fn_7100a39fec(void* self);
-void fn_7100a93bc4(void* self);
-
 // Reserve (one copy per array type).
 struct UnkCallbackSetVector;
 void fn_710090d00c(UnkCallbackSetVector* v, u32 n);
-void fn_7100a3b8e0(UnkCallbackSetVector* v, u32 n);
 void fn_7100a956b8(UnkCallbackSetVector* v, u32 n);
 // PushBack of a copy (one per array type)
 void fn_710090d1bc(UnkCallbackSetVector* v, const UnkCallbackSetElem* value);
@@ -237,7 +236,6 @@ static inline __attribute__((always_inline)) void Begin(const UnkCallbackSetVect
     *out = UnkIter<Sync>(0, v->data);
 }
 
-void fn_710023ac4c(void* self);
 void fn_71002475b0(const UnkCallbackSetVector* v, UnkIter<fn_710023ac4c>* out) {
     Begin(v, out);
 }

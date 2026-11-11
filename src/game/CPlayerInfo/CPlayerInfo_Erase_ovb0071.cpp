@@ -6,6 +6,8 @@
 #include "base/global/CStrId.h"
 #include "base/UnkKeyedStrIds.h"
 #include "game/CBlackboard.h"
+#include "game/CPlayerInfo.h"
+#include "game/UnkTU39.h"
 #include "types.h"
 
 #include <new>
@@ -15,9 +17,6 @@ using base::global::CStrId;
 struct UnkPlayerInfoValue_ovb0071 {
     u8 raw[0xb0];
 };
-
-void fn_710002f588(void* self, const void* other);
-void fn_710002f67c(void* self);
 
 UnkPlayerInfoValue_ovb0071* fn_7100f0eaec(UnkPropertyArrays* self, UnkPlayerInfoValue_ovb0071* it) {
     u32 index = it - static_cast<UnkPlayerInfoValue_ovb0071*>(self->values);
@@ -60,8 +59,6 @@ struct UnkTimedMap_ovb0071 {
     u32 flags;
     base::UnkAllocator* allocator;
 };
-
-void fn_7100f0e85c(UnkTimedEntry_ovb0071* self);
 
 UnkTimedEntry_ovb0071* fn_7100f0ca9c(UnkTimedMap_ovb0071* self, UnkTimedEntry_ovb0071* it) {
     u32 index = it - self->values;

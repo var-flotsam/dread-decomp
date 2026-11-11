@@ -3,10 +3,10 @@
 // +0x146e8, then the base's destructor fn_7100369380. Names are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "game/CBehaviorTreeAIComponent.h"
 #include "types.h"
 
 extern void* g_unk_7101a688d0[];
-void fn_7100369380(void*);  // the base's destructor
 
 struct UnkVulkranDtor_A4_b70;
 

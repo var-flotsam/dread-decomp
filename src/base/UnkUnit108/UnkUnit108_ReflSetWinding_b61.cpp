@@ -4,6 +4,7 @@
 // +4) decides whether they are reversed first (fn_7100118c78). Answers the empty status {0, 0, 2, 1}.
 // Names are placeholders.
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU108.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
@@ -33,8 +34,6 @@ struct UnkPolygon_b61 {
         return area;
     }
 };
-
-void fn_7100118c78(UnkPolygon_b61* self);
 
 static inline __attribute__((always_inline)) void* ArgPtr_b61(UnkReflValue* arg) {
     if (arg->field_0x14 == 1 || *reinterpret_cast<const u64*>(arg->type + 0x18) > 8)

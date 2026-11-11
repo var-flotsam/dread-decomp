@@ -5,13 +5,12 @@
 // returned in memory; its type is local here. Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassDropItemCrazyEvent.h"
+#include "game/SDropProbabilities.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-void fn_71007c7ddc(void*);
-u32 fn_7100cb51a0(const char* name);
 
 // A string id assigned like CStrId; the old one is released in two steps (the original reloads
 // `data` and the count after the decrement).

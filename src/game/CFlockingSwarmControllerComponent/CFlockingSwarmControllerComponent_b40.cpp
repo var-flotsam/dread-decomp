@@ -2,6 +2,7 @@
 // swarm's groups (the array at +0x1a8, fn_71007410a4 gives group i); for every group with members, it
 // sets the flag of each entry of its list in the array at +0x140 (fn_7100738c9c, fn_7100d35a98).
 // Names and layouts are placeholders.
+#include "game/CFlockingSwarmControllerComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "types.h"
 
@@ -27,7 +28,6 @@ struct UnkFlockingSwarm_fs {
     UnkArray_fs field_0x1a8;
 };
 
-UnkGroup_fs* fn_71007410a4(UnkArray_fs* array, u32 index);
 UnkEntryList_fs* fn_7100738c9c(UnkArray_fs* array, u32 index);
 
 void fn_7100741008(UnkFlockingSwarm_fs* self) {

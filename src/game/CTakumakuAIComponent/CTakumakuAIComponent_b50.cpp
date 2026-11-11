@@ -4,16 +4,16 @@
 // is clear and the animation plays a CCharClassAttackTrack (fn_7100ceda9c), +0x14750
 // is cleared. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CAnimationComponent.h"
+#include "game/CBehaviorTreeAIComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
 // As src/game/CSclawkAIComponent/CSclawkAIComponent_b44.cpp declares it.
 struct UnkSclawkAI_b44a2;
 struct UnkSclawkMessage_b44a2;
-u32 fn_710036974c(UnkSclawkAI_b44a2* self, UnkSclawkMessage_b44a2* msg);
 
 // As src/game/CAutsniperShootAttack/fn_71003d5a14.cpp declares it.
-void fn_710117abfc(void*, u32, void*, u64);
 
 extern char g_unk_7172709c30[] __attribute__((visibility("hidden")));
 

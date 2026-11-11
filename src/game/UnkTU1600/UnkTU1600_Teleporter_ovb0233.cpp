@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
+#include "game/CModelUpdaterComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
@@ -191,7 +192,6 @@ struct UnkTeleporterSelf_b0233 {
 void fn_7100a9f300(UnkTeleporterSelf_b0233* self);
 void fn_7100a8e614(UnkTeleporterSelf_b0233* self);
 struct UnkEnergyWaveFxComp_b49;
-void fn_71011738f8(UnkEnergyWaveFxComp_b49* comp, void* id, u32 flags);
 
 void fn_7100a8e4c0(UnkTeleporterSelf_b0233* self) {
     fn_7100a9f300(self);

@@ -1,7 +1,9 @@
 // CPureFollowCameraCtrl unit: after the base step (fn_7100764388), stores fn_71010ee560's value at
 // +0x94 and, when there is a player (fn_7100dec788 of the game manager), copies its position
 // (fn_7100d7c9f4) to +0x244. Names and layouts are placeholders.
+#include "game/CCameraBoundaryCtrl.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2523.h"
 
 struct UnkPlayer;
 struct UnkDropCameraVec3;
@@ -19,10 +21,8 @@ struct UnkPureFollowCameraCtrl {
     UnkPureFollowVec3 field_0x244;
 };
 
-void fn_7100764388(UnkPureFollowCameraCtrl* self);
 f32 fn_71010ee560(UnkPureFollowCameraCtrl* self);
 UnkPlayer* fn_7100dec788(UnkGameManager* manager);
-const UnkDropCameraVec3* fn_7100d7c9f4(UnkPlayer* player);
 
 void fn_71010f072c(UnkPureFollowCameraCtrl* self) {
     fn_7100764388(self);

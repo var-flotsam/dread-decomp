@@ -9,6 +9,8 @@
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassComponent.h"
+#include "game/CCharClassFrozenComponent.h"
 #include "game/UnkStrIdSplit.h"
 #include "types.h"
 
@@ -17,7 +19,6 @@ using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
 struct UnkModelEntity;
-bool fn_71011ace94(UnkModelEntity* self, void* arg);
 
 // The id table (fn_7100031894 builds it; as src/game/CEmmyAIComponent/CEmmyAIComponent_IsStateId_b56.cpp).
 struct UnkGameManagerIdTable {
@@ -73,7 +74,6 @@ void fn_71007fd04c(base::UnkStrIdVec* self, u32 count) {
 // allocator), the string id at +0xd0 and the string at +0xa0 are released, then the base's
 // destructor runs (fn_71007ee5bc). Names and layouts are placeholders.
 extern char g_unk_7101a74408[];  // the class's vtable (reached through the GOT)
-void fn_71007ee5bc(char*);
 
 struct UnkFrozenAsPlatformComponent_b0119 {
     char* vtable;
@@ -102,7 +102,6 @@ void fn_71007fc850(UnkFrozenAsPlatformComponent_b0119* self) {
 // +0x108 and (100, 100) at +0x110 (the class as the constructor sees it). Names and layouts are
 // placeholders.
 struct UnkFrozenIceBase_b44a2;
-void fn_71007ee4c8(UnkFrozenIceBase_b44a2*);
 
 struct UnkId_b0119 {
     UnkStringData* data;

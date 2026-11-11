@@ -1,11 +1,11 @@
 // A constructor in the CDropComponent unit (the shape of fn_71006eede8): the component base
 // constructor fn_71010c4148, the vtable, two members built by fn_71007c7ddc, two cleared fields, then
 // the post-construction virtual call (slot 3). Names and layouts are placeholders.
+#include "game/CComponent.h"
+#include "game/SDropProbabilities.h"
 #include "types.h"
 
 struct UnkStateObject;
-void fn_71010c4148(UnkStateObject* self);
-void fn_71007c7ddc(void* self);
 extern void* g_unk_7101a715c0[];
 
 struct UnkDropComponent {

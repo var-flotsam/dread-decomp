@@ -3,10 +3,10 @@
 // grown over the enabled children that answer slot 0x58 (each refreshed through slot 0x98 first when
 // its flag at +0x60 is set). The children are an inline list at +0x124 (a u32 count followed
 // directly by the pointers). Names and layouts are placeholders.
+#include "game/UnkTU2510.h"
 #include "types.h"
 
 struct UnkColliderNode_A6_b70;
-void fn_7100d5c888(void* owner, UnkColliderNode_A6_b70* collider, u32 old_mask, u32 new_mask);
 void fn_7100d35aec(void* self);
 
 struct UnkBox_ovb0066 {

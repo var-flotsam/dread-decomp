@@ -3,6 +3,7 @@
 // CTriggerComponent::EEvent: the header ids, then the unit's own statics and registrations
 // (helpers in UnkStaticInitS7.h). Layouts are placeholders.
 #include "../../game_s7/UnkStaticInitS7.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
@@ -70,7 +71,6 @@ extern char g_unk_717274ddd0[];
 extern char g_unk_717274ddd1[];
 extern UnkTunable g_unk_717274ddd8;
 extern void* g_unk_7101a8f830[];
-void fn_7100075104(void* self);  // its destructor, as registered
 
 void fn_7100a64bb0() {
     InitHeaderIds(&g_unk_717274e4b8.ids);

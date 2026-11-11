@@ -4,12 +4,11 @@
 // there is none yet, then call one of its methods and return what it returns. Names are
 // placeholders.
 #include "base/UnkVector.h"
+#include "base/reflection.h"
 #include "types.h"
 
-void fn_7100d8ced8(void* self);
 extern void* g_unk_7101d47368;
 
-void* fn_7100d8e0a0(void* manager);
 void* fn_7100d8dff0(void* manager);
 
 __attribute__((always_inline)) static inline void* GetEnvironmentManager() {

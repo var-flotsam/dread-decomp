@@ -5,11 +5,10 @@
 #include "../../game_s7/UnkPropS7.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CUsableComponent.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
-
-void fn_7100a9f7f0(char* self);
 
 UnkReflValue fn_7100aa41d0(void*, char* obj, UnkReflValue* const* args) {
     UnkReflValue* arg = args[0];

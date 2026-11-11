@@ -4,10 +4,10 @@
 // of pointers) and, when there is a node, takes state 2 with the node and its payload at +8.
 // Reset is read twice as in src/base/animation/CBlendSpaceResource/UnkVariantHolderSet_b42.cpp (the
 // original does not merge the two reads of the state). Names and layouts are placeholders.
+#include "game/UnkTU341.h"
 #include "types.h"
 
 // Signatures as src/clones/clones_00.cpp declares them.
-void fn_7100239e0c(char*);
 void fn_710023a2f8(char*);
 
 struct UnkListNode_b42a1 {

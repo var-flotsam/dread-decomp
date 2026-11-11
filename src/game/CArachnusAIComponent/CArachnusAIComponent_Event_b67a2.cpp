@@ -3,6 +3,7 @@
 // owner's (+0x30) collision container (+0x2a0), 2 when the id it maps the event's +0x60 to is the one at
 // 0x71726bca40, otherwise 0. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -11,7 +12,6 @@ using base::global::CStrId;
 // declare them.
 struct UnkSluggerAI;
 struct UnkSluggerEvent;
-u32 fn_7101105e44(UnkSluggerAI* self, UnkSluggerEvent* event);
 struct UnkCollisionContainer;
 CStrId* fn_7100864018(UnkCollisionContainer* self, void* object);
 

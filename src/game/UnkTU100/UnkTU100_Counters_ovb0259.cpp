@@ -9,8 +9,10 @@
 #include "base/UnkHashStream.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
+#include "base/file/CThreadSafeDevice.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
+#include "game/UnkTU102.h"
 #include "types.h"
 
 using base::global::CRntFile;
@@ -32,10 +34,8 @@ struct UnkStrPair_0x10 {
     void* b;
 };
 struct UnkFileReader;
-void fn_710008d680(UnkStrPair_0x10* self, const char* path);
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
 s64 fn_710007cee4(void* file, const char** out);
-u32 fn_7100106820(const char* text);
 void fn_710007c144(UnkHashStream_0x38* s);
 extern const char* g_unk_7101a1bd30;
 

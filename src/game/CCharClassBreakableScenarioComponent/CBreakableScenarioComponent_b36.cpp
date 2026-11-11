@@ -1,5 +1,8 @@
 // Functions in the CCharClassBreakableScenarioComponent unit (tools/tu_map.py; the
 // CBreakableScenarioComponent side). Names and layouts are placeholders.
+#include "game/CBreakableVignetteComponent.h"
+#include "game/CCharClassBreakableScenarioComponent.h"
+#include "game/UnkTU365.h"
 #include "types.h"
 
 struct UnkBreakablePart {
@@ -22,10 +25,6 @@ struct UnkBreakableScenario {
     UnkBreakablePart* parts;  // 0x48
     u32 part_count;           // 0x50
 };
-
-UnkBreakableTarget** fn_71002a76a4(UnkBreakablePart* part);
-void* fn_7100751520(void* key);
-void fn_710076351c(void* obj);
 
 // For each part whose virtual slot 4 says no, resolves its target's +0x10 (fn_7100751520) and passes
 // what that finds to fn_710076351c. Always true.

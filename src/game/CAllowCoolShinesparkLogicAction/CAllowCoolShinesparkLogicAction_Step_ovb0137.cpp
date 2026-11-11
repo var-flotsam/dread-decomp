@@ -2,17 +2,17 @@
 // Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CAbilityShinespark.h"
+#include "game/CTriggerLogicAction.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
 
 struct UnkTutoExitAction_b47;
-void fn_7100a55ac8(UnkTutoExitAction_b47* self);
-u64 fn_7100327d14();
 struct UnkAbilitySet;
 struct UnkAbility;
 struct UnkCoolShinesparkMask_ovb0137;
-UnkAbility* fn_71003012f8(UnkAbilitySet* set, u64 id);
 void fn_71003312a8(UnkReflObject* ability, const UnkCoolShinesparkMask_ovb0137* allowed_a, const UnkCoolShinesparkMask_ovb0137* allowed_b, void* arg, bool flag);
 void fn_710032a3b4(UnkReflObject* ability, const UnkCoolShinesparkMask_ovb0137* allowed_a, const UnkCoolShinesparkMask_ovb0137* allowed_b, bool flag);
 

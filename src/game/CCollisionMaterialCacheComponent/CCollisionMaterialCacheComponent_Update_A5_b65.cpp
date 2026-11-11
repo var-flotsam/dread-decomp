@@ -1,10 +1,10 @@
 // CCollisionMaterialCacheComponent's unit: reads the owner's current material (+0x1b8 of the object at
 // +0x1f0, valid while bit 6 of +0x1b4 is set, else 0); when it changed, keeps the new and previous
 // values and refreshes the owner's effect (fn_7100798eec, then fn_7101156808). Names are placeholders.
+#include "game/CCollisionMaterialCacheComponent.h"
 #include "types.h"
 
 struct UnkStruct_710024fa0c;
-UnkStruct_710024fa0c* fn_7100798eec(void* actor);
 void fn_7101156808(UnkStruct_710024fa0c* fx);
 
 struct UnkMaterialSource_A5_b65 {

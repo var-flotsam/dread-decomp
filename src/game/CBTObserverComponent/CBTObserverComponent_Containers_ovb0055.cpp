@@ -20,8 +20,14 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CBreakableTileGroup.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU127.h"
+#include "game/UnkTU253.h"
+#include "game/UnkTU2566.h"
+#include "game/UnkTU372.h"
+#include "game/UnkTU883.h"
 #include "types.h"
 
 using base::UnkStrIdMember;
@@ -549,8 +555,6 @@ void fn_7100ca6e64(UnkObserverById_ovb0055* self, f32 dt) {
 struct UnkQueryObj;
 struct UnkMapData;
 struct UnkMinimapOwner;
-UnkMapData* fn_7100e8d8b0();
-u32 fn_7100c9e960(UnkQueryObj* obj);
 void fn_7100e9d1f8(UnkMinimapOwner* self, s32 kind);
 UnkQueryObj* fn_7100ca1e50(UnkBTObserver_ovb0055* observer, u32 a, u32 b);
 
@@ -620,10 +624,7 @@ extern char g_unk_7101aa52b0[];  // the observer's vtable
 
 struct UnkLinkList;
 struct UnkCallback;
-void fn_71002b46ec(UnkLinkList* list, UnkLinkList** slot);
-void fn_71002b4538(UnkLinkList* list, UnkLinkList** slot);
 void fn_71005c4828(void*, void**);
-void fn_71005c41bc(void*, UnkCallback*);
 
 // The group map's buckets and list (destroyed last) ...
 struct UnkObserverGroupsBase_ovb0055 {
@@ -713,8 +714,6 @@ struct UnkModel {
 };
 
 void fn_71006cae2c(UnkRenderPool* pool, const CFilePathStrId& path, UnkModel** out, base::global::CStrId* name);
-void fn_71001436a0(UnkModel* model, u32 flag);
-void fn_71001c0968(UnkModelData* data, u32 flag);
 extern CFilePathStrId g_unk_7172796d70[10];  // the breakable block models' paths
 struct UnkTileEventSet;
 extern UnkTileEventSet g_unk_7172795e08;  // the breakable tiles' event set

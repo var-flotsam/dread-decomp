@@ -6,8 +6,10 @@
 
 #include "base/UnkCloneRecords.h"
 #include "base/UnkVector.h"
+#include "base/core/CAsset.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU83.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
 
@@ -15,7 +17,6 @@ using base::global::CRntString;
 using base::global::CStrId;
 
 extern void* g_unk_7101a22240[];  // the holder's vtable
-void fn_7100016f88(void*);
 
 struct UnkIdListHolder_ovb0123 {
     void** vtable;
@@ -34,7 +35,6 @@ void fn_71002f2d80(UnkIdListHolder_ovb0123* self) {
 }
 
 struct UnkStruct_0x28;
-void fn_71000ce19c(UnkStruct_0x28*, const UnkStruct_0x28*);
 
 struct UnkPlaythroughRecord_ovb0123 {
     void** vtable;

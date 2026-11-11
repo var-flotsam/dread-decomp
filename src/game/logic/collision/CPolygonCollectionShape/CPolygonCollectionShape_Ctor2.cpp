@@ -5,12 +5,13 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/UnkTU109.h"
+#include "game/logic/collision/CShape.h"
 #include "types.h"
 
 struct UnkTileOutlineList {
     u8 data[0x40];
 };
-void fn_7100123eb4(UnkTileOutlineList* self);
 
 struct UnkPolygonCollectionShapeView2 {
     char* vtable;
@@ -22,7 +23,6 @@ struct UnkPolygonCollectionShapeView2 {
 static_assert(__builtin_offsetof(UnkPolygonCollectionShapeView2, field_0xf0) == 0xf0, "layout");
 
 extern char g_unk_7101aa8b80[];
-void fn_7100d6bfd8(void* self);
 
 void fn_7100d66568(void* block) {
     UnkPolygonCollectionShapeView2* self = static_cast<UnkPolygonCollectionShapeView2*>(block);

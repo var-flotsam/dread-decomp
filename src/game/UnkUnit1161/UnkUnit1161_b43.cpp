@@ -3,13 +3,13 @@
 // destroys it) and the array of pointers at +0xb8 (freed when it holds one), then the object is freed.
 // Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU1160.h"
 #include "types.h"
 
 extern void* g_unk_7101a6da30[];
 
 // Declared as src/game/UnkUnit1161/UnkUnit1161_b42.cpp does.
 struct UnkMember_e8_b42;
-void fn_7100745804(UnkMember_e8_b42*);
 
 struct UnkHolder_1161_b43a2 {
     void** vtable;

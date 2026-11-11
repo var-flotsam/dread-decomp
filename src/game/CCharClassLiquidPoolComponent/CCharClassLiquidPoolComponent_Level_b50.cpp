@@ -2,6 +2,7 @@
 // moves the level (+0xc50) from its start (+0xc54) towards the target (+0xc58) over the duration at
 // +0xc5c, advancing the elapsed time (+0xc60) by `dt`, then applies it (fn_7100900928); nothing happens
 // once the level is within 1e-5 of the target. Names and layouts are placeholders.
+#include "game/CCharClassLiquidPoolComponent.h"
 #include "types.h"
 
 struct UnkLiquidPoolLevel {
@@ -14,7 +15,6 @@ struct UnkLiquidPoolLevel {
 };
 
 void fn_7100a45ac4(UnkLiquidPoolLevel* self, f32 dt);
-void fn_7100900928(UnkLiquidPoolLevel* self);
 
 void fn_710090087c(UnkLiquidPoolLevel* self, f32 dt) {
     fn_7100a45ac4(self, dt);

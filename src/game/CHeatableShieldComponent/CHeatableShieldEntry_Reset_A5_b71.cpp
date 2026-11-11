@@ -1,6 +1,7 @@
 // CHeatableShieldComponent unit (unit 1323): resets one 0xd0-byte shield entry. It clears its counters, then for
 // each of its two sound handles (+0xa8, +0xb8) that still names a live sound has the owner entity (+0xc8) stop it
 // (fn_7100d7c510, no fade) and empties the handle. Names and layouts are placeholders.
+#include "game/UnkTU2523.h"
 #include "types.h"
 
 struct UnkSound;
@@ -22,7 +23,6 @@ extern const UnkSoundHandle g_unk_7108b6c460;  // the empty handle
 
 // Signature as src/game/CShipRechargeComponent/CShipRechargeComponent_StopSound_b49a4.cpp declares it.
 struct UnkShipRechargeEntity_b49a4;
-void fn_7100d7c510(UnkShipRechargeEntity_b49a4* entity, UnkSoundHandle* handle, f32 fade, f32 delay);
 
 // The entry type src/game/CHeatableShieldComponent/CHeatableShieldComponent_2.cpp passes.
 struct UnkHeatableShieldEntry;

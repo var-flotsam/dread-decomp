@@ -3,6 +3,7 @@
 // restarted through fn_710050f26c, here with the colours (0.8, 0, 0) and (1, 0, 0)), each followed by a
 // countdown at +0x6c0: when not negative it runs down by `dt` and, at zero or below, is parked at -1.
 // The second clears +0x6cc first. Names and layouts are placeholders.
+#include "game/CEmmyGrabSamusAttack.h"
 #include "types.h"
 
 // The colour types of fn_710050f26c, as CEmmyGrabSamusAttack_Tick_b54.cpp names them.
@@ -23,8 +24,6 @@ struct UnkColor_710050f26c {
 };
 
 struct UnkStruct_710050f26c;
-void fn_710050f26c(UnkStruct_710050f26c* self, f32 time, const UnkColorIn_710050f26c* color, f32 time2,
-                   const UnkColor_710050f26c* color2, f32 offset);
 
 struct UnkGrabTick_A3_b64 {
     u8 unk_0x0[0x6b4];

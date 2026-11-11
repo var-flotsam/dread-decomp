@@ -2,6 +2,7 @@
 // 0x8b2dcb0a00297e03 of the owner's (+0x8) object at +0x280 and, unless it is already on, switches it on; then
 // sets the flag at +0x38. As CChozoCommanderBeamBurstAttack's start
 // (src/game/CChozoCommanderBeamBurstAttack/CChozoCommanderBeamBurstAttack_Start_b61.cpp). Names are placeholders.
+#include "game/CFXComponent.h"
 #include "game/UnkSwitchObject.h"
 #include "types.h"
 
@@ -9,7 +10,6 @@ struct UnkComponent;
 struct UnkObject;
 // As src/game/CChozoWarriorXAIComponent/fn_710048ecbc.cpp declares them.
 UnkComponent* fn_7101152b90(UnkObject* object, u64 hash);
-bool fn_710114e680(UnkObject* object, u8 kind);
 
 struct UnkChozoCommanderAttackOwner_A2_b69 {
     u8 pad_0x0[0x280];

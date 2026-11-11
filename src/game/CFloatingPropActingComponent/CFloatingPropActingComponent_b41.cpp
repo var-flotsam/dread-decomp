@@ -1,11 +1,12 @@
 // CFloatingPropActingComponent unit. fn_71007e63b8: after the base step (fn_71010c4228), keeps at
 // +0x40 the weak handle of the object fn_71007e4924 finds for the owner (or nothing), then runs
 // fn_71007e64d0. Names and layouts are placeholders.
+#include "game/CCharClassEventScenarioComponent.h"
+#include "game/CComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkParent;
-void fn_71010c4228(UnkParent*);
 
 struct UnkSelf_fp41 {
     u8 pad_0x0[0x30];
@@ -14,7 +15,6 @@ struct UnkSelf_fp41 {
     UnkWeakHandle* handle;  // 0x40
 };
 
-UnkWeakTarget* fn_71007e4924(void* owner);
 void fn_71007e64d0(UnkSelf_fp41* self);
 
 void fn_71007e63b8(UnkSelf_fp41* self) {

@@ -5,10 +5,9 @@
 #include <nn/os.h>
 
 #include "base/UnkDefaultAllocator.h"
+#include "game/UnkTU325.h"
+#include "game/media/CMediaStream.h"
 #include "types.h"
-
-void fn_710021b8a4(void* entry);
-void fn_71002207bc(void* part);
 
 class UnkUnit330Target {
 public:

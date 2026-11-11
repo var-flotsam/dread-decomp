@@ -3,9 +3,8 @@
 // (fn_710002fb70) changed, fn_7100920f40 is told the negated new state. Names and layout are
 // placeholders.
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU39.h"
 #include "types.h"
-
-bool fn_710002fb70(void*);
 
 struct UnkMagnetSlidingBlock_b44a2 {
     u8 pad_0x0[0x358];

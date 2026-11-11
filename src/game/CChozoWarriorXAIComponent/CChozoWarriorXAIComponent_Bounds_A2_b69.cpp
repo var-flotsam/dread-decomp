@@ -2,12 +2,10 @@
 // from fn_71010fc31c / fn_71010fc284 (the CChozoWarriorAIComponent offsets), widened by 190 each way; the
 // argument order flips when the owner faces left. Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 struct UnkChozoWarriorAI_b66a2;
-
-void fn_71010fc284(UnkChozoWarriorAI_b66a2* self, f32* out);
-void fn_71010fc31c(UnkChozoWarriorAI_b66a2* self, f32* out);
 
 struct UnkChozoWarriorXOwner_A2_b69 {
     u8 pad_0x0[0x38];

@@ -9,6 +9,7 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/CComponent.h"
 #include "game/UnkComponent.h"
 #include "types.h"
 
@@ -16,7 +17,6 @@ extern void* g_unk_7101cb2cb8[];
 extern void* g_unk_7101cb2ec0[];
 
 struct UnkStateObject;
-void fn_71010c4148(UnkStateObject* self);
 
 // The part at +0x98: its own vtable and the three arrays.
 struct UnkAttackPartBase_c3 {

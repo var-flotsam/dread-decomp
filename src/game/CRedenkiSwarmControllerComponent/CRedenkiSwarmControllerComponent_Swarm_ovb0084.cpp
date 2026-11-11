@@ -10,7 +10,13 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CFlockingSwarmControllerComponent.h"
+#include "game/CRedenkiSwarmControllerComponent.h"
+#include "game/CSwarmControllerComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1159.h"
+#include "game/UnkTU2560.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -23,7 +29,6 @@ using base::math::CVector3D;
 // (+0x488, +0x500) and flags (+0x4d8) resized to the group count, +0x338 from g_unk_71726fc5ac. ----
 
 struct UnkRedenkiSwarmController;
-void fn_710073f7bc(UnkRedenkiSwarmController* self, u32 value);
 extern u32 g_unk_71726fc5ac;
 
 // The layout of a base::UnkVector, freed in place.
@@ -213,7 +218,6 @@ struct UnkSwarmMember_ovb6;
 struct UnkRedenkiController_b55;
 struct UnkTarget;
 void fn_710074c304(UnkSwarmList_A5_b65* self);
-bool fn_7100744e1c(UnkSwarmMember_ovb6* member);
 void fn_7100655280(UnkRedenkiController_b55* self, UnkTarget* target);
 
 struct UnkRedenkiMember_ovb0084;
@@ -292,15 +296,9 @@ struct UnkSwarmUpdate_b65a4;
 struct UnkParent_71007455dc;
 struct UnkRedenkiSwarmController;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
-UnkVec3Result fn_710064fef8(UnkSwarmHold_b66a4* self);
-UnkParent_71007455dc* fn_7100739c64(UnkSwarmUpdate_b65a4* self);
 UnkVec3Result fn_7100745e24(UnkParent_71007455dc* parent);
-void fn_710073f7bc(UnkRedenkiSwarmController* self, u32 value);
 extern void* g_unk_71726da048;
 extern char g_unk_710164a408[];
-void fn_7100e1bca4(void* manager);
-void* fn_7100e1cb50(void* manager, u64* key, void* arg);
-void fn_710074e190(void* self, void* effect, f32 value);
 
 // As src/game/CRedenkiSwarmControllerComponent/CRedenkiSwarmControllerComponent_Update_b65a4.cpp
 // defines them.
@@ -311,9 +309,6 @@ struct UnkSwarmPoint_b65a4 {
 struct UnkSwarmRecord_b65a4 {
     bool active;
 };
-
-bool fn_710073fea8(UnkSwarmUpdate_b65a4* self, const UnkVec3Result* pos, UnkSwarmPoint_b65a4* out, f32 range);
-void fn_7100737d4c(UnkSwarmRecord_b65a4* record, const UnkSwarmPoint_b65a4* point);
 
 struct UnkRedenkiKeyHolder_ovb0084 {
     u8 pad_0x0[0x30];
@@ -444,12 +439,9 @@ void fn_7100652288(UnkRedenkiStart_ovb0084* self) {
 
 struct UnkSwarmUpdate_b65a4;
 struct UnkParent_71007455dc;
-UnkParent_71007455dc* fn_7100739c64(UnkSwarmUpdate_b65a4* self);
 UnkVec3Result fn_7100745e24(UnkParent_71007455dc* parent);
 void* fn_7100df57f4(UnkGameManager* manager);
-void fn_71002acfe4(void* member);
 struct UnkObject_71002ad0dc;
-void fn_71002ad0dc(UnkObject_71002ad0dc* self);
 
 struct UnkRedenkiScratch_ovb0084 {
     u8 pad_0x0[0x10];
@@ -526,8 +518,6 @@ struct UnkDaivoSwarm_b0012;
 struct UnkSwarmUpdate_b65a4;
 struct UnkParent_71007455dc;
 struct UnkPathPoints;
-bool fn_710065634c(UnkDaivoSwarm_b0012* self);
-UnkParent_71007455dc* fn_7100739c64(UnkSwarmUpdate_b65a4* self);
 f32 fn_71010598e0(UnkPathPoints* self, u32 a, u32 b);
 
 // Read as one 64-bit word: the area in the low half, the index in the high half.
@@ -775,9 +765,7 @@ void fn_71006572f0(UnkRedenkiStates_ovb0084* self, u32 state, bool keep) {
 // ---- fn_7100658310: a route from the path's last point to `target` (fn_710073cbe4); its points after the first are added
 // to the path (fn_71010592b0, fn_7100739bdc). ----
 
-void fn_71002acfe4(void* member);
 struct UnkObject_71002ad0dc;
-void fn_71002ad0dc(UnkObject_71002ad0dc* self);
 struct UnkMinimapPath;
 void fn_71010592b0(UnkMinimapPath* path, const CVector3D* point);
 
@@ -830,9 +818,6 @@ struct UnkTarget;
 extern void* g_unk_71726da048;
 extern char g_unk_710164a428[];
 extern f32 g_unk_7101a5aed0;
-void fn_7100e1bca4(void* manager);
-void* fn_7100e1cb50(void* manager, u64* key, void* arg);
-void fn_7100745440(UnkTarget* target, void* effect, u32 flag);
 
 static inline f32 Random01() {
     return (f32)((rand() & 0x7fff) * (1.0 / 32767.0));
@@ -1076,14 +1061,9 @@ struct UnkTarget;
 struct UnkMessage;
 struct UnkSwarmMember_ovb6;
 struct UnkRedenkiController_b55;
-bool fn_710074ddd8(UnkSelf* self, UnkTarget* target, UnkMessage* message);  // the base handler
-bool fn_7100744e1c(UnkSwarmMember_ovb6* member);
 void fn_7100655280(UnkRedenkiController_b55* self, UnkTarget* target);
 extern void* g_unk_71726da048;
 extern char g_unk_710164a438[];
-void fn_7100e1bca4(void* manager);
-void* fn_7100e1cb50(void* manager, u64* key, void* arg);
-void fn_7100745440(UnkTarget* target, void* effect, u32 flag);
 
 struct UnkRedenkiHandler_ovb0084 {
     u8 pad_0x0[0xe8];

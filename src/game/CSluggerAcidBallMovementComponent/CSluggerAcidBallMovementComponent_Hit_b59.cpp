@@ -6,14 +6,14 @@
 // src/game/CKraidAcidBlobsMovementComponent/CKraidAcidBlobsMovementComponent.cpp). Names and layouts
 // are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CMeleeComponent.h"
+#include "game/CProjectileMovement.h"
 #include "game/UnkActor.h"
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
 
 struct UnkObj;
-bool fn_7100ac4ec0(UnkObj* self, void* a1, void* a2, void* a3, void* a4, void* a5);
 struct UnkMeleeComponent;
-bool fn_710092b604(UnkMeleeComponent* self);
 
 struct UnkSluggerBallOther_b59a4 {
     u8 pad_0x0[0x2f8];

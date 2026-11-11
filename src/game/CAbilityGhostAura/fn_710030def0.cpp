@@ -1,11 +1,11 @@
 // Dispatches on two checks of the same pair of objects, then always follows up with
 // fn_7100310164 (distance 800) and fn_71003104e8 (given a zeroed out value). The dispatch picks
 // fn_710030dff4 when the first check passes and the second fails, fn_710030ed9c otherwise.
+#include "game/CAbilityGhostAura.h"
 #include "types.h"
 
 struct UnkSelf;
 
-bool fn_710030b8b4(UnkSelf* self, void* a2, void* zero);
 bool fn_710030dda8(UnkSelf* self, void* a2);
 void fn_710030ed9c(UnkSelf* self, void* a1, void* a2, void* a3, u32 a4, void* a5, void* a6, f32 f);
 void fn_710030dff4(UnkSelf* self, void* a1, void* a2, void* a3, u32 a4, void* a5, void* a6, f32 f);

@@ -3,8 +3,10 @@
 // definition (+0x5d0) asks for it (+0x11a), the target's position (fn_7100d7be08) scaled by +0x11c is
 // added to the velocity (+0x4b8); the owner's trail part (fn_7101152b90) is placed at the owner and
 // turned along the direction at +0x10c. Names and layouts are placeholders.
+#include "game/CFXComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -19,12 +21,10 @@ struct UnkKraidCreatureVec {
     f32 z;
     UnkKraidCreatureVec(const UnkKraidCreatureVec& other) : x(other.x), y(other.y), z(other.z) {}
 };
-UnkKraidCreatureVec fn_7100d7be08(void* actor);
 
 struct UnkComponent;
 struct UnkObject;
 UnkComponent* fn_7101152b90(UnkObject*, u64);
-bool fn_710114e680(UnkObject*, u8);
 void fn_7100145f28(UnkSwitchObject* self, const UnkVec3f* position);
 void fn_7100145f3c(UnkSwitchObject* self, const UnkVec3f* angles);
 extern "C" f32 atan2f(f32 y, f32 x);
@@ -118,4 +118,3 @@ void fn_71006047d0(UnkAcidBlob_ovb0135* self) {
     }
     PlaceTrail(self);
 }
-

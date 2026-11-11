@@ -2,6 +2,7 @@
 // strings at +0x48 and +0x18 (fn_710007ecd4) and run the base destructor (fn_7100a55ab8). Names
 // and the layout are placeholders.
 #include "base/global/CRntString.h"
+#include "game/CTriggerLogicAction.h"
 #include "types.h"
 
 struct UnkLogicActionBase {
@@ -9,7 +10,6 @@ struct UnkLogicActionBase {
     u8 unk_0x8[0x10];
     ~UnkLogicActionBase();
 };
-void fn_7100a55ab8(UnkLogicActionBase* self);  // the base destructor
 
 inline UnkLogicActionBase::~UnkLogicActionBase() { fn_7100a55ab8(this); }
 

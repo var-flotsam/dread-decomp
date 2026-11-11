@@ -3,6 +3,7 @@
 // name's hash and the flags to fn_710114fe8c on the object at 8; it returns the int 0 as a reflected
 // value. Names are placeholders.
 #include "../../game_s7/UnkPropS7.h"
+#include "base/global/timeline/CEvent.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
@@ -11,7 +12,6 @@ using base::reflection::UnkReflValue;
 
 struct UnkWorld;
 void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
-void fn_710006663c(u64* out, const char* str);
 
 UnkReflValue fn_710115790c(void*, char* obj, UnkReflValue* const* args) {
     UnkReflValue* arg = args[0];

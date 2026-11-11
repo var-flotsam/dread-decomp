@@ -4,6 +4,7 @@
 // placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/UnkTU1450.h"
 #include "types.h"
 #include <math.h>
 #include "../../game_s7/UnkPropBagS7.h"
@@ -17,7 +18,6 @@ struct CGrappleBeamGun;
 CGrappleBeamGun* fn_710030c5fc(UnkAuraGunOwner* self, const CStrId& id);
 struct UnkUnit1452_b56;
 struct UnkUnit1452Owner_b56;
-UnkUnit1452Owner_b56* fn_710097f1b8(UnkUnit1452_b56* self);
 
 struct UnkGunSlot_b0249 {
     u8 pad_0x0[0x10];
@@ -81,7 +81,6 @@ extern const base::global::CStrId g_unk_717273ae40 __attribute__((visibility("hi
 
 struct UnkUnit1452_b56;
 struct UnkUnit1452Owner_b56;
-UnkUnit1452Owner_b56* fn_710097f1b8(UnkUnit1452_b56* self);
 
 struct UnkBagHolder_b0249 {
     u8 pad_0x0[0x80];
@@ -96,7 +95,6 @@ struct UnkAimOwner_b0249 {
 };
 
 struct UnkPositionSource_b0249;
-UnkPositionSource_b0249* fn_710097f1e0(UnkUnit1452_b56* self);
 
 struct UnkVec2f_b0249 {
     f32 x, y;

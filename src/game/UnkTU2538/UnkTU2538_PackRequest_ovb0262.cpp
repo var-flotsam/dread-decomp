@@ -4,6 +4,8 @@
 // then sets the path to the global one. Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
+#include "game/UnkTU2201.h"
+#include "game/UnkTU2730.h"
 #include <new>
 
 #include "types.h"
@@ -20,7 +22,6 @@ struct UnkMaskedId {
     UnkMaskedId();
     ~UnkMaskedId() { id.~CStrId(); }
 };
-void fn_7100c939dc(UnkMaskedId* self);
 inline UnkMaskedId::UnkMaskedId() { fn_7100c939dc(this); }
 
 struct UnkPackManager_b0163;
@@ -45,7 +46,6 @@ struct UnkCallback_kr {
 };
 
 UnkPackRef_b0163 fn_7101199f08(UnkPackManager_b0163* self, const CFilePathStrId& path);
-void fn_71011995c0(void* self, const UnkCallback_kr& callback);
 UnkPackRef_b0163 fn_7101197008(UnkPackManager_b0163* self, const CFilePathStrId& path, const UnkMaskedId& id,
                                   bool flag);
 void fn_7100da6748();

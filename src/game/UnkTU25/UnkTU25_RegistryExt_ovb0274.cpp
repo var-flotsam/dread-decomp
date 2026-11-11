@@ -4,10 +4,12 @@
 // are placeholders.
 #include "../../game_aca57c/UnkBufferString.h"
 #include "base/UnkStrIdPathPair.h"
+#include "base/file/CThreadSafeDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntStringAssign.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU27.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -27,7 +29,6 @@ struct UnkExtKey_ovb0274 {
 };
 
 struct UnkPathPairTemp_b45a1;
-void fn_710008d2a0(UnkPathPairTemp_b45a1* self);
 UnkStrIdPathPair* fn_710008d88c(UnkStrIdPathPair* dst, const void* id, const void* path);
 
 struct UnkExtPair_ovb0274 {
@@ -48,7 +49,6 @@ struct UnkExtFactoryEntry_ovb0274 {
 
 struct UnkFactoryEntry;
 struct UnkRegistryKey;
-UnkFactoryEntry* fn_7100020320(UnkRegistry_7100d92158* registry, const UnkRegistryKey* key);
 
 // A file-path id built from a string out of line (fn_710001a270).
 struct UnkExtPathId_ovb0274 {

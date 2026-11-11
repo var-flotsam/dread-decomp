@@ -2,11 +2,11 @@
 // (fn_7100ac3a78, src/game/CNailongThornMovementComponent/CNailongThornMovementComponent.cpp) turns the
 // owner (+0x30) to the angles (0, -pi/2, 0) through its transform (+0x38, game/UnkXformNode.h) and its
 // slot 0x118 (with mode 2), then sets its +0x3c0. Names and layouts are placeholders.
+#include "game/CProjectileMovement.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 struct UnkNailongThornMovement;
-void fn_7100ac3a78(UnkNailongThornMovement*, f32);
 
 struct UnkFireBallOwner_b49 {
     void** vtable;

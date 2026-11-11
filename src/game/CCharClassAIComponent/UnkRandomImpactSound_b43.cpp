@@ -3,11 +3,10 @@
 // (fn_71012395a0 % 3), or the global empty path id when the draw falls outside. Names are
 // placeholders.
 #include "base/global/CFilePathStrId.h"
+#include "game/UnkTU2772.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
-
-int fn_71012395a0();
 
 static inline const CFilePathStrId& PickOne(const CFilePathStrId& a, const CFilePathStrId& b, const CFilePathStrId& c) {
     switch (fn_71012395a0() % 3) {

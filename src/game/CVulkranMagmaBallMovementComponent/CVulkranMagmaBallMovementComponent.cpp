@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CProjectileMovement.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -32,8 +33,6 @@ struct UnkVulkranBuiltId {
     explicit UnkVulkranBuiltId(const CRntString& str) { fn_7100000850(&id, str, true); }
     ~UnkVulkranBuiltId() { id.~CStrId(); }
 };
-
-bool fn_7100ac3108(UnkKraidBouncingCreaturesMovement2* self, UnkKraidCreatureArg* arg);
 
 bool fn_71006df684(UnkVulkranMagmaBallMovement* self, UnkKraidCreatureArg* arg) {
     bool result = fn_7100ac3108(reinterpret_cast<UnkKraidBouncingCreaturesMovement2*>(self), arg);

@@ -3,13 +3,13 @@
 // a kind-5 parameter block; then records whether the owner's animation has a turn track. Names and
 // layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CEnemyMovement.h"
 #include "game/UnkAnimationComponent.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
 
 struct UnkStruct_0x68;
 void fn_7100394bd0(UnkStruct_0x68* self);
-u32 fn_71010cc3a4(void*);
 
 struct UnkIdleNavigationOwner {
     u8 pad_0x0[0x218];

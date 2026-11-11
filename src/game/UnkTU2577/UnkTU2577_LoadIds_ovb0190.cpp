@@ -4,7 +4,10 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CSpawnGroupComponent.h"
 #include "game/UnkSubAreaGuiCache.h"
+#include "game/UnkTU2668.h"
+#include "game/operator_new.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -32,11 +35,7 @@ struct UnkSubAreaEntityList {
 };
 
 extern UnkSubAreaGuiCache* g_unk_71727254f8;
-void fn_71000839c0(bool current_thread);
-void fn_7100083a10();
 void fn_710119e4ec(UnkSubAreaGuiCache* self, const CStrId* id, bool flag);
-void fn_710109d0a0();
-UnkSubAreaEntityList* fn_7101119514();
 void fn_710111b040(base::reflection::UnkReflObject* component, const CStrId* id);
 
 void fn_7100ee96f0(UnkSubAreaMgr_b190* self, UnkIdSource_b190* source) {

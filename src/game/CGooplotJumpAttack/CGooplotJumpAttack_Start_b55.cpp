@@ -3,6 +3,7 @@
 // +0x58 and hands the owner to the lazily created manager's member at +0x138 (fn_710059d3ec);
 // otherwise hands the owner to the AI component's fn_710059aa2c. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CGooplotAIComponent.h"
 #include "game/UnkManager_71726af468.h"
 
 struct UnkGooplotAI_b55 {
@@ -25,7 +26,6 @@ struct UnkGooplotJumpAttack_b55 {
 };
 
 void fn_710059d3ec(void* member, UnkGooplotOwner_b55* owner);
-void fn_710059aa2c(UnkGooplotAI_b55* ai, UnkGooplotOwner_b55* owner);
 
 void fn_7100595ca4(UnkGooplotJumpAttack_b55* self) {
     UnkGooplotAI_b55* ai = self->owner->ai;

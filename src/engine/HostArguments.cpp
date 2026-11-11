@@ -9,6 +9,18 @@
 
 #include <nn/os.h>
 
+#include "base/reflection.h"
+#include "game/UnkTU2550.h"
+#include "game/UnkTU2557.h"
+#include "game/UnkTU2578.h"
+#include "game/UnkTU2668.h"
+#include "game/UnkTU2677.h"
+#include "game/UnkTU2730.h"
+#include "game/UnkTU2733.h"
+#include "game/UnkTU52.h"
+#include "game/UnkTU58.h"
+#include "game/malloc.h"
+#include "game/nn/time.h"
 #include "types.h"
 
 void fn_71000005d0(s32, char**) {
@@ -27,7 +39,6 @@ struct lua_State;
 extern lua_State* g_unk_7172a01d18;
 s32 fn_71010c0bb0(lua_State* L, const char* str);
 s32 fn_71010bf400(lua_State* L, const char* fmt, va_list args);
-s32 fn_71010c0d80(lua_State* L, s32 a, char* buf, u32 size, void* x, void* y);
 
 // Calls the script function `name` with the arguments `fmt` describes; whether it returned 1
 // (the same as fn_7100e01f08 in src/game/CGameManager.cpp).
@@ -228,9 +239,7 @@ void fn_7100000980() {
 // The scene-state singleton (0x150 bytes, created on first use; src/game/UnkLoadingScreen.cpp's).
 struct UnkStruct_0x128;
 extern UnkStruct_0x128* g_unk_7101d47320;
-void fn_7100ef3494(UnkStruct_0x128* self);
 void fn_7100f00600(UnkStruct_0x128* self);
-void* fn_71000810b0(u32 value);
 
 static inline UnkStruct_0x128* SceneState() {
     UnkStruct_0x128* s = g_unk_7101d47320;
@@ -300,16 +309,13 @@ struct UnkGuiRootView {
 };
 bool fn_710119a320(void* root);
 f32 fn_710119a3d0(void* root);
-void fn_71011994e0(void* root, bool value);
 
 // The engine's singletons (src/engine/UnkEngineStart.cpp) and their per-frame updates.
 struct UnkEngineObject_0xf0;
 extern UnkEngineObject_0xf0* g_unk_7101d47338;
-void fn_7100075db8(UnkEngineObject_0xf0* self);
 void fn_7100075e64(UnkEngineObject_0xf0* self, f32 dt);
 struct UnkSoundHolder;
 extern UnkSoundHolder* g_unk_7101d47340;
-void fn_710006cd9c(UnkSoundHolder* holder);
 void fn_710006ce38(UnkSoundHolder* holder, f32 dt);
 extern UnkRumbleManager* g_unk_7101d47348;
 void fn_7100073af8(UnkRumbleManager* self, f32 dt);
@@ -317,33 +323,26 @@ void fn_710013dee8(UnkTunableRegistry* self);
 // The language singleton (src/game/UnkLanguage.cpp); its per-frame step is empty.
 struct UnkLanguage;
 extern UnkLanguage* g_unk_7101d47358;
-void fn_710119c020(UnkLanguage* language);
 void fn_710119d31c(UnkLanguage* language);
 // The game's singletons: the sub-area manager (0xae8 bytes), the environment manager (0x4c8), two
 // more objects (0x150 and 0x60 bytes) and the loading screen (0x220).
 extern void* g_unk_7101d47360;
 extern void* g_unk_7101d47368;
 void fn_7100ee1f34(void* self);
-void fn_7100d8ced8(void* self);
 void fn_7100ee49f0(void* self, f32 dt);
-void fn_7100d8ef04(void* self, f32 dt);
 struct UnkGameObject_0x150;
 extern UnkGameObject_0x150* g_unk_7101d47370;
-void fn_7100dde0c8(UnkGameObject_0x150* self);
 void fn_7100dde21c(UnkGameObject_0x150* self, f32 dt);
 struct UnkGameObject_0x60;
 extern UnkGameObject_0x60* g_unk_7101d47378;
-void fn_7100dde718(UnkGameObject_0x60* self);
 void fn_7100dde7a0(UnkGameObject_0x60* self, f32 dt);
 struct UnkLoadingScreen;
 extern UnkLoadingScreen* g_unk_7101d47380;
-void fn_7100e0f89c(UnkLoadingScreen* self);
 void fn_7100e134a0(UnkLoadingScreen* self, f32 dt);
 void fn_7100f00780(UnkStruct_0x128* self, f32 dt);
 // The statistics object (0x78 bytes) the device's memory size is reported to, in KiB.
 struct UnkStatsObject;
 extern UnkStatsObject* g_unk_7101d47100;
-void fn_7100131f48(UnkStatsObject* self);
 void fn_7100132248(UnkStatsObject* self, const CStrId& name, f32 value);
 
 // The render manager's frame steps (game/UnkRenderManager.h).
@@ -427,7 +426,6 @@ struct UnkSizedAllocator {
 
 void fn_7100132c30();
 void fn_7100132c60();
-void fn_710109d0a0();
 void fn_7100083980(f32 dt);
 void fn_7100001a60(f32 dt);
 void fn_71000ebad0(UnkResRegistry* self);

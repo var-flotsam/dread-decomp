@@ -5,16 +5,15 @@
 // (fn_71010cab0c). Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CEnemyMovement.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU39.h"
 #include "types.h"
 
 // As src/game/behaviortree/CInfesterFleeFromTargetAction/CInfesterFleeFromTargetAction.cpp declares it.
-u32 fn_71010cc3a4(void* object);
 // As src/game/CDoorLifeComponent/CDoorLifeComponent_b44.cpp declares it.
-bool fn_710002fb70(void*);
 // A refl_CallWithOwnerChild instantiation in src/clones/clones_06.cpp.
-bool fn_71010cab0c(void* movement);
 
 struct UnkEmmySearchingAction_A3_b67 {
     u8 pad_0x0[0x18];

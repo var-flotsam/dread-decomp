@@ -6,12 +6,13 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CAnimationComponent.h"
+#include "game/CEnemyMovement.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkManager_71726af468.h"
+#include "game/UnkTU2702.h"
+#include "game/UnkTU341.h"
 #include "types.h"
-
-void fn_71010ff2b8(char*);
-void fn_7100232c68(void*);
 
 // An intrusively counted object: count at +8, the entity it refers to at +0x10; vf_0x10 deletes it.
 struct UnkVulkranRef_ovb0121 {
@@ -75,7 +76,6 @@ void fn_71006dbb78(UnkVulkranAIEnd_ovb0121* self) {
 using base::global::CStrId;
 
 struct UnkTakumakuComponent;
-bool fn_7101178e6c(UnkTakumakuComponent*, u32);
 
 struct UnkVulkranTuning_ovb0121;
 const CStrId* fn_71006dac64(UnkVulkranTuning_ovb0121* tuning);
@@ -161,7 +161,6 @@ bool fn_71006dcdec(UnkVulkranAIBury_ovb0121* self) {
 struct UnkActorTarget;
 void fn_7101178e08(UnkActorTarget*, u32, u32, u32, f32);
 void fn_710117662c(UnkActorTarget*, u32, u32, u32, u32, f32);
-u32 fn_71010cc3a4(void*);
 
 struct UnkVulkranOwner_ovb0121 {
     u8 pad_0x0[0x218];

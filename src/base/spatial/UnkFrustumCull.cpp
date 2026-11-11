@@ -3,6 +3,8 @@
 // remembers the plane that last rejected it and the test starts there, walking the planes in the
 // order a next-plane table gives. Names and layouts are placeholders.
 // Holds fn_71001bab30 and the frustum's update, fn_71001b83f8.
+#include "game/UnkTU225.h"
+#include "game/UnkTU308.h"
 #include "types.h"
 
 // A plane: its normal and its distance term.
@@ -71,7 +73,6 @@ extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, i
 // list of all nodes). src/game_lo/fn_710019e100.cpp removes a key from it.
 struct UnkKeyOwner;
 extern void* g_unk_716e34c2e0;
-bool fn_710019e100(UnkKeyOwner* self, u64 key);
 
 struct UnkCullNode {
     u64 key;
@@ -160,7 +161,6 @@ struct UnkViewBox {
 };
 static_assert(sizeof(UnkViewBox) == 0x38, "UnkViewBox layout");
 
-void fn_710021685c(void* self);  // UnkSphere's constructor
 // Constructors of three small members (other units).
 void fn_710016931c(void* self);  // +0x128 (0x24 bytes)
 void fn_71001695ec(void* self);  // +0x14c (0x10 bytes)

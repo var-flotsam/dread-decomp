@@ -6,14 +6,13 @@
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2768.h"
 #include "types.h"
 
 using base::global::CRntString;
 
 struct UnkUserDataOwner;
 extern UnkUserDataOwner* g_unk_7101d47308;
-void fn_710120320c(UnkUserDataOwner* self);  // constructor
-void fn_7101203768(UnkUserDataOwner* self);
 void fn_71012037bc(UnkUserDataOwner* self, void (*callback)());
 void fn_7100dee46c(UnkGameManager* self);
 void fn_7100df81fc();

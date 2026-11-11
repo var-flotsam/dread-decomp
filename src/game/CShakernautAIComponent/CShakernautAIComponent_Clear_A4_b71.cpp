@@ -1,10 +1,10 @@
 // CShakernautAIComponent's unit: runs the base's routine fn_71003695fc, then drops the refcounted pointer
 // of every 0x20-byte record in the two arrays at +0x14818 and +0x14840. Names are placeholders.
 #include "base/UnkDestructors.h"
+#include "game/CBehaviorTreeAIComponent.h"
 #include "types.h"
 
 struct UnkNode;
-void fn_71003695fc(UnkNode*);
 
 namespace {
 

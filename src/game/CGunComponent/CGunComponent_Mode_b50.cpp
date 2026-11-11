@@ -3,11 +3,11 @@
 // state (fn_7100df5460) is of kind 6 (for kind 7, its object at +0x20 decides), else mode 1; a new
 // mode is stored at +0x134 and applied (fn_7100839b00).
 // Names and layouts are placeholders.
+#include "game/CGunComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
 void* fn_7100df5460(UnkGameManager* manager);
-void fn_7100839b00(char* self, bool flag);
 
 struct UnkGunModeSource {
     u8 unk_0x0[0x10];

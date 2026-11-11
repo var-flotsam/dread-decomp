@@ -2,6 +2,7 @@
 // layout src/game/UnkSoundIdRegistry.cpp describes) two calls on the instance playing under an id (the list at
 // +0x80): fn_710021f950 and fn_710021fa20 of the media object (src/game/media/UnkMovieUnit324/), made while the
 // instance is held. Names and layouts are placeholders.
+#include "game/UnkTU324.h"
 #include "types.h"
 
 // A playing instance: reference-counted (atomically, at +8), destroyed through its vtable.
@@ -48,7 +49,6 @@ struct UnkSoundIdList {
 };
 
 struct UnkMedia324;
-u32 fn_710021f950(UnkMedia324* self);
 u32 fn_710021fa20(UnkMedia324* self);
 
 struct UnkStruct_0x128 {

@@ -3,6 +3,7 @@
 // (+0x1780) is set and names the same string (hash at +0x30 of the string data) as the target's id (+0x38).
 // Reading an id's hash bumps a counter in its string data (+0x44). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CCharClassAttack.h"
 #include "types.h"
 
 struct UnkIdData_A2_b68 {
@@ -40,8 +41,6 @@ struct UnkAttack_A2_b68 {
     u8 pad_0x10[0x10];
     UnkAttackTarget_A2_b68* target;
 };
-
-void fn_71003646b0(UnkAttackTarget_A2_b68* target, u32 value);
 
 void fn_7100362324(UnkAttack_A2_b68* self, u32 value) {
     UnkAttackTarget_A2_b68* first = self->target;

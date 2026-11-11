@@ -6,8 +6,11 @@
 #include "base/UnkVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CComponent.h"
+#include "game/CShotManager/CTunableShotManager.h"
 #include "game/UnkActor.h"
 #include "game/UnkManager_71726af468.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 bool fn_7100da9254(UnkManager_71726af468* self);
@@ -15,7 +18,6 @@ void fn_7100da929c(UnkManager_71726af468* self, f32 value);
 
 struct UnkBoundsComponent;
 struct UnkAabb;
-void fn_71011061d0(UnkBoundsComponent* self, UnkAabb* out);
 
 static inline UnkManager_71726af468* Manager_ovb0073() {
     UnkManager_71726af468* m = g_unk_71726af468;
@@ -120,7 +122,6 @@ template <u32 Offset>
 struct UnkSmGrab_A1_b64;
 void fn_7100440f5c(UnkSmGrab_A1_b64<0x88>*);
 void fn_71004330cc(void* attack);
-void fn_7100ed78c0(void* player);
 extern void* g_unk_71726af0b0;
 struct UnkGroupIds;
 extern UnkGroupIds g_unk_717272fd38;
@@ -195,7 +196,6 @@ void fn_7100454fc8(UnkCommanderAI_ovb0073* self) {
 }
 
 struct UnkParent;
-void fn_71010c424c(UnkParent*);
 
 struct UnkCommanderPush_ovb0073 {
     u8 pad_0x0[0x30];

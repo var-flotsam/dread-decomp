@@ -4,6 +4,7 @@
 // (+0x98) through fn_7100d8e32c. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -13,7 +14,6 @@ struct UnkEnvironmentManager;
 extern void* g_unk_7101d47360;
 extern void* g_unk_7101d47368;
 void fn_7100ee1f34(void*);
-void fn_7100d8ced8(void* self);
 void fn_7100d8e32c(UnkEnvironmentManager* self, const CStrId* id, bool a, bool b);
 
 struct UnkSubAreaEntry_ovb0092 {

@@ -8,6 +8,7 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
+#include "game/CComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
@@ -23,7 +24,6 @@ void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const 
 extern base::global::CStrId g_unk_71726b7cb8;
 // As src/game/CAbilityEnergyWave/fn_71002ffea8.cpp declares it.
 struct UnkParent;
-void fn_71010c424c(UnkParent*);
 
 struct UnkQuetzoaArea_A3_b75 {
     virtual void vf_0x0();

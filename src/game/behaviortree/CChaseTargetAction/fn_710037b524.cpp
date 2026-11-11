@@ -3,6 +3,7 @@
 // if the flag at +0x5a is set, passes the object to fn_71010fa828.
 #include "game/UnkAIComponent.h"
 #include "game/UnkBehaviorTree.h"
+#include "game/UnkTU2702.h"
 #include "game_s2/UnkParams.h"
 
 struct UnkOwner {
@@ -16,8 +17,6 @@ struct UnkComponent {
     u8 pad_0x20[0x3a];
     u8 field_0x5a;
 };
-
-void fn_71010fa828(UnkAIComponent* object);
 
 void fn_710037b524(UnkComponent* self) {
     fn_7100394bd4(self);

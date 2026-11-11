@@ -2,12 +2,12 @@
 // (fn_71010c4228), then, when fn_71002a5a58 finds an object for the owner at +0x30, points the
 // counted weak reference at +0x40 at that object's weak handle (created on first use;
 // game_s2/UnkWeakHandle.h). Names and layouts are placeholders.
+#include "game/CComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 // Signature as the other hand-written callers declare it.
 struct UnkParent;
-void fn_71010c4228(UnkParent* self);
 UnkWeakTarget* fn_71002a5a58(void* owner);
 
 struct UnkBreakableTileGroupSonarTarget_b52 {

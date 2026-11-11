@@ -5,6 +5,10 @@
 // Returns 0. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/CAbilityShinespark.h"
+#include "game/CSamusMagnetGloveMovementState/CParams.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -15,12 +19,7 @@ struct UnkAbility;
 struct UnkAbilitySet;
 struct UnkFootstepMode;
 UnkPlayer* fn_7100dec788(UnkGameManager* manager);
-UnkAbility* fn_71003012f8(UnkAbilitySet* set, u64 id);
-u64 fn_7100308c74();
-u64 fn_7100327d14();
-u32 fn_7100309568(UnkAbility* ability);
 u32 fn_71009a60fc();
-bool fn_71009ae798(UnkFootstepMode* mode);
 bool fn_71009e12d0(void* obj);
 
 struct UnkFootstepStatic_b45a2 {

@@ -2,9 +2,8 @@
 // array of the object at +0x40 (data at +0xc8, count at +0xd8, both re-read every step) to
 // fn_71002d296c; the method behind the reflected fn_710117c12c (CAnimationComponent_b41.cpp). Names
 // and layouts are placeholders.
+#include "game/animtree/CAnimatedNode.h"
 #include "types.h"
-
-void fn_71002d296c(void* self);
 
 struct UnkAnimArray_b48a3 {
     u8 pad_0x0[0xc8];

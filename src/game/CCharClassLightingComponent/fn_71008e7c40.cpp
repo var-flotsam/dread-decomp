@@ -2,6 +2,7 @@
 // (src/game/CAbilityEnergyWave/fn_71002fe508.cpp and fn_71002fff00.cpp): virtual slots 0x28 and 0x30 on
 // each child of the array at +0x60 (fn_71008e7c40, fn_71008e7c80), and slot 0x18 with `dt` after the
 // base update fn_71010c424c (fn_71008e7cc4).
+#include "game/CComponent.h"
 #include "types.h"
 
 struct UnkLightChild {
@@ -26,7 +27,6 @@ void fn_71008e7c80(UnkLightParent* self) { CallEach<0x30>(self); }
 
 // The base update (declared as src/game/CAbilityEnergyWave/fn_71002ffea8.cpp does).
 struct UnkParent;
-void fn_71010c424c(UnkParent* self);
 
 void fn_71008e7cc4(UnkLightParent* self, float dt) {
     fn_71010c424c(reinterpret_cast<UnkParent*>(self));

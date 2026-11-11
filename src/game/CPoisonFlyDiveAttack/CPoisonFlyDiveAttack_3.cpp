@@ -4,14 +4,14 @@
 // manager g_unk_71726af468 (created on first use, flags 3) forget the actor (fn_710063a748) and
 // update (fn_710063c670). Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CEnemyMovement.h"
 #include "game/UnkAttack.h"
 #include "game/UnkManager_71726af468.h"
+#include "game/UnkTU958.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-void fn_71010cb2fc(void* target, void* link);
 void fn_710063a748(u8* part, UnkActor* actor);
-void* fn_710063c670(void* part);
 
 struct UnkPoisonFlyDive : UnkAttackBase {
     u8 pad_0x20[0x34];

@@ -5,6 +5,7 @@
 // on it and fn_7100232f18 gives the object referenced (+8 counts its references; vtable slot 0x10
 // frees it). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -43,7 +44,6 @@ struct alignas(8) UnkPowerUpLifeType_b52 {
 UnkPowerUpLifeEntry_b52* fn_710119438c(UnkActorDefFactory* factory, const char* path, CStrId* id, const UnkPowerUpLifeType_b52& type,
                                        void* arg);
 void fn_7100232864(UnkEntityState*, bool);
-UnkPowerUpLifeRef_b52* fn_7100232f18(UnkPowerUpLifeEntry_b52* entry);
 
 struct UnkPowerUpLife_b52 {
     u8 unk_0x0[0x3c8];

@@ -2,11 +2,11 @@
 // at +0x2f8 is in state 6. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 extern void* g_unk_71726bc560;
 struct UnkMgr_0xf18;
-void fn_7100fdb9e0(UnkMgr_0xf18*, u32, u32, f32, f32);
 
 struct UnkMusicState_ovb0219 {
     u8 pad_0x0[0x10];

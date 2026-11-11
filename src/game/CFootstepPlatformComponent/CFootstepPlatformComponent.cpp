@@ -2,6 +2,7 @@
 // (+0x208 of the player) stands on something: its current mode (+0x2d08) is the one of the kind
 // fn_71009a60fc reports and fn_71009ae798 accepts it, or else fn_71009e12d0 says so. Then it runs
 // the object's vf_0x168. Names and layouts are placeholders.
+#include "game/CSamusMagnetGloveMovementState/CParams.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -28,7 +29,6 @@ struct UnkFootstepPlayer {
 
 UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 u32 fn_71009a60fc();
-bool fn_71009ae798(UnkFootstepMode* mode);
 bool fn_71009e12d0(void* obj);
 
 struct UnkFootstepPlatform {

@@ -3,6 +3,7 @@
 // false (or null, nothing, 1.0) if it's absent. The handlers' argument types are placeholders.
 // The arguments between the array and the id reach the handlers untouched (fn_7100202eb0 hands x2-x4
 // on to fn_71001ef660; tools/forwarded_args.py --calls).
+#include "base/reflection.h"
 #include "types.h"
 
 struct UnkItem {
@@ -27,7 +28,6 @@ bool fn_7100202e7c(UnkItem* item, bool value, void* arg2, void* arg3);
 bool fn_7100202e48(UnkItem* item, void* arg1, bool value);
 void* fn_710020289c(UnkItem* item, u32 index);
 void* fn_71002004f4(UnkItem* item, void* arg1, void* arg2, void* arg3, bool value);
-bool fn_7100202d24(UnkItem* item, void* arg);
 
 bool fn_71001fd6c0(const UnkPtrArray* items, bool value, void* arg2, void* arg3, void* arg4, s32 id) {
     UnkItem* found = Find(items, id);
@@ -76,13 +76,9 @@ bool fn_7100202fcc(UnkItem* item, void* arg1, void* arg2);
 bool fn_7100202e18(UnkItem* item, void* arg);
 bool fn_7100202e08(UnkItem* item, void* arg);
 bool fn_71002026cc(UnkItem* item, void* arg);
-void* fn_7100202574(UnkItem* item);
-bool fn_7100200144(UnkItem* item);
 void fn_7100202ec4(UnkItem* item, bool value);
 void fn_7100202d5c(UnkItem* item, bool value);
 void fn_7100202d44(UnkItem* item, bool value);
-void fn_710020014c(UnkItem* item, bool value);
-void fn_7100200138(UnkItem* item, bool value);
 void fn_7100202fa0(UnkItem* item, u64 value, f32 f);
 f32 fn_7100202f54(UnkItem* item);
 

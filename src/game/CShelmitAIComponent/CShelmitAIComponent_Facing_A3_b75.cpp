@@ -2,6 +2,7 @@
 // angle y (+0x38, derived lazily), unless the controller (+0x220) already has flag 3 (or 2 when negative,
 // fn_7101178524), sets id 4 and clears 8 (or the other way round) as CShakernautAIComponent_Flip_b53.cpp sends
 // them. Names and layouts are placeholders.
+#include "game/CAnimationComponent.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -11,11 +12,8 @@ struct UnkShakernautId_b53 {
     u32 value;
     u32 unk_0x4;
 };
-void fn_71011785a8(UnkShakernautCtrl_b53*, const UnkShakernautId_b53*, bool, bool);
-void fn_7101178564(UnkShakernautCtrl_b53* self, const UnkShakernautId_b53* id, bool a, bool b);
 // As src/game/CAnimationComponent/CAnimationComponent_Flags_b47a3.cpp defines it.
 struct UnkAnimFlagsHolder_b47a3;
-bool fn_7101178524(UnkAnimFlagsHolder_b47a3* self, u32 bit);
 
 struct UnkShelmitOwner_A3_b75 {
     u8 pad_0x0[0x38];

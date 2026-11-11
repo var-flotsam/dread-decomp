@@ -7,10 +7,10 @@
 // The fields are addressed by offset: through a struct, clang forms the list's address once and
 // stores its flag through it, unlike the original.
 #include "base/UnkVector.h"
+#include "base/core/CBaseObject.h"
+#include "game/UnkTU2704.h"
 
 struct UnkNode;
-void fn_71011258e4(void* self);
-void fn_7100023854(UnkNode* node);
 
 extern char g_unk_7101a8c8d8[];  // the component's vtable
 extern void* g_unk_7101a20998[];  // the callback list base's vtable

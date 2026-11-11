@@ -4,12 +4,12 @@
 // Holds fn_7100713e2c.
 #include "../game_s7/UnkPropBagS7.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU54.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 // Wraps an angle into (-pi, pi] (as src/game_lo/fn_7100110664.cpp declares it).
-f32 fn_710007a1d0(f32 angle);
 
 // The aim tunables (reached through the GOT; src/game_s2/fn_7100359310.cpp declares the global so):
 // the limits read at +0xa8..+0xc0.

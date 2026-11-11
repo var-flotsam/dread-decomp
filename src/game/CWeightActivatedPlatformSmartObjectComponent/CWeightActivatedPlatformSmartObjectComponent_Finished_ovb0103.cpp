@@ -7,6 +7,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
+#include "game/CElectricReactionComponent.h"
+#include "game/CWeightActivatedPlatformSmartObjectComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkSlots.h"
 #include "game/UnkTUProperty.h"
@@ -16,7 +18,6 @@ using base::global::CStrId;
 
 struct UnkSmartObjectUserA;
 struct UnkSmartObjectActor;
-UnkSmartObjectUserA* fn_71007cfd8c(UnkSmartObjectActor* actor);
 
 struct UnkSmState_ovb0103 {
     virtual void vf_0x0();
@@ -179,7 +180,6 @@ struct UnkPlatform_ovb0103 {
 CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 extern UnkProperty g_unk_71727434e0;
 struct UnkPlatformSm_b61;
-void fn_7100a0a08c(UnkPlatformSm_b61* self);
 
 void fn_7100a09f7c(UnkPlatform_ovb0103* self, CBlackboard* blackboard) {
     bool value = false;

@@ -3,14 +3,14 @@
 // argument, calls virtual slot 0x50 and then clears one flag and sets two fields.
 #include "base/UnkInitRecord_0x5c.h"
 #include "game/UnkSphere.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU308.h"
 #include "types.h"
 
 inline void* operator new(u64, void* p) { return p; }
 
 extern void* g_unk_7101a1f000[];
 extern void* g_unk_7101a1fa10[];
-void fn_71000003d4(void* self, const char* s, bool flag);
-void fn_710021685c(void* self);
 
 struct UnkWidgetArg;
 struct UnkWidgetMember {

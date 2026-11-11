@@ -4,6 +4,8 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU2661.h"
+#include "game/UnkTU83.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
@@ -34,9 +36,6 @@ static inline UnkVec3_cs Add_A5_b70(const UnkVec3_cs& a, const UnkVec3_cs& b) {
 }
 
 void* fn_710106cf74(UnkCutsceneObject_cs* object, const base::global::CStrId* name);
-u32 fn_7101068c80(UnkCutsceneObject_cs* object, void* entry);
-UnkVec3_cs* fn_71000cc374(void* array, u32 index);
-void fn_710106bcfc(UnkCutsceneObject_cs* object, const UnkVec3_cs& pos);
 
 UnkReflValue fn_71007ad814(void*, char* obj) {
     UnkCutsceneComponent_cs* self = *reinterpret_cast<UnkCutsceneComponent_cs**>(obj + 8);

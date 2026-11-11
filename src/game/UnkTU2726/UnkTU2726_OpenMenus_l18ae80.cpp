@@ -4,6 +4,7 @@
 
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/GUI/CIngameMenu.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiHandle.h"
@@ -19,7 +20,6 @@ using unk_prop_bag::UnkPropBag;
 struct UnkMenuStates;
 struct UnkStateOwner;
 void fn_7100b2e54c(UnkMenuStates* self);
-void fn_7100b2eaac(UnkStateOwner* self, s32 state, bool a, bool b);
 
 // Loads the composition `name` from the script `path` with the properties in `bag`.
 UnkGuiHandle fn_71011b6030(UnkGuiRoot* root, const CRntString& name, const CRntString& path, UnkPropBag* bag);

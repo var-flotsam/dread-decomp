@@ -1,6 +1,8 @@
 // CSamusMovement's unit (unit 1501): the movement reset on entering/leaving morph ball, the per-frame
 // state clear, and the floor-slide check. Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
+#include "game/UnkTU2553.h"
+#include "game/UnkTU2689.h"
 #include <math.h>
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -194,7 +196,6 @@ void fn_71009e76f4(UnkMove_b152* self) {
 
 
 extern u8 g_unk_7172740ff0 __attribute__((visibility("hidden")));
-void fn_71010d7b88(UnkMorphBallMovement_b49a4* self, bool flag);
 
 struct UnkBlock5198_b152 {
     u8 field_0x0;
@@ -279,7 +280,6 @@ bool fn_7100996bc4(UnkSlideState* self);
 struct UnkAimComponent;
 bool fn_710034f8dc(UnkAimComponent* self);
 struct UnkPlayer;
-bool fn_7100df5874(UnkPlayer* self);
 
 // The aim tunables block: the slide angle range.
 struct UnkAimTunable {

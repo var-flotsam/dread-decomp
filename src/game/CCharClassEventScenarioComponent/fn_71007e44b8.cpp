@@ -2,6 +2,7 @@
 // owner pointer (0x10), name (0x20) and an index (0x18). Returns the object.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/logic/collision/CCollider.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -17,8 +18,6 @@ struct UnkObj_71007e44b8 {
     u64 index;    // 0x18
     CStrId name;  // 0x20
 };
-
-void fn_7100d36624(UnkObj_71007e44b8* self);  // constructor
 
 struct UnkNode_71007e44b8 {
     UnkObj_71007e44b8* obj;

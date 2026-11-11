@@ -3,6 +3,8 @@
 // target clear (fn_7100159660), the mode setter (fn_710015a8c0) and the blend state push
 // (fn_710015b650). Names are placeholders.
 #include "game/UnkGraphicsState.h"
+#include "game/UnkTU172.h"
+#include "game/UnkTU174.h"
 #include "types.h"
 
 struct UnkDrawState_ovb0245 {
@@ -15,9 +17,7 @@ struct UnkDrawState_ovb0245 {
 };
 
 struct UnkUnit174Singleton;
-UnkUnit174Singleton* fn_7100154470();
 void fn_710015e700();
-void* fn_7100153d50();
 
 extern bool g_unk_7101a1d7c4;
 extern u8 g_unk_716e29c668;
@@ -75,7 +75,6 @@ extern bool g_unk_7101a1d7d8;
 extern u8 g_unk_716e29c680[];
 
 // ---- fn_7100159660 ----
-void* fn_7100153d50();
 
 struct __attribute__((packed)) UnkTargetList_ovb0245 {
     s32 count;

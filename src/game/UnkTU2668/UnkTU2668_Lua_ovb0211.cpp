@@ -13,6 +13,8 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntStringAssign.h"
+#include "game/UnkTU2668.h"
+#include "game/UnkTU2669.h"
 #include "types.h"
 
 struct lua_State;
@@ -80,7 +82,6 @@ struct UnkLuaScratchStack {
 extern UnkLuaScratchStack g_unk_7172a025a0 __attribute__((visibility("hidden")));
 
 // Pops the scratch array the last run pushed (and frees it).
-void fn_710109c9e0();
 s32 fn_71010a59a0(lua_State* L, const char* s);
 
 // Hands the pointer to the scratch array on top of the stack.
@@ -215,7 +216,6 @@ void fn_710109ff40(lua_State* L);
 void fn_710109f390(lua_State* L);
 void fn_7101097e40(lua_State* L);
 void fn_7100fb96a0(lua_State* L);
-void fn_710109d810(UnkScriptManager_ovb0085* self);
 void fn_710109e268(UnkScriptManager_ovb0085* self);
 
 // Creates the Lua state with the game's allocation and print hooks, opens its libraries and

@@ -5,13 +5,13 @@
 #include "base/UnkVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU327.h"
 #include "types.h"
 
 // Declared as in src/game/media/UnkMovieUnit327/UnkMovieUnit327_b50.cpp; here it gets the collector's
 // list in x0 and the stream in x1, so it is called through a cast.
 struct UnkMovieEmpty_b50;
 struct UnkMovieEventOwner_b50;
-s32 fn_7100222f14(UnkMovieEmpty_b50 tag, UnkMovieEventOwner_b50* owner);
 
 struct UnkMediaStream {
     virtual void vf_0x0();

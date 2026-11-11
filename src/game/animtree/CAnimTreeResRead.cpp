@@ -5,6 +5,7 @@
 // Holds fn_71002e0090.
 #include "base/UnkHashStream.h"
 #include "base/UnkStrIdPathPair.h"
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
@@ -24,7 +25,6 @@ struct UnkFileReader {
     u32 field_0x3c;
 };
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
-void fn_710000ccd8(UnkFileReader* self);
 // The parse (its result, nonzero on success, is not in the other files' declaration).
 void fn_710000f750(UnkParseContext* self, void* root);
 static inline s32 ParseRoot(UnkParseContext* ctx, void* root) {

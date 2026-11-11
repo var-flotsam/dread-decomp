@@ -5,6 +5,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkGraphicsState.h"
+#include "game/UnkTU172.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -133,8 +134,6 @@ void fn_710015ef10() {
     } while (++p != slots + 48);
 }
 
-void* fn_7100153d50();         // the command buffer
-u32 fn_7100153da0();           // the current frame's buffer index
 extern u8 g_unk_716e2a3450;    // set when any uniform block changed
 
 // A uniform block: one buffer per frame (from +0x40) and the handles at +0xb0, the size checked at

@@ -5,15 +5,15 @@
 // cached at +0x88) through fn_710117ad18. Once the share is within 0.001 of zero both flags (+0x90,
 // +0x91) are cleared. Names and layouts are placeholders.
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAnimationComponent.h"
+#include "game/CCharClassEventScenarioComponent.h"
+#include "game/CComponent.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
 struct UnkParent;
-void fn_71010c424c(UnkParent*);
 struct UnkWeakTarget;
-UnkWeakTarget* fn_71007e4924(void* owner);
 struct UnkActionSwitcherAnimation_b48;
-void fn_710117ad18(UnkActionSwitcherAnimation_b48* self, bool flag, f32 value);
 
 // As src/reflection/CCharClassLavaPumpComponent.cpp declares it.
 extern base::reflection::UnkTunable g_unk_717272a728;

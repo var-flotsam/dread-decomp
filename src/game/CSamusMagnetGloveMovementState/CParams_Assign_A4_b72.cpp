@@ -4,11 +4,11 @@
 // (fn_710031d208) and the slot at +0x88 (fn_71002a5d1c) assigned out of line. Names and layouts are placeholders.
 #include "base/UnkRefHandle.h"
 #include "base/math/UnkSegment2D.h"
+#include "game/UnkTU365.h"
 #include "types.h"
 
 UnkSegment2D* fn_7100125b44(UnkSegment2D*, const UnkSegment2D*);  // as UnkAIPathFollower.cpp declares it
 struct UnkAssignedSlot;
-void fn_71002a5d1c(UnkAssignedSlot*, const UnkAssignedSlot*);  // as src/game_s7/fn_71000d1fec.cpp declares it
 
 // Five words assigned out of line (the first 0x14 bytes of a segment).
 struct UnkSub_0x14_A4_b72 {

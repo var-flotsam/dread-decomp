@@ -2,13 +2,10 @@
 // to the light object behind the component (+0x58, its member at +0x20: fn_710020c9ac, fn_710020c740,
 // fn_710020c494), as COmniLightComponent_Setters_ovb0033.cpp does. Names and layouts are placeholders.
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU290.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
-
-void fn_710020c9ac(void* self, f32 value);  // as src/game/UnkUnit1385/UnkUnit1385_b43.cpp declares it
-void fn_710020c494(void* self, bool value);
-void fn_710020c740(void* self, f32 value);
 
 struct UnkSpotLightObj_ovb0037 {
     u8 pad_0x0[0x20];

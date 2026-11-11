@@ -3,6 +3,7 @@
 // with the default vector; the angle part only clears the angles, the scale part only the scale.
 // Names and layouts are placeholders.
 #include "base/math/UnkZeroVector3.h"
+#include "game/UnkTU32.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -30,8 +31,6 @@ struct UnkStruct_71007142e8 {
     f32 field_0x6c;
 };
 static_assert(sizeof(UnkStruct_71007142e8) == 0x70, "layout");
-
-void fn_7100025a98(void* record);
 
 // The default vector, copied component by component.
 __attribute__((always_inline)) static inline void SetVector(UnkStruct_71007142e8* self) {

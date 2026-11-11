@@ -5,6 +5,7 @@
 #include "base/UnkDestructors.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/GUI/CButton.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -13,10 +14,8 @@ using base::global::CStrId;
 extern char g_unk_7101a9dcb0[];  // CPowerDescriptionButton's vtable
 struct UnkGuiObj;
 struct UnkMissionLogButton_ovb0079;
-UnkGuiObj* fn_71011c08dc(UnkMissionLogButton_ovb0079* self);
 void fn_71011ecfbc(UnkGuiObj* label, const char32_t* text);
 void fn_71011cd5a0(UnkGuiObj* object);
-void fn_71011bf1a4(char* self);
 
 struct UnkPowerDescriptionButton_ovb0097 {
     char* vtable;

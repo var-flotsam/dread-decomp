@@ -1,5 +1,6 @@
 // Unit 324: waits for every track of a media object to report ready (vf_0x30), sleeping between
 // polls, up to 125 rounds in mode 4 or limit / 10 rounds otherwise. Names are placeholders.
+#include "game/UnkTU58.h"
 #include "types.h"
 
 struct UnkMedia330;
@@ -25,8 +26,6 @@ struct UnkMediaLayout2_b0217 {
     UnkMediaTrackV_b0217** tracks;  // 0x60
     u32 track_count;                // 0x68
 };
-
-void* fn_71000810b0(u32 value);
 
 void fn_7100220228(UnkMedia330* media, s64 limit) {
     UnkMediaLayout2_b0217* self = reinterpret_cast<UnkMediaLayout2_b0217*>(media);

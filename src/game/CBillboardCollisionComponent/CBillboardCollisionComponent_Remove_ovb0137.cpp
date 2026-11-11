@@ -4,6 +4,7 @@
 #include "base/UnkVector.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkTU1159.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -52,7 +53,6 @@ struct UnkVec3Result {
 struct UnkStruct_71007455dc;
 UnkVec3Result fn_71007455dc(UnkStruct_71007455dc* self);
 struct UnkSwarmMember_ovb6;
-bool fn_7100744e1c(UnkSwarmMember_ovb6* member);
 
 // One billboard of the set (0x148 bytes): shown (+0x24), its position (+0xa0) and a word at +0xe0.
 struct UnkBillboardItem_ovb0137 {

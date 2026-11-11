@@ -6,10 +6,10 @@
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 struct UnkWarLotusAI;
-void fn_7101105c94(UnkWarLotusAI* self);
 
 struct UnkZombieXHitOwner_b58 {
     u8 pad_0x0[0x220];

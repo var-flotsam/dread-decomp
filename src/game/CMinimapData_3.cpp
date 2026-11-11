@@ -5,6 +5,8 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
+#include "game/UnkTU2563.h"
+#include "game/UnkTU83.h"
 #include "game_s2/UnkItem50.h"
 #include "types.h"
 
@@ -246,9 +248,7 @@ struct UnkMinimapKeyedItems {
 void fn_7100e60df4(void*, u32);
 struct UnkIdRecordMap;
 void fn_7100e59d18(UnkIdRecordMap*, u32);
-void fn_7100e56814(void*, u32);
 struct UnkRecord60Array;
-void fn_7100e54ad8(UnkRecord60Array*, u32);
 void fn_7100e5ba88(void*, u32);
 
 UnkMinimapKeyedItem* fn_7100e614d0(UnkMinimapKeyedItems<UnkMinimapKeyedItem>* self,
@@ -278,7 +278,6 @@ UnkMinimapKeyedItem3* fn_7100e550dc(UnkMinimapKeyedItems<UnkMinimapKeyedItem3, u
 
 // fn_71000cbae4 copies an array of 12-byte vectors (src/base/UnkVec3fVector.cpp).
 struct UnkPart48;
-void fn_71000cbae4(UnkPart48* self_, const UnkPart48* other_);
 
 // An element with a string id, an array of vectors and an array of 16-bit values (0x68 bytes).
 struct UnkMinimapPathItem {

@@ -9,6 +9,7 @@
 #include "base/UnkHashStream.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
+#include "base/core/CAsset.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
@@ -17,7 +18,6 @@
 
 using base::global::CStrId;
 
-void fn_7100016ad8(void* self);
 extern void* g_unk_7101a9ff78[];
 
 struct UnkActionBlockPool_b0104 {
@@ -80,7 +80,6 @@ void fn_7100b8be4c(UnkActionSetCtor_b0104* self) {
     self->pool.field_0x3c = false;
 }
 
-void fn_7100016f88(void* self);
 extern void* g_unk_7101a9ff78[];
 
 struct UnkActionNode_b0104 {

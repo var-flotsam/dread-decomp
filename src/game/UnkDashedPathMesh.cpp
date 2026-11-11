@@ -7,6 +7,7 @@
 #include "base/UnkVector.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
+#include "game/SLogicPathNode.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -27,14 +28,11 @@ struct UnkDashPath {
     virtual void vf_0x30();
     virtual const CVector3D* vf_0x38();
 };
-f32 fn_7101059514(UnkDashPath* path);
-void fn_7101059794(f32 distance, UnkDashPath* path, u32* index, f32* fraction);
 // A point of the path, handed back in memory (as src/game/CMinimapData.cpp declares it).
 struct UnkMinimapPathPoint {
     CVector3D v;
     ~UnkMinimapPathPoint() {}
 };
-UnkMinimapPathPoint fn_71010596ac(void* path, u32 index, f32 t);
 // Assigns the x and y of a 3D vector to a 2D one.
 struct UnkVec3;
 void fn_710007b444(void* self, const UnkVec3* v);

@@ -8,6 +8,7 @@
 // Names and layouts are placeholders.
 #include "base/UnkDeferredSet.h"
 #include "base/global/CStrId.h"
+#include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "types.h"
 
@@ -15,7 +16,6 @@ using base::global::CStrId;
 
 struct UnkSmBase_A6_b62;
 struct UnkSmArg_A6_b62;
-void fn_71011d9a44(UnkSmBase_A6_b62*, UnkSmArg_A6_b62*);
 
 extern CStrId g_unk_717275ce28 __attribute__((visibility("hidden")));
 

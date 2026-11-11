@@ -3,8 +3,11 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCharClassWaterPoolComponent.h"
+#include "game/CPlayerInfo.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -52,8 +55,6 @@ struct UnkFreezeRoom_ovb0106 {
     bool frozen;  // 0x20
 };
 
-UnkFreezeList_ovb0106* fn_71009088a0(UnkFreezeRoom_ovb0106* self);
-
 // Sets the room's state on every water pool whose owner's position is inside the room.
 void fn_7100a238f4(UnkFreezeRoom_ovb0106* self) {
     UnkFreezeList_ovb0106* list = fn_71009088a0(self);
@@ -82,13 +83,11 @@ void fn_7100a238f4(UnkFreezeRoom_ovb0106* self) {
 
 struct UnkEnvironmentManager;
 extern void* g_unk_7101d47368;
-void fn_7100d8ced8(void*);
 void fn_7100d8e32c(UnkEnvironmentManager*, const CStrId*, bool, bool);
 const CStrId* fn_7100d8efc8(UnkEnvironmentManager*);
 struct UnkLiquidPoolEnter_ovb0075;
 struct UnkLiquidPoolActor_ovb0075;
 void fn_7100a45f08(UnkLiquidPoolEnter_ovb0075*, UnkLiquidPoolActor_ovb0075*, const UnkVec3f*);
-void fn_7100f0e98c(void*, void*, void*, void*);
 
 // The environment manager, created on first use.
 static inline UnkEnvironmentManager* EnvironmentManager() {

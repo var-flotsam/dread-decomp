@@ -9,6 +9,8 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiFrames.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU2747.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -19,7 +21,6 @@ using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
 struct UnkString_7100fc4b34;
-void fn_710007eba0(UnkString_7100fc4b34* self, u32 size);
 
 struct UnkSpriteGridFrame_ovb0043 {
     u8 pad_0x0[0x1dc];
@@ -59,8 +60,6 @@ UnkReflValue fn_71011fe3d8(void*, char* obj) {
     fn_71000a18d4(&r, type, &value.id, false);
     return r;
 }
-
-void fn_71011cd4b4(void*);
 
 struct UnkSpriteGridReset_ovb0043 {
     void** vtable;

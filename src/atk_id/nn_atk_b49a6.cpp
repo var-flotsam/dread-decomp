@@ -1,6 +1,7 @@
 // nn::atk unit (tools/tu_map.py unit 2772): the first word of the pair of the ring node that matches `key`
 // (fn_710120b310, as in src/atk_id/nn_atk_b49a3.cpp), or null when no node matches or the key is null.
 // Names and layouts are placeholders.
+#include "game/UnkTU2772.h"
 #include "types.h"
 
 struct UnkAtkKeyedNode_b49;
@@ -20,8 +21,6 @@ struct UnkAtkKeyedList_b49a6 {
     UnkAtkLink_b49a6 ring;  // 0x10
 };
 
-bool fn_710120b310(UnkAtkKeyedNode_b49* node, const void* key);
-
 u64 fn_7101211398(UnkAtkKeyedList_b49a6* self, const void* key) {
     if (!key)
         return 0;
@@ -32,4 +31,3 @@ u64 fn_7101211398(UnkAtkKeyedList_b49a6* self, const void* key) {
     }
     return 0;
 }
-

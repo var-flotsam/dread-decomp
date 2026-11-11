@@ -10,8 +10,16 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CActorComponent.h"
+#include "game/CDrop.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2566.h"
+#include "game/UnkTU2656.h"
+#include "game/UnkTU2669.h"
+#include "game/UnkTU2677.h"
+#include "game/UnkTU365.h"
+#include "game/malloc.h"
 #include "game/sound/CMusicManager.h"
 #include "../../game_s7/UnkPropBagS7.h"
 #include "types.h"
@@ -22,9 +30,6 @@ using base::reflection::UnkReflObject;
 
 struct lua_State;
 
-s32 fn_71010c0270(lua_State* L, const char* fmt, ...);
-int fn_71010c0b40(lua_State* L, const char* fmt, ...);
-s32 fn_71010c0ad0(lua_State* L, int first, int count, const char* format, ...);
 extern void* g_unk_71726bc560;
 extern u32 g_unk_71727bebb8;
 extern void* g_unk_7101d47330;
@@ -74,8 +79,6 @@ s32 fn_710108d440(lua_State* L) {
 struct UnkScriptManager_ovb0085;
 struct UnkUnit2669Str;
 extern UnkScriptManager_ovb0085* g_unk_71727bed90;
-void fn_710109d810(UnkScriptManager_ovb0085* self);
-u32 fn_710109dd6c(void* self, void* source, UnkUnit2669Str* name, bool a, bool b);
 
 s32 fn_7101077360(lua_State* L) {
     bool flag = true;
@@ -128,9 +131,6 @@ s32 fn_710107ce90(lua_State* L) {
 }
 
 struct UnkTracker;
-UnkTracker* fn_710028aca8(void* link);
-void fn_7100e95038(void* world, void* object);
-void fn_7100e950b4(void* world, void* object);
 
 struct UnkTrackerFields_b0159 {
     u8 pad_0x0[0x30];
@@ -220,7 +220,6 @@ s32 fn_7101077090(lua_State* L) {
 
 struct UnkStatsObject;
 extern UnkStatsObject* g_unk_7101d47100;
-void fn_7100131f48(UnkStatsObject* self);
 void fn_7100132248(UnkStatsObject* self, const CStrId& name, f32 value);
 
 s32 fn_7101080a50(lua_State*) {
@@ -353,7 +352,6 @@ struct UnkTriggerList_b0159 {
 };
 UnkTriggerList_b0159* fn_7100a5e1f4();
 struct UnkStruct_710024fa0c;
-void fn_710024fa0c(UnkStruct_710024fa0c*, bool);
 
 s32 fn_7101084370(lua_State* L) {
     bool enabled = false;
@@ -459,7 +457,6 @@ s32 fn_7101088e00(lua_State* L) {
 }
 
 struct UnkVec;
-void fn_7101053850(void* effects, UnkVec* position, u32 flag, f32 duration, f32 scale);
 void fn_7101053c14(void* fx, const base::math::CVector3D* color, f32 a, f32 b, f32 time);
 
 extern void* g_unk_7101d47360;
@@ -481,7 +478,6 @@ using UnkSpawnEachFn_ovb0065 = void (UnkSpawnGroupEach_ovb0065::*)(void*);
 void fn_710111c3d8(UnkSpawnGroupEach_ovb0065* self, UnkSpawnEachFn_ovb0065 fn);
 void fn_710111c470(UnkSpawnGroupEach_ovb0065* self, UnkSpawnEachFn_ovb0065 fn);
 void fn_710111c68c(UnkSpawnGroupEach_ovb0065* self, void* object);
-void* fn_71007c04f0(void* object);
 
 // A pointer to a member function from its two words (the function, or a virtual slot's offset with the flag).
 static inline UnkSpawnEachFn_ovb0065 MemberPointer(u64 function, u64 adjust) {

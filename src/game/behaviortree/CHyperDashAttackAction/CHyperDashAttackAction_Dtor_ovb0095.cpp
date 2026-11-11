@@ -5,12 +5,13 @@
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU2702.h"
+#include "game/behaviortree/CBaseAction.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 extern void* g_unk_7101a36838[];  // the action's vtable
 extern void* g_unk_7101a22d48[];  // the listener's vtable
-void fn_7100393ea0(void*);         // the base's destructor
 
 // A listener holding a weak handle to what it listens to; it unregisters on destruction.
 struct UnkHyperDashListener_ovb0095 {
@@ -54,7 +55,6 @@ void fn_710044b4cc(UnkHyperDashAction_ovb0095* self) {
 using base::reflection::UnkReflObject;
 
 struct UnkScorpiusAI_b69a4;
-void* fn_7101109df4(UnkScorpiusAI_b69a4* ai, void* id);
 
 struct UnkHyperDashActor_ovb0095 {
     u8 pad_0x0[0x240];

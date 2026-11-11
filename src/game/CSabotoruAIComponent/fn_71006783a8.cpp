@@ -2,11 +2,10 @@
 // CSabotoruTurnInDoorAttack at +0x14780: the attack's destructor (its listener at +0x38, then CAttack's),
 // then the base's (fn_7100369380).
 #include "../../game_5821e4/CAttackDtor.h"
+#include "game/CBehaviorTreeAIComponent.h"
 
 extern void* g_unk_7101a5e9d8[];  // the object's vtable
 extern void* g_unk_7101a5e490[];  // CSabotoruTurnInDoorAttack's vtable
-
-void fn_7100369380(void* self);
 
 struct UnkAttack_71006783a8 {
     void** vtable;

@@ -6,6 +6,7 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU83.h"
 #include "types.h"
 
 using base::UnkAllocator;
@@ -83,7 +84,6 @@ UnkElem38Array* fn_7100b5c3e8(UnkElem38Array* self, const UnkElem38Array* other)
 using base::global::CStrId;
 
 struct UnkStruct_0x28;
-void fn_71000ce19c(UnkStruct_0x28*, const UnkStruct_0x28*);
 
 struct UnkMissionLogRecordRef_ovb0079 {
     u32 field_0x0;

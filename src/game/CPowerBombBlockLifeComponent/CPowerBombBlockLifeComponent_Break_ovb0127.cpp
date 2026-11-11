@@ -6,6 +6,9 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
+#include "game/CLifeComponent.h"
+#include "game/CModelUpdaterComponent.h"
+#include "game/CTimelineComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkGameManager.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -14,8 +17,6 @@
 extern void* g_unk_7101a7f280[];  // the class's vtable
 extern void* g_unk_7101a77000[];
 extern void* g_unk_7101a22d48[];
-void fn_7100a2d4d0(void*, void*);
-void fn_710115f91c(void*);
 
 // A listener holding a counted link to what it listens to; on destruction it detaches itself from
 // the link's target (with `detach`) and drops the link.
@@ -82,8 +83,6 @@ using UnkStringEntry = UnkPowerBombNameEntry_ovb0127;
 struct UnkStruct_7100233684;
 base::reflection::UnkReflObject* fn_7100233684(UnkStruct_7100233684*);
 struct UnkFlagTarget;
-void fn_7101172764(UnkFlagTarget*, const char*);
-void fn_7101172780(UnkFlagTarget*, const char*);
 
 // A named part: its name's string entry first (a string id).
 struct UnkPowerBombPart_ovb0127 {

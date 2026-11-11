@@ -11,6 +11,7 @@
 #include "base/UnkKeyedStrIds.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CGameBlackboard.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -80,8 +81,6 @@ struct UnkOwned {
         }
     }
 };
-
-void fn_7100aef674(void* self);
 
 // NON_MATCHING(minor): the value array and the count swap registers in the second loop, whose
 // compare takes the count already widened.
@@ -211,4 +210,3 @@ __attribute__((always_inline)) static inline void TakeRef(UnkArrayRecord60IterVa
     self->state = other->state;
     self->ref = other->ref;
 }
-

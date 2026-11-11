@@ -1,9 +1,8 @@
+#include "game/CAbilityGhostAura.h"
+#include "game/CAbilitySpeedBooster.h"
 #include "types.h"
 
-u64 fn_7100308c74();
-
 struct UnkUnit435Self;
-void fn_710033cd50(UnkUnit435Self* self, u32 value);
 
 struct UnkUnit435Other {
     u8 unk_0x0[0xc8];

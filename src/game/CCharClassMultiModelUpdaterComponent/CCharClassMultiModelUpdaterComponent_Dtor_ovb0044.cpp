@@ -4,6 +4,7 @@
 // (fn_7100083c00). Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassModelUpdaterComponent.h"
 #include "types.h"
 
 using base::global::UnkStringPool;
@@ -40,7 +41,6 @@ struct UnkMultiModelUpdater_ovb0044 {
 };
 
 struct CMultiModelUpdaterComponent;
-void fn_7100792448(CMultiModelUpdaterComponent* self);
 
 void fn_710079385c(UnkMultiModelUpdater_ovb0044* self) {
     self->vtable = g_unk_7101a6f6b8 + 2;

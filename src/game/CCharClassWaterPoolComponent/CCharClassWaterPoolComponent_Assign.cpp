@@ -4,6 +4,7 @@
 // out-of-line Truncate, Reserve and PushBack. fn_710090cf20 is in the CCharClassWaterPoolComponent
 // unit, fn_7100a3b7f4 in CChangeStateDoorsLogicAction's, fn_7100a955cc in CThermalDeviceComponent's.
 // Names are placeholders.
+#include "game/CChangeStateDoorsLogicAction.h"
 #include "game/UnkCallbackSetVector.h"
 
 // Truncate (one copy per array type; fn_710090dbb4.cpp).
@@ -12,7 +13,6 @@ void fn_7100a3bbc8(UnkCallbackSetVector* v, u32 size);
 void fn_7100a959a0(UnkCallbackSetVector* v, u32 size);
 // Reserve (one copy per array type)
 void fn_710090d00c(UnkCallbackSetVector* v, u32 n);
-void fn_7100a3b8e0(UnkCallbackSetVector* v, u32 n);
 void fn_7100a956b8(UnkCallbackSetVector* v, u32 n);
 // PushBack of a copy (one per array type)
 void fn_710090d1bc(UnkCallbackSetVector* v, const UnkCallbackSetElem* value);

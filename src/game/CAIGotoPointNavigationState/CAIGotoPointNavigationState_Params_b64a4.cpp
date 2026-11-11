@@ -2,9 +2,8 @@
 // step (fn_71007038f4), blocks of kind 0 or 1 go to the member at +0xb0 (fn_710037c884); the flag at
 // +0x38180 is raised on a reset or by a kind-1 block whose optional target (+0x60, set flag +0x68) is
 // present. Names and layouts are placeholders.
+#include "game/UnkTU1124.h"
 #include "types.h"
-
-u64 fn_71007038f4(void* self, void* params, bool reset);
 
 struct UnkGotoParams_b64a4 {
     u8 pad_0x0[0x34];

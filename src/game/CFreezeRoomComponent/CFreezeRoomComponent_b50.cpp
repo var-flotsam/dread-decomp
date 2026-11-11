@@ -2,13 +2,14 @@
 // keeps the game manager's flag at +0x2441 at +0xc1c and makes the parameter set it picks (+0xc00
 // when set, +0xbe4 otherwise) the current one (+0xbc0), then refreshes (fn_7100a232d4,
 // fn_7100a238f4). Names and layouts are placeholders.
+#include "base/snd/CSoundSystem.h"
+#include "game/CCharClassBaseDamageTriggerComponent.h"
+#include "game/CCharClassBaseTriggerComponent.h"
+#include "game/CFreezeRoomComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
 struct CFreezeRoomComponent;
-void fn_7100a238f4(CFreezeRoomComponent* self);
-f32 fn_7100a232d4(CFreezeRoomComponent* self);
-void fn_7100a46e78(CFreezeRoomComponent* self);
 
 struct UnkFreezePair_b50a5 {
     f32 x;
@@ -70,11 +71,9 @@ void fn_7100a23a20(CFreezeRoomComponent* self) {
 // fn_7100a23220: the same with another base step (fn_7100a45cac), and the sound path at +0xc20
 // handed to the sound manager (fn_710010808c) before the refresh.
 struct UnkLiquidPool_b44a2;
-void fn_7100a45cac(UnkLiquidPool_b44a2* self);
 struct UnkSoundMgr;
 struct UnkPathNode;
 extern UnkSoundMgr* g_unk_7101d4d820;
-void fn_710010808c(UnkSoundMgr*, UnkPathNode*);
 
 void fn_7100a23220(CFreezeRoomComponent* self) {
     fn_7100a45cac(reinterpret_cast<UnkLiquidPool_b44a2*>(self));

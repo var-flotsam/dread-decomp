@@ -5,11 +5,11 @@
 // fn_71008615b4), then fn_71007df12c(0). Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CName.h"
+#include "game/CQuarentineDoorComponent.h"
 #include "game/UnkCollisionRecord.h"
 #include "types.h"
 
 struct UnkQuarentineDoor_b54;
-void fn_71007df12c(UnkQuarentineDoor_b54* self, bool flag);
 void fn_71008615b4(UnkCollisionContainer*);
 
 struct UnkQuarentineOwner_ovb0127 {

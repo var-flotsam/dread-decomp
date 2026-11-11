@@ -9,6 +9,7 @@
 
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CCharClassAIComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -29,7 +30,6 @@ struct UnkAIIdLists_b41a3 {
 };
 
 void* fn_7100912674(const CStrId* id);
-s32 fn_7100413fe0(void* self);
 
 static inline __attribute__((always_inline)) void Append_b41a3(UnkIdList_b41a3* list, const CStrId* id) {
     new (&list->ids[list->count]) CStrId(*id);

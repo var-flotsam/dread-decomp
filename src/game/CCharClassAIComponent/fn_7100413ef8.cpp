@@ -2,6 +2,7 @@
 // (game/UnkNavMeshManager.h; the manager is created on first use), runs two virtual set-up
 // steps and stores the squares of two floats.
 #include "base/UnkVector.h"
+#include "game/CCharClassComponent.h"
 #include "game/UnkNavMeshManager.h"
 #include "types.h"
 
@@ -23,7 +24,6 @@ struct UnkModelEntity {
 };
 
 void* fn_7100ec0d20(UnkNavMeshManager* manager, void* key);
-bool fn_71011ace94(UnkModelEntity* self, void* arg);
 
 static inline UnkNavMeshManager* GetRegistry() {
     UnkNavMeshManager* registry = g_unk_71726a4510;

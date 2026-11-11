@@ -6,6 +6,7 @@
 // or fn_71010d15ac holds. Names and layouts are placeholders.
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -20,7 +21,6 @@ struct UnkAirTarget_B71a6;
 struct UnkAirRequest_B71a6;
 void fn_710098ae04(UnkAirTarget_B71a6* target, UnkAirRequest_B71a6* req);
 struct UnkPlayer;
-bool fn_7100df5874(UnkPlayer* self);
 
 struct UnkGroundTrackTime_ovb0138 {
     u64 key;

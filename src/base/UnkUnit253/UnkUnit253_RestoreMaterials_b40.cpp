@@ -1,10 +1,10 @@
 // Unit 253 of tools/tu_map.py (0x71001c071c-0x71001c33cc, no reflected class): clears the word at 0x350
 // and resets every material of the model at 0x78 with all flags (0x7ff) through fn_71001a6ec8
 // (src/game/msapi/material/CMaterial.cpp). Names and layouts are placeholders.
+#include "game/msapi/material/SAlpha.h"
 #include "types.h"
 
 struct UnkMaterial;
-void fn_71001a6ec8(UnkMaterial* self, u32 flags);
 
 struct UnkModel253 {
     u8 pad_0x0[0x2c];

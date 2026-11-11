@@ -6,6 +6,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 extern void* g_unk_71726bc560;
@@ -27,7 +28,6 @@ struct UnkLoadingMaskOf {
     }
 };
 struct UnkLoadingMaskTag;
-void fn_7100fd7b44(void* manager, UnkLoadingMask channels, UnkLoadingMask mask, f32 time);
 void fn_7100fd82dc(void* manager, const char* name, UnkLoadingMask channels, UnkLoadingMask mask, f32 time);
 
 static inline void* MusicManager() {

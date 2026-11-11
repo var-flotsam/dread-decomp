@@ -6,6 +6,7 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU27.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -73,8 +74,6 @@ struct UnkRegistryEntries {
     u32 flags;
     base::UnkAllocator* allocator;
 };
-
-void fn_7100020164(char* self);  // the entry's destructor
 
 void fn_7100022e2c(UnkRegistryEntries* self, u32 capacity) {
     using Key = UnkRegistryEntryId<&g_unk_7101d47108>;

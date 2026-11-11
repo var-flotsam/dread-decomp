@@ -10,15 +10,16 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkHashStream.h"
 #include "base/UnkVector.h"
+#include "base/core/CDefinition.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2729.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 extern void* g_unk_7101a20bf8[];  // the class's vtable
-void fn_710002545c(void* self);   // the base destructor
 
 struct UnkActorDefData_ovb0118 {
     void** vtable;
@@ -43,7 +44,6 @@ void fn_7100254e84(void* object) {
 struct UnkActorDefFactory;
 struct UnkGuiDef_b52;
 extern UnkActorDefFactory* g_unk_71726a0220;
-UnkGuiDef_b52* fn_7101193e88(UnkActorDefFactory*, const void*);
 
 // The definition's parts, created from the names.
 struct UnkActorDefPart_ovb0118 {

@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkSlots.h"
 #include "game/UnkSphere.h"
+#include "game/UnkTU253.h"
 #include "types.h"
 
 using base::math::CVector4D;
@@ -106,7 +107,6 @@ struct UnkUpdater_b0231 {
 };
 
 struct UnkSource_710020c780;
-bool fn_71001c32bc(UnkSource_710020c780* source, const u64* key, u32 flag, f32* out);
 void fn_71001c09c4(UnkSource_710020c780* source, UnkReflObject* obj);
 
 static inline UnkSource_710020c780* Part(UnkSource_b0231* source) {

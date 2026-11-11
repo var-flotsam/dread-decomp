@@ -3,6 +3,7 @@
 // into its id at +0xb8, hands it to the actor's component at +0x1b8 (virtual slot 49) and destroys
 // it (fn_71008c1558). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU1370.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -88,9 +89,7 @@ struct UnkKraidAI3 {
 };
 
 extern CStrId g_unk_71726f3770 __attribute__((visibility("hidden")));
-void fn_71008c0c74(UnkStruct_71008c0c74* self);
 void fn_71008c1538(UnkRequest* request, f32 value);
-void fn_71008c1558(UnkBase_71003cc474* self);
 
 bool fn_71005fcf9c(UnkKraidAI3* self) {
     if (self->actor->field_0x1b8) {

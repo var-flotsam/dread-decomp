@@ -5,9 +5,8 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAttackComponent.h"
 #include "types.h"
-
-bool fn_7101136308(void*);
 
 struct UnkEmmyCheckActor_b56 {
     u8 pad_0x0[0x220];

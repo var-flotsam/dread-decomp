@@ -9,8 +9,14 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCharClassEventPropComponent.h"
+#include "game/CCharClassShootActivatorHidrogigaComponent.h"
+#include "game/CCharacterMovement.h"
+#include "game/CLifeComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1376.h"
+#include "game/UnkTU2547.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -112,7 +118,6 @@ __attribute__((always_inline)) static inline void RequestStateA5_b61(UnkSmMachin
 }
 
 struct UnkEmmyWakeUp_b56;
-void fn_71007dc328(UnkEmmyWakeUp_b56* self);
 
 static inline void CallSlot_A5_b61(void* self, u32 slot) {
     typedef void (*Fn)(void*);
@@ -204,7 +209,6 @@ bool fn_7100888aa8(UnkLauncherSmA5_b61* self, const UnkMsgA5_b61* message) {
 
 // CCharClassMushroomPlatformComponent's unit: base call, request state 1, then a bound callback
 // (self, function) at +0x4f0.
-void fn_710115fc5c(char*);
 struct UnkMushroomSmA5_b61;
 void fn_710088cfd0(UnkMushroomSmA5_b61*);
 
@@ -274,7 +278,6 @@ struct UnkHidrogigaPartA5_b61 {
 
 // Signatures copied from CCharClassShootActivatorHidrogigaComponent_b44.cpp.
 struct UnkHidrogigaPart_b44a2;
-UnkHidrogigaPart_b44a2* fn_7100897b0c(void* object);
 
 void fn_71008a1598(UnkHidrogigaPart_b44a2* p, bool on) {
     auto* part = reinterpret_cast<UnkHidrogigaPartA5_b61*>(p);
@@ -333,12 +336,10 @@ void fn_7100897f48(UnkHidrogigaActivatorA5_b61* self) {
 // CDoorLifeComponent's unit: once the base step reports 6, enters state 1 (registering with a lazily
 // created 4-byte singleton) and starts a blend; reports 7.
 struct UnkDoorRegistry_b61;
-void fn_7100ddb6dc(UnkDoorRegistry_b61* self);
 struct UnkDoorLifeA5_b61;
 void fn_7100ddb6f8(UnkDoorRegistry_b61* self, UnkDoorLifeA5_b61* door);
 extern UnkDoorRegistry_b61* g_unk_71726bee10;
 s32 fn_71008e22c8(UnkDoorLifeA5_b61* self);
-void fn_71008d0c24(UnkDoorLifeA5_b61* self, f32 target, f32 speed);
 
 struct UnkDoorLifeA5_b61 {
     u8 pad_0x0[0x420];
@@ -447,7 +448,6 @@ struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkFlagged;
 struct UnkShape;
-UnkShape* fn_7100976588(UnkFlagged* flagged);
 struct UnkBox2D;
 struct UnkContactPointA5_b61 {
     u8 data[0x2c];

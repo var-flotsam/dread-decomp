@@ -5,6 +5,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU54.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -31,7 +32,6 @@ struct UnkTunable {
 
 extern UnkTunable g_unk_71726c32a0;
 extern "C" f32 atan2f(f32 y, f32 x);
-void fn_710007a170(UnkAim* aim, f32 current);
 void fn_71003fd194(UnkSelf* self, f32 current);
 
 // NON_MATCHING(minor): the final select is `fcsel ... le` in the original, `fcsel ... gt` with the operands swapped here.

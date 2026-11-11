@@ -3,6 +3,7 @@
 // re-applies the four entries of the block at +0x12a60 through the setters fn_71002ad688, fn_71002ad978
 // and fn_71002adbb0 (the first two take the field at +0x10 of their entry, or null) and a plain copy.
 #include "game/UnkNavMeshPath.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
 struct UnkBlock {
@@ -17,7 +18,6 @@ static inline T& At(const void* base, u64 offset) {
     return *reinterpret_cast<T*>(const_cast<char*>(reinterpret_cast<const char*>(base)) + offset);
 }
 
-void fn_71002ad4f4(void* self, const void* other);
 void fn_71002ad978(UnkNavMeshPath* self, void* value);
 void fn_71002adbb0(UnkNavMeshPath* self, void* value);
 

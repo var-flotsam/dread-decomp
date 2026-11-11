@@ -1,4 +1,5 @@
 // Runs fn_71010c424c, then calls virtual slot 0x50 on each child object of the array at +0x40, passing `dt` through.
+#include "game/CComponent.h"
 #include "types.h"
 
 struct UnkChild {
@@ -10,8 +11,6 @@ struct UnkParent {
     UnkChild** children;
     u32 count;
 };
-
-void fn_71010c424c(UnkParent*);
 
 void fn_71002ffea8(UnkParent* self, float dt) {
     fn_71010c424c(self);

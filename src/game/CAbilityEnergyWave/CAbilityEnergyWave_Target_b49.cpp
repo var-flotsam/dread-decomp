@@ -6,6 +6,10 @@
 // resets the player's world (+0x280; fn_710115372c) and calls fn_71011738f8 with g_unk_7101648d28 on
 // two components (+0x228 of fn_7100defcd4's object, +0x228 of the manager's +0x29a0 +0x10). Names and
 // layouts are placeholders.
+#include "game/CAbilityEnergyWave.h"
+#include "game/CFXComponent.h"
+#include "game/CInputComponent.h"
+#include "game/CModelUpdaterComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -17,17 +21,12 @@ struct UnkOwner;
 struct UnkRinkaControl_ruc;
 
 UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
-void fn_710114ffb8(UnkRinkaControl_ruc*, void*, u32, u32);
 void fn_7100872908(void*, void*);
-void fn_71002fe318(UnkParent*);
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 UnkOwner* fn_7100defcd4(UnkGameManager*);
 
 struct UnkEnergyWaveTargetComp_b49;
-void fn_7100872860(UnkEnergyWaveTargetComp_b49* comp, void* link);
 struct UnkEnergyWaveFxComp_b49;
-void fn_71011738f8(UnkEnergyWaveFxComp_b49* comp, void* id, u32 flags);
-void fn_710115372c(UnkWorld* world);
 extern char g_unk_7101648d28[];
 
 struct UnkEnergyWaveTargetOwner_b49 {

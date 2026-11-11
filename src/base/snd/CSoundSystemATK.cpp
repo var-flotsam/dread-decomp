@@ -7,7 +7,11 @@
 
 #include "base/UnkDefaultAllocator.h"
 #include "base/global/CRntString.h"
+#include "base/global/timeline/CEvent.h"
 #include "base/snd/UnkSoundSystemATK.h"
+#include "base/tunable/CTunable.h"
+#include "game/UnkTU101.h"
+#include "game/UnkTU27.h"
 
 using base::snd::UnkSoundSystemATK;
 extern void* g_unk_7101a1b750[];
@@ -19,7 +23,6 @@ extern const s32 g_unk_7101647a0c[] __attribute__((visibility("hidden")));
 
 // Probably whether the caller is on the sound thread (it compares a stored thread id with the
 // current one); the result is not used here.
-bool fn_7100132cd0();
 
 void fn_71000faac4(UnkSoundSystemATK* self, s32 command, const void* payload) {
     // The hint only steers the block layout: the original keeps the return next to the test.
@@ -851,7 +854,6 @@ void fn_71000f9450(UnkSoundSystemATK* self);
 void fn_7100104600(void* self);
 void fn_71000f95b0(void* arg);
 void fn_7100066744(void* thread, const char* name, void (*entry)(void*), u32 a, u32 b, void* arg);
-void fn_7100066828(void* thread, u32 a);
 
 // The resource registry's entry the sound category is added with (as src/game/UnkActorDefFactory.cpp
 // lays it out: the category's record, no factory, three ids and two callbacks).
@@ -870,9 +872,6 @@ static_assert(sizeof(UnkSoundRegistryEntry) == 0x48, "UnkSoundRegistryEntry layo
 struct UnkRegistry_7100d92158;
 struct UnkEntry_7100d92158;
 extern UnkRegistry_7100d92158* g_unk_7101d4bbc0;
-void fn_710002002c(UnkRegistry_7100d92158* registry, const UnkEntry_7100d92158& entry);
-void fn_71000204c4(void* context, void* arg);
-void fn_71000204cc(void* context, void* arg);
 
 // A word set to zero on first use (two of them, header statics).
 struct UnkZeroWord {
@@ -1395,8 +1394,6 @@ struct UnkSoundGroupVoice {
     u32 group;  // +0xb0
 };
 
-void fn_7100105ef4(void* sound, f32 time, f32 step, bool arg3);
-
 struct UnkSoundSystemGroups {
     u8 pad_0x0[0x348];
     u32 paused;  // +0x348
@@ -1448,9 +1445,7 @@ void fn_71000f9d20(UnkSoundSystemGroups* self, const u32* mask, f32 time) {
 // declarations are those of src/base/snd/UnkSoundVoiceList_b56.cpp.
 struct UnkSoundVoice2_b56;
 struct UnkVoicePool_b56;
-void fn_7100104f08(void* voice);
 void* fn_7100083804(UnkVoicePool_b56* self);
-void fn_710010519c(UnkSoundVoice2_b56* voice, void* system, u32 seq, bool flag);
 
 // What the voice is started from (placeholder names).
 struct UnkSoundVoiceDesc {

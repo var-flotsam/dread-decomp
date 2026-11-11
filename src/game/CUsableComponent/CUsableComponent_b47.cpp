@@ -1,10 +1,10 @@
 // CUsableComponent unit (tools/tu_map.py, the name from reflection): sets the flag at +0xfb and gives the
 // owner, and the actor at +0xe0's +0x10 when there is one, one of two timeline keys for it, then runs
 // the update. Names and layouts are placeholders.
+#include "game/CUsableComponent.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
-void fn_7100a9f7f0(char* self);
 extern const u64 g_unk_710164b638;
 extern const u64 g_unk_710164b640;
 

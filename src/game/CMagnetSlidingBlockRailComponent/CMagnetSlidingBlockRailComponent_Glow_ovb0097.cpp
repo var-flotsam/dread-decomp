@@ -4,12 +4,12 @@
 // the other components the material's own, clamped to be non-negative. Names and layouts are placeholders.
 #include "base/color/CColor4F.h"
 #include "game/UnkSlots.h"
+#include "game/UnkTU253.h"
 #include "types.h"
 
 using base::color::CColor4F;
 
 bool fn_7100199d88(void* map, const u64* key, u32* index);
-void fn_71001c3040(void* object, u64 hash, u32 a, const f32* values, u32 count, f32 f);
 extern const u64 g_unk_710164b250;
 
 struct UnkRailMaterial_ovb0097 {

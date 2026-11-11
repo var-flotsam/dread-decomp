@@ -2,6 +2,8 @@
 // +0x30) with a timeline component (+0x208) the key g_unk_7101648d80 when `keep` is set, else resets the
 // value at +0x47c to -1 and gives it g_unk_7101648d78 (fn_7100d7c828); then clears the counters and flags
 // and calls fn_71002f9460 with 0. Names and layouts are placeholders.
+#include "game/CAbility.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -36,9 +38,7 @@ struct UnkGhostAura_A2_b70 {
 };
 static_assert(__builtin_offsetof(UnkGhostAura_A2_b70, field_0x4a1) == 0x4a1, "UnkGhostAura_A2_b70 layout");
 
-void fn_7100309fd8(UnkGhostAura_A2_b70* self, u32 a, u32 b);
 struct UnkSelf;
-void fn_71002f9460(UnkSelf* self, u32 a1);
 
 void fn_710030d358(UnkGhostAura_A2_b70* self, bool keep) {
     fn_7100309fd8(self, 0, 1);

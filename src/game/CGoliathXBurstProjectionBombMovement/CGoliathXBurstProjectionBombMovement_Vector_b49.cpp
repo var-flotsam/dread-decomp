@@ -6,11 +6,11 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/CGoliathXBurstProjectionBombMovement.h"
 #include "types.h"
 
 struct UnkPushedVector;
 struct UnkValues3;
-void fn_710058c768(UnkPushedVector* self, const UnkValues3* value);  // PushBack
 
 // Copied word by word (as src/game_s7/fn_7100121f78.cpp's UnkValues3).
 struct UnkBombValue_b49 {

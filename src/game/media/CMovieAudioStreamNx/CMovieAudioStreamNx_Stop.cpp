@@ -3,6 +3,7 @@
 // +0xae0 (with -1), fn_7101239af0 on the stream state's +0xc8 (flagging +0x2b0 when it answers 0),
 // the stop flag at 0xc28 and a wake of the thread at 0xa28. Names and layouts are placeholders.
 #include "base/UnkDefaultAllocator.h"
+#include "base/global/timeline/CEvent.h"
 #include "types.h"
 
 struct UnkMovieAudioState_7100221a40 {
@@ -29,7 +30,6 @@ static_assert(__builtin_offsetof(UnkMovieAudioStream_7100221a40, field_0xcf8) ==
 void fn_7100225e14(UnkMovieAudioStream_7100221a40* self);
 void fn_7100220710(void* part, s64 position);
 s32 fn_7101239af0(void* player);
-void fn_7100066828(void* thread, u32 a);
 
 void fn_7100221a40(UnkMovieAudioStream_7100221a40* self) {
     fn_7100225e14(self);

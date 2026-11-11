@@ -4,10 +4,10 @@
 // (fn_7100e791a4) with kinds 6 and 4. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2565.h"
 #include "types.h"
 
 const base::global::CStrId* fn_7100de9bf8(UnkGameManager* self);
-void fn_7100e791a4(void* self, void* arg, u32 kind, u32 a, void* b);
 
 struct UnkMinimapScenarioOwner_b55 {
     u8 unk_0x0[0x110];

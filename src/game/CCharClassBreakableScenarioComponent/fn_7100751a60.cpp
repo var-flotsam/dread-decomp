@@ -2,6 +2,7 @@
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CEmmyProtoAIComponent.h"
 
 using namespace unk_static_init;
 
@@ -18,7 +19,6 @@ extern UnkPropertyEx<> g_unk_7172711098;
 extern void* g_unk_7101a45fe8[];
 extern void* g_unk_7101a45f90[];
 extern UnkEnumType g_unk_717273e7f0;
-void fn_71004fa3b8(void* p);
 extern char g_unk_71727110d8[];
 extern char g_unk_71727110d9[];
 

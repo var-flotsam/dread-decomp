@@ -4,6 +4,7 @@
 // keys are copied through a word type that may alias the array, so the count and the key
 // pointers are reloaded as in the original. Names are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU85.h"
 #include "types.h"
 
 typedef u64 __attribute__((may_alias)) UnkAliasWord_71000dc190;
@@ -23,7 +24,6 @@ struct UnkKeyedArray_71000dc190 {
 };
 
 void fn_7100097e4c(UnkKeyedArray_71000dc190* self, u32 count);
-void fn_71000e6fd8(void* self, void* other);
 
 void fn_71000dc190(UnkKeyedArray_71000dc190* self, UnkKeyedArray_71000dc190* other) {
     self->keys = nullptr;

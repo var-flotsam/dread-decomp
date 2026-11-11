@@ -4,6 +4,7 @@
 // (fn_7101152b90 finds it, fn_710115596c releases it). The name is hashed for each call. Names and
 // layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CFXComponent.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -14,7 +15,6 @@ struct UnkPart;
 struct UnkRinkaControl_ruc;
 UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
-void fn_710115596c(UnkRinkaControl_ruc* self, void* handle);
 
 struct UnkItemLifeOwner_b43a2 {
     u8 pad_0x0[0x38];

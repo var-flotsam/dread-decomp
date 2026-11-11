@@ -4,14 +4,14 @@
 // +0x280 control with a fixed id; then notifies the deferred listener set g_unk_7172724df8 with this
 // component. Names and layouts are placeholders.
 #include "base/UnkCloneHelpers.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CFXComponent.h"
 #include "types.h"
 
 struct UnkScriptCaller;
 // Signature as src/game/CGrapplePointComponent/CGrapplePointComponent_b52.cpp declares it.
-bool fn_7100305088(UnkScriptCaller* self, const char* name, const char* fmt, ...);
 struct UnkRinkaControl_ruc;
 // Signature as src/game/CRinkaUnitComponent/CRinkaUnitComponent_b39.cpp declares it.
-void fn_710114ffb8(UnkRinkaControl_ruc* self, void* value, u32 a, u32 b);
 
 extern char g_unk_7172724df8[];
 

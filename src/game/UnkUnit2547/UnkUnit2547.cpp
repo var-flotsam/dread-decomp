@@ -1,6 +1,8 @@
 // From unit 2547 of tools/tu_map.py (0x7100ddb4f0-0x7100ddbcec, no reflected class): helpers that walk the
 // central-unit list fn_7100772c98 returns (as the darkness events do) and act on each entry's object
 // (+0x10), skipping empty entries. Names and layouts are placeholders.
+#include "game/CAudioComponent.h"
+#include "game/UnkTU1176.h"
 #include "types.h"
 
 struct UnkCentralUnitState {
@@ -25,7 +27,6 @@ struct UnkCentralUnitList {
     u32 count;
 };
 
-UnkCentralUnitList* fn_7100772c98();
 void fn_7100773018(UnkCentralUnit* unit, void* arg);
 void fn_7100775918(UnkCentralUnit* unit, void* arg);
 void fn_7100773284(UnkCentralUnit* unit, void* a, void* b, void* c, void* d, bool e);
@@ -121,7 +122,6 @@ void fn_7100ddba14(UnkUnit2547* self, f32* best, u32* best_id) {
 
 void* fn_7100d78954(void* object);
 s32 fn_710010aad0(s32 index);
-void fn_710071a398(void* target, u32* mask, f32 a, f32 b);
 
 // Sends (value, 0) with the mask of bit fn_710010aad0(10) to every unit's target (its +0x18, through
 // fn_7100d78954).

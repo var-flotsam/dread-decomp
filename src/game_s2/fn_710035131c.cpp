@@ -6,10 +6,12 @@
 #include "base/UnkMatrix44.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CGunComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU437.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -47,8 +49,6 @@ struct UnkSelf {
 
 extern u8 g_unk_71726b16d0[] __attribute__((visibility("hidden")));
 
-void fn_7100350da0(UnkSelf* self);
-void* fn_710083cd30(UnkComponent* component);
 bool fn_71011428bc(void* object, const CStrId* id);
 void fn_7100e03a78(UnkGameManager* dispatcher, void* key);
 void fn_7100e038b0(UnkGameManager* dispatcher, void* key, UnkVec* vec, u64 arg);

@@ -5,12 +5,12 @@
 #include "base/UnkDestructors.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 struct UnkSluggerAI;
 struct UnkSluggerEvent;
 
-u32 fn_7101105e44(UnkSluggerAI* self, UnkSluggerEvent* event);
 void fn_71006c7d1c(base::reflection::UnkReflObject* movement, UnkSluggerEvent* event);
 
 namespace {

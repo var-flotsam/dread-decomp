@@ -1,9 +1,8 @@
 // CEmmyAIComponent's unit (tools/tu_map.py unit 811): 0 while the timer at +0x29418 runs
 // (fn_710002fb70) or the flag at +0x29f26 is set, else the base AI component's value
 // (fn_710110f6d8). Names and layouts are placeholders.
+#include "game/UnkTU39.h"
 #include "types.h"
-
-bool fn_710002fb70(void* timer);
 
 struct UnkEmmyAI_b46a1 {
     u8 pad_0x0[0x29418];

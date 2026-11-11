@@ -4,6 +4,7 @@
 // with a delay that grows with their distance from a tile (fn_7100ca35ec). Names and layouts are
 // placeholders.
 #include "base/UnkVector.h"
+#include "game/CBreakableTileGroup.h"
 #include "types.h"
 
 struct UnkQueryObj {
@@ -131,7 +132,6 @@ void fn_7100c9da0c(UnkTileLists* self) {
 struct UnkTunable;
 extern UnkTunable g_unk_7172796920;
 extern "C" f32 sqrtf(f32);
-u32 fn_7100c9e960(UnkQueryObj* tile);
 void fn_7100c9feac(UnkQueryObj* tile, s32 a, s32 b, f32 delay);
 
 struct UnkTileGroupC {

@@ -3,6 +3,7 @@
 // the delay at +0x14 (when set) is reset from the game manager's +0x2444, the timer becomes -1, the state
 // moves to 2 (fn_7100c9e6ac), and for mode 1 the delay at +0x10 (when set) is reset from the tunable at
 // 0x7172796920 (its +0x48). Names and layouts are placeholders.
+#include "game/CBreakableTileGroup.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -10,7 +11,6 @@ typedef u32 __attribute__((may_alias)) a_u32;
 
 struct UnkQueryObj;
 struct UnkTunable;
-void fn_7100c9e6ac(UnkQueryObj* obj, u32 state, bool a, bool b);
 extern UnkTunable g_unk_7172796920;
 extern const f32 g_unk_71016478e8[] __attribute__((visibility("hidden")));
 

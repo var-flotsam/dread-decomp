@@ -5,6 +5,8 @@
 // +0x28 to the second global.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCooldownXBossAttack.h"
+#include "game/UnkTU2772.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -69,9 +71,7 @@ struct UnkSelf {
 extern UnkGlobal g_unk_71726d6438;
 extern UnkGlobal2 g_unk_7172790a08;
 
-void fn_71004c1944(UnkSelf* self);
 UnkEntry* fn_71004ba10c(UnkPool* pool, u32 index, u32 flag);
-int fn_71012395a0();
 void fn_71004d1fe8(UnkActor* actor);
 
 void fn_71004cb554(UnkSelf* self) {

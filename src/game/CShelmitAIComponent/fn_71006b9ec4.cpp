@@ -3,11 +3,10 @@
 // released, then the attack's destructor (its listener at +0x38, then CAttack's), then the
 // base's (fn_7100369380).
 #include "../../game_5821e4/CAttackDtor.h"
+#include "game/CBehaviorTreeAIComponent.h"
 
 extern void* g_unk_7101a63bc0[];  // the object's vtable
 extern void* g_unk_7101a637a8[];  // CShelmitPlasmaRayAttack's vtable
-
-void fn_7100369380(void* self);
 
 struct UnkAttack_71006b9ec4 {
     void** vtable;

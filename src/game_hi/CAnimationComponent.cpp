@@ -1,6 +1,7 @@
 // The actor's tracks (game/UnkAnimationComponent.h): the float at +0x60 of the action of the track
 // looked up by name hash, or 0 when there is no such entry, track or action. The action getter is
 // called twice, once for the test and once for the value, as in the original.
+#include "game/CActionSet.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
@@ -61,7 +62,6 @@ f32 fn_7101177e24(UnkAnimationComponent* self, u64 key) { return TrackValue<f32,
 // The first entry any of the component's action sets (+0x48, count at +0x50) holds under the pair
 // of keys, or null (the action set's lookup is src/game/CActionSet.cpp's).
 struct UnkActionSetMap;
-void* fn_7100b8c61c(UnkActionSetMap* self, const u64* key1, const u64* key2);
 
 struct UnkAnimationActionSets {
     u8 pad_0x0[0x48];

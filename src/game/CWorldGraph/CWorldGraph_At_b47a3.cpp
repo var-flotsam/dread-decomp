@@ -1,9 +1,9 @@
 // CWorldGraph unit (tools/tu_map.py): a bounds-checked lookup into the array held at +0x30 (count at +0x38)
 // that returns nullptr when the index is out of range. Names and layouts are placeholders.
+#include "game/CWorldGraph.h"
 #include "types.h"
 
 struct UnkWorldGraphArray;
-void* fn_7100acc418(UnkWorldGraphArray* array, u32 index);
 
 struct UnkWorldGraphHolder {
     u8 unk_0x0[0x30];

@@ -10,8 +10,10 @@
 #include "base/UnkVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/GUI/CIngameMenu.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiEvent.h"
+#include "game/UnkTU2559.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -65,14 +67,11 @@ struct UnkLoadCheckPointMenu_ovb0118 {
 };
 
 struct UnkStateOwner;
-void fn_7100b2eaac(UnkStateOwner* self, s32 state, bool a, bool b);
 void fn_7100b30d70(UnkLoadCheckPointMenu_ovb0118* menu, bool flag);
 
 // A lazily created singleton (0x28 bytes).
 struct UnkLoadCheckPointSingleton_ovb0118;
 extern UnkLoadCheckPointSingleton_ovb0118* g_unk_7172763578;
-void fn_7100e17cc8(UnkLoadCheckPointSingleton_ovb0118* self);
-void fn_7100e19954(UnkLoadCheckPointSingleton_ovb0118* self, bool flag);
 void fn_7100dff93c(UnkGameManager* manager);
 
 void fn_7100b33d28(UnkLoadCheckPointButton_ovb0118* self) {

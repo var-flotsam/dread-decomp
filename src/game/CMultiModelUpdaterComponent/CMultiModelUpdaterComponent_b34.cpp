@@ -2,6 +2,7 @@
 // cleared (fn_71000db40c), both handles still held are released through the registry at 0xa0, then
 // the base (fn_7100792448). The shape of fn_71009b99e8 (CChangeStageNavMeshItemComponent).
 #include "base/global/CStrId.h"
+#include "game/CCharClassModelUpdaterComponent.h"
 #include "types.h"
 
 using base::global::UnkStringPool;
@@ -27,7 +28,6 @@ struct UnkModelTable {
 };
 
 struct CMultiModelUpdaterComponent;
-void fn_7100792448(CMultiModelUpdaterComponent* self);
 
 struct CMultiModelUpdaterComponent {
     void** vtable;

@@ -8,6 +8,7 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTUProperty.h"
 #include "game_s2/UnkChozoCommanderAttack.h"
@@ -17,7 +18,6 @@
 using base::reflection::UnkReflObject;
 
 struct UnkTakumakuComponent;
-bool fn_7101178e6c(UnkTakumakuComponent*, u32);
 void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
 void fn_710117b3e8(UnkWeakTarget* target, void* link);
 

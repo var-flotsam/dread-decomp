@@ -9,14 +9,24 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
+#include "base/snd/CSoundSystem.h"
+#include "game/CCollisionMaterialCacheComponent.h"
+#include "game/CDrop.h"
+#include "game/CFXComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU2669.h"
+#include "game/UnkTU2677.h"
+#include "game/UnkTU52.h"
 #include "game/UnkXformNode.h"
+#include "game/malloc.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -28,9 +38,6 @@ using base::reflection::UnkReflValue;
 using base::reflection::UnkTypedRef;
 
 struct lua_State;
-s32 fn_71010c0270(lua_State* L, const char* fmt, ...);
-int fn_71010c0b40(lua_State* L, const char* fmt, ...);
-s32 fn_71010c0ad0(lua_State* L, int a, int b, const char* fmt, ...);
 void fn_7100fbc4e0(lua_State* L, void* arg);
 
 // fn_7100fbc4e0 hands back the number of results it pushed; its other users declare it without one.
@@ -104,7 +111,6 @@ using UnkSpawnEachFn_ovb0065 = void (UnkSpawnGroupEach_ovb0065::*)(void*);
 void fn_710111c3d8(UnkSpawnGroupEach_ovb0065* self, UnkSpawnEachFn_ovb0065 fn);
 void fn_710111c470(UnkSpawnGroupEach_ovb0065* self, UnkSpawnEachFn_ovb0065 fn);
 void fn_710111c508(UnkSpawnGroupEach_ovb0065* self, void* object);
-void* fn_71007c04f0(void* object);
 
 // A pointer to a member function from its two words (the function, or a virtual slot's offset with the flag).
 static inline UnkSpawnEachFn_ovb0065 MemberPointer(u64 function, u64 adjust) {
@@ -275,7 +281,6 @@ s32 fn_710107d200(lua_State* L) {
 
 struct UnkStatsObject;
 extern UnkStatsObject* g_unk_7101d47100;
-void fn_7100131f48(UnkStatsObject* self);
 void fn_7100132248(UnkStatsObject* self, const CStrId& name, f32 value);
 
 s32 fn_710107fad0(lua_State* L) {
@@ -307,7 +312,6 @@ extern UnkSoundMgr* g_unk_7101d4d820;
 struct UnkMgr;
 struct UnkHandle;
 void fn_7100108a84(UnkMgr*, UnkHandle*, f32);
-void fn_7100108b0c(UnkSoundMgr* self, u32 kind, f32 time);
 
 s32 fn_710108d4f0(lua_State* L) {
     const char* path = nullptr;
@@ -328,9 +332,7 @@ s32 fn_710108d4f0(lua_State* L) {
 struct UnkWorld;
 struct UnkRinkaControl_ruc;
 struct UnkStruct_710024fa0c;
-UnkStruct_710024fa0c* fn_7100798eec(void* actor);
 void fn_710114fe8c(UnkWorld*, u64, u32, u32);
-void fn_710114ffb8(UnkRinkaControl_ruc*, void*, u32, u32);
 
 s32 fn_710108fc70(lua_State* L) {
     const char* target;
@@ -413,7 +415,6 @@ s32 fn_710107cf40(lua_State* L) {
 
 
 extern void* g_unk_7101d47368;
-void fn_7100d8ced8(void* self);
 struct UnkEnvironmentManager;
 void fn_7100d8e32c(UnkEnvironmentManager*, const CStrId*, bool, bool);
 
@@ -582,7 +583,6 @@ s32 fn_7101088170(lua_State* L) {
 
 struct UnkMgr_0xf18;
 extern void* g_unk_71726bc560;
-void fn_7100fdb9e0(UnkMgr_0xf18*, u32, u32, f32, f32);
 void fn_7100fdbd84(UnkMgr_0xf18* self, u32 flag);
 u32 fn_71010976c0(const char* name);
 
@@ -610,7 +610,6 @@ s32 fn_7101092070(lua_State* L) {
 
 struct UnkEngineObject_0xf0;
 extern UnkEngineObject_0xf0* g_unk_7101d47338;
-void fn_7100075db8(UnkEngineObject_0xf0* self);
 void fn_7100075ec8(UnkEngineObject_0xf0* self, s32 index, const CRntString* a, const CRntString* b,
                    const CRntString* c, const CRntString* d, u32 e, u32 f);
 
@@ -692,7 +691,6 @@ struct UnkLuaNameList_b0160 {
 
 struct UnkScriptManager_ovb0085;
 extern UnkScriptManager_ovb0085* g_unk_71727bed90;
-void fn_710109d810(UnkScriptManager_ovb0085* self);
 void fn_710109dc90(UnkScriptManager_ovb0085* self, UnkLuaNameList_b0160* out);
 
 s32 fn_7101077770(lua_State* L) {

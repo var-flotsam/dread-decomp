@@ -3,12 +3,12 @@
 // array at +0x60 (fn_71009f26a0), frees it, releases the string id at +0x58 and runs the base
 // destructor (fn_71011acd74). Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
+#include "game/CCharClassComponent.h"
+#include "game/CCharClassSceneModelAnimationComponent.h"
 #include "types.h"
 
 struct UnkIdObject;
-void fn_71011acd74(UnkIdObject*);
 struct UnkEntry_b50a5;
-void fn_71009f26a0(UnkEntry_b50a5* self);
 
 struct UnkEntry_b50a5 {
     u8 unk_0x0[0x50];

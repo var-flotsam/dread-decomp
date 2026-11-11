@@ -8,6 +8,7 @@
 #include <new>
 
 #include "base/UnkCloneHelpers.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
@@ -85,7 +86,6 @@ void fn_71000a174c(UnkTypedRef* out, const void* ref);
 struct UnkAssignedRecord_a1ba4 {
     u64 unk_0x0[0x18 / 8];
 };
-void fn_71000a1ba4(UnkAssignedRecord_a1ba4* self, const UnkAssignedRecord_a1ba4* other);
 bool fn_710009d960(const CType* type, UnkTypedRef* src, UnkTypedRef* dst);
 
 // A reflected field: its offset in the object (-1 when it has an accessor), its type and its accessor.

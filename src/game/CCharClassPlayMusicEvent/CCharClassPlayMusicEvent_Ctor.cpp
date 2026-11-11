@@ -4,12 +4,12 @@
 #include <new>
 
 #include "base/global/CFilePathStrId.h"
+#include "base/global/timeline/CEvent.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 
 extern char g_unk_7101aa5e68[];
-void fn_7100067ea4(void* self);  // the event base constructor
 
 struct UnkPlayMusicEvent {
     void* vtable;

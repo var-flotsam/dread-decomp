@@ -4,14 +4,14 @@
 // fixed name hash, otherwise -1.0; the four floats at +0x140 become (0, -1, -1, -1) and the unit's
 // timing function runs with the id of the object at +0x98 (0x7fffffff when there is none). Names and
 // layouts are placeholders.
+#include "game/CChozoCommanderUltimateGrabAttack.h"
+#include "game/CChozoWarriorXUltimateGrabAttack.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
 // As src/game/CChozoCommanderUltimateGrabAttack/fn_71004432b8.cpp and
 // src/game/CChozoWarriorXUltimateGrabAttack/fn_710048c384.cpp declare them.
 struct UnkEffect;
-void fn_710043fd04(UnkEffect* self, u32 id, f32 time);
-void fn_7100488990(UnkEffect* self, u32 id, f32 time);
 
 struct UnkGrabIdObject_b64a2 {
     u8 pad_0x0[0x10];

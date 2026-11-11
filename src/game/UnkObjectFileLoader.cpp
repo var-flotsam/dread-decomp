@@ -6,6 +6,8 @@
 #include "base/UnkHashStream.h"
 #include "base/UnkRegistry.h"
 #include "base/UnkStrIdPathPair.h"
+#include "base/animation/CBlendSpaceResource.h"
+#include "base/file/CThreadSafeDevice.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkReflCast.h"
@@ -25,7 +27,6 @@ struct UnkStrPair_0x10 {
     void* b;
 };
 
-void fn_710008d4c0(UnkStrPair_0x10* s, const UnkEntry_0x30* e);
 extern UnkRegistry_0x70* g_unk_7101d4b5a0;
 
 // The file read into memory: the in-memory file (constructed by fn_710007be8c, destroyed by
@@ -38,7 +39,6 @@ struct UnkFileReader {
 };
 
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
-void fn_710000ccd8(UnkFileReader* self);
 
 // This unit's parser callbacks.
 extern UnkParseCallbacks g_unk_71729ec1e0 __attribute__((visibility("hidden")));

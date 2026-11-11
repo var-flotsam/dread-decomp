@@ -2,10 +2,8 @@
 // at +0x18; when it moved (more than 0.001 on some axis), it keeps the new one, hands the path at
 // +0x12ab8 to the object at +0x25540 when +0x12ac0 is set (fn_71002ad420), clears both paths
 // (+0x12ab8 and +0x30, fn_71002adc8c) and clears +0x37fdc. Names and layouts are placeholders.
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
-
-void fn_71002ad420(void*, const void*);
-void fn_71002adc8c(void*);
 
 struct UnkVec3_np41 {
     f32 x, y, z;

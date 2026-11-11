@@ -5,10 +5,10 @@
 // of three actions, moves to state 6; in state 6 runs fn_7100350da0. Ends with fn_7100347540. Names
 // and layouts are placeholders.
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU437.h"
 #include "types.h"
 
 struct UnkSelf;
-void fn_7100350da0(UnkSelf*);
 
 struct UnkAimTunable_b49 {
     u8 pad_0x0[0x7c];

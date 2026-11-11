@@ -2,13 +2,13 @@
 // base AI component's handler (fn_710036974c), whose result it returns: with the message's flag (+8) set and the
 // owner's (+0x30) +0x220 object and +0x278 object present, and fn_7101136308 accepting the latter, calls
 // fn_7101176be4 on the former. Names and layouts are placeholders.
+#include "game/CAttackComponent.h"
+#include "game/CBehaviorTreeAIComponent.h"
 #include "types.h"
 
 // As src/game/CBigkranXAIComponent/CBigkranXAIComponent_Message_b61.cpp declares them.
 struct UnkSclawkAI_b44a2;
 struct UnkSclawkMessage_b44a2;
-u32 fn_710036974c(UnkSclawkAI_b44a2* self, UnkSclawkMessage_b44a2* msg);
-bool fn_7101136308(void* object);
 struct UnkDredhedTarget_b67a2;
 void fn_7101176be4(UnkDredhedTarget_b67a2* target);
 

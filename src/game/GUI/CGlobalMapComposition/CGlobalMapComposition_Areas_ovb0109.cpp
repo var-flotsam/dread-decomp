@@ -22,15 +22,17 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/snd/UnkSound.h"
+#include "game/GUI/CGlobalMapComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkTU2747.h"
+#include "game/UnkTU2755.h"
 #include "types.h"
 
 using base::UnkStrIdMember;
 using base::global::CStrId;
 
 struct UnkGallery_A5_b75;
-void fn_71011cf70c(UnkGallery_A5_b75* self);
 struct UnkStateSink;
 struct UnkStateKey;
 struct UnkEnumType;
@@ -38,7 +40,6 @@ extern UnkStateSink* g_unk_717275c380;
 void fn_7100fc9d78(UnkStateSink* sink, UnkStateKey* key, void* state);
 extern UnkEnumType g_unk_71729f01a8;
 struct UnkGlobalMapComposition;
-void fn_7100b26470(UnkGlobalMapComposition* self, void* object, bool flag);
 UnkVec2Result fn_71011cf12c(UnkGuiDisplayObject* self, const UnkVec2Result& point);
 struct UnkGuiObj;
 void fn_71011cd5a0(UnkGuiObj* object);
@@ -54,7 +55,6 @@ struct UnkGuiPos {
 
     UnkGuiPos(const UnkGuiPos& other) : x(other.x), y(other.y) {}
 };
-UnkGuiPos fn_71011f6240(const UnkGuiItemState* state, u32 h, u32 v);
 
 // ---- The regions ----
 

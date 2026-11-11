@@ -1,6 +1,8 @@
 // Reflected setters that select an object's source by id: the current one if it already has the
 // id, else the first listed source with it (none for id -1 or when no source has it).
 #include "base/reflection/UnkReflValue.h"
+#include "game/CNavMeshItemComponent.h"
+#include "game/CNavMeshItemStage.h"
 
 using base::reflection::refl_ArgValue;
 using base::reflection::refl_EmptyValue;
@@ -18,7 +20,6 @@ struct UnkSource {
 
 struct UnkSourceList;
 // The element at `index`, growing the list when it is growable (base::UnkVector::GrowAt).
-UnkSource*& fn_71009c0bf0(UnkSourceList* self, u32 index);
 
 struct UnkSourceList {
     u8 pad_0x0[0x8];
@@ -31,8 +32,6 @@ struct UnkOwner {
     u8 pad_0x154[0x2c];
     UnkSource* current;
 };
-
-void fn_71009bfda8(UnkOwner* self, UnkSource* src);
 
 UnkReflValue fn_71009c2d74(void*, char* obj, UnkReflValue* const* args) {
     UnkOwner* self = *reinterpret_cast<UnkOwner**>(obj + 8);
@@ -57,7 +56,6 @@ UnkReflValue fn_71009c2d74(void*, char* obj, UnkReflValue* const* args) {
 extern __attribute__((visibility("hidden"))) UnkSourceDesc* g_unk_717273ee10;
 
 struct UnkSourceArg;
-void fn_71009c5ab8(UnkSource* src, UnkSourceArg* arg);
 
 // Passes the argument (null when it has no type) to the first listed source with that id.
 UnkReflValue fn_71009c28b8(void*, char* obj, UnkReflValue* const* args) {

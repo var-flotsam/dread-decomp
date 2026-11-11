@@ -6,11 +6,11 @@
 // fn_71008c1538). Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 struct UnkSluggerAI;
 struct UnkSluggerEvent;
-u32 fn_7101105e44(UnkSluggerAI* self, UnkSluggerEvent* event);
 struct UnkRequest;
 void fn_71008c1538(UnkRequest*, f32);
 extern u64 g_unk_71726e5120[2] __attribute__((visibility("hidden")));  // the two gobbler source ids

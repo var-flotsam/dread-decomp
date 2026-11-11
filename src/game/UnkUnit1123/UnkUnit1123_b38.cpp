@@ -2,6 +2,8 @@
 // handler from units 1122 and 1125: each keeps the optional settings of the parameter blocks it
 // receives (kind 0 and its own kind) after passing them to the shared step fn_71007038f4 (the
 // sending side of unit 1123, fn_71007033c8, is not matched yet). Names and layouts are placeholders.
+#include "game/CEnemyMovement.h"
+#include "game/UnkTU1124.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
 
@@ -65,7 +67,6 @@ struct UnkWordVec {
 };
 
 // Its first argument is the handler, its second the block.
-u64 fn_71007038f4(void* self, void* params, bool reset);
 
 template <class Tail>
 __attribute__((always_inline)) static inline void TakeCommon(UnkHandler<Tail>* self, UnkHandlerParams<Tail>* params,
@@ -147,7 +148,6 @@ u64 fn_71007047d0(UnkHandler<UnkWordVec>* self, UnkHandlerParams<UnkWordVec>* pa
 }
 
 struct UnkUnit1124Object;
-void fn_7100703814(UnkUnit1124Object* self, u32 id);
 
 extern void* g_unk_7101a6bcd8[];  // the kind-5 handler's vtable
 
@@ -180,7 +180,6 @@ struct UnkSinkParams {
 extern void* g_unk_7101a24b80[];
 
 struct UnkEffectSink;
-void fn_71010c7e6c(UnkEffectSink* sink, void* params, u32 flags);
 
 struct UnkHandlerOwner {
     u8 pad_0x0[0x218];

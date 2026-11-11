@@ -5,6 +5,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU230.h"
 #include "types.h"
 
 using base::UnkStrIdMember;
@@ -63,7 +64,6 @@ struct __attribute__((packed)) UnkEntryHolder_b0249 {
     UnkEntryArray_b0249 entries;  // 0x7cc
 };
 
-void* fn_71001aa028(void* program);
 void fn_710015ddc0(void* state, u32 stage, u64* location, const char* name);
 
 // Adds an entry for `id` with `n` zeroed floats, and looks up its uniform location in the program's state.

@@ -9,12 +9,13 @@
 #include "base/UnkVector.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU252.h"
+#include "game/UnkTU341.h"
 #include "game/UnkTimelineComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkStruct_71002334fc;
-void fn_71002334fc(UnkStruct_71002334fc*, bool);
 void fn_7100233910(UnkStruct_71002334fc*, bool);
 void fn_71011a2a24(UnkGameManagerSub_0x608*, void*);
 void fn_7100a2bc3c(void*);
@@ -58,8 +59,6 @@ struct UnkColor_ovb0092 {
 };
 
 struct UnkLockonModel_ovb0092;
-void fn_71001bff28(UnkLockonModel_ovb0092* model, u32 index, UnkColor_ovb0092* color);
-void fn_71001bfea4(UnkLockonModel_ovb0092* model, u32 index, const UnkColor_ovb0092* color);
 
 struct UnkLockonMark_ovb0092 {
     u8 pad_0x0[0x8];

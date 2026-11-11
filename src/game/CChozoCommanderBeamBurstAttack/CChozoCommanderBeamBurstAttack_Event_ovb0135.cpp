@@ -10,6 +10,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CFXComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkParams.h"
@@ -210,7 +211,6 @@ struct UnkFxObject_ovb0041;
 bool fn_71011735e8(UnkEntity* entity, const void* key, UnkMatrix44* out, u32 flags);
 UnkComponent* fn_7101152b90(UnkObject*, u64);
 bool fn_710114e668(UnkObject*, u8);
-void fn_7101152c0c(UnkObject* self, void* effect, u32 on, u32 restart);
 void fn_7100146d84(UnkFxObject_ovb0041* fx, const UnkVec3f* position);
 void fn_7100146d98(UnkFxObject_ovb0041* fx, const UnkVec3f* angle);
 extern "C" f32 atan2f(f32 y, f32 x);

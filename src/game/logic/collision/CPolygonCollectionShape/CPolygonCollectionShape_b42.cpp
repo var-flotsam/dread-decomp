@@ -5,6 +5,8 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/UnkTU109.h"
+#include "game/logic/collision/CShape.h"
 #include "types.h"
 
 struct UnkPolygonElem_b42a3;
@@ -17,9 +19,6 @@ struct UnkPolygonCollectionShape_b42a3 {
     base::UnkVector<UnkPolygonElem_b42a3*> field_0xf0;
 };
 
-void fn_7100d6c0e4(UnkPolygonCollectionShape_b42a3* self, const UnkPolygonCollectionShape_b42a3* other);
-void fn_7100123f1c(void* self, const void* other);
-void fn_7100123f58(void* self, void* other);
 extern char g_unk_7101aa8b80[];
 
 // Signatures as src/reflection/game_logic_collision_CPolygonCollectionShape.cpp declares them.

@@ -2,11 +2,10 @@
 // CScourgeTongueSlashAttack at +0x146c8: the attack's destructor (its listener at +0x40, then CAttack's),
 // then the base's (fn_7100369380).
 #include "../../game_5821e4/CAttackDtor.h"
+#include "game/CBehaviorTreeAIComponent.h"
 
 extern void* g_unk_7101a61f08[];  // the object's vtable
 extern void* g_unk_7101a61c20[];  // CScourgeTongueSlashAttack's vtable
-
-void fn_7100369380(void* self);
 
 struct UnkAttack_710069f1a0 {
     void** vtable;

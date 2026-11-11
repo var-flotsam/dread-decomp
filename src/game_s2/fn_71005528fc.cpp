@@ -4,6 +4,8 @@
 // record's entries (when its object at +0x30 answers 0x10 to vtable slot 0x18) calling
 // fn_7100116de0 on each until one reports true.
 #include "base/UnkRefHandle.h"
+#include "game/UnkTU108.h"
+#include "game/UnkTU365.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -51,9 +53,6 @@ struct UnkSelf {
     u8 pad_0x0[0x29558];
     UnkRoot* field_0x29558;
 };
-
-UnkTracker* fn_710028aca8(void* link);
-bool fn_7100116de0(UnkEntry* entry, void* arg, u32 a, u32 b, f32 scale);
 
 bool fn_71005528fc(UnkSelf* self, void* arg) {
     UnkRoot* root = self->field_0x29558;

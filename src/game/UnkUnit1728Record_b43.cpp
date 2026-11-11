@@ -3,14 +3,13 @@
 // +0x30, fn_710006b6a4 at +0xf8). Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU42.h"
+#include "game/nn/time.h"
 #include "types.h"
 
 #include <new>
 
 using base::global::CStrId;
-
-void fn_7100068eb4(void* self);
-void fn_710006b6a4(void* self);
 
 struct UnkEmptyStrId_b43a3 {
     union {

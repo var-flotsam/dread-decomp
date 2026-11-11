@@ -9,6 +9,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -22,8 +23,6 @@ struct UnkGoliathAI_b58a3 {
         return reinterpret_cast<const base::reflection::CType* (*)(UnkGoliathAI_b58a3*)>(vtable[0])(this);
     }
 };
-
-void fn_71010fc68c(UnkGoliathAI_b58a3* ai, f32* out);
 
 struct UnkGoliathIdSource_b58a3 {
     void** vtable;

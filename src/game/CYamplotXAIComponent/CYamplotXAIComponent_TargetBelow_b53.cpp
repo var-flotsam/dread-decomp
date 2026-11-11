@@ -5,6 +5,7 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CEnemyMovement.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
@@ -13,7 +14,6 @@ using base::math::CVector3D;
 using base::reflection::UnkReflObject;
 
 // As src/game/CAreaFXComponent/CAreaFXComponent_b41.cpp declares it.
-u32 fn_71010cc3a4(void*);
 
 struct UnkYamplotLimits_b53 {
     u8 pad_0x0[0x90];

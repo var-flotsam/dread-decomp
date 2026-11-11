@@ -4,15 +4,15 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CProjectileMovement.h"
+#include "game/CWeaponMovement.h"
 #include "game/UnkActor.h"
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
 
 struct UnkObj;
-bool fn_7100ac4ec0(UnkObj* self, void* a1, void* a2, void* a3, void* a4, void* a5);
 struct UnkSplash_b59a4;
 // Declared returning void elsewhere; it returns 1 when the hit was taken.
-s32 fn_7100ac82c0(UnkSplash_b59a4* self, void* other);
 
 struct UnkBeamLevel_l479708 {
     u8 pad_0x0[0x10];

@@ -2,12 +2,11 @@
 // (listener at +0x30) and a CInfesterShootAttack at +0x146f8 (listener at +0x38). Each runs its
 // listener's destructor and CAttack's, in reverse order; then the base's (fn_7100369380).
 #include "../../game_5821e4/CAttackDtor.h"
+#include "game/CBehaviorTreeAIComponent.h"
 
 extern void* g_unk_7101a51af0[];  // the object's vtable
 extern void* g_unk_7101a515e8[];  // the second attack's vtable
 extern void* g_unk_7101a516e0[];  // CInfesterShootAttack's vtable
-
-void fn_7100369380(void* self);
 
 struct UnkAttack_71005ca8d4 {
     void** vtable;

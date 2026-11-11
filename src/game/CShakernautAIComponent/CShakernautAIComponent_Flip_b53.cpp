@@ -3,6 +3,7 @@
 // the direction pair (+0x18, +0x1c), toggles the side flag (+0xc) and sends the two matching ids
 // (4 and 8, swapped by side) to the actor's +0x220 controller (fn_71011785a8, fn_7101178564), then
 // clears a byte (+0xab). Names and layouts are placeholders.
+#include "game/CAnimationComponent.h"
 #include "types.h"
 
 struct UnkShakernautCtrl_b53;
@@ -11,8 +12,6 @@ struct UnkShakernautId_b53 {
     u32 unk_0x4;
 };
 void fn_710110ca7c(void* self);
-void fn_71011785a8(UnkShakernautCtrl_b53* self, const UnkShakernautId_b53* id, bool a, bool b);
-void fn_7101178564(UnkShakernautCtrl_b53* self, const UnkShakernautId_b53* id, bool a, bool b);
 
 struct UnkShakernautDir_b53 {
     f32 x;

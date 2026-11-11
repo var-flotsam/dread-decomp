@@ -2,12 +2,12 @@
 // its parameters and the given target, unless the GUI (g_unk_7101d47330) answers fn_7101198688. Names
 // and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU2730.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 extern void* g_unk_7101d47330;
-bool fn_7101198688(void* gui);
 
 struct UnkCharClassSoundEvent_b0080 {
     u8 pad_0x0[0x10];

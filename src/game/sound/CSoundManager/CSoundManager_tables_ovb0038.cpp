@@ -12,6 +12,8 @@
 #include "base/UnkHashStream.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
+#include "base/animation/CBlendSpaceResource.h"
+#include "base/core/CAsset.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
@@ -20,6 +22,9 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
+#include "base/snd/CSoundSystem.h"
+#include "game/UnkTU25.h"
+#include "game/UnkTU32.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -376,7 +381,6 @@ void fn_7101028988(UnkSoundOwnedArray_b0038* self, u32 capacity, u32 flags) {
 }
 
 extern void* g_unk_7101cac688[];
-void fn_7100016ad8(void* self);
 
 // sound::CSoundEventsDef (its constructor is the reflected class's fn_0x28): the owning pointers at
 // +0x58 and a table at +0x80.
@@ -570,8 +574,6 @@ void fn_710102b828(UnkSoundPtrArray_b0038* self, UnkSoundIter_b0038<0>* out) {
 // (released, taken, the other's left empty) and the record assigned by fn_7100027118. Names and
 // layouts are placeholders.
 
-void fn_7100027118(UnkStrIdPathResource*, UnkStrIdPathResource*);  // move-assignment
-
 struct UnkSoundStrId_b0038 {
     base::global::UnkStringData* data;
 
@@ -723,7 +725,6 @@ struct UnkSoundHandle {
 extern const UnkSoundHandle g_unk_7108b6c460;  // the empty handle
 
 struct UnkSoundRequest_b50;  // src/game/CAudioComponent/CAudioComponent_b50.cpp
-UnkSoundHandle fn_71001080b0(UnkSoundMgr* mgr, const UnkSoundRequest_b50* request);
 
 struct UnkAudioPreset_b0038 {
     u8 unk_0x0[0x58];
@@ -771,7 +772,6 @@ struct UnkPathPairTemp_b45a1 {
     void* path;
     ~UnkPathPairTemp_b45a1() { fn_710008d8e8(reinterpret_cast<UnkStrIdPathPair*>(this)); }
 };
-UnkPathPairTemp_b45a1 fn_710001ab24(void* path);
 
 // The file read into memory and two words the opener sets (+0x38 is zero after a good read).
 struct UnkFileReader {
@@ -781,7 +781,6 @@ struct UnkFileReader {
 };
 
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
-void fn_710000ccd8(UnkFileReader* self);
 void fn_710000f750(UnkParseContext* self, void* root);
 
 // This unit's parser callbacks.

@@ -5,10 +5,10 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/CGameObject.h"
 #include "game/UnkGameBlackboard.h"
 #include "types.h"
 
-void fn_7101043904(void*);
 extern char g_unk_7101caa4d0[];
 extern char g_unk_7101caa520[];
 extern char g_unk_7101caa5c0[];

@@ -3,12 +3,12 @@
 // at +0x50 (its own vtable and three cleared words), the string-id list at +0x70 (fn_7100a44d38),
 // a pair of cleared words, three small defaults, an allocator-backed buffer at +0xc8, then the
 // object's own vf_0x18. Names and layouts are placeholders.
+#include "game/CComponent.h"
 #include "types.h"
 
 #include "base/UnkVector.h"
 
 struct UnkStateObject;
-void fn_71010c4148(UnkStateObject*);
 void fn_7100a44d38(char*);
 extern void* g_unk_7101a8e700[];
 extern void* g_unk_7101a22d48[];

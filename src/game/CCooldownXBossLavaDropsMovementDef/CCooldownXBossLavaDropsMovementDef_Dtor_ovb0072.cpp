@@ -5,11 +5,11 @@
 // (unk_7101a3e090) and an array of 0x18-byte polymorphic entries at its +0x18; tPatterns is an array
 // of owned definitions deleted through their vtables. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CCharClassCooldownXBossAttack.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
 
 struct UnkCooldownXBossAttackDef;
-void fn_71004a0a10(UnkCooldownXBossAttackDef* self);
 extern char g_unk_7101a3e0b8[];
 extern void* g_unk_7101a3e090[];
 

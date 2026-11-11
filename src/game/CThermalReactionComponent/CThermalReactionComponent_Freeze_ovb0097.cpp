@@ -2,13 +2,15 @@
 // (fn_7100a2918c): four of them get the flag through their own setters; the last two are disabled while frozen,
 // their enabled flag kept at +0x58 and restored on thawing. Always returns false. Names and layouts are
 // placeholders.
+#include "game/CActorComponent.h"
+#include "game/CForcedMovementAreaComponent.h"
+#include "game/CThermalReactionComponent.h"
 #include "types.h"
 
 struct UnkWeakTarget;
 struct UnkDoorLock;
 struct UnkStruct_710024fa0c;
 
-void fn_710024fa0c(UnkStruct_710024fa0c*, bool);
 UnkDoorLock* fn_71002af860(UnkWeakTarget*);
 
 struct UnkThermalComponent_ovb0097 {
@@ -17,8 +19,6 @@ struct UnkThermalComponent_ovb0097 {
 };
 
 UnkThermalComponent_ovb0097* fn_7100a29260(UnkWeakTarget* entity);
-UnkThermalComponent_ovb0097* fn_7100a2933c(UnkWeakTarget* entity);
-UnkThermalComponent_ovb0097* fn_71007ea250(UnkWeakTarget* entity);
 UnkThermalComponent_ovb0097* fn_710063337c(UnkWeakTarget* entity);
 UnkThermalComponent_ovb0097* fn_7100a290a8(UnkWeakTarget* entity);
 void fn_7100a928ec(UnkThermalComponent_ovb0097* component, bool frozen);

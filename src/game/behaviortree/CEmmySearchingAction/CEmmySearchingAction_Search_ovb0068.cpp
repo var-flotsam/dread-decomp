@@ -5,6 +5,8 @@
 #include "base/UnkVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU811.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
 struct UnkEmmyAI_b0068 {
@@ -73,7 +75,6 @@ static inline UnkEmmyAI_b0068* EmmyAI(UnkEmmySearchingAction_b0068* self) {
 
 bool fn_7100549ec8(void* self);
 void fn_710051c018(UnkEmmySearchingAction_b0068* self, bool* a, bool* b);
-void fn_71002adc8c(void* self);
 
 // Stops the search: marks it stopped when the AI is busy (+0x29f24, or vf_0x7d8 says so), else
 // finishes it (fn_710051c018 unless fn_7100549ec8 holds with +0x14b5a clear) and resets +0x68.
@@ -103,8 +104,6 @@ bool fn_71005472bc(UnkEmmyAI_b0068* ai);
 void fn_710051d694(UnkEmmySearchingAction_b0068* self);
 void fn_710051d698(UnkEmmySearchingAction_b0068* self);
 void fn_710051d60c(UnkEmmySearchingAction_b0068* self);
-void fn_7100556c00(UnkEmmyAI_b0068* ai, bool pending, const UnkEmmySearchCallback_b0068* a,
-                   const UnkEmmySearchCallback_b0068* b, u32 c, void* data, const UnkEmmySearchCallback_b0068& d);
 
 // Starts a search when one can run (fn_7100519cec, or the AI's fn_71005472bc and a second try),
 // stopping it otherwise; a search that ends at once (result 0 or 3) is handed to the AI with the

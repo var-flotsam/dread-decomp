@@ -6,6 +6,7 @@
 #include "../game_s2/UnkSpitSend.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkMatrix44.h"
+#include "game/CAutoolAIComponent.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -72,7 +73,6 @@ struct UnkEvacTimeline_b61 {
     u8 pad_0x0[0x48];
     u32 field_0x48;
 };
-UnkEvacTimeline_b61* fn_71003c6c3c(UnkEvacPart_b61* part);
 struct UnkEvacObject_b61 {
     u8 pad_0x0[0x18];
     UnkEvacPart_b61* part;

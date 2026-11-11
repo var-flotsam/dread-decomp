@@ -2,10 +2,10 @@
 // three empty string ids (at 0x30, 0x38, 0x40) and clears the following state before calling the
 // object's own virtual slot 3 (a tail call).
 #include "game/UnkBehaviorTree.h"
+#include "game/UnkTU0.h"
 #include "types.h"
 
 extern void* g_unk_7101a26cb0[];
-void fn_71000003d4(void* self, const char* s, bool flag);
 
 struct UnkSelf : UnkBehaviorTreeNodeBase {
     f32 field_0x2c;

@@ -4,7 +4,9 @@
 // (fn_71010db850) and the actor is told fn_7100232864. The "ForcedMovementAreaComponent" id is built on the
 // way (unused). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CInputComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2689.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -36,10 +38,8 @@ struct UnkForcedMovementAction_ovb0115 {
 };
 
 struct UnkInputComponent;
-void fn_7100872460(UnkInputComponent* self, bool enable, bool reset, void* arg);
 struct UnkForcedMovementTarget_A5_b68;
 void fn_71010db848(UnkForcedMovementTarget_A5_b68* self, const CStrId* name, const void* params);
-void fn_71010db850(UnkForcedMovementTarget_A5_b68* p, void* q);
 struct UnkEntityState;
 void fn_7100232864(UnkEntityState* entity, bool value);
 

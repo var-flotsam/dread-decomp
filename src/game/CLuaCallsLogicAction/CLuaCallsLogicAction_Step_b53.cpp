@@ -6,21 +6,21 @@
 // (+0x1e0) with ("oo": the entity, `arg`), or logs it when the entity has none. Names and layouts are
 // placeholders.
 #include "base/global/CRntString.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CLuaCallsLogicAction.h"
+#include "game/CTriggerLogicAction.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU0.h"
 #include "types.h"
 
 using base::global::CRntString;
 
 struct UnkTutoExitAction_b47;
-void fn_7100a55ac8(UnkTutoExitAction_b47* self);
 
 u64* fn_7100066630(u64* out, const CRntString* str);
 extern u32 g_unk_71727bebb8;
-void* fn_7100a506a8(void* obj);
 struct UnkScriptCaller;
-bool fn_7100305088(UnkScriptCaller* self, const char* name, const char* fmt, ...);
 bool fn_71009cde54(void* script, const char* name, const char* fmt, ...);
-void fn_7100000790(const char* fmt, const char* a, ...);
 
 struct UnkLuaCallsEntity_b53 {
     u8 pad_0x0[0x1e0];

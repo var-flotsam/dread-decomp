@@ -1,5 +1,6 @@
 // A function in the CTakumakuAIComponent unit: on event 6, when the object at +0x30 has a component at
 // +0x220 for which fn_7101178e6c(…, 11) holds, fn_71006d5bf8 runs. Names and layouts are placeholders.
+#include "game/CAnimationComponent.h"
 #include "types.h"
 
 struct UnkTakumakuComponent;
@@ -12,7 +13,6 @@ struct UnkTakumakuAI {
     UnkTakumakuOwner* owner;
 };
 
-bool fn_7101178e6c(UnkTakumakuComponent* component, u32 kind);
 void fn_71006d5bf8(UnkTakumakuAI* self);
 
 void fn_71006d5ba8(UnkTakumakuAI* self, u32 event) {

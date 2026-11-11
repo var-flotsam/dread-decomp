@@ -9,8 +9,11 @@
 // blackboard is locked; the setter as in CDoorLifeComponent.cpp).
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAnimationComponent.h"
 #include "game/CBlackboard.h"
+#include "game/CNavMeshItemComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU372.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -20,8 +23,6 @@ CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 extern UnkProperty g_unk_717272a3f0;
 
 struct UnkWeakTarget;
-void* fn_71002b3b84(UnkWeakTarget*);
-void fn_71009c0f1c(void* object, u64 id);
 
 // A typed value as the section setter takes it (as in src/game/CDoorLifeComponent.cpp).
 struct UnkTypedValue {
@@ -52,7 +53,6 @@ struct UnkActionSwitcherValue_b48 {
 };
 
 struct UnkActionSwitcherAnimation_b48;
-void fn_710117ad18(UnkActionSwitcherAnimation_b48* self, bool flag, f32 value);
 
 struct UnkActionSwitcherOwner_b48 {
     u8 pad_0x0[0x220];

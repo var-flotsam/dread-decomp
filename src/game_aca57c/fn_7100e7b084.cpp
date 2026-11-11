@@ -7,6 +7,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
 #include "types.h"
 
 extern void* g_unk_7101a1a5a8[];
@@ -74,7 +75,6 @@ struct UnkFormatArgs {
     u64 field_0x0;
     UnkFormatSource* source;
 };
-void fn_71000a1784(UnkFormatArgs* args, UnkTextBuffer200* out);
 
 UnkString100 fn_7100adc570(UnkFormatSource* self) {
     UnkTextBuffer200 text;

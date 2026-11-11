@@ -9,13 +9,14 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/global/timeline/CEvent.h"
+#include "game/CCharClassDropItemCrazyEvent.h"
+#include "game/SDropProbabilities.h"
+#include "game/UnkTU83.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-void fn_71007c7ddc(void*);
-u32 fn_7100cb51a0(const char* name);
 
 // A string id assigned like CStrId; the old one is released in two steps (the original reloads
 // `data` and the count after the decrement).
@@ -152,7 +153,6 @@ UnkDropItemParams_ovb0136 fn_7100cb7f90(UnkDropSpawnRequest_ovb0096* request) {
 }
 
 struct UnkStruct_0x28;
-void fn_71000ce19c(UnkStruct_0x28*, const UnkStruct_0x28*);
 
 struct UnkCopiedId_ovb0136 {
     UnkStringData* data;
@@ -230,8 +230,6 @@ struct UnkReleasedId_ovb0136 {
         }
     }
 };
-
-void fn_7100067ed4(void* self);  // the base's destructor
 
 extern char g_unk_7101aa5860[];
 

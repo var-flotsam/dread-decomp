@@ -3,6 +3,7 @@
 // and the gun accepts (virtual slot 0x140), switches to the pending gun (fn_710083f32c).
 // Names are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CGunComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -14,7 +15,6 @@ struct UnkSamusGunComponent {
     f32 timer;  // 0x17c
 };
 
-char* fn_710083cd4c(UnkSamusGunComponent* self);
 void fn_710083f32c(UnkSamusGunComponent* self, const CStrId* name, bool a, bool b, bool c);
 
 void fn_7100858790(UnkSamusGunComponent* self) {

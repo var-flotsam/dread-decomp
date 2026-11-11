@@ -3,9 +3,8 @@
 // vf_0x3b0 answers or a's x is zero it keeps the sign of the value at +0x1d8 in step with a's x and
 // raises the flags at +0x23d6, and with vf_0x3b0 true the direction becomes a unit step along x.
 // Names and layouts are placeholders.
+#include "game/CActorComponent.h"
 #include "types.h"
-
-bool fn_710024fbc8(void*);
 
 struct UnkMorphBall_fd88 {
     void** vtable;

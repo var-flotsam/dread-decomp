@@ -9,6 +9,7 @@
 #include "../game_aca57c/UnkBufferString.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2564.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -54,8 +55,6 @@ struct UnkIdsString40_b49 {
     UnkWords5_b49 field_0xb0;
 };
 static_assert(sizeof(UnkIdsString40_b49) == 0xc8, "UnkIdsString40_b49 layout");
-
-void fn_7100e6c960(char*);  // the record's destructor
 
 // A 0x18-byte record: a string id taken over on a move (released in two steps when destroyed) and
 // four words.

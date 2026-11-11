@@ -13,15 +13,14 @@
 #include "base/math/CVector.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkManager_71726af468.h"
+#include "game/UnkTU1629.h"
+#include "game/UnkTU2677.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::math::CVector3D;
 
-s32 fn_71010c0270(lua_State* L, const char* format, ...);
 extern u32 g_unk_71727bebb8;
-
-void fn_7100ad04c4(void*);
 
 struct UnkLuaDoorObj {
     virtual void vf_0x0();

@@ -11,12 +11,12 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
+#include "game/UnkTU83.h"
 #include "types.h"
 
 struct UnkVersionRegistry;
 struct UnkVersionEntry;
 extern UnkVersionRegistry* g_unk_7101d4c8d0;
-UnkVersionEntry* fn_71000a5118(UnkVersionRegistry* self, const u64* id);
 
 // A typed pointer to a value the reader fills (a CName id here).
 struct UnkReadArg_b0249 {

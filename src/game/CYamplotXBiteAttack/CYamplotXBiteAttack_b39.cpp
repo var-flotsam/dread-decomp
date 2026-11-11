@@ -3,6 +3,7 @@
 // second look either. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CYamplotXAIComponent.h"
 #include "game/UnkActor.h"
 #include "types.h"
 #include "game/CAttack.h"
@@ -24,7 +25,6 @@ struct UnkSelf;
 // Declared elsewhere with a float argument; this caller leaves s0 unset, so the value passed is left
 // undefined here.
 struct UnkYamplotXAI;
-bool fn_71006f29c4(UnkYamplotXAI* self, f32 value);
 
 bool fn_71006eca84(UnkBiteAttack_ybt* self, void* arg1, u32 arg2) {
     bool ok = fn_7100360b84(reinterpret_cast<CAttack*>(self), arg1, arg2);

@@ -20,9 +20,19 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CBlackboard.h"
+#include "game/CBreakableVignetteComponent.h"
+#include "game/CCharClassBreakableScenarioComponent.h"
+#include "game/CCharClassLightingComponent.h"
+#include "game/CCharacterMovement.h"
+#include "game/CNavMeshItemComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkSlots.h"
+#include "game/UnkTU1376.h"
+#include "game/UnkTU2677.h"
+#include "game/UnkTU365.h"
+#include "game/UnkTU372.h"
+#include "game/UnkTU39.h"
 #include "game/UnkTUProperty.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -146,7 +156,6 @@ struct UnkDoorFlag_b0251 {
 };
 
 bool fn_7100de9460(char* self, const base::UnkStrIdMember* key);
-void fn_71008cdf84(UnkDoorLock* door);
 extern base::UnkStrIdMember g_unk_7172731758 __attribute__((visibility("hidden")));
 extern CType g_unk_7172731af8 __attribute__((visibility("hidden")));
 
@@ -196,12 +205,8 @@ struct lua_State;
 extern lua_State* g_unk_7172a01d18;
 s32 fn_71010c0bb0(lua_State* L, const char* name);
 void fn_7100fbc4e0(lua_State* L, void* arg);
-s32 fn_71010c0d80(lua_State* L, s32 count, char* out, u32 out_size, void* a, void* b);
 struct UnkBreakablePart;
 struct UnkBreakableTarget;
-UnkBreakableTarget** fn_71002a76a4(UnkBreakablePart* part);
-void* fn_7100751520(void* key);
-void fn_710076351c(void* obj);
 extern UnkProperty g_unk_71727310c0;
 
 
@@ -295,7 +300,6 @@ struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkFlagged;
 struct UnkShape;
-UnkShape* fn_7100976588(UnkFlagged* flagged);
 
 struct UnkDoorShape_b0251 {
     virtual void vf_0x0();
@@ -407,13 +411,9 @@ bool fn_71008d1c50(UnkDoorHandles_b0251* self, void* target) {
     return false;
 }
 
-void* fn_71002b3b84(UnkWeakTarget*);
-void fn_71009c0f1c(void* object, u64 id);
 struct UnkDoorLock;
 struct UnkDoorLife_b44a2;
 void fn_71008d586c(UnkDoorLock* door, bool locked, u32 mode, CStrId* name);
-void fn_71008d498c(UnkDoorLife_b44a2* self, u32 a, u32 b, u32 c);
-bool fn_71008d0ef4(void*);
 
 struct UnkDoorFlow_b0251 {
     u8 pad_0x0[0x30];
@@ -451,16 +451,13 @@ using base::math::CVector4D;
 
 struct UnkDoorLock;
 struct UnkUnit2186Object;
-UnkUnit2186Object* fn_71008d5d2c(void* owner);
 struct UnkLightingComponent2;
-void fn_71008e7e98(UnkLightingComponent2* self, const u64* id, void* arg, f32 value);
 extern u64 g_unk_710164b098 __attribute__((visibility("hidden")));
 struct UnkStruct_71727313a4 {
     CColor4F colours[3];
 };
 extern UnkStruct_71727313a4 g_unk_71727313a4;
 void fn_71001c2ec0(void* target, u32 a, u32 b, CVector4D* colour, u32 c, f32 time);
-bool fn_710002fb70(void* timer);
 struct UnkEnumType;
 extern UnkProperty g_unk_7172731160;
 extern UnkEnumType g_unk_7172731200;

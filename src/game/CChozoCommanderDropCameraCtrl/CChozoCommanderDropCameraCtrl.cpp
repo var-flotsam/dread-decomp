@@ -1,7 +1,9 @@
 // In the CChozoCommanderDropCameraCtrl unit: after the base step (fn_71010ee17c), clears the vector at
 // +0x2a4 and, when there is a player (fn_7100dec788 of the game manager), copies its position
 // (fn_7100d7c9f4) to +0x244 and +0x238; then clears +0x254. Names and layouts are placeholders.
+#include "game/CCameraCtrl.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2523.h"
 
 struct UnkPlayer;
 
@@ -21,9 +23,7 @@ struct UnkChozoCommanderDropCameraCtrl {
     UnkDropCameraVec3 field_0x2a4;
 };
 
-void fn_71010ee17c(UnkChozoCommanderDropCameraCtrl* self);
 UnkPlayer* fn_7100dec788(UnkGameManager* manager);
-const UnkDropCameraVec3* fn_7100d7c9f4(UnkPlayer* player);
 
 void fn_7100797df0(UnkChozoCommanderDropCameraCtrl* self) {
     fn_71010ee17c(self);

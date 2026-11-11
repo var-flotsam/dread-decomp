@@ -4,13 +4,13 @@
 // +0x5d9) the owner (+0x30) has a timeline (+0x2e8), the id g_unk_710164a610 is set to the all-flags
 // mask (as src/game/CKraidAIComponent/fn_7100600c98.cpp). Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CProjectileMovement.h"
 #include "game/UnkActor.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
 
 struct UnkNailongThornMovement;
-void fn_7100ac3a78(UnkNailongThornMovement* self, f32 dt);
 
 extern UnkTunable g_unk_7172702318;
 

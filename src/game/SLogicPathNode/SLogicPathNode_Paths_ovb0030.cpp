@@ -16,6 +16,8 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/SLogicPathNode.h"
+#include "game/UnkTU2563.h"
 #include "game_s2/UnkItem50.h"
 #include "types.h"
 
@@ -186,7 +188,6 @@ void fn_710106111c(UnkPathPointArray* array, u32 count) {
 
 struct UnkInsertTarget;
 struct UnkArgObj;
-void fn_710106146c(UnkInsertTarget* target, const UnkArgObj* obj, u32 value);
 
 // A point as fn_710106146c takes it (not destroyed afterwards).
 struct UnkPathPointInit {
@@ -415,7 +416,6 @@ void fn_710105e5f8(void* dst, const void* src) {
 }
 
 struct UnkPolyVector;
-UnkPolyVector* fn_7100e4e898(UnkPolyVector* self, const UnkPolyVector* other);
 
 struct UnkPathItemA {
     void** vtable;

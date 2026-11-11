@@ -1,6 +1,8 @@
 // Attack "start" overrides that call their base, then hook a callback up to the object the owner
 // tracks: CChozoWarriorXGlaiveSpinAttack fn_71004817f4, CCooldownXBossReaperAttack fn_71004c98dc,
 // CKraidFierceSwipeAttack fn_71005f420c. Same shape as fn_7100932b48 (CMenuAnimationChangeComponent).
+#include "game/CCooldownXBossAttack.h"
+#include "game/CKraidAttack.h"
 #include "game_s2/UnkWeakHandle.h"
 
 struct UnkSelf;
@@ -9,8 +11,6 @@ void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
 void fn_710117b3e8(UnkWeakTarget* target, void* link);
 
 void fn_7100494c90(char* self);
-void fn_71004c1944(UnkSelf* self);
-void fn_71005f2018(char* self);
 void fn_7100482254();
 void fn_71004ca35c();
 void fn_71005f4d14();

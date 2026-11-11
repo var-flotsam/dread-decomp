@@ -4,10 +4,9 @@
 // the target (signs of the facing and of the x offset differ) or is not yet decided (|facing| < 0.9).
 // Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
+#include "game/CEnemyMovement.h"
 #include "game/UnkActor.h"
 #include "types.h"
-
-u32 fn_71010cc3a4(void*);
 
 struct UnkChozoWarriorAI_b49 {
     u8 pad_0x0[0x30];

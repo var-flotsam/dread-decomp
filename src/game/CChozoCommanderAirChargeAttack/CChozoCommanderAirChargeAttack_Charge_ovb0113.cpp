@@ -5,7 +5,11 @@
 // actor's +0x220 component is in mode 4). Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAnimationComponent.h"
+#include "game/CChozoCommanderAirAttack.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU1501.h"
+#include "game/UnkTU1728.h"
 #include "game_s2/UnkParams.h"
 #include "../../game_s2/UnkSpitSend.h"
 #include "types.h"
@@ -13,12 +17,9 @@
 using base::reflection::UnkReflObject;
 
 struct UnkTakumakuComponent;
-bool fn_7101178e6c(UnkTakumakuComponent* component, u32 kind);
-bool fn_71009e84e4(char* self);
 
 struct UnkSetup;
 struct UnkRequester;
-bool fn_7100424b50(UnkRequester* self, void* request, u32 flag);
 
 struct UnkChargeAI_ovb0113 {
     u8 pad_0x0[0x15d1c];
@@ -101,10 +102,7 @@ struct UnkTimeline {
     UnkMotionTracks* tracks;  // 0x80
 };
 
-void* fn_7101176e0c(UnkStruct_7101176ea8* self, u64 a, u64 b);
 void fn_71007142e8(UnkStruct_71007142e8* self);
-void fn_7100b8b3bc(UnkTimeline* self, void* target, UnkMotionTracks* tracks, const u32* flags, f32 from,
-                   f32 to);
 
 struct UnkChargeOwner_ovb0113 {
     u8 pad_0x0[0x220];

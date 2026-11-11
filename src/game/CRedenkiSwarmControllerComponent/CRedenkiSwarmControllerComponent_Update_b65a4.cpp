@@ -3,6 +3,7 @@
 // object (fn_7100745e24) and asks fn_710073fea8 for a point within 50 of it; when it finds one, the
 // point goes to the record at +0x31c (fn_7100737d4c, its flag set), fn_710073f7bc gets 1 and +0x568
 // becomes 1.5. Names and layouts are placeholders.
+#include "game/CFlockingSwarmControllerComponent.h"
 #include "types.h"
 
 // As src/game/CRedenkiSwarmControllerComponent/CRedenkiSwarmControllerComponent_b38.cpp defines it.
@@ -18,7 +19,6 @@ UnkVec3Result fn_7100745e24(UnkParent_71007455dc* parent);
 
 // As src/game/CRedenkiSwarmControllerComponent/CRedenkiSwarmControllerComponent.cpp declares it.
 struct UnkRedenkiSwarmController;
-void fn_710073f7bc(UnkRedenkiSwarmController* self, u32 value);
 
 struct UnkSwarmPoint_b65a4 {
     u64 value;
@@ -40,9 +40,6 @@ struct UnkSwarmUpdate_b65a4 {
 };
 
 void fn_710074c684(UnkSwarmUpdate_b65a4* self, void* arg);
-UnkParent_71007455dc* fn_7100739c64(UnkSwarmUpdate_b65a4* self);
-bool fn_710073fea8(UnkSwarmUpdate_b65a4* self, const UnkVec3Result* pos, UnkSwarmPoint_b65a4* out, f32 range);
-void fn_7100737d4c(UnkSwarmRecord_b65a4* record, const UnkSwarmPoint_b65a4* point);
 
 void fn_7100650260(UnkSwarmUpdate_b65a4* self, void* arg) {
     fn_710074c684(self, arg);

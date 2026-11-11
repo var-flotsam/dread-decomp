@@ -3,9 +3,9 @@
 // +0x5e0 and +0x5e8 (cleared, then pointed at the pool's empty string, creating the pool first when there
 // is none). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CProjectileMovement.h"
 #include "types.h"
 
-void fn_7100ac2c5c(void* self);
 extern void* g_unk_7101a57008[];
 
 struct UnkNailuggerAcidBallMovement {

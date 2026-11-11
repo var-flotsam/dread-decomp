@@ -5,17 +5,17 @@
 // Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2566.h"
+#include "game/UnkTU883.h"
 #include "types.h"
 
 struct UnkMapData;
 struct UnkCallback;
 void fn_7100219c6c(UnkRenderManager*, bool, u64, u32, bool);
-UnkMapData* fn_7100e8d8b0();
 void fn_7100e95130(UnkMapData* map, u64 id);
 extern void* g_unk_7101d47360;
 void fn_7100ee1f34(void*);
 void fn_71005c4828(void*, void**);
-void fn_71005c41bc(void*, UnkCallback*);
 
 struct UnkKeyed_bv {
     u8 pad_0x0[0x30];

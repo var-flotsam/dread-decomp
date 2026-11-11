@@ -2,6 +2,7 @@
 // object at +0x158 of the area data is there, it is the area's two corners widened by fixed
 // margins; otherwise the phase's corners, the top pushed up to keep the target (with the height
 // of its movement, fn_7100977bec) in view. Names and layouts are placeholders.
+#include "game/CCharacterMovement.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
@@ -46,7 +47,6 @@ struct UnkKraidAIComponent {
 };
 
 struct UnkFlagged;
-f32 fn_7100977bec(UnkFlagged* flagged);
 
 static inline f32 Max(f32 a, f32 b) { return a > b ? a : b; }
 

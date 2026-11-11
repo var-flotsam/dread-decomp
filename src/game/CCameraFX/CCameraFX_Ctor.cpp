@@ -5,11 +5,11 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/CGameObject.h"
 #include "types.h"
 
 using base::global::UnkStrId;
 
-void fn_7101043904(void*);
 extern char g_unk_7101cb1b78[];
 
 struct UnkCameraFXBase {

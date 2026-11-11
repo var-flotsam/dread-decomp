@@ -5,7 +5,12 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAIManager/CTunableAIManager.h"
 #include "game/CBlackboard.h"
+#include "game/CCharacterLifeComponent.h"
+#include "game/CFrozenComponent.h"
+#include "game/CLifeComponent.h"
+#include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTUProperty.h"
@@ -37,7 +42,6 @@ void fn_710115a6e8(UnkLinkLists_ovb0043* self) {
 
 struct UnkFrostbiteComponent;
 struct UnkFrostbiteRequest;
-bool fn_71007fb280(UnkFrostbiteComponent* self, UnkFrostbiteRequest* request);
 
 struct UnkEnemyLifeRequest_ovb0043 {
     u8 pad_0x0[0xf8];
@@ -94,8 +98,6 @@ struct UnkEnemyLifeDtor_ovb0043 {
     UnkLifeRenderObject_ovb0043* render;  // 0x270
 };
 
-void fn_7101158c4c(UnkEnemyLifeDtor_ovb0043* self);
-
 // The destructor: the render object (+0x270) is taken off the render manager (layer 0) and cleared, the
 // shared object (+0x258) released, then the base destructor fn_7101158c4c.
 void fn_710115a848(UnkEnemyLifeDtor_ovb0043* self) {
@@ -142,8 +144,6 @@ u32 fn_710115b0f4(UnkEnemyLifeComponentAI_ovb0043* self, void* a, void* b, void*
     return value;
 }
 
-void fn_71011a664c(char* instance);  // constructs the instance
-void fn_71011a710c(char* instance);
 extern char* g_unk_71726b2398;       // the instance, reached through the GOT
 
 struct UnkEnemyLifeAIState_ovb0043 {
@@ -247,12 +247,10 @@ struct UnkEnemyLifeComponent3_ovb0043 {
     bool field_0x268;
 };
 
-void fn_710115fc5c(char*);
 f32 fn_71008bce1c(void* obj);
 void fn_7101156fe8(void* obj);
 struct UnkAIManager_da92b0;
 struct UnkAITarget_da92b0;
-void fn_7100da9bd4(UnkAIManager_da92b0* self, UnkAITarget_da92b0* target);
 
 // The reset: the life component's (fn_710115fc5c), both values at +0x50/+0x54 from fn_71008bce1c, the
 // AI blackboard's property (id table +0xf80) zeroed, fn_7101156fe8 on the actor's +0x280 and the actor

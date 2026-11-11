@@ -5,6 +5,7 @@
 // Names and layout are placeholders.
 #include "base/UnkSList.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU2732.h"
 #include "types.h"
 
 struct UnkListedItem;
@@ -13,7 +14,6 @@ using UnkItemList = base::UnkSList<UnkItemListTag>;
 void fn_710119ba7c(UnkItemList* self, UnkListedItem* item);
 
 extern void* g_unk_7172729910;  // the item list singleton
-void fn_710119aee8(void* self);
 
 struct UnkInputEntry_b44a2 {
     u8 pad_0x0[0x3c];

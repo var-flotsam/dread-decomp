@@ -2,6 +2,7 @@
 // +0x278 object already runs the entry at +0x150d0 (its +0x1a0), stops it (its virtual at vtable +0x178) and
 // starts the entry at +0x157f0 on it (fn_7101134420, with -1 and no options). Names and layouts are
 // placeholders.
+#include "game/CAIAttackComponent.h"
 #include "types.h"
 
 struct UnkCommanderPlayer_b67a2 {
@@ -11,8 +12,6 @@ struct UnkCommanderPlayer_b67a2 {
 
     void vf_0x178() { reinterpret_cast<void (*)(UnkCommanderPlayer_b67a2*)>(vtable[0x178 / 8])(this); }
 };
-
-void fn_7101134420(UnkCommanderPlayer_b67a2* player, void* entry, u32 arg2, u32 arg3, void* arg4, f32 arg5);
 
 struct UnkCommanderOwner_b67a2 {
     u8 pad_0x0[0x278];

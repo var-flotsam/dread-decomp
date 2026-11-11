@@ -7,12 +7,12 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CItemLifeComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkLifeComponent_A5_b71;
-void fn_71008e04e8(UnkLifeComponent_A5_b71* self);
 extern void* g_unk_7101a7d4e0[];  // the class's vtable
 extern void* g_unk_7101a22d48[];
 extern void* g_unk_7101a77000[];

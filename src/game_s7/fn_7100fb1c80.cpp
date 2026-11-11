@@ -4,6 +4,7 @@
 #include "UnkStaticInitS7.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
+#include "game/UnkTU2577.h"
 #include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
@@ -14,7 +15,6 @@ struct UnkStatics_7100fb1c80 {
 extern UnkStatics_7100fb1c80 g_unk_71729eee48 __attribute__((visibility("hidden")));
 extern char g_unk_71729ee1b8[];
 void fn_7100fadb10(void* self, const UnkStrIdBase* ids, u32 count);
-void fn_7100ee1548(void* self);  // its destructor, as registered
 extern char g_unk_71729ee200[];
 extern UnkConversion g_unk_71729ee368;
 extern UnkConversion g_unk_71729ee388;

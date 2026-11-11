@@ -1,9 +1,9 @@
 // CCharClassMovementComponent: the constructor body fn_710097b250, fn_710097b304 without the
 // class-entry pass. Names and layouts are placeholders.
+#include "game/CCharClassComponent.h"
 #include "types.h"
 
 struct UnkStruct_71008bca30;
-void fn_71011acd10(UnkStruct_71008bca30* self);
 extern void* g_unk_7101a85840[];
 
 struct UnkCharClassMovementComponent {

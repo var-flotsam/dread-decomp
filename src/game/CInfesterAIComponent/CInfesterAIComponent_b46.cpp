@@ -2,6 +2,7 @@
 // owner's animation component (+0x30, then +0x220), runs two animation calls around a lookup of one
 // action by key; when found, fills an identity matrix for it and keeps its translation at +0x146e4.
 // The flag at g_unk_71726ec411 marks it done. Names are placeholders.
+#include "game/CAnimationComponent.h"
 #include "types.h"
 
 struct UnkAnimActionSetsOwner;
@@ -29,7 +30,6 @@ extern u8 g_unk_71726ec411 __attribute__((visibility("hidden")));
 // Signatures as the other AI units declare them.
 void fn_710117662c(UnkActorTarget*, u32, u32, u32, u32, f32);
 void* fn_7101176d34(UnkStruct_7101176ea8*, void*);
-void fn_7101179878(UnkAnimActionSetsOwner* anim, void* entry, u32 a, u64 key, UnkMtx44_b46a2* out, u32 b, f32 c);
 void fn_7101178e08(UnkActorTarget*, u32, u32, u32, f32);
 
 void fn_71005cafa4(UnkInfesterAI_b46a2* self) {

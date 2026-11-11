@@ -1,15 +1,12 @@
 // Unit 239 (no reflected class): a render target's tracked memory block and its counters. Names and
 // layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU182.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkRenderTargetSlot;
-
-void fn_7100160590(u64 slot);
-void fn_710015f810(UnkRenderTargetSlot* out, u32 format, u32 width, u32 height, u32 a, void* b, void* c, u32 d,
-                   u32 e);
 
 struct UnkTrackedBlock_ovb0176 {
     u8 pad_0x0[4];

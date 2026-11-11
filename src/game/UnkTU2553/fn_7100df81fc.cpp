@@ -1,7 +1,6 @@
 #include "base/global/CFilePathStrId.h"
+#include "game/UnkTU0.h"
 #include "types.h"
-
-void fn_7100000790(const char* name, const char* fmt, ...);
 
 void fn_7100df81fc(u32 code, u32 value) {
     switch (code) {

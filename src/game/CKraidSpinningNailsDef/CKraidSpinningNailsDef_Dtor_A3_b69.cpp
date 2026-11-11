@@ -3,11 +3,11 @@
 // destructor fn_71005dbe04. Names are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "game/CCharClassKraidAttack.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
 
 extern void* g_unk_7101a538e0[];
-void fn_71005dbe04(void* self);  // the base's destructor
 
 struct UnkSpinningNailsDtor_A3_b69;
 

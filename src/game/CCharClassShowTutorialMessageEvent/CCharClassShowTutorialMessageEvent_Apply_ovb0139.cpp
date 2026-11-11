@@ -4,6 +4,7 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CChozoCommanderAIComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -13,7 +14,6 @@ struct UnkTutorialComposition;
 void fn_7100b88f10(UnkTutorialComposition* self, const CStrId* text);
 
 struct UnkMlogMessage_b42a1;
-void fn_7100456b7c(void* callbacks, const UnkMlogMessage_b42a1* message);
 
 // The message's text id: copied like a CStrId, released in two steps like base::UnkStrIdMember.
 struct UnkMlogText_ovb0139 : base::global::UnkStrIdBase {

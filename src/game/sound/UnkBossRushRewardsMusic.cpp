@@ -7,6 +7,7 @@
 #include "../../game_aca57c/UnkBufferString.h"
 #include "base/UnkNamedRegistry.h"
 #include "base/global/CRntString.h"
+#include "game/UnkTU2725.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -17,7 +18,6 @@ using UnkString20 = UnkBufferString<0x20, g_unk_7101a1b5a0>;
 // The music trigger base as this file sees it (src/game/sound/UnkMusicTrigger.cpp defines it and its
 // constructor, fn_7101186780): its vtable, the music entry's name and flags.
 struct UnkMusicTrigger;
-void fn_7101186780(UnkMusicTrigger* self);
 struct UnkMusicTriggerBase {
     char* vtable;
     CRntString name;  // 0x8

@@ -11,9 +11,15 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CAbility.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CFXComponent.h"
+#include "game/CGrabComponent.h"
+#include "game/CModelUpdaterComponent.h"
 #include "game/UnkComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU1428.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -44,12 +50,6 @@ struct UnkEnergyWaveFxComp_b49;
 
 UnkOwner* fn_7100defcd4(UnkGameManager*);
 UnkPlayer* fn_7100dec788(UnkGameManager*);
-void fn_710113f270(UnkEnergyWaveCompA_b49* comp, void* object);
-void fn_710094f8f0(UnkEnergyWaveCompB_b49* comp, UnkEnergyWaveObject_b49* object);
-void fn_71002fda50(UnkStruct_71002fda50* self, bool all, bool force_off);
-void fn_71002f8848(UnkWaveChild_A2_b72* child);
-void fn_710115372c(UnkWorld* world);
-void fn_71011738f8(UnkEnergyWaveFxComp_b49* comp, void* id, u32 flags);
 extern char g_unk_7101648d28[];
 extern const u64 g_unk_7101648d18;
 
@@ -91,4 +91,3 @@ UnkReflValue fn_7100302c14(void*, char* obj, UnkReflValue* const* args) {
     return BoolValue(fn_71003010e0(self, ArgPtr<CStrId>(&a[0]), *base::reflection::refl_ArgValue<u8>(&a[1]) != 0,
                                    *base::reflection::refl_ArgValue<bool>(&a[2])));
 }
-

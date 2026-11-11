@@ -4,6 +4,7 @@
 // g_unk_71726eb430 (the first against ids 1 and 0, the second against ids 4, 2 and 3). Names and
 // layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -11,7 +12,6 @@ using base::global::CStrId;
 // Declared as src/game/CKraidAIComponent/CKraidAIComponent_2.cpp does.
 struct UnkKraidAI2;
 struct UnkKraidRequest;
-void fn_7101105c90(UnkKraidAI2* self, void* arg, UnkKraidRequest* request);
 
 struct UnkCollisionContainer;
 CStrId* fn_7100864018(UnkCollisionContainer* self, void* object);

@@ -1,6 +1,7 @@
 // CChozoWarriorAIComponent's unit (tools/tu_map.py): sends ids 0x10 and 0x20 to the owner's (+0x30) controller
 // (+0x220) through fn_71011785a8 / fn_7101178564, choosing which goes through which by the flag at +0x14999 and a
 // query on the owner's +0x228 object. Names and layouts are placeholders.
+#include "game/CAnimationComponent.h"
 #include "types.h"
 
 // As src/game/CShakernautAIComponent/CShakernautAIComponent_Flip_b53.cpp declares them.
@@ -9,8 +10,6 @@ struct UnkShakernautId_b53 {
     u32 value;
     u32 unk_0x4;
 };
-void fn_71011785a8(UnkShakernautCtrl_b53*, const UnkShakernautId_b53*, bool, bool);
-void fn_7101178564(UnkShakernautCtrl_b53* self, const UnkShakernautId_b53* id, bool a, bool b);
 
 bool fn_7101173914(char* p0, char* p1);
 extern char g_unk_71016499d8[];

@@ -3,13 +3,13 @@
 // clears the 7 bytes at +0x146ac and the 16 at +0x146b8, then runs the class entries (fn_7100023854). Defined
 // under the `void()` symbol src/reflection/CBehaviorTreeAIComponent.cpp declares (the b64a4 alias pattern, as
 // src/game/CBatalloonAIComponent/CBatalloonAIComponent_Ctor_b67a2.cpp). Names and layouts are placeholders.
+#include "base/core/CBaseObject.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 struct UnkNode;
-void fn_7100023854(UnkNode* node);
 
 struct UnkBtAI_A2_b76;
-void fn_71010f813c(UnkBtAI_A2_b76* self);
 extern void* g_unk_7101a24230[];
 
 struct UnkBtAI_A2_b76 {

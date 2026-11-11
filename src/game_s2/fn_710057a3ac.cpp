@@ -2,6 +2,7 @@
 // fn_7101136308 of its object at 0x278 holds.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAttackComponent.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -27,8 +28,6 @@ struct UnkSelf {
     u8 unk_0x0[0x18];
     UnkNode* head;
 };
-
-bool fn_7101136308(void* a0);
 
 bool fn_710057a3ac(UnkSelf* self) {
     for (UnkNode* node = self->head; node; node = node->next) {

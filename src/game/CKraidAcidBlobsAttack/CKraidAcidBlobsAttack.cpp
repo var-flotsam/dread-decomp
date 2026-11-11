@@ -3,6 +3,7 @@
 // count at +0x118 (0 when the count is 0) into +0x44. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU2772.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -21,7 +22,6 @@ struct UnkKraidAcidBlobsAttack {
 };
 
 void fn_71005f1fb4(char* s, base::reflection::UnkReflObject* a);
-int fn_71012395a0();
 
 void fn_71005f122c(UnkKraidAcidBlobsAttack* self, UnkKraidAcidBlobsDef* def) {
     fn_71005f1fb4(reinterpret_cast<char*>(self), reinterpret_cast<base::reflection::UnkReflObject*>(def));

@@ -5,6 +5,7 @@
 // raised and never lowered, as in the original. Names and layouts are placeholders.
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -42,9 +43,6 @@ struct UnkGoliathHitTarget_b55 {
     u8 pad_0x0[0x10];
     void* field_0x10;
 };
-
-u32 fn_71011061ac(UnkGoliathAI_b55* self, u32* out, void* arg2, UnkGoliathHitInfo_b55* info,
-                  UnkGoliathHitTarget_b55** hit);
 
 u32 fn_71005916b4(UnkGoliathAI_b55* self, u32* out, void* arg2, UnkGoliathHitInfo_b55* info,
                   UnkGoliathHitTarget_b55** hit) {

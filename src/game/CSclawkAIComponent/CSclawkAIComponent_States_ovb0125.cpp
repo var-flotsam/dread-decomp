@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -13,8 +14,6 @@ using base::global::UnkStringPool;
 struct UnkGoliathAI_b55;
 struct UnkGoliathHitInfo_b55;
 struct UnkGoliathHitTarget_b55;
-u32 fn_71011061ac(UnkGoliathAI_b55* self, u32* out, void* arg2, UnkGoliathHitInfo_b55* info,
-                  UnkGoliathHitTarget_b55** hit);
 base::global::UnkStringData** fn_7101177ae8(UnkAnimationComponent* self, u64 kind);
 
 // A copied string id whose destructor does not test for a null id.

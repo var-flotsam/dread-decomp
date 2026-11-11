@@ -3,13 +3,13 @@
 // and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
+#include "game/CPhotoModeCameraCtrl.h"
+#include "game/UnkTU2725.h"
 #include "types.h"
 
 using base::global::CRntString;
 
 struct UnkMusicTrigger;
-void fn_7101186780(UnkMusicTrigger* self);
-void fn_71009ca9fc(void*, const char*, u32);
 extern void* g_unk_7101cb4ef8[];
 extern void* g_unk_7101cb5010[];
 

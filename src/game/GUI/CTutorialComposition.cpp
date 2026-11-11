@@ -1,4 +1,5 @@
 // GUI::CTutorialComposition (unit 1727 of tools/tu_map.py). Names and layouts are placeholders.
+#include "game/GUI/CArchivesInspectorComposition.h"
 #include "types.h"
 
 struct UnkTutorialRequest {
@@ -19,7 +20,6 @@ struct UnkTutorialComposition {
 };
 
 // Queues the callbacks at +0x230 with `request` (generated, src/clones/).
-void fn_7100af3364(void* set, UnkTutorialRequest* const* request);
 
 // Leaves the tutorial unless the request was already handled: sends "OnExit", runs the exit
 // callbacks with the request and marks it handled.

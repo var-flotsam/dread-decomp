@@ -6,6 +6,7 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
+#include "game/UnkTU172.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -83,7 +84,6 @@ extern u32 g_unk_716e2a3440;
 extern u64 (*g_unk_716e29b088)(void*);
 extern void (*g_unk_716e29aef0)(void* sync, void* device);
 extern void (*g_unk_716e29af08)(void* sync, u32 count, void* descs);
-void* fn_7100153cd0();
 
 // Through a wrapper: the arguments are evaluated before the entry point is loaded.
 static inline void InitializeSync(void* sync, void* device) {

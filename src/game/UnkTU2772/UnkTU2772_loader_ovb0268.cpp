@@ -4,13 +4,13 @@
 
 #include <nn/audio.h>
 
+#include "game/UnkTU2772.h"
 #include "types.h"
 
 void* fn_71001039f8();
 u32 fn_7101213d2c(char* p0);
 
 struct UnkAtkVoice;
-void fn_710122faa0(UnkAtkVoice* self, void* params, u32 arg);
 
 struct UnkAtkArchive;
 struct UnkAtkArchive_b0148;
@@ -33,9 +33,6 @@ struct UnkAtkWave_b0150 {
     u8 pad_0x19[7];
 };
 
-bool fn_7101206ad8(UnkAtkArchive_b0148* archive, UnkAtkEntryIndex_b0148* out, s32 key);
-bool fn_7101206e60(UnkAtkArchive* archive, u32* out, u32 id);
-bool fn_7101206ed4(UnkAtkArchive* archive, u32 id, UnkAtkInfo_b0150* out);
 bool fn_7101206fac(UnkAtkArchive* archive, u64* out, u32 id);
 
 // ---- 71012128f0 ----
@@ -104,12 +101,7 @@ struct UnkAtkLoaderObject_b0148 {
     UnkAtkArchive* archive;  // 0x8
 };
 
-u32 fn_7101212f5c(UnkAtkInfo_b0150* info);
-void fn_7101212f94(UnkAtkWave_b0150* w, void* data, u32 mode);
-void fn_7101213168(UnkAtkInfo_b0150* info);
 bool fn_7101213100(char* p0);
-u64 fn_71012131a0(UnkAtkWave_b0150* w, u32 index);
-u64 fn_7101213294(UnkAtkWave_b0150* w, u32 index, void* data);
 
 void fn_710121279c(UnkAtkLoaderObject_b0148* self, u32 id, void* arg) {
     UnkAtkInfo_b0150 info;

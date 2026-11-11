@@ -3,6 +3,7 @@
 // the key g_unk_710164a0d0 to fn_7100709f20 with 100 when the message id is g_unk_71726eb450, else 60.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CTentacle.h"
 #include "types.h"
 
 extern base::global::CStrId g_unk_71726eb450 __attribute__((visibility("hidden")));
@@ -19,8 +20,6 @@ struct UnkHydrogigaOwner_b62a3 {
 
 struct UnkHydrogigaTarget_b62a3;
 UnkHydrogigaTarget_b62a3* fn_71005b9ad8(void* part, const u64* key);  // the entry with the id at key
-void fn_7100709f20(UnkHydrogigaTarget_b62a3* target, UnkHydrogigaOwner_b62a3* owner, UnkHydrogigaKey_b62a3* key,
-                   f32 value);
 
 struct UnkHydrogigaSpawnAI_b62a3 {
     u8 pad_0x0[0x30];

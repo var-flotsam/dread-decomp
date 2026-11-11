@@ -2,6 +2,8 @@
 // runs the base update with the same arguments.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CProjectileMovement.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -31,8 +33,6 @@ struct UnkBossComponent {
 };
 
 void fn_71004d43dc(UnkBossAI* ai, void* target);
-void fn_7100232c68(void* target);
-bool fn_7100ac4c60(UnkBossComponent* self, u64 a, u64 b, u64 c, u64 d);
 
 bool fn_71004d77f4(UnkBossComponent* self, u64 a, u64 b, u64 c, u64 d) {
     if (!self->field_0x5d8)

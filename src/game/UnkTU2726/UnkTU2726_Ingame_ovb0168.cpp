@@ -15,18 +15,22 @@
 #include "base/input/UnkRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CActorComponent.h"
 #include "game/CBlackboard.h"
 #include "game/UnkCameraCtrl.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU2656.h"
+#include "game/UnkTU2730.h"
+#include "game/UnkTU2768.h"
+#include "game/UnkTU39.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 extern void* g_unk_7101d47330;
 void fn_7101198654(void* manager);
 bool fn_7101198674(void* manager);
-bool fn_710002fb70(void*);
 
 struct UnkIngameMenu_ovb0168;
 
@@ -193,11 +197,7 @@ struct UnkPlayer;
 extern void* g_unk_7101d47330;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 bool fn_71011b3838(UnkGuiRoot* root);
-bool fn_7101053a7c(void* object);
-bool fn_7101053a0c(void* object);
-bool fn_710024fbc8(void* object);
 bool fn_71008723f4(void* object, const CStrId* id);
-bool fn_7101196fd8(void* manager);
 extern "C" int __cxa_guard_acquire(u64* guard);
 extern "C" void __cxa_guard_release(u64* guard);
 
@@ -272,7 +272,6 @@ using base::input::UnkRumbleManager;
 
 struct UnkUserDataOwner;
 extern UnkUserDataOwner* g_unk_7101d47308;
-void fn_710120320c(UnkUserDataOwner* self);  // constructor
 CBlackboard* fn_710120384c(UnkUserDataOwner* self);
 bool fn_71010474f4(CBlackboard* self, const CStrId& section, const CStrId& name);
 extern UnkRumbleManager* g_unk_7101d47348;

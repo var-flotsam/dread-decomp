@@ -2,13 +2,13 @@
 // fn_710115f7bc, the vtable, the string-id list at +0x240 (fn_71008e4154), two small objects at
 // +0x278 and +0x298 (each a vtable and cleared words), then the post-construction virtual call
 // (slot 3). Names and layouts are placeholders.
+#include "game/CLifeComponent.h"
 #include "types.h"
 
 extern void* g_unk_7101a7f280[];
 extern void* g_unk_7101a77000[];
 extern void* g_unk_7101a22d48[];
 
-void fn_710115f7bc(void* self);
 void fn_71008e4154(char* self);
 
 struct UnkPowerBombBlockSlotA {

@@ -1,5 +1,6 @@
 // Queries up to 64 objects around a point and switches each one (by its kind) to state 2 or 1.
 // Names and layouts are placeholders.
+#include "game/CBreakableTileGroup.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -30,9 +31,6 @@ struct UnkHit {
 };
 
 void fn_7100ca257c(void* where, void* filter, u32 flags, u32 max, UnkHit* hits, u32* count, f32 f);
-u32 fn_7100c9e960(UnkQueryObj* obj);
-void fn_7100c9ea08(UnkQueryObj* obj);
-void fn_7100c9e6ac(UnkQueryObj* obj, u32 state, bool a, bool b);
 
 struct UnkSwitcher {
     virtual void vf_0x0();

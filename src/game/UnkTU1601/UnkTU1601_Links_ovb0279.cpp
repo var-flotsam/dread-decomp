@@ -4,16 +4,17 @@
 #include "base/UnkRefHandle.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CActorComponent.h"
+#include "game/CDoorShieldLifeComponent.h"
+#include "game/UnkTU0.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-void fn_7100000790(const char*, const char*, ...);
 struct UnkDoorLock;
 UnkDoorLock* fn_71002af860(UnkWeakTarget*);
 struct UnkDoorShieldStore_A4_b76;
-void fn_71008db4e4(UnkDoorShieldStore_A4_b76* self);
 
 // A counted reference to a weak handle.
 struct UnkRef {
@@ -120,7 +121,6 @@ void fn_7100a925a0(UnkThermalDevice_A5_b73* component) {
 }
 
 struct UnkStruct_710024fa0c;
-void fn_710024fa0c(UnkStruct_710024fa0c*, bool);
 UnkStruct_710024fa0c* fn_7100a9312c(UnkWeakTarget*);
 
 void fn_7100a92424(UnkThermalDevice_b0279* self) {

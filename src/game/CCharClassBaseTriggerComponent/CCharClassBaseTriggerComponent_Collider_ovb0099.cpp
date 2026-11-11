@@ -7,8 +7,11 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CComponent.h"
+#include "game/CDemolitionBlockComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkGameManager.h"
+#include "game/logic/collision/CCollider.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -84,7 +87,6 @@ struct UnkStruct_71007e44b8;
 struct UnkObj_71007e44b8;
 UnkObj_71007e44b8* fn_71007e44b8(UnkStruct_71007e44b8* self, void* owner, const base::global::CStrId* name, u32 index);
 struct UnkTriggerCollider_b0058;
-void fn_7100d36d30(UnkTriggerCollider_b0058* self, void* shape);
 void fn_7100d36e24(UnkTriggerCollider_b0058* self, void* shape);
 
 static inline UnkManager_7100863a8c* Manager() {
@@ -252,8 +254,6 @@ UnkBaseTriggerWeakRecord& UnkBaseTriggerWeakRecord::operator=(const UnkBaseTrigg
 }
 
 struct UnkStateObject;
-void fn_71010c4148(UnkStateObject* self);
-void fn_71007b1528(char* self);
 void fn_710002f4e4(void*);
 extern void* g_unk_7101a7ac20[];
 extern void* g_unk_7101a8ebc8[];

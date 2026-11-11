@@ -15,6 +15,11 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
+#include "game/UnkTU25.h"
+#include "game/UnkTU2677.h"
+#include "game/UnkTU426.h"
+#include "game/UnkTU83.h"
+#include "game/lua_lib.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -29,7 +34,6 @@ struct UnkFormatArgs;
 struct UnkVersionRegistry;
 struct UnkVersionEntry;
 extern UnkVersionRegistry* g_unk_7101d4c8d0;
-UnkVersionEntry* fn_71000a5118(UnkVersionRegistry* self, const u64* id);
 base::reflection::UnkReflTypedPtr fn_710009d6d0(const base::reflection::CType* type, u32 flags);
 int lua_type(lua_State* L, int idx);
 
@@ -38,8 +42,6 @@ struct UnkLuaReadScratch_b49a6 {
 };
 bool fn_7100fc22a0(lua_State* L, s32 index, UnkTypedRef* value, u32 mode, UnkLuaReadScratch_b49a6* scratch);
 s32 fn_7100fbde20(void* state, UnkFormatArgs* value, s32 arg0, s32 arg1);
-
-s32 fn_71010c0270(lua_State* L, const char* fmt, ...);
 
 // A string with 0x80 bytes of inline storage (as in fn_7100ae9a10).
 struct UnkInlineString {
@@ -52,7 +54,6 @@ struct UnkInlineString {
 extern void* g_unk_7101a1b750[];
 
 struct UnkPathIds;
-void fn_710001f074(UnkPathIds* out, const UnkInlineString* path);
 
 struct UnkPathIds {
     union {
@@ -79,7 +80,6 @@ struct UnkResourceHandle {
 };
 struct UnkResourceManager;
 extern UnkResourceManager* g_unk_71726ae8a8;
-UnkResourceHandle fn_71002f7048(UnkResourceManager* manager, const UnkPathIds& ids);
 
 struct UnkEnumType;
 UnkEnumType* fn_71002ea9dc();
@@ -88,7 +88,6 @@ struct UnkRcBinding_b0163 {
     UnkEnumType* type;
     UnkCountedResource** ref;
 };
-s32 fn_7100fbd320(lua_State* L, UnkRcBinding_b0163* binding, u32 a, u32 b);
 
 s32 fn_7101095cf0(lua_State* L) {
     union Slot {

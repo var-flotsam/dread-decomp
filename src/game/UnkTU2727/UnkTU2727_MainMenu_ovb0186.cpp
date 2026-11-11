@@ -13,6 +13,9 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiHandle.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU2725.h"
+#include "game/UnkTU2747.h"
+#include "game/UnkTU57.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -33,13 +36,10 @@ extern const UnkSoundHandle g_unk_7108b6c460;  // the empty handle
 extern void* g_unk_7101cb51b8[];               // the menu's vtable
 
 struct UnkCompared_0x30;
-bool fn_710007f120(const UnkCompared_0x30* a, const UnkCompared_0x30* b);
 struct UnkPropBag;
 void fn_710050e8e4(UnkPropBag*);
-void fn_71011867d4(void* self);  // the base's destructor
 struct UnkHandleOwner_0x2280;
 void fn_7100e02fdc(UnkHandleOwner_0x2280* self, UnkWeakTarget* target);
-void fn_71011cf364(void* composition, s32 value);
 void fn_71011b6b5c(UnkGuiRoot* root, u32 value);
 bool fn_7101191cc0(void* self, void* arg);
 bool fn_71011ceac0(UnkGuiDisplayObject* self);

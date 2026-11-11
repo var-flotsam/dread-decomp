@@ -1,12 +1,12 @@
 // Unit 1441 (no reflection hint): on a message of type 1 whose sender's +0x10 object has the kind cached in the
 // hidden global at 0x717273a730, and when the owner (+0x30) has its +0x220 part, restarts the movement at +0x38
 // (fn_71010d08d4) with velocity + impulse / mass. Returns true. Names and layouts are placeholders.
+#include "game/CMovementComponent.h"
 #include "types.h"
 
 // Declared as src/game/CMovementComponent/fn_71010d08d4.cpp defines it.
 struct UnkMovement_71010d08d4;
 struct UnkMovementVec_71010d08d4;
-void fn_71010d08d4(UnkMovement_71010d08d4* self, const UnkMovementVec_71010d08d4* v, bool start);
 
 extern u64 g_unk_717273a730 __attribute__((visibility("hidden")));
 

@@ -3,11 +3,11 @@
 #include <string.h>
 
 #include "base/UnkVector.h"
+#include "engine/render/anim/CSkeletalAnimTree.h"
+#include "game/UnkTU23.h"
 #include "types.h"
 
 struct UnkBlendOut_k;
-void fn_7100014e5c(void* self, const void* other);
-void fn_710014b80c(void* target, void* from, void* to, void* extra, f32 t);
 
 // A pair of sub-objects the blend writes into.
 struct UnkBlendSub_k {

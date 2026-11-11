@@ -7,6 +7,9 @@
 // value at +0x50 is set and not 0x7fffffff, and g_unk_710164a348 set in kind 0xb; the +0x220 object then
 // gets fn_710117ab64 with 0. Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CAnimationComponent.h"
+#include "game/CBehaviorTreeAIComponent.h"
+#include "game/CObsydomithonAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
@@ -14,17 +17,12 @@
 // As src/game/CSclawkAIComponent/CSclawkAIComponent_b44.cpp declares it.
 struct UnkSclawkAI_b44a2;
 struct UnkSclawkMessage_b44a2;
-u32 fn_710036974c(UnkSclawkAI_b44a2* self, UnkSclawkMessage_b44a2* msg);
 
 // As src/game/CTakumakuAIComponent/CTakumakuAIComponent_b35.cpp declares it.
 struct UnkTakumakuComponent;
-bool fn_7101178e6c(UnkTakumakuComponent* component, u32 kind);
 
 // As src/game/CRockDiverAIComponent/CRockDiverAIComponent_Send_b57.cpp declares it.
 struct UnkAnimationComponent;
-void fn_710117ab64(UnkAnimationComponent* self, u32 value, const void* arg);
-
-void fn_710062a268(void* attack, bool value);
 
 extern char g_unk_71726f9430[] __attribute__((visibility("hidden")));
 

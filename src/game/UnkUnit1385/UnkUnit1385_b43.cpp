@@ -2,9 +2,8 @@
 // (+0xac, +0xb0) to its owner (+0x120): the first, at least zero, into the owner's +0x140 -> +0x78 object
 // (+0x7c); the second, at least 5, through fn_710020c9ac on the owner's member at +0x28. Names and
 // layouts are placeholders.
+#include "game/UnkTU290.h"
 #include "types.h"
-
-void fn_710020c9ac(void* self, f32 value);
 
 // The store may alias any other access: the owner pointer is read again after it.
 typedef f32 __attribute__((may_alias)) UnkAliasF32_b43a2;

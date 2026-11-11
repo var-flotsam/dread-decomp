@@ -3,11 +3,11 @@
 // fn_71002fe160 does (src/game/CAbilityEnergyWave/CAbilityEnergyWave_Target_b49.cpp): the old target
 // (+0xc0) drops the link (+0x78), the wave's own component takes it. Returns true. Names and layouts are
 // placeholders.
+#include "game/CInputComponent.h"
 #include "types.h"
 
 void fn_7100872908(void*, void*);
 struct UnkEnergyWaveTargetComp_b49;
-void fn_7100872860(UnkEnergyWaveTargetComp_b49* comp, void* link);
 
 struct UnkWaveOwner_A2_b70 {
     u8 pad_0x0[0x1d8];

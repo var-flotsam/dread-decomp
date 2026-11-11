@@ -2,11 +2,11 @@
 // object at +0x90 (taken when its vf_0x18 for the query reports kind 16) is hit by the query
 // (fn_7100116de0, 0, 1, scale 1), the query is handed on (fn_71006f9368). Names and layouts are
 // placeholders.
+#include "game/UnkTU108.h"
 #include "types.h"
 #include "UnkLeftoverReg.h"
 
 struct UnkEntry;  // src/game_s2/fn_71005528fc.cpp
-bool fn_7100116de0(UnkEntry* entry, void* query, u32 a, u32 b, f32 scale);
 
 struct UnkQueryTarget_b50 {
     virtual void vf_0x0();

@@ -4,6 +4,7 @@
 // handle at +0x338 still refers to. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU50.h"
 #include "types.h"
 
 struct UnkHandleTarget_ovb0082 {
@@ -23,7 +24,6 @@ struct UnkHandle {
 };
 
 extern UnkHandle g_unk_7101d586c0;
-void fn_7100072328(void*, f32, f32);
 
 struct UnkMagnetSurfaceOwner_ovb0082 {
     u8 pad_0x0[0x220];

@@ -2,11 +2,11 @@
 // split at "|" by fn_7100414070, else a single name by fn_71008a40c0), then each applied through
 // fn_71008e22f8. Names and layouts are placeholders.
 #include "base/global/CRntString.h"
+#include "game/CCharClassAIComponent.h"
 #include "types.h"
 
 using base::global::CRntString;
 
-u32 fn_7100414070(const char* text);
 u32 fn_71008a40c0(const char* text);
 
 struct UnkDoorLifeKinds {

@@ -3,6 +3,7 @@
 // Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 extern void* g_unk_71726bc560;
@@ -13,7 +14,6 @@ struct UnkLoadingMask {
     UnkLoadingMask(u32 b) : bits(b) {}
     UnkLoadingMask(const UnkLoadingMask& o) : bits(o.bits) {}
 };
-void fn_7100fd7b44(void* manager, UnkLoadingMask channels, UnkLoadingMask mask, f32 time);
 
 void fn_7100fcf59c() {
     void* instance = g_unk_71726bc560;

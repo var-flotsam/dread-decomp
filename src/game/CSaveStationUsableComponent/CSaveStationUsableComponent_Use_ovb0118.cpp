@@ -8,10 +8,12 @@
 // calls its own slot 0x2b8. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkTimelineComponent.h"
 #include "game/sound/CMusicManager.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -58,7 +60,6 @@ struct UnkSoundHandle {
 extern const UnkSoundHandle g_unk_7108b6c460;  // the empty handle
 
 struct UnkShipRechargeEntity_b49a4;
-void fn_7100d7c510(UnkShipRechargeEntity_b49a4* entity, UnkSoundHandle* handle, f32 fade, f32 delay);
 
 struct UnkWorld;
 void fn_710114fe8c(UnkWorld*, u64, u32, u32);
@@ -134,8 +135,6 @@ bool fn_7100a89bf8(UnkSaveStation_ovb0118* self, UnkWeakTarget* user) {
 
 extern void* g_unk_71726bc560;  // the music manager
 extern void* g_unk_7101d47368;
-void fn_7100d8ced8(void*);
-void* fn_7100d8e0a0(void*);
 
 struct UnkSaveStationName_ovb0118 {
     u8 pad_0x0[0x10];

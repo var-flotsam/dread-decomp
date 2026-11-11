@@ -8,6 +8,9 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU57.h"
+#include "game/UnkTU85.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -16,13 +19,10 @@ struct UnkGuiObj;
 void fn_71011ec424(UnkGuiObj* label, const CRntString& text);
 void fn_71011ecfbc(UnkGuiObj* label, const char32_t* text);
 void fn_71011cd5a0(UnkGuiObj*);
-void fn_7100000790(const char* name, const char* fmt, ...);
-void fn_710007f634(void* self, u32 value);  // appends a number
 
 struct UnkReflField;
 struct UnkReflFieldObject;
 struct UnkReflValueArg;
-bool fn_71000e7a80(UnkReflField* field, const UnkReflFieldObject* obj, UnkReflValueArg* value);  // sets
 
 struct UnkIntTunableObject_ovb0134 {
     virtual const void* vf_0x0();

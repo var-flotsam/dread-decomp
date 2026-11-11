@@ -2,6 +2,7 @@
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/GUI/CMainMenu.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "types.h"
 
@@ -29,7 +30,6 @@ struct UnkListOwner_b0233 {
 };
 
 struct UnkMenuTarget;
-void fn_7100b364dc(UnkMenuTarget* target);
 
 void fn_7100b4f930(UnkListScreen_b0233* self, UnkListOwner_b0233* owner) {
     UnkGuiObj* source = self->root;

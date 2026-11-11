@@ -6,12 +6,12 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CAttack.h"
+#include "game/CGunComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
 struct UnkStruct_710083e9d4;
 struct UnkItem_710083e9d4;
-UnkItem_710083e9d4* fn_710083e9d4(UnkStruct_710083e9d4* self, const u64* id, bool primary);
 
 struct UnkCommanderGun_ovb0136 : base::reflection::UnkReflObject {
     bool vf_0x60() {

@@ -1,13 +1,12 @@
 // base::spatial::CPolygonCollection2D's unit (unit 109; see CPolygonCollection2D.cpp): whether any
 // of the collection's 0x48-byte polygons, tried from the last to the first, answers the test
 // fn_7100117aa8 for a query and a distance. Names and layouts are placeholders.
+#include "game/UnkTU108.h"
 #include "types.h"
 
 struct UnkPolygon109 {
     u8 data[0x48];
 };
-
-bool fn_7100117aa8(UnkPolygon109* polygon, void* query, f32 distance);
 
 struct UnkPolygons109 {
     UnkPolygon109* data;

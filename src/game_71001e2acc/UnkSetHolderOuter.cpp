@@ -3,10 +3,10 @@
 // deleting, which frees the whole object: fn_7100db2514). Restore the holder's vtable, clear the
 // set (fn_7100db3200) and free its storage. Names and the layout are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU2542.h"
 #include "types.h"
 
 extern char unk_7101aa93e8[];
-void fn_7100db3200(void* set);
 
 struct UnkSetHolderOuter {
     u64 field_0x0;

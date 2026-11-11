@@ -1,6 +1,7 @@
 // CGun's sound plays: the kind comes from the shot flags (0x8000000 -> 7, else 0x400 -> 6, else 5), mode 3.
 #include "UnkGunSound_A5_b66.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU811.h"
 
 __attribute__((always_inline)) static inline u32 GunSoundKind_A5_b66(u32 flags) {
     u32 kind = (flags & 0x400) ? 6 : 5;
@@ -24,7 +25,6 @@ void fn_7100836578(UnkGunSoundOwner_A5_b66* self, u32 flags, void* sound, void*,
 }
 
 // Same with the mode passed in, then the game manager's deferred set at +0x20a8 is told about the sound.
-void fn_710056a010(void* set, const void* value);
 
 void fn_7100836340(UnkGunSoundOwner_A5_b66* self, u32 flags, void* sound, u32 mode, UnkGunSoundParams_A5_b66* params) {
     asm("" : "+r"(self));

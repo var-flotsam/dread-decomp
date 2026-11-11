@@ -4,6 +4,7 @@
 // vf_0x1a8 with the game manager's blackboard (+0x968); under the id behind +0x90's +0x98 otherwise. Names
 // and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CPullableGrapplePointComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -39,9 +40,6 @@ struct UnkPull_b0266 {
 
 struct UnkDoorGrapplePoint_A5_b66;
 struct UnkPullableGrapplePoint_b54;
-void fn_710082ccec(UnkDoorGrapplePoint_A5_b66* self, void*, bool);
-void fn_710082cee4(UnkPullableGrapplePoint_b54* self, bool);
-void fn_710082cf08(UnkPullableGrapplePoint_b54* self, bool);
 
 void fn_71008263e4(UnkPull_b0266* self, void* arg, bool pulled) {
     fn_710082ccec(reinterpret_cast<UnkDoorGrapplePoint_A5_b66*>(self), arg, pulled);

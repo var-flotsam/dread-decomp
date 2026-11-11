@@ -3,11 +3,11 @@
 // is the shared out-of-line copy (src/clones/, fn_7100affc6c). Names and layout are placeholders.
 #include "UnkClone.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 // As src/base/reflection/UnkReflArrayEqual.cpp declares it.
 struct UnkCompared_0x30;
-bool fn_710007f120(const UnkCompared_0x30*, const UnkCompared_0x30*);
 
 struct UnkClone_fn_7100affc6c;
 using UnkMenuEntrySlot_b49a6 = UnkCloneElem<UnkClone_fn_7100affc6c, 8>;

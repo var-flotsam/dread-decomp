@@ -7,8 +7,11 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CSceneComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1370.h"
+#include "game/UnkTU811.h"
 #include "game/UnkTimelineComponent.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -74,8 +77,6 @@ void fn_7100aabf4c(UnkBombMovement_ovb0078* self, UnkBombActor_ovb0078* actor, U
 
 struct UnkListedItem;
 base::UnkVector<UnkListedItem*>* fn_7100552d7c();
-void fn_710056a010(void* set, const void* value);
-void fn_71009f19b0(void* shape, bool flag);
 void fn_7100558ed8(void* entity, void* movement);
 extern u64 g_unk_710164b688;
 
@@ -160,9 +161,7 @@ void fn_7100aabc9c(UnkBombHitMovement_ovb0078* self, UnkBombHitActor_ovb0078* ac
 }
 
 struct UnkBase_71003cc474;
-void fn_71008c1558(UnkBase_71003cc474* self);
 struct UnkGooplotRequest_b63a3;
-void fn_71008c1090(UnkGooplotRequest_b63a3* self, const UnkGooplotRequest_b63a3* other);
 
 struct UnkBombHitSource_ovb0078 {
     u8 pad_0x0[0x10];

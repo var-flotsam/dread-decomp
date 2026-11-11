@@ -3,12 +3,11 @@
 // the stored mode at +0x15c; otherwise 2 when the animation component (+0x220) plays
 // CCharClassAllowCrazyTrack (fn_710117b348), else 1. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CFrozenComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
 struct UnkFrostbiteComponent;
-bool fn_71007f9f20(void*);
-bool fn_71007f9fd0(UnkFrostbiteComponent*);
 
 struct UnkPoisonFlyOwner_ovb0053 {
     u8 pad_0x0[0x220];

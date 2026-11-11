@@ -4,6 +4,7 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
+#include "game/CGameObject.h"
 #include "types.h"
 
 extern char g_unk_7101a29398[];
@@ -51,7 +52,6 @@ struct UnkBehaviorTree_b0058 {
 static_assert(__builtin_offsetof(UnkBehaviorTree_b0058, path) == 0x90, "layout");
 
 struct UnkCameraCtrl_ovb0049;
-void fn_7101043934(UnkCameraCtrl_ovb0049*);  // the base destructor
 
 void fn_71003aa538(UnkBehaviorTree_b0058* self) {
     self->vtable = g_unk_7101a29398 + 0x10;

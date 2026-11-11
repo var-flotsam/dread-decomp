@@ -4,11 +4,8 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/UnkTU23.h"
 #include "types.h"
-
-void fn_7100014d94(void* self, u32 arg);
-void fn_7100014dfc(void* self, const void* other);
-void fn_7100014e88(void* member);
 
 extern char g_unk_7101a220c8[];
 

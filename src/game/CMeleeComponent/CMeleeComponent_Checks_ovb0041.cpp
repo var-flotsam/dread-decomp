@@ -16,10 +16,12 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CMovementComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU1501.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -62,7 +64,6 @@ using base::global::CStrId;
 
 struct UnkAnimationComponent;
 base::global::UnkStringData** fn_7101177ae8(UnkAnimationComponent*, u64);
-void fn_71009eaa88(void*);
 void* fn_7100df57f4(UnkGameManager* manager);
 void fn_71003246d8(void* p);
 
@@ -123,8 +124,6 @@ using base::reflection::UnkReflObject;
 struct UnkHelper;
 struct UnkMovement_71010d0e38;
 bool fn_71009e12d0(UnkHelper* helper);
-bool fn_71009e6434(UnkHelper* helper);
-bool fn_71010d0e38(UnkMovement_71010d0e38* self);
 
 // An AI component as seen through the reflected object (vtable slot 0 gives its class).
 struct UnkMeleeAI_ovb0041 : UnkReflObject {

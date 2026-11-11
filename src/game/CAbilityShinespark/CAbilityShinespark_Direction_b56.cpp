@@ -3,6 +3,7 @@
 // (cos, sin, 1), with x mirrored for the odd directions 3, 5 and 7. Names are placeholders.
 #include <math.h>
 
+#include "game/CAbilityShinespark.h"
 #include "types.h"
 
 struct UnkShinesparkAngles_b56 {
@@ -31,8 +32,6 @@ struct UnkShinespark_b56 {
     u8 pad_0x0[0x400];
     UnkDirMap_b56 directions;  // 0x400
 };
-
-u32 fn_710032f678(UnkShinespark_b56* self, const UnkDirOut_b56* dir);  // the state for the direction
 
 static inline u32* Find(UnkDirMap_b56* map, const u32* key) {
     for (u64 i = 0; i != map->count; ++i) {

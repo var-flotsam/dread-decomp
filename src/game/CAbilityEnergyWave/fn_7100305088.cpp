@@ -6,6 +6,7 @@
 #include <stdio.h>
 
 #include "base/UnkVector.h"
+#include "game/UnkTU2677.h"
 
 // A 64-bit name hash (CRC-64 of the string), built out of line. The value is a union member:
 // the original reloads the array's count after each element store.
@@ -33,7 +34,6 @@ extern lua_State* g_unk_7172a01d18;
 s32 fn_71010c0bb0(lua_State* L, const char* name);
 void fn_7100fbc4e0(lua_State* L, void* arg);
 s32 fn_71010bf400(lua_State* L, const char* fmt, va_list args);
-s32 fn_71010c0d80(lua_State* L, s32 count, char* out, u32 out_size, void* a, void* b);
 
 bool fn_7100305088(UnkScriptCaller* self, const char* name, const char* fmt, ...) {
     if (!name)

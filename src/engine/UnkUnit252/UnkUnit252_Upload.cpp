@@ -1,15 +1,10 @@
 // Unit 252 of tools/tu_map.py (0x71001bdeac-0x71001c071c): writing a slot's vertex data (12 bytes
 // per vertex) and its 16-byte records after it into the slot's buffer (one of five, 0x18 bytes
 // apart from +0x148), when both fit (fn_71001622e0 is its size). Names and layouts are placeholders.
+#include "game/UnkTU182.h"
 #include "types.h"
 
 struct UnkGfxBuffer252;
-u32 fn_71001622e0(UnkGfxBuffer252* buffer);
-void fn_7100161d70(UnkGfxBuffer252* buffer);
-void fn_7100161dc0(UnkGfxBuffer252* buffer);
-void fn_7100161d60(UnkGfxBuffer252* buffer);
-u32 fn_71001622f0(u32 a, u32 b);
-void fn_7100161e60(UnkGfxBuffer252* buffer, u32 kind, u32 a, u32 offset, u32 format, const void* data, u32 size, u32 b);
 
 struct UnkGfxBufferHolder252 {
     u8 pad_0x0[0x8];

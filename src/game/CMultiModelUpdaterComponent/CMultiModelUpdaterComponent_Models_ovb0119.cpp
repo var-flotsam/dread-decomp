@@ -4,6 +4,7 @@
 // (+0x210), the model map (entries of 0x20 at +0x1e8, keys at +0x1f0, count at +0x1f8) has it and
 // fn_7100938fcc accepts the entry, it takes the name; it returns whether it did. Names are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CMultiModelUpdaterComponent.h"
 #include "types.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
@@ -14,7 +15,6 @@ using base::global::UnkStringPool;
 
 struct UnkModelEntry_A5_b67;
 struct UnkMultiModel_A5_b67;
-bool fn_7100938fcc(UnkMultiModel_A5_b67* self, UnkModelEntry_A5_b67* entry);
 
 struct UnkModelEntry_b0119 {
     u8 pad_0x0[0x20];

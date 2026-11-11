@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -30,7 +31,6 @@ struct UnkSoundHandle_b48 {
 
 struct UnkSoundHandle;
 struct UnkEntityWithSound;
-UnkSoundHandle fn_7100d7c45c(UnkEntityWithSound* self, void* a, void* b, void* c);
 
 struct UnkShootActivatorValue_b48 {
     CStrId id;

@@ -3,10 +3,10 @@
 // entry's descriptor, +0x8), major and minor first (the header fn_710000ccd8 reads back), then the
 // rest is written by fn_71000ed2b8. Names and layouts are placeholders.
 #include "base/global/CRntFile.h"
+#include "game/UnkTU85.h"
 #include "types.h"
 
 struct UnkVersionEntry;
-bool fn_71000e6ce0(UnkVersionEntry* self, u16* major, u16* minor);
 
 struct UnkVersionDesc_A1b71 {
     u8 pad_0x0[0x30];

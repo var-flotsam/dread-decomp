@@ -4,6 +4,7 @@
 // (fn_7100194ba4) and the old one destroyed (fn_710019506c), the keys copied through the aliasing
 // word type. Names are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU212.h"
 #include "types.h"
 
 typedef u64 __attribute__((may_alias)) UnkAliasWord_b54a1;
@@ -23,7 +24,6 @@ struct UnkKeyedArray98_b54a1 {
 };
 
 struct UnkObject_710019506c;
-void fn_710019506c(UnkObject_710019506c* self);
 // Moves the record `other` into `self`.
 void fn_7100194ba4(UnkRecord98_b54a1* self, UnkRecord98_b54a1* other);
 

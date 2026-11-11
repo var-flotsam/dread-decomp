@@ -4,6 +4,7 @@
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CChozoCommanderAIComponent.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
@@ -20,7 +21,6 @@ struct UnkSelf {
 };
 
 bool fn_7101161088(void* object);
-void fn_71004554d8(UnkComponent* component);
 
 static inline f32 Sign(f32 v) { return (f32)((v > 0.0f) - (v < 0.0f)); }
 

@@ -6,6 +6,7 @@
 #include "base/UnkStrIdPathPair.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkTU883.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -44,7 +45,6 @@ struct UnkDefinition {
 
 struct UnkCallback;
 void fn_71005c4828(void* dispatcher, UnkCallback* callback);  // unregister
-void fn_71005c41bc(void* dispatcher, UnkCallback* callback);  // register
 
 struct UnkCallback {
     void* dispatcher;

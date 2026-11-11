@@ -8,6 +8,7 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CFrozenComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -91,8 +92,6 @@ struct UnkAreaFXCtor_ovb0081 {
     base::UnkVector<void*> refs;  // 0x438
 };
 static_assert(__builtin_offsetof(UnkAreaFXCtor_ovb0081, refs) == 0x438, "UnkAreaFXCtor_ovb0081 layout");
-
-void fn_71007f8bc0(void*);
 
 void fn_71007fe1e4(UnkAreaFXCtor_ovb0081* self) {
     fn_71007f8bc0(self);

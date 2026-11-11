@@ -4,15 +4,15 @@
 // layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CAbilityShinespark.h"
+#include "game/CAbilitySpeedBooster.h"
 #include "game_s2/UnkWeakHandle.h"
 
 using base::reflection::CClass;
 
 struct UnkAbility;
 struct UnkAbilitySet;
-UnkAbility* fn_71003012f8(UnkAbilitySet* set, u64 id);
-u64 fn_7100327d14();
-u64 fn_710033b6a4();
 
 struct UnkHitAbilityState_b46a3 {
     u8 unk_0x0[0x10];

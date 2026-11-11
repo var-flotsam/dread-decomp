@@ -5,6 +5,8 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU230.h"
+#include "game/msapi/material/SAlpha.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -37,7 +39,6 @@ static_assert(sizeof(UnkMaterialValues_l1a77a4) == 0x38, "UnkMaterialValues_l1a7
 
 // Grows a value block array to n elements, default-constructing the new ones.
 struct UnkMaterialValuesVector;
-void fn_71001a9bd0(UnkMaterialValuesVector* v, u32 n);
 
 struct UnkMaterialValuesVector_l1a77a4 : base::UnkVector<UnkMaterialValues_l1a77a4> {
     // Grows the array to hold n elements, copying them over and destroying the old ones.
@@ -73,7 +74,6 @@ struct UnkMaterialValuesVector_l1a77a4 : base::UnkVector<UnkMaterialValues_l1a77
 
 // The location of the uniform named `name` of a program's stage, 0 when it has none.
 struct UnkGfxStrId;
-void fn_71001aa0cc(void* program, u32 stage, const UnkGfxStrId* name, u64* location);
 
 // The material as this function sees it: its program at 0x390.
 struct UnkMaterial_l1a77a4 {

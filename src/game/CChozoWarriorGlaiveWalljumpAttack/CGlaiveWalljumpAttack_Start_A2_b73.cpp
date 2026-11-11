@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CEnemyMovement.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -16,7 +17,6 @@ using base::reflection::UnkReflObject;
 struct UnkAttackBase;
 struct UnkEffectSink;
 void fn_71003608ac(UnkAttackBase* self);
-void fn_71010c7e6c(UnkEffectSink* sink, void* params, u32 flags);
 base::global::CStrId fn_710049c2f4(UnkReflObject* ai, f32 facing);
 void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
 void fn_710117b3e8(UnkWeakTarget* target, void* link);

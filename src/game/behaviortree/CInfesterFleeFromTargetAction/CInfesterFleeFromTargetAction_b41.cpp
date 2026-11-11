@@ -5,6 +5,7 @@
 // placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CEnemyMovement.h"
 #include "game/UnkAIComponent.h"
 #include "types.h"
 
@@ -12,7 +13,6 @@ using base::reflection::UnkReflObject;
 
 struct UnkStruct_0x68;
 void fn_7100394bd0(UnkStruct_0x68*);
-u32 fn_71010cc3a4(void*);
 
 struct UnkOwner_if41 {
     u8 pad_0x0[0x1f0];

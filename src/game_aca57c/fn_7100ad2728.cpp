@@ -3,6 +3,8 @@
 // second: the value and the pointer are copied and the target's pair is rebound to the target's
 // own members (or reset). The in-place second value is destroyed out of line. Three record
 // sizes.
+#include "game/UnkTU1629.h"
+#include "game/UnkTU2200.h"
 #include "types.h"
 
 template <class X, class Y>
@@ -77,10 +79,6 @@ struct UnkDestroyed {
 
     __attribute__((always_inline)) ~UnkDestroyed() { Destroy(this); }
 };
-
-void fn_7100ad04c4(void* self);
-void fn_7100c886c0(void* self);
-void fn_7100c8a490(void* self);
 
 using UnkBound80 = UnkDestroyed<0x80, fn_7100ad04c4>;
 using UnkBoundA0 = UnkDestroyed<0xa0, fn_7100c886c0>;

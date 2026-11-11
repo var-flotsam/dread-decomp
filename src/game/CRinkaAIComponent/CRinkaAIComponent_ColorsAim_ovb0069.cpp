@@ -8,6 +8,7 @@
 // g_unk_710164a4a0. Names and layouts are placeholders.
 #include "base/color/CColor4F.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CFXComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkSlots.h"
 #include "game/UnkTimelineCalls.h"
@@ -19,7 +20,6 @@ using base::color::CColor4F;
 struct UnkComponent;
 struct UnkObject;
 UnkComponent* fn_7101152b90(UnkObject* object, u64 hash);
-bool fn_710114e680(UnkObject* object, u8 kind);
 
 extern const CColor4F g_unk_710164a454 __attribute__((visibility("hidden")));
 extern const CColor4F g_unk_710164a464 __attribute__((visibility("hidden")));

@@ -7,7 +7,9 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
+#include "game/CNavMeshItemComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU372.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -18,8 +20,6 @@ extern UnkDesc_SpitSend g_unk_717276974c;  // reached through the GOT
 extern UnkProperty g_unk_7172739f40;
 
 struct UnkWeakTarget;
-void* fn_71002b3b84(UnkWeakTarget*);
-void fn_71009c0f1c(void* object, u64 id);
 
 struct UnkWeightValue_b0266 {
     CStrId id;

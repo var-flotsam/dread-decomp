@@ -14,10 +14,16 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CAIAttackComponent.h"
+#include "game/CAnimationComponent.h"
+#include "game/CBossAIComponent.h"
+#include "game/CDamageSourceFactor.h"
+#include "game/CGrabComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkTU2730.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -51,7 +57,6 @@ void fn_71004d0b00(UnkCooldownXRecord_ovb0088* self) {
 }
 
 struct UnkTakumakuComponent;
-bool fn_7101178e6c(UnkTakumakuComponent*, u32);
 
 extern const base::math::CVector3D g_unk_7101649b70 __attribute__((visibility("hidden")));  // facing right
 extern const base::math::CVector3D g_unk_7101649b7c __attribute__((visibility("hidden")));  // facing left
@@ -83,7 +88,6 @@ bool fn_71004d4054(UnkCooldownXBossAI_ovb0088* self) {
 using base::math::CVector3D;
 
 extern void* g_unk_7101d47330;
-bool fn_7101196fd8(void*);
 
 struct UnkCooldownXOwner_ovb0088 {
     virtual void vf_0x0();
@@ -132,8 +136,6 @@ void fn_71004d4208(UnkCooldownXPlaceAI_ovb0088* self, const UnkCooldownXXform_ov
     owner->z = pos.z;
     owner->placed = true;
 }
-
-bool fn_710113d83c(void*);
 
 struct UnkCooldownXGrab_ovb0088 {
     u8 pad_0x0[0x10];
@@ -231,12 +233,9 @@ struct UnkShakernautId_b53 {
     u32 value;
     u32 unk_0x4;
 };
-void fn_71011785a8(UnkShakernautCtrl_b53*, const UnkShakernautId_b53*, bool, bool);
 struct UnkCommanderPlayer_b67a2;
-void fn_7101134420(UnkCommanderPlayer_b67a2*, void*, u32, u32, void*, f32);
 struct UnkEntityState;
 void fn_7100232864(UnkEntityState*, bool);
-void fn_710117774c(UnkShakernautCtrl_b53* ctrl);
 
 struct UnkCooldownXMsgTarget_ovb0088 {
     u8 pad_0x0[0x10];
@@ -331,12 +330,9 @@ extern CStrId g_unk_71726d8700 __attribute__((visibility("hidden")));
 
 struct UnkQuetzoaXAI_b58;
 struct UnkQuetzoaXMessage_b58;
-u32 fn_71003adaf8(UnkQuetzoaXAI_b58*, UnkQuetzoaXMessage_b58*);
 struct UnkRobotSoldierTable_A2_b69;
-f32 fn_71008c2de8(UnkRobotSoldierTable_A2_b69*, u32);
 struct UnkRequest;
 void fn_71008c1538(UnkRequest*, f32);
-bool fn_710113d83c(void*);
 
 // A string id's data as the damage check reads it: the hash at +0x30.
 struct UnkCooldownXDamageIdData_ovb0088 {

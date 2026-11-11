@@ -1,0 +1,18 @@
+#pragma once
+
+// CProjectileMovement: functions of this translation unit that other files call (tools/tu_map.py unit 1623,
+// 0x7100ac2430-0x7100ac6c44). One declaration per function: include this instead of declaring one.
+// Names and layouts are placeholders.
+#include "types.h"
+
+struct UnkBossComponent;
+struct UnkKraidBouncingCreaturesMovement2;
+struct UnkKraidCreatureArg;
+struct UnkNailongThornMovement;
+struct UnkObj;
+bool fn_7100ac4ec0(UnkObj* self, void* a1, void* a2, void* a3, void* a4, void* a5);
+bool fn_7100ac3108(UnkKraidBouncingCreaturesMovement2* self, UnkKraidCreatureArg* arg);
+bool fn_7100ac4c60(UnkBossComponent* self, u64 a, u64 b, u64 c, u64 d);
+void fn_7100ac2c5c(void* self);
+void fn_7100ac3a78(UnkNailongThornMovement*, f32);
+void fn_7100ac38fc(void* self);

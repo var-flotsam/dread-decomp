@@ -5,6 +5,7 @@
 // are placeholders.
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CUsableComponent.h"
 #include "types.h"
 
 #include <new>
@@ -13,8 +14,6 @@ using base::global::CRntString;
 using base::global::CStrId;
 
 extern char g_unk_7101a94758[];  // the component's vtable
-
-void fn_7100a9e244(void* self);  // the base constructor
 
 struct UnkWaterPuzzle_b43a3 {
     u8 pad_0x0[0x14];

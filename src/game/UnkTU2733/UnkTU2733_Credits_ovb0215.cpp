@@ -9,6 +9,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPoolBody.h"
+#include "base/global/timeline/CEvent.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -17,7 +18,6 @@ using base::global::UnkStringEntry;
 
 #define HIDDEN __attribute__((visibility("hidden")))
 
-void fn_7100066cac(void* self, const void* other);
 struct UnkLanguageText {
     u8 unk_0x0[0x20];
     UnkLanguageText(const UnkLanguageText& other) { fn_7100066cac(this, &other); }

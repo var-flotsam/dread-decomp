@@ -4,6 +4,7 @@
 // placeholders.
 #include "base/global/CStrId.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU2747.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -12,7 +13,6 @@ using base::global::CStrId;
 struct UnkLayoutText;
 void fn_7100066af0(UnkLayoutText* self, const char32_t* text);
 
-void fn_71011cd4b4(void* self);  // the base constructor
 const CStrId& fn_71011b8920(UnkGuiRoot* root);
 
 struct UnkText_b43a3 {

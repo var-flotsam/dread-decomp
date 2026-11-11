@@ -3,10 +3,10 @@
 // range (+0xb0, at least 5; fn_710020c9ac) are set, then the inner and outer cone angles (+0xb4,
 // +0xb8, clamped to 0..180 degrees, the outer one raised to 5 first) with the cosines of their halves; the light is marked dirty
 // (+0x1b8). Names and layouts are placeholders.
+#include "game/UnkTU290.h"
 #include "types.h"
 
 extern "C" f32 cosf(f32);
-void fn_710020c9ac(void*, f32);  // as src/game/UnkUnit1385/UnkUnit1385_b43.cpp declares it
 
 struct UnkSpotLightData_b52 {
     u8 unk_0x0[0x7c];

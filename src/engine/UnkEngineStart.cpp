@@ -12,6 +12,8 @@
 #include "base/input/UnkRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU52.h"
+#include "game/nn/time.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -96,7 +98,6 @@ void fn_7100131e48(UnkEngineObject_0x58* self);  // constructor
 // The sound holder (0x48 bytes; src/game/CGameManager.cpp).
 struct UnkSoundHolder;
 extern UnkSoundHolder* g_unk_7101d47340;
-void fn_710006cd9c(UnkSoundHolder* holder);  // constructor
 void fn_710006cdb8(UnkSoundHolder* holder);
 
 // base::snd::CSoundSystem (0x400940 bytes, allocated with flags 0xb).
@@ -115,7 +116,6 @@ void fn_710007388c(UnkRumbleManager* self);
 // An object of unit 52 (0xf0 bytes).
 struct UnkEngineObject_0xf0;
 extern UnkEngineObject_0xf0* g_unk_7101d47338;
-void fn_7100075db8(UnkEngineObject_0xf0* self);  // constructor
 void fn_7100075e4c(UnkEngineObject_0xf0* self);
 
 static inline UnkRegistry_0x70* Devices() {

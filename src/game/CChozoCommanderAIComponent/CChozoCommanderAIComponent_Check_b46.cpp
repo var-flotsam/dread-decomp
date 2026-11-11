@@ -1,9 +1,8 @@
 // CChozoCommanderAIComponent's unit (tools/tu_map.py): while the owner's component at +0x278 is
 // active (fn_7101136308) and its +0x1a0 is the AI's own entry at +0x149a8, clears the output
 // flag. Names and layouts are placeholders.
+#include "game/CAttackComponent.h"
 #include "types.h"
-
-bool fn_7101136308(void*);
 
 struct UnkChozoCommanderSlot_b46a1 {
     u8 pad_0x0[0x1a0];

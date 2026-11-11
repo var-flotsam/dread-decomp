@@ -7,6 +7,8 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU127.h"
+#include "game/UnkTU291.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -16,8 +18,6 @@ using base::global::CStrId;
 // As src/base/UnkTaggedObjectSubCtors.cpp defines it.
 struct UnkTaggedSubObject127;
 struct UnkTaggedSubArg;
-void fn_710014333c(UnkTaggedSubObject127* self, UnkTaggedSubArg* arg);
-char* fn_710020d32c(char* p0);
 // As src/game/CSpittailMagmaBallMovementComponent/fn_71006caf80.cpp defines it.
 struct UnkSpittailModelHolder;
 bool fn_71006caf80(UnkSpittailModelHolder* self, const base::global::CFilePathStrId& path);
@@ -187,8 +187,6 @@ using base::global::CStrId;
 using base::reflection::UnkReflObject;
 
 // As src/game/CAreaFXComponent/CAreaFXComponent_Models_ovb0081.cpp declares them.
-void fn_71001436a0(UnkModel* model, u32 flag);
-void fn_710014364c(UnkModel* model, u32 flag);
 // As src/game/CVulkranMagmaBallMovementComponent/CVulkranMagmaBallMovementComponent.cpp defines it.
 struct UnkVulkranMagmaBallMovement;
 struct UnkKraidCreatureArg;

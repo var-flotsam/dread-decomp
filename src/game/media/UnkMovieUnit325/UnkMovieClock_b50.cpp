@@ -4,6 +4,7 @@
 #include <nn/os.h>
 
 #include "base/UnkDefaultAllocator.h"
+#include "game/UnkTU58.h"
 #include "types.h"
 
 struct UnkMovieClock_b50 {
@@ -16,7 +17,6 @@ struct UnkMovieClock_b50 {
 
 struct UnkGfxFrameSource;
 extern UnkGfxFrameSource* g_unk_7101d47328;  // the frame timer (as declared in src/base/input/UnkVibrationThread.cpp)
-s64 fn_7100080b7c(UnkGfxFrameSource* timer);  // its time in microseconds
 
 // Starts the clock: media time `time` was at system time `at`; false when either is negative or the
 // start would fall before media time 0.

@@ -3,18 +3,17 @@
 // its value, 2 after; as src/game/CTutoExitLogicAction/CTutoExitLogicAction_b47.cpp) and, when the actor
 // it names is a central unit (fn_71007d74b0), starts it (fn_710077561c). Names and layouts are placeholders.
 #include "base/UnkRefHandle.h"
+#include "game/CEmmyWakeUpComponent.h"
+#include "game/CTriggerLogicAction.h"
+#include "game/UnkTU1176.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 // As src/game/CTutoExitLogicAction/CTutoExitLogicAction_b47.cpp declares it.
 struct UnkTutoExitAction_b47;
-void fn_7100a55ac8(UnkTutoExitAction_b47* self);
 
 // As src/game/CCharClassStartCentralUnitProtoEvent/CCharClassStartCentralUnitProtoEvent.cpp declares it.
 struct UnkCentralUnitProto;
-void fn_710077561c(UnkCentralUnitProto* unit);
-
-UnkCentralUnitProto* fn_71007d74b0(void* actor);
 
 struct UnkCentralUnitTarget_b49a6 : base::UnkRefCounted {
     void* field_0x10;

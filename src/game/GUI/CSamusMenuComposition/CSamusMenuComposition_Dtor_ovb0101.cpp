@@ -5,6 +5,7 @@
 // placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CChozoCommanderAIComponent.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "types.h"
 
@@ -30,7 +31,6 @@ void fn_7100b6fd18(UnkMenuEntryList_b0101* self) {
     self->id.Reset();
 }
 
-void fn_71004567dc(void* set, void** item);
 extern void* g_unk_7101a9e6b8[];  // the class vtable
 
 // A registration in a deferred set ({set, obj, fn}; removed through fn_71004567dc).

@@ -10,12 +10,16 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/global/timeline/CEvent.h"
 #include "base/snd/UnkSound.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU101.h"
+#include "game/UnkTU2733.h"
 #include "game/UnkTUProperty.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -94,8 +98,6 @@ bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
 // key: a 0x20-byte text destroyed by fn_7100066e44.
 struct UnkLanguage;
 extern UnkLanguage* g_unk_7101d47358;
-void fn_710119c020(UnkLanguage* language);
-void fn_7100066e44(void* text);
 struct UnkDialogText {
     u8 unk_0x0[0x20];
     ~UnkDialogText() { fn_7100066e44(this); }
@@ -168,13 +170,9 @@ static inline const char* IdText(const CStrId& id) {
 // The sound player (reached through the GOT) and the voice calls.
 extern void* g_unk_71729efa48;
 UnkSoundHandle fn_7100fcdf00(void* player, f32 volume, const CStrId& name, bool arg3);
-void fn_7100105034(void* sound);
-void fn_7100105ef4(void* sound, f32 time, f32 step, bool arg3);
 
 // The music manager (game/sound/CMusicManager.h), created on first use, and its level.
 extern void* g_unk_71726bc560;
-f32 fn_7100fd7b3c(void* manager);
-void fn_7100fd7af8(void* manager, f32 level, f32 time);
 static inline void* MusicManager() {
     void* manager = g_unk_71726bc560;
     if (!manager) {

@@ -5,6 +5,7 @@
 // placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CGameObject.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -13,7 +14,6 @@ using base::global::UnkStringPool;
 extern char g_unk_7101aa84e0[];
 extern char g_unk_7101aa8590[];
 struct UnkCameraCtrl_ovb0049;
-void fn_7101043934(UnkCameraCtrl_ovb0049*);  // the base destructor
 
 struct UnkBroadphaseHandler;
 

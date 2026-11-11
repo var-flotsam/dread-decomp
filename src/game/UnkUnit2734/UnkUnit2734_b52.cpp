@@ -5,6 +5,9 @@
 #include "base/UnkDestructors.h"
 #include "game/UnkSubAreaGuiCache.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU2729.h"
+#include "game/UnkTU2734.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 #include "UnkLeftoverReg.h"
 
@@ -16,8 +19,6 @@ struct UnkSweepEntry_b49;
 struct UnkUnusedArg_b49 : UnkLeftoverReg {};
 struct UnkSweepList_b49;
 struct UnkSweepNode_b49;
-bool fn_710119d5f0(UnkUnusedArg_b49, UnkSweepEntry_b49* entry, bool flag);
-UnkSweepNode_b49* fn_710119d7e4(UnkSweepList_b49* self, UnkSweepNode_b49* node);
 
 struct UnkGuiDef_b52 {
     u8 pad_0x0[0x54];
@@ -26,7 +27,6 @@ struct UnkGuiDef_b52 {
     base::UnkStrIdMember* children;  // 0x70
     u32 child_count;                 // 0x78
 };
-UnkGuiDef_b52* fn_7101193e88(UnkActorDefFactory* factory, const void* key);
 
 struct UnkGuiNode_b52 {
     base::global::UnkStringData* key;
@@ -87,10 +87,8 @@ bool fn_710119d9b8(UnkSubAreaGuiCache* cache, const base::UnkStrIdMember* id, bo
 struct UnkGfxFrameSource;
 extern UnkGfxFrameSource* g_unk_7101d47328;
 struct UnkStruct_71002334fc;
-void fn_71002334fc(UnkStruct_71002334fc*, bool);
 struct UnkStruct_7100233684;
 base::reflection::UnkReflObject* fn_7100233684(UnkStruct_7100233684* self);
-void fn_710023272c(void* actor);
 
 // An actor slot of a cached entry (0x18 bytes): the actor, the frame it was handed out in, in use.
 struct UnkGuiActorSlot_b52 {

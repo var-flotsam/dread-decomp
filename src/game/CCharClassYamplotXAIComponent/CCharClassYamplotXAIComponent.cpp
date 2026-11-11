@@ -2,10 +2,10 @@
 // vtable (0x7101a6ad30), the members at +0x510 and +0x600 (fn_71006ec1f8, fn_71006ec5dc), two
 // cleared fields, then the post-construction virtual call (slot 3). Names and layouts are
 // placeholders.
+#include "game/CCharClassBehaviorTreeAIComponent.h"
 #include "types.h"
 
 struct UnkObject_7100416db8;
-void fn_7100416db8(UnkObject_7100416db8* self);
 void fn_71006ec1f8(void* self);
 void fn_71006ec5dc(void* self);
 extern void* g_unk_7101a6ad30[];

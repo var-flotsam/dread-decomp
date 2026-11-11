@@ -3,13 +3,13 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/CStandaloneFXComponent.h"
 #include "game/UnkComponent.h"
 #include "types.h"
 
 extern void* g_unk_7101a75008[];
 
 struct UnkStruct_710081348c;
-void fn_710081348c(UnkStruct_710081348c* self);
 
 struct UnkFxRecord {
     u8 data[0x40];

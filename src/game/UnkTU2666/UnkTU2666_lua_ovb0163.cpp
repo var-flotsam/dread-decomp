@@ -6,10 +6,19 @@
 #include "base/UnkRegistry.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
+#include "base/file/CThreadSafeDevice.h"
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU1370.h"
+#include "game/UnkTU2201.h"
+#include "game/UnkTU2676.h"
+#include "game/UnkTU2677.h"
+#include "game/UnkTU2685.h"
+#include "game/UnkTU2728.h"
+#include "game/lua_lib.h"
 #include "game/sound/CMusicManager.h"
 #include "base/global/UnkStringPool.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -21,6 +30,7 @@
 #include "game/UnkItemProperties.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkGameManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -33,8 +43,6 @@ struct UnkStruct_71008c0c74;
 struct UnkBase_71003cc474;
 
 UnkPlayer* fn_7100dec788(UnkGameManager* self);
-void fn_71008c0c74(UnkStruct_71008c0c74* self);
-void fn_71008c1558(UnkBase_71003cc474* self);
 
 extern CStrId g_unk_71726dda50;
 extern void* g_unk_71726dbf68;
@@ -110,9 +118,6 @@ s32 fn_71010966a0(lua_State* L) {
 
 using base::global::CFilePathStrId;
 
-s32 fn_71010c0270(lua_State* L, const char* fmt, ...);
-int fn_71010c0b40(lua_State* L, const char* fmt, ...);
-
 struct UnkMaskedId {
     union {
         CStrId id;
@@ -122,7 +127,6 @@ struct UnkMaskedId {
     explicit UnkMaskedId(u32 v);
     ~UnkMaskedId() { id.~CStrId(); }
 };
-void fn_7100c939dc(UnkMaskedId* self);
 void fn_7100c93aec(UnkMaskedId* self, u32 v);
 inline UnkMaskedId::UnkMaskedId() { fn_7100c939dc(this); }
 inline UnkMaskedId::UnkMaskedId(u32 v) { fn_7100c93aec(this, v); }
@@ -145,7 +149,6 @@ struct UnkPackLoader_b0163;
 
 UnkPackRef_b0163 fn_7101197008(UnkPackManager_b0163* self, const CFilePathStrId& path, const UnkMaskedId& id,
                                bool flag);
-void fn_7101192628(void* self);
 void fn_7101192ae8(UnkPackLoader_b0163* self);
 extern void* g_unk_7101d47330;
 extern void* g_unk_7172758b20;
@@ -282,9 +285,7 @@ s32 fn_7101092ff0(lua_State* L) {
     return fn_71010c0b40(L, "b", result);
 }
 
-s32 fn_71010c0ad0(lua_State* L, int first, int count, const char* format, ...);
 int lua_type(lua_State* L, int idx);
-int fn_71010a4900(lua_State* L, int narg);
 void* fn_7100deab70(UnkGameManager* self, const CRntString& name);
 void fn_7100deac9c(UnkGameManager* self, const CRntString& name);
 void fn_7100da62a4(void* self, const CFilePathStrId* path, bool value);
@@ -344,7 +345,6 @@ struct UnkLoadingMask {
     UnkLoadingMask(u32 b) : bits(b) {}
     UnkLoadingMask(const UnkLoadingMask& o) : bits(o.bits) {}
 };
-void fn_7100fd7b44(void* manager, UnkLoadingMask channels, UnkLoadingMask mask, f32 time);
 extern void* g_unk_71726bc560;
 s32 fn_7101097578(const char* name);
 
@@ -593,7 +593,6 @@ struct UnkStrPair_0x10 {
     void* a;
     void* b;
 };
-void fn_710008d680(UnkStrPair_0x10* s, const char* path);
 
 struct UnkRcTarget_b0163 {
     void** vtable;
@@ -631,7 +630,6 @@ struct UnkRcBinding_b0163 {
 
 UnkRc_b0163 fn_710021cc9c(UnkPlayer* self, const UnkStrPair_0x10* path, u32 a, bool b);
 void* fn_710021dee4();
-s32 fn_7100fbd320(lua_State* L, UnkRcBinding_b0163* binding, u32 a, u32 b);
 
 s32 fn_7101095780(lua_State* L) {
     UnkRc_b0163 ref;
@@ -670,7 +668,6 @@ struct UnkCommand_b0163 {
     u8 pad_0x70[0x10];
 };
 void fn_71010c7284(UnkCommand_b0163* self, const CStrId* id, const CRntString* text, bool flag, void* extra);
-void fn_71010c7328(UnkCommand_b0163* self);
 void fn_71010bf250(lua_State* L, s32 kind, const char* name, base::global::CRntFile* file);
 void fn_7100233a38(void* object, UnkCommand_b0163* command);
 
@@ -792,7 +789,6 @@ extern void* g_unk_7101a202e0[];
 extern UnkRegistry_0x70* g_unk_7101d4b5a0;
 void fn_71000878f0(UnkRegistry_0x70* self, const UnkStrPair_0x10* path, u32 flags, void* out);
 void fn_7100df9728(UnkGameManager* self);
-void fn_7100000790(const char* name, const char* fmt, ...);
 void fn_7100133020();
 
 struct UnkPairNode_b0163 {

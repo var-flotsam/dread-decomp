@@ -6,12 +6,12 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU2702.h"
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
 
 struct UnkNailongAI_b46a2;
 struct UnkNailongMsg_b46a2;
-u32 fn_7101111dc8(UnkNailongAI_b46a2* self, UnkNailongMsg_b46a2* msg);
 
 struct UnkShakernautKey_b59a4;
 extern UnkShakernautKey_b59a4 g_unk_710164a6b0;  // reached through the GOT

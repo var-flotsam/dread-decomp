@@ -6,7 +6,10 @@
 // amount, and the time of the player's last damage) and a forwarder of two flags to vtable slot 0x180
 // (fn_710116089c). Names and layouts are placeholders.
 #include "base/global/CRntString.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1370.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -16,8 +19,6 @@ struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 struct UnkParent;
-void fn_71010c4228(UnkParent*);
-void fn_71010c424c(UnkParent*);
 
 // A pending entry of the component's queue (0x100 bytes, destroyed through its vtable).
 struct UnkLifeQueued_ovb0000 {
@@ -160,8 +161,6 @@ UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 
 struct UnkStruct_71008c0c74;
 struct UnkBase_71003cc474;
-void fn_71008c0c74(UnkStruct_71008c0c74* self);
-void fn_71008c1558(UnkBase_71003cc474* self);
 
 struct UnkDeathRequest_ovb0000 {
     u8 pad_0x0[0x8];
@@ -203,7 +202,6 @@ void fn_71011607ac(UnkLifeKill_ovb0000* self, bool flag, bool by_player) {
 
 
 struct UnkScriptCaller;
-bool fn_7100305088(UnkScriptCaller* self, const char* name, const char* fmt, ...);
 
 // A shared record with a name; the use count is a union member.
 struct UnkDamageNamed_ovb0000 {

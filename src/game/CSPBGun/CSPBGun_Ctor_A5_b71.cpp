@@ -3,10 +3,10 @@
 // the empty sound handle, sets its tunables (ranges, counts, an empty name) and the base's kind at +0x1874, then
 // runs the class entries (fn_7100023854). Defined under the `void()` symbol src/reflection/CSPBGun.cpp declares.
 // Names and layouts are placeholders.
+#include "base/core/CBaseObject.h"
 #include "types.h"
 
 struct UnkNode;
-void fn_7100023854(UnkNode* node);
 struct UnkBeamGun_A5_b71;
 void fn_710082fa78(UnkBeamGun_A5_b71* self);
 extern void* g_unk_7101a79800[];

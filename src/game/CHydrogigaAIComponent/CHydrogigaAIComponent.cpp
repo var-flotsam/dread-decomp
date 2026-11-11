@@ -1,5 +1,6 @@
 // The owner's bounds (fn_71005c00fc): the base bounds (fn_71011061d0), grown to take in the point
 // 1180 units above the owner's position.
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 struct UnkVec3 {
@@ -24,8 +25,6 @@ struct UnkBoundsComponent {
     u8 pad_0x0[0x30];
     UnkTransformOwner* field_0x30;
 };
-
-void fn_71011061d0(UnkBoundsComponent* self, UnkAabb* out);
 
 static inline f32 Min(f32 a, f32 b) { return a < b ? a : b; }
 static inline f32 Max(f32 a, f32 b) { return a > b ? a : b; }

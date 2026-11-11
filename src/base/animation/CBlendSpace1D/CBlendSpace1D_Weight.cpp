@@ -2,6 +2,7 @@
 // flag (bit 1 of +0x40) is set: the sum over its two inputs of each one's sample (its source's
 // vf_0x30 at the input's weight) over the source's length, times the weight. Names and layouts
 // are placeholders.
+#include "base/animation/CBlendSpace1D.h"
 #include "types.h"
 
 struct UnkBlendSource13 {
@@ -34,8 +35,6 @@ struct UnkBlend13 {
     u32 flags;  // 0x40
 };
 static_assert(__builtin_offsetof(UnkBlend13, flags) == 0x40, "UnkBlend13 layout");
-
-void fn_7100006e98(UnkBlend13* self, u32 a);
 
 static inline __attribute__((always_inline)) void AddInput(f32& total, UnkBlendInput13& input) {
     if (input.weight > 0.0f && input.track) {

@@ -4,6 +4,7 @@
 // zero is stored in the component (+0x70, as a vector), and the actor's effect sink (+0x218) gets a
 // parameter block with the direction set (as src/game/UnkUnit1123/UnkUnit1123_b38.cpp builds one).
 // Names and layouts are placeholders.
+#include "game/CEnemyMovement.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
@@ -32,7 +33,6 @@ struct UnkSinkParams_b49 {
 extern void* g_unk_7101a24b80[];
 
 struct UnkEffectSink;
-void fn_71010c7e6c(UnkEffectSink* sink, void* params, u32 flags);
 
 struct UnkViewDirComponent {
     u8 pad_0x0[0x70];

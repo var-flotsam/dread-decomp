@@ -2,11 +2,11 @@
 // +0x638) into the tracker at +0x146c8: the current value, and its rate of change over the time step;
 // for a time step under 1 ms the rate is cleared and fn_71006badf4 restarts with the value. Names and
 // layouts are placeholders.
+#include "game/CShelmitAIComponent.h"
 #include "types.h"
 
 // Declared as src/game/CShelmitAIComponent/CShelmitAIComponent.cpp declares it; it also takes the value.
 struct UnkShelmitAI;
-void fn_71006badf4(UnkShelmitAI* self);
 
 struct UnkShelmitSource {
     u8 pad_0x0[0x634];

@@ -5,6 +5,7 @@
 #include "../../game_s7/UnkPropS7.h"
 #include "base/global/CStrId.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU131.h"
 #include "game/UnkXformNode.h"
 
 #include <new>
@@ -93,7 +94,6 @@ extern char g_unk_7172a045f0[] __attribute__((visibility("hidden")));
 
 void fn_7100e13928(void* unk, void* unk2, UnkSceneObj_71010e2278** out, const CStrId* name);
 void fn_7100219bb4(UnkRenderManager* mgr, UnkSceneObj_71010e2278* obj, u32 layer);
-void fn_71001453c4(UnkSceneObj_71010e2278* obj, UnkArg2_71010e2278* a2);
 void fn_7100030fc0(void* dst, const void* src, f32 value);
 
 struct UnkOwner_71010e2278 {

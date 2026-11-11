@@ -8,6 +8,7 @@
 #include <stdlib.h>
 
 #include "base/UnkDefaultAllocator.h"
+#include "game/UnkTU172.h"
 #include "types.h"
 
 // The allocator the pools' storage comes from, and the five heaps (as
@@ -54,7 +55,6 @@ struct UnkNvnPoolBuilder {
 struct UnkPool;
 
 // The graphics device (src/game_s7/fn_71001587f0.cpp).
-void* fn_7100153cd0();
 
 // A memory pool with its storage (the type fn_71001587f0 passes as UnkPool).
 struct UnkNvnMemoryPool {

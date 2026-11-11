@@ -7,15 +7,15 @@
 #include "base/UnkVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CChozoCommanderAIComponent.h"
+#include "game/CTeamManager/CTunableTeamManager.h"
 #include "types.h"
 
 using base::reflection::CClass;
 
 extern char* g_unk_71726b2398;
-void fn_71011a664c(char*);
 
 struct UnkComponent;
-void fn_71004554d8(UnkComponent* component);
 void fn_71004565f0(UnkComponent* component);
 
 struct UnkCommanderComponent {

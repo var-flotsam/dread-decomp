@@ -3,6 +3,7 @@
 // +0x20): one hands the value found to fn_71001f9e8c with the owner, the other clears the value's
 // word at +0xc0. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU253.h"
 #include "types.h"
 
 extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
@@ -180,7 +181,6 @@ void fn_71001ef038(UnkMapOwnerC_A1b71* self, UnkMapEntry_A1b71* entry) {
 }
 
 struct UnkResetOwner;  // src/base/UnkUnit247/UnkUnit247_ResetEntries_b40.cpp
-void fn_71001c3270(UnkResetOwner* self);
 
 // What the value's vf_0x88 returns: a kind, and for kind 2 the entries fn_71001c3270 resets.
 struct UnkMapState_A1b71 {

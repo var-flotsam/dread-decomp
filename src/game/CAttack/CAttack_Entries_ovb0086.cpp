@@ -8,6 +8,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CCharClassAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
@@ -64,8 +65,6 @@ struct UnkAttackEntry_b0086 {
     virtual f32 vf_0x40(void* arg);
     virtual f32 vf_0x48(void* arg);
 };
-
-void fn_71003646b0(UnkAttackTarget_A2_b68* target, u32 value);
 
 static inline UnkAttackEntry_b0086* GetEntry(UnkAttackTarget_b0086* target, u32 value) {
     return reinterpret_cast<UnkAttackEntry_b0086* (*)(UnkAttackTarget_A2_b68*, u32)>(&fn_71003646b0)(

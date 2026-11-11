@@ -4,6 +4,8 @@
 // the temporary's value destroyed (an owned id is released in two steps). The shape of
 // base::refl_End (include/base/UnkCollectionIter.h). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CShotManager/CTunableShotManager.h"
+#include "game/UnkTU2612.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -76,9 +78,6 @@ struct UnkPathIter {
         return *this;
     }
 };
-
-void fn_7100ed8144(void* it);
-void fn_7100fb0000(void* it);
 
 using UnkFilePathElem = UnkPathElem<g_unk_7101d47200>;
 using UnkStrIdElem = UnkPathElem<g_unk_7101d47108>;

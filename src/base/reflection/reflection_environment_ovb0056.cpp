@@ -15,6 +15,7 @@
 #include "base/math/CVector4D.h"
 #include "game/UnkRenderManager.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 // The 0x50-byte record array fn_7100d90460 is declared with (unit 2601).
 #include "../../game/UnkUnit2601/UnkUnit2601_VecCopy_b56.h"
@@ -139,7 +140,6 @@ static inline UnkLoadingMask Flipped_ovb56(const UnkLoadingMask& mask, u32 bit) 
     return UnkLoadingMask((mask.bits & bit) ? mask.bits & ~bit : mask.bits | bit);
 }
 extern void* g_unk_71726bc560;
-void fn_7100fd7b44(void* manager, UnkLoadingMask channels, UnkLoadingMask mask, f32 time);
 
 // Replays the environment music (fn_7100d8d854) or, with none, has the music manager switch channel 8
 // to every channel but 0x100's state flipped.

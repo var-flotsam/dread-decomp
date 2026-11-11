@@ -3,13 +3,13 @@
 // one (fn_71009f5730, fn_71009f5d50), the node list at 0x278 is freed and emptied, and the fields after it are
 // cleared. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CComponent.h"
+#include "game/CSpitclawkAIComponent.h"
 #include "types.h"
 
 struct UnkParent;
-void fn_71010c4228(UnkParent*);
 void fn_71009f5730(char* self);
 struct UnkShockWavePoolMember;
-void fn_71006c9404(UnkShockWavePoolMember* self);  // its destructor
 
 struct UnkShockWavePoolMember {
     u8 unk_0x0[0x228];

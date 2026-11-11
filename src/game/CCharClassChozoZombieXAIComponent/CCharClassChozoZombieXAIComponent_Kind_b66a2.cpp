@@ -2,13 +2,13 @@
 // character class's check (its answer unused), 2 when the actor's track is in the class fn_7100ce9338
 // names, else 5 or 4 by bit 2 of the fourth argument's byte at +0xb6. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CCharClassAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
 // As src/game/CCharClassSluggerAIComponent/CCharClassSluggerAIComponent_b38.cpp declares it (called with
 // the same arguments).
-u32 fn_7100414160();
 
 struct UnkChozoZombieXInfo_b66a2 {
     u8 pad_0x0[0xb6];

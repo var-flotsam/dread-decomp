@@ -4,6 +4,7 @@
 // Names and layouts are placeholders.
 #include <new>
 
+#include "game/navmesh/CFixedDynamicSmartLinkRule.h"
 #include "types.h"
 
 struct UnkSmartLinkEntry {
@@ -37,8 +38,6 @@ struct UnkSmartLinkEntryArray {
     u32 capacity;
     u32 step;
 };
-
-void fn_7100272474(UnkSmartLinkEntryArray* self, u32 capacity);
 
 void fn_7100273ad4(UnkSmartLinkEntryArray* self, UnkSmartLinkEntry* value) {
     u32 n = self->count;

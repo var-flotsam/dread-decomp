@@ -7,13 +7,18 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/math/UnkZeroVector3.h"
 #include "base/snd/UnkSound.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkModelManager.h"
+#include "game/UnkTU101.h"
+#include "game/UnkTU1102.h"
+#include "game/UnkTU2560.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkXformNode.h"
+#include "game/sound/CSoundManager.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -21,7 +26,6 @@ using base::global::CStrId;
 // ---- The tunable ----
 
 extern void* g_unk_7101aa9cc8[];
-void fn_7100075104(void* self);
 void fn_710007e6c4(void* self);
 
 struct UnkDropTunable_ovb0208 : UnkTunable {
@@ -173,7 +177,6 @@ struct UnkSoundHandle {
     s64 serial;
 };
 extern const UnkSoundHandle g_unk_7108b6c460;  // the empty handle
-void fn_7100105034(void*);
 
 struct UnkDropManagerE_ovb0208 {
     UnkDropElem_ovb0208 elems[128];  // 0x0
@@ -321,10 +324,6 @@ struct UnkDropPickup_ovb0208 {
 };
 struct UnkDropTarget;
 extern UnkDropTarget* g_unk_7101d47318;
-
-void* fn_71006eb114(void* info);
-void* fn_71006eb1f0(void* h);
-void fn_7101023f04(UnkDropTarget* target, void* entry, UnkDropPlayer_ovb0208* player, void* arg4, u32 arg5);
 
 static inline void* Holder(UnkDropPlayer_ovb0208* player) {
     if (!player)
@@ -508,7 +507,6 @@ void fn_7100e2eda8(UnkDropManager5_ovb0208* self, f32 scale_value, const UnkVec3
 
 // The singleton (0xe0 bytes) that plays the requests below.
 extern void* g_unk_71726da048;
-void fn_7100e1bca4(void* self);
 
 struct UnkDropRequest_ovb0208 {
     CStrId id;  // 0x0

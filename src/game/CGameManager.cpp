@@ -1,6 +1,21 @@
 // The game manager (CGameManager): the lookup that replaces a string id by another.
 #include "base/global/CRntString.h"
+#include "game/CCameraComponent.h"
+#include "game/CCharClassStartPointComponent.h"
+#include "game/CTriggerComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU2553.h"
+#include "game/UnkTU2557.h"
+#include "game/UnkTU2668.h"
+#include "game/UnkTU2677.h"
+#include "game/UnkTU2730.h"
+#include "game/UnkTU2768.h"
+#include "game/UnkTU341.h"
+#include "game/UnkTU57.h"
+#include "game/UnkTU83.h"
+#include "game/UnkTU99.h"
+#include "game/nn/time.h"
 
 using base::global::CStrId;
 
@@ -129,7 +144,6 @@ struct lua_State;
 extern lua_State* g_unk_7172a01d18;
 s32 fn_71010c0bb0(lua_State* L, const char* str);
 s32 fn_71010bf400(lua_State* L, const char* fmt, va_list args);
-s32 fn_71010c0d80(lua_State* L, s32 a, char* buf, u32 size, void* x, void* y);
 
 // Calls the script function `name` with the arguments `fmt` describes; whether it returned 1.
 bool fn_7100e01f08(const char* name, const char* fmt, ...) {
@@ -518,41 +532,29 @@ void fn_7100e01978(UnkGameManager* self) {
 // The singletons it creates on first use.
 struct UnkLoadingScreen;  // 0x220 bytes
 extern UnkLoadingScreen* g_unk_7101d47380;
-void fn_7100e0f89c(UnkLoadingScreen* self);  // constructor
 void fn_7100e100f8(UnkLoadingScreen* self, bool shown);
 struct UnkSoundHolder;  // 0x48 bytes (src/game/GUI/CIngameMenu/fn_7100b2de48.cpp)
 extern UnkSoundHolder* g_unk_7101d47340;
-void fn_710006cd9c(UnkSoundHolder* holder);  // constructor
-void fn_710006cea8(UnkSoundHolder* holder, bool value);
 extern void* g_unk_71726bc560;  // the music manager (game/sound/CMusicManager.h)
 extern void* g_unk_7101d47330;
 extern UnkTunable g_unk_7101d68580;  // base::snd::CSoundSystemATK's tunable; a float at +0x28
 
-void fn_710109d0a0();
 void fn_71011a2770(UnkGameManagerSub_0x608* points, void* object);
 void fn_7100df31b8(UnkGameManager* self, u32 a, bool b, bool c, CStrId id, u32 d);
 struct UnkTreeNode;  // src/engine/render/anim/CSkeletalAnimTree/fn_710014be78.cpp
-void fn_710023298c(UnkTreeNode* self);
 struct UnkObj_7100e01680;  // src/game_aca57c/fn_7100e01680.cpp
-void* fn_7100e01680(UnkObj_7100e01680* self);
 void* fn_7100e0189c(void* start_point);
-void fn_710116c5dc(void* target, void* object);
 // A mode word passed by address (the word after it is not set).
 struct UnkMusicMode {
     u32 kind;
     u32 field_0x4;
 };
 void fn_7100fd90d8(f32 a, f32 b, void* music, const CRntString* name, u32 c, const UnkMusicMode* d, u32 e, u32 f, void* g);
-bool fn_7101196fd8(void* object);
 struct UnkStruct_71002334fc;  // src/game_lo/fn_71002334fc.cpp
-void fn_71002334fc(UnkStruct_71002334fc* self, bool value);
 struct UnkCameraCtrl;  // src/game/CBossAIComponent/fn_71003ad014.cpp
-UnkCameraCtrl* fn_71010e389c(void* holder, void* key);
 void fn_7100935d40(UnkCameraCtrl* ctrl);
 void fn_7100e0203c(UnkGameManager* self);
 void fn_71010e4798(void* target);
-void fn_7100000790(const char* name, const char* format, ...);  // calls a script function
-void fn_71000fbe1c(void* self, u32 a, f32 b, f32 c);
 void fn_7101048af8(CBlackboard* self);
 void fn_7100dfc638(UnkGameManager* self, CBlackboard* blackboard, const CRntString* name, const CRntString* tag);
 void fn_7101046e78(CBlackboard* self, CBlackboard* other, bool a, bool b);
@@ -560,7 +562,6 @@ struct UnkHandleList {
     UnkGameManagerObjRef** data;
     u32 count;
 };
-UnkHandleList* fn_7100a5e1dc();
 
 // The id table (fn_7100031894 builds it, src/tables/strid_table_7100031894.cpp: 0x2578 bytes of
 // string ids; a weak function-local static reached through the GOT). Only the ids used here are
@@ -755,8 +756,6 @@ void fn_7100df19c0(UnkGameManager* self) {
 // The user data's owner (created on first use; src/game_aca57c/fn_7100dc8828.cpp).
 struct UnkUserDataOwner;
 extern UnkUserDataOwner* g_unk_7101d47308;
-void fn_710120320c(UnkUserDataOwner* self);  // constructor
-void fn_7101203768(UnkUserDataOwner* self);
 
 void fn_7100dee46c(UnkGameManager* self);
 
@@ -869,7 +868,6 @@ struct UnkStrVector {
     }
 };
 static_assert(sizeof(UnkStrVector) == 0x28, "UnkStrVector layout");
-void fn_71000e0524(UnkStrVector* self, UnkStrVector* other);
 
 // Callbacks run before the blackboard pass.
 struct UnkStepCallback {
@@ -880,7 +878,6 @@ struct UnkStepCallbacks {
     u8 pad_0x0[0x8];
     u32 count;
 };
-UnkStepCallback* fn_7100dfc428(UnkStepCallbacks* self, u32 index);
 
 // Named objects (a CRntString at +8), in a list at +0x478.
 struct UnkNamedObject {
@@ -897,7 +894,6 @@ struct UnkNamedUser {
 };
 // String equality (the declaration is src/game_s1/fn_71000d4d50.cpp's, over a record of CRntString's size).
 struct UnkCompared_0x30;
-bool fn_710007f120(const UnkCompared_0x30* a, const UnkCompared_0x30* b);
 static inline bool Equal(const CRntString* a, const CRntString* b) {
     return fn_710007f120(reinterpret_cast<const UnkCompared_0x30*>(a), reinterpret_cast<const UnkCompared_0x30*>(b));
 }
@@ -912,7 +908,6 @@ struct UnkModeFlags {
 extern UnkModeFlags* g_unk_71726bc570;
 extern UnkPropertyEx<> g_unk_7172758c30;  // an int property
 
-void fn_7100df7468();
 s32 fn_71012034b0(UnkUserDataOwner* self, u32 kind, const CRntString* scenario, const CRntString* name,
                   UnkPtrList* blackboards, bool a, void (*fn)(), bool b, const CRntString* c);
 
@@ -1112,7 +1107,6 @@ struct UnkCopiedVector;
 struct UnkWordsValue;
 UnkCopiedVector<UnkWordsValue>* fn_7100e05764(UnkCopiedVector<UnkWordsValue>* self, const UnkCopiedVector<UnkWordsValue>* other);
 struct UnkStruct_0x28;
-void fn_71000ce19c(UnkStruct_0x28* self, const UnkStruct_0x28* other);
 void fn_710007c144(UnkHashStream_0x38* s);
 void fn_7100e0552c(void* self, const void* other);
 struct UnkMainMenuSlot {

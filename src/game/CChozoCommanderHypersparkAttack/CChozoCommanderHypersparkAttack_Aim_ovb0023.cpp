@@ -7,8 +7,11 @@
 // by its velocity or, while the player's ability is in states 3 to 6, offset by its reach.
 // Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1728.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -48,8 +51,6 @@ struct UnkTimeline {
 
 void* fn_7101176d34(UnkStruct_7101176ea8* self, void* arg);
 void fn_71007142e8(UnkStruct_71007142e8* self);
-void fn_7100b8b3bc(UnkTimeline* self, void* target, UnkMotionTracks* tracks, const u32* flags, f32 from,
-                   f32 to);
 
 struct UnkHypersparkOwner_ovb0023 {
     u8 pad_0x0[0x38];
@@ -99,10 +100,8 @@ struct UnkKraidCreatureVec {
     f32 z;
     UnkKraidCreatureVec(const UnkKraidCreatureVec& other) : x(other.x), y(other.y), z(other.z) {}
 };
-UnkKraidCreatureVec fn_7100d7be08(void* actor);
 
 struct UnkAbility;
-u32 fn_7100309568(UnkAbility* ability);
 UnkAbility* fn_7100df554c(UnkGameManager* manager);
 
 struct UnkHypersparkTargetFlags_ovb0023 {

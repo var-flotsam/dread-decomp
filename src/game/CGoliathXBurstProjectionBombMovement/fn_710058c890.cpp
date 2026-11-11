@@ -1,6 +1,7 @@
 // Static initialiser of CGoliathXBurstProjectionBombMovement's unit.
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CGoliathXBurstProjectionBombMovement.h"
 
 using namespace unk_static_init;
 
@@ -18,7 +19,6 @@ extern UnkStatics_710058c890 g_unk_71726e5cc0 __attribute__((visibility("hidden"
 extern char g_unk_71726e5ca8[];
 extern UnkFilePathStrIdBase g_unk_71726e5cb0;
 extern UnkFilePathStrIdBase g_unk_71726e5cb8;
-void fn_710058a2b8(void* self);
 
 void fn_710058c890() {
     InitHeaderIds(&g_unk_71726e5cc0.ids);

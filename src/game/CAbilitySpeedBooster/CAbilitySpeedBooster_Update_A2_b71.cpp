@@ -4,11 +4,11 @@
 // direction (negative with the byte at +0x3a0 set, else positive) while the actor's +0x208 object is neither
 // flagged (+0x2325) nor in mode 1 (+0x2d08, +0x10) with its +0x2f48 flag set. Names and layouts are
 // placeholders.
+#include "game/CAbilitySpeedBooster.h"
 #include "types.h"
 
 // As src/game/UnkUnit435/UnkUnit435_OnSameId.cpp declares it.
 struct UnkUnit435Self;
-void fn_710033cd50(UnkUnit435Self* self, u32 arg);
 
 struct UnkSpeedBoosterCallback_A2_b71 {
     u8 pad_0x0[0x60];

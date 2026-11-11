@@ -6,13 +6,13 @@
 // the prey's value at +0x37c, or fn_7100977b20's when the prey has its +0x218 object. Names and layouts
 // are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CCharacterMovement.h"
 #include "game/UnkActor.h"
 #include "game/UnkTimelineCalls.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
-f32 fn_7100977b20(void* p);
 
 struct UnkXParasitePreyKey_b60a4;
 extern UnkXParasitePreyKey_b60a4 g_unk_710164a840;  // reached through the GOT

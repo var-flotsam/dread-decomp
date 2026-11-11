@@ -15,6 +15,10 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
+#include "game/UnkTU177.h"
+#include "game/UnkTU180.h"
+#include "game/UnkTU230.h"
+#include "game/UnkTU85.h"
 #include "game/UnkTUInit.h"
 #include "types.h"
 
@@ -310,11 +314,9 @@ void fn_71001a76cc(UnkMaterial* self) {
 
 // ---- fn_71001a7f50: setting a value block list's uniforms ----
 
-void fn_710015e1f0(void* state, u32 stage, u64 location, u32 count, const f32* values);
 // The integer counterpart of fn_710015e1f0.
 void fn_710015e110(void* state, u32 stage, u64 location, u32 count, const s32* values);
 // The program's uniform state (null when it has none).
-void* fn_71001aa028(void* program);
 
 // A value block as a uniform: its type ('f' or 'i'), its count, its location in each of the three
 // stages (0 when absent) and the values.
@@ -388,15 +390,6 @@ __attribute__((noinline)) void fn_71001a7f50(UnkMatProgramOwner_ovb0098* self, U
 }
 
 // ---- fn_71001a7bfc: applying the material's render state ----
-
-void fn_710015a3e0(u32 value);
-void fn_710015a500(u32 a, u32 b);
-void fn_710015a680(u32 value);
-void fn_710015ab00(u32 value);
-void fn_710015aa80(u32 value);
-void fn_710015a860(u32 value);
-void fn_710015aa20(u32 value);
-void fn_710015a8c0(u32 value);
 
 // The state fn_710015acf0 sets in one go (bit 3).
 struct UnkBlendDesc_ovb0098 {
@@ -513,7 +506,6 @@ void fn_71001a7bfc(UnkMatStateOwner_ovb0098* self, u32 flags) {
 struct UnkReflField;
 struct UnkReflFieldObject;
 struct UnkReflValueArg;
-bool fn_71000e7a80(UnkReflField* field, const UnkReflFieldObject* obj, UnkReflValueArg* value);  // sets
 // The member object a field of `obj` holds.
 UnkReflTypedPtr fn_71000e755c(UnkReflField* field, const UnkReflTypedPtr* obj);
 const base::reflection::UnkReflAttrKey& fn_710000bf80();

@@ -3,6 +3,7 @@
 // (released through vtable slot 0x10 at zero); fn_71006f538c is the deleting form, freeing the object with
 // fn_7100083c00. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CAttackComponent.h"
 #include "types.h"
 
 extern void* g_unk_7101a6b780[];
@@ -22,8 +23,6 @@ struct UnkListener_ain {
     u8 pad_0x8[0x10];
     UnkLink_ain* link;  // 0x18
 };
-
-void fn_7101137c84(UnkLinkOwner_ain* owner, UnkListener_ain* listener);
 
 static inline __attribute__((always_inline)) void Destroy_ain(UnkListener_ain* self) {
     self->vtable = &g_unk_7101a6b780[2];

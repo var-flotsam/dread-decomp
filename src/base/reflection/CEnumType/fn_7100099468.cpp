@@ -12,10 +12,11 @@
 #include "UnkClone.h"
 #include "base/UnkCloneCalls.h"
 #include "base/UnkVector.h"
+#include "base/reflection/CType.h"
+#include "game/UnkTU83.h"
 
 extern char unk_7101a1b3a0[];
 extern char unk_7101a1d8b8[];
-void fn_710009cc04(char*);
 
 struct UnkIdRecordOwner_0xf0;
 using UnkIdRecord = UnkCloneStrIdElem<UnkIdRecordOwner_0xf0, 0, 0x10, UnkCloneStrId<UnkIdRecordOwner_0xf0>>;
@@ -77,9 +78,6 @@ __attribute__((always_inline)) static inline void Begin(const base::UnkVector<El
         Sync(out);
     }
 }
-
-void fn_71000be6c0(void*);
-void fn_71000bce50(void*);
 
 void fn_71000d0f1c(const base::UnkVector<UnkFilePathIdElem>* v, base::UnkCollectionIter<UnkFilePathIdElem>* out) {
     Begin<UnkFilePathIdElem, fn_71000be6c0>(v, out);

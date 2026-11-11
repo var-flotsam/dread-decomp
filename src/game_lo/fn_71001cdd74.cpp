@@ -1,5 +1,7 @@
 // Applies a viewport (x, y, width, height, depth range): sets it on the device, stores the
 // rectangle with a default 0..1 depth range in the render state, and resets related state.
+#include "game/UnkTU177.h"
+#include "game/UnkTU259.h"
 #include "types.h"
 
 struct UnkViewport_71001cdd74 {
@@ -10,9 +12,6 @@ struct UnkViewport_71001cdd74 {
     f32 min_depth;
     f32 max_depth;
 };
-
-void fn_7100159490(s32 x, s32 y, s32 width, s32 height, f32 min_depth, f32 max_depth);
-void fn_7100159800(s32 value);
 
 struct UnkState_71001cdd74 {
     s32 x;
@@ -31,8 +30,6 @@ struct UnkStruct_71001cdd74 {
     u8 unk_0x0[0x317aa08];
     UnkState_71001cdd74 state;
 };
-
-void fn_71001cafa0(UnkStruct_71001cdd74* self, s32 a, s32 b, s32 c);
 
 extern u32 g_unk_716e554938;
 

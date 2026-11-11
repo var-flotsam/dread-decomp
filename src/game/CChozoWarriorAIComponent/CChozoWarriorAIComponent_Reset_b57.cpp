@@ -3,10 +3,10 @@
 // sub-object at +0x220 the value 2 under a fixed hash (refl_EmitU32, base/reflection/UnkReflStatics.h);
 // otherwise runs fn_71004996b0 while the flag at +0x14a18 is set. Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CChozoWarriorAIComponent.h"
 #include "types.h"
 
 struct UnkChozoWarriorAI733;
-void fn_71004996b0(UnkChozoWarriorAI733* self);
 
 struct UnkCwRefObj_b57 {
     virtual void vf_0x0();

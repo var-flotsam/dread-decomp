@@ -8,11 +8,16 @@
 #include "base/color/CColor4F.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
+#include "game/CActorComponent.h"
+#include "game/CFXComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkBehaviorTree.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkSlots.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU1102.h"
+#include "game/UnkTU2704.h"
+#include "game/UnkTU341.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -75,7 +80,6 @@ void fn_71006e808c(UnkXParasiteLock_808c* self) {
 // ---- fn_71006e9fcc ----
 struct UnkObj_7101129240;
 // The other declarations of this symbol drop the result; it is the actor the object stands for.
-void fn_7101129b08(UnkObj_7101129240*, bool);
 
 static inline UnkActor* PickActor(UnkObj_7101129240* object, bool primary) {
     return reinterpret_cast<UnkActor* (*)(UnkObj_7101129240*, bool)>(fn_7101129b08)(object, primary);
@@ -130,11 +134,6 @@ struct UnkStruct_710024fa0c;
 struct UnkXParasiteGrab_xpa;
 struct UnkXParasiteAI_A3_b75;
 struct UnkXParasiteMode_A3_b75;
-
-void fn_710024fa0c(UnkStruct_710024fa0c*, bool);
-void fn_71006e892c(UnkXParasiteGrab_xpa*);
-void fn_7100232c68(void*);
-void fn_71006e9384(UnkXParasiteAI_A3_b75*, const UnkXParasiteMode_A3_b75*);
 
 struct UnkXParasiteSelf_8a18;
 void fn_71006e75e8(UnkXParasiteSelf_8a18* self, bool on);
@@ -254,10 +253,8 @@ struct UnkFxObject_ovb0041;
 
 UnkPart* fn_7101152b90(UnkWorld*, u64);
 bool fn_710114e668(UnkWorld*, u8);
-void fn_710115596c(UnkRinkaControl_ruc*, void*);
 UnkFxObject_ovb0041* fn_71003b7db0(UnkModelManager*, const void*, bool, bool);
 void fn_7100146d84(UnkFxObject_ovb0041*, const UnkVec3f*);
-void fn_7101152988(UnkRinkaControl_ovb0090*, UnkFxObject_ovb0041*, UnkRinkaEntry_ruc**, void*, u32);
 void fn_710115217c(void*, void*, u32, u32, const base::global::CStrId*, const base::math::CVector3D&,
                    const base::math::CVector3D&, void*);
 

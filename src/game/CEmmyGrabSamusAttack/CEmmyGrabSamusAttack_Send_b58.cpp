@@ -8,6 +8,8 @@
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAIManager/CTunableAIManager.h"
+#include "game/CEmmyGrabSamusAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "../UnkNamedSend_b54.h"
@@ -22,8 +24,6 @@ extern UnkEmmyRegistry_b55* g_unk_71726af0a8;
 struct UnkGrabVec_b58a3 {
     f32 x, y, z;
 };
-void fn_7100daeb50(UnkEmmyRegistry_b55* registry, u32 kind, const UnkGrabVec_b58a3* pos,
-                   const UnkGrabVec_b58a3* dir);
 
 struct UnkGrabPart_b58a3 {
     void** vtable;
@@ -57,7 +57,6 @@ struct UnkGrabAttack_b58a3 {
     bool field_0x6b0;
 };
 
-void fn_7100507d24(UnkGrabAttack_b58a3* self);
 void fn_710050802c(UnkGrabAttack_b58a3* self);
 
 static inline __attribute__((always_inline)) const UnkGrabVec_b58a3* Addr_b58a3(const UnkGrabVec_b58a3& v) {

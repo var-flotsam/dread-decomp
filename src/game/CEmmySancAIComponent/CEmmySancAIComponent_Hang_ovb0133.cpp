@@ -5,12 +5,12 @@
 // src/game/CBossAIComponent/CBossAIComponent_CanAct_b49.cpp) must hold a target whose +0x30 is that
 // state's (fn_71009ad440). Otherwise fn_7100552314 answers. Names and layouts are placeholders.
 #include "base/UnkRefHandle.h"
+#include "game/CSamusMagnetGloveMovementState/CParams.h"
 #include "game/UnkActor.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkHangMoveState_A6_b70;
-void* fn_71009ad440(UnkHangMoveState_A6_b70* state);
 u32 fn_71009a60fc();
 
 struct UnkSancMoveState_ovb0133 {

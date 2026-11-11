@@ -8,10 +8,10 @@
 
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "game/CCharClassSceneModelAnimationComponent.h"
 #include "types.h"
 
 struct UnkEntry_b50a5;
-void fn_71009f26a0(UnkEntry_b50a5* self);
 
 // A string id as the entry's constructors build it: null, then the pool's empty string (the pool
 // created first when missing); a move leaves the empty string behind.

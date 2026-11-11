@@ -7,6 +7,8 @@
 
 #include "base/UnkDestructors.h"
 #include "base/math/CVector.h"
+#include "game/SCameraRailNode.h"
+#include "game/SLogicPathNode.h"
 #include "types.h"
 
 using base::UnkStrIdMember;
@@ -161,7 +163,6 @@ __attribute__((always_inline)) static inline UnkSetStatus EraseAt(UnkValueHolder
 // NON_MATCHING(minor): as fn_7100c07f58.
 
 struct UnkInsertTarget;
-void fn_7100c0c10c(UnkInsertTarget* target, const UnkArgObj* obj, u32 value);
 
 struct UnkInsertOwner {
     u8 unk_0x0[0x8];
@@ -170,7 +171,6 @@ struct UnkInsertOwner {
     bool dirty;
 };
 
-void fn_710106146c(UnkInsertTarget* target, const UnkArgObj* obj, u32 value);
 UnkSetStatus fn_710105d328(void* self, UnkValueHolder* holder, UnkValueArg* const* arg) {
     UnkInsertOwner* owner = reinterpret_cast<UnkInsertOwner*>(holder->owner);
     const UnkValueArg* args = *arg;

@@ -5,13 +5,15 @@
 // owner's (+0x30) effect player (+0x2b8, fn_7100719894) and cleared to the empty handle g_unk_7108b6c460.
 // Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CAudioComponent.h"
+#include "game/CComponent.h"
+#include "game/UnkTU243.h"
+#include "game/UnkTU2560.h"
+#include "game/UnkTU272.h"
 #include "types.h"
 
 extern void* g_unk_71726da048;
-void fn_7100e1bca4(void* manager);
-void fn_71001f3224(void* object, u32 value);
 struct UnkHandleOwner_71010c4230;
-void fn_71010c4230(UnkHandleOwner_71010c4230* self);
 
 struct UnkBillboardData_ovb0113 {
     u8 pad_0x0[0x18];
@@ -30,7 +32,6 @@ struct UnkBillboardEntry_ovb0113 {
     void* field_0x18;
 };
 struct UnkBillboardEntry_bbc;  // as CBillboardComponent_b39.cpp declares it
-UnkBillboardEntry_bbc* fn_7100e1caf0(void* manager, u32 id);
 
 static inline UnkBillboardEntry_ovb0113* Find_ovb0113(void* manager, u32 id) {
     return reinterpret_cast<UnkBillboardEntry_ovb0113*>(fn_7100e1caf0(manager, id));
@@ -57,7 +58,6 @@ struct UnkSoundHandle {
     s64 serial;
 };
 extern const UnkSoundHandle g_unk_7108b6c460;  // the empty handle
-void fn_7100719894(void* player, UnkSoundHandle handle, f32 a, f32 b);
 
 struct UnkBillboardOwner_ovb0113 {
     u8 pad_0x0[0x2b8];
@@ -106,9 +106,7 @@ void fn_71007274f4(UnkBillboardComponent_ovb0113* self) {
 // (fn_71001b7128), marked (+0x113) and switched on, and fn_7100728064 runs; the second entry's data then gets
 // the first entry's resource the same way.
 struct UnkParent;
-void fn_71010c424c(UnkParent*);
 void fn_7100745dac(UnkBillboardItem_ovb0113* item, f32 dt);
-void fn_71001b7128(void* target, void* resource, u32 index);
 void fn_7100728064(UnkBillboardComponent_ovb0113* self);
 
 void fn_7100727ee4(UnkBillboardComponent_ovb0113* self, f32 dt) {

@@ -3,11 +3,9 @@
 // first one applied before the weight decides: with a weight of 0 only that one; of 1 the second one
 // too; otherwise the second one writes into a copy that is blended in by the weight. Names and
 // layouts are placeholders.
+#include "engine/render/anim/CSkeletalAnimTree.h"
+#include "game/UnkTU23.h"
 #include "types.h"
-
-void fn_7100014dfc(void* self, const void* other);
-void fn_7100014e88(void* self);
-void fn_710014b80c(void* target, void* from, void* to, void* extra, f32 t);
 
 struct UnkBlendSub_b257d {
     virtual void vf_0x0();

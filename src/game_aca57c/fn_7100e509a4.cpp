@@ -6,6 +6,8 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU108.h"
+#include "game/UnkTU83.h"
 #include "types.h"
 
 struct UnkPart0 {
@@ -13,7 +15,6 @@ struct UnkPart0 {
 
     UnkPart0(const UnkPart0& other);
 };
-void fn_710011d8b4(UnkPart0* self, const UnkPart0* other);
 inline UnkPart0::UnkPart0(const UnkPart0& other) { fn_710011d8b4(this, &other); }
 
 // base::UnkVector's layout, copied out of line.
@@ -28,7 +29,6 @@ struct UnkPart48 {
 
     UnkPart48(const UnkPart48& other);
 };
-void fn_71000cbae4(UnkPart48* self, const UnkPart48* other);
 inline UnkPart48::UnkPart48(const UnkPart48& other) { fn_71000cbae4(this, &other); }
 
 // base::UnkVector<u16>'s layout.

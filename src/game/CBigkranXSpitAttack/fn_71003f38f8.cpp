@@ -3,9 +3,8 @@
 // (listener at +0x38, owner at +0x50), then, when the attack's own owner holds an object at
 // +0x2d0, hands that to fn_71009f92d0.
 #include "../../game_5821e4/CAttackDtor.h"
+#include "game/CShotComponent.h"
 #include "game/UnkAttack.h"
-
-void fn_71009f92d0(void* object);
 
 struct UnkAttackOwnerObject {
     u8 pad_0x0[0x2d0];

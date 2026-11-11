@@ -3,6 +3,7 @@
 // while that state is the current one (+0x2d08, of kind 13). An owner whose character class has no
 // CCharClassHangTrack passes. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CSamusMagnetGloveMovementState/CParams.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
@@ -32,7 +33,6 @@ struct UnkHangTarget_A6_b70 {
 
 bool fn_710097a564(UnkHangMove_A6_b70* self);
 u32 fn_71009a60fc();
-void* fn_71009ad440(UnkHangMoveState_A6_b70* state);
 
 static inline UnkHangMoveState_A6_b70* FindState(UnkHangMove_A6_b70* self, s32 kind) {
     u64 size = (u64)self->state_count * sizeof(UnkHangMoveState_A6_b70*);

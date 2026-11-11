@@ -5,6 +5,7 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU1689.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -32,8 +33,6 @@ struct UnkIdValuesArray {
     u32 flags;
     base::UnkAllocator* allocator;
 };
-
-void fn_7100b48af4(UnkIdValuesArray* self, u32 capacity);
 
 void fn_7100eafa60(UnkIdValuesArray* self, const UnkIdValuesArray& other) {
     self->data = nullptr;

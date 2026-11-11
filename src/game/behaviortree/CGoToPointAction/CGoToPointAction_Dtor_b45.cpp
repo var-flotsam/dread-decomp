@@ -3,14 +3,14 @@
 // fn_7100da619c and fn_7100da621c, src/game/sound/UnkMusicTrigger_Unit2538_Dtor_b44.cpp). Names and
 // layouts are placeholders.
 #include "base/UnkDestructors.h"
+#include "game/behaviortree/CBaseAction.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
 extern void* g_unk_7101a25e50[];  // the node's vtable
-void fn_7100393ea0(void*);         // the base's destructor
 
 // As src/game/navmesh/SNavMeshPath/fn_71002ad0dc.cpp defines it.
 struct UnkObject_71002ad0dc;
-void fn_71002ad0dc(UnkObject_71002ad0dc* self);
 
 struct UnkPathMember_b45a1 {
     ~UnkPathMember_b45a1() { fn_71002ad0dc(reinterpret_cast<UnkObject_71002ad0dc*>(this)); }

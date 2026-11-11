@@ -3,13 +3,13 @@
 // 0x250 is freed and emptied, and the fields after it are cleared. The layout follows
 // CShockWaveComponent_2.cpp. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CAutsharpAIComponent.h"
+#include "game/CComponent.h"
+#include "game/CShockWaveComponent.h"
 #include "types.h"
 
 struct UnkParent;
-void fn_71010c4228(UnkParent*);
-void fn_71009f35b0(char* self);
 struct UnkShockWaveMember;
-void fn_71003cc474(UnkShockWaveMember* self);  // its destructor
 
 struct UnkShockWaveMember {
     u8 unk_0x0[0x210];
@@ -20,7 +20,6 @@ struct UnkShockWaveMember {
 struct UnkShockWaveFreshB47 : UnkShockWaveMember {
     UnkShockWaveFreshB47() { fn_71009f35b0(reinterpret_cast<char*>(this)); }
 };
-void fn_71009f3bf8(UnkShockWaveMember* self, const UnkShockWaveMember* other);  // assignment
 
 struct UnkShockWaveNodeB47 {
     u64 field_0x0;

@@ -3,6 +3,7 @@
 // hash held at +0x30 of the object fn_710049b3cc describes. Names are placeholders.
 #include "base/reflection/UnkReflStatics.h"
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CChozoWarriorAIComponent.h"
 #include "types.h"
 
 struct UnkSelf;
@@ -25,9 +26,7 @@ struct UnkWarriorXHashed_b58 {
     u64 hash;
 };
 
-void fn_7100498db8(UnkSelf* self);
 struct UnkDescribed;
-UnkDescribed* fn_710049b3cc(UnkChecker* self);
 
 void fn_710048f8b0(UnkWarriorXSend_b58* self) {
     fn_7100498db8(reinterpret_cast<UnkSelf*>(self));

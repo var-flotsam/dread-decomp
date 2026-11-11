@@ -1,12 +1,12 @@
 // A movement component's floor height: from the owner's polygon collection (type 16) when it has
 // the polygon the component refers to, plus the height of the owner's shape; else its own value.
 #include "base/UnkMatrix44.h"
+#include "game/UnkTU109.h"
 #include "types.h"
 
 struct UnkShape;
 struct UnkPool_0x48;
 struct UnkStruct_0x48;
-UnkStruct_0x48* fn_710012431c(UnkPool_0x48* pool, u32 handle);
 UnkMatrix44 fn_7100d36a2c(UnkShape* shape);
 
 struct UnkPolygon_c4 {

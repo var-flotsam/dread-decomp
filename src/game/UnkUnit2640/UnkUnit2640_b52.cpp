@@ -1,8 +1,7 @@
 // Unit 2640 (tools/tu_map.py; no reflected class). Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
+#include "game/UnkTU2640.h"
 #include "types.h"
-
-void fn_7100ffaa88(void*);  // as src/game_s7/fn_7101002998.cpp declares it
 
 // Two string ids and an object (+0x10) that fn_7100ffaa88 destroys.
 struct UnkIdPairRecord_b52 {

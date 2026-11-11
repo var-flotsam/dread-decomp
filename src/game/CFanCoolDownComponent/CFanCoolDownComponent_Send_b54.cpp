@@ -9,11 +9,11 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "../UnkNamedSend_b54.h"
 #include "base/global/CName.h"
+#include "game/CNavMeshItemComponent.h"
+#include "game/UnkTU372.h"
 #include "types.h"
 
 struct UnkWeakTarget;
-void* fn_71002b3b84(UnkWeakTarget*);
-void fn_71009c0f1c(void* object, u64 id);
 
 struct UnkSendOwner_b54 {
     u8 pad_0x0[0x220];

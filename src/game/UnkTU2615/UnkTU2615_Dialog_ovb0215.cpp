@@ -9,6 +9,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -78,7 +79,6 @@ struct UnkDialogHolder {
 };
 
 extern void* g_unk_71726bc560;
-void fn_7100fd7af8(void* manager, f32 level, f32 time);
 static inline void* MusicManager() {
     void* manager = g_unk_71726bc560;
     if (!manager) {

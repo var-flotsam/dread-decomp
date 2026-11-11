@@ -13,6 +13,8 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1141.h"
+#include "game/UnkTU365.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -133,7 +135,6 @@ UnkVec3f fn_71010d252c(bool flag, const UnkContact_ovb0048* contact) {
 }
 
 struct UnkAssignedSlot;
-void fn_71002a5d1c(UnkAssignedSlot*, const UnkAssignedSlot*);
 struct UnkStruct_71007142e8;
 void fn_71007142e8(UnkStruct_71007142e8* self);
 UnkVec3f fn_7100077c04(const UnkMatrix44& m, const UnkVec3f& v);
@@ -378,7 +379,6 @@ inline const UnkFlags_71007142e8& UnkFlagsAll_71007142e8() {
 }
 
 struct UnkStruct_71007142e8;
-void fn_71007143c8(UnkStruct_71007142e8* self, UnkFlags_71007142e8 flags);
 
 // Three motions (0x70 bytes each) reset together.
 struct UnkMotions_ovb0048 {

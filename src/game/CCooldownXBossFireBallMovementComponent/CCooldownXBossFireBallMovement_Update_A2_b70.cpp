@@ -5,6 +5,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 #include "game/UnkMovementComponent.h"
 
@@ -12,7 +13,6 @@ using base::reflection::CClass;
 
 struct UnkAIComponent;
 void fn_71004d43dc(UnkAIComponent*, void*);
-void fn_7100232c68(void*);
 struct UnkShardsSphere_b60a2;
 
 struct UnkFireBallComponent_A2_b70 {

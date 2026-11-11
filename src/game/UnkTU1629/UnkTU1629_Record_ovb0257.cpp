@@ -10,6 +10,7 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU1629.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -91,7 +92,6 @@ void fn_7100ad0380(UnkRecord_b257g* self, bool a, u32 b, base::UnkVector<UnkChil
 }
 
 // The record as the vectors of records see it: moved, copied and destroyed out of line.
-void fn_7100acf988(void* self, void* other);
 
 struct UnkRecordElem_b257h {
     u8 bytes[0x80];

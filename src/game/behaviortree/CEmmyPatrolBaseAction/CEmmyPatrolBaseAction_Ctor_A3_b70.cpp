@@ -6,13 +6,13 @@
 // flag at +0x110..+0x11c cleared, the member at +0x120 (fn_71006fbadc), which then takes the point
 // wrapped in a temporary (vtable 0x7101a47d80) through fn_7100515388. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/behaviortree/CEmmyStateAction.h"
 #include "types.h"
 
 extern void* g_unk_7101a47c98[];
 extern void* g_unk_7101a47d80[];
 
 struct UnkComponent;
-void fn_710051dab0(UnkComponent* self);
 // base::refl_PoolListCtor<.., 0, 0x10>, instantiated in src/clones (UnkClone_fn_7100515270).
 void fn_7100515270(void* self, u32 step, u32 count, u32 flags, base::UnkAllocator* allocator);
 char* fn_71006fbadc(char* p0);

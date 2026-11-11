@@ -7,6 +7,8 @@
 #include "base/UnkFreedVectorPair.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2563.h"
+#include "game/UnkTU2566.h"
 #include "types.h"
 
 using namespace base::global;
@@ -408,7 +410,6 @@ struct UnkRecord118 {
 
     ~UnkRecord118();
 };
-void fn_7100ea7034(UnkRecord118* self);
 inline UnkRecord118::~UnkRecord118() { fn_7100ea7034(this); }
 
 template <class T, class Index>
@@ -623,9 +624,7 @@ struct UnkRecord60 {
 };
 static_assert(sizeof(UnkRecord60) == 0x60, "UnkRecord60 layout");
 using UnkIdRecordMap = UnkIdMap<UnkRecord60>;
-void fn_7100e4a1d0(UnkRecord60* record);                // destructor
 void fn_7100e5a114(UnkIdRecordMap* self);              // frees the storage
-UnkRecord60* fn_7100e4fd1c(UnkRecord60* self, const UnkRecord60* other);
 __attribute__((noinline)) void fn_7100e59d18(UnkIdRecordMap* self, u32 capacity);
 
 void fn_7100e59d18(UnkIdRecordMap* self, u32 capacity) { Reserve<UnkRecord60, fn_7100e4a1d0>(self, capacity); }

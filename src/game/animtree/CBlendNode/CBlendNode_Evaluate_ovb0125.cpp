@@ -2,13 +2,12 @@
 // weight the first child evaluates into the pose and channels 1 and 2 are reset; with any weight the
 // second child's pose is blended into those channels by the node's weight (+0x28, +0x38). Names and
 // layouts are placeholders.
+#include "game/UnkTU1141.h"
 #include "types.h"
 
 struct UnkStruct_71007142e8;
 void fn_71007142e8(UnkStruct_71007142e8* self);
 struct UnkWeighted_7100714808;
-void fn_7100714604(UnkWeighted_7100714808* self, const UnkWeighted_7100714808* other);  // assigns
-void fn_71007149f4(UnkWeighted_7100714808* self, const UnkWeighted_7100714808* other, f32 weight, bool flag);
 
 struct alignas(8) UnkAnimChannel_ovb0125 {
     u8 data[0x70];

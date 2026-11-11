@@ -3,10 +3,10 @@
 // with mode 2 (UnkDoorStateMachine_b58.h) and gives the owner's weak target (fn_71002b3b84) the hash
 // fn_71007b877c gives it (fn_71009c0f1c). Names are placeholders.
 #include "UnkDoorStateMachine_b58.h"
+#include "game/CNavMeshItemComponent.h"
+#include "game/UnkTU372.h"
 
 struct UnkWeakTarget;
-void* fn_71002b3b84(UnkWeakTarget*);
-void fn_71009c0f1c(void* object, u64 id);
 
 struct UnkSensorDoorOwner_b58 {
     u8 pad_0x0[0x220];

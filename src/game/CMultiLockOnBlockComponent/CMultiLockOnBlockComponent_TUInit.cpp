@@ -2,6 +2,7 @@
 // component's registrations with the tunable itself, the component's id, one bool property, two
 // name prefixes and a global block of three empty vectors.
 #include "base/UnkVector.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTUInit.h"
 #include "game/UnkTUProperty.h"
@@ -33,7 +34,6 @@ extern UnkMultiLockOnBlockTU g_unk_717272b730 __attribute__((visibility("hidden"
 extern char g_unk_717272b5f8;
 extern UnkTunable g_unk_717272b600;
 extern char g_unk_7101a7bb48[];
-void fn_7100075104(void* self);
 extern char g_unk_717272b629;
 extern CStrId g_unk_717272b630;
 extern UnkProperty g_unk_717272b638;

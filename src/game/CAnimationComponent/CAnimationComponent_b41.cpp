@@ -2,11 +2,10 @@
 // passes each element of the array of the object at +0x40 (data at +0xc8, count at +0xd8) to
 // fn_71002d296c; returns an empty value. Names and layouts are placeholders.
 #include "base/reflection/UnkReflValue.h"
+#include "game/animtree/CAnimatedNode.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
-
-void fn_71002d296c(void* self);
 
 struct UnkAnimArray_b41a3 {
     u8 pad_0x0[0xc8];

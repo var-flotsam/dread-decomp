@@ -4,6 +4,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/UnkTU1501.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -77,7 +78,6 @@ struct UnkChozoWarriorTarget {
     u8 pad_0x0[0x208];
     void* field_0x208;
 };
-void fn_71009e85f4(void* self, bool flag);
 
 // A tracked target: a flag, a word and the weak handle of the target.
 struct UnkChozoWarriorTracked {

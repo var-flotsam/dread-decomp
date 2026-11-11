@@ -6,7 +6,12 @@
 
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CAISmartObjectComponent.h"
+#include "game/CDrop.h"
+#include "game/CGameObject.h"
+#include "game/CLifeComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU365.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -15,7 +20,6 @@ using base::global::CStrId;
 struct UnkIdPair;
 void fn_7100026f70(UnkIdPair* pair);
 struct UnkCameraCtrl_ovb0049;
-void fn_7101043934(UnkCameraCtrl_ovb0049*);
 extern char g_unk_7101a71568[];  // CDrop's vtable
 
 // An id released in two steps (CStrId::Reset) when its owner is destroyed.
@@ -68,7 +72,6 @@ struct UnkDrop_b0105 {
 };
 static_assert(__builtin_offsetof(UnkDrop_b0105, field_0x4d0) == 0x4d0, "UnkDrop_b0105 layout");
 
-void fn_7101043904(void*);
 void fn_71007bf550(UnkDropEntry_b0105* entries);  // constructs the entries
 
 void fn_71007bf3f0(UnkDrop_b0105* self) {
@@ -176,17 +179,13 @@ struct UnkSpawnedActor_ovb0065;
 struct UnkSpawnRegistered_ovb0065;
 struct UnkBreakablePart;
 struct UnkBreakableTarget;
-void fn_710115fe20(UnkHolder* holder);
 const CStrId* fn_7100d7ba84(UnkSpawnedActor_ovb0065*);
-UnkSpawnRegistered_ovb0065* fn_7100360044(void* object);
-UnkBreakableTarget** fn_71002a76a4(UnkBreakablePart* part);
 extern u32 g_unk_71727bebb8;
 
 struct UnkDropTargetData_b0105 {
     u8 pad_0x0[0x10];
     void* field_0x10;
 };
-void* fn_71007c04f0(void* object);
 
 struct UnkDropLink_b0105 {
     u8 pad_0x0[0x10];

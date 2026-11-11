@@ -3,13 +3,13 @@
 // with `refresh`, also resets the object at +0x2a300 (fn_71002b2638) and passes it on
 // (fn_710110f8ac). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
 void fn_71002b2638(void* object);
-void fn_710110f8ac(void* self, void* object);
 
 static inline __attribute__((always_inline)) void ResetId_A3_b67(UnkStringData*& data) {
     UnkStringPool* pool = g_unk_7101d47108;

@@ -3,6 +3,7 @@
 // passes a flag on to what it refers to, either directly (kind 1) or by its id through the scene's
 // item map. Names and layouts are placeholders.
 // Holds fn_71001f9e34.
+#include "base/reflection.h"
 #include "types.h"
 
 // The scene (only its functions are used here).
@@ -16,7 +17,6 @@ struct UnkSceneGroupItem {
 };
 
 void fn_71001eeff4(UnkScene* scene, u64 object, bool flag);
-bool fn_71001efb44(UnkScene* scene, bool flag, const u64* id);
 
 void fn_71001f9e34(const UnkSceneGroupItem* self, UnkScene* scene, bool flag) {
     if (self->field_0x10 == 1) {

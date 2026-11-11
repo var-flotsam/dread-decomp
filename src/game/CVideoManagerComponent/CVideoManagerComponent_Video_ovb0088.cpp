@@ -8,6 +8,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2578.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -15,10 +16,7 @@ using base::global::CStrId;
 
 struct UnkStruct_0x128;
 extern UnkStruct_0x128* g_unk_7101d47320;
-void fn_7100ef3494(UnkStruct_0x128* self);
-void fn_7100f00f4c(UnkStruct_0x128*, u32, bool);
 void fn_7100f00af4(UnkStruct_0x128* self, u32 channel, const CFilePathStrId* path, bool flag);
-void fn_7100f01838(UnkStruct_0x128* self, u32 channel);
 
 static inline UnkStruct_0x128* SceneState() {
     UnkStruct_0x128* s = g_unk_7101d47320;

@@ -4,6 +4,10 @@
 // A temporary iterator is advanced (fn_7100f5aff0 and its copy), the result starts at the node it reached and is
 // advanced in turn, and the temporary's cached entry (kind 1: a key and a value) is destroyed.
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
+#include "game/UnkTU2604.h"
+#include "game/UnkTU2640.h"
+#include "game/UnkTU2647.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -68,12 +72,6 @@ __attribute__((always_inline)) inline void End(UnkMapIter<ValueSize, Destroy>* o
     out->node = it.node;
     out->Advance();
 }
-
-void fn_7100d8f9e4(void* value);
-void fn_7101036e34(void* value);
-void fn_7100d90304(void* value);
-void fn_7100f8da4c(void* value);
-void fn_7100fee034(void* value);
 
 void fn_7100f798fc(const UnkMapHead* map, UnkMapIter<0x3a8, fn_7100d8f9e4>* out) {
     End(out);

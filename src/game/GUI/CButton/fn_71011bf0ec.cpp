@@ -4,13 +4,13 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/GUI/CButton.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 extern char g_unk_7101cb5908[];  // CButton's vtable
-void fn_71011c14e0();            // the bound callback
 
 struct UnkGuiButton {
     char* vtable;

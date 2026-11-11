@@ -3,11 +3,11 @@
 // and the node list at 0x268, destroy the member at 0x40 (fn_71006c9404) and run the component's base
 // destructor (fn_71010c4194). Names and the layout are placeholders.
 #include "base/UnkVector.h"
+#include "game/CSpitclawkAIComponent.h"
 #include "game/UnkComponent.h"
 #include "types.h"
 
 struct UnkShockWavePoolMember;
-void fn_71006c9404(UnkShockWavePoolMember* self);  // its destructor
 
 struct UnkShockWavePoolMember {
     u8 unk_0x0[0x228];

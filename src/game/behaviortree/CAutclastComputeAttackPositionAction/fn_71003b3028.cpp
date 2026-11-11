@@ -3,6 +3,7 @@
 // none) and finishes in the constructor of the sub-object at +0x50, fn_71002acfe4.
 #include "base/global/CStrId.h"
 #include "game/UnkBehaviorTree.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -18,7 +19,6 @@ struct UnkNode : UnkBehaviorTreeNodeBase {
     u8 field_0x50[1];
 };
 
-void fn_71002acfe4(void* sub);
 extern void* g_unk_7101a2ad48[];
 
 void fn_71003b3028(UnkNode* self) {

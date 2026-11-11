@@ -3,11 +3,10 @@
 // flag at +0x120 is set, else as command 8. The two payloads keep separate stack slots (the goto skips
 // the first one's declaration, so it has no lifetime markers). Names and offsets are placeholders.
 #include "base/snd/UnkSoundSystemATK.h"
+#include "base/tunable/CTunable.h"
 #include "types.h"
 
 using base::snd::UnkSoundSystemATK;
-
-bool fn_7100132cd0();
 
 namespace {
 

@@ -4,12 +4,12 @@
 // arrays at +0xd48, +0xd20 and +0x4b8 freed, then the base's destructor runs (fn_7100aa9f3c).
 // Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CBombMovement.h"
 #include "game/UnkModelManager.h"
 #include "types.h"
 
 extern char g_unk_7101a4bd48[];  // the class's vtable
 struct UnkPbMovementBase_ovb0015;
-void fn_7100aa9f3c(UnkPbMovementBase_ovb0015*);
 void fn_71011a91c4(UnkModelManager* self, void* handle, u32 id);
 
 static inline UnkModelManager* ModelManager() {

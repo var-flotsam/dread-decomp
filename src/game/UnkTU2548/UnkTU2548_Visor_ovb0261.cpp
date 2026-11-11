@@ -6,6 +6,8 @@
 #include "base/math/CVector.h"
 #include "engine/scene/UnkToggle.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU223.h"
+#include "game/UnkTU287.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -18,10 +20,6 @@ struct UnkBlendLayer_710019c284;
 
 void fn_710035d9e0(void* pool, const CFilePathStrId* path, UnkQuadNode_ovb0259** out, const CStrId* name);
 void fn_710020a5a0(UnkStruct_710020a5a0* self, const base::math::CVector2D* scale);
-void fn_710020a4c4(void* p, const UnkMinimapVec3& pos);
-void fn_710019c284(UnkBlendLayer_710019c284* self);
-void fn_710019c564(void* target, f32 a, f32 b, f32 c, f32 d);
-void fn_710020ad90(void* self, s32 value);
 
 struct UnkVisorRender_b0261 {
     u8 pad_0x0[0x78];

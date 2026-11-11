@@ -7,6 +7,7 @@
 // layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CActorComponent.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTUProperty.h"
@@ -57,8 +58,6 @@ struct UnkActivatable_b48 {
     u8 pad_0x79[3];
     f32 enabled;
 };
-
-bool fn_710024fb2c(UnkActivatable_b48* self);
 
 void fn_7100878680(UnkActivatable_b48* self, bool enabled) {
     UnkGameManager* manager = g_unk_7101d47310;

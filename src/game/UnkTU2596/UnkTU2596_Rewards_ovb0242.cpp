@@ -10,16 +10,24 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/global/timeline/CEvent.h"
+#include "game/CPhotoModeCameraCtrl.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkTU2571.h"
+#include "game/UnkTU2578.h"
+#include "game/UnkTU2656.h"
+#include "game/UnkTU2725.h"
+#include "game/UnkTU2732.h"
+#include "game/malloc.h"
 #include "game/sound/CMusicManager.h"
 #include "game/UnkXformNode.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
 
-void fn_7100ec65fc(u8* self);
 extern u8* g_unk_71726bc558;
 f32 fn_7100ec73b4(u8* self);
 u32 fn_7100f14e80();
@@ -29,15 +37,9 @@ void fn_7100deac9c(UnkGameManager* self, const CRntString& name);
 // The music manager (as src/base/input/UnkPadVibration.cpp declares it).
 struct UnkStruct_0x128;
 extern UnkStruct_0x128* g_unk_7101d47320;
-void fn_7100ef3494(UnkStruct_0x128* self);
-bool fn_7100f00a24(UnkStruct_0x128*, u32);
 bool fn_7100f0220c(UnkStruct_0x128*, u32);
 void fn_7100f011c4(UnkStruct_0x128* self, u32 mode);
-void fn_7100f00714(UnkStruct_0x128* self);
-void fn_7100f003e8(UnkStruct_0x128*, s32);
-void fn_7100f01838(UnkStruct_0x128* self, u32 mode);
 void fn_7100132af0(bool);
-void fn_7100132aa0(bool);
 
 static inline UnkStruct_0x128* MusicCold() {
     UnkStruct_0x128* m = g_unk_7101d47320;
@@ -70,7 +72,6 @@ static inline u8* Timer() {
 }
 
 struct UnkWideStr_0x20;
-void fn_7100066b38(UnkWideStr_0x20* self, const char* str);
 u32 fn_7100ec73d4(u8* self);
 u32 fn_7100ec74c8(u8* self);
 u32 fn_7100ec7768(u8* self);
@@ -166,7 +167,6 @@ struct UnkItemListTag;
 using UnkItemList = base::UnkSList<UnkItemListTag>;
 void fn_710119ba7c(UnkItemList* self, UnkListedItem* item);
 extern void* g_unk_7172729910;  // the item list singleton
-void fn_710119aee8(void* self);
 void fn_7101053968(void* effects, UnkVec3f* a, UnkVec3f* b, f32 x, f32 y, f32 z);
 extern const char* const g_unk_7101cab038[][3] __attribute__((visibility("hidden")));
 
@@ -227,7 +227,6 @@ struct UnkLoadingMaskOf {
     }
 };
 struct UnkLoadingMaskTag;
-void fn_7100fd7b44(void* manager, UnkLoadingMask channels, UnkLoadingMask mask, f32 time);
 
 static inline void* MusicManagerCold() {
     void* manager = g_unk_71726bc560;
@@ -250,7 +249,6 @@ static inline void* MusicManager() {
 }
 
 struct UnkVec;
-void fn_7101053850(void* effects, UnkVec* position, u32 flag, f32 duration, f32 scale);
 struct UnkRewardsPosition_b0242 {
     u64 xy;
     u32 z;
@@ -291,7 +289,6 @@ struct UnkMusicMode {
 };
 void fn_7100fd90d8(f32 a, f32 b, void* music, const CRntString* name, u32 c, const UnkMusicMode* d, u32 e, u32 f, void* g);
 extern CRntString g_unk_71729dc3d8 __attribute__((visibility("hidden")));
-void fn_71011867ec(char* self);
 
 void fn_7100f178b4(UnkRewardsMode_b0242* self) {
     fn_71011867ec(reinterpret_cast<char*>(self));
@@ -394,8 +391,6 @@ bool fn_7100f14f80(s32 kind, s32 variant) {
 }
 
 struct UnkMusicTrigger;
-void fn_7101186780(UnkMusicTrigger* self);
-void fn_71009ca9fc(void*, const char*, u32);
 
 extern void* g_unk_7101caaf80[];
 extern void* g_unk_71729dc270[];

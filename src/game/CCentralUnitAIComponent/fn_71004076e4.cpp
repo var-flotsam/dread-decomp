@@ -4,6 +4,7 @@
 //
 // The fields are addressed by offset: the original's stores are scheduled by the constant pool of
 // the whole function, which struct member stores don't reproduce.
+#include "game/CBehaviorTreeAIComponent.h"
 #include "types.h"
 
 extern void* g_unk_7101a337d8[];
@@ -15,7 +16,6 @@ struct UnkComponent {
     u8 unk_0x0;
 };
 
-void fn_710036932c(UnkComponent* self);
 void* fn_7100083990_alloc();
 void fn_710035d4e0(void* member);
 

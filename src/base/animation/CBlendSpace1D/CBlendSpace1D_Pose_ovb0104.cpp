@@ -8,7 +8,9 @@
 
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "base/animation/CBlendSpace1D.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU23.h"
 #include "types.h"
 
 extern void* g_unk_7101a19158[];
@@ -122,9 +124,6 @@ void fn_7100006d50(UnkBlendSpace1DDtor13* self) {
 }
 
 struct UnkBlend13;
-void fn_7100006e98(UnkBlend13* self, u32 a);
-void fn_7100014dfc(void* self, const void* other);
-void fn_7100014e88(void* member);
 void fn_71000157f4(void* out, const void* a, const void* b, f32 t);
 
 struct UnkBlendPose13 {

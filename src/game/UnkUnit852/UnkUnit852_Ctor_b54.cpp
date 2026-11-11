@@ -2,9 +2,9 @@
 // of the AI manager, src/game/CAIManager/CTunableAIManager/fn_7100da7e2c.cpp): its vtable, two containers
 // at +0x8 and +0x78 set up by fn_710059c644 (10 entries, flags 0x13), and a cleared field at +0xe8. Names
 // and layouts are placeholders.
+#include "game/UnkTU852.h"
 #include "types.h"
 
-void fn_710059c644(u8* container, u32 a, u32 b, u32 c, u64 d);
 extern void* g_unk_7101a4d8d8[];
 
 struct UnkUnit852 {

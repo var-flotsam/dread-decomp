@@ -4,6 +4,7 @@
 #include "base/global/CStrId.h"
 #include "base/UnkVector.h"
 #include "base/reflection/CClass.h"
+#include "game/logic/collision/CCollider.h"
 #include <new>
 #include "game/UnkBroadphaseObject.h"
 #include "types.h"
@@ -48,7 +49,6 @@ struct UnkObj_71007e44b8;
 UnkObj_71007e44b8* fn_71007e44b8(UnkStruct_71007e44b8* self, void* owner, const base::global::CStrId* name, u32 index);
 void* fn_7100d475ec(UnkStruct_71007e44b8* self, const base::global::CStrId* name, u32 flag);
 struct UnkTriggerCollider_b0058;
-void fn_7100d36d30(UnkTriggerCollider_b0058* self, void* shape);
 using base::reflection::UnkReflObject;
 struct UnkTracker_71008618cc;
 void fn_7100d59994(UnkTracker_71008618cc*, UnkReflObject*);

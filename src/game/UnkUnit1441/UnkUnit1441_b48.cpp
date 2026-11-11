@@ -1,12 +1,12 @@
 // Unit 1441 of tools/tu_map.py (no name hint): fn_7100969da8 updates the target's mode (+0x6c) and
 // distance (+0x74) from the movement at +0x38 and the settings at +0x40, while the movement is active
 // (+0x19f8) and not refused by its vtable slots 0x170 and 0x378. Names and layouts are placeholders.
+#include "game/CAnimationComponent.h"
+#include "game/CMovementComponent.h"
 #include "types.h"
 
 struct UnkMovement_71010d0e38;
-bool fn_71010d0e38(UnkMovement_71010d0e38* self);
 struct UnkStateSet_1441;
-bool fn_7101179870(UnkStateSet_1441* self);
 
 struct UnkMovement_1441 {
     void** vtable;

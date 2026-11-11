@@ -9,6 +9,8 @@
 #include "game/UnkGuiFrames.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkGuiSprite.h"
+#include "game/UnkTU254.h"
+#include "game/UnkTU2747.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -17,8 +19,6 @@ using base::global::CStrId;
 extern const char* const g_unk_7101cb6858[2];
 
 struct UnkMinimapView;
-void fn_71001c3770(UnkMinimapView* view, bool value);
-void fn_71011cd4b4(void* self);
 void fn_71011bab80(UnkGuiRoot* root, void* object, s32 frame);
 
 // A string id's data as the name compare sees it: the text's key at +0x30 and a use count at +0x44

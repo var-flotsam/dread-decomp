@@ -5,11 +5,11 @@
 // CCharClassEnemyLifeComponent's. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassLifeComponent.h"
+#include "game/CDamageSourceFactor.h"
 #include "types.h"
 
 extern void* g_unk_7101a7dca0[];
-void fn_71008bca30(void* self);
-void fn_71008c2da8(void* member);
 
 using base::global::UnkStringData;
 
@@ -52,9 +52,6 @@ void fn_71008af84c(UnkDemolitionBlockLifeComponent_ovb0120* self) {
     InitEmptyId(&self->field_0x140);
     InitEmptyId(&self->field_0x148);
 }
-
-void fn_71008c2de0(void* member);
-void fn_71008bcb3c(char* self);
 
 using base::UnkStrIdMember;
 

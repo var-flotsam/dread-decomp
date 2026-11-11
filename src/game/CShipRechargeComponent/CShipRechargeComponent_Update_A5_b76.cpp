@@ -6,21 +6,20 @@
 // moves sideways. Names and layouts are placeholders.
 #include "../UnkSmRequest_A5_b73.h"
 #include "base/global/CFilePathStrId.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CInputComponent.h"
+#include "game/CUsableComponent.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU2523.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 
 struct UnkScriptCaller;
-bool fn_7100305088(UnkScriptCaller* self, const char* name, const char* fmt, ...);
 struct UnkUsableVirt_A6_b62;
-bool fn_7100aa0b04(UnkUsableVirt_A6_b62* self, u64 a, u64 b, const u8* c);
 extern const u8 g_unk_710164b5d8[] __attribute__((visibility("hidden")));
 struct UnkUsableComponent_A6_b62;
-bool fn_7100aa2948(UnkUsableComponent_A6_b62*);
 struct UnkInputComponent;
-void fn_7100872460(UnkInputComponent* self, bool enable, bool reset, void* arg);
-bool fn_710087238c(UnkInputComponent* self);
 extern __attribute__((visibility("hidden"))) char g_unk_71727515d8[];
 
 // As src/game/CSluggerAcidBallMovementComponent/CSluggerAcidBallMovementComponent_b38.cpp declares it.
@@ -30,7 +29,6 @@ struct UnkKraidCreatureVec {
     f32 z;
     UnkKraidCreatureVec(const UnkKraidCreatureVec& other) : x(other.x), y(other.y), z(other.z) {}
 };
-UnkKraidCreatureVec fn_7100d7be08(void* launcher);
 
 struct UnkSoundMgr;
 extern UnkSoundMgr* g_unk_7101d4d820;
@@ -46,8 +44,6 @@ UnkSoundRef_A5_b76 fn_7100108aa4(UnkSoundMgr* self, const CFilePathStrId* path, 
 
 // As src/game/CShipRechargeComponent/CShipRechargeComponent_Use_A5_b73.cpp declares them.
 struct UnkShipRecharge_A5_b73;
-u64 fn_7100aa1f50(UnkShipRecharge_A5_b73* self, u32 state);
-u64 fn_7100aa1888(UnkShipRecharge_A5_b73* self, u32 state);
 
 struct UnkShipRechargeOwner_A5_b76 {
     u8 pad_0x0[0x1e0];

@@ -2,7 +2,9 @@
 // controller (+0x220) when the owner stands high enough above its target (the test of fn_71006d57f8 in
 // CTakumakuAIComponent_Above_b66a4.cpp, inlined here) and flag 9 is clear, and clears it when the owner is
 // below and flag 9 is set. Names and layouts are placeholders.
+#include "game/CAnimationComponent.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU2689.h"
 #include "types.h"
 
 // As src/game/CShakernautAIComponent/CShakernautAIComponent_Flip_b53.cpp declares them.
@@ -11,14 +13,10 @@ struct UnkShakernautId_b53 {
     u32 value;
     u32 unk_0x4;
 };
-void fn_71011785a8(UnkShakernautCtrl_b53*, const UnkShakernautId_b53*, bool, bool);
-void fn_7101178564(UnkShakernautCtrl_b53* self, const UnkShakernautId_b53* id, bool a, bool b);
 // As src/game/CAnimationComponent/CAnimationComponent_Flags_b47a3.cpp defines it.
 struct UnkAnimFlagsHolder_b47a3;
-bool fn_7101178524(UnkAnimFlagsHolder_b47a3* self, u32 bit);
 // As src/game/CPlayerMovement/CPlayerMovement_CachedComponent.cpp defines it.
 struct UnkPlayerMovementCache;
-void* fn_71010d7aac(UnkPlayerMovementCache* self);
 
 extern f32 g_unk_7101a67de8;
 

@@ -6,10 +6,10 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/CCameraBoundaryCtrl.h"
 #include "types.h"
 
 struct UnkStruct_7100763ed4;
-void fn_7100763ed4(UnkStruct_7100763ed4* self);  // base constructor
 
 extern void* g_unk_7101a6df08[];  // vtable
 

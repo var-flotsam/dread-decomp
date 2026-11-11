@@ -3,6 +3,8 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/CBehaviorTreeAIComponent.h"
+#include "game/CBossAIComponent.h"
 #include "game_s2/UnkTwoStepStrId.h"
 #include "types.h"
 
@@ -14,12 +16,8 @@ struct UnkNode {
     u64 field_0x15a8;
 };
 
-void fn_71003ace0c(UnkNode*);
-
-void fn_71003695fc(UnkNode*);
 void fn_71006ef540(UnkNode* self) {
     fn_71003695fc(self);
     self->field_0x15a8 = 0;
     self->field_0x15a0 = 0;
 }
-

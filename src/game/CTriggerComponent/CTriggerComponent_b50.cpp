@@ -4,12 +4,13 @@
 // at +0x30 (refl_RegistryMapInit, fn_7100a5e2f4). Same shape as fn_71009d0184. Names and layouts are
 // placeholders.
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CComponent.h"
+#include "game/CTriggerComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
 struct UnkParent;
 extern u64 g_unk_717274e4d0 __attribute__((visibility("hidden")));
-void fn_71010c4228(UnkParent*);
 struct UnkRefl_fn_7100a5e2f4;
 extern template bool base::reflection::refl_RegistryMapInit<UnkRefl_fn_7100a5e2f4>(
     base::reflection::UnkReflRegistryMap*, const base::global::CStrId&);
@@ -57,7 +58,6 @@ struct UnkTrigger_b50a5 {
 
 // The entry is passed by address. The original's unit defines fn_7100a5fdcc, so the compiler knows
 // it doesn't keep the address (noescape here), which lets the last call be a tail call.
-void fn_7100a5fdcc(UnkTrigger_b50a5* self, UnkTriggerEntry_b50a5** __attribute__((noescape)) entry);
 
 static inline void RemoveLast_b50a5(UnkTrigger_b50a5* self) {
     UnkTriggerEntry_b50a5* e = (self->entries - 1) + self->count;

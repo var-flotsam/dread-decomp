@@ -1,9 +1,9 @@
 // CUsableComponent's unit: with the timer flag (+0xf0) set, run the countdown at +0xf4 down by `dt` and report
 // whether it has run out; without it, ask fn_7100aa2948. Names are placeholders.
+#include "game/CUsableComponent.h"
 #include "types.h"
 
 struct UnkUsableComponent_A6_b62;
-bool fn_7100aa2948(UnkUsableComponent_A6_b62*);
 
 struct UnkUsableTimer_A6_b68 {
     u8 unk_0x0[0xf0];

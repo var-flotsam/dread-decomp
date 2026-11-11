@@ -4,6 +4,7 @@
 // arguments), true unless `id` is in the u16 list at +0x27768 (count +0x27770). Names and layouts are
 // placeholders.
 #include "game/UnkActor.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 // As src/game/CBatalloonAIComponent/fn_71003de7b4.cpp declares it.
@@ -18,7 +19,6 @@ struct UnkChozoRobotSoldierAI_b66a2 {
 };
 
 bool fn_71011074b8(UnkChozoRobotSoldierAI_b66a2* self);
-bool fn_710110f3cc(UnkChozoRobotSoldierAI_b66a2* self, u16 id, u32 a2, void* a3, void* a4, void* a5, u32 a6, u32 a7);
 
 bool fn_7100473fdc(UnkChozoRobotSoldierAI_b66a2* self) {
     if (!fn_71011074b8(self)) {

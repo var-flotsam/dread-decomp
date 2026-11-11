@@ -6,15 +6,15 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCharClassAIComponent.h"
+#include "game/CShelmitAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-u32 fn_7100414160();
 struct UnkShelmitAI_sis;
-s32 fn_71006bc178(UnkShelmitAI_sis*);
 
 struct UnkShelmitNamed_ovb0136 {
     u8 pad_0x0[0x20];

@@ -11,10 +11,13 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/global/timeline/CEvent.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CBlackboard.h"
+#include "game/CChozoCommanderAIComponent.h"
+#include "game/GUI/CText.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
@@ -24,6 +27,9 @@
 #include "game/UnkGuiLabel.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU1686.h"
+#include "game/UnkTU2676.h"
+#include "game/UnkTU2677.h"
 #include "game/UnkTUProperty.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -36,7 +42,6 @@ using unk_prop_bag::UnkPropBag;
 
 // The display object at argument `index` (not decompiled yet).
 UnkGuiDisplayObject* fn_710109b870(lua_State* L, int index);
-s32 fn_71010c0270(lua_State* L, const char* format, ...);
 void fn_71011ba65c(UnkGuiRoot* root, const CRntString& name);
 void fn_71011b8be0(UnkGuiRoot* root, const CRntString& name);
 void fn_71011ba2d4(UnkGuiRoot* root, const CRntString& name);
@@ -139,12 +144,9 @@ int fn_710109a820(lua_State* L) {
 }
 
 struct UnkWideStr_0x20;
-void fn_7100066b38(UnkWideStr_0x20* self, const char* str);
-void fn_7100066e44(void* text);
 struct UnkNumberText_b41a3 {
     u8 unk_0x0[0x20];
 };
-void fn_7100b868b0(char* self, UnkNumberText_b41a3* text);
 
 int fn_71010998b0(lua_State* L) {
     UnkGuiDisplayObject* object = fn_710109b870(L, 1);
@@ -492,7 +494,6 @@ struct UnkGameManagerRequests_b0007 {
     u8 field_0x2128[1];
 };
 struct UnkMlogMessage_b42a1;
-void fn_7100456b7c(void* list, const UnkMlogMessage_b42a1* request);
 
 int fn_710109b1a0(lua_State* L) {
     const char* name = g_unk_710162e2ed;
@@ -504,11 +505,8 @@ int fn_710109b1a0(lua_State* L) {
     return 0;
 }
 
-s32 fn_71010c0ad0(lua_State* L, int first, int count, const char* format, ...);
 void* fn_710109e770(lua_State* L, int index);
-int fn_71010a4900(lua_State* L, int narg);
 s32 fn_7101202300(const base::global::CRntString* name);  // an event's kind from its name
-void fn_7100b33f90(void* self, void** object);
 
 extern char g_unk_7101caf688[];
 

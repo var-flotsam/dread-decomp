@@ -10,6 +10,7 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassComponent.h"
 #include "types.h"
 
 using base::UnkStrIdMember;
@@ -43,7 +44,6 @@ struct UnkColMatDict_ovb0046 {
 };
 
 struct UnkStruct_71008bca30;
-void fn_71011acd10(UnkStruct_71008bca30* self);
 void fn_710007e6c4(void* self);  // an empty CRntString
 extern void* g_unk_7101a6fd78[];
 

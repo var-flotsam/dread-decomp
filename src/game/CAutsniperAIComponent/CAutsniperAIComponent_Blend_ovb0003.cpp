@@ -8,6 +8,7 @@
 #include "base/UnkMatrix44.h"
 #include "base/math/CVector4D.h"
 #include "game/UnkBehaviorTree.h"
+#include "game/UnkTU2523.h"
 #include "types.h"
 
 struct UnkAutsniperParams_ovb0003 {
@@ -31,7 +32,6 @@ struct UnkKraidCreatureVec {
     f32 z;
     UnkKraidCreatureVec(const UnkKraidCreatureVec& other) : x(other.x), y(other.y), z(other.z) {}
 };
-UnkKraidCreatureVec fn_7100d7be08(void* actor);
 
 struct UnkAutsniperMover_ovb0003 {
     u8 pad_0x0[0x14c];

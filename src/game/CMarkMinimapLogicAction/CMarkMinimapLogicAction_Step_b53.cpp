@@ -6,20 +6,18 @@
 // fn_7100e950b4, the second through fn_7100e95038. Names and layouts are placeholders.
 #include "base/UnkRefHandle.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CTriggerLogicAction.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2566.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkTutoExitAction_b47;
-void fn_7100a55ac8(UnkTutoExitAction_b47* self);
 
 struct UnkRefl_fn_710028aca8;
 template <>
 base::reflection::UnkReflObject*
 base::reflection::refl_FindTyped<UnkRefl_fn_710028aca8>(void*);
-
-void fn_7100e950b4(void* world, void* object);
-void fn_7100e95038(void* world, void* object);
 
 struct UnkMarkMinimapRef_b53 {
     void* vtable;

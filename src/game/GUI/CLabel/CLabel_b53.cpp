@@ -1,6 +1,7 @@
 // GUI::CLabel unit (tools/tu_map.py, the name from reflection). Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/global/CStrId.h"
+#include "game/GUI/CLabel.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
 #include "types.h"
@@ -8,8 +9,6 @@
 using base::global::CStrId;
 struct UnkLabelLayout;
 void* fn_71011b882c(UnkGuiRoot*, const CStrId*);  // as src/game/GUI/CLabel.cpp declares it
-void fn_71011ed1e8(UnkLabelLayout* self, bool only_if_shown);  // as src/game/GUI/CLabel.cpp defines it
-void fn_71011ec768(UnkLabelLayout* self);
 
 struct UnkLabelFontView_b53 {
     u8 pad_0x0[0x260];

@@ -1,6 +1,7 @@
 // Unit 214 (tools/tu_map.py): a camera-like object's lazily built projection matrix (+0xf0).
 // Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
+#include "game/UnkTU53.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -45,8 +46,6 @@ struct UnkGrid_b0249 {
     u8 pad_0xd0[0x65];
     bool dirty;     // 0x135
 };
-
-f32 fn_71000768f0(f32 v);
 
 void fn_7100196054(UnkGrid_b0249* self) {
     if (!self->cells || self->filled >= self->columns)

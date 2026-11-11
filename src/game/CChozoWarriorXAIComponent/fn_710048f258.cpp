@@ -2,6 +2,7 @@
 // sub-object at +0x220 of the owner (+0x30) has the kind of thing the object from fn_710049b3cc
 // describes: if so the request's value is cleared, its flag at +0x20 is set and fn_7100499a60 is
 // told. Returns what the base returned.
+#include "game/CChozoWarriorAIComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
@@ -25,7 +26,6 @@ struct UnkChecker {
 };
 
 u32 fn_7100499a88(UnkChecker* self, UnkRequest* request);
-UnkDescribed* fn_710049b3cc(UnkChecker* self);
 void fn_71008c1538(UnkRequest* request, f32 value);
 void fn_7100499a60(UnkChecker* self);
 

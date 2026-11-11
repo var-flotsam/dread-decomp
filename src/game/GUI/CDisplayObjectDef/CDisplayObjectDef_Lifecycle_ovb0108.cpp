@@ -6,14 +6,15 @@
 // layouts are placeholders.
 #include "base/UnkNamedRegistry.h"
 #include "base/UnkVector.h"
+#include "base/core/CBaseObject.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 #include "../../../game_aca57c/UnkBufferString.h"
 
 extern char g_unk_7101a9a488[];
-void fn_7100023838(void* self);  // as src/base/tunable/CTunable/fn_7100138090.cpp declares it
 void fn_710002384c(void* self);  // as src/base/file/nx/CDeviceNX/fn_710002ddc0.cpp declares it
 
 struct UnkDisplayChild_ovb0108 {
@@ -27,7 +28,6 @@ struct UnkDisplayItem_ovb0108 {
 };
 
 struct UnkCompared_0x30;
-bool fn_710007f120(const UnkCompared_0x30* a, const UnkCompared_0x30* b);
 
 struct UnkDisplayObjectDef_ovb0108 {
     void* vtable;

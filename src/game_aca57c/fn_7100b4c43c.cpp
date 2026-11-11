@@ -1,6 +1,7 @@
 // Passes a value to a menu (at 0x270) and, when the menu is in state 3, drops the GUI object
 // held at 0x18, sets parameter 0xede73d1953baf654 to -1, flags the three panels at 0x28..0x38
 // and clears their two values; then calls fn_7100b364dc on the menu.
+#include "game/GUI/CMainMenu.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkRenderManager.h"
 #include "types.h"
@@ -37,8 +38,6 @@ struct UnkMenuTarget {
     u8 unk_0x278[0x8];
     s32 field_0x280;
 };
-
-void fn_7100b364dc(UnkMenuTarget* menu);
 
 // A byte store, which may alias the panel pointer (the original reloads it).
 static inline void StoreFlag(bool* field, bool value) { *reinterpret_cast<u8*>(field) = value; }

@@ -2,6 +2,11 @@
 // component's state machine at +0x180 (the template of src/game/UnkStateMachineSetA6_b62.cpp, copied here under
 // this file's names; last state 7, "none" 6), each after asking the linked smart object's user. Names are
 // placeholders.
+#include "game/CAbilityEnergyWave.h"
+#include "game/CAbilityShinespark.h"
+#include "game/CElectricReactionComponent.h"
+#include "game/CSmartObjectComponent.h"
+#include "game/CWeightActivatedPlatformSmartObjectComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 struct UnkSmState_A5_b72 {
@@ -109,11 +114,9 @@ __attribute__((always_inline)) static inline void RequestState_A5_b72(UnkSmMachi
 
 struct UnkSmartObjectUserA;
 struct UnkSmartObjectActor;
-UnkSmartObjectUserA* fn_71007cfd8c(UnkSmartObjectActor* actor);
 struct UnkEntityState;
 void fn_7100232864(UnkEntityState* entity, bool value);
 struct UnkPlatformSm_b61;
-void fn_7100a0a08c(UnkPlatformSm_b61* self);
 
 namespace {
 struct UnkPlatformUser_A5_b72 {
@@ -140,8 +143,6 @@ struct UnkPlatformSm_A5_b72 {
     bool field_0x559;
 };
 static_assert(__builtin_offsetof(UnkPlatformSm_A5_b72, field_0x559) == 0x559, "layout");
-
-bool fn_7100a04768(UnkPlatformSm_A5_b72* self);
 
 static inline UnkSmartObjectActor* LinkedObject_A5_b72(UnkPlatformLink_A5_b72* link) {
     return link ? link->object : nullptr;
@@ -182,8 +183,6 @@ struct UnkPlayer;
 struct UnkAbilitySet;
 struct UnkAbility;
 UnkPlayer* fn_7100dec788(UnkGameManager* manager);
-UnkAbility* fn_71003013ec(UnkAbilitySet* set, u64 id);
-u64 fn_7100327d14();
 
 struct UnkPlatformSubState_A5_b72 {
     u8 pad_0x0[0x10];

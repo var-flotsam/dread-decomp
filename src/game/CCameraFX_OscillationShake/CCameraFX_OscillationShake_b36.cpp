@@ -5,12 +5,12 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/CCameraFX_Shake.h"
 #include "types.h"
 
 using base::global::UnkStrId;
 
 struct UnkRandShakeDef;
-void fn_71010f3d20(UnkRandShakeDef* self);
 extern char g_unk_7101a6e8b8[];
 
 struct UnkOscillationShakeDef {

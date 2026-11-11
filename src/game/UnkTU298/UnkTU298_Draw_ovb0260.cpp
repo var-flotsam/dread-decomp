@@ -1,5 +1,6 @@
 // Unit 298: draws an item list's handles through the renderer (a copy of unit 292's draw without the
 // per-item preparation). Names and layouts are placeholders.
+#include "game/UnkTU167.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -67,8 +68,6 @@ struct UnkDrawer_b260 {
     u8 unk_0x18[8];
     u32 field_0x20;
 };
-
-void** fn_7100150b50(u32* count);
 
 void fn_7100210124(UnkDrawer_b260* self, UnkItemList_b260* list, u64 a2, u64 a3, u64 a4, void* a5, u64 a6, u64 a7,
                    bool flag_a, bool flag_b, const UnkVec3f* vec, f32 t) {

@@ -2,6 +2,7 @@
 // slot for each low bit that is set, in bit order (as in src/atk_id/nn_atk_b34a3.cpp). fn_7101210178
 // returns the block plus the offset in bit 8's slot, or null when bit 8 is clear. Names and layouts are
 // placeholders.
+#include "game/UnkTU2772.h"
 #include "types.h"
 
 struct UnkAtkOptionalParams_b49 {
@@ -52,8 +53,6 @@ struct UnkAtkPairPicker_b49 {
     UnkAtkRingLink_b49 ring;  // 0x10
     UnkAtkPair_b49 chosen;    // 0x20
 };
-
-bool fn_710120b310(UnkAtkKeyedNode_b49* node, const void* key);
 
 void fn_7101211260(UnkAtkPairPicker_b49* self, const void* key) {
     self->chosen.first = self->fallback.first;

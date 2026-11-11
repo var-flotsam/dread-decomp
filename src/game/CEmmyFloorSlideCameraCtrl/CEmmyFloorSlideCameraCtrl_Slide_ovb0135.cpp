@@ -5,6 +5,7 @@
 // (+0x1f4 of +0x1f8). The layout is CEmmyFloorSlideCameraCtrl_b44.cpp's. Names are placeholders.
 #include "base/UnkMatrix44.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU53.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -25,7 +26,6 @@ static_assert(__builtin_offsetof(UnkSlideCamera_ovb0135, duration) == 0x1f8, "la
 
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
-f32 fn_7100076020(f32 t, const char* modifiers);
 
 struct UnkSlidePlayer_ovb0135 {
     u8 pad_0x0[0x38];
@@ -67,4 +67,3 @@ void fn_71007d337c(UnkSlideCamera_ovb0135* self) {
     else
         self->start_dir = mirrored;
 }
-

@@ -4,6 +4,7 @@
 // of the class fn_7100c5aedc names, the one its record gives (+0x30 of +0x18). Returns the answer
 // (empty unless set). Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CModelUpdaterComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
@@ -53,8 +54,6 @@ struct UnkGrappleBeam_b50 {
     u8 pad_0x0[0x230];
     UnkGrappleLink_b50* link;
 };
-
-void fn_710117364c(void* target, const u64* id, UnkGrappleAnswer_b50* out);
 
 UnkGrappleAnswer_b50 fn_710081b920(UnkGrappleBeam_b50* self) {
     UnkGrappleAnswer_b50 answer;

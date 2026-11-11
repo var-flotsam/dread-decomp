@@ -4,6 +4,7 @@
 // there is one. Names and layouts are placeholders.
 #include "base/color/CColor4F.h"
 #include "base/math/CVector.h"
+#include "game/UnkTU132.h"
 #include "types.h"
 
 using base::color::CColor4F;
@@ -57,7 +58,6 @@ void fn_7100a0f210(char* self, const UnkVec2_b50a5* pos, f32 value, f32 alpha) {
 
 // fn_7100a0f1d0: attach the effect at +0x18 to the scene of the owner's (+0x8, +0x10)
 // holder at +0x228 (fn_71001457fc, flag 1).
-void fn_71001457fc(void* effect, void* scene, u32 flag);
 
 struct UnkSceneHolder_b50a5 {
     u8 unk_0x0[0x50];

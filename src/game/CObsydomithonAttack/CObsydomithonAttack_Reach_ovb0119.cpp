@@ -7,6 +7,7 @@
 #include <math.h>
 
 #include "base/UnkVector.h"
+#include "game/CObsydomithonAttack.h"
 #include "game/UnkActor.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -109,8 +110,6 @@ bool fn_71006298d4(UnkObsydomithonCheck_b0119* self) {
 // plays a CCharClassAttackFailTrack (fn_710117b348). Always returns true. Names and layouts are
 // placeholders.
 extern CStrId g_unk_71726f8e10 __attribute__((visibility("hidden")));
-
-void fn_710062a268(void* attack, bool value);
 
 struct UnkObsydomithonOwner_b0119 {
     u8 pad_0x0[0x220];

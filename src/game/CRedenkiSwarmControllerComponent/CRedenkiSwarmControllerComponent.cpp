@@ -2,6 +2,7 @@
 // fn_7100747f74, clears the word at +0x530, calls fn_710073f7bc with 0, clears the word at +0x538,
 // then runs vf_0x8 on each 0x20-byte entry of the array at +0x2d0 (count at +0x2d8) and empties it.
 // Names and layouts are placeholders.
+#include "game/CFlockingSwarmControllerComponent.h"
 #include "types.h"
 
 struct UnkRedenkiSwarmEntry {
@@ -21,7 +22,6 @@ struct UnkRedenkiSwarmController {
 };
 
 void fn_7100747f74(UnkRedenkiSwarmController* self);
-void fn_710073f7bc(UnkRedenkiSwarmController* self, u32 value);
 
 void fn_710064f3b4(UnkRedenkiSwarmController* self) {
     fn_7100747f74(self);

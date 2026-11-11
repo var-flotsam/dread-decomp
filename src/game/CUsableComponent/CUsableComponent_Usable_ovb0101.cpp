@@ -12,6 +12,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CBlackboard.h"
+#include "game/CReserveTankInfo.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
@@ -204,8 +205,6 @@ bool fn_7100aa19cc(UnkUsableDialog_b0101* self, UnkWeakTarget* user) {
 struct UnkInventory;
 f32 fn_7101142928(UnkInventory* inventory, const UnkQualifiedId& item);
 struct UnkReserveTankInfo_b49a6;
-bool fn_7100f10960(UnkReserveTankInfo_b49a6* self);
-bool fn_7100f10a2c(UnkReserveTankInfo_b49a6* self);
 
 struct UnkUsableUserActor_b0101 {
     u8 pad_0x0[0x270];

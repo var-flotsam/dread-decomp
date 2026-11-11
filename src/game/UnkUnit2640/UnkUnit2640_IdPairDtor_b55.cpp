@@ -2,9 +2,8 @@
 // (src/game/UnkUnit2640/UnkUnit2640_b52.cpp), the destructor of a record of two string ids and an
 // object at +0x10. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
+#include "game/UnkTU2640.h"
 #include "types.h"
-
-void fn_7100ffaa88(void*);  // as src/game_s7/fn_7101002998.cpp declares it
 
 template <int Tag>
 struct UnkIdPairRecord_b55 {

@@ -13,6 +13,9 @@
 #include "base/UnkRefHandle.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU2730.h"
+#include "game/UnkTU341.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 #include "game/UnkBossAIComponent.h"
@@ -56,8 +59,6 @@ struct UnkSelf_kr {
 
 UnkRef fn_7100353be8(void* from);
 void* fn_71004067a4(void* owner);
-void fn_7100232c68(void*);
-void fn_7101199818(void* manager, void* component);
 extern void* g_unk_7101d47330;
 
 static inline __attribute__((always_inline)) bool Names_kr(UnkLazyHandle_kr* h, void* owner, u32 skip) {
@@ -109,7 +110,6 @@ UnkList_kr* fn_710060694c();
 UnkList_kr* fn_7100604664();
 void fn_7100606964(void* object);
 void fn_7100604cc0(void* object);
-void fn_7100000790(const char* name, const char* fmt, ...);
 
 static inline __attribute__((always_inline)) void ForEach_kr(UnkList_kr* list, void (*fn)(void*)) {
     for (UnkCounted **it = list->data, **end = list->data + list->count; it != end; ++it)
@@ -148,7 +148,6 @@ void fn_7100605388(void* object);
 void fn_7100607260(void* object);
 void fn_7100608588(void* object);
 void fn_7100602164();
-void fn_71011995c0(void* owner, const UnkCallback_kr& callback);
 
 bool fn_71005ff9c0(UnkSelf2_kr* self) {
     ForEach_kr(fn_710060694c(), fn_7100606964);

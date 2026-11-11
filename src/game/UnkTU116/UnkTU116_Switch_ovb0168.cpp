@@ -2,13 +2,13 @@
 // busy-flag setter, the binder of its link at +0x1c0 (as fn_7100143790 does for unit 127), the
 // constructor and a copy-out of a 0x5c-byte block. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU275.h"
+#include "game/UnkTU32.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkLinkTarget127_b66a1;
-bool fn_710002589c(void* link, UnkLinkTarget127_b66a1* target, u32 mode, void* extra);
-void fn_71001f7388(void* obj, bool flag);
 
 struct UnkLinkSource116_ovb0168 {
     void** vtable;
@@ -67,8 +67,6 @@ struct UnkCreatedSceneObj116_ovb0168;
 struct UnkWidget;
 struct UnkWidgetArg;
 void fn_71001f4dcc(UnkWidget* self, UnkWidgetArg* a);
-void fn_71000255c4(void* member);
-void fn_7100025884(void* member, void* owner);
 
 struct UnkTaggedPart116_ovb0168 {
     u8 pad_0x0[0x139];

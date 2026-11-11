@@ -4,13 +4,13 @@
 // swaps places with the last one and the count drops. The entry layout is fn_7100926874.cpp's. Names and
 // layouts are placeholders.
 #include "base/math/CVector4D.h"
+#include "game/UnkTU1273.h"
 #include "types.h"
 
 using base::math::CVector4D;
 
 struct UnkKey;
 struct UnkSlots;
-UnkSlots* fn_710080fa28(UnkKey* key);
 bool fn_710080fb08(UnkKey* key);
 
 struct UnkMaterialFXTarget_ovb0112 {
@@ -82,5 +82,3 @@ void fn_7100926494(UnkMaterialFX_b49a4* self_, s32 index_) {
     self->entries[index] = moved;
     self->count = last;
 }
-
-

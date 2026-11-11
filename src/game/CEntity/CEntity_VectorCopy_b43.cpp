@@ -3,10 +3,10 @@
 // 0x40-byte entries, with this unit's own entry move (fn_71007b1928) and append (fn_7100d8865c).
 // Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CDemolitionBlockComponent.h"
 #include "types.h"
 
 // As src/clones/clones_04.cpp declares it: moves the entry at the second pointer into the first.
-void fn_71007b1928(void*, void*);
 
 struct UnkEntry_b43a3 {
     virtual ~UnkEntry_b43a3();

@@ -15,7 +15,11 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAudioComponent.h"
+#include "game/CModelUpdaterComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU341.h"
+#include "game/UnkTU56.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -73,8 +77,6 @@ struct UnkCueEntity_b0220 {
 struct UnkPlayer;
 struct UnkEntitySoundComponent;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
-void fn_710071a524(UnkEntitySoundComponent*, void*, f32, f32);
-s64 fn_710007cf30(void* stream, const char* format, ...);
 
 bool fn_7100d7cc68(UnkCueEntity_b0220* self, void* stream) {
     char buffer[128];
@@ -137,9 +139,7 @@ struct UnkEntityUpd_b0220 {
 };
 static_assert(__builtin_offsetof(UnkEntityUpd_b0220, field_0x3ac) == 0x3ac, "layout");
 
-void fn_7100232c68(void* self);
 void fn_7100232c90(UnkEntityUpd_b0220* self, f32 dt, bool flag);
-bool fn_7101173964(void* object);
 bool fn_71007298d0(void* object);
 struct UnkActor;
 bool fn_7100d7bea0(UnkActor* self, bool flag);

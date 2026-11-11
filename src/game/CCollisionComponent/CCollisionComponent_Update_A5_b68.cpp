@@ -2,10 +2,10 @@
 // fn_71008615b4, when both flags +0xc9 and +0xc8 are set, goes over the records (game/UnkCollisionRecord.h): a
 // flagged record (+0x18) whose object's vf_0x58 holds is refreshed through the container's vf_0x170 with 1, any
 // other flagged record has its word at +0x1c cleared. Names are placeholders.
+#include "game/CComponent.h"
 #include "game/UnkCollisionRecord.h"
 
 struct UnkParent;
-void fn_71010c424c(UnkParent*);
 void fn_71008615b4(UnkCollisionContainer* self);
 
 typedef void (*UnkCollisionRefresh)(UnkCollisionContainer* self, UnkCollisionRecord* record, s32 a);

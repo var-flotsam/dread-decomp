@@ -5,10 +5,10 @@
 // +0x310 (fn_710002f4e4) and sets three base fields. Names are placeholders.
 #include <cfloat>
 #include <new>
+#include "game/CCameraBoundaryCtrl.h"
 #include "types.h"
 
 struct UnkStruct_7100763ed4;
-void fn_7100763ed4(UnkStruct_7100763ed4* self);  // base constructor
 void fn_710002f4e4(void*);                      // member constructor
 
 extern char g_unk_7101a83ad0[];  // vtable

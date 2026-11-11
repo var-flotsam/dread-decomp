@@ -9,6 +9,9 @@
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU108.h"
+#include "game/UnkTU2563.h"
+#include "game/UnkTU365.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -340,7 +343,6 @@ static inline UnkIdVectorsPair* SetRefs(UnkIdVectorsPair* self, const UnkIdVecto
 struct UnkArraysRecord {
     u64 unk_0x0[0xc];
 };
-UnkArraysRecord* fn_7100e4f444(UnkArraysRecord* self, const UnkArraysRecord* other);  // operator=
 
 struct UnkValuesIdArrays {
     u32 field_0x0;
@@ -378,7 +380,6 @@ struct UnkPartsRecord {
 
     UnkPartsRecord& operator=(const UnkPartsRecord& other);
 };
-void fn_710011dac0(UnkPartsRecord* self, const UnkPartsRecord* other);
 inline UnkPartsRecord& UnkPartsRecord::operator=(const UnkPartsRecord& other) {
     field_0x28 = other.field_0x28;
     field_0x2c = other.field_0x2c;
@@ -398,7 +399,6 @@ struct UnkPolyVector {
 
     UnkPolyVector& operator=(const UnkPolyVector& other);
 };
-UnkPolyVector* fn_7100e4e898(UnkPolyVector* self, const UnkPolyVector* other);
 __attribute__((always_inline)) inline UnkPolyVector& UnkPolyVector::operator=(const UnkPolyVector& other) {
     fn_7100e4e898(this, &other);
     return *this;
@@ -586,7 +586,6 @@ struct UnkAssignedSlot {
 
     UnkAssignedSlot& operator=(const UnkAssignedSlot& other);
 };
-void fn_71002a5d1c(UnkAssignedSlot* self, const UnkAssignedSlot* other);
 __attribute__((always_inline)) inline UnkAssignedSlot& UnkAssignedSlot::operator=(const UnkAssignedSlot& other) {
     fn_71002a5d1c(this, &other);
     return *this;
@@ -635,4 +634,3 @@ UNK_ASSIGNED_RECORD(UnkAssignedRecord_e6e320, 0xc8, fn_7100e6e320)
 using UnkIdRecordPair_e4fff8 = UnkValuePairRef<UnkPairReleasedStrId, UnkAssignedRecord_e4fff8>;
 using UnkIdRecordPair_e51a60 = UnkValuePairRef<UnkPairReleasedStrId, UnkAssignedRecord_e51a60>;
 using UnkIdRecordPair_e6e320 = UnkValuePairRef<UnkPairReleasedStrId, UnkAssignedRecord_e6e320>;
-

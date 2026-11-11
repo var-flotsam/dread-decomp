@@ -4,6 +4,7 @@
 // reflected value. Names are placeholders.
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CAnimationComponent.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
@@ -11,7 +12,6 @@ using base::reflection::UnkReflValue;
 void fn_710117b1c8(char* self, void* a, void* b);
 struct UnkStruct_710117af10;
 struct UnkCls_710117af10;
-bool fn_710117af10(UnkStruct_710117af10* self, UnkCls_710117af10** name, bool skipBusy);
 bool fn_7101177898(char* self, void* a, void* b);
 
 static inline __attribute__((always_inline)) void* ArgPtr_b40a3(UnkReflValue* arg) {

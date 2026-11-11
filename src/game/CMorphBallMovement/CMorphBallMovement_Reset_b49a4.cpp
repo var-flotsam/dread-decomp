@@ -1,5 +1,6 @@
 // CMorphBallMovement unit (tools/tu_map.py): runs the base reset (fn_71010d7b88) and clears the
 // morph-ball state at +0x23c4, +0x25f0, +0x2608, +0x2620 and +0x2631. Names are placeholders.
+#include "game/UnkTU2689.h"
 #include "types.h"
 
 struct UnkMorphBallMovement_b49a4 {
@@ -14,8 +15,6 @@ struct UnkMorphBallMovement_b49a4 {
     u8 pad_0x2624[0x2631 - 0x2624];
     u8 field_0x2631;
 };
-
-void fn_71010d7b88(UnkMorphBallMovement_b49a4* self, bool flag);
 
 void fn_710094a398(UnkMorphBallMovement_b49a4* self, bool flag) {
     fn_71010d7b88(self, flag);

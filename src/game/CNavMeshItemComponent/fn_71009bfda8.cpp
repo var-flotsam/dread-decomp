@@ -1,5 +1,7 @@
 // Switches the object's current source: unregisters its listener from every entry of the old source,
 // registers it with every entry of the new one (skipping entries that already have it), then refreshes.
+#include "game/CNavMeshItemComponent.h"
+#include "game/CNavMeshItemStage.h"
 #include "types.h"
 
 struct UnkAllocator {
@@ -119,8 +121,6 @@ struct UnkOwner {
 };
 
 void fn_71009c6220(UnkSource* src);
-void fn_71009c5d6c(UnkSource* src);
-void fn_71009bffdc(UnkOwner* self, bool arg);
 
 // NON_MATCHING(minor): the loop that finds the node's predecessor rotates its registers differently
 // (one extra move per iteration); same loads, stores and calls.

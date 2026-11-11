@@ -3,6 +3,7 @@
 // towards the movement's up vector (fn_71003dda84). Names and layouts are placeholders.
 #include <math.h>
 
+#include "game/CBatalloonAIComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 #include "game/UnkActor.h"
@@ -23,8 +24,6 @@ struct UnkRef_c3 {
             ptr->vf_0x10();
     }
 };
-
-UnkRef_c3 fn_71003df480(void* key);
 
 struct UnkBatalloonLink_ovb0132 {
     u8 pad_0x0[0x8];

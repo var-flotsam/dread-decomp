@@ -1,3 +1,4 @@
+#include "game/CFrozenComponent.h"
 #include "types.h"
 
 struct UnkFrozenEvent {
@@ -51,8 +52,6 @@ struct CFrozenComponent2 {
     u8 unk_0x368[0x39c - 0x368];
     UnkVec3Zero field_0x39c;
 };
-
-void fn_71007f95b8(CFrozenComponent2* self, f32 value);
 
 // Relinks the component into its owner's target list, clears 0x39c and restarts from 0.
 void fn_71007f954c(CFrozenComponent2* self) {

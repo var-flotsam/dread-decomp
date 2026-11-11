@@ -5,6 +5,7 @@
 // placeholders.
 #include "base/UnkRefHandle.h"
 #include "base/UnkVector.h"
+#include "game/CBatalloonAIComponent.h"
 #include "types.h"
 
 struct UnkRefObj_c3 {
@@ -27,7 +28,6 @@ struct UnkLinkHandle_c3 {
     void* target;
 };
 
-UnkRef_c3 fn_71003df480(void* key);
 base::UnkRefHandle* fn_71006eb8cc(base::UnkRefHandle*, const base::UnkRefHandle*);  // as src/game_s7/fn_7100245b60.cpp
 
 struct UnkLink_c3 {

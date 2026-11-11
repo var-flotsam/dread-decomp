@@ -3,6 +3,7 @@
 // bone record its counterpart, and erasing a node of the string-id keyed map. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU222.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -12,7 +13,6 @@ extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, i
 extern u32 g_unk_7101d58e48;  // the current frame
 
 struct UnkBoneArray;
-void fn_710019b9c8(UnkBoneArray* bones);
 
 struct UnkSlotObject_ovb0215 {
     virtual void vf_0x0();

@@ -4,6 +4,7 @@
 // fn_7101059794), the point of that segment taken (fn_71010596ac) and, when fn_7100deabe4 says so,
 // moved by the actor's position. Names and layouts are placeholders.
 #include "base/math/CVector.h"
+#include "game/SLogicPathNode.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
@@ -11,14 +12,11 @@
 using base::math::CVector3D;
 
 struct UnkDashPath;
-f32 fn_7101059514(UnkDashPath* path);
-void fn_7101059794(f32 distance, UnkDashPath* path, u32* index, f32* fraction);
 // A point of the path, handed back in memory (as src/game/CMinimapData.cpp declares it).
 struct UnkMinimapPathPoint {
     CVector3D v;
     ~UnkMinimapPathPoint() {}
 };
-UnkMinimapPathPoint fn_71010596ac(void* path, u32 index, f32 t);
 
 struct UnkMagnetPathHolder_b52 {
     u8 unk_0x0[0x40];

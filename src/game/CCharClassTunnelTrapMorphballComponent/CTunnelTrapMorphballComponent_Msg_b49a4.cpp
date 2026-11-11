@@ -1,10 +1,10 @@
 // Message handlers in the CCharClassTunnelTrapMorphballComponent unit (tools/tu_map.py): when the
 // message's type (msg->+0x18->+0x10->+0x20) is the one in g_unk_717274a6d8, run fn_7100a443c8. The
 // second entry is the same handler reached through the base at +0x40. Names are placeholders.
+#include "game/CCharClassTunnelTrapMorphballComponent.h"
 #include "types.h"
 
 struct UnkTunnelTrapMorphball;
-void fn_7100a443c8(UnkTunnelTrapMorphball* self);
 
 struct UnkTunnelMsgType_b49a4 {
     u8 pad_0x0[0x20];

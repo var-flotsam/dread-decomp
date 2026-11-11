@@ -2,9 +2,8 @@
 // src/game/UnkUnit2567/fn_7100eb7f6c.cpp reads it): advances every alpha modifier and every size modifier
 // of an item that has an icon by `dt` (fn_7100eb7470, the bouncing curve's step). Names and layouts are
 // placeholders.
+#include "game/UnkTU2567.h"
 #include "types.h"
-
-bool fn_7100eb7470(void*, f32);
 
 struct UnkMinimapItemModifier {
     u8 pad_0x0[0xd8];

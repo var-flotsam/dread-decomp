@@ -8,7 +8,11 @@
 #include "base/UnkVector.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CAnimationComponent.h"
+#include "game/CEnemyMovement.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU1442.h"
+#include "game/UnkTU1444.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -313,7 +317,6 @@ struct UnkSinkParams_7de4 {
 extern void* g_unk_7101a24b80[];
 
 struct UnkEffectSink;
-void fn_71010c7e6c(UnkEffectSink* sink, void* params, u32 flags);
 
 struct UnkEnemyMovement_7de4 {
     void** vtable;
@@ -340,7 +343,6 @@ void fn_71010c7de4(UnkEnemyMovement_7de4* self) {
 // fn_71010c8f98: marks the movement active (+0x1c11); a pending block (+0x1c12) is sent from the state's
 // +0x48 and, in state 1, the owner turns towards virtual slot 0x360's direction.
 struct UnkEffectSink;
-void fn_71010c7e6c(UnkEffectSink* sink, void* params, u32 flags);
 void fn_7100976110(void* self);
 
 struct UnkOwner_e {
@@ -388,7 +390,6 @@ void fn_71010c8f98(UnkEnemyMovement_e* self) {
 
 // fn_71010c9a50: in state 4 the event at +0x17a0 is raised first; the three flags go to the state's slot 0x98.
 struct UnkUnit1444_Event;
-void fn_7100974798(UnkUnit1444_Event* self, u32 mode);
 
 struct UnkMovementState_9a50 {
     virtual void vf_0x0();
@@ -503,7 +504,6 @@ struct UnkVec2f_A5 {
     UnkVec2f_A5(f32 x_, f32 y_) : x(x_), y(y_) {}
     UnkVec2f_A5(const UnkVec2f_A5& o) : x(o.x), y(o.y) {}
 };
-UnkVec2f_A5 fn_710096ee98(void* source);
 
 struct UnkEnemyOwner_k {
     u8 pad_0x0[0x1b1];
@@ -633,7 +633,6 @@ UnkVec3f fn_71010cb488(UnkEnemyMovement_b488* self) {
 // fn_71010caa64: whether the movement turns: never while the 0xf406... track plays; always with a
 // CCharClassIgnoreTurnTrack or fn_7101179870; otherwise as the AI's slot 0x1b8 says.
 struct UnkStateSet_1441;
-bool fn_7101179870(UnkStateSet_1441* self);
 bool fn_71011782ec(UnkAnimationComponent* self, u64 key);
 
 struct UnkMovementSlot_f {
@@ -802,7 +801,6 @@ void fn_71010cb1c4(UnkEnemyMovement_j* self) {
 // picks a mode (2 front, 3 back) and the tweak track for it starts an animation request.
 struct UnkStruct_7101176ea8;
 struct UnkRequest_7101176ea8;
-bool fn_7101176ea8(UnkStruct_7101176ea8* self, const UnkRequest_7101176ea8* req, u64 key);
 
 struct UnkAnimTime_q {
     u64 a, b;

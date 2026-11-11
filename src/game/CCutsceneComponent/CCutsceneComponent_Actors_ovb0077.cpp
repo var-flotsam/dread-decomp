@@ -18,6 +18,9 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CCutsceneComponent.h"
+#include "game/UnkTU341.h"
+#include "game/UnkTU83.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -127,7 +130,6 @@ void* fn_71007abd58(void* self, const void* other) {
 }
 
 struct UnkCutsceneEntry_A5_b68;
-void fn_71007abba4(UnkCutsceneEntry_A5_b68* dst, UnkCutsceneEntry_A5_b68* src);
 
 // A 0x88-byte polymorphic entry seen from outside: copied by fn_71007abba4 and destroyed
 // through its vtable's slot 1.
@@ -254,13 +256,11 @@ struct UnkElem_0x88;
 UnkElem_0x88& fn_71007a6b58(base::UnkVector<UnkElem_0x88>* v, u32 index);
 
 struct UnkStruct_71002334fc;
-void fn_71002334fc(UnkStruct_71002334fc* actor, bool flag);
 void fn_71011991c4(void* gui, UnkReflObject* entity);
 void fn_7101198450(void* gui, UnkReflObject* entity);
 extern void* g_unk_7101d47330;
 u32 fn_71011986e0(void* manager, const CFilePathStrId* path);
 u32 fn_710119882c(void* manager, const CFilePathStrId* path);
-void fn_71007a8280(void* object);
 
 struct UnkCutsceneActorObject_ovb0077 : UnkReflObject {
     u8 pad_0x8[0x28];
@@ -352,7 +352,6 @@ struct UnkCutsceneRecordList_ovb0077 {
 };
 
 struct UnkVec3_cs;
-UnkVec3_cs* fn_71000cc374(void* array, u32 index);
 struct UnkPathIdMember;
 void fn_710119a110(void* gui, const UnkPathIdMember* object);
 

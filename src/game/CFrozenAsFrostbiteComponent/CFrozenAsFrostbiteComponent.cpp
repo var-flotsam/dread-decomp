@@ -3,9 +3,9 @@
 // -1 values, an empty array at +0x3e8 (step 10, flags 0xf, default allocator), then the
 // post-construction virtual call (slot 3). Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CFrozenComponent.h"
 #include "types.h"
 
-void fn_71007f8bc0(void* self);
 extern void* g_unk_7101a73e88[];
 void fn_71007f5d24(void* owner);
 

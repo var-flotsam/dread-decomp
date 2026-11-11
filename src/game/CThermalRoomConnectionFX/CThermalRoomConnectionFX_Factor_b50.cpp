@@ -2,11 +2,11 @@
 // (+0x7c), refreshing first (virtual slot 0x88) when not enabled (+0x78); then shows the actor's
 // (+0x30) effect (fn_7100798eec, fn_710024fa0c) at a factor of 1 or more and hides it at 0 or less.
 // Two identical copies. Names and layouts are placeholders.
+#include "game/CActorComponent.h"
+#include "game/CCollisionMaterialCacheComponent.h"
 #include "types.h"
 
 struct UnkStruct_710024fa0c;
-void fn_710024fa0c(UnkStruct_710024fa0c*, bool);
-UnkStruct_710024fa0c* fn_7100798eec(void* actor);
 
 struct UnkThermalFX {
     virtual void vf_slots();  // slot 0x88 is reached through the vtable below

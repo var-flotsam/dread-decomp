@@ -3,9 +3,8 @@
 // (+0xcb8) is past the duration (+0xcbc) and the level (+0xcb4) is within 0.001 of 1 or of 0, the
 // change ends (vtable slot 0x238, flag cleared); otherwise vtable slot 0x230 is told whether the
 // target (+0xcc0) is not above zero and the time runs on. Names and layouts are placeholders.
+#include "game/CComponent.h"
 #include "types.h"
-
-char* fn_71010c4234(char*);  // as src/game/CSpecialEnergyComponent/CSpecialEnergyComponent_b48.cpp
 
 struct UnkLavaPool_b52 {
     virtual void vf_0x0();

@@ -2,12 +2,12 @@
 // empty string ids at 8, 0x10 and 0x18 (fn_71000003d4), a cleared flag at 0x20, then a call of
 // its own slot 0x18. fn_710039b35c is a relative. It has no direct callers.
 
+#include "base/core/CBaseObject.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
 extern char unk_7101a1a478[];
-void fn_7100023838(void* self);
-void fn_71000003d4(void* self, const char* s, bool flag);
 
 struct UnkObject_7100138090 {
     void (**vtable)(UnkObject_7100138090*);

@@ -4,7 +4,12 @@
 // value), instantiated per component and machine offset. Names are placeholders.
 #include "base/global/CRntString.h"
 #include "../game_aca57c/UnkBufferString.h"
+#include "game/CComponent.h"
+#include "game/CElectricReactionComponent.h"
+#include "game/CUsableComponent.h"
+#include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -149,7 +154,6 @@ struct UnkSmArg_A6_b62 {
     bool field_0x1a;
 };
 struct UnkSmBase_A6_b62;
-void fn_71011d9a44(UnkSmBase_A6_b62*, UnkSmArg_A6_b62*);
 
 struct UnkSmFlagArg_A6_b62 {
     u8 pad_0x0[0x238];
@@ -169,7 +173,6 @@ void fn_7100b27cec(UnkSmFlagArg_A6_b62* self, UnkSmArg_A6_b62* arg) {
 // when it has none, then requests state 1 when the object's smart-object user says so.
 struct UnkSmartObjectUserA;
 struct UnkSmartObjectActor;
-UnkSmartObjectUserA* fn_71007cfd8c(UnkSmartObjectActor* actor);
 
 struct UnkPlatformUser_A6_b62 {
     virtual void vf_0x0();
@@ -204,7 +207,6 @@ void fn_7100a0a9e0(UnkPlatformSm_A6_b62* self, void* arg) {
 }
 
 // CUsableComponent's unit (machine at +0x100): before use, logs to the scenario and copies three values.
-void fn_7100000790(const char* name, const char* fmt, ...);
 
 struct UnkUsableArg_A6_b62 {
     u8 pad_0x0[0x44];
@@ -257,7 +259,6 @@ struct UnkUsableVirt_A6_b62 {
         reinterpret_cast<void (*)(UnkUsableVirt_A6_b62*)>(vtable[Slot / 8])(this);
     }
 };
-bool fn_7100aa0b04(UnkUsableVirt_A6_b62* self, u64 a, u64 b, const u8* c);
 
 struct UnkUsableComponent_A6_b62 : UnkUsableVirt_A6_b62 {
     u8 pad_0x8[0x30 - 0x8];
@@ -290,8 +291,6 @@ void fn_7100aa26fc(UnkUsableComponent_A6_b62* self) {
     Use_A6_b62<0x1b8, 0x218>(self);
     RequestState_A6_b62<7, 8>(&self->machine, 1);
 }
-
-bool fn_7100aa2948(UnkUsableComponent_A6_b62*);
 
 void fn_7100aa30ec(UnkUsableComponent_A6_b62* self) {
     if (fn_7100aa2948(self)) {
@@ -531,7 +530,6 @@ void fn_7100a86490(UnkSaveUsable3_A6_b62* self) {
 // Using an access point or a map station: while its own machine is in one of two states, or the usable
 // machine is in state 6, both machines are asked for a state and the use goes on with the component's
 // data; otherwise it is the plain use (fn_7100aa2570).
-void fn_7100aa2570(UnkUsableDialog_A6_b62* self, bool show);
 
 template <u32 MachineOffset, u32 DataOffset>
 struct UnkUseStation_A6_b62 : UnkUsableDialog_A6_b62 {
@@ -624,7 +622,6 @@ __attribute__((always_inline)) static inline void Update_A6_b62(UnkSmMachine_A6_
 
 // CUsableComponent's update (declared as in src/game/CThermalDeviceComponent/CThermalDeviceComponent_b50.cpp).
 struct UnkThermalDevice_b50a5;
-void fn_7100a9fad8(UnkThermalDevice_b50a5*, f32);
 void fn_7100a6dec4(UnkUseStation_A6_b62<0x5e8, 0x698>*);
 
 void fn_7100a6da5c(UnkUseStation_A6_b62<0x5e8, 0x698>* self, f32 dt) {
@@ -639,7 +636,6 @@ void fn_7100a85c08(UnkUseStation_A6_b62<0x548, 0x7f8>* self, f32 dt) {
 }
 
 struct UnkParent;
-void fn_71010c424c(UnkParent*);
 
 void fn_7100ac98e4(UnkSmOwner_A6_b62<0x130>* self, f32 dt) {
     fn_71010c424c(reinterpret_cast<UnkParent*>(self));

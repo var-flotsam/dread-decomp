@@ -4,11 +4,10 @@
 // owner's character class has a CCharClassPushCanChangePrefixTrack (fn_710117b348). Names and
 // layout are placeholders.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CAttackComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
-
-bool fn_7101136308(void*);
 
 struct UnkInfesterOwnerSlot_b44a2 {
     u8 pad_0x0[0x1a0];

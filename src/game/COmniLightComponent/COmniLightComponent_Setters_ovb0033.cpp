@@ -3,12 +3,10 @@
 // fn_710020c494), and a float raised to at least 0.01 into its +0x140 -> +0x78 object (+0x110).
 // Names and layouts are placeholders.
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU290.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
-
-void fn_710020c9ac(void* self, f32 value);  // as src/game/UnkUnit1385/UnkUnit1385_b43.cpp declares it
-void fn_710020c494(void* self, bool value);
 
 struct UnkOmniLightData_ovb0033 {
     u8 pad_0x0[0x110];

@@ -4,10 +4,10 @@
 // (the start of the UnkPartsRecord of src/base/reflection/fn_710025f31c.cpp). Names and layouts
 // are placeholders.
 #include "base/UnkCollectionIter.h"
+#include "game/UnkTU108.h"
 #include "types.h"
 
 struct UnkPartsRecord;
-void fn_710011dac0(UnkPartsRecord* self, const UnkPartsRecord* other);
 
 namespace {
 struct UnkPartsHead {

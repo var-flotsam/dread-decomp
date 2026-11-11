@@ -10,15 +10,14 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
+#include "game/CWorldGraph.h"
 #include "game/UnkComponent.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
+#include "game/UnkTU1629.h"
 #include "types.h"
 
 struct UnkWorldGraphArray;
-void* fn_7100acc418(UnkWorldGraphArray* array, u32 index);
-void fn_7100ad04c4(void* self);
-void fn_7100acf988(void* self, void* other);
 void fn_7100acd4cc(void* self);
 void fn_710024f6d4(UnkBaseComponent* self);
 

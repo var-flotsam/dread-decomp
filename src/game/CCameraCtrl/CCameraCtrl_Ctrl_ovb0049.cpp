@@ -6,14 +6,14 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CGameObject.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU0.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::global::UnkStringPool;
-
-void fn_7100000790(const char*, const char*, ...);
 
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
@@ -215,7 +215,6 @@ static inline void ReleaseRef(UnkWeakHandle* ref) {
 }
 
 void fn_71010ed3b4(void* member);
-void fn_7101043934(UnkCameraCtrl_ovb0049* self);
 extern char g_unk_7101cb1720[];
 
 void fn_71010ed260(UnkCameraCtrl_ovb0049* self) {
@@ -228,4 +227,3 @@ void fn_71010ed260(UnkCameraCtrl_ovb0049* self) {
     ReleaseId(&self->name);
     fn_7101043934(self);
 }
-

@@ -1,9 +1,8 @@
 // Functions in the CSamusGunComponent unit (tools/tu_map.py). Names and layouts are placeholders.
+#include "game/CBreakableTileGroup.h"
 #include "types.h"
 
 struct UnkQueryObj;
-u32 fn_7100c9e960(UnkQueryObj* obj);
-UnkQueryObj* fn_7100ca2048(void* where, void* key, u32 flags);
 struct UnkBreakableTile;
 void fn_7100c9fe00(UnkBreakableTile* tile, s32 kind, s32 mode, bool flag, bool force);
 

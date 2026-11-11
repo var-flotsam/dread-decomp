@@ -2,10 +2,10 @@
 // post-construction virtual call (fn_71008b4c88), otherwise as fn_71008b4d80 in
 // CCharClassItemLifeComponent.cpp: the base constructor fn_71008bca30, the vtable, the member at
 // +0xa8 (fn_71008c2da8) and the word at +0x118 set to 1. Names and layouts are placeholders.
+#include "game/CCharClassLifeComponent.h"
+#include "game/CDamageSourceFactor.h"
 #include "types.h"
 
-void fn_71008bca30(void* self);
-void fn_71008c2da8(void* member);
 extern void* g_unk_7101a7de58[];
 
 // The signature follows the declaration in src/game/CCharClassDoorLifeComponent/ (a derived component).

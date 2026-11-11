@@ -7,6 +7,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/navmesh/CFixedDynamicSmartLinkRule.h"
 #include "types.h"
 
 using base::UnkVector;
@@ -19,7 +20,6 @@ struct UnkOutOfLineElement {
     ~UnkOutOfLineElement() { Destroy(static_cast<T*>(static_cast<void*>(this))); }
 };
 
-void fn_710026ead0(void* self);
 // The 0x30-byte elements are strings (base/global/CRntString.h).
 inline void DestroyString(void* self) { fn_710007ecd4(static_cast<base::global::CRntString*>(self)); }
 using UnkElement18 = UnkOutOfLineElement<0x18, base::reflection::UnkReflValue, fn_71000a1c60>;

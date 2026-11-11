@@ -2,11 +2,10 @@
 // vtable, then two empty string ids (+0x10, +0x18), the id constructor inlined. Names and
 // layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "base/global/timeline/CEvent.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-void fn_7100067ea4(void* self);  // the event base constructor
 
 extern char g_unk_7101aa5d10[];
 

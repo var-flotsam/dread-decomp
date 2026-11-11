@@ -10,6 +10,8 @@
 
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CTriggerComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -17,14 +19,12 @@
 using base::global::CRntString;
 
 struct UnkScriptCaller;
-bool fn_7100305088(UnkScriptCaller* self, const char* name, const char* fmt, ...);
 bool fn_71009cde54(void* script, const char* name, const char* fmt, ...);
 CRntString fn_710007ef90(const CRntString*, const char*);
 extern char g_unk_7101647790[];
 
 struct UnkTrigger_b50a5;
 struct UnkTriggerEntry_b50a5;
-void fn_7100a5fdcc(UnkTrigger_b50a5* self, UnkTriggerEntry_b50a5** __attribute__((noescape)) entry);
 
 struct UnkTriggerTarget_ovb0067 {
     u8 pad_0x0[0x84];

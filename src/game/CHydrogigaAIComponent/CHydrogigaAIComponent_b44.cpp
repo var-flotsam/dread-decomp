@@ -3,11 +3,10 @@
 // may when its target has no helper at +0x208, or the helper is neither busy (fn_71009e6f9c) nor
 // fn_71009e6434. Names and layout are placeholders.
 #include "game/UnkActor.h"
+#include "game/UnkTU1501.h"
 #include "types.h"
 
 struct UnkHelper;
-bool fn_71009e6434(UnkHelper* helper);
-bool fn_71009e6f9c(UnkHelper* helper);
 
 struct UnkHydrogigaParams_b44a2 {
     u8 pad_0x0[0x554];

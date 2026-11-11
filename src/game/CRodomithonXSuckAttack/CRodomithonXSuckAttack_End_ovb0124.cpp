@@ -3,11 +3,11 @@
 // fn_71007f9f20) holds, the owner's +0x220 is sent a zero under a fixed hash (refl_EmitU32). Names and
 // layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CFrozenComponent.h"
 #include "game/UnkAttack.h"
 #include "types.h"
 
 void fn_71010fa790(void* ai);
-bool fn_71007f9f20(void*);
 
 struct UnkSuckOwner_ovb0124 {
     u8 pad_0x0[0x220];

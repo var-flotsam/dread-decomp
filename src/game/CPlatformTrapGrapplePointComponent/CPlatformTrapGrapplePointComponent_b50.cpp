@@ -3,6 +3,7 @@
 // (fn_710082cb24) passes and the owner's (+0x30) state (fn_710082bd74) isn't set (fn_7100aca464),
 // a pull counts when it comes from the grapple point the definition (+0x90) names (+0x78) and is
 // at least 0.9 strong (+0x20 of the message, by size). Names and layouts are placeholders.
+#include "game/CPullableGrapplePointComponent.h"
 #include "types.h"
 
 struct UnkTrapPullSource_b50 {
@@ -34,7 +35,6 @@ struct UnkTrapPull_b50 {
 };
 
 // The base test (both pull components share it).
-bool fn_710082cb24(void* self, void* arg, void* msg);
 void* fn_710082bd74(void* owner);
 bool fn_7100aca464(void* state);
 

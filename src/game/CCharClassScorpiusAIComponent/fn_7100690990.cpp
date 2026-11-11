@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the EForceOpticCamouflageMode enum.
 #include "../../game_5821e4/UnkStaticInit.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTUProperty.h"
 
@@ -26,7 +27,6 @@ void fn_71006907d0() __attribute__((visibility("hidden")));
 extern char g_unk_7172703e80[];
 extern UnkTunable g_unk_7172703e88;
 extern void* g_unk_7101a60f28[];
-void fn_7100075104(void* self);  // its destructor, as registered
 extern char g_unk_7172703ee9[];
 extern UnkStrIdBase g_unk_7172703ef0;
 extern UnkStrIdBase g_unk_7172703ef8;

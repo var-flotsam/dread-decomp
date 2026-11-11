@@ -7,6 +7,8 @@
 // src/game/UnkStateMachineSetA3_b61.cpp. Names are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbility.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkBehaviorTree.h"
 #include "game/UnkGameManager.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -131,7 +133,6 @@ UNK_SM_SET_CONST_A2_B65(71004c7aa0, 0x68, 4, 4, 5)
 struct UnkAttackBase;
 struct UnkSmLockon_A1_b64;
 void fn_71003608ac(UnkAttackBase* self);
-void fn_71002f9f18(UnkSmLockon_A1_b64*, s32 kind);
 
 void fn_7100487484(UnkSmOwner_A2_b65<0x80>* self) {
     fn_71003608ac(reinterpret_cast<UnkAttackBase*>(self));
@@ -260,7 +261,6 @@ void fn_7100489f3c(UnkGrabRelease_A2_b65* self) {
 
 struct UnkStruct_710117af10;
 struct UnkCls_710117af10;
-bool fn_710117af10(UnkStruct_710117af10* self, UnkCls_710117af10** name, bool skipBusy);
 extern UnkCls_710117af10* g_unk_71726c7df8 __attribute__((visibility("hidden")));
 struct UnkCommanderAttack_A2_b65;
 void fn_710042692c(UnkCommanderAttack_A2_b65*);

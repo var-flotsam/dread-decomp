@@ -4,12 +4,11 @@
 // (+0x70); its base (vtable 0x7101a57430) destroys a second listener (+0x30), then CAttack's.
 #include "../../game_5821e4/CAttackDtor.h"
 #include "base/UnkVector.h"
+#include "game/CBehaviorTreeAIComponent.h"
+#include "game/logic/collision/CPolygonCollectionShape.h"
 
 extern void* g_unk_7101a576f8[];  // the object's vtable
 extern void* g_unk_7101a57430[];  // the attack's base's vtable
-
-void fn_7100369380(void* self);
-void fn_7100d62bd8(void* p);
 
 struct UnkAttack_710062c778 {
     void** vtable;

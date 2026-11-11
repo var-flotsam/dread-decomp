@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CChozoCommanderUltimateGrabAttack::SState enum.
 #include "../../game_s7/UnkStaticInitS7.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTUProperty.h"
 
@@ -28,7 +29,6 @@ extern char g_unk_71726c87c8[];
 extern char g_unk_71726c87c9[];
 extern UnkTunable g_unk_71726c87d0;
 extern void* g_unk_7101a363c8[];
-void fn_7100075104(void* self);  // its destructor, as registered
 
 void fn_71004435c0() {
     InitHeaderIds(&g_unk_71726c8800.ids);

@@ -1,10 +1,10 @@
 // Functions in the CCharClassScourgeAIComponent unit (tools/tu_map.py). Names and layouts are
 // placeholders.
+#include "game/CCharClassBehaviorTreeAIComponent.h"
 #include "types.h"
 
 // Declared as src/game/CCharClassYamplotXAIComponent/CCharClassYamplotXAIComponent.cpp does.
 struct UnkObject_7100416db8;
-void fn_7100416db8(UnkObject_7100416db8* self);
 void fn_7100699e48(void* self);
 void fn_71007089a8(void* self);
 extern void* g_unk_7101a61dc8[];

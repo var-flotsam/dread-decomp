@@ -3,10 +3,10 @@
 // component at +0x228 gives for the singleton's id at +0xd58 (fn_710117364c), and marks its transform dirty
 // (+0x3b0). Names and layouts are placeholders.
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CModelUpdaterComponent.h"
 #include "types.h"
 
 struct UnkGrappleAnswer_b50;
-void fn_710117364c(void* target, const u64* id, UnkGrappleAnswer_b50* out);
 
 struct UnkGrappleVec3_ovb0047 {
     f32 x, y, z;

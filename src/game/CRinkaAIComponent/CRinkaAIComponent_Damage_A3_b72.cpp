@@ -3,21 +3,21 @@
 // from a per-state table of values while the state at +0x146b8 is 0-4, and clears the amount when the flag at
 // +0x146c8 is set or any central unit (fn_7100772c98's list) has a linked (fn_71003b0c4c, +0x438) record whose
 // state at +0x70 is 2. Names and layouts are placeholders.
+#include "game/CBossAIComponent.h"
+#include "game/UnkTU1176.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 // Declared as src/game/CKraidAIComponent/CKraidAIComponent_2.cpp does.
 struct UnkKraidAI2;
 struct UnkKraidRequest;
-void fn_7101105c90(UnkKraidAI2* self, void* arg, UnkKraidRequest* request);
 
 // Declared as src/game/CGobblerAIComponent/CGobblerAIComponent_Spawn_b60.cpp does.
 struct UnkZiplineLinkTarget_b49;
 struct UnkZiplineLink_b49;
-UnkZiplineLinkTarget_b49** fn_71003b0c4c(UnkZiplineLink_b49* self);
 
 // Declared as src/game/CCharClassStartCentralUnitProtoEvent/CCharClassStartCentralUnitProtoEvent.cpp does.
 struct UnkCentralUnitList;
-UnkCentralUnitList* fn_7100772c98();
 
 struct UnkRequest;
 void fn_71008c1538(UnkRequest* request, f32 value);

@@ -5,13 +5,13 @@
 // placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassCooldownXBossAttack.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkCooldownXBossAttackDef;
-void fn_71004a0a10(UnkCooldownXBossAttackDef* self);
 extern char g_unk_7101a3e300[];
 
 struct UnkFireBallAttackDef_ovb0072 {

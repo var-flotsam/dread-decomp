@@ -2,6 +2,7 @@
 // player the key g_unk_7101648d20 (fn_7100d7c828), any energy runs fn_7100301ac8; a pending refresh (+0xd2)
 // is cleared and every child (+0x40, count +0x48) gets fn_71002f8848 and slot 0xa0 with true. Names and
 // layouts are placeholders.
+#include "game/CAbility.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTimelineComponent.h"
@@ -17,7 +18,6 @@ struct UnkWaveChild_A2_b72 {
         reinterpret_cast<void (*)(UnkWaveChild_A2_b72*, bool)>(vtable[0xa0 / 8])(this, on);
     }
 };
-void fn_71002f8848(UnkWaveChild_A2_b72* child);
 
 struct UnkEnergyWaveSet_A2_b72 {
     u8 pad_0x0[0x40];

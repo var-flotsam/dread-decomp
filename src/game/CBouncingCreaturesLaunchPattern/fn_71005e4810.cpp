@@ -1,4 +1,5 @@
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>> reflected types.
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -65,7 +66,6 @@ void fn_71005e2034() __attribute__((visibility("hidden")));
 extern char g_unk_71726ef3e8[];
 extern UnkTunable g_unk_71726ef3f0;
 extern void* g_unk_7101a53690[];
-void fn_7100075104(void* self);  // its destructor, as registered
 extern char g_unk_71726ef419[];
 
 void fn_71005e4810() {

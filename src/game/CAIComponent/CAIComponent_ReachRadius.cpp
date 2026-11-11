@@ -2,6 +2,7 @@
 // src/game/CAIComponent.cpp declares it), its radius overridden by the tunable's value at +0xf8 when
 // that is not negative, halved; the tunable's value at +0xf4 wins when it is not negative.
 // Names and layouts are placeholders.
+#include "game/CCharacterMovement.h"
 #include "types.h"
 
 struct UnkAIReach {
@@ -11,8 +12,6 @@ struct UnkAIReach {
     UnkAIReach() : radius(0.0f), field_0x4(0.0f) {}
     UnkAIReach(const UnkAIReach& other);
 };
-
-UnkAIReach fn_7100977b90(void* tracked);
 
 struct UnkAIReachOwner {
     u8 unk_0x0[0x1f8];

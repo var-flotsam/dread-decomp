@@ -9,6 +9,7 @@
 // other actor and sets the state (+0x58) to 4. Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkSwitchObject.h"
@@ -17,7 +18,6 @@
 #include "types.h"
 
 struct UnkTakumakuComponent;
-bool fn_7101178e6c(UnkTakumakuComponent*, u32);
 struct UnkWorld;
 void fn_710114fe8c(UnkWorld*, u64, u32, u32);
 void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);

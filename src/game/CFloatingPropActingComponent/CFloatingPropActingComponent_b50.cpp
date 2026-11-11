@@ -3,12 +3,12 @@
 // kept at +0x98 and written into the property bag (+0x80) of the object the weak handle at +0x40
 // names, under the unit's id (g_unk_717271f800). Names and layouts are placeholders.
 #include "base/UnkTimedCurve.h"
+#include "game/CComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 #include "../../game_s7/UnkPropBagS7.h"
 
 struct UnkParent;
-void fn_71010c424c(UnkParent* self);
 
 extern char g_unk_717271f800[] __attribute__((visibility("hidden")));
 

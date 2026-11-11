@@ -10,6 +10,7 @@
 #include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU57.h"
 
 using namespace unk_prop;
 
@@ -61,7 +62,6 @@ bool fn_7100a68fb0(CBlackboard::CSection* section, const void* name, u32* out);
 struct UnkString_7100fc4b34 {
     u8 unk_0x0[0x30];
 };
-void fn_710007eba0(UnkString_7100fc4b34* self, u32 size);
 bool fn_7100ec50e4(CBlackboard::CSection* section, const void* name, UnkString_7100fc4b34* out);
 
 template <auto Reader, class T, class N>

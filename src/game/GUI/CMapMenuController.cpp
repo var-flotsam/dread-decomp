@@ -13,6 +13,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiLabel.h"
+#include "game/UnkTU2566.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -109,7 +110,6 @@ struct UnkMapData {
 };
 static_assert(__builtin_offsetof(UnkMapData, bounds) == 0xd63d30, "UnkMapData layout");
 
-UnkMapData* fn_7100e8d8b0();
 bool fn_7100e94214();
 
 struct UnkMapMenuSub {

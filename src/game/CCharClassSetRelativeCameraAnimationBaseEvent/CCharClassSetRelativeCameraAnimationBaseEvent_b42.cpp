@@ -7,6 +7,7 @@
 
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/global/timeline/CEvent.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "types.h"
 
@@ -14,7 +15,6 @@ using base::global::CFilePathStrId;
 using base::global::CStrId;
 
 extern char g_unk_7101aa1be8[];
-void fn_7100067ea4(void* self);  // the event base constructor
 
 struct UnkSetRelativeCameraAnimationBaseEvent_b42a3 {
     void* vtable;

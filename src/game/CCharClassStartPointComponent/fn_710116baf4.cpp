@@ -4,6 +4,9 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/UnkVector.h"
+#include "game/CCharClassBehaviorTreeAIComponent.h"
+#include "game/CCharClassSluggerSpitAttack.h"
+#include "game/GUI/CButton.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -57,9 +60,6 @@ void fn_710116baf4(UnkObject_710116baf4& self) {
 struct UnkStruct_7100416e80;
 
 void fn_71006b2dc0(void* self);
-void fn_71006c0074(void* self);
-void fn_7100416e80(UnkStruct_7100416e80* self);
-void fn_71011bf1a4(char* self);
 
 extern void* g_unk_7101a63ad0[];
 extern void* g_unk_7101a64f60[];

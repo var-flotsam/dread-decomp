@@ -11,9 +11,12 @@
 #include "base/math/UnkSegment2D.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CEnemyMovement.h"
+#include "game/CMovementComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkBehaviorTree.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2510.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
@@ -190,7 +193,6 @@ struct UnkHitSegment_b0117 {
 
 struct UnkTree;
 struct UnkBox;
-bool fn_7100d5c518(UnkTree* self, u32 mask, const UnkBox* box, void* arg, u32 arg2);
 
 // ---- reflection casts ----
 
@@ -217,7 +219,6 @@ struct UnkAutsharpSpawnSlot_b0117 {
 // ---- the effect parameter blocks ----
 
 struct UnkEffectSink;
-void fn_71010c7e6c(UnkEffectSink* sink, void* params, u32 flags);
 
 // The block handed to the owner's +0x218 (fn_71010c7e6c); the vtable tells the kinds apart.
 struct UnkEffectParams_b0117 {
@@ -613,7 +614,6 @@ bool fn_71003cc304(UnkAutsharpAI_b0117* self) {
 
 struct UnkMovement_71010d08d4;
 struct UnkMovementVec_71010d08d4;
-void fn_71010d08d4(UnkMovement_71010d08d4*, const UnkMovementVec_71010d08d4*, bool);
 
 struct UnkAutsharpMove_b0117 {
     u8 pad_0x0[0x1d8];

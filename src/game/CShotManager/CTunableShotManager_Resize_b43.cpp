@@ -3,6 +3,7 @@
 // vf_0x0), then new objects are constructed (fn_7100ecbddc) up to the new count. The shape of
 // fn_7100c77bcc (src/game/UnkUnit2177/UnkObj188Vector_b43.cpp). Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CShotManager/CTunableShotManager.h"
 #include "types.h"
 
 struct UnkObj290_b43a3 {
@@ -11,7 +12,6 @@ struct UnkObj290_b43a3 {
 };
 static_assert(sizeof(UnkObj290_b43a3) == 0x290, "UnkObj290_b43a3 layout");
 
-void fn_7100eddc68(UnkObj290_b43a3* self, UnkObj290_b43a3* other);  // move constructor
 void fn_7100ecbddc(UnkObj290_b43a3* self);  // constructor
 
 void fn_7100ede9e4(base::UnkVector<UnkObj290_b43a3>* self, u32 n) {

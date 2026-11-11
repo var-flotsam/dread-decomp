@@ -4,6 +4,7 @@
 #include "base/UnkStrIdTable.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU811.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -20,8 +21,6 @@ struct UnkComponent {
     u8 pad_0x8[0x2a700];
     UnkTailBlock field_0x2a708;
 };
-
-void fn_710053f510(UnkComponent* self);
 
 void fn_71004f0428(UnkComponent* self) {
     self->vtable = g_unk_7101a43038 + 2;

@@ -2,8 +2,10 @@
 // the panel children's alpha. Names and layouts are placeholders.
 #include <stdio.h>
 
+#include "base/global/timeline/CEvent.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiLabel.h"
+#include "game/UnkTU32.h"
 #include "types.h"
 
 struct UnkStrIdPathRecord_b48 {
@@ -21,9 +23,6 @@ struct UnkSoundHandle {
 extern UnkDropTarget* g_unk_7101d47318;
 extern UnkStrIdPathRecord_b48 g_unk_71727bdfb0 __attribute__((visibility("hidden")));
 struct UnkWideStr_0x20;
-void fn_7100066b38(UnkWideStr_0x20* self, const char* str);
-void fn_7100066e44(void* text);
-void fn_7100027464(UnkStrIdPathRecord_b48* self, const UnkStrIdPathRecord_b48* other);
 void fn_7100026f70(UnkIdPair* pair);
 UnkSoundHandle fn_7101024e28(UnkDropTarget* self, const UnkStrIdPathPair* ids, void* a, bool b);
 using UnkGuiObj = UnkGuiDisplayObject;

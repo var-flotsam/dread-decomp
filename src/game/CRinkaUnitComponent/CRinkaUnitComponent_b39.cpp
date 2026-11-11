@@ -3,6 +3,7 @@
 // releases the handles at +0x268 and +0x270 (fn_710115596c); then sets slot 0 of the actor's target
 // (+0x228, +0x50) to the value g_unk_7101647634 (fn_71001c2764). Names and layouts are placeholders.
 #include "base/math/CVector.h"
+#include "game/CFXComponent.h"
 #include "game/UnkSlots.h"
 #include "types.h"
 
@@ -12,8 +13,6 @@ struct UnkRinkaEntry_ruc {
 };
 
 struct UnkRinkaControl_ruc;
-void fn_710114ffb8(UnkRinkaControl_ruc* self, void* value, u32 a, u32 b);
-void fn_710115596c(UnkRinkaControl_ruc* self, void* handle);
 
 extern UnkRinkaEntry_ruc* g_unk_71726fd110[2] __attribute__((visibility("hidden")));
 extern const base::math::CVector4D g_unk_7101647634;

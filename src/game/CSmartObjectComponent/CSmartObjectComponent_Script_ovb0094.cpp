@@ -3,12 +3,15 @@
 // player a grab request (fn_7100a042e0; the shape of fn_7100a04ae0 in CSmartObjectComponent_b48.cpp).
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CGrabComponent.h"
+#include "game/CSmartObjectComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2677.h"
+#include "game/UnkTU56.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-s64 fn_710007cf30(void*, const char*, ...);
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
 void fn_71010d98bc(void* list, void* object);
@@ -42,11 +45,8 @@ bool fn_7100a04210(UnkSmartObject_ovb0094* self, void* stream) {
 struct lua_State;
 extern lua_State* g_unk_7172a01d18;
 s32 fn_71010c0bb0(lua_State* L, const char* str);
-s32 fn_71010c0d80(lua_State* L, s32 count, char* out, u32 out_size, void* a, void* b);
 void fn_7100fbc4e0(lua_State* L, void* arg);
-void fn_7100a03118(void*);
 struct UnkKraidGrab_b57a4;
-void fn_710113d940(void* grabber, UnkKraidGrab_b57a4* grab, void* owner);
 
 // A string id's pooled data as these callers see it: the hash at +0x30.
 struct UnkSmartIdData_ovb0094 {

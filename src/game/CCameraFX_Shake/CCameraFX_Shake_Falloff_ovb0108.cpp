@@ -5,9 +5,8 @@
 // src/game/querysystem/CEvaluator/CEvaluator_ShapedScore_A2_b68.cpp). Names and layouts are
 // placeholders.
 #include "base/global/CFilePathStrId.h"
+#include "game/UnkTU53.h"
 #include "types.h"
-
-f32 fn_7100076020(f32, const char*);
 
 struct UnkShakeStrData_ovb0108 {
     u8 pad_0x0[0x10];

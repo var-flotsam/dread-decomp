@@ -7,6 +7,8 @@
 
 #include "base/UnkDefaultAllocator.h"
 #include "base/global/CRntString.h"
+#include "game/UnkTU2622.h"
+#include "game/UnkTU2768.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -34,7 +36,6 @@ struct UnkUserDataOwner {
 static_assert(sizeof(UnkUserDataOwner) == 0x2b8, "UnkUserDataOwner layout");
 
 // The loader's constructor (src/game/UnkScenarioLoadRequest.cpp's unit).
-void fn_7100fc71ac(void* loader);
 
 // Clears the flags and the fields the owner tests before its first load; the event and the mutexes
 // are set up elsewhere.
@@ -62,7 +63,6 @@ void fn_7100066698(nn::os::LightEventType* event);
 void fn_7100fc7920(void* loader, u32 kind, const CRntString* scenario, const CRntString* name,
                    UnkPtrList* blackboards, bool a, void (*fn)(), const CRntString* c, CRntString* project,
                    CRntString* s2, CRntString* s3);  // src/game/UnkScenarioLoadRequest.cpp
-s32 fn_7101203620(UnkUserDataOwner* self);
 
 // Starts a load of `kind` (for kinds 1 and 4 the first string passed on is "Project") and marks the
 // owner as loading. Then, unless `b`, an owner with +0x48 set only signals its event and returns 3;

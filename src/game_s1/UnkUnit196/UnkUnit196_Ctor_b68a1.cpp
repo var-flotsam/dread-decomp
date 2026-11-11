@@ -4,11 +4,11 @@
 // Names and layouts are placeholders.
 #include <new>
 
+#include "base/tunable/CTunable.h"
+#include "game/UnkTU226.h"
 #include "types.h"
 
 extern void* g_unk_7101a1d848[];
-void fn_710019e76c(void* self);
-f32 fn_7100132fa0();
 
 struct UnkIdentity44_196_b68a1 {
     f32 m[16];

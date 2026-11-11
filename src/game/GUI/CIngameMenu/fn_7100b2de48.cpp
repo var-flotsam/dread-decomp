@@ -12,8 +12,11 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/global/timeline/CEvent.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CChozoCommanderAIComponent.h"
+#include "game/GUI/CIngameMenu.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiLabel.h"
@@ -21,6 +24,12 @@
 #include "game/UnkHandleMenu.h"
 #include "game/UnkMapMenuController.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU25.h"
+#include "game/UnkTU2726.h"
+#include "game/UnkTU2733.h"
+#include "game/UnkTU39.h"
+#include "game/UnkTU426.h"
+#include "game/nn/time.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -164,12 +173,10 @@ extern base::global::CStrId g_unk_7172762fd8 __attribute__((visibility("hidden")
 void fn_7100e9b464(void* target, bool value);
 void fn_7100e9b1f8(void* target, bool value);
 void fn_7100066a50(void* text, const char32_t* value);
-void fn_7100066e44(void* text);
 void fn_7100b2cb44(UnkStateOwner* self);
 void fn_7100af1bfc(UnkComposition* composition);
 void fn_7100b2c6a0(UnkStateOwner* self);
 void fn_7100b2c784(UnkStateOwner* self);
-void fn_710006cd9c(UnkSoundHolder* holder);
 void fn_710006d2a0(UnkSoundGroup* group, u32 id);
 void fn_710006d4d0(UnkSoundGroup* group, u32 id);
 void fn_7100219da4(UnkRenderManager* target, bool a, bool b, u32 mode);
@@ -410,8 +417,6 @@ struct UnkText : UnkGuiText {
 
 struct UnkLanguage;
 extern UnkLanguage* g_unk_7101d47358;
-void fn_710119c020(UnkLanguage* language);
-s32 fn_710119c9f4(UnkLanguage* language);
 
 // Start of the controls menu: mode 2 (boss rush, the global flag at 0xb8) or 4; the controls
 // menu (0x2b0, created when missing) becomes current, its "Label-Plus" label gets the plus
@@ -508,7 +513,6 @@ struct UnkInlineString {
 extern void* g_unk_7101a1b750[];
 
 struct UnkPathIds;
-void fn_710001f074(UnkPathIds* out, const UnkInlineString* path);
 
 // A string id and a file-path id, filled in from a path string by fn_710001f074 (the members
 // start out unset) and destroyed in reverse order.
@@ -538,7 +542,6 @@ struct UnkResourceHandle {
 };
 struct UnkResourceManager;
 extern UnkResourceManager* g_unk_71726ae8a8;
-UnkResourceHandle fn_71002f7048(UnkResourceManager* manager, const UnkPathIds& ids);
 void fn_7100b2c58c(UnkStateOwner* self);
 
 // Start of the playthrough state: one setting is changed, the menu at 0x2d0 (created when
@@ -646,7 +649,6 @@ void fn_7100b2e3b8(UnkStateOwner* self) {
 // default ids, an array (flags 0xf) and two more callbacks follow, and the member at 0x3d8 is
 // built by fn_710002f4e4.
 void fn_710002f4e4(void* self);
-void fn_710002f67c(void* self);
 extern void* g_unk_7101a9b670[];
 void fn_7100b31440();
 void fn_7100b313bc();
@@ -709,7 +711,6 @@ struct UnkCallback {
         Register(set, &set);
     }
 };
-void fn_71004567dc(void* set, void** slot);
 void fn_7100b31900(void* set, void** slot);
 void fn_7100b31770(void* set, void** slot);
 
@@ -820,9 +821,7 @@ struct UnkInputEvent {
     u8 unk_0x0[0x1a];
     bool handled;
 };
-bool fn_710118a8d0(UnkPlacedObj* placed);
 bool fn_7100b44a3c(UnkMapMenuController* menu);
-void fn_7100b2eaac(UnkStateOwner* self, s32 state, bool a, bool b);
 
 // Input while no pop-up is shown: from states 8 and 9 (or 7, unless fn_7100b44a3c holds for
 // the world's object at 0xd63f40) back to state 1; from state 1, once the manager's object

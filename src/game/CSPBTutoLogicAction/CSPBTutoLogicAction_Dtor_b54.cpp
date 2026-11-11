@@ -6,13 +6,13 @@
 // destructor (fn_7100a55ab8). Names are placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
+#include "game/CTriggerLogicAction.h"
+#include "game/UnkTU811.h"
 #include "types.h"
 
 struct UnkLogicActionBase;
-void fn_7100a55ab8(UnkLogicActionBase*);
 
 struct UnkTutoHandle;
-void fn_7100565ef0(UnkTutoHandle* handle, UnkTutoHandle** slot);
 
 void fn_7100a53508(char* self);
 

@@ -4,6 +4,7 @@
 // differ; otherwise y is raised by 6. Returns false when there is no object.
 #include "base/UnkMatrix44.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU1501.h"
 #include "types.h"
 
 struct UnkVec3 {
@@ -44,7 +45,6 @@ struct UnkSelf {
 };
 
 bool fn_71009e12d0(UnkHelper* helper);
-bool fn_71009e6434(UnkHelper* helper);
 // The matrix of the transform at +0x38 of an actor (fn_710002614c), as its 16 floats.
 static inline const f32* Matrix(const u8* xform) {
     return fn_710002614c(reinterpret_cast<const UnkMatrix44*>(xform)).m;

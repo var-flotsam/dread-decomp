@@ -1,13 +1,13 @@
 // The constructor of CCooldownXBossFireBallMovementComponent (vtable 0x7101a3f7f8) over the
 // movement base constructor fn_7100ac2c5c: clears 0x5d8..0x5e5 and the pointers at +0x5e8 and
 // +0x5f0, then finishes in fn_7100023854. Names and layouts are placeholders.
+#include "base/core/CBaseObject.h"
+#include "game/CProjectileMovement.h"
 #include "types.h"
 
 // Declared as src/game/animtree/CLayerNode/fn_71002e4894.cpp does.
 struct UnkNode;
-void fn_7100023854(UnkNode*);
 struct UnkFireBallMovementBase;
-void fn_7100ac2c5c(void* self);
 extern void* g_unk_7101a3f7f8[];
 
 struct UnkFireBallMovement {

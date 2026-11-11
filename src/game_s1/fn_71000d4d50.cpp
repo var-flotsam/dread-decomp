@@ -5,6 +5,9 @@
 // 64-bit keys with 8-byte elements (fn_71000d87c8, fn_71000d8dfc, fn_71000da1b0, fn_71000da828),
 // and 0x30-byte elements compared by fn_710007f120 (fn_71000df9dc, fn_71000dfd00).
 #include "base/UnkCollectionIter.h"
+#include "base/reflection.h"
+#include "game/UnkTU2702.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using base::UnkIterValue;
@@ -12,13 +15,11 @@ using base::UnkIterValue;
 struct UnkCompared_0x18 {
     u64 words[3];
 };
-bool fn_71000a1ed4(const UnkCompared_0x18* a, const UnkCompared_0x18* b);
 inline bool operator==(const UnkCompared_0x18& a, const UnkCompared_0x18& b) { return fn_71000a1ed4(&a, &b); }
 
 struct UnkCompared_0x30 {
     u64 words[6];
 };
-bool fn_710007f120(const UnkCompared_0x30* a, const UnkCompared_0x30* b);
 inline bool operator==(const UnkCompared_0x30& a, const UnkCompared_0x30& b) { return fn_710007f120(&a, &b); }
 
 using UnkIterValue_0x18 = UnkIterValue<UnkCompared_0x18>;
@@ -91,7 +92,6 @@ inline bool operator==(const UnkCompared_0x248& a, const UnkCompared_0x248& b) {
 struct UnkCompared_0x48 {
     u64 words[9];
 };
-bool fn_71011136b8(const UnkCompared_0x48* a, const UnkCompared_0x48* b);
 inline bool operator==(const UnkCompared_0x48& a, const UnkCompared_0x48& b) { return fn_71011136b8(&a, &b); }
 
 using UnkIterValue_0x248 = UnkIterValue<UnkCompared_0x248>;

@@ -6,11 +6,11 @@
 // the entity at +0x30 (fn_7100232864); it returns false then, true otherwise. Names and layouts are
 // placeholders.
 #include "base/UnkRefHandle.h"
+#include "game/CEmmyWakeUpComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkCentralUnitProto;
-UnkCentralUnitProto* fn_71007d74b0(void* actor);
 struct UnkEntityState;
 void fn_7100232864(UnkEntityState* entity, bool value);
 

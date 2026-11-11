@@ -9,6 +9,7 @@
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU92.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
@@ -19,7 +20,6 @@ void fn_7100b064bc(UnkDisplayObjectDef_ovb0108* self);
 
 struct UnkWriteStack_b0026;
 struct UnkWriteRoot_b0026;
-void fn_71000ee314(UnkWriteStack_b0026* self, UnkWriteRoot_b0026* root, u32 count);
 
 // The objects to copy: up to 100 entries of three values each (UnkWriteStack_b0026's layout).
 struct UnkCopyEntry_ovb0108 {

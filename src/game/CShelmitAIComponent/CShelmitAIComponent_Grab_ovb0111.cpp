@@ -15,20 +15,21 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CBehaviorTreeAIComponent.h"
+#include "game/CShelmitAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkSlots.h"
+#include "game/UnkTU1501.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkSclawkAI_b44a2;
 struct UnkSclawkMessage_b44a2;
-u32 fn_710036974c(UnkSclawkAI_b44a2* self, UnkSclawkMessage_b44a2* msg);
-void fn_71006ba4fc(void* self);
 struct UnkShelmitAI_ovb0111;
 void fn_71006ba61c(UnkShelmitAI_ovb0111* self);
-void fn_71009e85f4(void* self, bool flag);
 
 struct UnkShelmitTarget_ovb0111 {
     u8 pad_0x0[0x208];
@@ -129,7 +130,6 @@ struct UnkShelmitGrabAI_ovb0111 {
 };
 
 struct UnkShelmitAI_b49a3;
-void fn_71006baa5c(UnkShelmitAI_b49a3* self, u32 a, u32 b);
 
 void fn_71006ba7ec(UnkShelmitGrabAI_ovb0111* self, f32 dt) {
     UnkShelmitGrabState_ovb0111* state = &self->state;
@@ -162,7 +162,6 @@ struct UnkKraidCreatureVec {
     f32 z;
     UnkKraidCreatureVec(const UnkKraidCreatureVec& other) : x(other.x), y(other.y), z(other.z) {}
 };
-UnkKraidCreatureVec fn_7100d7be08(void* launcher);
 
 struct UnkShelmitBlendTarget_ovb0111 {
     u8 pad_0x0[0x138];

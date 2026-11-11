@@ -1,5 +1,6 @@
 // Constructor of an object derived from fn_7100393e68's: sets its vtable, clears its members, sets a
 // few flags and sentinel values (-1 for an index and a float pair) and finishes in fn_7100023854.
+#include "base/core/CBaseObject.h"
 #include "game/UnkBehaviorTree.h"
 #include "types.h"
 
@@ -11,7 +12,6 @@ struct UnkNode {
     void** vtable;
 };
 
-void fn_7100023854(UnkNode*);
 extern void* g_unk_7101a25a60[];
 
 template <class T>

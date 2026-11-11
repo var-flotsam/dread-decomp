@@ -4,12 +4,12 @@
 // Names are placeholders.
 #include "base/UnkCollectionIter.h"
 #include "base/global/CRntString.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 struct UnkCompared_0x30 {
     u64 words[6];
 };
-bool fn_710007f120(const UnkCompared_0x30* a, const UnkCompared_0x30* b);
 
 // The key (a base::global::CRntString) as an iterator index: compared through fn_710007f120 and
 // assigned through fn_710007eaa0.

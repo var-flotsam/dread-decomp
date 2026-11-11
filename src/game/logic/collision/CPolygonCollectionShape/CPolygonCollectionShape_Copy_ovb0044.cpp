@@ -3,6 +3,8 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/UnkTU109.h"
+#include "game/logic/collision/CShape.h"
 #include "types.h"
 
 struct UnkPolygonElem_ovb0044;
@@ -16,8 +18,6 @@ struct UnkPolygonShape_ovb0044 {
     base::UnkVector<UnkPolygonElem_ovb0044*> field_0xf0;
 };
 
-void fn_7100d6c0e4(UnkPolygonCollectionShape_b42a3* self, const UnkPolygonCollectionShape_b42a3* other);
-void fn_7100123f1c(void* self, const void* other);
 extern char g_unk_7101aa8b80[];
 
 // The copy constructor: the base shape copied, the vtable, the polygon list at +0xa8 copied, the

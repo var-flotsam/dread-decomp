@@ -7,14 +7,13 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2677.h"
 #include "types.h"
 
 using base::global::CRntString;
 
 struct lua_State;
 
-s32 fn_71010c0270(lua_State* L, const char* fmt, ...);
-int fn_71010c0b40(lua_State* L, const char* fmt, ...);
 CRntString fn_7100dfb1b0(UnkGameManager* manager, const base::UnkNamedEntry* key);
 
 s32 fn_7101078f80(lua_State* L) {

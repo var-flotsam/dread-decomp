@@ -3,12 +3,12 @@
 // fields from +0x1d8, sets the pair at +0x25c to (1, 0.01) and the flag at +0x264, then runs the class entries
 // (fn_7100023854). Defined under the `void()` symbol src/reflection/CCameraBoundaryCtrl.cpp declares. Names and
 // layouts are placeholders.
+#include "base/core/CBaseObject.h"
+#include "game/CCameraCtrl.h"
 #include "types.h"
 
 struct UnkNode;
-void fn_7100023854(UnkNode* node);
 struct UnkBase_7100763ed4;
-void fn_71010ed044(UnkBase_7100763ed4*);
 extern void* g_unk_7101a6e6e8[];
 
 struct UnkCameraBoundaryCtrl_A5_b71 {

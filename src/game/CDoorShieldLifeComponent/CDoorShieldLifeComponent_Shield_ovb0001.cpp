@@ -13,6 +13,10 @@
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
 #include "base/math/CVector4D.h"
+#include "game/CActorComponent.h"
+#include "game/CItemLifeComponent.h"
+#include "game/CModelUpdaterComponent.h"
+#include "game/UnkTU2523.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -20,11 +24,9 @@ using base::math::CVector4D;
 
 // As src/game/CDoorShieldLifeComponent/CDoorShieldLifeComponent_Ctor_A5_b71.cpp declares them.
 struct UnkLifeComponent_A5_b71;
-void fn_71008e04e8(UnkLifeComponent_A5_b71* self);
 void fn_710007e6c4(void*);
 extern void* g_unk_7101a7ebf8[];
 // As src/game/CHyperBeamBlockLifeComponent/CHyperBeamBlockLifeComponent_Dtor_b50.cpp declares it.
-void fn_71008e05e8(void* self);
 
 struct UnkDoorShieldLifeObj_ovb0001 {
     void** vtable;
@@ -78,8 +80,6 @@ void fn_71008de3e0(UnkDoorShieldLifeObj_ovb0001* self) {
 
 // As src/game/CGooplotAIComponent/CGooplotAIComponent_Reset_b49.cpp declares them.
 struct UnkFlagTarget;
-void fn_7101172780(UnkFlagTarget* target, const char* name);
-void fn_7101172764(UnkFlagTarget* target, const char* name);
 
 struct UnkDoorShieldLife6_ovb0001;
 void fn_71008d0a08(UnkDoorShieldLife6_ovb0001* self, const void* animation, bool reverse, bool loop);
@@ -159,7 +159,6 @@ void fn_71008db6c4(UnkDoorShieldLife6_ovb0001* self, bool open) {
 // As src/game/CNailongAIComponent/CNailongAIComponent_b46.cpp declares it.
 void fn_71001c287c(void* target, u32 a, u32 b, CVector4D* colour, u32 c);
 // As src/game/CCharClassDeleteEntityEvent/CCharClassDeleteEntityEvent_Run_b49.cpp declares it.
-void fn_7100d7b054(void* target, f32 delay);
 void fn_71001c2ec0(void* target, u32 a, u32 b, CVector4D* colour, u32 c, f32 time);
 void fn_7101155124(void* fade, f32 time);
 
@@ -227,7 +226,6 @@ void fn_71008de71c(UnkDoorShieldLife5_ovb0001* self, f32 time) {
 
 struct UnkRequest;
 void fn_71008c1538(UnkRequest* request, f32 value);
-bool fn_710024fbc8(void*);
 struct UnkDoorShieldLife_b48;
 void fn_71008de9d4(UnkDoorShieldLife_b48* self);
 

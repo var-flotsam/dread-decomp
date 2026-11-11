@@ -4,6 +4,7 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "base/core/CAsset.h"
 #include "base/global/CStrId.h"
 #include "base/global/CFilePathStrId.h"
 #include "types.h"
@@ -165,7 +166,6 @@ void fn_710103beec(UnkPresetRef_e* self, UnkPresetRef_e* other) {
 }
 
 extern char g_unk_7101cac748[];
-void fn_7100016f88(void* self);
 void fn_7101036efc(void* items);
 
 struct UnkAudioPresetBank_h {

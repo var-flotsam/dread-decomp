@@ -1,5 +1,6 @@
 // nn::atk unit: a sound archive ("FSAR") file header, copied out when its magic, byte-order mark and
 // version are valid. Names and layouts are placeholders.
+#include "game/UnkTU2772.h"
 #include "types.h"
 struct UnkAtkFileHeaderHead {
     u32 magic;
@@ -150,8 +151,6 @@ u32 fn_7101210248(const UnkAtkOptionalParamsOwner* self) {
 // a ring splice: the node's own ring goes in before the head.
 void* fn_71001039f8();
 struct UnkAtkLock;
-void fn_71012392d0(UnkAtkLock* lock);
-void fn_71012392e0(UnkAtkLock* lock);
 struct UnkAtkListLink {
     UnkAtkListLink* prev;
     UnkAtkListLink* next;
@@ -207,10 +206,7 @@ struct UnkAtkLoader {
     u8 pad_0x0[0x8];
     UnkAtkArchive* archive;  // 0x8
 };
-u32 fn_71012069f8(UnkAtkArchive* archive, u32 id);
-bool fn_7101206b4c(UnkAtkArchive* archive, UnkAtkItemRefs* refs, u32 id);
 bool fn_7101211a64(UnkAtkLoader* self, u32 id, void* heap, u32 flags, void* arg);
-void* fn_7101211d30(UnkAtkLoader* self, u32 file_id, void* heap, void* arg, u32 unk);
 bool fn_710121166c(UnkAtkLoader* self, u32 id, void* heap, u32 flags, void* arg) {
     if (flags & 1) {
         if (!fn_7101211d30(self, fn_71012069f8(self->archive, id), heap, arg, 0))
@@ -265,8 +261,6 @@ void fn_710123a3e0(UnkAtkTask* task);
 u32 fn_710123a3f0(UnkAtkTask* task);
 void fn_7101238f90(s64 nanoseconds);
 u32 fn_7101214040(UnkAtkTaskManager* self);
-[[noreturn]] void fn_71012390d0(const char* a, const char* b, const char* c, u32 line, const u32* result,
-                                const char* format);
 static inline UnkAtkLock* AtkTaskLock() {
     return reinterpret_cast<UnkAtkLock*>(static_cast<char*>(fn_71001039f8()) + 0x960);
 }
@@ -328,7 +322,6 @@ void fn_710123a6a0(void* out, f32 value);
 void fn_710123a6b0(void* out, f32 value);
 void fn_710123a6c0(void* out, u32 index, const UnkAtkVoiceMix* mix);
 void fn_710122f9e0(UnkAtkVoice* self, f32* params);
-void fn_710122faa0(UnkAtkVoice* self, void* params, u32 arg);
 void fn_710122f79c(UnkAtkVoice* self, u32 arg) {
     void* out = self->out;
     if (!fn_710123a610(out))

@@ -3,13 +3,13 @@
 // it with its part at +0x40; then sets the id g_unk_710164a498 on the owner's timeline (+0x2e8) to the
 // all-flags mask (as src/game/CKraidAIComponent/fn_7100600c98.cpp). Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CDropComponent.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU2702.h"
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
 
-void fn_710110cca4(void* self, void* arg);
 char* fn_71004dad10(UnkActor* owner);
-void fn_71007c21e8(char* self, char* part, void* extra);
 
 struct UnkRinkaKey_b59a4;
 extern UnkRinkaKey_b59a4 g_unk_710164a498;  // reached through the GOT

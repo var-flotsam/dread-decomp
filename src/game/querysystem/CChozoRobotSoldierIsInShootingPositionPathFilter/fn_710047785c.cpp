@@ -1,6 +1,8 @@
 // Constructor of a query-system parameter named "IN_MELEE_PATH": runs the base constructor, sets the vtable
 // and names the parameter with the string id built from its tag.
 #include "base/global/CStrId.h"
+#include "game/CCharClassScorpiusPoisonousGasAttack.h"
+#include "game/querysystem/CFilter.h"
 #include "types.h"
 
 using base::global::UnkStrId;
@@ -12,7 +14,6 @@ struct UnkQueryParam {
 };
 
 extern void* g_unk_7101a39568[];
-void fn_71002bedc8(UnkQueryParam* self);
 
 template <class Base, void (*BaseCtor)(Base*), void** Vtable, class Self>
 __attribute__((always_inline)) static inline void Construct(Self* self, const char* name) {
@@ -32,7 +33,6 @@ struct UnkNamed_71006807f8 {
 };
 
 extern void* g_unk_7101a600a0[];
-void fn_7100681a6c(void* self);
 
 void fn_71006807f8(UnkNamed_71006807f8* self) { Construct<void, fn_7100681a6c, g_unk_7101a600a0>(self, "PoisonousGas"); }
 void fn_710068097c(UnkNamed_71006807f8* self) { Construct<void, fn_7100681a6c, g_unk_7101a600a0>(self, "PoisonousGas"); }

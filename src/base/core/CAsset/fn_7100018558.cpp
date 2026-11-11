@@ -3,6 +3,7 @@
 // records (values at 0, keys at 8, sharing one count): both sides are destroyed, the storage is reallocated when the
 // other's count differs from the capacity, then the values are assigned and the keys copied, counting a use of each.
 #include "base/UnkVector.h"
+#include "base/core/CAsset.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -72,7 +73,6 @@ using UnkIdRecordMap = UnkIdMap<UnkRecord80>;
 void fn_7100017ce8(UnkRecord80* record);              // destructor
 void fn_710001871c(UnkIdRecordMap* self);             // frees the storage
 void fn_7100017948(UnkIdRecordMap* self, u32 capacity);  // Reserve
-UnkRecord80* fn_7100017ba0(UnkRecord80* self, const UnkRecord80* other);
 
 UnkIdRecordMap* fn_7100018558(UnkIdRecordMap* self, const UnkIdRecordMap* other) {
     return Assign<UnkRecord80, fn_7100017ce8, fn_710001871c, fn_7100017948, fn_7100017ba0>(self, other);

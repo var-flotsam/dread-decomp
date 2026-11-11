@@ -5,6 +5,7 @@
 // flag (+0xd0) and the source's oriented box (+0xa8) copied word by word, its angle before its
 // offset. Names and layouts are placeholders.
 #include "base/global/CRntFile.h"
+#include "game/logic/collision/CShape.h"
 #include "types.h"
 
 #include <math.h>
@@ -12,7 +13,6 @@
 using base::global::CRntFile;
 
 struct UnkShape2D_b46a3;
-void fn_7100d6c034(UnkShape2D_b46a3* self, const void* transform);
 
 extern char g_unk_7101aa8c30[];  // COBoxShape2D's vtable
 

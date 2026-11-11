@@ -5,6 +5,9 @@
 // moved onto the timeline (fn_7100a2d4d0 detaches it, fn_710082efe8 hands out the timeline's link,
 // fn_7100a2d4c8 attaches it) to call fn_71008dfe04. Then the owner's action switcher
 // (fn_71002b3b84) gets the hash 0xa6a4b8f65b760be7. Returns 0. Names and layouts are placeholders.
+#include "game/CNavMeshItemComponent.h"
+#include "game/CTimelineComponent.h"
+#include "game/UnkTU372.h"
 #include "game/UnkTimelineCalls.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -25,11 +28,8 @@ inline u32 UnkHyperDefaultMask() {
 }
 
 extern u64 g_unk_710164b158;  // the timeline id
-void fn_7100a2d4d0(void*, void*);
 void fn_7100a2d4c8(UnkWeakTarget* target, void* listener);
 void fn_710082efe8(UnkTimelineComponent* timeline, UnkWeakHandle** out);
-void* fn_71002b3b84(UnkWeakTarget*);
-void fn_71009c0f1c(void*, u64);
 
 struct UnkHyperBeamBlockLife_ovb0134;
 void fn_71008dfe04(UnkHyperBeamBlockLife_ovb0134* self);

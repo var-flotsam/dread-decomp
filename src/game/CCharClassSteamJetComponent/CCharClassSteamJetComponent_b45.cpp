@@ -1,10 +1,10 @@
 // CCharClassSteamJetComponent's unit (tools/tu_map.py): from a time of at least 1.0, enables the
 // component (fn_710024fa0c) and, with a target at +0xc58, starts the timer block at +0xc80 with
 // that time. Names and layout are placeholders.
+#include "game/CActorComponent.h"
 #include "types.h"
 
 struct UnkStruct_710024fa0c;
-void fn_710024fa0c(UnkStruct_710024fa0c*, bool);
 
 struct UnkSteamJet_b45a2 {
     u8 pad_0x0[0xc58];

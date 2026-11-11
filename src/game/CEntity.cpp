@@ -6,7 +6,10 @@
 #include "base/UnkMatrix44.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
+#include "game/CCharacterMovement.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2510.h"
+#include "game/UnkTU2517.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -77,11 +80,9 @@ struct UnkSegmentShape {
     u8 data[0xc0];
 };
 void fn_7100d693ac(UnkSegmentShape* self, const UnkSegment2D* seg);
-void fn_7100d69400(UnkSegmentShape* self);
 struct UnkTree;
 struct UnkShape;
 struct UnkMtx44;
-bool fn_7100d5b484(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, void* arg, u16 arg2);
 
 static inline void SetIdentity(UnkMatrix44* m) {
     *m = UnkMatrix44{};
@@ -96,8 +97,6 @@ static inline void SetIdentity(UnkMatrix44* m) {
 // ground point by when it has one; else its vf_0x2a8 may give the movement object, whose shape at
 // +0x158 gives a bounding box.
 struct UnkFlagged;
-UnkShape* fn_7100976588(UnkFlagged* flagged);
-f32 fn_7100977bec(UnkFlagged* flagged);
 
 struct UnkGroundBounds {
     CVector3D min;

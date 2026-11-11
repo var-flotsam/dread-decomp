@@ -4,6 +4,7 @@
 // (+0x10, fn_71003aab64), the state becomes 2 and the result is 4; otherwise 6. Names and layouts are placeholders.
 #include "UnkClone.h"
 #include "base/UnkVector.h"
+#include "game/behaviortree/CBehaviorTree.h"
 #include "types.h"
 
 struct UnkClone_fn_710039657c;
@@ -12,8 +13,6 @@ extern template UnkSelectorChild_A2_b68& base::UnkVector<UnkSelectorChild_A2_b68
 
 struct UnkSelectorTree_A2_b68;
 struct UnkSelectorNode_A2_b68;
-
-void fn_71003aab64(UnkSelectorTree_A2_b68* tree, UnkSelectorNode_A2_b68* child);
 
 struct UnkSelector_A2_b68 {
     u8 pad_0x0[0x10];

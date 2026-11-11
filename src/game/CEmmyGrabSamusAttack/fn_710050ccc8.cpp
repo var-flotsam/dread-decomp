@@ -4,6 +4,8 @@
 // 2 / (the value at 0x120 of the object its slot 0xd8 returns) * the picked value + 2.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CEmmyGrabSamusAttack.h"
+#include "game/UnkTU811.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -38,9 +40,6 @@ struct UnkSelf {
     u8 pad_0x6c0[8];
     f32 field_0x6c8;
 };
-
-void fn_710050cd98(UnkSelf* self);
-f32 fn_7100552e3c(UnkEmmyAI* ai);
 
 void fn_710050ccc8(UnkSelf* self) {
     fn_710050cd98(self);

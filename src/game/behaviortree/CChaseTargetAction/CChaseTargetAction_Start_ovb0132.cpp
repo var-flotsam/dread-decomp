@@ -7,12 +7,12 @@
 // +0xcc and replaced by the AI's vf_0x698 while +0x78 has a target; it is stored at +0x68 and in the AI
 // at +0x14690. Names and layouts are placeholders.
 #include "game/UnkActor.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 struct UnkStruct_0x68;
 void fn_7100394bd0(UnkStruct_0x68* self);
 struct UnkAIComponent;
-void fn_71010fa828(UnkAIComponent* object);
 
 struct UnkChaseSizeSource_ovb0132 {
     virtual void vf_0x0();

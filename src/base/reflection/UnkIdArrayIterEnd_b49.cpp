@@ -7,6 +7,7 @@
 #include "base/UnkCloneCalls.h"
 #include "base/UnkCollectionIter.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU83.h"
 
 struct UnkIdRecordOwner_0xf0;
 using UnkFilePathIdElem = UnkCloneStrIdElem<UnkIdRecordOwner_0xf0, 0, 8, UnkCloneStrIdB<UnkIdRecordOwner_0xf0>>;
@@ -22,9 +23,6 @@ void UnkIdArrayEnd_b49(const base::UnkVector<Elem>* v, base::UnkCollectionIter<E
         Sync(out);
     }
 }
-
-void fn_71000be6c0(void*);
-void fn_71000bce50(void*);
 
 void fn_71000d0ff4(const base::UnkVector<UnkFilePathIdElem>* v, base::UnkCollectionIter<UnkFilePathIdElem>* out) {
     UnkIdArrayEnd_b49<UnkFilePathIdElem, fn_71000be6c0>(v, out);

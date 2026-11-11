@@ -2,9 +2,9 @@
 // on, and forwards the flag to an object reached through field_0x160.
 #include "base/UnkCloneCalls.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU285.h"
 #include "types.h"
 
-void fn_7100208bb4(void* obj, bool flag);
 void fn_7100192f08(void* obj, bool flag);
 
 static void Reset(UnkSwitchObject* self, bool enable) {

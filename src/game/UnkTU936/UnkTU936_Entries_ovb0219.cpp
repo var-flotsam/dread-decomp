@@ -6,6 +6,7 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/CCharClassBehaviorTreeAIComponent.h"
 #include "game_s2/UnkOwnedList.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -165,7 +166,6 @@ UNK_ERASE_OVB0219(710061b210)
 UNK_ERASE_OVB0219(710061de3c)
 
 struct UnkObject_7100416db8;
-void fn_7100416db8(UnkObject_7100416db8* self);
 void fn_710060a504(void* self);
 void fn_7100624194(void* self);
 extern void* g_unk_7101a561c8[];

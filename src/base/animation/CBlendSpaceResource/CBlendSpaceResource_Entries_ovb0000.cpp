@@ -8,6 +8,7 @@
 #include "base/UnkCountedResource.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "base/core/CAsset.h"
 #include "base/global/CFilePathStrId.h"
 #include "types.h"
 
@@ -214,7 +215,6 @@ UnkBlendEntry_ovb0000* fn_710000efe0(UnkElem18Vector* self, u32 index) {
     return &v->data[index];
 }
 
-void fn_7100016f88(void* self);
 extern void* g_unk_7101a192a0[];
 
 // The resource: a string id at +0x58 and the entries at +0x60, over the 0x58-byte base

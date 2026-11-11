@@ -5,12 +5,12 @@
 // out-of-line destructor, while the temporary's destructor has it inlined. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "game/CStandaloneFXComponent.h"
 #include "game/UnkModelManager.h"
 #include "types.h"
 
 void fn_71011a91c4(UnkModelManager* self, void* handle, u32 id);
 struct UnkStruct_710081348c;
-void fn_710081348c(UnkStruct_710081348c*);  // as CStandaloneFXComponent.cpp declares it
 
 struct UnkFxRecordDesc_A4_b73 {
     u8 pad_0x0[0x40];

@@ -5,6 +5,7 @@
 // worked out when it has none, fn_71003f18f8 gets a flag telling whether the entry's floats are
 // both close to zero, a virtual call (slot 0xe8) hands over the attack's values, and the timer
 // is reloaded from the entry's word before stepping to the next entry (wrapping at the count).
+#include "game/CShotComponent.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkSpitAttack.h"
 #include "types.h"
@@ -20,7 +21,6 @@ struct UnkSpitOwner_71003f2710 {
 };
 
 void fn_71003f18f8(UnkSpitAttack* self, bool a, bool b, const UnkVec3f* v);
-void fn_71009f92d0(void* object);
 
 static inline UnkSpitOwner_71003f2710* Owner(UnkSpitAttack* self) {
     return reinterpret_cast<UnkSpitOwner_71003f2710*>(self->field_0x8);

@@ -1,9 +1,12 @@
 // Unit 683 (CChozoRobotSoldierDashSlashAttack): the attack's state pick (the next state's id), the length of the
 // attack motion's end offset, and its start. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAIComponent.h"
+#include "game/UnkTU1728.h"
+#include "game/UnkTU2702.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
 
@@ -21,7 +24,6 @@ struct UnkDashSlashAttack_b0237 {
 };
 
 struct UnkGoliathAI_b58a3;
-void fn_71010fc68c(UnkGoliathAI_b58a3* ai, f32* out);
 
 // Signature as the other AI units declare it; here it hands back the next state's id, so it is called through
 // a cast.
@@ -81,10 +83,7 @@ struct UnkTimeline {
     UnkMotionTracks* tracks;  // 0x80
 };
 
-void* fn_7101176e0c(UnkStruct_7101176ea8* self, u64 a, u64 b);
 void fn_71007142e8(UnkStruct_71007142e8* self);
-void fn_7100b8b3bc(UnkTimeline* self, void* target, UnkMotionTracks* tracks, const u32* flags, f32 from,
-                   f32 to);
 
 struct UnkDashSlashOwner2_b0237 {
     u8 pad_0x0[0x220];

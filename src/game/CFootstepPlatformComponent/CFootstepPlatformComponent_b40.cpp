@@ -3,15 +3,15 @@
 // the empty one), counts a use of that name (+0x44 of its string entry) and, if the script state has
 // the function, calls it with the owner (+0x30) as its argument. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CComponent.h"
+#include "game/UnkTU2677.h"
 #include "types.h"
 
 struct lua_State;
 extern lua_State* g_unk_7172a01d18;
 s32 fn_71010c0bb0(lua_State* L, const char* name);
 void fn_7100fbc4e0(lua_State* L, void* arg);
-s32 fn_71010c0d80(lua_State* L, s32 count, char* out, u32 out_size, void* a, void* b);
 struct UnkHandleOwner_71010c4230;
-void fn_71010c4230(UnkHandleOwner_71010c4230* self);
 
 // A string entry of the pool: the text at +0x10, a use count at +0x44.
 struct UnkStringEntry_fp {

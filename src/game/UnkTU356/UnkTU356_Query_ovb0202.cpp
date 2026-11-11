@@ -5,14 +5,13 @@
 #include "base/UnkVector.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
+#include "game/UnkTU357.h"
+#include "game/UnkTU358.h"
 #include "types.h"
 
 struct UnkNavQuery;
-void fn_710028659c(UnkNavQuery* self);
 struct UnkStruct_7100286624;
-void fn_7100286624(UnkStruct_7100286624* self);
 struct UnkNavPathNode;
-void fn_71002872f4(UnkNavPathNode* self);
 
 struct UnkNavPathNode_b0202 {
     u8 data[0x128];
@@ -144,4 +143,3 @@ void* fn_7100282b3c(UnkNavQueryState_b0202* self, void* unused, UnkNavCellCallba
     }
     return nullptr;
 }
-

@@ -4,13 +4,13 @@
 // 5 when it found one, else 6. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "game/UnkManager_71726af468.h"
+#include "game/UnkTU958.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
 // As src/game/behaviortree/CEmmySearchingAction/fn_710051d360.cpp and
 // src/game/CAutsniperShootAttack/CAutsniperShootAttack_Dtor_b49.cpp declare them.
-void fn_71002acfe4(void* member);
 struct UnkObject_71002ad0dc;
-void fn_71002ad0dc(UnkObject_71002ad0dc* self);
 
 struct UnkOffsetScratch_b65a4 {
     u8 data[0x12a88];
@@ -26,8 +26,6 @@ struct UnkOffsetAction_b65a4 {
     u8 pad_0x0[0x18];
     void* owner;  // 0x18
 };
-
-bool fn_710063b1b0(u8* registry, void* owner, u32 flags, UnkOffsetVec_b65a4* pos, UnkOffsetScratch_b65a4* scratch);
 
 s32 fn_7100635bf8(UnkOffsetAction_b65a4* self) {
     UnkOffsetVec_b65a4 pos;

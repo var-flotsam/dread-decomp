@@ -4,6 +4,7 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CGunComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -233,8 +234,6 @@ void fn_71008585a8(UnkSamusGun_ovb0070* self) {
     ApplyReset(self);
     self->shots.Clear();
 }
-
-void fn_7100839b00(char*, bool);
 
 // Another step: the parent's (fn_7100839b00 with false), then the pending reset and beam change.
 void fn_710085a8a4(UnkSamusGun_ovb0070* self) {

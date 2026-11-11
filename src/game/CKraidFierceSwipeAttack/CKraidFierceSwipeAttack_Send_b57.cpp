@@ -7,6 +7,7 @@
 // src/game_s2/UnkSpitSend.h). Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CKraidAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
@@ -48,8 +49,6 @@ static inline UnkKraidSwipeValue_b57a4 MakeFloat_b57a4(f32 value) {
 struct UnkSelf_kt41;
 // The base attack update, typed as an opaque attack (one declaration for every caller).
 struct UnkKraidAttack;
-void fn_71005f201c(UnkKraidAttack* self, f32 dt);
-bool fn_71005f20e4(UnkSelf_kt41*);
 
 void fn_71005f42c8(UnkKraidSwipe_b57a4* self, f32 dt) {
     fn_71005f201c(reinterpret_cast<UnkKraidAttack*>(self), dt);
@@ -72,4 +71,3 @@ void fn_71005f42c8(UnkKraidSwipe_b57a4* self, f32 dt) {
     mask.id = UnkAll_SpitSend().value;
     fn_7101176690(target, 0xcb39371b86897f5c, 0xf4061ff25a2163d6, &mode, &arg, &g_unk_7172769740, &mask);
 }
-

@@ -12,10 +12,15 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAttack.h"
+#include "game/CAttackComponent.h"
+#include "game/CCharacterMovement.h"
+#include "game/CEnemyMovement.h"
+#include "game/CFXComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU108.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -133,7 +138,6 @@ void* fn_71010ffe3c(UnkAICall_b0143* self, UnkAIResult_b0143* arg, bool flag) {
 
 struct UnkWeakTarget;
 struct UnkTileOutline;
-void fn_7100119f98(UnkTileOutline* outline, u32 value);
 void fn_7100874460(void* list, UnkWeakTarget** item);
 
 struct UnkAIReset_b0143 {
@@ -176,7 +180,6 @@ void fn_71010f9cf8(UnkAIReset_b0143* self) {
 }
 
 struct UnkPart0;
-void fn_710011d8b4(UnkPart0* self, const UnkPart0* other);
 extern char g_unk_7101cb2648[] __attribute__((visibility("hidden")));
 
 struct UnkCloneNode_b0143 {
@@ -207,11 +210,7 @@ UnkCloneNode_b0143* fn_71011161c8(UnkCloneNode_b0143* src) {
 }
 
 
-u32 fn_71010cc3a4(void*);
-bool fn_71010cab0c(void*);
 bool fn_71009745f0(void*);
-bool fn_7101136308(void*);
-bool fn_7100979ef0(void*);
 
 struct UnkMoveObject_b0143 {
     void** vtable;
@@ -411,7 +410,6 @@ struct UnkRinkaControl_ruc;
 UnkComponent* fn_7101152b90(UnkObject*, u64);
 bool fn_710114e668(UnkObject*, u8);
 void fn_7100146dac(UnkSwitchObject*, bool);
-void fn_710115596c(UnkRinkaControl_ruc*, void*);
 extern u8* g_unk_7172a062e0 __attribute__((visibility("hidden")));
 
 struct UnkEffectOwner_b0143 {

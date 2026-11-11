@@ -5,10 +5,10 @@
 // layouts are placeholders.
 #include "base/UnkVector.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2560.h"
 #include "types.h"
 
 extern void* g_unk_71726da048;
-void fn_7100e1bca4(void* manager);
 void fn_7100e1ceb0(void* manager, const u64* key);
 
 struct UnkKeyed_bb {

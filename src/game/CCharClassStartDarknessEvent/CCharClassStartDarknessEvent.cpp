@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU1176.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -21,7 +22,6 @@ struct UnkCentralUnitList {
     u32 count;
 };
 
-UnkCentralUnitList* fn_7100772c98();
 void fn_7100772610(UnkReflObject* component, const CStrId* id, f32 a, f32 b);
 
 struct UnkStartDarknessEvent {

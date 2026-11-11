@@ -6,6 +6,7 @@
 
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassSoundBaseEvent.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -31,7 +32,6 @@ struct UnkLoopSoundEvent_b46a3 {
     CStrId field_0x48;
 };
 
-void fn_7100cdc2b8(void* self);  // the base constructor
 extern void* g_unk_7101aa5d48[];
 
 void fn_7100cc7b60(UnkLoopSoundEvent_b46a3* self) {

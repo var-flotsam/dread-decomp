@@ -2,11 +2,11 @@
 // reports: 6 before it is set up (+0x3b), 5 once done (+0x38) or when it does not wait (+0x3a), else 2
 // while the effect at +0x28 of the object at +0x40 is still active (fn_71002084b4). Names and layouts are
 // placeholders.
+#include "game/UnkTU285.h"
 #include "types.h"
 
 // As src/game/UnkUnit285/UnkUnit285_UpdateActive_b46.cpp defines it.
 struct UnkUnit285_b46a1;
-bool fn_71002084b4(UnkUnit285_b46a1* self);
 
 struct UnkParticleEmissionTarget_b66a2 {
     u8 pad_0x0[0x28];

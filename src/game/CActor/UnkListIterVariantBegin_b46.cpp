@@ -2,10 +2,10 @@
 // starting an iterator (at the owner's list head, +0x40) over a linked list whose current element is kept in a two-state variant
 // (state 1 an object destroyed by fn_7100239e0c, state 2 a pair of pointers). Names and layouts are
 // placeholders.
+#include "game/UnkTU341.h"
 #include "types.h"
 
 // Signature as src/clones/clones_00.cpp declares it.
-void fn_7100239e0c(char*);
 
 template <u32 N>
 struct UnkListNode_b46a1 {

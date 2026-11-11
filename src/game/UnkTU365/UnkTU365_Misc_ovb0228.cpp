@@ -10,6 +10,8 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
+#include "game/CGameObject.h"
+#include "game/UnkTU109.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -158,7 +160,6 @@ struct UnkOuter_b0228 {
 };
 
 struct UnkCameraCtrl_ovb0049;
-void fn_7101043934(UnkCameraCtrl_ovb0049*);
 
 void fn_7100289554(UnkOuter_b0228* self) {
     self->vtable = reinterpret_cast<void**>(g_unk_7101a20e98 + 0x10);
@@ -648,8 +649,6 @@ extern char g_unk_7101a20f68[];
 
 // An object built and destroyed out of line (fn_7100123eb4, fn_7100123fb0).
 struct UnkTileOutlineList;
-void fn_7100123eb4(UnkTileOutlineList* self);
-void fn_7100123fb0(UnkTileOutlineList* self);
 
 struct UnkPart_b0228 {
     u8 data[0x40];

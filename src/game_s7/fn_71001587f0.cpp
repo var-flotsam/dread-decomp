@@ -3,9 +3,14 @@
 // the window's two render targets and their sync object, then the performance mode.
 #include <nn/oe.h>
 #include <nn/vi.h>
+#include "base/tunable/CTunable.h"
 #include "game/UnkGraphicsState.h"
 #include "base/UnkDefaultAllocator.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU170.h"
+#include "game/UnkTU172.h"
+#include "game/UnkTU179.h"
+#include "game/UnkTU182.h"
 #include "types.h"
 
 extern "C" void* nvnBootstrapLoader(const char* name);
@@ -148,20 +153,15 @@ u32 fn_7100153d90();
 u32 fn_7100153d00();
 nn::vi::Display** fn_7100153cb0();
 nn::vi::Layer** fn_7100153cc0();
-void* fn_7100153cd0();
 void* fn_7100153e00();
 void* fn_7100153e10();
 void* fn_7100153d10(u32 index);
 void* fn_7100153d30(u32 index);
 void* fn_7100153db0(u32 index);
-void* fn_7100153d50();
 void* fn_7100153dd0();
-void* fn_7100153df0();
 void fn_7100154770(void* device, GetProcFn get_proc);
 void fn_7100153350();
 u64 fn_710015383c(u64 size, u64 align);
-void fn_710015385c(UnkPool* pool, u64 size, s32 flags, void* device);
-void fn_7100153968(UnkPool* pool, u64 size, u64 align);
 void fn_71001587e0();
 void fn_71001b3dc0();
 void fn_7100161520();
@@ -173,10 +173,6 @@ void fn_710015c140();
 void fn_710015bde0();
 s32 fn_7100132f80();
 s32 fn_7100132f90();
-u32 fn_7100132fc0();
-u32 fn_7100132fd0();
-void fn_710015c1e0(UnkHandle** out, s32 width, s32 height, s32 count, const s32& format);
-void* fn_71001611e0(void* object);
 void fn_7100132a30(s32 value);
 
 // The NVN entry points are called through inline wrappers, so the arguments are evaluated

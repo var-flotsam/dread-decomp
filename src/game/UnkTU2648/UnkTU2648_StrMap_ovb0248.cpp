@@ -8,13 +8,13 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2647.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-void fn_7101036e34(void* value);  // the value's destructor
 void fn_7101041d34(void* value, const void* arg);  // builds a value
 void fn_7101036fb8(void* value, const void* arg);  // builds a value from another
 

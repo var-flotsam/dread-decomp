@@ -3,6 +3,7 @@
 // 1.0 when there is no such field. Names and layouts are placeholders.
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflTypedPtr.h"
+#include "game/UnkTU85.h"
 #include "types.h"
 
 using base::reflection::CType;
@@ -11,7 +12,6 @@ using base::reflection::UnkReflTypedPtr;
 struct UnkReflField;
 struct UnkReflFieldObject;
 struct UnkReflValueArg;
-bool fn_71000e78e0(UnkReflField* field, const UnkReflFieldObject* obj, UnkReflValueArg* value);  // gets
 
 extern base::reflection::UnkTunable g_unk_71726f3440;
 

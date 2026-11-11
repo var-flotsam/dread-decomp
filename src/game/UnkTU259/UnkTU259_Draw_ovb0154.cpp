@@ -7,6 +7,12 @@
 #include "base/UnkBlockFreeList.h"
 #include "base/UnkVector.h"
 #include "game/UnkGlobal_710b372a98.h"
+#include "game/UnkTU177.h"
+#include "game/UnkTU179.h"
+#include "game/UnkTU180.h"
+#include "game/UnkTU182.h"
+#include "game/UnkTU230.h"
+#include "game/UnkTU259.h"
 #include "types.h"
 
 struct UnkStruct_71001cdd74;
@@ -26,24 +32,9 @@ extern void* g_unk_716e589b60 __attribute__((visibility("hidden")));
 
 char* fn_71001a07fc(char* p0);
 void fn_71001d796c(void* sub, u32 a, u32 b, void* c);
-void fn_71001cafa0(UnkStruct_71001cdd74* self, s32 a, s32 b, s32 c);
-void fn_710015e1f0(void* state, u32 stage, u64 location, u32 count, const f32* values);
-void fn_710015e020(void* state, u32 stage, u64 location, bool value);
-void fn_7100159490(s32 x, s32 y, s32 width, s32 height, f32 min_depth, f32 max_depth);
-void fn_710015f770(s32 slot, void* object, bool clear);
-void fn_71001606f0(s32 a, s32 b, bool c);
-void fn_710015a090(s32 a, s32 b, s32 c, s32 d);
-bool fn_7100159c80();
-void fn_7100159f90(u32 a, u32 b);
 void fn_7100159530();
-void fn_7100159800(s32 value);
 void fn_7100159810(s32 value);
-void fn_7100160810(s32 a, s32 b, bool c);
-void fn_7100160890(s32 a, s32 b, bool c);
 void fn_7100160910(u32 index, s32 mode, u32 group);
-void fn_7100160990(s32 a, s32 b, bool c);
-void fn_7100160ab0(u32 index, s32 mode, u32 group);
-void fn_7100160d50(u32 index, s32 value, u32 group);
 void fn_7100160cf0(u32 index, u32 value, u32 slot);
 
 struct UnkGfxD_b0154;
@@ -64,19 +55,13 @@ extern UnkHandle* g_unk_716e595ed8;
 extern UnkHandle* g_unk_716e595ee0;
 extern "C" float powf(float, float);
 
-void fn_71001d0d10(void* self, UnkMaskedEntry_b67a1* entry);
-void fn_71001cdba4(UnkRenderTargetA1* self, void* entry);
-UnkEntry_71001cdba4* fn_7100159aa0();
-void fn_710015c2d0(UnkEntry_71001cdba4* entry);
 void fn_71001ce86c(UnkGfxJ_b0154* self, s32 a);
 void fn_71001cfe44(UnkGfxJ_b0154* self);
 void fn_71001cf9ec(UnkGfxJ_b0154* self);
 void fn_71001cf790(UnkGfxO_b0154* self, s32 a);
 void fn_71001ce514(UnkGfxO_b0154* self);
-bool fn_71001aa0b4(void* program, u32 stage, u32 id, u64* location);
 u32 fn_7100132f80();
 u32 fn_7100132f90();
-void fn_710015c1e0(UnkHandle** out, s32 width, s32 height, s32 count, const s32& format);
 void fn_710014e6fc(void* p);
 void fn_710014dc5c(void* p);
 void fn_710014ddbc(void* p);

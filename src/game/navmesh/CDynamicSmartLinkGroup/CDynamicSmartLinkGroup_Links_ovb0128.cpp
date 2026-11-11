@@ -5,6 +5,7 @@
 
 #include "base/UnkCountedResource.h"
 #include "base/UnkVector.h"
+#include "base/core/CAsset.h"
 #include "base/global/CFilePathStrId.h"
 #include "types.h"
 
@@ -194,7 +195,6 @@ UnkSmartLinkEntry_ovb0128* fn_7100268c64(UnkSmartLinkMap_b49a1* map, u32 index) 
     return &self->data[index];
 }
 
-void fn_7100016f88(void* self);
 extern void* g_unk_7101a20cc0[];
 
 // The group: a file path at +0x58 and the links at +0x60, over the 0x58-byte base (fn_7100016f88).

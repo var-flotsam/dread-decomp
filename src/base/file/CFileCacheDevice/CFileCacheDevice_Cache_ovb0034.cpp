@@ -7,6 +7,7 @@
 
 #include "base/UnkRegistry.h"
 #include "base/UnkVector.h"
+#include "base/file/CFileCacheDevice.h"
 #include "base/global/UnkStringPool.h"
 #include "types.h"
 
@@ -40,7 +41,6 @@ struct UnkCacheSet_ovb0034 {
     u32 version;
 };
 
-char** fn_7100086810(char* set, u32 bucket);
 void fn_71000866dc(char* set, UnkPoolIter* it);
 
 static inline UnkCacheNode_ovb0034** Bucket(UnkCacheSet_ovb0034* set, u32 bucket) {

@@ -12,8 +12,12 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAnimationComponent.h"
+#include "game/CScorpiusAIComponent.h"
+#include "game/CShotManager/CTunableShotManager.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkXformNode.h"
+#include "game/animtree/CLayerNode.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
 
@@ -69,7 +73,6 @@ using base::global::CStrId;
 using base::reflection::UnkReflObject;
 
 struct UnkLayerNode;
-void fn_71002e465c(UnkLayerNode* self, f32 dt);
 extern void* g_unk_71726af0b0;
 extern CStrId g_unk_71727041b0;  // the collision object's name
 extern __attribute__((visibility("hidden"))) u64 g_unk_7172704218;  // the layer node's key
@@ -143,11 +146,8 @@ void fn_7100696c54(UnkScorpiusAI3_ovb0093* self) {
 // As src/game/CScorpiusAIComponent/CScorpiusAIComponent_Timeline_b59.cpp declares it.
 struct UnkScorpiusAI_b59a4;
 struct UnkScorpiusKey_b59a4;
-void fn_710069409c(UnkScorpiusAI_b59a4* self, const UnkScorpiusKey_b59a4* id, bool flag, f32 a, f32 b);
 extern UnkScorpiusKey_b59a4 g_unk_7172704228 __attribute__((visibility("hidden")));
-void fn_7100ed78c0(void*);
 struct UnkShakernautCtrl_b53;
-void fn_710117774c(UnkShakernautCtrl_b53* ctrl);
 
 struct UnkScorpiusWords_ovb0093 {
     u32 x, y, z;

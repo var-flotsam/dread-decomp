@@ -12,6 +12,7 @@
 #include "base/reflection/UnkReflStatics.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU85.h"
 #include "types.h"
 
 using base::reflection::CType;
@@ -82,7 +83,6 @@ struct UnkReflValueArg {
     u8 storage[0x18];
 };
 void fn_71000a1710(UnkReflValueArg* out, const UnkReflValue* value);
-bool fn_71000e7a80(UnkReflField* field, const UnkReflFieldObject* obj, UnkReflValueArg* value);
 
 // Where a reflected value's data is: inline when it fits in 8 bytes, else through field_0x0.
 static inline void* UnkReflValueData(UnkReflValue* v) {

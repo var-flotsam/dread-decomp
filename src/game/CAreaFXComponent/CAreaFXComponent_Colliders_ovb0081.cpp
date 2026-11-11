@@ -6,6 +6,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2510.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
@@ -13,7 +14,6 @@ using base::reflection::UnkReflObject;
 struct UnkStruct_7100861148_Collider;
 
 void fn_7100d5abfc(void* owner, UnkStruct_7100861148_Collider* collider);
-void fn_7100d5ac50(void* owner, UnkStruct_7100861148_Collider* group);
 struct UnkTracker_71008618cc;
 void fn_7100d59994(UnkTracker_71008618cc*, UnkReflObject*);
 void fn_7100d5a304(UnkTracker_71008618cc*, UnkReflObject*);

@@ -7,7 +7,9 @@
 // layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CActorComponent.h"
 #include "game/CBlackboard.h"
+#include "game/CHeatRoomComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTUProperty.h"
@@ -35,7 +37,6 @@ void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const 
 // The activatable base, as CCharClassActivatableComponent_b48.cpp defines it.
 struct UnkActivatable_b48;
 void fn_7100878680(UnkActivatable_b48* self, bool enabled);
-bool fn_710024fb2c(UnkActivatable_b48* self);
 
 struct UnkHeatRoomNamedDef_b49 : UnkIdSource {
     u64 field_0x8;
@@ -58,8 +59,6 @@ struct UnkHeatRoom_b49 {
     u8 pad_0x0[0x30];
     UnkHeatRoomOwner_b49* owner;
 };
-
-void fn_7100a26828(UnkHeatRoom_b49* self);
 
 void fn_7100a271e0(UnkHeatRoom_b49* self, bool on) {
     bool value = on;

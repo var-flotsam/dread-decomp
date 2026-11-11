@@ -6,6 +6,13 @@
 #include <string.h>
 
 #include "base/UnkVector.h"
+#include "game/UnkTU2514.h"
+#include "game/UnkTU2517.h"
+#include "game/logic/collision/CAABoxShape2D.h"
+#include "game/logic/collision/CCapsuleShape2D.h"
+#include "game/logic/collision/CCircleShape2D.h"
+#include "game/logic/collision/COBoxShape2D.h"
+#include "game/logic/collision/CPolygonCollectionShape.h"
 #include "types.h"
 
 // The next string of the stream, in place (src/game_s7/UnkPropS7.h).
@@ -20,13 +27,6 @@ struct UnkCollisionShape {
 };
 
 // The shapes' constructors.
-void fn_7100d5e1b4(void* self);  // AABOX2D
-void fn_7100d6936c(void* self);  // SEGMENT2D
-void fn_7100d61664(void* self);  // CIRCLE
-void fn_7100d5ff7c(void* self);  // CAPSULE2D
-void fn_7100d61d90(void* self);  // COMPOUND2D
-void fn_7100d682dc(void* self);  // OBOX2D
-void fn_7100d62b04(void* self);  // POLYCOLLECTION2D
 
 struct UnkShapeOwner;
 // Gives the shape to its owner (which then owns it).

@@ -6,11 +6,11 @@
 // and layouts are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassLifeComponent.h"
+#include "game/CDamageSourceFactor.h"
 #include "types.h"
 
 extern void* g_unk_7101a7de00[];
-void fn_71008bca30(void* self);
-void fn_71008c2da8(void* member);
 
 using base::global::UnkStringData;
 
@@ -50,9 +50,6 @@ void fn_71008b4544(UnkEnemyLifeComponent_ovb0090* self) {
     self->field_0x138 = 0;
     self->field_0x148 = true;
 }
-
-void fn_71008c2de0(void* member);
-void fn_71008bcb3c(char* self);
 
 using base::UnkStrIdMember;
 

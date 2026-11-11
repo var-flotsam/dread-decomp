@@ -3,8 +3,13 @@
 // fn_710031410c, fn_7100314288), the reaction to a "ghost aura" message (fn_7100314508) and the target
 // visitor that keeps the closest target (fn_7100314e54). Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "base/core/CBaseObject.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CAbility.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU1501.h"
+#include "game/UnkTU365.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -123,13 +128,8 @@ struct UnkGhostAuraPos_b0040 {
 
 bool fn_71010d1598(UnkGroundPlayer_b52*);
 bool fn_71002f927c(UnkAbility_b66a2* self);
-void fn_71002f9694(UnkAbilityC_A2_b69* ability, bool on);
 void fn_71002f8de4(UnkSmAbility_A2_b63* self, f32 dt);
-bool fn_71009e6434(UnkHelper* helper);
 void fn_71003096fc(UnkGhostAura_b0040* self, f32 dt);
-void fn_7100309fd8(UnkGhostAura_A2_b70* self, u32 a, u32 b);
-void fn_71002f9460(UnkSelf* self, u32 a1);
-bool fn_710030b8b4(UnkSelf* self, void* a2, void* zero);
 void fn_710030b448(UnkGhostAura_b0040* self, s32 state, bool flag);
 void fn_71003139c0(UnkGhostAura_b0040* self, UnkGhostAuraPos_b0040* pos, void* a2, void* a3, f32 value);
 
@@ -332,7 +332,6 @@ struct UnkNode;
 struct UnkGhostAuraBase_b0040;
 
 void fn_71002f8414(UnkGhostAuraBase_b0040* self);
-void fn_7100023854(UnkNode* node);
 void fn_7100314d94(void* self);
 extern void* g_unk_7101a22a88[];
 extern void* g_unk_7101a22d48[];
@@ -419,7 +418,6 @@ struct UnkAssignedSlot {
 
     UnkAssignedSlot& operator=(const UnkAssignedSlot& other);
 };
-void fn_71002a5d1c(UnkAssignedSlot* self, const UnkAssignedSlot* other);
 __attribute__((always_inline)) inline UnkAssignedSlot& UnkAssignedSlot::operator=(const UnkAssignedSlot& other) {
     fn_71002a5d1c(this, &other);
     return *this;

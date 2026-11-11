@@ -5,13 +5,13 @@
 // layouts are placeholders inferred from the code.
 
 #include "base/global/CStrId.h"
+#include "game/UnkTU218.h"
 #include "types.h"
 
 struct UnkKeySetOwner;
 bool fn_710019e4fc(UnkKeySetOwner* self, u64 key);
 void fn_710019962c(void* object);
 void fn_71001995e8(void* object, bool value);
-void fn_7100199420(void* self, const u64* hash, bool value);
 extern void* g_unk_716e34c2e0;
 
 struct UnkNamedEntry_710016b194 {

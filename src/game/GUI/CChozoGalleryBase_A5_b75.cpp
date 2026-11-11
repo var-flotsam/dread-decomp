@@ -9,6 +9,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/global/CRntStringAssign.h"
+#include "base/global/timeline/CEvent.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGameManager.h"
@@ -16,6 +17,8 @@
 #include "game/UnkGuiRoot.h"
 #include "game/UnkRenderManager.h"
 #include "../../game_aca57c/UnkBufferString.h"
+#include "game/UnkTU2747.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -191,11 +194,7 @@ void fn_7100af8450(UnkGallery_A5_b75* self, UnkGuiEvent_b49* event) {
 // texture name (+0x1d8, empty when none). The secret entry also goes through vf_0x268.
 struct UnkPooledStrId;
 void fn_710007eb20(CRntString* self, const UnkPooledStrId* id);
-void fn_710007eb6c(void* self, const void* id);  // as game_aca57c/fn_7100ea56f0.cpp declares it
 void fn_710007f564(void*, const char*);
-void fn_7100066cac(void* self, const void* other);
-void fn_7100066e44(void* text);
-void fn_71011cf70c(UnkGallery_A5_b75* self);
 struct UnkStateSink;
 struct UnkStateKey;
 struct UnkEnumType;

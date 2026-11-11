@@ -4,6 +4,7 @@
 // placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "game/CCharClassBehaviorTreeAIComponent.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
 
@@ -11,7 +12,6 @@ extern void* g_unk_7101a561c8[];
 char* fn_71006241c4(char* p0);  // as src/lifted/ defines it
 void fn_710060a5c8(char* self);  // a base::refl_Dtor instance in src/clones/clones_02.cpp
 struct UnkStruct_7100416e80;
-void fn_7100416e80(UnkStruct_7100416e80*);  // as the CCharClass*AIComponent destructors declare it
 
 struct UnkUnit936Dtor_A4_b70;
 

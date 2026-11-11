@@ -9,6 +9,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CCooldownXBossAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
@@ -19,7 +20,6 @@ using base::reflection::UnkReflObject;
 
 struct UnkWindTunnelEnd_ovb0265;
 struct UnkCooldownXBossAttack_b62a2;
-void fn_71004c196c(UnkCooldownXBossAttack_b62a2* self);
 void fn_71004cbaa8(UnkWindTunnelEnd_ovb0265* self);
 void fn_71004cbc28(UnkWindTunnelEnd_ovb0265* self);
 void fn_7100f0e238(void* target, u32 value);

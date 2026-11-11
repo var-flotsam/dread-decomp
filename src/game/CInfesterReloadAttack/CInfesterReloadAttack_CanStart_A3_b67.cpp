@@ -3,12 +3,12 @@
 // +0x146dc of the owner's CInfesterAIComponent (+0x240). Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CEnemyMovement.h"
 #include "game/UnkActor.h"
 #include "types.h"
 #include "game/CAttack.h"
 
 // As src/game/behaviortree/CInfesterFleeFromTargetAction/CInfesterFleeFromTargetAction.cpp declares it.
-u32 fn_71010cc3a4(void* object);
 
 struct UnkInfesterAttack_A3_b67 {
     void** vtable;

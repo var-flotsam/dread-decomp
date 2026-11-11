@@ -8,6 +8,7 @@
 // g_unk_<addr> + 0x10 (the second base's further on). Names and layouts are placeholders.
 #include "base/UnkCountedResource.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU32.h"
 #include "types.h"
 
 struct UnkTaggedHeader {
@@ -35,7 +36,6 @@ static inline UnkTaggedHeader* FromSecondBase(void** base2) {
     return reinterpret_cast<UnkTaggedHeader*>(reinterpret_cast<char*>(base2) - 0x20);
 }
 
-void fn_710002572c(void* member);  // a member's destructor (shared by several of these classes)
 void fn_710020c63c(void* sub);     // a sub-object's reset (units 125, 128, 129, 130)
 void fn_710020c4dc(void* sub);     // its destructor
 

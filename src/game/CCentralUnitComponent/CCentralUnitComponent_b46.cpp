@@ -5,12 +5,14 @@
 // "OnProtoEmmyWalkThroughCentralUnitDoor" script function, else sets the entity at +0x6d8 (its +0x10)
 // active. Names and layouts are placeholders.
 #include "base/UnkRefHandle.h"
+#include "game/CDoorCentralUnitLifeComponent.h"
+#include "game/UnkTU1176.h"
+#include "game/UnkTU2677.h"
 #include "types.h"
 
 struct lua_State;
 extern lua_State* g_unk_7172a01d18;
 s32 fn_71010c0bb0(lua_State* L, const char* str);
-s32 fn_71010c0d80(lua_State* L, s32 count, char* out, u32 out_size, void* a, void* b);
 
 struct UnkWeakTarget;
 struct UnkDoorLock;
@@ -23,7 +25,6 @@ UnkRef fn_7100353be8(void* source);
 
 struct UnkCentralUnitDoor_b46a2;
 UnkCentralUnitDoor_b46a2* fn_71004056fc(void* object);
-void fn_71008ca700(UnkCentralUnitDoor_b46a2* door, bool open);
 
 struct UnkCentralUnitLink_b46a2 {
     u8 pad_0x0[0x10];
@@ -41,8 +42,6 @@ struct UnkCentralUnit_b46a2 {
     u8 pad_0x538[0x6d8 - 0x538];
     UnkCentralUnitLink_b46a2* link;
 };
-
-void fn_71007722f4(UnkCentralUnit_b46a2* self, f32 value);
 
 u32 fn_7100776248(UnkCentralUnit_b46a2* self) {
     if (self->state == 1) {

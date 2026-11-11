@@ -4,12 +4,12 @@
 // manager's +0x29a0 entry; it hands it `id` (fn_7100938ebc), then runs fn_710093aad0.
 // Names are placeholders.
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CSamusModelUpdaterComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
 struct UnkOwner;
 UnkOwner* fn_7100defcd4(UnkGameManager* manager);
-void fn_710093aad0(void* self);
 void fn_7100938ebc(void* updater, const u64* id);
 
 struct UnkRefl_fn_710083a2ac;

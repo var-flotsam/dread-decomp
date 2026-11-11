@@ -7,6 +7,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CEnemyMovement.h"
 #include "types.h"
 
 struct UnkVec3_b257c {
@@ -40,7 +41,6 @@ struct UnkSinkParams_b257c {
 extern void* g_unk_7101a24b80[];
 
 struct UnkEffectSink;
-void fn_71010c7e6c(UnkEffectSink* sink, void* params, u32 flags);
 
 struct UnkOwner_b257c {
     u8 pad_0x0[0x218];

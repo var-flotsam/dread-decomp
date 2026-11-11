@@ -6,6 +6,9 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkSphere.h"
+#include "game/UnkTU223.h"
+#include "game/UnkTU252.h"
+#include "game/UnkTU253.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -144,7 +147,6 @@ struct UnkTransform_71002098a4 {
 void fn_71001c3474(UnkSource_710020c780* source, UnkReflObject* obj);
 UnkTransform_71002098a4 fn_710007916c(const UnkVector3_71002098a4& v);
 void fn_710019c474(void* target, const UnkTransform_71002098a4* t);
-void fn_710019c564(void* target, f32 a, f32 b, f32 c, f32 d);
 
 void fn_71002098a4(UnkUpdater_710020c780* self) {
     UnkSource_710020c780* source = self->field_0x108;
@@ -164,7 +166,6 @@ void fn_71002098a4(UnkUpdater_710020c780* self) {
 // first one. fn_71001fb0c4 (fn_71001bfd5c, fn_71001bffc4), fn_710020da1c (fn_71001c2480,
 // fn_71001c1030; it also calls vtable slot 0xa8 either way).
 void fn_71001bfd5c(UnkSource_710020c780* source, void* state);
-void fn_71001bffc4(UnkSource_710020c780* source, f32 dt);
 void fn_71001c1030(UnkSource_710020c780* source, u32 index, f32 dt);
 
 __attribute__((always_inline)) static inline void CopyBack(UnkUpdater_710020c780* self) {
@@ -206,7 +207,6 @@ bool fn_710020da1c(UnkUpdater_710020c780* self, f32 dt) {
 // is stored in the source (0x70 and 0x358) and the value at 0x80 gets the source's
 // "BSphereRadius" when fn_71001c32bc finds it (fn_710020dbd8).
 void fn_71001c09c4(UnkSource_710020c780* source, UnkReflObject* obj);
-bool fn_71001c32bc(UnkSource_710020c780* source, const u64* key, u32 flag, f32* out);
 
 void fn_710020dbd8(UnkUpdater_710020c780* self) {
     UnkSource_710020c780* source = self->field_0x108;

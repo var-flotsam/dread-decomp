@@ -3,10 +3,10 @@
 // (src/base/reflection/UnkReflKeyedB0_b44.cpp); the records are destroyed by fn_710019506c.
 // Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU212.h"
 #include "types.h"
 
 struct UnkObject_710019506c;
-void fn_710019506c(UnkObject_710019506c* self);
 
 struct UnkRecord98_b45a1 {
     u8 bytes[0x98];

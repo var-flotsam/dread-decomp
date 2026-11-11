@@ -8,6 +8,9 @@
 // zero at 100 per second, runs the base update (fn_7100763f9c), counts +0x300 down (or copies the current vectors
 // at +0x68/+0x74 to the start ones at +0x38/+0x44 when +0x28d is set) and, while +0x304 counts, re-runs
 // fn_71007642d4 once a second. Names and layouts are placeholders.
+#include "game/CCameraBoundaryCtrl.h"
+#include "game/CCameraCtrl.h"
+#include "game/UnkTU39.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -16,10 +19,7 @@ extern UnkGfxFrameSource* g_unk_7101d47328;
 f32 fn_7100080eac(UnkGfxFrameSource* clock);
 struct UnkFixedCamera_fc;
 struct UnkArg_fc;
-void fn_71010ed98c(UnkFixedCamera_fc* self, UnkArg_fc* arg, u32 flag);
 struct CSynchronizedBlockCameraCtrl;
-void fn_710002fb80(void*, f32);
-void fn_7100763f9c(CSynchronizedBlockCameraCtrl*, f32);
 void fn_71007642d4(CSynchronizedBlockCameraCtrl* self, f32 t, bool flag);
 
 struct UnkCamVec3_ovb0020 {

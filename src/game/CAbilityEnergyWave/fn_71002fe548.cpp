@@ -1,4 +1,5 @@
 // Runs fn_71002fe318, then calls virtual slot 0x118 on each child object of the array at +0x40.
+#include "game/CAbilityEnergyWave.h"
 #include "types.h"
 
 struct UnkChild {
@@ -10,8 +11,6 @@ struct UnkParent {
     UnkChild** children;
     u32 count;
 };
-
-void fn_71002fe318(UnkParent*);
 
 void fn_71002fe548(UnkParent* self) {
     fn_71002fe318(self);

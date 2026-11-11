@@ -2,9 +2,8 @@
 // pointer and marks the slot; clearing a set slot nulls it and reports the change through a
 // global callback with the group's id.
 #include "game/UnkGraphicsState.h"
+#include "game/UnkTU172.h"
 #include "types.h"
-
-void* fn_7100153d50();
 
 void fn_710015f770(u32 index, void* ptr, u32 group) {
     if (index > 15)

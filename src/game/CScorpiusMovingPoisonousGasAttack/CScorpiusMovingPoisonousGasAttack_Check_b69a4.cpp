@@ -5,6 +5,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 struct UnkScorpiusObject_b69a4 {
@@ -29,7 +30,6 @@ struct UnkGasAttack_b69a4 {
 
 extern char g_unk_7172703318[] __attribute__((visibility("hidden")));  // reached without the GOT
 void* fn_7101105970(UnkScorpiusAI_b69a4* ai);
-void* fn_7101109df4(UnkScorpiusAI_b69a4* ai, void* id);
 bool fn_7100689c08(UnkGasAttack_b69a4* self, void* arg, u32 flag);
 
 bool fn_7100688420(UnkGasAttack_b69a4* self, void* arg, u32 flag) {

@@ -5,7 +5,9 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CChozoCommanderAIComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU0.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -40,9 +42,6 @@ struct UnkMlogMessage_b42a1 {
         args.Free();
     }
 };
-
-void fn_7100456b7c(void* callbacks, const UnkMlogMessage_b42a1* message);
-void fn_7100000790(const char* name, const char* format, ...);  // calls a script function
 
 __attribute__((always_inline)) static inline void SendDefeated(const char* text, const char* script) {
     UnkMlogMessage_b42a1 message(CStrId(text, true));

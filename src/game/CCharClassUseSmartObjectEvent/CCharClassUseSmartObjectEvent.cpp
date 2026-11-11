@@ -2,6 +2,8 @@
 // first of its two components that exists (fn_71007cfd8c: slot 0x250; fn_7100a81ed0: slot 0x178) handle the
 // event with null, else hands the event to the actor's object at +0x200 (fn_71010d99d0). Names and layouts
 // are placeholders.
+#include "game/CElectricReactionComponent.h"
+#include "game/CElevatorUsableComponent.h"
 #include "types.h"
 
 struct UnkSmartObjectUserA {
@@ -19,8 +21,6 @@ struct UnkSmartObjectActor {
     void* field_0x200;
 };
 
-UnkSmartObjectUserA* fn_71007cfd8c(UnkSmartObjectActor* actor);
-UnkSmartObjectUserB* fn_7100a81ed0(UnkSmartObjectActor* actor);
 void fn_71010d99d0(void* object, void* event);
 
 void fn_7100ce7c3c(void* self, UnkSmartObjectActor* const* actor) {

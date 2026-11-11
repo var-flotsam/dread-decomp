@@ -3,10 +3,10 @@
 // float defaults from +0x130, then the class-entry pass of base::core::CBaseObject (fn_7100023854).
 // fn_71008b2bbc is the same without the class-entry pass (the vtable stored first). Names and layouts
 // are placeholders.
+#include "base/core/CBaseObject.h"
 #include "types.h"
 
 struct UnkNode;
-void fn_7100023854(UnkNode* node);
 extern void* g_unk_7101a7dd50[];
 
 struct UnkDoorLifeComponent {

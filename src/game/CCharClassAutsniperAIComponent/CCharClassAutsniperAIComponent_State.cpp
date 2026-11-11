@@ -1,10 +1,10 @@
 // CCharClassAutsniperAIComponent's unit (tools/tu_map.py unit 580): the state code of
 // fn_710041b180 (CCharClassRobotAIComponent_State.cpp), overridden to 2 while the flag +0x179d of the
 // second argument's +0x240 object is on. Names are placeholders.
+#include "game/CCharClassRobotAIComponent.h"
 #include "types.h"
 
 struct UnkActor621;
-u32 fn_710041b180(void* self, void* arg, UnkActor621* actor);
 
 struct UnkInner580 {
     u8 pad_0x0[0x179d];

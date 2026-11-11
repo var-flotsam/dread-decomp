@@ -7,6 +7,8 @@
 // Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAnimationComponent.h"
+#include "game/CChozoCommanderAirAttack.h"
 #include "game/UnkActor.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
@@ -14,9 +16,7 @@
 using base::reflection::UnkReflObject;
 
 struct UnkTakumakuComponent;
-bool fn_7101178e6c(UnkTakumakuComponent* component, u32 kind);
 struct UnkRequester;
-bool fn_7100424b50(UnkRequester* self, void* request, u32 flag);
 
 struct UnkSlamAI_ovb0109 {
     u8 pad_0x0[0x15d1c];

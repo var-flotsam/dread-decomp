@@ -5,9 +5,9 @@
 // values fn_710025fc54, 0xb8-byte values fn_71000ddd84).
 #include "UnkClone.h"
 #include "base/UnkCloneHelpers.h"
+#include "game/UnkTU27.h"
 
 extern char unk_7101a19590[];
-void fn_7100020164(char*);
 
 struct UnkKeyedRecords_0x48;
 template <>

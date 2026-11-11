@@ -5,6 +5,7 @@
 // layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/UnkMatrix44.h"
+#include "game/CMovementComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkItemProperties.h"
@@ -14,7 +15,6 @@ struct UnkInventory;
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 struct UnkMovement_71010d08d4;
 struct UnkMovementVec_71010d08d4;
-void fn_71010d08d4(UnkMovement_71010d08d4* self, const UnkMovementVec_71010d08d4* v, bool start);
 extern const u8 g_unk_710164b428[] __attribute__((visibility("hidden")));  // a zero vector
 
 struct UnkPrimaryState_ovb0103 {
@@ -139,4 +139,3 @@ void fn_71009b3bfc(UnkStandState_ovb0103* self, UnkStandTarget_ovb0103* target) 
     target->field_0x6c += delta;
     self->field_0x1a0 = 0.0f;
 }
-

@@ -4,13 +4,12 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "base/core/CAsset.h"
 #include "base/global/CStrId.h"
 
 using base::global::CStrId;
 
 extern void* g_unk_7101a22240[];  // the object's vtable
-
-void fn_7100016ad8(void* self);
 
 struct UnkIdArrayHolder {
     void** vtable;

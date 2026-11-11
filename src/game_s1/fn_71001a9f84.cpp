@@ -2,10 +2,10 @@
 // above the base built by fn_710019e76c: clears the fields after the base. Called by
 // fn_7100169e28.
 
+#include "game/UnkTU226.h"
 #include "types.h"
 
 extern char unk_7101a1e508[];
-void fn_710019e76c(void* self);
 
 struct UnkObject_71001a9f84 {
     char* vtable;

@@ -6,6 +6,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU99.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -30,8 +31,6 @@ struct UnkIdTokens_b0141 {
     bool field_0x6c;
 };
 struct UnkTunableTokens;
-void fn_71000fc570(const char*, const char*, UnkTunableTokens*);
-void fn_71000fc7cc(UnkTunableTokens*);
 
 union UnkIdSlot_b0141 {
     CStrId id;

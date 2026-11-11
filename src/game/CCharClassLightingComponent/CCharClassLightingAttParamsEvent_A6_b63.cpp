@@ -2,11 +2,11 @@
 // fn_7100bbd750 (CCharClassLightingSetColorEvent_b51.cpp), handing the light's hash, the parameters at +0x18
 // and the value at +0x28 to fn_71008e7f18 (CCharClassLightingComponent.cpp). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU1376.h"
 #include "types.h"
 
 struct UnkUnit2186Object;
 struct UnkLightingComponent;
-UnkUnit2186Object* fn_71008d5d2c(void* owner);
 void fn_71008e7f18(UnkLightingComponent* self, const u64* id, void* arg, f32 value);
 
 struct UnkLightingAttParams_A6_b63 {

@@ -1,7 +1,7 @@
+#include "game/UnkTU811.h"
 #include "types.h"
 
 struct UnkTutoHandle;
-void fn_7100565ef0(UnkTutoHandle* handle, UnkTutoHandle** slot);
 
 struct CSPBTutoLogicAction {
     u8 unk_0x0[0x11];

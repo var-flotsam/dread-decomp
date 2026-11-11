@@ -5,12 +5,17 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "game/CBlackboard.h"
+#include "game/GUI/CIngameMenu.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiHandle.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU1600.h"
+#include "game/UnkTU1689.h"
+#include "game/UnkTU2566.h"
+#include "game/UnkTU2567.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -158,9 +163,7 @@ extern UnkStateSink* g_unk_717275c380;
 struct UnkStateKey;
 extern UnkStateKey g_unk_71729f0178;
 void fn_7100fc9d78(UnkStateSink* sink, UnkStateKey* key, void* state);
-UnkMapData* fn_7100e8d8b0();
 struct UnkMapMenuControllerClose;
-void fn_7100b3e5ac(UnkMapMenuControllerClose* self, s32 entry, u32 mode);
 
 // ---- fn_7100b37b80
 extern UnkStrIdBase g_unk_71727c7fe8;
@@ -496,7 +499,6 @@ extern UnkPropertyEx<> g_unk_7172759478;
 void fn_7100b422a8();
 void fn_7100b42be0(UnkMenuListener_ovb0203* listener, void* arg);
 struct UnkStateOwner;
-void fn_7100b2eaac(UnkStateOwner* self, s32 state, bool a, bool b);
 
 struct UnkGameManagerIdTable {
     u8 pad_0x0[0x2578];
@@ -541,7 +543,6 @@ void fn_7100b42148(UnkMapMenuController_ovb0203* self, void* arg) {
 // ---- fn_7100b46fec
 // Two ids of the map menu's target (its +0x548 and +0x550).
 struct UnkIdPair_7100a8e07c;
-void fn_7100a8e07c(UnkIdPair_7100a8e07c* self);
 struct UnkIdPair_b49 {
     union {
         CStrId first;
@@ -560,7 +561,6 @@ struct UnkMapTarget_ovb0203 {
     CStrId first;   // 0x548
     CStrId second;  // 0x550
 };
-void fn_7100a8f34c(void* object, u32 kind, UnkIdPair_b49* out);
 
 void fn_7100b46fec(UnkMapMenuStage_ovb0203* self) {
     UnkIdPair_b49 ids;
@@ -680,9 +680,7 @@ bool fn_7100b475d4(UnkMapMenuStage_ovb0203* self) {
 // ---- fn_7100b45b5c
 extern CStrId g_unk_7172763d98 __attribute__((visibility("hidden")));
 struct UnkMapTimersView_b43a3;
-void fn_7100e94054(UnkMapTimersView_b43a3* self, f32 zoom);
 struct UnkStateOwner;
-void fn_7100b2eaac(UnkStateOwner* self, s32 state, bool a, bool b);
 
 struct UnkMapCallback_ovb0203 {
     void* object;
@@ -760,7 +758,6 @@ struct UnkTypedValue {
     void* value;
 };
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
-bool fn_7100eb7470(void* transition, f32 dt);
 
 void fn_7100b46744(UnkMapMenuController_ovb0203* self, f32 dt) {
     if (self->field_0xc > 0.0f) {

@@ -6,6 +6,7 @@
 // whether the life component's state (+0x70) is 2; true without a player or life component. Names and
 // layouts are placeholders.
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1370.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -16,8 +17,6 @@ UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 struct UnkRequest;
 struct UnkStruct_71008c0c74;
 struct UnkBase_71003cc474;
-void fn_71008c0c74(UnkStruct_71008c0c74* self);
-void fn_71008c1558(UnkBase_71003cc474* self);
 void fn_71008c1538(UnkRequest* request, f32 value);
 
 struct UnkModeFlags;

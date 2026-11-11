@@ -3,10 +3,13 @@
 // Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/timeline/CEvent.h"
 #include "game/CBlackboard.h"
+#include "game/GUI/CSubtitleComposition.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiLabel.h"
+#include "game/UnkTU2733.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -37,8 +40,6 @@ bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
 
 struct UnkLanguage;
 extern UnkLanguage* g_unk_7101d47358;
-void fn_710119c020(UnkLanguage* language);
-void fn_7100066e44(void* text);
 struct UnkDialogText : UnkGuiText {
     ~UnkDialogText() { fn_7100066e44(this); }
 };
@@ -57,7 +58,6 @@ static inline UnkLanguage* Language() {
 using UnkGuiObj = UnkGuiDisplayObject;
 bool fn_7100b8524c(UnkGuiObj* self, const UnkGuiText& text);
 struct UnkUnit2728Target;
-void fn_7100b8538c(UnkUnit2728Target* target);
 
 struct UnkUnit2728Holder {
     u8 pad_0x0[0x10];
@@ -110,8 +110,6 @@ struct UnkSoundHandle {
 extern void* g_unk_71729efa48;
 
 UnkSoundHandle fn_7100fcdf00(void* player, f32 volume, const CStrId& name, bool arg3);
-
-s32 fn_710119c9f4(UnkLanguage* language);
 
 
 struct UnkVoice_b0255 {

@@ -2,14 +2,14 @@
 // at +0x15ce0 through fn_71004567dc, calls fn_7100ed78c0 on the sound player g_unk_71726af0b0 and then hands the
 // lazily created manager g_unk_71726af468 to fn_7100da928c (as fn_710048e38c). Names are placeholders.
 #include "base/UnkVector.h"
+#include "game/CBossAIComponent.h"
+#include "game/CChozoCommanderAIComponent.h"
+#include "game/CShotManager/CTunableShotManager.h"
 #include "game/UnkManager_71726af468.h"
 #include "types.h"
 
 struct UnkNode;
 
-void fn_71003ace0c(UnkNode*);
-void fn_71004567dc(void*, void**);
-void fn_7100ed78c0(void* player);
 void fn_7100da928c(UnkManager_71726af468* manager);
 extern void* g_unk_71726af0b0;
 

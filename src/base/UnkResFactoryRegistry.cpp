@@ -8,6 +8,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU27.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -62,8 +63,6 @@ struct UnkRegistryDesc {
 };
 
 // The entry's default callbacks, as base::res's type record's (src/base/UnkResRegistry.cpp).
-void fn_71000204c4(void* context, void* arg);
-void fn_71000204cc(void* context, void* arg);
 
 // Copied member by member (the original reloads the source after each store).
 struct UnkRegistryCallback {

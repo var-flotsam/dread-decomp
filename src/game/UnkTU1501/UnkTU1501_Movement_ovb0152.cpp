@@ -9,6 +9,13 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/CAnimationComponent.h"
+#include "game/CBreakableTileGroup.h"
+#include "game/CCharacterMovement.h"
+#include "game/CGunComponent.h"
+#include "game/CPlayerInfo.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkCollisionRecord.h"
@@ -16,7 +23,12 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU2553.h"
+#include "game/UnkTU2689.h"
+#include "game/UnkTU363.h"
+#include "game/UnkTU39.h"
 #include "game/UnkXformNode.h"
+#include "game/logic/collision/CCapsuleShape2D.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -338,38 +350,23 @@ UnkAbility* fn_7100df5928(UnkPlayer* self);
 bool fn_710033cf20(UnkAbility* ability);
 f32 fn_71007965a8(UnkRunInfo_b152* info);
 f32 fn_71007965c0(UnkRunInfo_b152* info);
-void fn_7100978f58(char* self, const void* arg);  // reads three words at arg
 bool fn_71010d15d0(char* self, const CVector3D* pos, UnkProbeResult* result, f32 radius);
-void fn_71002878dc(UnkMsg_b152* msg);
-void fn_7100287954(UnkMsg_b152* msg);
 void fn_7100976940(UnkMove_b152* self);
 void fn_71009767f0(UnkMove_b152* self);
 UnkIdHolder_b152* fn_71009e7870(UnkMove_b152* self);
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 bool fn_7100df45ec(UnkGameManager* self);
 void fn_71002d6074(UnkLeg_b152* leg, bool flag, f32 weight);
-bool fn_710002fb70(void* timer);
-void fn_71009796dc(UnkMove_b152* self);
 void fn_71009f115c();
 void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
 void fn_710117b3e8(UnkWeakTarget* target, void* link);
-bool fn_710117af10(UnkStruct_710117af10* self, UnkCls_710117af10** name, bool skipBusy);
-UnkAbility* fn_71003013ec(UnkAbilitySet* set, u64 id);
-u64 fn_7100308c74();
-u32 fn_7100309568(UnkAbility* ability);
-bool fn_7100f0ca8c(void* member);
 bool fn_7100df5a4c(UnkGameManager* self);
 void fn_71010dc54c(UnkMove_b152* self, UnkSpanArg_b152* span);
 void fn_71002fdf5c(void* obj, void* arg);
 void fn_710098ae04(UnkAirTarget_B71a6* target, UnkAirRequest_B71a6* req);
-bool fn_7101176ea8(UnkStruct_7101176ea8* self, const UnkRequest_7101176ea8* req, u64 key);
 void fn_71010d956c(UnkMove_b152* self);
 bool fn_710085aa5c(void* gun, void* tile, UnkHitInfo_b152* hit);
-bool fn_71010d9638(UnkMove_b152* self, UnkHitInfo_b152* hit, u64* out);
-bool fn_7100df5874(UnkPlayer* self);
 struct UnkQueryObj;
-UnkQueryObj* fn_7100ca2048(void*, void*, u32);
-UnkHitFlags_b152 fn_7100301c0c(void* set, void* object, void* hit);
 void fn_710085b76c(UnkReflObject* gun, bool value);
 // Out of line: fn_71009e73cc calls it.
 __attribute__((noinline)) f32 fn_71009e754c(UnkMove_b152* self);
@@ -378,7 +375,6 @@ struct UnkComponent;
 struct UnkGunComponent;
 struct UnkGun_ovb0091;
 const CStrId* fn_71008407fc(UnkGunComponent* self);
-void* fn_710083cd30(UnkComponent* component);
 bool fn_7100845fac(void* beam);
 void fn_7100846e64(void* beam, u32 mode);
 void fn_710083ed38(UnkGun_ovb0091* self);
@@ -399,7 +395,6 @@ struct UnkMatrix44_7100078c9c {
 
 UnkMatrix44_7100078c9c fn_7100078cd8(const UnkVec3f& t);
 bool fn_7100d5babc(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
-void fn_7100d6006c(void* self);
 extern base::global::CStrId g_unk_7172740fe0 __attribute__((visibility("hidden")));
 
 struct UnkVec4_b152 {

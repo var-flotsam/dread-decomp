@@ -4,6 +4,7 @@
 // whose callback returns false, is removed (fn_7100a2e30c). Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CActionInstance.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -68,7 +69,6 @@ struct UnkTrack;
 struct UnkCutsceneTimeline;
 UnkCutsceneTimeline* fn_710070d4e8(UnkTrack* track);
 struct UnkPlayer_b42;
-bool fn_7100c95ed8(UnkPlayer_b42*);
 
 struct UnkTimelineNamed_ovb0089 {
     u8 pad_0x0[0x38];

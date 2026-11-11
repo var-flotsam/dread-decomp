@@ -2,14 +2,14 @@
 // when the movement's (+0x38) shape (fn_7100976588) is of the type in g_unk_717273b390 and
 // fn_71009e84e4 fails, feeds the movement's virtual at +0x2a8 into its +0x2b0. Names and layouts are
 // placeholders.
+#include "game/CCharacterMovement.h"
+#include "game/CSamusMovementState/CParams.h"
+#include "game/UnkTU1501.h"
 #include "types.h"
 
 struct CSamusAirMovementState;
-void fn_71009b0ce4(CSamusAirMovementState* self, void* arg);
 struct UnkFlagged;
 struct UnkShape;
-UnkShape* fn_7100976588(UnkFlagged* flagged);
-bool fn_71009e84e4(char*);
 
 extern void* g_unk_717273b390 __attribute__((visibility("hidden")));
 

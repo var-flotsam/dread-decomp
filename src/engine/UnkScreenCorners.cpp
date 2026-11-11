@@ -2,14 +2,13 @@
 // clip space, kept in a global for full-screen passes. The graphics system sets them up when it
 // adds its camera (src/engine/UnkGraphicsSystem.cpp). Names are placeholders.
 // Holds fn_710019c198.
+#include "game/UnkTU53.h"
 #include "types.h"
 
 // The corners as (x, y) pairs: (-1, -1), (-1, 1), (1, 1), (1, -1) (reached through the GOT).
 extern f32 unk_7101a1e1b8[/* 8; unsized: x86-64 would assume 16-byte alignment */];
 
 // A clip-space coordinate moved by half a pixel of the viewport's width or height (src/lifted).
-f32 fn_71000768c0(f32 x);
-f32 fn_71000768f0(f32 y);
 
 // Sets the corners, moved by half a pixel when `half_pixel` is set.
 void fn_710019c198(void* /*camera*/, bool half_pixel) {

@@ -2,10 +2,10 @@
 // container at +0xa00 (base vtable, empty array with step 10 and flags 0xf, final vtable, allocator),
 // then the post-construction virtual call (slot 3). Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU1176.h"
 #include "types.h"
 
 struct UnkProtoCentralUnitBase;
-void fn_710076e964(UnkProtoCentralUnitBase* self);
 extern void* g_unk_7101a20998[];
 extern void* g_unk_7101a33fa0[];
 extern void* g_unk_7101a6e918[];

@@ -8,6 +8,12 @@
 #include "base/UnkKeyedStrIds.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassLiquidPoolComponent.h"
+#include "game/CPlayerInfo.h"
+#include "game/UnkTU2577.h"
+#include "game/UnkTU39.h"
+#include "game/UnkTU50.h"
+#include "game/logic/collision/CPolygonCollectionShape.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
@@ -25,8 +31,6 @@ UnkPlayer* fn_7100dec788(UnkGameManager*);
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 extern void* g_unk_7101d47360;
 void fn_7100ee1f34(void*);
-bool fn_7100eef674(void*);
-void fn_710002fb80(void*, f32);
 
 struct UnkVec3_ovb0071 {
     f32 x, y, z;
@@ -130,14 +134,10 @@ struct UnkPlayerInfoMsg_ovb0071 {
 };
 
 extern UnkHandle g_unk_7101d586c0;
-void fn_7100072328(void*, f32, f32);
-void fn_7100d633ec(UnkTileOutlines*);
 UnkTimedEntry_ovb0071* fn_7100f0ca9c(UnkTimedMap_ovb0071* self, UnkTimedEntry_ovb0071* it);
-void fn_7100f0e85c(UnkTimedEntry_ovb0071* self);
 void fn_7100840f50(void* target, void** slot);
 void fn_7100841270(void* target, void** slot);
 void fn_7100f0c248(UnkPlayerInfo_ovb0071* self, const UnkVec3_ovb0071* pos, f32 time);
-f32 fn_7100902abc(void* a);
 void fn_7100f0c988(UnkPlayerInfo_ovb0071* self, f32 dt);
 void fn_7100f0d88c(UnkPlayerInfo_ovb0071* self);
 void fn_7100f0be58(UnkPlayerInfo_ovb0071* self, bool flag);

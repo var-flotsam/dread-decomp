@@ -3,11 +3,10 @@
 // owner's +0x260 slot passes fn_710113d83c; otherwise true unless the owner's character class
 // (+0x220) is playing a CCharClassIgnorePerceptionTrack. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CGrabComponent.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU39.h"
 #include "types.h"
-
-bool fn_710002fb70(void*);
-bool fn_710113d83c(void*);
 
 struct UnkEmmyOwner_b63a3 {
     u8 pad_0x0[0x220];

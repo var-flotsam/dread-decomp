@@ -1,6 +1,7 @@
 // Static initialiser of the CBombMovement unit: the header ids, the class and its tunable's registrations,
 // the tunable itself, then the class id ("BombMovement") and the "bomb" id. Layouts are placeholders.
 #include "../../game_5821e4/UnkStaticInit.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
@@ -19,7 +20,6 @@ extern char g_unk_7172753ac8[];
 extern char g_unk_7172753ac9[];
 extern UnkTunable g_unk_7172753ad0;
 extern void* g_unk_7101a94fa8[];
-void fn_7100075104(void* self);
 
 void fn_7100aac720() {
     InitHeaderIds(&g_unk_7172753b10.ids);

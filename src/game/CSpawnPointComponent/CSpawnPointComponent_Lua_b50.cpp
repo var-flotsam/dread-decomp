@@ -3,6 +3,9 @@
 // with the owner and the actor. Names and layouts are placeholders.
 #include "base/UnkRefHandle.h"
 #include "base/global/CFilePathStrId.h"
+#include "game/CDrop.h"
+#include "game/CLuaCallsLogicAction.h"
+#include "game/UnkTU2677.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -10,7 +13,6 @@ struct lua_State;
 extern lua_State* g_unk_7172a01d18;
 s32 fn_71010c0bb0(lua_State* L, const char* name);
 void fn_7100fbc4e0(lua_State* L, void* arg);
-s32 fn_71010c0d80(lua_State* L, s32 count, char* out, u32 out_size, void* a, void* b);
 
 struct UnkName_71011275d8 {
     u8 pad_0x0[0x10];
@@ -84,8 +86,6 @@ struct UnkSpawnerRef_71011275d8 {
     void* field_0x10;
 };
 
-void* fn_71007c04f0(void* obj);
-void* fn_7100a506a8(void* obj);
 void fn_7100d7b964(void* actor, void* self);
 
 struct UnkSpawnPoint_71011275d8 {

@@ -4,9 +4,8 @@
 // (fn_7100076020); then scales it by the weight at +0x10. Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU53.h"
 #include "types.h"
-
-f32 fn_7100076020(f32, const char*);
 
 struct UnkShapedStrData_A2_b68 {
     u8 pad_0x0[0x10];

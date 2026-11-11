@@ -7,13 +7,12 @@
 
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CNavMeshItemComponent.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-void fn_71009c172c(void* self);
 
 extern void* g_unk_7101a889c8[];
 extern void* g_unk_7101aa52d0[];
@@ -81,4 +80,3 @@ using UnkIdProperty3 = UnkIdPropertyT<g_unk_7101a88970>;
 void fn_7100a24a50(UnkIdProperty2* self) { self->~UnkIdPropertyT(); }
 
 void fn_71009bd8c0(UnkIdProperty3* self) { self->~UnkIdPropertyT(); }
-

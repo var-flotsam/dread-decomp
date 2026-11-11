@@ -9,6 +9,7 @@
 #include "base/UnkCloneCalls.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CMultiModelUpdaterComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -54,7 +55,6 @@ struct UnkModelEntry_A5_b67 {
 };
 
 struct UnkMultiModel_A5_b67;
-bool fn_7100938fcc(UnkMultiModel_A5_b67* self, UnkModelEntry_A5_b67* entry);
 
 struct UnkMultiModel_A5_b67 {
     u8 pad_0x0[0x1e8];

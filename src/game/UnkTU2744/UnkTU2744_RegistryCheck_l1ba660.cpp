@@ -4,6 +4,7 @@
 #include "base/UnkRegistry.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
+#include "base/file/CThreadSafeDevice.h"
 #include "base/global/CRntString.h"
 #include "types.h"
 
@@ -24,7 +25,6 @@ struct UnkTextTemp_l1ba660 {
 struct UnkEntry_0x30;
 struct UnkStrPair_0x10;
 UnkTextTemp_l1ba660 fn_71011ba4fc();
-void fn_710008d4c0(UnkStrPair_0x10* s, const UnkEntry_0x30* e);
 void fn_71011ba714(void* self, UnkKeyTemp_l1ba660* key);
 
 void fn_71011ba660(void* self) {

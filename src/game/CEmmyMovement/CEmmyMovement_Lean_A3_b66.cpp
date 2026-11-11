@@ -1,12 +1,10 @@
 // CEmmyMovement's unit (tools/tu_map.py unit 814): fn_7100571660. In state 1 with a sub-state of
 // 2, 3 or 4, the value at +0x9e8 picks the sub-state (at least 0.7: 2; below -0.7: 4; else 3),
 // which is requested (fn_71010cc214) when it differs. Names and layouts are placeholders.
+#include "game/CEnemyMovement.h"
 #include "types.h"
 
-u32 fn_71010cc3a4(void*);
-u32 fn_71010cc38c(void*);
 struct UnkEffectSink;
-void fn_71010cc214(UnkEffectSink*, u32);
 
 struct UnkEmmyMovement_A3_b66 {
     u8 pad_0x0[0x9e8];

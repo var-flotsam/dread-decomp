@@ -3,6 +3,7 @@
 // list, and telling the object once if any of them changed it. Names are placeholders.
 #include <new>
 
+#include "game/CGameObject.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "types.h"
 
@@ -114,7 +115,6 @@ struct UnkGuiStateInit {
 };
 
 extern char g_unk_7101cb5b90[];  // CDisplayObject's vtable
-void fn_7101043904(void* self);  // the base's constructor
 void fn_7100b1df48(void* slots);  // the slots at +0xb8 (game/UnkRenderPassSlots.h)
 void fn_710007e6c4(void* self);  // an empty CRntString
 

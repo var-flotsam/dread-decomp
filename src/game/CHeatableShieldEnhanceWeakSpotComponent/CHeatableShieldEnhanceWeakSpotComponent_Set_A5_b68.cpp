@@ -4,12 +4,12 @@
 // fn_710086c89c says no. Names are placeholders.
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU794.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 struct UnkDoorLifeOwner_b56;
 struct UnkDoorLifePart_b56;
-UnkDoorLifePart_b56* fn_71005012bc(UnkDoorLifeOwner_b56* owner);
 bool fn_7100df5b00(UnkGameManager* gm);
 bool fn_710086c89c(UnkDoorLifePart_b56* part);
 

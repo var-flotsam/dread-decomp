@@ -7,8 +7,11 @@
 // camera key is removed from the world. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCameraCtrl.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU131.h"
+#include "game/UnkTU2732.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -17,14 +20,10 @@ struct UnkFreeCameraCallback_b0058;
 struct UnkSceneObj_71010e2278;
 struct UnkArg2_71010e2278;
 void fn_7100145388(void* scene, void* value);
-void fn_71001453c4(UnkSceneObj_71010e2278*, UnkArg2_71010e2278*);
 struct UnkGrabCameraCtrl;
-void fn_71010edd64(UnkGrabCameraCtrl*);
 bool fn_7100decc5c(UnkGameManager*);
 void fn_7100decc74(UnkGameManager*);
 extern void* g_unk_7172729910;
-void fn_710119aee8(void*);
-void fn_710119ae24(void*, void*, bool);
 UnkFreeCameraCallback_b0058** fn_71009cb3e0(base::UnkVector<UnkFreeCameraCallback_b0058*>*, u32);
 void fn_7100e8f9a0(char*, bool, base::global::CStrId*);
 extern CStrId g_unk_717273f970 __attribute__((visibility("hidden")));

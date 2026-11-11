@@ -3,10 +3,10 @@
 // CNailuggerAcidBallMovementComponent_b40.cpp), then the base fields it overrides. Names and
 // layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CCameraCtrl.h"
 #include "types.h"
 
 struct UnkBase_7100763ed4;
-void fn_71010ed044(UnkBase_7100763ed4*);
 extern void* g_unk_7101a7a408[];
 
 struct UnkGrabCameraCtrlCtor {

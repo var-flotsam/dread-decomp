@@ -2,7 +2,12 @@
 // block, fn_710054a2cc's slot 0x170; fn_71005b6320's and fn_7100692bb0's objects) that the actor (+0x30) left,
 // stamps the time and the tunable's +0x3c, keeps the target's slot and id, fades out the loop rumble and runs the
 // base state's step (fn_71009b0ce4). Names and layouts are placeholders.
+#include "game/CHydrogigaPolypsAttack.h"
+#include "game/CSamusMovementState/CParams.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU365.h"
+#include "game/UnkTU50.h"
+#include "game/UnkTU811.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -23,19 +28,14 @@ struct UnkHandle {
 };
 
 extern UnkHandle g_unk_7101d586c0;
-void fn_7100072328(void*, f32, f32);
 extern UnkTunable g_unk_717273c650;
 struct UnkSlidingBlockMovement;
-UnkSlidingBlockMovement* fn_710054a2cc(void*);
 struct UnkSmTarget_b60;
-UnkSmTarget_b60* fn_71005b6320(void*);
 void* fn_7100692bb0(void* owner);
 void fn_710092467c(void* target, void* actor);
 void fn_710092567c(void* target, void* actor);
 struct UnkAssignedSlot;
-void fn_71002a5d1c(UnkAssignedSlot*, const UnkAssignedSlot*);
 struct CSamusAirMovementState;
-void fn_71009b0ce4(CSamusAirMovementState*, void*);
 
 struct UnkMagnetSurfaceRef_ovb0082 {
     u8 pad_0x0[0x10];

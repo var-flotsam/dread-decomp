@@ -3,6 +3,7 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 #include "game/sound/CMusicManager.h"
 
@@ -19,7 +20,6 @@ struct UnkNode_0x68 {
 
 extern UnkMgr* g_unk_7101d4d820;
 
-void fn_7100fde6c4(UnkNode_0x68*);  // node destructor
 void fn_7100108a84(UnkMgr*, UnkHandle*, f32);
 
 struct UnkNodeList_0x38 {

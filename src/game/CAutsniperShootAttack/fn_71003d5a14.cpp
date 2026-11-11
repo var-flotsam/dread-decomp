@@ -1,6 +1,8 @@
 // Applies the pending mode at 0x54 (unless the state at 0x50 is 4 to 6 and `force` is clear):
 // mode 2 sends a message through the object at 0x220 of the owner, any other mode hands the
 // vector at 0x7c to fn_71003d5450.
+#include "game/CAnimationComponent.h"
+#include "game/CAutsniperShootAttack.h"
 #include "types.h"
 
 struct UnkVec3 {
@@ -21,8 +23,6 @@ struct UnkSelf {
 };
 
 extern char g_unk_71726bf850[] __attribute__((visibility("hidden")));
-void fn_710117abfc(void* target, u32 a1, void* a2, u64 id);
-void fn_71003d5450(UnkSelf* self, const UnkVec3* v, u32 a2);
 
 // NON_MATCHING(minor): the state range test is `cmp #3; b.hs` in the original, `cmp #2; b.hi` here.
 void fn_71003d5a14(UnkSelf* self, bool force) {

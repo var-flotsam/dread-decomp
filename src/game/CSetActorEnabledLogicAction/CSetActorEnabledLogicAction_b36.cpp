@@ -3,10 +3,10 @@
 // allocator, final vtable), then a cleared word and flag after it. Names and layouts are
 // placeholders.
 #include "base/UnkVector.h"
+#include "game/CTriggerLogicAction.h"
 #include "types.h"
 
 struct UnkChangeSetupLogicActionDef;
-void fn_7100a55aa4(UnkChangeSetupLogicActionDef* self);  // the logic-action base constructor
 extern void* g_unk_7101a20998[];
 extern void* g_unk_7101a20950[];
 extern void* g_unk_7101a8f3d8[];

@@ -7,6 +7,7 @@
 #include "base/UnkFreedVectorPair.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CChangeStageNavMeshItemComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -46,8 +47,6 @@ struct UnkKeyedItems_ovb0222 {
         return n != 0 ? &items[n] - 1 : items;
     }
 };
-
-void fn_71009ba838(void*, u32);
 
 void fn_7100e5d184(UnkKeyedItems_ovb0222<base::UnkStrIdVec>* self, const CStrId* key, const base::UnkStrIdVec* item) {
     self->Add(fn_71009ba838, key, item);

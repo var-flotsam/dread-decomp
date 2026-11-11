@@ -1,13 +1,13 @@
 // GUI::CIngameMenu unit (tools/tu_map.py, the name from reflection): input in states 1 and 2 of the menu
 // (the state at +0x2e0, as in fn_7100b2de48.cpp): state 2 goes back to 1; state 1 goes to 2 once the
 // game manager's object at +0x498 allows it (fn_710118a8d0). Names and layouts are placeholders.
+#include "game/GUI/CIngameMenu.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2726.h"
 #include "types.h"
 
 struct UnkPlacedObj;
 struct UnkStateOwner;
-bool fn_710118a8d0(UnkPlacedObj* placed);
-void fn_7100b2eaac(UnkStateOwner* self, s32 state, bool a, bool b);
 
 struct UnkIngameMenuInput_b51 {
     u8 unk_0x0[0x1a];

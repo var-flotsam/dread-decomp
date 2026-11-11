@@ -8,6 +8,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkComponent.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU127.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -15,8 +16,6 @@ using base::reflection::UnkReflObject;
 
 struct UnkModel;
 // As src/game/CAreaFXComponent/CAreaFXComponent_Models_ovb0081.cpp declares them.
-void fn_71001436a0(UnkModel* model, u32 flag);
-void fn_710014364c(UnkModel* model, u32 flag);
 void fn_71006cae2c(UnkRenderPool*, const CFilePathStrId&, UnkModel**, base::global::CStrId*);
 
 struct UnkChozombieFXDef_ovb0130 : UnkReflObject {

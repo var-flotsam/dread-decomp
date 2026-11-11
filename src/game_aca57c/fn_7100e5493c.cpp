@@ -9,6 +9,8 @@
 #include "base/UnkCollectionIter.h"
 #include "base/UnkFreedVectorPair.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU2563.h"
+#include "game/UnkTU83.h"
 #include "types.h"
 
 // base::UnkVector's layout, copied out of line.
@@ -43,7 +45,6 @@ struct UnkPart48 {
         }
     }
 };
-void fn_71000cbae4(UnkPart48* self, const UnkPart48* other);
 inline UnkPart48::UnkPart48(const UnkPart48& other) { fn_71000cbae4(this, &other); }
 
 // base::UnkVector<u16>'s layout.
@@ -127,8 +128,6 @@ struct UnkRecord60Array {
 
     __attribute__((always_inline)) UnkRecord60Array(const UnkRecord60Array& other);
 };
-
-__attribute__((noinline)) void fn_7100e54ad8(UnkRecord60Array* self, u32 capacity);
 
 // Reserve: moves the records into new storage (destroying the old ones) and copies the pointer
 // array.

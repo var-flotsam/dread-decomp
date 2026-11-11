@@ -12,9 +12,12 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiHandle.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU2747.h"
+#include "game/UnkTU2755.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -35,12 +38,9 @@ struct UnkGuiPos {
 };
 
 // The container's own set-up, before its flags (src/game/GUI/CHUD/fn_71011dfeb0.cpp calls it too).
-void fn_71011d9b3c(UnkPanel_71011dfeb0* self);
-void fn_71011cf364(void* composition, s32 value);
 // The child at a dotted path ("Content.Navigation"), given as the path string's text.
 UnkGuiObj* fn_71011d9508(UnkGuiObj* self, const char* const* path);
 // The position of an item's anchor (src/game/UnkGuiAnchor.cpp).
-UnkGuiPos fn_71011f6240(const UnkGuiItemState* state, u32 h, u32 v);
 // Sets the object's x (src/game/GUI/CDisplayObject.cpp).
 void fn_71011cc748(f32 x, UnkGuiDisplayObject* self);
 // Refreshes a text block (the flag arguments as the map menu passes them).

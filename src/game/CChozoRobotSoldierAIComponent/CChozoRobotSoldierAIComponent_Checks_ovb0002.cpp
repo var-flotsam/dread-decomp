@@ -7,6 +7,7 @@
 // than the two at +0x14a18 and +0x14a90, both itself and in its child (+0x18). Names and layouts are
 // placeholders.
 #include "game/UnkActor.h"
+#include "game/UnkTU1501.h"
 #include "types.h"
 
 extern "C" int rand();
@@ -52,7 +53,6 @@ bool fn_7100472fa4(UnkRobotSoldierAI_ovb0002* self) {
 
 // As src/game/CChozoWarriorAIComponent/fn_710049cbd8.cpp declares it.
 struct UnkFlagged;
-s32 fn_71009e8590(UnkFlagged* object);
 
 bool fn_7100474ae0(UnkRobotSoldierAI_ovb0002* self) {
     if (UnkActor* target = fn_7100d7c990(self->owner)) {

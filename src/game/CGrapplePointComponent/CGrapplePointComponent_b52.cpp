@@ -1,11 +1,11 @@
 // CGrapplePointComponent (unit 1278): the grapple beam attaching to the point. Names and layouts are
 // placeholders.
+#include "game/CAbilityEnergyWave.h"
 #include "game/UnkTimelineComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkScriptCaller;
-bool fn_7100305088(UnkScriptCaller* self, const char* name, const char* fmt, ...);
 
 extern const u64 g_unk_710164ac10;
 

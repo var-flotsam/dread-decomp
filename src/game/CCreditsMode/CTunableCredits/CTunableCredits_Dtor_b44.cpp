@@ -3,10 +3,9 @@
 // destroys a member (fn_710119ad3c) and a list of plain nodes, then runs the base destructor
 // (fn_71011867d4). Names and layouts are placeholders, as in fn_7101185ea8.cpp.
 #include "base/UnkVector.h"
+#include "game/UnkTU2725.h"
+#include "game/UnkTU2732.h"
 #include "types.h"
-
-void fn_71011867d4(void* self);  // the music trigger base's destructor
-void fn_710119ad3c(void* self);
 
 struct UnkCreditsRefObj_b44a3 {
     virtual void vf_0x0();

@@ -7,6 +7,8 @@
 // placeholders.
 #include "base/UnkRefHandle.h"
 #include "base/math/CVector.h"
+#include "game/CCharClassLiquidPoolComponent.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -29,8 +31,6 @@ struct UnkEntityBox {
     base::math::CVector3D max;
 };
 struct UnkEntityBounds;
-UnkEntityBox fn_7100d7bc70(const UnkEntityBounds* self);
-f32 fn_7100902abc(void*);
 void* fn_71008a1ed0(void* target);
 extern u64 g_unk_710164af50;
 

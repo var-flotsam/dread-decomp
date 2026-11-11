@@ -2,11 +2,11 @@
 // fn_7100ac2c5c, the vtable, a cleared flag at +0x571, the floats -1 and 1 at +0x5d8, cleared fields to
 // +0x600, then the class-entry pass of base::core::CBaseObject (fn_7100023854). Names and layouts are
 // placeholders.
+#include "base/core/CBaseObject.h"
+#include "game/CProjectileMovement.h"
 #include "types.h"
 
 struct UnkNode;
-void fn_7100ac2c5c(void* self);
-void fn_7100023854(UnkNode* node);
 extern void* g_unk_7101a55168[];
 
 struct UnkKraidBouncingCreaturesMovement {

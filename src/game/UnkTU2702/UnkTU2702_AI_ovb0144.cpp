@@ -12,9 +12,15 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
+#include "game/CCharClassAIComponent.h"
+#include "game/CCharacterMovement.h"
+#include "game/CFXComponent.h"
+#include "game/CFrozenComponent.h"
+#include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkCallbackSetVector.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU2702.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -105,8 +111,6 @@ void fn_7101105b90(UnkAIBB_b0144* self) {
     self->vf_0x258();
 }
 
-void fn_7101108004(UnkAIBB_b0144* self, void* arg);
-
 void fn_7101108124(UnkAIBB_b0144* self, void* arg) {
     if (!self->vf_0x780())
         return;
@@ -133,14 +137,9 @@ extern char g_unk_7172a062e8[] __attribute__((visibility("hidden")));
 
 UnkComponent* fn_7101152b90(UnkObject*, u64);
 bool fn_710114e668(UnkObject*, u8);
-bool fn_71007f9f20(void*);
 struct UnkFrostbiteComponent;
-bool fn_71007f9fd0(UnkFrostbiteComponent*);
-void fn_710115596c(UnkRinkaControl_ruc*, void*);
-char* fn_71011520a8(char*, u32, char*, u32);
 void fn_710115217c(void* object, void* effect, u32 a, u32 b, const base::global::CStrId* name,
                    const base::math::CVector3D& offset, const base::math::CVector3D& rotation, void* extra);
-void fn_7101152988(UnkRinkaControl_ovb0090* self, UnkFxObject_ovb0041* fx, UnkRinkaEntry_ruc** table, void* a, u32 b);
 
 struct UnkAIOwnerC_b0144 {
     u8 pad_0x0[0x220];
@@ -244,9 +243,6 @@ void fn_710110cacc(UnkAIC_b0144* self) {
 
 struct UnkCancelOwner_ovb0128;
 u64 fn_7100413fe8(char* p0, u32 p1);
-s32 fn_7100413fe0(void* self);
-void fn_71011a664c(char* instance);
-void fn_71011a75f0(char* instance, UnkCancelOwner_ovb0128* owner);
 extern char* g_unk_71726b2398;
 
 struct UnkAIState_b0144 {
@@ -316,7 +312,6 @@ struct UnkNavVec_b65a4 {
 };
 struct UnkFlagged;
 bool fn_71006f4f28(UnkNavTarget_b65a4* self, UnkNavVec_b65a4* out);
-f32 fn_7100977bec(UnkFlagged* flagged);
 
 struct UnkAILead_b0144 {
     void** vtable;

@@ -2,6 +2,7 @@
 // owned or borrowed (copy assignment, and decoding base64 text into it), and the reflection type
 // descriptor for a value-type id. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CRntString.h"
 #include "types.h"
 
@@ -44,7 +45,6 @@ using base::reflection::CType;
 
 const CType* fn_7100024324();
 const CType* fn_7100010e58();
-void* fn_710000ffd0();
 extern CType g_unk_7101d4dad8;
 
 // Not a tail call in the original (probably a conversion in the source); disable_tail_calls stands in.

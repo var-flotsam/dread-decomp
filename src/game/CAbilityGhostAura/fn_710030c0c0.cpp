@@ -2,6 +2,7 @@
 // clears the counter at 0x44c; then the counter at 0x484 is cleared, the flag at 0x49b set and
 // fn_71002f9460 called with 0.
 #include "base/UnkVector.h"
+#include "game/CAbility.h"
 #include "types.h"
 
 struct UnkManager {
@@ -20,7 +21,6 @@ struct UnkSelf {
 
 extern UnkManager* g_unk_7101d47360;
 void fn_7100ee1f34(UnkManager* manager);
-void fn_71002f9460(UnkSelf* self, u32 a1);
 
 void fn_710030c0c0(UnkSelf* self) {
     UnkManager* manager = g_unk_7101d47360;

@@ -3,12 +3,12 @@
 // +0x14720 and +0x146d8, then the base's destructor fn_7100369380. Names are placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
+#include "game/CBehaviorTreeAIComponent.h"
 #include "types.h"
 
 extern void* g_unk_7101a4f7f0[];
 extern void* g_unk_7101a20950[];
 extern void* g_unk_7101a20998[];
-void fn_7100369380(void*);  // the base's destructor
 
 struct UnkHecathonDtor_A3_b69;
 

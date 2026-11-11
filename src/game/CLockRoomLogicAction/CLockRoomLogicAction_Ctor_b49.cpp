@@ -4,12 +4,12 @@
 // layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CTriggerLogicAction.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkChangeSetupLogicActionDef;
-void fn_7100a55aa4(UnkChangeSetupLogicActionDef* self);  // the logic action base constructor
 
 extern char g_unk_7101aa9180[];  // CLockRoomLogicAction's vtable
 extern void* g_unk_7101a20998[];  // the callback list's base vtable

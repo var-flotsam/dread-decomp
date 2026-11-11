@@ -2,12 +2,12 @@
 // words each; data at +0, count at +8) into the offset array at +0x58 (fn_71000cc374, as fn_71007a9d8c in
 // CCutsceneComponent_b40.cpp). Answers the empty status {0, 0, 2, 1}. Names are placeholders.
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU83.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
 
 struct UnkVec3_cs;
-UnkVec3_cs* fn_71000cc374(void* array, u32 index);
 
 struct UnkOffsetList_A5_b67 {
     const u32* data;

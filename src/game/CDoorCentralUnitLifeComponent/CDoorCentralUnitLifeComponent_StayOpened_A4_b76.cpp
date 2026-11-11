@@ -8,12 +8,12 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1376.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-bool fn_71008d0ef4(void*);
 extern UnkProperty g_unk_7172731110;  // "StayOpened"
 
 // A typed value as the section setter takes it (as in src/game/CDoorLifeComponent.cpp).

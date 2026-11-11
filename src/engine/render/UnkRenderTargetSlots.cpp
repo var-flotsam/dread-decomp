@@ -4,6 +4,7 @@
 // Holds fn_7100223c2c.
 #include "base/UnkDefaultAllocator.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU182.h"
 #include "types.h"
 
 // A render target's description: what fn_710015f810 fills in, then its size and a flag.
@@ -16,8 +17,6 @@ struct UnkRenderTargetSlot {
 static_assert(sizeof(UnkRenderTargetSlot) == 0x18, "UnkRenderTargetSlot placeholder layout");
 
 // Fills a target's description from its format, size and options.
-void fn_710015f810(UnkRenderTargetSlot* out, u32 format, u32 width, u32 height, u32 a, void* b, void* c, u32 d,
-                   u32 e);
 
 // The slots' array (base::UnkVector's layout). Its elements are copied as raw words (the original's
 // stores may alias the array's own fields: its count is read again after each one).

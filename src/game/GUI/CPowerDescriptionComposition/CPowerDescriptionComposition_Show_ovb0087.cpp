@@ -10,12 +10,16 @@
 #include "base/UnkDeferredSet.h"
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/GUI/CArchivesInspectorComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU2578.h"
+#include "game/UnkTU2747.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -25,9 +29,7 @@ using UnkGuiObj = UnkGuiDisplayObject;
 // The music manager (as src/base/input/UnkPadVibration.cpp declares it).
 struct UnkStruct_0x128;
 extern UnkStruct_0x128* g_unk_7101d47320;
-void fn_7100ef3494(UnkStruct_0x128* self);
 void fn_7100f011c4(UnkStruct_0x128* self, u32 mode);
-void fn_7100f01838(UnkStruct_0x128* self, u32 mode);
 
 static inline UnkStruct_0x128* Music() {
     UnkStruct_0x128* m = g_unk_7101d47320;
@@ -54,7 +56,6 @@ void fn_7100b641cc(UnkPowerDescCompositionMusic* self, u32 mode) {
 
 struct UnkChangeMenuStateButton_b48a3;
 struct UnkGuiEvent_b48a3;
-void fn_71011cf39c(UnkChangeMenuStateButton_b48a3* self, UnkGuiEvent_b48a3* event);
 void fn_71011ccd20(UnkGuiDisplayObject* self, f32 value);
 
 struct UnkStateSink;
@@ -214,12 +215,9 @@ void fn_7100b63ca4(UnkPowerDescCompositionShow* self) {
 }
 
 struct UnkTutorialRequest;
-void fn_7100af3364(void* set, UnkTutorialRequest* const* request);
 void fn_71011cd5a0(UnkGuiObj*);
 
 extern void* g_unk_7101d47368;
-void fn_7100d8ced8(void*);
-void* fn_7100d8e0a0(void*);
 
 struct UnkPowerDescMenuState {
     u8 pad_0x0[0x2c0];

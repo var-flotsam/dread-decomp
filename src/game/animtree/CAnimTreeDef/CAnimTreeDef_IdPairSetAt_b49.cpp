@@ -5,6 +5,7 @@
 // the pair is assigned member by member. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/animtree/CAnimTreeDef.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -69,8 +70,6 @@ struct UnkAnimTreeIdPairs_b49a1 {
     u32 flags;
     base::UnkAllocator* allocator;
 };
-
-void fn_71002da674(UnkAnimTreeIdPairs_b49a1* self, u32 capacity);  // reserve
 
 static inline void Grow_b49a1(UnkAnimTreeIdPairs_b49a1* self, u32 index) {
     u32 capacity = self->capacity;

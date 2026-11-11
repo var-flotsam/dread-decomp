@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "types.h"
 
@@ -16,7 +17,6 @@ using base::global::CStrId;
 
 using UnkGuiObj = UnkGuiDisplayObject;
 struct UnkPanel_71011dfeb0;
-void fn_71011d9b3c(UnkPanel_71011dfeb0* self);  // the base composition's set-up
 UnkGuiObj* fn_71011d9508(UnkGuiObj* self, const char* const* path);
 void fn_71011ecfbc(UnkGuiObj* label, const char32_t* text);
 

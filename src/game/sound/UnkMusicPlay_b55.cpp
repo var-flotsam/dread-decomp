@@ -7,12 +7,13 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2636.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 struct UnkMgr_0xf18;
 extern void* g_unk_71726bc560;
-void fn_7100fdb9e0(UnkMgr_0xf18*, u32, u32, f32, f32);
 
 struct UnkMusicRequest_b55 {
     u8 unk_0x0[0x10];
@@ -21,7 +22,6 @@ struct UnkMusicRequest_b55 {
     u8 field_0x30;
 };
 
-bool fn_7100fd1ad8(UnkMusicRequest_b55* self, u32 arg);
 void fn_7100fd147c(UnkMusicRequest_b55* self, u32 id, u32 value, void (*callback)());
 
 void fn_7100fce7dc();

@@ -1,8 +1,7 @@
 // Unit 99 (the sound system's): one more (voice id, float) setter, the twin of fn_71000ffbb0
 // (src/base/snd/UnkSoundVoiceSetFloat_b55.cpp) with commands 0x18/0xd.
 #include "base/snd/UnkSoundSystemATK.h"
-
-bool fn_7100132cd0();
+#include "base/tunable/CTunable.h"
 
 using base::snd::UnkSoundSystemATK;
 

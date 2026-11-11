@@ -6,6 +6,7 @@
 // src/game/CChozoWarriorXGlaiveSpinAttack/UnkAttackTrackLink_b54.cpp do. Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CName.h"
+#include "game/CCharClassEventPropComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -24,8 +25,6 @@ struct UnkEmmyWakeUp_b56 {
     u8 link[0x18];
     UnkWeakHandle* handle;
 };
-
-void fn_71007dc328(UnkEmmyWakeUp_b56* self);
 
 static inline bool SendWalk_b56(void* target, u64 hash) {
     base::reflection::UnkReflTypeIdArg mode;

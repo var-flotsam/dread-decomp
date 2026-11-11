@@ -2,10 +2,10 @@
 // the weak handle at +0x1880 points to (if any) to fn_7100232c68 and drops that handle, drops the one at +0x1888, then
 // the members' own releases run and the base destructor (fn_710085733c) follows. Names and layouts are
 // placeholders.
+#include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-void fn_7100232c68(void*);
 extern void* g_unk_7101a77768[];
 
 struct UnkWeakRef_A4_b76 {

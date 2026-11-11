@@ -2,11 +2,10 @@
 // to a fixed list of 32 (u32 count at +0x8, records from +0xc) unless one with the same key (first pointer, then
 // +0x10, then +0x10) is there. The result code: 0 already there (a function-local static), 1 added, 2 full,
 // 3 added and now full. Names and layouts are placeholders.
+#include "game/CAbilityShinespark.h"
 #include "types.h"
 
 #include <new>
-
-void fn_7100331c7c(void* self, const void* other);
 
 namespace {
 struct UnkTriggerKeyInner_A5_b72 {

@@ -5,6 +5,7 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/CDamageSourceFactor.h"
 #include "game/UnkBossAIComponent.h"
 #include "types.h"
 
@@ -18,7 +19,6 @@ void fn_71004b42b8(void*);
 void fn_71004b4ee8(void*);
 void fn_71004b9cc4(void*);
 void fn_71004a1790(void*);
-void fn_71008c2da8(void*);
 extern void* g_unk_7101a3ebe8[];
 
 template <class T>

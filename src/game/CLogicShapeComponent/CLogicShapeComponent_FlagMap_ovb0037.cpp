@@ -14,6 +14,7 @@
 #include "base/math/UnkZeroVector3.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU2509.h"
 #include "types.h"
 
 #include <new>
@@ -186,7 +187,6 @@ void fn_7100914284(UnkLogicShapeComponent_ovb0037* self, CRntFile* file) {
 using base::reflection::UnkReflValue;
 
 struct UnkShapeTester_A5_b68;
-void fn_7100d5134c(UnkShapeTester_A5_b68* self);
 extern UnkShapeTester_A5_b68* g_unk_71726a47a0;
 
 // Returned in memory (not trivially copyable); only bit 0 of the first word is read.

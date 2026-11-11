@@ -5,6 +5,7 @@
 // placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/UnkRefHandle.h"
+#include "game/CCharClassSteamJetComponent.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
@@ -24,7 +25,6 @@ struct UnkRef {
 UnkRef fn_7100353be8(void* from);
 
 struct UnkWaterTarget;
-UnkWaterTarget* fn_710089a1b0(void* object);
 void fn_71007e6778(UnkWaterTarget* target, f32 value);
 
 extern u64 g_unk_710164b1e8;

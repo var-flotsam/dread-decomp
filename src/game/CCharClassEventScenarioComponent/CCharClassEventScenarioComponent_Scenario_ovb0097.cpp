@@ -11,23 +11,24 @@
 #include "base/UnkMatrix44.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassEventScenarioComponent.h"
+#include "game/CComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkGameManager.h"
+#include "game/behaviortree/CEmmyPatrolAction.h"
+#include "game/logic/collision/CCollider.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 extern "C" int rand();
 u32* fn_710008c504(base::UnkVector<u32>* self, u32 index);
-void fn_7100514b7c(void* set, void* item);
 
 struct UnkStateObject;
-void fn_71010c4148(UnkStateObject* self);
 void fn_71007e5304(char* self);  // the string id list's constructor (+0xa0)
 extern void* g_unk_7101a73408[];  // the component's vtable
 
 struct UnkEventScenario_b49a2;
-void fn_71007e2ecc(UnkEventScenario_b49a2* self, bool a, bool b, f32 c, f32 d, f32 e, f32 f);
 
 // The collision manager (as src/game/CColliderTriggerComponent/CColliderTriggerComponent_Shape_ovb0058.cpp
 // declares it).
@@ -40,7 +41,6 @@ struct UnkStruct_71007e44b8;
 struct UnkObj_71007e44b8;
 UnkObj_71007e44b8* fn_71007e44b8(UnkStruct_71007e44b8* self, void* owner, const base::global::CStrId* name, u32 index);
 struct UnkTriggerCollider_b0058;
-void fn_7100d36d30(UnkTriggerCollider_b0058* self, void* shape);
 
 // A scenario entry (0x28 bytes): the bound of its random value at +8 (none when zero).
 struct UnkEventScenarioEntry_ovb0097 {

@@ -8,12 +8,14 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
+#include "game/CCharClassBreakableScenarioComponent.h"
+#include "game/CPickableItemComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU341.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
 struct UnkTree;
-void fn_71009d3dc4(void* root, UnkTree* tree);
 void fn_71009d4418(void* root, UnkTree* tree);
 
 // An entry registered with its root (fn_71009d4418 adds it, fn_71009d3dc4 removes it).
@@ -99,8 +101,6 @@ UnkPickEntry_ovb0094* fn_71009d42e8(UnkPickPool_ovb0094* self, UnkPickEntry_ovb0
     return &self->entries[index];
 }
 
-void* fn_7100751520(void*);
-
 struct UnkPickTarget_ovb0094 {
     u8 unk_0x0[0x39];
     bool field_0x39;
@@ -135,8 +135,6 @@ void fn_71009cf780(UnkPickItem_ovb0094* self) {
 struct UnkEntityState;
 void fn_7100232864(UnkEntityState*, bool);
 struct UnkStruct_71002334fc;
-void fn_71002334fc(UnkStruct_71002334fc*, bool);
-void fn_7100232c68(void*);
 struct UnkSpawnGroupKey;
 void fn_7100de9730(UnkGameManager* manager, UnkSpawnGroupKey* key, void* object);
 extern u64 g_unk_717273ffc8 __attribute__((visibility("hidden")));

@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
+#include "game/CCharClassEventScenarioComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
@@ -55,8 +56,6 @@ struct UnkEventScenario_b49a2 {
     bool finished;
     bool field_0x1ee;
 };
-
-void fn_71007e2ecc(UnkEventScenario_b49a2* self, bool a, bool b, f32 c, f32 d, f32 e, f32 f);
 
 void fn_71007e41b8(UnkEventScenario_b49a2* self) {
     self->field_0x1d8 = 0;

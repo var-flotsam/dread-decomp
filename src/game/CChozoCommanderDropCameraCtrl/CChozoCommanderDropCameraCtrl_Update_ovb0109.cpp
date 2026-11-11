@@ -4,6 +4,7 @@
 // src/game/CAnimatedCameraCtrl/CAnimatedCameraCtrl_Lifecycle_ovb0101.cpp) without the target check:
 // the placement copied on a reset, the boundaries applied (fn_7100764a50) when enabled, and the
 // position kept at +0x270. Names and layouts are placeholders.
+#include "game/CCameraBoundaryCtrl.h"
 #include "types.h"
 
 struct UnkCamVec3_b0101 {
@@ -46,7 +47,6 @@ struct UnkDropCameraCtrl_ovb0109 {
 static_assert(__builtin_offsetof(UnkDropCameraCtrl_ovb0109, field_0x270) == 0x270, "layout");
 
 struct UnkAnimatedCameraCtrl_b0101;
-void fn_7100764a50(UnkAnimatedCameraCtrl_b0101* self, UnkCamVec3_b0101* from, UnkCamVec3_b0101* to, bool reset);
 // The camera-boundary controller's update (CCameraBoundaryCtrl unit).
 void fn_71007643c0(UnkDropCameraCtrl_ovb0109* self, bool reset);
 

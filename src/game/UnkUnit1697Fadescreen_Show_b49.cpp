@@ -3,6 +3,7 @@
 // the root's "Fadescreen" child on (fn_71011cdce8), lets the target update (fn_7100b364dc) and turns the
 // render manager's two fade settings on. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/GUI/CMainMenu.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkRenderManager.h"
 #include "types.h"
@@ -11,7 +12,6 @@ using base::global::CStrId;
 
 // As src/game_aca57c/fn_7100b4c43c.cpp declares it.
 struct UnkMenuTarget;
-void fn_7100b364dc(UnkMenuTarget* self);
 
 struct UnkFadeComposition_b49 {
     void** vtable;

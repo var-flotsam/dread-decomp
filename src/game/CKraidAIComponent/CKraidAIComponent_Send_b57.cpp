@@ -5,6 +5,7 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CGrabComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
@@ -58,7 +59,6 @@ struct UnkKraidGrabber_b57a4 {
     u8 pad_0x0[0x260];
     void* field_0x260;
 };
-void fn_710113d940(void* grabber, UnkKraidGrab_b57a4* grab, void* owner);
 
 struct UnkKraidGrabHolder_b57a4 : base::reflection::UnkReflObject {
     u8 pad_0x8[0x68];

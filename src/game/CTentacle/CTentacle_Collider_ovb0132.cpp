@@ -1,6 +1,7 @@
 // CTentacle's unit (tools/tu_map.py unit 1133): a segment's corners (fn_710070a5f8) and the tentacle's
 // collider, recreated and enabled (fn_7100709c8c). Names and layouts are placeholders.
 #include "base/math/CVector.h"
+#include "game/UnkTU108.h"
 #include "types.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"
@@ -11,7 +12,6 @@ using base::math::CVector2D;
 using base::math::CVector3D;
 
 struct UnkVec3;
-void* fn_7100118b94(void* sink, UnkVec3* point);
 
 struct UnkTentacleRange_ovb0132 {
     f32 min;

@@ -6,6 +6,7 @@
 // the one at +0x3c0 moved to the set at +0x18 of the +0x30 of the object at +0x248. Names and layouts
 // are placeholders.
 #include "base/UnkDeferredSet.h"
+#include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "types.h"
 
@@ -20,7 +21,6 @@ void fn_71011ce208(UnkGuiDisplayObject* self, f32 value);
 
 struct UnkDisplayObjectContainer_ovb0032;
 struct UnkDisplayObject_ovb0032;
-UnkDisplayObject_ovb0032* fn_71011d932c(UnkDisplayObjectContainer_ovb0032* self, UnkDisplayObject_ovb0032* child);
 
 struct UnkPopUpHolder_ovb0133 {
     u8 pad_0x0[0x10];

@@ -6,10 +6,10 @@
 #include "base/UnkCountedResource.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CActionSet.h"
 #include "game/UnkTimelineComponent.h"
 
 struct UnkActionSetMap;
-void* fn_7100b8c61c(UnkActionSetMap* self, const u64* key1, const u64* key2);  // src/game/CActionSet.cpp
 const u64* fn_7101111d7c(void* remap, const u64* id);  // the remapped id (its object's vf_0x650)
 extern const u64 g_unk_710164b510 __attribute__((visibility("hidden")));  // the second key
 

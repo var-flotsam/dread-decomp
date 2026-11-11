@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU1376.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -12,7 +13,6 @@ using base::reflection::CType;
 using base::reflection::UnkReflValue;
 
 struct UnkDoorLife_b44a2;
-void fn_71008d498c(UnkDoorLife_b44a2* self, u32 a, u32 b, u32 c);
 struct UnkDoorLock;
 void fn_71008d586c(UnkDoorLock* door, bool locked, u32 mode, CStrId* name);
 

@@ -3,11 +3,11 @@
 // previous arrows (+0x278, +0x280) are shown and loop their "ContinueArrowLoop" animation (vtable
 // slot 0x1e8) unless on the last or first page, and the list (+0x270) scrolls to the page when there
 // are more entries than fit. Names and layouts are placeholders.
+#include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "types.h"
 
 struct UnkNewGameScreen;
-void fn_71011d8fe4(UnkNewGameScreen* self, f32 dt);
 void fn_71011cca3c(UnkGuiDisplayObject* self, f32 value);
 
 struct UnkPagedList_ovb0108 {

@@ -15,16 +15,17 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkTU2747.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
 
 extern char g_unk_7101cb6608[];  // CModel3D's vtable
-void fn_71011ccfb4(char*);
-void fn_71011cd4b4(void*);
 void fn_71011cdfa8(UnkGuiDisplayObject* self, f32 dt);
 struct UnkActorDefFactory;
 extern UnkActorDefFactory* g_unk_71726a0220;
@@ -33,12 +34,10 @@ void fn_7100debc28(UnkGameManager*, UnkRemovedValue_b60*);
 struct UnkDropTarget;
 extern UnkDropTarget* g_unk_7101d47318;
 struct UnkTreeNode;
-void fn_710023298c(UnkTreeNode*);
 struct UnkModelUpdater_ovb0032;
 void fn_7101171a08(UnkModelUpdater_ovb0032*, const void*, const CRntString*);
 struct UnkStruct_710117af10;
 struct UnkCls_710117af10;
-bool fn_710117af10(UnkStruct_710117af10*, UnkCls_710117af10**, bool);
 
 // A counted reference to a resource whose destructor reads the pointer once (as in
 // src/game/CSpawnPointComponent/CSpawnPointComponent_b52.cpp).
@@ -74,7 +73,6 @@ void* fn_7100dea8d0(UnkGameManager* manager, const char* name, void* char_class,
 // Steps of the entity's set-up and update.
 void fn_71002324f0(void* entity);
 void fn_71002325f8(void* entity);
-void fn_710023272c(void* actor);
 void fn_7100232938(void* entity);
 void fn_7100d7b068(void* entity, u32 index, f32 dt);
 void fn_7100d7b1c0(void* entity, u32 index, f32 dt);

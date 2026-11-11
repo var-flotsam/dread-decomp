@@ -9,6 +9,9 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkSubAreaGuiCache.h"
+#include "game/UnkTU2729.h"
+#include "game/UnkTU2734.h"
+#include "game/UnkTU341.h"
 #include <stdio.h>
 
 #include "types.h"
@@ -20,12 +23,10 @@ struct UnkActorDefFactory;
 extern UnkActorDefFactory* g_unk_71726a0220;
 
 struct UnkGuiDef_b52;
-UnkGuiDef_b52* fn_7101193e88(UnkActorDefFactory* factory, const void* key);
 
 struct UnkRemovedValue_b60;
 void fn_7100debc28(UnkGameManager*, UnkRemovedValue_b60*);
 struct UnkBoundObj;
-void fn_7100232124(UnkBoundObj* obj);
 
 // The polymorphic object at +0x28 of an actor.
 struct UnkGuiOwned_b0231 {
@@ -124,8 +125,6 @@ struct UnkUnusedArg_b49 : UnkLeftoverReg {};
 struct UnkSweepEntry_b49;
 struct UnkSweepList_b49;
 struct UnkSweepNode_b49;
-bool fn_710119d5f0(UnkUnusedArg_b49, UnkSweepEntry_b49* entry, bool flag);
-UnkSweepNode_b49* fn_710119d7e4(UnkSweepList_b49* self, UnkSweepNode_b49* node);
 void fn_710119e83c(UnkGuiNode_b0231* node);
 void fn_710119dff8(UnkSubAreaGuiCache* self, UnkCountedResource* def, bool flag);
 

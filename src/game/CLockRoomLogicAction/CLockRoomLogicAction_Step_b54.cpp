@@ -10,10 +10,12 @@
 #include "base/UnkRefHandle.h"
 #include "base/UnkVector.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CTriggerLogicAction.h"
+#include "game/UnkTU112.h"
+#include "game/UnkTU1376.h"
 #include "types.h"
 
 struct UnkTutoExitAction_b47;
-void fn_7100a55ac8(UnkTutoExitAction_b47* self);
 
 using UnkRef = base::UnkRefPtrMember;
 UnkRef fn_7100353be8(void* source);
@@ -22,9 +24,7 @@ struct UnkWeakTarget;
 struct UnkDoorLock;
 UnkDoorLock* fn_71002af860(UnkWeakTarget*);
 struct UnkDoorLife_b44a2;
-void fn_71008d498c(UnkDoorLife_b44a2*, u32, u32, u32);
 struct UnkEntry_710013c3c8;
-void fn_710013ffbc(UnkEntry_710013c3c8*, void*);
 
 struct UnkRefl_fn_7100da3630;
 template <>

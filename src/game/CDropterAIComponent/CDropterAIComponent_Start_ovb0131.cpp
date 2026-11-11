@@ -10,7 +10,10 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CBehaviorTreeAIComponent.h"
 #include "game/CBlackboard.h"
+#include "game/CDropterAIComponent.h"
+#include "game/UnkTU2702.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkXformNode.h"
@@ -19,9 +22,7 @@
 using base::global::CStrId;
 
 struct UnkWarriorSend_b58;
-void fn_7100369d80(UnkWarriorSend_b58* self, void* arg);
 struct UnkDropterHit_b58;
-void fn_71004ee590(UnkDropterHit_b58* self);
 struct UnkWorld;
 void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
 
@@ -77,7 +78,6 @@ struct UnkTypedValue {
 };
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 extern base::global::CStrId g_unk_71726b7cb8;
-void fn_710110cca4(void*, void*);
 struct UnkDropterHitAI_ovb0131;
 void fn_71004ec714(UnkDropterHitAI_ovb0131* self, bool flag);
 

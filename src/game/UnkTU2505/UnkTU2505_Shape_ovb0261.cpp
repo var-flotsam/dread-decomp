@@ -4,6 +4,13 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CRntFile.h"
+#include "game/UnkTU2514.h"
+#include "game/UnkTU2517.h"
+#include "game/logic/collision/CAABoxShape2D.h"
+#include "game/logic/collision/CCapsuleShape2D.h"
+#include "game/logic/collision/CCircleShape2D.h"
+#include "game/logic/collision/COBoxShape2D.h"
+#include "game/logic/collision/CPolygonCollectionShape.h"
 #include "types.h"
 
 struct UnkCollisionFileReader;
@@ -28,13 +35,6 @@ struct UnkShapeHandle_b0261 {
 };
 
 s64 fn_710007cee4(void* reader, const char** out);
-void fn_7100d5e1b4(void* shape);
-void fn_7100d6936c(void* shape);
-void fn_7100d61664(void* shape);
-void fn_7100d5ff7c(void* shape);
-void fn_7100d61d90(void* shape);
-void fn_7100d682dc(void* shape);
-void fn_7100d62b04(void* shape);
 
 template <u32 Size, void (*Ctor)(void*)>
 static inline __attribute__((always_inline)) void Build_b0261(UnkShapeHandle_b0261* out, CRntFile* file) {

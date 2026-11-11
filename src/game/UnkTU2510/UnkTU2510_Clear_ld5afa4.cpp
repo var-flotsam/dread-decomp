@@ -1,6 +1,7 @@
 // Unit 2510: empties an owner of reference-counted pointer arrays without freeing their storage. It first
 // unlinks every target that still points back at the owner, then releases each array's references.
 // Names and layouts are placeholders.
+#include "game/UnkTU107.h"
 #include "types.h"
 
 struct UnkOwner_ld5afa4;
@@ -86,8 +87,6 @@ struct UnkOwner_ld5afa4 {
     u32 element_count;  // 0xb8
     u8 elements[0x90];  // 0xbc, UnkHolder_ld5afa4 records
 };
-
-void fn_710010d9f4(void* p);
 
 // NON_MATCHING(minor): in both unlink loops the count and the -1 constant use swapped registers (w8/w9).
 void fn_7100d5afa4(UnkOwner_ld5afa4* self) {

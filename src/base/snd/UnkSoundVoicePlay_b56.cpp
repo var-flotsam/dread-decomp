@@ -1,8 +1,7 @@
 // Unit 99 (the sound system's): queue a voice's start command with a snapshot of its parameters,
 // command 0x12 for a voice with the flag at +0x120 set and command 0x6 (positional) for the rest.
 #include "base/snd/UnkSoundSystemATK.h"
-
-bool fn_7100132cd0();
+#include "base/tunable/CTunable.h"
 
 using base::snd::UnkSoundSystemATK;
 

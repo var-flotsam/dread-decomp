@@ -1,9 +1,9 @@
 // CCharClassLavaPoolComponent's unit (tools/tu_map.py; the name from reflection): passes the flag
 // to fn_71009025d8 and its inverse to fn_710024fa0c; returns 0. Names are placeholders.
+#include "game/CActorComponent.h"
 #include "types.h"
 
 struct UnkStruct_710024fa0c;
-void fn_710024fa0c(UnkStruct_710024fa0c*, bool);
 struct UnkLavaPool_b45a2;
 void fn_71009025d8(UnkLavaPool_b45a2* self, bool on);
 

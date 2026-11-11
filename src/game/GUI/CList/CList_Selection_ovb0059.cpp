@@ -10,9 +10,11 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU2747.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -28,12 +30,8 @@ struct UnkSprite_spr;
 struct UnkGuiButtonFocus_ovb0000;
 
 void fn_71011ff97c(UnkStruct_71011ff97c* self, bool quiet);
-void fn_71011d9a44(UnkSmBase_A6_b62*, UnkSmArg_A6_b62*);
 void fn_71011d99e4(UnkGuiDisplayObject* self, UnkGuiEvent_b49* event);
 struct UnkPanel_71011dfeb0;
-void fn_71011d9b3c(UnkPanel_71011dfeb0*);
-void fn_71011cf630(UnkGuiButtonFocus_ovb0000* self);
-void fn_71011d9ab4(UnkGuiButtonFocus_ovb0000* self);
 bool fn_71011ceac0(UnkGuiDisplayObject* self);
 bool fn_71011ceb34(UnkGuiDisplayObject* self);
 void fn_71011b5598(UnkGuiRoot* root, UnkGuiDisplayObject* object);

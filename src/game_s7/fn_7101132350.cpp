@@ -3,6 +3,7 @@
 // UnkCallbackSet_7101cb2880 (vtable 0x7101cb2880; fn_7101132350). Names are placeholders.
 #include "base/UnkErasedVector.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU2704.h"
 
 
 struct UnkRefCounted {
@@ -222,7 +223,6 @@ static inline __attribute__((always_inline)) void Begin(const UnkCallbackSetVect
     *out = UnkIter<Sync>(0, v->data);
 }
 
-void fn_710112e7e0(void* self);
 void fn_7101132350(const UnkCallbackSetVector* v, UnkIter<fn_710112e7e0>* out) {
     Begin(v, out);
 }

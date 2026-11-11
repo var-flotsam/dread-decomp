@@ -9,6 +9,7 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAIAttackComponent.h"
 #include "game/CAttack.h"
 #include "game/UnkActor.h"
 #include "types.h"
@@ -65,7 +66,6 @@ using base::global::CStrId;
 using base::math::CVector2D;
 
 struct UnkCommanderPlayer_b67a2;
-void fn_7101134420(UnkCommanderPlayer_b67a2* player, void* entry, u32 arg2, u32 arg3, void* arg4, f32 arg5);
 
 struct UnkShakernautPlayer_ovb0037 {
     void** vtable;

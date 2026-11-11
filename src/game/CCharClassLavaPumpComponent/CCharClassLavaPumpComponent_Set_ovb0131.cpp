@@ -5,14 +5,14 @@
 // running down, the level goes to the floating prop (as fn_7100879fb0), then the key for full, partial
 // or zero level is played. Names and layouts are placeholders.
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAnimationComponent.h"
+#include "game/CCharClassEventScenarioComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 struct UnkWeakTarget;
-UnkWeakTarget* fn_71007e4924(void* owner);
 struct UnkActionSwitcherAnimation_b48;
-void fn_710117ad18(UnkActionSwitcherAnimation_b48* self, bool flag, f32 value);
 
 // As src/reflection/CCharClassLavaPumpComponent.cpp declares it.
 extern base::reflection::UnkTunable g_unk_717272a728;

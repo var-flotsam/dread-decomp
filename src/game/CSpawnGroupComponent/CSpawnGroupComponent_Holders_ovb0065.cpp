@@ -14,8 +14,14 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CAISmartObjectComponent.h"
+#include "game/CActorComponent.h"
+#include "game/CBatalloonAIComponent.h"
 #include "game/CBlackboard.h"
+#include "game/CComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2704.h"
+#include "game/UnkTU341.h"
 #include "game/UnkTUProperty.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -63,7 +69,6 @@ struct UnkRef_c3 {
     }
 };
 
-UnkRef_c3 fn_71003df480(void* key);
 base::UnkRefHandle* fn_71006eb8cc(base::UnkRefHandle* self, const base::UnkRefHandle* other);
 
 struct UnkSpawnHolder_ovb0065 {
@@ -137,7 +142,6 @@ void fn_710111f280(UnkSpawnGroupHolders_ovb0065* self, void* arg) {
 
 bool fn_7100deabc4(UnkGameManager* manager);
 struct UnkActivatable_b48;
-bool fn_710024fb2c(UnkActivatable_b48* self);
 void fn_710112bec0(void* object, void* arg);
 
 void fn_710111f184(UnkSpawnGroupHolders_ovb0065* self, void* arg) {
@@ -333,7 +337,6 @@ void fn_710111a364(UnkSpawnGroupUpdate_ovb0065* self) {
 }
 
 struct UnkParent;
-void fn_71010c424c(UnkParent*);
 void fn_710111a708(UnkSpawnGroupUpdate_ovb0065* self, bool flag, UnkList_71011199cc* out);
 
 // The update: after the base update (fn_71010c424c) and UpdateInside, while the flags at +0x13a,
@@ -504,7 +507,6 @@ s32 fn_710111f07c(UnkSpawnGroupCount_ovb0065* self) {
 
 
 struct UnkParent;
-void fn_71010c4228(UnkParent*);
 
 
 struct UnkSpawnOwner_ovb0065 {
@@ -621,7 +623,6 @@ void fn_710111fd80(UnkSpawnHolderMoved_ovb0065* self, UnkSpawnHolderMoved_ovb006
 
 
 extern u32 g_unk_71727bebb8;
-void fn_7100232c68(void*);
 
 struct UnkSpawnActorState_ovb0065 {
     u8 pad_0x0[0x70];
@@ -655,7 +656,6 @@ struct UnkGameManagerFlag_ovb0065 {
 };
 
 const CStrId* fn_7100d7ba84(UnkSpawnedActor_ovb0065* actor);
-UnkSpawnRegistered_ovb0065* fn_7100360044(void* object);
 
 struct UnkSpawnGroupCounters_ovb0065 {
     u8 pad_0x0[0x194];
@@ -777,7 +777,6 @@ struct UnkSpawnHolderObject_ovb0065 {
 };
 
 struct UnkObj_7101129240;
-void fn_7101129b08(UnkObj_7101129240* self, bool flag);
 // The entry fn_7101129b08 returns (the declaration above, shared with src/game_s7/fn_7101129240.cpp,
 // leaves the result out).
 static inline void* EntryOf(UnkSpawnHolderObject_ovb0065* object) {

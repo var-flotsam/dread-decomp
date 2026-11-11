@@ -8,6 +8,8 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkManager_71726af468.h"
+#include "game/UnkTU2523.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 struct UnkModeFlags {
@@ -18,8 +20,6 @@ extern UnkModeFlags* g_unk_71726bc570;
 
 struct UnkNodeSet695_b43a1;
 base::reflection::UnkReflObject* fn_7100475564(UnkNodeSet695_b43a1* self);
-void fn_7100232c68(void* target);
-void fn_7100d7b054(void* target, f32 delay);
 
 struct UnkDeleteEntityActor {
     u8 pad_0x0[0x240];

@@ -10,7 +10,12 @@
 #include "base/global/CStrId.h"
 #include "base/input/UnkRumbleManager.h"
 #include "base/math/UnkZeroVector3.h"
+#include "game/CComponent.h"
+#include "game/CMagnetSlidingBlockComponent.h"
+#include "game/CMaterialFXComponent.h"
 #include "game/UnkBroadphaseObject.h"
+#include "game/UnkTU39.h"
+#include "game/UnkTU50.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -40,7 +45,6 @@ struct UnkHandle {
 
 // The null handle.
 extern UnkHandle g_unk_7101d586c0;
-void fn_7100072328(void* target, f32 a, f32 b);
 
 // The rumble manager, created on first use.
 extern UnkRumbleManager* g_unk_7101d47348;
@@ -128,12 +132,9 @@ using UnkOut_71008651c8 = base::UnkVector<UnkStruct_71008651c8_Entry*>;
 void fn_71008651c8(UnkStruct_71008651c8* self, void* const* key, UnkOut_71008651c8* out);
 extern void* const g_unk_71727375d0 __attribute__((visibility("hidden")));  // the block's colliders' key
 
-bool fn_710002fb70(void* timer);
 struct CMagnetSlidingBlockComponent;
-void fn_71009210d4(CMagnetSlidingBlockComponent* self, f32 speed);
 
 struct UnkHandleOwner_71010c4230;
-void fn_71010c4230(UnkHandleOwner_71010c4230*);
 
 // The block's timeline key.
 extern const u64 g_unk_710164b248 __attribute__((visibility("hidden")));
@@ -320,7 +321,6 @@ struct UnkMagnetColorChange_b0086 {
 struct UnkMagnetFx_b0086;
 void fn_71009272c4(UnkMagnetColorChange_b0086* self, u32 index, bool flag, const UnkVector4D* from,
                    const UnkVector4D* to, f32 time);
-void fn_7100926aa0(UnkMagnetFx_b0086* fx, UnkMagnetColorChange_b0086* change);
 
 struct UnkMagnetOwner4_b0086 {
     u8 pad_0x0[0x228];

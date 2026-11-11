@@ -6,6 +6,8 @@
 // (CKraidBouncingCreaturesAttack_Start_b62a4.cpp). Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CKraidAttack.h"
+#include "game/UnkTU2772.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -13,9 +15,7 @@ using base::reflection::UnkReflObject;
 
 void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
 void fn_710117b3e8(UnkWeakTarget* target, void* link);
-void fn_71005f2018(char* self);
 void fn_71005f7968();
-int fn_71012395a0();
 
 struct UnkTunable;
 extern UnkTunable g_unk_71726f0b10;

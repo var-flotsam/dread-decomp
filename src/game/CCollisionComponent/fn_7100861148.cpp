@@ -6,6 +6,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkTU2510.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -17,7 +18,6 @@ struct UnkStruct_7100861148_Collider : UnkReflObject {
 };
 
 void fn_7100d5abfc(void* owner, UnkStruct_7100861148_Collider* collider);
-void fn_7100d5ac50(void* owner, UnkStruct_7100861148_Collider* group);
 
 using UnkVec_7100861148_A = base::UnkVector<UnkStruct_7100861148_Collider*>;
 

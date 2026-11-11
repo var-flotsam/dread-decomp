@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CScourgeAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
@@ -19,8 +20,6 @@ struct UnkScourgeAI_b58a4 : base::reflection::UnkReflObject {
     u8 pad_0x8[0x14740 - 0x8];
     f32 field_0x14740;
 };
-
-void fn_710069f604(UnkScourgeAI_b58a4* self, f32 value, f32 distance);
 
 struct UnkScourgeTongueSlashAttack_b58a4 {
     u8 pad_0x0[0x8];

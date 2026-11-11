@@ -5,12 +5,11 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CFrozenComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::reflection::UnkReflObject;
-
-bool fn_71007f900c(void* self, void* arg);
 
 struct UnkAreaFX_b50 {
     u8 pad_0x0[0x10];

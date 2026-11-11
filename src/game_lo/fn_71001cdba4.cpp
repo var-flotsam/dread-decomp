@@ -2,6 +2,8 @@
 // value) and appends a copy of it to the array at +0x317a9e0, growing the array as
 // UnkVector::EmplaceBack does but with copy construction; fn_71001cdd18 drops the last one.
 #include "base/UnkVector.h"
+#include "game/UnkTU177.h"
+#include "game/UnkTU179.h"
 #include "types.h"
 
 struct UnkPair_71001cdba4 {
@@ -27,8 +29,6 @@ struct UnkOwner_71001cdba4 {
     u8 pad_0x0[0x317a9e0];
     base::UnkVector<UnkEntry_71001cdba4> entries;
 };
-
-void fn_710015c2d0(UnkEntry_71001cdba4* entry);
 
 void fn_71001cdba4(UnkOwner_71001cdba4* self, UnkEntry_71001cdba4* entry) {
     base::UnkVector<UnkEntry_71001cdba4>& v = self->entries;
@@ -62,7 +62,6 @@ void fn_71001cdba4(UnkOwner_71001cdba4* self, UnkEntry_71001cdba4* entry) {
 }
 
 // The default set (generated, src/lifted/).
-UnkEntry_71001cdba4* fn_7100159aa0();
 
 // Drops the last entry and binds the one before it, or the default set when none is left.
 void fn_71001cdd18(UnkOwner_71001cdba4* self) {

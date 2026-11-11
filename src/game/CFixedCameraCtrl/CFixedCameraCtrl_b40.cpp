@@ -3,6 +3,7 @@
 // or, without one, the position of the argument's node (+0x20) and the vector at +0xb4 of its
 // definition (+0x130); each goes to its current (+0x68, +0x74) and start (+0x38, +0x44) slots. Names
 // and layouts are placeholders.
+#include "game/CCameraCtrl.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -38,8 +39,6 @@ struct UnkFixedCamera_fc {
     u8 pad_0x80[0x38];
     UnkTuningRef_fc* tuning;  // 0xb8
 };
-
-void fn_71010ed98c(UnkFixedCamera_fc* self, UnkArg_fc* arg, u32 flag);
 
 void fn_71007e5e18(UnkFixedCamera_fc* self, UnkArg_fc* arg) {
     fn_71010ed98c(self, arg, 1);

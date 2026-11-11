@@ -3,11 +3,11 @@
 // embedded kind-7 parameter block (vtable g_unk_7101a265a8, layout as game_s2/UnkParams7.h) at +0xb0, the
 // path query of unit 1130 (fn_7100706818) at +0x150 and a few cleared fields after it. Names and layouts
 // are placeholders.
+#include "game/UnkTU1124.h"
 #include "game_s2/UnkParams7.h"
 #include "types.h"
 
 struct UnkUnit1124Object;
-void fn_7100703814(UnkUnit1124Object* self, u32 id);
 struct UnkSelf_nq41;
 void fn_7100706818(UnkSelf_nq41* self, void* owner);
 

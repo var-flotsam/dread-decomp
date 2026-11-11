@@ -6,14 +6,17 @@
 #include "base/color/CColor4F.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CLifeComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1102.h"
+#include "game/UnkTU2560.h"
+#include "game/sound/CSoundManager.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 // The singleton (0xe0 bytes) that plays the requests below.
 extern void* g_unk_71726da048;
-void fn_7100e1bca4(void* self);
 
 struct UnkDropTarget_ovb0208;
 
@@ -140,11 +143,7 @@ struct UnkDropTarget;
 extern UnkDropTarget* g_unk_7101d47318;
 
 UnkPlayer* fn_7100dec788(UnkGameManager*);
-void* fn_71006eb114(void* info);
 void* fn_71006eb2cc(void* h);
-void* fn_71006eb1f0(void* h);
-void fn_7101160348(void* object, f32 duration);
-void fn_7101023f04(UnkDropTarget* target, void* entry, UnkDropPlayer_ovb0208* player, void* arg4, u32 arg5);
 
 // The object the player's smart object holds, or null.
 static inline void* Holder(UnkDropPlayer_o0312* player) {

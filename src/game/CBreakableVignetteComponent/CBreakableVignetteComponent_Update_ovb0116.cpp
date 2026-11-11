@@ -5,6 +5,8 @@
 // (src/game/CBreakableVignetteComponent/CBreakableVignetteComponent_Break_A5_b66.cpp), inlined.
 // Names and layouts are placeholders.
 #include "base/math/CVector.h"
+#include "game/CActorComponent.h"
+#include "game/CBreakableVignetteComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "types.h"
@@ -14,7 +16,6 @@ using base::math::CVector3D;
 
 struct UnkPlayer;
 UnkPlayer* fn_7100dec788(UnkGameManager*);
-void fn_710024fb24(void*);
 void fn_7100219c6c(UnkRenderManager*, bool, u64, u32, bool);
 
 struct UnkPlayerTransform_bvc {
@@ -60,9 +61,6 @@ struct UnkBreakableVignette_bvc {
     u8 pad_0x48[0x18];
     u8 field_0x60[1];
 };
-
-void fn_7100762f64(UnkBreakableVignette_A5_b66* self);
-void fn_710076371c(void* list, const u64* value);
 
 static inline void Break_bvc(UnkBreakableVignette_bvc* self) {
     if (self->broken)

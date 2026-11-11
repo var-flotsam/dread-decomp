@@ -6,10 +6,11 @@
 // after the base reset (fn_71010f3e94). Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CCameraFX_Shake.h"
+#include "game/UnkTU53.h"
 #include "types.h"
 
 extern "C" int rand();
-f32 fn_7100076020(f32, const char*);
 
 struct UnkRandShakeCurve_ovb0131 {
     u8 pad_0x0[0x10];
@@ -37,8 +38,6 @@ struct UnkRandShake_ovb0131 {
     UnkRandShakeOffset_ovb0131 offset;  // 0x68
     f32 offset_w;  // 0x74
 };
-
-void fn_71010f3e94(UnkRandShake_ovb0131* self);
 
 static inline f32 RandUnit() {
     return (f32)((rand() & 0x7fff) * (1.0 / 32767.0));

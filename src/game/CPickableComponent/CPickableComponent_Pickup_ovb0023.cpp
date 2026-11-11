@@ -6,8 +6,13 @@
 // fading out under 1 and removing the owner at 0; then fades the linked object (+0x60, checked
 // against the id at +0x68) to 0. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CActorComponent.h"
+#include "game/CComponent.h"
+#include "game/CInputComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkSlots.h"
+#include "game/UnkTU101.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 struct UnkPlayer;
@@ -74,7 +79,6 @@ void fn_71009cd46c(UnkPickableComponent_ovb0023* self, f32 alpha) {
 
 using base::global::CStrId;
 
-void fn_710024fc08();
 s64 fn_710007cee4(void* stream, const char** out);
 
 struct UnkPickableStream_ovb0023 {
@@ -107,12 +111,8 @@ void fn_71009cd2c4(UnkPickableIds_ovb0023* self, UnkPickableStream_ovb0023* stre
 }
 
 struct UnkParent;
-void fn_71010c424c(UnkParent*);
 struct UnkInputComponent;
-bool fn_710087238c(UnkInputComponent*);
-void fn_7100232c68(void*);
 struct UnkInterp_7100105d34;
-void fn_7100105d34(UnkInterp_7100105d34* self, f32 value, bool relative, f32 time);
 
 struct UnkPickablePlayer_ovb0023 {
     u8 pad_0x0[0x1d8];

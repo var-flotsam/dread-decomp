@@ -1,6 +1,8 @@
 // Unregisters an id: unless forced, a locked id is refused; otherwise any running entries for it
 // are stopped (fn_7100f011c4) and its registration node is removed. Returns false if not found.
 #include "base/UnkVector.h"
+#include "game/UnkTU324.h"
+#include "game/UnkTU58.h"
 #include "types.h"
 
 struct UnkRefObj {
@@ -118,8 +120,6 @@ struct UnkStruct_0x128 {
     }
 };
 
-void* fn_71000810b0(u32);
-void fn_710021ea60(UnkRefObj*);
 void fn_7100f011c4(UnkStruct_0x128*, u32);
 
 bool fn_7100f00f4c(UnkStruct_0x128* self, u32 id, bool force) {

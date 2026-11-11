@@ -2,6 +2,7 @@
 // key and value arrays) and, when it is a CLayerNode, forwards the value to it. Names are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/animtree/CLayerNode.h"
 #include "types.h"
 
 extern __attribute__((visibility("hidden"))) u64 g_unk_71726bfcb0;
@@ -9,7 +10,6 @@ extern __attribute__((visibility("hidden"))) u64 g_unk_71726bfcb0;
 using base::reflection::UnkReflObject;
 
 struct UnkLayerNode;
-void fn_71002e465c(UnkLayerNode* self, f32 dt);
 
 struct UnkNodeMapB55 {
     u8 pad_0x0[0x78];

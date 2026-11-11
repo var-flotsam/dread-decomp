@@ -6,8 +6,11 @@
 #include "base/UnkMatrix44.h"
 #include "base/UnkVector.h"
 #include "base/math/CVector.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU2702.h"
+#include "game/UnkTU285.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -17,9 +20,7 @@ struct UnkShakernautId_b53 {
     u32 value;
     u32 unk_0x4;
 };
-void fn_71011785a8(UnkShakernautCtrl_b53*, const UnkShakernautId_b53*, bool, bool);
 // As src/game/CPoisonFlyAIComponent/CPoisonFlyAIComponent_Invoke.cpp declares it.
-void fn_71010ff2b8(char* self);
 
 struct UnkShkOwner_ovb0041 {
     u8 pad_0x0[0x220];
@@ -71,7 +72,6 @@ UnkFxObject_ovb0041* fn_71003b7db0(UnkModelManager* self, const void* path, bool
 void fn_71011a9bb4(UnkModelManager* self, UnkFxObject_ovb0041* fx);
 
 extern const u8 g_unk_7172706450[] __attribute__((visibility("hidden")));  // the effect's path id
-void fn_71002093c8(void* p, bool value);
 
 struct UnkShkTargetComps_ovb0041 {
     u8 pad_0x0[0x728];
