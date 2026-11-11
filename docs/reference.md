@@ -163,7 +163,9 @@ Clang 9.0.1 has no arm64 macOS build; the x86_64 build runs under Rosetta 2. Bef
 - **Ghidra project lock:** only one process can open `build/ghidra/<ver>/dread.gpr` at a time.
   `tools/ghidra/decompile.py` fails from a worktree under `.claude/` (Ghidra rejects a path element
   starting with a dot): run it from the main checkout.
-- **Worktrees on Windows:** a new worktree needs `orig` and `build` linked to the main checkout's.
+- **Worktrees:** `tools/worktree_setup.py <path> [--new <branch>] [--oracle]` gives a worktree the untracked
+  inputs it needs (`.venv`, `orig`, `build/recon`, the Ghidra export, the submodules) and grades a known match.
+  By hand on Windows: a new worktree needs `orig` and `build` linked to the main checkout's.
   Git Bash's `ln -s` silently copies them (12.6 GB, 2026-10-26) unless native symlinks are on; make
   junctions instead: `cmd //c mklink /J orig <main>\orig` (and `build`).
 - `llvm-readelf` isn't in the LLVM Windows build; use `llvm-readobj --elf-output-style=GNU`.
