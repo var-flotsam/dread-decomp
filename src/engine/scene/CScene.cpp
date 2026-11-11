@@ -64,7 +64,7 @@ bool fn_71001ef280(UnkScene* scene, bool flag, const u64* id) {
     u64 key = *id;
     u32 i = ((u32)(key >> 32) ^ (u32)key) % self->bucket_capacity;
     if (self->bucket_count <= i)
-        __assert_fail("i < m_iSize", "..\Base/global/RntVector.h", 0x15b, "operator[]");
+        __assert_fail("i < m_iSize", "..\\Base/global/RntVector.h", 0x15b, "operator[]");
     UnkSceneGroupNode** bucket = &self->buckets[i];
     if (!bucket)
         return false;

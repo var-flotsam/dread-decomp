@@ -112,8 +112,8 @@ s32 fn_710041545c(const CStrId* id) {
 
 // The kinds parsed from text (fn_7100414070, fn_7100415050, fn_710041536c): the text is split at "|" into a
 // string list (fn_71000730a0; constructed inline as in src/game/UnkSubareaSetupState.cpp,
-// destroyed by fn_71000732d4) and the kinds of the parts are or-ed together; a part "All" sets
-// every bit.
+// destroyed by fn_71000732d4) and the kinds of the parts are or-ed together; a part "All" ("ALL" for
+// fn_7100414070) sets every bit.
 static inline void InitStrList_b43a1(UnkStrList30* list) {
     list->field_0x8 = 0;
     list->field_0x10 = nullptr;
@@ -142,14 +142,14 @@ static inline s32 LiftedKind_71004157f4(const CRntString* part) {
 }
 
 template <auto PartKind>
-static inline s32 ParseKinds(const char* text) {
+static inline s32 ParseKinds(const char* text, const char* all = "All") {
     UnkStrList30 parts;
     InitStrList_b43a1(&parts);
     fn_71000730a0(text, "|", &parts);
     s32 kinds = 0;
     for (UnkListNode<0x30>* node = parts.field_0x10; node; node = node->next) {
         const CRntString* part = reinterpret_cast<const CRntString*>(node);
-        if (fn_710007f140(part, "All"))
+        if (fn_710007f140(part, all))
             kinds = -1;
         else
             kinds |= PartKind(part);
@@ -167,5 +167,6 @@ static inline s32 PolyEdgeKind(const CRntString* part) {
 }
 
 s32 fn_7100415050(const char* text) { return ParseKinds<PolyEdgeKind>(text); }
-u32 fn_7100414070(const char* text) { return ParseKinds<LiftedKind_7100414bec>(text); }
+// This one spells its catch-all part "ALL".
+u32 fn_7100414070(const char* text) { return ParseKinds<LiftedKind_7100414bec>(text, "ALL"); }
 s32 fn_710041536c(const char* text) { return ParseKinds<LiftedKind_71004157f4>(text); }

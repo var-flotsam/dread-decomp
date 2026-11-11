@@ -131,7 +131,7 @@ void fn_7100ba0d14(UnkMaterialFXLinkEvent_ovb0131* self, UnkLandingActor_ovb0131
     if (!*actor)
         return;
     static const CFilePathStrId landing("actors/characters/samus/fx/groundlanding.bcptl", true);
-    static const CFilePathStrId landing_run("actors/characters/samus/fx/groundlandingrun.bcpt", true);
+    static const CFilePathStrId landing_run("actors/characters/samus/fx/groundlandingrun.bcptl", true);
     if (self->path == *reinterpret_cast<UnkStringData* const*>(&landing))
         return;
     if (self->path == *reinterpret_cast<UnkStringData* const*>(&landing_run))
