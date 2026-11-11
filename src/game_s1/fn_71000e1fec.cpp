@@ -13,16 +13,11 @@ struct UnkVectorAt {
     base::UnkVector<T> items;
 };
 
-struct UnkTreeNode_0x50;
-void fn_710026ead0(UnkVectorAt<UnkTreeNode_0x50, 0x10>* self);
-
 struct UnkTreeNode_0x50 {
     u8 unk_0x0[0x50];
-    __attribute__((always_inline)) ~UnkTreeNode_0x50() {
-        fn_710026ead0(reinterpret_cast<UnkVectorAt<UnkTreeNode_0x50, 0x10>*>(this));
-    }
+    __attribute__((always_inline)) ~UnkTreeNode_0x50() { fn_710026ead0(this); }
 };
 
 void fn_71000e1fec(UnkVectorAt<base::global::CRntString, 0x8>* self) { self->items.Free(); }
 
-void fn_710026ead0(UnkVectorAt<UnkTreeNode_0x50, 0x10>* self) { self->items.Free(); }
+void fn_710026ead0(void* self) { static_cast<UnkVectorAt<UnkTreeNode_0x50, 0x10>*>(self)->items.Free(); }
