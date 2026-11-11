@@ -135,14 +135,14 @@ another number of parameters, 19 with a result of another class. The 68:
 `python tools/name_check.py --version 2.1.0` compares, for every name `tools/check.py` cannot resolve to an
 address (a named constructor, a vtable by class name, a local static), where the original points at each
 reference to it (a 4-byte function that only branches on counts as its target, so a call through an import's
-thunk and a call to its stub agree). On 2026-11-11, 109,340 references under 11,763 names agree, and 6 names do
-not (24 references). Each is a reference to the wrong thing, or one name used for different things:
+thunk and a call to its stub agree). On 2026-11-11, 109,340 references under 11,763 names agree, and 5 names do
+not (22 references; a sixth, a string destructor's name on a call the original makes to `fn_710026ead0` itself, was
+corrected in #369). Each is a reference to the wrong thing, or one name used for different things:
 
 | Name | Usually | Also | Reading |
 |---|---|---|---|
 | `base::refl_IterSync<UnkOwnedList, unsigned int>` | five addresses, two uses each | | Five instantiations over five file-local types all called `UnkOwnedList` (`CAcidBlobsLaunchPattern/fn_71005da4f8.cpp`, `CCooldownXBossFireBallDef/fn_71004bf9a8.cpp`, `fn_71004bfaa8.cpp`): the port's link sees one symbol. |
 | vtables of `unk_any_props::UnkPropAny`, `UnkPropList`, `UnkEntry` | five addresses each | | Five sets of classes under one name, one per file (`fn_7100442780.cpp`, `fn_710048b740.cpp`, `fn_71004c8f58.cpp`, `fn_7100510548.cpp` and the first user). |
-| `base::global::CRntString::~CRntString` | `0x710007ecd4` (593 uses) | `0x710026ead0`, inside `fn_710026ead0` itself (`src/game_s1/fn_71000e1fec.cpp`) | The original calls itself there; the destructor's name stands for another function. |
 | `std::__1::__throw_bad_function_call` | `0x7100a2e300` (4 uses) | `0x7100008bb0` (2, `CBlendSpace1D/UnkSharedFunctionDtors.cpp`) | The original has two copies; the two uses name the other one. |
 
 `--strict` makes the tool fail on any of them; it is not a gate yet.
