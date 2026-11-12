@@ -190,7 +190,9 @@ struct UnkMenuEntries_ovb0186 {
     u8 field_0x2f8[0x140];
 };
 
-void* fn_7101190890(UnkMenuEntries_ovb0186* self, const UnkCompared_0x30* key) {
+// The name is passed by value: both callers copy the string for the call.
+void* fn_7101190890(UnkMenuEntries_ovb0186* self, CRntString name) {
+    const UnkCompared_0x30* key = reinterpret_cast<const UnkCompared_0x30*>(&name);
     if (fn_710007f120(key, NAME_OF(field_0x1cb0)))
         return self->field_0x1b8;
     if (fn_710007f120(key, NAME_OF(field_0x1cb8)))

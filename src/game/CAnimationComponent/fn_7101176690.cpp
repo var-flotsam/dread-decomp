@@ -26,13 +26,18 @@ struct UnkStruct_7101176690 {
     UnkMap_7101176690* field_0x40;
 };
 
-struct alignas(8) UnkFlags_7101176690 { u32 value; };
+// A set of flags with a copy constructor: passed by value, it travels as the address of the caller's copy.
+struct alignas(8) UnkFlags_7101176690 {
+    u32 value;
+    UnkFlags_7101176690(u32 v) : value(v) {}
+    UnkFlags_7101176690(const UnkFlags_7101176690& o) : value(o.value) {}
+};
 struct UnkS16 { u64 a, b; };
 struct UnkS12 { u64 a; u32 b; };
 
 void* fn_7101176d34(UnkStruct_7101176690* self, void* arg);
-bool fn_7101177044(UnkStruct_7101176690* self, void* r, s32 idx, void* data, const UnkFlags_7101176690& flags,
-                   const UnkS16& a, const UnkS12& b, const UnkFlags_7101176690& c);
+bool fn_7101177044(UnkStruct_7101176690* self, void* r, s32 idx, void* data, UnkFlags_7101176690 flags,
+                   const UnkS16& a, const UnkS12& b, UnkFlags_7101176690 c);
 
 bool fn_7101176690(UnkStruct_7101176690* self, void* arg, u64 key, const u32& flags, const UnkS16& a,
                    const UnkS12& b, const u32& c) {

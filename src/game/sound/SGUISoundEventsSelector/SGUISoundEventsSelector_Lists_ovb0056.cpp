@@ -181,7 +181,8 @@ struct UnkSelectedIds_ovb56 {
 };
 
 struct UnkSoundEventsSelector_ovb56;
-UnkSelectedIds_ovb56 fn_7100fc9e58(UnkSoundEventsSelector_ovb56* selector, void* event, UnkTypedObject_ovb56 source);
+UnkSelectedIds_ovb56 fn_7100fc9e58(UnkSoundEventsSelector_ovb56* selector, void* event,
+                                   const UnkTypedObject_ovb56& source);
 
 struct UnkSoundEventsOwner_ovb56 {
     u8 unk_0x0[0x38];
