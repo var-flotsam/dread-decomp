@@ -103,4 +103,3 @@ journal entry.
    labelled member is the header's declaration.
 4. Struct headers generated from `data/reflection_fields.csv`, and the 40-function test (an agent run) of whether
    shared headers raise the match rate, before bulk runs resume.
-5. Remove or keep: the five agent-run worktrees (`dread-decomp-overnight`, `-lean`, `-fable`, `-flarge`, `-fwdargs`).
