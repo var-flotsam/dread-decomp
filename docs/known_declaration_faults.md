@@ -140,17 +140,39 @@ file stores the function's address in a generic slot, or passes it to a registra
 that erases the type says so, `reinterpret_cast<void (*)()>(&fn)`. And the check stopped counting a 64-bit
 integer against a pointer, which is one full register on every 64-bit target (15 pairs).
 
-82 are left (`python tools/decl_check.py --definitions` lists them with both signatures): 37 `void` against a
-value, 17 with another number of parameters, 16 with a parameter of another class, 7 with a result of another
-class, 5 with a float parameter in another place. For these the callers' code changes when the declaration
-takes the definition's shape, and the definition stops matching or compiling when it takes theirs, so each
-needs the original read on both sides of the call. Known among them:
-- `fn_7100232c90` and `fn_7100d7babc` take a parameter their callers pass and that the original hands on to
-  another call (`tools/forwarded_args.py`); the body has to forward it.
-- `fn_7100202e7c` forwards `fn_71001ef494`'s result to a caller that returns it as a `bool`, but written that way
-  it gains an `and w0, w0, #1` the original does not have.
-- `fn_71000e88c0` is declared as a class getter by the generated `UnkClassGetters.h` and is an initialiser that
-  returns nothing: the generator's list is wrong for it.
+The last 82 were read one at a time against the original, on both sides of the call (2026-11-12), and 81
+are settled, every touched file building to the same output. What they turned out to be:
+- *A register the caller leaves as it came* (12). The source called `fn(self)` and matched because the
+  original never touches x1, x2 or s0 before the call: the argument is the caller's own parameter, or a value
+  it had just computed, passed on. Written out (`fn_710020ca64(member, from)`, `fn_71006badf4(self, v)`,
+  `fn_7100979854(self, xform, changed)`, the three path-text builders), the code is the same and
+  `tools/forwarded_args.py` has four hits fewer. One empty barrier that kept such a register alive is gone.
+- *A function handed to a template or a registration call* (31). The template's parameter, or the slot, said
+  `void (*)(...)` and the function returns a value (the erase functions of the keyed maps, the reflection
+  invokers, the HUD's bound calls). The template parameter now has the real type; a slot that erases the type
+  says so with a cast.
+- *A float in another place, flags as words* (11). Integer and float arguments travel in separate registers, so
+  `(p, 1, 0, 0.0f, 1.0f)` and `(p, t, 0.0f, 1.0f, true, false)` are the same call; the definitions' order and
+  `bool` are what the original reads (`and w1, w1, #1`).
+- *A class passed by value against a pointer* (6). A class with a copy constructor travels as the address of
+  the caller's copy. Where the caller makes that copy (`fn_71000f9d20`, `fn_7101190890`), the parameter is the
+  class by value; where the callee reads it again after each call it makes (`fn_7100eea4c8`), it is a const
+  reference.
+- *A result nobody could see* (14). A caller that ends in a tail call matches under any return type, its own
+  included: `fn_71005028e4` and `fn_710076438c` return nothing, `fn_71007038f4` and its three callers return
+  nothing, `fn_7100202e7c` forwards a word (as `bool` it gains an `and w0, w0, #1`). Two callers that were
+  `NON_MATCHING(minor)` match now that their callees have the right type (`fn_71003f1b00`, `fn_71003ad8e4`).
+- *A parameter the callers set and nothing reads* (2): `fn_7100232c90` and `fn_710110bb4c` now declare it,
+  unnamed, with the reason above them.
+- `fn_7100fc9d78`, declared `void` in 20 files, returns a sound handle; it and the handle
+  (`game/sound/UnkSoundHandle.h`, 24 local copies of the struct) are declared once.
+
+One is left: `fn_71003f4bc0`. Its caller negates the result as a `bool` (`mvn w8, w0; and w1, w8, #1`), and its
+own code only matches when it returns a word (as `bool` its three returns come out as `mov w8, ...; and w0, w8,
+#1`). Seven ways of writing its ending were tried.
+
+`fn_71000e88c0` is a different fault with the same look: the generated `UnkClassGetters.h` lists it as a class
+getter and it is an initialiser that returns nothing; the generator's list is wrong for it.
 
 ## Names that point to more than one address
 

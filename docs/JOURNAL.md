@@ -152,6 +152,24 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**The last 82 signatures, by hand (2026-11-12).** What the two-direction fixer could not settle was read against
+the original on both sides of each call; 81 of 82 are settled and `tools/decl_check.py --definitions` lists one
+(`docs/known_declaration_faults.md` has the groups). Reusable findings:
+- A call that matches with fewer arguments than the callee takes is a register left as it came. Look at what the
+  original has in x1, x2 or s0 at the `bl` (`mov x21, x1` before it and no write after means the caller's own
+  parameter is passed on) and write the argument out. It costs nothing and removes a
+  `tools/forwarded_args.py` hit; twice it removed the reason a function was `NON_MATCHING`.
+- An argument register that is passed into a virtual call inside a loop without being saved across iterations
+  is not an argument of that call: the callee's parameter is unused, and is declared unnamed.
+- `return f(x);` as a tail call matches under any return type of the caller and of `f`. To decide, read the
+  path that does not call: a `ret` with nothing in w0 is `void`; `mov w0, wzr` after `cbz x0` is dropped by the
+  compiler whatever the type, so a missing zero proves nothing there. A `bool` built from two paths gains
+  `and w0, w0, #1`; without it the result is a word.
+- A caller that copies an object to the stack and passes the copy's address is passing a class with a copy
+  constructor by value; a callee that reads the object again after every call it makes took a reference.
+- `(x & 1) == 0` on a word comes out as `mvn; and #1` in a return and as `tst; cset` in an argument, so the
+  same C++ on the two sides of a call need not look alike.
+
 **Type-erased callbacks say so (2026-11-12).** Many of the remaining definition/declaration mismatches had one
 cause: a file declared `void fn();` only to store the function's address in a generic slot or to pass it to a
 registration call (`InitConverter`, `InitClass`, `link->callback`). The fixer of the previous entry now gives
