@@ -50,7 +50,8 @@ struct UnkSelf {
 
 extern u8 g_unk_71726b16d0[] __attribute__((visibility("hidden")));
 
-bool fn_71011428bc(void* object, const CStrId* id);
+struct UnkInventory;
+bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 
 // The bit pattern of a float in memory (a word load, as the original reads it).
 static inline u32 AsU32(const f32& value) {
@@ -78,7 +79,7 @@ void fn_710035131c(UnkSelf* self) {
     UnkQualifiedId& id = ItemQualifiedId(g_unk_717275ac18);
     if (id.id.data == &g_unk_7101d47108->empty)
         fn_7100ae9a10(&id, ItemSource(g_unk_717275ac18), g_unk_7101d470e0);
-    if (!fn_71011428bc(object, &id.id))
+    if (!fn_71011428bc(static_cast<UnkInventory*>(object), id))
         return;
     UnkAnimationComponent* attack = self->field_0x30->field_0x220;
     if (!attack)

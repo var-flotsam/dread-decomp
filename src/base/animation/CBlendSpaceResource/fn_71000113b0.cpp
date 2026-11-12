@@ -47,7 +47,7 @@ void fn_710000a370(UnkReflType* self, const CStrId& name, UnkReflType* base, voi
 void fn_7100009fe0();
 UnkReflType* fn_710000a4f4();
 void fn_710000a5d0(UnkReflType* self, const CStrId& name, void* a, void* b);
-extern UnkReflType g_unk_7101d4cfb0 __attribute__((visibility("hidden")));
+extern const base::reflection::CType g_unk_7101d4cfb0 __attribute__((visibility("hidden")));
 
 void fn_71000113b0() {
     new (&g_unk_7101d4cdc8.sources) CStrId("sources", true);
@@ -82,7 +82,7 @@ void fn_71000113b0() {
                fn_710000a5d0);
     fn_710009ec00(&g_unk_7101d4c130, &g_unk_7101d4bfc0);
     fn_710000a7cc();
-    fn_710009ec00(&g_unk_7101d4c131, &g_unk_7101d4cfb0);
+    fn_710009ec00(&g_unk_7101d4c131, const_cast<base::reflection::CType*>(&g_unk_7101d4cfb0));
     {
         UnkResType types[1];
         const char* sources0[2];

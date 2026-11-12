@@ -233,7 +233,7 @@ void fn_7100b84970() {
     fn_710009ec00(&g_unk_7172768220, &g_unk_71727680b0);
 }
 
-extern UnkReflType g_unk_7172794d40 __attribute__((visibility("hidden")));
+extern const base::reflection::CType g_unk_7172794d40 __attribute__((visibility("hidden")));
 
 void fn_7100c92b10() {
     InitHeader(g_unk_7172794a98);
@@ -258,7 +258,7 @@ void fn_7100c92b10() {
     InitVector(&g_unk_7172793350, "base::global::CRntVector<CCutSceneDef::CActorDef>", fn_7100c8456c);
     fn_710009ec00(&g_unk_71727934c0, &g_unk_7172793350);
     fn_7100c84768();
-    fn_710009ec00(&g_unk_71727934c1, &g_unk_7172794d40);
+    fn_710009ec00(&g_unk_71727934c1, const_cast<base::reflection::CType*>(&g_unk_7172794d40));
     fn_710009ec00(&g_unk_71727934c2, fn_7100c84da4());
     fn_710009ec00(&g_unk_71727934c3, fn_7100c84e80());
     InitClass(&g_unk_71727934c8,
