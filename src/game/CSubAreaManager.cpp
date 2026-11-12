@@ -400,7 +400,7 @@ struct UnkScenario {
 
 // Helpers that take an empty value first (their callers leave x0 as it is).
 struct UnkSubAreaTag : UnkLeftoverReg {};
-void fn_7100eea4c8(UnkSubAreaTag, UnkSubArea* area, bool a, bool b, UnkMask mask);
+void fn_7100eea4c8(UnkSubAreaTag, UnkSubArea* area, bool a, bool b, const UnkMask& mask);
 void fn_7100eea618(UnkSubAreaTag, UnkSubArea* area, bool flag);
 
 void fn_7100eead58(CSubAreaManager* self, const CStrId& prev_a, const CStrId& prev_b, const CStrId& cur_a,
@@ -734,10 +734,6 @@ void fn_7100ee34f0(CSubAreaManager* self) {
     self->field_0x110 = 0;
 }
 
-// The first argument of the two settings steps below: their caller (fn_7100ee5dcc) leaves x0 as
-// the previous call returned it, and neither reads it.
-struct UnkLeftoverArg : UnkLeftoverReg {};
-
 // The environment manager singleton (src/engine/UnkStartupManagers.cpp creates it the same way)
 // and the three settings it takes from a sub-area, each from one slot of the sub-area's table.
 // The singleton and its constructor keep the untyped declarations the other files share.
@@ -762,7 +758,7 @@ static inline UnkEnvironmentManager* EnvironmentManager() {
 
 // Hands the sub-area's settings for the slots set in `mask` (6, 8, then 7) to the environment
 // manager; without a sub-area, resets all three (`b` is then false).
-void fn_7100eea4c8(UnkLeftoverArg, UnkSubArea* area, bool a, bool b, const UnkMask* mask) {
+void fn_7100eea4c8(UnkSubAreaTag, UnkSubArea* area, bool a, bool b, const UnkMask& mask) {
     UnkEnvironmentManager* env = EnvironmentManager();
     if (!area) {
         fn_7100d8e32c(env, &g_unk_71729daf08, a, false);
@@ -770,14 +766,14 @@ void fn_7100eea4c8(UnkLeftoverArg, UnkSubArea* area, bool a, bool b, const UnkMa
         fn_7100d8df84(env, &g_unk_71729daf08, a, false);
         return;
     }
-    u32 bits = mask->bits;
+    u32 bits = mask.bits;
     if (bits >> 6 & 1) {
         fn_7100d8e32c(env, fn_7100fac818(area, 6), a, b);
-        bits = mask->bits;
+        bits = mask.bits;
     }
     if (bits >> 8 & 1) {
         fn_7100d8df84(env, fn_7100fac818(area, 8), a, b);
-        bits = mask->bits;
+        bits = mask.bits;
     }
     if (bits >> 7 & 1)
         fn_7100d8dac0(env, fn_7100fac818(area, 7), a, b);
@@ -797,7 +793,7 @@ void fn_71009349b0(UnkCameraCtrl* ctrl, bool flag, const CStrId* id);
 
 // Hands the sub-area's camera settings to the main camera's controller when it is the
 // CMetroidCameraCtrl one.
-void fn_7100eea618(UnkLeftoverArg, UnkSubArea* area, bool flag) {
+void fn_7100eea618(UnkSubAreaTag, UnkSubArea* area, bool flag) {
     UnkGameManager* gm = g_unk_7101d47310;
     u32 kind_value = g_unk_71727bebb8;
     u64 name = fn_7100001570("MainCamera", 10);

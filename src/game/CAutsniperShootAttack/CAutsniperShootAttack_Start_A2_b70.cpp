@@ -8,7 +8,7 @@
 struct UnkSelf;
 struct UnkActorTarget;
 void fn_7101178e08(UnkActorTarget*, u32, bool, bool, f32);
-void fn_710117662c(UnkActorTarget*, u32, u32, u32, u32, f32);
+void fn_710117662c(UnkActorTarget*, u32 value, u32 extra, bool apply, bool flag, f32 time);
 
 struct UnkAutsniperOwner_A2_b70 {
     u8 pad_0x0[0x218];
@@ -28,7 +28,7 @@ bool fn_71003d3958(UnkAutsniperAttack_A2_b70* self, void* arg, u32 mode) {
         return false;
     if (UnkActorTarget* anim = self->owner->field_0x220) {
         fn_7101178e08(anim, 6, 0, 0, -1.0f);
-        fn_710117662c(anim, 0xb, 0, 1, 1, -1.0f);
+        fn_710117662c(anim, 0xb, 0, true, true, -1.0f);
     }
     return true;
 }

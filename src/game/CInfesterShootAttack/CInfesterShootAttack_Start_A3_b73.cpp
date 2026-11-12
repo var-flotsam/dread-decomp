@@ -20,7 +20,7 @@ void fn_71003608ac(UnkAttackBase* self);
 void fn_71005c7824();
 struct UnkActorTarget;
 void fn_7101178e08(UnkActorTarget*, u32, bool, bool, f32);
-void fn_710117662c(UnkActorTarget*, u32, u32, u32, u32, f32);
+void fn_710117662c(UnkActorTarget*, u32 value, u32 extra, bool apply, bool flag, f32 time);
 
 // Returned in memory (not trivially copyable).
 struct UnkInfesterVec3_A3_b73 {
@@ -84,7 +84,7 @@ void fn_71005c6914(UnkInfesterShoot_A3_b73* self) {
     self->anim = *reinterpret_cast<UnkActorTarget**>(self->owner + 0x220);
     fn_7101178e08(self->anim, 0xb, 0, 0, -1.0f);
     fn_7101178e08(self->anim, 0xc, 0, 0, -1.0f);
-    fn_710117662c(self->anim, 6, 0, 0, 0, -1.0f);
+    fn_710117662c(self->anim, 6, 0, false, false, -1.0f);
     if (*reinterpret_cast<UnkWeakTarget**>(self->owner + 0x220)) {
         UnkInfesterTrackLink_A3_b73* link = &self->link;
         link->context = self;

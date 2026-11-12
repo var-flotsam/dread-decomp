@@ -16,7 +16,7 @@ using base::global::CStrId;
 struct UnkQuetzoaAIComponent;
 struct UnkActorTarget;
 void fn_7101178e08(UnkActorTarget*, u32, bool, bool, f32);
-void fn_710117662c(UnkActorTarget*, u32, u32, u32, u32, f32);
+void fn_710117662c(UnkActorTarget*, u32 value, u32 extra, bool apply, bool flag, f32 time);
 struct UnkFlagTarget;
 
 struct UnkInfesterOwner_b57a3 {
@@ -54,7 +54,7 @@ void fn_71005cb424(UnkInfesterAI_b57a3* self, void* arg) {
         if (anim) {
             fn_7101178e08(anim, 6, 0, 0, -1.0f);
             fn_7101178e08(anim, 0xc, 0, 0, -1.0f);
-            fn_710117662c(anim, 0xb, 0, 0, 0, -1.0f);
+            fn_710117662c(anim, 0xb, 0, false, false, -1.0f);
             mode.id = 0;
             mask.id = UnkAll_SpitSend().value;
             fn_7101176690(anim, 0x56b5846baf59688c, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740,
@@ -79,6 +79,6 @@ void fn_71005cb424(UnkInfesterAI_b57a3* self, void* arg) {
         self->field_0x146df = false;
         fn_7101178e08(anim, 6, 0, 0, -1.0f);
         fn_7101178e08(anim, 0xc, 0, 0, -1.0f);
-        fn_710117662c(anim, 0xb, 0, 1, 0, -1.0f);
+        fn_710117662c(anim, 0xb, 0, true, false, -1.0f);
     }
 }

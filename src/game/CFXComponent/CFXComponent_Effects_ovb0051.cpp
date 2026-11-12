@@ -22,7 +22,7 @@
 using base::global::UnkStringData;
 
 extern "C" int rand();
-void fn_7100206fac(void* part, f32 t, u32 a, u32 b, f32 from, f32 to);
+void fn_7100206fac(void* part, f32 value, f32 limit, f32 fallback, bool refresh, bool flag);
 struct UnkResetOwner;
 
 // Calls the virtual function at byte offset `Off` of `obj`'s vtable.
@@ -294,10 +294,10 @@ void fn_7101155124(UnkFXComponent_ovb51* self, f32 t) {
     StopA(self);
     StopB(self);
     fn_71001457fc(self->model_a, holder->scene, 0);
-    fn_7100206fac(self->model_a->part, t, 1, 0, 0.0f, 1.0f);
+    fn_7100206fac(self->model_a->part, t, 0.0f, 1.0f, true, false);
     if (self->model_b) {
         fn_71001457fc(self->model_b, holder->scene, 0);
-        fn_7100206fac(self->model_b->part, t, 1, 0, 0.0f, 1.0f);
+        fn_7100206fac(self->model_b->part, t, 0.0f, 1.0f, true, false);
     }
 }
 

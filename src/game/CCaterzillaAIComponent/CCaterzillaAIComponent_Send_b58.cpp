@@ -8,7 +8,7 @@
 #include "types.h"
 
 struct UnkActorTarget;
-void fn_710117662c(UnkActorTarget*, u32, u32, u32, u32, f32);
+void fn_710117662c(UnkActorTarget*, u32 value, u32 extra, bool apply, bool flag, f32 time);
 
 struct UnkCaterzillaSendOwner_b58 {
     u8 pad_0x0[0x220];
@@ -24,8 +24,8 @@ void fn_71003f775c(UnkCaterzillaSend_b58* self) {
     fn_71003695b8(reinterpret_cast<UnkBehaviorTreeAI*>(self));
     UnkActorTarget* target = self->owner->field_0x220;
     if (target) {
-        fn_710117662c(target, 12, 0, 0, 0, -1.0f);
-        fn_710117662c(target, 6, 0, 0, 0, -1.0f);
+        fn_710117662c(target, 12, 0, false, false, -1.0f);
+        fn_710117662c(target, 6, 0, false, false, -1.0f);
         base::reflection::refl_EmitU32(target, fn_7100001570("relax_spawn90", 13), 0xf4061ff25a2163d6, 1,
                                        &g_unk_710164b958, &g_unk_7172769740);
     }

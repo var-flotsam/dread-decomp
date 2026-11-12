@@ -1410,21 +1410,28 @@ struct UnkGroupFadePayload {
     f32 time;
 };
 
+// A set of voice groups, one bit each. Its caller (src/base/snd/CSoundSystem_Play_b46.cpp) copies it
+// before the call, so it is a class with a copy constructor passed by value.
+struct UnkSoundGroupMask {
+    u32 bits;
+    UnkSoundGroupMask(const UnkSoundGroupMask& other) : bits(other.bits) {}
+};
+
 static inline void ResumeGroupsIn(UnkSoundGroupVoice** voices, u32 count, const u32* mask, f32 time) {
     for (UnkSoundGroupVoice **it = voices, **end = voices + count; it != end; ++it)
         if (u32 bit = 1 << (*it)->group; *mask & bit)
             fn_7100105ef4(*it, 0.0f, time, false);
 }
 
-void fn_71000f9d20(UnkSoundSystemGroups* self, const u32* mask, f32 time) {
+void fn_71000f9d20(UnkSoundSystemGroups* self, UnkSoundGroupMask mask, f32 time) {
     if (__builtin_expect(g_unk_7108b6ab60 & 1, 1))
         return;
     fn_7100132cd0();
     nn::os::MutexType* mutex = &self->mutex;
     fn_710006691c(mutex);
-    self->paused = self->paused & ~*mask;
-    ResumeGroupsIn(self->plain, self->plain_count, mask, time);
-    ResumeGroupsIn(self->flagged, self->flagged_count, mask, time);
+    self->paused = self->paused & ~mask.bits;
+    ResumeGroupsIn(self->plain, self->plain_count, &mask.bits, time);
+    ResumeGroupsIn(self->flagged, self->flagged_count, &mask.bits, time);
     if (self->paused == 0) {
         UnkGroupFadePayload payload = {2, time};
         fn_71000faac4(reinterpret_cast<UnkSoundSystemATK*>(self), 0x20, &payload);

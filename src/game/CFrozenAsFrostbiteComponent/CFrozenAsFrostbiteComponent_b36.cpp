@@ -37,12 +37,12 @@ static inline void AddKey(UnkActor* actor, u64 key) {
     fn_7100d7c828(actor, &key, false);
 }
 
-void fn_71007fa080(UnkFrozenAsFrostbite* self, void* arg);  // the base method
+void fn_71007fa080(UnkFrozenAsFrostbite* self, u32 state);  // the base method
 
 // After the base method: while frozen (+0x3b8 positive), gives the actor's timeline the
 // definition's id; then clears the count and +0x3bc and runs request 2 on the actor's slots.
-void fn_71007f4860(UnkFrozenAsFrostbite* self, void* arg) {
-    fn_71007fa080(self, arg);
+void fn_71007f4860(UnkFrozenAsFrostbite* self, u32 state) {
+    fn_71007fa080(self, state);
     if (self->count >= 1) {
         AddKey(self->actor, self->def->holder->id);
     }

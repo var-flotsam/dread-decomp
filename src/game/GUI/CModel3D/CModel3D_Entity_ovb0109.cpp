@@ -74,7 +74,7 @@ void* fn_7100dea8d0(UnkGameManager* manager, const char* name, void* char_class,
 void fn_71002324f0(void* entity);
 void fn_71002325f8(void* entity);
 void fn_7100232938(void* entity);
-void fn_7100d7b068(void* entity, u32 index, f32 dt);
+void fn_7100d7b068(void* entity, f32 dt, bool flag);
 void fn_7100d7b1c0(void* entity, u32 index, f32 dt);
 
 // The scene's model manager: vf_0x38 is told before a model creates its entity.
@@ -218,7 +218,7 @@ void fn_71011f4350(UnkGuiModel3D_ovb0109* self, f32 dt) {
     UnkGuiObjectState* state = fn_71011cde14(Display(self));
     if (!state->field_0x3c || state->frame == 0x7fffffff || !self->entity)
         return;
-    fn_7100d7b068(self->entity, 0, dt);
+    fn_7100d7b068(self->entity, dt, false);
     fn_7100d7b1c0(self->entity, 0, dt);
     f32 speed = self->spin_speed;
     if (__builtin_fabsf(speed) > 1.1920929e-07f)

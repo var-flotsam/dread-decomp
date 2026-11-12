@@ -160,7 +160,7 @@ bool fn_71006dcdec(UnkVulkranAIBury_ovb0121* self) {
 
 struct UnkActorTarget;
 void fn_7101178e08(UnkActorTarget*, u32, bool, bool, f32);
-void fn_710117662c(UnkActorTarget*, u32, u32, u32, u32, f32);
+void fn_710117662c(UnkActorTarget*, u32 value, u32 extra, bool apply, bool flag, f32 time);
 
 struct UnkVulkranOwner_ovb0121 {
     u8 pad_0x0[0x218];
@@ -198,7 +198,7 @@ bool fn_71006dcfa8(UnkVulkranAI_ovb0121* self, bool quiet) {
         fn_7101178e08(animation, 6, 0, 0, -1.0f);
         fn_7101178e08(animation, 8, 0, 0, -1.0f);
         u32 moving = movement ? fn_71010cc3a4(movement) != 4 : 0;
-        fn_710117662c(animation, 0xb, 0, moving, 1, -1.0f);
+        fn_710117662c(animation, 0xb, 0, moving, true, -1.0f);
     }
     if (!quiet)
         fn_71006dd0c0(self);

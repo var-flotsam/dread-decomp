@@ -4,6 +4,7 @@
 // unit); CCharClassWaterPoolComponent's unit picks one of two keys reached through the GOT and sets
 // it without the test. Names are placeholders.
 #include "../game_s2/UnkSpitSend.h"
+#include "UnkLeftoverReg.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkMatrix44.h"
 #include "game/CAutoolAIComponent.h"
@@ -88,7 +89,7 @@ struct UnkEvacList_b61 {
 UnkEvacList_b61* fn_71007d5d8c(u32 id);
 extern u64 g_unk_710164ab40;
 
-void fn_71007da43c(void*, u32 id, u32 value) {
+void fn_71007da43c(UnkLeftoverReg, u32 id, u32 value) {
     UnkEvacList_b61* list = fn_71007d5d8c(id);
     for (UnkEvacEntry_b61** it = list->data, **end = list->data + list->count; it != end; ++it) {
         UnkEvacEntry_b61* entry = *it;

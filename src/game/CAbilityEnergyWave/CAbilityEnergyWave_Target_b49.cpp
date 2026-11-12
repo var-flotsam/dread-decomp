@@ -93,7 +93,7 @@ void fn_71002fe160(UnkEnergyWave2_b49* self, UnkEnergyWaveArg_b49* arg) {
         (*it)->vf_0x68(arg);
     if (UnkWorld* world = self->owner->world) {
         if (fn_7101152b90(world, 0xb1489dc93c1d38ddull))
-            fn_710114ffb8(reinterpret_cast<UnkRinkaControl_ruc*>(world), (void*)0xb1489dc93c1d38ddull, 0, 0);
+            fn_710114ffb8(reinterpret_cast<UnkRinkaControl_ruc*>(world), 0xb1489dc93c1d38ddull, false, false);
     }
 }
 

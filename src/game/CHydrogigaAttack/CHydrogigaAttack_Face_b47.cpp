@@ -12,7 +12,7 @@ struct UnkHydrogigaAttack_b47 {
 };
 
 // Signature as the other AI units declare it.
-void fn_710117662c(UnkActorTarget*, u32, u32, u32, u32, f32);
+void fn_710117662c(UnkActorTarget*, u32 value, u32 extra, bool apply, bool flag, f32 time);
 void fn_71003627d0(UnkHydrogigaAttack_b47* self);
 
 void fn_71005b2f74(UnkHydrogigaAttack_b47* self) {
@@ -20,6 +20,6 @@ void fn_71005b2f74(UnkHydrogigaAttack_b47* self) {
     UnkActor* target = fn_7100d7c990(self->owner);
     if (cls && target)
         fn_710117662c(reinterpret_cast<UnkActorTarget*>(cls), !(target->field_0x44 >= self->owner->field_0x44) ? 4 : 5,
-                      1, 0, 0, -1.0f);
+                      1, false, false, -1.0f);
     fn_71003627d0(self);
 }
