@@ -13,14 +13,13 @@
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTUProperty.h"
 #include "game/behaviortree/CBaseAction.h"
+#include "game/behaviortree/CBehavior.h"
 #include "game/behaviortree/CInFuryPatrolAction.h"
 #include "game_s2/UnkParams.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-extern base::global::CStrId g_unk_71726b7cb8;
 
 // A typed value as the section setter takes it (as in src/game/CDoorLifeComponent.cpp).
 struct UnkTypedValue {

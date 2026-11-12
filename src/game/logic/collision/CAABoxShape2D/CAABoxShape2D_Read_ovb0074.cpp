@@ -3,12 +3,12 @@
 // give the corners at +0xa8 and +0xb0, centred on the origin; then the shape updates itself (slot
 // 0x80). Names and layouts are placeholders.
 #include "base/global/CRntFile.h"
+#include "game/logic/collision/CShape.h"
 #include "types.h"
 
 using base::global::CRntFile;
 
 struct UnkPolygonCollectionShape;
-bool fn_7100d6c288(UnkPolygonCollectionShape* self, CRntFile* file);
 
 struct UnkAABoxShape2D_ovb0074 {
     virtual void vf_0x0();

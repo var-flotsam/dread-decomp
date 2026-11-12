@@ -25,6 +25,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkSlots.h"
+#include "game/UnkTU253.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
@@ -43,7 +44,6 @@ void fn_7100a09bf8(UnkPlatformUpdate_A5_b76* self, bool a, f32 progress);
 bool fn_7100a0ad9c(UnkPlatformUpdate_A5_b76* self);
 struct UnkInputComponent;
 void fn_710094b508(void* object);
-extern CStrId g_unk_7172743570 __attribute__((visibility("hidden")));
 
 struct UnkPlatformSubState_A5_b76 {
     u8 pad_0x0[0x10];
@@ -197,7 +197,6 @@ done:
 struct UnkSmartObjectUserA;
 struct UnkSmartObjectActor;
 void fn_7100861fc8(void* part, bool flag);
-bool fn_71001c287c(void*, u32, u32, CVector4D*, u32);
 struct UnkRinkaControl_ruc;
 extern const u64 g_unk_710164b4c0;
 extern const u64 g_unk_710164b4c8;

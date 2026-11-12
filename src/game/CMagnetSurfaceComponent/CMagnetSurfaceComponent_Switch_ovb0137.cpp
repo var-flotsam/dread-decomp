@@ -9,7 +9,9 @@
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkTU218.h"
+#include "game/UnkTU341.h"
 #include "game/UnkTU365.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "game/logic/collision/CCollider.h"
 #include "types.h"
@@ -19,7 +21,6 @@ using base::global::CStrId;
 using base::math::UnkVector4D;
 
 struct UnkStruct_7100233684;
-base::reflection::UnkReflObject* fn_7100233684(UnkStruct_7100233684* self);
 
 struct UnkRefl_fn_710092482c;
 template <>
@@ -37,7 +38,6 @@ extern const UnkSurfaceNames_ovb0137 g_unk_7172737d08 __attribute__((visibility(
 struct UnkMatrix44_7100078c9c {
     f32 m[16];
 };
-UnkMatrix44_7100078c9c fn_7100078cd8(const UnkVec3f& t);
 
 struct UnkTracker;
 struct UnkTriggerCollider_b0058;

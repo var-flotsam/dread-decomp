@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCharClassAttackComponent.h"
 #include "game/CCharClassBaseTriggerComponent.h"
 #include "types.h"
 
@@ -17,7 +18,6 @@ using base::reflection::UnkReflObject;
 
 struct UnkSteamJetComponent;
 struct UnkSteamJetArg;
-f32 fn_7100789f5c(const CStrId* id);
 
 extern CClass g_unk_717274b070 __attribute__((visibility("hidden")));
 

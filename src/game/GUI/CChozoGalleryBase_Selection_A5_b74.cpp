@@ -9,6 +9,7 @@
 #include "base/UnkDeferredSet.h"
 #include "base/global/CStrId.h"
 #include "game/GUI/CAmiiboComposition.h"
+#include "game/GUI/CChozoGalleryBase.h"
 #include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/sound/SGUISoundEventsSelector.h"
@@ -18,8 +19,6 @@ using base::global::CStrId;
 
 struct UnkSmBase_A6_b62;
 struct UnkSmArg_A6_b62;
-
-extern CStrId g_unk_717275ce28 __attribute__((visibility("hidden")));
 
 struct UnkGalleryItem_A5_b74 {
     virtual void vf_0x0();

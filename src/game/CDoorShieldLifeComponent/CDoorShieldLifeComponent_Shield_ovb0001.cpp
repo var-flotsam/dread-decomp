@@ -19,6 +19,7 @@
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkTU1370.h"
 #include "game/UnkTU2523.h"
+#include "game/UnkTU253.h"
 #include "game/UnkTU57.h"
 #include "types.h"
 
@@ -158,9 +159,7 @@ void fn_71008db6c4(UnkDoorShieldLife6_ovb0001* self, bool open) {
 }
 
 // As src/game/CNailongAIComponent/CNailongAIComponent_b46.cpp declares it.
-bool fn_71001c287c(void* target, u32 a, u32 b, CVector4D* colour, u32 c);
 // As src/game/CCharClassDeleteEntityEvent/CCharClassDeleteEntityEvent_Run_b49.cpp declares it.
-void fn_71001c2ec0(void* target, u32 a, u32 b, CVector4D* colour, u32 c, f32 time);
 void fn_7101155124(void* fade, f32 time);
 
 struct UnkDoorShieldMeshInfo_ovb0001 {

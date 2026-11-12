@@ -9,6 +9,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -17,7 +18,6 @@ struct UnkInventory;
 struct UnkStrIdHandle;
 void fn_7100ae986c(UnkStrIdHandle* self, const CStrId& id);
 struct UnkEntityState;
-void fn_7100232864(UnkEntityState*, bool);
 
 struct UnkPickableSpringBall_ov110 {
     u8 pad_0x0[0x30];

@@ -22,8 +22,6 @@ struct UnkCentralUnitList {
     u32 count;
 };
 
-void fn_7100772610(UnkReflObject* component, const CStrId* id, f32 a, f32 b);
-
 struct UnkStartDarknessEvent {
     u8 pad_0x0[0x10];
     CStrId id;  // 0x10

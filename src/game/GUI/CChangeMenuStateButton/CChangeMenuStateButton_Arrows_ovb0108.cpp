@@ -5,10 +5,10 @@
 // are more entries than fit. Names and layouts are placeholders.
 #include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkTU2747.h"
 #include "types.h"
 
 struct UnkNewGameScreen;
-void fn_71011cca3c(UnkGuiDisplayObject* self, f32 value);
 
 struct UnkPagedList_ovb0108 {
     u8 pad_0x0[0x1c8];

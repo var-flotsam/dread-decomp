@@ -4,6 +4,7 @@
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
+#include "game/CBouncingCreaturesLaunchPattern.h"
 #include "game/UnkTUProperty.h"
 
 using namespace unk_static_init;
@@ -64,7 +65,6 @@ extern char g_unk_71726ef3c0[];
 extern UnkConversion g_unk_71726ef3c8;
 void fn_71005e2034() __attribute__((visibility("hidden")));
 extern char g_unk_71726ef3e8[];
-extern UnkTunable g_unk_71726ef3f0;
 extern void* g_unk_7101a53690[];
 extern char g_unk_71726ef419[];
 

@@ -12,6 +12,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU101.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2578.h"
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
@@ -98,7 +99,6 @@ void fn_7100b541d0(UnkTitleScreenB* self) {
 using base::global::CRntString;
 using base::global::CStrId;
 
-void* fn_7100deab70(UnkGameManager* self, const CRntString& name);
 struct UnkMenuSoundOwner_l191198;
 void fn_7101191198(UnkMenuSoundOwner_l191198* self, f32 value);
 

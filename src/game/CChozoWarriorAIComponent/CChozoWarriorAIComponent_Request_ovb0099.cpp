@@ -2,6 +2,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CChozoWarriorAIComponent.h"
+#include "game/CCollisionComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "../../game_s2/UnkSpitSend.h"
@@ -13,11 +14,9 @@
 using base::global::CStrId;
 
 struct UnkCollisionContainer;
-CStrId* fn_7100864018(UnkCollisionContainer* self, void* object);
 struct UnkVec3;
 void fn_710007b444(void* dst, const UnkVec3* value);
 
-extern CStrId g_unk_71726d1270 __attribute__((visibility("hidden")));
 extern const UnkVec3 g_unk_71016499f8 __attribute__((visibility("hidden")));
 
 struct UnkChozoWarriorOwner {

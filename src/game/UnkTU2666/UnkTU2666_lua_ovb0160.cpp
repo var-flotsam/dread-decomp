@@ -19,6 +19,7 @@
 #include "game/CDrop.h"
 #include "game/CFXComponent.h"
 #include "game/CInventoryComponent.h"
+#include "game/CLandmarkComponent.h"
 #include "game/GUI/CAmiiboComposition.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
@@ -29,6 +30,7 @@
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2577.h"
+#include "game/UnkTU2620.h"
 #include "game/UnkTU2669.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU52.h"
@@ -54,9 +56,6 @@ struct lua_State;
 static inline s32 PushObject(lua_State* L, void* arg) {
     return fn_7100fbc4e0(L, arg);
 }
-
-bool fn_7100dfc344(UnkGameManager* manager, const char* const& a, const char* const& b, const base::global::CRntString& name,
-                   bool flag);
 
 // fn_7100dfc344 answers with a flag; its other user declares it without one.
 static inline bool RecordSnapshot(UnkGameManager* manager, const char* const& a, const char* const& b,
@@ -238,7 +237,6 @@ s32 fn_710108c9b0(lua_State* L) {
 }
 
 struct UnkLuaNode_b0160;
-UnkLuaNode_b0160* fn_71008a3288(const CStrId* id);
 UnkVec3f fn_71008a32f8(UnkLuaNode_b0160* node);
 UnkVec3f fn_71008a3314(UnkLuaNode_b0160* node);
 
@@ -273,7 +271,6 @@ s32 fn_710107ea10(lua_State* L) {
 }
 
 struct UnkCamCtrl_ovb5;
-UnkCamCtrl_ovb5* fn_7100df2404(UnkGameManager* manager, const CStrId& id);
 
 s32 fn_710107d200(lua_State* L) {
     const char* name;
@@ -286,7 +283,6 @@ s32 fn_710107d200(lua_State* L) {
 }
 
 struct UnkStatsObject;
-void fn_7100132248(UnkStatsObject* self, const CStrId& name, f32 value);
 
 s32 fn_710107fad0(lua_State* L) {
     union Slot {
@@ -413,14 +409,10 @@ s32 fn_710107cf40(lua_State* L) {
     return 0;
 }
 
-extern void* g_unk_7101d47368;
 struct UnkEnvironmentManager;
-void fn_7100d8e32c(UnkEnvironmentManager*, const CStrId*, bool, bool);
 
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
-void fn_7100eea3fc(void* self, const base::global::CStrId* id, bool a, bool b);
-void fn_7100eea334(void* self, const base::global::CStrId* id, bool a, bool b);
 
 s32 fn_7101083ac0(lua_State* L) {
     const char* name;
@@ -494,7 +486,6 @@ struct UnkLuaOwner_b0160 {
 };
 bool fn_71011603a4(UnkLuaPart_b0160* part, f32 value);
 bool fn_7101160214(UnkLuaPart_b0160* part, f32 value);
-extern void* g_unk_7101d47330;
 void fn_71011991c4(void* self, UnkReflObject* object);
 void fn_7101198450(void* self, UnkReflObject* object);
 
@@ -690,7 +681,6 @@ UnkReflValue fn_7100fbdfd0(lua_State* L, s32 index);
 struct UnkLuaReadScratch_b49a6 {
     u64 words[6];
 };
-bool fn_7100fc22a0(lua_State* L, s32 index, UnkTypedRef* value, u32 mode, UnkLuaReadScratch_b49a6* scratch);
 
 // The value's storage: through field_0x0 when flagged or when it doesn't fit in 8 bytes, else inline.
 static inline u64 TypeSize(const CType* type) {

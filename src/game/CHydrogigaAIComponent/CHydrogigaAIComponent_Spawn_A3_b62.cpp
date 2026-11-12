@@ -4,9 +4,8 @@
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CTentacle.h"
+#include "game/UnkTU883.h"
 #include "types.h"
-
-extern base::global::CStrId g_unk_71726eb450 __attribute__((visibility("hidden")));
 
 struct UnkHydrogigaKey_b62a3;
 extern UnkHydrogigaKey_b62a3 g_unk_710164a0d0 __attribute__((visibility("hidden")));

@@ -2,6 +2,8 @@
 // flag when the owner's collision object (+0x2a0) maps the hit target's +0x10 to the string id at
 // 0x71726d1270. Names are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CChozoWarriorAIComponent.h"
+#include "game/CCollisionComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -22,9 +24,6 @@ struct UnkHitTarget_b47 {
     u8 pad_0x0[0x10];
     void* field_0x10;
 };
-
-extern CStrId g_unk_71726d1270 __attribute__((visibility("hidden")));
-CStrId* fn_7100864018(UnkCollisionContainer* collision, void* key);
 
 void fn_710049ab8c(UnkWarriorAI_b47* self, UnkHitTarget_b47* const* hit, bool* found) {
     if (*found)

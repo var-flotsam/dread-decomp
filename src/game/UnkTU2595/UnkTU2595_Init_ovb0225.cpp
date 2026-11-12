@@ -5,6 +5,7 @@
 
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2595.h"
 #include "game/UnkTUInit.h"
 
 struct UnkTUHeaderEx_b0225 : UnkTUHeader {
@@ -18,7 +19,6 @@ extern UnkReflType g_unk_71729dc0b0;
 extern char g_unk_71729dc1c8;
 extern UnkConverter g_unk_71729dc1d0;
 extern UnkConverter g_unk_71729dc1f0;
-extern base::global::CRntString g_unk_71729dc240 __attribute__((visibility("hidden")));
 void fn_7100f12f8c(void* e);
 void fn_7100f13198(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 void fn_7100f1457c() __attribute__((visibility("hidden")));

@@ -18,6 +18,7 @@
 #include "game/CActorComponent.h"
 #include "game/CBreakableHintComponent.h"
 #include "game/CCharacterMovement.h"
+#include "game/CScenario.h"
 #include "game/UnkComponent.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"
@@ -354,7 +355,6 @@ struct UnkEnumType;
 using base::global::CStrId;
 using unk_static_init::UnkEnumType;
 
-CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 extern UnkPropertyEx<> g_unk_7172711390;  // BREAKABLE_HINTS
 extern UnkEnumType g_unk_7172735f58;      // its value type
 

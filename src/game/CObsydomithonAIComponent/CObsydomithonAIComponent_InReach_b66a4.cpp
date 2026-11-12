@@ -6,12 +6,11 @@
 // Names and layouts are placeholders.
 #include "base/math/CVector.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU108.h"
 #include "types.h"
 
 // As src/game/CShakernautAIComponent/CShakernautAIComponent_Reach_b65a4.cpp declares it.
 struct UnkShakernautArea_b65a4;
-bool fn_71001176e8(UnkShakernautArea_b65a4* area, const base::math::CVector2D* pos, u32* out, void* filter,
-                   u32 flags, f32 radius);
 
 struct UnkObsydomithonAI_b66a4 {
     u8 pad_0x0[0x30];

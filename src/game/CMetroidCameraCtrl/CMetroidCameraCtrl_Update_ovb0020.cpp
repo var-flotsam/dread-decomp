@@ -10,12 +10,12 @@
 // fn_71007642d4 once a second. Names and layouts are placeholders.
 #include "game/CCameraBoundaryCtrl.h"
 #include "game/CCameraCtrl.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU39.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 struct UnkGfxFrameSource;
-extern UnkGfxFrameSource* g_unk_7101d47328;
 f32 fn_7100080eac(UnkGfxFrameSource* clock);
 struct UnkFixedCamera_fc;
 struct UnkArg_fc;

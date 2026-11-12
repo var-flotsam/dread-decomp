@@ -219,7 +219,6 @@ struct UnkActor_7100286798;
 struct UnkStruct_7100286624;
 struct UnkOwner;
 
-void fn_7100286920(UnkNavQuery* self, const CVector2D* point, u16 cell, u8 side);
 f32 fn_7100569f34(UnkOwner* self, void* unused, u32 key, f32 value);
 char* fn_7100569fd4(char* p0, char* p1, char* p2);
 void* fn_7100ebfa74(UnkNavMeshManager* self, UnkNavQuery* query, UnkNavCallback_b0194* callback);

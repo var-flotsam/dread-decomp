@@ -7,6 +7,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
 #include "game/CDoorShieldLifeComponent.h"
+#include "game/CScenario.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1376.h"
 #include "game/UnkTUProperty.h"
@@ -14,7 +15,6 @@
 
 using base::global::CStrId;
 
-CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 // The "NextState" property and the CDoorLifeComponent::SState enum (src/game_s7/fn_71008da6c0.cpp).
 struct UnkEnumType;
 extern UnkEnumType g_unk_7172731200;

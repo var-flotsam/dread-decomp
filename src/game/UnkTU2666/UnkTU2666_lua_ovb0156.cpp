@@ -290,8 +290,6 @@ s32 fn_710108f7c0(lua_State* L) {
     return 0;
 }
 
-void fn_7100deac9c(UnkGameManager* self, const CRntString& name);
-
 s32 fn_7101078220(lua_State* L) {
     const char* name;
     if (fn_71010c0270(L, "s", &name)) {

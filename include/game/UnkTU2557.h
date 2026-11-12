@@ -3,6 +3,7 @@
 // UnkTU2557: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2557,
 // 0x7100e0f028-0x7100e140c0). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/reflection/UnkReflConverter.h"
 #include "types.h"
 
 struct UnkReflType;
@@ -16,3 +17,5 @@ extern void* g_unk_71727c0708;  // A render object the loading screen keeps (poo
 extern char g_unk_71727c0828;
 extern UnkLoadingScreenData g_unk_71727c0870 __attribute__((visibility("hidden")));
 extern UnkReflType g_unk_71727c0710;
+extern UnkConverter g_unk_71727c0830;
+extern UnkConverter g_unk_71727c0850;

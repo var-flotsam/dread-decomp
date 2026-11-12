@@ -13,6 +13,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CArenaManager/CTunableArenaManager.h"
 #include "game/CBlackboard.h"
+#include "game/CScenario.h"
 #include "game/CSpawnGroupComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTUProperty.h"
@@ -113,7 +114,6 @@ struct UnkTypedValue {
     void* value;
 };
 
-CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 // The index of a key, or the count if it isn't there.

@@ -10,6 +10,7 @@
 #include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -354,8 +355,6 @@ struct UnkSaveGamePair_b54 {
     u64 first;
     u64 second;
 };
-void fn_7100dfd174(UnkGameManager* self, CRntString* name, CRntString* tag, bool flag, u32 kind,
-                   const UnkSaveGamePair_b54& extra);
 extern void* g_unk_7101a1b678[];
 using UnkString40_A6_b62 = UnkBufferString<0x40, g_unk_7101a1b678>;
 

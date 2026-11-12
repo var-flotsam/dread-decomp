@@ -72,7 +72,6 @@ void fn_7101196f4c(UnkRefList_b0188* self) {
     ReleaseAll(self);
 }
 
-extern void* g_unk_7101d47330;
 void fn_710106838c(void* p);
 void fn_7101196ccc(void* self);
 
@@ -191,8 +190,6 @@ bool fn_710119a320(void* root) {
 
 using base::global::CStrId;
 
-extern CStrId g_unk_7172a0bc98;
-
 struct UnkIdHolder_b0188 {
     u8 pad_0x0[0xae8];
     CStrId* ids;  // 0xae8
@@ -223,8 +220,6 @@ void fn_71011990e8(UnkIdHolder_b0188* self) {
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
-
-extern CStrId g_unk_7172a0bc98;
 
 struct UnkSubId_7100fc4b34 {
     CStrId id;
@@ -422,7 +417,6 @@ void fn_710119a9bc(base::UnkVector<UnkRefPtr_b0188>* v, u32 n) {
 }
 
 struct UnkGameManagerNamedDef;
-extern CStrId g_unk_7172a0bc98;
 
 // The unit's header data, then two floats and a flag the unit's statics read.
 struct UnkCutsceneUnitHeader {

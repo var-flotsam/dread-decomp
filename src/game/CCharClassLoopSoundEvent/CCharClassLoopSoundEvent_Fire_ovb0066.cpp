@@ -4,14 +4,13 @@
 #include "base/UnkDestructors.h"
 #include "base/global/CStrId.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2730.h"
 #include "types.h"
 
 using base::UnkStrIdMember;
 using base::UnkStrIdMemberOf;
 using base::global::CStrId;
-
-extern void* g_unk_7101d47330;
 
 struct UnkLoopSoundEvent_ovb0066 {
     virtual void vf_0x0();

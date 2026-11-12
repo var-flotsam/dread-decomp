@@ -6,6 +6,7 @@
 #include "base/UnkHashStream.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/animation/CBlendSpaceResource.h"
+#include "base/file/CThreadSafeDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
@@ -18,7 +19,6 @@ struct UnkStrPair_0x10 {
     void* a;
     void* b;
 };
-void fn_710008d2ec(UnkStrPair_0x10* self, const base::global::CFilePathStrId* path);
 struct UnkFileReader {
     base::global::CRntFile file;
     u32 field_0x38;
@@ -26,7 +26,6 @@ struct UnkFileReader {
 };
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
 // The parse (its result, nonzero on success, is not in the other files' declaration).
-void fn_710000f750(UnkParseContext* self, void* root);
 static inline s32 ParseRoot(UnkParseContext* ctx, void* root) {
     return reinterpret_cast<s32 (*)(UnkParseContext*, void*)>(&fn_710000f750)(ctx, root);
 }

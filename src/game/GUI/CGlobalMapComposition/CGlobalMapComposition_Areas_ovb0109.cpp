@@ -40,7 +40,6 @@ struct UnkStateKey;
 struct UnkEnumType;
 extern UnkEnumType g_unk_71729f01a8;
 struct UnkGlobalMapComposition;
-UnkVec2Result fn_71011cf12c(UnkGuiDisplayObject* self, const UnkVec2Result& point);
 struct UnkGuiObj;
 void fn_71011cd5a0(UnkGuiObj* object);
 

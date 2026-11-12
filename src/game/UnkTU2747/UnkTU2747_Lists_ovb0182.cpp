@@ -360,8 +360,6 @@ void fn_71011cfc24(UnkGuiObj* object, const UnkColor& color, u32 value) {
 
 // --- changing the parent ---
 
-void fn_71011cee40(UnkGuiDisplayObject* object);
-
 struct UnkDisplayObjectContainer_ovb0032;
 struct UnkDisplayObject_ovb0032;
 

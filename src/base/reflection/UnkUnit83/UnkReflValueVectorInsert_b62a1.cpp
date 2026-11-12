@@ -5,13 +5,12 @@
 #include "base/UnkNamedRegistry.h"
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
-
-__attribute__((flatten)) void fn_71000a179c(UnkReflValue* self, const UnkReflValue* other);  // copy constructor
 
 struct UnkReflValueElem_b62a1 {
     UnkReflValue value;

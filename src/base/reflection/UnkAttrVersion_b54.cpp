@@ -1,5 +1,6 @@
 // The "Version" attribute of a registered file type, split into (major, minor) halfwords
 // (called by fn_710000ccd8 in src/base/animation/CBlendSpaceResource.cpp). Names are placeholders.
+#include "base/reflection/CType.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
@@ -10,7 +11,6 @@ using base::reflection::UnkReflValue;
 
 struct UnkVersionEntry;
 // The attribute stored under `key`, as a reflected value (empty when absent).
-UnkReflValue fn_710009ddd4(UnkVersionEntry* self, const base::reflection::UnkReflAttrKey& key);
 
 bool fn_71000e6ce0(UnkVersionEntry* self, u16* major, u16* minor) {
     UnkReflValue v = fn_710009ddd4(self, fn_7100005070());

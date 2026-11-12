@@ -6,13 +6,12 @@
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
 #include "game/CPowerGeneratorComponent.h"
+#include "game/CScenario.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 
 struct UnkPowerGeneratorValue_b48 {
     CStrId id;

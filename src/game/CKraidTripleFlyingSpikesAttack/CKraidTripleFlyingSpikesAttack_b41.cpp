@@ -5,6 +5,7 @@
 // fn_71005ff92c. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CKraidAIComponent.h"
 #include "game/CKraidAttack.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
@@ -23,7 +24,6 @@ struct UnkSelf_kt41 {
     UnkOwner_kt41* owner;
 };
 
-bool fn_71005ff8c0(UnkReflObject* ai);
 bool fn_71005ff90c(UnkReflObject* ai);
 // Defined in src/game/CKraidAIComponent/CKraidAIComponent_b40.cpp without its (unused) argument.
 bool fn_71005ff92c();

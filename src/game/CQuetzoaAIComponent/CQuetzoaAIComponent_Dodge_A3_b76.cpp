@@ -9,6 +9,7 @@
 #include "game/CBlackboard.h"
 #include "game/UnkActor.h"
 #include "game/UnkTUProperty.h"
+#include "game/behaviortree/CBehavior.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -20,7 +21,6 @@ struct UnkTypedValue {
     void* value;
 };
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
-extern base::global::CStrId g_unk_71726b7cb8;
 
 struct UnkQuetzoaPos_A3_b76 {
     alignas(8) u32 v[4];  // 16 bytes: shares the name's slot and keeps its own place

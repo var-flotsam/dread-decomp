@@ -4,6 +4,7 @@
 // placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/UnkTU1450.h"
 #include "types.h"
 #include <math.h>
@@ -15,7 +16,6 @@ using base::global::CStrId;
 
 struct UnkAuraGunOwner;
 struct CGrappleBeamGun;
-CGrappleBeamGun* fn_710030c5fc(UnkAuraGunOwner* self, const CStrId& id);
 struct UnkUnit1452_b56;
 struct UnkUnit1452Owner_b56;
 

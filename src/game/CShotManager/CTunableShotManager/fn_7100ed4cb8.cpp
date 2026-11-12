@@ -4,6 +4,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/UnkVector.h"
+#include "game/CSpittailMagmaBallMovementComponent.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU127.h"
 #include "game/UnkTU253.h"
@@ -40,7 +41,6 @@ static_assert(__builtin_offsetof(UnkProjectiles, field_0x148) == 0x148, "");
 static_assert(__builtin_offsetof(UnkProjectiles, field_0x198) == 0x198, "");
 static_assert(__builtin_offsetof(UnkProjectiles, field_0x230) == 0x230, "");
 
-void fn_71006cae2c(UnkRenderPool* pool, const CFilePathStrId& path, UnkModel** out, base::global::CStrId* name);
 void fn_7100ecf978(u64* field, u32 value);
 void fn_7100ed7634(UnkProjectiles* self);
 

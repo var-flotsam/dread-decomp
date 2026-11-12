@@ -13,12 +13,14 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
+#include "game/CCharClassStartPointComponent.h"
 #include "game/CUsableComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU1176.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2611.h"
+#include "game/UnkTU315.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -58,8 +60,6 @@ UnkGeneratorRecord_ovb0120* fn_7100a7cd10(base::UnkVector<UnkGeneratorRecord_ovb
 
 using base::math::CVector4D;
 
-void fn_710021a0bc(UnkRenderManager* self, const u64* hash, CVector4D* value);
-void fn_710021a0b4(UnkRenderManager* self, const u64* hash, const base::math::CVector4D* value);
 struct UnkScenarioObject_ovb0032;
 struct UnkPlayer;
 
@@ -69,7 +69,6 @@ struct UnkGeneratorActor_ovb0120 {
 };
 
 struct UnkGeneratorTarget_ovb0120;
-void fn_710116c128(UnkGeneratorTarget_ovb0120* self, const UnkVec3f* offset, const UnkVec3f* angle, bool flag);
 
 struct UnkGeneratorOwnerRef_ovb0120 {
     u8 pad_0x0[0x10];

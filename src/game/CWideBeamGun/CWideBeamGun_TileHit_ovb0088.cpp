@@ -9,7 +9,6 @@
 
 struct UnkQueryObj;
 struct UnkTileQuery_A3_b64;
-UnkTileQuery_A3_b64* fn_7100ca1ecc(base::reflection::UnkReflObject*, const void*, void*, bool);
 
 struct UnkWideBeamHitLink1_ovb0088 {
     u8 pad_0x0[0x10];

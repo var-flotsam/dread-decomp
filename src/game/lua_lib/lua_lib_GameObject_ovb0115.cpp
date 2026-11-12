@@ -62,8 +62,6 @@ struct UnkGameObjectTyped_ovb0115 {
     void* obj;
 };
 
-int fn_7100fbe7b0(lua_State* L, UnkGameObjectTyped_ovb0115* value, CStrId* name);
-
 // A game object's method closure: the name in the first upvalue, the object in the first argument.
 int fn_7100fbc640(lua_State* L) {
     const char* str = luaL_checkstring(L, lua_upvalueindex(1));

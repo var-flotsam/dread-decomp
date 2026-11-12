@@ -12,13 +12,12 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiHandle.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2747.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::reflection::UnkReflObject;
-
-UnkReflObject* fn_7100e033a8(UnkGameManager* manager);
 
 struct UnkGalleryScreen_b257i {
     u8 pad_0x0[8];

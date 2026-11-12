@@ -14,6 +14,8 @@
 #include "base/math/UnkZeroVector3.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CActorComponent.h"
+#include "game/UnkTU2505.h"
 #include "game/UnkTU2509.h"
 #include "game/UnkTU365.h"
 #include "types.h"
@@ -123,11 +125,8 @@ UnkLogicShapeFlagMap_ovb0037* fn_71009169dc(UnkLogicShapeFlagMap_ovb0037* self, 
 using base::global::CRntFile;
 
 struct UnkPickableItem_A4_b76;
-void fn_710024fc0c(UnkPickableItem_A4_b76* self, CRntFile* file);
 
 struct UnkCollisionFileReader;
-void fn_7100d45fc4(UnkCollisionFileReader* self, void* arg);
-void fn_7100d45fd4(UnkCollisionFileReader* self);
 
 struct UnkLogicShape_ovb0037 {
     virtual void vf_0x0();
@@ -195,9 +194,6 @@ struct UnkShapeHit_A5_b68 {
     u8 pad_0x4[0xc];
     UnkShapeHit_A5_b68(const UnkShapeHit_A5_b68& other);
 };
-
-UnkShapeHit_A5_b68 fn_7100d572f8(UnkShapeTester_A5_b68* tester, void* shape, const base::math::CVector2D* pos,
-                                 const base::math::CVector3D* offset, u64 flags);
 
 struct UnkShapeObject_ovb0037 {
     u8 pad_0x0[0x44];

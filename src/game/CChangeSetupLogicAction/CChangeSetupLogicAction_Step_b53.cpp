@@ -13,8 +13,6 @@ struct UnkTutoExitAction_b47;
 
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
-void fn_7100eea3fc(void* manager, const base::global::CStrId* id, bool a, bool b);
-void fn_7100eea334(void* manager, const base::global::CStrId* id, bool a, bool b);
 
 struct UnkChangeSetupAction_b53 {
     void** vtable;

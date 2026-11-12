@@ -17,6 +17,8 @@
 #include "base/tunable/CTunable.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU254.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2566.h"
 #include "game/UnkTU259.h"
 #include "game/UnkTU287.h"
@@ -274,7 +276,6 @@ struct UnkMinimapView {
     base::math::CVector2D size;
 };
 struct UnkMinimapViewport;
-void fn_71001c36c0(UnkMinimapView* view, const base::math::CVector2D* pos, const base::math::CVector2D* size);
 struct UnkMinimapViewport {
     u8 unk_0x0[0x18];
     u8 node[0xfb];
@@ -448,7 +449,6 @@ void fn_7100ea9b04(UnkMinimapModifiers* self, u32 size) {
     self->count = size;
 }
 
-const base::global::CStrId* fn_7100de9bf8(UnkGameManager* self);
 UnkMinimapRect fn_7100e94e10();
 void fn_7100205f98(void* xform, f32 fov, f32 near, f32 far, const UnkMinimapVec3* eye);
 void fn_7100145400(UnkMinimapCamera* camera, const UnkMinimapVec3* target);
@@ -569,7 +569,6 @@ extern const u32 g_unk_7101648bb8;  // the screen's width and height in pixels
 extern const u32 g_unk_7101648bbc;
 
 struct UnkStruct_710020a5a0;
-void fn_710020a5a0(UnkStruct_710020a5a0* self, const base::math::CVector2D* scale);
 
 // Fits the map's viewport to the screen: the size ratios go to the render manager and the view, the
 // node is scaled and placed, and outside the editor the render manager gets the map's opacity (1
@@ -782,7 +781,6 @@ void fn_7100e9d1f8(UnkMinimapOwner* self, s32 kind) {
 
 #include "base/UnkBlockFreeList.h"
 
-void fn_710002f4e4(void* self);                       // a timer's constructor
 void fn_7100eb2cc0(void* self, u32 a, u32 b);         // sets up the pooled set at 0xd64210
 
 // The vtables (GOT 0x7101cd03a8, 0x7101d298c8, 0x7101cd05f8, 0x7101cd05f0).

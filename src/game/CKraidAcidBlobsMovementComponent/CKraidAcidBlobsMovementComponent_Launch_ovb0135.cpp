@@ -7,6 +7,7 @@
 #include "game/CProjectileMovement.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU133.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -25,8 +26,6 @@ struct UnkKraidCreatureVec {
 struct UnkComponent;
 struct UnkObject;
 struct UnkPart;
-void fn_7100145f28(UnkSwitchObject* self, const UnkVec3f* position);
-void fn_7100145f3c(UnkSwitchObject* self, const UnkVec3f* angles);
 extern "C" f32 atan2f(f32 y, f32 x);
 
 struct UnkAcidBlobPart_ovb0135 {

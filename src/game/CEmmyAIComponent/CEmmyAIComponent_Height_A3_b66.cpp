@@ -6,13 +6,12 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkTU811.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::math::CVector2D;
 using base::math::CVector3D;
-
-extern CStrId g_unk_71726e1f68 __attribute__((visibility("hidden")));
 
 struct UnkEmmySegment_A3_b66 {
     CVector3D p0;

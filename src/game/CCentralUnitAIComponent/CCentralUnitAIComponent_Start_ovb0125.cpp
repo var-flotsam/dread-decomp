@@ -5,6 +5,7 @@
 // and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/UnkBehaviorTree.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2730.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -53,7 +54,6 @@ void fn_7100403b30(UnkCentralUnitAI_ovb0125* self) {
 }
 
 extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
-extern void* g_unk_7101d47330;
 
 struct UnkCentralSendOwner_ovb0125 {
     u8 pad_0x0[0x220];

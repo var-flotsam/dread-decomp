@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
 #include "game/CBlackboard.h"
+#include "game/CScenario.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU1376.h"
@@ -105,7 +106,6 @@ static_assert(__builtin_offsetof(UnkDoorLife, field_0x6ac) == 0x6ac, "UnkDoorLif
 static_assert(__builtin_offsetof(UnkDoorLife, field_0xa18) == 0xa18, "UnkDoorLife layout");
 
 // Whether the door may open now.
-CStrId fn_71011a2fbc(UnkGameManagerSub_0x608* self);
 
 // A typed value as the section setter takes it (as in src/game/CXParasiteAIComponent.cpp).
 struct UnkTypedValue {

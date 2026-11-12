@@ -15,6 +15,7 @@
 #include "game/CScenario.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1176.h"
+#include "game/UnkTU57.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -156,8 +157,6 @@ static inline const CRntString* Text_ovb0032(const CStrId& id) {
     ++reinterpret_cast<UnkStrIdText_ovb0032*>(id.data)->uses;
     return &reinterpret_cast<UnkStrIdText_ovb0032*>(id.data)->str;
 }
-
-bool fn_710007fc80(const CRntString* str, const CRntString* prefix);
 
 // A function-local static id and its guard.
 struct UnkStaticIdSlot_ovb0032 {

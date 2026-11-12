@@ -2,9 +2,8 @@
 // 0x40 over the same range (fn_710120b198, middleware), with the words after it cleared
 // (fn_71000f8630). It has no direct callers.
 #include "base/UnkDefaultAllocator.h"
+#include "game/UnkTU2772.h"
 #include "types.h"
-
-void fn_710120b198(void* heap, char* begin, u64 size);
 
 struct UnkTwoHeaps_71000f8630 {
     u64 field_0x0;

@@ -99,7 +99,6 @@ void fn_7100ebf558(UnkNavMeshManager* self);
 
 void fn_7100e1bf64(void* self);
 
-extern void* g_unk_7101d47368;  // the environment manager
 void fn_7100d8d0c4(void* self);
 
 struct UnkManager;

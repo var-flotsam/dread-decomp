@@ -20,6 +20,8 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU2744.h"
+#include "game/UnkTU2747.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 #include "UnkClone.h"
@@ -79,8 +81,6 @@ struct UnkGuiUpdatable {
 // The libc++ sort of the object list (src/game_s7/fn_71011bc0b0.cpp names it in assembly; its
 // comparator argument is dropped).
 extern "C" void fn_71011bc0b0(UnkGuiDisplayObject** first, UnkGuiDisplayObject** last);
-bool fn_71011ceac0(UnkGuiDisplayObject* self);
-bool fn_71011ceb34(UnkGuiDisplayObject* self);
 
 // Room for 0x800 objects on the stack: a count, then the pointers (4-byte aligned).
 struct UnkGuiObjectList {
@@ -257,8 +257,6 @@ bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base:
 // This unit's parser callbacks.
 extern UnkParseCallbacks g_unk_7172a0d128 __attribute__((visibility("hidden")));
 
-void fn_710000f750(UnkParseContext* self, void* root);
-
 // Parses the file into the target, starting from its last entry's node.
 static inline void Parse(UnkFileReader* reader, UnkReadTarget* target) {
     UnkParseContext ctx(g_unk_7172a0d128, reader, target);
@@ -267,7 +265,6 @@ static inline void Parse(UnkFileReader* reader, UnkReadTarget* target) {
 }
 
 // The type of std::unique_ptr<GUI::CDisplayObjectContainer> (src/reflection_types/).
-const base::reflection::CType* fn_71011bcf1c();
 
 // The loaded composition, as src/game_hi/fn_71011b69d8.cpp declares it (a display-object
 // container; vf_0x10 is its deleting destructor, vf_0x28 its weak-handle slot).

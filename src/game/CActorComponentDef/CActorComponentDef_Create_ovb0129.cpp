@@ -12,6 +12,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU56.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
@@ -21,10 +22,6 @@ struct UnkFileReader {
     u32 field_0x38;
     u32 field_0x3c;
 };
-
-void fn_710007beac(base::global::CRntFile* self, const base::global::CRntFile* other, u32 flags,
-                   base::UnkAllocator* allocator);
-void fn_710000f750(UnkParseContext* self, void* root);
 
 // This unit's parser callbacks.
 extern UnkParseCallbacks g_unk_71726a0058 __attribute__((visibility("hidden")));

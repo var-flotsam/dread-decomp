@@ -7,12 +7,12 @@
 // placeholders.
 #include "base/UnkRefHandle.h"
 #include "game/CEmmyWakeUpComponent.h"
+#include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkCentralUnitProto;
 struct UnkEntityState;
-void fn_7100232864(UnkEntityState* entity, bool value);
 
 struct UnkEmmyWakeUpMessageType {
     u8 pad_0x0[0x30];

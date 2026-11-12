@@ -3,6 +3,8 @@
 // UnkTU2566: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2566,
 // 0x7100e7cdfc-0x7100eb695c). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/global/CStrId.h"
+#include "game/UnkTUProperty.h"
 #include "types.h"
 
 struct UnkMinimapStatics;
@@ -31,3 +33,8 @@ extern UnkNamedDef_b43a3 g_unk_71727c9f88;
 extern bool g_unk_71727cc998 __attribute__((visibility("hidden")));
 extern u8 g_unk_71727cc99c[] __attribute__((visibility("hidden")));
 extern UnkMinimapStatics g_unk_71729cdaa0 __attribute__((visibility("hidden")));
+void fn_7100e8f9a0(char* self, bool remove, base::global::CStrId* key);
+extern base::global::CStrId g_unk_71727cc990;
+void fn_7100e9c43c(UnkMapData* map, const base::global::CStrId* id);
+void fn_7100e9cbac(void* world, const base::global::CStrId* current, base::global::CStrId* id, bool flag);
+extern UnkTunable g_unk_71727ca410;

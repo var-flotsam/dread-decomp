@@ -5,12 +5,11 @@
 // string's 64-bit hash % capacity; next node at +0x20). A result of 0 is success; 1 is a quiet
 // failure; any other result goes to the registry's error callback (+0x68, context at +0x60).
 // Names and layouts are placeholders.
+#include "base/file/IDevice.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-extern CStrId g_unk_7101d592c8;  // the empty string id (as src/game/CGameManager.cpp declares it)
 
 // A string's pooled data, as far as these calls read it: its 64-bit hash at +0x30.
 struct UnkRegistryString_A1b72 {

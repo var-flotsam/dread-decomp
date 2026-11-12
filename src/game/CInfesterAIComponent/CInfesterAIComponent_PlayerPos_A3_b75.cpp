@@ -8,6 +8,7 @@
 #include "game/CBlackboard.h"
 #include "game/UnkActor.h"
 #include "game/UnkTUProperty.h"
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 #include "game/UnkBehaviorTree.h"
 
@@ -19,7 +20,6 @@ struct UnkTypedValue {
     void* value;
 };
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
-extern base::global::CStrId g_unk_71726b7cb8;
 // As src/game/CGobblerAIComponent/fn_71005820c4.cpp declares it.
 struct UnkGobblerComponent;
 

@@ -16,7 +16,6 @@ using base::global::CStrId;
 
 struct UnkEnergyWaveKey_b60a2;
 extern UnkEnergyWaveKey_b60a2 g_unk_7101648cf8;  // reached through the GOT
-extern UnkTunable g_unk_71726af8b0;
 struct UnkEntry;
 struct UnkOwner;
 UnkEntry* fn_7100300970(UnkOwner* self, const CStrId* id);

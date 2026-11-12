@@ -6,6 +6,7 @@
 #include "base/global/CRntFile.h"
 #include "game/UnkTU2514.h"
 #include "game/UnkTU2517.h"
+#include "game/UnkTU56.h"
 #include "game/logic/collision/CAABoxShape2D.h"
 #include "game/logic/collision/CCapsuleShape2D.h"
 #include "game/logic/collision/CCircleShape2D.h"
@@ -33,8 +34,6 @@ struct UnkShapeHandle_b0261 {
     UnkShapeHandle_b0261() : shape(nullptr) {}
     UnkShapeHandle_b0261(const UnkShapeHandle_b0261& other) : shape(other.shape) {}
 };
-
-s64 fn_710007cee4(void* reader, const char** out);
 
 template <u32 Size, void (*Ctor)(void*)>
 static inline __attribute__((always_inline)) void Build_b0261(UnkShapeHandle_b0261* out, CRntFile* file) {

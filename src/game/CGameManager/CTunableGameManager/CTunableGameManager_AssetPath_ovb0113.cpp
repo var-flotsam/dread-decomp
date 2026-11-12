@@ -5,6 +5,7 @@
 #include "base/UnkAtExit.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
+#include "game/UnkTU112.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -27,7 +28,6 @@ struct UnkTunableLine {
     }
     ~UnkTunableLine() asm("fn_7100de9f54");
 };
-UnkTunableLine fn_710013c834(const CRntString* str, const char* from, const char* to);
 
 struct UnkAssetNameData_ovb0113 {
     u8 pad_0x0[0x10];

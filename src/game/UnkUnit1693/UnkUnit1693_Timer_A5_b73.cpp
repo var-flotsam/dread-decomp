@@ -3,14 +3,13 @@
 // and tells the menu to move on (fn_7100b35704 with 1, true). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/GUI/CMainMenu.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU1693.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::reflection::UnkReflObject;
-
-extern CStrId g_unk_71727645a0 __attribute__((visibility("hidden")));  // the screen's key
-void fn_7100b35704(UnkReflObject* menu, u32 value, bool flag);
 
 struct UnkUnit1693Timer_A5_b73 {
     u8 pad_0x0[0x10];

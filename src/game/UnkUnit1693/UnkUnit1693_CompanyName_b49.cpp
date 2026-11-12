@@ -8,17 +8,15 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU1693.h"
+#include "game/UnkTU2747.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-extern CStrId g_unk_71727645a0 __attribute__((visibility("hidden")));  // the screen's key
-
 void fn_71011ceb54(UnkGuiDisplayObject* self, f32 value);
 void fn_71011cebb0(UnkGuiDisplayObject* self, f32 value);
 void fn_71011cec0c(UnkGuiDisplayObject* self, f32 value);
-void fn_71011cec68(UnkGuiDisplayObject* self, f32 value);
-void fn_71011ce208(UnkGuiDisplayObject* self, f32 value);
 
 struct UnkUnit1693Screen {
     virtual void vf_0x0();

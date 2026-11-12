@@ -5,6 +5,7 @@
 // (+0x160..+0x168, alpha 0) into its +0x15c and its renderer's +0x30 (the parts of +0x78 of +0x138 of
 // the component's +0x50). Names and layouts are placeholders.
 #include "base/math/CVector4D.h"
+#include "game/CCharClassGooplotAIComponent.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkBehaviorTree.h"
 #include "game/UnkTUProperty.h"
@@ -13,7 +14,6 @@
 using base::math::CVector4D;
 
 struct UnkFlagTarget;
-extern UnkTunable g_unk_71726e72b8;
 extern char g_unk_710164a040[];
 extern char g_unk_710164a048[];
 

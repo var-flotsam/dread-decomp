@@ -164,8 +164,6 @@ void fn_710015c520();
 void fn_7100154560();
 void fn_710015c140();
 void fn_710015bde0();
-u32 fn_7100132f80();
-u32 fn_7100132f90();
 void fn_7100132a30(s32 value);
 
 // The NVN entry points are called through inline wrappers, so the arguments are evaluated

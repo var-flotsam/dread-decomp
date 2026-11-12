@@ -1,5 +1,6 @@
 // Projects a position to screen coordinates through the view selected by (a, b) and reports
 // whether it lands inside the scaled screen area.
+#include "base/tunable/CTunable.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU280.h"
 #include "game/UnkTU315.h"
@@ -24,8 +25,6 @@ struct UnkStruct_7100219588_View {
 
 bool fn_71001fd7b4(void* views, UnkStruct_7100219588_Xform* xform, u32 a, u32 b);
 void fn_7100150d30(void* camera, UnkStruct_7100219588_Xform* xform, const void* pos, s32* x, s32* y, bool flag);
-u32 fn_7100132f80();
-u32 fn_7100132f90();
 f32 fn_71001d08f4(void* obj);
 
 bool fn_7100219588(UnkRenderManager* self, const void* pos, u32 a, u32 b) {

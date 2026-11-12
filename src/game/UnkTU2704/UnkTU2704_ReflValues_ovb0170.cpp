@@ -30,7 +30,6 @@ using base::reflection::UnkReflValue;
 
 struct UnkBoundObj;
 struct UnkAssignedRecord_a1ba4;
-void fn_71000a179c(UnkReflValue* self, const UnkReflValue* other);
 
 // Releases the payload a value owns (shared by the holders below).
 static inline __attribute__((always_inline)) void DestroyPayload(UnkReflValue* v) {

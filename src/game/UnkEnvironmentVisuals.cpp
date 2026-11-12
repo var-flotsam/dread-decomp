@@ -13,6 +13,7 @@
 #include "base/math/CVector.h"
 #include "base/math/CVector4D.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU2607.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -200,7 +201,6 @@ void fn_7100f98370(f32 time, UnkEnvironmentFade* self, const UnkEnvFadeColor* to
 void fn_7100f98410(f32 to, f32 time, UnkEnvironmentFade* self);
 void fn_7100f984ac(f32 time, UnkEnvironmentFade* self, const UnkEnvFadeColor* a, const UnkEnvFadeColor* b,
                    const UnkEnvFadeColor* c);
-void fn_7100f985d8(f32 time, UnkEnvironmentFade* self, const CVector2D* to);
 void fn_7100f98d24(f32 time, UnkEnvironmentFade* self, const CVector3D* to);
 void fn_7100f98dc4(f32 time, UnkEnvironmentFade* self, const CVector3D* to);
 void fn_7100f986c8(f32 time, UnkEnvironmentFade* self, const CVector3D* to);

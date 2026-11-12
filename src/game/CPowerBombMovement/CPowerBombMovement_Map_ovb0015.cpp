@@ -16,6 +16,7 @@
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2656.h"
 #include "types.h"
 
 extern void* g_unk_7101a95348[];  // the movement's vtable
@@ -25,7 +26,6 @@ void fn_7100aa9ee4(UnkBombMovement* self);  // the base constructor
 struct UnkPbMovementBase_ovb0015;
 struct UnkHandleOwner_71010c4230;
 // Flashes the screen through the game manager's effect player (+0x1078): colour, two zeros, time.
-void fn_7101053c14(void* fx, const base::math::CVector3D* color, f32 a, f32 b, f32 time);
 
 // A counted object (count at +0x8, released through slot 0x10); the listener's link has its owner
 // at +0x10.

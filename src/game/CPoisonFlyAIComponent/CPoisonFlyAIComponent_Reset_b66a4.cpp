@@ -3,10 +3,9 @@
 // +0x50 and clears the list and its count (+0x38), drops the reference at +0xa0, and takes the
 // tunable's word at +0x4c (CTunableCharClassPoisonFlyAIComponent, g_unk_71726fa0f8) into +0xb4.
 // Names and layouts are placeholders.
+#include "game/CCharClassPoisonFlyAIComponent.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
-
-extern UnkTunable g_unk_71726fa0f8;
 
 struct UnkRefCounted_b66a4p {
     virtual void vf_0x0();

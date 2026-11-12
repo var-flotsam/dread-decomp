@@ -3,6 +3,7 @@
 // CLightsDef: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2529,
 // 0x7100d9cf1c-0x7100da201c). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/global/CStrId.h"
 #include "types.h"
 
 struct UnkReflType;
@@ -37,3 +38,4 @@ extern UnkReflType g_unk_71727ba9a0;
 extern UnkReflType g_unk_71727baae0;
 extern UnkReflType g_unk_71727bac20;
 extern UnkTUHeader g_unk_71727bb618 __attribute__((visibility("hidden")));
+void fn_7100d9e8b0(UnkReflType* self, const base::global::CStrId& name, void* a, void* b);

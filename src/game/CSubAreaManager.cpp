@@ -12,6 +12,9 @@
 #include "base/UnkStrIdPathPair.h"
 #include "base/animation/CAnimationResource.h"
 #include "base/animation/CBlendSpaceResource.h"
+#include "base/core/CBaseObject.h"
+#include "base/file/CPackManagerDevice.h"
+#include "base/file/CThreadSafeDevice.h"
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntFile.h"
@@ -34,6 +37,8 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU23.h"
+#include "game/UnkTU2505.h"
+#include "game/UnkTU2510.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2577.h"
 #include "game/UnkTU2611.h"
@@ -54,7 +59,6 @@ struct UnkStrPair_0x10 {
 };
 
 // Builds the id and path pair from a file-path id.
-void fn_710008d2ec(UnkStrPair_0x10* self, const base::global::CFilePathStrId* path);
 
 // The file read into memory and two words the opener sets (+0x38 is zero after a good read).
 struct UnkFileReader {
@@ -68,10 +72,7 @@ bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base:
 // This unit's parser callbacks.
 extern UnkParseCallbacks g_unk_71729daf80 __attribute__((visibility("hidden")));
 
-void fn_710000f750(UnkParseContext* self, void* root);
-
 // The object read and its type.
-extern base::reflection::CType g_unk_7172756e50;
 
 // Parses the file into the target, starting from its last entry's node.
 static inline void Parse(UnkFileReader* reader, UnkReadTarget* target) {
@@ -348,8 +349,6 @@ static inline const CStrId& SecondId(const UnkSubArea* area) { return area ? are
 
 // The camera holder fn_7100defcec gives and its current camera controller (game/UnkCameraCtrl.h).
 void fn_7100723120(void* holder);
-void fn_71010e4168(void* holder, const CStrId* id, bool flag);
-bool fn_7100023d00(const UnkCameraCtrl* object, const base::reflection::CClass* cls);
 
 struct UnkPlayerSub {
     u8 pad_0x0[0x6c];
@@ -374,7 +373,6 @@ void fn_7100eead58(CSubAreaManager* self, const CStrId& prev_a, const CStrId& pr
                    const CStrId& cur_b);
 void fn_7100ee6d00(CSubAreaManager* self, UnkSubArea* prev, UnkSubArea* cur, UnkIdSet* set, bool flag);
 void fn_7100ee8ea4(CSubAreaManager* self, UnkIdSet* set);
-void fn_7100d59dd8(UnkScenarioSub* self);
 void fn_7100ee6884(CSubAreaManager* self);
 void fn_7100ee62bc(CSubAreaManager* self, UnkSubArea* area);
 
@@ -485,7 +483,6 @@ void fn_7100ee4550(CSubAreaManager* self, const UnkPoppedRequest* request, bool 
 void fn_7100ee4704(CSubAreaManager* self, const UnkPoppedRequest* request, bool a, bool b);
 
 // The GUI root (src/game/CCutscene.cpp) and a 0x48-byte singleton created on first use.
-extern void* g_unk_7101d47330;
 #include "game/UnkSubAreaGuiCache.h"
 void fn_710119a110(void* root, const UnkPathIdMember* id);
 bool fn_710119e684(UnkSubAreaGuiCache* self, const base::UnkStrIdMember* id, bool flag);
@@ -529,7 +526,6 @@ void fn_7100d476e4(UnkManager_7100863a8c* self, void* obj);
 // The file device singleton and the sound manager (src/game/CGameManager.cpp).
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
 struct UnkSoundMgr;
-void fn_710008987c(base::file::UnkFileDevice* self, const CFilePathStrId* path, u32 flags);
 void fn_7100089894(base::file::UnkFileDevice* self);
 void fn_7100108c94(UnkSoundMgr* self, const CFilePathStrId* path);
 // The file-path id array's element accessor (UnkVector::GrowAt, out of line).
@@ -700,8 +696,6 @@ void fn_7100ee34f0(CSubAreaManager* self) {
 // and the three settings it takes from a sub-area, each from one slot of the sub-area's table.
 // The singleton and its constructor keep the untyped declarations the other files share.
 struct UnkEnvironmentManager;
-extern void* g_unk_7101d47368;
-void fn_7100d8e32c(UnkEnvironmentManager* self, const CStrId* id, bool a, bool b);  // slot 6
 void fn_7100d8dac0(UnkEnvironmentManager* self, const CStrId* id, bool a, bool b);  // slot 7
 void fn_7100d8df84(UnkEnvironmentManager* self, const CStrId* id, bool a, bool b);  // slot 8
 // The sub-area's slot `index`: an id in its table at +0x68.
@@ -785,8 +779,6 @@ void fn_7100eea618(UnkSubAreaTag, UnkSubArea* area, bool flag) {
 struct UnkCollisionFileReader {
     u8 unk_0x0[0x18];
 };
-void fn_7100d45fc4(UnkCollisionFileReader* self, void* arg);
-void fn_7100d45fd4(UnkCollisionFileReader* self);
 void fn_7100860830(UnkCollisionFileReader* self, const char* path, base::UnkVector<UnkCollisionRecord>* out,
                    bool a, void* b);
 

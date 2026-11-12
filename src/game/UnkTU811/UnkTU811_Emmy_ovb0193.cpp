@@ -11,6 +11,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAIManager/CTunableAIManager.h"
 #include "game/CAudioComponent.h"
 #include "game/CBlackboard.h"
 #include "game/CCharacterMovement.h"
@@ -28,6 +29,7 @@
 #include "game/UnkTU54.h"
 #include "game/UnkTU811.h"
 #include "game/UnkXformNode.h"
+#include "game/behaviortree/CBehavior.h"
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
@@ -67,7 +69,6 @@ struct UnkEmmyAI_b0193 {
 
 void fn_710110fbc4(UnkEmmyAI_b0193* self, UnkEmmyOther_b0193* other);
 void fn_71005455e8(UnkEmmyAI_b0193* self);
-extern CStrId g_unk_71726e1f68 __attribute__((visibility("hidden")));
 
 void fn_7100545570(UnkEmmyAI_b0193* self, UnkEmmyOther_b0193* other) {
     fn_710110fbc4(self, other);
@@ -217,7 +218,6 @@ bool fn_71005593f0(UnkEmmyStateAI_b0193* self, bool force, u32 id) {
 
 // ---- 71005579b0
 
-extern base::global::CStrId g_unk_71726b7cb8;
 extern char g_unk_71726debe0[];
 bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
 bool fn_7101110268(void* self);
@@ -366,7 +366,6 @@ bool fn_710054782c(UnkEmmyRelaxAI_b59* self_) {
 
 // ---- 7100545138
 
-void fn_7100daa92c(UnkManager_71726af468* self, CStrId name, u32 value);
 bool fn_7100daaba0(UnkManager_71726af468* self, u32 value, CStrId name);
 extern CStrId g_unk_71726e2090 __attribute__((visibility("hidden")));
 struct UnkEmmyActor_b55;

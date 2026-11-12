@@ -173,9 +173,6 @@ int fn_7100fb96c0(lua_State* L) {
 struct UnkReflType;
 u32 fn_71000997b4(UnkReflType* type, const char* name);
 
-void fn_7100daa92c(UnkManager_71726af468* self, CStrId name, u32 value);
-void fn_7100daa638(UnkManager_71726af468* self, CStrId name, u32 value, const CVector3D& pos);
-
 static inline UnkManager_71726af468* AIManager() {
     UnkManager_71726af468* m = g_unk_71726af468;
     if (!m) {

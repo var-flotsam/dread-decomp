@@ -5,6 +5,7 @@
 // placeholders.
 #include "base/UnkVector.h"
 #include "game/CBreakableTileGroup.h"
+#include "game/CBreakableTileManager/CTunableBreakableTileManager.h"
 #include "types.h"
 
 struct UnkQueryObj {
@@ -130,7 +131,6 @@ void fn_7100c9da0c(UnkTileLists* self) {
 }
 
 struct UnkTunable;
-extern UnkTunable g_unk_7172796920;
 extern "C" f32 sqrtf(f32);
 void fn_7100c9feac(UnkQueryObj* tile, s32 a, s32 b, f32 delay);
 

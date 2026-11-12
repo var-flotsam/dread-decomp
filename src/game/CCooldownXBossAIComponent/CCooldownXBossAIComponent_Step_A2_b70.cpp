@@ -5,13 +5,12 @@
 #include "game/CAbilityEnergyWave.h"
 #include "game/CBossAIComponent.h"
 #include "game/CShotManager/CTunableShotManager.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2730.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
 struct UnkNode;
-
-extern void* g_unk_7101d47330;
 
 struct UnkCooldownTarget_A2_b70 {
     u8 pad_0x0[0x10];

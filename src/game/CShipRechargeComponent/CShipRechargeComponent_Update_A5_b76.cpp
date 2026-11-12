@@ -6,6 +6,7 @@
 // moves sideways. Names and layouts are placeholders.
 #include "../UnkSmRequest_A5_b73.h"
 #include "base/global/CFilePathStrId.h"
+#include "base/snd/CSoundSystem.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CInputComponent.h"
 #include "game/CUsableComponent.h"
@@ -40,7 +41,6 @@ struct UnkSoundRef_A5_b76 {
     UnkSoundEntry_A5_b76* entry;
     u64 id;
 };
-UnkSoundRef_A5_b76 fn_7100108aa4(UnkSoundMgr* self, const CFilePathStrId* path, bool flag);
 
 // As src/game/CShipRechargeComponent/CShipRechargeComponent_Use_A5_b73.cpp declares them.
 struct UnkShipRecharge_A5_b73;

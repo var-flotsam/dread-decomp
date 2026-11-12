@@ -5,6 +5,7 @@
 #include "base/UnkVector.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU39.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -14,7 +15,6 @@ struct UnkElem {
 };
 
 struct UnkSub;
-void fn_710002f4e4(void*);
 
 struct UnkRecord {
     u64 field_0x0;

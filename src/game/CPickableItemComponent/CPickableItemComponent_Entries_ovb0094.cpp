@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
+#include "game/CBreakableTileGroup.h"
 #include "game/CCharClassBreakableScenarioComponent.h"
 #include "game/CPickableItemComponent.h"
 #include "game/UnkGameManager.h"
@@ -134,7 +135,6 @@ void fn_71009cf780(UnkPickItem_ovb0094* self) {
 }
 
 struct UnkEntityState;
-void fn_7100232864(UnkEntityState*, bool);
 struct UnkStruct_71002334fc;
 struct UnkSpawnGroupKey;
 extern u64 g_unk_717273ffc8 __attribute__((visibility("hidden")));
@@ -186,7 +186,6 @@ void fn_71009d0570(UnkPickTimed_ovb0094* self, f32 dt) {
 
 using base::global::CStrId;
 
-CStrId fn_7100de9c30(UnkGameManager*);
 struct UnkTypedValue {
     const base::reflection::CType* type;
     void* value;
@@ -298,7 +297,6 @@ namespace base::reflection {
 struct UnkReflObject;
 }
 struct UnkTileQuery_A3_b64;
-UnkTileQuery_A3_b64* fn_7100ca1ecc(base::reflection::UnkReflObject*, const void*, void*, bool);
 
 struct UnkPickTiles_ovb0094 {
     u8 unk_0x0[0x90];

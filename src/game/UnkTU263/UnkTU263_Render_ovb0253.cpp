@@ -19,7 +19,6 @@ extern f32 g_unk_716e596650[3] __attribute__((visibility("hidden")));
 extern u32 g_unk_7101a1e9bc;
 extern u32 g_unk_7101a1e9c0;
 
-void fn_71001cdd6c(UnkRenderTargetA1* target, CStrId id);
 // Takes a mode number in the first slot (the declaration elsewhere calls it with true).
 struct UnkRenderCalls_b0253 {
     static void fn_71001cde84(UnkRenderTargetA1* target, u32 a, bool b, bool c);

@@ -9,6 +9,7 @@
 #include "base/UnkHashStream.h"
 #include "base/UnkVector.h"
 #include "base/animation/CBlendSpaceResource.h"
+#include "base/core/CBaseObject.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -215,7 +216,6 @@ struct UnkTunableValue {
 struct UnkReflField;
 struct UnkReflFieldObject;
 struct UnkReflValueArg;
-s32 fn_7100024140(const base::reflection::CType* type);  // the type's letter (b, f, i, s, v)
 
 // Sets a tunable's field to a value of the same kind.
 void fn_710013c4b4(UnkTunableRegistry* self, const char* name, const char* field_name, UnkTunableValue* value) {
@@ -252,7 +252,6 @@ struct UnkFileReader {
 };
 
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
-void fn_710000f750(UnkParseContext* self, void* root);
 
 extern UnkParseCallbacks g_unk_710b372778 __attribute__((visibility("hidden")));  // this unit's callbacks
 extern UnkStrPair_0x10 g_unk_710b372748 __attribute__((visibility("hidden")));    // the second tunables file

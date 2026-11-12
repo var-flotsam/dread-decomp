@@ -7,6 +7,7 @@
 #include "game/CBlackboard.h"
 #include "game/GUI/CAmiiboComposition.h"
 #include "game/GUI/CIngameMenu.h"
+#include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkGuiDisplayObject.h"
@@ -16,6 +17,7 @@
 #include "game/UnkItemProperties.h"
 #include "game/UnkTU1600.h"
 #include "game/UnkTU1689.h"
+#include "game/UnkTU2564.h"
 #include "game/UnkTU2566.h"
 #include "game/UnkTU2567.h"
 #include "game/UnkTUProperty.h"
@@ -167,16 +169,6 @@ extern UnkStateKey g_unk_71729f0178;
 struct UnkMapMenuControllerClose;
 
 // ---- fn_7100b37b80
-extern UnkStrIdBase g_unk_71727c7fe8;
-extern UnkStrIdBase g_unk_71727c7ff0;
-extern UnkStrIdBase g_unk_71727c7ff8;
-extern UnkStrIdBase g_unk_71727c8000;
-extern UnkStrIdBase g_unk_71727c8008;
-extern UnkStrIdBase g_unk_71727c8010;
-extern UnkStrIdBase g_unk_71727c8018;
-extern UnkStrIdBase g_unk_71727c8020;
-extern UnkStrIdBase g_unk_71727c8028;
-extern UnkTunable g_unk_71727ca410;
 extern const base::math::CVector3D g_unk_71016477a8;
 
 static inline const base::math::CVector3D* Colors_ovb0203() {
@@ -206,7 +198,6 @@ const base::math::CVector3D* fn_7100b37b80(const void* kind) {
 }
 
 // ---- fn_7100b44ae4
-extern CStrId g_unk_71727cc990;
 extern UnkPropertyEx<> g_unk_71727639d0;
 
 // Sends the open or close message to the object behind the handle at +0x390 (vtable slot 0x1e8).
@@ -267,14 +258,6 @@ void fn_7100b44f08(UnkMapMenuController_ovb0203* self) {
 void fn_7100ea6234(UnkMapData* self, const CStrId* id);
 struct UnkIdArrayOwner;
 void fn_7100e9b5d0(UnkIdArrayOwner* self);
-extern CStrId g_unk_71727c82d8;
-extern CStrId g_unk_71727c82e0;
-extern CStrId g_unk_71727c82e8;
-extern CStrId g_unk_71727c82f0;
-extern CStrId g_unk_71727c82f8;
-extern CStrId g_unk_71727c8300;
-extern CStrId g_unk_71727c8308;
-extern CStrId g_unk_71727c8310;
 void fn_7100b3cb50(UnkMapMenuController_ovb0203* self);
 
 void fn_7100b459e4(UnkMapMenuController_ovb0203* self, bool flag) {
@@ -364,9 +347,6 @@ struct UnkButtonCallback_ovb0203 {
 
 struct UnkGuiComposition_ovb0090;
 struct UnkMapCallback_ovb0090;
-void fn_7100b5fde0(UnkGuiComposition_ovb0090* gui, const CStrId* text, const CStrId* accept, const CStrId* back,
-                   const UnkMapCallback_ovb0090* on_accept, const UnkMapCallback_ovb0090* on_back, u32 mode,
-                   f32 time);
 extern CStrId g_unk_7172763e08[] __attribute__((visibility("hidden")));
 
 struct UnkGuiRef_ovb0203 {
@@ -408,7 +388,6 @@ void fn_7100b43204(UnkMapMenuController_ovb0203* self, bool flag) {
 }
 
 // ---- fn_7100b46e10
-void fn_7100e9cbac(void* world, const CStrId* current, CStrId* id, bool flag);
 void fn_7100e9336c(UnkMapData* self);
 struct UnkMapMenuController;
 // The base handler takes a flag here, where src/game/GUI/CMapMenuController_3.cpp passes an argument pointer: the
@@ -673,7 +652,6 @@ bool fn_7100b475d4(UnkMapMenuStage_ovb0203* self) {
 }
 
 // ---- fn_7100b45b5c
-extern CStrId g_unk_7172763d98 __attribute__((visibility("hidden")));
 struct UnkMapTimersView_b43a3;
 struct UnkStateOwner;
 

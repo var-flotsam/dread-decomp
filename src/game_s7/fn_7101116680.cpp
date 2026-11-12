@@ -5,6 +5,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
+#include "game/UnkTU2702.h"
 #include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
@@ -45,7 +46,6 @@ extern UnkConversion g_unk_7172a05640;
 extern UnkConversion g_unk_7172a05660;
 void fn_71011121f0() __attribute__((visibility("hidden")));
 void fn_71011121fc() __attribute__((visibility("hidden")));
-extern base::reflection::CType g_unk_7172a05520;
 extern char g_unk_7172a05638[];
 void fn_71010f4e10(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71010f4c04();

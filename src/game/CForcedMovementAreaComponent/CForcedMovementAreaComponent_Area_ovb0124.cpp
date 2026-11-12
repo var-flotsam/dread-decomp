@@ -16,6 +16,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CActorComponent.h"
 #include "game/CAutsharpAIComponent.h"
+#include "game/CCharClassStartPointComponent.h"
 #include "game/CChozoCommanderSentenceSphereAttack.h"
 #include "game/CForcedMovementAreaComponent.h"
 #include "game/UnkBroadphaseObject.h"
@@ -28,7 +29,9 @@
 #include "game/UnkTU2547.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2577.h"
+#include "game/UnkTU341.h"
 #include "game/UnkTU365.h"
+#include "game/UnkTU54.h"
 #include "game/UnkTU811.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -159,8 +162,6 @@ struct UnkShapeHit_A5_b68 {
     u8 pad_0x4[0xc];
     UnkShapeHit_A5_b68(const UnkShapeHit_A5_b68& other);
 };
-UnkShapeHit_A5_b68 fn_7100d572f8(UnkShapeTester_A5_b68* tester, void* shape, const base::math::CVector2D* pos,
-                                 const base::math::CVector3D* offset, u64 flags);
 
 extern CStrId g_unk_717271fdf8 __attribute__((visibility("hidden")));
 
@@ -309,7 +310,6 @@ struct UnkDoorRegistry_b61;
 struct UnkScenarioObject_ovb0032;
 struct UnkPlayer;
 struct UnkGeneratorTarget_ovb0120;
-void fn_710116c128(UnkGeneratorTarget_ovb0120*, const UnkVec3f*, const UnkVec3f*, bool);
 
 struct UnkAreaActor_ovb0124 {
     u8 pad_0x0[0x38];
@@ -426,7 +426,6 @@ using base::global::CStrId;
 struct UnkMatrix44_7100078c9c {
     f32 m[16];
 };
-UnkMatrix44_7100078c9c fn_7100078cd8(const UnkVec3f& t);
 
 struct UnkTree;
 struct UnkShape;
@@ -592,7 +591,6 @@ struct UnkUnit2547;
 struct UnkCentralUnit;
 struct UnkPlayer;
 struct UnkEntityState;
-void fn_7100232864(UnkEntityState*, bool);
 
 struct UnkAreaPosition_ovb0124 {
     u8 pad_0x0[0x44];

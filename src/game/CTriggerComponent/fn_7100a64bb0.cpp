@@ -69,7 +69,6 @@ void fn_7100a5b92c(UnkEnumType* type, const CStrId& name, void (*factory)(), voi
 void fn_7100a5b600();
 extern char g_unk_717274ddd0[];
 extern char g_unk_717274ddd1[];
-extern UnkTunable g_unk_717274ddd8;
 extern void* g_unk_7101a8f830[];
 
 void fn_7100a64bb0() {

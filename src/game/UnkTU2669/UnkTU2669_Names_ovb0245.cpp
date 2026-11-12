@@ -39,8 +39,6 @@ struct UnkStackStr_ovb0245 {
     }
 };
 
-s32 fn_710007fb10(const base::global::CRntString*, char, s32);
-
 struct UnkUnit2669Str;
 struct UnkUnit2669Tag : UnkLeftoverReg {};
 

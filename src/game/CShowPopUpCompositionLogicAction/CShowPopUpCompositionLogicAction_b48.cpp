@@ -5,11 +5,11 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/CTriggerLogicAction.h"
+#include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
 struct UnkTutoExitAction_b47;
-void fn_7100b5fd6c(void* object, base::global::UnkStringData** name, void* block, bool a, bool b);
 base::UnkStrIdMember* fn_71000ce740(base::UnkVector<base::UnkStrIdMember>* self, u32 index);
 
 struct UnkPopUpEntry_b48 {

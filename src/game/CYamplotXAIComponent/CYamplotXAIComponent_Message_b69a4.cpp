@@ -6,6 +6,7 @@
 #include "game/CBlackboard.h"
 #include "game/UnkTU2702.h"
 #include "game/UnkTUProperty.h"
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -19,8 +20,6 @@ struct UnkTypedValue {
     void* value;
 };
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
-
-extern base::global::CStrId g_unk_71726b7cb8;
 
 struct UnkYamplotXAI_b69a4 {
     u8 pad_0x0[0x1260];

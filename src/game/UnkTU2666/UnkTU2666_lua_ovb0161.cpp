@@ -20,6 +20,7 @@
 #include "game/CCameraComponent.h"
 #include "game/CCollisionMaterialCacheComponent.h"
 #include "game/CInventoryComponent.h"
+#include "game/CLandmarkComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
@@ -35,6 +36,7 @@
 #include "game/lua_lib.h"
 #include "game/malloc.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -161,8 +163,6 @@ extern "C" void __cxa_guard_release(u64* guard);
 extern u32 g_unk_717274f508;
 extern u64 g_unk_717274f510;
 struct UnkMusicMode;
-void fn_7100fd90d8(f32 a, f32 b, void* music, const CRntString* name, u32 c, const UnkMusicMode* d, u32 e, u32 f,
-                   void* g);
 
 s32 fn_7101090f50(lua_State* L) {
     f32 first;
@@ -446,7 +446,6 @@ s32 fn_710108fe30(lua_State* L) {
 
 // ---- a landmark node by name ----
 struct UnkLuaNode_b0160;
-UnkLuaNode_b0160* fn_71008a3288(const CStrId* id);
 void fn_71008a3384(UnkLuaNode_b0160* node, const f32* position, const f32* rotation);
 
 struct UnkVec3_b0161 {

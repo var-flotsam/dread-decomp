@@ -3,11 +3,10 @@
 #include "../../../game_s7/UnkGuiS7.h"
 #include "base/global/CRntString.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::global::CRntString;
-
-void* fn_7100deab70(UnkGameManager* self, const CRntString& name);
 
 struct UnkCreditsRgb_ovb0070 {
     f32 r, g, b;

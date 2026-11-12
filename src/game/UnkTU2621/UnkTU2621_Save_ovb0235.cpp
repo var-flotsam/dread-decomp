@@ -9,6 +9,7 @@
 #include "base/UnkVector.h"
 #include "base/UnkHashStream.h"
 #include "base/animation/CAnimationResource.h"
+#include "base/file/IDevice.h"
 #include "base/file/nx/CDeviceNX.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CFilePathStrId.h"
@@ -17,6 +18,7 @@
 #include "game/CGameManager/CTunableGameManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2768.h"
+#include "game/UnkTU56.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -24,8 +26,6 @@ using base::global::CStrId;
 
 // ---- save registry
 
-
-extern CStrId g_unk_7101d592c8;
 
 struct UnkRegistryCurrent_b0235 {
     virtual void vf_0x0();
@@ -351,9 +351,7 @@ bool fn_7100fc7c5c(UnkDirIter_b0235* it);
 bool fn_7100fc7b78(UnkDirIter_b0235* it);
 UnkInlineString_b0235 fn_7100fc7c7c(UnkDirIter_b0235* it);
 void fn_7100fc7d88(UnkDirIter_b0235* it, base::global::CRntFile* file);
-void fn_710007c080(base::global::CRntFile* file, void* data, u32 flags, u64 size);
 void fn_710007c144(UnkHashStream_0x38* s);
-u32 fn_710002ed98(void* table, base::global::CRntString* path, void* out, u32 b, void* allocator, u32 align, u32 flags);
 bool fn_7100fc7d58(UnkDirIter_b0235* it);
 void fn_7100fc7cfc(UnkDirIter_b0235* it, base::global::CRntFile* file);
 extern const char g_unk_710164784b;  // the path separator

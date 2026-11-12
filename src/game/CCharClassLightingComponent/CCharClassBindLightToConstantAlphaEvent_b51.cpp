@@ -4,13 +4,13 @@
 // unbinds the light (fn_7100219558). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU315.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 void fn_710021954c(UnkRenderManager* self, const CStrId* light, void* node, const CStrId* bone, u32 value,
                    bool flag);
-void fn_7100219558(UnkRenderManager* self, const CStrId* light, bool flag);
 
 struct UnkBindLightModel_b51 {
     u8 unk_0x0[0x50];

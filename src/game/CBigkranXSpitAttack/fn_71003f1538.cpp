@@ -2,10 +2,9 @@
 // the two ids set up in the unit initialiser (fn_71003f4220), or the global one when the owner
 // isn't ready.
 #include "base/global/CStrId.h"
+#include "game/CBigkranXSpitAttack.h"
 
 using base::global::UnkStrIdBase;
-
-extern UnkStrIdBase g_unk_71726c2888[2] __attribute__((visibility("hidden")));
 
 struct UnkSpitOwnerState {
     u8 pad_0x0[0x6f8];

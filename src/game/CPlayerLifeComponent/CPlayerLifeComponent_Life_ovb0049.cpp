@@ -33,7 +33,6 @@ using base::global::UnkStringPool;
 struct UnkInventory;
 struct UnkStruct_71008c0c74;
 struct UnkBase_71003cc474;
-void fn_710002f4e4(void*);
 f32 fn_7101142988(UnkInventory* inventory, const UnkQualifiedId& item, f32 fallback);
 struct UnkStateSink;
 struct UnkStateKey;

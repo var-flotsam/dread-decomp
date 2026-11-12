@@ -6,7 +6,6 @@
 #include "game/CInputComponent.h"
 #include "types.h"
 
-void fn_7100872908(void*, void*);
 struct UnkEnergyWaveTargetComp_b49;
 
 struct UnkWaveOwner_A2_b70 {

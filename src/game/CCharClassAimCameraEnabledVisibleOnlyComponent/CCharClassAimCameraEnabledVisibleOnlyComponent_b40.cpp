@@ -5,6 +5,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CActorComponent.h"
+#include "game/CCameraComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
@@ -13,7 +14,6 @@ using base::reflection::UnkReflObject;
 
 struct UnkPlayer;
 struct UnkStruct_710024fa0c;
-UnkReflObject* fn_71010e37f4(void* camera);
 bool fn_71008598c0(UnkReflObject* gun);
 
 struct UnkPlayer_ac {

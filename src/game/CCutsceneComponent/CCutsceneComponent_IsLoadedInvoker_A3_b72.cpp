@@ -5,13 +5,13 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU0.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 using base::reflection::UnkReflValue;
 
 // As src/game/CCutsceneComponent/CCutsceneComponent_IsLoaded_b53.cpp declares them.
-extern void* g_unk_7101d47330;
 u32 fn_71011986e0(void* manager, const CFilePathStrId* path);
 
 struct UnkCutsceneComponent_A3_b72 {

@@ -25,10 +25,12 @@
 #include "game/CCharClassLightingComponent.h"
 #include "game/CCharacterMovement.h"
 #include "game/CNavMeshItemComponent.h"
+#include "game/CScenario.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkSlots.h"
 #include "game/UnkTU1376.h"
+#include "game/UnkTU253.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2668.h"
 #include "game/UnkTU2677.h"
@@ -96,7 +98,6 @@ struct UnkTypedValue {
     void* value;
 };
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
-CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 
 static inline void SetSectionBool_b0251(CBlackboard* blackboard, const CStrId& section, UnkPropertyName* name,
                                         bool* value) {
@@ -411,7 +412,6 @@ bool fn_71008d1c50(UnkDoorHandles_b0251* self, void* target) {
 
 struct UnkDoorLock;
 struct UnkDoorLife_b44a2;
-bool fn_71008d586c(UnkDoorLock* door, bool locked, bool, CStrId* name);
 
 struct UnkDoorFlow_b0251 {
     u8 pad_0x0[0x30];
@@ -454,8 +454,6 @@ extern u64 g_unk_710164b098 __attribute__((visibility("hidden")));
 struct UnkStruct_71727313a4 {
     CColor4F colours[3];
 };
-extern UnkStruct_71727313a4 g_unk_71727313a4;
-void fn_71001c2ec0(void* target, u32 a, u32 b, CVector4D* colour, u32 c, f32 time);
 struct UnkEnumType;
 extern UnkEnumType g_unk_7172731200;
 

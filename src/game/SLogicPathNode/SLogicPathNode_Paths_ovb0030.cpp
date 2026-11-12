@@ -17,6 +17,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/SLogicPathNode.h"
+#include "game/UnkTU108.h"
 #include "game/UnkTU2563.h"
 #include "game_s2/UnkItem50.h"
 #include "types.h"
@@ -233,7 +234,6 @@ UnkReflObject* fn_71010590dc(char* self, u32 index, void* arg) {
 // ---- Reflection ----
 
 UnkReflValue fn_710105d0d0(void*, char* obj, UnkReflValue* const* args);
-void fn_710011ddc0(UnkReflFunction* fn);
 
 void fn_7101055b34(UnkReflFunction* fn, const char* name) {
     fn->name = base::global::UnkStrId(name, true);

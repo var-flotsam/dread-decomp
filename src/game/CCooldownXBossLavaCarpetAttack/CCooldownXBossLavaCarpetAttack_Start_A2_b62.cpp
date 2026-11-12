@@ -15,6 +15,8 @@
 #include "game/CCharClassTweakPlayRateTrack.h"
 #include "game/CCooldownXBossAttack.h"
 #include "game/UnkTU2772.h"
+#include "game/UnkTU341.h"
+#include "game/UnkTU740.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
@@ -26,11 +28,9 @@ using base::reflection::CClass;
 struct UnkSelf;
 void fn_71004c5db0();
 struct UnkEntityState;
-void fn_7100232864(UnkEntityState* entity, bool value);
 // Typed as CHydrogigaZiplineRailComponent_b49.cpp declares it (one signature per symbol).
 struct UnkZiplineLink_b49;
 struct UnkZiplineLinkTarget_b49;
-extern UnkTunable g_unk_71726d1f48;
 struct UnkGlobal2;
 
 struct UnkCarpetStartAI_b62a2 {

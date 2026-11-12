@@ -7,14 +7,13 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CChozoRobotSoldierAIComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU1730.h"
 #include "types.h"
 
 // The blend setting (as in src/game/CCharClassToStateTrack/CCharClassToStateTrack_Fill.cpp).
 struct UnkTrackBlend;
-
-bool fn_71004745a8(base::reflection::UnkReflObject* component, void* arg);
 
 struct UnkCrsDashOwner_b58 {
     u8 pad_0x0[0x220];

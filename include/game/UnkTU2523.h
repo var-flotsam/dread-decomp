@@ -3,8 +3,12 @@
 // UnkTU2523: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2523,
 // 0x7100d70c1c-0x7100d8b794). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/global/CStrId.h"
 #include "types.h"
 
+struct UnkSpawnedActor_ovb0065;
+struct UnkHyperBeamEffectDesc;
+struct UnkHyperBeamEffectHandle;
 struct UnkActorPosition;
 struct UnkWeakHandle;
 struct UnkActor;
@@ -35,3 +39,5 @@ UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 void fn_7100d7c94c(UnkActor*, const u64*);
 bool fn_7100d7bea0(UnkActor* owner, bool flag);
 UnkActorPosition fn_7100d7b7a8(UnkActor* actor);
+const base::global::CStrId* fn_7100d7ba84(UnkSpawnedActor_ovb0065*);
+UnkHyperBeamEffectHandle fn_7100d7c614(UnkActor* owner, const UnkHyperBeamEffectDesc* desc, const base::global::CStrId* name, u32 a, u32 b, u32 c);

@@ -18,6 +18,7 @@
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU2668.h"
 #include "game/UnkTU2676.h"
+#include "game/lua_lib.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -140,7 +141,6 @@ struct UnkLuaArgs_ovb0109 : UnkHashStream_0x38 {
 UnkLuaArgs_ovb0109* fn_710109ead0(lua_State* L, int first);
 void* fn_71000978e4(char* cls, const CStrId* name);
 struct UnkGameObjectTyped_ovb0115;  // a typed pointer (src/game/lua_lib/lua_lib_GameObjectCall_ovb0115.cpp)
-int fn_7100fbe7b0(lua_State* L, UnkGameObjectTyped_ovb0115* value, CStrId* name);
 
 static inline char* AsClass(char* type) {
     return type && fn_710009d50c(reinterpret_cast<const base::reflection::CType*>(

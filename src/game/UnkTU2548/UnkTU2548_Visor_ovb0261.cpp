@@ -8,6 +8,7 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU223.h"
 #include "game/UnkTU287.h"
+#include "game/UnkTU441.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -17,9 +18,6 @@ struct UnkQuadNode_ovb0259;
 struct UnkStruct_710020a5a0;
 struct UnkMinimapVec3;
 struct UnkBlendLayer_710019c284;
-
-void fn_710035d9e0(void* pool, const CFilePathStrId* path, UnkQuadNode_ovb0259** out, const CStrId* name);
-void fn_710020a5a0(UnkStruct_710020a5a0* self, const base::math::CVector2D* scale);
 
 struct UnkVisorRender_b0261 {
     u8 pad_0x0[0x78];

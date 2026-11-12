@@ -4,10 +4,12 @@
 // (fn_7100ca3518) and switching the group on or off (fn_7100ca0b44). Names and layouts are
 // placeholders.
 #include "base/UnkMatrix44.h"
+#include "game/CBreakableTileGroup.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU315.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -58,9 +60,6 @@ static_assert(__builtin_offsetof(UnkTileGroup, field_0xd0) == 0xd0, "UnkTileGrou
 static const u64 kNoRenderObject = 0xffffffff;
 
 extern const UnkVec3f g_unk_710164ba64 __attribute__((visibility("hidden")));
-UnkMatrix44 fn_71000791a8(const UnkVec3f& translation, const UnkVec3f& angle, const UnkVec3f& scale);
-void fn_7100ca0c40(UnkTileGroup* self, u32 tile, UnkVec3f* pos);
-void fn_7100ca0c78(UnkTileGroup* self, u32 tile, UnkVec3f* pos, UnkVec3f* scale);
 void fn_7100ca1180(UnkTileGroup* group);
 void fn_7100c9fdd8(UnkQueryObj* tile);
 void fn_7100c9f9bc(UnkQueryObj* tile);

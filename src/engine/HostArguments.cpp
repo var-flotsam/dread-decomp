@@ -88,10 +88,6 @@ struct UnkStartStrId {
 };
 
 // The game manager's start-up steps (unit 2553, CGameManager).
-void fn_7100deac9c(UnkGameManager* manager, const CRntString& mode);
-void fn_7100df28d0(UnkGameManager* manager, const CRntString& a, const CRntString& b,
-                   const CRntString& c, const CStrId& id, bool flag, const CRntString& d,
-                   const CStrId& e, u32 f, void* g, f32 h);
 void fn_7100decdfc(UnkGameManager* manager, f32 time);
 
 // The debug start-up step: with the start-in-game flag, enters the "INGAME" mode around the
@@ -287,7 +283,6 @@ __attribute__((always_inline)) static inline T* Singleton(T*& instance) {
 // The frame timer (src/engine/UnkEngineStart.cpp): the frame time at +0x30 and the frame rate it
 // aims at at +0x40.
 struct UnkGfxFrameSource;
-extern UnkGfxFrameSource* g_unk_7101d47328;
 struct UnkFrameTimer {
     u8 unk_0x0[0x30];
     f32 frame_time;
@@ -303,7 +298,6 @@ void fn_7100080cb8(UnkFrameTimer* timer, f32 scale);
 f32 fn_7100081020(UnkFrameTimer* timer);
 
 // The GUI root (src/game/CCutscene.cpp): whether it runs the frame time, and the time it gives.
-extern void* g_unk_7101d47330;
 struct UnkGuiRootView {
     u8 unk_0x0[0x58];
     void* field_0x58;
@@ -326,7 +320,6 @@ void fn_710119d31c(UnkLanguage* language);
 // more objects (0x150 and 0x60 bytes) and the loading screen (0x220).
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
-extern void* g_unk_7101d47368;
 void fn_7100ee49f0(void* self, f32 dt);
 struct UnkGameObject_0x150;
 void fn_7100dde21c(UnkGameObject_0x150* self, f32 dt);
@@ -337,7 +330,6 @@ void fn_7100e134a0(UnkLoadingScreen* self, f32 dt);
 void fn_7100f00780(UnkStruct_0x128* self, f32 dt);
 // The statistics object (0x78 bytes) the device's memory size is reported to, in KiB.
 struct UnkStatsObject;
-void fn_7100132248(UnkStatsObject* self, const CStrId& name, f32 value);
 
 // The render manager's frame steps (game/UnkRenderManager.h).
 void fn_7100219dcc(UnkRenderManager* self);
@@ -346,7 +338,6 @@ void fn_71002192c8(UnkRenderManager* self, f32 dt);
 void fn_71002194a4(UnkRenderManager* self);
 void fn_71002194e8(UnkRenderManager* self);
 // Sets the pass parameter the hash names to a colour.
-void fn_710021a0b4(UnkRenderManager* self, const u64* hash, const base::math::CVector4D* value);
 extern const base::math::CVector4D g_unk_71016477b4;  // (0, 0, 0, 0)
 extern const base::math::CVector4D g_unk_71016477c4;  // (1, 1, 1, 1)
 

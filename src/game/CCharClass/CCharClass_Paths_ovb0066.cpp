@@ -6,6 +6,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntFile.h"
+#include "game/UnkTU56.h"
 #include "game/UnkTU63.h"
 #include "types.h"
 
@@ -21,7 +22,6 @@ void fn_71011ac8e8(UnkResIdTable* self);
 void fn_7100254d6c(void* self);
 void fn_7100254e84(void* self);
 void fn_7100255158(void* self);
-s64 fn_710007cee4(void* stream, const char** out);  // as src/base/global/CRntFile.cpp defines it
 
 // A file-path id whose release decrements and tests the count in two steps.
 struct UnkPathId_ovb0066 {

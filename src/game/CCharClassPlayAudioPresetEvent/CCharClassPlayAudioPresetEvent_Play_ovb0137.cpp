@@ -6,13 +6,12 @@
 #include "base/global/CStrId.h"
 #include "game/UnkTU25.h"
 #include "game/UnkTU2523.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
 using base::global::UnkStringData;
-
-CRntString fn_710007f050(const char* a, const CRntString* b);
 
 struct UnkPathIds;
 struct UnkInlineString;

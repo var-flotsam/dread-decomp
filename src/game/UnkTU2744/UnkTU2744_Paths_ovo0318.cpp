@@ -8,13 +8,13 @@
 #include "base/tunable/CTunable.h"
 #include "game/UnkTU2668.h"
 #include "game/UnkTU2677.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 #include "../../game_aca57c/UnkBufferString.h"
 
 struct UnkWeakTarget;
 s32 fn_71010757f0(lua_State* L, s32 nargs, char* error, u32 error_size, UnkWeakTarget** out);
-void fn_710007f564(void* self, const char* str);  // appends a string
 
 struct UnkGuiWidget_b0209 {
     virtual void vf_0x0();

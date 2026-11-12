@@ -8,15 +8,13 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiLabel.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU2744.h"
+#include "game/UnkTU2747.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkStruct_71011ebdb4;
-bool fn_71011ceac0(UnkGuiDisplayObject* self);
-bool fn_71011ceb34(UnkGuiDisplayObject* self);
-void fn_71011b5598(UnkGuiRoot* root, UnkGuiDisplayObject* object);
-void fn_71011ed150(UnkGuiDisplayObject* label, const CStrId& font);
 struct UnkGuiObj;
 struct UnkMissionLogButton_ovb0079;
 

@@ -9,6 +9,7 @@
 #include "base/reflection.h"
 #include "game/CActorComponent.h"
 #include "game/CFreezeRoomComponent.h"
+#include "game/UnkTU0.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -18,9 +19,6 @@ using base::global::CStrId;
 struct UnkStruct_710024fa0c;
 struct CFreezeRoomComponent;
 struct UnkEnvironmentManager;
-extern void* g_unk_7101d47368;
-void fn_7100d8e32c(UnkEnvironmentManager* self, const CStrId* id, bool a, bool b);  // slot 6
-const CStrId* fn_7100d8efc8(UnkEnvironmentManager* self);
 
 struct UnkFreezeRoom_b52 {
     u8 pad_0x0[0xc38];

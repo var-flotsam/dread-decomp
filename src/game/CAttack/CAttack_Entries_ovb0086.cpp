@@ -7,10 +7,12 @@
 // Names and layouts are placeholders.
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/global/timeline/CEvent.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CCharClassAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 struct UnkAttackTarget_A2_b68;
@@ -234,9 +236,6 @@ UnkAttackStrId_b0086 fn_71003627f8(UnkGoliathXSlamAttack_b58a3* attack, UnkActor
         fn_710007f3b4(str.Str(), UseText(reinterpret_cast<UnkIdText_b0086* const*>(&query.result->sources)));
     return UnkAttackStrId_b0086(*str.Str());
 }
-
-CRntString fn_710007ef90(const CRntString*, const char*);
-u64* fn_7100066630(u64*, const CRntString*);
 
 struct UnkIdHash_b0086 {
     u8 pad_0x0[0x30];

@@ -15,6 +15,7 @@
 #include "game/CAutclastChargeAttack.h"
 #include "game/CBreakableTileGroup.h"
 #include "game/CCharacterMovement.h"
+#include "game/CCollisionComponent.h"
 #include "game/CFXComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
@@ -26,6 +27,7 @@
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2689.h"
 #include "game/UnkTU2739.h"
+#include "game/UnkTU57.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -64,7 +66,6 @@ struct UnkMorphBall_b7c4 {
 };
 
 extern CStrId g_unk_7172739458 __attribute__((visibility("hidden")));
-CStrId* fn_7100864018(UnkCollisionContainer* self, void* object);
 
 bool fn_710094b7c4(UnkMorphBall_b7c4* self) {
     if (self->mode == 2) {
@@ -371,7 +372,6 @@ void fn_71009475b0(UnkMorphBall_75b0* self) {
 using base::global::CRntString;
 using base::global::CStrId;
 
-CRntString fn_710007f050(const char* a, const CRntString* b);  // concatenation
 struct UnkPathIds;
 struct UnkInlineString;
 struct UnkMove_b152;

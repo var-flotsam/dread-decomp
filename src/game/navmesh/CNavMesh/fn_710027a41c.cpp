@@ -3,6 +3,7 @@
 // accepts the argument (0xffff otherwise).
 #include "base/math/CVector.h"
 #include "game/UnkNavMeshManager.h"
+#include "game/navmesh/CNavMesh.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -43,7 +44,6 @@ struct UnkQuery_710027a41c {
     u16 result;
 };
 
-bool fn_710027a5f0(UnkOwner_710027a41c* self, const CVector2D* point, u16 index);
 bool fn_71002af6fc(UnkRegion_710027a41c* region, u32 arg);
 
 u16 fn_710027a41c(UnkNavMesh* mesh, const CVector2D* point, u32 arg) {

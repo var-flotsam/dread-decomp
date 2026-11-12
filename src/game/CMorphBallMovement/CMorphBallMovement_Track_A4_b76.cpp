@@ -4,13 +4,13 @@
 #include "base/global/CStrId.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 base::global::UnkStringData** fn_7101177ae8(UnkAnimationComponent* self, u64 kind);
 // As src/game/CGameManager.cpp declares it.
-void fn_7100df31b8(UnkGameManager* self, bool a, bool keep, u32 value, CStrId id, bool c);
 
 struct UnkMorphBallOwner_A4_b76 {
     u8 pad_0x0[0x220];

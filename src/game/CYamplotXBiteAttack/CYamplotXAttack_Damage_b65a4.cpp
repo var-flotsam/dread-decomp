@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCharClassAttackComponent.h"
 #include "game/CFrozenComponent.h"
 #include "game/UnkTU1370.h"
 #include "types.h"
@@ -20,8 +21,6 @@ extern CStrId g_unk_717270bef0[2] __attribute__((visibility("hidden")));
 // As src/game/CBaseDamageTriggerComponent/CBaseDamageTriggerComponent_b34.cpp and
 // src/game/CAreaFXComponent/CAreaFXComponent.cpp declare them.
 struct UnkRequest;
-
-f32 fn_7100789f5c(const CStrId* id);
 
 struct UnkYamplotMode_b65a4 {
     u8 pad_0x0[0x6fc];

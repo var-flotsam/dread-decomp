@@ -5,11 +5,11 @@
 // whether to apply them at once (+0x395, from the event's +0xc); otherwise an immediate event turns
 // the actor through its vtable slot 0xd8, and a smooth one sets its own transform (+0x38) and marks
 // it (+0x3c0). Names and layouts are placeholders.
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 extern "C" float atan2f(float y, float x);
-UnkVec3f fn_710007a220(const UnkVec3f* v);
 
 struct UnkViewDir_ovb0134 {
     u8 pad_0x0[0x58];

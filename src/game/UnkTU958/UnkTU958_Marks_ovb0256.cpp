@@ -4,6 +4,7 @@
 // layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCharClassPoisonFlyAIComponent.h"
 #include "game/UnkTU958.h"
 #include "game/UnkTUProperty.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -85,8 +86,6 @@ void fn_710063bf8c(void* unused, UnkWeakTarget* target, UnkMark_b256* mark) {
 
 
 
-extern UnkTunable g_unk_71726fa0f8;
-
 struct UnkFlyComp_b256 {
     virtual const base::reflection::CClass* vf_0x0();
     u8 pad_0x8[0x14768];
@@ -137,4 +136,3 @@ void fn_710063c670(UnkFlyMgr_b256* self) {
     }
     ResetRef(&self->handle);
 }
-

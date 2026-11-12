@@ -15,3 +15,4 @@ void fn_7100872268(UnkInputComponent* self);
 void fn_7100872858(void* p, void* q);
 extern void* g_unk_7172729910;  // The item list singleton.
 void fn_7100874460(void* list, UnkWeakTarget** item);
+void fn_7100872908(void*, void*);

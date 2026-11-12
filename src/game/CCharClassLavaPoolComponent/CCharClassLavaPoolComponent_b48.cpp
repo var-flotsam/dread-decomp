@@ -11,6 +11,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
 #include "game/CCharClassLiquidPoolComponent.h"
+#include "game/CScenario.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTimelineComponent.h"
 #include "game/UnkTUProperty.h"
@@ -18,7 +19,6 @@
 
 using base::global::CStrId;
 
-CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 extern UnkProperty g_unk_7172733338;
 
 struct UnkLavaPoolValue_b48 {

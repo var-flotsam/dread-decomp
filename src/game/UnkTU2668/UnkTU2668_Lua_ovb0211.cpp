@@ -16,6 +16,7 @@
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2668.h"
 #include "game/UnkTU2669.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 struct lua_State;
@@ -130,9 +131,6 @@ s32 fn_710109d450(const char* format, ...) {
 using base::global::CRntString;
 
 extern const char g_unk_7101602004[] __attribute__((visibility("hidden")));
-
-s32 fn_710007fb10(const base::global::CRntString* self, char c, s32 start);
-void fn_710007f564(void* self, const char* str);
 
 // A string with 0x100 bytes of inline storage (0x148 bytes), as in src/base/UnkTunableRegistry.cpp.
 struct UnkInlineString_710109c6d0 {

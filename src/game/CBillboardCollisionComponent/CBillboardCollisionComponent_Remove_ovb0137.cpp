@@ -5,6 +5,7 @@
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkTU1159.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -40,7 +41,6 @@ struct UnkBillboardMap_ovb0137 {
 struct UnkMatrix44_7100078c9c {
     f32 m[16];
 };
-UnkMatrix44_7100078c9c fn_7100078cd8(const UnkVec3f& t);
 
 // Returned through x8, so the original's result type is not trivially copyable.
 struct UnkVec3Result {

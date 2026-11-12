@@ -7,10 +7,10 @@
 #include <new>
 #include "game/CCameraBoundaryCtrl.h"
 #include "game/CMetroidCameraCtrl.h"
+#include "game/UnkTU39.h"
 #include "types.h"
 
 struct UnkStruct_7100763ed4;
-void fn_710002f4e4(void*);                      // member constructor
 
 struct UnkMetroidCameraMember_A5_b69 {
     u64 unk_0x0[0xb0 / 8];

@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
 #include "game/UnkTU1102.h"
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
 struct UnkTarget_xpa {
@@ -83,9 +84,6 @@ struct UnkXParasiteBB_xpa {
     u8 pad_0x146ec[0x146e0 + 0xb8 - 0x146ec];
     UnkLink_xpa* link;  // 0x146e0 + 0xb8
 };
-
-extern base::global::CStrId g_unk_71726b7cb8;  // the blackboard section
-extern base::global::CStrId g_unk_717270b8e0 __attribute__((visibility("hidden")));  // the property in it
 
 bool fn_71006eb590(UnkXParasiteBB_xpa* self) {
     if (CBlackboard::CSection* section = fn_7101047270(&self->blackboard, g_unk_71726b7cb8))

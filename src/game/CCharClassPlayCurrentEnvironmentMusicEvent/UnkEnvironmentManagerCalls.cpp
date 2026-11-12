@@ -5,9 +5,8 @@
 // placeholders.
 #include "base/UnkVector.h"
 #include "base/reflection.h"
+#include "game/UnkTU0.h"
 #include "types.h"
-
-extern void* g_unk_7101d47368;
 
 void* fn_7100d8dff0(void* manager);
 

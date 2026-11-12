@@ -10,9 +10,12 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/GUI/CButton.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU2544.h"
+#include "game/UnkTU2744.h"
+#include "game/UnkTU2747.h"
 #include "game/UnkTU57.h"
 #include "types.h"
 
@@ -30,10 +33,6 @@ struct UnkButtonTemplate_ovb0108 {
     s32 default_value;  // 0x13c
     s32 value;          // 0x140
 };
-
-UnkGuiDisplayObject* fn_71011b63c4(UnkGuiRoot* root, UnkButtonTemplate_ovb0108* def);
-void fn_71011cc940(UnkGuiDisplayObject* self, f32 value);
-void fn_71011c0158(UnkGuiDisplayObject* self);
 
 struct UnkButtonList_ovb0108 {
     u8 pad_0x0[0x1c8];

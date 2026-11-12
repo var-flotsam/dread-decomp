@@ -13,6 +13,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CActionInstance.h"
 #include "game/CActorComponent.h"
 #include "game/CAnimationComponent.h"
 #include "game/CComponent.h"
@@ -48,8 +49,6 @@ struct UnkObj_710117af10;
 struct UnkCls_710117af10;
 struct UnkTrackBlend;
 struct UnkTrackAction_1444;
-
-bool fn_7100c97930(UnkTrackAction_1444* action, const base::reflection::CClass* cls, f32 value);
 
 extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
 

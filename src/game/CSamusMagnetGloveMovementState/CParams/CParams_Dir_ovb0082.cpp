@@ -3,10 +3,9 @@
 // use (from the game manager's id table while the flag at +0x7e4 is set). Names and layouts are placeholders.
 #include "base/math/CVector.h"
 #include "game/UnkGameManagerIdTable.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
-
-UnkVec3f fn_710007a7f0(UnkVec3f);
 
 struct UnkMagnetDirOut_ovb0082 {
     f32 x;

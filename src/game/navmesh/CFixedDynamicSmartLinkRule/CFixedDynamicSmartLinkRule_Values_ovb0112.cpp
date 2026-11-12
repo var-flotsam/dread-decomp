@@ -16,9 +16,9 @@
 #include "base/global/CStrId.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkTU367.h"
+#include "game/UnkTU56.h"
 #include "types.h"
 
-s64 fn_710007cee4(void*, const char**);
 u32 fn_710026d2e4(const char*);
 
 s32 fn_710026f548(const char* name) {

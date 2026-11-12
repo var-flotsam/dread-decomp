@@ -17,7 +17,6 @@ using base::global::CStrId;
 struct UnkDecalResource;
 struct UnkDecalResourceMgr;
 struct UnkCountedObject259;
-UnkDecalResource* fn_710019ffe8(UnkDecalResourceMgr* mgr, const CFilePathStrId* path, bool flag);
 void fn_71001a8d38(void* target, u32 index, void* value, u32 flag);
 
 struct UnkLoaded_b260 {

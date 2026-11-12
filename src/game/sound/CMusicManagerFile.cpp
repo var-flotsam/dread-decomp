@@ -7,6 +7,7 @@
 #include "base/UnkHashStream.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/animation/CBlendSpaceResource.h"
+#include "base/file/CThreadSafeDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
@@ -23,7 +24,6 @@ struct UnkStrPair_0x10 {
 };
 
 // Builds the id and path pair from a file-path id.
-void fn_710008d2ec(UnkStrPair_0x10* self, const base::global::CFilePathStrId* path);
 
 // The file read into memory and two words the opener sets (+0x38 is zero after a good read).
 struct UnkFileReader {
@@ -37,9 +37,6 @@ bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base:
 // This unit's parser callbacks, the file's path and the object read with its type.
 extern UnkParseCallbacks g_unk_71729f08d0 __attribute__((visibility("hidden")));
 extern base::global::CFilePathStrId g_unk_71729f08a8 __attribute__((visibility("hidden")));
-extern base::reflection::CType g_unk_7172756e50;
-
-void fn_710000f750(UnkParseContext* self, void* root);
 
 // Parses the file into the target, starting from its last entry's node.
 static inline void Parse(UnkFileReader* reader, UnkReadTarget* target) {

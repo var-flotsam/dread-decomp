@@ -15,6 +15,7 @@
 #include "game/CComponent.h"
 #include "game/CFXComponent.h"
 #include "game/CGrabComponent.h"
+#include "game/CInputComponent.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkComponent.h"
 #include "game/UnkGameManager.h"
@@ -123,7 +124,6 @@ void fn_71002fd944(UnkEnergyWaveCtl_ovb22* self) {
 }
 
 extern void* g_unk_7101a22690[];
-void fn_7100872908(void*, void*);
 
 struct UnkEnergyWavePart_ovb22d {
     void** vtable;

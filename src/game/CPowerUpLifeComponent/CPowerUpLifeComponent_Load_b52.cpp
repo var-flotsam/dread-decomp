@@ -41,10 +41,6 @@ struct alignas(8) UnkPowerUpLifeType_b52 {
     u32 id;
 };
 
-UnkPowerUpLifeEntry_b52* fn_710119438c(UnkActorDefFactory* factory, const char* path, CStrId* id, const UnkPowerUpLifeType_b52& type,
-                                       void* arg);
-void fn_7100232864(UnkEntityState*, bool);
-
 struct UnkPowerUpLife_b52 {
     u8 unk_0x0[0x3c8];
     UnkPowerUpLifeRef_b52* ref;

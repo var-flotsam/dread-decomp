@@ -6,7 +6,9 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU1633.h"
+#include "game/UnkTU2200.h"
 #include "game/UnkTU2577.h"
 #include "game/UnkTU437.h"
 #include "types.h"
@@ -104,7 +106,6 @@ __attribute__((always_inline)) static inline UnkReflValue GetVirtualFlag(UnkArgu
 // Values of kind 2 referring (flag 1) to a cutscene definition held by an iterator value: in place
 // at 0x8, or through the pointer there when the state (after the Size-byte value) is 2. The class
 // getter is called first, so the class (whose reflected data is at the descriptor) is set up.
-extern const CType g_unk_7172794c08 __attribute__((visibility("hidden")));
 extern const CType g_unk_7172794d40 __attribute__((visibility("hidden")));
 
 template <u32 Size>
@@ -134,11 +135,8 @@ __attribute__((always_inline)) static inline UnkReflValue GetDef(UnkArgument<Unk
 // Values of kind 2 holding a manager singleton, created on first use (allocated with flags 0x3f or
 // 3, and constructed in place).
 const CType* fn_7100ad61f8();  // base::reflection::refl_GetType<CSubAreaManager*>
-const CType* fn_7100ad62d4();  // base::reflection::refl_GetType<CEnvironmentManager*>
-const CType* fn_7100ad6644();  // base::reflection::refl_GetType<sound::CMusicManager*>
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
-extern void* g_unk_7101d47368;
 struct UnkMgr_0xf18;
 extern UnkMgr_0xf18* g_unk_71726bc560;
 

@@ -8,6 +8,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CCharClassBaseTriggerComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU1370.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
@@ -17,7 +18,6 @@
 using base::reflection::UnkReflObject;
 
 struct UnkGfxFrameSource;
-extern UnkGfxFrameSource* g_unk_7101d47328;
 
 struct UnkDamageTrigger_b0119;
 void fn_7100a470e8(UnkDamageTrigger_b0119* self, void* arg);

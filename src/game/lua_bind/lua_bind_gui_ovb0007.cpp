@@ -8,6 +8,7 @@
 #include "../../game_s7/UnkPropBagS7.h"
 #include "base/UnkCloneRecords.h"
 #include "base/UnkVector.h"
+#include "base/core/CBaseObject.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -29,9 +30,12 @@
 #include "game/UnkGuiRoot.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkTU1686.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2676.h"
 #include "game/UnkTU2677.h"
+#include "game/UnkTU2761.h"
 #include "game/UnkTUProperty.h"
+#include "game/lua_bind.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -90,7 +94,6 @@ int fn_7101099f10(lua_State* L) {
     return 0;
 }
 
-const base::global::CRntString** fn_710109c444(void* vec, u32 index);
 void fn_71011b892c(UnkGuiRoot* root, s32 index, const CRntString& name);
 
 struct UnkGuiRootLists_b0007 {
@@ -131,8 +134,6 @@ int fn_7101099a60(lua_State* L) {
     }
     return 0;
 }
-
-bool fn_7100dfaf88(UnkGameManager* self, void* name, const CRntString& tag, bool flag);
 
 int fn_710109a820(lua_State* L) {
     const char* a = g_unk_710162e2ed;
@@ -179,7 +180,6 @@ int fn_7101099950(lua_State* L) {
     return 0;
 }
 
-void* fn_7100deab70(UnkGameManager* self, const CRntString& name);
 void fn_710118aa54(void* menu, const CRntString& a, const CRntString& b);
 
 int fn_7101099d60(lua_State* L) {
@@ -264,8 +264,6 @@ int fn_71010987c0(lua_State* L) {
     }
     return 0;
 }
-
-s32 fn_7101202300(const base::global::CRntString* name);  // an event's kind from its name
 
 int fn_7101099f80(lua_State* L) {
     const char* name = g_unk_710162e2ed;
@@ -375,7 +373,6 @@ int fn_71010990f0(lua_State* L) {
 }
 
 struct UnkCameraCtrl;
-bool fn_7100023d00(const UnkCameraCtrl* object, const base::reflection::CClass* cls);
 
 int fn_7101097ee0(lua_State* L) {
     const char* name = g_unk_710162e2ed;
@@ -506,7 +503,6 @@ int fn_710109b1a0(lua_State* L) {
 }
 
 void* fn_710109e770(lua_State* L, int index);
-s32 fn_7101202300(const base::global::CRntString* name);  // an event's kind from its name
 
 extern char g_unk_7101caf688[];
 

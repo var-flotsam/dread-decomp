@@ -16,6 +16,7 @@
 #include "game/UnkTU0.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU2544.h"
+#include "game/UnkTU2566.h"
 #include "game/UnkTU2656.h"
 #include "game/UnkTU2768.h"
 #include "game/UnkTUProperty.h"
@@ -431,7 +432,6 @@ struct UnkRushBoard_b0195 {
 };
 struct UnkSettings_b0158;
 
-void fn_7100e8f9a0(char* world, bool remove, base::global::CStrId* key);
 extern CStrId g_unk_71727bdb88 __attribute__((visibility("hidden")));
 struct UnkSoundMgr;
 
@@ -603,7 +603,6 @@ void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const 
 // "SurvivalRushRecord", "SurvivalRushTime" and the section's id (as CBossRushManager.cpp has them).
 extern UnkPropertyEx<> g_unk_71727bcac0;
 extern UnkPropertyEx<> g_unk_71727bcb00;
-extern const CStrId g_unk_71727bdb80 __attribute__((visibility("hidden")));
 
 // The property's qualified id, built on first use.
 static inline UnkQualifiedId& Qid(UnkPropertyEx<>& item) {

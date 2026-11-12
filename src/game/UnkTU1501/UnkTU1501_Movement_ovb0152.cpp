@@ -15,7 +15,9 @@
 #include "game/CBreakableTileGroup.h"
 #include "game/CCharacterMovement.h"
 #include "game/CGunComponent.h"
+#include "game/CMovementComponent.h"
 #include "game/CPlayerInfo.h"
+#include "game/CSamusGunComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkCollisionRecord.h"
@@ -30,6 +32,7 @@
 #include "game/UnkTU2689.h"
 #include "game/UnkTU363.h"
 #include "game/UnkTU39.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "game/logic/collision/CCapsuleShape2D.h"
 #include "types.h"
@@ -334,7 +337,6 @@ UnkAbility* fn_7100df5928(UnkPlayer* self);
 bool fn_710033cf20(UnkAbility* ability);
 f32 fn_71007965a8(UnkRunInfo_b152* info);
 f32 fn_71007965c0(UnkRunInfo_b152* info);
-bool fn_71010d15d0(char* self, const CVector3D* pos, UnkProbeResult* result, f32 radius);
 void fn_7100976940(UnkMove_b152* self);
 void fn_71009767f0(UnkMove_b152* self);
 UnkIdHolder_b152* fn_71009e7870(UnkMove_b152* self);
@@ -348,7 +350,6 @@ void fn_710098ae04(UnkAirTarget_B71a6* target, UnkAirRequest_B71a6* req);
 void fn_71010d956c(UnkMove_b152* self);
 bool fn_710085aa5c(void* gun, void* tile, UnkHitInfo_b152* hit);
 struct UnkQueryObj;
-void fn_710085b76c(UnkReflObject* gun, bool value);
 // Out of line: fn_71009e73cc calls it.
 __attribute__((noinline)) f32 fn_71009e754c(UnkMove_b152* self);
 
@@ -374,7 +375,6 @@ struct UnkMatrix44_7100078c9c {
     f32 m[16];
 };
 
-UnkMatrix44_7100078c9c fn_7100078cd8(const UnkVec3f& t);
 bool fn_7100d5babc(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
 extern base::global::CStrId g_unk_7172740fe0 __attribute__((visibility("hidden")));
 

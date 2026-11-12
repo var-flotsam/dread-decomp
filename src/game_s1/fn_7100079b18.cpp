@@ -2,9 +2,8 @@
 // decomposition fn_7100077038 yields two equivalent angle triples; both are wrapped into
 // (-pi, pi] by fn_710007a220. When exactly one has a z angle within 0.001 of `hint` (the
 // previously cached z) that one wins, else the one with the smaller sum of absolute angles.
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
-
-UnkVec3f fn_710007a220(const UnkVec3f* v);
 
 static inline f32 AbsSum(const UnkVec3f& v) {
     return __builtin_fabsf(v.x) + __builtin_fabsf(v.y) + __builtin_fabsf(v.z);

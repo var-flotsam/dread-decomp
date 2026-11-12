@@ -4,6 +4,7 @@
 // are placeholders.
 #include "base/global/CStrId.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1376.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU367.h"
 #include "types.h"
@@ -13,7 +14,6 @@ using base::global::CStrId;
 struct UnkWeakTarget;
 
 struct UnkDoorLock;
-bool fn_71008d586c(UnkDoorLock* door, bool locked, bool, CStrId* name);
 
 struct UnkSetDoorLockedEvent {
     u8 unk_0x0[0x10];

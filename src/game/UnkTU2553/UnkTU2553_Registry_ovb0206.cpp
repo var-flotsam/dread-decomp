@@ -93,8 +93,6 @@ using base::global::CFilePathStrId;
 using base::global::CRntString;
 using base::global::CStrId;
 
-CRntString fn_710007ef90(const CRntString* a, const char* b);
-
 // The pooled data behind an id as its text accessor sees it: the text at +0x10 and a count of the
 // reads at +0x44.
 struct UnkIdTextData_e01d98 {
@@ -143,7 +141,6 @@ void fn_71011a2dac(UnkGameManagerSub_0x608* env);
 void fn_7100dea304(UnkGameManager* self, void* object);
 void fn_7100089894(base::file::UnkFileDevice* self);
 void fn_7100dec088(UnkGameManager* self);
-void fn_7100232864(UnkEntityState* entity, bool value);
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
 
 struct UnkNode_decc8c {
@@ -399,7 +396,6 @@ struct UnkDialogText : UnkGuiText {
     ~UnkDialogText() { fn_7100066e44(this); }
     const u32* Chars() const { return *reinterpret_cast<const u32* const*>(unk_0x0 + 8); }
 };
-UnkDialogText fn_710119d040(UnkLanguage* language, const CStrId& key);
 extern const u32 g_unk_7101648434[] __attribute__((visibility("hidden")));
 
 // A string with 0x100 bytes of inline storage (0x148 bytes), as in src/base/UnkLuaDoString_b50.cpp.
@@ -838,7 +834,6 @@ struct UnkBoundObj;
 void fn_7100d8ba60(void* holder, void* entity);
 void fn_7101198450(void* gui, UnkReflObject* entity);
 bool fn_710119dd94(UnkActorTable_b43a3* self, UnkActorWithDef_b43a3* actor);
-extern void* g_unk_7101d47330;
 
 struct UnkEntityNode_de6ee8 {
     void* object;
@@ -918,7 +913,6 @@ using base::global::CRntString;
 struct UnkUserDataOwner;
 struct UnkLoadCheckPointSingleton_ovb0118;
 struct UnkMgr_0xf18;
-extern void* g_unk_7101d47330;
 extern UnkMgr_0xf18* g_unk_71726bc560;
 void fn_7101198978(void* gui);
 void fn_7101198c0c(void* gui);
@@ -1214,7 +1208,6 @@ static inline T* Singleton_df916c(T*& instance) {
 
 void fn_7101046e78(CBlackboard* self, CBlackboard* other, bool a, bool b);
 void fn_7101198c0c(void* gui);
-extern void* g_unk_7101d47330;
 
 // The game manager's members this step uses (game/UnkGameManager.h leaves them as padding).
 struct UnkGameManagerLoad_df916c {

@@ -4,6 +4,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
+#include "game/CTriggerLogicAction.h"
 #include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
@@ -35,7 +36,6 @@ void fn_710070984c(UnkEnumType* type, const CStrId& name, const base::reflection
 extern char g_unk_717274ca98[];
 extern char g_unk_717274ca99[];
 UnkEnumType* fn_71007099d0();
-extern base::reflection::CType g_unk_717274caa0;
 void fn_7100709aac(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_717274cc10[];
 extern UnkConversion g_unk_717274cc18;

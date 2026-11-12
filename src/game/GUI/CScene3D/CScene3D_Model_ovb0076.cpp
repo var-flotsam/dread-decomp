@@ -22,6 +22,7 @@
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2732.h"
 #include "game/UnkTU315.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -226,7 +227,6 @@ static inline void* ItemList_ovb0076() {
 }
 
 CRntString fn_71011cd4f8(UnkScene3D_ovb0076* self);  // the object's name
-CRntString fn_710007f050(const char* prefix, const CRntString* str);
 
 static inline CRntString Prefixed_ovb0076(const char* prefix, const CRntString& str) {
     return fn_710007f050(prefix, &str);
@@ -319,7 +319,6 @@ void fn_7100b73454(UnkScene3DMaps_ovb0076* self) {
 }
 
 const CRntString* fn_7100def670(UnkGameManager* self);  // the data root
-CRntString fn_710007ef90(const CRntString* a, const char* b);  // concatenation
 
 static inline CRntString Concat_ovb0076(const CRntString& a, const CRntString& b) { return fn_710007eee0(&a, &b); }
 static inline CRntString Concat_ovb0076(const CRntString& a, const char* b) { return fn_710007ef90(&a, b); }

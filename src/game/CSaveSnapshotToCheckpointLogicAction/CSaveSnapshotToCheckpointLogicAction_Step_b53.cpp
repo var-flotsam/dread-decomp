@@ -8,6 +8,7 @@
 #include "base/global/CRntString.h"
 #include "game/CTriggerLogicAction.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -28,9 +29,6 @@ static inline __attribute__((always_inline)) const char* const& Text(UnkSnapshot
     ++id->uses;
     return id->text;
 }
-
-bool fn_7100dfc344(UnkGameManager* manager, const char* const& a, const char* const& b,
-                   const base::global::CRntString& name, bool flag);
 
 struct UnkSnapshotActor_b53 {
     u8 pad_0x0[0x30];

@@ -8,6 +8,7 @@
 #include "base/UnkCountedResource.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/core/CBaseObject.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CStrId.h"
@@ -509,7 +510,6 @@ struct UnkReflFieldObject;
 struct UnkReflValueArg;
 // The member object a field of `obj` holds.
 UnkReflTypedPtr fn_71000e755c(UnkReflField* field, const UnkReflTypedPtr* obj);
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 // The field's attribute `key` as a value (an empty value when the field has none).
 UnkReflValue fn_710000cf10(void* field, const base::reflection::UnkReflAttrKey& key, bool inherited);
 void fn_710007ca94(CRntFile*, char*);

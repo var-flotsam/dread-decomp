@@ -4,6 +4,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU57.h"
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -37,8 +38,6 @@ struct UnkStringEqualsCondition_A2_b72 {
     u8 field_0x38[0x30];
     CStrId field_0x68;
 };
-
-bool fn_7100395044(UnkStringEqualsCondition_A2_b72* self, CStrId* id, UnkInlineString_A2_b72* out);
 
 bool fn_71003a3c88(UnkStringEqualsCondition_A2_b72* self) {
     if (self->field_0x68.data == &g_unk_7101d47108->empty)

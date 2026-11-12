@@ -17,6 +17,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "game/UnkTU25.h"
+#include "game/UnkTU2620.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU426.h"
 #include "game/UnkTU83.h"
@@ -40,7 +41,6 @@ int lua_type(lua_State* L, int idx);
 struct UnkLuaReadScratch_b49a6 {
     u64 words[6];
 };
-bool fn_7100fc22a0(lua_State* L, s32 index, UnkTypedRef* value, u32 mode, UnkLuaReadScratch_b49a6* scratch);
 s32 fn_7100fbde20(void* state, UnkFormatArgs* value, s32 arg0, s32 arg1);
 
 // A string with 0x80 bytes of inline storage (as in fn_7100ae9a10).

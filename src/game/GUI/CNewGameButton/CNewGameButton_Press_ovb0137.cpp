@@ -3,20 +3,17 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::reflection::UnkReflObject;
 
-UnkReflObject* fn_7100e033a8(UnkGameManager* manager);
-
 struct UnkMapCallback_ovb0090;
 struct UnkGuiComposition_ovb0090;
-void fn_7100b5fde0(UnkGuiComposition_ovb0090* gui, const CStrId* text, const CStrId* accept, const CStrId* back,
-                   const UnkMapCallback_ovb0090* on_accept, const UnkMapCallback_ovb0090* on_back, u32 mode,
-                   f32 time);
 
 struct UnkNewGameButton_ovb0137;
 void fn_7100b5e1fc(UnkNewGameButton_ovb0137* self);

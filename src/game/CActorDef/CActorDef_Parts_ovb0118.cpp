@@ -16,6 +16,7 @@
 #include "base/global/CStrId.h"
 #include "game/UnkTU2729.h"
 #include "game/UnkTU344.h"
+#include "game/UnkTU56.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -86,8 +87,6 @@ void fn_7100255158(void* object) {
     self->parts.count = 0;
 }
 
-s64 fn_710007cee4(void* stream, const char** out);  // as src/base/global/CRntFile.cpp defines it
-
 struct UnkActorDefFile_ovb0118 {
     void** vtable;
     u8 pad_0x8[0x58];
@@ -137,7 +136,6 @@ bool fn_7100256268(UnkActorDefFile_ovb0118* self, base::global::CRntFile* file) 
 
 void fn_710007c144(UnkHashStream_0x38*);
 struct UnkSpawnDefRef_b52;
-UnkSpawnDefRef_b52 fn_71011938bc(UnkActorDefFactory* factory, const base::global::CStrId* type, const base::global::CFilePathStrId* path);
 
 // What fn_71011938bc returns, as this unit holds it: the resource is released when nothing else
 // holds it (its count is not touched here).

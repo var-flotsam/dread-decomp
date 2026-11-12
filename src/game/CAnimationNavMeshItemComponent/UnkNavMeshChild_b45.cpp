@@ -2,12 +2,12 @@
 // fn_71009b7ddc adds): calls slot 0x210 of the owner's "ACTIVATABLE" component (fn_7100899610)
 // when there is one, then returns what fn_71009c5c84 returns. Names are placeholders.
 #include "base/reflection/CClass.h"
+#include "game/CCharClassSteamJetComponent.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
 
 // Declared as src/game/CLiquidSimulationComponent.cpp declares it.
-UnkReflObject* fn_7100899610(void* owner);
 
 struct UnkNavChildOwner_b45a2 {
     u8 pad_0x0[0x30];

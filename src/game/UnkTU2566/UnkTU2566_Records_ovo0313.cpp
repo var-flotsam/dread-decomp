@@ -3,6 +3,7 @@
 // table of ids and words (fn_7100e98348). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2565.h"
 #include "game/UnkTU2566.h"
 #include "types.h"
@@ -21,8 +22,6 @@ struct UnkMmOwner_o0313 {
     u8 unk_0x0[0x110];
     CStrId field_0x110;
 };
-
-const base::global::CStrId* fn_7100de9bf8(UnkGameManager* self);
 
 void fn_7100e95130(UnkMapData* map, u64 id) {
     UnkMmOwner_o0313* self = (UnkMmOwner_o0313*)map;

@@ -44,7 +44,6 @@ struct UnkStringEqualsCondition_A2_b72;
 struct UnkInlineString_A2_b72;
 struct UnkScorpiusAI_b69a4;
 struct UnkCommanderPlayer_b67a2;
-bool fn_7100395044(UnkStringEqualsCondition_A2_b72* self, CStrId* id, UnkInlineString_A2_b72* out);
 
 // The owner's attack player.
 void* fn_71003729a8(UnkAttackActor_ovb0128* actor);

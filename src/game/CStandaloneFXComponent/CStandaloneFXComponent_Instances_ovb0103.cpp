@@ -18,6 +18,7 @@
 #include "game/CStandaloneFXComponent.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkTU2739.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -174,7 +175,6 @@ void fn_7100815758(UnkFxVector_ovb0103* self, u32 n);
 void fn_7100815150(UnkFxInstance_ovb0103* self);
 struct UnkStandaloneFx;
 struct UnkFxCache;
-void fn_71011aa5a4(UnkFxCache* cache, const CFilePathStrId* path);
 struct UnkMorphBallLauncher_b57;
 
 static inline UnkModelManager* GetManager() {
@@ -318,7 +318,6 @@ base::reflection::UnkReflValue fn_7100815534(void*, char* obj, base::reflection:
     return base::reflection::refl_EmptyValue();
 }
 
-UnkMatrix44 fn_71000791a8(const UnkVec3f& translation, const UnkVec3f& angle, const UnkVec3f& scale);
 extern const base::math::CVector3D g_unk_71016477a8;
 UnkFxHandle_ovb0103* fn_71011a9c2c(UnkModelManager* self, u32 id, const CFilePathStrId* path, u32 kind, u32 flags);
 

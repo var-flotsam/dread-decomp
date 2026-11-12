@@ -16,9 +16,7 @@
 
 using base::global::CStrId;
 
-void* fn_7100149930(UnkRenderPool*, void*, UnkSceneObject**, base::global::CStrId*);
 void fn_71001494e4(UnkSceneObject* self, bool flag);
-void fn_7100149460(UnkSceneObject* object, const UnkVec3f* position);
 
 struct UnkRGB_710050f26c {
     f32 r;

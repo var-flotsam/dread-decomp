@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkGfxFrameSource;
 struct UnkEngineObject_0xf0;
 struct UnkGameObject_0x150;
 struct UnkGameObject_0x60;
@@ -29,3 +30,6 @@ extern UnkLoadingScreen* g_unk_7101d47380;
 extern UnkEngineObject_0xf0* g_unk_7101d47338;  // An object of unit 52 (0xf0 bytes).
 extern UnkGameObject_0x150* g_unk_7101d47370;
 extern UnkGameObject_0x60* g_unk_7101d47378;
+extern void* g_unk_7101d47330;
+extern void* g_unk_7101d47368;
+extern UnkGfxFrameSource* g_unk_7101d47328;

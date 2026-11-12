@@ -2,10 +2,10 @@
 // at +0x15748 (source +0x15718, state +0x15740; the shape of CTutoExitLogicAction_b47.cpp) on or off
 // (bit 0 of `on`, fn_7100232864). Names and layouts are placeholders.
 #include "base/UnkRefHandle.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 struct UnkEntityState;
-void fn_7100232864(UnkEntityState* entity, bool value);
 
 struct UnkCountedCooldown_b49 : base::UnkRefCounted {
     void* field_0x10;

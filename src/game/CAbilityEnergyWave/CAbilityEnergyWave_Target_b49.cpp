@@ -21,8 +21,6 @@ struct UnkPlayer;
 struct UnkOwner;
 struct UnkRinkaControl_ruc;
 
-void fn_7100872908(void*, void*);
-
 struct UnkEnergyWaveTargetComp_b49;
 struct UnkEnergyWaveFxComp_b49;
 extern char g_unk_7101648d28[];

@@ -34,8 +34,6 @@ struct UnkCutsceneComponent_cs {
     UnkCutsceneObject_cs* object;  // 0x200
 };
 
-void* fn_710106cf74(UnkCutsceneObject_cs* object, const base::global::CStrId* name);
-
 void fn_71007a9d8c(UnkCutsceneComponent_cs* self) {
     UnkCutsceneObject_cs* object = self->object;
     if (!object)

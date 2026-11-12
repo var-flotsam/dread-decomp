@@ -6,12 +6,12 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkGuiRoot.h"
+#include "game/lua_lib.h"
 #include "types.h"
 
 using base::reflection::CType;
 using base::reflection::UnkReflValue;
 
-const CType* fn_7100fc036c();
 void* fn_71011d9780(char* self, u32 index, void* arg);
 
 static inline __attribute__((always_inline)) void* ArgPtr_b40a3(UnkReflValue* arg) {

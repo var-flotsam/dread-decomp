@@ -11,6 +11,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU2544.h"
 #include "game/UnkTU2768.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
@@ -38,7 +39,6 @@ extern UnkPropertyEx<> g_unk_71727bca80;
 extern UnkPropertyEx<> g_unk_71727bcac0;
 extern UnkPropertyEx<> g_unk_71727bcb00;
 extern UnkEnumType g_unk_71727bcb40;
-extern const CStrId g_unk_71727bdb80 __attribute__((visibility("hidden")));
 
 // A record read from the section is converted to the record type.
 struct UnkRushRecordTag;

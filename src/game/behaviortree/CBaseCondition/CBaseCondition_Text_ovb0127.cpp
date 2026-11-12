@@ -2,12 +2,10 @@
 // placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using base::global::CRntString;
-
-CRntString fn_710007f050(const char*, const CRntString*);
-void fn_710007f564(void*, const char*);
 
 // The names of the results a condition can map success and failure to (1 to 7).
 extern const char* const g_unk_7101a26f80[] __attribute__((visibility("hidden")));

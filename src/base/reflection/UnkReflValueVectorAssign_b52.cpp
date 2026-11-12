@@ -3,13 +3,12 @@
 // room made for the other's capacity, then each of the other's values appended (fn_7100095e98). Names
 // are placeholders.
 #include "base/UnkVector.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
-
-void fn_71000a179c(UnkReflValue* self, const UnkReflValue* other);  // copy constructor
 
 // As src/base/reflection/UnkReflValueVectorCopy.cpp defines them.
 struct UnkReflValueElem_7100095acc {

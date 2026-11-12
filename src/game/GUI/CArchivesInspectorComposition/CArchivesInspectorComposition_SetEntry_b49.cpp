@@ -16,6 +16,7 @@
 #include "game/UnkGuiLabel.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkGuiSprite.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -25,8 +26,6 @@ void fn_71011cd5a0(UnkGuiObj* object);
 extern CStrId g_unk_717275c5e0 __attribute__((visibility("hidden")));  // the composition's key
 
 using base::reflection::UnkReflObject;
-
-UnkReflObject* fn_7100e033a8(UnkGameManager* manager);
 
 struct UnkArchivesWatched {
     u8 pad_0x0[0x30];

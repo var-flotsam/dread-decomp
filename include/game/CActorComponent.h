@@ -3,8 +3,10 @@
 // CActorComponent: functions of this translation unit that other files call (tools/tu_map.py unit 342,
 // 0x710024e2e8-0x7100252568). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/global/CRntFile.h"
 #include "types.h"
 
+struct UnkPickableItem_A4_b76;
 struct UnkBaseComponent;
 struct UnkActivatable_b48;
 struct UnkLightingComponent3;
@@ -18,3 +20,4 @@ void fn_710024fb24(void*);
 void fn_710024fc08();
 void fn_710024facc(UnkSmBase_b60*);
 void fn_710024f6d4(UnkBaseComponent* self);
+void fn_710024fc0c(UnkPickableItem_A4_b76* self, base::global::CRntFile* file);

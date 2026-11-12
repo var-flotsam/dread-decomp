@@ -10,7 +10,6 @@
 using base::global::CStrId;
 
 struct UnkMapData;
-void fn_7100e9c43c(UnkMapData* map, const CStrId* id);
 
 struct UnkAbilityDef_A2_b69 {
     u8 pad_0x0[0x20];

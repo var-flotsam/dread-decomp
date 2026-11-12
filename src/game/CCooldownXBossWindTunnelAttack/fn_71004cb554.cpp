@@ -7,6 +7,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CCharClassTweakPlayRateTrack.h"
 #include "game/CCooldownXBossAttack.h"
+#include "game/CCooldownXBossFireBallDef.h"
 #include "game/UnkTU2772.h"
 #include "types.h"
 
@@ -70,7 +71,6 @@ struct UnkSelf {
 };
 
 struct UnkTunable;
-extern UnkTunable g_unk_71726d6438;
 
 UnkEntry* fn_71004ba10c(UnkPool* pool, u32 index, u32 flag);
 void fn_71004d1fe8(UnkActor* actor);

@@ -13,11 +13,13 @@
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
 #include "base/animation/CAnimationResource.h"
+#include "base/file/CThreadSafeDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPool.h"
 #include "game/CBlackboard.h"
+#include "game/CSpittailMagmaBallMovementComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSceneObject.h"
@@ -497,10 +499,7 @@ struct UnkStrPair_0x10 {
     void* a;
     void* b;
 };
-void fn_710008d2ec(UnkStrPair_0x10* self, const base::global::CFilePathStrId* path);
-void fn_71006cae2c(UnkRenderPool*, const CFilePathStrId&, UnkModel**, base::global::CStrId*);
 struct UnkModel_ovb0032;
-void fn_7100143578(UnkModel_ovb0032* model, const UnkVec3f* v);
 
 struct UnkModelData_v {
     u8 unk_0x0[0x18];

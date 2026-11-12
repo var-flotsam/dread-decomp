@@ -18,9 +18,6 @@ struct UnkShapeHit_A5_b68 {
     UnkShapeHit_A5_b68(const UnkShapeHit_A5_b68& other);
 };
 
-UnkShapeHit_A5_b68 fn_7100d572f8(UnkShapeTester_A5_b68* tester, void* shape, const base::math::CVector2D* pos,
-                                 const base::math::CVector3D* offset, u64 flags);
-
 struct UnkShapeObject_A5_b68 {
     u8 pad_0x0[0x44];
     f32 x;

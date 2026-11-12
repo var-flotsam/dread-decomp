@@ -3,8 +3,10 @@
 // CMovementComponent: functions of this translation unit that other files call (tools/tu_map.py unit 2688,
 // 0x71010d02f0-0x71010d4ac0). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "types.h"
 
+struct UnkProbeResult;
 struct UnkCharacterMovementFull_ovb0021;
 struct UnkMovementVec_71010d08d4;
 struct UnkMovement_71010d08d4;
@@ -13,3 +15,4 @@ void fn_71010d08d4(UnkMovement_71010d08d4*, const UnkMovementVec_71010d08d4*, bo
 bool fn_71010d0e38(UnkMovement_71010d0e38* self);
 void fn_71010d0754(UnkCharacterMovementFull_ovb0021* self);
 void fn_71010d092c(UnkCharacterMovementFull_ovb0021* self);
+bool fn_71010d15d0(char* self, const base::math::CVector3D* pos, UnkProbeResult* result, f32 radius);

@@ -58,7 +58,6 @@ void fn_7100301600(void* self, u64 hash, bool on, UnkObject* world);
 
 void fn_71003053c4(UnkSelf* self);
 void fn_710085ab38(UnkSamusGunComponent* gun);
-void fn_710083f32c(UnkSamusGunComponent* gun, const CStrId* id, bool a, bool b, bool c);
 
 struct UnkEnergyWaveState_ovb22 {
     u8 pad_0x0[0x10];

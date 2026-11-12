@@ -3,6 +3,7 @@
 // UnkTU2565: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2565,
 // 0x7100e768b0-0x7100e7cdfc). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/global/CStrId.h"
 #include "types.h"
 
 struct UnkReflType;
@@ -36,3 +37,4 @@ extern UnkReflType g_unk_71727c90c8;
 extern UnkReflType g_unk_71727c9208;
 extern UnkReflType g_unk_71727c9380;
 extern UnkTUHeader g_unk_71727c9948 __attribute__((visibility("hidden")));
+void fn_7100e77818(UnkReflType* self, const base::global::CStrId& name, void* a, void* b);

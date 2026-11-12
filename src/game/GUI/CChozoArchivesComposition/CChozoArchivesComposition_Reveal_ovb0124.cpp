@@ -8,6 +8,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CBlackboard.h"
+#include "game/GUI/CMainMenu.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
@@ -20,8 +21,6 @@ using base::reflection::UnkReflObject;
 struct UnkGallery_A5_b75;
 struct UnkGuiEvent_b49;
 void fn_7100af8450(UnkGallery_A5_b75* self, UnkGuiEvent_b49* event);
-UnkReflObject* fn_7100e033a8(UnkGameManager*);
-void fn_7100b35704(UnkReflObject*, u32, bool);
 
 struct UnkArchivesMenuPart_ovb0124 {
     virtual void vf_0x0();

@@ -36,7 +36,6 @@ static_assert(sizeof(UnkBTObserver) == 0x150, "UnkBTObserver placeholder layout"
 // Sizes the map: its buckets and its pool of nodes.
 void fn_7100caab7c(UnkChainedMap* map, u32 buckets, u32 nodes);
 // Reserves room for `capacity` pairs.
-void fn_7100ca9158(base::UnkPairArrays* pairs, u32 capacity);
 void fn_7100caacd0();
 bool fn_7100caad50(void*);
 bool fn_7100caadb0(void*, void*);

@@ -2,12 +2,12 @@
 // capsule's centre is at +0xa8, its half length at +0xb0 and its radius at +0xb4. Names and layouts are
 // placeholders.
 #include "base/global/CRntFile.h"
+#include "game/logic/collision/CShape.h"
 #include "types.h"
 
 using base::global::CRntFile;
 
 struct UnkPolygonCollectionShape;
-bool fn_7100d6c288(UnkPolygonCollectionShape* self, CRntFile* file);
 
 struct UnkCapsuleShape2D_ovb0015 {
     virtual void vf_0x0();

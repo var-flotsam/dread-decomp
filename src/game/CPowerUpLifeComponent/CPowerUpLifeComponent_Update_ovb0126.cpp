@@ -7,12 +7,12 @@
 #include "base/UnkRefHandle.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkEntityState;
-void fn_7100232864(UnkEntityState* entity, bool value);
 
 using UnkRef = base::UnkRefPtrMember;
 UnkRef fn_7100353be8(void* source);

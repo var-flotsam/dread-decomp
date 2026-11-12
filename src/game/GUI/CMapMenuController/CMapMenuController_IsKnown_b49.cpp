@@ -7,6 +7,7 @@
 #include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2566.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -25,7 +26,6 @@ struct UnkMapNamedDef_b49 : UnkIdSource {
     UnkQualifiedName name;
 };
 extern UnkMapNamedDef_b49 g_unk_71727c9e00;
-extern CStrId g_unk_71727cc990;  // the blackboard section
 
 static inline UnkSubId_7100fc4b34 SubId(UnkMapNamedDef_b49& def, const CStrId& name) {
     if (!def.name.str || !def.name.str[0])

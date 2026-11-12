@@ -3,8 +3,10 @@
 // CModelUpdaterComponent: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2719,
 // 0x710116ed2c-0x7101174bd0). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/global/CRntString.h"
 #include "types.h"
 
+struct UnkModelUpdater_ovb0032;
 struct UnkEntity;
 struct UnkMatrix44;
 struct UnkEnergyWaveFxComp_b49;
@@ -17,3 +19,4 @@ bool fn_710117364c(void* target, const u64* id, UnkGrappleAnswer_b50* out);
 bool fn_7101173964(void* self);
 extern void* g_unk_7101cb46a0[];
 bool fn_71011735e8(UnkEntity* entity, const void* key, UnkMatrix44* out, u32 flags);
+void fn_7101171a08(UnkModelUpdater_ovb0032* self, const void* path, const base::global::CRntString* extra);

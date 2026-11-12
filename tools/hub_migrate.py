@@ -627,10 +627,9 @@ def migrate_plan(plan: list[tuple[str, str, str | None]], version: str, dry_run:
     if retry and retry_alone:
         print(f"retrying {len(retry)} symbol(s) that went back together with others, one run each")
         for s in retry:
-            if needs.get(s) and sym_decl[s]:   # what it brings goes in first; the end of the run drops it if unused
-                text, crlf = read(sym_header[s])
-                write(sym_header[s], with_needs(text, needs[s]), crlf)
-            worst = max(worst, migrate([s], version, sym_header[s], sym_decl[s], False, jobs))
+            # a plan of one: what the symbol brings is written after its baseline, with its declaration
+            worst = max(worst, migrate_plan([(s, sym_header[s], sym_decl[s])], version, False, jobs, sample,
+                                            f"{tag}-{s}", False, {s: needs.get(s, [])}))
     for hdr in sorted({h for _, h, _ in plan}):
         if not (ROOT / hdr).exists():
             continue

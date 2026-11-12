@@ -17,6 +17,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAttack.h"
+#include "game/CCharClassGooplotAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkTU2523.h"
@@ -138,7 +139,6 @@ bool fn_71005944e8(UnkGooplotJump_ovb0123* self, void* arg, u32 mode) {
 
 struct UnkAttackBase;
 void fn_71003608ac(UnkAttackBase* self);
-extern UnkTunable g_unk_71726e72b8;
 
 struct UnkGooplotKeys_ovb0123 {
     u8 pad_0x0[0x30];

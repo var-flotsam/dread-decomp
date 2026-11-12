@@ -187,7 +187,6 @@ void fn_71011930c8() {
 // registry interface at +8) held in their own singletons, each with its category's record. The
 // startup (src/engine/UnkStartupManagers.cpp) passes fn_7100db256c its singleton, which it ignores.
 extern void* g_unk_71729f0148;     // unit 2624's factory
-extern CStrId g_unk_71727b9d30;    // unit 2624's category
 
 static inline UnkActorDefResFactory* ResFactoryOf(void* factory) {
     return factory ? &static_cast<UnkActorDefFactory*>(factory)->res_factory : nullptr;

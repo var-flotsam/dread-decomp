@@ -2,9 +2,8 @@
 // calls it the sound with an enabled flag at +0x16c): its volume through the middleware handle
 // (+0x28, never below 0), and two clamped values of its voice (+0x30): one in [0, 2] at +0xb4 and
 // one in [-2, 2] at +0xbc. Names and layouts are placeholders.
+#include "game/UnkTU2772.h"
 #include "types.h"
-
-void fn_710120e5d0(void* sound, f32 value, u32 x1);
 
 struct UnkAtkVoice99 {
     u8 pad_0x0[0xb4];

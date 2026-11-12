@@ -13,6 +13,7 @@
 #include "game/UnkActor.h"
 #include "game/UnkTU811.h"
 #include "game/UnkTUProperty.h"
+#include "game/behaviortree/CBehavior.h"
 #include "game/behaviortree/CEmmyChaseAction.h"
 #include "types.h"
 
@@ -27,7 +28,6 @@ struct UnkTypedValue {
 };
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
-extern base::global::CStrId g_unk_71726b7cb8;
 extern UnkPropertyName g_unk_71726debd8;
 
 struct UnkActorTarget;

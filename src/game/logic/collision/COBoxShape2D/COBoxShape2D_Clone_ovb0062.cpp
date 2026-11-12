@@ -47,7 +47,6 @@ UnkOBoxShape2DClone_ovb0062* fn_7100d6875c(const UnkOBoxShape2DClone_ovb0062* ot
 }
 
 struct UnkPolygonCollectionShape;
-bool fn_7100d6c288(UnkPolygonCollectionShape* self, CRntFile* file);
 
 struct UnkOBoxShape2DRead_ovb0062 {
     virtual void vf_0x0();

@@ -10,6 +10,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CPlaythroughDef.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -70,7 +71,6 @@ void fn_71002f25ec(UnkPlaythroughIdsOwner_ovb0123* self, const char* const* text
     fn_71002f2974(&tokens);
 }
 
-void fn_710007f564(void*, const char*);
 extern void* g_unk_7101a1b750[];  // the joined text's storage vtable
 
 // A string whose storage object follows it.

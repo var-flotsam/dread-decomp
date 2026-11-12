@@ -6,6 +6,7 @@
 // placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CRntString.h"
+#include "base/global/timeline/CEvent.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CEmmyGrabSamusAttack.h"
@@ -17,7 +18,6 @@
 using base::global::CRntString;
 
 struct UnkPlayer;
-u64* fn_7100066630(u64* out, const CRntString* str);
 extern CRntString g_unk_71726de700 __attribute__((visibility("hidden")));
 
 // The pooled data of an id: the string at +0x10 (its key at +0x30 is the hash) and a counter at +0x44

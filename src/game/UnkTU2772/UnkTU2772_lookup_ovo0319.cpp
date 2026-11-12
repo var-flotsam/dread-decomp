@@ -2,6 +2,7 @@
 // per-channel mix refresh of a voice array. Names and layouts are placeholders.
 #include <string.h>
 
+#include "game/UnkTU99.h"
 #include "types.h"
 
 struct UnkAtkNode_o0319 {
@@ -90,7 +91,6 @@ struct UnkAtkChannelArray_o0319 {
     u8 pad_0x1eb[0x200 - 0x1eb];
     f32 level;  // 0x200
 };
-void* fn_71001039f8();
 void fn_7101230494(void* element, u32 enabled, UnkAtkMixOut_o0319* params);
 
 void fn_710122d314(UnkAtkChannelArray_o0319* self) {

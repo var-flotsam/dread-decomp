@@ -3,9 +3,8 @@
 // scale are derived from the old matrix first if they are not cached yet.
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkMatrix44.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
-
-UnkMatrix44 fn_71000791a8(const UnkVec3f& translation, const UnkVec3f& angle, const UnkVec3f& scale);
 
 static inline void SetMatrix(UnkXform* x, const UnkMatrix44& r) {
     for (int i = 0; i < 16; ++i)

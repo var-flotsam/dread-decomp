@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "game/CCharClassTweakPlayRateTrack.h"
+#include "game/CCollisionComponent.h"
 #include "game/UnkTU2577.h"
 #include "game/UnkTU85.h"
 #include "types.h"
@@ -16,7 +17,6 @@ using base::reflection::CType;
 using base::reflection::UnkReflTypedPtr;
 
 struct UnkCollisionContainer;
-CStrId* fn_7100864018(UnkCollisionContainer* self, void* object);
 
 extern CStrId g_unk_71726e6748 __attribute__((visibility("hidden")));
 
@@ -60,7 +60,6 @@ u32 fn_7100590fc4(UnkGoliathAI2_ovb0106* self, UnkGoliathHit2_ovb0106* hit) {
 
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
-void fn_7100eea3fc(void*, const base::global::CStrId*, bool, bool);
 
 struct UnkGoliathActor_ovb0106 {
     u8 pad_0x0[0x30];

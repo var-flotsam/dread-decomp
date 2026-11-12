@@ -3,6 +3,7 @@
 // UnkTU2527: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2527,
 // 0x7100d92158-0x7100d975d8). One declaration per symbol: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/global/CStrId.h"
 #include "types.h"
 
 struct UnkDesc_7100d92158;
@@ -40,3 +41,4 @@ extern UnkDesc_7100d92158 g_unk_71727ba030;
 extern UnkDesc_7100d92158 g_unk_71727ba0b0;
 extern UnkDesc_7100d92158 g_unk_71727ba130;
 extern UnkDesc_7100d92158 g_unk_71727ba1b0;
+extern base::global::CStrId g_unk_71727b9d30;

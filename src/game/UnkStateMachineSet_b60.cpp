@@ -4,6 +4,7 @@
 // and otherwise switches state as the b59 "apply pending" does. One template per (last state, "none"
 // value), instantiated per component and machine offset; a constant id folds away the range test and
 // the id-0 path. Names are placeholders.
+#include "base/core/CBaseObject.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CActorComponent.h"
@@ -460,7 +461,6 @@ void fn_710088bd1c(UnkTimerSm_b60* self, f32 dt) {
 
 struct UnkComponent;
 struct UnkCameraCtrl;
-bool fn_7100023d00(const UnkCameraCtrl*, const base::reflection::CClass*);
 
 bool fn_7100888c24(UnkLauncherSm2_b60* self, s32 event) {
     if (event == 1) {

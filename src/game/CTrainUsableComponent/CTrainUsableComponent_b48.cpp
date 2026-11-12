@@ -9,15 +9,15 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
+#include "game/CScenario.h"
 #include "game/CUsableComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
-
-CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 
 // A typed value as the section setter takes it (as in src/game/CDoorLifeComponent.cpp).
 struct UnkTypedValue {
@@ -47,8 +47,6 @@ struct UnkUsableName_b48 {
         u32 uses;
     };
 };
-const base::global::CStrId* fn_7100de9bf8(UnkGameManager* self);
-bool fn_7100dfaf88(UnkGameManager* self, void* name, const CRntString& tag, bool flag);
 
 struct UnkUsableValue_b48 {
     UnkPropertyName name;

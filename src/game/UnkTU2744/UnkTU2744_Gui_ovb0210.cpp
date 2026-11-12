@@ -19,12 +19,16 @@
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/GUI/CDisplayObjectDef.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
 #include "game/UnkGuiHandle.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2669.h"
+#include "game/UnkTU2744.h"
+#include "game/UnkTU2747.h"
+#include "game/UnkTU57.h"
 #include "game/UnkTU92.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -89,10 +93,6 @@ void fn_71011b5d94(UnkGuiRoot* root, UnkGuiDisplayObject* object) {
 }
 
 // ---- fn_71011bbf08 ----
-
-bool fn_71011ceac0(UnkGuiDisplayObject* self);
-bool fn_71011ceb34(UnkGuiDisplayObject* self);
-void fn_71011cd424(UnkGuiDisplayObject* self, UnkGuiDisplayObject* parent);
 
 struct UnkGuiRootQueue_b0210 {
     u8 pad_0x0[0xa0];
@@ -265,11 +265,8 @@ void fn_71011b97bc(UnkRecordOwner_b0210* self, const CRntString* name) {
 
 // ---- fn_71011b6030: loads a composition ----
 
-s32 fn_710007fb10(const base::global::CRntString* self, char c, s32 start);
-
 struct UnkScriptManager_ovb0085;
 struct UnkUnit2669Str;
-UnkWeakTarget* fn_71011b5f5c(u32 script, const char* const* name, const CRntString* source, void* bag);
 
 static inline UnkScriptManager_ovb0085* ScriptManager() {
     UnkScriptManager_ovb0085* manager = g_unk_71727bed90;
@@ -347,10 +344,8 @@ struct UnkCopyContext_b0210 {
 };
 
 struct UnkDisplayReader_ovb0108;
-s32 fn_7100b09720(UnkDisplayReader_ovb0108* self, UnkReflObject* obj);
 
 // The type of std::unique_ptr<GUI::CDisplayObjectContainer> (src/reflection_types/).
-const base::reflection::CType* fn_71011bcf1c();
 
 struct UnkOwnedObject_b0210 {
     UnkGuiDisplayObject* ptr = nullptr;

@@ -10,6 +10,7 @@
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
 #include "base/core/CAsset.h"
+#include "base/file/CThreadSafeDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
@@ -144,7 +145,6 @@ struct UnkStrPair_0x10 {
     void* b;
 };
 struct UnkFileReader;
-void fn_710008d2ec(UnkStrPair_0x10* self, const base::global::CFilePathStrId* path);
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
 
 struct UnkActionSet_b0104 {

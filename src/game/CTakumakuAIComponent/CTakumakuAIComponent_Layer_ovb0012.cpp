@@ -148,7 +148,6 @@ struct UnkMat4f {
     f32 m[4][4];
 };
 UnkVec3f fn_7100078170(const UnkMat4f* m, const UnkVec3f* v);
-UnkMat4f fn_7100079c60(const UnkVec3f* from, const UnkVec3f* to);
 extern __attribute__((visibility("hidden"))) const UnkVec3f g_unk_710164a7f0;
 
 // As src/game/CSamusFloorSlideMovementState/CParams/CParams_Slide_ovb0004.cpp defines them.

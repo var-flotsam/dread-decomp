@@ -5,16 +5,16 @@
 // tried in that order and skipping empty keys. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
+#include "game/CScenario.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 bool fn_7100395a30(CBlackboard::CSection*, const void*, s32*);
 bool fn_7100395b34(CBlackboard::CSection*, const void*, f32*);
 struct UnkEntityState;
-void fn_7100232864(UnkEntityState* entity, bool value);
 
 struct UnkPersistenceKey_b49 {
     CStrId id;

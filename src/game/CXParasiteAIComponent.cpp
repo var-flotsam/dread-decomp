@@ -8,6 +8,7 @@
 #include "game/UnkActor.h"
 #include "game/UnkTU1102.h"
 #include "game/UnkTimelineComponent.h"
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
 struct UnkPropertyName;
@@ -29,7 +30,6 @@ struct UnkXParasiteAI {
 };
 static_assert(__builtin_offsetof(UnkXParasiteAI, field_0x146e8) == 0x146e8, "UnkXParasiteAI placeholder layout");
 
-extern base::global::CStrId g_unk_71726b7cb8;                                    // the blackboard section
 extern UnkPropertyName g_unk_717270b8d8 __attribute__((visibility("hidden")));  // the property in it
 extern const u64 g_unk_710164a838;                                               // the timeline id
 

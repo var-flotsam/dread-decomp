@@ -13,15 +13,15 @@
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkSlots.h"
 #include "game/UnkTU101.h"
+#include "game/UnkTU253.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU341.h"
+#include "game/UnkTU56.h"
 #include "types.h"
 
 struct UnkPlayer;
 
 using base::color::CColor4F;
-
-bool fn_71001c2bac(UnkSlots* self, u64 key, u32 kind, CColor4F* out, u32 mode);
 
 struct UnkPickableColorKey_ovb0023 {
     u8 pad_0x0[0x30];
@@ -64,8 +64,6 @@ void fn_71009cd46c(UnkPickableComponent_ovb0023* self, f32 alpha) {
 }
 
 using base::global::CStrId;
-
-s64 fn_710007cee4(void* stream, const char** out);
 
 struct UnkPickableStream_ovb0023 {
     u8 pad_0x0[0x8];

@@ -5,6 +5,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
 #include "game/UnkTUProperty.h"
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -16,7 +17,6 @@ struct UnkTypedValue {
 };
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
-extern base::global::CStrId g_unk_71726b7cb8;
 extern UnkPropertyName g_unk_7172a06338 __attribute__((visibility("hidden")));
 
 struct UnkBlackboardOwner_b49 {

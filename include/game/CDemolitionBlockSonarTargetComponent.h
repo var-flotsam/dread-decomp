@@ -4,4 +4,6 @@
 // 0x7100a0f41c-0x7100a1057c). One declaration per symbol: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
+
+
 extern char g_unk_7101a8b8f0[];

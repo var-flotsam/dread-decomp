@@ -4,9 +4,8 @@
 // angle (+0x48), a result the original drops. Names and layouts are placeholders.
 #include "base/math/UnkSegment2D.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkTU2747.h"
 #include "types.h"
-
-void fn_71011cee40(UnkGuiDisplayObject* object);
 
 // The placement fields read here.
 struct UnkGuiPlacement {

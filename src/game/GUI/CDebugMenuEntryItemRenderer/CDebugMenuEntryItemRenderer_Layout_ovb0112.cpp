@@ -14,16 +14,13 @@
 #include "base/math/CVector.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU2744.h"
+#include "game/UnkTU2747.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
 using base::math::CVector2D;
-
-bool fn_71011ceac0(UnkGuiDisplayObject* self);
-bool fn_71011ceb34(UnkGuiDisplayObject* self);
-void fn_71011b5598(UnkGuiRoot* root, UnkGuiDisplayObject* object);
-void fn_71011cd424(UnkGuiDisplayObject* self, UnkGuiDisplayObject* parent);
 
 struct UnkDebugMenuItem_ovb0112 {
     UnkGuiDisplayObject* Object() { return reinterpret_cast<UnkGuiDisplayObject*>(this); }
@@ -54,7 +51,6 @@ using UnkMenuEntrySlot_ovb0112 = UnkCloneElem<UnkClone_fn_7100affc6c, 8>;
 extern template UnkMenuEntrySlot_ovb0112& base::UnkVector<UnkMenuEntrySlot_ovb0112>::GrowAt(u32);
 
 struct UnkSprite_spr;
-void fn_71011cf8d0(UnkSprite_spr* self, const base::math::CVector2D* size);
 
 struct UnkMenuEntry_ovb0112 {
     u8 pad_0x0[0x30];

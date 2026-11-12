@@ -4,6 +4,7 @@
 // sub-allocator. Called only through a vtable.
 
 #include "base/UnkDefaultAllocator.h"
+#include "game/UnkTU58.h"
 #include "types.h"
 
 struct UnkFreeHookHost_71001039b4 {
@@ -12,8 +13,6 @@ struct UnkFreeHookHost_71001039b4 {
     void (*on_free)(void* user, UnkFreeHookHost_71001039b4* self);
     void* user;
 };
-
-void fn_7100081420(base::UnkSubAllocator* self, void* ptr);
 
 void fn_71001039b4(base::UnkSubAllocator* sub, void* ptr) {
     auto* self = reinterpret_cast<UnkFreeHookHost_71001039b4*>(reinterpret_cast<char*>(sub) - 8);

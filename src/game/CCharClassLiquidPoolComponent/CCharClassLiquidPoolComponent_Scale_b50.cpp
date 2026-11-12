@@ -2,6 +2,7 @@
 // actor's model (the transform at +0x38 of the object at +0x50 of its model updater, fn_7100233684),
 // kept within [0, 1]; 1 when there is no model updater. Names and layouts are placeholders.
 #include "game/CCharClassLiquidPoolComponent.h"
+#include "game/UnkTU341.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -9,7 +10,6 @@ struct UnkStruct_7100233684;
 namespace base::reflection {
 class UnkReflObject;
 }
-base::reflection::UnkReflObject* fn_7100233684(UnkStruct_7100233684* self);
 
 struct UnkLiquidModel {
     u8 unk_0x0[0x38];

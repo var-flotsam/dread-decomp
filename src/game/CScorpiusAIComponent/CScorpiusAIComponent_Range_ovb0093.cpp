@@ -14,6 +14,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CAnimationComponent.h"
+#include "game/CCharClassScorpiusAIComponent.h"
 #include "game/CScorpiusAIComponent.h"
 #include "game/CShotManager/CTunableShotManager.h"
 #include "game/UnkCollisionRecord.h"
@@ -23,7 +24,6 @@
 #include "types.h"
 
 struct UnkTunable;
-extern UnkTunable g_unk_7172703e88;
 
 struct UnkScorpiusTunables_ovb0093 {
     u8 pad_0x0[0x4c];

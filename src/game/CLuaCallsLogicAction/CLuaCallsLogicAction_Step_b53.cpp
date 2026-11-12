@@ -6,6 +6,7 @@
 // (+0x1e0) with ("oo": the entity, `arg`), or logs it when the entity has none. Names and layouts are
 // placeholders.
 #include "base/global/CRntString.h"
+#include "base/global/timeline/CEvent.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CLuaCallsLogicAction.h"
 #include "game/CPickableComponent.h"
@@ -19,7 +20,6 @@ using base::global::CRntString;
 
 struct UnkTutoExitAction_b47;
 
-u64* fn_7100066630(u64* out, const CRntString* str);
 struct UnkScriptCaller;
 
 struct UnkLuaCallsEntity_b53 {

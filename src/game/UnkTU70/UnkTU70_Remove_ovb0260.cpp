@@ -2,6 +2,7 @@
 // entry's value is destroyed and its id released, the last entry takes its place. Names and layouts
 // are placeholders.
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CBlackboard.h"
@@ -9,8 +10,6 @@
 
 using base::global::CStrId;
 using base::reflection::UnkReflValue;
-
-void fn_71000a179c(UnkReflValue* self, const UnkReflValue* other);  // copy constructor
 
 // Removes the entry in `slot`: its value destroyed and its id released, the last entry moved into its
 // place. Returns the slot.

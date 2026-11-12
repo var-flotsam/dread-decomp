@@ -21,6 +21,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkMapMenuController.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU1689.h"
 #include "game/UnkTU2547.h"
 #include "game/UnkTU2553.h"
@@ -76,9 +77,7 @@ extern "C" int __cxa_guard_acquire(u64* guard);
 extern "C" void __cxa_guard_release(u64* guard);
 
 struct UnkMapData;
-void fn_7100e9c43c(UnkMapData* map, const CStrId* id);
 u32 fn_710119882c(void* manager, const CFilePathStrId* path);
-extern void* g_unk_7101d47330;
 
 // A cutscene path and the guard of its one-time construction.
 struct UnkPathSlot_b0200 {
@@ -317,8 +316,6 @@ void fn_7100e9cbac(void* world, const CStrId* current, CStrId* id, bool flag) {
     }
 }
 
-CStrId fn_7100de9c30(UnkGameManager*);
-
 struct UnkNamedId_b0200 : UnkIdSource {
     u64 field_0x8;
     UnkQualifiedId qid;
@@ -451,7 +448,6 @@ struct UnkNamedDef_b0200c : UnkIdSource {
 };
 // As src/game/CMinimapManager/CMinimapManager_ReadFlag_b43.cpp declares it.
 struct UnkNamedDef_b43a3;
-extern CStrId g_unk_71727cc990;
 
 static inline UnkSubId_7100fc4b34 SubId(UnkNamedDef_b0200c& def, const CStrId& name) {
     if (!def.name.str || !def.name.str[0])

@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "types.h"
 
+struct UnkCamMask_b0101;
 struct UnkMask;
 struct UnkSubArea;
 struct UnkTunable;
@@ -31,3 +32,10 @@ void fn_7100ef1608(void* set, const UnkSubAreaChange_b190* change);
 extern UnkTunable g_unk_71729da878;
 // The sub-area manager's constructor (0xae8 bytes; the singleton is created on first use).
 void fn_7100ee1f34(void* self);
+void fn_7100eea3fc(void* manager, const base::global::CStrId* id, bool a, bool b);
+void fn_7100eea334(void* manager, const base::global::CStrId* id, bool a, bool b);
+void fn_7100eee1f8(void* manager, base::global::CStrId* subArea, const base::global::CStrId* setup, bool a, bool b);
+void fn_7100eed3a4(void* manager, const base::global::CStrId* id, UnkCamMask_b0101 mask, bool flag);
+void fn_7100eee61c(void* manager, base::global::CStrId* a, base::global::CStrId* b, bool flag, bool other);
+void fn_7100eeeda4(void* manager, const base::global::CStrId* setup, bool enable, const u32* mask);
+extern base::global::UnkStrIdBase g_unk_71729daa38[/* 9; unsized: x86-64 would assume 16-byte alignment */];

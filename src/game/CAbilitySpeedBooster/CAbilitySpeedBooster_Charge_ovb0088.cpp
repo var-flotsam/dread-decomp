@@ -22,6 +22,7 @@
 #include "game/CAbility.h"
 #include "game/CAbilitySpeedBooster.h"
 #include "game/CGameObject.h"
+#include "game/CSamusModelUpdaterComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU2553.h"
@@ -207,7 +208,6 @@ void fn_710033bc80(UnkSpeedBoosterAbility_ovb0088* self, f32 dt) {
 using base::reflection::UnkReflObject;
 
 struct UnkOwner;
-void fn_710093adc0(base::reflection::UnkReflObject*, const void*, const void*, f32);
 struct UnkActorTarget;
 void fn_7101178e08(UnkActorTarget*, u32, bool, bool, f32);
 void fn_710117662c(UnkActorTarget*, u32 value, u32 extra, bool apply, bool flag, f32 time);

@@ -12,8 +12,6 @@
 extern char g_unk_7101647790[];
 
 struct UnkObject;
-void fn_710115217c(void* object, void* effect, u32 a, u32 b, const base::global::CStrId* name,
-                   const base::math::CVector3D& offset, const base::math::CVector3D& rotation, void* extra);
 
 struct UnkSteamJetDesc_A4_b75 {
     u8 pad_0x0[0x60];

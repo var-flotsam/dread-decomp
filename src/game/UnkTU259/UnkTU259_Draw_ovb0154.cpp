@@ -6,6 +6,7 @@
 
 #include "base/UnkBlockFreeList.h"
 #include "base/UnkVector.h"
+#include "base/tunable/CTunable.h"
 #include "game/UnkGlobal_710b372a98.h"
 #include "game/UnkTU177.h"
 #include "game/UnkTU179.h"
@@ -59,8 +60,6 @@ void fn_71001cfe44(UnkGfxJ_b0154* self);
 void fn_71001cf9ec(UnkGfxJ_b0154* self);
 void fn_71001cf790(UnkGfxO_b0154* self, s32 a);
 void fn_71001ce514(UnkGfxO_b0154* self);
-u32 fn_7100132f80();
-u32 fn_7100132f90();
 void fn_710014e6fc(void* p);
 void fn_710014dc5c(void* p);
 void fn_710014ddbc(void* p);

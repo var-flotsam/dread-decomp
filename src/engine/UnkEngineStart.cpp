@@ -9,6 +9,7 @@
 #include "base/UnkVector.h"
 #include "base/animation/CAnimationResource.h"
 #include "base/animation/CBlendSpaceResource.h"
+#include "base/file/CPackManagerDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/input/UnkRumbleManager.h"
@@ -17,6 +18,7 @@
 #include "game/UnkTU0.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU52.h"
+#include "game/UnkTU63.h"
 #include "game/nn/time.h"
 #include "types.h"
 
@@ -69,7 +71,6 @@ void fn_71000a497c(UnkVersionRegistry* self);
 
 // The frame timer (0x50 bytes; src/game_s1/fn_7100080c40.cpp resets it).
 struct UnkGfxFrameSource;
-extern UnkGfxFrameSource* g_unk_7101d47328;
 struct UnkTimer_7100080c40;
 void fn_7100080b3c(UnkTimer_7100080c40* self);  // constructor
 void fn_7100080c40(UnkTimer_7100080c40* self);  // reset
@@ -80,7 +81,6 @@ static inline void TimerCtor(UnkGfxFrameSource* self) {
 
 // The device registry (base/UnkRegistry.h); the settings' first callback goes to +0x60.
 void fn_7100087380(UnkRegistry_0x70* self);
-void* fn_7100087740(UnkRegistry_0x70* self, const CStrId* name);  // the device registered under `name`
 
 // The pack manager device ("packs", base::file::CPackManagerDevice): the callback at +0x58.
 struct UnkPackManagerDevice : UnkReflObject {
@@ -198,7 +198,6 @@ void fn_71000895c8(UnkFileDevice* self, UnkDevice* packs);
 bool fn_7100089c1c(UnkFileDevice* self, const CFilePathStrId& path);
 // Loads the cache's file table; mounts a pack.
 bool fn_7100087124(UnkDevice* cache, const CFilePathStrId& path);
-bool fn_710008aa90(UnkDevice* packs, const CFilePathStrId& path);
 
 static inline UnkDevice* NewHostDevice(const char* name, const char* path) {
     UnkDevice* device = static_cast<UnkDevice*>(fn_71000839a0(0x48, 3));

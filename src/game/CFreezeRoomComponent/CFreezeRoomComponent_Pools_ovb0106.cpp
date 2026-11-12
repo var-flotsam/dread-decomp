@@ -6,10 +6,13 @@
 #include "base/reflection.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCharClassBaseDamageTriggerComponent.h"
+#include "game/CCharClassBaseTriggerComponent.h"
 #include "game/CCharClassWaterPoolComponent.h"
 #include "game/CFreezeRoomComponent.h"
 #include "game/CPlayerInfo.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU0.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -19,7 +22,6 @@ using base::math::CVector3D;
 using base::reflection::UnkReflObject;
 
 struct UnkMagmaArea_b50;
-bool fn_7100a47e00(UnkMagmaArea_b50*, const CVector2D*);
 
 struct UnkFreezeOwner_ovb0106 {
     u8 pad_0x0[0x44];
@@ -83,12 +85,8 @@ void fn_7100a238f4(UnkFreezeRoom_ovb0106* self) {
 }
 
 struct UnkEnvironmentManager;
-extern void* g_unk_7101d47368;
-void fn_7100d8e32c(UnkEnvironmentManager*, const CStrId*, bool, bool);
-const CStrId* fn_7100d8efc8(UnkEnvironmentManager*);
 struct UnkLiquidPoolEnter_ovb0075;
 struct UnkLiquidPoolActor_ovb0075;
-void fn_7100a45f08(UnkLiquidPoolEnter_ovb0075*, UnkLiquidPoolActor_ovb0075*, const UnkVec3f*);
 
 // The environment manager, created on first use.
 static inline UnkEnvironmentManager* EnvironmentManager() {

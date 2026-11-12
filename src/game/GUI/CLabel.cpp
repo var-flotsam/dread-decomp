@@ -29,10 +29,8 @@ struct UnkMinimapView {
     base::math::CVector2D pos;
     base::math::CVector2D size;
 };
-void fn_71001c36c0(UnkMinimapView* view, const base::math::CVector2D* pos, const base::math::CVector2D* size);
 
 struct UnkStruct_710020a5a0;
-void fn_710020a5a0(UnkStruct_710020a5a0* self, const base::math::CVector2D* scale);
 
 // A viewport an entry shows (laid out as src/game/CMinimapManager.cpp's UnkMinimapViewport).
 struct UnkLabelViewport {
@@ -401,7 +399,6 @@ struct UnkLabelStateWidth {
 };
 
 // The font the root has for an id, and its name.
-void* fn_71011b882c(UnkGuiRoot* root, const CStrId* id);
 CRntString fn_71011b8790(UnkGuiRoot* root, const CStrId* id);
 // A character's advance and height in a font.
 u32 fn_7100147960(void* font, u32 c);

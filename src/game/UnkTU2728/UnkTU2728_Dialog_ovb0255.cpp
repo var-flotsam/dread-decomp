@@ -35,7 +35,6 @@ struct UnkLanguage;
 struct UnkDialogText : UnkGuiText {
     ~UnkDialogText() { fn_7100066e44(this); }
 };
-UnkDialogText fn_710119d040(UnkLanguage* language, const CStrId& key);
 
 static inline UnkLanguage* Language() {
     UnkLanguage* language = g_unk_7101d47358;

@@ -1,6 +1,7 @@
 // Static initialiser of the unit of the ECutPathMode, EXpawnAngPolicy.
 #include "../../game_s7/UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/SDeathImpactDisplacement.h"
 
 using namespace unk_static_init;
 
@@ -10,7 +11,6 @@ struct UnkStatics_710035d230 {
     u8 field_0x20[8];
 };
 extern UnkStatics_710035d230 g_unk_71726b2078 __attribute__((visibility("hidden")));
-extern base::reflection::CType g_unk_71726b1db0;
 void fn_710035c5fc(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_710035c4b0();
 extern char g_unk_71726b1ec8[];
@@ -18,7 +18,6 @@ extern UnkConversion g_unk_71726b1ed0;
 extern UnkConversion g_unk_71726b1ef0;
 void fn_710035d094() __attribute__((visibility("hidden")));
 void fn_710035d0a0() __attribute__((visibility("hidden")));
-extern base::reflection::CType g_unk_71726b1f10;
 void fn_710035c9e8(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_710035c77c();
 extern char g_unk_71726b2028[];

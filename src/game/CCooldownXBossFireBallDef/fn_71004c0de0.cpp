@@ -8,6 +8,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
+#include "game/CCooldownXBossFireBallDef.h"
 #include "game/UnkTUProperty.h"
 
 using namespace unk_static_init;
@@ -90,7 +91,6 @@ extern UnkEnumType g_unk_71726d62c0;
 void fn_71004b8bd4(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_71726d6430[];
 extern char g_unk_71726d6431[];
-extern UnkTunable g_unk_71726d6438;
 extern void* g_unk_7101a3e378[];
 extern char g_unk_71726d6469[];
 

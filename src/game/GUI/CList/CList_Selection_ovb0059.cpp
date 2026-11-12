@@ -14,6 +14,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU2744.h"
 #include "game/UnkTU2747.h"
 #include "types.h"
 
@@ -30,12 +31,7 @@ struct UnkSprite_spr;
 struct UnkGuiButtonFocus_ovb0000;
 
 void fn_71011ff97c(UnkStruct_71011ff97c* self, bool quiet);
-void fn_71011d99e4(UnkGuiDisplayObject* self, UnkGuiEvent_b49* event);
 struct UnkPanel_71011dfeb0;
-bool fn_71011ceac0(UnkGuiDisplayObject* self);
-bool fn_71011ceb34(UnkGuiDisplayObject* self);
-void fn_71011b5598(UnkGuiRoot* root, UnkGuiDisplayObject* object);
-void fn_71011cf8d0(UnkSprite_spr* self, const base::math::CVector2D* size);
 
 extern void* g_unk_7101cb6d08[];  // the list's vtable
 extern CStrId g_unk_7172a10df0 __attribute__((visibility("hidden")));  // the selection sound's key

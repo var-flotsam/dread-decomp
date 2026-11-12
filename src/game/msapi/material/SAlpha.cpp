@@ -10,6 +10,7 @@
 #include "base/core/CBaseObject.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU56.h"
 #include "game/msapi/material/SAlpha.h"
 #include "types.h"
 
@@ -81,7 +82,6 @@ struct UnkMovedId {
 // Reads `size` bytes (fn_710007c714 with one element).
 u64 fn_710007c70c(CRntFile* file, void* dest, u64 size);
 // The next string, in place (src/game_s7/UnkPropS7.h).
-s64 fn_710007cee4(void* stream, const char** out);
 
 // Reads the element count, then each element: its name, the byte, the count and the values.
 void fn_71001a6f54(void*, CRntFile* file, void*, UnkMaterialValuesVector* values) {

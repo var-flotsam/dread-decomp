@@ -11,6 +11,7 @@
 #include "base/UnkParallelFind.h"
 #include "base/UnkVector.h"
 #include "base/animation/CBlendSpaceResource.h"
+#include "base/core/CBaseObject.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/reflection/CClass.h"
@@ -39,7 +40,6 @@ using base::global::CStrId;
 using base::reflection::UnkReflValue;
 
 void fn_7100af0030(UnkSectionData* self, const UnkSectionData* other);
-s32 fn_7100024140(const base::reflection::CType* type);  // the type's letter (b, f, i, s, v)
 
 struct UnkStrIdData_b0026 {
     u8 pad_0x0[0x30];
@@ -462,7 +462,6 @@ struct UnkReadArg_b0026 {
     const base::reflection::CType* type;
     u64* value;
 };
-void fn_71000ee9fc(void* reader, u32 flags, UnkReadArg_b0026* arg, const base::global::CStrId* name);
 const base::reflection::CType* fn_710009c640(base::reflection::UnkReflObject* obj);
 
 struct UnkBlackboardReader_b0026 {

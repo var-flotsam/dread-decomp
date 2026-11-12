@@ -9,6 +9,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CSpecialEnergyComponent.h"
+#include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
@@ -22,8 +23,6 @@ using base::global::UnkStringData;
 
 struct UnkPlayer;
 struct UnkLifeComponent;
-void fn_7100b5fd6c(void* object, base::global::UnkStringData** name, void* block, bool a, bool b);
-bool fn_7100dfaf88(UnkGameManager* self, void* name, const CRntString& tag, bool flag);
 
 // A HUD item: its event slot (vtable 0x1e8) plays the named animation event.
 struct UnkHudItem_ovb0017 {

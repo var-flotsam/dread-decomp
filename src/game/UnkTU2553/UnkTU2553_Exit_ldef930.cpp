@@ -20,6 +20,7 @@
 #include "game/UnkTU341.h"
 #include "game/UnkTU344.h"
 #include "game/UnkTU365.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -41,8 +42,6 @@ void fn_7100e2c28c(void* self);
 char* fn_7100ed779c(char* p0);
 void fn_7100ed6bc4(void* self);
 void fn_7100e8efac(void* world);
-void fn_710109d890(UnkScriptManager_ovb0085* self, CRntString* name);
-CRntString fn_710007ef90(const CRntString* a, const char* b);
 void fn_710119d584(UnkSweepList_b49* self, bool flag);
 void fn_710119336c(UnkActorDefFactory* factory);
 void fn_7100d46804(UnkManager_7100863a8c* self);

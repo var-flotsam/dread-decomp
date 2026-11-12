@@ -4,6 +4,7 @@
 #include "game/CUsableComponent.h"
 #include "game/UnkTU1450.h"
 #include "game/UnkTU2538.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2577.h"
 #include "game/UnkTU2656.h"
 #include "game/UnkTU2737.h"
@@ -282,8 +283,6 @@ void fn_7100985b88(UnkUnit1454_A6_b64* self, void* arg) {
 #include "game/UnkGameManager.h"
 
 using base::global::CRntString;
-
-void fn_7100deac9c(UnkGameManager* manager, const CRntString& mode);
 
 struct UnkUnit1734_A6_b64 {
     u8 pad_0x0[0x50];

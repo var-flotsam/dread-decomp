@@ -217,7 +217,6 @@ void fn_71010e51e4(UnkCamComp7_ovb5* self) {
 struct UnkCamCtrl_ovb5;
 struct UnkCamComp6_ovb5;
 
-UnkCamCtrl_ovb5* fn_7100df2404(UnkGameManager* manager, const CStrId& id);
 void fn_71010e5da4(UnkCamComp6_ovb5* self, UnkCamCtrl_ovb5* ctrl, bool flag, bool a, bool b);
 
 struct UnkCamBuiltId_ovb5 {

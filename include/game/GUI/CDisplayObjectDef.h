@@ -3,8 +3,11 @@
 // CDisplayObjectDef: functions and globals of this translation unit that other files use (tools/tu_map.py unit 1669,
 // 0x7100b04a58-0x7100b0a450). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/global/CStrId.h"
+#include "base/reflection/CClass.h"
 #include "types.h"
 
+struct UnkDisplayReader_ovb0108;
 struct UnkReflType;
 struct UnkTUHeaderFnsClass;
 
@@ -31,3 +34,5 @@ extern UnkReflType g_unk_717275e200;
 extern UnkReflType g_unk_717275e340;
 extern UnkReflType g_unk_717275e480;
 extern UnkTUHeaderFnsClass g_unk_717275ed68 __attribute__((visibility("hidden")));
+void fn_7100b062cc(UnkReflType* self, const base::global::CStrId& name, void* a, void* b);
+s32 fn_7100b09720(UnkDisplayReader_ovb0108* self, base::reflection::UnkReflObject* obj);

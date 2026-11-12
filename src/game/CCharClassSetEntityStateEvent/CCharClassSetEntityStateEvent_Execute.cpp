@@ -4,12 +4,12 @@
 // then it is the event's own entity (`*owner`). Names and layouts are placeholders.
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 struct UnkWeakTarget;
 
 struct UnkEntityState;
-void fn_7100232864(UnkEntityState* entity, bool value);
 
 struct UnkSetEntityStateEvent {
     u8 unk_0x0[0x10];

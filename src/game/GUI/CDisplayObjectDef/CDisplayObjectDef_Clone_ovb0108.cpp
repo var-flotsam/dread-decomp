@@ -9,6 +9,7 @@
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/GUI/CDisplayObjectDef.h"
 #include "game/UnkTU92.h"
 #include "types.h"
 
@@ -55,7 +56,6 @@ struct UnkCopyContext_ovb0108 {
 };
 
 struct UnkDisplayReader_ovb0108;
-s32 fn_7100b09720(UnkDisplayReader_ovb0108* self, UnkReflObject* obj);
 
 UnkDisplayObjectDef_ovb0108* fn_7100b06708(UnkReflObject* source) {
     auto* def = static_cast<UnkDisplayObjectDef_ovb0108*>(operator new(0x90));

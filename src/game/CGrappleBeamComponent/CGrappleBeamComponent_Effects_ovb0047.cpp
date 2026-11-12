@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "game/CAutclastChargeAttack.h"
 #include "game/CFXComponent.h"
+#include "game/CSpittailMagmaBallMovementComponent.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSwitchObject.h"
@@ -75,7 +76,6 @@ using base::global::CFilePathStrId;
 
 struct UnkModel;
 struct UnkModelData;
-void fn_71006cae2c(UnkRenderPool* pool, const CFilePathStrId& path, UnkModel** out, base::global::CStrId* name);
 
 struct UnkGrappleModel_ovb0047 {
     u8 pad_0x0[0x138];

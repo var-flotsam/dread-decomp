@@ -1,6 +1,7 @@
 // nn::atk unit: a sound archive ("FSAR") file header, copied out when its magic, byte-order mark and
 // version are valid. Names and layouts are placeholders.
 #include "game/UnkTU2772.h"
+#include "game/UnkTU99.h"
 #include "types.h"
 struct UnkAtkFileHeaderHead {
     u32 magic;
@@ -149,7 +150,6 @@ u16 fn_7101210248(const UnkAtkOptionalParamsOwner* self) {
 // Appends an object's list node (+0x40) to a list (head at +0x890) while holding the lock at +0x8a0
 // of the object fn_71001039f8 returns (fn_71012392d0 locks, fn_71012392e0 unlocks). The insertion is
 // a ring splice: the node's own ring goes in before the head.
-void* fn_71001039f8();
 struct UnkAtkLock;
 struct UnkAtkListLink {
     UnkAtkListLink* prev;

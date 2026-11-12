@@ -23,7 +23,6 @@ struct UnkInventory;
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 struct UnkActor;
 struct UnkStruct_710024fa0c;
-bool fn_7100fd76d4(void* manager, const CRntString* name);
 
 extern UnkMgr_0xf18* g_unk_71726bc560;
 struct UnkEmmyRegistry_b55;

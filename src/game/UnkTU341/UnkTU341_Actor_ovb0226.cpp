@@ -421,7 +421,6 @@ namespace base::reflection {
 class UnkReflObject;
 }
 struct UnkStruct_7100233684;
-base::reflection::UnkReflObject* fn_7100233684(UnkStruct_7100233684* self);
 
 struct UnkComponent_71002335d4 {
     virtual void vf_0x0();

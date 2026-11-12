@@ -5,12 +5,12 @@
 #include "base/UnkMatrix44.h"
 #include "base/math/UnkZeroVector3.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
 
-UnkMatrix44 fn_71000791a8(const UnkVec3f& translation, const UnkVec3f& angle, const UnkVec3f& scale);
 extern const base::math::CVector3D g_unk_71016477a8;
 
 struct UnkFxOwner_A5_b67 {

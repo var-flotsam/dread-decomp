@@ -2,11 +2,11 @@
 // placeholders.
 #include "base/math/CVector4D.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU127.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 struct UnkStruct_71001436f4;
-bool fn_71001436f4(UnkStruct_71001436f4* self, u32 a, const base::math::CVector4D* b, u32 c);
 extern const base::math::CVector4D g_unk_710164ab98 __attribute__((visibility("hidden")));
 
 struct UnkFrostbiteDefHolder {

@@ -14,6 +14,7 @@
 #include "game/CFlockingSwarmControllerComponent.h"
 #include "game/CRedenkiSwarmControllerComponent.h"
 #include "game/CSwarmControllerComponent.h"
+#include "game/SLogicPathNode.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1159.h"
 #include "game/UnkTU2553.h"
@@ -766,7 +767,6 @@ void fn_71006572f0(UnkRedenkiStates_ovb0084* self, u32 state, bool keep) {
 
 struct UnkObject_71002ad0dc;
 struct UnkMinimapPath;
-void fn_71010592b0(UnkMinimapPath* path, const CVector3D* point);
 
 struct UnkRedenkiPathPoint_ovb0084 {
     virtual void vf_0x0();

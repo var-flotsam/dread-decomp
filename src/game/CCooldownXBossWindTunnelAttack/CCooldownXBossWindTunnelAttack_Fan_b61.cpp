@@ -8,6 +8,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CBossAIComponent.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU341.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
@@ -15,7 +16,6 @@
 using base::reflection::CClass;
 
 struct UnkEntityState;
-void fn_7100232864(UnkEntityState* entity, bool value);  // as src/game/CCentralUnitComponent/CCentralUnitComponent_b46.cpp
 
 struct UnkWindTunnelEntity_b61a2 {
     u8 pad_0x0[0x1a8];

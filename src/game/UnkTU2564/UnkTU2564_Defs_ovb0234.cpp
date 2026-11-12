@@ -56,7 +56,6 @@ struct UnkFileReader {
 };
 
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
-void fn_710000f750(UnkParseContext* self, void* root);
 
 // This unit's parser callbacks.
 extern UnkParseCallbacks g_unk_71727c8d90 __attribute__((visibility("hidden")));
@@ -159,15 +158,6 @@ void fn_7100e68cac(CStrId* kind, const CStrId& name) {
 }
 
 // ---- The kind lookup ----
-
-extern CStrId g_unk_71727c82d8;
-extern CStrId g_unk_71727c82e0;
-extern CStrId g_unk_71727c82e8;
-extern CStrId g_unk_71727c82f0;
-extern CStrId g_unk_71727c82f8;
-extern CStrId g_unk_71727c8300;
-extern CStrId g_unk_71727c8308;
-extern CStrId g_unk_71727c8310;
 
 s32 fn_7100e68e38(const CStrId* id) {
     if (id->data == g_unk_71727c82d8.data)

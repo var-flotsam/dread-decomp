@@ -5,14 +5,13 @@
 // it moved. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CAIManager/CTunableAIManager.h"
+#include "game/CTimelineComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-void fn_7100a2cddc(void* table, void* key, CStrId* id, f32 delay, bool unique);
 
 // Static timeline keys, 0x18 bytes each: a pointer to the key's record (its id at +0x30), then two words.
 struct UnkTimelineKeyHead_b46a3 {

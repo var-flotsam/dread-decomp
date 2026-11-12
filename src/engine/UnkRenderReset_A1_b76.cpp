@@ -13,7 +13,6 @@ struct UnkRenderTargetA1;
 // A global id the resets pass on (a hidden unit global).
 extern CStrId g_unk_716e596168 __attribute__((visibility("hidden")));
 
-void fn_71001cdd6c(UnkRenderTargetA1* target, CStrId id);
 void fn_71001cea20(UnkRenderTargetA1* target);
 void fn_71001ced1c(UnkRenderTargetA1* target);
 

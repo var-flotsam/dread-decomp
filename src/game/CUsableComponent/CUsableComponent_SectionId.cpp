@@ -2,11 +2,10 @@
 // (src/game/CGameManager.cpp) gives it, inlined on the global game manager. Names and layouts are
 // placeholders.
 #include "base/global/CStrId.h"
+#include "game/CScenario.h"
 #include "game/UnkGameManager.h"
 
 using base::global::CStrId;
-
-CStrId fn_71011a2fbc(UnkGameManagerSub_0x608* scenario);
 
 CStrId fn_7100a9f5e8() {
     UnkGameManager* manager = g_unk_7101d47310;

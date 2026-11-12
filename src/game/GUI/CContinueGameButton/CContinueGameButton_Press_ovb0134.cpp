@@ -5,6 +5,7 @@
 // (src/game/CMapAcquisitionComponent/CMapAcquisitionComponent_Question_ovb0090.cpp); otherwise it
 // continues the game at once (fn_7100afa28c). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -21,9 +22,6 @@ void fn_7100afa28c(UnkContinueGameButton_ovb0134* self);
 
 struct UnkMapCallback_ovb0090;
 struct UnkGuiComposition_ovb0090;
-void fn_7100b5fde0(UnkGuiComposition_ovb0090* gui, const CStrId* text, const CStrId* accept, const CStrId* back,
-                   const UnkMapCallback_ovb0090* on_accept, const UnkMapCallback_ovb0090* on_back, u32 mode,
-                   f32 time);
 
 // A callback: an object and a function to call on it.
 struct UnkContinueCallback_ovb0134 {

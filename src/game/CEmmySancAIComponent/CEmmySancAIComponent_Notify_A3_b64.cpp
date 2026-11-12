@@ -2,12 +2,12 @@
 // AI manager g_unk_71726af468 (created on first use) through fn_7100daa92c. Names are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CAIManager/CTunableAIManager.h"
 #include "game/UnkManager_71726af468.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-void fn_7100daa92c(UnkManager_71726af468* self, CStrId name, u32 value);
 extern CStrId g_unk_71726dd8f8 __attribute__((visibility("hidden")));
 
 void fn_71004ffe18() {

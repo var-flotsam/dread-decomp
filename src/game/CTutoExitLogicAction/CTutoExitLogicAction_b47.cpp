@@ -4,10 +4,10 @@
 // fn_710091793c) and switches the entity the handle names off too. Names and layouts are placeholders.
 #include "base/UnkRefHandle.h"
 #include "game/CTriggerLogicAction.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 struct UnkEntityState;
-void fn_7100232864(UnkEntityState* entity, bool value);
 
 struct UnkCountedTuto_b47 : base::UnkRefCounted {
     union {

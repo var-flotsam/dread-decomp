@@ -26,7 +26,6 @@ extern CStrId g_unk_716e596120 __attribute__((visibility("hidden")));
 extern u32 g_unk_716e596050[16] __attribute__((visibility("hidden")));
 extern u8 g_unk_7101a1e970 __attribute__((visibility("hidden")));
 
-void fn_71001cdd6c(UnkRenderTargetA1* target, CStrId id);
 void* fn_710015abd0();
 void fn_710015b8a0(bool flag);
 void fn_71001d6b94(UnkRenderTargetA1* target);
@@ -47,8 +46,6 @@ void fn_71001d09d0(UnkRenderTargetA1* target, f32 a);
 struct __attribute__((packed)) UnkU64P_b0237 {
     u64 v;
 };
-u32 fn_7100132f80();
-u32 fn_7100132f90();
 extern u32 g_unk_716e595ff4;
 extern u32 g_unk_716e595ff8;
 f32 fn_71001d0ac0(UnkRenderTargetA1* target);

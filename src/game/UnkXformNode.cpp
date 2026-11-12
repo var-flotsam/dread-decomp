@@ -2,6 +2,7 @@
 // (0x7100205bc4-0x710020694c, no class hint; its constructors and setters are the per-function
 // sources in src/game_s1/). Holds fn_7100206078, which moves the node's target along a velocity.
 // Names are placeholders inferred from the code.
+#include "game/UnkTU244.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -26,8 +27,6 @@ static inline UnkVec3f UnkSum(const UnkVec3f& a, const UnkVec3f& b) {
 }
 
 // The target's previous and next positions.
-void fn_71001ba980(UnkXformTarget* target, const UnkVec3f* pos);
-void fn_71001ba864(UnkXformTarget* target, const UnkVec3f* pos);
 
 // Hands the target the node's position and `to`, marks the node and updates it twice with no time.
 static inline void UnkMoveTo(UnkXformNode* self, const UnkVec3f& to) {

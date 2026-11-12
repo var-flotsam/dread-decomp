@@ -29,7 +29,6 @@ using base::global::CStrId;
 // then constructed in place), and their constructors. The declarations repeat the other files'.
 struct UnkUserDataOwner;  // src/game/CGameManager.cpp
 extern char* g_unk_71726b2398;
-extern void* g_unk_7101d47368;
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;  // the sub-area manager (src/game/CSubAreaManager.cpp)
 

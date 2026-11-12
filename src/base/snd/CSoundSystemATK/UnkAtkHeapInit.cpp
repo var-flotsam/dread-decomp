@@ -3,9 +3,8 @@
 // sub-allocator over [begin, end), nn::atk's heap over the same range, then the bookkeeping words
 // cleared. `self` is the sub-allocator at +0x8 of that heap. Names are placeholders.
 #include "base/UnkDefaultAllocator.h"
+#include "game/UnkTU2772.h"
 #include "types.h"
-
-void fn_710120b198(void* heap, char* begin, u64 size);  // as src/game_s1/fn_71000f8630.cpp declares it
 
 struct UnkAtkSubHeap {
     base::UnkSubAllocator allocator;

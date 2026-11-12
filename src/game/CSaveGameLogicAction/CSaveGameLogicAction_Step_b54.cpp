@@ -25,14 +25,10 @@ struct UnkModeFlags {
 };
 extern UnkModeFlags* g_unk_71726bc570;
 
-bool fn_7100dfaf88(UnkGameManager* self, void* name, const CRntString& tag, bool flag);
-
 struct UnkSaveGamePair_b54 {
     u64 first;
     u64 second;
 };
-void fn_7100dfd174(UnkGameManager* self, CRntString* name, CRntString* tag, bool flag, u32 kind,
-                   const UnkSaveGamePair_b54& extra);
 
 // A string-id entry as read here: the text pointer at +0x10, a use count at +0x44 (a union member:
 // the original reloads the id after the increment).

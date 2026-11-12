@@ -7,11 +7,15 @@
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
 #include "base/animation/CAnimationResource.h"
+#include "base/file/CPackManagerDevice.h"
 #include "base/file/CThreadSafeDevice.h"
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/snd/CSoundSystem.h"
+#include "game/CScenario.h"
+#include "game/GUI/CPopUpComposition.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1370.h"
 #include "game/UnkTU1643.h"
@@ -27,6 +31,7 @@
 #include "game/UnkTU426.h"
 #include "game/UnkTU437.h"
 #include "game/UnkTU785.h"
+#include "game/UnkTU794.h"
 #include "game/lua_lib.h"
 #include "game/msapi/res/CRenderRes.h"
 #include "game/sound/CMusicManager.h"
@@ -51,8 +56,6 @@ struct lua_State;
 struct UnkPlayer;
 struct UnkStruct_71008c0c74;
 struct UnkBase_71003cc474;
-
-extern CStrId g_unk_71726dda50;
 
 struct UnkImpactRequest_b0163 {
     u8 pad_0x0[0x18];
@@ -157,7 +160,6 @@ struct UnkPackLoader_b0163;
 UnkPackRef_b0163 fn_7101197008(UnkPackManager_b0163* self, const CFilePathStrId& path, const UnkMaskedId& id,
                                bool flag);
 void fn_7101192ae8(UnkPackLoader_b0163* self);
-extern void* g_unk_7101d47330;
 
 s32 fn_7101088470(lua_State* L) {
     const char* name;
@@ -211,8 +213,6 @@ s32 fn_7101088a60(lua_State* L) {
     return 0;
 }
 
-void fn_7100b5fd6c(void* object, base::global::UnkStringData** name, void* block, bool a, bool b);
-
 struct UnkGuiEntry_b0163 {
     u8 pad_0x0[0x10];
     void* composition;  // 0x10
@@ -240,8 +240,6 @@ s32 fn_7101086800(lua_State* L) {
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
 struct UnkSoundMgr;
 bool fn_7100089864(base::file::UnkFileDevice* self, const CFilePathStrId* path);
-void fn_710008987c(base::file::UnkFileDevice* self, const CFilePathStrId* path, u32 flags);
-void fn_7100107b74(UnkSoundMgr* self, const CFilePathStrId* path);
 void fn_7100108c94(UnkSoundMgr* self, const CFilePathStrId* path);
 
 static inline base::file::UnkFileDevice* FileDevice_b0163() {
@@ -291,8 +289,6 @@ s32 fn_7101092ff0(lua_State* L) {
 }
 
 int lua_type(lua_State* L, int idx);
-void* fn_7100deab70(UnkGameManager* self, const CRntString& name);
-void fn_7100deac9c(UnkGameManager* self, const CRntString& name);
 void fn_7100da62a4(void* self, const CFilePathStrId* path, bool value);
 
 s32 fn_7101088320(lua_State* L) {
@@ -390,7 +386,6 @@ struct UnkTypedValue {
     void* value;
 };
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
-CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 
 struct UnkStrIdHandle {
     union {
@@ -537,7 +532,6 @@ struct UnkCamMask_b0101 {
     UnkCamMask_b0101(u32 b) : bits(b) {}
     UnkCamMask_b0101(const UnkCamMask_b0101& o) : bits(o.bits) {}
 };
-void fn_7100eed3a4(void* manager, const CStrId* id, UnkCamMask_b0101 mask, bool flag);
 void fn_7100eed4b0(void* manager, const CStrId* id, UnkCamMask_b0101 mask, bool enable, bool instant);
 
 struct UnkSubareaStaticZero_b0163 {

@@ -3,6 +3,7 @@
 // UnkTU83: functions and globals of this translation unit that other files use (tools/tu_map.py unit 83,
 // 0x71000a4598-0x71000e5f9c). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/reflection/CClass.h"
 #include "types.h"
 
 struct UnkKeyedStrIds;
@@ -21,3 +22,4 @@ void fn_71000bce50(void*);
 void fn_71000be6c0(void*);
 extern u32 g_unk_7101d5bdd8;  // The default of a class's "_EditorOnly" attribute (nonzero: true).
 void fn_71000df22c(UnkKeyedStrIds* self, u32 capacity);
+extern base::reflection::CType g_unk_7101d5c078;

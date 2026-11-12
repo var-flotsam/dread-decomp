@@ -4,6 +4,7 @@
 #include "base/global/CStrId.h"
 #include "base/math/UnkZeroVector3.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -74,8 +75,6 @@ struct UnkHyperBeamEffectHandle {
     s64 serial;
 };
 struct UnkHyperBeamEffectDesc;
-UnkHyperBeamEffectHandle fn_7100d7c614(UnkActor* owner, const UnkHyperBeamEffectDesc* desc, const CStrId* name,
-                                       u32 a, u32 b, u32 c);
 
 struct UnkPlayVibrationEvent_ovb0137 {
     u8 pad_0x0[0x10];

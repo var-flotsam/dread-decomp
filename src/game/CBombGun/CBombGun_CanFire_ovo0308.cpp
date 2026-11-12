@@ -17,6 +17,7 @@
 #include "game/UnkItemProperties.h"
 #include "game/UnkSubAreaGuiCache.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2734.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -24,7 +25,6 @@ using base::global::CStrId;
 struct UnkInventory;
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 // As src/game/CMissileBaseGun/CMissileBaseGun_Ammo_ovb0103.cpp declares them.
-s32 fn_710119db04(UnkSubAreaGuiCache* self, const base::global::CStrId* name);
 extern char* g_unk_71726b2398;
 
 static inline UnkQualifiedId& Qid_ovb0266(UnkPropertyEx<>& item) {

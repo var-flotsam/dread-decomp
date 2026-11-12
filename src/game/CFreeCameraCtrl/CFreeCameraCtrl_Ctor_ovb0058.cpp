@@ -17,6 +17,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2566.h"
 #include "game/UnkTU2577.h"
 #include "game/UnkTU2732.h"
 #include "game/UnkTU315.h"
@@ -221,7 +222,6 @@ struct UnkCameraEvent_b0058 {
 void fn_7100eecf7c(void* manager, bool on, const UnkCameraEvent_b0058* event);
 struct UnkGrabCameraCtrl;
 UnkFreeCameraCallback_b0058** fn_71009cb3e0(base::UnkVector<UnkFreeCameraCallback_b0058*>* self, u32 index);
-void fn_7100e8f9a0(char* self, bool remove, base::global::CStrId* key);
 extern CStrId g_unk_7172a04a38 __attribute__((visibility("hidden")));
 
 // The sub-area manager, created on first use.

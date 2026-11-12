@@ -3,6 +3,8 @@
 // CFXComponent: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2712,
 // 0x710114d604-0x7101158410). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/global/CStrId.h"
+#include "base/math/CVector.h"
 #include "types.h"
 
 struct UnkPart;
@@ -24,3 +26,4 @@ extern void* g_unk_7101cb38e8[];
 UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);  // The part whose name has this hash, null when there is none.
 void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
 bool fn_710114e668(UnkObject*, u8);
+void fn_710115217c(void* object, void* effect, u32 a, u32 b, const base::global::CStrId* name, const base::math::CVector3D& offset, const base::math::CVector3D& rotation, void* extra);

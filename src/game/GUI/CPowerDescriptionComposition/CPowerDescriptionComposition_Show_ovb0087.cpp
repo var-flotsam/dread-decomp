@@ -57,7 +57,6 @@ void fn_7100b641cc(UnkPowerDescCompositionMusic* self, u32 mode) {
 
 struct UnkChangeMenuStateButton_b48a3;
 struct UnkGuiEvent_b48a3;
-void fn_71011ccd20(UnkGuiDisplayObject* self, f32 value);
 
 struct UnkStateSink;
 struct UnkStateKey;
@@ -213,8 +212,6 @@ void fn_7100b63ca4(UnkPowerDescCompositionShow* self) {
 
 struct UnkTutorialRequest;
 void fn_71011cd5a0(UnkGuiObj*);
-
-extern void* g_unk_7101d47368;
 
 struct UnkPowerDescMenuState {
     u8 pad_0x0[0x2c0];

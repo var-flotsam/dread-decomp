@@ -5,10 +5,10 @@
 #include "base/UnkCountedResource.h"
 #include "base/UnkHashStream.h"
 #include "base/global/CRntFile.h"
+#include "game/UnkTU56.h"
 #include "types.h"
 
 // The file's constructor over existing data (the unit of base/global/CRntFile.h).
-void fn_710007c080(base::global::CRntFile* file, void* data, u32 flags, u64 size);
 
 struct UnkUnit229Resource : UnkCountedResource {
     void* data;  // 0x58

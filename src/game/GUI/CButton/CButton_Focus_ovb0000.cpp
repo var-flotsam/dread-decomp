@@ -12,6 +12,7 @@
 #include "game/GUI/CAmiiboComposition.h"
 #include "game/GUI/CButton.h"
 #include "game/GUI/CDisplayObjectContainer.h"
+#include "game/GUI/CSprite.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "../../../game_s7/UnkGuiS7.h"
 #include "game/UnkTU2747.h"
@@ -23,7 +24,6 @@ struct UnkStateSink;
 struct UnkStateKey;
 struct UnkEnumType;
 extern UnkEnumType g_unk_71729f0188;
-void fn_71011f9878(UnkGuiDisplayObject* sprite);
 
 struct UnkGuiButtonFocus_ovb0000;
 

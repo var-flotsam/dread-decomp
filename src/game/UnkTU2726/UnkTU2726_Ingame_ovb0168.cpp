@@ -8,6 +8,7 @@
 #include "../../game_s7/UnkPropBagS7.h"
 #include "base/UnkAtExit.h"
 #include "base/UnkVector.h"
+#include "base/file/CPackManagerDevice.h"
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
@@ -17,6 +18,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CActorComponent.h"
 #include "game/CBlackboard.h"
+#include "game/GUI/CPopUpComposition.h"
 #include "game/UnkCameraCtrl.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
@@ -27,12 +29,13 @@
 #include "game/UnkTU2656.h"
 #include "game/UnkTU2726.h"
 #include "game/UnkTU2730.h"
+#include "game/UnkTU2744.h"
+#include "game/UnkTU2747.h"
 #include "game/UnkTU2768.h"
 #include "game/UnkTU39.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-extern void* g_unk_7101d47330;
 void fn_7101198654(void* manager);
 bool fn_7101198674(void* manager);
 
@@ -83,11 +86,6 @@ void fn_71011897c4(UnkIngameMenu_ovb0168* self) {
 
 using base::global::CStrId;
 using unk_prop_bag::UnkPropBag;
-
-bool fn_71011ceac0(UnkGuiDisplayObject* self);
-bool fn_71011ceb34(UnkGuiDisplayObject* self);
-void fn_71011b5598(UnkGuiRoot* root, UnkGuiDisplayObject* object);
-void fn_71011cd424(UnkGuiDisplayObject* self, UnkGuiDisplayObject* parent);
 
 struct UnkNamedObject_ovb0168 {
     UnkGuiDisplayObject* Object() { return reinterpret_cast<UnkGuiDisplayObject*>(this); }
@@ -143,9 +141,6 @@ void fn_710118fd28(void*);
 void fn_710118fd2c(void*);
 struct UnkMapCallback_ovb0090;
 struct UnkGuiComposition_ovb0090;
-void fn_7100b5fde0(UnkGuiComposition_ovb0090* gui, const CStrId* text, const CStrId* accept, const CStrId* back,
-                   const UnkMapCallback_ovb0090* on_accept, const UnkMapCallback_ovb0090* on_back, u32 mode,
-                   f32 time);
 
 struct UnkIngameMenu_ovb0168b;
 
@@ -171,7 +166,6 @@ using base::global::CFilePathStrId;
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
 struct UnkSoundMgr;
 
-void fn_710008987c(base::file::UnkFileDevice* self, const CFilePathStrId* path, u32 flags);
 void fn_7100108c94(UnkSoundMgr* self, const CFilePathStrId* path);
 
 void fn_7101187e2c() {
@@ -197,7 +191,6 @@ using base::global::CStrId;
 struct UnkPlacedObj;
 struct UnkPlayer;
 
-extern void* g_unk_7101d47330;
 bool fn_71011b3838(UnkGuiRoot* root);
 bool fn_71008723f4(void* object, const CStrId* id);
 extern "C" int __cxa_guard_acquire(u64* guard);

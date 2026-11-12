@@ -3,8 +3,16 @@
 // reflection: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2525,
 // 0x7100d8c56c-0x7100d911d8). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/reflection/UnkReflValue.h"
+#include "base/reflection/CClass.h"
+#include "base/global/CStrId.h"
+#include "base/UnkCloneHelpers.h"
+#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkReflConverter.h"
 #include "types.h"
 
+struct UnkEnvironmentManager;
+struct UnkTypedObject;
 struct UnkEnvironmentData;
 struct UnkEnvironmentVisuals;
 struct UnkUnit2525_b51;
@@ -108,3 +116,18 @@ extern UnkTUHeader g_unk_7172767b98 __attribute__((visibility("hidden")));
 void fn_7100d8d854(UnkUnit2525_b51* self, void* resource);
 void fn_7100d8db30(UnkUnit2525_b51* self, void* resource, bool flag);
 void fn_7100d8e398(UnkEnvironmentVisuals* self, const UnkEnvironmentData* data, bool force);
+void fn_71000a179c(base::reflection::UnkReflValue* self, const base::reflection::UnkReflValue* other);
+extern base::reflection::CType g_unk_7172756e50;
+void fn_7100d8e32c(UnkEnvironmentManager* self, const base::global::CStrId* id, bool a, bool b);
+void fn_71000a174c(base::reflection::UnkTypedRef* out, const void* ref);
+base::reflection::UnkReflValue fn_71000a1774(const base::reflection::UnkReflValueRef* value, const base::reflection::CType* type);
+const base::reflection::CType* fn_7100ad62d4();
+const base::reflection::CType* fn_7100ad6644();
+const base::global::CStrId* fn_7100d8efc8(UnkEnvironmentManager* self);
+void fn_71000a1828(base::reflection::UnkReflValue* out, const UnkTypedObject* object, u32 by_ref, u32 kind);
+void fn_71000a1ae4(base::reflection::UnkReflValue* out, const base::reflection::UnkTypedRef* ref, u32 a, u32 b);
+void fn_7100b7710c(UnkReflType* self, const base::global::CStrId& name, void* a, void* b);
+void fn_7100b7e6dc(UnkReflType* self, const base::global::CStrId& name, void* a, void* b);
+extern UnkConverter g_unk_7172758258;
+extern UnkConverter g_unk_7172758278;
+void fn_71000a1760(base::reflection::UnkTypedRef* out, const base::reflection::UnkTypedRef* in);

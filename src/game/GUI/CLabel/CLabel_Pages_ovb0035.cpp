@@ -37,12 +37,9 @@ using base::global::CStrId;
 // As src/game/GUI/CLabel.cpp declares them.
 struct UnkLayoutText;
 struct UnkLabelLayout;
-void* fn_71011b882c(UnkGuiRoot*, const CStrId*);
 
-const CStrId& fn_71011b8920(UnkGuiRoot* root);
 void fn_71000303c0(UnkDeferredSet<UnkDeferredCallback<bool>>* s, const bool* arg);
 struct UnkSprite_spr;
-void fn_71011cf8d0(UnkSprite_spr* self, const base::math::CVector2D* size);
 struct UnkLabelFontView_b52;
 s32 fn_71011eedd0(UnkLabelFontView_b52* self);
 
@@ -488,8 +485,6 @@ f32 fn_71011ef738(UnkLabelFontView_b0035* self) {
 // the text out while it is dirty, and takes its page count from vf_0x230 (the first page unless
 // +0x320 keeps the shown one).
 
-void fn_71011cee10(UnkGuiDisplayObject* self);
-
 static inline UnkLanguage* Language_b0035() {
     UnkLanguage* language = g_unk_7101d47358;
     if (!language) {
@@ -614,8 +609,6 @@ void fn_71011ef574(UnkLabelScroller_b0035* self) {
     }
     self->scroll = 0.0f;
 }
-
-void fn_71011cdfa8(UnkGuiDisplayObject* self, f32 dt);
 
 // Shows `page` when it is a page other than `current` that can be shown.
 static inline void SetPage(UnkLabelScroller_b0035* self, s32 current, s32 page) {

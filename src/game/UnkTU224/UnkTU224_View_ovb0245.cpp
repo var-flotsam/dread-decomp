@@ -5,6 +5,7 @@
 #include "base/UnkMatrix44.h"
 #include "base/UnkVector.h"
 #include "game/UnkTU178.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -24,8 +25,6 @@ struct UnkSize_ovb0245 {
     u32 width;   // 0x8
     u32 height;  // 0xc
 };
-
-UnkMatrix44 fn_71000791a8(const UnkVec3f&, const UnkVec3f&, const UnkVec3f&);
 
 UnkMatrix44* fn_710019d920(UnkView_ovb0245* self, UnkSize_ovb0245* size) {
     if (!self->matrix_valid) {

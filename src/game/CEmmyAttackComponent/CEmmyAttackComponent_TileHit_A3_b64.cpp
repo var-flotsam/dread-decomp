@@ -18,8 +18,6 @@ struct UnkTileQuery_A3_b64 {
     u32 kind;
 };
 
-UnkTileQuery_A3_b64* fn_7100ca1ecc(base::reflection::UnkReflObject* group, const void* at, void* arg, bool flag);
-
 struct UnkTileHitLink1_A3_b64 {
     u8 pad_0x0[0x10];
     base::reflection::UnkReflObject* object;

@@ -2,12 +2,11 @@
 // placeholders.
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
+#include "game/UnkTU56.h"
 #include "types.h"
 
 using base::global::CRntFile;
 using base::global::CRntString;
-
-s64 fn_710007cee4(void* stream, const char** out);  // as src/base/global/CRntFile.cpp defines it
 
 struct UnkCollisionClassDef {
     u8 pad_0x0[0x58];

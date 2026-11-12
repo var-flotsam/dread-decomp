@@ -8,6 +8,7 @@
 #include "game/CLifeComponent.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU58.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -29,7 +30,6 @@ bool fn_710012b330(const UnkBox2D* a, const void* b, UnkContactBuffer<4>* out, b
 bool fn_7100d5bfbc(void* tracker, u32 mask, UnkCollisionObject* object, void* arg, u16);
 
 struct UnkGfxFrameSource;
-extern UnkGfxFrameSource* g_unk_7101d47328;
 struct UnkTimer_7100080c40;
 struct UnkActorTarget;
 

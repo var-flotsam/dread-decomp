@@ -774,7 +774,6 @@ struct UnkFileReader {
 };
 
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
-void fn_710000f750(UnkParseContext* self, void* root);
 
 // This unit's parser callbacks.
 extern UnkParseCallbacks g_unk_71729f9bb0 __attribute__((visibility("hidden")));

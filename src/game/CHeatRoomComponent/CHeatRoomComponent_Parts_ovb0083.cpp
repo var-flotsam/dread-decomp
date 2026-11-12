@@ -17,6 +17,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU365.h"
@@ -180,9 +181,6 @@ bool fn_7100a279fc(UnkHeatRoom_ovb0083* self) {
 }
 
 struct UnkEnvironmentManager;
-extern void* g_unk_7101d47368;
-void fn_7100d8e32c(UnkEnvironmentManager* self, const CStrId* id, bool a, bool b);
-const CStrId* fn_7100d8efc8(UnkEnvironmentManager* self);
 struct UnkHeatActor_ovb0083;
 void fn_7100a45f04(UnkHeatRoom_ovb0083* self, UnkHeatActor_ovb0083* actor);
 
@@ -223,7 +221,6 @@ void fn_7100a27718(UnkHeatRoom_ovb0083* self, UnkHeatActor_ovb0083* actor) {
 
 struct UnkLiquidPoolEnter_ovb0075;
 struct UnkLiquidPoolActor_ovb0075;
-void fn_7100a45f08(UnkLiquidPoolEnter_ovb0075*, UnkLiquidPoolActor_ovb0075*, const UnkVec3f*);
 
 // The base handler first; then, when the room is hot (+0x9b8 clear) and set to change the
 // environment, an actor (state at +0x1b8 not 2) switches the manager back to the kept environment

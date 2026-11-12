@@ -3,6 +3,7 @@
 // of src/clones/clones_02.cpp's declaration (the object and the stream). Names and layouts are placeholders.
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2507.h"
 #include "game/UnkTU56.h"
 #include "types.h"
 
@@ -11,7 +12,6 @@ using base::global::UnkStrId;
 
 // As src/game/CAnimationComponent/CAnimationComponent_Tracks_ovb0009.cpp and
 // src/game/CCollisionComponent/fn_71008626bc.cpp declare them.
-u32 fn_7100d4bc00(const CRntString* name);
 
 struct UnkDamageEntry_ovb0122 {
     u8 pad_0x0[0x40];

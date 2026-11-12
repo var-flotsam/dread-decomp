@@ -13,14 +13,13 @@
 #include "game/CBlackboard.h"
 #include "game/CCharClassActivatableComponent.h"
 #include "game/CNavMeshItemComponent.h"
+#include "game/CScenario.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU372.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 
 struct UnkWeakTarget;
 

@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkInterp_7100105f94;
+struct UnkListener_7100105f94;
 struct UnkAtkHeap;
 struct UnkIdMap;
 struct UnkTunable;
@@ -16,3 +18,5 @@ extern UnkTunable g_unk_7101d68580;  // base::snd::CSoundSystemATK's tunable.
 extern u8 g_unk_7108b6ab60 __attribute__((visibility("hidden")));
 extern UnkIdMap* g_unk_7101d685c8;
 extern UnkAtkHeap g_unk_7108b69038;
+void* fn_71001039f8();
+void fn_71000ffd4c(UnkListener_7100105f94* listener, UnkInterp_7100105f94* block, s32 value);

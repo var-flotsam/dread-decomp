@@ -14,6 +14,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "../../../game_s7/UnkHandleS7.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/UnkTU2527.h"
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
@@ -69,7 +70,6 @@ static inline UnkGuiObj_71011dfeb0* FindChildById(UnkPanel_71011dfeb0* self, u64
 }
 void fn_71011e1404(UnkPanel_71011dfeb0* self);
 void fn_71011ec3fc(UnkLabel_71011dfeb0* label, bool value);
-extern CStrId g_unk_71727b9d30;
 
 struct UnkPanel_71011dfeb0 {
     u8 unk_0x0[0x260];

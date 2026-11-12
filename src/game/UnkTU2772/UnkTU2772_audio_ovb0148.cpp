@@ -2,12 +2,12 @@
 // pool's channel lists and a few small accessors on parameter blocks. Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "game/UnkTU2772.h"
+#include "game/UnkTU99.h"
 #include "types.h"
 
 extern "C" int __cxa_guard_acquire(u64* guard);
 extern "C" void __cxa_guard_release(u64* guard);
 
-void* fn_71001039f8();
 struct UnkAtkLock;
 
 struct UnkAtkListLink_b0148 {

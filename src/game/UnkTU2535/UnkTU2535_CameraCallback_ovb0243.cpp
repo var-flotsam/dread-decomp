@@ -5,14 +5,13 @@
 #include "base/UnkErasedVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2535.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
 
-extern CStrId g_unk_71727bbfc8;
-extern CStrId g_unk_71727bbfd0;
 void fn_7100ad3118(UnkErasedVector* self, const CRntString* text);
 
 // A pooled path name: the pointer to its record, which holds the text and a reference count.

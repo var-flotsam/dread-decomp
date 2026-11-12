@@ -7,14 +7,13 @@
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::reflection::UnkReflValue;
-
-void fn_71000a179c(UnkReflValue* self, const UnkReflValue* other);  // copy constructor
 
 template <typename T, void (*Move)(T*, T*), void (*Destroy)(T*)>
 static inline __attribute__((always_inline)) void EraseAt_A1_b73(base::UnkVector<T>* self, u32 index) {

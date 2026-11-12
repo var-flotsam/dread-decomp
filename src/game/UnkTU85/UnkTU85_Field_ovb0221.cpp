@@ -10,6 +10,7 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/reflection.h"
+#include "base/reflection/CType.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
@@ -34,7 +35,6 @@ struct UnkFieldAccessor85 {
 
 const base::reflection::UnkReflAttrKey& fn_7100090910();
 struct UnkVersionEntry;
-UnkReflValue fn_710009ddd4(UnkVersionEntry* self, const base::reflection::UnkReflAttrKey& key);
 
 // Whether the bool attribute under the key (fn_7100090910) is set; false for a null holder.
 bool fn_71000e6db0(UnkVersionEntry* self) {
@@ -80,7 +80,6 @@ void fn_71000e7420(UnkReflClassEntry* self_, base::reflection::CClass* owner) {
     }
 }
 
-void fn_71000a174c(UnkTypedRef* out, const void* ref);
 // The reflected value's copy-assignment (declared as src/base/reflection/UnkReflResolve.cpp does, over a record of
 // UnkReflValue's size).
 struct UnkAssignedRecord_a1ba4 {

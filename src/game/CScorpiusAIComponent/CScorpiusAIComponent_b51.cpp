@@ -1,12 +1,12 @@
 // CScorpiusAIComponent: the position of the hit object when the owner's collision container maps
 // it to the id at 0x7172704230 (its matrix's translation column). Names are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CCollisionComponent.h"
 #include "game/UnkCollisionRecord.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-CStrId* fn_7100864018(UnkCollisionContainer* self, void* object);
 extern CStrId g_unk_7172704230 __attribute__((visibility("hidden")));
 
 struct UnkScorpiusOwner_b51 {

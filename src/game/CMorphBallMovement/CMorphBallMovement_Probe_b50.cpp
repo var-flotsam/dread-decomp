@@ -4,6 +4,7 @@
 // 0x380. Names and layouts are placeholders.
 #include "base/math/CVector.h"
 #include "game/CCharacterMovement.h"
+#include "game/CMovementComponent.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
@@ -13,8 +14,6 @@ struct UnkProbeResult {
     u64 field_0x0;
     u32 field_0x8;
 };
-
-bool fn_71010d15d0(char* self, const CVector3D* pos, UnkProbeResult* result, f32 radius);
 
 // `arg` (x1) reaches fn_7100978f58 untouched in the original (tools/forwarded_args.py).
 void fn_710094014c(char* self, const void* arg) {

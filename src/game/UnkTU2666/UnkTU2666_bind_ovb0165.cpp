@@ -14,6 +14,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "../../game_s7/UnkPropBagS7.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU1370.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU2730.h"
@@ -40,8 +41,6 @@ s32 fn_710108ea80(lua_State* L) {
 struct UnkStruct_71008c0c74;
 struct UnkBase_71003cc474;
 struct UnkCharacterLife_b0050;
-
-extern void* g_unk_7101d47330;
 
 struct UnkEntity_b0165;
 void* fn_7100362248(UnkEntity_b0165* entity);

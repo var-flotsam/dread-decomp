@@ -11,6 +11,7 @@
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CCharClassTweakPlayRateTrack.h"
 #include "game/CCooldownXBossAttack.h"
+#include "game/CCooldownXBossWindTunnelAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
@@ -35,7 +36,6 @@ struct UnkWindTunnelFlag {
 };
 struct UnkGlobal2;
 extern const base::global::CStrId g_unk_71726d8108 __attribute__((visibility("hidden")));
-extern base::global::CStrId g_unk_71726d8110 __attribute__((visibility("hidden")));
 
 struct UnkWeakTarget;
 

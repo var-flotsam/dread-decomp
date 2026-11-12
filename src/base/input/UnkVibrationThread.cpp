@@ -3,6 +3,7 @@
 // is told to stop. Names and layouts are placeholders.
 // Holds fn_710006f390.
 #include "base/input/UnkHidVibration.h"
+#include "game/UnkTU0.h"
 #include "types.h"
 
 // The SDK's sample interval (nn::hid::VibrationNode::DefaultVibrationSampleInterval, an nn::TimeSpan
@@ -12,7 +13,6 @@ extern const s64 g_DefaultVibrationSampleInterval asm("_ZN2nn3hid13VibrationNode
 
 // The engine's clock: milliseconds since its start stamp (src/game_s1/fn_7100080c40.cpp).
 struct UnkGfxFrameSource;
-extern UnkGfxFrameSource* g_unk_7101d47328;
 struct UnkTimer_7100080c40;
 s64 fn_7100080f2c(const UnkTimer_7100080c40* self);
 

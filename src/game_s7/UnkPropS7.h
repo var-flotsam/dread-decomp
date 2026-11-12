@@ -87,4 +87,3 @@ inline bool IsName(UnkProp* p, const base::global::CRntString& name) {
 
 // Formatted stream access ("i" integer, "b" bool, "f" float, "s" string; reads take pointers).
 s64 fn_710007cb4c(void* stream, const char* format, ...);  // write
-s64 fn_710007cee4(void* stream, const char** out);          // the next string, in place

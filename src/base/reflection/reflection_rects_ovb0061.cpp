@@ -276,8 +276,6 @@ struct UnkRectOwner_ovb0061 {
 static_assert(__builtin_offsetof(UnkRectOwner_ovb0061, name) == 0x110, "UnkRectOwner_ovb0061 layout");
 static_assert(__builtin_offsetof(UnkRectOwner_ovb0061, field_0x144) == 0x144, "UnkRectOwner_ovb0061 layout");
 
-u32 fn_7100132f80();  // the display width
-u32 fn_7100132f90();  // the display height
 void fn_71001ffd58(UnkRectOwner_ovb0061* self);
 
 // The constructor: pushes the parent, takes its +0x40 value, and without `flag` sizes the fallback

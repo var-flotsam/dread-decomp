@@ -21,6 +21,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/tunable/CTunable.h"
 #include "engine/UnkGraphicsSystem.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU174.h"
 #include "game/UnkTU177.h"
 #include "game/UnkTU178.h"
@@ -370,8 +371,6 @@ static_assert(sizeof(UnkGraphicsSystem) == 0x3183718, "graphics system size");
 
 // The device layer.
 bool fn_7100132a10();  // whether the console is docked (the 1.0 scale) or handheld (0.8)
-u32 fn_7100132f80();   // the display width
-u32 fn_7100132f90();   // the display height
 u32 fn_71001598d0(u32 max, u32* sizes);  // the display sizes (width, height pairs) and their count
 void fn_7100159910();
 void fn_7100159920();
@@ -422,7 +421,6 @@ struct UnkGfxFrameSource {
     u8 unk_0x0[0x2c];
     f32 field_0x2c;
 };
-extern UnkGfxFrameSource* g_unk_7101d47328;
 
 // Values the device layer reads (through the GOT), changed under the mutex below.
 extern u64 g_unk_716e554928;
@@ -1051,7 +1049,6 @@ static inline UnkCountedResource* AsRenderRes(UnkCountedResource* res) {
 
 // The unit's functions the set-up calls (not decompiled yet).
 void fn_71001cab0c(UnkGraphicsSystem* self);
-void fn_71001cae0c(UnkGraphicsSystem* self, const base::global::CStrId* name, UnkCountedResource* texture, void* a);
 void fn_71001c9550(UnkGraphicsSystem* self, bool a);
 
 // Registers a texture under a name (a render resource only, else none).

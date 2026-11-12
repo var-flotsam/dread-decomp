@@ -35,7 +35,6 @@ extern CStrId g_unk_7172737e68;
 extern char g_unk_7101a83358[];
 void fn_7100925ca8(UnkProperty* p);
 void fn_7100924e00(void* p);
-extern CStrId g_unk_7172737ef8 __attribute__((visibility("hidden")));
 
 void fn_7100925e20() {
     InitHeader(g_unk_7172737ed8);
@@ -55,7 +54,6 @@ extern char g_unk_7101a8b580[];
 void fn_7100a0d0b4(UnkProperty* p);
 void fn_7100a08610(void* p);
 extern char g_unk_7172743508;
-extern CStrId g_unk_7172743570 __attribute__((visibility("hidden")));
 
 void fn_7100a0d820() {
     InitHeader(g_unk_7172743550);

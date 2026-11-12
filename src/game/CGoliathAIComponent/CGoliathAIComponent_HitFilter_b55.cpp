@@ -5,13 +5,13 @@
 // raised and never lowered, as in the original. Names and layouts are placeholders.
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CCollisionComponent.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkCollisionContainer;
-CStrId* fn_7100864018(UnkCollisionContainer* self, void* object);
 
 struct UnkGoliathIdData_b55 {
     u8 pad_0x0[0x10];

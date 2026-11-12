@@ -1,9 +1,9 @@
 // nn::atk-ish unit 2772: voice pool release, loader helper, object creation, wave queue refill.
 // Names and layouts are placeholders.
 #include "game/UnkTU2772.h"
+#include "game/UnkTU99.h"
 #include "types.h"
 
-void* fn_71001039f8();
 struct UnkAtkVoiceItem_b0149 {
     u8 pad_0x0[0x20];
     u8 out[0x8];  // 0x20

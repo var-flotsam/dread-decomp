@@ -5,6 +5,7 @@
 #include "base/math/CVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/tunable/CTunable.h"
 #include "game/GUI/CSprite.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiFrames.h"
@@ -157,10 +158,7 @@ void fn_71011f918c(UnkSprite_ovb0076* self) {
 // The image's size in a frame, and the sprite's size setter (as src/game/GUI/CLabel.cpp and
 // src/game/GUI/CSprite/CSprite_PropSetters.cpp declare them).
 struct UnkLabelSource;
-u32 fn_7100132f80();
-u32 fn_7100132f90();
 struct UnkSprite_spr;
-void fn_71011cf8d0(UnkSprite_spr* self, const base::math::CVector2D* size);
 
 struct UnkSpriteView2_ovb0076 {
     u8 pad_0x0[0x80];

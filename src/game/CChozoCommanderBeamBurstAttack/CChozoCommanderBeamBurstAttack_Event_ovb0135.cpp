@@ -14,6 +14,7 @@
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManagerIdTable.h"
+#include "game/UnkTU134.h"
 #include "game/UnkTU1730.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkParams.h"
@@ -199,8 +200,6 @@ struct UnkObject;
 struct UnkComponent;
 struct UnkFxObject_ovb0041;
 struct UnkPart;
-void fn_7100146d84(UnkFxObject_ovb0041* fx, const UnkVec3f* position);
-void fn_7100146d98(UnkFxObject_ovb0041* fx, const UnkVec3f* angle);
 extern "C" f32 atan2f(f32 y, f32 x);
 
 struct UnkBurstBeamFx_ovb0135 {

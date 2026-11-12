@@ -3,8 +3,11 @@
 // CAbilityGhostAura: functions and globals of this translation unit that other files use (tools/tu_map.py unit 430,
 // 0x7100306910-0x71003162a8). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/global/CStrId.h"
 #include "types.h"
 
+struct CGrappleBeamGun;
+struct UnkAuraGunOwner;
 struct UnkWeakHandle;
 struct UnkWeakTarget;
 struct UnkAbility;
@@ -19,3 +22,4 @@ extern void* g_unk_7101a22cb8[];
 extern void* g_unk_7101a22d18[];
 extern char g_unk_7101a22ce8[];
 void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
+CGrappleBeamGun* fn_710030c5fc(UnkAuraGunOwner* self, const base::global::CStrId& id);

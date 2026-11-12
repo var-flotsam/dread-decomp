@@ -3,13 +3,13 @@
 // accepts (fn_710081b0d0), else the owner's fallback (fn_710099b5b8). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CAbilityGhostAura.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkAuraGunOwner;
 struct CGrappleBeamGun;
-CGrappleBeamGun* fn_710030c5fc(UnkAuraGunOwner* self, const CStrId& id);
 
 struct UnkTarget1449;
 void fn_7100839ae8(UnkAuraGunOwner* self, bool flag);

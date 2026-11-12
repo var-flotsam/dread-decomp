@@ -9,11 +9,13 @@
 #include "base/math/CVector4D.h"
 #include "game/CBlackboard.h"
 #include "game/CDoorShieldLifeComponent.h"
+#include "game/CScenario.h"
 #include "game/CUsableComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1601.h"
+#include "game/UnkTU315.h"
 #include "game/UnkTU367.h"
 #include "game/UnkTUProperty.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -24,8 +26,6 @@ using base::math::CVector4D;
 
 struct UnkDoorLock;
 struct UnkDoorShieldStore_A4_b76;
-CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
-void fn_710021a0b4(UnkRenderManager* self, const u64* hash, const base::math::CVector4D* value);
 extern const u64 g_unk_710164b5f0 __attribute__((visibility("hidden")));
 extern const u64 g_unk_710164b5f8 __attribute__((visibility("hidden")));
 extern const CVector4D g_unk_7172751c18;

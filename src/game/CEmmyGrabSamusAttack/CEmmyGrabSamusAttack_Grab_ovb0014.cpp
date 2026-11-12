@@ -32,12 +32,15 @@
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSceneObject.h"
+#include "game/UnkTU140.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2702.h"
 #include "game/UnkTU280.h"
+#include "game/UnkTU54.h"
 #include "game/UnkTU811.h"
 #include "game/UnkXformNode.h"
+#include "game/logic/collision/CPolygonCollectionShape.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -446,7 +449,6 @@ UnkGrabAim_ovb0014 fn_710050bd10(UnkGrabAttack6_ovb0014* self) {
 }
 
 struct UnkStruct_7100219588_View;
-UnkVec3f fn_7100076acc(const UnkXform* x);
 
 // The screen as fn_7100219bcc describes it: its size in pixels at +0x8.
 struct UnkScreenInfo_ovb0014 {
@@ -480,7 +482,6 @@ void fn_71001bad24(UnkCamera_ovb0014* camera, const UnkVec3f* screen, const UnkS
                    UnkVec3f* out);
 UnkMatrix44 fn_7100078314(const UnkMatrix44* m);
 void fn_7100149474(UnkSceneObject* object, const UnkVec3f* angle);
-void fn_7100149460(UnkSceneObject* object, const UnkVec3f* position);
 void fn_7100149488(UnkSceneObject* object, const UnkVec3f* scale);
 
 struct UnkGrabAttack8_ovb0014 {
@@ -524,7 +525,6 @@ struct UnkEmmyGrabAttack_A3_b67;
 struct UnkPlayer;
 struct UnkOwner;
 bool fn_7100df34c8(UnkGameManager* self, void* a, void* b, void* c, void* d, bool e, bool f);
-void fn_7100df31b8(UnkGameManager* self, bool a, bool keep, u32 value, CStrId id, bool c);
 struct UnkGrabAttack_b58a3;
 
 struct UnkGrabPart_ovb0014 {
@@ -585,7 +585,6 @@ struct UnkQueryObj;
 bool fn_71002882d0(void* map, u16 cell, u8 side);
 bool fn_71002b007c(UnkNavMeshCell* cell);
 UnkQueryObj* fn_71002b37d8(void* tile);
-bool fn_7100d65fb0(void* area, const base::math::CVector2D* point);
 
 // The parts of a cell read here: its id and the tile it lies on (+0x68).
 struct UnkNavCellView_ovb0014 {

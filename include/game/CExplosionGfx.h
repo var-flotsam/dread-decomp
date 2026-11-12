@@ -3,6 +3,7 @@
 // CExplosionGfx: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2552,
 // 0x7100dded9c-0x7100de277c). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/reflection/UnkReflConverter.h"
 #include "types.h"
 
 struct UnkReflType;
@@ -20,3 +21,5 @@ UnkReflType* fn_7100ddee78();
 extern UnkTUHeader g_unk_71727be710 __attribute__((visibility("hidden")));
 extern UnkReflType g_unk_71727be730 __attribute__((visibility("hidden")));
 extern UnkReflType g_unk_71727be388;
+extern UnkConverter g_unk_71727be4a8;
+extern UnkConverter g_unk_71727be4c8;

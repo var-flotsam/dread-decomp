@@ -7,6 +7,7 @@
 #include "base/UnkBuffer.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 #include "../../../../game_aca57c/UnkBufferString.h"
@@ -24,8 +25,6 @@ s32 CommitSaveData(const char* name);
 }  // namespace nn::fs
 
 using base::global::CRntString;
-
-s32 fn_710007facc(const CRntString* self, char c, u32 start);
 
 // The device's root path (a string at the start of the table).
 CRntString fn_710002df80(void* table, CRntString path) {

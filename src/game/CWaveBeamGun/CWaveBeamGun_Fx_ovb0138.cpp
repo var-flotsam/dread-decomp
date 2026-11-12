@@ -4,14 +4,13 @@
 // releasing them again before the other base step (fn_7100867d14). Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "base/UnkVector.h"
+#include "game/CPlasmaBeamGun.h"
 #include "game/UnkModelManager.h"
+#include "game/UnkTU2739.h"
 
 using base::global::CFilePathStrId;
 
 struct UnkFxCache;
-void fn_7100851bc0(UnkFxCache* cache, const CFilePathStrId* path, u32 kind, bool flag);
-void fn_7100851d6c(UnkFxCache* cache, const CFilePathStrId* path, u32 kind, bool flag);
-void fn_71011aa5a4(UnkFxCache* cache, const CFilePathStrId* path);
 
 struct UnkWaveBeamGun_ovb0138 {
     u8 pad_0x0[0x1870];

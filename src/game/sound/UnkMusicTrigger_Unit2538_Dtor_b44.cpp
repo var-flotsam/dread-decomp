@@ -60,7 +60,6 @@ void fn_7100da62a4(UnkMusicTrigger2538Fields_b44a3* self, const base::UnkStrIdMe
 }
 
 struct UnkSoundHolder;
-extern void* g_unk_7101d47330;  // src/engine/HostArguments.cpp calls it the GUI root
 
 // The trigger's activation: the base's step (fn_71011867ec), the sound holder created on first use, an
 // "Ingame" string id built and dropped, the two GUI objects told (fn_71011b3768, fn_71011994e0 with

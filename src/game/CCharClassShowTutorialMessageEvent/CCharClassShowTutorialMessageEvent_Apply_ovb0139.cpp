@@ -5,13 +5,13 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/CChozoCommanderAIComponent.h"
+#include "game/GUI/CTutorialComposition.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkTutorialComposition;
-bool fn_7100b88f10(UnkTutorialComposition* self, const CStrId* text);
 
 struct UnkMlogMessage_b42a1;
 

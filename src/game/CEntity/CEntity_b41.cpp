@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflValue.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU105.h"
 #include "game/UnkTU315.h"
 #include "types.h"
 
@@ -17,8 +18,6 @@ struct UnkEntityBox {
 };
 struct UnkEntityBounds;
 UnkEntityBox fn_7100d7bcc8(const UnkEntityBounds* self);
-
-extern base::reflection::CType g_unk_7108b6d3d0;
 
 UnkReflValue fn_7100d823f4(void*, char* obj) {
     UnkEntityBox box = fn_7100d7bcc8(*reinterpret_cast<const UnkEntityBounds**>(obj + 8));

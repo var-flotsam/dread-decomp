@@ -23,6 +23,7 @@
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU2768.h"
+#include "game/UnkTU341.h"
 #include "game/UnkTU604.h"
 #include "game/nn/time.h"
 #include "types.h"
@@ -313,7 +314,6 @@ s32 fn_71010943a0(lua_State* L) {
 using base::reflection::UnkReflObject;
 
 struct UnkCameraCtrl;
-base::reflection::UnkReflObject* fn_710023341c(void*, const base::global::CStrId&);
 void fn_7101043f74(UnkCameraCtrl* component, UnkPropBag* bag);
 
 s32 fn_710107d820(lua_State* L) {
@@ -447,10 +447,6 @@ struct UnkMode_b0164 {
     u8 pad_0x0[8];
     char name[1];  // 0x8
 };
-void fn_7100deac9c(UnkGameManager* manager, const CRntString& mode);
-void fn_7100df28d0(UnkGameManager* manager, const CRntString& a, const CRntString& b,
-                   const CRntString& c, const CStrId& id, bool flag, const CRntString& d,
-                   const CStrId& e, u32 f, void* g, f32 h);
 
 s32 fn_7101082690(lua_State* L) {
     const char* s1 = nullptr;

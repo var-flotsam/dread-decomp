@@ -16,6 +16,7 @@
 #include "base/math/CVector.h"
 #include "game/CShockWaveComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2510.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkXformNode.h"
@@ -95,8 +96,6 @@ void fn_71009f4bf8(UnkShockWaveComponent_ovb0123* self, UnkOwner* actor) {
 }
 
 struct UnkFloorRef_ovb0048;
-bool fn_7100d5b714(void* tree, u32 mask, const UnkVec3f* from, const UnkVec3f* to, UnkFloorRef_ovb0048* hit,
-                   bool closest, bool flag, f32 radius);
 
 struct UnkShockWaveMember;
 

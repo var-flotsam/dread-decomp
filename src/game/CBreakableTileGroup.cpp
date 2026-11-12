@@ -20,6 +20,7 @@
 #include "game/UnkTU2510.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU315.h"
+#include "game/UnkTU54.h"
 #include "game/logic/collision/CAABoxShape2D.h"
 #include "game/logic/collision/CPolygonCollectionShape.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -87,12 +88,9 @@ struct UnkTileStateEvent {
 // A zero vector in .rodata (the rotation of a tile's render object).
 extern const UnkVec3f g_unk_710164ba64 __attribute__((visibility("hidden")));
 
-UnkMatrix44 fn_71000791a8(const UnkVec3f& translation, const UnkVec3f& angle, const UnkVec3f& scale);
 void fn_7100c9ea2c(UnkQueryObj* self);
 void fn_7100c9eb08(UnkQueryObj* self, s32 old_state, s32 new_state, bool a, bool b);
 void fn_7100ca0118(UnkTileEventSet* set, const void* event);
-void fn_7100ca0c40(UnkTileGroup* self, u32 tile, UnkVec3f* pos);
-void fn_7100ca0c78(UnkTileGroup* self, u32 tile, UnkVec3f* pos, UnkVec3f* scale);
 void fn_7100ca34f0(UnkTileGroup* self);
 void fn_7100ca34f4(UnkTileGroup* self, u32 a, u32 b);
 f32 fn_7100ca6af8(u32 type);

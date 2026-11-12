@@ -9,8 +9,10 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CBlackboard.h"
 #include "game/GUI/CIngameMenu.h"
+#include "game/GUI/CMainMenu.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2768.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
@@ -20,8 +22,6 @@ using base::reflection::UnkReflObject;
 
 struct UnkUserDataOwner;
 bool fn_7100deac24(UnkGameManager* self);
-UnkReflObject* fn_7100e033a8(UnkGameManager*);
-void fn_7100b35704(UnkReflObject*, u32, bool);
 struct UnkStateOwner;
 
 static inline UnkUserDataOwner* GetOwner() {

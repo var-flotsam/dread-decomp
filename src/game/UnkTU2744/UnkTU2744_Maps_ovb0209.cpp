@@ -26,6 +26,8 @@
 #include "game/UnkTU0.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2669.h"
+#include "game/UnkTU2744.h"
+#include "game/UnkTU2747.h"
 #include "game/UnkTU2768.h"
 #include "game/UnkTU39.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -53,8 +55,6 @@ struct UnkGuiParent_b0209 {
     u8 pad_0x0[0x120];
     void* anchor;
 };
-
-UnkVec2Result fn_71011cf12c(UnkGuiDisplayObject* self, const UnkVec2Result& point);
 
 UnkVec2Result fn_71011ba240(void* unused, UnkGuiDisplayObject* obj, const f32* pos) {
     UnkGuiSize_b0209* s = reinterpret_cast<UnkGuiSize_b0209*>(fn_71011cde14(obj));
@@ -477,7 +477,6 @@ struct UnkMovedStr_b0209 {
 UnkPathText_b0209 fn_71011b659c(void* self, const char* const* name);
 struct UnkUnit2669Str;
 struct UnkScriptManager_ovb0085;
-UnkWeakTarget* fn_71011b5f5c(u32 unused, const char* const* path, const CRntString* name, void* arg);
 
 static inline UnkScriptManager_ovb0085* ScriptManager() {
     UnkScriptManager_ovb0085* manager = g_unk_71727bed90;

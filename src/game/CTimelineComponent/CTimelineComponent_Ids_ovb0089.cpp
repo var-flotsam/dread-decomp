@@ -3,14 +3,13 @@
 // The pooled id data keeps a read counter at +0x44. Names and layouts are placeholders.
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/global/timeline/CEvent.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 using base::global::CRntString;
-
-u64* fn_7100066630(u64* out, const CRntString* str);
 
 struct UnkTimelineIdData_ovb0089 {
     u8 pad_0x0[0x10];

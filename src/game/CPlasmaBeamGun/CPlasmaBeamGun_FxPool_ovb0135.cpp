@@ -7,11 +7,13 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CAbilitySonar.h"
 #include "game/CFXPool/CDefinition.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU134.h"
+#include "game/UnkTU2739.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -21,7 +23,6 @@ struct UnkFxPooledObject;
 struct UnkSonarModel_ovb0085;
 UnkFxPooledObject** fn_7100852548(base::UnkVector<UnkFxPooledObject*>* array, u32 index);
 // As src/game/CScorpiusFXComponent/CScorpiusFXComponent_Gas_ovb0008.cpp declares it (it returns the node).
-void* fn_7100339d48(UnkRenderPool* pool, const CFilePathStrId* path, UnkSwitchObject** out, const CStrId* name);
 void* fn_7100339900(UnkRenderPool* pool, const CFilePathStrId* path, UnkSonarModel_ovb0085** out,
                     const CStrId* name);
 // As src/game/CGrappleBeamComponent/CGrappleBeamComponent_Effects_ovb0047.cpp declares it.
@@ -193,7 +194,6 @@ struct UnkPlasmaBeamGun_ovb0135 {
 
 void fn_71008548bc(UnkPlasmaBeamGun_ovb0135* self);
 void fn_7100854db8(UnkPlasmaBeamGun_ovb0135* self);
-void fn_71011aa5a4(UnkFxCache* cache, const CFilePathStrId* path);
 
 static inline UnkFxCache* FxCache() {
     if (!g_unk_71726b0cd8) {

@@ -4,11 +4,11 @@
 // base::core::CBaseObject (fn_7100023854). Names and layouts are placeholders.
 #include "base/core/CBaseObject.h"
 #include "game/CComponent.h"
+#include "game/UnkTU39.h"
 #include "types.h"
 
 struct UnkStateObject;
 struct UnkNode;
-void fn_710002f4e4(void* self);
 extern void* g_unk_7101a70870[];
 void fn_71007b70d8(void* owner);
 

@@ -2,6 +2,7 @@
 // capped at 16000 (-1 also meaning 16000): with a zero time it jumps there and tells the
 // listener the new value, otherwise it starts a transition from the current value. Called by
 // fn_71000fc98c.
+#include "game/UnkTU99.h"
 #include "types.h"
 
 struct UnkListener_7100105f1c;
@@ -20,7 +21,6 @@ struct UnkInterp_7100105f1c {
 
 struct UnkListener_7100105f94;
 struct UnkInterp_7100105f94;
-void fn_71000ffd4c(UnkListener_7100105f94* listener, UnkInterp_7100105f94* block, s32 value);
 
 void fn_7100105f1c(UnkInterp_7100105f1c* self, s32 value, f32 time) {
     if (self->current == value)

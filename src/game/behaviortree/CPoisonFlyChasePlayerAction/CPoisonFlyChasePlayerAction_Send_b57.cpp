@@ -7,6 +7,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
@@ -23,7 +24,6 @@ struct UnkPoisonFlyChase_b57a4 {
     UnkPoisonFlyChaseOwner_b57a4* owner;
 };
 
-void fn_710111094c(UnkReflObject* ai, u32 value);
 void fn_7100634174(UnkPoisonFlyChase_b57a4* self);
 
 u32 fn_7100633ffc(UnkPoisonFlyChase_b57a4* self) {

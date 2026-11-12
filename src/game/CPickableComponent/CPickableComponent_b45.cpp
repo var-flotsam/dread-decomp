@@ -2,6 +2,7 @@
 // empty string id, hands it with the component's +0x40 block to fn_7100b5fd6c on the object at +0x10
 // of the game manager's +0x2258 entry (null without one). Names are placeholders.
 #include "base/global/CStrId.h"
+#include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -15,8 +16,6 @@ struct UnkPickableEntry_b45a2 {
     void* object;
 };
 
-
-void fn_7100b5fd6c(void* object, base::global::UnkStringData** name, void* block, bool a, bool b);
 
 struct UnkPickableComponent_b45a2 {
     u8 pad_0x0[0x40];

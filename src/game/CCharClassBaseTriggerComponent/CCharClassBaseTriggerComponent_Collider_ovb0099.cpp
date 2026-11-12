@@ -15,6 +15,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU365.h"
+#include "game/UnkTU39.h"
 #include "game/logic/collision/CCollider.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -257,7 +258,6 @@ UnkBaseTriggerWeakRecord& UnkBaseTriggerWeakRecord::operator=(const UnkBaseTrigg
 }
 
 struct UnkStateObject;
-void fn_710002f4e4(void*);
 extern void* g_unk_7101a8ebc8[];
 
 // An allocator-backed list (base vtable, empty array with step 10 and flags 0xf, allocator, final

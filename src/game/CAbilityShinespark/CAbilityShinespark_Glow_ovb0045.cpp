@@ -9,6 +9,8 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
+#include "game/CSamusModelUpdaterComponent.h"
+#include "game/CScenario.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU365.h"
@@ -27,7 +29,6 @@ struct UnkV4_b47 {
     UnkV4_b47(f32 x_, f32 y_, f32 z_, f32 w_) : x(x_), y(y_), z(z_), w(w_) {}
     UnkV4_b47(const UnkV4_b47& o) : x(o.x), y(o.y), z(o.z), w(o.w) {}
 };
-void fn_710093adc0(base::reflection::UnkReflObject* comp, const void* a, const void* b, f32 time);
 extern const u64 g_unk_7101648ed8 __attribute__((visibility("hidden")));
 extern const u64 g_unk_7101648ee8 __attribute__((visibility("hidden")));
 extern const u64 g_unk_7101648ef8 __attribute__((visibility("hidden")));
@@ -144,8 +145,6 @@ UnkVisitResult_b0040 fn_710033265c(UnkSparkNearest_b0045* self, const UnkSparkTa
 }
 
 // ---- Cool shinesparks ----
-
-CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 
 // As src/game/UnkSubareaSetupState.cpp and src/game_s7/fn_7100fc4b34.cpp declare it.
 struct UnkSubId_7100fc4b34 {

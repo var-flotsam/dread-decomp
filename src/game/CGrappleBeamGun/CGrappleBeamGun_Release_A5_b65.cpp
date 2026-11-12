@@ -4,10 +4,10 @@
 // placeholders.
 #include "game/CScenario.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 struct UnkEntityState;
-void fn_7100232864(UnkEntityState*, bool);
 
 struct UnkGrappleHold_A5_b65 {
     u8 pad_0x0[0xf9];

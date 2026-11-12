@@ -5,13 +5,12 @@
 // record adds a word and an owned polymorphic object (+0x88), the second two words, an owned object
 // (+0x90), a flag, another value (+0xa0) and two words. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
-
-void fn_71000a179c(UnkReflValue* self, const UnkReflValue* other);  // copy constructor
 
 struct UnkReflValueElem_b58 {
     UnkReflValue value;

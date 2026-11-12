@@ -3,14 +3,13 @@
 // the time is up, and returns it). The component update fn_71008c69a4 steps it while it differs from its target.
 // Names and layouts are placeholders.
 #include "base/math/CVector4D.h"
+#include "game/UnkTU55.h"
 #include "types.h"
 
 using base::math::CVector4D;
 using base::math::UnkVector4D;
 
 UnkVector4D fn_710007b618(const CVector4D* a, const CVector4D* b);  // a - b
-UnkVector4D fn_710007b5c0(const CVector4D* a, f32 s);               // a * s
-UnkVector4D fn_710007b5ec(const CVector4D* a, const CVector4D* b);  // a + b
 
 struct UnkColorLerp_A4_b75 {
     CVector4D current;  // 0x0

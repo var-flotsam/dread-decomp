@@ -6,6 +6,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CSpittailMagmaBallMovementComponent.h"
 #include "game/UnkComponent.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU127.h"
@@ -16,7 +17,6 @@ using base::reflection::UnkReflObject;
 
 struct UnkModel;
 // As src/game/CAreaFXComponent/CAreaFXComponent_Models_ovb0081.cpp declares them.
-void fn_71006cae2c(UnkRenderPool*, const CFilePathStrId&, UnkModel**, base::global::CStrId*);
 
 struct UnkChozombieFXDef_ovb0130 : UnkReflObject {
     u8 pad_0x8[0x50];

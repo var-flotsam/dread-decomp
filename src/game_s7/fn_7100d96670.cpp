@@ -11,7 +11,6 @@ struct UnkStatics_7100d96670 {
 extern UnkStatics_7100d96670 g_unk_71727ba2c8 __attribute__((visibility("hidden")));
 struct UnkDesc_7100d92158;
 extern char g_unk_71727b9cb0[];
-extern CStrId g_unk_71727b9d30;
 extern char g_unk_71727b9eb0[];
 extern char g_unk_71727ba230[];
 

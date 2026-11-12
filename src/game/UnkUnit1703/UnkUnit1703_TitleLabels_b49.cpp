@@ -9,18 +9,17 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/GUI/CMainMenu.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::reflection::UnkReflObject;
 
-UnkReflObject* fn_7100e033a8(UnkGameManager* manager);
-
 struct UnkTitleTarget;
 void fn_7100b36770(UnkTitleTarget* target);
-void fn_7100b35704(UnkReflObject* menu, u32 value, bool flag);
 
 static inline void SetLabel(UnkGuiDisplayObject* label, s32 value) {
     reinterpret_cast<void (*)(UnkGuiDisplayObject*, s32, bool)>((*reinterpret_cast<void***>(label))[0x78 / 8])(

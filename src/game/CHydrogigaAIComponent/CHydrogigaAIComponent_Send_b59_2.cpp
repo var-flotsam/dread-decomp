@@ -7,11 +7,10 @@
 #include "base/UnkVector.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkTU883.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
-
-extern base::global::CStrId g_unk_71726eb450 __attribute__((visibility("hidden")));
 
 // The music manager singleton (as src/game/sound/UnkMusicPresets.cpp declares it).
 extern UnkMgr_0xf18* g_unk_71726bc560;
