@@ -136,5 +136,48 @@ class Definitions(unittest.TestCase):
         self.assertEqual([(d.name, d.signature, d.line) for d in found], [("fn_7100000170", "bool fn_7100000170(const char*, u32)", 3)])
 
 
+class FileProblems(unittest.TestCase):
+    TREE = {
+        "include/game/UnkA.h": "struct UnkA;\nvoid fn_7100000010(UnkA* self);\n",
+        "src/game/a.cpp": "struct UnkA;\nstruct UnkB;\nu32 fn_7100000020(UnkB* b);\n"
+                          "bool fn_7100000030(UnkA* a, const s32* n) {\n    return a && n;\n}\n",
+        "src/game/b.cpp": "struct UnkB;\nu32 fn_7100000020(UnkB* b);\nvoid fn_7100000040(UnkB* b);\n",
+    }
+
+    def problems(self, text):
+        return decl_check.file_problems({"src/game/new.cpp"}, {**self.TREE, "src/game/new.cpp": text})
+
+    def test_a_file_that_copies_what_exists_has_none(self):
+        self.assertEqual(self.problems("struct UnkB;\nu32 fn_7100000020(UnkB* b);\n"
+                                       "struct UnkA;\nbool fn_7100000030(UnkA* a, const s32* n);\n"), [])
+
+    def test_a_symbol_a_header_declares(self):
+        found = self.problems("struct UnkA;\nvoid fn_7100000010(UnkA* self);\n")
+        self.assertEqual(len(found), 1)
+        self.assertIn("declared in include/game/UnkA.h: include that header", found[0])
+
+    def test_a_declaration_with_other_types_than_the_definition(self):
+        found = self.problems("void fn_7100000030();\n")
+        self.assertEqual(len(found), 1)
+        self.assertIn("src/game/a.cpp defines it with other types", found[0])
+        self.assertIn("bool fn_7100000030(UnkA*, const s32*)", found[0])
+
+    def test_a_signature_no_other_file_uses(self):
+        found = self.problems("struct UnkC;\nu32 fn_7100000020(UnkC* c);\n")
+        self.assertEqual(len(found), 1)
+        self.assertIn("copy one of these exactly", found[0])
+        self.assertIn("(src/game/a.cpp)", found[0])
+
+    def test_a_definition_other_files_declare_differently(self):
+        found = self.problems("struct UnkMine;\nvoid fn_7100000040(UnkMine* m) {\n    (void)m;\n}\n")
+        self.assertEqual(len(found), 1)
+        self.assertIn("defined as void fn_7100000040(UnkMine*)", found[0])
+        self.assertIn("void fn_7100000040(UnkB*)", found[0])
+
+    def test_only_the_named_files_are_judged(self):
+        tree = {**self.TREE, "src/game/c.cpp": "void fn_7100000030();\n"}
+        self.assertEqual(decl_check.file_problems({"src/game/b.cpp"}, tree), [])
+
+
 if __name__ == "__main__":
     unittest.main()

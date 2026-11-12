@@ -152,6 +152,53 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**The batch kit, the worker brief and the two skills follow today's rules (2026-11-12).** The last step of the
+tier plan. The kit in `tools/batch/lean/`, its worker brief and `.claude/skills/dread-match` still said what the
+runs of 2026-11-09 to 2026-11-11 did: delete a non-match or keep it in `src/` on the worker's word, spend
+another model attempt on a near-match, steer the compiler with barriers and attributes, copy declarations and
+leave them, don't merge. A run started from them would have undone the tiers. No run was started for this:
+the hold on bulk runs stands, and lifting it is the owner's decision.
+
+What changed:
+
+- **The kit runs in place.** `prepare.py`, `coord.py` and the others ran from a copy in each worktree's
+  `build/lean/`, with a helper module (`pilot.py`) that was never tracked; the copies diverged. They now run
+  from `tools/batch/lean/` and write only under `build/lean/`; the context builder is `context.py` there.
+- **Outcomes by tier.** A worker reports `match`, `registers` or `differs` and leaves every non-match in
+  `build/lean/drafts/`. `coord.py` no longer plans a model retry for a registers-only result, `coord.py land`
+  grades the matches again and checks their declarations, and `coord.py file --tag <run>` files every
+  non-match under `drafts/` with a graded row. `COORDINATOR.md` then has the free try (`tools/permute.py`),
+  the move into `src/` of what matches or passes the machine test, the declaration step and every gate, and
+  ends with the coordinator merging its own pull request on green checks.
+- **Readable first, in the brief.** A worker does not add a barrier, an inlining attribute, a union, an
+  untyped store or an offset cast only to match; a function that matches only with one is reported as what
+  it is without it.
+- **`tools/drafts.py`** replaces the one-off scripts that filed, graded and moved drafts three times this
+  week: `add` (file a source as a function's draft, graded, with its row), `grade` (what separates each draft
+  from the original now) and `promote` (move a draft to `src/` when every function in it matches or passes
+  `tools/equiv_test.py`, with includes rewritten and the tier-2 note added; a draft whose declarations do not
+  fit the tree stays, with the reason in its row).
+- **Shared pieces.** `tools/decl_check.py` has the kit's file-level declaration check as `file_problems`
+  (`declfile.py` calls it, and so does `drafts.py promote`); `tools/tu_map.py` has `source_folder`, and
+  `--function` prints the folder for a new source.
+- **The skills.** `dread-match` is rewritten: files by unit, one declaration per shared symbol, the order
+  match, permuter, machine test, draft for a function that does not match, the note rule for `minor`, the
+  gates of today and who merges. `dread-hubs` names `decl_plan.py`, the strict check and the `EQUIV` and
+  `REFS` lines.
+
+What was tried, and what was not. On the pilot's leftover state the rewritten `prepare.py` wrote the same
+context files, and `coord.py record`, `land` and `file` filed a pilot draft with the row the pilot's script had
+written. `drafts.py grade` over all 239 rows agrees with the index (three rows had an older spelling of their
+kind or an empty score). A dry run of `drafts.py promote` on the 14 drafts that match says three can move and
+gives each of the other 11 its own reason, where the index said "its declarations are not settled yet" for
+all of them. The worker brief as rewritten has not been run by a worker: the first batch that uses it is also
+its test.
+
+One thing the rules leave open, for the owner: `CLAUDE.md`'s matching standard keeps a function that still
+differs in `src/`, annotated; `drafts/README.md` keeps non-matching work out of `src/` until it matches or is
+verified. The kit files every unverified non-match of a batch as a draft (nobody has read it); the skill lets
+a person who is sure of the behaviour keep theirs in `src/`, as the standard says. Neither counts as done.
+
 **The spike's script is a tool after all: `tools/permute.py` (2026-11-12).** The spike below stopped by its
 rule: 11% is not worth building a permuter for. It is worth keeping the hour-of-CPU script that got the 11%,
 which is a different decision (owner, the same day): a registers-only near-match gets one free try before it

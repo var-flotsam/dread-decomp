@@ -12,7 +12,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 BANDS = [(601, 1024, 8), (1025, 2048, 8), (2049, 4096, 4)]
 
 

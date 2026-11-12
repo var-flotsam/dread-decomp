@@ -399,6 +399,16 @@ python tools/permute.py --version 2.1.0 --minor             # every NON_MATCHING
 python tools/permute.py --version 2.1.0 --drafts            # the `registers or order` rows of drafts/INDEX.csv
 ```
 
+### `tools/drafts.py`
+
+drafts/: file a function that does not match yet, regrade what is there, move a draft into src/.
+
+```sh
+python tools/drafts.py --version 2.1.0 add FILE.cpp ADDR --from TAG [--note TEXT] [--replace] [--remove]
+python tools/drafts.py --version 2.1.0 grade [FILE.cpp ...] [--from TAG] [--write] [--jobs N]
+python tools/drafts.py --version 2.1.0 promote FILE.cpp [...] [--write]
+```
+
 ### `tools/fakematch.py`
 
 Fake-match patterns in the hand-written sources: byte-identical code that a programmer would not have written, which usually points at a missing helper, a wrong type or two variables merged into one.

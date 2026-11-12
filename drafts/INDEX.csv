@@ -67,7 +67,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71003549a4,400,drafts/game/UnkTU437/fn_71003549a4.cpp,match,100.0,0,overnight,matches since the permuter spike of 2026-11-12; held: its declarations are not settled yet
 0x710035d5c4,504,drafts/game/UnkTU441/fn_710035d5c4.cpp,registers or order,96.0,5,overnight,
 0x710039d65c,504,drafts/game/behaviortree/CIsAtDistanceXCondition/fn_710039d65c.cpp,control flow,93.1,5,overnight,
-0x71003a4774,220,drafts/game/behaviortree/CTunableBoolCondition/fn_71003a4774.cpp,registers,87.3,7,test40,registers only in true/false select (x10/x8/x9 allocation)
+0x71003a4774,220,drafts/game/behaviortree/CTunableBoolCondition/fn_71003a4774.cpp,registers or order,87.3,7,test40,registers only in true/false select (x10/x8/x9 allocation)
 0x71003bb534,544,drafts/game/CAutectorAIComponent/fn_71003bb534.cpp,registers or order,90.4,13,overnight,
 0x71003d4300,1380,drafts/game/CAutsniperShootAttack/fn_71003d4300.cpp,control flow,5.5,305,lean,
 0x71003f1d94,656,drafts/game/CBigkranXSpitAttack/fn_71003f1d94.cpp,control flow,52.4,77,lean,
@@ -107,7 +107,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71008372ac,476,drafts/game/UnkTU1303/fn_71008372ac.cpp,registers or order,97.5,3,overnight,
 0x71008625a0,284,drafts/game/CCollisionComponent/fn_71008625a0.cpp,registers or order,74.6,18,pilot50,register allocation x19/x20; store order
 0x710086f9e0,324,drafts/game/UnkTU1325/fn_710086f9e0.cpp,registers or order,90.1,8,overnight,
-0x710087f018,284,drafts/game/CCharClassFanComponent/fn_710087f018.cpp,registers,97.2,2,test40,one fmul register s3 vs s4 only
+0x710087f018,284,drafts/game/CCharClassFanComponent/fn_710087f018.cpp,registers or order,97.2,2,test40,one fmul register s3 vs s4 only
 0x71008866b8,548,drafts/game/CMorphBallLauncherComponent/fn_71008866b8.cpp,match,100.0,0,lean,matches since the permuter spike of 2026-11-12; held: its declarations are not settled yet
 0x710088adf0,376,drafts/game/CCharClassMushroomPlatformComponent/fn_710088adf0.cpp,control flow,34.0,54,test40,block layout differs: original puts owner-target tail before state switch; loop shape differs
 0x71008c3dcc,360,drafts/game/CDemolitionBlockActivatableActorLifeComponent/fn_71008c3dcc.cpp,match,100.0,0,test40,"matches; held: fn_7100353be8 (37 copies) returns UnkRef, a struct in some files and an alias in others"
@@ -215,7 +215,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710112a3bc,412,drafts/game/UnkTU2704/fn_710112a3bc.cpp,calls,31.0,67,pilot50,KIND calls: 3 calls vs 4; return-true block layout
 0x710112c4d8,368,drafts/game/UnkTU2704/fn_710112c4d8.cpp,registers or order,95.7,4,overnight,
 0x7101136bb4,884,drafts/game/CAttackComponent/fn_7101136bb4.cpp,registers or order,93.7,14,lean,
-0x710114ccd0,132,drafts/game/CPositionalSoundComponent/fn_710114ccd0.cpp,control flow,,,test40,compiler fuses redundant null check and compares; branch count 10 vs 11
+0x710114ccd0,132,drafts/game/CPositionalSoundComponent/fn_710114ccd0.cpp,control flow,0.0,32,test40,compiler fuses redundant null check and compares; branch count 10 vs 11
 0x710114e130,728,drafts/game/CFXComponent/fn_710114e130.cpp,operations,15.7,153,lean,
 0x7101156c6c,780,drafts/game/CFXComponent/fn_7101156c6c.cpp,control flow,66.2,60,lean,
 0x710115fe20,420,drafts/game/CLifeComponent/fn_710115fe20.cpp,registers or order,98.1,2,pilot50,load order of kind GOT slot vs key (registers)

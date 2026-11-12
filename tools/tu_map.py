@@ -551,6 +551,21 @@ def find_unit(rows: list[dict], address: int, starts: list[int] | None = None) -
     return None
 
 
+NAMED_SOURCES = ("reflection", "init_call", "names", "library")
+
+
+def source_folder(u: dict) -> str:
+    """The folder under src/ (and drafts/) for a new source of this unit: the unit's class as a path when the
+    hint is a name and the unit is sure of it (`base::snd::CFoo` -> base/snd/CFoo; a class outside base, engine
+    and game goes under game/), else game/UnkTU<index>."""
+    hints = u["class_hint"].split(";") if u["class_hint"] else []
+    parts = [re.sub(r"[^A-Za-z0-9_]+", "_", p).strip("_") for p in hints[0].split("::")] if hints else []
+    parts = [p for p in parts if p]
+    if not parts or u["hint_source"] not in NAMED_SOURCES or u["confidence"] != "high":
+        return f"game/UnkTU{u['index']}"
+    return "/".join(parts if parts[0] in ("base", "engine", "game") else ["game", *parts])
+
+
 def resolve_function(text: str, fns: list[Fn]) -> int:
     """A data/functions name, or an address (hex; fn_ and 0x prefixes allowed)."""
     t = text.strip()
@@ -587,9 +602,10 @@ def show_function(rows: list[dict], text: str) -> int:
     print(f"  hint: {hints[0] if hints else '(none)'}" + (f" [{u['hint_source']}]" if u["hint_source"] else ""))
     if len(hints) > 1:
         print(f"  also in this unit: {', '.join(hints[1:])}")
-    if hints and u["hint_source"] in ("reflection", "init_call", "names", "library"):
+    if hints and u["hint_source"] in NAMED_SOURCES:
         stem = re.sub(r"[^A-Za-z0-9_]+", "_", hints[0].replace("::", "_")).strip("_")
         print(f"  suggested file stem: {stem}")
+    print(f"  folder for a new source: src/{source_folder(u)}")
     return 0
 
 

@@ -71,7 +71,11 @@ contents since #355; unit headers hold the one declaration of 2,025 shared symbo
 `data/reflection_fields.csv` lists every reflected member since #365; the 40-function test of 2026-11-12 showed
 no gain from them, so what is left is a worker brief that adds declarations to headers, open decision 4); `nn::atk` is the exception. The owner allowed one measured pilot on 2026-11-12: 50 ready
 boot-path functions gave 8 matches at about 736,000 tokens each, and the declaration counts held only with
-hand work after the mechanical step (journal, "Pilot batch of 50 functions"); widening is the owner's call. The coordinator of a piece of work merges it; the owner merges
+hand work after the mechanical step (journal, "Pilot batch of 50 functions"); widening is the owner's call.
+The kit (`tools/batch/lean/`), its worker brief and the two skills follow the tier rules since 2026-11-12:
+a registers-only result goes to `tools/permute.py` and `tools/equiv_test.py`, every other non-match to
+`drafts/` (`tools/drafts.py`), and the coordinator moves copied declarations to unit headers. The rewritten
+brief has not been run by a worker yet. The coordinator of a piece of work merges it; the owner merges
 sweeping revisions of `main`.
 
 Route B (`docs/PORT_PLAN.md`): one program now, lifted code as a bridge that matching replaces. Hubs
@@ -107,7 +111,8 @@ None open. Decided on 2026-11-12:
    `claude/project-thread-3x0lf8` predate the unit headers; they are to be redone on current `main` with the class
    headers, and the branch goes then.
 4. The 40-function test of shared headers ran on 2026-11-12 and showed no gain (7 of 20 matched on the current
-   recipe, 8 of 20 with the shared material, at the same cost; journal). Struct headers are not generated. Before a
-   bulk run: the worker brief must add declarations to unit headers (CI now fails a copied one), and the hubs
+   recipe, 8 of 20 with the shared material, at the same cost; journal). Struct headers are not generated. Workers
+   still copy a declaration (parallel workers must not edit shared headers) and the coordinator's step moves the
+   copies (`tools/batch/lean/COORDINATOR.md`, step 10). Before a bulk run the hubs
    without a header need one (`fn_7100353be8`, `UnkGameManagerIdTable`; `fn_7100dec788` and `fn_7100d78378` have
    theirs since the third declarations pass).
