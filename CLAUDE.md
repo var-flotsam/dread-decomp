@@ -98,7 +98,7 @@ python tools/gen_lift.py --version <ver> --best ADDR,...   # closest lifted draf
 python tools/tu_map.py --function <addr|name>          # the unit a function belongs to, and its file name
 python tools/data_map.py --address <addr>              # the unit a global belongs to
 python tools/gen_fields.py --class <Class>             # a reflected class's members by offset, bases included
-python tools/decl_check.py --base origin/main          # one declaration per shared symbol (CI)
+python tools/decl_check.py --strict --base origin/main # one declaration per shared symbol (CI)
 python tools/fakematch.py --base origin/main [--list]  # fake-match forms a branch adds; review before a PR
 python -m unittest discover -s tools/tests -t .       # tool tests, no game data (CI)
 python tools/hub_migrate.py --version <ver> --plan PLAN.tsv   # mechanical header migration; .claude/skills/dread-hubs
@@ -195,8 +195,8 @@ Toolchain:
   vtable slots. These are not Mercury's real method names.
 - **One declaration per shared symbol.** A function or global used by more than one file is declared
   once, in a header under `include/`, with one signature; a `.cpp` declares only what it alone uses.
-  `python tools/decl_check.py --base origin/main` must pass (CI runs it); `--symbol <name>` shows every
-  copy. Migrating a hub to its header: `tools/hub_migrate.py` does the mechanical part and lists the
+  `python tools/decl_check.py --strict --base origin/main` must pass (CI runs it; since 2026-11-12 one more
+  identical local copy fails too); `--symbol <name>` shows every copy. Migrating a hub to its header: `tools/hub_migrate.py` does the mechanical part and lists the
   files it leaves; the hand recipe is `CONTRIBUTING.md`, "Migrating a hub", verified with
   `tools/baseline.py` (procedure for a batch: `.claude/skills/dread-hubs`).
 - **Files by unit.** New hand-written sources go under `src/<subsystem>/`, named for the class or
