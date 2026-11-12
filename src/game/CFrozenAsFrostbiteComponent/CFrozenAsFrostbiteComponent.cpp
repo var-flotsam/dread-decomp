@@ -7,7 +7,7 @@
 #include "types.h"
 
 extern void* g_unk_7101a73e88[];
-void fn_71007f5d24(void* owner);
+bool fn_71007f5d24(void* owner, void*);
 
 struct UnkFrozenAsFrostbiteComponent {
     void** vtable;
@@ -37,7 +37,7 @@ void fn_71007f5bf4(UnkFrozenAsFrostbiteComponent* self) {
     self->field_0x3c4 = -1.0f;
     self->field_0x3c8 = 0;
     self->field_0x3d0 = self;
-    self->field_0x3d8 = fn_71007f5d24;
+    self->field_0x3d8 = reinterpret_cast<void (*)(void *)>(&fn_71007f5d24);
     self->field_0x3e0 = -1.0f;
     self->field_0x3e8 = 0;
     self->field_0x3f0 = 0;

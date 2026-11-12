@@ -35,7 +35,7 @@ bool fn_710006bacc(UnkTimelineEntries_ovb0044* self, u64 id, f32 time, s32 frame
 }
 
 // The first entry of the id that covers the time, or null.
-UnkTimelineEntry_ovb0044* fn_710006bb80(UnkTimelineEntries_ovb0044* self, u64 id, f32 time, s32 frame) {
+UnkTimelineEntry_ovb0044* fn_710006bb80(f32 time, UnkTimelineEntries_ovb0044* self, u64 id, s32 frame) {
     UnkIter<UnkTimelineEntry_ovb0044*> it = std::find_if(
         self->begin(), self->end(), [&](const UnkTimelineEntry_ovb0044* e) { return Covers(e, id, time, frame); });
     return it != self->end() ? *it : nullptr;

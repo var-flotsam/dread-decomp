@@ -10,7 +10,7 @@ struct UnkTUHeader;
 struct UnkPair16;
 
 void fn_7100da4720();
-void fn_7100da5184() __attribute__((visibility("hidden")));
+void* fn_7100da5184(void*, char*) __attribute__((visibility("hidden")));
 extern char g_unk_71727bbfa0;
 extern char g_unk_71727bbfa1;
 extern UnkPair16 g_unk_71727bbfd8;

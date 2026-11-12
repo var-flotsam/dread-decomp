@@ -58,7 +58,7 @@ void fn_7100adcf10() {
     fn_710009ec00(&g_unk_7172758256, fn_7100adc390());
 
     InitConverter(g_unk_7172758258, fn_7100adc1d8, refl_TypeOf<fn_7100005178>, fn_7100adc470);
-    InitConverter(g_unk_7172758278, fn_7100adc1d8, refl_TypeOf<fn_7100009658>, fn_7100adc4c0);
+    InitConverter(g_unk_7172758278, fn_7100adc1d8, refl_TypeOf<fn_7100009658>, reinterpret_cast<void (*)()>(&fn_7100adc4c0));
 
     new (&g_unk_7172758298) UnkValue(static_cast<u32>(-1), refl_TypeOf<fn_7100005178>);
     fn_7100000250(fn_710010c424, &g_unk_7172758298, &g_unk_7101a19000);
@@ -104,7 +104,7 @@ void fn_7100aef910() {
     InitClass(&g_unk_717275b580, "CGameBBPropID", fn_7100ae96e8, fn_7100ae963c);
     fn_710009ec00(&g_unk_717275b6b8, &g_unk_717275b580);
     InitConverterTo(g_unk_717275b6c0, &g_unk_717275b580, refl_TypeOf<fn_7100009658>, fn_7100aebf80);
-    InitConverterFrom(g_unk_717275b6e0, &g_unk_717275b580, refl_TypeOf<fn_7100009658>, fn_7100aec000);
+    InitConverterFrom(g_unk_717275b6e0, &g_unk_717275b580, refl_TypeOf<fn_7100009658>, reinterpret_cast<void (*)()>(&fn_7100aec000));
     fn_7100ae9e7c();
     fn_710009ec00(&g_unk_717275b700, &g_unk_717275bf60);
     fn_710009ec00(&g_unk_717275b701, fn_7100aea26c());
@@ -641,7 +641,7 @@ extern const char g_unk_710164b8af[];
 void fn_7100ad39e0() {
     InitHeader(g_unk_7172756998);
     fn_710009ec00(&g_unk_7172756940, fn_710025d654());
-    InitConverter(g_unk_7172756948, fn_710025d654, refl_TypeOf<fn_7100009658>, fn_7100ad37c0);
+    InitConverter(g_unk_7172756948, fn_710025d654, refl_TypeOf<fn_7100009658>, reinterpret_cast<void (*)()>(&fn_7100ad37c0));
     new (&g_unk_7172756968) UnkValue(CStrId(g_unk_710164b8ab, true), refl_TypeOf<fn_7100009658>);
     fn_7100000250(fn_710010c424, &g_unk_7172756968, &g_unk_7101a19000);
     new (&g_unk_7172756978) UnkValue(CStrId(g_unk_710164b8ad, true), refl_TypeOf<fn_7100009658>);
@@ -715,7 +715,7 @@ void fn_7100da54b0() {
     InitClass(AsUnk(&g_unk_71727bbe68), "CBaseGameLink", fn_7100da4a08, fn_7100da4720);
     fn_710009ec00(&g_unk_71727bbfa0, AsUnk(&g_unk_71727bbe68));
     fn_710009ec00(&g_unk_71727bbfa1, fn_7100da4cf0());
-    InitConverterTo(g_unk_71727bbfa8, AsUnk(&g_unk_71727bbe68), refl_TypeOf<fn_7100009658>, fn_7100da5184);
+    InitConverterTo(g_unk_71727bbfa8, AsUnk(&g_unk_71727bbe68), refl_TypeOf<fn_7100009658>, reinterpret_cast<void (*)()>(&fn_7100da5184));
     new (&g_unk_71727bbfc8) CStrId("{EMPTY}", true);
     fn_7100000250(fn_710000051c, &g_unk_71727bbfc8, &g_unk_7101a19000);
     new (&g_unk_71727bbfd0) CStrId("{BROKEN}", true);

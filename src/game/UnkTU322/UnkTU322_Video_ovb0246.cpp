@@ -58,7 +58,7 @@ extern void* g_unk_7101a20440[];
 
 void fn_710021e6e8(void* obj);
 void fn_71002206fc(void* obj);
-void fn_710021d394();
+void fn_710021d394(char*, void*, u32);
 void fn_710021ff8c(void* obj, void* pair);
 void fn_710021ecb4(void* obj, const UnkPathKey& path, u32 a, bool b);
 void fn_710021d238(base::UnkVector<UnkRef>* vec, u32 n);
@@ -108,7 +108,7 @@ UnkRef fn_710021cab8(UnkPlayer* player, const UnkPathKey& path, u32 a, u32 b) {
         *slot = local;
         ++list.count;
     }
-    UnkCab8Pair_b0246 pair = {self, fn_710021d394};
+    UnkCab8Pair_b0246 pair = {self, reinterpret_cast<void (*)()>(&fn_710021d394)};
     fn_710021ff8c(obj, &pair);
     fn_710021ecb4(obj, path, a, b & 1);
     UnkRef result;

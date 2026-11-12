@@ -152,6 +152,15 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Type-erased callbacks say so (2026-11-12).** Many of the remaining definition/declaration mismatches had one
+cause: a file declared `void fn();` only to store the function's address in a generic slot or to pass it to a
+registration call (`InitConverter`, `InitClass`, `link->callback`). The fixer of the previous entry now gives
+such a declaration the definition's signature and, where the compiler then refuses the assignment or the
+argument, writes the cast the code was hiding, `reinterpret_cast<void (*)()>(&fn)`, taking the slot's type from
+the compiler's own message; 26 functions, each kept only with unchanged output. `tools/decl_check.py` no longer
+counts a 64-bit integer against a pointer as a difference (one full register on every 64-bit target). 82
+mismatches are left, from 312 two days ago.
+
 **Signatures settled by trying both directions (2026-11-12).** 211 hand-written definitions disagreed with a
 declaration of the same function in how it is called (`tools/decl_check.py --definitions`). Reading the original
 for each one does not scale; the byte match can decide instead. Direction one: rewrite the declarations to the

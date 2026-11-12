@@ -7,5 +7,5 @@
 
 struct UnkAlternativeActionPlayer;
 void fn_71007124d8(UnkAlternativeActionPlayer* self);
-void fn_7100712538(UnkAlternativeActionPlayer* self);
+bool fn_7100712538(UnkAlternativeActionPlayer* self, void*);
 extern void* g_unk_7101a6c0b8[];

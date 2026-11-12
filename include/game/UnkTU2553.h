@@ -39,7 +39,7 @@ void fn_7100e03a78(UnkGameManager*, void*);
 void fn_7100de9730(UnkGameManager* manager, UnkSpawnGroupKey* key, void* object);
 void fn_7100debc28(UnkGameManager*, UnkRemovedValue_b60*);
 void fn_7100df6d3c(UnkGameManager* self, void* settings, f32 a, f32 b);
-s32 fn_7100df99f8(UnkGameManager* self, u32 a, const UnkProfileSaveArg* arg, u32 b);
+s32 fn_7100df99f8(UnkGameManager* self, u32 a, const UnkProfileSaveArg* arg, bool);
 void fn_7100de6ee8(UnkGameManager* self);
 bool fn_7100decc5c(UnkGameManager* self);
 bool fn_7100df5a4c(UnkGameManager* self);
