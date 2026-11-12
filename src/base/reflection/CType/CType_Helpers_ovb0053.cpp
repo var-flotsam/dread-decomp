@@ -25,7 +25,7 @@ using base::reflection::UnkReflValue;
 using base::reflection::UnkTypedRef;
 
 extern void* g_unk_7101a1b540[];  // CType's vtable
-void fn_71000a1978(UnkReflValue* out, const UnkTypedRef* src, bool by_ref, u32 kind);
+void fn_71000a1978(UnkReflValue* out, const UnkTypedRef* src, u32, u32 kind);
 const UnkReflAttrKey& fn_71000905e0();  // "AssetHash"
 
 namespace {

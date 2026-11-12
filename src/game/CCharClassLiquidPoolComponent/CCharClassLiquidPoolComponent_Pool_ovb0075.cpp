@@ -523,7 +523,7 @@ struct UnkLiquidPoolMover_ovb0075 {
 void fn_7100a45f08(UnkLiquidPoolEnter_ovb0075* self, UnkLiquidPoolActor_ovb0075* actor, const UnkVec3f* pos);
 s32 fn_7100f0d7b0(void* list, UnkLiquidPoolEnter_ovb0075* self, const UnkVec3f* pos);
 UnkLiquidPoolMover_ovb0075* fn_71009019bc(UnkLiquidPoolActor_ovb0075* actor);
-void fn_71010ff50c(UnkLiquidPoolActorPart_ovb0075* part, bool a, bool b);
+void fn_71010ff50c(UnkLiquidPoolActorPart_ovb0075* part, bool a, u32);
 
 void fn_7100901dd4(UnkLiquidPoolEnter_ovb0075* self, UnkLiquidPoolActor_ovb0075* actor, const UnkVec3f* pos) {
     fn_7100a45f08(self, actor, pos);

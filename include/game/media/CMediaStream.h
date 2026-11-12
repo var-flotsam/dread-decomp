@@ -6,7 +6,7 @@
 #include "types.h"
 
 struct UnkMediaTrack330;
-void fn_710021b860(UnkMediaTrack330* track, bool a, bool b);
+void fn_710021b860(UnkMediaTrack330* track, u32, bool b);
 void fn_710021b8a4(void* entry);
 extern char g_unk_7101a20380[];
 extern char g_unk_7101a203f8[];

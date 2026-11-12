@@ -12,5 +12,5 @@ struct UnkMove_b152;
 struct UnkPlayerMovementCache;
 void fn_71010db850(UnkForcedMovementTarget_A5_b68* p, void* q);
 void* fn_71010d7aac(UnkPlayerMovementCache* self);
-void fn_71010d7b88(UnkMorphBallMovement_b49a4* self, bool flag);
+void fn_71010d7b88(UnkMorphBallMovement_b49a4* self, u32);
 bool fn_71010d9638(UnkMove_b152* self, UnkHitInfo_b152* hit, u64* out);

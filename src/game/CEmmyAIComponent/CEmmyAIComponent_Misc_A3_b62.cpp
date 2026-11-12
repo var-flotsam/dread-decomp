@@ -24,7 +24,7 @@ bool fn_710083eb28(UnkPlayerPart_b62a3*);
 bool fn_7100df59a8(UnkGameManager*);
 bool fn_7100300cf4(UnkPlayerPart2_b62a3*);
 
-bool fn_710054abf4() {
+bool fn_710054abf4(void*) {
     auto* player = reinterpret_cast<UnkPlayer_b62a3*>(fn_7100dec788(g_unk_7101d47310));
     if (player) {
         UnkPlayerPart_b62a3* part = player->field_0x2a8;

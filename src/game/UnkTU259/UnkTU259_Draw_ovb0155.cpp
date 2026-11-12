@@ -49,7 +49,7 @@ struct UnkGraphicsSystem {
 static_assert(__builtin_offsetof(UnkGraphicsSystem, field_0x317af70) == 0x317af70, "system layout");
 
 void fn_710015e2d0(void* state, u32 stage, u64 location, u32 a, u32 count, u64 data);
-void fn_71001d2eec(UnkGraphicsSystem* self, u32 id, u32 flag);
+void fn_71001d2eec(UnkGraphicsSystem* self, u32 id, bool);
 
 void fn_71001d03f8(UnkGraphicsSystem* self, UnkGfxItem_b0155* item, bool upload, bool draw) {
     u32 count = item->count;

@@ -46,7 +46,7 @@ struct UnkMatrix4_b0233 {
 };
 
 void fn_710113cb74(void* component, UnkTeleporterActor_b0233* actor, void* unused, UnkMatrix4_b0233* matrix);
-void fn_7100233f84(UnkTeleporterObject_b0233* object, UnkMatrix4_b0233* matrix, u32 flag);
+void fn_7100233f84(UnkTeleporterObject_b0233* object, UnkMatrix4_b0233* matrix, bool);
 void fn_7100aa1b08(UnkTeleporterOwner_b0233* self, UnkTeleporterObject_b0233* object, void* arg);
 
 bool fn_7100a8f1d0(UnkTeleporterOwner_b0233* self, UnkTeleporterObject_b0233* object, void* arg) {

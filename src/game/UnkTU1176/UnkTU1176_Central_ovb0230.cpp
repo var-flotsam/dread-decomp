@@ -388,7 +388,7 @@ void fn_71007726e4(UnkCentralFsm_b0230* self) {
 }
 
 struct UnkDoorLock;
-bool fn_71008d586c(UnkDoorLock*, bool, u32, CStrId*);
+bool fn_71008d586c(UnkDoorLock*, bool, bool, CStrId*);
 bool fn_71008d564c(UnkDoorLock* door, u32 value, const CStrId* id);
 
 struct UnkCentralSources_b0230 {

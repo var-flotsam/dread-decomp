@@ -136,7 +136,7 @@ struct UnkTU1134_b257a {
 s32 fn_7100c95f28(UnkPlayer_b42*);
 f32 fn_7100c95f34(UnkPlayer_b42*);
 void fn_71007142e8(UnkStruct_71007142e8*);
-void fn_7100714808(void* part, UnkStruct_71007142e8* motion, bool flag);
+void fn_7100714808(void* part, UnkStruct_71007142e8* motion, s32);
 void fn_7100714dac(void* part);
 void fn_7100c976e4(UnkRefObj_b257a* self, UnkArgs_b257a* args);
 void fn_710002f4e4(void*);

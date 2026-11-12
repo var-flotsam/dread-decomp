@@ -1,7 +1,7 @@
 #include "types.h"
 
 struct UnkScourgeQuery;
-bool fn_710069ae3c(UnkScourgeQuery* query, u32 kind, u32* outIndex, f32* outValue);
+bool fn_710069ae3c(UnkScourgeQuery* query, bool, u32* outIndex, f32* outValue);
 
 struct CScourgeAIComponent {
     u8 unk_0x0[0x146c8];

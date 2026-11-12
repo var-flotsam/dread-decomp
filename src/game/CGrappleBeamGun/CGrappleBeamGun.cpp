@@ -113,7 +113,7 @@ struct UnkGrappleBeamGun {
 void fn_7100232864(UnkEntityState* entity, bool value);
 void fn_71008189a4(UnkGrappleObject* obj);
 void fn_71008c1538(UnkRequest* request, f32 value);
-UnkHyperBeamSoundHandle fn_7100ed6910(void* player, const CVector3D* pos, u32 id, u32 kind, bool flag);
+UnkHyperBeamSoundHandle fn_7100ed6910(void* player, const CVector3D* pos, u32 id, u32 kind, u32);
 
 bool fn_7100833cf4(UnkGrappleBeamGun* self) {
     if (!self->vf_0x48())

@@ -24,5 +24,5 @@ bool fn_7100117aa8(UnkPolygon109* polygon, void* query, f32 distance);
 void fn_7100118c78(UnkPolygon_b61* self);
 void fn_7100119b88(UnkPolygon2D* self);
 void fn_7100119c1c(UnkTarget108* target);
-void fn_7100119f98(UnkTileOutline* outline, u32 value);
+void fn_7100119f98(UnkTileOutline* outline, bool);
 void fn_7100122b2c(UnkInsertTarget* self, const UnkArgObj* point, u32 index);

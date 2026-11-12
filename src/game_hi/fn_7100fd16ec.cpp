@@ -92,7 +92,7 @@ struct UnkStruct_0x150 {
     u32 field_0x148;
 };
 
-void fn_7100fd16ec(UnkStruct_0x150* self) {
+void fn_7100fd16ec(UnkStruct_0x150* self, u32, u32) {
     if (!self->field_0x30)
         return;
     self->field_0x30 = false;

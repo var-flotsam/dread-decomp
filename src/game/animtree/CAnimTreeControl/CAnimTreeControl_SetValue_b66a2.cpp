@@ -37,7 +37,7 @@ struct UnkAnimTreeControl_b66a2 {
     bool paused;
 };
 
-void fn_71002d6074(UnkAnimTreeControl_b66a2* self, f32 value, bool on) {
+void fn_71002d6074(UnkAnimTreeControl_b66a2* self, bool on, f32 value) {
     value = fmaxf(value, 0.0f);
     self->field_0x30 = self->field_0x34 = value;
     bool active = (self->source->value > 0.0f) & !self->paused;

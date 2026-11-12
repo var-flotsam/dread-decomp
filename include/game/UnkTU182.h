@@ -10,10 +10,10 @@ struct UnkPool;
 struct UnkGfxBuffer252;
 struct UnkObj_7100161b90;
 struct UnkRenderTargetSlot;
-void fn_7100160990(s32 a, s32 b, bool c);
+void fn_7100160990(s32 a, s32 b, u32);
 void fn_7100160ab0(u32 a, s32 b, u32 c);
 void fn_7100161b90(void* obj);
-void fn_710015f770(s32 slot, void* object, bool clear);
+void fn_710015f770(s32 slot, void* object, u32);
 void fn_7100160d50(u32 a, s32 b, u32 c);
 void fn_7100161d70(UnkGfxBuffer252* buffer);
 void fn_7100161dc0(UnkGfxBuffer252* buffer);
@@ -28,8 +28,8 @@ void fn_710015f810(UnkRenderTargetSlot* out, u32 format, u32 width, u32 height, 
 
 void fn_7100160590(u64 slot);
 void fn_71001606f0(s32 a, s32 b, bool c);
-void fn_7100160810(s32 a, s32 b, bool c);
-void fn_7100160890(s32 a, s32 b, bool c);
+void fn_7100160810(s32 a, s32 b, u32);
+void fn_7100160890(s32 a, s32 b, u32);
 void* fn_71001611e0(void* object);  // A target's NVN texture.
 u32 fn_71001622e0(UnkGfxBuffer252* buffer);
 extern UnkPool g_unk_716e2a7580;  // The descriptors' memory.

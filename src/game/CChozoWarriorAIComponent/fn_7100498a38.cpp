@@ -44,7 +44,7 @@ __attribute__((always_inline)) static inline void Register(UnkSelf* self, u8* en
 }
 
 // `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
-u32 fn_7100498a38(UnkSelf* self, void* arg) {
+bool fn_7100498a38(UnkSelf* self, void* arg) {
     u32 result = fn_71003ac8f4(reinterpret_cast<UnkBossAIComponent*>(self), arg);
     UnkComponent* object = self->field_0x10;
     UnkComponent* component = nullptr;

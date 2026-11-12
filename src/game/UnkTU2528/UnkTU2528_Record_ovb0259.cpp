@@ -25,7 +25,7 @@ struct UnkRecord_ovb0259 {
 };
 static_assert(__builtin_offsetof(UnkRecord_ovb0259, flag_0x5f) == 0x5f, "UnkRecord_ovb0259 layout");
 
-void fn_7100d9bffc(UnkRecord_ovb0259* self) {
+void fn_7100d9bffc(UnkRecord_ovb0259* self, void*) {
     self->id_0x8.data = nullptr;
     if (!g_unk_7101d47108)
         base::global::UnkEnsureStringPool();

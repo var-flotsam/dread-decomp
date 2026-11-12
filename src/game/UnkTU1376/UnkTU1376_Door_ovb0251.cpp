@@ -411,7 +411,7 @@ bool fn_71008d1c50(UnkDoorHandles_b0251* self, void* target) {
 
 struct UnkDoorLock;
 struct UnkDoorLife_b44a2;
-bool fn_71008d586c(UnkDoorLock* door, bool locked, u32 mode, CStrId* name);
+bool fn_71008d586c(UnkDoorLock* door, bool locked, bool, CStrId* name);
 
 struct UnkDoorFlow_b0251 {
     u8 pad_0x0[0x30];

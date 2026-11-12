@@ -17,7 +17,7 @@ struct UnkProjectileMovement_b46a3 {
     UnkVec3f angle;     // 0x90
 };
 
-void fn_7100ac40fc(UnkProjectileMovement_b46a3* self) {
+void fn_7100ac40fc(UnkProjectileMovement_b46a3* self, f32) {
     self->angle = self->owner->xform.GetAngle();
     self->position = self->owner->xform.GetTranslation();
 }

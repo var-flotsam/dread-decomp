@@ -28,7 +28,7 @@ struct UnkHyperBeamSoundHandle {
     s64 serial;
 };
 
-UnkHyperBeamSoundHandle fn_7100ed6910(void* player, const CVector3D* pos, u32 id, u32 kind, bool flag);
+UnkHyperBeamSoundHandle fn_7100ed6910(void* player, const CVector3D* pos, u32 id, u32 kind, u32);
 
 struct UnkSPBGun_A5_b63;
 bool fn_710085e6d4(UnkSPBGun_A5_b63* self);

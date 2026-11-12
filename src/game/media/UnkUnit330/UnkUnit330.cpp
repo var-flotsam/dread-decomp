@@ -41,7 +41,7 @@ struct UnkMedia330 {
 static_assert(__builtin_offsetof(UnkMedia330, player) == 0xad8, "UnkMedia330 layout");
 
 void fn_710021f168(UnkMedia330* self, s32 state);
-void fn_7100220228(UnkMedia330* self, u32 a);
+void fn_7100220228(UnkMedia330* self, s64);
 void fn_71002202d8(UnkMedia330* self, u32 a);
 
 void fn_7100224de4(UnkMedia330* self) {

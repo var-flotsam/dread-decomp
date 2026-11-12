@@ -26,7 +26,7 @@ struct UnkGobblerComponent {
 };
 
 void fn_710117662c(UnkActorTarget* target, u32 a, u32 b, u32 c, u32 d, f32 value);
-void fn_7101178e08(UnkActorTarget* target, u32 a, u32 b, u32 c, f32 value);
+void fn_7101178e08(UnkActorTarget* target, u32 a, bool, bool, f32 value);
 extern char g_unk_71726e5148[] __attribute__((visibility("hidden")));
 
 // `dt` (s0) reaches the base update untouched in the original (tools/forwarded_args.py).

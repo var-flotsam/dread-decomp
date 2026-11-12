@@ -140,7 +140,7 @@ struct UnkWorld_ovb0244 {
     UnkWordPairs_ovb0244 pairs;  // 0x118
 };
 
-void fn_7100d47d1c(UnkWorld_ovb0244* self, u64 a, u64 b) {
+void fn_7100d47d1c(UnkWorld_ovb0244* self, void* a, void* b) {
     UnkWordPairs_ovb0244* p = &self->pairs;
     u32 n = p->count;
     if (n == p->capacity) {
@@ -179,7 +179,7 @@ struct UnkNamedList_ovb0244 : base::UnkSList<UnkNamedList_ovb0244> {
 
 char* fn_7100d4b708(char* p0);
 
-UnkNamed_ovb0244* fn_7100d475ec(UnkNamedList_ovb0244* self, base::UnkStrIdMember* id) {
+UnkNamed_ovb0244* fn_7100d475ec(UnkNamedList_ovb0244* self, base::UnkStrIdMember* id, u32) {
     UnkNamed_ovb0244* obj = static_cast<UnkNamed_ovb0244*>(fn_71000839a0(0x660, self->field_0x30));
     fn_7100d4b708(reinterpret_cast<char*>(obj));
     if (obj)

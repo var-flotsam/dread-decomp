@@ -236,7 +236,7 @@ void fn_710032e220(UnkShinesparkSet_A2_b65* self) {
 
 // CChozoWarriorXUltimateGrabAttack: the request, then two calls on the owner's +0x220.
 struct UnkActorTarget;
-void fn_7101178e08(UnkActorTarget*, u32, u32, u32, f32);
+void fn_7101178e08(UnkActorTarget*, u32, bool, bool, f32);
 
 struct UnkGrabOwner_A2_b65 {
     u8 pad_0x0[0x220];

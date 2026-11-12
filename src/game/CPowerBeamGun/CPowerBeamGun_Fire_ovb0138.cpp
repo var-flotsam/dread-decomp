@@ -19,7 +19,7 @@ struct UnkHyperBeamSoundHandle {
 };
 
 struct UnkGrappleAnswer_b50;
-UnkHyperBeamSoundHandle fn_7100ed6910(void* player, const CVector3D* pos, u32 id, u32 kind, bool flag);
+UnkHyperBeamSoundHandle fn_7100ed6910(void* player, const CVector3D* pos, u32 id, u32 kind, u32);
 
 struct UnkBeamVec_ovb0138 {
     f32 x, y, z;

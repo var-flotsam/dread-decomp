@@ -383,7 +383,7 @@ s32 fn_7101082f90(lua_State* L) {
     return fn_71010c0b40(L, "b", result);
 }
 
-u32 fn_710109e1ac(UnkScriptManager_ovb0085* self, const base::UnkNamedEntry* key, s32 arg, bool flag);
+u32 fn_710109e1ac(UnkScriptManager_ovb0085* self, const base::UnkNamedEntry* key, bool, bool flag);
 
 s32 fn_71010772c0(lua_State* L) {
     bool flag = true;

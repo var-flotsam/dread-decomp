@@ -17,7 +17,7 @@ struct UnkBouncingCurve {
 };
 static_assert(__builtin_offsetof(UnkBouncingCurve, bounce) == 0xd5, "UnkBouncingCurve layout");
 
-bool fn_7100eb7470(f32 dt, UnkBouncingCurve* self) {
+bool fn_7100eb7470(UnkBouncingCurve* self, f32 dt) {
     if (self->bounce) {
         f32 t;
         switch (self->mode) {

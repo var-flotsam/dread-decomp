@@ -19,7 +19,7 @@ struct UnkSelf {
     UnkOwner* field_0x30;
 };
 
-void fn_7101178e08(UnkAttack* attack, u32 mode, u32 a, u32 b, f32 rate);
+void fn_7101178e08(UnkAttack* attack, u32 mode, bool, bool, f32 rate);
 void fn_710117662c(UnkAttack* attack, u32 mode, f32 rate, u32 a, u32 b, u32 c);
 
 void fn_7100498db8(UnkSelf* self) {

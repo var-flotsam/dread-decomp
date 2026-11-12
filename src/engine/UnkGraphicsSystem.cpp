@@ -391,7 +391,7 @@ void fn_7100160c90(u32 a, f32 value, u32 c);
 void fn_7100160e50(s32 a, s32 b, bool c);
 void fn_710015a0e0(u32 value);
 void fn_710015a260(u32 value);
-void fn_710015a760(u32 value);
+void fn_710015a760(bool);
 void* fn_710015db80();
 void fn_710015d900(void* a, u32 b, u32 c);
 // Sets `count` vectors (four floats each, or one float) of a uniform at `location` of a program state.

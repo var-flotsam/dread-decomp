@@ -30,7 +30,7 @@ extern void* g_unk_716e589b58 __attribute__((visibility("hidden")));
 extern void* g_unk_716e589b60 __attribute__((visibility("hidden")));
 
 char* fn_71001a07fc(char* p0);
-void fn_71001d796c(void* sub, u32 a, u32 b, void* c);
+void fn_71001d796c(void* sub, u64, u32 b, void* c);
 void fn_7100159530();
 void fn_7100159810(s32 value);
 void fn_7100160910(u32 index, s32 mode, u32 group);

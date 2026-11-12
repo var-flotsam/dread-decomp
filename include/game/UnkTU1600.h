@@ -8,4 +8,4 @@
 struct UnkIdPair_7100a8e07c;
 struct UnkIdPair_b49;
 void fn_7100a8e07c(UnkIdPair_7100a8e07c* self);
-void fn_7100a8f34c(void* object, u32 kind, UnkIdPair_b49* out);
+void fn_7100a8f34c(void* object, bool, UnkIdPair_b49* out);

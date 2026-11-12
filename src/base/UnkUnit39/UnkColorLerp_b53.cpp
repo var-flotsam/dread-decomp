@@ -24,7 +24,7 @@ static inline f32 Lerp(f32 a, f32 b, f32 t) {
     return (1.0f - t) * a + b * t;
 }
 
-UnkColor_b53 fn_710003088c(const UnkColor_b53& from, const UnkColor_b53& to, f32 t) {
+UnkColor_b53 fn_710003088c(f32 t, const UnkColor_b53& from, const UnkColor_b53& to) {
     UnkColor_b53 v(Lerp(from.r, to.r, t), Lerp(from.g, to.g, t), Lerp(from.b, to.b, t), Lerp(from.a, to.a, t));
     UnkColor_b53 out;
     out.r = Positive(v.r);

@@ -166,7 +166,7 @@ void fn_71002098a4(UnkUpdater_710020c780* self) {
 // first one. fn_71001fb0c4 (fn_71001bfd5c, fn_71001bffc4), fn_710020da1c (fn_71001c2480,
 // fn_71001c1030; it also calls vtable slot 0xa8 either way).
 void fn_71001bfd5c(UnkSource_710020c780* source, void* state);
-void fn_71001c1030(UnkSource_710020c780* source, u32 index, f32 dt);
+void fn_71001c1030(UnkSource_710020c780* source, bool, f32 dt);
 
 __attribute__((always_inline)) static inline void CopyBack(UnkUpdater_710020c780* self) {
     UnkSource_710020c780* s = self->field_0x108;

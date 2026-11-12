@@ -179,7 +179,7 @@ void fn_7100f004dc(UnkSoundIdRegistry* self) {
 // moves after the compare); the same loads, stores and calls in the same order.
 // Drops the finished instances from the playing list and sets both items' colour (black and
 // opaque when nothing is playing), then clears the flag at +0x1b of every id listed at +0x50.
-void fn_7100f00780(UnkSoundIdRegistry* self) {
+void fn_7100f00780(UnkSoundIdRegistry* self, f32) {
     if (self->field_0x80.count != 0) {
         for (UnkSoundIdListNode* n = self->field_0x80.head; n;) {
             if (self->IsPlaying(n->key))

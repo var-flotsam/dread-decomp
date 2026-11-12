@@ -152,6 +152,17 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Signatures settled by trying both directions (2026-11-12).** 211 hand-written definitions disagreed with a
+declaration of the same function in how it is called (`tools/decl_check.py --definitions`). Reading the original
+for each one does not scale; the byte match can decide instead. Direction one: rewrite the declarations to the
+definition's shape; if every file that uses them builds to the same output, the callers already passed exactly
+that. Direction two, for the rest: reshape the definition to what the callers use (a parameter's type, parameters
+they pass and it ignores, a float's place, the result's type); if the definition still matches, that is its
+signature. 48 and 37 functions were settled that way, each tested on its own after a first batched run blamed too
+widely. A definition that gains a parameter must be checked against `tools/forwarded_args.py`: in two of them the
+original passes the extra register on to another call, so declaring it without forwarding it would have hidden
+a dropped argument; those two were put back. 126 are left, 61 of them `void` against a value.
+
 **Third declarations pass: types every file agrees on (2026-11-12).** `tools/decl_plan.py` could not plan a
 declaration whose types the declaring file takes from an include. It now forward-declares such a type in the unit
 header when every file of the tree agrees on it: one keyword (`struct`, `class` or `union`), never an alias, never

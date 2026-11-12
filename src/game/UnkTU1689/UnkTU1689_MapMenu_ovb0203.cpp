@@ -807,7 +807,7 @@ struct UnkRefObject_ovb0203 {
         u32 field_0x44;
     };
 };
-bool fn_71010c0e70(UnkGuiDisplayObject* target, const char* name, bool flag);
+bool fn_71010c0e70(UnkGuiDisplayObject* target, const char* name, ...);
 
 struct UnkMapMenuTail_ovb0203 {
     u8 pad_0x0[0xfa8];

@@ -216,7 +216,7 @@ void fn_710109e268(UnkScriptManager_ovb0085* self);
 
 // Creates the Lua state with the game's allocation and print hooks, opens its libraries and
 // returns the script manager, created on first use.
-void fn_710109cc50() {
+void fn_710109cc50(u32, void*) {
     g_unk_7101caf820 = fn_7100083a70;
     g_unk_7101caf828 = fn_7100083a50;
     g_unk_7172a01d18 = luaL_newstate();

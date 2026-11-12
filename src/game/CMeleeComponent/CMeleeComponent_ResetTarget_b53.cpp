@@ -21,7 +21,7 @@ struct UnkMeleeTarget_b53 {
     u32 field_0x164;
 };
 
-void fn_7100929298(UnkMeleeTarget_b53* self, bool value);
+void fn_7100929298(UnkMeleeTarget_b53* self, u32);
 
 void fn_710092b548(UnkMeleeTarget_b53* self) {
     fn_7100929298(self, false);

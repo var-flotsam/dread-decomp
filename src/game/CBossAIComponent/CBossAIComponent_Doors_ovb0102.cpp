@@ -75,7 +75,7 @@ struct UnkZiplineLink_b49;
 struct UnkZiplineLinkTarget_b49;
 struct UnkDoorLock;
 bool fn_71008d564c(UnkDoorLock* door, u32 value, const CStrId* id);
-bool fn_71008d586c(UnkDoorLock*, bool, u32, CStrId*);
+bool fn_71008d586c(UnkDoorLock*, bool, bool, CStrId*);
 
 struct UnkBossDoorLink_ovb0102 {
     u8 pad_0x0[0x40];
