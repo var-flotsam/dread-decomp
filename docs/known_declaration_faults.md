@@ -78,7 +78,7 @@ constructor named in a comment and not by a label, were folded in the same day. 
 ## Shared functions the mechanical header migration could not move
 
 `tools/decl_plan.py` and `tools/hub_migrate.py` moved 1,353 shared functions' declarations into unit headers on
-2026-11-11. 50 of those tried are still left with every local copy in place, because moving them changed a
+2026-11-11. 46 of those tried are still left with every local copy in place, because moving them changed a
 file or stopped it compiling. Each needs a person to settle the type. (`tools/decl_plan.py --exclude` takes
 this list; remove a symbol here when it has moved.)
 
@@ -112,10 +112,11 @@ conflicting signatures.
 
 A seventh pass, after those 20 were settled, moved 18 more: those 20 except `fn_710031da18` and
 `fn_71007ed25c`, whose parameter is a template no header defines. It left 13 that it tried, added to the
-lists here: 391 symbols are still declared in more than one file.
+lists here: 387 symbols are still declared in more than one file.
 
-**4: the function's definition has another return type than its callers declare (a pointer to another type; the call is the same, so `--definitions` does not list it), and the file that defines it cannot take the header.**
-`fn_7100a0feac` `fn_71001fdacc` `fn_7101126814` `fn_7101177ae8`
+Four of them had a definition that returns another type than every caller declared; the callers took
+the definition's type the same day and the four moved (`fn_7100a0feac`, `fn_71001fdacc`, `fn_7101126814`,
+`fn_7101177ae8`).
 
 **2: the file's compiled output changed.**
 `fn_7100ae986c` `fn_71011cd5dc`
@@ -257,6 +258,28 @@ own code only matches when it returns a word (as `bool` its three returns come o
 
 `fn_71000e88c0` is a different fault with the same look: the generated `UnkClassGetters.h` lists it as a class
 getter and it is an initialiser that returns nothing; the generator's list is wrong for it.
+
+## Definitions whose types are not their declaration's
+
+`python tools/decl_check.py --definition-types` lists every hand-written definition whose signature is not the
+text of any declaration of the same function in another file. The call is the same in all but the one the
+section above keeps; what differs is a type's name. 1,090 on 2026-11-12:
+- 651 name a pointed-to struct differently (the definition has its file's own struct, the callers theirs
+  or `void*`);
+- 190 differ in another parameter type, 143 in the result's type (`fn_7101177ae8` returned `const CStrId*` where its
+  ten callers declared `UnkStringData**`, until its callers were changed);
+- 106 only write a namespace out on one side (`const CStrId&` after a `using`, `const base::global::CStrId&`
+  in the header).
+
+The count of conflicting signatures does not include them: it compares declarations with each other, and a
+definition is not one. "No symbol has two signatures" is therefore true of declarations only. It matters in two
+places. The port's link sees two mangled names for such a function and joins them with an alias
+(`tools/port_link.py`, "function alias"), so nothing is unresolved; across the two only the shape of the call
+is checked, not the types.
+And the file that defines the function cannot include the header that declares it, which is what stopped four
+symbols of the seventh pass; 272 of the 984 beyond a namespace are declared in a header today. The report only
+counts: nothing fails on it yet. To settle one, give the definition and the header the same struct (the unit's
+view of the object, in its header) and make the defining file include the header.
 
 ## Names that point to more than one address
 

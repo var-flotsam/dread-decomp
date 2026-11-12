@@ -27,6 +27,7 @@
 #include "game/UnkTU2676.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU2685.h"
+#include "game/UnkTU2704.h"
 #include "game/UnkTU2728.h"
 #include "game/UnkTU315.h"
 #include "game/UnkTU426.h"
@@ -457,7 +458,6 @@ struct UnkVec {
 };
 bool fn_710083e250(UnkGun_ovb0091* self, f32 value, bool flag);
 struct UnkGuiHolder_b0159;
-UnkGuiHolder_b0159* fn_7101126814(const CStrId* id);
 
 struct UnkSlomoSettings {
     u8 pad_0x0[0x10];
@@ -501,7 +501,7 @@ s32 fn_7101094230(lua_State* L) {
             UnkGuiHolder_b0159* holder;
             {
                 CStrId id(name, true);
-                holder = fn_7101126814(&id);
+                holder = reinterpret_cast<UnkGuiHolder_b0159*>(fn_7101126814(&id));
             }
             if (holder && holder->field_0x40 && holder->field_0x40->field_0x10)
                 fn_7100352b14(body, holder->field_0x40->field_0x10, 0);

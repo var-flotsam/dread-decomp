@@ -83,6 +83,35 @@ class Definitions(unittest.TestCase):
             "fn_7100000180": "the order of float and other parameters (one call on AArch64; not on Windows)",
         })
 
+    def test_a_definition_whose_types_are_no_declaration_s_is_reported(self):
+        files = {
+            "include/game/A.h": "struct UnkA;\nnamespace base { struct CStrId; }\n"
+                                "void fn_7100000210(UnkA* self);\nUnkA* fn_7100000220(u32 n);\n"
+                                "void fn_7100000230(const base::CStrId& id);\nvoid fn_7100000240(UnkA* self, u32 n);\n"
+                                "void fn_7100000250(UnkA* self);\n",
+            "src/game/b.cpp": "void fn_7100000250(UnkOther* self);\n",                       # a second declaration
+            "src/game/a.cpp": "struct UnkLocal;\nusing base::CStrId;\n"
+                              "void fn_7100000210(UnkLocal* self) {\n}\n"                    # another struct name
+                              "const char* fn_7100000220(u32 n) {\n    return 0;\n}\n"       # another result
+                              "void fn_7100000230(const CStrId& id) {\n}\n"                  # the namespace left out
+                              "void fn_7100000240(UnkA* self, s32 n) {\n}\n"                 # another parameter
+                              "void fn_7100000250(UnkOther* self) {\n}\n"                    # one declaration's text
+                              "void fn_7100000260(UnkLocal* self) {\n}\n",                   # nobody declares it
+        }
+        found = decl_check.definition_type_differences(files, decl_check.Report(files))
+        self.assertEqual({s: v[0] for s, v in found.items()}, {
+            "fn_7100000210": "the name of a pointed-to type",
+            "fn_7100000220": "the result's type",
+            "fn_7100000230": "a namespace written out",
+            "fn_7100000240": "a parameter's type",
+        })
+        self.assertEqual(found["fn_7100000210"][1:], ("src/game/a.cpp", "void fn_7100000210(UnkLocal*)",
+                                                      "void fn_7100000210(UnkA*)"))
+
+    def test_a_declaration_in_the_defining_file_does_not_count(self):
+        files = {"src/game/a.cpp": "struct UnkA;\nvoid fn_7100000270(void* self);\nvoid fn_7100000270(UnkA* self) {\n}\n"}
+        self.assertEqual(decl_check.definition_type_differences(files, decl_check.Report(files)), {})
+
     def test_the_definition_gets_its_line(self):
         found = decl_check.definitions("// a comment\n\nbool fn_7100000170(const char* name,\n    u32 n) {\n    return n;\n}\n", "src/x.cpp")
         self.assertEqual([(d.name, d.signature, d.line) for d in found], [("fn_7100000170", "bool fn_7100000170(const char*, u32)", 3)])

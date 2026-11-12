@@ -239,7 +239,6 @@ struct UnkTimelineId {
 };
 struct UnkNameHolder;
 
-base::global::UnkStringData** fn_7101177ae8(UnkAnimationComponent*, u64);
 UnkTimelineId fn_7101177be0(UnkAnimationComponent* self, u64 key);
 u32 fn_710050816c(UnkNameHolder* self);
 
@@ -273,7 +272,7 @@ f32 fn_71010ff140(UnkSpeedSelf_h* self) {
     UnkAnimationComponent* anim = self->owner->field_0x220;
     if (!anim)
         return -1.0f;
-    CStrId id(*reinterpret_cast<CStrId*>(fn_7101177ae8(anim, 0xf4061ff25a2163d6)));
+    CStrId id(*fn_7101177ae8(anim, 0xf4061ff25a2163d6));
     u32 hash;
     {
         UnkTimelineId tl = fn_7101177be0(anim, 0xf4061ff25a2163d6);

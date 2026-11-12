@@ -34,6 +34,7 @@
 #include "game/UnkTU2620.h"
 #include "game/UnkTU2669.h"
 #include "game/UnkTU2677.h"
+#include "game/UnkTU2704.h"
 #include "game/UnkTU52.h"
 #include "game/UnkTU92.h"
 #include "game/UnkXformNode.h"
@@ -87,9 +88,6 @@ s32 fn_7101078b20(lua_State* L) {
     }
     return fn_71010c0b40(L, "b", ok);
 }
-
-struct UnkGuiHolder_b0159;
-UnkGuiHolder_b0159* fn_7101126814(const CStrId* id);
 
 struct UnkLuaSub_b0160 {
     u8 pad_0x0[0x10];

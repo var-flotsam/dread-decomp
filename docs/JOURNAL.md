@@ -152,6 +152,22 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Four results settled from the definition (2026-11-12).** The four functions the seventh pass could not move
+because their definition returns another type than the callers declared: the 17 calling files took the
+definition's type (`fn_7101177ae8` returns the address of a track's name id, so `CStrId id(*fn(...))` replaces
+a cast in three of them), every file with unchanged output, and the four moved into their unit headers.
+Symbols in more than one file 387, extra copies 1,247; definitions whose types are not a declaration's
+1,090 (984 beyond a namespace written out).
+
+**Definitions were never compared by type (2026-11-12).** `tools/decl_check.py` compared declarations with each
+other and a definition only by how it is called, so a function defined as `fn(UnkLocal*)` and declared
+everywhere else as `fn(UnkShared*)` counted as agreeing. `--definition-types` now lists them, and the default
+output has the count: 1,092 definitions on the day it was added, 988 beyond a namespace written out on one side (651 a
+pointed-to struct's name, 190 another parameter type, 147 the result's type). Report only for now. The port's link joins the
+two mangled names with an alias, so nothing breaks today; the cost is that the defining file cannot include its
+unit's header. Details: `docs/known_declaration_faults.md`, "Definitions whose types are not their
+declaration's".
+
 **Seventh declarations pass (2026-11-12).** With no conflicting signature left, 18 more symbols moved into
 unit headers (symbols in more than one file 409 to 391, extra copies 1,433 to 1,260). 13 that the run
 tried went back and are listed with their reasons in `docs/known_declaration_faults.md`. One reason is new: four

@@ -4,11 +4,10 @@
 // Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
-
-base::global::UnkStringData** fn_7101177ae8(UnkAnimationComponent* self, u64 kind);
 
 struct UnkNailongOwner_b57a4 {
     u8 pad_0x0[0x220];
@@ -25,7 +24,7 @@ void fn_7100621174(UnkNailongAI_b57a4* self, void* arg) {
     fn_710110cca4(self, arg);
     UnkAnimationComponent* target = self->owner->field_0x220;
     if (target) {
-        base::global::UnkStringData* id = *fn_7101177ae8(target, 0xf4061ff25a2163d6);
+        base::global::UnkStringData* id = fn_7101177ae8(target, 0xf4061ff25a2163d6)->data;
         u64 hash = *reinterpret_cast<u64*>(reinterpret_cast<char*>(id) + 0x30);
         base::reflection::UnkReflTypeIdArg mode;
         mode.id = 0;

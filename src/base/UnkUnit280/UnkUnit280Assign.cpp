@@ -4,11 +4,11 @@
 // capacity when smaller, then copied bitwise), eight words at +0x28, a hundred 0x28-byte records at
 // +0x48 (entry arrays, each assigned by fn_71001fdacc) and a word at +0xfe8. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU280.h"
 #include "types.h"
 
 // The scene manager's entry arrays (src/engine/scene/CSceneManager.cpp), copy-assigned out of line.
 struct UnkSceneEntry;
-void* fn_71001fdacc(base::UnkVector<UnkSceneEntry>* self, const base::UnkVector<UnkSceneEntry>* other);
 
 struct UnkUnit280Record {
     u64 words[5];

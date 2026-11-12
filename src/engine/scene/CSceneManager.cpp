@@ -172,7 +172,6 @@ void fn_71001fc1c4(UnkSceneManager* self, const UnkSceneLayerDesc* desc);  // re
 // Creates the drawer (src/base/UnkStruct3088Factory.cpp).
 void* fn_7100150ff0(u32 id, bool small, bool large, bool none);
 // Copy-assigns an entry array.
-void* fn_71001fdacc(base::UnkVector<UnkSceneEntry>* self, const base::UnkVector<UnkSceneEntry>* other);
 
 // Registers a layer kind. The fields are set last to first (the closest order to the original's
 // stores).

@@ -43,12 +43,21 @@ or after the integer ones is reported apart: floats travel in their own register
 Linux, so it is one call there, and another one only on Windows. Not seen: a definition inside a
 namespace, or one whose first line starts with an attribute.
 
+A definition's types are compared as well, and only reported: a definition whose normalised signature is
+not the text of any declaration of the same function in another file. The call can be the same (the count
+above says when it is not); what differs is the name of a pointed-to struct, the result's type, or a
+namespace written out in one place and not the other. Such a function has two mangled names, which the
+port's link joins with an alias (tools/port_link.py), and the file that defines it cannot include the
+header that declares it. The conflicting-signature count does not include these: it compares declarations
+with each other.
+
 Usage:
   python tools/decl_check.py                        # counts and the top conflicting symbols; exit 0 (report)
   python tools/decl_check.py --list [--top N]       # every multiply-declared symbol with its signatures
   python tools/decl_check.py --symbol fn_7100d7c990 # each declaration of one symbol: file:line, scope, signature
   python tools/decl_check.py --json                 # the counts as JSON (tools/verify.py prints them)
   python tools/decl_check.py --definitions          # every definition called differently than a declaration says
+  python tools/decl_check.py --definition-types     # every definition whose types are not a declaration's
   python tools/decl_check.py --base origin/main     # the same counts for the tree at <ref>; exit 1 if the
                                                     # conflicting-symbol count or the extra signatures grew, or
                                                     # a symbol declared under include/ is re-declared in a file
@@ -615,6 +624,46 @@ def definition_mismatches(files: dict[str, str], report: Report) -> dict[str, tu
     return out
 
 
+QUALIFIER = re.compile(r"\b(?:[a-z_][a-z0-9_]*::)+")
+POINTEE = re.compile(r"\b[A-Za-z_]\w*(?=[*&])")
+
+
+def definition_type_differences(files: dict[str, str], report: Report) -> dict[str, tuple[str, str, str, str]]:
+    """{function: (what differs, the defining file, the definition's signature, a declaration's signature)} for
+    the hand-written definitions whose normalised signature is the text of no declaration of the function in
+    another file. What differs, the first that applies: a namespace written out, the result's type, the name
+    of a pointed-to type, a parameter's type."""
+    out: dict[str, tuple[str, str, str, str]] = {}
+    for path, text in files.items():
+        if path.startswith("include/") or "fn_" not in text:
+            continue
+        for d in definitions(text, path):
+            others = sorted({o.signature for o in report.decls.get(d.name, []) if o.path != path})
+            if not others or d.signature in others:
+                continue
+            other = others[0]
+            mine, theirs = QUALIFIER.sub("", d.signature), QUALIFIER.sub("", other)
+            if mine == theirs:
+                what = "a namespace written out"
+            elif mine.split(d.name)[0] != theirs.split(d.name)[0]:
+                what = "the result's type"
+            elif POINTEE.sub("T", mine) == POINTEE.sub("T", theirs):
+                what = "the name of a pointed-to type"
+            else:
+                what = "a parameter's type"
+            out[d.name] = (what, path, d.signature, other)
+    return out
+
+
+def print_definition_types(found: dict[str, tuple[str, str, str, str]]) -> None:
+    kinds = Counter(v[0] for v in found.values())
+    print(f"{len(found)} hand-written definitions have a signature that is not a declaration's of the same function:")
+    for what, n in kinds.most_common():
+        print(f"  {n:5}  {what}")
+    for symbol, (what, path, mine, theirs) in sorted(found.items(), key=lambda kv: (kv[1][0], kv[0])):
+        print(f"{symbol}  {what}\n    defined   {mine}  ({path})\n    declared  {theirs}")
+
+
 def print_definitions(found: dict[str, tuple[str, str, str, str]]) -> None:
     kinds = Counter(v[0] for v in found.values())
     print(f"{len(found)} hand-written definitions are called differently than a declaration of the same function says:")
@@ -634,6 +683,8 @@ def main() -> int:
     ap.add_argument("--symbol", metavar="NAME", help="list every declaration of NAME with file:line")
     ap.add_argument("--definitions", action="store_true",
                     help="list every definition whose result or parameters are not what a declaration of it says")
+    ap.add_argument("--definition-types", action="store_true",
+                    help="list every definition whose signature is not the text of a declaration of it elsewhere")
     ap.add_argument("--json", action="store_true", help="print the counts (and the top symbols) as JSON")
     ap.add_argument("--top", type=int, default=10, help="how many conflicting symbols to show (default 10)")
     args = ap.parse_args()
@@ -643,6 +694,7 @@ def main() -> int:
         cur_files = tree_files(None)
         cur = Report(cur_files)
         cur_defs = definition_mismatches(cur_files, cur)
+        cur_types = definition_type_differences(cur_files, cur)
         base_files = tree_files(args.base) if args.base else None
         base = Report(base_files) if args.base else None
         base_defs = definition_mismatches(base_files, base) if args.base else {}
@@ -657,8 +709,12 @@ def main() -> int:
     if args.definitions:
         print_definitions(cur_defs)
         return 0
+    if args.definition_types:
+        print_definition_types(cur_types)
+        return 0
 
-    result: dict = {**cur.counts(), "definition_mismatches": len(cur_defs), "seconds": round(secs, 2),
+    result: dict = {**cur.counts(), "definition_mismatches": len(cur_defs),
+                    "definition_type_differences": len(cur_types), "seconds": round(secs, 2),
                     "top": [{"symbol": s, "signatures": n, "files": f} for s, n, f in cur.top(args.top)]}
     reasons: list[str] = []
     warnings: list[str] = []
@@ -680,6 +736,9 @@ def main() -> int:
     print(cur.line("HEAD") + f" ({secs:.1f} s)")
     print(f"decl_check: {len(cur_defs)} definitions are called differently than a declaration of the same function "
           "says (`--definitions` lists them)")
+    print(f"decl_check: {len(cur_types)} definitions have types that are not a declaration's elsewhere, "
+          f"{sum(1 for v in cur_types.values() if v[0] != 'a namespace written out')} beyond a namespace written out "
+          "(report only; `--definition-types` lists them)")
     if base is not None:
         print(base.line(args.base))
     if args.list:

@@ -14,6 +14,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/CAutclastChargeAttack.h"
+#include "game/CDemolitionBlockSonarTargetComponent.h"
 #include "game/CFXPool/CDefinition.h"
 #include "game/CPlasmaBeamGun.h"
 #include "game/UnkModelManager.h"
@@ -33,7 +34,6 @@ struct UnkSwitchModel_ovb0192;
 
 void fn_7100140bbc(UnkTaggedObject116_ovb0168* self, const CStrId* name);
 void fn_7100140e4c(UnkSwitchObject116* self, bool enable);
-void* fn_7100a0feac(UnkRenderPool* pool, CFilePathStrId* path, UnkOverlayModel** out, base::global::CStrId* id);
 void fn_71011ab1d0(char* self);
 
 using UnkRumbleFileKey_b0192 = base::UnkStrIdMemberOf<g_unk_7101d47200>;

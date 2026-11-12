@@ -6,10 +6,9 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
-
-base::global::UnkStringData** fn_7101177ae8(UnkAnimationComponent* self, u64 kind);
 
 struct UnkSlidleSendOwner_b56 {
     u8 pad_0x0[0x220];
@@ -25,7 +24,7 @@ void fn_7100a1d23c(UnkSlidleSend_b56* self) {
     UnkAnimationComponent* target = self->owner->field_0x220;
     if (target) {
         const u64 kind = 0xf4061ff25a2163d6;
-        base::global::UnkStringData* id = *fn_7101177ae8(target, kind);
+        base::global::UnkStringData* id = fn_7101177ae8(target, kind)->data;
         u64 current = *reinterpret_cast<u64*>(reinterpret_cast<char*>(id) + 0x30);
         u64 hash = current == 0xcfae220bec701cde ? 0x880458e24797e3ea : 0xcfae220bec701cde;
         asm volatile("" : "+r"(hash));
