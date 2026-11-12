@@ -196,7 +196,8 @@ Toolchain:
 - **One declaration per shared symbol.** A function or global used by more than one file is declared
   once, in a header under `include/`, with one signature; a `.cpp` declares only what it alone uses.
   `python tools/decl_check.py --strict --base origin/main` must pass (CI runs it; since 2026-11-12 one more
-  identical local copy fails too); `--symbol <name>` shows every copy. Migrating a hub to its header: `tools/hub_migrate.py` does the mechanical part and lists the
+  identical local copy fails too, and so does a definition whose types are newly not its declaration's:
+  declare a callee with the types its definition has); `--symbol <name>` shows every copy. Migrating a hub to its header: `tools/hub_migrate.py` does the mechanical part and lists the
   files it leaves; the hand recipe is `CONTRIBUTING.md`, "Migrating a hub", verified with
   `tools/baseline.py` (procedure for a batch: `.claude/skills/dread-hubs`).
 - **Files by unit.** New hand-written sources go under `src/<subsystem>/`, named for the class or
