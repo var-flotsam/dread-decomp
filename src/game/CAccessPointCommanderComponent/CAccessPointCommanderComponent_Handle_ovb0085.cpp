@@ -24,7 +24,8 @@ void fn_71005c4828(void*, void**);
 void fn_7100a6b0f0(void* registration, void** slot);
 void fn_7100a6b280(void* registration, void** slot);
 void fn_7100a6ce48(void* self);  // the base destructor
-extern void* g_unk_7101d47360;
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;
 void fn_7100ee1f34(void*);
 // As src/game/CCreditsMode/CTunableCredits/CTunableCredits_Colors_ovb0070.cpp declares it.
 void* fn_7100deab70(UnkGameManager*, const CRntString&);
@@ -68,11 +69,11 @@ struct UnkSubAreaManager_ovb0085 {
 };
 
 static inline UnkSubAreaManager_ovb0085* SubAreaManager() {
-    void* manager = g_unk_7101d47360;
+    void* manager = reinterpret_cast<void*&>(g_unk_7101d47360);
     if (!manager) {
         manager = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(manager);
-        g_unk_7101d47360 = manager;
+        reinterpret_cast<void*&>(g_unk_7101d47360) = manager;
     }
     return static_cast<UnkSubAreaManager_ovb0085*>(manager);
 }

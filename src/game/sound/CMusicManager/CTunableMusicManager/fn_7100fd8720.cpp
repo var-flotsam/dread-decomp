@@ -18,7 +18,8 @@ struct UnkNode_0x68 {
     UnkNode_0x68* next;
 };
 
-extern UnkMgr* g_unk_7101d4d820;
+struct UnkSoundMgr;
+extern UnkSoundMgr* g_unk_7101d4d820;
 
 void fn_7100108a84(UnkMgr*, UnkHandle*, f32);
 
@@ -94,7 +95,7 @@ struct UnkStruct_0xf8 {
 void fn_7100fd8720(UnkStruct_0xf8* self, u32 index) {
     for (UnkNode_0x68* n = self->field_0xe0[index].Begin(); n != self->field_0xe0[index].End(); n = n->next) {
         if (n->field_0x30)
-            fn_7100108a84(g_unk_7101d4d820, n->field_0x28, 0.0f);
+            fn_7100108a84(reinterpret_cast<UnkMgr*>(g_unk_7101d4d820), n->field_0x28, 0.0f);
     }
     self->field_0xe0[index].Clear();
 }

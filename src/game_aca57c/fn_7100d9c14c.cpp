@@ -23,13 +23,17 @@ __attribute__((always_inline)) static inline UnkReflValue GetWord(UnkArgument* a
     return result;
 }
 
-extern const CType g_unk_71727ba2e0;
-extern const CType g_unk_71727ba480;
+extern UnkReflType g_unk_71727ba2e0;
+extern UnkReflType g_unk_71727ba480;
 extern const CType g_unk_71727ca958;
 extern const CType g_unk_71727caab8;
 
-UnkReflValue fn_7100d9c14c(void* unused, UnkArgument* argument) { return GetWord<0x0>(argument, &g_unk_71727ba2e0); }
-UnkReflValue fn_7100d9c1e0(void* unused, UnkArgument* argument) { return GetWord<0x4>(argument, &g_unk_71727ba480); }
+UnkReflValue fn_7100d9c14c(void* unused,
+                           UnkArgument* argument) { return GetWord<0x0>(argument,
+                                                                        &reinterpret_cast<const CType&>(g_unk_71727ba2e0)); }
+UnkReflValue fn_7100d9c1e0(void* unused,
+                           UnkArgument* argument) { return GetWord<0x4>(argument,
+                                                                        &reinterpret_cast<const CType&>(g_unk_71727ba480)); }
 UnkReflValue fn_7100eaa018(void* unused, UnkArgument* argument) { return GetWord<0x98>(argument, &g_unk_71727ca958); }
 UnkReflValue fn_7100eaca98(void* unused, UnkArgument* argument) { return GetWord<0x0>(argument, &g_unk_71727caab8); }
 

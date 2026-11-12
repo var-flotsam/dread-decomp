@@ -334,7 +334,8 @@ bool fn_7100dd13f4(UnkRush_b0195* self, UnkRushEvent_b0195* event) {
     return true;
 }
 
-extern char g_unk_71727bd078[];  // a tunable of the unit
+struct UnkTunable_71727bd078;
+extern UnkTunable_71727bd078 g_unk_71727bd078;  // a tunable of the unit
 
 struct UnkRushTunables_b0195 {
     u8 pad_0x0[0x24];
@@ -352,7 +353,7 @@ void fn_7100dcdc2c(UnkRush_b0195* self) {
     void* effects = &manager->field_0x1040;
     f32 amount;
     if (self->flag_0xbb) {
-        if (self->level == 12 && self->field_0xd0 >= *reinterpret_cast<s32*>(g_unk_71727bd078 + 0x34) * 12 - 1)
+        if (self->level == 12 && self->field_0xd0 >= *reinterpret_cast<s32*>(reinterpret_cast<char*>(&g_unk_71727bd078) + 0x34) * 12 - 1)
             amount = 1.0f;
         else
             amount = 0.0f;
@@ -392,12 +393,12 @@ void fn_7100dcc110(UnkRush_b0195* self) {
             self->field_0xa38 = 0;
         self->flag_0xdf4 = true;
         if (!(self->flag_0xbb | flag)) {
-            f64 step = reinterpret_cast<UnkRushTunables_b0195*>(g_unk_71727bd078)->field_0x24;
+            f64 step = reinterpret_cast<UnkRushTunables_b0195*>(&g_unk_71727bd078)->field_0x24;
             self->field_0xa38 = self->field_0xa38 + step;
         }
     } else {
         self->flag_0xdf4 = true;
-        f64 step = reinterpret_cast<UnkRushTunables_b0195*>(g_unk_71727bd078)->field_0x24;
+        f64 step = reinterpret_cast<UnkRushTunables_b0195*>(&g_unk_71727bd078)->field_0x24;
         self->field_0xa38 = self->field_0xa38 + step;
     }
     RequestState_b0195<4, 4>(&self->machine, 3);

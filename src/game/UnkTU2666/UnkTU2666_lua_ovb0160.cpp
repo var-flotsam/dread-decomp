@@ -202,7 +202,8 @@ s32 fn_710107edb0(lua_State* L) {
     return 0;
 }
 
-extern void* g_unk_717275c380;
+struct UnkStateSink;
+extern UnkStateSink* g_unk_717275c380;
 void fn_710101eee8(void* self, const CFilePathStrId* path, bool flag, u32 mode, f32 a, f32 b, f32 c);
 void fn_7100fc8dec(void* self, const CFilePathStrId* path, bool flag, u32 mode, f32 a, f32 b, f32 c);
 
@@ -227,7 +228,7 @@ s32 fn_710108c9b0(lua_State* L) {
     f32 b;
     f32 c;
     if (fn_71010c0270(L, "sffbf", &path, &a, &b, &flag, &c)) {
-        void* fx = g_unk_717275c380;
+        void* fx = reinterpret_cast<void*>(g_unk_717275c380);
         CFilePathStrId id(path, true);
         fn_7100fc8dec(fx, &id, flag, 0, a, b, c);
     }
@@ -421,7 +422,8 @@ extern void* g_unk_7101d47368;
 struct UnkEnvironmentManager;
 void fn_7100d8e32c(UnkEnvironmentManager*, const CStrId*, bool, bool);
 
-extern void* g_unk_7101d47360;
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;
 void fn_7100ee1f34(void* self);
 void fn_7100eea3fc(void* self, const base::global::CStrId* id, bool a, bool b);
 void fn_7100eea334(void* self, const base::global::CStrId* id, bool a, bool b);
@@ -447,11 +449,11 @@ s32 fn_7101083480(lua_State* L) {
     bool first;
     bool second = false;
     if (fn_71010c0ad0(L, 0, 1, "sb|b", &name, &first, &second)) {
-        void* mgr = g_unk_7101d47360;
+        void* mgr = reinterpret_cast<void*&>(g_unk_7101d47360);
         if (!mgr) {
             mgr = fn_71000839a0(0xae8, 0x3f);
             fn_7100ee1f34(mgr);
-            g_unk_7101d47360 = mgr;
+            reinterpret_cast<void*&>(g_unk_7101d47360) = mgr;
         }
         CStrId id(name, true);
         fn_7100eea3fc(mgr, &id, first, second);
@@ -464,11 +466,11 @@ s32 fn_7101083560(lua_State* L) {
     bool first;
     bool second = false;
     if (fn_71010c0ad0(L, 0, 1, "sb|b", &name, &first, &second)) {
-        void* mgr = g_unk_7101d47360;
+        void* mgr = reinterpret_cast<void*&>(g_unk_7101d47360);
         if (!mgr) {
             mgr = fn_71000839a0(0xae8, 0x3f);
             fn_7100ee1f34(mgr);
-            g_unk_7101d47360 = mgr;
+            reinterpret_cast<void*&>(g_unk_7101d47360) = mgr;
         }
         CStrId id(name, true);
         fn_7100eea334(mgr, &id, first, second);
@@ -492,11 +494,11 @@ s32 fn_7101083390(lua_State* L) {
     bool first;
     bool second = false;
     if (fn_71010c0ad0(L, 0, 1, "b|b", &first, &second)) {
-        void* mgr = g_unk_7101d47360;
+        void* mgr = reinterpret_cast<void*&>(g_unk_7101d47360);
         if (!mgr) {
             mgr = fn_71000839a0(0xae8, 0x3f);
             fn_7100ee1f34(mgr);
-            g_unk_7101d47360 = mgr;
+            reinterpret_cast<void*&>(g_unk_7101d47360) = mgr;
         }
         fn_7100eea3fc(mgr, &GameManagerIdTable().field_0xd80, first, second);
     }
@@ -584,17 +586,17 @@ s32 fn_7101088170(lua_State* L) {
 }
 
 struct UnkMgr_0xf18;
-extern void* g_unk_71726bc560;
+extern UnkMgr_0xf18* g_unk_71726bc560;
 void fn_7100fdbd84(UnkMgr_0xf18* self, u32 flag);
 u32 fn_71010976c0(const char* name);
 
 // The music manager, created on first use.
 static inline UnkMgr_0xf18* MusicManager_b0160() {
-    void* instance = g_unk_71726bc560;
+    void* instance = reinterpret_cast<void*&>(g_unk_71726bc560);
     if (!instance) {
         instance = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(instance);
-        g_unk_71726bc560 = instance;
+        reinterpret_cast<void*&>(g_unk_71726bc560) = instance;
     }
     return static_cast<UnkMgr_0xf18*>(instance);
 }

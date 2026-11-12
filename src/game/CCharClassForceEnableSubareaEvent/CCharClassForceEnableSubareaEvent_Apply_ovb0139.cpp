@@ -8,7 +8,8 @@
 
 using base::global::CStrId;
 
-extern void* g_unk_7101d47360;
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;
 extern void* g_unk_7101d47368;
 void fn_7100ee1f34(void*);
 void fn_7100eeeda4(void* manager, const CStrId* setup, bool enable, const u32* mask);
@@ -47,11 +48,11 @@ void fn_7100baedc0(UnkSubareaEvent_ovb0139* self) {
             if (self->bits[i])
                 mask |= 1u << i;
     }
-    void* manager = g_unk_7101d47360;
+    void* manager = reinterpret_cast<void*&>(g_unk_7101d47360);
     if (!manager) {
         manager = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(manager);
-        g_unk_7101d47360 = manager;
+        reinterpret_cast<void*&>(g_unk_7101d47360) = manager;
     }
     fn_7100eeeda4(manager, &self->setup, true, &mask);
     void* other = g_unk_7101d47368;

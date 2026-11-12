@@ -206,15 +206,15 @@ s32 fn_710107a070(lua_State* L) {
 }
 
 // ---- the music manager singleton, created on first use ----
-extern void* g_unk_71726bc560;
+extern UnkMgr_0xf18* g_unk_71726bc560;
 void fn_7100fd8404(void* manager, bool flag, f32 value);
 
 static inline void* MusicManager() {
-    void* manager = g_unk_71726bc560;
+    void* manager = reinterpret_cast<void*&>(g_unk_71726bc560);
     if (!manager) {
         manager = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(manager);
-        g_unk_71726bc560 = manager;
+        reinterpret_cast<void*&>(g_unk_71726bc560) = manager;
     }
     return manager;
 }

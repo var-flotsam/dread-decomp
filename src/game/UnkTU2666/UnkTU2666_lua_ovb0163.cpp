@@ -349,7 +349,7 @@ struct UnkLoadingMask {
     UnkLoadingMask(u32 b) : bits(b) {}
     UnkLoadingMask(const UnkLoadingMask& o) : bits(o.bits) {}
 };
-extern void* g_unk_71726bc560;
+extern UnkMgr_0xf18* g_unk_71726bc560;
 s32 fn_7101097578(const char* name);
 
 struct UnkMaskStaticZero_b0163 {
@@ -372,11 +372,11 @@ s32 fn_7101091420(lua_State* L) {
     const char* name = nullptr;
     if (fn_71010c0ad0(L, 0, 1, "b|s", &flag, &name)) {
         u32 bits = name ? 1u << fn_7101097578(name) : MaskAll_b0163();
-        void* manager = g_unk_71726bc560;
+        void* manager = reinterpret_cast<void*&>(g_unk_71726bc560);
         if (!manager) {
             manager = fn_71000839a0(0xf18, 0x3f);
             fn_7100fd3804(manager);
-            g_unk_71726bc560 = manager;
+            reinterpret_cast<void*&>(g_unk_71726bc560) = manager;
         }
         fn_7100fd7b44(manager, UnkLoadingMask(flag ? 4 : 2), UnkLoadingMask(bits), -1.0f);
     }
@@ -527,7 +527,8 @@ s32 fn_7101094230(lua_State* L) {
     return 0;
 }
 
-extern void* g_unk_7101d47360;
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;
 void fn_7100ee1f34(void* self);
 // A bit mask passed by value (as src/game/CAnimatedCameraCtrl/CAnimatedCameraCtrl_Lifecycle_ovb0101.cpp).
 struct UnkCamMask_b0101 {
@@ -555,11 +556,11 @@ inline u32 UnkSubareaAllMask() {
 }
 
 static inline void* SubareaManager_b0163() {
-    void* manager = g_unk_7101d47360;
+    void* manager = reinterpret_cast<void*&>(g_unk_7101d47360);
     if (!manager) {
         manager = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(manager);
-        g_unk_7101d47360 = manager;
+        reinterpret_cast<void*&>(g_unk_7101d47360) = manager;
     }
     return manager;
 }

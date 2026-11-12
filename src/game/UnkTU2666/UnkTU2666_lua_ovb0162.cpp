@@ -129,16 +129,16 @@ s32 fn_7101086cb0(lua_State* L) {
 }
 
 // ---- the music manager, created on first use ----
-extern void* g_unk_71726bc560;
+extern UnkMgr_0xf18* g_unk_71726bc560;
 struct UnkMusicMode;
 void fn_7100fd90d8(f32 a, f32 b, void* music, const CRntString* name, u32 c, const UnkMusicMode* d, u32 e, u32 f, void* g);
 
 static inline void* MusicManager() {
-    void* manager = g_unk_71726bc560;
+    void* manager = reinterpret_cast<void*&>(g_unk_71726bc560);
     if (!manager) {
         manager = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(manager);
-        g_unk_71726bc560 = manager;
+        reinterpret_cast<void*&>(g_unk_71726bc560) = manager;
     }
     return manager;
 }
@@ -349,18 +349,19 @@ s32 fn_710108ef00(lua_State*) {
 }
 
 // ---- sub-area manager, created on first use ----
-extern void* g_unk_7101d47360;
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;
 void fn_7100ee1f34(void*);
 void fn_7100eeb330(void* manager, CStrId* a, CStrId* b, f32 x, f32 y);
 void fn_7100eee61c(void* manager, CStrId* a, CStrId* b, bool flag, bool other);
 void fn_7100eee1f8(void* manager, CStrId* subArea, const CStrId* setup, bool a, bool b);
 
 static inline void* SubAreaManager() {
-    void* manager = g_unk_7101d47360;
+    void* manager = reinterpret_cast<void*&>(g_unk_7101d47360);
     if (!manager) {
         manager = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(manager);
-        g_unk_7101d47360 = manager;
+        reinterpret_cast<void*&>(g_unk_7101d47360) = manager;
     }
     return manager;
 }

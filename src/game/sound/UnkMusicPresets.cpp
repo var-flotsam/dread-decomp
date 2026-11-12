@@ -25,16 +25,17 @@
 
 // The music manager (game/sound/CMusicManager.h; 0xf18 bytes, built by fn_7100fd3804) and what
 // this unit asks of it.
-extern void* g_unk_71726bc560;
+struct UnkMgr_0xf18;
+extern UnkMgr_0xf18* g_unk_71726bc560;
 void fn_7100fd5348(void* manager);
 
 static inline void* MusicManager() {
-    if (!g_unk_71726bc560) {
+    if (!reinterpret_cast<void*&>(g_unk_71726bc560)) {
         void* m = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(m);
-        g_unk_71726bc560 = m;
+        reinterpret_cast<void*&>(g_unk_71726bc560) = m;
     }
-    return g_unk_71726bc560;
+    return reinterpret_cast<void*&>(g_unk_71726bc560);
 }
 
 // A string (base::global::CRntString's layout), as src/game/UnkObjectFileLoader.cpp names it.

@@ -211,7 +211,8 @@ void fn_71010ef204(UnkFreeCameraCtrl_b0058* self) {
     fn_71010ed260(self);
 }
 
-extern void* g_unk_7101d47360;
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;
 void fn_7100ee1f34(void* self);
 struct UnkCameraEvent_b0058 {
     s32 kind;
@@ -225,11 +226,11 @@ extern CStrId g_unk_7172a04a38 __attribute__((visibility("hidden")));
 
 // The sub-area manager, created on first use.
 static inline void* SubAreaManager() {
-    void* manager = g_unk_7101d47360;
+    void* manager = reinterpret_cast<void*&>(g_unk_7101d47360);
     if (!manager) {
         manager = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(manager);
-        g_unk_7101d47360 = manager;
+        reinterpret_cast<void*&>(g_unk_7101d47360) = manager;
     }
     return manager;
 }

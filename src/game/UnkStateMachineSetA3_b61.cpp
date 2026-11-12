@@ -180,7 +180,8 @@ struct UnkGrabManager_b61 {
     u8 pad_0x0[0x110];
     s32 state;
 };
-extern void* g_unk_7101d47360;
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;
 void fn_7100ee1f34(void*);
 struct UnkInputComponent;
 struct UnkGrabInputArg_b61;
@@ -202,11 +203,11 @@ void fn_710050be58(UnkGrabSm_b61* self, f32 dt) {
     }
     *flag = false;
     fn_7100df6c78(g_unk_7101d47310, 1.0f, 0.0f);
-    void* manager = g_unk_7101d47360;
+    void* manager = reinterpret_cast<void*&>(g_unk_7101d47360);
     if (!manager) {
         manager = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(manager);
-        g_unk_7101d47360 = manager;
+        reinterpret_cast<void*&>(g_unk_7101d47360) = manager;
     }
     if (static_cast<UnkGrabManager_b61*>(manager)->state == 2)
         return;
@@ -477,15 +478,15 @@ void fn_71005c27f8(UnkHydrogigaSm2_b61* self, f32 dt) {
 
 // Once the timer reaches its tunable (+0x550), asks for state 1 and makes two calls of fn_7100fdcf2c on
 // the music manager with 0.2 (as src/game/CHydrogigaAIComponent/CHydrogigaAIComponent_Send_b59_2.cpp).
-extern void* g_unk_71726bc560;
+extern UnkMgr_0xf18* g_unk_71726bc560;
 
 static inline void* MusicManager_b61() {
-    if (!g_unk_71726bc560) {
+    if (!reinterpret_cast<void*&>(g_unk_71726bc560)) {
         void* m = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(m);
-        g_unk_71726bc560 = m;
+        reinterpret_cast<void*&>(g_unk_71726bc560) = m;
     }
-    return g_unk_71726bc560;
+    return reinterpret_cast<void*&>(g_unk_71726bc560);
 }
 
 void fn_71005c21c0(UnkHydrogigaSm2_b61* self, f32 dt) {

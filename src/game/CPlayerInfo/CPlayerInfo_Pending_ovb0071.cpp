@@ -28,7 +28,8 @@ struct UnkPlayer;
 void fn_710117662c(UnkActorTarget* target, u32 value, u32 extra, bool apply, bool flag, f32 time);
 void fn_7101178e08(UnkActorTarget* target, u32 a, bool, bool, f32 value);
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
-extern void* g_unk_7101d47360;
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;
 void fn_7100ee1f34(void*);
 
 struct UnkVec3_ovb0071 {
@@ -141,11 +142,11 @@ void fn_7100f0d88c(UnkPlayerInfo_ovb0071* self);
 void fn_7100f0be58(UnkPlayerInfo_ovb0071* self, bool flag);
 
 static inline void* Manager_ovb0071() {
-    void* manager = g_unk_7101d47360;
+    void* manager = reinterpret_cast<void*&>(g_unk_7101d47360);
     if (!manager) {
         manager = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(manager);
-        g_unk_7101d47360 = manager;
+        reinterpret_cast<void*&>(g_unk_7101d47360) = manager;
     }
     return manager;
 }

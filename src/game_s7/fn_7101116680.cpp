@@ -45,7 +45,7 @@ extern UnkConversion g_unk_7172a05640;
 extern UnkConversion g_unk_7172a05660;
 void fn_71011121f0() __attribute__((visibility("hidden")));
 void fn_71011121fc() __attribute__((visibility("hidden")));
-extern UnkEnumType g_unk_7172a05520;
+extern base::reflection::CType g_unk_7172a05520;
 extern char g_unk_7172a05638[];
 void fn_71010f4e10(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71010f4c04();
@@ -129,7 +129,8 @@ void fn_7101116680() {
     InitPathId(&g_unk_7172a062c0.field_0x90, "actors/characters/samus/fx/enemyimpact.bcptl");
     InitPathId(&g_unk_7172a062c0.field_0x98, "actors/characters/samus/fx/enemyimpact_big.bcptl");
     InitId(&g_unk_7172a062c0.field_0xa0, "CAIComponent::BlindAttack");
-    InitEnum(&g_unk_7172a05520, "ELOSMode", fn_71010f4e10, fn_71010f4c04, g_unk_7172a05638, &g_unk_7172a05640, fn_71011121f0, &g_unk_7172a05660, fn_71011121fc);
+    InitEnum(&reinterpret_cast<UnkEnumType&>(g_unk_7172a05520), "ELOSMode", fn_71010f4e10, fn_71010f4c04,
+             g_unk_7172a05638, &g_unk_7172a05640, fn_71011121f0, &g_unk_7172a05660, fn_71011121fc);
     InitEnum(&g_unk_7172a05680, "ELOSCheckLevel", fn_71010f531c, fn_71010f4f90, g_unk_7172a05798, &g_unk_7172a057a0, fn_7101112208, &g_unk_7172a057c0, fn_7101112214);
     InitEnum(&g_unk_7172a057e0, "CAIComponent::PathLimitSelectionMode", fn_71010f57c8, fn_71010f549c, g_unk_7172a058f8, &g_unk_7172a05900, fn_7101112220, &g_unk_7172a05920, fn_710111222c);
     fn_710009ec00(g_unk_7172a05940, fn_71010f5948());

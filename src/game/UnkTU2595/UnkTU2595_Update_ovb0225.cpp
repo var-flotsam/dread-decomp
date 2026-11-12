@@ -160,7 +160,8 @@ void fn_7100f14118(UnkSmOwner_b0225* self, f32 dt) {
 
 struct UnkSoundHolder;
 extern UnkSoundHolder* g_unk_7101d47340;
-extern void* g_unk_71726bc560;
+struct UnkMgr_0xf18;
+extern UnkMgr_0xf18* g_unk_71726bc560;
 extern base::global::CRntString g_unk_71729dc240 __attribute__((visibility("hidden")));
 struct UnkMusicMode {
     u32 kind;
@@ -183,11 +184,11 @@ void fn_7100f135d8(UnkSmOwner_b0225* self, void* arg) {
     base::global::CStrId("Ingame", true);
     fn_71011b3768(g_unk_717271e8f8);
     RequestState_b0225(&self->machine, 1);
-    void* music = g_unk_71726bc560;
+    void* music = reinterpret_cast<void*&>(g_unk_71726bc560);
     if (!music) {
         music = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(music);
-        g_unk_71726bc560 = music;
+        reinterpret_cast<void*&>(g_unk_71726bc560) = music;
     }
     UnkMusicMode mode;
     mode.kind = 0x4e;

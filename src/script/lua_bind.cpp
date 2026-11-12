@@ -29,7 +29,8 @@ using base::global::CStrId;
 struct UnkUserDataOwner;  // src/game/CGameManager.cpp
 extern char* g_unk_71726b2398;
 extern void* g_unk_7101d47368;
-extern void* g_unk_7101d47360;  // the sub-area manager (src/game/CSubAreaManager.cpp)
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;  // the sub-area manager (src/game/CSubAreaManager.cpp)
 void fn_7100ee1f34(void* self);
 
 namespace {
@@ -105,7 +106,8 @@ int fn_71010945d0(lua_State* L) {
 
 // lua_bind::GetCurrentSubAreaId: the current sub-area's name, or the empty one's.
 int fn_7101094e20(lua_State* L) {
-    auto* m = static_cast<UnkSubAreaManagerView*>(GetOrCreate<void, 0xae8>(g_unk_7101d47360, fn_7100ee1f34));
+    auto* m = static_cast<UnkSubAreaManagerView*>(GetOrCreate<void,
+                                                  0xae8>(reinterpret_cast<void*&>(g_unk_7101d47360), fn_7100ee1f34));
     const CStrId& id = m->current ? m->current->name : g_unk_7101d470e0;
     const CRntString& str = base::reflection::refl_RntStringOf(id);
     return fn_71010c0b40(L, "s", str.data ? str.data : "");

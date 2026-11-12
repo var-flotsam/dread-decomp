@@ -354,7 +354,8 @@ struct UnkWeakTarget;
 struct UnkThermalComponent_ovb0097;
 void* fn_71007ea32c(void* actor);
 struct UnkEmmyAIComponent_b46a1;
-extern void* g_unk_7101d47360;
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;
 void fn_7100ee1f34(void*);
 bool fn_7100eea7b0(void* manager);
 struct UnkForcedMovementArea_A5_b68e;
@@ -378,11 +379,11 @@ struct UnkForcedAreaEmmy_ovb0124 {
 };
 
 static inline void* Manager_ovb0124() {
-    void* manager = g_unk_7101d47360;
+    void* manager = reinterpret_cast<void*&>(g_unk_7101d47360);
     if (!manager) {
         manager = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(manager);
-        g_unk_7101d47360 = manager;
+        reinterpret_cast<void*&>(g_unk_7101d47360) = manager;
     }
     return manager;
 }

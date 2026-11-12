@@ -46,10 +46,10 @@ struct __attribute__((packed)) UnkTable {
     UnkBlock block;
 };
 
-extern void* g_unk_7101a21168[];
+extern char g_unk_7101a21168[];
 
 void fn_7100518ef4(UnkTable* self, const UnkTable* other) {
-    self->vtable = g_unk_7101a21168 + 2;
+    self->vtable = reinterpret_cast<void**>(g_unk_7101a21168) + 2;
     u32 count = other->count;
     if (count != 0) {
         u64 i = 0;

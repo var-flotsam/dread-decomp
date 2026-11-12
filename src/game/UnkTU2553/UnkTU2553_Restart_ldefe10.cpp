@@ -49,7 +49,8 @@ void fn_7100da2774(UnkRefPtrArray* self);
 extern UnkSoundMgr* g_unk_7101d4d820;
 extern UnkRumbleManager* g_unk_7101d47348;
 extern void* g_unk_7101d47330;
-extern void* g_unk_7101d47360;
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
 extern UnkSoundHolder* g_unk_7101d47340;
 extern void* g_unk_71727344a8;
@@ -172,7 +173,8 @@ void fn_7100defe10(UnkGameManager* self) {
     fn_7101196bf4(static_cast<UnkOwner_b0188*>(g_unk_7101d47330), true);
     fn_710105383c(view->field_0x1078);
     fn_7101053968(view->field_0x1078, &g_unk_710164bdb4, &g_unk_710164bdb4, 0.0f, 0.0f, 0.0f);
-    fn_7100ee34f0(static_cast<CSubAreaManager*>(Instance(g_unk_7101d47360, 0xae8, fn_7100ee1f34)));
+    fn_7100ee34f0(static_cast<CSubAreaManager*>(Instance(reinterpret_cast<void*&>(g_unk_7101d47360), 0xae8,
+                                                         fn_7100ee1f34)));
     if (UnkGameManagerTarget* target = fn_7100decab0(self))
         if (void* object = target->field_0x248)
             fn_71010e3704(object);

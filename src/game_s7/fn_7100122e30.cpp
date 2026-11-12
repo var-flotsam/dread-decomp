@@ -20,7 +20,7 @@ extern UnkEnumType g_unk_7108b6d8f0;
 void fn_71001122a8(UnkEnumType* type, const CStrId& name, void*, void*, void (*)(), void*);
 void fn_7100111368();
 extern char g_unk_7108b6da28[];
-extern UnkEnumType g_unk_7108b6da30;
+extern base::reflection::CType g_unk_7108b6da30;
 void fn_7100112c58(UnkEnumType* type, const CStrId& name, void*, void*, void (*)(), void*);
 void fn_7100112a1c();
 extern char g_unk_7108b6db68[];
@@ -119,10 +119,10 @@ void fn_7100122e30() {
     fn_710009ec00(g_unk_7108b6da28, &g_unk_7108b6d8f0);
     {
         CStrId n("base::spatial::SSegmentData", true);
-        fn_7100112c58(&g_unk_7108b6da30, n, nullptr, nullptr, fn_7100112a1c, nullptr);
+        fn_7100112c58(&reinterpret_cast<UnkEnumType&>(g_unk_7108b6da30), n, nullptr, nullptr, fn_7100112a1c, nullptr);
     }
-    __cxa_atexit(fn_7100096604, &g_unk_7108b6da30, g_unk_7101a19000);
-    fn_710009ec00(g_unk_7108b6db68, &g_unk_7108b6da30);
+    __cxa_atexit(fn_7100096604, &reinterpret_cast<UnkEnumType&>(g_unk_7108b6da30), g_unk_7101a19000);
+    fn_710009ec00(g_unk_7108b6db68, &reinterpret_cast<UnkEnumType&>(g_unk_7108b6da30));
     fn_710009ec00(g_unk_7108b6db69, fn_7100112f58());
     fn_710009ec00(g_unk_7108b6db6a, fn_7100113034());
     fn_710009ec00(g_unk_7108b6db6b, fn_7100113110());

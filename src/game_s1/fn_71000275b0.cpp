@@ -19,7 +19,7 @@ __attribute__((always_inline)) static inline void InitIdsRev(UnkTUIdsRev& h) {
 }
 
 extern UnkTUIdsRev g_unk_7101d4ee10 __attribute__((visibility("hidden")));
-extern UnkReflType g_unk_7101d4ec50;
+extern base::reflection::CType g_unk_7101d4ec50;
 extern char g_unk_7101d4ed88;
 extern UnkConverter g_unk_7101d4ed90;
 extern UnkConverter g_unk_7101d4edb0;
@@ -32,9 +32,13 @@ void fn_7100026cf8() __attribute__((visibility("hidden")));
 
 void fn_71000275b0() {
     InitIdsRev(g_unk_7101d4ee10);
-    InitClass(&g_unk_7101d4ec50, "base::core::CAssetLink", fn_7100026500, fn_71000262b8);
-    fn_710009ec00(&g_unk_7101d4ed88, &g_unk_7101d4ec50);
-    InitConverterFrom(g_unk_7101d4ed90, &g_unk_7101d4ec50, refl_TypeOf<fn_7100007f84>, reinterpret_cast<void (*)()>(&fn_71000272cc));
-    InitConverterFrom(g_unk_7101d4edb0, &g_unk_7101d4ec50, refl_TypeOf<fn_7100009658>, reinterpret_cast<void (*)()>(&fn_7100027418));
-    InitConverterTo(g_unk_7101d4edd0, &g_unk_7101d4ec50, refl_TypeOf<fn_7100007f84>, fn_7100026cf8);
+    InitClass(&reinterpret_cast<UnkReflType&>(g_unk_7101d4ec50), "base::core::CAssetLink", fn_7100026500,
+              fn_71000262b8);
+    fn_710009ec00(&g_unk_7101d4ed88, &reinterpret_cast<UnkReflType&>(g_unk_7101d4ec50));
+    InitConverterFrom(g_unk_7101d4ed90, &reinterpret_cast<UnkReflType&>(g_unk_7101d4ec50), refl_TypeOf<fn_7100007f84>,
+                      reinterpret_cast<void (*)()>(&fn_71000272cc));
+    InitConverterFrom(g_unk_7101d4edb0, &reinterpret_cast<UnkReflType&>(g_unk_7101d4ec50), refl_TypeOf<fn_7100009658>,
+                      reinterpret_cast<void (*)()>(&fn_7100027418));
+    InitConverterTo(g_unk_7101d4edd0, &reinterpret_cast<UnkReflType&>(g_unk_7101d4ec50), refl_TypeOf<fn_7100007f84>,
+                    fn_7100026cf8);
 }

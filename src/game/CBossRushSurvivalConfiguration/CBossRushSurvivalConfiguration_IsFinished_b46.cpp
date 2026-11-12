@@ -4,7 +4,8 @@
 // last stage is reached. Names and layouts are placeholders.
 #include "types.h"
 
-extern char g_unk_71727bd078[];  // a tunable of the unit
+struct UnkTunable_71727bd078;
+extern UnkTunable_71727bd078 g_unk_71727bd078;  // a tunable of the unit
 
 struct UnkSurvivalState_b46a3 {
     u8 pad_0x0[0xba];
@@ -21,7 +22,7 @@ bool fn_7100dca1bc(UnkSurvivalState_b46a3* self) {
         if (self->stage != 12)
             return false;
         s32 progress = self->progress;
-        return progress >= *reinterpret_cast<s32*>(g_unk_71727bd078 + 0x34) * 12 - 1;
+        return progress >= *reinterpret_cast<s32*>(reinterpret_cast<char*>(&g_unk_71727bd078) + 0x34) * 12 - 1;
     }
     if (self->field_0xba)
         return false;

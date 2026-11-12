@@ -133,7 +133,8 @@ UnkHandle fn_7100d7c770(UnkEntityWithSound* self, void* a, void* b, void* c) {
 
 // The same through the sound component, falling back to the static sound players by kind.
 UnkSoundHandle fn_710071bae8(UnkEntitySoundComponent* self, const u32* params, bool a, bool b, bool c);
-extern void* g_unk_717275c380;
+struct UnkStateSink;
+extern UnkStateSink* g_unk_717275c380;
 UnkSoundHandle fn_7100fca8cc(void* player, const u32* params);
 UnkSoundHandle fn_710101f154(void* player, const u32* params);
 
@@ -143,14 +144,14 @@ UnkSoundHandle fn_7100d7c2f0(UnkEntityWithSound* self, const u32* params, bool a
     if (self->sound) return fn_710071b550(self->sound, params, a, b, c);
     if (reinterpret_cast<const u8*>(params)[0x6c]) return g_unk_7108b6c460;
     if (*params == 0) return fn_710101f154(g_unk_71727b85d0, params);
-    if (*params == 4) return fn_7100fca8cc(g_unk_717275c380, params);
+    if (*params == 4) return fn_7100fca8cc(reinterpret_cast<void*>(g_unk_717275c380), params);
     return g_unk_7108b6c460;
 }
 
 UnkSoundHandle fn_7100d7c3b0(UnkEntityWithSound* self, const u32* params, bool a, bool b, bool c) {
     if (self->sound) return fn_710071bae8(self->sound, params, a, b, c);
     if (*params == 0) return fn_710101f154(g_unk_71727b85d0, params);
-    if (*params == 4) return fn_7100fca8cc(g_unk_717275c380, params);
+    if (*params == 4) return fn_7100fca8cc(reinterpret_cast<void*>(g_unk_717275c380), params);
     return g_unk_7108b6c460;
 }
 

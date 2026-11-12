@@ -9,7 +9,7 @@
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
-extern void* g_unk_71726bc560;
+extern UnkMgr_0xf18* g_unk_71726bc560;
 struct UnkLoadingMask {
     u32 bits;
     UnkLoadingMask() : bits(0) {}
@@ -31,11 +31,11 @@ struct UnkLoadingMaskTag;
 void fn_7100fd82dc(void* manager, const char* name, UnkLoadingMask channels, UnkLoadingMask mask, f32 time);
 
 static inline void* MusicManager() {
-    void* manager = g_unk_71726bc560;
+    void* manager = reinterpret_cast<void*&>(g_unk_71726bc560);
     if (!manager) {
         manager = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(manager);
-        g_unk_71726bc560 = manager;
+        reinterpret_cast<void*&>(g_unk_71726bc560) = manager;
     }
     return manager;
 }

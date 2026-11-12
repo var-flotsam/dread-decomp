@@ -60,14 +60,14 @@ using base::global::CStrId;
 
 struct UnkMgr_0xf18;
 void fn_7100fd0e74(void* bank);
-extern void* g_unk_71726bc560;
+extern UnkMgr_0xf18* g_unk_71726bc560;
 
 static inline char* MusicManager_df5cec() {
-    char* object = static_cast<char*>(g_unk_71726bc560);
+    char* object = reinterpret_cast<char*>(g_unk_71726bc560);
     if (!object) {
         object = static_cast<char*>(fn_71000839a0(0xf18, 0x3f));
         fn_7100fd3804(object);
-        g_unk_71726bc560 = object;
+        reinterpret_cast<void*&>(g_unk_71726bc560) = object;
     }
     return object;
 }
@@ -925,7 +925,7 @@ struct UnkUserDataOwner;
 struct UnkLoadCheckPointSingleton_ovb0118;
 struct UnkMgr_0xf18;
 extern void* g_unk_7101d47330;
-extern void* g_unk_71726bc560;
+extern UnkMgr_0xf18* g_unk_71726bc560;
 void fn_7101198978(void* gui);
 void fn_7101198c0c(void* gui);
 void fn_7101047068(CBlackboard* a, CBlackboard* b);
@@ -994,11 +994,11 @@ void fn_7100dfe36c(UnkGameManager* manager) {
         }
     }
     fn_7101198c0c(g_unk_7101d47330);
-    char* music = static_cast<char*>(g_unk_71726bc560);
+    char* music = reinterpret_cast<char*>(g_unk_71726bc560);
     if (!music) {
         music = static_cast<char*>(fn_71000839a0(0xf18, 0x3f));
         fn_7100fd3804(music);
-        g_unk_71726bc560 = music;
+        reinterpret_cast<void*&>(g_unk_71726bc560) = music;
     }
     fn_7100fdd250(reinterpret_cast<UnkMgr_0xf18*>(music), 0, 0.2f);
 }

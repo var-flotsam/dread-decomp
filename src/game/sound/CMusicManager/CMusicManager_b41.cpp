@@ -14,7 +14,8 @@
 using base::global::CStrId;
 using base::reflection::UnkReflValue;
 
-extern void* g_unk_71726bc560;
+struct UnkMgr_0xf18;
+extern UnkMgr_0xf18* g_unk_71726bc560;
 
 struct UnkKeyData_b41a3m {
     u8 unk_0x0[0x30];
@@ -46,12 +47,12 @@ void fn_7100fd9e94(char* manager, const CStrId* key);
 void fn_7100fd9e9c(char* manager, const CStrId* key);
 
 static inline __attribute__((always_inline)) char* MusicManager_b41a3() {
-    if (!g_unk_71726bc560) {
+    if (!reinterpret_cast<void*&>(g_unk_71726bc560)) {
         void* m = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(m);
-        g_unk_71726bc560 = m;
+        reinterpret_cast<void*&>(g_unk_71726bc560) = m;
     }
-    return static_cast<char*>(g_unk_71726bc560);
+    return reinterpret_cast<char*>(g_unk_71726bc560);
 }
 
 template <u32 MapOffset, u32 NextOffset, void* (*Erase)(UnkMusicMap_b41a3<NextOffset>*, const CStrId*),

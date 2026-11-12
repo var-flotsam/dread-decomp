@@ -206,7 +206,8 @@ void fn_7100f1380c(UnkFlagOwner_A6_b64* self, f32 dt) {
 // actor at +0x30, picked by vf 0x3a8.
 #include "game/UnkTimelineComponent.h"
 
-extern void* g_unk_7101d47360;
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;
 void fn_7100ee1f34(void*);
 extern const u64 g_unk_710164b648[];
 extern const u64 g_unk_710164b650[];
@@ -227,12 +228,12 @@ void fn_7100a9fad8(UnkUsableOwner_A6_b64* self, f32 dt) {
     Update_A6_b64<7, 8>(&self->machine, dt);
     if (!self->restart)
         return;
-    if (!g_unk_7101d47360) {
+    if (!reinterpret_cast<void*&>(g_unk_7101d47360)) {
         void* mgr = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(mgr);
-        g_unk_7101d47360 = mgr;
+        reinterpret_cast<void*&>(g_unk_7101d47360) = mgr;
     }
-    if (fn_7100eef674(g_unk_7101d47360))
+    if (fn_7100eef674(reinterpret_cast<void*&>(g_unk_7101d47360)))
         return;
     self->restart = false;
     if (self->vf_0x3a8())

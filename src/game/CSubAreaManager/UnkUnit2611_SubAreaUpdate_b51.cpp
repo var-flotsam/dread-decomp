@@ -9,7 +9,8 @@
 struct UnkScenarioSub;
 void fn_7100d59dd8(UnkScenarioSub* self);
 void fn_7100ee1f34(void* self);
-extern void* g_unk_7101d47360;
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;
 
 struct UnkSubAreaManager_b51 {
     u8 unk_0x0[0x930];
@@ -29,11 +30,11 @@ struct UnkSubAreaList_b51 {
 };
 
 static inline void ApplySubAreaEntries(const UnkSubAreaList_b51* list) {
-    void* instance = g_unk_7101d47360;
+    void* instance = reinterpret_cast<void*&>(g_unk_7101d47360);
     if (!instance) {
         instance = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(instance);
-        g_unk_7101d47360 = instance;
+        reinterpret_cast<void*&>(g_unk_7101d47360) = instance;
     }
     UnkSubAreaManager_b51* manager = static_cast<UnkSubAreaManager_b51*>(instance);
     for (UnkSubAreaEntry_b51 *it = list->entries, *end = it + list->count; it != end; ++it)

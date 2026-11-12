@@ -140,7 +140,7 @@ struct UnkLoadingMaskTag_ovb56;
 static inline UnkLoadingMask Flipped_ovb56(const UnkLoadingMask& mask, u32 bit) {
     return UnkLoadingMask((mask.bits & bit) ? mask.bits & ~bit : mask.bits | bit);
 }
-extern void* g_unk_71726bc560;
+extern UnkMgr_0xf18* g_unk_71726bc560;
 
 // Replays the environment music (fn_7100d8d854) or, with none, has the music manager switch channel 8
 // to every channel but 0x100's state flipped.
@@ -150,11 +150,11 @@ void fn_7100d8e0a0(void* manager) {
         fn_7100d8d854(reinterpret_cast<UnkUnit2525_b51*>(self), self->music);
         return;
     }
-    void* instance = g_unk_71726bc560;
+    void* instance = reinterpret_cast<void*&>(g_unk_71726bc560);
     if (!instance) {
         instance = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(instance);
-        g_unk_71726bc560 = instance;
+        reinterpret_cast<void*&>(g_unk_71726bc560) = instance;
     }
     fn_7100fd7b44(instance, UnkLoadingMask(8), Flipped_ovb56(UnkLoadingMaskOf_ovb56<UnkLoadingMaskTag_ovb56>::All(), 0x100),
                   0.0f);
@@ -268,7 +268,7 @@ struct UnkPolyElem_ovb56 {
 struct UnkPathGroups_ovb56 : UnkPathGroupVec_ovb56 {
     ~UnkPathGroups_ovb56() {
         if (data) {
-            fn_7100d90460(reinterpret_cast<UnkRecord50Vec_b56*>(static_cast<UnkPathGroupVec_ovb56*>(this)), 0);
+            fn_7100d90460(reinterpret_cast<UnkRecord50Vec_b56*>(this), 0);
             allocator->vf_0x48(data);
             capacity = 0;
         }

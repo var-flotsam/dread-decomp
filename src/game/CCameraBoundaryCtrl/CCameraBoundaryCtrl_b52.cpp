@@ -20,7 +20,8 @@ void fn_71010e6038(UnkWeakRefAt<0xc30>* self, UnkWeakTarget* other);
 
 struct UnkSubAreaManagerView;
 void fn_7100eeb834(UnkSubAreaManagerView* self);
-extern void* g_unk_7101d47360;
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;
 void fn_7100ee1f34(void* self);
 
 struct UnkCameraBoundaryNamed {
@@ -45,12 +46,12 @@ struct UnkCameraBoundaryCtrl {
 };
 
 static inline UnkSubAreaManagerView* SubAreaManager() {
-    if (!g_unk_7101d47360) {
+    if (!reinterpret_cast<void*&>(g_unk_7101d47360)) {
         void* m = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(m);
-        g_unk_7101d47360 = m;
+        reinterpret_cast<void*&>(g_unk_7101d47360) = m;
     }
-    return static_cast<UnkSubAreaManagerView*>(g_unk_7101d47360);
+    return reinterpret_cast<UnkSubAreaManagerView*>(g_unk_7101d47360);
 }
 
 void fn_7100766934(UnkCameraBoundaryCtrl* self) {

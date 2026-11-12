@@ -27,7 +27,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 
-extern void* g_unk_71726bc560;  // the music manager (game/sound/CMusicManager.h)
+extern UnkMgr_0xf18* g_unk_71726bc560;  // the music manager (game/sound/CMusicManager.h)
 extern CStrId g_unk_7172710f30;
 extern CStrId g_unk_7172710f50 __attribute__((visibility("hidden")));
 
@@ -85,11 +85,11 @@ struct UnkTag_710031da18;
 void fn_710031da18(UnkSlotArray<UnkTag_710031da18>* v, u32 capacity);
 
 static inline void* MusicManager() {
-    void* instance = g_unk_71726bc560;
+    void* instance = reinterpret_cast<void*&>(g_unk_71726bc560);
     if (!instance) {
         instance = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(instance);
-        g_unk_71726bc560 = instance;
+        reinterpret_cast<void*&>(g_unk_71726bc560) = instance;
     }
     return instance;
 }

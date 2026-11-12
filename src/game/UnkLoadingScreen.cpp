@@ -80,14 +80,14 @@ static inline UnkStruct_0x128* SceneState() {
 }
 
 // The music manager (game/sound/CMusicManager.h), created on first use.
-extern void* g_unk_71726bc560;
+extern UnkMgr_0xf18* g_unk_71726bc560;
 void fn_7100fdca28(void* manager, bool);
 static inline void* MusicManager() {
-    void* manager = g_unk_71726bc560;
+    void* manager = reinterpret_cast<void*&>(g_unk_71726bc560);
     if (!manager) {
         manager = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(manager);
-        g_unk_71726bc560 = manager;
+        reinterpret_cast<void*&>(g_unk_71726bc560) = manager;
     }
     return manager;
 }

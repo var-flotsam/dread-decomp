@@ -48,7 +48,7 @@ inline const UnkLoadingMask& UnkLoadingMaskAll() {
     static UnkLoadingMask s asm("g_unk_71726c4080")(~UnkLoadingMaskNone().bits & 0x1ff);
     return s;
 }
-extern void* g_unk_71726bc560;
+extern UnkMgr_0xf18* g_unk_71726bc560;
 
 struct UnkVec3_b0225 {
     u64 xy;
@@ -64,11 +64,11 @@ void fn_7100f1435c() {
     origin.xy = 0;
     origin.z = 0;
     fn_7101053850(effects, reinterpret_cast<UnkVec*>(&origin), 1, 0.3f, 1.0f);
-    void* instance = g_unk_71726bc560;
+    void* instance = reinterpret_cast<void*&>(g_unk_71726bc560);
     if (!instance) {
         instance = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(instance);
-        g_unk_71726bc560 = instance;
+        reinterpret_cast<void*&>(g_unk_71726bc560) = instance;
     }
     fn_7100fd7b44(instance, UnkLoadingMask(4), UnkLoadingMaskAll(), 0.3f);
 }

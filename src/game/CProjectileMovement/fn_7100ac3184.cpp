@@ -110,7 +110,8 @@ inline const UnkStaticZero_71726b5354& UnkGetStaticZero_71726b5354() {
     return s_value;
 }
 
-extern void* g_unk_7101d47360;
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;
 extern u8 g_unk_71727556f0 __attribute__((visibility("hidden")));
 void fn_7100ac7628(UnkComponent_0x5d0* self);
 void fn_7100a2cddc(void* table, void* key, CStrId* id, f32 delay, bool unique);
@@ -118,12 +119,12 @@ void fn_7100ee1f34(void* self);
 
 // The global manager, created on first use.
 static inline void* UnkGetManager() {
-    if (!g_unk_7101d47360) {
+    if (!reinterpret_cast<void*&>(g_unk_7101d47360)) {
         void* manager = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(manager);
-        g_unk_7101d47360 = manager;
+        reinterpret_cast<void*&>(g_unk_7101d47360) = manager;
     }
-    return g_unk_7101d47360;
+    return reinterpret_cast<void*&>(g_unk_7101d47360);
 }
 
 __attribute__((always_inline)) static inline void ResolveTarget(UnkComponent_0x5d0* self, const CStrId& id, UnkWeakHandle** out) {

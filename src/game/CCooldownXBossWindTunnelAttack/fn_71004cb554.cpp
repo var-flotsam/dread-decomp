@@ -69,7 +69,8 @@ struct UnkSelf {
     u32 field_0x90;
 };
 
-extern UnkGlobal g_unk_71726d6438;
+struct UnkTunable;
+extern UnkTunable g_unk_71726d6438;
 
 UnkEntry* fn_71004ba10c(UnkPool* pool, u32 index, u32 flag);
 void fn_71004d1fe8(UnkActor* actor);
@@ -82,7 +83,7 @@ void fn_71004cb554(UnkSelf* self) {
     self->field_0x88 = 0;
     self->field_0x70 = 0;
     self->field_0x78 = 0;
-    s32 index = g_unk_71726d6438.field_0x24;
+    s32 index = reinterpret_cast<UnkGlobal&>(g_unk_71726d6438).field_0x24;
     u32 count = self->field_0x68->count;
     u32 picked = 0;
     if (index >= 0 && index < (s32)count)
@@ -101,7 +102,7 @@ void fn_71004cb554(UnkSelf* self) {
         if (fn_710009d50c(type, fn_71004cf318())) {
             fn_71004d1fe8(actor);
             actor->field_0x15834 = 1;
-            g_unk_7172790a08.field_0x40 = g_unk_71726d6438.field_0x28;
+            g_unk_7172790a08.field_0x40 = reinterpret_cast<UnkGlobal&>(g_unk_71726d6438).field_0x28;
         }
     }
 }

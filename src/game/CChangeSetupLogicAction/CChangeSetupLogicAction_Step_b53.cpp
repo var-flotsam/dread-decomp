@@ -10,7 +10,8 @@
 
 struct UnkTutoExitAction_b47;
 
-extern void* g_unk_7101d47360;
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;
 void fn_7100ee1f34(void*);
 void fn_7100eea3fc(void* manager, const base::global::CStrId* id, bool a, bool b);
 void fn_7100eea334(void* manager, const base::global::CStrId* id, bool a, bool b);
@@ -29,11 +30,11 @@ void fn_7100a37690(UnkChangeSetupAction_b53* self) {
     if (self->id.data == &g_unk_7101d47108->empty)
         return;
     bool mode = self->field_0x1a;
-    void* manager = g_unk_7101d47360;
+    void* manager = reinterpret_cast<void*&>(g_unk_7101d47360);
     if (!manager) {
         manager = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(manager);
-        g_unk_7101d47360 = manager;
+        reinterpret_cast<void*&>(g_unk_7101d47360) = manager;
     }
     if (mode)
         fn_7100eea3fc(manager, &self->id, self->field_0x18, self->field_0x19);

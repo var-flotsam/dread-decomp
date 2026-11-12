@@ -33,7 +33,7 @@ void fn_71007a1d24(UnkEnumType* type, const CStrId& name, const base::reflection
 extern char g_unk_7172719168[];
 extern char g_unk_7172719169[];
 UnkEnumType* fn_71007a1ea8();
-extern UnkEnumType g_unk_7172719170;
+extern base::reflection::CType g_unk_7172719170;
 void fn_71007a1f84(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_71727192e0[];
 extern char g_unk_71727192e1[];
@@ -64,10 +64,10 @@ void fn_71007ae5a0() {
     fn_710009ec00(g_unk_7172719169, fn_71007a1ea8());
     {
         CStrId n("base::global::CRntVector<CCutsceneComponent::SActorInfo>", true);
-        fn_71007a1f84(&g_unk_7172719170, n, nullptr, nullptr);
+        fn_71007a1f84(&reinterpret_cast<UnkEnumType&>(g_unk_7172719170), n, nullptr, nullptr);
     }
-    __cxa_atexit(fn_710009891c, &g_unk_7172719170, g_unk_7101a19000);
-    fn_710009ec00(g_unk_71727192e0, &g_unk_7172719170);
+    __cxa_atexit(fn_710009891c, &reinterpret_cast<UnkEnumType&>(g_unk_7172719170), g_unk_7101a19000);
+    fn_710009ec00(g_unk_71727192e0, &reinterpret_cast<UnkEnumType&>(g_unk_7172719170));
     fn_710009ec00(g_unk_71727192e1, fn_71007a217c());
     InitConversion(&g_unk_71727192e8, TypeOf<fn_7100005178>, TypeOf<fn_7100009658>, reinterpret_cast<void (*)()>(&fn_71007ab7d8));
     fn_71007a225c();
