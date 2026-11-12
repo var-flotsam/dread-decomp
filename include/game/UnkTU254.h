@@ -7,4 +7,4 @@
 
 struct UnkMinimapView;
 void fn_71001c34f4(void* target, f32 value);
-void fn_71001c3770(UnkMinimapView* view, bool value);
+void fn_71001c3770(UnkMinimapView* view, s32);

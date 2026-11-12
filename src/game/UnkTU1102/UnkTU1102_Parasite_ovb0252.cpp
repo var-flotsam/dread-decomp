@@ -61,7 +61,7 @@ struct UnkXParasiteLock_808c {
 static_assert(__builtin_offsetof(UnkXParasiteLock_808c, handle) == 0x147b0, "placeholder layout");
 
 base::UnkRefHandle* fn_71006eb8cc(base::UnkRefHandle*, const base::UnkRefHandle*);
-void fn_7101127c24(void* obj, UnkActor* owner, u32 a, bool b, s32 c, bool d, void* e);
+void fn_7101127c24(void* obj, UnkActor* owner, bool, bool b, s32 c, bool d, void* e);
 
 static inline void* Inner(UnkXParasiteFound_b0252* p) { return p ? p->field_0x10 : nullptr; }
 

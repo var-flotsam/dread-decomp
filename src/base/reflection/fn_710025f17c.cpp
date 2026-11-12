@@ -71,6 +71,6 @@ struct UnkObject_710025f17c {
     }
 };
 
-void fn_710025f17c(UnkObject_710025f17c* self) { new (self) UnkObject_710025f17c; }
+void fn_710025f17c(UnkObject_710025f17c* self, void*) { new (self) UnkObject_710025f17c; }
 
 void fn_7100262c34(UnkObject_710025f17c* self) { new (self) UnkObject_710025f17c; }

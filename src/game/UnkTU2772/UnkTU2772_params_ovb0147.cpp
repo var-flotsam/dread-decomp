@@ -74,7 +74,7 @@ u32 fn_7101230a40(u8* self) {
     return p[1 + (f & 1)];
 }
 
-u32 fn_7101210278(u8* self) {
+u8 fn_7101210278(u8* self) {
     u32* p = (u32*)(self + 0x14);
     u32 f = *p;
     if (!(f & 4))
@@ -101,7 +101,7 @@ u32 fn_7101230a60(u8* self) {
     return p[1 + idx];
 }
 
-u32 fn_71012102a0(u8* self) {
+u8 fn_71012102a0(u8* self) {
     u32* p = (u32*)(self + 0x14);
     u32 f = *p;
     if (!(f & 4))

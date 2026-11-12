@@ -31,7 +31,7 @@ static inline bool HandsOn(UnkReflObject* type, u32 owned) {
     return owned || pointer;
 }
 
-bool fn_7100fbd320(lua_State* L, UnkTypedValue_b49a6* value, u32 owned, s32 mode) {
+s32 fn_7100fbd320(lua_State* L, UnkTypedValue_b49a6* value, u32 owned, s32 mode) {
     UnkReflValue* v = static_cast<UnkReflValue*>(lua_newuserdata(L, sizeof(UnkReflValue)));
     v->field_0x0 = nullptr;
     v->type = nullptr;

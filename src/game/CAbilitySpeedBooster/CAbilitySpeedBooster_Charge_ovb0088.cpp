@@ -209,7 +209,7 @@ using base::reflection::UnkReflObject;
 struct UnkOwner;
 void fn_710093adc0(base::reflection::UnkReflObject*, const void*, const void*, f32);
 struct UnkActorTarget;
-void fn_7101178e08(UnkActorTarget*, u32, u32, u32, f32);
+void fn_7101178e08(UnkActorTarget*, u32, bool, bool, f32);
 void fn_710117662c(UnkActorTarget*, u32, u32, u32, u32, f32);
 extern const u64 g_unk_7101648ff8;
 extern const u64 g_unk_7101649000;

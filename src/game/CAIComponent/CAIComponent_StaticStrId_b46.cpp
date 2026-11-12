@@ -12,7 +12,7 @@ struct UnkStrIdCopy_b46a3 {
 
 __attribute__((visibility("hidden"))) extern base::global::UnkStringData* g_unk_7172a06328;
 
-UnkStrIdCopy_b46a3 fn_710111203c() {
+UnkStrIdCopy_b46a3 fn_710111203c(void*) {
     base::global::UnkStringData* p = g_unk_7172a06328;
     UnkStrIdCopy_b46a3 r{p};
     if (reinterpret_cast<u64>(p) != reinterpret_cast<u64>(g_unk_7101d47108) + 0x10)

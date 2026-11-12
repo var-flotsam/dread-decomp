@@ -10,4 +10,4 @@ struct UnkShapeFilter_ovb0107;
 struct UnkShapeTestResult_ovb0107;
 struct UnkShapeTester_A5_b68;
 void fn_7100d5134c(UnkShapeTester_A5_b68* self);
-UnkShapeTestResult_ovb0107 fn_7100d51368(UnkShapeTester_A5_b68* tester, void* owner, void* shape, void* other, const UnkMatrix44& transform, UnkShapeFilter_ovb0107* filter, u16 flags);
+UnkShapeTestResult_ovb0107 fn_7100d51368(UnkShapeTester_A5_b68* tester, void* owner, void* shape, void* other, const UnkMatrix44& transform, UnkShapeFilter_ovb0107* filter, u32);

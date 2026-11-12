@@ -6,5 +6,5 @@
 #include "types.h"
 
 struct UnkMagmaRainAI_b49;
-void fn_71003f4f0c(UnkMagmaRainAI_b49* ai, u32 state);
+void fn_71003f4f0c(UnkMagmaRainAI_b49* ai, bool);
 extern void* g_unk_7101a31448[];  // The component's vtable.

@@ -20,7 +20,7 @@ struct TriggerView {
 
 struct UnkHandleList;
 
-void fn_7100e01fc8() {
+void fn_7100e01fc8(void*) {
     struct List {
         ObjRef** data;
         u32 count;

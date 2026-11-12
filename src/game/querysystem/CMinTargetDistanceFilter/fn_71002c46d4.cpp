@@ -9,7 +9,7 @@ struct UnkRadius {
     f32 field_0x14;
 };
 
-bool fn_71002c46d4(UnkRadius* self, UnkActor* first, UnkActor* second) {
+u32 fn_71002c46d4(UnkRadius* self, UnkActor* first, UnkActor* second) {
     if (self->field_0x14 > 0.0f) {
         UnkActor* target = fn_7100d7c990(first);
         if (target) {

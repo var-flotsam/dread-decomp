@@ -19,7 +19,7 @@ struct UnkInlineString {
 };
 extern void* g_unk_7101a1b750[];
 
-bool fn_7100e03d78(UnkPropBag* bag, const char* function, const char* args);  // runs a script call
+bool fn_7100e03d78(UnkPropBag* bag, const char* function, const char* args, ...);  // runs a script call
 bool fn_7100e03f50(UnkPropBag* bag, const u64* key, UnkInlineString* out, bool flag);  // reads a string
 
 

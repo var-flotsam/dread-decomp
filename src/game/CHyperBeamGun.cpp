@@ -165,7 +165,7 @@ extern const u64 g_unk_710164acc8;
 // The release effect's file path.
 extern base::global::CFilePathStrId g_unk_71727265a0 __attribute__((visibility("hidden")));
 
-UnkHyperBeamSoundHandle fn_7100ed6910(void* player, const CVector3D* pos, u32 id, u32 kind, bool flag);
+UnkHyperBeamSoundHandle fn_7100ed6910(void* player, const CVector3D* pos, u32 id, u32 kind, u32);
 UnkHyperBeamEffectHandle fn_7100d7c614(UnkActor* owner, const UnkHyperBeamEffectDesc* desc, const CStrId* name,
                                        u32 a, u32 b, u32 c);
 

@@ -257,7 +257,7 @@ void fn_710081499c(UnkFxVector_ovb0103* self, const u32* index, UnkFxInstance_ov
 }
 
 bool fn_710080fc90(const CFilePathStrId* path, u32* out);
-void fn_71011aa0d4(UnkModelManager* self, u32 id, const base::global::CFilePathStrId* path, u32 kind, u32 flags);
+void fn_71011aa0d4(UnkModelManager* self, u32 id, const base::global::CFilePathStrId* path, u32 kind, bool);
 
 void fn_7100812d5c(UnkStandaloneFxComponent_ovb0103* self) {
     u32 n = self->instances.count;

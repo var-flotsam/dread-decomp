@@ -166,7 +166,7 @@ struct UnkDropItemMap_ovb0208 {
     }
 };
 
-void fn_7100f05fb4(UnkDropSlot_ovb0208* slot, u32 arg);
+void fn_7100f05fb4(UnkDropSlot_ovb0208* slot, bool);
 void fn_7100f05cc8(UnkDropSlot_ovb0208* slot);
 void fn_7100f05c18(UnkDropSlot_ovb0208* slot, void* actor, bool flag);
 

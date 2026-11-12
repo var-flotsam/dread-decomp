@@ -147,7 +147,7 @@ void fn_710025b068(char* self) {
     new (self) UnkReflValueC8Data_ovb0036<5>;
 }
 
-void fn_7100260718(char* self) {
+void fn_7100260718(char* self, void*) {
     new (self) UnkReflValueC8Data_ovb0036<0xe>;
 }
 

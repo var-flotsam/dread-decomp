@@ -10,7 +10,7 @@
 #include "types.h"
 
 struct UnkActorTarget;
-void fn_7101178e08(UnkActorTarget*, u32, u32, u32, f32);
+void fn_7101178e08(UnkActorTarget*, u32, bool, bool, f32);
 void fn_710117662c(UnkActorTarget*, u32, u32, u32, u32, f32);
 
 struct UnkSlamEventId_b59 {

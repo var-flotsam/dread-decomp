@@ -108,8 +108,7 @@ using base::reflection::UnkReflValue;
 void fn_71000a1828(UnkReflValue* out, const UnkTypedObject* object, u32 by_ref, u32 kind);
 
 // Reads the script argument at `first` as `object` through the callbacks; whether it was given and parsed.
-bool fn_7100fc22a0(lua_State* L, u32 first, const UnkTypedObject_b0249* object, void* unused,
-                   const UnkParseCallbacks* callbacks) {
+bool fn_7100fc22a0(lua_State* L, u32 first, const UnkTypedObject_b0249* object, u32 unused, const UnkParseCallbacks* callbacks) {
     UnkLuaArgs_b0249 args(L, first);
     bool ok = false;
     if (!args.Missing()) {

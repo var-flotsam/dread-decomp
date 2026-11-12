@@ -139,7 +139,7 @@ u32 fn_7101210218(const UnkAtkOptionalParamsOwner* self) {
         return 0;
     return params->Slot(3)[0];
 }
-u32 fn_7101210248(const UnkAtkOptionalParamsOwner* self) {
+u16 fn_7101210248(const UnkAtkOptionalParamsOwner* self) {
     const UnkAtkOptionalParams* params = &self->params;
     if (!params->Has(3))
         return 0xffff;
@@ -260,7 +260,7 @@ void fn_710123a3d0(void* queue, UnkAtkTask* task, void* a, void* b);
 void fn_710123a3e0(UnkAtkTask* task);
 u32 fn_710123a3f0(UnkAtkTask* task);
 void fn_7101238f90(s64 nanoseconds);
-u32 fn_7101214040(UnkAtkTaskManager* self);
+u64 fn_7101214040(UnkAtkTaskManager* self);
 static inline UnkAtkLock* AtkTaskLock() {
     return reinterpret_cast<UnkAtkLock*>(static_cast<char*>(fn_71001039f8()) + 0x960);
 }

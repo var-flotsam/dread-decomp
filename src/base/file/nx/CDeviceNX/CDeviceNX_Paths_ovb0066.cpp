@@ -131,7 +131,7 @@ inline const UnkWanted_ovb0066& NoneWanted_ovb0066() {
     return s_none;
 }
 
-u8 fn_710002ec40(void* table, CRntString* path) {
+u32 fn_710002ec40(void* table, CRntString* path) {
     UnkFileInfo_ovb0066 info;
     info.exists = false;
     info.mask = 0;

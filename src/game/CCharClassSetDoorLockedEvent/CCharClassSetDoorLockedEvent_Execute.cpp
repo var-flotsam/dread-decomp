@@ -13,7 +13,7 @@ using base::global::CStrId;
 struct UnkWeakTarget;
 
 struct UnkDoorLock;
-bool fn_71008d586c(UnkDoorLock* door, bool locked, u32 mode, CStrId* name);
+bool fn_71008d586c(UnkDoorLock* door, bool locked, bool, CStrId* name);
 
 struct UnkSetDoorLockedEvent {
     u8 unk_0x0[0x10];

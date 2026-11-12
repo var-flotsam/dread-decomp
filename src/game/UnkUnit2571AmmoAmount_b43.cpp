@@ -44,7 +44,7 @@ __attribute__((always_inline)) inline void GetF32(CBlackboard* set, const CStrId
         fn_7100395b34(s, &name, out);
 }
 
-u32 fn_7100ec7768() {
+u32 fn_7100ec7768(u8*) {
     f32 max = 0.0f;
     GetF32(&g_unk_7101d47310->field_0x968, *reinterpret_cast<const CStrId*>(&GameManagerIdTable().pad_0x0[0x1bd8]),
            Qid(g_unk_717275a298), &max);

@@ -317,7 +317,7 @@ struct UnkSpawnA_64b4 {
     void* tracked;  // 0x160
 };
 
-void fn_71011264b4(UnkSpawnA_64b4* self) {
+void fn_71011264b4(UnkSpawnA_64b4* self, void*) {
     if (self->tracked) {
         if (self->collider) {
             fn_7100d5abfc(self->tracked, static_cast<UnkStruct_7100861148_Collider*>(self->collider));

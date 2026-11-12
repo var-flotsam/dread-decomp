@@ -97,7 +97,7 @@ void fn_71011b350c(UnkGuiScreen_b0209* self) {
     }
 }
 
-UnkWeakTarget* fn_71011b5f5c(void* unused, const char* const* path, const base::global::CRntString* name, void* arg) {
+UnkWeakTarget* fn_71011b5f5c(u32 unused, const char* const* path, const base::global::CRntString* name, void* arg) {
     UnkWeakTarget* result = nullptr;
     base::global::CRntString func(*name);
     fn_710007f564(&func, ".Create");

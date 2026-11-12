@@ -22,7 +22,7 @@ struct UnkTable {
     u32 modulus;
 };
 
-u32 fn_71002874e0(u32 a, u32 b);
+u32 fn_71002874e0(u16, u8);
 
 // NON_MATCHING(minor): the final add has its operands swapped (s1 + s0 in the original; same value)
 f32 fn_71002b27d4(UnkTable* self, u32 a, u32 b, f32* value) {

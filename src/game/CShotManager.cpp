@@ -97,7 +97,7 @@ UnkShotWeakRef* fn_7100748064(base::UnkVector<UnkShotWeakRef>* self, u32 i);
 void fn_7100ddecac(UnkShotEffect* self, f32 dt);
 void fn_7100de13ac(void* self, UnkShotEffect* effect);
 void fn_7100ecca00(UnkShot* self, f32 dt);
-void fn_7100ecfa10(UnkShotModel* self, const UnkVec3f* pos, UnkVec3f* angle, UnkVec3f* scale, f32 t, bool second);
+void fn_7100ecfa10(UnkShotModel* self, const UnkVec3f* pos, UnkVec3f* angle, UnkVec3f* scale, f32 t, s32);
 bool fn_7100ecfa84(UnkShotModel* self);
 UnkShot** fn_7100ed4b68(base::UnkVector<UnkShot*>* self, u32 i);
 void fn_7100ed7144(UnkShotManager* self);

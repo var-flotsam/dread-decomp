@@ -15,7 +15,7 @@ struct UnkAttackBase;
 void fn_71003608ac(UnkAttackBase* self);
 void fn_71006741bc();
 struct UnkActorTarget;
-void fn_7101178e08(UnkActorTarget*, u32, u32, u32, f32);
+void fn_7101178e08(UnkActorTarget*, u32, bool, bool, f32);
 void fn_710117662c(UnkActorTarget*, u32, u32, u32, u32, f32);
 
 struct UnkSabotoruTrackLink_A3_b73 {

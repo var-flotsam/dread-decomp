@@ -326,7 +326,7 @@ void fn_71002028c4(UnkRectOwner_ovb0061* self, UnkRectValue_ovb0061* out, u32 i)
 void fn_71001fd700(void* item);
 void fn_71001ee6f8(void* view);
 void fn_71001eefb4(void* view);
-void fn_71001ef9a4(void* view, u32 arg);
+void fn_71001ef9a4(void* view, bool);
 void fn_71001ee784(void* view);
 
 // The visitor handed to the view's root (vtable 0x7101a1f500).

@@ -26,7 +26,7 @@ struct UnkContactBuffer {
     UnkContactPoint_ov110 points[N];
 };
 bool fn_710012b330(const UnkBox2D* a, const void* b, UnkContactBuffer<4>* out, bool flag);
-bool fn_7100d5bfbc(void* tracker, u32 mask, UnkCollisionObject* object, void* arg, u32 flags);
+bool fn_7100d5bfbc(void* tracker, u32 mask, UnkCollisionObject* object, void* arg, u16);
 
 struct UnkGfxFrameSource;
 extern UnkGfxFrameSource* g_unk_7101d47328;

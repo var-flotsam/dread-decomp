@@ -41,7 +41,7 @@ const base::reflection::CClass* fn_710009921c();  // base::reflection::CEnumType
 const base::reflection::CClass* fn_710009a11c();  // base::reflection::CFlagsetType::refl_GetClass
 const base::reflection::CClass* fn_710009bedc();  // base::reflection::CPointerType::refl_GetClass
 const base::reflection::CClass* fn_710009c7b8();  // base::reflection::CType::refl_GetClass
-const base::reflection::CClass* fn_71000e88c0();  // base::reflection::CVariable::refl_GetClass
+void fn_71000e88c0();  // base::reflection::CVariable::refl_GetClass
 const base::reflection::CClass* fn_71000e8a5c();  // base::res::CRes::refl_GetClass
 const base::reflection::CClass* fn_71000f583c();  // base::snd::CSoundSystemATK::CTunableSoundSystemATK::refl_GetClass
 const base::reflection::CClass* fn_7100106b68();  // base::snd::CSoundSystem::CTunableSoundSystem::refl_GetClass

@@ -30,7 +30,7 @@ struct UnkScourgeTongueSlashAttack {
     f32 timer;  // 0x60
 };
 
-void fn_710069afac(UnkScourgeTongueSlashAttack* self, u32 unused);
+void fn_710069afac(UnkScourgeTongueSlashAttack* self, bool);
 void fn_710069b410(UnkScourgeTongueSlashAttack* self);
 
 void fn_710069b338(UnkScourgeTongueSlashAttack* self, f32 delta) {

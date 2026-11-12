@@ -469,7 +469,7 @@ struct UnkMmSrc_b0199 {
     CStrId id;  // 0x30
 };
 
-void fn_7100e94608(UnkMmLookup_b0199* self, void* unused, UnkMmSrc_b0199* src, u8* dst) {
+void fn_7100e94608(UnkMmLookup_b0199* self, u32 unused, UnkMmSrc_b0199* src, u8* dst) {
     u32 state = *(u32*)dst;
     if (state == 0) {
         fn_7100eb7680(dst + 4);

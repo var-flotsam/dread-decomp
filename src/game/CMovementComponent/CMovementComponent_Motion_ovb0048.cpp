@@ -660,7 +660,7 @@ struct UnkResetMovement2_ovb0048 {
 };
 static_assert(__builtin_offsetof(UnkResetMovement2_ovb0048, step) == 0x214, "layout");
 
-void fn_71010d2f84(UnkResetMovement2_ovb0048* self) {
+void fn_71010d2f84(UnkResetMovement2_ovb0048* self, bool) {
     self->field_0x1d8 = UnkVec3f(0.0f, 0.0f, 0.0f);
     self->field_0x1e4 = UnkVec3f(0.0f, 0.0f, 0.0f);
     self->field_0x208 = UnkVec3f(0.0f, 0.0f, 0.0f);

@@ -317,7 +317,7 @@ struct UnkDoorList_b0193 {
     u32 count;
 };
 UnkDoorList_b0193* fn_71007b5d90(UnkShape* shape);
-u32 fn_7100d57f44(UnkShape* shape, UnkCollisionObject* object, void* a, u32 b);
+bool fn_7100d57f44(UnkShape* shape, UnkCollisionObject* object, void* a, u32 b);
 
 struct UnkDoorOwner_b0193 {
     u8 unk_0x0[0x1b4];
