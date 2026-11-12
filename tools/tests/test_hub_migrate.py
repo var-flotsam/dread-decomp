@@ -124,6 +124,34 @@ class Plan(unittest.TestCase):
         self.assertEqual(hub_migrate.first_line(""), "")
 
 
+class Forwards(unittest.TestCase):
+    BEFORE = "#pragma once\nstruct UnkOld;\nvoid fn_7100000010(UnkOld*);\n"
+
+    def test_unused_new_forward_is_found(self):
+        now = "#pragma once\nstruct UnkGone;\nstruct UnkOld;\nstruct UnkUsed;\nvoid fn_7100000010(UnkOld*);\n" \
+              "void fn_7100000020(UnkUsed*);\n"
+        self.assertEqual(hub_migrate.unused_forwards(now, self.BEFORE), ["UnkGone"])
+
+    def test_forward_the_header_had_is_kept(self):
+        # unused, but not ours to remove
+        now = "#pragma once\nstruct UnkOld;\n"
+        self.assertEqual(hub_migrate.unused_forwards(now, self.BEFORE), [])
+
+    def test_a_longer_name_is_not_a_use(self):
+        now = "#pragma once\nstruct UnkGone;\nstruct UnkOld;\nvoid fn_7100000010(UnkOld*, UnkGone2*);\n"
+        self.assertEqual(hub_migrate.unused_forwards(now, self.BEFORE), ["UnkGone"])
+
+    def test_class_keyword_and_trailing_comment(self):
+        now = "class UnkGone;  // from a plan\nstruct UnkOld;\n"
+        self.assertEqual(hub_migrate.unused_forwards(now, self.BEFORE), ["UnkGone"])
+        self.assertEqual(hub_migrate.drop_forwards(now, ["UnkGone"]), "struct UnkOld;\n")
+
+    def test_drop_leaves_the_rest(self):
+        now = "struct UnkA;\nstruct UnkGone;\nstruct UnkB;\nvoid fn_7100000010(UnkA*, UnkB*);\n"
+        self.assertEqual(hub_migrate.drop_forwards(now, ["UnkGone"]),
+                         "struct UnkA;\nstruct UnkB;\nvoid fn_7100000010(UnkA*, UnkB*);\n")
+
+
 class ReadWrite(unittest.TestCase):
     def test_write_crlf(self):
         with tempfile.TemporaryDirectory() as d, mock.patch.object(hub_migrate, "ROOT", Path(d)):

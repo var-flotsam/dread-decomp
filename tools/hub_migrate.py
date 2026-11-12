@@ -40,6 +40,11 @@ src/reflection*/, src/lifted/, src/tables/) that include a header to edit are li
 smallest --generated-sample of them per header (default 2) are rebuilt with the rest: baseline.py
 otherwise sees hand-written files only, so a header type that clashes with a generated declaration
 showed only in check.py.
+tools/decl_plan.py --write puts the forward declarations a plan needs into the headers before this
+runs. A symbol that goes back leaves its forward declaration behind, and one such name can stop
+another file compiling (a file with its own type of that name in a namespace it opens). At the end
+of a plan run every forward declaration a header gained since HEAD that nothing in the header uses
+is removed again (printed as DROPPED).
 Exit 0 when every file migrated; 1 when some were restored; 2 when a symbol has no usable header.
 Nothing is committed; `git diff --stat` shows the result. Standard library only, plus the project tools.
 """
@@ -143,6 +148,35 @@ def add_include(text: str, spelling: str) -> str:
         pos += len(lines[i]) + 1
         i += 1
     return text[:pos] + ("\n" if pos and not text[:pos].endswith("\n\n") else "") + line + "\n\n" + text[pos:].lstrip("\n")
+
+
+FORWARD = re.compile(r"^(?:struct|class)[ \t]+(\w+)[ \t]*;[^\n]*\n", re.M)
+
+
+def unused_forwards(text: str, before: str) -> list[str]:
+    """Names forward-declared in `text` and not in `before` (the header as committed) that nothing
+    else in `text` mentions."""
+    had = set(FORWARD.findall(before))
+    out = []
+    for m in FORWARD.finditer(text):
+        name = m.group(1)
+        if name not in had and not re.search(rf"\b{re.escape(name)}\b", text[:m.start()] + text[m.end():]):
+            out.append(name)
+    return out
+
+
+def drop_forwards(text: str, names: list[str]) -> str:
+    for name in names:
+        text = re.sub(rf"^(?:struct|class)[ \t]+{re.escape(name)}[ \t]*;[^\n]*\n", "", text, count=1, flags=re.M)
+    return text
+
+
+def committed(path: str) -> str:
+    """The file's text at HEAD, empty for a new file."""
+    try:
+        return decl_check.git("show", f"HEAD:{path}").decode("utf-8", errors="replace").replace("\r\n", "\n")
+    except Exception:
+        return ""
 
 
 def canonical_header(report: decl_check.Report, symbol: str, header: str | None) -> tuple[str | None, str]:
@@ -509,6 +543,14 @@ def migrate_plan(plan: list[tuple[str, str, str | None]], version: str, dry_run:
         print(f"retrying {len(retry)} symbol(s) that went back together with others, one run each")
         for s in retry:
             worst = max(worst, migrate([s], version, sym_header[s], sym_decl[s], False, jobs))
+    for hdr in sorted({h for _, h, _ in plan}):
+        if not (ROOT / hdr).exists():
+            continue
+        text, crlf = read(hdr)
+        names = unused_forwards(text, committed(hdr))
+        if names:
+            write(hdr, drop_forwards(text, names), crlf)
+            print(f"  DROPPED  {hdr}  forward declaration(s) nothing in it uses: " + " ".join(names))
     return worst
 
 
