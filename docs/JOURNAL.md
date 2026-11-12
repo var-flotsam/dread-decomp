@@ -152,6 +152,16 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Held matches into the tree (2026-11-12).** Three functions that matched and waited in `drafts/` for a
+declaration moved to `src/`: `fn_7100eeaed0` (the mask type three files defined is `game/UnkMask.h`; unit 2577's
+helpers are declared in its header), `fn_7100df31b8` (into the file that has its helper; its four callers
+declared its arguments as `(u32, bool, bool, id, u32)` where the definition reads `(bool, bool, u32, id, bool)`,
+the same registers) and `fn_7100ac6850` (into its unit's file). One is left, `fn_71008c3dcc`: it calls
+`fn_7100353be8`, which returns a counted reference that 30 files define as a struct of their own and 6 as an
+alias of `base::UnkRefPtrMember`. Reusable: the last one matched only with `aligned(8)` on a global array of
+0x18-byte keys declared as bytes; the key's first word is a pointer, and with that member in the struct the
+attribute is not needed. An alignment attribute on a global is a missing pointer or 64-bit member.
+
 **One id table (2026-11-12).** `UnkGameManagerIdTable` was defined in 60 files (768 lines), which also made its
 labelled constructor and destructor the two most copied declarations in the tree and kept two matches in
 `drafts/`. The header `game/UnkGameManagerIdTable.h` has the 38 slots those files read; every file builds to the

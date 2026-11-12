@@ -38,9 +38,9 @@ a generated file: regrade a draft rather than trust its row.
 | Total | 197 | 99.5 KB |
 
 154 of the 197 are at 90% similarity or better. Two more drafts matched cleanly and went to `src/`
-(`fn_7100ad3404`, `fn_7100df81fc`). The two held back (`fn_7100df31b8`, `fn_7100eeaed0`) match too, but
-each declares a callee with other parameter types than files in `src/` do, and one defines two functions
-`src/` already has: they wait for those declarations to be settled.
+(`fn_7100ad3404`, `fn_7100df81fc`). The two held back then (`fn_7100df31b8`, `fn_7100eeaed0`) went to `src/` on 2026-11-12, once the
+declarations they disagreed with were settled; so did four of the five matches the 40-function test
+left here. One match is still held: `fn_71008c3dcc` (see its note in `INDEX.csv`).
 
 The first row is what the "verified equivalent" tier and a permuter are for. A registers-only difference is
 a strong sign of equivalence but not proof of it: an inconsistent register swap changes behaviour, so
