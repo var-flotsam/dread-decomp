@@ -5,12 +5,12 @@
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkTU958.h"
 
-void* fn_7100633198() {
+void fn_7100633198() {
     UnkManager_71726af468* manager = g_unk_71726af468;
     if (!manager) {
         manager = static_cast<UnkManager_71726af468*>(fn_71000839a0(0x2610, 3));
         fn_7100da7e2c(manager);
         g_unk_71726af468 = manager;
     }
-    return fn_710063c670(manager->pad_0x0 + 0x80);
+    fn_710063c670(manager->pad_0x0 + 0x80);
 }

@@ -118,8 +118,10 @@ There were 312 on 2026-11-11, 168 of them with `void` on one side and a value on
 are settled: in 96 the definition returns a value (it matches, and the original sets the result register
 or a caller reads it) and the `void` declarations took its result type; in 4 the definition is `void`, no
 caller in the original reads a result, and the declarations became `void`. Every touched file builds to
-the same output. 216 are left: 95 with a parameter of another class, 68 `void` against a value, 34 with
-another number of parameters, 19 with a result of another class. The 68:
+the same output. Six more were settled by reading the original (#372): `fn_7100362324` returns the entry
+`fn_71003646b0` returns, and `fn_7100017ba0`, `fn_710063c670`, `fn_710081b510` and `fn_7100d8e0a0` return nothing,
+so the functions that end by calling them return nothing either. 211 are left: 95 with a parameter of another
+class, 62 `void` against a value, 35 with another number of parameters, 19 with a result of another class. The 62:
 
 **46: a file stores the function's address in a pointer, or hands it to a template, typed for the `void` form; the pointer's type has to change with the declaration.**
 `fn_71000272cc` `fn_7100027418` `fn_71000cc800` `fn_71000cc890` `fn_71000ccca8` `fn_71000ccd84` `fn_71000cce60` `fn_71000ccf08` `fn_71000cd2a4` `fn_71000cd338` `fn_71002332e0` `fn_7100248b38` `fn_7100339d48` `fn_71004c31f8` `fn_71004cb0e8` `fn_71006895a0` `fn_71007124d8` `fn_7100712538` `fn_71007ab7d8` `fn_71007f5d24` `fn_7100a52ebc` `fn_7100ad37c0` `fn_7100adc4c0` `fn_7100aec000` `fn_7100caad50` `fn_7100caadb0` `fn_7100d86e94` `fn_7100da5184` `fn_7100eac64c` `fn_7100eac82c` `fn_7100eb31f0` `fn_7100eb3278` `fn_7100eb331c` `fn_7100f796b8` `fn_7100f87480` `fn_7100f89fd8` `fn_7100f94d0c` `fn_7100fedf08` `fn_7100feefa0` `fn_7101048588` `fn_71010c6cdc` `fn_7101130850` `fn_710117a018` `fn_710117b3f8` `fn_71011e7d60` `fn_71011e7e8c`
@@ -127,8 +129,8 @@ another number of parameters, 19 with a result of another class. The 68:
 **10: the definition returns a struct by value (`UnkReflValue` and others) that a declaring file does not define.**
 `python tools/decl_check.py --definitions` shows them.
 
-**12: the definition is `void`, a declaration returns a value, and a hand-written caller uses it. The definition has to return the value (most forward a callee's result), which needs the callee's result settled first.**
-`fn_7100017ba0` `fn_71000e88c0` `fn_7100202e7c` `fn_710025f17c` `fn_7100362324` `fn_71005026d0` `fn_710063c670` `fn_71007038f4` `fn_710081b510` `fn_7100d8e0a0` `fn_7100e4fd1c` `fn_7100e5493c`
+**6: the definition is `void`, a declaration returns a value, and a hand-written caller uses it.** `fn_7100202e7c` forwards `fn_71001ef494`'s result to a caller that returns it as a `bool`, but written that way it gains an `and w0, w0, #1` the original does not have; `fn_71000e88c0` is declared as a class getter by the generated `UnkClassGetters.h` and is an initialiser that returns nothing.
+`fn_71000e88c0` `fn_7100202e7c` `fn_71005026d0` `fn_71007038f4` `fn_7100e4fd1c` `fn_7100e5493c`
 
 ## Names that point to more than one address
 

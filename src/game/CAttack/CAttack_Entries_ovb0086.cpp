@@ -67,8 +67,7 @@ struct UnkAttackEntry_b0086 {
 };
 
 static inline UnkAttackEntry_b0086* GetEntry(UnkAttackTarget_b0086* target, u32 value) {
-    return reinterpret_cast<UnkAttackEntry_b0086* (*)(UnkAttackTarget_A2_b68*, u32)>(&fn_71003646b0)(
-        reinterpret_cast<UnkAttackTarget_A2_b68*>(target), value);
+    return static_cast<UnkAttackEntry_b0086*>(fn_71003646b0(reinterpret_cast<UnkAttackTarget_A2_b68*>(target), value));
 }
 
 // The entry for `value`, or for the AI component's value when its string id names the same string

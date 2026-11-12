@@ -38,7 +38,7 @@ struct UnkIdMap {
 };
 
 template <class V, void (*Destroy)(V*), void (*Free)(UnkIdMap<V>*), void (*Allocate)(UnkIdMap<V>*, u32),
-          V* (*AssignValue)(V*, const V*)>
+          void (*AssignValue)(V*, const V*)>
 static inline UnkIdMap<V>* Assign(UnkIdMap<V>* self, const UnkIdMap<V>* other) {
     if (self != other) {
         if (self->keys)
@@ -89,7 +89,7 @@ __attribute__((always_inline)) inline void DestroyVirtual(UnkVirtualRecord60* re
 using UnkIdVirtualRecordMap = UnkIdMap<UnkVirtualRecord60>;
 void fn_7100260164(UnkIdVirtualRecordMap* self);                // frees the storage
 void fn_710025fdf4(UnkIdVirtualRecordMap* self, u32 capacity);  // Reserve
-UnkVirtualRecord60* fn_710025f17c(UnkVirtualRecord60* self, const UnkVirtualRecord60* other);
+void fn_710025f17c(UnkVirtualRecord60* self, const UnkVirtualRecord60* other);
 
 UnkIdVirtualRecordMap* fn_710025ff90(UnkIdVirtualRecordMap* self, const UnkIdVirtualRecordMap* other) {
     return Assign<UnkVirtualRecord60, DestroyVirtual, fn_7100260164, fn_710025fdf4, fn_710025f17c>(self, other);

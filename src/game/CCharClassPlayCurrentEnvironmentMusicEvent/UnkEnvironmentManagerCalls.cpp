@@ -21,8 +21,8 @@ __attribute__((always_inline)) static inline void* GetEnvironmentManager() {
     return manager;
 }
 
-void* fn_7100cc959c() {
-    return fn_7100d8e0a0(GetEnvironmentManager());
+void fn_7100cc959c() {
+    fn_7100d8e0a0(GetEnvironmentManager());
 }
 
 void* fn_7100cc9b2c() {
