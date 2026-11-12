@@ -62,7 +62,7 @@ void fn_7101103aa8(UnkEmmyCaveAIStart_b49* self, f32 speed);
 void fn_71011061d0(UnkBoundsComponent* self, UnkAabb* out);
 void fn_7101108004(UnkAIBB_b0144* self, void* arg);
 bool fn_7101108c9c(UnkDaivoAIComponent_b46a1* self, UnkDaivoArg_b46a1* arg);
-void fn_710110bb4c(UnkQuetzoaXAI_ovb0134* self, UnkQuetzoaOther_ovb0134* other, void* arg, bool flag);
+void fn_710110bb4c(UnkQuetzoaXAI_ovb0134* self, UnkQuetzoaOther_ovb0134* other, u32 id, bool flag);
 bool fn_710110f3cc(UnkChozoRobotSoldierAI_b66a2* self, u16 id, u32 a2, void* a3, void* a4, void* a5, u32 a6, u32 a7);
 void fn_710110fae4(void* emmy, void* block);
 void fn_7101112ab0(void* self);

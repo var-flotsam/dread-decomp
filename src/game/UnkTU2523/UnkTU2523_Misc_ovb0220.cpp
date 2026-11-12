@@ -412,9 +412,9 @@ struct UnkEntityPart_b0220 {
     u8 pad_0x8[0xf9 - 0x8];
     bool field_0xf9;
 
-    void Notify(bool flag) {
-        (*reinterpret_cast<void (**)(UnkEntityPart_b0220*, bool)>(reinterpret_cast<char*>(vtable) + 0x1e8))(this,
-                                                                                                         flag);
+    void Notify(bool flag, f32 value) {
+        (*reinterpret_cast<void (**)(UnkEntityPart_b0220*, bool, f32)>(reinterpret_cast<char*>(vtable) + 0x1e8))(
+            this, flag, value);
     }
 };
 
@@ -425,11 +425,11 @@ struct UnkEntitySend_b0220 {
     void* field_0x220;
 };
 
-void fn_7100d7babc(UnkEntitySend_b0220* self, bool flag) {
+void fn_7100d7babc(UnkEntitySend_b0220* self, bool flag, f32 value) {
     UnkEntityPart_b0220* part = self->part;
     if (!part)
         return;
-    part->Notify(flag);
+    part->Notify(flag, value);
     if (flag && !part->field_0xf9 && self->field_0x220)
         UnkSpitSend(self->field_0x220, IdTable_b0220().field_0x1d78->id, 0xf4061ff25a2163d6);
 }

@@ -387,7 +387,9 @@ struct UnkCancelSelf_b0143 {
     u32 count;  // 0x1618
 };
 
-void fn_710110bb4c(UnkCancelSelf_b0143* self, void* arg, u32 id) {
+// Both callers also set a flag as a fourth argument; nothing here reads it (the call this ends with
+// gets its own fourth argument).
+void fn_710110bb4c(UnkCancelSelf_b0143* self, void* arg, u32 id, bool) {
     u32 total = 0;
     u64 size = (u64)self->count << 3;
     // Keeps the byte size as the emptiness test.

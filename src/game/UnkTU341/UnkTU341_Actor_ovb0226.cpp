@@ -155,7 +155,10 @@ struct UnkActor_7100232c90 {
     bool frozen;  // 0x1b5
 };
 
-void fn_7100232c90(UnkActor_7100232c90* self, f32 dt) {
+// Its caller (fn_7100d7b068) sets a third argument, a flag, for each call. Nothing here reads it: the
+// first part's update is called with the register as it came, the later ones with whatever the
+// previous call left there, so it is not an argument of that call.
+void fn_7100232c90(UnkActor_7100232c90* self, f32 dt, bool) {
     if (self->frozen)
         return;
     for (UnkPart_7100232c90 **it = self->parts, **end = it + self->part_count; it != end; ++it) {
