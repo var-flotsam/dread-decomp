@@ -15,15 +15,15 @@ struct UnkMember_0x10 {
     alignas(8) u8 unk[0x70];
 };
 struct UnkMember_0x80 {
-    UnkMember_0x80() asm("fn_7100639cf8");  // fn_7100639cf8
+    UnkMember_0x80();  // fn_7100639cf8
     alignas(8) u8 unk[0xb8];
 };
 struct UnkMember_0x138 {
-    UnkMember_0x138() asm("fn_710059c5d8");  // fn_710059c5d8
+    UnkMember_0x138();  // fn_710059c5d8
     alignas(8) u8 unk[0xf0];
 };
 struct UnkMember_0x228 {
-    UnkMember_0x228() asm("fn_71004751f8");  // fn_71004751f8
+    UnkMember_0x228();  // fn_71004751f8
     alignas(8) u8 unk[0x90];
 };
 struct UnkMember_0x2b8 {
@@ -51,7 +51,7 @@ struct UnkMember_0x568 {
     alignas(8) u8 unk[0x78];
 };
 struct UnkMember_0x5e0 {
-    UnkMember_0x5e0() asm("fn_71006a1cc0");  // fn_71006a1cc0
+    UnkMember_0x5e0();  // fn_71006a1cc0
     alignas(8) u8 unk[0x348];
 };
 struct UnkMember_0x928 {

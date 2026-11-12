@@ -35,7 +35,7 @@ struct UnkCollisionRecord {
     UnkCollisionObject* field_0x28;
 
     UnkCollisionRecord() asm("fn_710072676c");   // fn_710072676c
-    ~UnkCollisionRecord() asm("fn_7100726674");  // fn_7100726674
+    ~UnkCollisionRecord();  // fn_7100726674
     UnkCollisionRecord(UnkCollisionRecord&& other) = default;
 };
 static_assert(sizeof(UnkCollisionRecord) == 0x30, "UnkCollisionRecord placeholder layout");
