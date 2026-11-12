@@ -33,6 +33,7 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkSceneObject.h"
 #include "game/UnkTU2523.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2702.h"
 #include "game/UnkTU280.h"
 #include "game/UnkTU811.h"
@@ -521,9 +522,7 @@ void fn_710050a1b0(UnkStruct_710050f26c* attack) {
 struct UnkSelf;
 struct UnkEmmyGrabAttack_A3_b67;
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkOwner;
-UnkOwner* fn_7100defcd4(UnkGameManager*);
 bool fn_7100df34c8(UnkGameManager* self, void* a, void* b, void* c, void* d, bool e, bool f);
 void fn_7100df31b8(UnkGameManager* self, u32 a, bool b, bool c, CStrId id, u32 d);
 struct UnkGrabAttack_b58a3;

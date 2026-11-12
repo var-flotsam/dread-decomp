@@ -12,16 +12,19 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityEnergyWave.h"
+#include "game/CAutclastChargeAttack.h"
 #include "game/CBreakableTileGroup.h"
 #include "game/CCharacterMovement.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU134.h"
 #include "game/UnkTU218.h"
 #include "game/UnkTU25.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2689.h"
+#include "game/UnkTU2739.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -61,7 +64,6 @@ struct UnkMorphBall_b7c4 {
 
 extern CStrId g_unk_7172739458 __attribute__((visibility("hidden")));
 CStrId* fn_7100864018(UnkCollisionContainer* self, void* object);
-bool fn_7100df5a4c(UnkGameManager* self);
 
 bool fn_710094b7c4(UnkMorphBall_b7c4* self) {
     if (self->mode == 2) {
@@ -294,9 +296,6 @@ struct UnkMorphBallFxVtable_75b0 {
     void (*set_loop)(UnkFxObject_ovb0041* self, bool loop);               // 0x90
     void (*set_speed)(UnkFxObject_ovb0041* self, f32 speed);              // 0x98
 };
-UnkFxObject_ovb0041* fn_71003b7db0(UnkModelManager* self, const void* path, bool a, bool b);
-void fn_71011a9bb4(UnkModelManager* self, UnkFxObject_ovb0041* fx);
-void fn_7100146dac(UnkSwitchObject* self, bool enable);
 
 extern const u8 g_unk_7172739470[] __attribute__((visibility("hidden")));  // the effect's path id
 

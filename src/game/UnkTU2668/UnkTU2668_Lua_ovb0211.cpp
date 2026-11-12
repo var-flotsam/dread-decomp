@@ -23,8 +23,6 @@ struct lua_State;
 #include "base/UnkVector.h"
 #include "types.h"
 
-extern lua_State* g_unk_7172a01d18;
-
 // An array of 8-byte elements (base::UnkVector's layout) on the scratch stack below, which packs
 // its arrays after its count, so their words are only 4-byte aligned.
 struct __attribute__((packed, aligned(4))) UnkLuaScratch {
@@ -193,7 +191,6 @@ struct UnkScriptManager_ovb0085;
 extern "C" lua_State* luaL_newstate(void);
 extern "C" int (*lua_atpanic(lua_State* L, int (*panicf)(lua_State*)))(lua_State*);
 
-extern lua_State* g_unk_7172a01d18;
 extern void* (*g_unk_7101caf820)(u64 size);
 extern void (*g_unk_7101caf828)(void* ptr);
 extern void (*g_unk_7101caf830)(const char* format, ...);

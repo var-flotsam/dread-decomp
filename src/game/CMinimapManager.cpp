@@ -18,6 +18,7 @@
 #include "game/CAbilityEnergyWave.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2566.h"
+#include "game/UnkTU259.h"
 #include "game/UnkTU287.h"
 #include "game/UnkTU39.h"
 #include "game/UnkTU426.h"
@@ -567,7 +568,6 @@ void fn_7100e93e04(UnkMinimapOwner* self) {
 extern const u32 g_unk_7101648bb8;  // the screen's width and height in pixels
 extern const u32 g_unk_7101648bbc;
 
-f32 fn_71001d7320(UnkGlobal_710b372a98* self);
 struct UnkStruct_710020a5a0;
 void fn_710020a5a0(UnkStruct_710020a5a0* self, const base::math::CVector2D* scale);
 

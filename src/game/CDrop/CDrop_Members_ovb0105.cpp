@@ -134,8 +134,6 @@ extern CStrId g_unk_71727c1068;
 extern CStrId g_unk_71727c1070;
 extern CStrId g_unk_71727c1078;
 
-s32 fn_7100dffc58(UnkGameManager* manager);
-
 struct UnkDropAmount_b0105 {
     u8 pad_0x0[0x460];
     CStrId item;  // 0x460

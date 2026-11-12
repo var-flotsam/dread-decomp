@@ -11,8 +11,11 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CAutclastChargeAttack.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU134.h"
+#include "game/UnkTU2739.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -42,8 +45,6 @@ void fn_71004c8330(UnkLavaDrops_ovb0111* self) {
 extern const u64 g_unk_7101649b08;  // reached through the GOT
 extern const u8 g_unk_71726d7cd0[] __attribute__((visibility("hidden")));  // the effect's path id
 
-void fn_7100146dac(UnkSwitchObject* self, bool enable);
-
 struct UnkFxObject_ovb0041;
 struct UnkFxObjectVtable_ovb0111 {
     void* unk_0x0[2];
@@ -57,8 +58,6 @@ struct UnkFxObjectVtable_ovb0111 {
 static inline UnkFxObjectVtable_ovb0111* FxVtable(UnkFxObject_ovb0041* fx) {
     return *reinterpret_cast<UnkFxObjectVtable_ovb0111**>(fx);
 }
-UnkFxObject_ovb0041* fn_71003b7db0(UnkModelManager* self, const void* path, bool a, bool b);
-void fn_71011a9bb4(UnkModelManager* self, UnkFxObject_ovb0041* fx);
 
 
 struct UnkLavaDropsFx_ovb0111 {

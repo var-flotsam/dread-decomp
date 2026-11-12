@@ -9,14 +9,14 @@
 #include "game/CBreakableVignetteComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2553.h"
+#include "game/UnkTU315.h"
 #include "types.h"
 
 using base::math::CVector2D;
 using base::math::CVector3D;
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
-void fn_7100219c6c(UnkRenderManager*, bool, u64, u32, bool);
 
 struct UnkPlayerTransform_bvc {
     u8 pad_0x0[0x44];

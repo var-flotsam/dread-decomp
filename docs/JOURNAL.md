@@ -152,6 +152,16 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Third declarations pass: types every file agrees on (2026-11-12).** `tools/decl_plan.py` could not plan a
+declaration whose types the declaring file takes from an include. It now forward-declares such a type in the unit
+header when every file of the tree agrees on it: one keyword (`struct`, `class` or `union`), never an alias, never
+named through a namespace (`type_index`). That planned 437 more symbols, and `tools/hub_migrate.py` moved all of
+them with every touched file's output unchanged (nothing left, nothing undone), among them the hubs
+`fn_7100dec788` (125 copies) and `fn_7100d78378` (34). Symbols declared in more than one file: 1,526 to 1,089;
+extra copies: 4,365 to 3,256. One of the five matches of the 40-function test that waited in `drafts/` for those
+hubs went into `src/` (`fn_71006de940`); four still wait (`UnkGameManagerIdTable`'s labelled members,
+`fn_7100353be8`'s `UnkRef`, `fn_7100a2cddc` and two globals).
+
 **The 40-function test of shared headers: no gain (2026-11-12).** The owner approved the test that was to decide
 whether struct headers are generated before bulk runs resume. 20 functions (status `U`, 130 to 450 bytes, one per
 unit, units whose class has reflected members), each attempted once per arm by a fresh Sonnet worker with the

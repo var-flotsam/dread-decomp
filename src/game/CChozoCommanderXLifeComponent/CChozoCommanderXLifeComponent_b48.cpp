@@ -5,6 +5,7 @@
 // (fn_7100232864). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
+#include "game/CChozoCommanderXLifeComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
@@ -12,7 +13,6 @@
 using base::global::CStrId;
 
 CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
-extern UnkProperty g_unk_7172730210;  // "Dead"
 
 struct UnkEntityState;
 void fn_7100232864(UnkEntityState* entity, bool value);

@@ -1,12 +1,12 @@
 // Unit 214 (tools/tu_map.py): a camera-like object's lazily built projection matrix (+0xf0).
 // Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
+#include "game/UnkTU178.h"
 #include "game/UnkTU53.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 UnkMatrix44 fn_71000791a8(const UnkVec3f& translation, const UnkVec3f& angle, const UnkVec3f& scale);
-void fn_710015bf40(UnkMatrix44*, f32);
 
 struct UnkViewport_b0249 {
     u8 pad_0x0[8];

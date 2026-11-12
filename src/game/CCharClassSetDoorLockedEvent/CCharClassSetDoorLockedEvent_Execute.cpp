@@ -5,15 +5,14 @@
 #include "base/global/CStrId.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU367.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkWeakTarget;
-UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 
 struct UnkDoorLock;
-UnkDoorLock* fn_71002af860(UnkWeakTarget* entity);
 bool fn_71008d586c(UnkDoorLock* door, bool locked, u32 mode, CStrId* name);
 
 struct UnkSetDoorLockedEvent {

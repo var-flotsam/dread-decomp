@@ -4,12 +4,13 @@
 #include "game/CPullableGrapplePointComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1376.h"
+#include "game/UnkTU2553.h"
+#include "game/UnkTU367.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 struct UnkWeakTarget;
 struct UnkDoorLock;
-UnkDoorLock* fn_71002af860(UnkWeakTarget*);
 
 // A 12-byte zeroed argument (as src/game_s2/fn_710035131c.cpp's).
 struct UnkVec {
@@ -17,7 +18,6 @@ struct UnkVec {
     u32 field_0x4;
     u32 field_0x8;
 };
-void fn_7100e038b0(UnkGameManager* dispatcher, void* key, UnkVec* vec, u64 arg);
 
 extern const u64 g_unk_710164ac38;  // timeline id when grabbed
 extern const u64 g_unk_710164ac30;  // timeline id otherwise

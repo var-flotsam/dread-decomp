@@ -5,6 +5,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/CActionInstance.h"
+#include "game/UnkTU1134.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -67,7 +68,6 @@ void fn_7100a2e4a0(UnkTimelineListenerLock_ovb0089* self);
 
 struct UnkTrack;
 struct UnkCutsceneTimeline;
-UnkCutsceneTimeline* fn_710070d4e8(UnkTrack* track);
 struct UnkPlayer_b42;
 
 struct UnkTimelineNamed_ovb0089 {

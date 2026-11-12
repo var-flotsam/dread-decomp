@@ -5,6 +5,7 @@
 // layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAnimationComponent.h"
 #include "game/CScorpiusAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
@@ -27,7 +28,6 @@ struct UnkScorpiusPathAI_ovb0125 : UnkReflObject {
 };
 
 extern "C" int rand();
-void* fn_7101177d2c(UnkAnimationComponent* self, u64 key);
 struct UnkTunable;
 extern UnkTunable g_unk_7172702608;
 

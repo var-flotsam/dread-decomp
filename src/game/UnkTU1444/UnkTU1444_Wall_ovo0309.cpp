@@ -7,11 +7,9 @@
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkObject_0x100.h"
+#include "game/UnkTU376.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
-
-void fn_71002b57bc(UnkObject_0x100* self);
-UnkObject_0x100* fn_71002b5c90(UnkObject_0x100* self, const UnkObject_0x100* other);
 
 struct UnkOwner_o0309 {
     u8 pad_0x0[0x44];

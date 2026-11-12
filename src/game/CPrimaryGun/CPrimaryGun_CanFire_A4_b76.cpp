@@ -8,11 +8,11 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 struct UnkInventory;
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
-void* fn_7100df5460(UnkGameManager*);
 extern UnkPropertyEx<> g_unk_717275ac58;  // ITEM_CENTRAL_UNIT_DECAYED_ENERGY
 
 static inline const UnkQualifiedId& GetQualifiedId_A4_b76(UnkPropertyEx<>& item) {

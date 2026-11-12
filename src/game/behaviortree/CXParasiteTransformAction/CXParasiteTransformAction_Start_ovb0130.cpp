@@ -17,7 +17,6 @@ struct UnkStruct_0x68;
 void fn_7100394bd0(UnkStruct_0x68* self);
 // As src/game/CCharClassDissolveFanMudEvent/CCharClassDissolveFanMudEvent_Execute_A6_b63.cpp declares them.
 struct UnkWeakTarget;
-UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 
 // A string with 0x100 bytes of inline storage (0x148 bytes), as in
 // src/game/behaviortree/CStringEqualsCondition/CStringEqualsCondition_Check_A2_b72.cpp.

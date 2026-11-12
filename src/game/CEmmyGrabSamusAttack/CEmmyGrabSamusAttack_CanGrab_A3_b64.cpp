@@ -6,12 +6,11 @@
 // (+0x1b8, kind +0x70) may be 2. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU39.h"
 #include "types.h"
-
-bool fn_7101179c3c(UnkAnimationComponent* self, u64 key);
 
 struct UnkGrabKind2_A3_b64 {
     u8 pad_0x0[0x10];

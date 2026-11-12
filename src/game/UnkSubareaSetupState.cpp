@@ -16,6 +16,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU2611.h"
+#include "game/UnkTU315.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -59,7 +60,6 @@ void fn_71011a32d8(UnkGameManagerSub_0x608* self, u32 kind, const CStrId& id, bo
 u64 fn_71011a3574(UnkGameManagerSub_0x608* self, u32 kind, const CStrId& id);
 void fn_71011a4944(UnkGameManagerSub_0x608* self);
 void fn_71011a4954(UnkGameManagerSub_0x608* self);
-void fn_7100219c6c(UnkRenderManager* self, bool enable, u64 layer, u32 arg3, bool arg4);
 void fn_7100ca76a0(UnkGameManagerSub_0x1af8* self, const CStrId& id, bool enable);
 
 // The sub-area manager singleton (created on first use; 0xae8 bytes, constructor fn_7100ee1f34):

@@ -4,10 +4,10 @@
 // (fn_7100108084). Names and layouts are placeholders.
 #include "base/math/CVector.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 
 struct UnkSoundMgr;
 extern UnkSoundMgr* g_unk_7101d4d820;

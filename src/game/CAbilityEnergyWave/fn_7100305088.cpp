@@ -7,7 +7,9 @@
 
 #include "base/UnkVector.h"
 #include "game/CAbilityEnergyWave.h"
+#include "game/UnkTU2668.h"
 #include "game/UnkTU2677.h"
+#include "game/lua_lib.h"
 
 // A 64-bit name hash (CRC-64 of the string), built out of line. The value is a union member:
 // the original reloads the array's count after each element store.
@@ -30,10 +32,7 @@ struct UnkScriptCaller {
 
 // The global script state, reached through the GOT.
 struct lua_State;
-extern lua_State* g_unk_7172a01d18;
 
-s32 fn_71010c0bb0(lua_State* L, const char* name);
-int fn_7100fbc4e0(lua_State* L, void* arg);
 s32 fn_71010bf400(lua_State* L, const char* fmt, va_list args);
 
 bool fn_7100305088(UnkScriptCaller* self, const char* name, const char* fmt, ...) {

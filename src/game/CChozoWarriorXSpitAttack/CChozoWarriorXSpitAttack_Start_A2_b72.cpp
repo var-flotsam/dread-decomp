@@ -3,6 +3,8 @@
 // copies the empty sound handle (g_unk_7108b6c460) to +0x98 and hooks the callback fn_7100485918 (link at
 // +0xa8, handle at +0xc0) up to the object the owner (+0x8) tracks at +0x220, as
 // src/game/CChozoWarriorXGlaiveSpinAttack/UnkAttackTrackLink_b54.cpp. Names and layouts are placeholders.
+#include "game/CAbilityGhostAura.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU2772.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -10,8 +12,6 @@
 
 struct UnkAttackBase;
 void fn_71003608ac(UnkAttackBase* self);
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
-void fn_710117b3e8(UnkWeakTarget* target, void* link);
 void fn_7100485918();
 
 struct UnkSoundRef;

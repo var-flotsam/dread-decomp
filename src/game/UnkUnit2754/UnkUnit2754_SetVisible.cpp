@@ -2,9 +2,9 @@
 // on and a scene object is attached (+0x18), handing that object to the render manager's pass list
 // on the layer at +0x8 (fn_7100219bb4). Names and layouts are placeholders.
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU315.h"
 
 struct UnkSceneObj_71010e2278;
-void fn_7100219bb4(UnkRenderManager* mgr, UnkSceneObj_71010e2278* obj, u32 layer);
 
 struct UnkUnit2754Item {
     u8 pad_0x0[0x8];

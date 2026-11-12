@@ -29,7 +29,6 @@ struct UnkExtKey_ovb0274 {
 };
 
 struct UnkPathPairTemp_b45a1;
-UnkStrIdPathPair* fn_710008d88c(UnkStrIdPathPair* dst, const void* id, const void* path);
 
 struct UnkExtPair_ovb0274 {
     void* id;

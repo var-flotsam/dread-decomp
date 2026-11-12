@@ -6,6 +6,7 @@
 #include "base/global/CRntStringAssign.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU2744.h"
 
 using base::global::CRntString;
 
@@ -26,7 +27,6 @@ struct UnkObj_710118b384 {
 
 s32 fn_710007fb10(const base::global::CRntString*, char, s32);
 void fn_710007f564(void*, const char*);
-void fn_71011b6b5c(UnkGuiRoot*, u32);
 
 void fn_710118b384(UnkObj_710118b384* self) {
     CRntString* path = &self->path;

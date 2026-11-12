@@ -371,7 +371,6 @@ struct UnkTypedValue {
 };
 void fn_7100332c80(CBlackboard::CSection*, UnkPropertyName*, const UnkTypedValue*);
 CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
-extern UnkProperty g_unk_71727434e0;
 
 struct UnkPlatformValue_b61 {
     UnkPropertyName name;

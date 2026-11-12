@@ -14,8 +14,6 @@
 
 using base::global::CStrId;
 
-extern UnkProperty g_unk_7172731110;  // "StayOpened"
-
 // A typed value as the section setter takes it (as in src/game/CDoorLifeComponent.cpp).
 struct UnkTypedValue {
     const base::reflection::CType* type;

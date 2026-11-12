@@ -1,4 +1,6 @@
 // CMenuAnimationChangeComponent (unit 1423): hooking the component up to the object its owner tracks.
+#include "game/CAbilityGhostAura.h"
+#include "game/CAnimationComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 
 struct UnkMenuAnimOwner {
@@ -21,8 +23,6 @@ struct UnkMenuAnimChange {
 };
 
 void fn_7100932ed0();
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
-void fn_710117b3e8(UnkWeakTarget* target, void* link);
 
 // Registers the change callback with the object the owner tracks (nothing when there is none).
 void fn_7100932b48(UnkMenuAnimChange* self) {

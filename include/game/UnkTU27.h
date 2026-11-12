@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkAssetResRef;
+struct UnkStrIdPathPair;
 struct UnkEntry_7100d92158;
 struct UnkFactoryEntry;
 struct UnkRegistryKey;
@@ -19,3 +21,7 @@ void fn_71000204cc(void* context, void* arg);
 void fn_710002002c(UnkRegistry_7100d92158* registry, const UnkEntry_7100d92158& entry);
 void fn_7100020164(char* self);  // The entry's destructor.
 UnkFactoryEntry* fn_7100020320(UnkRegistry_7100d92158* registry, const UnkRegistryKey* key);
+
+// The resource the ids name, looked up in the registry (the flag's and the last argument's meanings are unknown; the
+// last is a 64-bit word).
+UnkAssetResRef fn_710002038c(UnkRegistry_7100d92158* registry, const UnkStrIdPathPair* ids, bool a, void* b);

@@ -4,13 +4,13 @@
 // link at +0x768 (handle at +0x780) to it, as src/game/CChozoWarriorXGlaiveSpinAttack/UnkAttackTrackLink_b54.cpp
 // without setting the callback. Returns 1. Names and layouts are placeholders.
 #include "base/UnkRefHandle.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/CAnimationComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 using UnkRef = base::UnkRefPtrMember;
 UnkRef fn_7100353be8(void* source);
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
-void fn_710117b3e8(UnkWeakTarget* target, void* link);
 
 struct UnkCentralUnitTrack_A3_b73 {
     u8 pad_0x0[0x440];

@@ -22,6 +22,7 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2547.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU437.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -32,7 +33,6 @@ extern const base::math::CVector4D g_unk_71016477b4;
 extern const u64 g_unk_710164a910 __attribute__((visibility("hidden")));
 extern const base::math::CVector4D g_unk_7101a6cfe8 __attribute__((visibility("hidden")));
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 char* fn_71003440dc(char* p0, u32 p1, char* p2, char* p3, char* p4, char* p5);
 
 struct UnkDoorRegistry_b61;

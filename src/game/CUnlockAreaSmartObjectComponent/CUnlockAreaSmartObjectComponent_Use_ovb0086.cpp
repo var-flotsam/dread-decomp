@@ -11,6 +11,7 @@
 #include "game/CInputComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2733.h"
 #include "types.h"
 
@@ -54,7 +55,6 @@ bool fn_7100a07a90(UnkUnlockAreaSmartObject_b0086* self) {
 using base::global::CStrId;
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkKraidGrab_b57a4;
 
 struct UnkUnlockAreaPlayer_b0086 {

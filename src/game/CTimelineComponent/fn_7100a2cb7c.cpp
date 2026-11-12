@@ -5,6 +5,7 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/CTimelineComponent.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
@@ -39,8 +40,6 @@ static inline void AppendCopy(base::UnkVector<UnkPendingAdd>& a, const UnkPendin
     new (&p[n]) UnkPendingAdd(value);
     ++a.count;
 }
-
-void fn_7100a2c200(UnkTimelineComponent* self, void* entry, const u32* value);
 
 // NON_MATCHING(minor): the duplicate-id scan's two exit tests are merged into one conditional
 // compare; the original branches on each (3 instructions).

@@ -18,6 +18,7 @@
 #include "game/CCollisionMaterialCacheComponent.h"
 #include "game/CDrop.h"
 #include "game/CFXComponent.h"
+#include "game/CInventoryComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
@@ -28,6 +29,7 @@
 #include "game/UnkTU52.h"
 #include "game/UnkTU92.h"
 #include "game/UnkXformNode.h"
+#include "game/lua_lib.h"
 #include "game/malloc.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
@@ -42,7 +44,6 @@ using base::reflection::UnkReflValue;
 using base::reflection::UnkTypedRef;
 
 struct lua_State;
-int fn_7100fbc4e0(lua_State* L, void* arg);
 
 // fn_7100fbc4e0 hands back the number of results it pushed.
 static inline s32 PushObject(lua_State* L, void* arg) {
@@ -513,7 +514,6 @@ bool fn_7101160214(UnkLuaPart_b0160* part, f32 value);
 extern void* g_unk_7101d47330;
 void fn_71011991c4(void* self, UnkReflObject* object);
 void fn_7101198450(void* self, UnkReflObject* object);
-UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 
 static inline UnkLuaOwner_b0160* FindById(UnkGameManager* manager, const CStrId& id, u32 kind) {
     u64 key = *reinterpret_cast<const u64*>(reinterpret_cast<const u8*>(id.data) + 0x30);
@@ -638,10 +638,7 @@ s32 fn_71010931b0(lua_State* L) {
 
 struct UnkInventory;
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
-void fn_7101142a28(UnkInventory* inventory, const UnkQualifiedId& item, bool a, bool b, bool c, f32 amount,
-                   f32 extra);
 
 struct UnkLuaPlayer_b0160 {
     u8 pad_0x0[0x270];

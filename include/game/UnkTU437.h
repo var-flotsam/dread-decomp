@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkActor;
 struct UnkAimTunable;
 struct UnkSelf;
 void fn_7100359118(void* self);
@@ -13,3 +14,4 @@ extern UnkAimTunable g_unk_71726b1438;
 extern void* g_unk_71726b1688;  // The light manager.
 extern void* g_unk_7101a23c58[];
 extern void* g_unk_7101a23c80[];
+void fn_7100352b14(void* body_field, UnkActor* owner, u32 flag);

@@ -10,6 +10,7 @@
 #include "base/UnkHashStream.h"
 #include "base/UnkRegistry.h"
 #include "base/UnkStrIdPathPair.h"
+#include "base/animation/CAnimationResource.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"
@@ -20,6 +21,8 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CAnimatedCameraCtrl.h"
+#include "game/CBombGun.h"
 #include "game/CCameraComponent.h"
 #include "game/CSpawnGroupComponent.h"
 #include "game/UnkCameraCtrl.h"
@@ -30,6 +33,8 @@
 #include "game/UnkTU0.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2577.h"
+#include "game/UnkTU2739.h"
+#include "game/UnkTU315.h"
 #include "game/UnkTU365.h"
 #include "types.h"
 #include "UnkLeftoverReg.h"
@@ -281,8 +286,6 @@ CFilePathStrId fn_7100e01d98(UnkGameManager* self, const CStrId& scenario, const
 // The extension of the file read last.
 extern CStrId g_unk_71729daef0 __attribute__((visibility("hidden")));
 
-extern UnkRegistry_0x70* g_unk_7101d4b5a0;
-
 // An id built from a string out of line, released like CStrId.
 struct UnkBuiltId {
     union {
@@ -385,7 +388,6 @@ struct UnkPlayer {
     u8 pad_0x0[0x1c0];
     UnkPlayerSub* field_0x1c0;
 };
-UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 
 struct UnkScenarioSub {
     u8 pad_0x0[0x58];
@@ -497,7 +499,6 @@ update:
 
 // What the reset (fn_7100ee34f0) calls. Names are placeholders.
 base::reflection::UnkReflObject* fn_7100d786c0(void* entity);  // its "CAMERA" component
-void fn_71010ea4fc(UnkCameraCtrl* ctrl);
 
 // A request taken off the queue: the id moved out of the queued one (released as CStrId is), and
 // the flags.
@@ -523,13 +524,10 @@ void fn_7100ee4704(CSubAreaManager* self, const UnkPoppedRequest* request, bool 
 // The GUI root (src/game/CCutscene.cpp) and a 0x48-byte singleton created on first use.
 extern void* g_unk_7101d47330;
 #include "game/UnkSubAreaGuiCache.h"
-extern UnkSubAreaGuiCache* g_unk_71727254f8;
 void fn_710119a110(void* root, const UnkPathIdMember* id);
 bool fn_710119e684(UnkSubAreaGuiCache* self, const base::UnkStrIdMember* id, bool flag);
 bool fn_710119d9b8(UnkSubAreaGuiCache* self, const base::UnkStrIdMember* id, bool flag);
 void fn_710119d910(UnkSubAreaGuiCache* self);
-void fn_7100de6ee8(UnkGameManager* self);
-void fn_71011aa820(UnkModelManager* self);
 
 // The entities whose component (+0x10) of class fn_7101117478 is told about each id.
 struct UnkSubAreaEntity {
@@ -558,7 +556,6 @@ struct UnkSubAreaDropTargetView {
 using base::input::UnkRumbleManager;
 extern UnkRumbleManager* g_unk_7101d47348;
 void fn_7100073f48(UnkRumbleManager* self, u32 a, u32 b);
-void fn_71002191a4(UnkRenderManager* self, u32 value);
 
 // The collision manager singleton (src/game/CCollisionComponent/fn_7100863a8c.cpp).
 struct UnkManager_7100863a8c;

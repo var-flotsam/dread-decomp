@@ -15,7 +15,6 @@
 using base::global::CStrId;
 
 struct UnkWeakTarget;
-UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 
 struct UnkParasiteBehavior_b0282 : base::reflection::UnkReflObject {
     bool flag;  // 0x8
@@ -47,7 +46,6 @@ struct UnkXParasiteAI_A3_b75;
 struct UnkXParasiteMode_A3_b75;
 struct UnkXParasiteSelect_9fcc;
 void fn_71006ea584(UnkParasiteAI_b0282* self, void* inner);
-void fn_71006ea824(UnkXParasiteSelect_9fcc* self, UnkActor* target);
 CStrId fn_71007cd398(void* behavior);
 
 void fn_71006ea210(UnkParasiteAI_b0282* self, UnkParasiteBehavior_b0282* behavior) {

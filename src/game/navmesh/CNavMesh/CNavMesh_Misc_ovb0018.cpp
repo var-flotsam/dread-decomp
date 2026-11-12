@@ -11,6 +11,7 @@
 #include "game/CGameObject.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
+#include "game/UnkTU367.h"
 #include "types.h"
 
 struct UnkLinkGroups;  // the member at +0x10 (src/game/navmesh/CNavMesh/fn_710027514c.cpp)
@@ -391,7 +392,6 @@ void fn_710027e93c(UnkNavTablesE93c* self) {
 }
 
 struct UnkNavLoadCell;
-void fn_71002af6a0(UnkNavMeshCell* self);
 void fn_710027ebe4(base::UnkVector<UnkNavMeshEdge>* self, const base::UnkVector<UnkNavMeshEdge>* other);
 
 struct UnkNavLoadItem;

@@ -7,13 +7,13 @@
 #include <math.h>
 
 #include "base/global/CStrId.h"
+#include "game/CProjectileMovement.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 
 struct UnkHomingMovement_ovb0050 {
     u8 pad_0x0[0x5d8];
@@ -46,7 +46,6 @@ struct UnkHomingMovement2_ovb0050 {
 };
 
 struct UnkChargeComponent;
-void fn_7100ac40fc(UnkChargeComponent*, f32);
 
 void fn_7100ac2014(UnkHomingMovement2_ovb0050* self, f32 dt) {
     fn_7100ac40fc(reinterpret_cast<UnkChargeComponent*>(self), dt);

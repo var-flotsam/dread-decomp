@@ -10,7 +10,9 @@
 #include "game/UnkGuiFrames.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkGuiSprite.h"
+#include "game/UnkTU1722.h"
 #include "game/UnkTU254.h"
+#include "game/UnkTU2744.h"
 #include "game/UnkTU2747.h"
 #include "types.h"
 
@@ -18,7 +20,6 @@ using base::global::CRntString;
 using base::global::CStrId;
 
 struct UnkMinimapView;
-void fn_71011bab80(UnkGuiRoot* root, void* object, s32 frame);
 
 // A string id's data as the name compare sees it: the text's key at +0x30 and a use count at +0x44
 // (a union member: the original reloads the id after the increment).
@@ -156,7 +157,6 @@ void fn_71011f918c(UnkSprite_ovb0076* self) {
 // The image's size in a frame, and the sprite's size setter (as src/game/GUI/CLabel.cpp and
 // src/game/GUI/CSprite/CSprite_PropSetters.cpp declare them).
 struct UnkLabelSource;
-UnkLabelVec2 fn_7100b82b18(const UnkLabelSource* source, s32 frame);
 u32 fn_7100132f80();
 u32 fn_7100132f90();
 struct UnkSprite_spr;

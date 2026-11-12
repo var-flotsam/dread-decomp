@@ -13,6 +13,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU57.h"
 #include "types.h"
 
@@ -137,7 +138,6 @@ extern CStrId g_unk_71729ce0c8 __attribute__((visibility("hidden")));
 
 f32 fn_7100dfd15c(UnkGameManager* self);
 f32 fn_7100dffc44(UnkGameManager* self);
-void* fn_7100df55e4(UnkGameManager* self);
 s64 fn_7101144a5c(void* object);
 nn::util::Uuid fn_7100132a00();  // the session id
 // Passed by address: two words, both zero here.
@@ -145,7 +145,6 @@ struct UnkProfileSaveArg {
     void* field_0x0;
     void* field_0x8;
 };
-s32 fn_7100df99f8(UnkGameManager* self, u32 a, const UnkProfileSaveArg* arg, u32 b);
 
 static inline void FormatUuid(char* buffer, const nn::util::Uuid& u) {
     nn::util::TSNPrintf(buffer, 0x40, "%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x%02x",

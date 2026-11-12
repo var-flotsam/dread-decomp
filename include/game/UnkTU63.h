@@ -4,4 +4,8 @@
 // 0x71000872f4-0x7100088948). One declaration per symbol: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
+
+struct UnkRegistry_0x70;
+
 extern void* g_unk_7101a1b030[];
+void fn_7100087dc8(UnkRegistry_0x70* self, void* entry, u32 kind);  // Calls the registry's handler.

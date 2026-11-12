@@ -23,6 +23,7 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU1689.h"
 #include "game/UnkTU2547.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2566.h"
 #include "game/UnkTU39.h"
 #include "game/UnkTUProperty.h"
@@ -135,7 +136,6 @@ void fn_7100eb408c(base::UnkVector<UnkIdWords_b0200>* self, u32 index) {
 }
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 struct UnkInputEvent_b0200 {
     s32 type;   // 0x0
@@ -551,7 +551,6 @@ void fn_7100eafeb8(base::UnkVector<UnkIdWords_b0200c>* self, UnkIdWords_b0200c* 
     ++self->count;
 }
 
-bool fn_7100deabc4(UnkGameManager* manager);
 struct UnkMinimapOwner;
 void fn_7100e8f6bc(UnkMinimapOwner* self);
 struct UnkMinimapSetter_b0200;

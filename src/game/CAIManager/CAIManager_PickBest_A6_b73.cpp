@@ -5,13 +5,12 @@
 // fn_7100dae6dc twice: with the game manager's fn_7100defcd4 result, then with the target of its
 // handle at +0x29a0. Names and layouts are placeholders.
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 struct UnkOwner;
 struct UnkGfxFrameSource;
 extern UnkGfxFrameSource* g_unk_7101d47328;
-
-UnkOwner* fn_7100defcd4(UnkGameManager*);
 
 namespace {
 

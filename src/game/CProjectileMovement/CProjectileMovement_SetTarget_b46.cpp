@@ -2,10 +2,9 @@
 // `target` (none for null) and records the target's position, its transform's translation
 // (include/game/UnkXformNode.h), or zero when the handle points at nothing. Names and layouts are
 // placeholders.
+#include "game/UnkTU2523.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
-
-UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 
 // The target as the position read sees it: its transform at +0x38.
 struct UnkProjectileTargetXform_b46a3 {

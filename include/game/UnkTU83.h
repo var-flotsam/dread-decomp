@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkKeyedStrIds;
 struct UnkPart48;
 struct UnkStrVector;
 struct UnkStruct_0x28;
@@ -19,3 +20,4 @@ void fn_71000e0524(UnkStrVector* self, UnkStrVector* other);
 void fn_71000bce50(void*);
 void fn_71000be6c0(void*);
 extern u32 g_unk_7101d5bdd8;  // The default of a class's "_EditorOnly" attribute (nonzero: true).
+void fn_71000df22c(UnkKeyedStrIds* self, u32 capacity);

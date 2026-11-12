@@ -16,6 +16,8 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkSlots.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU2553.h"
+#include "game/UnkTU367.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -72,7 +74,6 @@ UnkZiplineLinkTarget_b49** fn_71003b0c4c(UnkZiplineLink_b49* link) {
 struct UnkZiplineLink_b49;
 struct UnkZiplineLinkTarget_b49;
 struct UnkDoorLock;
-UnkDoorLock* fn_71002af860(UnkWeakTarget*);
 bool fn_71008d564c(UnkDoorLock* door, u32 value, const CStrId* id);
 bool fn_71008d586c(UnkDoorLock*, bool, u32, CStrId*);
 
@@ -394,7 +395,6 @@ struct UnkModeFlags {
 };
 extern UnkModeFlags* g_unk_71726bc570;
 
-bool fn_7100dfbe3c(UnkGameManager*);
 bool fn_7100dfaf88(UnkGameManager* self, void* name, const CRntString& tag, bool flag);
 void fn_710007f564(void*, const char*);
 

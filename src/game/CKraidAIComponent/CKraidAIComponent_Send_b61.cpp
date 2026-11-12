@@ -5,10 +5,10 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 struct UnkKraidPlayerPart_b61 {
     virtual void vf_0x0();

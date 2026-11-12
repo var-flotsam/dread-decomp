@@ -8,6 +8,7 @@
 #include "base/UnkVector.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU394.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -37,7 +38,6 @@ struct UnkCancelNodeList_ovb0128 {
 
 // The query an attack check takes: built by fn_71002c6f80 from the actor and the parameters.
 struct UnkAttackQuery_ovb0115;
-void fn_71002c6f80(UnkAttackQuery_ovb0115* self, UnkActor* actor, void* params);
 
 // A counted reference released on destruction.
 struct UnkCancelRef_ovb0128 {

@@ -7,3 +7,6 @@
 
 struct lua_State;
 int fn_71010a4900(lua_State* L, int narg);
+
+// The userdata at `index` when its metatable is the registry's `name`, else null.
+void* fn_71010a4740(lua_State* L, int index, const char* name);

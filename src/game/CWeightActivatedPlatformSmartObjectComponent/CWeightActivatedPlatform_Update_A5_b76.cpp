@@ -24,6 +24,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkSlots.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -34,7 +35,6 @@ struct UnkPlatformSm_A5_b72;
 struct UnkPlayer;
 struct UnkAbilitySet;
 struct UnkAbility;
-UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 s32 fn_7101177da8(void*, u64);
 struct UnkWeightPlatform_b49a4;
 struct UnkPlatformUpdate_A5_b76;

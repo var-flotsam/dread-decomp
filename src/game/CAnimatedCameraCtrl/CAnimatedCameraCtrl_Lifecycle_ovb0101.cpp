@@ -19,6 +19,7 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2523.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU39.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -159,7 +160,6 @@ static inline void* CameraManager() {
 }
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkInputComponent;
 extern __attribute__((visibility("hidden"))) char g_unk_7172a04768[];
 struct UnkGrabCameraCtrl;

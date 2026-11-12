@@ -16,6 +16,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkTU2509.h"
 #include "game/UnkTU365.h"
+#include "game/logic/collision/CCollider.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -418,7 +419,6 @@ bool fn_7100d57ca0(UnkLavaDropsShape_A2_b71* self_, void* xf_, void* other_, voi
 }
 
 struct UnkShape;
-UnkMatrix44 fn_7100d36a2c(UnkShape* shape);
 
 struct UnkShapeTester_A5_b68;
 
@@ -510,8 +510,6 @@ struct UnkShapeFilter_ovb0107 {
     UnkShapeFilter_ovb0107(UnkCollider* n, UnkCollider* other, void* f)
         : vtable(g_unk_7101aa8898 + 2), node(n), field_0x10(other), filter(f), field_0x20(false) {}
 };
-UnkShapeTestResult_ovb0107 fn_7100d51368(UnkShapeTester_A5_b68* tester, void* owner, void* shape, void* other,
-                                         const UnkMatrix44& transform, UnkShapeFilter_ovb0107* filter, u16 flags);
 
 UnkColliderResult fn_7100d57ab4(UnkCollider* a, UnkCollider* b, void* c, u32 d) {
     if (b->dirty)

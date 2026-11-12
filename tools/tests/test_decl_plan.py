@@ -56,7 +56,7 @@ class Plan(unittest.TestCase):
             "already in a header under include/": 1,                             # fn_7100000130
             "declared inside a namespace or struct": 1,                          # fn_7100000140
             "namespaced, template, function-pointer or asm-label types": 1,      # fn_7100000150
-            "a type that is not a plain struct declared in the file": 1,         # fn_7100000160
+            "a type that is not a plain struct every file agrees on": 1,         # fn_7100000160
             "in no unit": 1,                                                     # fn_7100000900
         })
 
@@ -118,6 +118,18 @@ class Plan(unittest.TestCase):
         bare = '#pragma once\n#include "types.h"\nvoid fn_7100000111();\n'
         self.assertEqual(decl_plan.extended(bare, planned),
                          '#pragma once\n#include "types.h"\n\nstruct UnkA;\nstruct UnkB;\n\nvoid fn_7100000111();\n')
+
+    def test_a_type_from_an_include_is_forward_declared_when_every_file_agrees(self):
+        files = tree(a='#include "game/T.h"\nvoid fn_7100000110(UnkT*, UnkAlias*, UnkNs*);\n',
+                     b='#include "game/T.h"\nvoid fn_7100000110(UnkT*, UnkAlias*, UnkNs*);\n',
+                     c='#include "game/T.h"\nvoid fn_7100000111(UnkT*);\n', d="void fn_7100000111(UnkT*);\n",
+                     **{"include/game/T.h": "struct UnkT {\n    int x;\n};\nstruct UnkS;\nusing UnkAlias = UnkS;\n"
+                                            "namespace n {\nstruct UnkNs;\n}\nusing n::UnkNs;\n"})
+        known = decl_plan.type_index(files)
+        self.assertEqual(known, {"UnkT": "struct", "UnkS": "struct"})
+        planned, why = decl_plan.plan(decl_check.Report(files), files, UNITS, None, known)
+        self.assertEqual([(p.symbol, p.types) for p in planned], [("fn_7100000111", {"UnkT": "struct"})])
+        self.assertEqual(dict(why), {"a type that is not a plain struct every file agrees on": 1})
 
 
 if __name__ == "__main__":

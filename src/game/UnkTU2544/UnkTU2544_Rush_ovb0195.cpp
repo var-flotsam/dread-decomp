@@ -583,7 +583,6 @@ void fn_7100db8154(UnkRush_b0195* self) {
 
 // The user data's owner, created on first use (as src/game/CBossRushManager_SurvivalReset_b49.cpp has it).
 struct UnkUserDataOwner;
-CBlackboard* fn_710120384c(UnkUserDataOwner* self);
 
 static inline UnkUserDataOwner* GetOwner() {
     if (!g_unk_7101d47308) {

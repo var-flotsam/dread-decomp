@@ -22,6 +22,7 @@
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkManager_71726af468.h"
+#include "game/UnkTU394.h"
 #include "game/UnkXformNode.h"
 #include "game/logic/collision/CPolygonCollectionShape.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -109,7 +110,6 @@ struct UnkAttackNodeList_ovb0115 {
 
 // The query an attack check takes: built by fn_71002c6f80 from the actor and the parameters.
 struct UnkAttackQuery_ovb0115;
-void fn_71002c6f80(UnkAttackQuery_ovb0115* self, UnkActor* actor, void* params);
 // A counted reference released on destruction.
 struct UnkAttackRef_ovb0115 {
     UnkRefObject* p;

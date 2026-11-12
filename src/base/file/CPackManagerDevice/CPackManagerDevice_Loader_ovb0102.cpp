@@ -9,6 +9,7 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkRegistry.h"
 #include "base/UnkVector.h"
+#include "base/animation/CAnimationResource.h"
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
@@ -19,10 +20,6 @@ using base::UnkStrIdMemberOf;
 using base::file::UnkDevice;
 using base::file::UnkFileDevice;
 using base::global::CFilePathStrId;
-
-// The registry that reports an open's failure (src/base/file/CPackManagerDevice_3.cpp).
-extern UnkRegistry_0x70* g_unk_7101d4b5a0;
-void fn_7100087dc8(UnkRegistry_0x70* self, void* entry, u32 kind);
 
 // A file the source device opens (deleted through its slot 1).
 struct UnkOpenedFile {

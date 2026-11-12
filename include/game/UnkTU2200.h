@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkReflType;
+struct UnkTUHeader;
 struct UnkElem40Array_b42a3;
 struct UnkElemA0Array_b42a3;
 void fn_7100c886c0(void*);  // The element's destructor.
@@ -43,3 +45,26 @@ extern char g_unk_7172793b38;
 extern char g_unk_7172793b39;
 extern char g_unk_7172793cb0;
 extern char g_unk_7172793cb1;
+UnkReflType* fn_7100c837d4();
+UnkReflType* fn_7100c838b0();
+UnkReflType* fn_7100c83ea0();
+UnkReflType* fn_7100c84490();
+UnkReflType* fn_7100c84da4();
+UnkReflType* fn_7100c84e80();
+UnkReflType* fn_7100c85470();
+UnkReflType* fn_7100c85a60();
+UnkReflType* fn_7100c868ec();
+UnkReflType* fn_7100c869c8();
+UnkReflType* fn_7100c86fb8();
+UnkReflType* fn_7100c875a8();
+UnkReflType* fn_7100c8787c();
+extern UnkReflType g_unk_71727930d0;
+extern UnkReflType g_unk_7172793210;
+extern UnkReflType g_unk_7172793350;
+extern UnkReflType g_unk_71727934c8;
+extern UnkReflType g_unk_7172793608;
+extern UnkReflType g_unk_7172793748;
+extern UnkReflType g_unk_71727938c0;
+extern UnkReflType g_unk_7172793a00;
+extern UnkReflType g_unk_7172793b40;
+extern UnkTUHeader g_unk_7172794a98 __attribute__((visibility("hidden")));

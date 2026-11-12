@@ -19,6 +19,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU1428.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -47,8 +48,6 @@ struct UnkEnergyWaveCompB_b49;
 struct UnkEnergyWaveObject_b49;
 struct UnkEnergyWaveFxComp_b49;
 
-UnkOwner* fn_7100defcd4(UnkGameManager*);
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 extern char g_unk_7101648d28[];
 extern const u64 g_unk_7101648d18;
 

@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkWeakTarget;
 struct UnkEmmyRegistry_b55;
 struct UnkAbility;
 struct UnkAbilitySet;
@@ -22,3 +23,4 @@ extern void* g_unk_71726af0b0;  // What plays the sounds at a position.
 extern UnkEmmyRegistry_b55* g_unk_71726af0a8;
 extern void* g_unk_7101a22858[];
 extern void* g_unk_7101a22878[];
+UnkWeakTarget* fn_7100302014(void* owner);

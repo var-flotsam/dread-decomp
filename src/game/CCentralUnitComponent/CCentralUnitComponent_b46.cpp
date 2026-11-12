@@ -7,17 +7,16 @@
 #include "base/UnkRefHandle.h"
 #include "game/CDoorCentralUnitLifeComponent.h"
 #include "game/UnkTU1176.h"
+#include "game/UnkTU2668.h"
 #include "game/UnkTU2677.h"
+#include "game/UnkTU367.h"
 #include "types.h"
 
 struct lua_State;
-extern lua_State* g_unk_7172a01d18;
-s32 fn_71010c0bb0(lua_State* L, const char* str);
 
 struct UnkWeakTarget;
 struct UnkDoorLock;
 struct UnkEntityState;
-UnkDoorLock* fn_71002af860(UnkWeakTarget* entity);
 void fn_7100232864(UnkEntityState* entity, bool value);
 
 using UnkRef = base::UnkRefPtrMember;

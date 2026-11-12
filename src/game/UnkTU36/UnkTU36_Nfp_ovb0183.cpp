@@ -7,6 +7,7 @@
 
 #include "../../base/UnkUnit36/UnkUnit36_Nfp.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU36.h"
 #include "game/nn/time.h"
 #include "types.h"
 
@@ -47,11 +48,8 @@ void ClearSystemEvent(SystemEventType* event);
 void DestroySystemEvent(SystemEventType* event);
 }
 
-void fn_710002ccfc(UnkUnit36Static* self, void* slot);
 void fn_710002d3e0(UnkUnit36Object* self, nn::os::EventType* done);
-UnkUnit36Static* fn_710002cc34();
 void fn_710002cc44();
-u32 fn_710002d320(UnkUnit36Static* self);
 
 extern "C" int memcmp(const void*, const void*, unsigned long);
 

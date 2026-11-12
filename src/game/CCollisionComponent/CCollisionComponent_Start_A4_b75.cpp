@@ -6,14 +6,14 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkCollisionRecord.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
 
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
-void fn_710117b3e8(UnkWeakTarget* target, void* link);
 u32 fn_7100866c4c(char* p0, char* p1);
 
 struct UnkCollisionTrackLink_A4_b75 {

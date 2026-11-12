@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkBaseComponent;
 struct UnkActivatable_b48;
 struct UnkLightingComponent3;
 struct UnkSmBase_b60;
@@ -16,3 +17,4 @@ void fn_710024f910(UnkLightingComponent3* self);  // Derived classes call it as 
 void fn_710024fb24(void*);
 void fn_710024fc08();
 void fn_710024facc(UnkSmBase_b60*);
+void fn_710024f6d4(UnkBaseComponent* self);

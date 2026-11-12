@@ -16,6 +16,8 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkManager_71726af468.h"
+#include "game/UnkTU2523.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkXformNode.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
@@ -29,10 +31,8 @@ extern void* g_unk_71726bc560;  // the music manager (game/sound/CMusicManager.h
 extern CStrId g_unk_7172710f30;
 extern CStrId g_unk_7172710f50 __attribute__((visibility("hidden")));
 
-void fn_7100e03a78(UnkGameManager*, void*);
 void fn_7100e8f9a0(char* self, bool remove, base::global::CStrId* key);
 struct UnkMgr_0xf18;
-UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 
 struct UnkFixedCamera_fc;
 struct UnkArg_fc;

@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CScenario.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2729.h"
 #include "game/UnkTU344.h"
@@ -20,7 +21,6 @@ struct UnkPowerUpLifeEntry_b52;
 struct UnkPowerUpLifeType_b52;
 UnkPowerUpLifeEntry_b52* fn_710119438c(UnkActorDefFactory* factory, const char* path, CStrId* id, const UnkPowerUpLifeType_b52& type,
                                        void* arg);
-void fn_71011a2770(UnkGameManagerSub_0x608* points, void* object);
 
 struct UnkKraidName_b0266 {
     u8 unk_0x0[0x10];

@@ -10,7 +10,6 @@
 using base::reflection::UnkReflValue;
 
 struct UnkWeakTarget;
-UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 
 UnkReflValue fn_71011e68e8(void*, char*, UnkReflValue* const* args) {
     UnkReflValue* a = args[0];

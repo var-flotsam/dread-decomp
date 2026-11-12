@@ -2,13 +2,12 @@
 // names, when it is set, with the object at +8 as its argument; the id's use count (+0x44 of its
 // string) goes up first. Returns 1. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU2668.h"
 #include "game/UnkTU2677.h"
+#include "game/lua_lib.h"
 #include "types.h"
 
 struct lua_State;
-extern lua_State* g_unk_7172a01d18;
-s32 fn_71010c0bb0(lua_State* L, const char* str);
-int fn_7100fbc4e0(lua_State* L, void* arg);
 
 // The id's string as this caller sees it.
 struct UnkScriptName_b48 {

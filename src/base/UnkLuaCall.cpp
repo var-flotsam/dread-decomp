@@ -7,13 +7,11 @@
 #include "../../lib/lua/lua.h"
 #include "../../lib/lua/lauxlib.h"
 #include "base/math/CVector.h"
+#include "game/UnkTU2668.h"
 #include "game/UnkTU2677.h"
+#include "game/lua_lib.h"
 #include "types.h"
 
-extern lua_State* g_unk_7172a01d18;
-s32 fn_71010c0bb0(lua_State* L, const char* str);
-s32 fn_710109cef0(lua_State* L, s32 nargs, s32 nresults, s32 errfunc);
-int fn_7100fbc4e0(lua_State* L, void* arg);
 void fn_71010bf700(lua_State* L, void* table);
 base::math::CVector3D* fn_71010c0ff0(lua_State* L);
 

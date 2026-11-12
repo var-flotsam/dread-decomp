@@ -4,12 +4,11 @@
 #include "base/global/CStrId.h"
 #include "game/CCameraCtrl.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 
 using base::global::CStrId;
 
 struct UnkGrabCameraCtrl;
-void fn_7100df6c78(UnkGameManager* self, f32 a, f32 b);
-void fn_7100e03a78(UnkGameManager*, void*);
 
 struct UnkGrabCameraCtrl {
     u8 pad_0x0[0x1d8];

@@ -18,6 +18,8 @@
 #include "game/UnkTU109.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU2510.h"
+#include "game/UnkTU2553.h"
+#include "game/UnkTU315.h"
 #include "game/logic/collision/CAABoxShape2D.h"
 #include "game/logic/collision/CPolygonCollectionShape.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -86,9 +88,6 @@ struct UnkTileStateEvent {
 extern const UnkVec3f g_unk_710164ba64 __attribute__((visibility("hidden")));
 
 UnkMatrix44 fn_71000791a8(const UnkVec3f& translation, const UnkVec3f& angle, const UnkVec3f& scale);
-void fn_7100219c6c(UnkRenderManager* self, bool enable, u64 layer, u32 arg3, bool arg4);
-void fn_7100219e10(UnkRenderManager* self, u64 object);
-void fn_7100219e64(UnkRenderManager* self, u64 object, const UnkMatrix44* m);
 void fn_7100c9ea2c(UnkQueryObj* self);
 void fn_7100c9eb08(UnkQueryObj* self, s32 old_state, s32 new_state, bool a, bool b);
 void fn_7100ca0118(UnkTileEventSet* set, const void* event);
@@ -204,7 +203,6 @@ struct UnkTree;
 struct UnkShape;
 struct UnkMtx44;
 void* fn_7100c9ff5c(void* p);
-UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 bool fn_71009e12d0(UnkHelper* helper);
 UnkVec3f fn_71009ebe68(UnkHelper* helper);
 base::UnkVector<UnkListedItem*>* fn_7100552d7c();

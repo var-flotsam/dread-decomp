@@ -2,10 +2,12 @@
 // values on the player, then gives every item and power-up to the player's inventory.
 // Layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CInventoryComponent.h"
 #include "game/CSpecialEnergyComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU2553.h"
 
 using base::global::CStrId;
 
@@ -19,8 +21,6 @@ static inline const UnkQualifiedId& GetQualifiedId(UnkPropertyEx<>& item) {
 
 
 struct UnkInventory;
-void fn_7101142a28(UnkInventory* inventory, const UnkQualifiedId& item, bool a, bool b, bool c, f32 amount,
-                   f32 extra);
 
 struct UnkLifeComponent;
 void fn_7100a1f998(UnkLifeComponent* life, f32 max);
@@ -40,8 +40,6 @@ struct UnkPlayer {
     u8 unk_0x1c0[0xb0];
     UnkInventory* inventory;
 };
-UnkPlayer* fn_7100dec788(UnkGameManager* manager);
-void fn_7100dffd48(UnkGameManager* manager);
 
 int fn_710107a880(void* /*lua_State*/) {
     UnkPlayer* player = fn_7100dec788(g_unk_7101d47310);

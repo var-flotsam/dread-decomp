@@ -7,6 +7,7 @@
 #include "game/CComponent.h"
 #include "game/CTriggerComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 struct UnkParent;
@@ -40,7 +41,6 @@ void fn_7100a5e240(char* self) {
 // from the game manager under g_unk_717274e4d8 and, when the flag at +0x205 is set, under
 // g_unk_717274e4e0 (fn_7100de9730).
 struct UnkSpawnGroupKey;
-void fn_7100de9730(UnkGameManager*, UnkSpawnGroupKey*, void*);
 extern UnkSpawnGroupKey g_unk_717274e4d8 __attribute__((visibility("hidden")));
 extern UnkSpawnGroupKey g_unk_717274e4e0 __attribute__((visibility("hidden")));
 

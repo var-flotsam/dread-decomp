@@ -16,6 +16,7 @@
 #include "game/CAttack.h"
 #include "game/CCameraComponent.h"
 #include "game/CCharClassAttack.h"
+#include "game/CInventoryComponent.h"
 #include "game/CReserveTankInfo.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
@@ -30,6 +31,7 @@
 #include "game/UnkTU2677.h"
 #include "game/UnkTU2730.h"
 #include "game/UnkTU2733.h"
+#include "game/UnkTU2744.h"
 #include "game/UnkTU99.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
@@ -323,8 +325,6 @@ s32 fn_7101096c50(lua_State*) {
 // ---- the player's inventory ----
 struct UnkInventory;
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
-void fn_7101142a28(UnkInventory* inventory, const UnkQualifiedId& item, bool a, bool b, bool c, f32 amount, f32 extra);
 bool fn_7100395b34(CBlackboard::CSection* section, const void* name, f32* out);
 
 struct UnkInventoryOwner_b0162 {
@@ -545,7 +545,6 @@ struct UnkStrIdHash_b0162 {
     u64 hash;
 };
 struct UnkWeakTarget;
-UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 
 static inline UnkWeakTarget* FindByStrId_b0162(UnkGameManager* manager, const CStrId& id) {
     u32 kind_value = g_unk_71727bebb8;
@@ -663,7 +662,6 @@ struct UnkLanguage;
 extern UnkLanguage* g_unk_7101d47358;
 s32 fn_710119be24(const CRntString* name);
 void fn_710119cb14(UnkLanguage* language, s32 index);
-void fn_71011b6b5c(UnkGuiRoot* root, u32 value);
 
 static inline UnkLanguage* Language_b0162() {
     UnkLanguage* language = g_unk_7101d47358;
@@ -697,7 +695,6 @@ s32 fn_7101077930(lua_State* L) {
 }
 
 // ---- save game ----
-bool fn_7100dfbe3c(UnkGameManager*);
 bool fn_7100dfaf88(UnkGameManager* self, void* name, const CRntString& tag, bool flag);
 struct UnkSaveGamePair_b54;
 void fn_7100dfd174(UnkGameManager* self, CRntString* name, CRntString* tag, bool flag, u32 kind,

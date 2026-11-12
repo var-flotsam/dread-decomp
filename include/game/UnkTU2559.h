@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkReflType;
+struct UnkTUHeader;
 struct UnkLoadCheckPointSingleton_ovb0118;
 void fn_7100e16e60();
 void fn_7100e1793c();
@@ -19,3 +21,7 @@ void fn_7100e1b604() __attribute__((visibility("hidden")));
 extern char g_unk_71727c0cd8;
 extern char g_unk_71727c0e10;
 extern char g_unk_71727c0f70;
+extern UnkReflType g_unk_71727c0bc0;
+extern UnkReflType g_unk_71727c0d20;
+extern UnkReflType g_unk_71727c0e58;
+extern UnkTUHeader g_unk_71727c0fb8 __attribute__((visibility("hidden")));

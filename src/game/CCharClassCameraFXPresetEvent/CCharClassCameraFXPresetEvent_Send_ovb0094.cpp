@@ -2,12 +2,12 @@
 // preset (fn_7100cae608). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 // A 12-byte argument (as src/game_s2/fn_710035131c.cpp's).
 struct UnkVec {
@@ -15,7 +15,6 @@ struct UnkVec {
     u32 field_0x4;
     u32 field_0x8;
 };
-void fn_7100e038b0(UnkGameManager* dispatcher, void* key, UnkVec* vec, u64 arg);
 
 struct UnkCameraFXState_ovb0094 {
     u8 unk_0x0[0x70];

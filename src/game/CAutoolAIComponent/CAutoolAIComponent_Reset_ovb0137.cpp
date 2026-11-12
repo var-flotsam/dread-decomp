@@ -7,6 +7,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAutoolAIComponent.h"
 #include "game/UnkBehaviorTree.h"
+#include "game/UnkTU134.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -19,7 +20,6 @@ struct UnkObject;
 struct UnkComponent;
 UnkComponent* fn_7101152b90(UnkObject*, u64);
 struct UnkSwitchObject;
-void fn_7100146dac(UnkSwitchObject* self, bool enable);
 void fn_7100863730(void* collision, const CStrId* name, const u32* flags);
 void fn_71008635a4(void* collision, const CStrId* name, const u32* flags);
 

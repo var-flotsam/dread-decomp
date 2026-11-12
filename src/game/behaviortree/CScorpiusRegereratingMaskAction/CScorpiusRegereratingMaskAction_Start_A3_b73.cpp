@@ -5,17 +5,16 @@
 // puts 1.0 into the class's bag (+0x80) under the key g_unk_7172703bd8 and sets +0xac of the tunable
 // g_unk_7172790a08 to 1. Names and layouts are placeholders.
 #include "../../../game_s7/UnkPropBagS7.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/CAnimationComponent.h"
 #include "game/CCharClassTweakPlayRateTrack.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkSelf;
 void fn_7100394bd0(UnkSelf*);
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
-void fn_710117b3e8(UnkWeakTarget* target, void* link);
 void fn_710068db84();
 struct UnkAnimationComponent;
-void* fn_7101177d2c(UnkAnimationComponent*, u64);
 
 struct UnkGlobal2;
 extern char g_unk_7172703bd8[] __attribute__((visibility("hidden")));  // the bag key

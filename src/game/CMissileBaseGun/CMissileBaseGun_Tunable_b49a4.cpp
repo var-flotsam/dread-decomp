@@ -3,6 +3,7 @@
 // state 6, else 0. An object of kind 7 takes its state from the sub-object at +0x20. Names are
 // placeholders.
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 namespace base {
@@ -35,8 +36,6 @@ struct UnkMissileGunState_b49a4 {
         return kind;
     }
 };
-
-void* fn_7100df5460(UnkGameManager* manager);
 
 static inline UnkMissileGunTunable_b49a4& Tunable() {
     return reinterpret_cast<UnkMissileGunTunable_b49a4&>(g_unk_7172727148);

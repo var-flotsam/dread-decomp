@@ -18,6 +18,7 @@
 #include "base/UnkVector.h"
 #include "base/math/CVector.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkTU2704.h"
 #include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -60,8 +61,6 @@ void fn_7100a16a3c(UnkCaterzillaSegment_ovb0054* self) {
     ++self->field_0x464;
 }
 
-
-bool fn_7100d7bea0(UnkActor* owner, bool flag);
 
 struct UnkCaterzillaSpawn2_ovb0054 {
     u8 pad_0x0[0x30];

@@ -8,6 +8,7 @@
 #include "game/CChozoWarriorAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
@@ -31,8 +32,6 @@ struct UnkWarriorAI {
 f32 fn_710049b2fc(UnkWarriorAI* ai);
 f32 fn_710049b360(UnkWarriorAI* ai);
 bool fn_710049cbd8(UnkWarriorAI* ai);
-bool fn_7100df5630(UnkGameManager* manager);
-bool fn_7100df5a4c(UnkGameManager* manager);
 
 struct UnkV3s_ovb0265 {
     f32 x, y, z;

@@ -7,6 +7,8 @@
 #include "base/UnkDefaultAllocator.h"
 #include "base/UnkRegistry.h"
 #include "base/UnkVector.h"
+#include "base/animation/CAnimationResource.h"
+#include "game/UnkTU63.h"
 #include "types.h"
 
 
@@ -37,9 +39,6 @@ void fn_7100088dfc(UnkMountedPack* pack, UnkPackManagerView* device, const UnkPa
 void fn_710008abd4(UnkPackManagerView* self, UnkMountedPack* pack);
 
 extern u32 g_unk_7101a1b050;
-// The registry that reports an open's failure (src/game/CSubAreaManager.cpp creates it the same way).
-extern UnkRegistry_0x70* g_unk_7101d4b5a0;
-void fn_7100087dc8(UnkRegistry_0x70* self, void* entry, u32 kind);
 
 struct UnkPackCallback {
     void* object;

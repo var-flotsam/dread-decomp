@@ -112,8 +112,6 @@ bool fn_710012c7d0(const UnkCircle2D* a, const void* b, UnkContactBuffer<2>* out
     return hit;
 }
 
-bool fn_710012ce70(const UnkBox2D* box, const UnkVec2Result& step, const UnkSegment2D* seg, UnkContact2D* out);
-
 bool fn_710012f6a0(const void* b, void* x5, const UnkCircle2D* a, UnkContactPoint* out) {
     const UnkVec2Result& step = *static_cast<const UnkVec2Result*>(x5);
     UnkVec2Result back(-step.x, -step.y);
@@ -171,9 +169,6 @@ struct UnkCapsule2D_b42 {
         return b;
     }
 };
-
-bool fn_710012deb0(const UnkCircle2D* circle, const UnkVec2Result* delta, const UnkBox2D* box, UnkContact2D* out);
-bool fn_710012e5c0(const UnkBox2D* box, const UnkVec2Result* delta, const UnkCircle2D* circle, UnkContact2D* out);
 
 static inline const UnkContactPoint_b42* View(const UnkContactPoint* p) {
     return reinterpret_cast<const UnkContactPoint_b42*>(p);

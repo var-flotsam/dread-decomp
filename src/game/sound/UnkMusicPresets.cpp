@@ -10,6 +10,7 @@
 #include "base/UnkHashStream.h"
 #include "base/UnkRegistry.h"
 #include "base/UnkStrIdPathPair.h"
+#include "base/animation/CAnimationResource.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/file/CThreadSafeDevice.h"
 #include "base/global/CRntFile.h"
@@ -47,8 +48,6 @@ struct UnkStrPair_0x10 {
     void* a;
     void* b;
 };
-
-extern UnkRegistry_0x70* g_unk_7101d4b5a0;
 
 // The file read into memory and two words the opener sets (+0x38 is zero after a good read).
 struct UnkFileReader {

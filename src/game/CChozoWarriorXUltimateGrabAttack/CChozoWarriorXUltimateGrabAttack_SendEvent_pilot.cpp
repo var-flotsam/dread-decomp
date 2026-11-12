@@ -7,6 +7,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 struct UnkInventory;
@@ -21,9 +22,6 @@ struct UnkPlayer {
     u8 pad_0x0[0x220];
     void* field_0x220;
 };
-
-UnkOwner* fn_7100defcd4(UnkGameManager* manager);
-UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 
 struct UnkDesc_SpitSend;
 extern UnkDesc_SpitSend g_unk_710164b968;

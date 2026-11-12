@@ -9,6 +9,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU2523.h"
 #include "game_s2/UnkSpitAttack.h"
 #include "types.h"
 
@@ -16,8 +17,6 @@ struct UnkSpitOwnerTarget {
     u8 pad_0x0[0x14f8];
     f32 field_0x14f8;
 };
-
-bool fn_7100d7bea0(UnkActor* owner, bool flag);
 
 // NON_MATCHING(minor): same behaviour; the original reads the owner->target vector in another
 // order, tests the owner before the result at the end and shares that end between the paths.

@@ -11,6 +11,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
+#include "game/CAIManager/CTunableAIManager.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkTU1629.h"
@@ -170,7 +171,6 @@ int fn_7100fb96c0(lua_State* L) {
 }
 
 struct UnkReflType;
-extern UnkReflType g_unk_71727bc290;  // CAIManager::EAIGroup
 u32 fn_71000997b4(UnkReflType* type, const char* name);
 
 void fn_7100daa92c(UnkManager_71726af468* self, CStrId name, u32 value);

@@ -7,6 +7,8 @@
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSceneObject.h"
+#include "game/UnkTU140.h"
+#include "game/UnkTU252.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -15,7 +17,6 @@ using base::math::CVector3D;
 struct UnkSelf;
 void fn_7100ac3880(UnkSelf*);
 void* fn_7100149930(UnkRenderPool*, void*, UnkSceneObject**, base::global::CStrId*);
-void fn_71001beee4(UnkSceneObjectSub* target, u32 mode);
 
 struct UnkRGB_710050f26c {
     f32 r;
@@ -29,7 +30,6 @@ struct UnkColorArg_710050f26c {
     UnkColorArg_710050f26c(const UnkRGB_710050f26c& rgb_, f32 a_) : rgb(rgb_), a(a_) {}
     UnkColorArg_710050f26c(const UnkColorArg_710050f26c& o) : rgb(o.rgb), a(o.a) {}
 };
-bool fn_710014826c(UnkSceneObject*, u32, u32, UnkColorArg_710050f26c, bool, f32);
 
 extern const base::global::CStrId g_unk_71726cfd30 __attribute__((visibility("hidden")));  // the collider's name
 

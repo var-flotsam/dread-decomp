@@ -17,11 +17,11 @@
 #include "game/CShockWaveComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2523.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 struct UnkOwner;
-UnkOwner* fn_7100defcd4(UnkGameManager*);
 
 struct UnkShockWaveNode_ovb0123 {
     UnkOwner* value;

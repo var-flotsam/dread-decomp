@@ -13,10 +13,12 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU2523.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU50.h"
 #include "game/UnkTU604.h"
 #include "game/UnkTU63.h"
 #include "game/UnkXformNode.h"
+#include "game/logic/collision/CCollider.h"
 #include "types.h"
 
 struct UnkEntityComponent {
@@ -44,7 +46,6 @@ void fn_7100d7afa8(UnkEntityComponents* self, void* a, void* b) { ForEachCompone
 void fn_7100d7b468(UnkEntityComponents* self, void* a) { ForEachComponent<0x130>(self, a); }
 
 struct UnkOwner;
-UnkOwner* fn_7100defcd4(UnkGameManager* manager);
 extern base::reflection::UnkTunable g_unk_7172a03d80;
 void fn_71010d6878(f32 value);
 
@@ -159,7 +160,6 @@ UnkSoundHandle fn_7100d7c3b0(UnkEntityWithSound* self, const u32* params, bool a
 // Entities with neither link at +0x208 nor +0x210 do nothing; the others without a sound component
 // pass the call on to the player.
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 struct UnkEntityWithLinks {
     u8 pad_0x0[0x208];
@@ -432,7 +432,6 @@ void fn_7100d78108(UnkEntityPaths* self) {
 
 // The position of the entity's collision shape (the translation of its matrix) unless the collider
 // at +0x218 is of kind 3 or has no shape; else the transform's.
-UnkMatrix44 fn_7100d36a2c(UnkShape* shape);
 struct UnkEntityCollided {
     u8 pad_0x0[0x38];
     UnkXform xform;

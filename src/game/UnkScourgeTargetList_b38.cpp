@@ -1,12 +1,12 @@
 // The target list's unit (translation unit 1038 of data/tu_map.csv, see UnkScourgeTargetList.cpp):
 // hands the weak handle of a new target to the two slots at +0x260 and +0x2d8.
+#include "game/UnkTU2523.h"
+#include "game/UnkTU852.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 // Takes a counted reference to a weak handle (the caller drops its own).
 struct UnkHandleList;
-void fn_710059cecc(UnkHandleList*, const UnkRefPtr&);
 
 static inline UnkRefPtr MakeRef(UnkWeakHandle* handle) {
     UnkRefPtr ref;

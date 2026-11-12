@@ -5,13 +5,12 @@
 #include "game/CActorComponent.h"
 #include "game/CForcedMovementAreaComponent.h"
 #include "game/CThermalReactionComponent.h"
+#include "game/UnkTU367.h"
 #include "types.h"
 
 struct UnkWeakTarget;
 struct UnkDoorLock;
 struct UnkStruct_710024fa0c;
-
-UnkDoorLock* fn_71002af860(UnkWeakTarget*);
 
 struct UnkThermalComponent_ovb0097 {
     u8 pad_0x0[0x20];

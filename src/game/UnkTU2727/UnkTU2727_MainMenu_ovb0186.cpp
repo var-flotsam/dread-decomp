@@ -15,6 +15,7 @@
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU2725.h"
+#include "game/UnkTU2744.h"
 #include "game/UnkTU2747.h"
 #include "game/UnkTU57.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -40,7 +41,6 @@ struct UnkPropBag;
 void fn_710050e8e4(UnkPropBag*);
 struct UnkHandleOwner_0x2280;
 void fn_7100e02fdc(UnkHandleOwner_0x2280* self, UnkWeakTarget* target);
-void fn_71011b6b5c(UnkGuiRoot* root, u32 value);
 bool fn_7101191cc0(void* self, void* arg);
 bool fn_71011ceac0(UnkGuiDisplayObject* self);
 bool fn_71011ceb34(UnkGuiDisplayObject* self);

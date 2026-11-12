@@ -12,11 +12,11 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkSlots.h"
 #include "game/UnkTU101.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 
 using base::color::CColor4F;

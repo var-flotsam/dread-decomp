@@ -19,7 +19,6 @@ using base::global::CStrId;
 using base::reflection::UnkReflObject;
 
 struct UnkUserDataOwner;
-CBlackboard* fn_710120384c(UnkUserDataOwner* self);
 bool fn_7100deac24(UnkGameManager* self);
 UnkReflObject* fn_7100e033a8(UnkGameManager*);
 void fn_7100b35704(UnkReflObject*, u32, bool);

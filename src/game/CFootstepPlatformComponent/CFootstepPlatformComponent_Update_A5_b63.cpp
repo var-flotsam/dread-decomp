@@ -12,6 +12,7 @@
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkTU1376.h"
+#include "game/UnkTU367.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
@@ -32,7 +33,6 @@ UnkRef fn_7100353be8(void* from);
 
 struct UnkWeakTarget;
 struct UnkDoorLock;
-UnkDoorLock* fn_71002af860(UnkWeakTarget*);
 struct UnkEvacPart_b61;
 struct UnkEvacTimeline_b61;
 

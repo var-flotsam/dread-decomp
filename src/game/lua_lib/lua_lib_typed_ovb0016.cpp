@@ -9,6 +9,7 @@
 #include "base/reflection.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU2676.h"
 #include "game/lua_lib.h"
 #include "types.h"
 
@@ -20,8 +21,6 @@ using base::reflection::UnkReflValue;
 struct UnkFormatArgs;
 struct UnkTextBuffer200;
 struct UnkCompared_0x18;
-// The userdata at `index` when its metatable is the registry's `name`, else null.
-void* fn_71010a4740(lua_State* L, int index, const char* name);
 
 // The unit's small stack visitor (vtable 0x7101cab628, address point 0x7101cab638), as in
 // src/script/lua_lib_PushTyped_A6_b72.cpp.

@@ -5,6 +5,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CEmmyGrabSamusAttack.h"
 #include "game/UnkSceneObject.h"
+#include "game/UnkTU140.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -38,8 +39,6 @@ struct UnkColorIn_710050f26c {
 };
 
 // The effects are scene objects (game/UnkSceneObject.h).
-bool fn_710014826c(UnkSceneObject* effect, u32 mode, u32 flags, UnkColorArg_710050f26c color, bool restart,
-                   f32 time);
 void fn_7100148600(UnkSceneObject* effect, u32 mode, u32 flags, UnkColor_710050f26c from, UnkColor_710050f26c to,
                    f32 delay, f32 time);
 

@@ -7,7 +7,6 @@
 #include "types.h"
 
 struct UnkWeakTarget;
-UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 
 struct UnkEntityState;
 void fn_7100232864(UnkEntityState* entity, bool value);

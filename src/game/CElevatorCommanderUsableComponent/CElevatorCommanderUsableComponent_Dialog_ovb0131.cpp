@@ -20,6 +20,7 @@
 #include "game/CWeightActivatedPlatformSmartObjectComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -62,7 +63,6 @@ void fn_7100a80930(UnkElevatorCommander_ovb0131* self) {
 }
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkInputComponent;
 extern void* g_unk_7101d47368;
 struct UnkUsableDialog_A6_b62;

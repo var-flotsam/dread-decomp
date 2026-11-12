@@ -16,7 +16,6 @@
 using base::global::CStrId;
 
 struct UnkUserDataOwner;
-CBlackboard* fn_710120384c(UnkUserDataOwner* self);
 
 static inline UnkUserDataOwner* GetOwner() {
     if (!g_unk_7101d47308) {

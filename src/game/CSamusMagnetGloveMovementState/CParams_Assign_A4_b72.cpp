@@ -5,9 +5,9 @@
 #include "base/UnkRefHandle.h"
 #include "base/math/UnkSegment2D.h"
 #include "game/UnkTU365.h"
+#include "game/malloc.h"
 #include "types.h"
 
-UnkSegment2D* fn_7100125b44(UnkSegment2D*, const UnkSegment2D*);  // as UnkAIPathFollower.cpp declares it
 struct UnkAssignedSlot;
 
 // Five words assigned out of line (the first 0x14 bytes of a segment).

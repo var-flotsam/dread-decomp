@@ -13,6 +13,7 @@
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU50.h"
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
@@ -167,7 +168,6 @@ extern base::global::CFilePathStrId g_unk_71727265a0 __attribute__((visibility("
 UnkHyperBeamSoundHandle fn_7100ed6910(void* player, const CVector3D* pos, u32 id, u32 kind, bool flag);
 UnkHyperBeamEffectHandle fn_7100d7c614(UnkActor* owner, const UnkHyperBeamEffectDesc* desc, const CStrId* name,
                                        u32 a, u32 b, u32 c);
-void fn_7100e038b0(UnkGameManager* dispatcher, void* key, UnkVec* vec, u64 arg);
 
 // Sets the timeline value `id` (with the type id, after a delay of -1).
 static inline void SendTimelineId(UnkTimelineComponent* timeline, const u64* id) {

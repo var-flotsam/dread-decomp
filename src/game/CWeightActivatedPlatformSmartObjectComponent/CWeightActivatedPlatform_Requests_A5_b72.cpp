@@ -8,6 +8,7 @@
 #include "game/CSmartObjectComponent.h"
 #include "game/CWeightActivatedPlatformSmartObjectComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 struct UnkSmState_A5_b72 {
     virtual void vf_0x0();
@@ -182,7 +183,6 @@ void fn_7100a0bab4(UnkPlatformSm_A5_b72* self) {
 struct UnkPlayer;
 struct UnkAbilitySet;
 struct UnkAbility;
-UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 
 struct UnkPlatformSubState_A5_b72 {
     u8 pad_0x0[0x10];

@@ -3,9 +3,8 @@
 // and, when there is one, applies the track to it with the weight at +0x18 (fn_7100013be4 ->
 // fn_7100012b60). Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
+#include "game/UnkTU23.h"
 #include "types.h"
-
-UnkMatrix44* fn_7100015508(void* matrices, u64 id);
 
 struct UnkAnimTrack_b67a1 {
     u64 id;

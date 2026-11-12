@@ -6,6 +6,7 @@
 #include "base/UnkVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAIManager/CTunableAIManager.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CCharClassLifeComponent.h"
 #include "game/CComponent.h"
@@ -14,9 +15,6 @@
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
-
-bool fn_7100da9254(UnkManager_71726af468* self);
-void fn_7100da929c(UnkManager_71726af468* self, f32 value);
 
 struct UnkBoundsComponent;
 struct UnkAabb;

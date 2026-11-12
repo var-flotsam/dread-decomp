@@ -1,6 +1,7 @@
 // CEmmyAttackComponent unit (tools/tu_map.py unit 812): two calls of fn_71008659c4 on the owner's collision
 // object (+0x2a0) with the component's filter at +0x40, then the base step (fn_71011362e4). Names are
 // placeholders.
+#include "game/CCollisionComponent.h"
 #include "types.h"
 
 struct UnkCollisionContainer;
@@ -17,7 +18,6 @@ struct UnkEmmyAttackComponent_b47 {
     u8 field_0x40[0x8];
 };
 
-void fn_71008659c4(UnkCollisionContainer* collision, u32 a, u32 b, void* filter);
 void fn_71011362e4(UnkEmmyAttackComponent_b47* self);
 
 void fn_710056a64c(UnkEmmyAttackComponent_b47* self) {

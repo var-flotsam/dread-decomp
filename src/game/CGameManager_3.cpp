@@ -4,10 +4,9 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2523.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 
 struct UnkManagedEntity : base::reflection::UnkReflObject {
     u8 pad_0x8[0x240];

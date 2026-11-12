@@ -4,4 +4,8 @@
 // 0x71004030f0-0x7100407b50). One declaration per symbol: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
+
+struct UnkAIComponent;
+
 extern void* g_unk_7101a33fa0[];  // A vtable.
+void fn_7100405d58(UnkAIComponent*, s32, u32);

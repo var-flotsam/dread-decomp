@@ -3,12 +3,10 @@
 // component is armed (+0x59c) and the manager agrees, then runs the next step. Names and layouts are
 // placeholders.
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 typedef u32 __attribute__((may_alias)) a_u32;
-
-bool fn_7100dfbe3c(UnkGameManager* manager);
-bool fn_7100dfbe78(UnkGameManager* manager, void* record);
 
 struct UnkThermalRecord {
     u8 pad_0x0[0x10];

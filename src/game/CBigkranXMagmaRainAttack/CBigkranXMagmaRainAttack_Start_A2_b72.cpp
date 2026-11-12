@@ -4,6 +4,8 @@
 // src/game/CChozoWarriorXGlaiveSpinAttack/UnkAttackTrackLink_b54.cpp, and gives its AI (+0x240) value 1
 // (fn_710111094c); always resets the pair at +0x58 to -1. Names and layouts are placeholders.
 #include "base/reflection/CClass.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/CAnimationComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -11,8 +13,6 @@ using base::reflection::UnkReflObject;
 
 struct UnkAttackBase;
 void fn_71003608ac(UnkAttackBase* self);
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
-void fn_710117b3e8(UnkWeakTarget* target, void* link);
 void fn_710111094c(UnkReflObject* ai, u32 value);
 void fn_71003eb3cc();
 

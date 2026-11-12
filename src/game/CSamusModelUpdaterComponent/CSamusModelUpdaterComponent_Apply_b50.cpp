@@ -6,10 +6,10 @@
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CSamusModelUpdaterComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 struct UnkOwner;
-UnkOwner* fn_7100defcd4(UnkGameManager* manager);
 bool fn_7100938ebc(void* updater, const u64* id);
 
 struct UnkRefl_fn_710083a2ac;

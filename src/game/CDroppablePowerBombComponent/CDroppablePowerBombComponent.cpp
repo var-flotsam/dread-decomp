@@ -1,12 +1,10 @@
 // In the CDroppablePowerBombComponent unit: the same top-up as fn_71007bc738
 // (CDroppableMissileComponent_2.cpp): the amount of the item at +0xb8 plus 5, capped by the item at
 // +0xa8 and never below zero. Names and layouts are placeholders.
+#include "game/CInventoryComponent.h"
 #include "game/UnkGameBlackboard.h"
 
 struct UnkInventory;
-f32 fn_7101142928(UnkInventory* inventory, const UnkQualifiedId& item);
-void fn_7101142a28(UnkInventory* inventory, const UnkQualifiedId& item, bool a, bool b, bool c, f32 amount,
-                   f32 extra);
 
 struct UnkDroppablePowerBombOwner {
     u8 pad_0x0[0x270];

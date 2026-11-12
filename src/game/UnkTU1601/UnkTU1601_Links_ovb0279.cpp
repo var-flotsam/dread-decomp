@@ -8,13 +8,13 @@
 #include "game/CDoorShieldLifeComponent.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1601.h"
+#include "game/UnkTU367.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkDoorLock;
-UnkDoorLock* fn_71002af860(UnkWeakTarget*);
 struct UnkDoorShieldStore_A4_b76;
 
 // A counted reference to a weak handle.

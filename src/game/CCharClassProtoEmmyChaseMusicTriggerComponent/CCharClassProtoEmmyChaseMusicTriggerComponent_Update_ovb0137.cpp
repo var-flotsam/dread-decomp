@@ -9,6 +9,8 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU2523.h"
+#include "game/UnkTU2553.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
@@ -17,11 +19,9 @@ using base::global::CRntString;
 
 struct UnkFan_A4_b74;
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkInventory;
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 struct UnkActor;
-bool fn_7100d7bea0(UnkActor* owner, bool flag);
 struct UnkStruct_710024fa0c;
 bool fn_7100fd76d4(void* manager, const CRntString* name);
 

@@ -5,6 +5,7 @@
 #include "base/reflection/UnkReflStatics.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 
@@ -40,7 +41,6 @@ void fn_71009d0184(char* self) {
 struct UnkPlayer;
 struct UnkInventory;
 struct UnkStrIdHandle;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 using base::global::CStrId;
 void fn_7100ae986c(UnkStrIdHandle* self, const CStrId& id);
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);

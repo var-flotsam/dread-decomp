@@ -5,12 +5,10 @@
 #include "base/global/CStrId.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU315.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-// As src/game/GUI/CIngameMenu/fn_7100b2de48.cpp declares it.
-void fn_7100219da4(UnkRenderManager* self, bool a, bool b, u32 c);
 
 struct UnkFadeComposition_b43a3 {
     virtual void vf_0x0();

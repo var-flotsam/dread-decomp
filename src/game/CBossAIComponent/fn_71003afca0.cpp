@@ -3,7 +3,9 @@
 // global registry (fn_71011437bc, fn_7100301860, fn_7100b30454).
 #include "base/global/CStrId.h"
 #include "game/CInventoryComponent.h"
+#include "game/GUI/CIngameMenu.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 
 using base::global::CStrId;
 
@@ -13,10 +15,7 @@ struct UnkStrIdHandle {
     UnkStrIdHandle(const CStrId& id);  // fn_7100ae986c
 };
 
-void* fn_7100df55e4(UnkGameManager* manager);
-void* fn_7100df5440(UnkGameManager* manager);
 void fn_7100301860(void* service, const UnkStrIdHandle& handle);
-void fn_7100b30454(UnkIngameMenu* menu, const UnkStrIdHandle& handle);
 
 struct UnkSubject {
     u8 pad_0x0[0x518];

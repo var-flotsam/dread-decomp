@@ -2,11 +2,11 @@
 // (fn_7100df6c78) with the given target and duration, then adds four key/value words to the keyed list at
 // +0x400 (fn_710033140c): 3 and 2 with 1, 7 and 6 with 8. Names and layouts are placeholders.
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 struct UnkKeyedWords_b52;
 u32* fn_710033140c(UnkKeyedWords_b52* self, const u32* key, const u32* value);
-void fn_7100df6c78(UnkGameManager* self, f32 a, f32 b);
 
 struct UnkShinesparkBegin_A2_b72 {
     u8 pad_0x0[0x400];

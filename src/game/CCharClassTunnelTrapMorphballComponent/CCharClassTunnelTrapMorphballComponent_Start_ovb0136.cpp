@@ -17,9 +17,11 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CAbilityGhostAura.h"
+#include "game/CAnimationComponent.h"
 #include "game/CBreakableVignetteComponent.h"
 #include "game/CCharClassBreakableScenarioComponent.h"
 #include "game/CCharClassTunnelTrapMorphballComponent.h"
+#include "game/CCollisionComponent.h"
 #include "game/CInputComponent.h"
 #include "game/CNavMeshItemComponent.h"
 #include "game/UnkActor.h"
@@ -27,6 +29,7 @@
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2689.h"
 #include "game/UnkTU365.h"
 #include "game/UnkTU372.h"
@@ -39,8 +42,6 @@ using base::global::CStrId;
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
-void fn_710117b3e8(UnkWeakTarget* target, void* link);
 void fn_7100a45150();
 
 // The two collider names (hidden statics of the unit).
@@ -117,13 +118,9 @@ void fn_7100a443c8(UnkTunnelTrapMorphball* trap) {
 }
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkOwner;
-UnkOwner* fn_7100defcd4(UnkGameManager*);
 struct UnkEnergyWavePlayer2_ovb22;
-bool fn_7100df5c20(UnkGameManager*, UnkEnergyWavePlayer2_ovb22*);
 struct UnkForcedMovementTarget_A5_b68;
-void fn_71008659c4(UnkCollisionContainer*, u32, u32, void*);
 struct UnkBreakablePart;
 struct UnkBreakableTarget;
 

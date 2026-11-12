@@ -9,6 +9,8 @@
 #include "base/input/UnkRumbleManager.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2553.h"
+#include "game/UnkTU315.h"
 #include "game/UnkXformNode.h"
 #include "game/nn/time.h"
 #include "types.h"
@@ -35,11 +37,9 @@ void fn_7100ee1f34(void* self);
 void fn_7100ee34f0(CSubAreaManager* self);
 void fn_71010e3704(void* self);
 void fn_7100debf3c(UnkGameManager* self);
-void fn_7100de6ee8(UnkGameManager* self);
 void fn_7100089894(base::file::UnkFileDevice* self);
 void fn_710008989c(base::file::UnkFileDevice* self);
 void fn_7100def930(UnkGameManager* self, u32 flags);
-void fn_71002191a4(UnkRenderManager* self, u32 value);
 CRntString fn_710007f050(const char* a, const CRntString* b);
 CRntString fn_710007ef90(const CRntString* a, const char* b);
 void fn_7100e00b48(UnkGameManager* self);

@@ -20,6 +20,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2702.h"
+#include "game/UnkTU394.h"
 #include "game/UnkTU53.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkParams.h"
@@ -71,7 +72,6 @@ struct UnkAIOwner_e {
 };
 
 struct UnkFrostbiteComponent;
-bool fn_7100d7bea0(UnkActor* actor, bool v);
 
 void fn_710110603c(UnkAIOwner_e* self) {
     UnkAIState_e* s = reinterpret_cast<UnkAIState_e*>(reinterpret_cast<u8*>(self) + 0x1466c);
@@ -542,7 +542,6 @@ struct UnkLocal_w {
     }
 };
 struct UnkAttackQuery_ovb0115;
-void fn_71002c6f80(UnkAttackQuery_ovb0115*, UnkActor*, void*);
 inline UnkLocal_w::UnkLocal_w(void* actor, void* arg) {
     fn_71002c6f80(reinterpret_cast<UnkAttackQuery_ovb0115*>(this), static_cast<UnkActor*>(actor), arg);
 }

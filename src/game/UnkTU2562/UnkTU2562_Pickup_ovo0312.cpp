@@ -11,6 +11,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1102.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2560.h"
 #include "game/sound/CSoundManager.h"
 #include "types.h"
@@ -140,7 +141,6 @@ struct UnkDropManager_o0312 {
 };
 struct UnkDropTarget;
 
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 void* fn_71006eb2cc(void* h);
 
 // The object the player's smart object holds, or null.

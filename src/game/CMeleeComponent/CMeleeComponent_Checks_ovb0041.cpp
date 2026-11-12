@@ -16,12 +16,16 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CAutclastChargeAttack.h"
 #include "game/CMovementComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU134.h"
 #include "game/UnkTU1501.h"
+#include "game/UnkTU2553.h"
+#include "game/UnkTU2739.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -64,7 +68,6 @@ using base::global::CStrId;
 
 struct UnkAnimationComponent;
 base::global::UnkStringData** fn_7101177ae8(UnkAnimationComponent*, u64);
-void* fn_7100df57f4(UnkGameManager* manager);
 void fn_71003246d8(void* p);
 
 // A pending event: its id and kind.
@@ -274,8 +277,6 @@ bool fn_7100931804(UnkMelee2_ovb0041* self, UnkMeleeHitMsg_ovb0041* msg) {
     return false;
 }
 
-void fn_7100146dac(UnkSwitchObject* self, bool enable);
-
 // The effect object the model manager hands out, as its virtual calls see it.
 struct UnkFxObject_ovb0041;
 struct UnkFxObjectVtable_ovb0041 {
@@ -292,8 +293,6 @@ struct UnkFxObject_ovb0041 {
 };
 
 extern const u8 g_unk_71727385b0[] __attribute__((visibility("hidden")));  // the effect's path id
-UnkFxObject_ovb0041* fn_71003b7db0(UnkModelManager* self, const void* path, bool a, bool b);
-void fn_71011a9bb4(UnkModelManager* self, UnkFxObject_ovb0041* fx);
 
 struct UnkMeleeHit_ovb0041 {
     u8 pad_0x0[0x14];

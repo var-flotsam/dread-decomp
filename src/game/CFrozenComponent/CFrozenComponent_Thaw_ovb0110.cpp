@@ -22,8 +22,6 @@ using base::global::UnkStringPool;
 struct CFrozenComponent2;
 template <u32 Offset>
 struct UnkSmOwner_A5_b62;  // src/game/UnkStateMachineUpdateA5_b62.cpp
-// As src/game/CAutsniperShootAttack/fn_71003d5a14.cpp declares it.
-bool fn_7101179c3c(UnkAnimationComponent* self, u64 key);
 
 struct UnkLayerNode;
 void fn_7101177a70(void* handle, u64 key);

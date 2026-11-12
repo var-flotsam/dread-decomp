@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkGlobal_710b372a98;
 struct UnkMaskedEntry_b67a1;
 struct UnkRenderTargetA1;
 struct UnkStruct_71001cdd74;
@@ -23,3 +24,5 @@ void fn_71001d0b70(UnkRenderTargetA1* target, void* p, u32 n, s32 a, s32 b);
 void fn_71001d0d10(void* self, UnkMaskedEntry_b67a1* entry);
 void fn_71001d1e78(UnkRenderTargetA1* target, f32 a, f32 b, f32 c, f32 d);
 extern u32 g_unk_716e554938;
+void fn_71001d0638(UnkGlobal_710b372a98* gfx, void* item, void* a, u32 b);
+f32 fn_71001d7320(UnkGlobal_710b372a98* self);

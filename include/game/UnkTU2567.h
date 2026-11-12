@@ -5,6 +5,9 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkReflType;
+struct UnkTUData;
+struct UnkTUHeader;
 struct UnkArray_71729ce018;
 
 bool fn_7100eb7470(void* transition, f32 dt);
@@ -17,3 +20,7 @@ void fn_7100ebecf8() __attribute__((visibility("hidden")));
 extern char g_unk_71729cdeb0;
 extern char g_unk_71729cdfd0;
 extern UnkArray_71729ce018 g_unk_71729ce018;
+extern UnkReflType g_unk_71729cdd78;
+extern UnkReflType g_unk_71729cdeb8;
+extern UnkTUHeader g_unk_71729ce040 __attribute__((visibility("hidden")));
+extern UnkTUData g_unk_71729ce058 __attribute__((visibility("hidden")));

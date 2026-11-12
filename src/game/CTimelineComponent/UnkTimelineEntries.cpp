@@ -3,6 +3,7 @@
 // src/game/CActorComponent/fn_71002519a8.cpp). Names and the layout are placeholders.
 #include "base/UnkCloneCalls.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU1134.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -16,9 +17,6 @@ struct UnkTimelineOwner {
     u8 pad_0x0[0x68];
     base::UnkKeyedArray<UnkTimelineEntries_7100a2cfe8, u64, UnkTimelineEntry> entries;
 };
-
-f32 fn_710070d89c(UnkTrack* track);
-u32 fn_710070d840(UnkTrack* track);
 
 bool fn_7100a2cfe8(UnkTimelineOwner* self, const u64* key) {
     return self->entries.Find(*key) != self->entries.End();

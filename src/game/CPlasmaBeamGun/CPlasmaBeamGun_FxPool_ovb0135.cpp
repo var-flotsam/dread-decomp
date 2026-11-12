@@ -11,6 +11,7 @@
 #include "game/UnkModelManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU134.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -24,7 +25,6 @@ void fn_7100339d48(UnkRenderPool* pool, const CFilePathStrId* path, UnkSwitchObj
 void* fn_7100339900(UnkRenderPool* pool, const CFilePathStrId* path, UnkSonarModel_ovb0085** out,
                     const CStrId* name);
 // As src/game/CGrappleBeamComponent/CGrappleBeamComponent_Effects_ovb0047.cpp declares it.
-void fn_7100146dac(UnkSwitchObject* self, bool enable);
 
 struct UnkFxObjectPool_ovb0135 {
     u8 pad_0x0[0x10];

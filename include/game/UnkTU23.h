@@ -4,7 +4,11 @@
 // 0x7100014d94-0x7100016890). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
+
+struct UnkMatrix44;
+
 void fn_7100014e88(void* member);
 void fn_7100014dfc(void* self, const void* other);
 void fn_7100014d94(void* self, u32 arg);
 void fn_7100014e5c(void* self, const void* other);
+UnkMatrix44* fn_7100015508(void* matrices, u64 id);

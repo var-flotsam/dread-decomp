@@ -4,9 +4,9 @@
 // Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
 #include "game/UnkGlobal_710b372a98.h"
+#include "game/UnkTU259.h"
 #include "types.h"
 
-void fn_71001d0638(UnkGlobal_710b372a98* gfx, void* item, void* a, u32 b);
 extern UnkMatrix44 g_unk_7101a1a680;
 
 struct UnkGfxItemPtrList {

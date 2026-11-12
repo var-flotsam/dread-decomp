@@ -3,10 +3,12 @@
 // current state and applies what it asked for, at most ten times, while marked busy) and requests (the
 // template of src/game/UnkStateMachineSet_b60.cpp). A machine far into its owner (+0x14978) reads its states
 // array from the owner (UnkSmStatesAt_A2_b63), as the original does. Names are placeholders.
+#include "game/CAIManager/CTunableAIManager.h"
 #include "game/CAbility.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CAbilitySpeedBooster.h"
 #include "game/CChozoWarriorAttack.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
 #include "game_s2/UnkSpitAttack.h"
@@ -338,8 +340,6 @@ __attribute__((always_inline)) static inline void RequestState_A2_b63(
 // The ultimate grab attacks (CChozoCommanderUltimateGrabAttack, CChozoWarriorXUltimateGrabAttack): by the
 // current state (machine at +0x88), whether the player is in one of two tracks moves the grab on.
 struct UnkOwner;
-UnkOwner* fn_7100defcd4(UnkGameManager*);
-s32 fn_7100dffc58(UnkGameManager*);
 
 template <u32 Offset>
 struct UnkSmGrab_A2_b63 {
@@ -472,7 +472,6 @@ __attribute__((always_inline)) static inline void StartLinked_A2_b63(UnkSmLinked
 }
 
 void fn_71004269a4(UnkSmLinked_A2_b63<0x88>*);
-void fn_7100da928c(UnkManager_71726af468* manager);
 
 void fn_710043e9f4(UnkSmLinked_A2_b63<0x88>* self) {
     fn_71004269a4(self);

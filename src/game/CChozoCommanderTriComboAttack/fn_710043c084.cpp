@@ -5,6 +5,7 @@
 // fields of the output.
 #include "base/UnkMatrix44.h"
 #include "game/CCharacterMovement.h"
+#include "game/CModelUpdaterComponent.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
@@ -48,7 +49,6 @@ struct UnkOutput {
 };
 
 extern char g_unk_7101649570[];
-bool fn_71011735e8(UnkEntity* entity, const void* key, UnkMatrix44* out, u32 flags);
 
 void fn_710043c084(UnkSelf* self, UnkOutput* out) {
     UnkActor* target = fn_7100d7c990(self->field_0x8);

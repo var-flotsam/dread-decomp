@@ -18,9 +18,6 @@ static inline T& At(const void* base, u64 offset) {
     return *reinterpret_cast<T*>(const_cast<char*>(reinterpret_cast<const char*>(base)) + offset);
 }
 
-void fn_71002ad978(UnkNavMeshPath* self, void* value);
-void fn_71002adbb0(UnkNavMeshPath* self, void* value);
-
 UnkNavMeshPath* fn_71002ae5f4(UnkNavMeshPath* self, const UnkNavMeshPath* other) {
     if (self != other) {
         u64* self_block_tail = &At<u64>(self, 0x12a78);

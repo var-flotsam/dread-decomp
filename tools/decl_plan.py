@@ -10,8 +10,9 @@ unit is the one its address is in (tools/tu_map.py); a global's is the one whose
 address (tools/data_map.py, read from data/data_map.csv).
 
 A symbol is planned when it is declared in more than one file with one signature, at global scope, in
-no header under include/ yet, and its types are builtin or plain structs the declaring file
-forward-declares or defines (those are forward-declared in the header). A global's copies must also be
+no header under include/ yet, and its types are builtin or plain structs that the declaring file
+forward-declares or defines, or that every file of the tree agrees on (one keyword, never an alias, never
+named through a namespace); those are forward-declared in the header. A global's copies must also be
 the same text once the macros their files define are written out (the signature leaves attributes out,
 and a visibility attribute changes the code). Left
 out, and counted: signatures that conflict, declarations inside a namespace, signatures with namespaced,
@@ -100,10 +101,32 @@ def spelled_out(statement: str, text: str) -> str:
     return " ".join(IDENT.sub(body, statement).split())
 
 
+STRUCT = re.compile(r"^(struct|class|union)\s+([A-Za-z_]\w*)\b", re.M)
+ALIAS = re.compile(r"\busing\s+([A-Za-z_]\w*)\s*=|\btypedef\b[^;{}]*?\b([A-Za-z_]\w*)\s*;")
+QUALIFIED = re.compile(r"::([A-Za-z_]\w*)")
+
+
+def type_index(files: dict[str, str]) -> dict[str, str]:
+    """{name: struct | class | union} for the types every file agrees on: declared at the start of a line
+    with one keyword everywhere, never an alias (`using X =`, a typedef) and never named through a
+    namespace (`::X`). Only such a type can be forward-declared in a header for files that do not
+    declare it themselves."""
+    keywords: dict[str, set[str]] = {}
+    out_of_question: set[str] = set()
+    for text in files.values():
+        for keyword, name in STRUCT.findall(text):
+            keywords.setdefault(name, set()).add(keyword)
+        for a, b in ALIAS.findall(text):
+            out_of_question.add(a or b)
+        out_of_question.update(QUALIFIED.findall(text))
+    return {n: next(iter(k)) for n, k in keywords.items() if len(k) == 1 and n not in out_of_question}
+
+
 def plan(report: decl_check.Report, files: dict[str, str], units: list[dict],
-         data_unit=None) -> tuple[list[Planned], Counter]:
+         data_unit=None, known: dict[str, str] | None = None) -> tuple[list[Planned], Counter]:
     """(what can move, why the rest of the multiply-declared symbols cannot). `data_unit` gives the index of
-    the unit a data address belongs to, or None (data_map.finder); without it no global is planned."""
+    the unit a data address belongs to, or None (data_map.finder); without it no global is planned. `known`
+    (type_index) lets a type the declaring file takes from an include be forward-declared too."""
     find = unit_finder(units)
     by_index = {str(u["index"]): u for u in units}
     out: list[Planned] = []
@@ -131,12 +154,15 @@ def plan(report: decl_check.Report, files: dict[str, str], units: list[dict],
         types: dict[str, str] = {}
         for t in {t for t in IDENT.findall(sig) if t not in BUILTIN and t != sym}:
             m = re.search(rf"^\s*(struct|class|union)\s+{t}\b", text, re.M)
-            if not m:
+            if m:
+                types[t] = m.group(1)
+            elif known and t in known:
+                types[t] = known[t]
+            else:
                 types = None
                 break
-            types[t] = m.group(1)
         if types is None:
-            why["a type that is not a plain struct declared in the file"] += 1
+            why["a type that is not a plain struct every file agrees on"] += 1
             continue
         if is_global:
             address = ADDRESS.search(sym)
@@ -247,7 +273,7 @@ def main() -> int:
     files = decl_check.tree_files(None)
     report = decl_check.Report(files)
     data_unit = data_map.finder(data_map.load()) if data_map.OUT.is_file() else None
-    planned, why = plan(report, files, tu_map.load_map(), data_unit)
+    planned, why = plan(report, files, tu_map.load_map(), data_unit, type_index(files))
     print(f"{len(report.multi)} symbols declared in more than one file; {len(planned)} can move "
           f"({sum(p.copies for p in planned)} local copies)")
     for k, v in why.most_common():

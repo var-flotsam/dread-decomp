@@ -18,6 +18,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkTU1501.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU56.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
@@ -37,7 +38,6 @@ struct UnkGlobal2;
 struct UnkGunListeners_b53;
 void fn_710083f32c(UnkSamusGunComponent*, const CStrId*, bool, bool, bool);
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
-void* fn_7100df5460(UnkGameManager*);
 void fn_7100841838(UnkGunListeners_b53* self, void* value);
 void fn_710007ca94(CRntFile*, char*);
 

@@ -17,7 +17,10 @@
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1376.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkTU2547.h"
+#include "game/UnkTU2553.h"
+#include "game/UnkTU367.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -266,7 +269,6 @@ bool fn_710088c2d8(UnkMushroomSmA5_b61* self, const UnkMsgHashedMessage_b61* mes
 
 // CCharClassShootActivatorHidrogigaComponent's unit: the part's machine sits at +0x40. Turning a part
 // on or off requests state 4, then plays (fn_7100d7c94c) and gives the actor two timeline keys.
-void fn_7100d7c94c(UnkActor*, const u64*);
 extern u64 g_unk_710164af50;
 extern u64 g_unk_710164af58;
 
@@ -413,7 +415,6 @@ void fn_7100773768(UnkCentralUnitA5_b61* self) {
 // state 1, makes this unit enter state 6.
 struct UnkWeakTarget;
 struct UnkDoorLock;
-UnkDoorLock* fn_71002af860(UnkWeakTarget* entity);
 
 struct UnkCentralUnitDoorA5_b61 {
     u8 pad_0x0[0x430];
@@ -445,7 +446,6 @@ bool fn_710077418c(UnkCentralUnitA5_b61* self, void* entity) {
 // clear it; otherwise test the player's shape against the door's box (fn_710012b330) and request a
 // state: 2 when the player is not inside, 1 when it is.
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkFlagged;
 struct UnkShape;
 struct UnkBox2D;

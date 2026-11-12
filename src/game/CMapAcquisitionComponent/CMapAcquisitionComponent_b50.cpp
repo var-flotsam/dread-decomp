@@ -2,10 +2,9 @@
 // handle (+0xe8) to the given target, then either runs fn_7100a86d00 (flag at +0x539) or one of two
 // virtual steps chosen by vf_0x188 (vf_0x298 when it holds, vf_0x2a8 otherwise). Always returns
 // false. Names and layouts are placeholders.
+#include "game/UnkTU2523.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 
 struct UnkMapAcquisition_b50a5;
 void fn_7100a86d00(UnkMapAcquisition_b50a5* self);

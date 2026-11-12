@@ -9,6 +9,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU27.h"
 #include "game/UnkTU83.h"
 #include "game/UnkTU85.h"
 #include "types.h"
@@ -141,7 +142,6 @@ struct UnkAssetResRef {
             fn_710001737c(ptr);
     }
 };
-UnkAssetResRef fn_710002038c(UnkRegistry_7100d92158* registry, const UnkStrIdPathPair* ids, bool a, void* b);
 
 // The categories an animation is looked up in: blend spaces (names ending in "mbls") and animations
 // (src/base/animation/CBlendSpaceResource/fn_71000113b0.cpp and CAnimationResource/fn_7100005700.cpp

@@ -4,6 +4,7 @@
 // projects it (fn_7100219588). Names and layouts are placeholders.
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU315.h"
 #include "types.h"
 
 using base::reflection::UnkTunable;
@@ -20,7 +21,6 @@ struct UnkGrappleAnswer_b50 {
 struct UnkGrappleBeam_b50;
 UnkGrappleAnswer_b50 fn_710081b920(UnkGrappleBeam_b50* self);
 
-bool fn_7100219588(UnkRenderManager*, const void*, u32, u32);
 extern UnkTunable g_unk_71727232d8;
 
 struct UnkGrappleTunable_ovb0047 {

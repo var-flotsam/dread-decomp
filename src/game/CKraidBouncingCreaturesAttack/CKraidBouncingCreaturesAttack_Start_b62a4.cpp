@@ -9,6 +9,8 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/CAnimationComponent.h"
 #include "game/CBouncingCreaturesLaunchPattern.h"
 #include "game/CKraidAttack.h"
 #include "game/UnkTU2772.h"
@@ -17,8 +19,6 @@
 
 using base::reflection::UnkReflObject;
 
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
-void fn_710117b3e8(UnkWeakTarget* target, void* link);
 void fn_71005f3e4c();
 bool fn_7100600c90(UnkReflObject* ai);
 

@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkSegment2D;
 struct UnkSegmentShape;
 void fn_7100d6936c(void* shape);  // The SEGMENT2D shape's constructor.
 void fn_7100d69400(UnkSegmentShape* self);
+void fn_7100d693ac(UnkSegmentShape* self, const UnkSegment2D* seg);

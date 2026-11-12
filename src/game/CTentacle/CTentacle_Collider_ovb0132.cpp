@@ -1,6 +1,7 @@
 // CTentacle's unit (tools/tu_map.py unit 1133): a segment's corners (fn_710070a5f8) and the tentacle's
 // collider, recreated and enabled (fn_7100709c8c). Names and layouts are placeholders.
 #include "base/math/CVector.h"
+#include "game/CCollisionComponent.h"
 #include "game/UnkTU108.h"
 #include "types.h"
 #include "base/global/CStrId.h"
@@ -64,8 +65,6 @@ bool fn_710070a5f8(void* self, f32 width, const CVector3D* a, const CVector3D* b
 
 using base::global::CStrId;
 using base::global::UnkStrIdInline;
-
-void fn_7100863e04(UnkCollisionContainer* self, UnkCollisionObject* object);
 
 using UnkTentacleCreateCollider_ovb0132 = UnkCollisionObject* (*)(UnkCollisionContainer*, const CStrId*,
                                                                   const CStrId*, const CStrId*, const CStrId*, u32,

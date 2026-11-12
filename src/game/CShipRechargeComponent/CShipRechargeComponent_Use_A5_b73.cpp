@@ -6,11 +6,11 @@
 #include "base/global/CRntString.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CUsableComponent.h"
+#include "game/UnkTU2523.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkScriptCaller;
-UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 struct UnkUsableVirt_A6_b62;
 extern const u8 g_unk_710164b5d8[] __attribute__((visibility("hidden")));
 

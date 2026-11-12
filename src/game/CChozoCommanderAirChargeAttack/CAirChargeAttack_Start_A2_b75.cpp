@@ -8,6 +8,7 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTUProperty.h"
@@ -18,8 +19,6 @@
 using base::reflection::UnkReflObject;
 
 struct UnkTakumakuComponent;
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
-void fn_710117b3e8(UnkWeakTarget* target, void* link);
 
 extern UnkTunable g_unk_71726c5150;
 

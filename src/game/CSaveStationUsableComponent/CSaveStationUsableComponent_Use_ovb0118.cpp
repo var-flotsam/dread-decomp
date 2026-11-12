@@ -63,7 +63,6 @@ struct UnkShipRechargeEntity_b49a4;
 
 struct UnkWorld;
 void fn_710114fe8c(UnkWorld*, u64, u32, u32);
-void fn_7100d7c94c(UnkActor*, const u64*);
 
 struct UnkSaveStationEffect_ovb0118 {
     u8 pad_0x0[0x30];
@@ -91,7 +90,6 @@ struct UnkSaveStation_ovb0118 {
     UnkSoundHandle sound;  // 0x540
 };
 
-UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 extern const u64 g_unk_710164b5c0;
 extern const u64 g_unk_710164b5c8;
 

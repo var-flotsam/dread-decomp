@@ -4,6 +4,7 @@
 #include "game/CCameraCtrl.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2523.h"
+#include "game/UnkTU2553.h"
 
 struct UnkPlayer;
 
@@ -22,8 +23,6 @@ struct UnkChozoCommanderDropCameraCtrl {
     u8 pad_0x258[0x4c];
     UnkDropCameraVec3 field_0x2a4;
 };
-
-UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 
 void fn_7100797df0(UnkChozoCommanderDropCameraCtrl* self) {
     fn_71010ee17c(self);

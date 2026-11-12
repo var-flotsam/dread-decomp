@@ -3,6 +3,7 @@
 // comparison (src/game/CBillboardComponent/fn_710072a110.cpp). Names and layouts are placeholders.
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 // Returned through x8, so the original's result type is not trivially copyable.
@@ -17,7 +18,6 @@ struct UnkObj_710072a110;
 UnkVec3_710072a110 fn_7100745e24(UnkObj_710072a110* obj);
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 bool fn_7100739e4c(UnkObj_710072a110* a, UnkObj_710072a110* b) {
     UnkActor* player = reinterpret_cast<UnkActor*>(fn_7100dec788(g_unk_7101d47310));

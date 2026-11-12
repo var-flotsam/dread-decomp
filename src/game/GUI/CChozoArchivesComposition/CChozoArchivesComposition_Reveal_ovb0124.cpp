@@ -11,6 +11,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -77,7 +78,6 @@ struct UnkProfileSaveArg {
     void* field_0x0;
     void* field_0x8;
 };
-s32 fn_7100df99f8(UnkGameManager* self, u32 a, const UnkProfileSaveArg* arg, u32 b);
 
 extern UnkPropertyEx<> g_unk_717275ae30;  // "SecretVisited"
 

@@ -14,7 +14,6 @@ struct UnkGfxBuffer252;
 struct UnkBillboardDrawable;
 struct UnkStruct_710019ab0c;
 
-void fn_710019b184(UnkBillboardDrawable* self, u32 index, u32 part, const UnkMatrix44* matrix);
 void fn_7100154380(UnkObj_71001541a0* self, u32 a, u32 b);
 void fn_7100154270(UnkObj_71001541a0* self);
 void fn_71001542f0(UnkObj_71001541a0* self, u32 a, u32 b, const void* data);

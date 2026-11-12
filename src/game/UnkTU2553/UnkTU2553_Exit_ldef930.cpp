@@ -5,6 +5,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "game/CAbilityEnergyWave.h"
+#include "game/CBombGun.h"
 #include "game/CHydrogigaAIComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkModelManager.h"
@@ -14,6 +15,8 @@
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2562.h"
 #include "game/UnkTU2669.h"
+#include "game/UnkTU2739.h"
+#include "game/UnkTU315.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU344.h"
 #include "game/UnkTU365.h"
@@ -27,14 +30,11 @@ struct UnkActorDefFactory;
 struct UnkSweepList_b49;
 struct UnkActor_71002329e8;
 
-void fn_71011aa820(UnkModelManager* self);
 char* fn_7100219210(char* p0);
-void fn_7100219804(UnkRenderManager* self, u32 layer);
 namespace callee { char* fn_71011a2d7c(u64); }
 void fn_71011a19a4(void* self);
 void fn_7100def678(UnkGameManager* self, const CRntString& name, const char* fmt, ...);
 char* fn_7100d7820c(char* p0, u32 p1, u32 p2, u32 p3, u32 p4);
-void fn_7100de6ee8(UnkGameManager* self);
 void fn_7100de70a8(UnkGameManager* self);
 void fn_7101047ea8(void* self);
 void fn_7100e2c28c(void* self);
@@ -48,8 +48,6 @@ void fn_710119336c(UnkActorDefFactory* factory);
 void fn_7100d46804(UnkManager_7100863a8c* self);
 void fn_7100d46c5c(UnkManager_7100863a8c* self);
 void fn_7100defd08(UnkGameManager* self);
-
-extern UnkSubAreaGuiCache* g_unk_71727254f8;
 
 // The script environment behind +0x608 (its +0x18 holds the environment's name and a use count).
 struct UnkExitScriptEnv {

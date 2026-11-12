@@ -27,6 +27,7 @@
 #include "game/UnkTU25.h"
 #include "game/UnkTU2726.h"
 #include "game/UnkTU2733.h"
+#include "game/UnkTU315.h"
 #include "game/UnkTU39.h"
 #include "game/UnkTU426.h"
 #include "game/nn/time.h"
@@ -178,7 +179,6 @@ void fn_7100b2c6a0(UnkStateOwner* self);
 void fn_7100b2c784(UnkStateOwner* self);
 void fn_710006d2a0(UnkSoundGroup* group, u32 id);
 void fn_710006d4d0(UnkSoundGroup* group, u32 id);
-void fn_7100219da4(UnkRenderManager* target, bool a, bool b, u32 mode);
 void fn_7100b2cc40(UnkStateOwner* self);
 
 // The item seen as the display object it is (game/UnkGuiDisplayObject.h), for the GUI setters.

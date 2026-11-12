@@ -6,8 +6,10 @@
 // UnkReflAttributes.h names the shared ones); names and layouts are placeholders.
 // Holds fn_71002584a0 (CActorLayer::refl_InitClass's body).
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/UnkTU2536.h"
 #include "game/UnkTUInit.h"
 #include "types.h"
 
@@ -73,11 +75,8 @@ inline UnkReflAnyList::UnkReflAnyList(UnkReflAnyValue&& first) {
 
 // The types: the sublayer dictionary (built in this unit), the actor group dictionary, and two
 // whose values tag the fields' attributes (roles unknown).
-extern UnkReflType g_unk_71726a0628;
 extern UnkEnumType g_unk_717269c300;
 extern UnkReflType g_unk_7172756f90;
-extern UnkReflType g_unk_71727bc110;
-UnkReflType* fn_710025d654();  // the list type of the class attribute
 static inline const CType* AnyListType() { return reinterpret_cast<const CType*>(fn_710025d654()); }
 
 // Attribute keys used only here (their strings are unknown).

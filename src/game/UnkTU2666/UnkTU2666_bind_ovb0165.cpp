@@ -4,6 +4,7 @@
 #include "../../../lib/lua/lauxlib.h"
 #include "base/UnkVector.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CAIManager/CTunableAIManager.h"
 #include "game/CCharClassAIComponent.h"
 #include "game/CDroppableLifeComponent.h"
 #include "game/CLifeComponent.h"
@@ -41,7 +42,6 @@ struct UnkBase_71003cc474;
 struct UnkCharacterLife_b0050;
 
 bool fn_7101161088(void*);
-bool fn_7100da9254(UnkManager_71726af468* self);
 extern void* g_unk_7101d47330;
 
 struct UnkEntity_b0165;

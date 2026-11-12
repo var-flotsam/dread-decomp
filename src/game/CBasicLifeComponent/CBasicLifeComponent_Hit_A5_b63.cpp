@@ -5,6 +5,7 @@
 // set, runs fn_7100232c68 on the owner and, when fn_71004dad10 finds something and +0x270 is set, passes
 // both to fn_71007c1ce0 and clears +0x270. Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CCoreXAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTimelineCalls.h"
@@ -15,7 +16,6 @@ struct UnkLifeBase_A5_b63;
 struct UnkLifeArg_A5_b63;
 struct UnkHitInfo_A5_b63;
 void fn_710116064c(UnkLifeBase_A5_b63* self, UnkLifeArg_A5_b63* arg, UnkHitInfo_A5_b63* info);
-char* fn_71004dad10(UnkActor*);
 void fn_71007c1ce0(char* p, UnkHitInfo_A5_b63* info);
 
 extern u64 g_unk_710164af78;

@@ -3,9 +3,9 @@
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkObject_0x100.h"
+#include "game/UnkTU367.h"
+#include "game/UnkTU376.h"
 #include "types.h"
-
-void fn_71002b57bc(UnkObject_0x100* self);  // the payload's constructor
 
 // Same layouts as src/game/navmesh/UnkNavPathNode.cpp.
 struct UnkNavPathPoint {
@@ -24,8 +24,6 @@ struct UnkNavPathNode {
     UnkNavPathNode* parent;
 };
 static_assert(sizeof(UnkNavPathNode) == 0x128, "UnkNavPathNode layout");
-
-u32 fn_71002b009c(UnkNavMeshCell* cell);
 
 void fn_710028720c(UnkNavPathNode* self, UnkNavMesh* mesh, u16 cell, u8 side, u32 kind, const UnkNavPathPoint* pos) {
     fn_71002b57bc(reinterpret_cast<UnkObject_0x100*>(self->data));

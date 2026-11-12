@@ -3,12 +3,10 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "game/CStandaloneFXComponent.h"
+#include "game/UnkTU2739.h"
 #include "types.h"
 
 #include "game/UnkModelManager.h"
-
-// Defined in game_hi with its own view of the manager (its container half).
-bool fn_71011a91c4(UnkModelManager* self, void* handle, u32 id);
 
 static inline UnkModelManager* GetManager() {
     if (!g_unk_71726b0cd8) {

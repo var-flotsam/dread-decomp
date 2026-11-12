@@ -9,6 +9,8 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCoreXAIComponent.h"
+#include "game/CModelUpdaterComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU2523.h"
@@ -25,9 +27,7 @@ struct UnkSwarmSelf_b0143;
 struct UnkDropSpawnComp_ovb0096;
 struct UnkXformAtF0;
 
-bool fn_71011735e8(UnkEntity* entity, const void* key, UnkMatrix44* out, u32 flags);
 UnkVec3f fn_7100076acc(const UnkXform* x);
-char* fn_71004dad10(UnkActor*);
 void fn_710110e278(UnkSwarmSelf_b0143* self, void* a, void* b, void* c, bool flag);
 void fn_71007c1ab0x(UnkDropSpawnComp_ovb0096* self, void* unused) asm("fn_71007c1fb0");
 UnkVec3f fn_710007a450(void* xform, const UnkVec3f* v);

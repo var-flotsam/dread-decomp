@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "game/CDoorCentralUnitLifeComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -17,7 +18,6 @@ struct UnkVec {
     u32 field_0x4;
     u32 field_0x8;
 };
-void fn_7100e038b0(UnkGameManager* dispatcher, void* key, UnkVec* vec, u64 arg);
 
 struct UnkDoorCentralUnitLife_A5_b68 {
     u8 pad_0x0[0xc08];

@@ -5,10 +5,10 @@
 // clearing the found object's flag (+0x521 of +0x200). Returns 1. Names and layouts are placeholders.
 #include "base/UnkRefHandle.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 void* fn_71004067a4(void*);
 
 struct UnkCountedSide_b49 : base::UnkRefCounted {

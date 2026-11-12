@@ -2,6 +2,7 @@
 // placeholders.
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
+#include "game/CPoisonFlyAIComponent.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -21,7 +22,6 @@ struct UnkPoisonFlyAI {
 
 void fn_7101108108(UnkPoisonFlyAI* self);  // the base method
 extern base::global::CStrId g_unk_71726b7cb8;                                    // the blackboard section
-extern UnkPropertyName g_unk_71726fa598 __attribute__((visibility("hidden")));  // the property in it
 
 // Stores a copy of `value` under `name` in the blackboard section `section` names (unless the
 // blackboard is locked).

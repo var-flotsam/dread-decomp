@@ -5,6 +5,7 @@
 #include "base/global/CRntString.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2656.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU53.h"
@@ -64,9 +65,6 @@ s32 fn_71010925d0(lua_State* L) {
     u8* block = reinterpret_cast<u8*>(g_unk_7101d4d820) + 0x400910;
     return fn_71010c0b40(L, "b", block[0] ? block[6] : 0);
 }
-
-void fn_7100df6c78(UnkGameManager* self, f32 a, f32 b);
-void fn_7100dffc3c(UnkGameManager* self, f32 v);
 
 s32 fn_7101087a40(lua_State* L) {
     f32 value;
@@ -192,7 +190,6 @@ struct UnkProfileSaveArg {
     void* field_0x0;
     void* field_0x8;
 };
-s32 fn_7100df99f8(UnkGameManager* self, u32 a, const UnkProfileSaveArg* arg, u32 b);
 
 s32 fn_71010791a0(lua_State* L) {
     u8 flag;

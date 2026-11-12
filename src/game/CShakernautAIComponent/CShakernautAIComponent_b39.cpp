@@ -11,6 +11,7 @@
 #include "game/CComponent.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU2523.h"
 #include "types.h"
 
 struct UnkValueSet_sna {
@@ -142,8 +143,6 @@ struct UnkActorPosition {
     f32 x, y, z, w;
     UnkActorPosition(const UnkActorPosition& other);
 };
-
-UnkActorPosition fn_7100d7b7a8(UnkActor* actor);
 
 struct UnkEnemyMovement_sna {
     void** vtable;

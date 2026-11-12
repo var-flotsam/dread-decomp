@@ -489,7 +489,6 @@ void fn_71010d1e88(UnkMovement3_ovb0048* self, void* a, void* b, f32 t, void* c,
 
 
 struct UnkWeakTarget;
-UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 
 // A string id built from a string out of line (fn_7100000850), released like CStrId.
 struct UnkBuiltStrId_ovb0048 {

@@ -1,6 +1,7 @@
 // CCollisionComponent unit (1319): sets the container's flag at +0xc9; when it turns on while +0xc8 is set, every
 // record whose flag (+0x18) is set is refreshed through the container's vf_0x170 if its object answers true to
 // its slot 0x58, else the record's +0x1c is cleared. Names are placeholders.
+#include "game/CCollisionComponent.h"
 #include "game/UnkCollisionRecord.h"
 
 typedef void (*UnkCollisionRefresh_A5_b70)(UnkCollisionContainer* self, UnkCollisionRecord* record, s32 a);
@@ -24,8 +25,6 @@ void fn_7100861fc8(UnkCollisionContainer* self, bool on) {
         }
     }
 }
-
-void fn_71008615b4(UnkCollisionContainer* self);
 
 // The same refresh with mode 1 while +0xc8 is set, then fn_71008615b4 when +0x128 is set.
 void fn_7100866668(UnkCollisionContainer* self) {

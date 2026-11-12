@@ -2,13 +2,13 @@
 // +0x1890, read with fn_7101142928 from the inventory), or 1 while the gun has no item. Names and
 // layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CInventoryComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 struct UnkInventory;
-void* fn_7100df55e4(UnkGameManager*);
-f32 fn_7101142928(UnkInventory*, const UnkQualifiedId&);
 
 struct UnkSelf_sg41 {
     u8 pad_0x0[0x1890];

@@ -5,7 +5,12 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkCallbackSetElem;
+struct UnkCallbackSetVector;
 struct UnkThermalDevice_A5_b73;
 void fn_7100a93bc4(void* self);
 void fn_7100a925a0(UnkThermalDevice_A5_b73* self);
 extern void* g_unk_7101a92ed0[];
+void fn_7100a956b8(UnkCallbackSetVector* v, u32 n);
+void fn_7100a95868(UnkCallbackSetVector* v, const UnkCallbackSetElem* value);
+void fn_7100a959a0(UnkCallbackSetVector* v, u32 size);

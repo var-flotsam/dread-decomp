@@ -8,9 +8,9 @@
 #include "base/global/CStrId.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkTU1730.h"
 #include "types.h"
 
-extern UnkDesc_SpitSend g_unk_7172769794;  // reached through the GOT
 extern const base::global::CStrId g_unk_717271a2c0 __attribute__((visibility("hidden")));
 
 struct UnkValveCollisionObject_b56 {

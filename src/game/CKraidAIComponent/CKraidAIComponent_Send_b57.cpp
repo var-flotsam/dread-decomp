@@ -7,6 +7,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CGrabComponent.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -48,7 +49,6 @@ void fn_71005fe634(UnkKraidAI_b57a4* self) {
 #include "game/UnkGameManager.h"
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkKraidGrab_b57a4 {
     u8 pad_0x0[0x24];
     u32 field_0x24;

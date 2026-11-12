@@ -9,13 +9,14 @@
 #include "game/UnkActor.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSceneObject.h"
+#include "game/UnkTU140.h"
+#include "game/UnkTU252.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 void* fn_7100149930(UnkRenderPool*, void*, UnkSceneObject**, base::global::CStrId*);
-void fn_71001beee4(UnkSceneObjectSub* target, u32 mode);
 void fn_71001494e4(UnkSceneObject* self, bool flag);
 void fn_7100149460(UnkSceneObject* object, const UnkVec3f* position);
 
@@ -38,7 +39,6 @@ struct UnkColorArg_710050f26c {
         ((a_u32*)&a)[0] = ((const a_u32*)c)[3];
     }
 };
-bool fn_710014826c(UnkSceneObject*, u32, u32, UnkColorArg_710050f26c, bool, f32);
 
 struct UnkDummyData_ovb0267 {
     u8 pad_0x0[0x4fc];

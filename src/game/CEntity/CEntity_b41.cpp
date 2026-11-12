@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflValue.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU315.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
@@ -35,7 +36,6 @@ UnkReflValue fn_7100d823f4(void*, char* obj) {
 
 void* fn_7100d7c214(char* self);
 bool fn_7100729978(void* self);
-bool fn_7100219588(UnkRenderManager* self, const void* pos, u32 a, u32 b);
 
 struct alignas(16) UnkEntityPos_b41a3 {
     u32 x, y, z;

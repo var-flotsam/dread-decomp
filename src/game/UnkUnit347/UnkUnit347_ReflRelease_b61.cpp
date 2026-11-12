@@ -3,6 +3,7 @@
 // fn_7100deabe4 holds, hands the object to the manager's +0x608 (fn_71011a2770) and to the manager
 // (fn_7100dea774). Answers the empty status {0, 0, 2, 1}. Names are placeholders.
 #include "base/reflection/UnkReflValue.h"
+#include "game/CScenario.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -21,7 +22,6 @@ struct UnkReleased_b61 {
     virtual void vf_0x48();
 };
 
-void fn_71011a2770(UnkGameManagerSub_0x608* points, void* object);
 void fn_7100dea774(UnkGameManager* self, void* object);
 
 static inline __attribute__((always_inline)) void* ArgPtr_b61(UnkReflValue* arg) {

@@ -2,6 +2,7 @@
 // at +0x15ce0 through fn_71004567dc, calls fn_7100ed78c0 on the sound player g_unk_71726af0b0 and then hands the
 // lazily created manager g_unk_71726af468 to fn_7100da928c (as fn_710048e38c). Names are placeholders.
 #include "base/UnkVector.h"
+#include "game/CAIManager/CTunableAIManager.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CBossAIComponent.h"
 #include "game/CChozoCommanderAIComponent.h"
@@ -10,8 +11,6 @@
 #include "types.h"
 
 struct UnkNode;
-
-void fn_7100da928c(UnkManager_71726af468* manager);
 
 struct UnkChozoCommanderAIComponent_A2_b69 {
     u8 pad_0x0[0x15ce0];

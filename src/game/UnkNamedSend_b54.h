@@ -4,8 +4,7 @@
 // 0x7172769740: mode 0, the same kind hash and mask (two door and grapple-point components).
 
 #include "../game_s2/UnkSpitSend.h"
-
-extern UnkDesc_SpitSend g_unk_717276974c;  // reached through the GOT
+#include "game/UnkTU1730.h"
 
 inline void UnkSpitSend_974c(void* target, u64 hash, u64 kind) {
     base::reflection::UnkReflTypeIdArg mode;

@@ -3,6 +3,7 @@
 #include "UnkStaticInitS7.h"
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/UnkTU1376.h"
 #include "game/UnkTUProperty.h"
 
 using namespace unk_static_init;
@@ -36,16 +37,10 @@ struct UnkStatics_71008da6c0 {
 extern UnkStatics_71008da6c0 g_unk_7172731708 __attribute__((visibility("hidden")));
 struct UnkStruct_7172731438;
 extern UnkStrIdBase g_unk_71727310b8;
-extern UnkProperty g_unk_71727310c0;
 extern void* g_unk_7101a7ea58[];
 void fn_71008dbddc(void* p);
 void fn_71008cac70(void* p);
-extern UnkProperty g_unk_71727310e8;
-extern UnkProperty g_unk_7172731110;
-extern UnkProperty g_unk_7172731138;
 extern UnkEnumType g_unk_7172731200;
-extern UnkProperty g_unk_7172731160;
-extern UnkProperty g_unk_7172731188;
 extern UnkProperty g_unk_71727311b0;
 extern UnkProperty g_unk_71727311d8;
 inline const CStrId& StaticName_71726a47a8() {

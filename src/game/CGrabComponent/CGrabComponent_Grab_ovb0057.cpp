@@ -15,12 +15,15 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CActorComponent.h"
+#include "game/CBombGun.h"
 #include "game/CComponent.h"
 #include "game/CGrabComponent.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkSubAreaGuiCache.h"
+#include "game/UnkTU1730.h"
+#include "game/UnkTU2523.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -31,13 +34,11 @@ using base::reflection::UnkReflObject;
 struct UnkStateObject;
 struct UnkKraidGrab_b57a4;
 
-UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 void fn_71010ff850(void* target, bool flag, void* arg);
 bool fn_710119dc88(UnkSubAreaGuiCache* self, void* actor, bool flag);
 
 extern void* g_unk_7101cb3230[];  // the component's vtable
 extern char* g_unk_71726b2398;
-extern UnkSubAreaGuiCache* g_unk_71727254f8;
 extern u8 g_unk_7172a09100[] __attribute__((visibility("hidden")));
 
 // As in src/game/CCharClassToStateTrack/CCharClassToStateTrack_Fill.cpp.
@@ -45,7 +46,6 @@ struct __attribute__((packed, aligned(4))) UnkTrackBlend {
     u64 kind;
     f32 value;
 };
-extern UnkTrackBlend g_unk_7172769758;
 
 // A zero whose constructor isn't constexpr, so the static is guarded (as
 // src/game/CUsableComponent/fn_7100a9e244.cpp's).

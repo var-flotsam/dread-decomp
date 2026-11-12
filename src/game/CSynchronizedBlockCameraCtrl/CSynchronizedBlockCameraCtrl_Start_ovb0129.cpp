@@ -10,13 +10,13 @@
 #include "game/CCameraBoundaryCtrl.h"
 #include "game/CCameraCtrl.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 struct UnkStruct_7100763ed4;
 
@@ -100,10 +100,6 @@ struct UnkFixedCamera_fc;
 struct UnkArg_fc;
 struct UnkVec;
 struct UnkGrabCameraCtrl;
-void fn_7100e038b0(UnkGameManager*, void*, UnkVec*, u64);
-void fn_7100e03a78(UnkGameManager*, void*);
-void fn_7100df6c78(UnkGameManager* self, f32 a, f32 b);
-void fn_7100df6d3c(UnkGameManager* self, void* settings, f32 a, f32 b);
 
 struct UnkSyncDef_b0129 {
     u8 pad_0x0[0xb4];

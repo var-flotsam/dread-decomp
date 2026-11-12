@@ -6,6 +6,7 @@
 #include "base/UnkRegistry.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
+#include "base/animation/CAnimationResource.h"
 #include "base/file/CThreadSafeDevice.h"
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CRntFile.h"
@@ -22,6 +23,7 @@
 #include "game/UnkTU2728.h"
 #include "game/UnkTU315.h"
 #include "game/UnkTU426.h"
+#include "game/UnkTU437.h"
 #include "game/UnkTU785.h"
 #include "game/lua_lib.h"
 #include "game/msapi/res/CRenderRes.h"
@@ -47,8 +49,6 @@ struct lua_State;
 struct UnkPlayer;
 struct UnkStruct_71008c0c74;
 struct UnkBase_71003cc474;
-
-UnkPlayer* fn_7100dec788(UnkGameManager* self);
 
 extern CStrId g_unk_71726dda50;
 
@@ -459,11 +459,7 @@ struct UnkVec {
     u32 field_0x4;
     u32 field_0x8;
 };
-UnkPlayer* fn_7100dec788(UnkGameManager*);
-void fn_7100352b14(void* body_field, UnkActor* owner, u32 flag);
 bool fn_710083e250(UnkGun_ovb0091* self, f32 value, bool flag);
-void fn_7100df6d3c(UnkGameManager* self, void* settings, f32 a, f32 b);
-void fn_7100e038b0(UnkGameManager* dispatcher, void* key, UnkVec* vec, u64 arg);
 struct UnkGuiHolder_b0159;
 UnkGuiHolder_b0159* fn_7101126814(const CStrId* id);
 
@@ -786,7 +782,6 @@ bool fn_7101096d68(s32 first, s32 second) {
     return result;
 }
 
-extern UnkRegistry_0x70* g_unk_7101d4b5a0;
 bool fn_71000878f0(UnkRegistry_0x70* self, const UnkStrPair_0x10* path, u32 flags, void* out);
 void fn_7100df9728(UnkGameManager* self);
 void fn_7100133020();

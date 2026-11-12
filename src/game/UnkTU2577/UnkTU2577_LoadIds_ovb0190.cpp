@@ -4,6 +4,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CBombGun.h"
 #include "game/CSpawnGroupComponent.h"
 #include "game/UnkSubAreaGuiCache.h"
 #include "game/UnkTU2668.h"
@@ -34,7 +35,6 @@ struct UnkSubAreaEntityList {
     u32 count;
 };
 
-extern UnkSubAreaGuiCache* g_unk_71727254f8;
 bool fn_710119e4ec(UnkSubAreaGuiCache* self, const CStrId* id, bool flag);
 void fn_710111b040(base::reflection::UnkReflObject* component, const CStrId* id);
 

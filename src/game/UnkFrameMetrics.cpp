@@ -6,6 +6,7 @@
 #include "base/math/CVector.h"
 #include "game/UnkGlobal_710b372a98.h"
 #include "game/UnkTU135.h"
+#include "game/UnkTU259.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -18,7 +19,6 @@ f32 fn_71001bd628(UnkFrameSource* self);  // the 16-bit count at +0x9c
 void fn_71001bd4e8(UnkFrameSource* self, u32 frame, CVector2D* out);
 void fn_71001bd5a8(UnkFrameSource* self, u32 frame, CVector2D* out);
 void fn_71001bd548(UnkFrameSource* self, u32 frame, f32* out);
-f32 fn_71001d7320(UnkGlobal_710b372a98* self);
 
 struct UnkFrameOwner {
     u8 unk_0x0[0x18];

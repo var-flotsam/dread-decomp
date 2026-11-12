@@ -5,6 +5,7 @@
 #include "base/math/UnkZeroVector3.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CCharacterMovement.h"
+#include "game/CModelUpdaterComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU1501.h"
@@ -84,7 +85,6 @@ extern const UnkLegKeys g_unk_7172741018 __attribute__((visibility("hidden")));
 
 struct UnkEntity;
 struct UnkFlagged;
-bool fn_71011735e8(UnkEntity* entity, const void* key, UnkMatrix44* out, u32 flags);
 void fn_71009eee34(UnkSamusMovement* self, const u64* key, bool active, bool flag);
 void fn_71009ef110(UnkSamusMovement* self, const UnkVec3f* a, const UnkVec3f* b);
 void fn_71009eff9c(UnkSamusMovement* self, bool flag, f32 dt);

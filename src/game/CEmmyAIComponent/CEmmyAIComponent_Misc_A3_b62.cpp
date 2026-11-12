@@ -2,10 +2,10 @@
 // flagged or answering fn_710083eb28, the game manager's fn_7100df59a8, or the part at +0x2e0 answering
 // fn_7100300cf4), and otherwise answers whether fn_7100df5740 is false. Names and layouts are placeholders.
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 struct UnkPlayerPart_b62a3 {
     u8 pad_0x0[0x178];
@@ -23,7 +23,6 @@ struct UnkPlayer_b62a3 {
 bool fn_710083eb28(UnkPlayerPart_b62a3*);
 bool fn_7100df59a8(UnkGameManager*);
 bool fn_7100300cf4(UnkPlayerPart2_b62a3*);
-bool fn_7100df5740(UnkGameManager*);
 
 bool fn_710054abf4() {
     auto* player = reinterpret_cast<UnkPlayer_b62a3*>(fn_7100dec788(g_unk_7101d47310));

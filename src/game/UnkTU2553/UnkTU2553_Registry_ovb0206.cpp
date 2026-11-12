@@ -25,6 +25,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CBlackboard.h"
+#include "game/CBombGun.h"
 #include "game/CBossAIComponent.h"
 #include "game/CDroppableLifeComponent.h"
 #include "game/CGameManager/CTunableGameManager.h"
@@ -137,7 +138,6 @@ struct UnkEntityState;
 
 void fn_71011a2e1c(UnkGameManagerSub_0x608* env);
 void fn_71011a2dac(UnkGameManagerSub_0x608* env);
-void fn_7100de6ee8(UnkGameManager* self);
 void fn_7100dea304(UnkGameManager* self, void* object);
 void fn_7100089894(base::file::UnkFileDevice* self);
 void fn_7100dec088(UnkGameManager* self);
@@ -626,7 +626,6 @@ using base::global::CStrId;
 
 // The user data's owner, created on first use (as src/game/CBossRushManager.cpp has it).
 struct UnkUserDataOwner;
-CBlackboard* fn_710120384c(UnkUserDataOwner* self);
 bool fn_71010474f4(CBlackboard* self, const CStrId& section, const CStrId& name);
 bool fn_7100395b34(CBlackboard::CSection* section, const void* name, f32* out);
 extern u8 g_unk_71727be8a8[];
@@ -846,7 +845,6 @@ void fn_7100d8ba60(void* holder, void* entity);
 void fn_7101198450(void* gui, UnkReflObject* entity);
 bool fn_710119dd94(UnkActorTable_b43a3* self, UnkActorWithDef_b43a3* actor);
 extern void* g_unk_7101d47330;
-extern UnkSubAreaGuiCache* g_unk_71727254f8;
 
 struct UnkEntityNode_de6ee8 {
     void* object;
@@ -928,7 +926,6 @@ struct UnkLoadCheckPointSingleton_ovb0118;
 struct UnkMgr_0xf18;
 extern void* g_unk_7101d47330;
 extern void* g_unk_71726bc560;
-void fn_7100dee46c(UnkGameManager* self);
 void fn_7101198978(void* gui);
 void fn_7101198c0c(void* gui);
 void fn_7101047068(CBlackboard* a, CBlackboard* b);
@@ -1148,7 +1145,6 @@ void fn_7100dfa010(UnkGameManager* manager, UnkLoadRequest_dfa010* request) {
 using base::global::CRntString;
 
 struct UnkUserDataOwner;
-void fn_7100dee46c(UnkGameManager* self);
 
 // A list of pointers (vtable g_unk_7101aa9ac0), its nodes from `allocator` with `flags`.
 struct UnkPtrListNode {

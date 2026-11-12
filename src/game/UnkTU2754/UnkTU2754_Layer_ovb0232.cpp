@@ -3,15 +3,14 @@
 // the render manager (fn_71011f5b9c). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU315.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-void fn_7100219804(UnkRenderManager* self, u32 layer);
 void fn_71002198cc(UnkRenderManager* self, void* a, void* b, void* c, u32 layer, u32 flag);
 void fn_7100219bdc(UnkRenderManager* self, u32* width, u32* height, u32 layer);
 struct UnkSceneObj_71010e2278;
-void fn_7100219bb4(UnkRenderManager* mgr, UnkSceneObj_71010e2278* obj, u32 layer);
 
 struct UnkScreenLayer_b0232 {
     CStrId name;  // 0x0

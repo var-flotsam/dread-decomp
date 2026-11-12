@@ -7,8 +7,10 @@
 
 #include "base/UnkRegistry.h"
 #include "base/UnkVector.h"
+#include "base/animation/CAnimationResource.h"
 #include "base/file/CFileCacheDevice.h"
 #include "base/global/UnkStringPool.h"
+#include "game/UnkTU63.h"
 #include "types.h"
 
 using base::global::UnkPoolIter;
@@ -125,8 +127,6 @@ struct UnkFileCacheDevice_ovb0034 {
 };
 
 bool fn_7100085688(UnkCacheSizes_ovb0034* sizes, UnkCacheHandle_ovb0034* handle);
-void fn_7100087dc8(UnkRegistry_0x70* self, void* entry, u32 kind);
-extern UnkRegistry_0x70* g_unk_7101d4b5a0;
 
 // Status 1 is a plain miss; any other non-zero status is reported to the registry, created on
 // first use.

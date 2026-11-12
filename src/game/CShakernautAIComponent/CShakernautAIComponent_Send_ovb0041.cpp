@@ -7,9 +7,12 @@
 #include "base/UnkVector.h"
 #include "base/math/CVector.h"
 #include "game/CAnimationComponent.h"
+#include "game/CAutclastChargeAttack.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU134.h"
 #include "game/UnkTU2702.h"
+#include "game/UnkTU2739.h"
 #include "game/UnkTU285.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -51,8 +54,6 @@ void fn_71006ae194(UnkShkAI_ovb0041* self) {
 using base::math::CVector2D;
 using base::math::CVector3D;
 
-void fn_7100146dac(UnkSwitchObject* self, bool enable);
-
 // The effect object the model manager hands out, as its virtual calls see it (as in
 // src/game/CMeleeComponent/CMeleeComponent_Checks_ovb0041.cpp).
 struct UnkFxObject_ovb0041;
@@ -68,8 +69,6 @@ struct UnkFxObjectVtable_ovb0041 {
 struct UnkFxObject_ovb0041 {
     UnkFxObjectVtable_ovb0041* vtable;
 };
-UnkFxObject_ovb0041* fn_71003b7db0(UnkModelManager* self, const void* path, bool a, bool b);
-void fn_71011a9bb4(UnkModelManager* self, UnkFxObject_ovb0041* fx);
 
 extern const u8 g_unk_7172706450[] __attribute__((visibility("hidden")));  // the effect's path id
 

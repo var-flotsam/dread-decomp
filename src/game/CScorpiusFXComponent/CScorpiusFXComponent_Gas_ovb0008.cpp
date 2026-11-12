@@ -16,6 +16,8 @@
 #include "game/UnkModelManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU134.h"
+#include "game/UnkTU2739.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -26,9 +28,7 @@ extern char g_unk_7101a74e88[];  // vtable
 struct UnkBreakableTileGroup_b46a2;
 // Signature as src/game/CBreakableTileGroupComponent/CBreakableTileGroupComponent_b46.cpp declares it.
 struct UnkNode;
-bool fn_71011a91c4(UnkModelManager* self, void* handle, u32 id);
 struct UnkMorphBallLauncher_b57;
-void fn_7100146dac(UnkSwitchObject* self, bool enable);
 void fn_7100339d48(UnkRenderPool* pool, const CFilePathStrId* path, UnkSwitchObject** out, const CStrId* name);
 
 static inline UnkModelManager* ModelManager() {

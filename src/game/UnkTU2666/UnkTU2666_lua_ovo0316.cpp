@@ -38,7 +38,6 @@ struct UnkNamedKey_b0163 {
     u64 hash;  // 0x30
 };
 struct UnkWeakTarget;
-UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 struct UnkSoundRef;
 struct UnkSoundHandle {
     UnkSoundRef* ref;
@@ -200,7 +199,6 @@ void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const 
 
 extern UnkPropertyEx<> g_unk_7172758cf0;  // three floats
 void fn_7100dffe04(UnkGameManager* self, s32 value);
-void fn_7100dffc3c(UnkGameManager* self, f32 v);
 
 // The id table (fn_7100031894 builds it; as src/game/CGameManager.cpp).
 struct UnkGameManagerIdTable {

@@ -11,7 +11,6 @@
 #include "types.h"
 
 struct UnkWeakTarget;
-UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 extern const u64 g_unk_7101649b38;  // reached through the GOT
 extern base::global::CStrId g_unk_71726d8110 __attribute__((visibility("hidden")));
 

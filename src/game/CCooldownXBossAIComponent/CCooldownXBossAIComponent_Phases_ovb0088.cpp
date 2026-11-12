@@ -19,6 +19,7 @@
 #include "game/CBossAIComponent.h"
 #include "game/CDamageSourceFactor.h"
 #include "game/CGrabComponent.h"
+#include "game/CModelUpdaterComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkBroadphaseObject.h"
@@ -401,7 +402,6 @@ u32 fn_71004d2e14(UnkCooldownXDamageAI_ovb0088* self, UnkCooldownXDamage_ovb0088
 }
 
 struct UnkEntity;
-bool fn_71011735e8(UnkEntity*, const void*, UnkMatrix44*, u32);
 struct UnkStruct_71008651c8_Entry;
 struct UnkStruct_71008651c8;
 using UnkOut_71008651c8 = base::UnkVector<UnkStruct_71008651c8_Entry*>;

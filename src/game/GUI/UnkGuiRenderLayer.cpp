@@ -3,8 +3,7 @@
 // +0x20 is set). Holds its release (fn_71011f5eb4). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/UnkRenderManager.h"
-
-void fn_7100219804(UnkRenderManager* self, u32 layer);  // drops the layer
+#include "game/UnkTU315.h"
 
 struct UnkGuiRenderLayer {
     base::global::UnkStringData* id;

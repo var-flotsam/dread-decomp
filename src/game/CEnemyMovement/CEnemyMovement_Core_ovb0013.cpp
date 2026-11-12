@@ -631,7 +631,6 @@ UnkVec3f fn_71010cb488(UnkEnemyMovement_b488* self) {
 // fn_71010caa64: whether the movement turns: never while the 0xf406... track plays; always with a
 // CCharClassIgnoreTurnTrack or fn_7101179870; otherwise as the AI's slot 0x1b8 says.
 struct UnkStateSet_1441;
-bool fn_71011782ec(UnkAnimationComponent* self, u64 key);
 
 struct UnkMovementSlot_f {
     void** vtable;

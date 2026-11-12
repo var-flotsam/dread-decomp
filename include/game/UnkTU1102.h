@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkActor;
+struct UnkXParasiteSelect_9fcc;
 struct UnkXParasiteAI_A3_b75;
 struct UnkXParasiteAI_b64a4;
 struct UnkXParasiteGrab_xpa;
@@ -14,3 +16,4 @@ void* fn_71006eb114(void* owner);  // refl_FindTyped of "SMARTOBJECT".
 void fn_71006e892c(UnkXParasiteGrab_xpa* self);
 void fn_71006ea3fc(UnkXParasiteAI_b64a4* self, bool flag);
 void* fn_71006eb1f0(void* h);
+void fn_71006ea824(UnkXParasiteSelect_9fcc* self, UnkActor* target);

@@ -11,6 +11,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
@@ -20,7 +21,6 @@ struct UnkBaseDamageTrigger3;
 void fn_7100a45a30(UnkBaseDamageTrigger3* self);
 struct UnkLiquidPool_b44a2;
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkInventory;
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 

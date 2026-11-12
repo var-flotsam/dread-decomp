@@ -5,8 +5,13 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkCallbackSetElem;
+struct UnkCallbackSetVector;
 struct UnkFreezeList_ovb0106;
 struct UnkFreezeRoom_ovb0106;
 void fn_710090b1c8(void* self);
 UnkFreezeList_ovb0106* fn_71009088a0(UnkFreezeRoom_ovb0106* self);
 extern void* g_unk_7101a80ed8[];  // CCharClassWaterPoolComponent's vtable.
+void fn_710090d00c(UnkCallbackSetVector* v, u32 n);
+void fn_710090d1bc(UnkCallbackSetVector* v, const UnkCallbackSetElem* value);
+void fn_710090d2f4(UnkCallbackSetVector* v, u32 size);  // Truncate.

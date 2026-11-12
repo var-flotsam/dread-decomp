@@ -2,9 +2,8 @@
 // settings (+0x18, count at +0x44) and hands them (+0x10 of that object) with the event's two values (+0xc,
 // +0x10) to the game manager's fn_7100df6d3c. Names and layouts are placeholders.
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
-
-void fn_7100df6d3c(UnkGameManager* self, void* settings, f32 a, f32 b);
 
 struct UnkSlomoSettings {
     u8 pad_0x0[0x10];

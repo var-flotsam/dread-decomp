@@ -6,13 +6,13 @@
 #include <new>
 
 #include "base/global/CRntString.h"
+#include "game/UnkTU2677.h"
 #include "types.h"
 
 using base::global::CRntString;
 
 struct lua_State;
 struct UnkPropBag;
-s32 fn_71010c0bb0(lua_State* L, const char* str);
 s32 fn_71010bf400(lua_State* L, const char* fmt, va_list args);
 s32 fn_71010c0cd0(lua_State* L, s32 nargs, char* error, u32 size, UnkPropBag* results);
 extern char g_unk_7101caf6e8[];  // the handler's vtable

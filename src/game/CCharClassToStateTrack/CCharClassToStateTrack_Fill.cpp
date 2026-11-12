@@ -16,7 +16,6 @@ static_assert(sizeof(UnkTrackBlend) == 0xc, "UnkTrackBlend layout");
 struct UnkTrackOptional {
     u64 bits;
 };
-extern UnkTrackBlend g_unk_7172769758;
 
 struct UnkTrackStateName {
     u8 unk_0x0[0x30];

@@ -4,6 +4,10 @@
 // 0x7100ca3be4-0x7100ca6844). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
+
+struct UnkReflType;
+struct UnkTUHeader;
+
 void fn_7100ca3be4(void* p);
 void fn_7100ca3c84();
 void fn_7100ca408c();
@@ -22,3 +26,15 @@ extern char g_unk_7172796ab1;
 extern char g_unk_7172796bf0;
 extern char g_unk_7172796bf1;
 extern char g_unk_7172796d68;
+UnkReflType* fn_7100ca3fb0();
+UnkReflType* fn_7100ca4214();
+UnkReflType* fn_7100ca4f04();
+UnkReflType* fn_7100ca4fe0();
+UnkReflType* fn_7100ca55c4();
+UnkReflType* fn_7100ca5ba8();
+extern UnkReflType g_unk_71727966a0;
+extern UnkReflType g_unk_71727967e0;
+extern UnkReflType g_unk_7172796978;
+extern UnkReflType g_unk_7172796ab8;
+extern UnkReflType g_unk_7172796bf8;
+extern UnkTUHeader g_unk_7172797460 __attribute__((visibility("hidden")));

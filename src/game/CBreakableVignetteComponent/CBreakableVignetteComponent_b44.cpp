@@ -2,9 +2,8 @@
 // hide the vignette's object (fn_7100219c6c) until it no longer answers 2, as fn_7100763318 in
 // CBreakableVignetteComponent_b40.cpp does first. Names and layouts are placeholders.
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU315.h"
 #include "types.h"
-
-void fn_7100219c6c(UnkRenderManager*, bool, u64, u32, bool);
 
 struct UnkKeyed_b44a2 {
     u8 pad_0x0[0x30];

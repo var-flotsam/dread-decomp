@@ -6,11 +6,13 @@
 // the all-flags mask when there is no track or action. Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
+#include "game/CInventoryComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
 
@@ -20,9 +22,7 @@ struct UnkModeActor;
 bool fn_7100bc9f90(const UnkModeCondition<0x30>* self, UnkModeActor* actor);
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkInventory;
-f32 fn_7101142928(UnkInventory*, const UnkQualifiedId&);
 
 struct UnkTimelineNameData_b60d {
     base::global::UnkStringData base;

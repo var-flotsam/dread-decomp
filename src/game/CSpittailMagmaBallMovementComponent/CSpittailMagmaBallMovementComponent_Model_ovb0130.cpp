@@ -8,6 +8,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU127.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkTU291.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -105,7 +106,6 @@ __attribute__((noinline)) void* fn_71006cae2c(UnkRenderPool* pool, const CFilePa
 using base::reflection::UnkReflObject;
 
 // As src/game/CAbilityMultiLockon/CAbilityMultiLockon_Targets_ovb0092.cpp declares them.
-UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 template <class Tag>
 struct UnkSlotArray;
 struct UnkTag_710031da18;

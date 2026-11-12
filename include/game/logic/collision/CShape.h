@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkReflType;
+struct UnkTUHeader;
 struct UnkPolygonCollectionShape_b42a3;
 struct UnkShape2D_b46a3;
 void fn_7100d6c0e4(UnkPolygonCollectionShape_b42a3* self, const UnkPolygonCollectionShape_b42a3* other);
@@ -33,3 +35,19 @@ extern char g_unk_71727b4339;
 extern char g_unk_71727b4478;
 extern char g_unk_71727b4479;
 extern char g_unk_71727b45f0;
+UnkReflType* fn_7100d6a05c();
+UnkReflType* fn_7100d6a138();
+UnkReflType* fn_7100d6a214();
+UnkReflType* fn_7100d6a7f8();
+UnkReflType* fn_7100d6addc();
+UnkReflType* fn_7100d6b088();
+UnkReflType* fn_7100d6b164();
+UnkReflType* fn_7100d6b748();
+UnkReflType* fn_7100d6bd2c();
+extern UnkReflType g_unk_71727b3e08;
+extern UnkReflType g_unk_71727b3f48;
+extern UnkReflType g_unk_71727b4088;
+extern UnkReflType g_unk_71727b4200;
+extern UnkReflType g_unk_71727b4340;
+extern UnkReflType g_unk_71727b4480;
+extern UnkTUHeader g_unk_71727b4f88 __attribute__((visibility("hidden")));

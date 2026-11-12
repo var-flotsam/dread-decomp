@@ -7,6 +7,8 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityShinespark.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2523.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -27,7 +29,6 @@ inline UnkIdTable_b55sh& IdTable_b55sh() {
     return s_table;
 }
 
-void fn_7100d7c94c(UnkActor* self, const u64* key);
 extern const u64 g_unk_7101648e88;
 
 struct UnkShinesparkActor_b55 {
@@ -62,7 +63,6 @@ void fn_710032f9b0(UnkShinespark_b55* self, s32 kind) {
 struct UnkGroundPlayer_b52;
 bool fn_71010d1598(UnkGroundPlayer_b52*);
 struct UnkOwner;
-UnkOwner* fn_7100defcd4(UnkGameManager*);
 void fn_710093adc0(base::reflection::UnkReflObject* comp, const void* a, const void* b, f32 time);
 extern const u64 g_unk_7101648ed8 __attribute__((visibility("hidden")));
 extern const u64 g_unk_7101648ef8 __attribute__((visibility("hidden")));

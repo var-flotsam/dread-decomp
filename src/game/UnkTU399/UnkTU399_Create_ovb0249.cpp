@@ -6,6 +6,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU1134.h"
 #include "game/UnkTU1141.h"
 #include "types.h"
 #include "game/UnkAnimationComponent.h"
@@ -68,8 +69,6 @@ inline const UnkFlags_b0249& UnkFlagsAll_b0249() {
     static UnkFlags_b0249 s_all asm("g_unk_71726a4330")(~UnkFlagsNone_b0249().bits & 7);
     return s_all;
 }
-
-f32 fn_710070d890(UnkTrack* track);
 
 struct UnkTrackHolder_b0249 {
     u8 pad_0x0[0x70];

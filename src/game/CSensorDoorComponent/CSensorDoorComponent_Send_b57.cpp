@@ -8,10 +8,9 @@
 #include "base/global/CName.h"
 #include "game/CNavMeshItemComponent.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU1730.h"
 #include "game/UnkTU372.h"
 #include "types.h"
-
-extern UnkDesc_SpitSend g_unk_7172769794;  // reached through the GOT
 
 struct UnkWeakTarget;
 

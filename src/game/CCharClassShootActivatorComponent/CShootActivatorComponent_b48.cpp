@@ -6,6 +6,7 @@
 // placeholders.
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
+#include "game/CCharClassShootActivatorComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTUProperty.h"
@@ -14,7 +15,6 @@
 using base::global::CStrId;
 
 CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
-extern UnkProperty g_unk_717272c420;
 
 // A sound handle as src/game/CEntity_2.cpp returns it: the sound's record (its own serial at +8) and the
 // serial it had.

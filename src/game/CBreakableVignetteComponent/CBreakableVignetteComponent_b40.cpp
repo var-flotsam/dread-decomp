@@ -6,12 +6,12 @@
 #include "base/UnkVector.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU2566.h"
+#include "game/UnkTU315.h"
 #include "game/UnkTU883.h"
 #include "types.h"
 
 struct UnkMapData;
 struct UnkCallback;
-void fn_7100219c6c(UnkRenderManager*, bool, u64, u32, bool);
 void fn_7100e95130(UnkMapData* map, u64 id);
 extern void* g_unk_7101d47360;
 void fn_7100ee1f34(void*);

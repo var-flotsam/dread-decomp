@@ -23,6 +23,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 // The out-of-line Remove and Add of the deferred set a hint reference registers in (copies of
@@ -127,7 +128,6 @@ UnkHintRef_ovb0093* fn_7100752a78(UnkHintMap_ovb0093* self, UnkHintRef_ovb0093* 
 
 struct UnkLinkList;
 void fn_71002aeb9c(UnkLinkList* list, UnkLinkList** slot);
-void fn_710024f6d4(UnkBaseComponent* self);
 extern void* g_unk_7101a6e2a0[];
 extern void* g_unk_7101a81968[];
 
@@ -278,7 +278,6 @@ void fn_7100752208(UnkBreakableHint_ovb0093* self) {
 
 struct UnkPlayer;
 struct UnkMinimapManagerState;
-UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 void fn_7100e9d654(UnkMinimapManagerState* self);
 
 struct UnkHintWorld_ovb0093 {

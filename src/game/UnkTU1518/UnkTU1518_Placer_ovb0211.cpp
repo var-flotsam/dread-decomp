@@ -4,6 +4,7 @@
 #include "base/UnkMatrix44.h"
 #include "base/math/CVector4D.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU315.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -11,7 +12,6 @@ struct UnkMatrix44_7100078c9c {
     f32 m[16];
 };
 UnkMatrix44_7100078c9c fn_7100078cd8(const UnkVec3f& t);
-void fn_7100219dd0(UnkRenderManager* self, u64 model, const UnkMatrix44* m, u32 a, u32 b, u64* instance, u32 c);
 
 // Returned through x8, so the original's result type is not trivially copyable.
 struct UnkVec2Result_b0211 {

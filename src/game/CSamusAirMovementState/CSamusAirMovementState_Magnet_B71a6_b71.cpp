@@ -7,17 +7,17 @@
 #include "base/UnkDestructors.h"
 #include "base/global/CStrId.h"
 #include "game/CAbilityGhostAura.h"
+#include "game/CInventoryComponent.h"
 #include "game/CSamusMagnetGloveMovementState/CParams.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 struct UnkInventory;
-f32 fn_7101142928(UnkInventory*, const UnkQualifiedId&);
 struct UnkAbility;
 u32 fn_71009a60fc();
-UnkAbility* fn_7100df554c(UnkGameManager* manager);
 
 struct UnkAirRequest_B71a6 {
     void* vtable;

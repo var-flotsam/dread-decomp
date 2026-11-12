@@ -5,6 +5,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2656.h"
 #include "types.h"
 
@@ -14,8 +15,6 @@ struct UnkNewGameScreen {
 };
 
 extern base::global::CStrId g_unk_71727659c0 __attribute__((visibility("hidden")));
-
-s32 fn_7100dffc58(UnkGameManager* manager);
 
 // `dt` (s0) reaches the base update untouched in the original (tools/forwarded_args.py).
 void fn_7100b6503c(UnkNewGameScreen* self, f32 dt) {

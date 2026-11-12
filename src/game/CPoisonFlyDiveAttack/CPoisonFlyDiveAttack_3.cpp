@@ -11,8 +11,6 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-void fn_710063a748(u8* part, UnkActor* actor);
-
 struct UnkPoisonFlyDive : UnkAttackBase {
     u8 pad_0x20[0x34];
     u32 field_0x54;

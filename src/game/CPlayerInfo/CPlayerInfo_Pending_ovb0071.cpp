@@ -10,6 +10,7 @@
 #include "base/global/CStrId.h"
 #include "game/CCharClassLiquidPoolComponent.h"
 #include "game/CPlayerInfo.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2577.h"
 #include "game/UnkTU39.h"
 #include "game/UnkTU50.h"
@@ -24,10 +25,8 @@ struct UnkOwner;
 struct UnkActorTarget;
 struct UnkInventory;
 struct UnkPlayer;
-UnkOwner* fn_7100defcd4(UnkGameManager* manager);
 void fn_710117662c(UnkActorTarget* target, u32 a, u32 b, u32 c, u32 d, f32 value);
 void fn_7101178e08(UnkActorTarget* target, u32 a, u32 b, u32 c, f32 value);
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 extern void* g_unk_7101d47360;
 void fn_7100ee1f34(void*);

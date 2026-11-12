@@ -8,6 +8,7 @@
 #include "game/CChozoWarriorXUltimateGrabAttack.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2656.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
@@ -47,8 +48,6 @@ struct UnkVec {
 };
 
 extern const u64 g_unk_7101649988 __attribute__((visibility("hidden")));
-UnkOwner* fn_7100defcd4(UnkGameManager* manager);
-UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 
 void fn_710048a304(UnkSelf* self, f32 delta) {
     self->field_0x138 = self->field_0x138 + delta;

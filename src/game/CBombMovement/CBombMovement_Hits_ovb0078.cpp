@@ -11,9 +11,11 @@
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1370.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU811.h"
 #include "game/UnkTimelineComponent.h"
 #include "game/UnkXformNode.h"
+#include "game/logic/collision/CCollider.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -119,7 +121,6 @@ void fn_7100aaa6d0(UnkBombMovementState_ovb0078* self) {
 }
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 struct UnkBombHitActor_ovb0078 {
     u8 pad_0x0[0x1f0];
@@ -311,7 +312,6 @@ void fn_7100aaa7d8(UnkBombExplodeMovement_ovb0078* self, UnkBombTargetActor_ovb0
 }
 
 struct UnkShape;
-UnkMatrix44 fn_7100d36a2c(UnkShape* shape);
 
 struct UnkBombAimMovement_ovb0078 {
     u8 pad_0x0[0x4a0];

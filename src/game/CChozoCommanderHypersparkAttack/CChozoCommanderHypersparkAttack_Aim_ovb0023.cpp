@@ -12,6 +12,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1728.h"
 #include "game/UnkTU2523.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -102,7 +103,6 @@ struct UnkKraidCreatureVec {
 };
 
 struct UnkAbility;
-UnkAbility* fn_7100df554c(UnkGameManager* manager);
 
 struct UnkHypersparkTargetFlags_ovb0023 {
     u8 pad_0x0[0xf9];

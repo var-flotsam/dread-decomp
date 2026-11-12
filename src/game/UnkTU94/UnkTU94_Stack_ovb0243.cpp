@@ -5,6 +5,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU94.h"
 #include "types.h"
 
 using base::reflection::CType;
@@ -58,7 +59,6 @@ bool fn_71000f29a0(UnkTypedRefWriter* self) {
 
 // The class descriptor of SBaseContext (src/game_s1/fn_71000f3150.cpp builds it).
 struct UnkReflType;
-extern UnkReflType g_unk_7101d67d80;
 
 // What a context held in place keeps at +0x20 of its storage: an object whose +0x80 is a class
 // descriptor with attributes.

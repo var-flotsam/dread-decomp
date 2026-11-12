@@ -3,6 +3,7 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/UnkTU94.h"
 #include "game/UnkTUInit.h"
 
 // The header built the other way round: "sources" first, the word last.
@@ -29,7 +30,6 @@ struct UnkTUHeaderRevFns {
 };
 
 extern UnkTUHeaderRevFns g_unk_7101d68140 __attribute__((visibility("hidden")));
-extern UnkReflType g_unk_7101d67d80;
 extern char g_unk_7101d67eb8;
 extern UnkReflType g_unk_7101d67ec0;
 extern char g_unk_7101d67ff8;

@@ -2,16 +2,15 @@
 // match it. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CActorComponent.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU1134.h"
 #include "game/UnkTU1728.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
-UnkTrack* fn_71011771e0(void* handle, u64 key);
 struct UnkTrackObject_71011781f4;
 struct UnkCutsceneTimeline;
-UnkCutsceneTimeline* fn_710070d4e8(UnkTrack* track);
 struct UnkAnimTiming;
 bool fn_710117aaac(void* cls, const base::reflection::CClass* track_class, f32 frames);
 struct UnkStruct_71002334fc;

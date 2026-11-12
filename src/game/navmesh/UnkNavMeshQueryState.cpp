@@ -14,16 +14,12 @@
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkObject_0x100.h"
 #include "game/UnkTU358.h"
+#include "game/UnkTU376.h"
 #include "types.h"
 
 using base::math::CVector2D;
 
 extern "C" f32 sqrtf(f32);
-
-// The payload's default constructor and assignment (its copy constructor and destructor are in
-// game/UnkObject_0x100.h).
-void fn_71002b57bc(UnkObject_0x100* self);
-UnkObject_0x100* fn_71002b5c90(UnkObject_0x100* self, const UnkObject_0x100* other);
 
 struct UnkNavPathNode;
 struct UnkNavPathPoint;

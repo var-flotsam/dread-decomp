@@ -10,11 +10,11 @@
 #include "game/CCharClassEventScenarioComponent.h"
 #include "game/CInputComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkInputComponent;
 
 extern __attribute__((visibility("hidden"))) char g_unk_71727519c0[];

@@ -7,6 +7,7 @@
 #include "base/global/CRntString.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2768.h"
 #include "types.h"
 
@@ -14,7 +15,6 @@ using base::global::CRntString;
 
 struct UnkUserDataOwner;
 void fn_71012037bc(UnkUserDataOwner* self, void (*callback)());
-void fn_7100dee46c(UnkGameManager* self);
 void fn_7100df81fc();
 
 extern const char* g_unk_7101aa99b0;

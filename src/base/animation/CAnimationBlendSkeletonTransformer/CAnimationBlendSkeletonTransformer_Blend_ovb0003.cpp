@@ -16,6 +16,7 @@
 
 #include "base/UnkMatrix44.h"
 #include "game/UnkTU23.h"
+#include "game/UnkTU54.h"
 #include "types.h"
 
 void fn_7100002cd0(void* p);
@@ -147,11 +148,9 @@ struct UnkBlendSkeleton_ovb0003 {
 };
 
 bool fn_7100015570(UnkKeyedTable* self, void** key, UnkKeyedEntry** entry);
-UnkMatrix44* fn_7100015508(void* matrices, u64 id);
 s32 fn_710019ba50(UnkU64Array_b47* self, const u64* key);
 void fn_7100015094(void* self, const void* other);
 void fn_7100015124(void* self, const void* other);
-UnkMatrix44 fn_7100078834(const UnkKeyedEntry* entry, const UnkMatrix44* matrix, f32 weight);
 
 struct UnkBlendTransformer_ovb0003 {
     char* vtable;

@@ -3,6 +3,7 @@
 // owner and the hit's flag 0x200, then updates the owner's two timeline keys. Names and layouts
 // are placeholders.
 #include "base/UnkRefHandle.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkTimelineComponent.h"
 
 struct UnkCountedLockOn_b51 : base::UnkRefCounted {
@@ -22,7 +23,6 @@ UnkRef fn_7100353be8(void* from);
 struct UnkLockOnBlock;
 UnkLockOnBlock* fn_71008846dc(void* object);
 void fn_710088341c(UnkLockOnBlock* block, UnkActor* owner, bool flag);
-void fn_7100d7c94c(UnkActor*, const u64*);
 
 extern u64 g_unk_710164ae78;
 extern u64 g_unk_710164ae80;

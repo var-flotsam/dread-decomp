@@ -11,8 +11,10 @@
 #include "game/CBehaviorTreeAIComponent.h"
 #include "game/CBlackboard.h"
 #include "game/CEnemyMovement.h"
+#include "game/CPoisonFlyAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkManager_71726af468.h"
+#include "game/UnkTU958.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -27,12 +29,9 @@ void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const 
 struct UnkSclawkAI_b44a2;
 struct UnkSclawkMessage_b44a2;
 
-void fn_710063a748(u8* part, UnkActor* actor);
-
 struct UnkEffectSink;
 
 extern base::global::CStrId g_unk_71726b7cb8;                                    // the blackboard section
-extern UnkPropertyName g_unk_71726fa598 __attribute__((visibility("hidden")));  // the property in it
 
 struct UnkPoisonFlyOwner_b55 {
     u8 pad_0x0[0x218];

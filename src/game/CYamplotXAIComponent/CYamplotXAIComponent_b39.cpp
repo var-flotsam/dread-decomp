@@ -7,11 +7,11 @@
 #include "game/CBehaviorTreeAIComponent.h"
 #include "game/CYamplotXAIComponent.h"
 #include "game/UnkObject_0x100.h"
+#include "game/UnkTU376.h"
 #include "types.h"
 
 // Declared as src/game/CCentralUnitAIComponent/fn_71004076e4.cpp defines it.
 struct UnkComponent;
-void fn_71002b57bc(UnkObject_0x100* self);
 void fn_71006ec9f0(void* member);
 void fn_71006ed608(void* member);
 

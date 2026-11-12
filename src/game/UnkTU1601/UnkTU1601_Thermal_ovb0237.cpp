@@ -134,12 +134,7 @@ inline UnkIter<Sync>::UnkIter(u32 index, UnkCallbackSetElem* element) : index(in
 
 // Reserve (one copy per array type).
 struct UnkCallbackSetVector;
-void fn_710090d00c(UnkCallbackSetVector* v, u32 n);
-void fn_7100a956b8(UnkCallbackSetVector* v, u32 n);
 // PushBack of a copy (one per array type)
-void fn_710090d1bc(UnkCallbackSetVector* v, const UnkCallbackSetElem* value);
-void fn_7100a3ba90(UnkCallbackSetVector* v, const UnkCallbackSetElem* value);
-void fn_7100a95868(UnkCallbackSetVector* v, const UnkCallbackSetElem* value);
 struct UnkCallbackSetVector {
     UnkCallbackSetElem* data;
     u32 count;
@@ -394,8 +389,6 @@ void fn_7100a952b8(UnkSetVector_b0237* self, const u32* index, UnkSetElem_b0237*
 #include "base/global/CStrId.h"
 
 using base::global::CStrId;
-
-void fn_7100a959a0(UnkCallbackSetVector* v, u32 size);
 
 struct UnkThermalComp_b0237 {
     void** vtable;

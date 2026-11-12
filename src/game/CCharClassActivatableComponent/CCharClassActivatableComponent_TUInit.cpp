@@ -1,6 +1,7 @@
 // CCharClassActivatableComponent's static initialiser: the unit header, the component's id, two
 // bool properties, and the char class's and the component's registrations.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CCharClassActivatableComponent.h"
 #include "game/UnkTUInit.h"
 #include "game/UnkTUProperty.h"
 
@@ -16,8 +17,6 @@ struct UnkCharClassActivatableTU {
 
 extern UnkCharClassActivatableTU g_unk_717272a488 __attribute__((visibility("hidden")));
 extern CStrId g_unk_717272a3e8;
-extern UnkProperty g_unk_717272a3f0;
-extern UnkProperty g_unk_717272a418;
 extern char g_unk_7101a7ada8[];
 void fn_7100878ac0(UnkProperty* p);
 void fn_7100877b90(void* p);

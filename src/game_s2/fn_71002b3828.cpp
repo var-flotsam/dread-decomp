@@ -50,7 +50,6 @@ void* fn_7100ca719c(void* manager, u32 id);
 UnkEntryInfo* fn_7100ca1ea8(void* entry, u8 sub);
 void fn_71002b3aa0(UnkOwner* self, bool flag, void* arg);
 UnkLinkList* fn_7100ca7a64(void* manager, u16 id);
-UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 void fn_71009c1130(void* component, u32 value, void* owner);
 s32 fn_71009c0b8c(void* component);
 

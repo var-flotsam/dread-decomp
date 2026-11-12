@@ -3,6 +3,7 @@
 // pool, puts each on layer 0 of the render manager and enables it.
 #include "base/global/CFilePathStrId.h"
 #include "game/UnkModelManager.h"
+#include "game/UnkTU132.h"
 
 using base::global::CFilePathStrId;
 
@@ -10,7 +11,6 @@ void fn_71011aad4c(UnkChainedMap* map, u32 a, u32 b);
 void fn_71011a8d30(UnkModelManagerPool_0x70* p, u32 a, u32 b, u32 c, u64 d);
 void fn_71011a8e48(UnkModelManagerPool_0x70* p, u32 a, u32 b, u32 c, u64 d);
 void* fn_7100a0feac(UnkRenderPool* pool, CFilePathStrId* path, UnkOverlayModel** out, base::global::CStrId* id);
-void fn_7100145818(UnkOverlayModel* model, u32 flag);
 
 static inline void LoadModel(UnkOverlayModel*& slot, const char* path) {
     UnkRenderManager* render = g_unk_7101d47300;

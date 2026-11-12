@@ -13,6 +13,7 @@
 #include "game/CTriggerLogicAction.h"
 #include "game/UnkTU112.h"
 #include "game/UnkTU1376.h"
+#include "game/UnkTU367.h"
 #include "types.h"
 
 struct UnkTutoExitAction_b47;
@@ -22,7 +23,6 @@ UnkRef fn_7100353be8(void* source);
 
 struct UnkWeakTarget;
 struct UnkDoorLock;
-UnkDoorLock* fn_71002af860(UnkWeakTarget*);
 struct UnkDoorLife_b44a2;
 struct UnkEntry_710013c3c8;
 

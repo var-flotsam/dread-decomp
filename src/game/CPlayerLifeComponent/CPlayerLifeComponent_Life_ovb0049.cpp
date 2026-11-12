@@ -8,13 +8,16 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CAIManager/CTunableAIManager.h"
 #include "game/CCharacterLifeComponent.h"
+#include "game/CInventoryComponent.h"
 #include "game/CLifeComponent.h"
 #include "game/CMovementComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkTU1370.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkTU2656.h"
 #include "game/UnkTU39.h"
 #include "game/UnkTimelineComponent.h"
@@ -28,11 +31,7 @@ using base::global::UnkStringPool;
 struct UnkInventory;
 struct UnkStruct_71008c0c74;
 struct UnkBase_71003cc474;
-void fn_7100d7c94c(UnkActor* self, const u64* key);
 void fn_710002f4e4(void*);
-bool fn_7100da9254(UnkManager_71726af468* self);
-void fn_7101142a28(UnkInventory* inventory, const UnkQualifiedId& item, bool a, bool b, bool c, f32 amount,
-                   f32 extra);
 f32 fn_7101142988(UnkInventory* inventory, const UnkQualifiedId& item, f32 fallback);
 struct UnkStateSink;
 struct UnkStateKey;

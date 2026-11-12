@@ -5,5 +5,13 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkFxObject_ovb0041;
+struct UnkModelManager;
 struct UnkQueueOwner;
 void fn_71011a9980(UnkQueueOwner* self);
+
+// Defined in game_hi with its own view of the manager (its container half).
+bool fn_71011a91c4(UnkModelManager* self, void* handle, u32 id);
+
+void fn_71011a9bb4(UnkModelManager* self, UnkFxObject_ovb0041* fx);
+void fn_71011aa820(UnkModelManager* self);

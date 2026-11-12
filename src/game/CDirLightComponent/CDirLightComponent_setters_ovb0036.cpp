@@ -10,6 +10,7 @@
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkTU251.h"
 #include "game/UnkTU290.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -66,7 +67,6 @@ UnkReflValue fn_71008ebc44(void*, char* obj, UnkReflValue* const* args) {
 
 struct UnkMat4f;
 
-UnkMatrix44 fn_7100078fc8(const UnkMatrix44& m);
 UnkVec3f fn_7100078170(const UnkMat4f* m, const UnkVec3f* v);
 
 // Whether `a` is within 0.001 of `b`.

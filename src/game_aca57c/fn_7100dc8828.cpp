@@ -20,7 +20,6 @@ struct UnkTypedValue {
     void* value;
 };
 
-CBlackboard* fn_710120384c(UnkUserDataOwner* self);
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 static inline UnkUserDataOwner* GetOwner() {

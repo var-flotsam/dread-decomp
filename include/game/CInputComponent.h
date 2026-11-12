@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkWeakTarget;
 struct UnkEnergyWaveTargetComp_b49;
 struct UnkInputComponent;
 void fn_7100872460(UnkInputComponent* self, bool enable, bool reset, void* arg);
@@ -13,3 +14,4 @@ bool fn_7100872860(UnkEnergyWaveTargetComp_b49* comp, void* link);
 void fn_7100872268(UnkInputComponent* self);
 void fn_7100872858(void* p, void* q);
 extern void* g_unk_7172729910;  // The item list singleton.
+void fn_7100874460(void* list, UnkWeakTarget** item);

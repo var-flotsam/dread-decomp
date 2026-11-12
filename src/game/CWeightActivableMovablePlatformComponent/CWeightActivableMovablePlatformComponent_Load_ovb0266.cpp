@@ -8,7 +8,9 @@
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
 #include "game/CNavMeshItemComponent.h"
+#include "game/CWeightActivableMovablePlatformComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1730.h"
 #include "game/UnkTU372.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
@@ -16,8 +18,6 @@
 using base::global::CStrId;
 
 CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
-extern UnkDesc_SpitSend g_unk_717276974c;  // reached through the GOT
-extern UnkProperty g_unk_7172739f40;
 
 struct UnkWeakTarget;
 

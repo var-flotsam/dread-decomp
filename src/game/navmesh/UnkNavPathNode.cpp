@@ -5,9 +5,9 @@
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkObject_0x100.h"
+#include "game/UnkTU367.h"
+#include "game/UnkTU376.h"
 #include "types.h"
-
-void fn_71002b57bc(UnkObject_0x100* self);  // the payload's constructor
 
 // A node's position (src/game/navmesh/UnkNavMeshQueryState.cpp).
 struct UnkNavPathPoint {
@@ -43,8 +43,6 @@ void fn_71002871cc(UnkNavPathNode* self) {
     self->costs[2] = 0.0f;
     self->parent = nullptr;
 }
-
-u32 fn_71002b009c(UnkNavMeshCell* cell);  // a word of the cell's +0x68 object, or 0
 
 // Sets the cell, side, kind and position; with a mesh and a cell, also +0x108 from the cell.
 void fn_7100287298(UnkNavPathNode* self, UnkNavMesh* mesh, u16 cell, u8 side, u32 kind, const UnkNavPathPoint* pos) {

@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkReflType;
+struct UnkTUHeader;
 struct UnkClearedArray;
 struct UnkLightsArray_b42a3;
 void fn_7100da0870(UnkClearedArray* self, u32 count);  // Resizes.
@@ -23,3 +25,15 @@ extern char g_unk_71727bac19;
 extern char g_unk_71727bad90;
 extern char g_unk_71727bad91;
 extern char g_unk_71727bad92;
+UnkReflType* fn_7100d9d978();
+UnkReflType* fn_7100d9da54();
+UnkReflType* fn_7100d9db30();
+UnkReflType* fn_7100d9dc0c();
+UnkReflType* fn_7100d9e1f0();
+UnkReflType* fn_7100d9e7d4();
+UnkReflType* fn_7100d9eaa4();
+UnkReflType* fn_7100d9eb80();
+extern UnkReflType g_unk_71727ba9a0;
+extern UnkReflType g_unk_71727baae0;
+extern UnkReflType g_unk_71727bac20;
+extern UnkTUHeader g_unk_71727bb618 __attribute__((visibility("hidden")));

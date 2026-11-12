@@ -4,13 +4,12 @@
 // the function, calls it with the owner (+0x30) as its argument. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CComponent.h"
+#include "game/UnkTU2668.h"
 #include "game/UnkTU2677.h"
+#include "game/lua_lib.h"
 #include "types.h"
 
 struct lua_State;
-extern lua_State* g_unk_7172a01d18;
-s32 fn_71010c0bb0(lua_State* L, const char* name);
-int fn_7100fbc4e0(lua_State* L, void* arg);
 struct UnkHandleOwner_71010c4230;
 
 // A string entry of the pool: the text at +0x10, a use count at +0x44.

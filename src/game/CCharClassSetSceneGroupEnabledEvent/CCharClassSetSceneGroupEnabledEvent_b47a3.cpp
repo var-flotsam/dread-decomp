@@ -3,9 +3,8 @@
 // and the key at +0x30 of the id's data). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU315.h"
 #include "types.h"
-
-void fn_7100219c6c(UnkRenderManager*, bool, u64, u32, bool);
 
 struct UnkSceneGroupData_b47a3 {
     u8 unk_0x0[0x30];

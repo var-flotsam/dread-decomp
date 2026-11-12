@@ -1,10 +1,10 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/CAnimationComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
-void fn_710117b3e8(UnkWeakTarget* target, void* link);
 void fn_7100919a04();
 
 

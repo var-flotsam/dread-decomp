@@ -9,6 +9,7 @@
 #include "game/UnkGuiFrames.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU257.h"
+#include "game/UnkTU2744.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -30,8 +31,6 @@ static_assert(__builtin_offsetof(UnkLabelTextObject, font) == 0x138, "layout");
 
 void* fn_71011b882c(UnkGuiRoot* root, const CStrId* id);
 void fn_71011cee10(UnkGuiDisplayObject* self);
-void fn_71011baba0(UnkGuiRoot* root, void* object, s32 frame);
-void fn_71011bab10(UnkGuiRoot* root, UnkLabelTextObject** out, s32 frame);
 u32 fn_71001c4510(UnkLabelTextNode* node);
 f32 fn_71001bd59c(void* self);
 

@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkEntity;
+struct UnkMatrix44;
 struct UnkEnergyWaveFxComp_b49;
 struct UnkFlagTarget;
 struct UnkGrappleAnswer_b50;
@@ -14,3 +16,4 @@ void fn_71011738f8(UnkEnergyWaveFxComp_b49* comp, void* id, u32 flags);
 bool fn_710117364c(void* target, const u64* id, UnkGrappleAnswer_b50* out);
 bool fn_7101173964(void* self);
 extern void* g_unk_7101cb46a0[];
+bool fn_71011735e8(UnkEntity* entity, const void* key, UnkMatrix44* out, u32 flags);

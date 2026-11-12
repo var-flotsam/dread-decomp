@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkCollisionContainer;
+struct UnkCollisionObject;
 struct UnkPlayerMovementSource;
 struct UnkStruct_7100861148;
 void* fn_710086406c(UnkPlayerMovementSource*, const void*);
@@ -12,3 +14,6 @@ void fn_7100861148(UnkStruct_7100861148* self);
 void fn_71008618cc(void* self);
 void fn_71008656d8(void* object, u32 a, u32 b, void* arg);
 extern void* g_unk_7101a79c50[];
+void fn_71008615b4(UnkCollisionContainer* self);
+void fn_71008659c4(UnkCollisionContainer*, u32, u32, void*);
+void fn_7100863e04(UnkCollisionContainer* self, UnkCollisionObject* object);

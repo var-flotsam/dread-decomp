@@ -11,6 +11,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CArenaManager/CTunableArenaManager.h"
 #include "game/CBlackboard.h"
 #include "game/CSpawnGroupComponent.h"
 #include "game/UnkGameManager.h"
@@ -114,7 +115,6 @@ struct UnkTypedValue {
 
 CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
-extern UnkProperty g_unk_71727c0970;  // "AllDead"
 
 // The index of a key, or the count if it isn't there.
 static inline u64 IndexOf(const UnkStrIdTable& table, const UnkPropertyName& key) {

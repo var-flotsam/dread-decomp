@@ -11,6 +11,7 @@
 #include "game/UnkGameManager.h"
 #include "base/UnkVector.h"
 #include "game/UnkTU2550.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -20,7 +21,6 @@ using base::reflection::UnkReflObject;
 // As src/engine/HostArguments.cpp, src/game/CGrappleBeamComponent/CGrappleBeamComponent_b50.cpp and
 // src/game/CFreezeRoomComponent/CFreezeRoomComponent_Pools_ovb0106.cpp declare them.
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkGrappleAnswer_b50;
 struct UnkMagmaArea_b50;
 bool fn_7100a47e00(UnkMagmaArea_b50*, const CVector2D*);

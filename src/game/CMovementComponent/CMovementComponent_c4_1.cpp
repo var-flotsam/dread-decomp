@@ -2,12 +2,12 @@
 // the polygon the component refers to, plus the height of the owner's shape; else its own value.
 #include "base/UnkMatrix44.h"
 #include "game/UnkTU109.h"
+#include "game/logic/collision/CCollider.h"
 #include "types.h"
 
 struct UnkShape;
 struct UnkPool_0x48;
 struct UnkStruct_0x48;
-UnkMatrix44 fn_7100d36a2c(UnkShape* shape);
 
 struct UnkPolygon_c4 {
     u8 pad_0x0[0x28];

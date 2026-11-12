@@ -9,16 +9,15 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1730.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
-
-void* fn_7100df5460(UnkGameManager* manager);
 
 // As in src/game/CCharClassToStateTrack/CCharClassToStateTrack_Fill.cpp.
 struct __attribute__((packed, aligned(4))) UnkTrackBlend {
     u64 kind;
     f32 value;
 };
-extern UnkTrackBlend g_unk_7172769758;
 extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
 
 struct UnkFireMessage_b57 {

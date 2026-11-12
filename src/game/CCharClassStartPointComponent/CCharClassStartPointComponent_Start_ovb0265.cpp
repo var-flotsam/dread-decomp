@@ -17,15 +17,15 @@
 #include "game/CElevatorUsableComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2547.h"
+#include "game/UnkTU2553.h"
+#include "game/UnkTU2668.h"
 #include "game/UnkTU2677.h"
+#include "game/lua_lib.h"
 #include "types.h"
 
 using base::global::CRntString;
 
 struct lua_State;
-extern lua_State* g_unk_7172a01d18;
-s32 fn_71010c0bb0(lua_State* L, const char* name);
-int fn_7100fbc4e0(lua_State* L, void* arg);
 CRntString fn_710007ef90(const CRntString*, const char*);
 
 union UnkStringSlot {
@@ -61,7 +61,6 @@ struct UnkStartPointSelf {
 
 void fn_7100df249c(UnkGameManager* self, const base::global::CStrId* id, bool flag);
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager* self);
 void fn_7100e01fc8(UnkGameManager* self);
 struct UnkDoorRegistry_b61;
 void fn_7100ddb9a4(UnkDoorRegistry_b61* self, UnkStartPointSelf* component);

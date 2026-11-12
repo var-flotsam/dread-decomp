@@ -17,6 +17,8 @@
 #include "game/UnkModelManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU134.h"
+#include "game/UnkTU2739.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -67,9 +69,6 @@ void fn_710033462c(UnkSonarTunable_ovb0085* self) {
     InitEmptyId(&self->field_0x70);
     InitEmptyId(&self->field_0x80);
 }
-
-// As src/game/CGrappleBeamComponent/CGrappleBeamComponent_Effects_ovb0047.cpp declares it.
-void fn_7100146dac(UnkSwitchObject* self, bool enable);
 
 struct UnkSonarItem_ovb0085 {
     struct VTable {
@@ -333,7 +332,6 @@ UnkSonarModel_ovb0085* fn_7100336760(UnkAbilitySonar_ovb0085* self, const CFileP
 }
 
 // As src/game/CScorpiusFXComponent/CScorpiusFXComponent_Gas_ovb0008.cpp declares it.
-bool fn_71011a91c4(UnkModelManager* self, void* handle, u32 id);
 // As src/game/CActorDef/CActorDef_ReadChecked.cpp declares it.
 s64 fn_710007cee4(void*, const char**);
 

@@ -7,9 +7,12 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CAutclastChargeAttack.h"
 #include "game/CProjectileMovement.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU134.h"
+#include "game/UnkTU2739.h"
 #include "game/UnkTU285.h"
 #include "game/UnkTU341.h"
 #include "game/UnkXformNode.h"
@@ -60,8 +63,6 @@ void fn_7100ac38fc(UnkProjectileMovementVel_ovb0046* self) {
     }
 }
 
-void fn_7100146dac(UnkSwitchObject* self, bool enable);
-
 // The effect object the model manager hands out, as its virtual calls see it (as in
 // src/game/CMeleeComponent/CMeleeComponent_Checks_ovb0041.cpp).
 struct UnkFxObject_ovb0041;
@@ -77,8 +78,6 @@ struct UnkFxObjectVtable_ovb0041 {
 struct UnkFxObject_ovb0041 {
     UnkFxObjectVtable_ovb0041* vtable;
 };
-UnkFxObject_ovb0041* fn_71003b7db0(UnkModelManager* self, const void* path, bool a, bool b);
-void fn_71011a9bb4(UnkModelManager* self, UnkFxObject_ovb0041* fx);
 
 struct UnkSpawnedFx_ovb0046 {
     u8 pad_0x0[0x108];

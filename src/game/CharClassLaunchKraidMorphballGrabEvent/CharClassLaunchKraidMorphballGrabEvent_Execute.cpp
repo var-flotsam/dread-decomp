@@ -11,7 +11,6 @@
 using base::reflection::CClass;
 
 struct UnkWeakTarget;
-UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 
 struct UnkKraidNameData {
     u8 unk_0x0[0x30];

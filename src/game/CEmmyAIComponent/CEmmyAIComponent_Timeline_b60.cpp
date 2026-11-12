@@ -5,11 +5,11 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
 
 struct UnkOwner;
-UnkOwner* fn_7100defcd4(UnkGameManager* manager);
 
 struct UnkEmmyKey_b60;
 extern UnkEmmyKey_b60 g_unk_7101649de0 __attribute__((visibility("hidden")));

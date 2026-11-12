@@ -8,9 +8,9 @@
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkManager_71726af468.h"
+#include "game/UnkTU1055.h"
 #include "types.h"
 
-void fn_71006bd4f0(void* self, UnkActor* actor);
 void fn_71006b641c(void* attack);
 
 struct UnkShelmitAI;

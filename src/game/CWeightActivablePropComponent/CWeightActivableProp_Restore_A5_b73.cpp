@@ -4,6 +4,7 @@
 #include "../UnkSmRequest_A5_b73.h"
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
+#include "game/CWeightActivablePropComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
@@ -11,7 +12,6 @@
 using base::global::CStrId;
 
 CStrId fn_7100de9c30(UnkGameManager* manager);
-extern UnkProperty g_unk_7172755b08;  // "Opened"
 
 struct UnkPropValue_A5_b73 {
     UnkPropertyName name;

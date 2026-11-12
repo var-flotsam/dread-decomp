@@ -8,6 +8,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU1370.h"
+#include "game/UnkTU2523.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -16,8 +17,6 @@ using base::math::CVector3D;
 
 extern base::reflection::UnkTunable g_unk_7172716160;
 extern CStrId g_unk_71726bf858 __attribute__((visibility("hidden")));
-
-UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 
 struct UnkRequest;
 struct UnkStruct_71008c0c74;

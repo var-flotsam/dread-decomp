@@ -4,6 +4,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkTU2535.h"
 #include "types.h"
@@ -14,7 +15,6 @@ using base::global::CRntString;
 using base::global::CStrId;
 
 struct UnkReflType;
-UnkReflType* fn_710025d654();  // the list type of the class attribute
 char* fn_7100ad2fac(char* self, char* source);
 
 struct UnkValue_a5368;

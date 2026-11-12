@@ -4,6 +4,7 @@
 #include "game/CActorComponent.h"
 #include "game/CStandaloneFXComponent.h"
 #include "game/UnkModelManager.h"
+#include "game/UnkTU2739.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
@@ -41,8 +42,6 @@ struct UnkStandaloneFx {
     u8 unk_0x10[0x28];
     void* field_0x38;             // the effect the model manager holds for it
 };
-
-bool fn_71011a91c4(UnkModelManager* manager, void* handle, u32 kind);
 
 static inline UnkModelManager* GetManager() {
     if (!g_unk_71726b0cd8) {

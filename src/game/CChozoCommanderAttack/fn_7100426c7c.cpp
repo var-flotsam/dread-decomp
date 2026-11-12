@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
@@ -38,7 +39,6 @@ struct UnkPosition {
     u32 field_0x8;
 };
 
-UnkTrack* fn_71011771e0(void* handle, u64 key);
 bool fn_7100b8fa7c(UnkAimAction* action, f32* angle, const UnkMatrix44* matrix, u64* hash, UnkPosition* position,
                    bool flag, bool flag2);
 

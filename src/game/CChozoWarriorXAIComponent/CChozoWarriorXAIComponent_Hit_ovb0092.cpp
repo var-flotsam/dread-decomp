@@ -10,15 +10,13 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAIAttackComponent.h"
+#include "game/CAIManager/CTunableAIManager.h"
 #include "game/UnkManager_71726af468.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
 
-bool fn_7100da9254(UnkManager_71726af468* self);
-void fn_7100da929c(UnkManager_71726af468* self, f32 value);
 f32 fn_7100da9260(UnkManager_71726af468* self);
-void fn_7100da928c(UnkManager_71726af468*);
 struct UnkWarriorXAI_ovb0092;
 void fn_71004990ac(UnkWarriorXAI_ovb0092* self);
 struct UnkSelf;

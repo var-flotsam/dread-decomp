@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
+#include "game/CItemLifeComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTimelineComponent.h"
 #include "game/UnkTUProperty.h"
@@ -15,7 +16,6 @@
 using base::global::CStrId;
 
 CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
-extern UnkProperty g_unk_7172732348;  // "Disabled"
 extern u64 g_unk_710164b148;
 extern u64 g_unk_710164b150;
 

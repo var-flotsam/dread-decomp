@@ -23,7 +23,9 @@
 #include "engine/UnkGraphicsSystem.h"
 #include "game/UnkTU174.h"
 #include "game/UnkTU177.h"
+#include "game/UnkTU178.h"
 #include "game/UnkTU180.h"
+#include "game/UnkTU181.h"
 #include "game/UnkTU182.h"
 #include "game/UnkTU194.h"
 #include "game/UnkTU204.h"
@@ -1357,9 +1359,7 @@ void fn_710015b160();
 s32 fn_710015c460();
 // The location of the uniform named `name` of a program's stage, 0 when it has none.
 // Sets `count` matrices of a uniform at `location` of a program state.
-void fn_710015e4b0(void* state, u32 stage, u64 location, u32 count, u32 a, const UnkMatrix44* values, u32 b);
 void fn_710019c474(void*, const UnkMatrix44*);
-void fn_710015bf40(UnkMatrix44*, f32);
 f32 fn_7100132fb0();  // the display's aspect correction
 void fn_71001ccdd8(UnkGraphicsSystem* self);
 void fn_71001cd3a0(UnkGraphicsSystem* self);

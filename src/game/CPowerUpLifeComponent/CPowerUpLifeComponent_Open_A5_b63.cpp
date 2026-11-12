@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CActorComponent.h"
+#include "game/CScenario.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTimelineCalls.h"
@@ -17,7 +18,6 @@
 struct UnkScriptCaller;
 struct UnkEntityState;
 void fn_7100232864(UnkEntityState* entity, bool value);
-void fn_71011a2770(UnkGameManagerSub_0x608* points, void* object);
 struct UnkStruct_710024fa0c;
 
 struct UnkPowerUpPos_A5_b63 {

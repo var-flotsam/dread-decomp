@@ -2,6 +2,7 @@
 // component of the owner at 0x18 (when it is one) is handed to fn_7100405d58, which gives 5.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCentralUnitAIComponent.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -20,8 +21,6 @@ struct UnkSelf {
     s32 field_0x2c;
     u32 field_0x30;
 };
-
-void fn_7100405d58(UnkAIComponent* component, s32 a1, u32 a2);
 
 u32 fn_7100402ee4(UnkSelf* self) {
     if (self->field_0x2c < 0)

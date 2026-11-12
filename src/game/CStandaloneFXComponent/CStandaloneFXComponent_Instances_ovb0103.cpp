@@ -17,6 +17,7 @@
 #include "game/CSceneComponent.h"
 #include "game/CStandaloneFXComponent.h"
 #include "game/UnkModelManager.h"
+#include "game/UnkTU2739.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -175,7 +176,6 @@ struct UnkStandaloneFx;
 struct UnkFxCache;
 void fn_71011aa5a4(UnkFxCache* cache, const CFilePathStrId* path);
 struct UnkMorphBallLauncher_b57;
-bool fn_71011a91c4(UnkModelManager* self, void* handle, u32 id);
 
 static inline UnkModelManager* GetManager() {
     if (!g_unk_71726b0cd8) {

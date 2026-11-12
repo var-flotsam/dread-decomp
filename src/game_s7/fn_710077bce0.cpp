@@ -8,6 +8,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
+#include "game/UnkTU1176.h"
 
 using namespace unk_static_init;
 
@@ -48,11 +49,9 @@ extern char g_unk_71727141c8[];
 extern UnkConversion g_unk_71727141d0;
 void fn_710077768c() __attribute__((visibility("hidden")));
 extern UnkStrIdBase g_unk_71727141f0;
-extern UnkProperty g_unk_71727141f8;
 extern void* g_unk_7101a6edd0[];
 void fn_71007798d0(UnkProperty* p);
 void fn_710076b8e8(void* p);
-extern UnkProperty g_unk_7172714220;
 extern UnkConversion g_unk_7172714368;
 extern UnkConversion g_unk_7172714388;
 void fn_7100777950() __attribute__((visibility("hidden")));

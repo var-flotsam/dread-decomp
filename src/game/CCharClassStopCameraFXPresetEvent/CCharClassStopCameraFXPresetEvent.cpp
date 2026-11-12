@@ -3,9 +3,8 @@
 // placeholders.
 #include "base/global/CStrId.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
-
-void fn_7100e03a78(UnkGameManager*, void*);
 
 struct UnkStopCameraFXPresetEvent {
     u8 pad_0x0[0x10];

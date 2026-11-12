@@ -8,6 +8,7 @@
 #include "base/UnkRegistry.h"
 #include "base/UnkVector.h"
 #include "base/UnkHashStream.h"
+#include "base/animation/CAnimationResource.h"
 #include "base/file/nx/CDeviceNX.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CFilePathStrId.h"
@@ -24,7 +25,6 @@ using base::global::CStrId;
 // ---- save registry
 
 
-extern UnkRegistry_0x70* g_unk_7101d4b5a0;
 extern CStrId g_unk_7101d592c8;
 
 struct UnkRegistryCurrent_b0235 {

@@ -6,6 +6,7 @@
 #include "base/UnkMatrix44.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU315.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -57,9 +58,6 @@ static const u64 kNoRenderObject = 0xffffffff;
 
 extern const UnkVec3f g_unk_710164ba64 __attribute__((visibility("hidden")));
 UnkMatrix44 fn_71000791a8(const UnkVec3f& translation, const UnkVec3f& angle, const UnkVec3f& scale);
-void fn_7100219dd0(UnkRenderManager* self, u64 model, const UnkMatrix44* m, u32 a, u32 b, u64* instance, u32 c);
-void fn_7100219e10(UnkRenderManager* self, u64 object);
-void fn_7100219e64(UnkRenderManager* self, u64 object, const UnkMatrix44* m);
 void fn_7100ca0c40(UnkTileGroup* self, u32 tile, UnkVec3f* pos);
 void fn_7100ca0c78(UnkTileGroup* self, u32 tile, UnkVec3f* pos, UnkVec3f* scale);
 void fn_7100ca1180(UnkTileGroup* group);

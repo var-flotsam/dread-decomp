@@ -5,13 +5,13 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/CAbility.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkAbility429;
 void fn_710030171c(UnkAbility429* self, f32 amount);
 struct UnkAbility_b60a2;

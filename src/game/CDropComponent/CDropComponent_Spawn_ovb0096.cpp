@@ -8,6 +8,7 @@
 #include "game/CCharacterMovement.h"
 #include "game/CDropComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -128,7 +129,6 @@ void fn_71007c1fb0(UnkDropSpawnComp_ovb0096* self) {
 }
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 // Extra spawn data, passed on only when its count is set.
 struct UnkDropSpawnExtra_ovb0096 {

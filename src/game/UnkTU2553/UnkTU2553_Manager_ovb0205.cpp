@@ -19,6 +19,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CBlackboard.h"
+#include "game/CBombGun.h"
 #include "game/CCentralUnitCannonBeamMovementComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
@@ -620,7 +621,6 @@ void fn_7100e00f74(UnkGameManager* manager, bool value) {
 
 // ---- fn_7100de9ae4
 struct UnkUserDataOwner;
-CBlackboard* fn_710120384c(UnkUserDataOwner* self);
 bool fn_7100a68fb0(CBlackboard::CSection* section, const void* name, u32* out);
 
 static inline UnkUserDataOwner* GetOwner() {
@@ -762,7 +762,6 @@ void fn_7100e00640(void* self);
 void fn_710119deb8(UnkSubAreaGuiCache* self);
 void fn_7100ed5a04(void* player);
 void fn_7101193370(UnkActorDefFactory* factory, bool flag);
-extern UnkSubAreaGuiCache* g_unk_71727254f8;
 extern const u8 g_unk_710164bda8[] __attribute__((visibility("hidden")));
 
 void fn_7100dfff10(UnkGameManager* manager) {

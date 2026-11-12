@@ -8,6 +8,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU94.h"
 #include "game/UnkTUInit.h"
 #include "types.h"
 
@@ -40,9 +41,6 @@ struct UnkOwnedReflValue : UnkReflValue {
 
 // The object a pointer value points to, with its dynamic type.
 UnkReflTypedPtr fn_710009c460(const UnkReflTypedPtr& pointer);
-
-// SBaseContext's class descriptor (src/game_s1/fn_71000f3150.cpp builds it).
-extern UnkReflType g_unk_7101d67d80;
 
 // The address of a reflected value's object: inline when it fits in 8 bytes, else through
 // field_0x0; null for an empty value.

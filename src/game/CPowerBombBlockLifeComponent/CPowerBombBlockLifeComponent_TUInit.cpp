@@ -3,6 +3,8 @@
 // CPowerBombBlockLifeComponent, CMagnetSurfaceHuskComponent and
 // CWeightActivatedPlatformSmartObjectComponent.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CMagnetSurfaceHuskComponent.h"
+#include "game/CWeightActivatedPlatformSmartObjectComponent.h"
 #include "game/UnkTUInit.h"
 #include "game/UnkTUProperty.h"
 
@@ -30,7 +32,6 @@ void fn_71008e4430() {
 extern UnkTUHeader g_unk_7172737ed8 __attribute__((visibility("hidden")));
 extern char g_unk_7172737e60;
 extern CStrId g_unk_7172737e68;
-extern UnkProperty g_unk_7172737e70;
 extern char g_unk_7101a83358[];
 void fn_7100925ca8(UnkProperty* p);
 void fn_7100924e00(void* p);
@@ -50,7 +51,6 @@ void fn_7100925e20() {
 
 extern UnkTUHeader g_unk_7172743550 __attribute__((visibility("hidden")));
 extern CStrId g_unk_71727434d8;
-extern UnkProperty g_unk_71727434e0;
 extern char g_unk_7101a8b580[];
 void fn_7100a0d0b4(UnkProperty* p);
 void fn_7100a08610(void* p);

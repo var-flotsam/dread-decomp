@@ -249,7 +249,6 @@ struct UnkSweep2D {
 };
 
 // The segment's copy assignment (start, end and the cached length).
-UnkSegment2D* fn_7100125b44(UnkSegment2D* self, const UnkSegment2D* other);
 // The moving point against a segment; against a circle (`mode` 2 at the corners).
 bool fn_710012bcd0(const UnkSweep2D* sweep, const UnkSegment2D* seg, UnkContact2D* out);
 bool fn_710012c840(const UnkSweep2D* sweep, const UnkCircle2D* circle, UnkContact2D* out, s32 mode);
@@ -718,10 +717,6 @@ inline UnkSegment2D UnkOrientedBox2D::ToLocalSegment(const UnkSegment2D& seg) co
     UnkAssign(&r, UnkSegment2D(UnkVec(mid.x - hx, mid.y - hy), UnkVec(hx + mid.x, hy + mid.y)));
     return r;
 }
-
-// An aligned box moving by `step` against a segment (the contact's param is where along the step).
-bool fn_710012ce70(const UnkBox2D* box, const UnkVec2Result& step, const UnkSegment2D* seg,
-                   UnkContact2D* out);
 
 static inline CVector3D operator+(const CVector3D& a, const CVector3D& b) {
     return CVector3D{a.x + b.x, a.y + b.y, a.z + b.z};

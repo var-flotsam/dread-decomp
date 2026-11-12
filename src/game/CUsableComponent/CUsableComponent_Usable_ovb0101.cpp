@@ -12,11 +12,13 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CBlackboard.h"
+#include "game/CInventoryComponent.h"
 #include "game/CReserveTankInfo.h"
 #include "game/CUsableComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkTUProperty.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -157,8 +159,6 @@ bool fn_7100a9f94c(void* self, void* context, const char* name) {
 
 // ---- The use dialog ----
 
-UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
-
 struct UnkUsableDialog_b0101 {
     void** vtable;
     u8 pad_0x8[0xe0];
@@ -204,7 +204,6 @@ bool fn_7100aa19cc(UnkUsableDialog_b0101* self, UnkWeakTarget* user) {
 // ---- Whether the user's ammunition is full ----
 
 struct UnkInventory;
-f32 fn_7101142928(UnkInventory* inventory, const UnkQualifiedId& item);
 struct UnkReserveTankInfo_b49a6;
 
 struct UnkUsableUserActor_b0101 {

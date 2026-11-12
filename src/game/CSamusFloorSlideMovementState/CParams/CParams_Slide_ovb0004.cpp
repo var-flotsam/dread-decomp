@@ -20,6 +20,7 @@
 #include "game/UnkItemProperties.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU1728.h"
+#include "game/UnkTU1730.h"
 #include "game/UnkTU25.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU39.h"
@@ -482,7 +483,6 @@ struct __attribute__((packed, aligned(4))) UnkTrackBlend {
     f32 value;
 };
 static_assert(sizeof(UnkTrackBlend) == 0xc, "UnkTrackBlend layout");
-extern UnkTrackBlend g_unk_7172769758;
 
 struct UnkTrackOptional {
     u64 bits;

@@ -13,6 +13,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -20,7 +21,6 @@ using base::global::CStrId;
 using base::global::UnkStringData;
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 struct UnkLifeComponent;
 void fn_7100b5fd6c(void* object, base::global::UnkStringData** name, void* block, bool a, bool b);
 bool fn_7100dfaf88(UnkGameManager* self, void* name, const CRntString& tag, bool flag);

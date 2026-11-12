@@ -7,13 +7,11 @@
 #include "../../../lib/lua/lua.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflTypedPtr.h"
+#include "game/UnkTU2676.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-// The userdata at `index` when its metatable is the registry's `name`, else null.
-void* fn_71010a4740(lua_State* L, int index, const char* name);
 
 struct UnkGameObjectRef_ovb0115 {
     u8 pad_0x0[0x10];
