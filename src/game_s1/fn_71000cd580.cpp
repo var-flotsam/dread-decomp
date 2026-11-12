@@ -218,15 +218,16 @@ UNK_ITER_MOVE_NEW(7100267a00, UnkPathRef<UnkCopiedFilePathStrId>, u32)
 UNK_ITER_MOVE_NEW(710000d938, UnkWordPathRef<UnkMovedFilePathStrId>, u32)
 UNK_ITER_MOVE_NEW(710000ddb8, UnkWordPathRef<UnkCopiedFilePathStrId>, u32)
 
-// A file path id copy-assigned as CStrId is (CStrId.h): the other's id gains a reference, then
-// the old one is released (in two steps, the count being a union member).
-struct UnkAssignedFilePathStrId {
+// A string id or file path id copy-assigned as CStrId is (CStrId.h): the other's id gains a reference,
+// then the old one is released into its pool (in two steps, the count being a union member).
+template <UnkStringPool** Pool>
+struct UnkAssignedStrIdT {
     UnkStringData* data;
 
-    UnkAssignedFilePathStrId& operator=(const UnkAssignedFilePathStrId& other) {
+    UnkAssignedStrIdT& operator=(const UnkAssignedStrIdT& other) {
         UnkStringData* d = other.data;
         if (data != d) {
-            UnkStringPool* pool = g_unk_7101d47200;
+            UnkStringPool* pool = *Pool;
             if (d != &pool->empty)
                 ++d->ref_count;
             if (data != &pool->empty) {
@@ -239,6 +240,8 @@ struct UnkAssignedFilePathStrId {
         return *this;
     }
 };
+using UnkAssignedStrId = UnkAssignedStrIdT<&g_unk_7101d47108>;
+using UnkAssignedFilePathStrId = UnkAssignedStrIdT<&g_unk_7101d47200>;
 
 // Copy-assignment of a cached iterator value from another, as fn_7100f66180 does for 8-byte keys:
 // the index and the element are assigned through the state-dependent accessors.
@@ -258,7 +261,7 @@ UnkIterValue<UnkAssignedFilePathStrId>* fn_71000cfe14(UnkIterValue<UnkAssignedFi
 }
 
 // NON_MATCHING(minor): the original reads this id before the other's; registers differ.
-UnkIterValue<UnkAssignedFilePathStrId>* fn_71000cd658(UnkIterValue<UnkAssignedFilePathStrId>* self,
-                                                      const UnkIterValue<UnkAssignedFilePathStrId>* other) {
+UnkIterValue<UnkAssignedStrId>* fn_71000cd658(UnkIterValue<UnkAssignedStrId>* self,
+                                              const UnkIterValue<UnkAssignedStrId>* other) {
     return CopyAssign(self, other);
 }

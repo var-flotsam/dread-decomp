@@ -368,6 +368,16 @@ python tools/name_check.py --version 2.1.0            # the report; exit 0
 python tools/name_check.py --version 2.1.0 --strict   # exit 1 when a name points to more than one address
 ```
 
+### `tools/equiv_test.py`
+
+The machine test for tier 2: is a hand-written function that does not match equivalent to the original?
+
+```sh
+python tools/equiv_test.py --version 2.1.0 FILE.cpp [...]   # the non-matching functions these files define
+python tools/equiv_test.py --version 2.1.0 --minor          # every file under src/ with NON_MATCHING(minor)
+python tools/equiv_test.py --version 2.1.0 --drafts         # the `registers or order` rows of drafts/INDEX.csv
+```
+
 ### `tools/fakematch.py`
 
 Fake-match patterns in the hand-written sources: byte-identical code that a programmer would not have written, which usually points at a missing helper, a wrong type or two variables merged into one.

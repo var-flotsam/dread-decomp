@@ -18,6 +18,10 @@ the output is unchanged (docs quote it).
 docs/HANDOFF.md, so the page's numbers are generated, never typed. Without a slice it replaces only
 the whole-binary row and keeps the boot row it finds there.
 
+"Done" is the second figure of CLAUDE.md's completion: matching, or `m` with a passing verdict of
+tools/equiv_test.py in data/equivalence.csv (tools/check.py fails a verdict that is not about the code in
+the tree any more). It is printed beside "matching" and written under the handoff's table.
+
 `--origin` splits the matched (`O`, `m`) functions and bytes by where their source lives: hand-typed
 (`src/` outside the generated directories) or generated (reflection, clones, tables, byte-identical
 lifts). Hand-typed, readable code is the project's completion metric (CLAUDE.md, "Purpose"); the
@@ -52,22 +56,42 @@ def load() -> list[dict]:
     return functions.rows()
 
 
-def tally(rows: list[dict]) -> dict:
+VERIFIED: frozenset[int] = frozenset()  # addresses with a passing row in data/equivalence.csv (main sets it)
+
+
+def verified_addresses() -> frozenset[int]:
+    """The functions tools/equiv_test.py verified equivalent: the `pass` rows of data/equivalence.csv under
+    the test's current rules. tools/check.py keeps the table true to the tree (a stale row fails it)."""
+    import equiv_test
+    return frozenset(a for a, r in equiv_test.read_table().items()
+                     if r["verdict"] == "pass" and r["rules"] == str(equiv_test.RULES))
+
+
+def tally(rows: list[dict], verified: frozenset[int] | None = None) -> dict:
+    verified = VERIFIED if verified is None else verified
     t = {s: {"functions": 0, "bytes": 0} for s in STATUSES}
+    ver = {"functions": 0, "bytes": 0}
     for r in rows:
         t[r["status"]]["functions"] += 1
         t[r["status"]]["bytes"] += int(r["size"])
+        if r["status"] == "m" and verified and int(r["address"], 16) in verified:
+            ver["functions"] += 1
+            ver["bytes"] += int(r["size"])
     total_f = sum(v["functions"] for v in t.values())
     total_b = sum(v["bytes"] for v in t.values())
-    return {"by_status": t, "functions": total_f, "bytes": total_b,
+    return {"by_status": t, "functions": total_f, "bytes": total_b, "verified": ver,
             "matching_bytes_pct": 100 * t["O"]["bytes"] / total_b if total_b else 0.0,
+            "done_bytes_pct": 100 * (t["O"]["bytes"] + ver["bytes"]) / total_b if total_b else 0.0,
             "usable_bytes_pct": 100 * (t["O"]["bytes"] + t["m"]["bytes"]) / total_b if total_b else 0.0}
 
 
 def print_status(overall: dict) -> None:
-    """The matching/usable line and the status table (shared by the whole binary and a slice)."""
+    """The matching/done/usable lines and the status table (shared by the whole binary and a slice)."""
     print(f"matching (O): {overall['by_status']['O']['functions']} functions, "
           f"{overall['matching_bytes_pct']:.4f}% of code; usable (O+m): {overall['usable_bytes_pct']:.4f}%")
+    print(f"done (O, or m verified equivalent by tools/equiv_test.py): {overall['done_bytes_pct']:.4f}% of code; "
+          f"{overall['verified']['functions']} of the {overall['by_status']['m']['functions']} m functions are "
+          f"verified ({overall['verified']['bytes']:,} bytes)")
     print()
     print("| Status | Functions | Bytes |")
     print("|---|---|---|")
@@ -163,6 +187,11 @@ def update_handoff(path: Path, overall: dict, boot: dict | None) -> None:
              "|---|---|---|---|---|---|", table_row(WHOLE, overall)]
     if boot_row:
         lines.append(boot_row)
+    if "verified" in overall:
+        v = overall["verified"]
+        lines += ["", f"Done, whole binary (`O`, or `m` that `tools/equiv_test.py` verified equivalent): "
+                      f"**{overall['done_bytes_pct']:.2f}%**; {v['functions']:,} of the "
+                      f"{overall['by_status']['m']['functions']:,} `m` functions are verified ({v['bytes']:,} bytes)."]
     path.write_text(head + BEGIN + "\n" + "\n".join(lines) + "\n" + END + tail, encoding="utf-8", newline="\n")
 
 
@@ -182,6 +211,8 @@ def main() -> int:
     if args.handoff and args.slice_from:
         ap.error("--handoff takes the boot slice or none, not --slice-from")
 
+    global VERIFIED
+    VERIFIED = verified_addresses()
     rows = load()
     library = [r for r in rows if r["status"] == "L"]
     game = [r for r in rows if r["status"] != "L"]

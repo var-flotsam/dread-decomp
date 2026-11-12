@@ -6,7 +6,7 @@ struct UnkBiquadCoef {
     s16 b0, b1, b2, a1, a2;
 };
 
-extern const UnkBiquadCoef g_unk_7101d40790[112];
+extern const UnkBiquadCoef g_unk_710164d640[112];
 
 // NON_MATCHING(minor): the 10-byte struct copy is emitted low word first; the original
 // copies the trailing halfword first. No tested compiler reproduces the original order.
@@ -16,5 +16,5 @@ void fn_7101215464(const void* self, f32 value, UnkBiquadCoef* out) {
         index = 0;
     if (index > 111)
         index = 111;
-    *out = g_unk_7101d40790[index];
+    *out = g_unk_710164d640[index];
 }

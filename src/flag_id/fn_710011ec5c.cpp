@@ -17,7 +17,8 @@ struct UnkHolder {
     UnkPayload* payload;
 };
 
-extern const CType g_unk_7101cc2e90;
+struct UnkEnumType;
+extern UnkEnumType g_unk_7108b6d8f0;  // the type descriptor (the original loads its address from the GOT)
 
 // NON_MATCHING(minor): one temporary lands in w8 instead of w9 (register allocation only).
 UnkReflValue fn_710011ec5c(void* self, const UnkHolder* holder) {
@@ -28,6 +29,6 @@ UnkReflValue fn_710011ec5c(void* self, const UnkHolder* holder) {
     result.field_0x0 = nullptr;
     result.type = nullptr;
     result.kind = 2;
-    fn_71000a18d4(&result, &g_unk_7101cc2e90, data, true);
+    fn_71000a18d4(&result, reinterpret_cast<const CType*>(&g_unk_7108b6d8f0), data, true);
     return result;
 }
