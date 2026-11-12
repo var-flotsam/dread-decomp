@@ -37,8 +37,9 @@ eventually be replaced. The proof has tiers:
 
 Readability outranks a match: when a function matches only with a union around a member, an empty barrier
 or an inlining attribute, commit the readable version as tier 2 instead. Both figures, matching and done,
-are reported side by side. The machine test for hand-written functions and the permuter do not exist yet;
-until the test does, every `NON_MATCHING` function is tier 3. A family
+are reported side by side. The machine test is `tools/equiv_test.py` (since 2026-11-12): its verdicts are in
+`data/equivalence.csv`, and `tools/check.py` fails a passing verdict that is not about the code in the tree any
+more. A `NON_MATCHING` function without a current passing verdict is tier 3. The permuter does not exist yet. A family
 stamped out of one template or macro (the reflection boilerplate) counts as hand-written once the template
 reads as source: no `fn_<addr>` or `Unk` names in its interface, each use names the class and its members
 with no addresses, and a field takes one line. Today's reflection templates do not meet that yet. The port
@@ -75,7 +76,7 @@ files over 1 MB, `.nso/.nro/.nca/.nsp/.xci/.nsz/.xcz/.keys/.elf`, and anything u
 | `tools/` | yes | Python tooling; `tools/ghidra/` holds headless Ghidra scripts; `tools/hooks/` holds git hooks |
 | `src/`, `include/` | yes | reconstructed C++17 game code; shared declarations and layouts live in `include/` (one per symbol) |
 | `lib/` | yes | vendored upstream Lua 5.1.4 (`lib/lua`), dlmalloc 2.8.4, one libc++ sort; submodules `lib/nnsdk`, `lib/musl` (headers only) |
-| `data/` | yes | metadata only: `hashes.json`, `functions/main_XX.csv`, `reflection_types.csv`, `reflection_fields.csv`, `tu_map.csv`, `data_map.csv`, `library_symbols.csv`, `toolchains.json`, `sources.json`; never code bytes |
+| `data/` | yes | metadata only: `hashes.json`, `functions/main_XX.csv`, `reflection_types.csv`, `reflection_fields.csv`, `tu_map.csv`, `data_map.csv`, `equivalence.csv`, `library_symbols.csv`, `toolchains.json`, `sources.json`; never code bytes |
 | `docs/` | yes | `HANDOFF.md` (state), `PORT_PLAN.md`, `reference.md` (stable facts), `commands.md` (generated), `JOURNAL.md` (history), `recon.md`, `compiler.md`, `maintaining.md`, `references.md` |
 | `port/` | yes | PC port layer (Route B): CMake project (`dread_game`, `dread_libs`, `dread_runtime`, `dread`, `sweep`, `link_report`), the port's own `nn::` runtime under `runtime/`, `sample_duplicates.txt`; `port/README.md` has the layout, the sweep and the link |
 
@@ -100,6 +101,7 @@ python tools/data_map.py --address <addr>              # the unit a global belon
 python tools/gen_fields.py --class <Class>             # a reflected class's members by offset, bases included
 python tools/decl_check.py --strict --base origin/main # one declaration per shared symbol (CI)
 python tools/fakematch.py --base origin/main [--list]  # fake-match forms a branch adds; review before a PR
+python tools/equiv_test.py --version <ver> <file.cpp> [--write]   # tier 2: is a registers-only non-match equivalent?
 python -m unittest discover -s tools/tests -t .       # tool tests, no game data (CI)
 python tools/hub_migrate.py --version <ver> --plan PLAN.tsv   # mechanical header migration; .claude/skills/dread-hubs
 python tools/ghidra/decompile.py --version <ver> <addr|name>  # read Ghidra's view (never commit it)

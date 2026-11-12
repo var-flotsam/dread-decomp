@@ -152,6 +152,44 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**The machine test for tier 2 exists (2026-11-12).** `tools/equiv_test.py` is the calibration scripts of
+2026-11-11 made a tool: it compiles a source, takes the functions whose only difference from the original is
+register choice or instruction order, and runs each beside the original in `tools/pcode_emu.py` under the strict
+rules (the object anchored to the original's addresses, every written byte, the declared result, every call with
+its arguments, every instruction run and every conditional branch both ways). It reproduces the calibration: the
+15 drafts that passed then pass now, none changed. Verdicts of functions in `src/` go to `data/equivalence.csv`
+with the digest of the code that was judged; `tools/check.py` fails a `pass` row whose function changed, matches
+now or is gone (`EQUIV` lines), and `tools/progress.py` reports "done" (matching, or `m` with a passing row)
+beside "matching".
+
+| Judged | Registers-only functions | Pass | Fail | Cannot be judged |
+|---|---|---|---|---|
+| `NON_MATCHING(minor)` files of `src/` | 141 (of 466 non-matching functions in them) | 25 (4,796 bytes) | 1 | 115 |
+| `drafts/`, the function each registers-only row names | 115 | 17 | 1 | 97 |
+
+"Cannot be judged" is mostly coverage: an instruction of the original that no input reached, or a branch that
+only went one way. Those stay tier 3 and are counted; the plan is not to chase them.
+
+**The first run over `src/` failed five functions marked "same behaviour", and four of the five were wrong.**
+- `fn_71003f14c4` made two stores conditional that the original always does (the branch for a null actor lands
+  after one store, not after all three). Written as the original behaves, it matches.
+- `fn_71000cd658` released into the file-path id pool; the original uses the string id pool. It was a copy of
+  its sibling `fn_71000cfe14`, which does use the other pool.
+- `fn_710011ec5c` and `fn_7101215464` (two Phase 3 samples) named a global after its GOT slot
+  (`g_unk_7101cc2e90`, `g_unk_7101d40790`) and so passed or read the slot, not the object it points to. Both
+  pass the test now.
+- `fn_7100206078` is the one false failure: the original leaves a constant in `v0` before a virtual call that
+  takes no float argument, ours leaves another value, and the test cannot know the callee's parameters. It is
+  recorded as `fail` with that detail.
+
+Three of the four had the wrong address behind a name, which `tools/check.py` would have reported in a
+matching function and does not look at in a non-matching one: its relocation check needs the instructions to
+line up. A check that compares the set of addresses a non-matching function refers to with the original's set
+would need no emulator and would cover every `m` function, not only the 141 the test can run. Not built.
+
+Still to do from the tier plan: the 17 passing drafts into `src/` (each needs its declarations settled as any
+new file does), the permuter spike, and the kit and brief.
+
 **Pilot batch of 50 functions (2026-11-12).** The owner lifted the hold on bulk runs for one measured batch.
 50 functions drawn by seed from the 279 ready boot-path candidates of 130 to 600 bytes without a draft
 (`tools/hubs.py --ready --boot`), one Sonnet worker each on the lean kit as the 40-function test ran it

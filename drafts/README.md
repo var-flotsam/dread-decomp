@@ -47,7 +47,8 @@ left here. One match is still held: `fn_71008c3dcc` (see its note in `INDEX.csv`
 
 The first row is what the "verified equivalent" tier and a permuter are for. A registers-only difference is
 a strong sign of equivalence but not proof of it: an inconsistent register swap changes behaviour, so
-these still need the machine test before they count.
+these still need the machine test before they count (`python tools/equiv_test.py --version 2.1.0 --drafts`;
+on 2026-11-12 it passed 17 of the 115 registers-only drafts, failed 1 and could not judge 97).
 
 ## Rules
 
