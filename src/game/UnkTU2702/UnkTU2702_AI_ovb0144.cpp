@@ -134,7 +134,8 @@ struct UnkFxObject_ovb0041;
 
 extern char g_unk_7172a062e8[] __attribute__((visibility("hidden")));
 
-UnkComponent* fn_7101152b90(UnkObject*, u64);
+struct UnkPart;
+UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 bool fn_710114e668(UnkObject*, u8);
 struct UnkFrostbiteComponent;
 void fn_710115217c(void* object, void* effect, u32 a, u32 b, const base::global::CStrId* name,
@@ -188,7 +189,8 @@ void fn_71011048c0(UnkAIC_b0144* self) {
     if (self->field_0x179c) {
         self->field_0x179c = false;
         UnkObject* world = self->owner->field_0x280;
-        if (UnkComponent* fx = fn_7101152b90(world, EffectKey())) {
+        if (UnkComponent* fx = reinterpret_cast<UnkComponent*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(world),
+                                                                             EffectKey()))) {
             u8 kind = *(reinterpret_cast<u8*>(fx) + 0xb);
             if (fn_710114e668(world, kind)) {
                 fn_7100146e60(reinterpret_cast<UnkSwitchObject*>(fx), false);
@@ -207,7 +209,7 @@ void fn_710110cacc(UnkAIC_b0144* self) {
         return;
     self->field_0x179c = true;
     UnkObject* world = self->owner->field_0x280;
-    UnkComponent* fx = fn_7101152b90(world, EffectKey());
+    UnkComponent* fx = reinterpret_cast<UnkComponent*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(world), EffectKey()));
     if (!fx) {
         char* effect = fn_71011520a8(reinterpret_cast<char*>(world), 0, g_unk_7172a062e8, 1);
         if (!effect)

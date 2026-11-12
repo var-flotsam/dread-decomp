@@ -146,7 +146,7 @@ struct UnkTransform_71002098a4 {
 
 void fn_71001c3474(UnkSource_710020c780* source, UnkReflObject* obj);
 UnkTransform_71002098a4 fn_710007916c(const UnkVector3_71002098a4& v);
-void fn_710019c474(void* target, const UnkTransform_71002098a4* t);
+void fn_710019c474(void*, const UnkMatrix44*);
 
 void fn_71002098a4(UnkUpdater_710020c780* self) {
     UnkSource_710020c780* source = self->field_0x108;
@@ -156,7 +156,7 @@ void fn_71002098a4(UnkUpdater_710020c780* self) {
         cast = fn_710009d50c(obj->vf_0x0(), fn_71001b122c()) ? obj : nullptr;
     fn_71001c3474(source, cast);
     UnkTransform_71002098a4 t = fn_710007916c(UnkVector3_71002098a4(1.5f, 1.5f, 1.0f));
-    fn_710019c474(self->field_0x108->field_0x78, &t);
+    fn_710019c474(self->field_0x108->field_0x78, reinterpret_cast<const UnkMatrix44*>(&t));
     fn_710019c564(self->field_0x108->field_0x78, self->field_0x118, self->field_0x11c, self->field_0x120,
                   self->field_0x124);
 }

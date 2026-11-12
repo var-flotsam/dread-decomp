@@ -209,7 +209,8 @@ struct UnkEntity;
 struct UnkObject;
 struct UnkComponent;
 struct UnkFxObject_ovb0041;
-UnkComponent* fn_7101152b90(UnkObject*, u64);
+struct UnkPart;
+UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 bool fn_710114e668(UnkObject*, u8);
 void fn_7100146d84(UnkFxObject_ovb0041* fx, const UnkVec3f* position);
 void fn_7100146d98(UnkFxObject_ovb0041* fx, const UnkVec3f* angle);
@@ -261,7 +262,8 @@ void fn_710042995c(UnkBurstAim_ovb0135* self, const UnkBurstAimPoint_ovb0135* po
     u32 z;
     __builtin_memcpy(&z, &m.m[11], 4);
     f32 len = __builtin_sqrtf(len2);
-    auto* fx = reinterpret_cast<UnkBurstBeamFx_ovb0135*>(fn_7101152b90(model, 0x28d8e7efe4423be0ull));
+    auto* fx = reinterpret_cast<UnkBurstBeamFx_ovb0135*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(model),
+                                                                       0x28d8e7efe4423be0ull));
     if (!fx || !fn_710114e668(model, fx->kind))
         return;
     f32 inv = 1.0f / (len + 0.0001f);

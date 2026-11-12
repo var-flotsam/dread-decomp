@@ -69,7 +69,9 @@ u32 fn_710067d4a4(UnkSclawkAI_ovb0125* self, u32* out, void* arg2, UnkSclawkHitI
 
 struct UnkObject;
 struct UnkComponent;
-UnkComponent* fn_7101152b90(UnkObject*, u64);
+struct UnkPart;
+struct UnkWorld;
+UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 bool fn_710114e668(UnkObject*, u8);
 
 struct UnkSclawkPart_ovb0125 {
@@ -131,7 +133,7 @@ void fn_710067c8e0(UnkSclawkAI2_ovb0125* self, f32 dt) {
             if (__builtin_expect(!fn_710067ca84(self), 1)) {
                 UnkObject* parts = self->owner->field_0x280;
                 if (parts && !self->field_0x146ef) {
-                    auto* part = reinterpret_cast<UnkSclawkPart_ovb0125*>(fn_7101152b90(parts, 0xe6de93263e1369e9));
+                    auto* part = reinterpret_cast<UnkSclawkPart_ovb0125*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(parts), 0xe6de93263e1369e9));
                     if (part && !fn_710114e668(parts, part->kind))
                         part = nullptr;
                     fn_7100146e60(reinterpret_cast<UnkSwitchObject*>(part), true);

@@ -32,7 +32,8 @@ struct UnkBossComponent {
     u32 field_0x5d8;
 };
 
-void fn_71004d43dc(UnkBossAI* ai, void* target);
+struct UnkAIComponent;
+void fn_71004d43dc(UnkAIComponent*, void*);
 
 bool fn_71004d77f4(UnkBossComponent* self, u64 a, u64 b, u64 c, u64 d) {
     if (!self->field_0x5d8)
@@ -41,7 +42,7 @@ bool fn_71004d77f4(UnkBossComponent* self, u64 a, u64 b, u64 c, u64 d) {
     if (holder && holder->field_0x10) {
         UnkBossAI* ai = holder->field_0x10->field_0x240;
         if (ai && fn_710009d50c(ai->vf_0x0(), fn_71004cf318()))
-            fn_71004d43dc(ai, self->field_0x30);
+            fn_71004d43dc(reinterpret_cast<UnkAIComponent*>(ai), self->field_0x30);
     }
     fn_7100232c68(self->field_0x30);
     return fn_7100ac4c60(self, a, b, c, d);

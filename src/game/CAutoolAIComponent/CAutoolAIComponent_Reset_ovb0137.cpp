@@ -18,7 +18,9 @@ struct UnkSelf;
 void fn_7100662110(void* self);
 struct UnkObject;
 struct UnkComponent;
-UnkComponent* fn_7101152b90(UnkObject*, u64);
+struct UnkPart;
+struct UnkWorld;
+UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 struct UnkSwitchObject;
 void fn_7100863730(void* collision, const CStrId* name, const u32* flags);
 void fn_71008635a4(void* collision, const CStrId* name, const u32* flags);
@@ -41,8 +43,8 @@ struct UnkAutoolAI_ovb0137 {
 };
 
 static inline void SwitchOff(UnkAutoolAI_ovb0137* self, u64 a, u64 b) {
-    UnkComponent* first = fn_7101152b90(self->owner->effects, a);
-    UnkComponent* second = fn_7101152b90(self->owner->effects, b);
+    UnkComponent* first = reinterpret_cast<UnkComponent*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(self->owner->effects), a));
+    UnkComponent* second = reinterpret_cast<UnkComponent*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(self->owner->effects), b));
     fn_7100146dac(reinterpret_cast<UnkSwitchObject*>(first), false);
     fn_7100146dac(reinterpret_cast<UnkSwitchObject*>(second), false);
 }
@@ -99,8 +101,8 @@ void fn_71003c4fb0(UnkAutoolAI_ovb0137* self, u32 which, u32 mode) {
     default:
         break;
     }
-    UnkComponent* first = fn_7101152b90(self->owner->effects, a);
-    UnkComponent* second = fn_7101152b90(self->owner->effects, b);
+    UnkComponent* first = reinterpret_cast<UnkComponent*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(self->owner->effects), a));
+    UnkComponent* second = reinterpret_cast<UnkComponent*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(self->owner->effects), b));
     switch (mode) {
     case 0:
         fn_7100146dac(reinterpret_cast<UnkSwitchObject*>(first), false);

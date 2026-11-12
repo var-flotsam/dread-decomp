@@ -264,7 +264,7 @@ void fn_71001c1400(UnkBoneOwner* self, UnkBoneDriver* driver) {
 // (fn_7100199d88), each component clamped to be non-negative and stored through the colour's
 // assignment, fn_7100030728, as fn_71001c287c (src/game_lo/fn_71001c287c.cpp) does by index
 // (fn_71001c2bac).
-bool fn_7100199d88(UnkBoneArrayHolder* holder, const u64* id, u32* index);
+bool fn_7100199d88(void* table, const u64* key, u32* id);
 
 static inline f32 NonNegative(f32 x) { return x <= 0.0f ? 0.0f : x; }
 

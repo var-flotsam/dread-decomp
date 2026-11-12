@@ -11,11 +11,13 @@
 using base::global::UnkStrId;
 
 struct UnkSelf;
-void fn_7100394bd0(UnkSelf*);
+struct UnkStruct_0x68;
+void fn_7100394bd0(UnkStruct_0x68* self);
 struct UnkWorld;
 struct UnkPart;
 UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
-bool fn_710114e668(UnkWorld*, u8);
+struct UnkObject;
+bool fn_710114e668(UnkObject*, u8);
 
 struct UnkEmissionPart_b49 {
     u8 pad_0x0[0xb];
@@ -40,7 +42,7 @@ struct UnkParticleEnableEmission_b49 {
 };
 
 void fn_71003784d0(UnkParticleEnableEmission_b49* self) {
-    fn_7100394bd0(reinterpret_cast<UnkSelf*>(self));
+    fn_7100394bd0(reinterpret_cast<UnkStruct_0x68*>(self));
     self->done = false;
     if (self->name.data == &g_unk_7101d47108->empty || !self->owner)
         return;
@@ -49,7 +51,7 @@ void fn_71003784d0(UnkParticleEnableEmission_b49* self) {
         return;
     u64 hash = *reinterpret_cast<u64*>(reinterpret_cast<u8*>(self->name.data) + 0x30);
     auto* part = reinterpret_cast<UnkEmissionPart_b49*>(fn_7101152b90(world, hash));
-    if (part && fn_710114e668(world, part->id)) {
+    if (part && fn_710114e668(reinterpret_cast<UnkObject*>(world), part->id)) {
         self->part = part;
         if (self->enable)
             fn_7100146dac(reinterpret_cast<UnkSwitchObject*>(part), true);

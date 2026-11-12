@@ -20,8 +20,8 @@ struct UnkSelf {
     u8 field_0x30[1];
 };
 
-bool fn_7100394e2c(UnkSelf* self, u8* record, f32* offset);
-void fn_71003954fc(UnkSelf* self, u8* record, f32 offset);
+bool fn_7100394e2c(UnkSelf*, void*, f32*);
+void fn_71003954fc(UnkSelf* behavior, void* record, f32 value);
 
 u32 fn_71003767f4(UnkSelf* self) {
     f32 out;

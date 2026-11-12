@@ -35,13 +35,17 @@ struct UnkSelf {
     UnkHandle field_0x400;
 };
 
-void fn_710114fe8c(UnkObject* object, u64 hash, u32 a, u32 b);
+struct UnkWorld;
+void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
 
 void fn_71003053c4(UnkSelf* self) {
-    fn_710114fe8c(self->field_0xc0->field_0x30->field_0x280, fn_7100001570("specialburst_rocketball", 23), 0, 0);
-    fn_710114fe8c(self->field_0xc0->field_0x30->field_0x280, fn_7100001570("specialburst_rocketballcenter", 29), 0,
+    fn_710114fe8c(reinterpret_cast<UnkWorld*>(self->field_0xc0->field_0x30->field_0x280),
+                  fn_7100001570("specialburst_rocketball", 23), 0, 0);
+    fn_710114fe8c(reinterpret_cast<UnkWorld*>(self->field_0xc0->field_0x30->field_0x280),
+                  fn_7100001570("specialburst_rocketballcenter", 29), 0,
                   0);
-    fn_710114fe8c(self->field_0xc0->field_0x30->field_0x280, fn_7100001570("specialburst_rocketballcharging", 31), 0,
+    fn_710114fe8c(reinterpret_cast<UnkWorld*>(self->field_0xc0->field_0x30->field_0x280),
+                  fn_7100001570("specialburst_rocketballcharging", 31), 0,
                   0);
     UnkHandle* handle = &self->field_0x400;
     if (handle->target && handle->target->field_0x8 == handle->serial && handle->serial != ~0ull &&

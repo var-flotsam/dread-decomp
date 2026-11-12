@@ -65,9 +65,10 @@ inline UnkGameManagerIdTable& GameManagerIdTable() {
 }
 
 
-UnkComponent* fn_7101152b90(UnkObject*, u64);
+struct UnkPart;
+UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 bool fn_710114e668(UnkObject*, u8);
-void fn_710114fe8c(UnkObject* object, u64 hash, u32 a, u32 b);
+void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
 void fn_71002078e4(void* fade, f32 target, f32 from, f32 to, bool a, bool b);
 
 struct UnkEnergyWavePart_ovb22 {
@@ -89,13 +90,13 @@ void fn_7100301600(void* self, u64 hash, bool on, UnkObject* world) {
     if (!world)
         world = reinterpret_cast<UnkEnergyWavePlayer_ovb22*>(fn_7100defcd4(g_unk_7101d47310))->world;
     if (!on) {
-        fn_710114fe8c(world, hash, 0, 0);
+        fn_710114fe8c(reinterpret_cast<UnkWorld*>(world), hash, 0, 0);
         return;
     }
-    auto* part = reinterpret_cast<UnkEnergyWavePart_ovb22*>(fn_7101152b90(world, hash));
+    auto* part = reinterpret_cast<UnkEnergyWavePart_ovb22*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(world), hash));
     if (part && fn_710114e668(world, part->kind) && part->active)
         fn_7100146e60(reinterpret_cast<UnkSwitchObject*>(part), false);
-    part = reinterpret_cast<UnkEnergyWavePart_ovb22*>(fn_7101152b90(world, hash));
+    part = reinterpret_cast<UnkEnergyWavePart_ovb22*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(world), hash));
     if (part && fn_710114e680(world, part->kind) && part->active)
         fn_71002078e4(part->fade, 0.15f, 0.0f, 1.0f, true, true);
 }

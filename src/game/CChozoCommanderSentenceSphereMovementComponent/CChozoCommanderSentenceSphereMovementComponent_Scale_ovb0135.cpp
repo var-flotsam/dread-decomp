@@ -16,7 +16,9 @@ using base::math::CVector2D;
 
 struct UnkComponent;
 struct UnkObject;
-UnkComponent* fn_7101152b90(UnkObject*, u64);
+struct UnkPart;
+struct UnkWorld;
+UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 extern __attribute__((visibility("hidden"))) base::global::CStrId g_unk_71726ca0e0;
 
 struct UnkSphereShape_ovb0135 {
@@ -104,7 +106,8 @@ void fn_710045b8e0(UnkSentenceSphereMovement_ovb0135* self) {
     if (UnkObject* model = self->owner->model) {
         f32 radius = self->radius;
         f32 base_radius = self->base_radius;
-        if (auto* part = reinterpret_cast<UnkSpherePart_ovb0135*>(fn_7101152b90(model, 0xeadba676664dfe2cull))) {
+        if (auto* part = reinterpret_cast<UnkSpherePart_ovb0135*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(model),
+                                                                                0xeadba676664dfe2cull))) {
             f32 s = radius / base_radius;
             UnkVec3f scale(s, s, s);
             part->vf_0x20(&scale);

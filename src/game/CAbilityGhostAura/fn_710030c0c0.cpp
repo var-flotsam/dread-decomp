@@ -20,7 +20,7 @@ struct UnkSelf {
 };
 
 extern UnkManager* g_unk_7101d47360;
-void fn_7100ee1f34(UnkManager* manager);
+void fn_7100ee1f34(void* self);
 
 void fn_710030c0c0(UnkSelf* self) {
     UnkManager* manager = g_unk_7101d47360;

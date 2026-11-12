@@ -35,21 +35,26 @@ struct UnkSelf {
     UnkHandles field_0x154e8;
 };
 
-UnkComponent* fn_7101152b90(UnkObject* object, u64 hash);
+struct UnkPart;
+UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 bool fn_710114e668(UnkObject* object, u8 kind);
 
 void fn_710048ecbc(UnkSelf* self) {
     if (UnkObject* object = self->field_0x30->field_0x280) {
-        UnkComponent* a = fn_7101152b90(object, 0x89f328dc37ac167bull);
+        UnkComponent* a = reinterpret_cast<UnkComponent*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(object),
+                                                                        0x89f328dc37ac167bull));
         if (a)
             a = fn_710114e680(object, a->field_0xb) ? a : nullptr;
-        UnkComponent* b = fn_7101152b90(object, 0x8c9dfb3ece4e323cull);
+        UnkComponent* b = reinterpret_cast<UnkComponent*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(object),
+                                                                        0x8c9dfb3ece4e323cull));
         if (b)
             b = fn_710114e680(object, b->field_0xb) ? b : nullptr;
-        UnkComponent* c = fn_7101152b90(object, 0xa0cda40259a7a253ull);
+        UnkComponent* c = reinterpret_cast<UnkComponent*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(object),
+                                                                        0xa0cda40259a7a253ull));
         if (c)
             c = fn_710114e668(object, c->field_0xb) ? c : nullptr;
-        UnkComponent* d = fn_7101152b90(object, 0xa5a377e0a0458614ull);
+        UnkComponent* d = reinterpret_cast<UnkComponent*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(object),
+                                                                        0xa5a377e0a0458614ull));
         if (d)
             d = fn_710114e668(object, d->field_0xb) ? d : nullptr;
         fn_7100145e94(reinterpret_cast<UnkSwitchObject*>(a), false);

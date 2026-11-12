@@ -14,7 +14,7 @@
 using base::global::CStrId;
 
 struct UnkTracker_7100863a8c;
-void fn_7100d5abfc(UnkTracker_7100863a8c* self, UnkCollisionObject* obj);
+void fn_7100d5abfc(void* owner, UnkStruct_7100861148_Collider* collider);
 
 struct UnkManager_7100863a8c {
     u8 unk_0x0[0x6b0];
@@ -46,7 +46,7 @@ found:
     if (UnkTracker_7100863a8c* tracker =
             static_cast<UnkTracker_7100863a8c*>(g_unk_7101d47310->field_0x608->field_0x820)) {
         if (fn_7100d5a930(tracker, obj)) {
-            fn_7100d5abfc(tracker, obj);
+            fn_7100d5abfc(tracker, reinterpret_cast<UnkStruct_7100861148_Collider*>(obj));
             obj->vf_0x40(4);
         }
     }

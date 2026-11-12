@@ -18,7 +18,9 @@ struct UnkInterp_7100105f1c {
     s32 field_0xe0;
 };
 
-void fn_71000ffd4c(UnkListener_7100105f1c* listener, UnkInterp_7100105f1c* block, s32 value);
+struct UnkListener_7100105f94;
+struct UnkInterp_7100105f94;
+void fn_71000ffd4c(UnkListener_7100105f94* listener, UnkInterp_7100105f94* block, s32 value);
 
 void fn_7100105f1c(UnkInterp_7100105f1c* self, s32 value, f32 time) {
     if (self->current == value)
@@ -28,7 +30,8 @@ void fn_7100105f1c(UnkInterp_7100105f1c* self, s32 value, f32 time) {
         self->target = v;
         self->start = v;
         self->current = v;
-        fn_71000ffd4c(self->listener, self, v);
+        fn_71000ffd4c(reinterpret_cast<UnkListener_7100105f94*>(self->listener),
+                      reinterpret_cast<UnkInterp_7100105f94*>(self), v);
         self->field_0xe0 = self->current;
     } else {
         self->start = self->current;

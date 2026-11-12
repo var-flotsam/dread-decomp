@@ -26,7 +26,8 @@ struct UnkUnit285_b46a1;
 struct UnkWorld;
 struct UnkPart;
 UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
-bool fn_710114e668(UnkWorld* world, u8 id);
+struct UnkObject;
+bool fn_710114e668(UnkObject*, u8);
 
 struct UnkPlasmaRayVec_b60a4 {
     f32 x, y, z;
@@ -116,7 +117,7 @@ void fn_71006b4900(UnkPlasmaRayAttack_b60a4* self) {
             position.z = 0.0f;
             f32 height = __builtin_fabsf(box.max.y - box.min.y);
             auto* effect = reinterpret_cast<UnkPlasmaRayEffect_b60a4*>(fn_7101152b90(world, 0x81576b5cecf37e8bULL));
-            if (effect && fn_710114e668(world, effect->id)) {
+            if (effect && fn_710114e668(reinterpret_cast<UnkObject*>(world), effect->id)) {
                 effect->vf_0x10(&position);
                 UnkPlasmaRayVec_b60a4 scale;
                 scale.x = height / 100.0f;

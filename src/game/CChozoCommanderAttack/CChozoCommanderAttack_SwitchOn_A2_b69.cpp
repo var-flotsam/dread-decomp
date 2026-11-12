@@ -9,7 +9,8 @@
 struct UnkComponent;
 struct UnkObject;
 // As src/game/CChozoWarriorXAIComponent/fn_710048ecbc.cpp declares them.
-UnkComponent* fn_7101152b90(UnkObject* object, u64 hash);
+struct UnkPart;
+UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 
 struct UnkChozoCommanderAttackOwner_A2_b69 {
     u8 pad_0x0[0x280];
@@ -27,7 +28,8 @@ struct UnkChozoCommanderAttack_A2_b69 {
 
 static inline UnkComponent* Find_A2_b69(UnkChozoCommanderAttack_A2_b69* self, UnkObject* object) {
     if (object && !self->field_0x40) {
-        UnkComponent* component = fn_7101152b90(object, 0x8b2dcb0a00297e03ull);
+        UnkComponent* component = reinterpret_cast<UnkComponent*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(object),
+                                                                                0x8b2dcb0a00297e03ull));
         if (component)
             component = fn_710114e680(object, reinterpret_cast<u8*>(component)[0xb]) ? component : nullptr;
         self->field_0x40 = component;

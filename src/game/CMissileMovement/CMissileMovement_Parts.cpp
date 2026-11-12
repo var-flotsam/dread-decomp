@@ -33,7 +33,8 @@ struct UnkMissileMovement {
 
 struct UnkPart;
 UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
-bool fn_710114e668(UnkWorld* world, u8 id);
+struct UnkObject;
+bool fn_710114e668(UnkObject*, u8);
 void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
 bool fn_7100146c50(UnkMissilePart* part, u32 a, void* data, u32 b);
 
@@ -42,7 +43,7 @@ void fn_7100abaee8(UnkMissileMovement* self) {
     fn_710114fe8c(self->field_0x30->field_0x280, 0x07133f93f7cc2a9cull, active, 1);
     UnkWorld* world = self->field_0x30->field_0x280;
     if (UnkMissilePart* part = reinterpret_cast<UnkMissilePart*>(fn_7101152b90(world, self->field_0x5d8->field_0x30))) {
-        if (fn_710114e668(world, part->field_0xb))
+        if (fn_710114e668(reinterpret_cast<UnkObject*>(world), part->field_0xb))
             fn_7100146c50(part, 0, self->field_0x4d8, 1);
     }
 }

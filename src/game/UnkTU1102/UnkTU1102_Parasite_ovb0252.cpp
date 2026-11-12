@@ -252,7 +252,7 @@ struct UnkRinkaEntry_ruc;
 struct UnkFxObject_ovb0041;
 
 UnkPart* fn_7101152b90(UnkWorld*, u64);
-bool fn_710114e668(UnkWorld*, u8);
+bool fn_710114e668(UnkObject*, u8);
 void fn_7100146d84(UnkFxObject_ovb0041*, const UnkVec3f*);
 void fn_710115217c(void*, void*, u32, u32, const base::global::CStrId*, const base::math::CVector3D&,
                    const base::math::CVector3D&, void*);
@@ -340,7 +340,8 @@ void fn_71006e8208(UnkXParasiteSelf_8208* self, bool on) {
         UnkPart* part = fn_7101152b90(static_cast<UnkWorld*>(control), g_unk_717270b910[0]->key);
         if (!part)
             return;
-        if (!fn_710114e668(static_cast<UnkWorld*>(control), reinterpret_cast<UnkXParasitePartHandle_8208*>(part)->field_0xb))
+        if (!fn_710114e668(reinterpret_cast<UnkObject*>(control),
+                           reinterpret_cast<UnkXParasitePartHandle_8208*>(part)->field_0xb))
             return;
         fn_7100146e60(reinterpret_cast<UnkSwitchObject*>(part), false);
         fn_710115596c(static_cast<UnkRinkaControl_ruc*>(control), part);

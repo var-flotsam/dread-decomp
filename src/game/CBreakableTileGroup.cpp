@@ -203,7 +203,7 @@ struct UnkTree;
 struct UnkShape;
 struct UnkMtx44;
 void* fn_7100c9ff5c(void* p);
-bool fn_71009e12d0(UnkHelper* helper);
+bool fn_71009e12d0(void*);
 UnkVec3f fn_71009ebe68(UnkHelper* helper);
 base::UnkVector<UnkListedItem*>* fn_7100552d7c();
 

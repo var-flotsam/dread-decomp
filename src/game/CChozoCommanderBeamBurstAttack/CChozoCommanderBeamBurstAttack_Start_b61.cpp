@@ -16,7 +16,8 @@ struct UnkComponent {
 };
 struct UnkObject;
 // As src/game/CChozoWarriorXAIComponent/fn_710048ecbc.cpp declares them.
-UnkComponent* fn_7101152b90(UnkObject* object, u64 hash);
+struct UnkPart;
+UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 
 struct UnkBeamBurstOwner_b61a2 {
     u8 pad_0x0[0x280];
@@ -35,7 +36,8 @@ struct UnkBeamBurstAttack_b61a2 {
 // The component with the hash, looked up once and cached at +0x60 (null when the kind check rejects it).
 static inline UnkComponent* Find_b61a2(UnkBeamBurstAttack_b61a2* self, UnkObject* object) {
     if (object && !self->field_0x60) {
-        UnkComponent* component = fn_7101152b90(object, 0x801aa095101c1236ull);
+        UnkComponent* component = reinterpret_cast<UnkComponent*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(object),
+                                                                                0x801aa095101c1236ull));
         if (component)
             component = fn_710114e680(object, component->field_0xb) ? component : nullptr;
         self->field_0x60 = component;

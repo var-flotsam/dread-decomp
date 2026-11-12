@@ -9,7 +9,8 @@
 #include "types.h"
 
 struct UnkSelf;
-void fn_7100394bd0(UnkSelf*);
+struct UnkStruct_0x68;
+void fn_7100394bd0(UnkStruct_0x68* self);
 struct UnkHandler;
 struct UnkMessage;
 u32 fn_7100390860(UnkHandler* self, UnkMessage* message);  // fn_7100390860.cpp
@@ -37,7 +38,7 @@ struct UnkScaredAction_b49 {
 };
 
 void fn_710038ff68(UnkScaredAction_b49* self) {
-    fn_7100394bd0(reinterpret_cast<UnkSelf*>(self));
+    fn_7100394bd0(reinterpret_cast<UnkStruct_0x68*>(self));
     self->state = 1;
     UnkScaredOwner_b49* owner = self->owner;
     if (owner && owner->animation) {

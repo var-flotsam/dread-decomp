@@ -54,7 +54,8 @@ extern UnkHeap_7100161b90* unk_716e34ae20;         // the buffer heap for flagge
 extern UnkHeap_7100161b90* unk_716e34ae28;         // the buffer heap for the others
 extern void (*unk_716e29b078)(void* block);        // resets the block at +0x178
 
-void fn_7100153a88(UnkHeap_7100161b90* heap, void* ptr);  // frees through the heap
+struct UnkHeap_71001541a0;
+void fn_7100153a88(UnkHeap_71001541a0* pool, void* ptr);  // frees through the heap
 
 // NON_MATCHING(minor): the child loop's offset counter is compared in 64 bits (32 in the
 // original); otherwise identical.
@@ -73,7 +74,8 @@ void fn_7100161b90(UnkObj_7100161b90* obj) {
     obj->field_0x8 = 0;
     void* block = obj->field_0x178;
     unk_716e29b078(block);
-    fn_7100153a88(!(obj->flags & 1) ? unk_716e34ae28 : unk_716e34ae20, obj->buffer);
+    fn_7100153a88(reinterpret_cast<UnkHeap_71001541a0*>(!(obj->flags & 1) ? unk_716e34ae28 : unk_716e34ae20),
+                  obj->buffer);
     obj->buffer = nullptr;
     for (s32 i = 0; i < 16; ++i) {
         UnkChild_7100161b90* c = obj->children[i];

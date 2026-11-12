@@ -24,7 +24,7 @@ struct UnkInventory;
 
 struct UnkLifeComponent;
 void fn_7100a1f998(UnkLifeComponent* life, f32 max);
-UnkLifeComponent* fn_7100303054(void* owner);  // looks the component up in the owner
+UnkWeakTarget* fn_7100303054(void* owner);  // looks the component up in the owner
 
 struct UnkAmmo {
     void** vtable;
@@ -45,7 +45,7 @@ int fn_710107a880(void* /*lua_State*/) {
     UnkPlayer* player = fn_7100dec788(g_unk_7101d47310);
     if (!player)
         return 0;
-    if (UnkLifeComponent* life = fn_7100303054(player)) {
+    if (UnkLifeComponent* life = reinterpret_cast<UnkLifeComponent*>(fn_7100303054(player))) {
         fn_7100a1f998(life, 2200.0f);
         fn_7100a1fa98(life, false, true, 2200.0f);
     }

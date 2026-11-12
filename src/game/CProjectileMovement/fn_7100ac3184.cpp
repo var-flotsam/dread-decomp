@@ -44,7 +44,7 @@ struct UnkDefinition {
 };
 
 struct UnkCallback;
-void fn_71005c4828(void* dispatcher, UnkCallback* callback);  // unregister
+void fn_71005c4828(void*, void**);  // unregister
 
 struct UnkCallback {
     void* dispatcher;
@@ -54,7 +54,7 @@ struct UnkCallback {
     // Moves the callback to the dispatcher at +0xa60 of `manager`.
     void Connect(void* manager) {
         if (dispatcher) {
-            fn_71005c4828(dispatcher, this);
+            fn_71005c4828(dispatcher, reinterpret_cast<void**>(this));
             dispatcher = nullptr;
         }
         void* to = static_cast<char*>(manager) + 0xa60;

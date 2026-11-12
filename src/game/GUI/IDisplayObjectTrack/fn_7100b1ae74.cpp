@@ -12,7 +12,7 @@
 using base::global::CRntString;
 
 struct UnkString30;
-void fn_710007e6c4(UnkString30* self);
+void fn_710007e6c4(void* self);
 
 // base::global::CRntString's layout, with a move constructor.
 struct UnkString30 {

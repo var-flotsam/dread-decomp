@@ -37,7 +37,8 @@ struct UnkSelf {
 };
 
 extern const base::global::CStrId g_unk_71726cf1e0[] __attribute__((visibility("hidden")));
-UnkComponent* fn_7101152b90(UnkObject* object, u64 hash);
+struct UnkPart;
+UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 bool fn_710114e668(UnkObject* object, u8 kind);
 
 void fn_7100484910(UnkSelf* self) {
@@ -46,15 +47,18 @@ void fn_7100484910(UnkSelf* self) {
         fn_7100863a8c(object, g_unk_71726cf1e0 + 1);
     }
     if (UnkObject* object = self->field_0x8->field_0x280) {
-        UnkComponent* a = fn_7101152b90(object, 0x8db4647a121a9a23ull);
+        UnkComponent* a = reinterpret_cast<UnkComponent*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(object),
+                                                                        0x8db4647a121a9a23ull));
         if (a)
             a = fn_710114e680(object, a->field_0xb) ? a : nullptr;
         fn_7100145e94(reinterpret_cast<UnkSwitchObject*>(a), false);
-        UnkComponent* b = fn_7101152b90(object, 0x8f81a6f5f469556bull);
+        UnkComponent* b = reinterpret_cast<UnkComponent*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(object),
+                                                                        0x8f81a6f5f469556bull));
         if (b)
             b = fn_710114e680(object, b->field_0xb) ? b : nullptr;
         fn_7100145e94(reinterpret_cast<UnkSwitchObject*>(b), false);
-        UnkComponent* c = fn_7101152b90(object, 0x99b1c49dad0a0ac2ull);
+        UnkComponent* c = reinterpret_cast<UnkComponent*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(object),
+                                                                        0x99b1c49dad0a0ac2ull));
         if (c)
             c = fn_710114e668(object, c->field_0xb) ? c : nullptr;
         fn_7100146e60(reinterpret_cast<UnkSwitchObject*>(c), 0);

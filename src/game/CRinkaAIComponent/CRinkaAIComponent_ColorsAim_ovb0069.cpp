@@ -19,7 +19,8 @@ using base::color::CColor4F;
 
 struct UnkComponent;
 struct UnkObject;
-UnkComponent* fn_7101152b90(UnkObject* object, u64 hash);
+struct UnkPart;
+UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 
 extern const CColor4F g_unk_710164a454 __attribute__((visibility("hidden")));
 extern const CColor4F g_unk_710164a464 __attribute__((visibility("hidden")));
@@ -52,7 +53,7 @@ struct UnkRinkaColorAI_ovb0069 {
 };
 
 static inline UnkRinkaPart_ovb0069* Part(UnkObject* parts, u64 hash) {
-    auto* part = reinterpret_cast<UnkRinkaPart_ovb0069*>(fn_7101152b90(parts, hash));
+    auto* part = reinterpret_cast<UnkRinkaPart_ovb0069*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(parts), hash));
     return fn_710114e680(parts, part->kind) ? part : nullptr;
 }
 

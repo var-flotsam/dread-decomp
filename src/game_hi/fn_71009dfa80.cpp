@@ -59,7 +59,8 @@ struct UnkRefSlot {
     }
 };
 
-void fn_71002aeb9c(void* root, void* tree);
+struct UnkLinkList;
+void fn_71002aeb9c(UnkLinkList* list, UnkLinkList** slot);
 void fn_7100872908(void* p, void* handler);
 void fn_71009a1f40(void* p);
 void fn_71009b0800(void* p);
@@ -110,7 +111,7 @@ struct UnkTree {
 
     void Destroy() {
         if (root) {
-            fn_71002aeb9c(root, this);
+            fn_71002aeb9c(reinterpret_cast<UnkLinkList*>(root), reinterpret_cast<UnkLinkList**>(this));
             root = nullptr;
         }
         field_0x10 = nullptr;

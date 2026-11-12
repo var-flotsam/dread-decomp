@@ -412,7 +412,8 @@ void fn_710110bb4c(UnkCancelSelf_b0143* self, void* arg, u32 id, bool) {
 struct UnkObject;
 struct UnkComponent;
 struct UnkRinkaControl_ruc;
-UnkComponent* fn_7101152b90(UnkObject*, u64);
+struct UnkPart;
+UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 bool fn_710114e668(UnkObject*, u8);
 
 struct UnkEffectOwner_b0143 {
@@ -437,8 +438,8 @@ void fn_710110cc04(UnkEffectSelf_b0143* self, bool both) {
         return;
     self->field_0x179c = 0;
     UnkObject* effects = self->owner->effects;
-    auto* component = reinterpret_cast<UnkEffectComponent_b0143*>(
-        fn_7101152b90(effects, *reinterpret_cast<u64*>(g_unk_7172a062e0 + 0x30)));
+    auto* component = reinterpret_cast<UnkEffectComponent_b0143*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(effects),
+                                                                                *reinterpret_cast<u64*>(g_unk_7172a062e0 + 0x30)));
     if (!component)
         return;
     if (!fn_710114e668(effects, component->field_0xb))

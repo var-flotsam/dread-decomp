@@ -35,13 +35,14 @@ struct alignas(8) UnkFlags_7101176690 {
 struct UnkS16 { u64 a, b; };
 struct UnkS12 { u64 a; u32 b; };
 
-void* fn_7101176d34(UnkStruct_7101176690* self, void* arg);
+struct UnkStruct_7101176ea8;
+void* fn_7101176d34(UnkStruct_7101176ea8* self, void* arg);
 bool fn_7101177044(UnkStruct_7101176690* self, void* r, s32 idx, void* data, UnkFlags_7101176690 flags,
                    const UnkS16& a, const UnkS12& b, UnkFlags_7101176690 c);
 
 bool fn_7101176690(UnkStruct_7101176690* self, void* arg, u64 key, const u32& flags, const UnkS16& a,
                    const UnkS12& b, const u32& c) {
-    void* r = fn_7101176d34(self, arg);
+    void* r = fn_7101176d34(reinterpret_cast<UnkStruct_7101176ea8*>(self), arg);
     UnkMap_7101176690* m = self->field_0x40;
     UnkEntry_7101176690** it = m->Find(key);
     UnkEntry_7101176690** end = m->values + m->count;

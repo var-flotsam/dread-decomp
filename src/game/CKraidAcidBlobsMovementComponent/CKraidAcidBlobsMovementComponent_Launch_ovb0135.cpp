@@ -24,7 +24,8 @@ struct UnkKraidCreatureVec {
 
 struct UnkComponent;
 struct UnkObject;
-UnkComponent* fn_7101152b90(UnkObject*, u64);
+struct UnkPart;
+UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 void fn_7100145f28(UnkSwitchObject* self, const UnkVec3f* position);
 void fn_7100145f3c(UnkSwitchObject* self, const UnkVec3f* angles);
 extern "C" f32 atan2f(f32 y, f32 x);
@@ -86,7 +87,8 @@ static_assert(__builtin_offsetof(UnkAcidBlob_ovb0135, def) == 0x5d0, "layout");
 // Places the owner's trail part (fn_7101152b90) at the owner, turned along the direction at +0x10c.
 static inline void PlaceTrail(UnkAcidBlob_ovb0135* self) {
     UnkObject* model = self->owner->model;
-    auto* part = reinterpret_cast<UnkAcidBlobPart_ovb0135*>(fn_7101152b90(model, 0x1ce2163e2d5b53c6ull));
+    auto* part = reinterpret_cast<UnkAcidBlobPart_ovb0135*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(model),
+                                                                          0x1ce2163e2d5b53c6ull));
     if (!part || !fn_710114e680(model, part->kind))
         return;
     UnkVec3f angles;
