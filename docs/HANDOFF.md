@@ -96,10 +96,11 @@ journal entry.
 
 ## Open decisions for the owner
 
-1. `tools/decl_check.py --strict` in CI (fail on one more identical copy, not only on conflicts).
-2. Where semantic lifts live and whether they are tracked (`docs/PORT_PLAN.md`, decision 2).
-3. Labelled member declarations against `include/` prototypes (`claude/project-thread-3x0lf8`, 94 asm labels
-   for the port, fails `decl_check`): drop the free prototypes for labelled symbols, or teach `decl_check` that a
-   labelled member is the header's declaration.
-4. Struct headers generated from `data/reflection_fields.csv`, and the 40-function test (an agent run) of whether
-   shared headers raise the match rate, before bulk runs resume.
+None open. Decided on 2026-11-12:
+1. `tools/decl_check.py --strict` runs in CI: one more identical local copy of a declaration fails (#373).
+2. Semantic lifts stay generated and untracked (`docs/PORT_PLAN.md`, decision 2).
+3. A labelled member is its symbol's declaration, and the free prototype for that symbol goes. The 94 labels of
+   `claude/project-thread-3x0lf8` predate the unit headers; they are to be redone on current `main` with the class
+   headers, and the branch goes then.
+4. The 40-function test of shared headers (unit headers and `data/reflection_fields.csv` against the current
+   recipe) runs first; struct headers are generated only if it shows a gain.
