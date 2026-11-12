@@ -28,7 +28,6 @@ void fn_7100a6b280(void* registration, void** slot);
 void fn_7100a6ce48(void* self);  // the base destructor
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
-// As src/game/CCreditsMode/CTunableCredits/CTunableCredits_Colors_ovb0070.cpp declares it.
 
 // As src/game/UnkStateMachineSetA5_b61.cpp declares them.
 struct UnkCountedA5_b76 : base::UnkRefCounted {

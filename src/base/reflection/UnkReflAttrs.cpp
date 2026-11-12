@@ -35,8 +35,6 @@ struct UnkReflAttrInfo {
     bool refused;
 };
 
-// A value converted to `type` (returned through x8).
-
 // UnkReflAttrs's layout: values and their keys' names side by side (CBlackboard.h's
 // UnkPropertyArrays), the type a value gets without a known attribute, and the target the element
 // is (an EAttributeTarget).

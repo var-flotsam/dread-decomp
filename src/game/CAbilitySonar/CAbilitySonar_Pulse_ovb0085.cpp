@@ -134,8 +134,6 @@ void fn_7100335458(UnkAbilitySonar_ovb0085* self, bool flag) {
 
 using base::global::CStrId;
 
-// As src/game/CCharClassFanComponent/CFanComponent_Effects_A4_b75.cpp declares it.
-
 // The id's text, the way the string data is shared: its use count (+0x44) is raised.
 // The count is written untyped: the original reads the id again afterwards.
 static inline void* IdText(const CStrId& id) {
@@ -318,9 +316,6 @@ UnkSonarModel_ovb0085* fn_7100336760(UnkAbilitySonar_ovb0085* self, const CFileP
     }
     return created;
 }
-
-// As src/game/CScorpiusFXComponent/CScorpiusFXComponent_Gas_ovb0008.cpp declares it.
-// As src/game/CActorDef/CActorDef_ReadChecked.cpp declares it.
 
 struct UnkSonarSwitch_ovb0085 {
     u8 pad_0x0[0x15a];

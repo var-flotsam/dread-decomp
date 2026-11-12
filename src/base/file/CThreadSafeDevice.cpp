@@ -20,8 +20,6 @@ struct UnkIdPathPair {
     CFilePathStrId path;
 };
 
-// Sets `id` and `file` from the file-path id `path` (same unit, not decompiled yet).
-
 // The empty id of each pool (the pool created first if there is none yet).
 static inline void InitEmpty(CStrId* id) {
     id->data = nullptr;

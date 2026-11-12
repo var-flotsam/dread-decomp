@@ -10,7 +10,6 @@
 using base::global::CStrId;
 
 base::global::UnkStringData** fn_7101177ae8(UnkAnimationComponent* self, u64 kind);
-// As src/game/CGameManager.cpp declares it.
 
 struct UnkMorphBallOwner_A4_b76 {
     u8 pad_0x0[0x220];

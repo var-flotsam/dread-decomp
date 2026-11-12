@@ -10,8 +10,6 @@ using base::global::CFilePathStrId;
 
 struct UnkFxCache;
 
-// Registers the effect at `path` with the cache.
-
 static inline void UnkPreloadFx(UnkFxCache* cache, const char* path, u32 kind) {
     CFilePathStrId id(path, true);
     fn_7100851bc0(cache, &id, kind, false);

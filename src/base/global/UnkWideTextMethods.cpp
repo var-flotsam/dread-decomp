@@ -17,8 +17,6 @@ extern "C" wchar_t* wcscpy(wchar_t* dst, const wchar_t* src);
 // The shared empty text (L"").
 extern const wchar_t g_unk_7101647684[] __attribute__((visibility("hidden")));
 
-// Converts a narrow string into at most `capacity` UTF-32 characters.
-
 struct UnkWideTextObj {
     void* vtable;
     wchar_t* chars;

@@ -18,8 +18,6 @@ static inline UnkXformNodeVtbl_b68a1* Vtbl_b68a1(UnkXformNode* self) {
     return *reinterpret_cast<UnkXformNodeVtbl_b68a1**>(self);
 }
 
-// The target's previous and next positions (declared as in src/game/UnkXformNode.cpp).
-
 void fn_7100206000(UnkXformNode* self, const UnkVec3f* to) {
     UnkXformTarget* target = self->target_0x108;
     UnkVec3f from = Vtbl_b68a1(self)->vf_0x98(self);

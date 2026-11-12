@@ -8,8 +8,6 @@
 #include "game/UnkTU56.h"
 #include "types.h"
 
-// The file's constructor over existing data (the unit of base/global/CRntFile.h).
-
 struct UnkUnit229Resource : UnkCountedResource {
     void* data;  // 0x58
 };

@@ -13,5 +13,7 @@ struct UnkSoundHolder;
 void fn_710006cd9c(UnkSoundHolder* holder);  // Constructor.
 void fn_710006b6a4(void* self);
 void fn_710006cea8(UnkSoundHolder* holder, bool value);
+// The event of `cls` playing at `frame`, or null.
 UnkTimelineEvent* fn_710006bb80(f32 frame, UnkTimelineEventList* events, const base::reflection::CClass* cls, s32 frame_count);
+// Converts a narrow string into at most `capacity` UTF-32 characters.
 void fn_710006c000(const base::global::CRntString* src, wchar_t* dst, u32 capacity);

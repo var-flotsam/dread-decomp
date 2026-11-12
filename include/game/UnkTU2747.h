@@ -24,7 +24,7 @@ void fn_71011cff5c(void* a, void* b, void* c, bool d, bool e, bool f);
 extern char g_unk_7101cb5b90[];  // GUI::CDisplayObject's vtable.
 bool fn_71011ceac0(UnkGuiDisplayObject* self);
 bool fn_71011ceb34(UnkGuiDisplayObject* self);
-void fn_71011cf8d0(UnkSprite_spr* self, const base::math::CVector2D* size);
+void fn_71011cf8d0(UnkSprite_spr* self, const base::math::CVector2D* size);  // Sets the sprite's size.
 void fn_71011cee40(UnkGuiDisplayObject* object);
 void fn_71011cd424(UnkGuiDisplayObject* self, UnkGuiDisplayObject* parent);
 void fn_71011cc940(UnkGuiDisplayObject* self, f32 value);

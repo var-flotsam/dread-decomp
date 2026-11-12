@@ -22,8 +22,6 @@ struct UnkFileReader {
     u32 field_0x3c;
 };
 
-// Copy-constructs a file from another one (its contents copied into a block of its own).
-
 // An object and its type.
 struct UnkTypedObject {
     const CType* type;

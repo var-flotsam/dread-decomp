@@ -25,7 +25,6 @@ struct UnkBombMovement;
 void fn_7100aa9ee4(UnkBombMovement* self);  // the base constructor
 struct UnkPbMovementBase_ovb0015;
 struct UnkHandleOwner_71010c4230;
-// Flashes the screen through the game manager's effect player (+0x1078): colour, two zeros, time.
 
 // A counted object (count at +0x8, released through slot 0x10); the listener's link has its owner
 // at +0x10.

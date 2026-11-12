@@ -14,8 +14,6 @@ using base::global::CStrId;
 using base::global::UnkStringPool;
 using base::reflection::UnkReflValue;
 
-// As src/base/reflection/UnkReflAttrs.cpp declares it.
-
 void fn_7100093dd0(UnkPropertyArrays* self, u32 capacity) {
     if (self->capacity < capacity) {
         UnkReflValue* values = static_cast<UnkReflValue*>(

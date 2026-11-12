@@ -171,8 +171,6 @@ struct UnkFilePathList {
     }
 };
 
-// Lists the files under `path` into `out` (the base object's).
-
 // Unmounts every pack of the pack set `path` (without forcing). False when the set can't be listed.
 bool fn_7100089ef4(base::file::UnkFileDevice* self, const base::global::UnkFilePathStrIdBase* path) {
     UnkFilePathList list;

@@ -50,4 +50,5 @@ extern char g_unk_717269f450[] __attribute__((visibility("hidden")));
 UnkCaterzillaLink_ovb0054* fn_7100247340(UnkCaterzillaLinks_ovb0054* links, u32 index);
 void fn_7100232864(UnkEntityState* entity, bool value);
 base::reflection::UnkReflObject* fn_7100233684(UnkStruct_7100233684* self);
+// Moves the components named in `names` from `from` to `to`, then lets both rebuild.
 base::reflection::UnkReflObject* fn_710023341c(void* owner, const base::global::CStrId& name);

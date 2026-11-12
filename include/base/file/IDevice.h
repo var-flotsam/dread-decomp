@@ -5,4 +5,4 @@
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "types.h"
-extern base::global::CStrId g_unk_7101d592c8;
+extern base::global::CStrId g_unk_7101d592c8;  // The empty string id.

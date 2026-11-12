@@ -5,4 +5,4 @@
 // Names and layouts are placeholders.
 #include "base/global/CRntString.h"
 #include "types.h"
-u32 fn_7100d4bc00(const base::global::CRntString*);
+u32 fn_7100d4bc00(const base::global::CRntString*);  // The shape kind a name stands for.

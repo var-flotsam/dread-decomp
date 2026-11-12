@@ -8,4 +8,4 @@
 
 struct UnkWaterTarget;
 UnkWaterTarget* fn_710089a1b0(void* object);
-base::reflection::UnkReflObject* fn_7100899610(void* owner);
+base::reflection::UnkReflObject* fn_7100899610(void* owner);  // The owner's "ACTIVATABLE" component.

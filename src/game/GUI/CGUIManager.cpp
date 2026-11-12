@@ -264,8 +264,6 @@ static inline void Parse(UnkFileReader* reader, UnkReadTarget* target) {
     fn_710000f750(&ctx, target->count ? end[-1].field_0x0->field_0x10 : nullptr);
 }
 
-// The type of std::unique_ptr<GUI::CDisplayObjectContainer> (src/reflection_types/).
-
 // The loaded composition, as src/game_hi/fn_71011b69d8.cpp declares it (a display-object
 // container; vf_0x10 is its deleting destructor, vf_0x28 its weak-handle slot).
 struct UnkTag_71011b69d8 : UnkLeftoverReg {};

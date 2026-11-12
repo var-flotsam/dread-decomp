@@ -16,7 +16,6 @@ using base::global::CFilePathStrId;
 using base::reflection::UnkReflObject;
 
 struct UnkModel;
-// As src/game/CAreaFXComponent/CAreaFXComponent_Models_ovb0081.cpp declares them.
 
 struct UnkChozombieFXDef_ovb0130 : UnkReflObject {
     u8 pad_0x8[0x50];

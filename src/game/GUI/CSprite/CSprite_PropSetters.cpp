@@ -72,8 +72,6 @@ struct UnkSpriteOwner_spr {
     UnkSprite_spr* target;
 };
 
-// Sets the sprite's size (src/lifted only so far).
-
 template <class T>
 static inline __attribute__((always_inline)) T PickArg_spr(UnkValueSource_spr* src) {
     if (src->kind == 1 || src->set->count >= 9)

@@ -297,8 +297,6 @@ struct UnkInlineString;
 
 using UnkPresetText = UnkBufferString<0x100, g_unk_7101a194b8>;
 
-// Finds a character backwards from `start` (from the end when negative); -1 when absent.
-
 // The ids the builder fills in place (released with the scope).
 union UnkBuiltPathIds {
     UnkStrIdPathPair ids;

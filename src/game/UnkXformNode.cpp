@@ -26,8 +26,6 @@ static inline UnkVec3f UnkSum(const UnkVec3f& a, const UnkVec3f& b) {
     return UnkVec3f(a.x + b.x, a.y + b.y, a.z + b.z);
 }
 
-// The target's previous and next positions.
-
 // Hands the target the node's position and `to`, marks the node and updates it twice with no time.
 static inline void UnkMoveTo(UnkXformNode* self, const UnkVec3f& to) {
     UnkXformTarget* target = self->target_0x108;

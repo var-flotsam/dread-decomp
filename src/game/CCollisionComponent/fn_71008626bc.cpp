@@ -11,10 +11,6 @@
 using base::global::CRntString;
 using base::global::CStrId;
 
-// The next string, in place (as src/game/logic/collision/UnkShapeFactory.cpp declares it).
-
-// The shape kind a name stands for.
-
 // A collider's shape, which reads itself from the file (vf_0x20).
 struct UnkColliderShape {
     virtual void vf_0x0();

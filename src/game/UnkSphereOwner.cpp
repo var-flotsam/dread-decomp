@@ -9,8 +9,6 @@
 
 struct UnkSphereSource;
 
-// The source's centre and radius (the radius stays -1 when it has none).
-
 struct UnkSphereOwner {
     u8 pad_0x0[0x20];
     UnkSphere sphere;

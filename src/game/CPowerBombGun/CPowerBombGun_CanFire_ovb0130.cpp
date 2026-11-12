@@ -16,7 +16,6 @@ using base::global::CStrId;
 
 struct UnkInventory;
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
-// As src/game/CMissileBaseGun/CMissileBaseGun_Ammo_ovb0103.cpp declares them.
 
 // The property's qualified id, built on first use.
 static inline UnkQualifiedId& Qid_ovb0130(UnkPropertyEx<>& item) {

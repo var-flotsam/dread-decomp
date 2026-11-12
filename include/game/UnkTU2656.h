@@ -13,5 +13,6 @@ bool fn_7101053a0c(void* effects);
 bool fn_7101053a7c(void* effects);
 bool fn_7101053a98(void* state);
 void fn_710105383c(void* effects);
+// Flashes the screen through the game manager's effect player: colour, two zeros, time.
 void fn_7101053c14(void* fx, const base::math::CVector3D* color, f32 a, f32 b, f32 time);
 void fn_7101053968(void* effects, UnkVec3f* a, UnkVec3f* b, f32 x, f32 y, f32 z);

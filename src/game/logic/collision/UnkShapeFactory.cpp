@@ -16,8 +16,6 @@
 #include "game/logic/collision/CPolygonCollectionShape.h"
 #include "types.h"
 
-// The next string of the stream, in place (src/game_s7/UnkPropS7.h).
-
 struct UnkCollisionShape {
     virtual void vf_0x0();
     virtual void vf_0x8();

@@ -9,6 +9,7 @@
 #include "types.h"
 
 struct UnkFileRequestArgs;
+// Unloads the file `path`.
 void fn_710008987c(base::file::UnkFileDevice* self, const base::global::CFilePathStrId* path, u32 flags);
 void fn_7100089754(base::file::UnkFileDevice* self, const base::global::CFilePathStrId* path, u32 a, u32 b, const UnkFileRequestArgs* args);
 void fn_71000898c4(base::file::UnkFileDevice* self);

@@ -27,9 +27,6 @@ UnkMatrix44_7100078c9c fn_7100078c9c(f32 x, f32 y, f32 z) {
     return r;
 }
 
-// A vector through a matrix (fn_710007a400): fn_7100077c04 rotates the vector by the matrix
-// fn_7100078fc8 derives from the given one.
-
 UnkVec3f fn_710007a400(const UnkVec3f& v, const UnkMatrix44& m) {
     return fn_7100077c04(fn_7100078fc8(m), v);
 }

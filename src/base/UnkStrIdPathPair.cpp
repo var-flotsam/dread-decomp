@@ -19,8 +19,6 @@
 
 using namespace base::global;
 
-// Finds `c` from `start` on; -1 when absent (src/base/global/CRntString.cpp).
-
 // A counted prefix of a C string, on 0x100 bytes of inline storage.
 struct UnkPairText : UnkBufferString<0x100, g_unk_7101a194b8> {
     __attribute__((always_inline)) UnkPairText(const char* str, u32 length) {

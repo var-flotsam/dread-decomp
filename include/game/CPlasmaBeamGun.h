@@ -7,5 +7,6 @@
 #include "types.h"
 
 struct UnkFxCache;
+// Registers the effect at `path` with the cache.
 void fn_7100851bc0(UnkFxCache* cache, const base::global::CFilePathStrId* path, u32 kind, bool flag);
 void fn_7100851d6c(UnkFxCache* cache, const base::global::CFilePathStrId* path, u32 kind, bool flag);

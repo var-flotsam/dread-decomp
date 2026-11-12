@@ -120,11 +120,14 @@ void fn_71000a179c(base::reflection::UnkReflValue* self, const base::reflection:
 extern base::reflection::CType g_unk_7172756e50;
 void fn_7100d8e32c(UnkEnvironmentManager* self, const base::global::CStrId* id, bool a, bool b);
 void fn_71000a174c(base::reflection::UnkTypedRef* out, const void* ref);
+// A value converted to `type` (returned through x8).
 base::reflection::UnkReflValue fn_71000a1774(const base::reflection::UnkReflValueRef* value, const base::reflection::CType* type);
-const base::reflection::CType* fn_7100ad62d4();
-const base::reflection::CType* fn_7100ad6644();
+const base::reflection::CType* fn_7100ad62d4();  // base::reflection::refl_GetType<CEnvironmentManager*>.
+const base::reflection::CType* fn_7100ad6644();  // base::reflection::refl_GetType<sound::CMusicManager*>.
 const base::global::CStrId* fn_7100d8efc8(UnkEnvironmentManager* self);
+// Builds a reflected value for an object (by reference when by_ref is 1).
 void fn_71000a1828(base::reflection::UnkReflValue* out, const UnkTypedObject* object, u32 by_ref, u32 kind);
+// The value a typed reference holds, as a reflected value.
 void fn_71000a1ae4(base::reflection::UnkReflValue* out, const base::reflection::UnkTypedRef* ref, u32 a, u32 b);
 void fn_7100b7710c(UnkReflType* self, const base::global::CStrId& name, void* a, void* b);
 void fn_7100b7e6dc(UnkReflType* self, const base::global::CStrId& name, void* a, void* b);

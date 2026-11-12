@@ -105,8 +105,6 @@ static_assert(__builtin_offsetof(UnkDoorLife, field_0x624) == 0x624, "UnkDoorLif
 static_assert(__builtin_offsetof(UnkDoorLife, field_0x6ac) == 0x6ac, "UnkDoorLife layout");
 static_assert(__builtin_offsetof(UnkDoorLife, field_0xa18) == 0xa18, "UnkDoorLife layout");
 
-// Whether the door may open now.
-
 // A typed value as the section setter takes it (as in src/game/CXParasiteAIComponent.cpp).
 struct UnkTypedValue {
     const base::reflection::CType* type;

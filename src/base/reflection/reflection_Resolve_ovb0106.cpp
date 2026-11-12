@@ -20,8 +20,6 @@ using base::reflection::UnkReflValue;
 using base::reflection::UnkTypedRef;
 using base::reflection::UnkReflValueRef;
 
-// A value converted to `type` (returned through x8).
-
 // A typed pointer that starts out null (returned in memory).
 struct UnkReflResult_ovb0106 {
     const CType* type;

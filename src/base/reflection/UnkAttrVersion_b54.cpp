@@ -10,7 +10,6 @@
 using base::reflection::UnkReflValue;
 
 struct UnkVersionEntry;
-// The attribute stored under `key`, as a reflected value (empty when absent).
 
 bool fn_71000e6ce0(UnkVersionEntry* self, u16* major, u16* minor) {
     UnkReflValue v = fn_710009ddd4(self, fn_7100005070());

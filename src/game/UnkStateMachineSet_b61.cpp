@@ -266,8 +266,6 @@ void fn_7100ac939c(UnkSmIdUser_b61* self) {
     fn_7100ac9530(self->field_0x200, self->holder->id);
 }
 
-// Checkpoints: a flag, the request, then the game manager is handed a checkpoint name and an empty tag.
-
 static inline void Checkpoint_b61(const char* name) {
     UnkGameManager* manager = g_unk_7101d47310;
     CRntString checkpoint(name);

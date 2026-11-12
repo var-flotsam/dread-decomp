@@ -12,5 +12,6 @@ struct UnkVersionEntry;
 struct UnkHashed;
 u32 fn_710009d110(UnkHashed* self);
 void fn_710009cc04(char*);
-extern base::reflection::CType g_unk_7101d5af48;
+extern base::reflection::CType g_unk_7101d5af48;  // The void type.
+// The attribute stored under `key`, as a reflected value (empty when absent).
 base::reflection::UnkReflValue fn_710009ddd4(UnkVersionEntry* self, const base::reflection::UnkReflAttrKey& key);

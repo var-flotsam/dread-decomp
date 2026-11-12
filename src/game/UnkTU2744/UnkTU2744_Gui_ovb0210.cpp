@@ -345,8 +345,6 @@ struct UnkCopyContext_b0210 {
 
 struct UnkDisplayReader_ovb0108;
 
-// The type of std::unique_ptr<GUI::CDisplayObjectContainer> (src/reflection_types/).
-
 struct UnkOwnedObject_b0210 {
     UnkGuiDisplayObject* ptr = nullptr;
 

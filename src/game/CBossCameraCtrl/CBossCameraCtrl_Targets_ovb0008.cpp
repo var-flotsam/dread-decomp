@@ -161,8 +161,6 @@ struct UnkBossHolder_ovb0008 {
     UnkBossChild_ovb0008* field_0x48;
 };
 struct UnkHolder;
-// Declared without its argument in src/game/CBossAIComponent/fn_71003ad8e4.cpp; this caller passes
-// the holder's child object.
 
 struct UnkBossHolderActor_ovb0008 {
     u8 pad_0x0[0x1b8];

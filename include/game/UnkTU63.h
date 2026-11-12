@@ -10,4 +10,4 @@ struct UnkRegistry_0x70;
 
 extern void* g_unk_7101a1b030[];
 void fn_7100087dc8(UnkRegistry_0x70* self, void* entry, u32 kind);  // Calls the registry's handler.
-void* fn_7100087740(UnkRegistry_0x70* self, const base::global::CStrId* name);
+void* fn_7100087740(UnkRegistry_0x70* self, const base::global::CStrId* name);  // The entry registered under `name`.

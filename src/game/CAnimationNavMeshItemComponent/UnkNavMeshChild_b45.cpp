@@ -7,8 +7,6 @@
 
 using base::reflection::UnkReflObject;
 
-// Declared as src/game/CLiquidSimulationComponent.cpp declares it.
-
 struct UnkNavChildOwner_b45a2 {
     u8 pad_0x0[0x30];
     void* owner;

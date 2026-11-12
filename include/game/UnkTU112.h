@@ -12,4 +12,5 @@ struct UnkTunableObject;
 struct UnkTunableRegistry;
 UnkTunableObject* fn_710013c5cc(UnkTunableRegistry* self, const char* name, bool qualified);
 void fn_710013ffbc(UnkEntry_710013c3c8*, void*);
+// A copy of `str` with every `from` replaced by `to`.
 UnkTunableLine fn_710013c834(const base::global::CRntString* str, const char* from, const char* to);

@@ -58,8 +58,6 @@ struct UnkStrPair_0x10 {
     void* b;
 };
 
-// Builds the id and path pair from a file-path id.
-
 // The file read into memory and two words the opener sets (+0x38 is zero after a good read).
 struct UnkFileReader {
     base::global::CRntFile file;

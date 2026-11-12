@@ -131,8 +131,6 @@ UnkContact fn_7100d53b2c(UnkCollider* self, const UnkContactSpan* points, UnkSha
 UnkContact fn_7100d54020(UnkNoContext, UnkContactPoint point, UnkShape* a, void* ta, UnkShape* b, void* tb,
                          UnkContactSink* sink, const CVector3D* offset, void* extra, u16 flags);
 
-// The rotation angles of a transform (defined in src/game/UnkXformAngles.cpp).
-
 // The 2D placement of an oriented shape (at +0xa8): its oriented box, base::spatial::COBox2D (the
 // position, the rotation (cos, sin, -sin, cos) for the angle plus a stored offset, the size, that
 // offset and the angle). src/engine/SystemStartup.cpp calls it UnkOrientedBox2D. The original copies

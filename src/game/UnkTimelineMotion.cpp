@@ -25,8 +25,6 @@ struct UnkTimelineEventList {
     u32 count;
 };
 
-// The event of `cls` playing at `frame`, or null (as src/game/CCutscene.cpp declares it).
-
 // A displacement event (CCharClassTweakDisplacementTrack): the translation's scale.
 struct UnkDisplacementEvent : UnkTimelineEvent {
     f32 scale;

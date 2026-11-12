@@ -31,5 +31,5 @@ extern UnkEngineObject_0xf0* g_unk_7101d47338;  // An object of unit 52 (0xf0 by
 extern UnkGameObject_0x150* g_unk_7101d47370;
 extern UnkGameObject_0x60* g_unk_7101d47378;
 extern void* g_unk_7101d47330;
-extern void* g_unk_7101d47368;
-extern UnkGfxFrameSource* g_unk_7101d47328;
+extern void* g_unk_7101d47368;  // The environment manager.
+extern UnkGfxFrameSource* g_unk_7101d47328;  // The frame timer.

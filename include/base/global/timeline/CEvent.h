@@ -21,4 +21,4 @@ bool fn_71000669a0(u32 n);
 void fn_7100066a50(void* text, const char32_t* value);
 extern char g_unk_7101a1a0d0[];  // The text's vtable (the object points 0x10 past it).
 void fn_7100066af0(UnkLayoutText* self, const char32_t* text);
-u64* fn_7100066630(u64* out, const base::global::CRntString* str);
+u64* fn_7100066630(u64* out, const base::global::CRntString* str);  // The string's key (its CRC-64) into *out.

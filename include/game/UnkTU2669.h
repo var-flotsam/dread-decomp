@@ -10,4 +10,5 @@ struct UnkScriptManager_ovb0085;
 struct UnkUnit2669Str;
 void fn_710109d810(UnkScriptManager_ovb0085* self);
 u32 fn_710109dd6c(void* self, void* source, UnkUnit2669Str* name, bool a, bool b);
+// The script manager (0x88 bytes), created on first use.
 void fn_710109d890(UnkScriptManager_ovb0085* self, base::global::CRntString* name);

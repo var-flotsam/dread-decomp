@@ -7,4 +7,5 @@
 #include "types.h"
 
 struct UnkSphereSource;
+// The source's centre and radius (the radius stays -1 when it has none).
 void fn_710019fc40(UnkSphereSource* self, UnkVec3f* center, f32* radius);

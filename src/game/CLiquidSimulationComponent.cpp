@@ -30,8 +30,6 @@ struct UnkLiquidViewBox {
 // The view's bounds (false when there is none).
 bool fn_71010e53dc(void* camera, UnkLiquidViewBox* box);
 
-// The owner's "ACTIVATABLE" component (src/reflection_statics/statics_00.cpp instantiates it).
-
 // The component's placement as the liquid uses it: its size and its position.
 struct UnkLiquidVolume : UnkReflObject {
     virtual void vf_0x18();

@@ -29,8 +29,6 @@ static inline base::file::UnkFileDevice* FileDevice() {
     return g_unk_7101d4d828;
 }
 
-// Unloads the file `path` (same unit as the device, not decompiled yet).
-
 // The pooled data behind a string id as its text accessor sees it (src/game/CGameManager.cpp).
 struct UnkIdTextData {
     u8 pad_0x0[0x10];

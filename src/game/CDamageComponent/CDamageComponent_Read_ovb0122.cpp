@@ -10,9 +10,6 @@
 using base::global::CRntString;
 using base::global::UnkStrId;
 
-// As src/game/CAnimationComponent/CAnimationComponent_Tracks_ovb0009.cpp and
-// src/game/CCollisionComponent/fn_71008626bc.cpp declare them.
-
 struct UnkDamageEntry_ovb0122 {
     u8 pad_0x0[0x40];
     UnkStrId name;  // 0x40

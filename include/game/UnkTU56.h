@@ -7,6 +7,8 @@
 #include "base/global/CRntFile.h"
 #include "types.h"
 s64 fn_710007cf30(void* stream, const char* format, ...);
-s64 fn_710007cee4(void*, const char**);
+s64 fn_710007cee4(void*, const char**);  // The next string of the stream, in place.
+// Copy-constructs a file from another one (its contents copied into a block of its own).
 void fn_710007beac(base::global::CRntFile* self, const base::global::CRntFile* other, u32 flags, base::UnkAllocator* allocator);
+// The file's constructor over existing data.
 void fn_710007c080(base::global::CRntFile* file, void* data, u32 flags, u64 size);

@@ -233,8 +233,6 @@ struct UnkFilePathList {
     }
 };
 
-// Lists the files under `path` into `out` (the base object's).
-
 // Queues every file of the pack set `path` (value 9, no words). False when the set can't be listed.
 bool fn_7100089cf8(UnkFileDevice* self, const CFilePathStrId& path) {
     UnkFilePathList list;

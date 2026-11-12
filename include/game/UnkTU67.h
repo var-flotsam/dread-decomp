@@ -7,4 +7,5 @@
 #include "types.h"
 
 struct UnkFilePathList;
+// Lists the files under `path` into `out`.
 bool fn_710008c3bc(void* base_object, const base::global::CFilePathStrId& path, UnkFilePathList* out);
