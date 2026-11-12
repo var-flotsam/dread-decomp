@@ -87,7 +87,7 @@ void fn_71011ccb28(UnkGuiObj* object, f32 value);
 void fn_71011cc844(UnkGuiObj* object, f32 value);
 void fn_71011ec424(UnkGuiObj* label, const CRntString& text);
 void fn_71011ed0f0(UnkGuiObj* label, s32 value);
-UnkText fn_7100af45b0(s32 value, u32 flags);
+UnkText fn_7100af45b0(s32 seconds, bool show_plus);
 void fn_7100eb7358(void* object, u32 a, u32 b);
 void fn_7100b95760(UnkGuiObj* button, const s32* id, const std::function<void()>& f,
                    void* unk, u32 flags);

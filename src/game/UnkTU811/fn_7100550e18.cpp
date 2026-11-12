@@ -1,3 +1,4 @@
+#include "game/CEnemyMovement.h"
 #include "types.h"
 
 struct UnkEmmyOwner_b0193 {
@@ -12,9 +13,9 @@ struct UnkEmmyAI_b0193 {
     bool field_0x2a258;
 };
 
-u32 fn_71010cc3a4(void*);
 bool fn_710054ead0(UnkEmmyAI_b0193*);
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers.
 u32 fn_7100550e18(UnkEmmyAI_b0193* self) {
     u32 result = 0;
     if (self->field_0x2a258) {

@@ -2,11 +2,12 @@
 // 245's (src/base/UnkUnit245/UnkUnit245_Ctor_b40.cpp) with a sphere (+0x20, fn_710021685c), zeroed
 // words and scales of 1, a text (+0xb0, fn_7100066a14) and 1-scales after it. Names and layouts are
 // placeholders; fields are written by offset in the order the original stores them.
+#include "game/UnkTU308.h"
 #include "types.h"
 
-void fn_710021685c(void*);
 void fn_7100066a14(void*);
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers.
 void fn_71001c3cdc(char* self) {
     *(u64*)(self + 0x0) = 0;
     *(u32*)(self + 0x8) = 0xffffffff;

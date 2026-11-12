@@ -2,6 +2,7 @@ address,digest,verdict,rules,detail
 0x7100017ce8,36085c384068060506a343bedfb5cf57,inconclusive,1,only 83% of the original's instructions ran
 0x710002d3e0,25f5e022776e7e1e62b7f137c89e6af1,pass,1,
 0x710006cd9c,e0d3c6ac3d1574487fb23bd532041934,pass,1,
+0x71000708c8,a0a0d46acd3052f9963a9e5609e73172,pass,1,
 0x7100075f78,c0604d95cbd29eabc77b85f5902f6f57,pass,1,
 0x7100077c70,6934c6958abf061e9fc7872df6275096,pass,1,
 0x7100079b18,e6b837c2bb0bccaaa4b789da9c193694,inconclusive,1,only 93% of the original's instructions ran
@@ -17,6 +18,7 @@ address,digest,verdict,rules,detail
 0x71000cd658,7062d266cf83e0e56763be93dacd571b,inconclusive,1,only 93% of the original's instructions ran
 0x71000cfe14,7062d266cf83e0e56763be93dacd571b,inconclusive,1,only 93% of the original's instructions ran
 0x71000f88b8,81dac01bc8a07a0d317f1e1797794a96,inconclusive,1,only 6% of the original's instructions ran
+0x71000fd1d4,4555daab063db8de96b4e04de7bcaa45,pass,1,
 0x7100110420,9d41820c49da61a9e3b7513933fcf447,pass,1,
 0x710011ec5c,01e32472b081817260662e4ea8268a05,pass,1,
 0x710012436c,4c3cfbb024ecdd0de5e733623bc51bd7,inconclusive,1,unresolved UnkSegment2D::UnkSegment2D(base::math::CVector2D const&; base::math::CVector2D const&)
@@ -28,17 +30,21 @@ address,digest,verdict,rules,detail
 0x71001306b0,bf109053185e41c9da27fd12fae0b028,inconclusive,1,only 69% of the original's instructions ran
 0x710014d9e8,f528ae01ad46c5c352cd0c153cf78185,inconclusive,1,unresolved guard variable for base::global::UnkEnsureStringPool()::s_holder (no address in the original)
 0x71001541a0,323365be476620c97d9c08b2fa2365b4,inconclusive,1,1 of 3 conditional branches went only one way
+0x710015a0e0,81c4d7b863550a0b3aa5dd3d8ac4386d,pass,1,
 0x710015f100,8728a540a332d29a901a74ce7c9ed85e,inconclusive,1,only 11% of the original's instructions ran
 0x710015f500,60712e23ee9be0e612733fa2d0601abd,pass,1,
 0x7100161520,5fc4475bf611d01ef7d87dbbe9f94722,inconclusive,1,only 22% of the original's instructions ran
 0x7100161b90,2606c08783f03229e5e7932c86b4648b,inconclusive,1,unresolved guard variable for UnkFlagsNone_7100161b90()::s_none (no address in the original)
 0x71001b76ec,8075cf1d4f88866059e58fbea6172469,pass,1,
+0x71001b7d80,2c7949ee0258cb6d8f550c387fa5eec2,pass,1,
 0x71001bab30,777676e172e39844c4a222346c752372,inconclusive,1,5 of 7 conditional branches went only one way
 0x71001bcdf0,c2938410fbe9451f88b92f384c9302b9,inconclusive,1,only 18% of the original's instructions ran
 0x71001c33cc,10769b3d9ed6d490c349e0944ac89d69,pass,1,
+0x71001c3cdc,d23335431f8b8ceafe5193f129aaa85d,pass,1,
 0x71001d6c58,706252b268cc58de3bbb26d3ecd45da7,inconclusive,1,only 90% of the original's instructions ran
 0x71001def5c,2e8809e4e4b1268f1f797aa386412554,inconclusive,1,only 31% of the original's instructions ran
 0x7100206078,df08924f2fdae8d76f92dbc44ffe2aad,fail,1,input 2: call 0 to 0x2: argument v0 (0x41200000 vs 0x1)
+0x710021688c,5410f8b98012ea8e8ffd889df68bce18,pass,1,
 0x710025fdf4,94c4d6bc49578af0a5f9f879b3ced37b,inconclusive,1,unresolved UnkEntry_710025fdf4::UnkEntry_710025fdf4(UnkEntry_710025fdf4 const&)
 0x710027c134,61b5e48a79bed49f11b53461938d91ac,inconclusive,1,only 83% of the original's instructions ran
 0x71002afe60,94adaf7d57ea57935e053a909ef6ee36,inconclusive,1,1 of 2 conditional branches went only one way
@@ -74,6 +80,8 @@ address,digest,verdict,rules,detail
 0x7100502628,daabc908f12d275a2b52ce57e9aa46b7,inconclusive,1,2 of 2 conditional branches went only one way
 0x71005028e4,978843c2a0c9ffea5b91af71e18b0e15,pass,1,
 0x710050f26c,f7f529803ead7df050ab3a3d58db2c48,inconclusive,1,only 53% of the original's instructions ran
+0x7100550e18,a268781d6fda0c16ef44d0fdbe2b7ada,pass,1,
+0x7100558e14,1e2420a37b84ed89cfc783d1ccdf96a3,pass,1,
 0x7100569e58,be6687ed97188bc0bc99c8d67c79efb4,inconclusive,1,unresolved guard variable for base::global::UnkEnsureStringPool()::s_holder (no address in the original)
 0x71006eb484,0b60bf95b3d7692e4be55f6e58ee30c2,inconclusive,1,only 53% of the original's instructions ran
 0x7100714808,7a6026db45d9bf0e6dc720f600e7742e,inconclusive,1,only 88% of the original's instructions ran
@@ -83,6 +91,7 @@ address,digest,verdict,rules,detail
 0x71008449ec,c6969c9725692dc261d3c0419924d83a,inconclusive,1,unresolved base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id()::s_id (no address in the 
 0x710086c89c,7064220056ae29298435634e7f2115df,inconclusive,1,1 of 3 conditional branches went only one way
 0x71009cde54,c3e82607b1d89a9e129255ed6f2a1925,inconclusive,1,only 42% of the original's instructions ran
+0x7100af45b0,26244aaad38a8a449b87c78f70cc6416,pass,1,
 0x7100b1a568,65b9477e0966b1bc2cf4980ef3bc2097,inconclusive,1,only 37% of the original's instructions ran
 0x7100b2eaac,20d6a2bb88c8aac83059cc3a73d3c4f2,inconclusive,1,unresolved base::global::UnkStrIdBase::UnkStrIdBase(char const*; bool)
 0x7100b34b44,5e96208ada3a183db4ad3987a696b364,inconclusive,1,only 46% of the original's instructions ran
@@ -123,6 +132,7 @@ address,digest,verdict,rules,detail
 0x7100e8f6bc,a0fe54fa3b1a2a81a3dfc7f758805f39,inconclusive,1,only 97% of the original's instructions ran
 0x7100e90e6c,3e4ba2e40ef5984dfc14f7e4b1e1cc5f,pass,1,
 0x7100e91d68,380f1cfab818571d80c91fe1f2fa53fd,inconclusive,1,1 of 2 conditional branches went only one way
+0x7100e94e10,5bbe75ce94b6b6827485719f916c7d8b,pass,1,
 0x7100eca5dc,28ca07d21d40638e5ad6b3bbd978f650,inconclusive,1,only 83% of the original's instructions ran
 0x7100eca778,28ca07d21d40638e5ad6b3bbd978f650,inconclusive,1,only 83% of the original's instructions ran
 0x7100ee4f84,523907dedfdf56043c687921b80578d9,inconclusive,1,unresolved guard variable for GameManagerIdTable()::s_table (no address in the original)
@@ -140,3 +150,4 @@ address,digest,verdict,rules,detail
 0x71011b7e7c,274dcd780552faf03754d378cf2de86b,pass,1,both runs were cut off
 0x71011b7fc8,870cfedad1877e58e1d6de99ffb4fd06,pass,1,both runs were cut off
 0x7101215464,5f7371d1b8bce5ebe3b58418144a766e,pass,1,
+0x7101230a00,74ce25ae78de4fb1b744bd9fd1959a36,pass,1,

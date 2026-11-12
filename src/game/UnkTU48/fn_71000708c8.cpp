@@ -62,6 +62,7 @@ static inline UnkRumbleModulation_ovb0186* Modulations(UnkRumbleLoad_ovb0186* se
     return reinterpret_cast<UnkRumbleModulation_ovb0186*>(reinterpret_cast<u8*>(self) + 0xd0);
 }
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers.
 void fn_71000708c8(UnkRumbleLoad_ovb0186* self, const UnkVibrationDesc_ovb0186* desc) {
     self->to = 1.0f;
     self->strength = 1.0f;
