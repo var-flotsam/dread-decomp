@@ -192,7 +192,7 @@ void fn_7100515db8(UnkPatrolBase_ovb0118* self) {
 
 void fn_710051dae0(UnkPatrolBase_ovb0118* self);
 void fn_71005162a8(void* set, UnkPatrolRegistration_ovb0118* reg);
-void fn_710051645c(UnkPatrolBase_ovb0118* self);
+void fn_710051645c(UnkPatrolBase_ovb0118* self, u64 a, u64 b);  // passes both on to the object's slot 0xb8
 
 void fn_71005154dc(UnkPatrolBase_ovb0118* self) {
     fn_710051dae0(self);
@@ -206,7 +206,7 @@ void fn_71005154dc(UnkPatrolBase_ovb0118* self) {
         Unregister(reg);
         reg->set = set;
         fn_71005162a8(set, reg);
-        *on_patrol = {self, fn_710051645c};
+        *on_patrol = {self, reinterpret_cast<void (*)(UnkPatrolBase_ovb0118*)>(&fn_710051645c)};
     }
     fn_710051564c(reinterpret_cast<UnkPatrolBase_b55*>(self), false);
 }

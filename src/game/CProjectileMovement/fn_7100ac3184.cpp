@@ -113,7 +113,7 @@ inline const UnkStaticZero_71726b5354& UnkGetStaticZero_71726b5354() {
 extern void* g_unk_7101d47360;
 extern u8 g_unk_71727556f0 __attribute__((visibility("hidden")));
 void fn_7100ac7628(UnkComponent_0x5d0* self);
-void fn_7100a2cddc(void* table, void* key, CStrId* id, bool unique, f32 delay);
+void fn_7100a2cddc(void* table, void* key, CStrId* id, f32 delay, bool unique);
 void fn_7100ee1f34(void* self);
 
 // The global manager, created on first use.
@@ -162,7 +162,7 @@ void fn_7100ac3184(UnkComponent_0x5d0* self) {
     self->field_0x564 = UnkGetStaticZero_71726b5354().value;
     if (void* table = self->owner->field_0x2e8) {
         void* key = reinterpret_cast<void* (*)(UnkComponent_0x5d0*)>(self->vtable[0x2e0 / 8])(self);
-        fn_7100a2cddc(table, key, &self->field_0x598, false, -1.0f);
+        fn_7100a2cddc(table, key, &self->field_0x598, -1.0f, false);
     }
     self->field_0x579 = false;
     fn_71000267f8(reinterpret_cast<UnkStrIdPathResource*>(self->field_0x580),

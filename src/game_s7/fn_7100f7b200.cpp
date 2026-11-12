@@ -456,7 +456,7 @@ extern char g_unk_71729e0a9a[];
 UnkEnumType* fn_7100f427a4();
 extern UnkNamedValue g_unk_71729e0aa0;
 extern UnkStruct_71729e0ab0 g_unk_71729e0ab0;
-void fn_7100ad3404(UnkStruct_71729e0ab0* self, UnkNamedValueTmp* value, bool flag);
+void fn_7100ad3404(UnkStruct_71729e0ab0* self, UnkNamedValueTmp* values, u64 count);
 void fn_7100d8ce3c(void* self);  // its destructor, as registered
 
 void fn_7100f7b200() {

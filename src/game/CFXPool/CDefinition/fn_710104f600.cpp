@@ -413,7 +413,6 @@ static inline UnkIdMap<V>* Assign(UnkIdMap<V>* self, const UnkIdMap<V>* other) {
 // Ids to arrays of array pairs.
 using UnkPairArrayValue = UnkSecondPtrArray<UnkFreedVectorPair>;
 using UnkIdPairArrayMap = UnkIdMap<UnkPairArrayValue>;
-UnkPairArrayValue* fn_7100e5493c(UnkPairArrayValue* self, const UnkPairArrayValue* other);
 
 __attribute__((noinline)) void fn_7100e5854c(UnkIdPairArrayMap* self, u32 capacity);
 __attribute__((noinline)) void fn_7100e588d0(UnkIdPairArrayMap* self);

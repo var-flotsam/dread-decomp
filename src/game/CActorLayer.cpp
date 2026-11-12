@@ -68,9 +68,9 @@ struct UnkReflAnyList {
 };
 
 struct UnkStruct_71729e0ab0;
-void fn_7100ad3404(UnkStruct_71729e0ab0* self, UnkNamedValueTmp* value, bool flag);
+void fn_7100ad3404(UnkStruct_71729e0ab0* self, UnkNamedValueTmp* values, u64 count);
 inline UnkReflAnyList::UnkReflAnyList(UnkReflAnyValue&& first) {
-    fn_7100ad3404(reinterpret_cast<UnkStruct_71729e0ab0*>(this), reinterpret_cast<UnkNamedValueTmp*>(&first), true);
+    fn_7100ad3404(reinterpret_cast<UnkStruct_71729e0ab0*>(this), reinterpret_cast<UnkNamedValueTmp*>(&first), 1);
 }
 
 // The types: the sublayer dictionary (built in this unit), the actor group dictionary, and two

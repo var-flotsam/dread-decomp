@@ -21,7 +21,7 @@ struct UnkFxPooledObject;
 struct UnkSonarModel_ovb0085;
 UnkFxPooledObject** fn_7100852548(base::UnkVector<UnkFxPooledObject*>* array, u32 index);
 // As src/game/CScorpiusFXComponent/CScorpiusFXComponent_Gas_ovb0008.cpp declares it (it returns the node).
-void fn_7100339d48(UnkRenderPool* pool, const CFilePathStrId* path, UnkSwitchObject** out, const CStrId* name);
+void* fn_7100339d48(UnkRenderPool* pool, const CFilePathStrId* path, UnkSwitchObject** out, const CStrId* name);
 void* fn_7100339900(UnkRenderPool* pool, const CFilePathStrId* path, UnkSonarModel_ovb0085** out,
                     const CStrId* name);
 // As src/game/CGrappleBeamComponent/CGrappleBeamComponent_Effects_ovb0047.cpp declares it.
@@ -58,7 +58,7 @@ static inline void Fill(UnkFxObjectPool_ovb0135* self, const CFilePathStrId* pat
 }
 
 void fn_71008523c4(UnkFxObjectPool_ovb0135* self, const CFilePathStrId* path, u32 count) {
-    Fill<UnkSwitchObject, void, fn_7100339d48, fn_7100146dac>(self, path, count);
+    Fill<UnkSwitchObject, void*, fn_7100339d48, fn_7100146dac>(self, path, count);
 }
 
 void fn_7100852698(UnkFxObjectPool_ovb0135* self, const CFilePathStrId* path, u32 count) {

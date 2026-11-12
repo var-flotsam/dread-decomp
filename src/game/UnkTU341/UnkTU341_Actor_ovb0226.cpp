@@ -398,7 +398,7 @@ __attribute__((always_inline)) static inline UnkComponent_7100233230** FindSlot(
 
 struct UnkKeyedValues_71002eef6c;
 using UnkValuesByKey = base::UnkKeyedArray<UnkKeyedValues_71002eef6c, u64, u64>;
-void fn_71002332e0(UnkValuesByKey*, u64*);
+u64* fn_71002332e0(UnkValuesByKey*, u64*);
 
 bool fn_7100233230(UnkActor_710023259c* self, base::reflection::UnkReflObject* component) {
     UnkActor_7100233230* actor = reinterpret_cast<UnkActor_7100233230*>(self);

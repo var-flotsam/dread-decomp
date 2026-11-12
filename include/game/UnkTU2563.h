@@ -14,7 +14,7 @@ void fn_7100e4a1d0(UnkRecord60* record);  // Destructor.
 UnkArraysRecord* fn_7100e4f444(UnkArraysRecord* self, const UnkArraysRecord* other);  // operator=.
 UnkPolyVector* fn_7100e4e898(UnkPolyVector* self, const UnkPolyVector* other);
 void fn_7100e4e310(char* self);
-UnkRecord60* fn_7100e4fd1c(UnkRecord60* self, const UnkRecord60* other);
+void fn_7100e4fd1c(UnkRecord60* self, const UnkRecord60* other);
 void fn_7100e51078(void* dst, void* src);
 void fn_7100e54ad8(UnkRecord60Array*, u32);
 void fn_7100e4ea08(UnkPolyVector* self, const UnkPolyValues* value);  // PushBack.

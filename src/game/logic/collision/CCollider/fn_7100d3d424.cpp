@@ -539,7 +539,7 @@ static inline void ShrinkToFit(UnkIdMap<V>* self) {
 }
 
 template <class V, void (*Destroy)(V*), void (*Free)(UnkIdMap<V>*), void (*Allocate)(UnkIdMap<V>*, u32),
-          V* (*AssignValue)(V*, const V*)>
+          void (*AssignValue)(V*, const V*)>
 static inline UnkIdMap<V>* Assign(UnkIdMap<V>* self, const UnkIdMap<V>* other) {
     if (self != other) {
         if (self->keys)
@@ -570,7 +570,7 @@ static inline UnkIdMap<V>* Assign(UnkIdMap<V>* self, const UnkIdMap<V>* other) {
 // Ids to arrays of array pairs.
 using UnkPairArrayValue = UnkSecondPtrArray<UnkFreedVectorPair>;
 using UnkIdPairArrayMap = UnkIdMap<UnkPairArrayValue>;
-UnkPairArrayValue* fn_7100e5493c(UnkPairArrayValue* self, const UnkPairArrayValue* other);
+void fn_7100e5493c(UnkPairArrayValue* self, const UnkPairArrayValue* other);
 
 __attribute__((noinline)) void fn_7100e5854c(UnkIdPairArrayMap* self, u32 capacity);
 __attribute__((noinline)) void fn_7100e588d0(UnkIdPairArrayMap* self);

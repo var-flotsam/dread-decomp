@@ -2,6 +2,7 @@
 // own getter, used as a return type, lives in this translation unit.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkReflValue.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -12,7 +13,7 @@ extern const base::reflection::CType g_unk_71727586d0 __attribute__((visibility(
 void fn_7100adeaf4();
 void fn_7100add688(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_7101d5af48;
-void fn_7100adec94();
+base::reflection::UnkReflValue fn_7100adec94(void*, char* obj, base::reflection::UnkReflValue* const* args);
 void fn_7100500260(UnkReflFunction* fn);
 
 void fn_7100add284(CClass* cls) {

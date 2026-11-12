@@ -3,7 +3,7 @@
 #include "base/snd/UnkSound.h"
 #include "types.h"
 
-void fn_71000ff8c4(void* p, f32 value, UnkSound* owner);
+void fn_71000ff8c4(void* p, UnkSound* owner, f32 value);
 
 void fn_7100105a80(UnkSound* self, f32 value, f32 limit) {
     if (self->field_0x80) {
@@ -23,7 +23,7 @@ void fn_7100105a80(UnkSound* self, f32 value, f32 limit) {
         value = self->field_0x100;
     if (limit <= 0.0f) {
         self->field_0x104 = 0.0f;
-        fn_71000ff8c4(self->field_0x78, value, self);
+        fn_71000ff8c4(self->field_0x78, self, value);
     } else if (limit >= 10.0f) {
         self->field_0x104 = 10.0f;
     } else {

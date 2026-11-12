@@ -65,7 +65,7 @@ struct UnkEmmyMoveHit_A3_b71 {
 
 struct UnkEmmyMovement_A3_b71;
 bool fn_71010cd278(UnkEmmyMovement_A3_b71* self, const base::math::CVector3D* dir, UnkEmmyMoveHit_A3_b71* hit,
-                   void* filter, f32 range);
+                   f32 range, void* filter);
 
 struct UnkEmmyMovement_A3_b71 {
     virtual void vf_0x0();
@@ -88,6 +88,6 @@ void fn_7100571808(UnkEmmyMovement_A3_b71* self) {
         UnkEmmyMoveDir_A3_b71 d = self->source->vf_0xb0();
         __builtin_memcpy(&dir, &d, sizeof(dir));
     }
-    if (fn_71010cd278(self, &dir, &hit, nullptr, 30.0f))
+    if (fn_71010cd278(self, &dir, &hit, 30.0f, nullptr))
         self->Apply(&hit);
 }

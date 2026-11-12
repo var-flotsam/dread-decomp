@@ -4,10 +4,10 @@
 #include "base/UnkVector.h"
 #include "types.h"
 
-void fn_7100eac64c(void* dst, const void* src);
-void fn_7100eac82c(void* dst, const void* src);
+void* fn_7100eac64c(void* dst, const void* src);
+void* fn_7100eac82c(void* dst, const void* src);
 
-template <void (*Assign)(void*, const void*)>
+template <void* (*Assign)(void*, const void*)>
 struct UnkMinimapKeyedValue_b44a3 {
     u64 words[0x118 / 8];
 

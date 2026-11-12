@@ -38,8 +38,8 @@ struct UnkMusicMap_b41a3 {
     u32 modulus;
 };
 
-void fn_7100f87480(UnkMusicMap_b41a3<0x80>* map, const CStrId* key);
-void fn_7100f89fd8(UnkMusicMap_b41a3<0x68>* map, const CStrId* key);
+void* fn_7100f87480(UnkMusicMap_b41a3<0x80>* map, const CStrId* key);
+void* fn_7100f89fd8(UnkMusicMap_b41a3<0x68>* map, const CStrId* key);
 void fn_7100fd9bf8(char* manager, const CStrId* key);
 void fn_7100fd9c00(char* manager, const CStrId* key);
 void fn_7100fd9e94(char* manager, const CStrId* key);
@@ -54,7 +54,7 @@ static inline __attribute__((always_inline)) char* MusicManager_b41a3() {
     return static_cast<char*>(g_unk_71726bc560);
 }
 
-template <u32 MapOffset, u32 NextOffset, void (*Erase)(UnkMusicMap_b41a3<NextOffset>*, const CStrId*),
+template <u32 MapOffset, u32 NextOffset, void* (*Erase)(UnkMusicMap_b41a3<NextOffset>*, const CStrId*),
           void (*Notify)(char*, const CStrId*), u32 NotifyOffset>
 static inline __attribute__((always_inline)) UnkReflValue RemoveMusicEntry_b41a3(char* obj,
                                                                                   UnkReflValue* const* args) {

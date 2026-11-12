@@ -450,7 +450,7 @@ void fn_7100ea9b04(UnkMinimapModifiers* self, u32 size) {
 
 const base::global::CStrId* fn_7100de9bf8(UnkGameManager* self);
 UnkMinimapRect fn_7100e94e10();
-void fn_7100205f98(void* xform, const UnkMinimapVec3* eye, f32 fov, f32 near, f32 far);
+void fn_7100205f98(void* xform, f32 fov, f32 near, f32 far, const UnkMinimapVec3* eye);
 void fn_7100145400(UnkMinimapCamera* camera, const UnkMinimapVec3* target);
 
 // Places the map camera 8000 units (times the zoom) above its point, which follows the bounds'
@@ -480,7 +480,7 @@ void fn_7100e90e6c(UnkMinimapOwner* self) {
     eye.y = self->offset.y + eye.y;
     target.x = self->offset.x + target.x;
     target.y = self->offset.y + target.y;
-    fn_7100205f98(self->camera->field_0x20, &eye, 45.0f, 100.0f, 100000.0f);
+    fn_7100205f98(self->camera->field_0x20, 45.0f, 100.0f, 100000.0f, &eye);
     fn_7100145400(self->camera, &target);
     self->camera->field_0x130->flags->dirty = true;
     self->view = fn_7100e948b4(self, fn_710002fb70(self->timer));
@@ -801,9 +801,9 @@ void fn_7100eb310c(void* self);
 void fn_7100eb3124(void* self);
 void fn_7100eb31c0(void* self);
 void fn_7100eb31d8(void* self);
-void fn_7100eb31f0(void* self);
-void fn_7100eb3278(void* self);
-void fn_7100eb331c(void* self);
+bool fn_7100eb31f0(void* self);
+bool fn_7100eb3278(void* self);
+bool fn_7100eb331c(void* self);
 void fn_7100eb2e8c(void* self);
 void fn_7100eb2ea4(void* self);
 void fn_7100eb2eac(void* self);
@@ -1103,9 +1103,9 @@ void fn_7100e8c114(UnkMinimapManager* self) {
     cb[9] = {0, self, fn_7100eb3124};
     cb[10] = {0, self, fn_7100eb31c0};
     cb[11] = {0, self, fn_7100eb31d8};
-    cb[12] = {0, self, fn_7100eb31f0};
-    cb[13] = {0, self, fn_7100eb3278};
-    cb[14] = {0, self, fn_7100eb331c};
+    cb[12] = {0, self, reinterpret_cast<void (*)(void*)>(&fn_7100eb31f0)};
+    cb[13] = {0, self, reinterpret_cast<void (*)(void*)>(&fn_7100eb3278)};
+    cb[14] = {0, self, reinterpret_cast<void (*)(void*)>(&fn_7100eb331c)};
     cb[15] = {0, self, fn_7100eb2e8c};
     cb[16] = {0, self, fn_7100eb2ea4};
     cb[17] = {0, self, fn_7100eb2eac};
