@@ -64,19 +64,21 @@ class Definitions(unittest.TestCase):
         files = {
             "include/game/A.h": "struct UnkA;\nu32 fn_7100000110(UnkA* self, u32 kind);\nvoid fn_7100000120(UnkA*);\n"
                                 "void fn_7100000130(UnkA*, u32);\nvoid fn_7100000140(void*, u32);\n"
-                                "void fn_7100000150(int);\n",
+                                "void fn_7100000150(int);\nvoid fn_7100000180(f32, UnkA*, u32);\n",
             "src/game/a.cpp": "struct UnkLocal;\n"
                               "void fn_7100000110(UnkLocal* self, u32 kind) {\n}\n"          # void, declared u32
                               "void fn_7100000120(UnkLocal* self) {\n}\n"                    # another struct name: same call
                               "void fn_7100000130(UnkLocal* self) {\n}\n"                    # a parameter short
                               "void fn_7100000140(void* self, void* context) {\n}\n"         # a pointer for a u32
                               "static void fn_7100000150(long a) {\n}\n"                     # internal linkage: not compared
-                              "void fn_7100000160(int) {\n}\n",                              # nobody declares it
+                              "void fn_7100000160(int) {\n}\n"                               # nobody declares it
+                              "void fn_7100000180(UnkLocal* self, u32 n, f32 t) {\n}\n",   # the float moved
         }
         self.assertEqual(self.mismatches(files), {
             "fn_7100000110": "one returns a value, the other is void",
             "fn_7100000130": "the number of parameters",
             "fn_7100000140": "a parameter's class",
+            "fn_7100000180": "the order of float and other parameters (one call on AArch64; not on Windows)",
         })
 
     def test_the_definition_gets_its_line(self):

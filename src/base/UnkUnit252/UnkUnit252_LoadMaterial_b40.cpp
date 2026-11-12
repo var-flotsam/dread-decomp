@@ -5,6 +5,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "game/UnkTU211.h"
 #include "game/UnkTU228.h"
+#include "game/UnkTU252.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;

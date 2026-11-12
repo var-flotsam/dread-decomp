@@ -1,6 +1,7 @@
 // What fn_710002fb70 reports for the part at +0xb0 of the object of the track whose name hash is
 // `key`, or false when there is no such entry or object; the lookup is fn_7101177cac's
 // (src/game/CAnimationComponent/fn_710117af10.cpp).
+#include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU39.h"
 #include "types.h"

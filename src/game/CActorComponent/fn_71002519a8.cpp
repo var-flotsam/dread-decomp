@@ -3,6 +3,7 @@
 // fn_71000d92a8; fn_7100251a80 is a relative. Called only through their collection function tables.
 
 #include "base/UnkCloneCalls.h"
+#include "game/UnkTU23.h"
 #include "types.h"
 
 struct UnkKeyedValues_71002519a8;

@@ -14,6 +14,7 @@
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "base/spatial/COBox2D.h"
+#include "game/UnkTU2509.h"
 #include "game/UnkXformNode.h"
 #include "game/malloc.h"
 #include "types.h"

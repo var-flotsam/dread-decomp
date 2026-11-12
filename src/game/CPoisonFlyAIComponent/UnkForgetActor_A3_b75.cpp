@@ -2,6 +2,7 @@
 // ref-counted handle (+0x20) points at the actor, releases the handle (vf 0x10 when the count reaches
 // zero) and clears it. Names are placeholders.
 #include "game/UnkActor.h"
+#include "game/UnkTU958.h"
 #include "types.h"
 
 struct UnkPoisonFlyHandle_A3_b75 {

@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::global::CStrId;

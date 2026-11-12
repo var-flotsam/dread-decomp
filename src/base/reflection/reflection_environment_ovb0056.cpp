@@ -13,6 +13,7 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/math/CVector4D.h"
+#include "base/reflection.h"
 #include "game/UnkRenderManager.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"

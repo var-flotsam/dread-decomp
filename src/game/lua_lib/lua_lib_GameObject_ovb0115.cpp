@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "game/UnkTU2676.h"
+#include "game/lua_lib.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 

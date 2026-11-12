@@ -1,6 +1,7 @@
 // Variant of fn_71002ad688 for the links at +0x129e8 (three of them at +0x0, +0x18 and +0x30, and the
 // weak reference at +0x80): the lists are those at +0x1828, +0x18a8 and +0x1928 of the object at
 // +0x240 of the target.
+#include "game/navmesh/SNavMeshPath.h"
 #include "game_s2/UnkWeakHandle.h"
 
 struct UnkLinkList;

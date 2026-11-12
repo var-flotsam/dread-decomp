@@ -37,7 +37,9 @@ double, a pointer or reference, a type passed by value) is compared with the sha
 of the same function in other files. Another name for a pointed-to struct is the same call; a `void`
 definition of a function declared to return a value, a missing parameter, or a `u32` where the
 declaration has a pointer is not. The match on AArch64 does not see such a difference when the registers
-happen to hold the right values; the PC port calls the function wrongly. Not seen: a definition inside a
+happen to hold the right values; the PC port calls the function wrongly. A float parameter written before
+or after the integer ones is reported apart: floats travel in their own registers on AArch64 and on x86-64
+Linux, so it is one call there, and another one only on Windows. Not seen: a definition inside a
 namespace, or one whose first line starts with an attribute.
 
 Usage:
@@ -569,6 +571,13 @@ def call_shape(signature: str, symbol: str) -> tuple[str, tuple[str, ...]] | Non
     return type_class(result), tuple(params)
 
 
+def by_register(params: tuple[str, ...]) -> tuple[tuple[str, ...], tuple[str, ...]]:
+    """(the float and double parameters in order, the others in order): on AArch64 and on x86-64 Linux the
+    two kinds are passed in separate registers, so only the order within each kind decides the call."""
+    floats = tuple(p for p in params if p in ("f32", "f64"))
+    return floats, tuple(p for p in params if p not in ("f32", "f64"))
+
+
 def definition_mismatches(files: dict[str, str], report: Report) -> dict[str, tuple[str, str, str, str]]:
     """{function: (what differs, the defining file, the definition's signature, a declaration's signature)} for
     the hand-written definitions whose call shape is not the shape of a declaration in another file."""
@@ -588,6 +597,8 @@ def definition_mismatches(files: dict[str, str], report: Report) -> dict[str, tu
                     what = "the result's class"
                 elif len(mine[1]) != len(theirs[1]):
                     what = "the number of parameters"
+                elif by_register(mine[1]) == by_register(theirs[1]):
+                    what = "the order of float and other parameters (one call on AArch64; not on Windows)"
                 else:
                     what = "a parameter's class"
                 out[d.name] = (what, path, d.signature, other)

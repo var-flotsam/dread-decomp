@@ -3,6 +3,7 @@
 // (base/UnkParallelFind.h), and that entry's track at +0x70; null when there is none. Names and
 // layouts are placeholders.
 #include "base/UnkParallelFind.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkTU1134.h"
 
 struct UnkTrack;
