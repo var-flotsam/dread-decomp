@@ -3,6 +3,7 @@
 // 0x1cdf12aa84de383c the answer is 4 if bit 2 of the byte at +0xb6 of the fourth argument is clear and 5 if
 // it is set; any other hash gives 0. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
@@ -23,8 +24,6 @@ struct UnkSclawkId_b68a4 {
         }
     }
 };
-
-const base::global::CStrId* fn_7101177ae8(UnkAnimationComponent* self, u64 kind);
 
 struct UnkSclawkOwner_b68a4 {
     u8 pad_0x0[0x220];

@@ -21,7 +21,6 @@ struct UnkAttackBase;
 void fn_71003608ac(UnkAttackBase* self);
 void fn_71006a5d94();
 struct UnkAnimationComponent;
-const base::global::CStrId* fn_7101177ae8(UnkAnimationComponent* self, u64 kind);
 
 extern CStrId g_unk_71727057c0[4] __attribute__((visibility("hidden")));
 

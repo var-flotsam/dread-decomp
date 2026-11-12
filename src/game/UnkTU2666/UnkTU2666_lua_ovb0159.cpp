@@ -22,6 +22,7 @@
 #include "game/UnkTU2656.h"
 #include "game/UnkTU2669.h"
 #include "game/UnkTU2677.h"
+#include "game/UnkTU2704.h"
 #include "game/UnkTU315.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU365.h"
@@ -379,7 +380,6 @@ struct UnkGuiHolder_b0159 {
         UnkReflObject* field_0x10;
     }* field_0x40;
 };
-base::reflection::UnkReflObject* fn_7101126814(const CStrId* id);
 void fn_71011991c4(void* gui, UnkReflObject* entity);
 void fn_7101198450(void* gui, UnkReflObject* entity);
 

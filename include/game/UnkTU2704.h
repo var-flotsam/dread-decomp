@@ -4,6 +4,7 @@
 // 0x7101120afc-0x71011336b0). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "base/reflection/CClass.h"
 #include "types.h"
 
 struct UnkStruct_7172a0768c;
@@ -15,3 +16,4 @@ void fn_7101126af4(void* self);
 void fn_710112e7e0(void* self);  // Re-points `current` at (index, element).
 extern UnkStruct_7172a0768c g_unk_7172a0768c;  // The id list's count, its ids after it.
 const base::global::CStrId* fn_710112bf20(void* link);
+base::reflection::UnkReflObject* fn_7101126814(const base::global::CStrId* id);

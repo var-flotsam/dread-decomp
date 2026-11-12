@@ -3,6 +3,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU57.h"
 #include "types.h"
@@ -10,7 +11,6 @@
 using base::global::CRntString;
 
 struct UnkSPBGun_A5_b63;
-const base::global::CStrId* fn_7101177ae8(UnkAnimationComponent* self, u64 kind);
 
 // What the usual track kind names (fn_7101177ae8 gives a pointer to it): its name and a use count.
 struct UnkSPBTrack_b0058 {

@@ -3,6 +3,7 @@
 // state update (fn_710067c8e0: wait, check, two countdowns, then at the track's end the part
 // 0xe6de93263e1369e9 is switched on once). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CAnimationComponent.h"
 #include "game/CFXComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkSwitchObject.h"
@@ -15,7 +16,6 @@ using base::global::UnkStringPool;
 struct UnkGoliathAI_b55;
 struct UnkGoliathHitInfo_b55;
 struct UnkGoliathHitTarget_b55;
-const base::global::CStrId* fn_7101177ae8(UnkAnimationComponent* self, u64 kind);
 
 // A copied string id whose destructor does not test for a null id.
 struct UnkSclawkId_ovb0125 {

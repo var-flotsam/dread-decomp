@@ -2,14 +2,13 @@
 // passes the id it holds under the usual track kind (fn_7101177ae8 returns a pointer to it) to the game manager's
 // fn_7100df31b8 (true, false, 0, id, false). Names are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-const base::global::CStrId* fn_7101177ae8(UnkAnimationComponent* self, u64 kind);
 
 struct UnkMorphBallOwner_A4_b76 {
     u8 pad_0x0[0x220];

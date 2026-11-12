@@ -239,7 +239,6 @@ struct UnkTimelineId {
 };
 struct UnkNameHolder;
 
-const base::global::CStrId* fn_7101177ae8(UnkAnimationComponent* self, u64 kind);
 UnkTimelineId fn_7101177be0(UnkAnimationComponent* self, u64 key);
 u32 fn_710050816c(UnkNameHolder* self);
 

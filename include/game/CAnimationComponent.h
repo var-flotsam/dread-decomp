@@ -4,6 +4,7 @@
 // 0x7101174bd0-0x710117f300). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "base/reflection/CClass.h"
+#include "base/global/CStrId.h"
 #include "types.h"
 
 struct UnkFlags_7101176ea8;
@@ -49,3 +50,4 @@ void* fn_7101176d34(UnkStruct_7101176ea8* self, void* arg);  // The entry for a 
 s32 fn_7101177da8(void* object, u64 hash);
 bool fn_710117aaac(void* cls, const base::reflection::CClass* track_class, f32 frames);
 bool fn_7101177044(UnkStruct_7101176ea8* self, void* r, s32 idx, void* data, UnkFlags_7101176ea8 flags, const UnkS16& a, const UnkS12& b, UnkFlags_7101176ea8 c);
+const base::global::CStrId* fn_7101177ae8(UnkAnimationComponent* self, u64 kind);

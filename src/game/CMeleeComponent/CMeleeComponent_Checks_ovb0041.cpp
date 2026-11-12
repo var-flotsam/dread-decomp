@@ -16,6 +16,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CAnimationComponent.h"
 #include "game/CAutclastChargeAttack.h"
 #include "game/CMovementComponent.h"
 #include "game/UnkAnimationComponent.h"
@@ -67,7 +68,6 @@ const void* fn_710092dfd4(bool second) {
 using base::global::CStrId;
 
 struct UnkAnimationComponent;
-const base::global::CStrId* fn_7101177ae8(UnkAnimationComponent* self, u64 kind);
 void fn_71003246d8(void* p);
 
 // A pending event: its id and kind.

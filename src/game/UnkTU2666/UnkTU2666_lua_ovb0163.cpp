@@ -27,6 +27,7 @@
 #include "game/UnkTU2676.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU2685.h"
+#include "game/UnkTU2704.h"
 #include "game/UnkTU2728.h"
 #include "game/UnkTU315.h"
 #include "game/UnkTU426.h"
@@ -457,7 +458,6 @@ struct UnkVec {
 };
 bool fn_710083e250(UnkGun_ovb0091* self, f32 value, bool flag);
 struct UnkGuiHolder_b0159;
-base::reflection::UnkReflObject* fn_7101126814(const CStrId* id);
 
 struct UnkSlomoSettings {
     u8 pad_0x0[0x10];

@@ -8,12 +8,12 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAnimationComponent.h"
 #include "game/CScourgeAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
-const base::global::CStrId* fn_7101177ae8(UnkAnimationComponent* self, u64 kind);
 extern const u64 g_unk_710164a618[] __attribute__((visibility("hidden")));
 
 struct UnkScourgeAI_b58a4 : base::reflection::UnkReflObject {

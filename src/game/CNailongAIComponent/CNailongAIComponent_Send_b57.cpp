@@ -4,11 +4,10 @@
 // Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
-
-const base::global::CStrId* fn_7101177ae8(UnkAnimationComponent* self, u64 kind);
 
 struct UnkNailongOwner_b57a4 {
     u8 pad_0x0[0x220];
