@@ -16,6 +16,7 @@
 #include "game/CMovementComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkTU1730.h"
@@ -66,8 +67,6 @@ struct UnkTimedRef_ovb0021 {
 
 using UnkTimedRefList_ovb0021 = base::UnkVector<UnkTimedRef_ovb0021>;
 
-
-
 // Removes `it` by moving the last entry into its place; returns the entry now at its position.
 UnkTimedRef_ovb0021* fn_7100979360(UnkTimedRefList_ovb0021* list, UnkTimedRef_ovb0021* it) {
     u32 index = static_cast<u32>(it - list->data);
@@ -105,7 +104,6 @@ struct UnkCharacterMovement_ovb0021 {
     u8 unk_0x3c8[0x30];
     UnkTimedRefList_ovb0021 timed;  // 0x3f8
 };
-
 
 // Grows the list's storage to `capacity` entries (base::UnkVector's reserve, written out).
 void fn_710097a850(UnkTimedRefList_ovb0021* self, u32 capacity) {
@@ -586,19 +584,6 @@ struct UnkAssignedSlot {
     void* ptr;
 };
 
-// A large object built once, with an id at +0x20f0.
-struct UnkIdTable_ovb0021 {
-    UnkIdTable_ovb0021();  // fn_7100031894
-    ~UnkIdTable_ovb0021();
-    u8 pad_0x0[0x20f0];
-    void* field_0x20f0;
-};
-
-inline UnkIdTable_ovb0021& GetIdTable_ovb0021() {
-    static UnkIdTable_ovb0021 s_table;
-    return s_table;
-}
-
 struct UnkHitSource_ovb0021 {
     u8 unk_0x0[0x20];
     void* id;  // 0x20
@@ -674,8 +659,8 @@ struct UnkCharacterMovementHit_ovb0021 {
 static inline bool IsTableSource(UnkHitSource_ovb0021* source) {
     if (!source)
         return false;
-    UnkIdTable_ovb0021& table = GetIdTable_ovb0021();
-    return source->id == table.field_0x20f0;
+    UnkGameManagerIdTable& table = GameManagerIdTable();
+    return source->id == table.field_0x20f0.data;
 }
 
 // Keeps the first hit against an object whose source has the table's id.

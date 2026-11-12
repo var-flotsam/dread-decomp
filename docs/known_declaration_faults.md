@@ -69,10 +69,11 @@ struct definitions, and 1,020 struct names are defined in more than one file.
 One of the largest was settled on 2026-11-12: `UnkGameManagerIdTable`, the game's table of string ids, was
 defined in 60 files, each with the one or two slots it reads and its own copy of the labelled constructor and
 destructor (`fn_7100031894`, `fn_71000407f0`). It is `include/game/UnkGameManagerIdTable.h` now, with every slot
-those files name as a `CStrId`; a file that reads a slot's data as a record of its own casts at the read. 25
-more files see the same table under other struct names (`UnkIdTable_b55sh`, `UnkReflSingleton` in
-`base/reflection/UnkReflStatics.h`, ...), with the constructor named in a comment and not by a label: those are
-still to be folded in.
+those files name as a `CStrId`; a file that reads a slot's data as a record of its own casts at the read. 16
+more files that saw the same table under a struct name of their own (`UnkIdTable_b55sh`, ...), with the
+constructor named in a comment and not by a label, were folded in the same day. Two views are left:
+`UnkReflSingleton` in `base/reflection/UnkReflStatics.h`, which the generated sources use, and the one in
+`src/game_s7/UnkPropS7.h`, which reads the table as bytes.
 
 ## Shared functions the mechanical header migration could not move
 

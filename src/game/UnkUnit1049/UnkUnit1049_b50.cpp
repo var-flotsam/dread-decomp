@@ -4,19 +4,8 @@
 // layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CShelmitPlasmaRayAttack.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "types.h"
-
-struct UnkIdTable_b50_1049 {
-    UnkIdTable_b50_1049();  // fn_7100031894
-    ~UnkIdTable_b50_1049();
-    u8 pad_0x0[0x628];
-    u8 field_0x628[8];
-};
-
-inline UnkIdTable_b50_1049& IdTable_b50_1049() {
-    static UnkIdTable_b50_1049 s_table;
-    return s_table;
-}
 
 struct UnkTarget_b50_1049 {
     virtual void vf_0();
@@ -82,7 +71,7 @@ void* fn_71006b5fec(UnkOwner_b50_1049* self) {
     if (UnkActor_b50_1049* actor = self->actor) {
         if (UnkTarget_b50_1049* target = actor->field_0x2a0)
             return target->vf_45(g_unk_7172706938, g_unk_7172706938, &g_unk_7101d470e0,
-                                 IdTable_b50_1049().field_0x628, 0x100, 0, 1, 0, -1, 0, -1, 0, -1, false,
+                                 &GameManagerIdTable().field_0x628, 0x100, 0, 1, 0, -1, 0, -1, 0, -1, false,
                                  false, true);
     }
     return nullptr;

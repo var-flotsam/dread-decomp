@@ -4,6 +4,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CCameraComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "types.h"
 
 struct UnkCameraTarget {
@@ -33,19 +34,6 @@ struct UnkCameraCtrl {
     const void* vf_0x0() { return reinterpret_cast<const void* (*)(UnkCameraCtrl*)>(vtable[0])(this); }
 };
 
-// A large object built once, with an id at +0x998.
-struct UnkIdTable {
-    UnkIdTable();  // fn_7100031894
-    ~UnkIdTable();
-    u8 pad_0x0[0x998];
-    u8 field_0x998[8];
-};
-
-inline UnkIdTable& GetIdTable() {
-    static UnkIdTable s_table;
-    return s_table;
-}
-
 void fn_71003ad174(UnkCameraOwner* self, u32 arg);
 void fn_7100750804(UnkCameraCtrl* ctrl, void* arg);
 void fn_7100750948(UnkCameraCtrl* ctrl, void* arg);
@@ -64,7 +52,7 @@ void fn_71003ad014(UnkCameraOwner* self, bool flag) {
         self->vf_0x830();
         void* holder = fn_7100defcec(g_unk_7101d47310);
         if (holder) {
-            UnkCameraCtrl* ctrl = fn_71010e389c(holder, GetIdTable().field_0x998);
+            UnkCameraCtrl* ctrl = fn_71010e389c(holder, &GameManagerIdTable().field_0x998);
             if (ctrl && ctrl->vf_0x0() == fn_710074eca8()) {
                 if (st->field_0x0)
                     fn_7100750804(ctrl, self->field_0x30);

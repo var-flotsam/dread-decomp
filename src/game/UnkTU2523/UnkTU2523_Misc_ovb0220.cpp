@@ -19,6 +19,7 @@
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU341.h"
@@ -395,18 +396,6 @@ struct UnkIdHolder_b0220 {
     u64 id;
 };
 
-struct UnkIdTable_b0220 {
-    UnkIdTable_b0220();  // fn_7100031894
-    ~UnkIdTable_b0220();
-    u8 pad_0x0[0x1d78];
-    UnkIdHolder_b0220* field_0x1d78;
-};
-
-inline UnkIdTable_b0220& IdTable_b0220() {
-    static UnkIdTable_b0220 s_table;
-    return s_table;
-}
-
 struct UnkEntityPart_b0220 {
     void* vtable;
     u8 pad_0x8[0xf9 - 0x8];
@@ -431,5 +420,5 @@ void fn_7100d7babc(UnkEntitySend_b0220* self, bool flag, f32 value) {
         return;
     part->Notify(flag, value);
     if (flag && !part->field_0xf9 && self->field_0x220)
-        UnkSpitSend(self->field_0x220, IdTable_b0220().field_0x1d78->id, 0xf4061ff25a2163d6);
+        UnkSpitSend(self->field_0x220, reinterpret_cast<UnkIdHolder_b0220*>(GameManagerIdTable().field_0x1d78.data)->id, 0xf4061ff25a2163d6);
 }

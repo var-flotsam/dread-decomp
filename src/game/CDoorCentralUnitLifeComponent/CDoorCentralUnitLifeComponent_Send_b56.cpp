@@ -11,6 +11,7 @@
 #include "base/global/CName.h"
 #include "game/CActorComponent.h"
 #include "game/CDoorCentralUnitLifeComponent.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU794.h"
 #include "types.h"
 
@@ -39,18 +40,6 @@ struct UnkIdHolder_b56dl {
     u8 pad_0x0[0x30];
     u64 id;
 };
-
-struct UnkIdTable_b56dl {
-    UnkIdTable_b56dl();  // fn_7100031894
-    ~UnkIdTable_b56dl();
-    u8 pad_0x0[0x1b40];
-    UnkIdHolder_b56dl* field_0x1b40;
-};
-
-inline UnkIdTable_b56dl& IdTable_b56dl() {
-    static UnkIdTable_b56dl s_table;
-    return s_table;
-}
 
 void fn_71008d8190(UnkDoorLife_b56* self);
 struct UnkDoorLifeShield_b56;
@@ -83,7 +72,7 @@ void fn_71008ca554(UnkDoorLife_b56* self) {
     fn_71008ca700(reinterpret_cast<UnkCentralUnitDoor_b46a2*>(self), self->field_0xc49);
     self->field_0xc49 = false;
     if (void* target = self->owner->field_0x220)
-        UnkSpitSend(target, IdTable_b56dl().field_0x1b40->id, 0xf4061ff25a2163d6);
+        UnkSpitSend(target, reinterpret_cast<UnkIdHolder_b56dl*>(GameManagerIdTable().field_0x1b40.data)->id, 0xf4061ff25a2163d6);
     if (UnkDoorLifeShield_b56* shield = fn_710030a820(self->owner))
         fn_71007e9ea0(shield, true);
 }

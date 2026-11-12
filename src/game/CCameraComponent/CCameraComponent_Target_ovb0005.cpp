@@ -21,6 +21,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkCameraCtrl.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
@@ -189,18 +190,6 @@ f32 fn_71010e49c8(UnkCamComp3_ovb5* self, UnkPlayer* target, const UnkVec3_ovb5*
     return !(d <= 1.0f) ? d : 1.0f;
 }
 
-struct UnkIdTable_ovb5 {
-    UnkIdTable_ovb5();  // fn_7100031894
-    ~UnkIdTable_ovb5();
-    u8 pad_0x0[0x7c8];
-    CStrId field_0x7c8;
-};
-
-inline UnkIdTable_ovb5& IdTable_ovb5() {
-    static UnkIdTable_ovb5 s_table;
-    return s_table;
-}
-
 struct UnkCamComp7_ovb5 {
     u8 pad_0x0[0x80];
     UnkCameraCtrl** values;  // 0x80
@@ -209,7 +198,7 @@ struct UnkCamComp7_ovb5 {
 };
 
 void fn_71010e51e4(UnkCamComp7_ovb5* self) {
-    UnkCameraCtrl* ctrl = UnkParallelFind(self, IdTable_ovb5().field_0x7c8);
+    UnkCameraCtrl* ctrl = UnkParallelFind(self, GameManagerIdTable().field_0x7c8);
     if (ctrl && ctrl->vf_0x0() == fn_71010e7f90())
         fn_71010ea4fc(ctrl);
 }

@@ -11,6 +11,7 @@
 #include "game/CInputComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2733.h"
@@ -20,20 +21,6 @@ struct UnkIdHolder_b0086ua {
     u8 pad_0x0[0x30];
     u64 id;
 };
-
-struct UnkIdTable_b0086ua {
-    UnkIdTable_b0086ua();  // fn_7100031894
-    ~UnkIdTable_b0086ua();
-    u8 pad_0x0[0x1d78];
-    UnkIdHolder_b0086ua* field_0x1d78;
-    u8 pad_0x1d80[0x2438 - 0x1d80];
-    struct UnkIdData_b0086ua* field_0x2438;
-};
-
-inline UnkIdTable_b0086ua& IdTable_b0086ua() {
-    static UnkIdTable_b0086ua s_table;
-    return s_table;
-}
 
 struct UnkUnlockAreaOwner_b0086 {
     u8 pad_0x0[0x220];
@@ -50,7 +37,7 @@ bool fn_7100a07a90(UnkUnlockAreaSmartObject_b0086* self) {
     UnkAnimationComponent* animation = self->owner->animation;
     if (!animation)
         return false;
-    return !fn_710117ae38(animation, IdTable_b0086ua().field_0x1d78->id, false);
+    return !fn_710117ae38(animation, reinterpret_cast<UnkIdHolder_b0086ua*>(GameManagerIdTable().field_0x1d78.data)->id, false);
 }
 
 using base::global::CStrId;
@@ -191,9 +178,9 @@ void fn_7100a0746c(UnkUnlockAreaSmartObject3_b0086* self, const CStrId* name) {
         return;
     if (name->data != &g_unk_7101d47108->empty) {
         self->field_0x148 = *name;
-        UnkIdTable_b0086ua& table = IdTable_b0086ua();
-        ++table.field_0x2438->use_count;
-        UnkIdData_b0086ua* entry = table.field_0x2438;
+        UnkGameManagerIdTable& table = GameManagerIdTable();
+        ++reinterpret_cast<struct UnkIdData_b0086ua*>(table.field_0x2438.data)->use_count;
+        UnkIdData_b0086ua* entry = reinterpret_cast<struct UnkIdData_b0086ua*>(table.field_0x2438.data);
         ++self->field_0x148_data->use_count;
         if (self->field_0x148_data->hash == entry->hash) {
             self->vf_0x1a8();

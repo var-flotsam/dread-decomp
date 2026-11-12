@@ -13,6 +13,7 @@
 #include "game/CGunComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -53,18 +54,6 @@ struct UnkIdHolder_b57mb {
     u64 id;
 };
 
-struct UnkIdTable_b57mb {
-    UnkIdTable_b57mb();  // fn_7100031894
-    ~UnkIdTable_b57mb();
-    u8 pad_0x0[0x1d78];
-    UnkIdHolder_b57mb* field_0x1d78;
-};
-
-inline UnkIdTable_b57mb& IdTable_b57mb() {
-    static UnkIdTable_b57mb s_table;
-    return s_table;
-}
-
 void fn_7100886a00(UnkMorphBallLauncher_b57* self) {
     fn_71010c422c(self);
     if (self->link && self->link->actor && self->link->actor->field_0x2a8)
@@ -76,5 +65,5 @@ void fn_7100886a00(UnkMorphBallLauncher_b57* self) {
         return;
     self->link->actor->field_0x210[0x104] = 1;
     fn_710117b3f0(reinterpret_cast<UnkWeakTarget*>(self->link->actor->field_0x220), self->field_0x348);
-    UnkSpitSend(self->link->actor->field_0x220, IdTable_b57mb().field_0x1d78->id, 0xf4061ff25a2163d6);
+    UnkSpitSend(self->link->actor->field_0x220, reinterpret_cast<UnkIdHolder_b57mb*>(GameManagerIdTable().field_0x1d78.data)->id, 0xf4061ff25a2163d6);
 }

@@ -19,6 +19,7 @@
 #include "game/CFXComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU134.h"
@@ -90,7 +91,6 @@ bool fn_710094b7c4(UnkMorphBall_b7c4* self) {
     return !fn_7100df5a4c(g_unk_7101d47310);
 }
 
-
 // CMorphBallMovement's unit: looks up (and caches at +0x25a0 and +0x25b8) the two components of the
 // owner's object (+0x30, its +0x280) that the ids at +0x2560 and +0x2570 name, then tells the object
 // about the first with a flag that is set while its byte at +0x121 is clear. Names and layouts are
@@ -149,7 +149,6 @@ void fn_7100949970(UnkMorphBall_9970* self) {
         fn_710114fe8c(reinterpret_cast<UnkWorld*>(self->owner->field_0x280), self->field_0x2560->hash, 1, clear);
     }
 }
-
 
 // CMorphBallMovement's unit: switches the part the id at +0x2588 names on (fn_710114fe8c), hands it the
 // owner's position (vf_0x10), then turns it about z by the angle of the up vector at +0x248c/+0x2490,
@@ -217,7 +216,6 @@ void fn_710094c0ac(UnkMorphBall_c0ac* self) {
     }
 }
 
-
 // CMorphBallMovement's unit: the hit flags of a breakable tile group hit, as the movement's
 // fn_71009ecd98 (src/game/UnkTU1501/UnkTU1501_Movement_ovb0152.cpp) gives them without the gun check:
 // bit 0 when fn_71010d9638 accepts the hit and the player is not in the state of fn_7100df5874, plus the
@@ -279,7 +277,6 @@ UnkHitFlags_b152 fn_710094dcf0(UnkMorphBall_dcf0* self, UnkHitInfo_dcf0* hit) {
     }
     return result;
 }
-
 
 // CMorphBallMovement's unit: spawns the ball's effect at the owner's position (moved ahead by five
 // times the velocity at +0x1a4 while bit 4 of the flags at +0x1b4 is set), turned half a turn about
@@ -361,7 +358,6 @@ void fn_71009475b0(UnkMorphBall_75b0* self) {
     }
 }
 
-
 // CMorphBallMovement's unit: the reset on entering the ball. Runs fn_71009796dc, fn_710093ed64, sets
 // the byte at +0x2489, runs fn_710093efdc, drops the id table's entry at +0xa00 from the owner's
 // effect (+0x228, +0x50) through fn_7100199420, hands the value vf_0x2a8 gives to vf_0x2b0 and, when the
@@ -384,18 +380,6 @@ struct UnkIdHolder_eb64 {
     u8 pad_0x0[0x30];
     u64 id;
 };
-
-struct UnkIdTable_eb64 {
-    UnkIdTable_eb64();  // fn_7100031894
-    ~UnkIdTable_eb64();
-    u8 pad_0x0[0xa00];
-    UnkIdHolder_eb64* field_0xa00;
-};
-
-inline UnkIdTable_eb64& IdTable_eb64() {
-    static UnkIdTable_eb64 s_table;
-    return s_table;
-}
 
 // The ids the builder fills in place, destroyed in reverse order.
 struct UnkPresetIds_eb64 {
@@ -467,7 +451,7 @@ void fn_710093eb64(UnkMorphBall_eb64* self) {
     fn_710093efdc(self, 1, 0, 1);
     {
         UnkMorphBallEffect_eb64* effect = self->owner->field_0x228->field_0x50;
-        u64 id = IdTable_eb64().field_0xa00->id;
+        u64 id = reinterpret_cast<UnkIdHolder_eb64*>(GameManagerIdTable().field_0xa00.data)->id;
         fn_7100199420(*reinterpret_cast<void**>(effect->field_0x138 + 0x78), &id, false);
     }
     self->vf_0x2b0(self->vf_0x2a8());

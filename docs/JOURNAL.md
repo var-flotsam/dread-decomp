@@ -152,6 +152,11 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**The id table's other views (2026-11-12).** 16 more files defined the id table under a struct name of their own
+(`UnkIdTable_b55sh`, `UnkIdTable_ovb0043`, ...), each with one slot and a constructor bound to `fn_7100031894` only
+by a comment. They use `game/UnkGameManagerIdTable.h` now (47 slots in all) and its accessor; every file builds to
+the same output. The constructor is the labelled one, so `check.py` verifies those calls by address.
+
 **Fifth declarations pass (2026-11-12).** 423 more symbols are declared once, in their unit's header:
 symbols in more than one file 991 to 568, extra copies 2,649 to 1,630. Most of what earlier passes left
 used a shared type by its short name (`CStrId` after `using base::global::CStrId;`), which a header cannot
