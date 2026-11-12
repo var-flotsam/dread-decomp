@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkModeFlags;
+struct UnkMgr_0xf18;
 struct UnkSettings_b0158;
 struct UnkCoreXAI_A2_b73;
 struct UnkNode;
@@ -19,3 +21,5 @@ void fn_71003acb5c(UnkCoreXAI_A2_b73*);
 u32 fn_71003adaf8(UnkQuetzoaXAI_b58*, UnkQuetzoaXMessage_b58*);
 extern u8* g_unk_71726bc558;
 extern UnkSettings_b0158* g_unk_71726bc568;
+extern UnkMgr_0xf18* g_unk_71726bc560;  // The music manager singleton.
+extern UnkModeFlags* g_unk_71726bc570;

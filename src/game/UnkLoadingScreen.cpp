@@ -3,6 +3,7 @@
 // the loading screen. Names and layouts are placeholders.
 // Holds fn_7100e10aac (closes the loading screen) and fn_7100e0fc00 (the tips' labels).
 #include "base/UnkVector.h"
+#include "game/CBossAIComponent.h"
 #include "game/GUI/CLabel.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkRenderManager.h"
@@ -80,7 +81,6 @@ static inline UnkStruct_0x128* SceneState() {
 }
 
 // The music manager (game/sound/CMusicManager.h), created on first use.
-extern UnkMgr_0xf18* g_unk_71726bc560;
 void fn_7100fdca28(void* manager, bool);
 static inline void* MusicManager() {
     void* manager = g_unk_71726bc560;

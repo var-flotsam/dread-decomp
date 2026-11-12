@@ -4,6 +4,7 @@
 // runs fn_7100e015b8; the player's input component (+0x1d8) is then re-enabled. The mask types are
 // src/game/UnkLoadingScreen.cpp's. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CBossAIComponent.h"
 #include "game/CInputComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
@@ -15,7 +16,6 @@
 struct UnkUsableComponent2_A6_b62;
 void fn_7100aa23d4(UnkUsableComponent2_A6_b62* self);
 
-extern UnkMgr_0xf18* g_unk_71726bc560;
 // The channel mask as src/game/UnkLoadingScreen.cpp defines it (passed through a copy), and its two
 // guarded constants.
 struct UnkLoadingMask {

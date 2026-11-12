@@ -5,12 +5,12 @@
 // placeholders.
 #include "base/UnkVector.h"
 #include "game/UnkComponent.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
 extern void* g_unk_7101a6e128[];
 
 struct UnkLinkList;
-void fn_71002aeb9c(UnkLinkList* list, UnkLinkList** slot);
 
 struct UnkBreakableEntry_b49a3 {
     virtual ~UnkBreakableEntry_b49a3();

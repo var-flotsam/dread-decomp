@@ -13,8 +13,6 @@
 using base::reflection::CClass;
 using base::reflection::UnkReflObject;
 
-UnkReflObject*& fn_7100862088(base::UnkVector<UnkReflObject*>* self, u32 index);
-
 struct UnkTracker_71008618cc;
 void fn_7100d59994(UnkTracker_71008618cc* self, UnkReflObject* collider);
 void fn_7100d5a304(UnkTracker_71008618cc* self, UnkReflObject* group);

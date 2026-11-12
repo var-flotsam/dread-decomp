@@ -15,6 +15,7 @@
 #include "game/CBreakableTileGroup.h"
 #include "game/CCharacterMovement.h"
 #include "game/CGunComponent.h"
+#include "game/CInventoryComponent.h"
 #include "game/CMovementComponent.h"
 #include "game/CPlayerInfo.h"
 #include "game/CSamusGunComponent.h"
@@ -340,7 +341,6 @@ f32 fn_71007965c0(UnkRunInfo_b152* info);
 void fn_7100976940(UnkMove_b152* self);
 void fn_71009767f0(UnkMove_b152* self);
 UnkIdHolder_b152* fn_71009e7870(UnkMove_b152* self);
-bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 bool fn_7100df45ec(UnkGameManager* self);
 void fn_71002d6074(UnkLeg_b152* leg, bool flag, f32 weight);
 void fn_71009f115c();

@@ -10,6 +10,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CBossAIComponent.h"
 #include "game/GUI/CButton.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
@@ -98,7 +99,6 @@ struct UnkModeFlags {
     u8 unk_0x0[0x100];
     u32 field_0x100;
 };
-extern UnkModeFlags* g_unk_71726bc570;
 struct UnkRush_b0195;
 
 struct UnkDefinition_b0202 {

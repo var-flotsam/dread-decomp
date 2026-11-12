@@ -15,6 +15,7 @@
 #include "base/math/CVector4D.h"
 #include "base/reflection.h"
 #include "base/snd/CSoundSystem.h"
+#include "game/CBossAIComponent.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU2607.h"
@@ -136,7 +137,6 @@ struct UnkLoadingMaskTag_ovb56;
 static inline UnkLoadingMask Flipped_ovb56(const UnkLoadingMask& mask, u32 bit) {
     return UnkLoadingMask((mask.bits & bit) ? mask.bits & ~bit : mask.bits | bit);
 }
-extern UnkMgr_0xf18* g_unk_71726bc560;
 
 // Replays the environment music (fn_7100d8d854) or, with none, has the music manager switch channel 8
 // to every channel but 0x100's state flipped.

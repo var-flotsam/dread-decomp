@@ -17,6 +17,7 @@
 #include "game/SLogicPathNode.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1159.h"
+#include "game/UnkTU1161.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2560.h"
 #include "game/UnkTU32.h"
@@ -298,7 +299,6 @@ struct UnkSwarmHold_b66a4;
 struct UnkSwarmUpdate_b65a4;
 struct UnkParent_71007455dc;
 struct UnkRedenkiSwarmController;
-UnkVec3Result fn_7100745e24(UnkParent_71007455dc* parent);
 extern char g_unk_710164a408[];
 
 // As src/game/CRedenkiSwarmControllerComponent/CRedenkiSwarmControllerComponent_Update_b65a4.cpp
@@ -440,7 +440,6 @@ void fn_7100652288(UnkRedenkiStart_ovb0084* self) {
 
 struct UnkSwarmUpdate_b65a4;
 struct UnkParent_71007455dc;
-UnkVec3Result fn_7100745e24(UnkParent_71007455dc* parent);
 struct UnkObject_71002ad0dc;
 
 struct UnkRedenkiScratch_ovb0084 {

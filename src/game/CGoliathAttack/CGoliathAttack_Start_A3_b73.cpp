@@ -9,6 +9,7 @@
 #include "base/reflection/CClass.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2577.h"
 #include "game/UnkTU2702.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -22,7 +23,6 @@ void fn_71003608ac(UnkAttackBase* self);
 void fn_710058f630();
 
 struct UnkManager;
-extern UnkManager* g_unk_7101d47360;  // the sub-area manager
 
 struct UnkGoliathManager_A3_b73 {
     u8 pad_0x0[0x3f0];

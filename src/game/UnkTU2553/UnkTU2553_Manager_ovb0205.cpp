@@ -23,6 +23,7 @@
 #include "game/CBTObserverComponent.h"
 #include "game/CBlackboard.h"
 #include "game/CBombGun.h"
+#include "game/CBossAIComponent.h"
 #include "game/CCentralUnitCannonBeamMovementComponent.h"
 #include "game/CScenario.h"
 #include "game/UnkGameBlackboard.h"
@@ -316,7 +317,6 @@ struct UnkSoundGlobal_b205 {
 };
 struct UnkManager;
 struct UnkModeFlags;
-extern UnkModeFlags* g_unk_71726bc570;
 
 bool fn_7100dfaf88(UnkGameManager* manager, void* name, const CRntString& tag, bool flag) {
     UnkTgmMantain_b205* self = reinterpret_cast<UnkTgmMantain_b205*>(manager);
@@ -574,7 +574,6 @@ void fn_7100dffe04(UnkGameManager* manager, s32 value) {
 }
 
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
-extern UnkPropertyEx<> g_unk_7172759178;
 
 // ---- fn_7100e00f74
 struct UnkTgmFlagOwner_b205 {

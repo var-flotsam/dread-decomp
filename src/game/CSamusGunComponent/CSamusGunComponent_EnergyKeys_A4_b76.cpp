@@ -8,6 +8,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CCameraComponent.h"
+#include "game/CInventoryComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
@@ -16,7 +17,6 @@
 using base::reflection::UnkReflObject;
 
 struct UnkInventory;
-bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 
 extern const u64 g_unk_710164adb8;
 extern const u64 g_unk_710164adb0;

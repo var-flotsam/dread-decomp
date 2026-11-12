@@ -4,13 +4,13 @@
 // through fn_7100ee2864, then runs fn_7100d59dd8 on the manager's object at +0x930.
 // Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU2577.h"
 #include "types.h"
 
 struct UnkScenarioSub;
 struct UnkManager;
-extern UnkManager* g_unk_7101d47360;
 
 struct UnkSubAreaManager_b51 {
     u8 unk_0x0[0x930];

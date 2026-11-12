@@ -1,6 +1,7 @@
 // base::reflection::CFlagsetType's unit (tools/tu_map.py unit 78): reads a flag set's bits from a
 // file (4 or 8 bytes, as the type's size says) and sets the field with them, typed as unsigned or as
 // the 8-byte integer type. Names are placeholders.
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CRntFile.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkReflAttributes.h"
@@ -13,7 +14,6 @@ using base::reflection::CType;
 struct UnkReflField;
 struct UnkReflFieldObject;
 struct UnkReflValueArg;
-const CType* fn_7100010e58();  // an 8-byte type's getter
 
 struct UnkFlagsetType_b0068 {
     u8 pad_0x0[0x18];

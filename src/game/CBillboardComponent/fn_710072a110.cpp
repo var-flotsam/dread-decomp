@@ -5,6 +5,7 @@
 #include <algorithm>
 #include "../../../lib/libcxx/sort.h"
 #include "../../game_s7/UnkIter.h"
+#include "game/UnkTU1161.h"
 #include "types.h"
 
 // Returned through x8, so the original's result type is not trivially copyable.
@@ -17,7 +18,6 @@ struct UnkVec3Result {
 
 struct UnkObj_710072a110;
 struct UnkParent_71007455dc;
-UnkVec3Result fn_7100745e24(UnkParent_71007455dc* parent);
 
 // Both positions are temporaries of the one comparison, so they get separate stack slots. The
 // distance is written out term by term: that is the order the original computes it in.

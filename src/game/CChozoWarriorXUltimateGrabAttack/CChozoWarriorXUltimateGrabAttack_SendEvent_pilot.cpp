@@ -4,6 +4,7 @@
 // theirs from the table g_unk_71016498b8. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CInventoryComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
@@ -11,7 +12,6 @@
 #include "types.h"
 
 struct UnkInventory;
-bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 
 struct UnkOwner {
     u8 pad_0x0[0x270];

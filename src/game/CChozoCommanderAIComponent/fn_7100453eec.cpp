@@ -4,6 +4,7 @@
 // selects a float that is passed to fn_7100dcdce4 together with its integer part.
 #include "base/UnkVector.h"
 #include "game/CAutsharpAIComponent.h"
+#include "game/CBossAIComponent.h"
 #include "game/CEnemyMovement.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkTU2544.h"
@@ -98,7 +99,6 @@ struct UnkParamsLarge {
 };
 
 struct UnkModeFlags;
-extern UnkModeFlags* g_unk_71726bc570;
 extern UnkTuning* g_unk_7101a37310[];
 struct UnkTunable_71727bd078;
 extern char g_unk_71016496c0[];

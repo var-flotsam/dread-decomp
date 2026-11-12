@@ -11,6 +11,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CActorComponent.h"
+#include "game/CBossAIComponent.h"
 #include "game/CDrop.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
@@ -38,7 +39,6 @@ using base::reflection::UnkReflObject;
 struct lua_State;
 
 struct UnkMgr_0xf18;
-extern UnkMgr_0xf18* g_unk_71726bc560;
 
 // Creates the object on first use: storage from the default allocator, built by its constructor function.
 template <class T, u64 Size, void (*Ctor)(T*)>
@@ -447,7 +447,6 @@ s32 fn_7101088e00(lua_State* L) {
 struct UnkVec;
 
 struct UnkManager;
-extern UnkManager* g_unk_7101d47360;
 void fn_7100ee9bfc(void* self, const CStrId* id);
 
 s32 fn_7101083fb0(lua_State* L) {

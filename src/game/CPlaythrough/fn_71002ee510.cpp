@@ -2,6 +2,7 @@
 // owner's object at 0x70 (when it is one) to fill in.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CPlaythrough.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -19,8 +20,6 @@ struct UnkDefHolder {
     u8 unk_0x0[8];
     UnkDefOwner* owner;
 };
-
-const CType* fn_71002ee1dc();
 
 UnkReflValue fn_71002ee510(void* unused, UnkDefHolder* holder) {
     UnkDefObject* object = holder->owner->object;

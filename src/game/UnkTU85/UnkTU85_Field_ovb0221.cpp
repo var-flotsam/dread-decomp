@@ -151,8 +151,6 @@ UnkReflValue fn_71000e77dc(UnkReflField* field, const UnkReflTypedPtr* obj) {
     return r;
 }
 
-const CType* fn_7100010e58();
-
 struct UnkTypedWord85 {
     u64 value;
     const CType* type;

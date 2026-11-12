@@ -8,7 +8,6 @@
 extern char g_unk_7101a211b8[];  // vtable of the object
 
 void fn_71002aed2c(void* set, void* item);
-void fn_71002aeb9c(UnkLinkList* list, UnkLinkList** slot);
 void fn_71002aea0c(void* set, void* item);
 
 // A registration in a deferred set; removes itself on destruction.

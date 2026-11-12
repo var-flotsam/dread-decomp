@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CBossAIComponent.h"
 #include "game/sound/CMusicManager.h"
 #include "types.h"
 
@@ -15,7 +16,6 @@ using base::global::CStrId;
 using base::reflection::UnkReflValue;
 
 struct UnkMgr_0xf18;
-extern UnkMgr_0xf18* g_unk_71726bc560;
 
 struct UnkKeyData_b41a3m {
     u8 unk_0x0[0x30];

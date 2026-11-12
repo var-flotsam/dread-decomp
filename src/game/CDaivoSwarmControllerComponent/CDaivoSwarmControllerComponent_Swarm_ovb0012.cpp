@@ -9,6 +9,7 @@
 #include "game/CFlockingSwarmControllerComponent.h"
 #include "game/CRedenkiSwarmControllerComponent.h"
 #include "game/UnkNavMeshManager.h"
+#include "game/UnkTU1161.h"
 #include "types.h"
 
 using base::color::CColor4F;
@@ -118,7 +119,6 @@ struct UnkSwarmHold_b66a4;
 struct UnkSwarmUpdate_b65a4;
 // As src/game/CRedenkiSwarmControllerComponent/CRedenkiSwarmControllerComponent_Hold_b66a4.cpp declares it.
 // As src/game/CRedenkiSwarmControllerComponent/CRedenkiSwarmControllerComponent_Update_b65a4.cpp declares them.
-UnkVec3Result fn_7100745e24(UnkParent_71007455dc* parent);
 void fn_710074dda0(UnkDaivoSwarm_b0012* self, UnkSwarmMember_b0012* member);
 void fn_7100656f3c(UnkDaivoSwarm_b0012* self, UnkSwarmPath_b0012* path, const UnkVec3Result* dir, const f32* speed,
                    bool* out, const UnkZeroVec_b0012* offset, f32 radius, f32 limit);

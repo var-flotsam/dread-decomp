@@ -393,7 +393,6 @@ struct UnkModeFlags {
     u8 unk_0x0[0xb8];
     bool field_0xb8;
 };
-extern UnkModeFlags* g_unk_71726bc570;
 
 // The pooled data behind an id as its text accessor sees it: the text at +0x10 and a count of the
 // reads at +0x44 (a union member: the original reloads the id after the increment).

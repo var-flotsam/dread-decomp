@@ -11,7 +11,6 @@
 using base::global::CStrId;
 
 struct UnkManager;
-extern UnkManager* g_unk_7101d47360;
 
 struct UnkSubareaStaticZero_ovb0139 {
     u32 value;

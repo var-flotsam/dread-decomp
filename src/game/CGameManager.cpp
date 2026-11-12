@@ -5,6 +5,7 @@
 #include "base/global/CRntString.h"
 #include "base/snd/CSoundSystem.h"
 #include "game/CBTObserverComponent.h"
+#include "game/CBossAIComponent.h"
 #include "game/CCameraComponent.h"
 #include "game/CCharClassStartPointComponent.h"
 #include "game/CGameManager/CTunableGameManager.h"
@@ -531,7 +532,6 @@ struct UnkLoadingScreen;  // 0x220 bytes
 void fn_7100e100f8(UnkLoadingScreen* self, bool shown);
 struct UnkSoundHolder;  // 0x48 bytes (src/game/GUI/CIngameMenu/fn_7100b2de48.cpp)
 struct UnkMgr_0xf18;
-extern UnkMgr_0xf18* g_unk_71726bc560;  // the music manager (game/sound/CMusicManager.h)
 
 struct UnkTreeNode;  // src/engine/render/anim/CSkeletalAnimTree/fn_710014be78.cpp
 struct UnkObj_7100e01680;  // src/game_aca57c/fn_7100e01680.cpp
@@ -877,7 +877,6 @@ struct UnkModeFlags {
     u8 unk_0x0[0xb8];
     bool field_0xb8;
 };
-extern UnkModeFlags* g_unk_71726bc570;
 
 // The game manager's members the load reads (game/UnkGameManager.h leaves them as padding).
 struct UnkGameManagerLoad {

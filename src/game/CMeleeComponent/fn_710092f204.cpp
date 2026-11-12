@@ -4,6 +4,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CInventoryComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkItemProperties.h"
@@ -21,7 +22,6 @@ static inline const UnkQualifiedId& GetQualifiedId(UnkPropertyEx<>& item) {
 
 
 struct UnkInventory;
-bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 
 using UnkStateSet = UnkAnimationComponent;
 

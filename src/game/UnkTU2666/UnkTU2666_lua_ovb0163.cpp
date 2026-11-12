@@ -14,6 +14,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/snd/CSoundSystem.h"
+#include "game/CBossAIComponent.h"
 #include "game/CScenario.h"
 #include "game/GUI/CPopUpComposition.h"
 #include "game/UnkTU0.h"
@@ -346,7 +347,6 @@ struct UnkLoadingMask {
     UnkLoadingMask(u32 b) : bits(b) {}
     UnkLoadingMask(const UnkLoadingMask& o) : bits(o.bits) {}
 };
-extern UnkMgr_0xf18* g_unk_71726bc560;
 s32 fn_7101097578(const char* name);
 
 struct UnkMaskStaticZero_b0163 {
@@ -524,7 +524,6 @@ s32 fn_7101094230(lua_State* L) {
 }
 
 struct UnkManager;
-extern UnkManager* g_unk_7101d47360;
 // A bit mask passed by value (as src/game/CAnimatedCameraCtrl/CAnimatedCameraCtrl_Lifecycle_ovb0101.cpp).
 struct UnkCamMask_b0101 {
     u32 bits;

@@ -5,6 +5,7 @@
 // an 8-byte value (fn_7100010e58). Names are placeholders.
 #include <cstring>
 
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CRntFile.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
@@ -12,8 +13,6 @@
 using base::global::CRntFile;
 using base::reflection::CType;
 using base::reflection::UnkReflValue;
-
-const CType* fn_7100010e58();  // an 8-byte type's getter
 
 static inline __attribute__((always_inline)) void* ArgPtr_b61(UnkReflValue* arg) {
     if (arg->field_0x14 == 1 || *reinterpret_cast<const u64*>(arg->type + 0x18) > 8)

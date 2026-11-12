@@ -4,6 +4,7 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
+#include "game/CBossAIComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiLabel.h"
@@ -18,7 +19,6 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-extern UnkMgr_0xf18* g_unk_71726bc560;
 // The channel mask as src/game/UnkLoadingScreen.cpp defines it (passed through a copy), and its two
 // guarded constants.
 struct UnkLoadingMask {

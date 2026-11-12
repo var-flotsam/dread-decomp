@@ -8,12 +8,12 @@
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CTriggerLogicAction.h"
 #include "game/UnkTU341.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
 struct UnkLogicActionBase;
 
 struct UnkLinkList;
-void fn_71002aeb9c(UnkLinkList* list, UnkLinkList** slot);
 
 extern char g_unk_7101aa50a0[];  // CItemDestructionLogicAction
 

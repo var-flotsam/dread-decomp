@@ -3,6 +3,7 @@
 // comparison (src/game/CBillboardComponent/fn_710072a110.cpp). Names and layouts are placeholders.
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1161.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
 
@@ -16,7 +17,6 @@ struct UnkVec3Result {
 
 struct UnkObj_710072a110;
 struct UnkParent_71007455dc;
-UnkVec3Result fn_7100745e24(UnkParent_71007455dc* parent);
 
 struct UnkPlayer;
 

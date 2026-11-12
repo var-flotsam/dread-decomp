@@ -11,6 +11,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CBossAIComponent.h"
 #include "game/CCameraCtrl.h"
 #include "game/CLifeComponent.h"
 #include "game/UnkAnimationComponent.h"
@@ -29,7 +30,6 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 
-extern UnkMgr_0xf18* g_unk_71726bc560;  // the music manager (game/sound/CMusicManager.h)
 extern CStrId g_unk_7172710f30;
 extern CStrId g_unk_7172710f50 __attribute__((visibility("hidden")));
 

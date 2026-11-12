@@ -5,6 +5,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/snd/UnkSound.h"
+#include "game/CBossAIComponent.h"
 #include "game/GUI/CDialogComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
@@ -78,7 +79,6 @@ struct UnkDialogHolder {
     UnkMissionLogTarget_ovb0079* target;
 };
 
-extern UnkMgr_0xf18* g_unk_71726bc560;
 static inline void* MusicManager() {
     void* manager = g_unk_71726bc560;
     if (!manager) {

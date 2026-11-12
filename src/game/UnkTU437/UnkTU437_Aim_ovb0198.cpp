@@ -3,6 +3,7 @@
 #include "base/UnkMatrix44.h"
 #include "base/global/CStrId.h"
 #include "game/CAbilityShinespark.h"
+#include "game/CInventoryComponent.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -148,7 +149,6 @@ void fn_7100347a70(UnkAimTurn_ovb0198g* self, f32* out, f32 step, f32 b, bool fl
 // collision component's object must carry one of two ids. Names and layouts are placeholders.
 struct UnkInventory;
 struct UnkPlayer;
-bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 
 static inline const UnkQualifiedId& GetQualifiedId_ovb0198f(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = ItemQualifiedId(item);

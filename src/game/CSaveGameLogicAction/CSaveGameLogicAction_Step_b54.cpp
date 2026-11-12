@@ -9,6 +9,7 @@
 #include "base/UnkRefHandle.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CBossAIComponent.h"
 #include "game/CTriggerLogicAction.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
@@ -23,7 +24,6 @@ struct UnkModeFlags {
     u8 unk_0x0[0xb8];
     bool field_0xb8;
 };
-extern UnkModeFlags* g_unk_71726bc570;
 
 struct UnkSaveGamePair_b54 {
     u64 first;

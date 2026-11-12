@@ -92,9 +92,6 @@ static inline const UnkS16& DefaultTime() { return reinterpret_cast<const UnkS16
 static inline const UnkS12& DefaultBlend() { return reinterpret_cast<const UnkS12&>(g_unk_7172769740); }
 static inline const UnkS12& SyncBlend() { return reinterpret_cast<const UnkS12&>(g_unk_7172769770); }
 
-bool fn_7101177044(UnkStruct_7101176ea8* self, void* r, s32 idx, void* data, UnkFlags_7101176ea8 flags,
-                   const UnkS16& a, const UnkS12& b, UnkFlags_7101176ea8 c);
-
 // The track of the entry whose name hash is `key`, or null.
 static inline UnkTrack* FindTrack(UnkAnimationComponent* self, u64 key) {
     UnkTrackSet* set = self->field_0x40;

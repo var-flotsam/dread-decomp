@@ -2,6 +2,7 @@
 // manager is busy (fn_7100ded930), only when both checks of the info pass (fn_7100f10960, fn_7100f10a2c)
 // and the manager's word at +0x17c is clear; when its word at +0x180 is set, also only when the player's
 // inventory (fn_7100df55e4) holds the Varia suit (fn_71011428bc). Names and layout are placeholders.
+#include "game/CInventoryComponent.h"
 #include "game/CReserveTankInfo.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
@@ -11,7 +12,6 @@
 
 // As src/engine/HostArguments.cpp and src/game/CGun/CGun_b45.cpp declare them.
 struct UnkInventory;
-bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 
 struct UnkReserveTankInfo_b49a6;
 

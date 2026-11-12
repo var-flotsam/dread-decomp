@@ -3,11 +3,11 @@
 // channel 2 on every layer over the event's time (+0xc). The mask types are
 // src/game/UnkLoadingScreen.cpp's. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CBossAIComponent.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
-extern UnkMgr_0xf18* g_unk_71726bc560;
 // The channel mask as src/game/UnkLoadingScreen.cpp defines it (passed through a copy), and its two
 // guarded constants.
 struct UnkLoadingMask {

@@ -2,11 +2,11 @@
 // first use, game/sound/CMusicManager.h) for fn_7100fd7b44 with the values 10 and 0x40 and -1.
 // Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CBossAIComponent.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
-extern UnkMgr_0xf18* g_unk_71726bc560;
 // The channel mask as src/game/UnkLoadingScreen.cpp defines it (passed through a copy).
 struct UnkLoadingMask {
     u32 bits;

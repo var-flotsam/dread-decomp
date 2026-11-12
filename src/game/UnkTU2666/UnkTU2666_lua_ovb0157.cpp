@@ -12,6 +12,7 @@
 #include "base/reflection/UnkTunableRegistry.h"
 #include "base/snd/CSoundSystem.h"
 #include "game/CAbilityEnergyWave.h"
+#include "game/CBossAIComponent.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
@@ -204,7 +205,6 @@ s32 fn_710107a070(lua_State* L) {
 }
 
 // ---- the music manager singleton, created on first use ----
-extern UnkMgr_0xf18* g_unk_71726bc560;
 void fn_7100fd8404(void* manager, bool flag, f32 value);
 
 static inline void* MusicManager() {

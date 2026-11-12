@@ -19,6 +19,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CBossAIComponent.h"
 #include "game/UnkTU2640.h"
 #include "game/sound/CMusicManager.h"
 #include "types.h"
@@ -26,7 +27,6 @@
 // The music manager (game/sound/CMusicManager.h; 0xf18 bytes, built by fn_7100fd3804) and what
 // this unit asks of it.
 struct UnkMgr_0xf18;
-extern UnkMgr_0xf18* g_unk_71726bc560;
 void fn_7100fd5348(void* manager);
 
 static inline void* MusicManager() {

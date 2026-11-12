@@ -10,7 +10,11 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CCharClassCooldownXBossDamageShapesTrack.h"
 #include "game/CCharClassFXControlTrack.h"
+#include "game/CCharClassForceBumpFXTrack.h"
+#include "game/CCharClassIgnoreBumpFXTrack.h"
+#include "game/CCharClassModifyDamageTrack.h"
 #include "game/CCharClassToRunNearWallTrack.h"
 #include "types.h"
 
@@ -292,8 +296,6 @@ struct UnkRootIdFlag : UnkRoot {
         : UnkRoot(cls), id((SetVtable(Vtable), CStrId("", true))), field_0x20(false), field_0x24(0) {}
 };
 
-extern void* g_unk_7101aa3030[];
-extern void* g_unk_7101aa3440[];
 extern void* g_unk_7101aa3f20[];
 extern void* g_unk_7101aa3f70[];
 extern void* g_unk_7101aa41a8[];
@@ -416,8 +418,6 @@ struct UnkRootIdArrayIdWord : UnkRootIdArray<Vtable> {
         : UnkRootIdArray<Vtable>(cls), id_0x48("", true), field_0x50(0) {}
 };
 
-extern void* g_unk_7101aa2b80[];
-extern void* g_unk_7101aa7d00[];
 extern UnkClass g_unk_717277e538 __attribute__((visibility("hidden")));
 extern UnkClass g_unk_71727ac0f8 __attribute__((visibility("hidden")));
 

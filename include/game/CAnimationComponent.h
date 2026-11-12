@@ -6,6 +6,9 @@
 #include "base/reflection/CClass.h"
 #include "types.h"
 
+struct UnkFlags_7101176ea8;
+struct UnkS12;
+struct UnkS16;
 struct UnkTrack;
 struct UnkWeakTarget;
 struct UnkActionSwitcherAnimation_b48;
@@ -45,3 +48,4 @@ bool fn_71011782ec(UnkAnimationComponent* self, u64 key);
 void* fn_7101176d34(UnkStruct_7101176ea8* self, void* arg);  // The entry for a key (a name's hash).
 s32 fn_7101177da8(void* object, u64 hash);
 bool fn_710117aaac(void* cls, const base::reflection::CClass* track_class, f32 frames);
+bool fn_7101177044(UnkStruct_7101176ea8* self, void* r, s32 idx, void* data, UnkFlags_7101176ea8 flags, const UnkS16& a, const UnkS12& b, UnkFlags_7101176ea8 c);

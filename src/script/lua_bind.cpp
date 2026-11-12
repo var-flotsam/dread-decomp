@@ -30,7 +30,6 @@ using base::global::CStrId;
 struct UnkUserDataOwner;  // src/game/CGameManager.cpp
 extern char* g_unk_71726b2398;
 struct UnkManager;
-extern UnkManager* g_unk_7101d47360;  // the sub-area manager (src/game/CSubAreaManager.cpp)
 
 namespace {
 

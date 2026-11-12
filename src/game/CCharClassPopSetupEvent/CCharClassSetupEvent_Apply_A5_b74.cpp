@@ -5,11 +5,11 @@
 // placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2577.h"
 #include "types.h"
 
 struct UnkManager;
-extern UnkManager* g_unk_7101d47360;
 
 struct UnkSetupEvent_A5_b74 {
     void** vtable;

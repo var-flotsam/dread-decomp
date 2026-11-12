@@ -212,8 +212,6 @@ s32 fn_710107ba70(lua_State* L) {
     return 0;
 }
 
-bool fn_71011428bc(UnkInventory* self, const UnkQualifiedId& id);
-
 s32 fn_710108f3d0(lua_State* L) {
     alignas(8) u32 kind;
     const char* first;

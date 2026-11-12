@@ -5,6 +5,7 @@
 // registered (helpers in UnkStaticInitS7.h). Every global is reached through the GOT. Layouts are
 // placeholders.
 #include "UnkStaticInitS7.h"
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
@@ -151,7 +152,6 @@ void* fn_71000cd2a4(void*, void*);
 extern UnkConversion g_unk_7101d5c6b0;
 void* fn_71000cd338(void*, void*);
 extern UnkConversion g_unk_7101d5c6d0;
-const CType* fn_7100010e58();
 void fn_71000cd4b8();
 extern UnkConversion g_unk_7101d5c6f0;
 extern char g_unk_7101d5c710[];

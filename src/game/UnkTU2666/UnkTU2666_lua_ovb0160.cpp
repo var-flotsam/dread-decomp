@@ -15,6 +15,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "base/snd/CSoundSystem.h"
+#include "game/CBossAIComponent.h"
 #include "game/CCollisionMaterialCacheComponent.h"
 #include "game/CDrop.h"
 #include "game/CFXComponent.h"
@@ -412,7 +413,6 @@ s32 fn_710107cf40(lua_State* L) {
 struct UnkEnvironmentManager;
 
 struct UnkManager;
-extern UnkManager* g_unk_7101d47360;
 
 s32 fn_7101083ac0(lua_State* L) {
     const char* name;
@@ -558,7 +558,6 @@ s32 fn_7101088170(lua_State* L) {
 }
 
 struct UnkMgr_0xf18;
-extern UnkMgr_0xf18* g_unk_71726bc560;
 void fn_7100fdbd84(UnkMgr_0xf18* self, u32 flag);
 u32 fn_71010976c0(const char* name);
 
@@ -611,7 +610,6 @@ s32 fn_71010931b0(lua_State* L) {
 
 struct UnkInventory;
 struct UnkPlayer;
-bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 
 struct UnkLuaPlayer_b0160 {
     u8 pad_0x0[0x270];

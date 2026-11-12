@@ -3,6 +3,7 @@
 // g_unk_717273ffc0 (fn_7100de9540) and hands the member at +0x168 a counted copy of the owner's
 // (+0x18) name id at +0x30 (fn_71009d023c). Names and layouts are placeholders.
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CInventoryComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
@@ -43,7 +44,6 @@ struct UnkInventory;
 struct UnkStrIdHandle;
 using base::global::CStrId;
 void fn_7100ae986c(UnkStrIdHandle* self, const CStrId& id);
-bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 
 bool fn_71009d377c(char* self) {
     UnkPlayer* player = fn_7100dec788(g_unk_7101d47310);

@@ -13,6 +13,7 @@
 #include "game/CActorComponent.h"
 #include "game/CCharClassBaseDamageTriggerComponent.h"
 #include "game/CHeatRoomComponent.h"
+#include "game/CInventoryComponent.h"
 #include "game/CPlayerInfo.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
@@ -95,7 +96,6 @@ struct UnkStruct_710024fa0c;
 void* fn_710082e510(void* key);
 struct UnkPlayer;
 struct UnkInventory;
-bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 
 struct UnkHeatEffectVtable_ovb0083 {
     u8 pad_0x0[0x168];

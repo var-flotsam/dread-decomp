@@ -5,6 +5,10 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CTrack.h"
+#include "game/CCharClassCooldownXBossDamageShapesTrack.h"
+#include "game/CCharClassForceBumpFXTrack.h"
+#include "game/CCharClassIgnoreBumpFXTrack.h"
+#include "game/CCharClassModifyDamageTrack.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -69,9 +73,6 @@ __attribute__((always_inline)) static inline void Destroy(UnkIdListHolder<Vtable
     fn_710006b5dc(self);
 }
 
-extern void* g_unk_7101aa3030[];
-extern void* g_unk_7101aa3440[];
-
 void fn_7100c1db38(UnkIdListHolder<g_unk_7101aa3030>* self) { Destroy(self); }
 void fn_7100c274e8(UnkIdListHolder<g_unk_7101aa3440>* self) { Destroy(self); }
 
@@ -119,9 +120,6 @@ __attribute__((always_inline)) static inline void Destroy(UnkIdListIdHolder<Vtab
     self->~UnkIdListIdHolder();
     fn_710006b5dc(self);
 }
-
-extern void* g_unk_7101aa2b80[];
-extern void* g_unk_7101aa7d00[];
 
 void fn_7100c12a84(UnkIdListIdHolder<g_unk_7101aa2b80>* self) { Destroy(self); }
 void fn_7100d21ff8(UnkIdListIdHolder<g_unk_7101aa7d00>* self) { Destroy(self); }

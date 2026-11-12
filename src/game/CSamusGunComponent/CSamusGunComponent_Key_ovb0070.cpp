@@ -3,6 +3,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CCameraComponent.h"
+#include "game/CInventoryComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
@@ -12,7 +13,6 @@
 using base::reflection::UnkReflObject;
 
 struct UnkInventory;
-bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 
 static inline const UnkQualifiedId& GetQualifiedId_ovb0070(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = ItemQualifiedId(item);

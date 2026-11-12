@@ -49,3 +49,4 @@ extern UnkPropertyEx<> g_unk_717275b040;
 extern UnkPropertyEx<> g_unk_717275b080;
 extern UnkPropertyEx<> g_unk_717275b108;
 extern UnkPropertyEx<> g_unk_717275b148;
+extern UnkPropertyEx<> g_unk_7172759178;  // A blackboard property definition: its qualified id is built on first use.

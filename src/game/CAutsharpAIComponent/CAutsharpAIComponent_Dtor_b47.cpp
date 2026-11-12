@@ -2,10 +2,10 @@
 // class there: its vtable, the list link at +0x146f0, then the base destructor (fn_7100661914). Names are
 // placeholders.
 #include "game/CRobotAIComponent.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
 struct UnkLinkList;
-void fn_71002aeb9c(UnkLinkList* list, UnkLinkList** slot);
 
 // A link into a list (the links of src/game/navmesh/SNavMeshPath/fn_71002ad978.cpp): unlinked and
 // cleared on destruction.

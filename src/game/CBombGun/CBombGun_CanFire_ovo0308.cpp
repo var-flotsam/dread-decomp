@@ -8,6 +8,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CBombGun.h"
+#include "game/CInventoryComponent.h"
 #include "game/CPrimaryGun.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkAnimationComponent.h"
@@ -23,7 +24,6 @@
 using base::global::CStrId;
 
 struct UnkInventory;
-bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 // As src/game/CMissileBaseGun/CMissileBaseGun_Ammo_ovb0103.cpp declares them.
 extern char* g_unk_71726b2398;
 

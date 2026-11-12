@@ -4,6 +4,7 @@
 // point goes to the record at +0x31c (fn_7100737d4c, its flag set), fn_710073f7bc gets 1 and +0x568
 // becomes 1.5. Names and layouts are placeholders.
 #include "game/CFlockingSwarmControllerComponent.h"
+#include "game/UnkTU1161.h"
 #include "types.h"
 
 // As src/game/CRedenkiSwarmControllerComponent/CRedenkiSwarmControllerComponent_b38.cpp defines it.
@@ -15,7 +16,6 @@ struct UnkVec3Result {
     UnkVec3Result(const UnkVec3Result& o) : x(o.x), y(o.y), z(o.z) {}
 };
 struct UnkParent_71007455dc;
-UnkVec3Result fn_7100745e24(UnkParent_71007455dc* parent);
 
 // As src/game/CRedenkiSwarmControllerComponent/CRedenkiSwarmControllerComponent.cpp declares it.
 struct UnkRedenkiSwarmController;

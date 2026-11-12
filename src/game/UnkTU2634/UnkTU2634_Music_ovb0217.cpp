@@ -1,6 +1,7 @@
 // Unit 2634 (tools/tu_map.py): a callback that starts the music manager's playback (fn_7100fdb9e0)
 // while its state is 3. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CBossAIComponent.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
@@ -19,8 +20,6 @@ struct UnkMusicMgr_b0217 {
     s32 field_0x38c;
     u8 pad_0x390[0xb88];
 };
-
-extern UnkMgr_0xf18* g_unk_71726bc560;
 
 void fn_7100fcf9cc() {
     if (!g_unk_71726bc560) {

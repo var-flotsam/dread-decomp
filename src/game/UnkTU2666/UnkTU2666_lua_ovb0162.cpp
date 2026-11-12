@@ -15,6 +15,7 @@
 #include "base/snd/CSoundSystem.h"
 #include "game/CActorComponent.h"
 #include "game/CAttack.h"
+#include "game/CBossAIComponent.h"
 #include "game/CCameraComponent.h"
 #include "game/CCharClassAttack.h"
 #include "game/CInventoryComponent.h"
@@ -134,7 +135,6 @@ s32 fn_7101086cb0(lua_State* L) {
 }
 
 // ---- the music manager, created on first use ----
-extern UnkMgr_0xf18* g_unk_71726bc560;
 struct UnkMusicMode;
 
 static inline void* MusicManager() {
@@ -335,7 +335,6 @@ s32 fn_710108ef00(lua_State*) {
 
 // ---- sub-area manager, created on first use ----
 struct UnkManager;
-extern UnkManager* g_unk_7101d47360;
 void fn_7100eeb330(void* manager, CStrId* a, CStrId* b, f32 x, f32 y);
 
 static inline void* SubAreaManager() {

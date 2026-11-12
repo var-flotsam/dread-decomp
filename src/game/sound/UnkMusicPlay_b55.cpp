@@ -6,6 +6,7 @@
 // layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CBossAIComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2636.h"
 #include "game/sound/CMusicManager.h"
@@ -13,7 +14,6 @@
 #include "types.h"
 
 struct UnkMgr_0xf18;
-extern UnkMgr_0xf18* g_unk_71726bc560;
 
 struct UnkMusicRequest_b55 {
     u8 unk_0x0[0x10];

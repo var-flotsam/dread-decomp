@@ -1,6 +1,7 @@
 // CRedenkiSwarmControllerComponent: when fn_7100652554 allows it, takes the position of the object at
 // +0x470 as the swarm's target (+0x548, with the mode at +0x544 set to 1); otherwise calls
 // vf_0x2e8 with (0, 0). Names and layouts are placeholders.
+#include "game/UnkTU1161.h"
 #include "types.h"
 
 // Returned through x8, so the original's result type is not trivially copyable (as in
@@ -14,7 +15,6 @@ struct UnkVec3Result {
 };
 
 struct UnkParent_71007455dc;
-UnkVec3Result fn_7100745e24(UnkParent_71007455dc* parent);
 
 struct UnkSwarmController {
     virtual void vf_0x0();

@@ -4,6 +4,7 @@
 // at +0x10 of the object at 0x2f8 (none skips the test).
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CBossAIComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
@@ -21,8 +22,6 @@ struct UnkMgr_0xf18 {
     s32 field_0x38c;
     u8 unk_0x390[0xb88];
 };
-
-extern UnkMgr_0xf18* g_unk_71726bc560;
 
 static inline UnkMgr_0xf18* GetMgr() {
     if (!g_unk_71726bc560) {

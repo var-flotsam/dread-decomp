@@ -4,6 +4,7 @@
 // src/game/GUI/CLoadCheckPointButton/CLoadCheckPointButton_Prompt_ovb0118.cpp. Names and layouts are
 // placeholders.
 #include "base/global/CStrId.h"
+#include "game/CBossAIComponent.h"
 #include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
@@ -28,7 +29,6 @@ struct UnkModeFlags {
     u8 unk_0x0[0xb8];
     bool field_0xb8;
 };
-extern UnkModeFlags* g_unk_71726bc570;
 
 struct UnkGuiRef_ovb0136 {
     u8 pad_0x0[0x10];

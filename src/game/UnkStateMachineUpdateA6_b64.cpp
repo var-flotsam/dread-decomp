@@ -2,6 +2,7 @@
 // src/game/UnkStateMachineUpdateA5_b62.cpp, fn_7100886c10): applies the pending state, then updates the
 // current state and applies what it asked for, at most ten times, while marked busy. Names are placeholders.
 #include "game/CUsableComponent.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU1450.h"
 #include "game/UnkTU2538.h"
 #include "game/UnkTU2553.h"
@@ -208,7 +209,6 @@ void fn_7100f1380c(UnkFlagOwner_A6_b64* self, f32 dt) {
 #include "game/UnkTimelineComponent.h"
 
 struct UnkManager;
-extern UnkManager* g_unk_7101d47360;
 extern const u64 g_unk_710164b648[];
 extern const u64 g_unk_710164b650[];
 

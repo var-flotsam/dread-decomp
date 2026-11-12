@@ -3,6 +3,7 @@
 // placeholders.
 #include "UnkStaticInitS7.h"
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "game/UnkTU2577.h"
@@ -66,7 +67,6 @@ void fn_7100ee0df0(UnkEnumType* type, const CStrId& name, void*, void*, void (*)
 void fn_7100ee021c();
 extern char g_unk_71729da9e8[];
 extern char g_unk_71729da9e9[];
-const CType* fn_7100ad61f8();
 extern UnkStrIdBase g_unk_71729da9f0[9];
 
 void fn_7100ef2780() {

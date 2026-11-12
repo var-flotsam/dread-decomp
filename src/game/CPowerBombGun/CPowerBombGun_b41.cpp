@@ -3,6 +3,7 @@
 // actor the timeline key g_unk_710164ad30 and calls "OnBombEmptyPulse" on the in-game menu's HUD
 // (its vtable slot 0x1e8). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CInventoryComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
@@ -11,7 +12,6 @@
 #include "types.h"
 
 struct UnkInventory;
-bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 
 extern u64 g_unk_710164ad30[];
 

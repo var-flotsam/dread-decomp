@@ -34,9 +34,6 @@ struct UnkFlags_7101176ea8 {
 struct UnkS16 { u64 a, b; };
 struct UnkS12 { u32 a, b, c; };
 
-bool fn_7101177044(UnkStruct_7101176ea8* self, void* r, s32 idx, void* data, UnkFlags_7101176ea8 flags,
-                   const UnkS16& a, const UnkS12& b, UnkFlags_7101176ea8 c);
-
 struct UnkMaskBase_7101176ea8 {
     u8 value;
     u8 unk_0x1[3];

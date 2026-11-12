@@ -18,8 +18,6 @@ struct UnkStruct_7100861148_Collider : UnkReflObject {
     void* field_0x30;
 };
 
-UnkReflObject*& fn_7100862088(base::UnkVector<UnkReflObject*>* self, u32 index);
-
 struct UnkStruct_7100861148 {
     u8 pad_0x0[0x48];
     base::UnkVector<UnkCollisionRecord> field_0x48;
