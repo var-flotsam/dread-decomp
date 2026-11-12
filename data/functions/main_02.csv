@@ -622,7 +622,7 @@ address,size,name,name_source,subsystem,status
 0x7100216758,116,fn_7100216758,unknown,unknown,O
 0x71002167d0,140,fn_71002167d0,unknown,unknown,O
 0x710021685c,48,fn_710021685c,unknown,unknown,O
-0x710021688c,168,fn_710021688c,unknown,unknown,U
+0x710021688c,168,fn_710021688c,unknown,unknown,m
 0x7100216934,4,fn_7100216934,unknown,unknown,O
 0x7100216938,4,operator.delete,symbol,unknown,O
 0x710021693c,60,fn_710021693c,unknown,unknown,O

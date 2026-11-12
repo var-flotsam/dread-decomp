@@ -152,6 +152,32 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Nine drafts enter `src/` as verified equivalent (2026-11-12).** Of the drafts that pass
+`tools/equiv_test.py` (17 rows, 21 functions with the siblings their files hold), nine functions are in `src/`
+now as `NON_MATCHING(minor)` with a passing row in `data/equivalence.csv`: `fn_710015a0e0`, `fn_71001b7d80`,
+`fn_71001c3cdc`, `fn_7101230a00`, `fn_710021688c`, `fn_7100550e18`, `fn_7100558e14`, `fn_71000fd1d4` and
+`fn_7100af45b0`. They are the first functions to count as done without matching. One lost its barrier on the
+way (it passes and is the same kind of near-match without it).
+
+Moving them was the same hand work as any new file: 13 local declarations were replaced by the header that
+already had the symbol, one unused one went, 7 symbols went to unit headers with the tools, and one call would
+not compile to the same code with the shared declaration. What keeps the other twelve functions in `drafts/`, each
+noted in its row of `drafts/INDEX.csv`:
+- six are declared elsewhere with other types than their definition has (`fn_7100e51078` as `void*, void*` in
+  its unit header; the four of `fn_7100f98094`'s file with other parameters, a float before or after the
+  object; `fn_7101213858` as a labelled constructor). The definition passes the test, so it is the evidence
+  for settling each declaration, by hand;
+- two copy a constant that eleven and two other files declare and no unit owns (`g_unk_7101647790`,
+  `g_unk_710164be30`);
+- `fn_710019da10` compiles to other code when it takes `fn_71000791a8` from its header (three references where
+  the draft passes two pointers and a reference);
+- `fn_7100e3cee0`, a sibling in one of the files, is registers-only and could not be judged (80% of the
+  original's instructions ran);
+- two are second and third copies of `fn_7100f98094`'s file.
+
+A side effect worth a line: `fn_7100af45b0` showed that the GUI header declared its second parameter as `u32`
+where the code tests one bit; the header says `bool` now, and its two callers build to the same code.
+
 **The machine test for tier 2 exists (2026-11-12).** `tools/equiv_test.py` is the calibration scripts of
 2026-11-11 made a tool: it compiles a source, takes the functions whose only difference from the original is
 register choice or instruction order, and runs each beside the original in `tools/pcode_emu.py` under the strict
