@@ -304,14 +304,6 @@ void fn_7100ef1d24(base::UnkVector<UnkSubAreaRecord_0x188>* self, u32 n) {
 }
 
 // ---- the sub-areas' mask updates ----
-struct UnkMask {
-    u32 bits;
-    UnkMask() : bits(0) {}
-    UnkMask(u32 b) : bits(b) {}
-    UnkMask(const UnkMask& o) : bits(o.bits) {}
-};
-struct UnkSubArea;
-void fn_7100fac120(UnkSubArea* area, UnkMask mask, bool a, bool b, void* c, bool d);
 void fn_7100facf04(UnkSubArea* area, UnkMask mask, bool on);
 
 struct UnkSubAreaRec_b189 {

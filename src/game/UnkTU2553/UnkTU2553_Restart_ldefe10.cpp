@@ -13,6 +13,7 @@
 #include "game/UnkTU23.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2577.h"
+#include "game/UnkTU2656.h"
 #include "game/UnkTU315.h"
 #include "game/UnkXformNode.h"
 #include "game/nn/time.h"
@@ -34,7 +35,6 @@ struct UnkRefPtrArray;
 void fn_7100108030(UnkSoundSystem_b65a1* self, bool a, bool b);
 void fn_7100073f48(UnkRumbleManager* self, u32 a, u32 b);
 void fn_7101196bf4(UnkOwner_b0188* self, bool release);
-void fn_710105383c(void* effects);
 void fn_7101053968(void* effects, UnkVec3f* a, UnkVec3f* b, f32 x, f32 y, f32 z);
 void fn_7100ee34f0(CSubAreaManager* self);
 void fn_71010e3704(void* self);

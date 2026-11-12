@@ -29,12 +29,14 @@
 #include "base/input/UnkRumbleManager.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
+#include "game/UnkMask.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2577.h"
+#include "game/UnkTU2611.h"
 #include "game/UnkTU2739.h"
 #include "game/UnkTU315.h"
 #include "game/UnkTU365.h"
@@ -344,26 +346,6 @@ void fn_7100ee327c(CSubAreaManager* self, const CRntString& scenario, const CStr
 static inline const CStrId& FirstId(const UnkSubArea* area) { return area ? area->field_0x0 : g_unk_7101d470e0; }
 static inline const CStrId& SecondId(const UnkSubArea* area) { return area ? area->field_0x50 : g_unk_7101d470e0; }
 
-// A bit mask passed by value (copied into a temporary).
-struct UnkMask {
-    u32 bits;
-    UnkMask() : bits(0) {}
-    UnkMask(u32 b) : bits(b) {}
-    UnkMask(const UnkMask& o) : bits(o.bits) {}
-};
-template <class T>
-struct UnkMaskOf {
-    static const UnkMask& None() {
-        static UnkMask s;
-        return s;
-    }
-    static const UnkMask& All() {
-        static UnkMask s(~None().bits & 0x1ff);
-        return s;
-    }
-};
-struct UnkSubAreaMaskTag;
-
 // The camera holder fn_7100defcec gives and its current camera controller (game/UnkCameraCtrl.h).
 void fn_7100723120(void* holder);
 void fn_71010e4168(void* holder, const CStrId* id, bool flag);
@@ -387,21 +369,13 @@ struct UnkScenario {
     UnkScenarioSub* field_0x820;
 };
 
-// Helpers that take an empty value first (their callers leave x0 as it is).
-struct UnkSubAreaTag : UnkLeftoverReg {};
-void fn_7100eea4c8(UnkSubAreaTag, UnkSubArea* area, bool a, bool b, const UnkMask& mask);
-void fn_7100eea618(UnkSubAreaTag, UnkSubArea* area, bool flag);
 
 void fn_7100eead58(CSubAreaManager* self, const CStrId& prev_a, const CStrId& prev_b, const CStrId& cur_a,
                    const CStrId& cur_b);
 void fn_7100ee6d00(CSubAreaManager* self, UnkSubArea* prev, UnkSubArea* cur, UnkIdSet* set, bool flag);
 void fn_7100ee8ea4(CSubAreaManager* self, UnkIdSet* set);
-void fn_7100fac120(UnkSubArea* area, UnkMask mask, bool a, bool b, void* c, bool d);
 void fn_7100d59dd8(UnkScenarioSub* self);
-void fn_7100eeaa48(CSubAreaManager* self, const CStrId& prev_a, const CStrId& prev_b, const CStrId& cur_a,
-                   const CStrId& cur_b, bool flag);
 void fn_7100ee6884(CSubAreaManager* self);
-void fn_7100eeaed0(CSubAreaManager* self);
 void fn_7100ee62bc(CSubAreaManager* self, UnkSubArea* area);
 
 // Makes `area` the current sub-area (unless it already is and `force` is unset).

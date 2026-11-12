@@ -10,3 +10,4 @@ void fn_7101053850(void* effects, UnkVec* position, u32 flag, f32 duration, f32 
 bool fn_7101053a0c(void* effects);
 bool fn_7101053a7c(void* effects);
 bool fn_7101053a98(void* state);
+void fn_710105383c(void* effects);

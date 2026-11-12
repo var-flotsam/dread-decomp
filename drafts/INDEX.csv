@@ -151,7 +151,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100ee8470,968,drafts/game/UnkTU2577/fn_7100ee8470.cpp,control flow,44.6,127,fable1,
 0x7100ee8838,1644,drafts/game/UnkTU2577/fn_7100ee8838.cpp,calls,15.3,139,fable1,
 0x7100ee9488,616,drafts/game/UnkTU2577/fn_7100ee9488.cpp,operations,37.7,91,fable1,
-0x7100eeaed0,588,drafts/game/UnkTU2577/fn_7100eeaed0.cpp,none (it matches),100.0,0,overnight,"held back: it declares fn_7100eea4c8 taking its mask by const reference, where src/game/CSubAreaManager.cpp declares it by value"
 0x7100eebbd4,3072,drafts/game/UnkTU2577/fn_7100eebbd4.cpp,calls,11.1,551,fable1,
 0x7100f00a24,208,drafts/game/UnkTU2578/fn_7100f00a24.cpp,registers or order,98.1,1,overnight,
 0x7100f0220c,184,drafts/game/UnkTU2578/fn_7100f0220c.cpp,registers or order,97.8,1,overnight,
