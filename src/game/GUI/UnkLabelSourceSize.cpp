@@ -5,6 +5,7 @@
 #include "base/math/CVector.h"
 #include "game/UnkGuiFrames.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU1722.h"
 
 using base::math::CVector2D;
 

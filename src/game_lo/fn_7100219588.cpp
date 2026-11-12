@@ -2,6 +2,7 @@
 // whether it lands inside the scaled screen area.
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU280.h"
+#include "game/UnkTU315.h"
 #include "types.h"
 
 struct UnkStruct_7100219588_Xform {

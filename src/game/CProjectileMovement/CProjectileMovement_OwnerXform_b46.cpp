@@ -1,6 +1,7 @@
 // CProjectileMovement unit (tools/tu_map.py unit 1623): copies the owner's transform angles
 // (derived lazily, include/game/UnkXformNode.h) and translation into the movement. The layouts
 // are placeholders.
+#include "game/CProjectileMovement.h"
 #include "game/UnkXformNode.h"
 
 struct UnkProjectileOwner_b46a3 {

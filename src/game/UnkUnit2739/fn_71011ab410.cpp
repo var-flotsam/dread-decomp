@@ -3,6 +3,7 @@
 // resource type; and the unit's append to its list of pointers (fn_71011a9bb4).
 #include "base/UnkSList.h"
 #include "base/UnkResKey.h"
+#include "game/UnkTU2739.h"
 
 bool fn_71011ab410(UnkResHolder* self, const base::global::CFilePathStrId& path) {
     return UnkResHolderLoad<g_unk_716e453f78>(self, path);

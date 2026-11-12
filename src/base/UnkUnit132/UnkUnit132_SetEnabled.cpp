@@ -1,6 +1,7 @@
 // tools/tu_map.py unit 132 (beside src/base/UnkTaggedObjectDtors.cpp): two identical setters that,
 // unless locked (+0x158), pass `on` to the part at +0x20 (fn_7100206ecc), and always keep its
 // inverse as a word at +0x15c. Names are placeholders.
+#include "game/UnkTU132.h"
 #include "types.h"
 
 struct UnkPart132;

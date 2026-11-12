@@ -2,6 +2,7 @@
 // +0xac) in world space: times the parent's (its +0x8) when there is a parent (+0x158), as they are
 // otherwise. Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
+#include "game/logic/collision/CCollider.h"
 #include "types.h"
 
 struct UnkColliderParent_A5 {

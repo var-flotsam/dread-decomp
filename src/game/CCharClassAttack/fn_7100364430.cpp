@@ -1,6 +1,7 @@
 // Destructor of an object holding an array of owned objects and five string ids: deletes the
 // owned objects, releases the string ids, then frees the array.
 #include "UnkClone.h"
+#include "game/CCharClassAttack.h"
 #include "game/UnkVtable_7101a24158.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"

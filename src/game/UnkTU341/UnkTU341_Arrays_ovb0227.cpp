@@ -10,6 +10,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 using base::global::CRntString;

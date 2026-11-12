@@ -10,6 +10,7 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkResPathVec.h"
 #include "base/UnkVector.h"
+#include "base/core/CAsset.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "types.h"

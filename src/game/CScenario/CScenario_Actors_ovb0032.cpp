@@ -12,6 +12,7 @@
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPoolBody.h"
 #include "base/reflection.h"
+#include "game/CScenario.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1176.h"
 #include "game/UnkXformNode.h"

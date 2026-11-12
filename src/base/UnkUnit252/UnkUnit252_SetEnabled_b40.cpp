@@ -2,6 +2,7 @@
 // 0xe8 between two modes: enabling sets mode 2 (unless the part's kind is 1), disabling sets 1 or 0x10
 // by its kind; two flag bytes follow the choice. The stores have no type-based alias information
 // (the original reloads the part after each). Names and layouts are placeholders.
+#include "game/UnkTU252.h"
 #include "types.h"
 
 typedef u32 __attribute__((may_alias)) UnkAliasU32_252;

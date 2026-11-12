@@ -2,6 +2,7 @@
 // on, and forwards the flag to an object reached through field_0x160.
 #include "base/UnkCloneCalls.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU134.h"
 #include "game/UnkTU285.h"
 #include "types.h"
 

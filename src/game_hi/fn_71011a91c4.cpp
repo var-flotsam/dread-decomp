@@ -4,6 +4,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2739.h"
 #include "types.h"
 
 using base::reflection::CClass;

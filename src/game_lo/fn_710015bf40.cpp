@@ -2,6 +2,7 @@
 // the sign of element [7].
 #include "base/UnkMatrix44.h"
 #include "base/tunable/CTunable.h"
+#include "game/UnkTU178.h"
 #include "types.h"
 
 void fn_710015bf40(UnkMatrix44* self, f32 scale) {

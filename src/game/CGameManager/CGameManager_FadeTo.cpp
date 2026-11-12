@@ -3,6 +3,7 @@
 // is 0, then runs fn_7100df6688. Names and layouts are placeholders.
 #include "base/global/CRntString.h"
 #include "base/UnkTimedCurve.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 
