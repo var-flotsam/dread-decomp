@@ -9,7 +9,6 @@
 
 struct UnkWorld;
 struct UnkPart;
-// As src/game/CAbilityEnergyWave/fn_7100300bd0.cpp declares it.
 
 struct UnkRayVec_ovb0126 {
     f32 x, y, z;

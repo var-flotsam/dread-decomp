@@ -13,4 +13,4 @@ void fn_7100014dfc(void* self, const void* other);
 void fn_7100014d94(void* self, u32 arg);
 void fn_7100014e5c(void* self, const void* other);
 UnkMatrix44* fn_7100015508(void* matrices, u64 id);
-extern UnkSoundMgr* g_unk_7101d4d820;
+extern UnkSoundMgr* g_unk_7101d4d820;  // The sound manager: base::snd::CSoundSystem (0x400940 bytes).

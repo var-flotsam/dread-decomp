@@ -8,4 +8,4 @@
 struct UnkNode;
 void fn_7100023854(UnkNode* node);
 void fn_7100023838(void* self);
-void fn_710002384c(void* self);
+void fn_710002384c(void* self);  // The base destructor of the unit's polymorphic elements.

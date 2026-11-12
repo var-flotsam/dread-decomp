@@ -14,4 +14,5 @@ void fn_7100ee8044(CSubAreaManager* self, void* prev, void* cur, UnkIdSet* set);
 bool fn_7100eef674(void*);
 void fn_7100ef1608(void* set, const UnkSubAreaChange_b190* change);
 extern UnkTunable g_unk_71729da878;
+// The sub-area manager's constructor (0xae8 bytes; the singleton is created on first use).
 void fn_7100ee1f34(void* self);

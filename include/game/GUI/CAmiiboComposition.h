@@ -6,4 +6,4 @@
 #include "types.h"
 
 struct UnkStateSink;
-extern UnkStateSink* g_unk_717275c380;
+extern UnkStateSink* g_unk_717275c380;  // The owner of the GUI's sound selector (fn_7100fc9d78's first argument).
