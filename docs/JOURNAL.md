@@ -152,6 +152,12 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Sixth declarations pass (2026-11-12).** 159 more symbols into unit headers in one run (symbols in more than
+one file 568 to 409, extra copies 1,630 to 1,433): `tools/decl_plan.py` now also plans a declaration with a
+function-pointer type, and one with a template when a header defines the template (`base::UnkVector<u8>*` comes
+with `base/UnkVector.h`). Found on the way: the scan for the types a header defines read `template <class T>` as
+a type named `T`, and so missed every template; the parameter list is skipped now.
+
 **The id table's other views (2026-11-12).** 16 more files defined the id table under a struct name of their own
 (`UnkIdTable_b55sh`, `UnkIdTable_ovb0043`, ...), each with one slot and a constructor bound to `fn_7100031894` only
 by a comment. They use `game/UnkGameManagerIdTable.h` now (47 slots in all) and its accessor; every file builds to

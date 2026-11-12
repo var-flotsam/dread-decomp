@@ -70,8 +70,6 @@ UnkFXPathIterValue_b0068* fn_710104f1c0(UnkFXPathIterValue_b0068* self, UnkFXPat
     return self;
 }
 
-// Grows the array to at least `capacity` entries (out of line).
-
 // The entry at `index`; when growing is allowed (field_0x14), an index past the end grows the array
 // to the step's next multiple and then to index + 1 entries, value-initialising the new ones.
 UnkFXPathEntry_b0068* fn_710104ff64(base::UnkVector<UnkFXPathEntry_b0068>* self, u32 index) {

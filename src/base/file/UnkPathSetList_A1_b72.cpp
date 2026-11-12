@@ -49,8 +49,6 @@ struct UnkFilePathList {
 using UnkPathIdMember = base::UnkStrIdMemberOf<g_unk_7101d47200>;
 UnkPathIdMember* fn_710008c174(base::UnkVector<UnkPathIdMember>*, u32);
 
-// The set's index array element accessor, out of line.
-
 struct UnkPathSetNode_A1b72 {
     base::global::UnkStringData* key;
     base::UnkVector<u32> indices;  // 0x8

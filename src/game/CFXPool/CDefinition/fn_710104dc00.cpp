@@ -17,8 +17,6 @@ struct UnkFxObjectPool {
     u32 used;                                     // 0x38
 };
 
-// The element at `index`, growing the array to reach it (base::UnkVector's GrowAt, out of line).
-
 UnkFxPooledObject* fn_710104dc00(UnkFxObjectPool* self) {
     if (self->used != 0xffffffff && self->objects.count != 0) {
         u32 i = 0;
