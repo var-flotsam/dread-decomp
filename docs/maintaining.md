@@ -160,6 +160,24 @@ from the Actions tab.
 For a stacked PR (based on another PR's branch), change its base to `main` *before* merging and
 deleting the lower branch; otherwise GitHub closes it.
 
+## The weekly sampled read
+
+The checks cannot say whether a function reads as source. Once a week, read 20 of the functions that were
+decompiled that week:
+
+```sh
+python tools/sample_review.py            # the last 7 days of origin/main; seed = the ISO week
+```
+
+It prints the sample and writes `build/review/sample_<seed>.md`: each function with its file and line, the
+fake-match forms `tools/fakematch.py` sees in it, and six questions (is the comment true, are the names
+placeholders or sourced, do structs read as layouts, is anything there only to steer the compiler, does any
+line read like decompiler output, does it declare something its own way). The reader is a person, or a
+session that did not write the code. The findings go at the top of `docs/JOURNAL.md` with the seed, so the
+sample can be drawn again; a finding that holds for a run or a recipe matters more than one function's, and
+goes into the worker brief (`tools/batch/lean/worker.md`) or a check. The first read is in the journal
+(2026-11-12, seed 2026-W46).
+
 ## If game data, keys or listings get in
 
 1. Don't quote or copy it anywhere, including the issue that reports it.

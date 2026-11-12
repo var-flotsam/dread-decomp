@@ -8,6 +8,7 @@
 #  - port sweep: every src/ file for x86-64 Linux with the runner's Clang (`tools/port_sweep.py`);
 #    fails when a file does not compile.
 #  - tool tests: tools/tests (unittest), including the ones that need the project compiler.
+#    A second job runs them on Windows, without the compiler (those tests skip there).
 #
 # A pull request that changes only documentation (every changed path under docs/ or ending in .md)
 # skips the compile job; a required check counts the skipped job as passing. The `docs-only` job
@@ -108,3 +109,24 @@ jobs:
               print("FAILED", f)
           sys.exit(1 if files["failed"] else 0)
           EOF
+
+  # The tools are written and mostly run on Windows, and the job above tests them on Linux only. This runs
+  # the same tests on Windows without the project compiler: the tests that need it skip here (they run above).
+  tool-tests-windows:
+    name: tool tests (Windows)
+    needs: docs-only
+    if: >-
+      !cancelled() && (needs.docs-only.result != 'success' || needs.docs-only.outputs.docs_only != 'true')
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Python packages
+        run: python -m pip install --quiet pyelftools capstone lz4
+      - name: Tool tests (tools/tests)
+        run: python -m unittest discover -s tools/tests -t .

@@ -166,6 +166,35 @@ define privately. One form in the moved function is worth knowing: `alignas(8) u
 original's 8-byte stack slot for a 4-byte result; a plain `u32` or the callee's own `u64` differ by one or
 two instructions. `tools/fakematch.py` does not list `alignas` on a local.
 
+**Sampled read, seed 2026-W46: 20 of the week's 3,863 new hand-written functions (2026-11-12).** The gates
+prove bytes, relocation targets and declarations; none of them reads. `python tools/sample_review.py` draws
+a seeded sample of the hand-written functions that became `O`, `m` or `M` in the last seven days and writes
+a worksheet with six questions (`docs/maintaining.md`, "The weekly sampled read"). This is the first read,
+by the session that did the independent review. It is a reading of the source only: whether a comment is
+true to the binary was not checked.
+
+| Question | Of 20 |
+|---|---|
+| Reads like decompiler output | 0 |
+| Opening comment of the file describes the unit | 20; 8 functions also have a comment of their own |
+| A real-looking name that has no source | 0 |
+| Uses a struct that exists only in its file (its name carries the batch's tag, `_ovb0105`, `_b0129c`) | 18 |
+| Casts an object to another struct's name to call a function another file declares | 9 |
+| Written as offsets, not as a layout | 1 (`fn_7100e910fc`: a base pointer plus `0xd63d30` and casts; its file's comment says so) |
+| A barrier, `volatile` or an inlining attribute | 0 |
+| A form that looks like steering and that `fakematch.py` does not list | 3: a one-field struct local made to pass a constant (`fn_71001e9b54`), `(&v->data[i])[1]` for `cur[1]` (`fn_710011f95c`), `goto` shaping a countdown (`fn_71003adb60`) |
+
+What it says about the week's runs, not about single functions: the code is readable function by function and
+none of it is pasted; the cost is in the types. Eighteen of twenty functions describe their object with a
+struct of their own, and nine then cast that object to a second struct to call a neighbour. That is the
+"definitions that name a type differently" count (984) and the 1,243 extra declarations as a reader meets
+them, and it is what class-first work orders would attack (one header per class, grown by every function
+that touches it). Nothing was changed in the 20 files.
+**The tool tests also run on Windows in CI (2026-11-12).** The tools are written and mostly run on Windows
+(paths, line endings and the shell differ there), and CI ran `tools/tests` on Linux only, so a change that
+broke them on Windows showed only on the owner's machine. A second job, `tool tests (Windows)`, runs the same
+tests on `windows-latest` without the project compiler; the tests that need the compiler skip there and keep
+running in the `compile` job. It is not a required check: it reports, and a red one is a reason to look.
 **137 empty barriers did nothing and are gone (2026-11-12).** The review counted 308 empty barriers without
 the comment `CLAUDE.md` asks for. Before writing 308 comments it was worth asking what each barrier does, and
 that can be measured: take the barrier out, compile, and compare every function of the file, bytes and
