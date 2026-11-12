@@ -11,6 +11,7 @@
 #include "game/CFrozenComponent.h"
 #include "game/CLifeComponent.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTUProperty.h"
@@ -74,7 +75,6 @@ u32 fn_710115bd60(UnkEnemyLifeComponent_ovb0043* self, UnkEnemyLifeRequest_ovb00
     }
     return result;
 }
-
 
 extern void* g_unk_7101cb3b80[];
 
@@ -203,19 +203,6 @@ struct UnkTypedValue {
 };
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
-// The id table (fn_7100031894 builds it); its +0xf80 is a blackboard property name.
-struct UnkIdTable_ovb0043 {
-    UnkIdTable_ovb0043();  // fn_7100031894
-    ~UnkIdTable_ovb0043();
-    u8 pad_0x0[0xf80];
-    UnkPropertyName field_0xf80;
-};
-
-inline UnkIdTable_ovb0043& IdTable_ovb0043() {
-    static UnkIdTable_ovb0043 s_table;
-    return s_table;
-}
-
 struct UnkEnemyLifeAI3_ovb0043 {
     u8 pad_0x0[0x1260];
     CBlackboard blackboard;  // 0x1260
@@ -266,7 +253,7 @@ void fn_710115ab50(UnkEnemyLifeComponent3_ovb0043* self) {
     self->field_0x268 = false;
     if (UnkEnemyLifeAI3_ovb0043* ai = self->actor->ai) {
         CBlackboard* blackboard = &ai->blackboard;
-        UnkPropertyName* name = &IdTable_ovb0043().field_0xf80;
+        UnkPropertyName* name = &reinterpret_cast<UnkPropertyName&>(GameManagerIdTable().field_0xf80);
         UnkTypedValue v;
         f32 zero = 0.0f;
         if (CBlackboard::CSection* s = fn_71010472e0(blackboard, g_unk_71726b7cb8)) {

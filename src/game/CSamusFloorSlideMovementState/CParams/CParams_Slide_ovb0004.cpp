@@ -17,6 +17,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkGameBlackboard.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU1728.h"
@@ -308,27 +309,12 @@ bool fn_7100996e00(UnkSlideState_ovb0004* self) {
 
 // ---- fn_710099674c: the id of the slide animation ----
 
-// fn_7100031894's id table: the floor slide's ids at +0x1770 and +0x17a0.
-struct UnkIdTable_ovb0004 {
-    UnkIdTable_ovb0004();  // fn_7100031894
-    ~UnkIdTable_ovb0004();
-    u8 pad_0x0[0x1770];
-    CStrId melee_id;  // 0x1770
-    u8 pad_0x1778[0x28];
-    CStrId slide_id;  // 0x17a0
-};
-
-inline UnkIdTable_ovb0004& IdTable_ovb0004() {
-    static UnkIdTable_ovb0004 s_table;
-    return s_table;
-}
-
 const CStrId& fn_710099674c(UnkSlideState_ovb0004* self) {
     if (self->movement->field_0xf9)
-        return IdTable_ovb0004().slide_id;
+        return GameManagerIdTable().field_0x17a0;
     UnkAnimationComponent* animation = self->owner->animation;
     if (animation && fn_710117b348(animation, fn_7100cf8268()))
-        return IdTable_ovb0004().melee_id;
+        return GameManagerIdTable().field_0x1770;
     return g_unk_717273b7d0;
 }
 

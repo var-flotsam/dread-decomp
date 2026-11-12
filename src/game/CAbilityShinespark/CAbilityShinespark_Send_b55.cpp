@@ -8,6 +8,7 @@
 #include "game/CAbilityShinespark.h"
 #include "game/CSamusModelUpdaterComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTimelineComponent.h"
@@ -17,18 +18,6 @@ struct UnkIdHolder_b55sh {
     u8 pad_0x0[0x30];
     u64 id;
 };
-
-struct UnkIdTable_b55sh {
-    UnkIdTable_b55sh();  // fn_7100031894
-    ~UnkIdTable_b55sh();
-    u8 pad_0x0[0x1d78];
-    UnkIdHolder_b55sh* field_0x1d78;
-};
-
-inline UnkIdTable_b55sh& IdTable_b55sh() {
-    static UnkIdTable_b55sh s_table;
-    return s_table;
-}
 
 extern const u64 g_unk_7101648e88;
 
@@ -56,7 +45,7 @@ static inline __attribute__((always_inline)) void Send_b55sh(void* target, u64 h
 void fn_710032f9b0(UnkShinespark_b55* self, s32 kind) {
     UnkShinesparkActor_b55* actor = self->link->actor;
     if (actor->field_0x210)
-        Send_b55sh(actor->field_0x220, IdTable_b55sh().field_0x1d78->id);
+        Send_b55sh(actor->field_0x220, reinterpret_cast<UnkIdHolder_b55sh*>(GameManagerIdTable().field_0x1d78.data)->id);
     if (kind != 4)
         fn_7100d7c94c(reinterpret_cast<UnkActor*>(self->link->actor), &g_unk_7101648e88);
 }

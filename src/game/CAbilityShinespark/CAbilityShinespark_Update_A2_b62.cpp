@@ -4,6 +4,7 @@
 // its +0x220 the id at +0x30 of the id table's entry at +0x1d78 (as fn_710032f9b0,
 // src/game/CAbilityShinespark/CAbilityShinespark_Send_b55.cpp). Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
@@ -18,18 +19,6 @@ struct UnkIdHolder_b62a2 {
     u8 pad_0x0[0x30];
     u64 id;
 };
-
-struct UnkIdTable_b62a2 {
-    UnkIdTable_b62a2();  // fn_7100031894
-    ~UnkIdTable_b62a2();
-    u8 pad_0x0[0x1d78];
-    UnkIdHolder_b62a2* field_0x1d78;
-};
-
-inline UnkIdTable_b62a2& IdTable_b62a2() {
-    static UnkIdTable_b62a2 s_table;
-    return s_table;
-}
 
 struct UnkShinesparkActor_b62a2 {
     u8 pad_0x0[0x210];
@@ -87,7 +76,7 @@ start:
     UnkShinesparkActor_b62a2* actor = self->link->actor;
     if (actor->field_0x210) {
         void* target = actor->field_0x220;
-        u64 id = IdTable_b62a2().field_0x1d78->id;
+        u64 id = reinterpret_cast<UnkIdHolder_b62a2*>(GameManagerIdTable().field_0x1d78.data)->id;
         send_mode.id = 0;
         send_mask.id = UnkAll_SpitSend().value;
         fn_7101176690(target, id, 0xf4061ff25a2163d6, &send_mode, &g_unk_710164b958, &g_unk_7172769740, &send_mask);

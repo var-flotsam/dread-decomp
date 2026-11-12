@@ -6,24 +6,13 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "types.h"
 
 struct UnkIdHolder_b50gb {
     u8 pad_0x0[0x30];
     u64 id;
 };
-
-struct UnkIdTable_b50gb {
-    UnkIdTable_b50gb();  // fn_7100031894
-    ~UnkIdTable_b50gb();
-    u8 pad_0x0[0xd30];
-    UnkIdHolder_b50gb* field_0xd30;
-};
-
-inline UnkIdTable_b50gb& IdTable_b50gb() {
-    static UnkIdTable_b50gb s_table;
-    return s_table;
-}
 
 // The answer, built in place (not trivially copyable: returned in memory).
 struct UnkGrappleAnswer_b50 {
@@ -57,7 +46,7 @@ struct UnkGrappleBeam_b50 {
 
 UnkGrappleAnswer_b50 fn_710081b920(UnkGrappleBeam_b50* self) {
     UnkGrappleAnswer_b50 answer;
-    u64 id = IdTable_b50gb().field_0xd30->id;
+    u64 id = reinterpret_cast<UnkIdHolder_b50gb*>(GameManagerIdTable().field_0xd30.data)->id;
     if (UnkAnimationComponent* animation = self->link->owner->animation) {
         UnkTrackQuery query = {fn_7100c5aedc(), nullptr, -1.0f};
         if (fn_710117b08c(animation, &query))
