@@ -172,7 +172,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100e911c8,196,drafts/game/UnkTU2566/fn_7100e911c8.cpp,registers or order,98.0,1,overnight,
 0x7100e94e10,552,drafts/game/UnkTU2566/fn_7100e94e10.cpp,registers or order,98.6,2,pilot50,one fmul/fadd register (s3 vs s0)
 0x7100e97c60,812,drafts/game/UnkTU2566/fn_7100e97c60.cpp,conditions,93.1,14,lean,
-0x7100e98090,408,drafts/game/UnkTU2566/fn_7100e98090.cpp,registers or order,43.1,58,pilot50,register assignment only
+0x7100e98090,408,drafts/game/UnkTU2566/fn_7100e98090.cpp,registers or order,43.1,58,pilot50,register assignment only; holds an empty barrier (without it: operations 41.2%)
 0x7100e9c06c,492,drafts/game/UnkTU2566/fn_7100e9c06c.cpp,registers or order,92.7,9,overnight,
 0x7100e9d6f8,260,drafts/game/UnkTU2566/fn_7100e9d6f8.cpp,registers or order,96.9,2,overnight,
 0x7100ea1b94,484,drafts/game/UnkTU2566/fn_7100ea1b94.cpp,operations,14.9,99,pilot50,branch layout/loop merging differs; operations KIND

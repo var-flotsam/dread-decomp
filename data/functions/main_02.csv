@@ -3824,7 +3824,7 @@ address,size,name,name_source,subsystem,status
 0x71002b0e78,312,fn_71002b0e78,unknown,unknown,U
 0x71002b0fb0,188,fn_71002b0fb0,unknown,unknown,O
 0x71002b106c,516,fn_71002b106c,unknown,unknown,U
-0x71002b1270,212,fn_71002b1270,unknown,unknown,U
+0x71002b1270,212,fn_71002b1270,unknown,unknown,O
 0x71002b1350,140,fn_71002b1350,unknown,unknown,O
 0x71002b13dc,792,fn_71002b13dc,unknown,unknown,U
 0x71002b16f4,172,fn_71002b16f4,unknown,unknown,O

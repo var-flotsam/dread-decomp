@@ -26,6 +26,15 @@ is for that reason: parallel workers must not edit shared headers, and the coord
 
 Rewrite the briefs and the coordinator against the new rules before running anything from here.
 
+**Update, 2026-11-12 (later): a pilot batch of 50.** The lean kit ran on 50 ready boot-path functions with the
+owner's go-ahead (`docs/JOURNAL.md`, "Pilot batch of 50 functions"): 8 matches, 10 registers-only near-matches,
+about 736,000 tokens per match. For a coordinator the run showed three things. The step after the workers is
+not only mechanical: of three copied symbols the tools moved one, and the other two needed three files edited
+by hand. `coord.py commit` keeps a worker's `NON_MATCHING(minor)` file in `src/`; the pilot's coordinator moved
+those to `drafts/` instead, where the earlier runs' registers-only drafts are, and committed by hand. And
+`worker.md` and `declfile.py` now tell a worker to declare a callee with the types its definition has, because
+`tools/decl_check.py --base` fails a new difference since #394.
+
 ## What is here
 
 | Path | What it is |

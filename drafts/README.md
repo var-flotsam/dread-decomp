@@ -37,6 +37,9 @@ a generated file: regrade a draft rather than trust its row.
 | Nothing: it matches, but is held back (see its note in `INDEX.csv`) | 2 | 0.9 KB |
 | Total | 197 | 99.5 KB |
 
+A pilot batch on 2026-11-12 added 42 more (`from` = `pilot50` in `INDEX.csv`; not in the table above): 10 registers
+or order only, 20 other instructions, 7 control flow, 5 number of calls; 6 of the 42 at 90% or better.
+
 154 of the 197 are at 90% similarity or better. Two more drafts matched cleanly and went to `src/`
 (`fn_7100ad3404`, `fn_7100df81fc`). The two held back then (`fn_7100df31b8`, `fn_7100eeaed0`) went to `src/` on 2026-11-12, once the
 declarations they disagreed with were settled; so did four of the five matches the 40-function test
