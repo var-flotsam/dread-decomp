@@ -214,6 +214,20 @@ static inline __attribute__((always_inline)) void SetScreen(UnkTgmScreen_b205* s
     self->flags.field_0x2 = c;
 }
 
+// The same with the id passed by value, and no extra record.
+static inline __attribute__((always_inline)) void SetScreenCopy(UnkTgmScreen_b205* self, s32 mode, u32 value, bool a,
+                                                                bool keep, CStrId id, bool c) {
+    SetScreen(self, mode, value, a, keep, &id, c);
+    if (!self->flags.field_0x108)
+        fn_7100dec7a0(self);
+}
+
+// Sets screen mode 1 with `value`.
+void fn_7100df31b8(UnkGameManager* manager, bool a, bool keep, u32 value, CStrId id, bool c) {
+    UnkTgmScreen_b205* self = reinterpret_cast<UnkTgmScreen_b205*>(manager);
+    SetScreenCopy(self, 1, value, a, keep, id, c);
+}
+
 void fn_7100df3300(UnkTgmScreen_b205* self, s32 mode, u32 value, bool a, bool keep, const CStrId* id, bool c, void* x7) {
     SetScreen(self, mode, value, a, keep, id, c);
     if (x7) {

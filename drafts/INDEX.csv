@@ -131,7 +131,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100dcafbc,444,drafts/game/UnkTU2544/fn_7100dcafbc.cpp,registers or order,98.2,2,overnight,
 0x7100dcbd88,476,drafts/game/UnkTU2544/fn_7100dcbd88.cpp,registers or order,99.2,1,overnight,
 0x7100dd2ca8,1260,drafts/game/UnkTU2545/fn_7100dd2ca8.cpp,control flow,46.4,168,lean,
-0x7100df31b8,328,drafts/game/UnkTU2553/fn_7100df31b8.cpp,none (it matches),100.0,0,overnight,"held back: it also defines fn_7100df3300 and fn_7100df3418, which src/game/UnkTU2553/UnkTU2553_Manager_ovb0205.cpp defines, and declares fn_7100400364 with other parameter types than two files in src/"
 0x7100e13abc,328,drafts/game/UnkTU2557/fn_7100e13abc.cpp,registers or order,96.3,3,overnight,
 0x7100e1cbdc,148,drafts/game/UnkTU2560/fn_7100e1cbdc.cpp,operations,94.6,2,overnight,
 0x7100e1d620,368,drafts/game/UnkTU2560/fn_7100e1d620.cpp,operations,94.6,5,overnight,

@@ -524,7 +524,7 @@ struct UnkEmmyGrabAttack_A3_b67;
 struct UnkPlayer;
 struct UnkOwner;
 bool fn_7100df34c8(UnkGameManager* self, void* a, void* b, void* c, void* d, bool e, bool f);
-void fn_7100df31b8(UnkGameManager* self, u32 a, bool b, bool c, CStrId id, u32 d);
+void fn_7100df31b8(UnkGameManager* self, bool a, bool keep, u32 value, CStrId id, bool c);
 struct UnkGrabAttack_b58a3;
 
 struct UnkGrabPart_ovb0014 {
@@ -563,7 +563,7 @@ void fn_710050c06c(UnkGrabAttack10_ovb0014* self) {
         fn_7100507d24(reinterpret_cast<UnkGrabAttack_b58a3*>(self));
         return;
     }
-    fn_7100df31b8(g_unk_7101d47310, 1, false, true, g_unk_7101d470e0, 1);
+    fn_7100df31b8(g_unk_7101d47310, true, false, 1, g_unk_7101d470e0, true);
     fn_71005068c8(reinterpret_cast<UnkEmmyGrabAttack_A3_b67*>(self), 50.0f, 350.0f, 242.0f, false, true);
     auto* ai = static_cast<base::reflection::UnkReflObject*>(self->owner->field_0x240);
     auto* emmy = ai && fn_710009d50c(ai->vf_0x0(), fn_710053b934()) ? reinterpret_cast<UnkEmmyAI_b61*>(ai) : nullptr;

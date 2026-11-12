@@ -100,10 +100,10 @@ s32 fn_7101077360(lua_State* L) {
     return 0;
 }
 
-void fn_7100df31b8(UnkGameManager* self, u32 a, bool b, bool c, CStrId id, u32 d);
+void fn_7100df31b8(UnkGameManager* self, bool a, bool keep, u32 value, CStrId id, bool c);
 
 s32 fn_710107a2f0(lua_State*) {
-    fn_7100df31b8(g_unk_7101d47310, 1, false, true, g_unk_7101d470e0, 0);
+    fn_7100df31b8(g_unk_7101d47310, true, false, 1, g_unk_7101d470e0, false);
     return 0;
 }
 

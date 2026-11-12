@@ -538,7 +538,7 @@ struct UnkMgr_0xf18;
 extern UnkMgr_0xf18* g_unk_71726bc560;  // the music manager (game/sound/CMusicManager.h)
 extern void* g_unk_7101d47330;
 
-void fn_7100df31b8(UnkGameManager* self, u32 a, bool b, bool c, CStrId id, u32 d);
+void fn_7100df31b8(UnkGameManager* self, bool a, bool keep, u32 value, CStrId id, bool c);
 struct UnkTreeNode;  // src/engine/render/anim/CSkeletalAnimTree/fn_710014be78.cpp
 struct UnkObj_7100e01680;  // src/game_aca57c/fn_7100e01680.cpp
 void* fn_7100e0189c(void* start_point);
@@ -653,7 +653,7 @@ void fn_7100df19c0(UnkGameManager* self) {
             fn_71011a2770(self->field_0x608, RefObject(steps->field_0x29a0));
             fn_71011a2770(self->field_0x608, RefObject(steps->field_0x29a8));
             fn_71011a2770(self->field_0x608, RefObject(steps->field_0x29b0));
-            fn_7100df31b8(self, 0, true, true, g_unk_7101d470e0, 0);
+            fn_7100df31b8(self, false, true, 1, g_unk_7101d470e0, false);
             auto* first = static_cast<UnkLoadedObject*>(RefObject(steps->field_0x2998));
             auto* second = static_cast<UnkLoadedObject*>(RefObject(steps->field_0x29a0));
             if (first && !first->field_0x1b2)
