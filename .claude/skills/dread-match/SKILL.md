@@ -1,117 +1,121 @@
 ---
 name: dread-match
-description: Hand-match Metroid Dread functions in var-flotsam/dread-decomp on one address slice, near copies first, in a tight compile-and-diff loop with batched PRs.
+description: Hand-match Metroid Dread functions in var-flotsam/dread-decomp one at a time in a compile-and-diff loop, and place each result by the proof tiers (match, verified equivalent, draft), with the checks a pull request must pass.
 ---
 
 # dread-match
 
-Fast, cheap hand-matching for `var-flotsam/dread-decomp`. One session owns one address slice
-and nothing else, so many sessions can run at once. Read nothing else unless stuck:
-not `docs/HANDOFF.md`, not the other streams' notes. `CLAUDE.md` loads by itself; its hard
-rules still apply.
-The same text works as a pasted prompt in a session without this skill: fill in the inputs.
+Hand-matching for `var-flotsam/dread-decomp`: one session, one function at a time, a pull request per
+cluster. `CLAUDE.md` loads by itself and its hard rules apply; this is the working procedure under them.
+(A batch of worker agents is a different thing: `tools/batch/lean/`, and it needs the owner's go-ahead.)
+
+Run Python as `.venv/Scripts/python` from the repository root (Git Bash; forward slashes). Long commands
+(`tools/verify.py`, `tools/check.py`: 8 to 13 minutes) go in the background; don't edit `src/` or `include/`
+while one runs.
 
 ## Inputs (ask once if missing)
-- `SLICE`: `LO-HI` hex addresses, and the source folder `src/game_<LO>/` (create it).
-- `BRANCH`: the branch to push to. Whether you may merge your own PRs (default: no).
 
-## Choosing slices (once, by whoever launches the sessions)
-Split the `U` bytes evenly so each session gets the same amount of work:
-```sh
-N=8; cat data/functions/main_*.csv | awk -F, -v N=$N '$6=="U" && $2>=36 && $2<=2048 && $5!~/^(script|engine)/{a[++n]=$1;s[n]=$2;t+=$2} END{k=1;printf "0x7100000000";for(i=1;i<=n;i++){c+=s[i];if(c>=t*k/N&&k<N){printf " %s",a[i+1];k++}}print " 0x7200000000"}'
-```
-Give each session one adjacent pair as `LO-HI`, its own branch, and never two sessions the same slice.
+- What to match: a unit, a class, or a list from `python tools/hubs.py --version 2.1.0 --ready --boot`
+  (functions on the boot path whose callees are done).
+- The branch: `claude/<topic>-<YYYYMMDD>`, from `origin/main`.
 
 ## Hard rules (short form)
-- No game data in git: nothing from `orig/` or `build/`, no disassembly, no `asmdiff -v` or
-  Ghidra output in files, commits or PR text. Scratch work goes in `build/` (gitignored).
-- `src/` is your own C++. Placeholder names (`fn_<addr>`, `field_0x18`, `UnkFoo_0x40`).
-- Never `--no-verify`. Never edit generated dirs (`src/reflection*/`, `src/clones/`,
-  `src/lifted/`, `src/tables/`), `include/`, `tools/`, `CLAUDE.md` or `docs/`.
-- Define only functions whose address is inside your slice, and only in your folder.
-  Helpers you need go in a header in your folder (`#include "UnkFoo.h"`). You may include
-  any existing header, never edit one.
-- No subagents. One function at a time.
 
-## Setup (Linux cloud, ~5 min)
+- No game data in git: nothing from `orig/` or `build/`, no disassembly, no `trymatch -v` or Ghidra output
+  in files, commits or pull request text. Scratch work goes in `build/` (gitignored).
+- `src/` and `include/` are your own C++. Placeholder names (`fn_<addr>`, `g_unk_<addr>`, `field_0x18`,
+  `UnkFoo`) unless RTTI, reflection, strings or mercury-engine-data-structures give the real one.
+- Never `--no-verify`. Never edit a generated directory (`src/reflection*/`, `src/clones/`, `src/lifted/`,
+  `src/tables/`): change its generator.
+
+## Where the function goes
+
+- `python tools/tu_map.py --function <addr>` prints the unit and the folder for a new source
+  (`src/<subsystem>/<Class>/`). Name the file for the class or unit and what the function does. No
+  address-named directories.
+- **Declarations: one per shared symbol.** Before declaring a callee or global:
+  `python tools/decl_check.py --symbol fn_<addr>`. If a header under `include/` declares it, include that
+  header. If other sources declare it, it belongs in a unit header: add it there and remove the copies
+  (`.claude/skills/dread-hubs`), don't add another copy. Only a symbol this file alone uses is declared in the
+  file. Where a source defines the callee, declare it with the definition's types.
+- A global reached through a GOT slot is declared as its target (`g_unk_<target address>`), never named
+  after the slot.
+
+## Loop
+
 ```sh
-unzip -q <dread-cloud-2.1.0.zip> -d .        # the user's private inputs: orig/ and build/
-python3 tools/nso2elf.py orig/2.1.0/exefs/main orig/2.1.0/main.elf
-git config core.hooksPath tools/hooks && git submodule update --init
-pip install lz4 mercury-engine-data-structures capstone pyelftools
-T=~/dread-decomp/toolchains; mkdir -p $T && cd $T && curl -LO https://github.com/llvm/llvm-project/releases/download/llvmorg-9.0.1/clang+llvm-9.0.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz \
-  && tar xf clang+llvm-9.0.1-*.tar.xz && mv clang+llvm-9.0.1-x86_64-linux-gnu-ubuntu-16.04 llvm-9.0.1 && cd -
-python3 tools/fetch_sources.py   # libc++ 9.0.1 headers
-export PATH=$HOME/dread-decomp/toolchains/llvm-9.0.1/bin:$PATH     # llvm-cxxfilt
-python3 tools/check.py --version 2.1.0 | tail -3                   # must report 0 failures
+python tools/trymatch.py --version 2.1.0 <file.cpp>       # score per function, RELOC and KIND lines
+python tools/trymatch.py --version 2.1.0 <file.cpp> -v    # side by side; read only
+python tools/gen_lift.py --version 2.1.0 --best <addr>    # the closest lifted draft, as a starting point to rewrite
+python tools/nearcopy.py --version 2.1.0 <LO> <HI>        # U functions that are near copies of matched ones
+python tools/ghidra/decompile.py --version 2.1.0 <addr>   # Ghidra's view; read only, never copied
 ```
-On the owner's Windows PC everything is installed: use `.venv/Scripts/python` for `python3`,
-run `verify.py` in the background (8-13 min, longer than a foreground command's timeout), and
-edit files with the Edit tool or Python, not `sed -i` (Git Bash). Skip to the loop. If the zip path is unknown, ask; never download game data.
 
-## Pick candidates (best yield first)
-1. Run `python3 tools/nearcopy.py --version 2.1.0 LO HI` (~20 s; never while `verify.py` runs, which rewrites the
-   CSVs). Each line: similarity, size, the `U` function, the closest `O` function of the same
-   size, `refs` (calls and data targets that differ) and the file defining the original.
-2. Work top-down, skipping rows whose original is in a generated dir (`src/clones/`,
-   `src/lifted/`, `src/reflection*/`): list those in `build/generated_copies.txt` for the report.
-   A 100% row still usually differs in struct offsets or element sizes: expect 2-4 compiles.
-3. **Check refs before trusting a match.** `trymatch`/`check.py` mask relocated fields, so a copy
-   that calls the wrong function or reads the wrong global still scores `O`. When `refs > 0`,
-   run `python3 tools/nearcopy.py --version 2.1.0 --refs U O` and declare the copy's own callees (`fn_<addr>`)
-   and data (`unk_<addr>`) in the differing positions (for example the FilePathStrId pool
-   instead of the StrId pool). Do this before committing every copy.
-4. Put a family (one original, several copies) in one file: a template or macro instantiated
-   per copy, the first comment line naming the original.
-5. When near copies run below ~80%, take plain `U` functions of 128 B-1.5 KB in the slice
-   (`data/functions/main_XX.csv`, status `U`, skip `script/` and `engine/` subsystems) and
-   start from `python3 tools/gen_lift.py --version 2.1.0 --best ADDR,...`
-   (writes `build/lift_best/fn_<addr>.cpp`, ~3 s; give it real types before keeping it).
-6. Rerun `tools/nearcopy.py` after each merged batch: new `O` functions expose new copies.
+Fix in the order the `KIND` line gives: calls, control flow, conditions, operations, registers. A `RELOC`
+line means a callee, global or GOT slot is not the original's: fix that before anything else, whatever the
+score. Change one thing per compile. A near copy of a matched function still has its own callees and
+globals: declare the copy's, not the original's.
 
-## Loop per function
-```sh
-python3 tools/trymatch.py --version 2.1.0 src/game_<LO>/fn_<addr>.cpp      # score per function
-python3 tools/trymatch.py --version 2.1.0 src/game_<LO>/fn_<addr>.cpp -v   # side-by-side, read only
-```
-Exit 0 means every function in the file is byte-identical with relocations masked (so check
-refs, step 3 above). `-v` is long: `| grep "!!"` shows only the differing lines.
-Change one thing per compile. Known levers, all found in this codebase:
-- Wrong inlining: `__attribute__((always_inline))` on the helper, or `flatten` on a
-  wrapper the compiler refuses to inline into; `visibility("hidden")` for unit-local callees.
-- Merged or reordered loads/stores: a user-written move/copy constructor instead of the
-  implicit one, `may_alias` word types, or `asm("" : "+r"(p));` to pin an address.
-- Globals reached through the GOT are plain `extern char unk_<addr>[];` declarations.
-- Loop indices are often `u64`; parameters by reference vs value change the frame.
-- Stack order follows declaration order of locals.
-- Float `fmin`+`b.lt` vs `fminnm`+`b.mi`: write the comparison out by hand.
+What usually moves a function, all of it ordinary source: the type and signedness of a local or a field
+(`u64` loop indices), a parameter by reference or by value, the order of declarations (stack order follows
+it) and of statements, a comparison written the other way round, an inline helper the original clearly had.
 
-## Stop rule
-Time-box each function to 20 minutes or 8 compiles without a better score, whichever is
-first. Then delete it (do not commit `NON_MATCHING`: only `O` counts toward progress),
-append `addr score reason` to `build/stuck.txt`, and move on. Never come back in the same
-session. If three functions in a row get stuck, switch to the next family.
+**Readable first.** Don't add a barrier (`asm("" : "+r"(x))`), `volatile`, an empty `if`, an inlining
+attribute, a union around a member, an untyped store or an offset cast only to change what the compiler
+emits. One of these usually stands for a missing helper, a wrong field type or two variables merged into one:
+look for that. `python tools/fakematch.py --base origin/main --list` shows what the branch added. Readability
+outranks a match: if the function matches only with one of them, the version without it is the one to keep.
 
-## Verify and batch
-Every 15-30 matched functions (or ~2 hours):
+## When it does not match (about 30 to 60 minutes a function)
+
+What the last `KIND` line says decides where the function goes.
+
+1. **`registers`** (the same instructions in another order or with other registers):
+   - `python tools/permute.py --version 2.1.0 <file.cpp>:<addr> --write` tries source reorderings for a
+     couple of minutes of CPU. About one in nine becomes a match; read what it changed.
+   - Still registers-only: put `// NON_MATCHING(minor): <what differs>` above the definition and run
+     `python tools/equiv_test.py --version 2.1.0 <file.cpp> --write`. A `pass` makes it *verified equivalent*:
+     it stays in `src/` and counts as done (the row in `data/equivalence.csv` is the proof; `check.py` fails
+     it when the code changes).
+2. **Anything else, or no `pass`:** it does not count. Keep it in `src/` as `NON_MATCHING(minor)` only if you
+   are sure the behaviour is identical, or as `NON_MATCHING(major)` with the difference spelled out, when the
+   port needs the function. Otherwise it is a draft:
+   `python tools/drafts.py --version 2.1.0 add <file.cpp> <addr> --from <topic> --note "<what differs>" --remove`
+   files it under `drafts/` with a graded row, where nothing builds it and the work is not lost.
+3. A `NON_MATCHING(minor)` function that calls or refers to something the original does not (or lacks
+   something it has) names it in its note, by address or import name, with why it is harmless.
+   `python tools/ref_check.py --version 2.1.0 <file.cpp>` lists what differs; `check.py` fails an unnamed one.
+
+Reflection boilerplate (`refl_GetClass`, `refl_InitClass`) is the exception: it must match, through the
+shared template.
+
+## Before the pull request
+
+Every 15 to 30 functions, or a hub cluster:
+
 ```sh
 git fetch origin main && git merge origin/main
-git checkout origin/main -- data/functions    # only on a CSV conflict; never hand-merge them
-python3 tools/verify.py --version 2.1.0       # check --update + progress + policy
+python tools/verify.py --version 2.1.0                    # generators, check --update, progress, policy, decl_check
+python tools/decl_check.py --strict --base origin/main    # no new copy, conflict or type difference
+python tools/name_check.py --strict
+python tools/port_sweep.py --jobs 8                       # the sources still compile for x86-64
+python -m unittest discover -s tools/tests -t .           # when a tool changed
 ```
-It must end in PASS with no regressions (its "O a -> b" banner compares against its own
-baseline, not the CSVs; trust the regression line and the progress %) and no duplicate definitions (a duplicate means
-another slice or a generator already defines it: delete yours). Then commit only your folder,
-`data/functions/*.csv` and any `src/lifted/` deletions `verify.py` made (its prune step):
-```sh
-git add src/game_<LO>/ data/functions/ src/lifted/ && git commit -m "Phase 4.4: slice <LO> near copies, batch N (K functions)"
-git push -u origin BRANCH
-```
-Open one PR per batch to `main` (fill the repo's PR template; give progress before -> after
-from `verify.py`). Merge only if the user allowed it in this session, with a merge commit,
-after `verify.py` passed on the merged branch. Start the next batch from the updated branch.
-Do not edit `docs/HANDOFF.md`; the PR body is the record.
+
+`verify.py` must end in PASS: no `REGRESSION`, `DUPLICATE`, `EQUIV`, `REFS` or hand-written `RELOC` line. On
+a conflict in `data/functions/`, take `origin/main`'s files and let `check.py --update` derive the statuses
+again; never merge them by hand. Then:
+
+- Commit with a `Phase 4.x:` prefix. Add an entry at the top of `docs/JOURNAL.md` (what matched, what did
+  not and why, anything reusable). Leave `docs/HANDOFF.md` alone unless you are the session that merges.
+- `git push -u origin <branch>`, then open the pull request with the template's headings (What this changes
+  / Progress / Checklist); give matching and done before and after from `tools/progress.py`.
+- **Who merges:** the coordinator of the work. If this session is, merge once the required checks are green
+  with `gh pr merge <n> --merge`, never `--admin`; then regenerate the handoff table and the status card
+  (`tools/progress.py --slice boot --handoff`, `tools/status_card.py --write`) on the next branch. A sweeping
+  change of `main` is the owner's to merge.
 
 ## Report
-At the end (or when the user's limit nears): functions matched, KB, progress %, PR links, and
-the top of `build/stuck.txt` in one short message.
+
+Functions matched, verified equivalent, filed as drafts (with the common reasons), progress before and
+after, and the pull request links, in one short message.

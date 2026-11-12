@@ -27,6 +27,7 @@ tools/decl_check.py              fn_/g_unk_ declarations in several files or wit
 tools/equiv_test.py              tier 2: runs a registers-only non-match beside the original; verdicts in data/equivalence.csv
 tools/ref_check.py               wrong addresses in non-matching functions: what each calls and refers to, against the original
 tools/permute.py                 cheap permuter: reorders a registers-only near-match's source until it matches; --write
+tools/drafts.py                  drafts/: add (file a non-match, graded), grade (regrade rows), promote (move to src/ when earned)
 tools/baseline.py                trymatch output snapshot, compare and restore for a file set (headers expand to includers)
 tools/hub_migrate.py             mechanical canonical-header migration on top of baseline.py; LEFT lines are the hand work
 tools/tu_map.py                  translation-unit map from .init_array + reflection groups -> data/tu_map.csv; --function
@@ -36,7 +37,7 @@ tools/sigmatch.py                names vendored-library functions in main -> dat
 tools/gen_reflection.py, refl_attrs.py, gen_types.py, gen_statics.py, gen_clones.py, gen_tables.py, gen_lift.py
                                  generators (maintenance); regenerate, never hand-edit their output
 tools/policy_check.py, hooks/    content rules (CI and pre-commit)
-tools/batch/                     the agent-run kits of 2026-11 as they were run (a record; README.md there)
+tools/batch/                     lean/: the batch kit (COORDINATOR.md, worker.md; runs in place); overnight/: a record; README.md
 .github/                         CI: policy + decl_check, compile + tool tests (hosted); check-local.yml (self-hosted check.py, enabled: "Known issues")
 src/compiler_id/, flag_id/, atk_id/   Phase 3 samples (frozen)
 src/reflection/, reflection_types/, reflection_statics/, clones/, lifted/, tables/   GENERATED

@@ -106,6 +106,7 @@ python tools/fakematch.py --base origin/main [--list]  # fake-match forms a bran
 python tools/equiv_test.py --version <ver> <file.cpp> [--write]   # tier 2: is a registers-only non-match equivalent?
 python tools/ref_check.py --version <ver> [<file.cpp>]  # wrong callees and globals in functions that do not match
 python tools/permute.py --version <ver> <file.cpp>[:ADDR] [--write]   # free try at a registers-only near-match
+python tools/drafts.py --version <ver> add|grade|promote ...   # drafts/: file a non-match, regrade, move to src/
 python -m unittest discover -s tools/tests -t .       # tool tests, no game data (CI)
 python tools/hub_migrate.py --version <ver> --plan PLAN.tsv   # mechanical header migration; .claude/skills/dread-hubs
 python tools/ghidra/decompile.py --version <ver> <addr|name>  # read Ghidra's view (never commit it)

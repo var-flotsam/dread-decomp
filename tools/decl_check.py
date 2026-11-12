@@ -674,6 +674,62 @@ def new_type_differences(cur: dict[str, tuple[str, str, str, str]],
                   if v[0] != NAMESPACE_ONLY and (s not in base or base[s][0] == NAMESPACE_ONLY))
 
 
+def file_problems(files: set[str], tree: dict[str, str] | None = None) -> list[str]:
+    """What is wrong with the fn_/g_unk_ declarations and definitions of these files (paths relative to the
+    repository), given every other file as it is. One text per problem, each saying what to do:
+
+      a declaration of a symbol that a header in include/ declares (include the header);
+      a declaration of a function that another file defines with other types (copy the definition's
+        signature; not reported when another file already declares it this way, which is that file's fault);
+      a declaration whose signature no other file uses for that symbol (copy an existing one);
+      a definition here whose types are not those of a declaration elsewhere (use that parameter list).
+
+    A namespace written out on one side is the same type. An identical copy of a declaration in another
+    source is not a problem here: tools/decl_plan.py and tools/hub_migrate.py move those to a header."""
+    if tree is None:
+        tree = tree_files(None)
+    r = Report(tree)
+
+    def bare(signature: str) -> str:
+        return QUALIFIER.sub("", signature)
+    defined = {}
+    for path, text in tree.items():
+        if not path.startswith("include/") and "fn_" in text:
+            for d in definitions(text, path):
+                defined[d.name] = d
+    out = []
+    for name, ds in sorted(r.decls.items()):
+        mine = [d for d in ds if d.path in files]
+        if not mine:
+            continue
+        others = [d for d in ds if d.path not in files]
+        other_sigs = {d.signature for d in others}
+        inc = [d for d in others if d.path.startswith("include/")]
+        definition = defined.get(name)
+        for d in mine:
+            why = None
+            if inc:
+                why = f"declared in {inc[0].path}: include that header and drop this declaration"
+            elif (definition and definition.path not in files and bare(definition.signature) != bare(d.signature)
+                  and d.signature not in other_sigs):
+                why = (f"{definition.path} defines it with other types; copy the definition's signature exactly:\n"
+                       f"    {definition.signature}")
+            elif other_sigs and d.signature not in other_sigs:
+                why = "signature differs from every existing one; copy one of these exactly:\n    " + \
+                      "\n    ".join(f"{s}   ({next(o.path for o in others if o.signature == s)})"
+                                    for s in sorted(other_sigs))
+            if why:
+                out.append(f"{d.path}:{d.line} {name}: {d.signature}\n  -> {why}")
+    for name, d in sorted(defined.items()):
+        if d.path not in files:
+            continue
+        sigs = sorted({o.signature for o in r.decls.get(name, []) if o.path != d.path})
+        if sigs and all(bare(s) != bare(d.signature) for s in sigs):
+            out.append(f"{d.path}:{d.line} {name}: defined as {d.signature}\n  -> declared elsewhere with other "
+                       f"types; use this parameter list and result:\n    {sigs[0]}")
+    return out
+
+
 def print_definition_types(found: dict[str, tuple[str, str, str, str]]) -> None:
     kinds = Counter(v[0] for v in found.values())
     print(f"{len(found)} hand-written definitions have a signature that is not a declaration's of the same function:")

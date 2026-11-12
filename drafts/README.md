@@ -11,21 +11,26 @@ moves to `src/` when it matches, or when it is verified equivalent (`CLAUDE.md`,
 
 `drafts/<unit folder>/fn_<address>.cpp`, the folder its function would have under `src/`
 (`tools/tu_map.py --function <address>`). One draft per function: where a function had several, the
-best-graded one is here. Includes of headers in `src/` are written relative to this folder, so a draft
-that moves to `src/` needs them rewritten. `fn_7101077a70_shared.h` is one draft's own header, from its
-batch's scratch folder.
+best-graded one is here. Includes of headers in `src/` are written relative to this folder; moving a draft
+rewrites them. `fn_7101077a70_shared.h` is one draft's own header, from its batch's scratch folder.
 
-To grade a draft:
+`tools/drafts.py` is the way in and the way out:
 
 ```sh
-python tools/trymatch.py --version 2.1.0 drafts/game/CAttackComponent/fn_7101136bb4.cpp -v
+python tools/drafts.py --version 2.1.0 add FILE.cpp ADDR --from <run> [--note "..."] [--remove]   # file a non-match
+python tools/drafts.py --version 2.1.0 grade [FILE.cpp ...] [--write]   # what separates each draft from the original now
+python tools/drafts.py --version 2.1.0 promote FILE.cpp ... [--write]   # to src/, when it matches or is verified
+python tools/trymatch.py --version 2.1.0 drafts/game/CAttackComponent/fn_7101136bb4.cpp -v   # one draft, side by side
 ```
+
+`promote` moves a draft only when every function in its file matches or passes `tools/equiv_test.py`, and
+its declarations fit the tree; otherwise the draft stays and its row's note says why.
 
 ## What is here (graded 2026-11-11)
 
 `INDEX.csv` has one row per draft: address, size, file, what separates it from the original, similarity,
-the number of differing instructions, and the run it came from. It is a record of that day's grading, not
-a generated file: regrade a draft rather than trust its row.
+the number of differing instructions, and the run it came from. It is a record of the day a row was graded,
+not a generated file: `tools/drafts.py grade` says what is true now.
 
 | What separates the draft from the original | Drafts | Bytes |
 |---|---|---|

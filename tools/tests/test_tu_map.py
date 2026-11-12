@@ -219,6 +219,21 @@ class Rows(unittest.TestCase):
                     tu_map.load_map()
 
 
+class SourceFolder(unittest.TestCase):
+    def unit(self, hint, source="reflection", confidence="high"):
+        return {"index": 41, "class_hint": hint, "hint_source": source, "confidence": confidence}
+
+    def test_a_named_unit_is_its_class_as_a_path(self):
+        self.assertEqual(tu_map.source_folder(self.unit("base::snd::CFoo;base::snd::CBar")), "base/snd/CFoo")
+        self.assertEqual(tu_map.source_folder(self.unit("CFoo")), "game/CFoo")
+        self.assertEqual(tu_map.source_folder(self.unit("game::logic::CFoo<int>")), "game/logic/CFoo_int")
+
+    def test_a_unit_without_a_sure_name_is_numbered(self):
+        self.assertEqual(tu_map.source_folder(self.unit("")), "game/UnkTU41")
+        self.assertEqual(tu_map.source_folder(self.unit("CFoo", source="strings")), "game/UnkTU41")
+        self.assertEqual(tu_map.source_folder(self.unit("CFoo", confidence="low")), "game/UnkTU41")
+
+
 class ResolveFunction(unittest.TestCase):
     def setUp(self):
         self.fns = fns(3, names={0: "CFoo::Bar", 1: "dup", 2: "dup"})

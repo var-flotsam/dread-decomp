@@ -12,7 +12,7 @@ import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
-OUT = Path(__file__).resolve().parent
+OUT = Path(__file__).resolve().parents[3] / "build" / "lean"
 KEYS = ("cache_read_input_tokens", "cache_creation_input_tokens", "input_tokens", "output_tokens")
 OVERNIGHT_PER_MATCH = {"cache_read_input_tokens": 4_128_966, "cache_creation_input_tokens": 39_344,
                        "output_tokens": 14_392}

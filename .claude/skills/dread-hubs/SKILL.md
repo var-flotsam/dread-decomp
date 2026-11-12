@@ -6,9 +6,11 @@ description: Run a canonical-header batch in var-flotsam/dread-decomp (one decla
 # Canonical-header batches
 
 Goal: every `fn_<addr>` / `g_unk_<addr>` that more than one file uses is declared once, in a header
-under `include/`, with one real-typed signature (CLAUDE.md rule 7). `python tools/decl_check.py`
-measures the debt (`--list`, `--symbol NAME`); CI fails a PR that adds a conflicting signature or a
-local copy of a symbol `include/` declares (`--base origin/main`).
+under `include/`, with one real-typed signature (CLAUDE.md, "One declaration per shared symbol").
+`python tools/decl_check.py` measures the debt (`--list`, `--symbol NAME`, `--definition-types`). CI runs
+`--strict --base origin/main`, which fails a pull request that adds a conflicting signature, a local copy
+of a symbol `include/` declares, one more identical copy of any shared symbol, or a definition whose types
+are newly not its declaration's.
 
 Run Python as `.venv/Scripts/python` from the repository root (Git Bash; forward slashes).
 
@@ -20,6 +22,11 @@ python tools/hub_migrate.py --version 2.1.0 fn_<addr> [fn_<addr>...]  # chosen s
 python tools/hub_migrate.py --version 2.1.0 fn_<addr> --header include/base/X.h --declaration "T fn_<addr>(...);"
 python tools/hub_migrate.py --version 2.1.0 --plan batch.tsv           # many chosen signatures at once
 ```
+
+`python tools/decl_plan.py --write` writes such plans itself (`build/decl_plans/chunk_N.tsv`): for every
+symbol in more than one file it picks the unit header (`tools/tu_map.py`, `tools/data_map.py`) and the
+signature, and counts the symbols it leaves out, by reason. `--grown origin/main` plans only what a branch
+added, which is the step between a batch of new files and its pull request.
 
 For a batch, write the chosen signatures as a plan (`SYMBOL<TAB>include/x.h<TAB>declaration`, one per
 line; the declaration may be left out when the header declares the symbol already) and run it once:
@@ -78,9 +85,15 @@ hand-written includers; objects go to `build/baseline/obj/`, so parallel agents 
   the index. They report `files_changed`, headers included by generated code
   (`src/clones`, `src/reflection*`, `src/lifted`, `src/tables`) and a commit message.
 - The orchestrator reruns the generators named (`gen_clones.py`, `gen_statics.py`, `gen_tables.py`,
-  `gen_lift.py --prune`), runs `check.py --version 2.1.0 --update` once (no `REGRESSION`, `DUPLICATE`
-  or `RELOC` line), `decl_check.py --base origin/main` (PASS), `policy_check.py`, and commits per
-  step with the trailer `Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>`.
+  `gen_lift.py --prune`), runs `check.py --version 2.1.0 --update` once (no `REGRESSION`, `DUPLICATE`,
+  `EQUIV`, `REFS` or `RELOC` line; an `EQUIV` line means a header change altered the code of a function
+  that was verified equivalent: run `equiv_test.py --write` on its file again), `decl_check.py --strict
+  --base origin/main` (PASS), `name_check.py --strict`, `policy_check.py --base origin/main` and
+  `port_sweep.py --jobs 8`, and commits per step with its session's own attribution lines. After any
+  `decl_plan.py --write` and `hub_migrate.py` run, the full `check.py` is not optional: the migration
+  skips files that already fail to compile.
+- The orchestrator is the coordinator of the batch: it opens the pull request (the template's headings)
+  and merges it once the required checks are green, with `gh pr merge <n> --merge`, never `--admin`.
 
 ## 4. What to pick
 
