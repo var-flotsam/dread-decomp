@@ -152,6 +152,15 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Every reflected member's type has a name (2026-11-12).** 539 members of `data/reflection_fields.csv` had their
+type only as `&g_unk_<addr>`: the type object of an enum, a flag set, a collection or a link, 242 objects in all,
+which no getter returns. Their names are in the units' static initialisers: the initialiser makes the name a
+string id and then calls the object's constructor with the object's address, which it takes from the GOT.
+`tools/gen_fields.py --version 2.1.0` now reads that pair out of the dump (`names_built`: the last string loaded
+before the first call that has the object in x0). All 242 got a name; the 103 that hand-written initialisers
+already name agree with it, none differs. Most used: `CGameLink<CActor>` (69 members), `CGameLink<CEntity>` (68),
+`base::global::CRntVector<CGameLink<CActor>>` (24), then enums such as `IPath::EType`.
+
 **Held matches into the tree (2026-11-12).** Three functions that matched and waited in `drafts/` for a
 declaration moved to `src/`: `fn_7100eeaed0` (the mask type three files defined is `game/UnkMask.h`; unit 2577's
 helpers are declared in its header), `fn_7100df31b8` (into the file that has its helper; its four callers

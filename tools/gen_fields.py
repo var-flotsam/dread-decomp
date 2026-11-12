@@ -9,8 +9,10 @@ every file that touches the class: 6,087 members of 1,135 classes on 2.1.0.
 data/reflection_fields.csv columns: class,offset,name,type
   type: the member's reflected type by name, when its type expression is a getter that
   data/reflection_types.csv or src/reflection_types/ names, or (with --version) a type object one of
-  those getters returns; else the expression as the source has it (`&g_unk_<addr>`: the type object of
-  an enum, a flag set or a collection, which the tracked data does not name yet).
+  those getters returns, or one a static initialiser builds under a name (an enum, a flag set, a
+  collection, a link: the initialiser makes the name a string id and then calls the object's
+  constructor with the object's address, taken from the GOT); else the expression as the source has
+  it (`&g_unk_<addr>`).
 
 Usage:
   python tools/gen_fields.py [--version 2.1.0]   # write the table (--version also names type objects, from the dump)
@@ -96,6 +98,80 @@ def returned_objects(version: str, getters: dict[int, str]) -> dict[int, str]:
     return out
 
 
+def text_at(data: bytes | None) -> str | None:
+    """The printable C string at the start of `data`, if it is one of three characters or more."""
+    if not data:
+        return None
+    end = data.find(b"\0")
+    if end < 3 or any(c < 32 or c > 126 for c in data[:end]):
+        return None
+    return data[:end].decode("ascii")
+
+
+def names_built(words, start: int, wanted: set[int], page_of, slot_target, string_at) -> dict[int, str]:
+    """{object address: name} for the wanted objects one function builds.
+
+    `words` are the function's instructions. An address reaches x0 by adrp + add or through a GOT slot
+    (adrp + ldr; `slot_target` gives what the slot holds), a string reaches x1 or x2 by adrp + add
+    (`string_at` reads it). The name of an object is the last string loaded before the first call
+    that has the object's address in x0, when both are close to that call."""
+    out: dict[int, str] = {}
+    reg: dict[int, int] = {}
+    last = None      # (instruction index, text)
+    pending = None   # (instruction index, object address)
+    for i, w in enumerate(words):
+        rd, rn = w & 31, (w >> 5) & 31
+        if w & 0x9F000000 == 0x90000000:                      # adrp
+            reg[rd] = page_of(w, start + 4 * i)
+        elif w & 0xFFC00000 == 0x91000000 and rn in reg:      # add x, x, #imm
+            value = reg[rd] = reg[rn] + ((w >> 10) & 0xFFF)
+            if rd == 0 and value in wanted:
+                pending = (i, value)
+            elif rd in (1, 2):
+                text = string_at(value)
+                if text:
+                    last = (i, text)
+        elif w & 0xFFC00000 == 0xF9400000:                    # ldr x, [x, #imm]
+            value = slot_target(reg[rn] + ((w >> 10) & 0xFFF) * 8) if rn in reg else None
+            reg.pop(rd, None)
+            if value is not None:
+                reg[rd] = value
+                if rd == 0 and value in wanted:
+                    pending = (i, value)
+        elif w & 0xFFE0FFE0 == 0xAA0003E0:                    # mov x, x
+            rm = (w >> 16) & 31
+            reg.pop(rd, None)
+            if rm in reg:
+                reg[rd] = reg[rm]
+                if rd == 0 and reg[rd] in wanted:
+                    pending = (i, reg[rd])
+        elif w & 0xFC000000 == 0x94000000:                    # bl
+            if pending and last and i - pending[0] <= 12 and i - last[0] <= 40:
+                out.setdefault(pending[1], last[1])
+            pending = None
+            reg = {r: v for r, v in reg.items() if r >= 19}
+    return out
+
+
+def built_objects(version: str, wanted: set[int]) -> dict[int, str]:
+    """{type object address: type name} for the wanted objects that static initialisers build, read
+    from the user's dump. The first function, by address, that builds an object names it."""
+    import asmdiff
+
+    original = asmdiff.Original(version)
+    out: dict[int, str] = {}
+    for addr, size in sorted(original.sizes.items()):
+        code = original.data_at(addr, size)
+        if not code or size < 8:
+            continue
+        words = struct.unpack_from(f"<{size // 4}I", code)
+        found = names_built(words, addr, wanted, asmdiff.adrp_target, lambda slot: original.got_slot(slot)[0],
+                            lambda a: text_at(original.data_at(a, 200)))
+        for obj, name in found.items():
+            out.setdefault(obj, name)
+    return out
+
+
 def layout(cls: str, rows: list[dict], types: dict[str, dict]) -> list[tuple[int, str, str, str]]:
     """(offset, member, type, declaring class) for a class and its bases, by offset."""
     out = []
@@ -148,6 +224,11 @@ def main() -> int:
     found = []
     for p in sorted((ROOT / "src" / "reflection").glob("*.cpp")):
         found += members(p.read_text(encoding="utf-8"))
+    if args.version:
+        unnamed = {int(m.group(1), 16) for _c, _o, _m, e in found
+                   for m in [re.fullmatch(r"&g_unk_(71[0-9a-f]{8})", e)] if m} - set(objects)
+        for obj, name in built_objects(args.version, unnamed).items():
+            objects.setdefault(obj, name)
     found.sort(key=lambda r: (r[0], r[1], r[2]))
     with OUT.open("w", newline="", encoding="utf-8") as f:
         w = csv.writer(f, lineterminator="\n")

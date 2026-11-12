@@ -62,5 +62,60 @@ class Members(unittest.TestCase):
         ])
 
 
+
+def adrp(rd: int, page: int) -> int:
+    """An adrp whose page the fake `page_of` below reads straight out of the word."""
+    return 0x90000000 | rd | (page << 5)
+
+
+def add(rd: int, rn: int, imm: int) -> int:
+    return 0x91000000 | rd | (rn << 5) | (imm << 10)
+
+
+def ldr(rd: int, rn: int, imm: int) -> int:
+    return 0xF9400000 | rd | (rn << 5) | ((imm // 8) << 10)
+
+
+BL = 0x94000000
+NOP = 0xD503201F
+
+
+class BuiltObjects(unittest.TestCase):
+    STRINGS = {0x3010: "game::EKind", 0x3020: "ssv"}
+    SLOTS = {0x5008: 0x9000}
+
+    def run_words(self, words, wanted=frozenset({0x9000})):
+        return gen_fields.names_built(words, 0x1000, set(wanted), lambda w, pc: ((w >> 5) & 0xFFFF) << 12,
+                                      self.SLOTS.get, self.STRINGS.get)
+
+    def test_name_then_object_through_the_got(self):
+        words = [adrp(1, 3), add(1, 1, 0x10), BL,              # the name becomes a string id
+                 adrp(8, 5), ldr(0, 8, 8), BL]                 # the object's constructor
+        self.assertEqual(self.run_words(words), {0x9000: "game::EKind"})
+
+    def test_object_by_adrp_add(self):
+        words = [adrp(1, 3), add(1, 1, 0x10), BL, adrp(0, 9), add(0, 0, 0), BL]
+        self.assertEqual(self.run_words(words), {0x9000: "game::EKind"})
+
+    def test_first_call_names_it(self):
+        words = [adrp(1, 3), add(1, 1, 0x10), BL, adrp(8, 5), ldr(0, 8, 8), BL,
+                 adrp(1, 3), add(1, 1, 0x20), adrp(8, 5), ldr(0, 8, 8), BL]   # a later call with another string
+        self.assertEqual(self.run_words(words), {0x9000: "game::EKind"})
+
+    def test_a_far_string_is_not_the_name(self):
+        words = [adrp(1, 3), add(1, 1, 0x10), BL] + [NOP] * 41 + [adrp(8, 5), ldr(0, 8, 8), BL]
+        self.assertEqual(self.run_words(words), {})
+
+    def test_an_object_not_asked_for(self):
+        words = [adrp(1, 3), add(1, 1, 0x10), BL, adrp(8, 5), ldr(0, 8, 8), BL]
+        self.assertEqual(self.run_words(words, wanted={0x7777}), {})
+
+    def test_text_at(self):
+        self.assertEqual(gen_fields.text_at(b"base::EType\0junk"), "base::EType")
+        self.assertIsNone(gen_fields.text_at(b"ab\0"))           # too short to be a type's name
+        self.assertIsNone(gen_fields.text_at(b"\x01\x02\x03\x04\0"))
+        self.assertIsNone(gen_fields.text_at(None))
+
+
 if __name__ == "__main__":
     unittest.main()
