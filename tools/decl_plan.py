@@ -20,7 +20,7 @@ whenever there is one. A global's copies must also be
 the same text once the macros their files define are written out (the signature leaves attributes out,
 and a visibility attribute changes the code). Left
 out, and counted: signatures that conflict, declarations inside a namespace, signatures with a namespaced
-type no header defines, template or function-pointer types or an asm label, globals between two units'
+type or a template that no header defines, or an asm label, globals between two units'
 data spans, global arrays of a forward-declared type (an array needs the definition), a unit whose header
 exists and was not made by
 this tool, and the symbols listed in --exclude (the ones an earlier run could not move).
@@ -150,6 +150,7 @@ def type_index(files: dict[str, str]) -> dict[str, str]:
 
 
 SCOPE = re.compile(r"\bnamespace\s+([\w:]+)\s*\{|\b(?:struct|class|union)\s+(?:alignas\(\d+\)\s+)?([A-Za-z_]\w*)\b[^;{()]*\{|[{}]")
+TEMPLATE_HEAD = re.compile(r"\btemplate\s*<[^<>]*(?:<[^<>]*>[^<>]*)*>")
 QNAME = re.compile(r"\b[A-Za-z_]\w*(?:::[A-Za-z_]\w*)+")
 
 
@@ -158,7 +159,9 @@ def defined_types(text: str) -> list[tuple[str, str]]:
     (not the ones nested in a class or a function)."""
     out = []
     open_: list[str | None] = []     # per open brace: a namespace's name, or None
-    for m in SCOPE.finditer(decl_check.strip(text)):
+    # a template's parameter list (`template <class T>`) declares no type
+    text = TEMPLATE_HEAD.sub(lambda m: " " * len(m.group(0)), decl_check.strip(text))
+    for m in SCOPE.finditer(text):
         if m.group(1):
             open_.append(m.group(1))
         elif m.group(2):
@@ -217,7 +220,11 @@ def plan(report: decl_check.Report, files: dict[str, str], units: list[dict],
             sig = QNAME.sub(lambda m: (m.group(0).rsplit("::", 1)[-1]
                                        if shared.get(m.group(0).rsplit("::", 1)[-1], ("",))[0] == m.group(0)
                                        else m.group(0)), sig)
-        if "::" in sig or "<" in sig or "asm" in sig or "(*" in sig:
+        # a template is planned when a header defines it (it comes with that header); a function-pointer
+        # type is made of types like any other
+        templates = set(re.findall(r"\b([A-Za-z_]\w*)\s*<", sig))
+        if ("::" in sig or "asm" in sig or "::*" in sig or (not shared and ("<" in sig or "(*" in sig))
+                or any(n not in (shared or {}) for n in templates)):
             why["namespaced, template, function-pointer or asm-label types"] += 1
             continue
         text = files[ds[0].path].replace("\r\n", "\n")
@@ -226,7 +233,7 @@ def plan(report: decl_check.Report, files: dict[str, str], units: list[dict],
         for t in {t for t in IDENT.findall(sig) if t not in BUILTIN and t != sym}:
             m = re.search(rf"^\s*(struct|class|union)\s+{t}\b", text, re.M)
             # used by value (a parameter, a result, an array's element), the type needs its definition
-            by_value = re.search(rf"\b{t}\b(?!\s*[*&])", sig) is not None
+            by_value = re.search(rf"\b{t}\b(?!\s*[*&])", sig) is not None or t in templates
             if by_value and shared and t in shared:
                 full[t] = shared[t]
             elif m and not (clashing and t in clashing):

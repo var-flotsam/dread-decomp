@@ -12,6 +12,7 @@
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU1176.h"
+#include "game/UnkTU1645.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2677.h"
@@ -192,7 +193,6 @@ struct UnkTypedValue {
 };
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
-extern UnkPropertyEx<> g_unk_7172758cf0;  // three floats
 void fn_7100dffe04(UnkGameManager* self, s32 value);
 
 struct UnkGameManagerDef : UnkIdSource {

@@ -36,3 +36,5 @@ extern UnkReflType g_unk_717275e480;
 extern UnkTUHeaderFnsClass g_unk_717275ed68 __attribute__((visibility("hidden")));
 void fn_7100b062cc(UnkReflType* self, const base::global::CStrId& name, void* a, void* b);
 s32 fn_7100b09720(UnkDisplayReader_ovb0108* self, base::reflection::UnkReflObject* obj);
+void fn_7100b05a88(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+void fn_7100b0606c(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);

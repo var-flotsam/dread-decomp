@@ -4,14 +4,13 @@
 // Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "game/CDemolitionBlockComponent.h"
+#include "game/UnkTU2523.h"
 #include "types.h"
 
 struct UnkEntry_b43a3 {
     virtual ~UnkEntry_b43a3();
     u8 pad_0x8[0x38];
 };
-
-void fn_7100d8865c(base::UnkVector<UnkEntry_b43a3>* self, const UnkEntry_b43a3* value);
 
 void fn_7100d88548(base::UnkVector<UnkEntry_b43a3>* self, const base::UnkVector<UnkEntry_b43a3>* other) {
     self->data = nullptr;

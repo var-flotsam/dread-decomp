@@ -12,6 +12,7 @@
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkTU367.h"
+#include "game/navmesh/CNavMesh.h"
 #include "types.h"
 
 struct UnkLinkGroups;  // the member at +0x10 (src/game/navmesh/CNavMesh/fn_710027514c.cpp)
@@ -19,7 +20,6 @@ void fn_710027497c(UnkLinkGroups* self);
 extern char g_unk_7101a20e58[];  // navmesh::CNavMesh's vtable
 
 struct UnkNavLoadCell;
-void fn_7100279600(base::UnkVector<UnkNavLoadCell>* self, u32 capacity);
 
 // A map of +0x2e8 to +0x388: the values, the keys, the count and capacity, the growth step and the
 // allocator's flags.
@@ -392,7 +392,6 @@ void fn_710027e93c(UnkNavTablesE93c* self) {
 }
 
 struct UnkNavLoadCell;
-void fn_710027ebe4(base::UnkVector<UnkNavMeshEdge>* self, const base::UnkVector<UnkNavMeshEdge>* other);
 
 struct UnkNavLoadItem;
 

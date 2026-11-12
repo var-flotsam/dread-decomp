@@ -4,6 +4,8 @@
 // 0x71000a4598-0x71000e5f9c). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "base/reflection/CClass.h"
+#include "base/UnkVector.h"
+#include "base/global/CStrId.h"
 #include "types.h"
 
 struct UnkKeyedStrIds;
@@ -23,3 +25,4 @@ void fn_71000be6c0(void*);
 extern u32 g_unk_7101d5bdd8;  // The default of a class's "_EditorOnly" attribute (nonzero: true).
 void fn_71000df22c(UnkKeyedStrIds* self, u32 capacity);
 extern base::reflection::CType g_unk_7101d5c078;
+void fn_71000ce604(base::UnkVector<base::global::CStrId>* self, base::global::CStrId* it);

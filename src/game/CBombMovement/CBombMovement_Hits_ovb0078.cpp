@@ -78,7 +78,6 @@ void fn_7100aabf4c(UnkBombMovement_ovb0078* self, UnkBombActor_ovb0078* actor, U
 }
 
 struct UnkListedItem;
-base::UnkVector<UnkListedItem*>* fn_7100552d7c();
 void fn_7100558ed8(void* entity, void* movement);
 extern u64 g_unk_710164b688;
 

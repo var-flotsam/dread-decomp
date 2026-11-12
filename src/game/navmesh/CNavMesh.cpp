@@ -22,6 +22,7 @@
 #include "game/UnkTU367.h"
 #include "game/UnkTU376.h"
 #include "game/UnkTU56.h"
+#include "game/navmesh/CNavMesh.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -944,9 +945,7 @@ struct UnkNavLoadEdgeLinks {
 };
 static_assert(sizeof(UnkNavLoadEdgeLinks) == sizeof(UnkNavMeshEdge), "UnkNavLoadEdgeLinks layout");
 
-void fn_710027ebe4(base::UnkVector<UnkNavMeshEdge>* self, const base::UnkVector<UnkNavMeshEdge>* other);
 // The cell array's reserve.
-void fn_7100279600(base::UnkVector<UnkNavLoadCell>* self, u32 capacity);
 // Reads cell `id` of `mesh` (src/game/UnkNavMeshCellLoad.cpp, with its own names for the types).
 struct UnkNavCellData;
 struct Mesh;

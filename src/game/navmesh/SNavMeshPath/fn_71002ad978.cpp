@@ -6,7 +6,6 @@
 
 struct UnkLinkList;
 void fn_71002aeb9c(UnkLinkList* list, UnkLinkList** slot);
-void fn_71002af070(UnkLinkList* list, UnkLinkList** slot);
 
 struct UnkLinkSource {
     u8 pad_0x0[0x1828];

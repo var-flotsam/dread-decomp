@@ -5,6 +5,7 @@
 #include "game/UnkGraphicsState.h"
 #include "game/UnkTU172.h"
 #include "game/UnkTU174.h"
+#include "game/UnkTU176.h"
 #include "game/UnkTU177.h"
 #include "types.h"
 
@@ -118,7 +119,6 @@ void fn_7100159660(bool a, bool b, bool c) {
 
 
 extern s32 g_unk_7101a1d7e8;
-extern void (*g_unk_716e29b6a0)(void* object, s32 value);
 
 void fn_710015a8c0(u32 mode) {
     if (g_unk_7101a1d7e8 == (s32)mode)
@@ -176,7 +176,6 @@ struct UnkBlendStack_ovb0245 {
 };
 
 extern UnkBlendStack_ovb0245 g_unk_716e29c6d0 __attribute__((visibility("hidden")));
-extern void (*g_unk_716e29b6a8)(void* object, u8 value);
 extern s32 g_unk_716e29c694;
 extern void (*g_unk_716e29b6b0)(void* object, s32 which, s32 value);
 extern s32 g_unk_716e29c240;

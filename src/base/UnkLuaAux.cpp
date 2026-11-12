@@ -10,7 +10,6 @@
 #include "game/UnkTU2676.h"
 
 // The error printer the game may replace (reached through the GOT); fn_71010a5a70 until then.
-extern int (*g_unk_7101caf838)(const char* fmt, ...);
 
 // lauxlib's static reader for luaL_loadbuffer (getS) and its state.
 struct UnkLuaLoadS {

@@ -16,6 +16,7 @@
 #include "game/UnkGuiRoot.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkTU1600.h"
+#include "game/UnkTU1645.h"
 #include "game/UnkTU1689.h"
 #include "game/UnkTU2564.h"
 #include "game/UnkTU2566.h"
@@ -198,7 +199,6 @@ const base::math::CVector3D* fn_7100b37b80(const void* kind) {
 }
 
 // ---- fn_7100b44ae4
-extern UnkPropertyEx<> g_unk_71727639d0;
 
 // Sends the open or close message to the object behind the handle at +0x390 (vtable slot 0x1e8).
 #define SEND_MENU_MESSAGE(self, open, close)                                                      \
@@ -475,7 +475,6 @@ void fn_7100b3c9f4(UnkMapMenuController_ovb0203* self) {
 }
 
 // ---- fn_7100b42148
-extern UnkPropertyEx<> g_unk_7172759478;
 void fn_7100b422a8();
 void fn_7100b42be0(UnkMenuListener_ovb0203* listener, void* arg);
 struct UnkStateOwner;

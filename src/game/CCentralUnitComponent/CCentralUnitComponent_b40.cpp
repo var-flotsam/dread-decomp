@@ -12,6 +12,7 @@
 #include "base/UnkRefHandle.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU1176.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
@@ -31,8 +32,6 @@ struct UnkEntry_cu {
 void fn_710077a630(base::UnkVector<UnkEntry_cu>* self, u32 n) {
     self->Reserve(n);
 }
-
-void fn_710077a700(base::UnkVector<UnkEntry_cu>* self, const UnkEntry_cu* value);
 
 static inline __attribute__((always_inline)) void AppendAll_cu(base::UnkVector<UnkEntry_cu>* self,
                                                                const base::UnkVector<UnkEntry_cu>* other) {

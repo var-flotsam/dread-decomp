@@ -1,4 +1,5 @@
 #include "game/CFrozenComponent.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
 struct UnkFrozenEvent {
@@ -28,7 +29,6 @@ void fn_71007fa080(CFrozenComponent* self, u32 state) {
 
 struct UnkLinkList;
 void fn_71002aeb9c(UnkLinkList* list, UnkLinkList** slot);
-void fn_71002af070(UnkLinkList* list, UnkLinkList** slot);
 
 struct UnkFrozenTarget {
     u8 unk_0x0[0x198];

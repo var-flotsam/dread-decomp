@@ -3,11 +3,11 @@
 // with 7 and, when the flag fn_710015a760 keeps is set, passed to the NVN callback it uses. Names are
 // placeholders.
 #include "game/UnkGraphicsState.h"
+#include "game/UnkTU176.h"
 #include "game/UnkTU177.h"
 #include "types.h"
 
 extern s32 g_unk_716e29c688;
-extern void (*g_unk_716e29b550)(void* object, s32 value);
 
 void fn_710015a7d0(u32 mode) {
     if (g_unk_716e29c688 == (s32)mode)

@@ -59,3 +59,7 @@ bool fn_7100d6c288(UnkPolygonCollectionShape* self, base::global::CRntFile* file
 void fn_7100d6aeb8(UnkReflType* self, const base::global::CStrId& name, void* a, void* b);
 void fn_7100d6be08(UnkReflType* self, const base::global::CStrId& name, void* a, void* b);
 extern UnkConverter g_unk_71727b3de0;
+void fn_7100d6a674(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+void fn_7100d6ac58(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+void fn_7100d6b5c4(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+void fn_7100d6bba8(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);

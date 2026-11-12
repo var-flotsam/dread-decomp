@@ -4,13 +4,12 @@
 // value to the NVN entry point that fn_71001587f0 loaded.
 
 #include "game/UnkGraphicsState.h"
+#include "game/UnkTU176.h"
 #include "game/UnkTU177.h"
 #include "types.h"
 
 // Two flags of the state object g_unk_716e29c6a8 and the entry points that set them (the names
 // of src/game_s7/fn_71001587f0.cpp).
-extern void (*g_unk_716e29b690)(void* object, u8 value);
-extern void (*g_unk_716e29b698)(void* object, u8 value);
 
 // A mode of the target g_unk_716e29c678 (0-4), the value it maps to (1-5) and its entry point,
 // which takes that value twice.

@@ -6,6 +6,7 @@
 #include "base/UnkVector.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkTU367.h"
+#include "game/navmesh/CNavMesh.h"
 
 // A cell's whole record (game/UnkNavMeshCell.h lays out its start).
 struct UnkNavMeshCellRecord {
@@ -24,7 +25,6 @@ struct UnkNavMeshCellArray {
 
 // The reserve, declared as src/game/navmesh/CNavMesh.cpp does (its cells by their load layout).
 struct UnkNavLoadCell;
-void fn_7100279600(base::UnkVector<UnkNavLoadCell>* cells, u32 capacity);
 
 // NON_MATCHING(minor): same behaviour; the original counts the new cells down from (key - count) + 1,
 // ours counts a negated counter up to zero (92%).

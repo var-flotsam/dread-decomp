@@ -36,8 +36,6 @@ struct UnkRailNodeRaw_b43a3 {
     UnkHalf_cu set;
 };
 
-void fn_7100c090cc(base::UnkVector<UnkRailNode_b43a3>* self, const UnkRailNode_b43a3* value);
-
 void fn_7100c08f8c(base::UnkVector<UnkRailNode_b43a3>* self, const base::UnkVector<UnkRailNode_b43a3>* other) {
     self->data = nullptr;
     self->count = 0;

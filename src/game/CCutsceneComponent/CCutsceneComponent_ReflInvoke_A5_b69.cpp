@@ -3,6 +3,7 @@
 // Names are placeholders.
 #include "base/UnkVector.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CCutsceneComponent.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
@@ -33,7 +34,6 @@ UnkReflValue fn_71007ae4e8(void*, char* obj, UnkReflValue* const* args) {
 // fn_71007ae2bc: finds the 0x88-byte entry (array at +0xd0 of the object at +8) whose id at +0x30 is the first
 // argument's and passes its index and the two flag arguments (normalised) to fn_71007a95f8.
 struct UnkElem_0x88;
-UnkElem_0x88& fn_71007a6b58(base::UnkVector<UnkElem_0x88>* v, u32 index);
 
 struct UnkCutsceneOwner_A5_b69 {
     u8 pad_0x0[0xd0];

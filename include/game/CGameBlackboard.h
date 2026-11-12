@@ -38,3 +38,6 @@ extern UnkReflType g_unk_717275bf60 __attribute__((visibility("hidden")));
 void fn_7100aeafec(UnkReflType* self, const base::global::CStrId& name, void* a, void* b);
 extern UnkConverter g_unk_717275b6c0;
 extern UnkConverter g_unk_717275b6e0;
+void fn_7100ae96e8(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+void fn_7100aea7a8(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+void fn_7100aead8c(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);

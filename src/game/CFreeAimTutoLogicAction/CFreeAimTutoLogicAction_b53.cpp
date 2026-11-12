@@ -14,6 +14,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU341.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
 struct UnkPlayer;
@@ -81,7 +82,6 @@ u32 fn_7100a3da50(UnkFreeAimTutoLogicAction_b53* self) {
 
 struct UnkLinkList;
 void fn_71002aeb9c(UnkLinkList* list, UnkLinkList** slot);
-void fn_71002af070(UnkLinkList* list, UnkLinkList** slot);
 
 struct UnkLogicActionBase;
 struct UnkTutoExitAction_b47;

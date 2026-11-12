@@ -4,8 +4,10 @@
 // 0x7100d70c1c-0x7100d8b794). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "base/UnkVector.h"
 #include "types.h"
 
+struct UnkEntry_b43a3;
 struct UnkSpawnedActor_ovb0065;
 struct UnkHyperBeamEffectDesc;
 struct UnkHyperBeamEffectHandle;
@@ -41,3 +43,4 @@ bool fn_7100d7bea0(UnkActor* owner, bool flag);
 UnkActorPosition fn_7100d7b7a8(UnkActor* actor);
 const base::global::CStrId* fn_7100d7ba84(UnkSpawnedActor_ovb0065*);
 UnkHyperBeamEffectHandle fn_7100d7c614(UnkActor* owner, const UnkHyperBeamEffectDesc* desc, const base::global::CStrId* name, u32 a, u32 b, u32 c);
+void fn_7100d8865c(base::UnkVector<UnkEntry_b43a3>* self, const UnkEntry_b43a3* value);

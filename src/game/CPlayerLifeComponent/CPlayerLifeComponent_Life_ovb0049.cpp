@@ -18,6 +18,7 @@
 #include "game/UnkItemProperties.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkTU1370.h"
+#include "game/UnkTU1645.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2656.h"
 #include "game/UnkTU39.h"
@@ -43,7 +44,6 @@ extern const u64 g_unk_710164d058;
 extern const u64 g_unk_710164d060;
 extern char g_unk_7101cb3f98[];
 extern UnkEnumType g_unk_71729f02a8;
-extern UnkPropertyEx<> g_unk_717275a0d8;
 
 // The message sent when the player dies (built by fn_71008c0c74, destroyed by fn_71008c1558).
 struct UnkLifeMessage_ovb0049 {

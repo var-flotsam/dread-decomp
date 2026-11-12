@@ -11,11 +11,10 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU1645.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-extern UnkPropertyEx<> g_unk_7172759278;
 
 struct UnkLavapumpOwner_b57 {
     u8 pad_0x0[0x220];

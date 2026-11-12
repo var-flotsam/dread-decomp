@@ -4,6 +4,7 @@
 // 0x7100b37360-0x7100b49730). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTUProperty.h"
 #include "types.h"
 
 struct UnkIdValuesArray;
@@ -14,3 +15,4 @@ extern void* g_unk_7101a9c8e0[];  // The base's vtable.
 extern void* g_unk_7101a9ca40[];
 extern void* g_unk_7101a9cb48[];  // The object's vtable.
 extern base::global::CStrId g_unk_7172763d98 __attribute__((visibility("hidden")));
+extern UnkPropertyEx<> g_unk_71727639d0;

@@ -5,6 +5,7 @@
 // clears it. Names and layouts are placeholders.
 #include "base/UnkDefaultAllocator.h"
 #include "game/UnkTU170.h"
+#include "game/UnkTU176.h"
 #include "types.h"
 
 struct UnkPtrHolder {
@@ -18,7 +19,6 @@ struct UnkPoolCount {
 };
 
 // NVN entry point the graphics start-up loads (inferred: the memory pool's finaliser).
-extern void (*g_unk_716e29af70)(void* pool);
 
 struct UnkNvnHeap_b68a1 {
     u8 pool[0x100];  // the NVN memory pool

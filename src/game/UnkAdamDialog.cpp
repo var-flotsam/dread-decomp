@@ -18,6 +18,7 @@
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU101.h"
+#include "game/UnkTU1645.h"
 #include "game/UnkTU2615.h"
 #include "game/UnkTU2733.h"
 #include "game/UnkTUProperty.h"
@@ -77,7 +78,6 @@ static inline const UnkQualifiedId& Qid(UnkDialogDef& def) {
         fn_7100ae9a10(&def.qid, &def, g_unk_7101d470e0);
     return def.qid;
 }
-extern UnkPropertyEx<> g_unk_7172759b50;  // the dialog mode's property
 
 bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
 

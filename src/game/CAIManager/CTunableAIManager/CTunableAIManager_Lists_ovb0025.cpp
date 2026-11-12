@@ -376,7 +376,6 @@ void fn_7100da8f00(UnkSlotOwner_b0025* self, UnkSwitchObject* object) {
 // ---- Emmy queries
 
 struct UnkListedItem;
-base::UnkVector<UnkListedItem*>* fn_7100552d7c();
 struct UnkEmmyAIComponent_b46a1;
 bool fn_710112baa0(void* actor);
 

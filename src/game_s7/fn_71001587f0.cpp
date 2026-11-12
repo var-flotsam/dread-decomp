@@ -9,6 +9,7 @@
 #include "base/UnkVector.h"
 #include "game/UnkTU170.h"
 #include "game/UnkTU172.h"
+#include "game/UnkTU176.h"
 #include "game/UnkTU177.h"
 #include "game/UnkTU179.h"
 #include "game/UnkTU182.h"
@@ -23,7 +24,6 @@ extern GetProcFn g_unk_716e29ac70;
 extern void* (*g_unk_716e29ac58)(void* device, void* builder);
 extern void (*g_unk_716e29ac40)(void* builder);
 extern void (*g_unk_716e29ac48)(void* builder, s32 flags);
-extern void (*g_unk_716e29ac78)(void* device, s32 name, s32* value);
 extern void (*g_unk_716e29acc0)(void* device, s32 value);
 extern void (*g_unk_716e29acb8)(void* device, s32 value);
 extern void (*g_unk_716e29acc8)(void* device, const f32* color, s32 format);
@@ -40,7 +40,6 @@ extern void (*g_unk_716e29b740)(void* builder, void* device);
 extern void (*g_unk_716e29b770)(void* builder, void* memory, u64 offset, u64 size);
 extern void (*g_unk_716e29b778)(void* builder, void* memory, u64 size);
 extern void (*g_unk_716e29b758)(void* builder, void (*callback)());
-extern void (*g_unk_716e29bbb0)(void* sync, void* device);
 extern void (*g_unk_716e29b4c0)(void* object);
 extern void (*g_unk_716e29b570)(void* object);
 extern void (*g_unk_716e29b538)(void* object);
@@ -48,19 +47,13 @@ extern void (*g_unk_716e29b688)(void* object);
 extern void (*g_unk_716e29b588)(void* object);
 extern void (*g_unk_716e29b640)(void* object);
 extern void (*g_unk_716e29b650)(void* object, s32 value);
-extern void (*g_unk_716e29b690)(void* object, u8 value);
-extern void (*g_unk_716e29b698)(void* object, u8 value);
-extern void (*g_unk_716e29b6a8)(void* object, u8 value);
-extern void (*g_unk_716e29b6a0)(void* object, s32 value);
 extern void (*g_unk_716e29b6b0)(void* object, s32 a, s32 b);
 extern void (*g_unk_716e29b6b8)(void* object, s32 a, s32 b, s32 c, s32 d);
 extern void (*g_unk_716e29b648)(void* object, s32 value);
-extern void (*g_unk_716e29b658)(void* object, s32 value);
 extern void (*g_unk_716e29b590)(void* object, s32 value);
 extern void (*g_unk_716e29b030)(void* builder, void* device);
 extern void (*g_unk_716e29b038)(void* builder);
 extern void (*g_unk_716e29b0c0)(void* builder, void* device);
-extern void (*g_unk_716e29b0c8)(void* builder);
 extern void (*g_unk_716e29ae38)(void* builder);
 extern void (*g_unk_716e29ae30)(void* builder, void* device);
 extern void (*g_unk_716e29ae40)(void* builder, void* window);

@@ -6,6 +6,7 @@
 #include "base/UnkVector.h"
 #include "game/UnkTU170.h"
 #include "game/UnkTU172.h"
+#include "game/UnkTU176.h"
 #include "game/UnkTU180.h"
 #include "types.h"
 
@@ -83,7 +84,6 @@ extern u8 g_unk_716e2a3458[];          // a sync object
 extern UnkPool g_unk_716e29d318;
 
 // NVN's sync initialiser (as src/game_s7/fn_71001587f0.cpp declares it).
-extern void (*g_unk_716e29bbb0)(void* sync, void* device);
 
 // Through a wrapper: the arguments are evaluated before the entry point is loaded.
 static inline void InitializeSync(void* sync, void* device) {

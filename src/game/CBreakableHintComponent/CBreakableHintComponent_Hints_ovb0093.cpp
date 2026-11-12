@@ -355,7 +355,6 @@ struct UnkEnumType;
 using base::global::CStrId;
 using unk_static_init::UnkEnumType;
 
-extern UnkPropertyEx<> g_unk_7172711390;  // BREAKABLE_HINTS
 extern UnkEnumType g_unk_7172735f58;      // its value type
 
 // The stored hints: whether each entity's hint is shown, keyed by the entity id.

@@ -13,6 +13,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU1645.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2557.h"
@@ -412,8 +413,6 @@ void fn_7100df026c(UnkGameManager* self, const CFilePathStrId& path) {
 #include "game/UnkTUProperty.h"
 
 using base::global::UnkStrIdBase;
-
-extern UnkPropertyEx<> g_unk_71727591b8;  // a property of the "GAME_PROGRESS" section
 
 // A property seen as a definition whose qualified id (game/UnkGameBlackboard.h) is built on first
 // use (as in src/game_s7/fn_7100fc4b34.cpp).
@@ -879,10 +878,6 @@ struct UnkModeFlags {
     bool field_0xb8;
 };
 extern UnkModeFlags* g_unk_71726bc570;
-extern UnkPropertyEx<> g_unk_7172758c30;  // an int property
-
-s32 fn_71012034b0(UnkUserDataOwner* self, u32 kind, const CRntString* scenario, const CRntString* name,
-                  UnkPtrList* blackboards, bool a, void (*fn)(), bool b, const CRntString* c);
 
 // The game manager's members the load reads (game/UnkGameManager.h leaves them as padding).
 struct UnkGameManagerLoad {
@@ -1235,14 +1230,6 @@ void fn_7100dee46c(UnkGameManager* self) {
 extern void* g_unk_7101a1b750[];
 extern u32 g_unk_7101a20300;  // the build number (fn_7100000980's first store)
 // The definitions of the values written (polymorphic property objects, game/UnkTUProperty.h).
-extern UnkPropertyEx<> g_unk_7172758bb0;  // the build number
-extern UnkPropertyEx<> g_unk_7172759a90;  // a string: `name`
-extern UnkPropertyEx<> g_unk_7172759a50;  // a string: `start`
-extern UnkPropertyEx<> g_unk_7172758cf0;  // three floats
-extern UnkPropertyEx<> g_unk_7172758d30;
-extern UnkPropertyEx<> g_unk_7172758d70;
-extern UnkPropertyEx<> g_unk_7172758db0;  // an int (fn_7100dfb930)
-extern UnkPropertyEx<> g_unk_7172758cb0;  // a string (fn_7100dfb330)
 
 struct UnkEnumType;
 UnkEnumType* fn_710009fb38();  // refl_GetType<base::global::TRntString128>

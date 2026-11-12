@@ -2,6 +2,7 @@
 // unit's own statics and registrations (helpers in UnkStaticInitS7.h). Layouts are placeholders.
 #include "UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/UnkTU1689.h"
 
 using namespace unk_static_init;
 
@@ -38,7 +39,6 @@ struct __attribute__((packed, aligned(4))) UnkStatics_7100b48ca0 {
     u8 field_0x10c[8];
 };
 extern UnkStatics_7100b48ca0 g_unk_7172763d5c __attribute__((visibility("hidden")));
-extern UnkPropertyEx<> g_unk_71727639d0;
 extern void* g_unk_7101a45fe8[];
 extern void* g_unk_7101a9caf0[];
 void fn_7100b481b8(UnkPropertyEx<>* p);

@@ -4,11 +4,11 @@
 // reserve the source's capacity, then append each entry with the out-of-line PushBack. Names and
 // layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU280.h"
 #include "types.h"
 
 // The scene manager's entry arrays (src/engine/scene/CSceneManager.cpp).
 struct UnkSceneEntry;
-void fn_71001fe390(base::UnkVector<UnkSceneEntry>* self, const UnkSceneEntry* entry);  // PushBack
 
 // An entry (0x28 bytes), moved field by field when the array grows.
 typedef u64 __attribute__((may_alias)) UnkAliasU64_b59;

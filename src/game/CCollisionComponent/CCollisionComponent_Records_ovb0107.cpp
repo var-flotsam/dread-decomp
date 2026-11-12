@@ -814,8 +814,6 @@ struct UnkTunableLine {
 struct UnkCollisionFileReader {
     u8 unk_0x0[0x18];
 };
-void fn_7100860830(UnkCollisionFileReader* self, const char* path, base::UnkVector<UnkCollisionRecord>* out,
-                   bool a, void* b);
 
 // The component's CCharClassCollisionComponent: the collision file's path and two flags.
 struct UnkCharClassCollision_ovb0107 : UnkReflObject {

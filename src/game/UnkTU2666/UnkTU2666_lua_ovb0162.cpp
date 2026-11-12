@@ -28,6 +28,7 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1176.h"
+#include "game/UnkTU1645.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
@@ -270,7 +271,6 @@ static inline const UnkQualifiedId& GetQualifiedId_b0162(UnkPropertyEx<>& item) 
 }
 
 struct UnkDef_7100fc4b34;
-extern UnkPropertyEx<> g_unk_7172758df0;
 
 struct UnkTypedValue {
     const base::reflection::CType* type;

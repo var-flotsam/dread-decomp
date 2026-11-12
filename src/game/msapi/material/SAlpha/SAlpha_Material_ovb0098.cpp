@@ -303,8 +303,6 @@ struct UnkMaterial {
 };
 static_assert(__builtin_offsetof(UnkMaterial, ids) == 0x3a8, "UnkMaterial placeholder layout");
 
-void fn_71001a836c(UnkMaterial* self, base::UnkVector<u64>* list);
-
 // Empties the ids, then runs fn_71001a836c over each pass's stages (fn_71001a6644's last steps).
 void fn_71001a76cc(UnkMaterial* self) {
     for (u64 i = 0; i < self->ids.count; ++i)

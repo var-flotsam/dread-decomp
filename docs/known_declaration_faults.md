@@ -78,12 +78,12 @@ constructor named in a comment and not by a label, were folded in the same day. 
 ## Shared functions the mechanical header migration could not move
 
 `tools/decl_plan.py` and `tools/hub_migrate.py` moved 1,353 shared functions' declarations into unit headers on
-2026-11-11. 43 of those tried are still left with every local copy in place, because moving them changed a
+2026-11-11. 42 of those tried are still left with every local copy in place, because moving them changed a
 file or stopped it compiling. Each needs a person to settle the type. (`tools/decl_plan.py --exclude` takes
 this list; remove a symbol here when it has moved.)
 
-**31: the header's forward declaration clashes with a type of another kind that a file defines under the same name (a typedef, a template alias, a type in a namespace).**
-`fn_710007b444` `fn_710009fb38` `fn_710009ffd4` `fn_71000fbce0` `fn_71002295ac` `fn_7100229688` `fn_7100231b40` `fn_710026d2e4` `fn_710027fc88` `fn_7100287598` `fn_71002af070` `fn_71002af6fc` `fn_71002b3114` `fn_71002b3328` `fn_71002b52a4` `fn_71002f239c` `fn_7100353be8` `fn_7100407170` `fn_7100d46804` `fn_7100d46c60` `fn_7100d476e4` `fn_7100ee34f0` `fn_7100ee62bc` `fn_7100ee6884` `fn_7100ef1e1c` `fn_7100f84868` `fn_7100f85f00` `fn_7100f86020` `fn_7100f86254` `fn_7100faa3d8` `fn_710119a110`
+**30: the header's forward declaration clashes with a type of another kind that a file defines under the same name (a typedef, a template alias, a type in a namespace).**
+`fn_710007b444` `fn_710009fb38` `fn_710009ffd4` `fn_71000fbce0` `fn_71002295ac` `fn_7100229688` `fn_7100231b40` `fn_710026d2e4` `fn_710027fc88` `fn_7100287598` `fn_71002af6fc` `fn_71002b3114` `fn_71002b3328` `fn_71002b52a4` `fn_71002f239c` `fn_7100353be8` `fn_7100407170` `fn_7100d46804` `fn_7100d46c60` `fn_7100d476e4` `fn_7100ee34f0` `fn_7100ee62bc` `fn_7100ee6884` `fn_7100ef1e1c` `fn_7100f84868` `fn_7100f85f00` `fn_7100f86020` `fn_7100f86254` `fn_7100faa3d8` `fn_710119a110`
 
 **7: the file's compiled output changed.**
 `fn_71005c1008` `fn_7100895498` `fn_710098ae04` `fn_71009a60fc` `fn_71009a64cc` `fn_710111b230` `fn_71011201e4`
@@ -102,6 +102,13 @@ A fifth pass on 2026-11-12 moved 423 more symbols (16 functions and 4 globals of
 the declaration; and a name that some file reaches through a namespace or defines as an alias is never
 forward-declared. What a declaration needs in its header now travels with it in the plan, so
 `tools/hub_migrate.py` writes it with the declaration and takes it back with it.
+
+A sixth pass the same day moved 159 more: declarations with a function-pointer type, and with a
+template that a header defines (`base::UnkVector<u8>*`), which comes with that header. One run, nothing
+left half-moved. 409 symbols are still declared in more than one file: the globals between two units'
+data spans (108), the ones whose type is a name some file gives another meaning, the ones whose files
+would not build the same with the shared declaration (they are in the lists here), and the 20 with
+conflicting signatures.
 
 ## Shared globals the mechanical header migration could not move
 

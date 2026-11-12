@@ -198,6 +198,25 @@ class Plan(unittest.TestCase):
         self.assertEqual(decl_plan.needs(p), ['#include "base/Id.h"', '#include "game/Vec.h"', "class UnkA;", "struct UnkB;"])
         self.assertEqual(decl_plan.needs(decl_plan.Planned("fn_7100000111", "include/game/CFoo.h", "", 2)), [])
 
+    def test_function_pointers_and_templates_of_a_headers_type(self):
+        headers = {"include/base/UnkVec.h": "#pragma once\nnamespace base {\ntemplate <class T>\nstruct UnkVec {\n    T* data;\n};\n"
+                                           "}  // namespace base\n"}
+        files = tree(a="struct UnkA;\nvoid fn_7100000110(UnkA* self, void (*done)(UnkA*, u32));\n"
+                       "void fn_7100000111(base::UnkVec<UnkA*>* list);\nvoid fn_7100000112(UnkOther<u8>* list);\n"
+                       "void fn_7100000113(void (UnkA::*method)());\n",
+                     b="struct UnkA;\nvoid fn_7100000110(UnkA* self, void (*done)(UnkA*, u32));\n"
+                       "void fn_7100000111(base::UnkVec<UnkA*>* list);\nvoid fn_7100000112(UnkOther<u8>* list);\n"
+                       "void fn_7100000113(void (UnkA::*method)());\n", **headers)
+        shared = decl_plan.header_types(files)
+        self.assertEqual(shared, {"UnkVec": ("base::UnkVec", "base/UnkVec.h")})
+        planned, why = decl_plan.plan(decl_check.Report(files), files, UNITS, None, decl_plan.type_index(files), shared)
+        self.assertEqual([(p.symbol, p.declaration, p.includes, p.types) for p in sorted(planned, key=lambda p: p.symbol)], [
+            ("fn_7100000110", "void fn_7100000110(UnkA* self, void (*done)(UnkA*, u32));", (), {"UnkA": "struct"}),
+            ("fn_7100000111", "void fn_7100000111(base::UnkVec<UnkA*>* list);", ("base/UnkVec.h",), {"UnkA": "struct"}),
+        ])
+        # a template no header defines, a pointer to a member
+        self.assertEqual(dict(why), {"namespaced, template, function-pointer or asm-label types": 2})
+
     def test_grown_names_what_new_files_copied(self):
         before = decl_check.Report(tree(a="void fn_7100000110(int);\nvoid fn_7100000111(int);\n",
                                         b="void fn_7100000110(int);\n"))

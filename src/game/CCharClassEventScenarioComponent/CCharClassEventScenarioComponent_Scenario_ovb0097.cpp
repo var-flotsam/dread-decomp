@@ -16,6 +16,7 @@
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU365.h"
+#include "game/UnkTU67.h"
 #include "game/behaviortree/CEmmyPatrolAction.h"
 #include "game/logic/collision/CCollider.h"
 #include "types.h"
@@ -23,7 +24,6 @@
 using base::global::CStrId;
 
 extern "C" int rand();
-u32* fn_710008c504(base::UnkVector<u32>* self, u32 index);
 
 struct UnkStateObject;
 void fn_71007e5304(char* self);  // the string id list's constructor (+0xa0)

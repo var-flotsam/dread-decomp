@@ -21,6 +21,7 @@
 #include "game/UnkTU2553.h"
 #include "game/UnkTU315.h"
 #include "game/UnkTU54.h"
+#include "game/UnkTU811.h"
 #include "game/logic/collision/CAABoxShape2D.h"
 #include "game/logic/collision/CPolygonCollectionShape.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -203,7 +204,6 @@ struct UnkMtx44;
 void* fn_7100c9ff5c(void* p);
 bool fn_71009e12d0(void*);
 UnkVec3f fn_71009ebe68(UnkHelper* helper);
-base::UnkVector<UnkListedItem*>* fn_7100552d7c();
 
 static inline void SetIdentity(UnkMatrix44* m) {
     *m = UnkMatrix44{};

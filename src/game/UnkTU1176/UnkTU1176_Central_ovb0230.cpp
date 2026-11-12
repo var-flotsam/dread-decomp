@@ -25,6 +25,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1176.h"
 #include "game/UnkTU1376.h"
+#include "game/UnkTU1645.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2566.h"
 #include "game/UnkTU2577.h"
@@ -114,7 +115,6 @@ struct UnkEntry_cu {
     ~UnkEntry_cu() asm("fn_7100778228");
 };
 void fn_710077a630(base::UnkVector<UnkEntry_cu>* self, u32 n);
-void fn_710077a700(base::UnkVector<UnkEntry_cu>* self, const UnkEntry_cu* value);
 
 __attribute__((always_inline)) static inline void DestroyEntry_b0230(UnkSetPair_b0230* pair) {
     reinterpret_cast<UnkEntry_cu*>(pair)->~UnkEntry_cu();
@@ -772,7 +772,6 @@ void fn_710077045c() {
 
 struct UnkCentralUnit;
 struct UnkStrIdHandle;
-extern UnkPropertyEx<> g_unk_717275ac58;
 extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
 struct UnkOwner;
 

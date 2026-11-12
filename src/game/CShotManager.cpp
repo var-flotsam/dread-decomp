@@ -13,6 +13,7 @@
 #include "base/file/CThreadSafeDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/reflection.h"
+#include "game/CSwarmControllerComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU25.h"
@@ -95,7 +96,6 @@ extern u32 g_unk_71729d1544 __attribute__((visibility("hidden")));
 extern u64 g_unk_71729d1548[] __attribute__((visibility("hidden")));
 
 extern "C" f32 atan2f(f32 y, f32 x);
-UnkShotWeakRef* fn_7100748064(base::UnkVector<UnkShotWeakRef>* self, u32 i);
 void fn_7100ddecac(UnkShotEffect* self, f32 dt);
 void fn_7100de13ac(void* self, UnkShotEffect* effect);
 void fn_7100ecca00(UnkShot* self, f32 dt);

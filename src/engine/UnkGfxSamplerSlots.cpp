@@ -8,6 +8,7 @@
 #include "base/UnkVector.h"
 #include "game/UnkTU170.h"
 #include "game/UnkTU172.h"
+#include "game/UnkTU176.h"
 #include "game/UnkTU182.h"
 #include "types.h"
 
@@ -88,11 +89,9 @@ void* fn_7100153a10(UnkGfxHeap* heap, void* old, u64 size, u64 align);
 // its result in src/game_s7/fn_71001587f0.cpp).
 
 // NVN entry points (the device info query as src/game_s7/fn_71001587f0.cpp declares it).
-extern void (*g_unk_716e29ac78)(void* device, s32 name, s32* value);
 extern void (*g_unk_716e29aff0)(void* pool, void* memory, u64 offset, s32 count);  // sampler pool
 extern void (*g_unk_716e29afb0)(void* pool, void* memory, u64 offset, s32 count);  // texture pool
 extern void (*g_unk_716e29b380)(void* a, void* device);
-extern void (*g_unk_716e29b0c8)(void* builder);  // as src/game_s7/fn_71001587f0.cpp declares it
 extern void (*g_unk_716e29b0d0)(void* builder, s32 value);
 extern void (*g_unk_716e29b0d8)(void* builder, s32 value);
 extern void (*g_unk_716e29b118)(void* builder, s32 format);

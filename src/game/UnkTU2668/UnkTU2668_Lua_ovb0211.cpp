@@ -16,6 +16,7 @@
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2668.h"
 #include "game/UnkTU2669.h"
+#include "game/UnkTU2676.h"
 #include "game/UnkTU57.h"
 #include "types.h"
 
@@ -192,7 +193,6 @@ extern "C" int (*lua_atpanic(lua_State* L, int (*panicf)(lua_State*)))(lua_State
 extern void* (*g_unk_7101caf820)(void* ptr, u64 size);
 extern void (*g_unk_7101caf828)(void* ptr);
 extern void (*g_unk_7101caf830)(const char* format, ...);
-extern int (*g_unk_7101caf838)(const char* fmt, ...);
 
 void* fn_7100083a70(void* ptr, u64 size);
 void fn_7100083a50(void* ptr);

@@ -4,6 +4,7 @@
 // 0x7100e768b0-0x7100e7cdfc). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTUProperty.h"
 #include "types.h"
 
 struct UnkReflType;
@@ -38,3 +39,7 @@ extern UnkReflType g_unk_71727c9208;
 extern UnkReflType g_unk_71727c9380;
 extern UnkTUHeader g_unk_71727c9948 __attribute__((visibility("hidden")));
 void fn_7100e77818(UnkReflType* self, const base::global::CStrId& name, void* a, void* b);
+void fn_7100e76fd4(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+void fn_7100e775b8(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+void fn_7100e77d68(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+extern UnkPropertyEx<> g_unk_71727c94c0;

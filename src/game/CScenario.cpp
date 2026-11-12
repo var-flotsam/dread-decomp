@@ -12,6 +12,7 @@
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"
 #include "game/CBlackboard.h"
+#include "game/CCollisionComponent.h"
 #include "game/CScenario.h"
 #include "game/GUI/CLabel.h"
 #include "game/GUI/CSprite.h"
@@ -19,6 +20,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU1645.h"
 #include "game/UnkTU2505.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2733.h"
@@ -85,7 +87,6 @@ static inline const UnkQualifiedId& Qid(UnkScenarioDef& def) {
     return def.qid;
 }
 // "ScenarioActiveCollider", a property of type CStrId (src/game_s7/fn_7100ae39e0.cpp builds it).
-extern UnkPropertyEx<> g_unk_7172759808;
 
 // Reads the string id under the property `name` names (refl_GetKeyedValue for CStrId).
 bool fn_710051d464(CBlackboard::CSection* section, const void* name, CStrId* out);
@@ -167,7 +168,6 @@ static_assert(__builtin_offsetof(UnkScenarioView, field_0x858) == 0x858, "UnkSce
 static_assert(__builtin_offsetof(UnkScenarioView, level_sprite) == 0x920, "UnkScenarioView placeholder layout");
 
 // "NumTanksPickedUpMax", a property of type s32 (src/game_s7/fn_7100ae39e0.cpp builds it).
-extern UnkPropertyEx<> g_unk_7172759138;
 
 bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
 // A typed value as the section setter takes it (as in src/game/CGameManager.cpp).
@@ -385,8 +385,6 @@ void fn_71011a4050(UnkGameManagerSub_0x608* scenario) {
 struct UnkCollisionFileReader {
     u8 unk_0x0[0x18];
 };
-void fn_7100860830(UnkCollisionFileReader* self, const char* path, base::UnkVector<UnkCollisionRecord>* out,
-                   bool a, void* b);
 
 // The scenario's array of weak references to its collision objects (+0x828; base::UnkVector's
 // layout, Reserve out of line as in src/game/logic/collision/CCollider/fn_7100d407c0.cpp).

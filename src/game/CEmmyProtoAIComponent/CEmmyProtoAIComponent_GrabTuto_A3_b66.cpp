@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
+#include "game/CEmmyProtoAIComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTUProperty.h"
@@ -14,8 +15,6 @@ using base::global::CStrId;
 
 // The singleton's section id (refl_GetSingletonPart, src/reflection_statics/statics_01.cpp).
 void* fn_7100df6d84(UnkGameManager* gm);
-
-extern UnkPropertyEx<> g_unk_71726dd158;
 
 // The property as a blackboard definition (game/UnkGameBlackboard.h): its qualified id at +0x10.
 struct UnkProtoNamedId_A3_b66 : UnkIdSource {

@@ -10,6 +10,7 @@
 #include "game/CCharClassAnalogAimTrack.h"
 #include "game/CCharClassCommanderWingsTrack.h"
 #include "game/CCharClassSetCameraNearEvent.h"
+#include "game/CCharClassToStateTrack.h"
 #include "game/CExplosionGfx.h"
 #include "game/CharClassSakaiModifyShieldEvent.h"
 #include "game/IPath.h"
@@ -26,18 +27,6 @@
 #include "game/UnkTU2557.h"
 #include "game/UnkTU2559.h"
 #include "game/UnkTUInit.h"
-
-void fn_7100da5c70(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-
-void fn_7100b03f60(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
-
-void fn_7100b87e10(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
-
-void fn_7100c797bc(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-
-void fn_7100c94510(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-
-void fn_7100c10e2c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 
 extern UnkTUHeader g_unk_71727553d0 __attribute__((visibility("hidden")));
 extern UnkTUHeader g_unk_717274c100 __attribute__((visibility("hidden")));
@@ -63,7 +52,6 @@ void fn_7100a1cb90();
 void fn_7100a14aac();
 void fn_71009bb360();
 void fn_7100955f6c();
-void fn_7100d2a00c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 extern char g_unk_7172755380;
 extern char g_unk_717274c0b0;
 extern char g_unk_717274b590;
@@ -201,32 +189,6 @@ void fn_71009bbed0() {
     fn_710009ec00(&g_unk_717273db30, &g_unk_717273db58);
 }
 
-void fn_7100da3a1c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-
-void fn_7100d91564(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-void fn_7100d91d10(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-
-void fn_7100ddf1c0(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-
-void fn_7100e06e8c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-void fn_7100e07250(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
-
-void fn_7100c93470(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-void fn_7100c9385c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-
-void fn_7100bcde7c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-
-void fn_7100c66688(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-
-void fn_7100adf388(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-
-void fn_7100e1766c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-void fn_7100e17b48(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-
-void fn_7100d977e4(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-void fn_7100d97c30(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-void fn_7100d99934(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
-
 // The TU's data: the header, then a pair of floats (-1, -1) and a flag.
 struct UnkLoadingScreenData {
     UnkTUHeader header;
@@ -235,8 +197,3 @@ struct UnkLoadingScreenData {
     f32 field_0x9c;
     bool field_0xa0;
 };
-void fn_7100e0f4d4(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-
-void fn_7100cd1954(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-
-void fn_7100ceb308(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);

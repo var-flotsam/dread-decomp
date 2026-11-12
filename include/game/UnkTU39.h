@@ -3,6 +3,8 @@
 // UnkTU39: functions and globals of this translation unit that other files use (tools/tu_map.py unit 39,
 // 0x710002f4e4-0x7100065d24). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/UnkCloneHelpers.h"
+#include "base/UnkDeferredSet.h"
 #include "types.h"
 
 struct UnkFloatList_b46a1;
@@ -24,3 +26,4 @@ void fn_710003152c(void* self, const f32* value);
 extern void* g_unk_7101a1a090[];
 extern void* g_unk_7101a1a0b0[];
 void fn_710002f4e4(void*);
+void fn_71000303c0(base::UnkDeferredSet<base::UnkDeferredCallback<bool>>* s, const bool* arg);

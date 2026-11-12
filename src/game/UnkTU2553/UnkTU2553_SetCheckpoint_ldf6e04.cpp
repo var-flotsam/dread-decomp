@@ -9,6 +9,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU1645.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -19,10 +20,6 @@ struct UnkTypedValue {
     void* value;
 };
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
-
-extern UnkPropertyEx<> g_unk_71727599d0;
-extern UnkPropertyEx<> g_unk_7172759a10;
-extern UnkPropertyEx<> g_unk_7172759a50;
 
 inline const CStrId& SectionId_ldf6e04() {
     static UnkGameManagerIdTable s_table asm("g_unk_7101d552d0");

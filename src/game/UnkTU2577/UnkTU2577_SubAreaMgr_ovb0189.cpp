@@ -606,7 +606,6 @@ struct UnkPtrList_b189 {
 };
 
 struct UnkNamedObjectPtr_b190;
-UnkNamedObjectPtr_b190* fn_7100eee97c(base::UnkVector<UnkNamedObjectPtr_b190>*, u32);
 struct UnkSubAreaEntityList_b190;
 
 struct UnkSetCounts_b189 {

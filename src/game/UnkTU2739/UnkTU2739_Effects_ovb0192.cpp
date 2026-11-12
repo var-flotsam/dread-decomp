@@ -31,7 +31,6 @@ struct UnkSwitchObject116;
 struct UnkTaggedObject116_ovb0168;
 struct UnkSwitchModel_ovb0192;
 
-UnkFxPooledObject** fn_7100852548(base::UnkVector<UnkFxPooledObject*>* array, u32 index);
 void fn_7100140bbc(UnkTaggedObject116_ovb0168* self, const CStrId* name);
 void fn_7100140e4c(UnkSwitchObject116* self, bool enable);
 void* fn_7100a0feac(UnkRenderPool* pool, CFilePathStrId* path, UnkOverlayModel** out, base::global::CStrId* id);

@@ -28,7 +28,6 @@ struct UnkListedItem {
     u8 pad_0x0[0x10];
     base::reflection::UnkReflObject* field_0x10;
 };
-base::UnkVector<UnkListedItem*>* fn_7100552d7c();
 
 
 // An AI's state (+0x1b8 of its component): two values the debug label shows, and its mode (2: the

@@ -3,6 +3,7 @@
 // objects are in a growable array at +0x10 read through its out-of-line accessor fn_7100852548.
 // Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CPlasmaBeamGun.h"
 
 struct UnkFxPooledObject {
     void** vtable;
@@ -15,9 +16,6 @@ struct UnkFxObjectPool {
     base::UnkVector<UnkFxPooledObject*> objects;  // 0x10
     u32 used;                                     // 0x38
 };
-
-// The element at `index`, growing the array to reach it (base::UnkVector's GrowAt, out of line).
-UnkFxPooledObject** fn_7100852548(base::UnkVector<UnkFxPooledObject*>* array, u32 index);
 
 UnkFxPooledObject* fn_710104dc00(UnkFxObjectPool* self) {
     if (self->used != 0xffffffff && self->objects.count != 0) {

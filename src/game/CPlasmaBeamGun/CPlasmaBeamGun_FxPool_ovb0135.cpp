@@ -9,6 +9,7 @@
 #include "base/global/CStrId.h"
 #include "game/CAbilitySonar.h"
 #include "game/CFXPool/CDefinition.h"
+#include "game/CPlasmaBeamGun.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSwitchObject.h"
@@ -21,7 +22,6 @@ using base::global::CStrId;
 
 struct UnkFxPooledObject;
 struct UnkSonarModel_ovb0085;
-UnkFxPooledObject** fn_7100852548(base::UnkVector<UnkFxPooledObject*>* array, u32 index);
 // As src/game/CScorpiusFXComponent/CScorpiusFXComponent_Gas_ovb0008.cpp declares it (it returns the node).
 void* fn_7100339900(UnkRenderPool* pool, const CFilePathStrId* path, UnkSonarModel_ovb0085** out,
                     const CStrId* name);
