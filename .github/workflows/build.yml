@@ -96,6 +96,7 @@ jobs:
         run: python tools/check.py --compile-only -j 4
       - name: Port sweep, x86-64 Linux (tools/port_sweep.py)
         run: |
+          mkdir -p build/port   # the matching build above creates build/ when it runs
           python tools/port_sweep.py --version 2.1.0 --jobs 4 --json build/port/sweep.json > build/port_sweep.log 2>&1 || true
           tail -n 25 build/port_sweep.log
           python - <<'EOF'
