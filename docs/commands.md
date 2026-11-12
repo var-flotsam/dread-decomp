@@ -412,6 +412,8 @@ Plan the move of shared declarations into one header per translation unit.
 
 ```sh
 python tools/decl_plan.py                                   # what would be planned and what is left out
+python tools/decl_plan.py --write --grown origin/main       # after new files: only what they copied
+python tools/decl_plan.py --write --only fn_7100dec788 ...  # only these symbols
 python tools/decl_plan.py --write [--exclude FILE] [--units N] [--chunk 380]   # headers + build/decl_plans/chunk_<k>.tsv
 python tools/hub_migrate.py --version 2.1.0 --plan build/decl_plans/chunk_1.tsv
 ```

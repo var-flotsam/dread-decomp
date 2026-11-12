@@ -28,7 +28,12 @@ Finish:
    If it lists declaration problems, fix them in those files (copy the listed signature, or include the
    header) and rerun; drop a file you can't fix.
 5. `.venv/Scripts/python tools/check.py --version 2.1.0 --update` (must report no REGRESSION, DUPLICATE or
-   hand-written RELOC), then `.venv/Scripts/python tools/decl_check.py --base origin/main` (must PASS). Commit
+   hand-written RELOC), then `.venv/Scripts/python tools/decl_check.py --strict --base origin/main` (must PASS).
+   CI runs it with `--strict` since 2026-11-12, so a copied declaration fails. Before it:
+   `.venv/Scripts/python tools/decl_plan.py --write --grown origin/main`, then
+   `.venv/Scripts/python tools/hub_migrate.py --version 2.1.0 --plan build/decl_plans/chunk_1.tsv` moves what the
+   new files copied into unit headers. A file whose copied symbol cannot be planned (the tool names it) waits
+   in `drafts/` with a note in `drafts/INDEX.csv`, as five matches of the 40-function test did. Commit
    data/functions with "Phase 4.7: lean run statuses". Push the branch and open a PR titled
    "Phase 4.7: lean test run (<n> functions)". Do not merge it.
 6. `.venv/Scripts/python build/lean/usage.py` and `.venv/Scripts/python build/lean/coord.py stats`. Write

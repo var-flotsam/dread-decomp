@@ -131,6 +131,14 @@ class Plan(unittest.TestCase):
         self.assertEqual([(p.symbol, p.types) for p in planned], [("fn_7100000111", {"UnkT": "struct"})])
         self.assertEqual(dict(why), {"a type that is not a plain struct every file agrees on": 1})
 
+    def test_grown_names_what_new_files_copied(self):
+        before = decl_check.Report(tree(a="void fn_7100000110(int);\nvoid fn_7100000111(int);\n",
+                                        b="void fn_7100000110(int);\n"))
+        now = decl_check.Report(tree(a="void fn_7100000110(int);\nvoid fn_7100000111(int);\n",
+                                     b="void fn_7100000110(int);\n",
+                                     c="void fn_7100000110(int);\nvoid fn_7100000111(int);\nvoid fn_7100000112(int);\n"))
+        self.assertEqual(decl_plan.grown(now, before), {"fn_7100000110", "fn_7100000111"})
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -29,8 +29,15 @@ that stood above it. --write therefore also lists what the copies say about each
 (build/decl_plans/comments.tsv: symbol, header, files, where, text): write one description beside the
 declaration in the header, and remove or re-attach the comments left in the sources.
 
+After a batch of new files: `--grown origin/main` plans exactly the symbols that are declared in more
+files than at that commit, which is what `tools/decl_check.py --strict --base` fails on, and names the ones
+it cannot plan. Those need a header by hand (tools/hub_migrate.py SYMBOL --header H --declaration D), or the
+file that copies them waits in drafts/.
+
 Usage:
   python tools/decl_plan.py                                   # what would be planned and what is left out
+  python tools/decl_plan.py --write --grown origin/main       # after new files: only what they copied
+  python tools/decl_plan.py --write --only fn_7100dec788 ...  # only these symbols
   python tools/decl_plan.py --write [--exclude FILE] [--units N] [--chunk 380]   # headers + build/decl_plans/chunk_<k>.tsv
   python tools/hub_migrate.py --version 2.1.0 --plan build/decl_plans/chunk_1.tsv
 Standard library and the project tools; no game data.
@@ -215,6 +222,11 @@ def copy_comments(report: decl_check.Report, files: dict[str, str], planned: lis
     return out
 
 
+def grown(now: decl_check.Report, before: decl_check.Report) -> set[str]:
+    """The symbols declared in more than one file now, and in more files than before."""
+    return {s for s, paths in now.paths.items() if len(paths) > max(len(before.paths.get(s, [])), 1)}
+
+
 def header_text(header: str, mine: list[Planned]) -> str:
     unit = mine[0].unit
     types: dict[str, str] = {}
@@ -268,6 +280,8 @@ def main() -> int:
     ap.add_argument("--exclude", type=Path, help="a file of symbols to leave out (whitespace-separated)")
     ap.add_argument("--units", type=int, help="only the N units with the most local copies (a pilot)")
     ap.add_argument("--chunk", type=int, default=380, help="symbols per plan file (default %(default)s)")
+    ap.add_argument("--only", nargs="+", metavar="SYMBOL", help="plan only these symbols")
+    ap.add_argument("--grown", metavar="REF", help="plan only the symbols declared in more files than at REF")
     args = ap.parse_args()
 
     files = decl_check.tree_files(None)
@@ -284,6 +298,13 @@ def main() -> int:
         print(f"  {len(foreign):5}  headers exist and are not unit headers of this tool; their "
               f"{sum(1 for p in planned if p.header in foreign)} symbols are left out")
     planned = [p for p in planned if p.header not in foreign]
+    wanted = set(args.only or [])
+    if args.grown:
+        wanted |= grown(report, decl_check.Report(decl_check.tree_files(args.grown)))
+    if args.only or args.grown:
+        cannot = sorted(wanted - {p.symbol for p in planned})
+        planned = [p for p in planned if p.symbol in wanted]
+        print(f"  {len(wanted):5}  symbols asked for; {len(planned)} planned" + (f"; not plannable: {' '.join(cannot)}" if cannot else ""))
     if args.exclude:
         skip = set(args.exclude.read_text(encoding="utf-8").split())
         planned = [p for p in planned if p.symbol not in skip]
