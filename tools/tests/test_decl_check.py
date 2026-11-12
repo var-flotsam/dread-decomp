@@ -112,6 +112,18 @@ class Definitions(unittest.TestCase):
         files = {"src/game/a.cpp": "struct UnkA;\nvoid fn_7100000270(void* self);\nvoid fn_7100000270(UnkA* self) {\n}\n"}
         self.assertEqual(decl_check.definition_type_differences(files, decl_check.Report(files)), {})
 
+    def test_only_a_new_type_difference_fails_and_a_namespace_never_does(self):
+        def found(*kinds):
+            return {f"fn_71000003{n:02x}": (what, "src/a.cpp", "", "") for n, what in kinds}
+        base = found((0, "the name of a pointed-to type"), (1, decl_check.NAMESPACE_ONLY))
+        cur = found((0, "the result's type"),                      # was there already, under another kind
+                    (1, "a parameter's type"),                     # was the same type before: new
+                    (2, decl_check.NAMESPACE_ONLY),                # the same type: never counts
+                    (3, "the name of a pointed-to type"))          # new
+        self.assertEqual(decl_check.new_type_differences(cur, base), ["fn_7100000301", "fn_7100000303"])
+        self.assertEqual(decl_check.new_type_differences(base, base), [])
+        self.assertEqual(decl_check.beyond_namespace(cur), 3)
+
     def test_the_definition_gets_its_line(self):
         found = decl_check.definitions("// a comment\n\nbool fn_7100000170(const char* name,\n    u32 n) {\n    return n;\n}\n", "src/x.cpp")
         self.assertEqual([(d.name, d.signature, d.line) for d in found], [("fn_7100000170", "bool fn_7100000170(const char*, u32)", 3)])

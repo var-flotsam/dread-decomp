@@ -152,6 +152,13 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**A new type difference fails the check (2026-11-12).** `tools/decl_check.py --base` now fails when a pull request
+adds a definition whose types are not a declaration's of the same function (984 are in the tree and stay until
+settled; a namespace written out on one side is the same type and never fails). Tried on the tree: a throwaway
+file that declared `fn_7100b8f348` with another struct for its parameter failed the check by name. For a batch
+this means a worker declares a callee that a hand-written file defines with the definition's types;
+`CONTRIBUTING.md` rule 7 says so.
+
 **Four results settled from the definition (2026-11-12).** The four functions the seventh pass could not move
 because their definition returns another type than the callers declared: the 17 calling files took the
 definition's type (`fn_7101177ae8` returns the address of a track's name id, so `CStrId id(*fn(...))` replaces

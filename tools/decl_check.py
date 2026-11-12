@@ -43,13 +43,14 @@ or after the integer ones is reported apart: floats travel in their own register
 Linux, so it is one call there, and another one only on Windows. Not seen: a definition inside a
 namespace, or one whose first line starts with an attribute.
 
-A definition's types are compared as well, and only reported: a definition whose normalised signature is
-not the text of any declaration of the same function in another file. The call can be the same (the count
-above says when it is not); what differs is the name of a pointed-to struct, the result's type, or a
-namespace written out in one place and not the other. Such a function has two mangled names, which the
-port's link joins with an alias (tools/port_link.py), and the file that defines it cannot include the
-header that declares it. The conflicting-signature count does not include these: it compares declarations
-with each other.
+A definition's types are compared as well: a definition whose normalised signature is not the text of any
+declaration of the same function in another file is counted. The call can be the same (the count above says
+when it is not); what differs is the name of a pointed-to struct, the result's type, or a namespace written
+out in one place and not the other. Such a function has two mangled names, which the port's link joins with
+an alias (tools/port_link.py), and the file that defines it cannot include the header that declares it. The
+conflicting-signature count does not include these: it compares declarations with each other. The ones
+already in the tree stay; `--base` fails when a function is added to them (a namespace written out on one
+side is the same type and never fails).
 
 Usage:
   python tools/decl_check.py                        # counts and the top conflicting symbols; exit 0 (report)
@@ -62,8 +63,9 @@ Usage:
                                                     # conflicting-symbol count or the extra signatures grew, or
                                                     # a symbol declared under include/ is re-declared in a file
                                                     # where <ref> had no such re-declaration, or a function's
-                                                    # definition newly differs from its declaration (CI runs this on
-                                                    # pull requests); growth of identical extra copies (multi-file
+                                                    # definition newly differs from its declaration, in how it is
+                                                    # called or in a type's name (CI runs this on pull
+                                                    # requests); growth of identical extra copies (multi-file
                                                     # symbols, extra copies) only warns, unless --strict
 Standard library and git only, no game data, so CI can run it. <ref>'s files are read with one
 `git cat-file --batch` over `git ls-tree -r --name-only <ref>` (the same bytes `git show
@@ -644,7 +646,7 @@ def definition_type_differences(files: dict[str, str], report: Report) -> dict[s
             other = others[0]
             mine, theirs = QUALIFIER.sub("", d.signature), QUALIFIER.sub("", other)
             if mine == theirs:
-                what = "a namespace written out"
+                what = NAMESPACE_ONLY
             elif mine.split(d.name)[0] != theirs.split(d.name)[0]:
                 what = "the result's type"
             elif POINTEE.sub("T", mine) == POINTEE.sub("T", theirs):
@@ -653,6 +655,21 @@ def definition_type_differences(files: dict[str, str], report: Report) -> dict[s
                 what = "a parameter's type"
             out[d.name] = (what, path, d.signature, other)
     return out
+
+
+NAMESPACE_ONLY = "a namespace written out"
+
+
+def beyond_namespace(found: dict[str, tuple[str, str, str, str]]) -> int:
+    return sum(1 for v in found.values() if v[0] != NAMESPACE_ONLY)
+
+
+def new_type_differences(cur: dict[str, tuple[str, str, str, str]],
+                         base: dict[str, tuple[str, str, str, str]]) -> list[str]:
+    """The functions whose definition names a type differently than a declaration now and did not at the base.
+    A namespace written out on one side is the same type and does not count, on either side."""
+    return sorted(s for s, v in cur.items()
+                  if v[0] != NAMESPACE_ONLY and (s not in base or base[s][0] == NAMESPACE_ONLY))
 
 
 def print_definition_types(found: dict[str, tuple[str, str, str, str]]) -> None:
@@ -698,6 +715,7 @@ def main() -> int:
         base_files = tree_files(args.base) if args.base else None
         base = Report(base_files) if args.base else None
         base_defs = definition_mismatches(base_files, base) if args.base else {}
+        base_types = definition_type_differences(base_files, base) if args.base else {}
     except subprocess.CalledProcessError as e:
         print(f"FAIL decl_check: git {' '.join(e.cmd[1:3])} failed: {e.stderr.decode('utf-8', 'replace').strip()}")
         return 2
@@ -725,7 +743,14 @@ def main() -> int:
             reasons.append(f"{len(new_defs)} definitions newly differ from a declaration of the same function in how it "
                            "is called: " + "; ".join(f"{s} in {cur_defs[s][1]} ({cur_defs[s][0]})" for s in new_defs[:5])
                            + (" ..." if len(new_defs) > 5 else "") + " (`--definitions` shows both signatures)")
-        result["base"] = {"ref": args.base, **base.counts(), "definition_mismatches": len(base_defs)}
+        new_types = new_type_differences(cur_types, base_types)
+        if new_types:
+            reasons.append(f"{len(new_types)} definitions newly name a type differently than a declaration of the same "
+                           "function: " + "; ".join(f"{s} in {cur_types[s][1]} ({cur_types[s][0]})" for s in new_types[:5])
+                           + (" ..." if len(new_types) > 5 else "") + " (`--definition-types` shows both signatures; "
+                           "give the callers the definition's types, or the definition the header's)")
+        result["base"] = {"ref": args.base, **base.counts(), "definition_mismatches": len(base_defs),
+                          "definition_type_differences": len(base_types)}
         result["result"] = "FAIL" if reasons else "PASS"
         result["reasons"] = reasons
         result["warnings"] = warnings
@@ -737,8 +762,8 @@ def main() -> int:
     print(f"decl_check: {len(cur_defs)} definitions are called differently than a declaration of the same function "
           "says (`--definitions` lists them)")
     print(f"decl_check: {len(cur_types)} definitions have types that are not a declaration's elsewhere, "
-          f"{sum(1 for v in cur_types.values() if v[0] != 'a namespace written out')} beyond a namespace written out "
-          "(report only; `--definition-types` lists them)")
+          f"{beyond_namespace(cur_types)} beyond a namespace written out (`--definition-types` lists them; `--base` "
+          "fails on a new one)")
     if base is not None:
         print(base.line(args.base))
     if args.list:
@@ -766,7 +791,8 @@ def main() -> int:
           f"({b['extra_signatures']} -> {c['extra_signatures']} extra signatures), multi-file {b['multi_file']} -> "
           f"{c['multi_file']} ({b['extra_files']} -> {c['extra_files']} extra copies), header re-declarations "
           f"{b['header_redeclared']} -> {c['header_redeclared']}, definitions that differ from a declaration "
-          f"{len(base_defs)} -> {len(cur_defs)}, none new")
+          f"{len(base_defs)} -> {len(cur_defs)}, none new, definitions that name a type differently "
+          f"{beyond_namespace(base_types)} -> {beyond_namespace(cur_types)}, none new")
     return 0
 
 

@@ -277,8 +277,9 @@ places. The port's link sees two mangled names for such a function and joins the
 (`tools/port_link.py`, "function alias"), so nothing is unresolved; across the two only the shape of the call
 is checked, not the types.
 And the file that defines the function cannot include the header that declares it, which is what stopped four
-symbols of the seventh pass; 272 of the 984 beyond a namespace are declared in a header today. The report only
-counts: nothing fails on it yet. To settle one, give the definition and the header the same struct (the unit's
+symbols of the seventh pass; 272 of the 984 beyond a namespace are declared in a header today. The ones in
+the tree stay until someone settles them; since 2026-11-12 `tools/decl_check.py --base` fails when a pull request
+adds one (a namespace written out on one side never fails: it is the same type). To settle one, give the definition and the header the same struct (the unit's
 view of the object, in its header) and make the defining file include the header.
 
 ## Names that point to more than one address
