@@ -290,11 +290,12 @@ structured exception handling wait until Linux reaches the title screen; that se
 ## Open decisions
 
 1. ~~Route B or Route A.~~ Route B, decided 2026-10-24 (above).
-2. Where semantic lifts live and whether they are tracked (they are our tool's output, no game
-   bytes, but large; the 1 MB file limit and reviewability argue for generated-and-gitignored with
-   a pinned generator version, like `build/`). Since M1 step 3 they are generated into
-   `build/port/lifted/` with the generator's version and source hashes in its manifest; tracking
-   them (for example as `port/lifted/`) stays the owner's call.
+2. ~~Where semantic lifts live and whether they are tracked.~~ **Decided 2026-11-12 by the owner: generated
+   and untracked.** They are our tool's output and hold no game bytes, but they are 7.4 MB of machine
+   output that has to shrink to zero, they would swamp review and the 1 MB file limit, and tracked they
+   would make the repository look further along than it is. They stay under `build/port/lifted/` with the
+   generator's version and source hashes in the manifest. The long first generation for a new contributor
+   is a caching problem, not a reason to commit them.
 3. ~~Graphics backend and when shaders are compiled.~~ **Decided 2026-10-26 by the owner: Vulkan
    first, SPIR-V compiled at build time.** The port's build runs `tools/bshdat.py --install`
    (the `shaders` target, since #202) over the user's own dump (extraction, the two binding
