@@ -36,7 +36,6 @@ void fn_7100a12b24(UnkSwifterSpawnGroup_A5_b72* self) {
             asm volatile("" : "+r"(str));
         } else {
             str = "Right";
-            asm volatile("" : "+r"(str));
         }
         base::global::CStrId name(str, true);
         group = static_cast<UnkSwifterGroup_A5_b72*>(fn_710086406c(source, &name));

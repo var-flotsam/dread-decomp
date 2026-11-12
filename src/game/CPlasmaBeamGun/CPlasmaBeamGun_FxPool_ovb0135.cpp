@@ -100,7 +100,6 @@ struct UnkFxPoolMap_ovb0135 {
         if (!bucket_count)
             return nullptr;
         u32 i = Hash(key) % bucket_capacity;
-        asm("" : "+r"(i));  // the original computes the index before loading the buckets
         return &buckets[i];
     }
     Node* Find(const CFilePathStrId& key) {
@@ -116,7 +115,6 @@ struct UnkFxPoolMap_ovb0135 {
         Node** slot = nullptr;
         if (bucket_count) {
             u32 i = Hash(key) % bucket_capacity;
-            asm("" : "+r"(i));  // the original computes the index before loading the buckets
             slot = &buckets[i];
         }
         Node* c = *slot;

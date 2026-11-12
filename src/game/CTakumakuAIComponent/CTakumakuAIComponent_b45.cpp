@@ -25,7 +25,6 @@ struct UnkTakumakuAI_b45a2 {
 
 void fn_71006d445c(UnkTakumakuAI_b45a2* self) {
     fn_7100369650(reinterpret_cast<char*>(self));
-    asm("" : "+r"(self));  // the original addresses the fields from self after the call
     self->field_0x14748 = -1.0f;
     UnkTakumakuTarget_b45a2* target = &self->target;
     asm("" : "+r"(target));  // addressed on its own, as in the original

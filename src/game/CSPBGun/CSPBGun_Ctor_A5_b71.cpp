@@ -50,7 +50,6 @@ void fn_710085ece0_A5_b71(UnkSPBGunCtor_A5_b71* self) asm("_Z13fn_710085ece0v");
 void fn_710085ece0_A5_b71(UnkSPBGunCtor_A5_b71* self) {
     char* block = reinterpret_cast<char*>(self) + 0x1880;
 #if defined(__aarch64__)
-    asm("" : "+r"(block));
 #endif
     fn_710082fa78(reinterpret_cast<UnkBeamGun_A5_b71*>(self));
     self->vtable = reinterpret_cast<char*>(g_unk_7101a79800) + 0x10;

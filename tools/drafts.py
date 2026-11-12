@@ -34,6 +34,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 import os
 import re
@@ -146,6 +147,7 @@ def functions(src: Path) -> list[dict] | str:
         return short((errors or r.stderr.splitlines() or ["no output"])[0])
     funcs = asmdiff.read_object(obj)
     codes = {f.symbol: f.code for f in funcs}
+    by_symbol = {f.symbol: f for f in funcs}
     results, names, _, targets = check.diff_with_targets(funcs, _state["orig"], _state["by_name"])
     out = []
     for res in results:
@@ -157,8 +159,16 @@ def functions(src: Path) -> list[dict] | str:
             difference = KINDS.get(kind, kind)
         out.append({"address": res.address, "name": names.get(res.symbol, res.symbol).split("::")[-1],
                     "difference": difference, "similarity": f"{res.score * 100:.1f}",
-                    "differing": str(len(res.diff_insns))})
+                    "differing": str(len(res.diff_insns)), "code": code_digest(by_symbol[res.symbol])})
     return out
+
+
+def code_digest(f) -> str:
+    """A function of an object as a digest of its bytes and of what each relocation names."""
+    h = hashlib.sha256(f.code)
+    for off, r in sorted(f.relocs.items()):
+        h.update(repr((off, r.type, r.symbol, r.addend, r.section, r.data)).encode())
+    return h.hexdigest()
 
 
 def grade(src: Path, address: int) -> dict:
@@ -279,8 +289,8 @@ def verdicts(version: str, files: list[Path]) -> dict[int, tuple[str, str]]:
 
 
 def compiled(found: list[dict] | str):
-    """What a file's functions are, for telling whether an edit changed the code."""
-    return found if isinstance(found, str) else [(x["address"], x["difference"], x["differing"]) for x in found]
+    """A file's functions as their code (bytes and relocation targets), for telling whether an edit changed it."""
+    return found if isinstance(found, str) else [(x["address"], x["difference"], x["code"]) for x in found]
 
 
 def take_header(lines: list[str], line: int, name: str, header: str) -> list[str] | None:

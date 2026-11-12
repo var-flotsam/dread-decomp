@@ -149,8 +149,6 @@ static inline __attribute__((always_inline)) UnkEntryNode_ovb0224** FindSlot_ovb
         u32 index = hash % self->bucket_count;
         slot = &self->buckets[index];
     }
-    // keeps the null bucket slot (empty table) from being assumed away.
-    asm("" : "+r"(slot));
     return slot;
 }
 

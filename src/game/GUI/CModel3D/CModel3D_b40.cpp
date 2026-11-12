@@ -31,7 +31,6 @@ UnkReflValue fn_71011f51d4(void*, char* obj, UnkReflValue* const* args) {
     UnkReflValue* arg = args[0];
     auto* target = *reinterpret_cast<UnkModel3D_b40a3**>(obj + 8);
     const CStrId* value = static_cast<const CStrId*>(ArgPtr_b40a3(arg));
-    asm("" : "+r"(value));
     if (value->data != &g_unk_7101d47108->empty && target->model.data != value->data) {
         target->field_0x198 = 0;
         target->model = *value;

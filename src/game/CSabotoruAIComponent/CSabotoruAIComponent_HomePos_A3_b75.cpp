@@ -65,7 +65,6 @@ bool fn_71006798b8(UnkSabotoruAI_A3_b75* self) {
     if (CBlackboard::CSection* s = fn_71010472e0(blackboard, g_unk_71726b7cb8)) {
         if (!blackboard->field_0xe8) {
             base::math::CVector3D* home = &self->home;
-            asm("" : "+r"(home));
             v.type = fn_71000246e4();
             v.value = home;
             fn_7100332c80(s, reinterpret_cast<UnkPropertyName*>(&name), &v);

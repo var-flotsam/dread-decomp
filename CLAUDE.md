@@ -200,7 +200,8 @@ Toolchain:
   form `asm volatile("" ::: "memory")`. Neither emits an instruction. Put a one-line comment directly above
   it saying what it preserves (e.g. `// reads data70 again after the calls, as the original does`).
   A barrier, an offset cast, `volatile` or an empty `if` usually stands for a missing helper, a wrong
-  field type or two variables merged into one: look for that first. `tools/fakematch.py` lists them.
+  field type or two variables merged into one: look for that first. `tools/fakematch.py` lists them, and its
+  `--unneeded-barriers` finds the barriers that change no function's code when taken out.
 - Inferred-role names use a `refl_` prefix (e.g. `CActor::refl_GetClass`) or `vf_<slot>` for
   vtable slots. These are not Mercury's real method names.
 - **One declaration per shared symbol.** A function or global used by more than one file is declared

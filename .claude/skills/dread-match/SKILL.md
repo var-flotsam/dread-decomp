@@ -63,7 +63,8 @@ it) and of statements, a comparison written the other way round, an inline helpe
 **Readable first.** Don't add a barrier (`asm("" : "+r"(x))`), `volatile`, an empty `if`, an inlining
 attribute, a union around a member, an untyped store or an offset cast only to change what the compiler
 emits. One of these usually stands for a missing helper, a wrong field type or two variables merged into one:
-look for that. `python tools/fakematch.py --base origin/main --list` shows what the branch added. Readability
+look for that. `python tools/fakematch.py --base origin/main --list` shows what the branch added, and
+`--unneeded-barriers` which barriers change nothing when taken out (one in three did, tree-wide). Readability
 outranks a match: if the function matches only with one of them, the version without it is the one to keep.
 
 ## When it does not match (about 30 to 60 minutes a function)

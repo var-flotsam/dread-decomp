@@ -54,7 +54,6 @@ static inline __attribute__((always_inline)) void* Erase(void* map, const CStrId
     auto* k = key->data;
     u64 h = reinterpret_cast<const UnkHashView_A6b73*>(k)->hash;
     u32 i = ((u32)(h >> 32) ^ (u32)h) % self->bucket_capacity;
-    asm("" : "+r"(i));  // the original computes the index before loading the buckets
     char** bucket = &self->buckets[i];
     char* n = *bucket;
     if (!n)

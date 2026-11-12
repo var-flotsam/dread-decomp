@@ -66,7 +66,6 @@ static inline UnkSancMoveState_ovb0133* FindState(UnkSancMove_ovb0133* self, s32
     if (size == 0)
         return nullptr;
     UnkSancMoveState_ovb0133** it = self->states;
-    asm("" : "+r"(it));
     for (; size != 0; ++it, size -= sizeof(*it)) {
         if ((*it)->kind == kind)
             return *it;

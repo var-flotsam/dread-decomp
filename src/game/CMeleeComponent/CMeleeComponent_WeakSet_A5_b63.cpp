@@ -16,6 +16,5 @@ void fn_710092f0b4(UnkWeakTargetSlot_A5_b63* self, UnkWeakTarget* target) {
         return;
     }
     AssignRef(&self->handle, GetWeakHandle(target));
-    asm("" ::: "memory");
     self->flags |= 0x400;
 }
