@@ -9,6 +9,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiLabel.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU58.h"
 #include "game/nn/time.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
@@ -19,7 +20,6 @@ struct UnkHms {
     u32 minutes;
     u32 seconds;
 };
-void fn_7100081040(u32 total, UnkHms* out);
 
 struct UnkWideStr_0x20;
 using UnkGuiObj = UnkGuiDisplayObject;

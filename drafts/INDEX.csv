@@ -6,6 +6,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71000687d8,376,drafts/game/UnkTU42/fn_71000687d8.cpp,operations,10.6,74,lean,
 0x710006981c,288,drafts/game/UnkTU42/fn_710006981c.cpp,conditions,97.2,2,overnight,
 0x710006e7a4,348,drafts/game/UnkTU46/fn_710006e7a4.cpp,registers or order,92.0,7,overnight,
+0x71000708c8,244,drafts/game/UnkTU48/fn_71000708c8.cpp,registers or order,91.8,5,overnight,passes tools/equiv_test.py; held: it declares g_unk_7101647790; which other files declare too and no unit header can take
 0x710007966c,328,drafts/game/UnkTU54/fn_710007966c.cpp,operations,32.9,55,pilot50,float op scheduling order differs (KIND operations)
 0x7100079fb0,160,drafts/game/UnkTU54/fn_7100079fb0.cpp,registers or order,92.5,3,overnight,
 0x7100087ddc,240,drafts/game/UnkTU63/fn_7100087ddc.cpp,registers or order,95.0,3,overnight,
@@ -161,6 +162,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100e903ec,340,drafts/game/UnkTU2566/fn_7100e903ec.cpp,operations,75.3,21,pilot50,operations: orr operand order; fcsel order; fade branch layout
 0x7100e906bc,296,drafts/game/UnkTU2566/fn_7100e906bc.cpp,registers or order,93.2,5,overnight,
 0x7100e911c8,196,drafts/game/UnkTU2566/fn_7100e911c8.cpp,registers or order,98.0,1,overnight,
+0x7100e94e10,552,drafts/game/UnkTU2566/fn_7100e94e10.cpp,registers or order,98.6,2,pilot50,passes tools/equiv_test.py; held: it declares g_unk_710164be30; which other files declare too and no unit header can take
 0x7100e97c60,812,drafts/game/UnkTU2566/fn_7100e97c60.cpp,conditions,93.1,14,lean,
 0x7100e98090,408,drafts/game/UnkTU2566/fn_7100e98090.cpp,registers or order,43.1,58,pilot50,register assignment only; holds an empty barrier (without it: operations 41.2%)
 0x7100e9c06c,492,drafts/game/UnkTU2566/fn_7100e9c06c.cpp,registers or order,92.7,9,overnight,

@@ -18,9 +18,6 @@ using base::snd::UnkSoundSystemATK;
 
 struct UnkInterp_7100105d34;
 struct UnkPlayingSound_ovb0074;
-void fn_7100105bac(UnkPlayingSound_ovb0074* sound, f32 value);
-void fn_7100105c9c(UnkPlayingSound_ovb0074* sound, f32 value);
-void fn_7100105cf0(UnkPlayingSound_ovb0074* sound, f32 value);
 
 // A voice: the group bit it answers to is 1 << shift.
 struct UnkVoice_b0184 {
@@ -58,4 +55,3 @@ void fn_71000fd1d4(void* member, const u32* mask, f32 fade) {
     }
     fn_7100066920(&self->mutex);
 }
-

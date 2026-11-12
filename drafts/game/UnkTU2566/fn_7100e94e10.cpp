@@ -3,6 +3,7 @@
 #include <math.h>
 
 #include "game/UnkGameManager.h"
+#include "game/UnkTU311.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -33,7 +34,6 @@ struct UnkMinimapRect {
 };
 
 extern const f32 g_unk_710164be30;
-f32 fn_7100217ee0(f32 a, f32 b);
 
 static inline f32 DegToRad(f32 deg) {
     return (f32)((double)(deg * 0.5f) * 3.14159265358979323846 / 180.0);

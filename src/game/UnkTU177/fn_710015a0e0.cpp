@@ -3,7 +3,6 @@
 #include "types.h"
 
 extern bool g_unk_7101a1d7d9;
-extern bool g_unk_7101a1d7d8;
 extern void (*g_unk_716e29b578)(void* target, s32 index, bool r, bool g, bool b, bool a);
 
 // NON_MATCHING(minor): the same instructions in another order or with other registers.

@@ -6,7 +6,6 @@
 
 struct UnkEmmyRelaxAI_b59;
 struct UnkPlayer;
-void fn_71005479a0(UnkEmmyRelaxAI_b59* self);
 
 struct UnkTargetAI_b0193 {
     u8 unk_0x0[0x30];

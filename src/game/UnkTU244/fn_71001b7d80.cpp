@@ -1,5 +1,6 @@
 #include <math.h>
 
+#include "game/UnkTU311.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -31,8 +32,6 @@ struct UnkCam_b0258i {
 };
 static_assert(__builtin_offsetof(UnkCam_b0258i, tan_0x278) == 0x278, "layout");
 
-f32 fn_7100217ee0(f32 f0, f32 f1);
-
 static inline f32 Rad_b0258i(f32 deg) {
     return (f32)((f64)deg * 3.141592653589793 / 180.0);
 }
@@ -59,4 +58,3 @@ static inline __attribute__((always_inline)) void SetFov_b0258i(UnkCam_b0258i* s
 void fn_71001b7d80(UnkCam_b0258i* self, f32 fov) {
     SetFov_b0258i(self, fov);
 }
-

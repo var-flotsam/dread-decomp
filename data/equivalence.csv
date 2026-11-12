@@ -2,7 +2,6 @@ address,digest,verdict,rules,detail
 0x7100017ce8,36085c384068060506a343bedfb5cf57,inconclusive,1,only 83% of the original's instructions ran
 0x710002d3e0,25f5e022776e7e1e62b7f137c89e6af1,pass,1,
 0x710006cd9c,e0d3c6ac3d1574487fb23bd532041934,pass,1,
-0x71000708c8,a0a0d46acd3052f9963a9e5609e73172,pass,1,
 0x7100075f78,c0604d95cbd29eabc77b85f5902f6f57,pass,1,
 0x7100077c70,6934c6958abf061e9fc7872df6275096,pass,1,
 0x7100079b18,e6b837c2bb0bccaaa4b789da9c193694,inconclusive,1,only 93% of the original's instructions ran
@@ -132,7 +131,6 @@ address,digest,verdict,rules,detail
 0x7100e8f6bc,a0fe54fa3b1a2a81a3dfc7f758805f39,inconclusive,1,only 97% of the original's instructions ran
 0x7100e90e6c,3e4ba2e40ef5984dfc14f7e4b1e1cc5f,pass,1,
 0x7100e91d68,380f1cfab818571d80c91fe1f2fa53fd,inconclusive,1,1 of 2 conditional branches went only one way
-0x7100e94e10,5bbe75ce94b6b6827485719f916c7d8b,pass,1,
 0x7100eca5dc,28ca07d21d40638e5ad6b3bbd978f650,inconclusive,1,only 83% of the original's instructions ran
 0x7100eca778,28ca07d21d40638e5ad6b3bbd978f650,inconclusive,1,only 83% of the original's instructions ran
 0x7100ee4f84,523907dedfdf56043c687921b80578d9,inconclusive,1,unresolved guard variable for GameManagerIdTable()::s_table (no address in the original)
