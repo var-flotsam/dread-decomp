@@ -152,6 +152,14 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Seventh declarations pass (2026-11-12).** With no conflicting signature left, 18 more symbols moved into
+unit headers (symbols in more than one file 409 to 391, extra copies 1,433 to 1,260). 13 that the run
+tried went back and are listed with their reasons in `docs/known_declaration_faults.md`. One reason is new: four
+functions whose own definition returns a pointer to another type than every caller declares
+(`fn_7101177ae8` returns `const CStrId*`, its ten callers say `UnkStringData**`). The call is the same, so
+`tools/decl_check.py --definitions` does not list them, and its count of conflicting signatures leaves
+definitions out; the compiler found them when the header reached the defining file.
+
 **No symbol has two signatures (2026-11-12).** The last 20 conflicting signatures were settled by hand, each
 file kept only with unchanged output (`tools/baseline.py`): `tools/decl_check.py` now reports 0, from 135 on
 2026-11-11 and 382 when the unit headers began. Most of the 20 were not a disagreement about the function but
