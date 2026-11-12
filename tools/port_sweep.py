@@ -295,12 +295,19 @@ def obj_path(src: Path, obj_dir: Path) -> Path:
     return obj_dir / src.relative_to(ROOT / "src").with_suffix(".o")
 
 
-def compile_one(cxx: str, flags: list[str], src: Path, obj_dir: Path) -> tuple[Path, int, str]:
+def compile_one(cxx: str, flags: list[str], src: Path, obj_dir: Path,
+                time_limit: float | None = None) -> tuple[Path, int, str]:
+    """(source, exit code, stderr). A compile that runs past `time_limit` seconds is stopped and counts
+    as a failed file: a declaration that makes a function its own callee can keep the compiler busy for
+    good, and the sweep would wait with it."""
     obj = obj_path(src, obj_dir)
     obj.parent.mkdir(parents=True, exist_ok=True)
     cmd = [cxx, *flags, rel(src), "-o", str(obj)]
     try:
-        r = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", cwd=ROOT)
+        r = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", cwd=ROOT,
+                           timeout=time_limit)
+    except subprocess.TimeoutExpired:
+        return src, 1, f"{rel(src)}:1: fatal error: the compiler did not finish in {time_limit:g} s"
     except OSError as e:
         return src, 1, f"{rel(src)}:1: fatal error: cannot run the compiler: {e}"
     return src, r.returncode, r.stderr
@@ -493,6 +500,8 @@ def main() -> int:
     ap.add_argument("--system-stdlib", action="store_true", help="the same as --stdlib host")
     ap.add_argument("--error-limit", type=int, default=50, help="errors Clang reports per file (default 50)")
     ap.add_argument("--examples", type=int, default=1, help="examples printed per category (default 1)")
+    ap.add_argument("--time-limit", type=float, default=600,
+                    help="seconds one file may compile before it counts as failed (default 600; 0: no limit)")
     args = ap.parse_args()
 
     mingw = is_mingw(args.target or "")
@@ -518,7 +527,7 @@ def main() -> int:
           + (f", runtime {rel(runtime)}" if runtime else ", no runtime include"), flush=True)
 
     with ThreadPoolExecutor(max_workers=max(1, args.jobs)) as pool:
-        results = list(pool.map(lambda s: compile_one(cxx, flags, s, obj_dir), srcs))
+        results = list(pool.map(lambda s: compile_one(cxx, flags, s, obj_dir, args.time_limit or None), srcs))
 
     failed_files: dict[str, dict] = {}
     cat_count: Counter[str] = Counter()
