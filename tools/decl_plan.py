@@ -10,18 +10,22 @@ unit is the one its address is in (tools/tu_map.py); a global's is the one whose
 address (tools/data_map.py, read from data/data_map.csv).
 
 A symbol is planned when it is declared in more than one file with one signature, at global scope, in
-no header under include/ yet, and its types are builtin or plain structs that the declaring file
+no header under include/ yet, and its types are builtin, or plain structs that the declaring file
 forward-declares or defines, or that every file of the tree agrees on (one keyword, never an alias, never
-named through a namespace); those are forward-declared in the header. A global's copies must also be
+named through a namespace), which are forward-declared in the header, or types that exactly one header
+under include/ defines (`CStrId`, `UnkVec3f`), for which the unit header includes that header and the
+declaration names the type in full (`base::global::CStrId`); a type used by value takes its header
+whenever there is one. A global's copies must also be
 the same text once the macros their files define are written out (the signature leaves attributes out,
 and a visibility attribute changes the code). Left
-out, and counted: signatures that conflict, declarations inside a namespace, signatures with namespaced,
-template or function-pointer types or an asm label, globals between two units' data spans, global arrays
-of a struct type (an array needs the type's definition), a unit whose header exists and was not made by
+out, and counted: signatures that conflict, declarations inside a namespace, signatures with a namespaced
+type no header defines, template or function-pointer types or an asm label, globals between two units'
+data spans, global arrays of a forward-declared type (an array needs the definition), a unit whose header
+exists and was not made by
 this tool, and the symbols listed in --exclude (the ones an earlier run could not move).
 
-With --write the headers are created (a comment, `types.h`, the forward declarations; hub_migrate
-appends the declarations), a unit header that exists gets the forward declarations it lacks, and the
+With --write the headers are created (a comment, the includes, the forward declarations; hub_migrate
+appends the declarations), a unit header that exists gets the includes and forward declarations it lacks, and the
 plan is written in chunks of whole headers, one hub_migrate run each.
 
 hub_migrate removes a prototype together with the comment at the end of its line, and leaves a comment
@@ -79,6 +83,7 @@ class Planned:
     copies: int                  # files that declare it today
     types: dict[str, str] = field(default_factory=dict)   # struct name -> struct | class | union
     unit: dict = field(default_factory=dict)
+    includes: tuple[str, ...] = ()                         # headers that define a type it uses ("base/x.h")
 
 
 def unit_dir(unit: dict) -> str:
@@ -129,11 +134,48 @@ def type_index(files: dict[str, str]) -> dict[str, str]:
     return {n: next(iter(k)) for n, k in keywords.items() if len(k) == 1 and n not in out_of_question}
 
 
+SCOPE = re.compile(r"\bnamespace\s+([\w:]+)\s*\{|\b(?:struct|class|union)\s+(?:alignas\(\d+\)\s+)?([A-Za-z_]\w*)\b[^;{()]*\{|[{}]")
+QNAME = re.compile(r"\b[A-Za-z_]\w*(?:::[A-Za-z_]\w*)+")
+
+
+def defined_types(text: str) -> list[tuple[str, str]]:
+    """(full name, plain name) of the types a header defines with a body, at global scope or in namespaces
+    (not the ones nested in a class or a function)."""
+    out = []
+    open_: list[str | None] = []     # per open brace: a namespace's name, or None
+    for m in SCOPE.finditer(decl_check.strip(text)):
+        if m.group(1):
+            open_.append(m.group(1))
+        elif m.group(2):
+            if all(s is not None for s in open_):
+                ns = "::".join(open_)
+                out.append(((ns + "::" if ns else "") + m.group(2), m.group(2)))
+            open_.append(None)
+        elif m.group(0) == "{":
+            open_.append(None)
+        elif open_:
+            open_.pop()
+    return out
+
+
+def header_types(files: dict[str, str]) -> dict[str, tuple[str, str]]:
+    """{plain name: (full name, header as included)} for the types exactly one header under include/
+    defines. A declaration that uses such a type can go to a unit header that includes that header."""
+    found: dict[str, set[tuple[str, str]]] = {}
+    for path, text in files.items():
+        if path.startswith("include/") and path.endswith((".h", ".hpp")):
+            for full, name in defined_types(text):
+                found.setdefault(name, set()).add((full, path[len("include/"):]))
+    return {n: next(iter(v)) for n, v in found.items() if len(v) == 1}
+
+
 def plan(report: decl_check.Report, files: dict[str, str], units: list[dict],
-         data_unit=None, known: dict[str, str] | None = None) -> tuple[list[Planned], Counter]:
+         data_unit=None, known: dict[str, str] | None = None,
+         shared: dict[str, tuple[str, str]] | None = None) -> tuple[list[Planned], Counter]:
     """(what can move, why the rest of the multiply-declared symbols cannot). `data_unit` gives the index of
     the unit a data address belongs to, or None (data_map.finder); without it no global is planned. `known`
-    (type_index) lets a type the declaring file takes from an include be forward-declared too."""
+    (type_index) lets a type the declaring file takes from an include be forward-declared too; `shared`
+    (header_types) lets a type one header defines be used through that header."""
     find = unit_finder(units)
     by_index = {str(u["index"]): u for u in units}
     out: list[Planned] = []
@@ -154,17 +196,28 @@ def plan(report: decl_check.Report, files: dict[str, str], units: list[dict],
             why["declared inside a namespace or struct"] += 1
             continue
         sig = report.sigs[sym][0]
+        if shared:   # the full name of a header's type reads as its plain name from here on
+            sig = QNAME.sub(lambda m: (m.group(0).rsplit("::", 1)[-1]
+                                       if shared.get(m.group(0).rsplit("::", 1)[-1], ("",))[0] == m.group(0)
+                                       else m.group(0)), sig)
         if "::" in sig or "<" in sig or "asm" in sig or "(*" in sig:
             why["namespaced, template, function-pointer or asm-label types"] += 1
             continue
         text = files[ds[0].path].replace("\r\n", "\n")
         types: dict[str, str] = {}
+        full: dict[str, tuple[str, str]] = {}
         for t in {t for t in IDENT.findall(sig) if t not in BUILTIN and t != sym}:
             m = re.search(rf"^\s*(struct|class|union)\s+{t}\b", text, re.M)
-            if m:
+            # used by value (a parameter, a result, an array's element), the type needs its definition
+            by_value = re.search(rf"\b{t}\b(?!\s*[*&])", sig) is not None
+            if by_value and shared and t in shared:
+                full[t] = shared[t]
+            elif m:
                 types[t] = m.group(1)
             elif known and t in known:
                 types[t] = known[t]
+            elif shared and t in shared:
+                full[t] = shared[t]
             else:
                 types = None
                 break
@@ -190,8 +243,12 @@ def plan(report: decl_check.Report, files: dict[str, str], units: list[dict],
             if unit is None:
                 why["in no unit"] += 1
                 continue
-        out.append(Planned(sym, f"include/{unit_dir(unit)}.h", spelled_out(text[ds[0].start:ds[0].end], text),
-                           len(report.paths[sym]), types, unit))
+        header = f"include/{unit_dir(unit)}.h"
+        declaration = spelled_out(text[ds[0].start:ds[0].end], text)
+        for t, (name, _) in full.items():   # the header has no using-declarations: the full name
+            declaration = re.sub(rf"(?<![\w:]){t}\b", name, declaration)
+        includes = tuple(sorted({h for _, h in full.values() if f"include/{h}" != header}))
+        out.append(Planned(sym, header, declaration, len(report.paths[sym]), types, unit, includes))
     out.sort(key=lambda p: (-p.copies, p.symbol))
     return out, why
 
@@ -237,16 +294,20 @@ def header_text(header: str, mine: list[Planned]) -> str:
     lines = ["#pragma once", "",
              f"// {name}: {what} {UNIT_HEADER}{unit['index']},",
              f"// {unit['start']}-{unit['end']}). One declaration per symbol: include this instead of declaring one.",
-             "// Names and layouts are placeholders.", '#include "types.h"', ""]
+             "// Names and layouts are placeholders.",
+             *[f'#include "{h}"' for h in sorted({h for p in mine for h in p.includes})], '#include "types.h"', ""]
     return "\n".join(lines + [f"{k} {t};" for t, k in sorted(types.items())]) + "\n"
 
 
 def extended(text: str, mine: list[Planned]) -> str:
-    """An existing unit header's text with the forward declarations `mine` needs and it lacks."""
+    """An existing unit header's text with the includes and forward declarations `mine` needs and it lacks."""
     types: dict[str, str] = {}
     for p in mine:
         types.update(p.types)
     lines = text.replace("\r\n", "\n").split("\n")
+    wanted = [f'#include "{h}"' for h in sorted({h for p in mine for h in p.includes})]
+    at = lines.index('#include "types.h"')
+    lines[at:at] = [w for w in wanted if w not in lines]
     new = [f"{k} {t};" for t, k in sorted(types.items())
            if not re.search(rf"^\s*(struct|class|union)\s+{t}\b", text, re.M)]
     if any(not p.symbol.startswith("fn_") for p in mine):
@@ -287,7 +348,7 @@ def main() -> int:
     files = decl_check.tree_files(None)
     report = decl_check.Report(files)
     data_unit = data_map.finder(data_map.load()) if data_map.OUT.is_file() else None
-    planned, why = plan(report, files, tu_map.load_map(), data_unit, type_index(files))
+    planned, why = plan(report, files, tu_map.load_map(), data_unit, type_index(files), header_types(files))
     print(f"{len(report.multi)} symbols declared in more than one file; {len(planned)} can move "
           f"({sum(p.copies for p in planned)} local copies)")
     for k, v in why.most_common():
