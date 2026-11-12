@@ -14,6 +14,16 @@ declaration headers, and the worker rules below contradict decisions made since:
   verified equivalent counts);
 - they stop a function early on a low first score (which cut off functions that were close).
 
+**Update, 2026-11-12.** The lean kit ran once more, for the 40-function test of shared headers
+(`docs/JOURNAL.md`): copied into a worktree's `build/lean/`, with `prepare.py`'s helper module `pilot.py`
+(not tracked; in the owner's local archive of the earlier runs) under `build/pilot/`. The test found no gain from
+giving workers the unit headers and the reflected members. What it did show is the step a coordinator now needs
+between the workers and the commit, because CI fails a copied declaration since that day:
+`tools/decl_plan.py --write --grown origin/main` and `tools/hub_migrate.py --plan` move what the new files
+copied into unit headers, and a file whose copied symbol cannot be planned waits in `drafts/`
+(`lean/COORDINATOR.md`, step 5). The workers' own rule (copy a declaration, edit no other file) can stay as it
+is for that reason: parallel workers must not edit shared headers, and the coordinator's step undoes the copies.
+
 Rewrite the briefs and the coordinator against the new rules before running anything from here.
 
 ## What is here
