@@ -154,10 +154,13 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 **Labelled members (2026-11-12).** The old branch `claude/project-thread-3x0lf8` gave 94 member declarations an
 asm label in place of a `// fn_<addr>` comment; it was never merged and no longer applies. Redone on `main` for
-the members where it is safe: 35 labels, on members whose function nothing else declares and whose struct is in
-one file. Each was checked before it was written: `tools/name_check.py` collects, for every name `check.py`
+the members where it is safe: 26 labels, on members whose function nothing else declares or defines and whose
+struct is in one file. Each was checked before it was written: `tools/name_check.py` collects, for every name `check.py`
 cannot resolve, where the original sends each reference, so the comment's address can be compared with the
-call targets (35 agree, none differs; 3 are called by no matching function and stay comments). On Clang 9 a
+call targets (35 agree, none differs; 3 are called by no matching function and stay comments). Nine of the 35
+were taken out again: a file defines `fn_<addr>` as a free function whose body constructs the object, so the
+labelled constructor would be its own caller on the port, and the x86-64 compiler never finished that file
+(the sweep has no time limit per file; it looked like a slow run for half an hour). On Clang 9 a
 label on a constructor or destructor is ignored, so the matching build is the same; on a method it renames the
 symbol, and `check.py` then verifies the call by address. Four files that each define their own
 `UnkSubTree::Query` now bind four different functions under that one name. What is left, and why, is in
