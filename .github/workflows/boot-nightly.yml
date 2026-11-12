@@ -3,9 +3,11 @@
 # It needs the dump (orig/2.1.0), which never leaves the owner's machines, so it runs on the same
 # self-hosted runner as check-local.yml; read that file's header for how the runner is set up.
 #
-# Inert until the repository variable SELF_HOSTED_CHECK is 'true', like check-local.yml. It runs on a
-# schedule and by hand (workflow_dispatch), never on pull requests: a pull request's own code never
-# reaches this job.
+# Inert until the repository variable SELF_HOSTED_CHECK is 'true', like check-local.yml. It runs by
+# hand only (workflow_dispatch), never on pull requests: a pull request's own code never reaches this
+# job. Its nightly schedule (03:17 UTC) was taken out on 2026-11-12 (owner): it failed 7 of its last 10
+# runs for reasons of the runner's session (Docker not running), and a check that fails by itself gets
+# ignored. Put the `schedule:` trigger back when the runner's environment is dependable.
 #
 # The runner's checkout needs, besides check-local.yml's junctions (orig, build\recon), directory
 # junctions to the owner's clone for the link's read-only inputs; port/docker/run.sh mounts each one
@@ -33,11 +35,9 @@
 #
 # Raise --expect when the boot reaches a further milestone (MILESTONES in tools/boot_distance.py).
 
-name: boot distance (self-hosted, nightly)
+name: boot distance (self-hosted, by hand)
 
 on:
-  schedule:
-    - cron: "17 3 * * *"
   workflow_dispatch:
 
 permissions:

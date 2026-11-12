@@ -28,7 +28,7 @@ to be purged from the history.
    [mercury-engine-data-structures](https://github.com/randovania/mercury-engine-data-structures).
 7. **One declaration per shared symbol.** A function or global that more than one file uses is
    declared once, in a header under `include/`, with one signature. A `.cpp` may declare only
-   what it alone uses. `tools/decl_check.py --base origin/main` must not report growth
+   what it alone uses. `tools/decl_check.py --strict --base origin/main` must not report growth
    (CI runs it on every PR); `tools/decl_check.py --symbol fn_<addr>` shows where a symbol is
    declared today.
 8. **Files live where the code came from.** New hand-written sources go under

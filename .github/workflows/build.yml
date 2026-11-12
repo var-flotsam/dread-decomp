@@ -2,7 +2,9 @@
 #
 #  - matching build: every src/ file with the project compiler (upstream Clang 9.0.1, pinned in
 #    data/toolchains.json) and the flags in tools/buildcfg.py (`tools/check.py --compile-only`).
-#    Diffing against the original needs the dump and stays on the self-hosted check job.
+#    Diffing against the original needs the dump and stays on the self-hosted check job, which does
+#    this same build first. So the step runs only where that job does not: on a pull request from a
+#    fork, and when the repository variable SELF_HOSTED_CHECK is not 'true' (owner, 2026-11-12).
 #  - port sweep: every src/ file for x86-64 Linux with the runner's Clang (`tools/port_sweep.py`);
 #    fails when a file does not compile.
 #  - tool tests: tools/tests (unittest), including the ones that need the project compiler.
@@ -88,9 +90,13 @@ jobs:
       - name: Tool tests (tools/tests, with the project compiler)
         run: python -m unittest discover -s tools/tests -t . -v
       - name: Matching build (tools/check.py --compile-only)
+        if: >-
+          vars.SELF_HOSTED_CHECK != 'true' ||
+          (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name != github.repository)
         run: python tools/check.py --compile-only -j 4
       - name: Port sweep, x86-64 Linux (tools/port_sweep.py)
         run: |
+          mkdir -p build/port   # the matching build above creates build/ when it runs
           python tools/port_sweep.py --version 2.1.0 --jobs 4 --json build/port/sweep.json > build/port_sweep.log 2>&1 || true
           tail -n 25 build/port_sweep.log
           python - <<'EOF'
