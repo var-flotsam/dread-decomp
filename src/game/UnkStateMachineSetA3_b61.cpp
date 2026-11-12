@@ -6,11 +6,13 @@
 #include "base/UnkVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CBossAIComponent.h"
 #include "game/CEmmyGrabSamusAttack.h"
 #include "game/CInputComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2577.h"
@@ -182,7 +184,6 @@ struct UnkGrabManager_b61 {
     s32 state;
 };
 struct UnkManager;
-extern UnkManager* g_unk_7101d47360;
 struct UnkInputComponent;
 struct UnkGrabInputArg_b61;
 extern UnkGrabInputArg_b61 g_unk_71726de5d0 __attribute__((visibility("hidden")));
@@ -478,7 +479,6 @@ void fn_71005c27f8(UnkHydrogigaSm2_b61* self, f32 dt) {
 
 // Once the timer reaches its tunable (+0x550), asks for state 1 and makes two calls of fn_7100fdcf2c on
 // the music manager with 0.2 (as src/game/CHydrogigaAIComponent/CHydrogigaAIComponent_Send_b59_2.cpp).
-extern UnkMgr_0xf18* g_unk_71726bc560;
 
 static inline void* MusicManager_b61() {
     if (!g_unk_71726bc560) {

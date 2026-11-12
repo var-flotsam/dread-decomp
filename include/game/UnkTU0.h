@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkManager;
 struct UnkGfxFrameSource;
 struct UnkEngineObject_0xf0;
 struct UnkGameObject_0x150;
@@ -33,3 +34,4 @@ extern UnkGameObject_0x60* g_unk_7101d47378;
 extern void* g_unk_7101d47330;
 extern void* g_unk_7101d47368;  // The environment manager.
 extern UnkGfxFrameSource* g_unk_7101d47328;  // The frame timer.
+extern UnkManager* g_unk_7101d47360;  // The sub-area manager singleton, created on first use.

@@ -15,7 +15,6 @@ using base::reflection::CClass;
 
 struct UnkSamusMovement;
 struct UnkLinkList;
-void fn_71002aeb9c(UnkLinkList* list, UnkLinkList** slot);
 
 struct UnkEntry;
 

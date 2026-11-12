@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/UnkVector.h"
 #include "game/UnkCollisionRecord.h"
+#include "base/reflection/CClass.h"
 #include "types.h"
 
 struct UnkCollisionFileReader;
@@ -26,3 +27,4 @@ void fn_7100863e04(UnkCollisionContainer* self, UnkCollisionObject* object);
 base::global::CStrId* fn_7100864018(UnkCollisionContainer* self, void* object);
 UnkColliderNode* fn_71008625a0(UnkManager_7100863a8c* self, void* owner, const base::global::CStrId* name);
 void fn_7100860830(UnkCollisionFileReader* self, const char* path, base::UnkVector<UnkCollisionRecord>* out, bool a, void* b);
+base::reflection::UnkReflObject*& fn_7100862088(base::UnkVector<base::reflection::UnkReflObject*>* self, u32 index);

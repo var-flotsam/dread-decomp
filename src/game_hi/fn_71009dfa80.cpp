@@ -9,6 +9,7 @@
 #include "game/CInputComponent.h"
 #include "game/CSamusHangMovementState/CParams.h"
 #include "game/UnkTU39.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 #include "base/global/CStrId.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -61,7 +62,6 @@ struct UnkRefSlot {
 };
 
 struct UnkLinkList;
-void fn_71002aeb9c(UnkLinkList* list, UnkLinkList** slot);
 void fn_71009a1f40(void* p);
 void fn_71009b0800(void* p);
 void fn_71009b349c(void* p);

@@ -40,7 +40,6 @@ using base::global::CStrId;
 using base::global::CRntString;
 
 // Refreshing every record through vf_0x170 (or clearing its +0x1c) and resetting every registered object.
-UnkReflObject*& fn_7100862088(base::UnkVector<UnkReflObject*>* self, u32 index);
 struct UnkColliderNode_A6_b70;
 void fn_7100860c64(UnkCollisionContainer* self);
 

@@ -14,7 +14,6 @@ using base::global::CStrId;
 // Signatures as src/game/CSubAreaManager.cpp declares them.
 struct UnkEnvironmentManager;
 struct UnkManager;
-extern UnkManager* g_unk_7101d47360;
 
 struct UnkSubAreaEntry_ovb0092 {
     u8 pad_0x0[0x98];

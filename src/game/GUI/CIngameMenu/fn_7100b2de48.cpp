@@ -15,6 +15,7 @@
 #include "base/global/timeline/CEvent.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CBossAIComponent.h"
 #include "game/CChozoCommanderAIComponent.h"
 #include "game/GUI/CAmiiboComposition.h"
 #include "game/GUI/CIngameMenu.h"
@@ -166,7 +167,6 @@ struct UnkModeFlags {
     u8 unk_0x0[0xb8];
     bool field_0xb8;
 };
-extern UnkModeFlags* g_unk_71726bc570;
 struct UnkStateSink;
 struct UnkStateKey;
 extern UnkStateKey g_unk_71729f0178;

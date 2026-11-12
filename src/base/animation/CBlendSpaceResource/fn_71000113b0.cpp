@@ -47,7 +47,6 @@ void fn_710000a370(UnkReflType* self, const CStrId& name, UnkReflType* base, voi
 void fn_7100009fe0();
 UnkReflType* fn_710000a4f4();
 void fn_710000a5d0(UnkReflType* self, const CStrId& name, void* a, void* b);
-extern const base::reflection::CType g_unk_7101d4cfb0 __attribute__((visibility("hidden")));
 
 void fn_71000113b0() {
     new (&g_unk_7101d4cdc8.sources) CStrId("sources", true);

@@ -16,6 +16,7 @@
 #include "game/CHydrogigaPolypsAttack.h"
 #include "game/UnkTU1450.h"
 #include "game/UnkTimelineComponent.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
 struct UnkSmState_b60 {
@@ -138,7 +139,6 @@ struct UnkLinkList;
 struct UnkSmBase_b60;
 void fn_71007dbeac(UnkSmBase_b60*);
 void fn_7100818bc0(UnkSmBase_b60*, void* point);  // src/game/CGrappleBeamComponent/CGrappleBeamComponent_b52.cpp
-void fn_71002aeb9c(UnkLinkList*, UnkLinkList**);
 
 #define UNK_SM_SET_AFTER_B60(addr, base, basetype, offset, id, last, none) \
     void fn_##addr(UnkSmOwner_b60<offset>* self) {                           \

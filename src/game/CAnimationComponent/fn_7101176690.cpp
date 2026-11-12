@@ -37,8 +37,6 @@ struct UnkS16 { u64 a, b; };
 struct UnkS12 { u64 a; u32 b; };
 
 struct UnkStruct_7101176ea8;
-bool fn_7101177044(UnkStruct_7101176ea8* self, void* r, s32 idx, void* data, UnkFlags_7101176ea8 flags,
-                   const UnkS16& a, const UnkS12& b, UnkFlags_7101176ea8 c);
 
 bool fn_7101176690(UnkStruct_7101176690* self, void* arg, u64 key, const u32& flags, const UnkS16& a,
                    const UnkS12& b, const u32& c) {

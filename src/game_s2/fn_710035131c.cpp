@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CGunComponent.h"
+#include "game/CInventoryComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
@@ -51,7 +52,6 @@ struct UnkSelf {
 extern u8 g_unk_71726b16d0[] __attribute__((visibility("hidden")));
 
 struct UnkInventory;
-bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 
 // The bit pattern of a float in memory (a word load, as the original reads it).
 static inline u32 AsU32(const f32& value) {

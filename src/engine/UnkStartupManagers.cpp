@@ -11,6 +11,7 @@
 #include "base/global/CRntString.h"
 #include "base/reflection.h"
 #include "game/CAbilityEnergyWave.h"
+#include "game/CBossAIComponent.h"
 #include "game/CDizzeanSwarmControllerComponent.h"
 #include "game/CInputComponent.h"
 #include "game/UnkGameManager.h"
@@ -64,7 +65,6 @@ struct UnkDropTargetView {
 };
 
 struct UnkMgr_0xf18;
-extern UnkMgr_0xf18* g_unk_71726bc560;  // the music manager (game/sound/CMusicManager.h)
 void fn_7100fd4db8(void* self, bool flag);
 
 void fn_710119b048(void* self);
@@ -102,7 +102,6 @@ void fn_7100e1bf64(void* self);
 void fn_7100d8d0c4(void* self);
 
 struct UnkManager;
-extern UnkManager* g_unk_7101d47360;  // the sub-area manager
 void fn_7100ee2764(void* self);
 
 void fn_71011b1f30(UnkGuiRoot* self);

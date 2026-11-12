@@ -22,6 +22,7 @@
 #include "game/UnkTU2553.h"
 #include "game/UnkTU367.h"
 #include "game/UnkTimelineComponent.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
 struct UnkSmStateA5_b61 {
@@ -372,7 +373,6 @@ s32 fn_71008d6bc4(UnkDoorLifeA5_b61* self) {
 // CCentralUnitComponent's unit: enters state 5, refreshes (fn_71007738c8), passes the target's object
 // on (fn_7100773b74) and drops the two registrations at +0x6e0 and +0x7c8.
 struct UnkLinkList;
-void fn_71002aeb9c(UnkLinkList*, UnkLinkList**);
 void fn_71007738c8();
 struct UnkCentralUnitA5_b61;
 u32 fn_7100773b74(UnkCentralUnitA5_b61* self, void* object);

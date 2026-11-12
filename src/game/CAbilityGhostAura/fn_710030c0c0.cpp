@@ -3,6 +3,7 @@
 // fn_71002f9460 called with 0.
 #include "base/UnkVector.h"
 #include "game/CAbility.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2577.h"
 #include "types.h"
 
@@ -19,8 +20,6 @@ struct UnkSelf {
     u8 unk_0x488[0x13];
     u8 field_0x49b;
 };
-
-extern UnkManager* g_unk_7101d47360;
 
 void fn_710030c0c0(UnkSelf* self) {
     UnkManager* manager = g_unk_7101d47360;

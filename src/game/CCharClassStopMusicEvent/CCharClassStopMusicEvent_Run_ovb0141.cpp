@@ -5,11 +5,11 @@
 // layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CBossAIComponent.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
-extern UnkMgr_0xf18* g_unk_71726bc560;
 struct UnkLoadingMask {
     u32 bits;
     UnkLoadingMask() : bits(0) {}

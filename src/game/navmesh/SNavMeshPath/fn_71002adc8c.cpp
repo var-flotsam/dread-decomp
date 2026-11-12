@@ -8,7 +8,6 @@
 #include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
-void fn_71002aeb9c(UnkLinkList* list, UnkLinkList** slot);
 void fn_71002addd4(void* self);
 
 // A registration in a deferred set (layout as in fn_71002ad0dc).

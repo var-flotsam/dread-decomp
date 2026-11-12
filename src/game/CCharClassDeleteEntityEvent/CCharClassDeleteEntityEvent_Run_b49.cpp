@@ -7,6 +7,7 @@
 #include "base/UnkVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CBossAIComponent.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU341.h"
@@ -16,7 +17,6 @@ struct UnkModeFlags {
     u8 unk_0x0[0xb8];
     bool field_0xb8;
 };
-extern UnkModeFlags* g_unk_71726bc570;
 
 struct UnkNodeSet695_b43a1;
 base::reflection::UnkReflObject* fn_7100475564(UnkNodeSet695_b43a1* self);

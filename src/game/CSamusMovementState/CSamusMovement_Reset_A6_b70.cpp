@@ -2,11 +2,11 @@
 // directly by the pointers, at +0x2d1c). Names and layouts are placeholders.
 #include "game/CComponent.h"
 #include "game/UnkTU39.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
 struct UnkHandleOwner_71010c4230;
 struct UnkLinkList;
-void fn_71002aeb9c(UnkLinkList* list, UnkLinkList** slot);
 
 struct UnkSamusMoveState_A6_b70 {
     virtual void vf_0x0();

@@ -81,7 +81,6 @@ u32 fn_7100a3da50(UnkFreeAimTutoLogicAction_b53* self) {
 // list (+0x68), each with a delegate {self, callback}.
 
 struct UnkLinkList;
-void fn_71002aeb9c(UnkLinkList* list, UnkLinkList** slot);
 
 struct UnkLogicActionBase;
 struct UnkTutoExitAction_b47;

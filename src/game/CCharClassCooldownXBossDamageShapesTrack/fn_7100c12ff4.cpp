@@ -3,16 +3,16 @@
 // classes (one vtable each) has two identical copies.
 #include "base/UnkCloneRecords.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassCooldownXBossDamageShapesTrack.h"
+#include "game/CCharClassForceBumpFXTrack.h"
+#include "game/CCharClassIgnoreBumpFXTrack.h"
+#include "game/CCharClassModifyDamageTrack.h"
 #include "types.h"
 
 using base::UnkStrIdVec;
 using base::global::CStrId;
 
 extern void* g_unk_7101a1a138[];
-extern void* g_unk_7101aa2b80[];
-extern void* g_unk_7101aa7d00[];
-extern void* g_unk_7101aa3030[];
-extern void* g_unk_7101aa3440[];
 
 struct UnkStrIdRecordBase {
     char* vtable;

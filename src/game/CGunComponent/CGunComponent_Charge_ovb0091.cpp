@@ -12,6 +12,7 @@
 #include "game/CCharClassTweakPlayRateTrack.h"
 #include "game/CComponent.h"
 #include "game/CGunComponent.h"
+#include "game/CInventoryComponent.h"
 #include "game/CSamusModelUpdaterComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameBlackboard.h"
@@ -37,7 +38,6 @@ struct UnkFlagged;
 struct UnkParent;
 struct UnkGlobal2;
 struct UnkGunListeners_b53;
-bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 void fn_7100841838(UnkGunListeners_b53* self, void* value);
 void fn_710007ca94(CRntFile*, char*);
 

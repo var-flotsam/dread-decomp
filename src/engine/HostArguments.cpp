@@ -10,6 +10,7 @@
 #include <nn/os.h>
 
 #include "base/reflection.h"
+#include "game/CInventoryComponent.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2550.h"
 #include "game/UnkTU2553.h"
@@ -319,7 +320,6 @@ void fn_710119d31c(UnkLanguage* language);
 // The game's singletons: the sub-area manager (0xae8 bytes), the environment manager (0x4c8), two
 // more objects (0x150 and 0x60 bytes) and the loading screen (0x220).
 struct UnkManager;
-extern UnkManager* g_unk_7101d47360;
 void fn_7100ee49f0(void* self, f32 dt);
 struct UnkGameObject_0x150;
 void fn_7100dde21c(UnkGameObject_0x150* self, f32 dt);
@@ -344,7 +344,6 @@ extern const base::math::CVector4D g_unk_71016477c4;  // (1, 1, 1, 1)
 // The game manager's per-frame steps (game/UnkGameManager.h).
 struct UnkPlayer;
 struct UnkInventory;
-bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 struct UnkFramePlayer {
     u8 unk_0x0[0x44];
     f32 x;

@@ -20,6 +20,7 @@
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1159.h"
+#include "game/UnkTU1161.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU341.h"
 #include "types.h"
@@ -226,7 +227,6 @@ struct UnkVec3Result {
 };
 
 struct UnkParent_71007455dc;
-UnkVec3Result fn_7100745e24(UnkParent_71007455dc* parent);
 s32 fn_7100729654(UnkSwarmGroups_ovb6* groups, UnkSwarmGroup_ovb6* from, UnkSwarmGroup_ovb6* into);
 
 // The group's position.

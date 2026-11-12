@@ -18,6 +18,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CActorComponent.h"
 #include "game/CBlackboard.h"
+#include "game/CBossAIComponent.h"
 #include "game/GUI/CPopUpComposition.h"
 #include "game/UnkCameraCtrl.h"
 #include "game/UnkGameManager.h"
@@ -135,7 +136,6 @@ struct UnkPromptCallback_ovb0168 {
 };
 
 struct UnkPromptParams_ovb0168;
-extern UnkModeFlags* g_unk_71726bc570;
 extern char g_unk_7172a0b890[] __attribute__((visibility("hidden")));
 void fn_710118fd28(void*);
 void fn_710118fd2c(void*);

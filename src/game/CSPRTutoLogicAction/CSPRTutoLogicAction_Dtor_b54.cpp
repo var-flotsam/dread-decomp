@@ -9,12 +9,12 @@
 #include "game/CSPRTutoLogicAction.h"
 #include "game/CTriggerLogicAction.h"
 #include "game/UnkTU341.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
 struct UnkLogicActionBase;
 
 struct UnkLinkList;
-void fn_71002aeb9c(UnkLinkList* list, UnkLinkList** slot);
 
 struct UnkSPRTutoCallbacks_b54;
 template <>

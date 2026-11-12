@@ -5,6 +5,7 @@
 // Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/UnkVector.h"
+#include "game/CBossAIComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkTU883.h"
@@ -13,7 +14,6 @@
 #include "types.h"
 
 // The music manager singleton (as src/game/sound/UnkMusicPresets.cpp declares it).
-extern UnkMgr_0xf18* g_unk_71726bc560;
 
 static inline void* MusicManager_b59a3() {
     if (!g_unk_71726bc560) {

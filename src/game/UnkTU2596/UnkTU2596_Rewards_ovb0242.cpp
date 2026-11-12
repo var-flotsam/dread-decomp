@@ -207,7 +207,6 @@ void fn_7100f17218(UnkRewardsMode_b0242* self) {
     }
 }
 
-extern UnkMgr_0xf18* g_unk_71726bc560;
 struct UnkLoadingMask {
     u32 bits;
     UnkLoadingMask() : bits(0) {}

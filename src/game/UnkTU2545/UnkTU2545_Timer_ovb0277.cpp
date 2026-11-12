@@ -5,6 +5,7 @@
 
 #include "base/UnkVector.h"
 #include "base/global/timeline/CEvent.h"
+#include "game/CBossAIComponent.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiLabel.h"
 #include "game/UnkTU0.h"
@@ -123,7 +124,6 @@ inline const UnkLoadingMask& UnkMaskAll9() {
     static UnkLoadingMask s asm("g_unk_71726c4080")(~UnkMaskNone9().bits & 0x1ff);
     return s;
 }
-extern UnkMgr_0xf18* g_unk_71726bc560;
 
 struct UnkSoundHolder;
 

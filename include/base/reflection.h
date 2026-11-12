@@ -141,3 +141,4 @@ void fn_7100b76eac(UnkReflType* self, const base::global::CStrId& name, UnkReflT
 void fn_7100b7d580(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
 void fn_7100b7de98(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
 void fn_7100b7e47c(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+const base::reflection::CType* fn_7100ad61f8();  // base::reflection::refl_GetType<CSubAreaManager*>.

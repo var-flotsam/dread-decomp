@@ -6,13 +6,13 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/CTriggerLogicAction.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2577.h"
 #include "types.h"
 
 struct UnkTutoExitAction_b47;
 
 struct UnkManager;
-extern UnkManager* g_unk_7101d47360;
 
 struct UnkChangeSetupAction_b53 {
     void** vtable;

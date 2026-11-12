@@ -233,8 +233,6 @@ void fn_7100b84970() {
     fn_710009ec00(&g_unk_7172768220, &g_unk_71727680b0);
 }
 
-extern const base::reflection::CType g_unk_7172794d40 __attribute__((visibility("hidden")));
-
 void fn_7100c92b10() {
     InitHeader(g_unk_7172794a98);
     fn_7100c81418();

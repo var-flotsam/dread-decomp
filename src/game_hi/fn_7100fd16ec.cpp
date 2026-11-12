@@ -3,6 +3,7 @@
 // the two string ids to the global default and the priority to the maximum.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CBossAIComponent.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 #include "game/sound/CMusicManager.h"
@@ -61,8 +62,6 @@ struct UnkRequest {
 struct UnkMgr_0xf18 {
     u8 data[0xf18];
 };
-
-extern UnkMgr_0xf18* g_unk_71726bc560;
 
 static inline UnkMgr_0xf18* GetMgr() {
     if (!g_unk_71726bc560) {

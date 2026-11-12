@@ -6,6 +6,7 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CActionSet.h"
+#include "game/CAnimationComponent.h"
 #include "types.h"
 
 extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
@@ -65,9 +66,6 @@ struct alignas(8) UnkFlags_7101176ea8 {
 struct UnkStruct_7101176ea8;
 struct UnkS16;
 struct UnkS12;
-
-bool fn_7101177044(UnkStruct_7101176ea8* self, void* r, s32 idx, void* data, UnkFlags_7101176ea8 flags,
-                   const UnkS16& a, const UnkS12& b, UnkFlags_7101176ea8 c);
 
 // Sends the action the pair of keys names with mode 2 and the all-bits mask.
 static inline bool Send(UnkAnim_ovb0010* self, u64 key1, u64 key2) {

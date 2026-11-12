@@ -5,7 +5,9 @@
 #include "base/global/CStrId.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CActorComponent.h"
+#include "game/CBossAIComponent.h"
 #include "game/CCharClassBaseTriggerComponent.h"
+#include "game/CInventoryComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
@@ -20,11 +22,9 @@ using base::global::CRntString;
 struct UnkFan_A4_b74;
 struct UnkPlayer;
 struct UnkInventory;
-bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 struct UnkActor;
 struct UnkStruct_710024fa0c;
 
-extern UnkMgr_0xf18* g_unk_71726bc560;
 struct UnkEmmyRegistry_b55;
 
 // The channel mask as src/game/UnkLoadingScreen.cpp defines it (passed through a copy).

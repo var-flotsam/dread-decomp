@@ -63,7 +63,6 @@ using base::global::CStrId;
 
 struct UnkMgr_0xf18;
 void fn_7100fd0e74(void* bank);
-extern UnkMgr_0xf18* g_unk_71726bc560;
 
 static inline char* MusicManager_df5cec() {
     char* object = reinterpret_cast<char*>(g_unk_71726bc560);
@@ -911,7 +910,6 @@ using base::global::CRntString;
 struct UnkUserDataOwner;
 struct UnkLoadCheckPointSingleton_ovb0118;
 struct UnkMgr_0xf18;
-extern UnkMgr_0xf18* g_unk_71726bc560;
 void fn_7101198978(void* gui);
 void fn_7101198c0c(void* gui);
 void fn_7101047068(CBlackboard* a, CBlackboard* b);

@@ -17,6 +17,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2577.h"
 #include "game/UnkTU2611.h"
 #include "game/UnkTU315.h"
@@ -73,7 +74,6 @@ struct UnkSubAreaManagerView {
     UnkSubareaSetupState* previous;
 };
 struct UnkManager;
-extern UnkManager* g_unk_7101d47360;
 static inline UnkSubAreaManagerView* SubAreaManager() {
     void* instance = g_unk_7101d47360;
     if (!instance) {

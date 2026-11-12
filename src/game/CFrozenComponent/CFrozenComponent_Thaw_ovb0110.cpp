@@ -12,6 +12,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkComponent.h"
 #include "game/animtree/CLayerNode.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -161,7 +162,6 @@ extern char g_unk_7101a74370[];
 extern void* g_unk_7101a743c8[];
 
 struct UnkLinkList;
-void fn_71002aeb9c(UnkLinkList* list, UnkLinkList** slot);
 
 struct UnkFrozenHolderTag_ov110;
 using UnkFrozenHolder_ov110 = base::UnkValueHolder<UnkFrozenHolderTag_ov110>;

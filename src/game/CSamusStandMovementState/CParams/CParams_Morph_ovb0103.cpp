@@ -5,6 +5,7 @@
 // layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/UnkMatrix44.h"
+#include "game/CInventoryComponent.h"
 #include "game/CMovementComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameBlackboard.h"
@@ -12,7 +13,6 @@
 #include "types.h"
 
 struct UnkInventory;
-bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 struct UnkMovement_71010d08d4;
 struct UnkMovementVec_71010d08d4;
 extern const u8 g_unk_710164b428[] __attribute__((visibility("hidden")));  // a zero vector

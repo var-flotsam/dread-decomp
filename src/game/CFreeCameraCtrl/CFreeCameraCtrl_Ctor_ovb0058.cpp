@@ -16,6 +16,7 @@
 #include "game/CPhotoModeCameraCtrl.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2566.h"
 #include "game/UnkTU2577.h"
@@ -214,7 +215,6 @@ void fn_71010ef204(UnkFreeCameraCtrl_b0058* self) {
 }
 
 struct UnkManager;
-extern UnkManager* g_unk_7101d47360;
 struct UnkCameraEvent_b0058 {
     s32 kind;
     u32 unk_0x4;

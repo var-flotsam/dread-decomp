@@ -25,6 +25,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkTU2553.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
 // The out-of-line Remove and Add of the deferred set a hint reference registers in (copies of
@@ -128,7 +129,6 @@ UnkHintRef_ovb0093* fn_7100752a78(UnkHintMap_ovb0093* self, UnkHintRef_ovb0093* 
 }
 
 struct UnkLinkList;
-void fn_71002aeb9c(UnkLinkList* list, UnkLinkList** slot);
 extern void* g_unk_7101a6e2a0[];
 extern void* g_unk_7101a81968[];
 

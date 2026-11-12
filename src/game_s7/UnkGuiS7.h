@@ -11,6 +11,7 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CBossAIComponent.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiHandle.h"
 #include "game/UnkGuiLabel.h"
@@ -20,7 +21,6 @@
 // The mode globals, declared as the other files declare them; the functions here read them as
 // unk_gui::UnkStats.
 struct UnkModeFlags;
-extern UnkModeFlags* g_unk_71726bc570;
 
 namespace unk_gui {
 

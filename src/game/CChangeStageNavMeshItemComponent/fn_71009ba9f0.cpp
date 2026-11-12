@@ -44,7 +44,6 @@ UnkReflType* fn_7100adc1d8();  // base::reflection::refl_GetType<gameeditor::TPr
 extern UnkReflType g_unk_717275ef50;
 
 struct CType;
-extern const base::reflection::CType g_unk_7172794d40 __attribute__((visibility("hidden")));
 
 struct UnkCharMap;
 extern void* g_unk_7101a45fe8[];

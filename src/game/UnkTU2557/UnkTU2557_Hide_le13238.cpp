@@ -2,6 +2,7 @@
 // the screen's GUI and render objects, then clears the progress and hides the sixteen icon pairs.
 // Names and layouts are placeholders.
 #include "base/UnkDefaultAllocator.h"
+#include "game/CBossAIComponent.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkRenderManager.h"
@@ -13,7 +14,6 @@ struct UnkModeFlags {
     u8 unk_0x0[0xb8];
     bool field_0xb8;
 };
-extern UnkModeFlags* g_unk_71726bc570;
 
 // The parent link of a GUI object, 0x120 bytes into it.
 struct UnkGuiParentLink_le13238 {

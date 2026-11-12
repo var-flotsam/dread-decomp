@@ -78,7 +78,7 @@ constructor named in a comment and not by a label, were folded in the same day. 
 ## Shared functions the mechanical header migration could not move
 
 `tools/decl_plan.py` and `tools/hub_migrate.py` moved 1,353 shared functions' declarations into unit headers on
-2026-11-11. 42 of those tried are still left with every local copy in place, because moving them changed a
+2026-11-11. 50 of those tried are still left with every local copy in place, because moving them changed a
 file or stopped it compiling. Each needs a person to settle the type. (`tools/decl_plan.py --exclude` takes
 this list; remove a symbol here when it has moved.)
 
@@ -110,11 +110,24 @@ data spans (108), the ones whose type is a name some file gives another meaning,
 would not build the same with the shared declaration (they are in the lists here), and the 20 with
 conflicting signatures.
 
+A seventh pass, after those 20 were settled, moved 18 more: those 20 except `fn_710031da18` and
+`fn_71007ed25c`, whose parameter is a template no header defines. It left 13 that it tried, added to the
+lists here: 391 symbols are still declared in more than one file.
+
+**4: the function's definition has another return type than its callers declare (a pointer to another type; the call is the same, so `--definitions` does not list it), and the file that defines it cannot take the header.**
+`fn_7100a0feac` `fn_71001fdacc` `fn_7101126814` `fn_7101177ae8`
+
+**2: the file's compiled output changed.**
+`fn_7100ae986c` `fn_71011cd5dc`
+
+**2: a file has its own definition of a type the declaration's header brings (`UnkVec3f`).**
+`fn_7100215dcc` `fn_710039525c`
+
 ## Shared globals the mechanical header migration could not move
 
 `tools/decl_plan.py` and `tools/hub_migrate.py` moved 674 shared symbols' declarations (672 globals and two
 functions) into unit headers on 2026-11-11, each global into the header of the unit whose data span holds it
-(`tools/data_map.py`). 22 of those tried are still left with every local copy in place. (They are in the
+(`tools/data_map.py`). 27 of those tried are still left with every local copy in place. (They are in the
 `--exclude` list with the functions above; remove a symbol here when it has moved.)
 
 **18: the header's forward declaration of the global's type clashes with a type of the same name in a namespace that a file opens (the compiler: "reference is ambiguous").**
@@ -125,6 +138,9 @@ functions) into unit headers on 2026-11-11, each global into the header of the u
 
 **3: a file's `using` declaration or typedef clashes with the header's forward declaration.**
 `g_unk_7172730858` `g_unk_7172735f58` `g_unk_7172795e08`
+
+**5: a file has its own `operator new`, or a `using` declaration, that clashes with what the unit header brings.**
+`g_unk_7101d47348` `g_unk_71727bca40` `g_unk_71727bca80` `g_unk_71727bcac0` `g_unk_71727bcb00`
 
 Not tried in this pass: 328 globals whose type comes from a shared header (`UnkReflType`, `UnkConverter`,
 `CStrId`, `UnkProperty`, `UnkTUHeader`), 95 that lie between two units' data spans, 92 with conflicting

@@ -5,6 +5,7 @@
 // the value (0 for -1) with first descriptor g_unk_710164b968. Returns whether it applied. Names are
 // placeholders.
 #include "base/global/CStrId.h"
+#include "game/CInventoryComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
 #include "../../game_s2/UnkSpitSend.h"
@@ -15,7 +16,6 @@ using base::global::CStrId;
 
 struct UnkOwner;
 struct UnkInventory;
-bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
 extern const u64 g_unk_7101649920[] __attribute__((visibility("hidden")));
 

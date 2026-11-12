@@ -17,7 +17,6 @@ using UnkRef = base::UnkRefPtrMember;
 UnkRef fn_7100353be8(void* source);
 
 struct UnkLinkList;
-void fn_71002aeb9c(UnkLinkList* list, UnkLinkList** slot);
 
 struct UnkRefl_fn_7100a683a4;
 template <>

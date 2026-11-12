@@ -12,6 +12,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CBossAIComponent.h"
 #include "game/CFXComponent.h"
 #include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameManager.h"
@@ -131,7 +132,6 @@ bool fn_7100a89bf8(UnkSaveStation_ovb0118* self, UnkWeakTarget* user) {
 }
 
 struct UnkMgr_0xf18;
-extern UnkMgr_0xf18* g_unk_71726bc560;  // the music manager
 
 struct UnkSaveStationName_ovb0118 {
     u8 pad_0x0[0x10];

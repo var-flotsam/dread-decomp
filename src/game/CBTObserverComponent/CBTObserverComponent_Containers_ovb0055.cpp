@@ -26,6 +26,7 @@
 #include "game/CSpittailMagmaBallMovementComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU127.h"
 #include "game/UnkTU253.h"
 #include "game/UnkTU2553.h"
@@ -717,7 +718,6 @@ struct UnkModel {
 struct UnkTileEventSet;
 extern UnkTileEventSet g_unk_7172795e08;  // the breakable tiles' event set
 struct UnkManager;
-extern UnkManager* g_unk_7101d47360;
 
 struct UnkObserverSetUp_ovb0055 {
     u8 unk_0x0[0xc0];

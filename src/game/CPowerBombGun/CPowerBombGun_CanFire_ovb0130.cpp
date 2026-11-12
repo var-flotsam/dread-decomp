@@ -15,7 +15,6 @@
 using base::global::CStrId;
 
 struct UnkInventory;
-bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 
 // The property's qualified id, built on first use.
 static inline UnkQualifiedId& Qid_ovb0130(UnkPropertyEx<>& item) {

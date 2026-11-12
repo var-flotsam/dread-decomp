@@ -1,12 +1,12 @@
 // CScorpiusAIComponent's unit (tools/tu_map.py), fn_7100698200: makes two calls of fn_7100fdcf2c on the music
 // manager (game/sound/CMusicManager.h) with 0.2, their flags set by the flag at +0x14c28, then sets the flag at
 // +0x14d80. Names and layouts are placeholders.
+#include "game/CBossAIComponent.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 // The music manager singleton (as src/game/CHydrogigaAIComponent/CHydrogigaAIComponent_Send_b59_2.cpp declares it).
-extern UnkMgr_0xf18* g_unk_71726bc560;
 
 static inline void* MusicManager_A3_b76() {
     if (!g_unk_71726bc560) {

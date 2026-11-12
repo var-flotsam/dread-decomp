@@ -4,6 +4,7 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/CBossAIComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2595.h"
 #include "game/UnkTU2656.h"
@@ -48,7 +49,6 @@ inline const UnkLoadingMask& UnkLoadingMaskAll() {
     static UnkLoadingMask s asm("g_unk_71726c4080")(~UnkLoadingMaskNone().bits & 0x1ff);
     return s;
 }
-extern UnkMgr_0xf18* g_unk_71726bc560;
 
 struct UnkVec3_b0225 {
     u64 xy;

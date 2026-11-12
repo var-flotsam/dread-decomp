@@ -356,7 +356,6 @@ struct UnkThermalComponent_ovb0097;
 void* fn_71007ea32c(void* actor);
 struct UnkEmmyAIComponent_b46a1;
 struct UnkManager;
-extern UnkManager* g_unk_7101d47360;
 bool fn_7100eea7b0(void* manager);
 struct UnkForcedMovementArea_A5_b68e;
 

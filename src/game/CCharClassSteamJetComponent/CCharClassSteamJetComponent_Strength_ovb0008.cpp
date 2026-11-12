@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "game/CAudioComponent.h"
 #include "game/CCharClassBaseDamageTriggerComponent.h"
+#include "game/CInventoryComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
@@ -22,7 +23,6 @@ void fn_7100a45a30(UnkBaseDamageTrigger3* self);
 struct UnkLiquidPool_b44a2;
 struct UnkPlayer;
 struct UnkInventory;
-bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 
 extern char g_unk_7101a7ccb0[];  // vtable
 

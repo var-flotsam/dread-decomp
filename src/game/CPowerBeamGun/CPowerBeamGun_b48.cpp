@@ -3,12 +3,12 @@
 // (ITEM_WEAPON_DIFFUSION_BEAM, fn_71011428bc), and hands them to slot 0x1d8. Names and layouts are
 // placeholders.
 #include "base/global/CStrId.h"
+#include "game/CInventoryComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkItemProperties.h"
 #include "types.h"
 
 struct UnkInventory;
-bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 
 // An item's qualified id, built on first use.
 static inline const UnkQualifiedId& GetQualifiedId(UnkPropertyEx<>& item) {

@@ -125,7 +125,6 @@ void fn_71010ea3e4(UnkAnimatedCameraCtrl_b0101* self, bool reset) {
 // ----
 
 struct UnkManager;
-extern UnkManager* g_unk_7101d47360;
 
 // A bit mask passed by value (copied into a temporary), and its two guarded constants (as in
 // src/game/UnkLoadingScreen.cpp).

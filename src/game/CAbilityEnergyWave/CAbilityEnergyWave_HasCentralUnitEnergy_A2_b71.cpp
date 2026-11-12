@@ -3,12 +3,12 @@
 // +0x30, +0x270) holds the item ITEM_CENTRAL_UNIT_ENERGY (fn_71011428bc), as
 // src/game/CSamusGunComponent/CSamusGunComponent_EnergyKey_b52.cpp tests it. Names and layouts are
 // placeholders.
+#include "game/CInventoryComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkItemProperties.h"
 #include "types.h"
 
 struct UnkInventory;
-bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 
 static inline const UnkQualifiedId& GetQualifiedId_A2_b71(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = ItemQualifiedId(item);

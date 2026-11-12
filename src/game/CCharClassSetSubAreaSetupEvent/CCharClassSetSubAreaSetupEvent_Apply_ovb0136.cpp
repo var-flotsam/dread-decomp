@@ -6,13 +6,13 @@
 // placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2577.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkManager;
-extern UnkManager* g_unk_7101d47360;
 extern CStrId g_unk_717279de58 __attribute__((visibility("hidden")));
 
 struct UnkSubAreaManager_ovb0136 {

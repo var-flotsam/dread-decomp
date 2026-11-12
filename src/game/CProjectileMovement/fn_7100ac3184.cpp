@@ -7,6 +7,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CTimelineComponent.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2577.h"
 #include "game/UnkTU883.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -112,7 +113,6 @@ inline const UnkStaticZero_71726b5354& UnkGetStaticZero_71726b5354() {
 }
 
 struct UnkManager;
-extern UnkManager* g_unk_7101d47360;
 extern u8 g_unk_71727556f0 __attribute__((visibility("hidden")));
 void fn_7100ac7628(UnkComponent_0x5d0* self);
 

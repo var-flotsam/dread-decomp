@@ -1,10 +1,12 @@
 // Getters building a value of kind 2 (fn_71000a18d4 fills in the rest from the type the value is
 // described by): words of the translation unit's globals, a zero, flags of an object and a vector.
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/reflection.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"  // the type getters (refl_GetType<T>)
 #include "base/reflection/UnkReflTypeGlobals.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CBossAIComponent.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1633.h"
 #include "game/UnkTU2200.h"
@@ -27,7 +29,6 @@ __attribute__((always_inline)) static inline UnkReflValue MakeValue(const CType*
 
 // fn_7100014768 (int), fn_7100005178 (unsigned), fn_710000abbc (float), fn_710000d228 (bool) and
 // fn_71000246e4 (CVector3D) are the type getters UnkReflAttributes.h declares.
-const CType* fn_7100010e58();  // an 8-byte type's getter
 
 UnkReflValue fn_7100ad4b54() {
     u32 value = g_unk_7172756b90;
@@ -160,7 +161,6 @@ UnkReflValue fn_71008efa44(void* unused, UnkArgument<UnkFlagSource>* argument) {
 // Values of kind 2 referring (flag 1) to a cutscene definition held by an iterator value: in place
 // at 0x8, or through the pointer there when the state (after the Size-byte value) is 2. The class
 // getter is called first, so the class (whose reflected data is at the descriptor) is set up.
-extern const base::reflection::CType g_unk_7172794d40 __attribute__((visibility("hidden")));
 
 template <u32 Size>
 struct UnkDefIterValue {
@@ -207,11 +207,8 @@ UnkReflValue fn_7100c91e70(void* unused, UnkArgument<UnkDefIterValue<0x40>>* arg
 
 // Values of kind 2 holding a manager singleton, created on first use (allocated with flags 0x3f or
 // 3, and constructed in place).
-const CType* fn_7100ad61f8();  // base::reflection::refl_GetType<CSubAreaManager*>
 struct UnkManager;
 struct UnkMgr_0xf18;
-extern UnkManager* g_unk_7101d47360;
-extern UnkMgr_0xf18* g_unk_71726bc560;
 
 template <class T, T** Instance, u64 Size, void (*Construct)(void*), const CType* (*GetType)(), u32 Flags = 0x3f>
 __attribute__((always_inline)) static inline UnkReflValue GetSingleton() {

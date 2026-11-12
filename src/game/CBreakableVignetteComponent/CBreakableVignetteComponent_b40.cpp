@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2566.h"
 #include "game/UnkTU2577.h"
 #include "game/UnkTU315.h"
@@ -15,7 +16,6 @@ struct UnkMapData;
 struct UnkCallback;
 void fn_7100e95130(UnkMapData* map, u64 id);
 struct UnkManager;
-extern UnkManager* g_unk_7101d47360;
 
 struct UnkKeyed_bv {
     u8 pad_0x0[0x30];

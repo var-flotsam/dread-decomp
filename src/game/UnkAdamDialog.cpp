@@ -13,6 +13,7 @@
 #include "base/global/timeline/CEvent.h"
 #include "base/snd/UnkSound.h"
 #include "game/CBlackboard.h"
+#include "game/CBossAIComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
@@ -156,7 +157,6 @@ static inline const char* IdText(const CStrId& id) {
 UnkSoundHandle fn_7100fcdf00(void* player, f32 volume, const CStrId& name, bool arg3);
 
 // The music manager (game/sound/CMusicManager.h), created on first use, and its level.
-extern UnkMgr_0xf18* g_unk_71726bc560;
 static inline void* MusicManager() {
     void* manager = g_unk_71726bc560;
     if (!manager) {

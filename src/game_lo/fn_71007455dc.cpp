@@ -1,5 +1,6 @@
 // A position: the stored offset (0x2c) on its own when the mode at 0xd8 is 1 or there is no
 // parent (0x10); otherwise the parent's position (fn_7100745e24) plus that offset.
+#include "game/UnkTU1161.h"
 #include "types.h"
 
 // Returned through x8, so the original's result type is not trivially copyable.
@@ -12,7 +13,6 @@ struct UnkVec3Result {
 };
 
 struct UnkParent_71007455dc;
-UnkVec3Result fn_7100745e24(UnkParent_71007455dc* parent);
 
 struct UnkStruct_71007455dc {
     u8 unk_0x0[0x10];

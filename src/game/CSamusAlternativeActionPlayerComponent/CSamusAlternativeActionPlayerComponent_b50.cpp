@@ -3,12 +3,12 @@
 // (ITEM_WEAPON_POWER_BOMB) in the owner's inventory (+0x270 of +0x30), another needs it absent;
 // anything else, or no inventory, is allowed. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CInventoryComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkItemProperties.h"
 #include "types.h"
 
 struct UnkInventory;
-bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 
 // An item's qualified id, built on first use (as in src/game/CMeleeComponent/fn_710092f204.cpp).
 static inline const UnkQualifiedId& GetQualifiedId_b50(UnkPropertyEx<>& item) {

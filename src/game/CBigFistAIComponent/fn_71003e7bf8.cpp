@@ -8,6 +8,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU1645.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -24,7 +25,6 @@ struct UnkOther {
 };
 
 // A blackboard property definition (game/UnkItemProperties.h): its qualified id is built on first use.
-extern UnkPropertyEx<> g_unk_7172759178;
 
 void fn_71003e7bf8(UnkOwner* self, UnkOther* other) {
     u32 value = other->field_0x1a;

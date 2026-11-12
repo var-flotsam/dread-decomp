@@ -48,7 +48,6 @@ void fn_7100da2774(UnkRefPtrArray* self);
 
 extern UnkRumbleManager* g_unk_7101d47348;
 struct UnkManager;
-extern UnkManager* g_unk_7101d47360;
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
 extern void* g_unk_71727344a8;
 __attribute__((visibility("hidden"))) extern UnkVec3f g_unk_710164bdb4;

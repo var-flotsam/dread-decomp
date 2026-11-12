@@ -17,6 +17,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/snd/CSoundSystem.h"
 #include "game/CAISmartObjectComponent.h"
+#include "game/CBossAIComponent.h"
 #include "game/CCameraComponent.h"
 #include "game/CCollisionMaterialCacheComponent.h"
 #include "game/CInventoryComponent.h"
@@ -76,7 +77,6 @@ s32 fn_710107f9e0(lua_State* L) {
 
 // ---- the music manager ----
 struct UnkMgr_0xf18;
-extern UnkMgr_0xf18* g_unk_71726bc560;
 struct UnkTuneMgrView_b0019;
 f32 fn_7100fdc468(UnkTuneMgrView_b0019* self, const u64* id);
 f32 fn_7100fdc500(UnkTuneMgrView_b0019* self, const u64* id);
@@ -114,7 +114,6 @@ s32 fn_7101092bb0(lua_State* L) {
 // ---- the item inventory ----
 struct UnkInventory;
 struct UnkPlayer;
-bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 
 struct UnkSuitPlayer_b0161 {
     u8 pad_0x0[0x270];
@@ -279,7 +278,6 @@ s32 fn_7101084170(lua_State* L) {
 
 // ---- the id table singleton ----
 struct UnkManager;
-extern UnkManager* g_unk_7101d47360;
 void fn_7100eeb15c(void* self, const CStrId& id);
 void fn_7100eeb24c(void* self);
 

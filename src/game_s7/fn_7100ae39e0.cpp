@@ -27,7 +27,6 @@ extern UnkPropertyEx<> g_unk_7172758ff8;
 extern UnkPropertyEx<> g_unk_7172759038;
 extern UnkPropertyEx<> g_unk_7172759078;
 extern UnkPropertyEx<> g_unk_71727590b8;
-extern UnkPropertyEx<> g_unk_7172759178;
 extern UnkPropertyEx<> g_unk_71727591f8;
 extern UnkPropertyEx<> g_unk_7172759238;
 extern UnkPropertyEx<> g_unk_71727592b8;

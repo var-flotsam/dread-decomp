@@ -3,13 +3,13 @@
 // that function of the class (CClass+0x110, 0xb8 bytes each; null for index -1), re-typed as the
 // pointer type fn_710009ba1c: the old value destroyed (type +0x40), the new one copy-constructed (type
 // +0x30). Names are placeholders.
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/reflection/CClass.h"
 #include "types.h"
 
 using base::reflection::CClass;
 using base::reflection::CType;
 
-const CType* fn_7100010e58();  // an 8-byte type's getter
 const CType* fn_710009ba1c();  // a pointer type's getter
 
 struct UnkTypedWord_b52 {

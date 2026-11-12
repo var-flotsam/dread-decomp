@@ -44,7 +44,6 @@ UnkBlob_u71* fn_7100094910(UnkBlob_u71* self, const UnkBlob_u71* other) {
 using base::reflection::CType;
 
 const CType* fn_7100024324();
-const CType* fn_7100010e58();
 extern CType g_unk_7101d4dad8;
 
 // Not a tail call in the original (probably a conversion in the source); disable_tail_calls stands in.

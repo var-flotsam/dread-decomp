@@ -23,6 +23,7 @@
 #include "game/CInventoryComponent.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU1176.h"
 #include "game/UnkTU1376.h"
 #include "game/UnkTU1645.h"
@@ -463,7 +464,6 @@ void fn_71007717c0(UnkCentralUnit_b49* self);
 void fn_7100541e34(char* self, bool value);
 void fn_7100541690(char* self, bool value);
 struct UnkManager;
-extern UnkManager* g_unk_7101d47360;  // the sub-area manager
 
 struct UnkCentralLinkEntity_b0230 {
     u8 pad_0x0[0x240];
