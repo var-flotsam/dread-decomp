@@ -70,7 +70,7 @@ void fn_7100b921e0(UnkPractice_7100b921e0* self) {
     fn_71011cfba8(self->accept, 0.0f);
     fn_71011cfba8(self->quit, 0.0f);
 
-    UnkStats* stats = g_unk_71726bc570;
+    UnkStats* stats = reinterpret_cast<UnkStats*>(g_unk_71726bc570);
     bool dread = stats->field_0xb8 ? stats->field_0xb9 : false;
     fn_71011ec424(self->stat_label, CRntString("#GUI_BOSSRUSH_PRACTICE_TIME_RESULT"));
     fn_71011cdce8(self->stat_label, 1);

@@ -73,7 +73,7 @@ void fn_7100b94320(UnkResults_7100b94320* self) {
 
     f32 alpha = survival ? 0.0f : 1.0f;
     fn_71011cfba8(self->accept, alpha);
-    UnkStats* stats = g_unk_71726bc570;
+    UnkStats* stats = reinterpret_cast<UnkStats*>(g_unk_71726bc570);
     fn_71011ec424(self->title, CRntString("#GUI_BOSSRUSH_SURVIVAL_LABEL"));
     fn_71011ec424(self->stat_label_1, CRntString("#GUI_BOSSRUSH_TIP_DEFEATED_BOSSES_COUNT"));
     fn_71011cdce8(self->stat_label_1, 1);

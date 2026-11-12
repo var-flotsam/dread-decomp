@@ -17,6 +17,11 @@
 #include "game/UnkGuiRoot.h"
 #include "game/UnkGuiSprite.h"
 
+// The mode globals, declared as the other files declare them; the functions here read them as
+// unk_gui::UnkStats.
+struct UnkModeFlags;
+extern UnkModeFlags* g_unk_71726bc570;
+
 namespace unk_gui {
 
 using base::global::CRntString;
@@ -74,7 +79,6 @@ struct UnkOwner {
     UnkMode* mode;
 };
 
-extern UnkStats* g_unk_71726bc570;
 extern CStrId g_unk_7172769ca0[2] __attribute__((visibility("hidden")));  // background ids
 
 UnkGuiObj* fn_71011d9508(UnkGuiObj* self, const char* const* path);
