@@ -379,7 +379,7 @@ struct UnkGuiHolder_b0159 {
         UnkReflObject* field_0x10;
     }* field_0x40;
 };
-UnkGuiHolder_b0159* fn_7101126814(const CStrId* id);
+base::reflection::UnkReflObject* fn_7101126814(const CStrId* id);
 void fn_71011991c4(void* gui, UnkReflObject* entity);
 void fn_7101198450(void* gui, UnkReflObject* entity);
 
@@ -389,7 +389,7 @@ s32 fn_71010880b0(lua_State* L) {
         UnkGuiHolder_b0159* holder;
         {
             CStrId id(name, true);
-            holder = fn_7101126814(&id);
+            holder = reinterpret_cast<UnkGuiHolder_b0159*>(fn_7101126814(&id));
         }
         if (holder && holder->field_0x40 && holder->field_0x40->field_0x10)
             fn_71011991c4(g_unk_7101d47330, holder->field_0x40->field_0x10);
@@ -403,7 +403,7 @@ s32 fn_7101088250(lua_State* L) {
         UnkGuiHolder_b0159* holder;
         {
             CStrId id(name, true);
-            holder = fn_7101126814(&id);
+            holder = reinterpret_cast<UnkGuiHolder_b0159*>(fn_7101126814(&id));
         }
         if (holder && holder->field_0x40 && holder->field_0x40->field_0x10)
             fn_7101198450(g_unk_7101d47330, holder->field_0x40->field_0x10);
