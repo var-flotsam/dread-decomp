@@ -152,6 +152,14 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**One id table (2026-11-12).** `UnkGameManagerIdTable` was defined in 60 files (768 lines), which also made its
+labelled constructor and destructor the two most copied declarations in the tree and kept two matches in
+`drafts/`. The header `game/UnkGameManagerIdTable.h` has the 38 slots those files read; every file builds to the
+same output with it, and `fn_71007ff210` and `fn_71005a3a60` moved to `src/`. Reusable: every member a file
+gave the table was one 8-byte slot, so the union of 60 definitions is a list of offsets; where a file typed a
+slot as a pointer to its own record, the read becomes `reinterpret_cast<Record*>(table.field_0x16d8.data)`,
+and a slot only passed on by address needs nothing (`&table.field_0x17e0`).
+
 **Fourth declarations pass (2026-11-12).** With one signature per symbol, `tools/decl_plan.py` could plan 190
 symbols that it had left out or that earlier runs could not move; `tools/hub_migrate.py` moved 91 of them (463
 local copies) in two runs, the second without the 80 the first left. Symbols in more than one file: 1,086 to

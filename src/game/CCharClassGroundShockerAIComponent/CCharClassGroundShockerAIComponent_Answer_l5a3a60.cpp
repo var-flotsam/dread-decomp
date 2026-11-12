@@ -5,22 +5,11 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CGroundShockerAIComponent.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0xec8];
-    CStrId field_0xec8;
-    u8 pad_0xed0[0x2578 - 0xed0];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-
-inline const UnkGameManagerIdTable& IdTable_l5a3a60() {
-    static UnkGameManagerIdTable s_table asm("g_unk_7101d552d0");
-    return s_table;
-}
 
 struct UnkIdHolder_l5a3a60 {
     u8 pad_0x0[0x60];
@@ -37,7 +26,6 @@ struct UnkShockerOwner_l5a3a60 {
 };
 
 struct UnkShockerAI_b62a3;
-u32 fn_71005a4be8(UnkShockerAI_b62a3* self);
 
 u32 fn_71005a3a60(void* unused0, UnkShockerOwner_l5a3a60* owner, void* unused1, UnkIdHolder_l5a3a60* holder) {
     UnkShockerComponent_l5a3a60* comp = owner->field_0x240;
@@ -50,7 +38,7 @@ u32 fn_71005a3a60(void* unused0, UnkShockerOwner_l5a3a60* owner, void* unused1, 
             id = reinterpret_cast<CStrId*>(inner + 0x20);
     }
     if (comp && id->data != &g_unk_7101d47108->empty && __builtin_expect(fn_71005a4be8(reinterpret_cast<UnkShockerAI_b62a3*>(comp)) & 1, 1)) {
-        const UnkGameManagerIdTable& table = IdTable_l5a3a60();
+        const UnkGameManagerIdTable& table = GameManagerIdTable();
         const UnkGameManagerIdTable* t = &table;
         // keeps the id table's address loaded before the id's data, as the original does
         asm("" : "+r"(t));

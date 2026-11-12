@@ -1,18 +1,8 @@
 // CAreaFXComponent's unit: creates the owner's effect entry through the entity manager, checks that the
 // resulting object is of kind 4 and stores a four-float value in it. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "types.h"
-
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x2578];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-
-inline UnkGameManagerIdTable& IdTable_l7ff210() {
-    static UnkGameManagerIdTable s_table asm("g_unk_7101d552d0");
-    return s_table;
-}
 
 __attribute__((visibility("hidden"))) extern char g_unk_7172721528[];
 
@@ -60,9 +50,9 @@ struct UnkFXComponentSelf {
 
 void fn_71007ff210(UnkFXComponentSelf* self, const f32* color) {
     UnkFXManager* manager = self->owner->manager;
-    UnkGameManagerIdTable& table = IdTable_l7ff210();
+    UnkGameManagerIdTable& table = GameManagerIdTable();
     UnkFXEntry* entry = manager->vt->Create(manager, g_unk_7172721528, g_unk_7172721528 + 8, &g_unk_7101d470e0,
-                                            table.pad_0x0 + 0x628, 0x80, 0, 1, 0, -1, nullptr, -1, 0, -1,
+                                            &table.field_0x628, 0x80, 0, 1, 0, -1, nullptr, -1, 0, -1,
                                             false, false, true);
     UnkFXObject* object = entry->object;
     if (object->vt->GetKind(object) != 4)

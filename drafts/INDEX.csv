@@ -75,7 +75,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100558bcc,584,drafts/game/UnkTU811/fn_7100558bcc.cpp,registers or order,93.8,9,overnight,
 0x7100558e14,196,drafts/game/UnkTU811/fn_7100558e14.cpp,registers or order,98.0,1,overnight,
 0x7100572a68,316,drafts/game/UnkTU816/fn_7100572a68.cpp,registers or order,94.9,4,overnight,
-0x71005a3a60,312,drafts/game/CCharClassGroundShockerAIComponent/fn_71005a3a60.cpp,match,100.0,0,test40,"matches; held: as 71007ff210, and fn_71005a4be8 needs its unit header"
 0x71005c042c,388,drafts/game/UnkTU883/fn_71005c042c.cpp,operations,95.9,4,overnight,
 0x71005c3160,372,drafts/game/UnkTU883/fn_71005c3160.cpp,registers or order,92.5,7,overnight,
 0x7100686860,256,drafts/game/CScorpiusAttack/fn_7100686860.cpp,control flow,56.1,27,lean,
@@ -93,7 +92,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71007b1094,448,drafts/game/CDemolitionBlockComponent/fn_71007b1094.cpp,build fails,,,test40,register pressure in guarded mask statics: extra callee-saved reg and frame size; rest matches modulo shift
 0x71007da92c,352,drafts/game/UnkTU1246/fn_71007da92c.cpp,operations,94.3,5,overnight,
 0x71007dacbc,584,drafts/game/UnkTU1246/fn_71007dacbc.cpp,operations,93.8,9,overnight,
-0x71007ff210,328,drafts/game/CAreaFXComponent/fn_71007ff210.cpp,match,100.0,0,test40,"matches; held: declares the labelled members of UnkGameManagerIdTable (fn_7100031894, fn_71000407f0), copied in 60 files with no header"
 0x710080f3c4,260,drafts/game/CScorpiusFXComponent/fn_710080f3c4.cpp,calls,23.1,45,lean,
 0x71008372ac,476,drafts/game/UnkTU1303/fn_71008372ac.cpp,registers or order,97.5,3,overnight,
 0x710086f9e0,324,drafts/game/UnkTU1325/fn_710086f9e0.cpp,registers or order,90.1,8,overnight,

@@ -14,7 +14,9 @@ struct UnkGameManagerIdTable {
     base::global::CStrId field_0x4c8;
     u8 pad_0x4d0[0x5f8 - 0x4d0];
     base::global::CFilePathStrId field_0x5f8;
-    u8 pad_0x600[0x7c8 - 0x600];
+    u8 pad_0x600[0x628 - 0x600];
+    base::global::CStrId field_0x628;
+    u8 pad_0x630[0x7c8 - 0x630];
     base::global::CStrId field_0x7c8;
     u8 pad_0x7d0[0x8b8 - 0x7d0];
     base::global::CStrId field_0x8b8;
