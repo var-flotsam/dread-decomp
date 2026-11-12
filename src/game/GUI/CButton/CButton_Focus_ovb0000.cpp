@@ -14,13 +14,13 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "../../../game_s7/UnkGuiS7.h"
 #include "game/UnkTU2747.h"
+#include "game/sound/SGUISoundEventsSelector.h"
 #include "types.h"
 
 
 struct UnkStateSink;
 struct UnkStateKey;
 extern UnkStateSink* g_unk_717275c380;
-void fn_7100fc9d78(UnkStateSink* sink, UnkStateKey* key, void* state);
 struct UnkEnumType;
 extern UnkEnumType g_unk_71729f0188;
 void fn_71011f9878(UnkGuiDisplayObject* sprite);

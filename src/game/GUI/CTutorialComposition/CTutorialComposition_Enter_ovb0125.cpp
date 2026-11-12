@@ -7,6 +7,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/sound/SGUISoundEventsSelector.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -21,7 +22,6 @@ struct UnkStateSink;
 struct UnkStateKey;
 extern UnkStateSink* g_unk_717275c380;
 extern UnkStateKey g_unk_71729f0178;
-void fn_7100fc9d78(UnkStateSink* sink, UnkStateKey* key, void* state);
 
 // A string id's pooled data as these reads see it.
 struct UnkTutoIdData_ovb0125 {

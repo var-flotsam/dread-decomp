@@ -8,6 +8,7 @@
 #include "game/CComponent.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU25.h"
+#include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -18,10 +19,6 @@ struct UnkPathIds;
 struct UnkInlineString;
 
 struct UnkSoundRef;
-struct UnkSoundHandle {
-    UnkSoundRef* ref;
-    s64 serial;
-};
 
 extern char g_unk_717271ab80[] __attribute__((visibility("hidden")));
 

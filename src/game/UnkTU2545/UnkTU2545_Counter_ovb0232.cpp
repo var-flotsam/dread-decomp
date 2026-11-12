@@ -8,6 +8,7 @@
 #include "game/UnkTU0.h"
 #include "game/UnkTU32.h"
 #include "game/sound/CSoundManager.h"
+#include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
 struct UnkStrIdPathRecord_b48 {
@@ -17,10 +18,6 @@ struct UnkIdPair;
 struct UnkStrIdPathPair;
 struct UnkDropTarget;
 struct UnkSoundRef;
-struct UnkSoundHandle {
-    UnkSoundRef* ref;
-    s64 serial;
-};
 
 extern UnkStrIdPathRecord_b48 g_unk_71727bdfb0 __attribute__((visibility("hidden")));
 struct UnkWideStr_0x20;

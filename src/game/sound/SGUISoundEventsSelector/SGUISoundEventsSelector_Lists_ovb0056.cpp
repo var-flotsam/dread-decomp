@@ -149,11 +149,6 @@ UnkSoundSelectorMove_ovb56* fn_7100fcb500(UnkSoundSelectorMove_ovb56* self, UnkS
 
 using base::global::UnkStringData;
 
-struct UnkSoundRef;
-struct UnkSoundHandle {
-    UnkSoundRef* ref;
-    s64 serial;
-};
 struct UnkDropTarget;
 struct UnkIdPair;
 void fn_7100026f70(UnkIdPair* pair);
@@ -184,14 +179,16 @@ struct UnkSoundEventsSelector_ovb56;
 UnkSelectedIds_ovb56 fn_7100fc9e58(UnkSoundEventsSelector_ovb56* selector, void* event,
                                    const UnkTypedObject_ovb56& source);
 
-struct UnkSoundEventsOwner_ovb56 {
+// The owner the callers pass (game/sound/SGUISoundEventsSelector.h declares it).
+struct UnkStateSink {
     u8 unk_0x0[0x38];
     UnkSoundEventsSelector_ovb56* selector;  // 0x38
 };
 
 // Plays the sound the selector picks for `event` from `source` through the drop manager; the empty
 // handle when the pick has no id or no path.
-UnkSoundHandle fn_7100fc9d78(UnkSoundEventsOwner_ovb56* self, void* event, UnkSelectorSource_ovb56* source) {
+UnkSoundHandle fn_7100fc9d78(UnkStateSink* self, UnkStateKey* event, void* state) {
+    UnkSelectorSource_ovb56* source = static_cast<UnkSelectorSource_ovb56*>(state);
     UnkSoundEventsSelector_ovb56* selector = self->selector;
     UnkSelectedIds_ovb56 ids = fn_7100fc9e58(selector, event, UnkTypedObject_ovb56(source));
     UnkSoundHandle handle;

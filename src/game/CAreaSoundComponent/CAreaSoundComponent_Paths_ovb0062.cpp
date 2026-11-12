@@ -11,6 +11,7 @@
 #include "game/CActorComponent.h"
 #include "game/CCharClassBaseTriggerComponent.h"
 #include "game/UnkTU101.h"
+#include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -47,10 +48,6 @@ void fn_7101180754(UnkAreaSoundComponent_ovb0062* self) {
 
 struct UnkSoundRef {
     UnkSound* object;
-    s64 serial;
-};
-struct UnkSoundHandle {
-    UnkSoundRef* ref;
     s64 serial;
 };
 

@@ -31,6 +31,7 @@
 #include "game/UnkTU39.h"
 #include "game/UnkTU426.h"
 #include "game/nn/time.h"
+#include "game/sound/SGUISoundEventsSelector.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -169,7 +170,6 @@ extern UnkStateSink* g_unk_717275c380;
 extern UnkStateKey g_unk_71729f0178;
 extern UnkStateKey g_unk_71729f0180;
 void fn_7100b2d0a4(UnkStateOwner* self);
-void fn_7100fc9d78(UnkStateSink* sink, UnkStateKey* key, void* state);
 extern base::global::CStrId g_unk_7172762fd8 __attribute__((visibility("hidden")));
 void fn_7100e9b464(void* target, bool value);
 void fn_7100e9b1f8(void* target, bool value);

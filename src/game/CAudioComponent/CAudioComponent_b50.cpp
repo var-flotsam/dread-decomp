@@ -9,6 +9,7 @@
 #include "base/snd/CSoundSystem.h"
 #include "game/CComponent.h"
 #include "game/UnkTU101.h"
+#include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
@@ -23,10 +24,6 @@ struct UnkSoundObject_b50 {
 
 struct UnkSoundRef {
     UnkSoundObject_b50* object;
-    s64 serial;
-};
-struct UnkSoundHandle {
-    UnkSoundRef* ref;
     s64 serial;
 };
 

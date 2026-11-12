@@ -20,6 +20,7 @@
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU2578.h"
 #include "game/UnkTU2747.h"
+#include "game/sound/SGUISoundEventsSelector.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -63,7 +64,6 @@ struct UnkStateKey;
 struct UnkEnumType;
 extern UnkStateSink* g_unk_717275c380;
 extern UnkEnumType g_unk_71729f0298;
-void fn_7100fc9d78(UnkStateSink* sink, UnkStateKey* key, void* state);
 
 struct UnkPowerDescScrollEvent {
     u8 pad_0x0[0x8];
@@ -157,7 +157,6 @@ struct UnkStateSink;
 struct UnkStateKey;
 extern UnkStateSink* g_unk_717275c380;
 extern UnkStateKey g_unk_71729f0178;
-void fn_7100fc9d78(UnkStateSink* sink, UnkStateKey* key, void* state);
 
 struct UnkPowerDescCompositionShow {
     u8 pad_0x0[0x2b0];

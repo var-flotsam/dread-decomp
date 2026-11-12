@@ -18,6 +18,7 @@
 #include "game/UnkTU2744.h"
 #include "game/UnkTU2747.h"
 #include "game/UnkTU57.h"
+#include "game/sound/UnkSoundHandle.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -28,10 +29,6 @@ using base::global::UnkStringEntry;
 
 struct UnkSoundRef {
     UnkSound* object;
-    s64 serial;
-};
-struct UnkSoundHandle {
-    UnkSoundRef* ref;
     s64 serial;
 };
 extern void* g_unk_7101cb51b8[];               // the menu's vtable

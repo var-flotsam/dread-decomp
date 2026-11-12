@@ -19,6 +19,7 @@
 #include "../../game_aca57c/UnkBufferString.h"
 #include "game/UnkTU2747.h"
 #include "game/UnkTU57.h"
+#include "game/sound/SGUISoundEventsSelector.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -199,7 +200,6 @@ struct UnkStateSink;
 struct UnkStateKey;
 struct UnkEnumType;
 extern UnkStateSink* g_unk_717275c380;
-void fn_7100fc9d78(UnkStateSink* sink, UnkStateKey* key, void* state);
 extern UnkEnumType g_unk_71729f01a0;
 extern UnkEnumType g_unk_71729f01a8;
 extern UnkEnumType g_unk_71729f0220;

@@ -26,6 +26,7 @@
 #include "game/UnkTUProperty.h"
 #include "game/UnkXformNode.h"
 #include "game/sound/CSoundManager.h"
+#include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -177,10 +178,6 @@ struct UnkDropElem_ovb0208 {
 
 struct UnkSoundRef {
     UnkSound* object;
-    s64 serial;
-};
-struct UnkSoundHandle {
-    UnkSoundRef* ref;
     s64 serial;
 };
 

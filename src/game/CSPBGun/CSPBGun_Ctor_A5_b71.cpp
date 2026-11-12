@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "base/core/CBaseObject.h"
 #include "game/UnkTU101.h"
+#include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
 struct UnkNode;
@@ -13,10 +14,6 @@ void fn_710082fa78(UnkBeamGun_A5_b71* self);
 extern void* g_unk_7101a79800[];
 
 struct UnkSoundRef;
-struct UnkSoundHandle {
-    UnkSoundRef* ref;
-    s64 serial;
-};
 
 struct UnkSPBGunCtor_A5_b71 {
     void* vtable;

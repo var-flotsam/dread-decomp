@@ -19,6 +19,7 @@
 #include "game/UnkTU63.h"
 #include "game/UnkXformNode.h"
 #include "game/logic/collision/CCollider.h"
+#include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
 struct UnkEntityComponent {
@@ -62,10 +63,6 @@ void fn_7100d7b394(UnkEntityComponents* self, void* a) {
 // Forwarders to the entity's sound component (+0x2b8) and rumble component (+0x2c0): each returns the
 // component's handle, or the empty handle when the entity has no such component.
 struct UnkSoundRef;
-struct UnkSoundHandle {
-    UnkSoundRef* ref;
-    s64 serial;
-};
 struct UnkHandleTarget;
 struct UnkHandle {
     UnkHandleTarget* target;

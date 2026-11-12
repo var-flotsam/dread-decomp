@@ -7,6 +7,7 @@
 #include "game/CAnimationComponent.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU2772.h"
+#include "game/sound/UnkSoundHandle.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -15,10 +16,6 @@ void fn_71003608ac(UnkAttackBase* self);
 void fn_7100485918();
 
 struct UnkSoundRef;
-struct UnkSoundHandle {
-    UnkSoundRef* ref;
-    s64 serial;
-};
 
 struct UnkSpitTrackLink_A2_b72 {
     u8 pad_0x0[0x8];

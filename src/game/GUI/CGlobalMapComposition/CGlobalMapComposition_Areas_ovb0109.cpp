@@ -27,6 +27,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkTU2747.h"
 #include "game/UnkTU2755.h"
+#include "game/sound/SGUISoundEventsSelector.h"
 #include "types.h"
 
 using base::UnkStrIdMember;
@@ -37,7 +38,6 @@ struct UnkStateSink;
 struct UnkStateKey;
 struct UnkEnumType;
 extern UnkStateSink* g_unk_717275c380;
-void fn_7100fc9d78(UnkStateSink* sink, UnkStateKey* key, void* state);
 extern UnkEnumType g_unk_71729f01a8;
 struct UnkGlobalMapComposition;
 UnkVec2Result fn_71011cf12c(UnkGuiDisplayObject* self, const UnkVec2Result& point);

@@ -12,6 +12,7 @@
 #include "game/UnkTU243.h"
 #include "game/UnkTU2560.h"
 #include "game/UnkTU272.h"
+#include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
 struct UnkHandleOwner_71010c4230;
@@ -52,10 +53,6 @@ static inline void* Manager_ovb0113() {
 // live while its reference's serial matches.
 struct UnkSoundRef {
     void* object;
-    s64 serial;
-};
-struct UnkSoundHandle {
-    UnkSoundRef* ref;
     s64 serial;
 };
 

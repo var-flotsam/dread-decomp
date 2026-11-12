@@ -10,6 +10,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkTU2578.h"
+#include "game/sound/SGUISoundEventsSelector.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -31,7 +32,6 @@ struct UnkStateSink;
 struct UnkStateKey;
 extern UnkStateSink* g_unk_717275c380;
 extern UnkStateKey g_unk_71729f0180;
-void fn_7100fc9d78(UnkStateSink* sink, UnkStateKey* key, void* state);
 
 static inline UnkStruct_0x128* Music() {
     UnkStruct_0x128* m = g_unk_7101d47320;

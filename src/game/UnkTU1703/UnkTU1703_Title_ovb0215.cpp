@@ -12,16 +12,13 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU2578.h"
+#include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
 extern char g_unk_7101a9d190[];  // the member's vtable
 
 struct UnkSoundRef {
     UnkSound* object;
-    s64 serial;
-};
-struct UnkSoundHandle {
-    UnkSoundRef* ref;
     s64 serial;
 };
 

@@ -3,13 +3,10 @@
 // handle. Names and layouts are placeholders.
 #include "game/CAudioComponent.h"
 #include "game/UnkTU101.h"
+#include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
 struct UnkSoundRef;
-struct UnkSoundHandle {
-    UnkSoundRef* ref;
-    s64 serial;
-};
 
 struct UnkAudioEntry_b64a4 {
     u8 pad_0x0[0x28];
