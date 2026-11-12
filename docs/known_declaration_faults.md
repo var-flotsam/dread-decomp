@@ -258,6 +258,28 @@ own code only matches when it returns a word (as `bool` its three returns come o
 `fn_71000e88c0` is a different fault with the same look: the generated `UnkClassGetters.h` lists it as a class
 getter and it is an initialiser that returns nothing; the generator's list is wrong for it.
 
+## Definitions whose types are not their declaration's
+
+`python tools/decl_check.py --definition-types` lists every hand-written definition whose signature is not the
+text of any declaration of the same function in another file. The call is the same in all but the one the
+section above keeps; what differs is a type's name. 1,092 on 2026-11-12:
+- 651 name a pointed-to struct differently (the definition has its file's own struct, the callers theirs
+  or `void*`);
+- 190 differ in another parameter type, 147 in the result's type (`fn_7101177ae8` returns `const CStrId*`, its ten
+  callers declare `UnkStringData**`);
+- 104 only write a namespace out on one side (`const CStrId&` after a `using`, `const base::global::CStrId&`
+  in the header).
+
+The count of conflicting signatures does not include them: it compares declarations with each other, and a
+definition is not one. "No symbol has two signatures" is therefore true of declarations only. It matters in two
+places. The port's link sees two mangled names for such a function and joins them with an alias
+(`tools/port_link.py`, "function alias"), so nothing is unresolved; across the two only the shape of the call
+is checked, not the types.
+And the file that defines the function cannot include the header that declares it, which is what stopped four
+symbols of the seventh pass; 272 of the 988 beyond a namespace are declared in a header today. The report only
+counts: nothing fails on it yet. To settle one, give the definition and the header the same struct (the unit's
+view of the object, in its header) and make the defining file include the header.
+
 ## Names that point to more than one address
 
 `python tools/name_check.py --version 2.1.0` compares, for every name `tools/check.py` cannot resolve to an

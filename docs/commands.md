@@ -355,6 +355,7 @@ python tools/decl_check.py --list [--top N]       # every multiply-declared symb
 python tools/decl_check.py --symbol fn_7100d7c990 # each declaration of one symbol: file:line, scope, signature
 python tools/decl_check.py --json                 # the counts as JSON (tools/verify.py prints them)
 python tools/decl_check.py --definitions          # every definition called differently than a declaration says
+python tools/decl_check.py --definition-types     # every definition whose types are not a declaration's
 python tools/decl_check.py --base origin/main     # the same counts for the tree at <ref>; exit 1 if the
 ```
 
