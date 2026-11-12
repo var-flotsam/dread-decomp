@@ -152,6 +152,11 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**The tool tests also run on Windows in CI (2026-11-12).** The tools are written and mostly run on Windows
+(paths, line endings and the shell differ there), and CI ran `tools/tests` on Linux only, so a change that
+broke them on Windows showed only on the owner's machine. A second job, `tool tests (Windows)`, runs the same
+tests on `windows-latest` without the project compiler; the tests that need the compiler skip there and keep
+running in the `compile` job. It is not a required check: it reports, and a red one is a reason to look.
 **137 empty barriers did nothing and are gone (2026-11-12).** The review counted 308 empty barriers without
 the comment `CLAUDE.md` asks for. Before writing 308 comments it was worth asking what each barrier does, and
 that can be measured: take the barrier out, compile, and compare every function of the file, bytes and
