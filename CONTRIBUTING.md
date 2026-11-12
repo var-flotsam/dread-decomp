@@ -30,7 +30,10 @@ to be purged from the history.
    declared once, in a header under `include/`, with one signature. A `.cpp` may declare only
    what it alone uses. `tools/decl_check.py --strict --base origin/main` must not report growth
    (CI runs it on every PR); `tools/decl_check.py --symbol fn_<addr>` shows where a symbol is
-   declared today.
+   declared today. A definition counts too: when a hand-written file already defines the function
+   you call, declare it with the definition's types (your own struct name for its first parameter
+   is a second signature of the same function). The differences already in the tree are listed by
+   `tools/decl_check.py --definition-types`; the check fails on a new one.
 8. **Files live where the code came from.** New hand-written sources go under
    `src/<subsystem>/`, named for the class or translation unit they belong to
    (`tools/tu_map.py --function <addr>` names the unit; `data/tu_map.csv` has them all). No new
