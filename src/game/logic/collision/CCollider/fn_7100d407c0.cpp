@@ -41,7 +41,7 @@ struct UnkRefPtr {
 };
 
 template <class Tag>
-struct UnkRefPtrArray {
+struct UnkSlotArray {
     UnkRefPtr* data;
     u32 count;
     u32 capacity;
@@ -51,8 +51,8 @@ struct UnkRefPtrArray {
     base::UnkAllocator* allocator;
 };
 
-template <class Tag, void (*Reserve)(UnkRefPtrArray<Tag>*, u32)>
-__attribute__((always_inline)) static inline void Insert(UnkRefPtrArray<Tag>* self, const UnkRefPtr& value,
+template <class Tag, void (*Reserve)(UnkSlotArray<Tag>*, u32)>
+__attribute__((always_inline)) static inline void Insert(UnkSlotArray<Tag>* self, const UnkRefPtr& value,
                                                          u32 index) {
     u32 cap = self->capacity;
     u32 n = self->count;
@@ -84,9 +84,9 @@ __attribute__((always_inline)) static inline void Insert(UnkRefPtrArray<Tag>* se
 
 // Copy-assignment: releases the elements, reserves the source's capacity and appends each
 // source element.
-template <class Tag, void (*Reserve)(UnkRefPtrArray<Tag>*, u32)>
-__attribute__((always_inline)) static inline UnkRefPtrArray<Tag>* Assign(UnkRefPtrArray<Tag>* self,
-                                                                         const UnkRefPtrArray<Tag>& other) {
+template <class Tag, void (*Reserve)(UnkSlotArray<Tag>*, u32)>
+__attribute__((always_inline)) static inline UnkSlotArray<Tag>* Assign(UnkSlotArray<Tag>* self,
+                                                                         const UnkSlotArray<Tag>& other) {
     if (self == &other)
         return self;
     for (u32 i = 0; i < self->count; ++i)
@@ -110,41 +110,41 @@ __attribute__((always_inline)) static inline UnkRefPtrArray<Tag>* Assign(UnkRefP
 
 struct UnkTag_71007ed25c;
 struct UnkTag_710031da18;
-void fn_71007ed25c(UnkRefPtrArray<UnkTag_71007ed25c>* self, u32 capacity);
-void fn_710031da18(UnkRefPtrArray<UnkTag_710031da18>* self, u32 capacity);
+void fn_71007ed25c(UnkSlotArray<UnkTag_71007ed25c>* self, u32 capacity);
+void fn_710031da18(UnkSlotArray<UnkTag_710031da18>* self, u32 capacity);
 
 // NON_MATCHING(minor): in the shifting loop the release call is laid out after the loop, not
 // inline as in the original.
-void fn_7100d407c0(UnkRefPtrArray<UnkTag_71007ed25c>* self, const UnkRefPtr& value, u32 index) {
+void fn_7100d407c0(UnkSlotArray<UnkTag_71007ed25c>* self, const UnkRefPtr& value, u32 index) {
     Insert<UnkTag_71007ed25c, fn_71007ed25c>(self, value, index);
 }
 
 // NON_MATCHING(minor): in the shifting loop the release call is laid out after the loop, not
 // inline as in the original.
-void fn_7100d409a0(UnkRefPtrArray<UnkTag_71007ed25c>* self, const UnkRefPtr& value, u32 index) {
+void fn_7100d409a0(UnkSlotArray<UnkTag_71007ed25c>* self, const UnkRefPtr& value, u32 index) {
     Insert<UnkTag_71007ed25c, fn_71007ed25c>(self, value, index);
 }
 
 // NON_MATCHING(minor): in the shifting loop the release call is laid out after the loop, not
 // inline as in the original.
-void fn_7100d84718(UnkRefPtrArray<UnkTag_710031da18>* self, const UnkRefPtr& value, u32 index) {
+void fn_7100d84718(UnkSlotArray<UnkTag_710031da18>* self, const UnkRefPtr& value, u32 index) {
     Insert<UnkTag_710031da18, fn_710031da18>(self, value, index);
 }
 
 // NON_MATCHING(minor): in the shifting loop the release call is laid out after the loop, not
 // inline as in the original.
-void fn_7100d848f8(UnkRefPtrArray<UnkTag_710031da18>* self, const UnkRefPtr& value, u32 index) {
+void fn_7100d848f8(UnkSlotArray<UnkTag_710031da18>* self, const UnkRefPtr& value, u32 index) {
     Insert<UnkTag_710031da18, fn_710031da18>(self, value, index);
 }
 
 // NON_MATCHING(minor): when the source slot is null the original branches past the store of
 // null into the new slot (already null); ours branches to the store.
-UnkRefPtrArray<UnkTag_71007ed25c>* fn_7100d4065c(UnkRefPtrArray<UnkTag_71007ed25c>* self, const UnkRefPtrArray<UnkTag_71007ed25c>& other) {
+UnkSlotArray<UnkTag_71007ed25c>* fn_7100d4065c(UnkSlotArray<UnkTag_71007ed25c>* self, const UnkSlotArray<UnkTag_71007ed25c>& other) {
     return Assign<UnkTag_71007ed25c, fn_71007ed25c>(self, other);
 }
 
 // NON_MATCHING(minor): when the source slot is null the original branches past the store of
 // null into the new slot (already null); ours branches to the store.
-UnkRefPtrArray<UnkTag_710031da18>* fn_7100d845b4(UnkRefPtrArray<UnkTag_710031da18>* self, const UnkRefPtrArray<UnkTag_710031da18>& other) {
+UnkSlotArray<UnkTag_710031da18>* fn_7100d845b4(UnkSlotArray<UnkTag_710031da18>* self, const UnkSlotArray<UnkTag_710031da18>& other) {
     return Assign<UnkTag_710031da18, fn_710031da18>(self, other);
 }
