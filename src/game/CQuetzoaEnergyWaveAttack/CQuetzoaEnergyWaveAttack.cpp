@@ -9,6 +9,5 @@ struct UnkWeakRef14a20 {
 
 void fn_7100646088(UnkWeakRef14a20* self, UnkWeakTarget* other) {
     UnkWeakHandle* handle = GetWeakHandle(other);
-    asm("" : "+r"(self));
     AssignRef(&self->field_0x14a20, handle);
 }

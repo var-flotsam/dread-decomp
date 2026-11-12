@@ -48,7 +48,6 @@ UnkReflValueNode_A1b72* fn_71000d6de0(UnkReflValueMap_A1b72* self, const CStrId*
     auto* k = key->data;
     u64 h = reinterpret_cast<const UnkHashView_A1b72d*>(k)->hash;
     u32 i = ((u32)(h >> 32) ^ (u32)h) % self->bucket_capacity;
-    asm("" : "+r"(i));  // the original computes the index before loading the buckets
     Node** bucket = &self->buckets[i];
     Node* n = *bucket;
     if (!n)

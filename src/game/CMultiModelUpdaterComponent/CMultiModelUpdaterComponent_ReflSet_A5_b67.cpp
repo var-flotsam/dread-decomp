@@ -75,7 +75,6 @@ struct UnkMultiModel_A5_b67 {
 static inline __attribute__((always_inline)) void* ArgPtrNull_A5_b67(UnkReflValue* arg) {
     if (!arg->type) {
         void* null = nullptr;
-        asm("" : "+r"(null));
         return null;
     }
     if (arg->field_0x14 == 1 || *reinterpret_cast<const u64*>(arg->type + 0x18) > 8)

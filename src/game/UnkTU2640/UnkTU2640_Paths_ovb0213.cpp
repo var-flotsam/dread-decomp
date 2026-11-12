@@ -485,8 +485,6 @@ UnkIdArrayNode_b0213* fn_7101005e44(UnkIdArrayMap_b0213* self, const CStrId* key
     if (self->bucket_count) {
         u64 h = reinterpret_cast<const UnkHashView_b0213*>(key->data)->hash;
         u32 i = ((u32)(h >> 32) ^ (u32)h) % self->bucket_capacity;
-        // the bucket index is computed before the bucket array is loaded
-        asm("" : "+r"(i));
         slot = &self->buckets[i];
     }
     UnkIdArrayNode_b0213* chain = *slot;

@@ -45,7 +45,6 @@ void* fn_7100a75858(UnkAccessPointMap_A5_b74* map, const CStrId* key) {
     auto* k = key->data;
     u64 h = reinterpret_cast<const UnkHashView_A5b74*>(k)->hash;
     u32 i = ((u32)(h >> 32) ^ (u32)h) % self->bucket_capacity;
-    asm("" : "+r"(i));
     char** bucket = &self->buckets[i];
     char* n = *bucket;
     if (!n)

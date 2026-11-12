@@ -50,7 +50,6 @@ struct UnkPoolMap_ovb0130 {
         Node** slot = nullptr;
         if (bucket_count) {
             u32 i = (u32)(u64)key % bucket_capacity;
-            asm("" : "+r"(i));  // the original computes the index before loading the buckets
             slot = &buckets[i];
         }
         Node* c = *slot;

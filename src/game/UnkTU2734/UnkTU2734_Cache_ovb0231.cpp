@@ -163,8 +163,6 @@ UnkSweepNode_b49* fn_710119d7e4(UnkSweepList_b49* list, UnkSweepNode_b49* node_)
     auto* key = node->key.data;
     const u32* hash = reinterpret_cast<const u32*>(reinterpret_cast<const u8*>(key) + 0x30);
     u32 idx = (hash[0] ^ hash[1]) % self->divisor;
-    // reads the bucket array after the index is known, as the original does
-    asm volatile("" ::: "memory");
     UnkGuiNode_b0231** slot = self->buckets + idx;
     UnkGuiNode_b0231* found = *slot;
     UnkGuiNode_b0231* prev = nullptr;

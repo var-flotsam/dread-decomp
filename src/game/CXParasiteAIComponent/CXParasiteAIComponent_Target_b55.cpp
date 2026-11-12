@@ -34,7 +34,6 @@ static_assert(__builtin_offsetof(UnkXParasiteTargetAI_b55, field_0x146f0) == 0x1
 void fn_71006eb628(UnkXParasiteTargetAI_b55* self, UnkVector3_b55* position) {
     CBlackboard* blackboard = &self->blackboard;
     bool* locked = &blackboard->field_0xe8;
-    asm("" : "+r"(locked));  // the original computes this address first
     self->field_0x146f0 = 0;
     self->field_0x146f8 = 0;
     UnkTypedValue v;

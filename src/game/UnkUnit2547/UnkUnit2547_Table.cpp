@@ -14,7 +14,6 @@ extern UnkUnit2547Table g_unk_71727be208 __attribute__((visibility("hidden")));
 
 const u64* fn_7100ddb6b0(u32 kind, bool alternate) {
     const UnkUnit2547Table* table = &g_unk_71727be208;
-    asm("" : "+r"(table));  // one address for the table, as in the original
     const u64* entry = alternate ? &table->alternate[kind] : &table->normal[kind];
     return kind > 11 ? &table->fallback : entry;
 }

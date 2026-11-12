@@ -32,7 +32,6 @@ bool fn_71006af848(UnkShakernautAI_b65a4* self) {
             u32 found;
             base::math::CVector2D pos2;
             UnkShakernautArea_b65a4* area = reinterpret_cast<UnkShakernautArea_b65a4*>(self->area);
-            asm("" : "+r"(area));  // the original computes the area's address before the calls
             UnkVec3f pos = fn_71009ebe68(static_cast<UnkHelper*>(target->field_0x208));
             fn_710007b430(&pos2, reinterpret_cast<const base::math::CVector3D*>(&pos));
             if (fn_71001176e8(area, &pos2, &found, nullptr, 0, 250.0f))

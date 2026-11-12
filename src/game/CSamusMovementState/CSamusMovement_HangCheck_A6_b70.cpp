@@ -40,7 +40,6 @@ static inline UnkHangMoveState_A6_b70* FindState(UnkHangMove_A6_b70* self, s32 k
     if (size == 0)
         return nullptr;
     UnkHangMoveState_A6_b70** it = self->states;
-    asm("" : "+r"(it));
     for (; size != 0; ++it, size -= sizeof(*it)) {
         if ((*it)->kind == kind)
             return *it;

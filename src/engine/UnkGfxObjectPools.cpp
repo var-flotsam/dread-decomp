@@ -182,7 +182,6 @@ void fn_710015e1f0(void* state, u32 stage, u64 location, u32 count, const f32* v
         program = nullptr;
         break;
     }
-    asm("" : "+r"(program));  // the original reads it unchecked
     UnkGfxUniformBlock* blocks = program->blocks;
     UnkGfxUniform* uniform = &program->uniforms[index];
     u32 b = uniform->block;

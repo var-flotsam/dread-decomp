@@ -44,7 +44,6 @@ struct UnkStrIdMap_A1b72 {
         if (bucket_count) {
             u64 h = reinterpret_cast<const UnkStringHashView_A1b72*>(key->data)->hash;
             u32 i = ((u32)(h >> 32) ^ (u32)h) % bucket_capacity;
-            asm("" : "+r"(i));  // the original computes the index before loading the buckets
             slot = &buckets[i];
         }
         Node* c = *slot;

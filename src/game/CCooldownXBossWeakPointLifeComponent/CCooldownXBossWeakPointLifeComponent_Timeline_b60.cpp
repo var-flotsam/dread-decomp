@@ -38,7 +38,6 @@ u32 fn_71004d685c(UnkWeakPointLife_b60a2* self, void* arg) {
                 if (auto* timeline = static_cast<UnkTimelineComponent*>(actor->field_0x2e8)) {
                     base::reflection::UnkReflTypeIdArg mask;
                     const u64* key = &self->field_0x280;
-                    asm("" : "+r"(key));
                     mask.id = UnkAll_SpitSend().value;
                     fn_7100a2cb7c(timeline, key, &mask.id, false, -1.0f);
                 }

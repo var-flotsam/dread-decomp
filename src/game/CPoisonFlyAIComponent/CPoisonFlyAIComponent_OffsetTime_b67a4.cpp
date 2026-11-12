@@ -48,14 +48,12 @@ void fn_71006393d4(UnkPoisonFlyAI_b67a4* self, f32 dt) {
     if (found) {
         bool restart = scratch.data[8];
         time = &self->time;
-        asm("" : "+r"(time));
         if (restart) {
             *time = 0.0f;
             return;
         }
     } else {
         time = &self->time;
-        asm("" : "+r"(time));
     }
     *time += dt;
 }

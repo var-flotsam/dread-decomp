@@ -85,9 +85,7 @@ __attribute__((always_inline)) static inline void SwitchState_A6_b64(UnkSmMachin
             if (id != 0)
                 goto done;
             enter = false;
-            asm("" : "+r"(enter));
             next = nullptr;
-            asm("" : "+r"(next));
         }
         if (current) {
             current->vf_0x18(id);

@@ -157,6 +157,39 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 broke them on Windows showed only on the owner's machine. A second job, `tool tests (Windows)`, runs the same
 tests on `windows-latest` without the project compiler; the tests that need the compiler skip there and keep
 running in the `compile` job. It is not a required check: it reports, and a red one is a reason to look.
+**137 empty barriers did nothing and are gone (2026-11-12).** The review counted 308 empty barriers without
+the comment `CLAUDE.md` asks for. Before writing 308 comments it was worth asking what each barrier does, and
+that can be measured: take the barrier out, compile, and compare every function of the file, bytes and
+relocation targets, with what it was. `python tools/fakematch.py --unneeded-barriers [--write]` does that for
+every barrier that stands alone on its line in a `.cpp` (a minute for the tree).
+
+| Barriers in `.cpp` files | With a comment | Without | All |
+|---|---|---|---|
+| Changes nothing: removed (the comment with it) | 44 | 93 | 137 |
+| Needed: some function's code changes without it | 118 | 206 | 324 |
+| Not tried (in a macro or beside other code) | | 3 | 3 |
+
+Six more are in headers and were not tried: every includer would have to be compared. 44 of the removed
+ones had a comment saying what the barrier preserved ("the original computes the index before loading the
+buckets"); the compiler does that without being asked. A comment is a claim, and nothing checked these. One
+barrier only became unneeded once another in its file was gone, so the tool was run until it found none.
+
+What the 324 needed ones prevent, by what the first changed function becomes without its barrier: other
+instructions for 205, other control flow for 50, registers or order only for 47, another number of calls for
+11, and a few that sit in functions that do not match anyway.
+
+The 47 are the case the tier rules name: a function that matches only with an empty barrier should be the
+readable version, verified equivalent. Measured on copies: without their barrier, one of the 47 passes
+`tools/equiv_test.py` (`fn_71009f194c`) and 46 cannot be judged (coverage). So applying the rule to old code
+would trade 46 matches for 46 functions that count as nothing; nothing was converted, and the question of
+whether to convert the one that passes is the owner's.
+
+Still open: 215 barriers have no comment (206 needed ones in `.cpp` files, the rest in headers or macros).
+`build/barriers/result.json` of this run says what each needed one prevents, in the compiler's terms; the
+comment the rule asks for says it in the source's terms, and that takes reading each function.
+
+Counts (`tools/fakematch.py`): barriers 470 to 333, without a comment 308 to 215; matched functions named
+`fn_<addr>` with a fake-match form 540 to 524.
 
 **`drafts.py promote`, first real use: two matches leave `drafts/`, and every held one says why (2026-11-12).**
 The 14 drafts that match (13 since the permuter spike) all carried one note, "its declarations are not settled

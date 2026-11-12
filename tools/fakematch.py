@@ -29,6 +29,10 @@ Usage:
   python tools/fakematch.py --list [--kind K]   # every hit: file:line, kind, function
   python tools/fakematch.py --base origin/main  # only files changed since <ref> (a branch's or a PR's)
   python tools/fakematch.py --strict            # exit 1 on any barrier-no-comment
+  python tools/fakematch.py --unneeded-barriers [--write] [--list] [PATH...]
+                                                # compile each file without each barrier: one that changes no
+                                                # function's code is not needed (--write removes it; --list also
+                                                # shows what each needed one prevents). Needs the dump; a minute
   python tools/fakematch.py PATH...             # only these files or directories
 """
 
@@ -197,8 +201,83 @@ def sizes() -> dict[int, tuple[int, str]]:
     return out
 
 
+ALONE = re.compile(r'^\s*(?:asm|__asm__)\s*(?:volatile\s*|__volatile__\s*)?\(\s*""[^;]*\)\s*;\s*(//.*)?$')
+
+
+def without_barrier(lines: list[str], line: int, commented: bool) -> list[str] | None:
+    """The file's lines without the barrier on 1-based `line`, and without its comment when that is a block
+    of `//` lines directly above it (a comment at the end of the barrier's own line goes with the line).
+    None when the barrier does not stand alone on its line (inside a macro or beside other code)."""
+    if not 0 < line <= len(lines) or not ALONE.match(lines[line - 1]):
+        return None
+    lo = line - 1
+    if commented and "//" not in lines[line - 1]:
+        while lo > 0 and lines[lo - 1].lstrip().startswith("//"):
+            lo -= 1
+    return lines[:lo] + lines[line:]
+
+
+def unneeded_barriers(files: list[Path], version: str, write: bool, jobs: int = 8) -> list[dict]:
+    """Try every barrier of these sources: take it out, compile, and compare each function of the file (its
+    bytes and what its relocations name) with what it was. [{file, line, result, without}], result being
+    `not needed` (nothing changed), `needed` (`without` says what the first changed function becomes) or
+    `not tried` (not alone on its line; a header, whose includers would all have to be compared). With write,
+    the barriers that are not needed stay out. Needs the dump."""
+    from concurrent.futures import ThreadPoolExecutor
+    import drafts
+    drafts.init(version)
+    rows: list[dict] = []
+    todo = []
+    for f in files:
+        rel = f.relative_to(ROOT).as_posix()
+        hits = scan_text(rel, f.read_text(encoding="utf-8", errors="replace"))
+        bare = {h.line for h in hits if h.kind == "barrier-no-comment"}
+        mine = sorted({h.line for h in hits if h.kind == "barrier"}, reverse=True)
+        if mine and f.suffix != ".cpp":
+            rows += [{"file": rel, "line": n, "result": "not tried", "without": "in a header"} for n in mine]
+        elif mine:
+            todo.append((f, rel, mine, bare))
+
+    def one(item):
+        f, rel, mine, bare = item
+        raw = f.read_bytes()
+        newline = "\r\n" if b"\r\n" in raw else "\n"
+        lines = raw.decode("utf-8").replace("\r\n", "\n").split("\n")
+        before = drafts.compiled(drafts.functions(f))
+        if isinstance(before, str):
+            return [{"file": rel, "line": n, "result": "not tried", "without": "the file does not build"} for n in mine]
+        out = []
+        for n in mine:  # bottom up: the lines above keep their numbers
+            trial = without_barrier(lines, n, n not in bare)
+            if trial is None:
+                out.append({"file": rel, "line": n, "result": "not tried", "without": "not alone on its line"})
+                continue
+            f.write_bytes(newline.join(trial).encode("utf-8"))
+            found = drafts.functions(f)
+            after = drafts.compiled(found)
+            if after == before:
+                out.append({"file": rel, "line": n, "result": "not needed", "without": ""})
+                lines = trial
+            elif isinstance(found, str):
+                out.append({"file": rel, "line": n, "result": "needed", "without": "does not build"})
+            else:
+                changed = next(x for x, a, b in zip(found, after, before) if a != b)
+                out.append({"file": rel, "line": n, "result": "needed",
+                            "without": f"{changed['name']}: {changed['difference']}, {changed['differing']} differing"})
+        f.write_bytes(newline.join(lines).encode("utf-8") if write else raw)
+        return out
+    with ThreadPoolExecutor(jobs) as pool:
+        for found in pool.map(one, todo):
+            rows += found
+    return sorted(rows, key=lambda r: (r["file"], r["line"]))
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--unneeded-barriers", action="store_true",
+                    help="compile each file without each of its barriers and list the ones that change nothing")
+    ap.add_argument("--write", action="store_true", help="with --unneeded-barriers: remove them")
+    ap.add_argument("--version", default="2.1.0", help="with --unneeded-barriers: the dump to compare with")
     ap.add_argument("paths", nargs="*", type=Path)
     ap.add_argument("--base", help="only files added or changed since this ref")
     ap.add_argument("--list", action="store_true", help="every hit")
@@ -208,6 +287,15 @@ def main() -> int:
 
     files = changed_files(args.base) if args.base else [p.resolve() for p in args.paths] or [ROOT / "src"]
     files = hand_written(files)
+    if args.unneeded_barriers:
+        rows = unneeded_barriers(files, args.version, args.write)
+        for r in rows:
+            if r["result"] != "needed" or args.list:
+                print(f"{r['file']}:{r['line']}  {r['result']:10}  {r['without']}")
+        n = Counter(r["result"] for r in rows)
+        print(f"{len(rows)} barriers: {n['not needed']} not needed" + (" (removed)" if args.write and n["not needed"] else "")
+              + f", {n['needed']} needed, {n['not tried']} not tried")
+        return 0
     hits = []
     for f in files:
         hits += scan_text(f.relative_to(ROOT).as_posix(), f.read_text(encoding="utf-8", errors="replace"))

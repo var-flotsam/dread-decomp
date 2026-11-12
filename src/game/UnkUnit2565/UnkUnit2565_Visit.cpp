@@ -18,7 +18,6 @@ u32 fn_7100e791dc(void* self, UnkUnit2565Visitor* visitor, u32 kind, bool flag, 
 u32 fn_7100e791a4(void* self, void* arg, u32 kind, bool flag, void* extra) {
     UnkUnit2565Visitor visitor;
     visitor.arg = arg;
-    asm("" ::: "memory");  // the base part is stored before the vtable, as by a constructor
     visitor.vtable = g_unk_7101aa9dd8 + 0x10;
     return fn_7100e791dc(self, &visitor, kind, flag, extra);
 }

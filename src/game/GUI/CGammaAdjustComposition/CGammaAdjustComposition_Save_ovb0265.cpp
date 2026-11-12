@@ -53,8 +53,6 @@ void fn_7100b20b04(UnkGammaAdjust* self) {
         if (CBlackboard::CSection* section = fn_71010472e0(data, section_id)) {
             if (!data->field_0xe8) {
                 f32* gamma = &self->gamma;
-                // keeps the address computed before the type getter call
-                asm("" : "+r"(gamma));
                 v.type = fn_710000abbc();
                 v.value = gamma;
                 fn_7100332c80(section, reinterpret_cast<UnkPropertyName*>(&name), &v);

@@ -40,7 +40,6 @@ static inline __attribute__((always_inline)) UnkResult_0x18_b55 SetByte_b55(UnkO
     char* self = owner->self;
     UnkProvider_b55** provider = reinterpret_cast<UnkProvider_b55**>(self + 0x29ee0);
     u8* own = reinterpret_cast<u8*>(self + SelfOffset);
-    asm("" : "+r"(source) : "r"(provider), "r"(own));
     UnkValueSource_b55* src = *source;
     const u8* v = reinterpret_cast<const u8*>(src);
     if (src->kind == 1 || src->set->count >= 9)
