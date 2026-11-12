@@ -7,6 +7,7 @@
 // update (fn_7100319958) drops faded marks from the back and fades the others (alpha of the mark's
 // model). Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CScenario.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU252.h"
@@ -17,7 +18,6 @@
 
 struct UnkStruct_71002334fc;
 void fn_7100233910(UnkStruct_71002334fc*, bool);
-void fn_71011a2a24(UnkGameManagerSub_0x608*, void*);
 void fn_7100a2bc3c(void*);
 void fn_7100d7c94c(UnkActor*, const u64*);
 UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);

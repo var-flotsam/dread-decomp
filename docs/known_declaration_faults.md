@@ -13,7 +13,7 @@ checked against the original. Remove an entry when its declaration is corrected,
 
 | Symbol | Declared | The original | Reported by |
 |---|---|---|---|
-| `fn_71011a3574`, `fn_71011d9e90`, `fn_71010e655c`, `fn_7100362324`, `fn_710000f750` | `void` | returns a value | b0005, b0001, b0026, b0032 |
+| `fn_71011d9e90`, `fn_71010e655c`, `fn_7100362324`, `fn_710000f750` | `void` | returns a value | b0005, b0001, b0026, b0032 |
 | `fn_710007b518` | `void` (in a header) | returns a pointer the caller uses | b0099 |
 | `fn_71011a32d8`, `fn_71011a3574` | `void` | return values that are used; reached as `bool` through `asm`-label aliases in `UnkTU2577_SubAreaMgr_ovb0189.cpp` | b0189 |
 | `fn_7100ef0cdc`, `fn_7100ef11f4` | `void()` in `function_inits_02.cpp` | not stated | b0189 |

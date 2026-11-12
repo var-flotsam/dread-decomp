@@ -152,6 +152,31 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**The 40-function test of shared headers: no gain (2026-11-12).** The owner approved the test that was to decide
+whether struct headers are generated before bulk runs resume. 20 functions (status `U`, 130 to 450 bytes, one per
+unit, units whose class has reflected members), each attempted once per arm by a fresh Sonnet worker with the
+tracked lean kit, budget 6: arm A on the current recipe, arm B with the unit's header, the class's reflected
+members and each global's owner unit appended to its context and a brief section telling it to use them. One
+worktree per arm; every result re-graded by the coordinator.
+- **7 of 20 matched in arm A, 8 of 20 in arm B** (5 in both, 2 only in A, 3 only in B). 124 against 110 attempts,
+  117,000 against 116,000 tokens per worker. No measurable difference.
+- **The material was hardly used.** Arm B's twenty files hold 83 local declarations (arm A: 80) and four reflected
+  member names. A function in the unit of class X mostly touches other objects, so X's layout is rarely the one
+  it needs, and nine of the twenty units had no header yet. Struct headers are therefore not generated on this
+  evidence.
+- **A planning figure:** about 310,000 Sonnet tokens per match on functions of this size (15 matches in 40 runs,
+  one to two minutes each); five of the forty results differ from the original in registers or order only.
+- **What bringing the matches in took.** Ten distinct functions matched. Five are in `src/` with this entry; the
+  other five match too and are in `drafts/`, because each copies a declaration that has no header and
+  `decl_check --strict` (in CI since #373) now fails a copied declaration: the labelled members of
+  `UnkGameManagerIdTable` (60 copies), `fn_7100dec788` (125), `fn_7100d78378` (34), and `fn_7100353be8` (37, whose
+  `UnkRef` is a struct in some files and an alias in others). The five that went in needed four declarations
+  moved to unit headers, one header's return type corrected (`fn_71010fc68c` returns a `bool` its callers test)
+  and one hub given a header by hand (`fn_71011a2a24`, `include/game/CScenario.h`).
+- **So the step before a bulk run is the worker brief, not struct headers:** its step 4 ("copy an existing
+  signature exactly") has to become "add the declaration to its unit's header", with a tool that does it, and the
+  large hubs above need their headers first. The ten best non-matching drafts of the test are in `drafts/` too.
+
 **Names that are not addresses, checked for consistency (2026-11-11, #368, #369).** `check.py` counts a
 reference as unchecked when its symbol is not `fn_<addr>`/`g_unk_<addr>` or a name in `data/functions/`: 92,122
 of them, the review's second gate hole. `tools/name_check.py` uses what the original still says: where each such

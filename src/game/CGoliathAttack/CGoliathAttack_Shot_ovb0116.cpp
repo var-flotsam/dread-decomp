@@ -12,6 +12,7 @@
 #include "game/CAttack.h"
 #include "game/CAutsharpAIComponent.h"
 #include "game/CBaseBigFistAIComponent.h"
+#include "game/CCharClassGoliathAttack.h"
 #include "game/CShockWaveComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
@@ -25,7 +26,6 @@ struct UnkGoliathTunables_gla {
     u8 pad_0x0[0x30];
     f32 distance;
 };
-extern UnkGoliathTunables_gla g_unk_71726e5e70;
 
 static inline UnkBigFistAI_gla* BigFistAI_gla(UnkActor* actor) {
     UnkReflObject* ai = static_cast<UnkReflObject*>(actor->field_0x240);

@@ -11,6 +11,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPoolBody.h"
+#include "base/reflection.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1176.h"
 #include "game/UnkXformNode.h"
@@ -232,8 +233,6 @@ struct UnkScenarioLayer_ovb0032 {
     u8 pad_0xc0[0x8];
 };
 static_assert(sizeof(UnkScenarioLayer_ovb0032) == 0xc8, "UnkScenarioLayer_ovb0032 layout");
-
-void fn_710025bda0(void* self);
 
 // The value stored under `*key` in layer `index`, or null.
 void* fn_71011a3234(UnkScenarioLayer_ovb0032* layers, u32 index, UnkScenarioKey_ovb0032* const* key) {

@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkCaterzillaLink_ovb0054;
+struct UnkCaterzillaLinks_ovb0054;
 struct UnkStatics_710024cc40;
 struct UnkActor_71002329e8;
 struct UnkBoundObj;
@@ -41,3 +43,4 @@ extern char g_unk_7101a20a50[];
 extern bool g_unk_717269c4d8;
 extern UnkStatics_710024cc40 g_unk_717269f420 __attribute__((visibility("hidden")));
 extern char g_unk_717269f450[] __attribute__((visibility("hidden")));
+UnkCaterzillaLink_ovb0054* fn_7100247340(UnkCaterzillaLinks_ovb0054* links, u32 index);

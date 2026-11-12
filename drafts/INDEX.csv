@@ -57,6 +57,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71003549a4,400,drafts/game/UnkTU437/fn_71003549a4.cpp,registers or order,98.0,2,overnight,
 0x710035d5c4,504,drafts/game/UnkTU441/fn_710035d5c4.cpp,registers or order,96.0,5,overnight,
 0x710039d65c,504,drafts/game/behaviortree/CIsAtDistanceXCondition/fn_710039d65c.cpp,control flow,93.1,5,overnight,
+0x71003a4774,220,drafts/game/behaviortree/CTunableBoolCondition/fn_71003a4774.cpp,registers,87.3,7,test40,registers only in true/false select (x10/x8/x9 allocation)
 0x71003bb534,544,drafts/game/CAutectorAIComponent/fn_71003bb534.cpp,registers or order,90.4,13,overnight,
 0x71003d4300,1380,drafts/game/CAutsniperShootAttack/fn_71003d4300.cpp,control flow,5.5,305,lean,
 0x71003f1d94,656,drafts/game/CBigkranXSpitAttack/fn_71003f1d94.cpp,control flow,52.4,77,lean,
@@ -74,9 +75,11 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100558bcc,584,drafts/game/UnkTU811/fn_7100558bcc.cpp,registers or order,93.8,9,overnight,
 0x7100558e14,196,drafts/game/UnkTU811/fn_7100558e14.cpp,registers or order,98.0,1,overnight,
 0x7100572a68,316,drafts/game/UnkTU816/fn_7100572a68.cpp,registers or order,94.9,4,overnight,
+0x71005a3a60,312,drafts/game/CCharClassGroundShockerAIComponent/fn_71005a3a60.cpp,match,100.0,0,test40,"matches; held: as 71007ff210, and fn_71005a4be8 needs its unit header"
 0x71005c042c,388,drafts/game/UnkTU883/fn_71005c042c.cpp,operations,95.9,4,overnight,
 0x71005c3160,372,drafts/game/UnkTU883/fn_71005c3160.cpp,registers or order,92.5,7,overnight,
 0x7100686860,256,drafts/game/CScorpiusAttack/fn_7100686860.cpp,control flow,56.1,27,lean,
+0x71006de940,184,drafts/game/CVulkranAttackManager/CTunableVulkranAttackManager/fn_71006de940.cpp,match,100.0,0,test40,matches; held: fn_7100d78378 (34 copies) and fn_710059cecc have no header
 0x71006eb7cc,256,drafts/game/UnkTU1102/fn_71006eb7cc.cpp,registers or order,92.2,5,overnight,
 0x71006f8944,432,drafts/game/UnkTU1115/fn_71006f8944.cpp,operations,99.1,1,overnight,
 0x71006fda48,348,drafts/game/UnkTU1118/fn_71006fda48.cpp,conditions,93.1,6,overnight,
@@ -88,12 +91,17 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100745bdc,128,drafts/game/UnkTU1161/fn_7100745bdc.cpp,registers or order,90.6,3,overnight,
 0x710077b638,204,drafts/game/UnkTU1176/fn_710077b638.cpp,control flow,94.1,3,overnight,
 0x710077ded0,520,drafts/game/CProtoCentralUnitComponent/fn_710077ded0.cpp,operations,96.9,4,overnight,
+0x71007b1094,448,drafts/game/CDemolitionBlockComponent/fn_71007b1094.cpp,build fails,,,test40,register pressure in guarded mask statics: extra callee-saved reg and frame size; rest matches modulo shift
 0x71007da92c,352,drafts/game/UnkTU1246/fn_71007da92c.cpp,operations,94.3,5,overnight,
 0x71007dacbc,584,drafts/game/UnkTU1246/fn_71007dacbc.cpp,operations,93.8,9,overnight,
+0x71007ff210,328,drafts/game/CAreaFXComponent/fn_71007ff210.cpp,match,100.0,0,test40,"matches; held: declares the labelled members of UnkGameManagerIdTable (fn_7100031894, fn_71000407f0), copied in 60 files with no header"
 0x710080f3c4,260,drafts/game/CScorpiusFXComponent/fn_710080f3c4.cpp,calls,23.1,45,lean,
 0x71008372ac,476,drafts/game/UnkTU1303/fn_71008372ac.cpp,registers or order,97.5,3,overnight,
 0x710086f9e0,324,drafts/game/UnkTU1325/fn_710086f9e0.cpp,registers or order,90.1,8,overnight,
+0x710087f018,284,drafts/game/CCharClassFanComponent/fn_710087f018.cpp,registers,97.2,2,test40,one fmul register s3 vs s4 only
 0x71008866b8,548,drafts/game/CMorphBallLauncherComponent/fn_71008866b8.cpp,registers or order,87.6,17,lean,
+0x710088adf0,376,drafts/game/CCharClassMushroomPlatformComponent/fn_710088adf0.cpp,control flow,34.0,54,test40,block layout differs: original puts owner-target tail before state switch; loop shape differs
+0x71008c3dcc,360,drafts/game/CDemolitionBlockActivatableActorLifeComponent/fn_71008c3dcc.cpp,match,100.0,0,test40,"matches; held: fn_7100353be8 (37 copies) returns UnkRef, a struct in some files and an alias in others"
 0x71009438e8,244,drafts/game/UnkTU1428/fn_71009438e8.cpp,operations,98.4,1,overnight,
 0x710094d5b4,424,drafts/game/UnkTU1428/fn_710094d5b4.cpp,registers or order,99.1,1,overnight,
 0x71009500d8,388,drafts/game/UnkTU1428/fn_71009500d8.cpp,conditions,96.9,3,overnight,
@@ -107,12 +115,16 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71009e9390,236,drafts/game/UnkTU1501/fn_71009e9390.cpp,operations,98.3,1,overnight,
 0x7100a0ea54,208,drafts/game/UnkTU1518/fn_7100a0ea54.cpp,registers or order,96.2,2,overnight,
 0x7100a2b3bc,424,drafts/game/CTimelineComponent/fn_7100a2b3bc.cpp,control flow,25.2,79,lean,
+0x7100a3ade0,288,drafts/game/CChangeStateDoorsLogicAction/fn_7100a3ade0.cpp,operations,68.1,22,test40,src/dst callee-saved regs swapped; tail load addressing
 0x7100a787cc,944,drafts/game/CCapsuleUsableComponent/fn_7100a787cc.cpp,operations,3.4,228,lean,
+0x7100ac6850,240,drafts/game/CProjectileMovement/fn_7100ac6850.cpp,match,100.0,0,test40,"matches; held: fn_7100dec788 (125 copies), fn_7100a2cddc and two globals have no header"
 0x7100af45b0,160,drafts/game/GUI/CBossRushReport/fn_7100af45b0.cpp,registers or order,70.0,12,lean,
 0x7100b4c684,596,drafts/game/UnkTU1691/fn_7100b4c684.cpp,conditions,98.7,2,overnight,
 0x7100b59574,284,drafts/game/GUI/CMissionLog/fn_7100b59574.cpp,registers or order,95.8,3,lean,
+0x7100b72380,292,drafts/game/GUI/CScene3D/fn_7100b72380.cpp,operations,46.6,37,test40,store merging/scheduling of 0x3ac-0x3c0 and GOT load order
 0x7100bcfe4c,516,drafts/game/CCharClassSetActionToOtherEntityEvent/fn_7100bcfe4c.cpp,registers or order,98.4,2,overnight,
 0x7100c8bd98,304,drafts/game/UnkTU2200/fn_7100c8bd98.cpp,operations,32.5,50,lean,
+0x7100d35b14,208,drafts/game/logic/collision/CBroadphaseObject/fn_7100d35b14.cpp,operations,66.7,16,test40,tail/head store sunk into shared block; stp pair not formed
 0x7100d48698,636,drafts/game/UnkTU2506/fn_7100d48698.cpp,operations,40.9,87,fable2b,
 0x7100d59dd8,1324,drafts/game/UnkTU2510/fn_7100d59dd8.cpp,control flow,11.8,288,fable1,
 0x7100d5abfc,84,drafts/game/UnkTU2510/fn_7100d5abfc.cpp,registers or order,90.5,2,overnight,
@@ -177,14 +189,17 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7101110e18,436,drafts/game/UnkTU2702/fn_7101110e18.cpp,registers or order,96.3,4,overnight,
 0x710112c4d8,368,drafts/game/UnkTU2704/fn_710112c4d8.cpp,registers or order,95.7,4,overnight,
 0x7101136bb4,884,drafts/game/CAttackComponent/fn_7101136bb4.cpp,registers or order,93.7,14,lean,
+0x710114ccd0,132,drafts/game/CPositionalSoundComponent/fn_710114ccd0.cpp,control flow,,,test40,compiler fuses redundant null check and compares; branch count 10 vs 11
 0x710114e130,728,drafts/game/CFXComponent/fn_710114e130.cpp,operations,15.7,153,lean,
 0x7101156c6c,780,drafts/game/CFXComponent/fn_7101156c6c.cpp,control flow,66.2,60,lean,
 0x7101167aec,692,drafts/game/CPlayerLifeComponent/fn_7101167aec.cpp,operations,97.1,5,fable2b,
 0x710117a190,788,drafts/game/CAnimationComponent/fn_710117a190.cpp,operations,42.4,110,lean,
 0x71011a5798,448,drafts/game/UnkTU2737/fn_71011a5798.cpp,registers or order,98.2,2,overnight,
 0x71011a5ac0,264,drafts/game/UnkTU2737/fn_71011a5ac0.cpp,registers or order,97.0,2,overnight,
+0x71011a6bc0,220,drafts/game/CTeamManager/CTunableTeamManager/fn_71011a6bc0.cpp,control flow,20.0,41,test40,null-check order and loop exit layout differ
 0x71011b2cf0,340,drafts/game/UnkTU2744/fn_71011b2cf0.cpp,registers or order,97.6,2,overnight,
 0x71011b9a1c,424,drafts/game/UnkTU2744/fn_71011b9a1c.cpp,registers or order,99.1,1,overnight,
+0x71011fd160,212,drafts/game/GUI/CSpriteGrid/fn_71011fd160.cpp,operations,86.8,7,test40,stack slot assignment of three 8-byte locals
 0x71012129f0,264,drafts/game/UnkTU2772/fn_71012129f0.cpp,registers or order,98.5,1,overnight,
 0x7101213858,420,drafts/game/UnkTU2772/fn_7101213858.cpp,registers or order,94.3,6,overnight,
 0x7101214bd0,196,drafts/game/UnkTU2772/fn_7101214bd0.cpp,operations,95.9,2,overnight,

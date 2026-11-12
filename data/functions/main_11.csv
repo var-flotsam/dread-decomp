@@ -2309,7 +2309,7 @@ address,size,name,name_source,subsystem,status
 0x71011a3220,20,fn_71011a3220,unknown,unknown,O
 0x71011a3234,164,fn_71011a3234,unknown,unknown,O
 0x71011a32d8,668,fn_71011a32d8,unknown,unknown,U
-0x71011a3574,416,fn_71011a3574,unknown,unknown,U
+0x71011a3574,416,fn_71011a3574,unknown,unknown,O
 0x71011a3714,840,fn_71011a3714,unknown,unknown,U
 0x71011a3a5c,792,fn_71011a3a5c,unknown,unknown,U
 0x71011a3d74,188,fn_71011a3d74,unknown,unknown,m
