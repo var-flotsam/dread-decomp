@@ -14,6 +14,7 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/snd/UnkSound.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSwitchObject.h"
@@ -134,19 +135,6 @@ using base::global::CStrId;
 // As src/game/CCharClassFanComponent/CFanComponent_Effects_A4_b75.cpp declares it.
 void fn_710115217c(void* object, void* effect, u32 a, u32 b, const base::global::CStrId* name,
                    const base::math::CVector3D& offset, const base::math::CVector3D& rotation, void* extra);
-
-// The id table (fn_7100031894 builds it; as src/game/CEmmyAIComponent/CEmmyAIComponent_IsStateId_b56.cpp).
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0xd40];
-    CStrId field_0xd40;
-    u8 pad_0xd48[0x2578 - 0xd48];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
 
 // The id's text, the way the string data is shared: its use count (+0x44) is raised.
 // The count is written untyped: the original reads the id again afterwards.

@@ -7,6 +7,7 @@
 #include "base/math/CVector.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -43,18 +44,6 @@ struct UnkRodoSelf {
 };
 
 const CStrId* fn_7100666a7c(UnkRodoList* list);
-
-// The id table (fn_7100031894 builds it, as in src/game/GUI/CChozoArchivesComposition/CChozoArchivesComposition_Reveal_ovb0124.cpp).
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x2578];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
-
 
 struct UnkRodoBody {
     void** vtable;

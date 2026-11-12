@@ -20,6 +20,7 @@
 #include "game/CReserveTankInfo.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkManager_71726af468.h"
@@ -261,21 +262,6 @@ s32 fn_7101092ca0(lua_State* L) {
         fn_71000fbe1c(reinterpret_cast<u8*>(sound) + 8, 5, level * *reinterpret_cast<const f32*>(reinterpret_cast<const u8*>(&g_unk_7101d68580) + 0x3c), 0.0f);
     }
     return 0;
-}
-
-// ---- blackboard flags ----
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0xd80];
-    CStrId field_0xd80;
-    u8 pad_0xd88[0x1148 - 0xd88];
-    CStrId field_0x1148;
-    u8 pad_0x1150[0x2578 - 0x1150];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
 }
 
 static inline const UnkQualifiedId& GetQualifiedId_b0162(UnkPropertyEx<>& item) {

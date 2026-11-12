@@ -12,6 +12,7 @@
 #include "game/CInventoryComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU56.h"
@@ -139,19 +140,6 @@ void fn_7101149354(UnkInvSection_ovb0094* self, const base::global::CRntString& 
     self->id = id.id;
     if (self->id.data != g_unk_7101d470e0.data && fn_7101047208(&g_unk_7101d47310->field_0x968, self->id))
         fn_710114433c(self, &fn_71010472e0(&g_unk_7101d47310->field_0x968, self->id)->data);
-}
-
-// The id table (fn_7100031894 builds it; the same definition as src/game/CGameManager.cpp's).
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x17e0];
-    u8 field_0x17e0[8];
-    u8 pad_0x17e8[0x2578 - 0x17e8];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
 }
 
 // A typed value as the section setter takes it (as in src/game/CDoorLifeComponent.cpp).

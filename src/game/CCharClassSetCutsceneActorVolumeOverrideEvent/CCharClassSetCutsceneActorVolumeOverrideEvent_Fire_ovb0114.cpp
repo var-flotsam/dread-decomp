@@ -5,6 +5,7 @@
 #include "base/UnkAtExit.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU102.h"
 #include "game/UnkTU2730.h"
 #include "types.h"
@@ -12,19 +13,6 @@
 using base::global::CStrId;
 
 extern void* g_unk_7101d47330;
-
-// The id table (fn_7100031894 builds it; as src/game/CAbilityEnergyWave/CAbilityEnergyWave_Effect_ovb0022.cpp).
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0xd90];
-    CStrId field_0xd90;
-    u8 pad_0xd98[0x2578 - 0xd98];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
 
 // A string id's data as this event reads it: its text and a use count.
 struct UnkVolumeIdData_ovb0114 {

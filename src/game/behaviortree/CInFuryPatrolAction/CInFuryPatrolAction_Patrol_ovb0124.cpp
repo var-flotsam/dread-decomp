@@ -10,6 +10,7 @@
 #include "game/CBlackboard.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkBehaviorTree.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTUProperty.h"
 #include "game/behaviortree/CBaseAction.h"
 #include "game/behaviortree/CInFuryPatrolAction.h"
@@ -27,16 +28,6 @@ struct UnkTypedValue {
     void* value;
 };
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
-
-// The id table (fn_7100031894 builds it, as in src/base/reflection/UnkEnumValueNames.cpp); the flag's
-// property name is the string id at +0x8f0.
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x17e0];
-    u8 field_0x17e0[8];
-    u8 pad_0x17e8[0x2578 - 0x17e8];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
 
 inline CStrId* FlagName_ovb0124() {
     static UnkGameManagerIdTable s_table asm("g_unk_7101d552d0");

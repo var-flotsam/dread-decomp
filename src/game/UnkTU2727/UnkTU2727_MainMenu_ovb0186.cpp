@@ -10,6 +10,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/snd/UnkSound.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiHandle.h"
 #include "game/UnkGuiRoot.h"
@@ -153,17 +154,8 @@ bool fn_7101190fa4(UnkMainMenu_ovb0186* self, void* arg) {
     return result;
 }
 
-// The id table (fn_7100031894 builds it, as in src/base/reflection/UnkEnumValueNames.cpp); two of its
-// string ids, at +0x1cb0 and +0x1cb8, name the entries the lookup tells apart.
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x1cb0];
-    UnkStringData* field_0x1cb0;
-    UnkStringData* field_0x1cb8;
-    u8 pad_0x1cc0[0x2578 - 0x1cc0];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-
+// Two string ids of the id table (game/UnkGameManagerIdTable.h), at +0x1cb0 and +0x1cb8, name the entries
+// the lookup tells apart.
 inline UnkGameManagerIdTable* IdTable_ovb0186() {
     static UnkGameManagerIdTable s_table asm("g_unk_7101d552d0");
     return &s_table;
@@ -173,11 +165,11 @@ inline UnkGameManagerIdTable* IdTable_ovb0186() {
 #define NAME_OF(slot)                                                           \
     ({                                                                          \
         UnkGameManagerIdTable* table = IdTable_ovb0186();                       \
-        UnkStringEntry* entry = reinterpret_cast<UnkStringEntry*>(table->slot); \
+        UnkStringEntry* entry = reinterpret_cast<UnkStringEntry*>(table->slot.data); \
         u32 count = entry->tail.field_0x44 + 1;                                 \
         __builtin_memcpy(&entry->tail.field_0x44, &count, 4);                   \
         reinterpret_cast<const UnkCompared_0x30*>(                              \
-            &reinterpret_cast<UnkStringEntry*>(table->slot)->buffer);           \
+            &reinterpret_cast<UnkStringEntry*>(table->slot.data)->buffer);      \
     })
 
 struct UnkMenuEntries_ovb0186 {

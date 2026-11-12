@@ -5,24 +5,12 @@
 // are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU811.h"
 #include "game/behaviortree/CEmmyPatrolAction.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-// The id table (fn_7100031894 builds it; the definition of src/game/CScenario.cpp).
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x17e0];
-    u8 field_0x17e0[8];
-    u8 pad_0x17e8[0x2578 - 0x17e8];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
 
 bool fn_710051d464(CBlackboard::CSection* section, const void* name, CStrId* out);
 

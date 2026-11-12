@@ -14,6 +14,7 @@
 #include "base/global/CRntStringAssign.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU57.h"
 #include "game/UnkTUInit.h"
 #include "types.h"
@@ -70,12 +71,6 @@ bool fn_7100ad2d90(UnkPathArgs_b0217* a, UnkPathArgs_b0217* b) {
 // ---- the string id value kept for the list ----
 
 struct UnkReflPathArg_ovb0106;
-
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x2578];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
 
 inline const CStrId& IdAt_b0217(u32 offset) {
     static UnkGameManagerIdTable s_table asm("g_unk_7101d552d0");

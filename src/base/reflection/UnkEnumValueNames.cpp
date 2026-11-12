@@ -11,6 +11,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -70,19 +71,6 @@ struct UnkEnumType {
     u32 attr_count;
 };
 static_assert(__builtin_offsetof(UnkEnumType, attrs) == 0x88, "UnkEnumType placeholder layout");
-
-// The id table (fn_7100031894 builds it; src/game/CGameManager.cpp has the same definition).
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x17e0];
-    u8 field_0x17e0[8];
-    u8 pad_0x17e8[0x2578 - 0x17e8];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
 
 // A value's name: copied from a string id, moved by taking the other's string (leaving it the
 // empty one), released like CStrId.

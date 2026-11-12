@@ -10,6 +10,7 @@
 #include "game/CComponent.h"
 #include "game/CInputComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkSlots.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU2553.h"
@@ -17,7 +18,6 @@
 #include "types.h"
 
 struct UnkPlayer;
-
 
 using base::color::CColor4F;
 
@@ -27,18 +27,6 @@ struct UnkPickableColorKey_ovb0023 {
     u8 pad_0x0[0x30];
     u64 key;
 };
-
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x16d8];
-    UnkPickableColorKey_ovb0023* field_0x16d8;
-    u8 pad_0x16e0[0x2578 - 0x16e0];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
 
 struct UnkPickableModel_ovb0023 {
     u8 pad_0x0[0x138];
@@ -68,14 +56,12 @@ void fn_71009cd46c(UnkPickableComponent_ovb0023* self, f32 alpha) {
     if (!model)
         return;
     CColor4F color(1.0f, 1.0f, 1.0f, 1.0f);
-    u64 key = GameManagerIdTable().field_0x16d8->key;
+    u64 key = reinterpret_cast<UnkPickableColorKey_ovb0023*>(GameManagerIdTable().field_0x16d8.data)->key;
     fn_71001c2bac(model->slots, key, 0, &color, 1);
     color.a = alpha <= 0.0f ? 0.0f : alpha;
-    key = GameManagerIdTable().field_0x16d8->key;
+    key = reinterpret_cast<UnkPickableColorKey_ovb0023*>(GameManagerIdTable().field_0x16d8.data)->key;
     fn_71001c28f8(model->slots, key, 0, &color, 1);
 }
-
-
 
 using base::global::CStrId;
 

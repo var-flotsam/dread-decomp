@@ -9,6 +9,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU341.h"
@@ -76,7 +77,6 @@ bool fn_7100342ee4(u32 region, f32 x, f32 y) {
     return false;
 }
 
-
 // Unit 437: turns the angle at out[0] toward the angle at out[1] at the speed of the object at
 // +0x2b0 (its +0x64) times `step`, taking the short way round and stopping on the target; wraps the
 // result. Without the flag at +0x570 only clears out[0]. Names and layouts are placeholders.
@@ -142,7 +142,6 @@ void fn_7100347a70(UnkAimTurn_ovb0198g* self, f32* out, f32 step, f32 b, bool fl
     }
     out[0] = fn_710007a1d0(x);
 }
-
 
 // Unit 437: whether an aim target counts: false for a target whose slot 0xb flags have bit 12, true
 // for bit 7, else the player's inventory must hold ITEM_CENTRAL_UNIT_ENERGY and the target's
@@ -222,7 +221,6 @@ bool fn_710033fe10(UnkAimTarget_ovb0198f* target) {
     u64 id = reinterpret_cast<UnkAimIdHolder_ovb0198f*>(fn_7100232fcc(collision->named))->slot->id;
     return id == 0x9a81146558dcd8feull || id == 0x2155f9f478783a9bull;
 }
-
 
 // Unit 437: turns the aim angle at +0x2b8 toward `target` (unwrapped near it by fn_710007a170) by the
 // tunable's speed (+0x2b0, +0x7c) times `dt`, or straight to it for a negative `dt`. Inside the
@@ -345,7 +343,6 @@ wrap:
     }
 }
 
-
 // Unit 437: speed needed to cover the distance between two points beyond 50 units within `time`.
 // Names and layouts are placeholders.
 struct UnkPoint3_ovb0198 {
@@ -371,7 +368,6 @@ f32 fn_7100351fe0(void* self, f32 time, const UnkPoint3_ovb0198* a, const UnkPoi
     f32 vz = inv * wz;
     return sqrtf(vx * vx + vy * vy + vz * vz);
 }
-
 
 // Unit 437: the nearest-target visitor of the aim in 3D (as fn_71003549a4's; fn_710033265c in
 // src/game/CAbilityShinespark/CAbilityShinespark_Glow_ovb0045.cpp keeps the nearest by distance):
@@ -480,7 +476,6 @@ UnkVisitResult_b0040 fn_7100358bc4(UnkAimNearest_ovb0198l* self, UnkAimTarget_ov
     return Skip_ovb0198l();
 }
 
-
 // Unit 437: the nearest-target visitor of the aim in 3D (as fn_71003549a4's; fn_710033265c in
 // src/game/CAbilityShinespark/CAbilityShinespark_Glow_ovb0045.cpp keeps the nearest by distance):
 // a candidate that passes the class filter at +0x78 replaces the best one (record at +0x8, flag at
@@ -583,16 +578,6 @@ UnkVisitResult_b0040 fn_7100358f64(UnkAimNearest_ovb0198m* self, UnkAimTarget_ov
 using base::global::CStrId;
 
 struct UnkEntity;
-
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x2578];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
 
 struct UnkAimActor_ovb0198v {
     u8 pad_0x0[0x220];

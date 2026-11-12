@@ -15,6 +15,7 @@
 #include "game/GUI/CLabel.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2733.h"
 #include "game/UnkTUProperty.h"
@@ -79,20 +80,6 @@ static inline const UnkQualifiedId& Qid(UnkScenarioDef& def) {
 }
 // "ScenarioActiveCollider", a property of type CStrId (src/game_s7/fn_7100ae39e0.cpp builds it).
 extern UnkPropertyEx<> g_unk_7172759808;
-
-// The id table (fn_7100031894 builds it; the same definition as src/game/CGameManager.cpp's and
-// src/game/UnkSubareaSetupState.cpp's). Its +0xb40 is the id of the default scenario setup.
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x17e0];
-    u8 field_0x17e0[8];
-    u8 pad_0x17e8[0x2578 - 0x17e8];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
 
 // Reads the string id under the property `name` names (refl_GetKeyedValue for CStrId).
 bool fn_710051d464(CBlackboard::CSection* section, const void* name, CStrId* out);

@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
 
@@ -29,12 +30,6 @@ struct UnkTunable_ovb0207 {
 CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 bool fn_7100dfc0c8(UnkGameManager* self, const base::UnkNamedEntry* a, const base::UnkNamedEntry* b, bool c, bool d,
                    bool e, bool f, bool g, s32 mode);
-
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x2578];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
 
 inline const CStrId& SectionId_ovb0207(u32 offset) {
     static UnkGameManagerIdTable s_table asm("g_unk_7101d552d0");

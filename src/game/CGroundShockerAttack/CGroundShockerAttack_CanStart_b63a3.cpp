@@ -4,13 +4,13 @@
 // (fn_71005a4cf0). Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CGroundShockerAIComponent.h"
 #include "game/UnkActor.h"
 #include "types.h"
 #include "game/CAttack.h"
 
 
 struct UnkShockerAI_b62a3;
-u32 fn_71005a4be8(UnkShockerAI_b62a3* self);
 bool fn_71005a4cf0(UnkShockerAI_b62a3* self);
 
 struct UnkShockerAICast_b63a3 {

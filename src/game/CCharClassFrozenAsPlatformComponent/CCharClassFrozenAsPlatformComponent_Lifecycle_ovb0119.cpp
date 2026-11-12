@@ -11,6 +11,7 @@
 #include "base/global/CStrId.h"
 #include "game/CCharClassComponent.h"
 #include "game/CCharClassFrozenComponent.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkStrIdSplit.h"
 #include "types.h"
 
@@ -19,19 +20,6 @@ using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
 struct UnkModelEntity;
-
-// The id table (fn_7100031894 builds it; as src/game/CEmmyAIComponent/CEmmyAIComponent_IsStateId_b56.cpp).
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0xec8];
-    CStrId field_0xec8;
-    u8 pad_0xed0[0x2578 - 0xed0];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
 
 struct UnkFrozenAsPlatform_b0119 {
     u8 pad_0x0[0xd8];

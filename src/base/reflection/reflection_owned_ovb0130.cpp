@@ -2,19 +2,9 @@
 // +0x10 (fn_7100fb5200). Names and layouts are placeholders.
 #include <new>
 #include "base/global/CStrId.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
-
-// The id table (fn_7100031894 builds it; as src/game/CAbilityEnergyWave/CAbilityEnergyWave_Effect_ovb0022.cpp).
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x2578];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
 
 // An owned pointer that moves out of its slot.
 struct UnkMovedPtr_ovb0130 : UnkOwnedPtr {

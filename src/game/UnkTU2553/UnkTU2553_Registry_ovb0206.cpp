@@ -33,6 +33,7 @@
 #include "game/GUI/CTutorialComposition.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkGuiLabel.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkRenderManager.h"
@@ -456,12 +457,6 @@ CRntString fn_7100dfb1b0(UnkGameManager* manager, const base::UnkNamedEntry* key
 // other the first. Names and layouts are placeholders.
 using base::global::CRntString;
 using base::global::CStrId;
-
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x2578];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
 
 // The pooled data behind an id as its text accessor sees it: the text at +0x10 and a count of the
 // reads at +0x44.

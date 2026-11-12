@@ -66,6 +66,14 @@ The same struct written out in more than one `.cpp`, each a separate definition 
 `UnkSamusSettings` (b0004). These are the ones the workers noticed; `tools/decl_check.py` does not look at
 struct definitions, and 1,020 struct names are defined in more than one file.
 
+One of the largest was settled on 2026-11-12: `UnkGameManagerIdTable`, the game's table of string ids, was
+defined in 60 files, each with the one or two slots it reads and its own copy of the labelled constructor and
+destructor (`fn_7100031894`, `fn_71000407f0`). It is `include/game/UnkGameManagerIdTable.h` now, with every slot
+those files name as a `CStrId`; a file that reads a slot's data as a record of its own casts at the read. 25
+more files see the same table under other struct names (`UnkIdTable_b55sh`, `UnkReflSingleton` in
+`base/reflection/UnkReflStatics.h`, ...), with the constructor named in a comment and not by a label: those are
+still to be folded in.
+
 ## Shared functions the mechanical header migration could not move
 
 `tools/decl_plan.py` and `tools/hub_migrate.py` moved 1,353 shared functions' declarations into unit headers on

@@ -13,6 +13,7 @@
 #include "base/global/CStrId.h"
 #include "game/CGameObject.h"
 #include "game/GUI/CDisplayObjectContainer.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
 #include "../../game_s7/UnkGuiS7.h"
@@ -264,16 +265,6 @@ struct UnkCompared_0x30;
 void fn_710120280c(void* param, void* owner);
 void fn_7101202d1c(void* param, void* owner);
 
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x2578];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
-
 struct UnkIdEntry_ovb0182 {
     u8 pad_0x0[0x10];
     u8 key[0x34];  // 0x10
@@ -371,7 +362,6 @@ void fn_71011cfc24(UnkGuiObj* object, const UnkColor& color, u32 value) {
 
 void fn_71011cee40(UnkGuiDisplayObject* object);
 
-
 struct UnkDisplayObjectContainer_ovb0032;
 struct UnkDisplayObject_ovb0032;
 
@@ -429,7 +419,6 @@ void fn_71011cef74(void* object, void* new_parent) {
 // --- setting the object up ---
 
 using base::global::CStrId;
-
 
 // The display object with the virtual slots past vf_0xa0 that the set-up calls.
 struct UnkGuiDisplayObjectSlots_ovb0182 : UnkGuiDisplayObject {

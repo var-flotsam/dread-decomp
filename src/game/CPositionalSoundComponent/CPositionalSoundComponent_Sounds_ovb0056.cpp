@@ -6,6 +6,7 @@
 #include "base/snd/UnkSound.h"
 #include "game/CActorComponent.h"
 #include "game/UnkComponent.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU23.h"
 #include "game/sound/UnkSoundHandle.h"
@@ -94,19 +95,6 @@ void fn_710114cc50(UnkPositionalSound_ovb56* self, UnkSound* sound) {
 }
 
 extern "C" int rand();
-
-// The id table (fn_7100031894 builds it; the definition of src/game/CScenario.cpp).
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x5f8];
-    CFilePathStrId field_0x5f8;
-    u8 pad_0x600[0x2578 - 0x600];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
 
 // The string record behind a path id: its text at +0x10 and a use count at +0x44.
 struct UnkPathRecord_ovb56 {

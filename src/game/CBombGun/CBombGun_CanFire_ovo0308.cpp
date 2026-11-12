@@ -13,6 +13,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkSubAreaGuiCache.h"
 #include "game/UnkTU2553.h"
@@ -25,19 +26,6 @@ bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 // As src/game/CMissileBaseGun/CMissileBaseGun_Ammo_ovb0103.cpp declares them.
 s32 fn_710119db04(UnkSubAreaGuiCache* self, const base::global::CStrId* name);
 extern char* g_unk_71726b2398;
-
-// The id table (fn_7100031894 builds it; as src/game/CPowerBombGun/CPowerBombGun_CanFire_ovb0130.cpp).
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x980];
-    CStrId field_0x980;
-    u8 pad_0x988[0x2578 - 0x988];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
 
 static inline UnkQualifiedId& Qid_ovb0266(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = ItemQualifiedId(item);

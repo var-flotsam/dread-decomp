@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "game/CGrabComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkSlots.h"
 #include "game/UnkTU253.h"
 #include "game/UnkTU2553.h"
@@ -25,17 +26,6 @@ struct UnkReturnAreaKey_ovb0123 {
     u64 key;
 };
 
-// The id table (fn_7100031894 builds it; as src/game/CPickableComponent/CPickableComponent_Pickup_ovb0023.cpp).
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x18e8];
-    UnkReturnAreaKey_ovb0123* field_0x18e8;
-    UnkReturnAreaKey_ovb0123* field_0x18f0;
-    u8 pad_0x18f8[0x22b8 - 0x18f8];
-    UnkReturnAreaKey_ovb0123* field_0x22b8;
-    u8 pad_0x22c0[0x2578 - 0x22c0];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
 inline UnkGameManagerIdTable& ReturnAreaIdTable() {
     static UnkGameManagerIdTable s_table;
     return s_table;
@@ -90,10 +80,10 @@ void fn_7100a0610c(UnkReturnAreaSmartObject_ovb0123* self, f32 time, u32 which, 
     u64 key;
     switch (which) {
     case 0:
-        key = ReturnAreaIdTable().field_0x18f0->key;
+        key = reinterpret_cast<UnkReturnAreaKey_ovb0123*>(ReturnAreaIdTable().field_0x18f0.data)->key;
         break;
     case 1:
-        key = ReturnAreaIdTable().field_0x18e8->key;
+        key = reinterpret_cast<UnkReturnAreaKey_ovb0123*>(ReturnAreaIdTable().field_0x18e8.data)->key;
         break;
     default:
         key = static_cast<u64>(-1);
@@ -127,7 +117,7 @@ void fn_7100a05ec8(UnkReturnAreaSmartObject_ovb0123* self) {
     if (!model)
         return;
     CColor4F color(1.0f, 1.0f, 1.0f, 1.0f);
-    u64 key = ReturnAreaIdTable().field_0x18e8->key;
+    u64 key = reinterpret_cast<UnkReturnAreaKey_ovb0123*>(ReturnAreaIdTable().field_0x18e8.data)->key;
     fn_71001c2bac(model->slots, key, 0, &color, 1);
     f32 missing = 1.0f - color.a;
     if (!(missing + 0.001f >= 0.0f) || !(missing - 0.001f <= 0.0f))

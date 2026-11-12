@@ -16,6 +16,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU2553.h"
@@ -40,24 +41,6 @@ void fn_710083f32c(UnkSamusGunComponent*, const CStrId*, bool, bool, bool);
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 void fn_7100841838(UnkGunListeners_b53* self, void* value);
 void fn_710007ca94(CRntFile*, char*);
-
-// The game manager's id table (fn_7100031894 builds it; src/game/CGameManager.cpp has the same
-// definition).
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x4c8];
-    CStrId field_0x4c8;
-    u8 pad_0x4d0[0x1240 - 0x4d0];
-    CStrId field_0x1240;
-    u8 pad_0x1248[0x1640 - 0x1248];
-    CStrId field_0x1640;
-    u8 pad_0x1648[0x2578 - 0x1648];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
 
 // A weapon of one of the slots. Its virtual methods are called by slot offset (VCall).
 struct UnkGunWeapon_ovb0091 {

@@ -8,6 +8,7 @@
 #include "game/GUI/CSubtitleComposition.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkGuiLabel.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2615.h"
@@ -16,16 +17,6 @@
 #include "types.h"
 
 using base::global::CStrId;
-
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x2578];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
 
 struct UnkDialogDef : UnkIdSource {
     u64 field_0x8;
@@ -91,7 +82,6 @@ __attribute__((noinline)) void fn_7101192664(UnkUnit2728* self, const CStrId* ke
     }
 }
 
-
 struct UnkSound;
 struct UnkSoundRef {
     UnkSound* sound;
@@ -109,7 +99,6 @@ struct UnkSoundHandle {
 };
 
 UnkSoundHandle fn_7100fcdf00(void* player, f32 volume, const CStrId& name, bool arg3);
-
 
 struct UnkVoice_b0255 {
     UnkSoundHandle handle;  // 0x0

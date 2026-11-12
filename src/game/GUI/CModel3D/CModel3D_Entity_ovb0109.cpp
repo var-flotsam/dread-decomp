@@ -18,6 +18,7 @@
 #include "game/CAnimationComponent.h"
 #include "game/GUI/CModel3D.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2553.h"
@@ -100,19 +101,6 @@ static inline void* AsKind(void* o) {
                               reinterpret_cast<const base::reflection::CType*>(Type()))
                ? o
                : nullptr;
-}
-
-// The id table (fn_7100031894 builds it; as src/game/CAbilitySonar/CAbilitySonar_Pulse_ovb0085.cpp).
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x1d78];
-    UnkCls_710117af10* field_0x1d78;
-    u8 pad_0x1d80[0x2578 - 0x1d80];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
 }
 
 struct UnkModelUpdaterView_ovb0109 {
@@ -226,7 +214,7 @@ void fn_71011f4350(UnkGuiModel3D_ovb0109* self, f32 dt) {
     if (!(self->idle_delay > 0.0f) || self->idle_event.data == &g_unk_7101d47108->empty)
         return;
     UnkStruct_710117af10* animation = self->entity->animation;
-    if (!animation || !fn_710117af10(animation, &GameManagerIdTable().field_0x1d78, false))
+    if (!animation || !fn_710117af10(animation, reinterpret_cast<UnkCls_710117af10**>(&GameManagerIdTable().field_0x1d78), false))
         return;
     f32 t = self->idle_time + dt;
     self->idle_time = t;

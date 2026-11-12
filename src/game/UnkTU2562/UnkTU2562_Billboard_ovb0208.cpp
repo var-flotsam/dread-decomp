@@ -14,6 +14,7 @@
 #include "game/CDizzeanSwarmControllerComponent.h"
 #include "game/CInventoryComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkTU0.h"
@@ -80,9 +81,7 @@ void fn_7100e2f6e0(UnkDropTunable_ovb0208* self) {
     reinterpret_cast<void (*)(UnkDropTunable_ovb0208*)>(self->vtable[3])(self);
 }
 
-
 // ---- The entry copy ----
-
 
 struct UnkDropEntry_ovb0208 {
     CStrId id0;                  // 0x0
@@ -107,7 +106,6 @@ struct UnkDropEntry_ovb0208 {
     }
 };
 static_assert(sizeof(UnkDropEntry_ovb0208) == 0x48, "size");
-
 
 __attribute__((noinline)) UnkDropEntry_ovb0208* fn_7100e2f28c(UnkDropEntry_ovb0208* self, const UnkDropEntry_ovb0208* other) {
     return self->Assign(*other);
@@ -389,11 +387,6 @@ void fn_7100e2ebf4(void* self_, void* item_, void* arg_, u32 flags) {
     }
 }
 
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x2578];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
 inline UnkGameManagerIdTable& IdTable_ovb0208() {
     static UnkGameManagerIdTable s_table;
     return s_table;

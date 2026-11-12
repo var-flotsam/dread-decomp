@@ -18,6 +18,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "../../game_s7/UnkPropBagS7.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2677.h"
@@ -481,23 +482,6 @@ s32 fn_7101082690(lua_State* L) {
         start(manager, a, b, c, d, n, e, g_unk_7101d470e0, 0, nullptr, 0.0f);
     }
     return 0;
-}
-
-// The id table (fn_7100031894 builds it; as src/base/reflection/UnkEnumValueNames.cpp).
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0xd80];
-    CStrId field_0xd80;
-    u8 pad_0xd88[0x1a90 - 0xd88];
-    CStrId field_0x1a90;
-    u8 pad_0x1a98[0x1b18 - 0x1a98];
-    CStrId field_0x1b18;
-    u8 pad_0x1b20[0x2578 - 0x1b20];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
 }
 
 // The string data's use count, a union member (no type-based alias info, so the id is reloaded after

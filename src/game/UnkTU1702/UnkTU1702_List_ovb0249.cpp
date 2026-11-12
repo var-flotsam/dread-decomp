@@ -7,6 +7,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/GUI/CMainMenu.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
@@ -93,18 +94,6 @@ void fn_7100b5fd6c(void* object, base::global::UnkStringData** name, void* block
 extern UnkPropertyEx<> g_unk_717275ad68;  // "ShowNewItemPopUp"
 extern CStrId g_unk_7172764720 __attribute__((visibility("hidden")));
 
-// The id table (fn_7100031894 builds it, as in src/base/reflection/UnkEnumValueNames.cpp).
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x17e0];
-    u8 field_0x17e0[8];
-    u8 pad_0x17e8[0x2578 - 0x17e8];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
 static inline const CStrId& IdTableKey(u32 offset) {
     return *reinterpret_cast<const CStrId*>(GameManagerIdTable().pad_0x0 + offset);
 }
