@@ -7,6 +7,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/UnkTU63.h"
+#include "game/UnkTU67.h"
 #include "types.h"
 
 using base::UnkStrIdMemberOf;
@@ -49,7 +50,6 @@ using UnkPathIdMember = base::UnkStrIdMemberOf<g_unk_7101d47200>;
 UnkPathIdMember* fn_710008c174(base::UnkVector<UnkPathIdMember>*, u32);
 
 // The set's index array element accessor, out of line.
-u32* fn_710008c504(base::UnkVector<u32>* self, u32 index);
 
 struct UnkPathSetNode_A1b72 {
     base::global::UnkStringData* key;

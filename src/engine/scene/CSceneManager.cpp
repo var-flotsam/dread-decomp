@@ -171,7 +171,6 @@ struct UnkSceneLayerDesc {
 void fn_71001fc1c4(UnkSceneManager* self, const UnkSceneLayerDesc* desc);  // registers a layer kind
 // Creates the drawer (src/base/UnkStruct3088Factory.cpp).
 void* fn_7100150ff0(u32 id, bool small, bool large, bool none);
-void fn_71001fe390(base::UnkVector<UnkSceneEntry>* self, const UnkSceneEntry* entry);  // PushBack
 // Copy-assigns an entry array.
 void* fn_71001fdacc(base::UnkVector<UnkSceneEntry>* self, const base::UnkVector<UnkSceneEntry>* other);
 

@@ -19,8 +19,6 @@ struct UnkEntry_b41a1 {
     u8 pad_0x8[0x38];
 };
 
-void fn_7100246ba8(base::UnkVector<UnkEntry_b41a1>* self, const UnkEntry_b41a1* value);
-
 base::UnkVector<UnkEntry_b41a1>* fn_7100246d70(base::UnkVector<UnkEntry_b41a1>* self,
                                             const base::UnkVector<UnkEntry_b41a1>* other) {
     if (self == other)

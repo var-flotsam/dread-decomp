@@ -8,6 +8,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU399.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -15,7 +16,6 @@ using base::reflection::CClass;
 struct UnkSamusMovement;
 struct UnkLinkList;
 void fn_71002aeb9c(UnkLinkList* list, UnkLinkList** slot);
-void fn_71002af070(UnkLinkList*, UnkLinkList**);
 
 struct UnkEntry;
 

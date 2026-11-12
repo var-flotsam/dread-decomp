@@ -1,11 +1,11 @@
 // lua_bind::ResetEmmyPhase1Mode: resets every listed entity (the list fn_7100552d7c returns).
 #include "../../lib/lua/lua.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU811.h"
 #include "types.h"
 
 // Declared as in src/game/CBreakableTileGroup.cpp.
 struct UnkListedItem;
-base::UnkVector<UnkListedItem*>* fn_7100552d7c();
 
 struct UnkResetEmmyItem_A6_b70 {
     u8 pad_0x0[0x10];

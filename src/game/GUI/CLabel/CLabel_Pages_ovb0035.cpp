@@ -27,6 +27,7 @@
 #include "game/UnkTU2733.h"
 #include "game/UnkTU2744.h"
 #include "game/UnkTU2747.h"
+#include "game/UnkTU39.h"
 #include "types.h"
 
 using base::UnkDeferredCallback;
@@ -38,7 +39,6 @@ using base::global::CStrId;
 struct UnkLayoutText;
 struct UnkLabelLayout;
 
-void fn_71000303c0(UnkDeferredSet<UnkDeferredCallback<bool>>* s, const bool* arg);
 struct UnkSprite_spr;
 struct UnkLabelFontView_b52;
 s32 fn_71011eedd0(UnkLabelFontView_b52* self);

@@ -32,12 +32,14 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkSubAreaGuiCache.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU1645.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU2506.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2768.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU344.h"
+#include "game/UnkTU39.h"
 #include "game/UnkTU57.h"
 #include "game/UnkTU83.h"
 #include "game/UnkTUProperty.h"
@@ -526,7 +528,6 @@ bool fn_7100dfc344(UnkGameManager* manager, const char* const& a, const char* co
 }
 
 // ---- fn_7100dffc58 / fn_7100dffe04
-extern UnkPropertyEx<> g_unk_7172759d90;
 bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
 struct UnkTypedValue {
     const base::reflection::CType* type;
@@ -573,7 +574,6 @@ void fn_7100dffe04(UnkGameManager* manager, s32 value) {
 }
 
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
-void fn_71000303c0(UnkDeferredSet<UnkDeferredCallback<bool>>* s, const bool* arg);
 extern UnkPropertyEx<> g_unk_7172759178;
 
 // ---- fn_7100e00f74
@@ -722,7 +722,6 @@ struct UnkTgmHandles_b205 {
     UnkTgmHandleTarget_b205* field_0x29b8;
 };
 static inline UnkTgmEntity_b205* TargetOf(UnkTgmHandleTarget_b205* h) { return h ? h->target : nullptr; }
-void fn_71000303c0(UnkDeferredSet<UnkDeferredCallback<bool>>* s, const bool* arg);
 
 static inline __attribute__((always_inline)) void ResetHandles(UnkTgmHandles_b205* self) {
     CBlackboard* blackboard = &self->field_0x968;

@@ -13,6 +13,7 @@
 #include "game/CGameObject.h"
 #include "game/UnkTU109.h"
 #include "game/UnkTU365.h"
+#include "game/navmesh/CNavMesh.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -568,7 +569,6 @@ struct UnkU16Array_b0228 {
 
 // The sub-object copied by fn_710027ebe4.
 struct UnkNavMeshEdge;
-void fn_710027ebe4(base::UnkVector<UnkNavMeshEdge>* self, const base::UnkVector<UnkNavMeshEdge>* other);
 
 struct UnkSubObject_b0228 {
     alignas(8) u8 data[0x28];
@@ -598,7 +598,6 @@ struct UnkRecordArray_b0228 {
 };
 
 struct UnkNavLoadCell;
-void fn_7100279600(base::UnkVector<UnkNavLoadCell>* self, u32 capacity);
 
 void fn_71002a1ff8(UnkRecordArray_b0228* self, const UnkRecord_b0228* value) {
     u32 n = self->count;

@@ -6,6 +6,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CSwarmControllerComponent.h"
 #include "game/GUI/CAmiiboComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
@@ -52,7 +53,6 @@ struct UnkShotWeakRef {
     UnkShotWeakTarget* target;
     s64 generation;
 };
-UnkShotWeakRef* fn_7100748064(base::UnkVector<UnkShotWeakRef>* self, u32 i);
 
 struct UnkSoundManager_ovb0039 {
     u8 pad_0x0[0x68];

@@ -37,3 +37,5 @@ extern UnkReflType g_unk_71727bfaf8;
 extern UnkReflType g_unk_71727bfc38;
 extern UnkTUHeaderFnsClass g_unk_71727c0520 __attribute__((visibility("hidden")));
 void fn_7100e09330(UnkReflType* self, const base::global::CStrId& name, void* a, void* b);
+void fn_7100e08aec(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+void fn_7100e090d0(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);

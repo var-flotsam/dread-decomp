@@ -243,7 +243,6 @@ void fn_71002470ec(UnkSetArray* self, UnkCallbackSet_7101a20950* value, u32 inde
 UnkCallbackSet_7101a20950* fn_7100247340(UnkSetArray* self, u32 index) { return self->GrowAt(index); }
 
 struct UnkEntry_b41a1;
-void fn_7100246ba8(base::UnkVector<UnkEntry_b41a1>* self, const UnkEntry_b41a1* value);
 
 // Inserts a copy of `value` at `index` (appending when the index is the count).
 void fn_7100246eb8(UnkSetArray* self, const UnkCallbackSet_7101a20950* value, u32 index) {

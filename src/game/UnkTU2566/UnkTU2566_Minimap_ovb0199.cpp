@@ -26,6 +26,7 @@
 #include "game/UnkTU2566.h"
 #include "game/UnkTU2567.h"
 #include "game/UnkTU39.h"
+#include "game/UnkTU83.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -78,7 +79,6 @@ struct UnkMmOwner_b0199 {
 // The hidden icon kinds (+0xd642c8): found by id, shown again by a callback that erases the kind
 // (fn_71000ce604) and refreshes the map (fn_7100e957a8). Find() returns the slot past the last kind
 // when there is none, and callers compare it with the end through the vector.
-void fn_71000ce604(base::UnkVector<base::global::CStrId>* self, base::global::CStrId* it);  // erases
 void fn_7100e9565c(base::UnkVector<CStrId>* self, const CStrId* id);
 
 struct UnkMmKinds_b0199 : base::UnkVector<CStrId> {

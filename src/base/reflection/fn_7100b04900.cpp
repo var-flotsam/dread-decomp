@@ -9,6 +9,7 @@
 #include "game/CCharClassAnalogAimTrack.h"
 #include "game/CCharClassCommanderWingsTrack.h"
 #include "game/CCharClassSetCameraNearEvent.h"
+#include "game/CCharClassToStateTrack.h"
 #include "game/CExplosionGfx.h"
 #include "game/CharClassSakaiModifyShieldEvent.h"
 #include "game/IPath.h"
@@ -26,15 +27,11 @@
 #include "game/UnkTU2559.h"
 #include "game/UnkTUInit.h"
 
-void fn_7100da5c70(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-
 void fn_7100da5e70() {
     InitHeader(g_unk_71727bc230);
     InitEnum(&g_unk_71727bc110, "SLinkType::ELinkType", fn_7100da5c70, fn_7100da56a4);
     fn_710009ec00(&g_unk_71727bc228, &g_unk_71727bc110);
 }
-
-void fn_7100b03f60(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
 
 void fn_7100b04900() {
     InitHeader(g_unk_717275e1e0);
@@ -43,16 +40,12 @@ void fn_7100b04900() {
     fn_710009ec00(&g_unk_717275dfb9, fn_7100b042c4());
 }
 
-void fn_7100b87e10(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
-
 void fn_7100b88910() {
     InitHeader(g_unk_7172768ad0);
     InitClass(&g_unk_7172768990, "GUI::CTrackSet", fn_7100b87e10, fn_7100b87b5c);
     fn_710009ec00(&g_unk_7172768ac8, &g_unk_7172768990);
     fn_710009ec00(&g_unk_7172768ac9, fn_7100b040c0());
 }
-
-void fn_7100c797bc(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 
 void fn_7100c7a950() {
     InitHeader(g_unk_7172792168);
@@ -62,7 +55,6 @@ void fn_7100c7a950() {
 }
 
 // g_unk_71727952a8 (the EInFrustumMode type) is declared in base/reflection/CEnumType.h; InitEnum takes the UnkReflType view.
-void fn_7100c94510(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 
 void fn_7100c94720() {
     InitHeader(g_unk_7172795408);
@@ -70,8 +62,6 @@ void fn_7100c94720() {
     fn_710009ec00(&g_unk_71727953c0, &g_unk_71727952a8);
     InitEnumConverters(reinterpret_cast<UnkReflType*>(&g_unk_71727952a8), g_unk_71727953c8, fn_7100c94690, g_unk_71727953e8, fn_7100c9469c);
 }
-
-void fn_7100c10e2c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 
 void fn_7100c11580() {
     InitHeader(g_unk_717277e0f8);
@@ -85,7 +75,6 @@ void fn_7100c11580() {
 extern UnkTUHeader g_unk_71727ae078 __attribute__((visibility("hidden")));
 extern UnkReflType g_unk_71727adf10;
 void fn_7100d29ec0();
-void fn_7100d2a00c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 extern char g_unk_71727ae028;
 void fn_7100d2aa68() __attribute__((visibility("hidden")));
 void fn_7100d2aa74() __attribute__((visibility("hidden")));
@@ -103,8 +92,6 @@ void fn_7100d2ac00() {
     fn_710009ec00(&g_unk_71727ae070, &g_unk_71727ae098);
 }
 
-void fn_7100da3a1c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-
 void fn_7100da3ed0() {
     InitHeader(g_unk_71727bba50);
     InitEnum(&g_unk_71727bb8e8, "IPath::EType", fn_7100da3a1c, fn_7100da3810);
@@ -114,9 +101,6 @@ void fn_7100da3ed0() {
     fn_710009ec00(&g_unk_71727bba48, &g_unk_71727bba70);
 }
 
-void fn_7100d91564(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-void fn_7100d91d10(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-
 void fn_7100d91f80() {
     InitHeader(g_unk_71727b9018);
     InitEnum(&g_unk_71727b8dd8, "EFXType", fn_7100d91564, fn_7100d911d8);
@@ -124,8 +108,6 @@ void fn_7100d91f80() {
     InitEnum(&g_unk_71727b8ef8, "ELinkType", fn_7100d91d10, fn_7100d916e4);
     fn_710009ec00(&g_unk_71727b9010, &g_unk_71727b8ef8);
 }
-
-void fn_7100ddf1c0(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 
 void fn_7100de25a0() {
     InitHeader(g_unk_71727be710);
@@ -138,9 +120,6 @@ void fn_7100de25a0() {
     fn_710009ec00(&g_unk_71727be4e8, &g_unk_71727be730);
 }
 
-void fn_7100e06e8c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-void fn_7100e07250(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
-
 void fn_7100e07920() {
     InitHeader(g_unk_71727bf998);
     InitEnum(&g_unk_71727bf6f8, "EEntryType", fn_7100e06e8c, fn_7100e06ce0);
@@ -149,9 +128,6 @@ void fn_7100e07920() {
     InitClass(&g_unk_71727bf858, "CGlobalEventManager::SMissionLogEntry", fn_7100e07250, fn_7100e0700c);
     fn_710009ec00(&g_unk_71727bf990, &g_unk_71727bf858);
 }
-
-void fn_7100c93470(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-void fn_7100c9385c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 
 void fn_7100c93d60() {
     InitHeader(g_unk_7172795270);
@@ -163,8 +139,6 @@ void fn_7100c93d60() {
     InitEnumConverters(&g_unk_7172795110, g_unk_7172795230, fn_7100c93c60, g_unk_7172795250, fn_7100c93c6c);
 }
 
-void fn_7100bcde7c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-
 void fn_7100bce6b0() {
     InitHeader(g_unk_7172772d18);
     InitEnum(&g_unk_7172772bb0, "EShieldAction", fn_7100bcde7c, fn_7100bcdd30);
@@ -174,8 +148,6 @@ void fn_7100bce6b0() {
     fn_710009ec00(&g_unk_7172772d10, &g_unk_7172772d38);
 }
 
-void fn_7100c66688(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-
 void fn_7100c668b0() {
     InitHeader(g_unk_7172791e30);
     InitEnum(&g_unk_7172791c90, "game::logic::collision::EColMat", fn_7100c66688, fn_7100c65ffc);
@@ -183,8 +155,6 @@ void fn_7100c668b0() {
     InitEnumConverters(&g_unk_7172791c90, g_unk_7172791db0, fn_7100c66808, g_unk_7172791dd0, fn_7100c66814);
     InitEnumConverters(&g_unk_7172791c90, g_unk_7172791df0, fn_7100c66820, g_unk_7172791e10, fn_7100c6682c, refl_TypeOf<fn_7100005178>);
 }
-
-void fn_7100adf388(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 
 void fn_7100adf770() {
     InitHeader(g_unk_7172758ad0);
@@ -195,9 +165,6 @@ void fn_7100adf770() {
     fn_710009ec00(&g_unk_7172758a88, &g_unk_7172758998);
     InitEnumConverters(&g_unk_7172758998, g_unk_7172758a90, fn_7100adf670, g_unk_7172758ab0, fn_7100adf67c, refl_TypeOf<fn_7100005178>);
 }
-
-void fn_7100e1766c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-void fn_7100e17b48(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 
 void fn_7100e1b8b0() {
     InitHeader(g_unk_71727c0fb8);
@@ -211,10 +178,6 @@ void fn_7100e1b8b0() {
     fn_710009ec00(&g_unk_71727c0f70, &g_unk_71727c0e58);
     InitEnumConverters(&g_unk_71727c0e58, g_unk_71727c0f78, fn_7100e1b5f8, g_unk_71727c0f98, fn_7100e1b604);
 }
-
-void fn_7100d977e4(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-void fn_7100d97c30(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-void fn_7100d99934(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
 
 void fn_7100d9caf0() {
     InitHeader(g_unk_71727ba980);
@@ -240,7 +203,6 @@ struct UnkLoadingScreenData {
     f32 field_0x9c;
     bool field_0xa0;
 };
-void fn_7100e0f4d4(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 
 void fn_7100e13f10() {
     InitHeader(g_unk_71727c0870.header);
@@ -252,8 +214,6 @@ void fn_7100e13f10() {
     InitEnumConverters(&g_unk_71727c0710, g_unk_71727c0830, fn_7100e1389c, g_unk_71727c0850, fn_7100e138a8);
 }
 
-void fn_7100cd1954(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-
 void fn_7100cd1fe0() {
     InitHeader(g_unk_717279cc60.header);
     fn_7100cd12b8();
@@ -262,8 +222,6 @@ void fn_7100cd1fe0() {
     fn_710009ec00(&g_unk_717279cc18, &g_unk_717279cb00);
     InitEnumConverters(&g_unk_717279cb00, g_unk_717279cc20, fn_7100cd1c90, g_unk_717279cc40, fn_7100cd1c9c);
 }
-
-void fn_7100ceb308(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 
 void fn_7100ceb650() {
     InitHeader(g_unk_71727a0898.header);

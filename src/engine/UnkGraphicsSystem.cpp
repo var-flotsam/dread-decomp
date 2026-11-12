@@ -34,6 +34,7 @@
 #include "game/UnkTU223.h"
 #include "game/UnkTU230.h"
 #include "game/UnkTU259.h"
+#include "game/UnkTU27.h"
 #include "types.h"
 
 using base::color::CColor4F;
@@ -725,7 +726,6 @@ void fn_71001cafa0(UnkStruct_71001cdd74* owner, s32 enable_arg, s32 refresh, s32
 
 // The vtable (reached through the GOT) and the reserve of the vector at +0xb0.
 extern void* unk_7101a1e6e0[];
-void fn_71000231f4(base::UnkVector<u8>* vector, u32 capacity);
 void fn_7100168f10(void* self);
 void fn_7100216dfc(void* self);
 // The device's capabilities (fn_71001598a0 sets all three).
@@ -1122,7 +1122,6 @@ void fn_710019a16c();
 bool fn_71001587f0();
 void fn_7100132f70(f32 scale, u32 width, u32 height, u32 render_width, u32 render_height);
 void fn_7100066674(void* event, bool flag);
-bool fn_7100066744(void* thread, const char* name, void (*entry)(void*), u32 a, u32 b, void* arg);
 void fn_71001c7d80(void* arg);  // the loading screen thread
 
 // The render scale from the settings (g_unk_7101a1e75c is the resolution scale).

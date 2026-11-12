@@ -10,7 +10,6 @@ struct UnkBase_0x8 {
 };
 
 struct UnkSecondaryBase_0x30;
-void fn_710102be04(base::UnkVector<u64>* array);
 
 struct UnkSecondaryBase_0x30 {
     void** vtable;

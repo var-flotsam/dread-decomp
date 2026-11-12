@@ -138,7 +138,6 @@ void fn_71001a6b5c(UnkMaterial* self);
 void fn_71001a71b8(base::UnkVector<UnkMaterialPass>* passes, u32 n);  // Reserve
 void fn_71001a7310(UnkMaterial* self, CRntFile* file, base::UnkVector<u64>* list);
 void fn_71001a7410(UnkMaterial* self);
-void fn_71001a836c(UnkMaterial* self, base::UnkVector<u64>* list);
 
 // Reads the material from `file`: its header blocks (copied to their places), its values, then
 // each pass with its blocks, values and second array; then empties the ids.

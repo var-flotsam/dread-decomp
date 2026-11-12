@@ -37,3 +37,7 @@ extern UnkReflType g_unk_7172767f70;
 extern UnkReflType g_unk_71727680b0;
 extern UnkTUHeader g_unk_7172768668 __attribute__((visibility("hidden")));
 void fn_7100b828c0(UnkReflType* self, const base::global::CStrId& name, void* a, void* b);
+void fn_7100b8172c(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+void fn_7100b819bc(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+void fn_7100b8207c(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+void fn_7100b82660(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);

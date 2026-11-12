@@ -14,6 +14,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU1645.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU57.h"
 #include "types.h"
@@ -114,8 +115,6 @@ void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const 
 
 // The profile values: a count and the profile id (item property definitions,
 // src/game_s7/fn_7100ae39e0.cpp).
-extern UnkPropertyEx<> g_unk_7172759d90;
-extern UnkPropertyEx<> g_unk_71727594b8;
 
 // The report's keys (this unit's string ids).
 extern CStrId g_unk_71729ce0a0 __attribute__((visibility("hidden")));

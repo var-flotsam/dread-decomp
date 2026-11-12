@@ -45,3 +45,7 @@ extern UnkTunable g_unk_7172796920;
 extern base::global::CFilePathStrId g_unk_7172796d70[10];  // The breakable block models' paths.
 void fn_7100ca5c84(UnkReflType* self, const base::global::CStrId& name, void* a, void* b);
 extern base::global::CStrId g_unk_7172796388;
+void fn_7100ca3e50(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+void fn_7100ca4090(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+void fn_7100ca5440(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+void fn_7100ca5a24(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);

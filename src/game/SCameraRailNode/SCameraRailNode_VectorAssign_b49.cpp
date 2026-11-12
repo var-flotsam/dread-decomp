@@ -37,8 +37,6 @@ struct UnkRailNodeRaw_b49 {
     UnkHalf_cu set;
 };
 
-void fn_7100c090cc(base::UnkVector<UnkRailNode_b43a3>* self, const UnkRailNode_b43a3* value);
-
 base::UnkVector<UnkRailNode_b43a3>* fn_7100c092ec(base::UnkVector<UnkRailNode_b43a3>* self,
                                                   const base::UnkVector<UnkRailNode_b43a3>* other) {
     if (self != other) {

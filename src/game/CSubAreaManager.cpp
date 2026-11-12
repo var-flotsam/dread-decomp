@@ -27,6 +27,7 @@
 #include "game/CAnimatedCameraCtrl.h"
 #include "game/CBombGun.h"
 #include "game/CCameraComponent.h"
+#include "game/CCollisionComponent.h"
 #include "game/CSpawnGroupComponent.h"
 #include "game/UnkCameraCtrl.h"
 #include "base/input/UnkRumbleManager.h"
@@ -777,8 +778,6 @@ void fn_7100eea618(UnkSubAreaTag, UnkSubArea* area, bool flag) {
 struct UnkCollisionFileReader {
     u8 unk_0x0[0x18];
 };
-void fn_7100860830(UnkCollisionFileReader* self, const char* path, base::UnkVector<UnkCollisionRecord>* out,
-                   bool a, void* b);
 
 // A collision object as the sub-area manager keeps it: weakly referenced, owned by the manager's
 // object at +0x920, and named by the id at +0x20.

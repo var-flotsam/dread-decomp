@@ -139,7 +139,6 @@ struct UnkPathArray_b239 {
 };
 
 struct UnkFXPathEntry_b0068;
-void fn_7100c8c210(base::UnkVector<UnkFXPathEntry_b0068>*, u32);
 
 static inline __attribute__((always_inline)) void AppendAll_b239(UnkPathArray_b239* self, const UnkPathArray_b239* other) {
     for (const UnkPathEntry_b239 *it = other->data, *end = it + other->count; it != end; ++it) {

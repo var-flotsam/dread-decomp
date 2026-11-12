@@ -6,13 +6,13 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU1645.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
 
 struct UnkInventory;
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
-extern UnkPropertyEx<> g_unk_717275ac58;  // ITEM_CENTRAL_UNIT_DECAYED_ENERGY
 
 static inline const UnkQualifiedId& GetQualifiedId_ovb0070(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = ItemQualifiedId(item);

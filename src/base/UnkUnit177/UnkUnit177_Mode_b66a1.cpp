@@ -2,10 +2,9 @@
 // it changes, marks two dirty flags and passes either a stored value or 8 to an NVN callback on a
 // global object. Names are placeholders.
 #include "game/UnkGraphicsState.h"
+#include "game/UnkTU176.h"
 #include "game/UnkTU177.h"
 #include "types.h"
-
-extern void (*g_unk_716e29b550)(void* object, s32 value);
 
 void fn_710015a760(bool on) {
     if (g_unk_716e29c684 == on)

@@ -29,6 +29,7 @@
 #include "game/UnkGuiLabel.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU1645.h"
 #include "game/UnkTU1686.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2676.h"
@@ -393,7 +394,6 @@ int fn_7101097ee0(lua_State* L) {
 }
 
 // "NumEmmisDefeated" (src/game_s7/fn_7100ae39e0.cpp).
-extern UnkPropertyEx<> g_unk_71727593f8;
 
 bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
 

@@ -11,6 +11,7 @@
 #include "game/CReserveTankInfo.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU1645.h"
 #include "game/UnkTU57.h"
 
 using namespace unk_prop;
@@ -72,27 +73,6 @@ __attribute__((always_inline)) inline void Get(CBlackboard* set, const CStrId& s
         Reader(s, reinterpret_cast<const CStrId*>(&name), out);  // every name starts with its CStrId
 }
 
-extern UnkPropertyEx<> g_unk_7172759ad0;
-extern UnkPropertyEx<> g_unk_7172759c10;
-extern UnkPropertyEx<> g_unk_7172759c50;
-extern UnkPropertyEx<> g_unk_7172759c90;
-extern UnkPropertyEx<> g_unk_7172759d50;
-extern UnkPropertyEx<> g_unk_7172759d90;
-extern UnkPropertyEx<> g_unk_717275af40;
-extern UnkPropertyEx<> g_unk_717275af80;
-extern UnkPropertyEx<> g_unk_717275afc0;
-extern UnkPropertyEx<> g_unk_717275b000;
-extern UnkPropertyEx<> g_unk_717275b040;
-extern UnkPropertyEx<> g_unk_717275b080;
-extern UnkPropertyEx<> g_unk_7172758cf0;
-extern UnkPropertyEx<> g_unk_7172758d30;
-extern UnkPropertyEx<> g_unk_7172758db0;
-extern UnkPropertyEx<> g_unk_7172759cd0;
-extern UnkPropertyEx<> g_unk_7172759d10;
-extern UnkPropertyEx<> g_unk_7172759dd0;
-extern UnkPropertyEx<> g_unk_71727594b8;
-extern UnkPropertyEx<> g_unk_717275b108;
-extern UnkPropertyEx<> g_unk_717275b148;
 extern UnkPropertyEx<0x160> g_unk_7172759e10;
 
 struct UnkTuning_7100fc4b34 {

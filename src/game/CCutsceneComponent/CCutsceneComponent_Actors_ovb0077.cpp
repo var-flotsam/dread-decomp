@@ -254,7 +254,6 @@ base::UnkVector<Entry>* fn_71007ac6c8(base::UnkVector<Entry>* self, const base::
 using base::reflection::UnkReflObject;
 
 struct UnkElem_0x88;
-UnkElem_0x88& fn_71007a6b58(base::UnkVector<UnkElem_0x88>* v, u32 index);
 
 struct UnkStruct_71002334fc;
 void fn_71011991c4(void* gui, UnkReflObject* entity);

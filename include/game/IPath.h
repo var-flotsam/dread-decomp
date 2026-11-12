@@ -4,6 +4,7 @@
 // 0x7100da3810-0x7100da4084). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "base/reflection/UnkReflConverter.h"
+#include "base/global/CStrId.h"
 #include "types.h"
 
 struct UnkReflType;
@@ -19,3 +20,4 @@ extern UnkTUHeader g_unk_71727bba50 __attribute__((visibility("hidden")));
 extern UnkReflType g_unk_71727bba70 __attribute__((visibility("hidden")));
 extern UnkConverter g_unk_71727bba08;
 extern UnkConverter g_unk_71727bba28;
+void fn_7100da3a1c(UnkReflType* self, const base::global::CStrId& name, void (*init)(), void* extra);

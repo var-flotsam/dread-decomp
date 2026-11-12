@@ -11,6 +11,8 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/CFXPool/CDefinition.h"
+#include "game/CPlasmaBeamGun.h"
+#include "game/UnkTU2200.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -69,7 +71,6 @@ UnkFXPathIterValue_b0068* fn_710104f1c0(UnkFXPathIterValue_b0068* self, UnkFXPat
 }
 
 // Grows the array to at least `capacity` entries (out of line).
-void fn_7100c8c210(base::UnkVector<UnkFXPathEntry_b0068>* self, u32 capacity);
 
 // The entry at `index`; when growing is allowed (field_0x14), an index past the end grows the array
 // to the step's next multiple and then to index + 1 entries, value-initialising the new ones.
@@ -100,8 +101,6 @@ struct UnkFxObjectPool_b0068 {
     base::UnkVector<UnkFxPooledObject*> objects;  // 0x10
     u32 used;                                     // 0x38
 };
-
-UnkFxPooledObject** fn_7100852548(base::UnkVector<UnkFxPooledObject*>* array, u32 index);
 
 // Gives `object` back to the pool: when it is one of the pool's objects, it is stopped (vf_0x40,
 // vf_0x110) and its bit cleared.

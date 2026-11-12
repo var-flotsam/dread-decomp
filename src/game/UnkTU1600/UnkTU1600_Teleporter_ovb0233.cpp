@@ -13,6 +13,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkTU1600.h"
+#include "game/UnkTU1645.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTUProperty.h"
@@ -220,8 +221,6 @@ struct UnkTypedValue {
     void* value;
 };
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
-
-extern UnkPropertyEx<> g_unk_7172759438;
 
 struct UnkTeleporterHandlesVtable_b0233 {
     u8 pad_0x0[0x2a0];

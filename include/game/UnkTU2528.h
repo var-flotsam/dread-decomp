@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "game/UnkTUInit.h"
 #include "base/reflection/UnkReflConverter.h"
+#include "base/global/CStrId.h"
 #include "types.h"
 
 struct UnkReflType;
@@ -40,3 +41,6 @@ extern UnkConverter g_unk_71727ba5a0;
 extern UnkConverter g_unk_71727ba5c0;
 extern UnkConverter g_unk_71727ba5e0;
 extern UnkConverter g_unk_71727ba600;
+void fn_7100d977e4(UnkReflType* self, const base::global::CStrId& name, void (*init)(), void* extra);
+void fn_7100d97c30(UnkReflType* self, const base::global::CStrId& name, void (*init)(), void* extra);
+void fn_7100d99934(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);

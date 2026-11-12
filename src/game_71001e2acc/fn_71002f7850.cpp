@@ -7,6 +7,7 @@
 #include "base/UnkVector.h"
 #include "game/UnkTU2542.h"
 #include "game/UnkTU426.h"
+#include "game/sound/CSoundManager.h"
 #include "types.h"
 
 extern char unk_7101a22398[];
@@ -43,7 +44,6 @@ extern char unk_7101cac6e8[];
 void fn_7100d94aa8(void* set);
 void fn_7100d957fc(void* set);
 void fn_7100d96550(void* set);
-void fn_710102be04(base::UnkVector<u64>* set);  // as src/game/sound/CSoundManager/fn_71010233ec.cpp declares it
 
 void fn_7100d943f0(UnkSetHolder_71002f7850* self) {
     Destroy<unk_7101aa9020, void, fn_7100d94aa8>(self);

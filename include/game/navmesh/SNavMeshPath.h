@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkLinkList;
 struct UnkNavMeshPath;
 struct UnkObject_71002ad0dc;
 void fn_71002acfe4(void* sub);
@@ -16,3 +17,4 @@ void fn_71002ad978(UnkNavMeshPath* self, void* value);
 void fn_71002adbb0(UnkNavMeshPath* self, void* value);
 extern char g_unk_7101a21168[];
 void fn_71002ae87c(void* set, void* item);
+void fn_71002af070(UnkLinkList* list, UnkLinkList** slot);

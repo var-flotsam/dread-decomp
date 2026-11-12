@@ -21,3 +21,4 @@ extern UnkTUHeader g_unk_71727bc0f8 __attribute__((visibility("hidden")));
 extern base::global::CStrId g_unk_71727bbfc8;
 extern base::global::CStrId g_unk_71727bbfd0;
 extern UnkConverter g_unk_71727bbfa8;
+void fn_7100da4a08(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);

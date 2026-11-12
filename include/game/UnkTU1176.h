@@ -5,8 +5,10 @@
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
+#include "base/UnkVector.h"
 #include "types.h"
 
+struct UnkEntry_cu;
 struct UnkNamedEntry_7100772cb0;
 struct UnkNamedList_7100772cb0;
 struct UnkCentralUnit;
@@ -27,3 +29,4 @@ void fn_7100772610(base::reflection::UnkReflObject* component, const base::globa
 void fn_7100772698(base::reflection::UnkReflObject* component, const base::global::CStrId* id, f32 value);
 UnkNamedEntry_7100772cb0* fn_7100772cb0(UnkNamedList_7100772cb0* self, const base::global::CStrId* id);
 void fn_7100775610(UnkCentralUnit* unit, bool on, const base::global::CStrId* id);
+void fn_710077a700(base::UnkVector<UnkEntry_cu>* self, const UnkEntry_cu* value);

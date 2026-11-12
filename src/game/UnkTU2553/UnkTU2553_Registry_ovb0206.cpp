@@ -39,6 +39,7 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkSubAreaGuiCache.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU1645.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2559.h"
@@ -568,9 +569,6 @@ UnkStepCallback* fn_7100dfc428(UnkStepCallbacks* self, u32 index) { return &self
 using base::global::CStrId;
 
 bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
-
-extern UnkPropertyEx<> g_unk_7172759138;
-extern UnkPropertyEx<> g_unk_71727590f8;
 
 // The property's qualified id, built on first use.
 static inline const UnkQualifiedId& Qid_dfbba8(UnkPropertyEx<>& item) {
@@ -1193,8 +1191,6 @@ struct UnkPtrList {
 };
 
 struct UnkStrVector;
-s32 fn_71012034b0(UnkUserDataOwner* self, u32 kind, const CRntString* scenario, const CRntString* name,
-                  UnkPtrList* blackboards, bool a, void (*fn)(), bool b, const CRntString* c);
 
 template <class T, u64 Size, void (*Ctor)(T*)>
 static inline T* Singleton_df916c(T*& instance) {

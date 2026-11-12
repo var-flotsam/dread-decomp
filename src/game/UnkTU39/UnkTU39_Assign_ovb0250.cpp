@@ -14,8 +14,6 @@ using base::UnkDeferredCallback;
 using base::UnkDeferredSet;
 using base::global::CStrId;
 
-void fn_71000303c0(UnkDeferredSet<UnkDeferredCallback<bool>>* s, const bool* arg);
-
 struct UnkKeyNode_b0250 {
     CStrId id;
     f32 value;

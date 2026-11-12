@@ -24,6 +24,7 @@
 #include "game/UnkTU287.h"
 #include "game/UnkTU39.h"
 #include "game/UnkTU426.h"
+#include "game/UnkTU83.h"
 #include "game/UnkXformNode.h"
 #include "game/UnkGlobal_710b372a98.h"
 #include "game/UnkMapMenuController.h"
@@ -719,7 +720,6 @@ void fn_7100ea4504(UnkMinimapOwner* self) {
 }
 
 // The ids of the icon kinds that fn_7100e9d1f8 can show again are game/UnkMinimapIconKinds.h's.
-void fn_71000ce604(base::UnkVector<base::global::CStrId>* self, base::global::CStrId* it);  // erases
 
 // Removes a kind from the hidden ones (`count` ids at `data`) and refreshes the map when it was
 // there.

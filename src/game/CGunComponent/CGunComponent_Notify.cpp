@@ -2,12 +2,11 @@
 // (fn_71000303c0). Names and layouts are placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDeferredSet.h"
+#include "game/UnkTU39.h"
 #include "types.h"
 
 using base::UnkDeferredCallback;
 using base::UnkDeferredSet;
-
-void fn_71000303c0(UnkDeferredSet<UnkDeferredCallback<bool>>* s, const bool* arg);
 
 struct UnkGunComponent {
     u8 pad_0x0[0x198];

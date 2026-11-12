@@ -134,3 +134,10 @@ void fn_7100b7e6dc(UnkReflType* self, const base::global::CStrId& name, void* a,
 extern UnkConverter g_unk_7172758258;
 extern UnkConverter g_unk_7172758278;
 void fn_71000a1760(base::reflection::UnkTypedRef* out, const base::reflection::UnkTypedRef* in);
+void fn_7100b03f60(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+void fn_7100b7612c(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+void fn_7100b768c8(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+void fn_7100b76eac(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+void fn_7100b7d580(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+void fn_7100b7de98(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+void fn_7100b7e47c(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
