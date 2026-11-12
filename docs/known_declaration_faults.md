@@ -140,22 +140,24 @@ object as (`fn(reinterpret_cast<UnkWorld*>(model), hash)`, `reinterpret_cast<Unk
 for a global a typed declaration wins over a `char[]` or `void*` placeholder, and a file that only reads a
 typed pointer as `void*` needs no cast.
 
-20 are left (`python tools/decl_check.py --list` shows them first):
-- `fn_7100010e58`, `fn_71002ee1dc`, `fn_7100ad61f8`: class getters that a static-initialiser file declares as
-  returning its own `UnkEnumType*`; the shared declaration returns `const CType*`, and the file's templates take
-  the getter as a template argument.
-- `fn_71002aeb9c`, `fn_710031da18`, `fn_71007ed25c`: passed as a template argument whose parameter has the
-  file's own struct name.
-- `fn_7100745e24`: returns a three-float struct by value that two groups of files define under two names.
-- `fn_7100862088`: one side returns a reference, the other a pointer to pointer; the output changes.
-- `fn_71011428bc`: a `const UnkQualifiedId&` against a `const CStrId*` built in place at the call.
-- `fn_7101177044`: the flag class it takes by value has two names (`UnkFlags_7101176690`, `..._7101176ea8`).
-- `g_unk_7101aa2b80`, `g_unk_7101aa3030`, `g_unk_7101aa3440`, `g_unk_7101aa7d00`: vtables passed to a
-  template that wants the file's `char[]`.
-- `g_unk_7101d47360`, `g_unk_71726bc560`: one file passes the singleton to a template by reference to `void*`.
-- `g_unk_71726bc570`: `src/game_s7/UnkGuiS7.h` declares it in a namespace with its own type.
-- `g_unk_7101d4cfb0`, `g_unk_7172794d40`: a `const CType` that one file writes through as `UnkReflType`.
-- `g_unk_7172759178`: a template type the other file does not have.
+The 20 that step left were settled by hand the same day, each file kept only with unchanged output, so
+no symbol has two signatures now and `tools/decl_check.py --strict --base` fails a change that adds one. What
+each needed, for the next one that turns up:
+- A function or global passed as a template argument whose parameter has the file's own type
+  (`fn_71002aeb9c`, the vtables `g_unk_7101aa2b80`, `g_unk_7101aa3030`, `g_unk_7101aa3440`, `g_unk_7101aa7d00`,
+  the singletons `g_unk_7101d47360` and `g_unk_71726bc560`): the template takes the type as a parameter too
+  (`template <class T, T** Instance, ...>`), so each use names the type the shared declaration has.
+- A class getter a static-initialiser file declared as returning its own `UnkEnumType*` (`fn_7100010e58`,
+  `fn_71002ee1dc`, `fn_7100ad61f8`): declared `const CType*` as everywhere else and used through the
+  `TypeOf<getter>` the static-initialiser header already has.
+- One struct under two names in two groups of files (`fn_7100745e24`'s three-float result, `fn_7101177044`'s
+  flag class, the slot array of `fn_710031da18` and `fn_71007ed25c`): the smaller group takes the other's
+  name.
+- A reference against a pointer to the same thing (`fn_7100862088`, `fn_71011428bc`): the reference form,
+  with a `static_cast` to the file's derived struct where it reads one.
+- A global with its own type in one file (`g_unk_7172759178`, `g_unk_71726bc570`, the type objects
+  `g_unk_7101d4cfb0` and `g_unk_7172794d40`): the shared type, read through the view a header already gives
+  (`ItemQualifiedId` in `game/UnkItemProperties.h`) or with a cast at the one use.
 
 ## Members bound to their function by a comment only
 

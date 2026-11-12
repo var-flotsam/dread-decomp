@@ -152,6 +152,16 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**No symbol has two signatures (2026-11-12).** The last 20 conflicting signatures were settled by hand, each
+file kept only with unchanged output (`tools/baseline.py`): `tools/decl_check.py` now reports 0, from 135 on
+2026-11-11 and 382 when the unit headers began. Most of the 20 were not a disagreement about the function but
+a template in the file that took the function or global as an argument with the file's own type; giving the
+template the type as a parameter lets the use name the shared declaration's type. The others were one struct
+under two names, a class getter declared with the static-initialiser files' own type (`TypeOf<getter>` was
+already there for that), and a global read as its own struct where a header already had a view of it. The
+kinds and their fixes are in `docs/known_declaration_faults.md`, "Symbols declared with more than one
+signature". Still 409 symbols declared in more than one file (1,433 extra copies), all with one signature.
+
 **Sixth declarations pass (2026-11-12).** 159 more symbols into unit headers in one run (symbols in more than
 one file 568 to 409, extra copies 1,630 to 1,433): `tools/decl_plan.py` now also plans a declaration with a
 function-pointer type, and one with a template when a header defines the template (`base::UnkVector<u8>*` comes
