@@ -6,6 +6,7 @@
 #include "base/UnkDefaultAllocator.h"
 #include "types.h"
 
+struct UnkHms;
 struct UnkGfxFrameSource;
 struct UnkTimer_7100080c40;
 void* fn_71000810b0(u32 value);
@@ -14,3 +15,4 @@ s64 fn_7100080fb4(const UnkTimer_7100080c40* self);
 extern u32 g_unk_7101d58e48;  // The current frame.
 void* fn_71000813e4(base::UnkSubAllocator* self, u64 size, u64 align, u32 flags);
 void fn_7100081420(base::UnkSubAllocator* self, void* ptr);
+void fn_7100081040(u32 total, UnkHms* out);

@@ -5,3 +5,4 @@
 // Names and layouts are placeholders.
 #include "types.h"
 bool fn_7100217e50(u32 flags, u32 mask);
+f32 fn_7100217ee0(f32 f0, f32 f1);

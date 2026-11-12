@@ -9,19 +9,15 @@
 #include "base/UnkDefaultAllocator.h"
 #include "base/snd/UnkSound.h"
 #include "base/snd/UnkSoundSystemATK.h"
+#include "game/UnkTU99.h"
+#include "game/UnkTU101.h"
+#include "base/tunable/CTunable.h"
 
 using base::snd::UnkSoundSystemATK;
 
-bool fn_7100132cd0();
-extern u8 g_unk_7108b6ab60 __attribute__((visibility("hidden")));
 
 struct UnkInterp_7100105d34;
-void fn_7100105d34(UnkInterp_7100105d34*, f32, bool, f32);
 struct UnkPlayingSound_ovb0074;
-void fn_7100105bac(UnkPlayingSound_ovb0074* sound, f32 value);
-void fn_7100105c00(UnkPlayingSound_ovb0074* sound, f32 value);
-void fn_7100105c9c(UnkPlayingSound_ovb0074* sound, f32 value);
-void fn_7100105cf0(UnkPlayingSound_ovb0074* sound, f32 value);
 
 // A voice: the group bit it answers to is 1 << shift.
 struct UnkVoice_b0184 {
@@ -45,6 +41,7 @@ struct UnkSystem_b0184 {
 };
 
 // Applies a fade to the first list's voices in mask.
+// NON_MATCHING(minor): the same instructions in another order or with other registers.
 void fn_71000fd1d4(void* member, const u32* mask, f32 fade) {
     UnkSystem_b0184* self = reinterpret_cast<UnkSystem_b0184*>(member);
     if (__builtin_expect(g_unk_7108b6ab60 & 1, 1))
@@ -58,4 +55,3 @@ void fn_71000fd1d4(void* member, const u32* mask, f32 fade) {
     }
     fn_7100066920(&self->mutex);
 }
-

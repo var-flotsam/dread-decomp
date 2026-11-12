@@ -73,8 +73,6 @@ void fn_7100159f90(u32 count, u32 value) {
 }
 
 
-extern bool g_unk_7101a1d7d8;
-
 // ---- fn_7100159660 ----
 
 struct __attribute__((packed)) UnkTargetList_ovb0245 {
@@ -83,7 +81,6 @@ struct __attribute__((packed)) UnkTargetList_ovb0245 {
 };
 UnkTargetList_ovb0245* fn_710015c1d0();
 
-extern bool g_unk_7101a1d7d8;
 extern void (*g_unk_716e29b7d8)(void* context, void* target);
 extern u8 g_unk_716e29c220[];
 extern void (*g_unk_716e29b908)(void* context, s32 index, void* value, s32 flags);

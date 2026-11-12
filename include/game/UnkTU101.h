@@ -21,3 +21,6 @@ void fn_7100105c00(UnkPlayingSound_ovb0074* sound, f32 value);
 void fn_7100105f94(UnkInterp_7100105f94* self, s32 level, f32 time);
 void fn_7100106024(UnkSoundObject_b50*, const void*);
 extern const UnkSoundHandle g_unk_7108b6c460;  // The empty handle.
+void fn_7100105bac(UnkPlayingSound_ovb0074* sound, f32 value);
+void fn_7100105c9c(UnkPlayingSound_ovb0074* sound, f32 value);
+void fn_7100105cf0(UnkPlayingSound_ovb0074* sound, f32 value);

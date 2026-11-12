@@ -6,7 +6,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71000687d8,376,drafts/game/UnkTU42/fn_71000687d8.cpp,operations,10.6,74,lean,
 0x710006981c,288,drafts/game/UnkTU42/fn_710006981c.cpp,conditions,97.2,2,overnight,
 0x710006e7a4,348,drafts/game/UnkTU46/fn_710006e7a4.cpp,registers or order,92.0,7,overnight,
-0x71000708c8,244,drafts/game/UnkTU48/fn_71000708c8.cpp,registers or order,91.8,5,overnight,
+0x71000708c8,244,drafts/game/UnkTU48/fn_71000708c8.cpp,registers or order,91.8,5,overnight,passes tools/equiv_test.py; held: it declares g_unk_7101647790; which other files declare too and no unit header can take
 0x710007966c,328,drafts/game/UnkTU54/fn_710007966c.cpp,operations,32.9,55,pilot50,float op scheduling order differs (KIND operations)
 0x7100079fb0,160,drafts/game/UnkTU54/fn_7100079fb0.cpp,registers or order,92.5,3,overnight,
 0x7100087ddc,240,drafts/game/UnkTU63/fn_7100087ddc.cpp,registers or order,95.0,3,overnight,
@@ -18,7 +18,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71000f9450,340,drafts/game/UnkTU99/fn_71000f9450.cpp,conditions,98.8,1,overnight,
 0x71000fc18c,564,drafts/game/UnkTU99/fn_71000fc18c.cpp,conditions,95.7,6,overnight,
 0x71000fc3c0,432,drafts/game/UnkTU99/fn_71000fc3c0.cpp,conditions,94.4,6,overnight,
-0x71000fd1d4,208,drafts/game/UnkTU99/fn_71000fd1d4.cpp,registers or order,96.2,2,overnight,
 0x71000fd308,308,drafts/game/UnkTU99/fn_71000fd308.cpp,conditions,98.7,1,overnight,
 0x71000fdfd8,260,drafts/game/UnkTU99/fn_71000fdfd8.cpp,operations,10.6,58,pilot50,early-exit layout and loop counter form
 0x71000fe56c,276,drafts/game/UnkTU99/fn_71000fe56c.cpp,calls,33.3,45,pilot50,inlined CFilePathStrId release: extra call; pool slot register and local slot differ
@@ -32,16 +31,13 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100128510,764,drafts/game/malloc/fn_7100128510.cpp,control flow,29.8,134,fable1,
 0x710012b330,1212,drafts/game/malloc/fn_710012b330.cpp,control flow,6.9,263,fable1,
 0x710012f880,3620,drafts/game/malloc/fn_710012f880.cpp,control flow,8.7,749,fable1,
-0x710015a0e0,372,drafts/game/UnkTU177/fn_710015a0e0.cpp,registers or order,98.9,1,overnight,
 0x710016c038,400,drafts/game/UnkTU208/fn_710016c038.cpp,operations,99.0,1,overnight,
 0x71001997c8,140,drafts/game/UnkTU218/fn_71001997c8.cpp,operations,28.6,24,pilot50,final w component copy via x1+0xc pointer; KIND operations
 0x710019b184,384,drafts/game/UnkTU221/fn_710019b184.cpp,registers or order,95.8,4,overnight,
 0x710019b5ec,508,drafts/game/UnkTU222/fn_710019b5ec.cpp,operations,96.1,5,overnight,
-0x710019da10,224,drafts/game/UnkTU224/fn_710019da10.cpp,registers or order,98.2,1,overnight,
+0x710019da10,224,drafts/game/UnkTU224/fn_710019da10.cpp,registers or order,98.2,1,overnight,passes tools/equiv_test.py; held: with the header's fn_71000791a8 (three references) it compiles to other code
 0x710019dcac,380,drafts/game/UnkTU225/fn_710019dcac.cpp,registers or order,97.9,2,overnight,
 0x71001b47b4,400,drafts/game/UnkTU241/fn_71001b47b4.cpp,operations,94.0,6,pilot50,ands vs cbz on strlen result; ctor store order around GOT load
-0x71001b7d80,308,drafts/game/UnkTU244/fn_71001b7d80.cpp,registers or order,90.9,7,overnight,
-0x71001c3cdc,124,drafts/game/UnkTU257/fn_71001c3cdc.cpp,registers or order,93.5,2,overnight,
 0x71001c5db4,380,drafts/game/UnkTU258/fn_71001c5db4.cpp,conditions,98.9,1,overnight,
 0x71001c9550,456,drafts/game/UnkTU259/fn_71001c9550.cpp,operations,93.0,8,overnight,
 0x71001d70b8,508,drafts/game/UnkTU259/fn_71001d70b8.cpp,registers or order,98.4,2,overnight,
@@ -50,7 +46,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71001f9e8c,188,drafts/game/UnkTU277/fn_71001f9e8c.cpp,conditions,97.9,1,overnight,
 0x71001fca5c,580,drafts/game/UnkTU280/fn_71001fca5c.cpp,registers or order,93.8,9,overnight,
 0x710020f450,552,drafts/game/UnkTU296/fn_710020f450.cpp,control flow,90.1,11,overnight,
-0x710021688c,168,drafts/game/UnkTU308/fn_710021688c.cpp,registers or order,9.5,38,pilot50,registers/scheduling
 0x71002169e0,288,drafts/game/UnkTU308/fn_71002169e0.cpp,registers or order,97.2,2,overnight,
 0x7100216ca4,140,drafts/game/UnkTU308/fn_7100216ca4.cpp,registers or order,94.3,2,overnight,
 0x710021e874,492,drafts/game/UnkTU324/fn_710021e874.cpp,registers or order,96.7,4,overnight,
@@ -86,9 +81,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710051b5a8,1372,drafts/game/behaviortree/CEmmySearchingAction/fn_710051b5a8.cpp,control flow,7.0,318,lean,
 0x7100540290,244,drafts/game/UnkTU811/fn_7100540290.cpp,registers or order,90.2,6,overnight,
 0x710054b4b0,324,drafts/game/UnkTU811/fn_710054b4b0.cpp,registers or order,93.8,5,overnight,
-0x7100550e18,112,drafts/game/UnkTU811/fn_7100550e18.cpp,registers or order,96.4,1,overnight,
 0x7100558bcc,584,drafts/game/UnkTU811/fn_7100558bcc.cpp,registers or order,93.8,9,overnight,
-0x7100558e14,196,drafts/game/UnkTU811/fn_7100558e14.cpp,registers or order,98.0,1,overnight,
 0x7100572a68,316,drafts/game/UnkTU816/fn_7100572a68.cpp,registers or order,94.9,4,overnight,
 0x71005c042c,388,drafts/game/UnkTU883/fn_71005c042c.cpp,operations,95.9,4,overnight,
 0x71005c3160,372,drafts/game/UnkTU883/fn_71005c3160.cpp,registers or order,92.5,7,overnight,
@@ -133,7 +126,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100a2b3bc,424,drafts/game/CTimelineComponent/fn_7100a2b3bc.cpp,control flow,25.2,79,lean,
 0x7100a3ade0,288,drafts/game/CChangeStateDoorsLogicAction/fn_7100a3ade0.cpp,operations,68.1,22,test40,src/dst callee-saved regs swapped; tail load addressing
 0x7100a787cc,944,drafts/game/CCapsuleUsableComponent/fn_7100a787cc.cpp,operations,3.4,228,lean,
-0x7100af45b0,160,drafts/game/GUI/CBossRushReport/fn_7100af45b0.cpp,registers or order,70.0,12,lean,
 0x7100b4c684,596,drafts/game/UnkTU1691/fn_7100b4c684.cpp,conditions,98.7,2,overnight,
 0x7100b59574,284,drafts/game/GUI/CMissionLog/fn_7100b59574.cpp,registers or order,95.8,3,lean,
 0x7100b72380,292,drafts/game/GUI/CScene3D/fn_7100b72380.cpp,operations,46.6,37,test40,store merging/scheduling of 0x3ac-0x3c0 and GOT load order
@@ -164,13 +156,13 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100e1d620,368,drafts/game/UnkTU2560/fn_7100e1d620.cpp,operations,94.6,5,overnight,
 0x7100e2f398,292,drafts/game/UnkTU2562/fn_7100e2f398.cpp,operations,2.7,69,pilot50,operations: second loop strength-reduced; 2 insns off; first-loop counter register
 0x7100e3d080,2088,drafts/game/UnkTU2563/fn_7100e3d080.cpp,control flow,15.1,436,fable1,
-0x7100e51078,480,drafts/game/UnkTU2563/fn_7100e51078.cpp,registers or order,98.3,2,overnight,
+0x7100e51078,480,drafts/game/UnkTU2563/fn_7100e51078.cpp,registers or order,98.3,2,overnight,passes tools/equiv_test.py; held: include/game/UnkTU2563.h declares it (void*; void*)
 0x7100e5b944,324,drafts/game/UnkTU2563/fn_7100e5b944.cpp,operations,29.3,57,lean,
 0x7100e711dc,228,drafts/game/UnkTU2564/fn_7100e711dc.cpp,registers or order,96.5,2,overnight,
 0x7100e903ec,340,drafts/game/UnkTU2566/fn_7100e903ec.cpp,operations,75.3,21,pilot50,operations: orr operand order; fcsel order; fade branch layout
 0x7100e906bc,296,drafts/game/UnkTU2566/fn_7100e906bc.cpp,registers or order,93.2,5,overnight,
 0x7100e911c8,196,drafts/game/UnkTU2566/fn_7100e911c8.cpp,registers or order,98.0,1,overnight,
-0x7100e94e10,552,drafts/game/UnkTU2566/fn_7100e94e10.cpp,registers or order,98.6,2,pilot50,one fmul/fadd register (s3 vs s0)
+0x7100e94e10,552,drafts/game/UnkTU2566/fn_7100e94e10.cpp,registers or order,98.6,2,pilot50,passes tools/equiv_test.py; held: it declares g_unk_710164be30; which other files declare too and no unit header can take
 0x7100e97c60,812,drafts/game/UnkTU2566/fn_7100e97c60.cpp,conditions,93.1,14,lean,
 0x7100e98090,408,drafts/game/UnkTU2566/fn_7100e98090.cpp,registers or order,43.1,58,pilot50,register assignment only; holds an empty barrier (without it: operations 41.2%)
 0x7100e9c06c,492,drafts/game/UnkTU2566/fn_7100e9c06c.cpp,registers or order,92.7,9,overnight,
@@ -194,9 +186,9 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100f86fec,340,drafts/game/UnkTU2601/fn_7100f86fec.cpp,registers or order,94.1,5,overnight,
 0x7100f89e44,404,drafts/game/UnkTU2602/fn_7100f89e44.cpp,conditions,98.0,2,overnight,
 0x7100f97d90,468,drafts/game/UnkTU2607/fn_7100f97d90.cpp,registers or order,92.3,9,overnight,
-0x7100f98094,148,drafts/game/UnkTU2607/fn_7100f98094.cpp,registers or order,91.9,3,overnight,
-0x7100f98d24,160,drafts/game/UnkTU2607/fn_7100f98d24.cpp,registers or order,95.0,2,overnight,
-0x7100f98dc4,160,drafts/game/UnkTU2607/fn_7100f98dc4.cpp,registers or order,95.0,2,overnight,
+0x7100f98094,148,drafts/game/UnkTU2607/fn_7100f98094.cpp,registers or order,91.9,3,overnight,passes tools/equiv_test.py with its three siblings in this file; held: other files declare the four with other parameters
+0x7100f98d24,160,drafts/game/UnkTU2607/fn_7100f98d24.cpp,registers or order,95.0,2,overnight,passes tools/equiv_test.py; held with fn_7100f98094 (the same four functions are in its file)
+0x7100f98dc4,160,drafts/game/UnkTU2607/fn_7100f98dc4.cpp,registers or order,95.0,2,overnight,passes tools/equiv_test.py; held with fn_7100f98094 (the same four functions are in its file)
 0x7100fa64bc,1176,drafts/base/reflection/fn_7100fa64bc.cpp,control flow,22.4,210,fable1,
 0x7100faa3d8,1556,drafts/game/UnkTU2611/fn_7100faa3d8.cpp,operations,40.6,226,fable1,
 0x7100fc39b0,336,drafts/game/UnkTU2621/fn_7100fc39b0.cpp,registers or order,97.6,2,overnight,
@@ -237,7 +229,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71011d968c,244,drafts/game/GUI/CDisplayObjectContainer/fn_71011d968c.cpp,control flow,15.9,51,pilot50,search loop exit condition: clang emits cset/orr instead of csel+ccmp
 0x71011fd160,212,drafts/game/GUI/CSpriteGrid/fn_71011fd160.cpp,operations,86.8,7,test40,stack slot assignment of three 8-byte locals
 0x71012129f0,264,drafts/game/UnkTU2772/fn_71012129f0.cpp,registers or order,98.5,1,overnight,
-0x7101213858,420,drafts/game/UnkTU2772/fn_7101213858.cpp,registers or order,94.3,6,overnight,
+0x7101213858,420,drafts/game/UnkTU2772/fn_7101213858.cpp,registers or order,94.3,6,overnight,passes tools/equiv_test.py; held: src/game_lo/fn_71001039f8.cpp declares it as a labelled constructor
 0x7101214bd0,196,drafts/game/UnkTU2772/fn_7101214bd0.cpp,operations,95.9,2,overnight,
 0x7101214c94,600,drafts/game/UnkTU2772/fn_7101214c94.cpp,registers or order,96.7,5,overnight,
 0x710122cf1c,264,drafts/game/UnkTU2772/fn_710122cf1c.cpp,conditions,97.0,2,overnight,
@@ -245,5 +237,4 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710122f3f0,156,drafts/game/UnkTU2772/fn_710122f3f0.cpp,registers or order,97.4,1,overnight,
 0x710122faa0,580,drafts/game/UnkTU2772/fn_710122faa0.cpp,conditions,96.6,5,overnight,
 0x710122ff10,288,drafts/game/UnkTU2772/fn_710122ff10.cpp,registers or order,97.2,2,overnight,
-0x7101230a00,40,drafts/game/UnkTU2772/fn_7101230a00.cpp,registers or order,90.0,1,overnight,
 0x7101238c14,212,drafts/game/UnkTU2772/fn_7101238c14.cpp,registers or order,90.6,5,overnight,

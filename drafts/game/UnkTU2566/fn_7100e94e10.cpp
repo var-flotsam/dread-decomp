@@ -3,6 +3,7 @@
 #include <math.h>
 
 #include "game/UnkGameManager.h"
+#include "game/UnkTU311.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -26,22 +27,21 @@ struct UnkViewOwner {
     UnkViewCamera* field_0x40;
 };
 
-struct UnkViewBounds {
+struct UnkMinimapRect {
     f32 min_x, min_y, max_x, max_y;
-    UnkViewBounds() {}
-    UnkViewBounds(const UnkViewBounds& o) : min_x(o.min_x), min_y(o.min_y), max_x(o.max_x), max_y(o.max_y) {}
+    UnkMinimapRect() {}
+    UnkMinimapRect(const UnkMinimapRect& o) : min_x(o.min_x), min_y(o.min_y), max_x(o.max_x), max_y(o.max_y) {}
 };
 
 extern const f32 g_unk_710164be30;
-f32 fn_7100217ee0(f32 a, f32 b);
 
 static inline f32 DegToRad(f32 deg) {
     return (f32)((double)(deg * 0.5f) * 3.14159265358979323846 / 180.0);
 }
 
 // NON_MATCHING(minor): the left-edge product is in s3 instead of s0 (register choice only)
-UnkViewBounds fn_7100e94e10() {
-    UnkViewBounds r;
+UnkMinimapRect fn_7100e94e10() {
+    UnkMinimapRect r;
     r.min_x = 3.4028235e+38f;
     r.min_y = 3.4028235e+38f;
     r.max_x = -3.4028235e+38f;
