@@ -217,22 +217,21 @@ void fn_7100748234(UnkSwarmController_ovb6* self, UnkSwarmGroup_ovb6* group) {
     self->field_0x190.z = g_unk_710164779c.z;
 }
 
-struct UnkObj_710072a110;
-
 // Returned through x8, so the original's result type is not trivially copyable.
-struct UnkVec3_710072a110 {
+struct UnkVec3Result {
     f32 x;
     f32 y;
     f32 z;
-    UnkVec3_710072a110(const UnkVec3_710072a110& o) : x(o.x), y(o.y), z(o.z) {}
+    UnkVec3Result(const UnkVec3Result& o) : x(o.x), y(o.y), z(o.z) {}
 };
 
-UnkVec3_710072a110 fn_7100745e24(UnkObj_710072a110* obj);
+struct UnkParent_71007455dc;
+UnkVec3Result fn_7100745e24(UnkParent_71007455dc* parent);
 s32 fn_7100729654(UnkSwarmGroups_ovb6* groups, UnkSwarmGroup_ovb6* from, UnkSwarmGroup_ovb6* into);
 
 // The group's position.
-static inline UnkVec3_710072a110 Center_ovb6(UnkSwarmGroup_ovb6* group) {
-    return fn_7100745e24(reinterpret_cast<UnkObj_710072a110*>(group));
+static inline UnkVec3Result Center_ovb6(UnkSwarmGroup_ovb6* group) {
+    return fn_7100745e24(reinterpret_cast<UnkParent_71007455dc*>(group));
 }
 
 // A pending merge (from +0x1d4 into +0x1d8, for at most 3 time units): once both groups are active
@@ -246,8 +245,8 @@ void fn_710074c180(UnkSwarmController_ovb6* self, f32 dt) {
     UnkSwarmGroup_ovb6* from = self->Groups()->Get32(self->merge_from);
     UnkSwarmGroup_ovb6* into = self->def->groups->Get32(self->merge_into);
     if (into && from && from->active && into->active) {
-        UnkVec3_710072a110 a = Center_ovb6(from);
-        UnkVec3_710072a110 b = Center_ovb6(into);
+        UnkVec3Result a = Center_ovb6(from);
+        UnkVec3Result b = Center_ovb6(into);
         f32 dx = b.x - a.x;
         f32 dy = b.y - a.y;
         f32 dz = b.z - a.z;

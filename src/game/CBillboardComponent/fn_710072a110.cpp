@@ -8,15 +8,16 @@
 #include "types.h"
 
 // Returned through x8, so the original's result type is not trivially copyable.
-struct UnkVec3_710072a110 {
+struct UnkVec3Result {
     f32 x;
     f32 y;
     f32 z;
-    UnkVec3_710072a110(const UnkVec3_710072a110& o) : x(o.x), y(o.y), z(o.z) {}
+    UnkVec3Result(const UnkVec3Result& o) : x(o.x), y(o.y), z(o.z) {}
 };
 
 struct UnkObj_710072a110;
-UnkVec3_710072a110 fn_7100745e24(UnkObj_710072a110* obj);
+struct UnkParent_71007455dc;
+UnkVec3Result fn_7100745e24(UnkParent_71007455dc* parent);
 
 // Both positions are temporaries of the one comparison, so they get separate stack slots. The
 // distance is written out term by term: that is the order the original computes it in.
@@ -25,11 +26,11 @@ struct UnkNearer_710072a110 {
     f32 y;
     f32 z;
 
-    f32 DistSq(const UnkVec3_710072a110& p) const {
+    f32 DistSq(const UnkVec3Result& p) const {
         return (p.x - x) * (p.x - x) + (p.y - y) * (p.y - y) + (p.z - z) * (p.z - z);
     }
     bool operator()(UnkObj_710072a110* a, UnkObj_710072a110* b) const {
-        return DistSq(fn_7100745e24(a)) < DistSq(fn_7100745e24(b));
+        return DistSq(fn_7100745e24(reinterpret_cast<UnkParent_71007455dc*>(a))) < DistSq(fn_7100745e24(reinterpret_cast<UnkParent_71007455dc*>(b)));
     }
 };
 
