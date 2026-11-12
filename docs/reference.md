@@ -28,6 +28,7 @@ tools/equiv_test.py              tier 2: runs a registers-only non-match beside 
 tools/ref_check.py               wrong addresses in non-matching functions: what each calls and refers to, against the original
 tools/permute.py                 cheap permuter: reorders a registers-only near-match's source until it matches; --write
 tools/drafts.py                  drafts/: add (file a non-match, graded), grade (regrade rows), promote (move to src/ when earned)
+tools/sample_review.py           the week's seeded sample of newly decompiled functions to read (docs/maintaining.md)
 tools/baseline.py                trymatch output snapshot, compare and restore for a file set (headers expand to includers)
 tools/hub_migrate.py             mechanical canonical-header migration on top of baseline.py; LEFT lines are the hand work
 tools/tu_map.py                  translation-unit map from .init_array + reflection groups -> data/tu_map.csv; --function
