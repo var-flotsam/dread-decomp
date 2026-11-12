@@ -8,7 +8,7 @@
 struct UnkTUHeader;
 struct UnkValue;
 
-void fn_7100ad37c0() __attribute__((visibility("hidden")));
+void* fn_7100ad37c0(void*, void*) __attribute__((visibility("hidden")));
 extern char g_unk_7172756940;
 extern UnkValue g_unk_7172756968;
 extern UnkValue g_unk_7172756978;

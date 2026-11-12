@@ -34,7 +34,8 @@ Definitions are compared too, in one respect: how the function is called. A hand
 `T fn_<addr>(...) {` at the start of a line, with external linkage, is read as a declaration, and its
 call shape (the class of the result and of each parameter: void, bool, an integer by width, float,
 double, a pointer or reference, a type passed by value) is compared with the shape of every declaration
-of the same function in other files. Another name for a pointed-to struct is the same call; a `void`
+of the same function in other files. Another name for a pointed-to struct is the same call, and so is a
+64-bit integer against a pointer (one full register on every 64-bit target); a `void`
 definition of a function declared to return a value, a missing parameter, or a `u32` where the
 declaration has a pointer is not. The match on AArch64 does not see such a difference when the registers
 happen to hold the right values; the PC port calls the function wrongly. A float parameter written before
@@ -571,6 +572,14 @@ def call_shape(signature: str, symbol: str) -> tuple[str, tuple[str, ...]] | Non
     return type_class(result), tuple(params)
 
 
+def as_passed(shape):
+    """A call shape with 64-bit integers counted as pointers: both are one full integer register on every
+    64-bit target, so `u64` against `void*` is the same call."""
+    if shape is None:
+        return None
+    return ("pointer" if shape[0] == "i64" else shape[0], tuple("pointer" if p == "i64" else p for p in shape[1]))
+
+
 def by_register(params: tuple[str, ...]) -> tuple[tuple[str, ...], tuple[str, ...]]:
     """(the float and double parameters in order, the others in order): on AArch64 and on x86-64 Linux the
     two kinds are passed in separate registers, so only the order within each kind decides the call."""
@@ -586,9 +595,9 @@ def definition_mismatches(files: dict[str, str], report: Report) -> dict[str, tu
         if path.startswith("include/") or "fn_" not in text:
             continue
         for d in definitions(text, path):
-            mine = call_shape(d.signature, d.name)
+            mine = as_passed(call_shape(d.signature, d.name))
             for other in report.sigs.get(d.name, []):
-                theirs = call_shape(other, d.name)
+                theirs = as_passed(call_shape(other, d.name))
                 if theirs is None or mine is None or theirs == mine:
                     continue
                 if (mine[0] == "void") != (theirs[0] == "void"):

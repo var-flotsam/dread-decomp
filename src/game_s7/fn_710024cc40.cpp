@@ -192,7 +192,7 @@ UnkEnumType* fn_7100231988();
 extern char g_unk_717269c474[];
 UnkEnumType* fn_7100231a64();
 extern UnkConversion g_unk_717269c478;
-void fn_7100248b38();
+void* fn_7100248b38(void*, void*);
 extern UnkConversion g_unk_717269c498;
 UnkEnumType* fn_7100231b40();
 void fn_7100248cd4();
@@ -398,7 +398,7 @@ void fn_710024cc40() {
     fn_710009ec00(g_unk_717269c472, fn_71002318ac());
     fn_710009ec00(g_unk_717269c473, fn_7100231988());
     fn_710009ec00(g_unk_717269c474, fn_7100231a64());
-    InitConversion(&g_unk_717269c478, TypeOf<fn_7100009658>, &g_unk_717269bb48, fn_7100248b38);
+    InitConversion(&g_unk_717269c478, TypeOf<fn_7100009658>, &g_unk_717269bb48, reinterpret_cast<void (*)()>(&fn_7100248b38));
     InitConversion(&g_unk_717269c498, fn_7100231b40, fn_71002295ac, fn_7100248cd4);
     InitConversion(&g_unk_717269c4b8, fn_7100231c1c, &g_unk_717269bb48, fn_710023de90);
     InitNamedValue(&g_unk_717269c4e0, "vPos", TypeOf<fn_7100009658>, fn_710010c424);

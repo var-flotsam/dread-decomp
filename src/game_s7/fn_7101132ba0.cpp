@@ -59,7 +59,7 @@ void fn_7101122058(UnkEnumType* type, const CStrId& name, const base::reflection
 void fn_7101121fb8();
 extern char g_unk_7172a06fa0[];
 extern UnkConversion g_unk_7172a06fa8;
-void fn_7101130850();
+void* fn_7101130850(void*, void*);
 extern char g_unk_7172a06fc8[];
 UnkEnumType* fn_7101122358();
 extern char g_unk_7172a06fc9[];
@@ -148,7 +148,7 @@ void fn_7101132ba0() {
     }
     __cxa_atexit(fn_7100096604, &g_unk_7172a06e68, g_unk_7101a19000);
     fn_710009ec00(g_unk_7172a06fa0, &g_unk_7172a06e68);
-    InitConversion(&g_unk_7172a06fa8, TypeOf<fn_7100009658>, &g_unk_7172a06e68, fn_7101130850);
+    InitConversion(&g_unk_7172a06fa8, TypeOf<fn_7100009658>, &g_unk_7172a06e68, reinterpret_cast<void (*)()>(&fn_7101130850));
     fn_710009ec00(g_unk_7172a06fc8, fn_7101122358());
     fn_710009ec00(g_unk_7172a06fc9, fn_7101122434());
     {

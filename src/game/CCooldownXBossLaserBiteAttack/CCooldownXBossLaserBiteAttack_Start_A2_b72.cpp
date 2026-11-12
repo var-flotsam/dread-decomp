@@ -9,7 +9,7 @@
 #include "types.h"
 
 struct UnkSelf;
-void fn_71004c31f8();
+bool fn_71004c31f8(void*, void*);
 
 struct UnkLaserBiteTrackLink_A2_b72 {
     u8 pad_0x0[0x8];
@@ -34,7 +34,7 @@ void fn_71004c274c(UnkLaserBiteStart_A2_b72* self) {
     self->field_0x74 = false;
     UnkLaserBiteTrackLink_A2_b72* link = &self->link;
     link->context = self;
-    link->callback = fn_71004c31f8;
+    link->callback = reinterpret_cast<void (*)()>(&fn_71004c31f8);
     UnkWeakTarget* track = *reinterpret_cast<UnkWeakTarget**>(self->owner + 0x220);
     if (UnkWeakHandle* handle = self->handle) {
         if (UnkWeakTarget* target = handle->target)

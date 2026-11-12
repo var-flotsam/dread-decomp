@@ -16,7 +16,7 @@
 struct UnkChangeSetupLogicActionDef;
 struct UnkSPRTutoLogicAction_b52;
 void fn_7100a5340c(UnkSPRTutoLogicAction_b52* self);
-void fn_7100a52ebc();
+bool fn_7100a52ebc(void*);
 
 struct UnkSPBTutoCallable_b52;
 
@@ -74,6 +74,6 @@ void fn_7100a52dcc(UnkSPBTutoLogicAction_b52* self) {
     self->field_0x190 = false;
     self->field_0x198 = nullptr;
     self->target = self;
-    self->method = &fn_7100a52ebc;
+    self->method = reinterpret_cast<void (*)()>(&fn_7100a52ebc);
     self->adjust = 0;
 }

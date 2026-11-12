@@ -51,7 +51,7 @@ void fn_71002580f0(UnkReflType* self, const CStrId& name, void* a, void* b);
 UnkReflType* fn_71002582e8();
 UnkReflType* fn_71002583c4();
 void fn_7100258fd8(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
-void fn_71002584a0();
+void fn_71002584a0(void*);
 UnkReflType* fn_71002598b0();
 UnkReflType* fn_710025998c();
 UnkReflType* fn_7100259a68();
@@ -100,7 +100,7 @@ void fn_7100261530() {
     fn_710009ec00(&g_unk_71726a0798, &g_unk_71726a0628);
     fn_710009ec00(&g_unk_71726a0799, fn_71002582e8());
     fn_710009ec00(&g_unk_71726a079a, fn_71002583c4());
-    InitClass(&g_unk_71726a07a0, "CActorLayer", fn_7100258fd8, fn_71002584a0);
+    InitClass(&g_unk_71726a07a0, "CActorLayer", fn_7100258fd8, reinterpret_cast<void (*)()>(&fn_71002584a0));
     fn_710009ec00(&g_unk_71726a08d8, &g_unk_71726a07a0);
     fn_710009ec00(&g_unk_71726a08d9, fn_71002598b0());
     fn_710009ec00(&g_unk_71726a08da, fn_710025998c());

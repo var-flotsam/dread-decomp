@@ -37,7 +37,7 @@ void fn_710020014c(UnkItem* item, bool value);
 void fn_7100200160(UnkSceneItem* item, f32 dt);
 bool fn_7100202d24(UnkItem* item, void* arg);
 void fn_7100adc470();
-void fn_7100adc4c0();
+void* fn_7100adc4c0(void*, void*);
 void fn_7100b03ecc();
 void fn_7100b75ea8();
 void fn_7100b76544();

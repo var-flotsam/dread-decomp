@@ -38,8 +38,8 @@ void fn_7100caab7c(UnkChainedMap* map, u32 buckets, u32 nodes);
 // Reserves room for `capacity` pairs.
 void fn_7100ca9158(base::UnkPairArrays* pairs, u32 capacity);
 void fn_7100caacd0();
-void fn_7100caad50();
-void fn_7100caadb0();
+bool fn_7100caad50(void*);
+bool fn_7100caadb0(void*, void*);
 
 void fn_7100ca6844(UnkBTObserver* self) {
     self->vtable = g_unk_7101aa52b0 + 0x10;
@@ -66,10 +66,10 @@ void fn_7100ca6844(UnkBTObserver* self) {
     self->callbacks[0].function = fn_7100caacd0;
     self->callbacks[1].field_0x0 = 0;
     self->callbacks[1].object = self;
-    self->callbacks[1].function = fn_7100caad50;
+    self->callbacks[1].function = reinterpret_cast<void (*)()>(&fn_7100caad50);
     self->callbacks[2].field_0x0 = 0;
     self->callbacks[2].object = self;
-    self->callbacks[2].function = fn_7100caadb0;
+    self->callbacks[2].function = reinterpret_cast<void (*)()>(&fn_7100caadb0);
     self->field_0x128.keys = nullptr;
     self->field_0x128.values = nullptr;
     self->field_0x128.count = 0;

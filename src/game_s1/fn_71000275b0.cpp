@@ -26,15 +26,15 @@ extern UnkConverter g_unk_7101d4edb0;
 extern UnkConverter g_unk_7101d4edd0;
 void fn_7100026500(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
 void fn_71000262b8();
-void fn_71000272cc();
-void fn_7100027418();
+void* fn_71000272cc(void*, void*);
+void* fn_7100027418(void*, void*);
 void fn_7100026cf8() __attribute__((visibility("hidden")));
 
 void fn_71000275b0() {
     InitIdsRev(g_unk_7101d4ee10);
     InitClass(&g_unk_7101d4ec50, "base::core::CAssetLink", fn_7100026500, fn_71000262b8);
     fn_710009ec00(&g_unk_7101d4ed88, &g_unk_7101d4ec50);
-    InitConverterFrom(g_unk_7101d4ed90, &g_unk_7101d4ec50, refl_TypeOf<fn_7100007f84>, fn_71000272cc);
-    InitConverterFrom(g_unk_7101d4edb0, &g_unk_7101d4ec50, refl_TypeOf<fn_7100009658>, fn_7100027418);
+    InitConverterFrom(g_unk_7101d4ed90, &g_unk_7101d4ec50, refl_TypeOf<fn_7100007f84>, reinterpret_cast<void (*)()>(&fn_71000272cc));
+    InitConverterFrom(g_unk_7101d4edb0, &g_unk_7101d4ec50, refl_TypeOf<fn_7100009658>, reinterpret_cast<void (*)()>(&fn_7100027418));
     InitConverterTo(g_unk_7101d4edd0, &g_unk_7101d4ec50, refl_TypeOf<fn_7100007f84>, fn_7100026cf8);
 }

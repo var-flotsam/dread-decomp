@@ -35,5 +35,5 @@ void fn_710071185c(UnkAlternativeActionPlayer* self) {
     At<UnkAlternativeActionPlayer*>(self, 0x98) = self;
     At<void (*)(UnkAlternativeActionPlayer*)>(self, 0xa0) = fn_71007124d8;
     At<UnkAlternativeActionPlayer*>(self, 0x78) = self;
-    At<void (*)(UnkAlternativeActionPlayer*)>(self, 0x80) = fn_7100712538;
+    At<void (*)(UnkAlternativeActionPlayer*)>(self, 0x80) = reinterpret_cast<void (*)(UnkAlternativeActionPlayer *)>(&fn_7100712538);
 }

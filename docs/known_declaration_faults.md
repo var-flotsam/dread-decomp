@@ -134,18 +134,23 @@ parameter, the result's type), kept where the definition still matched (37). Two
 put back: the original passes the extra register on to another call (`tools/forwarded_args.py` lists
 `fn_7100232c90` and `fn_7100d7babc`), so the parameter has to be forwarded, not just declared.
 
-126 are left, where neither direction holds: 61 `void` against a value, 32 with a parameter of another class,
-19 with another number of parameters, 9 with a result of another class, 5 with a float parameter in another
-place. Of the 61:
+A third step the same day settled 29 more. In 26 the declaration was `void fn()` or the like only because a
+file stores the function's address in a generic slot, or passes it to a registration call
+(`InitConverter(..., fn)`, `link->callback = fn`): the declaration now has the true signature and the place
+that erases the type says so, `reinterpret_cast<void (*)()>(&fn)`. And the check stopped counting a 64-bit
+integer against a pointer, which is one full register on every 64-bit target (15 pairs).
 
-**46: a file stores the function's address in a pointer, or hands it to a template, typed for the `void` form; the pointer's type has to change with the declaration.**
-`fn_71000272cc` `fn_7100027418` `fn_71000cc800` `fn_71000cc890` `fn_71000ccca8` `fn_71000ccd84` `fn_71000cce60` `fn_71000ccf08` `fn_71000cd2a4` `fn_71000cd338` `fn_71002332e0` `fn_7100248b38` `fn_7100339d48` `fn_71004c31f8` `fn_71004cb0e8` `fn_71006895a0` `fn_71007124d8` `fn_7100712538` `fn_71007ab7d8` `fn_71007f5d24` `fn_7100a52ebc` `fn_7100ad37c0` `fn_7100adc4c0` `fn_7100aec000` `fn_7100caad50` `fn_7100caadb0` `fn_7100d86e94` `fn_7100da5184` `fn_7100eac64c` `fn_7100eac82c` `fn_7100eb31f0` `fn_7100eb3278` `fn_7100eb331c` `fn_7100f796b8` `fn_7100f87480` `fn_7100f89fd8` `fn_7100f94d0c` `fn_7100fedf08` `fn_7100feefa0` `fn_7101048588` `fn_71010c6cdc` `fn_7101130850` `fn_710117a018` `fn_710117b3f8` `fn_71011e7d60` `fn_71011e7e8c`
-
-**10: the definition returns a struct by value (`UnkReflValue` and others) that a declaring file does not define.**
-`python tools/decl_check.py --definitions` shows them.
-
-**6: the definition is `void`, a declaration returns a value, and a hand-written caller uses it.** `fn_7100202e7c` forwards `fn_71001ef494`'s result to a caller that returns it as a `bool`, but written that way it gains an `and w0, w0, #1` the original does not have; `fn_71000e88c0` is declared as a class getter by the generated `UnkClassGetters.h` and is an initialiser that returns nothing.
-`fn_71000e88c0` `fn_7100202e7c` `fn_71005026d0` `fn_71007038f4` `fn_7100e4fd1c` `fn_7100e5493c`
+82 are left (`python tools/decl_check.py --definitions` lists them with both signatures): 37 `void` against a
+value, 17 with another number of parameters, 16 with a parameter of another class, 7 with a result of another
+class, 5 with a float parameter in another place. For these the callers' code changes when the declaration
+takes the definition's shape, and the definition stops matching or compiling when it takes theirs, so each
+needs the original read on both sides of the call. Known among them:
+- `fn_7100232c90` and `fn_7100d7babc` take a parameter their callers pass and that the original hands on to
+  another call (`tools/forwarded_args.py`); the body has to forward it.
+- `fn_7100202e7c` forwards `fn_71001ef494`'s result to a caller that returns it as a `bool`, but written that way
+  it gains an `and w0, w0, #1` the original does not have.
+- `fn_71000e88c0` is declared as a class getter by the generated `UnkClassGetters.h` and is an initialiser that
+  returns nothing: the generator's list is wrong for it.
 
 ## Names that point to more than one address
 

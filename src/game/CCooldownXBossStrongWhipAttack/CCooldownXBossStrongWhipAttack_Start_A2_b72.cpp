@@ -9,7 +9,7 @@
 #include "types.h"
 
 struct UnkSelf;
-void fn_71004cb0e8();
+bool fn_71004cb0e8(void*, void*);
 
 struct UnkWhipTrackLink_A2_b72 {
     u8 pad_0x0[0x8];
@@ -32,7 +32,7 @@ void fn_71004ca700(UnkWhipStart_A2_b72* self) {
     self->field_0x70 = -1.0f;
     UnkWhipTrackLink_A2_b72* link = &self->link;
     link->context = self;
-    link->callback = fn_71004cb0e8;
+    link->callback = reinterpret_cast<void (*)()>(&fn_71004cb0e8);
     UnkWeakTarget* track = *reinterpret_cast<UnkWeakTarget**>(self->owner + 0x220);
     if (UnkWeakHandle* handle = self->handle) {
         if (UnkWeakTarget* target = handle->target)
