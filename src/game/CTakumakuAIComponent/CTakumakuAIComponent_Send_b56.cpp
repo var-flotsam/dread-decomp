@@ -78,7 +78,6 @@ void fn_71006d5bf8(UnkTakumakuAI_b56a3* self) {
 // scale 0.75.
 void fn_71006d5e54(UnkTakumakuAI_b56a3* self) {
     UnkTakumakuTimer_b56a3* tp = &self->timer;
-    asm volatile("" : "+r"(tp));
     UnkAnimationComponent* target = self->owner ? self->owner->field_0x220 : nullptr;
     UnkTakumakuTunable_b56a3* tunable = tp->tunable;
     if (!tunable)

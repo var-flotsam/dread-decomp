@@ -41,7 +41,6 @@ void fn_7100763318(UnkBreakableVignette_bv* self) {
     if (!self->field_0x39 && self->field_0x3c)
         fn_7100e95130(fn_7100e8d8b0(), self->field_0x30);
     void** link = &self->field_0x48;
-    asm("" : "+r"(link));
     void* manager = g_unk_7101d47360;
     if (!manager) {
         manager = fn_71000839a0(0xae8, 0x3f);

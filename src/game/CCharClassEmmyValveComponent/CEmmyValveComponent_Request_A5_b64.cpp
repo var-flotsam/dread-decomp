@@ -81,9 +81,7 @@ __attribute__((always_inline)) static inline void SwitchState_A5v_b64(UnkSmMachi
             if (id != 0)
                 goto done;
             enter = false;
-            asm("" : "+r"(enter));
             next = nullptr;
-            asm("" : "+r"(next));
         }
         if (current) {
             current->vf_0x18(id);
@@ -283,7 +281,6 @@ start:
     if (CBlackboard::CSection* s = fn_71010472e0(blackboard, section_id)) {
         if (!blackboard->field_0xe8) {
             UnkPropertyName* name = &values[index].name;
-            asm("" : "+r"(name));  // the original computes the name's address before the type getter
             v.type = fn_710000d228();
             v.value = &value;
             fn_7100332c80(s, name, &v);

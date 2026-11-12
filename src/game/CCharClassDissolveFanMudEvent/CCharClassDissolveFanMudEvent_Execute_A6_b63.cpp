@@ -17,7 +17,6 @@ void fn_7100bcce5c(void* self) {
     u64 id;
     alignas(8) u32 kind;
     key = 0x75d0d6612fb124a7;
-    asm("" ::: "memory");
     id = 0x9dd5fec91d9f3e42;
     UnkGameManager* manager = g_unk_7101d47310;
     kind = g_unk_71727bebb8;

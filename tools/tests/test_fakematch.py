@@ -51,5 +51,34 @@ class ScanTest(unittest.TestCase):
         self.assertEqual(kinds(src), [(2, "offset-cast", "fn_7100000100")])
 
 
+class BarrierRemoval(unittest.TestCase):
+    LINES = ["void fn_7100000100(Foo* f, u64 n) {", "    u32 a = f->a;", "    // keeps n live across the call",
+             "    // (the original reloads it)", '    asm("" : "+r"(n));', "    Use(a);",
+             '    asm volatile("" ::: "memory");  // reads f->b again', "    f->b = n;",
+             '    if (a) asm("" : "+r"(a));', "}"]
+
+    def test_a_bare_barrier_goes_alone(self):
+        out = fakematch.without_barrier(self.LINES, 5, commented=False)
+        self.assertEqual(len(out), len(self.LINES) - 1)
+        self.assertIn("    // (the original reloads it)", out)
+
+    def test_a_commented_barrier_takes_the_comment_block_above_it(self):
+        out = fakematch.without_barrier(self.LINES, 5, commented=True)
+        self.assertEqual(out[:3], self.LINES[:2] + ["    Use(a);"])
+
+    def test_a_comment_on_the_barrier_s_line_goes_with_the_line_only(self):
+        out = fakematch.without_barrier(self.LINES, 7, commented=True)
+        self.assertEqual(out, self.LINES[:6] + self.LINES[7:])
+
+    def test_a_barrier_beside_other_code_or_in_a_macro_is_not_touched(self):
+        self.assertIsNone(fakematch.without_barrier(self.LINES, 9, commented=False))
+        self.assertIsNone(fakematch.without_barrier(['    asm("" : "+r"(x)); \\'], 1, commented=False))
+        self.assertIsNone(fakematch.without_barrier(self.LINES, 2, commented=False))     # not a barrier
+        self.assertIsNone(fakematch.without_barrier(self.LINES, 40, commented=False))
+
+    def test_inline_asm_with_an_instruction_is_not_a_barrier(self):
+        self.assertIsNone(fakematch.without_barrier(['    asm("nop");'], 1, commented=False))
+
+
 if __name__ == "__main__":
     unittest.main()

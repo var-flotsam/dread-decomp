@@ -85,7 +85,6 @@ static inline UnkAirMoveState_B71a6* FindState(UnkAirMove_B71a6* self, s32 kind)
     if (size == 0)
         return nullptr;
     UnkAirMoveState_B71a6** it = self->states;
-    asm("" : "+r"(it));
     for (; size != 0; ++it, size -= sizeof(*it)) {
         if ((*it)->kind == kind)
             return *it;

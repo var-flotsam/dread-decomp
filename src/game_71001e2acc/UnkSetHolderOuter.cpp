@@ -47,7 +47,6 @@ void fn_7100db2468(UnkSetHolderInner* self) {
 
 void fn_7100db2514(UnkSetHolderInner* self) {
     UnkSetHolderOuter* o = OuterOf(self);
-    asm("" : "+r"(o));
     DestroyHolder<false>(self, o);
     operator delete(o);
 }

@@ -45,8 +45,6 @@ bool fn_71000e6db0(UnkVersionEntry* self) {
         const CType* type = reinterpret_cast<const CType*>(v.type);
         if (type && fn_710009d50c(type, fn_710000d228()))
             ok = *base::reflection::refl_ArgValue<u8>(&v);
-        // keeps the flag's byte in a register across the destructor call, tested after it
-        asm("" : "+r"(ok));
         fn_71000a1c60(&v);
     }
     return ok != 0;

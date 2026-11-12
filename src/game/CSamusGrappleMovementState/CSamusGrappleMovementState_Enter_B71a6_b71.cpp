@@ -57,7 +57,6 @@ static inline UnkGrappleMoveState_B71a6* FindState(UnkGrappleMove_B71a6* self, s
     if (size == 0)
         return nullptr;
     UnkGrappleMoveState_B71a6** it = self->states;
-    asm("" : "+r"(it));
     for (; size != 0; ++it, size -= sizeof(*it)) {
         if ((*it)->kind == kind)
             return *it;

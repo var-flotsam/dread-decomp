@@ -42,7 +42,6 @@ bool fn_71005436e8(UnkEmmyAIComponent_b46a1* owner) {
     const CStrId& want = *reinterpret_cast<const CStrId*>(g_unk_71726debd0);
     UnkEmptyStrId_b63a3 value;
     CBlackboard* blackboard = &self->blackboard;
-    asm("" : "+r"(blackboard));
     const CStrId& section = *reinterpret_cast<const CStrId*>(reinterpret_cast<char*>(&GameManagerIdTable()) + 0x1b58);
     if (CBlackboard::CSection* s = fn_7101047270(blackboard, section))
         fn_710051d464(s, g_unk_71726e20a8, &value.id);

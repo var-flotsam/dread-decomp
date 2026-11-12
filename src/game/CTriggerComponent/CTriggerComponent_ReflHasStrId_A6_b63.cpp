@@ -23,7 +23,6 @@ template <u32 Offset>
 static inline __attribute__((always_inline)) UnkReflValue HasStrId_A6t_b63(char* obj, UnkReflValue* const* args) {
     UnkReflValue* a = args[0];
     char* self = *reinterpret_cast<char**>(obj + 8);
-    asm("" ::: "memory");  // the object is read before the argument's type
     UnkReflValue* out = static_cast<UnkReflValue*>(ArgPtr_A6t_b63(&a[1]));
     bool value = *reinterpret_cast<base::global::UnkStringData**>(self + Offset) != &g_unk_7101d47108->empty;
     const CType* t = fn_710000d228();

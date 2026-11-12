@@ -11,14 +11,12 @@ __attribute__((always_inline)) static inline u32 GunSoundKind_A5_b66(u32 flags) 
 }
 
 void fn_71008364e4(UnkGunSoundOwner_A5_b66* self, u32 flags, void* sound, void*, UnkGunSoundParams_A5_b66* params) {
-    asm("" : "+r"(self));  // pins the order: kind, player, then the id
     u32 kind = GunSoundKind_A5_b66(flags);
     void* player = g_unk_71726af0b0;
     PlayGunSound_A5_b66(player, self, sound, kind, 3, params);
 }
 
 void fn_7100836578(UnkGunSoundOwner_A5_b66* self, u32 flags, void* sound, void*, UnkGunSoundParams_A5_b66* params) {
-    asm("" : "+r"(self));  // pins the order: kind, player, then the id
     u32 kind = GunSoundKind_A5_b66(flags);
     void* player = g_unk_71726af0b0;
     PlayGunSound_A5_b66(player, self, sound, kind, 3, params);
@@ -26,7 +24,6 @@ void fn_7100836578(UnkGunSoundOwner_A5_b66* self, u32 flags, void* sound, void*,
 
 // Same with the mode passed in, then the game manager's deferred set at +0x20a8 is told about the sound.
 void fn_7100836340(UnkGunSoundOwner_A5_b66* self, u32 flags, void* sound, u32 mode, UnkGunSoundParams_A5_b66* params) {
-    asm("" : "+r"(self));
     u32 kind = GunSoundKind_A5_b66(flags);
     void* player = g_unk_71726af0b0;
     PlayGunSound_A5_b66(player, self, sound, kind, mode, params);

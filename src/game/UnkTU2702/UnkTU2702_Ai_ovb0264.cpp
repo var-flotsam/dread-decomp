@@ -281,8 +281,6 @@ f32 fn_71010ff140(UnkSpeedSelf_h* self) {
     f32 speed = -1.0f;
     if (self->map.count) {
         u32 idx = hash % self->map.bucket_count;
-        // keeps the modulo ahead of the table load
-        asm("" : "+r"(idx));
         UnkSpeedNode_h** slot = &self->map.buckets[idx];
         if (slot && *slot) {
             UnkSpeedNode_h* head = *slot;

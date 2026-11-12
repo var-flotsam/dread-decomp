@@ -78,7 +78,6 @@ bool fn_710008c3bc(void* base_object, const CFilePathStrId& path, UnkFilePathLis
     base::global::UnkStringData* key = path.data;
     u64 h = reinterpret_cast<const UnkHashView_A1b72*>(key)->hash;
     u32 b = ((u32)(h >> 32) ^ (u32)h) % self->bucket_capacity;
-    asm("" : "+r"(b));  // the original computes the index before loading the buckets
     UnkPathSetNode_A1b72** bucket = &self->buckets[b];
     if (!bucket)
         return false;

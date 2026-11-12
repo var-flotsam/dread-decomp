@@ -83,7 +83,6 @@ void fn_7100206a44(void* sub);
 
 static inline void DestroyUnit132(UnkTaggedHeader* self) {
     char* sub = At(self, 0x20);
-    asm("" : "+r"(sub));
     self->vtable = g_unk_7101a1c630 + 0x10;
     fn_71001bbc88(Field<void*>(self, 0x128));
     fn_7100206a44(sub);
@@ -101,7 +100,6 @@ void fn_71001faf68(void* sub);
 
 static inline void DestroyUnit140(UnkTaggedHeader* self) {
     char* sub = At(self, 0x20);
-    asm("" : "+r"(sub));
     self->vtable = g_unk_7101a1cbe8 + 0x10;
     fn_710002572c(At(self, 0x138));
     fn_71001faf68(sub);

@@ -58,7 +58,6 @@ void fn_7100aa6558(UnkWaterPlatform_A5_b73* self, f32 dt) {
             f32 target = self->target;
             self->countdown = 0.0f;
             UnkTimedCurve* curve = &self->curve;
-            asm("" : "+r"(curve));  // the original computes the curve's address before the string
             base::global::CRntString modifiers("");
             fn_7100075f78(target, 1.0f, 0.25f, curve, &modifiers);
         }

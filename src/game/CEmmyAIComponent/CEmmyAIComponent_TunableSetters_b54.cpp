@@ -40,7 +40,6 @@ static inline __attribute__((always_inline)) UnkResult_0x18_b54 SetWord_b54(UnkO
     char* self = owner->self;
     UnkProvider_b54** provider = reinterpret_cast<UnkProvider_b54**>(self + 0x29ee0);
     u32* own = reinterpret_cast<u32*>(self + SelfOffset);
-    asm("" : "+r"(source) : "r"(provider), "r"(own));
     UnkValueSource_b54* src = *source;
     const u32* v = reinterpret_cast<const u32*>(src);
     if (src->kind == 1 || src->set->count >= 9)

@@ -700,8 +700,6 @@ void fn_7100352a2c(UnkAimState_ovb0198d* self, bool on) {
         if (h && --h->ref_count == 0)
             h->Delete();
     }
-    // Keeps the saved-block address calculations after the release loop.
-    asm("" : "+r"(self));
     self->field_0x510 = self->field_0x4f8;
     u32 word = self->field_0x500;
     UnkWord_ovb0198d* dst = reinterpret_cast<UnkWord_ovb0198d*>(reinterpret_cast<u8*>(self) + 0x51c);
@@ -771,8 +769,6 @@ struct UnkAimSortOnExit_ovb0198s {
     u32 count;
     ~UnkAimSortOnExit_ovb0198s() {
         UnkAimTargets_ovb0198s* object = targets;
-        // Keeps the key loads relative to the object, not to the filter pointer passed earlier.
-        asm("" : "+r"(object));
         u64 a = object->filter.a;
         u32 b = object->filter.b;
         UnkAimRecord_ovb0198s* end = object->array.items + count;

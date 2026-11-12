@@ -146,7 +146,6 @@ void fn_7100080578(UnkPoolSetWithNodes* set, u32 buckets, u32 nodes) {
         asm("" : "+r"(set));
         fn_710008378c(&set->nodes.blocks, memory, (u64)nodes * sizeof(UnkPoolNode), sizeof(UnkPoolNode));
     }
-    asm("" : "+r"(set));
     set->node_allocator = reinterpret_cast<UnkAllocator*>(&set->nodes);
     UnkVector<char*>& v = set->buckets;
     u32 count = v.count;

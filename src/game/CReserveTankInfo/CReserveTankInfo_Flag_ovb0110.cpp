@@ -80,7 +80,6 @@ void fn_7100f10b00(UnkReserveTankFlag_ov110* self, bool value) {
     if (CBlackboard::CSection* section = fn_71010472e0(blackboard, id)) {
         if (!blackboard->field_0xe8) {
             UnkPropertyName* name = &self->name;
-            asm("" : "+r"(name));
             typed.type = fn_710000d228();
             typed.value = &v;
             fn_7100332c80(section, name, &typed);
