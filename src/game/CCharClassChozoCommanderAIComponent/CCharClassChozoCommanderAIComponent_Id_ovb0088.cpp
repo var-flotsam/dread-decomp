@@ -4,20 +4,8 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "types.h"
-
-// The id table (fn_7100031894 builds it; as src/game/CEmmyAIComponent/CEmmyAIComponent_IsStateId_b56.cpp).
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x23a8];
-    u8 field_0x23a8[8];
-    u8 pad_0x23b0[0x2578 - 0x23b0];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
 
 extern u8 g_unk_71726c9250[] __attribute__((visibility("hidden")));
 
@@ -38,5 +26,5 @@ const void* fn_710044e264(void* self, UnkActor* actor) {
             static_cast<base::reflection::UnkReflObject*>(actor->field_0x240)));
     if (ai->phase == 1)
         return g_unk_71726c9250;
-    return GameManagerIdTable().field_0x23a8;
+    return &GameManagerIdTable().field_0x23a8;
 }

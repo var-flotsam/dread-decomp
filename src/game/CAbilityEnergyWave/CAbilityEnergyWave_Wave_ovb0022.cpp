@@ -19,6 +19,7 @@
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU1428.h"
 #include "game/UnkTU2553.h"
@@ -53,21 +54,7 @@ struct UnkEnergyWaveFxComp_b49;
 extern char g_unk_7101648d28[];
 extern const u64 g_unk_7101648d18;
 
-// The id table (fn_7100031894 builds it; as src/game/CEmmyAIComponent/CEmmyAIComponent_IsStateId_b56.cpp).
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0xf18];
-    CStrId field_0xf18;
-    u8 pad_0xf20[0x2578 - 0xf20];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
-
 void fn_7100301600(void* self, u64 hash, bool on, UnkObject* world);
-
 
 void fn_71003053c4(UnkSelf* self);
 void fn_710085ab38(UnkSamusGunComponent* gun);

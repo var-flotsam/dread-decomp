@@ -13,6 +13,7 @@
 #include "game/CFXComponent.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkActor.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU1730.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkParams.h"
@@ -86,7 +87,6 @@ bool fn_710042a044(UnkBurstEventSelf_ovb0135* self, const UnkBurstEvent_ovb0135*
     self->field_0xac = event->field_0x8->field_0x64;
     return true;
 }
-
 
 // The parameter block of the vtable-0x7101a25b38 kind (as
 // src/game/CChozoCommanderLandingSlamAttack/CChozoCommanderLandingSlamAttack_End_A2_b72.cpp builds it, with
@@ -190,17 +190,6 @@ void fn_7100428af4(UnkBurstStart_ovb0135* self) {
     f32 time = *reinterpret_cast<const f32*>(reinterpret_cast<const u8*>(&g_unk_71726c56e8) + 0x2c);
     fn_7100426de4(self, 0, 1.0f, time, time);
     self->field_0x6c = 0;
-}
-
-// The id table (fn_7100031894 builds it; as src/game/CAbilityEnergyWave/CAbilityEnergyWave_Effect_ovb0022.cpp).
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x2578];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
 }
 
 using base::global::CStrId;

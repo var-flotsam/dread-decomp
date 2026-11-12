@@ -7,6 +7,7 @@
 #include "game/CScenario.h"
 #include "game/CTriggerComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU2553.h"
@@ -560,21 +561,7 @@ struct UnkHandleList {
     u32 count;
 };
 
-// The id table (fn_7100031894 builds it, src/tables/strid_table_7100031894.cpp: 0x2578 bytes of
-// string ids; a weak function-local static reached through the GOT). Only the ids used here are
-// named; the rest is reached by offset.
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x17e0];
-    u8 field_0x17e0[8];
-    u8 pad_0x17e8[0x2578 - 0x17e8];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
 static_assert(sizeof(UnkGameManagerIdTable) == 0x2578, "the table's whole size (its constructor fills it)");
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
 
 struct UnkLoadedObject {
     virtual const base::reflection::CType* vf_0x0();
@@ -714,7 +701,7 @@ void fn_7100df19c0(UnkGameManager* self) {
             if (steps->field_0x29a0 && steps->field_0x29a0->obj && !fn_7101196fd8(g_unk_7101d47330))
                 fn_71002334fc(static_cast<UnkStruct_71002334fc*>(RefObject(steps->field_0x29a0)), true);
             if (void* holder = fn_7100defcec(g_unk_7101d47310)) {
-                if (UnkCameraCtrl* ctrl = fn_71010e389c(holder, GameManagerIdTable().field_0x17e0)) {
+                if (UnkCameraCtrl* ctrl = fn_71010e389c(holder, &GameManagerIdTable().field_0x17e0)) {
                     if (reinterpret_cast<UnkCameraCtrlView*>(ctrl)->vf_0x0() == fn_7100932fa4())
                         fn_7100935d40(ctrl);
                 }

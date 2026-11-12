@@ -20,6 +20,7 @@
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU2509.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU365.h"
@@ -711,22 +712,6 @@ UnkBounds_ovb0107 fn_7100865558(UnkCollisionComponent_Bounds_ovb0107* self, u32 
         Grow(b, shape, minX, minY, maxX, maxY);
     }
     return b;
-}
-
-// Placing a record's object at the owner's transform or at the transform of a named node of its shape.
-// The id table (fn_7100031894 builds it; as src/game/CEmmyAIComponent/CEmmyAIComponent_IsStateId_b56.cpp).
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0xd40];
-    CStrId field_0xd40;
-    u8 pad_0xd48[0x2418 - 0xd48];
-    CStrId field_0x2418;  // "Unassigned"
-    u8 pad_0x2420[0x2578 - 0x2420];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
 }
 
 struct UnkEntity;

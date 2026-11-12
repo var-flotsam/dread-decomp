@@ -6,18 +6,11 @@
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CGrappleBeamGun.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-// The game manager's id table (as src/game/CGunComponent/CGunComponent_Charge_ovb0091.cpp).
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x1240];
-    CStrId field_0x1240;
-    u8 pad_0x1248[0x2578 - 0x1248];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
 inline UnkGameManagerIdTable& GrappleIdTable() {
     static UnkGameManagerIdTable s_table;
     return s_table;

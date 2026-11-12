@@ -28,6 +28,7 @@
 #include "game/UnkCameraCtrl.h"
 #include "base/input/UnkRumbleManager.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU0.h"
@@ -362,19 +363,6 @@ struct UnkMaskOf {
     }
 };
 struct UnkSubAreaMaskTag;
-
-// The id table (fn_7100031894 builds it; src/game/CGameManager.cpp has the same definition).
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x17e0];
-    u8 field_0x17e0[8];
-    u8 pad_0x17e8[0x2578 - 0x17e8];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
 
 // The camera holder fn_7100defcec gives and its current camera controller (game/UnkCameraCtrl.h).
 void fn_7100723120(void* holder);
@@ -804,7 +792,7 @@ void fn_7100eea618(UnkSubAreaTag, UnkSubArea* area, bool flag) {
     base::reflection::UnkReflObject* component = fn_7100d786c0(camera);
     if (!component)
         return;
-    UnkCameraCtrl* ctrl = fn_71010e389c(component, GameManagerIdTable().field_0x17e0);
+    UnkCameraCtrl* ctrl = fn_71010e389c(component, &GameManagerIdTable().field_0x17e0);
     if (ctrl && ctrl->vf_0x0() == fn_7100932fa4()) {
         const UnkSubAreaCameraSettings* settings = reinterpret_cast<const UnkSubAreaCameraSettings*>(area);
         fn_7100935cb8(settings->field_0x100, ctrl, flag);

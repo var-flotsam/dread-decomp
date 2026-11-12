@@ -3,6 +3,7 @@
 // (0 when busy or closed, 1 in state 3); otherwise restarts the timer at 0.2. Names and layouts are placeholders.
 #include <math.h>
 
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU1376.h"
 #include "types.h"
 #include "base/color/CColor4F.h"
@@ -20,18 +21,6 @@ struct UnkGameManagerIdKey_b0251 {
     u8 pad_0x0[0x30];
     u64 id;
 };
-
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0xb10];
-    UnkGameManagerIdKey_b0251* field_0xb10;
-    u8 pad_0xb18[0x2578 - 0xb18];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
 
 struct UnkDoorGfx_b0251 {
     u8 pad_0x0[0x138];
@@ -99,7 +88,7 @@ void fn_71008d387c(UnkDoor_b0251* self, f32 dt) {
         goto reset;
     if (!(d + -0.001f <= 0.0f))
         goto reset;
-    if (!fn_710117ae38(self->owner->animation, GameManagerIdTable().field_0xb10->id, false))
+    if (!fn_710117ae38(self->owner->animation, reinterpret_cast<UnkGameManagerIdKey_b0251*>(GameManagerIdTable().field_0xb10.data)->id, false))
         goto reset;
     {
         const u32 mask = 0x08000400;

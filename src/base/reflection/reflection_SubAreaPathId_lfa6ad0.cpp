@@ -2,6 +2,7 @@
 // "subarea_<a>_<b>[_<c>]" from three named ids (fn_7100fa6ad0). Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -30,19 +31,6 @@ struct UnkNamedId_lfa6ad0 {
     }
 };
 inline bool operator!=(const UnkNamedId_lfa6ad0& a, const UnkNamedId_lfa6ad0& b) { return a.data != b.data; }
-
-// The id table (fn_7100031894 builds it; as src/base/reflection/reflection_owned_ovb0130.cpp).
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x11a8];
-    UnkNamedId_lfa6ad0 field_0x11a8;  // the id that takes no third part
-    u8 pad_0x11b0[0x2578 - 0x11b0];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
 
 // A string with 0x100 bytes of inline storage (0x148 bytes), as in src/base/UnkLuaDoString_b50.cpp.
 struct UnkInlineString_lfa6ad0 {
@@ -97,7 +85,7 @@ UnkPathId_lfa6ad0 fn_7100fa6ad0(void* self, const UnkNamedId_lfa6ad0* area, cons
     fn_710007f3b4(text.Str(), area->Text());
     fn_710007f564(text.Str(), "_");
     fn_710007f3b4(text.Str(), first->Text());
-    if (*first != GameManagerIdTable().field_0x11a8) {
+    if (*first != reinterpret_cast<UnkNamedId_lfa6ad0&>(GameManagerIdTable().field_0x11a8)) {
         fn_710007f564(text.Str(), "_");
         fn_710007f3b4(text.Str(), second->Text());
     }

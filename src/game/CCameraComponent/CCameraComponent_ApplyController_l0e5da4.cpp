@@ -4,6 +4,7 @@
 #include "base/UnkParallelFind.h"
 #include "base/global/CStrId.h"
 #include "game/CCameraComponent.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -96,19 +97,6 @@ struct UnkCamComp6_ovb5 {
     }
 };
 static_assert(__builtin_offsetof(UnkCamComp6_ovb5, field_0x258) == 0x258, "layout");
-
-// The id table (fn_7100031894 builds it; as src/game/CAbilityEnergyWave/CAbilityEnergyWave_Effect_ovb0022.cpp).
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x7c8];
-    CStrId field_0x7c8;
-    u8 pad_0x7d0[0x2578 - 0x7d0];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
 
 static inline bool SameId(const CStrId& a, const CStrId& b) {
     return a.data == b.data;

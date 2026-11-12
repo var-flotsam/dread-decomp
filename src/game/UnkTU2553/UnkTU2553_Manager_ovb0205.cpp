@@ -23,6 +23,7 @@
 #include "game/CCentralUnitCannonBeamMovementComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSubAreaGuiCache.h"
@@ -49,28 +50,6 @@ struct UnkCompared_0x30;
 struct UnkStepCallbacks;
 struct UnkStepCallback;
 
-// The id table (fn_7100031894 builds it).
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0xf18];
-    CStrId field_0xf18;
-    u8 pad_0xf20[0x1150 - 0xf20];
-    CStrId field_0x1150;
-    u8 pad_0x1158[0x18a0 - 0x1158];
-    CStrId field_0x18a0;
-    u8 pad_0x18a8[0x1f00 - 0x18a8];
-    CStrId field_0x1f00;
-    u8 pad_0x1f08[0x2050 - 0x1f08];
-    CStrId field_0x2050;
-    u8 pad_0x2058[0x2578 - 0x2058];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
-
-
 struct UnkAbility;
 struct UnkAbilitySet;
 
@@ -88,7 +67,6 @@ struct UnkTgm_b205 {
     u8 pad_0x0[0x29b8];
     UnkTgmHandle_b205* field_0x29b8;
 };
-
 
 UnkReflObject* fn_7100df554c(UnkTgm_b205* self) {
     UnkTgmHandle_b205* handle = self->field_0x29b8;
@@ -251,7 +229,6 @@ void fn_7100df3418(UnkGameManager* manager, bool a, bool b, void* x3) {
     CStrId id = g_unk_7101d470e0;
     fn_7100df3300(reinterpret_cast<UnkTgmScreen_b205*>(manager), 2, 0, a, b, &id, false, x3);
 }
-
 
 // ---- fn_7100e010a0: sets a flag on the model of every object a registry holds
 struct UnkTgmModelState_b205 {
@@ -645,7 +622,6 @@ s32 fn_7100de9ae4() {
     }
     return value;
 }
-
 
 // ---- fn_7100dee270
 struct UnkCompared_0x30;

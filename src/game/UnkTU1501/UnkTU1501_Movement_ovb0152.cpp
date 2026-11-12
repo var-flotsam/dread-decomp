@@ -21,6 +21,7 @@
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkTU1501.h"
@@ -268,21 +269,6 @@ struct UnkHitNode_b152 {
 struct UnkHitInfo_b152 {
     UnkHitNode_b152* field_0x0;
 };
-
-// The id table (fn_7100031894 builds it; as src/game/CSamusMagnetGloveMovementState/CParams/CParams_Dir_ovb0082.cpp).
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x13f8];
-    CStrId field_0x13f8;
-    u8 pad_0x1400[0x1848 - 0x1400];
-    CStrId field_0x1848;
-    u8 pad_0x1850[0x2578 - 0x1850];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
 
 // The request that fn_710098ae04 takes (as src/game/CSamusGroundMovementState/CParams/CParams_Default_ovb0138.cpp):
 // the reflected params base holding an unset track request, then a derived part.

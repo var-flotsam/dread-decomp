@@ -7,10 +7,10 @@
 #include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
-
 
 using base::global::CStrId;
 
@@ -27,18 +27,6 @@ struct UnkProfileSaveArg {
 
 extern UnkPropertyEx<> g_unk_717275aef8;  // "SecretVisited"
 
-// The id table (fn_7100031894 builds it, as in src/base/reflection/UnkEnumValueNames.cpp).
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x17e0];
-    u8 field_0x17e0[8];
-    u8 pad_0x17e8[0x2578 - 0x17e8];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
 static inline const CStrId& IdTableKey(u32 offset) {
     return *reinterpret_cast<const CStrId*>(GameManagerIdTable().pad_0x0 + offset);
 }

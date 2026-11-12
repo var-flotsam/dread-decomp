@@ -15,6 +15,7 @@
 #include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU2615.h"
@@ -64,21 +65,6 @@ struct UnkAdamDialog {
     bool field_0x98;
 };
 static_assert(__builtin_offsetof(UnkAdamDialog, field_0x98) == 0x98, "UnkAdamDialog placeholder layout");
-
-// The id table (fn_7100031894 builds it; the same definition as src/game/CGameManager.cpp's and
-// src/game/CSubAreaManager.cpp's). Its +0x2050 names the blackboard section the dialog mode is
-// read from.
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x17e0];
-    u8 field_0x17e0[8];
-    u8 pad_0x17e8[0x2578 - 0x17e8];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
 
 // A property seen as a definition whose qualified id (game/UnkGameBlackboard.h) is built on first
 // use (as in src/game/CGameManager.cpp).

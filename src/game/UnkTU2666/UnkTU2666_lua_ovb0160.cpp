@@ -22,6 +22,7 @@
 #include "game/GUI/CAmiiboComposition.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU23.h"
@@ -113,7 +114,6 @@ s32 fn_710107cc00(lua_State* L) {
     return 0;
 }
 
-
 struct UnkSpawnGroupEach_ovb0065;
 using UnkSpawnEachFn_ovb0065 = void (UnkSpawnGroupEach_ovb0065::*)(void*);
 void fn_710111c3d8(UnkSpawnGroupEach_ovb0065* self, UnkSpawnEachFn_ovb0065 fn);
@@ -171,7 +171,6 @@ s32 fn_71010956b0(lua_State* L) {
     }
     return 0;
 }
-
 
 void* fn_7100deb7a8(UnkGameManager* self, const CStrId* id);
 void* fn_7100deb914(UnkGameManager* self, const CStrId* id);
@@ -332,7 +331,6 @@ s32 fn_710108d4f0(lua_State* L) {
     return 0;
 }
 
-
 struct UnkWorld;
 struct UnkRinkaControl_ruc;
 struct UnkStruct_710024fa0c;
@@ -368,7 +366,6 @@ s32 fn_710108fd50(lua_State* L) {
     }
     return 0;
 }
-
 
 struct UnkLuaPlaced_b0160 {
     virtual void vf_0x0();
@@ -415,7 +412,6 @@ s32 fn_710107cf40(lua_State* L) {
     }
     return 0;
 }
-
 
 extern void* g_unk_7101d47368;
 struct UnkEnvironmentManager;
@@ -476,18 +472,6 @@ s32 fn_7101083560(lua_State* L) {
     return 0;
 }
 
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0xd80];
-    CStrId field_0xd80;
-    u8 pad_0xd88[0x2578 - 0xd88];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
-
 s32 fn_7101083390(lua_State* L) {
     bool first;
     bool second = false;
@@ -502,7 +486,6 @@ s32 fn_7101083390(lua_State* L) {
     }
     return 0;
 }
-
 
 struct UnkLuaPart_b0160;
 struct UnkLuaOwner_b0160 {

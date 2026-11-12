@@ -17,25 +17,13 @@
 #include "game/CNavMeshItemComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU2611.h"
 #include "types.h"
 
 using namespace unk_static_init;
 using base::global::CStrId;
 using base::global::UnkStringData;
-
-// The id table (fn_7100031894 builds it; as src/base/reflection/reflection_owned_ovb0130.cpp).
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0xd80];
-    CStrId field_0xd80;
-    u8 pad_0xd88[0x2578 - 0xd88];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
 
 void fn_7100fab0dc(char* p0);
 void fn_7100fa4eb8(void* dst, void* src);

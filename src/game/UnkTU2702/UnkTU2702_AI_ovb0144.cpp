@@ -19,6 +19,7 @@
 #include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkCallbackSetVector.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU2702.h"
 #include "game/UnkTUProperty.h"
@@ -38,21 +39,6 @@ void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const 
 
 extern base::global::CStrId g_unk_71726b7cb8;
 
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x8b8];
-    UnkPropertyName field_0x8b8;
-    u8 pad_0x8c0[0x28];
-    UnkPropertyName field_0x8e8;
-    UnkPropertyName field_0x8f0;
-    u8 pad_0x8f8[0x2578 - 0x8f8];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
-inline UnkGameManagerIdTable& GameManagerIdTable() {
-    static UnkGameManagerIdTable s_table;
-    return s_table;
-}
-
 struct UnkAIBlackboard_b0144 {
     u8 pad_0x0[0x1260];
     CBlackboard blackboard;
@@ -71,7 +57,7 @@ static inline void SetSectionBool(CBlackboard* blackboard, const CStrId& section
 }
 
 void fn_7101105c94(UnkAIBlackboard_b0144* self) {
-    SetSectionBool(&self->blackboard, g_unk_71726b7cb8, &GameManagerIdTable().field_0x8e8);
+    SetSectionBool(&self->blackboard, g_unk_71726b7cb8, &reinterpret_cast<UnkPropertyName&>(GameManagerIdTable().field_0x8e8));
 }
 
 struct UnkAIOwnerA_b0144 {
@@ -107,7 +93,7 @@ static_assert(__builtin_offsetof(UnkAIBB_b0144, data) == 0x1610, "layout");
 
 void fn_7101105b90(UnkAIBB_b0144* self) {
     self->field_0x1128 = 0;
-    SetSectionBool(&self->blackboard, g_unk_71726b7cb8, &GameManagerIdTable().field_0x8b8);
+    SetSectionBool(&self->blackboard, g_unk_71726b7cb8, &reinterpret_cast<UnkPropertyName&>(GameManagerIdTable().field_0x8b8));
     self->vf_0x258();
 }
 
@@ -120,7 +106,7 @@ void fn_7101108124(UnkAIBB_b0144* self, void* arg) {
         if (cls && fn_710117b348(cls, fn_7100cf96a8()) && self->owner->field_0x1f0)
             fn_7101108004(self, arg);
     }
-    SetSectionBool(&self->blackboard, g_unk_71726b7cb8, &GameManagerIdTable().field_0x8f0);
+    SetSectionBool(&self->blackboard, g_unk_71726b7cb8, &reinterpret_cast<UnkPropertyName&>(GameManagerIdTable().field_0x8f0));
 }
 
 // ---- A fade effect on the owner's effect object

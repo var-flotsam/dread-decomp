@@ -8,6 +8,7 @@
 #include "game/GUI/CAmiiboComposition.h"
 #include "game/GUI/CIngameMenu.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiHandle.h"
 #include "base/reflection/UnkReflAttributes.h"
@@ -499,12 +500,6 @@ extern UnkPropertyEx<> g_unk_7172759478;
 void fn_7100b422a8();
 void fn_7100b42be0(UnkMenuListener_ovb0203* listener, void* arg);
 struct UnkStateOwner;
-
-struct UnkGameManagerIdTable {
-    u8 pad_0x0[0x2578];
-    UnkGameManagerIdTable() asm("fn_7100031894");
-    ~UnkGameManagerIdTable() asm("fn_71000407f0");
-};
 
 inline const CStrId& SectionId_ovb0203(u32 offset) {
     static UnkGameManagerIdTable s_table asm("g_unk_7101d552d0");
