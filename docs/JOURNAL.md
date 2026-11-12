@@ -152,6 +152,18 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Labelled members (2026-11-12).** The old branch `claude/project-thread-3x0lf8` gave 94 member declarations an
+asm label in place of a `// fn_<addr>` comment; it was never merged and no longer applies. Redone on `main` for
+the members where it is safe: 35 labels, on members whose function nothing else declares and whose struct is in
+one file. Each was checked before it was written: `tools/name_check.py` collects, for every name `check.py`
+cannot resolve, where the original sends each reference, so the comment's address can be compared with the
+call targets (35 agree, none differs; 3 are called by no matching function and stay comments). On Clang 9 a
+label on a constructor or destructor is ignored, so the matching build is the same; on a method it renames the
+symbol, and `check.py` then verifies the call by address. Four files that each define their own
+`UnkSubTree::Query` now bind four different functions under that one name. What is left, and why, is in
+`docs/known_declaration_faults.md`. The old branch has nothing left that `main` lacks (its two hand-written
+functions, `fn_710007ba20` and `fn_710109d4f0`, were merged long ago).
+
 **Every reflected member's type has a name (2026-11-12).** 539 members of `data/reflection_fields.csv` had their
 type only as `&g_unk_<addr>`: the type object of an enum, a flag set, a collection or a link, 242 objects in all,
 which no getter returns. Their names are in the units' static initialisers: the initialiser makes the name a
