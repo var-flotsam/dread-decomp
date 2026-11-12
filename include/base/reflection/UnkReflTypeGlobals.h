@@ -12,6 +12,8 @@ extern base::reflection::CType g_unk_7101d5e2e0;
 // Hidden: the original addresses this global directly (adrp/add on its own address), not through a
 // GOT slot like the other globals here.
 extern base::reflection::CType g_unk_7172794e78 __attribute__((visibility("hidden")));
+// The type unit 108's registrations answer with (built by that unit's static initialiser).
+extern base::reflection::CType g_unk_7108b6d8f0;
 // The type of the CBaseGameLink class.
 extern base::reflection::CType g_unk_71727bbe68;
 // refl_GetType<CLightManager*>: the generated getter of the pointer type (defined in generated code).

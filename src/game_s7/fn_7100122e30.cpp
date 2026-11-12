@@ -16,7 +16,6 @@ extern UnkEnumType g_unk_7108b6d7b0;
 void fn_7100111068(UnkEnumType* type, const CStrId& name, void*, void*, void (*)(), void*);
 void fn_7100110e60();
 extern char g_unk_7108b6d8e8[];
-extern UnkEnumType g_unk_7108b6d8f0;
 void fn_71001122a8(UnkEnumType* type, const CStrId& name, void*, void*, void (*)(), void*);
 void fn_7100111368();
 extern char g_unk_7108b6da28[];
@@ -113,7 +112,7 @@ void fn_7100122e30() {
     fn_710009ec00(g_unk_7108b6d8e8, &g_unk_7108b6d7b0);
     {
         CStrId n("base::spatial::CPolygon2D", true);
-        fn_71001122a8(&g_unk_7108b6d8f0, n, nullptr, nullptr, fn_7100111368, nullptr);
+        fn_71001122a8(reinterpret_cast<UnkEnumType*>(&g_unk_7108b6d8f0), n, nullptr, nullptr, fn_7100111368, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_7108b6d8f0, g_unk_7101a19000);
     fn_710009ec00(g_unk_7108b6da28, &g_unk_7108b6d8f0);

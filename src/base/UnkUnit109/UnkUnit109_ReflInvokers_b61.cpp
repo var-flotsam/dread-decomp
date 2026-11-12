@@ -2,13 +2,12 @@
 // two arguments (a u32 and a bool) with the object at +8 to fn_7100124170 and returns the value
 // it answers by reference, described by the type at g_unk_7108b6d8f0. Names are placeholders.
 #include "base/reflection/UnkReflValue.h"
+#include "base/reflection/UnkReflTypeGlobals.h"
 #include "types.h"
 
 using base::reflection::CType;
 using base::reflection::UnkReflValue;
 
-struct UnkEnumType;
-extern UnkEnumType g_unk_7108b6d8f0;  // as src/game_s7/fn_7100122e30.cpp declares it
 
 void* fn_7100124170(void* self, u32 value, bool flag);
 
@@ -28,6 +27,6 @@ UnkReflValue fn_710012580c(void*, char* obj, UnkReflValue* const* args) {
     r.field_0x0 = nullptr;
     r.type = nullptr;
     r.kind = 2;
-    fn_71000a18d4(&r, reinterpret_cast<const CType*>(&g_unk_7108b6d8f0), result, true);
+    fn_71000a18d4(&r, &g_unk_7108b6d8f0, result, true);
     return r;
 }

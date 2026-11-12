@@ -43,6 +43,12 @@ in data/functions/, --no-reloc) are the same as when it was computed (`<obj>.dif
 Statuses are always derived afresh from the diff and the source's annotations. `--no-cache`
 rebuilds and rediffs everything (the nightly run does), refreshing both caches.
 
+Verified equivalence (tier 2 of CLAUDE.md's completion): data/equivalence.csv holds the verdicts of
+tools/equiv_test.py, each with the digest of the code it judged. Every `pass` row must still describe
+the tree: its function is defined in src/ as NON_MATCHING(minor) and its code has that digest. A row
+that does not prints `EQUIV  <addr>  <why>` and the check fails: run tools/equiv_test.py --write on the
+file again, or take the row out (a function that now matches needs none).
+
 Usage:
   python tools/check.py --version 2.1.0            # report; exit 1 if an O function regressed or a function is defined in two files
   python tools/check.py --version 2.1.0 --update   # also write O/m/M/W into data/functions/
@@ -68,6 +74,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import asmdiff  # noqa: E402
 from dread import functions  # noqa: E402
 import buildcfg  # noqa: E402
+import equiv_test  # noqa: E402
 import hostenv  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -345,6 +352,39 @@ def compile_only(version: str, jobs: int, cache: bool = True) -> int:
     return 1 if failed else 0
 
 
+def stale_verdicts(table: dict[int, dict], statuses: dict[str, str], where: dict[str, list[tuple[Path, str]]],
+                   code_of=None) -> list[tuple[str, str]]:
+    """[(address, why)] for the `pass` rows of data/equivalence.csv that no longer describe the tree.
+    `statuses` maps an address to its status in src/, `where` to the (object, symbol) pairs defining it;
+    `code_of(object, symbol)` returns that function's bytes (the objects are read by default)."""
+    objects: dict[Path, dict[str, bytes]] = {}
+
+    def read(obj: Path, symbol: str) -> bytes | None:
+        if obj not in objects:
+            objects[obj] = {f.symbol: f.code for f in asmdiff.read_object(obj)}
+        return objects[obj].get(symbol)
+
+    code_of = code_of or read
+    out = []
+    for a in sorted(table):
+        row = table[a]
+        if row["verdict"] != "pass":
+            continue
+        addr = f"{a:#x}"
+        status = statuses.get(addr)
+        if status != "m":
+            out.append((addr, "no function of src/ is defined at it" if status is None else
+                        f"its status is {status}, not m: the verdict belongs to other code"))
+            continue
+        if row["rules"] != str(equiv_test.RULES):
+            out.append((addr, f"judged under rules {row['rules']}, the test is at {equiv_test.RULES}"))
+            continue
+        codes = [code_of(obj, symbol) for obj, symbol in where.get(addr, [])]
+        if not any(c is not None and equiv_test.current(row, equiv_test.digest(c)) for c in codes):
+            out.append((addr, "its code changed since it was judged"))
+    return out
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--version", help="dump version to diff against (required unless --compile-only)")
@@ -378,7 +418,8 @@ def main() -> int:
     pairs = [(src, obj) for src, obj in zip(srcs, objects) if obj is not None]
     entries, reused = diff_all(pairs, original, by_name, diff_inputs(args.version, rows, args.no_reloc),
                                args.no_reloc, cache)
-    for src, _ in pairs:
+    where: dict[str, list[tuple[Path, str]]] = {}  # address -> (object, symbol) of every definition
+    for src, obj in pairs:
         notes = annotations(src)
         report_only = src.relative_to(ROOT / "src").parts[0] in REPORT_ONLY
         for e in entries[src]:
@@ -397,6 +438,7 @@ def main() -> int:
                     reloc_lines.setdefault(addr, []).extend(e["reloc_lines"])
             results[addr] = (status, e["name"], e["score"])
             defined_in.setdefault(addr, set()).add(src)
+            where.setdefault(addr, []).append((obj, e["symbol"]))
     print(f"cache: {len(pairs) - reused} of {len(pairs)} objects diffed, {reused} reused")
 
     regressions = 0
@@ -431,6 +473,13 @@ def main() -> int:
     if duplicates:
         print(f"{len(duplicates)} functions defined in more than one file; rerun the generators (verify.py --regen)")
 
+    stale = stale_verdicts(equiv_test.read_table(), {a: v[0] for a, v in results.items()}, where)
+    for addr, why in stale:
+        print(f"EQUIV  {addr}  {why}")
+    if stale:
+        print(f"{len(stale)} rows of data/equivalence.csv do not describe the tree: judge those functions again "
+              "(tools/equiv_test.py --write <file>) or take the rows out")
+
     if args.update:
         for name, frows in files.items():
             changed = False
@@ -445,7 +494,7 @@ def main() -> int:
             if changed:
                 functions.write(name, frows)
         print("statuses written to data/functions/")
-    return 1 if failed or regressions or duplicates else 0
+    return 1 if failed or regressions or duplicates or stale else 0
 
 
 if __name__ == "__main__":
