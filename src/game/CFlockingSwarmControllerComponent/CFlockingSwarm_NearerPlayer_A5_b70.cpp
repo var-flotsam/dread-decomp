@@ -7,15 +7,16 @@
 #include "types.h"
 
 // Returned through x8, so the original's result type is not trivially copyable.
-struct UnkVec3_710072a110 {
+struct UnkVec3Result {
     f32 x;
     f32 y;
     f32 z;
-    UnkVec3_710072a110(const UnkVec3_710072a110& o) : x(o.x), y(o.y), z(o.z) {}
+    UnkVec3Result(const UnkVec3Result& o) : x(o.x), y(o.y), z(o.z) {}
 };
 
 struct UnkObj_710072a110;
-UnkVec3_710072a110 fn_7100745e24(UnkObj_710072a110* obj);
+struct UnkParent_71007455dc;
+UnkVec3Result fn_7100745e24(UnkParent_71007455dc* parent);
 
 struct UnkPlayer;
 
@@ -24,9 +25,9 @@ bool fn_7100739e4c(UnkObj_710072a110* a, UnkObj_710072a110* b) {
     f32 x = player->field_0x44;
     f32 y = player->field_0x54;
     f32 z = player->field_0x64;
-    UnkVec3_710072a110 pa = fn_7100745e24(a);
+    UnkVec3Result pa = fn_7100745e24(reinterpret_cast<UnkParent_71007455dc*>(a));
     f32 da = (pa.x - x) * (pa.x - x) + (pa.y - y) * (pa.y - y) + (pa.z - z) * (pa.z - z);
-    UnkVec3_710072a110 pb = fn_7100745e24(b);
+    UnkVec3Result pb = fn_7100745e24(reinterpret_cast<UnkParent_71007455dc*>(b));
     f32 db = (pb.x - x) * (pb.x - x) + (pb.y - y) * (pb.y - y) + (pb.z - z) * (pb.z - z);
     return da < db;
 }

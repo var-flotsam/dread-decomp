@@ -12,6 +12,7 @@
 #include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
+using base::reflection::CType;
 
 extern char g_unk_7101d5bddc[];
 extern char g_unk_7101d5bddd[];
@@ -150,7 +151,7 @@ void* fn_71000cd2a4(void*, void*);
 extern UnkConversion g_unk_7101d5c6b0;
 void* fn_71000cd338(void*, void*);
 extern UnkConversion g_unk_7101d5c6d0;
-UnkEnumType* fn_7100010e58();
+const CType* fn_7100010e58();
 void fn_71000cd4b8();
 extern UnkConversion g_unk_7101d5c6f0;
 extern char g_unk_7101d5c710[];
@@ -612,7 +613,7 @@ void fn_71000e2800() {
     InitConversion(&g_unk_7101d5c690, TypeOf<fn_71000081e8>, fn_71000a0318, fn_71000cd218);
     InitConversion(&g_unk_7101d5c6b0, TypeOf<fn_71000081e8>, TypeOf<fn_7100009658>, reinterpret_cast<void (*)()>(&fn_71000cd2a4));
     InitConversion(&g_unk_7101d5c6d0, TypeOf<fn_71000081e8>, TypeOf<fn_710000ad9c>, reinterpret_cast<void (*)()>(&fn_71000cd338));
-    InitConversion(&g_unk_7101d5c6f0, fn_7100010e58, TypeOf<fn_710000fd7c>, fn_71000cd4b8);
+    InitConversion(&g_unk_7101d5c6f0, TypeOf<fn_7100010e58>, TypeOf<fn_710000fd7c>, fn_71000cd4b8);
     fn_710009ec00(g_unk_7101d5c710, fn_71000a8b4c());
     fn_710009ec00(g_unk_7101d5c711, fn_71000a8c28());
     {

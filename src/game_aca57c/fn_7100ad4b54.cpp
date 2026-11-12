@@ -160,7 +160,7 @@ UnkReflValue fn_71008efa44(void* unused, UnkArgument<UnkFlagSource>* argument) {
 // Values of kind 2 referring (flag 1) to a cutscene definition held by an iterator value: in place
 // at 0x8, or through the pointer there when the state (after the Size-byte value) is 2. The class
 // getter is called first, so the class (whose reflected data is at the descriptor) is set up.
-extern const CType g_unk_7172794d40 __attribute__((visibility("hidden")));
+extern const base::reflection::CType g_unk_7172794d40 __attribute__((visibility("hidden")));
 
 template <u32 Size>
 struct UnkDefIterValue {
@@ -208,25 +208,27 @@ UnkReflValue fn_7100c91e70(void* unused, UnkArgument<UnkDefIterValue<0x40>>* arg
 // Values of kind 2 holding a manager singleton, created on first use (allocated with flags 0x3f or
 // 3, and constructed in place).
 const CType* fn_7100ad61f8();  // base::reflection::refl_GetType<CSubAreaManager*>
-extern void* g_unk_7101d47360;
-extern void* g_unk_71726bc560;
+struct UnkManager;
+struct UnkMgr_0xf18;
+extern UnkManager* g_unk_7101d47360;
+extern UnkMgr_0xf18* g_unk_71726bc560;
 
-template <void** Instance, u64 Size, void (*Construct)(void*), const CType* (*GetType)(), u32 Flags = 0x3f>
+template <class T, T** Instance, u64 Size, void (*Construct)(void*), const CType* (*GetType)(), u32 Flags = 0x3f>
 __attribute__((always_inline)) static inline UnkReflValue GetSingleton() {
     void* instance = *Instance;
     if (!instance) {
         instance = fn_71000839a0(Size, Flags);
         Construct(instance);
-        *Instance = instance;
+        *Instance = static_cast<T*>(instance);
     }
     void* value = instance;
     return MakeValue(GetType(), &value);
 }
 
-UnkReflValue fn_7100adaa30() { return GetSingleton<&g_unk_7101d47360, 0xae8, fn_7100ee1f34, fn_7100ad61f8>(); }
-UnkReflValue fn_7100adaaa4() { return GetSingleton<&g_unk_7101d47368, 0x4c8, fn_7100d8ced8, fn_7100ad62d4>(); }
-UnkReflValue fn_7100adabb8() { return GetSingleton<&g_unk_71726b1688, 0x198, fn_7100359118, fn_7100ad6568, 3>(); }
-UnkReflValue fn_7100adac2c() { return GetSingleton<&g_unk_71726bc560, 0xf18, fn_7100fd3804, fn_7100ad6644>(); }
+UnkReflValue fn_7100adaa30() { return GetSingleton<UnkManager, &g_unk_7101d47360, 0xae8, fn_7100ee1f34, fn_7100ad61f8>(); }
+UnkReflValue fn_7100adaaa4() { return GetSingleton<void, &g_unk_7101d47368, 0x4c8, fn_7100d8ced8, fn_7100ad62d4>(); }
+UnkReflValue fn_7100adabb8() { return GetSingleton<void, &g_unk_71726b1688, 0x198, fn_7100359118, fn_7100ad6568, 3>(); }
+UnkReflValue fn_7100adac2c() { return GetSingleton<UnkMgr_0xf18, &g_unk_71726bc560, 0xf18, fn_7100fd3804, fn_7100ad6644>(); }
 
 // The sum of the two angles at 0xc8 of the argument's object, in degrees.
 struct UnkAngleSource {

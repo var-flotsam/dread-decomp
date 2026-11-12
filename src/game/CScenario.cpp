@@ -389,7 +389,7 @@ struct UnkCollisionFileReader {
 // The scenario's array of weak references to its collision objects (+0x828; base::UnkVector's
 // layout, Reserve out of line as in src/game/logic/collision/CCollider/fn_7100d407c0.cpp).
 template <class Tag>
-struct UnkRefPtrArray {
+struct UnkSlotArray {
     UnkRefPtr* data;
     u32 count;
     u32 capacity;
@@ -399,15 +399,15 @@ struct UnkRefPtrArray {
     base::UnkAllocator* allocator;
 };
 struct UnkTag_71007ed25c;
-void fn_71007ed25c(UnkRefPtrArray<UnkTag_71007ed25c>* self, u32 capacity);
+void fn_71007ed25c(UnkSlotArray<UnkTag_71007ed25c>* self, u32 capacity);
 
 struct UnkScenarioColliders {
     u8 pad_0x0[0x828];
-    UnkRefPtrArray<UnkTag_71007ed25c> colliders;
+    UnkSlotArray<UnkTag_71007ed25c> colliders;
 };
 
 // Appends a counted copy of `value` (PushBack's growth, including its hang).
-static inline void Append(UnkRefPtrArray<UnkTag_71007ed25c>* self, const UnkRefPtr& value) {
+static inline void Append(UnkSlotArray<UnkTag_71007ed25c>* self, const UnkRefPtr& value) {
     u32 n = self->count;
     u32 c = self->capacity;
     if (c <= n && self->step != 0)

@@ -28,17 +28,17 @@ struct UnkStruct_7101176690 {
 };
 
 // A set of flags with a copy constructor: passed by value, it travels as the address of the caller's copy.
-struct alignas(8) UnkFlags_7101176690 {
+struct alignas(8) UnkFlags_7101176ea8 {
     u32 value;
-    UnkFlags_7101176690(u32 v) : value(v) {}
-    UnkFlags_7101176690(const UnkFlags_7101176690& o) : value(o.value) {}
+    UnkFlags_7101176ea8(u32 v) : value(v) {}
+    UnkFlags_7101176ea8(const UnkFlags_7101176ea8& o) : value(o.value) {}
 };
 struct UnkS16 { u64 a, b; };
 struct UnkS12 { u64 a; u32 b; };
 
 struct UnkStruct_7101176ea8;
-bool fn_7101177044(UnkStruct_7101176690* self, void* r, s32 idx, void* data, UnkFlags_7101176690 flags,
-                   const UnkS16& a, const UnkS12& b, UnkFlags_7101176690 c);
+bool fn_7101177044(UnkStruct_7101176ea8* self, void* r, s32 idx, void* data, UnkFlags_7101176ea8 flags,
+                   const UnkS16& a, const UnkS12& b, UnkFlags_7101176ea8 c);
 
 bool fn_7101176690(UnkStruct_7101176690* self, void* arg, u64 key, const u32& flags, const UnkS16& a,
                    const UnkS12& b, const u32& c) {
@@ -47,5 +47,5 @@ bool fn_7101176690(UnkStruct_7101176690* self, void* arg, u64 key, const u32& fl
     UnkEntry_7101176690** it = m->Find(key);
     UnkEntry_7101176690** end = m->values + m->count;
     void* data = (it != end && *it) ? (*it)->field_0x70 : nullptr;
-    return fn_7101177044(self, r, -1, data, UnkFlags_7101176690{flags}, a, b, UnkFlags_7101176690{c});
+    return fn_7101177044(reinterpret_cast<UnkStruct_7101176ea8*>(self), r, -1, data, UnkFlags_7101176ea8{flags}, a, b, UnkFlags_7101176ea8{c});
 }

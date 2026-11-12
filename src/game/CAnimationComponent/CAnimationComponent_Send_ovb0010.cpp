@@ -57,17 +57,17 @@ struct UnkAnim_ovb0010 {
 };
 
 // A set of flags with a copy constructor: passed by value, it travels as the address of the caller's copy.
-struct alignas(8) UnkFlags_7101176690 {
+struct alignas(8) UnkFlags_7101176ea8 {
     u32 value;
-    UnkFlags_7101176690(u32 v) : value(v) {}
-    UnkFlags_7101176690(const UnkFlags_7101176690& o) : value(o.value) {}
+    UnkFlags_7101176ea8(u32 v) : value(v) {}
+    UnkFlags_7101176ea8(const UnkFlags_7101176ea8& o) : value(o.value) {}
 };
-struct UnkStruct_7101176690;
+struct UnkStruct_7101176ea8;
 struct UnkS16;
 struct UnkS12;
 
-bool fn_7101177044(UnkStruct_7101176690* self, void* r, s32 idx, void* data, UnkFlags_7101176690 flags,
-                   const UnkS16& a, const UnkS12& b, UnkFlags_7101176690 c);
+bool fn_7101177044(UnkStruct_7101176ea8* self, void* r, s32 idx, void* data, UnkFlags_7101176ea8 flags,
+                   const UnkS16& a, const UnkS12& b, UnkFlags_7101176ea8 c);
 
 // Sends the action the pair of keys names with mode 2 and the all-bits mask.
 static inline bool Send(UnkAnim_ovb0010* self, u64 key1, u64 key2) {
@@ -76,10 +76,10 @@ static inline bool Send(UnkAnim_ovb0010* self, u64 key1, u64 key2) {
     UnkEntry_ovb0010** it = m->Find(0xf4061ff25a2163d6);
     UnkEntry_ovb0010** end = m->values + m->count;
     void* data = (it != end && *it) ? (*it)->field_0x70 : nullptr;
-    return fn_7101177044(reinterpret_cast<UnkStruct_7101176690*>(self), r, -1, data, UnkFlags_7101176690{2},
+    return fn_7101177044(reinterpret_cast<UnkStruct_7101176ea8*>(self), r, -1, data, UnkFlags_7101176ea8{2},
                          reinterpret_cast<const UnkS16&>(g_unk_710164b968),
                          reinterpret_cast<const UnkS12&>(g_unk_7172769740),
-                         UnkFlags_7101176690{UnkAll_SpitSend().value});
+                         UnkFlags_7101176ea8{UnkAll_SpitSend().value});
 }
 
 bool fn_7101177898(UnkAnim_ovb0010* self, UnkNamed_ovb0010** first, UnkNamed_ovb0010** second) {
