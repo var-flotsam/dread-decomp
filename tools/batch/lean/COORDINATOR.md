@@ -57,8 +57,8 @@ with other registers; no further model attempt is spent on it) or `differs`. Eve
     and send back to `drafts/` a file whose copied symbol cannot be planned, with the reason as its note.
 11. **The gates**, all of them, on the finished tree: `PY tools/check.py --version 2.1.0 --update` (no
     `REGRESSION`, `DUPLICATE`, `EQUIV`, `REFS` or hand-written `RELOC` line), `PY tools/decl_check.py --strict
-    --base origin/main` (PASS; compare with `decl_before.txt`), `PY tools/name_check.py --strict`,
-    `PY tools/policy_check.py --base origin/main`, `PY tools/port_sweep.py --jobs 8`, the tool tests. A
+    --base origin/main` (PASS; compare with `decl_before.txt`), `PY tools/name_check.py --version 2.1.0 --strict`,
+    `PY tools/policy_check.py --base origin/main`, `PY tools/port_sweep.py --version 2.1.0 --jobs 8`, the tool tests. A
     `REFS` line on a registers-only function is a wrong callee or global: fix it or send the file back.
 12. **Pull request.** Commit (`Phase 4.x: <run>: ...`, with your session's own attribution lines), add the
     run's entry at the top of `docs/JOURNAL.md`, regenerate `docs/HANDOFF.md`'s table and the status card

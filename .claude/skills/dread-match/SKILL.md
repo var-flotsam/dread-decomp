@@ -97,8 +97,8 @@ Every 15 to 30 functions, or a hub cluster:
 git fetch origin main && git merge origin/main
 python tools/verify.py --version 2.1.0                    # generators, check --update, progress, policy, decl_check
 python tools/decl_check.py --strict --base origin/main    # no new copy, conflict or type difference
-python tools/name_check.py --strict
-python tools/port_sweep.py --jobs 8                       # the sources still compile for x86-64
+python tools/name_check.py --version 2.1.0 --strict
+python tools/port_sweep.py --version 2.1.0 --jobs 8                       # the sources still compile for x86-64
 python -m unittest discover -s tools/tests -t .           # when a tool changed
 ```
 

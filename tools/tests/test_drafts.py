@@ -86,6 +86,37 @@ class Note(unittest.TestCase):
         self.assertEqual(drafts.annotate(SRC, ["fn_7100000300"]), (SRC, ["fn_7100000300"]))
 
 
+class Header(unittest.TestCase):
+    LINES = ["// Unit 7. Names and layouts are placeholders.", '#include "types.h"', "",
+             "struct UnkA;", "void fn_7100000300(UnkA* self);  // resets it", "u32 fn_7100000400(UnkA* self,",
+             "                  u32 n);", "extern u32 g_unk_7100000500, g_unk_7100000600;", "",
+             "void fn_7100000100(UnkA* self) {", "    fn_7100000300(self);", "}"]
+
+    def test_the_declaration_goes_and_the_header_comes(self):
+        out = drafts.take_header(self.LINES, 5, "fn_7100000300", "game/UnkA.h")
+        self.assertEqual(out[1:3], ['#include "types.h"', '#include "game/UnkA.h"'])
+        self.assertNotIn("void fn_7100000300(UnkA* self);  // resets it", out)
+        self.assertIn("    fn_7100000300(self);", out)                       # the call stays
+        self.assertEqual(len(out), len(self.LINES))
+
+    def test_a_header_that_is_included_is_not_included_twice(self):
+        lines = self.LINES[:2] + ['#include "game/UnkA.h"'] + self.LINES[2:]
+        out = drafts.take_header(lines, 6, "fn_7100000300", "game/UnkA.h")
+        self.assertEqual(out.count('#include "game/UnkA.h"'), 1)
+        self.assertEqual(len(out), len(lines) - 1)
+
+    def test_a_file_without_includes_gets_it_under_its_comment(self):
+        lines = ["// Unit 7.", "// Placeholders.", "void fn_7100000300();", "void fn_7100000100() {", "}"]
+        out = drafts.take_header(lines, 3, "fn_7100000300", "game/UnkA.h")
+        self.assertEqual(out[:3], ["// Unit 7.", "// Placeholders.", '#include "game/UnkA.h"'])
+
+    def test_what_is_not_one_statement_on_one_line_is_left_for_a_person(self):
+        self.assertIsNone(drafts.take_header(self.LINES, 6, "fn_7100000400", "game/UnkA.h"))    # two lines
+        self.assertIsNone(drafts.take_header(self.LINES, 8, "g_unk_7100000500", "game/UnkA.h"))  # two globals
+        self.assertIsNone(drafts.take_header(self.LINES, 11, "fn_7100000300", "game/UnkA.h"))    # the wrong line
+        self.assertIsNone(drafts.take_header(self.LINES, 40, "fn_7100000300", "game/UnkA.h"))
+
+
 class Index(unittest.TestCase):
     def test_rows_are_written_by_address_with_the_table_s_columns(self):
         rows = [{"address": "0x7100000200", "size": "8", "file": "drafts/b.cpp", "difference": "operations",

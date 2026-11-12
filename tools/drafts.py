@@ -13,9 +13,11 @@
   promote  move a draft to src/ when it has earned it (CLAUDE.md, "Completion"): every function its file
            defines matches, or differs in registers or order only and passes tools/equiv_test.py. The copy
            gets its includes rewritten for the new folder and `// NON_MATCHING(minor)` above a function
-           that does not match, and is graded again where it now is. Then its declarations are checked
-           against the tree (tools/decl_check.py's file_problems): a draft that declares a shared symbol its
-           own way stays a draft, with the reason in its row's note. Without --write nothing is kept.
+           that does not match, and is graded again where it now is. A declaration of a symbol that a header
+           under include/ declares is replaced by that header where the file then compiles to the same code.
+           Then its declarations are checked against the tree (tools/decl_check.py's file_problems): a draft
+           that declares a shared symbol its own way stays a draft, with the reason in its row's note. Without
+           --write nothing is kept.
 
 After `promote --write`: tools/equiv_test.py --write on the moved files that do not match (the verdict is what
 makes them count), then tools/decl_plan.py and tools/hub_migrate.py for declarations they copied, then
@@ -276,6 +278,54 @@ def verdicts(version: str, files: list[Path]) -> dict[int, tuple[str, str]]:
             if o.get("address")}
 
 
+def compiled(found: list[dict] | str):
+    """What a file's functions are, for telling whether an edit changed the code."""
+    return found if isinstance(found, str) else [(x["address"], x["difference"], x["differing"]) for x in found]
+
+
+def take_header(lines: list[str], line: int, name: str, header: str) -> list[str] | None:
+    """The file's lines without its own declaration of `name` (on 1-based `line`) and with the header that
+    declares it included; None when the declaration is not one statement on one line, which is hand work."""
+    import decl_check
+    stmt = lines[line - 1].split("//")[0].rstrip() if 0 < line <= len(lines) else ""
+    if (name not in stmt or not stmt.endswith(";") or len(decl_check.SYMBOL.findall(stmt)) != 1
+            or not re.match(r"[A-Za-z_]", stmt) or stmt.startswith(name)):  # at the margin, a type before the name
+        return None
+    out = lines[:line - 1] + lines[line:]
+    include = f'#include "{header}"'
+    if include not in out:
+        at = max((i for i, x in enumerate(out) if x.startswith("#include")), default=None)
+        if at is None:  # no include yet: under the file's opening comment
+            at = next((i for i, x in enumerate(out) if not x.startswith("//")), 0) - 1
+        out.insert(at + 1, include)
+    return out
+
+
+def take_headers(path: Path, rel: str) -> list[str]:
+    """For each declaration in the file of a symbol that a header under include/ declares: include the header
+    and drop the declaration, one at a time, keeping an edit only when every function of the file compiles as
+    before. Returns the symbols now taken from headers; the others are left for file_problems to name."""
+    import decl_check
+    taken: list[str] = []
+    tried: set[str] = set()
+    while True:
+        todo = [c for c in decl_check.header_copies({rel}) if c[2] not in tried]
+        if not todo:
+            return taken
+        _, line, name, header = todo[0]
+        tried.add(name)
+        old = path.read_text(encoding="utf-8")
+        new = take_header(old.split("\n"), line, name, header)
+        if new is None:
+            continue
+        before = compiled(functions(path))
+        path.write_text("\n".join(new), encoding="utf-8", newline="\n")
+        if compiled(functions(path)) == before:
+            taken.append(name)
+        else:
+            path.write_text(old, encoding="utf-8", newline="\n")
+
+
 def cmd_promote(args) -> int:
     import decl_check
     rows = read_index()
@@ -321,34 +371,35 @@ def cmd_promote(args) -> int:
         text, missing = annotate(text, [x["name"] for x in found if x["difference"] == REGISTERS])
         dst.parent.mkdir(parents=True, exist_ok=True)
         dst.write_text(text, encoding="utf-8", newline="\n")
-        why = None
+        why, taken = None, []
         again = functions(dst)
         if missing:
             why = "no definition line found for " + ", ".join(missing)
         elif isinstance(again, str):
             why = f"does not build in src/: {again}"
-        elif [(x["address"], x["difference"]) for x in again] != [(x["address"], x["difference"]) for x in found]:
+        elif compiled(again) != compiled(found):
             why = "compiles to other code in src/"
         else:
+            taken = take_headers(dst, rel)
             problems = decl_check.file_problems({rel})
             if problems:
                 why = f"{len(problems)} declaration problem{'s' if len(problems) > 1 else ''}: " + short(problems[0], 260)
         if why:
             dst.unlink()
             held.append((r, why))
-            continue
-        if args.write:
+        elif args.write:
             src.unlink()
             rows.remove(r)
-            moved.append((r, rel))
+            moved.append((r, rel, taken))
         else:
             dst.unlink()
-            moved.append((r, rel))
+            moved.append((r, rel, taken))
         for d in (dst.parent, src.parent):
             if d.is_dir() and not any(d.iterdir()):
                 d.rmdir()
-    for r, rel in moved:
-        print(f"{'moved' if args.write else 'would move'}  {r['address']}  {rel}")
+    for r, rel, taken in moved:
+        print(f"{'moved' if args.write else 'would move'}  {r['address']}  {rel}"
+              + (f"  ({len(taken)} declarations taken from headers)" if taken else ""))
     for r, why in held:
         print(f"held   {r['address']}  {r['file']}\n       {why}")
         if args.write:

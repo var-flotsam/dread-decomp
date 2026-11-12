@@ -174,6 +174,13 @@ class FileProblems(unittest.TestCase):
         self.assertIn("defined as void fn_7100000040(UnkMine*)", found[0])
         self.assertIn("void fn_7100000040(UnkB*)", found[0])
 
+    def test_header_copies_are_also_given_as_data(self):
+        tree = {**self.TREE, "src/game/new.cpp": "struct UnkA;\nstruct UnkB;\nvoid fn_7100000010(UnkA* self);\n"
+                                                 "u32 fn_7100000020(UnkB* b);\n"}
+        self.assertEqual(decl_check.header_copies({"src/game/new.cpp"}, tree),
+                         [("src/game/new.cpp", 3, "fn_7100000010", "game/UnkA.h")])
+        self.assertEqual(decl_check.header_copies({"src/game/a.cpp"}, tree), [])
+
     def test_only_the_named_files_are_judged(self):
         tree = {**self.TREE, "src/game/c.cpp": "void fn_7100000030();\n"}
         self.assertEqual(decl_check.file_problems({"src/game/b.cpp"}, tree), [])

@@ -6,6 +6,7 @@
 #include "base/math/CVector.h"
 #include "game/UnkGuiEvent.h"
 #include "types.h"
+#include "game/UnkTU2747.h"
 
 using base::global::CStrId;
 
@@ -32,7 +33,6 @@ struct UnkMissionLogSelf {
 
 UnkMissionLogEntry* fn_71011c08e4(UnkMissionLogList* list, CStrId* id, s32 mode, bool flag);
 struct UnkSprite_spr;
-void fn_71011cf8d0(UnkSprite_spr* self, const base::math::CVector2D* size);
 
 void fn_7100b59574(UnkMissionLogSelf* self, UnkMissionLogRequest* request, bool flag) {
     if (request->kind == 2)
