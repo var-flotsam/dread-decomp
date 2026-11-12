@@ -49,6 +49,12 @@ the tree: its function is defined in src/ as NON_MATCHING(minor) and its code ha
 that does not prints `EQUIV  <addr>  <why>` and the check fails: run tools/equiv_test.py --write on the
 file again, or take the row out (a function that now matches needs none).
 
+Wrong addresses in functions that do not match (tools/ref_check.py): the relocation check above needs
+matching bytes, so a non-matching function is compared as a set: what it calls and refers to against what
+the original function calls and refers to. A global named after a GOT slot, and a call or a global the
+original never has in a function whose difference is registers-only, print `REFS  <addr>  <what>` and the
+check fails. Other differences of the sets are for `python tools/ref_check.py` to list.
+
 Usage:
   python tools/check.py --version 2.1.0            # report; exit 1 if an O function regressed or a function is defined in two files
   python tools/check.py --version 2.1.0 --update   # also write O/m/M/W into data/functions/
@@ -76,6 +82,7 @@ from dread import functions  # noqa: E402
 import buildcfg  # noqa: E402
 import equiv_test  # noqa: E402
 import hostenv  # noqa: E402
+import ref_check  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 CXXFILT = hostenv.cxxfilt()
@@ -352,6 +359,24 @@ def compile_only(version: str, jobs: int, cache: bool = True) -> int:
     return 1 if failed else 0
 
 
+def wrong_references(original: asmdiff.Original, by_name: dict[str, list[int]],
+                     where: dict[str, list[tuple[Path, str]]], addresses: set[str],
+                     skip: set[str] = frozenset()) -> list[tuple[str, str, str]]:
+    """[(address, function, finding)] for the failing findings of tools/ref_check.py in the non-matching
+    functions at `addresses` (`skip`: functions that match in bytes and were demoted for a RELOC line, which
+    says the same thing already)."""
+    objects = sorted({obj for a in addresses - skip for obj, _ in where.get(a, [])})
+    if not objects:
+        return []
+    rodata, got = ref_check.ranges(original)
+    out = []
+    for obj in objects:
+        for row in ref_check.object_findings(obj, original, by_name, rodata, got):
+            if row["address"] in addresses:
+                out += [(row["address"], row["function"], f["text"]) for f in ref_check.failing(row)]
+    return sorted(set(out))
+
+
 def stale_verdicts(table: dict[int, dict], statuses: dict[str, str], where: dict[str, list[tuple[Path, str]]],
                    code_of=None) -> list[tuple[str, str]]:
     """[(address, why)] for the `pass` rows of data/equivalence.csv that no longer describe the tree.
@@ -473,6 +498,13 @@ def main() -> int:
     if duplicates:
         print(f"{len(duplicates)} functions defined in more than one file; rerun the generators (verify.py --regen)")
 
+    refs = wrong_references(original, by_name, where, {a for a, v in results.items() if v[0] != "O"}, demoted)
+    for addr, name, text in refs:
+        print(f"REFS  {addr}  {name}: {text}")
+    if refs:
+        print(f"{len(refs)} wrong addresses in non-matching functions (`python tools/ref_check.py --version "
+              f"{args.version} <file>` shows each function's whole comparison)")
+
     stale = stale_verdicts(equiv_test.read_table(), {a: v[0] for a, v in results.items()}, where)
     for addr, why in stale:
         print(f"EQUIV  {addr}  {why}")
@@ -494,7 +526,7 @@ def main() -> int:
             if changed:
                 functions.write(name, frows)
         print("statuses written to data/functions/")
-    return 1 if failed or regressions or duplicates or stale else 0
+    return 1 if failed or regressions or duplicates or stale or refs else 0
 
 
 if __name__ == "__main__":
