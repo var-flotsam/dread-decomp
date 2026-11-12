@@ -192,6 +192,12 @@ class Plan(unittest.TestCase):
         self.assertEqual([p.symbol for p in planned], ["fn_7100000111"])
         self.assertEqual(dict(why), {"a type that is not a plain struct every file agrees on": 1})
 
+    def test_what_a_declaration_needs_in_its_header(self):
+        p = decl_plan.Planned("fn_7100000110", "include/game/CFoo.h", "", 2, {"UnkB": "struct", "UnkA": "class"}, {},
+                              ("base/Id.h", "game/Vec.h"))
+        self.assertEqual(decl_plan.needs(p), ['#include "base/Id.h"', '#include "game/Vec.h"', "class UnkA;", "struct UnkB;"])
+        self.assertEqual(decl_plan.needs(decl_plan.Planned("fn_7100000111", "include/game/CFoo.h", "", 2)), [])
+
     def test_grown_names_what_new_files_copied(self):
         before = decl_check.Report(tree(a="void fn_7100000110(int);\nvoid fn_7100000111(int);\n",
                                         b="void fn_7100000110(int);\n"))

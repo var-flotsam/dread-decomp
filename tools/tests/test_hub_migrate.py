@@ -152,6 +152,58 @@ class Forwards(unittest.TestCase):
                          "struct UnkA;\nstruct UnkB;\nvoid fn_7100000010(UnkA*, UnkB*);\n")
 
 
+class Includes2(unittest.TestCase):
+    BEFORE = '#pragma once\n#include "base/Old.h"\n#include "types.h"\nvoid fn_7100000010(UnkOld*);\n'
+    TYPES = {"base/Old.h": ["UnkOld"], "base/Id.h": ["CId", "UnkIdBase"], "game/Vec.h": ["UnkVec"]}
+
+    def test_a_new_include_nothing_uses_is_found(self):
+        now = ('#pragma once\n#include "base/Id.h"\n#include "base/Old.h"\n#include "game/Vec.h"\n#include "types.h"\n'
+               "void fn_7100000010(UnkOld*);\nvoid fn_7100000020(base::CId*);\n")
+        self.assertEqual(hub_migrate.unused_includes(now, self.BEFORE, self.TYPES.get), ["game/Vec.h"])
+        self.assertEqual(hub_migrate.drop_includes(now, ["game/Vec.h"]),
+                         '#pragma once\n#include "base/Id.h"\n#include "base/Old.h"\n#include "types.h"\n'
+                         "void fn_7100000010(UnkOld*);\nvoid fn_7100000020(base::CId*);\n")
+
+    def test_an_include_the_header_had_is_kept(self):
+        now = '#pragma once\n#include "base/Old.h"\n#include "types.h"\n'
+        self.assertEqual(hub_migrate.unused_includes(now, self.BEFORE, self.TYPES.get), [])
+
+    def test_an_include_that_cannot_be_read_is_kept(self):
+        now = '#pragma once\n#include "base/Old.h"\n#include "nn/os.h"\n#include "types.h"\nvoid fn_7100000010(UnkOld*);\n'
+        self.assertEqual(hub_migrate.unused_includes(now, self.BEFORE, self.TYPES.get), [])
+
+
+class Needs(unittest.TestCase):
+    HEADER = ('#pragma once\n\n// CFoo: functions of this unit.\n#include "types.h"\n\nstruct UnkA;\n'
+              "void fn_7100000111(UnkA*);\n")
+
+    def test_an_include_goes_before_types_h_and_a_forward_after_the_includes(self):
+        got = hub_migrate.with_needs(self.HEADER, ['#include "base/global/CId.h"', "struct UnkB;"])
+        self.assertEqual(got, '#pragma once\n\n// CFoo: functions of this unit.\n#include "base/global/CId.h"\n'
+                              '#include "types.h"\n\nstruct UnkB;\nstruct UnkA;\nvoid fn_7100000111(UnkA*);\n')
+
+    def test_what_the_header_has_is_not_added_again(self):
+        self.assertEqual(hub_migrate.with_needs(self.HEADER, ["struct UnkA;", '#include "types.h"']), self.HEADER)
+        self.assertEqual(hub_migrate.with_needs(self.HEADER, []), self.HEADER)
+
+    def test_a_header_with_declarations_right_after_the_includes(self):
+        bare = '#pragma once\n#include "types.h"\nvoid fn_7100000111();\n'
+        self.assertEqual(hub_migrate.with_needs(bare, ["struct UnkA;", "struct UnkA;"]),
+                         '#pragma once\n#include "types.h"\n\nstruct UnkA;\n\nvoid fn_7100000111();\n')
+
+    def test_read_needs(self):
+        with tempfile.TemporaryDirectory() as d:
+            plan = Path(d) / "plan.tsv"
+            plan.write_text("# a comment\nfn_7100000010\tinclude/a.h\tvoid fn_7100000010(UnkA*);\t"
+                            '#include "base/x.h" ;; struct UnkA;\n'
+                            "fn_7100000020\tinclude/a.h\tvoid fn_7100000020();\n"
+                            "fn_7100000030\tinclude/a.h\n", encoding="utf-8")
+            self.assertEqual(hub_migrate.read_needs(str(plan)),
+                             {"fn_7100000010": ['#include "base/x.h"', "struct UnkA;"]})
+            self.assertEqual([row[0] for row in hub_migrate.read_plan(str(plan))],
+                             ["fn_7100000010", "fn_7100000020", "fn_7100000030"])
+
+
 class ReadWrite(unittest.TestCase):
     def test_write_crlf(self):
         with tempfile.TemporaryDirectory() as d, mock.patch.object(hub_migrate, "ROOT", Path(d)):

@@ -25,9 +25,11 @@ data spans, global arrays of a forward-declared type (an array needs the definit
 exists and was not made by
 this tool, and the symbols listed in --exclude (the ones an earlier run could not move).
 
-With --write the headers are created (a comment, the includes, the forward declarations; hub_migrate
-appends the declarations), a unit header that exists gets the includes and forward declarations it lacks, and the
-plan is written in chunks of whole headers, one hub_migrate run each.
+With --write the unit headers that do not exist are created (a comment and `types.h`) and the plan is
+written in chunks of whole headers, one hub_migrate run each. A plan line carries what its declaration
+needs in the header (includes, forward declarations): hub_migrate writes those with the declaration and
+takes them back with it, so a symbol that cannot move leaves nothing behind for the files that include
+the header.
 
 hub_migrate removes a prototype together with the comment at the end of its line, and leaves a comment
 that stood above it. --write therefore also lists what the copies say about each planned function
@@ -339,6 +341,11 @@ def extended(text: str, mine: list[Planned]) -> str:
     return "\n".join(lines)
 
 
+def needs(p: Planned) -> list[str]:
+    """The lines p's declaration needs in its header before it: includes, then forward declarations."""
+    return [f'#include "{h}"' for h in p.includes] + [f"{k} {t};" for t, k in sorted(p.types.items())]
+
+
 def chunks(planned: list[Planned], size: int) -> list[list[Planned]]:
     """The plan split by whole headers into runs of about `size` symbols."""
     out: list[list[Planned]] = [[]]
@@ -400,13 +407,15 @@ def main() -> int:
     for old in OUT.glob("chunk_*.tsv"):
         old.unlink()
     for h in headers:
-        mine = [p for p in planned if p.header == h]
+        # only the frame: what each declaration needs comes with it (the plan's fourth column)
+        mine = [Planned(p.symbol, p.header, p.declaration, p.copies, {}, p.unit) for p in planned if p.header == h]
         (ROOT / h).parent.mkdir(parents=True, exist_ok=True)
         text = extended((ROOT / h).read_text(encoding="utf-8"), mine) if h in existing else header_text(h, mine)
         (ROOT / h).write_bytes(text.encode("utf-8"))
     parts = chunks(planned, args.chunk)
     for k, part in enumerate(parts, 1):
-        text = "".join(f"{p.symbol}\t{p.header}\t{p.declaration}\n" for p in part)
+        text = "".join(f"{p.symbol}\t{p.header}\t{p.declaration}\t{' ;; '.join(needs(p))}".rstrip("\t") + "\n"
+                       for p in part)
         (OUT / f"chunk_{k}.tsv").write_bytes(text.encode("utf-8"))
     print(f"{len(headers) - len(existing & set(headers))} headers created, {len(existing & set(headers))} extended; "
           f"{len(parts)} plan files in {OUT.relative_to(ROOT).as_posix()}/: "
