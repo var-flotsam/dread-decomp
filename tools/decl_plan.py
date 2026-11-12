@@ -16,8 +16,7 @@ named through a namespace; a name with such another meaning in some file is neve
 which are forward-declared in the header, or types that exactly one header
 under include/ defines (`CStrId`, `UnkVec3f`), for which the unit header includes that header and the
 declaration names the type in full (`base::global::CStrId`); a type used by value takes its header
-whenever there is one. A unit header that exists gains such an include only when every source that
-includes it has that header already. A global's copies must also be
+whenever there is one. A global's copies must also be
 the same text once the macros their files define are written out (the signature leaves attributes out,
 and a visibility attribute changes the code). Left
 out, and counted: signatures that conflict, declarations inside a namespace, signatures with a namespaced
@@ -269,20 +268,6 @@ def plan(report: decl_check.Report, files: dict[str, str], units: list[dict],
     return out, why
 
 
-def new_to_an_includer(planned: list[Planned], existing: set[str], includers) -> list[Planned]:
-    """The planned symbols whose unit header exists and would gain an include that some source including
-    the unit header does not have yet. `includers(header)` gives the files that include a header, directly
-    or through other headers (tools/baseline.py)."""
-    out = []
-    for p in planned:
-        if p.header not in existing or not p.includes:
-            continue
-        have = {f for f in includers(p.header) if not f.endswith((".h", ".hpp"))}
-        if any(not have <= includers(f"include/{h}") for h in p.includes):
-            out.append(p)
-    return out
-
-
 def copy_comments(report: decl_check.Report, files: dict[str, str], planned: list[Planned]) -> list[tuple]:
     """What the copies of each planned declaration say about it: (symbol, header, files, where, text) per
     distinct text, `where` being `line` (the comment that ends the prototype's line) or `above` (the comment
@@ -390,12 +375,6 @@ def main() -> int:
         print(f"  {len(foreign):5}  headers exist and are not unit headers of this tool; their "
               f"{sum(1 for p in planned if p.header in foreign)} symbols are left out")
     planned = [p for p in planned if p.header not in foreign]
-    import baseline
-    late = {p.symbol for p in new_to_an_includer(planned, existing, baseline.includers)}
-    if late:
-        print(f"  {len(late):5}  left out: the unit header exists and a file that includes it would newly get "
-              "the header of one of the symbol's types")
-    planned = [p for p in planned if p.symbol not in late]
     wanted = set(args.only or [])
     if args.grown:
         wanted |= grown(report, decl_check.Report(decl_check.tree_files(args.grown)))

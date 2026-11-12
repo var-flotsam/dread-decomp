@@ -192,18 +192,6 @@ class Plan(unittest.TestCase):
         self.assertEqual([p.symbol for p in planned], ["fn_7100000111"])
         self.assertEqual(dict(why), {"a type that is not a plain struct every file agrees on": 1})
 
-    def test_an_existing_header_gains_an_include_only_if_its_includers_have_it(self):
-        P = decl_plan.Planned
-        planned = [P("fn_7100000110", "include/game/CFoo.h", "", 2, {}, {}, ("base/Id.h",)),
-                   P("fn_7100000111", "include/game/CFoo.h", "", 2, {}, {}, ("game/Vec.h",)),
-                   P("fn_7100000112", "include/game/CFoo.h", "", 2, {"UnkA": "struct"}, {}, ()),
-                   P("fn_7100000210", "include/game/CNew.h", "", 2, {}, {}, ("game/Vec.h",))]
-        graph = {"include/game/CFoo.h": {"src/a.cpp", "src/b.cpp", "include/game/Other.h"},
-                 "include/base/Id.h": {"src/a.cpp", "src/b.cpp", "src/c.cpp"},
-                 "include/game/Vec.h": {"src/a.cpp"}}
-        late = decl_plan.new_to_an_includer(planned, {"include/game/CFoo.h"}, lambda h: graph.get(h, set()))
-        self.assertEqual([p.symbol for p in late], ["fn_7100000111"])   # src/b.cpp does not have game/Vec.h
-
     def test_grown_names_what_new_files_copied(self):
         before = decl_check.Report(tree(a="void fn_7100000110(int);\nvoid fn_7100000111(int);\n",
                                         b="void fn_7100000110(int);\n"))

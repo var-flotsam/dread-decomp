@@ -152,27 +152,6 @@ class Forwards(unittest.TestCase):
                          "struct UnkA;\nstruct UnkB;\nvoid fn_7100000010(UnkA*, UnkB*);\n")
 
 
-class Includes2(unittest.TestCase):
-    BEFORE = '#pragma once\n#include "base/Old.h"\n#include "types.h"\nvoid fn_7100000010(UnkOld*);\n'
-    TYPES = {"base/Old.h": ["UnkOld"], "base/Id.h": ["CId", "UnkIdBase"], "game/Vec.h": ["UnkVec"]}
-
-    def test_a_new_include_nothing_uses_is_found(self):
-        now = ('#pragma once\n#include "base/Id.h"\n#include "base/Old.h"\n#include "game/Vec.h"\n#include "types.h"\n'
-               "void fn_7100000010(UnkOld*);\nvoid fn_7100000020(base::CId*);\n")
-        self.assertEqual(hub_migrate.unused_includes(now, self.BEFORE, self.TYPES.get), ["game/Vec.h"])
-        self.assertEqual(hub_migrate.drop_includes(now, ["game/Vec.h"]),
-                         '#pragma once\n#include "base/Id.h"\n#include "base/Old.h"\n#include "types.h"\n'
-                         "void fn_7100000010(UnkOld*);\nvoid fn_7100000020(base::CId*);\n")
-
-    def test_an_include_the_header_had_is_kept(self):
-        now = '#pragma once\n#include "base/Old.h"\n#include "types.h"\n'
-        self.assertEqual(hub_migrate.unused_includes(now, self.BEFORE, self.TYPES.get), [])
-
-    def test_an_include_that_cannot_be_read_is_kept(self):
-        now = '#pragma once\n#include "base/Old.h"\n#include "nn/os.h"\n#include "types.h"\nvoid fn_7100000010(UnkOld*);\n'
-        self.assertEqual(hub_migrate.unused_includes(now, self.BEFORE, self.TYPES.get), [])
-
-
 class ReadWrite(unittest.TestCase):
     def test_write_crlf(self):
         with tempfile.TemporaryDirectory() as d, mock.patch.object(hub_migrate, "ROOT", Path(d)):
