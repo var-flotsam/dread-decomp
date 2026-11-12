@@ -66,3 +66,4 @@ extern char g_unk_7172767279;
 extern char g_unk_71727673b8;
 extern char g_unk_71727673b9;
 extern char g_unk_7172767530;
+void fn_710025bda0(void* self);

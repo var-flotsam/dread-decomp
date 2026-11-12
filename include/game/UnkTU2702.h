@@ -43,7 +43,7 @@ void fn_71010ff2b8(char* self);
 void fn_7101105c90(UnkKraidAI2* self, void* arg, UnkKraidRequest* request);
 void fn_7101105c94(UnkWarLotusAI* self);
 u32 fn_71011061ac(UnkGoliathAI_b55* self, u32* out, void* arg2, UnkGoliathHitInfo_b55* info, UnkGoliathHitTarget_b55** hit);
-void fn_71010fc68c(UnkGoliathAI_b58a3* ai, f32* out);
+bool fn_71010fc68c(UnkGoliathAI_b58a3* ai, f32* out);  // False when it has no value for `out` (its callers test it).
 bool fn_71010fc778(void*, f32*);
 u32 fn_7101105e44(UnkSluggerAI* self, UnkSluggerEvent* event);
 void fn_7101108124(UnkQuetzoaAIComponent* self, void* arg);

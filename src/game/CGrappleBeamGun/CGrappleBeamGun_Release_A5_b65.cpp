@@ -2,12 +2,12 @@
 // unless the owner's component (+0x208 of +0x18) holds it (+0xf9), turns the object's state off
 // (fn_7100232864) and unregisters it from the game manager's points (fn_71011a2a24). Names are
 // placeholders.
+#include "game/CScenario.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
 struct UnkEntityState;
 void fn_7100232864(UnkEntityState*, bool);
-void fn_71011a2a24(UnkGameManagerSub_0x608*, void*);
 
 struct UnkGrappleHold_A5_b65 {
     u8 pad_0x0[0xf9];

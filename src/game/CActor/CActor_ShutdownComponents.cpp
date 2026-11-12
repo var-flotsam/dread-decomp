@@ -3,10 +3,9 @@
 // (vf_0x68), then each component's shared holder (vf_0x28) is emptied, clearing its object's
 // back pointer and dropping the reference; then the actor's own vf_0x88. Names and layouts are
 // placeholders.
+#include "game/CScenario.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
-
-void fn_71011a2a24(UnkGameManagerSub_0x608* registry, void* actor);
 
 struct UnkCounted341 {
     virtual void vf_0x0();

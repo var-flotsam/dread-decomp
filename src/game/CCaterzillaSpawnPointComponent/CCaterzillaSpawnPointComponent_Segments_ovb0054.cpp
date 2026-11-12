@@ -221,7 +221,6 @@ struct UnkCaterzillaSpawn3_ovb0054 {
     u8 links[0x28];  // 0x438
 };
 
-UnkCaterzillaLink_ovb0054* fn_7100247340(UnkCaterzillaLinks_ovb0054* links, u32 index);
 UnkCaterzillaMode_ovb0054* fn_71003f7fa0(UnkCaterzillaActor_ovb0054* actor);
 
 bool fn_7100a17628(UnkCaterzillaSpawn3_ovb0054* self, const CVector2D* pos, u32 index, const CVector2D* dir) {

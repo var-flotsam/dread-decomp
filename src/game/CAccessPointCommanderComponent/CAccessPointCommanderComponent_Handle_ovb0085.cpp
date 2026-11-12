@@ -8,6 +8,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CAccessPointCommanderComponent.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiRoot.h"
@@ -23,7 +24,6 @@ void fn_71005c4828(void*, void**);
 void fn_7100a6b0f0(void* registration, void** slot);
 void fn_7100a6b280(void* registration, void** slot);
 void fn_7100a6ce48(void* self);  // the base destructor
-extern char g_unk_7101a8fa30[];   // the component's vtable
 extern void* g_unk_7101d47360;
 void fn_7100ee1f34(void*);
 // As src/game/CCreditsMode/CTunableCredits/CTunableCredits_Colors_ovb0070.cpp declares it.

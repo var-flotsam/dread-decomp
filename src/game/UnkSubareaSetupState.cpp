@@ -56,7 +56,7 @@ void fn_71011a3a5c(UnkGameManagerSub_0x608* self, u32 kind, const CStrId& from, 
 void fn_7100219c8c(UnkRenderManager* self, bool enable, u64 from, u64 to, bool arg4);
 void fn_7100ca7740(UnkGameManagerSub_0x1af8* self, const CStrId& from, const CStrId& to, bool enable);
 void fn_71011a32d8(UnkGameManagerSub_0x608* self, u32 kind, const CStrId& id, bool arg3);
-void fn_71011a3574(UnkGameManagerSub_0x608* self, u32 kind, const CStrId& id);
+u64 fn_71011a3574(UnkGameManagerSub_0x608* self, u32 kind, const CStrId& id);
 void fn_71011a4944(UnkGameManagerSub_0x608* self);
 void fn_71011a4954(UnkGameManagerSub_0x608* self);
 void fn_7100219c6c(UnkRenderManager* self, bool enable, u64 layer, u32 arg3, bool arg4);
