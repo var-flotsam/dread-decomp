@@ -176,6 +176,11 @@ struct of their own, and nine then cast that object to a second struct to call a
 "definitions that name a type differently" count (984) and the 1,243 extra declarations as a reader meets
 them, and it is what class-first work orders would attack (one header per class, grown by every function
 that touches it). Nothing was changed in the 20 files.
+**The tool tests also run on Windows in CI (2026-11-12).** The tools are written and mostly run on Windows
+(paths, line endings and the shell differ there), and CI ran `tools/tests` on Linux only, so a change that
+broke them on Windows showed only on the owner's machine. A second job, `tool tests (Windows)`, runs the same
+tests on `windows-latest` without the project compiler; the tests that need the compiler skip there and keep
+running in the `compile` job. It is not a required check: it reports, and a red one is a reason to look.
 **137 empty barriers did nothing and are gone (2026-11-12).** The review counted 308 empty barriers without
 the comment `CLAUDE.md` asks for. Before writing 308 comments it was worth asking what each barrier does, and
 that can be measured: take the barrier out, compile, and compare every function of the file, bytes and
