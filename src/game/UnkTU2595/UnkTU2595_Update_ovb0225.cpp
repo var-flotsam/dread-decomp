@@ -184,11 +184,11 @@ void fn_7100f135d8(UnkSmOwner_b0225* self, void* arg) {
     base::global::CStrId("Ingame", true);
     fn_71011b3768(g_unk_717271e8f8);
     RequestState_b0225(&self->machine, 1);
-    void* music = reinterpret_cast<void*&>(g_unk_71726bc560);
+    void* music = g_unk_71726bc560;
     if (!music) {
         music = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(music);
-        reinterpret_cast<void*&>(g_unk_71726bc560) = music;
+        g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(music);
     }
     UnkMusicMode mode;
     mode.kind = 0x4e;

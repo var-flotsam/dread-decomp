@@ -80,11 +80,11 @@ struct UnkDialogHolder {
 
 extern UnkMgr_0xf18* g_unk_71726bc560;
 static inline void* MusicManager() {
-    void* manager = reinterpret_cast<void*&>(g_unk_71726bc560);
+    void* manager = g_unk_71726bc560;
     if (!manager) {
         manager = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(manager);
-        reinterpret_cast<void*&>(g_unk_71726bc560) = manager;
+        g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(manager);
     }
     return manager;
 }

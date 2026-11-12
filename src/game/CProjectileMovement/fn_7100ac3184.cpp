@@ -119,12 +119,12 @@ void fn_7100ee1f34(void* self);
 
 // The global manager, created on first use.
 static inline void* UnkGetManager() {
-    if (!reinterpret_cast<void*&>(g_unk_7101d47360)) {
+    if (!g_unk_7101d47360) {
         void* manager = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(manager);
-        reinterpret_cast<void*&>(g_unk_7101d47360) = manager;
+        g_unk_7101d47360 = static_cast<UnkManager*>(manager);
     }
-    return reinterpret_cast<void*&>(g_unk_7101d47360);
+    return g_unk_7101d47360;
 }
 
 __attribute__((always_inline)) static inline void ResolveTarget(UnkComponent_0x5d0* self, const CStrId& id, UnkWeakHandle** out) {

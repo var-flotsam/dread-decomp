@@ -75,10 +75,10 @@ void fn_710058e67c(UnkGoliathAttack_A3_b73* self) {
         fn_7100316018(track, &self->handle);
         fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
     }
-    if (!reinterpret_cast<void*&>(g_unk_7101d47360)) {
+    if (!g_unk_7101d47360) {
         void* p = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(p);
-        reinterpret_cast<void*&>(g_unk_7101d47360) = p;
+        g_unk_7101d47360 = static_cast<UnkManager*>(p);
     }
     UnkGoliathManager_A3_b73* manager = reinterpret_cast<UnkGoliathManager_A3_b73*>(g_unk_7101d47360);
     CStrId* id = manager->field_0x3f0;

@@ -30,11 +30,11 @@ struct UnkSubAreaList_b51 {
 };
 
 static inline void ApplySubAreaEntries(const UnkSubAreaList_b51* list) {
-    void* instance = reinterpret_cast<void*&>(g_unk_7101d47360);
+    void* instance = g_unk_7101d47360;
     if (!instance) {
         instance = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(instance);
-        reinterpret_cast<void*&>(g_unk_7101d47360) = instance;
+        g_unk_7101d47360 = static_cast<UnkManager*>(instance);
     }
     UnkSubAreaManager_b51* manager = static_cast<UnkSubAreaManager_b51*>(instance);
     for (UnkSubAreaEntry_b51 *it = list->entries, *end = it + list->count; it != end; ++it)

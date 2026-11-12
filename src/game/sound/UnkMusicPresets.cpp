@@ -30,12 +30,12 @@ extern UnkMgr_0xf18* g_unk_71726bc560;
 void fn_7100fd5348(void* manager);
 
 static inline void* MusicManager() {
-    if (!reinterpret_cast<void*&>(g_unk_71726bc560)) {
+    if (!g_unk_71726bc560) {
         void* m = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(m);
-        reinterpret_cast<void*&>(g_unk_71726bc560) = m;
+        g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(m);
     }
-    return reinterpret_cast<void*&>(g_unk_71726bc560);
+    return g_unk_71726bc560;
 }
 
 // A string (base::global::CRntString's layout), as src/game/UnkObjectFileLoader.cpp names it.

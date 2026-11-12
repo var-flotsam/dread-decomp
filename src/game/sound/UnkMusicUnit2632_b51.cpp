@@ -16,11 +16,11 @@ struct UnkLoadingMask {
 };
 
 void fn_7100fcf59c() {
-    void* instance = reinterpret_cast<void*&>(g_unk_71726bc560);
+    void* instance = g_unk_71726bc560;
     if (!instance) {
         instance = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(instance);
-        reinterpret_cast<void*&>(g_unk_71726bc560) = instance;
+        g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(instance);
     }
     fn_7100fd7b44(instance, UnkLoadingMask(10), UnkLoadingMask(0x40), -1.0f);
 }

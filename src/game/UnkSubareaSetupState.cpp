@@ -73,11 +73,11 @@ void fn_7100ee1f34(void* self);
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
 static inline UnkSubAreaManagerView* SubAreaManager() {
-    void* instance = reinterpret_cast<void*&>(g_unk_7101d47360);
+    void* instance = g_unk_7101d47360;
     if (!instance) {
         instance = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(instance);
-        reinterpret_cast<void*&>(g_unk_7101d47360) = instance;
+        g_unk_7101d47360 = static_cast<UnkManager*>(instance);
     }
     return static_cast<UnkSubAreaManagerView*>(instance);
 }

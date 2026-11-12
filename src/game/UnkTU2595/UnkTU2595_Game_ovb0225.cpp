@@ -64,11 +64,11 @@ void fn_7100f1435c() {
     origin.xy = 0;
     origin.z = 0;
     fn_7101053850(effects, reinterpret_cast<UnkVec*>(&origin), 1, 0.3f, 1.0f);
-    void* instance = reinterpret_cast<void*&>(g_unk_71726bc560);
+    void* instance = g_unk_71726bc560;
     if (!instance) {
         instance = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(instance);
-        reinterpret_cast<void*&>(g_unk_71726bc560) = instance;
+        g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(instance);
     }
     fn_7100fd7b44(instance, UnkLoadingMask(4), UnkLoadingMaskAll(), 0.3f);
 }

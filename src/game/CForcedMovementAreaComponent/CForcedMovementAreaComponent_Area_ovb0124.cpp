@@ -379,11 +379,11 @@ struct UnkForcedAreaEmmy_ovb0124 {
 };
 
 static inline void* Manager_ovb0124() {
-    void* manager = reinterpret_cast<void*&>(g_unk_7101d47360);
+    void* manager = g_unk_7101d47360;
     if (!manager) {
         manager = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(manager);
-        reinterpret_cast<void*&>(g_unk_7101d47360) = manager;
+        g_unk_7101d47360 = static_cast<UnkManager*>(manager);
     }
     return manager;
 }

@@ -151,11 +151,11 @@ struct UnkCamMaskTag_b0101;
 void fn_7100eed3a4(void* manager, const CStrId* id, UnkCamMask_b0101 mask, bool flag);
 
 static inline void* CameraManager() {
-    void* manager = reinterpret_cast<void*&>(g_unk_7101d47360);
+    void* manager = g_unk_7101d47360;
     if (!manager) {
         manager = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(manager);
-        reinterpret_cast<void*&>(g_unk_7101d47360) = manager;
+        g_unk_7101d47360 = static_cast<UnkManager*>(manager);
     }
     return manager;
 }

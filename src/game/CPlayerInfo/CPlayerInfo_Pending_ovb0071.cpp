@@ -142,11 +142,11 @@ void fn_7100f0d88c(UnkPlayerInfo_ovb0071* self);
 void fn_7100f0be58(UnkPlayerInfo_ovb0071* self, bool flag);
 
 static inline void* Manager_ovb0071() {
-    void* manager = reinterpret_cast<void*&>(g_unk_7101d47360);
+    void* manager = g_unk_7101d47360;
     if (!manager) {
         manager = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(manager);
-        reinterpret_cast<void*&>(g_unk_7101d47360) = manager;
+        g_unk_7101d47360 = static_cast<UnkManager*>(manager);
     }
     return manager;
 }

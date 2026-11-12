@@ -46,10 +46,10 @@ struct UnkCameraBoundaryCtrl {
 };
 
 static inline UnkSubAreaManagerView* SubAreaManager() {
-    if (!reinterpret_cast<void*&>(g_unk_7101d47360)) {
+    if (!g_unk_7101d47360) {
         void* m = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(m);
-        reinterpret_cast<void*&>(g_unk_7101d47360) = m;
+        g_unk_7101d47360 = static_cast<UnkManager*>(m);
     }
     return reinterpret_cast<UnkSubAreaManagerView*>(g_unk_7101d47360);
 }

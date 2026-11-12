@@ -228,7 +228,7 @@ s32 fn_710108c9b0(lua_State* L) {
     f32 b;
     f32 c;
     if (fn_71010c0270(L, "sffbf", &path, &a, &b, &flag, &c)) {
-        void* fx = reinterpret_cast<void*>(g_unk_717275c380);
+        void* fx = g_unk_717275c380;
         CFilePathStrId id(path, true);
         fn_7100fc8dec(fx, &id, flag, 0, a, b, c);
     }
@@ -449,11 +449,11 @@ s32 fn_7101083480(lua_State* L) {
     bool first;
     bool second = false;
     if (fn_71010c0ad0(L, 0, 1, "sb|b", &name, &first, &second)) {
-        void* mgr = reinterpret_cast<void*&>(g_unk_7101d47360);
+        void* mgr = g_unk_7101d47360;
         if (!mgr) {
             mgr = fn_71000839a0(0xae8, 0x3f);
             fn_7100ee1f34(mgr);
-            reinterpret_cast<void*&>(g_unk_7101d47360) = mgr;
+            g_unk_7101d47360 = static_cast<UnkManager*>(mgr);
         }
         CStrId id(name, true);
         fn_7100eea3fc(mgr, &id, first, second);
@@ -466,11 +466,11 @@ s32 fn_7101083560(lua_State* L) {
     bool first;
     bool second = false;
     if (fn_71010c0ad0(L, 0, 1, "sb|b", &name, &first, &second)) {
-        void* mgr = reinterpret_cast<void*&>(g_unk_7101d47360);
+        void* mgr = g_unk_7101d47360;
         if (!mgr) {
             mgr = fn_71000839a0(0xae8, 0x3f);
             fn_7100ee1f34(mgr);
-            reinterpret_cast<void*&>(g_unk_7101d47360) = mgr;
+            g_unk_7101d47360 = static_cast<UnkManager*>(mgr);
         }
         CStrId id(name, true);
         fn_7100eea334(mgr, &id, first, second);
@@ -494,11 +494,11 @@ s32 fn_7101083390(lua_State* L) {
     bool first;
     bool second = false;
     if (fn_71010c0ad0(L, 0, 1, "b|b", &first, &second)) {
-        void* mgr = reinterpret_cast<void*&>(g_unk_7101d47360);
+        void* mgr = g_unk_7101d47360;
         if (!mgr) {
             mgr = fn_71000839a0(0xae8, 0x3f);
             fn_7100ee1f34(mgr);
-            reinterpret_cast<void*&>(g_unk_7101d47360) = mgr;
+            g_unk_7101d47360 = static_cast<UnkManager*>(mgr);
         }
         fn_7100eea3fc(mgr, &GameManagerIdTable().field_0xd80, first, second);
     }
@@ -592,11 +592,11 @@ u32 fn_71010976c0(const char* name);
 
 // The music manager, created on first use.
 static inline UnkMgr_0xf18* MusicManager_b0160() {
-    void* instance = reinterpret_cast<void*&>(g_unk_71726bc560);
+    void* instance = g_unk_71726bc560;
     if (!instance) {
         instance = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(instance);
-        reinterpret_cast<void*&>(g_unk_71726bc560) = instance;
+        g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(instance);
     }
     return static_cast<UnkMgr_0xf18*>(instance);
 }

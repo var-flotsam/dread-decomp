@@ -150,11 +150,11 @@ void fn_7100d8e0a0(void* manager) {
         fn_7100d8d854(reinterpret_cast<UnkUnit2525_b51*>(self), self->music);
         return;
     }
-    void* instance = reinterpret_cast<void*&>(g_unk_71726bc560);
+    void* instance = g_unk_71726bc560;
     if (!instance) {
         instance = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(instance);
-        reinterpret_cast<void*&>(g_unk_71726bc560) = instance;
+        g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(instance);
     }
     fn_7100fd7b44(instance, UnkLoadingMask(8), Flipped_ovb56(UnkLoadingMaskOf_ovb56<UnkLoadingMaskTag_ovb56>::All(), 0x100),
                   0.0f);

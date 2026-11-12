@@ -372,11 +372,11 @@ s32 fn_7101091420(lua_State* L) {
     const char* name = nullptr;
     if (fn_71010c0ad0(L, 0, 1, "b|s", &flag, &name)) {
         u32 bits = name ? 1u << fn_7101097578(name) : MaskAll_b0163();
-        void* manager = reinterpret_cast<void*&>(g_unk_71726bc560);
+        void* manager = g_unk_71726bc560;
         if (!manager) {
             manager = fn_71000839a0(0xf18, 0x3f);
             fn_7100fd3804(manager);
-            reinterpret_cast<void*&>(g_unk_71726bc560) = manager;
+            g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(manager);
         }
         fn_7100fd7b44(manager, UnkLoadingMask(flag ? 4 : 2), UnkLoadingMask(bits), -1.0f);
     }
@@ -556,11 +556,11 @@ inline u32 UnkSubareaAllMask() {
 }
 
 static inline void* SubareaManager_b0163() {
-    void* manager = reinterpret_cast<void*&>(g_unk_7101d47360);
+    void* manager = g_unk_7101d47360;
     if (!manager) {
         manager = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(manager);
-        reinterpret_cast<void*&>(g_unk_7101d47360) = manager;
+        g_unk_7101d47360 = static_cast<UnkManager*>(manager);
     }
     return manager;
 }

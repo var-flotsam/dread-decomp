@@ -134,11 +134,11 @@ struct UnkMusicMode;
 void fn_7100fd90d8(f32 a, f32 b, void* music, const CRntString* name, u32 c, const UnkMusicMode* d, u32 e, u32 f, void* g);
 
 static inline void* MusicManager() {
-    void* manager = reinterpret_cast<void*&>(g_unk_71726bc560);
+    void* manager = g_unk_71726bc560;
     if (!manager) {
         manager = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(manager);
-        reinterpret_cast<void*&>(g_unk_71726bc560) = manager;
+        g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(manager);
     }
     return manager;
 }
@@ -357,11 +357,11 @@ void fn_7100eee61c(void* manager, CStrId* a, CStrId* b, bool flag, bool other);
 void fn_7100eee1f8(void* manager, CStrId* subArea, const CStrId* setup, bool a, bool b);
 
 static inline void* SubAreaManager() {
-    void* manager = reinterpret_cast<void*&>(g_unk_7101d47360);
+    void* manager = g_unk_7101d47360;
     if (!manager) {
         manager = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(manager);
-        reinterpret_cast<void*&>(g_unk_7101d47360) = manager;
+        g_unk_7101d47360 = static_cast<UnkManager*>(manager);
     }
     return manager;
 }

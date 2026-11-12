@@ -47,10 +47,10 @@ void fn_7100fd9e94(char* manager, const CStrId* key);
 void fn_7100fd9e9c(char* manager, const CStrId* key);
 
 static inline __attribute__((always_inline)) char* MusicManager_b41a3() {
-    if (!reinterpret_cast<void*&>(g_unk_71726bc560)) {
+    if (!g_unk_71726bc560) {
         void* m = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(m);
-        reinterpret_cast<void*&>(g_unk_71726bc560) = m;
+        g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(m);
     }
     return reinterpret_cast<char*>(g_unk_71726bc560);
 }

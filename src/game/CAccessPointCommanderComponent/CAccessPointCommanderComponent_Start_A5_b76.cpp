@@ -44,11 +44,11 @@ struct UnkSubAreaManager_A5_b76 {
 };
 
 static inline UnkSubAreaManager_A5_b76* SubAreaManager_A5_b76() {
-    void* manager = reinterpret_cast<void*&>(g_unk_7101d47360);
+    void* manager = g_unk_7101d47360;
     if (!manager) {
         manager = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(manager);
-        reinterpret_cast<void*&>(g_unk_7101d47360) = manager;
+        g_unk_7101d47360 = static_cast<UnkManager*>(manager);
     }
     return static_cast<UnkSubAreaManager_A5_b76*>(manager);
 }

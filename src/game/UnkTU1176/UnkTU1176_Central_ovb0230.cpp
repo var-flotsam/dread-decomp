@@ -504,11 +504,11 @@ void fn_71007749d4(UnkCentralUnit_b49* unit) {
     UnkCentralRegistered_b0230* self = reinterpret_cast<UnkCentralRegistered_b0230*>(unit);
     fn_71007717c0(unit);
     base::UnkDeferredSet<void>** slot = &self->registered;
-    void* manager = reinterpret_cast<void*&>(g_unk_7101d47360);
+    void* manager = g_unk_7101d47360;
     if (!manager) {
         manager = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(manager);
-        reinterpret_cast<void*&>(g_unk_7101d47360) = manager;
+        g_unk_7101d47360 = static_cast<UnkManager*>(manager);
     }
     if (*slot) {
         fn_71004f3ea4(*slot, slot);

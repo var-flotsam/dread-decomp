@@ -48,11 +48,11 @@ void fn_7100baedc0(UnkSubareaEvent_ovb0139* self) {
             if (self->bits[i])
                 mask |= 1u << i;
     }
-    void* manager = reinterpret_cast<void*&>(g_unk_7101d47360);
+    void* manager = g_unk_7101d47360;
     if (!manager) {
         manager = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(manager);
-        reinterpret_cast<void*&>(g_unk_7101d47360) = manager;
+        g_unk_7101d47360 = static_cast<UnkManager*>(manager);
     }
     fn_7100eeeda4(manager, &self->setup, true, &mask);
     void* other = g_unk_7101d47368;

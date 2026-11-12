@@ -17,12 +17,12 @@ extern base::global::CStrId g_unk_71726eb450 __attribute__((visibility("hidden")
 extern UnkMgr_0xf18* g_unk_71726bc560;
 
 static inline void* MusicManager_b59a3() {
-    if (!reinterpret_cast<void*&>(g_unk_71726bc560)) {
+    if (!g_unk_71726bc560) {
         void* m = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(m);
-        reinterpret_cast<void*&>(g_unk_71726bc560) = m;
+        g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(m);
     }
-    return reinterpret_cast<void*&>(g_unk_71726bc560);
+    return g_unk_71726bc560;
 }
 
 struct UnkHydrogigaOwner2_b59a3 {

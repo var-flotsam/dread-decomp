@@ -203,11 +203,11 @@ void fn_710050be58(UnkGrabSm_b61* self, f32 dt) {
     }
     *flag = false;
     fn_7100df6c78(g_unk_7101d47310, 1.0f, 0.0f);
-    void* manager = reinterpret_cast<void*&>(g_unk_7101d47360);
+    void* manager = g_unk_7101d47360;
     if (!manager) {
         manager = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(manager);
-        reinterpret_cast<void*&>(g_unk_7101d47360) = manager;
+        g_unk_7101d47360 = static_cast<UnkManager*>(manager);
     }
     if (static_cast<UnkGrabManager_b61*>(manager)->state == 2)
         return;
@@ -481,12 +481,12 @@ void fn_71005c27f8(UnkHydrogigaSm2_b61* self, f32 dt) {
 extern UnkMgr_0xf18* g_unk_71726bc560;
 
 static inline void* MusicManager_b61() {
-    if (!reinterpret_cast<void*&>(g_unk_71726bc560)) {
+    if (!g_unk_71726bc560) {
         void* m = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(m);
-        reinterpret_cast<void*&>(g_unk_71726bc560) = m;
+        g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(m);
     }
-    return reinterpret_cast<void*&>(g_unk_71726bc560);
+    return g_unk_71726bc560;
 }
 
 void fn_71005c21c0(UnkHydrogigaSm2_b61* self, f32 dt) {

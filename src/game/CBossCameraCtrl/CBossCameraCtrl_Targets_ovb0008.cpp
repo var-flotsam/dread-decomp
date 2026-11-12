@@ -85,11 +85,11 @@ struct UnkTag_710031da18;
 void fn_710031da18(UnkSlotArray<UnkTag_710031da18>* v, u32 capacity);
 
 static inline void* MusicManager() {
-    void* instance = reinterpret_cast<void*&>(g_unk_71726bc560);
+    void* instance = g_unk_71726bc560;
     if (!instance) {
         instance = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(instance);
-        reinterpret_cast<void*&>(g_unk_71726bc560) = instance;
+        g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(instance);
     }
     return instance;
 }
