@@ -46,7 +46,6 @@ struct UnkScourgeAI_A4_b71 {
 void fn_71006a052c(UnkScourgeAI_A4_b71* self) {
     UnkScourgeOwner_A4_b71* owner = self->owner;
     UnkScourgeTongue_A4_b71** slot = &self->tongue;
-    asm("" : "+r"(slot));
     UnkAnimationComponent* cls = owner->cls;
     UnkScourgeTongue_A4_b71* tongue = *slot;
     if (!cls || !tongue)

@@ -106,7 +106,6 @@ void fn_71009533fc(UnkWeightPlatform_b0266* self) {
                     asm("" : "+r"(id));
                 } else {
                     id = 0xb15b31b835c17820ull;
-                    asm("" : "+r"(id));
                 }
                 fn_71009c0f1c(object, id);
             }

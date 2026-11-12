@@ -50,7 +50,6 @@ bool fn_710042f570(UnkKiCounter_b59* self, UnkActor* actor) {
     UnkActor* owner = self->owner;
     f32 d = actor->field_0x44 - owner->field_0x44;
     const u8* owner_xform = owner->field_0x38;
-    asm("" : "+r"(owner_xform));
     f32 side = Sign_b59(d);
     f32 facing2 = FacingSign_b59(owner_xform);
     f32 actor_facing = FacingSign_b59(actor_xform);

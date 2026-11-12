@@ -76,8 +76,6 @@ struct UnkMap_b0248 {
     UnkNode_b0248** Bucket(const CStrId& key) {
         const UnkStringHashView_b0248* view = reinterpret_cast<const UnkStringHashView_b0248*>(key.data);
         u32 index = ((u32)(view->hash >> 32) ^ (u32)view->hash) % bucket_capacity;
-        // keeps the bucket array's load after the remainder
-        asm("" : "+r"(index));
         return &buckets[index];
     }
 };

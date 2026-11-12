@@ -85,8 +85,6 @@ bool fn_71001bffc8(UnkSetupOwner252* self, u32 index, u32 a, u32 b, u32 c) {
         pass = slot->pass;
     }
     self->slots[index].flag = 1;
-    // keeps the slot test from folding into the range check at the top
-    asm("" : "+r"(index));
     if (index <= 4 && self->refs.count > index) {
         UnkSlot252* element = fn_71001c04bc(reinterpret_cast<UnkSlotArray252*>(&self->refs), index);
         *reinterpret_cast<u8*>(reinterpret_cast<u8*>(element) + 8) = 1;

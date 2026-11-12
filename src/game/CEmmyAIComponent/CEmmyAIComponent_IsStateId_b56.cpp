@@ -46,7 +46,6 @@ struct UnkEmptyStrId_b56a3 {
 static inline __attribute__((always_inline)) bool IsStateId_b56a3(UnkEmmyStateIdTest_b56a3* self, const CStrId& want) {
     UnkEmptyStrId_b56a3 value;
     CBlackboard* blackboard = &self->blackboard;
-    asm("" : "+r"(blackboard));
     const CStrId& section = *reinterpret_cast<const CStrId*>(reinterpret_cast<char*>(&GameManagerIdTable()) + 0x1b58);
     if (CBlackboard::CSection* s = fn_7101047270(blackboard, section))
         fn_710051d464(s, g_unk_71726e20a8, &value.id);

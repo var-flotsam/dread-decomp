@@ -25,7 +25,6 @@ static inline __attribute__((always_inline)) UnkReflValue InvokeInt2_A5p_b64(cha
     const char* first_type = a[0].type;
     asm("" ::: "memory");
     Fn fn = reinterpret_cast<Fn>(vtable[Slot / 8]);
-    asm("" ::: "memory");  // the virtual is read with the first argument's type
     void* first = ArgPtr_A5p_b64(&a[0], first_type);
     void* second = ArgPtr_A5p_b64(&a[1], a[1].type);
     s32 result = fn(self, first, second);

@@ -64,7 +64,6 @@ __attribute__((always_inline)) static inline bool FindState_ovb0103(UnkSmMachine
     asm("" : "+r"(n));
     UnkSmStatePtr_ovb0103* p = self->states;
     if (Pin)
-        asm("" : "+r"(p));
     for (; n != 0; ++p, n -= sizeof(UnkSmStatePtr_ovb0103)) {
         if ((*p)->id == id) {
             out = *p;
@@ -90,9 +89,7 @@ __attribute__((always_inline)) static inline void SwitchState_ovb0103(UnkSmMachi
             if (id != 0)
                 goto done;
             enter = false;
-            asm("" : "+r"(enter));
             next = nullptr;
-            asm("" : "+r"(next));
         }
         if (current) {
             current->vf_0x18(id);

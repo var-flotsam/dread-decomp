@@ -18,7 +18,6 @@ void fn_7100df6688(UnkGameManagerFade* self);
 
 void fn_7100df6c78(UnkGameManagerFade* self, f32 target, f32 duration) {
     UnkTimedCurve* curve = &self->curve;
-    asm("" : "+r"(self));  // the original reads the value through the saved copy of self
     fn_7100075f78(self->value, target, duration, curve, &g_unk_7101d58d10);
     if (duration == 0.0f)
         self->value = target;

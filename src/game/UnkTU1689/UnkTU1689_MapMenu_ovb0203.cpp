@@ -690,7 +690,6 @@ void fn_7100b45b5c(UnkMapMenuOwner_ovb0203* self) {
         fn_7100e94054(reinterpret_cast<UnkMapTimersView_b43a3*>(g_unk_7101d47310->field_0x2228), self->field_0xe8);
     entry = fn_7100e8d8b0()->field_0xd63f40;
     menu = reinterpret_cast<UnkMapMenuTarget_ovb0203*>(entry ? entry->controller : nullptr);
-    asm("" : "+r"(menu));
     bool restore = self->field_0x8;
     menu->field_0x11a8 = 0;
     if (restore)

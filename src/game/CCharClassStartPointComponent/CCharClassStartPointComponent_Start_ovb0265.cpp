@@ -90,8 +90,6 @@ void fn_710116c644(UnkStartPointSelf* self, UnkPlayer* player) {
     if (auto* a = reinterpret_cast<UnkStartPointComponentA*>(fn_7100a81ed0(reinterpret_cast<UnkSmartObjectActor*>(self->actor))))
         a->vf_0x180(self->actor);
     else {
-        // keeps the second lookup's load of the owner apart from the first branch's
-        asm("" : "+r"(self));
         if (auto* b = reinterpret_cast<UnkStartPointComponentA*>(fn_71007cfd8c(reinterpret_cast<UnkSmartObjectActor*>(self->actor))))
             b->vf_0x258(self->actor);
     }

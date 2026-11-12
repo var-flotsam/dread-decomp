@@ -40,7 +40,6 @@ struct UnkGooplotAI_A3_b66 {
 void fn_7100599e0c(UnkGooplotAI_A3_b66* self) {
     UnkGooplotTarget_A3_b66* target = &self->target;
     UnkGooplotFlags_A3_b66* flags = &self->flags;
-    asm("" : "+r"(target));
     asm("" : "+r"(flags));
     fn_7100369650(reinterpret_cast<char*>(self));
     if (!g_unk_71726af468) {
@@ -55,7 +54,6 @@ void fn_7100599e0c(UnkGooplotAI_A3_b66* self) {
     flags->field_0x1 = true;
     flags->field_0x1c0 = 0;
     const u32* zero = reinterpret_cast<const u32*>(&g_unk_710164779c);
-    asm("" : "+r"(zero));
     target->field_0x10 = 0;
     target->x = zero[0];
     target->y = zero[1];

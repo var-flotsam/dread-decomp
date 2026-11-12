@@ -27,7 +27,6 @@ bool fn_7100a776fc(UnkAmmoRecharge_b46a2* self) {
         flag = can;
     } else {
         menu = fn_7100deac84(g_unk_7101d47310);
-        asm("");  // the original keeps a call in each branch
         can = false;
         flag = false;
     }

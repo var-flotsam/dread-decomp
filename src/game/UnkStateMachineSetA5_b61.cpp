@@ -88,9 +88,7 @@ __attribute__((always_inline)) static inline void SwitchStateA5_b61(UnkSmMachine
             if (id != 0)
                 goto done;
             enter = false;
-            asm("" : "+r"(enter));
             next = nullptr;
-            asm("" : "+r"(next));
         }
         if (current) {
             current->vf_0x18(id);
@@ -502,7 +500,6 @@ static inline bool PlayerInside_A5_b61(UnkSensorDoorA5_b61* self, bool& inside) 
     UnkContactBuffer<4> contacts;
     contacts.count = 0;
     const UnkBox2D* box = reinterpret_cast<const UnkBox2D*>(self->box);
-    asm("" : "+r"(box));
     if (shape->dirty)
         shape->Update();
     inside = fn_710012b330(box, shape->geometry, &contacts, true);

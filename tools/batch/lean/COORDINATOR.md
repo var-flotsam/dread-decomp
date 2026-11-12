@@ -48,7 +48,8 @@ with other registers; no further model attempt is spent on it) or `differs`. Eve
    `tools/equiv_test.py`, and its declarations fit the tree; the others stay, each with its reason in its row.
    Then `PY tools/equiv_test.py --version 2.1.0 <the moved files that do not match> --write`: the verdict in
    `data/equivalence.csv` is what makes a registers-only function count.
-9. **Readability.** `PY tools/fakematch.py --base origin/main --list`: a barrier, an inlining attribute or a
+9. **Readability.** `PY tools/fakematch.py --unneeded-barriers --base origin/main --write` removes the
+   barriers that change no function's code. Then `PY tools/fakematch.py --base origin/main --list`: a barrier, an inlining attribute or a
    union a worker added only to match comes out; grade the file again (`drafts.py add ... --remove` if it no
    longer matches and is not verified).
 10. **Declarations.** `PY tools/decl_plan.py --write --grown origin/main`, then

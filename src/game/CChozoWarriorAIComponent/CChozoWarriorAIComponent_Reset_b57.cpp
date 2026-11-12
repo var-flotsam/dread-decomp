@@ -37,7 +37,6 @@ struct UnkCwAI_b57 {
 
 void fn_710049ad04(UnkCwAI_b57* self, void* context, bool reset) {
     UnkCwState_b57* state = reinterpret_cast<UnkCwState_b57*>(reinterpret_cast<char*>(self) + 0x14999);
-    asm("" : "+r"(state));
     if (reset) {
         void* target = self->owner->field_0x220;
         if (!target) {

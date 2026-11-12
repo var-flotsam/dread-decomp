@@ -101,7 +101,6 @@ bool fn_710088b7dc(UnkTimerSm_b60* platform) {
     if (!object)
         return false;
     const UnkBox2D* box = reinterpret_cast<const UnkBox2D*>(self->box);
-    asm("" : "+r"(box));
     if (shape->dirty)
         shape->Update();
     if (fn_710012b330(box, shape->geometry, &contacts, true))
