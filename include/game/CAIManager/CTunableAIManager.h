@@ -9,6 +9,7 @@ struct UnkManager_71726af468;
 struct UnkReflType;
 struct UnkTUData;
 struct UnkTUHeader;
+struct UnkTunable;
 struct UnkAIManager_da92b0;
 struct UnkAITarget_da92b0;
 struct UnkEmmyRegistry_b55;
@@ -35,3 +36,4 @@ void fn_7100da929c(UnkManager_71726af468* self, f32 value);
 extern UnkReflType g_unk_71727bc3f0;
 extern UnkTUHeader g_unk_71727bc598 __attribute__((visibility("hidden")));
 extern UnkTUData g_unk_71727bc5b0 __attribute__((visibility("hidden")));
+extern UnkTunable g_unk_71727bc558;  // The AI tunables (unit 2539's data).

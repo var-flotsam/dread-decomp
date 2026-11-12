@@ -656,7 +656,6 @@ extern UnkConverter g_unk_71727bc3d0;
 void fn_7100da6cc4(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 extern UnkConverter g_unk_71727bc510;
 extern UnkConverter g_unk_71727bc530;
-extern UnkTunable g_unk_71727bc558;
 extern void* g_unk_7101aa9278[];
 
 void fn_7100da7050() {

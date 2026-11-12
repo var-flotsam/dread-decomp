@@ -30,8 +30,6 @@ struct UnkListedItem {
 };
 base::UnkVector<UnkListedItem*>* fn_7100552d7c();
 
-extern UnkTunable g_unk_71727bc558;  // the AI tunables: +0x30 shows the debug labels
-
 
 // An AI's state (+0x1b8 of its component): two values the debug label shows, and its mode (2: the
 // label goes away).
