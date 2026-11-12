@@ -23,7 +23,7 @@ class Reloc:
 
 
 def kinds(found):
-    return [k for k, _ in found]
+    return [f[0] for f in found]
 
 
 class Compare(unittest.TestCase):
@@ -51,6 +51,7 @@ class Compare(unittest.TestCase):
         self.assertEqual(kinds(found), ["call", "call", "global", "global"])
         self.assertIn("calls 0x200", found[0][1])
         self.assertIn("the original calls 0x300", found[1][1])
+        self.assertEqual([f[2] for f in found], ["200", "300", "5100", "58000"])   # what each is about
 
     def test_an_address_close_to_the_other_side_s_is_only_near(self):
         ours = Refs(direct={0x6010})                    # a member, where the original forms the object's start
@@ -74,12 +75,29 @@ class Compare(unittest.TestCase):
         self.assertIn("0x6000", found[0][1])
 
     def test_what_fails(self):
-        slot = {"difference": "operations", "findings": [{"kind": "slot", "text": ""}]}
-        registers = {"difference": "registers", "findings": [{"kind": "call", "text": ""}, {"kind": "near", "text": ""}]}
-        other = {"difference": "control", "findings": [{"kind": "call", "text": ""}]}
+        def f(kind, key="71000803a4"):
+            return {"kind": kind, "text": "", "key": key}
+        slot = {"difference": "operations", "findings": [f("slot")]}
+        registers = {"difference": "registers", "findings": [f("call"), f("near")]}
+        other = {"difference": "control", "findings": [f("call")]}
         self.assertEqual(len(ref_check.failing(slot)), 1)
-        self.assertEqual([f["kind"] for f in ref_check.failing(registers)], ["call"])
-        self.assertEqual(ref_check.failing(other), [])
+        self.assertEqual([x["kind"] for x in ref_check.failing(registers)], ["call"])
+        self.assertEqual(ref_check.failing(other), [])              # not marked minor: listed, not failed
+
+    def test_a_minor_note_has_to_name_the_difference(self):
+        def f(kind, key):
+            return {"kind": kind, "text": "", "key": key}
+        row = {"difference": "calls", "findings": [f("call", "71000803a4"), f("call", "memmove"), f("near", "7100001000")]}
+        silent = "// NON_MATCHING(minor): same behaviour; registers differ."
+        one = silent + "\n// One more call of fn_71000803a4, which cannot run here."
+        both = one + "\n// The point is copied with memmove, the original copies it in line."
+        self.assertEqual([x["key"] for x in ref_check.failing(row, silent)], ["71000803a4", "memmove"])
+        self.assertEqual([x["key"] for x in ref_check.failing(row, one)], ["memmove"])
+        self.assertEqual(ref_check.failing(row, both), [])
+        self.assertEqual(ref_check.failing(row), [])                # a function that is not minor
+        self.assertTrue(ref_check.named("7101a9c888", "its vtable is 0x7101a9c888"))
+        self.assertTrue(ref_check.named("7101a9c888", "g_unk_7101a9c888 is stored"))
+        self.assertFalse(ref_check.named("7101a9c888", "its vtable differs"))
 
 
 class Ours(unittest.TestCase):
@@ -92,7 +110,7 @@ class Ours(unittest.TestCase):
                   16: Reloc(275, ".rodata.str1.1", 0, section=True),       # a string: no name
                   20: Reloc(ref_check.JUMP26, "memcpy"),
                   24: Reloc(ref_check.CALL26, "UnkFoo::Bar()")}
-        r = ref_check.ours_refs(relocs, where.get, lambda s: s == "memcpy")
+        r = ref_check.ours_refs(relocs, where.get, lambda s: True if s == "memcpy" else None)
         self.assertEqual((r.calls, r.got, r.direct, r.imports, r.unresolved),
                          ({0x7100000100}, {0x7100005000}, {0x7100006008}, {"memcpy"}, 1))
 
@@ -101,6 +119,14 @@ class Ours(unittest.TestCase):
         r = ref_check.ours_refs(relocs, {"fn_7100000200": 0x7100000200}.get,
                                 plt=lambda a: "nn::os::LockMutex" if a == 0x7100000200 else None)
         self.assertEqual((r.calls, r.imports), (set(), {"nn::os::LockMutex"}))
+
+    def test_a_dynamic_symbol_is_matched_by_its_exact_name(self):
+        # by demangled name both would be "operator new"; only one of them is the module's own function
+        by_name = lambda s: 0x7100000300                               # noqa: E731
+        dynamic = {"_Znwm": 0x7100000300, "_ZnwmRKSt9nothrow_t": True}.get
+        relocs = {0: Reloc(ref_check.CALL26, "_Znwm"), 4: Reloc(ref_check.CALL26, "_ZnwmRKSt9nothrow_t")}
+        r = ref_check.ours_refs(relocs, by_name, dynamic)
+        self.assertEqual((r.calls, r.imports), ({0x7100000300}, {"_ZnwmRKSt9nothrow_t"}))
 
 
 @unittest.skipIf(capstone is None, "capstone is not installed")
@@ -118,6 +144,30 @@ class Original(unittest.TestCase):
         addresses, targets = ref_check.formed_addresses(code, 0x1000)
         self.assertEqual(addresses, {0x2020, 0x2030, 0x2130})
         self.assertEqual(targets, {0x1110})
+
+
+class Notes(unittest.TestCase):
+    def test_the_note_is_the_comment_from_the_annotation_to_the_definition(self):
+        import tempfile
+        from pathlib import Path
+        import check
+        text = ("// What it does.\n"
+                "// NON_MATCHING(minor): same behaviour; one more call of fn_71000803a4,\n"
+                "// which cannot run here.\n"
+                "void fn_7100000100(int a) {\n}\n"
+                "// NON_MATCHING(major): not finished.\n"
+                "void fn_7100000200() {\n}\n"
+                "// NON_MATCHING(minor): registers.\n"
+                "void fn_7100000300();\n"
+                "void UnkFoo::fn_7100000300() {\n}\n")
+        with tempfile.TemporaryDirectory() as tmp:
+            p = Path(tmp) / "a.cpp"
+            p.write_text(text, encoding="utf-8")
+            notes = check.minor_notes(p)
+        self.assertEqual(sorted(notes), ["fn_7100000100", "fn_7100000300"])
+        self.assertIn("fn_71000803a4", notes["fn_7100000100"])
+        self.assertIn("cannot run here", notes["fn_7100000100"])
+        self.assertNotIn("What it does", notes["fn_7100000100"])
 
 
 if __name__ == "__main__":

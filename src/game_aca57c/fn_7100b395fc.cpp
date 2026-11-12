@@ -1,8 +1,8 @@
 // Destructors of a small class family: the base (vtable 0x7101a9c8e0) holds a string at 0x28 and
 // a name holder at 0x70 (a string cleaned up out of line by fn_710007ed40 before it is
 // destroyed). One derived class (0x7101a9ca40) adds a string id at 0xf8, another (0x7101a9cb48)
-// a reference-counted pointer at 0xf0, and a class derived from that (0x7101a9c938) a string id
-// at 0xf8.
+// a reference-counted pointer at 0xf0, and two classes derived from that (0x7101a9c938 and
+// 0x7101a9c888) a string id at 0xf8.
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU1689.h"
@@ -13,6 +13,7 @@ using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
 extern void* g_unk_7101a9c938[];
+extern void* g_unk_7101a9c888[];
 
 // A string id whose destructor reloads the id after the decrement.
 struct UnkReleasedStrId {
@@ -88,11 +89,15 @@ struct UnkNamedWithRef : UnkNamedBase {
     __attribute__((always_inline)) ~UnkNamedWithRef() { SetVtable(this, g_unk_7101a9cb48); }
 };
 
-struct UnkNamedWithRefId : UnkNamedWithRef {
+// The two classes with the pointer and a string id: the same members, each its own vtable.
+template <void** Vtable>
+struct UnkNamedWithRefIdT : UnkNamedWithRef {
     UnkReleasedStrId id;
 
-    __attribute__((always_inline)) ~UnkNamedWithRefId() { SetVtable(this, g_unk_7101a9c938); }
+    __attribute__((always_inline)) ~UnkNamedWithRefIdT() { SetVtable(this, Vtable); }
 };
+using UnkNamedWithRefId = UnkNamedWithRefIdT<g_unk_7101a9c938>;
+using UnkNamedWithRefId2 = UnkNamedWithRefIdT<g_unk_7101a9c888>;
 
 // NON_MATCHING(minor): the base's vtable store post-increments to the string at 0x28 instead of
 // the holder at 0x70, so the two addresses are formed the other way round.
@@ -104,7 +109,7 @@ void fn_7100b47eb8(UnkNamedWithRef* self) { self->~UnkNamedWithRef(); }
 // NON_MATCHING(minor): as fn_7100b395fc.
 void fn_7100b39640(UnkNamedWithRefId* self) { self->~UnkNamedWithRefId(); }
 // NON_MATCHING(minor): as fn_7100b395fc.
-void fn_7100b39714(UnkNamedWithRefId* self) { self->~UnkNamedWithRefId(); }
+void fn_7100b39714(UnkNamedWithRefId2* self) { self->~UnkNamedWithRefId2(); }
 
 // Deleting destructors of the base (four copies).
 // NON_MATCHING(minor): as fn_7100b395fc, and the deleted pointer takes a third register.
