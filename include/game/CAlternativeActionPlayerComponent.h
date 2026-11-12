@@ -6,6 +6,11 @@
 #include "types.h"
 
 struct UnkAlternativeActionPlayer;
-void fn_71007124d8(UnkAlternativeActionPlayer* self);
+// Passed by value in one register: a word and a flag.
+struct UnkSnapArg_b69a4 {
+    u32 field_0x0;
+    bool skip;
+};
+u32 fn_71007124d8(UnkAlternativeActionPlayer* self, UnkSnapArg_b69a4 arg);  // returns 0
 bool fn_7100712538(UnkAlternativeActionPlayer* self, void*);
 extern void* g_unk_7101a6c0b8[];

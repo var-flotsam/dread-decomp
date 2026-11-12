@@ -98,8 +98,8 @@ __attribute__((always_inline)) static inline void Take(T* dst, const T* src) {
 }
 
 // Kind 5 (unit 1123): three optional bytes.
-u64 fn_71007034e8(UnkHandler<UnkBytes3>* self, UnkHandlerParams<UnkBytes3>* params, bool reset) {
-    u64 result = fn_71007038f4(self, params, reset);
+void fn_71007034e8(UnkHandler<UnkBytes3>* self, UnkHandlerParams<UnkBytes3>* params, bool reset) {
+    fn_71007038f4(self, params, reset);
     if (params->kind == 5 || params->kind == 0) {
         TakeCommon(self, params, reset);
         if (reset) {
@@ -113,12 +113,11 @@ u64 fn_71007034e8(UnkHandler<UnkBytes3>* self, UnkHandlerParams<UnkBytes3>* para
             Take(&self->params.tail.field_0x4, &params->tail.field_0x4);
         }
     }
-    return result;
 }
 
 // Kind 6 (unit 1122): one optional byte.
-u64 fn_7100703164(UnkHandler<UnkBytes1>* self, UnkHandlerParams<UnkBytes1>* params, bool reset) {
-    u64 result = fn_71007038f4(self, params, reset);
+void fn_7100703164(UnkHandler<UnkBytes1>* self, UnkHandlerParams<UnkBytes1>* params, bool reset) {
+    fn_71007038f4(self, params, reset);
     if (params->kind == 6 || params->kind == 0) {
         TakeCommon(self, params, reset);
         if (reset)
@@ -126,12 +125,11 @@ u64 fn_7100703164(UnkHandler<UnkBytes1>* self, UnkHandlerParams<UnkBytes1>* para
         if (params->kind == self->params.kind)
             Take(&self->params.tail.field_0x0, &params->tail.field_0x0);
     }
-    return result;
 }
 
 // Kind 8 (unit 1125): an optional word and an optional vector.
-u64 fn_71007047d0(UnkHandler<UnkWordVec>* self, UnkHandlerParams<UnkWordVec>* params, bool reset) {
-    u64 result = fn_71007038f4(self, params, reset);
+void fn_71007047d0(UnkHandler<UnkWordVec>* self, UnkHandlerParams<UnkWordVec>* params, bool reset) {
+    fn_71007038f4(self, params, reset);
     if (params->kind == 8 || params->kind == 0) {
         TakeCommon(self, params, reset);
         if (reset) {
@@ -143,7 +141,6 @@ u64 fn_71007047d0(UnkHandler<UnkWordVec>* self, UnkHandlerParams<UnkWordVec>* pa
             Take(&self->params.tail.field_0x8, &params->tail.field_0x8);
         }
     }
-    return result;
 }
 
 struct UnkUnit1124Object;

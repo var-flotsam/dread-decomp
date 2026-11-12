@@ -65,14 +65,14 @@ static_assert(__builtin_offsetof(UnkMovieStreamNx, field_0x408) == 0x408, "UnkMo
 
 // The base constructor: stores `source` at +0x38 and `extra` at +0x30.
 void fn_710021b774(UnkMovieStreamNx* self, UnkMovieSource* source, void* extra);
-movie::DecoderType fn_7100225550(u32 kind);
+s32 fn_7100225550(u32 kind);  // the decoder type for a stream kind
 
 // `source` and `extra` go to the base constructor untouched (the original never writes x1/x2 before
 // the call; tools/forwarded_args.py), which stores the source this constructor then reads at +0x38.
 void fn_710022586c(UnkMovieStreamNx* self, UnkMovieSource* source, void* extra) {
     fn_710021b774(self, source, extra);
     self->vtable = g_unk_7101a20650 + 2;
-    new (self->field_0x50) movie::Decoder(fn_7100225550(self->field_0x38->field_0x8),
+    new (self->field_0x50) movie::Decoder((movie::DecoderType)fn_7100225550(self->field_0x38->field_0x8),
                                           (movie::DecoderOutputFormat)(self->field_0x38->field_0x4 != 0 ? 1 : 3),
                                           (movie::DecoderMode)(self->field_0x38->field_0x4 != 0 ? 1 : 2),
                                           movie::GetThreadPriority());
