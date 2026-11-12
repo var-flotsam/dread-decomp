@@ -11,12 +11,12 @@
 #include "game/UnkActor.h"
 #include "game/UnkTU25.h"
 #include "game/UnkTU2523.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
 
-CRntString fn_710007f050(const char* a, const CRntString* b);   // concatenation
 struct UnkPathIds;
 struct UnkInlineString;
 

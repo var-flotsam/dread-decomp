@@ -4,6 +4,8 @@
 #include <math.h>
 
 #include "game/CBatalloonAIComponent.h"
+#include "game/CEnemyMovement.h"
+#include "game/UnkTU54.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 #include "game/UnkActor.h"
@@ -55,8 +57,6 @@ UnkSwifterActor_ovb0114** fn_71003df2d0(UnkSwifterMember_ovb0114* member) {
 }
 
 struct UnkEnemyMovement_A5;
-UnkVec3f fn_71010c9ad0(UnkEnemyMovement_A5* self);
-UnkVec3f fn_710007a220(const UnkVec3f* v);
 
 struct UnkBatalloonOwner_ovb0132 {
     void** vtable;

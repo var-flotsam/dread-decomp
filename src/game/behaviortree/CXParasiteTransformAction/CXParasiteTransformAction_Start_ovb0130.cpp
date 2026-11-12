@@ -55,7 +55,6 @@ struct UnkXParasiteBuiltId_ovb0130 {
 // (whether the id resolved) is read.
 struct UnkStringEqualsCondition_A2_b72;
 struct UnkInlineString_A2_b72;
-bool fn_7100395044(UnkStringEqualsCondition_A2_b72* self, CStrId* id, UnkInlineString_A2_b72* out);
 using UnkResolveFn_ovb0130 = bool (*)(UnkStringEqualsCondition_A2_b72*, CStrId*, UnkInlineString_A2_b72*);
 
 struct UnkXParasiteOwner_ovb0130 {

@@ -17,6 +17,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2571.h"
 #include "game/UnkTU2578.h"
 #include "game/UnkTU2656.h"
@@ -35,7 +36,6 @@ using base::global::CStrId;
 f32 fn_7100ec73b4(u8* self);
 u32 fn_7100f14e80();
 bool fn_7100f14f80(s32 kind, s32 variant);
-void fn_7100deac9c(UnkGameManager* self, const CRntString& name);
 
 // The music manager (as src/base/input/UnkPadVibration.cpp declares it).
 struct UnkStruct_0x128;
@@ -167,7 +167,6 @@ struct UnkListedItem;
 struct UnkItemListTag;
 using UnkItemList = base::UnkSList<UnkItemListTag>;
 void fn_710119ba7c(UnkItemList* self, UnkListedItem* item);
-void fn_7101053968(void* effects, UnkVec3f* a, UnkVec3f* b, f32 x, f32 y, f32 z);
 extern const char* const g_unk_7101cab038[][3] __attribute__((visibility("hidden")));
 
 
@@ -287,7 +286,6 @@ struct UnkMusicMode {
     u32 kind;
     u32 field_0x4;
 };
-void fn_7100fd90d8(f32 a, f32 b, void* music, const CRntString* name, u32 c, const UnkMusicMode* d, u32 e, u32 f, void* g);
 extern CRntString g_unk_71729dc3d8 __attribute__((visibility("hidden")));
 
 void fn_7100f178b4(UnkRewardsMode_b0242* self) {
@@ -361,7 +359,6 @@ UnkRewardText_b0242 fn_7100f15b10(const char* name) {
     return UnkRewardText_b0242(buf);
 }
 
-void fn_710007f564(void* self, const char* str);
 bool fn_7100f15054(CStrId* id);
 extern const char* const g_unk_7101cab158[] __attribute__((visibility("hidden")));
 extern const char* const g_unk_7101cab178[] __attribute__((visibility("hidden")));

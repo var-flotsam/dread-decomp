@@ -10,8 +10,6 @@
 struct UnkMat4f {
     f32 m[4][4];
 };
-UnkMat4f fn_7100079c60(const UnkVec3f* from, const UnkVec3f* to);
-UnkVec3f fn_7100076acc(const UnkXform* x);
 
 struct UnkSmartObjectOwner_ovb0069 {
     u8 pad_0x0[0x38];

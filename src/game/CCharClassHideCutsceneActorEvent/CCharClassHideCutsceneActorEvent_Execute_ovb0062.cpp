@@ -4,7 +4,9 @@
 // flag at +0x18 is set, the entries of the object at +0x50 of its component (+0x228) are reset.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU253.h"
+#include "game/UnkTU2730.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
@@ -12,9 +14,6 @@ using base::global::CStrId;
 
 struct UnkStruct_71002334fc;
 struct UnkResetOwner;
-
-extern void* g_unk_7101d47330;
-void fn_71011986c8(void* manager, const CStrId* actor, bool visible, bool flag);
 
 struct UnkCutsceneActorState_ovb0062 {
     u8 unk_0x0[0x138];

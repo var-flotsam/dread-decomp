@@ -2,6 +2,7 @@
 // a movie::Decoder at +0x50 (as media::CMovieStreamNx does). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/UnkGlobal_710b372a98.h"
+#include "game/UnkTU259.h"
 #include "game/msapi/res/CRenderRes.h"
 #include "types.h"
 
@@ -49,7 +50,6 @@ struct UnkMovieVideoStreamNx2_b50 {
 
 struct UnkGraphicsSystem;
 struct UnkCountedResource;
-void fn_71001cae0c(UnkGraphicsSystem* self, const base::global::CStrId* name, UnkCountedResource* texture, void* a);
 struct UnkPlayer;
 void fn_7100224bcc(UnkPlayer* owner, void* texture);
 void* fn_7100224b00(UnkPlayer* owner, s32 width, s32 height);

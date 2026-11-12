@@ -2,10 +2,9 @@
 // empty, with the block at +0x18 to the GUI composition at +0x10 of the game manager's +0x2258 entry
 // (fn_7100b5fd6c). Names and layout are placeholders.
 #include "base/global/CStrId.h"
+#include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
-
-void fn_7100b5fd6c(void* object, base::global::UnkStringData** name, void* block, bool a, bool b);
 
 struct UnkMessageEntry_b48a3 {
     u8 pad_0x0[0x10];

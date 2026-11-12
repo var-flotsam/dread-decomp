@@ -25,7 +25,6 @@ struct UnkSoundVoice2_b56 {
 };
 
 struct UnkVoicePool_b56;
-void* fn_7100083804(UnkVoicePool_b56* self);
 void fn_7100083834(UnkVoicePool_b56* self, UnkSoundVoice2_b56* voice);
 
 struct UnkVoiceStat_b56 {

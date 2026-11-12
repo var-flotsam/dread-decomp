@@ -27,8 +27,10 @@ next batch's hand work; everything else is done.
   python tools/hub_migrate.py --version 2.1.0 SYMBOL --dry-run             # show the edits, change nothing
   python tools/hub_migrate.py --version 2.1.0 --plan PLAN.tsv [--generated-sample N] [--dry-run]
 
---plan takes a file of tab-separated lines `SYMBOL<TAB>include/x.h[<TAB>declaration]` (`#` starts a
-comment line) and does every symbol's edits at once: one baseline of every file to edit and every
+--plan takes a file of tab-separated lines `SYMBOL<TAB>include/x.h[<TAB>declaration[<TAB>needs]]` (`#`
+starts a comment line; `needs` is what the declaration needs in the header, includes and forward
+declarations separated by ` ;; `, written with the declaration and taken back with it) and does every
+symbol's edits at once: one baseline of every file to edit and every
 includer of a header to edit, one rebuild and compare, then narrowing down. A changed file goes back
 alone first (keeping its own declarations next to the headers'); when files still differ, every
 symbol whose header edits reach them goes back (its declaration and every file migrated onto it),
@@ -44,7 +46,8 @@ tools/decl_plan.py --write puts the forward declarations a plan needs into the h
 runs. A symbol that goes back leaves its forward declaration behind, and one such name can stop
 another file compiling (a file with its own type of that name in a namespace it opens). At the end
 of a plan run every forward declaration a header gained since HEAD that nothing in the header uses
-is removed again (printed as DROPPED).
+is removed again, and so is every include it gained whose types the header does not mention (printed
+as DROPPED).
 Exit 0 when every file migrated; 1 when some were restored; 2 when a symbol has no usable header.
 Nothing is committed; `git diff --stat` shows the result. Standard library only, plus the project tools.
 """
@@ -169,6 +172,39 @@ def drop_forwards(text: str, names: list[str]) -> str:
     for name in names:
         text = re.sub(rf"^(?:struct|class)[ \t]+{re.escape(name)}[ \t]*;[^\n]*\n", "", text, count=1, flags=re.M)
     return text
+
+
+def unused_includes(text: str, before: str, types_of) -> list[str]:
+    """Quoted includes `text` has and `before` had not, none of whose types the rest of `text` mentions.
+    `types_of(header)` gives the names of the types that header defines, or None when it cannot be read
+    (the include is then kept)."""
+    had = set(QUOTED_INCLUDE.findall(before))
+    out = []
+    for m in QUOTED_INCLUDE.finditer(text):
+        header = m.group(1)
+        if header in had or header == "types.h":
+            continue
+        names = types_of(header)
+        rest = text[:m.start()] + text[m.end():]
+        if names is not None and not any(re.search(rf"\b{re.escape(n)}\b", rest) for n in names):
+            out.append(header)
+    return out
+
+
+def drop_includes(text: str, headers: list[str]) -> str:
+    for header in headers:
+        text = re.sub(rf'^[ \t]*#[ \t]*include[ \t]*"{re.escape(header)}"[^\n]*\n', "", text, count=1, flags=re.M)
+    return text
+
+
+def types_defined(header: str) -> list[str] | None:
+    """The plain names of the types include/<header> defines, None when there is no such file."""
+    import decl_plan
+
+    path = ROOT / "include" / header
+    if not path.is_file():
+        return None
+    return [name for _full, name in decl_plan.defined_types(path.read_text(encoding="utf-8"))]
 
 
 def committed(path: str) -> str:
@@ -362,6 +398,50 @@ def read_plan(path: str) -> list[tuple[str, str, str | None]]:
     return out
 
 
+NEEDS_SEPARATOR = " ;; "
+
+
+def read_needs(path: str) -> dict[str, list[str]]:
+    """{symbol: the lines its declaration needs in the header} from a plan's fourth column."""
+    out: dict[str, list[str]] = {}
+    for raw in Path(path).read_text(encoding="utf-8").splitlines():
+        parts = raw.rstrip().split("\t")
+        if raw.lstrip().startswith("#") or len(parts) < 4 or not parts[3].strip():
+            continue
+        out[parts[0].strip()] = [x.strip() for x in parts[3].split(NEEDS_SEPARATOR) if x.strip()]
+    return out
+
+
+def with_needs(text: str, needs: list[str]) -> str:
+    """A header's text with the lines `needs` it lacks: an include goes before `#include "types.h"` (after
+    the last include when there is none), a forward declaration after the includes, apart by a blank line."""
+    lines = text.split("\n")
+    includes = [n for n in dict.fromkeys(needs) if n.startswith("#include") and n not in lines]
+    forwards = [n for n in dict.fromkeys(needs) if not n.startswith("#include") and n not in lines]
+    is_include = [bool(INCLUDE_LINE.match(ln)) for ln in lines]
+    if includes:
+        if '#include "types.h"' in lines:
+            at = lines.index('#include "types.h"')
+        elif any(is_include):
+            at = len(is_include) - is_include[::-1].index(True)
+        else:
+            at = next((i + 1 for i, ln in enumerate(lines) if PRAGMA_ONCE.match(ln)), 0)
+        lines[at:at] = includes
+    if forwards:
+        is_include = [bool(INCLUDE_LINE.match(ln)) for ln in lines]
+        at = (len(is_include) - is_include[::-1].index(True)) if any(is_include) else \
+            next((i + 1 for i, ln in enumerate(lines) if PRAGMA_ONCE.match(ln)), 0)
+        new = list(forwards)
+        if at < len(lines) and not lines[at].strip():
+            at += 1
+        else:
+            new.insert(0, "")
+        if at < len(lines) and lines[at].strip() and not re.match(r"(struct|class|union)\s+\w+;", lines[at]):
+            new.append("")
+        lines[at:at] = new
+    return "\n".join(lines)
+
+
 def first_line(diff: str) -> str:
     lines = diff.splitlines()[2:]
     return (next((ln for ln in lines if ln.startswith("+") and "error" in ln), None)
@@ -370,7 +450,9 @@ def first_line(diff: str) -> str:
 
 
 def migrate_plan(plan: list[tuple[str, str, str | None]], version: str, dry_run: bool, jobs: int,
-                 sample: int, tag: str, retry_alone: bool = True) -> int:
+                 sample: int, tag: str, retry_alone: bool = True,
+                 needs: dict[str, list[str]] | None = None) -> int:
+    needs = needs or {}
     report = decl_check.Report(decl_check.tree_files(None))
     worst = 0
     # Per symbol: its header, the declaration to append to it (None when it declares it already)
@@ -420,6 +502,9 @@ def migrate_plan(plan: list[tuple[str, str, str | None]], version: str, dry_run:
                     if not has_include(text, hdr):
                         text = add_include(text, include_spelling(hdr))
             extra = [sym_decl[s] for s in symbols if s in kept and sym_decl[s] and sym_header[s] == p]
+            wanted = [n for s in symbols if s in kept and sym_decl[s] and sym_header[s] == p for n in needs.get(s, [])]
+            if wanted:
+                text = with_needs(text, wanted)
             if extra:
                 text = text.rstrip("\n") + "\n" + "".join(d.strip() + "\n" for d in extra)
             out[p] = text
@@ -542,15 +627,24 @@ def migrate_plan(plan: list[tuple[str, str, str | None]], version: str, dry_run:
     if retry and retry_alone:
         print(f"retrying {len(retry)} symbol(s) that went back together with others, one run each")
         for s in retry:
-            worst = max(worst, migrate([s], version, sym_header[s], sym_decl[s], False, jobs))
+            # a plan of one: what the symbol brings is written after its baseline, with its declaration
+            worst = max(worst, migrate_plan([(s, sym_header[s], sym_decl[s])], version, False, jobs, sample,
+                                            f"{tag}-{s}", False, {s: needs.get(s, [])}))
     for hdr in sorted({h for _, h, _ in plan}):
         if not (ROOT / hdr).exists():
             continue
         text, crlf = read(hdr)
-        names = unused_forwards(text, committed(hdr))
+        before = committed(hdr)
+        names = unused_forwards(text, before)
         if names:
-            write(hdr, drop_forwards(text, names), crlf)
+            text = drop_forwards(text, names)
             print(f"  DROPPED  {hdr}  forward declaration(s) nothing in it uses: " + " ".join(names))
+        gone = unused_includes(text, before, types_defined)
+        if gone:
+            text = drop_includes(text, gone)
+            print(f"  DROPPED  {hdr}  include(s) whose types it does not mention: " + " ".join(gone))
+        if names or gone:
+            write(hdr, text, crlf)
     return worst
 
 
@@ -576,7 +670,7 @@ def main() -> int:
             ap.error("--plan takes no symbols, --header, --declaration or --header-redeclared")
         return migrate_plan(read_plan(args.plan), args.version, args.dry_run, args.jobs,
                             args.generated_sample, "hub_migrate-plan-" + Path(args.plan).stem,
-                            not args.no_retry)
+                            not args.no_retry, read_needs(args.plan))
     symbols = list(args.symbols)
     if args.header_redeclared:
         report = decl_check.Report(decl_check.tree_files(None))

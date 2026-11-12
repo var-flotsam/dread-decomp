@@ -8,6 +8,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkSphere.h"
 #include "game/UnkTU226.h"
+#include "game/UnkTU227.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -19,7 +20,6 @@ struct UnkSphereSource_b218 {
 };
 
 struct UnkSphereSource;
-void fn_710019fc40(UnkSphereSource* self, UnkVec3f* center, f32* radius);
 
 struct UnkSphereOwner_b218 {
     u8 pad_0x0[0x20];

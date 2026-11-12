@@ -7,6 +7,7 @@
 #include "base/UnkRefHandle.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
+#include "game/CAIManager/CTunableAIManager.h"
 #include "game/CTriggerLogicAction.h"
 #include "game/UnkManager_71726af468.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -16,9 +17,6 @@ using base::global::CStrId;
 using base::math::CVector3D;
 
 struct UnkTutoExitAction_b47;
-
-void fn_7100daa92c(UnkManager_71726af468* self, CStrId name, u32 value);
-void fn_7100daa638(UnkManager_71726af468* self, CStrId name, u32 value, const CVector3D& pos);
 
 struct UnkPerceptionModifierAction_b55 {
     u8 pad_0x0[0x10];

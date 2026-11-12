@@ -2,6 +2,7 @@
 // rotation angles when the object is active (+0x81); fn_71001bc740 moves it, first turning it
 // to face the new position when +0x80 is set (direction to angles by fn_710007a7f0, plus 1.57
 // on x). Both mark it dirty (+0x82).
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 
 extern "C" f32 sqrtf(f32);
@@ -21,8 +22,6 @@ void fn_71001bc8a4(UnkXformHolder_0x84* self, const UnkVec3f* v) {
         self->dirty_0x82 = 1;
     }
 }
-
-UnkVec3f fn_710007a7f0(UnkVec3f dir);  // direction to rotation angles; by value, passed by address (non-trivial copy)
 
 void fn_71001bc740(UnkXformHolder_0x84* self, const UnkVec3f* v) {
     if (self->face_0x80) {

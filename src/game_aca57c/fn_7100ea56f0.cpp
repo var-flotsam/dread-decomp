@@ -38,7 +38,6 @@ struct UnkAssignedStrId {
 };
 
 extern u8 g_unk_71729cdad8[] __attribute__((visibility("hidden")));
-void fn_710007f564(void* self, const char* str);  // appends a string
 
 struct UnkNumberedIds {
     u32 field_0x0;

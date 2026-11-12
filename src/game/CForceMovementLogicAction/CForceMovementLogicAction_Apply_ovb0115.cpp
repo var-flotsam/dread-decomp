@@ -8,6 +8,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2689.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -39,9 +40,7 @@ struct UnkForcedMovementAction_ovb0115 {
 
 struct UnkInputComponent;
 struct UnkForcedMovementTarget_A5_b68;
-void fn_71010db848(UnkForcedMovementTarget_A5_b68* self, const CStrId* name, const void* params);
 struct UnkEntityState;
-void fn_7100232864(UnkEntityState* entity, bool value);
 
 void fn_7100a4fd80(UnkForcedMovementAction_ovb0115* self) {
     UnkForcedMovementPlayer_ovb0115* player =

@@ -12,7 +12,6 @@
 struct UnkTrackObject_71011781f4;
 struct UnkCutsceneTimeline;
 struct UnkAnimTiming;
-bool fn_710117aaac(void* cls, const base::reflection::CClass* track_class, f32 frames);
 struct UnkStruct_71002334fc;
 struct UnkStruct_710024fa0c;
 

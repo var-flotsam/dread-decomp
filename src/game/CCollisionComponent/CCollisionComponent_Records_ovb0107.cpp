@@ -21,6 +21,8 @@
 #include "game/UnkComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
+#include "game/UnkTU112.h"
+#include "game/UnkTU2505.h"
 #include "game/UnkTU2509.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU365.h"
@@ -367,7 +369,6 @@ done:
 struct UnkColliderNode;
 struct UnkManager_7100863a8c;
 void fn_7100d46804(UnkManager_7100863a8c* self);
-UnkColliderNode* fn_71008625a0(UnkManager_7100863a8c* self, void* owner, const CStrId* name);
 
 struct UnkCollisionComponent_Groups_ovb0107 {
     u8 unk_0x0[0x30];
@@ -808,14 +809,11 @@ struct UnkTunableLine {
         fn_710007ecd4(Str());
     }
 };
-UnkTunableLine fn_710013c834(const CRntString* str, const char* from, const char* to);
 
 // The collision file's reader (as src/game/CSubAreaManager.cpp declares it).
 struct UnkCollisionFileReader {
     u8 unk_0x0[0x18];
 };
-void fn_7100d45fc4(UnkCollisionFileReader* self, void* arg);
-void fn_7100d45fd4(UnkCollisionFileReader* self);
 void fn_7100860830(UnkCollisionFileReader* self, const char* path, base::UnkVector<UnkCollisionRecord>* out,
                    bool a, void* b);
 

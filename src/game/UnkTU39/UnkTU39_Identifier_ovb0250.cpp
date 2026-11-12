@@ -2,13 +2,12 @@
 // spaces become '_' and the characters ( ) - [ ] _ become the words __PARI__, __PARD__, __DASH__, __CORI__,
 // __CORD__ and __UNDS__ (fn_710007f564 appends a string, fn_710007f5ac a character). Names are placeholders.
 #include "base/global/CRntString.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using base::global::CRntString;
 
 struct UnkStrValue;
-
-void fn_710007f564(void* self, const char* str);  // appends a string
 
 // Appends `str` to the value, spelling out the characters that cannot appear in an identifier.
 void fn_7100065b14(const char* str, UnkStrValue& value) {

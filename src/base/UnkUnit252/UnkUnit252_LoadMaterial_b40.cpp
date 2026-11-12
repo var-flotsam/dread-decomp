@@ -12,7 +12,6 @@ using base::global::CFilePathStrId;
 
 struct UnkDecalResource;
 struct UnkDecalResourceMgr;
-UnkDecalResource* fn_710019ffe8(UnkDecalResourceMgr* mgr, const CFilePathStrId* path, bool flag);
 
 struct UnkObject252 {
     u8 pad_0x0[0xe8];

@@ -2,6 +2,7 @@
 // transform: moved by its translation and turned by its z angle (fn_7100076acc) on top of the box's own
 // angle (fn_7100110664). Names and layouts are placeholders.
 #include "base/spatial/COBox2D.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -16,8 +17,6 @@ struct UnkOBoxShape2D {
     u8 pad_0x0[0xa8];
     UnkOBoxPlacement placement;  // 0xa8
 };
-
-UnkVec3f fn_7100076acc(const UnkXform* x);  // the rotation angles of a transform
 
 UnkOBoxPlacement fn_7100d685c0(const UnkOBoxShape2D* self, const UnkXform* xf) {
     UnkOBoxPlacement box = self->placement;

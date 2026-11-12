@@ -1,11 +1,11 @@
 // More of the GUI manager's unit (see CGUIManager.cpp). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU2744.h"
+#include "game/lua_bind.h"
 #include "types.h"
 
 struct UnkGuiRoot;
 using base::global::CStrId;
-void* fn_71011b882c(UnkGuiRoot*, const CStrId*);  // as src/game/GUI/CLabel.cpp declares it
-const base::global::CRntString** fn_710109c444(void* vec, u32 index);
 
 struct UnkGuiRoot;
 struct UnkGlyphMetrics;  // src/game/GUI/CLabel.cpp

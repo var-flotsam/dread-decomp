@@ -15,13 +15,13 @@
 #include "game/CTriggerComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU57.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 using base::global::CRntString;
 
 struct UnkScriptCaller;
-CRntString fn_710007ef90(const CRntString*, const char*);
 extern char g_unk_7101647790[];
 
 struct UnkTrigger_b50a5;
@@ -87,8 +87,6 @@ struct UnkTriggerComponent_ovb0067 {
     u8 pad_0x206[2];
     CRntString field_0x208;
 };
-
-bool fn_7100dfaf88(UnkGameManager* self, void* name, const CRntString& tag, bool flag);
 
 // The text of a string id, counting the use.
 static inline __attribute__((always_inline)) const CRntString* UseText(UnkTriggerName_ovb0067* const& id) {

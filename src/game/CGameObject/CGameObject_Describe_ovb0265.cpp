@@ -2,6 +2,7 @@
 // reflected field of its class (0xb0 bytes each, the name id first) of the types b, f, i and s is read through
 // reflection and stored under the field's name. Names and layouts are placeholders.
 #include "../../game_s7/UnkPropBagS7.h"
+#include "base/core/CBaseObject.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkReflAttributes.h"
@@ -18,7 +19,6 @@ using unk_prop_bag::UnkPropBag;
 struct UnkReflField;
 struct UnkReflFieldObject;
 struct UnkReflValueArg;
-s32 fn_7100024140(const base::reflection::CType* type);  // the type's letter (b, f, i, s, v)
 
 struct UnkObjField {
     CStrId id;  // 0x0

@@ -2,6 +2,7 @@
 #include "../../game_s7/UnkStaticInitS7.h"
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CAbilityMultiLockon.h"
 #include "game/UnkTUProperty.h"
 
 using namespace unk_static_init;
@@ -28,7 +29,6 @@ void fn_710031d8ac() __attribute__((visibility("hidden")));
 void fn_710031d8b8() __attribute__((visibility("hidden")));
 extern char g_unk_71726af8a8[];
 extern char g_unk_71726af8a9[];
-extern UnkTunable g_unk_71726af8b0;
 extern void* g_unk_7101a22f60[];
 
 void fn_710031d5f0() {

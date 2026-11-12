@@ -1,6 +1,7 @@
 // Unit 1444 of tools/tu_map.py (no name hint): the handler of track events (kind 1 and 2) of its
 // class. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CActionInstance.h"
 #include "game/UnkTU1444.h"
 #include "types.h"
 
@@ -30,8 +31,6 @@ struct UnkUnit1444_Event {
     bool field_0x204;
     bool field_0x205;
 };
-
-bool fn_7100c97930(UnkTrackAction_1444* action, const base::reflection::CClass* cls, f32 value);
 
 void fn_71009746b8(UnkUnit1444_Event* self, UnkTrackEvent_1444* event) {
     switch (event->kind) {

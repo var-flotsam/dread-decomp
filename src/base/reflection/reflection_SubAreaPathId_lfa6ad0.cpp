@@ -3,11 +3,10 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "game/UnkGameManagerIdTable.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using base::global::CRntString;
-
-void fn_710007f564(void* self, const char* str);  // appends a string
 
 // What a named id points at: its text and a use count.
 struct UnkNamedIdData_lfa6ad0 {

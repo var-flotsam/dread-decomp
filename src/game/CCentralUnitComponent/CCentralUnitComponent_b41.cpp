@@ -6,12 +6,12 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU315.h"
 #include "game/UnkTU39.h"
 #include "types.h"
 
 struct UnkSpawnGroupKey;
 extern UnkSpawnGroupKey g_unk_7172715400 __attribute__((visibility("hidden")));
-void fn_710021a0b4(UnkRenderManager* self, const u64* hash, const base::math::CVector4D* value);
 extern const base::math::CVector4D g_unk_71016477b4;
 extern const u64 g_unk_710164aa90;
 

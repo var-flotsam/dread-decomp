@@ -3,6 +3,8 @@
 // UnkTU2200: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2200,
 // 0x7100c8137c-0x7100c932c4). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/reflection/CClass.h"
+#include "base/global/CStrId.h"
 #include "types.h"
 
 struct UnkReflType;
@@ -68,3 +70,7 @@ extern UnkReflType g_unk_71727938c0;
 extern UnkReflType g_unk_7172793a00;
 extern UnkReflType g_unk_7172793b40;
 extern UnkTUHeader g_unk_7172794a98 __attribute__((visibility("hidden")));
+extern const base::reflection::CType g_unk_7172794c08 __attribute__((visibility("hidden")));
+void fn_7100c8456c(UnkReflType* self, const base::global::CStrId& name, void* a, void* b);
+void fn_7100c85b3c(UnkReflType* self, const base::global::CStrId& name, void* a, void* b);
+void fn_7100c87684(UnkReflType* self, const base::global::CStrId& name, void* a, void* b);

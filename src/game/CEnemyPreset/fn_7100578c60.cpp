@@ -3,6 +3,7 @@
 #include "../../game_s7/UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
+#include "game/CEnemyPreset.h"
 #include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
@@ -33,7 +34,6 @@ void fn_7100575e14(UnkEnumType* type, const CStrId& name, const base::reflection
 extern char g_unk_71726e36c0[];
 extern char g_unk_71726e36c1[];
 UnkEnumType* fn_7100575f98();
-extern base::reflection::CType g_unk_71726e36c8;
 void fn_7100576074(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_71726e3838[];
 extern UnkConversion g_unk_71726e3840;

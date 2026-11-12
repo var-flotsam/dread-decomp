@@ -202,11 +202,6 @@ bool fn_710020da1c(UnkUpdater_710020c780* self, f32 dt) {
     return self->field_0xf9;
 }
 
-// The same cast handed to fn_71001c09c4 and the settings copied back, then the active flag (0xf9)
-// is stored in the source (0x70 and 0x358) and the value at 0x80 gets the source's
-// "BSphereRadius" when fn_71001c32bc finds it (fn_710020dbd8).
-void fn_71001c09c4(UnkSource_710020c780* source, UnkReflObject* obj);
-
 void fn_710020dbd8(UnkUpdater_710020c780* self) {
     UnkSource_710020c780* source = self->field_0x108;
     UnkReflObject* obj = self->field_0x78;

@@ -4,16 +4,12 @@
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2507.h"
+#include "game/UnkTU56.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
-
-// The next string, in place (as src/game/logic/collision/UnkShapeFactory.cpp declares it).
-s64 fn_710007cee4(void* stream, const char** out);
-
-// The shape kind a name stands for.
-u32 fn_7100d4bc00(const CRntString* name);
 
 // A collider's shape, which reads itself from the file (vf_0x20).
 struct UnkColliderShape {

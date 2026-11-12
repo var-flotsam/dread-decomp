@@ -15,9 +15,11 @@
 #include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU2538.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2656.h"
 #include "game/UnkTU2669.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU315.h"
@@ -113,7 +115,6 @@ s32 fn_710108e4f0(lua_State* L) {
 }
 
 // ---- effects ----
-void fn_7101053c14(void* fx, const base::math::CVector3D* color, f32 a, f32 b, f32 time);
 
 s32 fn_710108f870(lua_State* L) {
     f32 a = 0.1f;
@@ -166,8 +167,6 @@ s32 fn_7101082e80(lua_State* L) {
     }
     return 0;
 }
-
-void* fn_7100deab70(UnkGameManager* self, const CRntString& name);
 
 #define SET_FLAG_BINDING(NAME, OFFSET)                                                    \
     s32 NAME(lua_State* L) {                                                              \
@@ -265,7 +264,6 @@ s32 fn_7101091de0(lua_State* L) {
 }
 
 // ---- game manager name lookups ----
-s32 fn_7100dff1a8(UnkGameManager* self, const base::UnkNamedEntry* key, bool a, bool b);
 
 s32 fn_7101078670(lua_State* L) {
     const char* name;
@@ -344,7 +342,6 @@ s32 fn_7101093c10(lua_State* L) {
 
 // ---- other singletons, created on first use ----
 struct UnkScriptManager_ovb0085;
-void fn_710109d890(UnkScriptManager_ovb0085* self, CRntString* name);
 
 s32 fn_7101077240(lua_State* L) {
     const char* name;
@@ -383,8 +380,6 @@ s32 fn_710108b170(lua_State* L) {
     }
     return 0;
 }
-
-extern void* g_unk_7101d47368;
 
 s32 fn_7101083db0(lua_State* L) {
     bool third = false;

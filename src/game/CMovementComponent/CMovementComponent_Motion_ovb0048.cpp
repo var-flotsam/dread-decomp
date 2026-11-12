@@ -11,11 +11,14 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1141.h"
+#include "game/UnkTU2510.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU365.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -138,7 +141,6 @@ UnkVec3f fn_71010d252c(bool flag, const UnkContact_ovb0048* contact) {
 struct UnkAssignedSlot;
 struct UnkStruct_71007142e8;
 void fn_71007142e8(UnkStruct_71007142e8* self);
-UnkVec3f fn_7100077c04(const UnkMatrix44& m, const UnkVec3f& v);
 void fn_7101179d08(UnkAnimationComponent* self, UnkStruct_71007142e8* motion, const void* key);
 extern u8 g_unk_717270ec68;
 
@@ -324,9 +326,6 @@ void fn_71010d1204(UnkFloorMovement_ovb0048* self, const UnkFloorRef_ovb0048* fl
     }
     self->vtable->vf_0x268(self);
 }
-
-bool fn_7100d5b714(void* tree, u32 mask, const UnkVec3f* from, const UnkVec3f* to, UnkFloorRef_ovb0048* hit,
-                   bool closest, bool flag, f32 radius);
 
 struct UnkProbeShape_ovb0048 {
     u8 pad_0x0[0x60];
@@ -548,7 +547,6 @@ bool fn_71010d32ec(UnkObj_71010d3508* obj, const CRntString& name) {
 }
 
 extern char g_unk_7101647790[];
-bool fn_710117aaac(void* cls, const base::reflection::CClass* track_class, f32 frames);
 
 struct UnkResetMovement_ovb0048;
 

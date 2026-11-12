@@ -14,6 +14,7 @@
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTUProperty.h"
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
 struct UnkLinked_ovb0043 {
@@ -201,8 +202,6 @@ struct UnkTypedValue {
     void* value;
 };
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
-
-extern base::global::CStrId g_unk_71726b7cb8;
 
 // The id table (fn_7100031894 builds it); its +0xf80 is a blackboard property name.
 struct UnkIdTable_ovb0043 {

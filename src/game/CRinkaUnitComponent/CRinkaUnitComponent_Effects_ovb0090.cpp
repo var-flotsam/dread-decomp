@@ -110,8 +110,6 @@ __attribute__((noinline)) const CFilePathStrId* fn_710065f690(UnkRinkaUnitKind_o
 }
 
 struct UnkFxObject_ovb0041;
-void fn_7100146d84(UnkFxObject_ovb0041* fx, const UnkVec3f* position);
-void fn_7100146d98(UnkFxObject_ovb0041* fx, const UnkVec3f* angle);
 
 struct UnkRinkaEntry_ruc;
 

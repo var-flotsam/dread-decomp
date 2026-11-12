@@ -2,14 +2,13 @@
 // and layouts are placeholders.
 #include <new>
 
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 struct UnkEmitterOwner_b0253;
 
 extern void* g_unk_7101a1dba8[];  // the emitter's vtable (GOT 0x7101cc6778)
-
-UnkMatrix44 fn_71000791a8(const UnkVec3f& translation, const UnkVec3f& angle, const UnkVec3f& scale);
 
 struct UnkEmitterParams_b0253 {
     f32 start;       // 0x0

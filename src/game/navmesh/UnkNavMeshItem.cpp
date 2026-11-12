@@ -7,6 +7,7 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU39.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -71,7 +72,6 @@ struct UnkNavMeshItem {
 static_assert(__builtin_offsetof(UnkNavMeshItem, field_0x1e8) == 0x1e8, "UnkNavMeshItem placeholder layout");
 static_assert(__builtin_offsetof(UnkNavMeshItem, field_0x200) == 0x200, "UnkNavMeshItem placeholder layout");
 
-void fn_710002f4e4(void* self);
 u32 fn_71002b44fc(UnkNavMeshItem* self, void* event);
 
 // Builds the item from its values: the two vectors are empty (step 10, flags 0x57), the entries

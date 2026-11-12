@@ -27,10 +27,8 @@ struct UnkWhiteTexture_ovb0259 {
 extern UnkWhiteTexture_ovb0259 g_unk_71726b21e8 __attribute__((visibility("hidden")));
 
 struct UnkQuadNode_ovb0259;
-void fn_710035d9e0(void* map, const CFilePathStrId* path, UnkQuadNode_ovb0259** out, const CStrId* id);
 struct UnkMinimapVec3;
 struct UnkStruct_710020a5a0;
-void fn_710020a5a0(UnkStruct_710020a5a0* self, const base::math::CVector2D* scale);
 
 struct UnkQuadRender_ovb0259 {
     u8 pad_0x0[0x78];

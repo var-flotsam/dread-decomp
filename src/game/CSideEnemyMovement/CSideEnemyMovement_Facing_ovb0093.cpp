@@ -4,12 +4,12 @@
 // virtual at slot 0x380 and returns it. Names and layouts are placeholders.
 #include <math.h>
 
+#include "game/CEnemyMovement.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 struct UnkEnemyMovement_A5;
-UnkVec3f fn_71010c9ad0(UnkEnemyMovement_A5* self);
-UnkVec3f fn_710007a220(const UnkVec3f* v);
 
 struct UnkSideEnemyOwner_ovb0093 {
     u8 pad_0x0[0x38];
@@ -34,4 +34,3 @@ UnkVec3f fn_71009b5f48(UnkSideEnemyMovement2_ovb0093* self) {
     self->vf_0x380(result, 0.0f);
     return result;
 }
-

@@ -14,8 +14,6 @@
 
 using base::global::CStrId;
 
-CStrId fn_7100de9c30(UnkGameManager*);
-
 struct UnkTypedValue {
     const base::reflection::CType* type;
     void* value;

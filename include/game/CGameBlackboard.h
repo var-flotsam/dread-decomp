@@ -3,6 +3,8 @@
 // CGameBlackboard: functions and globals of this translation unit that other files use (tools/tu_map.py unit 1647,
 // 0x7100ae963c-0x7100aefd04). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/global/CStrId.h"
+#include "base/reflection/UnkReflConverter.h"
 #include "types.h"
 
 struct UnkReflType;
@@ -33,3 +35,6 @@ extern UnkReflType g_unk_717275b848;
 extern UnkReflType g_unk_717275b988;
 extern UnkTUHeader g_unk_717275bf40 __attribute__((visibility("hidden")));
 extern UnkReflType g_unk_717275bf60 __attribute__((visibility("hidden")));
+void fn_7100aeafec(UnkReflType* self, const base::global::CStrId& name, void* a, void* b);
+extern UnkConverter g_unk_717275b6c0;
+extern UnkConverter g_unk_717275b6e0;

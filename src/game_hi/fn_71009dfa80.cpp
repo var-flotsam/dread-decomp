@@ -6,6 +6,7 @@
 #include "game/CAbilityEnergyWave.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CEmmyProtoAIComponent.h"
+#include "game/CInputComponent.h"
 #include "game/CSamusHangMovementState/CParams.h"
 #include "game/UnkTU39.h"
 #include "types.h"
@@ -61,7 +62,6 @@ struct UnkRefSlot {
 
 struct UnkLinkList;
 void fn_71002aeb9c(UnkLinkList* list, UnkLinkList** slot);
-void fn_7100872908(void* p, void* handler);
 void fn_71009a1f40(void* p);
 void fn_71009b0800(void* p);
 void fn_71009b349c(void* p);

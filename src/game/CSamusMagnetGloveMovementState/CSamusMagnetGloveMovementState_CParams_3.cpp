@@ -2,12 +2,12 @@
 // (CSamusMagnetGloveMovementState_CParams_2.cpp): false when the value at +0x190 is zero, else whether
 // fn_7100976c94 holds for the actor's (+0x30) position against the target at +0x38. Names and
 // layouts are placeholders.
+#include "game/CCharacterMovement.h"
 #include "game/UnkActor.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 struct UnkGrappleTarget;
-bool fn_7100976c94(UnkGrappleTarget* target, const UnkVec3f* pos, u32 value, void* arg, bool flag, f32 offset);
 
 struct UnkMagnetGloveTarget3 {
     u8 unk_0x0[0x3c8];

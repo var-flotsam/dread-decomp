@@ -6,6 +6,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/GUI/CMainMenu.h"
+#include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkGuiDisplayObject.h"
@@ -89,7 +90,6 @@ struct UnkProfileSaveArg {
     void* field_0x0;
     void* field_0x8;
 };
-void fn_7100b5fd6c(void* object, base::global::UnkStringData** name, void* block, bool a, bool b);
 
 extern UnkPropertyEx<> g_unk_717275ad68;  // "ShowNewItemPopUp"
 extern CStrId g_unk_7172764720 __attribute__((visibility("hidden")));

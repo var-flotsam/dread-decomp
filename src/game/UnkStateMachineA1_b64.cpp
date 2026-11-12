@@ -865,7 +865,6 @@ struct UnkComponent;
 struct UnkSamusGun_b58;
 const base::global::CStrId& fn_7100840844(UnkSamusGunComponent*);
 using base::global::CStrId;
-void fn_710083f32c(UnkSamusGunComponent* self, const CStrId* name, bool a, bool b, bool c);
 extern const base::global::CStrId g_unk_71726af978 __attribute__((visibility("hidden")));
 
 struct UnkSmGunClass_A1_b64 {

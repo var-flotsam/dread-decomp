@@ -21,11 +21,14 @@
 #include "game/UnkTU2656.h"
 #include "game/UnkTU2669.h"
 #include "game/UnkTU2677.h"
+#include "game/UnkTU315.h"
+#include "game/UnkTU341.h"
 #include "game/UnkTU365.h"
 #include "game/lua_lib.h"
 #include "game/malloc.h"
 #include "game/sound/CMusicManager.h"
 #include "../../game_s7/UnkPropBagS7.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -36,7 +39,6 @@ struct lua_State;
 
 struct UnkMgr_0xf18;
 extern UnkMgr_0xf18* g_unk_71726bc560;
-extern void* g_unk_7101d47330;
 
 // Creates the object on first use: storage from the default allocator, built by its constructor function.
 template <class T, u64 Size, void (*Ctor)(T*)>
@@ -64,7 +66,6 @@ struct UnkMusicMode {
     u32 kind;
     u32 field_0x4;
 };
-void fn_7100fd90d8(f32 a, f32 b, void* music, const CRntString* name, u32 c, const UnkMusicMode* d, u32 e, u32 f, void* g);
 
 s32 fn_710108d440(lua_State* L) {
     const char* name;
@@ -99,8 +100,6 @@ s32 fn_7101077360(lua_State* L) {
     }
     return 0;
 }
-
-void fn_7100df31b8(UnkGameManager* self, bool a, bool keep, u32 value, CStrId id, bool c);
 
 s32 fn_710107a2f0(lua_State*) {
     fn_7100df31b8(g_unk_7101d47310, true, false, 1, g_unk_7101d470e0, false);
@@ -207,8 +206,6 @@ s32 fn_7101084270(lua_State* L) {
     return 0;
 }
 
-void fn_7100219558(UnkRenderManager* self, const CStrId* light, bool flag);
-
 s32 fn_7101077090(lua_State* L) {
     const char* name = nullptr;
     u32 value = 0;
@@ -222,7 +219,6 @@ s32 fn_7101077090(lua_State* L) {
 }
 
 struct UnkStatsObject;
-void fn_7100132248(UnkStatsObject* self, const CStrId& name, f32 value);
 
 s32 fn_7101080a50(lua_State*) {
     UnkStatsObject* stats = Singleton<UnkStatsObject, 0x78, fn_7100131f48>(g_unk_7101d47100);
@@ -249,7 +245,6 @@ s32 fn_7101080c90(lua_State*) {
 }
 
 struct UnkStruct_7100233684;
-base::reflection::UnkReflObject* fn_7100233684(UnkStruct_7100233684* self);
 struct UnkSwitchFields_b0159 {
     u8 pad_0x0[0x50];
     u8* field_0x50;
@@ -272,8 +267,6 @@ s32 fn_71010902a0(lua_State* L) {
     }
     return 1;
 }
-
-bool fn_7100fd76d4(void* manager, const CRntString* name);
 
 s32 fn_7101091a20(lua_State* L) {
     const char* name = nullptr;
@@ -316,8 +309,6 @@ s32 fn_7101094170(lua_State* L) {
     }
     return 0;
 }
-
-void fn_7100e8f9a0(char* self, bool remove, base::global::CStrId* key);
 
 s32 fn_7101095190(lua_State* L) {
     bool flag;
@@ -369,9 +360,6 @@ s32 fn_7101084370(lua_State* L) {
     }
     return 0;
 }
-
-const base::global::CStrId* fn_7100de9bf8(UnkGameManager* self);
-void fn_7100e9cbac(void* world, const CStrId* current, CStrId* id, bool flag);
 
 s32 fn_7101095550(lua_State* L) {
     const char* name;
@@ -457,7 +445,6 @@ s32 fn_7101088e00(lua_State* L) {
 }
 
 struct UnkVec;
-void fn_7101053c14(void* fx, const base::math::CVector3D* color, f32 a, f32 b, f32 time);
 
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;

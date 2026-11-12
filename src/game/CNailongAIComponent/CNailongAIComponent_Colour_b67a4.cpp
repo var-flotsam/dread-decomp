@@ -3,14 +3,14 @@
 // (+0x148c8) white after the second call on its +0x138, with alpha from fn_71012399d0 (the value and
 // 4); else a grey of the squared value (not below 0), opaque. Names and layouts are placeholders.
 #include "base/math/CVector4D.h"
+#include "game/UnkTU127.h"
+#include "game/UnkTU253.h"
 #include "types.h"
 
 using base::math::CVector4D;
 
 // As src/game/CNailongAIComponent/CNailongAIComponent_b46.cpp declares them.
 struct UnkStruct_71001436f4;
-bool fn_71001436f4(UnkStruct_71001436f4* self, u32 a, const base::math::CVector4D* b, u32 c);
-bool fn_71001c287c(void* target, u32 a, u32 b, CVector4D* colour, u32 c);
 
 struct UnkNailongSlots_b67a4 {
     u8 pad_0x0[0x138];

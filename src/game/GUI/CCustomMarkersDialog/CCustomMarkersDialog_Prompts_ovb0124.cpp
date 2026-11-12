@@ -8,6 +8,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/GUI/CAmiiboComposition.h"
+#include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkTU32.h"
@@ -29,9 +30,6 @@ struct UnkDialogCallback_ovb0124 {
 
 struct UnkGuiComposition_ovb0090;
 struct UnkMapCallback_ovb0090;
-void fn_7100b5fde0(UnkGuiComposition_ovb0090* gui, const CStrId* text, const CStrId* accept, const CStrId* back,
-                   const UnkMapCallback_ovb0090* on_accept, const UnkMapCallback_ovb0090* on_back, u32 mode,
-                   f32 time);
 
 struct UnkGuiRef_ovb0124 {
     u8 pad_0x0[0x10];

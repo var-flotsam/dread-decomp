@@ -6,13 +6,12 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CSamusGunComponent.h"
 #include "types.h"
 
 using base::reflection::CType;
 using base::reflection::UnkReflObject;
 using base::reflection::UnkReflValue;
-
-void fn_710085b76c(UnkReflObject* gun, bool value);
 
 struct UnkGunOwner_A6_b63 {
     u8 pad_0x0[0x2a8];

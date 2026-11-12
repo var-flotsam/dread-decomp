@@ -4,6 +4,7 @@
 // Names and layouts are placeholders.
 #include "base/UnkCountedResource.h"
 #include "base/global/CFilePathStrId.h"
+#include "game/CActorDef.h"
 #include "game/UnkTU2729.h"
 #include "types.h"
 
@@ -36,7 +37,6 @@ struct UnkRef_71011938bc {
 struct UnkKey_71011934b0;
 struct UnkCounted_71011934b0;
 struct UnkCache_71011934b0;
-UnkCounted_71011934b0* fn_7100255ce8(const base::global::CStrId& name, UnkKey_71011934b0* const* key, u64 flags);
 // The file path a key's resource is loaded from.
 base::global::CFilePathStrId fn_710025539c(UnkKey_71011938bc* const* key);
 

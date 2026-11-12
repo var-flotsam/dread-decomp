@@ -3,6 +3,7 @@
 // by the string id g_unk_71726d8110 (fn_7100debbc8 of the game manager, with the kind g_unk_71727bebb8)
 // and sends its character class (+0x220) a request (descriptors as UnkSpitSend). Names are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CCooldownXBossWindTunnelAttack.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTimelineCalls.h"
@@ -12,7 +13,6 @@
 
 struct UnkWeakTarget;
 extern const u64 g_unk_7101649b38;  // reached through the GOT
-extern base::global::CStrId g_unk_71726d8110 __attribute__((visibility("hidden")));
 
 struct UnkWindTunnelOwner_b59 {
     u8 pad_0x0[0x2e8];

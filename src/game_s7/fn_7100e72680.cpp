@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
 #include "game/UnkMinimapIconKinds.h"
+#include "game/UnkTU2564.h"
 #include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
@@ -87,15 +88,6 @@ UnkEnumType* fn_7100e68570();
 extern UnkEnumType g_unk_71727c7e70;
 void fn_7100e6864c(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_71727c7fe0[];
-extern UnkStrIdBase g_unk_71727c7fe8;
-extern UnkStrIdBase g_unk_71727c7ff0;
-extern UnkStrIdBase g_unk_71727c7ff8;
-extern UnkStrIdBase g_unk_71727c8000;
-extern UnkStrIdBase g_unk_71727c8008;
-extern UnkStrIdBase g_unk_71727c8010;
-extern UnkStrIdBase g_unk_71727c8018;
-extern UnkStrIdBase g_unk_71727c8020;
-extern UnkStrIdBase g_unk_71727c8028;
 // The minimap's icon kinds, 0x71727c8030 to 0x71727c83d0 (game/UnkMinimapIconKinds.h declares the
 // ones other files read): fn_7100e68cac copies a kind's name into it and adds it to the list of all
 // of them.
@@ -106,7 +98,6 @@ extern CStrId g_unk_71727c8038;
 extern CStrId g_unk_71727c8040;
 extern CStrId g_unk_71727c8048;
 extern CStrId g_unk_71727c8050;
-extern CStrId g_unk_71727c8058;
 extern CStrId g_unk_71727c8060;
 extern CStrId g_unk_71727c8068;
 extern CStrId g_unk_71727c8070;
@@ -122,7 +113,6 @@ extern CStrId g_unk_71727c80f0;
 extern CStrId g_unk_71727c80f8;
 extern CStrId g_unk_71727c8100;
 extern CStrId g_unk_71727c8108;
-extern CStrId g_unk_71727c8110;
 extern CStrId g_unk_71727c8118;
 extern CStrId g_unk_71727c8120;
 extern CStrId g_unk_71727c8128;
@@ -140,7 +130,6 @@ extern CStrId g_unk_71727c8180;
 extern CStrId g_unk_71727c8188;
 extern CStrId g_unk_71727c8190;
 extern CStrId g_unk_71727c8198;
-extern CStrId g_unk_71727c81a0;
 extern CStrId g_unk_71727c81a8;
 extern CStrId g_unk_71727c81b0;
 extern CStrId g_unk_71727c81b8;
@@ -179,14 +168,6 @@ extern CStrId g_unk_71727c82b8;
 extern CStrId g_unk_71727c82c0;
 extern CStrId g_unk_71727c82c8;
 extern CStrId g_unk_71727c82d0;
-extern CStrId g_unk_71727c82d8;
-extern CStrId g_unk_71727c82e0;
-extern CStrId g_unk_71727c82e8;
-extern CStrId g_unk_71727c82f0;
-extern CStrId g_unk_71727c82f8;
-extern CStrId g_unk_71727c8300;
-extern CStrId g_unk_71727c8308;
-extern CStrId g_unk_71727c8310;
 extern CStrId g_unk_71727c8318;
 extern CStrId g_unk_71727c8320;
 extern CStrId g_unk_71727c8328;
@@ -195,21 +176,12 @@ extern CStrId g_unk_71727c8338;
 extern CStrId g_unk_71727c8340;
 extern CStrId g_unk_71727c8348;
 extern CStrId g_unk_71727c8350;
-extern CStrId g_unk_71727c8358;
-extern CStrId g_unk_71727c8360;
-extern CStrId g_unk_71727c8368;
-extern CStrId g_unk_71727c8370;
-extern CStrId g_unk_71727c8378;
-extern CStrId g_unk_71727c8380;
 extern CStrId g_unk_71727c8388;
 extern CStrId g_unk_71727c8390;
 extern CStrId g_unk_71727c8398;
 extern CStrId g_unk_71727c83a0;
-extern CStrId g_unk_71727c83a8;
 extern CStrId g_unk_71727c83b0;
 extern CStrId g_unk_71727c83b8;
-extern CStrId g_unk_71727c83c0;
-extern CStrId g_unk_71727c83c8;
 extern CStrId g_unk_71727c83d0;
 extern char g_unk_71727c83d8[];
 

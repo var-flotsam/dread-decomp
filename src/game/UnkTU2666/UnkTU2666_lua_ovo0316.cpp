@@ -15,6 +15,7 @@
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2677.h"
+#include "game/UnkTU341.h"
 #include "game/sound/CMusicManager.h"
 #include "base/global/UnkStringPool.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -103,8 +104,6 @@ s32 fn_710108c1d0(lua_State* L) {
 s32 fn_710108c350(lua_State* L) {
     return SetEntitySound_b0163<true>(L);
 }
-
-base::reflection::UnkReflObject* fn_710023341c(void* owner, const base::global::CStrId& name);
 
 s32 fn_710107d500(lua_State* L) {
     // The entity's key and then the component's name id use one stack slot.

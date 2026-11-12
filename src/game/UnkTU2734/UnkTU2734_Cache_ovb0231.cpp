@@ -298,7 +298,6 @@ bool fn_710119e684(UnkSubAreaGuiCache* cache, const base::UnkStrIdMember* id, bo
 
 struct UnkActorDefFactory;
 struct UnkSpawnDefRef_b52;
-UnkSpawnDefRef_b52 fn_71011938bc(UnkActorDefFactory* factory, const base::global::CStrId* type, const base::global::CFilePathStrId* path);
 
 // What fn_71011938bc returns, as this unit holds it: the resource's count is dropped when the handle
 // goes.
@@ -327,8 +326,6 @@ bool fn_710119e4ec(UnkSubAreaGuiCache* cache, const CStrId* id, bool flag) {
 
 struct UnkPowerUpLifeEntry_b52;
 struct alignas(8) UnkPowerUpLifeType_b52;
-UnkPowerUpLifeEntry_b52* fn_710119438c(UnkActorDefFactory* factory, const char* path, CStrId* id, const UnkPowerUpLifeType_b52& type,
-                                       void* arg);
 
 typedef u32 __attribute__((may_alias)) UnkAliasU32_b0231;
 

@@ -24,8 +24,10 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU1370.h"
 #include "game/UnkTU2730.h"
+#include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -88,8 +90,6 @@ bool fn_71004d4054(UnkCooldownXBossAI_ovb0088* self) {
 }
 
 using base::math::CVector3D;
-
-extern void* g_unk_7101d47330;
 
 struct UnkCooldownXOwner_ovb0088 {
     virtual void vf_0x0();
@@ -237,7 +237,6 @@ struct UnkShakernautId_b53 {
 };
 struct UnkCommanderPlayer_b67a2;
 struct UnkEntityState;
-void fn_7100232864(UnkEntityState*, bool);
 
 struct UnkCooldownXMsgTarget_ovb0088 {
     u8 pad_0x0[0x10];

@@ -5,9 +5,11 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAutsharpAIComponent.h"
+#include "game/CChozoWarriorAIComponent.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSceneObject.h"
+#include "game/UnkTU140.h"
 #include "game/UnkTU252.h"
 #include "types.h"
 
@@ -16,8 +18,6 @@ using base::reflection::UnkReflObject;
 struct UnkAttackBase;
 struct UnkEffectSink;
 void fn_71003608ac(UnkAttackBase* self);
-base::global::CStrId fn_710049c2f4(UnkReflObject* ai, f32 facing);
-void* fn_7100149930(UnkRenderPool*, void*, UnkSceneObject**, base::global::CStrId*);
 
 // A colour (its copy constructor makes it passed through memory).
 struct UnkTrailColor_ovb0137 {

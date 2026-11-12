@@ -10,6 +10,7 @@
 #include "base/UnkVector.h"
 #include "base/math/CVector4D.h"
 #include "base/reflection.h"
+#include "game/UnkTU0.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -18,7 +19,6 @@ using base::global::UnkStringPool;
 using base::math::CVector4D;
 
 void fn_7100d8f1c0(char*);
-extern void* g_unk_7101d47368;  // the environment manager
 
 struct UnkValueSet_eas {
     u8 unk_0x0[0x18];

@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflConverter.h"
+#include "game/UnkTU89.h"
 #include "game/UnkTUInit.h"
 
 #define HIDDEN __attribute__((visibility("hidden")))
@@ -28,7 +29,6 @@ static inline UnkEnumInfo* TypeOf() {
     return reinterpret_cast<UnkEnumInfo*>(const_cast<base::reflection::CType*>(Getter()));
 }
 
-extern base::reflection::CType g_unk_7101d679f0;
 extern u8 g_unk_7101d67b08[];
 extern UnkConverter g_unk_7101d67b10;
 extern UnkConverter g_unk_7101d67b30;

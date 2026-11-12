@@ -3,8 +3,10 @@
 // CTunableMusicManager: functions of this translation unit that other files call (tools/tu_map.py unit 2637,
 // 0x7100fd1c7c-0x7100fdeaa4). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/global/CRntString.h"
 #include "types.h"
 
+struct UnkMusicMode;
 struct UnkArray;
 struct UnkKind;
 struct UnkLoadingMask;
@@ -20,3 +22,5 @@ f32 fn_7100fd7b3c(void* manager);
 void fn_7100fd7c3c(UnkMgr_0xf18*, u32, UnkRequest*, f32, UnkKind, UnkMask);
 void fn_7100fde4d8(UnkArray*, u32);
 void fn_7100fde6c4(UnkNode_0x68*);  // A node's destructor.
+void fn_7100fd90d8(f32 a, f32 b, void* music, const base::global::CRntString* name, u32 c, const UnkMusicMode* d, u32 e, u32 f, void* g);
+bool fn_7100fd76d4(void* manager, const base::global::CRntString* name);

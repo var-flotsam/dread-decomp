@@ -8,15 +8,13 @@
 #include "base/UnkVector.h"
 #include "game/UnkTU2514.h"
 #include "game/UnkTU2517.h"
+#include "game/UnkTU56.h"
 #include "game/logic/collision/CAABoxShape2D.h"
 #include "game/logic/collision/CCapsuleShape2D.h"
 #include "game/logic/collision/CCircleShape2D.h"
 #include "game/logic/collision/COBoxShape2D.h"
 #include "game/logic/collision/CPolygonCollectionShape.h"
 #include "types.h"
-
-// The next string of the stream, in place (src/game_s7/UnkPropS7.h).
-s64 fn_710007cee4(void* stream, const char** out);
 
 struct UnkCollisionShape {
     virtual void vf_0x0();

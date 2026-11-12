@@ -16,6 +16,7 @@
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkTU958.h"
 #include "game/UnkTUProperty.h"
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
 // A typed value as the section setter takes it (as in src/game/CXParasiteAIComponent.cpp).
@@ -30,8 +31,6 @@ struct UnkSclawkAI_b44a2;
 struct UnkSclawkMessage_b44a2;
 
 struct UnkEffectSink;
-
-extern base::global::CStrId g_unk_71726b7cb8;                                    // the blackboard section
 
 struct UnkPoisonFlyOwner_b55 {
     u8 pad_0x0[0x218];

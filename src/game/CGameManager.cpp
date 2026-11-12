@@ -1,6 +1,10 @@
 // The game manager (CGameManager): the lookup that replaces a string id by another.
 #include "base/animation/CAnimationResource.h"
+#include "base/file/CPackManagerDevice.h"
+#include "base/file/IDevice.h"
 #include "base/global/CRntString.h"
+#include "base/snd/CSoundSystem.h"
+#include "game/CBTObserverComponent.h"
 #include "game/CCameraComponent.h"
 #include "game/CCharClassStartPointComponent.h"
 #include "game/CGameManager/CTunableGameManager.h"
@@ -12,6 +16,7 @@
 #include "game/UnkTU23.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2557.h"
+#include "game/UnkTU2564.h"
 #include "game/UnkTU2668.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU2730.h"
@@ -22,6 +27,7 @@
 #include "game/UnkTU83.h"
 #include "game/UnkTU99.h"
 #include "game/nn/time.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 
 using base::global::CStrId;
 
@@ -36,7 +42,6 @@ CStrId fn_7100dfbda4(UnkGameManager* self, const CStrId& id) {
 // is no scenario. The original tail-calls fn_71011a2fbc with the result slot passed through; the
 // generated version called it as a plain function, so on the port the callee built its result over
 // the scenario object.
-CStrId fn_71011a2fbc(UnkGameManagerSub_0x608* scenario);
 CStrId fn_7100de9c30(UnkGameManager* self) {
     if (self->field_0x608)
         return fn_71011a2fbc(self->field_0x608);
@@ -195,8 +200,6 @@ struct UnkGameManagerStr {
     const char* c_str() const { return data ? data : ""; }
 };
 
-CRntString fn_710007ef90(const CRntString* a, const char* b);  // concatenation
-
 // The script environment's name: the string id at +0x18 of the object at +0x608, seen through its
 // pooled data (the text as a CRntString at +0x10, a count of reads at +0x44; UnkIdTextData below is
 // the same view). Its text prefixes the functions fn_7100def678 calls.
@@ -269,7 +272,6 @@ extern base::file::UnkFileDevice* g_unk_7101d4d828;
 struct UnkSoundMgr;
 
 void fn_7100089894(base::file::UnkFileDevice* self);  // locks the device
-void fn_71000898c4(base::file::UnkFileDevice* self);  // unlocks it
 struct UnkFilePathList;
 // Lists the files under `path` into `out`.
 void fn_7100089eec(base::file::UnkFileDevice* self, const CFilePathStrId* path, UnkFilePathList* out);
@@ -278,9 +280,6 @@ struct UnkFileRequestArgs {
     u64 field_0x8;
 };
 // Requests the file `path` (with 0 and 9; the arguments are zeroed).
-void fn_7100089754(base::file::UnkFileDevice* self, const CFilePathStrId* path, u32 a, u32 b,
-                   const UnkFileRequestArgs* args);
-void fn_7100107b74(UnkSoundMgr* self, const CFilePathStrId* path);
 
 static inline base::file::UnkFileDevice* FileDevice() {
     if (!g_unk_7101d4d828) {
@@ -414,8 +413,6 @@ void fn_7100df026c(UnkGameManager* self, const CFilePathStrId& path) {
 
 using base::global::UnkStrIdBase;
 
-extern UnkStrIdBase g_unk_71727c8018;     // "s070_basesanc" (src/game_s7/fn_7100e72680.cpp)
-extern CStrId g_unk_7172a0bc98;           // a blackboard section's name
 extern UnkPropertyEx<> g_unk_71727591b8;  // a property of the "GAME_PROGRESS" section
 
 // A property seen as a definition whose qualified id (game/UnkGameBlackboard.h) is built on first
@@ -536,9 +533,7 @@ void fn_7100e100f8(UnkLoadingScreen* self, bool shown);
 struct UnkSoundHolder;  // 0x48 bytes (src/game/GUI/CIngameMenu/fn_7100b2de48.cpp)
 struct UnkMgr_0xf18;
 extern UnkMgr_0xf18* g_unk_71726bc560;  // the music manager (game/sound/CMusicManager.h)
-extern void* g_unk_7101d47330;
 
-void fn_7100df31b8(UnkGameManager* self, bool a, bool keep, u32 value, CStrId id, bool c);
 struct UnkTreeNode;  // src/engine/render/anim/CSkeletalAnimTree/fn_710014be78.cpp
 struct UnkObj_7100e01680;  // src/game_aca57c/fn_7100e01680.cpp
 void* fn_7100e0189c(void* start_point);
@@ -547,14 +542,12 @@ struct UnkMusicMode {
     u32 kind;
     u32 field_0x4;
 };
-void fn_7100fd90d8(f32 a, f32 b, void* music, const CRntString* name, u32 c, const UnkMusicMode* d, u32 e, u32 f, void* g);
 struct UnkStruct_71002334fc;  // src/game_lo/fn_71002334fc.cpp
 struct UnkCameraCtrl;  // src/game/CBossAIComponent/fn_71003ad014.cpp
 void fn_7100935d40(UnkCameraCtrl* ctrl);
 void fn_7100e0203c(UnkGameManager* self);
 void fn_71010e4798(void* target);
 void fn_7101048af8(CBlackboard* self);
-void fn_7100dfc638(UnkGameManager* self, CBlackboard* blackboard, const CRntString* name, const CRntString* tag);
 void fn_7101046e78(CBlackboard* self, CBlackboard* other, bool a, bool b);
 struct UnkHandleList {
     UnkGameManagerObjRef** data;
@@ -1029,7 +1022,6 @@ using unk_prop_bag::UnkPropBag;
 
 // The registry the operation reports an I/O error to (created on first use) and the empty id it
 // compares the current entry's name with (a static of the registry's unit, built from "").
-extern CStrId g_unk_7101d592c8;
 // The object at the registry's +0x50: its vf_0x18 gives the current entry's name.
 struct UnkRegistryCurrent {
     virtual void vf_0x0();
@@ -1037,7 +1029,6 @@ struct UnkRegistryCurrent {
     virtual void vf_0x10();
     virtual const CStrId& vf_0x18();
 };
-void* fn_7100087740(UnkRegistry_0x70* self, const CStrId* name);  // the entry registered under `name`
 
 // A profile slot as the operation lists it (0x208 bytes).
 struct UnkProfileEntry {
@@ -1256,11 +1247,8 @@ extern UnkPropertyEx<> g_unk_7172758cb0;  // a string (fn_7100dfb330)
 struct UnkEnumType;
 UnkEnumType* fn_710009fb38();  // refl_GetType<base::global::TRntString128>
 s32 fn_7100dfb930();
-CRntString fn_7100dfb330(UnkGameManager* self);
 bool fn_7100395c38(CBlackboard::CSection* section, const void* name, CRntString* out);
 bool fn_7100395b34(CBlackboard::CSection* section, const void* name, f32* out);
-CStrId fn_71011a2fbc(UnkGameManagerSub_0x608* self);
-void fn_7100ca7a60(UnkGameManagerSub_0x1af8* self, CBlackboard* blackboard, const CStrId* section);
 
 // The current checkpoint (an object reference at +0x29b8): three words that name its start point.
 struct UnkCheckpoint {

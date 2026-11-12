@@ -4,6 +4,7 @@
 // fn_71000eef84 resizes it, fn_71000eed30 hands the current entry's count (an object's members or a collection's size)
 // to the caller's reference. Names and layouts are placeholders.
 #include "base/UnkCloneHelpers.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
@@ -19,7 +20,6 @@ using base::reflection::UnkReflValue;
 using base::reflection::UnkTypedRef;
 
 void fn_71000a1a24(UnkReflValue* out, const UnkTypedRef* v, u32 by_ref, u32 kind);
-void fn_71000a174c(UnkTypedRef* out, const void* ref);
 
 // One entry of the listing (0x68 bytes). The list keeps them after a 4-byte count, so they are only 4-aligned.
 #pragma pack(push, 4)

@@ -10,6 +10,7 @@
 #include "base/UnkHashMap.h"
 #include "base/UnkNamedRegistry.h"
 #include "base/UnkVector.h"
+#include "base/file/CPackManagerDevice.h"
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
@@ -17,10 +18,13 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "base/snd/CSoundSystem.h"
 #include "game/CAbilityEnergyWave.h"
+#include "game/CBTObserverComponent.h"
 #include "game/CBlackboard.h"
 #include "game/CBombGun.h"
 #include "game/CCentralUnitCannonBeamMovementComponent.h"
+#include "game/CScenario.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
@@ -32,6 +36,7 @@
 #include "game/UnkTU2506.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2768.h"
+#include "game/UnkTU341.h"
 #include "game/UnkTU344.h"
 #include "game/UnkTU57.h"
 #include "game/UnkTU83.h"
@@ -114,9 +119,6 @@ struct UnkTgmStart_b205 {
     u8 pad_0x2ab8[0x2ae4 - 0x2ab8];
     u32 field_0x2ae4;
 };
-void fn_7100df28d0(UnkGameManager* manager, const CRntString& a, const CRntString& b,
-                   const CRntString& c, const CStrId& id, bool flag, const CRntString& d,
-                   const CStrId& e, u32 f, void* g, f32 h);
 
 void fn_7100df2acc(UnkGameManager* manager) {
     UnkTgmStart_b205* self = reinterpret_cast<UnkTgmStart_b205*>(manager);
@@ -269,7 +271,6 @@ struct UnkTgmRefVector_b205 {
 };
 UnkTgmRefVector_b205* fn_71006e9fb4();
 struct UnkStruct_7100233684;
-base::reflection::UnkReflObject* fn_7100233684(UnkStruct_7100233684* self);
 
 void fn_7100e010a0(UnkGameManager* self, u32 value) {
     UnkTgmRefVector_b205* refs = fn_71006e9fb4();
@@ -298,8 +299,6 @@ void fn_7100e010a0(UnkGameManager* self, u32 value) {
 // ---- fn_7100dfaf88
 struct UnkStepCallbacks;
 struct UnkStepCallback;
-bool fn_7100dfc0c8(UnkGameManager* self, const base::UnkNamedEntry* a, const base::UnkNamedEntry* b, bool c, bool d,
-                   bool e, bool f, bool g, s32 mode);
 struct UnkTgmCallback_b205 {
     void* context;
     void (*fn)(void* context);
@@ -331,8 +330,6 @@ bool fn_7100dfaf88(UnkGameManager* manager, void* name, const CRntString& tag, b
 }
 
 // ---- fn_7100e015b8
-CStrId fn_71011a2fbc(UnkGameManagerSub_0x608* scenario);
-void fn_7100ca7a60(UnkGameManagerSub_0x1af8*, CBlackboard*, const CStrId*);
 
 void fn_7100e015b8(UnkGameManager* self) {
     CBlackboard* blackboard = &g_unk_7101d47310->field_0x968;
@@ -497,9 +494,6 @@ s32 fn_7100dfecec(UnkGameManager* manager, s32 flag) {
 struct UnkStepCallbacks;
 struct UnkStepCallback;
 struct UnkCompared_0x30;
-bool fn_7100dfc0c8(UnkGameManager* self, const base::UnkNamedEntry* a, const base::UnkNamedEntry* b, bool c, bool d,
-                   bool e, bool f, bool g, s32 mode);
-void fn_7100dfc638(UnkGameManager* self, CBlackboard* blackboard, const CRntString* name, const CRntString* tag);
 struct UnkTgmAfter_b205 {
     u8 pad_0x0[0x968];
     CBlackboard field_0x968;
@@ -786,10 +780,6 @@ struct UnkFileRequestArgs {
     u64 field_0x0;
     u64 field_0x8;
 };
-void fn_7100089754(base::file::UnkFileDevice* self, const CFilePathStrId* path, u32 a, u32 b,
-                   const UnkFileRequestArgs* args);
-void fn_7100107b74(UnkSoundMgr* self, const CFilePathStrId* path);
-void fn_71000898c4(base::file::UnkFileDevice* self);
 extern const CStrId g_unk_71727bedd0 __attribute__((visibility("hidden")));
 
 static inline base::file::UnkFileDevice* FileDevice() {

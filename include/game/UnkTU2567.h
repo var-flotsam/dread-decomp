@@ -3,6 +3,7 @@
 // UnkTU2567: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2567,
 // 0x7100eb695c-0x7100ebf278). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/reflection/UnkReflConverter.h"
 #include "types.h"
 
 struct UnkReflType;
@@ -24,3 +25,5 @@ extern UnkReflType g_unk_71729cdd78;
 extern UnkReflType g_unk_71729cdeb8;
 extern UnkTUHeader g_unk_71729ce040 __attribute__((visibility("hidden")));
 extern UnkTUData g_unk_71729ce058 __attribute__((visibility("hidden")));
+extern UnkConverter g_unk_71729cdfd8;
+extern UnkConverter g_unk_71729cdff8;

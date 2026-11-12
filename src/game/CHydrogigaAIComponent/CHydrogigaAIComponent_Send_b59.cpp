@@ -7,6 +7,7 @@
 #include "base/UnkVector.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkTU883.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
@@ -18,7 +19,6 @@ using UnkOut_71008651c8 = base::UnkVector<UnkStruct_71008651c8_Entry*>;
 void fn_71008651c8(UnkStruct_71008651c8* self, void* const* key, UnkOut_71008651c8* out);
 
 extern void* const g_unk_71726eb438 __attribute__((visibility("hidden")));
-extern base::global::CStrId g_unk_71726eb440 __attribute__((visibility("hidden")));
 struct UnkTimelineKey_b59a3;
 extern UnkTimelineKey_b59a3 g_unk_710164a0e0;  // reached through the GOT
 

@@ -5,9 +5,8 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU2747.h"
 #include "types.h"
-
-void fn_71011cee40(UnkGuiDisplayObject* self);
 
 static inline u8 IsShown_71011cdce8(UnkGuiDisplayObject* self) {
     if (!self->field_0x74)

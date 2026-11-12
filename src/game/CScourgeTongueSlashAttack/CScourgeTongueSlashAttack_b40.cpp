@@ -3,11 +3,10 @@
 // tells the owner's collision container (+0x2a0) the id at g_unk_7172704968. Then fn_710069afac, and in
 // states 0 and 1 a switch to state 2 with the tuning's time (+0xec) as the timer (+0x60); in state 3 the
 // timer runs down, and fn_710069b410 runs once it is spent. Names and layouts are placeholders.
+#include "game/CScourgeTongueSlashAttack.h"
 #include "game/UnkCollisionRecord.h"
 #include "game_s2/UnkSpitAttack.h"
 #include "types.h"
-
-extern const base::global::CStrId g_unk_7172704968 __attribute__((visibility("hidden")));
 
 struct UnkTuning_st {
     u8 pad_0x0[0xec];

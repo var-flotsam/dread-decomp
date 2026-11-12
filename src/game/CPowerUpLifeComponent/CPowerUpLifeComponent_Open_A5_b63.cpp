@@ -11,13 +11,13 @@
 #include "game/CScenario.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2523.h"
+#include "game/UnkTU341.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 struct UnkScriptCaller;
 struct UnkEntityState;
-void fn_7100232864(UnkEntityState* entity, bool value);
 struct UnkStruct_710024fa0c;
 
 struct UnkPowerUpPos_A5_b63 {

@@ -287,9 +287,6 @@ struct UnkNavMeshHits;
 struct UnkStruct_7100286624;
 struct UnkObject_71002ad0dc;
 
-void fn_7100286920(UnkNavQuery* self, const CVector2D* point, u16 cell, u8 side);
-void fn_7100286964(UnkNavQuery* self, const CVector2D* start, u16 cell, UnkNavMeshHits* hits);
-
 struct UnkLocalQuery_ec1710 : UnkNavQuery {
     UnkLocalQuery_ec1710() { fn_710028659c(this); }
     ~UnkLocalQuery_ec1710() { fn_7100286624(reinterpret_cast<UnkStruct_7100286624*>(this)); }
@@ -328,8 +325,6 @@ void fn_7100ec1970(const CVector2D* start, UnkCellData_ec1710* data, base::UnkVe
                    UnkCandidates_ec1710* out);
 bool fn_71002811b4(UnkNavMeshState_0x5ddf0* state, UnkNavQuery* query, UnkScratch_ec1710* scratch);
 f32 fn_71002aca24(void* result);
-
-void fn_7100ebf2fc(UnkNavMeshNodePool_0x70* self, u32 count, u32 unused, u32 flags, base::UnkAllocator* allocator);
 
 // The manager, created on first use with its constructor (fn_7100ebf278) inlined.
 static inline UnkNavMeshManager* GetRegistry() {

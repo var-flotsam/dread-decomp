@@ -37,7 +37,6 @@ struct UnkFlagged;
 struct UnkParent;
 struct UnkGlobal2;
 struct UnkGunListeners_b53;
-void fn_710083f32c(UnkSamusGunComponent*, const CStrId*, bool, bool, bool);
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 void fn_7100841838(UnkGunListeners_b53* self, void* value);
 void fn_710007ca94(CRntFile*, char*);
@@ -683,7 +682,6 @@ void fn_710083ae88(UnkGun_ovb0091* self, bool on) {
     }
 }
 
-s64 fn_710007cee4(void*, const char**);
 void* fn_710034df0c(char* self, const CStrId* id);
 void fn_7100835bd8(void* object, const u64* a, const u64* b, const u64* c, const u64* d, const u64* e,
                    const u64* f, const u64* g);

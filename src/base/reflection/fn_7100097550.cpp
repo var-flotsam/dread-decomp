@@ -7,6 +7,7 @@
 // static_asserts tie them together. Names are placeholders.
 #include <new>
 
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
@@ -21,7 +22,6 @@ using base::reflection::UnkReflAttrs;
 using base::reflection::UnkReflFunction;
 
 extern char g_unk_7101a1b460[];  // UnkReflFunction's virtual table (its address point is +0x10)
-const UnkReflAttrKey& fn_710000d120();  // "_EditorOnly"
 
 namespace refl_add_function {
 

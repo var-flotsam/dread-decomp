@@ -3,6 +3,9 @@
 // CTunableAIManager: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2540,
 // 0x7100da7404-0x7100daf1cc). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/global/CStrId.h"
+#include "base/math/CVector.h"
+#include "base/reflection/UnkReflConverter.h"
 #include "types.h"
 
 struct UnkManager_71726af468;
@@ -37,3 +40,9 @@ extern UnkReflType g_unk_71727bc3f0;
 extern UnkTUHeader g_unk_71727bc598 __attribute__((visibility("hidden")));
 extern UnkTUData g_unk_71727bc5b0 __attribute__((visibility("hidden")));
 extern UnkTunable g_unk_71727bc558;  // The AI tunables (unit 2539's data).
+void fn_7100daa92c(UnkManager_71726af468* self, base::global::CStrId name, u32 value);
+void fn_7100daa638(UnkManager_71726af468* self, base::global::CStrId name, u32 value, const base::math::CVector3D& pos);
+extern UnkConverter g_unk_71727bc3b0;
+extern UnkConverter g_unk_71727bc3d0;
+extern UnkConverter g_unk_71727bc510;
+extern UnkConverter g_unk_71727bc530;

@@ -30,7 +30,6 @@ bool fn_710009d5d4(const char* type, base::reflection::UnkTypedRef* dst, const b
 struct UnkFormatSource;
 UnkString100 fn_7100adc570(UnkFormatSource* self);
 void fn_710007e7d8(CRntString* self, const char* str, bool borrowed);
-s32 fn_710007fb54(const CRntString* self, const char* str, u32 start);
 void fn_7100ad386c(UnkErasedVector* self, UnkErasedValue_0x10* value);
 extern const char g_unk_710164b8a8[];
 extern const char g_unk_710164b8a9[];

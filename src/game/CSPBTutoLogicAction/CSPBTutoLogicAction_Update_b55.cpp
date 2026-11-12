@@ -29,7 +29,6 @@ struct UnkTutoExitAction_b47;
 
 struct UnkTutorialComposition;
 struct UnkTutorialRequest;
-bool fn_7100b88f10(UnkTutorialComposition* self, const CStrId* text);
 
 struct UnkGrabAttack_b55 {
     const base::reflection::CType* GetType() {

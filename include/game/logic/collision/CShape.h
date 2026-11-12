@@ -3,8 +3,12 @@
 // CShape: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2518,
 // 0x7100d6968c-0x7100d70514). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/global/CRntFile.h"
+#include "base/global/CStrId.h"
+#include "base/reflection/UnkReflConverter.h"
 #include "types.h"
 
+struct UnkPolygonCollectionShape;
 struct UnkReflType;
 struct UnkTUHeader;
 struct UnkPolygonCollectionShape_b42a3;
@@ -51,3 +55,7 @@ extern UnkReflType g_unk_71727b4200;
 extern UnkReflType g_unk_71727b4340;
 extern UnkReflType g_unk_71727b4480;
 extern UnkTUHeader g_unk_71727b4f88 __attribute__((visibility("hidden")));
+bool fn_7100d6c288(UnkPolygonCollectionShape* self, base::global::CRntFile* file);
+void fn_7100d6aeb8(UnkReflType* self, const base::global::CStrId& name, void* a, void* b);
+void fn_7100d6be08(UnkReflType* self, const base::global::CStrId& name, void* a, void* b);
+extern UnkConverter g_unk_71727b3de0;

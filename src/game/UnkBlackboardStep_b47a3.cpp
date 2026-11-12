@@ -2,9 +2,8 @@
 // manager's blackboard section named by g_unk_71729ce198 (0 when there is none). Names are placeholders.
 #include "game/CBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2571.h"
 #include "types.h"
-
-extern base::global::CStrId g_unk_71729ce198 __attribute__((visibility("hidden")));
 
 struct UnkBlackboardReader_b47a3 {
     u8 unk_0x0[8];

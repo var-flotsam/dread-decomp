@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CKraidAIComponent.h"
 #include "game/CKraidAttack.h"
 #include "game/UnkTU2729.h"
 #include "game/UnkTU344.h"
@@ -18,8 +19,6 @@ using base::reflection::UnkReflObject;
 struct UnkActorDefFactory;
 struct UnkPowerUpLifeEntry_b52;
 struct UnkPowerUpLifeType_b52;
-UnkPowerUpLifeEntry_b52* fn_710119438c(UnkActorDefFactory* factory, const char* path, CStrId* id, const UnkPowerUpLifeType_b52& type,
-                                       void* arg);
 
 // The three spike actor definitions.
 extern CStrId g_unk_71726f2e90 __attribute__((visibility("hidden")));
@@ -105,7 +104,6 @@ void fn_71005f5250(UnkKraidSpikesAttack_ovb0118* self) {
 }
 
 struct UnkSelf_kt41;
-bool fn_71005ff8c0(UnkReflObject* ai);
 bool fn_71005fdb70(UnkKraidAI_ovb0118* ai);
 
 bool fn_71005f513c(UnkKraidSpikesAttack_ovb0118* self, void* a, void* b) {

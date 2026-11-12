@@ -4,12 +4,12 @@
 // (0.36, 0.5, 1, 1), each converted to a vector (fn_7100030878) and set through fn_7100193410. Names and
 // layouts are placeholders.
 #include "base/color/CColor4F.h"
+#include "game/UnkTU211.h"
 #include "types.h"
 
 using base::color::CColor4F;
 
 struct UnkEntryListA1_134;
-bool fn_7100193410(UnkEntryListA1_134* list, u32 index, u32 slot, const base::math::UnkVector4D& value, u32 flag);
 void fn_71001934e0(UnkEntryListA1_134* list, u32 index, u32 slot, CColor4F* out, u32 flag);
 
 struct UnkPolypsModelHolder_ovb0090 {

@@ -3,10 +3,9 @@
 // Names and layouts are placeholders inferred from the code.
 
 #include "base/UnkMatrix44.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
-
-UnkVec3f fn_7100077c04(const UnkMatrix44& m, const UnkVec3f& v);
 
 struct UnkVec3Target_710016c83c {
     u8 pad_0x0[0x20];

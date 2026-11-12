@@ -2,13 +2,12 @@
 // placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CTriggerComponent.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::reflection::UnkReflValue;
-
-extern UnkTunable g_unk_717274ddd8;
 
 struct UnkTriggerRange_ovb0067 {
     s32 first;

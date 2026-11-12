@@ -2,6 +2,8 @@
 // for it, refreshes the sphere at +0x80 when dirty, then turns to face away from the target's reference point
 // and moves the target to the node's position. Names and layouts are placeholders.
 #include "game/UnkSphere.h"
+#include "game/UnkTU244.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -24,8 +26,6 @@ struct UnkTargetData_ovo0303 {
     bool field_0x27d;
 };
 
-UnkVec3f fn_710007a7f0(UnkVec3f dir);
-void fn_71001ba980(UnkXformTarget* target, const UnkVec3f* pos);
 void fn_71001ba374(UnkXformTarget* target, f32 value);
 
 static inline UnkXformNodeVtbl2_ovo0303* Vtbl2_ovo0303(UnkXformNode* self) {

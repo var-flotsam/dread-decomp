@@ -67,7 +67,6 @@ extern char g_unk_71729da9e8[];
 extern char g_unk_71729da9e9[];
 UnkEnumType* fn_7100ad61f8();
 extern UnkStrIdBase g_unk_71729da9f0[9];
-extern UnkStrIdBase g_unk_71729daa38[/* 9; unsized: x86-64 would assume 16-byte alignment */];
 
 void fn_7100ef2780() {
     InitHeaderIds(&g_unk_71729daec0.ids);

@@ -6,10 +6,9 @@
 // Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
-
-UnkVec3f fn_710007a7f0(UnkVec3f dir);  // as src/game/CProjectileMovement/CProjectileMovement_Angles.cpp
 
 struct UnkGroundPlayerState_b52 {
     u8 unk_0x0[0x10];

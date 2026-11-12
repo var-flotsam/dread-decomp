@@ -23,7 +23,6 @@ using base::global::CStrId;
 // declarations are src/base/spatial/UnkDecalProjector.cpp's, which sees the same resources).
 struct UnkDecalResource;
 struct UnkDecalResourceMgr;
-UnkDecalResource* fn_710019ffe8(UnkDecalResourceMgr* mgr, const CFilePathStrId* path, bool flag);
 struct UnkBillboardMaterial {
     u8 pad_0x0[0x20];
     CStrId field_0x20;

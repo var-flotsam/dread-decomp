@@ -11,8 +11,10 @@
 #include "base/math/CVector4D.h"
 #include "base/reflection.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU290.h"
 #include "game/UnkTU315.h"
+#include "game/UnkTU55.h"
 #include "types.h"
 
 using base::color::CColor4F;
@@ -21,9 +23,6 @@ using base::math::CVector4D;
 using base::math::UnkVector4D;
 
 struct UnkEnvironmentFade;
-
-UnkVector4D fn_710007b5c0(const CVector4D* a, f32 s);               // a * s
-UnkVector4D fn_710007b5ec(const CVector4D* a, const CVector4D* b);  // a + b
 
 // A colour channel: the value now, where it starts and where it goes.
 struct UnkEnvFadeColorChannel {
@@ -184,8 +183,6 @@ struct UnkEnvManager {
     u8 pad_0x0[0x498];
     UnkEnvFadeOwner* owner;  // 0x498
 };
-
-extern void* g_unk_7101d47368;
 
 static inline u32 Bits(f32 v) {
     u32 b;

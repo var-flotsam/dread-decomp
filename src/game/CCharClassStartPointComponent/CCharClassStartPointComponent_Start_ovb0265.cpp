@@ -20,13 +20,13 @@
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2668.h"
 #include "game/UnkTU2677.h"
+#include "game/UnkTU57.h"
 #include "game/lua_lib.h"
 #include "types.h"
 
 using base::global::CRntString;
 
 struct lua_State;
-CRntString fn_710007ef90(const CRntString*, const char*);
 
 union UnkStringSlot {
     CRntString value;

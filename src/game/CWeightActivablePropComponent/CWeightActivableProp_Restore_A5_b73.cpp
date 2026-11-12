@@ -6,12 +6,11 @@
 #include "game/CBlackboard.h"
 #include "game/CWeightActivablePropComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-CStrId fn_7100de9c30(UnkGameManager* manager);
 
 struct UnkPropValue_A5_b73 {
     UnkPropertyName name;

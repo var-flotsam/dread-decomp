@@ -13,6 +13,7 @@
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
 #include "game/UnkTU102.h"
+#include "game/UnkTU56.h"
 #include "types.h"
 
 using base::global::CRntFile;
@@ -35,7 +36,6 @@ struct UnkStrPair_0x10 {
 };
 struct UnkFileReader;
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
-s64 fn_710007cee4(void* file, const char** out);
 void fn_710007c144(UnkHashStream_0x38* s);
 extern const char* g_unk_7101a1bd30;
 

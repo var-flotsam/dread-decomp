@@ -6,6 +6,7 @@
 
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "base/file/CPackManagerDevice.h"
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
@@ -17,6 +18,7 @@
 #include "game/UnkTU0.h"
 #include "game/UnkTU2577.h"
 #include "game/UnkTU2611.h"
+#include "game/logic/collision/CPolygonCollectionShape.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -136,7 +138,6 @@ void fn_7100eecd08(UnkMgrReset_b189* self) {
 // ---- fn_7100ee48ec ----
 using UnkPathIdMember_b189 = base::UnkStrIdMemberOf<g_unk_7101d47200>;
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
-void fn_710008987c(base::file::UnkFileDevice*, const CFilePathStrId*, u32);
 
 struct UnkMgrPaths_b189 {
     u8 pad_0x0[0x3b8];
@@ -343,7 +344,6 @@ void fn_7100eecf7c(void* manager, bool on, const UnkCameraEvent_b0058* event) {
 }
 
 // ---- the object table and its lookups ----
-bool fn_7100d65fb0(void*, const base::math::CVector2D*);
 struct UnkTracker_71008618cc;
 struct UnkReflObject;
 
@@ -581,7 +581,6 @@ void fn_7100ee6884(CSubAreaManager* self);
 // What the request id's lookup hands back (+0x38 holds the previous state's data).
 struct UnkSubareaNamedEntry;
 struct UnkSubareaNamedList;
-UnkSubareaNamedEntry* fn_7100fab838(UnkSubareaNamedList*, const CStrId*);
 
 struct UnkGroupEntry_b189 {
     u8 pad_0x0[0x10];
@@ -608,7 +607,6 @@ struct UnkPtrList_b189 {
 
 struct UnkNamedObjectPtr_b190;
 UnkNamedObjectPtr_b190* fn_7100eee97c(base::UnkVector<UnkNamedObjectPtr_b190>*, u32);
-void fn_7100eee1f8(void*, CStrId*, const CStrId*, bool, bool);
 struct UnkSubAreaEntityList_b190;
 
 struct UnkSetCounts_b189 {
@@ -678,8 +676,6 @@ void fn_7100ee4550(CSubAreaManager* manager, const UnkPoppedRequest* request, bo
 
 // ---- fn_7100eecca0 ----
 using base::global::UnkStrIdBase;
-
-extern UnkStrIdBase g_unk_71729daa38[/* 9; unsized: x86-64 would assume 16-byte alignment */];
 
 // The result is a done flag in w0; the existing declarations (src/game/UnkSubareaSetupState.cpp) return void.
 bool TryAcquire(UnkGameManagerSub_0x608* self, u32 kind, const CStrId& id, bool arg3) asm("_Z15fn_71011a32d8P25UnkGameManagerSub_0x608jRKN4base6global5CStrIdEb");

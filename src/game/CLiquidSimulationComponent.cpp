@@ -6,6 +6,7 @@
 #include <stdlib.h>
 
 #include "base/reflection/CClass.h"
+#include "game/CCharClassSteamJetComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -28,9 +29,6 @@ struct UnkLiquidViewBox {
 
 // The view's bounds (false when there is none).
 bool fn_71010e53dc(void* camera, UnkLiquidViewBox* box);
-
-// The owner's "ACTIVATABLE" component (src/reflection_statics/statics_00.cpp instantiates it).
-UnkReflObject* fn_7100899610(void* owner);
 
 // The component's placement as the liquid uses it: its size and its position.
 struct UnkLiquidVolume : UnkReflObject {

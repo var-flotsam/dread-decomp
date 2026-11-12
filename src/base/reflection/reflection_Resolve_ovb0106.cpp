@@ -20,9 +20,6 @@ using base::reflection::UnkReflValue;
 using base::reflection::UnkTypedRef;
 using base::reflection::UnkReflValueRef;
 
-// A value converted to `type` (returned through x8).
-UnkReflValue fn_71000a1774(const UnkReflValueRef* value, const CType* type);
-
 // A typed pointer that starts out null (returned in memory).
 struct UnkReflResult_ovb0106 {
     const CType* type;
@@ -116,11 +113,8 @@ __attribute__((flatten)) void fn_7100ad8864(UnkReflRecord_ovb0106* self) { self-
 
 // ---- fn_7100ad8120, fn_7100ad7cc0: resolving a path of arguments ----
 
-void fn_71000a179c(UnkReflValue* self, const UnkReflValue* other);  // copy constructor
 // The value a typed reference holds, as a reflected value.
-void fn_71000a1ae4(UnkReflValue* out, const UnkTypedRef* ref, u32 a, u32 b);
 bool fn_710009d5d4(const char* type, base::reflection::UnkTypedRef* dst, const base::reflection::UnkTypedRef* src);
-extern base::reflection::CType g_unk_7172756e50;
 
 // A resolved value (0x30 bytes), as src/base/reflection/UnkReflResolve.cpp defines it, built here from a
 // reflected value.

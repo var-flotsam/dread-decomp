@@ -15,6 +15,7 @@
 #include "game/CInventoryComponent.h"
 #include "game/CReserveTankInfo.h"
 #include "game/CUsableComponent.h"
+#include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
@@ -133,7 +134,6 @@ void fn_7100a9f7f0(UnkUsable_b0101* self) {
 
 // ---- The pop-up message ----
 
-void fn_7100b5fd6c(void* object, base::global::UnkStringData** name, void* block, bool a, bool b);
 bool fn_7100df2568(UnkGameManager* manager);
 
 struct UnkPopUpEntry_b0101 {

@@ -23,7 +23,6 @@ void fn_71005f3e4c();
 bool fn_7100600c90(UnkReflObject* ai);
 
 struct UnkTunable;
-extern UnkTunable g_unk_71726ef3f0;
 
 struct UnkKraidBouncingList_b62a4 {
     u8 data[0x28];

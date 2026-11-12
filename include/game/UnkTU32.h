@@ -1,8 +1,9 @@
 #pragma once
 
-// UnkTU32: functions of this translation unit that other files call (tools/tu_map.py unit 32,
+// UnkTU32: functions and globals of this translation unit that other files use (tools/tu_map.py unit 32,
 // 0x71000255c4-0x7100027774). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/reflection/CClass.h"
 #include "types.h"
 
 struct UnkIdPair;
@@ -20,3 +21,4 @@ void fn_7100027464(UnkStrIdPathRecord_b48* self, const UnkStrIdPathRecord_b48* o
 void fn_710002572c(void* member);  // A member's destructor (shared by several classes).
 void fn_7100025a98(void* record);
 void fn_7100026f70(UnkIdPair* pair);  // An id pair's destructor: releases both ids.
+extern base::reflection::CType g_unk_7101d4ec50;

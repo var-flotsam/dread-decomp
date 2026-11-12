@@ -3,6 +3,7 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/UnkTU32.h"
 #include "game/UnkTUInit.h"
 
 // The header ids built the other way round ("sources" first, no word stored).
@@ -19,7 +20,6 @@ __attribute__((always_inline)) static inline void InitIdsRev(UnkTUIdsRev& h) {
 }
 
 extern UnkTUIdsRev g_unk_7101d4ee10 __attribute__((visibility("hidden")));
-extern base::reflection::CType g_unk_7101d4ec50;
 extern char g_unk_7101d4ed88;
 extern UnkConverter g_unk_7101d4ed90;
 extern UnkConverter g_unk_7101d4edb0;

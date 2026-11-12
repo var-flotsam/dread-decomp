@@ -3,6 +3,7 @@
 // calls it on the grapple beam gun's component). Names and layouts are placeholders inferred from
 // the code.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CCharacterMovement.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkXformNode.h"
@@ -38,8 +39,6 @@ struct UnkGrappleComponent {
     u8 unk_0x238[0x2f8];
     UnkGrappleLink* link;
 };
-
-bool fn_7100976c94(UnkGrappleTarget* target, const UnkVec3f* pos, u32 value, void* arg, bool flag, f32 offset);
 
 static inline bool IsNear(f32 a, f32 b) {
     return a - 0.001f <= b && a + 0.001f >= b;

@@ -1,13 +1,13 @@
 // Unit 228: loads the decal resources a manager needs (the error decal first, kept in a global) the first
 // time they are asked for. Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
+#include "game/UnkTU228.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 
 struct UnkDecalResource;
 struct UnkDecalResourceMgr;
-UnkDecalResource* fn_710019ffe8(UnkDecalResourceMgr* mgr, const CFilePathStrId* path, bool flag);
 
 extern UnkDecalResource* g_unk_716e352738;
 extern CFilePathStrId g_unk_716e352760 __attribute__((visibility("hidden")));

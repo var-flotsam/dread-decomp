@@ -17,6 +17,7 @@
 #include "game/UnkSlots.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU1102.h"
+#include "game/UnkTU134.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2704.h"
 #include "game/UnkTU341.h"
@@ -250,10 +251,6 @@ struct UnkRinkaControl_ruc;
 struct UnkRinkaControl_ovb0090;
 struct UnkRinkaEntry_ruc;
 struct UnkFxObject_ovb0041;
-
-void fn_7100146d84(UnkFxObject_ovb0041*, const UnkVec3f*);
-void fn_710115217c(void*, void*, u32, u32, const base::global::CStrId*, const base::math::CVector3D&,
-                   const base::math::CVector3D&, void*);
 
 struct UnkXParasiteKeyed_8208 {
     u8 pad_0x0[0x30];

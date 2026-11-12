@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CTimelineComponent.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkTU2577.h"
 #include "game/UnkTU883.h"
@@ -114,7 +115,6 @@ struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
 extern u8 g_unk_71727556f0 __attribute__((visibility("hidden")));
 void fn_7100ac7628(UnkComponent_0x5d0* self);
-void fn_7100a2cddc(void* table, void* key, CStrId* id, f32 delay, bool unique);
 
 // The global manager, created on first use.
 static inline void* UnkGetManager() {

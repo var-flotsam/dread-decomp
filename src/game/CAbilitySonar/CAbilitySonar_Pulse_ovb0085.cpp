@@ -14,12 +14,14 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/snd/UnkSound.h"
+#include "game/CFXComponent.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU134.h"
 #include "game/UnkTU2739.h"
+#include "game/UnkTU56.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -131,10 +133,6 @@ void fn_7100335458(UnkAbilitySonar_ovb0085* self, bool flag) {
 }
 
 using base::global::CStrId;
-
-// As src/game/CCharClassFanComponent/CFanComponent_Effects_A4_b75.cpp declares it.
-void fn_710115217c(void* object, void* effect, u32 a, u32 b, const base::global::CStrId* name,
-                   const base::math::CVector3D& offset, const base::math::CVector3D& rotation, void* extra);
 
 // The id's text, the way the string data is shared: its use count (+0x44) is raised.
 // The count is written untyped: the original reads the id again afterwards.
@@ -318,10 +316,6 @@ UnkSonarModel_ovb0085* fn_7100336760(UnkAbilitySonar_ovb0085* self, const CFileP
     }
     return created;
 }
-
-// As src/game/CScorpiusFXComponent/CScorpiusFXComponent_Gas_ovb0008.cpp declares it.
-// As src/game/CActorDef/CActorDef_ReadChecked.cpp declares it.
-s64 fn_710007cee4(void*, const char**);
 
 struct UnkSonarSwitch_ovb0085 {
     u8 pad_0x0[0x15a];

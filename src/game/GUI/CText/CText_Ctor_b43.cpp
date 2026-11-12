@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU2744.h"
 #include "game/UnkTU2747.h"
 #include "types.h"
 
@@ -12,8 +13,6 @@ using base::global::CStrId;
 
 // As src/game/GUI/CLabel.cpp declares them.
 struct UnkLayoutText;
-
-const CStrId& fn_71011b8920(UnkGuiRoot* root);
 
 struct UnkText_b43a3 {
     u8 base[0x185];

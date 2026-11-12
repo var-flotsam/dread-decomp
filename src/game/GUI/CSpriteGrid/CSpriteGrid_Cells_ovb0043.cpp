@@ -160,7 +160,6 @@ UnkGridSize_ovb0043 fn_71011cf214(UnkSpriteGrid_ovb0043* self, const UnkGridSize
 UnkGridSize_ovb0043 fn_71011fd160(UnkSpriteGrid_ovb0043* self);
 
 struct UnkSprite_spr;
-void fn_71011cf8d0(UnkSprite_spr* self, const base::math::CVector2D* size);
 
 // Sizes the grid to its columns (+0x1d4) and rows (+0x1d8) of cells (fn_71011fd160).
 void fn_71011fdc78(UnkSpriteGrid_ovb0043* self) {

@@ -15,10 +15,12 @@
 #include "game/CBlackboard.h"
 #include "game/CHeatRoomComponent.h"
 #include "game/CNavMeshItemComponent.h"
+#include "game/CScenario.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU2611.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using namespace unk_static_init;
@@ -160,8 +162,6 @@ struct UnkSubId_7100fc4b34 {
 };
 using UnkQualifiedName_7100fc4b34 = UnkQualifiedName;
 const UnkSubId_7100fc4b34& fn_71003327a4(UnkQualifiedName_7100fc4b34* self, const CStrId* name);
-void fn_710007f564(void* self, const char* str);
-CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 
 struct UnkTypedValue {
     const base::reflection::CType* type;

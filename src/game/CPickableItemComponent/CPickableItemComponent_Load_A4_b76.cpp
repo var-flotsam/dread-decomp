@@ -2,6 +2,7 @@
 // file has data left, reads a string, a u32 and a string and drops them (an older format's fields). Names
 // are placeholders.
 #include "base/global/CRntFile.h"
+#include "game/CActorComponent.h"
 #include "types.h"
 
 using base::global::CRntFile;
@@ -10,7 +11,6 @@ using base::global::CRntFile;
 void fn_710007ca94(CRntFile* file, char* buf);
 
 struct UnkPickableItem_A4_b76;
-void fn_710024fc0c(UnkPickableItem_A4_b76* self, CRntFile* file);
 
 void fn_71009cf870(UnkPickableItem_A4_b76* self, CRntFile* file) {
     fn_710024fc0c(self, file);

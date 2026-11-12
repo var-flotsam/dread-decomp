@@ -10,6 +10,7 @@
 #include "base/core/CBaseObject.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CAbilitySonar.h"
 #include "game/CComponent.h"
 #include "game/CSceneComponent.h"
 #include "game/UnkComponent.h"
@@ -29,7 +30,6 @@ struct UnkBreakableTileGroup_b46a2;
 // Signature as src/game/CBreakableTileGroupComponent/CBreakableTileGroupComponent_b46.cpp declares it.
 struct UnkNode;
 struct UnkMorphBallLauncher_b57;
-void* fn_7100339d48(UnkRenderPool* pool, const CFilePathStrId* path, UnkSwitchObject** out, const CStrId* name);
 
 static inline UnkModelManager* ModelManager() {
     if (!g_unk_71726b0cd8) {

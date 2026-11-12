@@ -18,6 +18,7 @@
 #include "game/UnkTUProperty.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkXformNode.h"
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -77,7 +78,6 @@ struct UnkTypedValue {
     void* value;
 };
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
-extern base::global::CStrId g_unk_71726b7cb8;
 struct UnkDropterHitAI_ovb0131;
 void fn_71004ec714(UnkDropterHitAI_ovb0131* self, bool flag);
 

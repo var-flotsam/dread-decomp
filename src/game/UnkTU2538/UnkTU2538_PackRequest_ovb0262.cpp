@@ -4,6 +4,7 @@
 // then sets the path to the global one. Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2201.h"
 #include "game/UnkTU2730.h"
 #include <new>
@@ -49,7 +50,6 @@ UnkPackRef_b0163 fn_7101199f08(UnkPackManager_b0163* self, const CFilePathStrId&
 UnkPackRef_b0163 fn_7101197008(UnkPackManager_b0163* self, const CFilePathStrId& path, const UnkMaskedId& id,
                                   bool flag);
 void fn_7100da6748();
-extern void* g_unk_7101d47330;
 
 union UnkPackSlot_b0163 {
     UnkPackSlot_b0163() {}

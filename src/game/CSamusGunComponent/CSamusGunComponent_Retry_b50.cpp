@@ -15,8 +15,6 @@ struct UnkSamusGunComponent {
     f32 timer;  // 0x17c
 };
 
-void fn_710083f32c(UnkSamusGunComponent* self, const CStrId* name, bool a, bool b, bool c);
-
 void fn_7100858790(UnkSamusGunComponent* self) {
     char* gun = fn_710083cd4c(self);
     if (gun == nullptr)

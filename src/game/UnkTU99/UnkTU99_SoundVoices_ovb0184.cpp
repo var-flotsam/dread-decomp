@@ -10,6 +10,7 @@
 #include "base/snd/UnkSound.h"
 #include "base/snd/UnkSoundSystemATK.h"
 #include "base/tunable/CTunable.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU2772.h"
 #include "game/UnkTU58.h"
@@ -160,7 +161,6 @@ void fn_71000fe894(UnkSystem_b0184* self, u32 mask, bool flag, f32 value) {
 // ---- the effect slots ----
 
 extern u8 g_unk_7108b6b600[] __attribute__((visibility("hidden")));
-void* fn_710120806c(void* player, u32 id);
 void fn_7101209ce0(void* effect, f32 value);
 void fn_7101209ce8(void* effect, s32 index, f32 value);
 
@@ -195,11 +195,8 @@ void fn_7100100734(void* self, u32 id, u32 kind) {
 }
 
 bool fn_7101234580(void* effect);
-void fn_7101234588(void* effect, u32 value);
 bool fn_7101233f24(void* effect);
-void fn_7101233f2c(void* effect, u32 value);
 bool fn_7101234dc4(void* effect);
-void fn_7101234dcc(void* effect, u32 value);
 extern u8 g_unk_7108b6ae38[] __attribute__((visibility("hidden")));
 extern u8 g_unk_7108b6afe8[] __attribute__((visibility("hidden")));
 extern u8 g_unk_7108b6adb0[] __attribute__((visibility("hidden")));
@@ -292,7 +289,6 @@ void fn_71000f5260(UnkOwner_b0184* self, f32 value, bool enable, f32 time) {
 // ---- the frame-time accumulator ----
 
 struct UnkGfxFrameSource;
-extern UnkGfxFrameSource* g_unk_7101d47328;
 
 struct UnkIdMap;
 struct UnkSoundTimeSystem_b0184 {

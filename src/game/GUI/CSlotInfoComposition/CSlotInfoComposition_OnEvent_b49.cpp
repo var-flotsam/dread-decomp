@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "types.h"
 
@@ -16,7 +17,6 @@ struct UnkGuiEvent_b49 {
     u64 kind;  // 0x20
 };
 
-void fn_71011d99e4(UnkGuiDisplayObject* self, UnkGuiEvent_b49* event);  // the container's handler
 using UnkGuiObj = UnkGuiDisplayObject;
 void fn_71011cd5a0(UnkGuiObj* object);
 

@@ -3,6 +3,7 @@
 #include <nn/os.h>
 
 #include "game/UnkTU2772.h"
+#include "game/UnkTU99.h"
 #include "types.h"
 
 struct UnkAtkSrc_b0150 {
@@ -314,7 +315,6 @@ struct UnkAtkListLink_b0150 {
 struct UnkAtkRegistry_b0147;
 struct UnkAtkFlaggedList_b47a3;
 
-void* fn_71001039f8();
 u32 fn_7101236944(void* bank, u32 index);
 void fn_7101238380(void* bank, u32 index, u32 value);
 void fn_7101237944(void* item, s32 arg);

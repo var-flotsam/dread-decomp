@@ -4,9 +4,8 @@
 // returns the kept result, which the hook may have replaced. The second entry is the same call
 // reached through the sub-allocator (this - 8). Names are placeholders.
 #include "base/UnkDefaultAllocator.h"
+#include "game/UnkTU58.h"
 #include "types.h"
-
-void* fn_71000813e4(base::UnkSubAllocator* self, u64 size, u64 align, u32 flags);  // src/base/UnkSubAllocator.cpp
 
 struct UnkAtkHeap99 {
     u64 field_0x0;

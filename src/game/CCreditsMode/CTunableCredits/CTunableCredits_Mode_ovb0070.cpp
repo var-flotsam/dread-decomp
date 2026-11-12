@@ -9,6 +9,7 @@
 #include "game/UnkGuiLabel.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU2538.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2656.h"
 #include "game/UnkTU2737.h"
 #include "game/UnkTU99.h"
@@ -115,8 +116,6 @@ void fn_7101184028(UnkCreditsMode_ovb0070* self) {
     self->field_0x5c = 2.5f;
 }
 
-void* fn_7100deab70(UnkGameManager* self, const CRntString& name);
-void fn_7100deac9c(UnkGameManager* self, const CRntString& name);
 void fn_71011843d0(UnkCreditsMode_ovb0070* self, f32 dt);
 
 struct UnkObj_71011a50cc {
@@ -131,7 +130,6 @@ struct UnkMusicMode {
     u32 kind;
     u32 field_0x4;
 };
-void fn_7100fd90d8(f32 a, f32 b, void* music, const CRntString* name, u32 c, const UnkMusicMode* d, u32 e, u32 f, void* g);
 
 struct UnkCreditsMenu_ovb0070 {
     u8 pad_0x0[0x60];

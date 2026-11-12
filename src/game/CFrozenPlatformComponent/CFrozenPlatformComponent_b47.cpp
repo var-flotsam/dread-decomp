@@ -2,6 +2,7 @@
 // and switches the entity it names to the opposite of `on`, then the owner's entity (+0x30) to `on`;
 // returns false. Names and layouts are placeholders.
 #include "base/UnkRefHandle.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 struct UnkCounted_FrozenB47 : base::UnkRefCounted {
@@ -48,7 +49,6 @@ struct UnkLazyHandle_FrozenB47 {
 };
 
 struct UnkEntityState;
-void fn_7100232864(UnkEntityState* entity, bool value);
 
 struct UnkFrozenPlatform_b47 {
     u8 pad_0x0[0x30];

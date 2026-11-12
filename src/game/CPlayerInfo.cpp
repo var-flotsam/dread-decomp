@@ -4,13 +4,13 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/CGameObject.h"
+#include "game/UnkTU39.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
 // The base class's constructor (stores its vtable and clears the word at +8).
-void fn_710002f4e4(void* self);  // a timer's constructor
 void fn_7100f10c4c(void* self);
 void fn_7100f10e18(void* self);
 void fn_7100f10f20(void* self);

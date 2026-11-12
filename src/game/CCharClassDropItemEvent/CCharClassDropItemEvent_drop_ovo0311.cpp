@@ -14,6 +14,7 @@
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU2523.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include <new>
 #include "types.h"
@@ -27,7 +28,6 @@ struct UnkSwarmSelf_b0143;
 struct UnkDropSpawnComp_ovb0096;
 struct UnkXformAtF0;
 
-UnkVec3f fn_7100076acc(const UnkXform* x);
 void fn_710110e278(UnkSwarmSelf_b0143* self, void* a, void* b, void* c, bool flag);
 void fn_71007c1ab0x(UnkDropSpawnComp_ovb0096* self, void* unused) asm("fn_71007c1fb0");
 UnkVec3f fn_710007a450(void* xform, const UnkVec3f* v);

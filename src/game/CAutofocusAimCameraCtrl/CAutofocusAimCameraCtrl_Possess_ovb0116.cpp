@@ -23,12 +23,12 @@
 #include "game/UnkTU0.h"
 #include "game/UnkTU2547.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU315.h"
 #include "game/UnkTU437.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 struct UnkGrabCameraCtrl;
-void fn_710021a0b4(UnkRenderManager* self, const u64* hash, const base::math::CVector4D* value);
 extern const base::math::CVector4D g_unk_71016477b4;
 extern const u64 g_unk_710164a910 __attribute__((visibility("hidden")));
 extern const base::math::CVector4D g_unk_7101a6cfe8 __attribute__((visibility("hidden")));

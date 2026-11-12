@@ -14,6 +14,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU1442.h"
 #include "game/UnkTU1444.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "game/behaviortree/CSwitchBetweenAIModesAction.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -495,7 +496,6 @@ void fn_71010c9b44(UnkEnemyMovement_i* self, f32 dt) {
 // fn_71010c9928: the facing angles (pitch +-pi/2 by the side the owner faces, yaw from the 2D direction of
 // the source at +0x8e8) turned into a vector by fn_710007a220.
 extern "C" f32 atan2f(f32 y, f32 x);
-UnkVec3f fn_710007a220(const UnkVec3f* v);
 
 struct UnkVec2f_A5 {
     f32 x, y;

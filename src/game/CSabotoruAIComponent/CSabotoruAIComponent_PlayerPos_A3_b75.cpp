@@ -8,8 +8,10 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CBlackboard.h"
+#include "game/CSabotoruAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkTUProperty.h"
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 #include "game/UnkBehaviorTree.h"
 
@@ -22,11 +24,9 @@ struct UnkTypedValue {
     void* value;
 };
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
-extern base::global::CStrId g_unk_71726b7cb8;
 // As src/game/CGobblerAIComponent/fn_71005820c4.cpp declares it.
 struct UnkGobblerComponent;
 // As src/game/CSabotoruTurnInDoorAttack/CSabotoruTurnInDoorAttack.cpp declares it.
-void fn_7100679410(UnkReflObject* ai, u32 value);
 
 struct UnkSabotoruState_A3_b75 {
     u8 pad_0x0[0x70];

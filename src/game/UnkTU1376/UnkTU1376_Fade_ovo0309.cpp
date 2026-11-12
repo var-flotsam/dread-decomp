@@ -5,6 +5,7 @@
 
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU1376.h"
+#include "game/UnkTU253.h"
 #include "types.h"
 #include "base/color/CColor4F.h"
 #include "base/math/CVector4D.h"
@@ -14,7 +15,6 @@ using base::color::CColor4F;
 using base::math::CVector4D;
 
 struct UnkDoorLifeA5_b61;
-bool fn_71001c287c(void* target, u32 a, u32 b, CVector4D* colour, u32 c);
 void* fn_71008d89b0(void* owner);
 
 struct UnkGameManagerIdKey_b0251 {

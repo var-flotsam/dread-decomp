@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
 #include "game/CElectricReactionComponent.h"
+#include "game/CScenario.h"
 #include "game/CWeightActivatedPlatformSmartObjectComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkSlots.h"
@@ -178,7 +179,6 @@ struct UnkPlatform_ovb0103 {
 };
 
 
-CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 struct UnkPlatformSm_b61;
 
 void fn_7100a09f7c(UnkPlatform_ovb0103* self, CBlackboard* blackboard) {

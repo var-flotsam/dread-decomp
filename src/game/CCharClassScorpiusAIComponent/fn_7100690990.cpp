@@ -2,6 +2,7 @@
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CCharClassScorpiusAIComponent.h"
 #include "game/UnkTUProperty.h"
 
 using namespace unk_static_init;
@@ -25,7 +26,6 @@ extern UnkConversion g_unk_7172703e60;
 void fn_71006907c4() __attribute__((visibility("hidden")));
 void fn_71006907d0() __attribute__((visibility("hidden")));
 extern char g_unk_7172703e80[];
-extern UnkTunable g_unk_7172703e88;
 extern void* g_unk_7101a60f28[];
 extern char g_unk_7172703ee9[];
 extern UnkStrIdBase g_unk_7172703ef0;

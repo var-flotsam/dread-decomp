@@ -13,3 +13,5 @@ u32 fn_7100132fd0();
 f32 fn_7100132fa0();  // The default scale.
 f32 fn_7100132fe0();  // One of the screen's two aspect factors (thunks of fn_71001329e0 and fn_71001329d0).
 f32 fn_7100132ff0();  // One of the screen's two aspect factors (thunks of fn_71001329e0 and fn_71001329d0).
+u32 fn_7100132f80();
+u32 fn_7100132f90();

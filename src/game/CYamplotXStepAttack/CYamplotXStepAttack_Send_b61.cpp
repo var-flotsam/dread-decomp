@@ -8,12 +8,12 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkActor.h"
 #include "game/UnkAttack.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
 
 void fn_71003608ac(UnkAttackBase* self);
-void fn_710111094c(UnkReflObject* ai, u32 value);
 
 void fn_71006ed934(UnkAttackBase* self) {
     // Declared past a goto (no lifetime markers), so each keeps its own slot.

@@ -12,6 +12,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/GUI/CIngameMenu.h"
 #include "game/GUI/CLoadCheckPointButton.h"
+#include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiEvent.h"
 #include "game/UnkTU2559.h"
@@ -31,9 +32,6 @@ struct UnkButtonCallback_ovb0118 {
 
 struct UnkGuiComposition_ovb0090;
 struct UnkMapCallback_ovb0090;
-void fn_7100b5fde0(UnkGuiComposition_ovb0090* gui, const CStrId* text, const CStrId* accept, const CStrId* back,
-                   const UnkMapCallback_ovb0090* on_accept, const UnkMapCallback_ovb0090* on_back, u32 mode,
-                   f32 time);
 
 struct UnkGuiRef_ovb0118 {
     u8 pad_0x0[0x10];

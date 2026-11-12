@@ -5,6 +5,7 @@
 #include "base/UnkDestructors.h"
 #include "game/UnkSubAreaGuiCache.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2729.h"
 #include "game/UnkTU2734.h"
 #include "game/UnkTU341.h"
@@ -85,10 +86,8 @@ bool fn_710119d9b8(UnkSubAreaGuiCache* cache, const base::UnkStrIdMember* id, bo
 }
 
 struct UnkGfxFrameSource;
-extern UnkGfxFrameSource* g_unk_7101d47328;
 struct UnkStruct_71002334fc;
 struct UnkStruct_7100233684;
-base::reflection::UnkReflObject* fn_7100233684(UnkStruct_7100233684* self);
 
 // An actor slot of a cached entry (0x18 bytes): the actor, the frame it was handed out in, in use.
 struct UnkGuiActorSlot_b52 {

@@ -5,6 +5,7 @@
 // (fn_71001176e8). Names and layouts are placeholders.
 #include "base/math/CVector.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU108.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -23,8 +24,6 @@ struct UnkShakernautAI_b65a4 {
 };
 
 bool fn_71006b1f04(UnkShakernautAI_b65a4* self);
-bool fn_71001176e8(UnkShakernautArea_b65a4* area, const base::math::CVector2D* pos, u32* out, void* filter,
-                   u32 flags, f32 radius);
 
 bool fn_71006af848(UnkShakernautAI_b65a4* self) {
     if (!fn_71006b1f04(self)) {

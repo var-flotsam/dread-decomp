@@ -5,10 +5,10 @@
 // becomes the step (+0x2e0), and resets the pages (fn_71011ccd20 with 0); one without pages hides the
 // bar and both arrows. Names and layouts are placeholders.
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkTU2747.h"
 #include "types.h"
 
 void fn_71011d9050(void* self);  // the base composition's update
-void fn_71011ccd20(UnkGuiDisplayObject* self, f32 value);
 
 struct UnkPowerDescSource_b43a3 {
     u8 pad_0x0[0x18c];

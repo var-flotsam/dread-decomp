@@ -22,6 +22,8 @@
 #include "base/global/CStrId.h"
 #include "game/CBTObserverComponent.h"
 #include "game/CBreakableTileGroup.h"
+#include "game/CBreakableTileManager/CTunableBreakableTileManager.h"
+#include "game/CSpittailMagmaBallMovementComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU127.h"
@@ -712,8 +714,6 @@ struct UnkModel {
     UnkModelData* field_0x138;
 };
 
-void fn_71006cae2c(UnkRenderPool* pool, const CFilePathStrId& path, UnkModel** out, base::global::CStrId* name);
-extern CFilePathStrId g_unk_7172796d70[10];  // the breakable block models' paths
 struct UnkTileEventSet;
 extern UnkTileEventSet g_unk_7172795e08;  // the breakable tiles' event set
 struct UnkManager;

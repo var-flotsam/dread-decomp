@@ -7,6 +7,7 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CTimelineComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTimelineCalls.h"
@@ -15,7 +16,6 @@
 
 using base::global::CStrId;
 
-void fn_7100a2cddc(void* table, void* key, CStrId* id, f32 delay, bool unique);
 bool fn_7100a2caac(void* table, CStrId* key, CStrId* id);
 void fn_7100a2d400(void* table, CStrId* key, CStrId* id);
 

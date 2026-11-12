@@ -3,6 +3,7 @@
 // the calls after the first failure, and answers whether all succeeded (fn_7100146c50 and its
 // identical copy fn_71001471b4). Names and layouts are placeholders.
 #include "base/color/CColor4F.h"
+#include "game/UnkTU211.h"
 #include "types.h"
 
 struct UnkEntryListA1_134 {
@@ -19,8 +20,6 @@ struct UnkOwnerA1_134 {
     u8 pad_0x0[0x160];
     UnkHolderA1_134* holder;  // 0x160
 };
-
-bool fn_7100193410(UnkEntryListA1_134* list, u32 index, u32 slot, const base::math::UnkVector4D& value, u32 flag);
 
 static inline bool SetAllA1(UnkOwnerA1_134* self, u32 slot, const base::color::CColor4F* color, u32 flag) {
     u32 count = self->holder->list->count;

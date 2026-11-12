@@ -7,6 +7,7 @@
 #include "game/CChozoCommanderAIComponent.h"
 #include "game/CTutoEnterLogicAction.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -39,8 +40,6 @@ struct UnkPopUpListener {
     u8 unk_0x0[0x2a8];
     UnkCallbackSlot callback;
 };
-
-UnkReflObject* fn_7100e033a8(UnkGameManager* manager);
 
 __attribute__((always_inline)) static inline void WatchPopUp(UnkPopUpListener* self) {
     UnkReflObject* menu = fn_7100e033a8(g_unk_7101d47310);

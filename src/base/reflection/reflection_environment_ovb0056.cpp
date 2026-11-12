@@ -17,6 +17,7 @@
 #include "base/snd/CSoundSystem.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU23.h"
+#include "game/UnkTU2607.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
@@ -161,7 +162,6 @@ using UnkEnvFadeColor = base::math::UnkVector4D;
 using base::math::CVector2D;
 void fn_7100f984ac(f32 time, UnkEnvironmentFade* self, const UnkEnvFadeColor* a, const UnkEnvFadeColor* b,
                    const UnkEnvFadeColor* c);
-void fn_7100f985d8(f32 time, UnkEnvironmentFade* self, const CVector2D* to);
 bool fn_7100219f64(UnkRenderManager* self, u32 index);
 void fn_7100219e7c(UnkRenderManager* self, u32 index, u32 value);
 

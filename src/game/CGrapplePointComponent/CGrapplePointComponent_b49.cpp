@@ -6,13 +6,12 @@
 #include "base/math/CVector.h"
 #include "game/CBlackboard.h"
 #include "game/CGrapplePointComponent.h"
+#include "game/CScenario.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 
 // Reads the vector stored under `name` into `out`; false when there is none.
 bool fn_7100395d3c(CBlackboard::CSection* self, const CStrId* name, base::math::CVector3D* out);

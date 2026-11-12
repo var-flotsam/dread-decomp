@@ -4,6 +4,7 @@
 #include "game/CBlackboard.h"
 #include "game/CPoisonFlyAIComponent.h"
 #include "game/UnkTUProperty.h"
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
 // A typed value as the section setter takes it (as in src/game/CXParasiteAIComponent.cpp).
@@ -21,7 +22,6 @@ struct UnkPoisonFlyAI {
 };
 
 void fn_7101108108(UnkPoisonFlyAI* self);  // the base method
-extern base::global::CStrId g_unk_71726b7cb8;                                    // the blackboard section
 
 // Stores a copy of `value` under `name` in the blackboard section `section` names (unless the
 // blackboard is locked).

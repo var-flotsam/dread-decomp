@@ -6,6 +6,8 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU57.h"
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -13,12 +15,9 @@ using base::global::CStrId;
 
 using UnkDebugBuffer_ovb0128 = UnkBufferString<0x100, g_unk_7101a194b8>;
 
-CRntString fn_710007ef90(const CRntString* a, const char* b);  // concatenation
-
 // Signature as other files declare it (the original returns whether the value was found).
 struct UnkStringEqualsCondition_A2_b72;
 struct UnkInlineString_A2_b72;
-bool fn_7100395044(UnkStringEqualsCondition_A2_b72* self, CStrId* id, UnkInlineString_A2_b72* out);
 
 struct UnkBlcName_ovb0128 {
     u8 pad_0x0[0x10];

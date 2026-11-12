@@ -5,9 +5,9 @@
 #include <nn/audio.h>
 
 #include "game/UnkTU2772.h"
+#include "game/UnkTU99.h"
 #include "types.h"
 
-void* fn_71001039f8();
 u32 fn_7101213d2c(char* p0);
 
 struct UnkAtkVoice;

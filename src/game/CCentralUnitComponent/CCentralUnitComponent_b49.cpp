@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
+#include "game/CScenario.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1176.h"
 #include "game/UnkTUProperty.h"
@@ -15,7 +16,6 @@
 
 using base::global::CStrId;
 
-CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 bool fn_71010474f4(CBlackboard* self, const CStrId& section, const CStrId& name);
 
 // A typed value as the section setter takes it (as in src/game/CDoorLifeComponent.cpp).

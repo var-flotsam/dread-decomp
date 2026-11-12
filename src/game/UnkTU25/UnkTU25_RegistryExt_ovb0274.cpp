@@ -10,6 +10,7 @@
 #include "base/global/CRntStringAssign.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU27.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -20,8 +21,6 @@ struct UnkRegistry_7100d92158;
 extern UnkRegistry_7100d92158* g_unk_7101d4bbc0;
 extern char g_unk_7101d4e570[] __attribute__((visibility("hidden")));
 extern CStrId g_unk_7101d4e590;
-
-s32 fn_710007facc(const CRntString* self, char c, u32 start);
 
 struct UnkExtKey_ovb0274 {
     CStrId id;

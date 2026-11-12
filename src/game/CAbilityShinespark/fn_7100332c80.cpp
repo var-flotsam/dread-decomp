@@ -2,6 +2,7 @@
 // accepts the new one in place, nothing else happens; otherwise the value is stored through the
 // map's insert, the owner is marked dirty and its listener is notified.
 #include "base/UnkCloneHelpers.h"
+#include "base/reflection.h"
 #include "types.h"
 
 struct UnkReflValue_7100332c80 {
@@ -52,7 +53,6 @@ struct UnkKeyedValues_7100332c80 {
     }
 };
 
-void fn_71000a1760(base::reflection::UnkTypedRef* out, const base::reflection::UnkTypedRef* in);
 bool fn_710009d5d4(const char* type, base::reflection::UnkTypedRef* dst, const base::reflection::UnkTypedRef* src);
 void fn_7100332dc4(UnkValueMap_7100332c80* map, const u64* key, const base::reflection::UnkTypedRef* value);
 

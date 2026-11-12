@@ -2,10 +2,10 @@
 // (g_unk_7101d47330) answers fn_7101198688, counts a use of the event's target (+0x10, its +0x44)
 // and passes the event's id (+0xc) with the target's +0x10 on to the GUI object (fn_7101199544).
 // Names and layouts are placeholders.
+#include "game/UnkTU0.h"
 #include "game/UnkTU2730.h"
 #include "types.h"
 
-extern void* g_unk_7101d47330;
 void fn_7101199544(void* gui, u32 id, void* target);
 
 struct UnkInputCallbackTarget_b46a3 {

@@ -152,6 +152,25 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Fifth declarations pass (2026-11-12).** 423 more symbols are declared once, in their unit's header:
+symbols in more than one file 991 to 568, extra copies 2,649 to 1,630. Most of what earlier passes left
+used a shared type by its short name (`CStrId` after `using base::global::CStrId;`), which a header cannot
+forward-declare. `tools/decl_plan.py` now finds the types that exactly one header under `include/` defines and
+plans such a declaration with that header included and the type's full name. It took three runs to get there,
+and each failure became a rule in the tools:
+- A forward declaration `struct T;` at global scope breaks every file that says `using ns::T;`. The planner no
+  longer forward-declares a name that any file reaches through a namespace or defines as an alias.
+- An include written into an existing header before the run broke files that include that header and cannot
+  take the new one (their own `operator new`, their own `UnkVec3f`). The migration then skipped every symbol
+  that reaches those files, and nothing pointed at the cause. Now the plan carries, per symbol, what its
+  declaration needs (`needs`, the fourth column), `tools/hub_migrate.py` writes that together with the
+  declaration after the baseline is taken, and a symbol that breaks a file goes back alone with what it
+  brought.
+- A symbol retried alone at the end of a run went through another path that wrote its include first; it goes
+  through the plan's path now.
+What a plan run leaves in a header and nothing uses (forward declarations, includes) is removed at the end.
+Run `tools/check.py` after a plan run all the same: this time it passed at once.
+
 **Labelled members (2026-11-12).** The old branch `claude/project-thread-3x0lf8` gave 94 member declarations an
 asm label in place of a `// fn_<addr>` comment; it was never merged and no longer applies. Redone on `main` for
 the members where it is safe: 26 labels, on members whose function nothing else declares or defines and whose

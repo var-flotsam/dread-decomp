@@ -3,8 +3,10 @@
 // UnkTU1376: functions and globals of this translation unit that other files use (tools/tu_map.py unit 1376,
 // 0x71008cac70-0x71008db1d8). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/global/CStrId.h"
 #include "types.h"
 
+struct UnkStruct_71727313a4;
 struct UnkProperty;
 struct UnkDoorLife;
 struct UnkDoorLifeA5_b61;
@@ -23,3 +25,6 @@ extern UnkProperty g_unk_71727310c0;
 extern UnkProperty g_unk_71727310e8;  // "Disabled".
 extern UnkProperty g_unk_7172731138;  // "ChangeWhenVisible".
 extern UnkProperty g_unk_7172731188;  // "ControlledByUsable".
+bool fn_71008d586c(UnkDoorLock*, bool, bool, base::global::CStrId*);
+bool fn_71008d564c(UnkDoorLock* door, u32 value, const base::global::CStrId* id);
+extern UnkStruct_71727313a4 g_unk_71727313a4;

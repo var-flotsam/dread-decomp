@@ -22,6 +22,7 @@
 #include "game/CCharacterMovement.h"
 #include "game/UnkActor.h"
 #include "game/UnkManager_71726af468.h"
+#include "game/UnkTU2702.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
@@ -34,7 +35,6 @@ f32 fn_710063c10c(void* registry, UnkActor* actor);
 
 struct UnkAttackBase;
 void fn_71003608ac(UnkAttackBase* self);
-void fn_710111094c(UnkReflObject* ai, u32 value);
 
 struct UnkV3s_ovb0133 {
     f32 x, y, z;

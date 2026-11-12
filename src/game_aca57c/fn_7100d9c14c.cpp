@@ -2,6 +2,7 @@
 // (fn_71000a18d4 fills in the rest from the global descriptor of the word's type).
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkTU2176.h"
+#include "game/UnkTU2528.h"
 #include "types.h"
 
 using base::reflection::CType;
@@ -23,8 +24,6 @@ __attribute__((always_inline)) static inline UnkReflValue GetWord(UnkArgument* a
     return result;
 }
 
-extern UnkReflType g_unk_71727ba2e0;
-extern UnkReflType g_unk_71727ba480;
 extern const CType g_unk_71727ca958;
 extern const CType g_unk_71727caab8;
 

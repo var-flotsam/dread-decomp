@@ -1,10 +1,9 @@
 // Functions in the CCharClassLockOnMissileMovement unit. fn_7100ab9218 resets the movement state: the
 // start position from +0x40 (z cleared) at +0x62c, its rotation angles (fn_710007a7f0) at +0x638, two
 // words copied from the object at +0x30, then the two update steps. Names and layouts are placeholders.
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
-
-UnkVec3f fn_710007a7f0(UnkVec3f dir);  // direction to rotation angles (src/game_s1/fn_71001bc8a4.cpp)
 
 void fn_7100ab81bc(char* self);
 void fn_7100ab8b88(char* self);

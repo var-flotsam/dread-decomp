@@ -3,10 +3,9 @@
 #include "base/UnkMatrix44.h"
 #include "game/UnkTU178.h"
 #include "game/UnkTU53.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
-
-UnkMatrix44 fn_71000791a8(const UnkVec3f& translation, const UnkVec3f& angle, const UnkVec3f& scale);
 
 struct UnkViewport_b0249 {
     u8 pad_0x0[8];

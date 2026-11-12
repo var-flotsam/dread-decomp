@@ -10,10 +10,12 @@
 #include "base/UnkRegistry.h"
 #include "base/UnkVector.h"
 #include "base/animation/CAnimationResource.h"
+#include "base/file/CPackManagerDevice.h"
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU63.h"
+#include "game/UnkTU67.h"
 #include "types.h"
 
 using base::UnkStrIdMemberOf;
@@ -81,7 +83,6 @@ struct UnkPackManagerView;
 struct UnkPackPathKey;
 // The pack manager's mount and unmount (src/base/file/CPackManagerDevice_3.cpp, where the mount
 // returns whether a pack is mounted; src/engine/UnkEngineStart.cpp declares it without the result).
-bool fn_710008aa90(UnkDevice* packs, const CFilePathStrId& path);
 using UnkPackMountFn = bool (*)(UnkDevice* packs, const CFilePathStrId& path);
 bool fn_710008ad4c(UnkPackManagerView* self, const UnkPackPathKey& path, bool force);
 
@@ -169,9 +170,6 @@ struct UnkFilePathList {
         }
     }
 };
-
-// Lists the files under `path` into `out` (the base object's).
-bool fn_710008c3bc(void* base_object, const CFilePathStrId& path, UnkFilePathList* out);
 
 // Unmounts every pack of the pack set `path` (without forcing). False when the set can't be listed.
 bool fn_7100089ef4(base::file::UnkFileDevice* self, const base::global::UnkFilePathStrIdBase* path) {

@@ -16,12 +16,14 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAnimationComponent.h"
+#include "game/CModelUpdaterComponent.h"
 #include "game/GUI/CModel3D.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2729.h"
 #include "game/UnkTU2747.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU344.h"
@@ -30,13 +32,11 @@
 using base::global::CRntString;
 using base::global::CStrId;
 
-void fn_71011cdfa8(UnkGuiDisplayObject* self, f32 dt);
 struct UnkActorDefFactory;
 struct UnkRemovedValue_b60;
 struct UnkDropTarget;
 struct UnkTreeNode;
 struct UnkModelUpdater_ovb0032;
-void fn_7101171a08(UnkModelUpdater_ovb0032*, const void*, const CRntString*);
 struct UnkStruct_710117af10;
 struct UnkCls_710117af10;
 
@@ -63,7 +63,6 @@ struct UnkSpawnDefRef_b52 {
             fn_710001737c(p);
     }
 };
-UnkSpawnDefRef_b52 fn_71011938bc(UnkActorDefFactory* factory, const base::global::CStrId* type, const base::global::CFilePathStrId* path);
 
 // The character class with this name.
 UnkSpawnDefRef_b52 fn_7100e051b4(UnkActorDefFactory* factory, const CStrId* name);

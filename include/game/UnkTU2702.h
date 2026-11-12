@@ -3,6 +3,7 @@
 // UnkTU2702: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2702,
 // 0x71010f41a0-0x71011173fc). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/reflection/CClass.h"
 #include "types.h"
 
 struct UnkAIBB_b0144;
@@ -69,3 +70,5 @@ void fn_7101112ab0(void* self);
 bool fn_71011136b8(const UnkCompared_0x48* a, const UnkCompared_0x48* b);
 void fn_7101114588(UnkEntryVector* v, const UnkEntry* value);
 extern u8* g_unk_7172a062e0 __attribute__((visibility("hidden")));
+void fn_710111094c(base::reflection::UnkReflObject* ai, u32 value);
+extern base::reflection::CType g_unk_7172a05520;

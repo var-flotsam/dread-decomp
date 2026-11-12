@@ -61,7 +61,6 @@ bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 struct UnkStandState_A6_b70;
 void fn_710099d6f0(UnkStandState_A6_b70* self);
 struct UnkActor;
-void fn_710002f4e4(void* self);
 struct UnkAirTarget_B71a6;
 struct UnkAirRequest_B71a6;
 void fn_710098ae04(UnkAirTarget_B71a6* target, UnkAirRequest_B71a6* req);

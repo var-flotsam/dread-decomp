@@ -161,8 +161,6 @@ struct UnkMinimapPath {
 };
 static_assert(sizeof(UnkMinimapPath) == 0x50, "UnkMinimapPath placeholder layout");
 
-void fn_71010592b0(UnkMinimapPath* path, const CVector3D* point);  // adds a point
-
 // A rectangle (its two corners) and the mesh at +0x18 that draws its diagonal.
 struct UnkMinimapRect {
     CVector2D min;

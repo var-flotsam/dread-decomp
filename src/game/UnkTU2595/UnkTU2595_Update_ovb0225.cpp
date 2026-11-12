@@ -17,6 +17,7 @@
 #include "game/nn/time.h"
 #include "game/sound/CMusicManager.h"
 #include "game/UnkGameManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 struct UnkSingleton2595_b0225 {
@@ -162,14 +163,11 @@ void fn_7100f14118(UnkSmOwner_b0225* self, f32 dt) {
 struct UnkSoundHolder;
 struct UnkMgr_0xf18;
 extern UnkMgr_0xf18* g_unk_71726bc560;
-extern base::global::CRntString g_unk_71729dc240 __attribute__((visibility("hidden")));
 struct UnkMusicMode {
     u32 kind;
     u32 field_0x4;
 };
 using base::global::CRntString;
-void fn_7100fd90d8(f32 a, f32 b, void* music, const CRntString* name, u32 c, const UnkMusicMode* d, u32 e,
-                   u32 f, void* g);
 
 // The state's entry: the base's step (which also takes the argument), the sound holder, an "Ingame" string id built and dropped, the GUI root
 // told, state 1 requested and the "SamusStory" music started.

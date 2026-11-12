@@ -2,6 +2,7 @@
 // one field type getter lives in this class's translation unit.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CCooldownXBossLavaDropsMovementDef.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -9,7 +10,6 @@ using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 extern const base::reflection::CType g_unk_71726d5010 __attribute__((visibility("hidden")));
-extern base::reflection::CType g_unk_71726d3d30;
 
 void fn_71004ade14(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("fTimeInit", true), fn_710000abbc(), 0x100, -1, -1);

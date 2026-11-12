@@ -3,6 +3,8 @@
 // UnkTU315: functions and globals of this translation unit that other files use (tools/tu_map.py unit 315,
 // 0x71002182c0-0x710021aca4). One declaration per symbol: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/math/CVector4D.h"
+#include "base/global/CStrId.h"
 #include "types.h"
 
 struct UnkFadeColor;
@@ -32,3 +34,7 @@ void fn_7100219c5c(UnkRenderManager* self, bool hide, void* item, u32 mode, bool
 void fn_7100219ca4(UnkRenderManager* self, void* item, bool enable, u32 mode);
 
 void fn_7100219da4(UnkRenderManager* target, bool a, bool b, u32 mode);
+// Sets the pass parameter the hash names to a colour.
+void fn_710021a0b4(UnkRenderManager* self, const u64* hash, const base::math::CVector4D* value);
+void fn_7100219558(UnkRenderManager* self, const base::global::CStrId* light, bool flag);
+void fn_710021a0bc(UnkRenderManager* self, const u64* hash, base::math::CVector4D* value);

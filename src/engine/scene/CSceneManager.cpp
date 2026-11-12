@@ -5,6 +5,7 @@
 #include "UnkClone.h"
 #include "base/UnkVector.h"
 #include "base/reflection.h"
+#include "base/tunable/CTunable.h"
 #include "game/UnkGlobal_710b372a98.h"
 #include "game/UnkTU280.h"
 #include "types.h"
@@ -127,8 +128,6 @@ void fn_71001cb588(UnkGlobal_710b372a98* self);
 UnkSceneEntry* fn_71001fca5c(base::UnkVector<UnkSceneEntry>* self, u32 index);  // grows to `index` like GrowAt
 bool fn_7100200158(UnkSceneItem* item);  // the flag at +0x141
 void fn_710020017c(UnkSceneItem* item, const UnkSceneEntry* entry);
-u32 fn_7100132f80();  // the display width
-u32 fn_7100132f90();  // the display height
 
 // Hands each entry of the top array to its item (when the item's flag at +0x141 is set), then has
 // the drawer, when there is one and it is enabled, cover the display in white.

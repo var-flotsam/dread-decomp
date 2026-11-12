@@ -8,13 +8,12 @@
 #include "game/CBossAIComponent.h"
 #include "game/CHydrogigaZiplineComponent.h"
 #include "game/CHydrogigaZiplineRailComponent.h"
+#include "game/CScenario.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU883.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 
 // As src/game/CInventoryComponent/CInventoryComponent_b40.cpp declares it.
 struct UnkStrIdHandle {

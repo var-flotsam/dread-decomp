@@ -12,6 +12,8 @@
 #include "game/CCentralUnitAIComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2577.h"
 #include "game/UnkTU2656.h"
 #include "game/UnkTU341.h"
@@ -26,8 +28,6 @@ void fn_7100a6b280(void* registration, void** slot);
 void fn_7100a6ce48(void* self);  // the base destructor
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
-// As src/game/CCreditsMode/CTunableCredits/CTunableCredits_Colors_ovb0070.cpp declares it.
-void* fn_7100deab70(UnkGameManager*, const CRntString&);
 
 // As src/game/UnkStateMachineSetA5_b61.cpp declares them.
 struct UnkCountedA5_b76 : base::UnkRefCounted {
@@ -51,7 +51,6 @@ UnkRef fn_7100353be8(void* from);
 struct UnkVec;
 
 struct UnkGfxFrameSource;
-extern UnkGfxFrameSource* g_unk_7101d47328;
 
 static inline f32 FrameTime() {
     return *reinterpret_cast<const f32*>(reinterpret_cast<const u8*>(g_unk_7101d47328) + 0x30);

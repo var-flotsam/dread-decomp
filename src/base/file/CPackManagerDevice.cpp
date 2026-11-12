@@ -16,6 +16,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU63.h"
+#include "game/UnkTU67.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -231,9 +232,6 @@ struct UnkFilePathList {
         }
     }
 };
-
-// Lists the files under `path` into `out` (the base object's).
-bool fn_710008c3bc(void* base_object, const CFilePathStrId& path, UnkFilePathList* out);
 
 // Queues every file of the pack set `path` (value 9, no words). False when the set can't be listed.
 bool fn_7100089cf8(UnkFileDevice* self, const CFilePathStrId& path) {

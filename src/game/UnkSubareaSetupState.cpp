@@ -12,6 +12,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
+#include "game/CScenario.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
@@ -19,6 +20,7 @@
 #include "game/UnkTU2577.h"
 #include "game/UnkTU2611.h"
 #include "game/UnkTU315.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -53,7 +55,6 @@ static inline const base::global::UnkStringData* EmptyData() {
     return reinterpret_cast<const base::global::UnkStringData*>(reinterpret_cast<const char*>(g_unk_7101d47108) + 0x10);
 }
 
-void fn_71011a2fd0(UnkGameManagerSub_0x608* self, const CStrId& id, bool arg2);
 void fn_71011a3714(UnkGameManagerSub_0x608* self, u32 kind, const CStrId& from, const CStrId& to, bool arg4);
 void fn_71011a3a5c(UnkGameManagerSub_0x608* self, u32 kind, const CStrId& from, const CStrId& to);
 void fn_7100219c8c(UnkRenderManager* self, bool enable, u64 from, u64 to, bool arg4);
@@ -264,7 +265,6 @@ void fn_7100facbe8(UnkSubareaSetupState* self, u32 index, const UnkSubareaSetup*
 
 // A string id as the CRntString constructor from one sees it (src/base/global/CRntString.cpp).
 struct UnkPooledStrId;
-void fn_710007eb20(CRntString* self, const UnkPooledStrId* id);
 
 // A string built from a string id out of line (fn_710007eb20) and destroyed as one.
 struct UnkSetupIdText {
@@ -350,7 +350,6 @@ struct UnkSetupPartId {
     ~UnkSetupPartId() { id.~CStrId(); }
 };
 
-CStrId fn_71011a2fbc(UnkGameManagerSub_0x608* self);
 bool fn_7100395c38(CBlackboard::CSection* section, const void* name, CRntString* out);
 void fn_71000730a0(const char* str, const char* separators, UnkSetupStrList* out);
 void fn_7100fabd60(UnkSubareaSetupState* self, const CStrId& id, bool a, bool b);

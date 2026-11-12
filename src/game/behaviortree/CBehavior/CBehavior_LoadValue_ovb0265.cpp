@@ -13,6 +13,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkTU85.h"
 #include "game/UnkTUProperty.h"
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -23,8 +24,6 @@ using base::reflection::UnkReflTypedPtr;
 struct UnkReflField;
 struct UnkReflFieldObject;
 struct UnkReflValueArg;
-
-extern base::global::CStrId g_unk_71726b7cb8;
 
 // A reflected field (0xb0 bytes).
 struct UnkBehaviorField_ovb0265 {

@@ -5,12 +5,12 @@
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/UnkTU1370.h"
+#include "game/UnkTU794.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkRequest;
-extern CStrId g_unk_71726dda50;
 extern CStrId g_unk_71726ddc60 __attribute__((visibility("hidden")));
 
 struct UnkVec2_A2_b72 {

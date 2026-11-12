@@ -4,6 +4,7 @@
 // for that id and the word at +0xc8 is set to 1. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CCharClassAttackComponent.h"
 #include "game/UnkTU1370.h"
 #include "types.h"
 
@@ -12,7 +13,6 @@ using base::global::CStrId;
 extern CStrId g_unk_71726be008 __attribute__((visibility("hidden")));
 
 struct UnkRequest;
-f32 fn_7100789f5c(const CStrId* id);
 
 struct UnkIrradiationSource_A2_b71 {
     u8 pad_0x0[0x20];

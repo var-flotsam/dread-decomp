@@ -3,6 +3,7 @@
 // CEvent: functions and globals of this translation unit that other files use (tools/tu_map.py unit 41,
 // 0x7100066630-0x71000684e4). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/global/CRntString.h"
 #include "types.h"
 
 struct UnkLayoutText;
@@ -20,3 +21,4 @@ bool fn_71000669a0(u32 n);
 void fn_7100066a50(void* text, const char32_t* value);
 extern char g_unk_7101a1a0d0[];  // The text's vtable (the object points 0x10 past it).
 void fn_7100066af0(UnkLayoutText* self, const char32_t* text);
+u64* fn_7100066630(u64* out, const base::global::CRntString* str);  // The string's key (its CRC-64) into *out.

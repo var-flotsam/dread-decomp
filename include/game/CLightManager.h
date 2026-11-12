@@ -3,6 +3,7 @@
 // CLightManager: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2556,
 // 0x7100e07b60-0x7100e0f028). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/global/CStrId.h"
 #include "types.h"
 
 struct UnkReflType;
@@ -35,3 +36,4 @@ extern UnkReflType g_unk_71727bf9b8;
 extern UnkReflType g_unk_71727bfaf8;
 extern UnkReflType g_unk_71727bfc38;
 extern UnkTUHeaderFnsClass g_unk_71727c0520 __attribute__((visibility("hidden")));
+void fn_7100e09330(UnkReflType* self, const base::global::CStrId& name, void* a, void* b);

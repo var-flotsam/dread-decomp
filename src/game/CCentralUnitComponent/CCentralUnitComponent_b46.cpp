@@ -9,6 +9,7 @@
 #include "game/UnkTU1176.h"
 #include "game/UnkTU2668.h"
 #include "game/UnkTU2677.h"
+#include "game/UnkTU341.h"
 #include "game/UnkTU367.h"
 #include "types.h"
 
@@ -17,7 +18,6 @@ struct lua_State;
 struct UnkWeakTarget;
 struct UnkDoorLock;
 struct UnkEntityState;
-void fn_7100232864(UnkEntityState* entity, bool value);
 
 using UnkRef = base::UnkRefPtrMember;
 UnkRef fn_7100353be8(void* source);

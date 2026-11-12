@@ -78,7 +78,6 @@ struct UnkDecalResource {
     s32 field_0x18;
 };
 struct UnkDecalResourceMgr;
-UnkDecalResource* fn_710019ffe8(UnkDecalResourceMgr* mgr, const CFilePathStrId* path, bool flag);
 
 // The 0x88-byte object: its resource and whether that resource's word at +0x18 is not 1.
 struct UnkDecal {

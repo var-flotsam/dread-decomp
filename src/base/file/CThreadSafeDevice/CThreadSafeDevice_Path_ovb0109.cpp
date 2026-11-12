@@ -8,13 +8,12 @@
 #include "base/global/CRntStringAssign.h"
 #include "base/global/CStrId.h"
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 using base::global::CRntString;
 using base::global::CStrId;
-
-void fn_710007f564(void* self, const char* str);  // appends a string
 
 // A device path: the device's name and the path on it.
 struct UnkDevicePath_ovb0109 {
@@ -55,9 +54,6 @@ UnkPathId_ovb0109 fn_710008dd5c(const UnkDevicePath_ovb0109* self) {
     fn_710007f564(&text, IdChars(self->path));
     return UnkPathId_ovb0109(text);
 }
-
-s32 fn_710007facc(const CRntString* self, char c, u32 start);
-s32 fn_710007fb10(const base::global::CRntString* self, char c, s32 start);
 
 // A substring, on 0x200 bytes of inline storage.
 struct UnkPathPart_ovb0109 : UnkBufferString<0x200, g_unk_7101a1a5a8> {

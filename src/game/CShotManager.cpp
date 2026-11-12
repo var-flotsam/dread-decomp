@@ -10,6 +10,7 @@
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
 #include "base/animation/CBlendSpaceResource.h"
+#include "base/file/CThreadSafeDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/reflection.h"
 #include "game/UnkGameManager.h"
@@ -17,6 +18,8 @@
 #include "game/UnkTU25.h"
 #include "game/UnkTU315.h"
 #include "game/UnkTU32.h"
+#include "game/UnkTU54.h"
+#include "game/UnkTU57.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -92,7 +95,6 @@ extern u32 g_unk_71729d1544 __attribute__((visibility("hidden")));
 extern u64 g_unk_71729d1548[] __attribute__((visibility("hidden")));
 
 extern "C" f32 atan2f(f32 y, f32 x);
-UnkMatrix44 fn_71000791a8(const UnkVec3f& translation, const UnkVec3f& angle, const UnkVec3f& scale);
 UnkShotWeakRef* fn_7100748064(base::UnkVector<UnkShotWeakRef>* self, u32 i);
 void fn_7100ddecac(UnkShotEffect* self, f32 dt);
 void fn_7100de13ac(void* self, UnkShotEffect* effect);
@@ -277,16 +279,13 @@ struct UnkStrPair_0x10 {
     void* a;
     void* b;
 };
-void fn_710008d2ec(UnkStrPair_0x10* self, const base::global::CFilePathStrId* path);
 struct UnkFileReader {
     base::global::CRntFile file;
     u32 field_0x38;
     u32 field_0x3c;
 };
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
-void fn_710000f750(UnkParseContext* self, void* root);
 extern UnkParseCallbacks g_unk_71729da548 __attribute__((visibility("hidden")));  // this unit's callbacks
-extern base::reflection::CType g_unk_7172756e50;
 
 // The shot kinds (15) and the presets of each kind (8), as indices.
 extern const u32 g_unk_710164bec0[15];
@@ -297,9 +296,6 @@ struct UnkPathIds;
 struct UnkInlineString;
 
 using UnkPresetText = UnkBufferString<0x100, g_unk_7101a194b8>;
-
-// Finds a character backwards from `start` (from the end when negative); -1 when absent.
-s32 fn_710007fb10(const base::global::CRntString* self, char c, s32 start);
 
 // The ids the builder fills in place (released with the scope).
 union UnkBuiltPathIds {

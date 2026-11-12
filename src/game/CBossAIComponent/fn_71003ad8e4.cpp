@@ -8,6 +8,7 @@
 #include "game/CLifeComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2704.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -46,8 +47,6 @@ struct UnkSelf {
     u8 pad_0x38[0x148d0];
     UnkFlagObject* field_0x14908;
 };
-
-const CStrId* fn_710112bf20(void* link);
 
 void fn_71003ad8e4(UnkSelf* self) {
     if (self->field_0x14908->field_0x50c)

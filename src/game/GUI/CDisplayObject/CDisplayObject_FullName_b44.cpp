@@ -3,13 +3,12 @@
 // holds the text at +0x10 and a count of reads at +0x44, as in src/game/CGameManager.cpp. Names and
 // layouts are placeholders.
 #include "base/global/CRntString.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using base::global::CRntString;
 
 struct UnkPooledStrId;
-void fn_710007eb20(CRntString* self, const UnkPooledStrId* id);
-CRntString fn_710007ef90(const CRntString* a, const char* b);  // concatenation
 
 struct UnkGuiIdData_b44a3 {
     u8 pad_0x0[0x10];

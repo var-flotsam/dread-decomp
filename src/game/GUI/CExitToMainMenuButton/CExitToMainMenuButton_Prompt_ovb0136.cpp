@@ -4,6 +4,7 @@
 // src/game/GUI/CLoadCheckPointButton/CLoadCheckPointButton_Prompt_ovb0118.cpp. Names and layouts are
 // placeholders.
 #include "base/global/CStrId.h"
+#include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "types.h"
@@ -22,9 +23,6 @@ struct UnkButtonCallback_ovb0136 {
 
 struct UnkGuiComposition_ovb0090;
 struct UnkMapCallback_ovb0090;
-void fn_7100b5fde0(UnkGuiComposition_ovb0090* gui, const CStrId* text, const CStrId* accept, const CStrId* back,
-                   const UnkMapCallback_ovb0090* on_accept, const UnkMapCallback_ovb0090* on_back, u32 mode,
-                   f32 time);
 
 struct UnkModeFlags {
     u8 unk_0x0[0xb8];

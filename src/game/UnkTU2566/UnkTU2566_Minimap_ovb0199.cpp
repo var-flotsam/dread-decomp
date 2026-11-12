@@ -21,6 +21,8 @@
 #include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
+#include "game/UnkTU2564.h"
 #include "game/UnkTU2566.h"
 #include "game/UnkTU2567.h"
 #include "game/UnkTU39.h"
@@ -78,18 +80,6 @@ struct UnkMmOwner_b0199 {
 // when there is none, and callers compare it with the end through the vector.
 void fn_71000ce604(base::UnkVector<base::global::CStrId>* self, base::global::CStrId* it);  // erases
 void fn_7100e9565c(base::UnkVector<CStrId>* self, const CStrId* id);
-const base::global::CStrId* fn_7100de9bf8(UnkGameManager* self);
-
-extern CStrId g_unk_71727c83a8;
-extern CStrId g_unk_71727c83c8;
-extern CStrId g_unk_71727c8378;
-extern CStrId g_unk_71727c8380;
-extern CStrId g_unk_71727c83c0;
-extern CStrId g_unk_71727c8058;
-extern CStrId g_unk_71727c8358;
-extern CStrId g_unk_71727c8360;
-extern CStrId g_unk_71727c8368;
-extern CStrId g_unk_71727c8370;
 
 struct UnkMmKinds_b0199 : base::UnkVector<CStrId> {
     CStrId* Find(const CStrId& id) {
@@ -219,7 +209,6 @@ void fn_7100ea6234(UnkMmIds_b0199* self, const CStrId* id) {
 void fn_7100b44f08(void* target);
 void fn_7100e96824(UnkMinimapOwner* self, u32 a, void* b);
 void fn_7100e9405c(UnkMinimapOwner* self, const void* v);
-extern UnkTunable g_unk_71727ca410;
 extern u8 g_unk_71729cdb08[] HIDDEN;
 extern u8 g_unk_710164be60[] HIDDEN;
 
@@ -321,7 +310,6 @@ struct UnkNamedDef_b0199 : UnkIdSource {
     UnkQualifiedName name;
 };
 extern UnkNamedDef_b0199 g_unk_71727c9c78;
-extern CStrId g_unk_71727cc990;
 
 static inline UnkSubId_7100fc4b34 SubId(UnkNamedDef_b0199& def, const CStrId& name) {
     if (!def.name.str || !def.name.str[0])
@@ -408,10 +396,6 @@ void fn_7100e9867c(void* world, const CStrId& area) {
 // ---- fn_7100e9d578 ----
 // A component callback: for a grapple point component adds its two kinds and refreshes the map.
 void fn_7100e9565c(base::UnkVector<CStrId>* self, const CStrId* id);
-extern CStrId g_unk_71727c8358;
-extern CStrId g_unk_71727c8360;
-extern CStrId g_unk_71727c8368;
-extern CStrId g_unk_71727c8370;
 
 struct UnkMmOwner3_b0199 {
     u8 unk_0x0[0xd642c8];
@@ -439,8 +423,6 @@ bool fn_7100e9d578(UnkMmOwner3_b0199* self, base::reflection::UnkReflObject* obj
 // ---- fn_7100e94608 ----
 // Initialises the two parts of a record and looks up its table entry (+0x5b4).
 u64 fn_7100ea1b94(void* self, const void* a);
-extern CStrId g_unk_71727c81a0;
-extern CStrId g_unk_71727c8110;
 
 struct UnkMmRecord2_b0199 {
     u8 unk_0x0[0xc8];

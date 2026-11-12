@@ -8,10 +8,12 @@
 #include "game/CBlackboard.h"
 #include "game/CCollisionComponent.h"
 #include "game/CComponent.h"
+#include "game/CScenario.h"
 #include "game/CUsableComponent.h"
 #include "game/CWeightActivatedPlatformSmartObjectComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2772.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
@@ -264,9 +266,6 @@ void fn_7100ac939c(UnkSmIdUser_b61* self) {
     fn_7100ac9530(self->field_0x200, self->holder->id);
 }
 
-// Checkpoints: a flag, the request, then the game manager is handed a checkpoint name and an empty tag.
-bool fn_7100dfaf88(UnkGameManager* self, void* name, const CRntString& tag, bool flag);
-
 static inline void Checkpoint_b61(const char* name) {
     UnkGameManager* manager = g_unk_7101d47310;
     CRntString checkpoint(name);
@@ -370,7 +369,6 @@ struct UnkTypedValue {
     void* value;
 };
 void fn_7100332c80(CBlackboard::CSection*, UnkPropertyName*, const UnkTypedValue*);
-CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 
 struct UnkPlatformValue_b61 {
     UnkPropertyName name;

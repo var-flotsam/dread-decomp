@@ -62,10 +62,7 @@ bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base:
 // This unit's parser callbacks.
 extern UnkParseCallbacks g_unk_71729ea458 __attribute__((visibility("hidden")));
 
-void fn_710000f750(UnkParseContext* self, void* root);
-
 // The object read and its type.
-extern base::reflection::CType g_unk_7172756e50;
 
 // Parses the file into the target, starting from its last entry's node.
 static inline void Parse(UnkFileReader* reader, UnkReadTarget* target) {

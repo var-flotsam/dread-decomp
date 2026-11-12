@@ -4,8 +4,11 @@
 // appends; src/game_lo/fn_710013c3c8.cpp looks a group up). Names and layouts are placeholders
 // inferred from the code.
 #include "base/UnkVector.h"
+#include "base/core/CBaseObject.h"
 #include "base/global/CStrId.h"
+#include "base/global/timeline/CEvent.h"
 #include "game/UnkTU112.h"
+#include "game/UnkTU57.h"
 #include "game/UnkTU85.h"
 #include "game/UnkTU99.h"
 #include "types.h"
@@ -178,15 +181,9 @@ void fn_710007c610(base::global::CRntFile* file, u64 buffer);
 bool fn_710007c388(base::global::CRntFile* file, const UnkStrPair_0x10* path);
 extern UnkStrPair_0x10 g_unk_710b372708 __attribute__((visibility("hidden")));  // the tunables file
 
-s32 fn_710007facc(const CRntString* self, char c, u32 start);  // finds c from start on; -1 when absent
 void fn_710007f6dc(CRntString* self);                           // trims both ends
-CRntString fn_710007ef90(const CRntString* a, const char* b);   // concatenation
-CRntString fn_710007f050(const char* a, const CRntString* b);   // concatenation
-void fn_710007f564(void* self, const char* str);                // appends a string
 // The string's key (its CRC-64) into *out.
-u64* fn_7100066630(u64* out, const CRntString* str);
 // A copy of `str` with every `from` replaced by `to`.
-UnkTunableLine fn_710013c834(const CRntString* str, const char* from, const char* to);
 
 // The tunable object a header names: its class is vtable slot 0.
 struct UnkTunableObject {
@@ -234,7 +231,6 @@ bool fn_71000e79a8(UnkReflField* field, const UnkReflFieldObject* obj, UnkReflVa
 bool fn_71000e74bc(UnkReflField* field);  // whether a field without an accessor can be set
 // The member object a field of `obj` holds.
 UnkReflTypedPtr fn_71000e755c(UnkReflField* field, const UnkReflTypedPtr* obj);
-s32 fn_7100024140(const base::reflection::CType* type);  // the type's letter (b, f, i, s, v)
 UnkEnumType* fn_710009ffd4();  // base::global::TRntString256's type
 
 static inline void SetField(UnkTunableField* field, UnkReflTypedPtr* obj, UnkTunableValue* value) {

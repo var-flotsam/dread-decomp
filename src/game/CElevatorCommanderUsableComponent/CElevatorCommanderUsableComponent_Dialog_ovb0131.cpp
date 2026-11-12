@@ -18,8 +18,10 @@
 #include "game/CInputComponent.h"
 #include "game/CUsableComponent.h"
 #include "game/CWeightActivatedPlatformSmartObjectComponent.h"
+#include "game/GUI/CPopUpComposition.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
 
@@ -31,9 +33,6 @@ void fn_7100a80e20(UnkElevatorCommander_ovb0131* self);
 
 struct UnkMapCallback_ovb0090;
 struct UnkGuiComposition_ovb0090;
-void fn_7100b5fde0(UnkGuiComposition_ovb0090* gui, const CStrId* text, const CStrId* accept, const CStrId* back,
-                   const UnkMapCallback_ovb0090* on_accept, const UnkMapCallback_ovb0090* on_back, u32 mode,
-                   f32 time);
 
 // A callback: an object and a function to call on it.
 struct UnkElevatorCallback_ovb0131 {
@@ -64,7 +63,6 @@ void fn_7100a80930(UnkElevatorCommander_ovb0131* self) {
 
 struct UnkPlayer;
 struct UnkInputComponent;
-extern void* g_unk_7101d47368;
 struct UnkUsableDialog_A6_b62;
 struct UnkPlatformSm_b61;
 struct UnkStruct_7100861148;

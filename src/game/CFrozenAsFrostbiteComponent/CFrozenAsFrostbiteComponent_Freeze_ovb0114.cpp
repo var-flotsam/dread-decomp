@@ -8,19 +8,22 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CComponent.h"
+#include "game/CFrozenAsFrostbiteComponent.h"
 #include "game/CFrozenComponent.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU127.h"
+#include "game/UnkTU133.h"
 #include "game/UnkTU1370.h"
+#include "game/UnkTU54.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkTimelineComponent.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 struct UnkStruct_71001436f4;
-bool fn_71001436f4(UnkStruct_71001436f4* self, u32 a, const base::math::CVector4D* b, u32 c);
 extern const base::math::CVector4D g_unk_710164ab98 __attribute__((visibility("hidden")));
 
 struct UnkSlotOwner_b0025;
@@ -139,8 +142,6 @@ bool fn_71007f4170(UnkFrozenAsFrostbite_ovb0114* self, void* arg) {
 struct UnkParent;
 void fn_71007f4514(UnkFrozenAsFrostbite_ovb0114* self);
 
-extern UnkTunable g_unk_7172720dc0;
-
 // The tunable's frost colour and how the last component fades with the remaining time.
 struct UnkFrostbiteTunable_ovb0114 {
     u8 pad_0x0[0x24];
@@ -189,10 +190,7 @@ void fn_71007f4378(UnkFrozenAsFrostbite_ovb0114* self, f32 dt) {
 }
 
 struct UnkEntity;
-UnkVec3f fn_7100076acc(const UnkXform* x);
 UnkSwitchObject*& fn_71007f4d8c(base::UnkVector<UnkSwitchObject*>* self, u32 index);
-void fn_7100145f28(UnkSwitchObject* self, const UnkVec3f* position);
-void fn_7100145f3c(UnkSwitchObject* self, const UnkVec3f* angles);
 
 struct UnkFrostbitePartName_ovb0114 {
     u8 pad_0x0[0x30];

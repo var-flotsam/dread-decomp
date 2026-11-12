@@ -21,6 +21,7 @@
 #include "game/UnkTU365.h"
 #include "game/UnkTU56.h"
 #include "game/UnkTU785.h"
+#include "game/UnkTU794.h"
 #include "game/UnkTimelineCalls.h"
 #include "game_s2/UnkChargeComponent.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -100,7 +101,6 @@ struct UnkTileQuery_A3_b64 {
     u8 pad_0x0[0x38];
     u32 kind;
 };
-UnkTileQuery_A3_b64* fn_7100ca1ecc(base::reflection::UnkReflObject* group, const void* at, void* arg, bool flag);
 
 struct UnkHitLink1_b0204 {
     u8 pad_0x0[0x10];
@@ -258,7 +258,6 @@ void fn_71010d80e8(UnkPlayerMovementD_b0204* self, u32 kind);
 void fn_71010d9f88(UnkPlayerMovementD_b0204* self);
 void fn_71010d7d0c(UnkPlayerMovementD_b0204* self, u32 kind);
 void fn_71010da220(UnkPlayerMovementD_b0204* self, f32 a, f32 b, f32 c);
-extern CStrId g_unk_71726dda50;
 extern base::reflection::UnkTunable g_unk_7172a03d80;
 
 struct UnkRequest_b0204 {

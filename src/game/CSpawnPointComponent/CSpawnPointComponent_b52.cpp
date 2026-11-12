@@ -1,5 +1,6 @@
 // CSpawnPointComponent unit (tools/tu_map.py, the name from reflection). Names and layouts are placeholders.
 #include "base/UnkResKey.h"
+#include "game/UnkTU2729.h"
 #include "game/UnkTU344.h"
 #include "game/operator_new.h"
 #include "types.h"
@@ -28,8 +29,6 @@ struct UnkSpawnDefRef_b52 {
             fn_710001737c(p);
     }
 };
-
-UnkSpawnDefRef_b52 fn_71011938bc(UnkActorDefFactory* factory, const base::global::CStrId* type, const base::global::CFilePathStrId* path);
 
 struct UnkSpawnDefHolder_b52 {
     u8 pad_0x0[0x48];

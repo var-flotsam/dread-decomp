@@ -9,6 +9,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU2544.h"
 #include "game/UnkTU2768.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
@@ -36,7 +37,6 @@ void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const 
 // "SurvivalRushRecord", "SurvivalRushTime" and the section's id (as CBossRushManager.cpp has them).
 extern UnkPropertyEx<> g_unk_71727bcac0;
 extern UnkPropertyEx<> g_unk_71727bcb00;
-extern const CStrId g_unk_71727bdb80 __attribute__((visibility("hidden")));
 
 // The property's qualified id, built on first use.
 static inline UnkQualifiedId& Qid(UnkPropertyEx<>& item) {

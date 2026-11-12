@@ -77,18 +77,18 @@ still to be folded in.
 ## Shared functions the mechanical header migration could not move
 
 `tools/decl_plan.py` and `tools/hub_migrate.py` moved 1,353 shared functions' declarations into unit headers on
-2026-11-11. 59 of those tried are still left with every local copy in place, because moving them changed a
+2026-11-11. 43 of those tried are still left with every local copy in place, because moving them changed a
 file or stopped it compiling. Each needs a person to settle the type. (`tools/decl_plan.py --exclude` takes
 this list; remove a symbol here when it has moved.)
 
-**46: the header's forward declaration clashes with a type of another kind that a file defines under the same name (a typedef, a template alias, a type in a namespace).**
-`fn_710007b444` `fn_710007cee4` `fn_710007f564` `fn_7100083804` `fn_710009fb38` `fn_710009ffd4` `fn_71000fbce0` `fn_71001039f8` `fn_71002295ac` `fn_7100229688` `fn_7100231b40` `fn_7100232864` `fn_710026d2e4` `fn_710027fc88` `fn_7100287598` `fn_71002af070` `fn_71002af6fc` `fn_71002b3114` `fn_71002b3328` `fn_71002b52a4` `fn_71002f239c` `fn_7100353be8` `fn_7100407170` `fn_7100d45fc4` `fn_7100d45fd4` `fn_7100d46804` `fn_7100d46c60` `fn_7100d476e4` `fn_7100d59dd8` `fn_7100ee34f0` `fn_7100ee62bc` `fn_7100ee6884` `fn_7100ef1e1c` `fn_7100f84868` `fn_7100f85f00` `fn_7100f86020` `fn_7100f86254` `fn_7100faa3d8` `fn_7100fac120` `fn_710119a110` `fn_710120806c` `fn_710120b198` `fn_710120e5d0` `fn_7101233f2c` `fn_7101234588` `fn_7101234dcc`
+**31: the header's forward declaration clashes with a type of another kind that a file defines under the same name (a typedef, a template alias, a type in a namespace).**
+`fn_710007b444` `fn_710009fb38` `fn_710009ffd4` `fn_71000fbce0` `fn_71002295ac` `fn_7100229688` `fn_7100231b40` `fn_710026d2e4` `fn_710027fc88` `fn_7100287598` `fn_71002af070` `fn_71002af6fc` `fn_71002b3114` `fn_71002b3328` `fn_71002b52a4` `fn_71002f239c` `fn_7100353be8` `fn_7100407170` `fn_7100d46804` `fn_7100d46c60` `fn_7100d476e4` `fn_7100ee34f0` `fn_7100ee62bc` `fn_7100ee6884` `fn_7100ef1e1c` `fn_7100f84868` `fn_7100f85f00` `fn_7100f86020` `fn_7100f86254` `fn_7100faa3d8` `fn_710119a110`
 
 **7: the file's compiled output changed.**
 `fn_71005c1008` `fn_7100895498` `fn_710098ae04` `fn_71009a60fc` `fn_71009a64cc` `fn_710111b230` `fn_71011201e4`
 
-**6: a file uses a type the header does not bring.**
-`fn_71007142e8` `fn_7100872908` `fn_710099d6f0` `fn_71009a1f40` `fn_71009b0800` `fn_71010d1598`
+**5: a file uses a type the header does not bring.**
+`fn_71007142e8` `fn_710099d6f0` `fn_71009a1f40` `fn_71009b0800` `fn_71010d1598`
 
 A third pass on 2026-11-12 moved 437 more symbols, none left over: the planner forward-declares a type the
 declaring file takes from an include when every file of the tree agrees on it (`tools/decl_plan.py`,
@@ -96,18 +96,24 @@ declaring file takes from an include when every file of the tree agrees on it (`
 
 A fourth pass on 2026-11-12, after the conflicting signatures were settled, moved 91 more symbols, 16 functions and 11 globals of the lists here among them (the lists and their counts are what is left).
 
+A fifth pass on 2026-11-12 moved 423 more symbols (16 functions and 4 globals of the lists here among them). The planner learned two things for it: a type that exactly one header under
+`include/` defines (`CStrId`, `CRntString`, `UnkVec3f`) is used through that header, with its full name in
+the declaration; and a name that some file reaches through a namespace or defines as an alias is never
+forward-declared. What a declaration needs in its header now travels with it in the plan, so
+`tools/hub_migrate.py` writes it with the declaration and takes it back with it.
+
 ## Shared globals the mechanical header migration could not move
 
 `tools/decl_plan.py` and `tools/hub_migrate.py` moved 674 shared symbols' declarations (672 globals and two
 functions) into unit headers on 2026-11-11, each global into the header of the unit whose data span holds it
-(`tools/data_map.py`). 26 of those tried are still left with every local copy in place. (They are in the
+(`tools/data_map.py`). 22 of those tried are still left with every local copy in place. (They are in the
 `--exclude` list with the functions above; remove a symbol here when it has moved.)
 
-**19: the header's forward declaration of the global's type clashes with a type of the same name in a namespace that a file opens (the compiler: "reference is ambiguous").**
-`g_unk_7101a45f90` `g_unk_7101a45fe8` `g_unk_7108b6d8f0` `g_unk_71726dfca0` `g_unk_71727115d0` `g_unk_7172731200` `g_unk_71727313a4` `g_unk_71729f0188` `g_unk_71729f0190` `g_unk_71729f0198` `g_unk_71729f01a0` `g_unk_71729f01a8` `g_unk_71729f01c8` `g_unk_71729f0228` `g_unk_71729f0238` `g_unk_71729f0240` `g_unk_71729f0248` `g_unk_71729f0298` `g_unk_71729f02a8`
+**18: the header's forward declaration of the global's type clashes with a type of the same name in a namespace that a file opens (the compiler: "reference is ambiguous").**
+`g_unk_7101a45f90` `g_unk_7101a45fe8` `g_unk_7108b6d8f0` `g_unk_71726dfca0` `g_unk_71727115d0` `g_unk_7172731200` `g_unk_71729f0188` `g_unk_71729f0190` `g_unk_71729f0198` `g_unk_71729f01a0` `g_unk_71729f01a8` `g_unk_71729f01c8` `g_unk_71729f0228` `g_unk_71729f0238` `g_unk_71729f0240` `g_unk_71729f0248` `g_unk_71729f0298` `g_unk_71729f02a8`
 
-**4: the global's unit header also declares a function that one of the files declares with another return type (the functions of the list above), so that file cannot include the header.**
-`g_unk_7101d47328` `g_unk_7101d47330` `g_unk_7101d47368` `g_unk_7101d4bbc0`
+**1: the global's unit header also declares a function that one of the files declares with another return type (the functions of the list above), so that file cannot include the header.**
+`g_unk_7101d4bbc0`
 
 **3: a file's `using` declaration or typedef clashes with the header's forward declaration.**
 `g_unk_7172730858` `g_unk_7172735f58` `g_unk_7172795e08`

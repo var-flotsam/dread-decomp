@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the ENavigablePathType enum.
 #include "UnkStaticInit.h"
+#include "game/UnkTU1112.h"
 
 using namespace unk_static_init;
 
@@ -7,7 +8,6 @@ struct UnkStatics_71006f3d00 {
     HeaderIds ids;
 };
 extern UnkStatics_71006f3d00 g_unk_717270c778 __attribute__((visibility("hidden")));
-extern base::reflection::CType g_unk_717270c618;
 void fn_71006f3ae8(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71006f393c();
 extern char g_unk_717270c730[];

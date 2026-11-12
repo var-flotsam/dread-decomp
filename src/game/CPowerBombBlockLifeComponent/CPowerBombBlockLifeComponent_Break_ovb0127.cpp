@@ -14,6 +14,7 @@
 #include "game/CTimelineComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -80,7 +81,6 @@ struct UnkPowerBombNameEntry_ovb0127 {
 using UnkStringEntry = UnkPowerBombNameEntry_ovb0127;
 
 struct UnkStruct_7100233684;
-base::reflection::UnkReflObject* fn_7100233684(UnkStruct_7100233684*);
 struct UnkFlagTarget;
 
 // A named part: its name's string entry first (a string id).

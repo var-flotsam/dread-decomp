@@ -12,6 +12,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "base/snd/CSoundSystem.h"
 #include "game/CActorComponent.h"
 #include "game/CAttack.h"
 #include "game/CCameraComponent.h"
@@ -35,6 +36,7 @@
 #include "game/UnkTU2730.h"
 #include "game/UnkTU2733.h"
 #include "game/UnkTU2744.h"
+#include "game/UnkTU341.h"
 #include "game/UnkTU99.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
@@ -54,7 +56,6 @@ inline void* FindByName_b0162(UnkGameManager* manager, const char* name) {
 
 struct UnkStruct_7100233684;
 struct UnkModelUpdaterEvents_ovb0032;
-base::reflection::UnkReflObject* fn_7100233684(UnkStruct_7100233684* self);
 void fn_7101173c60(UnkModelUpdaterEvents_ovb0032* self, void* source);
 
 s32 fn_710107eae0(lua_State* L) {
@@ -134,7 +135,6 @@ s32 fn_7101086cb0(lua_State* L) {
 // ---- the music manager, created on first use ----
 extern UnkMgr_0xf18* g_unk_71726bc560;
 struct UnkMusicMode;
-void fn_7100fd90d8(f32 a, f32 b, void* music, const CRntString* name, u32 c, const UnkMusicMode* d, u32 e, u32 f, void* g);
 
 static inline void* MusicManager() {
     void* manager = g_unk_71726bc560;
@@ -226,7 +226,6 @@ struct UnkLoadingMaskOf_b0162 {
     }
 };
 struct UnkLoadingMaskTag_b0162;
-void fn_7100deac9c(UnkGameManager* self, const CRntString& name);
 
 s32 fn_7101077d50(lua_State*) {
     void* music = MusicManager();
@@ -245,7 +244,6 @@ struct UnkSoundRef_A5_b76 {
     UnkSoundEntry_A5_b76* entry;
     u64 id;
 };
-UnkSoundRef_A5_b76 fn_7100108aa4(UnkSoundMgr* self, const CFilePathStrId* path, bool flag);
 void fn_7100fdc7e0(void* music, const CFilePathStrId* path, f32 value);
 
 s32 fn_7101092ca0(lua_State* L) {
@@ -339,8 +337,6 @@ s32 fn_710108ef00(lua_State*) {
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
 void fn_7100eeb330(void* manager, CStrId* a, CStrId* b, f32 x, f32 y);
-void fn_7100eee61c(void* manager, CStrId* a, CStrId* b, bool flag, bool other);
-void fn_7100eee1f8(void* manager, CStrId* subArea, const CStrId* setup, bool a, bool b);
 
 static inline void* SubAreaManager() {
     void* manager = g_unk_7101d47360;
@@ -450,8 +446,6 @@ s32 fn_7101078490(lua_State* L) {
     return fn_71010c0b40(L, "b", result);
 }
 
-void* fn_7100deab70(UnkGameManager*, const CRntString&);
-void fn_7100deac9c(UnkGameManager* self, const CRntString& name);
 void fn_7101185dc8(void* credits);
 void fn_7100f17adc(void* rewards, s32 a, s32 b);
 
@@ -486,8 +480,6 @@ struct UnkCentralUnitList {
     UnkCentralUnitEntry** data;
     u32 count;
 };
-void fn_7100772698(UnkReflObject* component, const CStrId* id, f32 value);
-void fn_7100772610(UnkReflObject* component, const CStrId* id, f32 a, f32 b);
 
 s32 fn_7101095060(lua_State* L) {
     const char* name;
@@ -578,7 +570,6 @@ s32 fn_710108ddc0(lua_State* L) {
     return 0;
 }
 
-base::reflection::UnkReflObject* fn_710023341c(void* owner, const base::global::CStrId& name);
 struct UnkStruct_710024fa0c;
 
 s32 fn_710107dbc0(lua_State* L) {
@@ -681,10 +672,7 @@ s32 fn_7101077930(lua_State* L) {
 }
 
 // ---- save game ----
-bool fn_7100dfaf88(UnkGameManager* self, void* name, const CRntString& tag, bool flag);
 struct UnkSaveGamePair_b54;
-void fn_7100dfd174(UnkGameManager* self, CRntString* name, CRntString* tag, bool flag, u32 kind,
-                   const UnkSaveGamePair_b54& extra);
 
 s32 fn_7101078950(lua_State* L) {
     const char* kind;
@@ -712,7 +700,6 @@ s32 fn_7101078950(lua_State* L) {
 }
 
 // ---- GUI: a value for a named target, with the mask of every layer ----
-extern void* g_unk_7101d47330;
 
 template <class T>
 struct UnkLayerMaskOf_b0162 {

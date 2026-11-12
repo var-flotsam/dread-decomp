@@ -19,8 +19,6 @@ using base::reflection::UnkReflObject;
 struct UnkActorDefFactory;
 struct UnkPowerUpLifeEntry_b52;
 struct UnkPowerUpLifeType_b52;
-UnkPowerUpLifeEntry_b52* fn_710119438c(UnkActorDefFactory* factory, const char* path, CStrId* id, const UnkPowerUpLifeType_b52& type,
-                                       void* arg);
 
 struct UnkKraidName_b0266 {
     u8 unk_0x0[0x10];

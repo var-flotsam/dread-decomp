@@ -7,11 +7,13 @@
 #include "base/UnkVector.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
+#include "game/UnkTU2620.h"
 #include "game/UnkTU83.h"
 #include "types.h"
 
@@ -27,7 +29,6 @@ void fn_7100fc29e8(void* reader, u32 flags, UnkReadArg_b0249* arg, const base::g
 const base::reflection::CType* fn_710009c640(base::reflection::UnkReflObject* obj);
 using base::reflection::CType;
 using base::UnkStrIdMember;
-s32 fn_7100fc2700(UnkParseContext* self, const CType* type, void* x2);
 
 struct UnkNameReader_b0249 {
     u8 pad_0x0[0x30];
@@ -105,7 +106,6 @@ struct UnkTypedObject_b0249 {
 };
 struct UnkTypedObject;
 using base::reflection::UnkReflValue;
-void fn_71000a1828(UnkReflValue* out, const UnkTypedObject* object, u32 by_ref, u32 kind);
 
 // Reads the script argument at `first` as `object` through the callbacks; whether it was given and parsed.
 bool fn_7100fc22a0(lua_State* L, u32 first, const UnkTypedObject_b0249* object, u32 unused, const UnkParseCallbacks* callbacks) {

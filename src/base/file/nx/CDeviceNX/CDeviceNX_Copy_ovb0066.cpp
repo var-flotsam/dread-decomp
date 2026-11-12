@@ -8,8 +8,6 @@
 
 using base::global::CRntString;
 
-u32 fn_710002ed98(void* table, base::global::CRntString* path, void* a, u32 b, void* c, u32 d, u32 e);
-
 class UnkSaveBuffer_ovb0066 {
 public:
     virtual void vf_0x0();

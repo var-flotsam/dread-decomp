@@ -148,8 +148,6 @@ struct UnkCamMaskOf_b0101 {
 };
 struct UnkCamMaskTag_b0101;
 
-void fn_7100eed3a4(void* manager, const CStrId* id, UnkCamMask_b0101 mask, bool flag);
-
 static inline void* CameraManager() {
     void* manager = g_unk_7101d47360;
     if (!manager) {

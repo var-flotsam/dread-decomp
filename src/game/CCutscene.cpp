@@ -12,7 +12,9 @@
 #include "base/reflection/UnkReflStatics.h"
 #include "engine/scene/UnkToggle.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU1134.h"
+#include "game/nn/time.h"
 #include "types.h"
 
 extern const f32 g_unk_710164c384[/* 256; unsized: x86-64 would assume 16-byte alignment */];  // byte -> linear colour component
@@ -102,10 +104,6 @@ struct UnkCutscene {
 static_assert(__builtin_offsetof(UnkCutscene, track) == 0x180, "UnkCutscene placeholder layout");
 static_assert(__builtin_offsetof(UnkCutscene, field_0x4b8) == 0x4b8, "UnkCutscene placeholder layout");
 
-extern void* g_unk_7101d47330;
-
-UnkTimelineEvent* fn_710006bb80(f32 frame, UnkTimelineEventList* events, const base::reflection::CClass* cls,
-                                s32 frame_count);
 void fn_710019c4fc(UnkFadeLayer* layer, const base::color::CColor4F* color);
 
 // Shows the fade layer and sets its colour while a fade event spans the current position, hides

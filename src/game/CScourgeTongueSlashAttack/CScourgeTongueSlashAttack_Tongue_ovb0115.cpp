@@ -18,6 +18,7 @@
 #include "game/CEnemyMovement.h"
 #include "game/CLifeComponent.h"
 #include "game/CScourgeAIComponent.h"
+#include "game/CScourgeTongueSlashAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkBroadphaseObject.h"
@@ -209,7 +210,6 @@ void fn_710069afac(UnkScourgeSlash_b0115* self, bool aim) {
 
 using base::global::CStrId;
 
-extern const base::global::CStrId g_unk_7172704968 __attribute__((visibility("hidden")));
 extern UnkMatrix44 g_unk_7101a1a680;
 
 struct UnkTileOutlines;

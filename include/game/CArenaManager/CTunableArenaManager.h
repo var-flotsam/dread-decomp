@@ -3,6 +3,9 @@
 // CTunableArenaManager: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2558,
 // 0x7100e140c0-0x7100e16e60). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/global/CStrId.h"
+#include "game/UnkTUProperty.h"
+#include "base/global/CRntString.h"
 #include "types.h"
 
 struct UnkProperty;
@@ -18,3 +21,6 @@ extern UnkProperty g_unk_71727c0920;
 extern UnkProperty g_unk_71727c0948;
 extern UnkProperty g_unk_71727c0998;
 extern UnkTUHeader g_unk_71727c0a38 __attribute__((visibility("hidden")));
+extern base::global::CStrId g_unk_71727c0918;
+extern UnkTunable g_unk_71727c09c8;
+extern base::global::CRntString g_unk_71727c0a58 __attribute__((visibility("hidden")));

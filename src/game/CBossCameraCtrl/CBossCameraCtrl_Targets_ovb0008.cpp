@@ -18,6 +18,8 @@
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2566.h"
+#include "game/UnkTU2704.h"
 #include "game/UnkXformNode.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
@@ -31,7 +33,6 @@ extern UnkMgr_0xf18* g_unk_71726bc560;  // the music manager (game/sound/CMusicM
 extern CStrId g_unk_7172710f30;
 extern CStrId g_unk_7172710f50 __attribute__((visibility("hidden")));
 
-void fn_7100e8f9a0(char* self, bool remove, base::global::CStrId* key);
 struct UnkMgr_0xf18;
 
 struct UnkFixedCamera_fc;
@@ -160,9 +161,6 @@ struct UnkBossHolder_ovb0008 {
     UnkBossChild_ovb0008* field_0x48;
 };
 struct UnkHolder;
-// Declared without its argument in src/game/CBossAIComponent/fn_71003ad8e4.cpp; this caller passes
-// the holder's child object.
-const CStrId* fn_710112bf20(void* link);
 
 struct UnkBossHolderActor_ovb0008 {
     u8 pad_0x0[0x1b8];

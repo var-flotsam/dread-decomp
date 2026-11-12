@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CCharClassEmmyValveComponent.h"
+#include "game/CScenario.h"
 #include "game/UnkAnimationComponent.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
@@ -116,9 +117,6 @@ __attribute__((always_inline)) static inline void RequestState_A5v_b64(UnkSmMach
 
 struct UnkSmBase_b60;
 struct UnkEmmyRegistry_b55;
-
-CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
-extern const base::global::CStrId g_unk_717271a2c0 __attribute__((visibility("hidden")));
 
 // A typed value as the section setter takes it (as in src/game/CDoorLifeComponent.cpp).
 struct UnkTypedValue {

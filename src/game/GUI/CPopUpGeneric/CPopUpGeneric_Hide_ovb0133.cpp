@@ -9,15 +9,13 @@
 #include "game/GUI/CAmiiboComposition.h"
 #include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkTU2747.h"
 #include "game/sound/SGUISoundEventsSelector.h"
 #include "types.h"
 
 struct UnkStateSink;
 struct UnkStateKey;
 extern UnkStateKey g_unk_71729f0180;
-
-void fn_71011cec68(UnkGuiDisplayObject* self, f32 value);
-void fn_71011ce208(UnkGuiDisplayObject* self, f32 value);
 
 struct UnkDisplayObjectContainer_ovb0032;
 struct UnkDisplayObject_ovb0032;

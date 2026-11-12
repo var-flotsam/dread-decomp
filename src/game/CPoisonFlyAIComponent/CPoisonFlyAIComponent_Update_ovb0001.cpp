@@ -138,7 +138,6 @@ void fn_71006392cc(UnkPoisonFlyAI1_ovb0001* self, f32 dt) {
 // As src/game/CInfesterAIComponent/CInfesterAIComponent_Send_b57.cpp declares it.
 struct UnkQuetzoaAIComponent;
 // As src/game/CBigFistAttack/CBigFistAttack_Start_A2_b72.cpp declares it.
-void fn_710111094c(UnkReflObject* ai, u32 value);
 
 struct UnkPoisonFlyVec_ovb0001 {
     f32 x, y, z;

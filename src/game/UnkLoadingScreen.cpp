@@ -11,6 +11,7 @@
 #include "game/UnkTU2557.h"
 #include "game/UnkTU2578.h"
 #include "game/UnkTU2744.h"
+#include "game/UnkTU2747.h"
 #include "game/UnkTU286.h"
 #include "game/UnkTU315.h"
 #include "game/UnkTU58.h"
@@ -280,11 +281,7 @@ void fn_7100e13928(void* set_, void* model_, UnkSceneObj_71010e2278** out, const
 // A GUI::CLabel's constructor and the setters the headers above leave out (as
 // src/game/CScenario.cpp declares them).
 struct UnkStruct_71011ebdb4;
-bool fn_71011ceac0(UnkGuiDisplayObject* self);
-bool fn_71011ceb34(UnkGuiDisplayObject* self);
-void fn_71011b5598(UnkGuiRoot* root, UnkGuiDisplayObject* object);
 void fn_71011eec50(UnkGuiDisplayObject* label, f32 scale);
-void fn_71011ed150(UnkGuiDisplayObject* label, const CStrId& font);
 
 // The label's members set here.
 struct UnkTipLabelView {

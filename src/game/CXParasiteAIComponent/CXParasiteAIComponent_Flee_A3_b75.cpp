@@ -11,6 +11,7 @@
 #include "game/UnkActor.h"
 #include "game/UnkTU1102.h"
 #include "game/UnkTUProperty.h"
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -21,7 +22,6 @@ struct UnkTypedValue {
     void* value;
 };
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
-extern base::global::CStrId g_unk_71726b7cb8;
 // As src/game_s7/fn_71006e1010.cpp declares it.
 
 struct UnkXParasiteAI_A3_b75 {

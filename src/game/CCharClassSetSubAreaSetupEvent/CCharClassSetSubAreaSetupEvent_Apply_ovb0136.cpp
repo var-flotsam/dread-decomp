@@ -13,7 +13,6 @@ using base::global::CStrId;
 
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
-void fn_7100eea3fc(void* manager, const base::global::CStrId* id, bool a, bool b);
 extern CStrId g_unk_717279de58 __attribute__((visibility("hidden")));
 
 struct UnkSubAreaManager_ovb0136 {
@@ -28,8 +27,6 @@ struct UnkSetSubAreaSetupEvent_ovb0136 {
     CStrId subArea;  // 0x18
     bool field_0x20;
 };
-
-void fn_7100eee1f8(void* manager, CStrId* subArea, const CStrId* setup, bool a, bool b);
 
 static inline void* SubAreaManager() {
     void* manager = g_unk_7101d47360;

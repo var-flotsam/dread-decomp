@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "game/CCharClassBossAIComponent.h"
 #include "game/CCharClassHydrogigaAIComponent.h"
+#include "game/CCollisionComponent.h"
 #include "game/CDamageSourceFactor.h"
 #include "game/UnkBossAIComponent.h"
 #include "game_s2/UnkOwnedList.h"
@@ -53,7 +54,6 @@ void fn_71005b98f0(UnkCharClassHydrogigaAI_ovb0078* self) {
 }
 
 struct UnkCollisionContainer;
-CStrId* fn_7100864018(UnkCollisionContainer* self, void* object);
 
 struct UnkHydrogigaOwner_ovb0078 {
     u8 pad_0x0[0x2a0];

@@ -6,6 +6,7 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/math/UnkZeroVector3.h"
 #include "game/CAbilityEnergyWave.h"
+#include "game/CShotManager/CTunableShotManager.h"
 #include "game/UnkActor.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
@@ -27,8 +28,6 @@ struct UnkHyperBeamSoundHandle {
     UnkHyperBeamSoundRef* ref;
     s64 serial;
 };
-
-UnkHyperBeamSoundHandle fn_7100ed6910(void* player, const CVector3D* pos, u32 id, u32 kind, u32);
 
 struct UnkSPBGun_A5_b63;
 bool fn_710085e6d4(UnkSPBGun_A5_b63* self);

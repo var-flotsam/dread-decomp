@@ -3,6 +3,7 @@
 // CAnimationComponent: functions of this translation unit that other files call (tools/tu_map.py unit 2720,
 // 0x7101174bd0-0x710117f300). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/reflection/CClass.h"
 #include "types.h"
 
 struct UnkTrack;
@@ -43,3 +44,4 @@ UnkTrack* fn_71011771e0(void* handle, u64 key);
 bool fn_71011782ec(UnkAnimationComponent* self, u64 key);
 void* fn_7101176d34(UnkStruct_7101176ea8* self, void* arg);  // The entry for a key (a name's hash).
 s32 fn_7101177da8(void* object, u64 hash);
+bool fn_710117aaac(void* cls, const base::reflection::CClass* track_class, f32 frames);

@@ -10,7 +10,9 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU57.h"
 #include "types.h"
 
@@ -18,14 +20,8 @@ using base::global::CRntString;
 using base::global::CStrId;
 using base::reflection::UnkReflObject;
 
-UnkReflObject* fn_7100e033a8(UnkGameManager* manager);
-void fn_710007f564(void*, const char*);
-
 struct UnkMapCallback_ovb0090;
 struct UnkGuiComposition_ovb0090;
-void fn_7100b5fde0(UnkGuiComposition_ovb0090* gui, const CStrId* text, const CStrId* accept, const CStrId* back,
-                   const UnkMapCallback_ovb0090* on_accept, const UnkMapCallback_ovb0090* on_back, u32 mode,
-                   f32 time);
 
 struct UnkCopySlotButton_ovb0131;
 void fn_7100afb874(UnkCopySlotButton_ovb0131* self);

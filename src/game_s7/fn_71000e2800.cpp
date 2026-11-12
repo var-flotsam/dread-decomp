@@ -8,6 +8,7 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
+#include "game/UnkTU83.h"
 #include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
@@ -59,7 +60,6 @@ void fn_71000a8348(void* obj, const CStrId& name, void* base, void* a, void (*fa
 extern char g_unk_7101d5c070[];
 extern char g_unk_7101d5c071[];
 UnkEnumType* fn_71000a84cc();
-extern base::reflection::CType g_unk_7101d5c078;
 void fn_71000a85a8(void* obj, const CStrId& name, void* a, void* b);
 extern char g_unk_7101d5c1e8[];
 extern char g_unk_7101d5c1e9[];

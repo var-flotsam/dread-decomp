@@ -2,6 +2,7 @@
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CCharClassGooplotAIComponent.h"
 #include "game/UnkTUProperty.h"
 
 using namespace unk_static_init;
@@ -15,7 +16,6 @@ struct UnkStatics_71005994a0 {
 };
 extern UnkStatics_71005994a0 g_unk_71726e7480 __attribute__((visibility("hidden")));
 extern char g_unk_71726e72b0[];
-extern UnkTunable g_unk_71726e72b8;
 extern void* g_unk_7101a4d090[];
 extern UnkEnumType g_unk_71726e7318;
 void fn_7100598b1c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);

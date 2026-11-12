@@ -6,9 +6,8 @@
 // and vf_0x68 when +0x186 is. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkTU2747.h"
 #include "types.h"
-
-void fn_71011cee40(UnkGuiDisplayObject* object);
 
 struct UnkGuiCondition_b44a3 {
     virtual void vf_0x0();

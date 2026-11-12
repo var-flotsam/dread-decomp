@@ -6,9 +6,8 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkTU883.h"
 #include "types.h"
-
-extern base::global::CStrId g_unk_71726eb440 __attribute__((visibility("hidden")));
 
 struct UnkHydrogigaOwner3_b59a3 {
     u8 pad_0x0[0x220];

@@ -59,7 +59,6 @@ struct UnkSelf_kr {
 };
 
 UnkRef fn_7100353be8(void* from);
-extern void* g_unk_7101d47330;
 
 static inline __attribute__((always_inline)) bool Names_kr(UnkLazyHandle_kr* h, void* owner, u32 skip) {
     if (h->state == 1) {

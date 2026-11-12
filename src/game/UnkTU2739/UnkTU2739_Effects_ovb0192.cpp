@@ -15,6 +15,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "game/CAutclastChargeAttack.h"
 #include "game/CFXPool/CDefinition.h"
+#include "game/CPlasmaBeamGun.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU132.h"
@@ -293,9 +294,6 @@ void fn_71011aa25c(UnkFxCache* cache, const CFilePathStrId* path, u32 kind, bool
 void fn_71011aa400(UnkFxCache* cache, const CFilePathStrId* path, u32 kind, bool flag) {
     Preload<fn_71011ab88c>(cache, path, kind, flag);
 }
-
-void fn_7100851bc0(UnkFxCache* cache, const CFilePathStrId* path, u32 kind, bool flag);
-void fn_7100851d6c(UnkFxCache* cache, const CFilePathStrId* path, u32 kind, bool flag);
 
 static inline UnkFxCache* FxCache() {
     if (!g_unk_71726b0cd8) {

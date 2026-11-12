@@ -14,6 +14,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU2571.h"
 #include "game/UnkTU2578.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
@@ -124,7 +125,6 @@ struct UnkSubId_7100fc4b34 {
 using UnkQualifiedName_7100fc4b34 = UnkQualifiedName;
 const UnkSubId_7100fc4b34& fn_71003327a4(UnkQualifiedName_7100fc4b34* self, const CStrId* name);
 
-extern base::global::CStrId g_unk_71729ce198 __attribute__((visibility("hidden")));
 extern UnkPropertyEx<0x160> g_unk_7172759680;
 
 struct UnkCounters_b0166 {

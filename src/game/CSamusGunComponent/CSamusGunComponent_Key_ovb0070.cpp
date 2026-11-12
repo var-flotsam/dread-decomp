@@ -2,6 +2,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCameraComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
@@ -11,7 +12,6 @@ using base::reflection::UnkReflObject;
 
 struct UnkInventory;
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
-UnkReflObject* fn_71010e37f4(void* camera);
 extern UnkPropertyEx<> g_unk_717275ac58;  // ITEM_CENTRAL_UNIT_DECAYED_ENERGY
 
 static inline const UnkQualifiedId& GetQualifiedId_ovb0070(UnkPropertyEx<>& item) {

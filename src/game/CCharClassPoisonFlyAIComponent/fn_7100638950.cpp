@@ -2,6 +2,7 @@
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CCharClassPoisonFlyAIComponent.h"
 #include "game/UnkTUProperty.h"
 
 using namespace unk_static_init;
@@ -15,7 +16,6 @@ struct UnkStatics_7100638950 {
 };
 extern UnkStatics_7100638950 g_unk_71726fa2e0 __attribute__((visibility("hidden")));
 extern char g_unk_71726fa0f0[];
-extern UnkTunable g_unk_71726fa0f8;
 extern void* g_unk_7101a584e0[];
 extern UnkEnumType g_unk_71726fa160;
 void fn_7100638090(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);

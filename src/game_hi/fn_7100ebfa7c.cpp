@@ -125,11 +125,6 @@ bool fn_7100ebfa7c(UnkNavMeshManager* self, Vec2* pos, Result* out, f32 a, u32 f
     return ret;
 }
 
-// The manager's constructor: no mesh yet, the query state and the reachability tester
-// constructed in place, an empty smart-link group registry (growth step 10, allocation flags 0x57,
-// the default allocator) and a pool of 100 registry nodes.
-void fn_7100ebf2fc(UnkNavMeshNodePool_0x70* self, u32 count, u32 unused, u32 flags, base::UnkAllocator* allocator);
-
 void fn_7100ebf278(UnkNavMeshManager* self) {
     self->navmesh = nullptr;
     fn_71002810b0(&self->state);

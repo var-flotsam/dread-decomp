@@ -3,6 +3,7 @@
 // malloc: functions and globals of this translation unit that other files use (tools/tu_map.py unit 110,
 // 0x71001259f4-0x7100132c04). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/global/CStrId.h"
 #include "types.h"
 
 struct UnkBox2D;
@@ -28,3 +29,4 @@ bool fn_710012ce70(const UnkBox2D* box, const UnkVec2Result& step, const UnkSegm
 bool fn_7100127bb0(const UnkOrientedBox2D* box, const UnkSegment2D* seg, UnkContactList2D* list, bool inside);
 bool fn_710012deb0(const UnkCircle2D* circle, const UnkVec2Result* delta, const UnkBox2D* box, UnkContact2D* out);
 bool fn_710012e5c0(const UnkBox2D* box, const UnkVec2Result* delta, const UnkCircle2D* circle, UnkContact2D* out);
+void fn_7100132248(UnkStatsObject* self, const base::global::CStrId& name, f32 value);

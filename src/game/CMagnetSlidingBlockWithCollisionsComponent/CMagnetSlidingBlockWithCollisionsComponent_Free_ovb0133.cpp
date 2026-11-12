@@ -9,6 +9,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU365.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -29,7 +30,6 @@ UnkMinimapPathPoint fn_710091ad8c(UnkMagnetMovablePlatform_b52* self, f32 t);
 struct UnkMatrix44_7100078c9c {
     f32 m[16];
 };
-UnkMatrix44_7100078c9c fn_7100078cd8(const UnkVec3f& t);
 
 struct UnkTree;
 struct UnkShape;

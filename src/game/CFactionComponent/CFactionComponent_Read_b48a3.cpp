@@ -4,9 +4,8 @@
 #include "base/UnkNamedRegistry.h"
 #include "base/global/CRntString.h"
 #include "game/CActorComponent.h"
+#include "game/UnkTU56.h"
 #include "types.h"
-
-s64 fn_710007cee4(void* stream, const char** out);
 
 struct UnkFactionKey_b48a3 {
     alignas(8) u8 bytes[0x30];

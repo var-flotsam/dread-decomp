@@ -5,12 +5,14 @@
 // is set, the id at +0x4d0 is released, the owner (+0x30) gets the id's key (fn_7100d7c828) and the manager
 // fn_7100df5440 finds is stopped (fn_71002fda50). The owner always gets the key g_unk_710164aed8. Returns
 // false. Names and layouts are placeholders.
+#include "base/core/CBaseObject.h"
 #include "base/global/CStrId.h"
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CActorComponent.h"
+#include "game/CCharClassStartPointComponent.h"
 #include "game/CGunComponent.h"
 #include "game/CInputComponent.h"
 #include "game/UnkCameraCtrl.h"
@@ -91,7 +93,6 @@ bool fn_7100891c8c(UnkShootActivatorHit_ovb0126* self, const UnkShootHit_ovb0126
 struct UnkScenarioObject_ovb0032;
 struct UnkPlayer;
 struct UnkGeneratorTarget_ovb0120;
-void fn_710116c128(UnkGeneratorTarget_ovb0120* self, const UnkVec3f* offset, const UnkVec3f* angle, bool flag);
 
 struct UnkShootPlaceActor_ovb0126 {
     u8 pad_0x0[0x38];
@@ -128,7 +129,6 @@ void fn_71008919c4(UnkShootPlace_ovb0126* self) {
 // id at +0x4d0, the input component is switched off with it, the id released, and the scenario object placed
 // (fn_71008919c4).
 struct UnkInputComponent;
-bool fn_7100023d00(const UnkCameraCtrl* object, const base::reflection::CClass* cls);
 struct UnkShootPlayerPart_ovb0126 {
     u8 pad_0x0[0x178];
     bool field_0x178;

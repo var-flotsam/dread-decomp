@@ -53,8 +53,6 @@ bool fn_71000efb88(UnkTextWriter_b0166* self, UnkTypedValue_b0166* value) {
     return true;
 }
 
-void fn_710007f564(void* self, const char* str);
-
 struct UnkStringBuf_b0166 {
     const char* data;
     u32 length;

@@ -277,8 +277,6 @@ struct UnkStruct_7100286798;  // the query as src/game_lo/fn_7100286798.cpp name
 struct UnkActor_7100286798;
 struct UnkStruct_7100286624;  // the query as src/game_lo/fn_7100286624.cpp names it
 
-void fn_7100286920(UnkNavQuery* self, const CVector2D* point, u16 cell, u8 side);
-void fn_7100286964(UnkNavQuery* self, const CVector2D* start, u16 cell, UnkNavMeshHits* hits);
 bool fn_7100ebfa6c(UnkNavMeshManager* self, UnkNavQuery* query, void* path);
 bool fn_7101109e8c(UnkAIComponent* self, UnkNavMeshHit* side);
 

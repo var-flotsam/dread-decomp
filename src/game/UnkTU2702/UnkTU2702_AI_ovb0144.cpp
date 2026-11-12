@@ -24,6 +24,7 @@
 #include "game/UnkTU2702.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkXformNode.h"
+#include "game/behaviortree/CBehavior.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -36,8 +37,6 @@ struct UnkTypedValue {
     void* value;
 };
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
-
-extern base::global::CStrId g_unk_71726b7cb8;
 
 struct UnkAIBlackboard_b0144 {
     u8 pad_0x0[0x1260];
@@ -122,8 +121,6 @@ extern char g_unk_7172a062e8[] __attribute__((visibility("hidden")));
 
 struct UnkPart;
 struct UnkFrostbiteComponent;
-void fn_710115217c(void* object, void* effect, u32 a, u32 b, const base::global::CStrId* name,
-                   const base::math::CVector3D& offset, const base::math::CVector3D& rotation, void* extra);
 
 struct UnkAIOwnerC_b0144 {
     u8 pad_0x0[0x220];

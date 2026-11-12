@@ -35,8 +35,6 @@ static inline UnkVec3_cs Add_A5_b70(const UnkVec3_cs& a, const UnkVec3_cs& b) {
     return {a.x + b.x, a.y + b.y, a.z + b.z};
 }
 
-void* fn_710106cf74(UnkCutsceneObject_cs* object, const base::global::CStrId* name);
-
 UnkReflValue fn_71007ad814(void*, char* obj) {
     UnkCutsceneComponent_cs* self = *reinterpret_cast<UnkCutsceneComponent_cs**>(obj + 8);
     UnkCutsceneObject_cs* object = self->object;

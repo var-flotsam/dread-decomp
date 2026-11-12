@@ -88,7 +88,6 @@ struct UnkDialogText {
     u8 unk_0x0[0x20];
     ~UnkDialogText() { fn_7100066e44(this); }
 };
-UnkDialogText fn_710119d040(UnkLanguage* language, const CStrId& key);
 
 // A callback: an object and the function called with it (an empty one is two nulls).
 struct UnkDialogCallback {

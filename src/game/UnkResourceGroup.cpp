@@ -5,6 +5,7 @@
 // it loaded. The types of the file device's list repeat src/game/CGameManager.cpp's.
 // Holds fn_7100ecb00c (releases everything). Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "base/file/CPackManagerDevice.h"
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
@@ -27,9 +28,6 @@ static inline base::file::UnkFileDevice* FileDevice() {
     }
     return g_unk_7101d4d828;
 }
-
-// Unloads the file `path` (same unit as the device, not decompiled yet).
-void fn_710008987c(base::file::UnkFileDevice* self, const CFilePathStrId* path, u32 flags);
 
 // The pooled data behind a string id as its text accessor sees it (src/game/CGameManager.cpp).
 struct UnkIdTextData {

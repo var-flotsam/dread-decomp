@@ -23,7 +23,6 @@ struct UnkNamedDef_b43a3 : UnkIdSource {
     u64 field_0x8;
     UnkQualifiedName name;
 };
-extern CStrId g_unk_71727cc990;  // the blackboard section
 
 struct UnkMinimapTunable_b43a3 {
     u8 pad_0x0[0x110];

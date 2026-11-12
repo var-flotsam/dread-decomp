@@ -3,6 +3,7 @@
 // another type's value (declared in base/reflection/UnkReflTypedPtr.h and
 // base/UnkCloneHelpers.h).
 #include "base/UnkCloneHelpers.h"
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "game/UnkTU83.h"
@@ -95,7 +96,6 @@ bool fn_710009d7a8(const base::reflection::CType* type, base::reflection::UnkTyp
 
 extern void* g_unk_7101d5bdc0;  // the registry's list of types (linked through CType+0x88)
 using base::reflection::UnkReflAttrKey;
-const UnkReflAttrKey& fn_710000d120();  // "_EditorOnly"
 
 // The type's attribute container (CType+0x80), created on first use (fn_710009dd6c inlined).
 struct UnkReflAttrsInit {

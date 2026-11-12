@@ -11,6 +11,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CAnimationComponent.h"
+#include "game/CKraidAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
@@ -32,9 +33,7 @@ struct UnkKraidMouthId_b63a4 {
 };
 
 using base::global::CStrId;
-extern CStrId g_unk_71726f3778 __attribute__((visibility("hidden")));  // as CKraidAIComponent_Send_b56.cpp
 extern UnkKraidMouthId_b63a4 g_unk_71726f3780 __attribute__((visibility("hidden")));
-extern CStrId g_unk_71726f3788 __attribute__((visibility("hidden")));
 
 struct UnkKraidMouthValue_b63a4 {
     u8 pad_0x0[0x38];

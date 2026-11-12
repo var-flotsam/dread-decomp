@@ -3,6 +3,7 @@
 // with the vectors at +0xd0 and +0xdc (fn_710010807c); then it always gets those with the one at +0xc4
 // (fn_7100108084). Names and layouts are placeholders.
 #include "base/math/CVector.h"
+#include "base/snd/CSoundSystem.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU2553.h"
@@ -11,8 +12,6 @@
 struct UnkPlayer;
 
 struct UnkSoundMgr;
-void fn_710010807c(UnkSoundMgr* mgr, const base::math::CVector3D* pos, const base::math::CVector3D* a,
-                   const base::math::CVector3D* b);
 void fn_7100108084(UnkSoundMgr* mgr, const base::math::CVector3D* pos, const base::math::CVector3D* a,
                    const base::math::CVector3D* b);
 

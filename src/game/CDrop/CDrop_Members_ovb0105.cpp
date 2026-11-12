@@ -12,6 +12,7 @@
 #include "game/CLifeComponent.h"
 #include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU32.h"
 #include "game/UnkTU365.h"
@@ -178,7 +179,6 @@ struct UnkSpawnedActor_ovb0065;
 struct UnkSpawnRegistered_ovb0065;
 struct UnkBreakablePart;
 struct UnkBreakableTarget;
-const CStrId* fn_7100d7ba84(UnkSpawnedActor_ovb0065*);
 
 struct UnkDropTargetData_b0105 {
     u8 pad_0x0[0x10];

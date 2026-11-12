@@ -4,12 +4,11 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2507.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
-
-u32 fn_7100d4bc00(const CRntString*);
 
 // A string id's data as the name read sees it: the text at +0x10 and a use count at +0x44 (a union
 // member: the original reloads the id after the increment).

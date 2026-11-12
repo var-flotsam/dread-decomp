@@ -23,6 +23,7 @@
 #include "game/UnkTU39.h"
 #include "game/UnkTU58.h"
 #include "game/UnkXformNode.h"
+#include "game/navmesh/CNavMesh.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -155,7 +156,6 @@ void fn_7100979144(UnkCharacterMovement_ovb0021* self, UnkWeakTarget* target, f3
 
 // ----
 struct UnkOwner_710027a41c;
-bool fn_710027a5f0(UnkOwner_710027a41c* self, const CVector2D* point, u16 index);
 u32 fn_710027a320(UnkNavMesh* mesh);
 
 struct UnkCharacterMovementCell_ovb0021 {
@@ -694,7 +694,6 @@ void fn_7100977974(UnkCharacterMovementHit_ovb0021* self, UnkMoveHitList_ovb0021
 
 // ----
 struct UnkProbeResult;
-bool fn_71010d15d0(char* self, const CVector3D* pos, UnkProbeResult* result, f32 radius);
 
 struct UnkMoveBounds_ovb0021 {
     CVector3D min;

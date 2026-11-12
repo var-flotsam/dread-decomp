@@ -4,15 +4,15 @@
 // read by fn_710010ddc4) follows; last the shape refreshes itself (virtual slot 0x80). Returns
 // whether the tree read succeeded (true without one). Names and layouts are placeholders.
 #include "base/global/CRntFile.h"
+#include "game/UnkTU107.h"
+#include "game/logic/collision/CShape.h"
 #include "types.h"
 
 using base::global::CRntFile;
 
 struct UnkNavMeshTree;
-bool fn_710010ddc4(UnkNavMeshTree* self, base::global::CRntFile* file);
 
 struct UnkPolygonCollectionShape;
-bool fn_7100d6c288(UnkPolygonCollectionShape* self, CRntFile* file);
 void fn_7100d62ec0(UnkPolygonCollectionShape* self, CRntFile* file);
 
 struct UnkPolygonCollectionShape {

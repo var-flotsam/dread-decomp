@@ -13,11 +13,15 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/GUI/CAmiiboComposition.h"
+#include "game/GUI/CChozoGalleryBase.h"
+#include "game/GUI/CDisplayObjectContainer.h"
+#include "game/GUI/CMainMenu.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkRenderManager.h"
 #include "../../game_aca57c/UnkBufferString.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2747.h"
 #include "game/UnkTU57.h"
 #include "game/sound/SGUISoundEventsSelector.h"
@@ -99,12 +103,9 @@ struct UnkRewards_A5_b75 {
     u32 count;
 };
 
-UnkReflObject* fn_7100e033a8(UnkGameManager* manager);
-void fn_7100b35704(UnkReflObject* menu, u32 value, bool flag);
 struct UnkGallery_A5_b74;  // the layout in CChozoGalleryBase_Selection_A5_b74.cpp
 void fn_7100af8648(UnkGallery_A5_b74* self);
 extern CStrId g_unk_717275ce20 __attribute__((visibility("hidden")));
-extern CStrId g_unk_717275ce28 __attribute__((visibility("hidden")));
 
 bool fn_7100af999c(UnkGallery_A5_b75* self) {
     u32 index = *self->revealed.data;
@@ -147,7 +148,6 @@ struct UnkGuiEvent_b49 {
     u8 pad_0x0[0x20];
     u64 kind;  // 0x20
 };
-void fn_71011d99e4(UnkGuiDisplayObject* self, UnkGuiEvent_b49* event);
 void fn_7100af2d7c(UnkReflObject* inspector, bool flag);
 
 static inline __attribute__((always_inline)) UnkReflObject* AsInspector_A5_b75(UnkReflObject* o) {
@@ -195,8 +195,6 @@ void fn_7100af8450(UnkGallery_A5_b75* self, UnkGuiEvent_b49* event) {
 // shown the entry's "Label" text (+0x218) with the path "<image>/<image>" built from its "Image" child's
 // texture name (+0x1d8, empty when none). The secret entry also goes through vf_0x268.
 struct UnkPooledStrId;
-void fn_710007eb20(CRntString* self, const UnkPooledStrId* id);
-void fn_710007f564(void*, const char*);
 struct UnkStateSink;
 struct UnkStateKey;
 struct UnkEnumType;
@@ -309,7 +307,6 @@ void fn_7100af9108(UnkGallery_A5_b75* self) {
 // fn_7100af94e4: the same as fn_7100af9108 backwards (wrapping below 0 to `count`), except that the image's
 // texture name is cut to what follows its "__" (in a string with 0x100 bytes of inline storage) before the path
 // is built.
-s32 fn_710007fb54(const CRntString* self, const char* str, u32 start);  // finds `str`
 using UnkName_A5_b75 = UnkBufferString<0x100, g_unk_7101a194b8>;
 
 struct UnkNameFromId_A5_b75 : UnkName_A5_b75 {

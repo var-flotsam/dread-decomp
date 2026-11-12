@@ -10,6 +10,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSceneObject.h"
+#include "game/UnkTU140.h"
 #include "game/UnkTU252.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
@@ -58,8 +59,6 @@ using base::reflection::CType;
 
 extern CType g_unk_7172754a80 __attribute__((visibility("hidden")));  // the class's type
 extern const u64 g_unk_7172754a68[] __attribute__((visibility("hidden")));
-
-void* fn_7100149930(UnkRenderPool* pool, void* a, UnkSceneObject** out, base::global::CStrId* name);
 
 struct UnkLockOnCharClass_ovb0121 {
     u8 pad_0x0[0xd4];

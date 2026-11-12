@@ -4,14 +4,15 @@
 #include "base/UnkMatrix44.h"
 #include "base/math/CVector4D.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU127.h"
 #include "game/UnkTU315.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 struct UnkMatrix44_7100078c9c {
     f32 m[16];
 };
-UnkMatrix44_7100078c9c fn_7100078cd8(const UnkVec3f& t);
 
 // Returned through x8, so the original's result type is not trivially copyable.
 struct UnkVec2Result_b0211 {
@@ -39,7 +40,6 @@ using base::math::CVector4D;
 
 
 struct UnkStruct_71001436f4;
-bool fn_71001436f4(UnkStruct_71001436f4* self, u32 a, const base::math::CVector4D* b, u32 c);
 
 struct UnkTargetNode_b0211 {
     u8 pad_0x0[0x30];

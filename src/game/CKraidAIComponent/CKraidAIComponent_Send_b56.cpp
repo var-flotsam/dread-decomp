@@ -4,11 +4,10 @@
 // are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
+#include "game/CKraidAIComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-extern CStrId g_unk_71726f3788 __attribute__((visibility("hidden")));
 
 struct UnkKraidOwner_b56a3 {
     u8 pad_0x0[0x220];
@@ -38,7 +37,6 @@ void fn_71005fe760(UnkKraidAI_b56a3* self) {
 // The same send of the id g_unk_71726f3778 while the timer at +0x149a4 has run out; then the scale
 // at +0x149a0 is one, the timer restarts from the value at +0x528 of the object at +0x14a30 and
 // the word at +0x149a8 is cleared.
-extern CStrId g_unk_71726f3778 __attribute__((visibility("hidden")));
 
 struct UnkKraidTimerSource_b56a3 {
     u8 pad_0x0[0x528];

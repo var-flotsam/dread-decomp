@@ -3,6 +3,7 @@
 // UnkTU811: functions and globals of this translation unit that other files use (tools/tu_map.py unit 811,
 // 0x7100537bf0-0x710056a378). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/global/CStrId.h"
 #include "types.h"
 
 struct UnkActor;
@@ -39,3 +40,4 @@ extern char g_unk_7101a48bc0[];
 extern void* g_unk_7101a48c20[];
 extern char g_unk_71726e20a8[] __attribute__((visibility("hidden")));
 void fn_7100546a30(UnkEmmyRelaxAI_b59* self, u32 state, UnkActor* other, void* arg);
+extern base::global::CStrId g_unk_71726e1f68 __attribute__((visibility("hidden")));

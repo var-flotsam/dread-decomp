@@ -34,16 +34,10 @@ void fn_7100b03f60(UnkReflType* self, const CStrId& name, UnkReflType* base, voi
 void fn_7100b87e10(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
 
 void fn_7100c797bc(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-extern UnkConverter g_unk_7172792128;
-extern UnkConverter g_unk_7172792148;
 
 void fn_7100c94510(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-extern UnkConverter g_unk_71727953c8;
-extern UnkConverter g_unk_71727953e8;
 
 void fn_7100c10e2c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-extern UnkConverter g_unk_717277e0b0;
-extern UnkConverter g_unk_717277e0d0;
 
 extern UnkTUHeader g_unk_71727553d0 __attribute__((visibility("hidden")));
 extern UnkTUHeader g_unk_717274c100 __attribute__((visibility("hidden")));
@@ -208,67 +202,29 @@ void fn_71009bbed0() {
 }
 
 void fn_7100da3a1c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-extern UnkConverter g_unk_71727bba08;
-extern UnkConverter g_unk_71727bba28;
 
 void fn_7100d91564(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 void fn_7100d91d10(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 
 void fn_7100ddf1c0(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-extern UnkConverter g_unk_71727be4a8;
-extern UnkConverter g_unk_71727be4c8;
 
 void fn_7100e06e8c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-extern UnkConverter g_unk_71727bf818;
-extern UnkConverter g_unk_71727bf838;
 void fn_7100e07250(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
 
 void fn_7100c93470(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-extern UnkConverter g_unk_71727950d0;
-extern UnkConverter g_unk_71727950f0;
 void fn_7100c9385c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-extern UnkConverter g_unk_7172795230;
-extern UnkConverter g_unk_7172795250;
 
 void fn_7100bcde7c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-extern UnkConverter g_unk_7172772cd0;
-extern UnkConverter g_unk_7172772cf0;
 
 void fn_7100c66688(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-extern UnkConverter g_unk_7172791db0;
-extern UnkConverter g_unk_7172791dd0;
-extern UnkConverter g_unk_7172791df0;
-extern UnkConverter g_unk_7172791e10;
 
 void fn_7100adf388(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-extern UnkConverter g_unk_7172758958;
-extern UnkConverter g_unk_7172758978;
-void fn_7100adf508(UnkReflType* self, const CStrId& name, void* extra);
-extern UnkConverter g_unk_7172758a90;
-extern UnkConverter g_unk_7172758ab0;
 
 void fn_7100e1766c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-extern UnkConverter g_unk_71727c0ce0;
-extern UnkConverter g_unk_71727c0d00;
-void fn_7100e177ec(UnkReflType* self, const CStrId& name, void* extra);
-extern UnkConverter g_unk_71727c0e18;
-extern UnkConverter g_unk_71727c0e38;
 void fn_7100e17b48(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-extern UnkConverter g_unk_71727c0f78;
-extern UnkConverter g_unk_71727c0f98;
 
-extern UnkReflType g_unk_71727ba2e0;
 void fn_7100d977e4(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-extern UnkConverter g_unk_71727ba400;
-extern UnkConverter g_unk_71727ba420;
-extern UnkConverter g_unk_71727ba440;
-extern UnkConverter g_unk_71727ba460;
-extern UnkReflType g_unk_71727ba480;
 void fn_7100d97c30(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-extern UnkConverter g_unk_71727ba5a0;
-extern UnkConverter g_unk_71727ba5c0;
-extern UnkConverter g_unk_71727ba5e0;
-extern UnkConverter g_unk_71727ba600;
 void fn_7100d99934(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
 
 // The TU's data: the header, then a pair of floats (-1, -1) and a flag.
@@ -280,13 +236,7 @@ struct UnkLoadingScreenData {
     bool field_0xa0;
 };
 void fn_7100e0f4d4(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-extern UnkConverter g_unk_71727c0830;
-extern UnkConverter g_unk_71727c0850;
 
 void fn_7100cd1954(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-extern UnkConverter g_unk_717279cc20;
-extern UnkConverter g_unk_717279cc40;
 
 void fn_7100ceb308(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-extern UnkConverter g_unk_71727a0858;
-extern UnkConverter g_unk_71727a0878;

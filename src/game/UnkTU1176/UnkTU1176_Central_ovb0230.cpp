@@ -19,6 +19,7 @@
 #include "base/global/CStrId.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CCentralUnitAIComponent.h"
+#include "game/CCharClassStartPointComponent.h"
 #include "game/CInventoryComponent.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkGameManager.h"
@@ -389,8 +390,6 @@ void fn_71007726e4(UnkCentralFsm_b0230* self) {
 }
 
 struct UnkDoorLock;
-bool fn_71008d586c(UnkDoorLock*, bool, bool, CStrId*);
-bool fn_71008d564c(UnkDoorLock* door, u32 value, const CStrId* id);
 
 struct UnkCentralSources_b0230 {
     u8 pad_0x0[0x640];
@@ -432,7 +431,6 @@ void fn_7100772b50(UnkCentralSources_b0230* self) {
 struct UnkPlayer;
 struct UnkScenarioObject_ovb0032;
 struct UnkGeneratorTarget_ovb0120;
-void fn_710116c128(UnkGeneratorTarget_ovb0120*, const UnkVec3f*, const UnkVec3f*, bool);
 
 struct UnkPositioned_b0230 {
     u8 pad_0x0[0x38];
@@ -560,7 +558,6 @@ void fn_71007754b8(UnkCentralUnit_b49* unit);
 void fn_71007717c0(UnkCentralUnit_b49* self);
 void fn_71007727f0(UnkCentralUnit* unit);
 struct UnkMapData;
-void fn_7100e8f9a0(char*, bool, base::global::CStrId*);
 
 struct UnkCavesHolder_b0230 {
     u8 pad_0x0[0x10];

@@ -8,14 +8,13 @@
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
 #include "game/CCharClassShootActivatorComponent.h"
+#include "game/CScenario.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTimelineComponent.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 
 struct UnkHidrogigaActivator_b44a2;
 void fn_7100897458(UnkHidrogigaActivator_b44a2* self);

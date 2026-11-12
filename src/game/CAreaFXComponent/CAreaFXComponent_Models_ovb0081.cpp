@@ -11,11 +11,13 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CComponent.h"
+#include "game/CSpittailMagmaBallMovementComponent.h"
 #include "game/UnkComponent.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU127.h"
 #include "game/UnkTU253.h"
 #include "game/UnkTU315.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -28,8 +30,6 @@ struct UnkModelData;
 
 void fn_71009f194c(char*);
 void fn_7100219e18(UnkRenderManager*, UnkModel*, bool);
-void fn_71006cae2c(UnkRenderPool*, const CFilePathStrId&, UnkModel**, base::global::CStrId*);
-UnkMatrix44 fn_71000791a8(const UnkVec3f& translation, const UnkVec3f& angle, const UnkVec3f& scale);
 
 struct UnkAreaFXDef_ovb0081 : UnkReflObject {
     u8 pad_0x8[0x50];

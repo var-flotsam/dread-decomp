@@ -3,10 +3,9 @@
 // the sub-object at +0x220, forwards a request to that.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
+#include "game/CBigkranXSpitAttack.h"
 
 using base::global::UnkStrIdBase;
-
-extern UnkStrIdBase g_unk_71726c2888[2] __attribute__((visibility("hidden")));
 
 struct UnkEventSource {
     u8 pad_0x0[0x10];

@@ -3,10 +3,9 @@
 // channel set at +0xc and the channel's index. Names and layouts are placeholders.
 #include <new>
 
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
-
-UnkMatrix44 fn_71000791a8(const UnkVec3f& translation, const UnkVec3f& angle, const UnkVec3f& scale);
 
 extern f32 (*g_unk_7101a19088[2])(void* channels, u32 index, f32 t);
 

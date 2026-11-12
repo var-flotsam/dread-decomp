@@ -4,6 +4,7 @@
 #include "../../game_s7/UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
+#include "game/CCooldownXBossLavaDropsMovementDef.h"
 #include "game/UnkTUProperty.h"
 
 using namespace unk_static_init;
@@ -61,7 +62,6 @@ void fn_71004ac94c(UnkEnumType* type, const CStrId& name, const base::reflection
 extern char g_unk_71726d3d28[];
 extern char g_unk_71726d3d29[];
 UnkEnumType* fn_71004acad0();
-extern base::reflection::CType g_unk_71726d3d30;
 void fn_71004acbac(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_71726d3ea0[];
 extern UnkConversion g_unk_71726d3ea8;

@@ -12,6 +12,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CCollisionComponent.h"
 #include "game/CFrozenComponent.h"
 #include "game/CObsydomithonAttack.h"
 #include "game/UnkActor.h"
@@ -24,7 +25,6 @@ using base::global::CStrId;
 
 struct UnkWarLotusAI;
 struct UnkCollisionContainer;
-CStrId* fn_7100864018(UnkCollisionContainer* self, void* object);
 extern CStrId g_unk_71726f9438 __attribute__((visibility("hidden")));
 extern u64 g_unk_710164a338;
 

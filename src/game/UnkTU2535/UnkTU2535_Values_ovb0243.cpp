@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU1632.h"
 #include "game/UnkTU2535.h"
 #include "types.h"
 
@@ -61,7 +62,6 @@ UnkReflValue fn_7100da5368(void*, char* obj) {
 }
 
 
-CRntString fn_7100ad3614(void* source);
 struct UnkValue_a5184;
 
 // Function table of a type-erased value; only the destroy slot is named.

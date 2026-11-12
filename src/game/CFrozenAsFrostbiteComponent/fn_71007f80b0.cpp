@@ -2,6 +2,7 @@
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CFrozenAsFrostbiteComponent.h"
 #include "game/CGoliathXBurstProjectionBombMovement.h"
 #include "game/UnkTUProperty.h"
 
@@ -21,7 +22,6 @@ struct UnkStatics_71007f80b0 {
 extern UnkStatics_71007f80b0 g_unk_7172720e00 __attribute__((visibility("hidden")));
 extern char g_unk_7172720db8[];
 extern char g_unk_7172720db9[];
-extern UnkTunable g_unk_7172720dc0;
 extern void* g_unk_7101a740a0[];
 
 void fn_71007f80b0() {

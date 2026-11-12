@@ -7,12 +7,12 @@
 #include "base/global/CStrId.h"
 #include "game/CActorComponent.h"
 #include "game/CChozoCommanderSentenceSphereAttack.h"
+#include "game/CMagnetSurfaceHuskComponent.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
-extern CStrId g_unk_7172737ef8 __attribute__((visibility("hidden")));
 extern u64 g_unk_710164b258;
 extern u64 g_unk_710164b260;
 

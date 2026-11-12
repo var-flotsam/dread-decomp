@@ -1,6 +1,7 @@
 // A method of the unit of base::file::nx::CDeviceNX: counts a use on the object `*handle` names
 // and looks up its path (a base::global::CRntString built from the C string at +0x10) in the
 // table at +0x10 (fn_710002e168). Also fn_710002f0dc.
+#include "base/file/nx/CDeviceNX.h"
 #include "base/global/CRntString.h"
 #include "types.h"
 
@@ -20,7 +21,6 @@ struct UnkDevice_710002e0f8 {
 };
 
 u32 fn_710002e168(void* table, base::global::CRntString* path);
-u32 fn_710002ed98(void* table, base::global::CRntString* path, void* a, u32 b, void* c, u32 d, u32 e);
 
 u32 fn_710002e0f8(UnkDevice_710002e0f8* self, UnkDeviceFile_710002e0f8** handle) {
     void* table = &self->table;

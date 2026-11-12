@@ -3,8 +3,12 @@
 // UnkTU341: functions and globals of this translation unit that other files use (tools/tu_map.py unit 341,
 // 0x710022739c-0x710024e2e8). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/reflection/CClass.h"
+#include "base/global/CStrId.h"
 #include "types.h"
 
+struct UnkStruct_7100233684;
+struct UnkEntityState;
 struct UnkCaterzillaLink_ovb0054;
 struct UnkCaterzillaLinks_ovb0054;
 struct UnkStatics_710024cc40;
@@ -44,3 +48,7 @@ extern bool g_unk_717269c4d8;
 extern UnkStatics_710024cc40 g_unk_717269f420 __attribute__((visibility("hidden")));
 extern char g_unk_717269f450[] __attribute__((visibility("hidden")));
 UnkCaterzillaLink_ovb0054* fn_7100247340(UnkCaterzillaLinks_ovb0054* links, u32 index);
+void fn_7100232864(UnkEntityState* entity, bool value);
+base::reflection::UnkReflObject* fn_7100233684(UnkStruct_7100233684* self);
+// Moves the components named in `names` from `from` to `to`, then lets both rebuild.
+base::reflection::UnkReflObject* fn_710023341c(void* owner, const base::global::CStrId& name);

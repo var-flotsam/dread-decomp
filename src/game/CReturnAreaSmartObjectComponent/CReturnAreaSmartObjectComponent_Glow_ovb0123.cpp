@@ -18,7 +18,6 @@ using base::color::CColor4F;
 using base::global::CStrId;
 
 struct UnkPlayer;
-bool fn_71001c2bac(UnkSlots* self, u64 key, u32 kind, CColor4F* out, u32 mode);
 struct UnkKraidGrab_b57a4;
 
 struct UnkReturnAreaKey_ovb0123 {

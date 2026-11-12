@@ -40,10 +40,6 @@ void fn_710050e8e4(UnkPropBag*);
 struct UnkHandleOwner_0x2280;
 void fn_7100e02fdc(UnkHandleOwner_0x2280* self, UnkWeakTarget* target);
 bool fn_7101191cc0(void* self, void* arg);
-bool fn_71011ceac0(UnkGuiDisplayObject* self);
-bool fn_71011ceb34(UnkGuiDisplayObject* self);
-void fn_71011b5598(UnkGuiRoot* root, UnkGuiDisplayObject* object);
-void fn_71011cd424(UnkGuiDisplayObject* self, UnkGuiDisplayObject* parent);
 
 // A reference to a composition: released by its count.
 struct UnkCompRef_ovb0186 {

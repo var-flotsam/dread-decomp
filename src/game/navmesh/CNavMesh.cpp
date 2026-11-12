@@ -17,9 +17,11 @@
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU107.h"
 #include "game/UnkTU2568.h"
 #include "game/UnkTU367.h"
 #include "game/UnkTU376.h"
+#include "game/UnkTU56.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -776,7 +778,6 @@ struct UnkStrPair_0x10 {
     void* b;
 };
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
-s64 fn_710007cee4(void* stream, const char** out);  // reads a string, returns it in *out
 
 // A string id built out of line from a C string (fn_71000003d4), released on scope exit.
 struct UnkNavLoadId {
@@ -1196,7 +1197,6 @@ static inline void DestroyMap(UnkNavLoadMap<V>* map, Clear clear) {
 }
 
 struct UnkNavMeshTree;  // the bounding-box tree at +0x400
-bool fn_710010ddc4(UnkNavMeshTree* self, base::global::CRntFile* file);
 // The walk round a corner of a cell from one of its sides (forwards or backwards): the cell and
 // side it ends on, or 0xffff and 0xff.
 void fn_7100279fac(UnkNavMesh* self, const u16* cell, const u8* side, bool forward, bool flag, u16* out_cell,

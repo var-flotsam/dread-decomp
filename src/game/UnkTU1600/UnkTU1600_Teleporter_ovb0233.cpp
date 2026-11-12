@@ -14,6 +14,7 @@
 #include "game/UnkItemProperties.h"
 #include "game/UnkTU1600.h"
 #include "game/UnkTU2523.h"
+#include "game/UnkTU341.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
@@ -99,7 +100,6 @@ void fn_7100a8f34c(UnkTeleporterIds_b0233* self, bool enable, const CStrId* ids)
 using UnkRef = base::UnkRefPtrMember;
 UnkRef fn_7100353be8(void* source);
 struct UnkEntityState;
-void fn_7100232864(UnkEntityState* object, bool flag);
 extern u64 g_unk_710164b5e0;
 extern u64 g_unk_710164b5e8;
 

@@ -4,6 +4,7 @@
 // callbacks fn_7100a88610/fn_7100a8861c) and directly (fn_7100a86d00, callbacks
 // fn_7100a88640/fn_7100a88644). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -22,9 +23,6 @@ struct UnkMapCallback_ovb0090 {
 };
 
 struct UnkGuiComposition_ovb0090;
-void fn_7100b5fde0(UnkGuiComposition_ovb0090* gui, const CStrId* text, const CStrId* accept, const CStrId* back,
-                   const UnkMapCallback_ovb0090* on_accept, const UnkMapCallback_ovb0090* on_back, u32 mode,
-                   f32 time);
 
 struct UnkGuiFlagRef_ovb0090 {
     u8 pad_0x0[0x10];

@@ -13,6 +13,7 @@
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU2702.h"
+#include "game/UnkTU315.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -92,7 +93,6 @@ void fn_7100aa54c0(UnkWaterPlatformUsable_b0105* self) {
 }
 
 struct UnkEmmyRegistry_b55;
-void fn_710021a0b4(UnkRenderManager* self, const u64* hash, const base::math::CVector4D* value);
 struct UnkScriptCaller;
 
 struct UnkEmmyEntry_b0105 {

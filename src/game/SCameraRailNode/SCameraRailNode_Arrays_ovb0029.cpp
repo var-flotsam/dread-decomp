@@ -15,6 +15,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/SCameraRailNode.h"
+#include "game/UnkTU108.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
@@ -26,7 +27,6 @@ using base::UnkAllocator;
 extern char g_unk_717277cb68[] __attribute__((visibility("hidden")));
 
 UnkReflValue fn_7100c07c58(void*, char* obj, UnkReflValue* const* args);
-void fn_710011ddc0(UnkReflFunction* fn);
 
 // Sets up a reflected function taking a camera-rail node: its name, the node class as its return
 // type, its invoker fn_7100c07c58 (src/game/SCameraRailNode/SCameraRailNode_b40.cpp), then its

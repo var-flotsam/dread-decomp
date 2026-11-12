@@ -3,14 +3,13 @@
 // updates the sound manager (g_unk_7101d4d820) with the position lifted by 100 (fn_710010807c). Names and
 // layouts are placeholders.
 #include "base/math/CVector.h"
+#include "base/snd/CSoundSystem.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU23.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 struct UnkSoundMgr;
-void fn_710010807c(UnkSoundMgr* mgr, const base::math::CVector3D* pos, const base::math::CVector3D* a,
-                   const base::math::CVector3D* b);
 
 struct UnkListenerOwner_b0141 {
     u8 pad_0x0[0x38];

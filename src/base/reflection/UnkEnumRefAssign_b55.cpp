@@ -2,6 +2,7 @@
 // of the given primitive type to the referenced enum through fn_710009d5d4, as (type, object)
 // references; the enum's own reference is built by fn_71000a174c.
 #include "base/UnkCloneHelpers.h"
+#include "base/reflection.h"
 #include "types.h"
 
 bool fn_710009d5d4(const char* type, base::reflection::UnkTypedRef* dst, const base::reflection::UnkTypedRef* src);
@@ -11,7 +12,6 @@ using base::reflection::UnkTypedRef;
 
 const CType* fn_7100098c9c();  // refl_GetType<base::reflection::CEnumRef>
 const CType* fn_7100099b94();
-void fn_71000a174c(UnkTypedRef* out, const void* ref);
 
 struct UnkEnumRef {
     const char* type;

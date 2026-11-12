@@ -6,9 +6,8 @@
 
 #include "base/UnkPairArrays.h"
 #include "base/UnkVector.h"
+#include "game/CBTObserverComponent.h"
 #include "types.h"
-
-void fn_7100ca9158(base::UnkPairArrays* pairs, u32 capacity);
 
 struct UnkBTObserverEntry {
     base::UnkVector<void*> field_0x0{0xf};

@@ -12,8 +12,6 @@
 using base::math::CVector4D;
 using base::reflection::UnkReflObject;
 
-bool fn_71001c287c(void* target, u32 a, u32 b, CVector4D* colour, u32 c);
-
 
 struct UnkSlotOwner_b0231 {
     u8 pad_0x0[0x108];
@@ -107,7 +105,6 @@ struct UnkUpdater_b0231 {
 };
 
 struct UnkSource_710020c780;
-void fn_71001c09c4(UnkSource_710020c780* source, UnkReflObject* obj);
 
 static inline UnkSource_710020c780* Part(UnkSource_b0231* source) {
     return reinterpret_cast<UnkSource_710020c780*>(source);

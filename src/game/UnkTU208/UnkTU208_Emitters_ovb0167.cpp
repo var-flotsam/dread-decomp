@@ -5,6 +5,7 @@
 
 #include "base/UnkMatrix44.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -14,9 +15,6 @@ extern "C" f32 sqrtf(f32 x);
 
 struct UnkMat4f;
 UnkVec3f fn_7100078170(const UnkMat4f* m, const UnkVec3f* v);
-UnkVec3f fn_7100076acc(const UnkXform* x);
-UnkVec3f fn_7100077c04(const UnkMatrix44& m, const UnkVec3f& v);
-UnkVec3f fn_710007a7f0(UnkVec3f v);
 
 extern char g_unk_7101a1db18[];
 extern char g_unk_7101a1d968[];

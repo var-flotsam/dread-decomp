@@ -1,9 +1,8 @@
 // From unit 345 (CActorDef): a read step that first takes a string from the stream
 // (fn_710007cee4, the string unused), then asks the object's slot 0x38 whether to go on and, if
 // so, returns its slot 0x40. Names are placeholders.
+#include "game/UnkTU56.h"
 #include "types.h"
-
-s64 fn_710007cee4(void* stream, const char** out);  // as src/base/global/CRntFile.cpp defines it
 
 struct UnkActorDefReader {
     virtual void vf_0x0();

@@ -19,6 +19,7 @@
 #include "base/snd/UnkSoundSystemATK.h"
 #include "base/tunable/CTunable.h"
 #include "game/UnkTU101.h"
+#include "game/UnkTU58.h"
 #include "game/UnkTU99.h"
 #include "game/operator_new.h"
 #include "game/sound/UnkSoundHandle.h"
@@ -257,7 +258,6 @@ struct UnkFreeHookHost_b0185 {
 
 struct UnkAtkHeap;
 void fn_71000f4414(void* sound);
-void fn_7100081420(base::UnkSubAllocator* self, void* ptr);
 
 // Takes the id out of the second map and frees its sound from the engine heap.
 void fn_7100102310(UnkSndSys_b0185* self, const u32* id) {

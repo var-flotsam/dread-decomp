@@ -5,11 +5,11 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
+#include "game/UnkTU105.h"
 #include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
 
-extern base::reflection::CType g_unk_7108b6d3d0;
 extern char g_unk_7108b6d508[];
 extern UnkNamedValue g_unk_7108b6d510;
 extern UnkNamedValue g_unk_7108b6d520;

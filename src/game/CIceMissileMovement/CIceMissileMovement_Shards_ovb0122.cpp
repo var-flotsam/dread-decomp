@@ -6,6 +6,7 @@
 #include "base/math/UnkZeroVector3.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCharClassBaseTriggerComponent.h"
 #include "game/CCharClassLavaPoolComponent.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkGameManager.h"
@@ -24,7 +25,6 @@ using base::reflection::UnkReflObject;
 struct UnkPlayer;
 struct UnkGrappleAnswer_b50;
 struct UnkMagmaArea_b50;
-bool fn_7100a47e00(UnkMagmaArea_b50*, const CVector2D*);
 
 extern const u64 g_unk_710164b860;
 

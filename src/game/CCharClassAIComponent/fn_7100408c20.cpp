@@ -9,6 +9,10 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CEnemyPreset.h"
+#include "game/SDeathImpactDisplacement.h"
+#include "game/UnkTU1112.h"
+#include "game/UnkTU2702.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -49,11 +53,7 @@ void fn_7100416414();
 void fn_710041279c(UnkReflFunction* fn, const char* name);
 void fn_71004164bc();
 void fn_7100412918(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_717270c618;
-extern base::reflection::CType g_unk_71726b1db0;
-extern base::reflection::CType g_unk_71726e36c8;
 const base::reflection::UnkReflAttrKey& fn_7100091d40();
-extern base::reflection::CType g_unk_7172a05520;
 void fn_7100416554();
 void fn_7100412a94(UnkReflFunction* fn, const char* name);
 void fn_71004165e4();
@@ -62,7 +62,6 @@ void fn_7100416674();
 void fn_7100412d8c(UnkReflFunction* fn, const char* name);
 void fn_71004167c0();
 void fn_7100412f08(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_71726b1f10;
 // The value type of four fields' defaults (0x10 bytes; its class getter is fn_710035cb6c).
 struct SDeathImpactDisplacement {
     f32 field_0x0;

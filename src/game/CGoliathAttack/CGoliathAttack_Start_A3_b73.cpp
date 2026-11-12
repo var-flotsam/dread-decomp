@@ -10,6 +10,7 @@
 #include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"
 #include "game/UnkTU2577.h"
+#include "game/UnkTU2702.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -18,7 +19,6 @@ using base::reflection::UnkReflObject;
 
 struct UnkAttackBase;
 void fn_71003608ac(UnkAttackBase* self);
-void fn_710111094c(UnkReflObject*, u32);
 void fn_710058f630();
 
 struct UnkManager;

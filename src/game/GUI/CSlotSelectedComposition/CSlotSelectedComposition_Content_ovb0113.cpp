@@ -4,13 +4,13 @@
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
-
-UnkReflObject* fn_7100e033a8(UnkGameManager* manager);
 
 struct UnkSlotSelected_ovb0113 {
     void** vtable;
@@ -54,7 +54,6 @@ __attribute__((always_inline)) bool fn_7100b7cd98(UnkSlotSelected_ovb0113* self)
 // empty: the "Content.NewContent" sprite and its glow are both found, placed (vf_0x78 with -1400 and -1300)
 // and the content state is set as above.
 struct UnkGuiEvent_b49;
-void fn_71011d99e4(UnkGuiDisplayObject* self, UnkGuiEvent_b49* event);
 using UnkGuiObj = UnkGuiDisplayObject;
 UnkGuiObj* fn_71011d9508(UnkGuiObj* self, const char* const* path);
 

@@ -67,7 +67,6 @@ void fn_710101e7d8(void* self);
 void fn_7100fcd7f0(void* self);
 
 struct UnkStatsObject;
-void fn_7100132248(UnkStatsObject* self, const CStrId& name, f32 value);
 
 // Removes element i, moving the later ones down.
 static inline void EraseAt(base::UnkVector<UnkShotWeakRef>* v, u32 i) {

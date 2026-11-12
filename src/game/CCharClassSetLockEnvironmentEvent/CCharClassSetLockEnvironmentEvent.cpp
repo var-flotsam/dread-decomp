@@ -3,9 +3,8 @@
 // fn_7100d8efd0. Names and the layout are placeholders.
 #include "base/UnkVector.h"
 #include "base/reflection.h"
+#include "game/UnkTU0.h"
 #include "types.h"
-
-extern void* g_unk_7101d47368;  // the environment manager (0x4c8 bytes)
 
 struct UnkSetLockEnvironmentEvent {
     u8 unk_0x0[0xc];

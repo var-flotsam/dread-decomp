@@ -4,6 +4,7 @@
 // (fn_71000a179c) and destroyed (fn_71000a1c60), each key moved over (the old one left empty, then
 // released), and the old arrays freed. Names are placeholders.
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CBlackboard.h"
@@ -12,9 +13,6 @@
 using base::global::CStrId;
 using base::global::UnkStringPool;
 using base::reflection::UnkReflValue;
-
-// As src/base/reflection/UnkReflAttrs.cpp declares it.
-void fn_71000a179c(UnkReflValue* self, const UnkReflValue* other);  // copy constructor
 
 void fn_7100093dd0(UnkPropertyArrays* self, u32 capacity) {
     if (self->capacity < capacity) {

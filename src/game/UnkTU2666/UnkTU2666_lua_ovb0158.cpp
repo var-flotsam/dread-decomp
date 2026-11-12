@@ -28,6 +28,7 @@
 #include "game/UnkTU2677.h"
 #include "game/UnkTU2768.h"
 #include "game/UnkTU315.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -44,7 +45,6 @@ inline void* FindByName_b0158(UnkGameManager* manager, const char* name) {
 }
 
 struct UnkEntityState;
-void fn_7100232864(UnkEntityState* entity, bool value);
 
 s32 fn_710107d9e0(lua_State* L) {
     const char* name;
@@ -202,8 +202,6 @@ struct UnkUserDataOwner;
 
 bool fn_7101203760(UnkUserDataOwner* self);
 bool fn_7100dfe364(UnkGameManager* self);
-void* fn_7100deab70(UnkGameManager*, const CRntString&);
-s32 fn_7100dff1a8(UnkGameManager*, const base::UnkNamedEntry*, bool, bool);
 s32 fn_7100df78cc(UnkGameManager*, const base::UnkNamedEntry*, bool, bool);
 
 s32 fn_7101079200(lua_State* L) {
@@ -277,8 +275,6 @@ s32 fn_7101078ef0(lua_State* L) {
     }
     return fn_71010c0b40(L, "i", result);
 }
-
-CRntString fn_7100dfb330(UnkGameManager* self);
 
 s32 fn_7101079030(lua_State* L) {
     const char* name;

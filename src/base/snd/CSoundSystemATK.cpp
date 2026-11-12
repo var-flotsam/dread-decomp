@@ -12,7 +12,11 @@
 #include "base/tunable/CTunable.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU27.h"
+#include "game/UnkTU2772.h"
+#include "game/UnkTU57.h"
+#include "game/UnkTU58.h"
 #include "game/UnkTU99.h"
+#include "game/operator_new.h"
 
 using base::snd::UnkSoundSystemATK;
 extern void* g_unk_7101a1b750[];
@@ -341,8 +345,6 @@ struct UnkBuiltPathId {
     explicit UnkBuiltPathId(const CRntString& str) { fn_710001a270(&id, str, true); }
     ~UnkBuiltPathId() { id.~CFilePathStrId(); }
 };
-
-void fn_710007f564(void* self, const char* str);  // appends a string
 
 // Storage for a file-path id whose release is written out by hand.
 union UnkPathIdSlot {
@@ -761,8 +763,6 @@ struct UnkAtkHeap {
 };
 static_assert(__builtin_offsetof(UnkAtkHeap, field_0x68) == 0x68, "UnkAtkHeap placeholder layout");
 
-void* fn_71000813e4(base::UnkSubAllocator* self, u64 size, u64 align, u32 flags);  // src/base/UnkSubAllocator.cpp
-
 static inline void* Allocate(UnkAtkHeap* heap, u64 size, u64 align) {
     heap->last = fn_71000813e4(&heap->allocator, size, align, 0xb);
     if (heap->hook)
@@ -789,7 +789,6 @@ extern u8 g_unk_7108b6bd10[] __attribute__((visibility("hidden")));  // the soun
 void fn_710120a2c0(void* params);
 u64 fn_710120a344(void* params);
 bool fn_710120ade0(void* params, void* buffer, u64 size);
-void fn_710120b198(void* heap, char* begin, u64 size);  // as src/game_s1/fn_71000f8630.cpp declares it
 void* fn_7101228d6c();
 void fn_7101229134(void* self, void (*callback)(), void* arg);
 void fn_710120b108(void (*callback)(), void* arg);
@@ -817,21 +816,16 @@ void fn_7101233cd4(void* effect, const u32* value, u32 x2);
 void fn_7101233e14(void* effect, u64 value);
 void fn_7101233e30(void* effect, u64 value);
 void fn_7101233ebc(void* effect, f32 value);
-void fn_7101233f2c(void* effect, u32 value);
 u64 fn_7101233880(void* effect);
 void fn_7101234ad0(void* effect, u32 value);
 void fn_7101234be0(void* effect, u32 value);
 void fn_7101234c50(void* effect, u32 value);
 void fn_7101234cc0(void* effect, f32 value);
 void fn_7101234d28(void* effect, u64 value);
-void fn_7101234dcc(void* effect, u32 value);
 u64 fn_71012346b8(void* effect);
 void fn_7101234470(void* effect, u32 value);
-void fn_7101234588(void* effect, u32 value);
 u64 fn_7101234068(void* effect);
-void* fn_710120806c(void* player, u32 id);
 void fn_710120a0ac(void* player, u32 count);
-void* fn_71001039f8();
 void fn_7101214bd0(void* self, u32 mode, u32 x2);
 
 // The engine's callbacks (game code) and the sound archive's path.
@@ -1213,7 +1207,6 @@ static_assert(__builtin_offsetof(UnkSoundStart, enabled) == 0x16c, "UnkSoundStar
 // The engine's start (the archive player, the handle, the sound id, and the start info) and the
 // handle's sound's setters (nn::atk, stubbed on the port).
 s32 fn_710120a274(u8* player, void** handle, u32 sound, void* x3, const u8* info);
-void fn_710120e5d0(void* sound, f32 value, u32 x1);
 f32 fn_710120e5c8(void* sound);
 void fn_710120e5b8(void* sound, f32 value);
 void fn_710120e648(void* sound, u32 value);
@@ -1447,7 +1440,6 @@ void fn_71000f9d20(UnkSoundSystemGroups* self, UnkSoundGroupMask mask, f32 time)
 // declarations are those of src/base/snd/UnkSoundVoiceList_b56.cpp.
 struct UnkSoundVoice2_b56;
 struct UnkVoicePool_b56;
-void* fn_7100083804(UnkVoicePool_b56* self);
 
 // What the voice is started from (placeholder names).
 struct UnkSoundVoiceDesc {

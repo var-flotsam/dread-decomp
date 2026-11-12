@@ -3,6 +3,7 @@
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
+#include "game/CCutsceneComponent.h"
 #include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
@@ -33,7 +34,6 @@ void fn_71007a1d24(UnkEnumType* type, const CStrId& name, const base::reflection
 extern char g_unk_7172719168[];
 extern char g_unk_7172719169[];
 UnkEnumType* fn_71007a1ea8();
-extern base::reflection::CType g_unk_7172719170;
 void fn_71007a1f84(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_71727192e0[];
 extern char g_unk_71727192e1[];

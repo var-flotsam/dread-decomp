@@ -2,6 +2,7 @@
 // the node's position (vf_0x98) and `to` (fn_71001ba980, fn_71001ba864), marks the node and updates it
 // once with no time (vf_0x20), as src/game/UnkXformNode.cpp's fn_7100206078 does with two updates.
 // Names are placeholders.
+#include "game/UnkTU244.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -16,10 +17,6 @@ struct UnkXformNodeVtbl_b68a1 {
 static inline UnkXformNodeVtbl_b68a1* Vtbl_b68a1(UnkXformNode* self) {
     return *reinterpret_cast<UnkXformNodeVtbl_b68a1**>(self);
 }
-
-// The target's previous and next positions (declared as in src/game/UnkXformNode.cpp).
-void fn_71001ba980(UnkXformTarget* target, const UnkVec3f* pos);
-void fn_71001ba864(UnkXformTarget* target, const UnkVec3f* pos);
 
 void fn_7100206000(UnkXformNode* self, const UnkVec3f* to) {
     UnkXformTarget* target = self->target_0x108;

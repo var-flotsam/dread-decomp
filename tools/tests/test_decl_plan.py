@@ -131,6 +131,73 @@ class Plan(unittest.TestCase):
         self.assertEqual([(p.symbol, p.types) for p in planned], [("fn_7100000111", {"UnkT": "struct"})])
         self.assertEqual(dict(why), {"a type that is not a plain struct every file agrees on": 1})
 
+    HEADERS = {
+        "include/base/global/CId.h": "#pragma once\nnamespace base::global {\nstruct UnkIdBase {\n    void* data;\n};\n"
+                                     "class CId : public UnkIdBase {\npublic:\n    struct Nested {\n        int x;\n    };\n"
+                                     "};\n}  // namespace base::global\n",
+        "include/game/UnkVec.h": "#pragma once\n// struct UnkGone { in a comment\nstruct UnkVec {\n    float x, y, z;\n};\n",
+        "include/game/UnkTwiceA.h": "struct UnkTwice {\n    int a;\n};\n",
+        "include/game/UnkTwiceB.h": "struct UnkTwice {\n    int b;\n};\n",
+    }
+
+    def test_types_one_header_defines(self):
+        self.assertEqual(decl_plan.defined_types(self.HEADERS["include/base/global/CId.h"]),
+                         [("base::global::UnkIdBase", "UnkIdBase"), ("base::global::CId", "CId")])
+        self.assertEqual(decl_plan.header_types(self.HEADERS), {
+            "UnkIdBase": ("base::global::UnkIdBase", "base/global/CId.h"),
+            "CId": ("base::global::CId", "base/global/CId.h"),
+            "UnkVec": ("UnkVec", "game/UnkVec.h"),
+        })   # not the nested type, not the one in a comment, not the one two headers define
+
+    def test_a_type_one_header_defines_comes_with_its_header(self):
+        files = tree(a='#include "base/global/CId.h"\nusing base::global::CId;\nvoid fn_7100000110(CId* id, const UnkVec& v);\n'
+                       "void fn_7100000111(UnkTwice*);\nextern UnkVec g_unk_7101a00010[4];\n",
+                     b='#include "base/global/CId.h"\nusing base::global::CId;\nvoid fn_7100000110(CId* id, const UnkVec& v);\n'
+                       "void fn_7100000111(UnkTwice*);\nextern UnkVec g_unk_7101a00010[4];\n",
+                     c="void fn_7100000112(base::global::CId*);\n", d="void fn_7100000112(base::global::CId*);\n",
+                     **self.HEADERS)
+        shared = decl_plan.header_types(files)
+        planned, why = decl_plan.plan(decl_check.Report(files), files, UNITS, {0x7101a00010: "7"}.get,
+                                      decl_plan.type_index(files), shared)
+        self.assertEqual([(p.symbol, p.declaration, p.includes, p.types) for p in sorted(planned, key=lambda p: p.symbol)], [
+            # CId is named through a namespace: its header. UnkVec is only referred to: a forward declaration.
+            ("fn_7100000110", "void fn_7100000110(base::global::CId* id, const UnkVec& v);",
+             ("base/global/CId.h",), {"UnkVec": "struct"}),
+            ("fn_7100000111", "void fn_7100000111(UnkTwice*);", (), {"UnkTwice": "struct"}),   # two headers define it
+            ("fn_7100000112", "void fn_7100000112(base::global::CId*);", ("base/global/CId.h",), {}),
+            ("g_unk_7101a00010", "extern UnkVec g_unk_7101a00010[4];", ("game/UnkVec.h",), {}),   # an array: its header
+        ])
+        self.assertEqual(dict(why), {})
+        text = decl_plan.header_text("include/game/CFoo.h", planned)
+        self.assertIn('// Names and layouts are placeholders.\n#include "base/global/CId.h"\n#include "game/UnkVec.h"\n'
+                      '#include "types.h"\n', text)
+        old = '#pragma once\n#include "game/UnkVec.h"\n#include "types.h"\n\nvoid fn_7100000111();\n'
+        self.assertEqual(decl_plan.extended(old, planned),
+                         '#pragma once\n#include "game/UnkVec.h"\n#include "base/global/CId.h"\n#include "types.h"\n\n'
+                         "struct UnkTwice;\nstruct UnkVec;\n\nvoid fn_7100000111();\n")
+
+    def test_a_types_own_header_does_not_include_itself(self):
+        files = tree(a="void fn_7100000110(UnkVec*);\n", b="void fn_7100000110(UnkVec*);\n",
+                     **{"include/game/CFoo.h": "#pragma once\nstruct UnkVec {\n    float x;\n};\n"})
+        planned, _ = decl_plan.plan(decl_check.Report(files), files, UNITS, None, {}, decl_plan.header_types(files))
+        self.assertEqual([(p.header, p.includes) for p in planned], [("include/game/CFoo.h", ())])
+
+    def test_a_name_with_another_meaning_elsewhere_is_not_forward_declared(self):
+        files = tree(a="struct UnkMix;\nstruct UnkPlain;\nvoid fn_7100000110(UnkMix*);\nvoid fn_7100000111(UnkPlain*);\n",
+                     b="struct UnkMix;\nstruct UnkPlain;\nvoid fn_7100000110(UnkMix*);\nvoid fn_7100000111(UnkPlain*);\n",
+                     c='#include "base/snd/UnkMix.h"\nusing base::snd::UnkMix;\n')
+        clashing = decl_plan.other_meanings(files)
+        self.assertEqual(clashing, {"snd", "UnkMix"})
+        planned, why = decl_plan.plan(decl_check.Report(files), files, UNITS, None, decl_plan.type_index(files), {}, clashing)
+        self.assertEqual([p.symbol for p in planned], ["fn_7100000111"])
+        self.assertEqual(dict(why), {"a type that is not a plain struct every file agrees on": 1})
+
+    def test_what_a_declaration_needs_in_its_header(self):
+        p = decl_plan.Planned("fn_7100000110", "include/game/CFoo.h", "", 2, {"UnkB": "struct", "UnkA": "class"}, {},
+                              ("base/Id.h", "game/Vec.h"))
+        self.assertEqual(decl_plan.needs(p), ['#include "base/Id.h"', '#include "game/Vec.h"', "class UnkA;", "struct UnkB;"])
+        self.assertEqual(decl_plan.needs(decl_plan.Planned("fn_7100000111", "include/game/CFoo.h", "", 2)), [])
+
     def test_grown_names_what_new_files_copied(self):
         before = decl_check.Report(tree(a="void fn_7100000110(int);\nvoid fn_7100000111(int);\n",
                                         b="void fn_7100000110(int);\n"))

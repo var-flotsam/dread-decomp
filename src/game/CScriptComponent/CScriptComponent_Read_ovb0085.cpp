@@ -28,7 +28,6 @@ struct UnkUnit2669Str;
 
 // The script manager (0x88 bytes), created on first use.
 struct UnkScriptManager_ovb0085;
-void fn_710109d890(UnkScriptManager_ovb0085* self, CRntString* name);
 
 extern char g_unk_7101cb30b8[];  // the component's vtable
 

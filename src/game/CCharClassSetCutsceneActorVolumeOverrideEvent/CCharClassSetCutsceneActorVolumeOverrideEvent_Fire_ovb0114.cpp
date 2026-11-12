@@ -6,13 +6,12 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/UnkGameManagerIdTable.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU102.h"
 #include "game/UnkTU2730.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-extern void* g_unk_7101d47330;
 
 // A string id's data as this event reads it: its text and a use count.
 struct UnkVolumeIdData_ovb0114 {

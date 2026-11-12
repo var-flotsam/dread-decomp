@@ -4,6 +4,7 @@
 // g_unk_71726eb430 (the first against ids 1 and 0, the second against ids 4, 2 and 3). Names and
 // layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CCollisionComponent.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
 
@@ -14,7 +15,6 @@ struct UnkKraidAI2;
 struct UnkKraidRequest;
 
 struct UnkCollisionContainer;
-CStrId* fn_7100864018(UnkCollisionContainer* self, void* object);
 
 extern CStrId g_unk_71726eb430[5] __attribute__((visibility("hidden")));
 

@@ -17,6 +17,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflConverter.h"
@@ -104,8 +105,6 @@ void fn_71000d0abc(UnkResPathVec* self, const base::global::CFilePathStrId* valu
 // ---- shrink of the attribute arrays (fn_71000d8290) ----
 using base::global::CStrId;
 using base::reflection::UnkReflValue;
-
-void fn_71000a179c(UnkReflValue* self, const UnkReflValue* other);  // copy constructor
 
 void fn_71000d8290(UnkPropertyArrays* self) {
     if (self->count != self->capacity) {
@@ -218,8 +217,6 @@ __attribute__((flatten)) base::UnkVector<UnkStringElem_b0174>* fn_71000e0524(bas
 
 // ---- copy-insert of reflected values (fn_71000d5a68) ----
 using base::reflection::UnkReflValue;
-
-void fn_71000a179c(UnkReflValue* self, const UnkReflValue* other);  // copy constructor
 
 struct UnkReflValueElem_b0174 {
     UnkReflValue value;

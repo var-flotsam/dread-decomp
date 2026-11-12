@@ -20,8 +20,10 @@
 #include "game/CBlackboard.h"
 #include "game/CComponent.h"
 #include "game/CPickableComponent.h"
+#include "game/CScenario.h"
 #include "game/CSpawnGroupComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2704.h"
 #include "game/UnkTU341.h"
@@ -365,7 +367,6 @@ void fn_710111abb8(UnkSpawnGroupUpdate_ovb0065* self, f32 dt) {
 // (CSpawnGroupComponent_StoreFlag_b49.cpp). Names and layouts are placeholders.
 
 
-CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 extern UnkProperty g_unk_7172a06608;
 
 // A typed value as the section setter takes it (as in src/game/CDoorLifeComponent.cpp).
@@ -648,8 +649,6 @@ struct UnkGameManagerFlag_ovb0065 {
     u8 pad_0x0[0x178];
     bool field_0x178;
 };
-
-const CStrId* fn_7100d7ba84(UnkSpawnedActor_ovb0065* actor);
 
 struct UnkSpawnGroupCounters_ovb0065 {
     u8 pad_0x0[0x194];

@@ -11,6 +11,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkSubAreaGuiCache.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2734.h"
 #include "game/UnkTU39.h"
 #include "types.h"
 
@@ -54,7 +55,6 @@ void fn_710084f22c(UnkMissileGun_ovb0103* self) {
     fn_710003152c(self->field_0x18a0, &value);
 }
 
-s32 fn_710119db04(UnkSubAreaGuiCache* self, const base::global::CStrId* name);
 struct UnkPrimaryGun_A4_b76;
 struct UnkLockOnMissileGun_b49a4;
 

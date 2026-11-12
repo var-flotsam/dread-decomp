@@ -23,7 +23,6 @@ struct UnkRailCameraCtrl_b53 {
     const void* vf_0x0() { return reinterpret_cast<const void* (*)(UnkRailCameraCtrl_b53*)>(vtable[0])(this); }
 };
 struct UnkCameraCtrl;
-void fn_71010e4168(void* holder, const CStrId* id, bool flag);
 
 struct UnkRefl_fn_7100a4df20;
 template <>

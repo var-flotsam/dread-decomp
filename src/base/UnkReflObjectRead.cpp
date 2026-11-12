@@ -5,9 +5,11 @@
 // Holds fn_71000edda0.
 #include "base/UnkHashStream.h"
 #include "base/global/CRntFile.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU56.h"
 #include "types.h"
 
 using base::reflection::CType;
@@ -20,17 +22,12 @@ struct UnkFileReader {
     u32 field_0x3c;
 };
 
-// Copy-constructs a file from another one (its contents copied into a block of its own).
-void fn_710007beac(base::global::CRntFile* self, const base::global::CRntFile* other, u32 flags,
-                   base::UnkAllocator* allocator);
-
 // An object and its type.
 struct UnkTypedObject {
     const CType* type;
     void* object;
 };
 // Builds a reflected value for an object (by reference when by_ref is 1).
-void fn_71000a1828(UnkReflValue* out, const UnkTypedObject* object, u32 by_ref, u32 kind);
 
 // Reads `object` from a copy of `source` (from its start, the reader's +0x3c set to `flags`) into
 // a target set up with `mode`, through `callbacks`. Returns whether the parse succeeded.

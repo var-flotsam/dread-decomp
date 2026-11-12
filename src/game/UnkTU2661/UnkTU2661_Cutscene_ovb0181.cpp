@@ -12,6 +12,7 @@
 #include "game/UnkTU253.h"
 #include "game/UnkTU2661.h"
 #include "game/UnkTU39.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -69,9 +70,6 @@ void fn_710106cf10(UnkCutscene_b0181* self) {
             fn_7101066a70(it);
     }
 }
-
-s32 fn_710007fb54(const CRntString* self, const char* str, u32 start);
-s32 fn_710007facc(const CRntString* self, char c, u32 start);
 
 // The object of the first entry whose key's text holds the name's text before its first underscore.
 void* fn_710106caa4(UnkCutscene_b0181* self, UnkSharedStr_b0181* name) {

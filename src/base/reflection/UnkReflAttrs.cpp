@@ -7,6 +7,7 @@
 
 #include "base/UnkCloneHelpers.h"
 #include "base/animation/CBlendSpaceResource.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
@@ -33,11 +34,6 @@ struct UnkReflAttrInfo {
     u32 targets;
     bool refused;
 };
-
-const UnkReflAttrKey& fn_710000d120();  // "_EditorOnly"
-// A value converted to `type` (returned through x8).
-UnkReflValue fn_71000a1774(const UnkReflValueRef* value, const CType* type);
-void fn_71000a179c(UnkReflValue* self, const UnkReflValue* other);  // copy constructor
 
 // UnkReflAttrs's layout: values and their keys' names side by side (CBlackboard.h's
 // UnkPropertyArrays), the type a value gets without a known attribute, and the target the element

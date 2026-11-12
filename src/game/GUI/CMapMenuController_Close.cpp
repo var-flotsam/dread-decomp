@@ -12,7 +12,6 @@
 using base::global::CStrId;
 
 struct UnkStateOwner;
-extern CStrId g_unk_7172763d98 __attribute__((visibility("hidden")));
 
 struct UnkMapMenuEntry {
     u8 pad_0x0[0x10];

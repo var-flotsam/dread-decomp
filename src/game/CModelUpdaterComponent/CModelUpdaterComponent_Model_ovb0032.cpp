@@ -11,10 +11,13 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"
+#include "game/CModelUpdaterComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU127.h"
 #include "game/UnkTU218.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU341.h"
 #include "game/UnkTU56.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -206,7 +209,6 @@ bool fn_71011743bc(UnkModelUpdater_ovb0032* self, const s64* id) {
     return false;
 }
 
-void fn_7100143578(UnkModel_ovb0032* self, const UnkVec3f* translation);
 void fn_71001435b4(UnkModel_ovb0032* self, const UnkVec3f* angle);
 
 // Passes the transform's translation (bit 0 of `what`) and angles (bit 1) to the model.
@@ -225,8 +227,6 @@ void fn_7101173824(UnkModelUpdater_ovb0032* self, UnkXform* xform, const u32* wh
 }
 
 // --- Releasing the model ---
-
-void fn_7101171a08(UnkModelUpdater_ovb0032* self, const void* path, const CRntString* extra);
 
 // Releases the id in two steps (the original reloads it after the decrement) and leaves the empty one.
 static inline void ResetPath_ovb0032(CFilePathStrId& path) {
@@ -349,7 +349,6 @@ struct UnkStruct_7100233684;
 namespace base::reflection {
 class UnkReflObject;
 }
-base::reflection::UnkReflObject* fn_7100233684(UnkStruct_7100233684* self);
 
 struct UnkTriple_ovb0032 {
     f32 x, y, z;

@@ -8,6 +8,7 @@
 #include "base/UnkBlockFreeList.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkVector.h"
+#include "game/operator_new.h"
 #include "types.h"
 
 struct UnkFade;
@@ -15,7 +16,6 @@ struct UnkVoicePool_b56;
 struct UnkUnit50Object_b49a1;
 
 void fn_71000723cc(UnkFade* fade, f32 time, bool flag);
-void* fn_7100083804(UnkVoicePool_b56* self);
 void fn_7100071dac(UnkUnit50Object_b49a1* self, u32 id);
 
 // An effect as the manager reads it: the channel it plays on.

@@ -26,11 +26,9 @@ struct UnkAssignedRecord_a1ba4 {
     u64 unk_0x0[0x18 / 8];
 };
 
-void fn_71000a1760(base::reflection::UnkTypedRef* out, const base::reflection::UnkTypedRef* in);
 // The object a pointer value points to, with its dynamic type.
 UnkReflTypedPtr fn_710009c460(const UnkReflTypedPtr& pointer);
 // The value a typed reference holds, as a reflected value.
-void fn_71000a1ae4(UnkReflValue* out, const UnkTypedRef* ref, u32 a, u32 b);
 
 // Two words assigned only from another object.
 struct UnkResolvedPair {

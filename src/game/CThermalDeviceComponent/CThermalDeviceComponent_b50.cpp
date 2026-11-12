@@ -6,6 +6,7 @@
 #include "base/math/CVector4D.h"
 #include "game/CUsableComponent.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU315.h"
 #include "types.h"
 
 using base::math::CVector4D;
@@ -15,8 +16,6 @@ struct UnkThermalDevice_b50a5 {
     f32 timer;  // 0x598
 };
 
-void fn_710021a0bc(UnkRenderManager* self, const u64* hash, CVector4D* value);
-void fn_710021a0b4(UnkRenderManager* self, const u64* hash, const base::math::CVector4D* value);
 extern const u64 g_unk_710164b5f8 __attribute__((visibility("hidden")));
 
 void fn_7100a93208(UnkThermalDevice_b50a5* self, f32 dt) {

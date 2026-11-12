@@ -8,6 +8,7 @@
 #include "game/UnkCameraCtrl.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2689.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -23,7 +24,6 @@ struct UnkAbilitySet;
 bool fn_710030a7b8(UnkAbility* ability);
 
 struct UnkForcedMovementTarget_A5_b68;
-void fn_71010db848(UnkForcedMovementTarget_A5_b68* self, const CStrId* name, const void* params);
 extern CStrId g_unk_71729daee8 __attribute__((visibility("hidden")));
 void fn_7100eed9ec(void* self, void* target);
 

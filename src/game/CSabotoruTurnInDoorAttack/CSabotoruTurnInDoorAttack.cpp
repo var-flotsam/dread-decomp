@@ -4,6 +4,7 @@
 // a CSabotoruAIComponent, fn_7100679410 with 1. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CSabotoruAIComponent.h"
 #include "game/UnkAttack.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -15,8 +16,6 @@ struct UnkSabotoruTurnInDoor : UnkAttackBase {
     u8 field_0x38[0x18];
     UnkWeakHandle* field_0x50;
 };
-
-void fn_7100679410(UnkReflObject* ai, u32 value);
 
 void fn_7100673b60(UnkSabotoruTurnInDoor* self) {
     fn_71003609b8(self);

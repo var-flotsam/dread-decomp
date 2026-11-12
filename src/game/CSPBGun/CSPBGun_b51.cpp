@@ -3,12 +3,13 @@
 // are placeholders. fn_710085e328 unregisters them again.
 #include "base/global/CFilePathStrId.h"
 #include "base/UnkVector.h"
+#include "game/CPlasmaBeamGun.h"
 #include "game/UnkModelManager.h"
+#include "game/UnkTU2739.h"
 
 using base::global::CFilePathStrId;
 
 struct UnkFxCache;
-void fn_7100851bc0(UnkFxCache* cache, const CFilePathStrId* path, u32 kind, bool flag);
 
 struct UnkSPBGun {
     u8 pad_0x0[0x1870];
@@ -42,7 +43,6 @@ void fn_710085e1c8(UnkSPBGun* self) {
 }
 
 void fn_7100835940(UnkSPBGun* self);
-void fn_71011aa5a4(UnkFxCache* cache, const CFilePathStrId* path);
 
 static inline void ReleaseFx(const char* path) {
     UnkFxCache* cache = reinterpret_cast<UnkFxCache*>(GetManager());

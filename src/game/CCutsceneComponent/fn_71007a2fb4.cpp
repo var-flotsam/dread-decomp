@@ -1,9 +1,17 @@
 // Reflection fields and functions of CCutsceneComponent. Written from the refl_attrs draft; one
 // return-type getter lives in this class's translation unit.
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/reflection/CCollectionType.h"
+#include "base/reflection/CType.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CCutsceneComponent.h"
+#include "game/CTriggerLogicAction.h"
+#include "game/UnkTU36.h"
+#include "game/UnkTU69.h"
+#include "game/UnkTU83.h"
+#include "game/UnkTU89.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -14,18 +22,10 @@ base::reflection::UnkReflValue fn_71007ad4d0(void*, char* obj);
 void fn_71007a515c(UnkReflFunction* fn, const char* name);
 const base::reflection::UnkReflAttrKey& fn_7100090a20();
 void fn_71007ad5e8();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
-extern base::reflection::CType g_unk_7101d679f0;
 const base::reflection::UnkReflAttrKey& fn_71000923a0();
-extern base::reflection::CType g_unk_7101d55008;
-extern base::reflection::CType g_unk_7101d5c078;
 void fn_71007ad648();
 void fn_71007a52d8(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7172719170;
-const base::reflection::UnkReflAttrKey& fn_710008fd60();
 const base::reflection::UnkReflAttrKey& fn_7100091c30();
-extern base::reflection::CType g_unk_717274caa0;
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_71007ad78c();
 void fn_71007a544c(UnkReflFunction* fn, const char* name);
 base::reflection::UnkReflValue fn_71007ad814(void*, char* obj);
@@ -51,7 +51,6 @@ const base::reflection::CType* fn_71007adf30();
 void fn_71007ae270();
 base::reflection::UnkReflValue fn_71007ae2bc(void*, char* obj, base::reflection::UnkReflValue* const* args);
 void fn_7100302b38(UnkReflFunction* fn);
-const base::reflection::UnkReflAttrKey& fn_710008f920();
 base::reflection::UnkReflValue fn_71007ae4e8(void*, char* obj, base::reflection::UnkReflValue* const* args);
 void fn_71007ae40c(UnkReflFunction* fn);
 

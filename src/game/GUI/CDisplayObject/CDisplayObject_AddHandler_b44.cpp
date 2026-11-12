@@ -10,6 +10,7 @@
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkTU1686.h"
 #include "game/UnkTU2668.h"
+#include "game/UnkTU2761.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
@@ -19,7 +20,6 @@ struct lua_State;
 struct UnkLuaEventHandler;
 // The handler's constructor (src/game/GUI/UnkLuaEventHandler_b44.cpp).
 void fn_710109e8dc(UnkLuaEventHandler* self, lua_State* state, const base::global::CRntString* name);
-s32 fn_7101202300(const base::global::CRntString* name);  // an event's kind from its name
 struct UnkUnit1674Item;
 UnkUnit1674Item* fn_7100b1e34c(void* a, void* b, void* p, void* q, u32 value);
 

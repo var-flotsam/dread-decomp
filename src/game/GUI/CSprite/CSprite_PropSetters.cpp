@@ -5,6 +5,7 @@
 // when the sprite has a render object (+0x190), in that object's node too. Each returns an empty result of
 // kind 2. Names and layouts are placeholders.
 #include "base/math/CVector.h"
+#include "game/UnkTU2747.h"
 #include "types.h"
 
 struct UnkValueSet_spr {
@@ -70,9 +71,6 @@ struct UnkSpriteOwner_spr {
     u8 unk_0x0[8];
     UnkSprite_spr* target;
 };
-
-// Sets the sprite's size (src/lifted only so far).
-void fn_71011cf8d0(UnkSprite_spr* self, const base::math::CVector2D* size);
 
 template <class T>
 static inline __attribute__((always_inline)) T PickArg_spr(UnkValueSource_spr* src) {

@@ -12,21 +12,20 @@
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CCutsceneComponent.h"
 #include "game/CLifeComponent.h"
+#include "game/CScenario.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU2566.h"
 #include "game/UnkTU2730.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
-
-void fn_7100e8f9a0(char*, bool, base::global::CStrId*);
 void fn_71008bdd84(void* self, bool flag);
 void fn_71008c0000();
 extern __attribute__((visibility("hidden"))) char g_unk_71727302a0[];
-extern void* g_unk_7101d47330;
 
 struct UnkCallback_kr {
     void* object;

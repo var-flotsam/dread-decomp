@@ -12,12 +12,18 @@
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"
 #include "game/CBlackboard.h"
+#include "game/CScenario.h"
 #include "game/GUI/CLabel.h"
+#include "game/GUI/CSprite.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU2505.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2733.h"
+#include "game/UnkTU2744.h"
+#include "game/UnkTU2747.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -83,7 +89,6 @@ extern UnkPropertyEx<> g_unk_7172759808;
 
 // Reads the string id under the property `name` names (refl_GetKeyedValue for CStrId).
 bool fn_710051d464(CBlackboard::CSection* section, const void* name, CStrId* out);
-void fn_71011a2fd0(UnkGameManagerSub_0x608* self, const CStrId& id, bool arg2);
 
 // A string id built empty inline: the pool is created first when there is none.
 struct UnkScenarioEmptyStrId {
@@ -171,7 +176,6 @@ struct UnkTypedValue {
     void* value;
 };
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
-const base::global::CStrId* fn_7100de9bf8(UnkGameManager* self);
 
 // The language singleton (as src/game/UnkAdamDialog.cpp declares it): created on first use, it
 // gives localized texts.
@@ -181,7 +185,6 @@ bool fn_710119c9fc(UnkLanguage* language);
 struct UnkDialogText : UnkGuiText {
     ~UnkDialogText() { fn_7100066e44(this); }
 };
-UnkDialogText fn_710119d040(UnkLanguage* language, const CStrId& key);
 static inline UnkLanguage* Language() {
     UnkLanguage* language = g_unk_7101d47358;
     if (!language) {
@@ -218,10 +221,6 @@ static inline const UnkScenarioTunableView& ScenarioTunable() {
 // The label texts and the sprite images by scenario (string ids by string id).
 extern UnkGameManagerIdMap g_unk_7172a0bf10;
 extern UnkGameManagerIdMap g_unk_7172a0bee8;
-
-bool fn_71011ceac0(UnkGuiDisplayObject* self);
-bool fn_71011ceb34(UnkGuiDisplayObject* self);
-void fn_71011b5598(UnkGuiRoot* root, UnkGuiDisplayObject* object);
 
 // The display object's members read here.
 struct UnkGuiObjectView {
@@ -264,9 +263,6 @@ static inline void Setup(UnkGuiRoot* root, UnkGuiDisplayObject* object, const CS
 // A GUI::CLabel (0x340 bytes) and a GUI::CSprite (0x1f0 bytes): their constructors.
 struct UnkStruct_71011ebdb4;
 void fn_71011f890c(UnkGuiDisplayObject* self);
-void fn_71011ed150(UnkGuiDisplayObject* label, const CStrId& font);
-void fn_71011ef0c8(UnkGuiDisplayObject* label, bool value);
-void fn_71011f9878(UnkGuiDisplayObject* sprite);
 
 void fn_7100e148a0(void* self);
 void fn_710027a24c(UnkNavMesh* navmesh);
@@ -389,8 +385,6 @@ void fn_71011a4050(UnkGameManagerSub_0x608* scenario) {
 struct UnkCollisionFileReader {
     u8 unk_0x0[0x18];
 };
-void fn_7100d45fc4(UnkCollisionFileReader* self, void* arg);
-void fn_7100d45fd4(UnkCollisionFileReader* self);
 void fn_7100860830(UnkCollisionFileReader* self, const char* path, base::UnkVector<UnkCollisionRecord>* out,
                    bool a, void* b);
 

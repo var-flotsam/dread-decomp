@@ -5,11 +5,14 @@
 // the reader types are in base/reflection/UnkReflObjectRead.h). Names and layouts are placeholders.
 #include "base/animation/CAnimationResource.h"
 #include "base/animation/CBlendSpaceResource.h"
+#include "base/file/CThreadSafeDevice.h"
 #include "base/global/CRntFile.h"
 #include "base/reflection/CClass.h"
+#include "base/reflection/CType.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU2620.h"
 #include "game/UnkTU27.h"
 #include "game/UnkTU83.h"
 #include "game/UnkTU85.h"
@@ -64,7 +67,6 @@ bool fn_710000ccd8(UnkFileReader* self) {
 }
 
 // The void type (src/base/reflection/UnkReflFunction.cpp).
-extern base::reflection::CType g_unk_7101d5af48;
 
 // Parses a value of `type` (nothing for void) with the context's callbacks and file into a target of
 // its own (with `Parse`), and destroys what was read.
@@ -98,7 +100,6 @@ void fn_7100010c60(const UnkParseContext* ctx, const CType* type) {
 }
 
 // A copy in unit 2620 of tools/tu_map.py (0x7100fc22a0-0x7100fc350c), with its own parser.
-s32 fn_7100fc2700(UnkParseContext* self, const CType* type, void* x2);
 void fn_7100fc3320(const UnkParseContext* ctx, const CType* type) {
     SkipValue<fn_7100fc2700>(ctx, type);
 }
@@ -123,10 +124,8 @@ struct UnkStrPair_0x10 {
     void* a;
     void* b;
 };
-void fn_710008d2ec(UnkStrPair_0x10* self, const base::global::CFilePathStrId* path);
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
 // The parse (its result, nonzero on success, is not in the other files' declaration).
-void fn_710000f750(UnkParseContext* self, void* root);
 static inline s32 ParseRoot(UnkParseContext* ctx, void* root) {
     return reinterpret_cast<s32 (*)(UnkParseContext*, void*)>(&fn_710000f750)(ctx, root);
 }

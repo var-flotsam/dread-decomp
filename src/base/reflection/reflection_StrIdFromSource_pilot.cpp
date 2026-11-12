@@ -8,8 +8,6 @@
 using base::global::CRntString;
 using base::global::CStrId;
 
-CRntString fn_7100ad3614(void* source);
-
 // Room for a string id that the out-of-line constructor (fn_7100000850) builds; it is left
 // without a destructor, since its string is always handed on.
 union UnkStrIdSlot {

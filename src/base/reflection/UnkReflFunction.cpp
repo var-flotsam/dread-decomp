@@ -2,13 +2,13 @@
 // function adds each function with fn_7100097550 and then initialises it, inline for getters
 // and through one of these for setters.
 #include "base/reflection/CClass.h"
+#include "base/reflection/CType.h"
 #include "base/reflection/UnkReflAttributes.h"
 
 using base::global::UnkStrId;
 using base::reflection::CType;
 using base::reflection::UnkReflFunction;
 
-extern base::reflection::CType g_unk_7101d5af48;  // return type: probably void
 void fn_7100a199a0();                            // the invoker (reached through the GOT)
 
 // CEmmySpawnPointComponent's "AddPatrolShape": one CStrId parameter.

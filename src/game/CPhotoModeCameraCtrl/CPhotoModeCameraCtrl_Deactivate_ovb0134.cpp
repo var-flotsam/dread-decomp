@@ -13,6 +13,7 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU131.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2566.h"
 #include "game/UnkTU2732.h"
 #include "types.h"
 
@@ -24,7 +25,6 @@ struct UnkArg2_71010e2278;
 void fn_7100145388(void* scene, void* value);
 struct UnkGrabCameraCtrl;
 UnkFreeCameraCallback_b0058** fn_71009cb3e0(base::UnkVector<UnkFreeCameraCallback_b0058*>*, u32);
-void fn_7100e8f9a0(char*, bool, base::global::CStrId*);
 extern CStrId g_unk_717273f970 __attribute__((visibility("hidden")));
 
 struct UnkPhotoCallback_ovb0134 {

@@ -16,8 +16,6 @@ using base::global::CStrId;
 struct UnkStrPair_0x10;
 struct UnkEntry_0x30;
 
-void fn_710008d99c(const CFilePathStrId* path, CStrId* id, CFilePathStrId* file);
-
 namespace {
 
 struct UnkIdPathPair_b49a1 {

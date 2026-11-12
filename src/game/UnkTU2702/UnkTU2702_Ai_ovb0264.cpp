@@ -20,6 +20,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2702.h"
+#include "game/UnkTU341.h"
 #include "game/UnkTU394.h"
 #include "game/UnkTU53.h"
 #include "game/UnkXformNode.h"
@@ -313,7 +314,6 @@ f32 fn_71010ff140(UnkSpeedSelf_h* self) {
 // ---- i ----
 struct UnkEntityState;
 struct UnkActorTarget;
-void fn_7100232864(UnkEntityState* entity, bool value);
 extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
 
 struct UnkStartOwner_i {
@@ -366,7 +366,6 @@ void fn_710110e3dc(UnkStartSelf_i* self) {
 using base::global::CStrId;
 
 struct UnkEnergyWaveTargetComp_b49;
-void fn_7100872908(void*, void*);
 struct CAttack;
 const u64* fn_7100360890(CAttack* attack);
 

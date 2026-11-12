@@ -16,7 +16,6 @@ using base::math::CVector2D;
 using base::math::CVector3D;
 
 struct UnkSelf;
-void* fn_7100149930(UnkRenderPool*, void*, UnkSceneObject**, base::global::CStrId*);
 
 struct UnkRGB_710050f26c {
     f32 r;

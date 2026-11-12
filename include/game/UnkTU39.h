@@ -23,3 +23,4 @@ f32 fn_7100030dec(UnkFloatList_b46a1* list);
 void fn_710003152c(void* self, const f32* value);
 extern void* g_unk_7101a1a090[];
 extern void* g_unk_7101a1a0b0[];
+void fn_710002f4e4(void*);

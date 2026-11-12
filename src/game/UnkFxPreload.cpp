@@ -3,14 +3,12 @@
 // common particle effects (.bcptl) with an effect cache, each by its file path id and a kind.
 // Names are placeholders.
 #include "base/global/CFilePathStrId.h"
+#include "game/CPlasmaBeamGun.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 
 struct UnkFxCache;
-
-// Registers the effect at `path` with the cache.
-void fn_7100851bc0(UnkFxCache* cache, const CFilePathStrId* path, u32 kind, bool flag);
 
 static inline void UnkPreloadFx(UnkFxCache* cache, const char* path, u32 kind) {
     CFilePathStrId id(path, true);

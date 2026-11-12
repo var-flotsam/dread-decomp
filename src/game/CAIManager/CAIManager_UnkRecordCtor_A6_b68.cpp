@@ -1,9 +1,8 @@
 // CAIManager::CTunableAIManager's unit: constructor of a record with its own vtable (g_unk_7101aa9328): two
 // (0, -1) pairs, cleared fields and flags, and an embedded object at +0x68 built by fn_710002f4e4. Names and
 // the layout are placeholders.
+#include "game/UnkTU39.h"
 #include "types.h"
-
-void fn_710002f4e4(void*);
 
 extern void* g_unk_7101aa9328[];
 
