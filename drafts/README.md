@@ -51,7 +51,7 @@ these still need the machine test before they count (`python tools/equiv_test.py
 on 2026-11-12 it passed 17 of the 115 registers-only drafts, failed 1 and could not judge 97). Nine of those 17
 are in `src/` since that day; the notes of the rows that are left say what holds each one back. The permuter
 spike of the same day made 13 registers-only drafts match where they are (rows marked `match`): they wait on
-their declarations only.
+their declarations only. That script is `tools/permute.py` now (`--drafts` tries the registers-only rows).
 
 ## Rules
 
