@@ -378,18 +378,18 @@ def wrong_references(original: asmdiff.Original, by_name: dict[str, list[int]],
 
 
 def stale_verdicts(table: dict[int, dict], statuses: dict[str, str], where: dict[str, list[tuple[Path, str]]],
-                   code_of=None) -> list[tuple[str, str]]:
+                   digest_of=None) -> list[tuple[str, str]]:
     """[(address, why)] for the `pass` rows of data/equivalence.csv that no longer describe the tree.
     `statuses` maps an address to its status in src/, `where` to the (object, symbol) pairs defining it;
-    `code_of(object, symbol)` returns that function's bytes (the objects are read by default)."""
-    objects: dict[Path, dict[str, bytes]] = {}
+    `digest_of(object, symbol)` returns equiv_test.digest of that function (the objects are read by default)."""
+    objects: dict[Path, dict[str, str]] = {}
 
-    def read(obj: Path, symbol: str) -> bytes | None:
+    def read(obj: Path, symbol: str) -> str | None:
         if obj not in objects:
-            objects[obj] = {f.symbol: f.code for f in asmdiff.read_object(obj)}
+            objects[obj] = {f.symbol: equiv_test.digest(f.code, f.relocs) for f in asmdiff.read_object(obj)}
         return objects[obj].get(symbol)
 
-    code_of = code_of or read
+    digest_of = digest_of or read
     out = []
     for a in sorted(table):
         row = table[a]
@@ -404,9 +404,9 @@ def stale_verdicts(table: dict[int, dict], statuses: dict[str, str], where: dict
         if row["rules"] != str(equiv_test.RULES):
             out.append((addr, f"judged under rules {row['rules']}, the test is at {equiv_test.RULES}"))
             continue
-        codes = [code_of(obj, symbol) for obj, symbol in where.get(addr, [])]
-        if not any(c is not None and equiv_test.current(row, equiv_test.digest(c)) for c in codes):
-            out.append((addr, "its code changed since it was judged"))
+        digests = [digest_of(obj, symbol) for obj, symbol in where.get(addr, [])]
+        if not any(d is not None and equiv_test.current(row, d) for d in digests):
+            out.append((addr, "its code, or what it refers to, changed since it was judged"))
     return out
 
 

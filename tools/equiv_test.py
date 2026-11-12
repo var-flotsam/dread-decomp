@@ -40,7 +40,8 @@ Usage:
   ... --json OUT       # every verdict with its detail
   ... --budget SECONDS # per function (default 60)
 data/equivalence.csv has one row per judged function of src/: address, the digest of the code that was judged
-(sha256 of our function's bytes in the object), the verdict and the rules' version. A row whose digest is not
+(sha256 of our function's bytes in the object and of what its relocations name), the verdict and the
+rules' version. A row whose digest is not
 the function's code any more says nothing: `current()` is how a reader of the table tells.
 """
 
@@ -62,7 +63,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 TABLE = ROOT / "data" / "equivalence.csv"
 FIELDS = ["address", "digest", "verdict", "rules", "detail"]
-RULES = 1  # raise when a rule above changes: rows of an older version are not current
+RULES = 2  # raise when a rule above or the digest changes: rows of an older version are not current
+#            (2: the digest covers what the relocations name, not the code bytes alone)
 WORK = ROOT / "build" / "equiv"
 SCALAR = {"void": None, "bool": "x8", "u8": "x8", "s8": "x8", "char": "x8", "u16": "x16", "s16": "x16",
           "u32": "x32", "s32": "x32", "int": "x32", "unsigned": "x32", "f32": "f32", "float": "f32",
@@ -73,9 +75,16 @@ COMMENT = re.compile(r"//[^\n]*|/\*.*?\*/", re.S)
 
 # --- the parts that need no game data (tools/tests/test_equiv_test.py) -------------------------------
 
-def digest(code: bytes) -> str:
-    """The identity of a judged function: its bytes in the object (relocated fields are still zero there)."""
-    return hashlib.sha256(code).hexdigest()[:32]
+def digest(code: bytes, relocs=None) -> str:
+    """The identity of a judged function: its bytes in the object and what its relocations name. The bytes
+    alone are not enough: the relocated fields are still zero there, so the same bytes can call another
+    function or read another global. `relocs` maps an offset to an object with type, symbol, addend,
+    section and data (asmdiff.ObjReloc); a string or constant counts by its content, not its place."""
+    h = hashlib.sha256(code)
+    for off, r in sorted((relocs or {}).items()):
+        what = (r.data or b"").hex() if r.section else f"{r.symbol}+{r.addend}"
+        h.update(f"|{off}:{r.type}:{what}".encode())
+    return h.hexdigest()[:32]
 
 
 def return_type(text: str, address: int) -> str | None:
@@ -421,6 +430,7 @@ def main() -> int:
             continue
         funcs = asmdiff.read_object(obj)
         codes = {f.symbol: f.code for f in funcs}
+        relocs = {f.symbol: f.relocs for f in funcs}
         results, _, _, _ = check.diff_with_targets(funcs, ctx.orig, by_name)
         text = src.read_text(encoding="utf-8", errors="replace")
         for res in results:
@@ -428,7 +438,7 @@ def main() -> int:
                 continue
             kind = asmdiff.classify(ctx.orig.function(res.address), codes[res.symbol]).split(" ")[0]
             row = {"file": rel, "address": f"{res.address:#x}", "size": res.orig_size,
-                   "digest": digest(codes[res.symbol])}
+                   "digest": digest(codes[res.symbol], relocs[res.symbol])}
             if kind != "registers":
                 out.append({**row, "verdict": "not registers", "detail": f"the difference is {kind}: not judged"})
             else:

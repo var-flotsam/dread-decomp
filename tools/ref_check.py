@@ -199,11 +199,12 @@ def formed_addresses(code: bytes, address: int) -> tuple[set[int], set[int]]:
             if o.type == c.ARM64_OP_MEM and o.mem.base in known and not o.mem.index:
                 addresses.add(known[o.mem.base] + o.mem.disp)
         dst = ops[0].reg if ops and ops[0].type == c.ARM64_OP_REG else None
-        if m == "add" and len(ops) == 3 and ops[1].type == c.ARM64_OP_REG and ops[1].reg in known                 and ops[2].type == c.ARM64_OP_IMM:
+        from_known = len(ops) >= 2 and ops[1].type == c.ARM64_OP_REG and ops[1].reg in known
+        if m == "add" and len(ops) == 3 and from_known and ops[2].type == c.ARM64_OP_IMM:
             known[dst] = known[ops[1].reg] + ops[2].imm
             addresses.add(known[dst])
             continue
-        if m == "mov" and len(ops) == 2 and ops[1].type == c.ARM64_OP_REG and ops[1].reg in known:
+        if m == "mov" and len(ops) == 2 and from_known:
             known[dst] = known[ops[1].reg]
             continue
         if dst is not None and not m.startswith(("str", "stp", "stur", "cmp", "cmn", "tst", "b", "cb", "tb")):
