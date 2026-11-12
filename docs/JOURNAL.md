@@ -152,6 +152,20 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**One more held draft matches in `src/`: `fn_7101214c94`, the sound system's shutdown (2026-11-12).** Its
+note said what held it: it declared `fn_7101214040` as returning `u32` where the definition returns `u64`.
+With the definition's type the draft still matches, `drafts.py promote` moved it, and the coordinator's step
+did the rest without hand work: `decl_plan.py --grown` planned the one declaration the file now shared with
+`src/atk_id/nn_atk_b34a3.cpp`, and `hub_migrate.py` moved it to `include/game/UnkTU2772.h` with both files
+unchanged in their code. The file had no opening comment; it has one now.
+
+Two of the other held drafts were looked at and stay: `fn_71006eb7cc` names its object's struct differently
+from the one file that calls it (settling it means one struct for that object in the unit's header, not a
+rename), and `fn_71008866b8` takes the address of a function whose parameter type is a template two sources
+define privately. One form in the moved function is worth knowing: `alignas(8) u32 result` gives the
+original's 8-byte stack slot for a 4-byte result; a plain `u32` or the callee's own `u64` differ by one or
+two instructions. `tools/fakematch.py` does not list `alignas` on a local.
+
 **Sampled read, seed 2026-W46: 20 of the week's 3,863 new hand-written functions (2026-11-12).** The gates
 prove bytes, relocation targets and declarations; none of them reads. `python tools/sample_review.py` draws
 a seeded sample of the hand-written functions that became `O`, `m` or `M` in the last seven days and writes

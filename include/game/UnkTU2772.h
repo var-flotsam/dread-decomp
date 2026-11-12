@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkAtkTaskManager;
 struct UnkAtkArchive;
 struct UnkAtkArchive_b0148;
 struct UnkAtkEntryIndex_b0148;
@@ -53,3 +54,4 @@ void* fn_710120806c(void* player, u32 id);
 void fn_7101233f2c(void* effect, u32 value);
 void fn_7101234588(void* effect, u32 value);
 void fn_7101234dcc(void* effect, u32 value);
+u64 fn_7101214040(UnkAtkTaskManager* self);

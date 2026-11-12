@@ -229,7 +229,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71012129f0,264,drafts/game/UnkTU2772/fn_71012129f0.cpp,registers or order,98.5,1,overnight,
 0x7101213858,420,drafts/game/UnkTU2772/fn_7101213858.cpp,registers or order,94.3,6,overnight,passes tools/equiv_test.py; held: src/game_lo/fn_71001039f8.cpp declares it as a labelled constructor
 0x7101214bd0,196,drafts/game/UnkTU2772/fn_7101214bd0.cpp,operations,95.9,2,overnight,
-0x7101214c94,600,drafts/game/UnkTU2772/fn_7101214c94.cpp,match,100.0,0,overnight,matches; held: 1 declaration problem: src/game/UnkTU2772/fn_7101214c94.cpp:37 fn_7101214040: u32 fn_7101214040(UnkAtkTaskManager*) -> src/game/UnkTU2772/UnkTU2772_audio_ovb0148.cpp defines it with other types; co...
 0x710122cf1c,264,drafts/game/UnkTU2772/fn_710122cf1c.cpp,conditions,97.0,2,overnight,
 0x710122f380,112,drafts/game/UnkTU2772/fn_710122f380.cpp,registers or order,96.4,1,overnight,
 0x710122f3f0,156,drafts/game/UnkTU2772/fn_710122f3f0.cpp,registers or order,97.4,1,overnight,

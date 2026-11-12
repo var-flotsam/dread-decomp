@@ -1,6 +1,11 @@
+// Unit 2772 (tools/tu_map.py; nn::atk by its library hint): the sound system's shutdown. When it is running:
+// stops the audio renderer, drains the two banks and the part at +0x798, empties the list at +0x890, runs
+// what is queued (fn_7101214040, aborting on a failing result), closes the renderer and its event, and puts
+// the settings and the renderer parameter back to their defaults. Names and layouts are placeholders.
 #include <nn/os.h>
 
 #include "base/global/CFilePathStrId.h"
+#include "game/UnkTU2772.h"
 #include "types.h"
 
 namespace nn::os {
@@ -34,7 +39,6 @@ void fn_710122fef4(UnkAtkCounter_b0147* self);
 void fn_7101237138(void* bank, u32 index);
 void fn_71012378bc(void* bank);
 void fn_7101236604(void* part, void* other);
-u32 fn_7101214040(UnkAtkTaskManager* manager);
 
 struct UnkAtkBank_b0150 {
     virtual void vf_0x0();
