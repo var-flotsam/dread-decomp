@@ -2992,7 +2992,7 @@ address,size,name,name_source,subsystem,status
 0x7100d64f70,656,fn_7100d64f70,unknown,unknown,m
 0x7100d65200,528,fn_7100d65200,unknown,unknown,O
 0x7100d65410,656,fn_7100d65410,unknown,unknown,m
-0x7100d656a0,576,fn_7100d656a0,unknown,unknown,m
+0x7100d656a0,576,fn_7100d656a0,unknown,unknown,O
 0x7100d658e0,656,fn_7100d658e0,unknown,unknown,m
 0x7100d65b70,468,fn_7100d65b70,unknown,unknown,O
 0x7100d65d50,608,fn_7100d65d50,unknown,unknown,U

@@ -13,7 +13,7 @@ address,size,name,name_source,subsystem,status
 0x7100e015b8,200,fn_7100e015b8,unknown,unknown,O
 0x7100e01680,540,fn_7100e01680,unknown,unknown,m
 0x7100e0189c,220,fn_7100e0189c,unknown,unknown,O
-0x7100e01978,1020,fn_7100e01978,unknown,unknown,m
+0x7100e01978,1020,fn_7100e01978,unknown,unknown,O
 0x7100e01d74,36,fn_7100e01d74,unknown,unknown,O
 0x7100e01d98,368,fn_7100e01d98,unknown,unknown,O
 0x7100e01f08,192,fn_7100e01f08,unknown,unknown,O
