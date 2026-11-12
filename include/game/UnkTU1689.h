@@ -16,3 +16,4 @@ extern void* g_unk_7101a9ca40[];
 extern void* g_unk_7101a9cb48[];  // The object's vtable.
 extern base::global::CStrId g_unk_7172763d98 __attribute__((visibility("hidden")));
 extern UnkPropertyEx<> g_unk_71727639d0;
+extern void* g_unk_7101a9c888[];  // The vtable of a second class with the pointer and a string id.

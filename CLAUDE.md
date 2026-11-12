@@ -177,7 +177,10 @@ Toolchain:
   survive regeneration.
 - Mark a non-matching function with `// NON_MATCHING(minor): <reason>` or
   `// NON_MATCHING(major): <reason>` on the line(s) directly above its definition. Use minor only
-  when the behaviour is identical.
+  when the behaviour is identical. A minor function that calls or refers to something the original
+  function does not (or lacks something it has) names it in the note, by address or import name, with
+  why it is harmless; `tools/check.py` fails one that does not (`REFS` lines, `tools/ref_check.py`; owner,
+  2026-11-12).
 - Matching standard: aim for `O` on every function, but time-box each one to about 30-60
   minutes. If it still differs, keep the closest version and annotate it with
   `NON_MATCHING(minor)` (same behaviour; usable by the port) or `NON_MATCHING(major)`, with the

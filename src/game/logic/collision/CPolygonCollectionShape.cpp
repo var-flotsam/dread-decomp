@@ -342,7 +342,9 @@ struct UnkStruct_0x48;
 // The type-8 shape against a leaf's edge: every point found is reported to the query's sink (with
 // no sink, the first stops the walk). False when the walk is to stop.
 // NON_MATCHING(minor): the frame is 0x10 bytes larger (the original keeps the edge and the hit in
-// one slot), the result stays in a register through the loop and the loop is rotated.
+// one slot), the result stays in a register through the loop and the loop is rotated. The contact
+// point (0x2c bytes) is copied into the hit with a call of memmove where the original copies it in
+// line: the same bytes, and the two cannot overlap (the hit is a local, the point is in the buffer).
 bool fn_7100d668d4(UnkLeafVisitor<UnkShape8Geometry, bool>* self, const UnkTreeNode* node) {
     // Against one segment the test finds at most two points: the buffer has room for two only
     // (fn_7100129910's declaration in src/game/UnkCollisionContacts.cpp names a four-point one).

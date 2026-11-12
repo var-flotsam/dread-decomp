@@ -41,7 +41,12 @@ Usage:
   python tools/ref_check.py --version 2.1.0 --drafts           # every draft of drafts/INDEX.csv
   ... --json OUT       # every finding
   ... --all            # also list functions with nothing to report
-Exit 1 when a registers-only function has a `call` or `global` finding, or any function a `slot` finding.
+What fails (exit 1 here, a `REFS` line in tools/check.py): a `slot` finding anywhere; a `call` or `global`
+finding in a registers-only function; and a `call` or `global` finding in a function marked
+`NON_MATCHING(minor)` that its note does not name (owner, 2026-11-12). `minor` says the behaviour is the
+same, so a callee or global the original does not have has to be accounted for in the note: write the
+address (`fn_71000803a4`, `0x7101a9c888`) or the import's name (`memmove`) there with why it is harmless,
+or mark the function `major`.
 """
 
 from __future__ import annotations
@@ -77,10 +82,11 @@ class Refs:
 
 
 def compare(ours: Refs, theirs: Refs, rodata: tuple[int, int] = (0, 0),
-            got: tuple[int, int] = (0, 1 << 64)) -> list[tuple[str, str]]:
-    """[(kind, text)] for what the two reference sets disagree on (kinds: slot, call, global, near).
-    `rodata` and `got` are the address ranges of the original's read-only data and of its GOT."""
-    out: list[tuple[str, str]] = []
+            got: tuple[int, int] = (0, 1 << 64)) -> list[tuple[str, str, str]]:
+    """[(kind, text, key)] for what the two reference sets disagree on (kinds: slot, call, global, near).
+    `key` is what the finding is about: an address in hex without 0x, or an import's name. `rodata` and
+    `got` are the address ranges of the original's read-only data and of its GOT."""
+    out: list[tuple[str, str, str]] = []
     targets = {t for t in theirs.cells.values() if t is not None}
     known = theirs.direct | set(theirs.cells) | targets
 
@@ -88,14 +94,14 @@ def compare(ours: Refs, theirs: Refs, rodata: tuple[int, int] = (0, 0),
         return any(abs(a - b) <= window for b in pool)
 
     for c in sorted(ours.calls - theirs.calls):
-        out.append(("call", f"calls {c:#x}, which the original function never calls"))
+        out.append(("call", f"calls {c:#x}, which the original function never calls", f"{c:x}"))
     reverse = ours.unresolved == 0  # with a name we cannot place, "ours never does" cannot be said
     for c in sorted(theirs.calls - ours.calls) if reverse else ():
-        out.append(("call", f"the original calls {c:#x}, ours never does"))
+        out.append(("call", f"the original calls {c:#x}, ours never does", f"{c:x}"))
     for n in sorted(ours.imports - theirs.imports):
-        out.append(("call", f"names the import {n}, which the original function never does"))
+        out.append(("call", f"names the import {n}, which the original function never does", n))
     for n in sorted(theirs.imports - ours.imports) if reverse else ():
-        out.append(("call", f"the original names the import {n}, ours never does"))
+        out.append(("call", f"the original names the import {n}, ours never does", n))
     for a in sorted(ours.got):
         if a in targets or a in theirs.direct:
             continue  # the same object (through the GOT here, directly there: visibility, not identity)
@@ -104,14 +110,16 @@ def compare(ours: Refs, theirs: Refs, rodata: tuple[int, int] = (0, 0),
         if a in theirs.cells:
             t = theirs.cells[a]
             out.append(("slot", f"names {a:#x}, a GOT slot of the original that points to "
-                                f"{f'{t:#x}' if t is not None else 'an import'}: the object is what it points to"))
+                                f"{f'{t:#x}' if t is not None else 'an import'}: the object is what it points to",
+                        f"{a:x}"))
         else:
             out.append(("near" if near(a, known) else "global",
-                        f"refers to {a:#x}, which the original function never does"))
+                        f"refers to {a:#x}, which the original function never does", f"{a:x}"))
     for a in sorted(ours.direct):
         if a in known:
             continue
-        out.append(("near" if near(a, known) else "global", f"refers to {a:#x}, which the original function never does"))
+        out.append(("near" if near(a, known) else "global",
+                    f"refers to {a:#x}, which the original function never does", f"{a:x}"))
     mine = ours.got | ours.direct
     if not reverse:
         return out
@@ -119,11 +127,12 @@ def compare(ours: Refs, theirs: Refs, rodata: tuple[int, int] = (0, 0),
         if t is None or cell in mine or t in mine:
             continue  # (a data import is compared by its name, with the imports)
         out.append(("near" if near(t, mine, SAME) else "global",
-                    f"the original refers to {t:#x} (through the cell at {cell:#x}), ours never does"))
+                    f"the original refers to {t:#x} (through the cell at {cell:#x}), ours never does", f"{t:x}"))
     for a in sorted(theirs.direct - mine):
         if rodata[0] <= a < rodata[1]:
             continue  # a string, a constant or a table: ours reaches its own copy without a name
-        out.append(("near" if near(a, mine, SAME) else "global", f"the original refers to {a:#x}, ours never does"))
+        out.append(("near" if near(a, mine, SAME) else "global",
+                    f"the original refers to {a:#x}, ours never does", f"{a:x}"))
     return out
 
 
@@ -139,27 +148,39 @@ def got_range(original) -> tuple[int, int]:
     return asmdiff.BASE + start, asmdiff.BASE + end
 
 
-def ours_refs(relocs: dict, resolve, is_import=lambda name: False, plt=lambda address: None) -> Refs:
-    """The references of our function: its relocations, each symbol resolved by `resolve(symbol)` to an
-    original address or None. `plt(address)` names the import behind a PLT stub: a call to the stub by its
-    address (fn_<stub>) is a call of that import."""
+def ours_refs(relocs: dict, resolve, dynamic=lambda name: None, plt=lambda address: None) -> Refs:
+    """The references of our function: its relocations, each symbol resolved to an original address.
+
+    `dynamic(symbol)` comes first: for a symbol of the original's dynamic table it returns the address the
+    module defines it at, or True for an import. That is by the exact mangled name, so an overload is not
+    taken for another (`operator new(unsigned long, std::nothrow_t const&)`, an import, is not the module's
+    `operator new`). Then `resolve(symbol)`, as tools/check.py resolves names, or None. `plt(address)` names
+    the import behind a PLT stub: a call to the stub by its address (fn_<stub>) is a call of that import."""
     r = Refs()
+
+    def call(target: int) -> None:
+        name = plt(target)
+        d = dynamic(name) if name is not None else None
+        if name is None:
+            r.calls.add(target)
+        elif d is True or d is None:
+            r.imports.add(name)
+        else:
+            r.calls.add(d)
+
     for _, rel in sorted(relocs.items()):
         if rel.section or rel.type not in (CALL26, JUMP26, GOT_PAGE) and rel.type not in ADRP_TYPES:
             continue
-        target = resolve(rel.symbol)
+        d = dynamic(rel.symbol)
+        if d is True:
+            r.imports.add(rel.symbol)
+            continue
+        target = d if d is not None else resolve(rel.symbol)
         if target is None:
-            if is_import(rel.symbol):
-                r.imports.add(rel.symbol)
-            else:
-                r.unresolved += 1
+            r.unresolved += 1
             continue
         if rel.type in (CALL26, JUMP26):
-            name = plt(target + rel.addend)
-            if name is not None:
-                r.imports.add(name)
-            else:
-                r.calls.add(target + rel.addend)
+            call(target + rel.addend)
         elif rel.type == GOT_PAGE:
             r.got.add(target + rel.addend)
         else:
@@ -212,20 +233,37 @@ def formed_addresses(code: bytes, address: int) -> tuple[set[int], set[int]]:
     return addresses, targets
 
 
+def dynamic_symbol(original):
+    """dynamic(name) for an original: the address the module defines a dynamic symbol at, True for one it
+    imports, None for a name that is not in its dynamic table."""
+    import asmdiff
+
+    def dynamic(name: str):
+        s = original.dynsym.get(name)
+        if s is None:
+            return None
+        return asmdiff.BASE + s["value"] if s["shndx"] != 0 and s["value"] != 0 else True
+    return dynamic
+
+
 def original_refs(original, address: int) -> Refs:
     """The references of the original function at `address`."""
     code = original.function(address)
     end = address + len(code)
     r = Refs()
+    dynamic = dynamic_symbol(original)
     addresses, targets = formed_addresses(code, address)
     for target in targets:
         if address <= target < end:
             continue
         name = original.plt_import(target)
-        if name is not None:
+        d = dynamic(name) if name is not None else None
+        if name is None:
+            r.calls.add(target)
+        elif d is True or d is None:
             r.imports.add(name)
         else:
-            r.calls.add(target)
+            r.calls.add(d)  # a PLT stub for a function the module itself defines
     for a in addresses:
         if address <= a < end:
             continue  # a place in the function itself: a literal, a jump table, a label
@@ -252,18 +290,40 @@ def object_findings(obj: Path, original, by_name, rodata, got) -> list[dict]:
         if res.bytes_match:
             continue
         kind = asmdiff.classify(original.function(res.address), codes[res.symbol]).split(" ")[0]
-        mine = ours_refs(res.relocs, targets, lambda sym: sym in original.dynsym, original.plt_import)
+        mine = ours_refs(res.relocs, targets, dynamic_symbol(original), original.plt_import)
         found = compare(mine, original_refs(original, res.address), rodata, got)
         out.append({"address": f"{res.address:#x}", "function": names.get(res.symbol, res.symbol),
                     "difference": kind, "unresolved": mine.unresolved,
-                    "findings": [{"kind": k, "text": t} for k, t in found]})
+                    "findings": [{"kind": k, "text": t, "key": key} for k, t, key in found]})
     return out
 
 
-def failing(row: dict) -> list[dict]:
-    """The findings of a row that fail: a slot anywhere, a call or global in a registers-only function."""
-    return [f for f in row["findings"]
-            if f["kind"] == "slot" or row["difference"] == "registers" and f["kind"] != "near"]
+def named(key: str, note: str) -> bool:
+    """Whether a NON_MATCHING note names what a finding is about: the address (as fn_<addr>, g_unk_<addr> or
+    0x<addr>), or the import by its name, mangled or as written in source (`memmove`, `operator new`)."""
+    if key in note:
+        return True
+    if not key.startswith("_Z"):
+        return False
+    import asmdiff
+    plain = asmdiff.strip_params(asmdiff.demangle([key], strip=False).get(key, key))
+    return plain in note
+
+
+def failing(row: dict, minor_note: str | None = None) -> list[dict]:
+    """The findings of a row that fail: a slot anywhere; a call or global in a registers-only function; and,
+    in a function marked NON_MATCHING(minor) (`minor_note` is its note's text), a call or global that the
+    note does not name. `minor` says the behaviour is the same: a callee or a global the original does not
+    have, or lacks one it has, has to be accounted for in words."""
+    out = []
+    for f in row["findings"]:
+        if f["kind"] == "near":
+            continue
+        if f["kind"] == "slot" or row["difference"] == "registers":
+            out.append(f)
+        elif minor_note is not None and not named(f["key"], minor_note):
+            out.append(f)
+    return out
 
 
 def ranges(original) -> tuple[tuple[int, int], tuple[int, int]]:
@@ -320,8 +380,10 @@ def main() -> int:
         if not ok:
             unbuilt += 1
             continue
+        notes = check.minor_notes(src)
         for o in object_findings(obj, original, by_name, rodata, got):
             judged += 1
+            o["fails"] = failing(o, notes.get(o["function"].split("::")[-1]))
             out.append({"file": rel, **o})
     bad = [o for o in out if o["findings"]]
     order = {"slot": 0, "call": 1, "global": 2, "near": 3}
@@ -331,12 +393,13 @@ def main() -> int:
             continue
         print(f"{o['address']}  {o['difference']:10}  {o['file']}  {o['function']}")
         for f in o["findings"]:
-            print(f"    {f['kind']:6} {f['text']}")
+            print(f"    {f['kind']:6} {f['text']}{'   <- FAILS' if f in o['fails'] else ''}")
     kinds = collections.Counter(f["kind"] for o in bad for f in o["findings"])
-    strict = [o for o in bad if failing(o)]
+    strict = [o for o in bad if o["fails"]]
     print(f"ref_check: {judged} non-matching functions in {len(files) - unbuilt} files ({unbuilt} files do not build); "
           f"{len(bad)} with a finding ({', '.join(f'{k} {v}' for k, v in sorted(kinds.items())) or 'none'}); "
-          f"{len(strict)} fail (registers-only with a call or global finding, or a slot finding); "
+          f"{len(strict)} fail (a slot; a call or global in a registers-only function; one a minor note "
+          f"does not name); "
           f"{sum(o['unresolved'] for o in out)} names resolve to no address and were not compared")
     if args.json:
         args.json.parent.mkdir(parents=True, exist_ok=True)

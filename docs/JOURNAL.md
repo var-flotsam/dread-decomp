@@ -152,6 +152,24 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**The four functions of the sweep, read; and a rule for `minor` (2026-11-12).** The four `NON_MATCHING(minor)`
+functions that `tools/ref_check.py` listed with a callee or a global the original does not have:
+- `fn_7100b39714` was wrong. It is the destructor of a sibling of `fn_7100b39640`'s class, with the same
+  members and another vtable (`0x7101a9c888`); ours stored its twin's. The class is a template over its vtable
+  now. The bytes are the same as before, which is why nothing else could see it.
+- `fn_7101065450` was the tool's mistake. The sort's temporary buffer comes from
+  `operator new(unsigned long, std::nothrow_t const&)`, an import; resolving names as the check does, by
+  demangled name without parameters, took it for the module's own `operator new`. A symbol of the original's
+  dynamic table is matched by its exact name now, before any other resolution.
+- `fn_71000f63b0` and `fn_7100d668d4` behave the same: one more call of the string release that cannot run
+  (the result holds the id), and a 0x2c-byte copy through `memmove` where the original copies in line. Their
+  notes say so now.
+
+The owner's rule from this: `minor` claims the same behaviour, so a minor function that calls or refers to
+something the original function does not, or lacks something it has, has to name it in its note (the address
+or the import's name) with why it is harmless. `tools/check.py` fails one that does not (`REFS`), and
+`tools/ref_check.py` marks it. With the three notes and the fix above, the tree passes.
+
 **A sweep for wrong addresses in functions that do not match (2026-11-12).** `tools/check.py` verifies every
 callee, global and GOT slot of a matching function, and nothing in a non-matching one: its check needs the
 instructions to line up. `tools/ref_check.py` compares sets instead: what our function calls and refers to (its

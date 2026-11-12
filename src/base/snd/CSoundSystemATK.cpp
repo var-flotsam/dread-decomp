@@ -112,6 +112,8 @@ extern char g_unk_7108b6b910[] __attribute__((visibility("hidden")));
 // NON_MATCHING(minor): same behaviour; the original builds the new id in a stack slot and moves it into the
 // result with a plain store (no count update, no destructor) where ours copy-constructs it and destroys the
 // local, reloads the list's last node after linking, and swaps two registers (key and old head) in the insertion.
+// The local's destructor is one more call than the original has, of the release fn_71000803a4; it cannot run,
+// since the result holds the same id and its count is at least one after the decrement.
 CFilePathStrId fn_71000f63b0(const CFilePathStrId& id) {
     fn_7100132cd0();
     if (g_unk_7108b6ab60 == 1)

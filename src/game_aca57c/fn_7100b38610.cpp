@@ -13,7 +13,6 @@
 
 using base::global::CRntString;
 
-extern void* g_unk_7101a9c888[];
 extern void* g_unk_7101a1b5a0[];
 using UnkString20 = UnkBufferString<0x20, g_unk_7101a1b5a0>;
 

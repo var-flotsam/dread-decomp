@@ -53,7 +53,9 @@ Wrong addresses in functions that do not match (tools/ref_check.py): the relocat
 matching bytes, so a non-matching function is compared as a set: what it calls and refers to against what
 the original function calls and refers to. A global named after a GOT slot, and a call or a global the
 original never has in a function whose difference is registers-only, print `REFS  <addr>  <what>` and the
-check fails. Other differences of the sets are for `python tools/ref_check.py` to list.
+check fails. So does such a call or global in any function marked NON_MATCHING(minor) unless its note names it
+(the address or the import's name): `minor` claims the same behaviour, and the difference has to be accounted
+for in words. Other differences of the sets are for `python tools/ref_check.py` to list.
 
 Usage:
   python tools/check.py --version 2.1.0            # report; exit 1 if an O function regressed or a function is defined in two files
@@ -110,6 +112,26 @@ def annotations(src: Path) -> dict[str, str]:
         d = DEFINITION.match(line)
         if d and pending and not line.rstrip().endswith(";"):
             out[d.group(1).split("::")[-1]] = pending
+            pending = None
+    return out
+
+
+def minor_notes(src: Path) -> dict[str, str]:
+    """Map function name (last component) -> the text of its NON_MATCHING(minor) note: the comment lines
+    from the annotation down to the definition."""
+    out: dict[str, str] = {}
+    pending: list[str] | None = None
+    for line in src.read_text(encoding="utf-8").splitlines():
+        a = ANNOTATION.search(line)
+        if a:
+            pending = [line] if a.group(1) == "minor" else None
+            continue
+        if pending is not None and line.lstrip().startswith("//"):
+            pending.append(line)
+            continue
+        d = DEFINITION.match(line)
+        if d and pending is not None and not line.rstrip().endswith(";"):
+            out[d.group(1).split("::")[-1]] = "\n".join(pending)
             pending = None
     return out
 
@@ -361,10 +383,12 @@ def compile_only(version: str, jobs: int, cache: bool = True) -> int:
 
 def wrong_references(original: asmdiff.Original, by_name: dict[str, list[int]],
                      where: dict[str, list[tuple[Path, str]]], addresses: set[str],
-                     skip: set[str] = frozenset()) -> list[tuple[str, str, str]]:
+                     skip: set[str] = frozenset(), notes: dict[str, str] | None = None) -> list[tuple[str, str, str]]:
     """[(address, function, finding)] for the failing findings of tools/ref_check.py in the non-matching
     functions at `addresses` (`skip`: functions that match in bytes and were demoted for a RELOC line, which
-    says the same thing already)."""
+    says the same thing already). `notes` maps the address of a NON_MATCHING(minor) function to its note:
+    there a callee or global the original does not have fails unless the note names it."""
+    notes = notes or {}
     objects = sorted({obj for a in addresses - skip for obj, _ in where.get(a, [])})
     if not objects:
         return []
@@ -373,7 +397,8 @@ def wrong_references(original: asmdiff.Original, by_name: dict[str, list[int]],
     for obj in objects:
         for row in ref_check.object_findings(obj, original, by_name, rodata, got):
             if row["address"] in addresses:
-                out += [(row["address"], row["function"], f["text"]) for f in ref_check.failing(row)]
+                out += [(row["address"], row["function"], f["text"])
+                        for f in ref_check.failing(row, notes.get(row["address"]))]
     return sorted(set(out))
 
 
@@ -444,8 +469,10 @@ def main() -> int:
     entries, reused = diff_all(pairs, original, by_name, diff_inputs(args.version, rows, args.no_reloc),
                                args.no_reloc, cache)
     where: dict[str, list[tuple[Path, str]]] = {}  # address -> (object, symbol) of every definition
+    note_of: dict[str, str] = {}  # address of a NON_MATCHING(minor) function -> its note
     for src, obj in pairs:
         notes = annotations(src)
+        texts = minor_notes(src) if "m" in notes.values() else {}
         report_only = src.relative_to(ROOT / "src").parts[0] in REPORT_ONLY
         for e in entries[src]:
             short = e["name"].split("::")[-1]
@@ -462,6 +489,8 @@ def main() -> int:
                         demoted.add(addr)
                     reloc_lines.setdefault(addr, []).extend(e["reloc_lines"])
             results[addr] = (status, e["name"], e["score"])
+            if status == "m" and short in texts:
+                note_of[addr] = texts[short]
             defined_in.setdefault(addr, set()).add(src)
             where.setdefault(addr, []).append((obj, e["symbol"]))
     print(f"cache: {len(pairs) - reused} of {len(pairs)} objects diffed, {reused} reused")
@@ -498,7 +527,8 @@ def main() -> int:
     if duplicates:
         print(f"{len(duplicates)} functions defined in more than one file; rerun the generators (verify.py --regen)")
 
-    refs = wrong_references(original, by_name, where, {a for a, v in results.items() if v[0] != "O"}, demoted)
+    refs = wrong_references(original, by_name, where, {a for a, v in results.items() if v[0] != "O"}, demoted,
+                            note_of)
     for addr, name, text in refs:
         print(f"REFS  {addr}  {name}: {text}")
     if refs:
