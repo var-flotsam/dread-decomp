@@ -106,7 +106,7 @@ __attribute__((always_inline)) static inline UnkReflValue GetVirtualFlag(UnkArgu
 // Values of kind 2 referring (flag 1) to a cutscene definition held by an iterator value: in place
 // at 0x8, or through the pointer there when the state (after the Size-byte value) is 2. The class
 // getter is called first, so the class (whose reflected data is at the descriptor) is set up.
-extern const CType g_unk_7172794d40 __attribute__((visibility("hidden")));
+extern const base::reflection::CType g_unk_7172794d40 __attribute__((visibility("hidden")));
 
 template <u32 Size>
 struct UnkDefIterValue {

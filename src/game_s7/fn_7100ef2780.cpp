@@ -10,6 +10,7 @@
 #include "game/UnkTUSymbols.h"
 
 using namespace unk_static_init;
+using base::reflection::CType;
 
 struct UnkStatics_7100ef2780 {
     HeaderIds ids;
@@ -65,7 +66,7 @@ void fn_7100ee0df0(UnkEnumType* type, const CStrId& name, void*, void*, void (*)
 void fn_7100ee021c();
 extern char g_unk_71729da9e8[];
 extern char g_unk_71729da9e9[];
-UnkEnumType* fn_7100ad61f8();
+const CType* fn_7100ad61f8();
 extern UnkStrIdBase g_unk_71729da9f0[9];
 
 void fn_7100ef2780() {
@@ -108,7 +109,7 @@ void fn_7100ef2780() {
     }
     __cxa_atexit(fn_7100096604, &g_unk_71729da8b0, g_unk_7101a19000);
     fn_710009ec00(g_unk_71729da9e8, &g_unk_71729da8b0);
-    fn_710009ec00(g_unk_71729da9e9, fn_7100ad61f8());
+    fn_710009ec00(g_unk_71729da9e9, TypeOf<fn_7100ad61f8>());
     InitId(&g_unk_71729daec0.field_0x20, "SubAreaManager");
     InitId(&g_unk_71729daec0.field_0x28, "SubAreaManager");
     InitId(&g_unk_71729daec0.field_0x30, "brsa");

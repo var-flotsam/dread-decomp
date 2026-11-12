@@ -6,6 +6,7 @@
 #include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
+using base::reflection::CType;
 
 struct UnkFnObj {
     u64 field_0x0[3];
@@ -50,7 +51,7 @@ UnkEnumType* fn_71002f1944();  // base::reflection::refl_GetType<std::unique_ptr
 extern char g_unk_71726ade0a[];
 UnkEnumType* fn_71002f22c0();
 extern char g_unk_71726ade0b[];
-UnkEnumType* fn_71002ee1dc();
+const CType* fn_71002ee1dc();
 extern char g_unk_71726ade0c[];
 UnkEnumType* fn_71002f239c();
 
@@ -87,6 +88,6 @@ void fn_71002f6180() {
     fn_710009ec00(g_unk_71726ade08, &g_unk_71726adc98);
     fn_710009ec00(g_unk_71726ade09, fn_71002f1944());
     fn_710009ec00(g_unk_71726ade0a, fn_71002f22c0());
-    fn_710009ec00(g_unk_71726ade0b, fn_71002ee1dc());
+    fn_710009ec00(g_unk_71726ade0b, TypeOf<fn_71002ee1dc>());
     fn_710009ec00(g_unk_71726ade0c, fn_71002f239c());
 }

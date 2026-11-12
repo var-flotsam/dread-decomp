@@ -8,11 +8,11 @@
 extern char g_unk_7101a211b8[];  // vtable of the object
 
 void fn_71002aed2c(void* set, void* item);
-void fn_71002aeb9c(void* set, void* item);
+void fn_71002aeb9c(UnkLinkList* list, UnkLinkList** slot);
 void fn_71002aea0c(void* set, void* item);
 
 // A registration in a deferred set; removes itself on destruction.
-template <void (*Remove)(void*, void*)>
+template <class Set, class Item, void (*Remove)(Set*, Item*)>
 struct UnkRegistration_71002ad0dc {
     void* set;
     void* field_0x8;
@@ -20,7 +20,7 @@ struct UnkRegistration_71002ad0dc {
 
     ~UnkRegistration_71002ad0dc() {
         if (set) {
-            Remove(set, this);
+            Remove(static_cast<Set*>(set), reinterpret_cast<Item*>(this));
             set = nullptr;
         }
         field_0x10 = nullptr;
@@ -58,15 +58,15 @@ struct UnkObject_71002ad0dc {
     UnkRefPtr_71002ad0dc field_0x11978;
     u32 field_0x11980;
     u8 pad_0x11984[0x12988 - 0x11984];
-    UnkRegistration_71002ad0dc<fn_71002ae87c> field_0x12988;
-    UnkRegistration_71002ad0dc<fn_71002ae87c> field_0x129a0;
-    UnkRegistration_71002ad0dc<fn_71002aea0c> field_0x129b8;
-    UnkRegistration_71002ad0dc<fn_71002aea0c> field_0x129d0;
-    UnkRegistration_71002ad0dc<fn_71002aeb9c> field_0x129e8;
-    UnkRegistration_71002ad0dc<fn_71002aeb9c> field_0x12a00;
-    UnkRegistration_71002ad0dc<fn_71002aeb9c> field_0x12a18;
-    UnkRegistration_71002ad0dc<fn_71002aed2c> field_0x12a30;
-    UnkRegistration_71002ad0dc<fn_71002aed2c> field_0x12a48;
+    UnkRegistration_71002ad0dc<void, void, fn_71002ae87c> field_0x12988;
+    UnkRegistration_71002ad0dc<void, void, fn_71002ae87c> field_0x129a0;
+    UnkRegistration_71002ad0dc<void, void, fn_71002aea0c> field_0x129b8;
+    UnkRegistration_71002ad0dc<void, void, fn_71002aea0c> field_0x129d0;
+    UnkRegistration_71002ad0dc<UnkLinkList, UnkLinkList*, fn_71002aeb9c> field_0x129e8;
+    UnkRegistration_71002ad0dc<UnkLinkList, UnkLinkList*, fn_71002aeb9c> field_0x12a00;
+    UnkRegistration_71002ad0dc<UnkLinkList, UnkLinkList*, fn_71002aeb9c> field_0x12a18;
+    UnkRegistration_71002ad0dc<void, void, fn_71002aed2c> field_0x12a30;
+    UnkRegistration_71002ad0dc<void, void, fn_71002aed2c> field_0x12a48;
     base::UnkRefPtrMember field_0x12a60;
     base::UnkRefPtrMember field_0x12a68;
 
