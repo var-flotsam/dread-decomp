@@ -143,6 +143,24 @@ typed pointer as `void*` needs no cast.
 - `g_unk_7101d4cfb0`, `g_unk_7172794d40`: a `const CType` that one file writes through as `UnkReflType`.
 - `g_unk_7172759178`: a template type the other file does not have.
 
+## Members bound to their function by a comment only
+
+A constructor, destructor or method declared in a struct and written `Foo();  // fn_<addr>` tells a reader
+which function it is and tells the port's linker nothing. The owner's rule (2026-11-12): a labelled member is
+the declaration, `Foo() asm("fn_<addr>");`. 26 members got their label on 2026-11-12, each checked first: the
+original's calls of that member go to the labelled address in every matching function that calls it. 112
+member declarations over 62 symbols still have the comment only:
+- 3 that no matching function calls, so the comment could not be checked (`fn_7100133be4`, `fn_7100b262f4`,
+  `fn_71000c2f58`);
+- 9 whose function a hand-written file also defines as a free function (`fn_7100082c38` in
+  `src/base/UnkDefaultAllocator.cpp` is `new (self) UnkDefaultAllocator();`): there the labelled constructor
+  would be the function that calls it, and the port's compiler does not come back from that file;
+- the ones whose function is also declared as a free function somewhere (`CRntString`'s constructors against
+  `fn_710007e704` in `base/UnkNamedRegistry.h`, and 30 more): the label would be a second signature of the
+  symbol, so the free declaration has to go first, and its callers have to construct the object instead;
+- the ones whose struct is defined in several files (the 25 other views of the id table, the callback sets):
+  the label would be a copy in each file, so the struct needs one definition first.
+
 ## Definitions that disagree with their declaration
 
 `python tools/decl_check.py --definitions` lists every hand-written definition whose result or parameters

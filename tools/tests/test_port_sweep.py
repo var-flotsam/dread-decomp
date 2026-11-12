@@ -223,5 +223,27 @@ class CoffComdat(unittest.TestCase):
         self.assertEqual(dict(got), {"/o/a.o": {"inline_fn"}, "/o/b.o": set()})
 
 
+
+class CompileOne(unittest.TestCase):
+    def test_a_compile_past_the_limit_is_a_failed_file(self):
+        with tempfile.TemporaryDirectory() as d:
+            src = ps.ROOT / "src" / "x.cpp"
+            with mock.patch.object(ps.subprocess, "run",
+                                   side_effect=subprocess.TimeoutExpired(cmd="clang++", timeout=5)) as run:
+                got = ps.compile_one("clang++", ["-c"], src, Path(d), time_limit=5)
+            self.assertEqual(run.call_args.kwargs["timeout"], 5)
+        self.assertEqual(got[0], src)
+        self.assertEqual(got[1], 1)
+        self.assertEqual(got[2], "src/x.cpp:1: fatal error: the compiler did not finish in 5 s")
+
+    def test_no_limit_by_default(self):
+        with tempfile.TemporaryDirectory() as d:
+            done = mock.Mock(returncode=0, stderr="")
+            with mock.patch.object(ps.subprocess, "run", return_value=done) as run:
+                got = ps.compile_one("clang++", ["-c"], ps.ROOT / "src" / "x.cpp", Path(d))
+            self.assertIsNone(run.call_args.kwargs["timeout"])
+        self.assertEqual(got[1:], (0, ""))
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -5,7 +5,7 @@
 
 // Layout unknown beyond its size (the constructor writes up to +0x960 and beyond).
 struct UnkSingleton_71001039f8 {
-    UnkSingleton_71001039f8();  // fn_7101213858
+    UnkSingleton_71001039f8() asm("fn_7101213858");  // fn_7101213858
     ~UnkSingleton_71001039f8();
     u8 field_0x0[0x970];
 };

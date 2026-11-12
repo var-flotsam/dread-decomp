@@ -32,7 +32,7 @@ struct UnkSubTree {
     u32 field_0x8;
     u32 field_0xc;
     char pad2[0x90 - 0x10];
-    UnkFlags Query(UnkFlags flags, const UnkBox* box, u32 mask, const UnkBox* bounds, void* arg, u32 arg2);  // fn_7100d5c6dc
+    UnkFlags Query(UnkFlags flags, const UnkBox* box, u32 mask, const UnkBox* bounds, void* arg, u32 arg2) asm("fn_7100d5c6dc");  // fn_7100d5c6dc
 };
 
 struct UnkTree {

@@ -34,7 +34,7 @@ struct UnkCollisionRecord {
     u64 field_0x20;
     UnkCollisionObject* field_0x28;
 
-    UnkCollisionRecord();   // fn_710072676c
+    UnkCollisionRecord() asm("fn_710072676c");   // fn_710072676c
     ~UnkCollisionRecord();  // fn_7100726674
     UnkCollisionRecord(UnkCollisionRecord&& other) = default;
 };
