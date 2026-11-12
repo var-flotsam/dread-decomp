@@ -421,6 +421,15 @@ python tools/fakematch.py --strict            # exit 1 on any barrier-no-comment
 python tools/fakematch.py PATH...             # only these files or directories
 ```
 
+### `tools/sample_review.py`
+
+The week's sample of newly decompiled hand-written functions, for a person or an independent session to read.
+
+```sh
+python tools/sample_review.py                                   # the last 7 days of origin/main, 20 functions
+python tools/sample_review.py --since 2026-11-05 --count 20 --seed 2026-W46
+```
+
 ### `tools/dashboard_export.py`
 
 Status tables for the project dashboard, written to build/dashboard/ (counts only, no code).

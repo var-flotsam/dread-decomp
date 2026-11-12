@@ -152,6 +152,31 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Sampled read, seed 2026-W46: 20 of the week's 3,863 new hand-written functions (2026-11-12).** The gates
+prove bytes, relocation targets and declarations; none of them reads. `python tools/sample_review.py` draws
+a seeded sample of the hand-written functions that became `O`, `m` or `M` in the last seven days and writes
+a worksheet with six questions (`docs/maintaining.md`, "The weekly sampled read"). This is the first read,
+by the session that did the independent review. It is a reading of the source only: whether a comment is
+true to the binary was not checked.
+
+| Question | Of 20 |
+|---|---|
+| Reads like decompiler output | 0 |
+| Opening comment of the file describes the unit | 20; 8 functions also have a comment of their own |
+| A real-looking name that has no source | 0 |
+| Uses a struct that exists only in its file (its name carries the batch's tag, `_ovb0105`, `_b0129c`) | 18 |
+| Casts an object to another struct's name to call a function another file declares | 9 |
+| Written as offsets, not as a layout | 1 (`fn_7100e910fc`: a base pointer plus `0xd63d30` and casts; its file's comment says so) |
+| A barrier, `volatile` or an inlining attribute | 0 |
+| A form that looks like steering and that `fakematch.py` does not list | 3: a one-field struct local made to pass a constant (`fn_71001e9b54`), `(&v->data[i])[1]` for `cur[1]` (`fn_710011f95c`), `goto` shaping a countdown (`fn_71003adb60`) |
+
+What it says about the week's runs, not about single functions: the code is readable function by function and
+none of it is pasted; the cost is in the types. Eighteen of twenty functions describe their object with a
+struct of their own, and nine then cast that object to a second struct to call a neighbour. That is the
+"definitions that name a type differently" count (984) and the 1,243 extra declarations as a reader meets
+them, and it is what class-first work orders would attack (one header per class, grown by every function
+that touches it). Nothing was changed in the 20 files.
+
 **`drafts.py promote`, first real use: two matches leave `drafts/`, and every held one says why (2026-11-12).**
 The 14 drafts that match (13 since the permuter spike) all carried one note, "its declarations are not settled
 yet". `python tools/drafts.py --version 2.1.0 promote <the 14> --write` and the coordinator's step after it:
