@@ -15,7 +15,7 @@ struct UnkTextBuffer200;
 void fn_7100d8ced8(void* self);  // Constructor.
 void fn_71000a1ba4(UnkAssignedRecord_a1ba4* self, const UnkAssignedRecord_a1ba4* other);
 bool fn_71000a1ed4(const UnkCompared_0x18* a, const UnkCompared_0x18* b);
-void* fn_7100d8e0a0(void* manager);
+void fn_7100d8e0a0(void* manager);
 
 // Out-of-line destructor of a music preset map's values (src/game/sound/UnkMusicPresets.cpp).
 void fn_7100d90304(void*);

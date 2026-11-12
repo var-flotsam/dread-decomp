@@ -7,6 +7,6 @@
 
 struct UnkOffsetScratch_b65a4;
 struct UnkOffsetVec_b65a4;
-void* fn_710063c670(void* part);
+void fn_710063c670(void* part);
 bool fn_710063b1b0(u8* registry, void* owner, u32 flags, UnkOffsetVec_b65a4* pos, UnkOffsetScratch_b65a4* scratch);
 extern void* g_unk_7101a58cd8[];

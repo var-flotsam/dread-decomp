@@ -771,8 +771,8 @@ struct UnkAttackEntry_b0162 {
     bool field_0x10;
 };
 static inline UnkAttackEntry_b0162* GetEntry_b0162(CAttack* attack, u32 value) {
-    return reinterpret_cast<UnkAttackEntry_b0162* (*)(UnkAttackTarget_A2_b68*, u32)>(&fn_71003646b0)(
-        reinterpret_cast<UnkAttackTarget_A2_b68*>(attack->field_0x20), value);
+    return static_cast<UnkAttackEntry_b0162*>(
+        fn_71003646b0(reinterpret_cast<UnkAttackTarget_A2_b68*>(attack->field_0x20), value));
 }
 
 struct UnkAttackAI_b0162 {

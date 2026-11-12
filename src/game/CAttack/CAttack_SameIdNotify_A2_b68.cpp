@@ -42,10 +42,10 @@ struct UnkAttack_A2_b68 {
     UnkAttackTarget_A2_b68* target;
 };
 
-void fn_7100362324(UnkAttack_A2_b68* self, u32 value) {
+void* fn_7100362324(UnkAttack_A2_b68* self, u32 value) {
     UnkAttackTarget_A2_b68* first = self->target;
     if (!first)
-        return;
+        return nullptr;
     if (UnkAttackActor_A2_b68* actor = self->actor) {
         if (UnkAttackAI_A2_b68* ai = actor->ai) {
             if (reinterpret_cast<void*>(ai->id) != &g_unk_7101d47108->empty) {
@@ -60,5 +60,5 @@ void fn_7100362324(UnkAttack_A2_b68* self, u32 value) {
             }
         }
     }
-    fn_71003646b0(first, value);
+    return fn_71003646b0(first, value);
 }
