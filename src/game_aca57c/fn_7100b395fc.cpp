@@ -13,7 +13,6 @@ using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
 extern void* g_unk_7101a9c938[];
-extern void* g_unk_7101a9c888[];
 
 // A string id whose destructor reloads the id after the decrement.
 struct UnkReleasedStrId {
