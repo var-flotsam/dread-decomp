@@ -182,6 +182,16 @@ class Plan(unittest.TestCase):
         planned, _ = decl_plan.plan(decl_check.Report(files), files, UNITS, None, {}, decl_plan.header_types(files))
         self.assertEqual([(p.header, p.includes) for p in planned], [("include/game/CFoo.h", ())])
 
+    def test_a_name_with_another_meaning_elsewhere_is_not_forward_declared(self):
+        files = tree(a="struct UnkMix;\nstruct UnkPlain;\nvoid fn_7100000110(UnkMix*);\nvoid fn_7100000111(UnkPlain*);\n",
+                     b="struct UnkMix;\nstruct UnkPlain;\nvoid fn_7100000110(UnkMix*);\nvoid fn_7100000111(UnkPlain*);\n",
+                     c='#include "base/snd/UnkMix.h"\nusing base::snd::UnkMix;\n')
+        clashing = decl_plan.other_meanings(files)
+        self.assertEqual(clashing, {"snd", "UnkMix"})
+        planned, why = decl_plan.plan(decl_check.Report(files), files, UNITS, None, decl_plan.type_index(files), {}, clashing)
+        self.assertEqual([p.symbol for p in planned], ["fn_7100000111"])
+        self.assertEqual(dict(why), {"a type that is not a plain struct every file agrees on": 1})
+
     def test_grown_names_what_new_files_copied(self):
         before = decl_check.Report(tree(a="void fn_7100000110(int);\nvoid fn_7100000111(int);\n",
                                         b="void fn_7100000110(int);\n"))

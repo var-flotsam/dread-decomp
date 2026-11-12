@@ -12,7 +12,8 @@ address (tools/data_map.py, read from data/data_map.csv).
 A symbol is planned when it is declared in more than one file with one signature, at global scope, in
 no header under include/ yet, and its types are builtin, or plain structs that the declaring file
 forward-declares or defines, or that every file of the tree agrees on (one keyword, never an alias, never
-named through a namespace), which are forward-declared in the header, or types that exactly one header
+named through a namespace; a name with such another meaning in some file is never forward-declared),
+which are forward-declared in the header, or types that exactly one header
 under include/ defines (`CStrId`, `UnkVec3f`), for which the unit header includes that header and the
 declaration names the type in full (`base::global::CStrId`); a type used by value takes its header
 whenever there is one. A global's copies must also be
@@ -118,6 +119,18 @@ ALIAS = re.compile(r"\busing\s+([A-Za-z_]\w*)\s*=|\btypedef\b[^;{}]*?\b([A-Za-z_
 QUALIFIED = re.compile(r"::([A-Za-z_]\w*)")
 
 
+def other_meanings(files: dict[str, str]) -> set[str]:
+    """Names that some file defines as an alias (`using X =`, a typedef) or reaches through a namespace
+    (`::X`). A header must not forward-declare such a name at global scope: in that file the forward
+    declaration is a second meaning of the name, and the file stops compiling."""
+    out: set[str] = set()
+    for text in files.values():
+        for a, b in ALIAS.findall(text):
+            out.add(a or b)
+        out.update(QUALIFIED.findall(text))
+    return out
+
+
 def type_index(files: dict[str, str]) -> dict[str, str]:
     """{name: struct | class | union} for the types every file agrees on: declared at the start of a line
     with one keyword everywhere, never an alias (`using X =`, a typedef) and never named through a
@@ -171,11 +184,13 @@ def header_types(files: dict[str, str]) -> dict[str, tuple[str, str]]:
 
 def plan(report: decl_check.Report, files: dict[str, str], units: list[dict],
          data_unit=None, known: dict[str, str] | None = None,
-         shared: dict[str, tuple[str, str]] | None = None) -> tuple[list[Planned], Counter]:
+         shared: dict[str, tuple[str, str]] | None = None,
+         clashing: set[str] | None = None) -> tuple[list[Planned], Counter]:
     """(what can move, why the rest of the multiply-declared symbols cannot). `data_unit` gives the index of
     the unit a data address belongs to, or None (data_map.finder); without it no global is planned. `known`
     (type_index) lets a type the declaring file takes from an include be forward-declared too; `shared`
-    (header_types) lets a type one header defines be used through that header."""
+    (header_types) lets a type one header defines be used through that header; a name in `clashing`
+    (other_meanings) is never forward-declared, whatever the declaring file does."""
     find = unit_finder(units)
     by_index = {str(u["index"]): u for u in units}
     out: list[Planned] = []
@@ -212,7 +227,7 @@ def plan(report: decl_check.Report, files: dict[str, str], units: list[dict],
             by_value = re.search(rf"\b{t}\b(?!\s*[*&])", sig) is not None
             if by_value and shared and t in shared:
                 full[t] = shared[t]
-            elif m:
+            elif m and not (clashing and t in clashing):
                 types[t] = m.group(1)
             elif known and t in known:
                 types[t] = known[t]
@@ -348,7 +363,8 @@ def main() -> int:
     files = decl_check.tree_files(None)
     report = decl_check.Report(files)
     data_unit = data_map.finder(data_map.load()) if data_map.OUT.is_file() else None
-    planned, why = plan(report, files, tu_map.load_map(), data_unit, type_index(files), header_types(files))
+    planned, why = plan(report, files, tu_map.load_map(), data_unit, type_index(files), header_types(files),
+                        other_meanings(files))
     print(f"{len(report.multi)} symbols declared in more than one file; {len(planned)} can move "
           f"({sum(p.copies for p in planned)} local copies)")
     for k, v in why.most_common():
