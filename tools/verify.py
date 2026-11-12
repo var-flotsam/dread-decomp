@@ -12,7 +12,9 @@ Runs, in order:
   4. the tools/policy_check.py rules, on tracked and untracked (not ignored) files;
   5. tools/decl_check.py in report mode: how many fn_/g_unk_ symbols the hand-written sources
      declare in more than one file or with conflicting signatures (informational; it never fails
-     this gate, CI enforces no growth per pull request with `decl_check.py --base`).
+     this gate, CI enforces no growth per pull request with `decl_check.py --base`);
+  6. tools/name_check.py --strict: every name that is not an address points to one address of the
+     original in all the matching functions that use it.
 
 Prints PASS/FAIL per step, the O count before -> after, regressions (count and up to 5
 addresses), game-code progress and, on failure, the next action. Exit status 0 only if every
@@ -163,6 +165,15 @@ def main() -> int:
               "include/ and again in src/ (no growth enforced by `decl_check.py --base <ref>`)")
     except (ValueError, KeyError):
         print(f"NOTE decl_check: no counts (exit {rc}): {short(lines[-1] if lines else '')}")
+
+    rc, lines, _ = run("tools/name_check.py", "--version", v, "--strict")
+    summary = next((ln for ln in lines if ln.startswith("name_check:")), lines[-1] if lines else "")
+    if rc == 0:
+        print(f"PASS {short(summary)}")
+    else:
+        ok = False
+        print(f"FAIL {short(summary)}")
+        nexts.append("`python tools/name_check.py --version <ver>` lists each name and where its references point")
 
     if ok:
         base_file.parent.mkdir(parents=True, exist_ok=True)
