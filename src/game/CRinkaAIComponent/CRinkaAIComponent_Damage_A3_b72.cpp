@@ -5,6 +5,7 @@
 // state at +0x70 is 2. Names and layouts are placeholders.
 #include "game/CBossAIComponent.h"
 #include "game/UnkTU1176.h"
+#include "game/UnkTU1370.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
 
@@ -20,7 +21,6 @@ struct UnkZiplineLink_b49;
 struct UnkCentralUnitList;
 
 struct UnkRequest;
-void fn_71008c1538(UnkRequest* request, f32 value);
 
 // The unit's five per-state amounts (statics the unit's initialiser fills).
 extern f32 g_unk_7172716448 __attribute__((visibility("hidden")));

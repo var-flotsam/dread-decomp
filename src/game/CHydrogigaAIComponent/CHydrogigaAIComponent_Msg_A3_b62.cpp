@@ -1,12 +1,12 @@
 // CHydrogigaAIComponent unit: fn_71005c3d38 handles one message id (the global id g_unk_71726eb3d0): it clears a
 // flag of the lazily created manager g_unk_7101d47360 and reports the message handled. Names are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU2577.h"
 #include "game/UnkTU881.h"
 #include "types.h"
 
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
-void fn_7100ee1f34(void*);
 
 struct UnkHydrogigaMsg_b62a3 {
     u8 pad_0x0[0x10];

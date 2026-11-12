@@ -14,6 +14,7 @@
 #include "game/UnkActor.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
+#include "game/behaviortree/CBehavior.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -22,7 +23,6 @@ using base::global::UnkStrId;
 
 struct UnkSelf;
 struct UnkStruct_0x68;
-void fn_7100394bd0(UnkStruct_0x68* self);
 void fn_710036c338();
 
 struct UnkSwitchModesAI_A2_b75 {

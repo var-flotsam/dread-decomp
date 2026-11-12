@@ -7,7 +7,9 @@
 #include "game/CAbilitySpeedBooster.h"
 #include "game/CCharClassCentralUnitCannonAIComponent.h"
 #include "game/CCharClassChozoWarriorXUltimateGrabAttack.h"
+#include "game/CChozoWarriorXAIComponent.h"
 #include "game/CChozoWarriorXUltimateGrabAttack.h"
+#include "game/CFXComponent.h"
 #include "game/CGunComponent.h"
 #include "game/CInventoryComponent.h"
 #include "game/CLifeComponent.h"
@@ -610,7 +612,6 @@ void fn_7100432e7c(UnkSmGrab_A1_b64<0x88>* self) {
 // it is of the unit's AI class) steps the target position, then by the tunables state 2 or 3 is requested.
 struct UnkWorld;
 struct UnkPart;
-UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 
 struct UnkSmLavaAI_A1_b64 {
     virtual const base::reflection::CClass* vf_0x0();
@@ -765,7 +766,6 @@ void fn_7100489588(UnkSmGrab_A1_b64<0x80>*, UnkSmGrabMsg_A1_b64* msg);
 void fn_7100489850(UnkSmGrab_A1_b64<0x80>*, UnkSmGrabMsg_A1_b64* msg);
 struct UnkAIComponent;
 struct UnkSelf;
-void fn_710048fc80(UnkAIComponent* component);
 
 struct UnkSmWarriorAI_A1_b64 {
     virtual const base::reflection::CClass* vf_0x0();

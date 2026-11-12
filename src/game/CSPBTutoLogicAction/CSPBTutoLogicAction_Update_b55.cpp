@@ -19,6 +19,7 @@
 #include "game/GUI/CTutorialComposition.h"
 #include "game/UnkCameraCtrl.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU0.h"
 #include "game/nn/time.h"
 #include "types.h"
 
@@ -38,7 +39,6 @@ struct UnkGrabAttack_b55 {
 s32 fn_710050b910(UnkGrabAttack_b55* self);
 
 struct UnkSoundHolder;
-extern UnkSoundHolder* g_unk_7101d47340;
 
 struct UnkInput_b55 {
     virtual void vf_0x0();

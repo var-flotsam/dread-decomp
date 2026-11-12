@@ -9,3 +9,4 @@ struct UnkRecord80;
 void fn_7100016f88(void* self);
 void fn_7100016ad8(void* self);
 void fn_7100017ba0(UnkRecord80* self, const UnkRecord80* other);
+void fn_7100017ce8(UnkRecord80* record);  // The record's destructor.

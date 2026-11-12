@@ -8,7 +8,9 @@
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/GUI/CAmiiboComposition.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2578.h"
 #include "game/sound/SGUISoundEventsSelector.h"
 #include "types.h"
@@ -25,12 +27,9 @@ static inline UnkGuiObj* FindByPath(void* self, const CRntString& path) {
 
 // The music manager (as src/base/input/UnkPadVibration.cpp declares it).
 struct UnkStruct_0x128;
-extern UnkStruct_0x128* g_unk_7101d47320;
-void fn_7100f011c4(UnkStruct_0x128* self, u32 mode);
 
 struct UnkStateSink;
 struct UnkStateKey;
-extern UnkStateSink* g_unk_717275c380;
 extern UnkStateKey g_unk_71729f0180;
 
 static inline UnkStruct_0x128* Music() {

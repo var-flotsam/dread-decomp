@@ -94,7 +94,6 @@ static inline __attribute__((always_inline)) void* Erase(void* map, const CStrId
 
 void fn_7100fed6cc(char*);
 void fn_7100e0da38(void*);
-void fn_7101005d8c(void*);
 
 void* fn_7100f796b8(UnkStrIdMap_b41a3<0x3c0>* map, const CStrId* key) {
     return Erase<0x3c0, true>(map, key, [](char* p) { fn_7100d8f9e4(p); });

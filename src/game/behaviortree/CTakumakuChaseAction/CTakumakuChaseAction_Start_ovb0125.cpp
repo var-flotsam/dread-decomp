@@ -6,12 +6,12 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
 #include "game/UnkXformNode.h"
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
 
 struct UnkStruct_0x68;
-void fn_7100394bd0(UnkStruct_0x68*);
 
 struct UnkTakumakuCharClass_ovb0125 : UnkReflObject {
     u8 pad_0x8[0x634];

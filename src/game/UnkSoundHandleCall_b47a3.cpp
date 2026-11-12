@@ -1,10 +1,10 @@
 // Unit of 0x7100fb94d4 (tools/tu_map.py, no name hint): hands the sound manager (g_unk_7101d4d820,
 // fn_7100108acc) the member at +0x90 of the object the weak handle at +8 still refers to (or 0x90 when it
 // is gone, as the original computes it). Names and layouts are placeholders.
+#include "game/UnkTU23.h"
 #include "types.h"
 
 struct UnkSoundMgr;
-extern UnkSoundMgr* g_unk_7101d4d820;
 char* fn_7100108acc(char* p0, char* p1);
 
 struct UnkSoundRef_b47a3 {

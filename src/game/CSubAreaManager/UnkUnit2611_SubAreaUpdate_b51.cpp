@@ -4,11 +4,11 @@
 // through fn_7100ee2864, then runs fn_7100d59dd8 on the manager's object at +0x930.
 // Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU2577.h"
 #include "types.h"
 
 struct UnkScenarioSub;
 void fn_7100d59dd8(UnkScenarioSub* self);
-void fn_7100ee1f34(void* self);
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
 

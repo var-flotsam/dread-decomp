@@ -8,6 +8,7 @@
 #include "game/CMaterialFXComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkTU218.h"
 #include "game/UnkTU365.h"
 #include "game/UnkXformNode.h"
 #include "game/logic/collision/CCollider.h"
@@ -19,7 +20,6 @@ using base::math::UnkVector4D;
 
 struct UnkStruct_7100233684;
 base::reflection::UnkReflObject* fn_7100233684(UnkStruct_7100233684* self);
-bool fn_7100199d88(void* table, const u64* key, u32* id);
 
 struct UnkRefl_fn_710092482c;
 template <>

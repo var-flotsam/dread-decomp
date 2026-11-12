@@ -5,6 +5,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU57.h"
 
 using base::global::UnkStringData;
 
@@ -64,8 +65,6 @@ struct UnkStruct_71011ebdb4 {
     u32 field_0x334;
     u32 field_0x338;
 };
-
-void fn_710007e6c4(void* self);
 
 void fn_71011ebdb4(UnkStruct_71011ebdb4* self) {
     fn_71011cce1c(reinterpret_cast<UnkGuiDisplayObject*>(self));

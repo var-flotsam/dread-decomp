@@ -4,12 +4,12 @@
 // fn_7100452608.cpp), chosen by which side of the commander's owner (+0x18) the player stands on, after
 // clearing the found object's flag (+0x521 of +0x200). Returns 1. Names and layouts are placeholders.
 #include "base/UnkRefHandle.h"
+#include "game/CCentralUnitAIComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
 
 struct UnkPlayer;
-void* fn_71004067a4(void*);
 
 struct UnkCountedSide_b49 : base::UnkRefCounted {
     void* field_0x10;

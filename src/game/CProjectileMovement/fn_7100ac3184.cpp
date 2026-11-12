@@ -6,6 +6,7 @@
 #include "base/UnkStrIdPathPair.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkTU2577.h"
 #include "game/UnkTU883.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -44,7 +45,6 @@ struct UnkDefinition {
 };
 
 struct UnkCallback;
-void fn_71005c4828(void*, void**);  // unregister
 
 struct UnkCallback {
     void* dispatcher;
@@ -115,7 +115,6 @@ extern UnkManager* g_unk_7101d47360;
 extern u8 g_unk_71727556f0 __attribute__((visibility("hidden")));
 void fn_7100ac7628(UnkComponent_0x5d0* self);
 void fn_7100a2cddc(void* table, void* key, CStrId* id, f32 delay, bool unique);
-void fn_7100ee1f34(void* self);
 
 // The global manager, created on first use.
 static inline void* UnkGetManager() {

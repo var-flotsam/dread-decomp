@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "game/CActorComponent.h"
 #include "game/CComponent.h"
+#include "game/CFXComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkTU132.h"
@@ -111,7 +112,6 @@ struct UnkObject;
 struct UnkResetOwner;
 struct UnkBinderNames_71001bbfa8;
 struct UnkWorld;
-void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
 void fn_71001bbfa8(UnkBinderNames_71001bbfa8* self, const base::global::CStrId* name);
 
 struct UnkFXSceneHolder_b0052 {

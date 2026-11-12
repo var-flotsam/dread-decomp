@@ -12,6 +12,7 @@
 #include "base/global/timeline/CEvent.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/GUI/CAmiiboComposition.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiLabel.h"
 #include "game/sound/SGUISoundEventsSelector.h"
@@ -105,7 +106,6 @@ void fn_7100b01c08(void* self, const UnkDlgId_ovb0069* text) {
 
 struct UnkStateSink;
 struct UnkStateKey;
-extern UnkStateSink* g_unk_717275c380;
 extern UnkStateKey g_unk_71729f0180;
 
 struct UnkDialogClose_ovb0069 {

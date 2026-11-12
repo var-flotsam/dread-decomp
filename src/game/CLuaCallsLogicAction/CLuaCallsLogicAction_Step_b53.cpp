@@ -8,6 +8,7 @@
 #include "base/global/CRntString.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CLuaCallsLogicAction.h"
+#include "game/CPickableComponent.h"
 #include "game/CTriggerLogicAction.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU0.h"
@@ -20,7 +21,6 @@ struct UnkTutoExitAction_b47;
 
 u64* fn_7100066630(u64* out, const CRntString* str);
 struct UnkScriptCaller;
-bool fn_71009cde54(void* script, const char* name, const char* fmt, ...);
 
 struct UnkLuaCallsEntity_b53 {
     u8 pad_0x0[0x1e0];

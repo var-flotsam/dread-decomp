@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkIdPair;
 struct UnkLinkTarget127_b66a1;
 struct UnkStrIdPathRecord_b48;
 struct UnkStrIdPathResource;
@@ -18,3 +19,4 @@ bool fn_710002589c(void* link, UnkLinkTarget127_b66a1* target, u32 mode, void* e
 void fn_7100027464(UnkStrIdPathRecord_b48* self, const UnkStrIdPathRecord_b48* other);  // Copy constructor.
 void fn_710002572c(void* member);  // A member's destructor (shared by several classes).
 void fn_7100025a98(void* record);
+void fn_7100026f70(UnkIdPair* pair);  // An id pair's destructor: releases both ids.

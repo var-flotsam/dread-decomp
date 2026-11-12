@@ -3,6 +3,7 @@
 // time, switches the flag at +0xf9 on and calls vf_0x260. With it, the same update of
 // CVulkranMagmaBallMovementComponent (fn_71006df774, its own unit), whose direction is flattened and
 // capped. Names and layouts are placeholders.
+#include "game/CProjectileMovement.h"
 #include "game/UnkTU2523.h"
 #include "types.h"
 
@@ -45,7 +46,6 @@ struct UnkAcidBallMovement {
 };
 
 struct UnkSelf;
-void fn_7100ac3880(UnkSelf* self);
 
 static inline UnkAcidLauncherLink* LinkOf(UnkAcidBallMovement* self) {
     return *reinterpret_cast<UnkAcidLauncherLink**>(reinterpret_cast<char*>(self) + 0x230);

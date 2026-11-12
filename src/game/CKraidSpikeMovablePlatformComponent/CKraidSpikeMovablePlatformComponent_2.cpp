@@ -132,7 +132,6 @@ struct UnkKraidSpikePlatform {
 extern base::reflection::UnkTunable g_unk_7172716160;
 extern CStrId g_unk_71726f4628 __attribute__((visibility("hidden")));
 bool fn_7100952694();
-void fn_71008c1538(UnkRequest* request, f32 value);
 
 static inline bool GrabsPlatform(UnkSpikePlayer* player, UnkKraidSpikePlatform* self) {
     if (UnkSpikeMovement* movement = player->field_0x208)

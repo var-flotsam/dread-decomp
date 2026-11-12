@@ -155,7 +155,6 @@ void fn_7101000384(void* dst, const void* src) {
 }
 
 struct UnkPartFfca00;
-UnkPartFfca00* fn_7100ffbad8(UnkPartFfca00* self, const UnkPartFfca00* other);
 
 struct UnkAssignRec78_b0212 {
     u32 field_0x0;
@@ -206,8 +205,6 @@ static inline void DestroyIdVecId_b0212(UnkIdVecId_b0212<Tag>* self) {
 void fn_7100ff4350(char* self) { DestroyIdVecId_b0212(reinterpret_cast<UnkIdVecId_b0212<0>*>(self)); }
 void fn_7100ff4844(char* self) { DestroyIdVecId_b0212(reinterpret_cast<UnkIdVecId_b0212<1>*>(self)); }
 void fn_7100fffd7c(char* self) { DestroyIdVecId_b0212(reinterpret_cast<UnkIdVecId_b0212<2>*>(self)); }
-
-void fn_7101005d8c(void*);
 
 struct UnkIdMap_b0212 {
     base::UnkStrIdMember id_0x0;

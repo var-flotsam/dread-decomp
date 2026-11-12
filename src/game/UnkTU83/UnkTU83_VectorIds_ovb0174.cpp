@@ -22,6 +22,7 @@
 #include "base/reflection/UnkReflConverter.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CBlackboard.h"
+#include "game/UnkTU57.h"
 #include "game/UnkTU83.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -146,7 +147,6 @@ UnkNegKey_b0174* fn_71000cf92c(base::UnkVector<UnkNegKey_b0174>* self, u32 index
 }
 
 // ---- grow of a string vector (fn_71000e0bb8) ----
-void fn_710007e6c4(void* self);
 
 struct UnkStringElem_b0174 {
     base::UnkNamedEntry value;

@@ -13,6 +13,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2577.h"
 #include "game/UnkTU811.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
@@ -182,7 +183,6 @@ struct UnkGrabManager_b61 {
 };
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
-void fn_7100ee1f34(void*);
 struct UnkInputComponent;
 struct UnkGrabInputArg_b61;
 extern UnkGrabInputArg_b61 g_unk_71726de5d0 __attribute__((visibility("hidden")));

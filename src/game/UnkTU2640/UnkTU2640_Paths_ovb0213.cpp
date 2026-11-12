@@ -347,8 +347,6 @@ void* fn_7100fff328(void* dst, const void* src) {
 
 // ---- Map iterator
 
-void fn_7101005d8c(void* node);
-
 // A chained map's node list (links at +0x38) and bucket array, as the maps of
 // src/game/UnkStrIdMapErase_A6_b73.cpp keep them.
 struct UnkNodeMap_b0213 {

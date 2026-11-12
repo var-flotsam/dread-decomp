@@ -7,6 +7,7 @@
 #include "game/CEnemyMovement.h"
 #include "game/UnkObject_0x100.h"
 #include "game/UnkTU1130.h"
+#include "game/UnkTU1440.h"
 #include "game/UnkTU1442.h"
 #include "game/UnkTU376.h"
 #include "game/malloc.h"
@@ -24,7 +25,6 @@
 extern void* g_unk_7101a85218[];
 
 struct UnkUnit1444Base;
-void fn_7100969058(UnkUnit1444Base* self);
 
 struct UnkLink_1442 {
     virtual void vf_0x0();
@@ -290,7 +290,6 @@ void fn_710096aadc(UnkRecord_aadc* out, UnkCapture_aadc* capture) {
 // ---- eee8 ----
 struct UnkVec3;
 void fn_710096dfb8(char* self, u32 flag);
-void fn_710096cdec(char* self, bool flag);
 void fn_710007b444(void* dst, const UnkVec3* value);
 
 struct UnkAI_eee8 {
@@ -384,8 +383,6 @@ void fn_710096eee8(UnkUnit1442Step* self) {
 bool fn_71010ca5d8(void* target);
 struct UnkEnemyMovement_f;
 bool fn_71010caa64(UnkEnemyMovement_f* self);
-void fn_710096cdec(char* self, bool flag);
-void fn_710096d788(char* self, __attribute__((noescape)) u64* a, char* list, __attribute__((noescape)) u32* out, bool flag);
 
 struct UnkTarget_b720 {
     void** vtable;

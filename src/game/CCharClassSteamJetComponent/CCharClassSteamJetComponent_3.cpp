@@ -6,6 +6,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CCharClassBaseTriggerComponent.h"
+#include "game/UnkTU1370.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -39,7 +40,6 @@ struct UnkSteamJetComponent {
 };
 
 extern CClass g_unk_717272d7d0 __attribute__((visibility("hidden")));
-void fn_71008c1538(UnkRequest* request, f32 value);
 
 static inline const CClass* SteamJetClass() {
     fn_710089b048();

@@ -5,6 +5,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection.h"
+#include "game/UnkTU2577.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -14,7 +15,6 @@ struct UnkEnvironmentManager;
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
 extern void* g_unk_7101d47368;
-void fn_7100ee1f34(void*);
 void fn_7100d8e32c(UnkEnvironmentManager* self, const CStrId* id, bool a, bool b);
 
 struct UnkSubAreaEntry_ovb0092 {

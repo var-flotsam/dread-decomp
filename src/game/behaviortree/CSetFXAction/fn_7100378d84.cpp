@@ -1,6 +1,7 @@
 // Clears the done flag at 0x3a, then, when the id at 0x30 isn't the empty one and the owner
 // at 0x18 has its object at 0x280, looks the id's entry up there and calls its slot 0x40 with
 // the flag at 0x38 (setting the done flag).
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 #include "base/global/CStrId.h"
 
@@ -37,7 +38,6 @@ struct UnkSelf {
 };
 
 struct UnkStruct_0x68;
-void fn_7100394bd0(UnkStruct_0x68* self);
 UnkLookupResult* fn_7101152b24(void* objects, u64 key);
 
 // NON_MATCHING(minor): the flag load and the slot load swap order in the call.

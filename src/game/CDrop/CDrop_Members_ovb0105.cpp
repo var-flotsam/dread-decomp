@@ -13,6 +13,7 @@
 #include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU32.h"
 #include "game/UnkTU365.h"
 #include "types.h"
 
@@ -20,7 +21,6 @@ using base::global::CFilePathStrId;
 using base::global::CStrId;
 
 struct UnkIdPair;
-void fn_7100026f70(UnkIdPair* pair);
 struct UnkCameraCtrl_ovb0049;
 extern char g_unk_7101a71568[];  // CDrop's vtable
 

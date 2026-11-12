@@ -15,6 +15,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2577.h"
 #include "game/UnkTU2611.h"
 #include "game/UnkTU315.h"
 #include "types.h"
@@ -69,7 +70,6 @@ struct UnkSubAreaManagerView {
     UnkSubareaSetupState* current;
     UnkSubareaSetupState* previous;
 };
-void fn_7100ee1f34(void* self);
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
 static inline UnkSubAreaManagerView* SubAreaManager() {

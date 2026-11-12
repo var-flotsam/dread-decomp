@@ -214,7 +214,6 @@ extern UnkConverter g_unk_71727bba28;
 void fn_7100d91564(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 void fn_7100d91d10(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 
-extern UnkReflType g_unk_71727be388;
 void fn_7100ddf1c0(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 extern UnkConverter g_unk_71727be4a8;
 extern UnkConverter g_unk_71727be4c8;

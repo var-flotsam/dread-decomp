@@ -20,7 +20,6 @@ using base::color::CColor4F;
 struct UnkComponent;
 struct UnkObject;
 struct UnkPart;
-UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 
 extern const CColor4F g_unk_710164a454 __attribute__((visibility("hidden")));
 extern const CColor4F g_unk_710164a464 __attribute__((visibility("hidden")));

@@ -24,6 +24,7 @@
 #include "base/reflection/UnkReflValue.h"
 #include "base/snd/CSoundSystem.h"
 #include "game/UnkTU101.h"
+#include "game/UnkTU23.h"
 #include "game/UnkTU25.h"
 #include "game/UnkTU32.h"
 #include "game/sound/CSoundManager.h"
@@ -37,7 +38,6 @@ using base::reflection::CClass;
 using base::reflection::UnkReflObject;
 
 struct UnkIdPair;
-void fn_7100026f70(UnkIdPair* pair);
 
 // CFilePathStrId's copy constructor.
 struct UnkSoundPathId_b0038 {
@@ -711,7 +711,6 @@ void fn_7101025560(UnkDropTarget* self, const UnkStrIdPathPair* ids, f32 blend, 
 }
 
 struct UnkSoundMgr;
-extern UnkSoundMgr* g_unk_7101d4d820;
 
 struct UnkSoundRef {
     void* object;

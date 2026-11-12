@@ -22,6 +22,7 @@
 #include "game/UnkGuiFrames.h"
 #include "game/UnkGuiLabel.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU135.h"
 #include "game/UnkTU2733.h"
 #include "game/UnkTU2744.h"
@@ -47,7 +48,6 @@ s32 fn_71011eedd0(UnkLabelFontView_b52* self);
 
 // The language singleton (src/game/UnkLanguage.cpp) and its current language.
 struct UnkLanguage;
-extern UnkLanguage* g_unk_7101d47358;
 
 // ---------------------------------------------------------------------------------------------
 // A number shown as the label's text.

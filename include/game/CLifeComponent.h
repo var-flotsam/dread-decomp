@@ -16,3 +16,4 @@ bool fn_7101160348(void* object, f32 duration);
 void fn_710115f91c(void* self);
 void fn_710115fe1c(char*);
 bool fn_7101160408(UnkCharacterLife_b0050* self);
+bool fn_7101161088(void* object);

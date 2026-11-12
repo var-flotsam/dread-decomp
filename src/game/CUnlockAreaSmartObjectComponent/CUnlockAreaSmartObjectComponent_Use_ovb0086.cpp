@@ -11,6 +11,7 @@
 #include "game/CInputComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2733.h"
 #include "types.h"
@@ -118,7 +119,6 @@ struct UnkInputComponent;
 // The language singleton (as src/game/UnkAdamDialog.cpp declares it): created on first use, it
 // gives localized texts.
 struct UnkLanguage;
-extern UnkLanguage* g_unk_7101d47358;
 struct UnkDialogText {
     u8 unk_0x0[0x20];
     ~UnkDialogText() { fn_7100066e44(this); }

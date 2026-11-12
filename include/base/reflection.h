@@ -5,6 +5,9 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkEnvironmentData;
+struct UnkEnvironmentVisuals;
+struct UnkUnit2525_b51;
 struct UnkReflType;
 struct UnkTUHeader;
 struct UnkTUHeaderFns;
@@ -102,3 +105,6 @@ extern UnkReflType g_unk_7172767140;
 extern UnkReflType g_unk_7172767280;
 extern UnkReflType g_unk_71727673c0;
 extern UnkTUHeader g_unk_7172767b98 __attribute__((visibility("hidden")));
+void fn_7100d8d854(UnkUnit2525_b51* self, void* resource);
+void fn_7100d8db30(UnkUnit2525_b51* self, void* resource, bool flag);
+void fn_7100d8e398(UnkEnvironmentVisuals* self, const UnkEnvironmentData* data, bool force);

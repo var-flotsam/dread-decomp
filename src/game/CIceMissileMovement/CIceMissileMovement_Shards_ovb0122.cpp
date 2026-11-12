@@ -10,6 +10,7 @@
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkGameManager.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2550.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
@@ -85,7 +86,6 @@ void fn_7100ab46ac(UnkIceMissileMovement_ovb0122* self) {
 
 // As src/engine/HostArguments.cpp declares them.
 struct UnkGameObject_0x150;
-extern UnkGameObject_0x150* g_unk_7101d47370;
 
 struct UnkIceVec3_ovb0122 {
     u32 x, y, z;

@@ -4,12 +4,12 @@
 // flags at +0xb4 (as CSentenceSphereMovement_Launch_A2_b70.cpp). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/UnkTU1370.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkRequest;
-void fn_71008c1538(UnkRequest* request, f32 value);
 extern base::reflection::UnkTunable g_unk_7172716160;
 extern CStrId g_unk_71726d8c78 __attribute__((visibility("hidden")));
 

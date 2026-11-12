@@ -14,6 +14,7 @@
 #include "game/CAIManager/CTunableAIManager.h"
 #include "game/CActorComponent.h"
 #include "game/CAnimationComponent.h"
+#include "game/CCentralUnitAIComponent.h"
 #include "game/CInputComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
@@ -307,7 +308,6 @@ struct UnkTimedRefOwner_b0025 {
     u8 field_0x24a8[0x28];
 };
 
-void* fn_71004067a4(void*);
 void fn_71007aa604(void* component);
 
 static inline UnkWeakTarget* RefTarget(UnkWeakHandle* handle) {

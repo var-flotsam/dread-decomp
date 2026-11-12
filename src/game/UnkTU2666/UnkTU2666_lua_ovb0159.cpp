@@ -14,8 +14,10 @@
 #include "game/CDrop.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2566.h"
+#include "game/UnkTU2577.h"
 #include "game/UnkTU2656.h"
 #include "game/UnkTU2669.h"
 #include "game/UnkTU2677.h"
@@ -220,7 +222,6 @@ s32 fn_7101077090(lua_State* L) {
 }
 
 struct UnkStatsObject;
-extern UnkStatsObject* g_unk_7101d47100;
 void fn_7100132248(UnkStatsObject* self, const CStrId& name, f32 value);
 
 s32 fn_7101080a50(lua_State*) {
@@ -460,7 +461,6 @@ void fn_7101053c14(void* fx, const base::math::CVector3D* color, f32 a, f32 b, f
 
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
-void fn_7100ee1f34(void* self);
 void fn_7100ee9bfc(void* self, const CStrId* id);
 
 s32 fn_7101083fb0(lua_State* L) {

@@ -5,12 +5,11 @@
 #include "base/UnkDestructors.h"
 #include "base/color/CColor4F.h"
 #include "game/CMaterialFXComponent.h"
+#include "game/UnkTU218.h"
 #include "types.h"
 
 using base::color::CColor4F;
 using base::math::UnkVector4D;
-
-bool fn_7100199d88(void* map, const u64* key, u32* index);
 
 struct UnkGlowMaterial_ovb0133 {
     u8 pad_0x0[0x14c];

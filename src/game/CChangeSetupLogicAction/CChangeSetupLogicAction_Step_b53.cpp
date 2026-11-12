@@ -6,13 +6,13 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/CTriggerLogicAction.h"
+#include "game/UnkTU2577.h"
 #include "types.h"
 
 struct UnkTutoExitAction_b47;
 
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
-void fn_7100ee1f34(void*);
 void fn_7100eea3fc(void* manager, const base::global::CStrId* id, bool a, bool b);
 void fn_7100eea334(void* manager, const base::global::CStrId* id, bool a, bool b);
 

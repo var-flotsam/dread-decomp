@@ -18,8 +18,6 @@ struct UnkStruct_7100861148_Collider : UnkReflObject {
     void* field_0x30;
 };
 
-void fn_7100d5abfc(void* owner, UnkStruct_7100861148_Collider* collider);
-
 using UnkVec_7100861148_A = base::UnkVector<UnkStruct_7100861148_Collider*>;
 
 UnkStruct_7100861148_Collider** fn_7100862088(UnkVec_7100861148_A* vec, u32 index);

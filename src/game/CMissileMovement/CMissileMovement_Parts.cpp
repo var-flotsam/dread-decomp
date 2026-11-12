@@ -2,6 +2,7 @@
 // owner's world (+0x280 of the owner at +0x30) by the state bits 0x8000400 at +0x3fc, then looks up the part
 // named by the definition at +0x5d8 (its +0x30) and, when it is live, passes it the data at +0x4d8
 // (fn_7100146c50). Names and layouts are placeholders.
+#include "game/CFXComponent.h"
 #include "types.h"
 
 struct UnkWorld;
@@ -32,10 +33,7 @@ struct UnkMissileMovement {
 };
 
 struct UnkPart;
-UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 struct UnkObject;
-bool fn_710114e668(UnkObject*, u8);
-void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
 bool fn_7100146c50(UnkMissilePart* part, u32 a, void* data, u32 b);
 
 void fn_7100abaee8(UnkMissileMovement* self) {

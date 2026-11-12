@@ -2,10 +2,9 @@
 // (+0xf9): a dirty matrix goes out as the product of the node's matrix (fn_710002614c) and the
 // one at +0x110 (fn_71000127c8) through fn_710019c474; a pending flag at +0xfb calls
 // fn_71001c34f4 with 0. Returns whether the node is active.
+#include "game/UnkTU223.h"
 #include "game/UnkTU254.h"
 #include "game/UnkXformNode.h"
-
-void fn_710019c474(void* target, const UnkMatrix44* m);
 
 struct UnkXformNodeWithOffset : UnkXformNode {
     UnkMatrix44 matrix_0x110;  // applied after the node's own matrix

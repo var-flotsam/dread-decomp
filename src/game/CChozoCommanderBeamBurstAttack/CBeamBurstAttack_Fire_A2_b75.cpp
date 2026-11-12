@@ -11,6 +11,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"
+#include "game/CFXComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkSwitchObject.h"
@@ -21,7 +22,6 @@
 
 struct UnkTakumakuComponent;
 struct UnkWorld;
-void fn_710114fe8c(UnkWorld*, u64, u32, u32);
 void fn_710042a7e0();
 
 extern const u64 g_unk_7101649430;  // reached through the GOT

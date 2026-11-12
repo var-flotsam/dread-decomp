@@ -9,12 +9,12 @@
 #include "base/global/CRntString.h"
 #include "game/CDoorShieldLifeComponent.h"
 #include "game/CItemLifeComponent.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using base::global::CRntString;
 
 struct UnkLifeComponent_A5_b71;
-void fn_710007e6c4(void*);
 
 struct UnkDoorShieldLifeCtor_A5_b71 {
     void** vtable;

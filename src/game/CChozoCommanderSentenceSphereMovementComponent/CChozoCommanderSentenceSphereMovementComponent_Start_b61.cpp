@@ -5,13 +5,13 @@
 // Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/CCollisionComponent.h"
+#include "game/CProjectileMovement.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 struct UnkSelf;
-void fn_7100ac3880(UnkSelf* self);  // as src/game/CChozoCommanderEnergyShardsSphereMovementComponent/fn_7100459e6c.cpp
 struct UnkStruct_71008618cc;
 struct UnkSentenceSphere_b61a2;
 void fn_710045b8e0(UnkSentenceSphere_b61a2* self);

@@ -142,7 +142,6 @@ void fn_71006d5990(UnkTakumakuAI3_b0012* self, s32 event, void* arg, CStrId* out
 
 // As src/game/CTakumakuAIComponent/CTakumakuAIComponent_Send_b56.cpp declares it (the key is a hash).
 struct UnkStruct_7101176ea8;
-void* fn_7101176d34(UnkStruct_7101176ea8* self, void* arg);
 
 // As src/game/UnkSpawnVolume.cpp names it.
 struct UnkMat4f {

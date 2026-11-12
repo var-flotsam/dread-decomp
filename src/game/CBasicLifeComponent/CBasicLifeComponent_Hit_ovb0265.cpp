@@ -4,13 +4,13 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CActorComponent.h"
 #include "game/CDamageSourceFactor.h"
+#include "game/UnkTU1370.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 struct UnkRobotSoldierTable_A2_b69;
 struct UnkRequest;
-void fn_71008c1538(UnkRequest* request, f32 value);
 extern u64 g_unk_710164af70;
 
 struct UnkLifeHit_ovb0265 {

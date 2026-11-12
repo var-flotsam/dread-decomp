@@ -6,6 +6,7 @@
 #include "base/UnkVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CDroppableComponent.h"
+#include "game/CFXComponent.h"
 #include "game/CHydrogigaAIComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
@@ -73,7 +74,6 @@ u32 fn_71008434b8(CHyperBeamGun_ovb0127* self) {
 
 struct UnkWorld;
 struct UnkPart;
-UnkPart* fn_7101152b90(UnkWorld*, u64);
 struct UnkSoundHandle;
 struct UnkShipRechargeEntity_b49a4;
 

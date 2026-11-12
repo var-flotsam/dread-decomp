@@ -27,6 +27,7 @@
 #include "game/UnkTU2510.h"
 #include "game/UnkTU2547.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2577.h"
 #include "game/UnkTU365.h"
 #include "game/UnkTU811.h"
 #include "game/UnkXformNode.h"
@@ -356,7 +357,6 @@ void* fn_71007ea32c(void* actor);
 struct UnkEmmyAIComponent_b46a1;
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
-void fn_7100ee1f34(void*);
 bool fn_7100eea7b0(void* manager);
 struct UnkForcedMovementArea_A5_b68e;
 

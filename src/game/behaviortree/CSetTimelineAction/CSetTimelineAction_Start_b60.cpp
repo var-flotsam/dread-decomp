@@ -7,13 +7,13 @@
 #include "game/UnkActor.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
 using base::global::UnkStrId;
 
 struct UnkSelf;
 struct UnkStruct_0x68;
-void fn_7100394bd0(UnkStruct_0x68* self);
 
 struct UnkSetTimelineAction_b60a2 {
     u8 pad_0x0[0x18];

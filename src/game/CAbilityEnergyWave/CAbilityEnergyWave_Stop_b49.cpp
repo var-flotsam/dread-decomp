@@ -5,6 +5,7 @@
 // the world behind the manager's +0x29a0 (+0x10, +0x280) has the object with hash 0xb1489dc93c1d38dd,
 // releases it (fn_710114fe8c, as in fn_7100300bd0.cpp). Names and layouts are placeholders.
 #include "game/CAbilityEnergyWave.h"
+#include "game/CFXComponent.h"
 #include "game/CGrabComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1428.h"
@@ -15,9 +16,6 @@ struct UnkWorld;
 struct UnkPart;
 struct UnkEnergyWaveCompA_b49;
 struct UnkEnergyWaveCompB_b49;
-
-UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
-void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
 
 struct UnkEnergyWaveObject_b49 {
     void** vtable;

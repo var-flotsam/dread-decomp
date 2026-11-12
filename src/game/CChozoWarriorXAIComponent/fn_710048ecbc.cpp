@@ -36,8 +36,6 @@ struct UnkSelf {
 };
 
 struct UnkPart;
-UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
-bool fn_710114e668(UnkObject* object, u8 kind);
 
 void fn_710048ecbc(UnkSelf* self) {
     if (UnkObject* object = self->field_0x30->field_0x280) {

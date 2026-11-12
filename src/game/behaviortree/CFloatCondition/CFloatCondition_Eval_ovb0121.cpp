@@ -9,6 +9,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkTunableRegistry.h"
 #include "game/UnkTU57.h"
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
 using base::reflection::UnkTunableRegistry;
@@ -41,7 +42,6 @@ struct UnkFloatCondition_ovb0121c {
 };
 
 struct UnkSelf;
-bool fn_7100394e2c(UnkSelf*, void*, f32*);
 void fn_710013c7e0(UnkTunableRegistry* registry, const char* group, const char* name, f32* value);
 
 static inline void Resolve(UnkFloatCondition_ovb0121c* self, UnkFloatOperand_ovb0121c& operand, f32* out) {

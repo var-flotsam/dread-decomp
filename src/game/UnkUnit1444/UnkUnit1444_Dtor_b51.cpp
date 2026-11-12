@@ -5,10 +5,10 @@
 #include "base/UnkVector.h"
 #include "game/UnkObject_0x100.h"
 #include "game/UnkTU1130.h"
+#include "game/UnkTU1440.h"
 #include "game/UnkTU1444.h"
 
 struct UnkUnit1444Base;
-void fn_7100969058(UnkUnit1444Base* self);
 
 struct UnkEntry_1444 {
     virtual ~UnkEntry_1444();

@@ -3,6 +3,7 @@
 // relatives): fn_710000ccd8 checks a file's version header against the registered one, and
 // fn_7100010c60 parses a value of a given type into a scratch target and drops it (skipping it;
 // the reader types are in base/reflection/UnkReflObjectRead.h). Names and layouts are placeholders.
+#include "base/animation/CAnimationResource.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CRntFile.h"
 #include "base/reflection/CClass.h"
@@ -28,7 +29,6 @@ struct UnkFileReader {
 // The registry of file versions, by the 64-bit id a file starts with.
 struct UnkVersionRegistry;
 struct UnkVersionEntry;
-extern UnkVersionRegistry* g_unk_7101d4c8d0;
 // The entry's version (major, minor); false when it has none.
 
 // Reads the file's id and, when it is registered, its version; sets field_0x38 from the comparison
@@ -146,8 +146,6 @@ struct UnkAssetResRef {
 // The categories an animation is looked up in: blend spaces (names ending in "mbls") and animations
 // (src/base/animation/CBlendSpaceResource/fn_71000113b0.cpp and CAnimationResource/fn_7100005700.cpp
 // register them).
-extern char g_unk_7101d4c138[];
-extern char g_unk_7101d4b418[];
 
 extern "C" [[noreturn]] void fn_710000ce00();  // abort: a name too short for its suffix
 

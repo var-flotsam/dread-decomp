@@ -5,12 +5,12 @@
 #include "base/UnkDeferredSet.h"
 #include "base/UnkDestructors.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkTU32.h"
 
 struct UnkTag_7100b6117c;
 extern char g_unk_7101a9da40[];  // the pop-up's vtable
 
 struct UnkIdPair;
-void fn_7100026f70(UnkIdPair*);
 struct UnkPopUpMember_7100b61264;
 void fn_7100b61264(UnkPopUpMember_7100b61264* self);
 

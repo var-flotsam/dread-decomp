@@ -4,6 +4,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CCharClassChozoWarriorXUltimateGrabAttack.h"
+#include "game/CChozoWarriorXAIComponent.h"
 #include "game/CChozoWarriorXUltimateGrabAttack.h"
 #include "game/CLifeComponent.h"
 #include "types.h"
@@ -29,8 +30,6 @@ struct UnkTunable {
     u8 unk_0x0[0x2c];
     f32 field_0x2c;
 };
-
-void fn_710048fc80(UnkAIComponent* component);
 
 void fn_7100489ea0(UnkSelf* self) {
     fn_7100489f3c(self);

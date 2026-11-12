@@ -11,6 +11,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbility.h"
 #include "game/CAbilityOpticCamouflage.h"
+#include "game/CFXComponent.h"
 #include "game/CGameObject.h"
 #include "game/CGunComponent.h"
 #include "game/UnkTU39.h"
@@ -38,7 +39,6 @@ bool fn_7100a1f84c(UnkSpecialEnergyComponent* self);
 f32 fn_7100301700(void* p);
 struct UnkPart;
 struct UnkWorld;
-UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 bool fn_710114e674(UnkObject* model, u8 index);
 void fn_71001bc10c(void* p, const UnkV4_b47* colour, bool flag);
 extern const UnkV4_b47 g_unk_7101648e38 __attribute__((visibility("hidden")));  // the cloak colour

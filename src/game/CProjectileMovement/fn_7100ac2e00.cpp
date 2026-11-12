@@ -5,6 +5,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/CProjectileMovement.h"
+#include "game/UnkTU883.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -42,7 +43,6 @@ struct UnkComponent_0x5b8 {
     void* field_0x5b0;
 };
 
-void fn_71005c4828(void* callback, void** slot);
 void fn_7100ac72a4(UnkComponent_0x5b8* self);
 
 // A string id's destructor on the given pool: decrement, then test the reloaded count.

@@ -4,12 +4,11 @@
 // layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CLifeComponent.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
-
-bool fn_7101161088(void*);
 
 // The AI component's character class, as the chase sees it.
 struct UnkBigFistCharClass_ovb0114 {

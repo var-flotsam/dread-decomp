@@ -3,12 +3,12 @@
 // followed by setting the timer triple at +0x14748 from the tunable at +0x146c8 (addressed from the tunable's slot, pinned). Names are
 // placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
 // As src/game/CAnimationComponent/fn_7101176ea8.cpp declares it (the key is a hash).
 struct UnkStruct_7101176ea8;
-void* fn_7101176d34(UnkStruct_7101176ea8* self, void* arg);
 
 struct UnkTakumakuEntry_b56a3 {
     u8 pad_0x0[0x28];

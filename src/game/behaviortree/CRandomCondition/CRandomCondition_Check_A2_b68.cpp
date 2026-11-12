@@ -3,11 +3,11 @@
 // 0..1 is compared with it. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/UnkTU2772.h"
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
 // Signature as src/game/behaviortree/CStopWatchAction/fn_7100392704.cpp declares it.
 struct UnkSelf;
-bool fn_7100394e2c(UnkSelf* self, void* record, f32* out);
 
 struct UnkRandomCondition_A2_b68 {
     u8 pad_0x0[0x38];

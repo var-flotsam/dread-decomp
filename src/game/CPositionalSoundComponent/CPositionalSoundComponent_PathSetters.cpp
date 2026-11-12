@@ -6,6 +6,7 @@
 // placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "base/snd/CSoundSystem.h"
+#include "game/UnkTU23.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -14,7 +15,6 @@ using base::global::UnkStringPool;
 
 struct UnkSoundMgr;
 struct UnkPathNode;
-extern UnkSoundMgr* g_unk_7101d4d820;
 
 struct UnkValueSet_psc {
     u8 unk_0x0[0x18];

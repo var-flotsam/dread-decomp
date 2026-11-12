@@ -11,6 +11,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkGuiFrames.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU135.h"
 #include "game/UnkTU1722.h"
 #include "game/UnkTU254.h"
@@ -415,7 +416,6 @@ bool fn_71011b89dc(UnkGuiRoot* root, u8 font, const CStrId* font_id, u32 code, U
 
 // The language singleton (src/game/UnkLanguage.cpp) and its current language.
 struct UnkLanguage;
-extern UnkLanguage* g_unk_7101d47358;
 static inline UnkLanguage* LabelLanguage() {
     UnkLanguage* language = g_unk_7101d47358;
     if (!language) {

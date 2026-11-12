@@ -4,20 +4,19 @@
 // (+0x40), switches its emission on (fn_7100146dac) or off (fn_7100146e60) after +0x38, and marks
 // +0x3b; otherwise forgets it. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CFXComponent.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU134.h"
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
 using base::global::UnkStrId;
 
 struct UnkSelf;
 struct UnkStruct_0x68;
-void fn_7100394bd0(UnkStruct_0x68* self);
 struct UnkWorld;
 struct UnkPart;
-UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 struct UnkObject;
-bool fn_710114e668(UnkObject*, u8);
 
 struct UnkEmissionPart_b49 {
     u8 pad_0x0[0xb];

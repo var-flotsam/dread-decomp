@@ -9,13 +9,13 @@
 #include "base/snd/CSoundSystem.h"
 #include "game/CComponent.h"
 #include "game/UnkTU101.h"
+#include "game/UnkTU23.h"
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
 
 struct UnkSoundMgr;
-extern UnkSoundMgr* g_unk_7101d4d820;
 
 struct UnkSoundObject_b50 {
     u8 pad_0x0[0x124];

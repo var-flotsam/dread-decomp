@@ -4,10 +4,10 @@
 // or takes a period off. Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "game/CComponent.h"
+#include "game/CPickableComponent.h"
 #include "types.h"
 
 struct UnkParent;
-bool fn_71009cde54(void*, const char*, const char*, ...);
 
 struct UnkTimerOwner_ovb0125 {
     u8 pad_0x0[0x1e0];

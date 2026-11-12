@@ -25,6 +25,7 @@
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkTU25.h"
 #include "game/UnkTU2564.h"
+#include "game/UnkTU32.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -602,7 +603,6 @@ struct UnkReleasedStrId_b0234 {
 };
 
 struct UnkIdPair;
-void fn_7100026f70(UnkIdPair* pair);
 void fn_7100e71cc4(UnkKeyedArrayRaw_b0234* array);  // destroys the 0x18-byte records and their keys
 
 __attribute__((flatten)) void fn_7100e6bb90(UnkMinimapDef_b0234* self) {

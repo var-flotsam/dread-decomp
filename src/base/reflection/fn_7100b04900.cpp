@@ -133,7 +133,6 @@ void fn_7100d91f80() {
     fn_710009ec00(&g_unk_71727b9010, &g_unk_71727b8ef8);
 }
 
-extern UnkReflType g_unk_71727be388;
 void fn_7100ddf1c0(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 extern UnkConverter g_unk_71727be4a8;
 extern UnkConverter g_unk_71727be4c8;

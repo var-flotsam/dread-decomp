@@ -41,7 +41,6 @@ struct UnkStruct_71008c0c74;
 struct UnkBase_71003cc474;
 struct UnkCharacterLife_b0050;
 
-bool fn_7101161088(void*);
 extern void* g_unk_7101d47330;
 
 struct UnkEntity_b0165;

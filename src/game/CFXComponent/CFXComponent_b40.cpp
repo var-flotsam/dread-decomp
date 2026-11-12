@@ -6,12 +6,12 @@
 #include "base/global/timeline/CEvent.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CFXComponent.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
 
 struct UnkWorld;
-void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
 
 UnkReflValue fn_710115790c(void*, char* obj, UnkReflValue* const* args) {
     UnkReflValue* arg = args[0];

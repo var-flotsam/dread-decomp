@@ -3,6 +3,7 @@
 // a CEvent with an in-place constructor, the object created (0x58 allocation flags), constructed and
 // read by fn_710006790c. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CRntFile.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -12,7 +13,6 @@
 // The registry of reflected types by 64-bit id (as src/base/global/UnkTimelineTracks.cpp declares it).
 struct UnkVersionRegistry;
 struct UnkVersionEntry;
-extern UnkVersionRegistry* g_unk_7101d4c8d0;
 
 struct UnkTimelineEvent;
 

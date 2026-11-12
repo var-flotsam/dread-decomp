@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "game/CBlackboard.h"
+#include "game/GUI/CAmiiboComposition.h"
 #include "game/GUI/CIngameMenu.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
@@ -160,7 +161,6 @@ struct UnkMapMenuController_ovb0203 {
 
 // As src/game/GUI/CMapMenuController_Timers_b43.cpp and src/game/GUI/CMapMenuController_Close.cpp declare them.
 struct UnkStateSink;
-extern UnkStateSink* g_unk_717275c380;
 struct UnkStateKey;
 extern UnkStateKey g_unk_71729f0178;
 struct UnkMapMenuControllerClose;

@@ -7,6 +7,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/snd/CSoundSystem.h"
+#include "game/UnkTU23.h"
 #include "game/UnkTU99.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
@@ -19,10 +20,6 @@ struct UnkArray;
 struct UnkRequest;
 struct UnkMgr_0xf18;
 struct UnkTunable;
-
-extern UnkSoundMgr* g_unk_7101d4d820;
-
-void fn_7100108a84(UnkMgr*, UnkHandle*, f32);
 
 struct UnkMask {
     u32 bits;

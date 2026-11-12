@@ -3,6 +3,7 @@
 // +0x20): one hands the value found to fn_71001f9e8c with the owner, the other clears the value's
 // word at +0xc0. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU218.h"
 #include "game/UnkTU253.h"
 #include "types.h"
 
@@ -69,8 +70,6 @@ void fn_71001f023c(UnkMapOwnerB_A1b71* self, UnkMapKey_A1b71* const* key) {
     if (UnkMapNode_A1b71* node = self->map.Find((*key)->id))
         static_cast<UnkMapValueB_A1b71*>(node->value)->field_0xc0 = nullptr;
 }
-
-bool fn_7100199d88(void* table, const u64* key, u32* id);  // as src/game/UnkSlotBlend.cpp declares it
 
 struct UnkMapUser_A1b71 {
     u8 pad_0x0[0x78];

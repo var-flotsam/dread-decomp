@@ -4,13 +4,13 @@
 // (fn_7100108084). Names and layouts are placeholders.
 #include "base/math/CVector.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU23.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
 
 struct UnkPlayer;
 
 struct UnkSoundMgr;
-extern UnkSoundMgr* g_unk_7101d4d820;
 void fn_710010807c(UnkSoundMgr* mgr, const base::math::CVector3D* pos, const base::math::CVector3D* a,
                    const base::math::CVector3D* b);
 void fn_7100108084(UnkSoundMgr* mgr, const base::math::CVector3D* pos, const base::math::CVector3D* a,

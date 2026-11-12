@@ -1,6 +1,7 @@
 // Returns an object to its fixed pool (0x4000 slots): clears it, releases its buffer and its
 // up to 16 child objects (each back to their own pool), then swap-removes it from the pool's
 // list of live objects. Null, an empty pool or an object not in the pool do nothing.
+#include "game/UnkTU170.h"
 #include "game/UnkTU182.h"
 #include "types.h"
 
@@ -55,7 +56,6 @@ extern UnkHeap_7100161b90* unk_716e34ae28;         // the buffer heap for the ot
 extern void (*unk_716e29b078)(void* block);        // resets the block at +0x178
 
 struct UnkHeap_71001541a0;
-void fn_7100153a88(UnkHeap_71001541a0* pool, void* ptr);  // frees through the heap
 
 // NON_MATCHING(minor): the child loop's offset counter is compared in 64 bits (32 in the
 // original); otherwise identical.

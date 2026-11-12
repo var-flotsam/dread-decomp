@@ -21,7 +21,6 @@
 
 struct UnkRinkaControl_ruc;
 struct UnkWorld;
-void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
 
 struct UnkGrappleLightning_ovb0047;
 

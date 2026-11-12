@@ -1,10 +1,9 @@
 // A CDredhedDiveAttack check: the base attack's check (fn_7100360b84) passes, fn_71004e468c does
 // not, and the target's object at +0x1c0, when it is accepted by fn_7101161088, is not further
 // than half the attack's range (+0x4c). Names and layouts are placeholders.
+#include "game/CLifeComponent.h"
 #include "game/UnkActor.h"
 #include "game/CAttack.h"
-
-bool fn_7101161088(void*);
 
 struct UnkDredhedDiveTargetObject {
     u8 pad_0x0[0x68];

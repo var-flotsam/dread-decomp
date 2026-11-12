@@ -3,6 +3,7 @@
 // +0xb8, like fn_71006238ec (CNailongThornMovementComponent_2.cpp). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/UnkTU1370.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -16,7 +17,6 @@ struct UnkNailuggerAcidBallRequest {
 
 extern base::reflection::UnkTunable g_unk_7172716160;
 extern CStrId g_unk_71726f8838 __attribute__((visibility("hidden")));
-void fn_71008c1538(UnkRequest* request, f32 value);
 
 void fn_7100626c90(void* self, UnkNailuggerAcidBallRequest* request) {
     fn_71008c1538(reinterpret_cast<UnkRequest*>(request),

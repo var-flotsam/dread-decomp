@@ -5,6 +5,7 @@
 // fn_710007b444) with weight 1 (+0x50). Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU1370.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -12,7 +13,6 @@ using base::global::CStrId;
 extern CStrId g_unk_71726c79b8 __attribute__((visibility("hidden")));
 
 struct UnkRequest;
-void fn_71008c1538(UnkRequest* request, f32 value);
 f32 fn_7100789f5c(const CStrId* id);
 
 struct UnkVec3 {

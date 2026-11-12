@@ -70,7 +70,6 @@ struct UnkRecord80 {
     u64 unk_0x0[0x80 / 8];
 };
 using UnkIdRecordMap = UnkIdMap<UnkRecord80>;
-void fn_7100017ce8(UnkRecord80* record);              // destructor
 void fn_710001871c(UnkIdRecordMap* self);             // frees the storage
 void fn_7100017948(UnkIdRecordMap* self, u32 capacity);  // Reserve
 

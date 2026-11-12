@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkHeap_71001541a0;
 struct UnkObject_0x130;
 struct UnkPoolCount;
 struct UnkPtrHolder;
@@ -18,3 +19,4 @@ extern UnkObject_0x130 g_unk_716e2752d0;
 extern UnkObject_0x130 g_unk_716e275400;
 extern UnkObject_0x130 g_unk_716e275530;
 extern UnkObject_0x130 g_unk_716e275660;
+void fn_7100153a88(UnkHeap_71001541a0* pool, void* ptr);  // Frees through the heap.

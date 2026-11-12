@@ -17,7 +17,6 @@ using base::global::CStrId;
 struct UnkStruct_71008c0c74;
 struct UnkBase_71003cc474;
 struct UnkRequest;
-void fn_71008c1538(UnkRequest* request, f32 value);
 
 struct UnkImpactRequest_ovb0262y {
     u8 pad_0x0[0x18];

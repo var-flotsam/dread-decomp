@@ -22,6 +22,7 @@
 #include "game/UnkTU2550.h"
 #include "game/UnkTU2557.h"
 #include "game/UnkTU2560.h"
+#include "game/UnkTU2577.h"
 #include "game/UnkTU2578.h"
 #include "game/UnkTU2728.h"
 #include "game/UnkTU2732.h"
@@ -71,15 +72,12 @@ void fn_710119b048(void* self);
 void fn_7100e09794(void* self);
 
 struct UnkGameObject_0x150;  // src/engine/HostArguments.cpp
-extern UnkGameObject_0x150* g_unk_7101d47370;
 void fn_7100dde0e4(UnkGameObject_0x150* self);
 
 struct UnkStruct_0x128;  // the scene state, src/game/UnkLoadingScreen.cpp
-extern UnkStruct_0x128* g_unk_7101d47320;
 void fn_7100ef378c(UnkStruct_0x128* self);
 
 struct UnkGameObject_0x60;  // src/engine/HostArguments.cpp
-extern UnkGameObject_0x60* g_unk_7101d47378;
 void fn_7100dde79c(UnkGameObject_0x60* self);
 
 void fn_710109cc50(u32 mode, const CRntString& str);
@@ -106,7 +104,6 @@ void fn_7100d8d0c4(void* self);
 
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;  // the sub-area manager
-void fn_7100ee1f34(void* self);
 void fn_7100ee2764(void* self);
 
 void fn_71011b1f30(UnkGuiRoot* self);
@@ -119,7 +116,6 @@ void fn_7100fb790c(void* self);
 void fn_7100fb7a14(void* self);
 
 struct UnkLoadingScreen;  // src/game/UnkLoadingScreen.cpp
-extern UnkLoadingScreen* g_unk_7101d47380;
 void fn_7100e0f984(UnkLoadingScreen* self);
 
 // The two flags the main function passes (src/engine/HostArguments.cpp).

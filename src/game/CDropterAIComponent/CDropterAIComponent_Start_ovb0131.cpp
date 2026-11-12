@@ -13,6 +13,7 @@
 #include "game/CBehaviorTreeAIComponent.h"
 #include "game/CBlackboard.h"
 #include "game/CDropterAIComponent.h"
+#include "game/CFXComponent.h"
 #include "game/UnkTU2702.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkTimelineCalls.h"
@@ -24,7 +25,6 @@ using base::global::CStrId;
 struct UnkWarriorSend_b58;
 struct UnkDropterHit_b58;
 struct UnkWorld;
-void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
 
 struct UnkDropterKey_ovb0131;
 extern UnkDropterKey_ovb0131 g_unk_7101649cd8;  // reached through the GOT

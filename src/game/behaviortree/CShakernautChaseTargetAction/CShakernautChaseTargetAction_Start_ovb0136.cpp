@@ -7,10 +7,10 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
 struct UnkStruct_0x68;
-void fn_7100394bd0(UnkStruct_0x68*);
 
 // The chase path source (the AI's +0x1610).
 struct UnkShakernautPathSource_ovb0136 {

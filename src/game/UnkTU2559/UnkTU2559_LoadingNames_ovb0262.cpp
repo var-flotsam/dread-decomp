@@ -5,12 +5,12 @@
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2557.h"
 #include "game/UnkTU2559.h"
 #include "types.h"
 
 struct UnkLoadingScreen;
-extern UnkLoadingScreen* g_unk_7101d47380;
 
 // Creates the object on first use: storage from the default allocator, built by its constructor
 // function (as src/engine/HostArguments.cpp's).

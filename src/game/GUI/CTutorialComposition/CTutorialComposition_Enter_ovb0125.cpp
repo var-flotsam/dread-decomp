@@ -6,6 +6,7 @@
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/GUI/CAmiiboComposition.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/sound/SGUISoundEventsSelector.h"
 #include "types.h"
@@ -20,7 +21,6 @@ void fn_71011ecfbc(UnkGuiObj*, const char32_t*);
 
 struct UnkStateSink;
 struct UnkStateKey;
-extern UnkStateSink* g_unk_717275c380;
 extern UnkStateKey g_unk_71729f0178;
 
 // A string id's pooled data as these reads see it.

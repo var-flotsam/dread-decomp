@@ -14,6 +14,7 @@
 #include "game/CMagnetSlidingBlockComponent.h"
 #include "game/CMaterialFXComponent.h"
 #include "game/UnkBroadphaseObject.h"
+#include "game/UnkTU218.h"
 #include "game/UnkTU39.h"
 #include "game/UnkTU50.h"
 #include "game/UnkTimelineComponent.h"
@@ -274,8 +275,6 @@ void fn_7100920f40(UnkMagnetSlidingBlock_b0086* self, bool on) {
     fn_71009210d4(reinterpret_cast<CMagnetSlidingBlockComponent*>(self), self->speed);
     found.Free();
 }
-
-bool fn_7100199d88(void* map, const u64* key, u32* index);
 
 struct UnkMagnetMaterial_b0086 {
     u8 pad_0x0[0x14c];

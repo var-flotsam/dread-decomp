@@ -1,10 +1,10 @@
 // The GUI::CMapMenuController unit (tools/tu_map.py, unit 1689). Names are placeholders.
+#include "game/GUI/CAmiiboComposition.h"
 #include "game/sound/SGUISoundEventsSelector.h"
 #include "types.h"
 
 struct UnkStateSink;
 struct UnkStateKey;
-extern UnkStateSink* g_unk_717275c380;
 struct UnkEnumType;
 extern UnkEnumType g_unk_71729f0190;
 extern UnkEnumType g_unk_71729f0198;

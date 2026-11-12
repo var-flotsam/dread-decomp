@@ -8,6 +8,7 @@
 #include <new>
 
 #include "base/UnkCloneHelpers.h"
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/reflection.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
@@ -52,7 +53,6 @@ bool fn_71000e6db0(UnkVersionEntry* self) {
 }
 
 struct UnkVersionRegistry;
-extern UnkVersionRegistry* g_unk_7101d4c8d0;
 struct UnkAttrHandler85 {
     u8 pad_0x0[8];
     void (*handler)(void* key, void* value, void* field, void* owner);

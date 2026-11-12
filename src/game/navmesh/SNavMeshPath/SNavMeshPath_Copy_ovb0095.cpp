@@ -39,8 +39,6 @@ UnkNavMeshPathCopy_ovb0095* fn_71002ad420(UnkNavMeshPathCopy_ovb0095* self, cons
     return self;
 }
 
-extern char g_unk_7101a21168[];  // vtable of the point table
-
 // A refcounted pointer cleared after the release; the count goes through a plain int pointer.
 struct UnkRefPtr_ovb0095 {
     base::UnkRefCounted* ptr;

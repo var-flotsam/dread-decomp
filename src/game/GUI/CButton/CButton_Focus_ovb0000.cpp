@@ -9,6 +9,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/GUI/CAmiiboComposition.h"
 #include "game/GUI/CButton.h"
 #include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGuiDisplayObject.h"
@@ -20,7 +21,6 @@
 
 struct UnkStateSink;
 struct UnkStateKey;
-extern UnkStateSink* g_unk_717275c380;
 struct UnkEnumType;
 extern UnkEnumType g_unk_71729f0188;
 void fn_71011f9878(UnkGuiDisplayObject* sprite);

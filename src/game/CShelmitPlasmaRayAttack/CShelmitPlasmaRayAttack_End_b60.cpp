@@ -8,6 +8,7 @@
 // collider is removed (fn_7100863e04) and the flag at +0x72 cleared. Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/CCollisionComponent.h"
+#include "game/CFXComponent.h"
 #include "game/CShelmitPlasmaRayAttack.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkSwitchObject.h"
@@ -25,9 +26,7 @@ struct UnkUnit285_b46a1;
 // As src/game/CAbilityEnergyWave/fn_7100300bd0.cpp declares them.
 struct UnkWorld;
 struct UnkPart;
-UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 struct UnkObject;
-bool fn_710114e668(UnkObject*, u8);
 
 struct UnkPlasmaRayVec_b60a4 {
     f32 x, y, z;

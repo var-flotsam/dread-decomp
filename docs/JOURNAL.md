@@ -152,6 +152,19 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Fourth declarations pass (2026-11-12).** With one signature per symbol, `tools/decl_plan.py` could plan 190
+symbols that it had left out or that earlier runs could not move; `tools/hub_migrate.py` moved 91 of them (463
+local copies) in two runs, the second without the 80 the first left. Symbols in more than one file: 1,086 to
+995; extra copies: 3,234 to 2,771. What still stops the rest is a name: the header forward-declares
+`struct UnkEnumType;` and a file has a `UnkEnumType` of its own in a namespace it opens, or defines the name as
+an alias.
+A fault found on the way: `tools/decl_plan.py --write` puts a plan's forward declarations into the headers
+first, and a symbol that then goes back left its forward declaration there. Nine such leftovers stopped six files
+compiling (a global `struct UnkSoundSystemATK;` against `base::snd::UnkSoundSystemATK` with a `using`), which only
+the full `tools/check.py` showed, because the migration skips files that do not compile before its edits.
+`tools/hub_migrate.py --plan` now ends by removing every forward declaration a header gained since HEAD that
+nothing in the header uses (`DROPPED`). Run `tools/check.py` after a plan run all the same.
+
 **One signature per symbol (2026-11-12).** 135 symbols were declared with more than one signature, all of them
 the same call under two names for a struct (43 functions) or two views of an object (92 globals). Each differing
 file now has the usual declaration and a cast where it uses the symbol, written by a throwaway script and kept

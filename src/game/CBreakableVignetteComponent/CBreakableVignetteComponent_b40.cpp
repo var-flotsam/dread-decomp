@@ -6,6 +6,7 @@
 #include "base/UnkVector.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU2566.h"
+#include "game/UnkTU2577.h"
 #include "game/UnkTU315.h"
 #include "game/UnkTU883.h"
 #include "types.h"
@@ -15,8 +16,6 @@ struct UnkCallback;
 void fn_7100e95130(UnkMapData* map, u64 id);
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
-void fn_7100ee1f34(void*);
-void fn_71005c4828(void*, void**);
 
 struct UnkKeyed_bv {
     u8 pad_0x0[0x30];

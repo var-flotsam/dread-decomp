@@ -6,13 +6,13 @@
 // and keeps the result at +0x4a. Names are placeholders.
 #include "../../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkSelf;
 struct UnkStruct_0x68;
-void fn_7100394bd0(UnkStruct_0x68* self);
 
 // Returned in memory (not trivially copyable).
 struct UnkVec3_b55 {

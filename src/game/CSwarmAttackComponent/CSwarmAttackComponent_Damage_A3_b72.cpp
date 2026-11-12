@@ -8,13 +8,13 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU1370.h"
 #include "types.h"
 
 using base::math::CVector2D;
 using base::math::CVector3D;
 
 struct UnkRequest;
-void fn_71008c1538(UnkRequest* request, f32 value);
 
 struct UnkSwarmClass_A3_b72 {
     void** vtable;

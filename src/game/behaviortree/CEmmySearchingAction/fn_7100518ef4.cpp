@@ -3,6 +3,7 @@
 // counted reference (released first when it was set, then replaced by the copy of the other's).
 #include "game/UnkNavMeshPath.h"
 #include "game/UnkObject_0x100.h"
+#include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
 struct __attribute__((packed)) UnkRecord {
@@ -45,8 +46,6 @@ struct __attribute__((packed)) UnkTable {
     UnkRecord records[250];
     UnkBlock block;
 };
-
-extern char g_unk_7101a21168[];
 
 void fn_7100518ef4(UnkTable* self, const UnkTable* other) {
     self->vtable = reinterpret_cast<void**>(g_unk_7101a21168) + 2;

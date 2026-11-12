@@ -8,6 +8,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CProjectileMovement.h"
+#include "game/UnkTU1370.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -31,7 +32,6 @@ struct UnkScorpiusSpitMovement {
 
 extern base::reflection::UnkTunable g_unk_7172716160;
 extern CStrId g_unk_7172704510 __attribute__((visibility("hidden")));
-void fn_71008c1538(UnkRequest* request, f32 value);
 
 bool fn_7100698ff4(UnkScorpiusSpitMovement* self, UnkKraidCreatureArg* arg) {
     bool result = fn_7100ac3108(reinterpret_cast<UnkKraidBouncingCreaturesMovement2*>(self), arg);

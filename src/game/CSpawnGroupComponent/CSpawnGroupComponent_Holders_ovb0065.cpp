@@ -19,6 +19,7 @@
 #include "game/CBatalloonAIComponent.h"
 #include "game/CBlackboard.h"
 #include "game/CComponent.h"
+#include "game/CPickableComponent.h"
 #include "game/CSpawnGroupComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
@@ -420,8 +421,6 @@ void fn_7101119a5c(UnkSpawnGroupCount_ovb0065* self, CBlackboard* blackboard) {
     UnkSpawnGroupValue_ovb0065* v = self->values;
     SetSectionInt(blackboard, section_id, &v[index].name, &self->count);
 }
-
-bool fn_71009cde54(void* script, const char* name, const char* fmt, ...);
 
 struct UnkSpawnActor_ovb0065 {
     u8 pad_0x0[0x30];

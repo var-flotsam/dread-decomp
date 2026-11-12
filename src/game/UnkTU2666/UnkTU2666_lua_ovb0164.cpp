@@ -263,7 +263,6 @@ s32 fn_71010888b0(lua_State* L) {
 }
 
 struct UnkSoundHolder;
-extern UnkSoundHolder* g_unk_7101d47340;
 struct UnkSoundGroup_b0164 {
     virtual void vf_0x0();
     virtual void vf_0x8();

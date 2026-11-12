@@ -27,7 +27,6 @@ struct UnkStruct_710036974c {
 
 u32 fn_7101111d88(UnkStruct_710036974c* self, UnkStruct_710036974c_Msg* msg);
 void fn_710110cc04(UnkStruct_710036974c* self, bool flag);
-void fn_71003697f0(UnkStruct_710036974c* self);
 
 u32 fn_710036974c(UnkStruct_710036974c* self, UnkStruct_710036974c_Msg* msg) {
     u32 r = fn_7101111d88(self, msg);

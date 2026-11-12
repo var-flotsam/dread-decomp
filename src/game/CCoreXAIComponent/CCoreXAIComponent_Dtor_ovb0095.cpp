@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CBossAIComponent.h"
+#include "game/CLifeComponent.h"
 #include "game/UnkTU2702.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -64,7 +65,6 @@ using base::global::CStrId;
 struct UnkGoliathAI_b55;
 struct UnkGoliathHitInfo_b55;
 struct UnkGoliathHitTarget_b55;
-bool fn_7101161088(void* object);
 struct UnkCollisionContainer;
 CStrId* fn_7100864018(UnkCollisionContainer* self, void* object);
 

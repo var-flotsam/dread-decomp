@@ -8,6 +8,7 @@
 #include "base/UnkCountedResource.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "base/core/CBaseObject.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
@@ -84,7 +85,6 @@ using UnkPathId_ovb0098 = base::UnkStrIdMemberOf<g_unk_7101d47200>;
 // The stage's vtable (reached through the GOT).
 extern char unk_7101a1e328[];
 // The base destructor of the unit's polymorphic elements.
-void fn_710002384c(void* self);
 
 struct UnkMatStageData_ovb0098 {
     u64 field_0x30[6];

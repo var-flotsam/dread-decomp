@@ -66,9 +66,6 @@ inline UnkGameManagerIdTable& GameManagerIdTable() {
 
 
 struct UnkPart;
-UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
-bool fn_710114e668(UnkObject*, u8);
-void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
 void fn_71002078e4(void* fade, f32 target, f32 from, f32 to, bool a, bool b);
 
 struct UnkEnergyWavePart_ovb22 {

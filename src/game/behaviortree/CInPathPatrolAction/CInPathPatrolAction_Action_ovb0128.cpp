@@ -6,6 +6,7 @@
 #include "base/UnkDestructors.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/behaviortree/CBaseAction.h"
+#include "game/behaviortree/CBehavior.h"
 #include "game/behaviortree/CInPathPatrolAction.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -37,7 +38,6 @@ __attribute__((flatten)) void fn_710038d180(char* self) {
 
 
 struct UnkSelf;
-bool fn_7100394e2c(UnkSelf* self, void* record, f32* out);
 
 struct UnkInPathPatrol_ovb0128 {
     u8 pad_0x0[0x78];

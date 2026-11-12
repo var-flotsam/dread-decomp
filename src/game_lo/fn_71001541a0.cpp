@@ -1,11 +1,11 @@
 // Returns a pooled object to its pool: finalises it, frees its memory block from one of two
 // heaps (chosen by flag bit 0), and swaps it with the last live entry of the pool's slot table,
 // marking it unused (-1).
+#include "game/UnkTU170.h"
 #include "game/UnkTU174.h"
 #include "types.h"
 
 struct UnkHeap_71001541a0;
-void fn_7100153a88(UnkHeap_71001541a0* heap, void* block);
 
 struct UnkObj_71001541a0 {
     void* field_0x0;

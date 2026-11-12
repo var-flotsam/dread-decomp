@@ -5,6 +5,7 @@
 // else at most the life minus one; when it didn't kill, the breaking flag goes to +0x3f4 and the state
 // to 2. Names and layouts are placeholders.
 #include "game/CFrozenComponent.h"
+#include "game/UnkTU1370.h"
 #include "types.h"
 
 struct UnkRequest;
@@ -188,8 +189,6 @@ struct UnkFrostbiteComponent {
     u8 pad_0x38[0x3f4 - 0x38];
     bool field_0x3f4;
 };
-
-void fn_71008c1538(UnkRequest* request, f32 value);
 
 bool fn_71007ff914(UnkFrostbiteComponent* self, UnkFrostbiteRequest* request) {
     UnkFrostbiteLife* life = self->actor->life;

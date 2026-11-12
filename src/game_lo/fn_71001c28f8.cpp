@@ -4,11 +4,10 @@
 #include "base/color/CColor4F.h"
 #include "game/UnkGlobal_710b372a98.h"
 #include "game/UnkSlots.h"
+#include "game/UnkTU218.h"
 #include "types.h"
 
 using base::color::CColor4F;
-
-bool fn_7100199d88(void* table, const u64* key, u32* id);
 
 // Applies the colour to the slot `id`/`kind` of the table.
 static bool ApplySlot(UnkSlots* self, u32 id, u32 b, const CColor4F* color, u32 mode) {

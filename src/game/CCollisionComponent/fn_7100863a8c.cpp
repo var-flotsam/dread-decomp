@@ -14,7 +14,6 @@
 using base::global::CStrId;
 
 struct UnkTracker_7100863a8c;
-void fn_7100d5abfc(void* owner, UnkStruct_7100861148_Collider* collider);
 
 struct UnkManager_7100863a8c {
     u8 unk_0x0[0x6b0];

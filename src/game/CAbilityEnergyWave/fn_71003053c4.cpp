@@ -3,6 +3,7 @@
 // serial at +0x8 equals the one at +0x408, which is not -1), runs fn_7100072328 on its target with
 // 0.2 and 0 and clears the handle (copies the null handle).
 #include "base/global/CStrId.h"
+#include "game/CFXComponent.h"
 #include "game/UnkTU50.h"
 #include "types.h"
 
@@ -36,7 +37,6 @@ struct UnkSelf {
 };
 
 struct UnkWorld;
-void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
 
 void fn_71003053c4(UnkSelf* self) {
     fn_710114fe8c(reinterpret_cast<UnkWorld*>(self->field_0xc0->field_0x30->field_0x280),

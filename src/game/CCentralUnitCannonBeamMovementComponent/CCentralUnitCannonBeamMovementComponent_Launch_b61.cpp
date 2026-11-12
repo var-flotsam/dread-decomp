@@ -3,12 +3,12 @@
 // (+0x2e8) to the all-flags mask. Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CName.h"
+#include "game/CProjectileMovement.h"
 #include "game/UnkActor.h"
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
 
 struct UnkSelf;
-void fn_7100ac3880(UnkSelf* self);  // as src/game/CChozoCommanderEnergyShardsSphereMovementComponent/fn_7100459e6c.cpp
 
 struct UnkCannonBeam_b61a2 {
     u8 pad_0x0[0x30];

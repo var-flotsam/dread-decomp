@@ -1,5 +1,6 @@
 // Whether the owner's object at +0x220 (+0x30 of the component) is in state 4 on its object at +0x218
 // and the integer fn_7101177da8 gives for it exceeds the float fn_7101177ea0 gives by more than 10.
+#include "game/CAnimationComponent.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
@@ -14,8 +15,6 @@ struct UnkSelf {
     u8 pad_0x0[0x30];
     UnkOwner* field_0x30;
 };
-
-s32 fn_7101177da8(void* object, u64 hash);
 
 bool fn_7100472034(UnkSelf* self) {
     if (self->field_0x30->field_0x220 && self->field_0x30->field_0x218 &&

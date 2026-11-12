@@ -38,6 +38,7 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkSubAreaGuiCache.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU23.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2559.h"
 #include "game/UnkTU2571.h"
@@ -358,7 +359,6 @@ struct UnkFilePathList {
 };
 
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
-extern UnkSoundMgr* g_unk_7101d4d820;
 void fn_7100089eec(base::file::UnkFileDevice* self, const CFilePathStrId* path, UnkFilePathList* out);
 bool fn_7100089ef4(base::file::UnkFileDevice* self, const base::global::UnkFilePathStrIdBase* path);
 void fn_7100108c94(UnkSoundMgr* self, const CFilePathStrId* path);
@@ -393,7 +393,6 @@ using base::global::CRntString;
 using base::global::CStrId;
 
 struct UnkLanguage;
-extern UnkLanguage* g_unk_7101d47358;
 // The text the language gives (as src/game/CScenario.cpp declares it).
 struct UnkDialogText : UnkGuiText {
     ~UnkDialogText() { fn_7100066e44(this); }

@@ -5,6 +5,7 @@
 // uniform scale. The parameter types are those of src/game/CEmmyWaveMovementComponent/fn_7100502628.cpp.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CFXComponent.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkXformNode.h"
 #include "game/logic/collision/CCircleShape2D.h"
@@ -13,7 +14,6 @@
 
 struct UnkWorld;
 struct UnkPart;
-UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 
 struct UnkSphereShape_ovb0135;
 

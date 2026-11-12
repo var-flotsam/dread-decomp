@@ -3,6 +3,7 @@
 // object's name id, and, for a pointer, the id of the type it points to (the registered type
 // replaces the object's own when there is one), then reads the object as that type
 // (fn_7100b09820). Names and layouts are placeholders.
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -14,7 +15,6 @@
 struct UnkReadArg_b0026;
 struct UnkVersionRegistry;
 struct UnkVersionEntry;
-extern UnkVersionRegistry* g_unk_7101d4c8d0;
 void fn_71000ee9fc(void* reader, u32 flags, UnkReadArg_b0026* arg, const base::global::CStrId* name);
 const base::reflection::CType* fn_710009c640(base::reflection::UnkReflObject* obj);
 

@@ -6,6 +6,7 @@
 // are placeholders.
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
+#include "game/CFXComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkXformNode.h"
@@ -18,7 +19,6 @@ struct UnkComponent;
 struct UnkObject;
 struct UnkPart;
 struct UnkWorld;
-UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 extern __attribute__((visibility("hidden"))) base::global::CStrId g_unk_71726ca0e0;
 
 struct UnkSphereShape_ovb0135 {

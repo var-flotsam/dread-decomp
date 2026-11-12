@@ -27,6 +27,7 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkSubAreaGuiCache.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU23.h"
 #include "game/UnkTU2506.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2768.h"
@@ -790,7 +791,6 @@ void fn_7100dffd48(UnkGameManager* manager) {
 
 // ---- fn_7100e00900
 struct UnkSoundMgr;
-extern UnkSoundMgr* g_unk_7101d4d820;
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
 struct UnkFileRequestArgs {
     u64 field_0x0;

@@ -5,6 +5,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CChozoCommanderAIComponent.h"
+#include "game/CLifeComponent.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
@@ -19,8 +20,6 @@ struct UnkSelf {
     u8 pad_0x0[8];
     UnkActor* field_0x8;
 };
-
-bool fn_7101161088(void* object);
 
 static inline f32 Sign(f32 v) { return (f32)((v > 0.0f) - (v < 0.0f)); }
 

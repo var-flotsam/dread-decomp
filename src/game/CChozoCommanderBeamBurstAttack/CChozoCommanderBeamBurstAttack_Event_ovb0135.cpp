@@ -210,8 +210,6 @@ struct UnkObject;
 struct UnkComponent;
 struct UnkFxObject_ovb0041;
 struct UnkPart;
-UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
-bool fn_710114e668(UnkObject*, u8);
 void fn_7100146d84(UnkFxObject_ovb0041* fx, const UnkVec3f* position);
 void fn_7100146d98(UnkFxObject_ovb0041* fx, const UnkVec3f* angle);
 extern "C" f32 atan2f(f32 y, f32 x);

@@ -2,6 +2,7 @@
 // runs the base update with the same arguments.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCooldownXBossAIComponent.h"
 #include "game/CProjectileMovement.h"
 #include "game/UnkTU341.h"
 #include "types.h"
@@ -33,7 +34,6 @@ struct UnkBossComponent {
 };
 
 struct UnkAIComponent;
-void fn_71004d43dc(UnkAIComponent*, void*);
 
 bool fn_71004d77f4(UnkBossComponent* self, u64 a, u64 b, u64 c, u64 d) {
     if (!self->field_0x5d8)

@@ -16,6 +16,7 @@
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CAbilityShinespark.h"
+#include "game/CAnimationComponent.h"
 #include "game/CElectricReactionComponent.h"
 #include "game/CFXComponent.h"
 #include "game/CInputComponent.h"
@@ -35,7 +36,6 @@ struct UnkPlatformSm_A5_b72;
 struct UnkPlayer;
 struct UnkAbilitySet;
 struct UnkAbility;
-s32 fn_7101177da8(void*, u64);
 struct UnkWeightPlatform_b49a4;
 struct UnkPlatformUpdate_A5_b76;
 void fn_7100a09bf8(UnkPlatformUpdate_A5_b76* self, bool a, f32 progress);

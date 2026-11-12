@@ -20,6 +20,7 @@
 #include "game/UnkTU0.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2577.h"
 #include "game/UnkTU39.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -125,7 +126,6 @@ void fn_71010ea3e4(UnkAnimatedCameraCtrl_b0101* self, bool reset) {
 
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
-void fn_7100ee1f34(void*);
 
 // A bit mask passed by value (copied into a temporary), and its two guarded constants (as in
 // src/game/UnkLoadingScreen.cpp).

@@ -5,6 +5,8 @@
 #include <nn/hid.h>
 
 #include "base/input/UnkHidVibration.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU23.h"
 #include "game/UnkTU2578.h"
 #include "types.h"
 
@@ -104,10 +106,8 @@ void fn_710006fb30(UnkRumbleManager* self, nn::hid::VibrationDeviceHandle left,
 // the scene state (fn_7100f022c4).
 void fn_7100132a70(bool paused);
 struct UnkSoundMgr;
-extern UnkSoundMgr* g_unk_7101d4d820;
 void fn_7100108b48(UnkSoundMgr* self, bool paused);
 struct UnkStruct_0x128;  // the scene state (src/game/UnkLoadingScreen.cpp)
-extern UnkStruct_0x128* g_unk_7101d47320;
 void fn_7100f022c4(UnkStruct_0x128* self, bool paused);
 void fn_710006d55c(UnkPadSet* self);  // the frame's remaining input work
 

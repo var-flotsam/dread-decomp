@@ -11,11 +11,11 @@
 #include "game/CAbilityGhostAura.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/UnkTU341.h"
+#include "game/UnkTU57.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 void fn_7100a819ac(void* self);
-void fn_710007e6c4(void* self);  // an empty CRntString
 extern void* g_unk_7101a90770[];  // CCapsuleUsableComponent's vtable
 
 struct UnkCapsuleUsableComponent_ovb0109 {

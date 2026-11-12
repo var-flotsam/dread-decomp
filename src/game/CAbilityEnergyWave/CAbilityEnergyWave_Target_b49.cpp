@@ -21,7 +21,6 @@ struct UnkPlayer;
 struct UnkOwner;
 struct UnkRinkaControl_ruc;
 
-UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 void fn_7100872908(void*, void*);
 
 struct UnkEnergyWaveTargetComp_b49;

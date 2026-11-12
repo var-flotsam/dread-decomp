@@ -8,10 +8,10 @@
 // at +0x14690. Names and layouts are placeholders.
 #include "game/UnkActor.h"
 #include "game/UnkTU2702.h"
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
 struct UnkStruct_0x68;
-void fn_7100394bd0(UnkStruct_0x68* self);
 struct UnkAIComponent;
 
 struct UnkChaseSizeSource_ovb0132 {

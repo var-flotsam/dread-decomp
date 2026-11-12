@@ -3,6 +3,7 @@
 // there and the factor at +0xc is at least 1 the value is multiplied by it; either way the offset at
 // +0x8 is then added. When it is missing, a factor strictly between 0 and 1 is replaced by the
 // factor at +0x10 times the value. Returns the stored value (or the factor when nothing is stored).
+#include "game/UnkTU361.h"
 #include "types.h"
 
 struct UnkNode {
@@ -21,8 +22,6 @@ struct UnkTable {
     u32 count;
     u32 modulus;
 };
-
-u32 fn_71002874e0(u16, u8);
 
 // NON_MATCHING(minor): the final add has its operands swapped (s1 + s0 in the original; same value)
 f32 fn_71002b27d4(UnkTable* self, u32 a, u32 b, f32* value) {

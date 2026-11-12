@@ -1,6 +1,7 @@
 // Unit 2185: which of the ten material constant colors a name hash selects, and the sampler
 // handler that sends a clamped color to a particle target. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CFXComponent.h"
 #include "types.h"
 
 struct UnkSampleParams;
@@ -61,7 +62,6 @@ struct UnkColorParams_b260 {
 
 struct UnkPart;
 struct UnkWorld;
-UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 
 u32 fn_7100c7b648(u64 hash) {
     if (fn_7100001570("MATERIAL_CONSTANT_COLOR_0", 25) == hash)

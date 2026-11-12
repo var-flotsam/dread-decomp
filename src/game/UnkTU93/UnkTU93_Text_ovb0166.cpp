@@ -10,6 +10,7 @@
 #include "base/reflection/CFlagsetType.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -52,7 +53,6 @@ bool fn_71000efb88(UnkTextWriter_b0166* self, UnkTypedValue_b0166* value) {
     return true;
 }
 
-void fn_710007e6c4(void* self);
 void fn_710007f564(void* self, const char* str);
 
 struct UnkStringBuf_b0166 {
@@ -109,4 +109,3 @@ bool fn_71000ef764(UnkTextWriter_b0166* self, UnkTypedValue_b0166* value) {
     fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&text));
     return true;
 }
-

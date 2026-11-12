@@ -7,6 +7,7 @@
 #include "base/reflection/UnkReflTypeGlobals.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkTU1633.h"
+#include "game/UnkTU2577.h"
 #include "game/UnkTU437.h"
 #include "types.h"
 #include "game/sound/CMusicManager.h"
@@ -130,7 +131,6 @@ UnkReflValue fn_710000df24(void* unused, UnkArgument<UnkDefIterValue<0x18>>* arg
 
 // Values of kind 2 holding a manager singleton, created on first use (allocated with flags 0x3f or
 // 3, and constructed in place).
-void fn_7100ee1f34(void* self);
 const CType* fn_7100ad61f8();  // base::reflection::refl_GetType<CSubAreaManager*>
 const CType* fn_7100ad62d4();  // base::reflection::refl_GetType<CEnvironmentManager*>
 const CType* fn_7100ad6644();  // base::reflection::refl_GetType<sound::CMusicManager*>

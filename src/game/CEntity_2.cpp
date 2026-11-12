@@ -10,8 +10,10 @@
 #include "game/CAudioComponent.h"
 #include "game/CCharacterMovement.h"
 #include "game/CEnemyMovement.h"
+#include "game/GUI/CAmiiboComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU101.h"
+#include "game/UnkTU23.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU50.h"
@@ -134,7 +136,6 @@ UnkHandle fn_7100d7c770(UnkEntityWithSound* self, void* a, void* b, void* c) {
 // The same through the sound component, falling back to the static sound players by kind.
 UnkSoundHandle fn_710071bae8(UnkEntitySoundComponent* self, const u32* params, bool a, bool b, bool c);
 struct UnkStateSink;
-extern UnkStateSink* g_unk_717275c380;
 UnkSoundHandle fn_7100fca8cc(void* player, const u32* params);
 UnkSoundHandle fn_710101f154(void* player, const u32* params);
 
@@ -399,7 +400,6 @@ struct UnkEntityPaths {
     UnkPathAllocator* allocator;
 };
 struct UnkSoundMgr;
-extern UnkSoundMgr* g_unk_7101d4d820;
 void fn_7100232bf0(UnkEntityPaths* self);
 
 void fn_7100d78108(UnkEntityPaths* self) {

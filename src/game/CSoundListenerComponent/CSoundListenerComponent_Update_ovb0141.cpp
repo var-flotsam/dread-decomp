@@ -4,11 +4,11 @@
 // layouts are placeholders.
 #include "base/math/CVector.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU23.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 struct UnkSoundMgr;
-extern UnkSoundMgr* g_unk_7101d4d820;
 void fn_710010807c(UnkSoundMgr* mgr, const base::math::CVector3D* pos, const base::math::CVector3D* a,
                    const base::math::CVector3D* b);
 

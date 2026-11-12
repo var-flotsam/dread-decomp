@@ -146,7 +146,6 @@ struct UnkTransform_71002098a4 {
 
 void fn_71001c3474(UnkSource_710020c780* source, UnkReflObject* obj);
 UnkTransform_71002098a4 fn_710007916c(const UnkVector3_71002098a4& v);
-void fn_710019c474(void*, const UnkMatrix44*);
 
 void fn_71002098a4(UnkUpdater_710020c780* self) {
     UnkSource_710020c780* source = self->field_0x108;

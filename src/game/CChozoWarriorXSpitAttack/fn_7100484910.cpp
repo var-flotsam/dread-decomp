@@ -38,8 +38,6 @@ struct UnkSelf {
 
 extern const base::global::CStrId g_unk_71726cf1e0[] __attribute__((visibility("hidden")));
 struct UnkPart;
-UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
-bool fn_710114e668(UnkObject* object, u8 kind);
 
 void fn_7100484910(UnkSelf* self) {
     if (UnkCollisionContainer* object = self->field_0x8->field_0x2a0) {

@@ -2,12 +2,12 @@
 // the flag at +0x28. When the collider is registered with an owner (+0x30) whose tracking flag
 // (+0x6a) is set, it is removed from the owner (fn_7100d5abfc) before the change and added back
 // (fn_7100d59994) after it. Names and layouts are placeholders.
+#include "game/UnkTU2510.h"
 #include "types.h"
 
 struct UnkStruct_7100861148_Collider;
 struct UnkTracker_71008618cc;
 struct UnkReflObject;
-void fn_7100d5abfc(void* owner, UnkStruct_7100861148_Collider* collider);
 void fn_7100d59994(UnkTracker_71008618cc* self, UnkReflObject* collider);
 
 struct UnkColliderFlags {

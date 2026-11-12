@@ -243,7 +243,6 @@ struct UnkShotIdRecordSet {
 };
 
 struct UnkIdPair;
-void fn_7100026f70(UnkIdPair* pair);
 
 // The record set's constructor.
 void fn_7100ede778(UnkShotIdRecordSet* self) {

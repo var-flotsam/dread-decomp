@@ -2,10 +2,10 @@
 // (fn_7100901144), clears the word at +0xbc0, copies the five values the class gave (+0xc90, see
 // CCharClassLavaPoolComponent_Init_b50.cpp) to +0xbc4, and resets the damage request at +0xac0
 // (fn_71008c1538) with 0. Names and layouts are placeholders.
+#include "game/UnkTU1370.h"
 #include "types.h"
 
 struct UnkRequest;
-void fn_71008c1538(UnkRequest*, f32);
 void fn_7100901144(char* self);
 
 void fn_71008fc678(char* self) {

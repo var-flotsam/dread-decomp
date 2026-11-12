@@ -5,6 +5,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CProjectileMovement.h"
+#include "game/UnkTU1370.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
@@ -21,7 +22,6 @@ struct UnkRequest;
 extern base::reflection::UnkTunable g_unk_7172716160;
 struct UnkKraidBouncingCreaturesMovement2;
 struct UnkKraidCreatureArg;
-void fn_71008c1538(UnkRequest* request, f32 value);
 
 // Runs the base step, keeps the object at +0x10 cast to its class at +0x5d0 and sets up the request
 // at +0x248 with the tunable's value at +0x360.

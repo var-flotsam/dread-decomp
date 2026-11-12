@@ -82,7 +82,6 @@ struct UnkPlayer;
 
 struct UnkFan_A4_b74;
 struct UnkRequest;
-void fn_71008c1538(UnkRequest* request, f32 value);
 struct UnkGooplotRequest_b63a3;
 struct UnkBase_71003cc474;
 void fn_710116a168(void* target, void* key);

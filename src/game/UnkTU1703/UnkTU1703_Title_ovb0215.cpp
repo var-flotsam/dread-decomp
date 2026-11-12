@@ -10,6 +10,7 @@
 #include "game/GUI/CMainMenu.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU2578.h"
 #include "game/sound/UnkSoundHandle.h"
@@ -32,8 +33,6 @@ static inline void FadeOut(UnkSoundHandle* handle) {
 }
 
 struct UnkStruct_0x128;
-extern UnkStruct_0x128* g_unk_7101d47320;
-void fn_7100f011c4(UnkStruct_0x128* self, u32 mode);
 bool fn_7100f00778(UnkStruct_0x128* self);
 
 static inline UnkStruct_0x128* Music() {

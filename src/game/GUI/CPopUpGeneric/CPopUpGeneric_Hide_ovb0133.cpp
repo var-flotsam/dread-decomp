@@ -6,6 +6,7 @@
 // the one at +0x3c0 moved to the set at +0x18 of the +0x30 of the object at +0x248. Names and layouts
 // are placeholders.
 #include "base/UnkDeferredSet.h"
+#include "game/GUI/CAmiiboComposition.h"
 #include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/sound/SGUISoundEventsSelector.h"
@@ -13,7 +14,6 @@
 
 struct UnkStateSink;
 struct UnkStateKey;
-extern UnkStateSink* g_unk_717275c380;
 extern UnkStateKey g_unk_71729f0180;
 
 void fn_71011cec68(UnkGuiDisplayObject* self, f32 value);

@@ -14,6 +14,7 @@
 #include "game/UnkTU2550.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2557.h"
+#include "game/UnkTU2577.h"
 #include "game/UnkTU2578.h"
 #include "game/UnkTU2668.h"
 #include "game/UnkTU2677.h"
@@ -239,7 +240,6 @@ void fn_7100000980() {
 
 // The scene-state singleton (0x150 bytes, created on first use; src/game/UnkLoadingScreen.cpp's).
 struct UnkStruct_0x128;
-extern UnkStruct_0x128* g_unk_7101d47320;
 void fn_7100f00600(UnkStruct_0x128* self);
 
 static inline UnkStruct_0x128* SceneState() {
@@ -313,38 +313,30 @@ f32 fn_710119a3d0(void* root);
 
 // The engine's singletons (src/engine/UnkEngineStart.cpp) and their per-frame updates.
 struct UnkEngineObject_0xf0;
-extern UnkEngineObject_0xf0* g_unk_7101d47338;
 void fn_7100075e64(UnkEngineObject_0xf0* self, f32 dt);
 struct UnkSoundHolder;
-extern UnkSoundHolder* g_unk_7101d47340;
 void fn_710006ce38(UnkSoundHolder* holder, f32 dt);
 extern UnkRumbleManager* g_unk_7101d47348;
 void fn_7100073af8(UnkRumbleManager* self, f32 dt);
 void fn_710013dee8(UnkTunableRegistry* self);
 // The language singleton (src/game/UnkLanguage.cpp); its per-frame step is empty.
 struct UnkLanguage;
-extern UnkLanguage* g_unk_7101d47358;
 void fn_710119d31c(UnkLanguage* language);
 // The game's singletons: the sub-area manager (0xae8 bytes), the environment manager (0x4c8), two
 // more objects (0x150 and 0x60 bytes) and the loading screen (0x220).
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
 extern void* g_unk_7101d47368;
-void fn_7100ee1f34(void* self);
 void fn_7100ee49f0(void* self, f32 dt);
 struct UnkGameObject_0x150;
-extern UnkGameObject_0x150* g_unk_7101d47370;
 void fn_7100dde21c(UnkGameObject_0x150* self, f32 dt);
 struct UnkGameObject_0x60;
-extern UnkGameObject_0x60* g_unk_7101d47378;
 void fn_7100dde7a0(UnkGameObject_0x60* self, f32 dt);
 struct UnkLoadingScreen;
-extern UnkLoadingScreen* g_unk_7101d47380;
 void fn_7100e134a0(UnkLoadingScreen* self, f32 dt);
 void fn_7100f00780(UnkStruct_0x128* self, f32 dt);
 // The statistics object (0x78 bytes) the device's memory size is reported to, in KiB.
 struct UnkStatsObject;
-extern UnkStatsObject* g_unk_7101d47100;
 void fn_7100132248(UnkStatsObject* self, const CStrId& name, f32 value);
 
 // The render manager's frame steps (game/UnkRenderManager.h).

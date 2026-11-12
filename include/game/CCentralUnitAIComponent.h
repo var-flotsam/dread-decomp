@@ -9,3 +9,4 @@ struct UnkAIComponent;
 
 extern void* g_unk_7101a33fa0[];  // A vtable.
 void fn_7100405d58(UnkAIComponent*, s32, u32);
+void* fn_71004067a4(void*);
