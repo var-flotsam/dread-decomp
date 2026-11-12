@@ -8,7 +8,7 @@
 
 using base::global::CStrId;
 
-void fn_7100a2cddc(void* table, void* key, CStrId* id, bool unique, f32 delay);
+void fn_7100a2cddc(void* table, void* key, CStrId* id, f32 delay, bool unique);
 
 // Static timeline keys, 0x18 bytes each.
 struct UnkTimelineKey2_b46a3 {
@@ -55,9 +55,9 @@ void fn_7100ac4dc4(UnkProjectileMovement10_b46a3* self) {
     self->vf_0x348();
     void* timeline = self->owner->timeline;
     if (timeline && !self->entries_added) {
-        fn_7100a2cddc(timeline, &g_unk_71727556b8[0], &self->id, false, 0.0f);
-        fn_7100a2cddc(timeline, self->vf_0x2d8(), &self->id, false, 0.0f);
-        fn_7100a2cddc(timeline, &g_unk_71727556b8[1], &self->id, false, 0.0f);
+        fn_7100a2cddc(timeline, &g_unk_71727556b8[0], &self->id, 0.0f, false);
+        fn_7100a2cddc(timeline, self->vf_0x2d8(), &self->id, 0.0f, false);
+        fn_7100a2cddc(timeline, &g_unk_71727556b8[1], &self->id, 0.0f, false);
         self->entries_added = true;
     }
     if (self->definition->move_owner) {

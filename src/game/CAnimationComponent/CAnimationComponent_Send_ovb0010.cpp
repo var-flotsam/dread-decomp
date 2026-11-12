@@ -56,15 +56,18 @@ struct UnkAnim_ovb0010 {
     }
 };
 
+// A set of flags with a copy constructor: passed by value, it travels as the address of the caller's copy.
 struct alignas(8) UnkFlags_7101176690 {
     u32 value;
+    UnkFlags_7101176690(u32 v) : value(v) {}
+    UnkFlags_7101176690(const UnkFlags_7101176690& o) : value(o.value) {}
 };
 struct UnkStruct_7101176690;
 struct UnkS16;
 struct UnkS12;
 
-bool fn_7101177044(UnkStruct_7101176690* self, void* r, s32 idx, void* data, const UnkFlags_7101176690& flags,
-                   const UnkS16& a, const UnkS12& b, const UnkFlags_7101176690& c);
+bool fn_7101177044(UnkStruct_7101176690* self, void* r, s32 idx, void* data, UnkFlags_7101176690 flags,
+                   const UnkS16& a, const UnkS12& b, UnkFlags_7101176690 c);
 
 // Sends the action the pair of keys names with mode 2 and the all-bits mask.
 static inline bool Send(UnkAnim_ovb0010* self, u64 key1, u64 key2) {

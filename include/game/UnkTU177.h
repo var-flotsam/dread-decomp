@@ -6,7 +6,7 @@
 #include "types.h"
 
 struct UnkEntry_71001cdba4;
-void fn_710015a3e0(u32 value);
+void fn_710015a3e0(bool value);
 void fn_710015a500(u32 a, u32 b);
 void fn_710015a680(u32 value);
 void fn_7100159490(s32 x, s32 y, s32 width, s32 height, f32 min_depth, f32 max_depth);

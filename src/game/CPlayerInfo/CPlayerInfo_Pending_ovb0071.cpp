@@ -25,7 +25,7 @@ struct UnkOwner;
 struct UnkActorTarget;
 struct UnkInventory;
 struct UnkPlayer;
-void fn_710117662c(UnkActorTarget* target, u32 a, u32 b, u32 c, u32 d, f32 value);
+void fn_710117662c(UnkActorTarget* target, u32 value, u32 extra, bool apply, bool flag, f32 time);
 void fn_7101178e08(UnkActorTarget* target, u32 a, bool, bool, f32 value);
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 extern void* g_unk_7101d47360;

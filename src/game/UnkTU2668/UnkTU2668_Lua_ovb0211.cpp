@@ -191,12 +191,12 @@ struct UnkScriptManager_ovb0085;
 extern "C" lua_State* luaL_newstate(void);
 extern "C" int (*lua_atpanic(lua_State* L, int (*panicf)(lua_State*)))(lua_State*);
 
-extern void* (*g_unk_7101caf820)(u64 size);
+extern void* (*g_unk_7101caf820)(void* ptr, u64 size);
 extern void (*g_unk_7101caf828)(void* ptr);
 extern void (*g_unk_7101caf830)(const char* format, ...);
 extern int (*g_unk_7101caf838)(const char* fmt, ...);
 
-void* fn_7100083a70(u64 size);
+void* fn_7100083a70(void* ptr, u64 size);
 void fn_7100083a50(void* ptr);
 void fn_710109cd70(const char* format, ...) __attribute__((visibility("hidden")));
 void fn_710109ce10(const char* format, ...) __attribute__((visibility("hidden")));

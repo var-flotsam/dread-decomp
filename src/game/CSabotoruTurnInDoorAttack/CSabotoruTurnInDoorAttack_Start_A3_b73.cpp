@@ -16,7 +16,7 @@ void fn_71003608ac(UnkAttackBase* self);
 void fn_71006741bc();
 struct UnkActorTarget;
 void fn_7101178e08(UnkActorTarget*, u32, bool, bool, f32);
-void fn_710117662c(UnkActorTarget*, u32, u32, u32, u32, f32);
+void fn_710117662c(UnkActorTarget*, u32 value, u32 extra, bool apply, bool flag, f32 time);
 
 struct UnkSabotoruTrackLink_A3_b73 {
     u8 pad_0x0[0x8];
@@ -45,7 +45,7 @@ void fn_71006732b4(UnkSabotoruAttack_A3_b73* self) {
     self->anim = reinterpret_cast<UnkActorTarget*>(Track_A3_b73(self->owner));
     fn_7101178e08(self->anim, 6, 0, 0, -1.0f);
     fn_7101178e08(self->anim, 0xc, 0, 0, -1.0f);
-    fn_710117662c(self->anim, 0xb, 0, 0, 0, -1.0f);
+    fn_710117662c(self->anim, 0xb, 0, false, false, -1.0f);
     fn_710067342c(self, true);
     if (Track_A3_b73(self->owner)) {
         UnkSabotoruTrackLink_A3_b73* link = &self->link;

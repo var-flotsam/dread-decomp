@@ -1245,7 +1245,8 @@ s32 fn_7100df916c(UnkGameManager* manager, const CRntString& name) {
         blackboards.PushBack(&self->field_0xbf8);
         CRntString scenario(self->field_0x7f0);
         UnkUserDataOwner* owner = Singleton_df916c<UnkUserDataOwner, 0x2b8, fn_710120320c>(g_unk_7101d47308);
-        result = fn_71012034b0(owner, 0, &self->field_0x7f0, &scenario, &blackboards, true, fn_7100df7468, true, &name);
+        result = fn_71012034b0(owner, 0, &self->field_0x7f0, &scenario, &blackboards, true,
+                               reinterpret_cast<void (*)()>(&fn_7100df7468), true, &name);
         fn_7100dee46c(manager);
         if (result == 0) {
             CBlackboard* game = &self->field_0x968;

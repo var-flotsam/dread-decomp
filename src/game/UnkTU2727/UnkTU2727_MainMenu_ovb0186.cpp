@@ -18,6 +18,7 @@
 #include "game/UnkTU2744.h"
 #include "game/UnkTU2747.h"
 #include "game/UnkTU57.h"
+#include "game/sound/UnkSoundHandle.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -28,10 +29,6 @@ using base::global::UnkStringEntry;
 
 struct UnkSoundRef {
     UnkSound* object;
-    s64 serial;
-};
-struct UnkSoundHandle {
-    UnkSoundRef* ref;
     s64 serial;
 };
 extern void* g_unk_7101cb51b8[];               // the menu's vtable
@@ -190,7 +187,9 @@ struct UnkMenuEntries_ovb0186 {
     u8 field_0x2f8[0x140];
 };
 
-void* fn_7101190890(UnkMenuEntries_ovb0186* self, const UnkCompared_0x30* key) {
+// The name is passed by value: both callers copy the string for the call.
+void* fn_7101190890(UnkMenuEntries_ovb0186* self, CRntString name) {
+    const UnkCompared_0x30* key = reinterpret_cast<const UnkCompared_0x30*>(&name);
     if (fn_710007f120(key, NAME_OF(field_0x1cb0)))
         return self->field_0x1b8;
     if (fn_710007f120(key, NAME_OF(field_0x1cb8)))

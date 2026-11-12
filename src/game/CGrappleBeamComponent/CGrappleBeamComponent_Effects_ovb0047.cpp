@@ -66,7 +66,7 @@ void fn_71008186e8(UnkGrappleBeamFx_ovb0047* self, bool keep) {
     }
     if (self->link && self->link->field_0x10) {
         fn_710114ffb8(reinterpret_cast<UnkRinkaControl_ruc*>(self->owner->world),
-                      reinterpret_cast<void*>(self->field_0x720->hash), keep, 1);
+                      self->field_0x720->hash, keep, true);
         fn_710114fe8c(self->owner->world, self->field_0x730->hash, keep, 0);
         fn_710114fe8c(self->owner->world, self->field_0x728->hash, keep, 0);
     }

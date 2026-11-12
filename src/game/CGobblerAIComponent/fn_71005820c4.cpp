@@ -25,7 +25,7 @@ struct UnkGobblerComponent {
     UnkRangeSource* field_0x14700;
 };
 
-void fn_710117662c(UnkActorTarget* target, u32 a, u32 b, u32 c, u32 d, f32 value);
+void fn_710117662c(UnkActorTarget* target, u32 value, u32 extra, bool apply, bool flag, f32 time);
 void fn_7101178e08(UnkActorTarget* target, u32 a, bool, bool, f32 value);
 extern char g_unk_71726e5148[] __attribute__((visibility("hidden")));
 
@@ -37,7 +37,7 @@ void fn_71005820c4(UnkGobblerComponent* self, f32 dt) {
     if (target) {
         if (!fn_710117b348(target, fn_7100c20d58())) {
             if (self->field_0x121e)
-                fn_710117662c(target, 0xb, 0, 1, 1, 0.6f);
+                fn_710117662c(target, 0xb, 0, true, true, 0.6f);
             else
                 fn_7101178e08(target, 0xb, 1, 1, 0.6f);
         }

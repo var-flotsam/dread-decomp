@@ -6,6 +6,7 @@
 #include "game/CComponent.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU2523.h"
+#include "game/sound/UnkSoundHandle.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -44,10 +45,6 @@ bool fn_71007ba2d4(UnkDroppable_b51* self) {
 struct UnkHandleOwner_71010c4230;
 
 struct UnkSoundRef;
-struct UnkSoundHandle {
-    UnkSoundRef* ref;
-    s64 serial;
-};
 extern s32 g_unk_717271ab44;
 
 struct UnkSoundEntry_b51 {

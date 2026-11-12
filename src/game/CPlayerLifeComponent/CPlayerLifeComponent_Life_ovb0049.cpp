@@ -21,6 +21,7 @@
 #include "game/UnkTU2656.h"
 #include "game/UnkTU39.h"
 #include "game/UnkTimelineComponent.h"
+#include "game/sound/SGUISoundEventsSelector.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -36,7 +37,6 @@ f32 fn_7101142988(UnkInventory* inventory, const UnkQualifiedId& item, f32 fallb
 struct UnkStateSink;
 struct UnkStateKey;
 struct UnkEnumType;
-void fn_7100fc9d78(UnkStateSink* sink, UnkStateKey* key, void* state);
 
 extern const u64 g_unk_710164d050;
 extern const u64 g_unk_710164d058;

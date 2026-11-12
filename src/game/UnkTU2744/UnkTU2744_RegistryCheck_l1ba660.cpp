@@ -23,11 +23,11 @@ struct UnkTextTemp_l1ba660 {
 };
 struct UnkEntry_0x30;
 struct UnkStrPair_0x10;
-UnkTextTemp_l1ba660 fn_71011ba4fc();
+UnkTextTemp_l1ba660 fn_71011ba4fc(void* unused, const char* const* name);
 void fn_71011ba714(void* self, UnkKeyTemp_l1ba660* key);
 
-void fn_71011ba660(void* self) {
-    UnkTextTemp_l1ba660 text = fn_71011ba4fc();
+void fn_71011ba660(void* self, const char* const* name) {
+    UnkTextTemp_l1ba660 text = fn_71011ba4fc(self, name);
     UnkRegistry_0x70* reg = g_unk_7101d4b5a0;
     if (!reg) {
         reg = static_cast<UnkRegistry_0x70*>(fn_71000839a0(0x70, 0x3f));

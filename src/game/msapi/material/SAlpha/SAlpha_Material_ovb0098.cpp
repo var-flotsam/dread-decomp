@@ -421,7 +421,7 @@ static_assert(sizeof(UnkMatStatePass_ovb0098) == 0x60, "UnkMatStatePass_ovb0098 
 
 struct UnkMatStateOwner_ovb0098 {
     u8 pad_0x0[0x30];
-    u8 field_0x30;
+    bool field_0x30;
     u8 pad_0x31[0x3];
     u32 field_0x34;
     u32 field_0x38;

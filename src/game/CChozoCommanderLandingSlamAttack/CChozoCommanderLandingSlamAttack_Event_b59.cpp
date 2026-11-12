@@ -11,7 +11,7 @@
 
 struct UnkActorTarget;
 void fn_7101178e08(UnkActorTarget*, u32, bool, bool, f32);
-void fn_710117662c(UnkActorTarget*, u32, u32, u32, u32, f32);
+void fn_710117662c(UnkActorTarget*, u32 value, u32 extra, bool apply, bool flag, f32 time);
 
 struct UnkSlamEventId_b59 {
     u8 pad_0x0[0x30];
@@ -49,7 +49,7 @@ bool fn_7100437dd0(UnkSlamEventSelf_b59* self, UnkSlamEvent_b59* event) {
         if (anim && actor) {
             bool below = !(actor->field_0x44 >= self->owner->field_0x44);
             fn_7101178e08(anim, below ? 5 : 4, 0, 0, -1.0f);
-            fn_710117662c(anim, below ? 4 : 5, 1, 0, 0, -1.0f);
+            fn_710117662c(anim, below ? 4 : 5, 1, false, false, -1.0f);
             UnkSpitSend(anim, 0xf94afb5ec7557bd5, 0xf4061ff25a2163d6);
             if (UnkWeakHandle* handle = self->field_0x78) {
                 if (handle->target)

@@ -28,6 +28,7 @@
 #include "game/UnkTU54.h"
 #include "game/UnkTU811.h"
 #include "game/UnkXformNode.h"
+#include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -169,10 +170,6 @@ struct UnkSound;
 struct UnkShipRechargeEntity_b49a4;
 struct UnkSoundRef {
     UnkSound* object;
-    s64 serial;
-};
-struct UnkSoundHandle {
-    UnkSoundRef* ref;
     s64 serial;
 };
 

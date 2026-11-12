@@ -28,6 +28,7 @@
 #include "game/UnkTU32.h"
 #include "game/sound/CSoundManager.h"
 #include "game/sound/SGUISoundEventsSelector.h"
+#include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -714,10 +715,6 @@ extern UnkSoundMgr* g_unk_7101d4d820;
 
 struct UnkSoundRef {
     void* object;
-    s64 serial;
-};
-struct UnkSoundHandle {
-    UnkSoundRef* ref;
     s64 serial;
 };
 

@@ -9,7 +9,7 @@
 #include "types.h"
 
 struct UnkActorTarget;
-void fn_710117662c(UnkActorTarget* target, u32 a, u32 b, u32 c, u32 d, f32 value);
+void fn_710117662c(UnkActorTarget* target, u32 value, u32 extra, bool apply, bool flag, f32 time);
 void fn_7101178e08(UnkActorTarget* target, u32 a, bool, bool, f32 value);
 
 struct UnkOwner_vk {
@@ -43,7 +43,7 @@ void fn_71006dcaa4(UnkVulkranAIComponent* self, bool reset) {
         void* other = owner->field_0x218;
         fn_7101178e08(target, 0xb, 0, 0, -1.0f);
         fn_7101178e08(target, 6, 0, 0, -1.0f);
-        fn_710117662c(target, 8, 0, other ? fn_71010cc3a4(other) != 4 : false, 1, -1.0f);
+        fn_710117662c(target, 8, 0, other ? fn_71010cc3a4(other) != 4 : false, true, -1.0f);
     }
     fn_71006dd25c(self);
 }

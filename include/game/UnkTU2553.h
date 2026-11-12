@@ -22,7 +22,7 @@ struct UnkStepCallbacks;
 bool fn_7100df5874(UnkPlayer* self);
 void fn_7100def888(char* p0);
 void fn_7100df492c(void* self, void* a, const void* b, void* c);
-void fn_7100df7468();
+void fn_7100df7468(void* arg, u32 value);
 UnkStepCallback* fn_7100dfc428(UnkStepCallbacks* self, u32 index);
 void* fn_7100e01680(UnkObj_7100e01680* self);
 extern u32 g_unk_71727bebb8;  // The kind the main camera is looked up with.

@@ -283,7 +283,7 @@ bool fn_7100ebfa6c(UnkNavMeshManager* self, UnkNavQuery* query, void* path);
 bool fn_7101109e8c(UnkAIComponent* self, UnkNavMeshHit* side);
 
 // The component's handlers the query calls back.
-void fn_7100708034();
+void fn_7100708034(void* self, void* a1, void* a2, void* a3, void* a4, void* a5, void* a6, void* a7, u32 a8);
 void fn_71003809ec();
 void fn_7100380a04();
 void fn_7100380a10();
@@ -336,7 +336,7 @@ bool fn_7101103080(UnkAIComponent* self, void* path, UnkAIPathPoint* point, UnkA
                       reinterpret_cast<UnkActor_7100286798*>(self->owner));
         fn_7100286920(&query, &side.point, side.cell, side.side);
         void* component = self->owner->field_0x240;
-        UnkBind(&query.field_0x0, component, &fn_7100708034);
+        UnkBind(&query.field_0x0, component, reinterpret_cast<void (*)()>(&fn_7100708034));
         UnkBind(&query.filter, component, &fn_71003809ec);
         UnkBind(&query.field_0x20, component, &fn_7100380a04);
         UnkBind(&query.field_0x30, component, &fn_7100380a10);

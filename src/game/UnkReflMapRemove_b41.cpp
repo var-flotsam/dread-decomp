@@ -34,12 +34,12 @@ struct UnkStrIdMap_b41a3 {
     u32 modulus;
 };
 
-void fn_7100f94d0c(UnkStrIdMap_b41a3<0x90>* map, const CStrId* key);
-void fn_7100f796b8(UnkStrIdMap_b41a3<0x3c0>* map, const CStrId* key);
-void fn_7100fedf08(UnkStrIdMap_b41a3<0x48>* map, const CStrId* key);
-void fn_7100feefa0(UnkStrIdMap_b41a3<0x68>* map, const CStrId* key);
+void* fn_7100f94d0c(UnkStrIdMap_b41a3<0x90>* map, const CStrId* key);
+void* fn_7100f796b8(UnkStrIdMap_b41a3<0x3c0>* map, const CStrId* key);
+void* fn_7100fedf08(UnkStrIdMap_b41a3<0x48>* map, const CStrId* key);
+void* fn_7100feefa0(UnkStrIdMap_b41a3<0x68>* map, const CStrId* key);
 
-template <u32 MapOffset, u32 NextOffset, void (*Erase)(UnkStrIdMap_b41a3<NextOffset>*, const CStrId*)>
+template <u32 MapOffset, u32 NextOffset, void* (*Erase)(UnkStrIdMap_b41a3<NextOffset>*, const CStrId*)>
 static inline __attribute__((always_inline)) UnkReflValue RemoveById_b41a3(char* obj, UnkReflValue* const* args) {
     char* target = *reinterpret_cast<char**>(obj + 8);
     asm("" ::: "memory");  // the object is read before the argument

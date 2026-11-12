@@ -5,16 +5,13 @@
 // (+0x0) names it gets its flag at +0xa9 set. Names and layouts are placeholders.
 #include "game/CAudioComponent.h"
 #include "game/UnkTU101.h"
+#include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
 // As src/game/CAudioComponent/CAudioComponent_b50.cpp defines them.
 struct UnkSoundObject_b50;
 struct UnkSoundRef {
     UnkSoundObject_b50* object;
-    s64 serial;
-};
-struct UnkSoundHandle {
-    UnkSoundRef* ref;
     s64 serial;
 };
 

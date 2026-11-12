@@ -15,6 +15,7 @@
 #include "game/CComponent.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU50.h"
+#include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -39,10 +40,6 @@ struct UnkInterp_7100105f94;
 struct UnkSoundObject_b50;
 struct UnkSoundRef {
     UnkSoundObject_b50* object;
-    s64 serial;
-};
-struct UnkSoundHandle {
-    UnkSoundRef* ref;
     s64 serial;
 };
 

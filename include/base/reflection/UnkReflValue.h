@@ -137,20 +137,21 @@ struct UnkSetterTraits;
 
 }  // namespace base::reflection
 
-void fn_7100fdd2b4(char* target, const u64* id);
+void fn_7100fdd2b4(char* target, const u64* id, f32 value);
 
 namespace base::reflection {
 
 // Writes the f32 at `Offset`, raised to at least 0.0001, then passes the property's id (a
-// 64-bit hash) to the target object if there is one (fn_710101a504 and its copies).
+// 64-bit hash) and the value to the target object if there is one (fn_710101a504 and its copies).
 template <class Tag, u32 Offset, u64 Id>
 UnkReflValue refl_SetFieldMinNotify(void*, char* obj, UnkReflValue* const* args) {
     char* target = *reinterpret_cast<char**>(obj + 8);
     f32 v = *refl_ArgValue<f32>(args[0]);
-    *reinterpret_cast<f32*>(target + Offset) = v < 0.0001f ? 0.0001f : v;
+    v = v < 0.0001f ? 0.0001f : v;
+    *reinterpret_cast<f32*>(target + Offset) = v;
     if (char* s = UnkSetterTraits<Tag>::target()) {
         u64 id = Id;
-        fn_7100fdd2b4(s, &id);
+        fn_7100fdd2b4(s, &id, v);
     }
     return refl_EmptyValue();
 }

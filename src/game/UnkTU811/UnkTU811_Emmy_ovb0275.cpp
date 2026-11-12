@@ -49,14 +49,14 @@ struct UnkEmmyComp_b0275 {
     u8 pad_0x15f4[0x1608 - 0x15f4];
     UnkEmmyHolder_b0275* holder;                // 0x1608
     u8 pad_0x1610[0x1628 - 0x1610];
-    u8 flag;                                    // 0x1628
+    bool flag;                                  // 0x1628
     u8 pad_0x1629[3];
     u32 mode;                                   // 0x162c
 };
 #pragma pack(pop)
 
 void fn_7100560b98(UnkEmmyComp_b0275* self);
-void fn_7100560d14(UnkEmmyTarget_b0275* target, u8 flag, u32 mode, UnkEmmyList_b0275* list);
+void fn_7100560d14(UnkEmmyTarget_b0275* target, bool flag, u32 mode, UnkEmmyList_b0275* list);
 void fn_7100560e8c(UnkEmmyComp_b0275* self, UnkEmmyNode_b0275* node);
 
 static inline __attribute__((always_inline)) bool SameOwner(UnkEmmyComp_b0275* self, UnkEmmyTarget_b0275* target) {

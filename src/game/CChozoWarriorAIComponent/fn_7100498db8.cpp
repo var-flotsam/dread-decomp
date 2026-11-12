@@ -20,7 +20,7 @@ struct UnkSelf {
 };
 
 void fn_7101178e08(UnkAttack* attack, u32 mode, bool, bool, f32 rate);
-void fn_710117662c(UnkAttack* attack, u32 mode, f32 rate, u32 a, u32 b, u32 c);
+void fn_710117662c(UnkAttack* attack, u32 value, u32 extra, bool apply, bool flag, f32 time);
 
 void fn_7100498db8(UnkSelf* self) {
     UnkOwner* owner = self->field_0x30;
@@ -30,6 +30,6 @@ void fn_7100498db8(UnkSelf* self) {
         u32 first = negative ? 5 : 4;
         u32 second = negative ? 4 : 5;
         fn_7101178e08(attack, first, 0, 0, -1.0f);
-        fn_710117662c(attack, second, -1.0f, 1, 0, 0);
+        fn_710117662c(attack, second, 1, false, false, -1.0f);
     }
 }

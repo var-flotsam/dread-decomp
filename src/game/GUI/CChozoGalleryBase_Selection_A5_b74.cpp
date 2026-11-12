@@ -10,6 +10,7 @@
 #include "base/global/CStrId.h"
 #include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/sound/SGUISoundEventsSelector.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -58,7 +59,6 @@ struct UnkEnumType;
 extern UnkStateSink* g_unk_717275c380;
 extern UnkEnumType g_unk_71729f0220;
 extern UnkEnumType g_unk_71729f0228;
-void fn_7100fc9d78(UnkStateSink* sink, UnkStateKey* key, void* state);
 
 // The selected entry's "selection lost" animation (hidden entries show their hidden state instead).
 static inline __attribute__((always_inline)) void Deselect_A5_b74(UnkGallery_A5_b74* self) {

@@ -56,7 +56,7 @@ void fn_710082ccec(UnkPullableGrapplePointComponent_b53* self, void*, bool flag)
         fn_7100305088(script, "OnGrapplePullFinished", "bs", f, name ? name : "");
     }
     if (UnkRinkaControl_ruc* control = self->actor->control)
-        fn_710114ffb8(control, reinterpret_cast<void*>(0x9cd5426ffb8d68a5ull), 0, 0);
+        fn_710114ffb8(control, 0x9cd5426ffb8d68a5ull, false, false);
     u64 arg = reinterpret_cast<u64>(self);
     base::refl_DeferredInvoke<UnkClone_fn_710082d0ac, u64>(reinterpret_cast<UnkPullListeners_b53*>(g_unk_7172724df8), &arg);
 }

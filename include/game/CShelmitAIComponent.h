@@ -11,5 +11,5 @@ struct UnkShelmitAI_sis;
 void fn_71006ba194(UnkShelmitAI* self);
 void fn_71006ba4fc(void* self);
 void fn_71006baa5c(UnkShelmitAI_b49a3* self, u32 a, u32 b);
-void fn_71006badf4(UnkShelmitAI* self);
+void fn_71006badf4(UnkShelmitAI* self, f32 value);
 s32 fn_71006bc178(UnkShelmitAI_sis*);

@@ -21,6 +21,7 @@
 #include "game/UnkTU101.h"
 #include "game/UnkTU99.h"
 #include "game/operator_new.h"
+#include "game/sound/UnkSoundHandle.h"
 
 using base::global::CFilePathStrId;
 using base::global::UnkStringData;
@@ -339,10 +340,6 @@ void fn_7100101fb0(UnkSndSys_b0185* self, const u32* id) {
 // ---- the playing sound of a path ----
 
 struct UnkSoundRef;
-struct UnkSoundHandle {
-    UnkSoundRef* ref;
-    s64 serial;
-};
 
 struct UnkPlayingHandle_ovb0074 {
     void* ref;

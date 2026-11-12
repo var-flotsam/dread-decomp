@@ -7,6 +7,7 @@
 #include "base/color/CColor4F.h"
 #include "base/core/CBaseObject.h"
 #include "game/UnkTU101.h"
+#include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
 struct UnkNode;
@@ -15,10 +16,6 @@ void fn_7100867aa0(UnkWaveBeamGun_A5_b71* self);
 extern void* g_unk_7101a77de8[];
 
 struct UnkSoundRef;
-struct UnkSoundHandle {
-    UnkSoundRef* ref;
-    s64 serial;
-};
 
 struct UnkHyperRef_A5_b71 {
     void* ref;

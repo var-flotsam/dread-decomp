@@ -17,6 +17,7 @@
 #include "game/UnkTU2566.h"
 #include "game/UnkTU2567.h"
 #include "game/UnkTUProperty.h"
+#include "game/sound/SGUISoundEventsSelector.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -162,7 +163,6 @@ struct UnkStateSink;
 extern UnkStateSink* g_unk_717275c380;
 struct UnkStateKey;
 extern UnkStateKey g_unk_71729f0178;
-void fn_7100fc9d78(UnkStateSink* sink, UnkStateKey* key, void* state);
 struct UnkMapMenuControllerClose;
 
 // ---- fn_7100b37b80

@@ -25,7 +25,7 @@ __attribute__((always_inline)) static inline UnkItem* Find(const UnkPtrArray* it
 }
 
 bool fn_7100202eb0(UnkItem* item, bool value, void* arg2, void* arg3, void* arg4);
-bool fn_7100202e7c(UnkItem* item, bool value, void* arg2, void* arg3);
+u32 fn_7100202e7c(UnkItem* item, bool value, void* arg2, void* arg3);
 bool fn_7100202e48(UnkItem* item, void* arg1, bool value);
 void* fn_710020289c(UnkItem* item, u32 index);
 void* fn_71002004f4(UnkItem* item, void* arg1, void* arg2, void* arg3, bool value);
@@ -37,10 +37,10 @@ bool fn_71001fd6c0(const UnkPtrArray* items, bool value, void* arg2, void* arg3,
     return fn_7100202eb0(found, value, arg2, arg3, arg4);
 }
 
-bool fn_71001fd680(const UnkPtrArray* items, bool value, void* arg2, void* arg3, s32 id) {
+u32 fn_71001fd680(const UnkPtrArray* items, bool value, void* arg2, void* arg3, s32 id) {
     UnkItem* found = Find(items, id);
     if (!found)
-        return false;
+        return 0;
     return fn_7100202e7c(found, value, arg2, arg3);
 }
 

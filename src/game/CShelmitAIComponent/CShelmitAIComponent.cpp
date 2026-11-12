@@ -47,7 +47,7 @@ void fn_71006ba718(UnkShelmitAI* self, f32 dt) {
                 block->rate = 0.0f;
             }
             block->field_0xd4 = v;
-            fn_71006badf4(self);
+            fn_71006badf4(self, v);
         }
     }
     fn_71006ba90c(self);

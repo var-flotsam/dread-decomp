@@ -28,10 +28,10 @@ u64* fn_71010c634c(UnkValuesByKey* a, const u64* key) {
     return p == a->End() ? nullptr : p;
 }
 
-void fn_71002332e0(UnkValuesByKey* a, u64* value);
-void fn_71002ec674(UnkValuesByKey* a, u64* value);
+u64* fn_71002332e0(UnkValuesByKey* a, u64* value);
+u64* fn_71002ec674(UnkValuesByKey* a, u64* value);
 
-template <void (*Remove)(UnkValuesByKey*, u64*)>
+template <u64* (*Remove)(UnkValuesByKey*, u64*)>
 __attribute__((always_inline)) static inline void RemoveKey(UnkValuesByKey* a, const u64* key) {
     u64* p = a->Find(*key);
     if (p != a->End())
@@ -43,9 +43,9 @@ void fn_7100251934(UnkValuesByKey* a, const u64* key) { RemoveKey<fn_71002332e0>
 void fn_71002eeef8(UnkValuesByKey* a, const u64* key) { RemoveKey<fn_71002ec674>(a, key); }
 
 // The same removal in three other units, each with its own out-of-line removal.
-void fn_7100d86e94(UnkValuesByKey* a, u64* value);
-void fn_7101048588(UnkValuesByKey* a, u64* value);
-void fn_71010c6cdc(UnkValuesByKey* a, u64* value);
+u64* fn_7100d86e94(UnkValuesByKey* a, u64* value);
+u64* fn_7101048588(UnkValuesByKey* a, u64* value);
+u64* fn_71010c6cdc(UnkValuesByKey* a, u64* value);
 
 void fn_7100d86490(UnkValuesByKey* a, const u64* key) { RemoveKey<fn_7100d86e94>(a, key); }
 

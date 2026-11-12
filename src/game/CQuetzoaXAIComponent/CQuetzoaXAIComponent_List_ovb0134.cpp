@@ -63,8 +63,8 @@ static inline void Erase(UnkQuetzoaList_ovb0134* list, UnkQuetzoaList_ovb0134::N
     }
 }
 
-void fn_7100640660(UnkQuetzoaXAI_ovb0134* self, UnkQuetzoaOther_ovb0134* other, void* arg, bool flag) {
-    fn_710110bb4c(self, other, arg, flag);
+void fn_7100640660(UnkQuetzoaXAI_ovb0134* self, UnkQuetzoaOther_ovb0134* other, u32 id, bool flag) {
+    fn_710110bb4c(self, other, id, flag);
     if (self->blocked)
         return;
     u64 v = reinterpret_cast<u64>(self->entry);

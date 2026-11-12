@@ -31,7 +31,7 @@ void fn_7100712448(UnkAlternativeActionPlayer* self) {
     At<base::UnkAllocator*>(self, 0x68) = fn_7100083990();
     At<void**>(self, 0x70) = g_unk_7101a22d48 + 2;
     At<UnkAlternativeActionPlayer*>(self, 0x98) = self;
-    At<void (*)(UnkAlternativeActionPlayer*)>(self, 0xa0) = fn_71007124d8;
+    At<void (*)(UnkAlternativeActionPlayer*)>(self, 0xa0) = reinterpret_cast<void (*)(UnkAlternativeActionPlayer*)>(&fn_71007124d8);
     At<u64>(self, 0x88) = 0;
     At<u64>(self, 0x90) = 0;
     At<UnkAlternativeActionPlayer*>(self, 0x78) = self;

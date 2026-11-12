@@ -22,6 +22,7 @@
 #include "game/UnkTU315.h"
 #include "game/UnkTU437.h"
 #include "game/sound/CSoundManager.h"
+#include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -94,10 +95,6 @@ static_assert(__builtin_offsetof(UnkShotManager_b0011, field_0x1238) == 0x1238, 
 static_assert(__builtin_offsetof(UnkShotManager_b0011, field_0x1260) == 0x1260, "UnkShotManager_b0011 layout");
 
 struct UnkSoundRef;
-struct UnkSoundHandle {
-    UnkSoundRef* ref;
-    s64 serial;
-};
 
 struct UnkPlayer;
 struct UnkActor;

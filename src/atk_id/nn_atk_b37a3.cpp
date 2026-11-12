@@ -142,7 +142,7 @@ u32 fn_7101210218(const UnkAtkKind1Record* record);
 u16 fn_7101210248(const UnkAtkKind1Record* record);
 u8 fn_7101210278(const UnkAtkKind1Record* record);
 u8 fn_71012102a0(const UnkAtkKind1Record* record);
-bool fn_71012103dc(const UnkAtkKind1Record* record);
+u32 fn_71012103dc(const UnkAtkKind1Record* record);
 
 bool fn_710121080c(const UnkAtkNamedReader2* self, const char* name, UnkAtkKind1Summary* out) {
     const UnkAtkKind1Record* record = (const UnkAtkKind1Record*)fn_710120fc5c(self->table, name);
@@ -158,7 +158,7 @@ bool fn_710121080c(const UnkAtkNamedReader2* self, const char* name, UnkAtkKind1
     out->field_0x9 = fn_7101210278(record);
     out->field_0x8 = fn_71012102a0(record);
     out->field_0xb = record->field_0x9;
-    out->field_0x1a = fn_71012103dc(record);
+    out->field_0x1a = fn_71012103dc(record) & 1;
     return true;
 }
 

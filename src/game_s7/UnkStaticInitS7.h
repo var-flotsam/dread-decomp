@@ -143,14 +143,14 @@ struct UnkNamedValueTmp {
 };
 
 // An object built from a named value of this unit (through a temporary copy) by its own
-// constructor, with its destructor registered.
+// constructor, which takes the values and how many there are, with its destructor registered.
 template <class T>
 __attribute__((always_inline)) inline void InitFromNamedValue(T* obj, const UnkNamedValue& from,
-                                                              void (*ctor)(T*, UnkNamedValueTmp*, bool),
+                                                              void (*ctor)(T*, UnkNamedValueTmp*, u64),
                                                               void (*dtor)(void*)) {
     {
         UnkNamedValueTmp tmp(from);
-        ctor(obj, &tmp, true);
+        ctor(obj, &tmp, 1);
     }
     fn_7100000250(dtor, obj, g_unk_7101a19000);
 }

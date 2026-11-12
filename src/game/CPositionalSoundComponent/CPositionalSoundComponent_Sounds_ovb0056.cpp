@@ -7,6 +7,7 @@
 #include "game/CActorComponent.h"
 #include "game/UnkComponent.h"
 #include "game/UnkTU101.h"
+#include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -18,10 +19,6 @@ extern UnkSoundMgr* g_unk_7101d4d820;
 
 struct UnkSoundRef {
     UnkSound* object;
-    s64 serial;
-};
-struct UnkSoundHandle {
-    UnkSoundRef* ref;
     s64 serial;
 };
 

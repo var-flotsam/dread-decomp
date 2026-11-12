@@ -210,7 +210,7 @@ struct UnkOwner;
 void fn_710093adc0(base::reflection::UnkReflObject*, const void*, const void*, f32);
 struct UnkActorTarget;
 void fn_7101178e08(UnkActorTarget*, u32, bool, bool, f32);
-void fn_710117662c(UnkActorTarget*, u32, u32, u32, u32, f32);
+void fn_710117662c(UnkActorTarget*, u32 value, u32 extra, bool apply, bool flag, f32 time);
 extern const u64 g_unk_7101648ff8;
 extern const u64 g_unk_7101649000;
 struct UnkV4_b47;
@@ -287,7 +287,7 @@ void fn_710033b7c4(UnkSpeedBoosterEnd_ovb0088* self, UnkActor* other) {
             fn_7101178e08(static_cast<UnkActorTarget*>(other->field_0x220), 2, 0, 0, -1.0f);
         }
         if (self->boost && self->boost->kind == 2 && actor && actor->field_0x208 && actor->field_0x220)
-            fn_710117662c(static_cast<UnkActorTarget*>(actor->field_0x220), 2, 0, 1, 1, 0.0f);
+            fn_710117662c(static_cast<UnkActorTarget*>(actor->field_0x220), 2, 0, true, true, 0.0f);
     }
 done:
     fn_71002f9de8(self, other);

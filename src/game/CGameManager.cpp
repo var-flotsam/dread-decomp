@@ -1004,7 +1004,7 @@ s32 fn_7100df99f8(UnkGameManager* self, u32 mode, const UnkLoadCallback* callbac
         }
         UnkUserDataOwner* owner = Singleton<UnkUserDataOwner, 0x2b8, fn_710120320c>(g_unk_7101d47308);
         CRntString none("");
-        return fn_71012034b0(owner, 4, scenario, &name, &blackboards, true, fn_7100df7468, flag, &none);
+        return fn_71012034b0(owner, 4, scenario, &name, &blackboards, true, reinterpret_cast<void (*)()>(&fn_7100df7468), flag, &none);
     }
     if (callback->fn) {
         UnkLoadResult result(5);

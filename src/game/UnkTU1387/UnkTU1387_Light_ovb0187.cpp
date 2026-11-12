@@ -7,7 +7,7 @@
 #include "game/UnkTU251.h"
 #include "types.h"
 
-void fn_710020ca64(void* member);
+void fn_710020ca64(void* member, const f32* v);
 
 struct UnkLight_b0187j {
     u8 pad_0x0[0x30];
@@ -34,7 +34,7 @@ struct UnkLightSelf_b0187j {
 };
 
 void fn_71008ea140(UnkLightSelf_b0187j* self, const f32* from, const f32* to) {
-    fn_710020ca64(self->owner->member);
+    fn_710020ca64(self->owner->member, from);
     f32 dx = to[0] - from[0];
     f32 dy = to[1] - from[1];
     f32 dz = to[2] - from[2];

@@ -2,6 +2,7 @@
 // "selected" to the new one, optionally plays the selection sound, and scrolls to the new item.
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
+#include "game/sound/SGUISoundEventsSelector.h"
 #include "types.h"
 
 struct UnkItem_71011ff97c : UnkGuiDisplayObject {};
@@ -45,7 +46,6 @@ struct UnkStruct_71011ff97c {
     }
 };
 
-void fn_7100fc9d78(void* mgr, void* sound, UnkStruct_71011ff97c* self);
 void fn_71011cca3c(UnkGuiDisplayObject* obj, f32 value);
 extern void* g_unk_717275c380;
 extern char g_unk_71729f0220[];
@@ -75,7 +75,7 @@ void fn_71011ff97c(UnkStruct_71011ff97c* self, bool quiet) {
         fn_7101202488(&ev);
     }
     if (!self->field_0x260 && quiet && self->selected != -1)
-        fn_7100fc9d78(g_unk_717275c380, g_unk_71729f0220, self);
+        fn_7100fc9d78(static_cast<UnkStateSink*>(g_unk_717275c380), reinterpret_cast<UnkStateKey*>(g_unk_71729f0220), self);
     if (!self->field_0x258)
         return;
     UnkGuiDisplayObject* target = fn_71011d94d4(static_cast<UnkGuiDisplayObject*>(self->field_0x258),

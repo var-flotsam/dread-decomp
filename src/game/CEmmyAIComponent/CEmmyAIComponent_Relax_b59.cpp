@@ -31,7 +31,7 @@ extern base::global::CStrId g_unk_71726b7cb8;
 extern UnkPropertyName g_unk_71726debd8;
 
 struct UnkActorTarget;
-void fn_710117662c(UnkActorTarget*, u32, u32, u32, u32, f32);
+void fn_710117662c(UnkActorTarget*, u32 value, u32 extra, bool apply, bool flag, f32 time);
 extern u32 g_unk_7101649db8;
 extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
 
@@ -91,7 +91,7 @@ void fn_710055b1e8(UnkEmmyRelaxAI_b59* self) {
     fn_7100544a34(reinterpret_cast<UnkEmmyActor_b55*>(self), g_unk_71726debd0, false);
     SetSectionId(&self->blackboard, g_unk_71726b7cb8, &g_unk_71726debd8, &g_unk_7101d470e0, v);
     if (self->owner->field_0x220) {
-        fn_710117662c(self->owner->field_0x220, 8, g_unk_7101649db8, 0, 0, -1.0f);
+        fn_710117662c(self->owner->field_0x220, 8, g_unk_7101649db8, false, false, -1.0f);
         UnkActorTarget* target = self->owner->field_0x220;
         u64 hash = fn_7100001570("relax", 5);
         mode.id = 2;

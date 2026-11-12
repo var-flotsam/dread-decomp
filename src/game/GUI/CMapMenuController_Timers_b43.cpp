@@ -10,6 +10,7 @@
 #include "game/UnkTU1689.h"
 #include "game/UnkTU2566.h"
 #include "game/UnkTU2567.h"
+#include "game/sound/SGUISoundEventsSelector.h"
 #include "types.h"
 
 // As src/game/GUI/CIngameMenu/fn_7100b2de48.cpp and
@@ -19,7 +20,6 @@ extern UnkStateSink* g_unk_717275c380;
 struct UnkStateKey;
 extern UnkStateKey g_unk_71729f0178;
 extern UnkStateKey g_unk_71729f0180;
-void fn_7100fc9d78(UnkStateSink* sink, UnkStateKey* key, void* state);
 
 // As src/game/GUI/CMapMenuController.cpp and src/game/GUI/CMapMenuController_Close.cpp declare them.
 struct UnkMapData;

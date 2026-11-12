@@ -19,7 +19,7 @@ struct UnkOwner_710016fa84 {
 extern const CVector3D unk_71016481b0 __attribute__((visibility("hidden")));
 extern const CVector3D unk_71016481bc __attribute__((visibility("hidden")));
 
-void fn_7100078df0(UnkMatrix_710016fa84_0x40* out, f32 angle);
+void fn_7100078df0(f32 angle, UnkMatrix_710016fa84_0x40* out);
 void fn_7100079584(const CVector3D* axis, UnkMatrix_710016fa84_0x40* out, f32 angle);
 void fn_710007a620(const CVector3D* axis, const CVector3D* rot, CVector3D* out);
 
@@ -47,7 +47,7 @@ static inline bool BuildMatrix(const UnkOwner_710016fa84* self, const CVector3D*
     if (self->field_0x438 && self->field_0x439) {
         f32 angle = rot->z;
         if (up->z < -0.8f)
-            fn_7100078df0(m, -angle);
+            fn_7100078df0(-angle, m);
         else
             fn_7100079584(up, m, angle);
         return true;

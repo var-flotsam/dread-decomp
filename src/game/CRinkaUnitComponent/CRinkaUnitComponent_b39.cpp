@@ -10,7 +10,7 @@
 
 struct UnkRinkaEntry_ruc {
     u8 pad_0x0[0x30];
-    void* field_0x30;
+    u64 field_0x30;  // an effect name's hash
 };
 
 struct UnkRinkaControl_ruc;
@@ -47,10 +47,10 @@ struct UnkRinkaUnit_ruc {
 void fn_71006602a4(UnkRinkaUnit_ruc* self) {
     self->field_0x258 = 0;
     if (self->actor->control) {
-        fn_710114ffb8(self->actor->control, g_unk_71726fd110[0]->field_0x30, 0, 0);
+        fn_710114ffb8(self->actor->control, g_unk_71726fd110[0]->field_0x30, false, false);
         fn_710115596c(self->actor->control, self->handle_0x268);
         self->handle_0x268 = nullptr;
-        fn_710114ffb8(self->actor->control, g_unk_71726fd110[1]->field_0x30, 0, 0);
+        fn_710114ffb8(self->actor->control, g_unk_71726fd110[1]->field_0x30, false, false);
         fn_710115596c(self->actor->control, self->handle_0x270);
         self->handle_0x270 = nullptr;
     }

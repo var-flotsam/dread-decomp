@@ -219,7 +219,7 @@ struct UnkPlatformSmartLink_A5_b76 {
 
 struct UnkPlatformTrackKey_A5_b76 {
     u8 pad_0x0[0x30];
-    void* hash;
+    u64 hash;
 };
 
 struct UnkPlatformSelfEntity_A5_b76 {
@@ -285,7 +285,7 @@ void fn_7100a09948(UnkPlatformSelf_A5_b76* self) {
                 }
                 if (UnkSmartObjectActor* o = LinkedObject_A5_b76(self->link)) {
                     fn_71007cfd8c(o);
-                    fn_710114ffb8(self->entity->control, self->track->hash, 0, 0);
+                    fn_710114ffb8(self->entity->control, self->track->hash, false, false);
                 }
             }
         }

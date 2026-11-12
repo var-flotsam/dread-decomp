@@ -10,6 +10,7 @@
 #include "game/CAutsniperShootAttack.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkTU2523.h"
+#include "game/sound/UnkSoundHandle.h"
 #include "game_s2/UnkSpitAttack.h"
 #include "types.h"
 
@@ -19,10 +20,6 @@ using base::reflection::UnkReflObject;
 struct UnkSound;
 struct UnkSoundRef {
     UnkSound* sound;
-    s64 serial;
-};
-struct UnkSoundHandle {
-    UnkSoundRef* ref;
     s64 serial;
 };
 

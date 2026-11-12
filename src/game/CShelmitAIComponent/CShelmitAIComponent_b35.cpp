@@ -35,7 +35,7 @@ static inline __attribute__((always_inline)) void Sample(UnkShelmitAI_b35* self,
     if (dt < 0.001f) {
         t->previous = value;
         t->rate = 0.0f;
-        reinterpret_cast<void (*)(UnkShelmitAI_b35*, f32)>(fn_71006badf4)(self, value);
+        fn_71006badf4(reinterpret_cast<UnkShelmitAI*>(self), value);
         return;
     }
     t->rate = (value - t->previous) / dt;

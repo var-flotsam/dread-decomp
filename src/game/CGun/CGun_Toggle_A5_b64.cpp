@@ -15,7 +15,7 @@
 
 using base::global::CStrId;
 
-void fn_7100a2cddc(void* table, void* key, CStrId* id, bool unique, f32 delay);
+void fn_7100a2cddc(void* table, void* key, CStrId* id, f32 delay, bool unique);
 bool fn_7100a2caac(void* table, CStrId* key, CStrId* id);
 void fn_7100a2d400(void* table, CStrId* key, CStrId* id);
 
@@ -63,7 +63,7 @@ void fn_7100835f94(UnkGunToggle_A5_b64* self, UnkGunToggleArg_A5_b64* arg) {
         CStrId entry(self->toggle ? self->second : self->first);
         if (fn_7100a2caac(timeline, &entry, &source)) {
             fn_7100a2d400(timeline, &entry, &source);
-            fn_7100a2cddc(timeline, &entry, &source, false, -1.0f);
+            fn_7100a2cddc(timeline, &entry, &source, -1.0f, false);
         }
         self->toggle = !self->toggle;
     }

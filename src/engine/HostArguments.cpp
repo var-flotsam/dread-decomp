@@ -134,7 +134,8 @@ extern u8 g_unk_7101d473c4 __attribute__((visibility("hidden")));
 // The settings record's functions. fn_7100001714 (a tail call of fn_71010c2080, which tail-calls
 // fn_7100132920) and fn_7100001718 belong to unit 2 (tools/tu_map.py) and are taken PC-relatively,
 // so they are hidden; the other two are taken through the GOT.
-void fn_710109c880();
+typedef void (*UnkLuaReportFn)(const char* message, s32 a, s32 b);  // as src/base/UnkLuaDoString.cpp has it
+void fn_710109c880(const char* str, UnkLuaReportFn report);
 void fn_7100015fc0(const CFilePathStrId& root);
 void fn_7100001714() __attribute__((visibility("hidden")));
 void fn_7100001718() __attribute__((visibility("hidden")));
@@ -150,7 +151,7 @@ struct UnkStartupCallback {
 // there.
 struct UnkStartupSettings {
     u64 field_0x0;
-    void (*field_0x8)();
+    void (*field_0x8)(const char* str, UnkLuaReportFn report);  // runs a Lua string
     void (*field_0x10)(const CFilePathStrId& root);
     UnkStartupCallback field_0x18;
     UnkStartupCallback field_0x28;

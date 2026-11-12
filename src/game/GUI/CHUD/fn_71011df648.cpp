@@ -60,11 +60,11 @@ void fn_71011e7bf8();
 void fn_71011e7c10();
 void fn_71011e7c18();
 void fn_71011e7cbc();
-void fn_71011e7d60();
+u32 fn_71011e7d60(void* self, const void* event);
 void fn_71011e7e10();
 void fn_71011e7e2c();
 void fn_71011e7e48();
-void fn_71011e7e8c();
+bool fn_71011e7e8c(void* self, u32 chase);
 void fn_71011e7ed8();
 
 static inline void Bind(UnkBoundCall* call, void* object, void (*fn)()) {
@@ -97,11 +97,11 @@ void fn_71011df648(UnkGuiObject_71011df648* self) {
         self->field_0x398[i] = nullptr;
     Bind(&self->field_0x3e0, self, fn_71011e7c18);
     Bind(&self->field_0x3f8, self, fn_71011e7cbc);
-    Bind(&self->field_0x410, self, fn_71011e7d60);
+    Bind(&self->field_0x410, self, reinterpret_cast<void (*)()>(&fn_71011e7d60));
     Bind(&self->field_0x428, self, fn_71011e7e10);
     Bind(&self->field_0x440, self, fn_71011e7e2c);
     Bind(&self->field_0x458, self, fn_71011e7e48);
-    Bind(&self->field_0x470, self, fn_71011e7e8c);
+    Bind(&self->field_0x470, self, reinterpret_cast<void (*)()>(&fn_71011e7e8c));
     Bind(&self->field_0x488, self, fn_71011e7ed8);
     self->field_0x4a0 = 0;
     self->field_0x4a4 = false;

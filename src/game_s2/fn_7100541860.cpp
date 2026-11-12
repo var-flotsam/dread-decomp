@@ -1,5 +1,5 @@
 // Makes the weak reference at +0x29558 refer to the weak handle of `other` (created on first use), or
-// to nothing when `other` is null or has no handle slot, then runs fn_71005416bc on `self` with 1.
+// to nothing when `other` is null or has no handle slot, then runs fn_71005416bc on `self` with the flag set (a tail call: its result is this one's).
 #include "game_s2/UnkWeakHandle.h"
 
 struct UnkSelf {
@@ -7,10 +7,10 @@ struct UnkSelf {
     UnkWeakHandle* field_0x29558;
 };
 
-UnkSelf* fn_71005416bc(UnkSelf* self, u32 flag);
+bool fn_71005416bc(UnkSelf* self, bool flag);
 
-UnkSelf* fn_7100541860(UnkSelf* self, UnkWeakTarget* other) {
+bool fn_7100541860(UnkSelf* self, UnkWeakTarget* other) {
     UnkWeakHandle* handle = other ? GetWeakHandle(other) : nullptr;
     AssignRef(&self->field_0x29558, handle);
-    return fn_71005416bc(self, 1);
+    return fn_71005416bc(self, true);
 }

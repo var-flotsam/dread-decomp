@@ -363,7 +363,7 @@ s32 fn_710108fd50(lua_State* L) {
         if (void* object = FindByName(manager, target, g_unk_71727bebb8)) {
             if (UnkStruct_710024fa0c* world = fn_7100798eec(object))
                 fn_710114ffb8(reinterpret_cast<UnkRinkaControl_ruc*>(world),
-                              reinterpret_cast<void*>(fn_7100001570(effect, __builtin_strlen(effect))), first, second);
+                              fn_7100001570(effect, __builtin_strlen(effect)), first, second);
         }
     }
     return 0;

@@ -155,7 +155,10 @@ struct UnkActor_7100232c90 {
     bool frozen;  // 0x1b5
 };
 
-void fn_7100232c90(UnkActor_7100232c90* self, f32 dt) {
+// Its caller (fn_7100d7b068) sets a third argument, a flag, for each call. Nothing here reads it: the
+// first part's update is called with the register as it came, the later ones with whatever the
+// previous call left there, so it is not an argument of that call.
+void fn_7100232c90(UnkActor_7100232c90* self, f32 dt, bool) {
     if (self->frozen)
         return;
     for (UnkPart_7100232c90 **it = self->parts, **end = it + self->part_count; it != end; ++it) {
@@ -398,7 +401,7 @@ __attribute__((always_inline)) static inline UnkComponent_7100233230** FindSlot(
 
 struct UnkKeyedValues_71002eef6c;
 using UnkValuesByKey = base::UnkKeyedArray<UnkKeyedValues_71002eef6c, u64, u64>;
-void fn_71002332e0(UnkValuesByKey*, u64*);
+u64* fn_71002332e0(UnkValuesByKey*, u64*);
 
 bool fn_7100233230(UnkActor_710023259c* self, base::reflection::UnkReflObject* component) {
     UnkActor_7100233230* actor = reinterpret_cast<UnkActor_7100233230*>(self);

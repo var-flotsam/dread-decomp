@@ -21,12 +21,11 @@ struct CCameraBoundaryCtrl {
     f32 field_0xc0;
 };
 
-f32 fn_71010e63ec(UnkCameraBoundaryData* data, CCameraBoundaryCtrl* ctrl, f32 a, f32 b, f32 c);
+bool fn_71010e63ec(UnkCameraBoundaryData* data, CCameraBoundaryCtrl* ctrl, f32 a, f32 b, f32 c);
 
-f32 fn_710076438c(CCameraBoundaryCtrl* self, f32 dt) {
+void fn_710076438c(CCameraBoundaryCtrl* self, f32 dt) {
     UnkCameraBoundaryOwner* owner = self->owner;
     f32 value = owner->data->field_0xc40;
-    if (!(value > 0.0f))
-        return value;
-    return fn_71010e63ec(GetData(owner), self, self->field_0xc0, 4.0f, dt);
+    if (value > 0.0f)
+        fn_71010e63ec(GetData(owner), self, self->field_0xc0, 4.0f, dt);
 }

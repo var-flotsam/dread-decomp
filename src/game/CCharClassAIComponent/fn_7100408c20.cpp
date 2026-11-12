@@ -8,6 +8,7 @@
 #include "base/reflection/CEnumType.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkReflValue.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -24,7 +25,7 @@ void fn_7100415cf8();
 void fn_71004115d4(UnkReflFunction* fn, const char* name);
 void fn_7100415d88();
 void fn_7100411750(UnkReflFunction* fn, const char* name);
-void fn_7100415e18();
+base::reflection::UnkReflValue fn_7100415e18(void* unused, void* argument);
 void fn_71004118cc(UnkReflFunction* fn, const char* name);
 void fn_7100415ea4();
 void fn_7100411a40(UnkReflFunction* fn, const char* name);

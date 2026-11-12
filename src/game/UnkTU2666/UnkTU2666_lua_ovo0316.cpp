@@ -25,6 +25,7 @@
 #include "game/UnkItemProperties.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkGameManager.h"
+#include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -39,10 +40,6 @@ struct UnkNamedKey_b0163 {
 };
 struct UnkWeakTarget;
 struct UnkSoundRef;
-struct UnkSoundHandle {
-    UnkSoundRef* ref;
-    s64 serial;
-};
 struct UnkEntitySoundComponent;
 struct UnkInterp_7100105d34;
 

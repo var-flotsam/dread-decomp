@@ -3,13 +3,14 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkReflValue.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
 using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
-void fn_71007ad4d0();
+base::reflection::UnkReflValue fn_71007ad4d0(void*, char* obj);
 void fn_71007a515c(UnkReflFunction* fn, const char* name);
 const base::reflection::UnkReflAttrKey& fn_7100090a20();
 void fn_71007ad5e8();
@@ -27,7 +28,7 @@ extern base::reflection::CType g_unk_717274caa0;
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_71007ad78c();
 void fn_71007a544c(UnkReflFunction* fn, const char* name);
-void fn_71007ad814();
+base::reflection::UnkReflValue fn_71007ad814(void*, char* obj);
 void fn_71007ad8d4();
 void fn_71007ad8e8();
 void fn_71007ad91c();
@@ -35,23 +36,23 @@ void fn_71007ad950();
 void fn_71007ad984();
 void fn_71007ad9b8();
 void fn_71007ad9ec();
-void fn_71007ada28();
+base::reflection::UnkReflValue fn_71007ada28(void*, char* obj);
 void fn_71007adb08();
 void fn_71007adb3c();
 extern const base::reflection::CType g_unk_71727199c0 __attribute__((visibility("hidden")));
 void fn_71007adb50();
 void fn_71007adba0();
-void fn_71007adbe8();
+base::reflection::UnkReflValue fn_71007adbe8(void*, char* obj);
 void fn_71007a55c8(UnkReflFunction* fn, const char* name);
-void fn_71007ade14();
+base::reflection::UnkReflValue fn_71007ade14(void*, char* obj, base::reflection::UnkReflValue* const* args);
 void fn_71007adc7c(UnkReflFunction* fn);
 void fn_71007a5744(UnkReflFunction* fn, const char* name);
 const base::reflection::CType* fn_71007adf30();
 void fn_71007ae270();
-void fn_71007ae2bc();
+base::reflection::UnkReflValue fn_71007ae2bc(void*, char* obj, base::reflection::UnkReflValue* const* args);
 void fn_7100302b38(UnkReflFunction* fn);
 const base::reflection::UnkReflAttrKey& fn_710008f920();
-void fn_71007ae4e8();
+base::reflection::UnkReflValue fn_71007ae4e8(void*, char* obj, base::reflection::UnkReflValue* const* args);
 void fn_71007ae40c(UnkReflFunction* fn);
 
 void fn_71007a2fb4(CClass* cls) {

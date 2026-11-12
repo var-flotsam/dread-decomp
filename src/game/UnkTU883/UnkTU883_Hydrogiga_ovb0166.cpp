@@ -128,8 +128,8 @@ static inline void Erase(UnkHydrogigaList_b0166* list, UnkHydrogigaList_b0166::N
     }
 }
 
-void fn_71005c0d10(UnkHydrogigaAI_b0166* self, UnkHydrogigaOther_b0166* other, void* arg, bool flag) {
-    fn_710110bb4c(reinterpret_cast<UnkQuetzoaXAI_ovb0134*>(self), reinterpret_cast<UnkQuetzoaOther_ovb0134*>(other), arg, flag);
+void fn_71005c0d10(UnkHydrogigaAI_b0166* self, UnkHydrogigaOther_b0166* other, u32 id, bool flag) {
+    fn_710110bb4c(reinterpret_cast<UnkQuetzoaXAI_ovb0134*>(self), reinterpret_cast<UnkQuetzoaOther_ovb0134*>(other), id, flag);
     if (!self->pending)
         return;
     u64 v = reinterpret_cast<u64>(self->entry);
