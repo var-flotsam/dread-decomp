@@ -56,8 +56,8 @@ void fn_7100b59574(UnkMissionLogSelf* self, UnkMissionLogRequest* request, bool 
     (*reinterpret_cast<void (***)(UnkMissionLogEntry*, UnkGuiEvent*)>(entry))[0xd8 / 8](entry, &event);
     base::math::CVector2D size;
     f32 height = entry->height;
-    height *= static_cast<f32>(next);
     UnkSprite_spr* sprite = reinterpret_cast<UnkSprite_spr*>(self->list);
+    height *= static_cast<f32>(next);
     size.x = entry->width;
     size.y = height;
     fn_71011cf8d0(sprite, &size);

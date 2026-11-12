@@ -80,22 +80,22 @@ UnkVisitResult_b0040 fn_71003549a4(UnkAimNearest_ovb0198k* self, UnkAimTarget_ov
         bool take = !self->has_best;
         if (!take) {
             f32 bx = self->best.X();
-            f32 by = self->best.Y();
             f32 px = self->point.x;
+            f32 by = self->best.Y();
             f32 py = self->point.y;
             f32 oldDy = py - by;
-            f32 newDy = py - target->Y();
             f32 oldDx = px - bx;
             f32 newDx = px - target->X();
             f32 oldDyy = oldDy * oldDy;
             f32 oldDxx = oldDx * oldDx;
-            f32 oldXy = oldDxx + oldDyy;
+            f32 oldXy = oldDyy + oldDxx;
             f32 zz = self->point.z * self->point.z;
+            f32 newDy = py - target->Y();
             f32 newDxx = newDx * newDx;
             f32 newDyy = newDy * newDy;
-            f32 newXy = newDxx + newDyy;
             f32 oldDist = zz + oldXy;
-            f32 newDist = zz + newXy;
+            f32 newXy = newDyy + newDxx;
+            f32 newDist = newXy + zz;
             take = (s32)Sign_ovb0198k(oldDist - newDist) >= 1;
         }
         if (take) {

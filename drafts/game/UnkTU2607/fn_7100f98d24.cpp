@@ -29,8 +29,8 @@ struct UnkObj98d24 {
 };
 
 void fn_7100f98d24(UnkObj98d24* self, f32 t, UnkVec3_b0191* v) {
-    self->t = t;
     self->clear = 0;
+    self->t = t;
     self->flag = NearZero_b0191(t) ? 1.0f : 0.0f;
     UnkVec3_b0191* p = fn_710021a04c(g_unk_7101d47300);
     self->first.x = p->x;

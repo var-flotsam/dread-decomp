@@ -54,8 +54,8 @@ struct UnkObj98dc4 {
 };
 
 void fn_7100f98dc4(UnkObj98dc4* self, f32 t, UnkVec3_b0191* v) {
-    self->t = t;
     self->clear = 0;
+    self->t = t;
     self->flag = NearZero_b0191(t) ? 1.0f : 0.0f;
     UnkVec3_b0191* p = fn_710021a060(g_unk_7101d47300);
     self->first.x = p->x;

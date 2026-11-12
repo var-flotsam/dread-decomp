@@ -38,7 +38,6 @@ struct UnkSelfCfg {
     UnkConfig* field_0x50;
 };
 
-// NON_MATCHING(minor): the z product has its operands in the other order (scheduling only)
 void fn_7100437fb4(UnkSelf* self, UnkScaled* block) {
     if (self->field_0x58 != 0)
         return;
@@ -50,9 +49,9 @@ void fn_7100437fb4(UnkSelf* self, UnkScaled* block) {
     f32 t = fraction <= 0.0f ? 0.0f : (fraction >= 1.0f ? 1.0f : fraction);
     f32 factor = config->field_0xf8 + (config->field_0xfc - config->field_0xf8) * t;
     f32 x = block->field_0x60 * factor;
-    f32 y = block->field_0x64 * factor;
-    f32 z = block->field_0x68 * factor;
+    f32 y = factor * block->field_0x64;
     block->field_0x60 = x;
+    f32 z = factor * block->field_0x68;
     block->field_0x64 = y;
     block->field_0x68 = z;
     block->field_0x6c = x;

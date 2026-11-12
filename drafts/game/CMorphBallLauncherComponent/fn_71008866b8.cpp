@@ -84,8 +84,8 @@ bool fn_71008866b8(char* self, void* arg) {
     *reinterpret_cast<void**>(at(0x370)) = self;
     *reinterpret_cast<void**>(at(0x358)) = reinterpret_cast<void*>(fn_7100889040);
     *reinterpret_cast<void**>(at(0x378)) = reinterpret_cast<void*>(fn_7100889160);
-    cb(0x78, fn_7100889178);
     auto* reg = reinterpret_cast<UnkMbl_Registry*>(at(0x208));
+    cb(0x78, fn_7100889178);
     reg->owner = self;
     cb(0x88, fn_710088917c);
     Add(self, reinterpret_cast<UnkMbl_Entry*>(at(0x48)));

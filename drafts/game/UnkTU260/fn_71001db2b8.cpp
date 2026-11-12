@@ -80,8 +80,8 @@ void fn_71001db2b8(UnkSetupOwnerB* self) {
     fn_71001dba58(self, fn_710015c450(self->slots_0x470[index]), self->field_0x418);
     self->field_0x420 = self->field_0x118;
     u32 w = self->field_0x120;
-    self->field_0x488 = saved;
     u8* dst = self->field_0x42c;
+    self->field_0x488 = saved;
     self->field_0x428 = w;
     __builtin_memcpy(dst, reinterpret_cast<u8*>(&self->field_0x120) + 4, 8);
     self->field_0x434 = self->field_0x12c;

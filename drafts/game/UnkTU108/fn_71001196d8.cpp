@@ -25,13 +25,13 @@ bool fn_71001196d8(UnkPolygon2D* polygon, u32 vertex, const CVector2D* point, bo
                    void* b) {
     UnkSegment2D seg = polygon->Edge(vertex);
     f32 sx = seg.start.x;
-    f32 sy = seg.start.y;
     f32 px = point->x - sx;
+    f32 sy = seg.start.y;
     f32 py = point->y - sy;
-    f32 ey = seg.end.y - sy;
     f32 ex = seg.end.x - sx;
+    f32 ey = seg.end.y - sy;
     f32 len2 = ex * ex + ey * ey;
-    f32 t = (px * ex + py * ey) / len2;
+    f32 t = (ex * px + ey * py) / len2;
     if (t < 0.0f)
         return fn_7100119800(polygon, vertex, &seg.start, flag, tolerance, a, b);
     if (t > 1.0f)

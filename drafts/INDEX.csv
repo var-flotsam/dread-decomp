@@ -14,7 +14,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100096c80,688,drafts/base/reflection/CClass/fn_7100096c80.cpp,registers or order,99.4,1,lean,
 0x710009c460,480,drafts/base/reflection/CPointerType/fn_710009c460.cpp,calls,7.5,60,pilot50,original keeps sp-vs-sret self-assign compare (loop unswitched; 18 calls); ours folds it (9 calls)
 0x71000e9d60,416,drafts/game/UnkTU88/fn_71000e9d60.cpp,registers or order,99.0,1,overnight,
-0x71000ed480,392,drafts/game/UnkTU90/fn_71000ed480.cpp,registers or order,94.9,5,overnight,
+0x71000ed480,392,drafts/game/UnkTU90/fn_71000ed480.cpp,match,100.0,0,overnight,matches since the permuter spike of 2026-11-12; held: its declarations are not settled yet
 0x71000f9450,340,drafts/game/UnkTU99/fn_71000f9450.cpp,conditions,98.8,1,overnight,
 0x71000fc18c,564,drafts/game/UnkTU99/fn_71000fc18c.cpp,conditions,95.7,6,overnight,
 0x71000fc3c0,432,drafts/game/UnkTU99/fn_71000fc3c0.cpp,conditions,94.4,6,overnight,
@@ -27,7 +27,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100100170,336,drafts/game/UnkTU99/fn_7100100170.cpp,conditions,98.8,1,overnight,
 0x7100100628,268,drafts/game/UnkTU99/fn_7100100628.cpp,operations,97.0,2,overnight,
 0x710010df80,476,drafts/game/UnkTU107/fn_710010df80.cpp,registers or order,89.9,12,pilot50,register allocation of loop counters
-0x71001196d8,296,drafts/game/UnkTU108/fn_71001196d8.cpp,registers or order,97.3,2,overnight,
+0x71001196d8,296,drafts/game/UnkTU108/fn_71001196d8.cpp,match,100.0,0,overnight,matches since the permuter spike of 2026-11-12; held: its declarations are not settled yet
 0x7100128510,764,drafts/game/malloc/fn_7100128510.cpp,control flow,29.8,134,fable1,
 0x710012b330,1212,drafts/game/malloc/fn_710012b330.cpp,control flow,6.9,263,fable1,
 0x710012f880,3620,drafts/game/malloc/fn_710012f880.cpp,control flow,8.7,749,fable1,
@@ -41,14 +41,14 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71001c5db4,380,drafts/game/UnkTU258/fn_71001c5db4.cpp,conditions,98.9,1,overnight,
 0x71001c9550,456,drafts/game/UnkTU259/fn_71001c9550.cpp,operations,93.0,8,overnight,
 0x71001d70b8,508,drafts/game/UnkTU259/fn_71001d70b8.cpp,registers or order,98.4,2,overnight,
-0x71001db2b8,252,drafts/game/UnkTU260/fn_71001db2b8.cpp,registers or order,93.7,4,overnight,
+0x71001db2b8,252,drafts/game/UnkTU260/fn_71001db2b8.cpp,match,100.0,0,overnight,matches since the permuter spike of 2026-11-12; held: its declarations are not settled yet
 0x71001dea8c,348,drafts/game/UnkTU260/fn_71001dea8c.cpp,registers or order,97.7,2,overnight,
 0x71001f9e8c,188,drafts/game/UnkTU277/fn_71001f9e8c.cpp,conditions,97.9,1,overnight,
 0x71001fca5c,580,drafts/game/UnkTU280/fn_71001fca5c.cpp,registers or order,93.8,9,overnight,
 0x710020f450,552,drafts/game/UnkTU296/fn_710020f450.cpp,control flow,90.1,11,overnight,
 0x71002169e0,288,drafts/game/UnkTU308/fn_71002169e0.cpp,registers or order,97.2,2,overnight,
 0x7100216ca4,140,drafts/game/UnkTU308/fn_7100216ca4.cpp,registers or order,94.3,2,overnight,
-0x710021e874,492,drafts/game/UnkTU324/fn_710021e874.cpp,registers or order,96.7,4,overnight,
+0x710021e874,492,drafts/game/UnkTU324/fn_710021e874.cpp,match,100.0,0,overnight,matches since the permuter spike of 2026-11-12; held: its declarations are not settled yet
 0x710021f2a8,1116,drafts/game/UnkTU324/fn_710021f2a8.cpp,control flow,4.7,265,fable1,
 0x710023b424,348,drafts/game/UnkTU341/fn_710023b424.cpp,registers or order,94.3,5,overnight,
 0x7100241440,284,drafts/game/UnkTU341/fn_7100241440.cpp,registers or order,91.5,6,overnight,
@@ -64,7 +64,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71002cc378,412,drafts/game/UnkTU395/fn_71002cc378.cpp,registers or order,93.2,7,overnight,
 0x710033187c,716,drafts/game/CAbilityShinespark/fn_710033187c.cpp,control flow,11.4,157,fable1,
 0x71003523bc,488,drafts/game/UnkTU437/fn_71003523bc.cpp,operations,98.4,2,overnight,
-0x71003549a4,400,drafts/game/UnkTU437/fn_71003549a4.cpp,registers or order,98.0,2,overnight,
+0x71003549a4,400,drafts/game/UnkTU437/fn_71003549a4.cpp,match,100.0,0,overnight,matches since the permuter spike of 2026-11-12; held: its declarations are not settled yet
 0x710035d5c4,504,drafts/game/UnkTU441/fn_710035d5c4.cpp,registers or order,96.0,5,overnight,
 0x710039d65c,504,drafts/game/behaviortree/CIsAtDistanceXCondition/fn_710039d65c.cpp,control flow,93.1,5,overnight,
 0x71003a4774,220,drafts/game/behaviortree/CTunableBoolCondition/fn_71003a4774.cpp,registers,87.3,7,test40,registers only in true/false select (x10/x8/x9 allocation)
@@ -86,7 +86,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71005c042c,388,drafts/game/UnkTU883/fn_71005c042c.cpp,operations,95.9,4,overnight,
 0x71005c3160,372,drafts/game/UnkTU883/fn_71005c3160.cpp,registers or order,92.5,7,overnight,
 0x7100686860,256,drafts/game/CScorpiusAttack/fn_7100686860.cpp,control flow,56.1,27,lean,
-0x71006eb7cc,256,drafts/game/UnkTU1102/fn_71006eb7cc.cpp,registers or order,92.2,5,overnight,
+0x71006eb7cc,256,drafts/game/UnkTU1102/fn_71006eb7cc.cpp,match,100.0,0,overnight,matches since the permuter spike of 2026-11-12; held: its declarations are not settled yet
 0x71006f4b0c,592,drafts/game/CAINavigationComponent/fn_71006f4b0c.cpp,control flow,34.2,96,pilot50,control flow: state-switch search/found merging; branch order
 0x71006f8944,432,drafts/game/UnkTU1115/fn_71006f8944.cpp,operations,99.1,1,overnight,
 0x71006fda48,348,drafts/game/UnkTU1118/fn_71006fda48.cpp,conditions,93.1,6,overnight,
@@ -108,7 +108,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71008625a0,284,drafts/game/CCollisionComponent/fn_71008625a0.cpp,registers or order,74.6,18,pilot50,register allocation x19/x20; store order
 0x710086f9e0,324,drafts/game/UnkTU1325/fn_710086f9e0.cpp,registers or order,90.1,8,overnight,
 0x710087f018,284,drafts/game/CCharClassFanComponent/fn_710087f018.cpp,registers,97.2,2,test40,one fmul register s3 vs s4 only
-0x71008866b8,548,drafts/game/CMorphBallLauncherComponent/fn_71008866b8.cpp,registers or order,87.6,17,lean,
+0x71008866b8,548,drafts/game/CMorphBallLauncherComponent/fn_71008866b8.cpp,match,100.0,0,lean,matches since the permuter spike of 2026-11-12; held: its declarations are not settled yet
 0x710088adf0,376,drafts/game/CCharClassMushroomPlatformComponent/fn_710088adf0.cpp,control flow,34.0,54,test40,block layout differs: original puts owner-target tail before state switch; loop shape differs
 0x71008c3dcc,360,drafts/game/CDemolitionBlockActivatableActorLifeComponent/fn_71008c3dcc.cpp,match,100.0,0,test40,"matches; held: fn_7100353be8 (37 copies) returns UnkRef, a struct in some files and an alias in others"
 0x71009438e8,244,drafts/game/UnkTU1428/fn_71009438e8.cpp,operations,98.4,1,overnight,
@@ -127,7 +127,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100a3ade0,288,drafts/game/CChangeStateDoorsLogicAction/fn_7100a3ade0.cpp,operations,68.1,22,test40,src/dst callee-saved regs swapped; tail load addressing
 0x7100a787cc,944,drafts/game/CCapsuleUsableComponent/fn_7100a787cc.cpp,operations,3.4,228,lean,
 0x7100b4c684,596,drafts/game/UnkTU1691/fn_7100b4c684.cpp,conditions,98.7,2,overnight,
-0x7100b59574,284,drafts/game/GUI/CMissionLog/fn_7100b59574.cpp,registers or order,95.8,3,lean,
+0x7100b59574,284,drafts/game/GUI/CMissionLog/fn_7100b59574.cpp,match,100.0,0,lean,matches since the permuter spike of 2026-11-12; held: its declarations are not settled yet
 0x7100b72380,292,drafts/game/GUI/CScene3D/fn_7100b72380.cpp,operations,46.6,37,test40,store merging/scheduling of 0x3ac-0x3c0 and GOT load order
 0x7100bcfe4c,516,drafts/game/CCharClassSetActionToOtherEntityEvent/fn_7100bcfe4c.cpp,registers or order,98.4,2,overnight,
 0x7100c8bd98,304,drafts/game/UnkTU2200/fn_7100c8bd98.cpp,operations,32.5,50,lean,
@@ -168,7 +168,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100e9c06c,492,drafts/game/UnkTU2566/fn_7100e9c06c.cpp,registers or order,92.7,9,overnight,
 0x7100e9d6f8,260,drafts/game/UnkTU2566/fn_7100e9d6f8.cpp,registers or order,96.9,2,overnight,
 0x7100ea1b94,484,drafts/game/UnkTU2566/fn_7100ea1b94.cpp,operations,14.9,99,pilot50,branch layout/loop merging differs; operations KIND
-0x7100ebfd4c,580,drafts/game/UnkTU2568/fn_7100ebfd4c.cpp,registers or order,97.2,4,overnight,
+0x7100ebfd4c,580,drafts/game/UnkTU2568/fn_7100ebfd4c.cpp,match,100.0,0,overnight,matches since the permuter spike of 2026-11-12; held: its declarations are not settled yet
 0x7100ec6a6c,464,drafts/game/UnkTU2571/fn_7100ec6a6c.cpp,registers or order,92.2,9,overnight,
 0x7100ecd1a4,2828,drafts/game/UnkTU2573/fn_7100ecd1a4.cpp,calls,2.1,692,fable1,
 0x7100ee62bc,1480,drafts/game/UnkTU2577/fn_7100ee62bc.cpp,control flow,26.5,266,fable1,
@@ -186,9 +186,9 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100f86fec,340,drafts/game/UnkTU2601/fn_7100f86fec.cpp,registers or order,94.1,5,overnight,
 0x7100f89e44,404,drafts/game/UnkTU2602/fn_7100f89e44.cpp,conditions,98.0,2,overnight,
 0x7100f97d90,468,drafts/game/UnkTU2607/fn_7100f97d90.cpp,registers or order,92.3,9,overnight,
-0x7100f98094,148,drafts/game/UnkTU2607/fn_7100f98094.cpp,registers or order,91.9,3,overnight,passes tools/equiv_test.py with its three siblings in this file; held: other files declare the four with other parameters
-0x7100f98d24,160,drafts/game/UnkTU2607/fn_7100f98d24.cpp,registers or order,95.0,2,overnight,passes tools/equiv_test.py; held with fn_7100f98094 (the same four functions are in its file)
-0x7100f98dc4,160,drafts/game/UnkTU2607/fn_7100f98dc4.cpp,registers or order,95.0,2,overnight,passes tools/equiv_test.py; held with fn_7100f98094 (the same four functions are in its file)
+0x7100f98094,148,drafts/game/UnkTU2607/fn_7100f98094.cpp,match,100.0,0,overnight,matches since the permuter spike of 2026-11-12; held: other files declare the four with other parameters
+0x7100f98d24,160,drafts/game/UnkTU2607/fn_7100f98d24.cpp,match,100.0,0,overnight,matches since the permuter spike of 2026-11-12; held: its declarations are not settled yet
+0x7100f98dc4,160,drafts/game/UnkTU2607/fn_7100f98dc4.cpp,match,100.0,0,overnight,matches since the permuter spike of 2026-11-12; held: its declarations are not settled yet
 0x7100fa64bc,1176,drafts/base/reflection/fn_7100fa64bc.cpp,control flow,22.4,210,fable1,
 0x7100faa3d8,1556,drafts/game/UnkTU2611/fn_7100faa3d8.cpp,operations,40.6,226,fable1,
 0x7100fc39b0,336,drafts/game/UnkTU2621/fn_7100fc39b0.cpp,registers or order,97.6,2,overnight,
@@ -231,7 +231,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71012129f0,264,drafts/game/UnkTU2772/fn_71012129f0.cpp,registers or order,98.5,1,overnight,
 0x7101213858,420,drafts/game/UnkTU2772/fn_7101213858.cpp,registers or order,94.3,6,overnight,passes tools/equiv_test.py; held: src/game_lo/fn_71001039f8.cpp declares it as a labelled constructor
 0x7101214bd0,196,drafts/game/UnkTU2772/fn_7101214bd0.cpp,operations,95.9,2,overnight,
-0x7101214c94,600,drafts/game/UnkTU2772/fn_7101214c94.cpp,registers or order,96.7,5,overnight,
+0x7101214c94,600,drafts/game/UnkTU2772/fn_7101214c94.cpp,match,100.0,0,overnight,matches since the permuter spike of 2026-11-12; held: its declarations are not settled yet
 0x710122cf1c,264,drafts/game/UnkTU2772/fn_710122cf1c.cpp,conditions,97.0,2,overnight,
 0x710122f380,112,drafts/game/UnkTU2772/fn_710122f380.cpp,registers or order,96.4,1,overnight,
 0x710122f3f0,156,drafts/game/UnkTU2772/fn_710122f3f0.cpp,registers or order,97.4,1,overnight,

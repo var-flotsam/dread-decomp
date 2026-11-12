@@ -44,13 +44,12 @@ struct UnkSelfFar {
     UnkTunables* field_0x149d0;
 };
 
-// NON_MATCHING(minor): the two operands of the "mode matches" `and` are swapped (scheduling only)
 bool fn_710049cbd8(UnkSelf* self) {
     UnkBody* body = reinterpret_cast<UnkBody*>(fn_7100d7c990(self->field_0x30));
     if (body && body->field_0x208 && body->field_0x208->field_0xf9 && fn_71009e8590(body->field_0x208) >= 1 &&
         (fn_71009e75e8(body->field_0x208) || fn_7100df5630(g_unk_7101d47310))) {
-        u8 flag = self->field_0x94;
         u32 mode = self->field_0x70;
+        u8 flag = self->field_0x94;
         bool clear = flag == 0;
         bool nonzero = mode != 0;
         u32 expected = nonzero & clear;

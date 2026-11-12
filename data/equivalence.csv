@@ -2,13 +2,10 @@ address,digest,verdict,rules,detail
 0x7100017ce8,68cbb625b718552ac1235f662d6148fb,inconclusive,2,only 83% of the original's instructions ran
 0x710002d3e0,ccf33efee148de0fd9c99dd3b31d2492,pass,2,
 0x710006cd9c,e0d3c6ac3d1574487fb23bd532041934,pass,2,
-0x7100075f78,0326ff9b7969cf27465e7c805ce9eab2,pass,2,
 0x7100077c70,6934c6958abf061e9fc7872df6275096,pass,2,
 0x7100079b18,1ffde30061d52aea37354f768c7470d0,inconclusive,2,only 93% of the original's instructions ran
 0x710007ba20,6e7e160062c437e038f8aa7a73b18494,inconclusive,2,1 of 4 conditional branches went only one way
 0x710007c514,b9371f41929029b3a309b2cbee507206,inconclusive,2,2 of 8 conditional branches went only one way
-0x710007ee58,6c48557ff6a7d7dc67c0a6120c11260b,inconclusive,2,only 84% of the original's instructions ran
-0x710007eee0,5fdaa8754bc9427c3aaa521eade555de,inconclusive,2,2 of 3 conditional branches went only one way
 0x710007f050,6c772666cbe027abc2ea56aade0021d0,inconclusive,2,only 98% of the original's instructions ran
 0x710007fe68,0df6e29da9ee048cdc649cbdca100684,inconclusive,2,no definition of the function found in the source: its result type is not known
 0x7100080578,f29094bb630d1b2d8d38a784264e4e5a,inconclusive,2,only 50% of the original's instructions ran
@@ -16,13 +13,11 @@ address,digest,verdict,rules,detail
 0x710009b050,1b5414776460a2b32d3e838fccc54e5c,inconclusive,2,unresolved guard variable for base::global::UnkEnsureStringPool()::s_holder (no address in the original)
 0x71000cd658,0aca046f127df5da4458f29a7c3428f2,inconclusive,2,only 93% of the original's instructions ran
 0x71000cfe14,a79e3daa106f598fdb7902dad79fd5af,inconclusive,2,only 93% of the original's instructions ran
-0x71000f88b8,e393313129ced1081016459371d42cd6,inconclusive,2,only 6% of the original's instructions ran
 0x71000fd1d4,cefc91838050d8d167457ce7beda6d57,pass,2,
 0x7100110420,bfeb95e7cbcf15507626ede5eb508242,pass,2,
 0x710011ec5c,88fe1b9031af625ce292c29badada502,pass,2,
 0x710012436c,4ccf526e05b76ea7d5a76da86a8bf0aa,inconclusive,2,unresolved UnkSegment2D::UnkSegment2D(base::math::CVector2D const&; base::math::CVector2D const&)
 0x71001243ac,5082395eb2918925be5fb35b2289a792,pass,2,
-0x71001261ac,e481686928f50ff6947cbf52c8911208,pass,2,
 0x710012b7f0,b08c87c625f7576d1c3cd7d189b2f032,inconclusive,2,only 82% of the original's instructions ran
 0x710012bb00,350d5002bf9672fb9b8746d402b9e9af,inconclusive,2,1 of 2 conditional branches went only one way
 0x710012be70,5c840cc7d1ba8c8435f52e30ed97d945,inconclusive,2,unresolved UnkSegment2D::UnkSegment2D(base::math::CVector2D const&; base::math::CVector2D const&)
@@ -38,7 +33,6 @@ address,digest,verdict,rules,detail
 0x71001b7d80,49df6d5d9c751fee53dc3c026cf0a072,pass,2,
 0x71001bab30,25ea7aaff7298725fe05270fc67abd22,inconclusive,2,5 of 7 conditional branches went only one way
 0x71001bcdf0,1bb54348ab01035cbc5fc75651256709,inconclusive,2,only 18% of the original's instructions ran
-0x71001c33cc,b50d39d79d5a75652902d99357f7e45d,pass,2,
 0x71001c3cdc,5fe5141a011f51669f4c28f1e8a74982,pass,2,
 0x71001d6c58,5e376fc54992238c5c6485e7a1e30ded,inconclusive,2,only 90% of the original's instructions ran
 0x71001def5c,678020462d6b9dffa6d30d8bc85a927a,inconclusive,2,only 31% of the original's instructions ran
@@ -46,7 +40,6 @@ address,digest,verdict,rules,detail
 0x710021688c,cbd0ad11d3e1511ce8aab8f793590b5b,pass,2,
 0x710025fdf4,d273febb0112307f30a0f741971c9183,inconclusive,2,unresolved UnkEntry_710025fdf4::UnkEntry_710025fdf4(UnkEntry_710025fdf4 const&)
 0x710027c134,c50ebccf88a437c8062838debe803df9,inconclusive,2,only 83% of the original's instructions ran
-0x71002afe60,94adaf7d57ea57935e053a909ef6ee36,inconclusive,2,1 of 2 conditional branches went only one way
 0x71002b0880,023818d70de12db412d4cb51c956c426,inconclusive,2,only 31% of the original's instructions ran
 0x71002b27d4,31c00b0999f87c5e8ab4bd7c42300e50,inconclusive,2,only 86% of the original's instructions ran
 0x71002b2f68,a24f80fcbb3b776777ba8ae3d18ee7b8,inconclusive,2,only 92% of the original's instructions ran
@@ -64,14 +57,9 @@ address,digest,verdict,rules,detail
 0x710035e5f8,0d1075fb899d2700b488f50220298028,inconclusive,2,only 62% of the original's instructions ran
 0x7100378d84,ad4a05a81803b67a0e1f9da9389e4a4e,inconclusive,2,only 96% of the original's instructions ran
 0x7100382730,a17aa12ebc7ec25fce42b7f566a0ded2,inconclusive,2,7 of 10 conditional branches went only one way
-0x7100390860,10a5a0b45ffddf312acf5a95cecd89a0,inconclusive,2,only 53% of the original's instructions ran
 0x71003aad48,e0b5b7f7dee2dfc99a6876a7dbd012d0,inconclusive,2,unresolved vtable for UnkNode_71003aad48
-0x71003dd21c,f00785671885edf0c3d9c9105f303fa2,pass,2,
 0x71003f2710,1d87e0b7ef5a1024eb8aec767fcd4d27,inconclusive,2,only 83% of the original's instructions ran
 0x7100430830,b0ffc1a635f3cfd54b29a7a3a7490853,inconclusive,2,4 of 6 conditional branches went only one way
-0x7100437fb4,5c6eb6b652449336bee8e7a491f7fdd7,pass,2,
-0x710049cbd8,aa106318f8188c55e0d99af35ef7f3ae,inconclusive,2,unresolved UnkSegment2D::UnkSegment2D(base::math::CVector2D const&; base::math::CVector2D const&)
-0x71004ce858,bcc69d2fd52159c995f2612849d26d98,pass,2,
 0x71004d24d0,c7e2020a2227d0ff1a3bf14620204bd8,inconclusive,2,1 of 3 conditional branches went only one way
 0x71004dcb40,8c482d9c046a16adb5c96b358d256775,inconclusive,2,only 51% of the original's instructions ran
 0x71004dccac,0077d1a65c856e5c8ba12775388e00f3,inconclusive,2,only 94% of the original's instructions ran
@@ -110,7 +98,6 @@ address,digest,verdict,rules,detail
 0x7100d56604,9e6844c2f0da1c8f311de6740c2b1a39,inconclusive,2,unresolved guard variable for NoFlags_d56604()::s (no address in the original)
 0x7100d5afa4,2064d7b98f7484c07e200490b2609e26,inconclusive,2,only 51% of the original's instructions ran
 0x7100d5b720,4322a7e9c4ee4d7619c68d8a34241d0e,inconclusive,2,only 59% of the original's instructions ran
-0x7100d656a0,a3e872c70571a2d2bf3da5ac32f4affe,inconclusive,2,unresolved NoContact()::s_none (no address in the original)
 0x7100d845b4,56eb895e901a5ef7dc0ccb0d33085e52,inconclusive,2,only 64% of the original's instructions ran
 0x7100d87080,30e3813d95d665ccc82d6f8185f7abbd,inconclusive,2,only 95% of the original's instructions ran
 0x7100d93e5c,056cff2f7069cf909a91ac97438182f9,inconclusive,2,only 83% of the original's instructions ran
@@ -120,7 +107,6 @@ address,digest,verdict,rules,detail
 0x7100db2fb4,056cff2f7069cf909a91ac97438182f9,inconclusive,2,only 83% of the original's instructions ran
 0x7100df026c,be9be092b5b2db4d3ce49757f92c8f8f,inconclusive,2,unresolved base::global::CFilePathStrId::CFilePathStrId(char const*; bool)
 0x7100df4610,00a9e610abd21e60f3ecbc301efbe5eb,inconclusive,2,only 50% of the original's instructions ran
-0x7100e01978,6df53ab4a9e41e75f0476173315efcd0,inconclusive,2,unresolved guard variable for fn_7100e01978(UnkGameManager*)::s_enabled (no address in the original)
 0x7100e10aac,7d9e1eb74b5465e4564f6d912e6ae46d,inconclusive,2,unresolved guard variable for UnkLoadingMaskOf<UnkLoadingMaskTag>::All()::s (no address in the original)
 0x7100e3da0c,62ea570c773ccb8ddfc348ca61468c45,inconclusive,2,unresolved UnkSegment2D::UnkSegment2D(base::math::CVector2D const&; base::math::CVector2D const&)
 0x7100e51c54,5b866b79b24a42ec59fc8693b55785dd,inconclusive,2,only 84% of the original's instructions ran

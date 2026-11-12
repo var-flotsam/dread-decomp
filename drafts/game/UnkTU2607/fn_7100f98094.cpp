@@ -104,8 +104,8 @@ struct UnkObj98094 {
 };
 
 void fn_7100f98094(UnkObj98094* self, f32 t, f32* v) {
-    self->t = t;
     self->clear = 0;
+    self->t = t;
     self->flag = NearZero_b0191(t) ? 1.0f : 0.0f;
     fn_7100219f6c(g_unk_7101d47300, &self->a[0], &self->a[1], 0);
     self->b[0] = self->a[0];
