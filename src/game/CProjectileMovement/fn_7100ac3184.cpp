@@ -44,7 +44,7 @@ struct UnkDefinition {
 };
 
 struct UnkCallback;
-void fn_71005c4828(void* dispatcher, UnkCallback* callback);  // unregister
+void fn_71005c4828(void*, void**);  // unregister
 
 struct UnkCallback {
     void* dispatcher;
@@ -54,7 +54,7 @@ struct UnkCallback {
     // Moves the callback to the dispatcher at +0xa60 of `manager`.
     void Connect(void* manager) {
         if (dispatcher) {
-            fn_71005c4828(dispatcher, this);
+            fn_71005c4828(dispatcher, reinterpret_cast<void**>(this));
             dispatcher = nullptr;
         }
         void* to = static_cast<char*>(manager) + 0xa60;
@@ -110,7 +110,8 @@ inline const UnkStaticZero_71726b5354& UnkGetStaticZero_71726b5354() {
     return s_value;
 }
 
-extern void* g_unk_7101d47360;
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;
 extern u8 g_unk_71727556f0 __attribute__((visibility("hidden")));
 void fn_7100ac7628(UnkComponent_0x5d0* self);
 void fn_7100a2cddc(void* table, void* key, CStrId* id, f32 delay, bool unique);
@@ -121,7 +122,7 @@ static inline void* UnkGetManager() {
     if (!g_unk_7101d47360) {
         void* manager = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(manager);
-        g_unk_7101d47360 = manager;
+        g_unk_7101d47360 = static_cast<UnkManager*>(manager);
     }
     return g_unk_7101d47360;
 }

@@ -30,7 +30,8 @@ struct UnkPlanktonFX_A3_b71;
 struct UnkWorld;
 struct UnkPart;
 UnkPart* fn_7101152b90(UnkWorld*, u64);
-bool fn_710114e668(UnkWorld*, u8);
+struct UnkObject;
+bool fn_710114e668(UnkObject*, u8);
 
 struct UnkHecathonMsg_ovb0131;
 void fn_71005ab080(UnkHecathonMsg_ovb0131* self, bool flag);
@@ -84,7 +85,7 @@ struct UnkHecathonMsg_ovb0131 {
 
 // The "airexpel" effect when its id is live in the FX list.
 static inline UnkHecathonEffect_ovb0131* Live(UnkWorld* fx, UnkHecathonEffect_ovb0131* effect) {
-    return fn_710114e668(fx, effect->id) ? effect : nullptr;
+    return fn_710114e668(reinterpret_cast<UnkObject*>(fx), effect->id) ? effect : nullptr;
 }
 
 u32 fn_71005abb48(UnkHecathonMsg_ovb0131* self, UnkHecathonMessage_ovb0131* msg) {

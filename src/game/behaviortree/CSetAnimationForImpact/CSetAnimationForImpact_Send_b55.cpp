@@ -11,7 +11,8 @@
 using base::global::CStrId;
 
 struct UnkSelf;
-void fn_7100394bd0(UnkSelf*);
+struct UnkStruct_0x68;
+void fn_7100394bd0(UnkStruct_0x68* self);
 
 // Returned in memory (not trivially copyable).
 struct UnkVec3_b55 {
@@ -51,7 +52,7 @@ struct UnkSetAnimationForImpact_b55 {
 };
 
 void fn_710036de14(UnkSetAnimationForImpact_b55* self) {
-    fn_7100394bd0(reinterpret_cast<UnkSelf*>(self));
+    fn_7100394bd0(reinterpret_cast<UnkStruct_0x68*>(self));
     self->field_0x4a = false;
     UnkImpactSource_b55* source = self->owner->field_0x1d0;
     if (!source)

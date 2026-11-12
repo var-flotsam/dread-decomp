@@ -211,7 +211,8 @@ void fn_71010ef204(UnkFreeCameraCtrl_b0058* self) {
     fn_71010ed260(self);
 }
 
-extern void* g_unk_7101d47360;
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;
 void fn_7100ee1f34(void* self);
 struct UnkCameraEvent_b0058 {
     s32 kind;
@@ -229,7 +230,7 @@ static inline void* SubAreaManager() {
     if (!manager) {
         manager = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(manager);
-        g_unk_7101d47360 = manager;
+        g_unk_7101d47360 = static_cast<UnkManager*>(manager);
     }
     return manager;
 }

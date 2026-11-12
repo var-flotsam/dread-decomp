@@ -51,7 +51,8 @@ struct UnkSelf {
     f32 field_0x138;
 };
 
-void fn_710048fc80(UnkObject* component);
+struct UnkAIComponent;
+void fn_710048fc80(UnkAIComponent* component);
 
 void fn_710048a474(UnkSelf* self, f32 delta) {
     f32 previous = self->field_0x138;
@@ -64,7 +65,7 @@ void fn_710048a474(UnkSelf* self, f32 delta) {
             UnkObject* component = nullptr;
             if (object && fn_710009d50c(object->vf_0x0(), fn_710048db44()))
                 component = object;
-            fn_710048fc80(component);
+            fn_710048fc80(reinterpret_cast<UnkAIComponent*>(component));
         }
     }
     UnkPlayer* player = fn_7100dec788(g_unk_7101d47310);

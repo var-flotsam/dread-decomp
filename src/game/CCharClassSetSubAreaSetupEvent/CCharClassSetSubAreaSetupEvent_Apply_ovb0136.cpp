@@ -10,7 +10,8 @@
 
 using base::global::CStrId;
 
-extern void* g_unk_7101d47360;
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;
 void fn_7100ee1f34(void*);
 void fn_7100eea3fc(void* manager, const base::global::CStrId* id, bool a, bool b);
 extern CStrId g_unk_717279de58 __attribute__((visibility("hidden")));
@@ -35,7 +36,7 @@ static inline void* SubAreaManager() {
     if (!manager) {
         manager = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(manager);
-        g_unk_7101d47360 = manager;
+        g_unk_7101d47360 = static_cast<UnkManager*>(manager);
     }
     return manager;
 }

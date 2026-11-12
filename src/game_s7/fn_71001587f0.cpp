@@ -164,8 +164,8 @@ void fn_710015c520();
 void fn_7100154560();
 void fn_710015c140();
 void fn_710015bde0();
-s32 fn_7100132f80();
-s32 fn_7100132f90();
+u32 fn_7100132f80();
+u32 fn_7100132f90();
 void fn_7100132a30(s32 value);
 
 // The NVN entry points are called through inline wrappers, so the arguments are evaluated
@@ -341,12 +341,13 @@ bool fn_71001587f0() {
 
     UnkHandle* depth;
     s32 depth_format = 2;
-    fn_710015c1e0(&depth, fn_7100132f80(), fn_7100132f90(), 0xe, depth_format);
+    fn_710015c1e0(&depth, static_cast<s32>(fn_7100132f80()), static_cast<s32>(fn_7100132f90()), 0xe, depth_format);
     g_unk_716e29c180 = fn_71001611e0(depth->field_0x8);
     UnkHandle* colors[2];
     for (s32 i = 0; i < 2; i++) {
         s32 color_format = 0x22;
-        fn_710015c1e0(&colors[i], fn_7100132f80(), fn_7100132f90(), 3, color_format);
+        fn_710015c1e0(&colors[i], static_cast<s32>(fn_7100132f80()), static_cast<s32>(fn_7100132f90()), 3,
+                      color_format);
         g_unk_716e29c170[i] = static_cast<UnkHandle*>(fn_71001611e0(colors[i]->field_0x8));
         g_unk_716e29bf30[i] = UnkHandleSet(colors[i], depth);
         g_unk_716e29c050[i] = UnkHandleSet(&colors[i], 1, depth);
@@ -357,8 +358,8 @@ bool fn_71001587f0() {
 
     g_unk_716e29c238 = fn_7100132fc0() / 4;
     g_unk_716e29c23c = fn_7100132fd0() / 4;
-    s32 width = fn_7100132f80();
-    s32 height = fn_7100132f90();
+    s32 width = static_cast<s32>(fn_7100132f80());
+    s32 height = static_cast<s32>(fn_7100132f90());
     u32 index = g_unk_716e29c650++;
     if (g_unk_716e29c248) {
         UnkRect* rect = &g_unk_716e29c250[index];

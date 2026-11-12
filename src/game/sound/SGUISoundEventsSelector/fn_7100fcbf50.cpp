@@ -17,10 +17,11 @@ struct UnkStatics_7100fcbf50 {
 };
 extern UnkStatics_7100fcbf50 g_unk_71729f02e8 __attribute__((visibility("hidden")));
 extern char g_unk_71729f0174[];
-extern UnkEnumType g_unk_71729f0178;
+struct UnkStateKey;
+extern UnkStateKey g_unk_71729f0178;
 void fn_7100fc9084(UnkEnumType* type, const CStrId& name);
 void fn_7100fc91a8(void* type);  // the type's destructor, as registered
-extern UnkEnumType g_unk_71729f0180;
+extern UnkStateKey g_unk_71729f0180;
 extern UnkEnumType g_unk_71729f0188;
 extern UnkEnumType g_unk_71729f0190;
 extern UnkEnumType g_unk_71729f0198;
@@ -69,14 +70,14 @@ void fn_7100fcbf50() {
     fn_710009ec00(g_unk_71729f0174, g_unk_71729f02e8.field_0x118);
     {
         CStrId n("OnOpened", true);
-        fn_7100fc9084(&g_unk_71729f0178, n);
+        fn_7100fc9084(&reinterpret_cast<UnkEnumType&>(g_unk_71729f0178), n);
     }
-    __cxa_atexit(fn_7100fc91a8, &g_unk_71729f0178, g_unk_7101a19000);
+    __cxa_atexit(fn_7100fc91a8, &reinterpret_cast<UnkEnumType&>(g_unk_71729f0178), g_unk_7101a19000);
     {
         CStrId n("OnClosed", true);
-        fn_7100fc9084(&g_unk_71729f0180, n);
+        fn_7100fc9084(&reinterpret_cast<UnkEnumType&>(g_unk_71729f0180), n);
     }
-    __cxa_atexit(fn_7100fc91a8, &g_unk_71729f0180, g_unk_7101a19000);
+    __cxa_atexit(fn_7100fc91a8, &reinterpret_cast<UnkEnumType&>(g_unk_71729f0180), g_unk_7101a19000);
     {
         CStrId n("OnSelected", true);
         fn_7100fc9084(&g_unk_71729f0188, n);

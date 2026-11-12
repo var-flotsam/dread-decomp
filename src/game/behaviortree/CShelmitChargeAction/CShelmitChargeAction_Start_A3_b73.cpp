@@ -11,7 +11,8 @@
 #include "types.h"
 
 struct UnkSelf;
-void fn_7100394bd0(UnkSelf*);
+struct UnkStruct_0x68;
+void fn_7100394bd0(UnkStruct_0x68* self);
 void fn_71006b7db4();
 
 struct UnkShelmitChargeOwner_A3_b73 {
@@ -38,7 +39,7 @@ struct UnkShelmitCharge_A3_b73 {
 };
 
 void fn_71006b7350(UnkShelmitCharge_A3_b73* self) {
-    fn_7100394bd0(reinterpret_cast<UnkSelf*>(self));
+    fn_7100394bd0(reinterpret_cast<UnkStruct_0x68*>(self));
     UnkShelmitChargeOwner_A3_b73* owner = self->owner;
     if (owner) {
         if (void* nav = owner->field_0x298) {

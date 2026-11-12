@@ -11,7 +11,8 @@ using base::global::CStrId;
 
 // Signatures as src/game/CSubAreaManager.cpp declares them.
 struct UnkEnvironmentManager;
-extern void* g_unk_7101d47360;
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;
 extern void* g_unk_7101d47368;
 void fn_7100ee1f34(void*);
 void fn_7100d8e32c(UnkEnvironmentManager* self, const CStrId* id, bool a, bool b);
@@ -27,12 +28,12 @@ struct UnkSubAreaManager_ovb0092 {
 };
 
 __attribute__((always_inline)) static inline UnkSubAreaManager_ovb0092* GetSubAreaManager() {
-    if (!g_unk_7101d47360) {
+    if (!reinterpret_cast<void*&>(g_unk_7101d47360)) {
         void* m = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(m);
-        g_unk_7101d47360 = m;
+        reinterpret_cast<void*&>(g_unk_7101d47360) = m;
     }
-    return static_cast<UnkSubAreaManager_ovb0092*>(g_unk_7101d47360);
+    return reinterpret_cast<UnkSubAreaManager_ovb0092*>(g_unk_7101d47360);
 }
 
 __attribute__((always_inline)) static inline UnkEnvironmentManager* GetEnvironmentManager() {

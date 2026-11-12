@@ -716,7 +716,8 @@ void fn_71006cae2c(UnkRenderPool* pool, const CFilePathStrId& path, UnkModel** o
 extern CFilePathStrId g_unk_7172796d70[10];  // the breakable block models' paths
 struct UnkTileEventSet;
 extern UnkTileEventSet g_unk_7172795e08;  // the breakable tiles' event set
-extern void* g_unk_7101d47360;
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;
 void fn_7100ee1f34(void*);
 
 struct UnkObserverSetUp_ovb0055 {
@@ -737,7 +738,7 @@ static inline void* CallbackManager() {
     if (!manager) {
         manager = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(manager);
-        g_unk_7101d47360 = manager;
+        g_unk_7101d47360 = static_cast<UnkManager*>(manager);
     }
     return manager;
 }

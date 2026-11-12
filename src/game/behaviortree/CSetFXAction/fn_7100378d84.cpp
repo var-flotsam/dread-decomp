@@ -36,12 +36,13 @@ struct UnkSelf {
     u8 done;
 };
 
-void fn_7100394bd0(UnkSelf* self);
+struct UnkStruct_0x68;
+void fn_7100394bd0(UnkStruct_0x68* self);
 UnkLookupResult* fn_7101152b24(void* objects, u64 key);
 
 // NON_MATCHING(minor): the flag load and the slot load swap order in the call.
 void fn_7100378d84(UnkSelf* self) {
-    fn_7100394bd0(self);
+    fn_7100394bd0(reinterpret_cast<UnkStruct_0x68*>(self));
     self->done = 0;
     UnkIdData* id = self->id;
     if ((u64)id == (u64)&g_unk_7101d47108->empty)

@@ -20,7 +20,8 @@ void fn_71003608ac(UnkAttackBase* self);
 void fn_710111094c(UnkReflObject*, u32);
 void fn_710058f630();
 
-extern void* g_unk_7101d47360;  // the sub-area manager
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;  // the sub-area manager
 void fn_7100ee1f34(void*);
 
 struct UnkGoliathManager_A3_b73 {
@@ -77,9 +78,9 @@ void fn_710058e67c(UnkGoliathAttack_A3_b73* self) {
     if (!g_unk_7101d47360) {
         void* p = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(p);
-        g_unk_7101d47360 = p;
+        g_unk_7101d47360 = static_cast<UnkManager*>(p);
     }
-    UnkGoliathManager_A3_b73* manager = static_cast<UnkGoliathManager_A3_b73*>(g_unk_7101d47360);
+    UnkGoliathManager_A3_b73* manager = reinterpret_cast<UnkGoliathManager_A3_b73*>(g_unk_7101d47360);
     CStrId* id = manager->field_0x3f0;
     self->id = id ? *id : g_unk_7101d470e0;
 }

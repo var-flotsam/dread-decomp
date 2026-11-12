@@ -57,7 +57,11 @@ struct UnkResourceEvent {
     u32 arg;
     void* data;
 };
-void fn_7100017390(UnkCountedResource* resource, UnkResourceEvent* event);
+struct UnkRefCounted;
+namespace base {
+struct UnkLoadRequest;
+}
+void fn_7100017390(UnkRefCounted* object, base::UnkLoadRequest* visitor);
 
 struct UnkBuckets {
     UnkResourceNode** data;
@@ -106,7 +110,7 @@ __attribute__((always_inline)) static inline UnkShared54Ref GetOrCreate(UnkResou
         event.field_0x8 = 0;
         event.arg = arg;
         event.data = data;
-        fn_7100017390(resource, &event);
+        fn_7100017390(reinterpret_cast<UnkRefCounted*>(resource), reinterpret_cast<base::UnkLoadRequest*>(&event));
     } else {
         resource = self->vf_0x48(key, arg, data);
     }

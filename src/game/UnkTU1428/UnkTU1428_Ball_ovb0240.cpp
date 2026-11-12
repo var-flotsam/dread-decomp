@@ -128,23 +128,26 @@ struct UnkMorphBall_9970 {
     UnkMorphBallComponent_9970* field_0x25b8;
 };
 
-UnkComponent* fn_7101152b90(UnkObject*, u64);
+struct UnkPart;
+struct UnkWorld;
+UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 bool fn_710114e668(UnkObject*, u8);
-void fn_710114fe8c(UnkObject* object, u64 hash, u32 a, u32 b);
+struct UnkWorld;
+void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
 
 void fn_7100949970(UnkMorphBall_9970* self) {
     if (!self->field_0x25a0)
-        self->field_0x25a0 = reinterpret_cast<UnkMorphBallComponent_9970*>(
-            fn_7101152b90(self->owner->field_0x280, self->field_0x2560->hash));
+        self->field_0x25a0 = reinterpret_cast<UnkMorphBallComponent_9970*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(self->owner->field_0x280), self->field_0x2560->hash));
     if (!self->field_0x25b8) {
         UnkObject* object = self->owner->field_0x280;
-        auto* found = reinterpret_cast<UnkMorphBallComponent_9970*>(fn_7101152b90(object, self->field_0x2570->hash));
+        auto* found = reinterpret_cast<UnkMorphBallComponent_9970*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(object),
+                                                                                  self->field_0x2570->hash));
         self->field_0x25b8 = found && fn_710114e668(object, found->kind) ? found : nullptr;
     }
     UnkMorphBallComponent_9970* first = self->field_0x25a0;
     if (first) {
         bool clear = first->field_0x121 == 0;
-        fn_710114fe8c(self->owner->field_0x280, self->field_0x2560->hash, 1, clear);
+        fn_710114fe8c(reinterpret_cast<UnkWorld*>(self->owner->field_0x280), self->field_0x2560->hash, 1, clear);
     }
 }
 
@@ -192,18 +195,19 @@ struct UnkMorphBall_c0ac {
     UnkMorphBallId_c0ac* field_0x2588;
 };
 
-UnkComponent* fn_7101152b90(UnkObject*, u64);
-void fn_710114fe8c(UnkObject* object, u64 hash, u32 a, u32 b);
+UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
+void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
 
 void fn_710094c0ac(UnkMorphBall_c0ac* self) {
-    fn_710114fe8c(self->owner->field_0x280, self->field_0x2588->hash, 1, 1);
+    fn_710114fe8c(reinterpret_cast<UnkWorld*>(self->owner->field_0x280), self->field_0x2588->hash, 1, 1);
     alignas(8) f32 rotation[4];
     UnkMorphBallActor_c0ac* owner = self->owner;
     u32 x = owner->field_0x44;
     u32 y = owner->field_0x54;
     u32 z = owner->field_0x64;
     alignas(8) u32 position[3] = {x, y, z};
-    auto* part = reinterpret_cast<UnkMorphBallPart_c0ac*>(fn_7101152b90(owner->field_0x280, self->field_0x2588->hash));
+    auto* part = reinterpret_cast<UnkMorphBallPart_c0ac*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(owner->field_0x280),
+                                                                        self->field_0x2588->hash));
     if (part) {
         part->vf_0x10(position);
         atan2f(1.0f, 0.0f);

@@ -36,7 +36,9 @@ struct UnkV4_b47 {
 struct UnkCameraCtrl_ovb0049;
 bool fn_7100a1f84c(UnkSpecialEnergyComponent* self);
 f32 fn_7100301700(void* p);
-UnkComponent* fn_7101152b90(UnkObject*, u64);
+struct UnkPart;
+struct UnkWorld;
+UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 bool fn_710114e674(UnkObject* model, u8 index);
 void fn_71001bc10c(void* p, const UnkV4_b47* colour, bool flag);
 extern const UnkV4_b47 g_unk_7101648e38 __attribute__((visibility("hidden")));  // the cloak colour
@@ -154,7 +156,8 @@ void fn_7100324060(UnkOpticAbility_ovb0059* self, f32 dt) {
     UnkV4_b47 c = g_unk_7101648e38 * t + g_unk_7101648e48 * (1.0f - t);
     UnkObject* model = self->owner->actor->model;
     UnkOpticModelPart_ovb0059* part =
-        reinterpret_cast<UnkOpticModelPart_ovb0059*>(fn_7101152b90(model, 0x979ff4c6002c84dcull));
+        reinterpret_cast<UnkOpticModelPart_ovb0059*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(model),
+                                                                   0x979ff4c6002c84dcull));
     if (part && fn_710114e674(model, part->index))
         fn_71001bc10c(part->field_0x150, &c, true);
 }

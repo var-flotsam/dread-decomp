@@ -6,13 +6,13 @@
 #include "types.h"
 
 // The music manager singleton (as src/game/CHydrogigaAIComponent/CHydrogigaAIComponent_Send_b59_2.cpp declares it).
-extern void* g_unk_71726bc560;
+extern UnkMgr_0xf18* g_unk_71726bc560;
 
 static inline void* MusicManager_A3_b76() {
     if (!g_unk_71726bc560) {
         void* m = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(m);
-        g_unk_71726bc560 = m;
+        g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(m);
     }
     return g_unk_71726bc560;
 }

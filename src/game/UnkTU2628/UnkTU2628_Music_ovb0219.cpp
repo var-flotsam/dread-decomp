@@ -5,7 +5,7 @@
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
-extern void* g_unk_71726bc560;
+extern UnkMgr_0xf18* g_unk_71726bc560;
 struct UnkMgr_0xf18;
 
 struct UnkMusicState_ovb0219 {
@@ -23,7 +23,7 @@ static inline void* Instance() {
     if (!instance) {
         instance = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(instance);
-        g_unk_71726bc560 = instance;
+        g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(instance);
     }
     return instance;
 }

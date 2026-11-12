@@ -8,7 +8,7 @@
 using base::UnkStrIdVec;
 using base::global::CStrId;
 
-extern char g_unk_7101a1a138[];
+extern void* g_unk_7101a1a138[];
 extern char g_unk_7101aa2b80[];
 extern char g_unk_7101aa7d00[];
 extern char g_unk_7101aa3030[];
@@ -33,7 +33,7 @@ struct UnkStrIdRecord : UnkStrIdVecRecord {
 template <char* Vtable>
 __attribute__((always_inline)) static inline void CopyConstruct(UnkStrIdVecRecord* self,
                                                                 const UnkStrIdVecRecord* other) {
-    self->vtable = g_unk_7101a1a138 + 0x10;
+    self->vtable = reinterpret_cast<char*>(g_unk_7101a1a138) + 0x10;
     __builtin_memcpy(&self->field_0x8, &other->field_0x8, 0x10);
     self->vtable = Vtable + 0x10;
     new (&self->field_0x18) CStrId(other->field_0x18);

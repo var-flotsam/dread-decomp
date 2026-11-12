@@ -79,8 +79,9 @@ struct UnkStruct_7101105e44 {
     bool field_0x11e0;
 };
 
-void fn_71008c1538(UnkDamage_7101105e44* d, f32 amount);
-bool fn_7101161088(UnkShield_7101105e44* shield);
+struct UnkRequest;
+void fn_71008c1538(UnkRequest* request, f32 value);
+bool fn_7101161088(void* object);
 
 static inline const char* UseStr_7101105e44(const UnkIdCopy_7101105e44& id) {
     UnkStrUse_7101105e44* s = reinterpret_cast<UnkStrUse_7101105e44*>(id.data);
@@ -99,7 +100,7 @@ u32 fn_7101105e44(UnkStruct_7101105e44* self, UnkDamage_7101105e44* d) {
         UnkStateOwner_7101105e44* o =
             reinterpret_cast<UnkStateOwner_7101105e44*>(fn_7100d7c990(reinterpret_cast<UnkActor*>(self->actor)));
         if (o && o->field_0x1c0 && o->field_0x1c0->field_0x330) {
-            fn_71008c1538(d, 999999.0f);
+            fn_71008c1538(reinterpret_cast<UnkRequest*>(d), 999999.0f);
             return 0;
         }
     }
@@ -119,7 +120,7 @@ u32 fn_7101105e44(UnkStruct_7101105e44* self, UnkDamage_7101105e44* d) {
             UnkTrackQuery q2 = {fn_7100bf0758(), nullptr, -1.0f};
             fn_710117b08c(self->actor->char_class, &q2);
             if (!q2.result || !(d->flags & 0x800040)) {
-                fn_71008c1538(d, 0.0f);
+                fn_71008c1538(reinterpret_cast<UnkRequest*>(d), 0.0f);
                 d->field_0x20 = true;
             }
         }

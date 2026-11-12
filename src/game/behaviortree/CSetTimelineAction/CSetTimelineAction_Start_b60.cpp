@@ -12,7 +12,8 @@
 using base::global::UnkStrId;
 
 struct UnkSelf;
-void fn_7100394bd0(UnkSelf*);
+struct UnkStruct_0x68;
+void fn_7100394bd0(UnkStruct_0x68* self);
 
 struct UnkSetTimelineAction_b60a2 {
     u8 pad_0x0[0x18];
@@ -23,7 +24,7 @@ struct UnkSetTimelineAction_b60a2 {
 };
 
 void fn_71003794f8(UnkSetTimelineAction_b60a2* self) {
-    fn_7100394bd0(reinterpret_cast<UnkSelf*>(self));
+    fn_7100394bd0(reinterpret_cast<UnkStruct_0x68*>(self));
     if (self->name.data == &g_unk_7101d47108->empty || !self->owner)
         return;
     auto* timeline = static_cast<UnkTimelineComponent*>(self->owner->field_0x2e8);

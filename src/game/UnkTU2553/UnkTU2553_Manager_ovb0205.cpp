@@ -322,7 +322,8 @@ struct UnkSoundGlobal_b205 {
     u8 field_0xb8;
 };
 struct UnkManager;
-extern UnkManager* g_unk_71726bc570;
+struct UnkModeFlags;
+extern UnkModeFlags* g_unk_71726bc570;
 
 bool fn_7100dfaf88(UnkGameManager* manager, void* name, const CRntString& tag, bool flag) {
     UnkTgmMantain_b205* self = reinterpret_cast<UnkTgmMantain_b205*>(manager);

@@ -33,7 +33,7 @@ void fn_7100575e14(UnkEnumType* type, const CStrId& name, const base::reflection
 extern char g_unk_71726e36c0[];
 extern char g_unk_71726e36c1[];
 UnkEnumType* fn_7100575f98();
-extern UnkEnumType g_unk_71726e36c8;
+extern base::reflection::CType g_unk_71726e36c8;
 void fn_7100576074(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_71726e3838[];
 extern UnkConversion g_unk_71726e3840;
@@ -63,10 +63,10 @@ void fn_7100578c60() {
     fn_710009ec00(g_unk_71726e36c1, fn_7100575f98());
     {
         CStrId n("base::global::CRntVector<std::unique_ptr<CEnemyPreset>>", true);
-        fn_7100576074(&g_unk_71726e36c8, n, nullptr, nullptr);
+        fn_7100576074(&reinterpret_cast<UnkEnumType&>(g_unk_71726e36c8), n, nullptr, nullptr);
     }
-    __cxa_atexit(fn_710009891c, &g_unk_71726e36c8, g_unk_7101a19000);
-    fn_710009ec00(g_unk_71726e3838, &g_unk_71726e36c8);
+    __cxa_atexit(fn_710009891c, &reinterpret_cast<UnkEnumType&>(g_unk_71726e36c8), g_unk_7101a19000);
+    fn_710009ec00(g_unk_71726e3838, &reinterpret_cast<UnkEnumType&>(g_unk_71726e36c8));
     InitConversion(&g_unk_71726e3840, fn_7100575218, fn_710057513c, fn_7100577e50);
     fn_7100576258();
     fn_710009ec00(g_unk_71726e3860, g_unk_71726e3ec8.field_0x20);

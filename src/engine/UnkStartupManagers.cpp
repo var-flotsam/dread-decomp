@@ -62,7 +62,8 @@ struct UnkDropTargetView {
     virtual void vf_0x18();
 };
 
-extern void* g_unk_71726bc560;  // the music manager (game/sound/CMusicManager.h)
+struct UnkMgr_0xf18;
+extern UnkMgr_0xf18* g_unk_71726bc560;  // the music manager (game/sound/CMusicManager.h)
 void fn_7100fd4db8(void* self, bool flag);
 
 void fn_710119b048(void* self);
@@ -103,7 +104,8 @@ void fn_7100e1bf64(void* self);
 extern void* g_unk_7101d47368;  // the environment manager
 void fn_7100d8d0c4(void* self);
 
-extern void* g_unk_7101d47360;  // the sub-area manager
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;  // the sub-area manager
 void fn_7100ee1f34(void* self);
 void fn_7100ee2764(void* self);
 
@@ -131,7 +133,8 @@ void fn_7100adfb20(const UnkStartupFlags* flags, CFilePathStrId root) {
     fn_7101203248(Singleton<UnkUserDataOwner, 0x2b8, 0x3f, fn_710120320c>(g_unk_7101d47308));
     reinterpret_cast<UnkDropTargetView*>(Singleton<UnkDropTarget, 0x98, 0xb, fn_7101023378>(g_unk_7101d47318))
         ->vf_0x18();
-    fn_7100fd4db8(Singleton<void, 0xf18, 0x3f, fn_7100fd3804>(g_unk_71726bc560), flags->field_0x0);
+    fn_7100fd4db8(Singleton<void, 0xf18, 0x3f, fn_7100fd3804>(reinterpret_cast<void*&>(g_unk_71726bc560)),
+                  flags->field_0x0);
     fn_710119b048(Singleton<void, 0x2208, 0x3f, fn_710119aee8>(g_unk_7172729910));
     fn_7100e09794(Singleton<void, 0x198, 0x3f, fn_7100359118>(g_unk_71726b1688));
     fn_7100dde0e4(Singleton<UnkGameObject_0x150, 0x150, 0x3f, fn_7100dde0c8>(g_unk_7101d47370));
@@ -146,7 +149,7 @@ void fn_7100adfb20(const UnkStartupFlags* flags, CFilePathStrId root) {
     fn_7100ebf558(Singleton<UnkNavMeshManager, 0x62ec8, 0x3f, fn_7100ebf278>(g_unk_71726a4510));
     fn_7100e1bf64(Singleton<void, 0xe0, 0x3f, fn_7100e1bca4>(g_unk_71726da048));
     fn_7100d8d0c4(Singleton<void, 0x4c8, 0x3f, fn_7100d8ced8>(g_unk_7101d47368));
-    fn_7100ee2764(Singleton<void, 0xae8, 0x3f, fn_7100ee1f34>(g_unk_7101d47360));
+    fn_7100ee2764(Singleton<void, 0xae8, 0x3f, fn_7100ee1f34>(reinterpret_cast<void*&>(g_unk_7101d47360)));
     fn_71011b2f58(Singleton<UnkGuiRoot, 0xe38, 0xc, fn_71011b1f30>(g_unk_717271e8f8));
     fn_710119265c(Singleton<void, 0x40, 0x3f, fn_7101192628>(g_unk_7172758b20));
     fn_7100fb7a14(Singleton<void, 0xa0, 0x3f, fn_7100fb790c>(g_unk_717274ea80));

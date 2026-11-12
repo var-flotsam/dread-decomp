@@ -8,7 +8,8 @@
 
 extern u64 g_unk_71726ddc48 __attribute__((visibility("hidden")));
 
-void fn_7100ac3880(UnkChargeComponent* self);
+struct UnkSelf;
+void fn_7100ac3880(UnkSelf* self);
 void fn_71005026d0(UnkChargeComponent* self, u32 mode, f32 value);
 
 // NON_MATCHING(minor): the two rate addresses are computed in the other order (the select picks the same one).
@@ -17,7 +18,7 @@ void fn_7100502628(UnkChargeComponent* self) {
     const f32* first = &g_unk_71726e0aa8.field_0xa8;
     const f32* rate = self->field_0x579 == 0 ? first : second;
     self->field_0x7c = *rate * self->field_0x5f8 / self->field_0x5d0->field_0xd4;
-    fn_7100ac3880(self);
+    fn_7100ac3880(reinterpret_cast<UnkSelf*>(self));
     if (self->field_0x30->field_0x1b8)
         self->field_0x30->field_0x1b8->field_0x64 = 1;
     if (void* object = self->field_0x30->field_0x2a0)

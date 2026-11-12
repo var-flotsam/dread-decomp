@@ -70,17 +70,18 @@ s32 fn_710107f9e0(lua_State* L) {
 }
 
 // ---- the music manager ----
-extern void* g_unk_71726bc560;
+struct UnkMgr_0xf18;
+extern UnkMgr_0xf18* g_unk_71726bc560;
 struct UnkTuneMgrView_b0019;
 f32 fn_7100fdc468(UnkTuneMgrView_b0019* self, const u64* id);
 f32 fn_7100fdc500(UnkTuneMgrView_b0019* self, const u64* id);
 
 static inline void* MusicManager_b0161() {
-    void* manager = g_unk_71726bc560;
+    void* manager = reinterpret_cast<void*&>(g_unk_71726bc560);
     if (!manager) {
         manager = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(manager);
-        g_unk_71726bc560 = manager;
+        reinterpret_cast<void*&>(g_unk_71726bc560) = manager;
     }
     return manager;
 }
@@ -276,7 +277,8 @@ s32 fn_7101084170(lua_State* L) {
 }
 
 // ---- the id table singleton ----
-extern void* g_unk_7101d47360;
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;
 void fn_7100ee1f34(void* self);
 void fn_7100eeb15c(void* self, const CStrId& id);
 void fn_7100eeb24c(void* self);
@@ -287,7 +289,7 @@ s32 fn_71010838a0(lua_State* L) {
     if (fn_71010c0270(L, "sb", &name, &flag)) {
         CStrId id(name, true);
         bool load = flag;
-        void* table = Singleton_b0161<void, 0xae8, fn_7100ee1f34>(g_unk_7101d47360);
+        void* table = Singleton_b0161<void, 0xae8, fn_7100ee1f34>(reinterpret_cast<void*&>(g_unk_7101d47360));
         if (load)
             fn_7100eeb15c(table, id);
         else

@@ -61,7 +61,7 @@ void fn_71004ac94c(UnkEnumType* type, const CStrId& name, const base::reflection
 extern char g_unk_71726d3d28[];
 extern char g_unk_71726d3d29[];
 UnkEnumType* fn_71004acad0();
-extern UnkEnumType g_unk_71726d3d30;
+extern base::reflection::CType g_unk_71726d3d30;
 void fn_71004acbac(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_71726d3ea0[];
 extern UnkConversion g_unk_71726d3ea8;
@@ -119,10 +119,10 @@ void fn_71004b3200() {
     fn_710009ec00(g_unk_71726d3d29, fn_71004acad0());
     {
         CStrId n("base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>", true);
-        fn_71004acbac(&g_unk_71726d3d30, n, nullptr, nullptr);
+        fn_71004acbac(&reinterpret_cast<UnkEnumType&>(g_unk_71726d3d30), n, nullptr, nullptr);
     }
-    __cxa_atexit(fn_710009891c, &g_unk_71726d3d30, g_unk_7101a19000);
-    fn_710009ec00(g_unk_71726d3ea0, &g_unk_71726d3d30);
+    __cxa_atexit(fn_710009891c, &reinterpret_cast<UnkEnumType&>(g_unk_71726d3d30), g_unk_7101a19000);
+    fn_710009ec00(g_unk_71726d3ea0, &reinterpret_cast<UnkEnumType&>(g_unk_71726d3d30));
     InitConversion(&g_unk_71726d3ea8, fn_71004abd50, fn_71004abc74, fn_71004afc6c);
     fn_710009ec00(g_unk_71726d3ec8, fn_71004acd8c());
     fn_710009ec00(g_unk_71726d3ec9, fn_71004ace68());

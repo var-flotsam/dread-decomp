@@ -15,7 +15,7 @@ struct UnkSelf {
     UnkOwner* field_0x30;
 };
 
-s32 fn_7101177da8(UnkAttack* attack, u64 hash);
+s32 fn_7101177da8(void* object, u64 hash);
 
 bool fn_7100474ca8(UnkSelf* self) {
     if (self->field_0x30->field_0x220) {

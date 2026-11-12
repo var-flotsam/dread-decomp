@@ -21,7 +21,8 @@ using base::global::CStrId;
 using base::global::UnkStrId;
 
 struct UnkSelf;
-void fn_7100394bd0(UnkSelf*);
+struct UnkStruct_0x68;
+void fn_7100394bd0(UnkStruct_0x68* self);
 void fn_710036c338();
 
 struct UnkSwitchModesAI_A2_b75 {
@@ -63,7 +64,7 @@ struct UnkSwitchModesAction_A2_b75 {
 };
 
 void fn_710036b578(UnkSwitchModesAction_A2_b75* self) {
-    fn_7100394bd0(reinterpret_cast<UnkSelf*>(self));
+    fn_7100394bd0(reinterpret_cast<UnkStruct_0x68*>(self));
     UnkActor* owner = self->owner;
     if (!(self->ai = static_cast<UnkSwitchModesAI_A2_b75*>(owner->field_0x240)))
         return;

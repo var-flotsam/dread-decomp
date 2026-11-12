@@ -7,7 +7,8 @@
 #include "base/global/CStrId.h"
 #include "types.h"
 
-extern void* g_unk_7101d47360;
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;
 void fn_7100ee1f34(void*);
 void fn_7100eea3fc(void* manager, const base::global::CStrId* id, bool a, bool b);
 void fn_7100eea334(void* manager, const base::global::CStrId* id, bool a, bool b);
@@ -28,7 +29,7 @@ static inline __attribute__((always_inline)) void SetupEventApply_A5_b74(UnkSetu
     if (!manager) {
         manager = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(manager);
-        g_unk_7101d47360 = manager;
+        g_unk_7101d47360 = static_cast<UnkManager*>(manager);
     }
     Apply(manager, &self->id, self->field_0x18, self->field_0x19);
 }

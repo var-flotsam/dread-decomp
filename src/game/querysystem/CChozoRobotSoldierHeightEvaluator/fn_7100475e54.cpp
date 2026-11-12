@@ -5,7 +5,8 @@
 #include "types.h"
 
 struct UnkEntry;
-void fn_710028760c(UnkEntry* entry);  // its destructor
+struct UnkElem_7100286624;
+void fn_710028760c(UnkElem_7100286624* self);  // its destructor
 
 // Not trivially destructible, so it is returned in memory.
 struct UnkEntry {
@@ -17,7 +18,7 @@ struct UnkEntry {
     u8 pad_0xc[4];
 
     UnkEntry() = default;
-    ~UnkEntry() { fn_710028760c(this); }
+    ~UnkEntry() { fn_710028760c(reinterpret_cast<UnkElem_7100286624*>(this)); }
 };
 
 struct UnkHolder {

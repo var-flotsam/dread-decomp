@@ -558,7 +558,7 @@ bool fn_7100865010(UnkCollisionOverlapQuery_ovb0107* self, UnkCollisionShapeNode
 
 // Unregistering an object: detaching it from the tracker, removing its record and handing it back.
 struct UnkTracker_7100863a8c;
-void fn_7100d5abfc(UnkTracker_7100863a8c* self, UnkCollisionObject* obj);
+void fn_7100d5abfc(void* owner, UnkStruct_7100861148_Collider* collider);
 
 struct UnkManager_7100863a8c;
 void fn_7100d46804(UnkManager_7100863a8c* self);
@@ -577,7 +577,7 @@ void fn_7100863e04(UnkCollisionContainer* self, UnkCollisionObject* obj) {
     if (i >= self->records.count)
         return;
     if (fn_7100d5a930(tracker, obj))
-        fn_7100d5abfc(tracker, obj);
+        fn_7100d5abfc(tracker, reinterpret_cast<UnkStruct_7100861148_Collider*>(obj));
     if (self->records.count > i) {
         u32 last = self->records.count - 1;
         if (last > i) {

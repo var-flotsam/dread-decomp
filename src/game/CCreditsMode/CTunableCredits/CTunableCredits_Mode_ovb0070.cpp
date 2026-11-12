@@ -16,7 +16,7 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-extern void* g_unk_71726bc560;
+extern UnkMgr_0xf18* g_unk_71726bc560;
 // The channel mask as src/game/UnkLoadingScreen.cpp defines it (passed through a copy), and its two
 // guarded constants.
 struct UnkLoadingMask {
@@ -44,7 +44,7 @@ static inline void* MusicManager() {
     if (!manager) {
         manager = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(manager);
-        g_unk_71726bc560 = manager;
+        g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(manager);
     }
     return manager;
 }

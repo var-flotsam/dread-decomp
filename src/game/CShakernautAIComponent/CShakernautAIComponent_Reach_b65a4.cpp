@@ -10,7 +10,7 @@
 
 // As src/game/CBreakableTileGroup.cpp declares them.
 struct UnkHelper;
-bool fn_71009e12d0(UnkHelper* helper);
+bool fn_71009e12d0(void*);
 UnkVec3f fn_71009ebe68(UnkHelper* helper);
 
 struct UnkShakernautArea_b65a4;

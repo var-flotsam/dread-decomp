@@ -96,9 +96,11 @@ struct UnkParamsLarge {
     u8 field_0x52;
 };
 
-extern UnkManager* g_unk_71726bc570;
+struct UnkModeFlags;
+extern UnkModeFlags* g_unk_71726bc570;
 extern UnkTuning* g_unk_7101a37310[];
-extern char g_unk_71727bd078[];
+struct UnkTunable_71727bd078;
+extern UnkTunable_71727bd078 g_unk_71727bd078;
 extern char g_unk_71016496c0[];
 extern char g_unk_71016496c8[];
 extern char g_unk_71016496d0[];
@@ -149,11 +151,11 @@ void fn_7100453eec(UnkRecord* self) {
             fn_7101172764(self->field_0x30->field_0x228, g_unk_71016496e8);
         }
         fn_71010cc214(sink, 2);
-        manager = g_unk_71726bc570;
+        manager = reinterpret_cast<UnkManager*>(g_unk_71726bc570);
         if (!manager->field_0xb8 || !manager->field_0xbb)
             return;
         f32 value = (u32)manager->field_0xc0 <= 2 ? g_unk_7101a37310[manager->field_0xc0]->field_0x18
-                                                  : reinterpret_cast<UnkTuning*>(g_unk_71727bd078 + 0x98)->field_0x18;
+                                                  : reinterpret_cast<UnkTuning*>(reinterpret_cast<char*>(&g_unk_71727bd078) + 0x98)->field_0x18;
         fn_7100dcdce4(manager, (s32)value, value);
     } else if (self->field_0x1140 == 1) {
         UnkParamsSmall params;
@@ -176,11 +178,11 @@ void fn_7100453eec(UnkRecord* self) {
             fn_7101172764(self->field_0x30->field_0x228, g_unk_71016496e0);
             fn_7101172780(self->field_0x30->field_0x228, g_unk_71016496e8);
         }
-        manager = g_unk_71726bc570;
+        manager = reinterpret_cast<UnkManager*>(g_unk_71726bc570);
         if (!manager->field_0xb8 || !manager->field_0xbb)
             return;
         f32 value = (u32)manager->field_0xc0 <= 2 ? g_unk_7101a37310[manager->field_0xc0]->field_0x14
-                                                  : reinterpret_cast<UnkTuning*>(g_unk_71727bd078 + 0x98)->field_0x14;
+                                                  : reinterpret_cast<UnkTuning*>(reinterpret_cast<char*>(&g_unk_71727bd078) + 0x98)->field_0x14;
         fn_7100dcdce4(manager, (s32)value, value);
     }
 }

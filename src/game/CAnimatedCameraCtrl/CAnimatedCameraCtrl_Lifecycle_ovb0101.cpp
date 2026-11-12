@@ -123,7 +123,8 @@ void fn_71010ea3e4(UnkAnimatedCameraCtrl_b0101* self, bool reset) {
 
 // ----
 
-extern void* g_unk_7101d47360;
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;
 void fn_7100ee1f34(void*);
 
 // A bit mask passed by value (copied into a temporary), and its two guarded constants (as in
@@ -154,7 +155,7 @@ static inline void* CameraManager() {
     if (!manager) {
         manager = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(manager);
-        g_unk_7101d47360 = manager;
+        g_unk_7101d47360 = static_cast<UnkManager*>(manager);
     }
     return manager;
 }

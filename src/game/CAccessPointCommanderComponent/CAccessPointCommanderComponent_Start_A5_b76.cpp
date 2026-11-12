@@ -14,7 +14,8 @@ void fn_7100e047f4(UnkGameManager* self, f32 a, f32 b);
 void fn_7100e04814(UnkGameManager* self, f32 a, f32 b);
 void fn_7100e04834(UnkGameManager* self, f32 a, f32 b);
 void* fn_71004067a4(void* owner);
-extern void* g_unk_7101d47360;
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;
 void fn_7100ee1f34(void*);
 void fn_7100eed85c(void* self, void* key, bool a, bool b);
 extern __attribute__((visibility("hidden"))) char g_unk_717274eab0[];
@@ -47,7 +48,7 @@ static inline UnkSubAreaManager_A5_b76* SubAreaManager_A5_b76() {
     if (!manager) {
         manager = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(manager);
-        g_unk_7101d47360 = manager;
+        g_unk_7101d47360 = static_cast<UnkManager*>(manager);
     }
     return static_cast<UnkSubAreaManager_A5_b76*>(manager);
 }

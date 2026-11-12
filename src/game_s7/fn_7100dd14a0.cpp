@@ -111,13 +111,13 @@ extern void* g_unk_7101aa9560[];
 extern void* g_unk_7101aa9588[];
 void fn_7100db78b0(void* self);  // its destructor, as registered
 extern UnkStrIdBase g_unk_71727bd268;
-extern UnkStrIdBase g_unk_71727bd270;
+extern UnkPropertyName g_unk_71727bd270;
 extern UnkStrIdBase g_unk_71727bd278;
 extern UnkStrIdBase g_unk_71727bd280;
-extern UnkStrIdBase g_unk_71727bd288;
+extern UnkPropertyName g_unk_71727bd288;
 extern UnkStrIdBase g_unk_71727bd290;
 extern UnkStrIdBase g_unk_71727bd298;
-extern UnkStrIdBase g_unk_71727bd2a0;
+extern UnkPropertyName g_unk_71727bd2a0;
 
 void fn_7100dd14a0() {
     InitHeaderIds(&g_unk_71727bdb68.ids);
@@ -189,11 +189,11 @@ void fn_7100dd14a0() {
     g_unk_71727bd078.field_0x1c0 = g_unk_7101aa9588 + 2;
     __cxa_atexit(fn_7100db78b0, &g_unk_71727bd078, g_unk_7101a19000);
     InitId(&g_unk_71727bd268, "ShowBossRushPopUp");
-    InitId(&g_unk_71727bd270, "BossRushUnlocked");
+    InitId(&reinterpret_cast<UnkStrIdBase&>(g_unk_71727bd270), "BossRushUnlocked");
     InitId(&g_unk_71727bd278, "BossRushCompleted");
     InitId(&g_unk_71727bd280, "ShowDreadRushPopUp");
-    InitId(&g_unk_71727bd288, "DreadRushUnlocked");
+    InitId(&reinterpret_cast<UnkStrIdBase&>(g_unk_71727bd288), "DreadRushUnlocked");
     InitId(&g_unk_71727bd290, "DreadRushCompleted");
     InitId(&g_unk_71727bd298, "ShowSurvivalPopUp");
-    InitId(&g_unk_71727bd2a0, "SurvivalUnlocked");
+    InitId(&reinterpret_cast<UnkStrIdBase&>(g_unk_71727bd2a0), "SurvivalUnlocked");
 }

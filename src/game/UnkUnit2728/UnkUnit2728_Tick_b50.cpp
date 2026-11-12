@@ -8,7 +8,7 @@
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
-extern void* g_unk_71726bc560;
+extern UnkMgr_0xf18* g_unk_71726bc560;
 #include "game/UnkGameManager.h"
 
 struct UnkUnit2728Target;
@@ -54,7 +54,7 @@ f32 fn_7101192944(UnkTimerF_7101192944* self, f32 dt) {
             if (!music) {
                 music = fn_71000839a0(0xf18, 0x3f);
                 fn_7100fd3804(music);
-                g_unk_71726bc560 = music;
+                g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(music);
             }
             fn_7100fd7af8(music, self->fade, 0.2f);
             self->fade = -1.0f;

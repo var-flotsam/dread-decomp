@@ -28,7 +28,7 @@ static inline UnkEnumInfo* TypeOf() {
     return reinterpret_cast<UnkEnumInfo*>(const_cast<base::reflection::CType*>(Getter()));
 }
 
-extern UnkEnumInfo g_unk_7101d679f0;
+extern base::reflection::CType g_unk_7101d679f0;
 extern u8 g_unk_7101d67b08[];
 extern UnkConverter g_unk_7101d67b10;
 extern UnkConverter g_unk_7101d67b30;
@@ -41,11 +41,11 @@ void fn_71000eceec(UnkEnumInfo* obj, CStrId* name, void (*fn)(), void* a);
 void fn_71000ed100() {
     {
         CStrId name("base::serialization::EPersistence", true);
-        fn_71000eceec(&g_unk_7101d679f0, &name, fn_71000ecda0, nullptr);
+        fn_71000eceec(&reinterpret_cast<UnkEnumInfo&>(g_unk_7101d679f0), &name, fn_71000ecda0, nullptr);
     }
-    fn_7100000250(fn_7100099468, &g_unk_7101d679f0, &g_unk_7101a19000);
-    fn_710009ec00(g_unk_7101d67b08, &g_unk_7101d679f0);
-    void* a = g_unk_7101d679f0.desc_0x8->field_0x30;
+    fn_7100000250(fn_7100099468, &reinterpret_cast<UnkEnumInfo&>(g_unk_7101d679f0), &g_unk_7101a19000);
+    fn_710009ec00(g_unk_7101d67b08, &reinterpret_cast<UnkEnumInfo&>(g_unk_7101d679f0));
+    void* a = reinterpret_cast<UnkEnumInfo&>(g_unk_7101d679f0).desc_0x8->field_0x30;
     void* b = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
     g_unk_7101d67b10.from = a;
     g_unk_7101d67b10.to = b;
@@ -53,7 +53,7 @@ void fn_71000ed100() {
     g_unk_7101d67b10.next = nullptr;
     fn_71000a16c4(&g_unk_7101d67b10);
     void* c = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
-    void* d = g_unk_7101d679f0.desc_0x8->field_0x30;
+    void* d = reinterpret_cast<UnkEnumInfo&>(g_unk_7101d679f0).desc_0x8->field_0x30;
     g_unk_7101d67b30.from = c;
     g_unk_7101d67b30.to = d;
     g_unk_7101d67b30.convert = fn_71000ed078;

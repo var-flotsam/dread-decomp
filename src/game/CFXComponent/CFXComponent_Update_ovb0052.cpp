@@ -110,7 +110,8 @@ struct UnkPlayer;
 struct UnkObject;
 struct UnkResetOwner;
 struct UnkBinderNames_71001bbfa8;
-void fn_710114fe8c(UnkObject*, u64, u32, u32);
+struct UnkWorld;
+void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
 void fn_71001bbfa8(UnkBinderNames_71001bbfa8* self, const base::global::CStrId* name);
 
 struct UnkFXSceneHolder_b0052 {
@@ -297,7 +298,7 @@ void fn_710114e8b4(UnkFXComponent_b0052* self, f32 dt) {
             self->field_0x108 -= dt;
             if (self->field_0x108 <= 0.0f) {
                 self->field_0x108 = 0.0f;
-                fn_710114fe8c(reinterpret_cast<UnkObject*>(self), 0x444c7220d7fc64c4, 1, 1);
+                fn_710114fe8c(reinterpret_cast<UnkWorld*>(self), 0x444c7220d7fc64c4, 1, 1);
             }
         }
         fn_710114ec8c(self, dt);

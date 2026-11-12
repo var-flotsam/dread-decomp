@@ -327,7 +327,8 @@ extern UnkLanguage* g_unk_7101d47358;
 void fn_710119d31c(UnkLanguage* language);
 // The game's singletons: the sub-area manager (0xae8 bytes), the environment manager (0x4c8), two
 // more objects (0x150 and 0x60 bytes) and the loading screen (0x220).
-extern void* g_unk_7101d47360;
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;
 extern void* g_unk_7101d47368;
 void fn_7100ee1f34(void* self);
 void fn_7100ee49f0(void* self, f32 dt);
@@ -462,7 +463,7 @@ void fn_7100000d40() {
     fn_7100219db4(g_unk_7101d47300, 0.0f, 0.0f, 0.0f, false);
     fn_710013dee8(Singleton<UnkTunableRegistry, 0x58, fn_710013ac14>(g_unk_7101d47350));
     fn_710119d31c(Singleton<UnkLanguage, 0x2068, fn_710119c020>(g_unk_7101d47358));
-    fn_7100ee49f0(Singleton<void, 0xae8, fn_7100ee1f34>(g_unk_7101d47360), dt);
+    fn_7100ee49f0(Singleton<void, 0xae8, fn_7100ee1f34>(reinterpret_cast<void*&>(g_unk_7101d47360)), dt);
     fn_7100d8ef04(Singleton<void, 0x4c8, fn_7100d8ced8>(g_unk_7101d47368), dt);
     fn_7100dde21c(Singleton<UnkGameObject_0x150, 0x150, fn_7100dde0c8>(g_unk_7101d47370), dt);
     fn_7100dde7a0(Singleton<UnkGameObject_0x60, 0x60, fn_7100dde718>(g_unk_7101d47378), dt);

@@ -5,7 +5,7 @@
 // the reference at +0x11978.
 #include "game/UnkNavMeshPath.h"
 
-void fn_71002ae87c(UnkLinkList* list, UnkLinkList** slot);
+void fn_71002ae87c(void* set, void* item);
 void fn_71002aeebc(UnkLinkList* list, UnkLinkList** slot);
 
 struct UnkLinkOwner : UnkWeakTarget {

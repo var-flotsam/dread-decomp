@@ -55,7 +55,8 @@ struct UnkStruct_0xd0 {
 
 struct UnkMgr;
 
-extern UnkMgr* g_unk_7101d4d820;
+struct UnkSoundMgr;
+extern UnkSoundMgr* g_unk_7101d4d820;
 
 void fn_7100108abc(UnkMgr*, UnkHandle*, f32, f32);
 
@@ -73,6 +74,6 @@ void fn_7100fdd2b4(UnkStruct_0xd0* self, u64* id, f32 time) {
         if (h->field_0x0->field_0x30 != *id)
             continue;
         f32 t = time >= 0.0f ? time : arr[i].field_0x8;
-        fn_7100108abc(g_unk_7101d4d820, h, 0.2f, Max(t, 0.001f));
+        fn_7100108abc(reinterpret_cast<UnkMgr*>(g_unk_7101d4d820), h, 0.2f, Max(t, 0.001f));
     }
 }

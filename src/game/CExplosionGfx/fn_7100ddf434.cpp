@@ -10,7 +10,8 @@ using base::reflection::UnkReflField;
 using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
-extern base::reflection::CType g_unk_71727be388;
+struct UnkReflType;
+extern UnkReflType g_unk_71727be388;
 
 extern const base::math::CVector2D g_unk_7101647788;
 extern const base::math::CVector2D g_unk_7101647780;
@@ -46,16 +47,18 @@ void fn_7100ddf434(CClass* cls) {
     field11->attrs.Add<base::math::CVector4D>(fn_7100075240(), base::math::CVector4D{g_unk_71016477c4.x, g_unk_71016477c4.y, g_unk_71016477c4.z, g_unk_71016477c4.w});
     UnkReflField* field12 = fn_7100096524(cls, CStrId("oConstantColor0TransitionEnd", true), fn_71000248c4(), 0x5c, -1, -1);
     field12->attrs.Add<base::math::CVector4D>(fn_7100075240(), base::math::CVector4D{g_unk_71016477c4.x, g_unk_71016477c4.y, g_unk_71016477c4.z, g_unk_71016477c4.w});
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("eConstant0TransitionMode", true), &g_unk_71727be388, 0x94, -1, -1);
-    field13->attrs.Add<s32>(fn_7100075240(), &g_unk_71727be388, 0);
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("eConstant0TransitionMode", true),
+                                          &reinterpret_cast<base::reflection::CType&>(g_unk_71727be388), 0x94, -1, -1);
+    field13->attrs.Add<s32>(fn_7100075240(), &reinterpret_cast<base::reflection::CType&>(g_unk_71727be388), 0);
     UnkReflField* field14 = fn_7100096524(cls, CStrId("fConstantColor0TransitionTime", true), fn_710000abbc(), 0x8c, -1, -1);
     field14->attrs.Add<f32>(fn_7100075240(), 0.0f);
     UnkReflField* field15 = fn_7100096524(cls, CStrId("oConstantColor1TransitionInit", true), fn_71000248c4(), 0x6c, -1, -1);
     field15->attrs.Add<base::math::CVector4D>(fn_7100075240(), base::math::CVector4D{g_unk_71016477c4.x, g_unk_71016477c4.y, g_unk_71016477c4.z, g_unk_71016477c4.w});
     UnkReflField* field16 = fn_7100096524(cls, CStrId("oConstantColor1TransitionEnd", true), fn_71000248c4(), 0x7c, -1, -1);
     field16->attrs.Add<base::math::CVector4D>(fn_7100075240(), base::math::CVector4D{g_unk_71016477c4.x, g_unk_71016477c4.y, g_unk_71016477c4.z, g_unk_71016477c4.w});
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("eConstant1TransitionMode", true), &g_unk_71727be388, 0x98, -1, -1);
-    field17->attrs.Add<s32>(fn_7100075240(), &g_unk_71727be388, 0);
+    UnkReflField* field17 = fn_7100096524(cls, CStrId("eConstant1TransitionMode", true),
+                                          &reinterpret_cast<base::reflection::CType&>(g_unk_71727be388), 0x98, -1, -1);
+    field17->attrs.Add<s32>(fn_7100075240(), &reinterpret_cast<base::reflection::CType&>(g_unk_71727be388), 0);
     UnkReflField* field18 = fn_7100096524(cls, CStrId("fConstantColor1TransitionTime", true), fn_710000abbc(), 0x90, -1, -1);
     field18->attrs.Add<f32>(fn_7100075240(), 0.0f);
 }

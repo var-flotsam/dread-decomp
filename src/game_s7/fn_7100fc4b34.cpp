@@ -72,28 +72,28 @@ __attribute__((always_inline)) inline void Get(CBlackboard* set, const CStrId& s
         Reader(s, reinterpret_cast<const CStrId*>(&name), out);  // every name starts with its CStrId
 }
 
-extern UnkDef_7100fc4b34 g_unk_7172759ad0;
-extern UnkDef_7100fc4b34 g_unk_7172759c10;
-extern UnkDef_7100fc4b34 g_unk_7172759c50;
-extern UnkDef_7100fc4b34 g_unk_7172759c90;
-extern UnkDef_7100fc4b34 g_unk_7172759d50;
-extern UnkDef_7100fc4b34 g_unk_7172759d90;
-extern UnkDef_7100fc4b34 g_unk_717275af40;
-extern UnkDef_7100fc4b34 g_unk_717275af80;
-extern UnkDef_7100fc4b34 g_unk_717275afc0;
-extern UnkDef_7100fc4b34 g_unk_717275b000;
-extern UnkDef_7100fc4b34 g_unk_717275b040;
-extern UnkDef_7100fc4b34 g_unk_717275b080;
-extern UnkDef_7100fc4b34 g_unk_7172758cf0;
-extern UnkDef_7100fc4b34 g_unk_7172758d30;
-extern UnkDef_7100fc4b34 g_unk_7172758db0;
-extern UnkDef_7100fc4b34 g_unk_7172759cd0;
-extern UnkDef_7100fc4b34 g_unk_7172759d10;
-extern UnkDef_7100fc4b34 g_unk_7172759dd0;
-extern UnkDef_7100fc4b34 g_unk_71727594b8;
-extern UnkDef_7100fc4b34 g_unk_717275b108;
-extern UnkDef_7100fc4b34 g_unk_717275b148;
-extern UnkNamedDef_7100fc4b34 g_unk_7172759e10;
+extern UnkPropertyEx<> g_unk_7172759ad0;
+extern UnkPropertyEx<> g_unk_7172759c10;
+extern UnkPropertyEx<> g_unk_7172759c50;
+extern UnkPropertyEx<> g_unk_7172759c90;
+extern UnkPropertyEx<> g_unk_7172759d50;
+extern UnkPropertyEx<> g_unk_7172759d90;
+extern UnkPropertyEx<> g_unk_717275af40;
+extern UnkPropertyEx<> g_unk_717275af80;
+extern UnkPropertyEx<> g_unk_717275afc0;
+extern UnkPropertyEx<> g_unk_717275b000;
+extern UnkPropertyEx<> g_unk_717275b040;
+extern UnkPropertyEx<> g_unk_717275b080;
+extern UnkPropertyEx<> g_unk_7172758cf0;
+extern UnkPropertyEx<> g_unk_7172758d30;
+extern UnkPropertyEx<> g_unk_7172758db0;
+extern UnkPropertyEx<> g_unk_7172759cd0;
+extern UnkPropertyEx<> g_unk_7172759d10;
+extern UnkPropertyEx<> g_unk_7172759dd0;
+extern UnkPropertyEx<> g_unk_71727594b8;
+extern UnkPropertyEx<> g_unk_717275b108;
+extern UnkPropertyEx<> g_unk_717275b148;
+extern UnkPropertyEx<0x160> g_unk_7172759e10;
 
 struct UnkTuning_7100fc4b34 {
     u8 unk_0x0[0x4];
@@ -158,29 +158,29 @@ bool fn_7100fc4b34(UnkOwner_7100fc4b34* self, CBlackboard* a, CBlackboard* b, Un
     out->field_0x8 = {};
     Get<fn_7100395b34>(b, Key(0x1bd8), Qid(g_unk_717275a058), &out->field_0x8);
     out->field_0x18 = {};
-    Get<fn_710006d11c>(a, Key(0x2050), Qid(g_unk_7172759ad0), &out->field_0x18);
+    Get<fn_710006d11c>(a, Key(0x2050), Qid(reinterpret_cast<UnkDef_7100fc4b34&>(g_unk_7172759ad0)), &out->field_0x18);
     out->field_0x19 = {};
-    Get<fn_710006d11c>(a, Key(0x2050), Qid(g_unk_7172759c10), &out->field_0x19);
+    Get<fn_710006d11c>(a, Key(0x2050), Qid(reinterpret_cast<UnkDef_7100fc4b34&>(g_unk_7172759c10)), &out->field_0x19);
     out->field_0x1a = {};
-    Get<fn_710006d11c>(a, Key(0x2050), Qid(g_unk_7172759c50), &out->field_0x1a);
+    Get<fn_710006d11c>(a, Key(0x2050), Qid(reinterpret_cast<UnkDef_7100fc4b34&>(g_unk_7172759c50)), &out->field_0x1a);
     out->field_0x1b = {};
-    Get<fn_710006d11c>(a, Key(0x2050), Qid(g_unk_7172759c90), &out->field_0x1b);
+    Get<fn_710006d11c>(a, Key(0x2050), Qid(reinterpret_cast<UnkDef_7100fc4b34&>(g_unk_7172759c90)), &out->field_0x1b);
     out->field_0x1c = {};
-    Get<fn_710006d11c>(a, Key(0x2050), Qid(g_unk_7172759d50), &out->field_0x1c);
+    Get<fn_710006d11c>(a, Key(0x2050), Qid(reinterpret_cast<UnkDef_7100fc4b34&>(g_unk_7172759d50)), &out->field_0x1c);
     out->field_0x2c = {};
-    Get<fn_7100395a30>(a, Key(0x2050), Qid(g_unk_7172759d90), &out->field_0x2c);
+    Get<fn_7100395a30>(a, Key(0x2050), Qid(reinterpret_cast<UnkDef_7100fc4b34&>(g_unk_7172759d90)), &out->field_0x2c);
     out->field_0x1d = {};
-    Get<fn_710006d11c>(a, Key(0x2050), Qid(g_unk_717275af40), &out->field_0x1d);
+    Get<fn_710006d11c>(a, Key(0x2050), Qid(reinterpret_cast<UnkDef_7100fc4b34&>(g_unk_717275af40)), &out->field_0x1d);
     out->field_0x1e = {};
-    Get<fn_710006d11c>(a, Key(0x2050), Qid(g_unk_717275af80), &out->field_0x1e);
+    Get<fn_710006d11c>(a, Key(0x2050), Qid(reinterpret_cast<UnkDef_7100fc4b34&>(g_unk_717275af80)), &out->field_0x1e);
     out->field_0x1f = {};
-    Get<fn_710006d11c>(a, Key(0x2050), Qid(g_unk_717275afc0), &out->field_0x1f);
+    Get<fn_710006d11c>(a, Key(0x2050), Qid(reinterpret_cast<UnkDef_7100fc4b34&>(g_unk_717275afc0)), &out->field_0x1f);
     out->field_0x20 = {};
-    Get<fn_710006d11c>(a, Key(0x2050), Qid(g_unk_717275b000), &out->field_0x20);
+    Get<fn_710006d11c>(a, Key(0x2050), Qid(reinterpret_cast<UnkDef_7100fc4b34&>(g_unk_717275b000)), &out->field_0x20);
     out->field_0x21 = {};
-    Get<fn_710006d11c>(a, Key(0x2050), Qid(g_unk_717275b040), &out->field_0x21);
+    Get<fn_710006d11c>(a, Key(0x2050), Qid(reinterpret_cast<UnkDef_7100fc4b34&>(g_unk_717275b040)), &out->field_0x21);
     out->field_0x22 = {};
-    Get<fn_710006d11c>(a, Key(0x2050), Qid(g_unk_717275b080), &out->field_0x22);
+    Get<fn_710006d11c>(a, Key(0x2050), Qid(reinterpret_cast<UnkDef_7100fc4b34&>(g_unk_717275b080)), &out->field_0x22);
     {
         UnkString_7100fc4b34 s;
         fn_710007eba0(&s, 0x40);
@@ -188,16 +188,16 @@ bool fn_7100fc4b34(UnkOwner_7100fc4b34* self, CBlackboard* a, CBlackboard* b, Un
                       reinterpret_cast<const base::global::CRntString*>(&s));
         fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&s));
     }
-    Get<fn_7100ec50e4>(a, Key(0x1148), Qid(g_unk_71727594b8), &out->field_0x80);
+    Get<fn_7100ec50e4>(a, Key(0x1148), Qid(reinterpret_cast<UnkDef_7100fc4b34&>(g_unk_71727594b8)), &out->field_0x80);
     f32 x = 0.0f;
     Get<fn_7100395b34>(b, Key(0x1bd8), Qid(g_unk_717275a018), &x);
     f32 y = 0.0f;
     Get<fn_7100395b34>(b, Key(0x1bd8), Qid(g_unk_7172759fd8), &y);
     out->field_0xc = x - y;
     out->field_0x10 = {};
-    Get<fn_7100395b34>(b, Key(0x1148), Qid(g_unk_7172758cf0), &out->field_0x10);
+    Get<fn_7100395b34>(b, Key(0x1148), Qid(reinterpret_cast<UnkDef_7100fc4b34&>(g_unk_7172758cf0)), &out->field_0x10);
     out->field_0x14 = {};
-    Get<fn_7100395b34>(b, Key(0x1148), Qid(g_unk_7172758d30), &out->field_0x14);
+    Get<fn_7100395b34>(b, Key(0x1148), Qid(reinterpret_cast<UnkDef_7100fc4b34&>(g_unk_7172758d30)), &out->field_0x14);
     bool flag = false;
     Get<fn_710006d11c>(a, Key(0x2050), Qid(g_unk_71729dbc40), &flag);
     out->field_0x23 = flag;
@@ -221,24 +221,26 @@ bool fn_7100fc4b34(UnkOwner_7100fc4b34* self, CBlackboard* a, CBlackboard* b, Un
     out->field_0x28 = flag;
     out->field_0x39 = 0;
     s32 mode = 0;
-    Get<fn_7100395a30>(a, Key(0x2050), SubId(g_unk_7172759e10, Key(0x1008)), &mode);
+    Get<fn_7100395a30>(a, Key(0x2050), SubId(reinterpret_cast<UnkNamedDef_7100fc4b34&>(g_unk_7172759e10), Key(0x1008)),
+                       &mode);
     out->field_0x44 = mode;
     out->field_0x3a = out->field_0x39 == 4 && out->field_0x44 == 4 ? 4 : 0;
     mode = 0;
-    Get<fn_7100395a30>(a, Key(0x2050), SubId(g_unk_7172759e10, Key(0x1360)), &mode);
+    Get<fn_7100395a30>(a, Key(0x2050), SubId(reinterpret_cast<UnkNamedDef_7100fc4b34&>(g_unk_7172759e10), Key(0x1360)),
+                       &mode);
     out->field_0x45 = mode;
     if (out->field_0x45 < 4 && out->field_0x44 == 4)
         out->field_0x44 = 0;
     out->field_0x48 = {};
-    Get<fn_7100395a30>(b, Key(0x1148), Qid(g_unk_7172758db0), &out->field_0x48);
+    Get<fn_7100395a30>(b, Key(0x1148), Qid(reinterpret_cast<UnkDef_7100fc4b34&>(g_unk_7172758db0)), &out->field_0x48);
     out->field_0x4c = {};
     Get<fn_710006d11c>(a, Key(0x2050), Qid(g_unk_71729dbc00), &out->field_0x4c);
     out->field_0x4d = {};
-    Get<fn_710006d11c>(a, Key(0x2050), Qid(g_unk_7172759cd0), &out->field_0x4d);
+    Get<fn_710006d11c>(a, Key(0x2050), Qid(reinterpret_cast<UnkDef_7100fc4b34&>(g_unk_7172759cd0)), &out->field_0x4d);
     out->field_0x4e = {};
-    Get<fn_710006d11c>(a, Key(0x2050), Qid(g_unk_7172759d10), &out->field_0x4e);
+    Get<fn_710006d11c>(a, Key(0x2050), Qid(reinterpret_cast<UnkDef_7100fc4b34&>(g_unk_7172759d10)), &out->field_0x4e);
     out->field_0x50 = {};
-    Get<fn_7100a68fb0>(a, Key(0x2050), Qid(g_unk_7172759dd0), &out->field_0x50);
+    Get<fn_7100a68fb0>(a, Key(0x2050), Qid(reinterpret_cast<UnkDef_7100fc4b34&>(g_unk_7172759dd0)), &out->field_0x50);
     out->field_0x54 = {};
     Get<fn_7100395b34>(b, Key(0x1bd8), Qid(g_unk_717275a1d8), &out->field_0x54);
     out->field_0x58 = {};
@@ -262,15 +264,15 @@ bool fn_7100fc4b34(UnkOwner_7100fc4b34* self, CBlackboard* a, CBlackboard* b, Un
     out->field_0x68 = false;
     bool in_a = false;
     bool in_b = false;
-    Get<fn_710006d11c>(a, Key(0x5a0), Qid(g_unk_717275b108), &in_a);
-    Get<fn_710006d11c>(b, Key(0x5a0), Qid(g_unk_717275b108), &in_b);
+    Get<fn_710006d11c>(a, Key(0x5a0), Qid(reinterpret_cast<UnkDef_7100fc4b34&>(g_unk_717275b108)), &in_a);
+    Get<fn_710006d11c>(b, Key(0x5a0), Qid(reinterpret_cast<UnkDef_7100fc4b34&>(g_unk_717275b108)), &in_b);
     if (in_a && !in_b)
         out->field_0x68 = true;
     out->field_0x69 = false;
     bool in_a_2 = false;
     bool in_b_2 = false;
-    Get<fn_710006d11c>(a, Key(0x5a0), Qid(g_unk_717275b148), &in_a_2);
-    Get<fn_710006d11c>(b, Key(0x5a0), Qid(g_unk_717275b148), &in_b_2);
+    Get<fn_710006d11c>(a, Key(0x5a0), Qid(reinterpret_cast<UnkDef_7100fc4b34&>(g_unk_717275b148)), &in_a_2);
+    Get<fn_710006d11c>(b, Key(0x5a0), Qid(reinterpret_cast<UnkDef_7100fc4b34&>(g_unk_717275b148)), &in_b_2);
     if (in_a_2 && !in_b_2)
         out->field_0x69 = true;
     return true;

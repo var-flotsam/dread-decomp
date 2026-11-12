@@ -208,7 +208,7 @@ void fn_7100f17218(UnkRewardsMode_b0242* self) {
     }
 }
 
-extern void* g_unk_71726bc560;
+extern UnkMgr_0xf18* g_unk_71726bc560;
 struct UnkLoadingMask {
     u32 bits;
     UnkLoadingMask() : bits(0) {}
@@ -233,7 +233,7 @@ static inline void* MusicManagerCold() {
     if (__builtin_expect(!manager, 0)) {
         manager = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(manager);
-        g_unk_71726bc560 = manager;
+        g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(manager);
     }
     return manager;
 }
@@ -243,7 +243,7 @@ static inline void* MusicManager() {
     if (!manager) {
         manager = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(manager);
-        g_unk_71726bc560 = manager;
+        g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(manager);
     }
     return manager;
 }

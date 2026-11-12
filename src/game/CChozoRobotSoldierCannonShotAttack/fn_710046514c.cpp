@@ -44,7 +44,7 @@ struct UnkSelf {
     UnkOwner* field_0x8;
 };
 
-bool fn_71009e12d0(UnkHelper* helper);
+bool fn_71009e12d0(void*);
 // The matrix of the transform at +0x38 of an actor (fn_710002614c), as its 16 floats.
 static inline const f32* Matrix(const u8* xform) {
     return fn_710002614c(reinterpret_cast<const UnkMatrix44*>(xform)).m;

@@ -13,7 +13,7 @@
 #include "types.h"
 
 struct UnkMgr_0xf18;
-extern void* g_unk_71726bc560;
+extern UnkMgr_0xf18* g_unk_71726bc560;
 
 struct UnkMusicRequest_b55 {
     u8 unk_0x0[0x10];
@@ -41,7 +41,7 @@ static inline void PlayMusic_b55(UnkMusicRequest_b55* self, u32 id) {
     if (!instance) {
         instance = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(instance);
-        g_unk_71726bc560 = instance;
+        g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(instance);
     }
     fn_7100fdb9e0(static_cast<UnkMgr_0xf18*>(instance), 1, 0, -1.0f, 0.0f);
 }

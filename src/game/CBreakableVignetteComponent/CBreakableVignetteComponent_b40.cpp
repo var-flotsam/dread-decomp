@@ -13,7 +13,8 @@
 struct UnkMapData;
 struct UnkCallback;
 void fn_7100e95130(UnkMapData* map, u64 id);
-extern void* g_unk_7101d47360;
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;
 void fn_7100ee1f34(void*);
 void fn_71005c4828(void*, void**);
 
@@ -46,7 +47,7 @@ void fn_7100763318(UnkBreakableVignette_bv* self) {
     if (!manager) {
         manager = fn_71000839a0(0xae8, 0x3f);
         fn_7100ee1f34(manager);
-        g_unk_7101d47360 = manager;
+        g_unk_7101d47360 = static_cast<UnkManager*>(manager);
     }
     if (*link) {
         fn_71005c4828(*link, link);

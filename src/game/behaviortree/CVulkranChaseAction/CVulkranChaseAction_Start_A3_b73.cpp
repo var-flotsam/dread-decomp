@@ -16,7 +16,8 @@ using base::global::CStrId;
 using base::reflection::UnkReflObject;
 
 struct UnkSelf;
-void fn_7100394bd0(UnkSelf*);
+struct UnkStruct_0x68;
+void fn_7100394bd0(UnkStruct_0x68* self);
 void fn_71006d847c();
 
 struct UnkVulkranTrackLink_A3_b73 {
@@ -50,7 +51,7 @@ struct UnkVulkranChase_A3_b73 {
 };
 
 void fn_71006d73f0(UnkVulkranChase_A3_b73* self) {
-    fn_7100394bd0(reinterpret_cast<UnkSelf*>(self));
+    fn_7100394bd0(reinterpret_cast<UnkStruct_0x68*>(self));
     self->field_0x48 = false;
     self->field_0x49 = true;
     self->field_0x4c = 0;

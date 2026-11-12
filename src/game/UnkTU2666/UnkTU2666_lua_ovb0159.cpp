@@ -32,7 +32,8 @@ using base::reflection::UnkReflObject;
 
 struct lua_State;
 
-extern void* g_unk_71726bc560;
+struct UnkMgr_0xf18;
+extern UnkMgr_0xf18* g_unk_71726bc560;
 extern void* g_unk_7101d47330;
 
 // Creates the object on first use: storage from the default allocator, built by its constructor function.
@@ -66,7 +67,7 @@ void fn_7100fd90d8(f32 a, f32 b, void* music, const CRntString* name, u32 c, con
 s32 fn_710108d440(lua_State* L) {
     const char* name;
     if (fn_71010c0270(L, "s", &name)) {
-        void* music = Singleton<void, 0xf18, fn_7100fd3804>(g_unk_71726bc560);
+        void* music = Singleton<void, 0xf18, fn_7100fd3804>(reinterpret_cast<void*&>(g_unk_71726bc560));
         base::UnkNamedEntry key;
         fn_710007e704(&key, name);
         UnkMusicMode mode;
@@ -277,7 +278,7 @@ s32 fn_7101091a20(lua_State* L) {
     const char* name = nullptr;
     bool playing = false;
     if (fn_71010c0ad0(L, 0, 1, "s", &name)) {
-        void* music = Singleton<void, 0xf18, fn_7100fd3804>(g_unk_71726bc560);
+        void* music = Singleton<void, 0xf18, fn_7100fd3804>(reinterpret_cast<void*&>(g_unk_71726bc560));
         base::UnkNamedEntry key;
         fn_710007e704(&key, name);
         playing = fn_7100fd76d4(music, reinterpret_cast<CRntString*>(&key));
@@ -457,14 +458,15 @@ s32 fn_7101088e00(lua_State* L) {
 struct UnkVec;
 void fn_7101053c14(void* fx, const base::math::CVector3D* color, f32 a, f32 b, f32 time);
 
-extern void* g_unk_7101d47360;
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;
 void fn_7100ee1f34(void* self);
 void fn_7100ee9bfc(void* self, const CStrId* id);
 
 s32 fn_7101083fb0(lua_State* L) {
     const char* name;
     if (fn_71010c0270(L, "s", &name)) {
-        void* manager = Singleton<void, 0xae8, fn_7100ee1f34>(g_unk_7101d47360);
+        void* manager = Singleton<void, 0xae8, fn_7100ee1f34>(reinterpret_cast<void*&>(g_unk_7101d47360));
         CStrId id(name, true);
         fn_7100ee9bfc(manager, &id);
     }

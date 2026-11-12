@@ -131,7 +131,8 @@ bool fn_7100a89bf8(UnkSaveStation_ovb0118* self, UnkWeakTarget* user) {
     return true;
 }
 
-extern void* g_unk_71726bc560;  // the music manager
+struct UnkMgr_0xf18;
+extern UnkMgr_0xf18* g_unk_71726bc560;  // the music manager
 extern void* g_unk_7101d47368;
 
 struct UnkSaveStationName_ovb0118 {
@@ -180,7 +181,7 @@ static inline void* MusicManager() {
     if (!music) {
         music = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(music);
-        g_unk_71726bc560 = music;
+        g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(music);
     }
     return music;
 }

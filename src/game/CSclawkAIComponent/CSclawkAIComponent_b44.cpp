@@ -8,7 +8,9 @@
 
 struct UnkObject;
 struct UnkComponent;
-UnkComponent* fn_7101152b90(UnkObject*, u64);
+struct UnkPart;
+struct UnkWorld;
+UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 
 struct UnkSclawkPart_b44a2 {
     virtual void vf_0x0();
@@ -46,7 +48,8 @@ u32 fn_710067d314(UnkSclawkAI_b44a2* self, UnkSclawkMessage_b44a2* msg) {
     u32 result = fn_710036974c(self, msg);
     if (self->owner && self->owner->field_0x280) {
         auto* part =
-            reinterpret_cast<UnkSclawkPart_b44a2*>(fn_7101152b90(self->owner->field_0x280, 0x1aaebf634dea2cd1));
+            reinterpret_cast<UnkSclawkPart_b44a2*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(self->owner->field_0x280),
+                                                                 0x1aaebf634dea2cd1));
         if (part) {
             if (msg->field_0x8) {
                 self->field_0x146ee = part->vf_0x58();

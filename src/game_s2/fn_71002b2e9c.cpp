@@ -14,7 +14,7 @@ struct UnkElem {
 };
 
 struct UnkSub;
-void fn_710002f4e4(UnkSub* sub);
+void fn_710002f4e4(void*);
 
 struct UnkRecord {
     u64 field_0x0;

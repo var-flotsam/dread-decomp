@@ -25,7 +25,7 @@ struct UnkActor;
 struct UnkStruct_710024fa0c;
 bool fn_7100fd76d4(void* manager, const CRntString* name);
 
-extern void* g_unk_71726bc560;
+extern UnkMgr_0xf18* g_unk_71726bc560;
 struct UnkEmmyRegistry_b55;
 
 // The channel mask as src/game/UnkLoadingScreen.cpp defines it (passed through a copy).
@@ -42,7 +42,7 @@ static inline void* MusicManager() {
     if (!manager) {
         manager = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(manager);
-        g_unk_71726bc560 = manager;
+        g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(manager);
     }
     return manager;
 }

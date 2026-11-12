@@ -39,7 +39,8 @@ struct UnkSelf {
 extern u64 g_unk_7101648d40;
 void fn_71011e49fc(UnkIngameMenuHud* hud);
 UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
-bool fn_710114e668(UnkWorld* world, u8 id);
+struct UnkObject;
+bool fn_710114e668(UnkObject*, u8);
 void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
 
 UnkPart* fn_7100300bd0(UnkSelf* self, u32 flags) {
@@ -54,7 +55,7 @@ UnkPart* fn_7100300bd0(UnkSelf* self, u32 flags) {
     UnkWorld* world = self->field_0x30->field_0x280;
     UnkPart* part = fn_7101152b90(world, 0x6923d83cbb01adc0ull);
     if (part) {
-        if (fn_710114e668(world, part->field_0xb)) {
+        if (fn_710114e668(reinterpret_cast<UnkObject*>(world), part->field_0xb)) {
             fn_710114fe8c(world, 0x6923d83cbb01adc0ull, 1, 1);
             part->vf_0x90(0);
             s32 count = part->vf_0xf0();

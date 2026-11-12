@@ -59,7 +59,7 @@ void fn_71000a8348(void* obj, const CStrId& name, void* base, void* a, void (*fa
 extern char g_unk_7101d5c070[];
 extern char g_unk_7101d5c071[];
 UnkEnumType* fn_71000a84cc();
-extern char g_unk_7101d5c078[];
+extern base::reflection::CType g_unk_7101d5c078;
 void fn_71000a85a8(void* obj, const CStrId& name, void* a, void* b);
 extern char g_unk_7101d5c1e8[];
 extern char g_unk_7101d5c1e9[];
@@ -508,7 +508,7 @@ void fn_71000ba2b0(void* obj, const CStrId& name, void* base, void* a, void (*fa
 extern char g_unk_7101d60e70[];
 extern char g_unk_7101d60e71[];
 UnkEnumType* fn_71000ba434();
-extern char g_unk_7101d60e78[];
+extern UnkEnumType g_unk_7101d60e78;
 void fn_71000ba510(void* obj, const CStrId& name, void* a, void* b);
 extern char g_unk_7101d60fe8[];
 extern char g_unk_7101d60ff0[];
@@ -564,10 +564,10 @@ void fn_71000e2800() {
     fn_710009ec00(g_unk_7101d5c071, fn_71000a84cc());
     {
         CStrId n("base::global::CRntVector<base::math::CVector3D>", true);
-        fn_71000a85a8(g_unk_7101d5c078, n, nullptr, nullptr);
+        fn_71000a85a8(reinterpret_cast<char*>(&g_unk_7101d5c078), n, nullptr, nullptr);
     }
-    __cxa_atexit(fn_710009891c, g_unk_7101d5c078, g_unk_7101a19000);
-    fn_710009ec00(g_unk_7101d5c1e8, g_unk_7101d5c078);
+    __cxa_atexit(fn_710009891c, reinterpret_cast<char*>(&g_unk_7101d5c078), g_unk_7101a19000);
+    fn_710009ec00(g_unk_7101d5c1e8, reinterpret_cast<char*>(&g_unk_7101d5c078));
     fn_710009ec00(g_unk_7101d5c1e9, fn_7100067f5c());
     fn_710009ec00(g_unk_7101d5c1ea, fn_7100068204());
     fn_710009ec00(g_unk_7101d5c1eb, fn_71000a41b4());
@@ -1018,10 +1018,10 @@ void fn_71000e2800() {
     fn_710009ec00(g_unk_7101d60e71, fn_71000ba434());
     {
         CStrId n("base::global::CRntVector<bool>", true);
-        fn_71000ba510(g_unk_7101d60e78, n, nullptr, nullptr);
+        fn_71000ba510(reinterpret_cast<char*>(&g_unk_7101d60e78), n, nullptr, nullptr);
     }
-    __cxa_atexit(fn_710009891c, g_unk_7101d60e78, g_unk_7101a19000);
-    fn_710009ec00(g_unk_7101d60fe8, g_unk_7101d60e78);
+    __cxa_atexit(fn_710009891c, reinterpret_cast<char*>(&g_unk_7101d60e78), g_unk_7101a19000);
+    fn_710009ec00(g_unk_7101d60fe8, reinterpret_cast<char*>(&g_unk_7101d60e78));
     {
         CStrId n("CompleteInfo", true);
         fn_71000ba704(g_unk_7101d60ff0, n, nullptr, nullptr, fn_71000ba700, nullptr);

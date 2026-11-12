@@ -202,7 +202,8 @@ s32 fn_710107edb0(lua_State* L) {
     return 0;
 }
 
-extern void* g_unk_717275c380;
+struct UnkStateSink;
+extern UnkStateSink* g_unk_717275c380;
 void fn_710101eee8(void* self, const CFilePathStrId* path, bool flag, u32 mode, f32 a, f32 b, f32 c);
 void fn_7100fc8dec(void* self, const CFilePathStrId* path, bool flag, u32 mode, f32 a, f32 b, f32 c);
 
@@ -421,7 +422,8 @@ extern void* g_unk_7101d47368;
 struct UnkEnvironmentManager;
 void fn_7100d8e32c(UnkEnvironmentManager*, const CStrId*, bool, bool);
 
-extern void* g_unk_7101d47360;
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;
 void fn_7100ee1f34(void* self);
 void fn_7100eea3fc(void* self, const base::global::CStrId* id, bool a, bool b);
 void fn_7100eea334(void* self, const base::global::CStrId* id, bool a, bool b);
@@ -451,7 +453,7 @@ s32 fn_7101083480(lua_State* L) {
         if (!mgr) {
             mgr = fn_71000839a0(0xae8, 0x3f);
             fn_7100ee1f34(mgr);
-            g_unk_7101d47360 = mgr;
+            g_unk_7101d47360 = static_cast<UnkManager*>(mgr);
         }
         CStrId id(name, true);
         fn_7100eea3fc(mgr, &id, first, second);
@@ -468,7 +470,7 @@ s32 fn_7101083560(lua_State* L) {
         if (!mgr) {
             mgr = fn_71000839a0(0xae8, 0x3f);
             fn_7100ee1f34(mgr);
-            g_unk_7101d47360 = mgr;
+            g_unk_7101d47360 = static_cast<UnkManager*>(mgr);
         }
         CStrId id(name, true);
         fn_7100eea334(mgr, &id, first, second);
@@ -496,7 +498,7 @@ s32 fn_7101083390(lua_State* L) {
         if (!mgr) {
             mgr = fn_71000839a0(0xae8, 0x3f);
             fn_7100ee1f34(mgr);
-            g_unk_7101d47360 = mgr;
+            g_unk_7101d47360 = static_cast<UnkManager*>(mgr);
         }
         fn_7100eea3fc(mgr, &GameManagerIdTable().field_0xd80, first, second);
     }
@@ -584,7 +586,7 @@ s32 fn_7101088170(lua_State* L) {
 }
 
 struct UnkMgr_0xf18;
-extern void* g_unk_71726bc560;
+extern UnkMgr_0xf18* g_unk_71726bc560;
 void fn_7100fdbd84(UnkMgr_0xf18* self, u32 flag);
 u32 fn_71010976c0(const char* name);
 
@@ -594,7 +596,7 @@ static inline UnkMgr_0xf18* MusicManager_b0160() {
     if (!instance) {
         instance = fn_71000839a0(0xf18, 0x3f);
         fn_7100fd3804(instance);
-        g_unk_71726bc560 = instance;
+        g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(instance);
     }
     return static_cast<UnkMgr_0xf18*>(instance);
 }

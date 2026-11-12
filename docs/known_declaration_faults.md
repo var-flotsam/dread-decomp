@@ -107,7 +107,34 @@ functions) into unit headers on 2026-11-11, each global into the header of the u
 
 Not tried in this pass: 328 globals whose type comes from a shared header (`UnkReflType`, `UnkConverter`,
 `CStrId`, `UnkProperty`, `UnkTUHeader`), 95 that lie between two units' data spans, 92 with conflicting
-signatures, and 2 whose copies differ in a visibility attribute.
+signatures, and 2 whose copies differ in a visibility attribute. (The conflicting ones are down to 10 since 2026-11-12, see below.)
+
+## Symbols declared with more than one signature
+
+Two files that name the same struct differently declare the same function, or the same global, with two
+signatures: the same call, and two symbols for the port's linker. 135 symbols were like that. On 2026-11-12
+each file that differed from the usual declaration got that declaration, and says at the use what it reads the
+object as (`fn(reinterpret_cast<UnkWorld*>(model), hash)`, `reinterpret_cast<UnkManager*>(g_unk_71726bc570)`):
+164 files, each kept only with unchanged output. The usual declaration is a header's, else the most common;
+for a global a typed declaration wins over a `char[]` or `void*` placeholder, and a file that only reads a
+typed pointer as `void*` needs no cast.
+
+20 are left (`python tools/decl_check.py --list` shows them first):
+- `fn_7100010e58`, `fn_71002ee1dc`, `fn_7100ad61f8`: class getters that a static-initialiser file declares as
+  returning its own `UnkEnumType*`; the shared declaration returns `const CType*`, and the file's templates take
+  the getter as a template argument.
+- `fn_71002aeb9c`, `fn_710031da18`, `fn_71007ed25c`: passed as a template argument whose parameter has the
+  file's own struct name.
+- `fn_7100745e24`: returns a three-float struct by value that two groups of files define under two names.
+- `fn_7100862088`: one side returns a reference, the other a pointer to pointer; the output changes.
+- `fn_71011428bc`: a `const UnkQualifiedId&` against a `const CStrId*` built in place at the call.
+- `fn_7101177044`: the flag class it takes by value has two names (`UnkFlags_7101176690`, `..._7101176ea8`).
+- `g_unk_7101aa2b80`, `g_unk_7101aa3030`, `g_unk_7101aa3440`, `g_unk_7101aa7d00`: vtables passed to a
+  template that wants the file's `char[]`.
+- `g_unk_7101d47360`, `g_unk_71726bc560`: one file passes the singleton to a template by reference to `void*`.
+- `g_unk_71726bc570`: `src/game_s7/UnkGuiS7.h` declares it in a namespace with its own type.
+- `g_unk_7101d4cfb0`, `g_unk_7172794d40`: a `const CType` that one file writes through as `UnkReflType`.
+- `g_unk_7172759178`: a template type the other file does not have.
 
 ## Definitions that disagree with their declaration
 

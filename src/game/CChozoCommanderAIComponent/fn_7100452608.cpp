@@ -42,7 +42,7 @@ struct UnkSelf {
 };
 
 UnkRef fn_7100353be8(void* from);
-UnkFound* fn_71004067a4(void* owner);
+void* fn_71004067a4(void*);
 
 bool fn_7100452608(UnkSelf* self) {
     if (self->field_0x30->field_0x220 && fn_710117ae38(self->field_0x30->field_0x220, 0xb1908e0ac25fa340ull, 0))
@@ -58,7 +58,7 @@ bool fn_7100452608(UnkSelf* self) {
         self->state = 2;
     }
     UnkCounted* handle = static_cast<UnkCounted*>(self->handle.ptr);
-    UnkFound* found = fn_71004067a4(handle ? handle->field_0x10 : nullptr);
+    UnkFound* found = reinterpret_cast<UnkFound*>(fn_71004067a4(handle ? handle->field_0x10 : nullptr));
     if (!found)
         return true;
     return found->field_0x212 != 1;

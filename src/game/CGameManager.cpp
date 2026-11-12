@@ -535,7 +535,8 @@ extern UnkLoadingScreen* g_unk_7101d47380;
 void fn_7100e100f8(UnkLoadingScreen* self, bool shown);
 struct UnkSoundHolder;  // 0x48 bytes (src/game/GUI/CIngameMenu/fn_7100b2de48.cpp)
 extern UnkSoundHolder* g_unk_7101d47340;
-extern void* g_unk_71726bc560;  // the music manager (game/sound/CMusicManager.h)
+struct UnkMgr_0xf18;
+extern UnkMgr_0xf18* g_unk_71726bc560;  // the music manager (game/sound/CMusicManager.h)
 extern void* g_unk_7101d47330;
 
 void fn_7100df31b8(UnkGameManager* self, u32 a, bool b, bool c, CStrId id, u32 d);
@@ -678,7 +679,7 @@ void fn_7100df19c0(UnkGameManager* self) {
                 if (void* target = fn_7100e0189c(start)) {
                     fn_710116c5dc(target, player);
                     if (static_cast<UnkBossMusicFlag*>(target)->field_0x7c) {
-                        void* music = Singleton<void, 0xf18, fn_7100fd3804>(g_unk_71726bc560);
+                        void* music = Singleton<void, 0xf18, fn_7100fd3804>(reinterpret_cast<void*&>(g_unk_71726bc560));
                         CRntString name("s_boss_defeated");
                         UnkMusicMode mode;
                         mode.kind = 2;

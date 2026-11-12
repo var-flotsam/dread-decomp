@@ -15,7 +15,8 @@ extern bool g_unk_71727bd260;
 // passes their known return value.
 extern const base::reflection::CType g_unk_71727bdbb8 __attribute__((visibility("hidden")));
 extern const base::reflection::CType g_unk_71727bdcf0 __attribute__((visibility("hidden")));
-extern UnkTunable g_unk_71727bd078;
+struct UnkTunable_71727bd078;
+extern UnkTunable_71727bd078 g_unk_71727bd078;
 void fn_7100db78b4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 
 void fn_7100db69a8(CClass* cls) {
@@ -64,5 +65,5 @@ void fn_7100db69a8(CClass* cls) {
         fn_710013ac14(registry);
         g_unk_7101d47350 = registry;
     }
-    fn_7100db78b4(registry, &g_unk_71727bd078, "");
+    fn_7100db78b4(registry, &reinterpret_cast<UnkTunable&>(g_unk_71727bd078), "");
 }

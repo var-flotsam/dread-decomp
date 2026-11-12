@@ -8,7 +8,7 @@
 #include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
-void fn_71002aeb9c(void* set, void* item);
+void fn_71002aeb9c(UnkLinkList* list, UnkLinkList** slot);
 void fn_71002addd4(void* self);
 
 // A registration in a deferred set (layout as in fn_71002ad0dc).
@@ -19,7 +19,7 @@ struct UnkRegistration_71002adc8c {
 
     void Unregister() {
         if (set) {
-            fn_71002aeb9c(set, this);
+            fn_71002aeb9c(reinterpret_cast<UnkLinkList*>(set), reinterpret_cast<UnkLinkList**>(this));
             set = nullptr;
         }
     }

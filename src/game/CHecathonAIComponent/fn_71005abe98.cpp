@@ -136,9 +136,11 @@ void fn_7100ee1f34(void* self);
 const CType* fn_7100ad61f8();  // base::reflection::refl_GetType<CSubAreaManager*>
 const CType* fn_7100ad62d4();  // base::reflection::refl_GetType<CEnvironmentManager*>
 const CType* fn_7100ad6644();  // base::reflection::refl_GetType<sound::CMusicManager*>
-extern void* g_unk_7101d47360;
+struct UnkManager;
+extern UnkManager* g_unk_7101d47360;
 extern void* g_unk_7101d47368;
-extern void* g_unk_71726bc560;
+struct UnkMgr_0xf18;
+extern UnkMgr_0xf18* g_unk_71726bc560;
 
 template <void** Instance, u64 Size, void (*Construct)(void*), const CType* (*GetType)(), u32 Flags = 0x3f>
 __attribute__((always_inline)) static inline UnkReflValue GetSingleton() {
