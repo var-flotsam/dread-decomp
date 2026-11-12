@@ -322,10 +322,10 @@ struct UnkEnemyMovement_7de4 {
     UnkVec3f vf_0x370() { return reinterpret_cast<UnkVec3f (*)(UnkEnemyMovement_7de4*)>(vtable[0x370 / 8])(this); }
 };
 
-void fn_7100979854(void* self);
+void fn_7100979854(void* self, void* xform, const u32* changed);
 
-void fn_71010c7de4(UnkEnemyMovement_7de4* self) {
-    fn_7100979854(self);
+void fn_71010c7de4(UnkEnemyMovement_7de4* self, void* xform, const u32* changed) {
+    fn_7100979854(self, xform, changed);
     UnkSinkParams_7de4 params;
     params.vtable = g_unk_7101a24b80 + 2;
     params.field_0x8.has = false;

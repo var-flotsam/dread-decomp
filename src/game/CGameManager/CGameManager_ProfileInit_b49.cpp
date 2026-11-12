@@ -14,8 +14,8 @@
 using base::global::CRntString;
 
 struct UnkUserDataOwner;
-void fn_71012037bc(UnkUserDataOwner* self, void (*callback)());
-void fn_7100df81fc();
+void fn_71012037bc(UnkUserDataOwner* self, void (*callback)(u32 code, u32 value));
+void fn_7100df81fc(u32 code, u32 value);
 
 extern const char* g_unk_7101aa99b0;
 extern const char* g_unk_7101aa99b8;

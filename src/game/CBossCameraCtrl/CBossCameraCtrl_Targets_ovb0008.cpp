@@ -162,7 +162,7 @@ struct UnkBossHolder_ovb0008 {
 struct UnkHolder;
 // Declared without its argument in src/game/CBossAIComponent/fn_71003ad8e4.cpp; this caller passes
 // the holder's child object.
-CStrId* fn_710112bf20();
+const CStrId* fn_710112bf20(void* link);
 
 struct UnkBossHolderActor_ovb0008 {
     u8 pad_0x0[0x1b8];
@@ -181,7 +181,7 @@ void fn_710074f6c4(UnkBossCameraCtrl_ovb0008* self) {
         if (actor && actor->holder && ChildObject(actor->holder)) {
             UnkGameManager* manager = g_unk_7101d47310;
             void* child = ChildObject(actor->holder);
-            manager->field_0x2230 = *reinterpret_cast<CStrId* (*)(void*)>(fn_710112bf20)(child);
+            manager->field_0x2230 = *fn_710112bf20(child);
         }
     }
     fn_7100fdb9e0(reinterpret_cast<UnkMgr_0xf18*>(MusicManager()), 7, 0, -1.0f, 0.5f);

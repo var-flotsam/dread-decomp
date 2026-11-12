@@ -297,8 +297,8 @@ struct UnkTextTemp_b0209 {
 };
 struct UnkEntry_0x30;
 struct UnkStrPair_0x10;
-UnkTextTemp_b0209 fn_71011b8a80();
-UnkTextTemp_b0209 fn_71011b965c();
+UnkTextTemp_b0209 fn_71011b8a80(void* unused, const char* const* name);
+UnkTextTemp_b0209 fn_71011b965c(void* unused, const char* const* name);
 void fn_71011b8dc4(UnkGuiRoot* root, const UnkStrPair_0x10* path);
 void fn_71011b9ce4(UnkGuiRoot* root, const UnkStrPair_0x10* path);
 
@@ -313,11 +313,22 @@ static inline UnkRegistry_0x70* Registry() {
     return reg;
 }
 
-#define REG_BODY(TEXT_FN, USE_FN)                                                                                  UnkTextTemp_b0209 text = TEXT_FN();                                                                            UnkRegistry_0x70* reg = Registry();                                                                            bool found;                                                                                                    {                                                                                                                  UnkKeyTemp_b0209 key;                                                                                          fn_710008d4c0(reinterpret_cast<UnkStrPair_0x10*>(&key), reinterpret_cast<const UnkEntry_0x30*>(&text));         found = fn_7100087850(reg, reinterpret_cast<const UnkStrPair_0x10*>(&key));                                }                                                                                                              if (found) {                                                                                                       UnkKeyTemp_b0209 key;                                                                                          fn_710008d4c0(reinterpret_cast<UnkStrPair_0x10*>(&key), reinterpret_cast<const UnkEntry_0x30*>(&text));         USE_FN(reinterpret_cast<UnkGuiRoot*>(self), reinterpret_cast<const UnkStrPair_0x10*>(&key));                }
+#define REG_BODY(TEXT_FN, USE_FN)                                                                               \
+    UnkTextTemp_b0209 text = TEXT_FN(self, name);                                                               \
+    UnkRegistry_0x70* reg = Registry();                                                                         \
+    bool found;                                                                                                 \
+    {                                                                                                           \
+        UnkKeyTemp_b0209 key;                                                                                   \
+        fn_710008d4c0(reinterpret_cast<UnkStrPair_0x10*>(&key), reinterpret_cast<const UnkEntry_0x30*>(&text)); \
+        found = fn_7100087850(reg, reinterpret_cast<const UnkStrPair_0x10*>(&key));                             \
+    }                                                                                                           \
+    if (found) {                                                                                                \
+        UnkKeyTemp_b0209 key;                                                                                   \
+        fn_710008d4c0(reinterpret_cast<UnkStrPair_0x10*>(&key), reinterpret_cast<const UnkEntry_0x30*>(&text)); \
+        USE_FN(reinterpret_cast<UnkGuiRoot*>(self), reinterpret_cast<const UnkStrPair_0x10*>(&key));            \
+    }
 
 __attribute__((noinline)) void fn_71011b8d10(void* self, const char* const* name) {
-    // keeps the name argument alive: the caller passes it in x1 and the text builder reads it from there
-    asm("" ::"r"(name));
     REG_BODY(fn_71011b8a80, fn_71011b8dc4)
 }
 

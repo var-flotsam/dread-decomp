@@ -47,9 +47,8 @@ struct UnkSelf {
     UnkFlagObject* field_0x14908;
 };
 
-CStrId* fn_710112bf20();
+const CStrId* fn_710112bf20(void* link);
 
-// NON_MATCHING(minor): the child pointer tests load into x8 instead of x0 (register choice only)
 void fn_71003ad8e4(UnkSelf* self) {
     if (self->field_0x14908->field_0x50c)
         return;
@@ -71,5 +70,5 @@ void fn_71003ad8e4(UnkSelf* self) {
             return;
     }
     UnkGameManager* manager = g_unk_7101d47310;
-    manager->field_0x2230 = *fn_710112bf20();
+    manager->field_0x2230 = *fn_710112bf20(holder->field_0x48->field_0x10);
 }
