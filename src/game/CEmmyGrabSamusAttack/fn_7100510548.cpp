@@ -1,4 +1,5 @@
 // A record's copy constructor and copy-assignment: thirteen entries, then values copied one by one and a string id (UnkAnyPropsS7.h).
+#define UNK_ANY_PROPS_SET in_CEmmyGrabSamusAttack
 #include "../../game_s7/UnkAnyPropsS7.h"
 #include "base/global/CStrId.h"
 

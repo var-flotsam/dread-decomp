@@ -1,4 +1,5 @@
 // A record's copy constructor and copy-assignment: four entries (UnkAnyPropsS7.h).
+#define UNK_ANY_PROPS_SET in_CCooldownXBossLavaDropsAttack
 #include "../../game_s7/UnkAnyPropsS7.h"
 
 using namespace unk_any_props;

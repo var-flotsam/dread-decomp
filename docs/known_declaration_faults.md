@@ -134,15 +134,11 @@ another number of parameters, 19 with a result of another class. The 68:
 
 `python tools/name_check.py --version 2.1.0` compares, for every name `tools/check.py` cannot resolve to an
 address (a named constructor, a vtable by class name, a local static), where the original points at each
-reference to it (a 4-byte function that only branches on counts as its target, so a call through an import's
-thunk and a call to its stub agree). On 2026-11-11, 109,340 references under 11,763 names agree, and 5 names do
-not (22 references; a sixth, a string destructor's name on a call the original makes to `fn_710026ead0` itself, was
-corrected in #369). Each is a reference to the wrong thing, or one name used for different things:
+reference to it. A 4-byte function that only branches on counts as its target, and functions with the same
+code count as one meaning (the original has several instantiations of `base::refl_IterSync` over lists of one
+layout, and two copies of `std::__throw_bad_function_call`).
 
-| Name | Usually | Also | Reading |
-|---|---|---|---|
-| `base::refl_IterSync<UnkOwnedList, unsigned int>` | five addresses, two uses each | | Five instantiations over five file-local types all called `UnkOwnedList` (`CAcidBlobsLaunchPattern/fn_71005da4f8.cpp`, `CCooldownXBossFireBallDef/fn_71004bf9a8.cpp`, `fn_71004bfaa8.cpp`): the port's link sees one symbol. |
-| vtables of `unk_any_props::UnkPropAny`, `UnkPropList`, `UnkEntry` | five addresses each | | Five sets of classes under one name, one per file (`fn_7100442780.cpp`, `fn_710048b740.cpp`, `fn_71004c8f58.cpp`, `fn_7100510548.cpp` and the first user). |
-| `std::__1::__throw_bad_function_call` | `0x7100a2e300` (4 uses) | `0x7100008bb0` (2, `CBlendSpace1D/UnkSharedFunctionDtors.cpp`) | The original has two copies; the two uses name the other one. |
-
-`--strict` makes the tool fail on any of them; it is not a gate yet.
+On 2026-11-12 it passes with `--strict`: 109,340 references under 11,776 names, none pointing to more than one
+address. What it found on the way: a string destructor's name on a call the original makes to `fn_710026ead0`
+itself (#369), and three placeholder property classes of `src/game_s7/UnkAnyPropsS7.h` that stood for five
+sets of classes, one per record; each including file now names its set (`UNK_ANY_PROPS_SET`).

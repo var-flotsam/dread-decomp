@@ -1,5 +1,6 @@
 """tools/name_check.py: which names point to more than one address. Made-up references; no game data."""
 
+import struct
 import unittest
 
 from tools.tests import _path  # noqa: F401
@@ -38,6 +39,20 @@ class Inconsistent(unittest.TestCase):
         self.assertEqual(name_check.through_thunks(0x7100001000, sizes.get, words.get), 0x7100001010)   # b +0x10
         self.assertEqual(name_check.through_thunks(0x7100001010, sizes.get, words.get), 0x7100001010)   # a ret
         self.assertEqual(name_check.through_thunks(0x7100002000, sizes.get, words.get), 0x7100002000)   # 12 bytes
+
+    def test_copies_of_the_same_code_are_one_meaning(self):
+        # bl +8; adrp x8; add x8, x8, #0x10; ldr x9, [x8, #8]; ret   and the same at other places with other targets
+        a = struct.pack("<5I", 0x94000002, 0x90000008, 0x91004108, 0xF9400509, 0xD65F03C0)
+        b = struct.pack("<5I", 0x94000400, 0xB0000048, 0x91012108, 0xF9400509, 0xD65F03C0)
+        c = struct.pack("<5I", 0x94000002, 0x90000008, 0x91004108, 0xF9400909, 0xD65F03C0)   # another field offset
+        self.assertEqual(name_check.masked(a), name_check.masked(b))
+        self.assertNotEqual(name_check.masked(a), name_check.masked(c))
+        code = {0x7100001000: name_check.masked(a), 0x7100002000: name_check.masked(b), 0x7100003000: name_check.masked(c)}
+        uses = {("", "f"): [(0x7100001000, "src/a.cpp", 1), (0x7100002000, "src/b.cpp", 2)],
+                ("", "g"): [(0x7100001000, "src/a.cpp", 1), (0x7100003000, "src/b.cpp", 2)],
+                ("", "v"): [(0x7101a00000, "src/a.cpp", 1), (0x7101a00040, "src/b.cpp", 2)]}
+        self.assertEqual([s for s, _a, _r in name_check.inconsistent(uses, code.get)], ["g", "v"])
+        self.assertEqual(len(name_check.inconsistent(uses)), 3)
 
 
 if __name__ == "__main__":

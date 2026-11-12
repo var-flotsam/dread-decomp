@@ -117,6 +117,15 @@ struct UnkPropRef {
 };
 static_assert(sizeof(UnkPropRef) == 0x20, "");
 
+// The three property classes below are another set of classes for each record in the original (five sets
+// of vtables, one per record class), with one layout. The file that includes this header names its
+// record's set: `#define UNK_ANY_PROPS_SET in_<its class>` before the include. The inline namespace
+// keeps the plain names (unk_any_props::UnkPropList) and gives each set its own symbols.
+#ifndef UNK_ANY_PROPS_SET
+#error "define UNK_ANY_PROPS_SET (the record's set of property classes) before including UnkAnyPropsS7.h"
+#endif
+inline namespace UNK_ANY_PROPS_SET {
+
 // Ends after the u16: a record's next fields are copied as a separate run.
 struct UnkPropList {
     virtual void vf_0x0();
@@ -142,6 +151,8 @@ struct UnkEntry : UnkPropAny {
     UnkBlock40 block;
 };
 static_assert(sizeof(UnkEntry) == 0x70, "");
+
+}  // inline namespace UNK_ANY_PROPS_SET
 
 // The base of every record (vtable 0x7101cd1b38's).
 struct UnkRecordBase {
