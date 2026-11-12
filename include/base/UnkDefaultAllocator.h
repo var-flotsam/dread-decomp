@@ -71,8 +71,8 @@ struct UnkSubAllocator {
 // 0x0/0x8 fn_7100082cc8/fn_7100082d1c (destructors), 0x10 fn_7100082d78, 0x40 fn_71000831a8,
 // 0x48 fn_71000832d8, 0x50 fn_7100082ea0, 0x58 fn_71000835a0, 0x88 fn_7100083374.
 struct UnkDefaultAllocator {
-    UnkDefaultAllocator();   // fn_7100082c38
-    ~UnkDefaultAllocator();  // fn_7100082cc8
+    UnkDefaultAllocator() asm("fn_7100082c38");   // fn_7100082c38
+    ~UnkDefaultAllocator() asm("fn_7100082cc8");  // fn_7100082cc8
 
     virtual void vf_0x0();
     virtual void vf_0x8();

@@ -14,7 +14,7 @@ struct UnkBase_0x58 {
 
 struct UnkOwnedObj_7101025a9c {
     u8 unk_0x0[0x8];
-    ~UnkOwnedObj_7101025a9c();  // fn_710102796c
+    ~UnkOwnedObj_7101025a9c() asm("fn_710102796c");  // fn_710102796c
 };
 
 // An owning pointer: cleared, then its object deleted.

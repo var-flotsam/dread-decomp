@@ -37,7 +37,7 @@ struct UnkFilePathStrIdBase {
 
 class CFilePathStrId : public UnkFilePathStrIdBase {
 public:
-    CFilePathStrId(const char* str, bool flag);  // fn_71000166c8
+    CFilePathStrId(const char* str, bool flag) asm("fn_71000166c8");  // fn_71000166c8
     // The same constructor defined inline, on this pool (as UnkStrIdBase's; reflected default
     // values inline it for the empty path, so only the pool check and the empty id remain).
     __attribute__((always_inline)) CFilePathStrId(UnkStrIdInline, const char* str, bool flag) {

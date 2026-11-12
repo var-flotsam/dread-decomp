@@ -8,7 +8,7 @@
 struct UnkBase_0x30_710025373c {
     void** vtable;
     u8 unk_0x8[0x28];
-    ~UnkBase_0x30_710025373c();  // fn_710025373c
+    ~UnkBase_0x30_710025373c() asm("fn_710025373c");  // fn_710025373c
 };
 
 struct UnkEntry_0x98 {

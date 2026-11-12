@@ -46,8 +46,8 @@ struct UnkStringBlockClass {
 };
 
 struct UnkStringHeap {
-    UnkStringHeap();   // fn_7100083d48
-    ~UnkStringHeap();  // fn_7100083d8c
+    UnkStringHeap() asm("fn_7100083d48");   // fn_7100083d48
+    ~UnkStringHeap() asm("fn_7100083d8c");  // fn_7100083d8c
 
     UnkStringBlockClass classes[6];
     bool initialized;  // +0xf0
