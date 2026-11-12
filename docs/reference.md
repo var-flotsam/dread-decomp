@@ -26,6 +26,7 @@ tools/callgraph.py, hubs.py      direct-call graph (Ghidra export); hubs by unma
 tools/decl_check.py              fn_/g_unk_ declarations in several files or with conflicting signatures; --base enforces
 tools/equiv_test.py              tier 2: runs a registers-only non-match beside the original; verdicts in data/equivalence.csv
 tools/ref_check.py               wrong addresses in non-matching functions: what each calls and refers to, against the original
+tools/permute.py                 cheap permuter: reorders a registers-only near-match's source until it matches; --write
 tools/baseline.py                trymatch output snapshot, compare and restore for a file set (headers expand to includers)
 tools/hub_migrate.py             mechanical canonical-header migration on top of baseline.py; LEFT lines are the hand work
 tools/tu_map.py                  translation-unit map from .init_array + reflection groups -> data/tu_map.csv; --function

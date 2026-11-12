@@ -388,6 +388,17 @@ python tools/ref_check.py --version 2.1.0 FILE.cpp [...]     # the non-matching 
 python tools/ref_check.py --version 2.1.0 --drafts           # every draft of drafts/INDEX.csv
 ```
 
+### `tools/permute.py`
+
+A cheap permuter: turn a registers-only near-match into a byte match by reordering its source.
+
+```sh
+python tools/permute.py --version 2.1.0 FILE.cpp [...]      # every registers-only function of these files
+python tools/permute.py --version 2.1.0 FILE.cpp:ADDR       # one function
+python tools/permute.py --version 2.1.0 --minor             # every NON_MATCHING(minor) file under src/
+python tools/permute.py --version 2.1.0 --drafts            # the `registers or order` rows of drafts/INDEX.csv
+```
+
 ### `tools/fakematch.py`
 
 Fake-match patterns in the hand-written sources: byte-identical code that a programmer would not have written, which usually points at a missing helper, a wrong type or two variables merged into one.

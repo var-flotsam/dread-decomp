@@ -152,6 +152,24 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**The spike's script is a tool after all: `tools/permute.py` (2026-11-12).** The spike below stopped by its
+rule: 11% is not worth building a permuter for. It is worth keeping the hour-of-CPU script that got the 11%,
+which is a different decision (owner, the same day): a registers-only near-match gets one free try before it
+gets another model attempt. So the three scripts of the spike are one tracked tool with tests, and nothing
+more than that; its docstring says it is not meant to grow into a general permuter.
+
+`python tools/permute.py --version 2.1.0 FILE.cpp[:ADDR]` tries the registers-only functions of a file
+(`--minor` for every `NON_MATCHING(minor)` file of `src/`, `--drafts` for the registers-only rows of
+`drafts/INDEX.csv`). Without `--write` a match is left in `build/permute/<addr>.cpp` and nothing tracked
+changes; with it the body goes into the file, the function's `NON_MATCHING` note goes and so does its row of
+`data/equivalence.csv`. `tools/check.py` is still what says the tree is right afterwards.
+
+Two things changed on the way from script to tool. The pass that puts back what a match does not need now
+works line by line as well as hunk by hunk (neighbouring changes arrive as one hunk, and one of them is
+usually noise), and it drops a line the search left with nothing to do (`x = e;` under a `T x = e;` that was
+merged back). Checked on the pre-spike text of three functions the spike had matched (`fn_7100390860`,
+`fn_71000f88b8`, `fn_7100e01978`): the tool matched all three again.
+
 **Permuter spike: 27 matches for an hour of CPU, and it stops here by its own rule (2026-11-12).** The tier plan
 gave a permuter two days and a stop rule: try cheap reorderings on the registers-only near-matches, and stop if
 fewer than one in five close. The spike was a script that changes one thing in a function's body (swaps two

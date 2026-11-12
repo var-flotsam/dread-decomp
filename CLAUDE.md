@@ -39,7 +39,9 @@ Readability outranks a match: when a function matches only with a union around a
 or an inlining attribute, commit the readable version as tier 2 instead. Both figures, matching and done,
 are reported side by side. The machine test is `tools/equiv_test.py` (since 2026-11-12): its verdicts are in
 `data/equivalence.csv`, and `tools/check.py` fails a passing verdict that is not about the code in the tree any
-more. A `NON_MATCHING` function without a current passing verdict is tier 3. The permuter does not exist yet. A family
+more. A `NON_MATCHING` function without a current passing verdict is tier 3. A general permuter does not exist;
+`tools/permute.py` tries the cheap reorderings (it matched about one registers-only function in nine on
+2026-11-12). A family
 stamped out of one template or macro (the reflection boilerplate) counts as hand-written once the template
 reads as source: no `fn_<addr>` or `Unk` names in its interface, each use names the class and its members
 with no addresses, and a field takes one line. Today's reflection templates do not meet that yet. The port
@@ -103,6 +105,7 @@ python tools/decl_check.py --strict --base origin/main # one declaration per sha
 python tools/fakematch.py --base origin/main [--list]  # fake-match forms a branch adds; review before a PR
 python tools/equiv_test.py --version <ver> <file.cpp> [--write]   # tier 2: is a registers-only non-match equivalent?
 python tools/ref_check.py --version <ver> [<file.cpp>]  # wrong callees and globals in functions that do not match
+python tools/permute.py --version <ver> <file.cpp>[:ADDR] [--write]   # free try at a registers-only near-match
 python -m unittest discover -s tools/tests -t .       # tool tests, no game data (CI)
 python tools/hub_migrate.py --version <ver> --plan PLAN.tsv   # mechanical header migration; .claude/skills/dread-hubs
 python tools/ghidra/decompile.py --version <ver> <addr|name>  # read Ghidra's view (never commit it)
