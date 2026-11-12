@@ -152,6 +152,12 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**The tool tests also run on Windows in CI (2026-11-12).** The tools are written and mostly run on Windows
+(paths, line endings and the shell differ there), and CI ran `tools/tests` on Linux only, so a change that
+broke them on Windows showed only on the owner's machine. A second job, `tool tests (Windows)`, runs the same
+tests on `windows-latest` without the project compiler; the tests that need the compiler skip there and keep
+running in the `compile` job. It is not a required check: it reports, and a red one is a reason to look.
+
 **`drafts.py promote`, first real use: two matches leave `drafts/`, and every held one says why (2026-11-12).**
 The 14 drafts that match (13 since the permuter spike) all carried one note, "its declarations are not settled
 yet". `python tools/drafts.py --version 2.1.0 promote <the 14> --write` and the coordinator's step after it:
