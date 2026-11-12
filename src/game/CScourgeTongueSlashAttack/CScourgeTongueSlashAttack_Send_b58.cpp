@@ -13,7 +13,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
-base::global::UnkStringData** fn_7101177ae8(UnkAnimationComponent* self, u64 kind);
+const base::global::CStrId* fn_7101177ae8(UnkAnimationComponent* self, u64 kind);
 extern const u64 g_unk_710164a618[] __attribute__((visibility("hidden")));
 
 struct UnkScourgeAI_b58a4 : base::reflection::UnkReflObject {
@@ -54,7 +54,7 @@ void fn_710069ba34(UnkScourgeTongueSlashAttack_b58a4* self, const UnkPoint_b58a4
     UnkAnimationComponent* anim = static_cast<UnkAnimationComponent*>(owner->field_0x220);
     if (!anim)
         return;
-    u64 current = *reinterpret_cast<u64*>(reinterpret_cast<char*>(*fn_7101177ae8(anim, 0xf4061ff25a2163d6)) + 0x30);
+    u64 current = *reinterpret_cast<u64*>(reinterpret_cast<char*>(fn_7101177ae8(anim, 0xf4061ff25a2163d6)->data) + 0x30);
     if (current == 0xe89c493d56876bf8 || current == 0xeae407a9663038b1 || current == 0x5be4e30ac47ed5c2)
         return;
     u32 side = self->side;

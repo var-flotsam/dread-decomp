@@ -88,8 +88,7 @@ s32 fn_7101078b20(lua_State* L) {
     return fn_71010c0b40(L, "b", ok);
 }
 
-struct UnkGuiHolder_b0159;
-UnkGuiHolder_b0159* fn_7101126814(const CStrId* id);
+base::reflection::UnkReflObject* fn_7101126814(const CStrId* id);
 
 struct UnkLuaSub_b0160 {
     u8 pad_0x0[0x10];

@@ -8,7 +8,7 @@
 
 // The scene manager's entry arrays (src/engine/scene/CSceneManager.cpp), copy-assigned out of line.
 struct UnkSceneEntry;
-void* fn_71001fdacc(base::UnkVector<UnkSceneEntry>* self, const base::UnkVector<UnkSceneEntry>* other);
+base::UnkVector<UnkSceneEntry>* fn_71001fdacc(base::UnkVector<UnkSceneEntry>* self, const base::UnkVector<UnkSceneEntry>* other);
 
 struct UnkUnit280Record {
     u64 words[5];

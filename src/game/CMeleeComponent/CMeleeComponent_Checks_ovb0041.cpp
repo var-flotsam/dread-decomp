@@ -67,7 +67,7 @@ const void* fn_710092dfd4(bool second) {
 using base::global::CStrId;
 
 struct UnkAnimationComponent;
-base::global::UnkStringData** fn_7101177ae8(UnkAnimationComponent*, u64);
+const base::global::CStrId* fn_7101177ae8(UnkAnimationComponent* self, u64 kind);
 void fn_71003246d8(void* p);
 
 // A pending event: its id and kind.
@@ -113,7 +113,7 @@ void fn_7100929404(UnkMelee3_ovb0041* self) {
         return;
     }
     if (fn_71009299bc(self)) {
-        CStrId id(*reinterpret_cast<CStrId*>(fn_7101177ae8(self->owner->anim, 0xf4061ff25a2163d6)));
+        CStrId id(*fn_7101177ae8(self->owner->anim, 0xf4061ff25a2163d6));
         self->pending = false;
         fn_7100929bbc(self);
         if (void* p = fn_7100df57f4(g_unk_7101d47310))

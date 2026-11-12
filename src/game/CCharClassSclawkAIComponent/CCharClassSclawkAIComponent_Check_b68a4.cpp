@@ -24,7 +24,7 @@ struct UnkSclawkId_b68a4 {
     }
 };
 
-base::global::UnkStringData** fn_7101177ae8(UnkAnimationComponent* self, u64 kind);
+const base::global::CStrId* fn_7101177ae8(UnkAnimationComponent* self, u64 kind);
 
 struct UnkSclawkOwner_b68a4 {
     u8 pad_0x0[0x220];
@@ -43,7 +43,7 @@ u32 fn_710067b8b8(void* self, UnkSclawkOwner_b68a4* owner, void* arg, UnkSclawkS
     if (!anim)
         goto ret4;
     {
-        UnkSclawkId_b68a4 id(*reinterpret_cast<UnkSclawkId_b68a4*>(fn_7101177ae8(anim, 0xf4061ff25a2163d6)));
+        UnkSclawkId_b68a4 id(*reinterpret_cast<const UnkSclawkId_b68a4*>(fn_7101177ae8(anim, 0xf4061ff25a2163d6)));
         if (*reinterpret_cast<u64*>(reinterpret_cast<char*>(id.data) + 0x30) == 0x1cdf12aa84de383c) {
             four = !(state->field_0xb6 & 4);
             result = 5;
