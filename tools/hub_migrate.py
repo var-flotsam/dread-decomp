@@ -44,7 +44,8 @@ tools/decl_plan.py --write puts the forward declarations a plan needs into the h
 runs. A symbol that goes back leaves its forward declaration behind, and one such name can stop
 another file compiling (a file with its own type of that name in a namespace it opens). At the end
 of a plan run every forward declaration a header gained since HEAD that nothing in the header uses
-is removed again (printed as DROPPED).
+is removed again, and so is every include it gained whose types the header does not mention (printed
+as DROPPED).
 Exit 0 when every file migrated; 1 when some were restored; 2 when a symbol has no usable header.
 Nothing is committed; `git diff --stat` shows the result. Standard library only, plus the project tools.
 """
@@ -169,6 +170,39 @@ def drop_forwards(text: str, names: list[str]) -> str:
     for name in names:
         text = re.sub(rf"^(?:struct|class)[ \t]+{re.escape(name)}[ \t]*;[^\n]*\n", "", text, count=1, flags=re.M)
     return text
+
+
+def unused_includes(text: str, before: str, types_of) -> list[str]:
+    """Quoted includes `text` has and `before` had not, none of whose types the rest of `text` mentions.
+    `types_of(header)` gives the names of the types that header defines, or None when it cannot be read
+    (the include is then kept)."""
+    had = set(QUOTED_INCLUDE.findall(before))
+    out = []
+    for m in QUOTED_INCLUDE.finditer(text):
+        header = m.group(1)
+        if header in had or header == "types.h":
+            continue
+        names = types_of(header)
+        rest = text[:m.start()] + text[m.end():]
+        if names is not None and not any(re.search(rf"\b{re.escape(n)}\b", rest) for n in names):
+            out.append(header)
+    return out
+
+
+def drop_includes(text: str, headers: list[str]) -> str:
+    for header in headers:
+        text = re.sub(rf'^[ \t]*#[ \t]*include[ \t]*"{re.escape(header)}"[^\n]*\n', "", text, count=1, flags=re.M)
+    return text
+
+
+def types_defined(header: str) -> list[str] | None:
+    """The plain names of the types include/<header> defines, None when there is no such file."""
+    import decl_plan
+
+    path = ROOT / "include" / header
+    if not path.is_file():
+        return None
+    return [name for _full, name in decl_plan.defined_types(path.read_text(encoding="utf-8"))]
 
 
 def committed(path: str) -> str:
@@ -547,10 +581,17 @@ def migrate_plan(plan: list[tuple[str, str, str | None]], version: str, dry_run:
         if not (ROOT / hdr).exists():
             continue
         text, crlf = read(hdr)
-        names = unused_forwards(text, committed(hdr))
+        before = committed(hdr)
+        names = unused_forwards(text, before)
         if names:
-            write(hdr, drop_forwards(text, names), crlf)
+            text = drop_forwards(text, names)
             print(f"  DROPPED  {hdr}  forward declaration(s) nothing in it uses: " + " ".join(names))
+        gone = unused_includes(text, before, types_defined)
+        if gone:
+            text = drop_includes(text, gone)
+            print(f"  DROPPED  {hdr}  include(s) whose types it does not mention: " + " ".join(gone))
+        if names or gone:
+            write(hdr, text, crlf)
     return worst
 
 
