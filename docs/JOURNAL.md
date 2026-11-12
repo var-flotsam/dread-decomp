@@ -152,6 +152,19 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**One signature per symbol (2026-11-12).** 135 symbols were declared with more than one signature, all of them
+the same call under two names for a struct (43 functions) or two views of an object (92 globals). Each differing
+file now has the usual declaration and a cast where it uses the symbol, written by a throwaway script and kept
+per file only with unchanged output; 20 are left, each for a reason a script cannot settle
+(`docs/known_declaration_faults.md`). Reusable:
+- A cast of a pointer argument, of a pointer result or of a global's address never changed the output in 164
+  files. What does change it is a result type that is not a pointer (`s32` against `u32` in a comparison) and a
+  reference against a pointer to pointer.
+- For a global declared `void*` in most files and typed in a few, type it everywhere: reading it as `void*` needs
+  nothing, and the one store becomes `g = static_cast<T*>(m)`.
+- A function or global used as a template argument carries its type into the template's parameter; those are
+  the ones a script cannot move.
+
 **The last 82 signatures, by hand (2026-11-12).** What the two-direction fixer could not settle was read against
 the original on both sides of each call; 81 of 82 are settled and `tools/decl_check.py --definitions` lists one
 (`docs/known_declaration_faults.md` has the groups). Reusable findings:
