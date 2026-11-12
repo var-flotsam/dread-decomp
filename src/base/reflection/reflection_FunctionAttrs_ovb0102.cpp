@@ -126,7 +126,6 @@ using base::reflection::UnkReflValueRef;
 
 // The value argument fn_71000e7a80 takes, built from a reflected value by fn_71000a1710.
 struct UnkReflValueArg;
-void fn_71000a1710(UnkReflValueArg* out, const UnkReflValue* value);
 // A value converted to `type` (returned through x8).
 struct UnkAssignedRecord_a1ba4;
 

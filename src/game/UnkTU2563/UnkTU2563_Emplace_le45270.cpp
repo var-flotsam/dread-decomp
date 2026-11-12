@@ -1,6 +1,7 @@
 // The CMinimapData unit (unit 2563): appends a default bounds item under a string-id key to a keyed array
 // and returns the new item. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU2563.h"
 #include "types.h"
 
 using namespace base::global;
@@ -22,8 +23,6 @@ struct UnkEmptyBoundsArray {
     u32 capacity;
     u32 step;
 };
-
-void fn_7100e5ba88(void*, u32);
 
 UnkEmptyBoundsItem* fn_7100e45270(UnkEmptyBoundsArray* self, const CStrId* key) {
     if (!g_unk_7101d47108)

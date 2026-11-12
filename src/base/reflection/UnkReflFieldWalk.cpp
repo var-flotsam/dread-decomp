@@ -6,6 +6,7 @@
 // entered and its own fields walked with the field's object. Holds fn_71000e7b5c.
 #include <new>
 
+#include "base/reflection.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -82,7 +83,6 @@ static_assert(sizeof(UnkReflField) == 0xb0, "UnkReflField layout");
 struct UnkReflValueArg {
     u8 storage[0x18];
 };
-void fn_71000a1710(UnkReflValueArg* out, const UnkReflValue* value);
 
 // Where a reflected value's data is: inline when it fits in 8 bytes, else through field_0x0.
 static inline void* UnkReflValueData(UnkReflValue* v) {

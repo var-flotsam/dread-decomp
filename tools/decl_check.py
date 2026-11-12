@@ -626,7 +626,9 @@ def definition_mismatches(files: dict[str, str], report: Report) -> dict[str, tu
     return out
 
 
-QUALIFIER = re.compile(r"\b(?:[a-z_][a-z0-9_]*::)+")
+# a namespace path (`base::global::`), or the global scope written out (`::UnkFoo`, which a file needs when a
+# `using namespace` makes the plain name ambiguous)
+QUALIFIER = re.compile(r"\b(?:[a-z_][a-z0-9_]*::)+|(?<![\w:>])::(?=\w)")
 POINTEE = re.compile(r"\b[A-Za-z_]\w*(?=[*&])")
 
 

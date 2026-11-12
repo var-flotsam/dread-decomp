@@ -20,3 +20,5 @@ void fn_7100e54ad8(UnkRecord60Array*, u32);
 void fn_7100e4ea08(UnkPolyVector* self, const UnkPolyValues* value);  // PushBack.
 void fn_7100e56814(void*, u32);
 extern void* g_unk_7101aa9d38[];
+// Grows both arrays to `capacity`.
+void fn_7100e5ba88(void*, u32);

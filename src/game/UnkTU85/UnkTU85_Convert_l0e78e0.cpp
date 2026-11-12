@@ -5,6 +5,8 @@
 #include <new>
 
 #include "base/UnkCloneHelpers.h"
+#include "base/reflection.h"
+#include "base/reflection/CType.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "game/UnkTU85.h"
@@ -36,10 +38,7 @@ struct UnkReflField {
     UnkFieldAccessor* accessor;
 };
 
-void fn_71000a1710(UnkReflValueArg* out, const UnkReflValue* value);
-bool fn_710009d960(const CType* type, UnkTypedRef* src, UnkTypedRef* dst);
-
-bool fn_71000e78e0(UnkReflField* field, const UnkReflFieldObject* obj, UnkReflValueArg* dst) {
+bool fn_71000e78e0(::UnkReflField* field, const UnkReflFieldObject* obj, UnkReflValueArg* dst) {
     UnkFieldAccessor* accessor = field->accessor;
     if (accessor) {
         UnkReflValueArg arg;

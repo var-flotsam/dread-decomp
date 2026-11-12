@@ -3,7 +3,8 @@
 
 Problems: a declaration whose signature is not one that another file already uses for that symbol
 (copy one of the listed ones exactly), a symbol that a header in include/ declares (include it), a
-declaration of a function that another file defines with other types (copy the definition's signature), or
+declaration of a function that another file defines with other types (copy the definition's signature;
+not reported when another file already declares it the same way, which a worker cannot settle), or
 a definition here whose types are not those of a declaration elsewhere (use that parameter list). A
 namespace written out on one side is the same type and is not a problem.
 Exit 1 when there is a problem. One parse of the tree, a few seconds.
@@ -45,7 +46,8 @@ def main():
             why = None
             if inc:
                 why = f"declared in {inc[0].path}: include that header and drop this declaration"
-            elif definition and definition.path not in files and bare(definition.signature) != bare(d.signature):
+            elif (definition and definition.path not in files and bare(definition.signature) != bare(d.signature)
+                  and d.signature not in other_sigs):  # a difference other files already have is not this file's
                 why = (f"{definition.path} defines it with other types; copy the definition's signature exactly:\n"
                        f"    {definition.signature}")
             elif other_sigs and d.signature not in other_sigs:
