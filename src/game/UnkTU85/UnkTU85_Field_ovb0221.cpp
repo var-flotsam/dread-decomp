@@ -85,7 +85,6 @@ void fn_71000e7420(UnkReflClassEntry* self_, base::reflection::CClass* owner) {
 struct UnkAssignedRecord_a1ba4 {
     u64 unk_0x0[0x18 / 8];
 };
-bool fn_710009d960(const CType* type, UnkTypedRef* src, UnkTypedRef* dst);
 
 // A reflected field: its offset in the object (-1 when it has an accessor), its type and its accessor.
 struct UnkReflField {

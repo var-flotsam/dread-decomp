@@ -3,9 +3,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
-struct UnkReflValueArg;
-struct UnkReflValue;
-void fn_71000a1710(UnkReflValueArg* out, const UnkReflValue* value);
+#include "base/reflection.h"
 
 struct UnkReflForwardResult {
     void* field_0x0;
@@ -22,6 +20,6 @@ struct UnkReflForwardValue {
 UnkReflForwardResult fn_71000a20f4(const UnkReflForwardValue* self, void* extra) {
     void* object = self->object;
     alignas(8) u8 arg[0x10];
-    fn_71000a1710(reinterpret_cast<UnkReflValueArg*>(arg), reinterpret_cast<const UnkReflValue*>(self));
+    fn_71000a1710(reinterpret_cast<UnkReflValueArg*>(arg), reinterpret_cast<const base::reflection::UnkReflValue*>(self));
     return fn_710009da40(object, reinterpret_cast<UnkReflValueArg*>(arg), extra);
 }

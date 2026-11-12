@@ -5,9 +5,7 @@
 #include "base/reflection.h"
 #include "types.h"
 
-struct UnkReflValueArg;
-struct UnkReflValue;
-void fn_71000a1710(UnkReflValueArg* out, const UnkReflValue* value);
+#include "base/reflection.h"
 bool fn_710009d5d4(const char* type, base::reflection::UnkTypedRef* dst, const base::reflection::UnkTypedRef* src);
 
 struct UnkReflAssignValue82_b66a1 {
@@ -21,8 +19,8 @@ bool fn_71000a1ed4(const UnkReflAssignValue82_b66a1* self, const UnkReflAssignVa
     }
     alignas(8) u8 to[0x10];
     alignas(8) u8 from[0x10];
-    fn_71000a1710(reinterpret_cast<UnkReflValueArg*>(to), reinterpret_cast<const UnkReflValue*>(self));
-    fn_71000a1710(reinterpret_cast<UnkReflValueArg*>(from), reinterpret_cast<const UnkReflValue*>(other));
+    fn_71000a1710(reinterpret_cast<UnkReflValueArg*>(to), reinterpret_cast<const base::reflection::UnkReflValue*>(self));
+    fn_71000a1710(reinterpret_cast<UnkReflValueArg*>(from), reinterpret_cast<const base::reflection::UnkReflValue*>(other));
     return fn_710009d5d4(static_cast<const char*>(self->type), reinterpret_cast<base::reflection::UnkTypedRef*>(to),
                          reinterpret_cast<const base::reflection::UnkTypedRef*>(from));
 }

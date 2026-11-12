@@ -249,7 +249,6 @@ void fn_7100e60df4(void*, u32);
 struct UnkIdRecordMap;
 void fn_7100e59d18(UnkIdRecordMap*, u32);
 struct UnkRecord60Array;
-void fn_7100e5ba88(void*, u32);
 
 UnkMinimapKeyedItem* fn_7100e614d0(UnkMinimapKeyedItems<UnkMinimapKeyedItem>* self,
                                    const base::global::CStrId* key, UnkMinimapKeyedItem* item) {

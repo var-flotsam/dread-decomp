@@ -24,7 +24,9 @@ Keep your context small. It is the main cost of this run.
    near-match score under 50%.
 4. Declarations: before declaring a callee or global, `git grep -n "fn_XXXX\|g_unk_XXXX" -- include src | head -3`.
    Include the header if include/ declares it; otherwise copy an existing signature exactly (forward-declare
-   its struct names, cast at the call site). When it matches, run
+   its struct names, cast at the call site). If a file under src/ DEFINES the callee (a line `... fn_XXXX(...) {`),
+   the definition's signature is the one to copy: your own struct name for its parameter or result is a second
+   set of types for one function, and CI fails it. When it matches, run
    `.venv/Scripts/python build/lean/declfile.py <file>` and fix what it lists, then rerun try.py.
 5. Result:
    - MATCH (and no RELOC line): keep the file.

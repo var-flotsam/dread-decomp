@@ -108,6 +108,13 @@ class Definitions(unittest.TestCase):
         self.assertEqual(found["fn_7100000210"][1:], ("src/game/a.cpp", "void fn_7100000210(UnkLocal*)",
                                                       "void fn_7100000210(UnkA*)"))
 
+    def test_the_global_scope_written_out_is_the_same_type(self):
+        files = {"include/game/A.h": "struct UnkA;\nvoid fn_7100000280(UnkA* self);\n",
+                 "src/game/a.cpp": "void fn_7100000280(::UnkA* self) {\n}\n"}
+        found = decl_check.definition_type_differences(files, decl_check.Report(files))
+        self.assertEqual({s: v[0] for s, v in found.items()}, {"fn_7100000280": decl_check.NAMESPACE_ONLY})
+        self.assertEqual(decl_check.new_type_differences(found, {}), [])
+
     def test_a_declaration_in_the_defining_file_does_not_count(self):
         files = {"src/game/a.cpp": "struct UnkA;\nvoid fn_7100000270(void* self);\nvoid fn_7100000270(UnkA* self) {\n}\n"}
         self.assertEqual(decl_check.definition_type_differences(files, decl_check.Report(files)), {})

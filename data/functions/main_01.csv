@@ -4345,7 +4345,7 @@ address,size,name,name_source,subsystem,status
 0x71001efb44,168,fn_71001efb44,unknown,engine/reflection?,O
 0x71001efbec,164,fn_71001efbec,unknown,engine/reflection?,O
 0x71001efc90,332,fn_71001efc90,unknown,engine/reflection?,U
-0x71001efddc,332,fn_71001efddc,unknown,engine/reflection?,U
+0x71001efddc,332,fn_71001efddc,unknown,engine/reflection?,O
 0x71001eff28,332,fn_71001eff28,unknown,engine/reflection?,U
 0x71001f0074,268,fn_71001f0074,unknown,engine/reflection?,O
 0x71001f0180,188,fn_71001f0180,unknown,engine/reflection?,O

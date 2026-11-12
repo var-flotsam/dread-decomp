@@ -152,6 +152,51 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Pilot batch of 50 functions (2026-11-12).** The owner lifted the hold on bulk runs for one measured batch.
+50 functions drawn by seed from the 279 ready boot-path candidates of 130 to 600 bytes without a draft
+(`tools/hubs.py --ready --boot`), one Sonnet worker each on the lean kit as the 40-function test ran it
+(six attempts, the function's context and Ghidra view), every result graded again by the coordinator.
+
+| | Functions | Of 50 |
+|---|---|---|
+| Match | 8 (2,652 of 18,156 bytes) | 16% |
+| Same instructions in another order or other registers | 10 | 20% |
+| Anything else | 32 (4 of them at 85% or better) | 64% |
+
+By size: 2 of 11 matched from 130 to 250 bytes, 5 of 20 from 251 to 400, 1 of 19 from 401 to 600.
+Cost: 117,700 tokens of context per worker on average (5.9 million in all, one and a half to three minutes
+each), so about 736,000 per match; the 40-function test came to 310,000 with 15 matches in 40 runs. Why the
+rate is lower is not established. Two guesses: these are what is left on the boot path after the runs of
+2026-11-09 to 2026-11-11 took what came easily, and the draw went up to 600 bytes where the test stopped at 450.
+
+What the batch did to the declarations, which was the reason for the pilot: nothing got worse, and it took hand
+work to keep it so. The 8 matched files copied 3 shared symbols. `tools/decl_plan.py --write --grown` and
+`tools/hub_migrate.py` moved one; the other two stayed half-moved because two older files and one new file
+could not take the header as written (a forward-declared `UnkReflValue` at global scope where the header has
+`base::reflection::UnkReflValue`; a file's own `UnkReflField` next to `using namespace base::reflection`).
+Three files and about ten lines by hand settled them, output unchanged. Counts before and after: symbols in
+more than one file 387 to 386, extra copies 1,247 to 1,244, conflicting signatures 0, definitions that name a
+type differently 984 to 984.
+
+What the new rules did:
+- The check for a definition's types (#394) fired once, on the coordinator's own edit: `::UnkReflField` in a
+  definition against `UnkReflField` in the header. That is the same type; the checker now reads the global
+  scope written out as it reads a namespace written out.
+- The kit's per-file check told one worker to copy a definition's signature that names a struct local to the
+  defining file. No worker can do that; the check now leaves a difference alone when another file already
+  declares the function the same way.
+- One worker had `fn_7101053c14` at 96.6% with a registers-only difference while it took the colour argument
+  as `const f32*`. The unit header declares `const base::math::CVector3D*`; with that the same body compiled to
+  16%. The shared declaration is right and cost a near-match: the function probably reads the vector as three
+  floats through a cast.
+- Two workers used an empty barrier in a function that still did not match. One went (the function is the same
+  kind of near-match without it); the other is in `drafts/` with it, noted in its row.
+
+Where the results are: the 8 matches in `src/`; all 42 others in `drafts/` with a row each in
+`drafts/INDEX.csv` (`from` = `pilot50`), the ten registers-only ones among them, as the earlier runs' are:
+nothing that is not a match or verified equivalent enters `src/`. The kit's brief and per-file check now say
+that a callee is declared with its definition's types (`tools/batch/lean/worker.md`, `declfile.py`).
+
 **A new type difference fails the check (2026-11-12).** `tools/decl_check.py --base` now fails when a pull request
 adds a definition whose types are not a declaration's of the same function (984 are in the tree and stay until
 settled; a namespace written out on one side is the same type and never fails). Tried on the tree: a throwaway

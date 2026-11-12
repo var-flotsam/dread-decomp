@@ -6,6 +6,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
+#include "base/UnkCloneHelpers.h"
 #include "types.h"
 
 struct UnkVersionEntry;
@@ -15,3 +16,5 @@ void fn_710009cc04(char*);
 extern base::reflection::CType g_unk_7101d5af48;  // The void type.
 // The attribute stored under `key`, as a reflected value (empty when absent).
 base::reflection::UnkReflValue fn_710009ddd4(UnkVersionEntry* self, const base::reflection::UnkReflAttrKey& key);
+// The reflected value's copy-assignment.
+bool fn_710009d960(const base::reflection::CType* type, base::reflection::UnkTypedRef* src, base::reflection::UnkTypedRef* dst);

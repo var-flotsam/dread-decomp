@@ -11,6 +11,7 @@
 #include "base/reflection/UnkReflConverter.h"
 #include "types.h"
 
+struct UnkReflValueArg;
 struct UnkEnvironmentManager;
 struct UnkTypedObject;
 struct UnkEnvironmentData;
@@ -142,3 +143,5 @@ void fn_7100b7d580(UnkReflType* self, const base::global::CStrId& name, UnkReflT
 void fn_7100b7de98(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
 void fn_7100b7e47c(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
 const base::reflection::CType* fn_7100ad61f8();  // base::reflection::refl_GetType<CSubAreaManager*>.
+// Builds a value argument (a type and where the value is) from a reflected value.
+void fn_71000a1710(UnkReflValueArg* out, const base::reflection::UnkReflValue* value);
