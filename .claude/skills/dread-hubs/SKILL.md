@@ -88,8 +88,8 @@ hand-written includers; objects go to `build/baseline/obj/`, so parallel agents 
   `gen_lift.py --prune`), runs `check.py --version 2.1.0 --update` once (no `REGRESSION`, `DUPLICATE`,
   `EQUIV`, `REFS` or `RELOC` line; an `EQUIV` line means a header change altered the code of a function
   that was verified equivalent: run `equiv_test.py --write` on its file again), `decl_check.py --strict
-  --base origin/main` (PASS), `name_check.py --strict`, `policy_check.py --base origin/main` and
-  `port_sweep.py --jobs 8`, and commits per step with its session's own attribution lines. After any
+  --base origin/main` (PASS), `name_check.py --version 2.1.0 --strict`, `policy_check.py --base origin/main` and
+  `port_sweep.py --version 2.1.0 --jobs 8`, and commits per step with its session's own attribution lines. After any
   `decl_plan.py --write` and `hub_migrate.py` run, the full `check.py` is not optional: the migration
   skips files that already fail to compile.
 - The orchestrator is the coordinator of the batch: it opens the pull request (the template's headings)

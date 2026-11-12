@@ -730,6 +730,19 @@ def file_problems(files: set[str], tree: dict[str, str] | None = None) -> list[s
     return out
 
 
+def header_copies(files: set[str], tree: dict[str, str] | None = None) -> list[tuple[str, int, str, str]]:
+    """[(path, line, symbol, header)] for every declaration in these files of a symbol that a header under
+    include/ declares: file_problems' first kind, as data (the header is relative to include/). The fix is
+    mechanical: include the header and drop the declaration, if the file then compiles to the same code."""
+    r = Report(tree_files(None) if tree is None else tree)
+    out = []
+    for name, ds in sorted(r.decls.items()):
+        inc = [d for d in ds if d.path.startswith("include/")]
+        if inc:
+            out += [(d.path, d.line, name, inc[0].path[len("include/"):]) for d in ds if d.path in files]
+    return sorted(out)
+
+
 def print_definition_types(found: dict[str, tuple[str, str, str, str]]) -> None:
     kinds = Counter(v[0] for v in found.values())
     print(f"{len(found)} hand-written definitions have a signature that is not a declaration's of the same function:")

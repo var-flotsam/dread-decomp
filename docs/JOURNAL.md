@@ -152,6 +152,31 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**`drafts.py promote`, first real use: two matches leave `drafts/`, and every held one says why (2026-11-12).**
+The 14 drafts that match (13 since the permuter spike) all carried one note, "its declarations are not settled
+yet". `python tools/drafts.py --version 2.1.0 promote <the 14> --write` and the coordinator's step after it:
+
+| Result | Drafts |
+|---|---|
+| In `src/`, matching | 2: `fn_71001196d8` (unit 108), `fn_7100b59574` (`GUI::CMissionLog`; one declaration replaced by its header) |
+| Moved, then sent back: they copy a declaration no unit header can take (`decl_plan.py --grown`: "not plannable") | 2: `fn_7100ebfd4c` (three callees typed with `Vec2`, `Mesh`, `Cell`, `Edge`, names that mean another struct in each file), `fn_71008c3dcc` (`fn_7100353be8`, 37 copies, returns a type that is a struct in some files and an alias in others) |
+| Held by `promote`: a declaration that is not the tree's | 10, each with its reason in `drafts/INDEX.csv` |
+
+Of the ten: four define a function with other parameter types than the files that declare it (three of them
+hold the same four functions of unit 2607), two declare a callee with other types than its definition has,
+two declare one with a signature no other file uses, and two declare a symbol a header declares where taking
+the header changes the code or does not compile. Those are the 984 "definitions that name a type
+differently" seen from the other side: the draft and the tree each made up a struct for the same object.
+
+`promote` gained one step on the way: a declaration of a symbol that a header under `include/` declares is
+replaced by that header when every function of the file still compiles to the same code (what a person
+would do first, and what `hub_migrate.py --header-redeclared` does for files of `src/`). It took 11 declarations
+from headers across five of these drafts and let one more draft move.
+
+Two command lines in the kit's procedure and both skills were wrong as merged in #403
+(`tools/name_check.py` and `tools/port_sweep.py` need `--version 2.1.0`); fixed here, found by running them.
+Every other command those three files quote has now been run or checked against its `--help`.
+
 **The batch kit, the worker brief and the two skills follow today's rules (2026-11-12).** The last step of the
 tier plan. The kit in `tools/batch/lean/`, its worker brief and `.claude/skills/dread-match` still said what the
 runs of 2026-11-09 to 2026-11-11 did: delete a non-match or keep it in `src/` on the worker's word, spend
