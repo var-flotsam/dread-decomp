@@ -97,6 +97,23 @@ class Table(unittest.TestCase):
         self.assertEqual(equiv_test.digest(b"abc"), equiv_test.digest(b"abc"))
         self.assertNotEqual(equiv_test.digest(b"abc"), equiv_test.digest(b"abd"))
 
+    def test_the_digest_covers_what_the_relocations_name(self):
+        from types import SimpleNamespace as R
+        code = words(0x94000000, 0xD65F03C0)   # bl <relocated>; ret: the same bytes whatever is called
+
+        def call(symbol, addend=0):
+            return {0: R(type=283, symbol=symbol, addend=addend, section=False, data=None)}
+        self.assertEqual(equiv_test.digest(code, call("fn_7100000100")), equiv_test.digest(code, call("fn_7100000100")))
+        self.assertNotEqual(equiv_test.digest(code, call("fn_7100000100")), equiv_test.digest(code, call("fn_7100000200")))
+        self.assertNotEqual(equiv_test.digest(code, call("g", 0)), equiv_test.digest(code, call("g", 8)))
+        self.assertNotEqual(equiv_test.digest(code, call("fn_7100000100")), equiv_test.digest(code))
+        # a string counts by its content: moving it inside its section changes nothing
+        a = {0: R(type=275, symbol=".rodata.str1.1", addend=0, section=True, data=b"hi\0")}
+        b = {0: R(type=275, symbol=".rodata.str1.1", addend=7, section=True, data=b"hi\0")}
+        c = {0: R(type=275, symbol=".rodata.str1.1", addend=0, section=True, data=b"ho\0")}
+        self.assertEqual(equiv_test.digest(code, a), equiv_test.digest(code, b))
+        self.assertNotEqual(equiv_test.digest(code, a), equiv_test.digest(code, c))
+
 
 class Stale(unittest.TestCase):
     """tools/check.py fails a `pass` row that no longer describes the tree."""
@@ -113,7 +130,8 @@ class Stale(unittest.TestCase):
 
     def stale(self, table, statuses, code=None):
         where = {"0x7100000100": [(self.obj, "fn_7100000100")]}
-        return self.check.stale_verdicts(table, statuses, where, lambda obj, symbol: code or self.code)
+        return self.check.stale_verdicts(table, statuses, where,
+                                         lambda obj, symbol: equiv_test.digest(code or self.code))
 
     def test_a_pass_of_the_code_in_the_tree_is_current(self):
         self.assertEqual(self.stale({0x7100000100: self.row()}, {"0x7100000100": "m"}), [])
@@ -121,7 +139,7 @@ class Stale(unittest.TestCase):
     def test_changed_code_a_match_a_missing_function_and_older_rules_are_stale(self):
         table = {0x7100000100: self.row()}
         self.assertEqual(self.stale(table, {"0x7100000100": "m"}, words(0xD65F03C0)),
-                         [("0x7100000100", "its code changed since it was judged")])
+                         [("0x7100000100", "its code, or what it refers to, changed since it was judged")])
         self.assertIn("its status is O", self.stale(table, {"0x7100000100": "O"})[0][1])
         self.assertIn("no function of src/", self.stale(table, {})[0][1])
         old = {0x7100000100: self.row(rules=str(equiv_test.RULES - 1))}

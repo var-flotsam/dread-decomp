@@ -378,6 +378,16 @@ python tools/equiv_test.py --version 2.1.0 --minor          # every file under s
 python tools/equiv_test.py --version 2.1.0 --drafts         # the `registers or order` rows of drafts/INDEX.csv
 ```
 
+### `tools/ref_check.py`
+
+Wrong addresses in functions that do not match: what a function refers to, against the original.
+
+```sh
+python tools/ref_check.py --version 2.1.0                    # every NON_MATCHING file under src/
+python tools/ref_check.py --version 2.1.0 FILE.cpp [...]     # the non-matching functions of these files
+python tools/ref_check.py --version 2.1.0 --drafts           # every draft of drafts/INDEX.csv
+```
+
 ### `tools/fakematch.py`
 
 Fake-match patterns in the hand-written sources: byte-identical code that a programmer would not have written, which usually points at a missing helper, a wrong type or two variables merged into one.

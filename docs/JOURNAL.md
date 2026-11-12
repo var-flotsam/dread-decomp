@@ -152,6 +152,51 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**A sweep for wrong addresses in functions that do not match (2026-11-12).** `tools/check.py` verifies every
+callee, global and GOT slot of a matching function, and nothing in a non-matching one: its check needs the
+instructions to line up. `tools/ref_check.py` compares sets instead: what our function calls and refers to (its
+relocations, resolved as the check resolves names) against what the original function calls and every address
+it forms. It needs no emulator, so it reaches all 481 non-matching functions of `src/` and the 293 of the
+drafts, where the tier-2 test can run 141. Run on the tree as it was before #397, it reports the three wrong
+addresses that test found.
+
+What it reports, and what the tree has today:
+
+| Finding | Meaning | `src/` | `drafts/` |
+|---|---|---|---|
+| `slot` | a global named after a GOT slot of the original (the object is what the slot points to) | 0 | 0 |
+| `call`, `global` in a registers-only function | the same instructions with another callee or global: wrong | 0 | 0 |
+| `call`, `global` elsewhere | the sets differ; it can be the reason the function does not match | 4 functions | 1 |
+| `near` | an address close to one the other side names; most often one object from another base | 4 | 3 |
+
+`tools/check.py` fails on the first two rows (`REFS` lines), so a new non-matching function cannot bring one in.
+The four functions of the third row are marked `NON_MATCHING(minor)` and each needs a person to read it against
+the original; they are not judged here:
+- `fn_7101065450` (`src/game/CCutscene.cpp`) calls the default allocation function `fn_7100083b60`, which the
+  original function never calls (its note says the original spills "the copy's allocator");
+- `fn_71000f63b0` (`src/base/snd/CSoundSystemATK.cpp`) calls the string release once more than the original (its
+  note: the original moves the id where ours copies and destroys);
+- `fn_7100d668d4` (`CPolygonCollectionShape.cpp`) calls `memmove` where the original copies in line;
+- `fn_7100b39714` (`src/game_aca57c/fn_7100b395fc.cpp`) names the vtable at `0x7101a9c938`, which the original
+  function never forms.
+
+Limits. Of the names our non-matching functions use, 2,011 resolve to no address (member functions and statics
+without an address in their name); for a function with one, only what ours names is checked, not what the
+original has and ours lacks. 309 of the 481 functions are compared both ways. The original's addresses are read
+straight down its instructions with no control flow, and string literals and constants are left out. And a
+set says nothing about a wrong constant, offset or branch: that is what matching and the tier-2 test are for.
+
+Putting an old bug back to see the check fail showed a hole in the tier-2 table of the same day: the digest of
+a judged function covered its bytes, and in an object the relocated fields are still zero, so a function that
+called another callee or read another global had the same digest and kept its `pass`. The digest covers what
+the relocations name now (the test's rules are at version 2 and every verdict was taken again: the same 34
+pass); with the bug back, the check prints both a `REFS` and an `EQUIV` line.
+
+Two things it took to make the report usable: a real GOT slot is told from a pointer variable or a table of
+pointers by where it lies (the original's `.got`, 71,706 slots after `.got.plt`), because code may name a
+pointer table and never a slot; and a call of a PLT stub by its address is the call of the import the stub
+jumps to.
+
 **Nine drafts enter `src/` as verified equivalent (2026-11-12).** Of the drafts that pass
 `tools/equiv_test.py` (17 rows, 21 functions with the siblings their files hold), nine functions are in `src/`
 now as `NON_MATCHING(minor)` with a passing row in `data/equivalence.csv`: `fn_710015a0e0`, `fn_71001b7d80`,

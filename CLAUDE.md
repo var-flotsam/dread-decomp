@@ -102,6 +102,7 @@ python tools/gen_fields.py --class <Class>             # a reflected class's mem
 python tools/decl_check.py --strict --base origin/main # one declaration per shared symbol (CI)
 python tools/fakematch.py --base origin/main [--list]  # fake-match forms a branch adds; review before a PR
 python tools/equiv_test.py --version <ver> <file.cpp> [--write]   # tier 2: is a registers-only non-match equivalent?
+python tools/ref_check.py --version <ver> [<file.cpp>]  # wrong callees and globals in functions that do not match
 python -m unittest discover -s tools/tests -t .       # tool tests, no game data (CI)
 python tools/hub_migrate.py --version <ver> --plan PLAN.tsv   # mechanical header migration; .claude/skills/dread-hubs
 python tools/ghidra/decompile.py --version <ver> <addr|name>  # read Ghidra's view (never commit it)
