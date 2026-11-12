@@ -1,15 +1,21 @@
-// o0314: MATCHES when fn_7100eea4c8 takes `const UnkMask& mask` (its temporary then gets lifetime markers and shares
-// the zero vector's stack slot), but src/game/CSubAreaManager.cpp declares it with a by-value UnkMask.
-// Also define fn_7100eeaed0 with a CSubAreaManager* parameter (its existing declaration) and cast inside.
-#include "UnkLeftoverReg.h"
+// CSubAreaManager's unit (tools/tu_map.py unit 2577): fn_7100eeaed0 enters the current sub-area. It marks the
+// change as running and the scenario's flag clear; in state 3 it stops the effect player's fade (starting a
+// short one at the origin when none runs), disables the player's component and takes the player as the follow
+// actor, otherwise it hands the sub-area's settings to the environment manager and the camera and applies the
+// full mask to it; then it collects the sub-area's two render lists, steps the change once with no time and,
+// outside state 3, reports the previous and the current sub-area's ids. The manager's view is that of the
+// unit's other files (src/game/UnkTU2577/UnkTU2577_Fade_ovb0190.cpp). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CActorComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkMask.h"
+#include "game/UnkTU2577.h"
+#include "game/UnkTU2611.h"
+#include "game/UnkTU2656.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-struct CSubAreaManager;
 
 // A sub-area (a placeholder for the fields used here): two ids.
 struct UnkSubArea {
@@ -20,26 +26,6 @@ struct UnkSubArea {
 static inline const CStrId& FirstId(const UnkSubArea* area) { return area ? area->field_0x0 : g_unk_7101d470e0; }
 static inline const CStrId& SecondId(const UnkSubArea* area) { return area ? area->field_0x50 : g_unk_7101d470e0; }
 
-// A bit mask passed by value (copied into a temporary).
-struct UnkMask {
-    u32 bits;
-    UnkMask() : bits(0) {}
-    UnkMask(u32 b) : bits(b) {}
-    UnkMask(const UnkMask& o) : bits(o.bits) {}
-};
-template <class T>
-struct UnkMaskOf {
-    static const UnkMask& None() {
-        static UnkMask s;
-        return s;
-    }
-    static const UnkMask& All() {
-        static UnkMask s(~None().bits & 0x1ff);
-        return s;
-    }
-};
-struct UnkSubAreaMaskTag;
-
 struct UnkScenarioSub {
     u8 pad_0x0[0x58];
     bool field_0x58;
@@ -48,23 +34,6 @@ struct UnkScenario {
     u8 pad_0x0[0x820];
     UnkScenarioSub* field_0x820;
 };
-
-// Helpers that take an empty value first (their callers leave x0 as it is).
-struct UnkSubAreaTag : UnkLeftoverReg {};
-void* fn_7100eea4c8(UnkSubAreaTag, UnkSubArea* area, bool a, bool b, const UnkMask& mask);
-void* fn_7100eea618(UnkSubAreaTag, UnkSubArea* area, bool flag);
-void fn_7100fac120(UnkSubArea* area, UnkMask mask, bool a, bool b, void* c, bool d);
-void fn_7100eeaa48(CSubAreaManager* self, const CStrId& prev_a, const CStrId& prev_b, const CStrId& cur_a,
-                   const CStrId& cur_b, bool flag);
-void fn_7100ee6ae4(CSubAreaManager* self);
-void fn_7100ee4d34(CSubAreaManager* self, f32 dt);
-
-struct UnkVec;
-void fn_710105383c(void* effects);
-bool fn_7101053a0c(void* effects);
-void fn_7101053850(void* effects, UnkVec* position, u32 flag, f32 duration, f32 scale);
-struct UnkStruct_710024fa0c;
-void fn_710024fa0c(UnkStruct_710024fa0c*, bool);
 
 struct UnkSubareaRenderOwner;
 struct UnkSubareaRenderSetup;

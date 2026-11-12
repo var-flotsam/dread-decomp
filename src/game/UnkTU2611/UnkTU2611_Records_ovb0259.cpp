@@ -101,12 +101,6 @@ void fn_7100fab18c(UnkGeneratorRecord_ovb0120* self_, UnkGeneratorRecord_ovb0120
     self->field_0x180 = 0;
 }
 
-struct UnkMask {
-    u32 bits;
-    UnkMask() : bits(0) {}
-    UnkMask(u32 b) : bits(b) {}
-    UnkMask(const UnkMask& o) : bits(o.bits) {}
-};
 struct UnkKindFlags_ovb0259 {
     u8 pad_0x0[0x178];
     u32 flags;  // 0x178

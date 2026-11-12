@@ -1,6 +1,6 @@
 // CMorphBallMovement's unit (tools/tu_map.py), fn_71009432e4: when the owner (+0x30) has its sub-object at +0x220,
 // passes the id it holds under the usual track kind (fn_7101177ae8 returns a pointer to it) to the game manager's
-// fn_7100df31b8 (1, false, false, id, 0). Names are placeholders.
+// fn_7100df31b8 (true, false, 0, id, false). Names are placeholders.
 #include "base/global/CStrId.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
@@ -10,7 +10,7 @@ using base::global::CStrId;
 
 base::global::UnkStringData** fn_7101177ae8(UnkAnimationComponent* self, u64 kind);
 // As src/game/CGameManager.cpp declares it.
-void fn_7100df31b8(UnkGameManager* self, u32 a, bool b, bool c, CStrId id, u32 d);
+void fn_7100df31b8(UnkGameManager* self, bool a, bool keep, u32 value, CStrId id, bool c);
 
 struct UnkMorphBallOwner_A4_b76 {
     u8 pad_0x0[0x220];
@@ -25,6 +25,6 @@ struct UnkMorphBallMovement_A4_b76 {
 void fn_71009432e4(UnkMorphBallMovement_A4_b76* self) {
     if (UnkAnimationComponent* target = self->owner->field_0x220) {
         const CStrId& id = *reinterpret_cast<CStrId*>(fn_7101177ae8(target, 0xf4061ff25a2163d6));
-        fn_7100df31b8(g_unk_7101d47310, 1, false, false, id, 0);
+        fn_7100df31b8(g_unk_7101d47310, true, false, 0, id, false);
     }
 }

@@ -4663,7 +4663,7 @@ address,size,name,name_source,subsystem,status
 0x7100ac64cc,116,fn_7100ac64cc,unknown,game?,O
 0x7100ac6540,452,fn_7100ac6540,unknown,game?,U
 0x7100ac6704,332,fn_7100ac6704,unknown,game?,U
-0x7100ac6850,240,fn_7100ac6850,unknown,game?,U
+0x7100ac6850,240,fn_7100ac6850,unknown,game?,O
 0x7100ac6940,28,fn_7100ac6940,unknown,game?,O
 0x7100ac695c,132,fn_7100ac695c,unknown,game?,O
 0x7100ac69e0,8,fn_7100ac69e0,unknown,game?,O
