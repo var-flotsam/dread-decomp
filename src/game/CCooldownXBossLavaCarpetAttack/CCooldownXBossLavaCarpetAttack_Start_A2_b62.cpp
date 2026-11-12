@@ -9,6 +9,8 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/CAnimationComponent.h"
 #include "game/CBossAIComponent.h"
 #include "game/CCharClassTweakPlayRateTrack.h"
 #include "game/CCooldownXBossAttack.h"
@@ -22,8 +24,6 @@
 using base::reflection::CClass;
 
 struct UnkSelf;
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
-void fn_710117b3e8(UnkWeakTarget* target, void* link);
 void fn_71004c5db0();
 struct UnkEntityState;
 void fn_7100232864(UnkEntityState* entity, bool value);

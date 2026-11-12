@@ -8,16 +8,15 @@
 #include "game/CBlackboard.h"
 #include "game/CDoorShieldLifeComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1376.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
-extern UnkProperty g_unk_7172731138;  // "ChangeWhenVisible"
 // The "NextState" property and the CDoorLifeComponent::SState enum (src/game_s7/fn_71008da6c0.cpp).
 struct UnkEnumType;
-extern UnkProperty g_unk_7172731160;
 extern UnkEnumType g_unk_7172731200;
 
 // A typed value as the section setter takes it (as in src/game/CDoorLifeComponent.cpp).

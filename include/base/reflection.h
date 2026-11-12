@@ -5,6 +5,10 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkReflType;
+struct UnkTUHeader;
+struct UnkTUHeaderFns;
+struct UnkValue;
 struct UnkAssignedRecord_a1ba4;
 struct UnkCompared_0x18;
 struct UnkFormatArgs;
@@ -67,3 +71,34 @@ extern char g_unk_71727673b8;
 extern char g_unk_71727673b9;
 extern char g_unk_7172767530;
 void fn_710025bda0(void* self);
+UnkReflType* fn_710025d654();  // base::reflection::refl_GetType<gameeditor::CGameModelIndex>.
+UnkReflType* fn_7100adc2b4();
+UnkReflType* fn_7100adc390();
+UnkReflType* fn_7100b040c0();  // base::reflection::refl_GetType<std::unique_ptr<GUI::CTrackSet>>.
+UnkReflType* fn_7100b042c4();  // base::reflection::refl_GetType<std::unique_ptr<GUI::CDisplayObjectAnimationDef>>.
+UnkReflType* fn_7100b762b0();  // base::reflection::refl_GetType<GUI::CSkin*>.
+UnkReflType* fn_7100b7638c();
+UnkReflType* fn_7100b76468();
+UnkReflType* fn_7100b76a4c();
+UnkReflType* fn_7100b77030();
+UnkReflType* fn_7100b7d880();  // base::reflection::refl_GetType<GUI::CSpriteSheet*>.
+UnkReflType* fn_7100b7d95c();
+UnkReflType* fn_7100b7da38();
+UnkReflType* fn_7100b7e01c();
+UnkReflType* fn_7100b7e600();
+UnkReflType* fn_7100b80034();  // base::reflection::refl_GetType<GUI::CSpriteSheetItem*>.
+extern UnkReflType g_unk_71726a0628;
+extern UnkValue g_unk_7172758298;
+extern UnkTUHeaderFns g_unk_71727585d8 __attribute__((visibility("hidden")));
+extern UnkReflType g_unk_717275de80;
+extern UnkTUHeader g_unk_717275e1e0 __attribute__((visibility("hidden")));
+extern UnkReflType g_unk_7172766130;
+extern UnkReflType g_unk_7172766270;
+extern UnkReflType g_unk_71727663b0;
+extern UnkReflType g_unk_71727664f0;
+extern UnkTUHeader g_unk_7172766bb8 __attribute__((visibility("hidden")));
+extern UnkReflType g_unk_7172767000;
+extern UnkReflType g_unk_7172767140;
+extern UnkReflType g_unk_7172767280;
+extern UnkReflType g_unk_71727673c0;
+extern UnkTUHeader g_unk_7172767b98 __attribute__((visibility("hidden")));

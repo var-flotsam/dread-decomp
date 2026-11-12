@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
@@ -44,8 +45,6 @@ struct UnkRemovedOwner_b60 {
     u8 pad_0x0[0x10];
     UnkKeyMap_b60 map;  // 0x10
 };
-
-void fn_7100debc28(UnkGameManager* manager, UnkRemovedValue_b60* value);
 
 static inline __attribute__((always_inline)) void* ArgPtr_b60(UnkReflValue* arg) {
     if (!arg->type)

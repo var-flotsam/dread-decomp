@@ -12,6 +12,7 @@
 #include "base/reflection.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU290.h"
+#include "game/UnkTU315.h"
 #include "types.h"
 
 using base::color::CColor4F;
@@ -128,7 +129,6 @@ struct UnkFadeColor {
     f32 b;
     f32 a;
 };
-void fn_7100219fe4(UnkRenderManager* self, u32 layer, const UnkFadeColor& color);
 
 // Channel 6: a colour, each component at least zero, as the vector the render manager's layer 1 takes.
 void fn_7100f9a6d8(f32 dt, UnkEnvironmentFade* fade) {

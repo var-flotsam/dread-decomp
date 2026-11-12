@@ -4,9 +4,11 @@
 // of the item is taken from the inventory (fn_7101142928). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
+#include "game/CInventoryComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -26,8 +28,6 @@ inline UnkGameManagerIdTable& GameManagerIdTable() {
 
 // As src/game/CSecondaryGun/CSecondaryGun_b41.cpp and src/game/CGameManager.cpp declare them.
 struct UnkInventory;
-void* fn_7100df55e4(UnkGameManager*);
-f32 fn_7101142928(UnkInventory*, const UnkQualifiedId&);
 bool fn_7100395b34(CBlackboard::CSection*, const void*, f32*);
 
 // The item's qualified id, built on first use (as src/game_s7/fn_7100fc4b34.cpp's).

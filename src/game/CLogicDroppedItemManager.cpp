@@ -16,6 +16,7 @@
 #include "game/UnkTU0.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU2517.h"
+#include "game/UnkTU2553.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -62,7 +63,6 @@ static_assert(__builtin_offsetof(UnkDroppedItemManager, field_0xa0c8) == 0xa0c8,
               "UnkDroppedItemManager placeholder layout");
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 void fn_71010247e4(UnkDropTarget* self, UnkDropEntry* entry, UnkPlayer* player, const base::math::CVector3D* pos,
                    void* arg4, u32 arg5);
 void fn_7100e2ae2c(UnkDroppedItem* self);
@@ -145,7 +145,6 @@ struct __attribute__((packed)) UnkDropHitList {
 struct UnkTree;
 struct UnkShape;
 struct UnkMtx44;
-void fn_7100d693ac(UnkSegmentShape* self, const UnkSegment2D* seg);
 
 static inline void SetIdentity(UnkMatrix44* m) {
     *m = UnkMatrix44{};

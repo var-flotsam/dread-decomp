@@ -3,6 +3,7 @@
 #include "game/CCameraCtrl.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2523.h"
+#include "game/UnkTU2553.h"
 
 struct UnkPlayer;
 struct UnkDropCameraVec3;
@@ -28,8 +29,6 @@ struct UnkSynchronizedBlockCameraCtrl {
     u8 pad_0x310[0x14];
     UnkBlockCameraVec3 field_0x324;
 };
-
-UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 
 // As fn_7100797df0 (CChozoCommanderDropCameraCtrl): after the base step, clears the vector at
 // +0x324 and, when there is a player, copies its position to +0x244 and +0x238; then copies

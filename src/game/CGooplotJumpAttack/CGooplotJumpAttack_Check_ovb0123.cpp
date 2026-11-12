@@ -19,6 +19,7 @@
 #include "game/CAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkManager_71726af468.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkSpitAttack.h"
@@ -26,8 +27,6 @@
 #include "types.h"
 
 using base::reflection::UnkReflObject;
-
-bool fn_7100d7bea0(UnkActor*, bool);
 
 struct UnkGooplotJump_ovb0123;
 bool fn_710059462c(UnkGooplotJump_ovb0123* self, base::math::CVector3D* point);

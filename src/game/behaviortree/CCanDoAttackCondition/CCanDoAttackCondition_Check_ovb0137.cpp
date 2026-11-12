@@ -5,6 +5,7 @@
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU2702.h"
+#include "game/UnkTU394.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -33,7 +34,6 @@ struct UnkCanAttackNodeList_ovb0137 {
 };
 
 struct UnkAttackQuery_ovb0115;
-void fn_71002c6f80(UnkAttackQuery_ovb0115* self, UnkActor* actor, void* params);
 struct UnkScorpiusAI_b69a4;
 
 // A counted reference released on destruction.

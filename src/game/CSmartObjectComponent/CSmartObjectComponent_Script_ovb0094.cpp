@@ -6,14 +6,16 @@
 #include "game/CGrabComponent.h"
 #include "game/CSmartObjectComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
+#include "game/UnkTU2668.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU56.h"
+#include "game/lua_lib.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 void fn_71010d98bc(void* list, void* object);
 
 struct UnkSmartPlayer_ovb0094 {
@@ -43,9 +45,6 @@ bool fn_7100a04210(UnkSmartObject_ovb0094* self, void* stream) {
 }
 
 struct lua_State;
-extern lua_State* g_unk_7172a01d18;
-s32 fn_71010c0bb0(lua_State* L, const char* str);
-int fn_7100fbc4e0(lua_State* L, void* arg);
 struct UnkKraidGrab_b57a4;
 
 // A string id's pooled data as these callers see it: the hash at +0x30.

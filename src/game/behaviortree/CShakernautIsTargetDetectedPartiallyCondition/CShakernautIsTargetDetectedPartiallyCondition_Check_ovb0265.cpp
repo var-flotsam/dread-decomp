@@ -7,6 +7,7 @@
 #include "game/CEnemyMovement.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU2702.h"
+#include "game/UnkTU315.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -55,7 +56,6 @@ struct UnkDetectMovement {
     UnkDetectBounds bounds;  // 0x8e8
 };
 
-bool fn_7100219588(UnkRenderManager*, const void*, u32, u32);
 struct UnkBigFistAI3_ovb0050;
 struct UnkBigFistKind_ovb0050;
 struct UnkBigFistLimit_ovb0050;

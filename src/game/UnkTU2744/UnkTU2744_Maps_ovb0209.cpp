@@ -12,6 +12,7 @@
 #include "base/UnkRegistry.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
+#include "base/animation/CAnimationResource.h"
 #include "base/file/CThreadSafeDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
@@ -281,7 +282,6 @@ UnkGuiTextNode_b0209* fn_71011b8344(UnkGuiTextMap_b0209* self, const CStrId* key
 
 // ---- fn_71011b8d10 and fn_71011b9968: a name, looked up in the registry (g_unk_7101d4b5a0, created on first
 // use), handed to the loader of its file kind when found ----
-extern UnkRegistry_0x70* g_unk_7101d4b5a0;
 
 struct UnkKeyTemp_b0209 {
     void* id;

@@ -8,6 +8,7 @@
 // with mode 0 (as UnkSpitSend, src/game_s2/UnkSpitSend.h). Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CCollisionComponent.h"
 #include "game/CComponent.h"
 #include "game/CGunComponent.h"
 #include "game/UnkAnimationComponent.h"
@@ -16,7 +17,6 @@
 #include "types.h"
 
 struct UnkListener_b40;
-void fn_71008659c4(UnkCollisionContainer*, u32, u32, void*);
 
 struct UnkMorphBallLauncherActor_b57 {
     u8 pad_0x0[0x210];

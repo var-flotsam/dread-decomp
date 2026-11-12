@@ -26,6 +26,7 @@
 #include "game/UnkTU2509.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU2547.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU365.h"
 #include "game/UnkTU811.h"
 #include "game/UnkXformNode.h"
@@ -82,7 +83,6 @@ __attribute__((noinline)) void fn_71007e9580(void* p) {
 }
 
 struct UnkBaseComponent;
-void fn_710024f6d4(UnkBaseComponent*);
 extern void* g_unk_7101a73c28[];
 
 // The map with its arrays (sharing one allocator).
@@ -307,7 +307,6 @@ void fn_71007e9a60(UnkForcedAreaUpdate_ovb0124* self, f32 dt) {
 struct UnkDoorRegistry_b61;
 struct UnkScenarioObject_ovb0032;
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkGeneratorTarget_ovb0120;
 void fn_710116c128(UnkGeneratorTarget_ovb0120*, const UnkVec3f*, const UnkVec3f*, bool);
 
@@ -591,7 +590,6 @@ struct UnkDoorRegistry_b61;
 struct UnkUnit2547;
 struct UnkCentralUnit;
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkEntityState;
 void fn_7100232864(UnkEntityState*, bool);
 

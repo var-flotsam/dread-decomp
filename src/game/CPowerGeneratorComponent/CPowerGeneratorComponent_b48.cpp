@@ -5,6 +5,7 @@
 // section named by the scenario id, reads the flag into +0x138. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
+#include "game/CPowerGeneratorComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
@@ -12,7 +13,6 @@
 using base::global::CStrId;
 
 CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
-extern UnkProperty g_unk_71727502f8;  // "Used"
 
 struct UnkPowerGeneratorValue_b48 {
     CStrId id;

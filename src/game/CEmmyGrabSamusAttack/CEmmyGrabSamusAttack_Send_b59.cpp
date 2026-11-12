@@ -11,12 +11,12 @@
 #include "game/CEmmyGrabSamusAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::global::CRntString;
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 u64* fn_7100066630(u64* out, const CRntString* str);
 extern CRntString g_unk_71726de700 __attribute__((visibility("hidden")));
 

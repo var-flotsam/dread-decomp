@@ -10,6 +10,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
+#include "game/CActorComponent.h"
 #include "game/CWorldGraph.h"
 #include "game/UnkComponent.h"
 #include "game/UnkNavMeshCell.h"
@@ -19,7 +20,6 @@
 
 struct UnkWorldGraphArray;
 void fn_7100acd4cc(void* self);
-void fn_710024f6d4(UnkBaseComponent* self);
 
 // A node (0x80 bytes); its constructors and destructor are out of line, its id is read through
 // UnkWorldGraphNodeData_b0101.

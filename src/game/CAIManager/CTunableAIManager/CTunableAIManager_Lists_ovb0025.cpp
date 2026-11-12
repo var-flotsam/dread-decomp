@@ -14,9 +14,11 @@
 #include "game/CAIManager/CTunableAIManager.h"
 #include "game/CActorComponent.h"
 #include "game/CAnimationComponent.h"
+#include "game/CInputComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU811.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -306,7 +308,6 @@ struct UnkTimedRefOwner_b0025 {
 };
 
 void* fn_71004067a4(void*);
-void fn_7100874460(void* list, UnkWeakTarget** item);
 void fn_71007aa604(void* component);
 
 static inline UnkWeakTarget* RefTarget(UnkWeakHandle* handle) {
@@ -414,7 +415,6 @@ bool fn_7100daa560(void* self, UnkEmmyCheckActor_b0025* actor) {
 }
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 bool fn_71009e12d0(void*);
 struct UnkStruct_710117af10;
 struct UnkCls_710117af10;

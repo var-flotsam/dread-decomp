@@ -3,6 +3,8 @@
 // side (+-1.0) and, when the owner tracks an object (+0x220), hooks the callback fn_710063e878 up to it
 // (link at +0x40, as src/game/CChozoWarriorXGlaiveSpinAttack/UnkAttackTrackLink_b54.cpp).
 // Names and layouts are placeholders.
+#include "game/CAbilityGhostAura.h"
+#include "game/CAnimationComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -10,8 +12,6 @@ extern "C" int rand();
 
 struct UnkAttackBase;
 void fn_71003608ac(UnkAttackBase* self);
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
-void fn_710117b3e8(UnkWeakTarget* target, void* link);
 void fn_710063e878();
 
 struct UnkQuetzoaMTLink_A4_b71 {

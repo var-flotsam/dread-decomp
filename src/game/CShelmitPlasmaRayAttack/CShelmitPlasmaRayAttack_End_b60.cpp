@@ -7,9 +7,11 @@
 // middle of the shape's box bottom (vf_0x10) and scaled by the box height / 100 (vf_0x20); then the
 // collider is removed (fn_7100863e04) and the flag at +0x72 cleared. Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CCollisionComponent.h"
 #include "game/CShelmitPlasmaRayAttack.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU134.h"
 #include "game/UnkTU285.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
@@ -20,13 +22,11 @@ extern UnkPlasmaRayKey_b60a4 g_unk_710164a700;  // reached through the GOT
 // As src/game/UnkUnit285/UnkUnit285_UpdateActive_b46.cpp defines it.
 struct UnkUnit285_b46a1;
 // As src/game/behaviortree/CParticleEnableEmission/CParticleEnableEmission_Start_b49.cpp declares it.
-void fn_7100146dac(UnkSwitchObject* self, bool enable);
 // As src/game/CAbilityEnergyWave/fn_7100300bd0.cpp declares them.
 struct UnkWorld;
 struct UnkPart;
 UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 bool fn_710114e668(UnkWorld* world, u8 id);
-void fn_7100863e04(UnkCollisionContainer* self, UnkCollisionObject* object);
 
 struct UnkPlasmaRayVec_b60a4 {
     f32 x, y, z;

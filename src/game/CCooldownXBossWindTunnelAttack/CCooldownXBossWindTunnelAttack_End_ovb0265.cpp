@@ -38,7 +38,6 @@ extern const base::global::CStrId g_unk_71726d8108 __attribute__((visibility("hi
 extern base::global::CStrId g_unk_71726d8110 __attribute__((visibility("hidden")));
 
 struct UnkWeakTarget;
-UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 
 struct UnkWindTunnelEnd_ovb0265 {
     u8 pad_0x0[0x8];

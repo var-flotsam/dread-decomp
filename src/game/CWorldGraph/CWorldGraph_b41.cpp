@@ -3,13 +3,13 @@
 // by reference, typed as SWorldGraphNode (the class object g_unk_7172755e70, named where
 // fn_7100adcf10 registers it). Names are placeholders.
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU1629.h"
 #include "types.h"
 
 using base::reflection::CType;
 using base::reflection::UnkReflValue;
 
 struct UnkReflType;
-extern UnkReflType g_unk_7172755e70;
 void* fn_7100acc2f0(char* self, u32 value, void* arg1, void* arg2);
 
 static inline __attribute__((always_inline)) void* ArgPtr_b41a3(UnkReflValue* arg) {

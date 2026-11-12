@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkReflType;
+struct UnkTUHeaderFnsClass;
 struct UnkListedObj;
 struct UnkPtrList;
 void fn_7100e08768();
@@ -22,3 +24,14 @@ extern char g_unk_71727bfda9;
 extern char g_unk_71727bfdaa;
 extern char g_unk_71727bfdab;
 extern char g_unk_71727bfdac;
+UnkReflType* fn_7100e085b0();
+UnkReflType* fn_7100e0868c();
+UnkReflType* fn_7100e08c70();
+UnkReflType* fn_7100e09254();
+UnkReflType* fn_7100e09500();
+UnkReflType* fn_7100e095dc();
+UnkReflType* fn_7100e096b8();
+extern UnkReflType g_unk_71727bf9b8;
+extern UnkReflType g_unk_71727bfaf8;
+extern UnkReflType g_unk_71727bfc38;
+extern UnkTUHeaderFnsClass g_unk_71727c0520 __attribute__((visibility("hidden")));

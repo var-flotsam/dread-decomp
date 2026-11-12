@@ -4,9 +4,8 @@
 // handle at +0x230) is out of range, or there is none, and the owner query fn_7100d7bea0 fails.
 // Names and layouts are placeholders.
 #include "game/UnkActor.h"
+#include "game/UnkTU2523.h"
 #include "game_s2/UnkWeakHandle.h"
-
-bool fn_7100d7bea0(UnkActor* owner, bool flag);
 
 struct UnkProjectileMovement7_b46a3 {
     u8 pad_0x0[0x30];

@@ -4,6 +4,7 @@
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
 #include "base/UnkMatrix44.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU178.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -25,7 +26,6 @@ struct UnkSize_ovb0245 {
 };
 
 UnkMatrix44 fn_71000791a8(const UnkVec3f&, const UnkVec3f&, const UnkVec3f&);
-void fn_710015bf40(UnkMatrix44*, f32);
 
 UnkMatrix44* fn_710019d920(UnkView_ovb0245* self, UnkSize_ovb0245* size) {
     if (!self->matrix_valid) {

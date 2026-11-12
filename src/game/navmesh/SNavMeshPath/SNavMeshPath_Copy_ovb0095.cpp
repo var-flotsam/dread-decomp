@@ -23,9 +23,6 @@ struct UnkNavMeshPathCopy_ovb0095 {
 };
 static_assert(__builtin_offsetof(UnkNavMeshPathCopy_ovb0095, field_0x12a60) == 0x12a60, "layout");
 
-void fn_71002ad978(UnkNavMeshPath* self, void* value);
-void fn_71002adbb0(UnkNavMeshPath* self, void* value);
-
 UnkNavMeshPathCopy_ovb0095* fn_71002ad420(UnkNavMeshPathCopy_ovb0095* self, const UnkNavMeshPathCopy_ovb0095* other) {
     UnkNavMeshPath* path = reinterpret_cast<UnkNavMeshPath*>(self);
     self->field_0x8 = other->field_0x8;

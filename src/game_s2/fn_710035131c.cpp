@@ -11,6 +11,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU437.h"
 #include "types.h"
 
@@ -50,8 +51,6 @@ struct UnkSelf {
 extern u8 g_unk_71726b16d0[] __attribute__((visibility("hidden")));
 
 bool fn_71011428bc(void* object, const CStrId* id);
-void fn_7100e03a78(UnkGameManager* dispatcher, void* key);
-void fn_7100e038b0(UnkGameManager* dispatcher, void* key, UnkVec* vec, u64 arg);
 
 // The bit pattern of a float in memory (a word load, as the original reads it).
 static inline u32 AsU32(const f32& value) {

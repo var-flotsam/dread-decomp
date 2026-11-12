@@ -13,6 +13,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CCollisionComponent.h"
+#include "game/CModelUpdaterComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkBroadphaseObject.h"
@@ -20,10 +21,13 @@
 #include "game/UnkComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2509.h"
+#include "game/UnkTU2510.h"
 #include "game/UnkTU365.h"
+#include "game/UnkTU54.h"
 #include "game/UnkTU58.h"
 #include "game/UnkXformNode.h"
 #include "game/logic/collision/CBroadphaseObject.h"
+#include "game/logic/collision/CCollider.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -36,7 +40,6 @@ using base::global::CRntString;
 UnkReflObject*& fn_7100862088(base::UnkVector<UnkReflObject*>* self, u32 index);
 struct UnkColliderNode_A6_b70;
 void fn_7100860c64(UnkCollisionContainer* self);
-void fn_71008615b4(UnkCollisionContainer* self);
 
 typedef void (*UnkCollisionRefresh_ovb0107)(UnkCollisionContainer* self, UnkCollisionRecord* record, s32 mode);
 typedef u32 (*UnkCollisionQuery_ovb0107)(UnkCollisionObject* object);
@@ -458,7 +461,6 @@ extern "C" int __cxa_guard_acquire(u64* guard);
 extern "C" void __cxa_guard_release(u64* guard);
 
 struct UnkShape;
-UnkMatrix44 fn_7100d36a2c(UnkShape* shape);
 
 struct UnkShapeTester_A5_b68;
 
@@ -525,8 +527,6 @@ struct UnkShapeTestResult_ovb0107 {
     u32 field_0x4;
     UnkShapeTestResult_ovb0107(const UnkShapeTestResult_ovb0107& other);
 };
-UnkShapeTestResult_ovb0107 fn_7100d51368(UnkShapeTester_A5_b68* tester, void* owner, void* shape, void* other,
-                                         const UnkMatrix44& transform, UnkShapeFilter_ovb0107* filter, u16 flags);
 
 struct UnkCollisionOverlapQuery_ovb0107 {
     u32 mask;      // 0x0
@@ -558,7 +558,6 @@ bool fn_7100865010(UnkCollisionOverlapQuery_ovb0107* self, UnkCollisionShapeNode
 
 // Unregistering an object: detaching it from the tracker, removing its record and handing it back.
 struct UnkTracker_7100863a8c;
-bool fn_7100d5a930(UnkTracker_7100863a8c* self, UnkCollisionObject* obj);
 void fn_7100d5abfc(UnkTracker_7100863a8c* self, UnkCollisionObject* obj);
 
 struct UnkManager_7100863a8c;
@@ -732,8 +731,6 @@ inline UnkGameManagerIdTable& GameManagerIdTable() {
 }
 
 struct UnkEntity;
-bool fn_71011735e8(UnkEntity* entity, const void* key, UnkMatrix44* out, u32 flags);
-void fn_71000774fc(UnkXform* x);
 
 struct UnkCollisionPlaced_ovb0107 {
     virtual void vf_0x0();

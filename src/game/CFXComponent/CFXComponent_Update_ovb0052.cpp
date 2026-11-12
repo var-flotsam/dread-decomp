@@ -10,6 +10,7 @@
 #include "game/UnkModelManager.h"
 #include "game/UnkTU132.h"
 #include "game/UnkTU247.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 // ---- the container of string ids ----
@@ -109,7 +110,6 @@ struct UnkPlayer;
 struct UnkObject;
 struct UnkResetOwner;
 struct UnkBinderNames_71001bbfa8;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 void fn_710114fe8c(UnkObject*, u64, u32, u32);
 void fn_71001bbfa8(UnkBinderNames_71001bbfa8* self, const base::global::CStrId* name);
 

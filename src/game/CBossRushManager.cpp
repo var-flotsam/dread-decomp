@@ -20,7 +20,6 @@ using unk_static_init::UnkEnumType;
 
 // The user data's owner, created on first use (as src/game_aca57c/fn_7100dc8828.cpp has it).
 struct UnkUserDataOwner;
-CBlackboard* fn_710120384c(UnkUserDataOwner* self);
 
 static inline UnkUserDataOwner* GetOwner() {
     if (!g_unk_7101d47308) {

@@ -11,6 +11,7 @@
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "game/UnkTU108.h"
+#include "game/malloc.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -40,7 +41,6 @@ using UnkEdgeVisitor = std::function<void(u32, const UnkSegment2D&)>;
 struct UnkSegment2D_71001262e0;  // a segment's two points (src/game/malloc/fn_71001262e0.cpp)
 // The squared distance from `p` to the segment, with the closest point (and where along it).
 f32 fn_71001262e0(const UnkSegment2D_71001262e0* seg, const CVector2D* p, CVector2D* closest, f32* t);
-UnkSegment2D* fn_7100125b44(UnkSegment2D* self, const UnkSegment2D* other);
 
 static inline u32 EdgeCount(const UnkPolygon2D* p) {
     return p->count - (!p->closed & (p->count != 0));

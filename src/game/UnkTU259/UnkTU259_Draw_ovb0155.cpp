@@ -5,6 +5,7 @@
 #include "game/UnkTU174.h"
 #include "game/UnkTU177.h"
 #include "game/UnkTU180.h"
+#include "game/UnkTU181.h"
 #include "game/UnkTU182.h"
 #include "game/UnkTU230.h"
 #include "types.h"
@@ -49,7 +50,6 @@ static_assert(__builtin_offsetof(UnkGraphicsSystem, field_0x317af70) == 0x317af7
 
 void fn_710015e2d0(void* state, u32 stage, u64 location, u32 a, u32 count, u64 data);
 void fn_71001d2eec(UnkGraphicsSystem* self, u32 id, u32 flag);
-void fn_710015e4b0(void* state, u32 stage, u64 location, u32 count, u32 a, const UnkMatrix44* values, u32 b);
 
 void fn_71001d03f8(UnkGraphicsSystem* self, UnkGfxItem_b0155* item, bool upload, bool draw) {
     u32 count = item->count;

@@ -3,10 +3,10 @@
 
 #include "../../lib/lua/lua.h"
 #include "../../lib/lua/lauxlib.h"
+#include "game/UnkTU2668.h"
 #include "game/UnkTU2677.h"
 #include "types.h"
 
-s32 fn_710109cef0(lua_State* L, s32 nargs, s32 nresults, s32 errfunc);
 s32 fn_71010befe0(lua_State* L, void* out, s32 idx);
 
 // Calls the function on the stack with `nargs` arguments. On an error, copies the message into

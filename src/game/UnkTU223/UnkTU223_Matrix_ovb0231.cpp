@@ -2,6 +2,7 @@
 // matrix at +0x20 is copied to +0x108 and its y axis scaled by the aspect ratio of `size`
 // (fn_710015bf40). Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
+#include "game/UnkTU178.h"
 #include "types.h"
 
 struct UnkSize_b0231 {
@@ -19,8 +20,6 @@ struct UnkCachedMatrix_b0231 {
     bool cached;  // 0x182
 };
 static_assert(__builtin_offsetof(UnkCachedMatrix_b0231, cached) == 0x182, "layout");
-
-void fn_710015bf40(UnkMatrix44* self, f32 scale);
 
 UnkMatrix44* fn_710019c3c8(UnkCachedMatrix_b0231* self, const UnkSize_b0231* size) {
     if (!self->cached) {

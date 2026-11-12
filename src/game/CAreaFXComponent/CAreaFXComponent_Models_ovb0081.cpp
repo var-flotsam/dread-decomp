@@ -15,6 +15,7 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU127.h"
 #include "game/UnkTU253.h"
+#include "game/UnkTU315.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -26,11 +27,9 @@ struct UnkMorphBallLauncher_b57;
 struct UnkModelData;
 
 void fn_71009f194c(char*);
-void fn_7100219e58(UnkRenderManager*, u64, bool);
 void fn_7100219e18(UnkRenderManager*, UnkModel*, bool);
 void fn_71006cae2c(UnkRenderPool*, const CFilePathStrId&, UnkModel**, base::global::CStrId*);
 UnkMatrix44 fn_71000791a8(const UnkVec3f& translation, const UnkVec3f& angle, const UnkVec3f& scale);
-void fn_7100219dd0(UnkRenderManager* self, u64 model, const UnkMatrix44* m, u32 a, u32 b, u64* instance, u32 c);
 
 struct UnkAreaFXDef_ovb0081 : UnkReflObject {
     u8 pad_0x8[0x50];

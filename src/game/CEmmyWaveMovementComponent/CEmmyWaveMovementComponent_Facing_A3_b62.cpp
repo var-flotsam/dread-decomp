@@ -3,10 +3,10 @@
 // Names and layouts are placeholders.
 #include "base/math/CVector.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 struct UnkWaveEntity_b62a3 {
     u8 pad_0x0[0x44];

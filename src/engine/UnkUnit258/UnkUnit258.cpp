@@ -1,9 +1,8 @@
 // Engine unit 258 (graphics, next to the graphics system behind g_unk_710b372a98). Names and
 // layouts are placeholders.
 #include "game/UnkGlobal_710b372a98.h"
+#include "game/UnkTU259.h"
 #include "types.h"
-
-void fn_71001d0638(UnkGlobal_710b372a98* gfx, void* item, void* a, u32 b);
 
 struct UnkGfxItem_0x20 {
     u8 pad_0x0[0x20];

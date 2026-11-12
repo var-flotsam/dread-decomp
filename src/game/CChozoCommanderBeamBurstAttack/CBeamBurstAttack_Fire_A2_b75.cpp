@@ -9,6 +9,7 @@
 // other actor and sets the state (+0x58) to 4. Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
@@ -21,8 +22,6 @@
 struct UnkTakumakuComponent;
 struct UnkWorld;
 void fn_710114fe8c(UnkWorld*, u64, u32, u32);
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
-void fn_710117b3e8(UnkWeakTarget* target, void* link);
 void fn_710042a7e0();
 
 extern const u64 g_unk_7101649430;  // reached through the GOT

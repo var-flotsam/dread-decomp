@@ -1,5 +1,7 @@
 // CChozoZombieXPoisonClawsAttack's unit (tools/tu_map.py unit 735): the attack's start and the length it
 // reads from its animation. Names and layouts are placeholders.
+#include "game/CAbilityGhostAura.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkTU1728.h"
 #include "game_s2/UnkParams.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -9,8 +11,6 @@
 // As src/game/CInfesterReloadAttack/CInfesterReloadAttack_Start_A3_b73.cpp declares them.
 struct UnkAttackBase;
 void fn_71003608ac(UnkAttackBase* self);
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
-void fn_710117b3e8(UnkWeakTarget* target, void* link);
 void fn_710049f42c();
 
 struct UnkPoisonClawsLink_ovb0122 {

@@ -9,9 +9,11 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "game/CEnemyMovement.h"
+#include "game/UnkTU2668.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkXformNode.h"
 #include "game/behaviortree/CSetAnimDependsOnDirAction.h"
+#include "game/lua_lib.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -76,11 +78,7 @@ struct UnkScriptAI_b0269 {
 };
 
 struct lua_State;
-extern lua_State* g_unk_7172a01d18;
 extern UnkSuffixHolder_b0269* g_unk_7172a06300 __attribute__((visibility("hidden")));
-
-s32 fn_71010c0bb0(lua_State* L, const char* name);
-int fn_7100fbc4e0(lua_State* L, void* arg);
 
 void fn_71011051fc(UnkScriptAI_b0269* self) {
     if (UnkHandler_b0269* handler = self->handler)

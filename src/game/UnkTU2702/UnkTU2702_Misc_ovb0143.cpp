@@ -14,13 +14,16 @@
 #include "game/CAttack.h"
 #include "game/CAttackComponent.h"
 #include "game/CCharacterMovement.h"
+#include "game/CCoreXAIComponent.h"
 #include "game/CEnemyMovement.h"
 #include "game/CFXComponent.h"
+#include "game/CInputComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU108.h"
+#include "game/UnkTU134.h"
 #include "game/UnkTU2702.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -139,7 +142,6 @@ void* fn_71010ffe3c(UnkAICall_b0143* self, UnkAIResult_b0143* arg, bool flag) {
 
 struct UnkWeakTarget;
 struct UnkTileOutline;
-void fn_7100874460(void* list, UnkWeakTarget** item);
 
 struct UnkAIReset_b0143 {
     u8 pad_0x0[0x30];
@@ -410,7 +412,6 @@ struct UnkComponent;
 struct UnkRinkaControl_ruc;
 UnkComponent* fn_7101152b90(UnkObject*, u64);
 bool fn_710114e668(UnkObject*, u8);
-void fn_7100146dac(UnkSwitchObject*, bool);
 
 struct UnkEffectOwner_b0143 {
     u8 pad_0x0[0x280];
@@ -449,7 +450,6 @@ void fn_710110cc04(UnkEffectSelf_b0143* self, bool both) {
 
 using base::reflection::UnkReflObject;
 
-char* fn_71004dad10(UnkActor*);
 void fn_71006ea9a4(UnkReflObject* component, UnkActor* owner);
 void fn_71007c3a38(char* actor, void* a, void* b, void* c, u32 d, bool e);
 

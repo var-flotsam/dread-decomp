@@ -7,6 +7,7 @@
 #include "game/CInputComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
@@ -75,7 +76,6 @@ struct UnkTrainPlayer_ovb0135 {
 };
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkInputComponent;
 void fn_7100e015b8(UnkGameManager* manager);
 

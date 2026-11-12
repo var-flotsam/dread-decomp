@@ -4,6 +4,7 @@
 #include "game/CActionSet.h"
 #include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU1134.h"
 #include "types.h"
 
 static inline f32 ActionValue(UnkAnimationComponent* self, u64 key) {
@@ -34,7 +35,6 @@ f32 fn_7101177f58(UnkAnimationComponent* self, u64 key) {
 // The word at +0x10 of the track's action, or null without one (generated, src/lifted/; the
 // cutscene reads it as its timeline, src/game/CCutscene.cpp).
 struct UnkCutsceneTimeline;
-UnkCutsceneTimeline* fn_710070d4e8(UnkTrack* track);
 
 // The word at +0x10 of the action of the track whose name hash is `key`, or null when there is no
 // such entry or track.
@@ -54,8 +54,6 @@ static inline T TrackValue(UnkAnimationComponent* self, u64 key) {
 void* fn_7101177d2c(UnkAnimationComponent* self, u64 key) { return TrackValue<UnkCutsceneTimeline*, fn_710070d4e8>(self, key); }
 
 // The same through two other getters of the track (a word and a float), next door.
-u32 fn_710070d840(UnkTrack* track);
-f32 fn_710070d850(UnkTrack* track);
 
 u32 fn_7101177da8(UnkAnimationComponent* self, u64 key) { return TrackValue<u32, fn_710070d840>(self, key); }
 f32 fn_7101177e24(UnkAnimationComponent* self, u64 key) { return TrackValue<f32, fn_710070d850>(self, key); }

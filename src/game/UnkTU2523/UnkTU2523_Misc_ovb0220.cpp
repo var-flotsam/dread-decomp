@@ -20,6 +20,7 @@
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2523.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU56.h"
 #include "types.h"
@@ -75,7 +76,6 @@ struct UnkCueEntity_b0220 {
 
 struct UnkPlayer;
 struct UnkEntitySoundComponent;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 bool fn_7100d7cc68(UnkCueEntity_b0220* self, void* stream) {
     char buffer[128];
@@ -141,7 +141,6 @@ static_assert(__builtin_offsetof(UnkEntityUpd_b0220, field_0x3ac) == 0x3ac, "lay
 void fn_7100232c90(UnkEntityUpd_b0220* self, f32 dt, bool flag);
 bool fn_71007298d0(void* object);
 struct UnkActor;
-bool fn_7100d7bea0(UnkActor* self, bool flag);
 
 void fn_7100d7b068(UnkEntityUpd_b0220* self, f32 dt, bool flag) {
     if (self->field_0x3ac > 0.0f) {

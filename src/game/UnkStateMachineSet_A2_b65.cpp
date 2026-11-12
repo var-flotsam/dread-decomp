@@ -12,6 +12,7 @@
 #include "game/CChozoWarriorXUltimateGrabAttack.h"
 #include "game/UnkBehaviorTree.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2523.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -214,7 +215,6 @@ bool fn_71004c8584(UnkSmOwner_A2_b65<0x68>* self, const UnkMsg_A2_b65* msg) {
 
 // CAbilityShinespark: the request, then one timeline id removed from the actor (+0x30 of +0xc0).
 struct UnkActor;
-void fn_7100d7c94c(UnkActor* self, const u64* key);
 extern const u64 g_unk_7101648ea8;  // reached through the GOT
 
 struct UnkShinesparkLink_A2_b65 {

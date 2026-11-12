@@ -12,6 +12,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1501.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU811.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
@@ -119,9 +120,7 @@ __attribute__((always_inline)) static inline void RequestState_b61(UnkSmMachine_
 
 // ---- CEmmyGrabSamusAttack (tools/tu_map.py) ----
 struct UnkOwner;
-UnkOwner* fn_7100defcd4(UnkGameManager* manager);
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 struct UnkGrabPart_b61 {
     u8 pad_0x0[0x5c];
@@ -183,7 +182,6 @@ struct UnkGrabManager_b61 {
 };
 extern void* g_unk_7101d47360;
 void fn_7100ee1f34(void*);
-void fn_7100df6c78(UnkGameManager* self, f32 a, f32 b);
 struct UnkInputComponent;
 struct UnkGrabInputArg_b61;
 extern UnkGrabInputArg_b61 g_unk_71726de5d0 __attribute__((visibility("hidden")));

@@ -3,9 +3,8 @@
 // the word at +0x18 to the list at +0x60 (fn_710076371c). Names and layouts are placeholders.
 #include "game/CBreakableVignetteComponent.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU315.h"
 #include "types.h"
-
-void fn_7100219c6c(UnkRenderManager*, bool, u64, u32, bool);
 
 struct UnkKeyed_A5_b66 {
     u8 pad_0x0[0x30];

@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkReflType;
+struct UnkTUHeader;
 struct UnkCharMap;
 void fn_7100e768b0(UnkCharMap* self, const char* chars, u32 count, u32 a, void* b, u32 c);
 void fn_7100e76a5c(void* self);
@@ -25,3 +27,12 @@ extern char g_unk_71727c9200;
 extern char g_unk_71727c9201;
 extern char g_unk_71727c9378;
 extern char g_unk_71727c94b8;
+UnkReflType* fn_7100e76a98();
+UnkReflType* fn_7100e76b74();
+UnkReflType* fn_7100e77158();
+UnkReflType* fn_7100e7773c();
+extern UnkReflType g_unk_71727c8f88;
+extern UnkReflType g_unk_71727c90c8;
+extern UnkReflType g_unk_71727c9208;
+extern UnkReflType g_unk_71727c9380;
+extern UnkTUHeader g_unk_71727c9948 __attribute__((visibility("hidden")));

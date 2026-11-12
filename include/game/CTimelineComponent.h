@@ -4,4 +4,8 @@
 // 0x7100a29e60-0x7100a2ec48). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
+
+struct UnkTimelineComponent;
+
 void fn_7100a2d4d0(void*, void*);
+void fn_7100a2c200(UnkTimelineComponent* self, void* entry, __attribute__((noescape)) const u32* value);

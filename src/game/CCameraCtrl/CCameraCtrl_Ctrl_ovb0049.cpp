@@ -10,6 +10,7 @@
 #include "game/CGameObject.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU2553.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -17,7 +18,6 @@ using base::global::CStrId;
 using base::global::UnkStringPool;
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 struct UnkCameraVec3_ovb0049 {
     f32 x, y, z;

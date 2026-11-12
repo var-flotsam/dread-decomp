@@ -4,6 +4,7 @@
 #include "game/CCameraBoundaryCtrl.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2523.h"
+#include "game/UnkTU2553.h"
 
 struct UnkPlayer;
 struct UnkDropCameraVec3;
@@ -22,7 +23,6 @@ struct UnkPureFollowCameraCtrl {
 };
 
 f32 fn_71010ee560(UnkPureFollowCameraCtrl* self);
-UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 
 void fn_71010f072c(UnkPureFollowCameraCtrl* self) {
     fn_7100764388(self);

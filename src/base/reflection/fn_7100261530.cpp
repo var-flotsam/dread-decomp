@@ -4,6 +4,7 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
 #include "game/UnkTUInit.h"
 
@@ -19,7 +20,6 @@ extern char g_unk_71726a04e1;
 extern UnkReflType g_unk_71726a04e8;
 extern char g_unk_71726a0620;
 extern char g_unk_71726a0621;
-extern UnkReflType g_unk_71726a0628;
 extern char g_unk_71726a0798;
 extern char g_unk_71726a0799;
 extern char g_unk_71726a079a;

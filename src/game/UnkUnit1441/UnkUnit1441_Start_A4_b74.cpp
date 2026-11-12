@@ -2,14 +2,14 @@
 // hooks the callback fn_7100969e84 (link at +0xd0, handle at +0xe8) up to it, as the track-link family
 // (src/game/CCooldownXBossStrongWhipAttack/CCooldownXBossStrongWhipAttack_Start_A2_b72.cpp); then resets the
 // fields after it. Names and layouts are placeholders.
+#include "game/CAbilityGhostAura.h"
+#include "game/CAnimationComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkImpulseUser_A5_b68;
 struct UnkImpulseMessage_A5_b68;
 void fn_7100969130(char* self);
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
-void fn_710117b3e8(UnkWeakTarget* target, void* link);
 bool fn_7100969e84(UnkImpulseUser_A5_b68* self, const UnkImpulseMessage_A5_b68* msg);
 
 struct UnkUnit1441TrackLink_A4_b74 {

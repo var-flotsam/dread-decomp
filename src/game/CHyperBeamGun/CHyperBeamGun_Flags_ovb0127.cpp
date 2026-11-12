@@ -12,13 +12,13 @@
 #include "game/UnkTU1501.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU2523.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2562.h"
 #include "types.h"
 #include "base/UnkMatrix44.h"
 #include "game_s2/UnkWeakHandle.h"
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkFlagged;
 bool fn_71009e85b4(UnkFlagged*);
 bool fn_71009ebf5c(UnkFlagged*);

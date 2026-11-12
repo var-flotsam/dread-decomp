@@ -5,11 +5,11 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 struct UnkAbility;
-UnkAbility* fn_7100df554c(UnkGameManager* manager);
 UnkVec3f fn_7100313074(UnkAbility* ability, f32 amount);
 
 // The ghost-dash offset track's record: the time span (+0x10, +0x14) and the offset (+0x18).

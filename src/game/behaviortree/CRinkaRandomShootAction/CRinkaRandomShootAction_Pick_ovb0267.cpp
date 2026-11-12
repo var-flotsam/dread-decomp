@@ -6,6 +6,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCentralUnitAIComponent.h"
 #include "game/UnkAIComponent.h"
 #include "types.h"
 
@@ -31,8 +32,6 @@ struct UnkRinkaShoot_ovb0267 {
     f32 field_0x38;
 };
 
-
-void fn_7100405d58(UnkAIComponent*, s32, u32);
 
 u32 fn_7100402714(UnkRinkaShoot_ovb0267* self) {
     if (self->field_0x2c < 0)

@@ -5,9 +5,8 @@
 // Names and layouts are placeholders.
 #include "game/CGunComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
-
-void* fn_7100df5460(UnkGameManager* manager);
 
 struct UnkGunModeSource {
     u8 unk_0x0[0x10];

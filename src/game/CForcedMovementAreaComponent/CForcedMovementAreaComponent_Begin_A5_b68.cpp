@@ -5,11 +5,11 @@
 #include "base/math/CVector.h"
 #include "game/CInputComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2689.h"
 #include "types.h"
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 extern const base::math::CVector2D g_unk_7101647780;
 
 struct UnkForcedMovementTarget_A5_b68;

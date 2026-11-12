@@ -6,15 +6,15 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
+#include "game/CTriggerComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-bool fn_7100ded930(UnkGameManager* self);
 CStrId fn_7100de9c30(UnkGameManager*);
-extern UnkProperty g_unk_717274d6c8;
 
 struct UnkTypedValue {
     const base::reflection::CType* type;

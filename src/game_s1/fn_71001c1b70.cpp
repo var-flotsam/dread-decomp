@@ -9,6 +9,7 @@
 #include "game/UnkSlots.h"
 #include "game/UnkSphere.h"
 #include "game/UnkTU222.h"
+#include "game/UnkTU23.h"
 #include "game/UnkXformNode.h"
 
 using base::color::CColor4F;
@@ -169,7 +170,6 @@ bool fn_71001c1920(UnkBoneOwner* self, const u64* id, UnkMatrix44* out) {
 // matrices by id (fn_7100015508) when the id has one; the skeleton is then marked for update
 // (fn_71001c1514).
 void fn_710007839c(UnkMatrix44* m);
-UnkMatrix44* fn_7100015508(void* matrices, u64 id);
 
 bool fn_71001c1514(UnkBoneOwner* self, const u64* id, const UnkMatrix44* m) {
     UnkBoneArray* bones = self->holder->bones;

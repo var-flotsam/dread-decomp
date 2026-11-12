@@ -8,11 +8,11 @@
 
 #include "game/CActorComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 struct UnkTriggerPlayerPos_ovb0067 {
     u8 pad_0x0[0x44];

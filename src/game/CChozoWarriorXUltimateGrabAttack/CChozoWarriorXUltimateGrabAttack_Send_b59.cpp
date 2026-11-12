@@ -8,12 +8,12 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkOwner;
-UnkOwner* fn_7100defcd4(UnkGameManager*);
 bool fn_71011428bc(void* object, const CStrId* id);
 extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
 extern const u64 g_unk_7101649920[] __attribute__((visibility("hidden")));

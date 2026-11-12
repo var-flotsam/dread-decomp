@@ -4,6 +4,7 @@
 // Holds fn_7100943118.
 #include "base/math/CVector.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::math::CVector3D;
@@ -59,8 +60,6 @@ struct UnkOwner {
     f32 field_0x394;
 };
 static_assert(__builtin_offsetof(UnkOwner, field_0x394) == 0x394, "UnkOwner placeholder layout");
-
-UnkOwner* fn_7100defcd4(UnkGameManager* manager);
 
 struct UnkMorphMovement {
     u8 pad_0x0[0x30];

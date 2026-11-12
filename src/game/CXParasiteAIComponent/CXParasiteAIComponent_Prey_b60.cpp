@@ -8,11 +8,10 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/CCharacterMovement.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkTimelineCalls.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 
 struct UnkXParasitePreyKey_b60a4;
 extern UnkXParasitePreyKey_b60a4 g_unk_710164a840;  // reached through the GOT

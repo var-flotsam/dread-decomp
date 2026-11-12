@@ -79,7 +79,6 @@ struct UnkGroundPoint2D : CVector2D {
 struct UnkSegmentShape {
     u8 data[0xc0];
 };
-void fn_7100d693ac(UnkSegmentShape* self, const UnkSegment2D* seg);
 struct UnkTree;
 struct UnkShape;
 struct UnkMtx44;

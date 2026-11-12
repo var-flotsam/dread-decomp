@@ -209,7 +209,6 @@ static inline UnkCircle2D CircleAtOrigin(f32 radius) {
 struct UnkOrientedBox2D;
 struct UnkContactList2D;
 struct UnkContact2D;
-bool fn_7100127bb0(const UnkOrientedBox2D* box, const UnkSegment2D* seg, UnkContactList2D* list, bool inside);
 bool fn_7100127fc0(const UnkPlacement2D* a, const void* b, UnkContactBuffer<8>* out, bool flag);
 bool fn_7100128da0(const UnkPlacement2D* a, const UnkCircle2D& b, UnkContactBuffer<8>* out, bool flag);
 bool fn_7100128810(const UnkPlacement2D* a, const void* b, UnkContactBuffer<8>* out, bool flag);
@@ -557,7 +556,6 @@ UnkContact fn_7100d54d78(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, 
 bool fn_71001271d0(const void* b, const UnkCircle2D* a, UnkContactBuffer<2>* out, bool flag);
 bool fn_7100128510(const UnkBox2D* a, const void* b, UnkContactBuffer<2>* out, bool flag);
 bool fn_710012f6a0(const void* b, void* x5, const UnkCircle2D* a, UnkContactPoint* out);
-bool fn_710012ce70(const UnkBox2D* box, const UnkVec2Result& step, const UnkSegment2D* seg, UnkContact2D* out);
 bool fn_710012d6b0(const void* b, void* x5, const UnkBox2D* a, UnkContactPoint* out);
 
 // The shape `a` placed in b's frame against b's contact point set (`SetTest`), reported through
@@ -735,8 +733,6 @@ UnkContact fn_7100d55920(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void*
 }
 
 bool fn_7100126bf0(const void* b, const UnkCircle2D* a, UnkContactBuffer<8>* out, bool flag);
-bool fn_710012deb0(const UnkCircle2D* circle, const UnkVec2Result* delta, const UnkBox2D* box, UnkContact2D* out);
-bool fn_710012e5c0(const UnkBox2D* box, const UnkVec2Result* delta, const UnkCircle2D* circle, UnkContact2D* out);
 
 // The circle `a` against the box `b`: with `flag`, b's point set against the circle first, reported
 // the other way round (b first); then the single contact point along `x5`, tested the other way

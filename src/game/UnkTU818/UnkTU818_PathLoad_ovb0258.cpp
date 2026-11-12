@@ -7,8 +7,10 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CAnimationComponent.h"
+#include "game/CModelUpdaterComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -100,8 +102,6 @@ using base::math::CVector2D;
 using base::math::CVector3D;
 
 struct UnkEntity;
-bool fn_71011735e8(UnkEntity* entity, const void* key, UnkMatrix44* out, u32 flags);
-void fn_71000774fc(UnkXform* x);
 struct UnkVec3;
 void fn_710007b444(void* dst, const UnkVec3* value);
 

@@ -12,11 +12,11 @@
 #include "game/CTriggerLogicAction.h"
 #include "game/GUI/CTutorialComposition.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 
 using UnkRef = base::UnkRefPtrMember;
 UnkRef fn_7100353be8(void* source);

@@ -14,6 +14,7 @@
 #include "game/CCharClassEventScenarioComponent.h"
 #include "game/CCollisionMaterialCacheComponent.h"
 #include "game/CDrop.h"
+#include "game/CInventoryComponent.h"
 #include "game/CSpawnGroupComponent.h"
 #include "game/CThermalReactionComponent.h"
 #include "game/UnkGameBlackboard.h"
@@ -25,6 +26,7 @@
 #include "game/UnkTU2669.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU2768.h"
+#include "game/UnkTU315.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -200,8 +202,6 @@ struct UnkUserDataOwner;
 bool fn_7101203760(UnkUserDataOwner* self);
 bool fn_7100dfe364(UnkGameManager* self);
 void* fn_7100deab70(UnkGameManager*, const CRntString&);
-bool fn_7100dfbe3c(UnkGameManager*);
-bool fn_7100dfbe78(UnkGameManager*, void*);
 s32 fn_7100dff1a8(UnkGameManager*, const base::UnkNamedEntry*, bool, bool);
 s32 fn_7100df78cc(UnkGameManager*, const base::UnkNamedEntry*, bool, bool);
 
@@ -304,8 +304,6 @@ struct UnkSoundMgr;
 struct UnkPathNode;
 
 extern UnkSoundMgr* g_unk_7101d4d820;
-void fn_7100df5cec(UnkGameManager*, void*);
-void fn_7100e03a78(UnkGameManager*, void*);
 void fn_7100df21e8(UnkGameManager* self, CStrId* id);
 
 s32 fn_710107d2d0(lua_State* L) {
@@ -350,8 +348,6 @@ s32 fn_710108b360(lua_State* L) {
 
 struct UnkScriptManager_ovb0085;
 
-void fn_7100219c6c(UnkRenderManager* self, bool enable, u64 layer, u32 arg3, bool arg4);
-void fn_7100219c5c(UnkRenderManager* self, bool enable, void* layer, u32 arg3, bool arg4);
 bool fn_7100219c7c(UnkRenderManager* self, u64 layer, bool arg);
 
 s32 fn_7101082f00(lua_State* L) {
@@ -439,13 +435,10 @@ s32 fn_7101085480(lua_State* L) {
 struct UnkInventory;
 struct UnkPlayer;
 
-f32 fn_7101142928(UnkInventory*, const UnkQualifiedId&);
-
 struct UnkSuitPlayer_b0158 {
     u8 pad_0x0[0x270];
     UnkInventory* inventory;
 };
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 static inline f64 ItemAmount_b0158(UnkPropertyEx<>& item) {
     f64 amount = 0.0;

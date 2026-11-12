@@ -10,10 +10,12 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CAbilityEnergyWave.h"
 #include "game/CBreakableTileGroup.h"
 #include "game/CGrabComponent.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2689.h"
 #include "game/UnkTU365.h"
@@ -177,8 +179,6 @@ bool fn_71010d9638(UnkHitOwner_b0204* self, UnkHit_b0204* hit, UnkTileQuery_A3_b
     return !fn_7100df5874(reinterpret_cast<UnkPlayer*>(g_unk_7101d47310));
 }
 
-UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
-
 struct UnkPlayerMovementC_b0204 {
     u8 pad_0x0[0x7e8];
     UnkWeakHandle* handle;
@@ -228,8 +228,6 @@ void fn_71010db084(void* unused, void* arg) {
         reinterpret_cast<void (*)(UnkBossComponent_b0204*, void*)>(b->vtable[0x7b8 / 8])(b, arg);
     }
 }
-
-UnkWeakTarget* fn_7100302014(void* owner);
 
 struct UnkPlayerMovementB_b0204 {
     u8 pad_0x0[0x30];

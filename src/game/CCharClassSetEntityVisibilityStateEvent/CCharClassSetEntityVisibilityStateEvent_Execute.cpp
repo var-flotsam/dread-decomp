@@ -8,7 +8,6 @@
 #include "types.h"
 
 struct UnkWeakTarget;
-UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 
 struct UnkStruct_71002334fc;
 

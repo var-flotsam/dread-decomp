@@ -11,6 +11,7 @@
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1730.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -117,8 +118,6 @@ struct UnkSmBase_b60;
 struct UnkEmmyRegistry_b55;
 
 CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
-extern UnkDesc_SpitSend g_unk_7172769794;  // reached through the GOT
-extern UnkProperty g_unk_717271a210;  // "Disabled"
 extern const base::global::CStrId g_unk_717271a2c0 __attribute__((visibility("hidden")));
 
 // A typed value as the section setter takes it (as in src/game/CDoorLifeComponent.cpp).

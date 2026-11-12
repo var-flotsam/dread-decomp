@@ -10,10 +10,10 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkInputComponent;
 
 struct UnkUnlockAreaTunable_b57 {

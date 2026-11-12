@@ -26,6 +26,7 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU127.h"
 #include "game/UnkTU253.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2566.h"
 #include "game/UnkTU372.h"
 #include "game/UnkTU883.h"
@@ -538,7 +539,6 @@ struct UnkObserverPlayer_ovb0055 {
 };
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 // While the player is in a state other than 2, updates the enabled observers and resets the others.
 void fn_7100ca6e64(UnkObserverById_ovb0055* self, f32 dt) {

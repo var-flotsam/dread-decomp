@@ -2,6 +2,7 @@
 // each parent's matrix up the chain (fn_71000127c8). Names and layouts are placeholders.
 #include "base/UnkCloneCalls.h"
 #include "base/UnkMatrix44.h"
+#include "game/UnkTU23.h"
 #include "types.h"
 
 struct UnkBoneNode_b0261 {
@@ -23,8 +24,6 @@ struct UnkBoneSet_b0261 {
     u8 pad_0x0[0x8];
     base::UnkKeyedArray<UnkBoneSetTag_b0261, u64, UnkBone_b0261> by_id;  // 0x8
 };
-
-UnkMatrix44* fn_7100015508(void* matrices, u64 id);
 
 UnkMatrix44 fn_710019bb08(UnkBoneSet_b0261* self, const u64* id, void* matrices) {
     u64 key = *id;

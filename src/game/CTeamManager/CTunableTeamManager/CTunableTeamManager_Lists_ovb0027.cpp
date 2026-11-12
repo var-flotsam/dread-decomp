@@ -20,7 +20,6 @@
 using base::math::CVector2D;
 using base::math::CVector3D;
 
-UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 struct UnkPlayer;
 struct UnkDropCameraVec3;
 struct UnkComponent_71011058a8;

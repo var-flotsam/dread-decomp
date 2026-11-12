@@ -20,6 +20,7 @@
 #include "game/UnkCallbackSetVector.h"
 #include "game/UnkTU32.h"
 #include "game/UnkTU341.h"
+#include "game/lua_lib.h"
 #include "game_s2/UnkWeakHandle.h"
 #include <new>
 #include "types.h"
@@ -616,7 +617,6 @@ bool fn_7100234320(void* self, UnkBlock_7100234320* dst) {
 
 
 struct lua_State;
-int fn_7100fbc4e0(lua_State* L, void* arg);
 
 using base::reflection::CType;
 using base::reflection::UnkReflObject;

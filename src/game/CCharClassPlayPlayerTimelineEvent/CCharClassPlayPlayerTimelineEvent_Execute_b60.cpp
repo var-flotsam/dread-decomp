@@ -6,11 +6,11 @@
 #include "base/global/CStrId.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 struct UnkTimelineNameData_b60b {
     base::global::UnkStringData base;

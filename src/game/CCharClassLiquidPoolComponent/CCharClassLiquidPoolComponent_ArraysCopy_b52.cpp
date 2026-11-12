@@ -4,6 +4,7 @@
 // then the keys copied, counting a use of each. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
+#include "game/CCharClassLiquidPoolComponent.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -18,8 +19,6 @@ struct UnkLiquidPoolValue_b52 {
     UnkAliasU32_b52 field_0x8;
     UnkAliasU32_b52 field_0xc;
 };
-
-void fn_7100904c48(UnkPropertyArrays* self, u32 capacity);  // reserve
 
 void fn_7100904b48(UnkPropertyArrays* self, const UnkPropertyArrays* other) {
     self->ids = nullptr;

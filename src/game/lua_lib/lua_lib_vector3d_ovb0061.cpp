@@ -9,10 +9,8 @@
 
 #include "../../../lib/lua/lauxlib.h"
 #include "../../../lib/lua/lua.h"
+#include "game/UnkTU2676.h"
 #include "types.h"
-
-// The userdata at `index` when its metatable is the registry's `name`, else null.
-void* fn_71010a4740(lua_State* L, int index, const char* name);
 
 struct UnkLuaVector3D_ovb0061 {
     f32 x, y, z;

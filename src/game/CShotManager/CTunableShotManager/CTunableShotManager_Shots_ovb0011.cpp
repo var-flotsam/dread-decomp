@@ -17,7 +17,9 @@
 #include "game/UnkTU0.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU2523.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU290.h"
+#include "game/UnkTU315.h"
 #include "game/UnkTU437.h"
 #include "game/sound/CSoundManager.h"
 #include "types.h"
@@ -102,9 +104,7 @@ struct UnkActor;
 struct UnkEntityWithSound;
 struct UnkDropTarget;
 
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 UnkSoundHandle fn_7100d7c42c(UnkEntityWithSound* self, void* a, void* b, void* c, void* d);
-UnkSoundHandle fn_7101024e28(UnkDropTarget* self, const UnkStrIdPathPair* ids, void* a, bool b);
 void fn_7101025560(UnkDropTarget* self, const UnkStrIdPathPair* ids, f32 blend, f32 start);
 
 // The player's sound calls (src/game/CEntity_2.cpp) and the drop manager's, as called here: with a
@@ -206,8 +206,6 @@ void fn_7100ed7144(UnkShotManager_b0011* self) {
         }
     }
 }
-
-void fn_7100219e10(UnkRenderManager* self, u64 object);
 
 // Destroys the 125 render instances of one list, if it has been created.
 static inline void DestroyInstances_b0011(void**& instances) {

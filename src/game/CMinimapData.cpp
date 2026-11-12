@@ -12,6 +12,7 @@
 #include "base/math/UnkSegment2D.h"
 #include "game/SLogicPathNode.h"
 #include "game/UnkTU2563.h"
+#include "game/malloc.h"
 #include "game_s2/UnkItem50.h"
 #include "types.h"
 
@@ -54,7 +55,6 @@ static inline void Project(CVector2D* out, const UnkMinimapPathPoint& point) {
 }
 void fn_7100ebda30(void* path, void* arg1, u32 arg2, f32 a, f32 b, f32 c, f32 d);
 void fn_7100ebc7f0(const UnkSegment2D* seg, void* out, f32 a, f32 b);
-UnkSegment2D* fn_7100125b44(UnkSegment2D* self, const UnkSegment2D* other);
 
 // A map marker (placeholder names): its kind, its path at +0x10, the flag that reverses its
 // segment, the two points at +0x64 and what fn_7100ebc7f0 fills at +0xd8.

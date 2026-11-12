@@ -8,6 +8,8 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
+#include "game/UnkTU2668.h"
+#include "game/UnkTU2677.h"
 #include "types.h"
 
 using namespace unk_prop_bag;
@@ -16,8 +18,6 @@ extern void* g_unk_7101a1b750[];
 using UnkString80 = UnkBufferString<0x80, g_unk_7101a1b750>;
 
 struct lua_State;
-extern lua_State* g_unk_7172a01d18;
-s32 fn_71010c0bb0(lua_State* L, const char* str);
 s32 fn_71010bf400(lua_State* L, const char* fmt, va_list args);
 s32 fn_71010c0cd0(lua_State* L, s32 count, char* buf, u32 size, UnkPropBag* results);
 

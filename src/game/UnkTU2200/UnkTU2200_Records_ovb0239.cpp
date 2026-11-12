@@ -5,6 +5,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/UnkTU2200.h"
+#include "game/UnkTU83.h"
 #include "types.h"
 
 #include <new>
@@ -234,7 +235,6 @@ struct UnkElemA0Array_b42a3 {
 };
 
 struct UnkKeyedStrIds;
-void fn_71000df22c(UnkKeyedStrIds*, u32);
 void fn_7100c8bd98(UnkStrIdMap_b239* self, const UnkStrIdMap_b239* other);
 
 // Copies an id with an untyped store of the pointer (the caller's loop bound is reloaded after it).

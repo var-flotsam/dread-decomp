@@ -9,12 +9,12 @@
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkTU1686.h"
+#include "game/UnkTU2668.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
 
 struct lua_State;
-extern lua_State* g_unk_7172a01d18;  // the game's Lua state
 
 struct UnkLuaEventHandler;
 // The handler's constructor (src/game/GUI/UnkLuaEventHandler_b44.cpp).

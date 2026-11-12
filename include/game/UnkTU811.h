@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkActor;
+struct UnkEmmyRelaxAI_b59;
 struct UnkComponent;
 struct UnkEmmyAI;
 struct UnkEmmyAI2_b62a3;
@@ -36,3 +38,4 @@ void fn_710056a010(void* set, const void* value);
 extern char g_unk_7101a48bc0[];
 extern void* g_unk_7101a48c20[];
 extern char g_unk_71726e20a8[] __attribute__((visibility("hidden")));
+void fn_7100546a30(UnkEmmyRelaxAI_b59* self, u32 state, UnkActor* other, void* arg);

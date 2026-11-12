@@ -10,14 +10,19 @@
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/math/UnkZeroVector3.h"
 #include "base/snd/UnkSound.h"
+#include "game/CAutclastChargeAttack.h"
 #include "game/CDizzeanSwarmControllerComponent.h"
+#include "game/CInventoryComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU1102.h"
+#include "game/UnkTU134.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2560.h"
+#include "game/UnkTU2739.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkXformNode.h"
 #include "game/sound/CSoundManager.h"
@@ -193,7 +198,6 @@ struct UnkDropManagerE_ovb0208 {
 };
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 void fn_7100e2c5b0(void* self, UnkDropSlot_ovb0208* slot, f32 dt);
 struct UnkDroppedItemManager;
 void fn_7100e2d39c(UnkDroppedItemManager* self);
@@ -345,8 +349,6 @@ static inline void* Holder(UnkDropPlayer_ovb0208* player) {
 }
 
 struct UnkInventory;
-f32 fn_7101142928(UnkInventory* inventory, const UnkQualifiedId& item);
-void fn_7101142a28(UnkInventory* inventory, const UnkQualifiedId& item, bool a, bool b, bool c, f32 amount, f32 extra);
 
 struct UnkDropPlayerInv_ovb0208 {
     u8 pad_0x0[0x270];
@@ -449,7 +451,6 @@ void fn_7100e2e9b0(void* self_, void* item_, void* arg_, u32 flags) {
 // ---- Effects ----
 
 struct UnkSwitchObject;
-void fn_7100146dac(UnkSwitchObject* self, bool enable);
 
 struct UnkFxObject_ovb0041;
 struct UnkFxObjectVtable_ovb0208 {
@@ -464,8 +465,6 @@ struct UnkFxObjectVtable_ovb0208 {
 static inline UnkFxObjectVtable_ovb0208* FxVtable(UnkFxObject_ovb0041* fx) {
     return *reinterpret_cast<UnkFxObjectVtable_ovb0208**>(fx);
 }
-UnkFxObject_ovb0041* fn_71003b7db0(UnkModelManager* self, const void* path, bool a, bool b);
-void fn_71011a9bb4(UnkModelManager* self, UnkFxObject_ovb0041* fx);
 extern const u8 g_unk_71727c1370[] __attribute__((visibility("hidden")));  // the effect's path id
 
 static inline UnkModelManager* ModelManager() {

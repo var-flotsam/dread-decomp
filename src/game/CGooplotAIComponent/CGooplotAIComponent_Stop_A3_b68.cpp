@@ -7,6 +7,7 @@
 #include <math.h>
 
 #include "base/math/UnkZeroVector3.h"
+#include "game/CCoreXAIComponent.h"
 #include "game/CGooplotAIComponent.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/CMovementComponent.h"
@@ -15,7 +16,6 @@
 
 using base::math::CVector3D;
 
-char* fn_71004dad10(UnkActor*);
 struct UnkMovement_71010d08d4;
 struct UnkMovementVec_71010d08d4;
 struct UnkFlagTarget;

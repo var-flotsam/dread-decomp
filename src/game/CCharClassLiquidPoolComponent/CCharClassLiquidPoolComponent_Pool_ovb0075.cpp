@@ -30,6 +30,7 @@
 #include "game/CCharClassLiquidPoolComponent.h"
 #include "game/CLiquidSimulationComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -226,8 +227,6 @@ void fn_7100904f7c(UnkLiquidValueArray_ovb0075* self) {
     self->keys = keys;
     self->capacity = self->count;
 }
-
-void fn_7100904c48(UnkPropertyArrays* self, u32 capacity);  // reserve
 
 UnkLiquidValueArray_ovb0075* fn_7100904ddc(UnkLiquidValueArray_ovb0075* self, const UnkLiquidValueArray_ovb0075* other) {
     if (self == other)
@@ -499,7 +498,6 @@ void fn_710090219c(UnkLiquidPoolEnter_ovb0075* self, UnkLiquidPoolTarget_ovb0075
 }
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 struct UnkLiquidPoolActor_ovb0075 {
     u8 pad_0x0[0x1b5];

@@ -2,11 +2,11 @@
 // the object at +0xc8) is empty, else when the owner's inventory (+0x270 of +0x30 of the object at +0xc0)
 // holds more than none of it (fn_7101142928). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CInventoryComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "types.h"
 
 struct UnkInventory;
-f32 fn_7101142928(UnkInventory*, const UnkQualifiedId&);
 
 struct UnkAbilityItem_b66a2 {
     u8 pad_0x0[0x20];

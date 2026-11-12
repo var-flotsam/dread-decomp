@@ -14,6 +14,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CAnimatedCameraCtrl.h"
 #include "game/CCameraComponent.h"
 #include "game/CComponent.h"
 #include "game/CInputComponent.h"
@@ -22,6 +23,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU2523.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2732.h"
 #include "game/UnkTU39.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -151,7 +153,6 @@ void fn_71010e20b0(UnkCamComp2_ovb5* self) {
 }
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 struct UnkDropCameraVec3;
 
 struct UnkCamComp3_ovb5 {
@@ -206,8 +207,6 @@ struct UnkCamComp7_ovb5 {
     CStrId* ids;             // 0x88
     u32 count;               // 0x90
 };
-
-void fn_71010ea4fc(UnkCameraCtrl* ctrl);
 
 void fn_71010e51e4(UnkCamComp7_ovb5* self) {
     UnkCameraCtrl* ctrl = UnkParallelFind(self, IdTable_ovb5().field_0x7c8);

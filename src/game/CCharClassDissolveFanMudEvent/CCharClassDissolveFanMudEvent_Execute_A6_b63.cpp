@@ -10,7 +10,6 @@
 #include "types.h"
 
 struct UnkWeakTarget;
-UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 
 void fn_7100bcce5c(void* self) {
     base::reflection::UnkReflTypeIdArg mask;

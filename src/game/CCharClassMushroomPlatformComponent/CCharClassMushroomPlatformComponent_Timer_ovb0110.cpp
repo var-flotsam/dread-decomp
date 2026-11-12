@@ -8,12 +8,12 @@
 #include "game/CLifeComponent.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU58.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkFlagged;
 struct UnkShape;
 struct UnkBox2D;

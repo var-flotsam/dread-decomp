@@ -2,10 +2,9 @@
 // enabled, records three of its values and either forwards to vf_0x168 or requests state 2 from the component's
 // state machine at +0x100 ("none" 8). Names and layouts are placeholders.
 #include "../UnkSmRequest_A5_b73.h"
+#include "game/UnkTU2523.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 
 struct UnkUsableUser_A5_b73 {
     u8 pad_0x0[0x44];

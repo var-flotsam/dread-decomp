@@ -1,10 +1,9 @@
 // CAIManager (unit 2540 of tools/tu_map.py, the name from reflection): keeps a weak handle
 // (+0xbf0) to `target` unless the handle it holds still points at something. Names and layouts
 // are placeholders.
+#include "game/UnkTU2523.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 
 struct UnkAIManagerTarget {
     u8 unk_0x0[0xbf0];

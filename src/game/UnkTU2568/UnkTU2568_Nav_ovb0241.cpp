@@ -20,7 +20,9 @@
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkTU2568.h"
+#include "game/UnkTU356.h"
 #include "game/UnkTU357.h"
+#include "game/UnkTU373.h"
 #include "game/UnkTU39.h"
 #include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
@@ -327,8 +329,6 @@ void fn_7100ec1970(const CVector2D* start, UnkCellData_ec1710* data, base::UnkVe
 bool fn_71002811b4(UnkNavMeshState_0x5ddf0* state, UnkNavQuery* query, UnkScratch_ec1710* scratch);
 f32 fn_71002aca24(void* result);
 
-void fn_71002810b0(UnkNavMeshState_0x5ddf0* self);
-void fn_71002b4934(UnkNavMeshReach_0x5038* self);
 void fn_7100ebf2fc(UnkNavMeshNodePool_0x70* self, u32 count, u32 unused, u32 flags, base::UnkAllocator* allocator);
 
 // The manager, created on first use with its constructor (fn_7100ebf278) inlined.

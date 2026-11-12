@@ -116,7 +116,6 @@ void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const 
 
 // The "NextState" property and the CDoorLifeComponent::SState enum (src/game_s7/fn_71008da6c0.cpp).
 struct UnkEnumType;
-extern UnkProperty g_unk_7172731160;
 extern UnkEnumType g_unk_7172731200;
 
 // Stores the typed value under `name` in the blackboard section `section` names (unless the

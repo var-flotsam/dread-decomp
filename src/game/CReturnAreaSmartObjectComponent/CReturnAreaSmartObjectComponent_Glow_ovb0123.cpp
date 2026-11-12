@@ -10,13 +10,13 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkSlots.h"
 #include "game/UnkTU253.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::color::CColor4F;
 using base::global::CStrId;
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 bool fn_71001c2bac(UnkSlots* self, u64 key, u32 kind, CColor4F* out, u32 mode);
 struct UnkKraidGrab_b57a4;
 

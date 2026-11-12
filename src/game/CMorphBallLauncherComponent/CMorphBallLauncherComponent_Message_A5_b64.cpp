@@ -8,6 +8,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkTimelineComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -108,8 +109,6 @@ __attribute__((always_inline)) static inline void RequestState_A5m_b64(UnkSmMach
         return;
     SwitchState_A5m_b64<None>(self, id, self->current);
 }
-
-UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 
 struct UnkLauncherTarget_A5_b64 {
     u8 pad_0x0[0x210];

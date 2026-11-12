@@ -6,10 +6,9 @@
 #include "base/UnkRegistry.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
+#include "base/animation/CAnimationResource.h"
 #include "game/UnkTU25.h"
 #include "types.h"
-
-extern UnkRegistry_0x70* g_unk_7101d4b5a0;
 
 // The id and path pair, destroyed out of line.
 struct UnkPathPairTemp_b45a1 {

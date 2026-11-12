@@ -22,6 +22,7 @@
 #include "game/UnkTU1643.h"
 #include "game/UnkTU1728.h"
 #include "game/UnkTU1730.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU56.h"
 #include "game/UnkTU83.h"
 #include "game/UnkXformNode.h"
@@ -48,10 +49,6 @@ struct UnkTrackBlend;
 struct UnkTrackAction_1444;
 
 void* fn_7101176d34(UnkStruct_7101176ea8* self, void* arg);
-UnkCutsceneTimeline* fn_710070d4e8(UnkTrack* track);
-f32 fn_710070d850(UnkTrack* track);
-f32 fn_710070d890(UnkTrack* track);
-f32 fn_710070d89c(UnkTrack* track);
 bool fn_7100c97930(UnkTrackAction_1444* action, const base::reflection::CClass* cls, f32 value);
 
 extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
@@ -750,7 +747,6 @@ void fn_7101176bec(UnkAnimComponent_b1c* self) {
 // ---- Slow motion ------------------------------------------------------------------------------
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 f32 fn_71010d6858();
 
 // The slow-motion flags as bytes of the game manager's word at +0xc4.

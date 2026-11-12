@@ -11,13 +11,14 @@
 #include "game/CLifeComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1370.h"
+#include "game/UnkTU2523.h"
+#include "game/UnkTU2553.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 using base::global::CRntString;
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 struct UnkParent;
 
@@ -157,8 +158,6 @@ void fn_7101160278(UnkLifeState_ovb0000* self, f32 value) {
     UnkLifeChange_ovb0000 change(self->life, old < self->life);
     fn_710116179c(self->on_change, &change);
 }
-
-UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 
 struct UnkStruct_71008c0c74;
 struct UnkBase_71003cc474;

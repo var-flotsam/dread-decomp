@@ -79,7 +79,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71005c042c,388,drafts/game/UnkTU883/fn_71005c042c.cpp,operations,95.9,4,overnight,
 0x71005c3160,372,drafts/game/UnkTU883/fn_71005c3160.cpp,registers or order,92.5,7,overnight,
 0x7100686860,256,drafts/game/CScorpiusAttack/fn_7100686860.cpp,control flow,56.1,27,lean,
-0x71006de940,184,drafts/game/CVulkranAttackManager/CTunableVulkranAttackManager/fn_71006de940.cpp,match,100.0,0,test40,matches; held: fn_7100d78378 (34 copies) and fn_710059cecc have no header
 0x71006eb7cc,256,drafts/game/UnkTU1102/fn_71006eb7cc.cpp,registers or order,92.2,5,overnight,
 0x71006f8944,432,drafts/game/UnkTU1115/fn_71006f8944.cpp,operations,99.1,1,overnight,
 0x71006fda48,348,drafts/game/UnkTU1118/fn_71006fda48.cpp,conditions,93.1,6,overnight,
@@ -117,7 +116,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100a2b3bc,424,drafts/game/CTimelineComponent/fn_7100a2b3bc.cpp,control flow,25.2,79,lean,
 0x7100a3ade0,288,drafts/game/CChangeStateDoorsLogicAction/fn_7100a3ade0.cpp,operations,68.1,22,test40,src/dst callee-saved regs swapped; tail load addressing
 0x7100a787cc,944,drafts/game/CCapsuleUsableComponent/fn_7100a787cc.cpp,operations,3.4,228,lean,
-0x7100ac6850,240,drafts/game/CProjectileMovement/fn_7100ac6850.cpp,match,100.0,0,test40,"matches; held: fn_7100dec788 (125 copies), fn_7100a2cddc and two globals have no header"
+0x7100ac6850,240,drafts/game/CProjectileMovement/fn_7100ac6850.cpp,match,100.0,0,test40,"matches; held: fn_7100a2cddc and two globals (g_unk_71727556b8, g_unk_71727bc558) have no header"
 0x7100af45b0,160,drafts/game/GUI/CBossRushReport/fn_7100af45b0.cpp,registers or order,70.0,12,lean,
 0x7100b4c684,596,drafts/game/UnkTU1691/fn_7100b4c684.cpp,conditions,98.7,2,overnight,
 0x7100b59574,284,drafts/game/GUI/CMissionLog/fn_7100b59574.cpp,registers or order,95.8,3,lean,

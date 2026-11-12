@@ -11,6 +11,7 @@
 #include "game/CCharClassBreakableScenarioComponent.h"
 #include "game/CPickableItemComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
@@ -136,7 +137,6 @@ struct UnkEntityState;
 void fn_7100232864(UnkEntityState*, bool);
 struct UnkStruct_71002334fc;
 struct UnkSpawnGroupKey;
-void fn_7100de9730(UnkGameManager* manager, UnkSpawnGroupKey* key, void* object);
 extern u64 g_unk_717273ffc8 __attribute__((visibility("hidden")));
 
 struct UnkPickTimed_ovb0094;

@@ -4,9 +4,8 @@
 // fn_71002ae0f0 asks the path (whose array is at +0x10) through vtable slot 0x20 first and only tells whether one
 // exists. Names and layouts are placeholders.
 #include "game/UnkObject_0x100.h"
+#include "game/UnkTU376.h"
 #include "types.h"
-
-UnkObject_0x100* fn_71002b5c90(UnkObject_0x100* self, const UnkObject_0x100* other);
 
 struct UnkNavPathEntry_A2_b69 {
     u8 pad_0x0[0x16];

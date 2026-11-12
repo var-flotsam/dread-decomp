@@ -18,6 +18,7 @@
 #include "game/CAISmartObjectComponent.h"
 #include "game/CCameraComponent.h"
 #include "game/CCollisionMaterialCacheComponent.h"
+#include "game/CInventoryComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
@@ -27,6 +28,7 @@
 #include "game/UnkTU2677.h"
 #include "game/UnkTU2704.h"
 #include "game/UnkTU341.h"
+#include "game/lua_lib.h"
 #include "game/malloc.h"
 #include "game/sound/CMusicManager.h"
 #include "types.h"
@@ -48,8 +50,6 @@ __attribute__((always_inline)) static inline T* Singleton_b0161(T*& instance) {
 }
 
 struct UnkWeakTarget;
-int fn_7100fbc4e0(lua_State* L, void* arg);
-UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 
 // ---- the stats object ----
 struct UnkStatsObject;
@@ -108,10 +108,7 @@ s32 fn_7101092bb0(lua_State* L) {
 // ---- the item inventory ----
 struct UnkInventory;
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
-void fn_7101142a28(UnkInventory* inventory, const UnkQualifiedId& item, bool a, bool b, bool c, f32 amount,
-                   f32 extra);
 
 struct UnkSuitPlayer_b0161 {
     u8 pad_0x0[0x270];

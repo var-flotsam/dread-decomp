@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkCallbackSetElem;
 struct UnkCallbackSetVector;
 void fn_7100a3b8e0(UnkCallbackSetVector* v, u32 n);
 void fn_7100a39fec(void* self);
+void fn_7100a3ba90(UnkCallbackSetVector* v, const UnkCallbackSetElem* value);

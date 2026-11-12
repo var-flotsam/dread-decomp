@@ -69,7 +69,6 @@ struct UnkEmmyRelaxAI_b59 {
 };
 
 bool fn_710054782c(UnkEmmyRelaxAI_b59* self);
-void fn_7100546a30(UnkEmmyRelaxAI_b59* self, u32 state, UnkActor* other, void* arg);
 void fn_7100552324(UnkEmmyRelaxAI_b59* self);
 void fn_71005479a0(UnkEmmyRelaxAI_b59* self);
 

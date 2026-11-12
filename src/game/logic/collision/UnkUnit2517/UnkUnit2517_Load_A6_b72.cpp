@@ -3,9 +3,8 @@
 // them at +0xa8. Names and layouts are placeholders.
 #include "base/global/CRntFile.h"
 #include "base/math/UnkSegment2D.h"
+#include "game/malloc.h"
 #include "types.h"
-
-UnkSegment2D* fn_7100125b44(UnkSegment2D*, const UnkSegment2D*);
 
 struct UnkBoxShape2D_A6_b72 {
     u8 pad_0x0[0xa8];

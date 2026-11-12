@@ -13,6 +13,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkTU1600.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
@@ -212,7 +213,6 @@ void fn_7100a8e4c0(UnkTeleporterSelf_b0233* self) {
 
 struct UnkWeakTarget;
 struct UnkWeakHandle;
-UnkWeakHandle* fn_7100d78378(UnkWeakTarget* target);
 
 // A typed value as the section setter takes it (as in src/game/CAIComponent/CAIComponent_StoreFloat_b49.cpp).
 struct UnkTypedValue {

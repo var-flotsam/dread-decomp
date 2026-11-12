@@ -11,6 +11,7 @@
 #include "base/global/CStrId.h"
 #include "game/CTriggerLogicAction.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -24,7 +25,6 @@ struct UnkModeFlags {
 };
 extern UnkModeFlags* g_unk_71726bc570;
 
-bool fn_7100dfbe3c(UnkGameManager*);
 bool fn_7100dfaf88(UnkGameManager* self, void* name, const CRntString& tag, bool flag);
 
 struct UnkSaveGamePair_b54 {

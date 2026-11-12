@@ -19,7 +19,9 @@
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2669.h"
 #include "game/UnkTU2677.h"
+#include "game/UnkTU315.h"
 #include "game/UnkTU99.h"
+#include "game/lua_lib.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
@@ -145,8 +147,6 @@ s32 fn_71010771d0(lua_State* L) {
     return 0;
 }
 
-void* fn_7100df5440(UnkGameManager* manager);
-
 s32 fn_7101093a90(lua_State* L) {
     if (void* object = fn_7100df5440(g_unk_7101d47310)) {
         bool all = false;
@@ -156,8 +156,6 @@ s32 fn_7101093a90(lua_State* L) {
     }
     return 0;
 }
-
-void fn_7100219ca4(UnkRenderManager* self, void* item, bool enable, u32 mode);
 
 s32 fn_7101082e80(lua_State* L) {
     const char* name;
@@ -193,7 +191,6 @@ SET_FLAG_BINDING(fn_7101078120, 0x39)
 SET_FLAG_BINDING(fn_71010781a0, 0x3b)
 
 extern u32 g_unk_71727bebb8;
-int fn_7100fbc4e0(lua_State* L, void* arg);
 
 // fn_7100fbc4e0 hands back the number of results it pushed.
 static inline s32 PushObject(lua_State* L, void* arg) {
@@ -312,8 +309,6 @@ s32 fn_7101078e60(lua_State* L) {
     }
     return fn_71010c0b40(L, "i", result);
 }
-
-void fn_7100df6d3c(UnkGameManager* self, void* settings, f32 a, f32 b);
 
 s32 fn_7101087af0(lua_State* L) {
     f32 a = 1.0f;

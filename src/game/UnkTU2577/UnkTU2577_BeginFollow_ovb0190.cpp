@@ -7,6 +7,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkCameraCtrl.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -14,7 +15,6 @@ using base::global::CStrId;
 using base::reflection::CClass;
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 struct UnkAbility {
     virtual const CClass* vf_0x0();

@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU39.h"
 #include "types.h"
 
@@ -13,7 +14,6 @@ using base::global::CStrId;
 
 // As src/engine/HostArguments.cpp declares it.
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 extern CStrId g_unk_717271a598 __attribute__((visibility("hidden")));
 

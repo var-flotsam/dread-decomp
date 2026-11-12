@@ -14,3 +14,4 @@ int fn_71010c0b40(lua_State* L, const char* fmt, ...);
 
 s32 fn_71010c0d80(lua_State* L, s32 a, char* buf, u32 size, void* x, void* y);
 s32 fn_71010c0ad0(lua_State* L, int first, int count, const char* format, ...);
+s32 fn_71010c0bb0(lua_State* L, const char* str);

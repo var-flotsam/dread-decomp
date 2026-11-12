@@ -11,6 +11,7 @@
 #include "game/CWeightActivatedPlatformSmartObjectComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkSlots.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -178,7 +179,6 @@ struct UnkPlatform_ovb0103 {
 
 
 CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
-extern UnkProperty g_unk_71727434e0;
 struct UnkPlatformSm_b61;
 
 void fn_7100a09f7c(UnkPlatform_ovb0103* self, CBlackboard* blackboard) {
@@ -205,7 +205,6 @@ void fn_7100a09f7c(UnkPlatform_ovb0103* self, CBlackboard* blackboard) {
         fn_7100a0a08c(reinterpret_cast<UnkPlatformSm_b61*>(self));
 }
 
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 void fn_7100a046ec(UnkPlatform_ovb0103* self);
 
 struct UnkPlatformEvent_ovb0103 {

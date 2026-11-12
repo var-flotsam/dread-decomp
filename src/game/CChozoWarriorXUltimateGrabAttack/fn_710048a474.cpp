@@ -7,6 +7,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -51,7 +52,6 @@ struct UnkSelf {
 };
 
 void fn_710048fc80(UnkObject* component);
-UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 
 void fn_710048a474(UnkSelf* self, f32 delta) {
     f32 previous = self->field_0x138;

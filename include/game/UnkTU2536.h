@@ -4,5 +4,11 @@
 // 0x7100da56a4-0x7100da5fac). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
+
+struct UnkReflType;
+struct UnkTUHeader;
+
 void fn_7100da56a4();
 extern char g_unk_71727bc228;
+extern UnkReflType g_unk_71727bc110;
+extern UnkTUHeader g_unk_71727bc230 __attribute__((visibility("hidden")));

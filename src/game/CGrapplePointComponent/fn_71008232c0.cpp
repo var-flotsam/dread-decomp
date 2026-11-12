@@ -1,6 +1,7 @@
 // Static initialiser of a reflected component's unit.
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CGrapplePointComponent.h"
 
 using namespace unk_static_init;
 
@@ -11,11 +12,9 @@ struct UnkStatics_71008232c0 {
 };
 extern UnkStatics_71008232c0 g_unk_7172723668 __attribute__((visibility("hidden")));
 extern UnkStrIdBase g_unk_71727235c8;
-extern UnkProperty g_unk_71727235d0;
 extern void* g_unk_7101a75830[];
 void fn_71008230c8(UnkProperty* p);
 void fn_7100821f40(void* p);
-extern UnkProperty g_unk_71727235f8;
 extern char g_unk_7172723620[];
 
 void fn_71008232c0() {

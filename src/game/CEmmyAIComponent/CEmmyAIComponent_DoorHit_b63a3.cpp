@@ -2,11 +2,11 @@
 // and whose id (+0x38) is empty, it follows the event's +0xf8 object to a door lock (fn_71002af860)
 // and hands that to the object at +0x2a268 (fn_7100705bfc). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU367.h"
 #include "types.h"
 
 struct UnkWeakTarget;
 struct UnkDoorLock;
-UnkDoorLock* fn_71002af860(UnkWeakTarget*);
 void fn_7100705bfc(void* self, UnkDoorLock* lock);
 
 struct UnkEmmyEventHolder_b63a3 {

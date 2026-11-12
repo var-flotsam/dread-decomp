@@ -4,12 +4,11 @@
 // src/game/CChozoWarriorXGlaiveSpinAttack/UnkAttackTrackLink_b54.cpp), then sets the value at +0x2318
 // of the owner's target (fn_7100d7c990, its +0x208) to 0.5 with its flag at +0x231c. Names and layouts
 // are placeholders.
+#include "game/CAbilityGhostAura.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkActor.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
-void fn_710117b3e8(UnkWeakTarget* target, void* link);
 
 struct UnkPrickAttack_b67a4;
 void fn_71006865b0(UnkPrickAttack_b67a4* self);

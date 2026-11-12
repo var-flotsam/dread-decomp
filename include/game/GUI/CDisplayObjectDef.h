@@ -4,6 +4,10 @@
 // 0x7100b04a58-0x7100b0a450). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
+
+struct UnkReflType;
+struct UnkTUHeaderFnsClass;
+
 void fn_7100b05704();
 void fn_7100b05ce8();
 extern char g_unk_717275e1f8;
@@ -16,3 +20,14 @@ extern char g_unk_717275e339;
 extern char g_unk_717275e478;
 extern char g_unk_717275e479;
 extern char g_unk_717275e5f0;
+UnkReflType* fn_7100b05394();  // base::reflection::refl_GetType<GUI::CDisplayObjectDef*>.
+UnkReflType* fn_7100b05470();
+UnkReflType* fn_7100b0554c();
+UnkReflType* fn_7100b05628();
+UnkReflType* fn_7100b05c0c();
+UnkReflType* fn_7100b061f0();
+UnkReflType* fn_7100b08378();  // base::reflection::refl_GetType<GUI::CDisplayObjectStateDef*>.
+extern UnkReflType g_unk_717275e200;
+extern UnkReflType g_unk_717275e340;
+extern UnkReflType g_unk_717275e480;
+extern UnkTUHeaderFnsClass g_unk_717275ed68 __attribute__((visibility("hidden")));

@@ -17,6 +17,9 @@
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU2568.h"
+#include "game/UnkTU367.h"
+#include "game/UnkTU376.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -332,7 +335,6 @@ struct UnkNavMeshBox {
     CVector2D max;
 };
 
-bool fn_7100ebfd4c(UnkNavMeshManager*, Vec2*, u16, Result*, u32, f32, f32);
 void fn_710027c298(UnkNavMeshVisitor* self, u16 cell, u8 side);
 
 static inline UnkNavMeshManager* GetManager() {
@@ -941,8 +943,6 @@ struct UnkNavLoadEdgeLinks {
 };
 static_assert(sizeof(UnkNavLoadEdgeLinks) == sizeof(UnkNavMeshEdge), "UnkNavLoadEdgeLinks layout");
 
-void fn_71002af630(UnkNavMeshCell* self);
-void fn_71002af6a0(UnkNavMeshCell* self);
 void fn_710027ebe4(base::UnkVector<UnkNavMeshEdge>* self, const base::UnkVector<UnkNavMeshEdge>* other);
 // The cell array's reserve.
 void fn_7100279600(base::UnkVector<UnkNavLoadCell>* self, u32 capacity);
@@ -1133,7 +1133,6 @@ static_assert(__builtin_offsetof(UnkNavLoadRecord, field_0x38) == 0x38, "UnkNavL
 static_assert(__builtin_offsetof(UnkNavLoadRecord, field_0x58) == 0x58, "UnkNavLoadRecord layout");
 static_assert(sizeof(UnkNavLoadRecord) == 0x100, "UnkNavLoadRecord layout");
 
-void fn_71002b57bc(UnkObject_0x100* self);
 u32 fn_710026d2e4(const char* name);  // a name's enumerator
 
 static inline UnkObject_0x100* AsObject(UnkNavLoadRecord* r) { return reinterpret_cast<UnkObject_0x100*>(r); }

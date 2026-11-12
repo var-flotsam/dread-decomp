@@ -14,6 +14,7 @@
 #include "base/global/UnkStringPool.h"
 #include "game/CChozoCommanderAIComponent.h"
 #include "game/CDrop.h"
+#include "game/CInventoryComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "../../game_s7/UnkPropBagS7.h"
@@ -46,7 +47,6 @@ struct UnkStrIdHash_b0164 {
     u64 hash;
 };
 struct UnkWeakTarget;
-UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 
 // A handle made from a string id (fn_7100ae986c).
 struct UnkStrIdHandle_b0164 {
@@ -95,7 +95,6 @@ struct UnkEntityA_b0164 {
     void* field_0x270;
 };
 struct UnkInventory;
-void fn_7101142a28(UnkInventory* self, const UnkQualifiedId& id, bool a, bool b, bool c, f32 x, f32 y);
 
 s32 fn_710108f570(lua_State* L) {
     alignas(8) u32 kind;
@@ -124,8 +123,6 @@ s32 fn_710108f570(lua_State* L) {
                   0.0f);
     return 0;
 }
-
-f32 fn_7101142928(UnkInventory* self, const UnkQualifiedId& id);
 
 s32 fn_710108f050(lua_State* L) {
     u64 key;
@@ -192,7 +189,6 @@ s32 fn_710107d680(lua_State* L) {
 }
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager* self);
 
 struct UnkEnergyHolder_b0164;
 struct UnkEnergy_b0164 {
@@ -416,7 +412,6 @@ s32 fn_7101084b60(lua_State* L) {
 }
 
 struct UnkUserDataOwner;
-CBlackboard* fn_710120384c(UnkUserDataOwner* self);
 extern CStrId g_unk_7172a01968[2] __attribute__((visibility("hidden")));
 
 s32 fn_71010798e0(lua_State* L) {

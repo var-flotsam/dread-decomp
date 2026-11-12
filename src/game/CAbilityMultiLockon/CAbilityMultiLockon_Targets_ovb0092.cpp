@@ -11,6 +11,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU252.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTimelineComponent.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -19,8 +20,6 @@
 struct UnkStruct_71002334fc;
 void fn_7100233910(UnkStruct_71002334fc*, bool);
 void fn_7100a2bc3c(void*);
-void fn_7100d7c94c(UnkActor*, const u64*);
-UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 template <class Tag>
 struct UnkSlotArray;
 struct UnkTag_710031da18;

@@ -7,6 +7,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CLifeComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -46,7 +47,6 @@ struct UnkSelf {
     UnkFlagObject* field_0x14908;
 };
 
-void fn_7100df5cec(UnkGameManager* manager, void* target);
 CStrId* fn_710112bf20();
 
 // NON_MATCHING(minor): the child pointer tests load into x8 instead of x0 (register choice only)

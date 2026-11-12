@@ -9,6 +9,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CComponent.h"
 #include "game/CFrozenComponent.h"
+#include "game/CModelUpdaterComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkSwitchObject.h"
@@ -187,7 +188,6 @@ void fn_71007f4378(UnkFrozenAsFrostbite_ovb0114* self, f32 dt) {
 }
 
 struct UnkEntity;
-bool fn_71011735e8(UnkEntity* entity, const void* key, UnkMatrix44* out, u32 flags);
 UnkVec3f fn_7100076acc(const UnkXform* x);
 UnkSwitchObject*& fn_71007f4d8c(base::UnkVector<UnkSwitchObject*>* self, u32 index);
 void fn_7100145f28(UnkSwitchObject* self, const UnkVec3f* position);

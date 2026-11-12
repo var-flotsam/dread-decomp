@@ -4,17 +4,17 @@
 // at +0x8c (fn_710012b330, as the sensor door of src/game/UnkStateMachineSetA5_b61.cpp tests it), asks the
 // state machine (+0xa0) for state 2 and clears the flag at +0x2a0. Names and layouts are placeholders.
 #include "../CSensorDoorComponent/UnkDoorStateMachine_b58.h"
+#include "game/CAnimationComponent.h"
 #include "game/CCharacterMovement.h"
 #include "game/CQuarentineDoorComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 struct UnkQuarentineDoor_b54;
-bool fn_71011782ec(UnkAnimationComponent*, u64);
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkFlagged;
 struct UnkShape;
 struct UnkBox2D;

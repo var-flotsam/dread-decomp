@@ -8,13 +8,13 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkXformNode.h"
+#include "game/logic/collision/CCollider.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::reflection::CClass;
 
 struct UnkShape;
-UnkMatrix44 fn_7100d36a2c(UnkShape* shape);
 extern CStrId g_unk_71726b16e0 __attribute__((visibility("hidden")));
 
 struct UnkAimCharClass_b49 {

@@ -3,12 +3,14 @@
 #include "base/UnkMatrix44.h"
 #include "base/global/CStrId.h"
 #include "game/CAbilityShinespark.h"
+#include "game/CModelUpdaterComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU365.h"
 #include "game/UnkTU437.h"
@@ -147,7 +149,6 @@ void fn_7100347a70(UnkAimTurn_ovb0198g* self, f32* out, f32 step, f32 b, bool fl
 // collision component's object must carry one of two ids. Names and layouts are placeholders.
 struct UnkInventory;
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 
 static inline const UnkQualifiedId& GetQualifiedId_ovb0198f(UnkPropertyEx<>& item) {
@@ -582,7 +583,6 @@ UnkVisitResult_b0040 fn_7100358f64(UnkAimNearest_ovb0198m* self, UnkAimTarget_ov
 using base::global::CStrId;
 
 struct UnkEntity;
-bool fn_71011735e8(UnkEntity* entity, const void* key, UnkMatrix44* out, u32 flags);
 
 struct UnkGameManagerIdTable {
     u8 pad_0x0[0x2578];

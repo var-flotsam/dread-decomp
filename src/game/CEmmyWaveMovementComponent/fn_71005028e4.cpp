@@ -4,7 +4,6 @@
 #include "game/CProjectileMovement.h"
 #include "game_s2/UnkChargeComponent.h"
 
-void fn_7100ac40fc(UnkChargeComponent* self, f32 time);
 f32 fn_71005026d0(UnkChargeComponent* self, u32 mode, f32 value);
 
 // NON_MATCHING(minor): the two rate addresses are computed in the other order (the select picks the same one).

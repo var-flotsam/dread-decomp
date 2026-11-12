@@ -13,12 +13,13 @@
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkObject_0x100.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkTU357.h"
 #include "game/UnkTU363.h"
+#include "game/UnkTU376.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-void fn_71002b57bc(UnkObject_0x100* self);
 struct UnkMsg_b152;
 
 struct UnkRecord_b0194 {
@@ -219,7 +220,6 @@ struct UnkStruct_7100286624;
 struct UnkOwner;
 
 void fn_7100286920(UnkNavQuery* self, const CVector2D* point, u16 cell, u8 side);
-UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 f32 fn_7100569f34(UnkOwner* self, void* unused, u32 key, f32 value);
 char* fn_7100569fd4(char* p0, char* p1, char* p2);
 void* fn_7100ebfa74(UnkNavMeshManager* self, UnkNavQuery* query, UnkNavCallback_b0194* callback);

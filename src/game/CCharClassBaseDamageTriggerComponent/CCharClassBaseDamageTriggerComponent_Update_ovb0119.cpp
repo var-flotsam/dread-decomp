@@ -9,6 +9,8 @@
 #include "game/CCharClassBaseTriggerComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1370.h"
+#include "game/UnkTU2523.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 #include "game_s2/UnkWeakHandle.h"
 
@@ -77,8 +79,6 @@ void fn_7100a45cf0(UnkDamageTrigger_b0119* self, void* arg) {
 // (fn_7100d78378), a copy of the request sent (slot 0x188) and, with +0xae9 set, fn_710116a168
 // called with the owner's +0x30. Names and layouts are placeholders.
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
-UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 
 struct UnkFan_A4_b74;
 struct UnkRequest;

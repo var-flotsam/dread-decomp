@@ -4,6 +4,7 @@
 // answer has bit 0 clear.
 #include "base/UnkMatrix44.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU315.h"
 #include "types.h"
 
 struct UnkTarget {
@@ -21,8 +22,6 @@ struct UnkSelf {
     f32 field_0x14;
     f32 field_0x18;
 };
-
-bool fn_7100219588(UnkRenderManager* self, const void* pos, u32 a, u32 b);  // src/game_lo/fn_7100219588.cpp
 
 // NON_MATCHING(minor): the sums land in other registers (the original adds into s8-s10 with the products
 // as first operand, a commuted add; one product is also kept in s5 instead of s0)

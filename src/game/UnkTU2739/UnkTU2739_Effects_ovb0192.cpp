@@ -13,9 +13,11 @@
 #include "base/UnkResKey.h"
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
+#include "game/CAutclastChargeAttack.h"
 #include "game/CFXPool/CDefinition.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU132.h"
 #include "game/UnkTU2739.h"
 #include "game/UnkTUInit.h"
 #include "types.h"
@@ -30,7 +32,6 @@ struct UnkSwitchModel_ovb0192;
 
 UnkFxPooledObject** fn_7100852548(base::UnkVector<UnkFxPooledObject*>* array, u32 index);
 void fn_7100140bbc(UnkTaggedObject116_ovb0168* self, const CStrId* name);
-void fn_7100145818(UnkOverlayModel* model, u32 flag);
 void fn_7100140e4c(UnkSwitchObject116* self, bool enable);
 void* fn_7100a0feac(UnkRenderPool* pool, CFilePathStrId* path, UnkOverlayModel** out, base::global::CStrId* id);
 void fn_71011ab1d0(char* self);
@@ -326,7 +327,6 @@ struct UnkFxObject_ovb0041;
 void* fn_7100846678(void* self, const void* path, u32 a, u32 b);
 void* fn_71010973c0(void* self, const void* path, u32 a, u32 b);
 void* fn_71011a9c98(void* self, const void* path, u32 a, u32 b);
-UnkFxObject_ovb0041* fn_71003b7db0(UnkModelManager* self, const void* path, bool a, bool b);
 
 void* fn_71011a9c2c(void* self, u32 kind, const void* path, u32 a, u32 b) {
     switch (kind) {
@@ -345,7 +345,6 @@ void* fn_71011a9c2c(void* self, u32 kind, const void* path, u32 a, u32 b) {
     }
 }
 
-bool fn_71011a91c4(UnkModelManager* self, void* handle, u32 id);
 struct UnkQueueOwner;
 
 struct UnkPoolValue_a9390 {

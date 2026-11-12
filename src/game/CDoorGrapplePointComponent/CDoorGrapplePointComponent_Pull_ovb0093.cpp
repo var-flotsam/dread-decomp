@@ -8,12 +8,12 @@
 
 #include "../../game_s7/UnkIter.h"
 #include "game/CPullableGrapplePointComponent.h"
+#include "game/UnkTU367.h"
 #include "types.h"
 
 struct UnkWeakTarget;
 struct UnkDoorLock;
 
-UnkDoorLock* fn_71002af860(UnkWeakTarget* entity);
 bool fn_71008d5e28(UnkDoorLock* door);
 
 struct UnkDoorPullSource_ovb0093 {

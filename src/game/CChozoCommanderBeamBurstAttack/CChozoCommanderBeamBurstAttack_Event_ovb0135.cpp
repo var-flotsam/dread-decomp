@@ -11,7 +11,9 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CFXComponent.h"
+#include "game/CModelUpdaterComponent.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU1730.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkParams.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -147,7 +149,6 @@ struct UnkBurstParams_ovb0135 {
 };
 
 struct UnkTrackBlend;
-extern UnkTrackBlend g_unk_7172769758;
 using base::reflection::UnkTunable;
 extern UnkTunable g_unk_71726c56e8;
 
@@ -208,7 +209,6 @@ struct UnkEntity;
 struct UnkObject;
 struct UnkComponent;
 struct UnkFxObject_ovb0041;
-bool fn_71011735e8(UnkEntity* entity, const void* key, UnkMatrix44* out, u32 flags);
 UnkComponent* fn_7101152b90(UnkObject*, u64);
 bool fn_710114e668(UnkObject*, u8);
 void fn_7100146d84(UnkFxObject_ovb0041* fx, const UnkVec3f* position);

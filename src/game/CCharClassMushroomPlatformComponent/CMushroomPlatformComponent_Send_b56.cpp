@@ -8,6 +8,8 @@
 // links in src/game/CChozoWarriorXGlaiveSpinAttack/UnkAttackTrackLink_b54.cpp do; then copies the
 // word at +0x3f4 to +0x3f0. Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/CAnimationComponent.h"
 #include "game/CNavMeshItemComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU372.h"
@@ -15,8 +17,6 @@
 #include "types.h"
 
 struct UnkWeakTarget;
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
-void fn_710117b3e8(UnkWeakTarget* target, void* link);
 
 struct UnkMushroomOwner_b56 {
     u8 pad_0x0[0x220];

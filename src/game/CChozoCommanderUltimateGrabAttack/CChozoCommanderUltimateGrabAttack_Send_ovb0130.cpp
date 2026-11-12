@@ -3,6 +3,7 @@
 // src/game/UnkStateMachineSet_b61.cpp). Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
@@ -57,7 +58,6 @@ bool fn_7100440140(UnkUltimateGrab_ovb0130* self, s32 kind, f32 value) {
 
 extern const u64 g_unk_7101649598[] __attribute__((visibility("hidden")));  // a hash per kind
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 // fn_710043ffa4: the same request sent to the player's character class (fn_7100dec788 of the game
 // manager), with its own table and kind-12 hash; kinds 0 to 2 send nothing.

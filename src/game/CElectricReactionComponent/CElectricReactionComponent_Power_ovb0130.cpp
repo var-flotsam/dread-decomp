@@ -1,6 +1,7 @@
 // CElectricReactionComponent's unit (tools/tu_map.py, unit 1233). Names and layouts are placeholders.
 #include "game/CBossAIComponent.h"
 #include "game/CElectricReactionComponent.h"
+#include "game/UnkTU367.h"
 #include "types.h"
 
 // As src/game/CBossAIComponent/CBossAIComponent_Doors_ovb0102.cpp declares them.
@@ -8,7 +9,6 @@ struct UnkZiplineLink_b49;
 struct UnkZiplineLinkTarget_b49;
 struct UnkDoorLock;
 struct UnkWeakTarget;
-UnkDoorLock* fn_71002af860(UnkWeakTarget*);
 // As src/game/CCharClassUseSmartObjectEvent/CCharClassUseSmartObjectEvent.cpp declares it.
 struct UnkSmartObjectActor;
 struct UnkSmartObjectUserA;

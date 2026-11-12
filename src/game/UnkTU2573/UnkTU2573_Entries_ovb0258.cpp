@@ -6,6 +6,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkTU1370.h"
+#include "game/UnkTU2523.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -104,7 +105,6 @@ struct UnkDamageActor_b0258e {
 struct UnkRequest;
 void fn_71008c1538(UnkRequest* request, f32 value);
 f32 fn_7100305c24(void* stats);
-UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 
 __attribute__((noinline)) void fn_7100ecdcb0(UnkAttackData_b0258e* a, UnkDamageReq_b0258e* req, UnkDamageActor_b0258e* actor, const u32* pos,
                    const u32* dir, f32 value) {

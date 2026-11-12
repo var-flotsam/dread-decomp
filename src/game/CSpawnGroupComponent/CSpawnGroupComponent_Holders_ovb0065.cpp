@@ -143,7 +143,6 @@ void fn_710111f280(UnkSpawnGroupHolders_ovb0065* self, void* arg) {
 }
 
 
-bool fn_7100deabc4(UnkGameManager* manager);
 struct UnkActivatable_b48;
 void fn_710112bec0(void* object, void* arg);
 
@@ -285,7 +284,6 @@ UnkReflValue fn_710111fc58(void*, UnkCollectArgs_ovb0065* args) {
 }
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 struct UnkSpawnGroupUpdate_ovb0065 {
     u8 pad_0x0[0x18];

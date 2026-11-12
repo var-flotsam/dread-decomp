@@ -8,6 +8,7 @@
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "base/spatial/COBox2D.h"
+#include "game/malloc.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -52,7 +53,6 @@ UnkVec2Result fn_7100110420(const COBox2D* self, u32 index) {
 // The segment test of src/engine/SystemStartup.cpp (its box type is this one).
 struct UnkOrientedBox2D;
 struct UnkContactList2D;
-bool fn_7100127bb0(const UnkOrientedBox2D* box, const UnkSegment2D* seg, UnkContactList2D* list, bool inside);
 
 // A contact list (UnkContactList2D) with room for two contacts of 0x2c bytes.
 struct UnkContactList2D_x2 {

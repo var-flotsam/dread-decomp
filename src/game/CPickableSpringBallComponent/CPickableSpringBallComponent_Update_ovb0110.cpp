@@ -5,15 +5,15 @@
 #include <math.h>
 
 #include "base/global/CStrId.h"
+#include "game/CInventoryComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkInventory;
-f32 fn_7101142928(UnkInventory*, const UnkQualifiedId&);
-void* fn_7100df55e4(UnkGameManager*);
 struct UnkStrIdHandle;
 void fn_7100ae986c(UnkStrIdHandle* self, const CStrId& id);
 struct UnkEntityState;

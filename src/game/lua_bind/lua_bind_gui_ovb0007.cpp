@@ -17,6 +17,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CBlackboard.h"
 #include "game/CChozoCommanderAIComponent.h"
+#include "game/GUI/CIngameMenu.h"
 #include "game/GUI/CText.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
@@ -196,7 +197,6 @@ struct UnkStrIdHandle {
     void* field_0x8;
     UnkStrIdHandle(const CStrId& id);  // fn_7100ae986c
 };
-void fn_7100b30454(UnkIngameMenu* menu, const UnkStrIdHandle& handle);
 
 int fn_710109aee0(lua_State* L) {
     const char* name = g_unk_710162e2ed;

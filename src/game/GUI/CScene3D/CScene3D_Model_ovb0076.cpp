@@ -19,7 +19,9 @@
 #include "game/UnkGuiFrames.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2732.h"
+#include "game/UnkTU315.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -245,7 +247,6 @@ void fn_7100b72e5c(UnkScene3D_ovb0076* self, bool on) {
 }
 
 struct UnkRemovedValue_b60;
-void fn_7100debc28(UnkGameManager* self, UnkRemovedValue_b60* value);
 
 // What a scene's list node holds: an object registered with the game manager.
 struct UnkScene3DObject_ovb0076 {
@@ -343,7 +344,6 @@ struct UnkScenePathId_ovb0076 : base::global::UnkFilePathStrIdBase {
 };
 
 bool fn_7100089ef4(base::file::UnkFileDevice* self, const base::global::UnkFilePathStrIdBase* path);  // unloads
-void fn_71002191a4(UnkRenderManager* self, u32 value);
 void fn_71011f5cd0(UnkGuiFrame* frame);
 
 static inline void Unload_ovb0076(base::file::UnkFileDevice* device, const UnkScenePathId_ovb0076& path) {

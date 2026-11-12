@@ -6,11 +6,11 @@
 #include "base/UnkVector.h"
 #include "game/CBombMovement.h"
 #include "game/UnkModelManager.h"
+#include "game/UnkTU2739.h"
 #include "types.h"
 
 extern char g_unk_7101a4bd48[];  // the class's vtable
 struct UnkPbMovementBase_ovb0015;
-bool fn_71011a91c4(UnkModelManager* self, void* handle, u32 id);
 
 static inline UnkModelManager* ModelManager() {
     if (!g_unk_71726b0cd8) {

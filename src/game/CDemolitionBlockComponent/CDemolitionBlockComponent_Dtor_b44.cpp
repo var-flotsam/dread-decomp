@@ -10,6 +10,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/CCharClassActivatableComponent.h"
+#include "game/CCharClassLiquidPoolComponent.h"
 #include "game/CMagnetSurfaceHuskComponent.h"
 #include "game/UnkComponent.h"
 #include "types.h"
@@ -19,8 +20,6 @@ using base::global::UnkStringPool;
 
 extern void* g_unk_7101a72d70[];  // CEmmyWakeUpComponent unit
 extern void* g_unk_7101a80778[];  // CCharClassLavaPoolComponent unit
-
-void fn_7100900414(UnkBaseComponent* self);
 
 // The id at `IdOffset` (0x48 in the activatable component), the table right after it.
 template <u32 IdOffset>

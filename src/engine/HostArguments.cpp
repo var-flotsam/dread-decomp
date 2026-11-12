@@ -12,12 +12,14 @@
 #include "base/reflection.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2550.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2557.h"
 #include "game/UnkTU2578.h"
 #include "game/UnkTU2668.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU2730.h"
 #include "game/UnkTU2733.h"
+#include "game/UnkTU315.h"
 #include "game/UnkTU52.h"
 #include "game/UnkTU58.h"
 #include "game/malloc.h"
@@ -37,8 +39,6 @@ void fn_71000005d0(s32, char**) {
 #include <stdarg.h>
 
 struct lua_State;
-extern lua_State* g_unk_7172a01d18;
-s32 fn_71010c0bb0(lua_State* L, const char* str);
 s32 fn_71010bf400(lua_State* L, const char* fmt, va_list args);
 
 // Calls the script function `name` with the arguments `fmt` describes; whether it returned 1
@@ -92,7 +92,6 @@ void fn_7100df28d0(UnkGameManager* manager, const CRntString& a, const CRntStrin
                    const CRntString& c, const CStrId& id, bool flag, const CRntString& d,
                    const CStrId& e, u32 f, void* g, f32 h);
 void fn_7100decdfc(UnkGameManager* manager, f32 time);
-void fn_7100dffd48(UnkGameManager* manager);
 
 // The debug start-up step: with the start-in-game flag, enters the "INGAME" mode around the
 // script that initialises the game blackboard, starts the game from the debug strings and runs
@@ -348,9 +347,7 @@ void fn_7100132248(UnkStatsObject* self, const CStrId& name, f32 value);
 
 // The render manager's frame steps (game/UnkRenderManager.h).
 void fn_7100219dcc(UnkRenderManager* self);
-bool fn_7100219c4c(UnkRenderManager* self);
 void fn_7100219db4(UnkRenderManager* self, f32 a, f32 b, f32 c, bool d);
-bool fn_7100219970(UnkRenderManager* self);
 void fn_71002192c8(UnkRenderManager* self, f32 dt);
 void fn_71002194a4(UnkRenderManager* self);
 void fn_71002194e8(UnkRenderManager* self);
@@ -360,10 +357,7 @@ extern const base::math::CVector4D g_unk_71016477b4;  // (0, 0, 0, 0)
 extern const base::math::CVector4D g_unk_71016477c4;  // (1, 1, 1, 1)
 
 // The game manager's per-frame steps (game/UnkGameManager.h).
-bool fn_7100ded930(UnkGameManager* self);
-bool fn_7100decc5c(UnkGameManager* self);
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkInventory;
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 struct UnkFramePlayer {

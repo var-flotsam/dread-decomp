@@ -3,11 +3,11 @@
 // is one, then sets the id g_unk_710164a3d8 on the owner's timeline (+0x2e8) to the all-flags mask
 // (as src/game/CKraidAIComponent/fn_7100600c98.cpp). Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CAutomperAutomaticIrradiationAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
 
-char* fn_71003be154(UnkActor* owner);
 void fn_71007d24cc(char* self);
 
 struct UnkEnergyWaveKey_b59a4;

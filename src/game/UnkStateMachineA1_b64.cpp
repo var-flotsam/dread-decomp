@@ -9,9 +9,11 @@
 #include "game/CCharClassChozoWarriorXUltimateGrabAttack.h"
 #include "game/CChozoWarriorXUltimateGrabAttack.h"
 #include "game/CGunComponent.h"
+#include "game/CInventoryComponent.h"
 #include "game/CLifeComponent.h"
 #include "game/CSamusGunComponent.h"
 #include "game/UnkTU1501.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU437.h"
 #include "types.h"
 #include <math.h>
@@ -188,7 +190,6 @@ bool fn_71003fc0a8(UnkSmCannon_A1_b64* self, u32 value) {
 }
 
 struct UnkInventory;
-void fn_7101142a28(UnkInventory*, const UnkQualifiedId&, bool, bool, bool, f32, f32);
 
 // CAbility's unit (machine +0x10, states 0-6, none 7): requests driven by two virtual checks.
 struct UnkSmAbilityActor_A1_b64 {
@@ -568,7 +569,6 @@ bool fn_7100432a98(UnkSmGrab_A1_b64<0x88>* self, UnkSmGrabMsg_A1_b64* msg) {
 // By the current state: in state 3 the grab goes on to 5 unless the player is in the first track; in state 4
 // it is done unless blocked or the player is in it; in state 6 the second track requests state 7.
 struct UnkOwner;
-UnkOwner* fn_7100defcd4(UnkGameManager*);
 
 struct UnkSmPlayer_A1_b64 {
     u8 pad_0x0[0x220];

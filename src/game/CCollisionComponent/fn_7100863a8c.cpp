@@ -7,13 +7,13 @@
 #include "base/global/CStrId.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2510.h"
 #include "game/UnkTU365.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkTracker_7100863a8c;
-bool fn_7100d5a930(UnkTracker_7100863a8c* self, UnkCollisionObject* obj);
 void fn_7100d5abfc(UnkTracker_7100863a8c* self, UnkCollisionObject* obj);
 
 struct UnkManager_7100863a8c {

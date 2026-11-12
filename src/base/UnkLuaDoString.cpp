@@ -15,8 +15,6 @@
 #include "game/UnkTU2668.h"
 #include "types.h"
 
-extern lua_State* g_unk_7172a01d18;
-
 // An array of 8-byte elements (base::UnkVector's layout) on the scratch stack below, which packs
 // its arrays after its count, so their words are only 4-byte aligned.
 struct __attribute__((packed, aligned(4))) UnkLuaScratch {

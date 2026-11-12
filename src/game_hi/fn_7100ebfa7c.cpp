@@ -7,6 +7,9 @@
 #include "base/math/UnkSegment2D.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
+#include "game/UnkTU2568.h"
+#include "game/UnkTU356.h"
+#include "game/UnkTU373.h"
 #include "types.h"
 
 
@@ -59,7 +62,6 @@ struct Result {
 
 
 
-bool fn_7100ebfd4c(UnkNavMeshManager*, Vec2*, u16, Result*, u32, f32, f32);
 Vec2 fn_7100125a64(Vec2*);
 bool fn_71002afcd8(Cell*, Edge*, u32);
 Vec2* fn_710027a410(Mesh*, u16);
@@ -126,8 +128,6 @@ bool fn_7100ebfa7c(UnkNavMeshManager* self, Vec2* pos, Result* out, f32 a, u32 f
 // The manager's constructor: no mesh yet, the query state and the reachability tester
 // constructed in place, an empty smart-link group registry (growth step 10, allocation flags 0x57,
 // the default allocator) and a pool of 100 registry nodes.
-void fn_71002810b0(UnkNavMeshState_0x5ddf0* self);
-void fn_71002b4934(UnkNavMeshReach_0x5038* self);
 void fn_7100ebf2fc(UnkNavMeshNodePool_0x70* self, u32 count, u32 unused, u32 flags, base::UnkAllocator* allocator);
 
 void fn_7100ebf278(UnkNavMeshManager* self) {

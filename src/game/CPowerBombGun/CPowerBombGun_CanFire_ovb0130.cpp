@@ -1,20 +1,20 @@
 // CPowerBombGun's unit (tools/tu_map.py, unit 1313). Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/CBombGun.h"
+#include "game/CInventoryComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkSubAreaGuiCache.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkInventory;
-void* fn_7100df55e4(UnkGameManager*);
-f32 fn_7101142928(UnkInventory*, const UnkQualifiedId&);
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 // As src/game/CMissileBaseGun/CMissileBaseGun_Ammo_ovb0103.cpp declares them.
-extern UnkSubAreaGuiCache* g_unk_71727254f8;
 s32 fn_710119db04(UnkSubAreaGuiCache* self, const base::global::CStrId* name);
 
 // The id table (fn_7100031894 builds it; as src/game/CAbilityEnergyWave/CAbilityEnergyWave_Effect_ovb0022.cpp).

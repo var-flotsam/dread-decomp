@@ -1,6 +1,7 @@
 // Static initialiser of a reflected component's unit.
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CCharClassEventScenarioComponent.h"
 
 using namespace unk_static_init;
 
@@ -13,7 +14,6 @@ struct UnkStatics_71007e59e0 {
 };
 extern UnkStatics_71007e59e0 g_unk_717271f3d0 __attribute__((visibility("hidden")));
 extern UnkStrIdBase g_unk_717271f348;
-extern UnkProperty g_unk_717271f350;
 extern void* g_unk_7101a73580[];
 void fn_71007e53d0(UnkProperty* p);
 void fn_71007dff10(void* p);

@@ -1,6 +1,7 @@
 // Unit 1454: whether the tracked target is out of reach: 50 units away in x, or 50 along the plan direction
 // through the owner's rotation; then asks fn_7100985a08. Names and layouts are placeholders.
 #include "game/UnkTU1450.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -86,7 +87,6 @@ struct UnkPositionSource_b0249;
 struct UnkUnit1452_b56;
 struct UnkSmOther_b60;
 struct UnkSmBase_b60;
-UnkMatrix44 fn_7100078fc8(const UnkMatrix44& m);
 bool fn_7100985a08(UnkNpc_b0248* self, UnkTarget_b0248* target);
 
 bool fn_7100984d24(UnkNpc_b0248* self) {

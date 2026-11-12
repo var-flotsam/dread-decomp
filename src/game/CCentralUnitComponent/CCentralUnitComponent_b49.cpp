@@ -9,6 +9,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1176.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -16,8 +17,6 @@ using base::global::CStrId;
 
 CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 bool fn_71010474f4(CBlackboard* self, const CStrId& section, const CStrId& name);
-extern UnkProperty g_unk_71727141f8;
-extern UnkProperty g_unk_7172714220;
 
 // A typed value as the section setter takes it (as in src/game/CDoorLifeComponent.cpp).
 struct UnkTypedValue {

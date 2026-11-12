@@ -1,6 +1,7 @@
 // Unit 2211 of tools/tu_map.py (0x7100c9bf00-0x7100c9c184, no reflected class): a timed screen tint
 // on the render manager's layer 0. Names and layouts are placeholders.
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU315.h"
 #include "types.h"
 
 struct UnkFadeColor {
@@ -11,7 +12,6 @@ struct UnkFadeColor {
 
     UnkFadeColor(f32 r_, f32 g_, f32 b_, f32 a_) : r(r_), g(g_), b(b_), a(a_) {}
 };
-void fn_7100219fe4(UnkRenderManager* self, u32 layer, const UnkFadeColor& color);
 
 struct UnkTimedTint {
     u8 pad_0x0[0x8];
@@ -39,4 +39,3 @@ void fn_7100c9c014(UnkTimedTint* self, f32 dt) {
     }
     fn_7100219fe4(g_unk_7101d47300, 0, UnkFadeColor(1.0f, 0.0f, 0.0f, self->Alpha()));
 }
-

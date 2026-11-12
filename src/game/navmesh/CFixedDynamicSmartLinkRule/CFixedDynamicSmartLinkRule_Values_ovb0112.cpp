@@ -15,6 +15,7 @@
 #include "base/global/CRntFile.h"
 #include "base/global/CStrId.h"
 #include "game/UnkNavMeshCell.h"
+#include "game/UnkTU367.h"
 #include "types.h"
 
 s64 fn_710007cee4(void*, const char**);
@@ -37,8 +38,6 @@ s32 fn_710026f548(const char* name) {
         return 6;
     return 7;
 }
-
-u32 fn_71002b009c(UnkNavMeshCell* cell);  // a word of the cell's +0x68 object, or 0
 
 struct UnkSmartLinkRuleFilter_ovb0112 {
     u8 pad_0x0[0x64];

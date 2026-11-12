@@ -2,11 +2,11 @@
 // reference at the start of every 0x18-byte entry of the array at +0x348 (count +0x350; count at +0x8, released
 // through slot 0x10), empties it and removes the two timeline keys (g_unk_710164ad68, g_unk_710164ad60) from the
 // actor at +0x30; then fn_710083acc0. Names and layouts are placeholders.
+#include "game/UnkTU2523.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkActor;
-void fn_7100d7c94c(UnkActor* self, const u64* key);
 
 extern u64 g_unk_710164ad60;
 extern u64 g_unk_710164ad68;

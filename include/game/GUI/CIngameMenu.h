@@ -5,5 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkIngameMenu;
+struct UnkStrIdHandle;
 struct UnkStateOwner;
 void fn_7100b2eaac(UnkStateOwner*, s32, bool, bool);
+void fn_7100b30454(UnkIngameMenu* menu, const UnkStrIdHandle& handle);

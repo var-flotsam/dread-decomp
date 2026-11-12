@@ -11,6 +11,7 @@
 #include "game/UnkTU2595.h"
 #include "game/UnkTU2656.h"
 #include "game/UnkTU2725.h"
+#include "game/UnkTU2744.h"
 #include "game/malloc.h"
 #include "game/nn/time.h"
 #include "game/sound/CMusicManager.h"
@@ -159,7 +160,6 @@ void fn_7100f14118(UnkSmOwner_b0225* self, f32 dt) {
 
 struct UnkSoundHolder;
 extern UnkSoundHolder* g_unk_7101d47340;
-void fn_71011b3768(UnkGuiRoot* root);
 extern void* g_unk_71726bc560;
 extern base::global::CRntString g_unk_71729dc240 __attribute__((visibility("hidden")));
 struct UnkMusicMode {

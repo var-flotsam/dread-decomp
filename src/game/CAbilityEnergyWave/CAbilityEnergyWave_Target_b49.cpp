@@ -11,6 +11,7 @@
 #include "game/CInputComponent.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 struct UnkWorld;
@@ -22,8 +23,6 @@ struct UnkRinkaControl_ruc;
 
 UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 void fn_7100872908(void*, void*);
-UnkPlayer* fn_7100dec788(UnkGameManager*);
-UnkOwner* fn_7100defcd4(UnkGameManager*);
 
 struct UnkEnergyWaveTargetComp_b49;
 struct UnkEnergyWaveFxComp_b49;

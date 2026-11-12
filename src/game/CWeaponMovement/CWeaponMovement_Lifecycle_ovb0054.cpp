@@ -12,6 +12,7 @@
 #include "game/CMovementComponent.h"
 #include "game/CWeaponMovement.h"
 #include "game/UnkTU1370.h"
+#include "game/UnkTU2523.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -19,7 +20,6 @@
 struct UnkCharacterMovementFull_ovb0021;
 struct UnkStruct_71008c0c74;
 struct UnkBase_71003cc474;
-UnkWeakHandle* fn_7100d78378(UnkWeakTarget*);
 
 extern char g_unk_7101a96ea8[];  // the CWeaponMovement vtable
 

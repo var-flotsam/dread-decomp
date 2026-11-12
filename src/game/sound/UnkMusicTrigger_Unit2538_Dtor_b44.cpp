@@ -8,6 +8,7 @@
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU2725.h"
 #include "game/UnkTU2730.h"
+#include "game/UnkTU2744.h"
 #include "game/nn/time.h"
 #include "types.h"
 
@@ -59,7 +60,6 @@ void fn_7100da62a4(UnkMusicTrigger2538Fields_b44a3* self, const base::UnkStrIdMe
 
 struct UnkSoundHolder;
 extern UnkSoundHolder* g_unk_7101d47340;
-void fn_71011b3768(UnkGuiRoot* root);
 extern void* g_unk_7101d47330;  // src/engine/HostArguments.cpp calls it the GUI root
 
 // The trigger's activation: the base's step (fn_71011867ec), the sound holder created on first use, an

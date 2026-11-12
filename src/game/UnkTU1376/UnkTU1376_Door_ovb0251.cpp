@@ -29,11 +29,14 @@
 #include "game/UnkGuiRoot.h"
 #include "game/UnkSlots.h"
 #include "game/UnkTU1376.h"
+#include "game/UnkTU2553.h"
+#include "game/UnkTU2668.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU365.h"
 #include "game/UnkTU372.h"
 #include "game/UnkTU39.h"
 #include "game/UnkTUProperty.h"
+#include "game/lua_lib.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -202,12 +205,8 @@ __attribute__((flatten)) void fn_71008cec30(UnkDoorVecSet_b0251* self) {
 }
 
 struct lua_State;
-extern lua_State* g_unk_7172a01d18;
-s32 fn_71010c0bb0(lua_State* L, const char* name);
-int fn_7100fbc4e0(lua_State* L, void* arg);
 struct UnkBreakablePart;
 struct UnkBreakableTarget;
-extern UnkProperty g_unk_71727310c0;
 
 
 struct UnkDoorPart_b0251 {
@@ -297,7 +296,6 @@ void fn_71008cdf84(UnkDoorLock* door) {
 
 struct UnkDoorLife;
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkFlagged;
 struct UnkShape;
 
@@ -459,7 +457,6 @@ struct UnkStruct_71727313a4 {
 extern UnkStruct_71727313a4 g_unk_71727313a4;
 void fn_71001c2ec0(void* target, u32 a, u32 b, CVector4D* colour, u32 c, f32 time);
 struct UnkEnumType;
-extern UnkProperty g_unk_7172731160;
 extern UnkEnumType g_unk_7172731200;
 
 struct UnkDoorGfx_b0251 {

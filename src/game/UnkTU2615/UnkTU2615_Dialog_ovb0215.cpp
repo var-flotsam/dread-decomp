@@ -5,6 +5,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/snd/UnkSound.h"
+#include "game/GUI/CDialogComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
@@ -65,7 +66,6 @@ struct UnkMissionLogTarget_ovb0079 {
     CStrId field_0x260;
     u8 field_0x268[0x8];
 };
-void fn_7100b018fc(UnkMissionLogTarget_ovb0079* self, UnkGuiEvent* event);
 void fn_7100b02384(UnkMissionLogTarget_ovb0079* self);
 
 // The target's id slot taking a temporary's id (the move assignment, with the temporary's release folded away).

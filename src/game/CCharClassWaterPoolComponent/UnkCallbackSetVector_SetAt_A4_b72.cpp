@@ -7,6 +7,7 @@
 #include "base/UnkRefHandle.h"
 #include "base/UnkVector.h"
 #include "game/CCentralUnitAIComponent.h"
+#include "game/CCharClassWaterPoolComponent.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
@@ -44,7 +45,6 @@ struct UnkSetElem_A4_b72 {
 static_assert(sizeof(UnkSetElem_A4_b72) == 0x48, "layout");
 
 struct UnkCallbackSetVector;
-void fn_710090d00c(UnkCallbackSetVector* v, u32 n);
 
 struct UnkSetVector_A4_b72 {
     UnkSetElem_A4_b72* data;

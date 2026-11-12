@@ -2,6 +2,7 @@
 // event and the boss-defeated log entry), the component's id, one bool property and the class's
 // registration.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CChozoCommanderXLifeComponent.h"
 #include "game/UnkTUInit.h"
 #include "game/UnkTUProperty.h"
 
@@ -15,7 +16,6 @@ struct UnkChozoCommanderXLifeTU {
 
 extern UnkChozoCommanderXLifeTU g_unk_7172730280 __attribute__((visibility("hidden")));
 extern CStrId g_unk_7172730208;
-extern UnkProperty g_unk_7172730210;
 extern char g_unk_7101a7e120[];
 void fn_71008bfd70(UnkProperty* p);
 void fn_71008bd078(void* p);

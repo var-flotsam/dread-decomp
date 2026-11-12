@@ -4,14 +4,14 @@
 // +0x54 to -1, then hooks the callback fn_71006b7db4 (link at +0x30, handle at +0x48) up to the owner's
 // character class (+0x220), as src/game/CChozoWarriorXGlaiveSpinAttack/UnkAttackTrackLink_b54.cpp. Names and
 // layouts are placeholders.
+#include "game/CAbilityGhostAura.h"
+#include "game/CAnimationComponent.h"
 #include "game_s2/UnkParams.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkSelf;
 void fn_7100394bd0(UnkSelf*);
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
-void fn_710117b3e8(UnkWeakTarget* target, void* link);
 void fn_71006b7db4();
 
 struct UnkShelmitChargeOwner_A3_b73 {

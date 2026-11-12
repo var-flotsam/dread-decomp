@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "game/CEmmyGrabSamusAttack.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -41,7 +42,6 @@ struct UnkGrabAttack_A3_b68 {
 
 struct UnkSelf;
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkStruct_7101176ea8;
 void* fn_7101176d34(UnkStruct_7101176ea8*, void*);
 

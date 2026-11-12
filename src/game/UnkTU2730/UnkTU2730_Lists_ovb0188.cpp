@@ -17,15 +17,15 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1643.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2728.h"
 #include "game/UnkTU2730.h"
 #include "game/UnkTU2732.h"
+#include "game/UnkTU315.h"
 #include "game/UnkTUInit.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-bool fn_7100decc5c(UnkGameManager* self);
-bool fn_7100219c4c(UnkRenderManager* self);
 extern s32 g_unk_7101cb5320 __attribute__((visibility("hidden")));
 
 void fn_71011994e0(void* root, bool value) {
@@ -545,7 +545,6 @@ struct UnkSubAreaDropTargetView {
 
 extern UnkRumbleManager* g_unk_7101d47348;
 void fn_7100073f48(UnkRumbleManager* self, u32 a, u32 b);
-UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 void fn_7100d7ae80(UnkComponentOwner* self);
 void fn_7101192a4c(void* self);
 void fn_7100219c44(UnkRenderManager* self, u32 value);

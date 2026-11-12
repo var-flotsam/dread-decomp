@@ -9,6 +9,8 @@
 #include "base/UnkVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkManager_71726af468.h"
 #include "game_s2/UnkParams.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -18,8 +20,6 @@ using base::reflection::UnkReflObject;
 
 struct UnkAttackBase;
 void fn_71003608ac(UnkAttackBase* self);
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
-void fn_710117b3e8(UnkWeakTarget* target, void* link);
 void fn_710069cd7c();
 void fn_710069f43c(UnkReflObject* ai);
 

@@ -9,7 +9,9 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU2523.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2615.h"
+#include "game/UnkTU315.h"
 #include "game/malloc.h"
 #include "types.h"
 
@@ -37,9 +39,6 @@ struct UnkSoundSystem_ovb0039 {
 void fn_7100108290(UnkSoundMgr* self, bool enabled);
 void fn_710010829c(UnkSoundMgr* self, bool enabled);
 u32 fn_7100108288(UnkSoundMgr* self);  // the number of sounds
-
-bool fn_7100decc5c(UnkGameManager* self);
-bool fn_7100219970(UnkRenderManager* self);
 
 // A weak reference, as src/game/CShotManager.cpp has it.
 struct UnkShotWeakTarget {

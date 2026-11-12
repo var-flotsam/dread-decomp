@@ -5,9 +5,13 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkInventory;
+struct UnkQualifiedId;
 struct UnkObject_7101141558;
 struct UnkStrIdHandle;
 void fn_7101141378(UnkObject_7101141558*);
 void fn_71011437bc(void* service, const UnkStrIdHandle& handle);
 extern void* g_unk_7101cb33c8[];  // The class's vtable.
 extern u64 g_unk_7172a092b0 __attribute__((visibility("hidden")));
+f32 fn_7101142928(UnkInventory*, const UnkQualifiedId&);
+void fn_7101142a28(UnkInventory* inventory, const UnkQualifiedId& item, bool a, bool b, bool c, f32 amount, f32 extra);

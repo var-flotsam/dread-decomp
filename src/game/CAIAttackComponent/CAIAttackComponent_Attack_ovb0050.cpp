@@ -9,6 +9,7 @@
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CAINavigationComponent.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkActor.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -17,8 +18,6 @@
 using base::global::CRntFile;
 using base::global::CRntString;
 using base::global::CStrId;
-
-void fn_71006f552c(void* source, UnkWeakHandle** slot);
 
 struct UnkAIAttackOwner2_ovb0050 {
     u8 pad_0x0[0x218];

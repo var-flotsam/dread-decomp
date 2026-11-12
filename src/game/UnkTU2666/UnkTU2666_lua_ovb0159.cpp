@@ -20,6 +20,7 @@
 #include "game/UnkTU2669.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU365.h"
+#include "game/lua_lib.h"
 #include "game/malloc.h"
 #include "game/sound/CMusicManager.h"
 #include "../../game_s7/UnkPropBagS7.h"
@@ -286,7 +287,6 @@ s32 fn_7101091a20(lua_State* L) {
 }
 
 struct UnkVec;
-void fn_7100e038b0(UnkGameManager* dispatcher, void* key, UnkVec* vec, u64 arg);
 
 struct UnkZero3_b0159 {
     f32 x, y, z;
@@ -421,7 +421,6 @@ s32 fn_7101088250(lua_State* L) {
     return 0;
 }
 
-int fn_7100fbc4e0(lua_State* L, void* arg);
 // fn_7100fbc4e0 hands back the number of results it pushed.
 static inline s32 PushObject(lua_State* L, void* arg) {
     return fn_7100fbc4e0(L, arg);

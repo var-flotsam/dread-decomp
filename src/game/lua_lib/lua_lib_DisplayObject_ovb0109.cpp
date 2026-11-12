@@ -16,6 +16,8 @@
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU2668.h"
+#include "game/UnkTU2676.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -23,8 +25,6 @@ using base::global::CRntString;
 using base::global::CStrId;
 using base::reflection::UnkReflValue;
 
-void* fn_71010a4740(lua_State* L, int index, const char* name);
-s32 fn_710109cef0(lua_State* L, s32 nargs, s32 nresults, s32 errfunc);
 UnkGuiDisplayObject* fn_71011b5d3c(UnkGuiRoot* root, const char* const* path);
 void fn_710007c144(UnkHashStream_0x38* s);
 

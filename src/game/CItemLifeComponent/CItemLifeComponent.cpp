@@ -2,6 +2,7 @@
 // properties, a name, the class's registration and a global block of three empty vectors.
 #include "base/UnkVector.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CItemLifeComponent.h"
 #include "game/UnkTUInit.h"
 #include "game/UnkTUProperty.h"
 
@@ -25,8 +26,6 @@ struct UnkItemLifeLists {
 
 extern UnkItemLifeTU g_unk_7172732448 __attribute__((visibility("hidden")));
 extern CStrId g_unk_7172732318;
-extern UnkProperty g_unk_7172732320;
-extern UnkProperty g_unk_7172732348;
 extern char g_unk_7101a7f228[];
 void fn_71008e2738(UnkProperty* p);
 void fn_71008dff20(void* p);

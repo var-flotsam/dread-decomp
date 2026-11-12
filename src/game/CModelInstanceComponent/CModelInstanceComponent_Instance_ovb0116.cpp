@@ -9,14 +9,12 @@
 #include "game/CSceneComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU315.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 
-void fn_7100219e64(UnkRenderManager* self, u64 object, const UnkMatrix44* m);
-void fn_7100219dd0(UnkRenderManager* self, u64 model, const UnkMatrix44* m, u32 a, u32 b, u64* instance, u32 c);
-void fn_7100219e58(UnkRenderManager* self, u64 instance, bool visible);
 // The game manager's model for a path (none when it isn't loaded).
 u64 fn_7100e04a54(UnkGameManager* self, const CFilePathStrId* path);
 

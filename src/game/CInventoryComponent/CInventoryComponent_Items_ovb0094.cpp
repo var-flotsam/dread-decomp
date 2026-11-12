@@ -13,6 +13,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU56.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
@@ -71,7 +72,6 @@ void fn_7101141378(UnkInvOwner_ovb0094* self) {
 
 struct UnkHandleOwner_71010c4230;
 struct UnkSpawnGroupKey;
-void fn_7100de9730(UnkGameManager* manager, UnkSpawnGroupKey* key, void* object);
 
 struct UnkInvRelease_ovb0094 {
     u8 unk_0x0[0x98];
@@ -95,8 +95,6 @@ using base::global::CStrId;
 struct UnkStrIdHandle;
 void fn_7100ae986c(UnkStrIdHandle* self, const CStrId& id);
 struct UnkInventory;
-void fn_7101142a28(UnkInventory* inventory, const UnkQualifiedId& item, bool a, bool b, bool c, f32 amount,
-                   f32 extra);
 
 // A qualified id built from a string id (fn_7100ae986c), its id released when it goes.
 struct UnkInvItemId_ovb0094 {

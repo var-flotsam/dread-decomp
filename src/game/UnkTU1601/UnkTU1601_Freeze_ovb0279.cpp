@@ -14,6 +14,7 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1601.h"
+#include "game/UnkTU367.h"
 #include "game/UnkTUProperty.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -22,7 +23,6 @@ using base::global::CStrId;
 using base::math::CVector4D;
 
 struct UnkDoorLock;
-UnkDoorLock* fn_71002af860(UnkWeakTarget*);
 struct UnkDoorShieldStore_A4_b76;
 CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 void fn_710021a0b4(UnkRenderManager* self, const u64* hash, const base::math::CVector4D* value);

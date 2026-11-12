@@ -4,10 +4,8 @@
 #include <nn/os.h>
 
 #include "UnkUnit36_Nfp.h"
+#include "game/UnkTU36.h"
 #include "types.h"
-
-UnkUnit36Static* fn_710002cc34();
-u32 fn_710002d320(UnkUnit36Static* self);
 
 // The answer to the first request: keep it and the state it came in, then go to state 8.
 void fn_710002b7c0() {

@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkActorPosition;
+struct UnkWeakHandle;
 struct UnkActor;
 struct UnkActor_7101105e44;
 struct UnkDropCameraVec3;
@@ -29,3 +31,7 @@ void fn_7100d7babc(UnkWeakTarget* entity, bool flag, f32 value);
 void fn_7100d7c48c(void* target, void* name, f32 a, f32 b);
 void fn_7100d80b84(void* self);  // Re-points `current` at (index, element).
 extern void* g_unk_71727b85d0;
+UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
+void fn_7100d7c94c(UnkActor*, const u64*);
+bool fn_7100d7bea0(UnkActor* owner, bool flag);
+UnkActorPosition fn_7100d7b7a8(UnkActor* actor);

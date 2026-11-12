@@ -9,6 +9,7 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "game/CActorComponent.h"
+#include "game/CAutclastChargeAttack.h"
 #include "game/CFXComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkBehaviorTree.h"
@@ -16,6 +17,7 @@
 #include "game/UnkSlots.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU1102.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkTU2704.h"
 #include "game/UnkTU341.h"
 #include "game/UnkXformNode.h"
@@ -99,8 +101,6 @@ struct UnkXParasiteSelect_9fcc {
 static_assert(__builtin_offsetof(UnkXParasiteSelect_9fcc, targets.handle) == 0x14790, "placeholder layout");
 
 void fn_710110e3dc(void* component);
-void fn_71006ea824(UnkXParasiteSelect_9fcc* self, UnkActor* target);
-UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 
 struct UnkXParasiteHandleOwner_9fcc {
     u8 pad_0x0[0x10];
@@ -253,7 +253,6 @@ struct UnkFxObject_ovb0041;
 
 UnkPart* fn_7101152b90(UnkWorld*, u64);
 bool fn_710114e668(UnkWorld*, u8);
-UnkFxObject_ovb0041* fn_71003b7db0(UnkModelManager*, const void*, bool, bool);
 void fn_7100146d84(UnkFxObject_ovb0041*, const UnkVec3f*);
 void fn_710115217c(void*, void*, u32, u32, const base::global::CStrId*, const base::math::CVector3D&,
                    const base::math::CVector3D&, void*);

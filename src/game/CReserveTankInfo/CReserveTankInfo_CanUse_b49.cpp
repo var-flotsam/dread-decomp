@@ -6,13 +6,12 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 // As src/engine/HostArguments.cpp and src/game/CGun/CGun_b45.cpp declare them.
 struct UnkInventory;
-bool fn_7100ded930(UnkGameManager* self);
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
-void* fn_7100df55e4(UnkGameManager*);
 
 struct UnkReserveTankInfo_b49a6;
 

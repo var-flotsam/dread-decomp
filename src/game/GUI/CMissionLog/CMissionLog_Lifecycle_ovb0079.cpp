@@ -14,6 +14,7 @@
 #include "game/CChozoCommanderAIComponent.h"
 #include "game/CTutoEnterLogicAction.h"
 #include "game/GUI/CButton.h"
+#include "game/GUI/CDialogComposition.h"
 #include "game/GUI/CMissionLog.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
@@ -70,8 +71,6 @@ struct UnkMissionLogTarget_ovb0079 {
     CStrId field_0x260;
     u8 field_0x268[0x8];
 };
-
-void fn_7100b018fc(UnkMissionLogTarget_ovb0079* self, UnkGuiEvent* event);
 
 struct UnkMissionLogEvent_ovb0079 {
     u8 unk_0x0[0x298];

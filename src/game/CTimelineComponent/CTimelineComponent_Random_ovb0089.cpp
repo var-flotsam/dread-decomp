@@ -4,13 +4,13 @@
 #include "base/UnkCountedResource.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CTimelineComponent.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
 
 extern "C" int rand();
-void fn_7100a2c200(UnkTimelineComponent* self, void* entry, __attribute__((noescape)) const u32* value);
 
 struct UnkTimelineEventNode_ovb0089 {
     u8 pad_0x0[0x10];

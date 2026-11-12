@@ -3,6 +3,7 @@
 // builds, taken there PC-relatively. Names are placeholders.
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU315.h"
 #include "types.h"
 
 // The manager at g_unk_7101d47318 as far as it is called here (src/game/CSubAreaManager.cpp calls
@@ -20,7 +21,6 @@ struct UnkStartupDropTargetView {
 };
 
 void fn_71010c2080();  // tail-calls fn_7100132920, which sets a flag
-void fn_71002191a4(UnkRenderManager* self, u32 value);
 
 __attribute__((visibility("hidden"))) void fn_7100001714() {
     fn_71010c2080();

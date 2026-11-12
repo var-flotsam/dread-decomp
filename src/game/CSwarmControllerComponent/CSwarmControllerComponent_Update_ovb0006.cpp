@@ -20,6 +20,7 @@
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1159.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
@@ -285,7 +286,6 @@ void fn_710074a200(UnkSwarmController_ovb6* self, f32 dt) {
 }
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 struct UnkSwarmPlayer_ovb6 {
     u8 pad_0x0[0x220];

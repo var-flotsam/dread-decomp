@@ -5,14 +5,13 @@
 #include "base/global/CFilePathStrId.h"
 #include "game/CDrop.h"
 #include "game/CLuaCallsLogicAction.h"
+#include "game/UnkTU2668.h"
 #include "game/UnkTU2677.h"
+#include "game/lua_lib.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct lua_State;
-extern lua_State* g_unk_7172a01d18;
-s32 fn_71010c0bb0(lua_State* L, const char* name);
-int fn_7100fbc4e0(lua_State* L, void* arg);
 
 struct UnkName_71011275d8 {
     u8 pad_0x0[0x10];

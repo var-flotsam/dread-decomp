@@ -1,8 +1,10 @@
 // The game manager (CGameManager): the lookup that replaces a string id by another.
+#include "base/animation/CAnimationResource.h"
 #include "base/global/CRntString.h"
 #include "game/CCameraComponent.h"
 #include "game/CCharClassStartPointComponent.h"
 #include "game/CGameManager/CTunableGameManager.h"
+#include "game/CScenario.h"
 #include "game/CTriggerComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU0.h"
@@ -143,8 +145,6 @@ fallback:
 #include <stdarg.h>
 
 struct lua_State;
-extern lua_State* g_unk_7172a01d18;
-s32 fn_71010c0bb0(lua_State* L, const char* str);
 s32 fn_71010bf400(lua_State* L, const char* fmt, va_list args);
 
 // Calls the script function `name` with the arguments `fmt` describes; whether it returned 1.
@@ -538,7 +538,6 @@ extern UnkSoundHolder* g_unk_7101d47340;
 extern void* g_unk_71726bc560;  // the music manager (game/sound/CMusicManager.h)
 extern void* g_unk_7101d47330;
 
-void fn_71011a2770(UnkGameManagerSub_0x608* points, void* object);
 void fn_7100df31b8(UnkGameManager* self, u32 a, bool b, bool c, CStrId id, u32 d);
 struct UnkTreeNode;  // src/engine/render/anim/CSkeletalAnimTree/fn_710014be78.cpp
 struct UnkObj_7100e01680;  // src/game_aca57c/fn_7100e01680.cpp
@@ -754,8 +753,6 @@ void fn_7100df19c0(UnkGameManager* self) {
 
 // The user data's owner (created on first use; src/game_aca57c/fn_7100dc8828.cpp).
 struct UnkUserDataOwner;
-
-void fn_7100dee46c(UnkGameManager* self);
 
 // The result a load reports to its callback.
 struct UnkLoadResult {
@@ -1046,7 +1043,6 @@ using unk_prop_bag::UnkPropBag;
 
 // The registry the operation reports an I/O error to (created on first use) and the empty id it
 // compares the current entry's name with (a static of the registry's unit, built from "").
-extern UnkRegistry_0x70* g_unk_7101d4b5a0;
 extern CStrId g_unk_7101d592c8;
 // The object at the registry's +0x50: its vf_0x18 gives the current entry's name.
 struct UnkRegistryCurrent {
@@ -1056,7 +1052,6 @@ struct UnkRegistryCurrent {
     virtual const CStrId& vf_0x18();
 };
 void* fn_7100087740(UnkRegistry_0x70* self, const CStrId* name);  // the entry registered under `name`
-void fn_7100087dc8(UnkRegistry_0x70* self, void* entry, u32 kind);  // calls the registry's handler
 
 // A profile slot as the operation lists it (0x208 bytes).
 struct UnkProfileEntry {

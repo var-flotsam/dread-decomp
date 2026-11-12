@@ -13,12 +13,12 @@
 #include "game/UnkActor.h"
 #include "game/UnkAttack.h"
 #include "game/UnkManager_71726af468.h"
+#include "game/UnkTU1055.h"
 #include "game/behaviortree/CGoToSideAction.h"
 #include "game_s2/UnkParams.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-void fn_71006bd4f0(void* self, UnkActor* actor);
 struct UnkActorTarget;
 void fn_7101178e08(UnkActorTarget*, u32, u32, u32, f32);
 struct UnkEffectSink;

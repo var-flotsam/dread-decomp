@@ -39,7 +39,6 @@ extern UnkMatrix44 g_unk_7101a1a680;
 struct UnkBillboardDrawable {
     u8 pad_0x0[0x128];
 };
-void fn_710019b184(UnkBillboardDrawable* self, u32 index, u32 part, const UnkMatrix44* matrix);
 
 // The part at +0x1b0 (fn_7100196e64 builds it over the drawable): the drawable, the material and a
 // word set to 1 once the material is loaded.

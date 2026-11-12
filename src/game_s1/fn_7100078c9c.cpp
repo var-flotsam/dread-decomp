@@ -5,6 +5,7 @@
 
 #include "base/UnkMatrix44.h"
 #include "base/math/UnkSegment2D.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -28,7 +29,6 @@ UnkMatrix44_7100078c9c fn_7100078c9c(f32 x, f32 y, f32 z) {
 
 // A vector through a matrix (fn_710007a400): fn_7100077c04 rotates the vector by the matrix
 // fn_7100078fc8 derives from the given one.
-UnkMatrix44 fn_7100078fc8(const UnkMatrix44& m);
 UnkVec3f fn_7100077c04(const UnkMatrix44& m, const UnkVec3f& v);
 
 UnkVec3f fn_710007a400(const UnkVec3f& v, const UnkMatrix44& m) {

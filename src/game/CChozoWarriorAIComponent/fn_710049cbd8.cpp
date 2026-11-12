@@ -8,6 +8,7 @@
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1501.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 struct UnkFlagged {
@@ -42,8 +43,6 @@ struct UnkSelfFar {
     u8 pad_0x0[0x149d0];
     UnkTunables* field_0x149d0;
 };
-
-bool fn_7100df5630(UnkGameManager* manager);
 
 // NON_MATCHING(minor): the two operands of the "mode matches" `and` are swapped (scheduling only)
 bool fn_710049cbd8(UnkSelf* self) {

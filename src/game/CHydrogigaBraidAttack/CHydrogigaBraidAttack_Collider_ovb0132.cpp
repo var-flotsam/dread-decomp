@@ -5,7 +5,10 @@
 
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/CAnimationComponent.h"
 #include "game/CHydrogigaAttack.h"
+#include "game/CModelUpdaterComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkCollisionRecord.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -15,8 +18,6 @@
 
 using base::global::CStrId;
 
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
-void fn_710117b3e8(UnkWeakTarget* target, void* link);
 void fn_71005b4608();
 
 extern CStrId g_unk_71726eaa10 __attribute__((visibility("hidden")));
@@ -96,7 +97,6 @@ struct UnkVec2Bits_ovb0132 {
 };
 
 struct UnkEntity;
-bool fn_71011735e8(UnkEntity* entity, const void* key, UnkMatrix44* out, u32 flags);
 
 extern CStrId g_unk_71726eaa10 __attribute__((visibility("hidden")));
 

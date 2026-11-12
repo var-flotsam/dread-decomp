@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/CEnumType.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU811.h"
 #include "types.h"
 
 struct UnkValueSet_A3_b65 {
@@ -135,7 +136,6 @@ struct UnkEmmyRelaxAI_b59;
 struct UnkEnumType;
 extern UnkEnumType g_unk_71726dfca0;  // as src/game/CEmmyOverrideDeathPositionDef/fn_7100536550.cpp declares it
 s32 fn_710009976c(const base::reflection::CEnumType* self, const base::global::CStrId* name);
-void fn_7100546a30(UnkEmmyRelaxAI_b59* self, u32 state, UnkActor* other, void* arg);
 
 struct UnkEmmyPerceptionComponent_A3_b65 {
     u8 unk_0x0[0x30];

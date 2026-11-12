@@ -5,19 +5,14 @@
 // unit, fn_7100a3b7f4 in CChangeStateDoorsLogicAction's, fn_7100a955cc in CThermalDeviceComponent's.
 // Names are placeholders.
 #include "game/CChangeStateDoorsLogicAction.h"
+#include "game/CCharClassWaterPoolComponent.h"
 #include "game/UnkCallbackSetVector.h"
+#include "game/UnkTU1601.h"
 
 // Truncate (one copy per array type; fn_710090dbb4.cpp).
-void fn_710090d2f4(UnkCallbackSetVector* v, u32 size);
 void fn_7100a3bbc8(UnkCallbackSetVector* v, u32 size);
-void fn_7100a959a0(UnkCallbackSetVector* v, u32 size);
 // Reserve (one copy per array type)
-void fn_710090d00c(UnkCallbackSetVector* v, u32 n);
-void fn_7100a956b8(UnkCallbackSetVector* v, u32 n);
 // PushBack of a copy (one per array type)
-void fn_710090d1bc(UnkCallbackSetVector* v, const UnkCallbackSetElem* value);
-void fn_7100a3ba90(UnkCallbackSetVector* v, const UnkCallbackSetElem* value);
-void fn_7100a95868(UnkCallbackSetVector* v, const UnkCallbackSetElem* value);
 
 namespace {
 template <void (*Truncate)(UnkCallbackSetVector*, u32), void (*Reserve)(UnkCallbackSetVector*, u32),

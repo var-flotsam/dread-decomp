@@ -3,13 +3,13 @@
 // component (+0x220), listens to it: the link at +0x38 calls fn_7100390860 with the node, through the weak
 // handle at +0x50 (dropped first, then taken from the component). Finally copies +0x2c to +0x34.
 // Names and layouts are placeholders.
+#include "game/CAbilityGhostAura.h"
+#include "game/CAnimationComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkSelf;
 void fn_7100394bd0(UnkSelf*);
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
-void fn_710117b3e8(UnkWeakTarget* target, void* link);
 struct UnkHandler;
 struct UnkMessage;
 u32 fn_7100390860(UnkHandler* self, UnkMessage* message);  // fn_7100390860.cpp

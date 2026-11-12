@@ -1,10 +1,10 @@
 // Unit 2557 (tools/tu_map.py; no reflected class). Names are placeholders inferred from the code.
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU315.h"
 #include "types.h"
 
 struct UnkUnit2557Obj;
 
-bool fn_7100219970(UnkRenderManager* self);
 void fn_7100e10150(UnkUnit2557Obj* self);
 void fn_7100e10aac(UnkUnit2557Obj* self);
 

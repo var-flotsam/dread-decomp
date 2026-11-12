@@ -4,6 +4,8 @@
 // through its weak handle at +0x90, which the end drops. Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/CAnimationComponent.h"
 #include "game/CScorpiusAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
@@ -54,8 +56,6 @@ void fn_7100689d84(UnkGasAttack* self);
 bool fn_7100689c0c(UnkGasAttack* self);
 void fn_7100689ea8(UnkGasAttack* self);
 void fn_71006895a0();
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
-void fn_710117b3e8(UnkWeakTarget* target, void* link);
 
 // The bit pattern of a float in memory (a word load, as the original reads it).
 static inline u32 AsU32(const f32& value) {

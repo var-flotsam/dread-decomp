@@ -7,15 +7,13 @@
 #include <nn/os.h>
 
 #include "UnkUnit36_Nfp.h"
+#include "game/UnkTU36.h"
 #include "types.h"
 
 namespace nn::os {
 void ClearSystemEvent(SystemEventType* event);
 }
 
-UnkUnit36Static* fn_710002cc34();
-u32 fn_710002d320(UnkUnit36Static* self);
-void fn_710002ccfc(UnkUnit36Static* self, void* slot);
 void fn_710002d3e0(UnkUnit36Object* self, nn::os::EventType* done);
 
 static inline nn::os::SystemEventType* SlotEvent(char* base, s32 slot) {

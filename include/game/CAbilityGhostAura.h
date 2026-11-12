@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkWeakHandle;
+struct UnkWeakTarget;
 struct UnkAbility;
 struct UnkGhostAura_A2_b70;
 struct UnkSelf;
@@ -16,3 +18,4 @@ extern void* g_unk_7101a22d48[];  // The listener's vtable.
 extern void* g_unk_7101a22cb8[];
 extern void* g_unk_7101a22d18[];
 extern char g_unk_7101a22ce8[];
+void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);

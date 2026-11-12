@@ -9,3 +9,4 @@ struct UnkRcBinding_b0163;
 struct lua_State;
 s32 fn_7100fbd320(lua_State* L, UnkRcBinding_b0163* binding, u32 a, u32 b);
 extern void* g_unk_7101cab638[] __attribute__((visibility("hidden")));
+int fn_7100fbc4e0(lua_State* L, void* arg);

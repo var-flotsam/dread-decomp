@@ -22,6 +22,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2656.h"
 #include "game/UnkTU2726.h"
 #include "game/UnkTU2730.h"
@@ -197,7 +198,6 @@ struct UnkPlacedObj;
 struct UnkPlayer;
 
 extern void* g_unk_7101d47330;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 bool fn_71011b3838(UnkGuiRoot* root);
 bool fn_71008723f4(void* object, const CStrId* id);
 extern "C" int __cxa_guard_acquire(u64* guard);
@@ -273,7 +273,6 @@ using base::global::CStrId;
 using base::input::UnkRumbleManager;
 
 struct UnkUserDataOwner;
-CBlackboard* fn_710120384c(UnkUserDataOwner* self);
 bool fn_71010474f4(CBlackboard* self, const CStrId& section, const CStrId& name);
 extern UnkRumbleManager* g_unk_7101d47348;
 void fn_7100074e3c(UnkRumbleManager* self, bool enabled);

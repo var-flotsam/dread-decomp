@@ -20,6 +20,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2747.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU344.h"
@@ -31,7 +32,6 @@ using base::global::CStrId;
 void fn_71011cdfa8(UnkGuiDisplayObject* self, f32 dt);
 struct UnkActorDefFactory;
 struct UnkRemovedValue_b60;
-void fn_7100debc28(UnkGameManager*, UnkRemovedValue_b60*);
 struct UnkDropTarget;
 struct UnkTreeNode;
 struct UnkModelUpdater_ovb0032;

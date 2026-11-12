@@ -8,6 +8,8 @@
 // the two values at +0x48 and the copied name. Names and layouts are placeholders.
 #include "../../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/CAnimationComponent.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkActor.h"
 #include "game/UnkTimelineCalls.h"
@@ -20,8 +22,6 @@ using base::global::UnkStrId;
 
 struct UnkSelf;
 void fn_7100394bd0(UnkSelf*);
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
-void fn_710117b3e8(UnkWeakTarget* target, void* link);
 void fn_710036c338();
 
 struct UnkSwitchModesAI_A2_b75 {

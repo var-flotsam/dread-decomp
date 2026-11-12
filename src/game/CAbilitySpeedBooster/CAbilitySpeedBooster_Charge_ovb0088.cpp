@@ -24,6 +24,7 @@
 #include "game/CGameObject.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU39.h"
 #include "game/UnkTimelineComponent.h"
 #include "game/UnkGameManager.h"
@@ -206,7 +207,6 @@ void fn_710033bc80(UnkSpeedBoosterAbility_ovb0088* self, f32 dt) {
 using base::reflection::UnkReflObject;
 
 struct UnkOwner;
-UnkOwner* fn_7100defcd4(UnkGameManager*);
 void fn_710093adc0(base::reflection::UnkReflObject*, const void*, const void*, f32);
 struct UnkActorTarget;
 void fn_7101178e08(UnkActorTarget*, u32, u32, u32, f32);

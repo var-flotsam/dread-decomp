@@ -27,6 +27,7 @@
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2566.h"
 #include "game/UnkTU341.h"
+#include "game/UnkTU367.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "../../game_s2/UnkSpitSend.h"
@@ -324,7 +325,6 @@ struct UnkSource_b0230 {
 static_assert(sizeof(UnkSource_b0230) == 0x40, "UnkSource_b0230 layout");
 
 struct UnkWeakTarget;
-UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 void fn_7100772eb0(UnkSource_b0230* self, UnkWeakTarget* target);
 
 struct UnkCentral_b0230 {
@@ -388,7 +388,6 @@ void fn_71007726e4(UnkCentralFsm_b0230* self) {
 }
 
 struct UnkDoorLock;
-UnkDoorLock* fn_71002af860(UnkWeakTarget* entity);
 bool fn_71008d586c(UnkDoorLock*, bool, u32, CStrId*);
 bool fn_71008d564c(UnkDoorLock* door, u32 value, const CStrId* id);
 
@@ -430,7 +429,6 @@ void fn_7100772b50(UnkCentralSources_b0230* self) {
 }
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkScenarioObject_ovb0032;
 struct UnkGeneratorTarget_ovb0120;
 void fn_710116c128(UnkGeneratorTarget_ovb0120*, const UnkVec3f*, const UnkVec3f*, bool);
@@ -721,7 +719,6 @@ void fn_7100775918(UnkCentralUnit* unit, void* arg) {
 }
 
 struct UnkInventory;
-f32 fn_7101142928(UnkInventory*, const UnkQualifiedId&);
 struct UnkEnergyWaveFxComp_b49;
 extern char g_unk_710164aa98[];
 extern char g_unk_710164aaa0[];
@@ -780,7 +777,6 @@ struct UnkStrIdHandle;
 extern UnkPropertyEx<> g_unk_717275ac58;
 extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
 struct UnkOwner;
-UnkOwner* fn_7100defcd4(UnkGameManager*);
 
 struct UnkCentralMode_b0230 {
     u8 pad_0x0[0x3f0];

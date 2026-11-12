@@ -1,15 +1,14 @@
 // CVulkranAttackManager::CTunableVulkranAttackManager's unit (tools/tu_map.py), fn_71006de940: drops the handle held
 // at +0x8 when it refers to `target`, then hands a counted reference to `target`'s weak handle to the list at +0x18.
 // Nothing happens for a null target. Names and layouts are placeholders.
+#include "game/UnkTU2523.h"
+#include "game/UnkTU852.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkHandleList {
     void* field_0x0;
 };
-
-UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
-void fn_710059cecc(UnkHandleList* list, const UnkRefPtr& ref);
 
 struct UnkVulkranAttackTargets_l6de940 {
     u8 pad_0x0[0x8];

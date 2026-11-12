@@ -15,6 +15,7 @@
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
 #include "game/CGameBlackboard.h"
+#include "game/UnkTU83.h"
 #include "types.h"
 
 using namespace base::global;
@@ -27,7 +28,6 @@ template <class V>
 struct UnkIdMap;
 void fn_7100aecdc4(UnkIdRecordTable<UnkOwned<void, fn_7100aef674>>* self);
 void fn_7100aee918(UnkIdMap<UnkKeyedStrIds>* self, u32 capacity);
-void fn_71000df22c(UnkKeyedStrIds* self, u32 capacity);
 void fn_71000a1760(base::reflection::UnkTypedRef* out, const base::reflection::UnkTypedRef* in);
 CBlackboard::CSection** fn_71010482d4(CBlackboard* self, CBlackboard::CSection** slot);
 void fn_7101046ac0(CBlackboard* self);

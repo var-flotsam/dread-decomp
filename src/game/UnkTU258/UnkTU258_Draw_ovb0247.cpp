@@ -10,6 +10,7 @@
 #include "game/UnkTU174.h"
 #include "game/UnkTU177.h"
 #include "game/UnkTU180.h"
+#include "game/UnkTU181.h"
 #include "game/UnkTU182.h"
 #include "game/UnkTU194.h"
 #include "game/UnkTU230.h"
@@ -207,7 +208,6 @@ void fn_71001c5b74(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
 struct UnkCachedMatrix_7100196674;  // src/game_s1/fn_7100196674.cpp
 struct UnkSize_7100196674;
 UnkMatrix44* fn_7100196674(UnkCachedMatrix_7100196674* self, const UnkSize_7100196674* size);
-void fn_710015e4b0(void* state, u32 stage, u64 location, u32 count, u32 a, const UnkMatrix44* values, u32 b);
 extern const base::math::CVector4D g_unk_7101647b1c __attribute__((visibility("hidden")));
 
 void fn_71001c5114(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
@@ -293,7 +293,6 @@ void fn_71001c52d4(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
 struct UnkNamedEntries_710016b194;
 void* fn_710016b0ec(UnkNamedEntries_710016b194* self, u32 index);
 void fn_710016b194(UnkNamedEntries_710016b194* self, u32 index);
-void fn_71001d0638(UnkGlobal_710b372a98* gfx, void* item, void* a, u32 b);
 
 struct UnkSubmitGroup_b0247 {
     u8 pad_0x0[0x34];

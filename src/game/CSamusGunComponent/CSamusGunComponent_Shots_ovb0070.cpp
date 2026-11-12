@@ -5,6 +5,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/CGunComponent.h"
+#include "game/UnkTU2523.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -107,7 +108,6 @@ struct UnkGunId_ovb0070 {
 struct UnkGunRequest_ovb0070;
 struct UnkSamusGun_ovb0070;
 struct UnkActor;
-void fn_7100d7c94c(UnkActor* self, const u64* key);
 // Timeline ids reached through the GOT.
 extern u64 g_unk_710164ad48;
 extern u64 g_unk_710164ad50;

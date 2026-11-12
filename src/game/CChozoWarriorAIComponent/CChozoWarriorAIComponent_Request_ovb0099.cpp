@@ -6,6 +6,7 @@
 #include "game/UnkGameManager.h"
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/UnkTU1501.h"
+#include "game/UnkTU2553.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -15,7 +16,6 @@ struct UnkCollisionContainer;
 CStrId* fn_7100864018(UnkCollisionContainer* self, void* object);
 struct UnkVec3;
 void fn_710007b444(void* dst, const UnkVec3* value);
-bool fn_7100df5a4c(UnkGameManager* self);
 
 extern CStrId g_unk_71726d1270 __attribute__((visibility("hidden")));
 extern const UnkVec3 g_unk_71016499f8 __attribute__((visibility("hidden")));

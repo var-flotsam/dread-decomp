@@ -1,6 +1,7 @@
 // CCharClassTunnelTrapMorphballComponent's static initialiser: the unit header, the char class's
 // and the component's registrations, the component's id, two bool properties and four names.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CCharClassTunnelTrapMorphballComponent.h"
 #include "game/UnkTUInit.h"
 #include "game/UnkTUProperty.h"
 
@@ -23,8 +24,6 @@ extern UnkTunnelTrapMorphballTU g_unk_717274a6b0 __attribute__((visibility("hidd
 extern char g_unk_717274a610;
 extern char g_unk_717274a611;
 extern CStrId g_unk_717274a618;
-extern UnkProperty g_unk_717274a620;
-extern UnkProperty g_unk_717274a648;
 extern char g_unk_7101a8e8c0[];
 void fn_7100a44ff4(UnkProperty* p);
 void fn_7100a43538(void* p);

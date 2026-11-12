@@ -9,6 +9,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkSubAreaGuiCache.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2729.h"
 #include "game/UnkTU2734.h"
 #include "game/UnkTU341.h"
@@ -25,7 +26,6 @@ struct UnkActorDefFactory;
 struct UnkGuiDef_b52;
 
 struct UnkRemovedValue_b60;
-void fn_7100debc28(UnkGameManager*, UnkRemovedValue_b60*);
 struct UnkBoundObj;
 
 // The polymorphic object at +0x28 of an actor.

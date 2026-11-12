@@ -7,6 +7,7 @@
 
 #include "base/UnkRegistry.h"
 #include "base/UnkVector.h"
+#include "base/animation/CAnimationResource.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/input/UnkRumbleManager.h"
@@ -76,7 +77,6 @@ static inline void TimerCtor(UnkGfxFrameSource* self) {
 }
 
 // The device registry (base/UnkRegistry.h); the settings' first callback goes to +0x60.
-extern UnkRegistry_0x70* g_unk_7101d4b5a0;
 void fn_7100087380(UnkRegistry_0x70* self);
 void* fn_7100087740(UnkRegistry_0x70* self, const CStrId* name);  // the device registered under `name`
 

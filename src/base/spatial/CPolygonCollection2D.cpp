@@ -3,6 +3,7 @@
 // handles (bits 16 to 30 the polygon, the low 16 bits a vertex). fn_71001244ac tests a direction
 // against the corner at a vertex.
 #include "base/math/UnkSegment2D.h"
+#include "game/malloc.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -51,7 +52,6 @@ f32 fn_71001261ac(const UnkSegment2D* seg, UnkVec2Result point);
 // Whether the edge after a vertex continues past `dir`; fn_71001190a0 then gives that edge.
 bool fn_7100118788(UnkPolygon2D* polygon, u32 vertex, const UnkVec2Result* dir);
 UnkSegment2D fn_71001190a0(UnkPolygon2D* polygon, u32 vertex, const UnkVec2Result* dir, u32* a, u32* b);
-UnkSegment2D* fn_7100125b44(UnkSegment2D* self, const UnkSegment2D* other);
 
 // a - b, with a taken whole first.
 static inline UnkVec2Result Diff(CVector2D a, const CVector2D& b) {

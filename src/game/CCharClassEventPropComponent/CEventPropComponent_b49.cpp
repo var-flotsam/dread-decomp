@@ -13,9 +13,6 @@
 using base::global::CStrId;
 
 CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
-extern UnkProperty g_unk_717271ebc0;
-extern UnkProperty g_unk_717271ebe8;  // "EventLaunched"
-extern UnkProperty g_unk_717271ec10;  // "EventFinished"
 
 struct UnkEventPropValue_b49 {
     CStrId id;

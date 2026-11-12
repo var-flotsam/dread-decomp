@@ -5,6 +5,7 @@
 
 #include "base/UnkVector.h"
 #include "base/math/UnkSegment2D.h"
+#include "game/CAnimationComponent.h"
 #include "game/CCollisionComponent.h"
 #include "game/CFrozenComponent.h"
 #include "game/UnkAIComponent.h"
@@ -16,6 +17,7 @@
 #include "game/UnkTU1130.h"
 #include "game/UnkTU1440.h"
 #include "game/UnkTU1444.h"
+#include "game/UnkTU376.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkParams.h"
 #include "game/UnkObject_0x100.h"
@@ -28,8 +30,6 @@ struct UnkGroundAI_ovb0146;
 struct UnkUnit1441Apply_A4_b74;
 struct UnkUnit1441Msg_A4_b74;
 void fn_7100707ef0(void* member, const UnkUnit1444Msg_ovb0177* msg, bool reset);
-void fn_71002b57bc(UnkObject_0x100* self);
-UnkObject_0x100* fn_71002b5c90(UnkObject_0x100* self, const UnkObject_0x100* other);
 bool fn_71010faac0(UnkTrackSelf_b0143* self);
 void fn_7101110030(UnkGroundAI_ovb0146* self);
 
@@ -108,7 +108,6 @@ void fn_710097170c(UnkUnit1444_ovb0177* self, const UnkUnit1444Msg_ovb0177* msg,
 void fn_71009738ec(UnkUnit1444_ovb0177* self);
 struct UnkUnit1444_Event;
 void fn_7100973f30(UnkUnit1444_ovb0177* self);
-bool fn_7101179c3c(UnkAnimationComponent* self, u64 key);
 
 // Tells the owner's AI about the pending state: the kind is 2 when the stored object's byte at +0x1c is
 // set, else 1 (slot 0x5a8).

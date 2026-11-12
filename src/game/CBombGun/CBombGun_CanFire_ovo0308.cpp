@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CBombGun.h"
 #include "game/CPrimaryGun.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkAnimationComponent.h"
@@ -14,15 +15,14 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkSubAreaGuiCache.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkInventory;
-void* fn_7100df55e4(UnkGameManager*);
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 // As src/game/CMissileBaseGun/CMissileBaseGun_Ammo_ovb0103.cpp declares them.
-extern UnkSubAreaGuiCache* g_unk_71727254f8;
 s32 fn_710119db04(UnkSubAreaGuiCache* self, const base::global::CStrId* name);
 extern char* g_unk_71726b2398;
 

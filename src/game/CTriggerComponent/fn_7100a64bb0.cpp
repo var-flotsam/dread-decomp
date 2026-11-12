@@ -7,6 +7,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
+#include "game/CTriggerComponent.h"
 #include "game/UnkTUProperty.h"
 
 using namespace unk_static_init;
@@ -23,7 +24,6 @@ struct UnkStatics_7100a64bb0 {
 };
 extern UnkStatics_7100a64bb0 g_unk_717274e4b8 __attribute__((visibility("hidden")));
 extern UnkStrIdBase g_unk_717274d6c0;
-extern UnkProperty g_unk_717274d6c8;
 extern void* g_unk_7101a8f780[];
 void fn_7100a63000(UnkProperty* p);
 void fn_7100a59a00(void* p);

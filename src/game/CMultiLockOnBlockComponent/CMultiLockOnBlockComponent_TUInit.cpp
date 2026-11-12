@@ -4,6 +4,7 @@
 #include "base/UnkVector.h"
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CMultiLockOnBlockComponent.h"
 #include "game/UnkTUInit.h"
 #include "game/UnkTUProperty.h"
 
@@ -36,7 +37,6 @@ extern UnkTunable g_unk_717272b600;
 extern char g_unk_7101a7bb48[];
 extern char g_unk_717272b629;
 extern CStrId g_unk_717272b630;
-extern UnkProperty g_unk_717272b638;
 extern char g_unk_7101a7bb78[];
 void fn_7100883c28(UnkProperty* p);
 void fn_71008823e8(void* p);

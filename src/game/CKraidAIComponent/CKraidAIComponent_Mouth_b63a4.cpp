@@ -10,11 +10,11 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
-void* fn_7101177d2c(UnkAnimationComponent* self, u64 key);
 struct UnkKraidAI_b56a3;
 void fn_71005fe760(UnkKraidAI_b56a3* self);
 

@@ -3,6 +3,7 @@
 // providers of the owner at +0x50 answers (the one at the owner's +0x240, then those fn_7100286ad4
 // and fn_7100286bb0 find), else 100 by 100. The size type has a user-provided copy, so it is
 // returned in memory (x8). Names and layouts are placeholders.
+#include "game/UnkTU357.h"
 #include "types.h"
 
 struct UnkSize2f {
@@ -148,7 +149,6 @@ struct UnkSizeOwner {
 
 // Declared as its other caller declares it (src/game/CGunComponent/fn_71008397f4.cpp); it takes the owner.
 struct UnkWeakTarget;
-UnkWeakTarget* fn_7100286ad4(void* owner);
 UnkSizeProviderC* fn_7100286bb0(UnkSizeOwner* owner);
 
 struct UnkUnit357Object {

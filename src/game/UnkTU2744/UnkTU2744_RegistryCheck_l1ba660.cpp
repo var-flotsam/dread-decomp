@@ -4,11 +4,10 @@
 #include "base/UnkRegistry.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
+#include "base/animation/CAnimationResource.h"
 #include "base/file/CThreadSafeDevice.h"
 #include "base/global/CRntString.h"
 #include "types.h"
-
-extern UnkRegistry_0x70* g_unk_7101d4b5a0;
 
 struct UnkKeyTemp_l1ba660 {
     void* id;

@@ -6,19 +6,22 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CAutclastChargeAttack.h"
 #include "game/CFXComponent.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU127.h"
+#include "game/UnkTU134.h"
 #include "game/UnkTU253.h"
+#include "game/UnkTU2739.h"
+#include "game/UnkTU315.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 struct UnkRinkaControl_ruc;
 struct UnkWorld;
 void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
-void fn_7100219e10(UnkRenderManager* self, u64 object);
 
 struct UnkGrappleLightning_ovb0047;
 
@@ -108,8 +111,6 @@ void fn_7100817ffc(UnkGrappleBeamLightning_ovb0047* self) {
     self->lightnings = static_cast<void**>(data);
 }
 
-void fn_7100146dac(UnkSwitchObject* self, bool enable);
-
 // The effect object the model manager hands out (as in
 // src/game/CShakernautAIComponent/CShakernautAIComponent_Send_ovb0041.cpp).
 struct UnkFxObject_ovb0041;
@@ -122,8 +123,6 @@ struct UnkGrappleFxVtable_ovb0047 {
     void (*set_loop)(UnkFxObject_ovb0041* self, bool loop);               // 0x90
     void (*set_speed)(UnkFxObject_ovb0041* self, f32 speed);              // 0x98
 };
-UnkFxObject_ovb0041* fn_71003b7db0(UnkModelManager* self, const void* path, bool a, bool b);
-void fn_71011a9bb4(UnkModelManager* self, UnkFxObject_ovb0041* fx);
 
 extern const u8 g_unk_7172723340[] __attribute__((visibility("hidden")));  // the effect's path id
 

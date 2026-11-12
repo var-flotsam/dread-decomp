@@ -6,6 +6,7 @@
 #include "base/UnkRegistry.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
+#include "base/file/CThreadSafeDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/UnkTU63.h"
 #include "types.h"
@@ -20,7 +21,6 @@ union UnkPairSlot_b0248 {
     UnkPairSlot_b0248() {}
     ~UnkPairSlot_b0248() {}
 };
-UnkStrIdPathPair* fn_710008d88c(UnkStrIdPathPair* dst, const void* id, const void* path);
 UnkStrIdPathPair* fn_710008d830(UnkStrIdPathPair* dst, const UnkStrIdPathPair* src);
 
 struct UnkRegistryString_b0248 {

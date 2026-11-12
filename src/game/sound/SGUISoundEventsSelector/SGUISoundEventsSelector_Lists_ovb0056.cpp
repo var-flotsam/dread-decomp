@@ -13,6 +13,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkTU0.h"
+#include "game/sound/CSoundManager.h"
 #include "game/sound/SGUISoundEventsSelector.h"
 #include "types.h"
 
@@ -154,7 +155,6 @@ struct UnkSoundHandle {
     s64 serial;
 };
 struct UnkDropTarget;
-UnkSoundHandle fn_7101024e28(UnkDropTarget* self, const UnkStrIdPathPair* ids, void* a, bool b);
 struct UnkIdPair;
 void fn_7100026f70(UnkIdPair* pair);
 

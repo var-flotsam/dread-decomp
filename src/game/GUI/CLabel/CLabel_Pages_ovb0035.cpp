@@ -24,6 +24,7 @@
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU135.h"
 #include "game/UnkTU2733.h"
+#include "game/UnkTU2744.h"
 #include "game/UnkTU2747.h"
 #include "types.h"
 
@@ -36,7 +37,6 @@ using base::global::CStrId;
 struct UnkLayoutText;
 struct UnkLabelLayout;
 void* fn_71011b882c(UnkGuiRoot*, const CStrId*);
-void fn_71011bab80(UnkGuiRoot* root, void* object, s32 frame);
 
 const CStrId& fn_71011b8920(UnkGuiRoot* root);
 void fn_71000303c0(UnkDeferredSet<UnkDeferredCallback<bool>>* s, const bool* arg);
@@ -191,8 +191,6 @@ void fn_71011ebfa0(UnkLabelDtor_b0035* self) {
 
 // ---------------------------------------------------------------------------------------------
 // The runs and their glyphs, and dropping all lines.
-
-void fn_71011baba0(UnkGuiRoot* root, void* object, s32 frame);
 
 // A glyph of a run (0x30 bytes): its id and the object made for it in a frame.
 struct UnkLabelGlyph_b0035 {

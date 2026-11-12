@@ -8,12 +8,12 @@
 #include "game/CChozoWarriorXUltimateGrabAttack.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1370.h"
+#include "game/UnkTU2523.h"
+#include "game/UnkTU2553.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
-UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 
 struct UnkRequest;
 struct UnkStruct_71008c0c74;

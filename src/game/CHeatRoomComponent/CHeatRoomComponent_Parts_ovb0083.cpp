@@ -17,6 +17,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU365.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -92,7 +93,6 @@ extern UnkSoundMgr* g_unk_7101d4d820;
 struct UnkStruct_710024fa0c;
 void* fn_710082e510(void* key);
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkInventory;
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 

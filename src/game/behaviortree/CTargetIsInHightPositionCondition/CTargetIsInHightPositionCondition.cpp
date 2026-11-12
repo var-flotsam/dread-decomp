@@ -4,6 +4,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU2523.h"
 #include "types.h"
 
 struct UnkShakernautAI_tih {
@@ -18,8 +19,6 @@ struct UnkActorPosition {
     f32 x, y, z, w;
     UnkActorPosition(const UnkActorPosition& other);
 };
-
-UnkActorPosition fn_7100d7b7a8(UnkActor* actor);
 
 struct UnkHighCondition_tih {
     u8 pad_0x0[0x18];

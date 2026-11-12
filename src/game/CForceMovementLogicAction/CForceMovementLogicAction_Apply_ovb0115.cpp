@@ -6,13 +6,13 @@
 #include "base/global/CStrId.h"
 #include "game/CInputComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU2689.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 struct UnkInputComponent;
 struct UnkForcedMovementTarget_A5_b68;

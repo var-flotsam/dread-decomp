@@ -5,6 +5,10 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkManager_71726af468;
+struct UnkReflType;
+struct UnkTUData;
+struct UnkTUHeader;
 struct UnkAIManager_da92b0;
 struct UnkAITarget_da92b0;
 struct UnkEmmyRegistry_b55;
@@ -24,3 +28,10 @@ void fn_7100dab9e0() __attribute__((visibility("hidden")));
 extern char g_unk_71727bc3a8;
 extern char g_unk_71727bc508;
 extern char g_unk_71727bc550;
+bool fn_7100da9254(UnkManager_71726af468* self);
+void fn_7100da928c(UnkManager_71726af468* manager);
+extern UnkReflType g_unk_71727bc290;  // CAIManager::EAIGroup.
+void fn_7100da929c(UnkManager_71726af468* self, f32 value);
+extern UnkReflType g_unk_71727bc3f0;
+extern UnkTUHeader g_unk_71727bc598 __attribute__((visibility("hidden")));
+extern UnkTUData g_unk_71727bc5b0 __attribute__((visibility("hidden")));

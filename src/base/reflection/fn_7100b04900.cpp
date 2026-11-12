@@ -26,8 +26,6 @@
 #include "game/UnkTU2559.h"
 #include "game/UnkTUInit.h"
 
-extern UnkTUHeader g_unk_71727bc230 __attribute__((visibility("hidden")));
-extern UnkReflType g_unk_71727bc110;
 void fn_7100da5c70(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 
 void fn_7100da5e70() {
@@ -36,10 +34,7 @@ void fn_7100da5e70() {
     fn_710009ec00(&g_unk_71727bc228, &g_unk_71727bc110);
 }
 
-extern UnkTUHeader g_unk_717275e1e0 __attribute__((visibility("hidden")));
-extern UnkReflType g_unk_717275de80;
 void fn_7100b03f60(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
-UnkReflType* fn_7100b042c4();  // base::reflection::refl_GetType<std::unique_ptr<GUI::CDisplayObjectAnimationDef>>
 
 void fn_7100b04900() {
     InitHeader(g_unk_717275e1e0);
@@ -48,10 +43,7 @@ void fn_7100b04900() {
     fn_710009ec00(&g_unk_717275dfb9, fn_7100b042c4());
 }
 
-extern UnkTUHeader g_unk_7172768ad0 __attribute__((visibility("hidden")));
-extern UnkReflType g_unk_7172768990;
 void fn_7100b87e10(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
-UnkReflType* fn_7100b040c0();  // base::reflection::refl_GetType<std::unique_ptr<GUI::CTrackSet>>
 
 void fn_7100b88910() {
     InitHeader(g_unk_7172768ad0);
@@ -60,8 +52,6 @@ void fn_7100b88910() {
     fn_710009ec00(&g_unk_7172768ac9, fn_7100b040c0());
 }
 
-extern UnkTUHeader g_unk_7172792168 __attribute__((visibility("hidden")));
-extern UnkReflType g_unk_7172792008;
 void fn_7100c797bc(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 extern UnkConverter g_unk_7172792128;
 extern UnkConverter g_unk_7172792148;
@@ -73,7 +63,6 @@ void fn_7100c7a950() {
     InitEnumConverters(&g_unk_7172792008, g_unk_7172792128, fn_7100c7a8c0, g_unk_7172792148, fn_7100c7a8cc);
 }
 
-extern UnkTUHeader g_unk_7172795408 __attribute__((visibility("hidden")));
 // g_unk_71727952a8 (the EInFrustumMode type) is declared in base/reflection/CEnumType.h; InitEnum takes the UnkReflType view.
 void fn_7100c94510(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 extern UnkConverter g_unk_71727953c8;
@@ -86,12 +75,9 @@ void fn_7100c94720() {
     InitEnumConverters(reinterpret_cast<UnkReflType*>(&g_unk_71727952a8), g_unk_71727953c8, fn_7100c94690, g_unk_71727953e8, fn_7100c9469c);
 }
 
-extern UnkTUHeader g_unk_717277e0f8 __attribute__((visibility("hidden")));
-extern UnkReflType g_unk_717277df90;
 void fn_7100c10e2c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 extern UnkConverter g_unk_717277e0b0;
 extern UnkConverter g_unk_717277e0d0;
-extern UnkReflType g_unk_717277e118 __attribute__((visibility("hidden")));
 
 void fn_7100c11580() {
     InitHeader(g_unk_717277e0f8);
@@ -123,12 +109,9 @@ void fn_7100d2ac00() {
     fn_710009ec00(&g_unk_71727ae070, &g_unk_71727ae098);
 }
 
-extern UnkTUHeader g_unk_71727bba50 __attribute__((visibility("hidden")));
-extern UnkReflType g_unk_71727bb8e8;
 void fn_7100da3a1c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 extern UnkConverter g_unk_71727bba08;
 extern UnkConverter g_unk_71727bba28;
-extern UnkReflType g_unk_71727bba70 __attribute__((visibility("hidden")));
 
 void fn_7100da3ed0() {
     InitHeader(g_unk_71727bba50);
@@ -139,10 +122,7 @@ void fn_7100da3ed0() {
     fn_710009ec00(&g_unk_71727bba48, &g_unk_71727bba70);
 }
 
-extern UnkTUHeader g_unk_71727b9018 __attribute__((visibility("hidden")));
-extern UnkReflType g_unk_71727b8dd8;
 void fn_7100d91564(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-extern UnkReflType g_unk_71727b8ef8;
 void fn_7100d91d10(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 
 void fn_7100d91f80() {
@@ -153,14 +133,10 @@ void fn_7100d91f80() {
     fn_710009ec00(&g_unk_71727b9010, &g_unk_71727b8ef8);
 }
 
-extern UnkTUHeader g_unk_71727be710 __attribute__((visibility("hidden")));
-UnkReflType* fn_7100dded9c();  // fn_7100dded9c
-UnkReflType* fn_7100ddee78();  // fn_7100ddee78
 extern UnkReflType g_unk_71727be388;
 void fn_7100ddf1c0(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 extern UnkConverter g_unk_71727be4a8;
 extern UnkConverter g_unk_71727be4c8;
-extern UnkReflType g_unk_71727be730 __attribute__((visibility("hidden")));
 
 void fn_7100de25a0() {
     InitHeader(g_unk_71727be710);
@@ -173,12 +149,9 @@ void fn_7100de25a0() {
     fn_710009ec00(&g_unk_71727be4e8, &g_unk_71727be730);
 }
 
-extern UnkTUHeader g_unk_71727bf998 __attribute__((visibility("hidden")));
-extern UnkReflType g_unk_71727bf6f8;
 void fn_7100e06e8c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 extern UnkConverter g_unk_71727bf818;
 extern UnkConverter g_unk_71727bf838;
-extern UnkReflType g_unk_71727bf858;
 void fn_7100e07250(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
 
 void fn_7100e07920() {
@@ -190,12 +163,9 @@ void fn_7100e07920() {
     fn_710009ec00(&g_unk_71727bf990, &g_unk_71727bf858);
 }
 
-extern UnkTUHeader g_unk_7172795270 __attribute__((visibility("hidden")));
-extern UnkReflType g_unk_7172794fb0;
 void fn_7100c93470(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 extern UnkConverter g_unk_71727950d0;
 extern UnkConverter g_unk_71727950f0;
-extern UnkReflType g_unk_7172795110;
 void fn_7100c9385c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 extern UnkConverter g_unk_7172795230;
 extern UnkConverter g_unk_7172795250;
@@ -210,12 +180,9 @@ void fn_7100c93d60() {
     InitEnumConverters(&g_unk_7172795110, g_unk_7172795230, fn_7100c93c60, g_unk_7172795250, fn_7100c93c6c);
 }
 
-extern UnkTUHeader g_unk_7172772d18 __attribute__((visibility("hidden")));
-extern UnkReflType g_unk_7172772bb0;
 void fn_7100bcde7c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 extern UnkConverter g_unk_7172772cd0;
 extern UnkConverter g_unk_7172772cf0;
-extern UnkReflType g_unk_7172772d38 __attribute__((visibility("hidden")));
 
 void fn_7100bce6b0() {
     InitHeader(g_unk_7172772d18);
@@ -226,8 +193,6 @@ void fn_7100bce6b0() {
     fn_710009ec00(&g_unk_7172772d10, &g_unk_7172772d38);
 }
 
-extern UnkTUHeader g_unk_7172791e30 __attribute__((visibility("hidden")));
-extern UnkReflType g_unk_7172791c90;
 void fn_7100c66688(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 extern UnkConverter g_unk_7172791db0;
 extern UnkConverter g_unk_7172791dd0;
@@ -242,12 +207,9 @@ void fn_7100c668b0() {
     InitEnumConverters(&g_unk_7172791c90, g_unk_7172791df0, fn_7100c66820, g_unk_7172791e10, fn_7100c6682c, refl_TypeOf<fn_7100005178>);
 }
 
-extern UnkTUHeader g_unk_7172758ad0 __attribute__((visibility("hidden")));
-extern UnkReflType g_unk_7172758838;
 void fn_7100adf388(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 extern UnkConverter g_unk_7172758958;
 extern UnkConverter g_unk_7172758978;
-extern UnkReflType g_unk_7172758998;
 void fn_7100adf508(UnkReflType* self, const CStrId& name, void* extra);
 extern UnkConverter g_unk_7172758a90;
 extern UnkConverter g_unk_7172758ab0;
@@ -262,16 +224,12 @@ void fn_7100adf770() {
     InitEnumConverters(&g_unk_7172758998, g_unk_7172758a90, fn_7100adf670, g_unk_7172758ab0, fn_7100adf67c, refl_TypeOf<fn_7100005178>);
 }
 
-extern UnkTUHeader g_unk_71727c0fb8 __attribute__((visibility("hidden")));
-extern UnkReflType g_unk_71727c0bc0;
 void fn_7100e1766c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 extern UnkConverter g_unk_71727c0ce0;
 extern UnkConverter g_unk_71727c0d00;
-extern UnkReflType g_unk_71727c0d20;
 void fn_7100e177ec(UnkReflType* self, const CStrId& name, void* extra);
 extern UnkConverter g_unk_71727c0e18;
 extern UnkConverter g_unk_71727c0e38;
-extern UnkReflType g_unk_71727c0e58;
 void fn_7100e17b48(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 extern UnkConverter g_unk_71727c0f78;
 extern UnkConverter g_unk_71727c0f98;
@@ -289,7 +247,6 @@ void fn_7100e1b8b0() {
     InitEnumConverters(&g_unk_71727c0e58, g_unk_71727c0f78, fn_7100e1b5f8, g_unk_71727c0f98, fn_7100e1b604);
 }
 
-extern UnkTUHeader g_unk_71727ba980 __attribute__((visibility("hidden")));
 extern UnkReflType g_unk_71727ba2e0;
 void fn_7100d977e4(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 extern UnkConverter g_unk_71727ba400;
@@ -302,10 +259,7 @@ extern UnkConverter g_unk_71727ba5a0;
 extern UnkConverter g_unk_71727ba5c0;
 extern UnkConverter g_unk_71727ba5e0;
 extern UnkConverter g_unk_71727ba600;
-extern UnkReflType g_unk_71727ba620;
 void fn_7100d99934(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
-UnkReflType* fn_7100d9af70();  // fn_7100d9af70
-UnkReflType* fn_7100d9b04c();  // fn_7100d9b04c
 
 void fn_7100d9caf0() {
     InitHeader(g_unk_71727ba980);
@@ -331,7 +285,6 @@ struct UnkLoadingScreenData {
     f32 field_0x9c;
     bool field_0xa0;
 };
-extern UnkReflType g_unk_71727c0710;
 void fn_7100e0f4d4(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 extern UnkConverter g_unk_71727c0830;
 extern UnkConverter g_unk_71727c0850;
@@ -346,8 +299,6 @@ void fn_7100e13f10() {
     InitEnumConverters(&g_unk_71727c0710, g_unk_71727c0830, fn_7100e1389c, g_unk_71727c0850, fn_7100e138a8);
 }
 
-extern UnkTUHeaderAndClass g_unk_717279cc60 __attribute__((visibility("hidden")));
-extern UnkReflType g_unk_717279cb00;
 void fn_7100cd1954(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 extern UnkConverter g_unk_717279cc20;
 extern UnkConverter g_unk_717279cc40;
@@ -361,8 +312,6 @@ void fn_7100cd1fe0() {
     InitEnumConverters(&g_unk_717279cb00, g_unk_717279cc20, fn_7100cd1c90, g_unk_717279cc40, fn_7100cd1c9c);
 }
 
-extern UnkTUHeaderAndClass g_unk_71727a0898 __attribute__((visibility("hidden")));
-extern UnkReflType g_unk_71727a0738;
 void fn_7100ceb308(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 extern UnkConverter g_unk_71727a0858;
 extern UnkConverter g_unk_71727a0878;

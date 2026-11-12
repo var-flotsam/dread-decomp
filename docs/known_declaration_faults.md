@@ -85,6 +85,10 @@ this list; remove a symbol here when it has moved.)
 **6: a file uses a type the header does not bring.**
 `fn_71007142e8` `fn_7100872908` `fn_710099d6f0` `fn_71009a1f40` `fn_71009b0800` `fn_71010d1598`
 
+A third pass on 2026-11-12 moved 437 more symbols, none left over: the planner forward-declares a type the
+declaring file takes from an include when every file of the tree agrees on it (`tools/decl_plan.py`,
+`type_index`).
+
 ## Shared globals the mechanical header migration could not move
 
 `tools/decl_plan.py` and `tools/hub_migrate.py` moved 674 shared symbols' declarations (672 globals and two

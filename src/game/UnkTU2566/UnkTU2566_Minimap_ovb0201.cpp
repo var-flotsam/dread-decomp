@@ -12,6 +12,7 @@
 #include "base/UnkRegistry.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
+#include "base/animation/CAnimationResource.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -497,7 +498,6 @@ struct UnkStrPair_0x10 {
     void* b;
 };
 void fn_710008d2ec(UnkStrPair_0x10* self, const base::global::CFilePathStrId* path);
-extern UnkRegistry_0x70* g_unk_7101d4b5a0;
 void fn_71006cae2c(UnkRenderPool*, const CFilePathStrId&, UnkModel**, base::global::CStrId*);
 struct UnkModel_ovb0032;
 void fn_7100143578(UnkModel_ovb0032* model, const UnkVec3f* v);

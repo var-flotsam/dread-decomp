@@ -15,6 +15,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU25.h"
+#include "game/UnkTU315.h"
 #include "game/UnkTU32.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -92,9 +93,6 @@ extern u64 g_unk_71729d1548[] __attribute__((visibility("hidden")));
 
 extern "C" f32 atan2f(f32 y, f32 x);
 UnkMatrix44 fn_71000791a8(const UnkVec3f& translation, const UnkVec3f& angle, const UnkVec3f& scale);
-void fn_7100219dd0(UnkRenderManager* self, u64 model, const UnkMatrix44* m, u32 a, u32 b, u64* instance, u32 c);
-void fn_7100219e58(UnkRenderManager* self, u64 instance, bool visible);
-void fn_7100219e64(UnkRenderManager* self, u64 object, const UnkMatrix44* m);
 UnkShotWeakRef* fn_7100748064(base::UnkVector<UnkShotWeakRef>* self, u32 i);
 void fn_7100ddecac(UnkShotEffect* self, f32 dt);
 void fn_7100de13ac(void* self, UnkShotEffect* effect);

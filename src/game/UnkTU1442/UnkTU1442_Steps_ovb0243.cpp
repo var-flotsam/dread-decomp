@@ -8,6 +8,8 @@
 #include "game/UnkObject_0x100.h"
 #include "game/UnkTU1130.h"
 #include "game/UnkTU1442.h"
+#include "game/UnkTU376.h"
+#include "game/malloc.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 #include "base/math/CVector.h"
@@ -139,8 +141,6 @@ bool fn_710096ccb4(char* raw) {
 struct UnkEffectSink;
 
 bool fn_710096ccb4(char* self);
-void fn_71002b57bc(UnkObject_0x100* self);
-UnkObject_0x100* fn_71002b5c90(UnkObject_0x100* self, const UnkObject_0x100* other);
 
 struct UnkEvent_1442 {
     void** vtable;
@@ -292,7 +292,6 @@ struct UnkVec3;
 void fn_710096dfb8(char* self, u32 flag);
 void fn_710096cdec(char* self, bool flag);
 void fn_710007b444(void* dst, const UnkVec3* value);
-UnkSegment2D* fn_7100125b44(UnkSegment2D* self, const UnkSegment2D* other);
 
 struct UnkAI_eee8 {
     void** vtable;
@@ -387,8 +386,6 @@ struct UnkEnemyMovement_f;
 bool fn_71010caa64(UnkEnemyMovement_f* self);
 void fn_710096cdec(char* self, bool flag);
 void fn_710096d788(char* self, __attribute__((noescape)) u64* a, char* list, __attribute__((noescape)) u32* out, bool flag);
-void fn_71002b57bc(UnkObject_0x100* self);
-UnkObject_0x100* fn_71002b5c90(UnkObject_0x100* self, const UnkObject_0x100* other);
 
 struct UnkTarget_b720 {
     void** vtable;

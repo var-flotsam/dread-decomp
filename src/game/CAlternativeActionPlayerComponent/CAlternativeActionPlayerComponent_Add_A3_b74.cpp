@@ -8,15 +8,14 @@
 // may alias the count, which the original reloads after each store).
 #include "base/UnkDeferredSet.h"
 #include "base/global/CStrId.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/CAnimationComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkClone_fn_7100712798;
 using UnkAltActionSet_A3_b74 = base::UnkDeferredSet<UnkClone_fn_7100712798>;
 extern template void UnkAltActionSet_A3_b74::Add(UnkClone_fn_7100712798*);
-
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
-void fn_710117b3e8(UnkWeakTarget* target, void* link);
 
 struct UnkAltActionOwner_A3_b74 {
     u8 pad_0x0[0x1b8];

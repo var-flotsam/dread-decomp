@@ -1,6 +1,8 @@
 // fn_71006bd128: forgets the held handle at +0x8 when it refers to `target`, then hands a counted
 // reference to the target's weak handle (fn_7100d78378) to the list at +0x10 (fn_710059cecc).
 // Nothing happens for a null target. The unit has no class hint; names are placeholders.
+#include "game/UnkTU2523.h"
+#include "game/UnkTU852.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -23,9 +25,6 @@ struct UnkTargetHolder {
     UnkWeakHandle* field_0x8;
     UnkHandleList field_0x10;
 };
-
-UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
-void fn_710059cecc(UnkHandleList* list, const UnkRefPtr& ref);
 
 void fn_71006bd128(UnkTargetHolder* self, UnkWeakTarget* target) {
     if (!target)

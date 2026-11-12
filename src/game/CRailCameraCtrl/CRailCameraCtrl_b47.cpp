@@ -4,11 +4,11 @@
 // Names and layouts are placeholders.
 #include "game/CCameraBoundaryCtrl.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 struct UnkPlayer;
 struct UnkPureFollowCameraCtrl;
-UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 
 struct UnkRailPoint {
     u32 x;

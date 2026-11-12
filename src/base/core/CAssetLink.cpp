@@ -4,6 +4,7 @@
 // ids resolves the resource again through the resource registry. Names are placeholders.
 #include "base/UnkCountedResource.h"
 #include "base/UnkStrIdPathPair.h"
+#include "game/UnkTU27.h"
 #include "types.h"
 
 // The resource registry (src/game_s7/fn_7100d92158.cpp registers its descriptors; reached through
@@ -33,11 +34,6 @@ struct UnkAssetResRef {
             fn_710001737c(ptr);
     }
 };
-
-// The resource the ids name, looked up in the registry (the flag's and the last argument's
-// meanings are unknown; the last is a 64-bit word, null here).
-UnkAssetResRef fn_710002038c(UnkRegistry_7100d92158* registry, const UnkStrIdPathPair* ids, bool a,
-                             void* b);
 
 void fn_71000267f8(UnkStrIdPathResource* self, const UnkStrIdPathPair& other) {
     self->ids.id = other.id;

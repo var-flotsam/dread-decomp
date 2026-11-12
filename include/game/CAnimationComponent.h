@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkTrack;
+struct UnkWeakTarget;
 struct UnkActionSwitcherAnimation_b48;
 struct UnkActorTarget;
 struct UnkAnimActionSetsOwner;
@@ -34,3 +36,8 @@ void fn_710117774c(UnkShakernautCtrl_b53* ctrl);
 void fn_7101178010(void* target, u64 id, bool flag, f32 time);
 void fn_7101179878(UnkAnimActionSetsOwner* anim, void* entry, u32 a, u64 key, UnkMtx44_b46a2* out, u32 b, f32 c);
 void fn_710117ab64(UnkAnimationComponent* self, u32 value, const void* arg);
+void fn_710117b3e8(UnkWeakTarget* target, void* link);
+void* fn_7101177d2c(UnkAnimationComponent* self, u64 key);
+bool fn_7101179c3c(UnkAnimationComponent* self, u64 key);
+UnkTrack* fn_71011771e0(void* handle, u64 key);
+bool fn_71011782ec(UnkAnimationComponent* self, u64 key);

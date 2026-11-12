@@ -12,9 +12,11 @@
 #include "game/UnkGuiRoot.h"
 #include "game/UnkGuiFrames.h"
 #include "game/UnkTU135.h"
+#include "game/UnkTU1722.h"
 #include "game/UnkTU254.h"
 #include "game/UnkTU257.h"
 #include "game/UnkTU2733.h"
+#include "game/UnkTU2744.h"
 #include "game/UnkTU287.h"
 #include "types.h"
 
@@ -102,7 +104,6 @@ static_assert(__builtin_offsetof(UnkLabel, groups) == 0x2d0, "UnkLabel placehold
 
 UnkLabelSource* fn_71011b9fac(UnkGuiRoot* root, const void* key);
 void fn_71011baa38(UnkGuiRoot* root, char* source, UnkLabelViewport** out, s32 frame);
-UnkLabelVec2 fn_7100b82b18(const UnkLabelSource* source, s32 frame);
 
 // The label's depth: field_0x140, or field_0x13c while it is unset.
 static inline s32 Depth(const UnkLabel* self) {
@@ -265,8 +266,6 @@ struct UnkGlyphId {
     }
 };
 
-void fn_71011bab80(UnkGuiRoot* root, void* object, s32 frame);
-
 // A glyph a run shows (0x30 bytes; CLabel.cpp's UnkLabelEntry): a font glyph (kind 1, by font and
 // code) or a sprite (kind 0, by id), 0x7fffffff while it is none, with where it is drawn and the
 // object made for it in a frame.
@@ -312,7 +311,6 @@ struct UnkLabelTextObject {
     UnkLabelTextNode* node;
     void* font;
 };
-void fn_71011bab10(UnkGuiRoot* root, UnkLabelTextObject** out, s32 frame);
 
 // A run (0x70 bytes; CLabel.cpp's UnkLabelItem).
 struct UnkLabelRun {

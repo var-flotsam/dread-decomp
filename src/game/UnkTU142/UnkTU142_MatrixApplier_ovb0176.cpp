@@ -1,11 +1,10 @@
 // Unit 142 (no reflected class): an object that applies a matrix to a keyed pose entry. Names and
 // layouts are placeholders.
 #include "base/UnkMatrix44.h"
+#include "game/UnkTU54.h"
 #include "types.h"
 
 struct UnkKeyedEntry;
-
-UnkMatrix44 fn_7100078834(const UnkKeyedEntry* entry, const UnkMatrix44* matrix, f32 weight);
 
 extern char g_unk_7101a1cd78[];
 

@@ -3,6 +3,10 @@
 // registration.
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CEmmyCaveAIComponent.h"
+#include "game/CLogicActionTriggerComponent.h"
+#include "game/CPowerGeneratorComponent.h"
+#include "game/CWeightActivableMovablePlatformComponent.h"
 
 using namespace unk_static_init;
 
@@ -17,13 +21,9 @@ extern UnkStatics_71004f1820 g_unk_7172735508 __attribute__((visibility("hidden"
 extern UnkStrIdBase g_unk_71727502f0;
 extern UnkStrIdBase g_unk_7172739f38;
 extern UnkStrIdBase g_unk_7172735480;
-extern UnkProperty g_unk_71727502f8;
-extern UnkProperty g_unk_7172739f40;
-extern UnkProperty g_unk_7172735488;
 extern void* g_unk_7101a91118[];
 extern void* g_unk_7101a84c68[];
 extern void* g_unk_7101a814e8[];
-void fn_71004f1338(UnkProperty* p);
 void fn_7100a7df30(void* p);
 void fn_7100952bc0(void* p);
 void fn_710090efb0(void* p);

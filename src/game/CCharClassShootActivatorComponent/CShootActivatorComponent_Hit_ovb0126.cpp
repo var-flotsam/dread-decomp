@@ -16,6 +16,7 @@
 #include "game/UnkCameraCtrl.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1176.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTimelineComponent.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -23,7 +24,6 @@
 using base::global::CStrId;
 
 struct UnkStruct_71002fda50;
-void* fn_7100df5440(UnkGameManager* manager);
 extern const u64 g_unk_710164aed8;  // reached through the GOT
 
 struct UnkShootHit_ovb0126 {
@@ -90,7 +90,6 @@ bool fn_7100891c8c(UnkShootActivatorHit_ovb0126* self, const UnkShootHit_ovb0126
 // here asking for the player again for the angle and without null tests.
 struct UnkScenarioObject_ovb0032;
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkGeneratorTarget_ovb0120;
 void fn_710116c128(UnkGeneratorTarget_ovb0120* self, const UnkVec3f* offset, const UnkVec3f* angle, bool flag);
 

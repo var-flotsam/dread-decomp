@@ -6,12 +6,12 @@
 // Names and layouts are placeholders.
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CAnimationComponent.h"
 #include "types.h"
 
 #include "../../../game_s2/UnkSpitSend.h"
 
 struct UnkAnimationComponent;
-void* fn_7101177d2c(UnkAnimationComponent*, u64);
 
 struct UnkFlyingAI {
     u8 pad_0x0[0x113c];

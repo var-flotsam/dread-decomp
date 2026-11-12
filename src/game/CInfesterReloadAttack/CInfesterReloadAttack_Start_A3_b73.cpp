@@ -4,14 +4,14 @@
 // src/game/CChozoWarriorXGlaiveSpinAttack/UnkAttackTrackLink_b54.cpp); then hands the owner's navigation
 // object (+0x298) a kind-5 parameter block (game_s2/UnkParams.h, fn_71006f4b0c with 1). Names and layouts
 // are placeholders.
+#include "game/CAbilityGhostAura.h"
+#include "game/CAnimationComponent.h"
 #include "game_s2/UnkParams.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkAttackBase;
 void fn_71003608ac(UnkAttackBase* self);
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
-void fn_710117b3e8(UnkWeakTarget* target, void* link);
 void fn_71005c5cfc();
 
 struct UnkReloadTrackLink_A3_b73 {

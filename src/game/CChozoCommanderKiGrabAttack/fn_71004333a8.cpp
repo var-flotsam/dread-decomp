@@ -4,6 +4,7 @@
 // (or INT_MAX when there is none; the step takes a float only when there is one).
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU437.h"
 #include "types.h"
 
 struct UnkLimit {
@@ -25,7 +26,6 @@ struct UnkStep {
     f32 field_0x14c;
 };
 
-void fn_7100352b14(void* body_field, UnkActor* owner, u32 flag);
 void* fn_71004321a0(UnkStep* self, u32 limit, f32 value);
 
 void* fn_71004333a8(UnkStep* self) {

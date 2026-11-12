@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "game/CCameraCtrl.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -16,9 +17,6 @@ using base::global::CStrId;
 struct UnkFixedCamera_fc;
 struct UnkArg_fc;
 struct UnkVec;
-void fn_7100e038b0(UnkGameManager*, void*, UnkVec*, u64);
-void fn_7100df6c78(UnkGameManager* self, f32 a, f32 b);
-void fn_7100df6d3c(UnkGameManager* self, void* settings, f32 a, f32 b);
 
 struct UnkGrabDef_ovb0112 {
     u8 pad_0x0[0xb4];

@@ -5,11 +5,11 @@
 #include "game/CAbility.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 extern u64 g_unk_7101648d20;
 
 struct UnkWaveChild_A2_b72 {

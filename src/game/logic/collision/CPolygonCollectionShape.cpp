@@ -522,7 +522,6 @@ static inline UnkContact SweepEdges(UnkPolygonCollection2D* self, const Shape* s
     return result;
 }
 
-bool fn_710012ce70(const UnkBox2D* box, const UnkVec2Result& step, const UnkSegment2D* seg, UnkContact2D* out);
 bool fn_710012f750(const UnkShape8Geometry* shape, const UnkVec2Result& step, const UnkSegment2D* seg,
                    UnkContactPoint* out);
 

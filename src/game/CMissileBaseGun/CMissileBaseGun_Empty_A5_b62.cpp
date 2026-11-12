@@ -6,10 +6,10 @@
 // Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
-void* fn_7100df5460(UnkGameManager* manager);
 extern u64 g_unk_710164ad18;
 extern u64 g_unk_710164ad20;
 

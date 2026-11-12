@@ -5,4 +5,8 @@
 // Names and layouts are placeholders.
 #include "game/UnkGameManager.h"
 #include "types.h"
+
+struct UnkGameManagerSub_0x608;
+
 void fn_71011a2a24(UnkGameManagerSub_0x608* scenario, void* object);  // Takes an object off the scenario's lists.
+void fn_71011a2770(UnkGameManagerSub_0x608* points, void* object);

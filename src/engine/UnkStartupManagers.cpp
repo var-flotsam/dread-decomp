@@ -26,6 +26,7 @@
 #include "game/UnkTU2728.h"
 #include "game/UnkTU2732.h"
 #include "game/UnkTU2768.h"
+#include "game/UnkTU315.h"
 #include "game/UnkTU365.h"
 #include "game/UnkTU437.h"
 #include "game/sound/CMusicManager.h"
@@ -118,8 +119,6 @@ void fn_7100fb7a14(void* self);
 struct UnkLoadingScreen;  // src/game/UnkLoadingScreen.cpp
 extern UnkLoadingScreen* g_unk_7101d47380;
 void fn_7100e0f984(UnkLoadingScreen* self);
-
-void fn_7100219974(UnkRenderManager* self, u32 value);
 
 // The two flags the main function passes (src/engine/HostArguments.cpp).
 struct UnkStartupFlags {

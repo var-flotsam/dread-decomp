@@ -5,8 +5,11 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkProperty;
 struct UnkLifeComponent_A5_b71;
 void fn_71008e04e8(UnkLifeComponent_A5_b71* self);
 void fn_71008e05e8(void* self);
 void fn_71008e266c(char* self);  // base::refl_StrIdListCtor<..>, instantiated in src/clones (UnkClone_fn_71008e266c).
 extern void* g_unk_7101a7f028[];
+extern UnkProperty g_unk_7172732320;  // "Dead".
+extern UnkProperty g_unk_7172732348;  // "Disabled".

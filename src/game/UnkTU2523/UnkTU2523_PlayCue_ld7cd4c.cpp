@@ -6,6 +6,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "game/CAudioComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU56.h"
 #include "types.h"
 
@@ -19,7 +20,6 @@ struct UnkCueEntity {
 
 struct UnkPlayer;
 struct UnkEntitySoundComponent;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 bool fn_7100d7cd4c(UnkCueEntity* self, void* stream) {
     f32 value;

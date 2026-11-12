@@ -4,11 +4,10 @@
 // layouts are placeholders.
 #include "base/CDeviceQueue.h"
 #include "base/UnkVector.h"
+#include "game/CCharClassAttack.h"
 #include "game/CCharClassBigkranXSpitAttack.h"
 #include "game/UnkComponent.h"
 #include "types.h"
-
-void fn_7100364430(UnkBaseComponent* self);
 
 struct UnkSpitAttack_A2_b70 : UnkBaseComponent {
     u8 pad_0x40[0x108];

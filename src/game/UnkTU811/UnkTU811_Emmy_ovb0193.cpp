@@ -23,7 +23,9 @@
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU2523.h"
+#include "game/UnkTU2553.h"
 #include "game/UnkTU39.h"
+#include "game/UnkTU54.h"
 #include "game/UnkTU811.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -90,7 +92,6 @@ struct UnkAII_b0144;
 struct UnkPathPoint_b67a4;
 bool fn_7101112070(UnkAII_b0144* self, UnkVec3f* out);
 bool fn_7100707df4(char* self, UnkPathPoint_b67a4* out);
-UnkMatrix44 fn_7100078fc8(const UnkMatrix44& m);
 
 struct UnkKindInner_b0193 {
     u8 unk_0x0[0x10];
@@ -398,7 +399,6 @@ void fn_7100545138(UnkEmmyActor_b55* actor) {
 // ---- 71005592ac
 
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 
 struct UnkRangeVtbl_b0193 {
     void* unk_0x0[27];
