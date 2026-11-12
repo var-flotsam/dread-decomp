@@ -22,6 +22,7 @@
 #include "game/UnkItemProperties.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU23.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2669.h"
 #include "game/UnkTU2677.h"
@@ -303,7 +304,6 @@ s32 fn_7101079030(lua_State* L) {
 struct UnkSoundMgr;
 struct UnkPathNode;
 
-extern UnkSoundMgr* g_unk_7101d4d820;
 void fn_7100df21e8(UnkGameManager* self, CStrId* id);
 
 s32 fn_710107d2d0(lua_State* L) {

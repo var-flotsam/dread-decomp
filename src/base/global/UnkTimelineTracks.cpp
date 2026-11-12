@@ -4,6 +4,7 @@
 // read in place. Names and layouts are placeholders.
 // Holds fn_710006b6e4.
 #include "base/UnkVector.h"
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CRntFile.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -14,7 +15,6 @@
 // declares it; its entries are the types' descriptors).
 struct UnkVersionRegistry;
 struct UnkVersionEntry;
-extern UnkVersionRegistry* g_unk_7101d4c8d0;
 
 // A track: polymorphic, destroyed (and freed) through its vtable's slot 2.
 struct UnkTrack {

@@ -24,6 +24,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkTU1370.h"
 #include "game/UnkTU2730.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -333,7 +334,6 @@ struct UnkQuetzoaXAI_b58;
 struct UnkQuetzoaXMessage_b58;
 struct UnkRobotSoldierTable_A2_b69;
 struct UnkRequest;
-void fn_71008c1538(UnkRequest*, f32);
 
 // A string id's data as the damage check reads it: the hash at +0x30.
 struct UnkCooldownXDamageIdData_ovb0088 {

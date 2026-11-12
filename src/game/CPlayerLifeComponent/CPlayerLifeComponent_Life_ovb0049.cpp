@@ -13,6 +13,7 @@
 #include "game/CInventoryComponent.h"
 #include "game/CLifeComponent.h"
 #include "game/CMovementComponent.h"
+#include "game/GUI/CAmiiboComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkManager_71726af468.h"
@@ -42,7 +43,6 @@ extern const u64 g_unk_710164d050;
 extern const u64 g_unk_710164d058;
 extern const u64 g_unk_710164d060;
 extern char g_unk_7101cb3f98[];
-extern UnkStateSink* g_unk_717275c380;
 extern UnkEnumType g_unk_71729f02a8;
 extern UnkPropertyEx<> g_unk_717275a0d8;
 

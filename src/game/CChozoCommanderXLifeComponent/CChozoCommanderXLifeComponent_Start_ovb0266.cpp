@@ -9,6 +9,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
+#include "game/CCentralUnitAIComponent.h"
 #include "game/CCutsceneComponent.h"
 #include "game/CLifeComponent.h"
 #include "game/UnkGameBlackboard.h"
@@ -22,7 +23,6 @@ using base::global::CStrId;
 CStrId fn_71011a2fbc(UnkGameManagerSub_0x608*);
 
 void fn_7100e8f9a0(char*, bool, base::global::CStrId*);
-void* fn_71004067a4(void* owner);
 void fn_71008bdd84(void* self, bool flag);
 void fn_71008c0000();
 extern __attribute__((visibility("hidden"))) char g_unk_71727302a0[];

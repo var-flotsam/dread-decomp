@@ -2,6 +2,8 @@
 // the given time, or over the entry's own time when the given time is negative.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflValue.h"
+#include "base/snd/CSoundSystem.h"
+#include "game/UnkTU23.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 #include "game/sound/CMusicManager.h"
@@ -56,9 +58,6 @@ struct UnkStruct_0xd0 {
 struct UnkMgr;
 
 struct UnkSoundMgr;
-extern UnkSoundMgr* g_unk_7101d4d820;
-
-void fn_7100108abc(UnkMgr*, UnkHandle*, f32, f32);
 
 static inline f32 Max(f32 a, f32 b) { return a < b ? b : a; }
 

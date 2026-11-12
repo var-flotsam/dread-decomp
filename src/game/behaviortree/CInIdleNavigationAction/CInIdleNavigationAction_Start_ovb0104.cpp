@@ -5,11 +5,11 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/behaviortree/CBehavior.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
 
 struct UnkStruct_0x68;
-void fn_7100394bd0(UnkStruct_0x68* self);
 
 struct UnkIdleNavigationOwner {
     u8 pad_0x0[0x218];

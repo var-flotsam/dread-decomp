@@ -6,12 +6,16 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/GUI/CAmiiboComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU23.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2615.h"
 #include "game/UnkTU315.h"
+#include "game/UnkTU32.h"
 #include "game/malloc.h"
 #include "types.h"
 
@@ -27,7 +31,6 @@ using base::global::CStrId;
 
 // base::snd::CSoundSystem as far as its update (slot 0x28).
 struct UnkSoundMgr;
-extern UnkSoundMgr* g_unk_7101d4d820;
 struct UnkSoundSystem_ovb0039 {
     virtual void vf_0x0();
     virtual void vf_0x8();
@@ -59,13 +62,11 @@ struct UnkSoundManager_ovb0039 {
 };
 
 struct UnkStateSink;
-extern UnkStateSink* g_unk_717275c380;
 void fn_7100fca0f0(UnkStateSink* self);
 void fn_710101e7d8(void* self);
 void fn_7100fcd7f0(void* self);
 
 struct UnkStatsObject;
-extern UnkStatsObject* g_unk_7101d47100;
 void fn_7100132248(UnkStatsObject* self, const CStrId& name, f32 value);
 
 // Removes element i, moving the later ones down.
@@ -121,7 +122,6 @@ void fn_7101023c3c(UnkSoundManager_ovb0039* self, f32 dt) {
 
 
 struct UnkIdPair;
-void fn_7100026f70(UnkIdPair* pair);
 
 // CFilePathStrId's copy constructor with the pointer assigned in the body (the original loads it
 // after the record's address is formed).

@@ -8,6 +8,7 @@
 // Names and layouts are placeholders.
 #include "base/UnkDeferredSet.h"
 #include "base/global/CStrId.h"
+#include "game/GUI/CAmiiboComposition.h"
 #include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/sound/SGUISoundEventsSelector.h"
@@ -56,7 +57,6 @@ struct UnkGallery_A5_b74 {
 struct UnkStateSink;
 struct UnkStateKey;
 struct UnkEnumType;
-extern UnkStateSink* g_unk_717275c380;
 extern UnkEnumType g_unk_71729f0220;
 extern UnkEnumType g_unk_71729f0228;
 

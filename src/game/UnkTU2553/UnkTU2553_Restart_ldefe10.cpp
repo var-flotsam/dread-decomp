@@ -9,7 +9,10 @@
 #include "base/input/UnkRumbleManager.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU23.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2577.h"
 #include "game/UnkTU315.h"
 #include "game/UnkXformNode.h"
 #include "game/nn/time.h"
@@ -33,7 +36,6 @@ void fn_7100073f48(UnkRumbleManager* self, u32 a, u32 b);
 void fn_7101196bf4(UnkOwner_b0188* self, bool release);
 void fn_710105383c(void* effects);
 void fn_7101053968(void* effects, UnkVec3f* a, UnkVec3f* b, f32 x, f32 y, f32 z);
-void fn_7100ee1f34(void* self);
 void fn_7100ee34f0(CSubAreaManager* self);
 void fn_71010e3704(void* self);
 void fn_7100debf3c(UnkGameManager* self);
@@ -46,13 +48,11 @@ void fn_7100e00b48(UnkGameManager* self);
 void fn_7100da201c(void* self);
 void fn_7100da2774(UnkRefPtrArray* self);
 
-extern UnkSoundMgr* g_unk_7101d4d820;
 extern UnkRumbleManager* g_unk_7101d47348;
 extern void* g_unk_7101d47330;
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
-extern UnkSoundHolder* g_unk_7101d47340;
 extern void* g_unk_71727344a8;
 __attribute__((visibility("hidden"))) extern UnkVec3f g_unk_710164bdb4;
 

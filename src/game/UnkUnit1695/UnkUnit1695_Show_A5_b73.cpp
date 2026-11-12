@@ -1,13 +1,13 @@
 // Unit 1695 (tools/tu_map.py, no name hint): a GUI screen's show: builds its root display object when it has
 // none (vf_0x10), hands the root to the owner (+0x268, 7 at +0x27c) and posts the state g_unk_71729f01c8 for
 // it to the GUI sound sink (fn_7100fc9d78). Names and layouts are placeholders.
+#include "game/GUI/CAmiiboComposition.h"
 #include "game/sound/SGUISoundEventsSelector.h"
 #include "types.h"
 
 struct UnkStateSink;
 struct UnkStateKey;
 struct UnkEnumType;
-extern UnkStateSink* g_unk_717275c380;
 extern UnkEnumType g_unk_71729f01c8;
 
 struct UnkUnit1695Root_A5_b73;

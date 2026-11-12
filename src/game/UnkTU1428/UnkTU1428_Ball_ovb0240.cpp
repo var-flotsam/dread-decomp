@@ -15,6 +15,7 @@
 #include "game/CAutclastChargeAttack.h"
 #include "game/CBreakableTileGroup.h"
 #include "game/CCharacterMovement.h"
+#include "game/CFXComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkModelManager.h"
@@ -130,10 +131,7 @@ struct UnkMorphBall_9970 {
 
 struct UnkPart;
 struct UnkWorld;
-UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
-bool fn_710114e668(UnkObject*, u8);
 struct UnkWorld;
-void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
 
 void fn_7100949970(UnkMorphBall_9970* self) {
     if (!self->field_0x25a0)
@@ -194,9 +192,6 @@ struct UnkMorphBall_c0ac {
     u8 pad_0x2494[0x2588 - 0x2494];
     UnkMorphBallId_c0ac* field_0x2588;
 };
-
-UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
-void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
 
 void fn_710094c0ac(UnkMorphBall_c0ac* self) {
     fn_710114fe8c(reinterpret_cast<UnkWorld*>(self->owner->field_0x280), self->field_0x2588->hash, 1, 1);

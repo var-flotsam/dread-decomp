@@ -12,6 +12,7 @@
 #include "game/UnkActor.h"
 #include "game/behaviortree/CAutclastComputeAttackPositionAction.h"
 #include "game/behaviortree/CBaseAction.h"
+#include "game/behaviortree/CBehavior.h"
 #include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
@@ -47,7 +48,6 @@ struct UnkAutclastTunable_ovb0088 {
 
 struct UnkSelf;
 struct UnkStruct_0x68;
-void fn_7100394bd0(UnkStruct_0x68*);
 bool fn_710039525c(UnkSelf* self, void* arg, UnkVec3f* out);
 
 struct UnkAutclastBody_ovb0088 {

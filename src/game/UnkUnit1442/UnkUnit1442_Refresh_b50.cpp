@@ -4,9 +4,6 @@
 #include "game/UnkTU1442.h"
 #include "types.h"
 
-void fn_710096cdec(char* self, bool flag);
-void fn_710096d788(char* self, __attribute__((noescape)) u64* a, char* list, __attribute__((noescape)) u32* out, bool flag);
-
 static inline void RunPass(char* self) {
     u32 out;
     u64 a = 0;

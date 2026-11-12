@@ -4,13 +4,13 @@
 // part's vf_0x58 result is kept at +0x146ee and, when true, the part gets vf_0x40(false); when it
 // is clear and the kept flag is set, the part gets vf_0x40(true). Names and layout are placeholders.
 #include "game/CBehaviorTreeAIComponent.h"
+#include "game/CFXComponent.h"
 #include "types.h"
 
 struct UnkObject;
 struct UnkComponent;
 struct UnkPart;
 struct UnkWorld;
-UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 
 struct UnkSclawkPart_b44a2 {
     virtual void vf_0x0();

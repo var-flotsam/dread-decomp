@@ -6,6 +6,7 @@
 // transitions (+0x7d0, +0x6f8) advance; when both are done the mode is entered (fn_7100b3feb8),
 // otherwise the game manager's map view (+0x2228) gets the zoom (+0x7c8) and the value at +0x8a0.
 // Names and layouts are placeholders.
+#include "game/GUI/CAmiiboComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1689.h"
 #include "game/UnkTU2566.h"
@@ -16,7 +17,6 @@
 // As src/game/GUI/CIngameMenu/fn_7100b2de48.cpp and
 // src/game/GUI/CGlobalMapComposition/CGlobalMapComposition_Sound.cpp declare them.
 struct UnkStateSink;
-extern UnkStateSink* g_unk_717275c380;
 struct UnkStateKey;
 extern UnkStateKey g_unk_71729f0178;
 extern UnkStateKey g_unk_71729f0180;

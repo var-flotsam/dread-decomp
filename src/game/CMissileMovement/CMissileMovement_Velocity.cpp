@@ -2,6 +2,7 @@
 // direction at +0x40 scaled by the speed of the tunable data at +0x5f0 (its +0x134). Names and
 // layouts are placeholders.
 #include "base/math/CVector.h"
+#include "game/CProjectileMovement.h"
 #include "types.h"
 
 using base::math::CVector3D;
@@ -22,7 +23,6 @@ struct UnkMissileMovement {
 static_assert(__builtin_offsetof(UnkMissileMovement, tunables) == 0x5f0, "UnkMissileMovement layout");
 
 struct UnkSelf;
-void fn_7100ac3880(UnkSelf* self);  // the signature the other callers use
 
 void fn_7100aba644(UnkMissileMovement* self) {
     fn_7100ac3880(reinterpret_cast<UnkSelf*>(self));

@@ -4,12 +4,12 @@
 // the flags at +0xb4, mode 2, and a horizontal direction that is the sign of the owner's +0x40.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU1370.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkRequest;
-void fn_71008c1538(UnkRequest* request, f32 value);
 extern CStrId g_unk_71726dda50;
 extern CStrId g_unk_71726ddc60 __attribute__((visibility("hidden")));
 

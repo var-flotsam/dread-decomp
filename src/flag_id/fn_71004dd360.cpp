@@ -1,4 +1,5 @@
 // Initialisation: base init, copy values from a source object, then finish.
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
 struct UnkTriple {
@@ -42,7 +43,6 @@ struct UnkStruct_0x68 {
     u32 field_0x60;
 };
 
-void fn_7100394bd0(UnkStruct_0x68* self);
 void fn_71004dd3d8(UnkStruct_0x68* self);
 
 void fn_71004dd360(UnkStruct_0x68* self) {

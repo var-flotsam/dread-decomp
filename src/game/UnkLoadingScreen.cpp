@@ -6,6 +6,7 @@
 #include "game/GUI/CLabel.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU244.h"
 #include "game/UnkTU2557.h"
 #include "game/UnkTU2578.h"
@@ -67,8 +68,6 @@ static_assert(__builtin_offsetof(UnkLoadingScreen, field_0x1e8) == 0x1e8, "UnkLo
 // The scene-state singleton (0x150 bytes, created on first use; the type is src/game_hi's
 // UnkStruct_0x128).
 struct UnkStruct_0x128;
-extern UnkStruct_0x128* g_unk_7101d47320;
-void fn_7100f011c4(UnkStruct_0x128* self, u32 id);
 static inline UnkStruct_0x128* SceneState() {
     UnkStruct_0x128* s = g_unk_7101d47320;
     if (!s) {

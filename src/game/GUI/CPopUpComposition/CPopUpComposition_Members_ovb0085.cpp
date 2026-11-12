@@ -17,6 +17,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkTU32.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -32,7 +33,6 @@ void fn_71011cfba8(UnkGuiObj* object, f32 alpha);
 
 // As src/game/GUI/CPopUpGeneric/GUI_CPopUpGeneric_Dtor.cpp declares it: an id pair's destructor.
 struct UnkIdPair;
-void fn_7100026f70(UnkIdPair*);
 
 extern char g_unk_7101a9d758[];  // the composition's vtable
 void fn_7100b607b4();

@@ -5,15 +5,15 @@
 // g_unk_71726cd560. Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CName.h"
+#include "game/CFXComponent.h"
+#include "game/CProjectileMovement.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 struct UnkSelf;
-void fn_7100ac3880(UnkSelf* self);  // as src/game/CChozoCommanderEnergyShardsSphereMovementComponent/fn_7100459e6c.cpp
 struct UnkWorld;
-void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);  // as CAbilityEnergyWave_Stop_b49.cpp
 extern u64 g_unk_71726cd560 __attribute__((visibility("hidden")));
 
 struct UnkRobotBeamOwner_b62a2 {

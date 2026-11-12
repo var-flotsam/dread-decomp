@@ -4,8 +4,8 @@
 // +0x110 of the object the reference points at, and takes the weak handle of `target` again for
 // the reference at +0x11978.
 #include "game/UnkNavMeshPath.h"
+#include "game/navmesh/SNavMeshPath.h"
 
-void fn_71002ae87c(void* set, void* item);
 void fn_71002aeebc(UnkLinkList* list, UnkLinkList** slot);
 
 struct UnkLinkOwner : UnkWeakTarget {

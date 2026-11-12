@@ -2,6 +2,7 @@
 // bucket in a chained hash table: the node (hash, key, next) comes from the allocator at 0x50, the
 // lowest used bucket (0x40) and the first node (0x48) follow, and the node count at 0x5c goes up.
 #include "base/UnkIdKindKey.h"
+#include "game/UnkTU361.h"
 #include "types.h"
 
 struct UnkNode {
@@ -38,7 +39,6 @@ struct UnkHashTable {
     u32 inserts;
 };
 
-u32 fn_71002874e0(u16 a, u8 b);
 UnkNode** fn_71002b288c(void* buckets, u32 index);
 
 void fn_71002b26fc(UnkHashTable* self, u16 id, u8 kind) {

@@ -10,6 +10,7 @@
 #include "base/UnkNamedRegistry.h"
 #include "base/UnkParallelFind.h"
 #include "base/UnkVector.h"
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/reflection/CClass.h"
@@ -455,7 +456,6 @@ UnkSectionArray_b0026* fn_710104b114(UnkSectionArray_b0026* self, const UnkSecti
 
 struct UnkVersionRegistry;
 struct UnkVersionEntry;
-extern UnkVersionRegistry* g_unk_7101d4c8d0;
 
 // A typed pointer to a value the reader fills (a CName id here).
 struct UnkReadArg_b0026 {

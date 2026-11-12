@@ -7,6 +7,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiLabel.h"
+#include "game/UnkTU23.h"
 #include "game/UnkTU2538.h"
 #include "game/UnkTU2656.h"
 #include "game/UnkTU2737.h"
@@ -124,7 +125,6 @@ struct UnkObj_71011a50cc {
 };
 
 struct UnkSoundMgr;
-extern UnkSoundMgr* g_unk_7101d4d820;
 struct UnkTunable;
 // A mode word passed by address (the word after it is not set).
 struct UnkMusicMode {

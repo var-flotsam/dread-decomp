@@ -23,6 +23,7 @@
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2560.h"
 #include "game/UnkTU2739.h"
+#include "game/UnkTU57.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkXformNode.h"
 #include "game/sound/CSoundManager.h"
@@ -34,7 +35,6 @@ using base::global::CStrId;
 // ---- The tunable ----
 
 extern void* g_unk_7101aa9cc8[];
-void fn_710007e6c4(void* self);
 
 struct UnkDropTunable_ovb0208 : UnkTunable {
     u8 pad_0x8[0x90];

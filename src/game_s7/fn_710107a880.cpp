@@ -2,6 +2,7 @@
 // values on the player, then gives every item and power-up to the player's inventory.
 // Layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CAbilityEnergyWave.h"
 #include "game/CInventoryComponent.h"
 #include "game/CSpecialEnergyComponent.h"
 #include "game/UnkGameBlackboard.h"
@@ -24,7 +25,6 @@ struct UnkInventory;
 
 struct UnkLifeComponent;
 void fn_7100a1f998(UnkLifeComponent* life, f32 max);
-UnkWeakTarget* fn_7100303054(void* owner);  // looks the component up in the owner
 
 struct UnkAmmo {
     void** vtable;

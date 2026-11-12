@@ -15,6 +15,7 @@
 #include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU2615.h"
 #include "game/UnkTU2733.h"
@@ -97,7 +98,6 @@ bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
 // The language singleton (created on first use; 0x2068 bytes) and a localized text it gives for a
 // key: a 0x20-byte text destroyed by fn_7100066e44.
 struct UnkLanguage;
-extern UnkLanguage* g_unk_7101d47358;
 struct UnkDialogText {
     u8 unk_0x0[0x20];
     ~UnkDialogText() { fn_7100066e44(this); }

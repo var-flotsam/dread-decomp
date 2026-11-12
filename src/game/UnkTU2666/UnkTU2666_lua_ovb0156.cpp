@@ -3,8 +3,10 @@
 #include "base/UnkNamedRegistry.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
+#include "base/snd/CSoundSystem.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU23.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2656.h"
 #include "game/UnkTU2677.h"
@@ -18,8 +20,6 @@ struct UnkSoundMgr;
 struct UnkVec;
 struct UnkSoundSystemMasks_ovb0074;
 struct UnkObserverEntryMap_7100ca79f0;
-
-extern UnkSoundMgr* g_unk_7101d4d820;
 
 // Reads an int and a string argument and does nothing with them.
 s32 fn_71010947e0(lua_State* L) {
@@ -159,8 +159,6 @@ s32 fn_710108b260(lua_State*) {
         fn_7100108c8c(g_unk_7101d4d820, 1);
     return 0;
 }
-
-void fn_7100108ae8(UnkSoundMgr* mgr, u32 kind, f32 time, f32 delay, bool flag);
 
 s32 fn_710108d5d0(lua_State* L) {
     f32 time;

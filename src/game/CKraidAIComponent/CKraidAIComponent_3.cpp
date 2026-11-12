@@ -89,7 +89,6 @@ struct UnkKraidAI3 {
 };
 
 extern CStrId g_unk_71726f3770 __attribute__((visibility("hidden")));
-void fn_71008c1538(UnkRequest* request, f32 value);
 
 bool fn_71005fcf9c(UnkKraidAI3* self) {
     if (self->actor->field_0x1b8) {

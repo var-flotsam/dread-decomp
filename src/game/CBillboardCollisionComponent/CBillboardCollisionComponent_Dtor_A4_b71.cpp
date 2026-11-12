@@ -4,11 +4,11 @@
 // destructor fn_7100860364. Names are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU883.h"
 #include "types.h"
 
 extern void* g_unk_7101a6d048[];
 void fn_7100860364(void*);  // the base's destructor
-void fn_71005c4828(void*, void**);
 
 namespace {
 

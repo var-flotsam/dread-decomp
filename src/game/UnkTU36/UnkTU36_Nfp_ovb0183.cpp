@@ -7,6 +7,7 @@
 
 #include "../../base/UnkUnit36/UnkUnit36_Nfp.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU36.h"
 #include "game/nn/time.h"
 #include "types.h"
@@ -19,7 +20,6 @@ struct UnkSoundGroup_b0183 {
 struct UnkSoundHolder {
     UnkSoundGroup_b0183* group;
 };
-extern UnkSoundHolder* g_unk_7101d47340;
 
 // Creates the object on first use: storage from the default allocator (flags 0x3f unless given),
 // built by its constructor function.

@@ -5,6 +5,7 @@
 #include "../../../lib/lua/lua.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -16,7 +17,6 @@
 
 struct UnkVersionRegistry;
 struct UnkVersionEntry;
-extern UnkVersionRegistry* g_unk_7101d4c8d0;
 
 // A typed pointer to a value the reader fills (a CName id here).
 struct UnkReadArg_b0249 {

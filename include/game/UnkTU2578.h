@@ -14,3 +14,4 @@ void fn_7100f003e8(UnkStruct_0x128* self, s32 value);
 bool fn_7100f00a24(UnkStruct_0x128* self, u32 mode);
 extern void* g_unk_7101caa208[];
 extern void* g_unk_7101caa228[];
+void fn_7100f011c4(UnkStruct_0x128* self, u32 mode);

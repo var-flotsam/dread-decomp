@@ -22,6 +22,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU23.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2656.h"
 #include "game/UnkTU2726.h"
@@ -169,7 +170,6 @@ using base::global::CFilePathStrId;
 
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
 struct UnkSoundMgr;
-extern UnkSoundMgr* g_unk_7101d4d820;
 
 void fn_710008987c(base::file::UnkFileDevice* self, const CFilePathStrId* path, u32 flags);
 void fn_7100108c94(UnkSoundMgr* self, const CFilePathStrId* path);

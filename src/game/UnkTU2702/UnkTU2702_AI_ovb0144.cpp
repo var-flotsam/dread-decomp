@@ -135,8 +135,6 @@ struct UnkFxObject_ovb0041;
 extern char g_unk_7172a062e8[] __attribute__((visibility("hidden")));
 
 struct UnkPart;
-UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
-bool fn_710114e668(UnkObject*, u8);
 struct UnkFrostbiteComponent;
 void fn_710115217c(void* object, void* effect, u32 a, u32 b, const base::global::CStrId* name,
                    const base::math::CVector3D& offset, const base::math::CVector3D& rotation, void* extra);

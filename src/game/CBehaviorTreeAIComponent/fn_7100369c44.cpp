@@ -4,6 +4,7 @@
 // fn_71003697f0 when it expires. Otherwise it runs a one-shot virtual the first frame after the
 // flag at +6 was set, then updates an optional helper.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CBehaviorTreeAIComponent.h"
 #include "game/CFrozenComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU2702.h"
@@ -52,7 +53,6 @@ struct UnkSelfVtbl_7100369c44 {
 };
 
 struct UnkStruct_710036974c;
-void fn_71003697f0(UnkStruct_710036974c* self);
 
 void fn_7100369c44(UnkSelf_7100369c44* self, f32 dt) {
     UnkState_7100369c44* s = &self->state;

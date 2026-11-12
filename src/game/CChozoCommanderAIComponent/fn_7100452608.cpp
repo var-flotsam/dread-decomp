@@ -4,6 +4,7 @@
 // whether the object found for the handle has its byte at +0x212 other than 1 (true when there is
 // no such object).
 #include "base/UnkRefHandle.h"
+#include "game/CCentralUnitAIComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
@@ -42,7 +43,6 @@ struct UnkSelf {
 };
 
 UnkRef fn_7100353be8(void* from);
-void* fn_71004067a4(void*);
 
 bool fn_7100452608(UnkSelf* self) {
     if (self->field_0x30->field_0x220 && fn_710117ae38(self->field_0x30->field_0x220, 0xb1908e0ac25fa340ull, 0))

@@ -5,13 +5,12 @@
 // (fn_71003954fc). Running (5) then, failed (6) otherwise. Names and layouts are placeholders.
 #include "game/UnkActor.h"
 #include "game/UnkTU109.h"
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
 // Signature as src/game/behaviortree/CStopWatchAction/fn_7100392704.cpp declares it (it returns whether the
 // property is set).
 struct UnkSelf;
-bool fn_7100394e2c(UnkSelf* self, void* record, f32* out);
-void fn_71003954fc(UnkSelf* behavior, void* record, f32 value);
 struct UnkPool_0x48;
 struct UnkStruct_0x48;
 

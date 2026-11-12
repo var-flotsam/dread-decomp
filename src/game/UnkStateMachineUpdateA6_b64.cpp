@@ -208,7 +208,6 @@ void fn_7100f1380c(UnkFlagOwner_A6_b64* self, f32 dt) {
 
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
-void fn_7100ee1f34(void*);
 extern const u64 g_unk_710164b648[];
 extern const u64 g_unk_710164b650[];
 

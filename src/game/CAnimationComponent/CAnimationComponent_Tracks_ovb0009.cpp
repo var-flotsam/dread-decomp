@@ -6,6 +6,7 @@
 // Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/UnkVector.h"
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -48,7 +49,6 @@ struct UnkCls_710117af10;
 struct UnkTrackBlend;
 struct UnkTrackAction_1444;
 
-void* fn_7101176d34(UnkStruct_7101176ea8* self, void* arg);
 bool fn_7100c97930(UnkTrackAction_1444* action, const base::reflection::CClass* cls, f32 value);
 
 extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
@@ -421,7 +421,6 @@ UnkReflValue fn_710117bef8(char* obj, UnkReflValue* const* args) {
 
 struct UnkVersionRegistry;
 struct UnkVersionEntry;
-extern UnkVersionRegistry* g_unk_7101d4c8d0;
 
 struct UnkAnimComponent_b1c8 {
     u8 pad_0x0[0x40];

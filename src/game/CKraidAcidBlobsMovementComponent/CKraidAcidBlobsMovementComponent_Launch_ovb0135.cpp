@@ -4,6 +4,7 @@
 // added to the velocity (+0x4b8); the owner's trail part (fn_7101152b90) is placed at the owner and
 // turned along the direction at +0x10c. Names and layouts are placeholders.
 #include "game/CFXComponent.h"
+#include "game/CProjectileMovement.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU2523.h"
@@ -11,7 +12,6 @@
 #include "types.h"
 
 struct UnkSelf;
-void fn_7100ac3880(UnkSelf* self);  // as src/game/CChozoCommanderEnergyShardsSphereMovementComponent/fn_7100459e6c.cpp
 struct UnkWeakTarget;
 extern __attribute__((visibility("hidden"))) const u64 g_unk_71726f4060;
 
@@ -25,7 +25,6 @@ struct UnkKraidCreatureVec {
 struct UnkComponent;
 struct UnkObject;
 struct UnkPart;
-UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 void fn_7100145f28(UnkSwitchObject* self, const UnkVec3f* position);
 void fn_7100145f3c(UnkSwitchObject* self, const UnkVec3f* angles);
 extern "C" f32 atan2f(f32 y, f32 x);

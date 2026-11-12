@@ -4,12 +4,12 @@
 // 0x132e4760c37d0e46 that the world holds is scaled by the distance between the box's top and bottom / 100
 // (vf_0x20), and the objects at +0x58, +0x60 and +0x68 are moved to the origin (vf_0x10). Names and
 // layouts are placeholders.
+#include "game/CFXComponent.h"
 #include "types.h"
 
 struct UnkWorld;
 struct UnkPart;
 // As src/game/CAbilityEnergyWave/fn_7100300bd0.cpp declares it.
-UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 
 struct UnkRayVec_ovb0126 {
     f32 x, y, z;

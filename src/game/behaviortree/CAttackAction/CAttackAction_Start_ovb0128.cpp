@@ -10,6 +10,7 @@
 #include "game/CAIAttackComponent.h"
 #include "game/CAttackComponent.h"
 #include "game/UnkTU2702.h"
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -43,7 +44,6 @@ struct UnkStringEqualsCondition_A2_b72;
 struct UnkInlineString_A2_b72;
 struct UnkScorpiusAI_b69a4;
 struct UnkCommanderPlayer_b67a2;
-void fn_7100394bd0(UnkStruct_0x68* self);
 bool fn_7100395044(UnkStringEqualsCondition_A2_b72* self, CStrId* id, UnkInlineString_A2_b72* out);
 
 // The owner's attack player.

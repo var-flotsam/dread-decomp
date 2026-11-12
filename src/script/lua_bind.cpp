@@ -16,6 +16,7 @@
 #include "game/UnkTU0.h"
 #include "game/UnkTU1643.h"
 #include "game/UnkTU2562.h"
+#include "game/UnkTU2577.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU2728.h"
 #include "game/UnkTU2768.h"
@@ -31,7 +32,6 @@ extern char* g_unk_71726b2398;
 extern void* g_unk_7101d47368;
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;  // the sub-area manager (src/game/CSubAreaManager.cpp)
-void fn_7100ee1f34(void* self);
 
 namespace {
 

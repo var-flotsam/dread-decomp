@@ -8,6 +8,7 @@
 #include "base/math/CVector4D.h"
 #include "game/UnkGlobal_710b372a98.h"
 #include "game/UnkSlots.h"
+#include "game/UnkTU218.h"
 #include "game/UnkTU253.h"
 #include "types.h"
 
@@ -36,8 +37,6 @@ static inline f32 UnkTimeScale(const UnkGlobal_710b372a98* g) {
 }
 
 static inline f32 UnkNonNegative(f32 x) { return x <= 0.0f ? 0.0f : x; }
-
-bool fn_7100199d88(void* table, const u64* key, u32* id);
 
 // Sets a slot of the table, unless the global flag blocks requests (as fn_71001c2764 does).
 static inline bool UnkSetSlot(UnkSlots* self, u32 id, u32 kind, const CColor4F* color, u32 mode) {

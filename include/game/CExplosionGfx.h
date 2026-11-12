@@ -19,3 +19,4 @@ UnkReflType* fn_7100dded9c();
 UnkReflType* fn_7100ddee78();
 extern UnkTUHeader g_unk_71727be710 __attribute__((visibility("hidden")));
 extern UnkReflType g_unk_71727be730 __attribute__((visibility("hidden")));
+extern UnkReflType g_unk_71727be388;

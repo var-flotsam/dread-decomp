@@ -7,6 +7,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU2544.h"
 #include "game/UnkTU2768.h"
 #include "types.h"
 
@@ -47,10 +48,6 @@ __attribute__((always_inline)) static inline void SetFlag() {
     }
     fn_7101203854(GetOwner());
 }
-
-extern UnkPropertyName g_unk_71727bd270;
-extern UnkPropertyName g_unk_71727bd288;
-extern UnkPropertyName g_unk_71727bd2a0;
 
 void fn_7100dc8828() { SetFlag<&g_unk_71727bd270>(); }
 void fn_7100dc8948() { SetFlag<&g_unk_71727bd288>(); }

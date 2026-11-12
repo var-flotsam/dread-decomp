@@ -5,6 +5,7 @@
 // placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2577.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -22,7 +23,6 @@ struct UnkSubAreaManagerView;
 void fn_7100eeb834(UnkSubAreaManagerView* self);
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
-void fn_7100ee1f34(void* self);
 
 struct UnkCameraBoundaryNamed {
     u8 pad_0x0[0x20];

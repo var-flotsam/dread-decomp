@@ -13,6 +13,7 @@
 #include "base/UnkRefHandle.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCentralUnitAIComponent.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2730.h"
 #include "game/UnkTU341.h"
@@ -58,7 +59,6 @@ struct UnkSelf_kr {
 };
 
 UnkRef fn_7100353be8(void* from);
-void* fn_71004067a4(void* owner);
 extern void* g_unk_7101d47330;
 
 static inline __attribute__((always_inline)) bool Names_kr(UnkLazyHandle_kr* h, void* owner, u32 skip) {

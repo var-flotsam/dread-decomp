@@ -10,10 +10,10 @@
 #include "game/CCharClassScorpiusPoisonousGasAttack.h"
 #include "game/CDamageSourceFactor.h"
 #include "game/UnkBossAIComponent.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 extern void* g_unk_7101a60e40[];
-void fn_710007e6c4(void*);
 void fn_7100685f90(void* member);
 void fn_7100684150(void* member);
 void fn_7100682fd0(void* member);

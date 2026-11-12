@@ -3,14 +3,14 @@
 // fn_71005026d0 with the tunable's start value, clears the flag at +0x5e4 and passes the component to
 // fn_7100de9540.
 #include "game/CCollisionComponent.h"
+#include "game/CEmmyWaveMovementComponent.h"
+#include "game/CProjectileMovement.h"
 #include "game/UnkGameManager.h"
 #include "game_s2/UnkChargeComponent.h"
 
 extern u64 g_unk_71726ddc48 __attribute__((visibility("hidden")));
 
 struct UnkSelf;
-void fn_7100ac3880(UnkSelf* self);
-void fn_71005026d0(UnkChargeComponent* self, u32 mode, f32 value);
 
 // NON_MATCHING(minor): the two rate addresses are computed in the other order (the select picks the same one).
 void fn_7100502628(UnkChargeComponent* self) {

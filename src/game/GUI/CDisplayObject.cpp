@@ -6,6 +6,7 @@
 #include "game/CGameObject.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkTU2747.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 struct UnkGuiListEntry {
@@ -116,7 +117,6 @@ struct UnkGuiStateInit {
 };
 
 void fn_7100b1df48(void* slots);  // the slots at +0xb8 (game/UnkRenderPassSlots.h)
-void fn_710007e6c4(void* self);  // an empty CRntString
 
 struct UnkGuiDisplayObjectInit {
     char* vtable;

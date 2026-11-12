@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAnimationComponent.h"
 #include "game/CTakumakuAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
@@ -109,7 +110,6 @@ struct UnkTakumakuDash_ovb0135 {
 struct UnkTakumakuStartAttack_b58;
 bool fn_71006cfcac(UnkTakumakuStartAttack_b58* self);
 struct UnkStruct_7101176ea8;
-void* fn_7101176d34(UnkStruct_7101176ea8* self, void* arg);
 bool fn_710006ba58(void* tracks, const base::reflection::CClass* cls);
 
 bool fn_71006cf018(UnkTakumakuDash_ovb0135* self, bool a, bool b);

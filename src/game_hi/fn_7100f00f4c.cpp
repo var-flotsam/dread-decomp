@@ -121,8 +121,6 @@ struct UnkStruct_0x128 {
     }
 };
 
-void fn_7100f011c4(UnkStruct_0x128*, u32);
-
 bool fn_7100f00f4c(UnkStruct_0x128* self, u32 id, bool force) {
     if (!force) {
         UnkHashNode* h = self->Find(id);

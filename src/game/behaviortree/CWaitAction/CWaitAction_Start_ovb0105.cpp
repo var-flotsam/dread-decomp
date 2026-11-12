@@ -5,13 +5,13 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkTunableRegistry.h"
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::reflection::UnkTunableRegistry;
 
 struct UnkStruct_0x68;
-void fn_7100394bd0(UnkStruct_0x68* self);
 void fn_710013c7e0(UnkTunableRegistry* registry, const char* group, const char* name, f32* value);
 
 struct UnkWaitName_b0105 {
@@ -37,7 +37,6 @@ struct UnkWaitAction_b0105 {
 };
 
 struct UnkSelf;
-bool fn_7100394e2c(UnkSelf* self, void* key, f32* value);
 
 template <class T>
 static inline bool IsSet(T* data) {

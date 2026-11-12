@@ -3,6 +3,7 @@
 // state update (fn_710067c8e0: wait, check, two countdowns, then at the track's end the part
 // 0xe6de93263e1369e9 is switched on once). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CFXComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU2702.h"
@@ -71,8 +72,6 @@ struct UnkObject;
 struct UnkComponent;
 struct UnkPart;
 struct UnkWorld;
-UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
-bool fn_710114e668(UnkObject*, u8);
 
 struct UnkSclawkPart_ovb0125 {
     u8 pad_0x0[0xb];

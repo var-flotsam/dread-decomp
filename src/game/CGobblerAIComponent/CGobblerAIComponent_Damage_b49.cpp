@@ -7,13 +7,13 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CGobblerAIComponent.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU1370.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
 
 struct UnkSluggerAI;
 struct UnkSluggerEvent;
 struct UnkRequest;
-void fn_71008c1538(UnkRequest*, f32);
 
 struct UnkGobblerSource_b49 {
     u8 pad_0x0[0x20];

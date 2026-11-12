@@ -4,10 +4,10 @@
 // word, a part assigned by fn_7100ffbad8, then plain fields (an implicit copy assignment). Names
 // and layouts are placeholders.
 #include "base/UnkCollectionIter.h"
+#include "game/UnkTU2640.h"
 #include "types.h"
 
 struct UnkPartFfca00;
-UnkPartFfca00* fn_7100ffbad8(UnkPartFfca00* self, const UnkPartFfca00* other);
 
 struct UnkPartFfca00 {
     u64 unk_0x0[5];

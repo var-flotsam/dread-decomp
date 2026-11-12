@@ -10,6 +10,7 @@
 #include "base/global/CStrId.h"
 #include "base/snd/UnkSound.h"
 #include "game/CAbilityEnergyWave.h"
+#include "game/CFXComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
@@ -137,7 +138,6 @@ struct UnkHyperBeamPart {
 };
 struct UnkPart;
 struct UnkWorld;
-UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 
 struct UnkHyperBeamGun {
     u8 pad_0x0[0x18];

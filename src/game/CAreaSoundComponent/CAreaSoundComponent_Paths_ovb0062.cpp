@@ -11,6 +11,7 @@
 #include "game/CActorComponent.h"
 #include "game/CCharClassBaseTriggerComponent.h"
 #include "game/UnkTU101.h"
+#include "game/UnkTU23.h"
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
@@ -22,7 +23,6 @@ struct UnkPathNode;
 struct UnkLightingComponent3;
 struct UnkSteamJetComponent;
 struct UnkSteamJetArg;
-extern UnkSoundMgr* g_unk_7101d4d820;
 
 struct UnkAreaSoundComponent_ovb0062 {
     u8 unk_0x0[0xb08];

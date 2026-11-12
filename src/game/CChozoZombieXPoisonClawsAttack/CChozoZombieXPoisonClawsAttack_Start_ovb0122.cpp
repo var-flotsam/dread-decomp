@@ -80,7 +80,6 @@ void fn_710049e6b8(UnkPoisonClawsStart_ovb0122* self) {
 
 // As src/game/CTakumakuAIComponent/CTakumakuAIComponent_Layer_ovb0012.cpp declares it (the key is a hash).
 struct UnkStruct_7101176ea8;
-void* fn_7101176d34(UnkStruct_7101176ea8* self, void* arg);
 
 // As src/game/CSamusFloorSlideMovementState/CParams/CParams_Slide_ovb0004.cpp defines them.
 struct UnkFlags_71007142e8 {

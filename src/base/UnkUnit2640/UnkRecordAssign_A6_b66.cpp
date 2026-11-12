@@ -1,10 +1,10 @@
 // From unit 2640 of tools/tu_map.py: the self-checked copy assignment of the 0x50-byte record of
 // UnkRecordIterAssign.cpp (a word, a part assigned by fn_7100ffbad8, then plain fields copied as one run).
 // Names and layouts are placeholders.
+#include "game/UnkTU2640.h"
 #include "types.h"
 
 struct UnkPartFfca00;
-UnkPartFfca00* fn_7100ffbad8(UnkPartFfca00* self, const UnkPartFfca00* other);
 
 struct UnkPart_A6 {
     u64 unk_0x0[5];

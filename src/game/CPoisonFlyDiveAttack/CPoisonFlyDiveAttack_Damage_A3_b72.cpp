@@ -7,6 +7,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU1370.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -17,7 +18,6 @@ extern CStrId g_unk_71726f98b8 __attribute__((visibility("hidden")));
 extern CStrId g_unk_71726f98c0 __attribute__((visibility("hidden")));
 
 struct UnkRequest;
-void fn_71008c1538(UnkRequest* request, f32 value);
 
 struct UnkPoisonFlyClass_A3_b72 {
     u8 pad_0x0[0x608];

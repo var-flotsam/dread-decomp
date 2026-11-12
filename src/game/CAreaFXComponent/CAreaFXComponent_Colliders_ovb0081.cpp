@@ -13,7 +13,6 @@ using base::reflection::UnkReflObject;
 
 struct UnkStruct_7100861148_Collider;
 
-void fn_7100d5abfc(void* owner, UnkStruct_7100861148_Collider* collider);
 struct UnkTracker_71008618cc;
 void fn_7100d59994(UnkTracker_71008618cc*, UnkReflObject*);
 void fn_7100d5a304(UnkTracker_71008618cc*, UnkReflObject*);

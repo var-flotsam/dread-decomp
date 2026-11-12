@@ -4,6 +4,7 @@
 // told. Returns what the base returned.
 #include "game/CChozoWarriorAIComponent.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU1370.h"
 #include "types.h"
 
 struct UnkDescribed {
@@ -26,7 +27,6 @@ struct UnkChecker {
 };
 
 u32 fn_7100499a88(UnkChecker* self, UnkRequest* request);
-void fn_71008c1538(UnkRequest* request, f32 value);
 void fn_7100499a60(UnkChecker* self);
 
 u32 fn_710048f258(UnkChecker* self, UnkRequest* request) {

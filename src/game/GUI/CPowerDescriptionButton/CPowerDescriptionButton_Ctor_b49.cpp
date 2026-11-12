@@ -5,12 +5,12 @@
 #include "base/global/CStrId.h"
 #include "game/GUI/CButton.h"
 #include "game/GUI/CPowerDescriptionButton.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkGuiButton;
-void fn_710007e6c4(void*);               // the string's default constructor
 
 // An empty id: the string id constructor for "" (the length folded) inlined.
 __attribute__((always_inline)) static inline void InitEmptyId(CStrId* id) {

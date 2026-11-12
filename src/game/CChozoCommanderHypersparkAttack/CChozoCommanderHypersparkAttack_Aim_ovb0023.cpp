@@ -8,6 +8,7 @@
 // Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
 #include "game/CAbilityGhostAura.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1728.h"
@@ -50,7 +51,6 @@ struct UnkTimeline {
     UnkMotionTracks* tracks;  // 0x80
 };
 
-void* fn_7101176d34(UnkStruct_7101176ea8* self, void* arg);
 void fn_71007142e8(UnkStruct_71007142e8* self);
 
 struct UnkHypersparkOwner_ovb0023 {

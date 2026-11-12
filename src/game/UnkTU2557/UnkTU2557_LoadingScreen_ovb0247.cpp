@@ -3,6 +3,7 @@
 // array of 17 entries of 0x18 bytes, a few flags and a block of seven words), then the instance is handed
 // to fn_7100e0f77c. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/UnkTU0.h"
 #include "types.h"
 
 struct UnkLoadEntry_b0247 {
@@ -67,7 +68,6 @@ static inline void InitLoadingScreen(UnkLoadingScreen_b0247* self) {
 }
 
 struct UnkLoadingScreen;  // src/game/UnkLoadingScreen.cpp
-extern UnkLoadingScreen* g_unk_7101d47380;
 void fn_7100e0f77c(UnkLoadingScreen* self);
 
 void fn_7100e0f660() {

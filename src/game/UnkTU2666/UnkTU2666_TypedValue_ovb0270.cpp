@@ -7,6 +7,7 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkCountedResource.h"
 #include "base/UnkDestructors.h"
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -33,7 +34,6 @@ struct UnkFormatArgs;
 
 struct UnkVersionRegistry;
 struct UnkVersionEntry;
-extern UnkVersionRegistry* g_unk_7101d4c8d0;
 base::reflection::UnkReflTypedPtr fn_710009d6d0(const base::reflection::CType* type, u32 flags);
 int lua_type(lua_State* L, int idx);
 

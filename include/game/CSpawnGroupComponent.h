@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkComponent_71011199cc;
+struct UnkList_71011199cc;
 struct UnkSpawnGroupKey;
 struct UnkSubAreaEntityList;
 UnkSubAreaEntityList* fn_7101119514();

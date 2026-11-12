@@ -7,12 +7,12 @@
 #include "base/UnkNamedRegistry.h"
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using base::global::CRntString;
 
 struct UnkString30;
-void fn_710007e6c4(void* self);
 
 // base::global::CRntString's layout, with a move constructor.
 struct UnkString30 {

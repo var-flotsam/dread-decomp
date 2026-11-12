@@ -6,3 +6,4 @@
 #include "types.h"
 void fn_7100199420(void* self, const u64* hash, bool value);
 void fn_7100198aac(void* self);
+bool fn_7100199d88(void* table, const u64* key, u32* id);

@@ -29,7 +29,6 @@ extern u8 g_unk_71726ec411 __attribute__((visibility("hidden")));
 
 // Signatures as the other AI units declare them.
 void fn_710117662c(UnkActorTarget*, u32 value, u32 extra, bool apply, bool flag, f32 time);
-void* fn_7101176d34(UnkStruct_7101176ea8*, void*);
 void fn_7101178e08(UnkActorTarget*, u32, bool, bool, f32);
 
 void fn_71005cafa4(UnkInfesterAI_b46a2* self) {

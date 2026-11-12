@@ -3,11 +3,10 @@
 // singleton (fn_71011867ec, which then runs an optional callback). Seven classes build on it.
 #include "base/global/CRntString.h"
 #include "game/UnkTU2725.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 extern void* unk_7101cb5030[];  // vtable (reached through the GOT)
-
-void fn_710007e6c4(void* self);  // constructs an empty base::global::CRntString
 
 struct UnkMusicTrigger {
     void** vtable;

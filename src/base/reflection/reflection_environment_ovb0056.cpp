@@ -14,7 +14,9 @@
 #include "base/math/CVector.h"
 #include "base/math/CVector4D.h"
 #include "base/reflection.h"
+#include "base/snd/CSoundSystem.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU23.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
@@ -26,10 +28,6 @@ using base::global::CFilePathStrId;
 struct UnkSoundMgr;
 struct UnkMgr;
 struct UnkHandle;
-extern UnkSoundMgr* g_unk_7101d4d820;
-void fn_7100108a84(UnkMgr*, UnkHandle*, f32);
-void fn_7100108abc(UnkMgr*, UnkHandle*, f32, f32);
-void fn_7100108ae8(UnkSoundMgr* mgr, u32 kind, f32 time, f32 delay, bool flag);
 
 // The environment sound (+0x480): its path and fade time.
 struct UnkEnvSound_ovb56 {
@@ -42,9 +40,6 @@ struct UnkEnvSound_ovb56 {
 struct UnkUnit2525_b51;
 struct UnkEnvironmentVisuals;
 struct UnkEnvironmentData;
-void fn_7100d8e398(UnkEnvironmentVisuals* self, const UnkEnvironmentData* data, bool force);
-void fn_7100d8db30(UnkUnit2525_b51* self, void* resource, bool flag);
-void fn_7100d8d854(UnkUnit2525_b51* self, void* resource);
 
 struct UnkEnvironmentManager_ovb56 {
     u8 unk_0x0[0x480];

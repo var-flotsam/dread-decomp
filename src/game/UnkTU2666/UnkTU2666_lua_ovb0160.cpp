@@ -19,11 +19,15 @@
 #include "game/CDrop.h"
 #include "game/CFXComponent.h"
 #include "game/CInventoryComponent.h"
+#include "game/GUI/CAmiiboComposition.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU23.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2577.h"
 #include "game/UnkTU2669.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU52.h"
@@ -203,7 +207,6 @@ s32 fn_710107edb0(lua_State* L) {
 }
 
 struct UnkStateSink;
-extern UnkStateSink* g_unk_717275c380;
 void fn_710101eee8(void* self, const CFilePathStrId* path, bool flag, u32 mode, f32 a, f32 b, f32 c);
 void fn_7100fc8dec(void* self, const CFilePathStrId* path, bool flag, u32 mode, f32 a, f32 b, f32 c);
 
@@ -284,7 +287,6 @@ s32 fn_710107d200(lua_State* L) {
 }
 
 struct UnkStatsObject;
-extern UnkStatsObject* g_unk_7101d47100;
 void fn_7100132248(UnkStatsObject* self, const CStrId& name, f32 value);
 
 s32 fn_710107fad0(lua_State* L) {
@@ -312,10 +314,8 @@ s32 fn_710107fad0(lua_State* L) {
 }
 
 struct UnkSoundMgr;
-extern UnkSoundMgr* g_unk_7101d4d820;
 struct UnkMgr;
 struct UnkHandle;
-void fn_7100108a84(UnkMgr*, UnkHandle*, f32);
 
 s32 fn_710108d4f0(lua_State* L) {
     const char* path = nullptr;
@@ -336,7 +336,6 @@ s32 fn_710108d4f0(lua_State* L) {
 struct UnkWorld;
 struct UnkRinkaControl_ruc;
 struct UnkStruct_710024fa0c;
-void fn_710114fe8c(UnkWorld*, u64, u32, u32);
 
 s32 fn_710108fc70(lua_State* L) {
     const char* target;
@@ -424,7 +423,6 @@ void fn_7100d8e32c(UnkEnvironmentManager*, const CStrId*, bool, bool);
 
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
-void fn_7100ee1f34(void* self);
 void fn_7100eea3fc(void* self, const base::global::CStrId* id, bool a, bool b);
 void fn_7100eea334(void* self, const base::global::CStrId* id, bool a, bool b);
 
@@ -613,7 +611,6 @@ s32 fn_7101092070(lua_State* L) {
 }
 
 struct UnkEngineObject_0xf0;
-extern UnkEngineObject_0xf0* g_unk_7101d47338;
 void fn_7100075ec8(UnkEngineObject_0xf0* self, s32 index, const CRntString* a, const CRntString* b,
                    const CRntString* c, const CRntString* d, u32 e, u32 f);
 

@@ -2,6 +2,7 @@
 // (created on first use). Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2527.h"
 #include "game/UnkTU27.h"
 
 using base::global::UnkStringData;
@@ -76,36 +77,6 @@ void fn_7100d93e5c(u64* self, void* unk, u32 n);
 void fn_7100d94bb0(u64* self, void* unk, u32 n);
 void fn_7100d95904(u64* self, void* unk, u32 n);
 void fn_7100d96658();
-
-extern UnkDesc_7100d92158 g_unk_71727b9630;
-extern UnkDesc_7100d92158 g_unk_71727b95b0;
-extern UnkDesc_7100d92158 g_unk_71727b9030;
-extern UnkDesc_7100d92158 g_unk_71727b9130;
-extern UnkDesc_7100d92158 g_unk_71727b91b0;
-extern UnkDesc_7100d92158 g_unk_71727b9230;
-extern UnkDesc_7100d92158 g_unk_71727b92b0;
-extern UnkDesc_7100d92158 g_unk_71727b9330;
-extern UnkDesc_7100d92158 g_unk_71727b93b0;
-extern UnkDesc_7100d92158 g_unk_71727b9430;
-extern UnkDesc_7100d92158 g_unk_71727b94b0;
-extern UnkDesc_7100d92158 g_unk_71727b90b0;
-extern UnkDesc_7100d92158 g_unk_71727b96b0;
-extern UnkDesc_7100d92158 g_unk_71727b9730;
-extern UnkDesc_7100d92158 g_unk_71727b97b0;
-extern UnkDesc_7100d92158 g_unk_71727b9830;
-extern UnkDesc_7100d92158 g_unk_71727b98b0;
-extern UnkDesc_7100d92158 g_unk_71727b9930;
-extern UnkDesc_7100d92158 g_unk_71727b99b0;
-extern UnkDesc_7100d92158 g_unk_71727b9bb0;
-extern UnkDesc_7100d92158 g_unk_71727b9c30;
-extern UnkDesc_7100d92158 g_unk_71727b9b30;
-extern UnkDesc_7100d92158 g_unk_71727b9a30;
-extern UnkDesc_7100d92158 g_unk_71727b9ab0;
-extern UnkDesc_7100d92158 g_unk_71727b9fb0;
-extern UnkDesc_7100d92158 g_unk_71727ba030;
-extern UnkDesc_7100d92158 g_unk_71727ba0b0;
-extern UnkDesc_7100d92158 g_unk_71727ba130;
-extern UnkDesc_7100d92158 g_unk_71727ba1b0;
 
 void fn_7100d92158() {
     UnkFactory_7100d92158* f1 = Factory(g_unk_71727ba2b0, g_unk_7101aa9020, fn_7100d93e5c);

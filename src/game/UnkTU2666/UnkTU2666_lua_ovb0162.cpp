@@ -26,8 +26,10 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1176.h"
+#include "game/UnkTU23.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2577.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU2730.h"
 #include "game/UnkTU2733.h"
@@ -234,7 +236,6 @@ s32 fn_7101077d50(lua_State*) {
 }
 
 struct UnkSoundMgr;
-extern UnkSoundMgr* g_unk_7101d4d820;
 struct UnkSoundEntry_A5_b76 {
     void* playing;
     u64 id;
@@ -351,7 +352,6 @@ s32 fn_710108ef00(lua_State*) {
 // ---- sub-area manager, created on first use ----
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
-void fn_7100ee1f34(void*);
 void fn_7100eeb330(void* manager, CStrId* a, CStrId* b, f32 x, f32 y);
 void fn_7100eee61c(void* manager, CStrId* a, CStrId* b, bool flag, bool other);
 void fn_7100eee1f8(void* manager, CStrId* subArea, const CStrId* setup, bool a, bool b);
@@ -660,7 +660,6 @@ s32 fn_7101082b70(lua_State* L) {
 
 // ---- the language ----
 struct UnkLanguage;
-extern UnkLanguage* g_unk_7101d47358;
 s32 fn_710119be24(const CRntString* name);
 void fn_710119cb14(UnkLanguage* language, s32 index);
 

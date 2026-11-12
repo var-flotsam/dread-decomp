@@ -7,3 +7,4 @@
 
 struct UnkRegistry_0x70;
 extern UnkRegistry_0x70* g_unk_7101d4b5a0;  // The registry that reports an open's failure.
+extern char g_unk_7101d4b418[];

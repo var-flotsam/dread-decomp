@@ -4,6 +4,7 @@
 // vector (0, 0, 0, 1.0). Returns the object, or null when it isn't live. With bit 0 of the argument
 // set, first calls fn_71011e49fc on the in-game menu's HUD object (fn_7100deac84,
 // game/UnkGameManager.h).
+#include "game/CFXComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
@@ -38,10 +39,7 @@ struct UnkSelf {
 
 extern u64 g_unk_7101648d40;
 void fn_71011e49fc(UnkIngameMenuHud* hud);
-UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 struct UnkObject;
-bool fn_710114e668(UnkObject*, u8);
-void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
 
 UnkPart* fn_7100300bd0(UnkSelf* self, u32 flags) {
     if (flags & 1) {

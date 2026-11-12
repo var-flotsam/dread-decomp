@@ -1,6 +1,7 @@
 // Sets a timed weak reference (at 0x2410, time at 0x2418) to `target` when fn_71004067a4 accepts
 // it, running fn_7100da9194 at once when the time is not positive; otherwise clears both.
 #include "game/CAIManager/CTunableAIManager.h"
+#include "game/CCentralUnitAIComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 
 struct UnkTimedRef {
@@ -8,8 +9,6 @@ struct UnkTimedRef {
     UnkWeakHandle* field_0x2410;
     f32 field_0x2418;
 };
-
-void* fn_71004067a4(void* owner);
 
 // NON_MATCHING(minor): the target and the time are moved to their saved registers in the other
 // order.

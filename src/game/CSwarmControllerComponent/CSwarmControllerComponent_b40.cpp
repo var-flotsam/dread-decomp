@@ -4,6 +4,7 @@
 // src/game/CShotManager.cpp). Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/snd/UnkSound.h"
+#include "game/UnkTU883.h"
 #include "types.h"
 
 struct UnkWeakTarget_sw {
@@ -18,7 +19,6 @@ struct UnkShotWeakRef {
 };
 
 UnkShotWeakRef* fn_7100748064(base::UnkVector<UnkShotWeakRef>* self, u32 i);
-void fn_71005c4828(void*, void**);
 
 struct UnkSwarmController_sw {
     u8 pad_0x0[0x230];

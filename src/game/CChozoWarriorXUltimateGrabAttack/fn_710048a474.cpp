@@ -5,6 +5,7 @@
 // 0x50 leave a positive amount to cover, the vtable slot 0x168 is called with the rate.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CChozoWarriorXAIComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
@@ -52,7 +53,6 @@ struct UnkSelf {
 };
 
 struct UnkAIComponent;
-void fn_710048fc80(UnkAIComponent* component);
 
 void fn_710048a474(UnkSelf* self, f32 delta) {
     f32 previous = self->field_0x138;

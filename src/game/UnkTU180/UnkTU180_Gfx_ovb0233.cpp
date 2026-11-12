@@ -6,6 +6,7 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
+#include "game/UnkTU170.h"
 #include "game/UnkTU172.h"
 #include "game/UnkTU180.h"
 #include "types.h"
@@ -145,7 +146,6 @@ void fn_710015d760(UnkGfxProgram_b0233d4** out, UnkGfxShader_b0233* a, UnkGfxSha
 }
 
 struct UnkHeap_71001541a0;
-void fn_7100153a88(UnkHeap_71001541a0* pool, void* ptr);
 extern void (*g_unk_716e29b078)(void* obj);
 extern void* g_unk_716e2a34a0;
 

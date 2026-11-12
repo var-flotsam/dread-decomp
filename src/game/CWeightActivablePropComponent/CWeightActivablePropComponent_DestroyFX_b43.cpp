@@ -12,8 +12,6 @@
 struct UnkWorld;
 struct UnkPart;
 struct UnkRinkaControl_ruc;
-UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
-void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
 
 struct UnkWeightPropOwner_b43a3 {
     u8 pad_0x0[0x38];

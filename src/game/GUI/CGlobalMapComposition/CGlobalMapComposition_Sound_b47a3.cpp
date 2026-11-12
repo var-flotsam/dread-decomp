@@ -1,12 +1,12 @@
 // A function in the GUI::CGlobalMapComposition unit: starts the sound for the state key at 0x71729f0248
 // (fn_7100fc9d78 returns its handle in x0/x1) and keeps the handle at +0x710, as fn_7100b2b4a0 does for
 // +0x720 (CGlobalMapComposition_Sound.cpp). Names and layouts are placeholders.
+#include "game/GUI/CAmiiboComposition.h"
 #include "game/sound/SGUISoundEventsSelector.h"
 #include "types.h"
 
 struct UnkStateSink;
 struct UnkStateKey;
-extern UnkStateSink* g_unk_717275c380;
 struct UnkEnumType;
 extern UnkEnumType g_unk_71729f0248;
 

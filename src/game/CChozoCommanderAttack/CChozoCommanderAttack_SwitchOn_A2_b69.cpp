@@ -10,7 +10,6 @@ struct UnkComponent;
 struct UnkObject;
 // As src/game/CChozoWarriorXAIComponent/fn_710048ecbc.cpp declares them.
 struct UnkPart;
-UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 
 struct UnkChozoCommanderAttackOwner_A2_b69 {
     u8 pad_0x0[0x280];

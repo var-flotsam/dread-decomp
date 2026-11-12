@@ -5,6 +5,7 @@
 #include "base/UnkAtExit.h"
 #include "base/global/CStrId.h"
 #include "game/UnkStartPoint.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 extern const u64 g_unk_7101646d68[/* 256; unsized: x86-64 would assume 16-byte alignment */];  // the CRC table (reached through the GOT)
@@ -55,8 +56,6 @@ struct UnkUnit2Statics {
     u8 start[sizeof(UnkStartPoint)];  // +0x34: 0x7101d473c0
 };
 extern UnkUnit2Statics g_unk_7101d4738c __attribute__((visibility("hidden")));
-
-void fn_710007e6c4(void* self);  // an empty CRntString
 
 // NON_MATCHING(minor): register allocation only: the original keeps the "binaries" id's address in
 // a register and reaches "sources" through the header store's post-increment, this the other way

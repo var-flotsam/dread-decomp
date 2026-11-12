@@ -26,6 +26,7 @@
 #include "game/UnkTU1376.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2566.h"
+#include "game/UnkTU2577.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU367.h"
 #include "game/UnkXformNode.h"
@@ -465,7 +466,6 @@ void fn_7100541e34(char* self, bool value);
 void fn_7100541690(char* self, bool value);
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;  // the sub-area manager
-void fn_7100ee1f34(void*);
 
 struct UnkCentralLinkEntity_b0230 {
     u8 pad_0x0[0x240];

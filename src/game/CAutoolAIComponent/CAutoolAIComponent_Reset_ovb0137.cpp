@@ -6,6 +6,7 @@
 #include "base/math/UnkZeroVector3.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAutoolAIComponent.h"
+#include "game/CFXComponent.h"
 #include "game/UnkBehaviorTree.h"
 #include "game/UnkTU134.h"
 #include "game/UnkXformNode.h"
@@ -20,7 +21,6 @@ struct UnkObject;
 struct UnkComponent;
 struct UnkPart;
 struct UnkWorld;
-UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 struct UnkSwitchObject;
 void fn_7100863730(void* collision, const CStrId* name, const u32* flags);
 void fn_71008635a4(void* collision, const CStrId* name, const u32* flags);

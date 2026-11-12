@@ -1,8 +1,8 @@
 #include "game/CCharClassBaseDamageTriggerComponent.h"
+#include "game/UnkTU1370.h"
 #include "types.h"
 
 struct UnkRequest;
-void fn_71008c1538(UnkRequest* request, f32 value);
 struct CBaseDamageTriggerComponent;
 void fn_7100a47030(CBaseDamageTriggerComponent* self);
 

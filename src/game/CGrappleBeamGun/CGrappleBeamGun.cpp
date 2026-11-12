@@ -9,6 +9,7 @@
 #include "game/CScenario.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1370.h"
 #include "types.h"
 
 using base::math::CVector3D;
@@ -112,7 +113,6 @@ struct UnkGrappleBeamGun {
 
 void fn_7100232864(UnkEntityState* entity, bool value);
 void fn_71008189a4(UnkGrappleObject* obj);
-void fn_71008c1538(UnkRequest* request, f32 value);
 UnkHyperBeamSoundHandle fn_7100ed6910(void* player, const CVector3D* pos, u32 id, u32 kind, u32);
 
 bool fn_7100833cf4(UnkGrappleBeamGun* self) {

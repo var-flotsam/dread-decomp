@@ -15,6 +15,7 @@
 #include "base/reflection/CEnumType.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "base/snd/CSoundSystem.h"
 #include "game/CAISmartObjectComponent.h"
 #include "game/CCameraComponent.h"
 #include "game/CCollisionMaterialCacheComponent.h"
@@ -22,9 +23,12 @@
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU1370.h"
+#include "game/UnkTU23.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2577.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU2704.h"
 #include "game/UnkTU341.h"
@@ -53,7 +57,6 @@ struct UnkWeakTarget;
 
 // ---- the stats object ----
 struct UnkStatsObject;
-extern UnkStatsObject* g_unk_7101d47100;
 f32 fn_7100132240(UnkStatsObject* self, const CStrId& name);
 
 static inline f32 StatByName_b0161(UnkStatsObject* stats, const char* name) {
@@ -137,8 +140,6 @@ s32 fn_7101093740(lua_State* L) {
 struct UnkSoundMgr;
 struct UnkMgr;
 struct UnkHandle;
-extern UnkSoundMgr* g_unk_7101d4d820;
-void fn_7100108abc(UnkMgr*, UnkHandle*, f32, f32);
 void fn_7100fdc598(void* manager, f32 value, const CFilePathStrId* id);
 
 s32 fn_71010929c0(lua_State* L) {
@@ -279,7 +280,6 @@ s32 fn_7101084170(lua_State* L) {
 // ---- the id table singleton ----
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
-void fn_7100ee1f34(void* self);
 void fn_7100eeb15c(void* self, const CStrId& id);
 void fn_7100eeb24c(void* self);
 

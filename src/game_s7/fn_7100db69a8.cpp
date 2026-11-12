@@ -4,6 +4,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkTunableRegistry.h"
+#include "game/UnkTU2544.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -16,7 +17,6 @@ extern bool g_unk_71727bd260;
 extern const base::reflection::CType g_unk_71727bdbb8 __attribute__((visibility("hidden")));
 extern const base::reflection::CType g_unk_71727bdcf0 __attribute__((visibility("hidden")));
 struct UnkTunable_71727bd078;
-extern UnkTunable_71727bd078 g_unk_71727bd078;
 void fn_7100db78b4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 
 void fn_7100db69a8(CClass* cls) {

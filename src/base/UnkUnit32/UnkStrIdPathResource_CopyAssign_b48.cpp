@@ -6,7 +6,6 @@
 
 struct UnkStrIdPathResource;
 struct UnkIdPair;
-void fn_7100026f70(UnkIdPair* pair);
 
 struct UnkStrIdPathRecord_b48 {
     u8 data[0x18];

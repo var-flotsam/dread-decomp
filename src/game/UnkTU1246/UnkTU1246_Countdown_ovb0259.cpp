@@ -94,7 +94,6 @@ struct UnkGuiObj;
 UnkGuiObj* fn_71011d9508(UnkGuiObj*, const char* const*);
 void fn_71011ec424(UnkGuiObj* label, const CRntString& text);
 void fn_71011cd5a0(UnkGuiObj*);
-void fn_710007e6c4(void*);
 void fn_710007f564(void*, const char*);
 
 void fn_71007da730(UnkCountDown_ovb0259* self) {

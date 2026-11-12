@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkPart;
 struct UnkFxObject_ovb0041;
 struct UnkObject;
 struct UnkRinkaControl_ovb0090;
@@ -20,3 +21,6 @@ void fn_7101152988(UnkRinkaControl_ovb0090* self, UnkFxObject_ovb0041* fx, UnkRi
 void fn_7101152c0c(UnkObject* self, void* effect, u32 on, u32 restart);
 void fn_7101153c6c(void* object, void* effect);
 extern void* g_unk_7101cb38e8[];
+UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
+void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
+bool fn_710114e668(UnkObject*, u8);

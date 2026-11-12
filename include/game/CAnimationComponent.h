@@ -41,3 +41,5 @@ void* fn_7101177d2c(UnkAnimationComponent* self, u64 key);
 bool fn_7101179c3c(UnkAnimationComponent* self, u64 key);
 UnkTrack* fn_71011771e0(void* handle, u64 key);
 bool fn_71011782ec(UnkAnimationComponent* self, u64 key);
+void* fn_7101176d34(UnkStruct_7101176ea8* self, void* arg);
+s32 fn_7101177da8(void* object, u64 hash);

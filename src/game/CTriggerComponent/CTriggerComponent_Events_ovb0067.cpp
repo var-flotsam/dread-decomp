@@ -11,6 +11,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "game/CAbilityEnergyWave.h"
+#include "game/CPickableComponent.h"
 #include "game/CTriggerComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
@@ -20,7 +21,6 @@
 using base::global::CRntString;
 
 struct UnkScriptCaller;
-bool fn_71009cde54(void* script, const char* name, const char* fmt, ...);
 CRntString fn_710007ef90(const CRntString*, const char*);
 extern char g_unk_7101647790[];
 

@@ -10,6 +10,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CBehaviorTreeAIComponent.h"
+#include "game/CFXComponent.h"
 #include "game/CHecathonPlanktonFXComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkSwitchObject.h"
@@ -29,9 +30,7 @@ struct UnkPlanktonFX_A3_b71;
 
 struct UnkWorld;
 struct UnkPart;
-UnkPart* fn_7101152b90(UnkWorld*, u64);
 struct UnkObject;
-bool fn_710114e668(UnkObject*, u8);
 
 struct UnkHecathonMsg_ovb0131;
 void fn_71005ab080(UnkHecathonMsg_ovb0131* self, bool flag);

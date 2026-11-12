@@ -11,6 +11,7 @@
 #include "base/UnkResPathVec.h"
 #include "base/UnkVector.h"
 #include "base/core/CAsset.h"
+#include "base/core/CBaseObject.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -108,8 +109,6 @@ bool fn_71000171a0(void* obj, const char* key, base::UnkLoadRequest* request) {
 }
 
 
-void fn_7100017ce8(UnkRecord80* record);  // the record's destructor
-void fn_710002384c(void* self);
 extern char g_unk_7101a19478[];
 
 // The map of string ids to records (values at 0, keys at 8, sharing one count).

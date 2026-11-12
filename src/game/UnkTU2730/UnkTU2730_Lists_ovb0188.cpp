@@ -17,6 +17,7 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1643.h"
+#include "game/UnkTU23.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2728.h"
 #include "game/UnkTU2730.h"
@@ -135,7 +136,6 @@ void fn_7101199818(void* manager, void* component) {
 }
 
 struct UnkSoundMgr;
-extern UnkSoundMgr* g_unk_7101d4d820;
 
 struct UnkEmitterOwner_b0188 {
     u8 pad_0x0[0x90];

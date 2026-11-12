@@ -6,13 +6,13 @@
 // layouts are placeholders.
 #include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"
+#include "game/behaviortree/CBehavior.h"
 #include "game_s2/UnkParams.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkSelf;
 struct UnkStruct_0x68;
-void fn_7100394bd0(UnkStruct_0x68* self);
 void fn_71006b7db4();
 
 struct UnkShelmitChargeOwner_A3_b73 {

@@ -16,6 +16,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CChozoCommanderAIComponent.h"
+#include "game/GUI/CAmiiboComposition.h"
 #include "game/GUI/CIngameMenu.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
@@ -24,10 +25,12 @@
 #include "game/UnkHandleMenu.h"
 #include "game/UnkMapMenuController.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU25.h"
 #include "game/UnkTU2726.h"
 #include "game/UnkTU2733.h"
 #include "game/UnkTU315.h"
+#include "game/UnkTU32.h"
 #include "game/UnkTU39.h"
 #include "game/UnkTU426.h"
 #include "game/nn/time.h"
@@ -158,7 +161,6 @@ struct UnkStateOwner {
     UnkObject* MissionMenu() const { return field_0x490 ? field_0x490->obj : nullptr; }
 };
 
-extern UnkSoundHolder* g_unk_7101d47340;
 struct UnkModeFlags {
     u8 unk_0x0[0xb8];
     bool field_0xb8;
@@ -166,7 +168,6 @@ struct UnkModeFlags {
 extern UnkModeFlags* g_unk_71726bc570;
 struct UnkStateSink;
 struct UnkStateKey;
-extern UnkStateSink* g_unk_717275c380;
 extern UnkStateKey g_unk_71729f0178;
 extern UnkStateKey g_unk_71729f0180;
 void fn_7100b2d0a4(UnkStateOwner* self);
@@ -415,7 +416,6 @@ struct UnkText : UnkGuiText {
 };
 
 struct UnkLanguage;
-extern UnkLanguage* g_unk_7101d47358;
 
 // Start of the controls menu: mode 2 (boss rush, the global flag at 0xb8) or 4; the controls
 // menu (0x2b0, created when missing) becomes current, its "Label-Plus" label gets the plus
@@ -724,7 +724,6 @@ struct UnkIdPair {
 
     ~UnkIdPair();
 };
-void fn_7100026f70(UnkIdPair* pair);
 inline UnkIdPair::~UnkIdPair() { fn_7100026f70(this); }
 
 // An array of pointers whose destructor frees its storage.

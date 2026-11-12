@@ -5,9 +5,11 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkRequest;
 struct UnkBase_71003cc474;
 struct UnkGooplotRequest_b63a3;
 struct UnkStruct_71008c0c74;
 void fn_71008c1558(UnkBase_71003cc474* self);
 void fn_71008c0c74(UnkStruct_71008c0c74* self);
 void fn_71008c1090(UnkGooplotRequest_b63a3* self, const UnkGooplotRequest_b63a3* other);
+void fn_71008c1538(UnkRequest* request, f32 value);

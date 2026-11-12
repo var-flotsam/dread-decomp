@@ -4,6 +4,7 @@
 // integers and merges neighbours, unlike a copy of the whole vector). The three globals are
 // constants reached through the GOT (names unknown).
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CExplosionGfx.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -11,7 +12,6 @@ using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 struct UnkReflType;
-extern UnkReflType g_unk_71727be388;
 
 extern const base::math::CVector2D g_unk_7101647788;
 extern const base::math::CVector2D g_unk_7101647780;

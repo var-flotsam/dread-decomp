@@ -3,6 +3,8 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "base/snd/CSoundSystem.h"
+#include "game/UnkTU23.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 #include "game/sound/CMusicManager.h"
@@ -19,9 +21,6 @@ struct UnkNode_0x68 {
 };
 
 struct UnkSoundMgr;
-extern UnkSoundMgr* g_unk_7101d4d820;
-
-void fn_7100108a84(UnkMgr*, UnkHandle*, f32);
 
 struct UnkNodeList_0x38 {
     char* vtable;

@@ -9,6 +9,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiLabel.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2615.h"
 #include "game/UnkTU2733.h"
 #include "game/UnkTUProperty.h"
@@ -40,7 +41,6 @@ extern UnkPropertyEx<> g_unk_7172759b50;  // the dialog mode's property
 bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
 
 struct UnkLanguage;
-extern UnkLanguage* g_unk_7101d47358;
 struct UnkDialogText : UnkGuiText {
     ~UnkDialogText() { fn_7100066e44(this); }
 };

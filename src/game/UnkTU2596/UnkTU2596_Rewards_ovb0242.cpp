@@ -16,11 +16,13 @@
 #include "game/CPhotoModeCameraCtrl.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2571.h"
 #include "game/UnkTU2578.h"
 #include "game/UnkTU2656.h"
 #include "game/UnkTU2725.h"
 #include "game/UnkTU2732.h"
+#include "game/UnkTU57.h"
 #include "game/malloc.h"
 #include "game/sound/CMusicManager.h"
 #include "game/UnkXformNode.h"
@@ -37,9 +39,7 @@ void fn_7100deac9c(UnkGameManager* self, const CRntString& name);
 
 // The music manager (as src/base/input/UnkPadVibration.cpp declares it).
 struct UnkStruct_0x128;
-extern UnkStruct_0x128* g_unk_7101d47320;
 bool fn_7100f0220c(UnkStruct_0x128*, u32);
-void fn_7100f011c4(UnkStruct_0x128* self, u32 mode);
 void fn_7100132af0(bool);
 
 static inline UnkStruct_0x128* MusicCold() {
@@ -361,7 +361,6 @@ UnkRewardText_b0242 fn_7100f15b10(const char* name) {
     return UnkRewardText_b0242(buf);
 }
 
-void fn_710007e6c4(void* self);
 void fn_710007f564(void* self, const char* str);
 bool fn_7100f15054(CStrId* id);
 extern const char* const g_unk_7101cab158[] __attribute__((visibility("hidden")));

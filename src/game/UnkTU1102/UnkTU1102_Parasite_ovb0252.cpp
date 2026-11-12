@@ -251,8 +251,6 @@ struct UnkRinkaControl_ovb0090;
 struct UnkRinkaEntry_ruc;
 struct UnkFxObject_ovb0041;
 
-UnkPart* fn_7101152b90(UnkWorld*, u64);
-bool fn_710114e668(UnkObject*, u8);
 void fn_7100146d84(UnkFxObject_ovb0041*, const UnkVec3f*);
 void fn_710115217c(void*, void*, u32, u32, const base::global::CStrId*, const base::math::CVector3D&,
                    const base::math::CVector3D&, void*);

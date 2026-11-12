@@ -8,6 +8,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2595.h"
 #include "game/UnkTU2656.h"
 #include "game/UnkTU2725.h"
@@ -159,7 +160,6 @@ void fn_7100f14118(UnkSmOwner_b0225* self, f32 dt) {
 }
 
 struct UnkSoundHolder;
-extern UnkSoundHolder* g_unk_7101d47340;
 struct UnkMgr_0xf18;
 extern UnkMgr_0xf18* g_unk_71726bc560;
 extern base::global::CRntString g_unk_71729dc240 __attribute__((visibility("hidden")));

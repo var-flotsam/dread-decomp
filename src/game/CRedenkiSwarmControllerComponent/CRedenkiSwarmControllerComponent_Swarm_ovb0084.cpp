@@ -18,6 +18,7 @@
 #include "game/UnkTU1159.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2560.h"
+#include "game/UnkTU32.h"
 #include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
@@ -174,7 +175,6 @@ struct UnkCountedRef_A5_b67 {
 
 // The ids are union members so that only fn_7100026f70 releases them.
 struct UnkIdPair;
-void fn_7100026f70(UnkIdPair* pair);
 
 struct UnkSwarmEntry_A5_b67 {
     union {

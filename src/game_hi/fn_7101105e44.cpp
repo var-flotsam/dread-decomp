@@ -4,8 +4,10 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CCharClassAIComponent.h"
+#include "game/CLifeComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU1370.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2702.h"
 
@@ -80,8 +82,6 @@ struct UnkStruct_7101105e44 {
 };
 
 struct UnkRequest;
-void fn_71008c1538(UnkRequest* request, f32 value);
-bool fn_7101161088(void* object);
 
 static inline const char* UseStr_7101105e44(const UnkIdCopy_7101105e44& id) {
     UnkStrUse_7101105e44* s = reinterpret_cast<UnkStrUse_7101105e44*>(id.data);

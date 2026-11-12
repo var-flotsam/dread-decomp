@@ -22,6 +22,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/snd/UnkSound.h"
+#include "game/GUI/CAmiiboComposition.h"
 #include "game/GUI/CGlobalMapComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
@@ -37,7 +38,6 @@ struct UnkGallery_A5_b75;
 struct UnkStateSink;
 struct UnkStateKey;
 struct UnkEnumType;
-extern UnkStateSink* g_unk_717275c380;
 extern UnkEnumType g_unk_71729f01a8;
 struct UnkGlobalMapComposition;
 UnkVec2Result fn_71011cf12c(UnkGuiDisplayObject* self, const UnkVec2Result& point);

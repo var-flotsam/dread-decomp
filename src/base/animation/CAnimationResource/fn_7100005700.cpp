@@ -3,6 +3,7 @@
 // file extension and source extension) added to a registry under a category, the registry being
 // destroyed at exit (as at the end of fn_7100e72680 in ../game_s7/fn_7100e72680.cpp).
 #include "../../../game_s7/UnkStaticInitS7.h"
+#include "base/animation/CAnimationResource.h"
 #include "base/curves/CCurveResource.h"
 #include "base/reflection/UnkClassGetters.h"
 
@@ -37,7 +38,6 @@ __attribute__((always_inline)) inline void InitResource(UnkResourceStatics* s, c
 
 extern UnkResourceStatics g_unk_7101d4b5a8 __attribute__((visibility("hidden")));
 extern char g_unk_7101d4b410[];
-extern char g_unk_7101d4b418[];
 
 void fn_7100005700() {
     InitResource(&g_unk_7101d4b5a8, fn_710000430c, g_unk_7101d4b410, "base::animation::CAnimationResource",

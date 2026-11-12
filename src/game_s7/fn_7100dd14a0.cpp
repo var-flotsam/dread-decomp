@@ -5,6 +5,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
+#include "game/UnkTU2544.h"
 #include "game/UnkTUProperty.h"
 
 using namespace unk_static_init;
@@ -105,19 +106,15 @@ struct UnkTunable_71727bd078 : UnkTunable {
     u8 pad_0x1b0[0x10];
     void** field_0x1c0;  // a member's vtable
 };
-extern UnkTunable_71727bd078 g_unk_71727bd078;
 extern void* g_unk_7101aa9530[];
 extern void* g_unk_7101aa9560[];
 extern void* g_unk_7101aa9588[];
 void fn_7100db78b0(void* self);  // its destructor, as registered
 extern UnkStrIdBase g_unk_71727bd268;
-extern UnkPropertyName g_unk_71727bd270;
 extern UnkStrIdBase g_unk_71727bd278;
 extern UnkStrIdBase g_unk_71727bd280;
-extern UnkPropertyName g_unk_71727bd288;
 extern UnkStrIdBase g_unk_71727bd290;
 extern UnkStrIdBase g_unk_71727bd298;
-extern UnkPropertyName g_unk_71727bd2a0;
 
 void fn_7100dd14a0() {
     InitHeaderIds(&g_unk_71727bdb68.ids);

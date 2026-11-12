@@ -30,7 +30,6 @@ void fn_7101178e08(UnkActorTarget* target, u32 a, bool, bool, f32 value);
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
-void fn_7100ee1f34(void*);
 
 struct UnkVec3_ovb0071 {
     f32 x, y, z;

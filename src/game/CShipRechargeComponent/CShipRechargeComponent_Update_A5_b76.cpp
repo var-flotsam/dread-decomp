@@ -10,6 +10,7 @@
 #include "game/CInputComponent.h"
 #include "game/CUsableComponent.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU23.h"
 #include "game/UnkTU2523.h"
 #include "types.h"
 
@@ -31,7 +32,6 @@ struct UnkKraidCreatureVec {
 };
 
 struct UnkSoundMgr;
-extern UnkSoundMgr* g_unk_7101d4d820;
 struct UnkSoundEntry_A5_b76 {
     void* playing;
     u64 id;

@@ -12,21 +12,20 @@
 #include "game/CCentralUnitAIComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU2577.h"
 #include "game/UnkTU2656.h"
 #include "game/UnkTU341.h"
+#include "game/UnkTU883.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
 
-void* fn_71004067a4(void* owner);
-void fn_71005c4828(void*, void**);
 void fn_7100a6b0f0(void* registration, void** slot);
 void fn_7100a6b280(void* registration, void** slot);
 void fn_7100a6ce48(void* self);  // the base destructor
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
-void fn_7100ee1f34(void*);
 // As src/game/CCreditsMode/CTunableCredits/CTunableCredits_Colors_ovb0070.cpp declares it.
 void* fn_7100deab70(UnkGameManager*, const CRntString&);
 

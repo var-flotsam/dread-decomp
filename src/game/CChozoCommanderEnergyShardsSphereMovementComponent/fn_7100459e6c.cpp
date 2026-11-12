@@ -3,6 +3,7 @@
 // kind is 2, read without a null check as in the original). Then the counter at 0x600 is cleared and the
 // flag at 0x64 of the object at 0x1b8 set.
 #include "base/global/CStrId.h"
+#include "game/CProjectileMovement.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
@@ -43,7 +44,6 @@ struct UnkSelf {
 };
 
 extern u64 g_unk_71726c9e08 __attribute__((visibility("hidden")));
-void fn_7100ac3880(UnkSelf* self);
 
 void fn_7100459e6c(UnkSelf* self) {
     fn_7100de9540(g_unk_7101d47310, &g_unk_71726c9e08, reinterpret_cast<UnkWeakTarget*>(self));

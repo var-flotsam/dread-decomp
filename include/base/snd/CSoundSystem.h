@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkHandle;
+struct UnkMgr;
 struct UnkPathNode;
 struct UnkPlayingHandle_ovb0074;
 struct UnkSoundDesc_ovb0074;
@@ -19,3 +21,6 @@ UnkSoundHandle fn_71001080b0(UnkSoundMgr* mgr, const UnkSoundRequest_b50* reques
 UnkPlayingHandle_ovb0074 fn_7100108620(UnkSoundSystemPlayView_ovb0074* self, UnkSoundDesc_ovb0074* desc);
 void fn_7100108a98(UnkSoundMgr* mgr, u64 handle, bool flag, f32 value);
 void fn_7100108b0c(UnkSoundMgr* self, u32 kind, f32 time);
+void fn_7100108a84(UnkMgr*, UnkHandle*, f32);
+void fn_7100108abc(UnkMgr*, UnkHandle*, f32, f32);
+void fn_7100108ae8(UnkSoundMgr* mgr, u32 kind, f32 time, f32 delay, bool flag);

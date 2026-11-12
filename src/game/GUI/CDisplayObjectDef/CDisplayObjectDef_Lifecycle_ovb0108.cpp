@@ -15,7 +15,6 @@
 #include "../../../game_aca57c/UnkBufferString.h"
 
 extern char g_unk_7101a9a488[];
-void fn_710002384c(void* self);  // as src/base/file/nx/CDeviceNX/fn_710002ddc0.cpp declares it
 
 struct UnkDisplayChild_ovb0108 {
     ~UnkDisplayChild_ovb0108() asm("fn_7100b0b96c");

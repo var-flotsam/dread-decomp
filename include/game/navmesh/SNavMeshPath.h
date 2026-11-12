@@ -1,6 +1,6 @@
 #pragma once
 
-// SNavMeshPath: functions of this translation unit that other files call (tools/tu_map.py unit 366,
+// SNavMeshPath: functions and globals of this translation unit that other files use (tools/tu_map.py unit 366,
 // 0x71002ac2f4-0x71002af630). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
@@ -14,3 +14,5 @@ void* fn_71002ad4f4(void* self, const void* other);
 void* fn_71002ad420(void* self, const void* other);
 void fn_71002ad978(UnkNavMeshPath* self, void* value);
 void fn_71002adbb0(UnkNavMeshPath* self, void* value);
+extern char g_unk_7101a21168[];
+void fn_71002ae87c(void* set, void* item);

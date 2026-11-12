@@ -16,7 +16,9 @@
 #include "game/UnkTU1370.h"
 #include "game/UnkTU1643.h"
 #include "game/UnkTU2201.h"
+#include "game/UnkTU23.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2577.h"
 #include "game/UnkTU2676.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU2685.h"
@@ -237,7 +239,6 @@ s32 fn_7101086800(lua_State* L) {
 
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
 struct UnkSoundMgr;
-extern UnkSoundMgr* g_unk_7101d4d820;
 bool fn_7100089864(base::file::UnkFileDevice* self, const CFilePathStrId* path);
 void fn_710008987c(base::file::UnkFileDevice* self, const CFilePathStrId* path, u32 flags);
 void fn_7100107b74(UnkSoundMgr* self, const CFilePathStrId* path);
@@ -529,7 +530,6 @@ s32 fn_7101094230(lua_State* L) {
 
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
-void fn_7100ee1f34(void* self);
 // A bit mask passed by value (as src/game/CAnimatedCameraCtrl/CAnimatedCameraCtrl_Lifecycle_ovb0101.cpp).
 struct UnkCamMask_b0101 {
     u32 bits;

@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "game/CCharClassTweakPlayRateTrack.h"
+#include "game/UnkTU2577.h"
 #include "game/UnkTU85.h"
 #include "types.h"
 
@@ -59,7 +60,6 @@ u32 fn_7100590fc4(UnkGoliathAI2_ovb0106* self, UnkGoliathHit2_ovb0106* hit) {
 
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
-void fn_7100ee1f34(void*);
 void fn_7100eea3fc(void*, const base::global::CStrId*, bool, bool);
 
 struct UnkGoliathActor_ovb0106 {

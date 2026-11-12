@@ -1,5 +1,6 @@
 // Applies a list selection change: sends "deselected" to the previously selected item and
 // "selected" to the new one, optionally plays the selection sound, and scrolls to the new item.
+#include "game/GUI/CAmiiboComposition.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
 #include "game/sound/SGUISoundEventsSelector.h"
@@ -47,7 +48,6 @@ struct UnkStruct_71011ff97c {
 };
 
 void fn_71011cca3c(UnkGuiDisplayObject* obj, f32 value);
-extern UnkStateSink* g_unk_717275c380;
 struct UnkEnumType;
 extern UnkEnumType g_unk_71729f0220;
 extern char g_unk_7172a10de8[] __attribute__((visibility("hidden")));

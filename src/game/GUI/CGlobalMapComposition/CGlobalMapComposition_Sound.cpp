@@ -2,12 +2,12 @@
 // +0x720 (fn_7100105a80 with 0.2 and 0) and keeps the handle of the one it starts for the state key at
 // 0x71729f0240 (fn_7100fc9d78 returns it). Names and layouts are placeholders.
 #include "base/snd/UnkSound.h"
+#include "game/GUI/CAmiiboComposition.h"
 #include "game/sound/SGUISoundEventsSelector.h"
 #include "types.h"
 
 struct UnkStateSink;
 struct UnkStateKey;
-extern UnkStateSink* g_unk_717275c380;
 struct UnkEnumType;
 extern UnkEnumType g_unk_71729f0240;
 

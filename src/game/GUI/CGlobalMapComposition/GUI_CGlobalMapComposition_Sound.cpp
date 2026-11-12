@@ -4,11 +4,11 @@
 // pass that object to fn_7100b26470. Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "game/GUI/CGlobalMapComposition.h"
+#include "game/UnkTU0.h"
 #include "game/nn/time.h"
 #include "types.h"
 
 struct UnkSoundHolder;
-extern UnkSoundHolder* g_unk_7101d47340;
 
 struct UnkMapSoundGroup {
     virtual void vf_0x0();

@@ -3,10 +3,10 @@
 // unit's "meleetrail" names (statics of CMeleeComponent_TUInit.cpp). Names and layouts are
 // placeholders.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CFXComponent.h"
 #include "game/UnkAnimationComponent.h"
 
 struct UnkWorld;
-void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
 
 struct UnkMeleeName {
     u8 pad_0x0[0x30];

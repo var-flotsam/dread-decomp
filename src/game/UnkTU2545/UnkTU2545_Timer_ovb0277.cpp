@@ -7,6 +7,7 @@
 #include "base/global/timeline/CEvent.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiLabel.h"
+#include "game/UnkTU0.h"
 #include "game/nn/time.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
@@ -125,7 +126,6 @@ inline const UnkLoadingMask& UnkMaskAll9() {
 extern UnkMgr_0xf18* g_unk_71726bc560;
 
 struct UnkSoundHolder;
-extern UnkSoundHolder* g_unk_7101d47340;
 
 struct UnkInput_b0277 {
     virtual void vf_0x0();

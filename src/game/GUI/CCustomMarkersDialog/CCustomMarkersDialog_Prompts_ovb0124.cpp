@@ -7,8 +7,10 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/GUI/CAmiiboComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkTU32.h"
 #include "game/sound/SGUISoundEventsSelector.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -100,7 +102,6 @@ void fn_7100afdf5c(UnkCustomMarkersDialog_ovb0124* self, UnkMarkersInput_ovb0124
 
 struct UnkStateSink;
 struct UnkStateKey;
-extern UnkStateSink* g_unk_717275c380;
 extern UnkStateKey g_unk_71729f0180;
 struct UnkMarkersEvent_ovb0124;
 extern UnkMarkersEvent_ovb0124 g_unk_717275d460 __attribute__((visibility("hidden")));
@@ -169,7 +170,6 @@ void fn_7100afd4c0(UnkMarkersDialog_ovb0124* self) {
 }
 
 struct UnkIdPair;
-void fn_7100026f70(UnkIdPair*);
 extern void* g_unk_7101a99520[];
 
 // A counted reference released (not cleared) on destruction.

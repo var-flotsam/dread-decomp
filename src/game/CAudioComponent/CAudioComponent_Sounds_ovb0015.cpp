@@ -14,6 +14,7 @@
 #include "game/CAudioComponent.h"
 #include "game/CComponent.h"
 #include "game/UnkTU101.h"
+#include "game/UnkTU32.h"
 #include "game/UnkTU50.h"
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
@@ -26,7 +27,6 @@ using base::global::UnkStringPool;
 struct UnkEntitySoundComponent;
 
 struct UnkIdPair;
-void fn_7100026f70(UnkIdPair* pair);
 
 struct UnkStateObject;
 extern void* g_unk_7101a6cca0[];  // the component's vtables

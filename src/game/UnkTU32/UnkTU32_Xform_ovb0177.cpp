@@ -90,7 +90,6 @@ UnkStrIdPathResource* fn_7100027118(UnkStrIdPathResource* self, UnkStrIdPathReso
 struct UnkPathIds;
 struct UnkInlineString;
 struct UnkIdPair;
-void fn_7100026f70(UnkIdPair* pair);
 
 // The ids the builder fills in place (the members start out unset), destroyed in reverse order.
 struct UnkBuiltPathIds_ovb0177 {

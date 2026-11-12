@@ -5,12 +5,11 @@
 // effect (fn_71007466f4) fires through its slot 0x248. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CLifeComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
-
-bool fn_7101161088(void* object);
 
 struct UnkSwarmTarget_ovb0120 {
     u8 pad_0x0[0x1b5];

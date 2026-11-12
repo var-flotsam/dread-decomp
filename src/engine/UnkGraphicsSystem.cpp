@@ -1359,7 +1359,6 @@ void fn_710015b160();
 s32 fn_710015c460();
 // The location of the uniform named `name` of a program's stage, 0 when it has none.
 // Sets `count` matrices of a uniform at `location` of a program state.
-void fn_710019c474(void*, const UnkMatrix44*);
 f32 fn_7100132fb0();  // the display's aspect correction
 void fn_71001ccdd8(UnkGraphicsSystem* self);
 void fn_71001cd3a0(UnkGraphicsSystem* self);

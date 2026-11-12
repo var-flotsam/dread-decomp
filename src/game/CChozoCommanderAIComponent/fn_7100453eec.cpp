@@ -6,6 +6,7 @@
 #include "game/CAutsharpAIComponent.h"
 #include "game/CEnemyMovement.h"
 #include "game/CModelUpdaterComponent.h"
+#include "game/UnkTU2544.h"
 #include "game/behaviortree/CSetAnimDependsOnDirAction.h"
 #include "types.h"
 
@@ -100,7 +101,6 @@ struct UnkModeFlags;
 extern UnkModeFlags* g_unk_71726bc570;
 extern UnkTuning* g_unk_7101a37310[];
 struct UnkTunable_71727bd078;
-extern UnkTunable_71727bd078 g_unk_71727bd078;
 extern char g_unk_71016496c0[];
 extern char g_unk_71016496c8[];
 extern char g_unk_71016496d0[];

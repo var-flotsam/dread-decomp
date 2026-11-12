@@ -7,6 +7,7 @@
 #include "game/CCharClassBaseTriggerComponent.h"
 #include "game/CFreezeRoomComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU23.h"
 #include "types.h"
 
 struct CFreezeRoomComponent;
@@ -73,7 +74,6 @@ void fn_7100a23a20(CFreezeRoomComponent* self) {
 struct UnkLiquidPool_b44a2;
 struct UnkSoundMgr;
 struct UnkPathNode;
-extern UnkSoundMgr* g_unk_7101d4d820;
 
 void fn_7100a23220(CFreezeRoomComponent* self) {
     fn_7100a45cac(reinterpret_cast<UnkLiquidPool_b44a2*>(self));

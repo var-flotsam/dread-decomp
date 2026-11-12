@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkStruct_710036974c;
 struct UnkComponent;
 struct UnkNode;
 struct UnkSclawkAI_b44a2;
@@ -16,3 +17,4 @@ void fn_710036932c(UnkComponent* self);
 void fn_7100369d80(UnkWarriorSend_b58* self, void* arg);
 void fn_71003695fc(UnkNode*);
 extern void* g_unk_7101a24230[];
+void fn_71003697f0(UnkStruct_710036974c* self);

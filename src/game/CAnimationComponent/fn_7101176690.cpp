@@ -1,5 +1,6 @@
 // Looks up an entry by key in a parallel key/value array, then forwards the request with the entry's field_0x70.
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CAnimationComponent.h"
 #include "types.h"
 
 struct UnkEntry_7101176690 {
@@ -36,7 +37,6 @@ struct UnkS16 { u64 a, b; };
 struct UnkS12 { u64 a; u32 b; };
 
 struct UnkStruct_7101176ea8;
-void* fn_7101176d34(UnkStruct_7101176ea8* self, void* arg);
 bool fn_7101177044(UnkStruct_7101176690* self, void* r, s32 idx, void* data, UnkFlags_7101176690 flags,
                    const UnkS16& a, const UnkS12& b, UnkFlags_7101176690 c);
 

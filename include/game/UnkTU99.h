@@ -5,6 +5,9 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkInterp_7100105f94;
+struct UnkListener_7100105f94;
+struct UnkSoundSystemATK;
 struct UnkAtkHeap;
 struct UnkIdMap;
 struct UnkTunable;

@@ -16,6 +16,7 @@
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CAttack.h"
 #include "game/CEnemyMovement.h"
+#include "game/CLifeComponent.h"
 #include "game/CScourgeAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
@@ -39,7 +40,6 @@ struct UnkScourgeSlash_b0115 {
 };
 bool fn_710069a8e8(UnkScourgeSlash_b0115* self, void* a, void* b);
 
-bool fn_7101161088(void* object);
 bool fn_71006a22b0(void* list, UnkActor* actor);
 
 bool fn_710069a8e8(UnkScourgeSlash_b0115* self, void* a, void* b);

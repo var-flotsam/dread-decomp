@@ -1,6 +1,7 @@
 // When fn_7100394e2c fills an offset for the record at +0x30 and the owner's object at +0x240
 // answers a negative value from its vtable slot 0x328, hands the negated offset to
 // fn_71003954fc. Returns 5 when the object exists (6 otherwise).
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
 struct UnkObject {
@@ -19,9 +20,6 @@ struct UnkSelf {
     u8 pad_0x20[0x10];
     u8 field_0x30[1];
 };
-
-bool fn_7100394e2c(UnkSelf*, void*, f32*);
-void fn_71003954fc(UnkSelf* behavior, void* record, f32 value);
 
 u32 fn_71003767f4(UnkSelf* self) {
     f32 out;

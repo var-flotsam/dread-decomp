@@ -8,6 +8,7 @@
 #include "game/UnkGlobal_710b372a98.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSlots.h"
+#include "game/UnkTU218.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU253.h"
 #include "game/UnkTU308.h"
@@ -30,8 +31,6 @@ static_assert(__builtin_offsetof(UnkSlotBlend_ovb0176, id) == 0x28, "layout");
 static inline UnkSlotBlend_ovb0176* BlendAt(UnkSlots* self, u64 i) {
     return reinterpret_cast<UnkSlotBlend_ovb0176*>(self->entries[i]);
 }
-
-bool fn_7100199d88(void* table, const u64* key, u32* id);
 
 static inline bool StartBlend(UnkSlots* self, u32 id, u32 kind, const CColor4F* from, const CColor4F* to, u32 mode,
                               f32 duration) {

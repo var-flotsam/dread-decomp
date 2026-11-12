@@ -5,12 +5,12 @@
 // Names and layouts are placeholders.
 #include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"
+#include "game/behaviortree/CBehavior.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkSelf;
 struct UnkStruct_0x68;
-void fn_7100394bd0(UnkStruct_0x68* self);
 struct UnkHandler;
 struct UnkMessage;
 u32 fn_7100390860(UnkHandler* self, UnkMessage* message);  // fn_7100390860.cpp

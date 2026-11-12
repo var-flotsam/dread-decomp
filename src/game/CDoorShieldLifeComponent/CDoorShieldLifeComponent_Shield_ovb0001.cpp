@@ -17,7 +17,9 @@
 #include "game/CDoorShieldLifeComponent.h"
 #include "game/CItemLifeComponent.h"
 #include "game/CModelUpdaterComponent.h"
+#include "game/UnkTU1370.h"
 #include "game/UnkTU2523.h"
+#include "game/UnkTU57.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -25,7 +27,6 @@ using base::math::CVector4D;
 
 // As src/game/CDoorShieldLifeComponent/CDoorShieldLifeComponent_Ctor_A5_b71.cpp declares them.
 struct UnkLifeComponent_A5_b71;
-void fn_710007e6c4(void*);
 // As src/game/CHyperBeamBlockLifeComponent/CHyperBeamBlockLifeComponent_Dtor_b50.cpp declares it.
 
 struct UnkDoorShieldLifeObj_ovb0001 {
@@ -225,7 +226,6 @@ void fn_71008de71c(UnkDoorShieldLife5_ovb0001* self, f32 time) {
 }
 
 struct UnkRequest;
-void fn_71008c1538(UnkRequest* request, f32 value);
 struct UnkDoorShieldLife_b48;
 void fn_71008de9d4(UnkDoorShieldLife_b48* self);
 

@@ -6,6 +6,7 @@
 #include <new>
 
 #include "base/UnkCloneHelpers.h"
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
@@ -21,7 +22,6 @@ using base::reflection::UnkReflValueRef;
 // The attribute registry (GOT-reached): the known attribute keys by name in a keyed array at +0xc0
 // of 0x18-byte records, looked up by a shared out-of-line copy (src/clones/).
 struct UnkVersionRegistry;
-extern UnkVersionRegistry* g_unk_7101d4c8d0;
 struct UnkClone_fn_71000a53c0;
 extern template void* base::refl_KeyedFind<UnkClone_fn_71000a53c0, 0xc0, 0x18>(char*, const base::UnkStrIdMember*);
 

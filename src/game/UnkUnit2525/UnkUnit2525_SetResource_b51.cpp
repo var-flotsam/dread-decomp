@@ -5,6 +5,7 @@
 // third also need a resource loaded); the result is kept pending while the kind's flag (+0x4a4..+0x4a6)
 // is set, else applied (fn_7100d8e398, fn_7100d8db30, fn_7100d8d854). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -37,9 +38,6 @@ void* fn_7100f94a74(void* table, const CStrId* key);
 void* fn_7100f89818(void* table, const CStrId* key);
 struct UnkEnvironmentVisuals;  // src/game/UnkEnvironmentVisuals.cpp
 struct UnkEnvironmentData;
-void fn_7100d8e398(UnkEnvironmentVisuals* self, const UnkEnvironmentData* data, bool force);
-void fn_7100d8db30(UnkUnit2525_b51* self, void* resource, bool flag);
-void fn_7100d8d854(UnkUnit2525_b51* self, void* resource);
 
 void fn_7100d8dac0(UnkEnvironmentManager* manager, const CStrId* key, bool force, bool) {
     UnkUnit2525_b51* self = reinterpret_cast<UnkUnit2525_b51*>(manager);

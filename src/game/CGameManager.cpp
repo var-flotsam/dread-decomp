@@ -8,6 +8,7 @@
 #include "game/CTriggerComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU23.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2557.h"
 #include "game/UnkTU2668.h"
@@ -265,7 +266,6 @@ using base::global::UnkStringPool;
 // The file device singleton (created on first use) and the sound manager.
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
 struct UnkSoundMgr;
-extern UnkSoundMgr* g_unk_7101d4d820;
 
 void fn_7100089894(base::file::UnkFileDevice* self);  // locks the device
 void fn_71000898c4(base::file::UnkFileDevice* self);  // unlocks it
@@ -531,10 +531,8 @@ void fn_7100e01978(UnkGameManager* self) {
 
 // The singletons it creates on first use.
 struct UnkLoadingScreen;  // 0x220 bytes
-extern UnkLoadingScreen* g_unk_7101d47380;
 void fn_7100e100f8(UnkLoadingScreen* self, bool shown);
 struct UnkSoundHolder;  // 0x48 bytes (src/game/GUI/CIngameMenu/fn_7100b2de48.cpp)
-extern UnkSoundHolder* g_unk_7101d47340;
 struct UnkMgr_0xf18;
 extern UnkMgr_0xf18* g_unk_71726bc560;  // the music manager (game/sound/CMusicManager.h)
 extern void* g_unk_7101d47330;

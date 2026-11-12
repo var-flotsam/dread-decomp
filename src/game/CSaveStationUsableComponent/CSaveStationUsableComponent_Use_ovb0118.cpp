@@ -12,6 +12,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CFXComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU2523.h"
@@ -62,7 +63,6 @@ struct UnkSoundHandle {
 struct UnkShipRechargeEntity_b49a4;
 
 struct UnkWorld;
-void fn_710114fe8c(UnkWorld*, u64, u32, u32);
 
 struct UnkSaveStationEffect_ovb0118 {
     u8 pad_0x0[0x30];

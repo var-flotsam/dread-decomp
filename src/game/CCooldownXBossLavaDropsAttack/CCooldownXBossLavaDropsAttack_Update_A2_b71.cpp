@@ -18,7 +18,6 @@ extern CStrId g_unk_71726d7cc8 __attribute__((visibility("hidden")));
 struct UnkRequest;
 struct UnkStruct_71008c0c74;
 struct UnkBase_71003cc474;
-void fn_71008c1538(UnkRequest* request, f32 value);
 
 struct UnkPlayerMovementCache;
 void* fn_71010d7a6c(UnkPlayerMovementCache* self);

@@ -8,7 +8,6 @@
 
 struct UnkStrIdPathResource;
 struct UnkIdPair;
-void fn_7100026f70(UnkIdPair* pair);
 
 
 // The id/path resource record; released out of line (fn_7100026f70), so the ids sit in a union.

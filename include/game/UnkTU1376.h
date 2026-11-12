@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkEnumType;
+struct UnkStruct_71727313a4;
 struct UnkProperty;
 struct UnkDoorLife;
 struct UnkDoorLifeA5_b61;

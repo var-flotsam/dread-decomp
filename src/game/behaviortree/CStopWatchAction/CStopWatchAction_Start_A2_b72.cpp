@@ -2,13 +2,12 @@
 // (fn_7100394bd0), when the elapsed time of the record at +0x30 (fn_7100394e2c) is zero within 0.001, the
 // limit (+0x5c) becomes the midpoint of the minimum (+0x3c, blackboard override +0x48) and maximum (+0x40,
 // override +0x50). Names and layouts are placeholders.
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
 struct UnkStruct_0x68;
-void fn_7100394bd0(UnkStruct_0x68*);
 // Signature as src/game/behaviortree/CStopWatchAction/fn_7100392704.cpp declares it.
 struct UnkSelf;
-bool fn_7100394e2c(UnkSelf* self, void* record, f32* out);
 
 struct UnkStopWatch_A2_b72 {
     u8 pad_0x0[0x30];

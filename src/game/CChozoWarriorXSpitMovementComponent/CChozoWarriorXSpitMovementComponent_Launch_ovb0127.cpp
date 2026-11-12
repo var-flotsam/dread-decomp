@@ -4,6 +4,7 @@
 // it is configured (fn_71001beee4) and switched off. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
+#include "game/CProjectileMovement.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSceneObject.h"
@@ -15,7 +16,6 @@ using base::math::CVector2D;
 using base::math::CVector3D;
 
 struct UnkSelf;
-void fn_7100ac3880(UnkSelf*);
 void* fn_7100149930(UnkRenderPool*, void*, UnkSceneObject**, base::global::CStrId*);
 
 struct UnkRGB_710050f26c {

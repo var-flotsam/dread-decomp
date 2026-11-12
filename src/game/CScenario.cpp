@@ -15,6 +15,7 @@
 #include "game/GUI/CLabel.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU0.h"
 #include "game/UnkTU2733.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
@@ -188,7 +189,6 @@ const base::global::CStrId* fn_7100de9bf8(UnkGameManager* self);
 // The language singleton (as src/game/UnkAdamDialog.cpp declares it): created on first use, it
 // gives localized texts.
 struct UnkLanguage;
-extern UnkLanguage* g_unk_7101d47358;
 bool fn_710119c9fc(UnkLanguage* language);
 // The text the label is given (game/UnkGuiLabel.h), with its destructor.
 struct UnkDialogText : UnkGuiText {

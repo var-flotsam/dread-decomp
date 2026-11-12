@@ -17,6 +17,7 @@
 #include "game/CActorComponentDef.h"
 #include "game/CComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2510.h"
 #include "game/UnkTU2704.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU365.h"
@@ -291,7 +292,6 @@ struct UnkCollisionObject;
 void fn_7100d46c60(UnkManager_7100863a8c* self, UnkCollisionObject* entry);
 void fn_7100d476e4(UnkManager_7100863a8c* self, void* obj);
 struct UnkStruct_7100861148_Collider;
-void fn_7100d5abfc(void* owner, UnkStruct_7100861148_Collider* collider);
 
 static inline UnkManager_7100863a8c* Manager() {
     UnkManager_7100863a8c* m = g_unk_71726a4788;

@@ -13,6 +13,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU32.h"
 #include "game/sound/CSoundManager.h"
 #include "game/sound/SGUISoundEventsSelector.h"
 #include "types.h"
@@ -151,7 +152,6 @@ using base::global::UnkStringData;
 
 struct UnkDropTarget;
 struct UnkIdPair;
-void fn_7100026f70(UnkIdPair* pair);
 
 // An object given with its type (the object's vf_0x0).
 class UnkSelectorSource_ovb56 {

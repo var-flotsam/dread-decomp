@@ -413,8 +413,6 @@ struct UnkObject;
 struct UnkComponent;
 struct UnkRinkaControl_ruc;
 struct UnkPart;
-UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
-bool fn_710114e668(UnkObject*, u8);
 
 struct UnkEffectOwner_b0143 {
     u8 pad_0x0[0x280];

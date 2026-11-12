@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkEntityState;
+struct UnkEnumType;
 struct UnkCaterzillaLink_ovb0054;
 struct UnkCaterzillaLinks_ovb0054;
 struct UnkStatics_710024cc40;

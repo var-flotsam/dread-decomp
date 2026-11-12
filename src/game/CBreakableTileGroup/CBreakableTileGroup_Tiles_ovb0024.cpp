@@ -6,6 +6,7 @@
 #include "base/UnkMatrix44.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2510.h"
 #include "game/UnkTU315.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -67,7 +68,6 @@ void fn_7100c9fc88(UnkQueryObj* tile);
 struct UnkStruct_7100861148_Collider;
 struct UnkTracker_71008618cc;
 struct UnkReflObject;
-void fn_7100d5abfc(void* owner, UnkStruct_7100861148_Collider* collider);
 void fn_7100d59994(UnkTracker_71008618cc* self, UnkReflObject* collider);
 
 // Moves the tile's render object (when it has one) to the tile's place and scale.

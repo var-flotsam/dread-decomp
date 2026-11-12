@@ -5,7 +5,9 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkMatrix44;
 struct UnkBlendLayer_710019c284;
 void fn_710019c564(void* target, f32 a, f32 b, f32 c, f32 d);
 void fn_710019c284(UnkBlendLayer_710019c284* self);
 void fn_710019bd2c(void*);
+void fn_710019c474(void*, const UnkMatrix44*);

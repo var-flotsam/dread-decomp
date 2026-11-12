@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPoolBody.h"
 #include "base/snd/CSoundSystem.h"
+#include "game/UnkTU23.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -71,7 +72,6 @@ struct UnkPlayingHandle_ovb0074 {
     u64 serial;
 };
 struct UnkSoundMgr;
-extern UnkSoundMgr* g_unk_7101d4d820;
 
 struct UnkPlayEnvironmentStreamEvent_ovb0138 {
     u8 pad_0x0[0xc];

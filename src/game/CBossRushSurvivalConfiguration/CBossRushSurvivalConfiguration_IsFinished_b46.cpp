@@ -2,10 +2,10 @@
 // one mode (+0xbb) when the last stage (12) is reached and the progress (+0xd0) has got to twelve
 // times the tunable's count (+0x34) less one; otherwise, unless the flag at +0xba is set, when the
 // last stage is reached. Names and layouts are placeholders.
+#include "game/UnkTU2544.h"
 #include "types.h"
 
 struct UnkTunable_71727bd078;
-extern UnkTunable_71727bd078 g_unk_71727bd078;  // a tunable of the unit
 
 struct UnkSurvivalState_b46a3 {
     u8 pad_0x0[0xba];

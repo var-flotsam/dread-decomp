@@ -3,6 +3,7 @@
 // fn_7100ac4c04; otherwise false.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCooldownXBossAIComponent.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
@@ -28,7 +29,6 @@ struct UnkSelf {
     u32 field_0x5d8;
 };
 
-void fn_71004d43dc(UnkAIComponent* component, void* a1);
 bool fn_7100ac4c04(UnkSelf* self, void* a1, void* a2, void* a3, void* a4, void* a5);
 
 bool fn_71004d771c(UnkSelf* self, void* a1, void* a2, void* a3, void* a4, void* a5) {

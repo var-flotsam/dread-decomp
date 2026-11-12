@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -14,7 +15,6 @@ using base::reflection::UnkReflObject;
 
 // As src/flag_id/fn_71004dd360.cpp declares it.
 struct UnkStruct_0x68;
-void fn_7100394bd0(UnkStruct_0x68* self);
 // As src/game/CCharClassDissolveFanMudEvent/CCharClassDissolveFanMudEvent_Execute_A6_b63.cpp declares them.
 struct UnkWeakTarget;
 

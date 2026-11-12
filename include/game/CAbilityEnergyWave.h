@@ -24,3 +24,4 @@ extern UnkEmmyRegistry_b55* g_unk_71726af0a8;
 extern void* g_unk_7101a22858[];
 extern void* g_unk_7101a22878[];
 UnkWeakTarget* fn_7100302014(void* owner);
+UnkWeakTarget* fn_7100303054(void* owner);

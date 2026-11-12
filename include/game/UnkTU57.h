@@ -12,3 +12,4 @@ void fn_710007f634(void* self, u32 value);  // Appends a number.
 void fn_710007eba0(UnkString_7100fc4b34* self, u32 size);
 void fn_710007eb6c(void* self, const void* id);
 void fn_710007f5e0(void* self, f32 value);  // Appends a number.
+void fn_710007e6c4(void* self);

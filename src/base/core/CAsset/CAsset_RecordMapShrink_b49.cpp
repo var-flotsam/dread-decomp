@@ -8,6 +8,7 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
+#include "base/core/CAsset.h"
 #include "base/global/CFilePathStrId.h"
 #include "types.h"
 
@@ -72,8 +73,6 @@ struct UnkIdMap {
     u32 flags;
     base::UnkAllocator* allocator;
 };
-
-void fn_7100017ce8(UnkRecord80* record);  // the record's destructor
 
 void fn_710001871c(UnkIdMap<UnkRecord80>* self) {
     if (self->count != self->capacity) {

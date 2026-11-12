@@ -10,6 +10,7 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "base/core/CAsset.h"
+#include "base/core/CBaseObject.h"
 #include "base/global/CRntString.h"
 #include "game/UnkComponent.h"
 #include "types.h"
@@ -112,7 +113,6 @@ void fn_71007af024(UnkIdValues_71007aef88* self) {
 }
 
 extern char unk_7101a1e4d8[];
-void fn_710002384c(void* self);
 
 struct UnkIdOwned_71001a98dc {
     char* vtable;

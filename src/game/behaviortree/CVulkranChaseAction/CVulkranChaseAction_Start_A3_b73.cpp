@@ -9,6 +9,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"
+#include "game/behaviortree/CBehavior.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -17,7 +18,6 @@ using base::reflection::UnkReflObject;
 
 struct UnkSelf;
 struct UnkStruct_0x68;
-void fn_7100394bd0(UnkStruct_0x68* self);
 void fn_71006d847c();
 
 struct UnkVulkranTrackLink_A3_b73 {

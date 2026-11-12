@@ -8,12 +8,12 @@
 #include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"
 #include "game/CCharClassTweakPlayRateTrack.h"
+#include "game/behaviortree/CBehavior.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkSelf;
 struct UnkStruct_0x68;
-void fn_7100394bd0(UnkStruct_0x68* self);
 void fn_710068db84();
 struct UnkAnimationComponent;
 

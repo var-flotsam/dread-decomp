@@ -14,6 +14,7 @@
 #include "game/UnkGuiRoot.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU23.h"
 #include "game/UnkTU2544.h"
 #include "game/UnkTU2656.h"
 #include "game/UnkTU2768.h"
@@ -335,7 +336,6 @@ bool fn_7100dd13f4(UnkRush_b0195* self, UnkRushEvent_b0195* event) {
 }
 
 struct UnkTunable_71727bd078;
-extern UnkTunable_71727bd078 g_unk_71727bd078;  // a tunable of the unit
 
 struct UnkRushTunables_b0195 {
     u8 pad_0x0[0x24];
@@ -434,7 +434,6 @@ struct UnkSettings_b0158;
 void fn_7100e8f9a0(char* world, bool remove, base::global::CStrId* key);
 extern CStrId g_unk_71727bdb88 __attribute__((visibility("hidden")));
 struct UnkSoundMgr;
-extern UnkSoundMgr* g_unk_7101d4d820;
 
 void fn_7100dcc2cc(UnkRush_b0195* self) {
     fn_7100e8f9a0(static_cast<char*>(g_unk_7101d47310->field_0x2228), true, &g_unk_71727bdb88);
@@ -651,10 +650,6 @@ void fn_7100dcd070(UnkRush_b0195* self) {
     Store<fn_710000abbc>(data, g_unk_71727bcb00, &self->survival_time_0xc64);
     fn_7101203854(GetOwner());
 }
-
-extern UnkPropertyName g_unk_71727bd270;
-extern UnkPropertyName g_unk_71727bd288;
-extern UnkPropertyName g_unk_71727bd2a0;
 
 template <UnkPropertyName* Name>
 __attribute__((always_inline)) static inline void SetFlag_b0195(CBlackboard* data) {

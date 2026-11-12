@@ -2,6 +2,7 @@
 // registered. It runs the registry's hook at +0x178 (g_unk_7101d4c8d0) on the class when one is
 // set, then hands each entry of the two arrays (0xb0-byte entries at +0xe8, the functions, 0xb8
 // bytes each, at +0x110) with the class to fn_71000e7420 and fn_710009ad4c. Names are placeholders.
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/reflection/CClass.h"
 #include "game/UnkTU85.h"
 #include "types.h"
@@ -13,7 +14,6 @@ struct UnkVersionRegistry {
     u64 field_0x178;
     u8 unk_0x180[0x28];
 };
-extern UnkVersionRegistry* g_unk_7101d4c8d0;
 
 struct UnkReflClassEntry {
     u8 unk_0x0[0xb0];

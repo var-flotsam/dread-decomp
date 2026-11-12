@@ -15,6 +15,7 @@
 #include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU23.h"
 #include "game/UnkTU2538.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2669.h"
@@ -32,8 +33,6 @@ struct lua_State;
 struct UnkSoundMgr;
 struct UnkSoundHandle_b46a1;
 struct UnkStruct_71002fda50;
-
-extern UnkSoundMgr* g_unk_7101d4d820;
 
 // ---- game manager, one name key ----
 void fn_7100df71d4(UnkGameManager* self, const CRntString& name);

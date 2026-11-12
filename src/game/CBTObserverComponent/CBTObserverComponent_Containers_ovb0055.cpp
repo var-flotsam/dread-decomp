@@ -28,6 +28,7 @@
 #include "game/UnkTU253.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2566.h"
+#include "game/UnkTU2577.h"
 #include "game/UnkTU372.h"
 #include "game/UnkTU883.h"
 #include "types.h"
@@ -623,7 +624,6 @@ void fn_7100ca6dd0(UnkObserverReset_ovb0055* self) {
 
 struct UnkLinkList;
 struct UnkCallback;
-void fn_71005c4828(void*, void**);
 
 // The group map's buckets and list (destroyed last) ...
 struct UnkObserverGroupsBase_ovb0055 {
@@ -718,7 +718,6 @@ struct UnkTileEventSet;
 extern UnkTileEventSet g_unk_7172795e08;  // the breakable tiles' event set
 struct UnkManager;
 extern UnkManager* g_unk_7101d47360;
-void fn_7100ee1f34(void*);
 
 struct UnkObserverSetUp_ovb0055 {
     u8 unk_0x0[0xc0];

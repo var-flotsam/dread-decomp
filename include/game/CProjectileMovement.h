@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkSelf;
 struct UnkChargeComponent;
 struct UnkBossComponent;
 struct UnkKraidBouncingCreaturesMovement2;
@@ -19,3 +20,4 @@ void fn_7100ac3a78(UnkNailongThornMovement*, f32);
 void fn_7100ac38fc(void* self);  // Takes the component (it reads the rate at +0x7c itself).
 extern void* g_unk_7101a96b30[];
 void fn_7100ac40fc(UnkChargeComponent* self, f32 time);
+void fn_7100ac3880(UnkSelf* self);

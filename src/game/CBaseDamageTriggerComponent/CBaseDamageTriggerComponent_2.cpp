@@ -3,10 +3,10 @@
 // and the interval are positive, then spends `dt`: once the delay at +0xbd8 has run out it applies the
 // growing damage (fn_71008c1538 with min(+0xbb8 + +0xbd0, +0xbd4)) once per interval, and keeps the
 // rest of `dt` modulo the interval at +0xbdc. Names and layouts are placeholders.
+#include "game/UnkTU1370.h"
 #include "types.h"
 
 struct UnkRequest;
-void fn_71008c1538(UnkRequest* request, f32 value);
 
 struct UnkBaseDamageTrigger2 {
     u8 unk_0x0[0x9b8];

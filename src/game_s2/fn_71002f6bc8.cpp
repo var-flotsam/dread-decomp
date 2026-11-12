@@ -5,6 +5,7 @@
 // null.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU2527.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -12,8 +13,6 @@ using base::reflection::CClass;
 struct UnkSource {
     u64 field_0x0;
 };
-
-extern u64 g_unk_71727b9db0;
 
 // NON_MATCHING(minor): the two description calls are laid out the other way round (the branch on the
 // comparison is b.ne where the original has b.eq); behaviour is identical

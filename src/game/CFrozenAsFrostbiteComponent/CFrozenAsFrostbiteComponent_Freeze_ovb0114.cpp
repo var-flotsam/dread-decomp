@@ -13,6 +13,7 @@
 #include "game/UnkActor.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU1370.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkTimelineComponent.h"
 #include "game/UnkXformNode.h"
@@ -296,7 +297,6 @@ void fn_71007f46e8(UnkFrozenAsFrostbite_ovb0114* self, f32 dt) {
 struct UnkFrostbiteComponent;
 struct UnkFrostbiteRequest;
 struct UnkRequest;
-void fn_71008c1538(UnkRequest* request, f32 value);
 
 // A damage request as the hit handler sees it.
 struct UnkFrostbiteDamage_ovb0114 {

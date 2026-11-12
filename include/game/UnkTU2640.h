@@ -5,8 +5,12 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkPartFfca00;
+
 // Out-of-line destructor of a music preset map's values (src/game/sound/UnkMusicPresets.cpp).
 void fn_7100fee034(void*);
 
 void fn_7100ffaa88(void*);
 void fn_7100fefde0(void*);
+UnkPartFfca00* fn_7100ffbad8(UnkPartFfca00* self, const UnkPartFfca00* other);
+void fn_7101005d8c(void*);

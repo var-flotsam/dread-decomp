@@ -3,6 +3,7 @@
 // id at +0xb8, picked by the word at +0x5dc. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/UnkTU1370.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -22,7 +23,6 @@ struct UnkNailongThornMovement2 {
 extern base::reflection::UnkTunable g_unk_7172716160;
 extern CStrId g_unk_71726f8138 __attribute__((visibility("hidden")));
 extern CStrId g_unk_71726f8140 __attribute__((visibility("hidden")));
-void fn_71008c1538(UnkRequest* request, f32 value);
 
 static inline f32 TunableValue(u32 offset) {
     return *reinterpret_cast<const f32*>(reinterpret_cast<const char*>(&g_unk_7172716160) + offset);
