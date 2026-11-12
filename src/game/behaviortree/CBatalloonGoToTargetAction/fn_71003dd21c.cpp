@@ -27,14 +27,13 @@ struct UnkNode : UnkBehaviorTreeNodeBase {
 
 extern void* g_unk_7101a2f0d8[];
 
-// NON_MATCHING(minor): the stores at +0x3c and +0x40 are made in the other order
 void fn_71003dd21c(UnkNode* self) {
     fn_7100393e68(self);
     self->field_0x2c = 0xbf800000bf800000ull;
     self->vtable = g_unk_7101a2f0d8 + 2;
     self->field_0x34 = 0xbf800000ull;
-    self->field_0x3c = 0;
     self->field_0x40 = 0;
+    self->field_0x3c = 0;
     fn_71002acfe4(self->field_0x50);
     self->field_0x12ae8 = 0;
     self->field_0x12ad8 = 0;

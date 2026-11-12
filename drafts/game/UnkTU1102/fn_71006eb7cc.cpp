@@ -50,17 +50,17 @@ UnkXParasiteResult_b0252 fn_71006eb7cc(UnkXParasiteFind_b0252* self) {
     result.ptr = nullptr;
     UnkActor* actor = fn_7100d7c990(self->owner);
     if (actor) {
-        f32 best = -1.0f;
         UnkXParasiteEntryRef_b0252** it = self->entries.data;
-        UnkXParasiteEntryRef_b0252** end = it + self->entries.count;
-        for (; it != end; ++it) {
+        UnkXParasiteEntryRef_b0252** end = self->entries.count + it;
+        f32 best = -1.0f;
+        for (; end != it; ++it) {
             UnkXParasiteEntryRef_b0252* entry = *it;
             if (!entry || !entry->holder || !entry->holder->actor)
                 continue;
             if (!fn_710112a3bc(entry->holder))
                 continue;
-            UnkActor* other = (*it)->holder->actor;
             UnkPos3_b0252 a = Pos(actor);
+            UnkActor* other = (*it)->holder->actor;
             UnkPos3_b0252 b = Pos(other);
             f32 dx = a.x - b.x;
             f32 dy = a.y - b.y;

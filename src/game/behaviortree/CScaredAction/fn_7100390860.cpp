@@ -38,8 +38,6 @@ struct UnkHandler {
     };
 };
 
-// NON_MATCHING(minor): the two words of the state pair are held in swapped registers (the value
-// loaded from 0x2c and the constant 3) at the paired store
 u32 fn_7100390860(UnkHandler* self, UnkMessage* message) {
     const CStrId* id = &g_unk_7101d470e0;
     if (message->field_0x8) {
@@ -53,8 +51,8 @@ u32 fn_7100390860(UnkHandler* self, UnkMessage* message) {
     if (kind == 3) {
         if (reinterpret_cast<UnkHashedString*>(data)->field_0x30 != 0x14d8371df8520610ull)
             return 1;
-        u32 old = self->field_0x2c;
         self->field_0x30 = 3;
+        u32 old = self->field_0x2c;
         self->field_0x34 = old;
         kind = message->field_0x0;
     }

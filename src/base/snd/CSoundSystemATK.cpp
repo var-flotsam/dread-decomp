@@ -1128,10 +1128,6 @@ __attribute__((always_inline)) static inline base::math::simd::Vec4 Interleave(b
 // position at +0xac to the target at +0xb8 (both in centimetres, so scaled by 0.01) with the up
 // vector at +0xa0, and hands it to the engine's listener. The axes are the matrix's columns, each
 // with its translation (the dot product with the negated position) in its w.
-// NON_MATCHING(minor): the same instructions (base/math/UnkSimd.h reproduces the original's NEON
-// shapes), but the normalisations of the up vector and the view direction and the first cross
-// product are scheduled in another order, so the vector registers from there on are numbered
-// differently.
 void fn_71000f88b8(UnkSoundSystemATK* self) {
     using namespace base::math::simd;
     if (!Member<bool>(self, 0xd0))
@@ -1142,19 +1138,19 @@ void fn_71000f88b8(UnkSoundSystemATK* self) {
     Vec4 target = Make3(Member<f32>(self, 0xb8) * 0.01f, Member<f32>(self, 0xbc) * 0.01f,
                         Member<f32>(self, 0xc0) * 0.01f);
     up = Normalize(up);
-    Vec4 z = Normalize(position - target);
     Vec4 neg_position = -position;
+    Vec4 z = Normalize(position - target);
     Vec4 x = Normalize(Cross(up, z));
     Vec4 y = Cross(z, x);
+    y.w = Dot(y, neg_position).y;
     z.w = Dot(z, neg_position).y;
     x.w = Dot(x, neg_position).y;
-    y.w = Dot(y, neg_position).y;
     Vec4 zero = {0.0f, 0.0f, 0.0f, 0.0f};
     Vec4 xz_lo = __builtin_shufflevector(x, z, 0, 4, 1, 5);
-    Vec4 xz_hi = __builtin_shufflevector(x, z, 2, 6, 3, 7);
     Vec4 y0_lo = __builtin_shufflevector(y, zero, 0, 4, 1, 5);
-    Vec4 y0_hi = __builtin_shufflevector(y, zero, 2, 6, 3, 7);
     Vec4 m[4];
+    Vec4 xz_hi = __builtin_shufflevector(x, z, 2, 6, 3, 7);
+    Vec4 y0_hi = __builtin_shufflevector(y, zero, 2, 6, 3, 7);
     m[0] = Interleave(Low(xz_lo), Low(y0_lo));
     m[1] = Interleave(High(xz_lo), High(y0_lo));
     m[2] = Interleave(Low(xz_hi), Low(y0_hi));

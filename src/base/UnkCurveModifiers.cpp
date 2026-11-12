@@ -122,15 +122,14 @@ shape:
 
 // Sets the curve to run from `start` to `target` over `duration`, taking the modifier letters from
 // `modifiers` when they differ, and works out the value it ends at.
-// NON_MATCHING(minor): the stores of the duration and the difference come out in the other order.
 void fn_7100075f78(f32 start, f32 target, f32 duration, UnkTimedCurve* curve,
                    const base::global::CRntString* modifiers) {
     // The modifier letters are the data of a string held at +0x18.
     auto* letters = reinterpret_cast<base::global::CRntString*>(&curve->modifiers);
-    curve->start = start;
     curve->field_0x4 = target;
-    curve->duration = duration;
+    curve->start = start;
     curve->delta = target - start;
+    curve->duration = duration;
     curve->time = 0.0f;
     if (fn_710007f220(letters, modifiers))
         fn_710007eaa0(letters, modifiers);

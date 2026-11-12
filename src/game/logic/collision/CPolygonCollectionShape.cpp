@@ -441,15 +441,13 @@ static inline UnkBox2D CenteredBox(f32 x, f32 y, f32 hx, f32 hy) {
 }
 
 // A type-8 shape moving along `dir` against the collection.
-// NON_MATCHING(minor): the swept box's half sizes and the shape's position get other float registers
-// and the direction is loaded earlier (same operations in the same order otherwise).
 UnkContact fn_7100d656a0(UnkShape* self, const UnkShape8Geometry* geom, const CVector3D* dir, UnkLocalQuery* query) {
     UnkShape10* shape = static_cast<UnkShape10*>(self);
     if (!shape->has_tree)
         return fn_7100d658e0(&shape->polygons, geom, dir, query);
     f32 r = geom->field_0xc;
-    f32 e = r + geom->field_0x8;
     f32 sx = r + r;
+    f32 e = geom->field_0x8 + r;
     f32 sy = e + e;
     f32 hx = sx * 0.5f;
     f32 hy = sy * 0.5f;

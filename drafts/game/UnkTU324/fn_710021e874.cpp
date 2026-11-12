@@ -60,8 +60,9 @@ void fn_710021e874(UnkRefObj* obj) {
     fn_7100066918(&self->listener_lock);
     self->commands.vtable = g_unk_7101a204c0 + 2;
     for (u32* it = self->commands.read; it != self->commands.write;) {
-        u32* first = self->commands.entries;
-        u32* limit = first + 64;
+        u32* first;
+        u32* limit = 64 + first;
+        first = self->commands.entries;
         ++it;
         if (it == limit)
             it = first;

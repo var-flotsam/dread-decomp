@@ -157,12 +157,13 @@ void fn_7101214c94(UnkAtkSystem_b0150* self) {
     nn::os::DestroySystemEvent((nn::os::SystemEventType*)self->event);
     if (self->v_a08)
         self->v_a08 = 0;
-    self->v_e8 = 2;
-    self->v_ec = 1.0f;
-    self->v_e0 = 4;
     self->v_e4 = 4;
-    self->v_f0 = 1.0f;
+    self->v_ec = 1.0f;
+    self->v_e8 = 2;
     self->v_f4 = 0;
+    self->v_f0 = 1.0f;
+    self->v_e0 = 4;
+    self->v_fc = 1.0f;
     self->v_f8 = 0;
     self->v_fc = 1.0f;
     self->v_100 = 1.0f;

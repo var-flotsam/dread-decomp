@@ -27,7 +27,6 @@ struct UnkUnit254Object {
 };
 static_assert(__builtin_offsetof(UnkUnit254Object, field_0xb4) == 0xb4, "UnkUnit254Object layout");
 
-// NON_MATCHING(minor): the last two pairs of zero stores come out in the other order.
 void fn_71001c33cc(UnkUnit254Object* self) {
     self->field_0x0 = 0;
     self->field_0x4 = 0;
@@ -43,10 +42,12 @@ void fn_71001c33cc(UnkUnit254Object* self) {
     self->field_0x70 = false;
     self->field_0xb4 = false;
     self->self = self;
-    self->field_0x0 = 0x80;
-    self->field_0x4 = 1;
-    self->field_0x88 = 0;
-    self->field_0x90 = 0;
+    self->scale[2] = 1.0f;
     self->field_0x78 = 0;
+    self->field_0x0 = 0x80;
+    self->scale[3] = 1.0f;
+    self->field_0x90 = 0;
+    self->field_0x88 = 0;
+    self->field_0x4 = 1;
     self->field_0x80 = 0;
 }

@@ -152,6 +152,34 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Permuter spike: 27 matches for an hour of CPU, and it stops here by its own rule (2026-11-12).** The tier plan
+gave a permuter two days and a stop rule: try cheap reorderings on the registers-only near-matches, and stop if
+fewer than one in five close. The spike was a script that changes one thing in a function's body (swaps two
+adjacent statements, moves a statement a few lines, splits or merges a declaration and its initialiser, swaps
+the operands of a commutative operator, flips a comparison), compiles, counts the instructions that differ and
+keeps a change that does not make it worse; 1,500 tries a function, a tenth of a second each. A byte match is
+its own proof, so the changes need not keep behaviour, and the relocation check runs on every result.
+
+| Corpus | Tried | Matched | Closer, not matched |
+|---|---|---|---|
+| Registers-only drafts | 105 | 13 (12%) | 10 |
+| Registers-only functions of `src/` | 143 | 14 (10%) | 12 |
+
+27 of 248 is 11%, and of the 141 that began at four differing instructions or fewer, 19. That is under one in
+five, so no permuter is built; the scripts stay with the review's notes, not in `tools/`. What the spike did
+produce is in the tree: the 14 functions of `src/` match now (their `NON_MATCHING` notes and their rows of
+`data/equivalence.csv` are gone), and the 13 drafts hold their matching text, marked `match` in
+`drafts/INDEX.csv`, waiting on their declarations like the other held drafts.
+
+What closed a function was small every time: one load or one store moved by a line or two, or `a * b` written
+`b * a`. Two passes after the search kept the results readable: every changed hunk whose reversal still matched
+was put back (the search accepts changes that do nothing, such as `2 == kind`), and a declaration it had split
+from its initialiser was merged again where the match survived. A result is the original text with one to three
+lines moved or two operands swapped.
+
+For the next near-match: this costs no tokens. A worker's registers-only result at two or three instructions is
+worth an hour of one core before it is worth another model attempt.
+
 **The four functions of the sweep, read; and a rule for `minor` (2026-11-12).** The four `NON_MATCHING(minor)`
 functions that `tools/ref_check.py` listed with a callee or a global the original does not have:
 - `fn_7100b39714` was wrong. It is the destructor of a sibling of `fn_7100b39640`'s class, with the same

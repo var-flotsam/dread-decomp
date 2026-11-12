@@ -28,7 +28,6 @@ static inline void St(UnkNode* self, u32 off, T value) {
 
 static inline char* At(UnkNode* self, u32 off) { return reinterpret_cast<char*>(self) + off; }
 
-// NON_MATCHING(minor): the zero stores at +0xc40 and +0xc48 are made in the other order
 void fn_71004ce858(UnkNode* self) {
     fn_710041a198(self);
     self->vtable = g_unk_7101a3ebe8 + 2;
@@ -41,6 +40,7 @@ void fn_71004ce858(UnkNode* self) {
     St<u32>(self, 0xc50, 10);
     St<u64>(self, 0xc40, 0);
     St<u64>(self, 0xc48, 0);
+    St<u32>(self, 0xc50, 10);
     St<u8>(self, 0xc54, 1);
     St<u32>(self, 0xc58, 0xf);
     St<void*>(self, 0xc60, fn_7100083990());

@@ -79,8 +79,8 @@ bool fn_7100ebfd4c(UnkNavMeshManager* self, Vec2* pos, u16 cell_id, Result* resu
                     }
                     target = cell_slot;
                 }
-                u32 hit_flags = out->flags;
                 out->cell = target;
+                u32 hit_flags = out->flags;
                 u8 hit_side = side;
                 hit_flags |= 6;
                 out->flags = hit_flags;

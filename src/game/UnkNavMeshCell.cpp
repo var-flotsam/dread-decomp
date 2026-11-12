@@ -29,15 +29,14 @@ const UnkNavMeshEdge* fn_71002afc34(const UnkNavMeshCell* cell, const u8* index)
 
 // The vertex ids at the two ends of side `*index`: its own vertex and the next one (the first for the
 // last side).
-// NON_MATCHING(minor): register allocation only (the vertex array and i + 1 swap x11 and x12).
 UnkNavMeshSidePair fn_71002afe60(UnkNavMeshCell* cell, u8* index) {
     UnkNavMeshSidePair side;
     u8 i = *index;
     if (i != 0xff) {
         u32 count = *reinterpret_cast<const u32*>(&cell->field_0x10);
-        if (i < count) {
-            u16* vertices = cell->vertices;
+        if (count > i) {
             u64 n = (u64)i + 1;
+            u16* vertices = cell->vertices;
             u64 next = (u32)n < count ? n : 0;
             side.a = vertices[i];
             side.b = vertices[next];

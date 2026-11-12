@@ -500,12 +500,10 @@ static inline void SetProgressFlag(CBlackboard* blackboard) {
 // Unless the current scenario's spawn group "SG_ChozoRobotSoldier" is enabled and the
 // presentation cutscene has not been counted yet, calls fn_7100b42ff0 on the world's object and
 // sets a GAME_PROGRESS flag (unless the blackboard is locked).
-// NON_MATCHING(minor): the original loads the game manager's GOT slot through x9 instead of x8
-// (register choice only; 3 instructions).
 void fn_7100e01978(UnkGameManager* self) {
-    UnkGameManager* manager = g_unk_7101d47310;
-    bool enabled = true;
     CBlackboard* blackboard = &self->field_0x968;
+    bool enabled = true;
+    UnkGameManager* manager = g_unk_7101d47310;
     CStrId scenario = fn_7100dfbda4(manager, static_cast<const CStrId&>(g_unk_71727c8018));
     if (CBlackboard::CSection* section = fn_7101047484(blackboard, scenario)) {
         static CStrId s_enabled("SG_ChozoRobotSoldier:SPAWNGROUP:Enabled", true);

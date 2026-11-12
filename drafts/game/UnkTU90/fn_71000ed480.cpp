@@ -61,8 +61,8 @@ void fn_71000ed480(UnkWriter_b0202* self, const UnkReflValueRef* ref) {
                       ? static_cast<const base::global::CRntString*>(value.field_0x0)
                       : reinterpret_cast<const base::global::CRntString*>(&value);
         fn_710007eaa0(text.Str(), src);
-        const char* chars = text.Str()->data;
         base::global::CRntFile* file = self->file;
+        const char* chars = text.Str()->data;
         if (!chars)
             chars = g_unk_710162e2ed;
         fn_710007c3f0(file, chars, __builtin_strlen(chars) + 1);

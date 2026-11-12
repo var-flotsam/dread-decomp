@@ -158,10 +158,9 @@ bool fn_710007edc4(const CRntString* self, const char* str) {
 }
 
 // The same over at most `n` characters.
-// NON_MATCHING(minor): the two pointer increments are swapped.
 bool fn_710007ee58(const CRntString* self, const char* str, u32 n) {
-    const u8* a = reinterpret_cast<const u8*>(self->data);
     const u8* b = reinterpret_cast<const u8*>(str);
+    const u8* a = reinterpret_cast<const u8*>(self->data);
     s32 d = 0;
     if (n && a != b) {
         do {
@@ -169,8 +168,8 @@ bool fn_710007ee58(const CRntString* self, const char* str, u32 n) {
             d = tolower(c) - tolower(*b);
             if (!c || d)
                 break;
-            ++a;
             ++b;
+            ++a;
         } while (--n);
     }
     return d == 0;
@@ -186,11 +185,10 @@ CRntString* fn_710007f5ac(CRntString* self, char c) {
 // Concatenation (the result is returned in memory).
 
 // Concatenation.
-// NON_MATCHING(minor): the original stores `borrowed` first when it initialises the result.
 CRntString fn_710007eee0(const CRntString* a, const CRntString* b) {
-    u32 a_length = a->length;
     const char* a_data = a->data;
-    u32 total = b->length + a_length;
+    u32 a_length = a->length;
+    u32 total = a_length + b->length;
     const char* b_data = b->data;
     CRntString result;
     fn_710007ebc8(&result, nullptr, total, 0);
