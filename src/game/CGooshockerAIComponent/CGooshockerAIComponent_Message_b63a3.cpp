@@ -43,9 +43,7 @@ u32 fn_710059ea38(UnkGooshockerAIMsg_b63a3* self, UnkGooshockerEvent_b63a3* even
         s32 count = self->field_0x147f8;
         self->field_0x148e8 = false;
         if (count <= 0) {
-            // fn_710059aa2c reads only its first argument; the second is left as it is.
-            UnkGooplotOwner_b55* unused;
-            fn_710059aa2c(reinterpret_cast<UnkGooplotAI_b55*>(self), unused);
+            fn_710059aa2c(reinterpret_cast<UnkGooplotAI_b55*>(self));
         } else if (self->field_0x148e9) {
             fn_710059e4f0(reinterpret_cast<UnkGooshockerState*>(self), 1);
             self->field_0x146db = true;

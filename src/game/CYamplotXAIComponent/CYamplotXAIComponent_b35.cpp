@@ -19,7 +19,7 @@ struct UnkVec2_b35a2 {
 
 void fn_71006f2974(UnkYamplotXAI* self, UnkVec2_b35a2* v) {
     f32 value = self->tunables->field_0xf4;
-    if (value > 0.0f && !fn_71006f29c4(self, value)) {
+    if (value > 0.0f && !fn_71006f29c4(self)) {
         v->x = v->x * 1.5f;
         v->y = v->y * 1.5f;
     }

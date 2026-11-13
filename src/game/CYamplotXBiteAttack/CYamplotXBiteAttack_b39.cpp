@@ -32,9 +32,8 @@ bool fn_71006eca84(UnkBiteAttack_ybt* self, void* arg1, u32 arg2) {
     if (ai) {
         bool is_yamplot = fn_710009d50c(ai->vf_0x0(), fn_71006ef064());
         UnkYamplotXAI* yamplot = reinterpret_cast<UnkYamplotXAI*>(is_yamplot ? ai : nullptr);
-        f32 unset;
         if (ok && is_yamplot)
-            ok = !(fn_71006f29c4(yamplot, unset) && fn_71006f29c4(yamplot, unset));
+            ok = !(fn_71006f29c4(yamplot) && fn_71006f29c4(yamplot));
     }
     return ok;
 }

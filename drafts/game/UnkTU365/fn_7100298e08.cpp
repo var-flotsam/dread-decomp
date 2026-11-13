@@ -2,6 +2,7 @@
 // already covers, longest first, then connects each pair the check accepts.
 // Names and layouts are placeholders.
 
+#include "base/UnkNoArg.h"
 #include "base/UnkVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "types.h"
@@ -219,7 +220,7 @@ static inline bool Near(const base::math::CVector2D& p, const base::math::CVecto
 
 
 
-bool fn_71002a25f0(void* unused, UnkNavPoly* a, u32 edgeA, UnkNavPoly* b, u32 edgeB);
+bool fn_71002a25f0(UnkNoArg, UnkNavPoly* a, u32 edgeA, UnkNavPoly* b, u32 edgeB);
 void fn_71002a28f4(void* self, UnkNavPoly* a, u32 edgeA, UnkNavPoly* b, u32 edgeB, UnkNavPolyList* polys,
                    UnkEdgePairList* pairs);
 
@@ -263,10 +264,9 @@ void fn_7100298e08(void* self, UnkNavBoxList* boxes, UnkNavPolyList* polys) {
         }
     }
 
-    void* unused;
     for (UnkEdgePairList::Node* n = pairs.head; n;) {
         UnkEdgePair& p = n->value;
-        if (fn_71002a25f0(unused, p.a, p.edgeA, p.b, p.edgeB)) {
+        if (fn_71002a25f0(UnkNoArg(), p.a, p.edgeA, p.b, p.edgeB)) {
             fn_71002a28f4(self, p.a, p.edgeA, p.b, p.edgeB, polys, &pairs);
             pairs.Remove(n);
             n = pairs.head;

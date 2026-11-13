@@ -104,7 +104,10 @@ journal entry.
 
 ## Open decisions for the owner
 
-None open. Decided on 2026-11-12:
+None open. Decided on 2026-11-13: the hold on bulk runs stays; no bulk move of copied types (they go to
+their class's header as each class is done); the weekly sampled read is not scheduled; a new function that
+neither matches nor is verified goes to `drafts/` unless the port needs it; a local that is never set is not
+read (`UnkNoArg`); `tools/struct_check.py --base` runs in CI. Decided on 2026-11-12:
 1. `tools/decl_check.py --strict` runs in CI: one more identical local copy of a declaration fails (#373).
 2. Semantic lifts stay generated and untracked (`docs/PORT_PLAN.md`, decision 2).
 3. A labelled member is its symbol's declaration, and the free prototype for that symbol goes. The 94 labels of

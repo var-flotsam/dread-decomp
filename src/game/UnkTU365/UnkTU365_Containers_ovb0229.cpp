@@ -9,6 +9,7 @@
 #include <new>
 #include <stdio.h>
 
+#include "base/UnkNoArg.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkObject_0x100.h"
@@ -233,7 +234,7 @@ struct UnkNavRegions_ovb0229;
 void fn_7100295d28(UnkNavGenerator_ovb0229* self, void* arg);
 u8* fn_71002970ec(UnkNavRegions_ovb0229* regions, u32 index);
 void fn_71002916e8(UnkNavGenerator_ovb0229* self, u8* region, u8* part, const CStrId& name, f32 value);
-void fn_7100297468(u8* region, u64 unused, u8* part_a, u8* part_b);
+void fn_7100297468(u8* region, UnkNoArg, u8* part_a, u8* part_b);
 void fn_71002978c8(UnkNavGenerator_ovb0229* self, u8* region, u8* part_a, u8* part_b);
 void fn_710028e928(UnkNavGenerator_ovb0229* self, u8* region, u8* part_a, u8* part_b);
 
@@ -250,11 +251,10 @@ u32 fn_7100297250(UnkNavGenerator_ovb0229* self, void* arg, UnkNavRegions_ovb022
         fn_71002916e8(self, fn_71002970ec(regions, i), fn_71002970ec(regions, i) + 0x40, CStrId(name, true), -1.0f);
     }
     for (u32 i = 0; i < regions->count; ++i) {
-        u64 unused;
         fn_71002970ec(regions, i);
         u8* b = fn_71002970ec(regions, i);
         u8* c = fn_71002970ec(regions, i);
-        fn_7100297468(c, unused, b, c + 0x48);
+        fn_7100297468(c, UnkNoArg(), b, c + 0x48);
     }
     for (u32 i = 0; i < regions->count; ++i) {
         fn_71002978c8(self, *reinterpret_cast<u8**>(fn_71002970ec(regions, i) + 0x40),

@@ -35,6 +35,11 @@ jobs:
       - name: Declaration consistency (vs base branch)
         if: github.event_name == 'pull_request'
         run: python tools/decl_check.py --strict --base "origin/${{ github.base_ref }}"
+      # Types the same way (owner, 2026-11-13): a struct, class or union name must not gain a second,
+      # different definition in another file (tools/struct_check.py). Identical copies are counted, not failed.
+      - name: Type definitions (vs base branch)
+        if: github.event_name == 'pull_request'
+        run: python tools/struct_check.py --base "origin/${{ github.base_ref }}"
       - name: Command index current (docs/commands.md)
         run: python tools/gen_commands.py --check
       # The README's status card (tools/status_card.py) for this commit, in the job summary; on a pull

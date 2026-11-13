@@ -152,6 +152,28 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Owner decisions of 2026-11-13, and the unset locals taken out.** Six answers, all in the rule texts now:
+
+1. *No unset values.* A local that is never set is not read (`CLAUDE.md`, "No unset values"). The 15 reads in
+   12 sources and 2 in drafts were each settled by what the callee really takes, not by a blanket rewrite:
+
+   | What the callee does | Honest form | Where |
+   |---|---|---|
+   | Reads the other arguments and never the unset one; dropping the parameter would shift the rest | The parameter is an empty class by value, `UnkNoArg` (`include/base/UnkNoArg.h`): the ABI gives it the register and no value | 10 callees in 8 sources (`fn_71005fd134`, `fn_71008472d4`, `fn_7100ad32d0`, `fn_7100ad370c`, `fn_7100fc3b00`, `fn_7100fc3cc0`, `fn_7100fc44b4`, `fn_7100e94608`, `fn_7101198e88`, `fn_7100297468`) and one call through a cast (`fn_7100df28d0`) |
+   | Does not have the parameter at all: no caller needs to load it | The parameter comes out of the declaration | `fn_710059aa2c` (its other caller still matches without the argument) and `fn_71006f29c4` (it never reads `s0`) |
+   | Nothing: the "unset" result was a misreading | `fn_71003e35a0` returns `true` on every path. Its source said "the other paths return whatever x0 holds" and left the result unset there; the compiler chose 1 for the unset value, which happened to be right | 1 source |
+   | The original program itself reads a stack slot it only wrote on one branch | Kept, with a comment at the declaration | `fn_7100219588` (`x`, `y`) |
+
+   Every source compiles to the same code as before. `tools/fakematch.py --unset` lists two reads now, both
+   in that last function. Which registers a callee reads before its first call was checked in the original
+   for each (a reading aid in the review's notes, `argread.py`).
+2. *Types have a ratchet.* `tools/struct_check.py --base` runs in the `policy` job: a struct, class or union
+   name must not gain a second, different definition in another file. Identical copies are counted only.
+3. *Unverified non-matches.* A new function that neither matches nor is verified equivalent goes to `drafts/`
+   unless the port needs it. The ones in `src/` today stay.
+4. The hold on bulk runs stays. 5. No bulk move of the 512 identically copied type names: they go to their
+   class's header as each class is done. 6. The weekly sampled read is not scheduled for now.
+
 **The machine test reaches more: systematic inputs (2026-11-13).** Most registers-only functions the tier-2
 test could not judge were a few instructions short: of 220 "cannot be judged", 126 were "only N% of the
 instructions ran" and 42 "a branch went one way", and 57 of those were one instruction or one branch away.

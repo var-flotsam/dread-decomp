@@ -6,5 +6,5 @@
 #include "types.h"
 
 struct UnkYamplotXAI;
-bool fn_71006f29c4(UnkYamplotXAI* self, f32 value);
+bool fn_71006f29c4(UnkYamplotXAI* self);
 extern void* g_unk_7101a6ae18[];  // The object's vtable.

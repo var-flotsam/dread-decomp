@@ -25,7 +25,7 @@ Usage:
   python tools/struct_check.py --list [--kind same|other|code]   # every name, most files first
   python tools/struct_check.py --name NAME          # each definition of one name, with its file and line
   python tools/struct_check.py --base origin/main   # exit 1 when a name gained a differing definition, or a
-                                                    # new name has one (a ratchet; not run by CI)
+                                                    # new name has one (a ratchet; CI runs it)
   python tools/struct_check.py PATH...              # only names with a definition under these paths
 """
 

@@ -34,6 +34,11 @@ to be purged from the history.
    you call, declare it with the definition's types (your own struct name for its first parameter
    is a second signature of the same function). The differences already in the tree are listed by
    `tools/decl_check.py --definition-types`; the check fails on a new one.
+   Types are held the same way: a struct, class or union name must not gain a second, different
+   definition in another file (`tools/struct_check.py --base origin/main`, CI; `--name <Name>` shows
+   every definition). Give your file's own type a name of its own, or use the shared one.
+   Never read a local you did not set, to leave a register alone: an argument that carries nothing is
+   `UnkNoArg()` (`include/base/UnkNoArg.h`); `tools/fakematch.py --unset` lists such reads.
    A function you mark `NON_MATCHING(minor)` that calls or refers to something the original does
    not names it in the note with why it is harmless (`tools/ref_check.py` lists what differs).
 8. **Files live where the code came from.** New hand-written sources go under

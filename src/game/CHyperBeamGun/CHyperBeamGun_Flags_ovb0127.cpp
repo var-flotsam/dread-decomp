@@ -17,6 +17,7 @@
 #include "game/UnkTU2562.h"
 #include "types.h"
 #include "base/UnkMatrix44.h"
+#include "base/UnkNoArg.h"
 #include "game_s2/UnkWeakHandle.h"
 
 struct UnkPlayer;
@@ -221,7 +222,7 @@ struct __attribute__((packed)) UnkBeamHitList_ovb0127 {
 };
 
 struct UnkHyperBeamGunHits_ovb0127;
-void fn_71008472d4(UnkHyperBeamGunHits_ovb0127* self, UnkBeamHitRecord_ovb0127* hit, void* unused, void* arg, bool flag);
+void fn_71008472d4(UnkHyperBeamGunHits_ovb0127* self, UnkBeamHitRecord_ovb0127* hit, UnkNoArg, void* arg, bool flag);
 void fn_7100e2f10c(void* manager, UnkShape* shape);
 
 static inline void* HitManager() {
@@ -240,10 +241,8 @@ void fn_71008481f4(UnkHyperBeamGunHits_ovb0127* self, UnkShape* shape, void* arg
     UnkBeamHitList_ovb0127 hits;
     UnkTree* tree = static_cast<UnkTree*>(g_unk_7101d47310->field_0x608->field_0x820);
     if (fn_7100d5b484(tree, 0x81481, shape, reinterpret_cast<const UnkMtx44*>(&g_unk_7101a1a680), &hits, 0)) {
-        // The third argument is never read by the callee; the original leaves its register as it is.
-        void* unused;
         for (UnkBeamHitRecord_ovb0127 *hit = hits.items(), *end = hit + hits.count; hit != end; ++hit)
-            fn_71008472d4(self, hit, unused, arg, false);
+            fn_71008472d4(self, hit, UnkNoArg(), arg, false);
     }
     fn_7100e2f10c(HitManager(), shape);
 }

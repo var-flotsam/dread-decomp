@@ -1,5 +1,6 @@
 // Best draft of fn_7100fc39b0 (97.6%: two loads swapped in the call arguments); the rest of this file is its unit.
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
+#include "base/UnkNoArg.h"
 #include "base/UnkRegistry.h"
 #include "base/UnkVector.h"
 #include "base/UnkHashStream.h"
@@ -370,7 +371,7 @@ static inline __attribute__((always_inline)) CRntString JoinPath(const CRntStrin
     return path;
 }
 
-s32 fn_7100fc44b4(void*, UnkSaveCommand_b0235* command) {
+s32 fn_7100fc44b4(UnkNoArg, UnkSaveCommand_b0235* command) {
     UnkDirIter_b0235 it = fn_7100fc7b3c(command);
     s32 result = 0;
     while (fn_7100fc7c5c(&it)) {
@@ -426,7 +427,7 @@ static inline __attribute__((always_inline)) s32 ReadFile(CRntString&& path, Unk
     return fn_710002ed98(g_unk_71729f0020, &path, buffer, 1, nullptr, 8, 0x16);
 }
 
-s32 fn_7100fc3b00(void*, UnkSaveCommand_b0235* command) {
+s32 fn_7100fc3b00(UnkNoArg, UnkSaveCommand_b0235* command) {
     {
         UnkDirIter_b0235 it = fn_7100fc7b3c(command);
         while (fn_7100fc7c5c(&it)) {
@@ -463,7 +464,7 @@ struct UnkSaveSystem_b0235 {
     u8 pad_0x0[0x10];
     u8 mounted;  // 0x10
 };
-s32 fn_7100fc3cc0(void* unused, UnkSaveCommand_b0235* command);
+s32 fn_7100fc3cc0(UnkNoArg, UnkSaveCommand_b0235* command);
 void fn_7100fc41e4(UnkSaveSystem_b0235* self, UnkSaveCommand_b0235* command);
 
 UnkUserId_b0235 fn_71001329f0();
@@ -475,23 +476,21 @@ s32 fn_7100fc38e0(UnkSaveSystem_b0235* self, UnkSaveCommand_b0235* command) {
             return 5;
         self->mounted = 0;
     }
-    // The callees that ignore their first argument are not passed one.
-    void* unused;
     switch (command->kind) {
     case 0:
     case 2:
-        return fn_7100fc3b00(unused, command);
+        return fn_7100fc3b00(UnkNoArg(), command);
     case 1:
     case 4:
         return fn_7100fc39b0(reinterpret_cast<UnkSaveWriter_b0235*>(self), command);
     default:
         return 0x7fffffff;
     case 3:
-        return fn_7100fc3cc0(unused, command);
+        return fn_7100fc3cc0(UnkNoArg(), command);
     case 5:
         fn_7100fc41e4(self, command);
         return 0;
     case 6:
-        return fn_7100fc44b4(unused, command);
+        return fn_7100fc44b4(UnkNoArg(), command);
     }
 }

@@ -30,7 +30,7 @@ void fn_710059d3ec(void* member, UnkGooplotOwner_b55* owner);
 void fn_7100595ca4(UnkGooplotJumpAttack_b55* self) {
     UnkGooplotAI_b55* ai = self->owner->ai;
     if (ai->field_0x147f8 <= 0) {
-        fn_710059aa2c(ai, self->owner);
+        fn_710059aa2c(ai);
     } else {
         self->state = 3;
         self->field_0x58 = 0;

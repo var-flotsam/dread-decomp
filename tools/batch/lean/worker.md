@@ -49,7 +49,11 @@ change what the compiler emits:
 - an empty barrier (`asm("" : "+r"(x))`, `asm volatile("" ::: "memory")`), `volatile`, an empty `if`;
 - an inlining attribute (`always_inline`, `flatten`, `noinline`);
 - a union around a member, a single field stored through `__builtin_memcpy`/`__builtin_memset`, an offset
-  cast `*(T*)((u8*)p + off)` in place of a field.
+  cast `*(T*)((u8*)p + off)` in place of a field;
+- a local that is never set, passed or returned so that a register stays as it was. Where the original
+  leaves an argument register unloaded, the parameter is `UnkNoArg` (`#include "base/UnkNoArg.h"`) and you
+  pass `UnkNoArg()`; where the callee does not read a parameter the ctx shows no caller loading, it does
+  not have it.
 
 One of these usually stands for something real that is missing: a helper, a field's true type, two variables
 merged into one. Look for that. If the function matches only with one of them, take it out, grade again and
