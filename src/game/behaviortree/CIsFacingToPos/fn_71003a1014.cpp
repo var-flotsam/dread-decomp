@@ -6,7 +6,7 @@
 #include "types.h"
 #include "base/math/UnkZeroVector3.h"
 
-using UnkVec3f = base::math::CVector3D;
+using base::math::CVector3D;
 
 struct UnkFacing {
     u8 pad_0x0[0x38];
@@ -23,15 +23,15 @@ struct UnkSelf {
     UnkFacing* field_0x18;
     u8 pad_0x20[0x18];
     u8 field_0x38[8];
-    UnkVec3f field_0x40;
+    CVector3D field_0x40;
 };
 
-bool fn_710039525c(UnkSelf* self, void* arg, UnkVec3f* out);
+bool fn_710039525c(UnkSelf* self, void* arg, CVector3D* out);
 
 #define UNK_NEAR(a, b) ((a) - 0.001f <= (b) && (a) + 0.001f >= (b))
 
 bool fn_71003a1014(UnkSelf* self) {
-    UnkVec3f p;
+    CVector3D p;
     p.x = 0;
     p.y = 0;
     p.z = 0;

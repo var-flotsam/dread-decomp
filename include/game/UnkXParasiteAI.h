@@ -160,6 +160,11 @@ static_assert(__builtin_offsetof(UnkXParasiteAI, link) == 0x14790, "placeholder 
 static_assert(__builtin_offsetof(UnkXParasiteAI, released) == 0x147b9, "placeholder layout");
 static_assert(sizeof(UnkXParasiteAI) == 0x147c0, "placeholder layout");
 
+// The prey (the target of the weak handle at +0x14798) is an actor.
+static inline UnkActor* Prey(UnkXParasiteAI* self) {
+    return reinterpret_cast<UnkActor*>(self->field_0x14798->target);
+}
+
 // The binding of the current state (one past the end when none).
 static inline UnkXParasiteBinding* CurrentBinding(UnkXParasiteAI* self) {
     u64 i = 0;

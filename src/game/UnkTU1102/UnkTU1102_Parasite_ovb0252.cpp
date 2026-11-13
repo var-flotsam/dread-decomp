@@ -149,13 +149,6 @@ struct UnkXParasiteKeyed_8208 {
 extern UnkXParasiteKeyed_8208* g_unk_717270b910[2] __attribute__((visibility("hidden")));
 extern char g_unk_7101647790[];
 
-struct UnkXParasiteActor_8208 {
-    u8 pad_0x0[0x38];
-    UnkXform xform;  // 0x38
-    u8 pad_0x94[0x280 - 0x94];
-    void* control;  // 0x280
-};
-
 struct UnkXParasitePartHandle_8208 {
     u8 pad_0x0[0xb];
     u8 field_0xb;
@@ -165,12 +158,10 @@ struct UnkXParasiteVec3_8208 {
     f32 x, y, z;
 };
 
-static inline UnkXParasiteActor_8208* Actor(UnkXParasiteAI* self) { return reinterpret_cast<UnkXParasiteActor_8208*>(self->owner); }
-
 void fn_71006e8208(UnkXParasiteAI* self, bool on) {
     if (self->field_0x14724 == 4)
         return;
-    void* control = Actor(self)->control;
+    void* control = self->owner->field_0x280;
     if (!control)
         return;
     if (on) {
@@ -183,7 +174,7 @@ void fn_71006e8208(UnkXParasiteAI* self, bool on) {
         UnkFxObject_ovb0041* fx = fn_71003b7db0(manager, &CurrentBinding(self)->effect, false, true);
         if (!fx)
             return;
-        UnkVec3f position = Actor(self)->xform.GetTranslation();
+        UnkVec3f position(self->owner->field_0x44, self->owner->field_0x54, self->owner->field_0x64);
         fn_7100146d84(fx, &position);
         fn_7101152988(static_cast<UnkRinkaControl_ovb0090*>(control), fx, reinterpret_cast<UnkRinkaEntry_ruc**>(g_unk_717270b910),
                       nullptr, 0);
