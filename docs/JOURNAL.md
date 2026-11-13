@@ -152,6 +152,37 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Two barriers go by the tier rules, and a permuter bug found on the way (2026-11-13).** Of the 47 functions
+that match only because an empty barrier keeps their register order, two could lose it without losing
+anything that counts (owner's decision for the first, 2026-11-13):
+
+- `fn_71009f194c` (60 bytes, `CSceneComponent`) is the readable version now, `NON_MATCHING(minor)`: it reads
+  the owner's flag after the vtable slot where the original reads it before. `tools/equiv_test.py` passes it,
+  so it is verified equivalent: matching loses one function, done loses none. This is the first function
+  that went from a match with a barrier to tier 2 on purpose.
+- `fn_7100db8154` (500 bytes, unit 2544) matches without its barrier. `tools/permute.py`, run on the 47
+  without their barriers, found that storing the vtable first does it; the local that held the vtable's
+  address for the barrier and its comment went too, and the plain store matches.
+
+The other 45 keep their barriers: without one the machine test cannot judge the function, which would then
+count as nothing. They are worth another try whenever the test's coverage grows.
+
+The bug: the permuter's put-back pass wrote a store twice in its first result for `fn_7100db8154`. A moved
+line is two pieces to a diff, gone from one place and new in another; the pass put the pieces back one at a
+time, and the half-step that restores the old line while the moved copy stays is a repeated store, which
+the compiler drops, so the bytes still matched. `minimise` now refuses a text in which a line occurs more
+often, or less often, than in both the original and the match, and tries pieces two at a time so that a
+whole move can still go back.
+
+The spike's script had the same step, so its 27 results were checked for it: every file #401 changed,
+for a line that occurs more often than before. Three functions had a store written twice and matching all
+the same: `fn_71004ce858` (`St<u32>(self, 0xc50, 10)`), `fn_71001c33cc` (`scale[2]` and `scale[3]`) and
+`fn_7101214c94` (`v_fc`), the last one moved from `drafts/` to `src/` yesterday with the doubled line in
+it, read and not noticed. Each redundant copy is gone and the compiled code of each file is the same as
+before. No line had been lost. A match proves the bytes, not that every statement in the source is one the
+program needs; the sampled read is where a doubled store should be caught, and "a statement written
+twice" is now in its list of things to look for.
+
 **One more held draft matches in `src/`: `fn_7101214c94`, the sound system's shutdown (2026-11-12).** Its
 note said what held it: it declared `fn_7101214040` as returning `u32` where the definition returns `u64`.
 With the definition's type the draft still matches, `drafts.py promote` moved it, and the coordinator's step

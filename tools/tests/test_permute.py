@@ -114,6 +114,20 @@ class Readable(unittest.TestCase):
         self.assertTrue(matches(small))
         self.assertNotEqual(small, SRC)
 
+    def test_half_a_move_is_never_put_back(self):
+        # `self->d = 0;` moved to the top of the body. A compiler takes the store written twice (the first is
+        # dead), so a stand-in that only looks at where the last one is must not be offered the doubled text.
+        match = list(SRC)
+        match.insert(5, match.pop(10))
+        seen = []
+
+        def matches(lines):
+            seen.append(lines.count("    self->d = 0;"))
+            return True
+        small = permute.minimise(SRC, match, matches)
+        self.assertEqual(set(seen), {1})
+        self.assertEqual(small, SRC)                       # the whole move could go back, and did
+
     def test_a_line_left_behind_that_does_nothing_goes(self):
         match = list(SRC)
         match[5], match[6] = match[6], match[5]

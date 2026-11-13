@@ -45,6 +45,7 @@ QUESTIONS = [
     "Is anything there only to steer the compiler (barrier, `volatile`, empty block, inlining attribute, union, untyped store)?",
     "Does any line read like decompiler output (`param_1`, `uVar3`, `DAT_`, `FUN_`, casts on every operand)?",
     "Does it declare a callee or global its own way, where a header or another file has it?",
+    "Is any statement there twice, or without effect (a store repeated, a value computed and not used)?",
 ]
 
 

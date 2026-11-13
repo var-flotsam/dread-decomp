@@ -40,8 +40,10 @@ changes. Needs the dump. After --write, run tools/check.py as after any change o
 from __future__ import annotations
 
 import argparse
+import collections
 import csv
 import difflib
+import itertools
 import json
 import multiprocessing
 import random
@@ -192,11 +194,26 @@ def search(lines: list[str], addr: str, cost, iterations: int, rnd: random.Rando
 
 
 def minimise(orig: list[str], match: list[str], matches) -> list[str]:
-    """`match` with every changed piece put back to `orig`'s whose reversal still satisfies `matches(lines)`."""
+    """`match` with every changed piece put back to `orig`'s whose reversal still satisfies `matches(lines)`.
+
+    A moved line is two pieces to a diff, gone from one place and new in another. Putting back only one of them
+    writes the line twice or not at all, and the compiler may not mind (a store repeated is a dead store), so a
+    trial is only tried when no line is in it more often, or less often, than in both `orig` and `match`."""
+    have, want = collections.Counter(orig), collections.Counter(match)
+
+    def whole(trial: list[str]) -> bool:
+        n = collections.Counter(trial)
+        return all(min(have[x], want[x]) <= n[x] <= max(have[x], want[x]) for x in set(n) | set(have) | set(want))
     cur = list(match)
     while True:
         ops = [o for o in difflib.SequenceMatcher(None, orig, cur, autojunk=False).get_opcodes() if o[0] != "equal"]
-        trials = [cur[:j1] + orig[i1:i2] + cur[j2:] for _, i1, i2, j1, j2 in ops]
+        def put_back(hunks) -> list[str]:
+            out = list(cur)
+            for _, i1, i2, j1, j2 in sorted(hunks, key=lambda o: -o[3]):
+                out[j1:j2] = orig[i1:i2]
+            return out
+        # one piece at a time, then two together: a move is one piece gone and one piece new
+        trials = [put_back([o]) for o in ops] + [put_back(pair) for pair in itertools.combinations(ops, 2)]
         # neighbouring changes come as one piece, so also line by line: a line the original does not have,
         # against the line of the original it was made from (the closest one that is now missing)
         missing = [line for line in dict.fromkeys(orig) if orig.count(line) > cur.count(line)]
@@ -208,7 +225,7 @@ def minimise(orig: list[str], match: list[str], matches) -> list[str]:
         # and last, without it: a line that does nothing any more (`x = e;` left behind `T x = e;`)
         trials += [cur[:j] + cur[j + 1:] for j in new]
         for trial in trials:
-            if matches(trial):
+            if whole(trial) and matches(trial):
                 cur = trial
                 break
         else:

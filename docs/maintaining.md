@@ -170,9 +170,9 @@ python tools/sample_review.py            # the last 7 days of origin/main; seed 
 ```
 
 It prints the sample and writes `build/review/sample_<seed>.md`: each function with its file and line, the
-fake-match forms `tools/fakematch.py` sees in it, and six questions (is the comment true, are the names
+fake-match forms `tools/fakematch.py` sees in it, and seven questions (is the comment true, are the names
 placeholders or sourced, do structs read as layouts, is anything there only to steer the compiler, does any
-line read like decompiler output, does it declare something its own way). The reader is a person, or a
+line read like decompiler output, does it declare something its own way, is any statement there twice or without effect). The reader is a person, or a
 session that did not write the code. The findings go at the top of `docs/JOURNAL.md` with the seed, so the
 sample can be drawn again; a finding that holds for a run or a recipe matters more than one function's, and
 goes into the worker brief (`tools/batch/lean/worker.md`) or a check. The first read is in the journal

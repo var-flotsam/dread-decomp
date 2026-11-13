@@ -18,10 +18,12 @@ struct UnkSceneComponent {
     bool field_0x44;
 };
 
+// NON_MATCHING(minor): the original reads the owner's flag at +0x1b3 before the vtable slot, this reads it
+// after; the instructions are the same. An empty barrier on `value` made it match; the readable form is
+// kept and tools/equiv_test.py passes it (CLAUDE.md: readability outranks a match).
 void fn_71009f194c(UnkSceneComponent* self) {
     fn_71010c4228(reinterpret_cast<UnkParent*>(self));
     self->field_0x44 = true;
     u8 value = self->owner->field_0x1b3;
-    asm("" : "+r"(value));
     reinterpret_cast<void (*)(UnkSceneComponent*, u8)>(self->vtable[45])(self, value);
 }

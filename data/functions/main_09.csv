@@ -4441,7 +4441,7 @@ address,size,name,name_source,subsystem,status
 0x71009f17a0,4,fn_71009f17a0,unknown,game/components?,O
 0x71009f17a4,364,CSceneComponent::refl_InitClass,reflection,game/components,O
 0x71009f1910,60,fn_71009f1910,unknown,unknown,O
-0x71009f194c,60,fn_71009f194c,unknown,unknown,O
+0x71009f194c,60,fn_71009f194c,unknown,unknown,m
 0x71009f1988,36,fn_71009f1988,unknown,unknown,O
 0x71009f19ac,4,fn_71009f19ac,unknown,unknown,O
 0x71009f19b0,52,fn_71009f19b0,unknown,unknown,O

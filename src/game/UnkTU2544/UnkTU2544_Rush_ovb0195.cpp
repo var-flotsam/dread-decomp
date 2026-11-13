@@ -568,13 +568,10 @@ void fn_7100db8154(UnkRush_b0195* self) {
         self->sink_0xf8->vf_0x48(self->items_0xd8.data);
         __builtin_memset(reinterpret_cast<char*>(self) + 0xe4, 0, sizeof(u32));
     }
-    void** machine_vtable = &g_unk_7101aa9660[2];
-    // Keeps the vtable address loaded ahead of the stores that follow.
-    asm("" : "+r"(machine_vtable));
-    self->machine.count = 0;
+    self->machine_vtable = &g_unk_7101aa9660[2];
     self->machine.current = nullptr;
+    self->machine.count = 0;
     self->machine.previous = nullptr;
-    self->machine_vtable = machine_vtable;
 }
 
 // The user data's owner, created on first use (as src/game/CBossRushManager_SurvivalReset_b49.cpp has it).
