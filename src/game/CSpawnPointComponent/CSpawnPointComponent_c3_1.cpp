@@ -6,6 +6,7 @@
 #include "base/UnkRefHandle.h"
 #include "base/UnkVector.h"
 #include "game/CBatalloonAIComponent.h"
+#include "game/UnkTU1102.h"
 #include "types.h"
 
 struct UnkRefObj_c3 {
@@ -27,8 +28,6 @@ struct UnkLinkHandle_c3 {
     u8 pad_0x0[0x10];
     void* target;
 };
-
-base::UnkRefHandle* fn_71006eb8cc(base::UnkRefHandle*, const base::UnkRefHandle*);  // as src/game_s7/fn_7100245b60.cpp
 
 struct UnkLink_c3 {
     u8 pad_0x0[0x8];

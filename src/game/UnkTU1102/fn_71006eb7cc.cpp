@@ -1,5 +1,11 @@
+// Unit 1102 (tools/tu_map.py; the X parasite AI component): the component's pick among its entries (the
+// table at +0x14740). Of the entries whose holder passes fn_710112a3bc and has an actor, it returns a counted
+// reference to the one whose actor is farthest from the actor fn_7100d7c990 gives for the owner, or nothing.
+// Names and layouts are placeholders.
 #include "base/UnkRefHandle.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU1102.h"
+#include "game/UnkXParasiteResult.h"
 #include "types.h"
 
 bool fn_710112a3bc(void* holder);
@@ -19,23 +25,13 @@ struct UnkXParasiteEntryTable_b0252 {
     u32 count;
 };
 
-struct UnkXParasiteFind_b0252 {
+struct UnkXParasiteAI_b0252 {
     u8 pad_0x0[0x30];
     UnkActor* owner;  // 0x30
     u8 pad_0x38[0x14740 - 0x38];
     UnkXParasiteEntryTable_b0252 entries;  // 0x14740
 };
-static_assert(__builtin_offsetof(UnkXParasiteFind_b0252, entries) == 0x14740, "placeholder layout");
-
-base::UnkRefHandle* fn_71006eb8cc(base::UnkRefHandle*, const base::UnkRefHandle*);
-
-struct UnkXParasiteResult_b0252 {
-    base::UnkRefCounted* ptr;
-    ~UnkXParasiteResult_b0252() {
-        if (ptr && --ptr->ref_count == 0)
-            delete ptr;
-    }
-};
+static_assert(__builtin_offsetof(UnkXParasiteAI_b0252, entries) == 0x14740, "placeholder layout");
 
 struct UnkPos3_b0252 {
     f32 x, y, z;
@@ -45,7 +41,7 @@ static inline UnkPos3_b0252 operator-(const UnkPos3_b0252& a, const UnkPos3_b025
     return {a.x - b.x, a.y - b.y, a.z - b.z};
 }
 
-UnkXParasiteResult_b0252 fn_71006eb7cc(UnkXParasiteFind_b0252* self) {
+UnkXParasiteResult_b0252 fn_71006eb7cc(UnkXParasiteAI_b0252* self) {
     UnkXParasiteResult_b0252 result;
     result.ptr = nullptr;
     UnkActor* actor = fn_7100d7c990(self->owner);

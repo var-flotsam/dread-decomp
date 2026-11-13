@@ -1,6 +1,6 @@
 // Unit 1102 (data/tu_map.csv, hint CXParasiteAIComponent, no reliable name): parts of the X parasite
 // component. fn_71006e6d10 resets the state block (and the slot table's "interior" request), fn_71006e808c
-// hands the grab link over to the nearest target found by fn_71006eb7cc, fn_71006e8208 starts or stops the
+// hands the grab link over to the entry fn_71006eb7cc picks (the farthest one), fn_71006e8208 starts or stops the
 // state's effect, fn_71006e8a18 steps the state, fn_71006e9fcc takes a target. Names and layouts are
 // placeholders.
 #include "base/UnkDestructors.h"
@@ -17,6 +17,7 @@
 #include "game/UnkSlots.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU1102.h"
+#include "game/UnkXParasiteResult.h"
 #include "game/UnkTU134.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2704.h"
@@ -25,24 +26,6 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-
-// The X parasite component and the reference-counted result of the nearest-target search (fn_71006eb7cc,
-// not matched yet; the callers share this declaration).
-struct UnkXParasiteAI_b0252;
-
-struct UnkXParasiteFound_b0252 : UnkRefObject {
-    void* field_0x10;
-};
-
-struct UnkXParasiteResult_b0252 {
-    UnkXParasiteFound_b0252* ptr;
-    ~UnkXParasiteResult_b0252() {
-        if (ptr && --ptr->ref_count == 0)
-            ptr->vf_0x10();
-    }
-};
-
-UnkXParasiteResult_b0252 fn_71006eb7cc(UnkXParasiteAI_b0252* self);
 
 // ---- fn_71006e808c ----
 struct UnkActor;
@@ -61,7 +44,6 @@ struct UnkXParasiteLock_808c {
 };
 static_assert(__builtin_offsetof(UnkXParasiteLock_808c, handle) == 0x147b0, "placeholder layout");
 
-base::UnkRefHandle* fn_71006eb8cc(base::UnkRefHandle*, const base::UnkRefHandle*);
 void fn_7101127c24(void* obj, UnkActor* owner, bool, bool b, s32 c, bool d, void* e);
 
 static inline void* Inner(UnkXParasiteFound_b0252* p) { return p ? p->field_0x10 : nullptr; }

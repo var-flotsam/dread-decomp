@@ -9,6 +9,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU108.h"
+#include "game/UnkTU1102.h"
 #include "game/UnkTU2563.h"
 #include "game/UnkTU365.h"
 #include "types.h"
@@ -412,7 +413,6 @@ using UnkU32PolyRecordPair = UnkValuePairRef<u32, UnkIdPolyRecord>;
 // A callback set (as in src/game/CCharClassShootActivatorComponent/fn_71008947b8.cpp): a vtable, an array assigned by
 // fn_710023b29c, a value and an owner reference assigned by AssignOwner.
 // Another copy of the handle assignment (base/UnkRefHandle.h), the one this unit's sets use.
-base::UnkRefHandle* fn_71006eb8cc(base::UnkRefHandle* self, const base::UnkRefHandle* other);
 
 template <base::UnkRefHandle* (*AssignOwner)(base::UnkRefHandle*, const base::UnkRefHandle*)>
 struct UnkCallbackSet {

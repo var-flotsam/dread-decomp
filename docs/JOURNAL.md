@@ -152,6 +152,33 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**A held draft settled by sharing a type instead of renaming one: `fn_71006eb7cc` (2026-11-13).** The draft
+matched and was held because it defined the function over its own struct while the one file that calls it
+declared it over another name. Looking at both files: the caller had only forward-declared the component
+and had its own definition of the function's result (a counted reference with a releasing destructor), with
+a comment saying the callers share the declaration; the draft had a second definition of that result with
+another pointee type and another release. Two structs of one name with different destructors is more than
+untidy: in the port's link the two inline destructors are one symbol.
+
+What was done, as a small instance of "one struct per object":
+
+1. The result types and the function's declaration went to a header of their own,
+   `include/game/UnkXParasiteResult.h`; the caller and the draft include it and their own copies are gone.
+   `tools/baseline.py` over the ten includers of the unit header: no file's output changed, and the draft
+   still matches with the shared type.
+2. The draft names its component struct as the caller's forward declaration does, and is its one definition.
+3. `drafts.py promote` moved it; `decl_plan.py --grown` and `hub_migrate.py` then moved `fn_71006eb8cc`, which
+   the file copied, to the unit header, and with it the five copies other files had.
+
+Two things learned. First attempt put the types in the unit header itself, which made it include
+`game_s2/UnkWeakHandle.h`; one includer of the unit header defines a struct of its own called `UnkWeakHandle`
+and could not take it. Unit headers stay declarations with forward-declared types; a type that needs a
+definition gets its own header. Second, the caller's comment called the function the nearest-target search;
+the matching code keeps the entry whose actor is farthest. The comment is corrected: nothing checks a
+comment but a reader.
+
+Counts: symbols in more than one file 385 to 384, extra copies 1,243 to 1,239; matching drafts still held: 10.
+
 **Two barriers go by the tier rules, and a permuter bug found on the way (2026-11-13).** Of the 47 functions
 that match only because an empty barrier keeps their register order, two could lose it without losing
 anything that counts (owner's decision for the first, 2026-11-13):

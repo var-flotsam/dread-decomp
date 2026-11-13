@@ -7,6 +7,7 @@
 // resolved links (fn_710112b7c4). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CBatalloonAIComponent.h"
+#include "game/UnkTU1102.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU365.h"
 #include "game/logic/collision/CCollider.h"
@@ -123,8 +124,6 @@ void fn_7101128e88(UnkSpawnPoint_ovb0171* self, void* shape) {
     fn_7100d59994(static_cast<UnkTracker_71008618cc*>(self->tracked),
                   reinterpret_cast<UnkReflObject*>(self->collider));
 }
-
-base::UnkRefHandle* fn_71006eb8cc(base::UnkRefHandle*, const base::UnkRefHandle*);  // as src/game_s7/fn_7100245b60.cpp
 
 struct UnkCountedCamera_ovb0171 : base::UnkRefCounted {
     void* field_0x10;

@@ -23,6 +23,7 @@
 #include "game/CScenario.h"
 #include "game/CSpawnGroupComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1102.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2704.h"
@@ -74,8 +75,6 @@ struct UnkRef_c3 {
             p->vf_0x10();
     }
 };
-
-base::UnkRefHandle* fn_71006eb8cc(base::UnkRefHandle* self, const base::UnkRefHandle* other);
 
 struct UnkSpawnHolder_ovb0065 {
     u8 pad_0x0[0x8];
