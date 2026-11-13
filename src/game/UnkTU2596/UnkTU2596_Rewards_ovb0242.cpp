@@ -29,6 +29,7 @@
 #include "game/UnkXformNode.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
+#include "base/UnkLoadingMask.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
@@ -207,12 +208,6 @@ void fn_7100f17218(UnkRewardsMode_b0242* self) {
     }
 }
 
-struct UnkLoadingMask {
-    u32 bits;
-    UnkLoadingMask() : bits(0) {}
-    UnkLoadingMask(u32 b) : bits(b) {}
-    UnkLoadingMask(const UnkLoadingMask& o) : bits(o.bits) {}
-};
 template <class T>
 struct UnkLoadingMaskOf {
     static const UnkLoadingMask& None() {

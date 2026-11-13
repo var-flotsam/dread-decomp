@@ -13,6 +13,7 @@
 #include "game/UnkTU2768.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
+#include "game/UnkTypedValue.h"
 
 using base::global::CStrId;
 
@@ -27,11 +28,6 @@ static inline UnkUserDataOwner* GetOwner() {
     return g_unk_7101d47308;
 }
 
-// A typed value as the section setter takes it (as in src/game/CDoorLifeComponent.cpp).
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 // "SurvivalRushRecord", "SurvivalRushTime" and the section's id (as CBossRushManager.cpp has them).

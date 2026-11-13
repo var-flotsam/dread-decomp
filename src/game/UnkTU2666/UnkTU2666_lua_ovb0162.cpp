@@ -43,6 +43,8 @@
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
+#include "game/UnkTypedValue.h"
+#include "base/UnkLoadingMask.h"
 
 using base::global::CFilePathStrId;
 using base::global::CRntString;
@@ -209,12 +211,6 @@ s32 fn_710108d310(lua_State* L) {
 }
 
 // ---- music manager and sound manager ----
-struct UnkLoadingMask {
-    u32 bits;
-    UnkLoadingMask() : bits(0) {}
-    UnkLoadingMask(u32 b) : bits(b) {}
-    UnkLoadingMask(const UnkLoadingMask& o) : bits(o.bits) {}
-};
 template <class T>
 struct UnkLoadingMaskOf_b0162 {
     static const UnkLoadingMask& None() {
@@ -272,10 +268,6 @@ static inline const UnkQualifiedId& GetQualifiedId_b0162(UnkPropertyEx<>& item) 
 
 struct UnkDef_7100fc4b34;
 
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 // Stores true under the property's id in the current blackboard section, unless the blackboard is locked.

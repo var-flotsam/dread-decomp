@@ -19,6 +19,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTUProperty.h"
+#include "game/UnkTypedValue.h"
 
 using base::global::CRntString;
 
@@ -81,10 +82,6 @@ void fn_7100b52284(UnkListOwner_b0249* owner, UnkListScreen_b0249* screen) {
 using base::global::CStrId;
 using base::reflection::UnkReflObject;
 
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 struct UnkProfileSaveArg {

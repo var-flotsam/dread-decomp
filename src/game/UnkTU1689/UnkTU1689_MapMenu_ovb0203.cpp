@@ -24,6 +24,7 @@
 #include "game/UnkTUProperty.h"
 #include "game/sound/SGUISoundEventsSelector.h"
 #include "types.h"
+#include "game/UnkTypedValue.h"
 
 using base::global::CStrId;
 using base::global::UnkStrIdBase;
@@ -723,11 +724,6 @@ static inline UnkSubId_7100fc4b34 SubId_ovb0203(UnkMapNamedDef_ovb0203& def, con
     return fn_71003327a4(&def.name, &name);
 }
 
-// A typed value as the section setter takes it (as in src/game/CAIComponent/CAIComponent_StoreFloat_b49.cpp).
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 void fn_7100b46744(UnkMapMenuController_ovb0203* self, f32 dt) {

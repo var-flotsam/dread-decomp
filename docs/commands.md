@@ -494,6 +494,14 @@ python tools/hub_migrate.py --version 2.1.0 SYMBOL --dry-run             # show 
 python tools/hub_migrate.py --version 2.1.0 --plan PLAN.tsv [--generated-sample N] [--dry-run]
 ```
 
+### `tools/struct_migrate.py`
+
+Move a type that several sources define with the same text into one header.
+
+```sh
+python tools/struct_migrate.py --version 2.1.0 NAME --header include/game/UnkX.h [--needs base/y.h ...]
+```
+
 ### `tools/baseline.py`
 
 Snapshot and compare tools/trymatch.py output for a set of sources, in parallel.

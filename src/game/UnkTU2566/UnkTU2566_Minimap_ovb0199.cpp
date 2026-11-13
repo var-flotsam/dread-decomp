@@ -30,6 +30,7 @@
 #include "game/UnkTUProperty.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
+#include "game/UnkTypedValue.h"
 
 using base::global::CStrId;
 
@@ -38,12 +39,6 @@ using base::global::CStrId;
 typedef u32 __attribute__((may_alias)) a_u32;
 
 struct UnkMinimapOwner;
-
-// A typed value as the blackboard section setter takes it (as in src/game/CDoorLifeComponent.cpp).
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
 
 // A rectangle returned in memory, copied word by word (as in src/game/CMinimapManager.cpp).
 struct UnkMinimapRect {

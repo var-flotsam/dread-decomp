@@ -8,17 +8,13 @@
 #include "game/UnkTUProperty.h"
 #include "game/behaviortree/CBehavior.h"
 #include "types.h"
+#include "game/UnkTypedValue.h"
 
 using base::global::CStrId;
 
 struct UnkNailongAI_b46a2;
 struct UnkNailongMsg_b46a2;
 
-// A typed value as the section setter takes it (as in src/game/CDoorLifeComponent.cpp).
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 struct UnkInfesterAI_A3_b68 {

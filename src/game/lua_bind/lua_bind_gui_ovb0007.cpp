@@ -39,6 +39,7 @@
 #include "game/lua_bind.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
+#include "game/UnkTypedValue.h"
 
 using base::global::CFilePathStrId;
 using base::global::CRntString;
@@ -397,11 +398,6 @@ int fn_7101097ee0(lua_State* L) {
 
 bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
 
-// A typed value as the section setter takes it (as in src/game/CDoorLifeComponent.cpp).
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 struct UnkGameManagerData_b0007 {

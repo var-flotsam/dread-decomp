@@ -14,14 +14,11 @@
 #include "game/UnkTUProperty.h"
 #include "game/behaviortree/CBehavior.h"
 #include "types.h"
+#include "game/UnkTypedValue.h"
 
 using base::global::CStrId;
 
 // As src/game/CAIComponent/CAIComponent_StoreFloat_b49.cpp declares them.
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 // As src/game_s7/fn_71006e1010.cpp declares it.
 

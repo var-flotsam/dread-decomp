@@ -16,6 +16,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "types.h"
+#include "base/UnkStrPair.h"
 
 using base::global::CStrId;
 
@@ -140,10 +141,6 @@ void fn_7100b8bf6c(UnkActionSetDtor_b0104* self) {
 
 using base::global::CRntFile;
 
-struct UnkStrPair_0x10 {
-    void* a;
-    void* b;
-};
 struct UnkFileReader;
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
 

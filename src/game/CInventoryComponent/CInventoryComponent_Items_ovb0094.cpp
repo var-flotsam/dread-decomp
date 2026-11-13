@@ -18,6 +18,7 @@
 #include "game/UnkTU56.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
+#include "game/UnkTypedValue.h"
 
 using base::UnkStrIdMember;
 
@@ -142,11 +143,6 @@ void fn_7101149354(UnkInvSection_ovb0094* self, const base::global::CRntString& 
         fn_710114433c(self, &fn_71010472e0(&g_unk_7101d47310->field_0x968, self->id)->data);
 }
 
-// A typed value as the section setter takes it (as in src/game/CDoorLifeComponent.cpp).
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
 void fn_7100332c80(CBlackboard::CSection*, UnkPropertyName*, const UnkTypedValue*);
 
 // The item's qualified id, built on first use (as src/game_s7/fn_7100fc4b34.cpp's).

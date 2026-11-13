@@ -27,6 +27,7 @@
 #include "game/UnkTU2566.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
+#include "base/UnkStrPair.h"
 
 #define HIDDEN __attribute__((visibility("hidden")))
 
@@ -495,10 +496,6 @@ void fn_7100e931b0(UnkMinimapOwner_u* self) {
 
 struct UnkModel;
 
-struct UnkStrPair_0x10 {
-    void* a;
-    void* b;
-};
 struct UnkModel_ovb0032;
 
 struct UnkModelData_v {

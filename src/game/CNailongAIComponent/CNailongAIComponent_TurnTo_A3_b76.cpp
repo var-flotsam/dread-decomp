@@ -7,13 +7,10 @@
 #include "game/UnkActor.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
+#include "game/UnkShakernautId.h"
 
 // As src/game/CShakernautAIComponent/CShakernautAIComponent_Flip_b53.cpp declares them.
 struct UnkShakernautCtrl_b53;
-struct UnkShakernautId_b53 {
-    u32 value;
-    u32 unk_0x4;
-};
 // As src/game/CQuetzoaAIComponent/CQuetzoaAIComponent_b38.cpp declares it.
 struct UnkQuetzoaAIComponent;
 

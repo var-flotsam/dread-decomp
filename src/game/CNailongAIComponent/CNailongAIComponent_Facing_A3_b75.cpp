@@ -2,13 +2,10 @@
 // (swapped by the sign of the movement object's (+0x1f0) vector, past +-0.001). Names and layouts are placeholders.
 #include "game/CAnimationComponent.h"
 #include "types.h"
+#include "game/UnkShakernautId.h"
 
 // As src/game/CShakernautAIComponent/CShakernautAIComponent_Flip_b53.cpp declares them.
 struct UnkShakernautCtrl_b53;
-struct UnkShakernautId_b53 {
-    u32 value;
-    u32 unk_0x4;
-};
 
 // Returned in memory: the type is not trivially copyable.
 struct UnkNailongVec_A3_b75 {

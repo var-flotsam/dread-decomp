@@ -127,6 +127,9 @@ s32 fn_71010966a0(lua_State* L) {
 #include <new>
 
 #include "base/global/CFilePathStrId.h"
+#include "game/UnkTypedValue.h"
+#include "base/UnkStrPair.h"
+#include "base/UnkLoadingMask.h"
 
 using base::global::CFilePathStrId;
 
@@ -342,12 +345,6 @@ s32 fn_7101082860(lua_State* L) {
     return 0;
 }
 
-struct UnkLoadingMask {
-    u32 bits;
-    UnkLoadingMask() : bits(0) {}
-    UnkLoadingMask(u32 b) : bits(b) {}
-    UnkLoadingMask(const UnkLoadingMask& o) : bits(o.bits) {}
-};
 s32 fn_7101097578(const char* name);
 
 struct UnkMaskStaticZero_b0163 {
@@ -381,11 +378,6 @@ s32 fn_7101091420(lua_State* L) {
     return 0;
 }
 
-// A typed value as the section setter takes it (as in src/game/CAIComponent/CAIComponent_StoreFloat_b49.cpp).
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 struct UnkStrIdHandle {
@@ -581,11 +573,6 @@ s32 fn_7101083c30(lua_State* L) {
     return 0;
 }
 
-
-struct UnkStrPair_0x10 {
-    void* a;
-    void* b;
-};
 
 struct UnkRcTarget_b0163 {
     void** vtable;

@@ -20,6 +20,7 @@
 #include "game/UnkTU2730.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
+#include "game/UnkTypedValue.h"
 
 using base::global::CStrId;
 
@@ -51,10 +52,6 @@ UnkRef fn_7100353be8(void* from);
 struct UnkSubId_7100fc4b34 {
     CStrId id;
     u64 field_0x8;
-};
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
 };
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 const UnkSubId_7100fc4b34& fn_71008c0004(UnkQualifiedName* self, const char* name);

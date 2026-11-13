@@ -412,6 +412,7 @@ void fn_7100df026c(UnkGameManager* self, const CFilePathStrId& path) {
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkTUProperty.h"
+#include "game/UnkTypedValue.h"
 
 using base::global::UnkStrIdBase;
 
@@ -452,11 +453,6 @@ static inline bool ReadU32(CBlackboard::CSection* section, UnkGameManagerNamedDe
     return fn_7100a68fb0(section, &id, out);
 }
 
-// A typed value as the section setter takes it (as in src/game_aca57c/fn_7100dc8828.cpp).
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 // The world's object reference at +0xd63f40 (as in src/game/GUI/CIngameMenu/fn_7100b2de48.cpp).

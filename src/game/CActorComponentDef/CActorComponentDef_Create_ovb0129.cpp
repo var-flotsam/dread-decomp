@@ -14,14 +14,9 @@
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkTU56.h"
 #include "types.h"
+#include "base/UnkFileReader.h"
 
 using base::reflection::UnkReflObject;
-
-struct UnkFileReader {
-    base::global::CRntFile file;
-    u32 field_0x38;
-    u32 field_0x3c;
-};
 
 // This unit's parser callbacks.
 extern UnkParseCallbacks g_unk_71726a0058 __attribute__((visibility("hidden")));

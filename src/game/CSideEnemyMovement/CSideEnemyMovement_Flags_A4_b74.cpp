@@ -4,13 +4,10 @@
 // Names and layouts are placeholders.
 #include "game/CAnimationComponent.h"
 #include "types.h"
+#include "game/UnkShakernautId.h"
 
 // As src/game/CShakernautAIComponent/CShakernautAIComponent_Flip_b53.cpp declares them.
 struct UnkShakernautCtrl_b53;
-struct UnkShakernautId_b53 {
-    u32 value;
-    u32 unk_0x4;
-};
 // As src/game/CAnimationComponent/CAnimationComponent_Flags_b47a3.cpp defines it.
 struct UnkAnimFlagsHolder_b47a3;
 

@@ -16,13 +16,10 @@
 #include "game/UnkTU285.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
+#include "game/UnkShakernautId.h"
 
 // As src/game/CShakernautAIComponent/CShakernautAIComponent_Flip_b53.cpp declares them.
 struct UnkShakernautCtrl_b53;
-struct UnkShakernautId_b53 {
-    u32 value;
-    u32 unk_0x4;
-};
 // As src/game/CPoisonFlyAIComponent/CPoisonFlyAIComponent_Invoke.cpp declares it.
 
 struct UnkShkOwner_ovb0041 {

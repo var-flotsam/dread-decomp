@@ -30,7 +30,7 @@ GROUPS: list[tuple[str, list[str]]] = [
     ("Matching", ["trymatch", "asmdiff", "nearcopy", "hubs", "shape_census", "objdiff_gen"]),
     ("Checks and progress", ["check", "verify", "progress", "policy_check", "decl_check", "struct_check", "name_check", "equiv_test", "ref_check", "permute", "drafts", "fakematch", "sample_review", "dashboard_export", "status_card",
                              "gen_commands"]),
-    ("Refactoring (header migrations, file moves)", ["decl_plan", "hub_migrate", "baseline", "unit_move", "objcompare"]),
+    ("Refactoring (header migrations, file moves)", ["decl_plan", "hub_migrate", "struct_migrate", "baseline", "unit_move", "objcompare"]),
     ("Port", ["port_sweep", "port_link", "port_lift", "port_addresses", "port_imports", "test_port_loader",
               "boot_distance", "forwarded_args", "recomp_trace", "nvn_procs", "bshdat", "pcode_emu", "ghidra/pcode"]),
 ]

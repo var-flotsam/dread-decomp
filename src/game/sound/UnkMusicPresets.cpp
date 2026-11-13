@@ -23,6 +23,8 @@
 #include "game/UnkTU2640.h"
 #include "game/sound/CMusicManager.h"
 #include "types.h"
+#include "base/UnkStrPair.h"
+#include "base/UnkFileReader.h"
 
 // The music manager (game/sound/CMusicManager.h; 0xf18 bytes, built by fn_7100fd3804) and what
 // this unit asks of it.
@@ -45,17 +47,8 @@ struct UnkEntry_0x30 {
 
 // The id and path pair (base/UnkStrIdPathPair.h) that fn_710008d4c0 builds and fn_710008d8e8
 // destroys.
-struct UnkStrPair_0x10 {
-    void* a;
-    void* b;
-};
 
 // The file read into memory and two words the opener sets (+0x38 is zero after a good read).
-struct UnkFileReader {
-    base::global::CRntFile file;
-    u32 field_0x38;
-    u32 field_0x3c;
-};
 
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
 

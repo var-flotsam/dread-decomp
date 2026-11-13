@@ -113,6 +113,8 @@ void fn_710013ec80(UnkTunableGroupArrays* self, u32 new_capacity) {
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
+#include "base/UnkStrPair.h"
+#include "base/UnkFileReader.h"
 
 using base::global::CRntString;
 using base::reflection::UnkReflTypedPtr;
@@ -160,16 +162,7 @@ static inline UnkTunableLine Mid(const char* str, u32 count) {
 
 // The tunables file reader (as in src/game/CSubAreaManager.cpp): the file held in memory and two
 // words the opener sets.
-struct UnkFileReader {
-    base::global::CRntFile file;
-    u32 field_0x38;
-    u32 field_0x3c;
-};
 // The id and path pair (base/UnkStrIdPathPair.h) the file is opened with.
-struct UnkStrPair_0x10 {
-    void* a;
-    void* b;
-};
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
 void fn_710007c144(UnkHashStream_0x38* s);  // closes the file
 // Reads a line of at most `size` bytes from the position; false when none could be read.

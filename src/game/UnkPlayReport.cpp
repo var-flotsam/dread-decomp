@@ -18,6 +18,7 @@
 #include "game/UnkTU2553.h"
 #include "game/UnkTU57.h"
 #include "types.h"
+#include "game/UnkTypedValue.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
@@ -107,10 +108,6 @@ struct UnkReportString {
 };
 
 bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 // The profile values: a count and the profile id (item property definitions,

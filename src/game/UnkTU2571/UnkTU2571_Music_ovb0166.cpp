@@ -18,6 +18,7 @@
 #include "game/UnkTU2578.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
+#include "game/UnkTypedValue.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
@@ -112,10 +113,6 @@ void fn_7100ec9640(UnkMusicList_b0166* self) {
 
 // ---- the counters ----
 
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 struct UnkSubId_7100fc4b34 {

@@ -10,16 +10,12 @@
 #include "game/UnkTU2544.h"
 #include "game/UnkTU2768.h"
 #include "types.h"
+#include "game/UnkTypedValue.h"
 
 using base::global::CStrId;
 
 struct UnkUserDataOwner;
 struct UnkPropertyName;
-
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
 
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 

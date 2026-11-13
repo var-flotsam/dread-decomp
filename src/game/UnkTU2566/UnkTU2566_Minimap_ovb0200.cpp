@@ -29,6 +29,7 @@
 #include "game/UnkTU39.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
+#include "game/UnkTypedValue.h"
 
 using namespace base::global;
 
@@ -282,10 +283,6 @@ struct UnkSubId_7100fc4b34 {
 using UnkQualifiedName_7100fc4b34 = UnkQualifiedName;
 const UnkSubId_7100fc4b34& fn_71003327a4(UnkQualifiedName_7100fc4b34* self, const CStrId* name);
 
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 struct UnkSetFlagDef_b0200 : UnkIdSource {

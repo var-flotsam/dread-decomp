@@ -19,6 +19,7 @@
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
+#include "base/UnkLoadingMask.h"
 
 // A fade colour (the same definition as src/game/UnkScreenFade.cpp's).
 struct UnkFadeColor {
@@ -31,12 +32,6 @@ struct UnkFadeColor {
 };
 
 // A bit mask passed by value (copied into a temporary), and its two guarded constants.
-struct UnkLoadingMask {
-    u32 bits;
-    UnkLoadingMask() : bits(0) {}
-    UnkLoadingMask(u32 b) : bits(b) {}
-    UnkLoadingMask(const UnkLoadingMask& o) : bits(o.bits) {}
-};
 template <class T>
 struct UnkLoadingMaskOf {
     static const UnkLoadingMask& None() {

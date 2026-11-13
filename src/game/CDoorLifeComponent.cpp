@@ -12,6 +12,7 @@
 #include "game/UnkTU1376.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
+#include "game/UnkTypedValue.h"
 
 using base::global::CStrId;
 
@@ -105,11 +106,6 @@ static_assert(__builtin_offsetof(UnkDoorLife, field_0x624) == 0x624, "UnkDoorLif
 static_assert(__builtin_offsetof(UnkDoorLife, field_0x6ac) == 0x6ac, "UnkDoorLife layout");
 static_assert(__builtin_offsetof(UnkDoorLife, field_0xa18) == 0xa18, "UnkDoorLife layout");
 
-// A typed value as the section setter takes it (as in src/game/CXParasiteAIComponent.cpp).
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 // The "NextState" property and the CDoorLifeComponent::SState enum (src/game_s7/fn_71008da6c0.cpp).

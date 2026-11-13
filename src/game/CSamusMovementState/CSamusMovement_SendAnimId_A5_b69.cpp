@@ -4,12 +4,9 @@
 #include "game/CAnimationComponent.h"
 #include "game/UnkTU1501.h"
 #include "types.h"
+#include "game/UnkShakernautId.h"
 
 struct UnkShakernautCtrl_b53;
-struct UnkShakernautId_b53 {
-    u32 value;
-    u32 unk_0x4;
-};
 
 struct UnkSamusMovementUpdate;
 

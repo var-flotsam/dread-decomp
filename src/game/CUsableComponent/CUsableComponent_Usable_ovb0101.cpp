@@ -23,6 +23,7 @@
 #include "game/UnkTUProperty.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
+#include "game/UnkTypedValue.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
@@ -34,11 +35,6 @@ extern u8 g_unk_7172753170[];  // a UnkProperty
 extern u8 g_unk_7172753198[];  // a UnkProperty
 extern u8 g_unk_71727531c0[];  // a UnkProperty
 
-// A typed value as the section setter takes it (as in src/game/CDoorLifeComponent.cpp).
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 // Stores the bool at `value` under `name` in the blackboard section `section` names (unless the

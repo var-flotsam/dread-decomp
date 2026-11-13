@@ -4,13 +4,10 @@
 // records the side (+0xc: 1 past +0.001, 0 below it, 2 otherwise). Names and layouts are placeholders.
 #include "game/CAnimationComponent.h"
 #include "types.h"
+#include "game/UnkShakernautId.h"
 
 // As src/game/CShakernautAIComponent/CShakernautAIComponent_Flip_b53.cpp declares them.
 struct UnkShakernautCtrl_b53;
-struct UnkShakernautId_b53 {
-    u32 value;
-    u32 unk_0x4;
-};
 
 struct UnkShakernautSideState_A3_b75 {
     u8 unk_0x0[0xc];

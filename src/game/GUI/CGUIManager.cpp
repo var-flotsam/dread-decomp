@@ -28,6 +28,8 @@
 
 #include "../../game_s7/UnkPropBagS7.h"
 #include "UnkLeftoverReg.h"
+#include "base/UnkStrPair.h"
+#include "base/UnkFileReader.h"
 
 using unk_prop_bag::UnkPropBag;
 
@@ -240,17 +242,8 @@ void fn_71011b732c(UnkGuiRoot* root, UnkGuiDisplayObject* object, bool notify) {
 
 // The id and path pair (base/UnkStrIdPathPair.h) the caller passes, as
 // src/game_hi/fn_71011b69d8.cpp names it.
-struct UnkStrPair_0x10 {
-    void* a;
-    void* b;
-};
 
 // The file read into memory and two words the opener sets (+0x38 is zero after a good read).
-struct UnkFileReader {
-    base::global::CRntFile file;
-    u32 field_0x38;
-    u32 field_0x3c;
-};
 
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
 

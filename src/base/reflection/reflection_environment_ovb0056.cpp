@@ -24,6 +24,7 @@
 #include "types.h"
 // The 0x50-byte record array fn_7100d90460 is declared with (unit 2601).
 #include "../../game/UnkUnit2601/UnkUnit2601_VecCopy_b56.h"
+#include "base/UnkLoadingMask.h"
 
 using base::global::CFilePathStrId;
 
@@ -114,12 +115,6 @@ void fn_7100d8efd0(UnkEnvironmentManager_ovb56* self, bool a, bool b, bool c) {
 }
 
 // The channel mask as src/game/UnkLoadingScreen.cpp defines it (passed through a copy).
-struct UnkLoadingMask {
-    u32 bits;
-    UnkLoadingMask() : bits(0) {}
-    UnkLoadingMask(u32 b) : bits(b) {}
-    UnkLoadingMask(const UnkLoadingMask& o) : bits(o.bits) {}
-};
 template <class T>
 struct UnkLoadingMaskOf_ovb56 {
     static const UnkLoadingMask& None() {

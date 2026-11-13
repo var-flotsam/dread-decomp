@@ -6,14 +6,9 @@
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
+#include "base/UnkLoadingMask.h"
 
 // The channel mask as src/game/UnkLoadingScreen.cpp defines it (passed through a copy).
-struct UnkLoadingMask {
-    u32 bits;
-    UnkLoadingMask() : bits(0) {}
-    UnkLoadingMask(u32 b) : bits(b) {}
-    UnkLoadingMask(const UnkLoadingMask& o) : bits(o.bits) {}
-};
 
 void fn_7100fcf59c() {
     void* instance = g_unk_71726bc560;

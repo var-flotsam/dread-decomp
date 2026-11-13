@@ -18,15 +18,10 @@
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
+#include "base/UnkLoadingMask.h"
 
 // The channel mask as src/game/UnkLoadingScreen.cpp defines it (passed through a copy), and its two
 // guarded constants.
-struct UnkLoadingMask {
-    u32 bits;
-    UnkLoadingMask() : bits(0) {}
-    UnkLoadingMask(u32 b) : bits(b) {}
-    UnkLoadingMask(const UnkLoadingMask& o) : bits(o.bits) {}
-};
 template <class T>
 struct UnkLoadingMaskOf {
     static const UnkLoadingMask& None() {

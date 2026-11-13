@@ -30,6 +30,7 @@
 #include "game/UnkGameManager.h"
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
+#include "game/UnkTypedValue.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
@@ -187,10 +188,6 @@ s32 fn_710107de40(lua_State* L) {
     return 0;
 }
 
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 void fn_7100dffe04(UnkGameManager* self, s32 value);

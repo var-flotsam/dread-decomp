@@ -16,6 +16,8 @@
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
+#include "base/UnkStrPair.h"
+#include "base/UnkFileReader.h"
 
 // A string (base::global::CRntString's layout), as src/game_hi/fn_71011b69d8.cpp names it.
 struct UnkEntry_0x30 {
@@ -24,19 +26,10 @@ struct UnkEntry_0x30 {
 
 // The id and path pair (base/UnkStrIdPathPair.h) that fn_710008d4c0 builds and fn_710008d8e8
 // destroys, as src/game_hi/fn_71011b69d8.cpp names it.
-struct UnkStrPair_0x10 {
-    void* a;
-    void* b;
-};
 
 // The file read into memory: the in-memory file (constructed by fn_710007be8c, destroyed by
 // fn_710007c0e4; base/UnkHashStream.h) and two words the opener sets (+0x38 is zero after a
 // successful read).
-struct UnkFileReader {
-    base::global::CRntFile file;
-    u32 field_0x38;
-    u32 field_0x3c;
-};
 
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
 

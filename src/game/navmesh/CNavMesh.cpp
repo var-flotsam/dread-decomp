@@ -765,19 +765,12 @@ bool fn_710027bbf0(UnkNavMesh* mesh, const CVector2D* point, u32 flags, u64 filt
 #include "game/UnkObject_0x100.h"
 #include "game_s2/UnkOwnedList.h"
 #include "game_s2/UnkWeakHandle.h"
+#include "base/UnkStrPair.h"
+#include "base/UnkFileReader.h"
 
 using base::global::CStrId;
 
 // The file reader and the id and path pair, as src/game/CSubAreaManager.cpp names them.
-struct UnkFileReader {
-    base::global::CRntFile file;
-    u32 field_0x38;
-    u32 field_0x3c;
-};
-struct UnkStrPair_0x10 {
-    void* a;
-    void* b;
-};
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
 
 // A string id built out of line from a C string (fn_71000003d4), released on scope exit.

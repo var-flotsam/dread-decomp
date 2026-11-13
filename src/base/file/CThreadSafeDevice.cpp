@@ -5,15 +5,12 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "types.h"
+#include "base/UnkStrPair.h"
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
 
 // The id and path pair (base/UnkStrIdPathPair.h) as its callers declare it (src/game/CScenario.cpp).
-struct UnkStrPair_0x10 {
-    void* a;
-    void* b;
-};
 
 struct UnkIdPathPair {
     CStrId id;
