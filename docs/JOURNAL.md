@@ -152,6 +152,30 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**The review's three open questions, answered (2026-11-13).** The handoff of the review left three questions
+with the owner. Each was put to the owner with a recommendation, and the owner said to make the changes:
+
+1. *"Faithful first" beside "readability outranks a match".* The two are about different things: one about
+   what the source does, the other about how it reads when the bytes are the only thing at stake (tier 2
+   already requires the same behaviour). They pull apart only when a tidier text would behave otherwise, and
+   the one such case in the tree was already settled for the original (`src/game_lo/fn_7100219588.cpp`).
+   `CLAUDE.md` now states the order: behaviour, then readability, then bytes.
+2. *Batches.* A layout batch is one class: its sources, its one layout in a header of its own, one pull
+   request, on the X parasite recipe. The hold on bulk runs stays and is lifted a batch at a time. The next
+   class suggested is `CAbilityEnergyWave`: 45 sources in its directory (the most of any class), 147 struct
+   definitions among them (`UnkOwner` 18 times, `UnkParent` 14, `UnkSelf` 8), reflected size 0x590 on a
+   `CAbility` of 0x390, so its own members are a 0x200 band and "nested or flat" is known before starting.
+   `CAnimationComponent` and `CActor` were passed over because their layouts meet `UnkActor`'s owner slot,
+   the pilot's leftover pass; `CEmmyAIComponent` (30 sources, 0x2a6f8) has fewer copied structs.
+3. *`fakematch.py --unset` in CI.* `--strict` makes it exit 1 on a read that is not marked as the original's
+   own: the words "unset in the original" in a comment on the declaration's line, or directly above it and
+   the declarations under that comment. The declaration is the compiler's own note ("initialize the
+   variable ... to silence this warning"), which it gives once per variable after its last warning, so each
+   warning is matched to its variable by name. The `compile` job runs it on the whole tree (a minute on four
+   cores, syntax only). `fn_7100219588`'s comment was reworded to carry the mark; its code is unchanged.
+   What the gate does not prove: the compiler's flow analysis misses reads through a pointer or in a callee,
+   so a clean run means the compiler saw none, not that there are none.
+
 **Two qualities, measured apart: `tools/progress.py --quality` (2026-11-13).** The owner, the same day: "The
 project will not be considered to be absolutely done until the decompilation functions identically and is
 human readable", and: byte-matching and readable are two different qualities, both needed; identical
