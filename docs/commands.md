@@ -418,6 +418,7 @@ python tools/fakematch.py                     # counts per kind; exit 0
 python tools/fakematch.py --list [--kind K]   # every hit: file:line, kind, function
 python tools/fakematch.py --base origin/main  # only files changed since <ref> (a branch's or a PR's)
 python tools/fakematch.py --strict            # exit 1 on any barrier-no-comment
+python tools/fakematch.py --unset [PATH...]   # every read of a variable that is not set, by the project
 python tools/fakematch.py --unneeded-barriers [--write] [--list] [PATH...]
 python tools/fakematch.py PATH...             # only these files or directories
 ```
