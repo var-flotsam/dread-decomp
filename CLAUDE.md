@@ -35,18 +35,17 @@ eventually be replaced. The proof has tiers:
    a match later.
 3. *Unverified.* Anything else that does not match. It does not count.
 
-**Two qualities, measured apart (owner, 2026-11-13).** "The project will not be considered to be absolutely
-done until the decompilation functions identically and is human readable." Byte-matching and readable are
-different qualities and every function needs both. Identical behaviour with other bytes (tier 2) is
-acceptable for now and becomes a match at a later date. Being faithful to the original outranks rules of
-our own making: where one of them would have the source do what the original program does not, the
-original wins and the place gets a comment. `python tools/progress.py --quality` reports the game's
-functions by both qualities; its "readable" is a floor a tool can see (hand-written, no steering form),
-and reading is what confirms it.
-
 Readability outranks a match: when a function matches only with a union around a member, an empty barrier
-or an inlining attribute, commit the readable version as tier 2 instead. Both figures, matching and done,
-are reported side by side. The machine test is `tools/equiv_test.py` (since 2026-11-12): its verdicts are in
+or an inlining attribute, commit the readable version as tier 2 instead.
+
+**Complete** (owner, 2026-11-13: "The project will not be considered to be absolutely done until the
+decompilation functions identically and is human readable"; "byte matching and readable are two different
+qualities but both are needed. Identical behavior but byte mismatch are okay for a later date"). A function
+is complete when it is byte-matching and readable. *Done* (matching, or verified equivalent) is the interim
+figure: a verified-equivalent function still owes its match. `tools/progress.py --quality` reports the two
+qualities apart.
+
+The machine test is `tools/equiv_test.py` (since 2026-11-12): its verdicts are in
 `data/equivalence.csv`, and `tools/check.py` fails a passing verdict that is not about the code in the tree any
 more. A `NON_MATCHING` function without a current passing verdict is tier 3. A general permuter does not exist;
 `tools/permute.py` tries the cheap reorderings (it matched about one registers-only function in nine on
@@ -224,6 +223,9 @@ Toolchain:
   A parameter the callee does not have comes out of its declaration. A variable the original program
   itself leaves unset on a path (an out-parameter's local written on one branch only) stays, with a
   comment at its declaration saying so. `python tools/fakematch.py --unset` lists every read.
+- **Faithful first** (owner, 2026-11-13: "We want faithful to original above our invented rules"). When a
+  rule of this file would make the source do something the original program does not, keep what the
+  original does and say so in a comment.
 - Inferred-role names use a `refl_` prefix (e.g. `CActor::refl_GetClass`) or `vf_<slot>` for
   vtable slots. These are not Mercury's real method names.
 - **One declaration per shared symbol.** A function or global used by more than one file is declared
