@@ -152,6 +152,17 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**The X parasite component, step 2: the eight types two sources both wrote out (2026-11-13).**
+`UnkTU1102_Parasite_ovb0252.cpp` and `UnkTU1102_Pick_ovo0307.cpp` each defined the component's state block at
++0x146e0 and the objects it links to (the grabbed object, its listener, its partner), eight structs, the same
+text in both. `tools/struct_migrate.py`, one type at a time in the order they depend on each other, moved
+them to `include/game/UnkXParasiteState.h`; both sources compile to the same code. 123 lines out of the two
+files, and `tools/struct_check.py src/game/UnkTU1102` counts no name in more than one file any more.
+
+The header says what it is: one more view of the component, beside `game/UnkXParasiteAI.h`, not merged with
+it. Merging them is the step that needs decisions (the table in the entry of step 1). The migration tool
+learned one thing here: the `static_assert` lines directly under a type are about it and move with it.
+
 **`tools/struct_migrate.py`: the identical copies of a type move to one header, verified (2026-11-13).**
 `struct_check.py` found 527 type names that several sources define with the same text. Moving one is the
 recipe `hub_migrate.py` uses for a declaration: the definition goes into a header once, each source loses its

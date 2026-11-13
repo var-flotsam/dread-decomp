@@ -36,6 +36,14 @@ class Span(unittest.TestCase):
         text = "// Unit 7: typed values.\n// Names are placeholders.\nstruct UnkTypedValue {\n    void* value;\n};\n"
         self.assertEqual(struct_migrate.span(text, "UnkTypedValue", "typed value"), (2, 4))   # a block, not one line
 
+    def test_the_layout_assertions_under_it_go_with_it(self):
+        text = ("struct UnkA {\n    u8 pad[0x10];\n    u32 n;\n};\n"
+                'static_assert(__builtin_offsetof(UnkA, n) == 0x10, "layout");\n'
+                'static_assert(sizeof(UnkB) == 8, "another type\'s");\nint f();\n')
+        self.assertEqual(struct_migrate.span(text, "UnkA"), (0, 4))
+        self.assertNotIn("static_assert(__builtin_offsetof(UnkA", struct_migrate.without(text, "UnkA", "game/UnkA.h"))
+        self.assertIn("static_assert(sizeof(UnkB)", struct_migrate.without(text, "UnkA", "game/UnkA.h"))
+
     def test_a_declaration_or_a_longer_name_is_not_it(self):
         self.assertIsNone(struct_migrate.span("struct UnkTypedValue;\n", "UnkTypedValue"))
         self.assertEqual(struct_migrate.span(SRC, "UnkTypedValueEx"), (14, 14))                # on one line

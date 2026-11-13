@@ -10,6 +10,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkSlots.h"
 #include "types.h"
+#include "game/UnkXParasiteState.h"
 
 struct UnkStruct_710083e9d4;
 struct UnkItem_710083e9d4;
@@ -98,67 +99,6 @@ u32 fn_71006e73f4(UnkXParasitePick_ovo0307* self) {
 // UnkXParasiteSelf_8a18 as src/game/UnkTU1102/UnkTU1102_Parasite_ovb0252.cpp defines it (a complete type
 // keeps the original's addressing; the fields used here are read through UnkXParasiteSelf_ovo0307).
 struct UnkStruct_710024fa0c;
-struct UnkXParasitePartner_8a18 {
-    u8 pad_0x0[0x2bc];
-    u32 field_0x2bc;
-    u32 field_0x2c0;
-};
-
-struct UnkXParasitePartnerLink_8a18 {
-    u8 pad_0x0[0x10];
-    UnkXParasitePartner_8a18* partner;  // 0x10
-};
-
-struct UnkXParasiteListener_8a18 {
-    void** vtable;
-    void Notify(void* self) { reinterpret_cast<void (*)(UnkXParasiteListener_8a18*, void*)>(vtable[0x410 / 8])(this, self); }
-};
-
-struct UnkXParasiteGrabbed_8a18 {
-    u8 pad_0x0[0x240];
-    UnkXParasiteListener_8a18* listener;  // 0x240
-    u8 pad_0x248[0x150];
-    UnkXParasitePartnerLink_8a18* partner_link;  // 0x398
-};
-
-struct UnkXParasiteLink_8a18 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void Release();  // 0x10
-    u32 ref_count;           // 0x8
-    UnkXParasiteGrabbed_8a18* object;  // 0x10
-};
-
-struct UnkXParasiteOwner_8a18 {
-    u8 pad_0x0[0x218];
-    UnkStruct_710024fa0c* field_0x218;
-};
-
-struct UnkXParasiteState_8a18 {
-    s32 state;  // 0x146e0
-    s32 field_0x4;
-    u8 pad_0x8[8];
-    u64 field_0x10;
-    u32 field_0x18;
-    u8 pad_0x1c[0x18];
-    f32 field_0x34;
-    f32 field_0x38;
-    f32 field_0x3c;
-    bool field_0x40;
-    u8 pad_0x41[0x6f];
-    UnkXParasiteLink_8a18* link;  // 0xb0
-    u8 pad_0xb8[0x21];
-    bool released;  // 0xd9
-};
-static_assert(__builtin_offsetof(UnkXParasiteState_8a18, link) == 0xb0, "placeholder layout");
-static_assert(__builtin_offsetof(UnkXParasiteState_8a18, released) == 0xd9, "placeholder layout");
-
-struct UnkXParasiteSelf_8a18 {
-    u8 pad_0x0[0x30];
-    UnkXParasiteOwner_8a18* owner;  // 0x30
-    u8 pad_0x38[0x146e0 - 0x38];
-    UnkXParasiteState_8a18 s;  // 0x146e0
-};
 
 struct UnkXParasiteSelf_8208;
 void fn_71006e8208(UnkXParasiteSelf_8208* self, bool on);
