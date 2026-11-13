@@ -50,7 +50,9 @@ with other registers; no further model attempt is spent on it) or `differs`. Eve
    `data/equivalence.csv` is what makes a registers-only function count.
 9. **Readability.** `PY tools/fakematch.py --unneeded-barriers --base origin/main --write` removes the
    barriers that change no function's code. Then `PY tools/fakematch.py --base origin/main --list`: a barrier, an inlining attribute or a
-   union a worker added only to match comes out; grade the file again (`drafts.py add ... --remove` if it no
+   union a worker added only to match comes out, and `PY tools/fakematch.py --unset --base origin/main` lists
+   every read of a variable that is not set (a text whose match proves nothing: give the callee the parameters
+   it has, or send the file back); grade the file again (`drafts.py add ... --remove` if it no
    longer matches and is not verified).
 10. **Declarations.** `PY tools/decl_plan.py --write --grown origin/main`, then
     `PY tools/hub_migrate.py --version 2.1.0 --plan build/decl_plans/chunk_1.tsv` moves what the new files

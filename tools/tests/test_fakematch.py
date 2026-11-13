@@ -80,5 +80,24 @@ class BarrierRemoval(unittest.TestCase):
         self.assertIsNone(fakematch.without_barrier(['    asm("nop");'], 1, commented=False))
 
 
+class Unset(unittest.TestCase):
+    STDERR = (
+        "C:\\repo\\src\\game\\a.cpp:14:31: warning: variable 'dead' is uninitialized when used here [-Wuninitialized]\n"
+        "    return fn_71005fd134(dead, a, b);\n"
+        "                         ^~~~\n"
+        "C:\\repo\\src\\game\\a.cpp:13:15: note: initialize the variable 'dead' to silence this warning\n"
+        "/repo/src/game/a.cpp:33:9: warning: variable 'result' is used uninitialized whenever 'if' condition is false "
+        "[-Wsometimes-uninitialized]\n"
+        "/repo/src/game/a.cpp:40:5: warning: unused variable 'k' [-Wunused-variable]\n")
+
+    def test_only_reads_of_an_unset_variable_are_taken(self):
+        self.assertEqual(fakematch.unset_warnings(self.STDERR),
+                         [(14, "variable 'dead' is uninitialized when used here"),
+                          (33, "variable 'result' is used uninitialized whenever 'if' condition is false")])
+
+    def test_a_clean_compile_has_none(self):
+        self.assertEqual(fakematch.unset_warnings(""), [])
+
+
 if __name__ == "__main__":
     unittest.main()

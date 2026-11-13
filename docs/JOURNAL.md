@@ -152,6 +152,12 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**`fakematch.py --unset`: the scan for reads of an unset variable, as a tool (2026-11-13).** The one-off scan
+of the entry below is `python tools/fakematch.py --unset [PATH...]`: the project compiler's own
+`-Wuninitialized` and `-Wsometimes-uninitialized`, syntax only, a minute for the tree, no dump needed. Today:
+16 reads in 13 sources, 2 in 2 drafts. The batch procedure lists them for a batch's files next to the other
+readability checks (`tools/batch/lean/COORDINATOR.md`, step 9).
+
 **"A match is its own proof" has an exception, and the permuter had found it (2026-11-13).** Reading the held
 draft `fn_710021e874` before moving it showed this in the text the permuter spike had made match:
 

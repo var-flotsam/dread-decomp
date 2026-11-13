@@ -29,6 +29,9 @@ Usage:
   python tools/fakematch.py --list [--kind K]   # every hit: file:line, kind, function
   python tools/fakematch.py --base origin/main  # only files changed since <ref> (a branch's or a PR's)
   python tools/fakematch.py --strict            # exit 1 on any barrier-no-comment
+  python tools/fakematch.py --unset [PATH...]   # every read of a variable that is not set, by the project
+                                                # compiler's own warnings: a text with no behaviour of its own,
+                                                # whose byte match proves nothing. Needs the compiler; a minute
   python tools/fakematch.py --unneeded-barriers [--write] [--list] [PATH...]
                                                 # compile each file without each barrier: one that changes no
                                                 # function's code is not needed (--write removes it; --list also
@@ -272,8 +275,43 @@ def unneeded_barriers(files: list[Path], version: str, write: bool, jobs: int = 
     return sorted(rows, key=lambda r: (r["file"], r["line"]))
 
 
+UNSET_FLAGS = ["-fsyntax-only", "-Wuninitialized", "-Wsometimes-uninitialized"]
+UNSET_LINE = re.compile(r":(\d+):\d+: warning: (variable '.*' is (?:used )?uninitialized.*?) \[-W")
+
+
+def unset_warnings(stderr: str) -> list[tuple[int, str]]:
+    """(line, message) for each read of a variable that is not set, from the compiler's diagnostics."""
+    return [(int(m.group(1)), m.group(2)) for m in map(UNSET_LINE.search, stderr.splitlines()) if m]
+
+
+def unset_reads(files: list[Path], jobs: int = 8) -> list[tuple[str, int, str]]:
+    """Every read of a variable before it is set that the project compiler sees in these sources (syntax only,
+    its -Wuninitialized and -Wsometimes-uninitialized): [(file, line, message)]. Such a text has no behaviour of
+    its own, so a byte match of it proves nothing about what the source says: a local left unset and passed to
+    a callee to reproduce an argument register the original does not load, a result left unset on one path,
+    or a use moved above its assignment. Needs the project compiler; no dump."""
+    from concurrent.futures import ThreadPoolExecutor
+    import buildcfg
+
+    def one(f: Path):
+        cmd = buildcfg.cxx_command(f, ROOT / "build" / "fakematch_unset.o")
+        if "-o" in cmd:
+            i = cmd.index("-o")
+            del cmd[i:i + 2]
+        cmd = [c for c in cmd if c != "-c"] + UNSET_FLAGS
+        r = subprocess.run(cmd, capture_output=True, text=True)
+        return [(f.relative_to(ROOT).as_posix(), n, text) for n, text in unset_warnings(r.stderr)]
+    out: list[tuple[str, int, str]] = []
+    with ThreadPoolExecutor(jobs) as pool:
+        for found in pool.map(one, [f for f in files if f.suffix == ".cpp"]):
+            out += found
+    return sorted(out)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--unset", action="store_true",
+                    help="list every read of a variable that is not set (the project compiler's own warnings)")
     ap.add_argument("--unneeded-barriers", action="store_true",
                     help="compile each file without each of its barriers and list the ones that change nothing")
     ap.add_argument("--write", action="store_true", help="with --unneeded-barriers: remove them")
@@ -287,6 +325,13 @@ def main() -> int:
 
     files = changed_files(args.base) if args.base else [p.resolve() for p in args.paths] or [ROOT / "src"]
     files = hand_written(files)
+    if args.unset:
+        found = unset_reads(files)
+        for path, line, text in found:
+            print(f"{path}:{line}  {text}")
+        print(f"{len(files)} files: {len(found)} reads of a variable that is not set, in "
+              f"{len({p for p, _, _ in found})} files")
+        return 0
     if args.unneeded_barriers:
         rows = unneeded_barriers(files, args.version, args.write)
         for r in rows:
