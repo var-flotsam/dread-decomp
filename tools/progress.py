@@ -28,11 +28,18 @@ lifts). Hand-typed, readable code is the project's completion metric (CLAUDE.md,
 generated share verifies correctness but does not count toward it. It reads check.py's diff cache
 (build/check/<version>/**/*.o.diff.json, the object that defines each function), so run check.py first.
 
+`--quality` reports the two qualities each function needs, apart (owner, 2026-11-13): the bytes match, and the
+source is readable. A function is complete with both. Identical behaviour with other bytes (verified
+equivalent) has a row of its own: acceptable now, a match later. "Readable" is a floor a tool can see
+(hand-written, with none of tools/fakematch.py's steering forms in the function), not a reading. The same
+figures go under the handoff's table with --handoff when check.py's cache is there.
+
 Usage: python tools/progress.py [--json build/progress.json] [--top 15]
        python tools/progress.py --slice boot [--version 2.1.0] [--json build/progress.json]
        python tools/progress.py --slice boot --handoff
        python tools/progress.py --slice-from CGameBlackboard::refl_GetClass
        python tools/progress.py --origin [--version 2.1.0]
+       python tools/progress.py --quality [--version 2.1.0]
 """
 
 from __future__ import annotations
@@ -159,6 +166,101 @@ def print_origin(o: dict, overall: dict) -> None:
               f"{v['m']['bytes'] / 1e6:.2f} MB | {share:.1f}% |")
 
 
+STEERING = ("offset-cast", "volatile", "empty-block", "barrier", "barrier-no-comment")
+QUALITIES = {
+    "complete": "Byte-matching and readable",
+    "match_steered": "Byte-matching, hand-written with a steering form",
+    "match_generated": "Byte-matching, generated source",
+    "equivalent": "Identical behaviour, bytes differ (verified equivalent)",
+    "unproven": "Written, not proven (`m`, `M`, `W` without a passing verdict)",
+    "missing": "Not decompiled (`U`)",
+}
+
+
+def quality(status: str, hand: bool, steered: bool, verified: bool) -> str:
+    """Which row of the completeness table a function is in. Two qualities, both needed (owner, 2026-11-13):
+    the bytes match, and the source is readable. Identical behaviour with other bytes is a match for later."""
+    if status == "O":
+        return "match_generated" if not hand else "match_steered" if steered else "complete"
+    if status == "U":
+        return "missing"
+    return "equivalent" if status == "m" and verified else "unproven"
+
+
+def quality_report(version: str, rows: list[dict], verified: frozenset[int] | None = None) -> dict:
+    """The game's functions by the two qualities the project needs of each: byte-matching, and readable.
+
+    Readable is measured as a floor, by what a tool can see: the function's source is hand-written (not in a
+    generated directory) and has none of the forms that are there to steer the compiler (tools/fakematch.py's
+    offset casts, `volatile`, empty blocks and barriers, attributed to the function they sit in). It cannot
+    see a wrong comment, a meaningless name, a struct private to one file or a form inside a shared inline
+    helper: reading does (tools/sample_review.py). Needs check.py's diff cache for where each function is
+    defined."""
+    import fakematch
+    verified = VERIFIED if verified is None else verified
+    cache = ROOT / "build" / "check" / version
+    if not cache.is_dir():
+        raise SystemExit(f"{cache}: no check cache; run tools/check.py --version {version} first")
+    by_addr = {int(r["address"], 16): r for r in rows}
+    hand: set[int] = set()
+    steered: set[int] = set()
+    seen: set[int] = set()
+    for p in sorted(cache.rglob("*.o.diff.json")):
+        rel = p.relative_to(cache)
+        try:
+            entries = json.loads(p.read_text(encoding="utf-8"))["entries"]
+        except (OSError, ValueError, KeyError, TypeError):
+            continue
+        mine = [e for e in entries if e.get("address") in by_addr]
+        seen.update(e["address"] for e in mine)
+        if rel.parts[0] in GENERATED_DIRS or not mine:
+            continue
+        hand.update(e["address"] for e in mine)
+        src = ROOT / "src" / (rel.as_posix()[:-len(".o.diff.json")] + ".cpp")
+        if not src.is_file():
+            continue
+        flagged = {h.function.split("::")[-1] for h in fakematch.scan_text(src.relative_to(ROOT).as_posix(),
+                                                                         src.read_text(encoding="utf-8", errors="replace"))
+                   if h.kind in STEERING and h.function}
+        steered.update(e["address"] for e in mine if e.get("name", "").split("::")[-1] in flagged)
+    out = {k: {"functions": 0, "bytes": 0} for k in QUALITIES}
+    out["equivalent_readable"] = {"functions": 0, "bytes": 0}
+    for a, r in by_addr.items():
+        k = quality(r["status"], a in hand, a in steered, a in verified)
+        if k == "match_generated" and a not in seen:
+            k = "unproven"  # an O the cache does not know: the cache is older than the function list
+        for key in [k] + (["equivalent_readable"] if k == "equivalent" and a not in steered else []):
+            out[key]["functions"] += 1
+            out[key]["bytes"] += int(r["size"])
+    return out
+
+
+def print_quality(q: dict, overall: dict) -> None:
+    total = overall["bytes"]
+    print("| Completeness | Functions | Bytes | Share of code |")
+    print("|---|---|---|---|")
+    for k, label in QUALITIES.items():
+        v = q[k]
+        mark = "**" if k == "complete" else ""
+        print(f"| {mark}{label}{mark} | {v['functions']:,} | {v['bytes'] / 1e6:.2f} MB | {mark}{100 * v['bytes'] / total:.2f}%{mark} |")
+    e = q["equivalent_readable"]
+    print(f"(of the verified-equivalent ones, {e['functions']:,} have no steering form: they are readable and need only "
+          "a match, later. Readable is a floor: see tools/progress.py's quality_report.)")
+
+
+def quality_line(q: dict, overall: dict) -> str:
+    total = overall["bytes"]
+
+    def pct(k: str) -> str:
+        return f"{100 * q[k]['bytes'] / total:.2f}%"
+    return (f"Completeness, whole binary, by the two qualities each function needs (`tools/progress.py --quality`): "
+            f"byte-matching and readable **{pct('complete')}** ({q['complete']['functions']:,} functions); byte-matching "
+            f"but not readable yet {100 * (q['match_steered']['bytes'] + q['match_generated']['bytes']) / total:.2f}% "
+            f"(generated source {pct('match_generated')}, hand-written with a steering form {pct('match_steered')}); "
+            f"identical behaviour with other bytes {pct('equivalent')} ({q['equivalent']['functions']:,} functions, a "
+            f"match for later). Readable is a floor a tool can see, not a reading.")
+
+
 HANDOFF = ROOT / "docs" / "HANDOFF.md"
 BEGIN, END = "<!-- progress:begin -->", "<!-- progress:end -->"
 WHOLE, BOOT = "Whole binary (`L` excluded)", "Boot slice (from `nnMain`, direct calls)"
@@ -170,8 +272,9 @@ def table_row(label: str, t: dict) -> str:
             f"({b['O']['functions']:,}) | {t['usable_bytes_pct']:.2f}% | {b['U']['functions']:,} |")
 
 
-def update_handoff(path: Path, overall: dict, boot: dict | None) -> None:
-    """Replace the generated table in the handoff; keep the old boot row when no slice was computed."""
+def update_handoff(path: Path, overall: dict, boot: dict | None, quality_text: str | None = None) -> None:
+    """Replace the generated table in the handoff; keep the old boot row when no slice was computed, and the
+    old completeness line when it was not computed (it needs check.py's cache)."""
     text = path.read_text(encoding="utf-8")
     if BEGIN not in text or END not in text:
         raise SystemExit(f"{path}: no {BEGIN} ... {END} block")
@@ -192,6 +295,9 @@ def update_handoff(path: Path, overall: dict, boot: dict | None) -> None:
         lines += ["", f"Done, whole binary (`O`, or `m` that `tools/equiv_test.py` verified equivalent): "
                       f"**{overall['done_bytes_pct']:.2f}%**; {v['functions']:,} of the "
                       f"{overall['by_status']['m']['functions']:,} `m` functions are verified ({v['bytes']:,} bytes)."]
+    quality_text = quality_text or next((ln for ln in old.splitlines() if ln.startswith("Completeness, whole binary")), None)
+    if quality_text:
+        lines += ["", quality_text]
     path.write_text(head + BEGIN + "\n" + "\n".join(lines) + "\n" + END + tail, encoding="utf-8", newline="\n")
 
 
@@ -207,6 +313,9 @@ def main() -> int:
                     help="rewrite the generated status table in docs/HANDOFF.md (or PATH)")
     ap.add_argument("--origin", action="store_true",
                     help="split matched bytes into hand-typed and generated source (needs build/check/<version>/)")
+    ap.add_argument("--quality", action="store_true",
+                    help="the functions by the two qualities each needs: byte-matching, and readable (needs "
+                         "build/check/<version>/)")
     args = ap.parse_args()
     if args.handoff and args.slice_from:
         ap.error("--handoff takes the boot slice or none, not --slice-from")
@@ -252,8 +361,17 @@ def main() -> int:
         print("matched bytes by origin of the source (hand-typed code is the completion metric):")
         print_origin(report["origin"], overall)
 
+    cache = (ROOT / "build" / "check" / args.version).is_dir()
+    if args.quality or (args.handoff and cache):
+        report["quality"] = quality_report(args.version, game)
+    if args.quality:
+        print()
+        print("completeness by the two qualities each function needs, byte-matching and readable (whole binary):")
+        print_quality(report["quality"], overall)
+
     if args.handoff:
-        update_handoff(args.handoff, overall, report["slice"]["overall"] if "slice" in report else None)
+        update_handoff(args.handoff, overall, report["slice"]["overall"] if "slice" in report else None,
+                       quality_line(report["quality"], overall) if "quality" in report else None)
     if args.json:
         args.json.parent.mkdir(parents=True, exist_ok=True)
         args.json.write_text(json.dumps(report, indent=1), encoding="utf-8")

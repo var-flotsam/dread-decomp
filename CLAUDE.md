@@ -35,6 +35,15 @@ eventually be replaced. The proof has tiers:
    a match later.
 3. *Unverified.* Anything else that does not match. It does not count.
 
+**Two qualities, measured apart (owner, 2026-11-13).** "The project will not be considered to be absolutely
+done until the decompilation functions identically and is human readable." Byte-matching and readable are
+different qualities and every function needs both. Identical behaviour with other bytes (tier 2) is
+acceptable for now and becomes a match at a later date. Being faithful to the original outranks rules of
+our own making: where one of them would have the source do what the original program does not, the
+original wins and the place gets a comment. `python tools/progress.py --quality` reports the game's
+functions by both qualities; its "readable" is a floor a tool can see (hand-written, no steering form),
+and reading is what confirms it.
+
 Readability outranks a match: when a function matches only with a union around a member, an empty barrier
 or an inlining attribute, commit the readable version as tier 2 instead. Both figures, matching and done,
 are reported side by side. The machine test is `tools/equiv_test.py` (since 2026-11-12): its verdicts are in
@@ -112,6 +121,7 @@ python -m unittest discover -s tools/tests -t .       # tool tests, no game data
 python tools/hub_migrate.py --version <ver> --plan PLAN.tsv   # mechanical header migration; .claude/skills/dread-hubs
 python tools/ghidra/decompile.py --version <ver> <addr|name>  # read Ghidra's view (never commit it)
 python tools/progress.py --slice boot [--handoff]      # progress; --handoff rewrites docs/HANDOFF.md's table
+python tools/progress.py --quality                     # byte-matching and readable, as two qualities
 python tools/port_link.py --version <ver> [--lifted build/port/lifted]   # port link and boot_missing.csv
 port/docker/run.sh python3 tools/port_link.py --version <ver> --stdlib libcxx9 --objects build/port/linux/sweep --out build/port/linux/link --executable  # Linux executable (port/README.md)
 ```

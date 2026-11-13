@@ -334,6 +334,7 @@ python tools/progress.py --slice boot [--version 2.1.0] [--json build/progress.j
 python tools/progress.py --slice boot --handoff
 python tools/progress.py --slice-from CGameBlackboard::refl_GetClass
 python tools/progress.py --origin [--version 2.1.0]
+python tools/progress.py --quality [--version 2.1.0]
 ```
 
 ### `tools/policy_check.py`

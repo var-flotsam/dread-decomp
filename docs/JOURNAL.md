@@ -152,6 +152,34 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Two qualities, measured apart: `tools/progress.py --quality` (2026-11-13).** The owner, the same day: "The
+project will not be considered to be absolutely done until the decompilation functions identically and is
+human readable", and: byte-matching and readable are two different qualities, both needed; identical
+behaviour with a byte mismatch is acceptable for a later date. Until now one figure, "done", stood for the
+first quality only. The new report puts every function of the game in one row:
+
+| Completeness | Functions | Bytes | Share of code |
+|---|---|---|---|
+| **Byte-matching and readable** | 11,056 | 3.22 MB | **17.15%** |
+| Byte-matching, hand-written with a steering form | 572 | 0.18 MB | 0.95% |
+| Byte-matching, generated source | 83,086 | 9.16 MB | 48.80% |
+| Identical behaviour, bytes differ (verified equivalent) | 45 | 0.01 MB | 0.05% |
+| Written, not proven (`m`, `M`, `W` without a passing verdict) | 424 | 0.50 MB | 2.65% |
+| Not decompiled (`U`) | 6,191 | 5.71 MB | 30.40% |
+
+How "readable" is measured, and what that leaves out. A function counts when its source is hand-written
+(not in a generated directory) and has none of `tools/fakematch.py`'s steering forms in it: an offset cast,
+`volatile`, an empty block, a barrier. That is a floor, the part a tool can see. It does not see a comment
+that is wrong, a name that says nothing, a struct that exists only in one file (522 type names have
+differing definitions; `tools/struct_check.py`), or a steering form inside an inline helper several
+functions share. Reading does, which is what `tools/sample_review.py` is for. So the first row is an upper
+bound on what is truly complete, and the honest use of it is the trend and the three rows under it, which
+say what each kind of remaining work is: steering forms to take out, generated source to replace by
+hand-written, verified functions to turn into matches later.
+
+`--handoff` writes the same figures under the handoff's table when `check.py`'s cache is there. `CLAUDE.md`'s
+completion section has the owner's two statements.
+
 **The X parasite AI component has one layout: the class-first pilot, finished (2026-11-13).** Steps 1 and 2
 (below) left seven sources with their own structs for the component. They are converted. Every source of
 the class compiles to the same code as before (`tools/baseline.py` over 19 files after each step), and
