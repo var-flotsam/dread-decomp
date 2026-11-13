@@ -32,6 +32,10 @@ Usage:
   python tools/fakematch.py --unset [PATH...]   # every read of a variable that is not set, by the project
                                                 # compiler's own warnings: a text with no behaviour of its own,
                                                 # whose byte match proves nothing. Needs the compiler; a minute
+  python tools/fakematch.py --unset --strict --base origin/main
+                                                # exit 1 on such a read in a changed file (CI, compile job),
+                                                # unless its declaration says the original leaves it unset
+                                                # (UNSET_MARK in a comment on or directly above it)
   python tools/fakematch.py --unneeded-barriers [--write] [--list] [PATH...]
                                                 # compile each file without each barrier: one that changes no
                                                 # function's code is not needed (--write removes it; --list also
@@ -277,19 +281,62 @@ def unneeded_barriers(files: list[Path], version: str, write: bool, jobs: int = 
 
 UNSET_FLAGS = ["-fsyntax-only", "-Wuninitialized", "-Wsometimes-uninitialized"]
 UNSET_LINE = re.compile(r":(\d+):\d+: warning: (variable '.*' is (?:used )?uninitialized.*?) \[-W")
+UNSET_DECL = re.compile(r":(\d+):\d+: note: initialize the variable '(.*)' to silence this warning")
+# The words that mark a read the original program itself makes (CLAUDE.md, "No unset values": a variable the
+# original leaves unset on a path stays, with a comment at its declaration saying so). --strict accepts a
+# read whose declaration has them in a comment on its line or in the comment and declaration lines directly
+# above it, so one comment can cover several declarations in a row.
+UNSET_MARK = "unset in the original"
+_DECL_ONLY = re.compile(r"^\s*[\w:<>,*&\s]+?[\s*&]\w+(\s*\[[^\]]*\])?\s*(,\s*\w+\s*)*;\s*(//.*)?$")
 
 
 def unset_warnings(stderr: str) -> list[tuple[int, str]]:
     """(line, message) for each read of a variable that is not set, from the compiler's diagnostics."""
-    return [(int(m.group(1)), m.group(2)) for m in map(UNSET_LINE.search, stderr.splitlines()) if m]
+    return [(n, text) for n, text, _ in unset_diagnostics(stderr)]
 
 
-def unset_reads(files: list[Path], jobs: int = 8) -> list[tuple[str, int, str]]:
+def unset_diagnostics(stderr: str) -> list[tuple[int, str, int | None]]:
+    """(line, message, declaration line) for each read of a variable that is not set: the declaration line is
+    the one of the compiler's note "initialize the variable ... to silence this warning", which comes once per
+    variable, after its last warning; None when there is none."""
+    out: list[tuple[int, str, int | None]] = []
+    for line in stderr.splitlines():
+        if m := UNSET_LINE.search(line):
+            out.append((int(m.group(1)), m.group(2), None))
+        elif m := UNSET_DECL.search(line):
+            name = f"variable '{m.group(2)}' "
+            out = [(n, text, int(m.group(1)) if decl is None and text.startswith(name) else decl)
+                   for n, text, decl in out]
+    return out
+
+
+def unset_in_original(lines: list[str], decl: int | None) -> bool:
+    """Whether the declaration at 1-based line `decl` says the original leaves the variable unset: UNSET_MARK
+    in a comment on that line, or in the run of comment and declaration-only lines directly above it."""
+    if decl is None or not 1 <= decl <= len(lines):
+        return False
+    text = lines[decl - 1]
+    if "//" in text and UNSET_MARK in text[text.index("//"):].lower():
+        return True
+    i = decl - 2
+    while i >= 0:
+        above = lines[i].strip()
+        if above.startswith("//"):
+            if UNSET_MARK in above.lower():
+                return True
+        elif not _DECL_ONLY.match(lines[i]):
+            return False
+        i -= 1
+    return False
+
+
+def unset_reads(files: list[Path], jobs: int = 8) -> list[tuple[str, int, str, bool]]:
     """Every read of a variable before it is set that the project compiler sees in these sources (syntax only,
-    its -Wuninitialized and -Wsometimes-uninitialized): [(file, line, message)]. Such a text has no behaviour of
-    its own, so a byte match of it proves nothing about what the source says: a local left unset and passed to
-    a callee to reproduce an argument register the original does not load, a result left unset on one path,
-    or a use moved above its assignment. Needs the project compiler; no dump."""
+    its -Wuninitialized and -Wsometimes-uninitialized): [(file, line, message, unset in the original)]. Such a
+    text has no behaviour of its own, so a byte match of it proves nothing about what the source says: a local
+    left unset and passed to a callee to reproduce an argument register the original does not load, a result
+    left unset on one path, or a use moved above its assignment. The last field says the declaration is marked
+    as one the original program itself leaves unset (unset_in_original). Needs the project compiler; no dump."""
     from concurrent.futures import ThreadPoolExecutor
     import buildcfg
 
@@ -300,8 +347,11 @@ def unset_reads(files: list[Path], jobs: int = 8) -> list[tuple[str, int, str]]:
             del cmd[i:i + 2]
         cmd = [c for c in cmd if c != "-c"] + UNSET_FLAGS
         r = subprocess.run(cmd, capture_output=True, text=True)
-        return [(f.relative_to(ROOT).as_posix(), n, text) for n, text in unset_warnings(r.stderr)]
-    out: list[tuple[str, int, str]] = []
+        found = unset_diagnostics(r.stderr)
+        lines = f.read_text(encoding="utf-8", errors="replace").splitlines() if found else []
+        return [(f.relative_to(ROOT).as_posix(), n, text, unset_in_original(lines, decl))
+                for n, text, decl in found]
+    out: list[tuple[str, int, str, bool]] = []
     with ThreadPoolExecutor(jobs) as pool:
         for found in pool.map(one, [f for f in files if f.suffix == ".cpp"]):
             out += found
@@ -320,17 +370,25 @@ def main() -> int:
     ap.add_argument("--base", help="only files added or changed since this ref")
     ap.add_argument("--list", action="store_true", help="every hit")
     ap.add_argument("--kind", choices=KINDS, help="with --list: only this kind")
-    ap.add_argument("--strict", action="store_true", help="exit 1 on a barrier without its comment")
+    ap.add_argument("--strict", action="store_true",
+                    help="exit 1 on a barrier without its comment; with --unset, on an unmarked read")
     args = ap.parse_args()
 
     files = changed_files(args.base) if args.base else [p.resolve() for p in args.paths] or [ROOT / "src"]
     files = hand_written(files)
     if args.unset:
         found = unset_reads(files)
-        for path, line, text in found:
-            print(f"{path}:{line}  {text}")
+        for path, line, text, original in found:
+            print(f"{path}:{line}  {text}" + ("  (unset in the original)" if original else ""))
+        bad = [r for r in found if not r[3]]
         print(f"{len(files)} files: {len(found)} reads of a variable that is not set, in "
-              f"{len({p for p, _, _ in found})} files")
+              f"{len({r[0] for r in found})} files; {len(found) - len(bad)} marked as the original's own")
+        if args.strict and bad:
+            print(f"error: {len(bad)} unmarked: give the callee's parameter the type UnkNoArg, take it out of the "
+                  f"declaration, or set the variable; only a read the original program itself makes stays, with "
+                  f"'{UNSET_MARK}' in a comment at its declaration (CLAUDE.md, \"No unset values\")",
+                  file=sys.stderr)
+            return 1
         return 0
     if args.unneeded_barriers:
         rows = unneeded_barriers(files, args.version, args.write)

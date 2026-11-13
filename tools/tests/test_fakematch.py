@@ -98,6 +98,48 @@ class Unset(unittest.TestCase):
     def test_a_clean_compile_has_none(self):
         self.assertEqual(fakematch.unset_warnings(""), [])
 
+    def test_the_declaration_note_goes_to_every_warning_of_its_variable(self):
+        stderr = (
+            "/r/a.cpp:38:40: warning: variable 'x' is used uninitialized whenever 'if' condition is false "
+            "[-Wsometimes-uninitialized]\n"
+            "/r/a.cpp:49:12: note: uninitialized use occurs here\n"
+            "/r/a.cpp:35:9: warning: variable 'x' is used uninitialized whenever 'if' condition is false "
+            "[-Wsometimes-uninitialized]\n"
+            "/r/a.cpp:33:10: note: initialize the variable 'x' to silence this warning\n")
+        self.assertEqual([d for _, _, d in fakematch.unset_diagnostics(stderr)], [33, 33])
+        self.assertEqual([d for _, _, d in fakematch.unset_diagnostics(self.STDERR)], [13, None])
+
+
+class UnsetInOriginal(unittest.TestCase):
+    LINES = [
+        "bool f(T* self) {",                                                        # 1
+        "    // Only written when the view exists: unset in the original as well.",  # 2
+        "    s32 x;",                                                               # 3
+        "    s32 y;",                                                               # 4
+        "    u32* dead;",                                                           # 5 (the run goes on)
+        "    if (self->a) {",                                                       # 6
+        "        s32 z;",                                                           # 7
+        "        s32 w;  // unset in the original on this path",                    # 8
+        "        void* p;  // the callee ignores it",                               # 9
+    ]
+
+    def test_a_marked_comment_above_covers_the_declarations_below_it(self):
+        self.assertTrue(fakematch.unset_in_original(self.LINES, 3))
+        self.assertTrue(fakematch.unset_in_original(self.LINES, 4))
+
+    def test_a_marked_comment_on_the_line(self):
+        self.assertTrue(fakematch.unset_in_original(self.LINES, 8))
+
+    def test_code_between_ends_the_run(self):
+        self.assertFalse(fakematch.unset_in_original(self.LINES, 7))
+
+    def test_any_other_comment_is_not_the_mark(self):
+        self.assertFalse(fakematch.unset_in_original(self.LINES, 9))
+
+    def test_no_declaration_line(self):
+        self.assertFalse(fakematch.unset_in_original(self.LINES, None))
+        self.assertFalse(fakematch.unset_in_original(self.LINES, 99))
+
 
 if __name__ == "__main__":
     unittest.main()
