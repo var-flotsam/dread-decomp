@@ -8,6 +8,7 @@
 #include "game/UnkActor.h"
 #include "game/UnkTU1102.h"
 #include "game/UnkTimelineComponent.h"
+#include "game/UnkXParasiteAI.h"
 #include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
@@ -20,16 +21,6 @@ struct UnkTypedValue {
 };
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
-struct UnkXParasiteAI {
-    u8 pad_0x0[0x30];
-    UnkActor* field_0x30;  // the owner
-    u8 pad_0x38[0x1228];
-    CBlackboard field_0x1260;
-    u8 pad_0x1350[0x13398];
-    bool field_0x146e8;
-};
-static_assert(__builtin_offsetof(UnkXParasiteAI, field_0x146e8) == 0x146e8, "UnkXParasiteAI placeholder layout");
-
 extern UnkPropertyName g_unk_717270b8d8 __attribute__((visibility("hidden")));  // the property in it
 extern const u64 g_unk_710164a838;                                               // the timeline id
 
@@ -41,15 +32,15 @@ void fn_71006ea3fc(UnkXParasiteAI* self, bool value) {
     if (flag == value)
         return;
     flag = value;
-    if (CBlackboard::CSection* section = fn_71010472e0(&self->field_0x1260, g_unk_71726b7cb8)) {
-        if (!self->field_0x1260.field_0xe8) {
+    if (CBlackboard::CSection* section = fn_71010472e0(&self->blackboard, g_unk_71726b7cb8)) {
+        if (!self->blackboard.field_0xe8) {
             UnkTypedValue v;
             v.type = fn_710000d228();
             v.value = &flag;
             fn_7100332c80(section, &g_unk_717270b8d8, &v);
         }
     }
-    UnkTimelineComponent* timeline = static_cast<UnkTimelineComponent*>(self->field_0x30->field_0x2e8);
+    UnkTimelineComponent* timeline = static_cast<UnkTimelineComponent*>(self->owner->field_0x2e8);
     if (!timeline)
         return;
     bool known = fn_7100a2be94(timeline, &g_unk_710164a838);
