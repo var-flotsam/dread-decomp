@@ -37,7 +37,6 @@ void fn_71004ce858(UnkNode* self) {
     fn_71004b4ee8(At(self, 0x8e8));
     fn_71004b9cc4(At(self, 0x9f0));
     fn_71004a1790(At(self, 0xb38));
-    St<u32>(self, 0xc50, 10);
     St<u64>(self, 0xc40, 0);
     St<u64>(self, 0xc48, 0);
     St<u32>(self, 0xc50, 10);
