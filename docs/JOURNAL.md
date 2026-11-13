@@ -177,8 +177,8 @@ bound on what is truly complete, and the honest use of it is the trend and the t
 say what each kind of remaining work is: steering forms to take out, generated source to replace by
 hand-written, verified functions to turn into matches later.
 
-`--handoff` writes the same figures under the handoff's table when `check.py`'s cache is there. `CLAUDE.md`'s
-completion section has the owner's two statements.
+`--handoff` writes the same figures under the handoff's table when `check.py`'s cache is there. The owner's
+two statements are proposed for `CLAUDE.md`'s completion section in a pull request of their own.
 
 **The X parasite AI component has one layout: the class-first pilot, finished (2026-11-13).** Steps 1 and 2
 (below) left seven sources with their own structs for the component. They are converted. Every source of
