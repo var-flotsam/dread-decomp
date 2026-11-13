@@ -14,7 +14,6 @@ extern "C" f32 fmodf(f32 x, f32 y);
 extern "C" f32 sqrtf(f32 x);
 
 struct UnkMat4f;
-UnkVec3f fn_7100078170(const UnkMat4f* m, const UnkVec3f* v);
 
 extern char g_unk_7101a1db18[];
 extern char g_unk_7101a1d968[];

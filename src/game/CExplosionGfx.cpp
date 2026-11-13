@@ -4,19 +4,8 @@
 #include <stdlib.h>
 
 #include "base/UnkMatrix44.h"
+#include "game/UnkTU54.h"
 #include "types.h"
-
-// The vector and matrix types of fn_7100078170 (src/game_s1/fn_7100078170.cpp).
-struct UnkVec3f {
-    f32 x, y, z;
-    UnkVec3f() {}
-    UnkVec3f(f32 x_, f32 y_, f32 z_) : x(x_), y(y_), z(z_) {}
-    UnkVec3f(const UnkVec3f& o) : x(o.x), y(o.y), z(o.z) {}
-};
-struct UnkMat4f {
-    f32 m[4][4];
-};
-UnkVec3f fn_7100078170(const UnkMat4f* m, const UnkVec3f* v);
 
 struct CExplosionGfx {
     u8 pad_0x0[0xb8];

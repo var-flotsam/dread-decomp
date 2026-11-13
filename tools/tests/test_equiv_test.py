@@ -6,6 +6,11 @@ from pathlib import Path
 from tools.tests import _path  # noqa: F401
 import equiv_test
 
+try:
+    import port_lift
+except Exception:  # pragma: no cover
+    port_lift = None
+
 
 def words(*ws):
     return b"".join(w.to_bytes(4, "little") for w in ws)
@@ -148,6 +153,83 @@ class Stale(unittest.TestCase):
     def test_rows_that_are_not_a_pass_are_not_checked(self):
         table = {0x7100000100: self.row(verdict="inconclusive", digest="other")}
         self.assertEqual(self.stale(table, {}), [])
+
+
+class _Run:
+    """What more_inputs reads of a finished run of the original."""
+    def __init__(self, visited, outcomes, read_words=(), calls=0):
+        self.visited, self.outcomes = set(visited), set(outcomes)
+        self.read_words, self.read_at, self.calls = list(read_words), {}, calls
+
+    def peek(self, w, n):
+        return 0x5000
+
+
+class _Image:
+    relocs: dict = {}
+    rodata = (0, 0)
+
+    @staticmethod
+    def in_text(off):
+        return False
+
+
+class _Oracle:
+    """A four-instruction function, `cbz x0` first: x0 == 0 skips the second instruction and runs the third."""
+    A = 0x7100000100
+    CODE = (0xB4000040).to_bytes(4, "little") + bytes(12)   # cbz x0, +8; three more words
+
+    def __init__(self, base_runs):
+        self.runs = list(base_runs)
+        self.preset_orig: dict = {}
+        self.tried: list = []
+        self.orig = type("O", (), {"sizes": {self.A: 16}, "img": _Image, "function": staticmethod(lambda a: self.CODE)})
+        self.af = type("F", (), {"facts": staticmethod(lambda a: type("Facts", (), {"args": frozenset({0, 1})}))})
+
+    def originals(self, a):
+        return self.runs
+
+    def out_of_time(self, phase):
+        return False
+
+    def run_original(self, a, seed, ovr):
+        self.tried.append(dict(ovr))
+        if ovr.get(("r", 0)) == 0:
+            return _Run({a, a + 8, a + 12}, {(a, True)})
+        return _Run({a, a + 4, a + 12}, {(a, False)})
+
+
+@unittest.skipIf(port_lift is None, "pyelftools or capstone is not installed")
+class MoreInputs(unittest.TestCase):
+    A = _Oracle.A
+
+    def test_the_null_argument_is_tried_and_kept_for_what_it_reaches(self):
+        oracle = _Oracle([(0, {}, _Run({self.A, self.A + 4, self.A + 12}, {(self.A, False)}))])
+        self.assertEqual(equiv_test.more_inputs(oracle, self.A), 1)
+        seed, ovr, run = oracle.runs[-1]
+        self.assertEqual(ovr, {("r", 0): 0})
+        self.assertIn(self.A + 8, run.visited)
+        self.assertEqual(equiv_test.more_inputs(oracle, self.A), 0)       # everything is covered: no run at all
+        self.assertEqual(len(oracle.runs), 2)
+
+    def test_a_branch_outcome_alone_is_worth_a_run(self):
+        # every instruction ran (two runs between them), but the branch was only recorded one way
+        runs = [(0, {}, _Run({self.A, self.A + 4, self.A + 12}, {(self.A, False)})),
+                (1, {}, _Run({self.A, self.A + 8, self.A + 12}, set()))]
+        oracle = _Oracle(runs)
+        self.assertEqual(equiv_test.more_inputs(oracle, self.A), 1)
+        self.assertIn((self.A, True), oracle.runs[-1][2].outcomes)
+
+    def test_a_run_that_reaches_nothing_new_is_not_kept(self):
+        oracle = _Oracle([(0, {}, _Run({self.A, self.A + 4, self.A + 12}, {(self.A, False)}))])
+        oracle.run_original = lambda a, seed, ovr: _Run({a, a + 4, a + 12}, {(a, False)})
+        self.assertEqual(equiv_test.more_inputs(oracle, self.A), 0)
+        self.assertEqual(len(oracle.runs), 1)
+
+    def test_outcomes_of_other_code_do_not_count(self):
+        oracle = _Oracle([(0, {}, _Run({self.A, self.A + 4, self.A + 12}, {(self.A, False)}))])
+        oracle.run_original = lambda a, seed, ovr: _Run({a, a + 4, a + 12}, {(a, False), (0x7100999000, True)})
+        self.assertEqual(equiv_test.more_inputs(oracle, self.A), 0)
 
 
 if __name__ == "__main__":

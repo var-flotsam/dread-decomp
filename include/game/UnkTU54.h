@@ -26,3 +26,5 @@ UnkMatrix44_7100078c9c fn_7100078cd8(const UnkVec3f& t);
 UnkVec3f fn_710007a220(const UnkVec3f* v);
 UnkVec3f fn_7100077c04(const UnkMatrix44& m, const UnkVec3f& v);
 UnkMat4f fn_7100079c60(const UnkVec3f* from, const UnkVec3f* to);
+// The point `v` transformed by the matrix.
+UnkVec3f fn_7100078170(const UnkMat4f* m, const UnkVec3f* v);

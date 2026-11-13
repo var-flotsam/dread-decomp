@@ -2,10 +2,10 @@
 // scaled half-vector's projection on. Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
 #include "base/math/CVector.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 
 struct UnkMat4f;
-UnkVec3f fn_7100078170(const UnkMat4f* m, const UnkVec3f* v);
 void fn_7100a48fe0(void* self, f32 angle, f32 a, f32 b, const base::math::CVector2D* dir);
 extern const UnkVec3f g_unk_710164ae30 __attribute__((visibility("hidden")));
 
@@ -26,6 +26,7 @@ struct UnkFanComponent {
 static_assert(__builtin_offsetof(UnkFanComponent, field_0xad0) == 0xad0, "layout");
 static_assert(__builtin_offsetof(UnkFanNode, xform_0x38.flags) == 0x90, "layout");
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_710087f018(UnkFanComponent* self) {
     UnkFanNode* node = self->node_0x30;
     if (!node)
