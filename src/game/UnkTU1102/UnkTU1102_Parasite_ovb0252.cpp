@@ -180,7 +180,7 @@ void fn_71006e8208(UnkXParasiteAI* self, bool on) {
             g_unk_71726b0cd8 = m;
         }
         UnkModelManager* manager = g_unk_71726b0cd8;
-        UnkFxObject_ovb0041* fx = fn_71003b7db0(manager, CurrentBinding(self)->effect, false, true);
+        UnkFxObject_ovb0041* fx = fn_71003b7db0(manager, &CurrentBinding(self)->effect, false, true);
         if (!fx)
             return;
         UnkVec3f position = Actor(self)->xform.GetTranslation();
