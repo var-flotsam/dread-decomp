@@ -16,6 +16,7 @@
 #include "game/UnkTU341.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
+#include "game/UnkTypedValue.h"
 
 struct UnkTree;
 void fn_71009d4418(void* root, UnkTree* tree);
@@ -186,10 +187,6 @@ void fn_71009d0570(UnkPickTimed_ovb0094* self, f32 dt) {
 
 using base::global::CStrId;
 
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
 void fn_7100332c80(CBlackboard::CSection*, UnkPropertyName*, const UnkTypedValue*);
 extern UnkProperty g_unk_717273fe08;
 struct UnkPickList_ovb0094;

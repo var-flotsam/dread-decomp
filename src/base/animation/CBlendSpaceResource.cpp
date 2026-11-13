@@ -17,17 +17,13 @@
 #include "game/UnkTU83.h"
 #include "game/UnkTU85.h"
 #include "types.h"
+#include "base/UnkFileReader.h"
 
 using base::reflection::CType;
 using base::reflection::UnkReflValue;
 
 // The file read into memory and two words the opener sets (as in src/game/UnkObjectFileRead.cpp);
 // +0x38 is the version check's result: 0 the registered version, 1 an older one, 2 a newer one.
-struct UnkFileReader {
-    base::global::CRntFile file;
-    u32 field_0x38;
-    u32 field_0x3c;
-};
 
 // The registry of file versions, by the 64-bit id a file starts with.
 struct UnkVersionRegistry;
@@ -116,14 +112,11 @@ void fn_7100fc3320(const UnkParseContext* ctx, const CType* type) {
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/UnkStrPair.h"
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
 
-struct UnkStrPair_0x10 {
-    void* a;
-    void* b;
-};
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
 // The parse (its result, nonzero on success, is not in the other files' declaration).
 static inline s32 ParseRoot(UnkParseContext* ctx, void* root) {

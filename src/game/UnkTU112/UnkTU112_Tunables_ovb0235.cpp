@@ -20,6 +20,8 @@
 #include "game/UnkTU112.h"
 #include "game/UnkTU85.h"
 #include "types.h"
+#include "base/UnkStrPair.h"
+#include "base/UnkFileReader.h"
 
 using base::UnkAllocator;
 using base::UnkVector;
@@ -239,17 +241,8 @@ void fn_710013c4b4(UnkTunableRegistry* self, const char* name, const char* field
 // ---- reading the second tunables file
 
 // The id and path pair (base/UnkStrIdPathPair.h) the file is opened from.
-struct UnkStrPair_0x10 {
-    void* a;
-    void* b;
-};
 
 // The file read into memory and two words the opener sets (+0x38 is zero after a good read).
-struct UnkFileReader {
-    base::global::CRntFile file;
-    u32 field_0x38;
-    u32 field_0x3c;
-};
 
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
 

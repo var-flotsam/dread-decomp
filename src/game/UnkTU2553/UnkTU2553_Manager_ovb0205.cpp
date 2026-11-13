@@ -45,6 +45,7 @@
 #include "game/UnkTU83.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
+#include "game/UnkTypedValue.h"
 
 using base::UnkDeferredCallback;
 using base::UnkDeferredSet;
@@ -529,10 +530,6 @@ bool fn_7100dfc344(UnkGameManager* manager, const char* const& a, const char* co
 
 // ---- fn_7100dffc58 / fn_7100dffe04
 bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 struct UnkTgmBlackboards_b205 {
     u8 pad_0x0[0x820];

@@ -27,6 +27,8 @@
 #include "game/UnkTU2564.h"
 #include "game/UnkTU32.h"
 #include "types.h"
+#include "base/UnkStrPair.h"
+#include "base/UnkFileReader.h"
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
@@ -36,11 +38,6 @@ using base::reflection::UnkReflObject;
 
 // ---- Reading a reflected resource from the file its path names ----
 
-struct UnkStrPair_0x10 {
-    void* a;
-    void* b;
-};
-
 // The id and path pair built from a resource's path, destroyed out of line.
 struct UnkPathPairTemp_b45a1 {
     void* id;
@@ -49,11 +46,6 @@ struct UnkPathPairTemp_b45a1 {
 };
 
 // The file read into memory and two words the opener sets (+0x38 is zero after a good read).
-struct UnkFileReader {
-    base::global::CRntFile file;
-    u32 field_0x38;
-    u32 field_0x3c;
-};
 
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
 

@@ -5,13 +5,10 @@
 #include "base/UnkMatrix44.h"
 #include "game/CAnimationComponent.h"
 #include "types.h"
+#include "game/UnkShakernautId.h"
 
 // As src/game/CShakernautAIComponent/CShakernautAIComponent_Flip_b53.cpp declares them.
 struct UnkShakernautCtrl_b53;
-struct UnkShakernautId_b53 {
-    u32 value;
-    u32 unk_0x4;
-};
 
 struct UnkTakumakuOwner_A4_b71 {
     u8 pad_0x0[0x38];

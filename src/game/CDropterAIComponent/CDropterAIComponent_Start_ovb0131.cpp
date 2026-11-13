@@ -20,6 +20,7 @@
 #include "game/UnkXformNode.h"
 #include "game/behaviortree/CBehavior.h"
 #include "types.h"
+#include "game/UnkTypedValue.h"
 
 using base::global::CStrId;
 
@@ -72,11 +73,6 @@ void fn_71004ee434(UnkDropterAI_ovb0131* self, void* arg) {
     fn_71004ee590(reinterpret_cast<UnkDropterHit_b58*>(self));
 }
 
-// A typed value as the section setter takes it (as in src/game/CDoorLifeComponent.cpp).
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 struct UnkDropterHitAI_ovb0131;
 void fn_71004ec714(UnkDropterHitAI_ovb0131* self, bool flag);

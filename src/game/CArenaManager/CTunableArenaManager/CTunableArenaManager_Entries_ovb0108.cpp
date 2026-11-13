@@ -22,6 +22,7 @@
 #include <algorithm>
 
 #include "../../../game_s7/UnkIter.h"
+#include "game/UnkTypedValue.h"
 
 // An intrusively refcounted object; the count is a union member so its decrement forces the
 // reload of the array's count, as in the original.
@@ -107,11 +108,6 @@ using base::global::CStrId;
 
 struct UnkArenaTimer_ovb0108 : base::UnkRefCounted {
     void* field_0x10;
-};
-
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
 };
 
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);

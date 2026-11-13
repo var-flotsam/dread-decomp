@@ -19,6 +19,7 @@
 #include "game/UnkTUProperty.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
+#include "game/UnkTypedValue.h"
 
 using base::global::CStrId;
 using base::global::UnkStringData;
@@ -215,11 +216,6 @@ void fn_7100a8e4c0(UnkTeleporterSelf_b0233* self) {
 struct UnkWeakTarget;
 struct UnkWeakHandle;
 
-// A typed value as the section setter takes it (as in src/game/CAIComponent/CAIComponent_StoreFloat_b49.cpp).
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 struct UnkTeleporterHandlesVtable_b0233 {

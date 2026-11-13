@@ -30,6 +30,8 @@
 #include "game/UnkTU365.h"
 #include "game/UnkTU83.h"
 #include "types.h"
+#include "base/UnkStrPair.h"
+#include "base/UnkFileReader.h"
 // The CMinimapData unit (unit 2563): arrays of 0x138-byte records (copy construction, copy assignment and
 // inserts, with the record's special members out of line) and the room components that rebuild a point record
 // (a moved, flattened and bounded point array) for every reflected object of one class. Names and layouts are
@@ -677,11 +679,6 @@ UnkStrIdVecMap_b0223* fn_7100e5db10(UnkStrIdVecMap_b0223* self, const UnkStrIdVe
 
 using base::reflection::UnkReflObject;
 
-struct UnkStrPair_0x10 {
-    void* a;
-    void* b;
-};
-
 // The id and path pair built from a path, destroyed out of line.
 struct UnkPathPairTemp_b45a1 {
     void* id;
@@ -690,11 +687,6 @@ struct UnkPathPairTemp_b45a1 {
 };
 
 // The file read into memory and two words the opener sets (+0x38 is zero after a good read).
-struct UnkFileReader {
-    base::global::CRntFile file;
-    u32 field_0x38;
-    u32 field_0x3c;
-};
 
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
 

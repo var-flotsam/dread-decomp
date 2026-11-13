@@ -5,12 +5,9 @@
 #include "game/CAnimationComponent.h"
 #include "types.h"
 #include "base/UnkMatrix44.h"
+#include "game/UnkShakernautId.h"
 
 struct UnkShakernautCtrl_b53;
-struct UnkShakernautId_b53 {
-    u32 value;
-    u32 unk_0x4;
-};
 
 struct UnkNailongFlipOwner_ovb0112 {
     u8 pad_0x0[0x38];

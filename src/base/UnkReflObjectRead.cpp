@@ -11,16 +11,12 @@
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkTU56.h"
 #include "types.h"
+#include "base/UnkFileReader.h"
 
 using base::reflection::CType;
 using base::reflection::UnkReflValue;
 
 // The file being read and two words the reader keeps (+0x38 is zero after a good read).
-struct UnkFileReader {
-    base::global::CRntFile file;
-    u32 field_0x38;
-    u32 field_0x3c;
-};
 
 // An object and its type.
 struct UnkTypedObject {

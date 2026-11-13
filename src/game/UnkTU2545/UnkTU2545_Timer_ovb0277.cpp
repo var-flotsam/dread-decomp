@@ -14,6 +14,7 @@
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
+#include "base/UnkLoadingMask.h"
 
 struct UnkHms {
     u32 hours;
@@ -102,12 +103,6 @@ void fn_7100dd7750(UnkTimerPanel_b0277* self) {
     HIDE(field_0x240);
     HIDE(field_0x238);
 }
-struct UnkLoadingMask {
-    u32 bits;
-    UnkLoadingMask() : bits(0) {}
-    UnkLoadingMask(u32 b) : bits(b) {}
-    UnkLoadingMask(const UnkLoadingMask& o) : bits(o.bits) {}
-};
 inline const UnkLoadingMask& UnkMaskNone4() {
     static UnkLoadingMask s asm("g_unk_71727bdf70");
     return s;

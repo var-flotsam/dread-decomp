@@ -15,6 +15,7 @@
 #include "game/UnkTU102.h"
 #include "game/UnkTU56.h"
 #include "types.h"
+#include "base/UnkStrPair.h"
 
 using base::global::CRntFile;
 
@@ -30,10 +31,6 @@ struct UnkCounters_ovb0259 {
     base::UnkVector<UnkCounter_ovb0259> items;  // 0x8
 };
 
-struct UnkStrPair_0x10 {
-    void* a;
-    void* b;
-};
 struct UnkFileReader;
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
 void fn_710007c144(UnkHashStream_0x38* s);

@@ -6,13 +6,10 @@
 #include "game/CAnimationComponent.h"
 #include "game/UnkBehaviorTree.h"
 #include "types.h"
+#include "game/UnkShakernautId.h"
 
 // As src/game/CShakernautAIComponent/CShakernautAIComponent_Flip_b53.cpp declares them.
 struct UnkShakernautCtrl_b53;
-struct UnkShakernautId_b53 {
-    u32 value;
-    u32 unk_0x4;
-};
 
 struct UnkNailongVec_b67a4 {
     f32 x, y, z;

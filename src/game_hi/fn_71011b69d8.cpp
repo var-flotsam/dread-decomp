@@ -8,6 +8,7 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 #include "UnkLeftoverReg.h"
+#include "base/UnkStrPair.h"
 
 struct UnkTag_71011b69d8 : UnkLeftoverReg {};
 
@@ -23,10 +24,6 @@ struct UnkScriptPath_0x148 {
 
 // The id and path pair (base/UnkStrIdPathPair.h) that fn_710008d4c0 builds and fn_710008d8e8
 // destroys, kept as plain words here so the locals have no destructor of their own.
-struct UnkStrPair_0x10 {
-    void* a;
-    void* b;
-};
 
 struct UnkRefCounted_71011b69d8 {
     virtual void vf_0x0();

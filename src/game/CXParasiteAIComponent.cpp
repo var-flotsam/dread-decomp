@@ -11,14 +11,10 @@
 #include "game/UnkXParasiteAI.h"
 #include "game/behaviortree/CBehavior.h"
 #include "types.h"
+#include "game/UnkTypedValue.h"
 
 struct UnkPropertyName;
 
-// A typed value as the section setter takes it (as in src/game_aca57c/fn_7100dc8828.cpp).
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 extern UnkPropertyName g_unk_717270b8d8 __attribute__((visibility("hidden")));  // the property in it

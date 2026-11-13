@@ -273,17 +273,10 @@ void fn_7100ed5f2c(UnkShotIdRecordSet* self) {
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
+#include "base/UnkStrPair.h"
+#include "base/UnkFileReader.h"
 
 // The file reader (as src/game/sound/UnkMusicPresets.cpp spells it).
-struct UnkStrPair_0x10 {
-    void* a;
-    void* b;
-};
-struct UnkFileReader {
-    base::global::CRntFile file;
-    u32 field_0x38;
-    u32 field_0x3c;
-};
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
 extern UnkParseCallbacks g_unk_71729da548 __attribute__((visibility("hidden")));  // this unit's callbacks
 

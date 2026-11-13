@@ -30,6 +30,7 @@
 #include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
+#include "game/UnkShakernautId.h"
 
 using base::global::CStrId;
 
@@ -231,10 +232,6 @@ void fn_71004d3944(UnkCooldownXHitAI_ovb0088* self) {
 }
 
 struct UnkShakernautCtrl_b53;
-struct UnkShakernautId_b53 {
-    u32 value;
-    u32 unk_0x4;
-};
 struct UnkCommanderPlayer_b67a2;
 struct UnkEntityState;
 

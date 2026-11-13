@@ -4,13 +4,10 @@
 #include "game/CAnimationComponent.h"
 #include "game/CChozoWarriorAIComponent.h"
 #include "types.h"
+#include "game/UnkShakernautId.h"
 
 // As src/game/CShakernautAIComponent/CShakernautAIComponent_Flip_b53.cpp declares them.
 struct UnkShakernautCtrl_b53;
-struct UnkShakernautId_b53 {
-    u32 value;
-    u32 unk_0x4;
-};
 
 bool fn_7101173914(char* p0, char* p1);
 extern char g_unk_71016499d8[];

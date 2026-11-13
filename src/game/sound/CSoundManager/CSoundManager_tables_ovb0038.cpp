@@ -31,6 +31,8 @@
 #include "game/sound/SGUISoundEventsSelector.h"
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
+#include "base/UnkStrPair.h"
+#include "base/UnkFileReader.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
@@ -754,10 +756,6 @@ UnkSoundHandle fn_710102540c(UnkDropTarget* self, const UnkStrIdPathPair* ids, c
 }
 
 // The id and path pair (base/UnkStrIdPathPair.h) the reader opens.
-struct UnkStrPair_0x10 {
-    void* a;
-    void* b;
-};
 
 // The id and path pair built from a resource's path, destroyed out of line.
 struct UnkPathPairTemp_b45a1 {
@@ -767,11 +765,6 @@ struct UnkPathPairTemp_b45a1 {
 };
 
 // The file read into memory and two words the opener sets (+0x38 is zero after a good read).
-struct UnkFileReader {
-    base::global::CRntFile file;
-    u32 field_0x38;
-    u32 field_0x3c;
-};
 
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
 

@@ -32,6 +32,7 @@
 #include "game/UnkTUProperty.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
+#include "game/UnkTypedValue.h"
 
 using base::reflection::UnkReflValue;
 using base::global::CStrId;
@@ -368,11 +369,6 @@ void fn_710111abb8(UnkSpawnGroupUpdate_ovb0065* self, f32 dt) {
 
 extern UnkProperty g_unk_7172a06608;
 
-// A typed value as the section setter takes it (as in src/game/CDoorLifeComponent.cpp).
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 struct UnkSpawnGroupValue_ovb0065 {

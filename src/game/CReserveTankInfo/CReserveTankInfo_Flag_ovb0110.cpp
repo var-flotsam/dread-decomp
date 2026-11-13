@@ -13,6 +13,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
+#include "game/UnkTypedValue.h"
 
 using base::global::CStrId;
 
@@ -58,11 +59,6 @@ void fn_7100f10e18(void* self) {
     new (self) UnkQidPairFlag_ov110(Qid_ov110(g_unk_71729dbcc0), Qid_ov110(g_unk_71729dbd00));
 }
 
-// A typed value as the section setter takes it (as in src/game/CDoorLifeComponent.cpp).
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 struct UnkReserveTankFlag_ov110 {

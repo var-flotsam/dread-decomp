@@ -14,16 +14,9 @@
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
+#include "base/UnkStrPair.h"
+#include "base/UnkFileReader.h"
 
-struct UnkStrPair_0x10 {
-    void* a;
-    void* b;
-};
-struct UnkFileReader {
-    base::global::CRntFile file;
-    u32 field_0x38;
-    u32 field_0x3c;
-};
 bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
 // The parse (its result, nonzero on success, is not in the other files' declaration).
 static inline s32 ParseRoot(UnkParseContext* ctx, void* root) {

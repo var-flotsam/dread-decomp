@@ -5,12 +5,9 @@
 // clears a byte (+0xab). Names and layouts are placeholders.
 #include "game/CAnimationComponent.h"
 #include "types.h"
+#include "game/UnkShakernautId.h"
 
 struct UnkShakernautCtrl_b53;
-struct UnkShakernautId_b53 {
-    u32 value;
-    u32 unk_0x4;
-};
 void fn_710110ca7c(void* self);
 
 struct UnkShakernautDir_b53 {

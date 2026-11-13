@@ -12,6 +12,7 @@
 #include "game/UnkTUProperty.h"
 #include "game/behaviortree/CBehavior.h"
 #include "types.h"
+#include "game/UnkTypedValue.h"
 
 using base::reflection::CType;
 using base::reflection::UnkReflObject;
@@ -72,11 +73,6 @@ bool fn_71005cbcb4(UnkInfesterAI_ovb0130* self) {
 
 using base::global::CStrId;
 
-// A typed value as the section setter takes it (as in src/game/CDoorLifeComponent.cpp).
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 struct UnkInfesterOwner2_ovb0130 {

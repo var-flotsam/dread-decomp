@@ -17,6 +17,7 @@
 #include "game/UnkTU2772.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
+#include "game/UnkTypedValue.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
@@ -362,10 +363,6 @@ void fn_7100a701c8(UnkAccessPointSm_b61* self) {
 // CWeightActivatedPlatformSmartObjectComponent's unit: requests state 7, stores true under the
 // component's property (g_unk_71727434e0) in the blackboard section of the current scenario unless the
 // blackboard is locked (as CElevatorUsableComponent_b48.cpp), then notifies the linked object.
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
 void fn_7100332c80(CBlackboard::CSection*, UnkPropertyName*, const UnkTypedValue*);
 
 struct UnkPlatformValue_b61 {

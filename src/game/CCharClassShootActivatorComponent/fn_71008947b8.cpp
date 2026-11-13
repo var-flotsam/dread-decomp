@@ -7,6 +7,7 @@
 #include "base/UnkVector.h"
 #include "game/CBeamBoxComponent.h"
 #include "game/CCharClassShootActivatorComponent.h"
+#include "game/UnkCallbackSetVector.h"
 
 using base::global::CStrId;
 using base::global::UnkStringData;
@@ -47,14 +48,6 @@ struct UnkId : CStrId {
     }
 };
 
-
-struct UnkCallbackBase {
-    virtual void vf0();
-    UnkOwnedErasedVector callbacks;
-    u32 field_0x30;
-
-    UnkCallbackBase() : field_0x30(0) {}
-};
 
 struct UnkCallbackSet : UnkCallbackBase {
     virtual void vf8();

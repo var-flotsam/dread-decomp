@@ -28,6 +28,7 @@
 #include "game/UnkTU2747.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
+#include "base/UnkStrPair.h"
 
 using base::global::CStrId;
 
@@ -48,10 +49,6 @@ CStrId fn_71011a2fbc(UnkGameManagerSub_0x608* self) {
 
 // The id and path pair (base/UnkStrIdPathPair.h) fn_710008d680 builds from a path and
 // fn_710008d8e8 destroys (as src/game/UnkObjectFileRead.cpp names it).
-struct UnkStrPair_0x10 {
-    void* a;
-    void* b;
-};
 
 // Unit 2660's reader (src/game/UnkObjectFileRead.cpp): no state, and an empty constructor and
 // destructor.
@@ -133,6 +130,7 @@ void fn_71011a2500(UnkGameManagerSub_0x608* self) {
 #include "game/UnkGuiRoot.h"
 #include "game/UnkGuiSprite.h"
 #include "game/UnkNavMeshManager.h"
+#include "game/UnkTypedValue.h"
 
 // The scenario's members this part reads.
 struct UnkScenarioNode {
@@ -170,11 +168,6 @@ static_assert(__builtin_offsetof(UnkScenarioView, level_sprite) == 0x920, "UnkSc
 // "NumTanksPickedUpMax", a property of type s32 (src/game_s7/fn_7100ae39e0.cpp builds it).
 
 bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
-// A typed value as the section setter takes it (as in src/game/CGameManager.cpp).
-struct UnkTypedValue {
-    const base::reflection::CType* type;
-    void* value;
-};
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 // The language singleton (as src/game/UnkAdamDialog.cpp declares it): created on first use, it

@@ -7,19 +7,11 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflConverter.h"
 #include "game/UnkTUInit.h"
+#include "base/UnkEnumInfo.h"
 
 #define HIDDEN __attribute__((visibility("hidden")))
 
 using base::global::CStrId;
-
-struct UnkEnumDesc {
-    u8 pad_0x0[0x30];
-    void* field_0x30;
-};
-struct UnkEnumInfo {
-    u8 pad_0x0[8];
-    UnkEnumDesc* desc_0x8;
-};
 
 // The reflected int and unsigned types (base/reflection/UnkReflAttributes.h), seen through the
 // placeholder.
