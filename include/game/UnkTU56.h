@@ -12,3 +12,5 @@ s64 fn_710007cee4(void*, const char**);  // The next string of the stream, in pl
 void fn_710007beac(base::global::CRntFile* self, const base::global::CRntFile* other, u32 flags, base::UnkAllocator* allocator);
 // The file's constructor over existing data.
 void fn_710007c080(base::global::CRntFile* file, void* data, u32 flags, u64 size);
+// Formatted stream write ("i" integer, "b" bool, "f" float, "s" string).
+s64 fn_710007cb4c(void* stream, const char* format, ...);

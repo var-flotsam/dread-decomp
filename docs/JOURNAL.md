@@ -152,6 +152,48 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**"A match is its own proof" has an exception, and the permuter had found it (2026-11-13).** Reading the held
+draft `fn_710021e874` before moving it showed this in the text the permuter spike had made match:
+
+```cpp
+u32* first;
+u32* limit = 64 + first;
+first = self->commands.entries;
+```
+
+A declaration split from its initialiser, and the use moved above the assignment. The text reads a variable
+before it is set, so it has no behaviour of its own, and the compiler was free to produce the original's
+bytes from it. The spike's premise (a change need not keep the behaviour, since one that does not cannot
+match) holds for every text that has a behaviour; this one does not.
+
+- The draft has its loop back and is what it was before the spike: registers or order, four instructions.
+  The permuter, with the check below, finds no match for it in 1,500 tries. It was never in `src/`.
+- `tools/permute.py` compiles every candidate with `-Werror=uninitialized` and
+  `-Werror=sometimes-uninitialized`: a text that trips them does not build, so it cannot be accepted. A file
+  whose own text trips them is searched without the check and the result says so. A test compiles both forms
+  with the project compiler.
+- Every hand-written source and draft was compiled once with those two warnings (6,004 files, a minute): the
+  draft above was the permuter's only one. The other 26 results of the spike are clean.
+
+The same scan found 16 warnings in 13 sources and 2 in drafts that have nothing to do with the permuter, all
+written on purpose and most of them commented: a local that is never set, passed to a callee whose
+declaration has a parameter the callee does not read (`void* dead;  // the callee ignores it`), or returned
+on a path where the original returns whatever the register held. They reproduce the original's unset
+register, and they are the same kind of text as the one above: no gate sees them and `tools/fakematch.py`
+does not list them. The files: `CBigFistChangeToCombatAction_OnEvent_b48.cpp`,
+`CGooshockerAIComponent_Message_b63a3.cpp`, `CGooshockerAIComponent_Update_ovb0125.cpp`,
+`CHyperBeamGun_Flags_ovb0127.cpp`, `CKraidAIComponent_b35.cpp`, `CYamplotXBiteAttack_b39.cpp`,
+`UnkTU1632_Values_ovb0217.cpp`, `UnkTU2553_Manager_ovb0205.cpp`, `UnkTU2566_Minimap_ovb0200.cpp`,
+`UnkTU2621_Save_ovb0235.cpp`, `UnkTU2730_Lists_ovb0188.cpp`, `UnkTU365_Containers_ovb0229.cpp`,
+`src/game_lo/fn_7100219588.cpp`. What to do with them is a rule question (most would go away if the callee
+were declared with the parameters it has); nothing was changed.
+
+**A fifth matching draft in `src/`: `fn_71000ed480`.** It declared a class getter as returning `const CType*`
+where the header says `void*`; it takes the header's declaration now and casts at its one use, and still
+matches. `drafts.py promote` took two more of its declarations from headers; `decl_plan.py` and
+`hub_migrate.py` moved the one it copied (`fn_710007cb4c`, the formatted stream write) to its unit header.
+Matching drafts still held: 8.
+
 **A held draft settled by sharing a type instead of renaming one: `fn_71006eb7cc` (2026-11-13).** The draft
 matched and was held because it defined the function over its own struct while the one file that calls it
 declared it over another name. Looking at both files: the caller had only forward-declared the component
