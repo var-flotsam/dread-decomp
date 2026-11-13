@@ -112,6 +112,7 @@ python -m unittest discover -s tools/tests -t .       # tool tests, no game data
 python tools/hub_migrate.py --version <ver> --plan PLAN.tsv   # mechanical header migration; .claude/skills/dread-hubs
 python tools/ghidra/decompile.py --version <ver> <addr|name>  # read Ghidra's view (never commit it)
 python tools/progress.py --slice boot [--handoff]      # progress; --handoff rewrites docs/HANDOFF.md's table
+python tools/progress.py --quality                     # byte-matching and readable, as two qualities
 python tools/port_link.py --version <ver> [--lifted build/port/lifted]   # port link and boot_missing.csv
 port/docker/run.sh python3 tools/port_link.py --version <ver> --stdlib libcxx9 --objects build/port/linux/sweep --out build/port/linux/link --executable  # Linux executable (port/README.md)
 ```
