@@ -46,6 +46,9 @@ def span(text: str, name: str, comment: str | None = None) -> tuple[int, int] | 
             j += 1
         if j == len(lines):
             return None
+    # the layout assertions directly under it are about it and go where it goes
+    while j + 1 < len(lines) and lines[j + 1].startswith("static_assert") and re.search(rf"\b{re.escape(name)}\b", lines[j + 1]):
+        j += 1
     if (comment and i > 0 and lines[i - 1].startswith("//") and re.search(comment, lines[i - 1])
             and (i < 2 or not lines[i - 2].startswith("//"))):
         i -= 1
