@@ -1,23 +1,22 @@
 // Unit 90 of tools/tu_map.py (no class hint): the version writer's (UnkVersionWriter_A1_b71.cpp)
 // write of one reflected value: a byte block (length and bytes), a string (as text with its end),
 // or the raw bytes of any other type. Names and layouts are placeholders.
-#include "../../../src/game_aca57c/UnkBufferString.h"
+#include "../../game_aca57c/UnkBufferString.h"
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU56.h"
 #include "types.h"
+#include "base/reflection.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 
 using base::reflection::CType;
 using base::reflection::UnkReflValue;
 using base::reflection::UnkReflValueRef;
 
-const CType* fn_710000ffd0();
-s64 fn_710007cb4c(void* stream, const char* format, ...);  // write
-UnkReflValue fn_71000a1774(const UnkReflValueRef* value, const CType* type);
-
-extern void* g_unk_7101a1a5a8[];
 using UnkString200 = UnkBufferString<0x200, g_unk_7101a1a5a8>;
 
 struct UnkWriter_b0202 {
@@ -38,7 +37,7 @@ struct UnkBlob_b0202 {
 };
 
 void fn_71000ed480(UnkWriter_b0202* self, const UnkReflValueRef* ref) {
-    if (fn_710009d50c(ref->type, fn_710000ffd0())) {
+    if (fn_710009d50c(ref->type, static_cast<const CType*>(fn_710000ffd0()))) {
         const UnkBlob_b0202* blob = static_cast<const UnkBlob_b0202*>(ref->value);
         if (blob) {
             fn_710007cb4c(self->file, "i", blob->length);

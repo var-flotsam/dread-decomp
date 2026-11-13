@@ -1,10 +1,19 @@
 """tools/permute.py: the text side (finding a body, the changes it tries, the search and the two passes that
 keep a match readable). No compiler and no game data: `cost` and `matches` are stand-ins."""
 import random
+import tempfile
 import unittest
+from pathlib import Path
 
 from tools.tests import _path  # noqa: F401
 import permute
+
+try:
+    import buildcfg
+    import fetch_toolchains
+    HAVE_COMPILER = fetch_toolchains.clang_path(buildcfg.COMPILER).is_file()
+except Exception:  # pragma: no cover
+    HAVE_COMPILER = False
 
 SRC = """// A comment.
 void fn_7100000100(UnkA* self);
@@ -162,6 +171,24 @@ class Readable(unittest.TestCase):
         self.assertEqual(new[-5:], SRC[-5:])               # the next function is untouched
         with self.assertRaises(ValueError):
             permute.put_back(SRC, match, "7100000300")
+
+
+@unittest.skipUnless(HAVE_COMPILER, "needs the project compiler")
+class ReadBeforeSet(unittest.TestCase):
+    """What the search may not accept however well it matches: a text that reads a variable before it is set."""
+    CLEAN = "int f(int* p) {\n    int* first = p;\n    int* limit = first + 64;\n    return *limit;\n}\n"
+    UNSET = "int f(int* p) {\n    int* first;\n    int* limit = 64 + first;\n    first = p;\n    return *limit;\n}\n"
+
+    def builds(self, text, extra):
+        with tempfile.TemporaryDirectory() as tmp:
+            src = Path(tmp) / "t.cpp"
+            src.write_text(text, encoding="utf-8")
+            return permute.builds(src, Path(tmp) / "t.o", extra)
+
+    def test_the_compiler_takes_it_and_the_strict_flags_do_not(self):
+        self.assertTrue(self.builds(self.CLEAN, permute.STRICT))
+        self.assertTrue(self.builds(self.UNSET, []))            # which is why it could match
+        self.assertFalse(self.builds(self.UNSET, permute.STRICT))
 
 
 if __name__ == "__main__":

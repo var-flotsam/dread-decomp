@@ -2,6 +2,7 @@
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/media/CMediaStream.h"
 #include "types.h"
 
 struct UnkRefObj;
@@ -11,7 +12,6 @@ void fn_710006686c(void* thread);
 
 extern void* g_unk_7101a20498[];
 extern void* g_unk_7101a204c0[];
-extern void* g_unk_7101a203f8[];
 
 struct UnkMovieTrack_b0217 {
     virtual void vf_0x0();
@@ -60,9 +60,8 @@ void fn_710021e874(UnkRefObj* obj) {
     fn_7100066918(&self->listener_lock);
     self->commands.vtable = g_unk_7101a204c0 + 2;
     for (u32* it = self->commands.read; it != self->commands.write;) {
-        u32* first;
-        u32* limit = 64 + first;
-        first = self->commands.entries;
+        u32* first = self->commands.entries;
+        u32* limit = first + 64;
         ++it;
         if (it == limit)
             it = first;
@@ -88,5 +87,5 @@ void fn_710021e874(UnkRefObj* obj) {
     }
     self->id.Reset();
     fn_710008d8e8(&self->source);
-    self->vtable = g_unk_7101a203f8 + 2;
+    self->vtable = reinterpret_cast<void**>(g_unk_7101a203f8 + 0x10);
 }

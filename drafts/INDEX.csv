@@ -14,7 +14,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100096c80,688,drafts/base/reflection/CClass/fn_7100096c80.cpp,registers or order,99.4,1,lean,
 0x710009c460,480,drafts/base/reflection/CPointerType/fn_710009c460.cpp,calls,7.5,60,pilot50,original keeps sp-vs-sret self-assign compare (loop unswitched; 18 calls); ours folds it (9 calls)
 0x71000e9d60,416,drafts/game/UnkTU88/fn_71000e9d60.cpp,registers or order,99.0,1,overnight,
-0x71000ed480,392,drafts/game/UnkTU90/fn_71000ed480.cpp,match,100.0,0,overnight,matches; held: 1 declaration problem: src/game/UnkTU90/fn_71000ed480.cpp:18 fn_710000ffd0: const CType* fn_710000ffd0() -> declared in include/base/animation/CBlendSpaceResource.h: include that header and drop th...
 0x71000f9450,340,drafts/game/UnkTU99/fn_71000f9450.cpp,conditions,98.8,1,overnight,
 0x71000fc18c,564,drafts/game/UnkTU99/fn_71000fc18c.cpp,conditions,95.7,6,overnight,
 0x71000fc3c0,432,drafts/game/UnkTU99/fn_71000fc3c0.cpp,conditions,94.4,6,overnight,
@@ -47,7 +46,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710020f450,552,drafts/game/UnkTU296/fn_710020f450.cpp,control flow,90.1,11,overnight,
 0x71002169e0,288,drafts/game/UnkTU308/fn_71002169e0.cpp,registers or order,97.2,2,overnight,
 0x7100216ca4,140,drafts/game/UnkTU308/fn_7100216ca4.cpp,registers or order,94.3,2,overnight,
-0x710021e874,492,drafts/game/UnkTU324/fn_710021e874.cpp,match,100.0,0,overnight,matches; held: 1 declaration problem: src/game/UnkTU324/fn_710021e874.cpp:14 g_unk_7101a203f8: void* g_unk_7101a203f8[] -> declared in include/game/media/CMediaStream.h: include that header and drop this declaration
+0x710021e874,492,drafts/game/UnkTU324/fn_710021e874.cpp,registers or order,96.7,4,overnight,not a match: the permuter spike's result read `first` before it was set (put back 2026-11-13; tools/permute.py refuses that now); takes g_unk_7101a203f8 from its header
 0x710021f2a8,1116,drafts/game/UnkTU324/fn_710021f2a8.cpp,control flow,4.7,265,fable1,
 0x710023b424,348,drafts/game/UnkTU341/fn_710023b424.cpp,registers or order,94.3,5,overnight,
 0x7100241440,284,drafts/game/UnkTU341/fn_7100241440.cpp,registers or order,91.5,6,overnight,

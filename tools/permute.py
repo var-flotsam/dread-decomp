@@ -13,8 +13,12 @@ relocations name the original's targets. The changes it tries:
   commute   the operands of + * & | ^ == !=
   compare   `a < b` as `b > a` (and <=, >, >=)
 
-A change need not keep the behaviour: one that does not cannot match, and a match is its own proof. What it
-must keep is the source readable (CLAUDE.md: readability outranks a match), so a match goes through two more
+A change need not keep the behaviour: one that does not cannot match, and a match is its own proof. With one
+exception, found the hard way: a text that reads a variable before it is set (a split declaration and a use
+moved above the assignment) has no behaviour of its own, and the compiler may turn it into the original's
+bytes. So every candidate is compiled with -Werror=uninitialized and -Werror=sometimes-uninitialized and one
+that trips them does not build. (A file whose own text trips them is searched without the check, and says so.)
+What it must also keep is the source readable (CLAUDE.md: readability outranks a match), so a match goes through two more
 passes before it is shown: every changed piece whose reversal still matches is put back (the search accepts
 changes that do nothing, such as `2 == kind`), and a declaration it split from its initialiser is merged again
 where the match survives. What is left is the original text with a line or three moved or two operands
@@ -308,14 +312,23 @@ def unprepared(lines: list[str], src: Path) -> list[str]:
     return [back.get(line, line) for line in lines]
 
 
-def compiled_cost(lines: list[str], work: Path, addr: str) -> tuple[int | None, bool]:
-    """(differing instructions plus a penalty for another size, matched) for fn_<addr> of this text; matched
-    needs the same bytes and no relocation that names another target. (None, False) when it does not build."""
+STRICT = ["-Werror=uninitialized", "-Werror=sometimes-uninitialized"]
+
+
+def builds(src: Path, obj: Path, extra: list[str] | tuple = ()) -> bool:
+    """Whether the project compiler takes the file, with these flags added."""
     import buildcfg
+    return subprocess.run(buildcfg.cxx_command(src, obj) + list(extra), capture_output=True, text=True).returncode == 0
+
+
+def compiled_cost(lines: list[str], work: Path, addr: str, extra: list[str] | tuple = ()) -> tuple[int | None, bool]:
+    """(differing instructions plus a penalty for another size, matched) for fn_<addr> of this text; matched
+    needs the same bytes and no relocation that names another target. (None, False) when it does not build
+    with the extra flags."""
     asmdiff, check = _state["asmdiff"], _state["check"]
     src, obj = work / "t.cpp", work / "t.o"
     src.write_text("\n".join(lines), encoding="utf-8", newline="\n")
-    if subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True).returncode != 0:
+    if not builds(src, obj, extra):
         return None, False
     try:
         funcs = asmdiff.read_object(obj)
@@ -357,8 +370,11 @@ def run(job: tuple) -> dict:
     t0 = time.time()
     orig = prepared(src)
 
+    # the check for a read before a set, unless the file's own text already has one somewhere
+    strict = STRICT if compiled_cost(orig, work, addr, STRICT)[0] is not None else []
+
     def cost(lines):
-        return compiled_cost(lines, work, addr)
+        return compiled_cost(lines, work, addr, strict)
 
     def matches(lines):
         return cost(lines)[1]
@@ -370,7 +386,7 @@ def run(job: tuple) -> dict:
         (OUT / f"{addr}.cpp").write_text("\n".join(unprepared(lines, src)), encoding="utf-8", newline="\n")
         row["changes"] = [d for d in difflib.unified_diff(orig, lines, lineterm="", n=0)
                           if d[:1] in "+-" and d[:3] not in ("+++", "---")]
-    return {"file": path, "address": addr, "seconds": round(time.time() - t0, 1), **row}
+    return {"file": path, "address": addr, "seconds": round(time.time() - t0, 1), "checked": bool(strict), **row}
 
 
 def write_back(rows: list[dict]) -> None:
@@ -444,6 +460,8 @@ def main() -> int:
                   f"{row['seconds']} s  {row['file']}", flush=True)
             for line in row.get("changes", []):
                 print(f"    {line[:150]}")
+            if row["matched"] and not row.get("note") and not row["checked"]:
+                print("    not checked for a read before a set: the file's own text has one. Read the result.")
     (OUT / "results.json").write_text(json.dumps(rows, indent=1), encoding="utf-8")
     tried = [r for r in rows if not r.get("note")]
     won = [r for r in tried if r["matched"]]
