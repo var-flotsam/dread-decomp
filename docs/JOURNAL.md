@@ -152,6 +152,50 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**The X parasite AI component has one layout: the class-first pilot, finished (2026-11-13).** Steps 1 and 2
+(below) left seven sources with their own structs for the component. They are converted. Every source of
+the class compiles to the same code as before (`tools/baseline.py` over 19 files after each step), and
+`include/game/UnkXParasiteAI.h` is the only place that says what the object looks like.
+
+| | Before the pilot | Now |
+|---|---|---|
+| Structs for the component itself | 15, in 12 sources | 1 |
+| Type names in the class's sources and headers | 71 | 36 |
+| Lines in those sources and headers, this step | | 269 in, 500 out |
+| "Definitions that name a type differently" (tree) | 984 | 982 |
+
+What settled the disagreements listed under step 1:
+
+- *Nested or flat.* `tools/gen_fields.py` says the base, `CBehaviorTreeAIComponent`, ends at 0x146c8. The
+  "state block at +0x146d0" and the "state at +0x146e0" were the component's own members seen through a
+  pointer a worker had made for convenience. The layout is flat, and the functions that used a state
+  pointer match without it.
+- *Four link types were one.* The grab link at +0x14790, the "found" object, the entries of the table at
+  +0x14740 and the handle at +0x14798 were each a private struct of the shape vtable, count, pointer at
+  +0x10. That is `UnkWeakHandle` (`game_s2/UnkWeakHandle.h`), which one source already used for one of them.
+  With the shared type every function still matches; four types are gone.
+- *`bool` or `u32`, two bools or `u16`.* The reset function wrote `u32` and `u16` zeros over members the
+  other sources read as single bools. Those were the compiler's merged stores written down as types. With
+  the members as bools and one assignment each, the function is the same instructions in another order;
+  `tools/permute.py` found an order of the assignments that matches (its order is the one in the source: a
+  reset whose stores are not in member order).
+- *`u32` or `s32` at +0x14724.* Only ever compared for equality: `u32` serves all four sources.
+- *The block at +0x14728.* One source knew four floats, another four weights and a mask of those in use:
+  the same members, and the names of the second are the better ones.
+- *A binding's contents.* One source saw an effect at +0x10, another two colours at +0x18 and +0x28: both.
+
+What is not unified, on purpose: the component's owner. Its sources reach into the owning actor through
+three private views (a vtable with slot 0xd0, a transform and a control pointer, a model holder at +0x228).
+`UnkActor` is the shared type and the member is declared with it; the views are casts at the use and belong
+to a pass over the actor. The destructor (`..._Dtor_A4_b71.cpp`) is written with offset templates and does
+not use the layout either.
+
+Cost, for the question of class-first batches: about forty minutes for the five sources whose views agreed
+(step 1), a few minutes for the eight identical helper types (step 2), and about two hours for the seven
+that disagreed, most of it reading. One thing made the difference between guessing and knowing: the base
+class's size from the reflection table. A batch that is given one class should be given that, and the
+header, before the first function.
+
 **Owner decisions of 2026-11-13, and the unset locals taken out.** Six answers, all in the rule texts now:
 
 1. *No unset values.* A local that is never set is not read (`CLAUDE.md`, "No unset values"). The 15 reads in

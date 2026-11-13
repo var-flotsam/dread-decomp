@@ -8,12 +8,8 @@
 
 struct UnkXParasiteAI;
 
-struct UnkXParasiteFound_b0252 : UnkRefObject {
-    void* field_0x10;
-};
-
 struct UnkXParasiteResult_b0252 {
-    UnkXParasiteFound_b0252* ptr;
+    UnkWeakHandle* ptr;
     ~UnkXParasiteResult_b0252() {
         if (ptr && --ptr->ref_count == 0)
             ptr->vf_0x10();
