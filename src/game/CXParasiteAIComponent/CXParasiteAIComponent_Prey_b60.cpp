@@ -10,6 +10,7 @@
 #include "game/UnkActor.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTimelineCalls.h"
+#include "game/UnkXParasiteAI.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -26,13 +27,6 @@ struct UnkXParasitePreySink_b60a4 {
     UnkXParasitePreyName_b60a4* field_0x2b8;
 };
 
-struct UnkXParasitePreyOwner_b60a4 {
-    u8 pad_0x0[0x220];
-    UnkXParasitePreySink_b60a4* field_0x220;
-    u8 pad_0x228[0x2e8 - 0x228];
-    UnkTimelineComponent* field_0x2e8;
-};
-
 struct UnkXParasitePrey_b60a4 {
     u8 pad_0x0[0x218];
     void* field_0x218;
@@ -40,17 +34,7 @@ struct UnkXParasitePrey_b60a4 {
     f32 field_0x37c;
 };
 
-struct UnkXParasiteAI_b60a4 {
-    u8 pad_0x0[0x30];
-    UnkXParasitePreyOwner_b60a4* owner;
-    u8 pad_0x38[0x14798 - 0x38];
-    UnkWeakHandle* field_0x14798;
-    u8 pad_0x147a0[8];
-    f32 field_0x147a8;
-};
-static_assert(__builtin_offsetof(UnkXParasiteAI_b60a4, field_0x147a8) == 0x147a8, "placeholder layout");
-
-void fn_71006ea9a4(UnkXParasiteAI_b60a4* self, UnkWeakTarget* prey) {
+void fn_71006ea9a4(UnkXParasiteAI* self, UnkWeakTarget* prey) {
     if (!prey)
         return;
     // Declared past a goto (no lifetime markers), so the three keep their own slots.
@@ -60,13 +44,13 @@ void fn_71006ea9a4(UnkXParasiteAI_b60a4* self, UnkWeakTarget* prey) {
     base::reflection::UnkReflTypeIdArg mask;
 start:
     AssignRef(&self->field_0x14798, fn_7100d78378(prey));
-    if (UnkXParasitePreySink_b60a4* sink = self->owner->field_0x220) {
+    if (auto* sink = static_cast<UnkXParasitePreySink_b60a4*>(self->owner->field_0x220)) {
         u64 hash = sink->field_0x2b8->hash;
         mode.id = 2;
         mask.id = UnkAll_SpitSend().value;
         fn_7101176690(sink, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
     }
-    if (UnkTimelineComponent* timeline = self->owner->field_0x2e8) {
+    if (auto* timeline = static_cast<UnkTimelineComponent*>(self->owner->field_0x2e8)) {
         timeline_mask.id = UnkAll_SpitSend().value;
         fn_7100a2cb7c(timeline, reinterpret_cast<const u64*>(&g_unk_710164a840), &timeline_mask.id, false, -1.0f);
     }

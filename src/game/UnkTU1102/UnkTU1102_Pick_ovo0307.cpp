@@ -10,7 +10,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkSlots.h"
 #include "types.h"
-#include "game/UnkXParasiteState.h"
+#include "game/UnkXParasiteAI.h"
 
 struct UnkStruct_710083e9d4;
 struct UnkItem_710083e9d4;
@@ -25,26 +25,12 @@ struct UnkXParasitePlayerLink_ovo0307 {
     UnkXParasitePlayer_ovo0307* player;  // 0x10
 };
 
-// The weights at +0x14728 and the mask of those in use.
-struct UnkXParasiteWeights_ovo0307 {
-    f32 weight_0;  // 0x0
-    f32 weight_2;  // 0x4
-    f32 weight_1;  // 0x8
-    f32 weight_3;  // 0xc
-    u32 mask;      // 0x10
-};
-
-struct UnkXParasitePick_ovo0307 {
-    u8 pad_0x0[0x14728];
-    UnkXParasiteWeights_ovo0307 w;
-};
-
 static inline const u64* ItemId() {
     return reinterpret_cast<const u64*>(reinterpret_cast<const char*>(&base::reflection::refl_GetSingleton()) + 0x4c8);
 }
 
-u32 fn_71006e73f4(UnkXParasitePick_ovo0307* self) {
-    UnkXParasiteWeights_ovo0307* w = &self->w;
+u32 fn_71006e73f4(UnkXParasiteAI* self) {
+    UnkXParasiteWeights* w = &self->weights;
     UnkItem_710083e9d4* item = nullptr;
     auto* link = *reinterpret_cast<UnkXParasitePlayerLink_ovo0307**>(reinterpret_cast<u8*>(g_unk_7101d47310) + 0x29a0);
     if (link && link->player) {
@@ -96,78 +82,20 @@ u32 fn_71006e73f4(UnkXParasitePick_ovo0307* self) {
     return 0;
 }
 
-// UnkXParasiteSelf_8a18 as src/game/UnkTU1102/UnkTU1102_Parasite_ovb0252.cpp defines it (a complete type
-// keeps the original's addressing; the fields used here are read through UnkXParasiteSelf_ovo0307).
-struct UnkStruct_710024fa0c;
+void fn_71006e8208(UnkXParasiteAI* self, bool on);
 
-struct UnkXParasiteSelf_8208;
-void fn_71006e8208(UnkXParasiteSelf_8208* self, bool on);
-
-struct UnkXParasiteBinding_ovo0307 {
-    u8 pad_0x0[0x18];
-    base::math::CVector4D first;   // 0x18
-    base::math::CVector4D second;  // 0x28
-};
-static_assert(sizeof(UnkXParasiteBinding_ovo0307) == 0x38, "placeholder layout");
-
-struct UnkXParasiteBindings_ovo0307 {
-    UnkXParasiteBinding_ovo0307* values;
-    u32* keys;
-    u32 count;
-};
-
-struct UnkXParasiteShape_ovo0307 {
-    u8 pad_0x0[0x114];
-    bool field_0x114;
-    u8 pad_0x115[7];
-    u8 field_0x11c;
-    u8 pad_0x11d[0x138 - 0x11d];
-    UnkSlots* slots;  // 0x138
-};
-
-struct UnkXParasiteHolder_ovo0307 {
-    u8 pad_0x0[0x50];
-    UnkXParasiteShape_ovo0307* shape;  // 0x50
-};
-
-struct UnkXParasiteOwner_ovo0307 {
-    u8 pad_0x0[0x228];
-    UnkXParasiteHolder_ovo0307* holder;  // 0x228
-};
-
-struct UnkXParasiteSelf_ovo0307 {
-    u8 pad_0x0[0x30];
-    UnkXParasiteOwner_ovo0307* owner;  // 0x30
-    u8 pad_0x38[0x14724 - 0x38];
-    s32 state;  // 0x14724
-    u8 pad_0x14728[0x14768 - 0x14728];
-    UnkXParasiteBindings_ovo0307 bindings;  // 0x14768
-};
-static_assert(__builtin_offsetof(UnkXParasiteSelf_ovo0307, bindings) == 0x14768, "placeholder layout");
-
-// The binding of the current state (one past the end when none).
-static inline UnkXParasiteBinding_ovo0307* Find(UnkXParasiteSelf_ovo0307* self) {
-    u64 i = 0;
-    for (; i < self->bindings.count; ++i) {
-        if (self->bindings.keys[i] == (u32)self->state)
-            break;
-    }
-    return &self->bindings.values[i];
-}
-
-void fn_71006e75e8(UnkXParasiteSelf_8a18* self_, bool on) {
-    UnkXParasiteSelf_ovo0307* self = reinterpret_cast<UnkXParasiteSelf_ovo0307*>(self_);
-    if (UnkXParasiteHolder_ovo0307* holder = self->owner->holder) {
+void fn_71006e75e8(UnkXParasiteAI* self, bool on) {
+    if (UnkXParasiteHolder* holder = ModelHolder(self->owner)) {
         if (holder->shape->field_0x11c)
             *reinterpret_cast<char*>(&holder->shape->field_0x114) = !on;
     }
     if (on) {
-        if (self->state != 4) {
-            if (UnkXParasiteHolder_ovo0307* holder = self->owner->holder) {
-                if (UnkXParasiteShape_ovo0307* shape = holder->shape) {
-                    base::math::CVector4D* first = &Find(self)->first;
+        if (self->field_0x14724 != 4) {
+            if (UnkXParasiteHolder* holder = ModelHolder(self->owner)) {
+                if (UnkXParasiteShape* shape = holder->shape) {
+                    base::math::CVector4D* first = &CurrentBinding(self)->first;
                     fn_71001c2764(shape->slots, 0, 0, first, 1, true);
-                    base::math::CVector4D* second = &Find(self)->second;
+                    base::math::CVector4D* second = &CurrentBinding(self)->second;
                     fn_71001c2764(shape->slots, 0, 1, second, 1, true);
                     base::math::CVector4D zero = {};
                     fn_71001c2764(shape->slots, 0, 2, &zero, 1, true);
@@ -175,5 +103,5 @@ void fn_71006e75e8(UnkXParasiteSelf_8a18* self_, bool on) {
             }
         }
     }
-    fn_71006e8208(reinterpret_cast<UnkXParasiteSelf_8208*>(self), on);
+    fn_71006e8208(self, on);
 }

@@ -9,6 +9,7 @@
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1102.h"
+#include "game/UnkXParasiteAI.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
 
@@ -26,15 +27,6 @@ struct UnkParasiteBehavior_b0282 : base::reflection::UnkReflObject {
     virtual s32 vf_0x18();
 };
 
-struct UnkParasiteBlock_b0282 {
-    f32 v0, v1, v2, v3;
-};
-
-struct UnkParasiteAI_b0282 {
-    u8 unk_0x0[0x14728];
-    UnkParasiteBlock_b0282 block;  // 0x14728
-};
-
 struct UnkParasiteNameData_b0282 {
     base::global::UnkStringData base;
     u8 unk_0xc[0x24];
@@ -42,23 +34,22 @@ struct UnkParasiteNameData_b0282 {
 };
 
 struct UnkXParasiteMode_A3_b75;
-struct UnkXParasiteSelect_9fcc;
-void fn_71006ea584(UnkParasiteAI_b0282* self, void* inner);
+void fn_71006ea584(UnkXParasiteAI* self, void* inner);
 CStrId fn_71007cd398(void* behavior);
 
-void fn_71006ea210(UnkParasiteAI_b0282* self, UnkParasiteBehavior_b0282* behavior) {
+void fn_71006ea210(UnkXParasiteAI* self, UnkParasiteBehavior_b0282* behavior) {
     u64 key;
     alignas(8) u32 kind_value;
-    UnkParasiteBlock_b0282* block = &self->block;
-    fn_71006ea3fc(reinterpret_cast<UnkXParasiteAI*>(self), behavior->flag);
+    UnkXParasiteWeights* weights = &self->weights;
+    fn_71006ea3fc(self, behavior->flag);
     if (behavior->param_0x10 >= 0.0f)
-        block->v1 = behavior->param_0x10;
+        weights->weight_2 = behavior->param_0x10;
     if (behavior->param_0x14 >= 0.0f)
-        block->v0 = behavior->param_0x14;
+        weights->weight_0 = behavior->param_0x14;
     if (behavior->param_0x18 >= 0.0f)
-        block->v3 = behavior->param_0x18;
+        weights->weight_3 = behavior->param_0x18;
     if (behavior->param_0x1c >= 0.0f)
-        block->v2 = behavior->param_0x1c;
+        weights->weight_1 = behavior->param_0x1c;
     s32 kind = behavior->vf_0x18();
     if (kind == 4) {
         u8* cast = fn_710009d50c(behavior->vf_0x0(), fn_71007cc85c()) ? reinterpret_cast<u8*>(behavior) : nullptr;
@@ -76,7 +67,7 @@ void fn_71006ea210(UnkParasiteAI_b0282* self, UnkParasiteBehavior_b0282* behavio
             entity = fn_7100debbc8(manager, &key, &kind_value);
         }
         if (entity)
-            fn_71006ea824(reinterpret_cast<UnkXParasiteSelect_9fcc*>(self), reinterpret_cast<UnkActor*>(entity));
+            fn_71006ea824(self, reinterpret_cast<UnkActor*>(entity));
     }
-    fn_71006e9384(reinterpret_cast<UnkXParasiteAI*>(self), reinterpret_cast<const UnkXParasiteMode_A3_b75*>(&kind));
+    fn_71006e9384(self, reinterpret_cast<const UnkXParasiteMode_A3_b75*>(&kind));
 }
