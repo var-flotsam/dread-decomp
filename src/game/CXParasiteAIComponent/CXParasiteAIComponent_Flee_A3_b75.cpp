@@ -10,6 +10,7 @@
 #include "game/CXParasiteAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU1102.h"
+#include "game/UnkXParasiteAI.h"
 #include "game/UnkTUProperty.h"
 #include "game/behaviortree/CBehavior.h"
 #include "types.h"
@@ -23,13 +24,6 @@ struct UnkTypedValue {
 };
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 // As src/game_s7/fn_71006e1010.cpp declares it.
-
-struct UnkXParasiteAI_A3_b75 {
-    u8 pad_0x0[0x30];
-    UnkActor* owner;  // 0x30
-    u8 pad_0x38[0x1260 - 0x38];
-    CBlackboard blackboard;  // 0x1260
-};
 
 // What fn_71006e9384 is asked to do (only the kind is set here).
 struct UnkXParasiteMode_A3_b75 {
@@ -54,7 +48,7 @@ static inline UnkXParasiteVec_A3_b75 UnkXParasitePos_A3_b75(const UnkActor* a) {
     return {a->field_0x44, a->field_0x54, a->field_0x64};
 }
 
-void fn_71006e892c(UnkXParasiteAI_A3_b75* self) {
+void fn_71006e892c(UnkXParasiteAI* self) {
     {
         UnkXParasiteMode_A3_b75 mode;
         mode.kind = 2;

@@ -51,7 +51,7 @@ static inline void* Inner(UnkXParasiteFound_b0252* p) { return p ? p->field_0x10
 void fn_71006e808c(UnkXParasiteLock_808c* self) {
     if (!self->handle || !self->handle->field_0x10)
         return;
-    UnkXParasiteResult_b0252 found = fn_71006eb7cc(reinterpret_cast<UnkXParasiteAI_b0252*>(self));
+    UnkXParasiteResult_b0252 found = fn_71006eb7cc(reinterpret_cast<UnkXParasiteAI*>(self));
     if (found.ptr && found.ptr->field_0x10 && self->field_0x147b8) {
         fn_7101127c24(Inner(self->handle), self->owner, 0, false, 5, false, nullptr);
         fn_71006eb8cc(reinterpret_cast<base::UnkRefHandle*>(&self->handle), reinterpret_cast<const base::UnkRefHandle*>(&found));
@@ -94,7 +94,7 @@ void fn_71006e9fcc(UnkXParasiteSelect_9fcc* self, UnkActor* target) {
     if (self->targets.handle && self->targets.handle->target)
         return;
     if (!target) {
-        UnkXParasiteResult_b0252 found = fn_71006eb7cc(reinterpret_cast<UnkXParasiteAI_b0252*>(self));
+        UnkXParasiteResult_b0252 found = fn_71006eb7cc(reinterpret_cast<UnkXParasiteAI*>(self));
         if (!found.ptr)
             return;
         target = found.ptr->field_0x10 ? PickActor(static_cast<UnkObj_7101129240*>(found.ptr->field_0x10), true) : nullptr;
@@ -115,7 +115,6 @@ void fn_71006e9fcc(UnkXParasiteSelect_9fcc* self, UnkActor* target) {
 // ---- fn_71006e8a18 ----
 struct UnkStruct_710024fa0c;
 struct UnkXParasiteGrab_xpa;
-struct UnkXParasiteAI_A3_b75;
 struct UnkXParasiteMode_A3_b75;
 
 struct UnkXParasiteSelf_8a18;
@@ -222,7 +221,7 @@ void fn_71006e8a18(UnkXParasiteSelf_8a18* self) {
     } else {
         fn_71006e75e8(self, true);
     }
-    fn_71006e9384(reinterpret_cast<UnkXParasiteAI_A3_b75*>(self), reinterpret_cast<const UnkXParasiteMode_A3_b75*>(&s->field_0x4));
+    fn_71006e9384(reinterpret_cast<UnkXParasiteAI*>(self), reinterpret_cast<const UnkXParasiteMode_A3_b75*>(&s->field_0x4));
     s->field_0x4 = 0x7fffffff;
 }
 

@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
 #include "game/UnkTU1102.h"
+#include "game/UnkXParasiteAI.h"
 #include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
@@ -22,16 +23,7 @@ extern UnkPropertyName g_unk_717270b8c0 __attribute__((visibility("hidden")));  
 
 struct UnkVector3_b55;
 
-struct UnkXParasiteTargetAI_b55 {
-    u8 pad_0x0[0x1260];
-    CBlackboard blackboard;  // 0x1260
-    u8 pad_0x1350[0x133a0];
-    u64 field_0x146f0;
-    u32 field_0x146f8;
-};
-static_assert(__builtin_offsetof(UnkXParasiteTargetAI_b55, field_0x146f0) == 0x146f0, "placeholder layout");
-
-void fn_71006eb628(UnkXParasiteTargetAI_b55* self, UnkVector3_b55* position) {
+void fn_71006eb628(UnkXParasiteAI* self, UnkVector3_b55* position) {
     CBlackboard* blackboard = &self->blackboard;
     bool* locked = &blackboard->field_0xe8;
     self->field_0x146f0 = 0;

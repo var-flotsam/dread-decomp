@@ -152,6 +152,44 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**One struct per object, tried on one class: the X parasite AI component (2026-11-13).** The sampled read
+found 18 of 20 functions describing their object with a struct of their own. This is what it takes to undo
+that for one class, measured, so that "class-first" has a cost next to it.
+
+The object: the component of unit 1102 (reflected as `CXParasiteAIComponent`), about 0x147c0 bytes. Twelve
+hand-written sources touch it and between them define **fifteen structs for it**, most with two to five
+fields and padding between.
+
+*Step 1, done here: the five sources whose views agree.* `CXParasiteAIComponent.cpp`, `..._Flee_A3_b75.cpp`,
+`..._Set_b64a4.cpp`, `..._Target_b55.cpp` and `UnkTU1102/fn_71006eb7cc.cpp` named the same fields with the
+same types (the owner at +0x30, the blackboard at +0x1260, five scalars, the entry table at +0x14740). One
+layout, `UnkXParasiteAI` in `include/game/UnkXParasiteAI.h`, replaces their four private structs and three
+helper structs; the unit header's forward declarations and the two files that cast to the old names follow.
+`tools/baseline.py` over the fifteen sources involved: no output changed. Nine files changed (26 lines in, 81 out) and a 49-line header;
+one "definition that names a type differently" fewer (984 to 983). About forty minutes, most of it reading.
+
+*What is left, and why it is not mechanical.* The other seven sources disagree with that layout or with each
+other, and each disagreement is a fact about the binary someone has to settle:
+
+| Where | What differs |
+|---|---|
+| `+0x30`, the owner | five private structs for the owner actor (`UnkXParasitePreyOwner_b60a4`, `UnkTarget_xpa`, `UnkXParasiteOwner_8a18`, ...), each with the two or three fields its file reads; `UnkActor` is the shared one |
+| `+0x146e0` to `+0x147b9` | flat fields in some files, one nested state block (`UnkXParasiteState_8a18`, passed around by pointer) in others, a block starting at `+0x146d0` in one |
+| `+0x146e8` | `bool` in two files, `u8` in one |
+| `+0x14724` | `u32` in two files, `s32` in two |
+| `+0x14790` / `+0x14798` | a link pointer under three pointee types, and `UnkWeakHandle*` in one |
+| `+0x14728` | four floats as a block in one file; padding everywhere else |
+
+The signedness and `bool`/`u8` cases change what the compiler emits, so each has to be tried against the
+match; the nested-or-flat question does not, but touches every expression that uses the fields. Two of the
+seven (`UnkTU1102_Parasite_ovb0252.cpp` and `UnkTU1102_Pick_ovo0307.cpp`) carry eight structs that are
+identical in both, 52 lines each: those can be shared at once.
+
+So for this class: one third of the files in forty minutes with no risk, and an estimated two to four hours
+for the rest. A worker that writes the thirteenth function of this class today still invents a sixteenth
+struct, which is the argument for giving a batch one class and its header rather than fifty unrelated
+functions.
+
 **`fakematch.py --unset`: the scan for reads of an unset variable, as a tool (2026-11-13).** The one-off scan
 of the entry below is `python tools/fakematch.py --unset [PATH...]`: the project compiler's own
 `-Wuninitialized` and `-Wsometimes-uninitialized`, syntax only, a minute for the tree, no dump needed. Today:

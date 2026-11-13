@@ -9,14 +9,13 @@
 
 struct UnkActor;
 struct UnkXParasiteSelect_9fcc;
-struct UnkXParasiteAI_A3_b75;
-struct UnkXParasiteAI_b64a4;
+struct UnkXParasiteAI;
 struct UnkXParasiteGrab_xpa;
 struct UnkXParasiteMode_A3_b75;
-void fn_71006e9384(UnkXParasiteAI_A3_b75* self, const UnkXParasiteMode_A3_b75* mode);
+void fn_71006e9384(UnkXParasiteAI* self, const UnkXParasiteMode_A3_b75* mode);
 void* fn_71006eb114(void* owner);  // refl_FindTyped of "SMARTOBJECT".
 void fn_71006e892c(UnkXParasiteGrab_xpa* self);
-void fn_71006ea3fc(UnkXParasiteAI_b64a4* self, bool flag);
+void fn_71006ea3fc(UnkXParasiteAI* self, bool flag);
 void* fn_71006eb1f0(void* h);
 void fn_71006ea824(UnkXParasiteSelect_9fcc* self, UnkActor* target);
 extern base::global::CStrId g_unk_717270b8e0 __attribute__((visibility("hidden")));

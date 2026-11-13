@@ -41,8 +41,6 @@ struct UnkParasiteNameData_b0282 {
     u64 hash;  // 0x30
 };
 
-struct UnkXParasiteAI_b64a4;
-struct UnkXParasiteAI_A3_b75;
 struct UnkXParasiteMode_A3_b75;
 struct UnkXParasiteSelect_9fcc;
 void fn_71006ea584(UnkParasiteAI_b0282* self, void* inner);
@@ -52,7 +50,7 @@ void fn_71006ea210(UnkParasiteAI_b0282* self, UnkParasiteBehavior_b0282* behavio
     u64 key;
     alignas(8) u32 kind_value;
     UnkParasiteBlock_b0282* block = &self->block;
-    fn_71006ea3fc(reinterpret_cast<UnkXParasiteAI_b64a4*>(self), behavior->flag);
+    fn_71006ea3fc(reinterpret_cast<UnkXParasiteAI*>(self), behavior->flag);
     if (behavior->param_0x10 >= 0.0f)
         block->v1 = behavior->param_0x10;
     if (behavior->param_0x14 >= 0.0f)
@@ -80,5 +78,5 @@ void fn_71006ea210(UnkParasiteAI_b0282* self, UnkParasiteBehavior_b0282* behavio
         if (entity)
             fn_71006ea824(reinterpret_cast<UnkXParasiteSelect_9fcc*>(self), reinterpret_cast<UnkActor*>(entity));
     }
-    fn_71006e9384(reinterpret_cast<UnkXParasiteAI_A3_b75*>(self), reinterpret_cast<const UnkXParasiteMode_A3_b75*>(&kind));
+    fn_71006e9384(reinterpret_cast<UnkXParasiteAI*>(self), reinterpret_cast<const UnkXParasiteMode_A3_b75*>(&kind));
 }
