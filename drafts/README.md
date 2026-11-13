@@ -55,8 +55,8 @@ a strong sign of equivalence but not proof of it: an inconsistent register swap 
 these still need the machine test before they count (`python tools/equiv_test.py --version 2.1.0 --drafts`;
 on 2026-11-12 it passed 17 of the 115 registers-only drafts, failed 1 and could not judge 97). Nine of those 17
 are in `src/` since that day; the notes of the rows that are left say what holds each one back. The permuter
-spike of the same day made 13 registers-only drafts match where they are (rows marked `match`). Three of the
-14 matching drafts went to `src/` with `tools/drafts.py promote` that evening; the 11 left each say in their
+spike of the same day made 13 registers-only drafts match where they are (rows marked `match`). Four of the
+14 matching drafts have gone to `src/` with `tools/drafts.py promote` since; the 10 left each say in their
 note which declaration holds them. That script is `tools/permute.py` now (`--drafts` tries the registers-only rows).
 
 ## Rules

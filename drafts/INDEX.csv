@@ -85,7 +85,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71005c042c,388,drafts/game/UnkTU883/fn_71005c042c.cpp,operations,95.9,4,overnight,
 0x71005c3160,372,drafts/game/UnkTU883/fn_71005c3160.cpp,registers or order,92.5,7,overnight,
 0x7100686860,256,drafts/game/CScorpiusAttack/fn_7100686860.cpp,control flow,56.1,27,lean,
-0x71006eb7cc,256,drafts/game/UnkTU1102/fn_71006eb7cc.cpp,match,100.0,0,overnight,matches; held: 1 declaration problem: src/game/UnkTU1102/fn_71006eb7cc.cpp:48 fn_71006eb7cc: defined as UnkXParasiteResult_b0252 fn_71006eb7cc(UnkXParasiteFind_b0252*) -> declared elsewhere with other types; use ...
 0x71006f4b0c,592,drafts/game/CAINavigationComponent/fn_71006f4b0c.cpp,control flow,34.2,96,pilot50,control flow: state-switch search/found merging; branch order
 0x71006f8944,432,drafts/game/UnkTU1115/fn_71006f8944.cpp,operations,99.1,1,overnight,
 0x71006fda48,348,drafts/game/UnkTU1118/fn_71006fda48.cpp,conditions,93.1,6,overnight,
