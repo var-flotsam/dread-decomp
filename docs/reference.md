@@ -24,6 +24,7 @@ tools/dashboard_export.py        status, history, areas, workstreams, lifts, boo
 tools/status_card.py             README's status card (docs/status.svg) from tracked files; --write, --check, --summary (PR job summary)
 tools/callgraph.py, hubs.py      direct-call graph (Ghidra export); hubs by unmatched callers, --ready, --callers
 tools/decl_check.py              fn_/g_unk_ declarations in several files or with conflicting signatures; --base enforces
+tools/struct_check.py            struct/class/union names defined in several files, same text or different; --list, --name, --base
 tools/equiv_test.py              tier 2: runs a registers-only non-match beside the original; verdicts in data/equivalence.csv
 tools/ref_check.py               wrong addresses in non-matching functions: what each calls and refers to, against the original
 tools/permute.py                 cheap permuter: reorders a registers-only near-match's source until it matches; --write

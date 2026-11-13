@@ -359,6 +359,18 @@ python tools/decl_check.py --definition-types     # every definition whose types
 python tools/decl_check.py --base origin/main     # the same counts for the tree at <ref>; exit 1 if the
 ```
 
+### `tools/struct_check.py`
+
+One struct per object: the struct, class and union names the hand-written files define more than once.
+
+```sh
+python tools/struct_check.py                      # the counts
+python tools/struct_check.py --list [--kind same|other|code]   # every name, most files first
+python tools/struct_check.py --name NAME          # each definition of one name, with its file and line
+python tools/struct_check.py --base origin/main   # exit 1 when a name gained a differing definition, or a
+python tools/struct_check.py PATH...              # only names with a definition under these paths
+```
+
 ### `tools/name_check.py`
 
 Does every name that is not an address stand for one address of the original?

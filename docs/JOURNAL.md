@@ -152,6 +152,34 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**`tools/struct_check.py`: a count for "one struct per object" (2026-11-13).** Declarations have had a count
+and a ratchet since `decl_check.py`; types had neither, and the entry below shows what that let grow in one
+class. The new tool reads every hand-written file and counts the struct, class and union names (with their
+namespace) that more than one file defines, two seconds for the tree:
+
+| | Names |
+|---|---|
+| Type names defined | 16,656 |
+| Defined in more than one file | 1,049 (2,784 definitions beyond the first) |
+| ... with the same text in every file: copies one header could hold | 527 (978 extra definitions) |
+| ... with different texts: each file's partial view of one object, or two things sharing a name | 522 |
+| ... of those, with a function body in a definition | 229 |
+
+The top of the second kind is generic names used as a file's private scratch type: `UnkSelf` (88 files, 73
+different bodies), `UnkNode` (66 and 48), `UnkRecord` (57 and 47), `UnkComponent`, `UnkRef`, `UnkEntry`. This
+counts one side of the problem only. The other side, one object under many names (the X parasite component's
+fifteen), no text tool sees; that takes the layouts, which is a later step.
+
+The last row could matter to the port: two definitions of `UnkSelf::UnkSelf()` are one symbol to a linker,
+which keeps one. Measured rather than assumed: the x86-64 sweep's 5,639 objects of hand-written sources hold
+618 weak symbols, 87 of them in more than one object and none with two sizes, because everything of the kind
+is inlined today. It is a hazard of an unoptimised build, not a bug in the current one.
+
+`python tools/struct_check.py --list [--kind same|other|code]`, `--name NAME` (each definition with its file
+and line), `--base origin/main` (exit 1 when a name gained a differing definition; not in CI, and in the
+batch procedure's gates as of this change). The 527 identical ones are the mechanical work: 978 definitions
+that can move to headers without a decision.
+
 **One struct per object, tried on one class: the X parasite AI component (2026-11-13).** The sampled read
 found 18 of 20 functions describing their object with a struct of their own. This is what it takes to undo
 that for one class, measured, so that "class-first" has a cost next to it.
