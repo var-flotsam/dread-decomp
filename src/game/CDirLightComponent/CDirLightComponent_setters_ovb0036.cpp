@@ -67,8 +67,6 @@ UnkReflValue fn_71008ebc44(void*, char* obj, UnkReflValue* const* args) {
 
 struct UnkMat4f;
 
-UnkVec3f fn_7100078170(const UnkMat4f* m, const UnkVec3f* v);
-
 // Whether `a` is within 0.001 of `b`.
 static inline __attribute__((always_inline)) bool Near_ovb0036(f32 a, f32 b) {
     return a - 0.001f <= b && a + 0.001f >= b;

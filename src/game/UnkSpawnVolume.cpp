@@ -8,6 +8,7 @@
 
 #include <algorithm>
 
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -16,7 +17,6 @@ struct UnkMat4f {
     f32 m[4][4];
 };
 // The point `v` transformed by the matrix.
-UnkVec3f fn_7100078170(const UnkMat4f* m, const UnkVec3f* v);
 
 struct UnkSpawnVolume {
     u8 unk_0x0[0x1c];

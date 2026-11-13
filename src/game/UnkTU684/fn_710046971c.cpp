@@ -1,12 +1,16 @@
+// Unit 684 (tools/tu_map.py; hint CChozoRobotSoldierDisruptionFieldAttack): the attack's start test. It fails
+// when fn_7100df5740 of the game manager says no, or when the owner's target (fn_7100d7c990) is farther away
+// than the tunable radius at g_unk_71726cb3f8 + 0x2c; otherwise the base attack's test (fn_7100360b84) decides.
+// Names and layouts are placeholders.
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
+#include "game/UnkTU2553.h"
 
 using base::reflection::UnkTunable;
 
-bool fn_7100df5740(UnkGameManager*);
 extern UnkTunable g_unk_71726cb3f8;
 
 struct UnkPos_b0236f {
@@ -17,6 +21,7 @@ static inline UnkPos_b0236f Pos(const UnkActor* a) {
     return {a->field_0x44, a->field_0x54, a->field_0x64};
 }
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 bool fn_710046971c(CAttack* self, void* arg, u32 mode) {
     if (!fn_7100df5740(g_unk_7101d47310))
         return false;

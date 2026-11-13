@@ -152,6 +152,48 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**The machine test reaches more: systematic inputs (2026-11-13).** Most registers-only functions the tier-2
+test could not judge were a few instructions short: of 220 "cannot be judged", 126 were "only N% of the
+instructions ran" and 42 "a branch went one way", and 57 of those were one instruction or one branch away.
+Looking at which instructions (a reading aid, `build/cov_diag.py` in the review's notes) showed three shapes:
+
+- a null argument (`cbz x0`): the oracle's seeds give every pointer argument an object;
+- a count that reaches zero (`if (--p->refs == 0) Release(p)`): needs the word to hold exactly 1;
+- `if (p == g_empty)`: two things the function loaded, compared with each other.
+
+The oracle does try such values, but past its first seeds its search is a random walk: one input and one
+value per try, a few dozen tries, and a run is kept only for a new instruction, never for a branch outcome
+alone. `tools/equiv_test.py` now adds a systematic pass of its own (`more_inputs`): from each of the first
+runs, every argument, each of the first memory words read and each of the first call results is set in turn
+to 0, 1, 2, the function's comparison constants and their neighbours, and all bits set; a memory word also
+takes what the run's other words held; a run is kept for a new instruction or a new outcome of one of the
+function's own branches. `tools/port_lift.py`, whose oracle the lifts were accepted with, is not changed.
+
+| Registers-only functions | Before | With the systematic inputs |
+|---|---|---|
+| `m` functions of `src/` that pass | 29 | 43 (the 14 gained: 3,908 bytes) |
+| ... that fail | 1 | 1 (the same one) |
+| ... that cannot be judged | 107 | 93 |
+| Drafts that pass | 5 | 14 |
+
+No function that passed before stopped passing. More inputs can only add comparisons, and that was checked
+rather than assumed: the calibration of 2026-11-11 was repeated on 94 registers-only one-point mutants of
+matching functions. Without the new inputs 64 are rejected, none accepted, 30 cannot be judged; with them 66
+are rejected, none accepted, 28 cannot be judged.
+
+What followed from it the same day:
+
+- 14 more `m` functions of `src/` are verified equivalent (rows in `data/equivalence.csv`).
+- Three drafts moved to `src/` as tier 2: `fn_710046971c`, `fn_710087f018`, `fn_7100f06034`. The declaration
+  step moved `fn_7100078170` (six copies) to `include/game/UnkTU54.h`; `CExplosionGfx.cpp`, which had its own
+  `UnkVec3f` beside it, takes the shared one and still matches.
+- Two passing drafts moved and came back (they declare a global no unit header can take), and eight more
+  pass and stay held; each row of `drafts/INDEX.csv` says which declaration holds it.
+
+Done: 66.93% to 66.95% of code; 45 of 455 `m` functions verified (10,264 bytes; 28 and 5,692 bytes before).
+What still cannot be judged is mostly deeper than one value: a path that needs two inputs set together, or a
+loop over a structure the inputs do not build. The runs here used 10 seconds a function.
+
 **The X parasite component, step 2: the eight types two sources both wrote out (2026-11-13).**
 `UnkTU1102_Parasite_ovb0252.cpp` and `UnkTU1102_Pick_ovo0307.cpp` each defined the component's state block at
 +0x146e0 and the objects it links to (the grabbed object, its listener, its partner), eight structs, the same

@@ -27,6 +27,14 @@ not be judged), and of 95 registers-only one-point mutants in 59 functions none 
 accepted, which bounds the miss rate near 3%, not at zero. A pass is evidence, not a proof; a permuter is
 what turns it into a match.
 
+Inputs: the oracle's (seeds, then a random walk kept for new instructions), and since 2026-11-13 a systematic
+pass of this tool's own (more_inputs): each argument, each of the first memory words read and each of the
+first call results, set to 0, 1, 2, the function's comparison constants and their neighbours, all bits set,
+and for a memory word what the run's other words held. It reaches the null-argument path, the count that
+hits zero and the `p == g_empty` branch, which is what full coverage most often lacked. Calibrated the same
+day on 94 registers-only mutants: 64 rejected and none accepted without it, 66 rejected and none accepted
+with it.
+
 Needs the dump, the Ghidra-derived caches of the port oracle (build/port/abi_facts_v*.pickle and
 pcode_cache.pickle; tools/worktree_setup.py --oracle copies them into a worktree) and, for names other than
 fn_<addr>, build/port/addresses.json (tools/port_addresses.py). New instruction words go through
@@ -320,6 +328,94 @@ def strict_same_arg(u, v, frame=None):
 _LOOSE = None
 
 
+MORE_INPUTS = True       # (a test, or a comparison with the oracle's inputs alone, turns it off)
+SYSTEMATIC = (0, 1, 2)   # the values the systematic inputs set each thing to
+SYS_FLOATS = (0.0, 1.0, -1.0)
+SYS_WORDS = 16           # of the memory words a run read, the first
+SYS_CALLS = 8            # of the calls a run made, the first
+SYS_READ = 32            # of the words a run read, the first: their values, for the other words
+SYS_FRONTIER = 4         # runs each round starts from
+SYS_ROUNDS = 2
+
+
+def more_inputs(oracle, a: int) -> int:
+    """Systematic inputs on top of the oracle's; returns how many runs were added to its list for `a`.
+
+    Past its first seeds the oracle's search is a random walk (one input and one value per try, a few dozen
+    tries) that keeps a run only for a new instruction. That misses what full coverage most often lacks: the
+    null argument (`cbz x0`), the count that reaches zero, the branch whose two sides are both reached by
+    other paths. So from each of the first runs kept, every argument register, each of the first memory
+    words the run read and each of its first calls' results is set in turn to 0, 1, 2, the constants the
+    function compares with and their neighbours, and all bits set, and a run is kept
+    when it reaches an instruction or a branch outcome of this function that no run before it did. A second
+    round starts from the runs the first one added. More inputs can only add comparisons: a function that
+    differs on one of them fails where it was inconclusive before."""
+    import pcode_emu
+    import port_lift
+    runs = oracle.originals(a)
+    size = oracle.orig.sizes[a]
+    own = set(conditional_branches(oracle.orig.function(a), a))
+    seen: set = set()
+    outs: set = set()
+
+    def taken(m) -> set:
+        return {o for o in m.outcomes if o[0] in own}
+    for _, _, m in runs:
+        if not isinstance(m, str):
+            seen |= m.visited
+            outs |= taken(m)
+
+    def done() -> bool:
+        return len(seen) * 4 >= size and not one_way(sorted(own), outs)
+    f = oracle.af.facts(a)
+    regs = sorted((f.args if f is not None else frozenset(range(8))) - {8})
+    guard_words = {g & ~7 for g in oracle.preset_orig}
+    img = oracle.orig.img
+
+    def mutable(w: int) -> bool:  # as port_lift.Oracle.originals: not a guard, a relocated slot or read-only data
+        off = w - pcode_emu.BASE
+        return w not in guard_words and img.relocs.get(off) is None and not img.in_text(off) \
+            and not img.rodata[0] <= off < img.rodata[1]
+    floats = [pcode_emu.f_to(v, 4) for v in SYS_FLOATS]
+    # with the constants the function compares with and their neighbours, and all bits set (a sentinel)
+    consts = port_lift.compare_constants(oracle.orig.function(a))
+    ints = list(dict.fromkeys([*SYSTEMATIC, *consts, *[c + 1 for c in consts], *[c - 1 for c in consts if c],
+                               0xFFFFFFFF, 0xFFFFFFFFFFFFFFFF]))
+    added = 0
+    frontier = [r for r in runs if not isinstance(r[2], str)][:SYS_FRONTIER]
+    for _ in range(SYS_ROUNDS):
+        found = []
+        for seed, ovr, base in frontier:
+            keys = [("r", k) for k in regs] \
+                + [("m", w) for w in [w for w in base.read_words if mutable(w)][:SYS_WORDS]] \
+                + [("c", n) for n in range(1, min(base.calls, SYS_CALLS) + 1)]
+            # a memory word also takes what the run's other words held: `if (p == g_empty)` compares two things
+            # the function loaded, and only one of them is the input's to choose
+            read = [v for v in dict.fromkeys(port_lift.held(base, w) for w in base.read_words[:SYS_READ]) if v > 2]
+            for key in keys:
+                if key in ovr:
+                    continue
+                pool = floats if key[0] == "r" and key[1] >= 100 else ints + read if key[0] == "m" else ints
+                for v in pool:
+                    if done() or oracle.out_of_time("systematic inputs"):
+                        return added
+                    o = {**ovr, key: port_lift.placed(base, key[1], v) if key[0] == "m" else v}
+                    try:
+                        m = oracle.run_original(a, seed, o)
+                    except pcode_emu.Inconclusive:
+                        continue
+                    if m.visited - seen or taken(m) - outs:
+                        runs.append((seed, o, m))
+                        found.append((seed, o, m))
+                        seen |= m.visited
+                        outs |= taken(m)
+                        added += 1
+        frontier = found[:SYS_FRONTIER]
+        if not frontier:
+            break
+    return added
+
+
 def judge(ctx: Context, oracle, obj: Path, a: int, text: str, budget: float = 60.0) -> tuple[str, str]:
     """(verdict, detail) for the function at `a` of `obj` under the strict rules. The caller has checked
     that the difference is registers only."""
@@ -343,6 +439,8 @@ def judge(ctx: Context, oracle, obj: Path, a: int, text: str, budget: float = 60
             return "inconclusive", "no definition of the function found in the source: its result type is not known"
         ret = result_kind(rtype, ctx.af.result_shape(a))
         try:
+            if MORE_INPUTS:
+                more_inputs(oracle, a)
             v, d, _, covered = oracle.check(a, lo, ret)
             outcomes: set = set()
             for _, _, mo in oracle.orig_runs.get(a, ()):

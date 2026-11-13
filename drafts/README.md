@@ -57,7 +57,8 @@ on 2026-11-12 it passed 17 of the 115 registers-only drafts, failed 1 and could 
 are in `src/` since that day; the notes of the rows that are left say what holds each one back. The permuter
 spike of the same day made 13 registers-only drafts match where they are (rows marked `match`). Five of the
 14 matching drafts have gone to `src/` with `tools/drafts.py promote` since, and one turned out not to be a match
-(its note says why); the 8 left each say in their note which declaration holds them. That script is `tools/permute.py` now (`--drafts` tries the registers-only rows).
+(its note says why); the 8 left each say in their note which declaration holds them. Since the machine test's
+systematic inputs (2026-11-13) fourteen registers-only drafts pass it: three went to `src/`, eleven are held. That script is `tools/permute.py` now (`--drafts` tries the registers-only rows).
 
 ## Rules
 
