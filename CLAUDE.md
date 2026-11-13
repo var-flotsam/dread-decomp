@@ -102,6 +102,7 @@ python tools/tu_map.py --function <addr|name>          # the unit a function bel
 python tools/data_map.py --address <addr>              # the unit a global belongs to
 python tools/gen_fields.py --class <Class>             # a reflected class's members by offset, bases included
 python tools/decl_check.py --strict --base origin/main # one declaration per shared symbol (CI)
+python tools/struct_check.py --base origin/main        # no type name with a second, different definition (CI)
 python tools/fakematch.py --base origin/main [--list]  # fake-match forms a branch adds; review before a PR
 python tools/equiv_test.py --version <ver> <file.cpp> [--write]   # tier 2: is a registers-only non-match equivalent?
 python tools/ref_check.py --version <ver> [<file.cpp>]  # wrong callees and globals in functions that do not match
@@ -186,9 +187,12 @@ Toolchain:
   why it is harmless; `tools/check.py` fails one that does not (`REFS` lines, `tools/ref_check.py`; owner,
   2026-11-12).
 - Matching standard: aim for `O` on every function, but time-box each one to about 30-60
-  minutes. If it still differs, keep the closest version and annotate it with
-  `NON_MATCHING(minor)` (same behaviour; usable by the port) or `NON_MATCHING(major)`, with the
-  remaining difference spelled out. Exception: reflection boilerplate (`refl_GetClass`,
+  minutes. If it still differs: a registers-only difference gets the free try (`tools/permute.py`) and
+  the machine test (`tools/equiv_test.py`), and stays in `src/` as `NON_MATCHING(minor)` when it passes.
+  Anything else that is new goes to `drafts/` (`tools/drafts.py add`), not to `src/`, unless the port needs
+  the function: then keep the closest version annotated `NON_MATCHING(minor)` (same behaviour) or
+  `NON_MATCHING(major)`, with the remaining difference spelled out (owner, 2026-11-13; the non-matching
+  functions already in `src/` stay). Exception: reflection boilerplate (`refl_GetClass`,
   `refl_InitClass`) must reach `O`, through a shared template or macro.
 - Build and check: `python tools/check.py --version <ver>` (Clang 9.0.1 with the flags in
   `tools/buildcfg.py`, see `docs/compiler.md`). It must pass before committing `src/` changes: no
@@ -202,13 +206,23 @@ Toolchain:
   A barrier, an offset cast, `volatile` or an empty `if` usually stands for a missing helper, a wrong
   field type or two variables merged into one: look for that first. `tools/fakematch.py` lists them, and its
   `--unneeded-barriers` finds the barriers that change no function's code when taken out.
+- **No unset values (owner, 2026-11-13).** A local that is never set is not read: not passed to a callee,
+  not returned. Such a text has no behaviour of its own, so the compiler may make anything of it, the
+  original's bytes included, and its match proves nothing. What the original does at those places has an
+  honest form. A register it leaves unloaded at a call is an argument that carries nothing: the parameter
+  is `UnkNoArg` (`include/base/UnkNoArg.h`, an empty class by value) and the call passes `UnkNoArg()`.
+  A parameter the callee does not have comes out of its declaration. A variable the original program
+  itself leaves unset on a path (an out-parameter's local written on one branch only) stays, with a
+  comment at its declaration saying so. `python tools/fakematch.py --unset` lists every read.
 - Inferred-role names use a `refl_` prefix (e.g. `CActor::refl_GetClass`) or `vf_<slot>` for
   vtable slots. These are not Mercury's real method names.
 - **One declaration per shared symbol.** A function or global used by more than one file is declared
   once, in a header under `include/`, with one signature; a `.cpp` declares only what it alone uses.
   `python tools/decl_check.py --strict --base origin/main` must pass (CI runs it; since 2026-11-12 one more
   identical local copy fails too, and so does a definition whose types are newly not its declaration's:
-  declare a callee with the types its definition has); `--symbol <name>` shows every copy. Migrating a hub to its header: `tools/hub_migrate.py` does the mechanical part and lists the
+  declare a callee with the types its definition has); `--symbol <name>` shows every copy. Types have
+  the same ratchet since 2026-11-13: a struct, class or union name does not gain a second, different
+  definition in another file (`python tools/struct_check.py --base origin/main`, CI). Migrating a hub to its header: `tools/hub_migrate.py` does the mechanical part and lists the
   files it leaves; the hand recipe is `CONTRIBUTING.md`, "Migrating a hub", verified with
   `tools/baseline.py` (procedure for a batch: `.claude/skills/dread-hubs`).
 - **Files by unit.** New hand-written sources go under `src/<subsystem>/`, named for the class or

@@ -3,6 +3,7 @@
 // vector reallocations of the reference lists; the cutscene-seen count read from the blackboard
 // sections; and the unit's static initialiser. Names and layouts are placeholders.
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
+#include "base/UnkNoArg.h"
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
@@ -209,13 +210,12 @@ void fn_710119a50c(UnkIdHolder_b0188* self) {
     ClearSection(self);
 }
 
-void fn_7101198e88(UnkIdHolder_b0188* self, bool a, bool b, bool c, bool d);
+void fn_7101198e88(UnkNoArg, bool a, bool b, bool c, bool d);
 
 void fn_71011990e8(UnkIdHolder_b0188* self) {
     ClearSection(self);
-    // The callee's first argument is not set here; whatever x0 holds goes through.
-    UnkIdHolder_b0188* unset;
-    fn_7101198e88(unset, true, true, false, false);
+    // The callee's first argument carries nothing: it does not read x0, and the original does not set it.
+    fn_7101198e88(UnkNoArg(), true, true, false, false);
 }
 
 using base::global::CFilePathStrId;

@@ -9,6 +9,7 @@
 #include "base/UnkDeferredSet.h"
 #include "base/UnkHashMap.h"
 #include "base/UnkNamedRegistry.h"
+#include "base/UnkNoArg.h"
 #include "base/UnkVector.h"
 #include "base/file/CPackManagerDevice.h"
 #include "base/file/UnkFileDevice.h"
@@ -127,11 +128,11 @@ struct UnkTgmStart_b205 {
 void fn_7100df2acc(UnkGameManager* manager) {
     UnkTgmStart_b205* self = reinterpret_cast<UnkTgmStart_b205*>(manager);
     fn_7100df2b68(self);
-    u64 unset;  // the original leaves this argument register as it was
+    // (the fifth argument carries nothing here: the original leaves x4 as it was)
     auto start = reinterpret_cast<void (*)(UnkGameManager*, const CRntString&, const CRntString&,
-                                           const CRntString&, u64, u32, const CRntString&, const CStrId&, u32,
+                                           const CRntString&, UnkNoArg, u32, const CRntString&, const CStrId&, u32,
                                            void*, f32)>(fn_7100df28d0);
-    start(manager, self->field_0x2a28, self->field_0x2a58, self->field_0x2a88, unset, self->field_0x2ae4,
+    start(manager, self->field_0x2a28, self->field_0x2a58, self->field_0x2a88, UnkNoArg(), self->field_0x2ae4,
           CRntString(g_unk_710162e2ed), g_unk_7101d470e0, 0,
           nullptr, 0.0f);
 }

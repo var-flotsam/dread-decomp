@@ -70,9 +70,7 @@ void fn_710059e384(UnkGooshockerAI2_ovb0125* self, f32 dt) {
             if (sound && sound->field_0x118)
                 fn_7100105a80(sound, 0.2f, 0.0f);
             if (self->field_0x147f8 <= 0 && !self->field_0x148e8) {
-                // fn_710059aa2c reads only its first argument; the second is left as it is.
-                UnkGooplotOwner_b55* unused;
-                fn_710059aa2c(reinterpret_cast<UnkGooplotAI_b55*>(self), unused);
+                fn_710059aa2c(reinterpret_cast<UnkGooplotAI_b55*>(self));
             }
         }
     }

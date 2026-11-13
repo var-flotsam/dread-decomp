@@ -6,6 +6,7 @@
 
 #include "base/UnkAtExit.h"
 #include "base/UnkCloneRecords.h"
+#include "base/UnkNoArg.h"
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
@@ -250,10 +251,9 @@ struct UnkKeyOwner_b0200 {
 struct UnkRecord;
 struct UnkRecordBuckets;
 UnkKeyIter_b0200 fn_7100eb39f0(UnkKeyBuckets_b0200* buckets, const CStrId* key);
-void fn_7100e94608(UnkKeyOwner_b0200* self, u32 unused, void* arg, void* value);
+void fn_7100e94608(UnkKeyOwner_b0200* self, UnkNoArg, void* arg, void* value);
 
 void* fn_7100e944bc(UnkKeyOwner_b0200* self, const CStrId* key, void* arg) {
-    u32 unused;
     UnkKeyBuckets_b0200* buckets = &self->records;
     UnkKeyRecord_b0200* node = nullptr;
     if (buckets->count) {
@@ -271,7 +271,7 @@ void* fn_7100e944bc(UnkKeyOwner_b0200* self, const CStrId* key, void* arg) {
     if (!node) {
         node = fn_7100eb39f0(buckets, key).node;
         self->keys.PushBack(*key);
-        fn_7100e94608(self, unused, arg, node->value);
+        fn_7100e94608(self, UnkNoArg(), arg, node->value);
     }
     return node->value;
 }

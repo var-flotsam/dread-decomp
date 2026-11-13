@@ -78,9 +78,10 @@ What the last `KIND` line says decides where the function goes.
      `python tools/equiv_test.py --version 2.1.0 <file.cpp> --write`. A `pass` makes it *verified equivalent*:
      it stays in `src/` and counts as done (the row in `data/equivalence.csv` is the proof; `check.py` fails
      it when the code changes).
-2. **Anything else, or no `pass`:** it does not count. Keep it in `src/` as `NON_MATCHING(minor)` only if you
-   are sure the behaviour is identical, or as `NON_MATCHING(major)` with the difference spelled out, when the
-   port needs the function. Otherwise it is a draft:
+2. **Anything else, or no `pass`:** it does not count, and it is a draft, not a source of `src/` (owner,
+   2026-11-13). The one exception is a function the port needs: keep that in `src/` as `NON_MATCHING(minor)`
+   if you are sure the behaviour is identical, or as `NON_MATCHING(major)` with the difference spelled out.
+   A draft:
    `python tools/drafts.py --version 2.1.0 add <file.cpp> <addr> --from <topic> --note "<what differs>" --remove`
    files it under `drafts/` with a graded row, where nothing builds it and the work is not lost.
 3. A `NON_MATCHING(minor)` function that calls or refers to something the original does not (or lacks

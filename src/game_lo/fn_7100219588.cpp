@@ -28,6 +28,8 @@ void fn_7100150d30(void* camera, UnkStruct_7100219588_Xform* xform, const void* 
 f32 fn_71001d08f4(void* obj);
 
 bool fn_7100219588(UnkRenderManager* self, const void* pos, u32 a, u32 b) {
+    // Only written when the view exists. The original reads their stack slots either way, so this does too:
+    // an unset value the original program itself has, not one put here to steer the compiler.
     s32 x;
     s32 y;
     if (self->field_0x268) {

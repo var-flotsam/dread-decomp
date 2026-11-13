@@ -56,7 +56,7 @@ struct UnkGooplotAI_A3_b68 {
     UnkGooplotMode_A3_b68* field_0x147f0;
 };
 
-void fn_710059aa2c(UnkGooplotAI_A3_b68* self, void*) {
+void fn_710059aa2c(UnkGooplotAI_A3_b68* self) {
     if (self->field_0x147f0->field_0x6f0 <= 1) {
         if (char* p = fn_71004dad10(reinterpret_cast<UnkActor*>(self->owner)))
             p[0x168] = 1;

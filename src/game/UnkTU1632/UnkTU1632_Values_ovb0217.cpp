@@ -10,6 +10,7 @@
 #include "base/UnkAtExit.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkErasedVector.h"
+#include "base/UnkNoArg.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntStringAssign.h"
 #include "base/global/CStrId.h"
@@ -35,7 +36,6 @@ extern const char g_unk_710164b8a8[];
 extern const char g_unk_710164b8a9[];
 
 // The object these helpers are members of; none of them reads it.
-struct UnkPathList_b0217;
 
 // ---- comparing two lists of typed values ----
 
@@ -149,7 +149,7 @@ union UnkStrIdSlot_b0217 {
 };
 
 // The value a piece of text stands for: "[number]" is an unsigned, anything else a string id.
-__attribute__((noinline)) UnkReturnedValue_b0217 fn_7100ad32d0(UnkPathList_b0217* list, const CRntString* text) {
+__attribute__((noinline)) UnkReturnedValue_b0217 fn_7100ad32d0(UnkNoArg, const CRntString* text) {
     const char* data = text->data;
     if (data[0] == '[' && data[(s32)(text->length - 1)] == ']') {
         u32 number = strtol(data + 1, nullptr, 10);
@@ -168,8 +168,7 @@ struct UnkPieceText_b0217 : UnkString100 {
 };
 
 static inline UnkReturnedValue_b0217 Parse(const UnkPieceText_b0217& piece) {
-    UnkPathList_b0217* unused;
-    return fn_7100ad32d0(unused, piece.Str());
+    return fn_7100ad32d0(UnkNoArg(), piece.Str());
 }
 static inline void Push(UnkErasedVector* self, UnkReturnedValue_b0217&& value) {
     fn_7100ad386c(self, reinterpret_cast<UnkErasedValue_0x10*>(&value));
@@ -226,7 +225,7 @@ struct UnkStringOut_b0217 {
 };
 
 // A value as text; an unsigned one in brackets.
-__attribute__((noinline)) UnkStringOut_b0217 fn_7100ad370c(UnkPathList_b0217* list, UnkPathValue_b0217* value) {
+__attribute__((noinline)) UnkStringOut_b0217 fn_7100ad370c(UnkNoArg, UnkPathValue_b0217* value) {
     UnkStringOut_b0217 out;
     CRntString& result = out.str;
     if (value->type == fn_7100005178()) {
@@ -259,11 +258,10 @@ UnkStringOut_b0217 fn_7100ad3614(void* source) {
         return out;
     }
     UnkPathValue_b0217* it = values->data;
-    // fn_7100ad370c ignores its first argument; the original leaves that register as it was.
-    UnkPathList_b0217* unused;
-    UnkStringOut_b0217 joined_text = fn_7100ad370c(unused, it);
+    // fn_7100ad370c's first argument carries nothing: the original leaves that register as it was.
+    UnkStringOut_b0217 joined_text = fn_7100ad370c(UnkNoArg(), it);
     for (++it; it != values->data + values->count; ++it) {
-        Append(joined_text.str, Concat(CRntString(g_unk_710164b8a9), fn_7100ad370c(unused, it)));
+        Append(joined_text.str, Concat(CRntString(g_unk_710164b8a9), fn_7100ad370c(UnkNoArg(), it)));
     }
     new (&out.str) CRntString(static_cast<CRntString&&>(joined_text.str));
     return out;
