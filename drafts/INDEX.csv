@@ -151,7 +151,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100e98090,408,drafts/game/UnkTU2566/fn_7100e98090.cpp,registers or order,43.1,58,pilot50,register assignment only; holds an empty barrier (without it: operations 41.2%)
 0x7100e9c06c,492,drafts/game/UnkTU2566/fn_7100e9c06c.cpp,registers or order,92.7,9,overnight,
 0x7100ea1b94,484,drafts/game/UnkTU2566/fn_7100ea1b94.cpp,operations,14.9,99,pilot50,branch layout/loop merging differs; operations KIND
-0x7100ebfd4c,580,drafts/game/UnkTU2568/fn_7100ebfd4c.cpp,match,100.0,0,overnight,matches; held: copies fn_7100125a64; fn_710027a410 and fn_71002afcd8; whose types (Vec2; Mesh; Cell; Edge) are each file's own; so no unit header can take them (tools/decl_plan.py)
 0x7100ec6a6c,464,drafts/game/UnkTU2571/fn_7100ec6a6c.cpp,registers or order,92.2,9,overnight,
 0x7100ecd1a4,2828,drafts/game/UnkTU2573/fn_7100ecd1a4.cpp,calls,2.1,692,fable1,
 0x7100ee62bc,1480,drafts/game/UnkTU2577/fn_7100ee62bc.cpp,control flow,26.5,266,fable1,

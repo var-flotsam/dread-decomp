@@ -152,6 +152,21 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Held drafts: two promoted, one split (2026-11-14).** `fn_71003549a4` (aim component, unit 437): the
+original copies its target record's 0x44 bytes both ways (copy constructor fn_7100331c7c; the slots'
+assignment, then 13 words) and keeps records at a stride of 0x48 from +0xc (fn_7100354d04), so the record is
+0x44 bytes of fields and a never-written last word, packed to 4. It had three names for one record; now one,
+`UnkAimTarget` in `include/game/CAimComponent.h`, with `UnkAssignedSlot` in its own header (the text eight files
+share) and `fn_7100354b34` declared in `UnkTU437.h`; the Aim file's code is unchanged and the draft matches.
+`fn_7100ebfd4c` joins its unit's file, now `src/game/UnkTU2568/UnkNavMeshManager.cpp` (moved from `game_hi`),
+which already had its `Vec2` and three of its callees' declarations; `fn_71002af6fc` and `fn_71002b007c` went to
+`UnkTU367.h` and `fn_710012bcd0` to a new `UnkTU110.h`; it matches. `fn_7100e51078`'s draft held a second,
+unrelated function: `fn_7100e3cee0` is its own draft now, not proven because `tools/equiv_test.py` never tries
+kind 3 of its jump table (systematic values 0-2 and the compared bound 5 with its neighbours) and its two
+pointer-equality branches go one way even with wider inputs. `fn_7100e51078` passes alone but stays held: the unit
+header declares it with untyped elements for its four callers' own 0x138-byte records, and a `void*` definition
+compiles to other code (62.5% against 98.3% typed), so one record type for those callers comes first.
+
 **The sound system's layout, from its constructor (2026-11-14).** `fn_7101213858` (held as a draft) and
 `fn_7101214c94.cpp` described the object at +0x950 and +0x558/+0x5a8 differently. The original settles both.
 At +0x950 the constructor makes one 64-bit store of 0x0000010000000100, setting the bytes at +0x951 and
