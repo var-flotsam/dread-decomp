@@ -238,6 +238,7 @@ def reflection_names(g: "Getter") -> dict[int, str]:
 
 # Declarations ReflectedFields.h already brings: the named attribute keys and the enum types of the typed ones.
 KEY_DECL_RE = re.compile(r"^(?:const base::reflection::UnkReflAttrKey& fn_|extern base::reflection::CType g_unk_)([0-9a-f]+)(?:\(\))?;$")
+FIELD_MACRO_RE = re.compile(r"\bDREAD_REFLECTED_(?:FIELD|PROPERTY|READ_ONLY_PROPERTY)\(")  # ReflectedFields.h
 DECLARED_KEYS = set(refl_attrs.ATTRIBUTE_NAMES) | set(refl_attrs.TYPED_KEYS.values())
 
 
@@ -738,7 +739,7 @@ def main() -> int:
                     type_of[g.parent] if g.parent else None, decl_lines)
                 lines += body + [""]
                 fields_include = '#include "base/reflection/ReflectedFields.h"'
-                if fields_include not in lines and any("DREAD_REFLECTED_FIELD(" in l for l in body):
+                if fields_include not in lines and any(FIELD_MACRO_RE.search(l) for l in body):
                     lines.insert(lines.index('#include "base/reflection/ReflectedClass.h"') + 1, fields_include)
                 helpers_defined += h
                 attrs_defined += n_attrs
