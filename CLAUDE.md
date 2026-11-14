@@ -38,6 +38,12 @@ eventually be replaced. The proof has tiers:
 Readability outranks a match: when a function matches only with a union around a member, an empty barrier
 or an inlining attribute, commit the readable version as tier 2 instead.
 
+**The order of the two (owner, 2026-11-13).** Behaviour comes first, then readability, then bytes. Among texts
+that behave as the original does, the readable one is kept even when it does not match (above). A text that
+reads better but behaves otherwise is not kept: "faithful first" (Conventions) wins. The precedent is
+`src/game_lo/fn_7100219588.cpp`, which reads two locals the original program also leaves unset rather than
+setting them.
+
 **Complete** (owner, 2026-11-13: "The project will not be considered to be absolutely done until the
 decompilation functions identically and is human readable"; "byte matching and readable are two different
 qualities but both are needed. Identical behavior but byte mismatch are okay for a later date"). A function
@@ -222,7 +228,9 @@ Toolchain:
   is `UnkNoArg` (`include/base/UnkNoArg.h`, an empty class by value) and the call passes `UnkNoArg()`.
   A parameter the callee does not have comes out of its declaration. A variable the original program
   itself leaves unset on a path (an out-parameter's local written on one branch only) stays, with a
-  comment at its declaration saying so. `python tools/fakematch.py --unset` lists every read.
+  comment at its declaration saying so in the words "unset in the original" (on its line, or in the comment
+  directly above it and the declarations under that). `python tools/fakematch.py --unset` lists every read;
+  with `--strict` it fails on one that is not marked so, and CI's `compile` job runs it on the whole tree.
 - **Faithful first** (owner, 2026-11-13: "We want faithful to original above our invented rules"). When a
   rule of this file would make the source do something the original program does not, keep what the
   original does and say so in a comment.
@@ -247,6 +255,11 @@ Toolchain:
   card with `tools/status_card.py --write` (each pull request shows the card in its `policy` job summary).
 - Commit after each numbered step, with commit messages prefixed by phase and step
   (e.g. `Phase 2.1: ...`). A pull request is a hub cluster or about 30 functions or more.
+- **A layout batch is one class (owner, 2026-11-13).** Work that settles how sources describe an object is
+  done a class at a time: that class's sources, its one layout in a header of its own (unit headers stay
+  declarations only), one pull request. The recipe is the X parasite AI component's
+  (`include/game/UnkXParasiteAI.h`; journal, 2026-11-13). The hold on bulk agent runs still applies; the
+  owner lifts it one batch at a time.
 
 ## Status
 
