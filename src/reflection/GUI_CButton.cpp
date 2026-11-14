@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,9 +21,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // GUI::CButton
-extern base::reflection::CType g_unk_7101d679f0;
-extern base::reflection::CType g_unk_7101d55008;
-extern base::reflection::CType g_unk_7172a0d1b8;
 namespace GUI::CButton {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -31,11 +29,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "ActivationState", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(CStrId, "OnActivatedSound", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(CStrId, "OnSelectedSound", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("eTextLabelAlignment", true), &g_unk_7172a0d1b8, 0xffffffff, -1, -1);
-    field5->attrs.Add<bool>(fn_7100093390(), true);
-    field5->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field5->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field5->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_FIELD_OF("GUI::CButton::TextAlign", "eTextLabelAlignment", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sOnActivatedSound", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sOnSelectedSound", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(CStrId, "sTopNeighbour", 0x230);

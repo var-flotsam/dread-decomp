@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,9 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassScorpiusAIComponent::CTunableCharClassScorpiusAIComponent
 extern bool g_unk_7172703ee8;
-extern base::reflection::CType g_unk_7172703d20;
-extern base::reflection::CType g_unk_7101d679f0;
-extern base::reflection::CType g_unk_7101d55008;
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172703e88;
 void fn_710068f380(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -35,11 +33,7 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172703ee8 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eForceOpticCamouflageDisabledMode", true), &g_unk_7172703d20, 0xffffffff, -1, -1);
-    field0->attrs.Add<bool>(fn_7100093390(), true);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field0->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_FIELD_OF("EForceOpticCamouflageMode", "eForceOpticCamouflageDisabledMode", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(s32, "iInitialStage", 0x24, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(f32, "fMaskLife", 0x28, (DefaultValue, 1000.0f), (ShowInConfig, true), (ShowInDevConfig, true), (Description, "Scorpius mask life"), (MinValue, 0.0f), (MaxValue, 100000.0f), (ControlFloatStep, 10.0f), (InternalTag, "Bosses"), (InternalDevTag, "Bosses|Scorpius"));
     DREAD_REFLECTED_FIELD(f32, "fHeadPosInterpolationSpeed", 0x2c, (DefaultValue, 2.0f), (ShowInDevConfig, true), (Description, "Scorpius head pos interpolation speed"), (MinValue, 0.1f), (MaxValue, 10.0f), (ControlFloatStep, 0.1f), (InternalDevTag, "Bosses|Scorpius"));

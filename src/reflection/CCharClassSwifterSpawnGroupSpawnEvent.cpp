@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,15 +21,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassSwifterSpawnGroupSpawnEvent
-extern base::reflection::CType g_unk_7172743e90;
 namespace CCharClassSwifterSpawnGroupSpawnEvent {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Swifter SpawnGroup Spawn");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Swifter", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eDirection", true), &g_unk_7172743e90, 0xc, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_7172743e90, 1);
+    DREAD_REFLECTED_FIELD_OF("ESwifterSpawnGroupDirection", "eDirection", 0xc, (DefaultValue, 1));
     DREAD_REFLECTED_FIELD(s32, "iSpawnPoint", 0x10, (DefaultValue, 0));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

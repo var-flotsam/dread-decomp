@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -55,11 +56,10 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassLavaPoolComponent, CCharClassLiquidPoolComponent);
 
 // CLavaPoolComponent
-extern base::reflection::CType g_unk_71727333a8;
 namespace CLavaPoolComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oConfig", true), &g_unk_71727333a8, 0xc90, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("CLavaPoolConfig", "oConfig", 0xc90);
     DREAD_REFLECTED_FIELD(f32, "fChangeTime", 0xcbc, (DefaultValue, 2.0f), (Description, "Time level change"));
 }
 bool refl_Equals(const void*, const void*) { return false; }

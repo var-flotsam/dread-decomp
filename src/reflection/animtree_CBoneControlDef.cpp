@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,16 +21,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // animtree::CBoneControlDef
-extern base::reflection::CType g_unk_7101d58900;
 namespace animtree::CBoneControlDef {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Bone Control Definition");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sBone", 0x10, (Description, "Bone affected by control"));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("eSpace", true), &g_unk_7101d58900, 0x18, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_7101d58900, 0);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Bone transform space");
+    DREAD_REFLECTED_FIELD_OF("base::math::ETransformSpace", "eSpace", 0x18, (DefaultValue, 0), (Description, "Bone transform space"));
     DREAD_REFLECTED_FIELD(bool, "bAdditive", 0x1c, (DefaultValue, false), (Description, "Control is additive"));
     DREAD_REFLECTED_FIELD(bool, "bApplyTranslation", 0x1d, (DefaultValue, true), (Description, "Control transforms translation"));
     DREAD_REFLECTED_FIELD(f32, "fBlendInTime", 0x20, (DefaultValue, 0.0f), (Description, "Blendin Time"));

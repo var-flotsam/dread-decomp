@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,20 +21,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CDoorShieldLifeComponent
-extern base::reflection::CType g_unk_7172731d68;
-extern base::reflection::CType g_unk_7101d679f0;
-extern base::reflection::CType g_unk_7101d55008;
 namespace CDoorShieldLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fDamageFXTime", 0x3e8, (DefaultValue, 0.15f), (Description, "Damage FX Time"));
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sDamageSound", 0x388, (DefaultValue, ""), (Description, "Sound on damaged"));
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sKillSound", 0x3b8, (DefaultValue, ""), (Description, "Sound on opened"));
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("eColor", true), &g_unk_7172731d68, 0xffffffff, -1, -1);
-    field3->attrs.Add<bool>(fn_7100093390(), true);
-    field3->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field3->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field3->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_FIELD_OF("CDoorShieldLifeComponent::EColor", "eColor", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

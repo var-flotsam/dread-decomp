@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -332,7 +333,6 @@ void fn_710078d8c0();
 void fn_710078bfc4(UnkReflFunction* fn, const char* name);
 void fn_710078da0c();
 void fn_710078c140(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7172730420;
 void fn_710078da9c();
 void fn_710078c2bc(UnkReflFunction* fn, const char* name);
 void fn_710078db9c();
@@ -377,9 +377,7 @@ void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bRotateToInstigatorHitCollider_SetterFunction", true)))
         fn_710078c140(fn, "_m_bRotateToInstigatorHitCollider_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bRotateToInstigatorHitCollider", (DefaultValue, false), (Description, "Rotate To Instigator Hit Collider"));
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("eDamageType", true), &g_unk_7172730420, 0x70, -1, -1);
-    field3->attrs.Add<s32>(fn_7100075240(), &g_unk_7172730420, 0);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Damage source");
+    DREAD_REFLECTED_FIELD_OF("EDamageType", "eDamageType", 0x70, (DefaultValue, 0), (Description, "Damage source"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sSuccessDownDefaultAnim_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_sSuccessDownDefaultAnim_GetterFunction", true);
         fn->return_type = fn_7100009658();

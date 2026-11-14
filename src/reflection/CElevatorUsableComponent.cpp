@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,13 +21,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CElevatorUsableComponent
-extern base::reflection::CType g_unk_7172750790;
 extern base::reflection::CType g_unk_71727c0710;
 namespace CElevatorUsableComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eDirection", true), &g_unk_7172750790, 0x54c, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_7172750790, 0);
+    DREAD_REFLECTED_FIELD_OF("EElevatorDirection", "eDirection", 0x54c, (DefaultValue, 0));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("eLoadingScreen", true), &g_unk_71727c0710, 0x550, -1, -1);
     field1->attrs.Add<s32>(fn_7100075240(), &g_unk_71727c0710, 0);
     DREAD_REFLECTED_FIELD(CStrId, "sLevelName", 0x558, (DefaultValue, CStrId("c10_samus", true)));

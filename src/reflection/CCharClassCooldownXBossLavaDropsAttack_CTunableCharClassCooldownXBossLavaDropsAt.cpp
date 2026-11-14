@@ -8,6 +8,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -69,12 +70,10 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassCooldownXBossLavaDropsAttack::CTunableCharClassCooldownXBossLavaDropsAttack, base::tunable::CTunable);
 
 // CCooldownXBossLavaDropsMovementDef
-extern base::reflection::CType g_unk_71726d37e8;
 namespace CCooldownXBossLavaDropsMovementDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eArmToChange", true), &g_unk_71726d37e8, 0x8, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_71726d37e8, 1);
+    DREAD_REFLECTED_FIELD_OF("ELavaDropArm", "eArmToChange", 0x8, (DefaultValue, 1));
     DREAD_REFLECTED_FIELD(f32, "fDelay", 0xc, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fAnimSpeed", 0x10, (DefaultValue, 1.0f));
 }
@@ -103,20 +102,14 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_ROOT_CLASS(CCooldownXBossLavaDropsMovementDef);
 
 // CCooldownXBossLavaDropsDef
-extern base::reflection::CType g_unk_71726d3948;
-extern base::reflection::CType g_unk_71726d4150;
 namespace CCooldownXBossLavaDropsDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eLeftUpArmPos", true), &g_unk_71726d3948, 0x8, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_71726d3948, 0);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("eLeftDownArmPos", true), &g_unk_71726d3948, 0xc, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_71726d3948, 0);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("eRightUpArmPos", true), &g_unk_71726d3948, 0x10, -1, -1);
-    field2->attrs.Add<s32>(fn_7100075240(), &g_unk_71726d3948, 0);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("eRightDownArmPos", true), &g_unk_71726d3948, 0x14, -1, -1);
-    field3->attrs.Add<s32>(fn_7100075240(), &g_unk_71726d3948, 0);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("tActions", true), &g_unk_71726d4150, 0x18, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("ELavaDropArmPos", "eLeftUpArmPos", 0x8, (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD_OF("ELavaDropArmPos", "eLeftDownArmPos", 0xc, (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD_OF("ELavaDropArmPos", "eRightUpArmPos", 0x10, (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD_OF("ELavaDropArmPos", "eRightDownArmPos", 0x14, (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CCooldownXBossLavaDropsMovementDef>", "tActions", 0x18);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

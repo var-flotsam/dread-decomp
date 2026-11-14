@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassDropItemOverwriteProbabilitiesEvent
-extern base::reflection::CType g_unk_717271bad0;
 void fn_7100cb869c();
 void fn_7100cb7a04(UnkReflFunction* fn, const char* name);
 namespace CCharClassDropItemOverwriteProbabilitiesEvent {
@@ -59,8 +59,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bForceAttract", 0x81, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bIgnoreAttractionRadius", 0x82, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bDoNotDropWithNormalMelee", 0x83, (DefaultValue, false));
-    UnkReflField* field30 = fn_7100096524(cls, CStrId("eType", true), &g_unk_717271bad0, 0x84, -1, -1);
-    field30->attrs.Add<s32>(fn_7100075240(), &g_unk_717271bad0, 1);
+    DREAD_REFLECTED_FIELD_OF("SDropProbabilities::SType", "eType", 0x84, (DefaultValue, 1));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sNodes_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sNodes_GetterFunction", true);
         fn->return_type = fn_7100009658();

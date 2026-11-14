@@ -8,6 +8,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -22,13 +23,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CFXPoolPack
-extern base::reflection::CType g_unk_71729fd4b8;
 namespace CFXPoolPack {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10200u);
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("lPoolDefinitions", true), &g_unk_71729fd4b8, 0x0, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CFXPool::CDefinition>", "lPoolDefinitions", 0x0);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

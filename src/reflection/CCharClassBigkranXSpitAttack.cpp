@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassBigkranXSpitAttack
-extern base::reflection::CType g_unk_71726c1e98;
 namespace CCharClassBigkranXSpitAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -46,7 +46,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fLowLaunchFixedAngleDegs", 0x138, (DefaultValue, 20.0f));
     DREAD_REFLECTED_FIELD(f32, "fLowLaunchMinSpeed", 0x13c, (DefaultValue, 900.0f));
     DREAD_REFLECTED_FIELD(f32, "fLowLaunchMaxSpeed", 0x140, (DefaultValue, 1800.0f));
-    UnkReflField* field22 = fn_7100096524(cls, CStrId("oOffsetPatternConfig", true), &g_unk_71726c1e98, 0x148, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("SBigkranXSpitLaunchConfig", "oOffsetPatternConfig", 0x148);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

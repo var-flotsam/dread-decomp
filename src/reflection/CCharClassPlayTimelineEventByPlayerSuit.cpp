@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassPlayTimelineEventByPlayerSuit
-extern base::reflection::CType g_unk_7172733be8;
 namespace CCharClassPlayTimelineEventByPlayerSuit {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Play Timeline by Player Suit");
@@ -31,8 +31,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sNameVaria", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(CStrId, "sNameGravity", 0x20, (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(CStrId, "sNameHyper", 0x28, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("ePlayOnly", true), &g_unk_7172733be8, 0x30, -1, -1);
-    field4->attrs.Add<s32>(fn_7100075240(), &g_unk_7172733be8, 0);
+    DREAD_REFLECTED_FIELD_OF("CLiquidPoolBaseComponent::ELiquidType", "ePlayOnly", 0x30, (DefaultValue, 0));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

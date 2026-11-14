@@ -5,6 +5,8 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,13 +21,10 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CXParasiteBehaviorCondition
-extern base::reflection::CType g_unk_717270b710;
 namespace behaviortree::CXParasiteBehaviorCondition {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eBehaviorType", true), &g_unk_717270b710, 0x38, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_717270b710, 1);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Behavior (blackboard)");
+    DREAD_REFLECTED_FIELD_OF("CXParasiteAIComponent::EXParasiteBehaviorType", "eBehaviorType", 0x38, (DefaultValue, 1), (Description, "Behavior (blackboard)"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

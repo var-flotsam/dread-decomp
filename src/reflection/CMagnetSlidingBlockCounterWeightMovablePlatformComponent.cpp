@@ -5,6 +5,8 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,12 +21,10 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CMagnetSlidingBlockCounterWeightMovablePlatformComponent
-extern base::reflection::CType g_unk_71727b6270;
 namespace CMagnetSlidingBlockCounterWeightMovablePlatformComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("wpReferenceEntity", true), &g_unk_71727b6270, 0x258, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Entity we'll use as a reference for our movement");
+    DREAD_REFLECTED_FIELD_OF("CGameLink<CEntity>", "wpReferenceEntity", 0x258, (Description, "Entity we'll use as a reference for our movement"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

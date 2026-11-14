@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -22,7 +23,6 @@ using base::reflection::DestroyDestructorFirst;
 // CBreakableTileGroupComponent
 void fn_710075d2e4();
 void fn_71007542cc(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7172711ad0;
 extern base::reflection::CType g_unk_7172791c90;
 void fn_710075d374();
 void fn_7100754448(UnkReflFunction* fn, const char* name);
@@ -45,10 +45,7 @@ void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_uGroupId_SetterFunction", true)))
         fn_71007542cc(fn, "_uGroupId_SetterFunction");
     DREAD_REFLECTED_PROPERTY(u32, "uGroupId", (EditorModeDataFlow, 1), (DefaultPasteValue, u32(0x0u)));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("aGridTiles", true), &g_unk_7172711ad0, 0x50, -1, -1);
-    field1->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateNewTile", true));
-    field1->attrs.Add<const char*>(fn_710008fb40(), "DeleteTileAt");
-    field1->attrs.Add<const char*>(fn_710008ff80(), "AfterGridDeserialization");
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>", "aGridTiles", 0x50, (CreateElement, CStrId("CreateNewTile", true)), (DeleteElement, "DeleteTileAt"), (AfterElementDeserialization, "AfterGridDeserialization"));
     DREAD_REFLECTED_FIELD(bool, "bFakeHusks", 0x4c, (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_eCollisionMaterial_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_eCollisionMaterial_GetterFunction", true);

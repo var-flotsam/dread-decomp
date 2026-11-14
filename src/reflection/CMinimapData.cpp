@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,19 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CMinimapData
 extern base::reflection::CType g_unk_71727c9380;
-extern base::reflection::CType g_unk_71727c2130;
-extern base::reflection::CType g_unk_71727c2d18;
-extern base::reflection::CType g_unk_71727c15f0;
-extern base::reflection::CType g_unk_7101d679f0;
-extern base::reflection::CType g_unk_7101d55008;
-extern base::reflection::CType g_unk_71727c2920;
-extern base::reflection::CType g_unk_71727c3cf8;
-extern base::reflection::CType g_unk_71727c44e8;
-extern base::reflection::CType g_unk_71727c40f0;
-extern base::reflection::CType g_unk_71727c3110;
-extern base::reflection::CType g_unk_71727c3508;
-extern base::reflection::CType g_unk_7101d5f2b0;
-extern base::reflection::CType g_unk_71727c3900;
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100e51c54();
 namespace CMinimapData {
@@ -43,34 +31,29 @@ void refl_AddAttributes(CClass* cls) {
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(u32, "uDataVersion", 0x58, (DefaultValue, 0));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("gridDef", true), &g_unk_71727c9380, 0x60, -1, -1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("aNavmeshGeos", true), &g_unk_71727c2130, 0x5fd8, -1, -1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("mapOccluderGeos", true), &g_unk_71727c2d18, 0x6000, -1, -1);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("oEmmyRoomGeo", true), &g_unk_71727c15f0, 0xffffffff, -1, -1);
-    field4->attrs.Add<bool>(fn_7100093390(), true);
-    field4->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field4->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field4->attrs.Add<bool>(fn_7100090a20(), false);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("mapEmmyRoomGeos", true), &g_unk_71727c2920, 0x6028, -1, -1);
-    field5->attrs.Add<const char*>(fn_710008ff80(), "UpdateEmmyZoneLimits");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("mapHeatRoomGeos", true), &g_unk_71727c2920, 0x6078, -1, -1);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("mapFreezeRoomGeos", true), &g_unk_71727c2920, 0x60a0, -1, -1);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("mapNoFreezeRoomGeos", true), &g_unk_71727c2920, 0x60c8, -1, -1);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("mapVignetteGeos", true), &g_unk_71727c2920, 0x6050, -1, -1);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("mapHintGeos", true), &g_unk_71727c2920, 0x6118, -1, -1);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("mapWaterPoolGeos", true), &g_unk_71727c2920, 0x60f0, -1, -1);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("mapMagnetSurfaces", true), &g_unk_71727c3cf8, 0x6258, -1, -1);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("aMovingMagnetSurfaces", true), &g_unk_71727c44e8, 0x6280, -1, -1);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("mapTransportSigns", true), &g_unk_71727c40f0, 0x62a8, -1, -1);
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("mapDoors", true), &g_unk_71727c3110, 0x6140, -1, -1);
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("mapBlockages", true), &g_unk_71727c3508, 0x6168, -1, -1);
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("mapUsables", true), &g_unk_71727c3508, 0x6190, -1, -1);
-    UnkReflField* field18 = fn_7100096524(cls, CStrId("mapItems", true), &g_unk_71727c3508, 0x61b8, -1, -1);
-    UnkReflField* field19 = fn_7100096524(cls, CStrId("mapProps", true), &g_unk_71727c3508, 0x61e0, -1, -1);
-    UnkReflField* field20 = fn_7100096524(cls, CStrId("mapCentralUnits", true), &g_unk_71727c3508, 0x6208, -1, -1);
-    UnkReflField* field21 = fn_7100096524(cls, CStrId("mapBosses", true), &g_unk_71727c3508, 0x6230, -1, -1);
-    UnkReflField* field22 = fn_7100096524(cls, CStrId("mapBossBattleLabels", true), &g_unk_7101d5f2b0, 0x62d0, -1, -1);
-    UnkReflField* field23 = fn_7100096524(cls, CStrId("mapAbilityLabels", true), &g_unk_7101d5f2b0, 0x62f8, -1, -1);
-    UnkReflField* field24 = fn_7100096524(cls, CStrId("mapVignetteOccludedIcons", true), &g_unk_71727c3900, 0x6320, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<SGeoData>", "aNavmeshGeos", 0x5fd8);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::TColliderGeoDatasMap>", "mapOccluderGeos", 0x6000);
+    DREAD_REFLECTED_FIELD_OF("SGeoData", "oEmmyRoomGeo", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, SGeoData>", "mapEmmyRoomGeos", 0x6028, (AfterElementDeserialization, "UpdateEmmyZoneLimits"));
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, SGeoData>", "mapHeatRoomGeos", 0x6078);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, SGeoData>", "mapFreezeRoomGeos", 0x60a0);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, SGeoData>", "mapNoFreezeRoomGeos", 0x60c8);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, SGeoData>", "mapVignetteGeos", 0x6050);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, SGeoData>", "mapHintGeos", 0x6118);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, SGeoData>", "mapWaterPoolGeos", 0x60f0);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::SMagnetSurfaceData>", "mapMagnetSurfaces", 0x6258);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CMinimapData::SMovingMagnetSurfaceData>", "aMovingMagnetSurfaces", 0x6280);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::STransportSignData>", "mapTransportSigns", 0x62a8);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::SDoorData>", "mapDoors", 0x6140);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::SEntityData>", "mapBlockages", 0x6168);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::SEntityData>", "mapUsables", 0x6190);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::SEntityData>", "mapItems", 0x61b8);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::SEntityData>", "mapProps", 0x61e0);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::SEntityData>", "mapCentralUnits", 0x6208);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::SEntityData>", "mapBosses", 0x6230);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>", "mapBossBattleLabels", 0x62d0);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>", "mapAbilityLabels", 0x62f8);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::TOccludedIcons>", "mapVignetteOccludedIcons", 0x6320);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("UpdateEmmyZoneLimits", true))) {
         fn->name = base::global::UnkStrId("UpdateEmmyZoneLimits", true);
         fn->return_type = &g_unk_7101d5af48;

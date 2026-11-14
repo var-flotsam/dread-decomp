@@ -5,6 +5,8 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,15 +21,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassSetBossMusicPresetStateEvent
-extern base::reflection::CType g_unk_71729f1178;
 namespace CCharClassSetBossMusicPresetStateEvent {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Set Boss Music Preset State");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Audio", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eState", true), &g_unk_71729f1178, 0xc, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_71729f1178, 0);
+    DREAD_REFLECTED_FIELD_OF("EMusicManagerInGameState", "eState", 0xc, (DefaultValue, 0));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

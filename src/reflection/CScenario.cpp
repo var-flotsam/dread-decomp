@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,9 +21,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CScenario
-extern base::reflection::CType g_unk_71727b06e8;
-extern base::reflection::CType g_unk_7101d679f0;
-extern base::reflection::CType g_unk_7101d55008;
 extern base::reflection::CType g_unk_71726a07a0;
 void fn_71011a4a54();
 extern base::reflection::CType g_unk_7172756f90;
@@ -34,9 +32,7 @@ void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x310200u);
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("awpScenarioColliders", true), &g_unk_71727b06e8, 0x828, -1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<base::global::CWeakPtr<game::logic::collision::CCollider>>", "awpScenarioColliders", 0x828, (Persistence, 0), (EditorModeDataFlow, 1));
     DREAD_REFLECTED_FIELD(CStrId, "sLevelID", 0x10, (Description, base::global::CRntString("Level_Id")));
     DREAD_REFLECTED_FIELD(CStrId, "sScenarioID", 0x18, (Description, base::global::CRntString("Scenario_Id")));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_rEntitiesLayer_GetterFunction", true))) {

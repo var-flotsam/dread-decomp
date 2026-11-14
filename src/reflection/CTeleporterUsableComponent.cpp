@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CTeleporterUsableComponent
 extern base::reflection::CType g_unk_71727c0710;
-extern base::reflection::CType g_unk_7172751840;
 extern base::reflection::CType g_unk_71727b6270;
 extern base::reflection::CType g_unk_71727bc110;
 namespace CTeleporterUsableComponent {
@@ -32,8 +32,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sLevelName", 0x540, (DefaultValue, CStrId("c10_samus", true)));
     DREAD_REFLECTED_FIELD(CStrId, "sScenarioName", 0x548, (DefaultValue, CStrId("", true)));
     DREAD_REFLECTED_FIELD(CStrId, "sTargetSpawnPoint", 0x550, (DefaultValue, CStrId("", true)));
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("eTeleporterColorSphere", true), &g_unk_7172751840, 0x588, -1, -1);
-    field4->attrs.Add<s32>(fn_7100075240(), &g_unk_7172751840, 0);
+    DREAD_REFLECTED_FIELD_OF("ETeleporterColorSphere", "eTeleporterColorSphere", 0x588, (DefaultValue, 0));
     UnkReflField* field5 = fn_7100096524(cls, CStrId("wpFrozenPlatform", true), &g_unk_71727b6270, 0x590, -1, -1);
     field5->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
 }

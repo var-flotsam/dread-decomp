@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,17 +21,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CAccessPointComponent
-extern base::reflection::CType g_unk_71727b6630;
-extern base::reflection::CType g_unk_717274ef10;
 extern base::reflection::CType g_unk_71727b6270;
 extern base::reflection::CType g_unk_71727bc110;
 void fn_7100a6bc44(UnkReflFunction* fn, const char* name);
 namespace CAccessPointComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("vDoorsToChange", true), &g_unk_71727b6630, 0x898, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CGameLink<CEntity>>", "vDoorsToChange", 0x898);
     DREAD_REFLECTED_FIELD(CStrId, "sInteractionLiteralID", 0x588, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("tCaptionList", true), &g_unk_717274ef10, 0x5a0, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CStrId>>", "tCaptionList", 0x5a0);
     UnkReflField* field3 = fn_7100096524(cls, CStrId("wpThermalDevice", true), &g_unk_71727b6270, 0x540, -1, -1);
     field3->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ActiveDialogue", true))) {

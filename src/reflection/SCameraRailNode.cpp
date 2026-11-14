@@ -8,6 +8,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -26,7 +27,6 @@ void fn_7100c079cc();
 void fn_7100bfef1c(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_7101d60ff0;
 extern base::reflection::CType g_unk_7101d55008;
-extern base::reflection::CType g_unk_717269bb48;
 namespace SCameraRailNode {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -44,7 +44,7 @@ void refl_AddFields(CClass* cls) {
     field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Position"));
     field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 3);
     field0->attrs.Add<bool>(fn_71000924b0(), true);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("wpLogicCamera", true), &g_unk_717269bb48, 0x18, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("CGameLink<CActor>", "wpLogicCamera", 0x18);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -79,7 +79,6 @@ void fn_7100c07eb0();
 void fn_7100c07d10(UnkReflFunction* fn);
 void fn_7100c0001c(UnkReflFunction* fn, const char* name);
 void fn_7100c00198(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_717277b510;
 namespace SCameraSubRail {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -129,15 +128,7 @@ void refl_AddFields(CClass* cls) {
         fn_710009ae5c(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
     }
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("tNodes", true), &g_unk_717277b510, 0x8, -1, -1);
-    field0->attrs.Add<bool>(fn_7100092b10(), true);
-    field0->attrs.Add<bool>(fn_7100090a20(), true);
-    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("CameraRailNode"));
-    field0->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateElement", true));
-    field0->attrs.Add<CStrId>(fn_710008fe70(), CStrId("InsertElement", true));
-    field0->attrs.Add<CStrId>(fn_710008fc50(), CStrId("EraseElement", true));
-    field0->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeleteElement", true));
-    field0->attrs.Add<CStrId>(fn_710008ff80(), CStrId("AfterNodesDeserialization", true));
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<SCameraRailNode>", "tNodes", 0x8, (DisableListAddRemove, true), (EditorVisible, true), (Description, base::global::CRntString("CameraRailNode")), (CreateElement, CStrId("CreateElement", true)), (InsertElement, CStrId("InsertElement", true)), (EraseElement, CStrId("EraseElement", true)), (DeleteElement, CStrId("DeleteElement", true)), (AfterElementDeserialization, CStrId("AfterNodesDeserialization", true)));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -160,11 +151,10 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(SCameraSubRail, ISubPath);
 
 // SCameraRail
-extern base::reflection::CType g_unk_717277b908;
 namespace SCameraRail {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("tSubRails", true), &g_unk_717277b908, 0x10, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<SCameraSubRail>", "tSubRails", 0x10);
     DREAD_REFLECTED_FIELD(f32, "fMaxRailSpeed", 0x38, (DefaultValue, 1250.0f), (Description, "Camera's speed per second on the rails."), (DisplayName, CStrId("Speed on rail u/s", true)));
     DREAD_REFLECTED_FIELD(f32, "fMinRailSpeed", 0x3c, (DefaultValue, 200.0f), (Description, "Camera's min speed per second on the rails when clamping."), (DisplayName, CStrId("Min speed on clamp", true)));
     DREAD_REFLECTED_FIELD(f32, "fMaxRailDistance", 0x40, (DefaultValue, 500.0f), (Description, "Max distance the camera can have from the current closest point."), (DisplayName, CStrId("Clamp Distance on Rail", true)));

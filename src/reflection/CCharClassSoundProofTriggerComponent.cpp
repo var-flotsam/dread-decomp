@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -48,14 +49,12 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassSoundProofTriggerComponent, CCharClassBaseTriggerComponent);
 
 // CSoundProofTriggerComponent
-extern base::reflection::CType g_unk_7108b6cde8;
 extern base::reflection::CType g_unk_717269bf08;
 extern base::reflection::CType g_unk_71727bc110;
 namespace CSoundProofTriggerComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eLowPassFilterToApply", true), &g_unk_7108b6cde8, 0xae8, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_7108b6cde8, 9);
+    DREAD_REFLECTED_FIELD_OF("base::snd::ELowPassFilter", "eLowPassFilterToApply", 0xae8, (DefaultValue, 9));
     DREAD_REFLECTED_FIELD(f32, "fFadeInTime", 0xaec, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(f32, "fFadeOutTime", 0xaf0, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(bool, "bMuteActors", 0xaf6, (DefaultValue, false));

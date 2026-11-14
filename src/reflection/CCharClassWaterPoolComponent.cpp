@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -54,23 +55,14 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassWaterPoolComponent, CCharClassLiquidPoolComponent);
 
 // CWaterPoolComponent
-extern base::reflection::CType g_unk_7101d5e168;
-extern base::reflection::CType g_unk_7172734a68;
-extern base::reflection::CType g_unk_71727b6630;
-extern base::reflection::CType g_unk_7101d679f0;
-extern base::reflection::CType g_unk_7101d55008;
 namespace CWaterPoolComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("vWaterLevelChanges", true), &g_unk_7101d5e168, 0xd00, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("tFloatingEntities", true), &g_unk_7172734a68, 0xc90, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<float32>", "vWaterLevelChanges", 0xd00);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CWaterPoolComponent::FloatingEntitiesInfo>", "tFloatingEntities", 0xc90);
     DREAD_REFLECTED_FIELD(CStrId, "sOnActivatedLuaCallback", 0xd28, (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(bool, "bChangedLevelOnCooldownEvent", 0xd30, (DefaultValue, false));
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("vFloatingEntities", true), &g_unk_71727b6630, 0xffffffff, -1, -1);
-    field4->attrs.Add<bool>(fn_7100093390(), true);
-    field4->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field4->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field4->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CGameLink<CEntity>>", "vFloatingEntities", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

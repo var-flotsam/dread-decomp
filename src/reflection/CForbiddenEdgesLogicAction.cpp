@@ -5,6 +5,8 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,25 +21,18 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CForbiddenEdgesLogicAction
-extern base::reflection::CType g_unk_717274b898;
-extern base::reflection::CType g_unk_7101d679f0;
 extern base::reflection::CType g_unk_71727b6270;
 extern base::reflection::CType g_unk_71727bc110;
 extern base::reflection::CType g_unk_717269bb48;
-extern base::reflection::CType g_unk_717274b9f8;
 namespace CForbiddenEdgesLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eNavMeshGroup", true), &g_unk_717274b898, 0x94, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_717274b898, 0);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field0->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_FIELD_OF("navmesh::ENavMeshGroup", "eNavMeshGroup", 0x94, (DefaultValue, 0), (Persistence, 0), (EditorVisible, false));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("wpSpawnPoint", true), &g_unk_71727b6270, 0x10, -1, -1);
     field1->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
     UnkReflField* field2 = fn_7100096524(cls, CStrId("wpLogicShape", true), &g_unk_717269bb48, 0x50, -1, -1);
     field2->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("eState", true), &g_unk_717274b9f8, 0x90, -1, -1);
-    field3->attrs.Add<s32>(fn_7100075240(), &g_unk_717274b9f8, 1);
+    DREAD_REFLECTED_FIELD_OF("CForbiddenEdgesLogicAction::EState", "eState", 0x90, (DefaultValue, 1));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CPerceptionRuleSet
 extern base::reflection::CType g_unk_7172a05520;
-extern base::reflection::CType g_unk_7172a05680;
 namespace CPerceptionRuleSet {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -38,9 +38,7 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field10 = fn_7100096524(cls, CStrId("eLOSMode", true), &g_unk_7172a05520, 0x20, -1, -1);
     field10->attrs.Add<s32>(fn_7100075240(), &g_unk_7172a05520, 1);
     field10->attrs.Add<const char*>(fn_7100007e80(), "LOS mode for detection");
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("eLOSCheckLevel", true), &g_unk_7172a05680, 0x24, -1, -1);
-    field11->attrs.Add<s32>(fn_7100075240(), &g_unk_7172a05680, 1);
-    field11->attrs.Add<const char*>(fn_7100007e80(), "LOS check level for detection");
+    DREAD_REFLECTED_FIELD_OF("ELOSCheckLevel", "eLOSCheckLevel", 0x24, (DefaultValue, 1), (Description, "LOS check level for detection"));
     DREAD_REFLECTED_FIELD(f32, "fMaxDistanceToTarget", 0x28, (DefaultValue, 10000000.0f), (Description, "Maximum dist to see the target at start"));
     DREAD_REFLECTED_FIELD(bool, "bShouldBeInFrustrum", 0x2c, (DefaultValue, true), (Description, "Should we be on frustrum to detect the Target at start"));
     DREAD_REFLECTED_FIELD(bool, "bShouldBeTargetInAreaOfInterest", 0x34, (DefaultValue, false), (Description, "Should the target be within our interest area at start"));

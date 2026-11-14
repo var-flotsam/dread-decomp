@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassProjectileMovement
-extern base::reflection::CType g_unk_7172755268;
 namespace CCharClassProjectileMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -37,8 +37,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fVelocityVerticalFriction", 0x124, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(bool, "bDestroyOnImpactSpeedBooster", 0x119, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bIgnoreInvulnerableEntities", 0x128, (DefaultValue, true));
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("eDefaultProjectileMeleeHitReaction", true), &g_unk_7172755268, 0x12c, -1, -1);
-    field13->attrs.Add<s32>(fn_7100075240(), &g_unk_7172755268, 2);
+    DREAD_REFLECTED_FIELD_OF("CCharClassProjectileMovement::EProjectileMeleeHitReaction", "eDefaultProjectileMeleeHitReaction", 0x12c, (DefaultValue, 2));
     DREAD_REFLECTED_FIELD(bool, "bAutoCalculateSpeedForParabola", 0x130, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bIgnoreMovementOnCollision", 0x131, (DefaultValue, false));
 }

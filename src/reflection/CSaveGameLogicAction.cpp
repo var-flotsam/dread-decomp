@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,14 +21,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CSaveGameLogicAction
-extern base::reflection::CType g_unk_717274a090;
 extern base::reflection::CType g_unk_717269bb48;
 extern base::reflection::CType g_unk_71727bc110;
 namespace CSaveGameLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eDestination", true), &g_unk_717274a090, 0x10, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_717274a090, 1);
+    DREAD_REFLECTED_FIELD_OF("CSaveGameLogicAction::EDestination", "eDestination", 0x10, (DefaultValue, 1));
     DREAD_REFLECTED_FIELD(CStrId, "sCheckpointKey", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));
     UnkReflField* field2 = fn_7100096524(cls, CStrId("wpStartPoint", true), &g_unk_717269bb48, 0x20, -1, -1);
     field2->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);

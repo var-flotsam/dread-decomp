@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -80,13 +81,11 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassPoisonFlyAIComponent::CTunableCharClassPoisonFlyAIComponent, base::tunable::CTunable);
 
 // CCharClassPoisonFlyAIComponent
-extern base::reflection::CType g_unk_71726fa160;
 namespace CCharClassPoisonFlyDiveAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassPoisonFlyAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eSubspecies", true), &g_unk_71726fa160, 0x608, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_71726fa160, 2147483647);
+    DREAD_REFLECTED_FIELD_OF("CCharClassPoisonFlyAIComponent::ESubspecies", "eSubspecies", 0x608, (DefaultValue, 2147483647));
     DREAD_REFLECTED_CLASS_FIELD(CCharClassPoisonFlyDiveAttack, "oPoisonFlyDiveAttackDef", 0x510);
 }
 bool refl_Equals(const void*, const void*) { return false; }

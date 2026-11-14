@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CStopWatchAction
-extern base::reflection::CType g_unk_71726bc130;
 namespace behaviortree::CStopWatchAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -30,9 +30,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sMinTime", 0x48, (DefaultValue, ""), (Description, "Min time to wait (property)"));
     DREAD_REFLECTED_FIELD(CStrId, "sMaxTime", 0x50, (DefaultValue, ""), (Description, "Max time to wait (property)"));
     DREAD_REFLECTED_FIELD(bool, "bResetElapsedTimeOnSuccess", 0x38, (DefaultValue, true), (Description, "Reset elapsed time on success"));
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("eReturnStatusFailed", true), &g_unk_71726bc130, 0x58, -1, -1);
-    field6->attrs.Add<s32>(fn_7100075240(), &g_unk_71726bc130, 2);
-    field6->attrs.Add<const char*>(fn_7100007e80(), "Status to return on condition true");
+    DREAD_REFLECTED_FIELD_OF("behaviortree::SStatus::Enum", "eReturnStatusFailed", 0x58, (DefaultValue, 2), (Description, "Status to return on condition true"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

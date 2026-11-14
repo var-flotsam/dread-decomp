@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,14 +21,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassToStateTrack
-extern base::reflection::CType g_unk_71727adf10;
 namespace CCharClassToStateTrack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sAction", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(bool, "bMaintainFrame", 0x20, (DefaultValue, false));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("eMaintainFrameMode", true), &g_unk_71727adf10, 0x24, -1, -1);
-    field2->attrs.Add<s32>(fn_7100075240(), &g_unk_71727adf10, 0);
+    DREAD_REFLECTED_FIELD_OF("CCharClassToStateTrack::EMaintainFrameMode", "eMaintainFrameMode", 0x24, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(s32, "iFrame", 0x28, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(bool, "bForce", 0x2c, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(f32, "fBlendTime", 0x30, (DefaultValue, -1.0f));

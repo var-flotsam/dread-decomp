@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,8 +21,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassFXSetMaterialPropertyTransitionEvent
-extern base::reflection::CType g_unk_716e599140;
-extern base::reflection::CType g_unk_716e34af70;
 namespace CCharClassFXSetMaterialPropertyTransitionEvent {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Set Material Property Transition");
@@ -30,10 +29,8 @@ void refl_AddAttributes(CClass* cls) {
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sFXId", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(CStrId, "sMaterialName", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("ePropertyName", true), &g_unk_716e599140, 0x20, -1, -1);
-    field2->attrs.Add<s32>(fn_7100075240(), &g_unk_716e599140, 0);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("eStage", true), &g_unk_716e34af70, 0x24, -1, -1);
-    field3->attrs.Add<s32>(fn_7100075240(), &g_unk_716e34af70, 1);
+    DREAD_REFLECTED_FIELD_OF("engine::utils::EMaterialConstantColor", "ePropertyName", 0x20, (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD_OF("msapi::api::shdr::EShaderType", "eStage", 0x24, (DefaultValue, 1));
     DREAD_REFLECTED_FIELD(f32, "fColorR", 0x28, (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 1.0f));
     DREAD_REFLECTED_FIELD(f32, "fColorG", 0x2c, (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 1.0f));
     DREAD_REFLECTED_FIELD(f32, "fColorB", 0x30, (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 1.0f));

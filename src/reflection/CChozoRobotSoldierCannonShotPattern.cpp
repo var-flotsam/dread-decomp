@@ -8,6 +8,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -103,11 +104,10 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassChozoRobotSoldierCannonShotAttack::CTunableCharClassChozoRobotSoldierCannonShotAttack, base::tunable::CTunable);
 
 // CCharClassChozoRobotSoldierCannonShotAttack
-extern base::reflection::CType g_unk_71726ca4e8;
 namespace CCharClassChozoRobotSoldierCannonShotAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("tPatterns", true), &g_unk_71726ca4e8, 0xf0, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>", "tPatterns", 0xf0);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassDemolitionBlockLifeComponent
-extern base::reflection::CType g_unk_7172730b30;
 namespace CDamageSourceFactor { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassDemolitionBlockLifeComponent {
 void refl_AddAttributes(CClass*) {}
@@ -31,7 +31,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTimeAfterFirstHit", 0x120);
     DREAD_REFLECTED_FIELD(f32, "fTimeMaterialExplosive", 0x124);
     DREAD_REFLECTED_FIELD(f32, "fTimeAfterDiffuseHuskDestroyed", 0x128);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("eDemolitionPhase", true), &g_unk_7172730b30, 0x12c, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("EDemolitionPhase", "eDemolitionPhase", 0x12c);
     DREAD_REFLECTED_FIELD(bool, "bHuskInitiallyRemoved", 0x130);
     DREAD_REFLECTED_FIELD(CStrId, "sCameraFXPresetHusk", 0x138, (DefaultValue, CStrId("DEMOLITION_BLOCK_HUSK", true)));
     DREAD_REFLECTED_FIELD(CStrId, "sCameraFXPresetOnImpact", 0x140, (DefaultValue, CStrId("DEMOLITION_BLOCK_IMPACT", true)));

@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,17 +21,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CBaseCondition
-extern base::reflection::CType g_unk_71726bc130;
 namespace behaviortree::CBaseCondition {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bNegate", 0x2c, (DefaultValue, false), (Description, "Negate condition"));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("eReturnStatusSuccess", true), &g_unk_71726bc130, 0x30, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_71726bc130, 5);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Status to return on condition true");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("eReturnStatusFailed", true), &g_unk_71726bc130, 0x34, -1, -1);
-    field2->attrs.Add<s32>(fn_7100075240(), &g_unk_71726bc130, 6);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Status to return on condition false");
+    DREAD_REFLECTED_FIELD_OF("behaviortree::SStatus::Enum", "eReturnStatusSuccess", 0x30, (DefaultValue, 5), (Description, "Status to return on condition true"));
+    DREAD_REFLECTED_FIELD_OF("behaviortree::SStatus::Enum", "eReturnStatusFailed", 0x34, (DefaultValue, 6), (Description, "Status to return on condition false"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

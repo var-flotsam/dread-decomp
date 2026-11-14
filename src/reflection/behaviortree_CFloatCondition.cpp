@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CFloatCondition
-extern base::reflection::CType g_unk_71726bc290;
 namespace behaviortree::CFloatCondition {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -32,9 +32,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sValueB", 0x60, (DefaultValue, ""), (Description, "Value B (blackboard)"));
     DREAD_REFLECTED_FIELD(CStrId, "sTunableB", 0x68, (DefaultValue, ""), (Description, "Value B (tunable class)"));
     DREAD_REFLECTED_FIELD(CStrId, "sTunableVarB", 0x70, (DefaultValue, ""), (Description, "Value B (tunable var)"));
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("eCompareOperator", true), &g_unk_71726bc290, 0x78, -1, -1);
-    field8->attrs.Add<s32>(fn_7100075240(), &g_unk_71726bc290, 2);
-    field8->attrs.Add<const char*>(fn_7100007e80(), "Compare operator (LESS, LESSEQUAL, EQUAL, GREATEREQUAL or GREATER)");
+    DREAD_REFLECTED_FIELD_OF("behaviortree::SCompareOperator::Enum", "eCompareOperator", 0x78, (DefaultValue, 2), (Description, "Compare operator (LESS, LESSEQUAL, EQUAL, GREATEREQUAL or GREATER)"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

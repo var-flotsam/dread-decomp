@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -78,14 +79,12 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassGooplotAIComponent::CTunableCharClassGooplotAIComponent, base::tunable::CTunable);
 
 // CCharClassGooplotAIComponent
-extern base::reflection::CType g_unk_71726e7318;
 namespace CCharClassGooplotJumpAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassGooplotUndoJumpAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassGooplotAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eSubspecies", true), &g_unk_71726e7318, 0x6f0, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_71726e7318, 2147483647);
+    DREAD_REFLECTED_FIELD_OF("CCharClassGooplotAIComponent::ESubspecies", "eSubspecies", 0x6f0, (DefaultValue, 2147483647));
     DREAD_REFLECTED_FIELD(f32, "fExplosionTime", 0x6f4, (DefaultValue, 0.5f));
     DREAD_REFLECTED_CLASS_FIELD(CCharClassGooplotJumpAttack, "oGooplotJumpAttackDef", 0x510);
     DREAD_REFLECTED_CLASS_FIELD(CCharClassGooplotUndoJumpAttack, "oGooplotUndoJumpAttackDef", 0x600);

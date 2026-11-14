@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -66,7 +67,6 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassQuetzoaAIComponent::CTunableCharClassQuetzoaAIComponent, base::tunable::CTunable);
 
 // CCharClassQuetzoaAIComponent
-extern base::reflection::CType g_unk_71726fbc20;
 namespace CCharClassQuetzoaChargeAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassQuetzoaEnergyWaveAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassQuetzoaAIComponent {
@@ -74,8 +74,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_CLASS_FIELD(CCharClassQuetzoaChargeAttack, "oQuetzoaChargeAttackDef", 0x528);
     DREAD_REFLECTED_CLASS_FIELD(CCharClassQuetzoaEnergyWaveAttack, "oQuetzoaEnergyWaveAttackDef", 0x618);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("eSubspecies", true), &g_unk_71726fbc20, 0x708, -1, -1);
-    field2->attrs.Add<s32>(fn_7100075240(), &g_unk_71726fbc20, 2147483647);
+    DREAD_REFLECTED_FIELD_OF("CCharClassQuetzoaAIComponent::ESubspecies", "eSubspecies", 0x708, (DefaultValue, 2147483647));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

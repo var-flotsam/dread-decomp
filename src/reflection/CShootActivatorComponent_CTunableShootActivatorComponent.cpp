@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -102,7 +103,6 @@ DREAD_REFLECTED_CLASS(CCharClassShootActivatorComponent, CCharClassItemLifeCompo
 extern base::reflection::CType g_unk_717269bf08;
 extern base::reflection::CType g_unk_71727bc110;
 extern base::reflection::CType g_unk_71727b6270;
-extern base::reflection::CType g_unk_717272c848;
 namespace CShootActivatorComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -118,8 +118,8 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sOnUseEntityTimeline", 0x4d8, (DefaultValue, CStrId(g_unk_7101d470e0)));
     UnkReflField* field6 = fn_7100096524(cls, CStrId("wpAtmosphereEntity", true), &g_unk_71727b6270, 0x530, -1, -1);
     field6->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("vEntitiesActivatabledOnEvent", true), &g_unk_717272c848, 0x4e0, -1, -1);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("vEntitiesDeactivatabledOnEvent", true), &g_unk_717272c848, 0x508, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<SActivatabledOnEventInfo>", "vEntitiesActivatabledOnEvent", 0x4e0);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<SActivatabledOnEventInfo>", "vEntitiesDeactivatabledOnEvent", 0x508);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

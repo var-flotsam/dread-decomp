@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassAINavigationComponent
-extern base::reflection::CType g_unk_717270c900;
 void fn_71006f7b0c();
 void fn_71006f7008(UnkReflFunction* fn, const char* name);
 void fn_71006f7b9c();
@@ -36,9 +36,7 @@ void fn_71006f7774(UnkReflFunction* fn, const char* name);
 namespace CCharClassAINavigationComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eFollowPathRotationMode", true), &g_unk_717270c900, 0x58, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_717270c900, 0);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "None, VerticalRotationToMovement, InvertVerticalRotationToMovement, PositiveVerticalRotationToMovement or NegativeVerticalRotationToMovement");
+    DREAD_REFLECTED_FIELD_OF("EFollowPathRotationMode", "eFollowPathRotationMode", 0x58, (DefaultValue, 0), (Description, "None, VerticalRotationToMovement, InvertVerticalRotationToMovement, PositiveVerticalRotationToMovement or NegativeVerticalRotationToMovement"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFollowPathVerticalRotationDist_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fFollowPathVerticalRotationDist_GetterFunction", true);
         fn->return_type = fn_710000abbc();

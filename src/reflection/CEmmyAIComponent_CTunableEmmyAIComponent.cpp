@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,11 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CEmmyAIComponent::CTunableEmmyAIComponent
 extern bool g_unk_71726e0bb0;
-extern base::reflection::CType g_unk_7108b6cde8;
-extern base::reflection::CType g_unk_7101d679f0;
-extern base::reflection::CType g_unk_7101d55008;
-extern base::reflection::CType g_unk_71726dfb40;
-extern base::reflection::CType g_unk_71726df9e0;
 void fn_7100564f50();
 void fn_710053b4fc(UnkReflFunction* fn, const char* name);
 extern UnkTunableRegistry* g_unk_7101d47350;
@@ -39,21 +35,9 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726e0bb0 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eEmmyOutsideRoomLPF", true), &g_unk_7108b6cde8, 0xffffffff, -1, -1);
-    field0->attrs.Add<bool>(fn_7100093390(), true);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field0->attrs.Add<bool>(fn_7100090a20(), false);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("eMinimapMode", true), &g_unk_71726dfb40, 0xffffffff, -1, -1);
-    field1->attrs.Add<bool>(fn_7100093390(), true);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field1->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field1->attrs.Add<bool>(fn_7100090a20(), false);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("eIceMode", true), &g_unk_71726df9e0, 0xffffffff, -1, -1);
-    field2->attrs.Add<bool>(fn_7100093390(), true);
-    field2->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field2->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field2->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_FIELD_OF("base::snd::ELowPassFilter", "eEmmyOutsideRoomLPF", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
+    DREAD_REFLECTED_FIELD_OF("EMinimapMode", "eMinimapMode", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
+    DREAD_REFLECTED_FIELD_OF("EIceMode", "eIceMode", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(f32, "fChaseUnspawnEnemyDistance", 0x24, (DefaultValue, 800.0f), (ShowInConfig, true));
     DREAD_REFLECTED_FIELD(bool, "bCloseEmmyDoorsDuringChase", 0x28, (DefaultValue, true), (ShowInConfig, true));
     DREAD_REFLECTED_FIELD(f32, "fEmmyAutoFocusStartTime", 0x2c, (DefaultValue, 0.8f), (ShowInConfig, true));
@@ -180,9 +164,6 @@ void fn_710053e2c8(UnkReflFunction* fn, const char* name);
 void fn_7100565888();
 void fn_710053e444(UnkReflFunction* fn, const char* name);
 void fn_7100565954();
-extern base::reflection::CType g_unk_71726e00c8;
-extern base::reflection::CType g_unk_71726e04e8;
-extern base::reflection::CType g_unk_71726e0908;
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100565b44();
 void fn_71005659a8(UnkReflFunction* fn);
@@ -301,10 +282,10 @@ void refl_AddFields(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100565954);
     }
     DREAD_REFLECTED_READ_ONLY_PROPERTY(bool, "bTargetInsideEmmyZone", (Persistence, 0));
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("tOverrideGrabPosition", true), &g_unk_71726e00c8, 0x2a610, -1, -1);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("tOverrideDeathPosition", true), &g_unk_71726e00c8, 0x2a638, -1, -1);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("tAutoForbiddenEdges", true), &g_unk_71726e04e8, 0x2a660, -1, -1);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("tAutoGlobalSmartLinks", true), &g_unk_71726e0908, 0x2a688, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>", "tOverrideGrabPosition", 0x2a610);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>", "tOverrideDeathPosition", 0x2a638);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>", "tAutoForbiddenEdges", 0x2a660);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>", "tAutoGlobalSmartLinks", 0x2a688);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddLastTargetPerception", true))) {
         fn->name = base::global::UnkStrId("AddLastTargetPerception", true);
         fn->return_type = &g_unk_7101d5af48;

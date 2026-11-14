@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,24 +21,19 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCaterzillaSpawnPointComponent
-extern base::reflection::CType g_unk_7172744838;
-extern base::reflection::CType g_unk_7172744998;
 extern base::reflection::CType g_unk_717269bb48;
 extern base::reflection::CType g_unk_71727bc110;
-extern base::reflection::CType g_unk_717269bf08;
 namespace CCaterzillaSpawnPointComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eSpawnDir", true), &g_unk_7172744838, 0x3b8, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_7172744838, 0);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("eSpawnOrder", true), &g_unk_7172744998, 0x3bc, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_7172744998, 2);
+    DREAD_REFLECTED_FIELD_OF("ECaterzillaSpawnPointDir", "eSpawnDir", 0x3b8, (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD_OF("ECaterzillaSpawnPointOrder", "eSpawnOrder", 0x3bc, (DefaultValue, 2));
     DREAD_REFLECTED_FIELD(u32, "NumCaterzillas", 0x3c8, (DefaultValue, 5));
     DREAD_REFLECTED_FIELD(f32, "fTimeToGenerateNextWave", 0x3d4, (DefaultValue, 10.0f));
     UnkReflField* field4 = fn_7100096524(cls, CStrId("wpSpawnPointLinked", true), &g_unk_717269bb48, 0x3e0, -1, -1);
     field4->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 3);
     DREAD_REFLECTED_FIELD(f32, "fTimeToRespawnAllCaterzillas", 0x428, (DefaultValue, 30.0f));
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("aHomeLandmarks", true), &g_unk_717269bf08, 0x438, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CGameLink<CActor>>", "aHomeLandmarks", 0x438);
     DREAD_REFLECTED_FIELD(bool, "bInOutSpawnPoint", 0x3d1, (DefaultValue, false));
 }
 bool refl_Equals(const void*, const void*) { return false; }

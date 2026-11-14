@@ -8,6 +8,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -27,7 +28,6 @@ void fn_7100c8d374();
 extern base::reflection::CType g_unk_7172795110;
 extern base::reflection::CType g_unk_7172793b40;
 extern base::reflection::CType g_unk_7172793350;
-extern base::reflection::CType g_unk_7101d5d188;
 namespace CFXPoolPack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCutSceneDef {
 void refl_AddAttributes(CClass* cls) {
@@ -62,9 +62,7 @@ void refl_AddFields(CClass* cls) {
     field14->attrs.Add<const char*>(fn_7100007e80(), "Takes");
     UnkReflField* field15 = fn_7100096524(cls, CStrId("aActors", true), &g_unk_7172793350, 0x90, -1, -1);
     field15->attrs.Add<const char*>(fn_7100007e80(), "Actors");
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("aSounds", true), &g_unk_7101d5d188, 0xb8, -1, -1);
-    field16->attrs.Add<const char*>(fn_7100007e80(), "Sounds");
-    field16->attrs.Add<bool>(fn_7100090c40(), false);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<base::global::CFilePathStrId>", "aSounds", 0xb8, (Description, "Sounds"), (CharEditorVisible, false));
     DREAD_REFLECTED_CLASS_FIELD(CFXPoolPack, "oPoolDefinitions", 0xe0, (Description, "FX Pools"), (CharEditorVisible, false));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
@@ -93,7 +91,6 @@ DREAD_REFLECTED_ROOT_CLASS(CCutSceneDef);
 
 // CCutSceneDef::CActorDef
 extern base::reflection::CType g_unk_717270e348;
-extern base::reflection::CType g_unk_7101d60688;
 extern base::reflection::CType g_unk_7172793748;
 namespace CCutSceneDef::CActorDef {
 void refl_AddAttributes(CClass*) {}
@@ -106,8 +103,7 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field5 = fn_7100096524(cls, CStrId("fExitAnimTags", true), &g_unk_717270e348, 0x24, -1, -1);
     field5->attrs.Add<s32>(fn_7100075240(), &g_unk_717270e348, s32(base::reflection::refl_GetEnumZero<0x7172794a88>()));
     field5->attrs.Add<const char*>(fn_7100007e80(), "InGame Entity Exit Animation Tags");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("dBlendSpaceVars", true), &g_unk_7101d60688, 0x28, -1, -1);
-    field6->attrs.Add<const char*>(fn_7100007e80(), "BlendSpace variable values");
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, float>", "dBlendSpaceVars", 0x28, (Description, "BlendSpace variable values"));
     DREAD_REFLECTED_FIELD(base::global::CName, "sSkelRootNode", 0x50, (DefaultValue, base::global::CName(base::global::UnkNameHash{}, 0xffffffffffffffffu)), (Description, "Node in the cutscene entity skeleton to be used to match the final position"));
     DREAD_REFLECTED_FIELD(CStrId, "sExitAnim", 0x58, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "InGame Entity Exit Action Name"));
     DREAD_REFLECTED_FIELD(CStrId, "sExitAnimChannel", 0x60, (DefaultValue, CStrId(base::reflection::refl_GetStrIdTable<0x7100031894>().ids[433])), (Description, "InGame Entity Exit Action Channel Name"));

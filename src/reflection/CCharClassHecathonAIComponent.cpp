@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,12 +21,10 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassHecathonAIComponent
-extern base::reflection::CType g_unk_71726e8b98;
 namespace CCharClassHecathonAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eSubspecies", true), &g_unk_71726e8b98, 0x50c, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_71726e8b98, 2147483647);
+    DREAD_REFLECTED_FIELD_OF("CCharClassHecathonAIComponent::ESubspecies", "eSubspecies", 0x50c, (DefaultValue, 2147483647));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

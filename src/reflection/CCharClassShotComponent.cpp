@@ -5,6 +5,8 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,11 +21,10 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassShotComponent
-extern base::reflection::CType g_unk_7172741f48;
 namespace CCharClassShotComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("vLaunchShotConfigs", true), &g_unk_7172741f48, 0x58, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<std::unique_ptr<CShotLaunchConfig>>", "vLaunchShotConfigs", 0x58);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

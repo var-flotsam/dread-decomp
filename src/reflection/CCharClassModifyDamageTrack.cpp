@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -22,7 +23,6 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassModifyDamageTrack
 void fn_7100d2279c();
 void fn_7100d21e7c(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7172730858;
 namespace CCharClassModifyDamageTrack {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Modify Damage");
@@ -40,8 +40,7 @@ void refl_AddFields(CClass* cls) {
         fn_7100d21e7c(fn, "_sColliders_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sColliders", (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(CStrId, "sDamageID", 0x48, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("eDamageStrength", true), &g_unk_7172730858, 0x50, -1, -1);
-    field2->attrs.Add<s32>(fn_7100075240(), &g_unk_7172730858, 0);
+    DREAD_REFLECTED_FIELD_OF("EDamageStrength", "eDamageStrength", 0x50, (DefaultValue, 0));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

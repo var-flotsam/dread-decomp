@@ -8,6 +8,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -54,11 +55,10 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_ROOT_CLASS(CCooldownXBossFireBallDef);
 
 // CCooldownXBossFireWallDef
-extern base::reflection::CType g_unk_71726d62c0;
 namespace CCooldownXBossFireWallDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("tFireBalls", true), &g_unk_71726d62c0, 0x8, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CCooldownXBossFireBallDef>", "tFireBalls", 0x8);
     DREAD_REFLECTED_FIELD(f32, "fDelay", 0x30, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(f32, "fHorizontalOffset", 0x34, (DefaultValue, 500.0f));
     DREAD_REFLECTED_FIELD(bool, "bSpawnWallDamage", 0x38, (DefaultValue, false));
@@ -138,7 +138,6 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassCooldownXBossWindTunnelAttack::CTunableCharClassCooldownXBossWindTunnelAttack, base::tunable::CTunable);
 
 // CCharClassCooldownXBossWindTunnelAttack
-extern base::reflection::CType g_unk_71726d5ea0;
 namespace CCharClassCooldownXBossWindTunnelAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -147,7 +146,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sStunAttackAnim", 0x110, (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(s32, "iNumShots", 0x118, (DefaultValue, 8));
     DREAD_REFLECTED_FIELD(f32, "fTimeToEndAttack", 0x11c, (DefaultValue, 1.5f));
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("tLaunchPatterns", true), &g_unk_71726d5ea0, 0x120, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>", "tLaunchPatterns", 0x120);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

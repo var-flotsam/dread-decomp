@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,9 +21,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CTimelineComponent
-extern base::reflection::CType g_unk_7101d679f0;
-extern base::reflection::CType g_unk_7101d55008;
-extern base::reflection::CType g_unk_7172746d98;
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100a2dbb4();
 void fn_7100a2d930(UnkReflFunction* fn);
@@ -31,11 +29,7 @@ namespace CTimelineComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CName, "sInitAction", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("eNextPolicy", true), &g_unk_7172746d98, 0xffffffff, -1, -1);
-    field1->attrs.Add<bool>(fn_7100093390(), true);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field1->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field1->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_FIELD_OF("CTimelineComponent::ENextPolicy", "eNextPolicy", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(f32, "fMinDelayTime", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(f32, "fMaxDelayTime", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("StartAction", true))) {

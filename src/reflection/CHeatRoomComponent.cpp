@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,25 +21,16 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CHeatRoomComponent
-extern base::reflection::CType g_unk_71727464f0;
-extern base::reflection::CType g_unk_7172746630;
-extern base::reflection::CType g_unk_717269bb48;
-extern base::reflection::CType g_unk_7101d679f0;
-extern base::reflection::CType g_unk_7101d55008;
 extern base::reflection::CType g_unk_717269bf08;
 extern base::reflection::CType g_unk_71727bc110;
 namespace CHeatRoomComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oHeatConfig", true), &g_unk_71727464f0, 0xbe4, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("oCoolConfig", true), &g_unk_7172746630, 0xc04, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("CHeatRoomConfig", "oHeatConfig", 0xbe4);
+    DREAD_REFLECTED_FIELD_OF("CHeatRoomCoolConfig", "oCoolConfig", 0xc04);
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sEnterZoneSound", 0xc50, (DefaultValue, base::global::CFilePathStrId(base::global::UnkStrIdInline{}, "levels/lava_pain_01.wav", true)));
     DREAD_REFLECTED_FIELD(CStrId, "sVisualPresetOverride", 0xc58, (DefaultValue, CStrId("HeatZone", true)));
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("pEnvironmentFXActor", true), &g_unk_717269bb48, 0xffffffff, -1, -1);
-    field4->attrs.Add<bool>(fn_7100093390(), true);
-    field4->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field4->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field4->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_FIELD_OF("CGameLink<CActor>", "pEnvironmentFXActor", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     UnkReflField* field5 = fn_7100096524(cls, CStrId("vEnvironmentFXActors", true), &g_unk_717269bf08, 0xc28, -1, -1);
     field5->attrs.Add<bool>(fn_7100090090(), false);
     field5->attrs_0x70.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 10);

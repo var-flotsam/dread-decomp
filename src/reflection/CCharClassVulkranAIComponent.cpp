@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,9 +21,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassVulkranAIComponent
-extern base::reflection::CType g_unk_71726a7b48;
-extern base::reflection::CType g_unk_71726a7f08;
-extern base::reflection::CType g_unk_717270a2f8;
 namespace CCharClassVulkranAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -50,11 +48,11 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fLaunchSideMaxInitialSpeed", 0x560, (DefaultValue, 600.0f));
     DREAD_REFLECTED_FIELD(f32, "fLaunchDownMinInitialSpeed", 0x564, (DefaultValue, 300.0f));
     DREAD_REFLECTED_FIELD(f32, "fLaunchDownMaxInitialSpeed", 0x568, (DefaultValue, 500.0f));
-    UnkReflField* field24 = fn_7100096524(cls, CStrId("sWalkRightLaunchUpConfig", true), &g_unk_71726a7b48, 0x570, -1, -1);
-    UnkReflField* field25 = fn_7100096524(cls, CStrId("sWalkDownLaunchRightConfig", true), &g_unk_71726a7b48, 0x5b8, -1, -1);
-    UnkReflField* field26 = fn_7100096524(cls, CStrId("sWalkLeftLaunchDownConfig", true), &g_unk_71726a7b48, 0x648, -1, -1);
-    UnkReflField* field27 = fn_7100096524(cls, CStrId("sWalkUpLaunchLeftConfig", true), &g_unk_71726a7b48, 0x600, -1, -1);
-    UnkReflField* field28 = fn_7100096524(cls, CStrId("tLaunchConfigs", true), &g_unk_71726a7f08, 0x690, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("SLaunchConfig", "sWalkRightLaunchUpConfig", 0x570);
+    DREAD_REFLECTED_FIELD_OF("SLaunchConfig", "sWalkDownLaunchRightConfig", 0x5b8);
+    DREAD_REFLECTED_FIELD_OF("SLaunchConfig", "sWalkLeftLaunchDownConfig", 0x648);
+    DREAD_REFLECTED_FIELD_OF("SLaunchConfig", "sWalkUpLaunchLeftConfig", 0x600);
+    DREAD_REFLECTED_FIELD_OF("TLaunchConfigs", "tLaunchConfigs", 0x690);
     DREAD_REFLECTED_FIELD(f32, "fMinTimeBetweenAttacks", 0x6b8, (DefaultValue, 1.5f));
     DREAD_REFLECTED_FIELD(f32, "fMaxTimeBetweenAttacks", 0x6bc, (DefaultValue, 2.5f));
     DREAD_REFLECTED_FIELD(f32, "fMinTimeAttacking", 0x6c0, (DefaultValue, 2.5f));
@@ -64,8 +62,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTimeOutOfFrustumToEndAttack", 0x6d0, (DefaultValue, 0.25f));
     DREAD_REFLECTED_FIELD(f32, "fMaxLOSDistanceToChasePoint", 0x6d4, (DefaultValue, 600.0f));
     DREAD_REFLECTED_FIELD(CStrId, "sMagmaBallCharClass", 0x6d8, (DefaultValue, "vulkranmagmaball"));
-    UnkReflField* field38 = fn_7100096524(cls, CStrId("eSubspecies", true), &g_unk_717270a2f8, 0x6e0, -1, -1);
-    field38->attrs.Add<s32>(fn_7100075240(), &g_unk_717270a2f8, 2147483647);
+    DREAD_REFLECTED_FIELD_OF("CCharClassVulkranAIComponent::ESubspecies", "eSubspecies", 0x6e0, (DefaultValue, 2147483647));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

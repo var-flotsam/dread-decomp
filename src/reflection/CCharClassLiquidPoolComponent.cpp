@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -55,8 +56,6 @@ DREAD_REFLECTED_CLASS(CCharClassLiquidPoolComponent, CCharClassBaseDamageTrigger
 // CLiquidPoolBaseComponent
 void fn_7100903928();
 void fn_71008fec3c(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7108b6cde8;
-extern base::reflection::CType g_unk_7108b6cc88;
 namespace CLiquidPoolBaseComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -70,10 +69,8 @@ void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sModelPath_SetterFunction", true)))
         fn_71008fec3c(fn, "_m_sModelPath_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::global::CFilePathStrId, "sModelPath", (DefaultValue, base::global::CFilePathStrId("", true)));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("eLowPassFilter", true), &g_unk_7108b6cde8, 0xc08, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_7108b6cde8, 14);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("eReverb", true), &g_unk_7108b6cc88, 0xc0c, -1, -1);
-    field2->attrs.Add<s32>(fn_7100075240(), &g_unk_7108b6cc88, 0);
+    DREAD_REFLECTED_FIELD_OF("base::snd::ELowPassFilter", "eLowPassFilter", 0xc08, (DefaultValue, 14));
+    DREAD_REFLECTED_FIELD_OF("base::snd::EReverbIntensity", "eReverb", 0xc0c, (DefaultValue, 0));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

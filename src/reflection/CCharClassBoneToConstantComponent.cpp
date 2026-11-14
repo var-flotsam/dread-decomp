@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,17 +21,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassBoneToConstantComponent
-extern base::reflection::CType g_unk_716e599140;
-extern base::reflection::CType g_unk_716e34af70;
 namespace CCharClassBoneToConstantComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CName, "sNode", 0x58, (DefaultValue, base::global::CName("")));
     DREAD_REFLECTED_FIELD(base::global::CName, "sMaterialName", 0x60, (DefaultValue, base::global::CName("")));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("ePropertyName", true), &g_unk_716e599140, 0x68, -1, -1);
-    field2->attrs.Add<s32>(fn_7100075240(), &g_unk_716e599140, 0);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("eStage", true), &g_unk_716e34af70, 0x6c, -1, -1);
-    field3->attrs.Add<s32>(fn_7100075240(), &g_unk_716e34af70, 0);
+    DREAD_REFLECTED_FIELD_OF("engine::utils::EMaterialConstantColor", "ePropertyName", 0x68, (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD_OF("msapi::api::shdr::EShaderType", "eStage", 0x6c, (DefaultValue, 0));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

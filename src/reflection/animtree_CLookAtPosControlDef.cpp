@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,18 +21,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // animtree::CLookAtPosControlDef
-extern base::reflection::CType g_unk_7101d58a60;
 namespace animtree::CLookAtPosControlDef {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Look at Pos Control Definition");
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eLookAxis", true), &g_unk_7101d58a60, 0x34, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_7101d58a60, 1);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Look Axis");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("eUpAxis", true), &g_unk_7101d58a60, 0x38, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_7101d58a60, 2);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Up Axis");
+    DREAD_REFLECTED_FIELD_OF("base::math::EMaxAxis", "eLookAxis", 0x34, (DefaultValue, 1), (Description, "Look Axis"));
+    DREAD_REFLECTED_FIELD_OF("base::math::EMaxAxis", "eUpAxis", 0x38, (DefaultValue, 2), (Description, "Up Axis"));
     DREAD_REFLECTED_FIELD(f32, "fMinAttAngle", 0x28, (DefaultValue, 0.0f), (Description, "Min attenuation angle"));
     DREAD_REFLECTED_FIELD(f32, "fMaxAttAngle", 0x2c, (DefaultValue, 0.0f), (Description, "Max attenuation angle"));
     DREAD_REFLECTED_FIELD(f32, "fWorldOffsetAngZ", 0x30, (DefaultValue, 0.0f), (Description, "World Offset Angle Z"));

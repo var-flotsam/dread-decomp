@@ -8,6 +8,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -45,11 +46,10 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_ROOT_CLASS(GUI::IDisplayObjectTrack);
 
 // GUI::CDisplayObjectTrackFloat
-extern base::reflection::CType g_unk_71727600a0;
 namespace GUI::CDisplayObjectTrackFloat {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("aKeys", true), &g_unk_71727600a0, 0x40, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<GUI::CDisplayObjectTrack<float>::SKey>", "aKeys", 0x40);
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sPropertyID", 0x8);
     DREAD_REFLECTED_FIELD(s32, "iLoopStartFrame", 0x3c);
 }
@@ -78,11 +78,10 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(GUI::CDisplayObjectTrackFloat, GUI::IDisplayObjectTrack);
 
 // GUI::CDisplayObjectTrackBool
-extern base::reflection::CType g_unk_71727605d8;
 namespace GUI::CDisplayObjectTrackBool {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("aKeys", true), &g_unk_71727605d8, 0x40, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<GUI::CDisplayObjectTrack<bool>::SKey>", "aKeys", 0x40);
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sPropertyID", 0x8);
     DREAD_REFLECTED_FIELD(s32, "iLoopStartFrame", 0x3c);
 }
@@ -111,11 +110,10 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(GUI::CDisplayObjectTrackBool, GUI::IDisplayObjectTrack);
 
 // GUI::CDisplayObjectTrackString
-extern base::reflection::CType g_unk_7172760b10;
 namespace GUI::CDisplayObjectTrackString {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("aKeys", true), &g_unk_7172760b10, 0x40, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<GUI::CDisplayObjectTrack<base::global::CRntString>::SKey>", "aKeys", 0x40);
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sPropertyID", 0x8);
     DREAD_REFLECTED_FIELD(s32, "iLoopStartFrame", 0x3c);
 }

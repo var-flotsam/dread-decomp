@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassDropterAIComponent
-extern base::reflection::CType g_unk_71726dae18;
 namespace CCharClassDropterDiveAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassDropterAIComponent {
 void refl_AddAttributes(CClass*) {}
@@ -32,8 +32,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fFreezeExplosionRadius", 0x524, (DefaultValue, 1000.0f));
     DREAD_REFLECTED_FIELD(f32, "fFreezeExplosionDuration", 0x51c, (DefaultValue, 0.35f));
     DREAD_REFLECTED_FIELD(f32, "fFreezeExplosionRemanentDuration", 0x520, (DefaultValue, 2.0f));
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("eSubspecies", true), &g_unk_71726dae18, 0x620, -1, -1);
-    field7->attrs.Add<s32>(fn_7100075240(), &g_unk_71726dae18, 2147483647);
+    DREAD_REFLECTED_FIELD_OF("CCharClassDropterAIComponent::ESubspecies", "eSubspecies", 0x620, (DefaultValue, 2147483647));
     DREAD_REFLECTED_CLASS_FIELD(CCharClassDropterDiveAttack, "oDropterDiveAttackDef", 0x528);
 }
 bool refl_Equals(const void*, const void*) { return false; }

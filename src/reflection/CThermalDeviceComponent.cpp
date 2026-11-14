@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CThermalDeviceComponent
-extern base::reflection::CType g_unk_7172751fe8;
 extern base::reflection::CType g_unk_7172752160;
 void fn_7100a94804();
 void fn_7100a90798(UnkReflFunction* fn, const char* name);
@@ -29,7 +29,7 @@ void fn_7100a9090c(UnkReflFunction* fn, const char* name);
 namespace CThermalDeviceComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("vThermalDoors", true), &g_unk_7172751fe8, 0x548, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<SDoorInfo>", "vThermalDoors", 0x548);
     DREAD_REFLECTED_FIELD(CStrId, "sOnEnterUseLuaCallback", 0x570, (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(CStrId, "sOnSetupInitialStateLuaCallback", 0x578, (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(CStrId, "sOnSetupUseStateLuaCallback", 0x580, (DefaultValue, CStrId(g_unk_7101d470e0)));

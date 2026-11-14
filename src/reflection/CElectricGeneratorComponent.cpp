@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,13 +21,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CElectricGeneratorComponent
-extern base::reflection::CType g_unk_7172750038;
 extern base::reflection::CType g_unk_7101d5c998;
 namespace CElectricGeneratorComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eBlackOutZone", true), &g_unk_7172750038, 0x578, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_7172750038, 2);
+    DREAD_REFLECTED_FIELD_OF("CElectricGeneratorComponent::EBlackOutZone", "eBlackOutZone", 0x578, (DefaultValue, 2));
     DREAD_REFLECTED_FIELD(CStrId, "sOnEnterUseLuaCallback", 0x570, (DefaultValue, CStrId(g_unk_7101d470e0)));
     UnkReflField* field2 = fn_7100096524(cls, CStrId("vAffectedSubAreas", true), &g_unk_7101d5c998, 0x540, -1, -1);
 }

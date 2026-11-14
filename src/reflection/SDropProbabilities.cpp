@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,8 +21,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // SDropProbabilities
-extern base::reflection::CType g_unk_717271b970;
-extern base::reflection::CType g_unk_717271bad0;
 namespace SDropProbabilities {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -49,10 +48,8 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sNodeToDrop", 0x60, (DefaultValue, ""));
     DREAD_REFLECTED_FIELD(base::math::CVector3D, "vNodeOffset", 0x68, (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}));
     DREAD_REFLECTED_FIELD(base::math::CVector3D, "vRawOffset", 0x74, (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}));
-    UnkReflField* field24 = fn_7100096524(cls, CStrId("eDirToDrop", true), &g_unk_717271b970, 0x80, -1, -1);
-    field24->attrs.Add<s32>(fn_7100075240(), &g_unk_717271b970, 0);
-    UnkReflField* field25 = fn_7100096524(cls, CStrId("eType", true), &g_unk_717271bad0, 0x84, -1, -1);
-    field25->attrs.Add<s32>(fn_7100075240(), &g_unk_717271bad0, 0);
+    DREAD_REFLECTED_FIELD_OF("SDropProbabilities::SDir", "eDirToDrop", 0x80, (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD_OF("SDropProbabilities::SType", "eType", 0x84, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(bool, "bStrictDir", 0x88, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bForceAttract", 0x89, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bAutomaticGrab", 0x8a, (DefaultValue, false));

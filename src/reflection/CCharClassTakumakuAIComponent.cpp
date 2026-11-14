@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,14 +21,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassTakumakuAIComponent
-extern base::reflection::CType g_unk_7172709868;
 namespace CCharClassTakumakuDashAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassTakumakuAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_CLASS_FIELD(CCharClassTakumakuDashAttack, "oTakumakuDashAttackDef", 0x510);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("eSubspecies", true), &g_unk_7172709868, 0x600, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_7172709868, 2147483647);
+    DREAD_REFLECTED_FIELD_OF("CCharClassTakumakuAIComponent::ESubspecies", "eSubspecies", 0x600, (DefaultValue, 2147483647));
     DREAD_REFLECTED_FIELD(f32, "fMinTimeBetweenDigs", 0x604, (DefaultValue, -1.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxTimeBetweenDigs", 0x608, (DefaultValue, -1.0f));
     DREAD_REFLECTED_FIELD(f32, "fMinTimeDigging", 0x60c, (DefaultValue, -1.0f));

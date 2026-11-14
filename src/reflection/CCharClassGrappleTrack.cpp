@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,15 +21,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassGrappleTrack
-extern base::reflection::CType g_unk_717273ae48;
 namespace CCharClassGrappleTrack {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Grapple");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("State", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("ePullStage", true), &g_unk_717273ae48, 0x18, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_717273ae48, 0);
+    DREAD_REFLECTED_FIELD_OF("ESamusUsingGrapplePullPointStatePullStage", "ePullStage", 0x18, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(CStrId, "sSwingAccelImpulseAnim", 0x20, (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(CStrId, "sSwingEndAnim", 0x28, (DefaultValue, CStrId(g_unk_7101d470e0)));
 }

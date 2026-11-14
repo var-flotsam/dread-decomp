@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,14 +21,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassFlockingSwarmControllerComponent
-extern base::reflection::CType g_unk_7172710398;
 namespace CCharClassFlockingSwarmControllerComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fContaimentDist", 0x430, (DefaultValue, 190.0f), (Description, "Defeated Enemy class"));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("eRotationMode", true), &g_unk_7172710398, 0x434, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_7172710398, 1);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Rotation mode");
+    DREAD_REFLECTED_FIELD_OF("CCharClassFlockingSwarmControllerComponent::SRotationMode", "eRotationMode", 0x434, (DefaultValue, 1), (Description, "Rotation mode"));
     DREAD_REFLECTED_FIELD(f32, "fMaxAngularSpeed", 0x438, (DefaultValue, 9.424778f), (Description, "Maximum angular speed in radians/s"));
     DREAD_REFLECTED_FIELD(f32, "fCohesion", 0x43c, (DefaultValue, 1.0f), (Description, "Cohesion"));
     DREAD_REFLECTED_FIELD(f32, "fSeparationFactor", 0x444, (DefaultValue, 0.5f), (Description, "Separation factor"));

@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,14 +21,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCentralUnitComponent
-extern base::reflection::CType g_unk_7172714248;
 extern base::reflection::CType g_unk_71727b6270;
 extern base::reflection::CType g_unk_71727bc110;
 extern base::reflection::CType g_unk_7101d679f0;
-extern base::reflection::CType g_unk_7172714630;
 extern base::reflection::CType g_unk_717269bb48;
 extern base::reflection::CType g_unk_717269bf08;
-extern base::reflection::CType g_unk_7172714058;
 extern base::reflection::CType g_unk_71727b6630;
 void fn_710076e66c(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_7101d5af48;
@@ -42,8 +40,7 @@ void fn_710076e7e8(UnkReflFunction* fn, const char* name);
 namespace CCentralUnitComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eMode", true), &g_unk_7172714248, 0x3f0, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_7172714248, 0);
+    DREAD_REFLECTED_FIELD_OF("CCentralUnitComponent::ECentralUnitMode", "eMode", 0x3f0, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(bool, "bStartEnabled", 0x6d0, (DefaultValue, false));
     UnkReflField* field2 = fn_7100096524(cls, CStrId("wpBossSpawnPoint", true), &g_unk_71727b6270, 0x3f8, -1, -1);
     field2->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
@@ -62,19 +59,19 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sBossCollisionCameraID", 0x538, (DefaultValue, CStrId(g_unk_7101d470e0)));
     UnkReflField* field8 = fn_7100096524(cls, CStrId("wpEmmySpawnPoint", true), &g_unk_71727b6270, 0x540, -1, -1);
     field8->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("tEmmyStartPointsInfo", true), &g_unk_7172714630, 0x580, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>", "tEmmyStartPointsInfo", 0x580);
     UnkReflField* field10 = fn_7100096524(cls, CStrId("wpEmmyZoneShape", true), &g_unk_717269bb48, 0x5a8, -1, -1);
     field10->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
     UnkReflField* field11 = fn_7100096524(cls, CStrId("wpDestroySearchLandmark", true), &g_unk_717269bb48, 0x668, -1, -1);
     field11->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
     UnkReflField* field12 = fn_7100096524(cls, CStrId("tEmmyForbiddenShapes", true), &g_unk_717269bf08, 0x5e8, -1, -1);
     field12->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("tEmmyWeightedShapes", true), &g_unk_7172714058, 0x610, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>", "tEmmyWeightedShapes", 0x610);
     DREAD_REFLECTED_FIELD(bool, "bUnlockDoorsOnEmmyDead", 0x638, (DefaultValue, true));
     UnkReflField* field15 = fn_7100096524(cls, CStrId("tEmmyLockedDoors", true), &g_unk_71727b6630, 0x640, -1, -1);
     field15->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Door to lock on emmy spawn"));
     field15->attrs_0x70.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("tEmmyPhase2DeactivatedActors", true), &g_unk_717269bf08, 0x6a8, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CGameLink<CActor>>", "tEmmyPhase2DeactivatedActors", 0x6a8);
     UnkReflField* field17 = fn_7100096524(cls, CStrId("wpStartCombatCheckpointStartPoint", true), &g_unk_717269bb48, 0x970, -1, -1);
     field17->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
     DREAD_REFLECTED_FIELD(CStrId, "sStartCombatCheckpointSnapshotId", 0x9b0, (DefaultValue, CStrId(g_unk_7101d470e0)));

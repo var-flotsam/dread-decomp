@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,19 +21,14 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CFleeFromTargetAction
-extern base::reflection::CType g_unk_7172a057e0;
 namespace behaviortree::CFleeFromTargetAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fReachedDistance", 0x40, (DefaultValue, 5.0f), (Description, "Reach distance"));
     DREAD_REFLECTED_FIELD(bool, "bSuccessOnFinish", 0x44, (DefaultValue, false), (Description, "Launch success on finish"));
     DREAD_REFLECTED_FIELD(bool, "bForceGotoSide", 0x45, (DefaultValue, false), (Description, "Force GotoSide navigation"));
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("ePathLimitMode", true), &g_unk_7172a057e0, 0x48, -1, -1);
-    field3->attrs.Add<s32>(fn_7100075240(), &g_unk_7172a057e0, 0);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "How to select GotoSide target to flee");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("eAlternativePathLimitMode", true), &g_unk_7172a057e0, 0x4c, -1, -1);
-    field4->attrs.Add<s32>(fn_7100075240(), &g_unk_7172a057e0, 2147483647);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "How to select GotoSide target when m_ePathLimitMode fails");
+    DREAD_REFLECTED_FIELD_OF("CAIComponent::PathLimitSelectionMode", "ePathLimitMode", 0x48, (DefaultValue, 0), (Description, "How to select GotoSide target to flee"));
+    DREAD_REFLECTED_FIELD_OF("CAIComponent::PathLimitSelectionMode", "eAlternativePathLimitMode", 0x4c, (DefaultValue, 2147483647), (Description, "How to select GotoSide target when m_ePathLimitMode fails"));
     DREAD_REFLECTED_FIELD(bool, "bLookAtDir", 0x50, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(f32, "fMinDistance2NewFleePoint", 0x54, (DefaultValue, -1.0f), (Description, "Min distance to desired flee point to start fleeing"));
     DREAD_REFLECTED_FIELD(bool, "bForceUseNavmeshPath", 0x58, (DefaultValue, false), (Description, "Force use of Navmesh path even if it's given a path"));

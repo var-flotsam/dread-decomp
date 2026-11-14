@@ -5,6 +5,8 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,12 +21,10 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CRodotukAIComponent
-extern base::reflection::CType g_unk_71726fee48;
 namespace CRodotukAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eType", true), &g_unk_71726fee48, 0x14860, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_71726fee48, 2);
+    DREAD_REFLECTED_FIELD_OF("CCharClassRodotukAIComponent::SAbsorbConfig::EType", "eType", 0x14860, (DefaultValue, 2));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

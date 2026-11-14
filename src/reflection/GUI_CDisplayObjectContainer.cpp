@@ -8,6 +8,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -25,7 +26,6 @@ using base::reflection::DestroyDestructorFirst;
 void fn_71011d8690(UnkReflFunction* fn, const char* name);
 void fn_71011d8808(UnkReflFunction* fn, const char* name);
 void fn_71011d8980(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7172a0db28;
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_71011dc5bc();
 void fn_71011d8af8(UnkReflFunction* fn, const char* name);
@@ -42,10 +42,7 @@ void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("FindDescendant", true)))
         fn_71011d8980(fn, "FindDescendant");
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sChildToFocus", 0x190, (DefaultValue, base::global::CRntString("ListComposition")));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("lstChildren", true), &g_unk_7172a0db28, 0x1c0, -1, -1);
-    field1->attrs.Add<CStrId>(fn_710008fd60(), CStrId("AddDisplayObj", true));
-    field1->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeleteDO", true));
-    field1->attrs.Add<CStrId>(fn_710008ff80(), CStrId("AfterChildrenListDeserialization", true));
+    DREAD_REFLECTED_FIELD_OF("base::global::CPooledList<GUI::CDisplayObject*>", "lstChildren", 0x1c0, (CreateElement, CStrId("AddDisplayObj", true)), (DeleteElement, CStrId("DeleteDO", true)), (AfterElementDeserialization, CStrId("AfterChildrenListDeserialization", true)));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterChildrenListDeserialization", true))) {
         fn->name = base::global::UnkStrId("AfterChildrenListDeserialization", true);
         fn->return_type = &g_unk_7101d5af48;

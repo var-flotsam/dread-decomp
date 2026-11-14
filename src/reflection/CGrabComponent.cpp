@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CGrabComponent
 void fn_710113f59c();
-extern base::reflection::CType g_unk_7172a08f58;
 namespace CGrabComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -33,9 +33,7 @@ void refl_AddFields(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710113f59c);
     }
     DREAD_REFLECTED_READ_ONLY_PROPERTY(bool, "bIsInGrab", (Persistence, 0), (EditorVisible, false));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("eLinkModeAsGrabber", true), &g_unk_7172a08f58, 0xc4, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_7172a08f58, 1);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Link Node as Grabbed (DC_Grab, Usable)");
+    DREAD_REFLECTED_FIELD_OF("CGrabComponent::ELinkMode", "eLinkModeAsGrabber", 0xc4, (DefaultValue, 1), (Description, "Link Node as Grabbed (DC_Grab, Usable)"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
