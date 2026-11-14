@@ -29,7 +29,7 @@ f32 fn_71001d08f4(void* obj);
 
 bool fn_7100219588(UnkRenderManager* self, const void* pos, u32 a, u32 b) {
     // Only written when the view exists. The original reads their stack slots either way, so this does too:
-    // an unset value the original program itself has, not one put here to steer the compiler.
+    // they are unset in the original program itself, not put here to steer the compiler.
     s32 x;
     s32 y;
     if (self->field_0x268) {

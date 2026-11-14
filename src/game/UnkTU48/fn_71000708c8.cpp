@@ -1,7 +1,7 @@
 #include "base/input/UnkHidVibration.h"
+#include "base/math/UnkZeroVector3.h"
 #include "types.h"
 
-extern char g_unk_7101647790[];
 
 struct UnkRumbleModulation_ovb0186 {
     f32 amplitude_low;
@@ -67,7 +67,7 @@ void fn_71000708c8(UnkRumbleLoad_ovb0186* self, const UnkVibrationDesc_ovb0186* 
     self->to = 1.0f;
     self->strength = 1.0f;
     self->from = 1.0f;
-    const u32* src = reinterpret_cast<const u32*>(g_unk_7101647790);
+    const u32* src = reinterpret_cast<const u32*>(&g_unk_7101647790);
     u32* dst = reinterpret_cast<u32*>(self->offset);
     u32 x = src[0];
     dst[0] = x;

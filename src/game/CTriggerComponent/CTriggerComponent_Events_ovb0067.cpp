@@ -10,6 +10,7 @@
 
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
+#include "base/math/UnkZeroVector3.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CPickableComponent.h"
 #include "game/CTriggerComponent.h"
@@ -22,7 +23,6 @@
 using base::global::CRntString;
 
 struct UnkScriptCaller;
-extern char g_unk_7101647790[];
 
 struct UnkTrigger_b50a5;
 struct UnkTriggerEntry_b50a5;
@@ -181,5 +181,5 @@ void fn_7100a5f210(UnkTriggerComponent_ovb0067* self) {
             fn_71009cde54(script, CStr(full.data), "s", CStr(UseText(self->owner->name)->data));
         }
     }
-    fn_7100a5ee80(self, 5, self->owner, reinterpret_cast<const UnkVec3f*>(g_unk_7101647790));
+    fn_7100a5ee80(self, 5, self->owner, reinterpret_cast<const UnkVec3f*>(&g_unk_7101647790));
 }

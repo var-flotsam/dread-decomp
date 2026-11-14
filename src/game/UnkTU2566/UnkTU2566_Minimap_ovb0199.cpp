@@ -66,10 +66,16 @@ struct UnkMinimapRect {
 
 // The owner as the camera follow and the properties see it.
 struct UnkMmOwner_b0199 {
-    u8 unk_0x0[0x110];
-    CStrId field_0x110;  // the area the map shows
+    u8 unk_0x0[0x9c];
+    f32 margin;  // 0x9c
+    u8 unk_0xa0[0x70];
+    CStrId field_0x110;
     u8 unk_0x118[0xd63d30 - 0x118];
     UnkMinimapRect view;  // 0xd63d30
+    u8 unk_0xd63d40[0x10];
+    f32 offset[2];        // 0xd63d50
+    u8 unk_0xd63d58[0x14];
+    f32 cam[9];           // 0xd63d6c
 };
 
 // The hidden icon kinds (+0xd642c8): found by id, shown again by a callback that erases the kind

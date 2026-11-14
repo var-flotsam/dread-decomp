@@ -6,6 +6,7 @@
 #include "game/UnkTU311.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
+#include "game/UnkTU2566.h"
 
 struct UnkViewParams {
     u8 pad_0x0[0x80];
@@ -27,13 +28,29 @@ struct UnkViewOwner {
     UnkViewCamera* field_0x40;
 };
 
+// The same rectangle as src/game/UnkTU2566/UnkTU2566_Minimap_ovb0199.cpp's, copied word by word.
 struct UnkMinimapRect {
-    f32 min_x, min_y, max_x, max_y;
+    f32 min_x;
+    f32 min_y;
+    f32 max_x;
+    f32 max_y;
     UnkMinimapRect() {}
-    UnkMinimapRect(const UnkMinimapRect& o) : min_x(o.min_x), min_y(o.min_y), max_x(o.max_x), max_y(o.max_y) {}
+    UnkMinimapRect(f32 x0, f32 y0, f32 x1, f32 y1) : min_x(x0), min_y(y0), max_x(x1), max_y(y1) {}
+    UnkMinimapRect(const UnkMinimapRect& o) {
+        ((a_u32*)this)[0] = ((const a_u32*)&o)[0];
+        ((a_u32*)this)[1] = ((const a_u32*)&o)[1];
+        ((a_u32*)this)[2] = ((const a_u32*)&o)[2];
+        ((a_u32*)this)[3] = ((const a_u32*)&o)[3];
+    }
+    UnkMinimapRect& operator=(const UnkMinimapRect& o) {
+        ((a_u32*)this)[0] = ((const a_u32*)&o)[0];
+        ((a_u32*)this)[1] = ((const a_u32*)&o)[1];
+        ((a_u32*)this)[2] = ((const a_u32*)&o)[2];
+        ((a_u32*)this)[3] = ((const a_u32*)&o)[3];
+        return *this;
+    }
 };
 
-extern const f32 g_unk_710164be30;
 
 static inline f32 DegToRad(f32 deg) {
     return (f32)((double)(deg * 0.5f) * 3.14159265358979323846 / 180.0);

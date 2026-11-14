@@ -4,13 +4,15 @@
 // channel has its duration, its progress (0 while it runs, 1 when it is done at once) and a flag,
 // in three arrays of 29; the values faded live before them. fn_7100d8e398 applies a preset with
 // these setters (the object at +0x28 of its first argument). Names and layouts are placeholders.
-// Holds fn_7100f97f64, fn_7100f9800c, fn_7100f9819c, fn_7100f98244, fn_7100f98370 and
-// fn_7100f98410 (start a channel's fade) and fn_7100f989f0 (sets the texture by its path).
+// Holds fn_7100f97f64, fn_7100f9800c, fn_7100f98094, fn_7100f9819c, fn_7100f98244, fn_7100f98370,
+// fn_7100f98410, fn_7100f98d24, fn_7100f98dc4 and fn_7100f990e0 (start a channel's fade) and
+// fn_7100f989f0 (sets the texture by its path).
 #include "base/UnkResKey.h"
 #include "base/color/CColor4F.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/math/CVector4D.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU2607.h"
 #include "types.h"
 
 using base::color::CColor4F;
@@ -39,19 +41,33 @@ struct UnkEnvironmentFade {
     f32 field_0x30;              // channel 1: where it starts
     f32 field_0x34;              // channel 1: the value now
     f32 field_0x38;              // channel 1: where it goes
-    u8 pad_0x3c[0x48];
+    f32 field_0x3c[2];           // channel 2: where it starts
+    f32 field_0x44[2];           // channel 2: the value now
+    f32 field_0x4c[2];           // channel 2: where it goes
+    u8 pad_0x54[0x30];
     UnkEnvFadeColor field_0x84;  // channel 4: where it starts
     UnkEnvFadeColor field_0x94;  // channel 4: where it goes
     UnkFadePair field_0xa4[8];  // channel 5: two sets of four floats, interleaved
     UnkEnvFadeColor field_0xe4;  // channel 6: where it starts
     UnkEnvFadeColor field_0xf4;  // channel 6: where it goes
     UnkFadePair field_0x104;  // channel 7
-    u8 pad_0x10c[0x165];
+    u8 pad_0x10c[0x70];
+    base::math::CVector3D field_0x17c;  // channel 10: where it starts
+    base::math::CVector3D field_0x188;  // channel 10: where it goes
+    base::math::CVector3D field_0x194;  // channel 11: where it starts
+    base::math::CVector3D field_0x1a0;  // channel 11: where it goes
+    u8 pad_0x1ac[0xc5];
     u8 field_0x271;  // passed with the texture
     u8 pad_0x272[0x6];
     CFilePathStrId field_0x278;  // the texture's path
     UnkResRef field_0x280;       // the texture
-    u8 pad_0x288[0xc0];
+    u8 pad_0x288[0x58];
+    UnkEnvFadeColor field_0x2e0;  // channel 26: the value now
+    UnkEnvFadeColor field_0x2f0;  // channel 26: where it starts
+    UnkEnvFadeColor field_0x300;  // channel 26: where it goes
+    u8 pad_0x310[0xc];
+    u8 field_0x31c;  // set when channel 26 starts
+    u8 pad_0x31d[0x2b];
     f32 progress[kFadeChannels];
     f32 duration[kFadeChannels];
     bool done[kFadeChannels];
@@ -69,6 +85,8 @@ static_assert(__builtin_offsetof(UnkEnvironmentFade, field_0x104) == 0x104, "Unk
 static_assert(__builtin_offsetof(UnkEnvironmentFade, progress) == 0x348, "UnkEnvironmentFade placeholder layout");
 static_assert(__builtin_offsetof(UnkEnvironmentFade, duration) == 0x3bc, "UnkEnvironmentFade placeholder layout");
 static_assert(__builtin_offsetof(UnkEnvironmentFade, done) == 0x430, "UnkEnvironmentFade placeholder layout");
+static_assert(__builtin_offsetof(UnkEnvironmentFade, field_0x17c) == 0x17c, "UnkEnvironmentFade placeholder layout");
+static_assert(__builtin_offsetof(UnkEnvironmentFade, field_0x31c) == 0x31c, "UnkEnvironmentFade placeholder layout");
 
 // The render manager's current values.
 void fn_7100219fa0(UnkRenderManager* self, UnkEnvFadeColor* out, u32 arg);
@@ -94,6 +112,27 @@ void fn_7100f9800c(f32 to, f32 time, UnkEnvironmentFade* self) {
     self->field_0x30 = now;
     self->field_0x34 = now;
     self->field_0x38 = to;
+}
+
+// Whether a fade's time is (nearly) zero: the channel is done at once. The setters below start their
+// channel by hand, the flag cleared before the duration is set: with Start's order the original's
+// schedule of the render manager's GOT load differs.
+static inline bool NearlyZero(f32 time) {
+    return time - 0.001f <= 0.0f && time + 0.001f >= 0.0f;
+}
+
+// The render manager's current values for channel 2, one out-pointer each.
+void fn_7100219f6c(UnkRenderManager* self, f32* x, f32* y, u32 arg);
+
+void fn_7100f98094(UnkEnvironmentFade* self, UnkEnvVec2 to, f32 time) {
+    self->done[2] = false;
+    self->duration[2] = time;
+    self->progress[2] = NearlyZero(time) ? 1.0f : 0.0f;
+    fn_7100219f6c(g_unk_7101d47300, &self->field_0x3c[0], &self->field_0x3c[1], 0);
+    self->field_0x44[0] = self->field_0x3c[0];
+    self->field_0x44[1] = self->field_0x3c[1];
+    self->field_0x4c[0] = to.x;
+    self->field_0x4c[1] = to.y;
 }
 
 void fn_7100219e74(UnkRenderManager* self, CColor4F* inout);
@@ -212,6 +251,47 @@ void fn_7100f989f0(UnkEnvironmentFade* self, const CFilePathStrId& path) {
     param.flag = self->field_0x271;
     param.texture = self->field_0x280.ptr;
     fn_7100219294(g_unk_7101d47300, 0xbd88e4a69dc0e5c9, reinterpret_cast<const f32*>(&param), 0);
+}
+
+// The render manager's current values for channels 10 and 11.
+const base::math::CVector3D* fn_710021a04c(UnkRenderManager* self);
+const base::math::CVector3D* fn_710021a060(UnkRenderManager* self);
+
+void fn_7100f98d24(f32 time, UnkEnvironmentFade* self, const base::math::CVector3D* to) {
+    self->done[10] = false;
+    self->duration[10] = time;
+    self->progress[10] = NearlyZero(time) ? 1.0f : 0.0f;
+    const base::math::CVector3D* now = fn_710021a04c(g_unk_7101d47300);
+    self->field_0x17c.x = now->x;
+    self->field_0x17c.y = now->y;
+    self->field_0x17c.z = now->z;
+    self->field_0x188.x = to->x;
+    self->field_0x188.y = to->y;
+    self->field_0x188.z = to->z;
+}
+
+void fn_7100f98dc4(f32 time, UnkEnvironmentFade* self, const base::math::CVector3D* to) {
+    self->done[11] = false;
+    self->duration[11] = time;
+    self->progress[11] = NearlyZero(time) ? 1.0f : 0.0f;
+    const base::math::CVector3D* now = fn_710021a060(g_unk_7101d47300);
+    self->field_0x194.x = now->x;
+    self->field_0x194.y = now->y;
+    self->field_0x194.z = now->z;
+    self->field_0x1a0.x = to->x;
+    self->field_0x1a0.y = to->y;
+    self->field_0x1a0.z = to->z;
+}
+
+// NON_MATCHING(minor): the original saves `to` (x1) before `self` (x0) and computes the first copy's
+// source address before the progress store (independent instructions); passes tools/equiv_test.py.
+void fn_7100f990e0(UnkEnvironmentFade* self, base::math::UnkVector4D to, f32 time) {
+    self->duration[26] = time;
+    self->done[26] = false;
+    self->progress[26] = NearlyZero(time) ? 1.0f : 0.0f;
+    self->field_0x31c = 1;
+    fn_710007b518(&self->field_0x2f0, &self->field_0x2e0);
+    fn_710007b518(&self->field_0x300, &to);
 }
 
 // The faded vectors: copied member by member (the original copies the components as words).

@@ -2,6 +2,7 @@ address,digest,verdict,rules,detail
 0x7100017ce8,68cbb625b718552ac1235f662d6148fb,inconclusive,2,only 95% of the original's instructions ran
 0x710002d3e0,ccf33efee148de0fd9c99dd3b31d2492,pass,2,
 0x710006cd9c,e0d3c6ac3d1574487fb23bd532041934,pass,2,
+0x71000708c8,81506c18b14baabb966729e413c9fdda,pass,2,
 0x7100077c70,6934c6958abf061e9fc7872df6275096,pass,2,
 0x7100079b18,1ffde30061d52aea37354f768c7470d0,pass,2,
 0x710007ba20,6e7e160062c437e038f8aa7a73b18494,pass,2,
@@ -14,6 +15,7 @@ address,digest,verdict,rules,detail
 0x71000cd658,0aca046f127df5da4458f29a7c3428f2,inconclusive,2,5 of 12 conditional branches went only one way
 0x71000cfe14,a79e3daa106f598fdb7902dad79fd5af,inconclusive,2,5 of 12 conditional branches went only one way
 0x71000fd1d4,cefc91838050d8d167457ce7beda6d57,pass,2,
+0x71000fef18,46e87f5e64ba9eba8d926888024b1384,pass,2,
 0x7100110420,bfeb95e7cbcf15507626ede5eb508242,pass,2,
 0x710011ec5c,88fe1b9031af625ce292c29badada502,pass,2,
 0x710012436c,4ccf526e05b76ea7d5a76da86a8bf0aa,inconclusive,2,unresolved UnkSegment2D::UnkSegment2D(base::math::CVector2D const&; base::math::CVector2D const&)
@@ -29,6 +31,7 @@ address,digest,verdict,rules,detail
 0x710015f500,dd4252f182e1fcde842889f71318d1e9,pass,2,
 0x7100161520,62aeb042bb595217d31207b041a43872,inconclusive,2,only 22% of the original's instructions ran
 0x7100161b90,577190862793adb5cf0802906207002b,inconclusive,2,unresolved guard variable for UnkFlagsNone_7100161b90()::s_none (no address in the original)
+0x710019da10,15670ad6f29e08620eaadd8b8c27019f,pass,2,
 0x71001b76ec,57a24d03591b69ba34d01f0cf4179b9d,pass,2,
 0x71001b7d80,49df6d5d9c751fee53dc3c026cf0a072,pass,2,
 0x71001bab30,25ea7aaff7298725fe05270fc67abd22,inconclusive,2,2 of 7 conditional branches went only one way
@@ -74,11 +77,13 @@ address,digest,verdict,rules,detail
 0x71006eb484,47135ee84631131e2dc775321549c3d7,inconclusive,2,only 89% of the original's instructions ran
 0x7100714808,0722c41dde09ac2c8cbd44951f777767,inconclusive,2,1 of 6 conditional branches went only one way
 0x710074566c,67c91b4330ba18c0590fb900f7bc9740,pass,2,
+0x7100745bdc,cdec408383f1c17510ff1afcc2a5a1c6,pass,2,
 0x71007a6b58,2da895e7feb192806d52ac6370e56213,inconclusive,2,unresolved UnkElem_0x88::UnkElem_0x88(UnkElem_0x88&&)
 0x71008407fc,e4ae04b5fbd4537fcd68507779fffc0e,pass,2,
 0x71008449ec,da2c258a851d0aa3829478a40cad372d,inconclusive,2,unresolved base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id()::s_id (no address in the 
 0x710086c89c,7064220056ae29298435634e7f2115df,inconclusive,2,1 of 3 conditional branches went only one way
 0x710087f018,4cdde458ffff53b070002450edaff6d6,pass,2,
+0x71009881b0,5afb7e2395df36e3ca9d150ff4d1a495,pass,2,
 0x71009cde54,d980ce8242f098adb0ef195783b93d79,inconclusive,2,only 79% of the original's instructions ran
 0x71009f194c,e442597291dc8a2c87982ef4e4ddc7f8,pass,2,both runs faulted; on different accesses
 0x7100af45b0,934078e612346f3dbb073e4fbf4b5105,pass,2,
@@ -118,8 +123,11 @@ address,digest,verdict,rules,detail
 0x7100e5f348,dcdfcad342b3e7d50fd97268fa8aa213,inconclusive,2,only 83% of the original's instructions ran
 0x7100e6e850,1b283f0d4dfc7f5848a6fb6981118d23,inconclusive,2,2 of 7 conditional branches went only one way
 0x7100e8f6bc,f278d1f52b4ee78c5f3997bb16265075,inconclusive,2,only 98% of the original's instructions ran
+0x7100e906bc,95a477431a53bcdfe6f5aa55c859dac8,pass,2,
 0x7100e90e6c,b1468ac42000bf07715af95b4272dbfd,pass,2,
 0x7100e91d68,6f3c9de0dde0ceb5d24ca712cb2c8581,pass,2,
+0x7100e94e10,dc7011ed5cd98181dc653fe57e0684f3,pass,2,
+0x7100e9d6f8,743e3a93eeae5188c487d7e857f6594f,pass,2,
 0x7100eca5dc,056cff2f7069cf909a91ac97438182f9,inconclusive,2,only 83% of the original's instructions ran
 0x7100eca778,056cff2f7069cf909a91ac97438182f9,inconclusive,2,only 83% of the original's instructions ran
 0x7100ee4f84,105bfc17d8be1c6f6e47540cc8428d48,inconclusive,2,unresolved guard variable for GameManagerIdTable()::s_table (no address in the original)
@@ -128,6 +136,7 @@ address,digest,verdict,rules,detail
 0x7100f97f64,8a546b87d5dd88e59be02d4da8ebd851,pass,2,
 0x7100f98370,e45c3dbd1c4a79bf1e67fb67608bf708,pass,2,
 0x7100f98410,2801be217ed17bea6af23dd73578608f,pass,2,
+0x7100f990e0,206d53e16736e4c6b42079528d3567be,pass,2,
 0x71010182fc,26d1156460e36d4ab6fb3bb414c1603a,inconclusive,2,only 18% of the original's instructions ran
 0x7101053aa4,bcd1548c2d7ebe19c4ae3e73ba1e9be4,inconclusive,2,3 of 8 conditional branches went only one way
 0x7101059530,c71253ff60d5dbd515e40c1467fa8c6b,pass,2,
