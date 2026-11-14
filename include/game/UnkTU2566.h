@@ -38,3 +38,4 @@ extern base::global::CStrId g_unk_71727cc990;
 void fn_7100e9c43c(UnkMapData* map, const base::global::CStrId* id);
 void fn_7100e9cbac(void* world, const base::global::CStrId* current, base::global::CStrId* id, bool flag);
 extern UnkTunable g_unk_71727ca410;
+extern const f32 g_unk_710164be30;  // a margin of the minimap's cells (read only by minimap code)

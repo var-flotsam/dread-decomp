@@ -6,6 +6,7 @@
 #include "game/UnkTU311.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
+#include "game/UnkTU2566.h"
 
 struct UnkViewParams {
     u8 pad_0x0[0x80];
@@ -50,7 +51,6 @@ struct UnkMinimapRect {
     }
 };
 
-extern const f32 g_unk_710164be30;
 
 static inline f32 DegToRad(f32 deg) {
     return (f32)((double)(deg * 0.5f) * 3.14159265358979323846 / 180.0);

@@ -151,7 +151,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100e903ec,340,drafts/game/UnkTU2566/fn_7100e903ec.cpp,operations,75.3,21,pilot50,operations: orr operand order; fcsel order; fade branch layout
 0x7100e906bc,296,drafts/game/UnkTU2566/fn_7100e906bc.cpp,registers or order,93.2,5,overnight,passes tools/equiv_test.py; held: 1 declaration problem: src/game/UnkTU2566/fn_7100e906bc.cpp:76 fn_7100e94254: void fn_7100e94254(UnkMinimapOwner*) -> src/game/UnkTU2566/UnkTU2566_Minimap_ovb0200.cpp defines it with other types; c...
 0x7100e911c8,196,drafts/game/UnkTU2566/fn_7100e911c8.cpp,registers or order,98.0,1,overnight,
-0x7100e94e10,552,drafts/game/UnkTU2566/fn_7100e94e10.cpp,registers or order,98.6,2,overnight,passes tools/equiv_test.py; held: it declares g_unk_710164be30; which other files declare too and no unit header can take
 0x7100e97c60,812,drafts/game/UnkTU2566/fn_7100e97c60.cpp,conditions,93.1,14,lean,
 0x7100e98090,408,drafts/game/UnkTU2566/fn_7100e98090.cpp,registers or order,43.1,58,pilot50,register assignment only; holds an empty barrier (without it: operations 41.2%)
 0x7100e9c06c,492,drafts/game/UnkTU2566/fn_7100e9c06c.cpp,registers or order,92.7,9,overnight,
