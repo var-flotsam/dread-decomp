@@ -22,8 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 // CStandaloneFXComponent
 extern base::reflection::CType g_unk_71727227b0;
 void fn_7100812860(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d679f0;
-extern base::reflection::CType g_unk_7101d55008;
 namespace CStandaloneFXComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -38,16 +36,8 @@ void refl_AddFields(CClass* cls) {
         fn->ParamAttrs(0)->Add<bool>(fn_71000903c0(), true);
     }
     DREAD_REFLECTED_FIELD(u32, "uPoolSize", 0x48);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("vScale", true), fn_71000246e4(), 0xffffffff, -1, -1);
-    field2->attrs.Add<bool>(fn_7100093390(), true);
-    field2->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field2->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field2->attrs.Add<bool>(fn_7100090a20(), false);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sFXPath", true), fn_710000ad9c(), 0xffffffff, -1, -1);
-    field3->attrs.Add<bool>(fn_7100093390(), true);
-    field3->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field3->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field3->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vScale", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sFXPath", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

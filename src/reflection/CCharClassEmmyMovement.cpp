@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -145,8 +146,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpRelaxAnim_SetterFunction", true)))
             fn_7100527ee0(fn, "_m_sWalkingWallUpRelaxAnim_SetterFunction");
     }();
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sWalkingWallUpRelaxAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallUpRelaxAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpFrontAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallUpFrontAnim_GetterFunction", true);
@@ -158,8 +158,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpFrontAnim_SetterFunction", true)))
             fn_710052805c(fn, "_m_sWalkingWallUpFrontAnim_SetterFunction");
     }();
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sWalkingWallUpFrontAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallUpFrontAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpBackAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallUpBackAnim_GetterFunction", true);
@@ -171,8 +170,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpBackAnim_SetterFunction", true)))
             fn_71005281d8(fn, "_m_sWalkingWallUpBackAnim_SetterFunction");
     }();
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sWalkingWallUpBackAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field2->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallUpBackAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpFrontInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallUpFrontInitAnim_GetterFunction", true);
@@ -184,8 +182,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpFrontInitAnim_SetterFunction", true)))
             fn_7100528354(fn, "_m_sWalkingWallUpFrontInitAnim_SetterFunction");
     }();
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sWalkingWallUpFrontInitAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field3->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallUpFrontInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpBackInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallUpBackInitAnim_GetterFunction", true);
@@ -197,8 +194,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpBackInitAnim_SetterFunction", true)))
             fn_71005284d0(fn, "_m_sWalkingWallUpBackInitAnim_SetterFunction");
     }();
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sWalkingWallUpBackInitAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field4->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallUpBackInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpFrontEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallUpFrontEndAnim_GetterFunction", true);
@@ -210,8 +206,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpFrontEndAnim_SetterFunction", true)))
             fn_710052864c(fn, "_m_sWalkingWallUpFrontEndAnim_SetterFunction");
     }();
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("sWalkingWallUpFrontEndAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field5->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallUpFrontEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpBackEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallUpBackEndAnim_GetterFunction", true);
@@ -223,8 +218,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpBackEndAnim_SetterFunction", true)))
             fn_71005287c8(fn, "_m_sWalkingWallUpBackEndAnim_SetterFunction");
     }();
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("sWalkingWallUpBackEndAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field6->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallUpBackEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownRelaxAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallDownRelaxAnim_GetterFunction", true);
@@ -236,8 +230,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownRelaxAnim_SetterFunction", true)))
             fn_7100528944(fn, "_m_sWalkingWallDownRelaxAnim_SetterFunction");
     }();
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("sWalkingWallDownRelaxAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field7->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallDownRelaxAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownFrontAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallDownFrontAnim_GetterFunction", true);
@@ -249,8 +242,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownFrontAnim_SetterFunction", true)))
             fn_7100528ac0(fn, "_m_sWalkingWallDownFrontAnim_SetterFunction");
     }();
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("sWalkingWallDownFrontAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field8->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallDownFrontAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownBackAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallDownBackAnim_GetterFunction", true);
@@ -262,8 +254,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownBackAnim_SetterFunction", true)))
             fn_7100528c3c(fn, "_m_sWalkingWallDownBackAnim_SetterFunction");
     }();
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("sWalkingWallDownBackAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field9->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallDownBackAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownFrontInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallDownFrontInitAnim_GetterFunction", true);
@@ -275,8 +266,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownFrontInitAnim_SetterFunction", true)))
             fn_7100528db8(fn, "_m_sWalkingWallDownFrontInitAnim_SetterFunction");
     }();
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("sWalkingWallDownFrontInitAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field10->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallDownFrontInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownBackInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallDownBackInitAnim_GetterFunction", true);
@@ -288,8 +278,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownBackInitAnim_SetterFunction", true)))
             fn_7100528f34(fn, "_m_sWalkingWallDownBackInitAnim_SetterFunction");
     }();
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("sWalkingWallDownBackInitAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field11->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallDownBackInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownFrontEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallDownFrontEndAnim_GetterFunction", true);
@@ -301,8 +290,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownFrontEndAnim_SetterFunction", true)))
             fn_71005290b0(fn, "_m_sWalkingWallDownFrontEndAnim_SetterFunction");
     }();
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("sWalkingWallDownFrontEndAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field12->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallDownFrontEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownBackEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallDownBackEndAnim_GetterFunction", true);
@@ -314,8 +302,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownBackEndAnim_SetterFunction", true)))
             fn_710052922c(fn, "_m_sWalkingWallDownBackEndAnim_SetterFunction");
     }();
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("sWalkingWallDownBackEndAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field13->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallDownBackEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilRelaxAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingCeilRelaxAnim_GetterFunction", true);
@@ -327,8 +314,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilRelaxAnim_SetterFunction", true)))
             fn_71005293a8(fn, "_m_sWalkingCeilRelaxAnim_SetterFunction");
     }();
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("sWalkingCeilRelaxAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field14->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingCeilRelaxAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilFrontAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingCeilFrontAnim_GetterFunction", true);
@@ -340,8 +326,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilFrontAnim_SetterFunction", true)))
             fn_7100529524(fn, "_m_sWalkingCeilFrontAnim_SetterFunction");
     }();
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("sWalkingCeilFrontAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field15->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingCeilFrontAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilBackAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingCeilBackAnim_GetterFunction", true);
@@ -353,8 +338,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilBackAnim_SetterFunction", true)))
             fn_71005296a0(fn, "_m_sWalkingCeilBackAnim_SetterFunction");
     }();
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("sWalkingCeilBackAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field16->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingCeilBackAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilFrontInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingCeilFrontInitAnim_GetterFunction", true);
@@ -366,8 +350,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilFrontInitAnim_SetterFunction", true)))
             fn_710052981c(fn, "_m_sWalkingCeilFrontInitAnim_SetterFunction");
     }();
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("sWalkingCeilFrontInitAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field17->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingCeilFrontInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilBackInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingCeilBackInitAnim_GetterFunction", true);
@@ -379,8 +362,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilBackInitAnim_SetterFunction", true)))
             fn_7100529998(fn, "_m_sWalkingCeilBackInitAnim_SetterFunction");
     }();
-    UnkReflField* field18 = fn_7100096524(cls, CStrId("sWalkingCeilBackInitAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field18->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingCeilBackInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilFrontEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingCeilFrontEndAnim_GetterFunction", true);
@@ -392,8 +374,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilFrontEndAnim_SetterFunction", true)))
             fn_7100529b14(fn, "_m_sWalkingCeilFrontEndAnim_SetterFunction");
     }();
-    UnkReflField* field19 = fn_7100096524(cls, CStrId("sWalkingCeilFrontEndAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field19->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingCeilFrontEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilBackEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingCeilBackEndAnim_GetterFunction", true);
@@ -405,8 +386,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilBackEndAnim_SetterFunction", true)))
             fn_7100529c90(fn, "_m_sWalkingCeilBackEndAnim_SetterFunction");
     }();
-    UnkReflField* field20 = fn_7100096524(cls, CStrId("sWalkingCeilBackEndAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field20->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingCeilBackEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingPatrolRelaxAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingPatrolRelaxAnim_GetterFunction", true);
@@ -418,8 +398,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingPatrolRelaxAnim_SetterFunction", true)))
             fn_7100529e0c(fn, "_m_sWalkingPatrolRelaxAnim_SetterFunction");
     }();
-    UnkReflField* field21 = fn_7100096524(cls, CStrId("sWalkingPatrolRelaxAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field21->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingPatrolRelaxAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingPatrolFrontAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingPatrolFrontAnim_GetterFunction", true);
@@ -431,8 +410,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingPatrolFrontAnim_SetterFunction", true)))
             fn_7100529f88(fn, "_m_sWalkingPatrolFrontAnim_SetterFunction");
     }();
-    UnkReflField* field22 = fn_7100096524(cls, CStrId("sWalkingPatrolFrontAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field22->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingPatrolFrontAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingPatrolBackAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingPatrolBackAnim_GetterFunction", true);
@@ -444,8 +422,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingPatrolBackAnim_SetterFunction", true)))
             fn_710052a104(fn, "_m_sWalkingPatrolBackAnim_SetterFunction");
     }();
-    UnkReflField* field23 = fn_7100096524(cls, CStrId("sWalkingPatrolBackAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field23->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingPatrolBackAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingPatrolFrontInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingPatrolFrontInitAnim_GetterFunction", true);
@@ -457,8 +434,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingPatrolFrontInitAnim_SetterFunction", true)))
             fn_710052a280(fn, "_m_sWalkingPatrolFrontInitAnim_SetterFunction");
     }();
-    UnkReflField* field24 = fn_7100096524(cls, CStrId("sWalkingPatrolFrontInitAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field24->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingPatrolFrontInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingPatrolBackInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingPatrolBackInitAnim_GetterFunction", true);
@@ -470,8 +446,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingPatrolBackInitAnim_SetterFunction", true)))
             fn_710052a3fc(fn, "_m_sWalkingPatrolBackInitAnim_SetterFunction");
     }();
-    UnkReflField* field25 = fn_7100096524(cls, CStrId("sWalkingPatrolBackInitAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field25->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingPatrolBackInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingPatrolFrontEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingPatrolFrontEndAnim_GetterFunction", true);
@@ -483,8 +458,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingPatrolFrontEndAnim_SetterFunction", true)))
             fn_710052a578(fn, "_m_sWalkingPatrolFrontEndAnim_SetterFunction");
     }();
-    UnkReflField* field26 = fn_7100096524(cls, CStrId("sWalkingPatrolFrontEndAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field26->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingPatrolFrontEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingPatrolBackEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingPatrolBackEndAnim_GetterFunction", true);
@@ -496,8 +470,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingPatrolBackEndAnim_SetterFunction", true)))
             fn_710052a6f4(fn, "_m_sWalkingPatrolBackEndAnim_SetterFunction");
     }();
-    UnkReflField* field27 = fn_7100096524(cls, CStrId("sWalkingPatrolBackEndAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field27->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingPatrolBackEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpPatrolRelaxAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallUpPatrolRelaxAnim_GetterFunction", true);
@@ -509,8 +482,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpPatrolRelaxAnim_SetterFunction", true)))
             fn_710052a870(fn, "_m_sWalkingWallUpPatrolRelaxAnim_SetterFunction");
     }();
-    UnkReflField* field28 = fn_7100096524(cls, CStrId("sWalkingWallUpPatrolRelaxAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field28->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallUpPatrolRelaxAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpPatrolFrontAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallUpPatrolFrontAnim_GetterFunction", true);
@@ -522,8 +494,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpPatrolFrontAnim_SetterFunction", true)))
             fn_710052a9ec(fn, "_m_sWalkingWallUpPatrolFrontAnim_SetterFunction");
     }();
-    UnkReflField* field29 = fn_7100096524(cls, CStrId("sWalkingWallUpPatrolFrontAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field29->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallUpPatrolFrontAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpPatrolBackAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallUpPatrolBackAnim_GetterFunction", true);
@@ -535,8 +506,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpPatrolBackAnim_SetterFunction", true)))
             fn_710052ab68(fn, "_m_sWalkingWallUpPatrolBackAnim_SetterFunction");
     }();
-    UnkReflField* field30 = fn_7100096524(cls, CStrId("sWalkingWallUpPatrolBackAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field30->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallUpPatrolBackAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpPatrolFrontInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallUpPatrolFrontInitAnim_GetterFunction", true);
@@ -548,8 +518,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpPatrolFrontInitAnim_SetterFunction", true)))
             fn_710052ace4(fn, "_m_sWalkingWallUpPatrolFrontInitAnim_SetterFunction");
     }();
-    UnkReflField* field31 = fn_7100096524(cls, CStrId("sWalkingWallUpPatrolFrontInitAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field31->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallUpPatrolFrontInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpPatrolBackInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallUpPatrolBackInitAnim_GetterFunction", true);
@@ -561,8 +530,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpPatrolBackInitAnim_SetterFunction", true)))
             fn_710052ae60(fn, "_m_sWalkingWallUpPatrolBackInitAnim_SetterFunction");
     }();
-    UnkReflField* field32 = fn_7100096524(cls, CStrId("sWalkingWallUpPatrolBackInitAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field32->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallUpPatrolBackInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpPatrolFrontEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallUpPatrolFrontEndAnim_GetterFunction", true);
@@ -574,8 +542,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpPatrolFrontEndAnim_SetterFunction", true)))
             fn_710052afdc(fn, "_m_sWalkingWallUpPatrolFrontEndAnim_SetterFunction");
     }();
-    UnkReflField* field33 = fn_7100096524(cls, CStrId("sWalkingWallUpPatrolFrontEndAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field33->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallUpPatrolFrontEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpPatrolBackEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallUpPatrolBackEndAnim_GetterFunction", true);
@@ -587,8 +554,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpPatrolBackEndAnim_SetterFunction", true)))
             fn_710052b158(fn, "_m_sWalkingWallUpPatrolBackEndAnim_SetterFunction");
     }();
-    UnkReflField* field34 = fn_7100096524(cls, CStrId("sWalkingWallUpPatrolBackEndAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field34->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallUpPatrolBackEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownPatrolRelaxAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallDownPatrolRelaxAnim_GetterFunction", true);
@@ -600,8 +566,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownPatrolRelaxAnim_SetterFunction", true)))
             fn_710052b2d4(fn, "_m_sWalkingWallDownPatrolRelaxAnim_SetterFunction");
     }();
-    UnkReflField* field35 = fn_7100096524(cls, CStrId("sWalkingWallDownPatrolRelaxAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field35->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallDownPatrolRelaxAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownPatrolFrontAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallDownPatrolFrontAnim_GetterFunction", true);
@@ -613,8 +578,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownPatrolFrontAnim_SetterFunction", true)))
             fn_710052b450(fn, "_m_sWalkingWallDownPatrolFrontAnim_SetterFunction");
     }();
-    UnkReflField* field36 = fn_7100096524(cls, CStrId("sWalkingWallDownPatrolFrontAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field36->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallDownPatrolFrontAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownPatrolBackAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallDownPatrolBackAnim_GetterFunction", true);
@@ -626,8 +590,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownPatrolBackAnim_SetterFunction", true)))
             fn_710052b5cc(fn, "_m_sWalkingWallDownPatrolBackAnim_SetterFunction");
     }();
-    UnkReflField* field37 = fn_7100096524(cls, CStrId("sWalkingWallDownPatrolBackAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field37->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallDownPatrolBackAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownPatrolFrontInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallDownPatrolFrontInitAnim_GetterFunction", true);
@@ -639,8 +602,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownPatrolFrontInitAnim_SetterFunction", true)))
             fn_710052b748(fn, "_m_sWalkingWallDownPatrolFrontInitAnim_SetterFunction");
     }();
-    UnkReflField* field38 = fn_7100096524(cls, CStrId("sWalkingWallDownPatrolFrontInitAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field38->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallDownPatrolFrontInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownPatrolBackInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallDownPatrolBackInitAnim_GetterFunction", true);
@@ -652,8 +614,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownPatrolBackInitAnim_SetterFunction", true)))
             fn_710052b8c4(fn, "_m_sWalkingWallDownPatrolBackInitAnim_SetterFunction");
     }();
-    UnkReflField* field39 = fn_7100096524(cls, CStrId("sWalkingWallDownPatrolBackInitAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field39->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallDownPatrolBackInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownPatrolFrontEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallDownPatrolFrontEndAnim_GetterFunction", true);
@@ -665,8 +626,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownPatrolFrontEndAnim_SetterFunction", true)))
             fn_710052ba40(fn, "_m_sWalkingWallDownPatrolFrontEndAnim_SetterFunction");
     }();
-    UnkReflField* field40 = fn_7100096524(cls, CStrId("sWalkingWallDownPatrolFrontEndAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field40->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallDownPatrolFrontEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownPatrolBackEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallDownPatrolBackEndAnim_GetterFunction", true);
@@ -678,8 +638,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownPatrolBackEndAnim_SetterFunction", true)))
             fn_710052bbbc(fn, "_m_sWalkingWallDownPatrolBackEndAnim_SetterFunction");
     }();
-    UnkReflField* field41 = fn_7100096524(cls, CStrId("sWalkingWallDownPatrolBackEndAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field41->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallDownPatrolBackEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilPatrolRelaxAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingCeilPatrolRelaxAnim_GetterFunction", true);
@@ -691,8 +650,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilPatrolRelaxAnim_SetterFunction", true)))
             fn_710052bd38(fn, "_m_sWalkingCeilPatrolRelaxAnim_SetterFunction");
     }();
-    UnkReflField* field42 = fn_7100096524(cls, CStrId("sWalkingCeilPatrolRelaxAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field42->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingCeilPatrolRelaxAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilPatrolFrontAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingCeilPatrolFrontAnim_GetterFunction", true);
@@ -704,8 +662,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilPatrolFrontAnim_SetterFunction", true)))
             fn_710052beb4(fn, "_m_sWalkingCeilPatrolFrontAnim_SetterFunction");
     }();
-    UnkReflField* field43 = fn_7100096524(cls, CStrId("sWalkingCeilPatrolFrontAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field43->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingCeilPatrolFrontAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilPatrolBackAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingCeilPatrolBackAnim_GetterFunction", true);
@@ -717,8 +674,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilPatrolBackAnim_SetterFunction", true)))
             fn_710052c030(fn, "_m_sWalkingCeilPatrolBackAnim_SetterFunction");
     }();
-    UnkReflField* field44 = fn_7100096524(cls, CStrId("sWalkingCeilPatrolBackAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field44->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingCeilPatrolBackAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilPatrolFrontInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingCeilPatrolFrontInitAnim_GetterFunction", true);
@@ -730,8 +686,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilPatrolFrontInitAnim_SetterFunction", true)))
             fn_710052c1ac(fn, "_m_sWalkingCeilPatrolFrontInitAnim_SetterFunction");
     }();
-    UnkReflField* field45 = fn_7100096524(cls, CStrId("sWalkingCeilPatrolFrontInitAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field45->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingCeilPatrolFrontInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilPatrolBackInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingCeilPatrolBackInitAnim_GetterFunction", true);
@@ -743,8 +698,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilPatrolBackInitAnim_SetterFunction", true)))
             fn_710052c328(fn, "_m_sWalkingCeilPatrolBackInitAnim_SetterFunction");
     }();
-    UnkReflField* field46 = fn_7100096524(cls, CStrId("sWalkingCeilPatrolBackInitAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field46->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingCeilPatrolBackInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilPatrolFrontEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingCeilPatrolFrontEndAnim_GetterFunction", true);
@@ -756,8 +710,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilPatrolFrontEndAnim_SetterFunction", true)))
             fn_710052c4a4(fn, "_m_sWalkingCeilPatrolFrontEndAnim_SetterFunction");
     }();
-    UnkReflField* field47 = fn_7100096524(cls, CStrId("sWalkingCeilPatrolFrontEndAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field47->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingCeilPatrolFrontEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilPatrolBackEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingCeilPatrolBackEndAnim_GetterFunction", true);
@@ -769,8 +722,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilPatrolBackEndAnim_SetterFunction", true)))
             fn_710052c620(fn, "_m_sWalkingCeilPatrolBackEndAnim_SetterFunction");
     }();
-    UnkReflField* field48 = fn_7100096524(cls, CStrId("sWalkingCeilPatrolBackEndAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field48->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingCeilPatrolBackEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingTunnelRelaxAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingTunnelRelaxAnim_GetterFunction", true);
@@ -782,8 +734,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingTunnelRelaxAnim_SetterFunction", true)))
             fn_710052c79c(fn, "_m_sWalkingTunnelRelaxAnim_SetterFunction");
     }();
-    UnkReflField* field49 = fn_7100096524(cls, CStrId("sWalkingTunnelRelaxAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field49->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingTunnelRelaxAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingTunnelFrontAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingTunnelFrontAnim_GetterFunction", true);
@@ -795,8 +746,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingTunnelFrontAnim_SetterFunction", true)))
             fn_710052c918(fn, "_m_sWalkingTunnelFrontAnim_SetterFunction");
     }();
-    UnkReflField* field50 = fn_7100096524(cls, CStrId("sWalkingTunnelFrontAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field50->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingTunnelFrontAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingTunnelBackAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingTunnelBackAnim_GetterFunction", true);
@@ -808,8 +758,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingTunnelBackAnim_SetterFunction", true)))
             fn_710052ca94(fn, "_m_sWalkingTunnelBackAnim_SetterFunction");
     }();
-    UnkReflField* field51 = fn_7100096524(cls, CStrId("sWalkingTunnelBackAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field51->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingTunnelBackAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingTunnelFrontInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingTunnelFrontInitAnim_GetterFunction", true);
@@ -821,8 +770,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingTunnelFrontInitAnim_SetterFunction", true)))
             fn_710052cc10(fn, "_m_sWalkingTunnelFrontInitAnim_SetterFunction");
     }();
-    UnkReflField* field52 = fn_7100096524(cls, CStrId("sWalkingTunnelFrontInitAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field52->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingTunnelFrontInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingTunnelBackInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingTunnelBackInitAnim_GetterFunction", true);
@@ -834,8 +782,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingTunnelBackInitAnim_SetterFunction", true)))
             fn_710052cd8c(fn, "_m_sWalkingTunnelBackInitAnim_SetterFunction");
     }();
-    UnkReflField* field53 = fn_7100096524(cls, CStrId("sWalkingTunnelBackInitAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field53->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingTunnelBackInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingTunnelFrontEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingTunnelFrontEndAnim_GetterFunction", true);
@@ -847,8 +794,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingTunnelFrontEndAnim_SetterFunction", true)))
             fn_710052cf08(fn, "_m_sWalkingTunnelFrontEndAnim_SetterFunction");
     }();
-    UnkReflField* field54 = fn_7100096524(cls, CStrId("sWalkingTunnelFrontEndAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field54->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingTunnelFrontEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingTunnelBackEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingTunnelBackEndAnim_GetterFunction", true);
@@ -860,8 +806,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingTunnelBackEndAnim_SetterFunction", true)))
             fn_710052d084(fn, "_m_sWalkingTunnelBackEndAnim_SetterFunction");
     }();
-    UnkReflField* field55 = fn_7100096524(cls, CStrId("sWalkingTunnelBackEndAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field55->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingTunnelBackEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

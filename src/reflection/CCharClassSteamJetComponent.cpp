@@ -87,10 +87,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fDamage_SetterFunction", true)))
         fn_710089d17c(fn, "_m_fDamage_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fDamage", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field1->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field1->attrs.Add<f32>(fn_7100091190(), 999.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fDamage", (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 999.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fLength_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fLength_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -100,10 +97,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fLength_SetterFunction", true)))
         fn_710089d2f8(fn, "_m_fLength_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fLength", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field2->attrs.Add<f32>(fn_7100075240(), 500.0f);
-    field2->attrs.Add<f32>(fn_7100091080(), 100.0f);
-    field2->attrs.Add<f32>(fn_7100091190(), 500.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fLength", (DefaultValue, 500.0f), (MinValue, 100.0f), (MaxValue, 500.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fWidth_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fWidth_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -113,10 +107,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fWidth_SetterFunction", true)))
         fn_710089d474(fn, "_m_fWidth_SetterFunction");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fWidth", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field3->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    field3->attrs.Add<f32>(fn_7100091080(), 50.0f);
-    field3->attrs.Add<f32>(fn_7100091190(), 100.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fWidth", (DefaultValue, 100.0f), (MinValue, 50.0f), (MaxValue, 100.0f));
     DREAD_REFLECTED_FIELD(f32, "fOnTime", 0xbec, (DefaultValue, 1.0f), (MinValue, -1.0f), (MaxValue, 100.0f));
     DREAD_REFLECTED_FIELD(f32, "fOffTime", 0xbf0, (DefaultValue, 1.0f), (MinValue, -1.0f), (MaxValue, 100.0f));
     DREAD_REFLECTED_FIELD(f32, "fOnOffTime", 0xc04, (DefaultValue, 1.0f), (MinValue, 0.1f), (MaxValue, 2.0f));
@@ -129,10 +120,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fParticleScale_SetterFunction", true)))
         fn_710089d5f0(fn, "_m_fParticleScale_SetterFunction");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fParticleScale", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field7->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field7->attrs.Add<f32>(fn_7100091080(), 0.1f);
-    field7->attrs.Add<f32>(fn_7100091190(), 2.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fParticleScale", (DefaultValue, 1.0f), (MinValue, 0.1f), (MaxValue, 2.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bCrossingAllowed_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bCrossingAllowed_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -142,8 +130,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bCrossingAllowed_SetterFunction", true)))
         fn_710089d76c(fn, "_m_bCrossingAllowed_SetterFunction");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("bCrossingAllowed", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field8->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_PROPERTY(bool, "bCrossingAllowed", (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bForceReactionDirection_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bForceReactionDirection_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -153,8 +140,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bForceReactionDirection_SetterFunction", true)))
         fn_710089d8e8(fn, "_m_bForceReactionDirection_SetterFunction");
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("bForceReactionDirection", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field9->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_PROPERTY(bool, "bForceReactionDirection", (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vReactionDirection_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_vReactionDirection_GetterFunction", true);
         fn->return_type = fn_7100024504();
@@ -164,8 +150,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vReactionDirection_SetterFunction", true)))
         fn_710089da64(fn, "_m_vReactionDirection_SetterFunction");
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("vReactionDirection", true), fn_7100024504(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field10->attrs.Add<base::math::CVector2D>(fn_7100075240(), base::math::CVector2D{1.0f, 0.0f});
+    DREAD_REFLECTED_PROPERTY(base::math::CVector2D, "vReactionDirection", (DefaultValue, base::math::CVector2D{1.0f, 0.0f}));
     UnkReflField* field11 = fn_7100096524(cls, CStrId("wpNextSteamJet", true), &g_unk_717269bb48, 0xc10, -1, -1);
     field11->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 10);
 }

@@ -21,8 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CSamusMovement::CTunableSamusMovement
 extern bool g_unk_7172740e60;
-extern base::reflection::CType g_unk_7101d679f0;
-extern base::reflection::CType g_unk_7101d55008;
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172740de0;
 void fn_71009dd760(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -34,11 +32,7 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172740e60 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fFallEndTransitionSpeedOut", true), fn_710000abbc(), 0xffffffff, -1, -1);
-    field0->attrs.Add<bool>(fn_7100093390(), true);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field0->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_FIELD(f32, "fFallEndTransitionSpeedOut", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(f32, "fFloorSlideDistance", 0x24, (DefaultValue, 900.0f));
     DREAD_REFLECTED_FIELD(f32, "fFloorSlideSpeedBoosterDistance", 0x28, (DefaultValue, 1500.0f));
     DREAD_REFLECTED_FIELD(f32, "fFloorSlideMinTunnelDistanceToExit", 0x2c, (DefaultValue, 200.0f));
@@ -109,8 +103,7 @@ void refl_AddFields(CClass* cls) {
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71009f0f38);
     }
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bIsMorphBall", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_READ_ONLY_PROPERTY(bool, "bIsMorphBall", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bIsSamus_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bIsSamus_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -118,8 +111,7 @@ void refl_AddFields(CClass* cls) {
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71009f0f7c);
     }
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bIsSamus", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_READ_ONLY_PROPERTY(bool, "bIsSamus", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ForceDetachGrapple", true))) {
         fn_71009df12c(fn, "ForceDetachGrapple");
         fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Force detach grapple"));

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -41,9 +42,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bStartEnabled_SetterFunction", true)))
         fn_71002530c0(fn, "_m_bStartEnabled_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bStartEnabled", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<bool>(fn_7100075240(), true);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Should the component start enabled?");
+    DREAD_REFLECTED_PROPERTY(bool, "bStartEnabled", (DefaultValue, true), (Description, "Should the component start enabled?"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bDisabledInEditor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bDisabledInEditor_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -53,8 +52,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bDisabledInEditor_SetterFunction", true)))
         fn_710025323c(fn, "_bDisabledInEditor_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bDisabledInEditor", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_PROPERTY(bool, "bDisabledInEditor", (DefaultValue, true));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bPrePhysicsUpdateInEditor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bPrePhysicsUpdateInEditor_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -64,8 +62,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bPrePhysicsUpdateInEditor_SetterFunction", true)))
         fn_71002533b8(fn, "_bPrePhysicsUpdateInEditor_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bPrePhysicsUpdateInEditor", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field2->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_PROPERTY(bool, "bPrePhysicsUpdateInEditor", (DefaultValue, true));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bPostPhysicsUpdateInEditor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bPostPhysicsUpdateInEditor_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -75,8 +72,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bPostPhysicsUpdateInEditor_SetterFunction", true)))
         fn_7100253534(fn, "_bPostPhysicsUpdateInEditor_SetterFunction");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bPostPhysicsUpdateInEditor", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field3->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_PROPERTY(bool, "bPostPhysicsUpdateInEditor", (DefaultValue, true));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

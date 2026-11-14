@@ -22,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 // CEnemyLifeComponent
 void fn_710115dae8();
 void fn_7101159e64(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d679f0;
 namespace CEnemyLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -35,8 +34,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sImpactBackAnim_SetterFunction", true)))
         fn_7101159e64(fn, "_sImpactBackAnim_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sImpactBackAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_PROPERTY(CStrId, "sImpactBackAnim", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sDeadBackAnim_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sDeadBackAnim_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -46,8 +44,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sDeadBackAnim_SetterFunction", true)))
         fn_7101159e64(fn, "_sDeadBackAnim_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sDeadBackAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_PROPERTY(CStrId, "sDeadBackAnim", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sDeadAirAnim_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sDeadAirAnim_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -57,8 +54,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sDeadAirAnim_SetterFunction", true)))
         fn_7101159e64(fn, "_sDeadAirAnim_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sDeadAirAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field2->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_PROPERTY(CStrId, "sDeadAirAnim", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sDeadAirBackAnim_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sDeadAirBackAnim_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -68,8 +64,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sDeadAirBackAnim_SetterFunction", true)))
         fn_7101159e64(fn, "_sDeadAirBackAnim_SetterFunction");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sDeadAirBackAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field3->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_PROPERTY(CStrId, "sDeadAirBackAnim", (Persistence, 0));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -22,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 // CBreakableTileGroupComponent
 void fn_710075d2e4();
 void fn_71007542cc(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d55008;
 extern base::reflection::CType g_unk_7172711ad0;
 extern base::reflection::CType g_unk_7172791c90;
 void fn_710075d374();
@@ -45,9 +44,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_uGroupId_SetterFunction", true)))
         fn_71007542cc(fn, "_uGroupId_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("uGroupId", true), fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field0->attrs.Add<u32>(fn_710075a400(), 0x0u);
+    DREAD_REFLECTED_PROPERTY(u32, "uGroupId", (EditorModeDataFlow, 1), (DefaultPasteValue, u32(0x0u)));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("aGridTiles", true), &g_unk_7172711ad0, 0x50, -1, -1);
     field1->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateNewTile", true));
     field1->attrs.Add<const char*>(fn_710008fb40(), "DeleteTileAt");

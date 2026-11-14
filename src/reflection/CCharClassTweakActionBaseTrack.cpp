@@ -41,8 +41,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bMaintainFrame_SetterFunction", true)))
         fn_7100d2c1e8(fn, "_bMaintainFrame_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bMaintainFrame", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_PROPERTY(bool, "bMaintainFrame", (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bMaintainFrameUsePercentage_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bMaintainFrameUsePercentage_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -52,8 +51,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bMaintainFrameUsePercentage_SetterFunction", true)))
         fn_7100d2c364(fn, "_bMaintainFrameUsePercentage_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bMaintainFrameUsePercentage", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_PROPERTY(bool, "bMaintainFrameUsePercentage", (DefaultValue, false));
     DREAD_REFLECTED_FIELD(f32, "fToFrame", 0x28, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fBlendTime", 0x2c, (DefaultValue, -1.0f));
     UnkReflField* field5 = fn_7100096524(cls, CStrId("oAditionalActionInsertFlags", true), &g_unk_71727695f8, 0x30, -1, -1);

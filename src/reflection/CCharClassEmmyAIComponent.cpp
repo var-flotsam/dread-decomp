@@ -36,8 +36,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bControlsEmmyZoneLight_SetterFunction", true)))
         fn_710051e7a8(fn, "_m_bControlsEmmyZoneLight_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bControlsEmmyZoneLight", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_PROPERTY(bool, "bControlsEmmyZoneLight", (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bCanUseTunnels_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bCanUseTunnels_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -47,8 +46,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bCanUseTunnels_SetterFunction", true)))
         fn_710051e924(fn, "_m_bCanUseTunnels_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bCanUseTunnels", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_PROPERTY(bool, "bCanUseTunnels", (DefaultValue, true));
     DREAD_REFLECTED_FIELD(CStrId, "sInventoryItemOnKilled", 0x618, (DefaultValue, CStrId(g_unk_7101d470e0)));
 }
 bool refl_Equals(const void*, const void*) { return false; }

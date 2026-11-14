@@ -38,8 +38,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sColliders_SetterFunction", true)))
         fn_7100d21e7c(fn, "_sColliders_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sColliders", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sColliders", (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(CStrId, "sDamageID", 0x48, (DefaultValue, CStrId(g_unk_7101d470e0)));
     UnkReflField* field2 = fn_7100096524(cls, CStrId("eDamageStrength", true), &g_unk_7172730858, 0x50, -1, -1);
     field2->attrs.Add<s32>(fn_7100075240(), &g_unk_7172730858, 0);

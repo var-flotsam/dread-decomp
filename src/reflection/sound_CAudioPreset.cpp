@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -102,7 +103,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sUniqueId_SetterFunction", true)))
         fn_7101032464(fn, "_sUniqueId_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sUniqueId", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(CStrId, "sUniqueId");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sNodeToAttach_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sNodeToAttach_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -112,7 +113,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sNodeToAttach_SetterFunction", true)))
         fn_71010325e0(fn, "_sNodeToAttach_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sNodeToAttach", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(CStrId, "sNodeToAttach");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_arrMatFiles_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_arrMatFiles_GetterFunction", true);
         fn->return_type = &g_unk_71729fa4e8;
@@ -172,9 +173,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iInstanceLimit_SetterFunction", true)))
         fn_7101032ea0(fn, "_iInstanceLimit_SetterFunction");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("iInstanceLimit", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field7->attrs.Add<s32>(fn_7100075240(), -1);
-    field7->attrs.Add<s32>(fn_71000916e0(), -1);
+    DREAD_REFLECTED_PROPERTY(s32, "iInstanceLimit", (DefaultValue, -1), (MinValueI, -1));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fInBetweenTime_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fInBetweenTime_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -184,9 +183,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fInBetweenTime_SetterFunction", true)))
         fn_710103301c(fn, "_fInBetweenTime_SetterFunction");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fInBetweenTime", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field8->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field8->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fInBetweenTime", (DefaultValue, 0.0f), (MinValue, 0.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttMaxRange_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fAttMaxRange_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -196,9 +193,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttMaxRange_SetterFunction", true)))
         fn_7101033198(fn, "_fAttMaxRange_SetterFunction");
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fAttMaxRange", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field9->attrs.Add<f32>(fn_7100075240(), 1200.0f);
-    field9->attrs.Add<f32>(fn_7100091080(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fAttMaxRange", (DefaultValue, 1200.0f), (MinValue, -1.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttMinRange_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fAttMinRange_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -208,9 +203,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttMinRange_SetterFunction", true)))
         fn_7101033314(fn, "_fAttMinRange_SetterFunction");
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fAttMinRange", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field10->attrs.Add<f32>(fn_7100075240(), 500.0f);
-    field10->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fAttMinRange", (DefaultValue, 500.0f), (MinValue, 0.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fVolume_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fVolume_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -220,10 +213,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fVolume_SetterFunction", true)))
         fn_7101033490(fn, "_fVolume_SetterFunction");
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fVolume", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field11->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field11->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field11->attrs.Add<f32>(fn_7100091190(), 2.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fVolume", (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 2.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fVolumeRange_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fVolumeRange_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -233,10 +223,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fVolumeRange_SetterFunction", true)))
         fn_710103360c(fn, "_fVolumeRange_SetterFunction");
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fVolumeRange", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field12->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field12->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field12->attrs.Add<f32>(fn_7100091190(), 2.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fVolumeRange", (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 2.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPitch_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fPitch_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -246,10 +233,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPitch_SetterFunction", true)))
         fn_7101033788(fn, "_fPitch_SetterFunction");
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("fPitch", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field13->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field13->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field13->attrs.Add<f32>(fn_7100091190(), 2.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fPitch", (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 2.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPitchRange_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fPitchRange_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -259,10 +243,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPitchRange_SetterFunction", true)))
         fn_7101033904(fn, "_fPitchRange_SetterFunction");
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("fPitchRange", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field14->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field14->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field14->attrs.Add<f32>(fn_7100091190(), 2.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fPitchRange", (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 2.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPan_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fPan_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -272,10 +253,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPan_SetterFunction", true)))
         fn_7101033a80(fn, "_fPan_SetterFunction");
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("fPan", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field15->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field15->attrs.Add<f32>(fn_7100091080(), -1.0f);
-    field15->attrs.Add<f32>(fn_7100091190(), 1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fPan", (DefaultValue, 0.0f), (MinValue, -1.0f), (MaxValue, 1.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPanRange_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fPanRange_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -285,10 +263,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPanRange_SetterFunction", true)))
         fn_7101033bfc(fn, "_fPanRange_SetterFunction");
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("fPanRange", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field16->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field16->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field16->attrs.Add<f32>(fn_7100091190(), 1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fPanRange", (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 1.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fFadeIn_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fFadeIn_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -298,9 +273,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fFadeIn_SetterFunction", true)))
         fn_7101033d78(fn, "_fFadeIn_SetterFunction");
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("fFadeIn", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field17->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field17->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fFadeIn", (DefaultValue, 0.0f), (MinValue, 0.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fFadeOut_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fFadeOut_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -310,9 +283,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fFadeOut_SetterFunction", true)))
         fn_7101033ef4(fn, "_fFadeOut_SetterFunction");
-    UnkReflField* field18 = fn_7100096524(cls, CStrId("fFadeOut", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field18->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field18->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fFadeOut", (DefaultValue, 0.0f), (MinValue, 0.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEmptyPercentage_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fEmptyPercentage_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -322,10 +293,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEmptyPercentage_SetterFunction", true)))
         fn_7101034070(fn, "_fEmptyPercentage_SetterFunction");
-    UnkReflField* field19 = fn_7100096524(cls, CStrId("fEmptyPercentage", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field19->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field19->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field19->attrs.Add<f32>(fn_7100091190(), 100.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fEmptyPercentage", (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 100.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fStartDelayed_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fStartDelayed_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -335,9 +303,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fStartDelayed_SetterFunction", true)))
         fn_71010341ec(fn, "_fStartDelayed_SetterFunction");
-    UnkReflField* field20 = fn_7100096524(cls, CStrId("fStartDelayed", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field20->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field20->attrs.Add<f32>(fn_7100091080(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fStartDelayed", (DefaultValue, 0.0f), (MinValue, -1.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bLoop_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bLoop_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -347,8 +313,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bLoop_SetterFunction", true)))
         fn_7101034368(fn, "_bLoop_SetterFunction");
-    UnkReflField* field21 = fn_7100096524(cls, CStrId("bLoop", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field21->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_PROPERTY(bool, "bLoop", (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bAttachToActor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bAttachToActor_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -358,8 +323,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bAttachToActor_SetterFunction", true)))
         fn_71010344e4(fn, "_bAttachToActor_SetterFunction");
-    UnkReflField* field22 = fn_7100096524(cls, CStrId("bAttachToActor", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field22->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_PROPERTY(bool, "bAttachToActor", (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bStpChgAnim_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bStpChgAnim_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -369,8 +333,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bStpChgAnim_SetterFunction", true)))
         fn_7101034660(fn, "_bStpChgAnim_SetterFunction");
-    UnkReflField* field23 = fn_7100096524(cls, CStrId("bStpChgAnim", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field23->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_PROPERTY(bool, "bStpChgAnim", (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bStpEntDead_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bStpEntDead_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -380,8 +343,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bStpEntDead_SetterFunction", true)))
         fn_71010347dc(fn, "_bStpEntDead_SetterFunction");
-    UnkReflField* field24 = fn_7100096524(cls, CStrId("bStpEntDead", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field24->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_PROPERTY(bool, "bStpEntDead", (DefaultValue, true));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bManaged_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bManaged_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -391,8 +353,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bManaged_SetterFunction", true)))
         fn_7101034958(fn, "_bManaged_SetterFunction");
-    UnkReflField* field25 = fn_7100096524(cls, CStrId("bManaged", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field25->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_PROPERTY(bool, "bManaged", (DefaultValue, true));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bRumbleSync_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bRumbleSync_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -402,8 +363,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bRumbleSync_SetterFunction", true)))
         fn_7101034ad4(fn, "_bRumbleSync_SetterFunction");
-    UnkReflField* field26 = fn_7100096524(cls, CStrId("bRumbleSync", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field26->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_PROPERTY(bool, "bRumbleSync", (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fRumbleGainOverride_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fRumbleGainOverride_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -413,8 +373,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fRumbleGainOverride_SetterFunction", true)))
         fn_7101034c50(fn, "_fRumbleGainOverride_SetterFunction");
-    UnkReflField* field27 = fn_7100096524(cls, CStrId("fRumbleGainOverride", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field27->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fRumbleGainOverride", (DefaultValue, -1.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fDimRelativeVolume_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fDimRelativeVolume_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -424,8 +383,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fDimRelativeVolume_SetterFunction", true)))
         fn_7101034dcc(fn, "_fDimRelativeVolume_SetterFunction");
-    UnkReflField* field28 = fn_7100096524(cls, CStrId("fDimRelativeVolume", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field28->attrs.Add<f32>(fn_7100075240(), 0.6f);
+    DREAD_REFLECTED_PROPERTY(f32, "fDimRelativeVolume", (DefaultValue, 0.6f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fDimTime_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fDimTime_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -435,8 +393,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fDimTime_SetterFunction", true)))
         fn_7101034f48(fn, "_fDimTime_SetterFunction");
-    UnkReflField* field29 = fn_7100096524(cls, CStrId("fDimTime", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field29->attrs.Add<f32>(fn_7100075240(), 10.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fDimTime", (DefaultValue, 10.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fDimFadeTime_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fDimFadeTime_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -446,8 +403,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fDimFadeTime_SetterFunction", true)))
         fn_71010350c4(fn, "_fDimFadeTime_SetterFunction");
-    UnkReflField* field30 = fn_7100096524(cls, CStrId("fDimFadeTime", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field30->attrs.Add<f32>(fn_7100075240(), 20.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fDimFadeTime", (DefaultValue, 20.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fDimRecoverTime_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fDimRecoverTime_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -457,8 +413,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fDimRecoverTime_SetterFunction", true)))
         fn_7101035240(fn, "_fDimRecoverTime_SetterFunction");
-    UnkReflField* field31 = fn_7100096524(cls, CStrId("fDimRecoverTime", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field31->attrs.Add<f32>(fn_7100075240(), 10.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fDimRecoverTime", (DefaultValue, 10.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

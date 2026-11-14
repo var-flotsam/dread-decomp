@@ -34,9 +34,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bAutoEnableGlow_SetterFunction", true)))
         fn_71008169ac(fn, "_m_bAutoEnableGlow_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bAutoEnableGlow", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<bool>(fn_7100075240(), true);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Auto enable glow fx?");
+    DREAD_REFLECTED_PROPERTY(bool, "bAutoEnableGlow", (DefaultValue, true), (Description, "Auto enable glow fx?"));
     DREAD_REFLECTED_FIELD(CStrId, "sGrappleDragWide", 0x60, (DefaultValue, ""), (Description, "Grapple Draw Animation Override"));
 }
 bool refl_Equals(const void*, const void*) { return false; }

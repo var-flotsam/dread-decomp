@@ -73,14 +73,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAimNewCameraAng_SetterFunction", true)))
         fn_7100721b74(fn, "_fAimNewCameraAng_SetterFunction");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fAimNewCameraAng", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field8->attrs.Add<f32>(fn_7100075240(), 60.0f);
-    field8->attrs.Add<bool>(fn_7100093170(), true);
-    field8->attrs.Add<const char*>(fn_7100007e80(), "Angle");
-    field8->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field8->attrs.Add<f32>(fn_7100091190(), 90.0f);
-    field8->attrs.Add<f32>(fn_7100324af0(), 1.0f);
-    field8->attrs.Add<const char*>(fn_7100324c00(), "Camera|Aim");
+    DREAD_REFLECTED_PROPERTY(f32, "fAimNewCameraAng", (DefaultValue, 60.0f), (ShowInConfig, true), (Description, "Angle"), (MinValue, 0.0f), (MaxValue, 90.0f), (ControlFloatStep, 1.0f), (InternalTag, "Camera|Aim"));
     DREAD_REFLECTED_FIELD(f32, "fAimNewCameraOffsetY", 0x6c, (DefaultValue, 70.0f), (ShowInConfig, true), (Description, "Offset Y"), (MinValue, -200.0f), (MaxValue, 200.0f), (ControlFloatStep, 10.0f), (InternalTag, "Camera|Aim"));
     DREAD_REFLECTED_FIELD(bool, "bAimNewCameraAvoidWallOcclusion", 0x54, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(f32, "fAimNewCameraChaseAutoAimMinInterpolationDist", 0x58, (DefaultValue, 600.0f));
@@ -96,8 +89,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iAimNewCameraInputMode_SetterFunction", true)))
         fn_7100721cf0(fn, "_iAimNewCameraInputMode_SetterFunction");
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("iAimNewCameraInputMode", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field15->attrs.Add<s32>(fn_7100075240(), 1);
+    DREAD_REFLECTED_PROPERTY(s32, "iAimNewCameraInputMode", (DefaultValue, 1));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

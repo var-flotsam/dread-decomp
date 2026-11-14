@@ -35,8 +35,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bOverrideDisableInEditor_SetterFunction", true)))
         fn_710071108c(fn, "_bOverrideDisableInEditor_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bOverrideDisableInEditor", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_PROPERTY(bool, "bOverrideDisableInEditor", (DefaultValue, true));
     DREAD_REFLECTED_FIELD(CStrId, "sInitialAction", 0x58, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Initial Action"));
     DREAD_REFLECTED_FIELD(CStrId, "sDefaultLoop", 0x60, (DefaultValue, CStrId(base::reflection::refl_GetStrIdTable<0x7100031894>().ids[943])), (Description, "Default Loop"));
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAnimTree", 0x68, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "AnimTree File"));

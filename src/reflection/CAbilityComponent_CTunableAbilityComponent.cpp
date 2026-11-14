@@ -99,9 +99,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bAccurateAiming_SetterFunction", true)))
         fn_71002fc5c0(fn, "_m_bAccurateAiming_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bAccurateAiming", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<bool>(fn_7100075240(), false);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Accurate aiming of the energy wave");
+    DREAD_REFLECTED_PROPERTY(bool, "bAccurateAiming", (DefaultValue, false), (Description, "Accurate aiming of the energy wave"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetAbilityUnlocked", true))) {
         fn->name = base::global::UnkStrId("SetAbilityUnlocked", true);
         fn->return_type = &g_unk_7101d5af48;

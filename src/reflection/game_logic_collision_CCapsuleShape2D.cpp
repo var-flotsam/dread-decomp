@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -39,9 +40,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fRadius_SetterFunction", true)))
         fn_7100d5f950(fn, "_fRadius_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fRadius", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<f32>(fn_7100075240(), 50.0f);
-    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Radius"));
+    DREAD_REFLECTED_PROPERTY(f32, "fRadius", (DefaultValue, 50.0f), (Description, base::global::CRntString("Radius")));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fHalfHeight_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fHalfHeight_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -51,9 +50,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fHalfHeight_SetterFunction", true)))
         fn_7100d5facc(fn, "_fHalfHeight_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fHalfHeight", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<f32>(fn_7100075240(), 200.0f);
-    field1->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("HalfHeight"));
+    DREAD_REFLECTED_PROPERTY(f32, "fHalfHeight", (DefaultValue, 200.0f), (Description, base::global::CRntString("HalfHeight")));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bOutwardsNormal_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bOutwardsNormal_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -63,8 +60,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bOutwardsNormal_SetterFunction", true)))
         fn_7100d5fc48(fn, "_bOutwardsNormal_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bOutwardsNormal", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_PROPERTY(bool, "bOutwardsNormal", (DefaultValue, false));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

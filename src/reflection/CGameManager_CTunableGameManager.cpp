@@ -21,8 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CGameManager::CTunableGameManager
 extern bool g_unk_71727be8a0;
-extern base::reflection::CType g_unk_7101d679f0;
-extern base::reflection::CType g_unk_7101d55008;
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71727be870;
 void fn_7100de2e20(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -38,11 +36,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bPlayerPosDebug", 0x28, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bSamusCenterPointDebug", 0x29, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bCheatDetectedDebug", 0x2a, (DefaultValue, true));
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("bForceHardMode", true), fn_710000d228(), 0xffffffff, -1, -1);
-    field4->attrs.Add<bool>(fn_7100093390(), true);
-    field4->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field4->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field4->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_FIELD(bool, "bForceHardMode", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

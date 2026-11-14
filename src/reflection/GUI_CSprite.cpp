@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,8 +20,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // GUI::CSprite
-extern base::reflection::CType g_unk_7101d679f0;
-extern base::reflection::CType g_unk_7101d55008;
 void fn_71011f7b70(UnkReflFunction* fn, const char* name);
 void fn_71011fa690();
 void fn_71011f7cec(UnkReflFunction* fn, const char* name);
@@ -39,21 +38,9 @@ void fn_71011f85d4(UnkReflFunction* fn, const char* name);
 namespace GUI::CSprite {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("ProgramPreset", true), fn_7100005178(), 0xffffffff, -1, -1);
-    field0->attrs.Add<bool>(fn_7100093390(), true);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field0->attrs.Add<bool>(fn_7100090a20(), false);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("GenericConstID", true), fn_7100014768(), 0xffffffff, -1, -1);
-    field1->attrs.Add<bool>(fn_7100093390(), true);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field1->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field1->attrs.Add<bool>(fn_7100090a20(), false);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("GenericConstValue", true), fn_71000248c4(), 0xffffffff, -1, -1);
-    field2->attrs.Add<bool>(fn_7100093390(), true);
-    field2->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field2->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field2->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_FIELD(u32, "ProgramPreset", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
+    DREAD_REFLECTED_FIELD(s32, "GenericConstID", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
+    DREAD_REFLECTED_FIELD(base::math::CVector4D, "GenericConstValue", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetAutoRotateVelocity", true)))
         fn_71011f7b70(fn, "SetAutoRotateVelocity");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_FlipX_GetterFunction", true))) {
@@ -65,7 +52,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_FlipX_SetterFunction", true)))
         fn_71011f7cec(fn, "_FlipX_SetterFunction");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("FlipX", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(bool, "FlipX");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_FlipY_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_FlipY_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -75,7 +62,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_FlipY_SetterFunction", true)))
         fn_71011f7e68(fn, "_FlipY_SetterFunction");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("FlipY", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(bool, "FlipY");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_SpriteScaleTilesTexture_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_SpriteScaleTilesTexture_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -85,7 +72,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_SpriteScaleTilesTexture_SetterFunction", true)))
         fn_71011f7fe4(fn, "_SpriteScaleTilesTexture_SetterFunction");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("SpriteScaleTilesTexture", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(bool, "SpriteScaleTilesTexture");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_SpriteSheetItem_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_SpriteSheetItem_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -95,7 +82,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_SpriteSheetItem_SetterFunction", true)))
         fn_71011f8160(fn, "_SpriteSheetItem_SetterFunction");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("SpriteSheetItem", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(CStrId, "SpriteSheetItem");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_BlendMode_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_BlendMode_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -105,7 +92,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_BlendMode_SetterFunction", true)))
         fn_71011f82dc(fn, "_BlendMode_SetterFunction");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("BlendMode", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(CStrId, "BlendMode");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_USelMode_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_USelMode_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -115,7 +102,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_USelMode_SetterFunction", true)))
         fn_71011f8458(fn, "_USelMode_SetterFunction");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("USelMode", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(CStrId, "USelMode");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_VSelMode_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_VSelMode_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -125,7 +112,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_VSelMode_SetterFunction", true)))
         fn_71011f85d4(fn, "_VSelMode_SetterFunction");
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("VSelMode", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(CStrId, "VSelMode");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

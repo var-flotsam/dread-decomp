@@ -189,6 +189,16 @@ a real difference, it stays a draft). Cost: `--drafts` 470 s to 1,174 s, `--mino
 functions that stay inconclusive and use their budget. Of the 26 drafts, 9 moved to `src/` (`fn_7100e3cee0` among
 them: `fn_710007b444` is declared once now, in `UnkTU55.h`, for 21 files, and its ten id globals in `UnkTU2564.h`);
 the rest are held on declarations (their notes say which) or by another function of their file.
+**Properties and enum-typed attributes in the field form (2026-11-14).** Third step of the readable
+reflection template. A property (a field with no offset, read and written through the two functions registered
+just before it) reads `DREAD_REFLECTED_PROPERTY(f32, "fWidth", (DefaultValue, 0.0f));`, or
+`DREAD_REFLECTED_READ_ONLY_PROPERTY` with a getter only. `Persistence` and `EditorModeDataFlow` take enum values
+of their own enum type: `attr::Persistence()` returns a `TypedAttrKey` (the key and that type), and `Add` with one
+adds the value under the type, so they read `(Persistence, 0)`. Byte-identical on the 141 files it changes. Still
+long: fields typed by an enum or class descriptor (`&g_unk_...`), the container element pairs whose name is a
+global string id, and `eLinkTarget` and `ePersistenceTarget`, whose enum types are declared with another type
+elsewhere.
+
 **One line per reflected field (2026-11-14).** Second step of the readable reflection template. A field
 registration and its attributes now read `DREAD_REFLECTED_FIELD(f32, "fSpeed", 0x510, (DefaultValue, 1.0f),
 (Description, "..."));` (`include/base/reflection/ReflectedFields.h`), and the 63 attribute keys have the names

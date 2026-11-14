@@ -64,9 +64,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sDamageSource_SetterFunction", true)))
         fn_710084c724(fn, "_sDamageSource_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sDamageSource", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Source of the damage to be dealt");
+    DREAD_REFLECTED_PROPERTY(CStrId, "sDamageSource", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Source of the damage to be dealt"));
     DREAD_REFLECTED_FIELD(s32, "iMissilesPerShot", 0x3c, (DefaultValue, 3));
     DREAD_REFLECTED_FIELD(f32, "fHeat", 0x38, (DefaultValue, 0.75f), (Description, "Maximun damage to the shield"));
     DREAD_REFLECTED_FIELD(bool, "bSwarmMode", 0x28, (DefaultValue, true));

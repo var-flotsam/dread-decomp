@@ -20,17 +20,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CBeamBoxComponent
-extern base::reflection::CType g_unk_7101d679f0;
-extern base::reflection::CType g_unk_7101d55008;
 extern base::reflection::CType g_unk_717272e550;
 namespace CBeamBoxComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fDisplaceDist", true), fn_710000abbc(), 0xffffffff, -1, -1);
-    field0->attrs.Add<bool>(fn_7100093390(), true);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field0->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_FIELD(f32, "fDisplaceDist", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("vActivatables", true), &g_unk_717272e550, 0x388, -1, -1);
     DREAD_REFLECTED_FIELD(CStrId, "sAnimationId", 0x478, (DefaultValue, CStrId(g_unk_7101d470e0)));
 }

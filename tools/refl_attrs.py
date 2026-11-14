@@ -1076,8 +1076,14 @@ ATTRIBUTE_NAMES = {  # attribute key getter -> the name it registers (attr:: in 
     0x7100ed8b60: "FileFilter", 0x7100f9e870: "AssetType", 0x7100f9e980: "BasePath", 0x7100f9ea90: "FolderFilter",
     0x7100f9eba0: "FileNameOnly", 0x71010434d0: "eActorLinkToComponentLinkTransform",
 }
+TYPED_KEYS = {0x710000BF80: 0x7101D679F0, 0x71000923A0: 0x7101D55008}  # key -> its enum type (TypedAttrKey)
 FIELD_RE = re.compile(r'^    UnkReflField\* (field\d+) = fn_7100096524\(cls, CStrId\(("(?:[^"\\]|\\.)*"), true\), '
-                      r'fn_([0-9a-f]{10})\(\), (0x[0-9a-f]+), -1, -1\);$')
+                      r'fn_([0-9a-f]{10})\(\), (0x[0-9a-f]+, -1, -1|0xffffffff, cls->m_array_0x110\.size\(\) - [12], '
+                      r'(?:cls->m_array_0x110\.size\(\) - 1|-1))\);$')
+PROPERTY_TAILS = {  # a property's offset and accessor indices -> its macro (ReflectedFields.h)
+    "0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1": "DREAD_REFLECTED_PROPERTY",
+    "0xffffffff, cls->m_array_0x110.size() - 1, -1": "DREAD_REFLECTED_READ_ONLY_PROPERTY",
+}
 ATTR_RE = re.compile(r'^    (field\d+)->attrs\.Add<(.+?)>\(fn_([0-9a-f]{10})\(\), (.*)\);$')
 
 
@@ -1087,8 +1093,8 @@ def _deduced(type_: str, value: str) -> bool:
         return re.fullmatch(r"-?(\d+\.\d*(e[-+]?\d+)?|inf|nan)f", value) is not None
     if type_ == "bool":
         return value in ("true", "false")
-    if type_ == "s32":
-        return re.fullmatch(r"-?\d+", value) is not None
+    if type_ == "s32" and re.fullmatch(r"-?\d+", value):
+        return True
     if type_ == "const char*":
         return re.fullmatch(r'"(?:[^"\\]|\\.)*"', value) is not None
     return value.startswith(f"{type_}(") or value.startswith(f"{type_}{{")
@@ -1104,12 +1110,28 @@ def readable_fields(lines: list[str]) -> list[str]:
             out.append(lines[i])
             i += 1
             continue
-        var, name, getter, offset = m.groups()
-        line = f"    DREAD_REFLECTED_FIELD({FIELD_TYPES[int(getter, 16)]}, {name}, {offset}"
+        var, name, getter, tail = m.groups()
+        type_name = FIELD_TYPES[int(getter, 16)]
+        if tail in PROPERTY_TAILS:
+            line = f"    {PROPERTY_TAILS[tail]}({type_name}, {name}"
+        elif tail.endswith(", -1, -1"):
+            line = f"    DREAD_REFLECTED_FIELD({type_name}, {name}, {tail[:-len(', -1, -1')]}"
+        else:
+            out.append(lines[i])
+            i += 1
+            continue
         j = i + 1
         while j < len(lines) and (a := ATTR_RE.match(lines[j])) and a.group(1) == var \
-                and int(a.group(3), 16) in ATTRIBUTE_NAMES and not a.group(4).startswith("&"):
+                and int(a.group(3), 16) in ATTRIBUTE_NAMES:
             type_, value = a.group(2), a.group(4)
+            key = int(a.group(3), 16)
+            if value.startswith("&"):
+                typed = re.fullmatch(r"&g_unk_([0-9a-f]+), (.*)", value)
+                if not typed or TYPED_KEYS.get(key) != int(typed.group(1), 16):
+                    break
+                value = typed.group(2)
+            elif key in TYPED_KEYS:
+                break
             if not _deduced(type_, value):
                 if not re.fullmatch(r"[\w:]+", type_):
                     break

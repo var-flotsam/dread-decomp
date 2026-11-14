@@ -21,8 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassTweakPlayRateTrack::CTunableCharClassTweakPlayRateTrack
 extern bool g_unk_7172790ab8;
-extern base::reflection::CType g_unk_7101d679f0;
-extern base::reflection::CType g_unk_7101d55008;
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172790a08;
 void fn_7100c611bc(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -34,26 +32,10 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172790ab8 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fCommanderUltimateGrabSpeed1", true), fn_710000abbc(), 0xffffffff, -1, -1);
-    field0->attrs.Add<bool>(fn_7100093390(), true);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field0->attrs.Add<bool>(fn_7100090a20(), false);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fCommanderUltimateGrabSpeed2", true), fn_710000abbc(), 0xffffffff, -1, -1);
-    field1->attrs.Add<bool>(fn_7100093390(), true);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field1->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field1->attrs.Add<bool>(fn_7100090a20(), false);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fWarriorXUltimateGrabSpeed1", true), fn_710000abbc(), 0xffffffff, -1, -1);
-    field2->attrs.Add<bool>(fn_7100093390(), true);
-    field2->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field2->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field2->attrs.Add<bool>(fn_7100090a20(), false);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fWarriorXUltimateGrabSpeed2", true), fn_710000abbc(), 0xffffffff, -1, -1);
-    field3->attrs.Add<bool>(fn_7100093390(), true);
-    field3->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field3->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field3->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_FIELD(f32, "fCommanderUltimateGrabSpeed1", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
+    DREAD_REFLECTED_FIELD(f32, "fCommanderUltimateGrabSpeed2", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
+    DREAD_REFLECTED_FIELD(f32, "fWarriorXUltimateGrabSpeed1", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
+    DREAD_REFLECTED_FIELD(f32, "fWarriorXUltimateGrabSpeed2", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(f32, "fPlayRateFactor", 0x24, (DefaultValue, 0.5f));
     DREAD_REFLECTED_FIELD(f32, "fMagnetWallRunUp", 0x28, (DefaultValue, 1.0f), (ShowInConfig, true), (Description, "Magnet wall move up"), (MinValue, 0.1f), (MaxValue, 2.0f), (ControlFloatStep, 0.05f), (InternalTag, "Animation"));
     DREAD_REFLECTED_FIELD(f32, "fMagnetWallRunDown", 0x2c, (DefaultValue, 1.0f), (ShowInConfig, true), (Description, "Magnet wall move down"), (MinValue, 0.1f), (MaxValue, 2.0f), (ControlFloatStep, 0.05f), (InternalTag, "Animation"));

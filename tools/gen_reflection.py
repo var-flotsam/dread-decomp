@@ -236,7 +236,10 @@ def reflection_names(g: "Getter") -> dict[int, str]:
     return out
 
 
-KEY_DECL_RE = re.compile(r"^const base::reflection::UnkReflAttrKey& fn_([0-9a-f]+)\(\);$")
+# Declarations ReflectedFields.h already brings: the named attribute keys and the enum types of the typed ones.
+KEY_DECL_RE = re.compile(r"^(?:const base::reflection::UnkReflAttrKey& fn_|extern base::reflection::CType g_unk_)([0-9a-f]+)(?:\(\))?;$")
+FIELD_MACRO_RE = re.compile(r"\bDREAD_REFLECTED_(?:FIELD|PROPERTY|READ_ONLY_PROPERTY)\(")  # ReflectedFields.h
+DECLARED_KEYS = set(refl_attrs.ATTRIBUTE_NAMES) | set(refl_attrs.TYPED_KEYS.values())
 
 
 def readable_class_lines(orig: asmdiff.Original, g: "Getter", size: int, attr_sources: dict[int, tuple[list[str], str]],
@@ -255,7 +258,8 @@ def readable_class_lines(orig: asmdiff.Original, g: "Getter", size: int, attr_so
             extra, src = attr_sources[a]
             # One line per field (base/reflection/ReflectedFields.h); the named keys are declared there.
             src = "\n".join(refl_attrs.readable_fields(src.split("\n")))
-            extra = [d for d in extra if not (m := KEY_DECL_RE.match(d)) or int(m.group(1), 16) not in refl_attrs.ATTRIBUTE_NAMES]
+            extra = [d for d in extra if not (m := KEY_DECL_RE.match(d)) or int(m.group(1), 16) not in DECLARED_KEYS
+                     or (d.startswith("extern") and re.search(rf"\bg_unk_{m.group(1)}\b", src))]
             pre += [d for d in extra if d not in declared]
             declared |= set(extra)
             inside.append(re.sub(rf"\bfn_{a:x}\(", f"{name}(", src, count=1))
@@ -736,7 +740,7 @@ def main() -> int:
                     type_of[g.parent] if g.parent else None, decl_lines)
                 lines += body + [""]
                 fields_include = '#include "base/reflection/ReflectedFields.h"'
-                if fields_include not in lines and any("DREAD_REFLECTED_FIELD(" in l for l in body):
+                if fields_include not in lines and any(FIELD_MACRO_RE.search(l) for l in body):
                     lines.insert(lines.index('#include "base/reflection/ReflectedClass.h"') + 1, fields_include)
                 helpers_defined += h
                 attrs_defined += n_attrs

@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -46,8 +47,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sPlaythroughName_SetterFunction", true)))
         fn_71002ea054(fn, "_sPlaythroughName_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPlaythroughName", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<bool>(fn_710001b9f0(), true);
+    DREAD_REFLECTED_PROPERTY(CStrId, "sPlaythroughName", (XmlAttribute, true));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_oPlayDefLink_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_oPlayDefLink_GetterFunction", true);
         fn->return_type = &g_unk_7101d4ec50;

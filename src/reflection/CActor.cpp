@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -25,7 +26,6 @@ void fn_710023e0f8();
 void fn_71002289a8(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_7101d4ec50;
 void fn_710023e1ac();
-extern base::reflection::CType g_unk_7101d679f0;
 void fn_710023e278();
 void fn_7100228b24(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_7101d60ff0;
@@ -53,10 +53,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sName_SetterFunction", true)))
         fn_71002289a8(fn, "_sName_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sName", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Actor Name"));
-    field0->attrs.Add<CStrId>(fn_7100091c30(), CStrId("Name", true));
-    field0->attrs.Add<bool>(fn_7100234410(), true);
+    DREAD_REFLECTED_PROPERTY(CStrId, "sName", (Description, base::global::CRntString("Actor Name")), (DisplayName, CStrId("Name", true)), (WidgetReadOnly, true));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("oActorDefLink", true), &g_unk_7101d4ec50, 0x18, -1, -1);
     field1->attrs.Add<bool>(fn_7100090a20(), true);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sActorDefName_GetterFunction", true))) {
@@ -66,8 +63,7 @@ void refl_AddFields(CClass* cls) {
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710023e1ac);
     }
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sActorDefName", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field2->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_READ_ONLY_PROPERTY(CStrId, "sActorDefName", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vPos_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vPos_GetterFunction", true);
         fn->return_type = fn_71000246e4();
@@ -90,9 +86,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vAng_SetterFunction", true)))
         fn_7100228ee4(fn, "_vAng_SetterFunction");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("vAng", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field4->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Angle");
+    DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vAng", (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}), (Description, "Angle"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_pComponents_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_pComponents_GetterFunction", true);
         fn->return_type = fn_7100229060();
@@ -130,10 +124,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bEnabled_SetterFunction", true)))
         fn_71002292b4(fn, "_bEnabled_SetterFunction");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("bEnabled", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field6->attrs.Add<bool>(fn_7100075240(), true);
-    field6->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Actor Enabled?"));
-    field6->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_PROPERTY(bool, "bEnabled", (DefaultValue, true), (Description, base::global::CRntString("Actor Enabled?")), (DefaultValue, true));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetVisible", true))) {
         fn_7100229430(fn, "SetVisible");
         fn->Attrs()->Add<const char*>(fn_7100007e80(), "Makes the actor visible or invisible");

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -33,9 +34,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sModelAnim_SetterFunction", true)))
         fn_71009f2f60(fn, "_sModelAnim_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sModelAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId("default", true));
-    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Sets the animation for all the scene models"));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sModelAnim", (DefaultValue, CStrId("default", true)), (Description, base::global::CRntString("Sets the animation for all the scene models")));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

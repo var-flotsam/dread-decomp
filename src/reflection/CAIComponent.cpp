@@ -25,7 +25,6 @@ void fn_7101115758();
 void fn_71011155bc(UnkReflFunction* fn);
 void fn_71010f7d90(UnkReflFunction* fn, const char* name);
 void fn_71010f7f0c(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d679f0;
 extern base::reflection::CType g_unk_717269bb48;
 extern base::reflection::CType g_unk_71727bc110;
 extern base::reflection::CType g_unk_7172a05bc8;
@@ -54,19 +53,9 @@ void refl_AddFields(CClass* cls) {
     }
     DREAD_REFLECTED_FIELD(CStrId, "sForcedAttack", 0x1780, (DefaultValue, ""), (Description, "Forced attack"));
     DREAD_REFLECTED_FIELD(s32, "iForcedAttackPreset", 0x1788, (DefaultValue, 0), (Description, "Forced attack preset"));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeSinceTargetLastSeen", true), fn_710000abbc(), 0x14fc, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 100000000.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Time since target was seen for the last time");
-    field2->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field2->attrs.Add<bool>(fn_7100090a20(), false);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fTimeSinceLastDamage", true), fn_710000abbc(), 0x1128, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field3->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field3->attrs.Add<bool>(fn_7100090a20(), false);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fTimeSinceLastFrozen", true), fn_710000abbc(), 0x113c, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field4->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field4->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_FIELD(f32, "fTimeSinceTargetLastSeen", 0x14fc, (DefaultValue, 100000000.0f), (Description, "Time since target was seen for the last time"), (Persistence, 0), (EditorVisible, false));
+    DREAD_REFLECTED_FIELD(f32, "fTimeSinceLastDamage", 0x1128, (DefaultValue, -1.0f), (Persistence, 0), (EditorVisible, false));
+    DREAD_REFLECTED_FIELD(f32, "fTimeSinceLastFrozen", 0x113c, (DefaultValue, -1.0f), (Persistence, 0), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(f32, "fPathLeftCut", 0x13c0, (DefaultValue, 0.0f), (Description, "Desired left cut distance for this ground enemy's (patrol) path"));
     DREAD_REFLECTED_FIELD(f32, "fPathRightCut", 0x13c4, (DefaultValue, 0.0f), (Description, "Desired right cut distance for this ground enemy's (patrol) path"));
     DREAD_REFLECTED_FIELD(f32, "fCutDistanceClockwise", 0x13c8, (DefaultValue, -1.0f), (Description, "Desired navigable path cut distance [0,inf) for this ground enemy's only clockwise limit"));
@@ -86,13 +75,8 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bIgnoreAttack_SetterFunction", true)))
         fn_71010f7fc0(fn, "_m_bIgnoreAttack_SetterFunction");
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("bIgnoreAttack", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field13->attrs.Add<bool>(fn_7100075240(), false);
-    field13->attrs.Add<const char*>(fn_7100007e80(), "Ignore Attack?");
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("bInBlindAttack", true), fn_710000d228(), 0x14699, -1, -1);
-    field14->attrs.Add<bool>(fn_7100075240(), false);
-    field14->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field14->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_PROPERTY(bool, "bIgnoreAttack", (DefaultValue, false), (Description, "Ignore Attack?"));
+    DREAD_REFLECTED_FIELD(bool, "bInBlindAttack", 0x14699, (DefaultValue, false), (Persistence, 0), (EditorVisible, false));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

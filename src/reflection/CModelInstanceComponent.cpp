@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -35,8 +36,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sModelPath_SetterFunction", true)))
         fn_71009368f8(fn, "_m_sModelPath_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sModelPath", true), fn_710000ad9c(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(g_unk_7101d470e8));
+    DREAD_REFLECTED_PROPERTY(base::global::CFilePathStrId, "sModelPath", (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vScale_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_vScale_GetterFunction", true);
         fn->return_type = fn_71000246e4();
@@ -46,8 +46,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vScale_SetterFunction", true)))
         fn_7100936a74(fn, "_m_vScale_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("vScale", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{1.0f, 1.0f, 1.0f});
+    DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vScale", (DefaultValue, base::math::CVector3D{1.0f, 1.0f, 1.0f}));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

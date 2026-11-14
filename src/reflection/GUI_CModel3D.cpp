@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -61,7 +62,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_ApplyScaleToEntities_SetterFunction", true)))
         fn_71011f2608(fn, "_ApplyScaleToEntities_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("ApplyScaleToEntities", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(bool, "ApplyScaleToEntities");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_InlineDefModelPath_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_InlineDefModelPath_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -71,7 +72,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_InlineDefModelPath_SetterFunction", true)))
         fn_71011f2784(fn, "_InlineDefModelPath_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("InlineDefModelPath", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(CStrId, "InlineDefModelPath");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_InlineDefAnimPath_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_InlineDefAnimPath_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -81,7 +82,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_InlineDefAnimPath_SetterFunction", true)))
         fn_71011f2900(fn, "_InlineDefAnimPath_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("InlineDefAnimPath", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(CStrId, "InlineDefAnimPath");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_EntityDefCharClass_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_EntityDefCharClass_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -91,7 +92,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_EntityDefCharClass_SetterFunction", true)))
         fn_71011f2a7c(fn, "_EntityDefCharClass_SetterFunction");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("EntityDefCharClass", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(CStrId, "EntityDefCharClass");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_PosOffsetX_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_PosOffsetX_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -101,7 +102,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_PosOffsetX_SetterFunction", true)))
         fn_71011f2bf8(fn, "_PosOffsetX_SetterFunction");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("PosOffsetX", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "PosOffsetX");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_PosOffsetY_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_PosOffsetY_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -111,7 +112,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_PosOffsetY_SetterFunction", true)))
         fn_71011f2d74(fn, "_PosOffsetY_SetterFunction");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("PosOffsetY", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "PosOffsetY");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_PosOffsetZ_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_PosOffsetZ_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -121,7 +122,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_PosOffsetZ_SetterFunction", true)))
         fn_71011f2ef0(fn, "_PosOffsetZ_SetterFunction");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("PosOffsetZ", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "PosOffsetZ");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_MinModelDistance_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_MinModelDistance_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -131,7 +132,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_MinModelDistance_SetterFunction", true)))
         fn_71011f306c(fn, "_MinModelDistance_SetterFunction");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("MinModelDistance", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "MinModelDistance");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_MaxModelDistance_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_MaxModelDistance_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -141,7 +142,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_MaxModelDistance_SetterFunction", true)))
         fn_71011f31e8(fn, "_MaxModelDistance_SetterFunction");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("MaxModelDistance", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "MaxModelDistance");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CurrentModelDistance_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_CurrentModelDistance_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -151,7 +152,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CurrentModelDistance_SetterFunction", true)))
         fn_71011f3364(fn, "_CurrentModelDistance_SetterFunction");
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("CurrentModelDistance", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "CurrentModelDistance");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_HeightInterpSpeed_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_HeightInterpSpeed_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -161,7 +162,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_HeightInterpSpeed_SetterFunction", true)))
         fn_71011f34e0(fn, "_HeightInterpSpeed_SetterFunction");
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("HeightInterpSpeed", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "HeightInterpSpeed");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_DistanceInterpSpeed_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_DistanceInterpSpeed_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -171,7 +172,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_DistanceInterpSpeed_SetterFunction", true)))
         fn_71011f365c(fn, "_DistanceInterpSpeed_SetterFunction");
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("DistanceInterpSpeed", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "DistanceInterpSpeed");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_RotationInterpSpeed_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_RotationInterpSpeed_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -181,7 +182,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_RotationInterpSpeed_SetterFunction", true)))
         fn_71011f37d8(fn, "_RotationInterpSpeed_SetterFunction");
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("RotationInterpSpeed", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "RotationInterpSpeed");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_AutorotateVelocity_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_AutorotateVelocity_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -191,7 +192,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_AutorotateVelocity_SetterFunction", true)))
         fn_71011f3954(fn, "_AutorotateVelocity_SetterFunction");
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("AutorotateVelocity", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "AutorotateVelocity");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_DefaultCenterToFloorDist_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_DefaultCenterToFloorDist_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -201,7 +202,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_DefaultCenterToFloorDist_SetterFunction", true)))
         fn_71011f3ad0(fn, "_DefaultCenterToFloorDist_SetterFunction");
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("DefaultCenterToFloorDist", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "DefaultCenterToFloorDist");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

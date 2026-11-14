@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -26,15 +27,11 @@ void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Alpha Test");
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bEnabled", true), fn_710000d228(), 0x8, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), false);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
+    DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x8, (DefaultValue, false), (Persistence, 1));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("eFunction", true), &g_unk_716e34bc10, 0xc, -1, -1);
     field1->attrs.Add<s32>(fn_7100075240(), &g_unk_716e34bc10, 6);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fRef", true), fn_710000abbc(), 0x10, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    field2->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
+    DREAD_REFLECTED_FIELD(f32, "fRef", 0x10, (DefaultValue, 0.5f), (Persistence, 1));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -68,9 +65,7 @@ void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Alpha Blend");
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bEnabled", true), fn_710000d228(), 0x8, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), false);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
+    DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x8, (DefaultValue, false), (Persistence, 1));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("eOp", true), &g_unk_716e34b8b0, 0xc, -1, -1);
     field1->attrs.Add<s32>(fn_7100075240(), &g_unk_716e34b8b0, 0);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
@@ -147,15 +142,9 @@ void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Stencil Operation");
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bEnabled", true), fn_710000d228(), 0x8, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), false);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("uMask", true), fn_7100005178(), 0xc, -1, -1);
-    field1->attrs.Add<u32>(fn_7100075240(), 0xffffffffu);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("uRef", true), fn_7100005178(), 0x10, -1, -1);
-    field2->attrs.Add<u32>(fn_7100075240(), 0xffffffffu);
-    field2->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
+    DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x8, (DefaultValue, false), (Persistence, 1));
+    DREAD_REFLECTED_FIELD(u32, "uMask", 0xc, (DefaultValue, u32(0xffffffffu)), (Persistence, 1));
+    DREAD_REFLECTED_FIELD(u32, "uRef", 0x10, (DefaultValue, u32(0xffffffffu)), (Persistence, 1));
     UnkReflField* field3 = fn_7100096524(cls, CStrId("eStencilFail", true), &g_unk_716e34bd30, 0x14, -1, -1);
     field3->attrs.Add<s32>(fn_7100075240(), &g_unk_716e34bd30, 0);
     field3->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
@@ -202,18 +191,12 @@ void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Depth Test Mode");
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bTest", true), fn_710000d228(), 0x8, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), true);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bWrite", true), fn_710000d228(), 0x9, -1, -1);
-    field1->attrs.Add<bool>(fn_7100075240(), true);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
+    DREAD_REFLECTED_FIELD(bool, "bTest", 0x8, (DefaultValue, true), (Persistence, 1));
+    DREAD_REFLECTED_FIELD(bool, "bWrite", 0x9, (DefaultValue, true), (Persistence, 1));
     UnkReflField* field2 = fn_7100096524(cls, CStrId("eTestMode", true), &g_unk_716e34bc10, 0xc, -1, -1);
     field2->attrs.Add<s32>(fn_7100075240(), &g_unk_716e34bc10, 4);
     field2->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bZPrepass", true), fn_710000d228(), 0x10, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), true);
-    field3->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
+    DREAD_REFLECTED_FIELD(bool, "bZPrepass", 0x10, (DefaultValue, true), (Persistence, 1));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -281,9 +264,7 @@ void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Constant");
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sId", true), fn_7100009658(), 0x8, -1, -1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
+    DREAD_REFLECTED_FIELD(CStrId, "sId", 0x8, (DefaultValue, CStrId(g_unk_7101d470e0)), (Persistence, 1));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("cType", true), fn_7100008500(), 0x10, -1, -1);
     field1->attrs.AddTyped<u8, &fn_7100008500>(fn_7100075240(), 102);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
@@ -355,21 +336,11 @@ void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Texture");
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sId", true), fn_7100009658(), 0x8, -1, -1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sSampler", true), fn_7100009658(), 0x10, -1, -1);
-    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sType", true), fn_7100009658(), 0x18, -1, -1);
-    field2->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field2->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("iSlot", true), fn_7100014768(), 0x20, -1, -1);
-    field3->attrs.Add<s32>(fn_7100075240(), -1);
-    field3->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sAddress", true), fn_710000ad9c(), 0x28, -1, -1);
-    field4->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(g_unk_7101d470e8));
-    field4->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
+    DREAD_REFLECTED_FIELD(CStrId, "sId", 0x8, (DefaultValue, CStrId(g_unk_7101d470e0)), (Persistence, 1));
+    DREAD_REFLECTED_FIELD(CStrId, "sSampler", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)), (Persistence, 1));
+    DREAD_REFLECTED_FIELD(CStrId, "sType", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)), (Persistence, 1));
+    DREAD_REFLECTED_FIELD(s32, "iSlot", 0x20, (DefaultValue, -1), (Persistence, 1));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAddress", 0x28, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)), (Persistence, 1));
     UnkReflField* field5 = fn_7100096524(cls, CStrId("eMinFilter", true), &g_unk_716e34bf70, 0x30, -1, -1);
     field5->attrs.Add<s32>(fn_7100075240(), &g_unk_716e34bf70, 0);
     field5->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
@@ -388,24 +359,12 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field10 = fn_7100096524(cls, CStrId("eWrapModeV", true), &g_unk_716e34be50, 0x44, -1, -1);
     field10->attrs.Add<s32>(fn_7100075240(), &g_unk_716e34be50, 0);
     field10->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("uBorderColor", true), fn_7100005178(), 0x48, -1, -1);
-    field11->attrs.Add<u32>(fn_7100075240(), 0xffffffffu);
-    field11->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fMinLod", true), fn_710000abbc(), 0x4c, -1, -1);
-    field12->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field12->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("fLodBias", true), fn_710000abbc(), 0x50, -1, -1);
-    field13->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field13->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("fAnisotropic", true), fn_710000abbc(), 0x54, -1, -1);
-    field14->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field14->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("fMaxMipLevel", true), fn_710000abbc(), 0x58, -1, -1);
-    field15->attrs.Add<f32>(fn_7100075240(), 16.0f);
-    field15->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("fMaxAnisotropy", true), fn_710000abbc(), 0x5c, -1, -1);
-    field16->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field16->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
+    DREAD_REFLECTED_FIELD(u32, "uBorderColor", 0x48, (DefaultValue, u32(0xffffffffu)), (Persistence, 1));
+    DREAD_REFLECTED_FIELD(f32, "fMinLod", 0x4c, (DefaultValue, 0.0f), (Persistence, 1));
+    DREAD_REFLECTED_FIELD(f32, "fLodBias", 0x50, (DefaultValue, 0.0f), (Persistence, 1));
+    DREAD_REFLECTED_FIELD(f32, "fAnisotropic", 0x54, (DefaultValue, 0.0f), (Persistence, 1));
+    DREAD_REFLECTED_FIELD(f32, "fMaxMipLevel", 0x58, (DefaultValue, 16.0f), (Persistence, 1));
+    DREAD_REFLECTED_FIELD(f32, "fMaxAnisotropy", 0x5c, (DefaultValue, 0.0f), (Persistence, 1));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -439,18 +398,12 @@ void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x20011u);
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sId", true), fn_7100009658(), 0x10, -1, -1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
+    DREAD_REFLECTED_FIELD(CStrId, "sId", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)), (Persistence, 1));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("eType", true), &g_unk_716e352788, 0x18, -1, -1);
     field1->attrs.Add<s32>(fn_7100075240(), &g_unk_716e352788, 1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("uRenderLayer", true), fn_7100005178(), 0x1c, -1, -1);
-    field2->attrs.Add<s32>(fn_7100075240(), 31);
-    field2->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sProgramName", true), fn_7100009658(), 0x20, -1, -1);
-    field3->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field3->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
+    DREAD_REFLECTED_FIELD(u32, "uRenderLayer", 0x1c, (DefaultValue, 31), (Persistence, 1));
+    DREAD_REFLECTED_FIELD(CStrId, "sProgramName", 0x20, (DefaultValue, CStrId(g_unk_7101d470e0)), (Persistence, 1));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

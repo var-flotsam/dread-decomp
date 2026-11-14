@@ -21,7 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CMorphBallMovement
 void fn_710094fe70();
-extern base::reflection::CType g_unk_7101d679f0;
 void fn_710094feb8();
 namespace CMorphBallMovement {
 void refl_AddAttributes(CClass*) {}
@@ -33,8 +32,7 @@ void refl_AddFields(CClass* cls) {
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710094fe70);
     }
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bIsMorphBall", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_READ_ONLY_PROPERTY(bool, "bIsMorphBall", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bIsSamus_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bIsSamus_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -42,8 +40,7 @@ void refl_AddFields(CClass* cls) {
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710094feb8);
     }
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bIsSamus", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_READ_ONLY_PROPERTY(bool, "bIsSamus", (Persistence, 0));
     DREAD_REFLECTED_FIELD(f32, "fRunningSpeedX", 0x228c, (DefaultValue, 700.0f));
     DREAD_REFLECTED_FIELD(f32, "fSpiderRunningSpeedX", 0x2290, (DefaultValue, 350.0f));
     DREAD_REFLECTED_FIELD(f32, "fSpiderImpulseSpeedX", 0x2294, (DefaultValue, 4000.0f));
@@ -116,8 +113,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fWalkingSpeedFactor_SetterFunction", true)))
         fn_710093d6cc(fn, "_fWalkingSpeedFactor_SetterFunction");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fWalkingSpeedFactor", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field8->attrs.Add<f32>(fn_7100075240(), 0.6f);
+    DREAD_REFLECTED_PROPERTY(f32, "fWalkingSpeedFactor", (DefaultValue, 0.6f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToIgnoreJumpAfterLandingOnSlope", 0x44, (DefaultValue, 0.15f));
     DREAD_REFLECTED_FIELD(f32, "fCornerAssistStoppedMaxOverlapFactor", 0x48, (DefaultValue, 0.0f), (Description, "When stationary, multiplier to MorphBall's radius when checking distance to corner"));
     DREAD_REFLECTED_FIELD(f32, "fCornerAssistMovingMaxOverlapFactor", 0x4c, (DefaultValue, 0.0f), (Description, "When moving, multiplier to MorphBall's radius when checking distance to corner"));

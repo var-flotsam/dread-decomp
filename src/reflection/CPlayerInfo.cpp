@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CPlayerInfo
 void fn_7100f0ed90();
-extern base::reflection::CType g_unk_7101d679f0;
 void fn_7100f07cf0(UnkReflFunction* fn, const char* name);
 void fn_7100f07da4(UnkReflFunction* fn, const char* name);
 void fn_7100f0ef94();
@@ -50,8 +50,7 @@ void refl_AddFields(CClass* cls) {
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f0ed90);
     }
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sInputPreset", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_READ_ONLY_PROPERTY(CStrId, "sInputPreset", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetInputPreset", true))) {
         fn_7100f07cf0(fn, "SetInputPreset");
         fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Input preset"));
@@ -69,9 +68,7 @@ void refl_AddFields(CClass* cls) {
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f0ef94);
     }
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("iHazardousCount", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Number of hazardous triggers active");
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_READ_ONLY_PROPERTY(s32, "iHazardousCount", (Description, "Number of hazardous triggers active"), (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IncrementHazardousCount", true))) {
         fn_7100f07e58(fn, "IncrementHazardousCount");
         fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Increment the number of hazardous triggers active"));
@@ -94,9 +91,7 @@ void refl_AddFields(CClass* cls) {
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f0f0e0);
     }
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("iHeatZoneCount", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Number of heat zone triggers active");
-    field2->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_READ_ONLY_PROPERTY(s32, "iHeatZoneCount", (Description, "Number of heat zone triggers active"), (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IncrementHeatZoneCount", true))) {
         fn_7100f08074(fn, "IncrementHeatZoneCount");
         fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Increment the number of heat zone triggers active"));

@@ -36,8 +36,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bOverrideDisableInEditor_SetterFunction", true)))
         fn_7100792280(fn, "_bOverrideDisableInEditor_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bOverrideDisableInEditor", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field2->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_PROPERTY(bool, "bOverrideDisableInEditor", (DefaultValue, true));
     DREAD_REFLECTED_FIELD(base::math::CVector3D, "vInitScale", 0x70, (DefaultValue, base::math::CVector3D{1.0f, 1.0f, 1.0f}), (Description, "Init Scale"));
 }
 bool refl_Equals(const void*, const void*) { return false; }

@@ -366,9 +366,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sDamageSource_SetterFunction", true)))
         fn_710078bfc4(fn, "_m_sDamageSource_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sDamageSource", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Damage source");
+    DREAD_REFLECTED_PROPERTY(CStrId, "sDamageSource", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Damage source"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bRotateToInstigatorHitCollider_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bRotateToInstigatorHitCollider_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -378,9 +376,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bRotateToInstigatorHitCollider_SetterFunction", true)))
         fn_710078c140(fn, "_m_bRotateToInstigatorHitCollider_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bRotateToInstigatorHitCollider", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Rotate To Instigator Hit Collider");
+    DREAD_REFLECTED_PROPERTY(bool, "bRotateToInstigatorHitCollider", (DefaultValue, false), (Description, "Rotate To Instigator Hit Collider"));
     UnkReflField* field3 = fn_7100096524(cls, CStrId("eDamageType", true), &g_unk_7172730420, 0x70, -1, -1);
     field3->attrs.Add<s32>(fn_7100075240(), &g_unk_7172730420, 0);
     field3->attrs.Add<const char*>(fn_7100007e80(), "Damage source");
@@ -393,9 +389,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sSuccessDownDefaultAnim_SetterFunction", true)))
         fn_710078c2bc(fn, "_m_sSuccessDownDefaultAnim_SetterFunction");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sSuccessDownDefaultAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field4->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Down anim");
+    DREAD_REFLECTED_PROPERTY(CStrId, "sSuccessDownDefaultAnim", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Down anim"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sSuccessUpDefaultAnim_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_sSuccessUpDefaultAnim_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -405,9 +399,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sSuccessUpDefaultAnim_SetterFunction", true)))
         fn_710078c438(fn, "_m_sSuccessUpDefaultAnim_SetterFunction");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("sSuccessUpDefaultAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field5->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Up anim");
+    DREAD_REFLECTED_PROPERTY(CStrId, "sSuccessUpDefaultAnim", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Up anim"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sSuccessFrontDefaultAnim_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_sSuccessFrontDefaultAnim_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -417,9 +409,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sSuccessFrontDefaultAnim_SetterFunction", true)))
         fn_710078c5b4(fn, "_m_sSuccessFrontDefaultAnim_SetterFunction");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("sSuccessFrontDefaultAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field6->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field6->attrs.Add<const char*>(fn_7100007e80(), "Front anim");
+    DREAD_REFLECTED_PROPERTY(CStrId, "sSuccessFrontDefaultAnim", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Front anim"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sSuccessBackDefaultAnim_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_sSuccessBackDefaultAnim_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -429,9 +419,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sSuccessBackDefaultAnim_SetterFunction", true)))
         fn_710078c730(fn, "_m_sSuccessBackDefaultAnim_SetterFunction");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("sSuccessBackDefaultAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field7->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field7->attrs.Add<const char*>(fn_7100007e80(), "Back anim");
+    DREAD_REFLECTED_PROPERTY(CStrId, "sSuccessBackDefaultAnim", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Back anim"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bIgnoreReaction_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bIgnoreReaction_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -441,9 +429,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bIgnoreReaction_SetterFunction", true)))
         fn_710078c8ac(fn, "_m_bIgnoreReaction_SetterFunction");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("bIgnoreReaction", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field8->attrs.Add<bool>(fn_7100075240(), false);
-    field8->attrs.Add<const char*>(fn_7100007e80(), "Ignore damage reaction [false]");
+    DREAD_REFLECTED_PROPERTY(bool, "bIgnoreReaction", (DefaultValue, false), (Description, "Ignore damage reaction [false]"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bForceReaction_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bForceReaction_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -453,9 +439,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bForceReaction_SetterFunction", true)))
         fn_710078ca28(fn, "_m_bForceReaction_SetterFunction");
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("bForceReaction", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field9->attrs.Add<bool>(fn_7100075240(), false);
-    field9->attrs.Add<const char*>(fn_7100007e80(), "Force damage reaction [false]");
+    DREAD_REFLECTED_PROPERTY(bool, "bForceReaction", (DefaultValue, false), (Description, "Force damage reaction [false]"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_eDamageStrengthOnForcedReaction_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_eDamageStrengthOnForcedReaction_GetterFunction", true);
         fn->return_type = &g_unk_7172730858;
@@ -477,9 +461,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bIgnoreInmune_SetterFunction", true)))
         fn_710078cd18(fn, "_m_bIgnoreInmune_SetterFunction");
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("bIgnoreInmune", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field11->attrs.Add<bool>(fn_7100075240(), false);
-    field11->attrs.Add<const char*>(fn_7100007e80(), "Ignore Player Inmune [false]");
+    DREAD_REFLECTED_PROPERTY(bool, "bIgnoreInmune", (DefaultValue, false), (Description, "Ignore Player Inmune [false]"));
     UnkReflField* field12 = fn_7100096524(cls, CStrId("dictDamageIDOverrides", true), &g_unk_7101d5f2b0, 0xa0, -1, -1);
     field12->attrs_0x70.Add<bool>(fn_7100091d40(), true);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sIgnoreBumpColliders_GetterFunction", true))) {
@@ -491,8 +473,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sIgnoreBumpColliders_SetterFunction", true)))
         fn_710078ce94(fn, "_sIgnoreBumpColliders_SetterFunction");
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("sIgnoreBumpColliders", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field13->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sIgnoreBumpColliders", (DefaultValue, CStrId(g_unk_7101d470e0)));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

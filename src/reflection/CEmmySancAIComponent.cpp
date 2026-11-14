@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -26,7 +27,6 @@ void fn_71005004a4();
 extern base::reflection::CType g_unk_717269bf08;
 extern base::reflection::CType g_unk_71727bc110;
 extern base::reflection::CType g_unk_717269bb48;
-extern base::reflection::CType g_unk_7101d679f0;
 namespace CEmmySancAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -49,10 +49,7 @@ void refl_AddFields(CClass* cls) {
     field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("wpForceEmmyPerceptionVisionConeOffShape", true), &g_unk_717269bb48, 0x2a730, -1, -1);
     field1->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bZipLine004Behavior", true), fn_710000d228(), 0x2a728, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
-    field2->attrs.Add<bool>(fn_7100090a20(), false);
-    field2->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_FIELD(bool, "bZipLine004Behavior", 0x2a728, (DefaultValue, false), (EditorVisible, false), (Persistence, 0));
     UnkReflField* field3 = fn_7100096524(cls, CStrId("wpPhase2HeatEnabledLogicShape", true), &g_unk_717269bb48, 0x2a770, -1, -1);
     field3->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
 }

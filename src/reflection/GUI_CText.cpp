@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -39,7 +40,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_Font_SetterFunction", true)))
         fn_7100b85f78(fn, "_Font_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("Font", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(CStrId, "Font");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_TextString_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_TextString_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -49,7 +50,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_TextString_SetterFunction", true)))
         fn_7100b860f4(fn, "_TextString_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("TextString", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(CStrId, "TextString");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_TextAlignment_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_TextAlignment_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -59,7 +60,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_TextAlignment_SetterFunction", true)))
         fn_7100b86270(fn, "_TextAlignment_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("TextAlignment", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(CStrId, "TextAlignment");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_Text_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_Text_GetterFunction", true);
         fn->return_type = fn_7100014768();
@@ -69,7 +70,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_Text_SetterFunction", true)))
         fn_7100b863ec(fn, "_Text_SetterFunction");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("Text", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(s32, "Text");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

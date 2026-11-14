@@ -34,8 +34,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fRotationSpeedDeg_SetterFunction", true)))
         fn_71004590e4(fn, "_m_fRotationSpeedDeg_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fRotationSpeedDeg", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<f32>(fn_7100075240(), 90.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fRotationSpeedDeg", (DefaultValue, 90.0f));
     DREAD_REFLECTED_FIELD(f32, "fInitialRadius", 0x13c, (DefaultValue, 30.0f));
     DREAD_REFLECTED_FIELD(f32, "fMinRadius", 0x140, (DefaultValue, 90.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxRadius", 0x144, (DefaultValue, 200.0f));

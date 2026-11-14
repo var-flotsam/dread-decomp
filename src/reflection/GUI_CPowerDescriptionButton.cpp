@@ -34,7 +34,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sLabelName_SetterFunction", true)))
         fn_7100b62574(fn, "_m_sLabelName_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sLabelName", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(CStrId, "sLabelName");
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sPowerName", 0x2a8);
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sPowerDescription", 0x2d8);
     DREAD_REFLECTED_FIELD(CStrId, "sPowerImage", 0x310);

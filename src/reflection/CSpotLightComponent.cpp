@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -33,8 +34,6 @@ void fn_71008fa0c0();
 void fn_71008f7e54(UnkReflFunction* fn, const char* name);
 void fn_71008fa168();
 void fn_71008f7fd0(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d55008;
-extern base::reflection::CType g_unk_7101d679f0;
 void fn_71008fa23c();
 void fn_71008f814c(UnkReflFunction* fn, const char* name);
 void fn_71008fa2f4();
@@ -65,9 +64,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttMin_SetterFunction", true)))
         fn_71008f76e8(fn, "_fAttMin_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fAttMin", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<f32>(fn_7100075240(), 400.0f);
-    field0->attrs.Add<CStrId>(fn_71000914c0(), CStrId("fAttMax", true));
+    DREAD_REFLECTED_PROPERTY(f32, "fAttMin", (DefaultValue, 400.0f), (MaxValueProperty, CStrId("fAttMax", true)));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttMax_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fAttMax_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -77,9 +74,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttMax_SetterFunction", true)))
         fn_71008f7864(fn, "_fAttMax_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fAttMax", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<f32>(fn_7100075240(), 500.0f);
-    field1->attrs.Add<CStrId>(fn_71000913b0(), CStrId("fAttMin", true));
+    DREAD_REFLECTED_PROPERTY(f32, "fAttMax", (DefaultValue, 500.0f), (MinValueProperty, CStrId("fAttMin", true)));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttIn_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fAttIn_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -89,8 +84,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttIn_SetterFunction", true)))
         fn_71008f79e0(fn, "_fAttIn_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fAttIn", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field2->attrs.Add<f32>(fn_7100075240(), 90.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fAttIn", (DefaultValue, 90.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttOut_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fAttOut_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -100,8 +94,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttOut_SetterFunction", true)))
         fn_71008f7b5c(fn, "_fAttOut_SetterFunction");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fAttOut", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field3->attrs.Add<f32>(fn_7100075240(), 120.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fAttOut", (DefaultValue, 120.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttConstantFactor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fAttConstantFactor_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -111,9 +104,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttConstantFactor_SetterFunction", true)))
         fn_71008f7cd8(fn, "_fAttConstantFactor_SetterFunction");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fAttConstantFactor", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field4->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fAttConstantFactor", (DefaultValue, 0.0f), (MinValue, 0.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttQuadraticFactor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fAttQuadraticFactor_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -123,9 +114,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttQuadraticFactor_SetterFunction", true)))
         fn_71008f7e54(fn, "_fAttQuadraticFactor_SetterFunction");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fAttQuadraticFactor", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field5->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field5->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fAttQuadraticFactor", (DefaultValue, 0.0f), (MinValue, 0.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vDir_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vDir_GetterFunction", true);
         fn->return_type = fn_71000246e4();
@@ -135,10 +124,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vDir_SetterFunction", true)))
         fn_71008f7fd0(fn, "_vDir_SetterFunction");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("vDir", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field6->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{1.0f, 0.0f, 0.0f});
-    field6->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field6->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vDir", (DefaultValue, base::math::CVector3D{1.0f, 0.0f, 0.0f}), (EditorModeDataFlow, 1), (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAnimFrame_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fAnimFrame_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -148,7 +134,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAnimFrame_SetterFunction", true)))
         fn_71008f814c(fn, "_fAnimFrame_SetterFunction");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fAnimFrame", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "fAnimFrame");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bCastShadows_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bCastShadows_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -158,7 +144,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bCastShadows_SetterFunction", true)))
         fn_71008f82c8(fn, "_bCastShadows_SetterFunction");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("bCastShadows", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(bool, "bCastShadows");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vShadowNearFar_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vShadowNearFar_GetterFunction", true);
         fn->return_type = fn_7100024504();
@@ -168,8 +154,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vShadowNearFar_SetterFunction", true)))
         fn_71008f8444(fn, "_vShadowNearFar_SetterFunction");
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("vShadowNearFar", true), fn_7100024504(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field9->attrs.Add<base::math::CVector2D>(fn_7100075240(), base::math::CVector2D{0.0f, 0.0f});
+    DREAD_REFLECTED_PROPERTY(base::math::CVector2D, "vShadowNearFar", (DefaultValue, base::math::CVector2D{0.0f, 0.0f}));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fShadowBias_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fShadowBias_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -179,9 +164,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fShadowBias_SetterFunction", true)))
         fn_71008f85c0(fn, "_fShadowBias_SetterFunction");
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fShadowBias", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field10->attrs.Add<f32>(fn_7100075240(), 0.001f);
-    field10->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fShadowBias", (DefaultValue, 0.001f), (MinValue, 0.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bStaticShadows_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bStaticShadows_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -191,7 +174,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bStaticShadows_SetterFunction", true)))
         fn_71008f873c(fn, "_bStaticShadows_SetterFunction");
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("bStaticShadows", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(bool, "bStaticShadows");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fShadowScl_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fShadowScl_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -201,10 +184,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fShadowScl_SetterFunction", true)))
         fn_71008f88b8(fn, "_fShadowScl_SetterFunction");
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fShadowScl", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field12->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field12->attrs.Add<f32>(fn_7100091080(), 0.01f);
-    field12->attrs.Add<f32>(fn_7100091190(), 1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fShadowScl", (DefaultValue, 1.0f), (MinValue, 0.01f), (MaxValue, 1.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bHasProjectorTexture_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bHasProjectorTexture_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -214,7 +194,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bHasProjectorTexture_SetterFunction", true)))
         fn_71008f8a34(fn, "_bHasProjectorTexture_SetterFunction");
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("bHasProjectorTexture", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(bool, "bHasProjectorTexture");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sTexturePath_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sTexturePath_GetterFunction", true);
         fn->return_type = fn_710000ad9c();
@@ -224,7 +204,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sTexturePath_SetterFunction", true)))
         fn_71008f8bb0(fn, "_sTexturePath_SetterFunction");
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("sTexturePath", true), fn_710000ad9c(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(base::global::CFilePathStrId, "sTexturePath");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vProjectorUVScroll_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vProjectorUVScroll_GetterFunction", true);
         fn->return_type = fn_71000248c4();
@@ -234,8 +214,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vProjectorUVScroll_SetterFunction", true)))
         fn_71008f8d2c(fn, "_vProjectorUVScroll_SetterFunction");
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("vProjectorUVScroll", true), fn_71000248c4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field15->attrs.Add<base::math::CVector4D>(fn_7100075240(), base::math::CVector4D{1.0f, 1.0f, 0.0f, 0.0f});
+    DREAD_REFLECTED_PROPERTY(base::math::CVector4D, "vProjectorUVScroll", (DefaultValue, base::math::CVector4D{1.0f, 1.0f, 0.0f, 0.0f}));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

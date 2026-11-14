@@ -48,8 +48,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFollowPathVerticalRotationDist_SetterFunction", true)))
         fn_71006f7008(fn, "_m_fFollowPathVerticalRotationDist_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fFollowPathVerticalRotationDist", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<f32>(fn_7100075240(), 150.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fFollowPathVerticalRotationDist", (DefaultValue, 150.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFollowPathVerticalRotationFactor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fFollowPathVerticalRotationFactor_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -59,8 +58,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFollowPathVerticalRotationFactor_SetterFunction", true)))
         fn_71006f7184(fn, "_m_fFollowPathVerticalRotationFactor_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fFollowPathVerticalRotationFactor", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fFollowPathVerticalRotationFactor", (DefaultValue, 1.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFollowPathTargetReachedDistance_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fFollowPathTargetReachedDistance_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -70,8 +68,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFollowPathTargetReachedDistance_SetterFunction", true)))
         fn_71006f7300(fn, "_m_fFollowPathTargetReachedDistance_SetterFunction");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fFollowPathTargetReachedDistance", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field3->attrs.Add<f32>(fn_7100075240(), 25.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fFollowPathTargetReachedDistance", (DefaultValue, 25.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFollowPathLookAhead_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fFollowPathLookAhead_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -81,8 +78,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFollowPathLookAhead_SetterFunction", true)))
         fn_71006f747c(fn, "_m_fFollowPathLookAhead_SetterFunction");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fFollowPathLookAhead", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field4->attrs.Add<f32>(fn_7100075240(), 120.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fFollowPathLookAhead", (DefaultValue, 120.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bFollowPathUpdateDirWhenNotLookingAtDesiredViewDir_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bFollowPathUpdateDirWhenNotLookingAtDesiredViewDir_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -92,8 +88,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bFollowPathUpdateDirWhenNotLookingAtDesiredViewDir_SetterFunction", true)))
         fn_71006f75f8(fn, "_m_bFollowPathUpdateDirWhenNotLookingAtDesiredViewDir_SetterFunction");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("bFollowPathUpdateDirWhenNotLookingAtDesiredViewDir", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field5->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_PROPERTY(bool, "bFollowPathUpdateDirWhenNotLookingAtDesiredViewDir", (DefaultValue, true));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fGotoPointReachedDistance_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fGotoPointReachedDistance_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -103,8 +98,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fGotoPointReachedDistance_SetterFunction", true)))
         fn_71006f7774(fn, "_m_fGotoPointReachedDistance_SetterFunction");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fGotoPointReachedDistance", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field6->attrs.Add<f32>(fn_7100075240(), 10.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fGotoPointReachedDistance", (DefaultValue, 10.0f));
     DREAD_REFLECTED_FIELD(f32, "fTurnWeightPenalization", 0x7c, (DefaultValue, 400.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }

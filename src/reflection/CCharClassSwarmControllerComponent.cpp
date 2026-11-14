@@ -30,8 +30,6 @@ void fn_7100737928();
 void fn_7100736874(UnkReflFunction* fn, const char* name);
 void fn_71007379b8();
 void fn_71007369f0(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d679f0;
-extern base::reflection::CType g_unk_7101d55008;
 const base::reflection::CClass* fn_71008c1b4c();
 namespace CCharClassSwarmControllerComponent {
 void refl_AddAttributes(CClass*) {}
@@ -45,9 +43,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMinTimeInNode_SetterFunction", true)))
         fn_7100736400(fn, "_m_fMinTimeInNode_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMinTimeInNode", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Minimum time waiting in a node [2]");
+    DREAD_REFLECTED_PROPERTY(f32, "fMinTimeInNode", (DefaultValue, 2.0f), (Description, "Minimum time waiting in a node [2]"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fTimeInNodeRandomness_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fTimeInNodeRandomness_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -57,9 +53,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fTimeInNodeRandomness_SetterFunction", true)))
         fn_710073657c(fn, "_m_fTimeInNodeRandomness_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeInNodeRandomness", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Minimum time waiting in a node [2]");
+    DREAD_REFLECTED_PROPERTY(f32, "fTimeInNodeRandomness", (DefaultValue, 2.0f), (Description, "Minimum time waiting in a node [2]"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fTargetChangeProbability_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fTargetChangeProbability_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -69,9 +63,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fTargetChangeProbability_SetterFunction", true)))
         fn_71007366f8(fn, "_m_fTargetChangeProbability_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTargetChangeProbability", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.01f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Probability of traveling to another node [.01]");
+    DREAD_REFLECTED_PROPERTY(f32, "fTargetChangeProbability", (DefaultValue, 0.01f), (Description, "Probability of traveling to another node [.01]"));
     DREAD_REFLECTED_FIELD(CStrId, "sIndividualLife", 0x70, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Life of each individual of groups [1]"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAttackPathOffset_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fAttackPathOffset_GetterFunction", true);
@@ -82,9 +74,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAttackPathOffset_SetterFunction", true)))
         fn_7100736874(fn, "_m_fAttackPathOffset_SetterFunction");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fAttackPathOffset", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field4->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Offset used to check if Samus is above the attack path [0]");
+    DREAD_REFLECTED_PROPERTY(f32, "fAttackPathOffset", (DefaultValue, 1.0f), (Description, "Offset used to check if Samus is above the attack path [0]"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iMaxChangingTargetSimul_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_iMaxChangingTargetSimul_GetterFunction", true);
         fn->return_type = fn_7100014768();
@@ -94,29 +84,11 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iMaxChangingTargetSimul_SetterFunction", true)))
         fn_71007369f0(fn, "_m_iMaxChangingTargetSimul_SetterFunction");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("iMaxChangingTargetSimul", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field5->attrs.Add<s32>(fn_7100075240(), 3);
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Max number of groups traveling to another node simultaneously [3]");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("bWantsSpiraling", true), fn_710000d228(), 0xffffffff, -1, -1);
-    field6->attrs.Add<bool>(fn_7100093390(), true);
-    field6->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field6->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field6->attrs.Add<bool>(fn_7100090a20(), false);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("bWantsJellyfishMovement", true), fn_710000d228(), 0xffffffff, -1, -1);
-    field7->attrs.Add<bool>(fn_7100093390(), true);
-    field7->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field7->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field7->attrs.Add<bool>(fn_7100090a20(), false);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("bWantsFishMovement", true), fn_710000d228(), 0xffffffff, -1, -1);
-    field8->attrs.Add<bool>(fn_7100093390(), true);
-    field8->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field8->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field8->attrs.Add<bool>(fn_7100090a20(), false);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("bWantsInternalFlocking", true), fn_710000d228(), 0xffffffff, -1, -1);
-    field9->attrs.Add<bool>(fn_7100093390(), true);
-    field9->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field9->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field9->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_PROPERTY(s32, "iMaxChangingTargetSimul", (DefaultValue, 3), (Description, "Max number of groups traveling to another node simultaneously [3]"));
+    DREAD_REFLECTED_FIELD(bool, "bWantsSpiraling", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
+    DREAD_REFLECTED_FIELD(bool, "bWantsJellyfishMovement", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
+    DREAD_REFLECTED_FIELD(bool, "bWantsFishMovement", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
+    DREAD_REFLECTED_FIELD(bool, "bWantsInternalFlocking", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(bool, "bWantsMigration", 0xd4, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(f32, "fMaxDistToMigrate", 0xd8, (DefaultValue, 200.0f));
     DREAD_REFLECTED_FIELD(bool, "bWantsBumpReaction", 0xec, (DefaultValue, true));

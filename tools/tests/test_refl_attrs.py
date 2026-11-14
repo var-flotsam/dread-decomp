@@ -226,9 +226,25 @@ class ReadableFields(unittest.TestCase):
             '    DREAD_REFLECTED_FIELD(bool, "bOn", 0x518);',
         ])
 
-    def test_unnamed_attribute_keeps_the_variable(self):
+    def test_enum_typed_key_and_properties(self):
         lines = [
             self.REG.format(n=0, name="fSpeed", getter="710000abbc", off="0x510"),
             "    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);",
+            '    UnkReflField* field1 = fn_7100096524(cls, CStrId("fWidth", true), fn_710000abbc(), 0xffffffff, '
+            'cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);',
+            "    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);",
+            '    UnkReflField* field2 = fn_7100096524(cls, CStrId("uKey", true), fn_7100005178(), 0xffffffff, '
+            'cls->m_array_0x110.size() - 1, -1);',
+        ]
+        self.assertEqual(ra.readable_fields(lines), [
+            '    DREAD_REFLECTED_FIELD(f32, "fSpeed", 0x510, (Persistence, 0));',
+            '    DREAD_REFLECTED_PROPERTY(f32, "fWidth", (DefaultValue, 0.0f));',
+            '    DREAD_REFLECTED_READ_ONLY_PROPERTY(u32, "uKey");',
+        ])
+
+    def test_unnamed_attribute_keeps_the_variable(self):
+        lines = [
+            self.REG.format(n=0, name="fSpeed", getter="710000abbc", off="0x510"),
+            "    field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);",
         ]
         self.assertEqual(ra.readable_fields(lines), lines)

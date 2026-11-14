@@ -21,7 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CPlayerMovement
 void fn_71010dced0();
-extern base::reflection::CType g_unk_7101d679f0;
 void fn_71010d74bc(UnkReflFunction* fn, const char* name);
 void fn_71010d7570(UnkReflFunction* fn, const char* name);
 void fn_71010d7624(UnkReflFunction* fn, const char* name);
@@ -35,8 +34,7 @@ void refl_AddFields(CClass* cls) {
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71010dced0);
     }
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bForcedAnalogInput", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_READ_ONLY_PROPERTY(bool, "bForcedAnalogInput", (Persistence, 0));
     DREAD_REFLECTED_FIELD(f32, "fImpactImpulseX", 0x7cc, (DefaultValue, 700.0f), (Description, "Impact impulse X"));
     DREAD_REFLECTED_FIELD(f32, "fImpactImpulseY", 0x7d0, (DefaultValue, 1700.0f), (Description, "Impact impulse Y"));
     DREAD_REFLECTED_FIELD(f32, "fImpactAirImpulseY", 0x7d4, (DefaultValue, 1200.0f), (Description, "Impact impulse Y (on air)"));

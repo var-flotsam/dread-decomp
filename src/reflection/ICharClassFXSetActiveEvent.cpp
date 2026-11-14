@@ -20,7 +20,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // ICharClassFXSetActiveEvent
-extern base::reflection::CType g_unk_7101d679f0;
 namespace ICharClassFXSetActiveEvent {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "FX Set Emission Enabled Interface");
@@ -29,9 +28,7 @@ void refl_AddAttributes(CClass* cls) {
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sName", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(bool, "bActive", 0x18, (DefaultValue, true));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bDisableOnEmpty", true), fn_710000d228(), 0x19, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
-    field2->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_FIELD(bool, "bDisableOnEmpty", 0x19, (DefaultValue, false), (Persistence, 0));
     DREAD_REFLECTED_FIELD(bool, "bDeleteOnEmpty", 0x1a, (DefaultValue, false));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

@@ -47,8 +47,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iReverb_SetterFunction", true)))
         fn_7100a5cc80(fn, "_m_iReverb_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("iReverb", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<s32>(fn_7100075240(), -1);
+    DREAD_REFLECTED_PROPERTY(s32, "iReverb", (DefaultValue, -1));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iLowPassFilter_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_iLowPassFilter_GetterFunction", true);
         fn->return_type = fn_7100014768();
@@ -58,8 +57,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iLowPassFilter_SetterFunction", true)))
         fn_7100a5cdfc(fn, "_m_iLowPassFilter_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("iLowPassFilter", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field2->attrs.Add<s32>(fn_7100075240(), -1);
+    DREAD_REFLECTED_PROPERTY(s32, "iLowPassFilter", (DefaultValue, -1));
     DREAD_REFLECTED_FIELD(CStrId, "sOnEnable", 0x1f0, (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(CStrId, "sOnDisable", 0x1f8, (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(bool, "bOnEnableAlways", 0x200, (DefaultValue, false));
@@ -76,8 +74,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sSfxType_SetterFunction", true)))
         fn_7100a5cf78(fn, "_sSfxType_SetterFunction");
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("sSfxType", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field10->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sSfxType", (DefaultValue, CStrId(g_unk_7101d470e0)));
     UnkReflField* field11 = fn_7100096524(cls, CStrId("lstActivationConditions", true), &g_unk_717274dad8, 0x250, -1, -1);
     field11->attrs_0x70.Add<CStrId>(fn_710008ff80(), CStrId("AfterActivationConditionDeserialization", true));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterActivationConditionDeserialization", true)))

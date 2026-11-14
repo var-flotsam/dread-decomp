@@ -357,6 +357,12 @@ struct UnkReflTypeOf<global::CName> {
     static const CType* Get() { return fn_710000fd7c(); }
 };
 
+// An attribute key whose values are enum values of the key's own enum type.
+struct TypedAttrKey {
+    const UnkReflAttrKey& key;
+    const CType* type;
+};
+
 struct UnkReflAttrs {
     u8 unk_0x0[0x38];
 
@@ -368,6 +374,10 @@ struct UnkReflAttrs {
     template <class T>
     void Add(const UnkReflAttrKey& key, const CType* type, const T& value) {
         fn_71000934b8(this, key, UnkReflValueRef{type, &value});
+    }
+    template <class T>
+    void Add(const TypedAttrKey& key, const T& value) {
+        Add<T>(key.key, key.type, value);
     }
     // The same with the type getter called after the value is stored.
     template <class T, auto Get>

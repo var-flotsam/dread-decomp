@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,8 +20,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CVideoManagerComponent
-extern base::reflection::CType g_unk_7101d679f0;
-extern base::reflection::CType g_unk_7101d55008;
 void fn_7100aa8ef8();
 void fn_7100aa7c00(UnkReflFunction* fn, const char* name);
 void fn_7100aa8fa0();
@@ -31,16 +30,8 @@ void fn_7100aa9090();
 namespace CVideoManagerComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sVideo_1_Path", true), fn_7100009658(), 0xffffffff, -1, -1);
-    field0->attrs.Add<bool>(fn_7100093390(), true);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field0->attrs.Add<bool>(fn_7100090a20(), false);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sVideo_2_Path", true), fn_7100009658(), 0xffffffff, -1, -1);
-    field1->attrs.Add<bool>(fn_7100093390(), true);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field1->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field1->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_FIELD(CStrId, "sVideo_1_Path", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
+    DREAD_REFLECTED_FIELD(CStrId, "sVideo_2_Path", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sVideoAux_1_Path_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sVideoAux_1_Path_GetterFunction", true);
         fn->return_type = fn_710000ad9c();
@@ -50,7 +41,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sVideoAux_1_Path_SetterFunction", true)))
         fn_7100aa7c00(fn, "_sVideoAux_1_Path_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sVideoAux_1_Path", true), fn_710000ad9c(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(base::global::CFilePathStrId, "sVideoAux_1_Path");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sVideoAux_2_Path_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sVideoAux_2_Path_GetterFunction", true);
         fn->return_type = fn_710000ad9c();
@@ -60,7 +51,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sVideoAux_2_Path_SetterFunction", true)))
         fn_7100aa7d7c(fn, "_sVideoAux_2_Path_SetterFunction");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sVideoAux_2_Path", true), fn_710000ad9c(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(base::global::CFilePathStrId, "sVideoAux_2_Path");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("PlayVideos", true))) {
         fn->name = base::global::UnkStrId("PlayVideos", true);
         fn->return_type = &g_unk_7101d5af48;

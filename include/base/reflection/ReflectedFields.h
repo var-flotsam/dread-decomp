@@ -4,6 +4,7 @@
 // base/reflection/ReflectedClass.h). One line per field:
 //
 //     DREAD_REFLECTED_FIELD(f32, "fSteeringSpeed", 0x510, (DefaultValue, 1.0f), (MinValue, 0.0f));
+//     DREAD_REFLECTED_PROPERTY(f32, "fCurrentAutoAimWidth", (DefaultValue, 0.0f));
 //
 // registers the member at that offset under its name and type, then adds the field's attributes,
 // each under its key (attr:: below). The name's string id lives only for the registration, which is
@@ -11,17 +12,29 @@
 
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/UnkTU36.h"  // g_unk_7101d55008, EditorModeDataFlow's enum type
+#include "game/UnkTU89.h"  // g_unk_7101d679f0, Persistence's enum type
 #include "types.h"
 
 #include <type_traits>
 
 // The field's attributes follow as (key, value) pairs, each added in a statement of its own as the
 // original does (a value's temporary ends with its statement).
-#define DREAD_REFLECTED_FIELD(T, NAME, OFFSET, ...)                                                    \
+#define DREAD_REFLECTED_FIELD(T, NAME, OFFSET, ...) DREAD_REFL_FIELD_(T, NAME, OFFSET, -1, -1, __VA_ARGS__)
+
+// A property: a field with no offset, read and written through the two functions registered just
+// before it (its getter, then its setter), or with only a getter.
+#define DREAD_REFLECTED_PROPERTY(T, NAME, ...)                                                         \
+    DREAD_REFL_FIELD_(T, NAME, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1, \
+                      __VA_ARGS__)
+#define DREAD_REFLECTED_READ_ONLY_PROPERTY(T, NAME, ...)                                               \
+    DREAD_REFL_FIELD_(T, NAME, 0xffffffff, cls->m_array_0x110.size() - 1, -1, __VA_ARGS__)
+
+#define DREAD_REFL_FIELD_(T, NAME, OFFSET, GETTER, SETTER, ...)                                        \
     do {                                                                                               \
         [[maybe_unused]] base::reflection::UnkReflField* field_ =                                      \
             fn_7100096524(cls, base::global::CStrId(NAME, true),                                       \
-                          base::reflection::UnkReflTypeOf<T>::Get(), OFFSET, -1, -1);                  \
+                          base::reflection::UnkReflTypeOf<T>::Get(), OFFSET, GETTER, SETTER);          \
         DREAD_REFL_ATTRS_(DREAD_REFL_NARGS_(__VA_ARGS__), __VA_ARGS__)                                 \
     } while (false)
 
@@ -50,7 +63,7 @@
 namespace base::reflection::attr {
 inline const UnkReflAttrKey& Version() { return fn_7100005070(); }
 inline const UnkReflAttrKey& Description() { return fn_7100007e80(); }
-inline const UnkReflAttrKey& Persistence() { return fn_710000bf80(); }
+inline TypedAttrKey Persistence() { return {fn_710000bf80(), &g_unk_7101d679f0}; }
 inline const UnkReflAttrKey& sBinaryDeserialize() { return fn_7100011040(); }
 inline const UnkReflAttrKey& XmlAttribute() { return fn_710001b9f0(); }
 inline const UnkReflAttrKey& sSerializationType() { return fn_7100026bf0(); }
@@ -85,7 +98,7 @@ inline const UnkReflAttrKey& TypeSelectionEnabled() { return fn_7100091d40(); }
 inline const UnkReflAttrKey& SPointChClassSelectEnabled() { return fn_7100091e50(); }
 inline const UnkReflAttrKey& AddNewItemButtonEnabled() { return fn_7100091f60(); }
 inline const UnkReflAttrKey& DeleteItemButtonEnabled() { return fn_7100092070(); }
-inline const UnkReflAttrKey& EditorModeDataFlow() { return fn_71000923a0(); }
+inline TypedAttrKey EditorModeDataFlow() { return {fn_71000923a0(), &g_unk_7101d55008}; }
 inline const UnkReflAttrKey& bEditorModeDataFlowInit() { return fn_71000924b0(); }
 inline const UnkReflAttrKey& bSkipDataFlowOrder() { return fn_71000925c0(); }
 inline const UnkReflAttrKey& CompleteGameModelActionTreeFrom() { return fn_71000926d0(); }

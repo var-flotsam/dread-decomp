@@ -68,9 +68,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fDefaultAttractionDistanceCm_SetterFunction", true)))
         fn_7100e20c1c(fn, "_m_fDefaultAttractionDistanceCm_SetterFunction");
-    UnkReflField* field23 = fn_7100096524(cls, CStrId("fDefaultAttractionDistanceCm", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field23->attrs.Add<f32>(fn_7100075240(), 800.0f);
-    field23->attrs.Add<const char*>(fn_7100007e80(), "Distance, in centimeters, from which the drop will start to be attracted");
+    DREAD_REFLECTED_PROPERTY(f32, "fDefaultAttractionDistanceCm", (DefaultValue, 800.0f), (Description, "Distance, in centimeters, from which the drop will start to be attracted"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMiniXAttractionDistanceCm_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fMiniXAttractionDistanceCm_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -80,9 +78,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMiniXAttractionDistanceCm_SetterFunction", true)))
         fn_7100e20d98(fn, "_m_fMiniXAttractionDistanceCm_SetterFunction");
-    UnkReflField* field24 = fn_7100096524(cls, CStrId("fMiniXAttractionDistanceCm", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field24->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    field24->attrs.Add<const char*>(fn_7100007e80(), "Distance, in centimeters, from which a Mini-X will start to be attracted");
+    DREAD_REFLECTED_PROPERTY(f32, "fMiniXAttractionDistanceCm", (DefaultValue, 100.0f), (Description, "Distance, in centimeters, from which a Mini-X will start to be attracted"));
     DREAD_REFLECTED_FIELD(f32, "fMiniXGreenMotionScale", 0x7c, (DefaultValue, 1.0f), (Description, "Multiplier to Green Mini-X movement"));
     DREAD_REFLECTED_FIELD(f32, "fMiniXYellowMotionScale", 0x80, (DefaultValue, 1.0f), (Description, "Multiplier to Yellow Mini-X movement"));
     DREAD_REFLECTED_FIELD(f32, "fMiniXScaleMinFactor", 0x84, (DefaultValue, 0.0f), (Description, "Mini-X get smaller and bigger in their animation, this is how smaller"));
