@@ -10,6 +10,8 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2577.h"
+#include "base/UnkDestructors.h"
+#include "game/UnkTU437.h"
 #include "types.h"
 
 void fn_7100a700ec(void* self);
@@ -28,15 +30,7 @@ struct UnkCountedA5_b76 : base::UnkRefCounted {
     };
 };
 
-struct UnkRef {
-    UnkCountedA5_b76* ptr;
-    ~UnkRef() {
-        if (ptr && --ptr->ref_count == 0)
-            delete ptr;
-    }
-};
-
-UnkRef fn_7100353be8(void* from);
+using UnkRef = base::UnkRefPtrMember;
 
 struct UnkSubAreaManager_A5_b76 {
     u8 pad_0x0[0xae0];

@@ -37,6 +37,7 @@
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2702.h"
 #include "game/UnkTU280.h"
+#include "game/UnkTU367.h"
 #include "game/UnkTU54.h"
 #include "game/UnkTU811.h"
 #include "game/UnkXformNode.h"
@@ -583,7 +584,6 @@ struct UnkComponent_7100286798;
 struct UnkQueryObj;
 
 bool fn_71002882d0(void* map, u16 cell, u8 side);
-bool fn_71002b007c(UnkNavMeshCell* cell);
 UnkQueryObj* fn_71002b37d8(void* tile);
 
 // The parts of a cell read here: its id and the tile it lies on (+0x68).

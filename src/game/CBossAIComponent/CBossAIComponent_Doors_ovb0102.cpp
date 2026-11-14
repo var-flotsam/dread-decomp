@@ -19,6 +19,7 @@
 #include "game/UnkTU1376.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU367.h"
+#include "game/UnkTU437.h"
 #include "game/UnkTU57.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -40,9 +41,11 @@ struct UnkRef {
         if (ptr && --ptr->ref_count == 0)
             ptr->vf_0x10();
     }
+
+    // The counted reference fn_7100353be8 returns, seen as this one (the same pointer).
+    static const UnkRef& Of(const base::UnkRefPtrMember& ref) { return reinterpret_cast<const UnkRef&>(ref); }
 };
 
-UnkRef fn_7100353be8(void*);
 
 struct UnkBossLazyLink_ovb0102 {
     u8 pad_0x0[0x8];
@@ -62,7 +65,10 @@ UnkZiplineLinkTarget_b49** fn_71003b0c4c(UnkZiplineLink_b49* link) {
     case 0:
         return reinterpret_cast<UnkZiplineLinkTarget_b49**>(&self->handle);
     case 1:
-        self->handle = fn_7100353be8(self->source);
+        {
+            base::UnkRefPtrMember fetched = fn_7100353be8(self->source);
+            self->handle = UnkRef::Of(fetched);
+        }
         self->state = 2;
         return reinterpret_cast<UnkZiplineLinkTarget_b49**>(&self->handle);
     case 2:

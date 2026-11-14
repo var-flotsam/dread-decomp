@@ -33,6 +33,7 @@
 #include "game/UnkTU2577.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU367.h"
+#include "game/UnkTU437.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "../../game_s2/UnkSpitSend.h"
@@ -225,15 +226,7 @@ struct UnkCountedCentral_b0230 : base::UnkRefCounted {
     void* field_0x10;
 };
 
-struct UnkRef {
-    UnkCountedCentral_b0230* ptr;
-    ~UnkRef() {
-        if (ptr && --ptr->ref_count == 0)
-            delete ptr;
-    }
-};
-
-UnkRef fn_7100353be8(void* from);
+using UnkRef = base::UnkRefPtrMember;
 
 // A callable entry of the handle source: its storage and the table of operations (+0x40 destroys it).
 struct UnkCallable_b0230 {

@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/UnkTU341.h"
+#include "game/UnkTU437.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -15,7 +16,6 @@ using base::global::CStrId;
 struct UnkEntityState;
 
 using UnkRef = base::UnkRefPtrMember;
-UnkRef fn_7100353be8(void* source);
 
 bool fn_71009d377c(char* self);
 

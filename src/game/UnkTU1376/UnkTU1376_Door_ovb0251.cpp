@@ -38,6 +38,7 @@
 #include "game/UnkTU365.h"
 #include "game/UnkTU372.h"
 #include "game/UnkTU39.h"
+#include "game/UnkTU437.h"
 #include "game/UnkTUProperty.h"
 #include "game/lua_lib.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -56,21 +57,13 @@ struct UnkDoorCounted_b0251 : base::UnkRefCounted {
     };
 };
 
-struct UnkRef {
-    UnkDoorCounted_b0251* ptr;
-    ~UnkRef() {
-        if (ptr && --ptr->ref_count == 0)
-            delete ptr;
-    }
-};
+using UnkRef = base::UnkRefPtrMember;
 
 struct UnkDoorHandle_b0251 {
     union {
         UnkDoorCounted_b0251* ptr;
     };
 };
-
-UnkRef fn_7100353be8(void* source);
 
 // The handle and source are given as raw byte offsets of the door, so the address calculations stay
 // separate from the member reads.

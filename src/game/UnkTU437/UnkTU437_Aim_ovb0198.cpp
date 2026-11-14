@@ -3,6 +3,7 @@
 #include "base/UnkMatrix44.h"
 #include "base/global/CStrId.h"
 #include "game/CAbilityShinespark.h"
+#include "game/CAimComponent.h"
 #include "game/CInventoryComponent.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkAnimationComponent.h"
@@ -393,38 +394,8 @@ static inline UnkVisitResult_b0040 Skip_ovb0198l() {
     return g_unk_71726a4778;
 }
 
-struct UnkAssignedSlot {
-    void* ptr;
-
-    UnkAssignedSlot& operator=(const UnkAssignedSlot& other);
-};
-__attribute__((always_inline)) inline UnkAssignedSlot& UnkAssignedSlot::operator=(const UnkAssignedSlot& other) {
-    fn_71002a5d1c(this, &other);
-    return *this;
-}
-
-struct UnkAimTarget_ovb0198l {
-    UnkAssignedSlot slot;
-    UnkAssignedSlot slot_0x8;
-    u32 words[13];  // 0x10
-
-    f32 X() const { return *reinterpret_cast<const f32*>(&words[1]); }
-    f32 Y() const { return *reinterpret_cast<const f32*>(&words[2]); }
-    f32 Z() const { return *reinterpret_cast<const f32*>(&words[3]); }
-
-    UnkAimTarget_ovb0198l& operator=(const UnkAimTarget_ovb0198l& other) {
-        if (this != &other) {
-            slot = other.slot;
-            slot_0x8 = other.slot_0x8;
-            for (u32 i = 0; i < 13; ++i)
-                words[i] = other.words[i];
-        }
-        return *this;
-    }
-};
-
 struct UnkAimFilter_ovb0198l;
-bool fn_7100358d68(UnkAimFilter_ovb0198l* self, UnkAimTarget_ovb0198l* target);
+bool fn_7100358d68(UnkAimFilter_ovb0198l* self, UnkAimTarget* target);
 
 struct UnkAimPoint_ovb0198l {
     f32 x, y, z;
@@ -432,7 +403,7 @@ struct UnkAimPoint_ovb0198l {
 
 struct UnkAimNearest_ovb0198l {
     u8 pad_0x0[8];
-    UnkAimTarget_ovb0198l best;  // 0x8
+    UnkAimTarget best;  // 0x8
     u8 pad_0x50[0x28];
     bool has_best;  // 0x78
     u8 pad_0x79[7];
@@ -442,7 +413,7 @@ static_assert(__builtin_offsetof(UnkAimNearest_ovb0198l, has_best) == 0x78, "lay
 
 static inline f32 Sign_ovb0198l(f32 v) { return (f32)((v > 0.0f) - (v < 0.0f)); }
 
-UnkVisitResult_b0040 fn_7100358bc4(UnkAimNearest_ovb0198l* self, UnkAimTarget_ovb0198l* target) {
+UnkVisitResult_b0040 fn_7100358bc4(UnkAimNearest_ovb0198l* self, UnkAimTarget* target) {
     if (fn_7100358d68(reinterpret_cast<UnkAimFilter_ovb0198l*>(&self->point), target)) {
         bool take = !self->has_best;
         if (!take) {
@@ -728,15 +699,9 @@ static inline UnkVisitResult_b0040 Skip_ovb0198s() {
 }
 
 #pragma pack(push, 4)
-struct UnkAimRecord_ovb0198s {
-    u64 unk_0x0[9];
-    UnkAimRecord_ovb0198s() {}
-    UnkAimRecord_ovb0198s(const UnkAimRecord_ovb0198s& other) { fn_7100331c7c(this, &other); }
-};
-
 struct UnkAimRecordArray_ovb0198s {
     u32 count;
-    UnkAimRecord_ovb0198s items[0x40];
+    UnkAimTarget items[0x40];
 };
 #pragma pack(pop)
 
@@ -753,9 +718,7 @@ struct UnkAimTargets_ovb0198s {
 };
 static_assert(__builtin_offsetof(UnkAimTargets_ovb0198s, filter) == 0x1210, "layout");
 
-struct UnkAimFilter_ovb0198s;
-bool fn_7100354b34(UnkAimFilter_ovb0198s* self, const UnkAimRecord_ovb0198s* entry);
-void fn_7100354e10(UnkAimRecord_ovb0198s* begin, UnkAimRecord_ovb0198s* position, const UnkAimFilterWords_ovb0198s* key);
+void fn_7100354e10(UnkAimTarget* begin, UnkAimTarget* position, const UnkAimFilterWords_ovb0198s* key);
 
 struct UnkAimAddResult_ovb0198s {
     s32 code;
@@ -771,7 +734,7 @@ struct UnkAimSortOnExit_ovb0198s {
         UnkAimTargets_ovb0198s* object = targets;
         u64 a = object->filter.a;
         u32 b = object->filter.b;
-        UnkAimRecord_ovb0198s* end = object->array.items + count;
+        UnkAimTarget* end = object->array.items + count;
         UnkAimFilterWords_ovb0198s key;
         key.a = a;
         key.b = b;
@@ -780,8 +743,8 @@ struct UnkAimSortOnExit_ovb0198s {
     }
 };
 
-UnkVisitResult_b0040 fn_7100354d04(UnkAimTargets_ovb0198s* self, const UnkAimRecord_ovb0198s* entry) {
-    if (!fn_7100354b34(reinterpret_cast<UnkAimFilter_ovb0198s*>(reinterpret_cast<u8*>(self) + 0x1210), entry))
+UnkVisitResult_b0040 fn_7100354d04(UnkAimTargets_ovb0198s* self, const UnkAimTarget* entry) {
+    if (!fn_7100354b34(reinterpret_cast<UnkAimFilter*>(reinterpret_cast<u8*>(self) + 0x1210), entry))
         return Skip_ovb0198s();
     UnkAimSortOnExit_ovb0198s sorter = {self, 0};
     u32 n = self->array.count;

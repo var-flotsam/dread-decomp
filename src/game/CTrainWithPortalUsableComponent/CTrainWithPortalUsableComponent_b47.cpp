@@ -1,7 +1,9 @@
 // CTrainWithPortalUsableComponent unit (tools/tu_map.py): resolves the handle at +0x5a8 (source +0x578,
 // state +0x5a0) and gives the actor it names one of two timeline keys. Names and layouts are placeholders.
 #include "base/UnkRefHandle.h"
+#include "game/UnkTU437.h"
 #include "game/UnkTimelineComponent.h"
+#include "base/UnkDestructors.h"
 #include "types.h"
 
 struct UnkCounted_TrainB47 : base::UnkRefCounted {
@@ -11,15 +13,7 @@ struct UnkCounted_TrainB47 : base::UnkRefCounted {
     };
 };
 
-struct UnkRef {
-    UnkCounted_TrainB47* ptr;
-    ~UnkRef() {
-        if (ptr && --ptr->ref_count == 0)
-            delete ptr;
-    }
-};
-
-UnkRef fn_7100353be8(void* from);
+using UnkRef = base::UnkRefPtrMember;
 
 // A lazily resolved handle (the shape of CMagmaKraidScenarioControllerComponent_b45.cpp's fn_710091793c):
 // the state is 1 until the handle takes its value from the source and 2 after.

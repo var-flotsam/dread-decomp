@@ -4,21 +4,14 @@
 // are placeholders.
 #include "base/UnkRefHandle.h"
 #include "game/UnkTU2523.h"
+#include "game/UnkTU437.h"
 #include "game/UnkTimelineComponent.h"
 
 struct UnkCountedLockOn_b51 : base::UnkRefCounted {
     void* field_0x10;
 };
 
-struct UnkRef {
-    UnkCountedLockOn_b51* ptr;
-    ~UnkRef() {
-        if (ptr && --ptr->ref_count == 0)
-            delete ptr;
-    }
-};
-
-UnkRef fn_7100353be8(void* from);
+using UnkRef = base::UnkRefPtrMember;
 
 struct UnkLockOnBlock;
 UnkLockOnBlock* fn_71008846dc(void* object);

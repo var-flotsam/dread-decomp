@@ -57,7 +57,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71002cc378,412,drafts/game/UnkTU395/fn_71002cc378.cpp,registers or order,93.2,7,overnight,
 0x710033187c,716,drafts/game/CAbilityShinespark/fn_710033187c.cpp,control flow,11.4,157,fable1,
 0x71003523bc,488,drafts/game/UnkTU437/fn_71003523bc.cpp,operations,98.4,2,overnight,
-0x71003549a4,400,drafts/game/UnkTU437/fn_71003549a4.cpp,match,100.0,0,overnight,matches; held: fn_7100354b34's record is 0x48 bytes in src/game/UnkTU437/UnkTU437_Aim_ovb0198.cpp (u64[9]) and 0x44 with its own assignment here; one layout needs a decision
 0x710035d5c4,504,drafts/game/UnkTU441/fn_710035d5c4.cpp,registers or order,96.0,5,overnight,
 0x710039d65c,504,drafts/game/behaviortree/CIsAtDistanceXCondition/fn_710039d65c.cpp,control flow,93.1,5,overnight,
 0x71003a4774,220,drafts/game/behaviortree/CTunableBoolCondition/fn_71003a4774.cpp,registers or order,87.3,7,test40,registers only in true/false select (x10/x8/x9 allocation)
@@ -98,7 +97,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71008625a0,284,drafts/game/CCollisionComponent/fn_71008625a0.cpp,registers or order,74.6,18,pilot50,register allocation x19/x20; store order
 0x710086f9e0,324,drafts/game/UnkTU1325/fn_710086f9e0.cpp,registers or order,90.1,8,overnight,
 0x710088adf0,376,drafts/game/CCharClassMushroomPlatformComponent/fn_710088adf0.cpp,control flow,34.0,54,test40,block layout differs: original puts owner-target tail before state switch; loop shape differs
-0x71008c3dcc,360,drafts/game/CDemolitionBlockActivatableActorLifeComponent/fn_71008c3dcc.cpp,match,100.0,0,test40,matches; held: fn_7100353be8 (37 copies) returns UnkRef; a struct in some files and an alias in others; so no header can take it
 0x71009438e8,244,drafts/game/UnkTU1428/fn_71009438e8.cpp,operations,98.4,1,overnight,
 0x710094d5b4,424,drafts/game/UnkTU1428/fn_710094d5b4.cpp,registers or order,99.1,1,overnight,
 0x71009500d8,388,drafts/game/UnkTU1428/fn_71009500d8.cpp,conditions,96.9,3,overnight,
@@ -141,8 +139,9 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100e1cbdc,148,drafts/game/UnkTU2560/fn_7100e1cbdc.cpp,operations,94.6,2,overnight,
 0x7100e1d620,368,drafts/game/UnkTU2560/fn_7100e1d620.cpp,operations,94.6,5,overnight,
 0x7100e2f398,292,drafts/game/UnkTU2562/fn_7100e2f398.cpp,operations,2.7,69,pilot50,operations: second loop strength-reduced; 2 insns off; first-loop counter register
+0x7100e3cee0,408,drafts/game/UnkTU2563/fn_7100e3cee0.cpp,registers or order,83.3,17,overnight,registers or order; not proven: tools/equiv_test.py never tries kind 3 of its jump table (systematic values are 0-2 and the compared bound 5 with 4 and 6) and with wider inputs still sees its two pointer-equality branches (old id = new id; old = the pool's empty string) go one way
 0x7100e3d080,2088,drafts/game/UnkTU2563/fn_7100e3d080.cpp,control flow,15.1,436,fable1,
-0x7100e51078,480,drafts/game/UnkTU2563/fn_7100e51078.cpp,registers or order,98.3,2,overnight,fn_7100e51078 passes tools/equiv_test.py; held: fn_7100e3cee0 in the same file is inconclusive (only 94% of the original's instructions ran)
+0x7100e51078,480,drafts/game/UnkTU2563/fn_7100e51078.cpp,registers or order,98.3,2,overnight,passes tools/equiv_test.py; held: include/game/UnkTU2563.h declares it (void*; void*) for its four callers' own 0x138-byte record types (CMinimapData.cpp; CMinimapData_Record138EraseAt_A6_b76.cpp; UnkTU2563_Record138_ovb0222.cpp; UnkTU2563_Records_ovb0223.cpp) and a void* definition compiles to other code (62.5%): one record type for them is a layout batch
 0x7100e5b944,324,drafts/game/UnkTU2563/fn_7100e5b944.cpp,operations,29.3,57,lean,
 0x7100e711dc,228,drafts/game/UnkTU2564/fn_7100e711dc.cpp,registers or order,96.5,2,overnight,
 0x7100e903ec,340,drafts/game/UnkTU2566/fn_7100e903ec.cpp,operations,75.3,21,pilot50,operations: orr operand order; fcsel order; fade branch layout
@@ -151,7 +150,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100e98090,408,drafts/game/UnkTU2566/fn_7100e98090.cpp,registers or order,43.1,58,pilot50,register assignment only; holds an empty barrier (without it: operations 41.2%)
 0x7100e9c06c,492,drafts/game/UnkTU2566/fn_7100e9c06c.cpp,registers or order,92.7,9,overnight,
 0x7100ea1b94,484,drafts/game/UnkTU2566/fn_7100ea1b94.cpp,operations,14.9,99,pilot50,branch layout/loop merging differs; operations KIND
-0x7100ebfd4c,580,drafts/game/UnkTU2568/fn_7100ebfd4c.cpp,match,100.0,0,overnight,matches; held: copies fn_7100125a64; fn_710027a410 and fn_71002afcd8; whose types (Vec2; Mesh; Cell; Edge) are each file's own; so no unit header can take them (tools/decl_plan.py)
 0x7100ec6a6c,464,drafts/game/UnkTU2571/fn_7100ec6a6c.cpp,registers or order,92.2,9,overnight,
 0x7100ecd1a4,2828,drafts/game/UnkTU2573/fn_7100ecd1a4.cpp,calls,2.1,692,fable1,
 0x7100ee62bc,1480,drafts/game/UnkTU2577/fn_7100ee62bc.cpp,control flow,26.5,266,fable1,

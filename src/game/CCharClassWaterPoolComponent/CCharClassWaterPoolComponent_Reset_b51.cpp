@@ -5,21 +5,14 @@
 #include "base/UnkRefHandle.h"
 #include "game/CCharClassLiquidPoolComponent.h"
 #include "game/CCharClassSteamJetComponent.h"
+#include "game/UnkTU437.h"
 #include "game/UnkTimelineComponent.h"
 
 struct UnkCountedWater_b51 : base::UnkRefCounted {
     void* field_0x10;
 };
 
-struct UnkRef {
-    UnkCountedWater_b51* ptr;
-    ~UnkRef() {
-        if (ptr && --ptr->ref_count == 0)
-            delete ptr;
-    }
-};
-
-UnkRef fn_7100353be8(void* from);
+using UnkRef = base::UnkRefPtrMember;
 
 struct UnkWaterTarget;
 void fn_71007e670c(UnkWaterTarget* target, f32 value);

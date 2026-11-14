@@ -4,7 +4,9 @@
 // handle names an object, passes it to fn_7100d7c828 with a key and false. Names and layout are
 // placeholders.
 #include "base/UnkRefHandle.h"
+#include "game/UnkTU437.h"
 #include "game/UnkTimelineComponent.h"
+#include "base/UnkDestructors.h"
 #include "types.h"
 
 struct UnkCounted_b45a2 : base::UnkRefCounted {
@@ -14,15 +16,7 @@ struct UnkCounted_b45a2 : base::UnkRefCounted {
     };
 };
 
-struct UnkRef {
-    UnkCounted_b45a2* ptr;
-    ~UnkRef() {
-        if (ptr && --ptr->ref_count == 0)
-            delete ptr;
-    }
-};
-
-UnkRef fn_7100353be8(void* from);
+using UnkRef = base::UnkRefPtrMember;
 
 extern u64 g_unk_710164b208;
 

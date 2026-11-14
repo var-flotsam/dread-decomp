@@ -6,6 +6,8 @@
 #include "base/UnkRefHandle.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/UnkAnimationComponent.h"
+#include "base/UnkDestructors.h"
+#include "game/UnkTU437.h"
 #include "types.h"
 
 // The handle the component refers to (base::UnkRefCounted's layout); its target is at +0x10.
@@ -14,13 +16,7 @@ struct UnkCounted : base::UnkRefCounted {
 };
 
 // A counted reference; the destructor decrements and tests in one step.
-struct UnkRef {
-    UnkCounted* ptr;
-    ~UnkRef() {
-        if (ptr && --ptr->ref_count == 0)
-            delete ptr;
-    }
-};
+using UnkRef = base::UnkRefPtrMember;
 
 struct UnkFound {
     u8 pad_0x0[0x212];
@@ -41,8 +37,6 @@ struct UnkSelf {
     u32 pad_0x15dec;
     base::UnkRefHandle handle;
 };
-
-UnkRef fn_7100353be8(void* from);
 
 bool fn_7100452608(UnkSelf* self) {
     if (self->field_0x30->field_0x220 && fn_710117ae38(self->field_0x30->field_0x220, 0xb1908e0ac25fa340ull, 0))

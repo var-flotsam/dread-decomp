@@ -3,6 +3,8 @@
 // (bit 0 of `on`, fn_7100232864). Names and layouts are placeholders.
 #include "base/UnkRefHandle.h"
 #include "game/UnkTU341.h"
+#include "base/UnkDestructors.h"
+#include "game/UnkTU437.h"
 #include "types.h"
 
 struct UnkEntityState;
@@ -11,15 +13,7 @@ struct UnkCountedCooldown_b49 : base::UnkRefCounted {
     void* field_0x10;
 };
 
-struct UnkRef {
-    UnkCountedCooldown_b49* ptr;
-    ~UnkRef() {
-        if (ptr && --ptr->ref_count == 0)
-            delete ptr;
-    }
-};
-
-UnkRef fn_7100353be8(void* from);
+using UnkRef = base::UnkRefPtrMember;
 
 struct UnkCooldownAI_b49 {
     u8 pad_0x0[0x15718];

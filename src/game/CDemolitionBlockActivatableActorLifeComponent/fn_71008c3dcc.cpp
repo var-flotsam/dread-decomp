@@ -5,11 +5,11 @@
 #include "base/global/CStrId.h"
 #include "types.h"
 #include <new>
+#include "game/UnkTU437.h"
 
 using base::global::CStrId;
 
 using UnkRef = base::UnkRefPtrMember;
-UnkRef fn_7100353be8(void* source);
 void* fn_71008c3f34(void* object);
 void fn_710082e5ec(void* object, CStrId* a, CStrId* b);
 

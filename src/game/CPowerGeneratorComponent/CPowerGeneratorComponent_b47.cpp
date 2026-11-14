@@ -4,6 +4,8 @@
 // byte at +0x568 of what fn_7100a7eba0 finds for the object the handle names. Names and layouts are
 // placeholders.
 #include "base/UnkRefHandle.h"
+#include "base/UnkDestructors.h"
+#include "game/UnkTU437.h"
 #include "types.h"
 
 struct UnkCountedPowerGen_b47 : base::UnkRefCounted {
@@ -13,15 +15,7 @@ struct UnkCountedPowerGen_b47 : base::UnkRefCounted {
     };
 };
 
-struct UnkRef {
-    UnkCountedPowerGen_b47* ptr;
-    ~UnkRef() {
-        if (ptr && --ptr->ref_count == 0)
-            delete ptr;
-    }
-};
-
-UnkRef fn_7100353be8(void* from);
+using UnkRef = base::UnkRefPtrMember;
 
 struct UnkPowerGenTarget_b47 {
     u8 pad_0x0[0x568];

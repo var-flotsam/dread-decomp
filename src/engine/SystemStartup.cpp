@@ -10,6 +10,7 @@
 // Results are taken as s32, which is how they come back in w0.
 
 #include "base/UnkVector.h"
+#include "game/UnkTU110.h"
 #include "game/malloc.h"
 #include "types.h"
 
@@ -250,7 +251,6 @@ struct UnkSweep2D {
 
 // The segment's copy assignment (start, end and the cached length).
 // The moving point against a segment; against a circle (`mode` 2 at the corners).
-bool fn_710012bcd0(const UnkSweep2D* sweep, const UnkSegment2D* seg, UnkContact2D* out);
 bool fn_710012c840(const UnkSweep2D* sweep, const UnkCircle2D* circle, UnkContact2D* out, s32 mode);
 
 static inline CVector2D UnkVec(f32 x, f32 y) {

@@ -4,6 +4,8 @@
 // layouts are placeholders.
 #include "base/UnkRefHandle.h"
 #include "base/reflection/UnkReflValue.h"
+#include "base/UnkDestructors.h"
+#include "game/UnkTU437.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
@@ -15,15 +17,7 @@ struct UnkCountedCentral_b49 : base::UnkRefCounted {
     void* field_0x10;
 };
 
-struct UnkRef {
-    UnkCountedCentral_b49* ptr;
-    ~UnkRef() {
-        if (ptr && --ptr->ref_count == 0)
-            delete ptr;
-    }
-};
-
-UnkRef fn_7100353be8(void* from);
+using UnkRef = base::UnkRefPtrMember;
 
 struct UnkCentralHolder_b49 {
     u8 pad_0x0[0x8];

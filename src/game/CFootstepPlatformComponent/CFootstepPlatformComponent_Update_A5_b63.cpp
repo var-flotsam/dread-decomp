@@ -13,23 +13,17 @@
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkTU1376.h"
 #include "game/UnkTU367.h"
+#include "game/UnkTU437.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
+#include "base/UnkDestructors.h"
 #include "types.h"
 
 struct UnkCountedFootstep_A5_b63 : base::UnkRefCounted {
     UnkActor* field_0x10;
 };
 
-struct UnkRef {
-    UnkCountedFootstep_A5_b63* ptr;
-    ~UnkRef() {
-        if (ptr && --ptr->ref_count == 0)
-            delete ptr;
-    }
-};
-
-UnkRef fn_7100353be8(void* from);
+using UnkRef = base::UnkRefPtrMember;
 
 struct UnkWeakTarget;
 struct UnkDoorLock;

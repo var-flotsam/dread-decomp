@@ -3,7 +3,9 @@
 // first at +0x78 (source +0x48, state +0x70), the second at +0xb8 (source +0x88, state +0xb0), whose
 // object fn_7100917acc turns into the scenario's Kraid. Names and layouts are placeholders.
 #include "base/UnkRefHandle.h"
+#include "game/UnkTU437.h"
 #include "game/UnkTimelineComponent.h"
+#include "base/UnkDestructors.h"
 #include "types.h"
 
 struct UnkCountedMagma_b47 : base::UnkRefCounted {
@@ -13,15 +15,7 @@ struct UnkCountedMagma_b47 : base::UnkRefCounted {
     };
 };
 
-struct UnkRef {
-    UnkCountedMagma_b47* ptr;
-    ~UnkRef() {
-        if (ptr && --ptr->ref_count == 0)
-            delete ptr;
-    }
-};
-
-UnkRef fn_7100353be8(void* from);
+using UnkRef = base::UnkRefPtrMember;
 
 extern u64 g_unk_710164b210;
 

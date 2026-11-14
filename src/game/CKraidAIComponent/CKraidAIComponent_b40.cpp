@@ -17,7 +17,9 @@
 #include "game/UnkTU0.h"
 #include "game/UnkTU2730.h"
 #include "game/UnkTU341.h"
+#include "game/UnkTU437.h"
 #include "game/UnkTimelineComponent.h"
+#include "base/UnkDestructors.h"
 #include "types.h"
 #include "game/UnkBossAIComponent.h"
 
@@ -30,13 +32,7 @@ struct UnkCounted : base::UnkRefCounted {
 };
 
 // A counted reference; the destructor decrements and tests in one step.
-struct UnkRef {
-    UnkCounted* ptr;
-    ~UnkRef() {
-        if (ptr && --ptr->ref_count == 0)
-            delete ptr;
-    }
-};
+using UnkRef = base::UnkRefPtrMember;
 
 struct UnkFound_kr {
     u8 pad_0x0[0x200];
@@ -57,8 +53,6 @@ struct UnkSelf_kr {
     u8 pad_0x38[0x14d50];
     UnkLazyHandle_kr handles[2];  // 0x14d88
 };
-
-UnkRef fn_7100353be8(void* from);
 
 static inline __attribute__((always_inline)) bool Names_kr(UnkLazyHandle_kr* h, void* owner, u32 skip) {
     if (h->state == 1) {
