@@ -39,7 +39,7 @@ static inline void* Inner(UnkWeakHandle* p) { return p ? p->target : nullptr; }
 void fn_71006e808c(UnkXParasiteAI* self) {
     if (!self->field_0x147b0 || !self->field_0x147b0->target)
         return;
-    UnkXParasiteResult_b0252 found = fn_71006eb7cc(self);
+    UnkXParasiteResult_b0252 found = XParasiteAI_FindFarthestEntry(self);
     if (found.ptr && found.ptr->target && self->field_0x147b8) {
         fn_7101127c24(Inner(self->field_0x147b0), self->owner, 0, false, 5, false, nullptr);
         fn_71006eb8cc(reinterpret_cast<base::UnkRefHandle*>(&self->field_0x147b0), reinterpret_cast<const base::UnkRefHandle*>(&found));
@@ -69,7 +69,7 @@ void fn_71006e9fcc(UnkXParasiteAI* self, UnkActor* target) {
     if (self->link && self->link->target)
         return;
     if (!target) {
-        UnkXParasiteResult_b0252 found = fn_71006eb7cc(self);
+        UnkXParasiteResult_b0252 found = XParasiteAI_FindFarthestEntry(self);
         if (!found.ptr)
             return;
         target = found.ptr->target ? PickActor(reinterpret_cast<UnkObj_7101129240*>(found.ptr->target), true) : nullptr;
@@ -125,7 +125,7 @@ void fn_71006e8a18(UnkXParasiteAI* self) {
             }
             self->released = true;
         } else {
-            fn_71006e892c(self);
+            XParasiteAI_FleeFromTarget(self);
         }
         fn_7100232c68(self->owner);
     } else {
@@ -158,7 +158,7 @@ struct UnkXParasiteVec3_8208 {
     f32 x, y, z;
 };
 
-void fn_71006e8208(UnkXParasiteAI* self, bool on) {
+void XParasiteAI_SetEffectActive(UnkXParasiteAI* self, bool on) {
     if (self->field_0x14724 == 4)
         return;
     void* control = self->owner->field_0x280;
@@ -196,7 +196,7 @@ void fn_71006e8208(UnkXParasiteAI* self, bool on) {
     }
 }
 
-void fn_71006e6d10(UnkXParasiteAI* self) {
+void XParasiteAI_Reset(UnkXParasiteAI* self) {
     fn_71003695b8(reinterpret_cast<UnkBehaviorTreeAI*>(self));
     ResetRef(&self->field_0x146d0);
     self->field_0x14724 = 5;

@@ -51,7 +51,8 @@ to be purged from the history.
 9. **Logs go to `docs/JOURNAL.md`.** `docs/HANDOFF.md` holds only the current state, fits on one
    screen, and is edited only by the session that merges a round of PRs (its numbers come from
    `tools/progress.py --slice boot --handoff`, then `tools/status_card.py --write` for the README's
-   status card); feature branches leave both alone. Batch notes,
+   status card and `tools/tu_status.py --write` for `data/tu_status.csv`); feature branches leave all
+   three alone. Batch notes,
    findings and session summaries go at the top of the journal, and reusable matching findings
    into its index.
 

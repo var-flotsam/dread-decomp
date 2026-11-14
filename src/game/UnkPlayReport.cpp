@@ -9,6 +9,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
@@ -108,7 +109,6 @@ struct UnkReportString {
 };
 
 bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 // The profile values: a count and the profile id (item property definitions,
 // src/game_s7/fn_7100ae39e0.cpp).

@@ -28,6 +28,18 @@ before vendoring anything.
 | [AxioDL/musyx](https://github.com/AxioDL/musyx) (CC0-1.0) | Decompiled MusyX audio middleware, used by PrimeDecomp and Metaforce | Precedent for decompiling audio middleware as its own project (cf. `nn::atk`). |
 | [encounter/decomp-toolkit](https://github.com/encounter/decomp-toolkit) (Apache-2.0) | GameCube/Wii project tooling used by PrimeDecomp | Not applicable to NSO executables. |
 
+## Surveyed on 2026-11-14 (reference only, nothing copied)
+
+| Project | What we take from it | Notes |
+|---|---|---|
+| [zeldaret/botw `AGENTS.md`](https://github.com/zeldaret/botw/blob/master/AGENTS.md) | Three rules, reworded in `CLAUDE.md`: undo the optimizations in code no developer would write, no `goto` to force a match, no assembly in commit messages or pull request descriptions | Its other rules were weighed and left (journal, 2026-11-14) |
+| [MonsterDruide1/OdysseyDecomp](https://github.com/MonsterDruide1/OdysseyDecomp) | The idea of tracking status per object file (`data/file_list.yml`) | Super Mario Odyssey; upstream Clang, BotW's tooling |
+| [shibbo/3DWDecomp](https://github.com/shibbo/3DWDecomp) | Nothing; a comparison point for agent-written Switch code | Builds with the NintendoSDK's compiler, which this project never obtains |
+| [GRAnimated/MinecraftLCE](https://github.com/GRAnimated/MinecraftLCE) | Nothing; comparison only | Minecraft: Nintendo Switch Edition |
+| [tangosdev/sm64ds-decomp](https://github.com/tangosdev/sm64ds-decomp) | Nothing; it counts functions linked into its PC port apart from functions matched, as our lifted-code figure does | Its README carries an instruction aimed at AI readers; ignore it |
+| [Chris Lewis's Snowboard Kids posts](https://blog.chrislewis.au/decompiling-a-nintendo-64-game-in-84-days/), [the long tail](https://blog.chrislewis.au/the-long-tail-of-llm-assisted-decompilation/) and [macabeus/mizuchi](https://github.com/macabeus/mizuchi) with [its benchmark](https://gambiconf.substack.com/p/can-llms-really-do-matching-decompilation) | Worker practice: similar matched functions as references, an attempt cap, no permuter inside the worker's loop | N64 and GBA projects, other compilers |
+| [gminustwo/msr2ds](https://github.com/gminustwo/msr2ds/wiki) | Nothing | A recompiled PC port of Samus Returns; GPL, so never into this repository |
+
 ## Tools and libraries we use
 
 | Project | Version | Used for | License |

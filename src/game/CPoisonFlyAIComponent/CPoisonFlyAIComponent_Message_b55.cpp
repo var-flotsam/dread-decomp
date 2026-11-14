@@ -7,6 +7,7 @@
 // CPoisonFlyAIComponent_b36.cpp). Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CAutsharpAIComponent.h"
 #include "game/CBehaviorTreeAIComponent.h"
 #include "game/CBlackboard.h"
@@ -19,8 +20,6 @@
 #include "game/behaviortree/CBehavior.h"
 #include "types.h"
 #include "game/UnkTypedValue.h"
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 // As src/game/CSclawkAIComponent/CSclawkAIComponent_b44.cpp declares it.
 struct UnkSclawkAI_b44a2;

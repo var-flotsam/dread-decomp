@@ -4,6 +4,7 @@
 // src/game/CXParasiteAIComponent.cpp does. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkTU1102.h"
 #include "game/UnkXParasiteAI.h"
@@ -13,13 +14,11 @@
 
 struct UnkPropertyName;
 
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
-
 extern UnkPropertyName g_unk_717270b8c0 __attribute__((visibility("hidden")));  // a CVector3D in it
 
 struct UnkVector3_b55;
 
-void fn_71006eb628(UnkXParasiteAI* self, UnkVector3_b55* position) {
+void XParasiteAI_AttractToPowerBomb(UnkXParasiteAI* self, UnkVector3_b55* position) {
     CBlackboard* blackboard = &self->blackboard;
     bool* locked = &blackboard->field_0xe8;
     self->field_0x146f0 = 0;

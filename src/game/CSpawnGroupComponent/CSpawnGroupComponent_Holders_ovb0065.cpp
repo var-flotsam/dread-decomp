@@ -15,6 +15,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CAISmartObjectComponent.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CActorComponent.h"
 #include "game/CBatalloonAIComponent.h"
 #include "game/CBlackboard.h"
@@ -369,8 +370,6 @@ void fn_710111abb8(UnkSpawnGroupUpdate_ovb0065* self, f32 dt) {
 
 extern UnkProperty g_unk_7172a06608;
 
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
-
 struct UnkSpawnGroupValue_ovb0065 {
     union {
         CStrId id;
@@ -570,8 +569,6 @@ void fn_710111c470(UnkSpawnGroupEach_ovb0065* self, UnkSpawnEachFn_ovb0065 fn) {
 // other is left empty (fn_7100ad3588). The shape of the callback sets' move
 // (src/game_s7/fn_71011141e8.cpp). Names and layouts are placeholders.
 
-
-extern void* g_unk_7101cb2880[];  // the holder's vtable (reached through the GOT)
 
 struct UnkSpawnHolderBase_ovb0065 {
     char* vtable;

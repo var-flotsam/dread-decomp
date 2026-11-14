@@ -21,7 +21,6 @@ struct UnkStatics_7101132ba0 {
 };
 extern UnkStatics_7101132ba0 g_unk_7172a08680 __attribute__((visibility("hidden")));
 extern UnkStrIdBase g_unk_7172a06900;
-extern UnkProperty g_unk_7172a06908;
 extern void* g_unk_7101cb2a58[];
 void fn_710112f064(void* p);
 void fn_7101120afc(void* p);

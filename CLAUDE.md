@@ -77,6 +77,9 @@ is complete when no lifted code is left in it. `nn::atk` is decompiled too, as i
 - Short excerpts (a few instructions or one function) may be shown in conversation
   to discuss a match. Never write them into tracked files. That includes the output of
   `tools/ghidra/decompile.py`, which is for reading only.
+- **None in commit messages or pull request descriptions either (owner, 2026-11-14).** Assembly,
+  disassembly and decompiler output stay out of both: they are as public and as permanent as a tracked
+  file. Describe a difference in words (`trymatch.py`'s `KIND` line, the registers, the callee by address).
 
 The pre-commit hook (`tools/hooks/pre-commit`) enforces part of this. It rejects
 files over 1 MB, `.nso/.nro/.nca/.nsp/.xci/.nsz/.xcz/.keys/.elf`, and anything under
@@ -92,7 +95,7 @@ files over 1 MB, `.nso/.nro/.nca/.nsp/.xci/.nsz/.xcz/.keys/.elf`, and anything u
 | `tools/` | yes | Python tooling; `tools/ghidra/` holds headless Ghidra scripts; `tools/hooks/` holds git hooks |
 | `src/`, `include/` | yes | reconstructed C++17 game code; shared declarations and layouts live in `include/` (one per symbol) |
 | `lib/` | yes | vendored upstream Lua 5.1.4 (`lib/lua`), dlmalloc 2.8.4, one libc++ sort; submodules `lib/nnsdk`, `lib/musl` (headers only) |
-| `data/` | yes | metadata only: `hashes.json`, `functions/main_XX.csv`, `names.csv`, `reflection_types.csv`, `reflection_fields.csv`, `tu_map.csv`, `data_map.csv`, `equivalence.csv`, `library_symbols.csv`, `toolchains.json`, `sources.json`; never code bytes |
+| `data/` | yes | metadata only: `hashes.json`, `functions/main_XX.csv`, `names.csv`, `reflection_types.csv`, `reflection_fields.csv`, `tu_map.csv`, `tu_status.csv`, `data_map.csv`, `equivalence.csv`, `library_symbols.csv`, `toolchains.json`, `sources.json`; never code bytes |
 | `docs/` | yes | `HANDOFF.md` (state), `PORT_PLAN.md`, `reference.md` (stable facts), `commands.md` (generated), `JOURNAL.md` (history), `recon.md`, `compiler.md`, `maintaining.md`, `references.md` |
 | `port/` | yes | PC port layer (Route B): CMake project (`dread_game`, `dread_libs`, `dread_runtime`, `dread`, `sweep`, `link_report`), the port's own `nn::` runtime under `runtime/`, `sample_duplicates.txt`; `port/README.md` has the layout, the sweep and the link |
 
@@ -113,6 +116,7 @@ python tools/trymatch.py --version <ver> <file.cpp> -v # build and diff one sour
 python tools/hubs.py --version <ver> --boot | --ready --boot | --callers <fn>   # what to match next
 python tools/gen_lift.py --version <ver> --best ADDR,...   # closest lifted draft -> build/lift_best/ (hand-matching start)
 python tools/tu_map.py --function <addr|name>          # the unit a function belongs to, and its file name
+python tools/tu_status.py [--list partial | --unit <U>] # status per translation unit: units by state, one unit's functions
 python tools/rename.py <addr> <Name> --reason "..." [--dry-run]   # give a function a readable name (data/names.csv)
 python tools/data_map.py --address <addr>              # the unit a global belongs to
 python tools/gen_fields.py --class <Class>             # a reflected class's members by offset, bases included
@@ -230,6 +234,17 @@ Toolchain:
   A barrier, an offset cast, `volatile` or an empty `if` usually stands for a missing helper, a wrong
   field type or two variables merged into one: look for that first. `tools/fakematch.py` lists them, and its
   `--unneeded-barriers` finds the barriers that change no function's code when taken out.
+- **Code no developer would write is an optimization not undone yet (owner, 2026-11-14; from zeldaret/botw's
+  `AGENTS.md`).** When the text that matches does not look like something a developer would plausibly have
+  written, the compiler's work is still in it: a helper it inlined (the same run of code in several
+  functions is one helper, written once), a `switch` it turned into a lookup table or a chain of tests, a
+  loop it unrolled, a tail it duplicated. Find the source form before keeping the match. It is the same
+  search the barrier rule asks for, and a helper found once repairs every caller. When no such form is found
+  in the time box, the rules above decide where the function goes; the note says what was tried.
+- **No `goto` to force a match (owner, 2026-11-14; same source).** A `goto` is written only where the
+  original source plausibly had one (a shared clean-up exit, for instance), with a comment saying so. One
+  that only steers block order stands for a missing helper, loop or early return. The `goto`s already in
+  `src/` stay until their functions are next worked on.
 - **No unset values (owner, 2026-11-13).** A local that is never set is not read: not passed to a callee,
   not returned. Such a text has no behaviour of its own, so the compiler may make anything of it, the
   original's bytes included, and its match proves nothing. What the original does at those places has an
@@ -261,7 +276,9 @@ Toolchain:
 - **Logs go to `docs/JOURNAL.md`** (newest first, with reusable findings added to its index).
   Feature branches leave `docs/HANDOFF.md` alone; the session that merges a round updates it and
   regenerates its numbers with `tools/progress.py --slice boot --handoff`, then the README's status
-  card with `tools/status_card.py --write` (each pull request shows the card in its `policy` job summary).
+  card with `tools/status_card.py --write` (each pull request shows the card in its `policy` job summary)
+  and the per-unit table `data/tu_status.csv` with `tools/tu_status.py --write` (feature branches leave it
+  alone too; the same job summary lists the units a pull request moves).
 - Commit after each numbered step, with commit messages prefixed by phase and step
   (e.g. `Phase 2.1: ...`). A pull request is a hub cluster or about 30 functions or more.
 - **A layout batch is one class (owner, 2026-11-13).** Work that settles how sources describe an object is

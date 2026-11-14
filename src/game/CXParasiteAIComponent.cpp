@@ -4,6 +4,7 @@
 // timeline component).
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU1102.h"
@@ -15,15 +16,13 @@
 
 struct UnkPropertyName;
 
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
-
 extern UnkPropertyName g_unk_717270b8d8 __attribute__((visibility("hidden")));  // the property in it
 extern const u64 g_unk_710164a838;                                               // the timeline id
 
 // Sets the flag at +0x146e8. On a change the flag is stored in the blackboard section (unless the
 // blackboard is locked), and the owner's timeline component drops the id while the flag is set or
 // gets it (with the type id, after a delay of -1) when it is clear and unknown.
-void fn_71006ea3fc(UnkXParasiteAI* self, bool value) {
+void XParasiteAI_SetCanBeAbsorbed(UnkXParasiteAI* self, bool value) {
     bool& flag = self->field_0x146e8;
     if (flag == value)
         return;

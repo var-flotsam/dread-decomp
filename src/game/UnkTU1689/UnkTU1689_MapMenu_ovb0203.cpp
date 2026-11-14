@@ -4,6 +4,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/GUI/CAmiiboComposition.h"
 #include "game/GUI/CIngameMenu.h"
@@ -722,8 +723,6 @@ static inline UnkSubId_7100fc4b34 SubId_ovb0203(UnkMapNamedDef_ovb0203& def, con
         fn_7100ae9d7c(&def.name, &def, g_unk_7101d470e0);
     return fn_71003327a4(&def.name, &name);
 }
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 void fn_7100b46744(UnkMapMenuController_ovb0203* self, f32 dt) {
     if (self->field_0xc > 0.0f) {

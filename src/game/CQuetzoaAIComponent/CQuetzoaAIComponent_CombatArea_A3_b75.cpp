@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CComponent.h"
 #include "game/UnkActor.h"
@@ -18,7 +19,6 @@
 using base::global::CStrId;
 
 // As src/game/CAIComponent/CAIComponent_StoreFloat_b49.cpp declares them.
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 // As src/game/CAbilityEnergyWave/fn_71002ffea8.cpp declares it.
 struct UnkParent;
 

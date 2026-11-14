@@ -4,6 +4,7 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "game/CAbilityEnergyWave.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CCharClassEmmyValveComponent.h"
 #include "game/CScenario.h"
 #include "game/UnkAnimationComponent.h"
@@ -116,8 +117,6 @@ __attribute__((always_inline)) static inline void RequestState_A5v_b64(UnkSmMach
 
 struct UnkSmBase_b60;
 struct UnkEmmyRegistry_b55;
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 // Stores the bool at `value` under `name` in the blackboard section `section` names (unless the blackboard
 // is locked), as in src/game/CCharClassActivatableComponent/CCharClassActivatableComponent_b48.cpp.

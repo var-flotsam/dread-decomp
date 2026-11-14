@@ -11,6 +11,7 @@
 #include "base/file/CThreadSafeDevice.h"
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CCollisionComponent.h"
 #include "game/CScenario.h"
@@ -168,7 +169,6 @@ static_assert(__builtin_offsetof(UnkScenarioView, level_sprite) == 0x920, "UnkSc
 // "NumTanksPickedUpMax", a property of type s32 (src/game_s7/fn_7100ae39e0.cpp builds it).
 
 bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 // The language singleton (as src/game/UnkAdamDialog.cpp declares it): created on first use, it
 // gives localized texts.

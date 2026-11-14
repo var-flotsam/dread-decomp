@@ -29,7 +29,7 @@ static inline const u64* ItemId() {
     return reinterpret_cast<const u64*>(reinterpret_cast<const char*>(&base::reflection::refl_GetSingleton()) + 0x4c8);
 }
 
-u32 fn_71006e73f4(UnkXParasiteAI* self) {
+u32 XParasiteAI_PickWeightedChoice(UnkXParasiteAI* self) {
     UnkXParasiteWeights* w = &self->weights;
     UnkItem_710083e9d4* item = nullptr;
     auto* link = *reinterpret_cast<UnkXParasitePlayerLink_ovo0307**>(reinterpret_cast<u8*>(g_unk_7101d47310) + 0x29a0);
@@ -82,7 +82,7 @@ u32 fn_71006e73f4(UnkXParasiteAI* self) {
     return 0;
 }
 
-void fn_71006e8208(UnkXParasiteAI* self, bool on);
+void XParasiteAI_SetEffectActive(UnkXParasiteAI* self, bool on);
 
 void fn_71006e75e8(UnkXParasiteAI* self, bool on) {
     if (UnkXParasiteHolder* holder = ModelHolder(self->owner)) {
@@ -103,5 +103,5 @@ void fn_71006e75e8(UnkXParasiteAI* self, bool on) {
             }
         }
     }
-    fn_71006e8208(self, on);
+    XParasiteAI_SetEffectActive(self, on);
 }

@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CDoorShieldLifeComponent.h"
 #include "game/CScenario.h"
@@ -19,8 +20,6 @@ using base::global::CStrId;
 // The "NextState" property and the CDoorLifeComponent::SState enum (src/game_s7/fn_71008da6c0.cpp).
 struct UnkEnumType;
 extern UnkEnumType g_unk_7172731200;
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 static inline void SetSectionValue(CBlackboard* blackboard, const CStrId& section, UnkPropertyName* name,
                                    const base::reflection::CType* type, void* value) {

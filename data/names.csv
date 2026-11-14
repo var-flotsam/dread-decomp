@@ -1,1 +1,10 @@
 address,name,name_source,reason
+0x71006e6d10,XParasiteAI_Reset,inferred,"runs the base's reset, then puts every member of the component back to its starting value"
+0x71006e73f4,XParasiteAI_PickWeightedChoice,inferred,picks one of four choices at random by the weights at +0x14728 and their mask
+0x71006e8208,XParasiteAI_SetEffectActive,inferred,starts (on) or stops (off) the effect of the current binding on the owner
+0x71006e892c,XParasiteAI_FleeFromTarget,inferred,stores under v3FleePos a point far behind the owner as seen from its target
+0x71006ea210,XParasiteAI_ApplyBehavior,inferred,copies a behaviour object's flag and four weights into the component and dispatches on its kind
+0x71006ea3fc,XParasiteAI_SetCanBeAbsorbed,inferred,sets the flag at +0x146e8 and stores it under the blackboard property the unit's static initialiser names bCanBeAbsorbed
+0x71006ea9a4,XParasiteAI_SetPrey,inferred,points the weak handle at +0x14798 (the prey) at the given object and takes the prey's value
+0x71006eb628,XParasiteAI_AttractToPowerBomb,inferred,stores true under bIsBeingAttracted and the given position under v3PowerBombPos (property names from the unit's static initialiser)
+0x71006eb7cc,XParasiteAI_FindFarthestEntry,inferred,returns a counted reference to the usable entry whose actor is farthest from the owner's target

@@ -14,6 +14,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/snd/CSoundSystem.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBossAIComponent.h"
 #include "game/CScenario.h"
 #include "game/GUI/CPopUpComposition.h"
@@ -377,8 +378,6 @@ s32 fn_7101091420(lua_State* L) {
     }
     return 0;
 }
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 struct UnkStrIdHandle {
     union {

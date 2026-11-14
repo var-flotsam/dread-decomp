@@ -7,6 +7,7 @@
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CAudioComponent.h"
 #include "game/CCharClassStartPointComponent.h"
 #include "game/UnkGameManagerIdTable.h"
@@ -187,8 +188,6 @@ s32 fn_710107de40(lua_State* L) {
     }
     return 0;
 }
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 void fn_7100dffe04(UnkGameManager* self, s32 value);
 
