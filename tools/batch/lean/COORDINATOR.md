@@ -14,10 +14,20 @@ worktree. `PY` below is `.venv/Scripts/python`.
    `python tools/worktree_setup.py ../dread-decomp-<run> --new claude/<run>-<YYYYMMDD> --oracle` (the venv,
    `orig/`, the function bounds and the Ghidra export, the caches `tools/equiv_test.py` needs; it grades one
    known match as proof). Work only in that worktree from here on.
-2. The queue. Pick the functions, then `PY tools/batch/lean/prepare.py --addrs FILE --model sonnet --budget 6
-   --ghidra` (one model and one job per function, as the pilot of 2026-11-12 ran), or `--sample N` / `--all`
-   for the tiered recipe in `coord.py`'s docstring. `PY tools/hubs.py --version 2.1.0 --ready --boot` lists
-   functions whose callees are done; the pilot's result says to stay at 400 bytes or less.
+2. The queue. Pick the functions, then `PY tools/batch/lean/prepare.py --addrs FILE --model sonnet --budget 3
+   --ghidra` (one model and one job per function), or `--sample N` / `--all` for the tiered recipe in
+   `coord.py`'s docstring. `PY tools/hubs.py --version 2.1.0 --ready --boot` lists functions whose callees are
+   done; the pilot's result says to stay at 400 bytes or less. Two things in what prepare.py writes:
+   - **Reference matches** (`--refs N`, default 3). Each function's context ends with the hand-written
+     functions that already match and are closest to it (alike in code, or naming the same callees and
+     globals), with their source (`similar.py`; `PY
+     tools/batch/lean/similar.py <addr>` prints one function's). The last line prepare.py prints says how many
+     functions got one.
+   - **The attempt budget is a cap.** `try.py` counts a worker's graded runs, shows it how many are left and
+     stops grading when they are spent. 3 is the recipe's budget, not the pilot's 6: in the Mizuchi benchmark
+     half the matches came on the first attempt, and after the third the odds of one were about a quarter
+     (`docs/references.md`, "Model-assisted decompilation").
+     `coord.py stats` reports the attempt each match came on: set the next batch's budget from that.
 3. `PY tools/decl_check.py > build/lean/decl_before.txt`: the declaration counts the batch must not raise.
 
 ## Workers
@@ -70,6 +80,7 @@ with other registers; no further model attempt is spent on it) or `differs`. Eve
     the pull request with the template's headings. You are the coordinator of this work, so you merge it
     once the required checks are green (`gh pr merge <n> --merge`, never `--admin`).
 13. **Report.** `PY tools/batch/lean/usage.py` and `coord.py stats`: matches, registers-only results and
-    what became of them (matched by the permuter, verified, held and why), tokens per match against the
-    earlier runs (`tools/batch/README.md`), and one recommendation for the next batch's settings. The
+    what became of them (matched by the permuter, verified, held and why), the attempt each match came on
+    (`matched_on_attempt`) and the matches with and without a reference (`references`), tokens per match
+    against the earlier runs (`tools/batch/README.md`), and one recommendation for the next batch's settings. The
     numbers go in the journal entry; the owner decides whether there is a next batch.

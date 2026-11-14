@@ -9,7 +9,8 @@
   coord.py file --tag T   every function that did not match goes to drafts/ with a graded row of
                           drafts/INDEX.csv (tools/drafts.py), `from` = T; the registers-only ones are listed in
                           build/lean/registers.txt for tools/permute.py and tools/equiv_test.py
-  coord.py stats          counts by outcome, tier and model; per-tier match rates
+  coord.py stats          counts by outcome, tier and model; per-tier match rates; the attempt each match
+                          came on (try.py's count), which is what the attempt budget is set from
   coord.py reset-running  requeue jobs left "running" by an interrupted wave
 
 Model and budget per job (prepare.py --model/--budget replaces the first three with one job per function):
@@ -18,6 +19,10 @@ Model and budget per job (prepare.py --model/--budget replaces the first three w
   a sonnet non-match with best >= 75  one opus retry from its draft, 2 attempts
   a registers-only result             no further model attempt: the permuter and the machine test take it
                                       from there (CLAUDE.md, "Completion", tier 2)
+
+The budget is a cap, not advice: wave writes it into the job's queue entry, and try.py counts the graded runs
+against it, shows the worker how many are left after each one and stops grading when they are spent. record
+takes try.py's count (not the worker's own) into the attempt: `graded` (each run's score) and `matched_on`.
 """
 import json
 import subprocess
@@ -62,13 +67,30 @@ def plan(e, cfg=None):
     return None
 
 
+def ordinal(n):
+    return f"{n}{'th' if 10 <= n % 100 <= 20 else {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th')}"
+
+
+def graded(e, out=None):
+    """try.py's count for e's current job, or None."""
+    try:
+        state = json.loads(((out or OUT) / "attempts" / f"{e['addr']}.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+    return state if state.get("job") == len(e["attempts"]) else None
+
+
 def prompt(e, model, budget, cfg=None):
     cfg = CFG if cfg is None else cfg
     lines = [f"Follow {(KIT / 'worker.md').relative_to(ROOT).as_posix()} exactly (read it first).",
              f"Worktree: {ROOT}",
              f"Address: {e['addr']} ({e['size']} bytes); context build/lean/ctx/{e['addr']}.txt",
              f"Target file: {e['file']}",
-             f"Attempt budget: {budget}."]
+             f"Attempt budget: {budget}. It is a cap: try.py counts each graded run, ends its output with how many "
+             f"are left, and does not grade this function after the {ordinal(budget)}."]
+    if cfg.get("refs"):
+        lines.append("The context ends with the reference matches: functions that already match and look most like "
+                     "this one, with their source. Read them before you write.")
     if cfg.get("ghidra"):
         lines.append(f"Ghidra's view of the function is in build/lean/ghidra/{e['addr']}.txt: read it for the control "
                      "flow and the order of calls only. Never copy its text, names or types into any file; write your "
@@ -96,6 +118,11 @@ def record(q):
         if not e or e["status"] != "running":
             continue
         r["model"] = e.pop("running_model", "?")
+        state = graded(e)
+        if state:  # what try.py counted, beside what the worker reported
+            r["graded"] = [g["score"] for g in state["graded"]]
+            r["matched_on"] = next((i for i, g in enumerate(state["graded"], 1) if g["match"]), None)
+            r["budget"] = state["budget"]
         e["attempts"].append(r)
         e["status"] = "queued" if plan(e) else STATUS.get(r.get("outcome"), "failed")
         p.rename(p.with_suffix(f".{len(e['attempts'])}.done"))
@@ -114,7 +141,7 @@ def wave(q, k):
         if not pl:
             e["status"] = "failed"
             continue
-        e["status"], e["running_model"] = "running", pl[0]
+        e["status"], e["running_model"], e["budget"] = "running", pl[0], pl[1]
         job = {"addr": e["addr"], "model": pl[0], "prompt": prompt(e, *pl)}
         if CFG.get("effort"):
             job["effort"] = CFG["effort"]
@@ -195,6 +222,18 @@ def file_drafts(q, tag):
     return 0
 
 
+def attempt_stats(q):
+    """On which graded attempt the matches came, and how many graded attempts the run made: the figures an
+    attempt budget is set from. Jobs try.py did not count (an older run) are left out."""
+    jobs = [a for e in q for a in e["attempts"] if "graded" in a]
+    on = Counter(a["matched_on"] for a in jobs if a.get("outcome") == "match" and a.get("matched_on"))
+    refs = Counter(("with a reference" if e.get("refs") else "without a reference", e["status"]) for e in q
+                   if e["attempts"] and "refs" in e)
+    return {"matched_on_attempt": {str(k): on[k] for k in sorted(on)},
+            "graded_attempts": sum(len(a["graded"]) for a in jobs),
+            "references": {f"{k}/{s}": c for (k, s), c in sorted(refs.items())}}
+
+
 def stats(q):
     st = Counter(e["status"] for e in q)
     att = Counter((a["model"], a["outcome"]) for e in q for a in e["attempts"])
@@ -203,7 +242,7 @@ def stats(q):
         t = tiers.setdefault(e["tier"] + ("/prior" if e["prior"] else ""), Counter())
         t[e["status"]] += 1
     print(json.dumps({"status": st, "attempts": {f"{m}/{o}": c for (m, o), c in att.items()},
-                      "tiers": tiers}, default=dict))
+                      "tiers": tiers, **attempt_stats(q)}, default=dict))
 
 
 def main():

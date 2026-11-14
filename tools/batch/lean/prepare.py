@@ -14,9 +14,12 @@
                                     project admits one process, so workers must not run tools/ghidra themselves
   --prior GLOB                      results/*.json files of an earlier run: its best score and blocker go into
                                     the brief of a function it did not match
+  --refs N                          reference matches per function (default 3; 0: none): the hand-written functions
+                                    that already match and look most like it, with their source, at the end of its
+                                    context (similar.py)
 
 Writes build/lean/queue.json (one entry per function: addr, size, tier, target file, prior attempt) and
-build/lean/ctx/<addr>.txt (annotated disassembly + headers that already declare its symbols). The kit runs
+build/lean/ctx/<addr>.txt (annotated disassembly + headers that already declare its symbols + reference matches). The kit runs
 in place from tools/batch/lean/; everything it writes is under build/lean/ of the worktree.
 """
 import argparse
@@ -33,6 +36,7 @@ ROOT = Path(__file__).resolve().parents[3]
 OUT = ROOT / "build" / "lean"
 sys.path.insert(0, str(ROOT / "tools"))
 import context  # noqa: E402  (this folder)
+import similar  # noqa: E402  (this folder)
 import tu_map  # noqa: E402
 
 
@@ -53,6 +57,7 @@ def main():
     ap.add_argument("--budget", type=int, default=3)
     ap.add_argument("--max", type=int, default=2000)
     ap.add_argument("--prior", default="")
+    ap.add_argument("--refs", type=int, default=3, help="reference matches per function (0: none)")
     ap.add_argument("--seed", type=int, default=1109)
     a = ap.parse_args()
 
@@ -82,8 +87,8 @@ def main():
         work = [x for x in want if funcs.get(x, (0, 0, ""))[2] == "U" and x not in defined]
     else:
         work = [x for x, (sz, _, st) in funcs.items() if st == "U" and 24 <= sz <= a.max and x not in defined]
-    cfg = ({"model": a.model, "budget": a.budget, "effort": a.effort, "ghidra": a.ghidra} if a.model
-           else {"effort": a.effort, "ghidra": a.ghidra})
+    cfg = ({"model": a.model, "budget": a.budget, "effort": a.effort, "ghidra": a.ghidra, "refs": a.refs} if a.model
+           else {"effort": a.effort, "ghidra": a.ghidra, "refs": a.refs})
     (OUT / "config.json").write_text(json.dumps(cfg), encoding="utf-8")
 
     units = tu_map.load_map()
@@ -116,6 +121,12 @@ def main():
     (OUT / "ctx").mkdir(parents=True, exist_ok=True)
     binary = context.Binary()
     hidx = context.header_index()
+    index = similar.Index(funcs, similar.definitions(), binary.read) if a.refs else None
+
+    def unit_of(address):
+        u = tu_map.find_unit(units, address, starts)
+        return u and int(u["index"])
+
     for e in entries:
         x = int(e["addr"], 16)
         asm, syms = binary.disasm(x, e["size"], funcs)
@@ -124,6 +135,12 @@ def main():
                "Disassembly (calls, globals, strings annotated; read only, never copy into src/):", asm]
         if decls:
             txt += ["", "Headers that already declare some of these symbols:", *decls]
+        if index:
+            refs = index.nearest(x, e["size"], a.refs)
+            e["refs"] = [{"addr": f"{r['addr']:x}", "kind": r["kind"], "lined": r["lined"], "named": r["named"]}
+                         for r in refs]
+            txt += ["", *similar.render(refs, lambda t: funcs[t][1] if t in funcs else f"g_unk_{t:x}", unit_of,
+                                        e["unit"], lambda ra, rs: binary.disasm(ra, rs, funcs)[0])]
         (OUT / "ctx" / f"{e['addr']}.txt").write_text("\n".join(txt) + "\n", encoding="utf-8")
     if draft_src:
         (OUT / "drafts").mkdir(parents=True, exist_ok=True)
@@ -144,7 +161,8 @@ def main():
         e["attempts"] = []
     (OUT / "queue.json").write_text(json.dumps(entries, indent=1), encoding="utf-8")
     print(f"queue: {len(entries)} functions; tiers {dict(Counter(e['tier'] for e in entries))}; "
-          f"with a prior failed attempt {sum(1 for e in entries if e['prior'])}; skipped as defined {len(defined)}")
+          f"with a prior failed attempt {sum(1 for e in entries if e['prior'])}; skipped as defined {len(defined)}"
+          + (f"; with a reference match {sum(1 for e in entries if e.get('refs'))}" if a.refs else ""))
 
 
 if __name__ == "__main__":
