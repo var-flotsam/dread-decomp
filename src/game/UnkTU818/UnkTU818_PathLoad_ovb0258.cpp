@@ -11,6 +11,7 @@
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU54.h"
+#include "game/UnkTU55.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -103,7 +104,6 @@ using base::math::CVector3D;
 
 struct UnkEntity;
 struct UnkVec3;
-void fn_710007b444(void* dst, const UnkVec3* value);
 
 struct UnkAimHolder_b0258y {
     u8 pad_0x0[0x30];

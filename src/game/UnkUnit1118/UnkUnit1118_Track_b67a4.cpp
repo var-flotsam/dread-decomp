@@ -4,6 +4,7 @@
 // source's (its vf_0x18, through fn_710007b444) and +0xe4 the current point minus the owner's
 // position. Names and layouts are placeholders.
 #include "base/math/CVector.h"
+#include "game/UnkTU55.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -11,7 +12,6 @@ using base::math::CVector3D;
 
 // As src/game/navmesh/CNavMesh.cpp declares it.
 struct UnkVec3;
-void fn_710007b444(void*, const UnkVec3*);
 
 // A 2D point copied member by member.
 struct UnkFollowVec2_b67a4 {

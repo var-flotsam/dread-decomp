@@ -6,6 +6,8 @@
 #include "base/UnkMatrix44.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2564.h"
+#include "game/UnkTU55.h"
 #include "game_s2/UnkItem50.h"
 #include "types.h"
 
@@ -14,13 +16,10 @@ using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
 struct UnkVec3 {
-    u32 a, b, c;
+    u32 a;
+    u32 b;
+    u32 c;
 };
-void fn_710007b444(void*, const UnkVec3*);
-
-extern CStrId g_unk_71727c81e8, g_unk_71727c81f0, g_unk_71727c81f8, g_unk_71727c8200;
-extern CStrId g_unk_71727c8208, g_unk_71727c8210, g_unk_71727c8218, g_unk_71727c8220;
-extern CStrId g_unk_71727c8188, g_unk_71727c8190;
 
 struct UnkMinimapIconOut {
     f32 x, y;
@@ -45,6 +44,7 @@ struct UnkMinimapIconSelf {
     UnkMinimapIconKind* kind;  // 0x488
 };
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_7100e3cee0(UnkMinimapIconSelf* self, UnkMinimapIconOut* out) {
     u32 vb = *(u32*)(self->obj + 0x54);
     u32 va = *(u32*)(self->obj + 0x44);

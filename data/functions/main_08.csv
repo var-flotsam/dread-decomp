@@ -1314,7 +1314,7 @@ address,size,name,name_source,subsystem,status
 0x7100836e30,760,fn_7100836e30,unknown,unknown,O
 0x7100837130,232,fn_7100837130,unknown,unknown,O
 0x7100837220,140,fn_7100837220,unknown,unknown,O
-0x71008372ac,476,fn_71008372ac,unknown,unknown,U
+0x71008372ac,476,fn_71008372ac,unknown,unknown,m
 0x7100837490,140,fn_7100837490,unknown,unknown,O
 0x710083751c,4,fn_710083751c,unknown,unknown,O
 0x7100837520,244,CGunComponent::CTunableGunComponent::refl_GetClass,reflection,game/components,O

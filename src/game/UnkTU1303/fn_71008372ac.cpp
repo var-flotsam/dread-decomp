@@ -49,6 +49,7 @@ static inline f32 RandRange(f32 lo, f32 hi) {
     return lo + (hi - lo) * r;
 }
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 UnkSpreadEntry_ovb0262g fn_71008372ac(UnkSpread_ovb0262g* self, u32 index, const UnkVec3_ovb0262g* direction,
                                       const UnkVec3_ovb0262g* spread) {
     f32 range = g_unk_71726af060.value;

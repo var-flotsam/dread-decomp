@@ -23,6 +23,7 @@
 #include "game/UnkTU341.h"
 #include "game/UnkTU394.h"
 #include "game/UnkTU53.h"
+#include "game/UnkTU55.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkParams.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -131,7 +132,6 @@ struct UnkVec3 {
     u32 b;
     u32 c;
 };
-void fn_710007b444(void* dst, const UnkVec3* value);
 
 struct UnkAIVtbl_g {
     u8 pad_0x0[0x438];

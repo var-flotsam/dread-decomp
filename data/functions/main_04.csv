@@ -3697,7 +3697,7 @@ address,size,name,name_source,subsystem,status
 0x71004a4ffc,100,fn_71004a4ffc,unknown,unknown,O
 0x71004a5060,292,fn_71004a5060,unknown,unknown,O
 0x71004a5184,36,fn_71004a5184,unknown,unknown,O
-0x71004a51a8,164,fn_71004a51a8,unknown,unknown,U
+0x71004a51a8,164,fn_71004a51a8,unknown,unknown,m
 0x71004a524c,28,fn_71004a524c,unknown,unknown,O
 0x71004a5268,28,fn_71004a5268,unknown,unknown,O
 0x71004a5284,28,fn_71004a5284,unknown,unknown,O

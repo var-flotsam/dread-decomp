@@ -1,5 +1,6 @@
 // Unit 1118 (no class hint): an AI state object. Names and layouts are placeholders.
 #include "game/UnkAIComponent.h"
+#include "game/UnkTU55.h"
 #include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
@@ -106,7 +107,6 @@ struct UnkAIStateSelect_b0169 {
 bool fn_71006fe35c(void* self, void* item);
 void* fn_71006fe430(void* self, void* target, s32 index, s32 arg, void* extra);
 struct UnkVec3;
-void fn_710007b444(void*, const UnkVec3*);
 
 // Selects the item at `index` of the state's list (counted from the end of the second list when negative).
 bool fn_71006fe16c(UnkAIStateSelect_b0169* self, s32 index) {

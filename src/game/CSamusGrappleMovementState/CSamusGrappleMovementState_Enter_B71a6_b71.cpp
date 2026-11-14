@@ -5,12 +5,12 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU55.h"
 #include "types.h"
 
 struct UnkGroundPlayer_b52;
 bool fn_71010d1598(UnkGroundPlayer_b52*);
 struct UnkVec3;
-void fn_710007b444(void*, const UnkVec3*);
 
 struct UnkGrappleMoveState_B71a6 {
     void* vtable;

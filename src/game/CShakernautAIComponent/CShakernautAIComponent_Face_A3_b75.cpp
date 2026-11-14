@@ -4,6 +4,7 @@
 // (fn_71011785a8) and records the side (+0x147f8 +0xc: 1 when dir.x is past +0.001), and stores `dir` as the
 // state's direction (+0x18, fn_710007b444). Names and layouts are placeholders.
 #include "game/CAnimationComponent.h"
+#include "game/UnkTU55.h"
 #include "game/behaviortree/CSwitchBetweenAIModesAction.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
@@ -18,7 +19,6 @@ struct UnkVec3 {
     u32 b;
     u32 c;
 };
-void fn_710007b444(void* dst, const UnkVec3* value);
 // fn_71006f4b0c is declared in game_s2/UnkParams.h.
 
 struct UnkShakernautQuery_A3_b75 {

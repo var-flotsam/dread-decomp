@@ -18,6 +18,7 @@ static inline UnkAtkEmitter_b0147* EmitterOf(UnkAtkLink_b0147* link) {
     return reinterpret_cast<UnkAtkEmitter_b0147*>(reinterpret_cast<u8*>(link) - 0x288);
 }
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_710122f380(UnkAtkEmitterSet_b0147* self) {
     for (UnkAtkLink_b0147* n = self->list.next; &self->list != n;) {
         UnkAtkLink_b0147* next = n->next;

@@ -21,6 +21,7 @@
 #include "game/UnkTU2568.h"
 #include "game/UnkTU367.h"
 #include "game/UnkTU376.h"
+#include "game/UnkTU55.h"
 #include "game/UnkTU56.h"
 #include "game/navmesh/CNavMesh.h"
 #include "types.h"
@@ -569,7 +570,6 @@ bool fn_710027b780(UnkNavMesh* mesh, const CVector2D* point, u32 flags, u64 filt
 }
 
 struct UnkVec3;       // fn_710007b444's source as src/game/CBatalloonAIComponent/fn_71003de7b4.cpp declares it
-void fn_710007b444(void*, const UnkVec3*);
 
 // A read-only zero 2D vector (the widths fn_710027dab8 walks corners with).
 extern const CVector2D g_unk_7101648c8c __attribute__((visibility("hidden")));

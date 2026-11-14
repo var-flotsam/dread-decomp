@@ -1,12 +1,12 @@
 // behaviortree::CEmmyPatrolBaseAction unit (tools/tu_map.py, the name from reflection): clears the flag at
 // +0x11c, passes the given point to the member at +0x110 (fn_710007b444), and sets the wait at +0x118 to
 // 1.5 plus a random factor in 0..1. Returns 0. Names and layouts are placeholders.
+#include "game/UnkTU55.h"
 #include "types.h"
 
 extern "C" int rand();
 
 struct UnkVec3;
-void fn_710007b444(void*, const UnkVec3*);
 
 struct UnkPatrolBase_b54 {
     u8 unk_0x0[0x110];

@@ -5,6 +5,7 @@
 
 // Appends a copy of `value`: the array grows first (its elements moved over), and the copy is
 // made by the value's own copy function, when it has one.
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_710023b424(UnkErasedVector* self, const UnkErasedValue_0x10* value) {
     u32 n = self->count;
     u32 capacity = self->capacity;

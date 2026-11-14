@@ -699,7 +699,7 @@ address,size,name,name_source,subsystem,status
 0x7100e3c4a0,500,fn_7100e3c4a0,unknown,unknown,O
 0x7100e3c6a0,812,fn_7100e3c6a0,unknown,unknown,U
 0x7100e3c9d0,1296,fn_7100e3c9d0,unknown,unknown,U
-0x7100e3cee0,408,fn_7100e3cee0,unknown,unknown,U
+0x7100e3cee0,408,fn_7100e3cee0,unknown,unknown,m
 0x7100e3d080,2088,fn_7100e3d080,unknown,unknown,U
 0x7100e3d8a8,356,fn_7100e3d8a8,unknown,unknown,O
 0x7100e3da0c,560,fn_7100e3da0c,unknown,unknown,m

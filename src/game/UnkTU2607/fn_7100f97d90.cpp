@@ -34,6 +34,7 @@ struct UnkFadeInit {
 static_assert(__builtin_offsetof(UnkFadeInit, path) == 0x278, "layout");
 static_assert(__builtin_offsetof(UnkFadeInit, done) == 0x430, "layout");
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_7100f97d90(void* state) {
     UnkFadeInit* s = static_cast<UnkFadeInit*>(state);
     __builtin_memset(s->field_0x0, 0, sizeof(s->field_0x0));

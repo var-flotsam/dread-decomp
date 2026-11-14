@@ -5,5 +5,9 @@
 // Names and layouts are placeholders.
 #include "base/math/CVector4D.h"
 #include "types.h"
+
+struct UnkVec3;
+
 base::math::UnkVector4D fn_710007b5c0(const base::math::CVector4D* a, f32 s);
 base::math::UnkVector4D fn_710007b5ec(const base::math::CVector4D* a, const base::math::CVector4D* b);
+void fn_710007b444(void* self, const UnkVec3* v);

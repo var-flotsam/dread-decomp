@@ -1,5 +1,6 @@
 // Checks the object behind +0x30 for a usable +0x208 and, if so, copies three of its values into `out`.
 #include "game/UnkActor.h"
+#include "game/UnkTU55.h"
 #include "types.h"
 
 struct UnkInfo {
@@ -34,7 +35,6 @@ struct UnkSelf {
 
 bool fn_710110a164(UnkSelf* self, UnkOut* out);  // the base, on the same arguments
 bool fn_71009e12d0(void* obj);
-void fn_710007b444(void* dst, const UnkVec3* value);
 
 bool fn_71003de7b4(UnkSelf* self, UnkOut* out) {
     bool result = fn_710110a164(self, out);
