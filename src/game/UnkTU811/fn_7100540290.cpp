@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/UnkTU218.h"
 // ---- 7100540290
 struct UnkMat4_b0193 {
     u8 unk_0x0[0x78];
@@ -26,8 +27,8 @@ struct UnkMatOwner_b0193 {
 };
 
 void fn_7100369508(UnkMatOwner_b0193* self);
-bool fn_7100199d88(void* table, const u64* key, u32* id);
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_7100540290(UnkMatOwner_b0193* self) {
     fn_7100369508(self);
     u64 key1 = 0x63f8212a4a3b5aaaull;

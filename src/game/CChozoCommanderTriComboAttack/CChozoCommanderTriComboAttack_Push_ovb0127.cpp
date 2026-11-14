@@ -7,11 +7,11 @@
 #include "game/CAttack.h"
 #include "game/CCollisionComponent.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU55.h"
 #include "types.h"
 
 struct UnkPlayerMovementSource;
 struct UnkVec3;
-void fn_710007b444(void*, const UnkVec3*);
 
 extern const u8 g_unk_71726c8520[] __attribute__((visibility("hidden")));  // the collider's name (a CStrId)
 

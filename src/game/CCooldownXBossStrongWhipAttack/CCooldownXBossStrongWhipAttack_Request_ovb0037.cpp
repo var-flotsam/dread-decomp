@@ -3,6 +3,7 @@
 // id-4 test (fn_7101178e6c) from two constants, and 1.0 at +0x50. Names and layouts are placeholders.
 
 #include "game/CAnimationComponent.h"
+#include "game/UnkTU55.h"
 #include "types.h"
 
 struct UnkTakumakuComponent;
@@ -13,7 +14,6 @@ struct UnkVec3 {
     u32 b;
     u32 c;
 };
-void fn_710007b444(void* dst, const UnkVec3* value);
 
 extern const UnkVec3 g_unk_7101649b20 __attribute__((visibility("hidden")));
 extern const UnkVec3 g_unk_7101649b2c __attribute__((visibility("hidden")));

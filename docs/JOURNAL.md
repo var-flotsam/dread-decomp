@@ -153,6 +153,18 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**equiv_test reaches switches and pointer equality (2026-11-14).** Three input rules (owner-approved): every
+index of a jump table up to its bounds check (`jump_table_bounds`), each register compare a run made made equal
+by setting a word that held one side to the other (`equal_variants`; `pcode_emu` now records the two values of
+each `cmp x, x`), and one wider sweep (48 words, 3 rounds, from the newest runs) when coverage is still short.
+`fn_7100e3cee0` showed all three: a switch case at kind 3, two pointer-equality branches, and a count reaching
+zero on a path only the equal inputs open. Recalibrated on the 87 registers-only drafts and every
+`NON_MATCHING(minor)` function against origin/main: no passing verdict changes; 26 drafts and 20 minors newly
+pass (verified rows 66 to 86); one draft newly fails, `fn_7100558bcc` (a call's argument differs on one input:
+a real difference, it stays a draft). Cost: `--drafts` 470 s to 1,174 s, `--minor` 534 s to 1,615 s, mostly
+functions that stay inconclusive and use their budget. Of the 26 drafts, 9 moved to `src/` (`fn_7100e3cee0` among
+them: `fn_710007b444` is declared once now, in `UnkTU55.h`, for 21 files, and its ten id globals in `UnkTU2564.h`);
+the rest are held on declarations (their notes say which) or by another function of their file.
 **Reflected classes in a namespace of their name (2026-11-14).** First step of the readable reflection template
 (owner-approved audit item). `src/reflection/` described each class by addresses: an `UnkRefl_fn_<init>` tag,
 traits whose members were `fn_0x58` and the like, helpers named `fn_<addr>` and a getter macro taking six

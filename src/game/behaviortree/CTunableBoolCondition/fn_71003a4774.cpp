@@ -3,10 +3,11 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "types.h"
+#include "game/UnkTU57.h"
+#include "base/global/CFilePathStrId.h"
 
 using base::global::CRntString;
 
-void fn_710007f564(void* self, const char* str);  // appends a string
 
 // A pooled string entry: a string at 0x10 and a reference count at 0x44.
 struct UnkTextEntry_l3a4774 {
@@ -27,8 +28,8 @@ struct UnkTunableBoolCondition_l3a4774 {
     UnkTextEntry_l3a4774* field_0x48;
 };
 
-__attribute__((visibility("hidden"))) extern const char g_unk_710162e2ed[];
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 CRntString fn_71003a4774(UnkTunableBoolCondition_l3a4774* self) {
     CRntString result(g_unk_710162e2ed);
     UnkTextEntry_l3a4774* first = self->field_0x40;

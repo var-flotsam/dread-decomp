@@ -10,6 +10,7 @@
 #include "game/UnkTU1440.h"
 #include "game/UnkTU1442.h"
 #include "game/UnkTU376.h"
+#include "game/UnkTU55.h"
 #include "game/malloc.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -290,7 +291,6 @@ void fn_710096aadc(UnkRecord_aadc* out, UnkCapture_aadc* capture) {
 // ---- eee8 ----
 struct UnkVec3;
 void fn_710096dfb8(char* self, u32 flag);
-void fn_710007b444(void* dst, const UnkVec3* value);
 
 struct UnkAI_eee8 {
     void** vtable;

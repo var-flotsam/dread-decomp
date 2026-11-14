@@ -9,6 +9,7 @@
 #include "game/UnkTU1370.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU2702.h"
+#include "game/UnkTU55.h"
 #include "types.h"
 
 struct UnkRequest;
@@ -42,7 +43,6 @@ struct UnkKraidAI2 {
 };
 
 struct UnkVec3;
-void fn_710007b444(void* dst, const UnkVec3* value);
 
 void fn_7100600b94(UnkKraidAI2* self, void* arg, UnkKraidRequest* request) {
     fn_7101105c90(self, arg, request);

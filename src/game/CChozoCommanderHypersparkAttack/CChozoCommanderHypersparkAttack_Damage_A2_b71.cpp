@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "game/CCharClassAttackComponent.h"
 #include "game/UnkTU1370.h"
+#include "game/UnkTU55.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -20,7 +21,6 @@ struct UnkVec3 {
     u32 b;
     u32 c;
 };
-void fn_710007b444(void* dst, const UnkVec3* value);
 
 struct UnkHypersparkOwner_A2_b71 {
     u8 pad_0x0[0x38];

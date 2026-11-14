@@ -44,6 +44,7 @@ static inline UnkVec2_b0197 Normalized(const f32* v) {
     return {v[0], v[1]};
 }
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 bool fn_7100700594(UnkAimOwner_b0197* self, f32 threshold) {
     UnkAim_b0197* aim = &self->aim_0x12cc0;
     if (!aim->flag_0x28)

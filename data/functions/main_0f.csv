@@ -4079,7 +4079,7 @@ address,size,name,name_source,subsystem,status
 0x7100f97bdc,136,STransition::refl_CopyAssign,reflection,game,O
 0x7100f97c64,136,STransition::refl_MoveAssign,reflection,game,O
 0x7100f97cf0,160,fn_7100f97cf0,unknown,unknown,O
-0x7100f97d90,468,fn_7100f97d90,unknown,unknown,U
+0x7100f97d90,468,fn_7100f97d90,unknown,unknown,m
 0x7100f97f64,168,fn_7100f97f64,unknown,unknown,m
 0x7100f9800c,136,fn_7100f9800c,unknown,unknown,O
 0x7100f98094,148,fn_7100f98094,unknown,unknown,O

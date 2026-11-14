@@ -232,5 +232,69 @@ class MoreInputs(unittest.TestCase):
         self.assertEqual(equiv_test.more_inputs(oracle, self.A), 0)
 
 
+CMP_W8_5, B_HI, B_NE, BR_X10, NOP = 0x7100151F, 0x54000208, 0x54000201, 0xD61F0140, 0xD503201F
+
+
+@unittest.skipIf(port_lift is None, "pyelftools or capstone is not installed")
+class JumpTables(unittest.TestCase):
+    def test_a_bounds_check_before_an_indirect_branch_is_a_table(self):
+        self.assertEqual(equiv_test.jump_table_bounds(words(CMP_W8_5, B_HI, NOP, NOP, BR_X10)), [5])
+
+    def test_no_indirect_branch_no_table(self):
+        self.assertEqual(equiv_test.jump_table_bounds(words(CMP_W8_5, B_HI, NOP, NOP)), [])
+
+    def test_a_signed_or_equality_test_is_not_a_bounds_check(self):
+        self.assertEqual(equiv_test.jump_table_bounds(words(CMP_W8_5, B_NE, NOP, BR_X10)), [])
+
+    def test_a_large_bound_is_left_to_the_other_values(self):
+        cmp_w8_200 = 0x7103211F  # cmp w8, #0xc8
+        self.assertEqual(equiv_test.jump_table_bounds(words(cmp_w8_200, B_HI, BR_X10)), [])
+
+
+class EqualVariants(unittest.TestCase):
+    INSIDE = staticmethod(lambda pc: 0x100 <= pc < 0x200)
+
+    def test_a_word_holding_one_side_takes_the_other(self):
+        held = {0x10: 0x5000, 0x18: 0x7}.get
+        out = equiv_test.equal_variants([(0x104, 0x5000, 0x6008)], [0x10, 0x18], held, self.INSIDE)
+        self.assertEqual(out, [(0x10, 0x6008)])
+
+    def test_both_directions(self):
+        held = {0x10: 0x5000, 0x18: 0x6008}.get
+        out = equiv_test.equal_variants([(0x104, 0x5000, 0x6008)], [0x10, 0x18], held, self.INSIDE)
+        self.assertEqual(sorted(out), [(0x10, 0x6008), (0x18, 0x5000)])
+
+    def test_equal_sides_and_other_code_are_skipped(self):
+        held = {0x10: 0x5000}.get
+        self.assertEqual(equiv_test.equal_variants([(0x104, 0x5000, 0x5000)], [0x10], held, self.INSIDE), [])
+        self.assertEqual(equiv_test.equal_variants([(0x904, 0x5000, 0x6000)], [0x10], held, self.INSIDE), [])
+
+    def test_a_32_bit_compare_matches_the_low_half(self):
+        held = {0x10: 0xABCD00000005}.get
+        self.assertEqual(equiv_test.equal_variants([(0x104, 5, 9)], [0x10], held, self.INSIDE), [(0x10, 9)])
+
+    def test_bounded(self):
+        held = {0x10: 1}.get
+        compares = [(0x104, 1, 100 + i) for i in range(40)]
+        self.assertEqual(len(equiv_test.equal_variants(compares, [0x10], held, self.INSIDE, limit=4)), 4)
+
+
+@unittest.skipIf(port_lift is None, "pyelftools or capstone is not installed")
+class MoreInputsEqual(unittest.TestCase):
+    """A pointer-equality branch: only a word set to the other side of the run's compare reaches it."""
+    A = _Oracle.A
+
+    def test_the_compare_is_made_equal(self):
+        import pcode_emu
+        w = pcode_emu.BASE + 0x40000
+        base = _Run({self.A, self.A + 4, self.A + 12}, {(self.A, False)}, read_words=[w])
+        base.compares = [(self.A + 4, 0x5000, 0x6123)]   # the run's word held 0x5000 (_Run.peek)
+        oracle = _Oracle([(0, {}, base)])
+        oracle.run_original = lambda a, seed, ovr: (
+            _Run({a, a + 8, a + 12}, {(a, True)}) if ovr.get(("m", w)) == 0x6123 else _Run({a, a + 4, a + 12}, {(a, False)}))
+        self.assertEqual(equiv_test.more_inputs(oracle, self.A), 1)
+        self.assertEqual(oracle.runs[-1][1], {("m", w): 0x6123})
+
+
 if __name__ == "__main__":
     unittest.main()

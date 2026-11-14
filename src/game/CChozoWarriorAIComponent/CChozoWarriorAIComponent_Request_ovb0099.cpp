@@ -8,6 +8,7 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU55.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -15,7 +16,6 @@ using base::global::CStrId;
 
 struct UnkCollisionContainer;
 struct UnkVec3;
-void fn_710007b444(void* dst, const UnkVec3* value);
 
 extern const UnkVec3 g_unk_71016499f8 __attribute__((visibility("hidden")));
 

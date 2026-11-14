@@ -8,6 +8,7 @@
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "game/SLogicPathNode.h"
+#include "game/UnkTU55.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -35,7 +36,6 @@ struct UnkMinimapPathPoint {
 };
 // Assigns the x and y of a 3D vector to a 2D one.
 struct UnkVec3;
-void fn_710007b444(void* self, const UnkVec3* v);
 
 static inline void Project(CVector2D* out, const UnkMinimapPathPoint& point) {
     fn_710007b430(out, &point.v);

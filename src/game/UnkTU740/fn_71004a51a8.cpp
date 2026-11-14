@@ -5,11 +5,11 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
+#include "game/UnkTU2702.h"
 
 extern "C" int rand();
 
 struct UnkScorpiusAI_b69a4;
-void* fn_7101109df4(UnkScorpiusAI_b69a4* ai, void* id);
 
 extern char g_unk_71726d33d8[] __attribute__((visibility("hidden")));
 extern char g_unk_71726d33c0[] __attribute__((visibility("hidden")));
@@ -24,6 +24,7 @@ struct UnkCooldownAttack_b0225 {
     u32 flag;  // 0x98
 };
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void* fn_71004a51a8(void* unused, UnkCooldownOwner_b0225* owner) {
     s32 r = rand();
     base::reflection::UnkReflObject* obj = owner->ai;
