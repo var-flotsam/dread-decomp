@@ -45,7 +45,7 @@ static inline UnkXParasiteVec_A3_b75 UnkXParasitePos_A3_b75(const UnkActor* a) {
     return {a->field_0x44, a->field_0x54, a->field_0x64};
 }
 
-void fn_71006e892c(UnkXParasiteAI* self) {
+void XParasiteAI_FleeFromTarget(UnkXParasiteAI* self) {
     {
         UnkXParasiteMode_A3_b75 mode;
         mode.kind = 2;

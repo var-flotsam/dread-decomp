@@ -152,6 +152,19 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**First rename batch: nine functions of the X parasite AI component (2026-11-14).** The class whose layout is
+settled (`include/game/UnkXParasiteAI.h`) is the first to lose address names, through `tools/rename.py`:
+`XParasiteAI_SetCanBeAbsorbed`, `_AttractToPowerBomb`, `_FleeFromTarget`, `_SetPrey`, `_FindFarthestEntry`,
+`_PickWeightedChoice`, `_Reset`, `_ApplyBehavior`, `_SetEffectActive` (reasons in `data/names.csv`). Three rest
+on the blackboard property names the unit's static initialiser registers (`fn_71006e5b10`: the ids at
+`g_unk_717270b898` + 0x20.. are v3StayPos, v3PowerBombPos, fInitTime, fWanderTime, bCanBeAbsorbed,
+bIsBeingAttracted, ...), which is how `g_unk_717270b8d8` reads as bCanBeAbsorbed. The functions are still free
+functions taking the component, so the names carry the class as a prefix; they become members when the class
+does. Left with their addresses, because what they are for is not established yet: the destructor and the
+static initialiser, `fn_71006eb590`, `fn_71006eba00`, `fn_71006e7754`, `fn_71006ea160`, `fn_71006e9fcc`,
+`fn_71006e808c`, `fn_71006e8a18`, `fn_71006e75e8` (the grab/link reading in their comments is itself a guess).
+A rename changes no code: only the nine rows' names differ in `data/functions/`.
+
 **Three rules taken from BotW's agent file; what other public projects do (2026-11-14).** A survey of the
 public projects nearest to this one, for what is worth borrowing. No project found rebuilds with Clang 9.0.x:
 zeldaret/botw uses upstream 4.0.1, OdysseyDecomp an older upstream Clang, shibbo/3DWDecomp the SDK's own

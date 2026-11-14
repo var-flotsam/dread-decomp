@@ -451,7 +451,7 @@ void fn_710110cc04(UnkEffectSelf_b0143* self, bool both) {
 
 using base::reflection::UnkReflObject;
 
-void fn_71006ea9a4(UnkReflObject* component, UnkActor* owner);
+void XParasiteAI_SetPrey(UnkReflObject* component, UnkActor* owner);
 void fn_71007c3a38(char* actor, void* a, void* b, void* c, u32 d, bool e);
 
 struct UnkTargetRef_b0143 {
@@ -474,7 +474,7 @@ void fn_710110e278(UnkSwarmSelf_b0143* self, void* a, void* b, void* c, bool fla
         if (!component)
             return;
         if (fn_710009d50c(component->vf_0x0(), fn_71006e5f28()))
-            fn_71006ea9a4(component, self->owner);
+            XParasiteAI_SetPrey(component, self->owner);
         return;
     }
     if (char* actor = fn_71004dad10(self->owner))
