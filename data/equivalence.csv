@@ -77,6 +77,7 @@ address,digest,verdict,rules,detail
 0x71006eb484,47135ee84631131e2dc775321549c3d7,inconclusive,2,only 89% of the original's instructions ran
 0x7100714808,0722c41dde09ac2c8cbd44951f777767,inconclusive,2,1 of 6 conditional branches went only one way
 0x710074566c,67c91b4330ba18c0590fb900f7bc9740,pass,2,
+0x7100745bdc,cdec408383f1c17510ff1afcc2a5a1c6,pass,2,
 0x71007a6b58,2da895e7feb192806d52ac6370e56213,inconclusive,2,unresolved UnkElem_0x88::UnkElem_0x88(UnkElem_0x88&&)
 0x71008407fc,e4ae04b5fbd4537fcd68507779fffc0e,pass,2,
 0x71008449ec,da2c258a851d0aa3829478a40cad372d,inconclusive,2,unresolved base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id()::s_id (no address in the 
@@ -122,9 +123,11 @@ address,digest,verdict,rules,detail
 0x7100e5f348,dcdfcad342b3e7d50fd97268fa8aa213,inconclusive,2,only 83% of the original's instructions ran
 0x7100e6e850,1b283f0d4dfc7f5848a6fb6981118d23,inconclusive,2,2 of 7 conditional branches went only one way
 0x7100e8f6bc,f278d1f52b4ee78c5f3997bb16265075,inconclusive,2,only 98% of the original's instructions ran
+0x7100e906bc,95a477431a53bcdfe6f5aa55c859dac8,pass,2,
 0x7100e90e6c,b1468ac42000bf07715af95b4272dbfd,pass,2,
 0x7100e91d68,6f3c9de0dde0ceb5d24ca712cb2c8581,pass,2,
 0x7100e94e10,dc7011ed5cd98181dc653fe57e0684f3,pass,2,
+0x7100e9d6f8,743e3a93eeae5188c487d7e857f6594f,pass,2,
 0x7100eca5dc,056cff2f7069cf909a91ac97438182f9,inconclusive,2,only 83% of the original's instructions ran
 0x7100eca778,056cff2f7069cf909a91ac97438182f9,inconclusive,2,only 83% of the original's instructions ran
 0x7100ee4f84,105bfc17d8be1c6f6e47540cc8428d48,inconclusive,2,unresolved guard variable for GameManagerIdTable()::s_table (no address in the original)

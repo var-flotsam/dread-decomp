@@ -12,6 +12,7 @@ struct UnkNamedDef_b43a3;
 struct UnkMapData;
 struct UnkMapTimersView_b43a3;
 struct UnkMinimapOwner;
+struct UnkMinimapInput_b0200;
 struct UnkMinimapRect;
 struct UnkMmOwner_b0199;
 struct UnkRecord;
@@ -39,3 +40,5 @@ void fn_7100e9c43c(UnkMapData* map, const base::global::CStrId* id);
 void fn_7100e9cbac(void* world, const base::global::CStrId* current, base::global::CStrId* id, bool flag);
 extern UnkTunable g_unk_71727ca410;
 extern const f32 g_unk_710164be30;  // a margin of the minimap's cells (read only by minimap code)
+void fn_7100e94254(UnkMinimapInput_b0200* self);  // Reads the minimap's input queue.
+void fn_7100e9d7fc(UnkMapData* self);

@@ -3,10 +3,7 @@
 // +0x8 (count at +0x4; fn_7100744d90). Names and layouts are placeholders.
 #include "game/UnkTU272.h"
 #include "types.h"
-
-struct UnkUnit2560Element {
-    u8 data[0x190];
-};
+#include "game/UnkTU1159.h"
 
 struct UnkUnit2560Owner {
     u8 pad_0x0[0x18];
@@ -19,8 +16,6 @@ struct UnkUnit2560 {
     UnkUnit2560Element* data;     // 0x8
     UnkUnit2560Owner* owner;      // 0x10
 };
-
-void fn_7100744d90(UnkUnit2560Element* element);
 
 void fn_7100e1bc3c(UnkUnit2560* self) {
     if (self->owner)

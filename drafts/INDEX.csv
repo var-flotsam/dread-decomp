@@ -89,7 +89,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71007149f4,900,drafts/game/UnkTU1141/fn_71007149f4.cpp,operations,32.3,152,lean,
 0x7100744e4c,356,drafts/game/UnkTU1159/fn_7100744e4c.cpp,registers or order,98.9,1,overnight,
 0x71007452d0,216,drafts/game/UnkTU1159/fn_71007452d0.cpp,operations,85.2,8,pilot50,no-owner path merges with mode==1 path; operations differ in last block
-0x7100745bdc,128,drafts/game/UnkTU1161/fn_7100745bdc.cpp,registers or order,90.6,3,overnight,passes tools/equiv_test.py; held: 1 declaration problem: src/game/UnkTU1161/fn_7100745bdc.cpp:10 fn_7100744d90: void fn_7100744d90(UnkEntry_b0202*) -> signature differs from every existing one; copy one of these exactly: void fn_71...
 0x710077b638,204,drafts/game/UnkTU1176/fn_710077b638.cpp,control flow,94.1,3,overnight,
 0x710077ded0,520,drafts/game/CProtoCentralUnitComponent/fn_710077ded0.cpp,operations,96.9,4,overnight,
 0x71007b1094,448,drafts/game/CDemolitionBlockComponent/fn_71007b1094.cpp,build fails,,,test40,register pressure in guarded mask statics: extra callee-saved reg and frame size; rest matches modulo shift
@@ -149,12 +148,10 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100e5b944,324,drafts/game/UnkTU2563/fn_7100e5b944.cpp,operations,29.3,57,lean,
 0x7100e711dc,228,drafts/game/UnkTU2564/fn_7100e711dc.cpp,registers or order,96.5,2,overnight,
 0x7100e903ec,340,drafts/game/UnkTU2566/fn_7100e903ec.cpp,operations,75.3,21,pilot50,operations: orr operand order; fcsel order; fade branch layout
-0x7100e906bc,296,drafts/game/UnkTU2566/fn_7100e906bc.cpp,registers or order,93.2,5,overnight,passes tools/equiv_test.py; held: 1 declaration problem: src/game/UnkTU2566/fn_7100e906bc.cpp:76 fn_7100e94254: void fn_7100e94254(UnkMinimapOwner*) -> src/game/UnkTU2566/UnkTU2566_Minimap_ovb0200.cpp defines it with other types; c...
 0x7100e911c8,196,drafts/game/UnkTU2566/fn_7100e911c8.cpp,registers or order,98.0,1,overnight,
 0x7100e97c60,812,drafts/game/UnkTU2566/fn_7100e97c60.cpp,conditions,93.1,14,lean,
 0x7100e98090,408,drafts/game/UnkTU2566/fn_7100e98090.cpp,registers or order,43.1,58,pilot50,register assignment only; holds an empty barrier (without it: operations 41.2%)
 0x7100e9c06c,492,drafts/game/UnkTU2566/fn_7100e9c06c.cpp,registers or order,92.7,9,overnight,
-0x7100e9d6f8,260,drafts/game/UnkTU2566/fn_7100e9d6f8.cpp,registers or order,96.9,2,overnight,passes tools/equiv_test.py; held: 3 declaration problems: src/game/UnkTU2566/fn_7100e9d6f8.cpp:77 fn_7100de9bf8: const CStrId* fn_7100de9bf8(UnkGameManager*) -> declared in include/game/UnkTU2553.h: include that header and drop thi...
 0x7100ea1b94,484,drafts/game/UnkTU2566/fn_7100ea1b94.cpp,operations,14.9,99,pilot50,branch layout/loop merging differs; operations KIND
 0x7100ebfd4c,580,drafts/game/UnkTU2568/fn_7100ebfd4c.cpp,match,100.0,0,overnight,matches; held: copies fn_7100125a64; fn_710027a410 and fn_71002afcd8; whose types (Vec2; Mesh; Cell; Edge) are each file's own; so no unit header can take them (tools/decl_plan.py)
 0x7100ec6a6c,464,drafts/game/UnkTU2571/fn_7100ec6a6c.cpp,registers or order,92.2,9,overnight,

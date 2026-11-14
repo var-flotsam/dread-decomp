@@ -12,11 +12,14 @@
 #include "game/UnkCameraCtrl.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
+#include "game/UnkTU2566.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkXformNode.h"
 #include <new>
 
 #include "types.h"
+#include "game/CCharacterMovement.h"
 
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -28,8 +31,8 @@ struct UnkMinimapOwner;
 struct UnkMapData;
 struct UnkBox;
 struct UnkPlayer;
-UnkPlayer* fn_7100dec788(UnkGameManager*);
 struct UnkFlagged;
+void fn_7100e796c4(void* target, const UnkBox* box, const UnkBox* bounds);
 struct UnkShape;
 struct UnkTypedValue {
     const base::reflection::CType* type;
@@ -72,10 +75,6 @@ struct UnkMmOwner_b0199 {
     f32 cam[9];           // 0xd63d6c
 };
 
-const CStrId* fn_7100de9bf8(UnkGameManager* self);
-UnkShape* fn_7100976588(UnkFlagged* flagged);
-void fn_7100e94254(UnkMinimapOwner* self);
-extern const f32 g_unk_710164be30;
 
 struct UnkMmMap_b0199 {
     u8 unk_0x0[0x68];
@@ -86,6 +85,7 @@ struct UnkMmCamOwner2_b0199 {
     UnkMmMap_b0199* map;  // 0x68
 };
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_7100e906bc(UnkMmOwner_b0199* self) {
     f32* p = (f32*)((u8*)self + 0xd63d6c);
     UnkPlayer* player = fn_7100dec788(g_unk_7101d47310);
@@ -118,6 +118,43 @@ void fn_7100e906bc(UnkMmOwner_b0199* self) {
         p[1] = e2 * __builtin_floorf(dy / e2);
         p[1] = (e + map->origin[1]) + p[1];
     }
-    fn_7100e94254((UnkMinimapOwner*)self);
+    fn_7100e94254((UnkMinimapInput_b0200*)self);
+}
+
+
+struct UnkMmArg2_b0199 {
+    u8 unk_0x0[0x20];
+    bool field_0x20;
+};
+
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
+bool fn_7100e9d6f8(UnkMmOwner_b0199* self, UnkMmArg2_b0199* arg) {
+    if (fn_7100deac04(g_unk_7101d47310))
+        return false;
+    if (arg->field_0x20) {
+        const f32* p = (const f32*)((u8*)self + 0xd63d6c);
+        fn_7100e906bc(self);
+        f32 d0 = p[6] - p[0];
+        f32 d1 = p[7] - p[1];
+        f32 dist = d0 * d0 + d1 * d1;
+        f32 d2 = p[8] - p[2];
+        dist += d2 * d2;
+        if (dist < 160000.0f) {
+            f32 m = self->margin;
+            f32 lo_x = p[6] - m;
+            f32 lo_y = p[7] - m;
+            f32 lo2_x = p[0] - m;
+            f32 lo2_y = p[1] - m;
+            f32 hi_x = p[6] + m;
+            f32 hi_y = p[7] + m;
+            f32 hi2_x = p[0] + m;
+            f32 hi2_y = p[1] + m;
+            UnkMinimapRect box(lo_x < lo2_x ? lo_x : lo2_x, lo_y < lo2_y ? lo_y : lo2_y,
+                               hi_x > hi2_x ? hi_x : hi2_x, hi_y > hi2_y ? hi_y : hi2_y);
+            fn_7100e796c4((u8*)self + 0x118, (const UnkBox*)&box, (const UnkBox*)&box);
+        }
+    }
+    fn_7100e9d7fc((UnkMapData*)self);
+    return false;
 }
 
