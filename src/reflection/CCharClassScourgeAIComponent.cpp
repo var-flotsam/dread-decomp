@@ -20,13 +20,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassScourgeAIComponent
-const base::reflection::CClass* fn_7100699a74();
-const base::reflection::CClass* fn_7100708410();
+namespace CCharClassScourgeTongueSlashAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CTentacle { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassScourgeAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oScourgeTongueSlashAttackDef", true), fn_7100699a74(), 0x510, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("oTongue", true), fn_7100708410(), 0x608, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassScourgeTongueSlashAttack, "oScourgeTongueSlashAttackDef", 0x510);
+    DREAD_REFLECTED_CLASS_FIELD(CTentacle, "oTongue", 0x608);
     DREAD_REFLECTED_FIELD(f32, "fTentacleWidth", 0x648, (DefaultValue, 60.0f));
     DREAD_REFLECTED_FIELD(base::math::CVector3D, "vTentacleZAxisThreshold", 0x64c, (DefaultValue, base::math::CVector3D{-150.0f, 150.0f, 0.0f}));
     DREAD_REFLECTED_FIELD(f32, "fTongueCheckWidth", 0x658, (DefaultValue, 80.0f));

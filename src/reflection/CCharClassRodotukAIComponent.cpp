@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,15 +21,14 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassRodotukAIComponent
-extern base::reflection::CType g_unk_71726ff368;
-const base::reflection::CClass* fn_71006695e4();
+namespace CCharClassRodotukSuckAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassRodotukAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fBiteAnticipationDistance", 0x50c, (DefaultValue, 400.0f));
     DREAD_REFLECTED_FIELD(f32, "fBombForceExplosionDistance", 0x510, (DefaultValue, 50.0f));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("vAbsorbConfigs", true), &g_unk_71726ff368, 0x518, -1, -1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("oRodotukSuckAttackDef", true), fn_71006695e4(), 0x540, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("CCharClassRodotukAIComponent::TVAbsorbConfigs", "vAbsorbConfigs", 0x518);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassRodotukSuckAttack, "oRodotukSuckAttackDef", 0x540);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

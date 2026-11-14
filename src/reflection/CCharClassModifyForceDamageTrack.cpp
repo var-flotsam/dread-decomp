@@ -5,6 +5,8 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,15 +21,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassModifyForceDamageTrack
-extern base::reflection::CType g_unk_7172730580;
 namespace CCharClassModifyForceDamageTrack {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Modify Forced Damage");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Damage", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eForcedDamageMode", true), &g_unk_7172730580, 0x18, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_7172730580, 0);
+    DREAD_REFLECTED_FIELD_OF("EForcedDamageMode", "eForcedDamageMode", 0x18, (DefaultValue, 0));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

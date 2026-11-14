@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -48,11 +49,10 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassEventScenarioComponent, CCharClassComponent);
 
 // CEventScenarioComponent
-extern base::reflection::CType g_unk_717269bf08;
 namespace CEventScenarioComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("vEventActors", true), &g_unk_717269bf08, 0x108, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CGameLink<CActor>>", "vEventActors", 0x108);
     DREAD_REFLECTED_FIELD(CStrId, "sIdleAction", 0xd8);
     DREAD_REFLECTED_FIELD(CStrId, "sReactionAction", 0xe0);
     DREAD_REFLECTED_FIELD(CStrId, "sFinishedAction", 0xe8);

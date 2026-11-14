@@ -122,15 +122,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_ROOT_CLASS(CPattern);
 
 // CCharClassNailongAIComponent
-const base::reflection::CClass* fn_7100609a38();
-const base::reflection::CClass* fn_7100623c7c();
 extern base::reflection::CType g_unk_71726f5280;
 extern base::reflection::CType g_unk_71726f5eb8;
+namespace CCharClassNailongThornsAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassNailuggerAcidBallsAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassNailongAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oNailongThornsAttackDef", true), fn_7100609a38(), 0x510, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("oNailuggerAcidBallsAttackDef", true), fn_7100623c7c(), 0x638, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassNailongThornsAttack, "oNailongThornsAttackDef", 0x510);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassNailuggerAcidBallsAttack, "oNailuggerAcidBallsAttackDef", 0x638);
     DREAD_REFLECTED_FIELD(f32, "fTimeBetweenThornsAttack", 0x738, (DefaultValue, 2.0f));
     DREAD_REFLECTED_FIELD(f32, "fSteeringTargetReachDistance", 0x73c, (DefaultValue, 200.0f));
     DREAD_REFLECTED_FIELD(f32, "fSteeringCloseToTargetAccel", 0x740, (DefaultValue, 2.0f));

@@ -5,6 +5,8 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,16 +21,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CParallel
-extern base::reflection::CType g_unk_71726bbbb0;
 namespace behaviortree::CParallel {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eSuccessPolicy", true), &g_unk_71726bbbb0, 0x58, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_71726bbbb0, 0);
-    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("eFailurePolicy", true), &g_unk_71726bbbb0, 0x5c, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_71726bbbb0, 0);
-    field1->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
+    DREAD_REFLECTED_FIELD_OF("behaviortree::CParallel::EPolicy", "eSuccessPolicy", 0x58, (DefaultValue, 0), (Description, base::global::CRntString("")));
+    DREAD_REFLECTED_FIELD_OF("behaviortree::CParallel::EPolicy", "eFailurePolicy", 0x5c, (DefaultValue, 0), (Description, base::global::CRntString("")));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,13 +21,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CForcedMovementAreaComponent
-extern base::reflection::CType g_unk_717271fc20;
 namespace CForcedMovementAreaComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bForcedAreaOnce", 0x98, (DefaultValue, false));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("eForcedDirection", true), &g_unk_717271fc20, 0x40, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_717271fc20, 0);
+    DREAD_REFLECTED_FIELD_OF("CForcedMovementAreaComponent::EForcedDirection", "eForcedDirection", 0x40, (DefaultValue, 0));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

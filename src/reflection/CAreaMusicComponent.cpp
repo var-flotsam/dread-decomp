@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -22,7 +23,6 @@ using base::reflection::DestroyDestructorFirst;
 // CAreaMusicComponent
 void fn_71007161c4();
 void fn_7100715c7c(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_71729f1018;
 namespace CAreaMusicComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -40,12 +40,8 @@ void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sPreset_SetterFunction", true)))
         fn_7100715c7c(fn, "_sPreset_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sPreset");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("eEnterFadeType", true), &g_unk_71729f1018, 0xadc, -1, -1);
-    field5->attrs.Add<s32>(fn_7100075240(), &g_unk_71729f1018, 1);
-    field5->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("eExitFadeType", true), &g_unk_71729f1018, 0xae0, -1, -1);
-    field6->attrs.Add<s32>(fn_7100075240(), &g_unk_71729f1018, 1);
-    field6->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
+    DREAD_REFLECTED_FIELD_OF("EMusicFadeType", "eEnterFadeType", 0xadc, (DefaultValue, 1), (Description, base::global::CRntString("")));
+    DREAD_REFLECTED_FIELD_OF("EMusicFadeType", "eExitFadeType", 0xae0, (DefaultValue, 1), (Description, base::global::CRntString("")));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

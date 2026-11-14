@@ -8,6 +8,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -69,14 +70,11 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassKraidSpinningNailsAttack::CTunableCharClassKraidSpinningNailsAttack, base::tunable::CTunable);
 
 // CKraidSpinningNailsDef
-extern base::reflection::CType g_unk_71726f0b40;
-extern base::reflection::CType g_unk_71726f0ca0;
 namespace CKraidSpinningNailsDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eState", true), &g_unk_71726f0b40, 0x8, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("eSpeed", true), &g_unk_71726f0ca0, 0xc, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_71726f0ca0, 1);
+    DREAD_REFLECTED_FIELD_OF("ESpinningNailsState", "eState", 0x8);
+    DREAD_REFLECTED_FIELD_OF("ESpinningNailsSpeed", "eSpeed", 0xc, (DefaultValue, 1));
     DREAD_REFLECTED_FIELD(f32, "fAngle", 0x10, (DefaultValue, 45.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
@@ -104,12 +102,11 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_ROOT_CLASS(CKraidSpinningNailsDef);
 
 // CCharClassKraidSpinningNailsAttack
-extern base::reflection::CType g_unk_71726f1480;
 namespace CCharClassKraidSpinningNailsAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("tPatternsPhase1", true), &g_unk_71726f1480, 0xf0, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("tPatternsPhase2", true), &g_unk_71726f1480, 0x118, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>", "tPatternsPhase1", 0xf0);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>", "tPatternsPhase2", 0x118);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

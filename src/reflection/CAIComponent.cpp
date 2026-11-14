@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -27,7 +28,6 @@ void fn_71010f7d90(UnkReflFunction* fn, const char* name);
 void fn_71010f7f0c(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_717269bb48;
 extern base::reflection::CType g_unk_71727bc110;
-extern base::reflection::CType g_unk_7172a05bc8;
 extern base::reflection::CType g_unk_71727bb8e8;
 void fn_7101115c1c();
 void fn_71010f7fc0(UnkReflFunction* fn, const char* name);
@@ -62,7 +62,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fCutDistanceCounterClockwise", 0x13cc, (DefaultValue, -1.0f), (Description, "Desired navigable path cut distance [0,inf) for this ground enemy's only counter clockwise limit"));
     UnkReflField* field9 = fn_7100096524(cls, CStrId("wpPathToFollow", true), &g_unk_717269bb48, 0x1350, -1, -1);
     field9->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("tFallbackPaths", true), &g_unk_7172a05bc8, 0x1390, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<SFallBackPath>", "tFallbackPaths", 0x1390);
     UnkReflField* field11 = fn_7100096524(cls, CStrId("ePathType", true), &g_unk_71727bb8e8, 0x13b8, -1, -1);
     field11->attrs.Add<s32>(fn_7100075240(), &g_unk_71727bb8e8, 2);
     DREAD_REFLECTED_FIELD(bool, "bIndividualRequiresActivationPerception", 0x121c, (DefaultValue, false));

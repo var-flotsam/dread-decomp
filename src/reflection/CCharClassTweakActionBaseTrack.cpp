@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -24,7 +25,6 @@ void fn_7100d2c7f0();
 void fn_7100d2c1e8(UnkReflFunction* fn, const char* name);
 void fn_7100d2c880();
 void fn_7100d2c364(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_71727695f8;
 namespace CCharClassTweakActionBaseTrack {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Tweak Jump Ground Action");
@@ -54,8 +54,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bMaintainFrameUsePercentage", (DefaultValue, false));
     DREAD_REFLECTED_FIELD(f32, "fToFrame", 0x28, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fBlendTime", 0x2c, (DefaultValue, -1.0f));
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("oAditionalActionInsertFlags", true), &g_unk_71727695f8, 0x30, -1, -1);
-    field5->attrs.Add<s32>(fn_7100075240(), &g_unk_71727695f8, 0);
+    DREAD_REFLECTED_FIELD_OF("TActionInsertFlagset", "oAditionalActionInsertFlags", 0x30, (DefaultValue, 0));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

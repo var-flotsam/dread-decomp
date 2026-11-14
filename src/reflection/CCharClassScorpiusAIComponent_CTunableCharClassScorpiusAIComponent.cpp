@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,9 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassScorpiusAIComponent::CTunableCharClassScorpiusAIComponent
 extern bool g_unk_7172703ee8;
-extern base::reflection::CType g_unk_7172703d20;
-extern base::reflection::CType g_unk_7101d679f0;
-extern base::reflection::CType g_unk_7101d55008;
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172703e88;
 void fn_710068f380(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -35,11 +33,7 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172703ee8 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eForceOpticCamouflageDisabledMode", true), &g_unk_7172703d20, 0xffffffff, -1, -1);
-    field0->attrs.Add<bool>(fn_7100093390(), true);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field0->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_FIELD_OF("EForceOpticCamouflageMode", "eForceOpticCamouflageDisabledMode", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(s32, "iInitialStage", 0x24, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(f32, "fMaskLife", 0x28, (DefaultValue, 1000.0f), (ShowInConfig, true), (ShowInDevConfig, true), (Description, "Scorpius mask life"), (MinValue, 0.0f), (MaxValue, 100000.0f), (ControlFloatStep, 10.0f), (InternalTag, "Bosses"), (InternalDevTag, "Bosses|Scorpius"));
     DREAD_REFLECTED_FIELD(f32, "fHeadPosInterpolationSpeed", 0x2c, (DefaultValue, 2.0f), (ShowInDevConfig, true), (Description, "Scorpius head pos interpolation speed"), (MinValue, 0.1f), (MaxValue, 10.0f), (ControlFloatStep, 0.1f), (InternalDevTag, "Bosses|Scorpius"));
@@ -88,26 +82,26 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassScorpiusAIComponent::CTunableCharClassScorpiusAIComponent, base::tunable::CTunable);
 
 // CCharClassScorpiusAIComponent
-const base::reflection::CClass* fn_710068532c();
-const base::reflection::CClass* fn_71006832dc();
-const base::reflection::CClass* fn_7100681f9c();
-const base::reflection::CClass* fn_710067e2b4();
-const base::reflection::CClass* fn_710068459c();
-const base::reflection::CClass* fn_7100680bbc();
-const base::reflection::CClass* fn_710067fd4c();
-const base::reflection::CClass* fn_710067ef9c();
-const base::reflection::CClass* fn_71008c1b4c();
+namespace CCharClassScorpiusDefensiveSpikeBallPrickAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassScorpiusDraggedBallPrickAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassScorpiusMovingPoisonousGasAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassScorpiusPoisonousGasAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassScorpiusPoisonousSpitAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassScorpiusSpikeBallPrickAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassScorpiusTailSmashAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassScorpiusWhiplashAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CDamageSourceFactor { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassScorpiusAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oWhiplashAttackDef", true), fn_710068532c(), 0x628, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("oSpikeBallPrickAttackDef", true), fn_71006832dc(), 0x720, -1, -1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("oPoisonousSpitAttackDef", true), fn_7100681f9c(), 0x820, -1, -1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("oDefensiveSpikeBallPrickAttackDef", true), fn_710067e2b4(), 0x918, -1, -1);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("oTailSmashAttackDef", true), fn_710068459c(), 0xa10, -1, -1);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("oPoisonousGasAttackDef", true), fn_7100680bbc(), 0xb08, -1, -1);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("oMovingPoisonousGasAttackDef", true), fn_710067fd4c(), 0xc10, -1, -1);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("oDraggedBallPrickAttackDef", true), fn_710067ef9c(), 0xd18, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassScorpiusWhiplashAttack, "oWhiplashAttackDef", 0x628);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassScorpiusSpikeBallPrickAttack, "oSpikeBallPrickAttackDef", 0x720);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassScorpiusPoisonousSpitAttack, "oPoisonousSpitAttackDef", 0x820);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassScorpiusDefensiveSpikeBallPrickAttack, "oDefensiveSpikeBallPrickAttackDef", 0x918);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassScorpiusTailSmashAttack, "oTailSmashAttackDef", 0xa10);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassScorpiusPoisonousGasAttack, "oPoisonousGasAttackDef", 0xb08);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassScorpiusMovingPoisonousGasAttack, "oMovingPoisonousGasAttackDef", 0xc10);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassScorpiusDraggedBallPrickAttack, "oDraggedBallPrickAttackDef", 0xd18);
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sHeadMovementFunction", 0x528, (DefaultValue, base::global::CRntString("22si")));
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sTailMovementFunction", 0x558, (DefaultValue, base::global::CRntString("22si")));
     DREAD_REFLECTED_FIELD(f32, "fTailMinTimeToChange", 0x588, (DefaultValue, 3.0f));
@@ -118,7 +112,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTimeRegenTailFastMovement", 0x5a4, (DefaultValue, 0.8f));
     DREAD_REFLECTED_FIELD(f32, "fTimeRegenTailMovementTransitionFactor", 0x5a8, (DefaultValue, 2.0f));
     DREAD_REFLECTED_FIELD(f32, "fTailHeightInterpolationSpeed", 0x5ac, (DefaultValue, 0.5f));
-    UnkReflField* field18 = fn_7100096524(cls, CStrId("oGrabDamageSourceFactor", true), fn_71008c1b4c(), 0x5b8, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CDamageSourceFactor, "oGrabDamageSourceFactor", 0x5b8);
     DREAD_REFLECTED_FIELD(f32, "fHeadMaxSpeed", 0x5b0, (DefaultValue, 1.2f));
     DREAD_REFLECTED_FIELD(f32, "fHeadMinSpeed", 0x5b4, (DefaultValue, 0.8f));
 }

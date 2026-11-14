@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,9 +21,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // GUI::CList
-extern base::reflection::CType g_unk_7101d679f0;
-extern base::reflection::CType g_unk_7101d55008;
-extern base::reflection::CType g_unk_7172a0d1b8;
 namespace GUI::CList {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -32,11 +30,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "Autoselect", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(CStrId, "ItemRendererType", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(s32, "NumItemRenderers", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("eButtonsTextAlignment", true), &g_unk_7172a0d1b8, 0xffffffff, -1, -1);
-    field6->attrs.Add<bool>(fn_7100093390(), true);
-    field6->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field6->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field6->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_FIELD_OF("GUI::CButton::TextAlign", "eButtonsTextAlignment", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(s32, "iMaxItemNum", 0x238, (DefaultValue, 10));
     DREAD_REFLECTED_FIELD(bool, "bDebugBehaviour", 0x260, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bVerticalLayout", 0x261, (DefaultValue, true));

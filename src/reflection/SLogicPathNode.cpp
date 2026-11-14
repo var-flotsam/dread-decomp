@@ -8,6 +8,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -79,7 +80,6 @@ void fn_710105d328();
 void fn_710105d188(UnkReflFunction* fn);
 void fn_7101055bf4(UnkReflFunction* fn, const char* name);
 void fn_7101055d70(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_71729fe538;
 namespace SLogicSubPath {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -129,14 +129,7 @@ void refl_AddFields(CClass* cls) {
         fn_710009ae5c(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
     }
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("tNodes", true), &g_unk_71729fe538, 0x8, -1, -1);
-    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("LogicPathNode"));
-    field0->attrs.Add<bool>(fn_7100090a20(), false);
-    field0->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateElement", true));
-    field0->attrs.Add<CStrId>(fn_710008fe70(), CStrId("InsertElement", true));
-    field0->attrs.Add<CStrId>(fn_710008fc50(), CStrId("EraseElement", true));
-    field0->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeleteElement", true));
-    field0->attrs.Add<CStrId>(fn_710008ff80(), CStrId("AfterNodesDeserialization", true));
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<SLogicPathNode>", "tNodes", 0x8, (Description, base::global::CRntString("LogicPathNode")), (EditorVisible, false), (CreateElement, CStrId("CreateElement", true)), (InsertElement, CStrId("InsertElement", true)), (EraseElement, CStrId("EraseElement", true)), (DeleteElement, CStrId("DeleteElement", true)), (AfterElementDeserialization, CStrId("AfterNodesDeserialization", true)));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -163,11 +156,10 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(SLogicSubPath, ISubPath);
 
 // SLogicPath
-extern base::reflection::CType g_unk_71729fe930;
 namespace SLogicPath {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("tSubPaths", true), &g_unk_71729fe930, 0x10, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<SLogicSubPath>", "tSubPaths", 0x10);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

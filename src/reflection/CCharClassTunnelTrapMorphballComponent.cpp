@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -50,13 +51,12 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassTunnelTrapMorphballComponent, CCharClassComponent);
 
 // CTunnelTrapMorphballComponent
-extern base::reflection::CType g_unk_717269bf08;
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100a44fc0();
 namespace CTunnelTrapMorphballComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("aVignettes", true), &g_unk_717269bf08, 0xa8, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CGameLink<CActor>>", "aVignettes", 0xa8);
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetOpenState", true))) {
             fn->name = base::global::UnkStrId("SetOpenState", true);

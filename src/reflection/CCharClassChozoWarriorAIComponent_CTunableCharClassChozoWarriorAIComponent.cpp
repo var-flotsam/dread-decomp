@@ -71,15 +71,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassChozoWarriorAIComponent::CTunableCharClassChozoWarriorAIComponent, base::tunable::CTunable);
 
 // CCharClassChozoWarriorAIComponent
-const base::reflection::CClass* fn_710049219c();
-const base::reflection::CClass* fn_7100492e70();
-const base::reflection::CClass* fn_7100491578();
+namespace CCharClassChozoWarriorDeflectorShieldAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassChozoWarriorGlaiveSpinAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassChozoWarriorGlaiveWalljumpAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassChozoWarriorAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oChozoWarriorGlaiveSpinAttackDef", true), fn_710049219c(), 0x528, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("oChozoWarriorGlaiveWalljumpAttackDef", true), fn_7100492e70(), 0x618, -1, -1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("oChozoWarriorDeflectorShieldAttackDef", true), fn_7100491578(), 0x708, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassChozoWarriorGlaiveSpinAttack, "oChozoWarriorGlaiveSpinAttackDef", 0x528);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassChozoWarriorGlaiveWalljumpAttack, "oChozoWarriorGlaiveWalljumpAttackDef", 0x618);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassChozoWarriorDeflectorShieldAttack, "oChozoWarriorDeflectorShieldAttackDef", 0x708);
     DREAD_REFLECTED_FIELD(bool, "bUsesShield", 0x7f8, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(f32, "fTargetMinDistanceToFloorToForceGlaiveSpinAttack", 0x7fc, (DefaultValue, 450.0f));
     DREAD_REFLECTED_FIELD(f32, "fGlaiveSpinAttackOffsetDistanceIfTargetOnAir", 0x800, (DefaultValue, 250.0f));

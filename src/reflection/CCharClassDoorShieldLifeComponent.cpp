@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,14 +21,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassDoorShieldLifeComponent
-extern base::reflection::CType g_unk_7172731ec8;
 namespace CCharClassDoorShieldLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bDisolveByMaterial", 0x11c, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(f32, "fTimeToStartDisolve", 0x120, (DefaultValue, 0.0f));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("eDoorShieldType", true), &g_unk_7172731ec8, 0x124, -1, -1);
-    field2->attrs.Add<s32>(fn_7100075240(), &g_unk_7172731ec8, 2147483647);
+    DREAD_REFLECTED_FIELD_OF("CDoorShieldLifeComponent::EDoorsShieldType", "eDoorShieldType", 0x124, (DefaultValue, 2147483647));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

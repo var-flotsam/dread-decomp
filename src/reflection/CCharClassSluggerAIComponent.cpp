@@ -20,11 +20,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassSluggerAIComponent
-const base::reflection::CClass* fn_71006bf2f4();
+namespace CCharClassSluggerSpitAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassSluggerAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oSluggerSpitAttackDef", true), fn_71006bf2f4(), 0x510, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassSluggerSpitAttack, "oSluggerSpitAttackDef", 0x510);
     DREAD_REFLECTED_FIELD(CStrId, "sAcidBallCharClass", 0x640, (DefaultValue, CStrId("sluggeracidball", true)));
     DREAD_REFLECTED_FIELD(f32, "fAttackReachableHeight", 0x648, (DefaultValue, 400.0f));
     DREAD_REFLECTED_FIELD(f32, "fBallTrajectoryCheckRadius", 0x64c, (DefaultValue, 20.0f));

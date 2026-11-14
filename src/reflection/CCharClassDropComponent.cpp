@@ -20,7 +20,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassDropComponent
-const base::reflection::CClass* fn_71007c6784();
+namespace SDropProbabilities { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassDropComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -35,8 +35,8 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fXCellDropTime", 0x74, (DefaultValue, 0.1f));
     DREAD_REFLECTED_FIELD(f32, "fXCellDropRotationAngSpeed", 0x78, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(CStrId, "sXParasiteTypeMask", 0x80, (DefaultValue, CStrId("ALL", true)));
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("oDropProbabilities", true), fn_71007c6784(), 0x88, -1, -1);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("oMeleeChargeShotDropProbabilities", true), fn_71007c6784(), 0x118, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(SDropProbabilities, "oDropProbabilities", 0x88);
+    DREAD_REFLECTED_CLASS_FIELD(SDropProbabilities, "oMeleeChargeShotDropProbabilities", 0x118);
     DREAD_REFLECTED_FIELD(bool, "bSkipUsefulItemsRule", 0x1a8, (DefaultValue, false));
 }
 bool refl_Equals(const void*, const void*) { return false; }

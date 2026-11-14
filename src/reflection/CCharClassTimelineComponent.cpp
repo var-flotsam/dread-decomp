@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,14 +21,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassTimelineComponent
-extern base::reflection::CType g_unk_7172746d98;
 extern base::reflection::CType g_unk_7101d580f0;
 namespace CCharClassTimelineComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sInitAction", 0x60, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("eNextPolicy", true), &g_unk_7172746d98, 0x58, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_7172746d98, 0);
+    DREAD_REFLECTED_FIELD_OF("CTimelineComponent::ENextPolicy", "eNextPolicy", 0x58, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(f32, "fMinDelayTime", 0x68, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxDelayTime", 0x6c, (DefaultValue, 0.0f));
     UnkReflField* field4 = fn_7100096524(cls, CStrId("eLayerInFrustumToLaunchInRandomDelayPolicy", true), &g_unk_7101d580f0, 0x70, -1, -1);

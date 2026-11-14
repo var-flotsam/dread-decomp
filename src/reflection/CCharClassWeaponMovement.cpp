@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -24,11 +25,8 @@ void fn_7100ab3a44();
 void fn_7100ab342c(UnkReflFunction* fn, const char* name);
 void fn_7100ab3af0();
 void fn_7100ab35a8(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7172730420;
-extern base::reflection::CType g_unk_7172730858;
 void fn_7100ab3bb4();
 void fn_7100ab3724(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7172730580;
 namespace CCharClassWeaponMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -52,12 +50,8 @@ void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sDamageSource_SetterFunction", true)))
         fn_7100ab35a8(fn, "_m_sDamageSource_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::global::CRntString, "sDamageSource");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("eDamageType", true), &g_unk_7172730420, 0xcc, -1, -1);
-    field2->attrs.Add<s32>(fn_7100075240(), &g_unk_7172730420, 0);
-    field2->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("eDamageStrength", true), &g_unk_7172730858, 0xd0, -1, -1);
-    field3->attrs.Add<s32>(fn_7100075240(), &g_unk_7172730858, 0);
-    field3->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
+    DREAD_REFLECTED_FIELD_OF("EDamageType", "eDamageType", 0xcc, (DefaultValue, 0), (Description, base::global::CRntString("")));
+    DREAD_REFLECTED_FIELD_OF("EDamageStrength", "eDamageStrength", 0xd0, (DefaultValue, 0), (Description, base::global::CRntString("")));
     DREAD_REFLECTED_FIELD(f32, "fSpeed", 0xd4, (DefaultValue, 0.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sCollisionMask_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sCollisionMask_GetterFunction", true);
@@ -70,8 +64,7 @@ void refl_AddFields(CClass* cls) {
         fn_7100ab3724(fn, "_sCollisionMask_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sCollisionMask", (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(bool, "bWantsProcessBreakableTileHit", 0xe4, (DefaultValue, true));
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("eForcedDamageMode", true), &g_unk_7172730580, 0xe8, -1, -1);
-    field7->attrs.Add<s32>(fn_7100075240(), &g_unk_7172730580, 0);
+    DREAD_REFLECTED_FIELD_OF("EForcedDamageMode", "eForcedDamageMode", 0xe8, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(bool, "bSetHitPosOnCollisionProcessed", 0xec, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bAllowMultipleHitsToSameEntity", 0xed, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bIgnoreSamusCannonImpactDuringMelee", 0xee, (DefaultValue, true));

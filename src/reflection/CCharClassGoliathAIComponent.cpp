@@ -20,11 +20,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassGoliathAIComponent
-const base::reflection::CClass* fn_710058cb04();
+namespace CCharClassGoliathAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassGoliathAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oGoliathAttackDef", true), fn_710058cb04(), 0x530, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassGoliathAttack, "oGoliathAttackDef", 0x530);
     DREAD_REFLECTED_FIELD(f32, "fAnimSpeedMultiplier", 0x620, (DefaultValue, 1.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }

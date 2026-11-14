@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,16 +20,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CLogicPathComponent
-const base::reflection::CClass* fn_7101055ef0();
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100912888();
+namespace SLogicPath { const base::reflection::CClass* refl_GetClass(); }
 namespace CLogicPathComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("logicPath", true), fn_7101055ef0(), 0x30, -1, -1);
-    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("LogicPath"));
-    field0->attrs.Add<bool>(fn_7100234780(), true);
-    field0->attrs.Add<CStrId>(fn_710008ff80(), CStrId("AfterPathDeserialization", true));
+    DREAD_REFLECTED_CLASS_FIELD(SLogicPath, "logicPath", 0x30, (Description, base::global::CRntString("LogicPath")), (SetRenderItemSelectionIdCall, true), (AfterElementDeserialization, CStrId("AfterPathDeserialization", true)));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterPathDeserialization", true))) {
         fn->name = base::global::UnkStrId("AfterPathDeserialization", true);
         fn->return_type = &g_unk_7101d5af48;

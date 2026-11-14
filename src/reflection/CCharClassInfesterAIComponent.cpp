@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,18 +21,16 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassInfesterAIComponent
-const base::reflection::CClass* fn_71005c4db4();
-const base::reflection::CClass* fn_71005c49d4();
-extern base::reflection::CType g_unk_71726ec150;
+namespace CCharClassInfesterReloadAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassInfesterShootAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassInfesterAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTimeToReloadBeam", 0x50c, (DefaultValue, 20.0f));
     DREAD_REFLECTED_FIELD(CStrId, "sProjectileModelName", 0x510, (DefaultValue, "MESH_Projectile"));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("oInfesterShootAttackDef", true), fn_71005c4db4(), 0x520, -1, -1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("oInfesterReloadAttackDef", true), fn_71005c49d4(), 0x610, -1, -1);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("eSubspecies", true), &g_unk_71726ec150, 0x518, -1, -1);
-    field4->attrs.Add<s32>(fn_7100075240(), &g_unk_71726ec150, 2147483647);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassInfesterShootAttack, "oInfesterShootAttackDef", 0x520);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassInfesterReloadAttack, "oInfesterReloadAttackDef", 0x610);
+    DREAD_REFLECTED_FIELD_OF("CCharClassInfesterAIComponent::ESubspecies", "eSubspecies", 0x518, (DefaultValue, 2147483647));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

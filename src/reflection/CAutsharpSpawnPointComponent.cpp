@@ -5,6 +5,8 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,14 +21,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CAutsharpSpawnPointComponent
-extern base::reflection::CType g_unk_71727442b0;
 extern base::reflection::CType g_unk_717269bb48;
 extern base::reflection::CType g_unk_71727bc110;
 namespace CAutsharpSpawnPointComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eSpawnDir", true), &g_unk_71727442b0, 0x3b8, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_71727442b0, 2);
+    DREAD_REFLECTED_FIELD_OF("EAutsharpSpawnPointDir", "eSpawnDir", 0x3b8, (DefaultValue, 2));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("wpSpawnShape", true), &g_unk_717269bb48, 0x3c0, -1, -1);
     field1->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
 }

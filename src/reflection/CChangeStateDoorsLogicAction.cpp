@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,11 +21,10 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CChangeStateDoorsLogicAction
-extern base::reflection::CType g_unk_7172748d20;
 namespace CChangeStateDoorsLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("vDoorStateInfo", true), &g_unk_7172748d20, 0x10, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<DoorStateInfo>", "vDoorStateInfo", 0x10);
     DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x38, (DefaultValue, false));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

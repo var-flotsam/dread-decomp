@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,15 +21,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CAllowCoolShinesparkLogicAction
-extern base::reflection::CType g_unk_7172747758;
-extern base::reflection::CType g_unk_7172747b50;
 namespace CAllowCoolShinesparkLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("lstAllowedDirections", true), &g_unk_7172747758, 0x10, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Allow Cool Shinespark when travelling towards these directions");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("lstAllowedSituations", true), &g_unk_7172747b50, 0x38, -1, -1);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "These are the situations we're in");
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<EShinesparkTravellingDirection>", "lstAllowedDirections", 0x10, (Description, "Allow Cool Shinespark when travelling towards these directions"));
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<ECoolShinesparkSituation>", "lstAllowedSituations", 0x38, (Description, "These are the situations we're in"));
     DREAD_REFLECTED_FIELD(CStrId, "sCoolShinesparkId", 0x60, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Identifier of this Cool Shinespark situation, used to disable it when successfully completed"));
     DREAD_REFLECTED_FIELD(bool, "bAllow", 0x68, (DefaultValue, true), (Description, "Whether Cool Shinespark is allowed"));
     DREAD_REFLECTED_FIELD(bool, "bForce", 0x69, (DefaultValue, false), (Description, "Force allow/forbid Cool Shinespark"));

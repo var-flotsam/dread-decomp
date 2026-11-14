@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,17 +21,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // msapi::material::SAlpha
-extern base::reflection::CType g_unk_7101d679f0;
-extern base::reflection::CType g_unk_716e34bc10;
 namespace msapi::material::SAlpha {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Alpha Test");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x8, (DefaultValue, false), (Persistence, 1));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("eFunction", true), &g_unk_716e34bc10, 0xc, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_716e34bc10, 6);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
+    DREAD_REFLECTED_FIELD_OF("msapi::api::types::cmpMode::ECmpMode", "eFunction", 0xc, (DefaultValue, 6), (Persistence, 1));
     DREAD_REFLECTED_FIELD(f32, "fRef", 0x10, (DefaultValue, 0.5f), (Persistence, 1));
 }
 bool refl_Equals(const void*, const void*) { return false; }
@@ -58,23 +55,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(msapi::material::SAlpha, base::core::CBaseObject);
 
 // msapi::material::SBlend
-extern base::reflection::CType g_unk_716e34b8b0;
-extern base::reflection::CType g_unk_716e34b9d0;
 namespace msapi::material::SBlend {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Alpha Blend");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x8, (DefaultValue, false), (Persistence, 1));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("eOp", true), &g_unk_716e34b8b0, 0xc, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_716e34b8b0, 0);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("eSrc", true), &g_unk_716e34b9d0, 0x10, -1, -1);
-    field2->attrs.Add<s32>(fn_7100075240(), &g_unk_716e34b9d0, 1);
-    field2->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("eDst", true), &g_unk_716e34b9d0, 0x14, -1, -1);
-    field3->attrs.Add<s32>(fn_7100075240(), &g_unk_716e34b9d0, 0);
-    field3->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
+    DREAD_REFLECTED_FIELD_OF("msapi::api::types::blendOp::EBlendOp", "eOp", 0xc, (DefaultValue, 0), (Persistence, 1));
+    DREAD_REFLECTED_FIELD_OF("msapi::api::types::blendFactor::EBlendFactor", "eSrc", 0x10, (DefaultValue, 1), (Persistence, 1));
+    DREAD_REFLECTED_FIELD_OF("msapi::api::types::blendFactor::EBlendFactor", "eDst", 0x14, (DefaultValue, 0), (Persistence, 1));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -101,15 +90,12 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(msapi::material::SBlend, base::core::CBaseObject);
 
 // msapi::material::SCull
-extern base::reflection::CType g_unk_716e34baf0;
 namespace msapi::material::SCull {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Backface Culling");
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eMode", true), &g_unk_716e34baf0, 0x8, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_716e34baf0, 2);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
+    DREAD_REFLECTED_FIELD_OF("msapi::api::types::cullMode::ECullMode", "eMode", 0x8, (DefaultValue, 2), (Persistence, 1));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -136,7 +122,6 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(msapi::material::SCull, base::core::CBaseObject);
 
 // msapi::material::SStencil
-extern base::reflection::CType g_unk_716e34bd30;
 namespace msapi::material::SStencil {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Stencil Operation");
@@ -145,21 +130,11 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x8, (DefaultValue, false), (Persistence, 1));
     DREAD_REFLECTED_FIELD(u32, "uMask", 0xc, (DefaultValue, u32(0xffffffffu)), (Persistence, 1));
     DREAD_REFLECTED_FIELD(u32, "uRef", 0x10, (DefaultValue, u32(0xffffffffu)), (Persistence, 1));
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("eStencilFail", true), &g_unk_716e34bd30, 0x14, -1, -1);
-    field3->attrs.Add<s32>(fn_7100075240(), &g_unk_716e34bd30, 0);
-    field3->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("eStencilPass", true), &g_unk_716e34bd30, 0x18, -1, -1);
-    field4->attrs.Add<s32>(fn_7100075240(), &g_unk_716e34bd30, 0);
-    field4->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("eStencilDepthFail", true), &g_unk_716e34bd30, 0x1c, -1, -1);
-    field5->attrs.Add<s32>(fn_7100075240(), &g_unk_716e34bd30, 0);
-    field5->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("eStencilDepthPass", true), &g_unk_716e34bd30, 0x20, -1, -1);
-    field6->attrs.Add<s32>(fn_7100075240(), &g_unk_716e34bd30, 0);
-    field6->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("eStencilCmpMode", true), &g_unk_716e34bc10, 0x24, -1, -1);
-    field7->attrs.Add<s32>(fn_7100075240(), &g_unk_716e34bc10, 4);
-    field7->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
+    DREAD_REFLECTED_FIELD_OF("msapi::api::types::stencilOp::EStencilOp", "eStencilFail", 0x14, (DefaultValue, 0), (Persistence, 1));
+    DREAD_REFLECTED_FIELD_OF("msapi::api::types::stencilOp::EStencilOp", "eStencilPass", 0x18, (DefaultValue, 0), (Persistence, 1));
+    DREAD_REFLECTED_FIELD_OF("msapi::api::types::stencilOp::EStencilOp", "eStencilDepthFail", 0x1c, (DefaultValue, 0), (Persistence, 1));
+    DREAD_REFLECTED_FIELD_OF("msapi::api::types::stencilOp::EStencilOp", "eStencilDepthPass", 0x20, (DefaultValue, 0), (Persistence, 1));
+    DREAD_REFLECTED_FIELD_OF("msapi::api::types::cmpMode::ECmpMode", "eStencilCmpMode", 0x24, (DefaultValue, 4), (Persistence, 1));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -193,9 +168,7 @@ void refl_AddAttributes(CClass* cls) {
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bTest", 0x8, (DefaultValue, true), (Persistence, 1));
     DREAD_REFLECTED_FIELD(bool, "bWrite", 0x9, (DefaultValue, true), (Persistence, 1));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("eTestMode", true), &g_unk_716e34bc10, 0xc, -1, -1);
-    field2->attrs.Add<s32>(fn_7100075240(), &g_unk_716e34bc10, 4);
-    field2->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
+    DREAD_REFLECTED_FIELD_OF("msapi::api::types::cmpMode::ECmpMode", "eTestMode", 0xc, (DefaultValue, 4), (Persistence, 1));
     DREAD_REFLECTED_FIELD(bool, "bZPrepass", 0x10, (DefaultValue, true), (Persistence, 1));
 }
 bool refl_Equals(const void*, const void*) { return false; }
@@ -223,15 +196,12 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(msapi::material::SDepth, base::core::CBaseObject);
 
 // msapi::material::SFill
-extern base::reflection::CType g_unk_716e34c090;
 namespace msapi::material::SFill {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Fill Mode");
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eFillMode", true), &g_unk_716e34c090, 0x8, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_716e34c090, 0);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
+    DREAD_REFLECTED_FIELD_OF("msapi::api::types::fillMode::EFillMode", "eFillMode", 0x8, (DefaultValue, 0), (Persistence, 1));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -258,6 +228,7 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(msapi::material::SFill, base::core::CBaseObject);
 
 // msapi::material::SConstant
+extern base::reflection::CType g_unk_7101d679f0;
 const base::reflection::CType* fn_7100008500();
 namespace msapi::material::SConstant {
 void refl_AddAttributes(CClass* cls) {
@@ -294,15 +265,12 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(msapi::material::SConstant, base::core::CBaseObject);
 
 // msapi::material::SStage
-extern base::reflection::CType g_unk_716e34af70;
 namespace msapi::material::SStage {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Surface Material Stage");
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eType", true), &g_unk_716e34af70, 0x8, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_716e34af70, 2147483647);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
+    DREAD_REFLECTED_FIELD_OF("msapi::api::shdr::EShaderType", "eType", 0x8, (DefaultValue, 2147483647), (Persistence, 1));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -329,8 +297,6 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(msapi::material::SStage, base::core::CBaseObject);
 
 // msapi::material::STexture
-extern base::reflection::CType g_unk_716e34bf70;
-extern base::reflection::CType g_unk_716e34be50;
 namespace msapi::material::STexture {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Texture");
@@ -341,24 +307,12 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sType", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)), (Persistence, 1));
     DREAD_REFLECTED_FIELD(s32, "iSlot", 0x20, (DefaultValue, -1), (Persistence, 1));
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAddress", 0x28, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)), (Persistence, 1));
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("eMinFilter", true), &g_unk_716e34bf70, 0x30, -1, -1);
-    field5->attrs.Add<s32>(fn_7100075240(), &g_unk_716e34bf70, 0);
-    field5->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("eMagFilter", true), &g_unk_716e34bf70, 0x34, -1, -1);
-    field6->attrs.Add<s32>(fn_7100075240(), &g_unk_716e34bf70, 0);
-    field6->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("eMipFilter", true), &g_unk_716e34bf70, 0x38, -1, -1);
-    field7->attrs.Add<s32>(fn_7100075240(), &g_unk_716e34bf70, 0);
-    field7->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("eCompMode", true), &g_unk_716e34bc10, 0x3c, -1, -1);
-    field8->attrs.Add<s32>(fn_7100075240(), &g_unk_716e34bc10, 1);
-    field8->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("eWrapModeU", true), &g_unk_716e34be50, 0x40, -1, -1);
-    field9->attrs.Add<s32>(fn_7100075240(), &g_unk_716e34be50, 0);
-    field9->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("eWrapModeV", true), &g_unk_716e34be50, 0x44, -1, -1);
-    field10->attrs.Add<s32>(fn_7100075240(), &g_unk_716e34be50, 0);
-    field10->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
+    DREAD_REFLECTED_FIELD_OF("msapi::api::types::textureFilter::ETextureFilter", "eMinFilter", 0x30, (DefaultValue, 0), (Persistence, 1));
+    DREAD_REFLECTED_FIELD_OF("msapi::api::types::textureFilter::ETextureFilter", "eMagFilter", 0x34, (DefaultValue, 0), (Persistence, 1));
+    DREAD_REFLECTED_FIELD_OF("msapi::api::types::textureFilter::ETextureFilter", "eMipFilter", 0x38, (DefaultValue, 0), (Persistence, 1));
+    DREAD_REFLECTED_FIELD_OF("msapi::api::types::cmpMode::ECmpMode", "eCompMode", 0x3c, (DefaultValue, 1), (Persistence, 1));
+    DREAD_REFLECTED_FIELD_OF("msapi::api::types::textureAddress::ETextureAddress", "eWrapModeU", 0x40, (DefaultValue, 0), (Persistence, 1));
+    DREAD_REFLECTED_FIELD_OF("msapi::api::types::textureAddress::ETextureAddress", "eWrapModeV", 0x44, (DefaultValue, 0), (Persistence, 1));
     DREAD_REFLECTED_FIELD(u32, "uBorderColor", 0x48, (DefaultValue, u32(0xffffffffu)), (Persistence, 1));
     DREAD_REFLECTED_FIELD(f32, "fMinLod", 0x4c, (DefaultValue, 0.0f), (Persistence, 1));
     DREAD_REFLECTED_FIELD(f32, "fLodBias", 0x50, (DefaultValue, 0.0f), (Persistence, 1));
@@ -391,7 +345,6 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(msapi::material::STexture, base::core::CBaseObject);
 
 // msapi::material::CMaterial
-extern base::reflection::CType g_unk_716e352788;
 namespace msapi::material::CMaterial {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Surface Material");
@@ -399,9 +352,7 @@ void refl_AddAttributes(CClass* cls) {
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sId", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)), (Persistence, 1));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("eType", true), &g_unk_716e352788, 0x18, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_716e352788, 1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
+    DREAD_REFLECTED_FIELD_OF("msapi::material::ETranslucencyType", "eType", 0x18, (DefaultValue, 1), (Persistence, 1));
     DREAD_REFLECTED_FIELD(u32, "uRenderLayer", 0x1c, (DefaultValue, 31), (Persistence, 1));
     DREAD_REFLECTED_FIELD(CStrId, "sProgramName", 0x20, (DefaultValue, CStrId(g_unk_7101d470e0)), (Persistence, 1));
 }

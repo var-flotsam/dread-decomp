@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,24 +21,16 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CSwitchBetweenAIModesAction
-extern base::reflection::CType g_unk_717270dfd0;
-extern base::reflection::CType g_unk_71726bc130;
 namespace behaviortree::CSwitchBetweenAIModesAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sAnim", 0x30, (DefaultValue, ""), (Description, "Animation to set"));
     DREAD_REFLECTED_FIELD(CStrId, "sAnimProp", 0x40, (DefaultValue, ""), (Description, "Animation to set (from blackboard)"));
     DREAD_REFLECTED_FIELD(CStrId, "sTurnAnim", 0x38, (DefaultValue, ""), (Description, "Animation to set in case of turn to player is needed"));
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("ePrefixToAdd", true), &g_unk_717270dfd0, 0x48, -1, -1);
-    field3->attrs.Add<s32>(fn_7100075240(), &g_unk_717270dfd0, 0);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Animation prefix to add");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("ePrefixToRemove", true), &g_unk_717270dfd0, 0x4c, -1, -1);
-    field4->attrs.Add<s32>(fn_7100075240(), &g_unk_717270dfd0, 0);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Animation prefix to remove");
+    DREAD_REFLECTED_FIELD_OF("CAnimationPrefix::SPrefix::Enum", "ePrefixToAdd", 0x48, (DefaultValue, 0), (Description, "Animation prefix to add"));
+    DREAD_REFLECTED_FIELD_OF("CAnimationPrefix::SPrefix::Enum", "ePrefixToRemove", 0x4c, (DefaultValue, 0), (Description, "Animation prefix to remove"));
     DREAD_REFLECTED_FIELD(bool, "bWaitUntilActionEnds", 0x6b, (DefaultValue, true), (Description, "Keep running this node until action ends"));
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("eStatusIfCantSetAction", true), &g_unk_71726bc130, 0x50, -1, -1);
-    field6->attrs.Add<s32>(fn_7100075240(), &g_unk_71726bc130, 6);
-    field6->attrs.Add<const char*>(fn_7100007e80(), "Status to return if action can't be set");
+    DREAD_REFLECTED_FIELD_OF("behaviortree::SStatus::Enum", "eStatusIfCantSetAction", 0x50, (DefaultValue, 6), (Description, "Status to return if action can't be set"));
     DREAD_REFLECTED_FIELD(CStrId, "sTimelineStart", 0x58, (DefaultValue, ""), (Description, "Timeline to start"));
     DREAD_REFLECTED_FIELD(CStrId, "sTimelineEnd", 0x60, (DefaultValue, ""), (Description, "Timeline to end"));
     DREAD_REFLECTED_FIELD(bool, "bCheckIfSmartLink", 0x6c, (DefaultValue, false), (Description, "Check if is in smart link to switch modes"));

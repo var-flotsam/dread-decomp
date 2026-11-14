@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassNailongThornsAttack
-extern base::reflection::CType g_unk_71726f48e0;
 namespace CCharClassNailongThornsAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -32,8 +32,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sProjectile", 0x100, (DefaultValue, "nailongthorn"));
     DREAD_REFLECTED_FIELD(f32, "fBallGravity", 0x108, (DefaultValue, 4000.0f));
     DREAD_REFLECTED_FIELD(f32, "fBallInitialSpeed", 0x10c, (DefaultValue, 1000.0f));
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("eDepthornAttackType", true), &g_unk_71726f48e0, 0x110, -1, -1);
-    field8->attrs.Add<s32>(fn_7100075240(), &g_unk_71726f48e0, 2147483647);
+    DREAD_REFLECTED_FIELD_OF("CCharClassNailongThornsAttack::EDepthornAttackType", "eDepthornAttackType", 0x110, (DefaultValue, 2147483647));
     DREAD_REFLECTED_FIELD(f32, "fTimeBetweenThornsMin", 0x114, (DefaultValue, 0.03f));
     DREAD_REFLECTED_FIELD(f32, "fTimeBetweenThornsMax", 0x118, (DefaultValue, 0.08f));
     DREAD_REFLECTED_FIELD(bool, "bUseSineWavesInSequenceShoot", 0x11c, (DefaultValue, false));

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,13 +20,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // animtree::CAnimTreeRes
-const base::reflection::CClass* fn_71002d6464();
+namespace animtree::CAnimTreeDef { const base::reflection::CClass* refl_GetClass(); }
 namespace animtree::CAnimTreeRes {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x30200u);
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oAnimTreeDef", true), fn_71002d6464(), 0x58, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(animtree::CAnimTreeDef, "oAnimTreeDef", 0x58);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

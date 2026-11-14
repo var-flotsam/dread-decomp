@@ -8,6 +8,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -24,15 +25,12 @@ using base::reflection::DestroyDestructorFirst;
 // CSpawnPointComponent
 extern base::reflection::CType g_unk_717269bb48;
 extern base::reflection::CType g_unk_71727bc110;
-extern base::reflection::CType g_unk_7172a07528;
-extern base::reflection::CType g_unk_7172a073c8;
 extern base::reflection::CType g_unk_717269bf08;
 void fn_71011255e4(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_7101132780();
 void fn_71011327d8();
 void fn_7101125760(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7172a06cf0;
 void fn_71011328d8();
 void fn_7101132928();
 extern base::reflection::CType g_unk_7172a06930;
@@ -68,11 +66,9 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTimeOnAOIEndToUseAsMainAOI", 0x278, (DefaultValue, -1.0f));
     DREAD_REFLECTED_FIELD(f32, "fSpawnFromXCellProbability", 0x2bc, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fSpawnFromXCellProbabilityAfterFirst", 0x2c0, (DefaultValue, 0.0f));
-    UnkReflField* field19 = fn_7100096524(cls, CStrId("eXCellSpawnPositionMode", true), &g_unk_7172a07528, 0x2c4, -1, -1);
-    field19->attrs.Add<s32>(fn_7100075240(), &g_unk_7172a07528, 0);
+    DREAD_REFLECTED_FIELD_OF("CSpawnPointComponent::EXCellSpawnPositionMode", "eXCellSpawnPositionMode", 0x2c4, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(bool, "bUseDynamicSpawnPosition", 0x351, (DefaultValue, false));
-    UnkReflField* field21 = fn_7100096524(cls, CStrId("eDynamicSpawnPositionMode", true), &g_unk_7172a073c8, 0x354, -1, -1);
-    field21->attrs.Add<s32>(fn_7100075240(), &g_unk_7172a073c8, 1);
+    DREAD_REFLECTED_FIELD_OF("CSpawnPointComponent::EDynamicSpawnPositionMode", "eDynamicSpawnPositionMode", 0x354, (DefaultValue, 1));
     UnkReflField* field22 = fn_7100096524(cls, CStrId("tDynamicSpawnPositions", true), &g_unk_717269bf08, 0x358, -1, -1);
     field22->attrs.Add<bool>(fn_7100090090(), false);
     field22->attrs_0x70.Add<bool>(fn_710025dbb0(), true);
@@ -100,10 +96,7 @@ void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sCharClass_SetterFunction", true)))
         fn_7101125760(fn, "_sCharClass_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sCharClass", (DefaultValue, CStrId(g_unk_7101d470e0)), (EditorVisible, false));
-    UnkReflField* field26 = fn_7100096524(cls, CStrId("voActorBlueprint", true), &g_unk_7172a06cf0, 0x390, -1, -1);
-    field26->attrs.Add<const char*>(fn_710008fd60(), "AddNewActorBlueprintAt");
-    field26->attrs.Add<const char*>(fn_710008fb40(), "DeleteActorBlueprintAt");
-    field26->attrs.Add<const char*>(fn_710008ff80(), "AfterActorBlueprintDeserialization");
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CSpawnerActorBlueprint>", "voActorBlueprint", 0x390, (CreateElement, "AddNewActorBlueprintAt"), (DeleteElement, "DeleteActorBlueprintAt"), (AfterElementDeserialization, "AfterActorBlueprintDeserialization"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("Activate", true))) {
         fn->name = base::global::UnkStrId("Activate", true);
         fn->return_type = fn_7100014768();

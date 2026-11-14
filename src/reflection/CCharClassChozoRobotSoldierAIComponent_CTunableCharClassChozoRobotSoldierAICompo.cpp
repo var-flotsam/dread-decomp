@@ -78,27 +78,27 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassChozoRobotSoldierAIComponent::CTunableCharClassChozoRobotSoldierAIComponent, base::tunable::CTunable);
 
 // CCharClassChozoRobotSoldierAIComponent
-const base::reflection::CClass* fn_710045eb2c();
-const base::reflection::CClass* fn_7100461944();
-const base::reflection::CClass* fn_71004626bc();
-const base::reflection::CClass* fn_7100463c8c();
-const base::reflection::CClass* fn_7100968078();
-const base::reflection::CClass* fn_71002c6910();
-const base::reflection::CClass* fn_71008c1b4c();
+namespace CCharClassChozoRobotSoldierCannonShotAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassChozoRobotSoldierDashSlashAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassChozoRobotSoldierDisruptionFieldAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassChozoRobotSoldierUppercutAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CDamageSourceFactor { const base::reflection::CClass* refl_GetClass(); }
+namespace CEnemyMovementWalkingAnims { const base::reflection::CClass* refl_GetClass(); }
+namespace querysystem::CQuerySystemDef { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassChozoRobotSoldierAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oChozoRobotSoldierCannonShotAttackDef", true), fn_710045eb2c(), 0x528, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("oChozoRobotSoldierDashSlashAttackDef", true), fn_7100461944(), 0x640, -1, -1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("oChozoRobotSoldierDisruptionFieldAttackDef", true), fn_71004626bc(), 0x730, -1, -1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("oChozoRobotSoldierUppercutAttackDef", true), fn_7100463c8c(), 0x820, -1, -1);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("oRunningAnims", true), fn_7100968078(), 0x920, -1, -1);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("oShootingPositionQuerySystemDef", true), fn_71002c6910(), 0x960, -1, -1);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("oSelectedShootingPositionQuerySystemDef", true), fn_71002c6910(), 0x9b8, -1, -1);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("oNoPathFoundShootingPositionQuerySystemDef", true), fn_71002c6910(), 0xa10, -1, -1);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("oDamageSourceFactorElite", true), fn_71008c1b4c(), 0xa68, -1, -1);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("oDamageSourceFactorCrazy", true), fn_71008c1b4c(), 0xad8, -1, -1);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("oDamageSourceFactorCrazyElite", true), fn_71008c1b4c(), 0xb48, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassChozoRobotSoldierCannonShotAttack, "oChozoRobotSoldierCannonShotAttackDef", 0x528);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassChozoRobotSoldierDashSlashAttack, "oChozoRobotSoldierDashSlashAttackDef", 0x640);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassChozoRobotSoldierDisruptionFieldAttack, "oChozoRobotSoldierDisruptionFieldAttackDef", 0x730);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassChozoRobotSoldierUppercutAttack, "oChozoRobotSoldierUppercutAttackDef", 0x820);
+    DREAD_REFLECTED_CLASS_FIELD(CEnemyMovementWalkingAnims, "oRunningAnims", 0x920);
+    DREAD_REFLECTED_CLASS_FIELD(querysystem::CQuerySystemDef, "oShootingPositionQuerySystemDef", 0x960);
+    DREAD_REFLECTED_CLASS_FIELD(querysystem::CQuerySystemDef, "oSelectedShootingPositionQuerySystemDef", 0x9b8);
+    DREAD_REFLECTED_CLASS_FIELD(querysystem::CQuerySystemDef, "oNoPathFoundShootingPositionQuerySystemDef", 0xa10);
+    DREAD_REFLECTED_CLASS_FIELD(CDamageSourceFactor, "oDamageSourceFactorElite", 0xa68);
+    DREAD_REFLECTED_CLASS_FIELD(CDamageSourceFactor, "oDamageSourceFactorCrazy", 0xad8);
+    DREAD_REFLECTED_CLASS_FIELD(CDamageSourceFactor, "oDamageSourceFactorCrazyElite", 0xb48);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

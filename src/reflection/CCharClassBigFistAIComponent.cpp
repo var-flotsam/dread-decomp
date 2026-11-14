@@ -20,11 +20,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassBigFistAIComponent
-const base::reflection::CClass* fn_71003e1af4();
+namespace CCharClassBigFistAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassBigFistAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oBigFistAttackDef", true), fn_71003e1af4(), 0x530, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassBigFistAttack, "oBigFistAttackDef", 0x530);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

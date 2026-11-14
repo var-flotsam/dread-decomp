@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassSoundEvent
-extern base::reflection::CType g_unk_7108b6c9c8;
 namespace CCharClassSoundEvent {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Sound");
@@ -48,8 +48,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bStopOnEntityDead", 0x80, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(CStrId, "sSoundGroupId", 0x88, (DefaultValue, CStrId("DEFAULT", true)));
     DREAD_REFLECTED_FIELD(CStrId, "sType", 0x90, (DefaultValue, CStrId("N", true)));
-    UnkReflField* field21 = fn_7100096524(cls, CStrId("eSoundType", true), &g_unk_7108b6c9c8, 0x98, -1, -1);
-    field21->attrs.Add<s32>(fn_7100075240(), &g_unk_7108b6c9c8, 0);
+    DREAD_REFLECTED_FIELD_OF("base::snd::ESndType", "eSoundType", 0x98, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(bool, "bRumbleSync", 0x81, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(f32, "fRumbleGainOverride", 0x7c, (DefaultValue, -1.0f));
 }

@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassPlayTimelineTrack
-extern base::reflection::CType g_unk_7172733be8;
 namespace CCharClassPlayTimelineTrack {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Play Timeline");
@@ -30,8 +30,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sOnStartTimeline", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Main Timeline"));
     DREAD_REFLECTED_FIELD(CStrId, "sLoopTimeline", 0x20, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Main Timeline"), (Persistence, 0));
     DREAD_REFLECTED_FIELD(CStrId, "sOnEndTimeline", 0x28, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "On End Timeline"));
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("ePlayOnly", true), &g_unk_7172733be8, 0x30, -1, -1);
-    field3->attrs.Add<s32>(fn_7100075240(), &g_unk_7172733be8, 0);
+    DREAD_REFLECTED_FIELD_OF("CLiquidPoolBaseComponent::ELiquidType", "ePlayOnly", 0x30, (DefaultValue, 0));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

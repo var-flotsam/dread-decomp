@@ -5,6 +5,8 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,8 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CMinimapDef
 extern base::reflection::CType g_unk_7101d4ec50;
-extern base::reflection::CType g_unk_71727c7a78;
-extern base::reflection::CType g_unk_71727c7e70;
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100e6e81c();
 void fn_7100e6e850();
@@ -33,10 +33,8 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("oMinimapIconsMatLink", true), &g_unk_7101d4ec50, 0x60, -1, -1);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("oIconsNoMipsMatLink", true), &g_unk_7101d4ec50, 0x78, -1, -1);
     UnkReflField* field2 = fn_7100096524(cls, CStrId("oOverlayMatLink", true), &g_unk_7101d4ec50, 0x90, -1, -1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("mapIconDefs", true), &g_unk_71727c7a78, 0xa8, -1, -1);
-    field3->attrs.Add<const char*>(fn_710008ff80(), "AfterIconDefDeserialize");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("mapLabelDefs", true), &g_unk_71727c7e70, 0xd0, -1, -1);
-    field4->attrs.Add<const char*>(fn_710008ff80(), "AfterLabelDefDeserialize");
+    DREAD_REFLECTED_FIELD_OF("CMinimapDef::TMapIconDefs", "mapIconDefs", 0xa8, (AfterElementDeserialization, "AfterIconDefDeserialize"));
+    DREAD_REFLECTED_FIELD_OF("CMinimapDef::TMapLabelDefs", "mapLabelDefs", 0xd0, (AfterElementDeserialization, "AfterLabelDefDeserialize"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterIconDefDeserialize", true))) {
         fn->name = base::global::UnkStrId("AfterIconDefDeserialize", true);
         fn->return_type = &g_unk_7101d5af48;

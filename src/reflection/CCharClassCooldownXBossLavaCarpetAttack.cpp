@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,11 +21,10 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassCooldownXBossLavaCarpetAttack
-extern base::reflection::CType g_unk_71726d2758;
 namespace CCharClassCooldownXBossLavaCarpetAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("tPatterns", true), &g_unk_71726d2758, 0x100, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>", "tPatterns", 0x100);
     DREAD_REFLECTED_FIELD(f32, "fBreatheSpeedFactor", 0x128, (DefaultValue, 0.1f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToPuddleDamage", 0x12c, (DefaultValue, 1.0f));
 }

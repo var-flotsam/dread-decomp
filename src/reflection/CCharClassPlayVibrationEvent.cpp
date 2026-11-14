@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassPlayVibrationEvent
 extern CStrId* g_unk_7101d676d8[];
-extern base::reflection::CType g_unk_7101d58410;
 namespace CCharClassPlayVibrationEvent {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Play Vibration");
@@ -30,8 +30,7 @@ void refl_AddAttributes(CClass* cls) {
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sPath", 0x10, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)), (Extension, CStrId(*g_unk_7101d676d8[6])));
     DREAD_REFLECTED_FIELD(CStrId, "sNode", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("eType", true), &g_unk_7101d58410, 0x20, -1, -1);
-    field2->attrs.Add<s32>(fn_7100075240(), &g_unk_7101d58410, 2147483647);
+    DREAD_REFLECTED_FIELD_OF("base::input::ERumbleType", "eType", 0x20, (DefaultValue, 2147483647));
     DREAD_REFLECTED_FIELD(f32, "fAttMaxRange", 0x24, (DefaultValue, 2000.0f));
     DREAD_REFLECTED_FIELD(f32, "fAttMinRange", 0x28, (DefaultValue, 500.0f));
     DREAD_REFLECTED_FIELD(f32, "fGain", 0x2c, (DefaultValue, 1.0f));

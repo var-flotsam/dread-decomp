@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,13 +21,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CFreezeRoomComponent
-extern base::reflection::CType g_unk_7172745d60;
-extern base::reflection::CType g_unk_7172745ea0;
 namespace CFreezeRoomComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oFreezeConfig", true), &g_unk_7172745d60, 0xbe4, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("oCoolConfig", true), &g_unk_7172745ea0, 0xc00, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("CFreezeRoomConfig", "oFreezeConfig", 0xbe4);
+    DREAD_REFLECTED_FIELD_OF("CFreezeRoomCoolConfig", "oCoolConfig", 0xc00);
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sEnterZoneSound", 0xc20, (DefaultValue, base::global::CFilePathStrId(base::global::UnkStrIdInline{}, "levels/lava_pain_01.wav", true)));
     DREAD_REFLECTED_FIELD(CStrId, "sVisualPresetOverride", 0xc38, (DefaultValue, CStrId("ICEZONE", true)));
 }

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,21 +20,21 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassChozoWarriorXAIComponent
-const base::reflection::CClass* fn_710047c45c();
-const base::reflection::CClass* fn_710047febc();
-const base::reflection::CClass* fn_710047d5d8();
-const base::reflection::CClass* fn_710047b830();
-const base::reflection::CClass* fn_710047e440();
-const base::reflection::CClass* fn_710047f1b0();
+namespace CCharClassChozoWarriorXChangeWallAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassChozoWarriorXGlaiveSpinAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassChozoWarriorXLandAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassChozoWarriorXSpitAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassChozoWarriorXUltimateGrabAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassChozoWarriorXWallClimbAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassChozoWarriorXAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oChozoWarriorXGlaiveSpinAttackDef", true), fn_710047c45c(), 0x808, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("oChozoWarriorXWallClimbAttackDef", true), fn_710047febc(), 0x8f8, -1, -1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("oChozoWarriorXLandAttackDef", true), fn_710047d5d8(), 0x9e8, -1, -1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("oChozoWarriorXChangeWallAttackDef", true), fn_710047b830(), 0xad8, -1, -1);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("oChozoWarriorXSpitAttackDef", true), fn_710047e440(), 0xbc8, -1, -1);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("oChozoWarriorXUltimateGrabAttackDef", true), fn_710047f1b0(), 0xcb8, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassChozoWarriorXGlaiveSpinAttack, "oChozoWarriorXGlaiveSpinAttackDef", 0x808);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassChozoWarriorXWallClimbAttack, "oChozoWarriorXWallClimbAttackDef", 0x8f8);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassChozoWarriorXLandAttack, "oChozoWarriorXLandAttackDef", 0x9e8);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassChozoWarriorXChangeWallAttack, "oChozoWarriorXChangeWallAttackDef", 0xad8);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassChozoWarriorXSpitAttack, "oChozoWarriorXSpitAttackDef", 0xbc8);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassChozoWarriorXUltimateGrabAttack, "oChozoWarriorXUltimateGrabAttackDef", 0xcb8);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

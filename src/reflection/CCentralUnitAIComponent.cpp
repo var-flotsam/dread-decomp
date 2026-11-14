@@ -5,6 +5,8 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,7 +23,6 @@ using base::reflection::DestroyDestructorFirst;
 // CCentralUnitAIComponent
 extern base::reflection::CType g_unk_717269bf08;
 extern base::reflection::CType g_unk_71727bc110;
-extern base::reflection::CType g_unk_71726fcf90;
 extern base::reflection::CType g_unk_71727b6270;
 namespace CCentralUnitAIComponent {
 void refl_AddAttributes(CClass*) {}
@@ -29,8 +30,7 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("vSpawnPointActors", true), &g_unk_717269bf08, 0x146d0, -1, -1);
     field0->attrs.Add<bool>(fn_7100090090(), false);
     field0->attrs_0x70.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 3);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("eType", true), &g_unk_71726fcf90, 0x14730, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_71726fcf90, 2147483647);
+    DREAD_REFLECTED_FIELD_OF("CRinkaUnitComponent::ECentralUnitType", "eType", 0x14730, (DefaultValue, 2147483647));
     UnkReflField* field2 = fn_7100096524(cls, CStrId("wpDoorCentralUnit", true), &g_unk_71727b6270, 0x14790, -1, -1);
     field2->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
     UnkReflField* field3 = fn_7100096524(cls, CStrId("wpDeadCutScenePlayer", true), &g_unk_71727b6270, 0x14750, -1, -1);

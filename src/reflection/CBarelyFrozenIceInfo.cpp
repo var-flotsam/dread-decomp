@@ -8,6 +8,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -54,7 +55,6 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_ROOT_CLASS(CBarelyFrozenIceInfo);
 
 // CCharClassFrozenAsFrostbiteComponent
-extern base::reflection::CType g_unk_7172720320;
 namespace CCharClassFrozenAsFrostbiteComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -64,7 +64,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sTimelineIdOnFrostbiteStart", 0xb0, (DefaultValue, "frozen_onfrostbitestart"), (Description, "Timeline to play when frostbite level passes from 0 to 1"));
     DREAD_REFLECTED_FIELD(CStrId, "sTimelineIdOnFrostbiteStop", 0xb8, (DefaultValue, "frozen_onfrostbitestop"), (Description, "Timeline to play when frostbite is cancelled (any reason)"));
     DREAD_REFLECTED_FIELD(bool, "bShouldDieWithDashMelee", 0xc0, (DefaultValue, true), (Description, "Die when player uses Dash against this entity"));
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("tBarelyIceInfo", true), &g_unk_7172720320, 0xc8, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>", "tBarelyIceInfo", 0xc8);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

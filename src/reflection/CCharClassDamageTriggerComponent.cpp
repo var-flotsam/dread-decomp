@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -22,7 +23,6 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassDamageTriggerComponent
 void fn_7100a4b3d8();
 void fn_7100a4a448(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7172730580;
 namespace CCharClassDamageTriggerComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -45,8 +45,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sDamageID", 0x88, (DefaultValue, CStrId("Lava Pool", true)));
     DREAD_REFLECTED_FIELD(bool, "bIgnoreReaction", 0x90, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bContinuousDamageHit", 0x91, (DefaultValue, false));
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("eForceDamageModeHit", true), &g_unk_7172730580, 0x94, -1, -1);
-    field10->attrs.Add<s32>(fn_7100075240(), &g_unk_7172730580, 0);
+    DREAD_REFLECTED_FIELD_OF("EForcedDamageMode", "eForceDamageModeHit", 0x94, (DefaultValue, 0));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -73,11 +72,10 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassDamageTriggerComponent, CCharClassBaseDamageTriggerComponent);
 
 // CDamageTriggerComponent
-extern base::reflection::CType g_unk_717274aef8;
 namespace CDamageTriggerComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oConfig", true), &g_unk_717274aef8, 0xbe4, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("CDamageTriggerConfig", "oConfig", 0xbe4);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

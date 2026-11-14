@@ -87,42 +87,42 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassChozoCommanderAIComponent::CTunableCharClassChozoCommanderAIComponent, base::tunable::CTunable);
 
 // CCharClassChozoCommanderAIComponent
-const base::reflection::CClass* fn_7100422b24();
-const base::reflection::CClass* fn_7100420884();
-const base::reflection::CClass* fn_71004225d4();
-const base::reflection::CClass* fn_7100421904();
-const base::reflection::CClass* fn_710041ce24();
-const base::reflection::CClass* fn_710041fd04();
-const base::reflection::CClass* fn_7100421184();
-const base::reflection::CClass* fn_710041b994();
-const base::reflection::CClass* fn_71004232e4();
-const base::reflection::CClass* fn_710041d204();
-const base::reflection::CClass* fn_710041f6d4();
-const base::reflection::CClass* fn_710041e5bc();
-const base::reflection::CClass* fn_71004240d4();
-const base::reflection::CClass* fn_710041f164();
-const base::reflection::CClass* fn_7100422f04();
-const base::reflection::CClass* fn_71004204a4();
-const base::reflection::CClass* fn_71008c1b4c();
+namespace CCharClassChozoCommanderAirChargeAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassChozoCommanderAuraScratchAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassChozoCommanderBeamBurstAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassChozoCommanderEnergyShardsAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassChozoCommanderHyperDashAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassChozoCommanderHypersparkAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassChozoCommanderKiCounterAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassChozoCommanderKiGrabAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassChozoCommanderKiStrikeAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassChozoCommanderLandingSlamAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassChozoCommanderPowerPulseAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassChozoCommanderSentenceSphereAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassChozoCommanderTriComboAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassChozoCommanderUltimateGrabAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassChozoCommanderZeroLaserAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassChozoCommanderZeroLaserGroundedAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CDamageSourceFactor { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassChozoCommanderAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oChozoCommanderTriComboAttackDef", true), fn_7100422b24(), 0x528, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("oChozoCommanderKiStrikeAttackDef", true), fn_7100420884(), 0x628, -1, -1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("oChozoCommanderSentenceSphereAttackDef", true), fn_71004225d4(), 0x770, -1, -1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("oChozoCommanderPowerPulseAttackDef", true), fn_7100421904(), 0x870, -1, -1);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("oChozoCommanderAuraScratchAttackDef", true), fn_710041ce24(), 0x988, -1, -1);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("oChozoCommanderKiCounterAttackDef", true), fn_710041fd04(), 0xa88, -1, -1);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("oChozoCommanderLandingSlamAttackDef", true), fn_7100421184(), 0xb98, -1, -1);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("oChozoCommanderAirChargeAttackDef", true), fn_710041b994(), 0xca0, -1, -1);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("oChozoCommanderZeroLaserAttackDef", true), fn_71004232e4(), 0xd90, -1, -1);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("oChozoCommanderBeamBurstAttackDef", true), fn_710041d204(), 0xea8, -1, -1);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("oChozoCommanderHypersparkAttackDef", true), fn_710041f6d4(), 0xf98, -1, -1);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("oChozoCommanderEnergyShardsAttackDef", true), fn_710041e5bc(), 0x10a0, -1, -1);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("oChozoCommanderZeroLaserGroundedAttackDef", true), fn_71004240d4(), 0x11a8, -1, -1);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("oChozoCommanderHyperDashAttackDef", true), fn_710041f164(), 0x12b8, -1, -1);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("oChozoCommanderUltimateGrabAttackDef", true), fn_7100422f04(), 0x13c0, -1, -1);
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("oChozoCommanderKiGrabAttackDef", true), fn_71004204a4(), 0x14b0, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassChozoCommanderTriComboAttack, "oChozoCommanderTriComboAttackDef", 0x528);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassChozoCommanderKiStrikeAttack, "oChozoCommanderKiStrikeAttackDef", 0x628);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassChozoCommanderSentenceSphereAttack, "oChozoCommanderSentenceSphereAttackDef", 0x770);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassChozoCommanderPowerPulseAttack, "oChozoCommanderPowerPulseAttackDef", 0x870);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassChozoCommanderAuraScratchAttack, "oChozoCommanderAuraScratchAttackDef", 0x988);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassChozoCommanderKiCounterAttack, "oChozoCommanderKiCounterAttackDef", 0xa88);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassChozoCommanderLandingSlamAttack, "oChozoCommanderLandingSlamAttackDef", 0xb98);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassChozoCommanderAirChargeAttack, "oChozoCommanderAirChargeAttackDef", 0xca0);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassChozoCommanderZeroLaserAttack, "oChozoCommanderZeroLaserAttackDef", 0xd90);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassChozoCommanderBeamBurstAttack, "oChozoCommanderBeamBurstAttackDef", 0xea8);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassChozoCommanderHypersparkAttack, "oChozoCommanderHypersparkAttackDef", 0xf98);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassChozoCommanderEnergyShardsAttack, "oChozoCommanderEnergyShardsAttackDef", 0x10a0);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassChozoCommanderZeroLaserGroundedAttack, "oChozoCommanderZeroLaserGroundedAttackDef", 0x11a8);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassChozoCommanderHyperDashAttack, "oChozoCommanderHyperDashAttackDef", 0x12b8);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassChozoCommanderUltimateGrabAttack, "oChozoCommanderUltimateGrabAttackDef", 0x13c0);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassChozoCommanderKiGrabAttack, "oChozoCommanderKiGrabAttackDef", 0x14b0);
     DREAD_REFLECTED_FIELD(f32, "fAuraLife", 0x15a0, (DefaultValue, 1000.0f));
     DREAD_REFLECTED_FIELD(f32, "fLifeToRecoverAfterUltimateGrabStage1", 0x15a4, (DefaultValue, 500.0f));
     DREAD_REFLECTED_FIELD(f32, "fLifeToRecoverAfterUltimateGrabStage3", 0x15a8, (DefaultValue, 1000.0f));
@@ -131,8 +131,8 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fAttackWaitTimeBetweenPhases", 0x15b4, (DefaultValue, 0.6f));
     DREAD_REFLECTED_FIELD(f32, "fMinDistToHyperDash", 0x15b8, (DefaultValue, 250.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxVerticalDiffToAboveHyperDash", 0x15bc, (DefaultValue, 200.0f));
-    UnkReflField* field24 = fn_7100096524(cls, CStrId("oDamageSourceFactorShortShootingGrab", true), fn_71008c1b4c(), 0x15c0, -1, -1);
-    UnkReflField* field25 = fn_7100096524(cls, CStrId("oDamageSourceFactorLongShootingGrab", true), fn_71008c1b4c(), 0x1630, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CDamageSourceFactor, "oDamageSourceFactorShortShootingGrab", 0x15c0);
+    DREAD_REFLECTED_CLASS_FIELD(CDamageSourceFactor, "oDamageSourceFactorLongShootingGrab", 0x1630);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

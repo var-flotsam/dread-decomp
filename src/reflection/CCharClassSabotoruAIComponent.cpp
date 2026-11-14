@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,14 +21,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassSabotoruAIComponent
-extern base::reflection::CType g_unk_71727006c0;
-const base::reflection::CClass* fn_71006727b4();
+namespace CCharClassSabotoruTurnInDoorAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassSabotoruAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eSubspecies", true), &g_unk_71727006c0, 0x600, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_71727006c0, 2147483647);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("oSabotoruTurnInDoorAttackDef", true), fn_71006727b4(), 0x510, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("CCharClassSabotoruAIComponent::ESubspecies", "eSubspecies", 0x600, (DefaultValue, 2147483647));
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassSabotoruTurnInDoorAttack, "oSabotoruTurnInDoorAttackDef", 0x510);
     DREAD_REFLECTED_FIELD(f32, "fDoorPlayRate", 0x604, (DefaultValue, 2.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }

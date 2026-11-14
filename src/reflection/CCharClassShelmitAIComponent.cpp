@@ -20,12 +20,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassShelmitAIComponent
-const base::reflection::CClass* fn_71006b271c();
-const base::reflection::CClass* fn_71007c6784();
+namespace CCharClassShelmitPlasmaRayAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace SDropProbabilities { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassShelmitAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oShelmitPlasmaRayAttackDef", true), fn_71006b271c(), 0x510, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassShelmitPlasmaRayAttack, "oShelmitPlasmaRayAttackDef", 0x510);
     DREAD_REFLECTED_FIELD(f32, "fMinOpenGrappleTimeAfterAttack", 0x618, (DefaultValue, 2.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxGrappledTime", 0x61c, (DefaultValue, 3.0f));
     DREAD_REFLECTED_FIELD(f32, "fMinGrapplePullTimeToBreak", 0x620, (DefaultValue, 0.2f));
@@ -37,7 +37,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fCrystalMaxAlbedoEmissiveFactor", 0x638, (DefaultValue, 50.0f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToDisableCrystal", 0x63c, (DefaultValue, 0.3f));
     DREAD_REFLECTED_FIELD(f32, "fChargeLoopTime", 0x640, (DefaultValue, 2.0f));
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("oRegularShelmitMeleeChargeShotDropProbabilities", true), fn_71007c6784(), 0x648, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(SDropProbabilities, "oRegularShelmitMeleeChargeShotDropProbabilities", 0x648);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

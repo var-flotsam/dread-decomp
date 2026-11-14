@@ -5,6 +5,7 @@
 //
 //     DREAD_REFLECTED_FIELD(f32, "fSteeringSpeed", 0x510, (DefaultValue, 1.0f), (MinValue, 0.0f));
 //     DREAD_REFLECTED_PROPERTY(f32, "fCurrentAutoAimWidth", (DefaultValue, 0.0f));
+//     DREAD_REFLECTED_FIELD_OF("CGameLink<CActor>", "wpPathToFollow", 0x1350);
 //
 // registers the member at that offset under its name and type, then adds the field's attributes,
 // each under its key (attr:: below). The name's string id lives only for the registration, which is
@@ -30,17 +31,41 @@
 #define DREAD_REFLECTED_READ_ONLY_PROPERTY(T, NAME, ...)                                               \
     DREAD_REFL_FIELD_(T, NAME, 0xffffffff, cls->m_array_0x110.size() - 1, -1, __VA_ARGS__)
 
+// A field typed by a type object a static initialiser builds, by the type's name: the generated
+// src/reflection/ReflectedTypes.h, which a file using this includes, looks the name up.
+// Its integer attribute values (an enum's default) are values of that type.
+#define DREAD_REFLECTED_FIELD_OF(TYPE_NAME, NAME, OFFSET, ...)                                         \
+    DREAD_REFL_FIELD_TYPED_(base::reflection::TypeConstant<base::reflection::TypeNamed(TYPE_NAME)>::value, \
+                            NAME, OFFSET, -1, -1, __VA_ARGS__)
+
+// A field holding an object of reflected class T (its descriptor from T::refl_GetClass).
+#define DREAD_REFLECTED_CLASS_FIELD(T, NAME, OFFSET, ...)                                              \
+    DREAD_REFL_FIELD_OF_(T::refl_GetClass(), NAME, OFFSET, -1, -1, __VA_ARGS__)
+
 #define DREAD_REFL_FIELD_(T, NAME, OFFSET, GETTER, SETTER, ...)                                        \
+    DREAD_REFL_FIELD_OF_(base::reflection::UnkReflTypeOf<T>::Get(), NAME, OFFSET, GETTER, SETTER, __VA_ARGS__)
+#define DREAD_REFL_FIELD_OF_(TYPE, NAME, OFFSET, GETTER, SETTER, ...)                                  \
     do {                                                                                               \
+        [[maybe_unused]] constexpr const base::reflection::CType* field_type_ = nullptr;                \
+        constexpr bool field_typed_ = false;                                                           \
         [[maybe_unused]] base::reflection::UnkReflField* field_ =                                      \
-            fn_7100096524(cls, base::global::CStrId(NAME, true),                                       \
-                          base::reflection::UnkReflTypeOf<T>::Get(), OFFSET, GETTER, SETTER);          \
+            fn_7100096524(cls, base::global::CStrId(NAME, true), TYPE, OFFSET, GETTER, SETTER);        \
+        DREAD_REFL_ATTRS_(DREAD_REFL_NARGS_(__VA_ARGS__), __VA_ARGS__)                                 \
+    } while (false)
+#define DREAD_REFL_FIELD_TYPED_(TYPE, NAME, OFFSET, GETTER, SETTER, ...)                               \
+    do {                                                                                               \
+        [[maybe_unused]] constexpr const base::reflection::CType* field_type_ = TYPE;                   \
+        constexpr bool field_typed_ = true;                                                            \
+        [[maybe_unused]] base::reflection::UnkReflField* field_ =                                      \
+            fn_7100096524(cls, base::global::CStrId(NAME, true), field_type_, OFFSET, GETTER, SETTER); \
         DREAD_REFL_ATTRS_(DREAD_REFL_NARGS_(__VA_ARGS__), __VA_ARGS__)                                 \
     } while (false)
 
 // A string literal's value is the pointer it decays to.
 #define DREAD_REFL_ATTR_(KEY, ...)                                                                     \
-    field_->attrs.Add<std::decay_t<decltype(__VA_ARGS__)>>(base::reflection::attr::KEY(), __VA_ARGS__);
+    base::reflection::AddAttribute<std::decay_t<decltype(__VA_ARGS__)>, field_typed_>(field_->attrs, field_type_, \
+                                                                       base::reflection::attr::KEY(),  \
+                                                                       __VA_ARGS__);
 #define DREAD_REFL_NARGS_(...) DREAD_REFL_NARGS_I_(_, ##__VA_ARGS__, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
 #define DREAD_REFL_NARGS_I_(_0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, N, ...) N
 #define DREAD_REFL_ATTRS_(N, ...) DREAD_REFL_ATTRS_I_(N, __VA_ARGS__)
@@ -58,6 +83,31 @@
 #define DREAD_REFL_ATTRS_10(A, ...) DREAD_REFL_ATTR_ A DREAD_REFL_ATTRS_9(__VA_ARGS__)
 #define DREAD_REFL_ATTRS_11(A, ...) DREAD_REFL_ATTR_ A DREAD_REFL_ATTRS_10(__VA_ARGS__)
 #define DREAD_REFL_ATTRS_12(A, ...) DREAD_REFL_ATTR_ A DREAD_REFL_ATTRS_11(__VA_ARGS__)
+
+namespace base::reflection {
+
+// A type object as a compile-time constant (DREAD_REFLECTED_FIELD_OF).
+template <const CType* TYPE>
+struct TypeConstant {
+    static_assert(TYPE != nullptr, "no type object of that name in src/reflection/ReflectedTypes.h");
+    static constexpr const CType* value = TYPE;
+};
+
+// Adds one attribute of a field. In a field typed by a type object (TYPED), an integer value is a
+// value of that type, added under it.
+template <class T, bool TYPED>
+inline void AddAttribute(UnkReflAttrs& attrs, const CType* field_type, const UnkReflAttrKey& key, const T& value) {
+    if constexpr (TYPED && std::is_same_v<T, s32>)
+        attrs.Add<T>(key, field_type, value);
+    else
+        attrs.Add<T>(key, value);
+}
+template <class T, bool TYPED>
+inline void AddAttribute(UnkReflAttrs& attrs, const CType*, const TypedAttrKey& key, const T& value) {
+    attrs.Add<T>(key, value);
+}
+
+}  // namespace base::reflection
 
 // The attribute keys, by the names they register (each a guarded static key).
 namespace base::reflection::attr {

@@ -189,6 +189,24 @@ a real difference, it stays a draft). Cost: `--drafts` 470 s to 1,174 s, `--mino
 functions that stay inconclusive and use their budget. Of the 26 drafts, 9 moved to `src/` (`fn_7100e3cee0` among
 them: `fn_710007b444` is declared once now, in `UnkTU55.h`, for 21 files, and its ten id globals in `UnkTU2564.h`);
 the rest are held on declarations (their notes say which) or by another function of their file.
+**Fields typed by enums and collections, by name (2026-11-14).** A field typed by a type object a static
+initialiser builds (an enum, a collection, a link) reads `DREAD_REFLECTED_FIELD_OF("CGameLink<CActor>",
+"wpPathToFollow", 0x1350)`. The names are data/reflection_fields.csv's; gen_reflection writes them with the
+objects into the generated `src/reflection/ReflectedTypes.h` (a `constexpr` lookup by name, made a compile-time
+constant through a template argument, so a mistyped name fails to compile), which the files that use the form
+include. It lives with the generated sources because the hand-written ones declare the same objects with other
+types. An enum default (`Add<s32>(DefaultValue, &type, n)`) reads `(DefaultValue, n)`: in that form an integer
+value is added under the field's type. A wrapper struct for the value (`EnumValue(n)`) moved its stack slot;
+deciding by the value's type at compile time keeps the bytes. Byte-identical on all 938 files with field lines.
+Also: tools/gen_fields.py had stopped reading src/reflection after the namespace form (a regeneration kept 2
+of 6,087 rows); it reads the readable form now and reproduces the table.
+
+**Fields of reflected classes in the field form (2026-11-14).** A field whose type is a class written in the
+namespace form reads `DREAD_REFLECTED_CLASS_FIELD(SCameraRail, "oCameraRail", 0x30, ...)`: the macro calls
+`T::refl_GetClass()`, which the generator declares (`namespace T { const CClass* refl_GetClass(); }`) in place of
+the getter's address-named declaration. The call maps to the same address through the name, so the 144 fields
+in 55 files are byte- and relocation-identical.
+
 **Properties and enum-typed attributes in the field form (2026-11-14).** Third step of the readable
 reflection template. A property (a field with no offset, read and written through the two functions registered
 just before it) reads `DREAD_REFLECTED_PROPERTY(f32, "fWidth", (DefaultValue, 0.0f));`, or

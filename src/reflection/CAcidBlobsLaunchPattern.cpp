@@ -8,6 +8,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -100,7 +101,6 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassKraidAcidBlobsAttack::CTunableCharClassKraidAcidBlobsAttack, base::tunable::CTunable);
 
 // CCharClassKraidAcidBlobsAttack
-extern base::reflection::CType g_unk_71726ed758;
 namespace CCharClassKraidAcidBlobsAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -110,7 +110,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fBreakableGravity", 0x100, (DefaultValue, 2000.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxAngle", 0x104, (DefaultValue, 45.0f));
     DREAD_REFLECTED_FIELD(f32, "fMinAngle", 0x108, (DefaultValue, 25.0f));
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("tLaunchPatterns", true), &g_unk_71726ed758, 0x110, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>", "tLaunchPatterns", 0x110);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

@@ -8,6 +8,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -22,14 +23,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // navmesh::CDynamicSmartLinkGroup
-extern base::reflection::CType g_unk_71726a2450;
 namespace navmesh::CDynamicSmartLinkGroup {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10200u);
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bGenerateInNavMesh", 0x88);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("vLinkResources", true), &g_unk_71726a2450, 0x60, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet>", "vLinkResources", 0x60);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

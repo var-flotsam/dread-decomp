@@ -20,11 +20,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassAutsniperAIComponent
-const base::reflection::CClass* fn_71003d8d48();
+namespace CCharClassAutsniperShootAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassAutsniperAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oAutsniperShootAttackDef", true), fn_71003d8d48(), 0x528, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassAutsniperShootAttack, "oAutsniperShootAttackDef", 0x528);
     DREAD_REFLECTED_FIELD(f32, "fTimeToChangeLayer", 0x520, (DefaultValue, 0.5f));
     DREAD_REFLECTED_FIELD(f32, "fMovementFactor", 0x524, (DefaultValue, 1.0f));
 }

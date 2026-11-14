@@ -8,6 +8,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -69,11 +70,10 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassCooldownXBossLavaCarpetAttack::CTunableCharClassCooldownXBossLavaCarpetAttack, base::tunable::CTunable);
 
 // CCooldownXBossLavaCarpetDef
-extern base::reflection::CType g_unk_71726d1f78;
 namespace CCooldownXBossLavaCarpetDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eState", true), &g_unk_71726d1f78, 0x8, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("ELavaCarpetState", "eState", 0x8);
     DREAD_REFLECTED_FIELD(f32, "fWidth", 0xc, (DefaultValue, 50.0f));
     DREAD_REFLECTED_FIELD(f32, "fTime", 0x10, (DefaultValue, 3.5f));
     DREAD_REFLECTED_FIELD(f32, "fPlayRateFactor", 0x14, (DefaultValue, 1.0f));

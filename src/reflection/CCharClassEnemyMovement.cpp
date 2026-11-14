@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -22,8 +23,6 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassEnemyMovement
 void fn_7100965124();
 void fn_710095f1d4(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_717273a108;
-extern base::reflection::CType g_unk_717273a2e0;
 void fn_71009651b4();
 void fn_710095f350(UnkReflFunction* fn, const char* name);
 void fn_71009652b4();
@@ -78,7 +77,6 @@ void fn_7100966a1c();
 void fn_710096186c(UnkReflFunction* fn, const char* name);
 void fn_7100966b1c();
 void fn_71009619e8(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_717270e1e8;
 void fn_7100966c1c();
 void fn_7100961b64(UnkReflFunction* fn, const char* name);
 void fn_7100966cac();
@@ -153,12 +151,8 @@ void refl_AddFields(CClass* cls) {
     }();
     DREAD_REFLECTED_PROPERTY(bool, "bCanFall", (DefaultValue, true), (Description, "Can fall? (set fall animation is IsOnAir change)"));
     DREAD_REFLECTED_FIELD(bool, "bShouldMakeExtraMove", 0x1b9, (DefaultValue, false), (Description, "Should make an extra movement tick after collision?"));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("eInitialState", true), &g_unk_717273a108, 0x70, -1, -1);
-    field2->attrs.Add<s32>(fn_7100075240(), &g_unk_717273a108, 1);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Walking or Flying");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("eTurn180Mode", true), &g_unk_717273a2e0, 0x74, -1, -1);
-    field3->attrs.Add<s32>(fn_7100075240(), &g_unk_717273a2e0, 1);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "AxisX, AxisY or Dot");
+    DREAD_REFLECTED_FIELD_OF("EAIAnimationStates", "eInitialState", 0x70, (DefaultValue, 1), (Description, "Walking or Flying"));
+    DREAD_REFLECTED_FIELD_OF("CCharClassEnemyMovement::ETurn180Mode", "eTurn180Mode", 0x74, (DefaultValue, 1), (Description, "AxisX, AxisY or Dot"));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sIdleAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sIdleAnim_GetterFunction", true);
@@ -483,12 +477,8 @@ void refl_AddFields(CClass* cls) {
             fn_71009619e8(fn, "_m_sSideWalkInitAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sSideWalkInitAnim", (DefaultValue, CStrId("walkinit", true)), (Description, "Side walk init animation"));
-    UnkReflField* field31 = fn_7100096524(cls, CStrId("eSideLeftTag", true), &g_unk_717270e1e8, 0x160, -1, -1);
-    field31->attrs.Add<s32>(fn_7100075240(), &g_unk_717270e1e8, 2);
-    field31->attrs.Add<const char*>(fn_7100007e80(), "Side left prefix (left,right,water,charge...)");
-    UnkReflField* field32 = fn_7100096524(cls, CStrId("eSideRightTag", true), &g_unk_717270e1e8, 0x164, -1, -1);
-    field32->attrs.Add<s32>(fn_7100075240(), &g_unk_717270e1e8, 3);
-    field32->attrs.Add<const char*>(fn_7100007e80(), "Side right prefix (left,right,water,charge...)");
+    DREAD_REFLECTED_FIELD_OF("EAnimationTag", "eSideLeftTag", 0x160, (DefaultValue, 2), (Description, "Side left prefix (left,right,water,charge...)"));
+    DREAD_REFLECTED_FIELD_OF("EAnimationTag", "eSideRightTag", 0x164, (DefaultValue, 3), (Description, "Side right prefix (left,right,water,charge...)"));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iNumScenarioCollisionSteps_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_iNumScenarioCollisionSteps_GetterFunction", true);

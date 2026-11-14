@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -66,11 +67,10 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CMultiLockOnBlockComponent::CTunableMultiLockOnBlockComponent, base::tunable::CTunable);
 
 // CMultiLockOnBlockComponent
-extern base::reflection::CType g_unk_71727b6630;
 namespace CMultiLockOnBlockComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("vMultiLockOnPoints", true), &g_unk_71727b6630, 0xa8, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CGameLink<CEntity>>", "vMultiLockOnPoints", 0xa8);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

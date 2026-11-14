@@ -5,6 +5,8 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,13 +21,10 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CSuppressDecorator
-extern base::reflection::CType g_unk_71726bc130;
 namespace behaviortree::CSuppressDecorator {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eReturnStatus", true), &g_unk_71726bc130, 0x38, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_71726bc130, 5);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Status to return");
+    DREAD_REFLECTED_FIELD_OF("behaviortree::SStatus::Enum", "eReturnStatus", 0x38, (DefaultValue, 5), (Description, "Status to return"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

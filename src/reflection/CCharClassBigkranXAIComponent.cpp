@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,17 +21,16 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassBigkranXAIComponent
-const base::reflection::CClass* fn_71003ef1a4();
-const base::reflection::CClass* fn_71003ef9b4();
-extern base::reflection::CType g_unk_71726a7b48;
+namespace CCharClassBigkranXMagmaRainAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassBigkranXSpitAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassBigkranXAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oBigkranXMagmaRainAttackDef", true), fn_71003ef1a4(), 0x628, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("oBigkranXSpitAttackDef", true), fn_71003ef9b4(), 0x730, -1, -1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sLaunchConfig", true), &g_unk_71726a7b48, 0x530, -1, -1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sLaunchConfig2", true), &g_unk_71726a7b48, 0x578, -1, -1);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sLaunchConfig3", true), &g_unk_71726a7b48, 0x5c0, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassBigkranXMagmaRainAttack, "oBigkranXMagmaRainAttackDef", 0x628);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassBigkranXSpitAttack, "oBigkranXSpitAttackDef", 0x730);
+    DREAD_REFLECTED_FIELD_OF("SLaunchConfig", "sLaunchConfig", 0x530);
+    DREAD_REFLECTED_FIELD_OF("SLaunchConfig", "sLaunchConfig2", 0x578);
+    DREAD_REFLECTED_FIELD_OF("SLaunchConfig", "sLaunchConfig3", 0x5c0);
     DREAD_REFLECTED_FIELD(f32, "fMaxDistance1", 0x608, (DefaultValue, 550.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxDistance2", 0x60c, (DefaultValue, 700.0f));
     DREAD_REFLECTED_FIELD(CStrId, "sMagmaBallCharClass", 0x610, (DefaultValue, "vulkranmagmaball"));

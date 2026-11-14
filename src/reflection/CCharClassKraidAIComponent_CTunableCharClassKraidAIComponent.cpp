@@ -78,28 +78,28 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassKraidAIComponent::CTunableCharClassKraidAIComponent, base::tunable::CTunable);
 
 // CCharClassKraidAIComponent
-const base::reflection::CClass* fn_71005ea79c();
-const base::reflection::CClass* fn_71005dc064();
-const base::reflection::CClass* fn_71005e4dfc();
-const base::reflection::CClass* fn_71005d6288();
-const base::reflection::CClass* fn_71005e5fc4();
-const base::reflection::CClass* fn_71005f0668();
-const base::reflection::CClass* fn_71005df894();
-const base::reflection::CClass* fn_71005e68cc();
 void fn_71005faa98();
 void fn_71005fa5e4(UnkReflFunction* fn, const char* name);
-const base::reflection::CClass* fn_71008c1b4c();
+namespace CCharClassKraidAcidBlobsAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassKraidBackSlapAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassKraidBouncingCreaturesAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassKraidFierceSwipeAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassKraidFlyingSpikesAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassKraidShockerSplashAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassKraidSpinningNailsAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassKraidTripleFlyingSpikesAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CDamageSourceFactor { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassKraidAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oKraidSpinningNailsAttackDef", true), fn_71005ea79c(), 0x630, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("oKraidBackSlapAttackDef", true), fn_71005dc064(), 0x770, -1, -1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("oKraidFierceSwipeAttackDef", true), fn_71005e4dfc(), 0x860, -1, -1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("oKraidAcidBlobsAttackDef", true), fn_71005d6288(), 0x950, -1, -1);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("oKraidFlyingSpikesAttackDef", true), fn_71005e5fc4(), 0xa88, -1, -1);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("oKraidTripleFlyingSpikesAttackDef", true), fn_71005f0668(), 0xb90, -1, -1);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("oKraidBouncingCreaturesAttackDef", true), fn_71005df894(), 0xc98, -1, -1);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("oKraidShockerSplashAttackDef", true), fn_71005e68cc(), 0xdb8, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassKraidSpinningNailsAttack, "oKraidSpinningNailsAttackDef", 0x630);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassKraidBackSlapAttack, "oKraidBackSlapAttackDef", 0x770);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassKraidFierceSwipeAttack, "oKraidFierceSwipeAttackDef", 0x860);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassKraidAcidBlobsAttack, "oKraidAcidBlobsAttackDef", 0x950);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassKraidFlyingSpikesAttack, "oKraidFlyingSpikesAttackDef", 0xa88);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassKraidTripleFlyingSpikesAttack, "oKraidTripleFlyingSpikesAttackDef", 0xb90);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassKraidBouncingCreaturesAttack, "oKraidBouncingCreaturesAttackDef", 0xc98);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassKraidShockerSplashAttack, "oKraidShockerSplashAttackDef", 0xdb8);
     DREAD_REFLECTED_FIELD(f32, "fOpenMouthInterpolationSpeed", 0x524, (DefaultValue, 3.0f));
     DREAD_REFLECTED_FIELD(f32, "fDesiredTimeToCloseMouth", 0x528, (DefaultValue, 5.0f));
     DREAD_REFLECTED_FIELD(f32, "fDamageToCloseMouth", 0x52c, (DefaultValue, 400.0f));
@@ -119,8 +119,8 @@ void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fBellyButtonRadius_SetterFunction", true)))
         fn_71005fa5e4(fn, "_m_fBellyButtonRadius_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fBellyButtonRadius", (DefaultValue, 150.0f));
-    UnkReflField* field18 = fn_7100096524(cls, CStrId("oGrabDamageSourceFactor", true), fn_71008c1b4c(), 0x550, -1, -1);
-    UnkReflField* field19 = fn_7100096524(cls, CStrId("oFierceswipeActingDamageSourceFactor", true), fn_71008c1b4c(), 0x5c0, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CDamageSourceFactor, "oGrabDamageSourceFactor", 0x550);
+    DREAD_REFLECTED_CLASS_FIELD(CDamageSourceFactor, "oFierceswipeActingDamageSourceFactor", 0x5c0);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

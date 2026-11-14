@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -30,7 +31,6 @@ void fn_71008dc150();
 void fn_71008cccfc(UnkReflFunction* fn, const char* name);
 void fn_71008dc1e0();
 void fn_71008cce78(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_717269bf08;
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_71008dc34c();
 void fn_71008dc270(UnkReflFunction* fn);
@@ -95,7 +95,7 @@ void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iAreaRight_SetterFunction", true)))
         fn_71008cce78(fn, "_iAreaRight_SetterFunction");
     DREAD_REFLECTED_PROPERTY(s32, "iAreaRight", (DefaultValue, 0), (Description, "Area right type"));
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("aVignettes", true), &g_unk_717269bf08, 0xbd8, -1, -1);
+    DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CGameLink<CActor>>", "aVignettes", 0xbd8);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetInteractionParams", true))) {
         fn->name = base::global::UnkStrId("SetInteractionParams", true);
         fn->return_type = &g_unk_7101d5af48;

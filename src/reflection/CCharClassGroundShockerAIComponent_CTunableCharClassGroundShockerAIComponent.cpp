@@ -67,11 +67,11 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassGroundShockerAIComponent::CTunableCharClassGroundShockerAIComponent, base::tunable::CTunable);
 
 // CCharClassGroundShockerAIComponent
-const base::reflection::CClass* fn_710059f360();
+namespace CCharClassGroundShockerAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassGroundShockerAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oGroundShockerAttackDef", true), fn_710059f360(), 0x518, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassGroundShockerAttack, "oGroundShockerAttackDef", 0x518);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
