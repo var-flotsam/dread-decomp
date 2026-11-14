@@ -66,7 +66,9 @@ def main() -> int:
     codes = {f.symbol: f.code for f in funcs}
     original = asmdiff.Original(args.version)
 
-    results, names, full_names, targets = check.diff_with_targets(funcs, original, by_name)
+    source = src.resolve().relative_to(check.ROOT).as_posix() if src.resolve().is_relative_to(check.ROOT) else None
+    results, names, full_names, targets = check.diff_with_targets(funcs, original, by_name, source=source)
+    defined = {f.symbol for f in funcs}
     mismatched = 0
     for res in results:
         status = "MATCH" if res.matching else f"{res.score:5.1%}"
@@ -78,6 +80,7 @@ def main() -> int:
             asmdiff.print_side_by_side(res, original, codes[res.symbol])
         if res.matching and not args.no_reloc:
             rep = asmdiff.check_relocs(res, original, targets)
+            rep.mismatches += check.special_mismatches(res, original, targets, full_names, source, defined)
             if rep.mismatches:
                 mismatched += 1
                 for m in rep.mismatches:

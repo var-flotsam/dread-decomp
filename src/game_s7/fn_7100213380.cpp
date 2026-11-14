@@ -33,7 +33,7 @@ struct UnkRange_7100213380 {
 struct UnkBox_7100213380 {
     UnkRange_7100213380 r[3];
 
-    UnkBox_7100213380(const UnkVec3_7100213380& min, const UnkVec3_7100213380& max);
+    UnkBox_7100213380(const UnkVec3_7100213380& min, const UnkVec3_7100213380& max);  // fn_7100215dcc
     virtual ~UnkBox_7100213380() {}
     // One inline virtual keeps the vtable out of this file, so the calls on a copy stay indirect.
     virtual void vf_0x10() {}
@@ -71,7 +71,7 @@ struct UnkBoxQ_7100213380 : UnkBox_7100213380 {
         field_0x38 = o.field_0x38;
         return *this;
     }
-    ~UnkBoxQ_7100213380() override;
+    ~UnkBoxQ_7100213380() override;  // fn_7100215e1c
 };
 
 struct UnkByAxis_7100213380 {

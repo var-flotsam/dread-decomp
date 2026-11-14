@@ -12,10 +12,19 @@ inline u64 lift_bits(f64 f) { u64 v; __builtin_memcpy(&v, &f, 8); return v; }
 namespace lift_guard {
 u32 fn_7100080568(); u32 fn_7100080570(); void fn_710007fdb4();
 extern char* g_unk_7101d47108; extern char* g_unk_7101d47200;
-struct StringPoolHolder { u8 unk_0x0[0xe8]; StringPoolHolder(u32 a, char** pool); ~StringPoolHolder(); };
+// Their constructors and destructors are the originals' (Clang 9 ignores an asm label on one; the
+// labels name the addresses for tools/check.py, tools/dread/asm_labels.py).
+struct StringPoolHolder {
+    u8 unk_0x0[0xe8];
+    StringPoolHolder(u32 a, char** pool) asm("fn_710007fe68");
+    ~StringPoolHolder() asm("fn_7100080004");
+};
 inline void EnsureStringPool() { static StringPoolHolder s_holder(fn_7100080568(), &g_unk_7101d47108); fn_710007fdb4(); }
 inline void EnsureFilePathPool() { static StringPoolHolder s_holder(fn_7100080570(), &g_unk_7101d47200); fn_710007fdb4(); }
-struct Singleton { Singleton(); ~Singleton(); };
+struct Singleton {
+    Singleton() asm("fn_7100031894");
+    ~Singleton() asm("fn_71000407f0");
+};
 inline Singleton& GetSingleton() { static Singleton s_singleton; return s_singleton; }
 struct ZeroWord { u32 value; ZeroWord() : value(0) {} };
 template <class T> struct TypeId {

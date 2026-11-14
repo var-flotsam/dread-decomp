@@ -20,14 +20,18 @@ Relocation targets: a function whose bytes match is O only if every relocation i
 carries names the original's target too (asmdiff.check_relocs). A relocation's symbol
 resolves to an original address when it is defined in the same object (through the
 mapping above), when its demangled name is `fn_<addr>` or `g_unk_<addr>` (the older
-`unk_<addr>` too; in any namespace: callee::, folded::, noret::), or when that name is unique in
-data/functions/; the address plus the addend must equal what the original encodes
+`unk_<addr>` too; in any namespace: callee::, folded::, noret::), when it is a constructor or
+destructor whose declaration names its address (Clang 9 ignores an asm label on one;
+tools/dread/asm_labels.py reads the declaration), or when that name is unique in data/functions/;
+the address plus the addend must equal what the original encodes
 (BL/B offset, ADRP+lo12 address, or the GOT slot's RELATIVE relocation). Imports are
 compared by name through the original's PLT stub or GOT slot. The content of a string
 literal and of a constant-pool entry (a floating-point or vector constant, a switch's
 lookup table) must equal the original's at the address its instructions encode. Other
 section-relative references (jump tables, wide strings), conditional branches and symbols
-that do not resolve are counted as unchecked, never as a mismatch. Each mismatch prints one
+that do not resolve are counted as unchecked, never as a mismatch, except a call to a constructor
+or destructor that the object does not define and whose address nothing names (kind `special`).
+Each mismatch prints one
 line, `RELOC  <addr>  <symbol> -> original <target>  +<offset>  <kind>  <source>`, and
 the function is demoted from O to W (m/M when annotated), so a RELOC line on a
 function that was O is also a REGRESSION. Generated sources are held to the same rule:
@@ -82,7 +86,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import asmdiff  # noqa: E402
-from dread import functions  # noqa: E402
+from dread import asm_labels, functions  # noqa: E402
 import buildcfg  # noqa: E402
 import equiv_test  # noqa: E402
 import hostenv  # noqa: E402
@@ -270,21 +274,85 @@ def csv_by_name(rows: dict[str, dict]) -> dict[str, list[int]]:
     return by_name
 
 
+_labels: asm_labels.Labels | None = None
+
+
+def labels() -> asm_labels.Labels:
+    """The special members' addresses the hand-written declarations name (tools/dread/asm_labels.py),
+    read once per process."""
+    global _labels
+    if _labels is None:
+        _labels = asm_labels.Labels(ROOT)
+    return _labels
+
+
+def with_labels(resolve, full_names: dict[str, str], source: str | None):
+    """resolve, then for a constructor or destructor the address its declaration names: Clang 9 ignores
+    an asm label on one, so the object has only the mangled name."""
+    def resolve2(sym: str) -> int | None:
+        hit = resolve(sym)
+        if hit is None and asm_labels.is_special(sym):
+            hit, _ = labels().lookup(sym, full_names.get(sym, sym), source)
+        return hit
+    return resolve2
+
+
 def diff_with_targets(functions: list[asmdiff.ObjFunction], original: asmdiff.Original,
-                      by_name: dict[str, list[int]], full_names: dict[str, str] | None = None):
+                      by_name: dict[str, list[int]], full_names: dict[str, str] | None = None,
+                      source: str | None = None):
     """Diff an object's functions and build the resolver for their relocation targets.
 
     Returns (diffs, names, full_names, targets): names maps each function symbol to its
     qualified demangled name, full_names every symbol (functions and relocation targets) to
     its full demangled form, targets(symbol) a relocation's symbol to an original address or None.
     full_names may be given already demangled (check.py demangles many objects in one call).
+    `source` (the object's source, a repository path) is where a constructor's or destructor's
+    declaration is looked for first, before the headers (tools/dread/asm_labels.py).
     """
     if full_names is None:
         full_names = demangle(object_symbols(functions), strip=False)
     names = {f.symbol: full_names.get(f.symbol, f.symbol).split("(")[0] for f in functions}
-    diffs = asmdiff.diff_functions(functions, original, resolver(by_name, names))
-    targets = target_resolver(by_name, full_names, {res.symbol: res.address for res in diffs})
+    # A constructor or destructor defined under its mangled name maps through its declaration's label, unless
+    # the object already maps that address (an fn_<addr> alias of it, or its other variant, C1/C2 or D1/D2).
+    claimed = {int(m.group(1), 16) for f in functions if (m := asmdiff.NAME_RE.search(f.symbol))}
+    by_label = with_labels(resolver(by_name, names), full_names, source)
+
+    def define(sym: str) -> int | None:
+        hit = by_label(sym)
+        if hit is not None and asm_labels.is_special(sym):
+            if hit in claimed:
+                return None
+            claimed.add(hit)
+        return hit
+    diffs = asmdiff.diff_functions(functions, original, define)
+    targets = with_labels(target_resolver(by_name, full_names, {res.symbol: res.address for res in diffs}),
+                          full_names, source)
     return diffs, names, full_names, targets
+
+
+def special_mismatches(res: asmdiff.FunctionResult, original: asmdiff.Original, targets, full_names: dict[str, str],
+                       source: str | None, defined: set[str] = frozenset()) -> list[asmdiff.RelocMismatch]:
+    """A matching function's calls to a constructor or destructor that the object does not define and
+    whose address nothing names (no declaration in reach says it, and it is not an import): their targets
+    would go unchecked, so each is a mismatch of kind `special`. (One the object defines inline is checked
+    when it maps to an address, like any other function of the object.)"""
+    out = []
+    orig = original.function(res.address)
+    for off, r in sorted(res.relocs.items()):
+        if r.section or r.type not in (asmdiff.CALL26, asmdiff.JUMP26) or not asm_labels.is_special(r.symbol):
+            continue
+        if r.symbol in defined:
+            continue
+        if targets(r.symbol) is not None:
+            continue
+        actual = asmdiff.branch_target(int.from_bytes(orig[off:off + 4], "little"), res.address + off)
+        if original.plt_import(actual) is not None:
+            continue
+        _, why = labels().lookup(r.symbol, full_names.get(r.symbol, r.symbol), source)
+        name = asmdiff.strip_params(full_names.get(r.symbol, r.symbol))
+        out.append(asmdiff.RelocMismatch(off, "special", r.symbol, r.addend, None, actual,
+                                         detail=f"{name}: {why}"))
+    return out
 
 
 def object_symbols(functions: list[asmdiff.ObjFunction]) -> list[str]:
@@ -304,7 +372,9 @@ def diff_entries(src: Path, functions: list[asmdiff.ObjFunction], full_names: di
     """One object's diff as plain data (what <obj>.diff.json caches): per function its symbol,
     qualified name, address, score, whether it matches, and for a match its relocation report
     and RELOC lines. Statuses are not part of it (main derives them with the annotations)."""
-    diffs, names, full_names, targets = diff_with_targets(functions, original, by_name, full_names)
+    source = src.resolve().relative_to(ROOT).as_posix() if src.resolve().is_relative_to(ROOT) else None
+    diffs, names, full_names, targets = diff_with_targets(functions, original, by_name, full_names, source)
+    defined = {f.symbol for f in functions}
     out = []
     for res in diffs:
         e = {"symbol": res.symbol, "name": names.get(res.symbol, res.symbol), "address": res.address,
@@ -312,6 +382,10 @@ def diff_entries(src: Path, functions: list[asmdiff.ObjFunction], full_names: di
              "mismatches": [], "reloc_lines": []}
         if res.matching and not no_reloc:
             rep = asmdiff.check_relocs(res, original, targets)
+            special = special_mismatches(res, original, targets, full_names, source, defined)
+            if special:
+                rep.unchecked["unresolved"] -= len(special)
+                rep.mismatches.extend(special)
             e["checked"], e["unchecked"] = dict(rep.checked), dict(rep.unchecked)
             e["mismatches"] = [dataclasses.asdict(m) for m in rep.mismatches]
             e["reloc_lines"] = [reloc_line(f"{res.address:#x}", m, full_names, src) for m in rep.mismatches]
@@ -326,7 +400,7 @@ def diff_inputs(version: str, rows: dict[str, dict], no_reloc: bool) -> str:
     parts = [CACHE_VERSION, digest(Path(__file__).resolve()), digest(tools / "asmdiff.py"),
              digest(ROOT / "orig" / version / "exefs" / "main"),
              digest(ROOT / "build" / "recon" / version / "main_eh_functions.json"),
-             names, asmdiff.cxxfilt(), no_reloc]
+             names, asmdiff.cxxfilt(), no_reloc, digest(Path(asm_labels.__file__)), labels().digest()]
     return hashlib.sha256(json.dumps(parts).encode()).hexdigest()
 
 

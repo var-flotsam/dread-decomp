@@ -168,6 +168,10 @@ struct UnkReflList {
     }
 };
 
+template <>
+UnkReflList<base::global::CRntString>::UnkReflList(std::initializer_list<base::global::CRntString> items, u32 step,
+                                                   base::UnkAllocator* allocator, u32 flags);  // fn_7100228ca0
+
 // A default value made of a u32 and a list of strings (e.g. "vSegments:*:vPos"), typed by a
 // global descriptor.
 struct UnkReflStringList {
@@ -189,7 +193,7 @@ template <u64 CTOR>
 struct UnkStrIdTable {
     base::global::CStrId ids[0x400];
 
-    UnkStrIdTable();
+    UnkStrIdTable();  // fn_<CTOR>
     ~UnkStrIdTable();
 };
 

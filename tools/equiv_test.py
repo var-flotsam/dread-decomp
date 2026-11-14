@@ -241,6 +241,19 @@ def original_refs(code: bytes, address: int) -> set[int]:
     return refs
 
 
+SOURCES: dict[Path, str] = {}  # object -> its source (a repository path), for the special members' labels
+
+
+def special_address(sym: str, name: str, obj: Path) -> int | None:
+    """A constructor's or destructor's address from its declaration (tools/dread/asm_labels.py): Clang 9
+    ignores an asm label on one, so the object names only the mangled symbol."""
+    from dread import asm_labels
+    if not asm_labels.is_special(sym):
+        return None
+    import check
+    return check.labels().lookup(sym, name, SOURCES.get(obj))[0]
+
+
 def load(ctx: Context, obj: Path, addr: int):
     """The object laid out for judging the function at `addr`: (LiftObject, its strings the image lacks)."""
     import asmdiff
@@ -265,7 +278,8 @@ def load(ctx: Context, obj: Path, addr: int):
         sym = mangled.get(name, name)
         if sym in ctx.data_imports:
             return ctx.data_imports[sym]
-        return ctx.address_of(sym, name)
+        hit = ctx.address_of(sym, name)
+        return hit if hit is not None else special_address(sym, name, obj)
 
     def anchor(name, section, offset, kind):
         if name is None:
@@ -283,6 +297,8 @@ def load(ctx: Context, obj: Path, addr: int):
                 return False
             return base + at
         there = ctx.address_of(name, demangled.get(name, name))
+        if there is None:
+            there = special_address(name, demangled.get(name, name), obj)
         if kind == "STT_FUNC":
             return there + offset if there is not None else False
         if section["sh_flags"] & 1 or name.startswith(("_ZTV", "_ZTI", "_ZTS", "_ZGV")):
@@ -533,7 +549,8 @@ def main() -> int:
         funcs = asmdiff.read_object(obj)
         codes = {f.symbol: f.code for f in funcs}
         relocs = {f.symbol: f.relocs for f in funcs}
-        results, _, _, _ = check.diff_with_targets(funcs, ctx.orig, by_name)
+        SOURCES[obj] = rel
+        results, _, _, _ = check.diff_with_targets(funcs, ctx.orig, by_name, source=rel)
         text = src.read_text(encoding="utf-8", errors="replace")
         for res in results:
             if res.bytes_match or ONLY.get(src.resolve(), res.address) != res.address:

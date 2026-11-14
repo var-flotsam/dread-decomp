@@ -7,7 +7,7 @@
 // A 0x28-byte member copied out of line (fn_7100241a1c).
 struct UnkMember_7100241a1c {
     u64 unk_0x0[5];
-    UnkMember_7100241a1c(const UnkMember_7100241a1c& other);
+    UnkMember_7100241a1c(const UnkMember_7100241a1c& other);  // fn_7100241a1c
 };
 
 struct CGoliathXBurstProjectionBombsAttack : CAttack {

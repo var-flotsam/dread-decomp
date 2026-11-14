@@ -4,13 +4,13 @@
 // A 0x48-byte member copied out of line (fn_7100331c7c).
 struct UnkMember_7100331c7c {
     u64 unk_0x0[9];
-    UnkMember_7100331c7c(const UnkMember_7100331c7c& other);
+    UnkMember_7100331c7c(const UnkMember_7100331c7c& other);  // fn_7100331c7c
 };
 
 // A 0x28-byte growable array copied out of line (fn_71000cf1fc).
 struct UnkMember_71000cf1fc {
     u64 unk_0x0[5];
-    UnkMember_71000cf1fc(const UnkMember_71000cf1fc& other);
+    UnkMember_71000cf1fc(const UnkMember_71000cf1fc& other);  // fn_71000cf1fc
 };
 
 // Copied whole, padding included.

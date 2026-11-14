@@ -72,6 +72,8 @@ template <int Id>
 struct UnkIdMapOwnedStorage : UnkIdMapStorage {
     ~UnkIdMapOwnedStorage();
 };
+template <> UnkIdMapOwnedStorage<0>::~UnkIdMapOwnedStorage();  // fn_7100d90040
+template <> UnkIdMapOwnedStorage<1>::~UnkIdMapOwnedStorage();  // fn_7100d8f8f8
 
 // A map destroyed through its storage after clearing.
 template <u32 Next, void (*Destroy)(void*), int Id>

@@ -2,7 +2,7 @@
 #include "types.h"
 
 struct UnkMember_710059c644 {
-    UnkMember_710059c644(s32 a, s32 b, s32 c, void* d);
+    UnkMember_710059c644(s32 a, s32 b, s32 c, void* d);  // fn_710059c644
     void* unk_0x0;
 };
 

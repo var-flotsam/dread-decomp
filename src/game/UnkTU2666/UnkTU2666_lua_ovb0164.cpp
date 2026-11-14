@@ -54,7 +54,7 @@ struct UnkWeakTarget;
 struct UnkStrIdHandle_b0164 {
     CStrId id;
     void* field_0x8;
-    UnkStrIdHandle_b0164(const CStrId& id);
+    UnkStrIdHandle_b0164(const CStrId& id);  // fn_7100ae986c
 };
 
 // A temporary list of objects (vtable g_unk_7101a32680, nodes from the default allocator with flags 0x13).

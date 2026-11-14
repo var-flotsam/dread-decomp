@@ -8,8 +8,8 @@
 
 // Default-constructed out of line (fn_710021685c); its virtual destructor is fn_7100216934.
 struct UnkInfo_71001e2e30 {
-    UnkInfo_71001e2e30();
-    virtual ~UnkInfo_71001e2e30();
+    UnkInfo_71001e2e30();  // fn_710021685c
+    virtual ~UnkInfo_71001e2e30();  // fn_7100216934
 
     u32 field_0x8;
     u32 field_0xc;

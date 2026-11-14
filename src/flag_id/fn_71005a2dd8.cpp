@@ -2,7 +2,7 @@
 #include "types.h"
 
 struct UnkBase_7100416db8 {
-    UnkBase_7100416db8();
+    UnkBase_7100416db8();  // fn_7100416db8
     virtual ~UnkBase_7100416db8();
 };
 

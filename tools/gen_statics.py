@@ -458,8 +458,12 @@ def layout(addrs: list[int], blocks: dict[int, list[str]], uses: dict[int, int])
 OWN_MAX_SIZE = 1024  # larger ones lift but none matched, and lifting them took most of the run
 OWN_CTORS = {0x71000003D4: "StrId", 0x71000166C8: "FilePathId"}
 OWN_HEADER = ["// Function-local statics (gen_statics.py).", "namespace lift_static {",
-              "struct StrId { void* data; StrId(const char* s, bool f); ~StrId(); };",
-              "struct FilePathId { void* data; FilePathId(const char* s, bool f); ~FilePathId(); };",
+              "// Their constructors are the originals' (OWN_CTORS; the labels name the addresses for",
+              "// tools/check.py, tools/dread/asm_labels.py).",
+              "struct StrId {", "    void* data;", '    StrId(const char* s, bool f) asm("fn_71000003d4");', "    ~StrId();",
+              "};",
+              "struct FilePathId {", "    void* data;", '    FilePathId(const char* s, bool f) asm("fn_71000166c8");',
+              "    ~FilePathId();", "};",
               "struct ZeroWord { u32 v; ZeroWord() : v(0) {} };", "}", ""]
 
 

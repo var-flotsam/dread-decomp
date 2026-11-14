@@ -3,13 +3,13 @@
 #include "types.h"
 
 struct UnkName {
-    UnkName(const char* str, bool flag);
+    UnkName(const char* str, bool flag);  // fn_71000003d4
     ~UnkName();
     void* data;
 };
 
 struct UnkBase_7100393e68 {
-    UnkBase_7100393e68();
+    UnkBase_7100393e68();  // fn_7100393e68
     virtual ~UnkBase_7100393e68();
     virtual void unk_vf2();
     virtual void Init();
