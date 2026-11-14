@@ -18,9 +18,10 @@ worker gets.
 
 | File | What it does |
 |---|---|
-| `prepare.py` | builds the queue and each function's context (`context.py`: annotated disassembly and the headers that already declare its symbols; game-derived, so under `build/lean/`, never committed) |
+| `prepare.py` | builds the queue and each function's context (`context.py`: annotated disassembly and the headers that already declare its symbols; `similar.py`: the reference matches; game-derived, so under `build/lean/`, never committed) |
+| `similar.py` | the reference matches of a function: the hand-written functions that already match and are closest to it, of two kinds: alike in code (instructions that line up once registers and constants are taken out) and naming the same callees and globals; shown to the worker with their source |
 | `coord.py` | hands out jobs (`wave`), records results, then `land` (grade the matches again, check their declarations, stage them) and `file` (every non-match becomes a graded draft under `drafts/`) |
-| `try.py` | the short-diff grader a worker uses |
+| `try.py` | the short-diff grader a worker uses; it counts the graded runs of a running job against the job's attempt budget, shows how many are left and stops grading when they are spent |
 | `declfile.py` | a new file's declarations against the tree (`tools/decl_check.py`'s `file_problems`) |
 | `usage.py` | token use per job and per match, from the worker transcripts |
 | `select_large.py` | a size-stratified sample of large boot-path functions |
@@ -35,6 +36,8 @@ What changed from the kit the runs used, and why:
 | Copy a declaration, and the copy stays | Copy it with the types its definition has; the coordinator moves copies to unit headers (`tools/decl_plan.py`, `tools/hub_migrate.py`) and CI fails what is left | The runs doubled the copies of declarations in two days |
 | The coordinator opens the pull request and does not merge | The coordinator merges its own work on green checks, never with `--admin` | Owner, 2026-11-11 |
 | Scripts copied into each worktree's `build/lean/`, with a helper module that was never tracked | Runs in place; nothing to copy | The copies diverged between worktrees |
+| A worker gets its function's disassembly and the headers that declare its symbols | Also up to three reference matches: similar functions that already match, with their source (2026-11-14) | The pilot matched 8 of 50; other model-assisted decompilations put similar matched functions in the prompt (`docs/references.md`, "Model-assisted decompilation"); not yet measured here |
+| The attempt budget is a line of the brief, and the worker reports its own count | `try.py` counts, shows the attempts left after each run and stops at the budget; the recipe's budget is 3, not 6 (2026-11-14) | In the Mizuchi benchmark half the matches came on the first attempt, and after the third the odds of one were about a quarter. `coord.py stats` now reports the attempt each match came on, so the budget is set from our own runs |
 
 What has been measured (details in `docs/JOURNAL.md`):
 
@@ -53,7 +56,8 @@ What has been measured (details in `docs/JOURNAL.md`):
 
 The kit's steps after the workers were tried on the pilot's results on 2026-11-12 (the queue, the job prompts,
 filing drafts: the same rows the pilot's one-off scripts wrote). The worker brief as rewritten has not been
-run by a worker: the first batch that uses it is also its test.
+run by a worker: the first batch that uses it is also its test, and the test of the reference matches and the
+attempt cap added on 2026-11-14 (neither has been measured here).
 
 ## overnight/: the record
 

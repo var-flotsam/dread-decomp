@@ -183,6 +183,30 @@ its mangled name now maps too (`UnkRegistryEntry`'s, 0x710002003c, matches). Fin
 lists six more non-matching functions with a callee difference. Promoted with it: `fn_710024657c` (passes).
 `fn_7101213858` is `UnkSingleton_71001039f8`'s constructor and could now be defined as one, but its layout
 and `fn_7101214c94.cpp`'s `UnkAtkSystem_b0150` disagree at +0x950 and +0x558/+0x5a8: held for that decision.
+**Lean kit: reference matches and a capped attempt budget (2026-11-14).** The owner approved two lessons from
+a survey of other model-assisted decompilations (`docs/references.md`, "Model-assisted decompilation"); no
+worker has run on them yet.
+- *Reference matches* (`tools/batch/lean/similar.py`, `prepare.py --refs 3`). Each function's context ends with
+  up to three hand-written functions that already match (status `O`, none of the forms `worker.md` rules
+  out), with their source. Two kinds: *alike in code* (instructions that line up in order once registers and
+  constants are taken out; at least 45%, half to twice the size; the first comes with the original's
+  disassembly of it) and *names what you name* (at least half the function's callees and globals, weighted by
+  rarity). A first version ranked by shared features alone and gave 9 of 40 sampled functions a reference,
+  mostly weak ones; lining candidates up and adding the second kind gave 22 of 40 (21 alike, 9 naming). On one
+  of them the naming reference was a sibling attack of the same enemy that calls all 7 of its callees. A
+  reference section is about 9 KB (some 2,500 tokens) beside a worker's 100,000 or so. The 18 without one are
+  mostly code nothing matched resembles yet (a third to a half of their weighted features occur in no matched
+  function). Sample: `prepare.py --sample 40` on the 2.1.0 dump, run in a copy of the tree; no worker ran.
+- *The attempt cap* (`try.py`). The budget was a line in the brief and the worker counted for itself. Now
+  `coord.py wave` writes the budget into the queue entry, `try.py` counts each graded run of a running job in
+  `build/lean/attempts/<addr>.json`, ends every run with `ATTEMPT n of N` (what is left), and after the last
+  prints `BUDGET SPENT` and builds nothing (exit 3). Build failures are free up to the budget; two confirmation
+  runs after a match are free (declaration fixes). `coord.py record` keeps the count (`graded`, `matched_on`)
+  and `coord.py stats` reports the attempt each match came on and matches with and without a reference. The
+  recipe's budget is 3, not the pilot's 6 (Mizuchi: half the matches on the first attempt, odds of about a
+  quarter after the third). The permuter stays outside the workers.
+- Measure on the first batch that uses them: matches per function and tokens per match against the pilot (8 of
+  50, about 736,000 tokens each), and `matched_on_attempt` to set the next budget.
 **Layout first, then the lean kit: CSpawnPointComponent (2026-11-14).** A measured trial the owner approved. One class's
 layout was written before any worker ran, then the pilot's setup ran unchanged (journal, "Pilot batch of 50 functions":
 Sonnet workers, `prepare.py --model sonnet --budget 6 --ghidra`, no reference option, the kit at commit 56aa20d7, before

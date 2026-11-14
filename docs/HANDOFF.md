@@ -76,8 +76,10 @@ boot-path functions gave 8 matches at about 736,000 tokens each, and the declara
 hand work after the mechanical step (journal, "Pilot batch of 50 functions"); widening is the owner's call.
 The kit (`tools/batch/lean/`), its worker brief and the two skills follow the tier rules since 2026-11-12:
 a registers-only result goes to `tools/permute.py` and `tools/equiv_test.py`, every other non-match to
-`drafts/` (`tools/drafts.py`), and the coordinator moves copied declarations to unit headers. The rewritten
-brief has not been run by a worker yet. The coordinator of a piece of work merges it; the owner merges
+`drafts/` (`tools/drafts.py`), and the coordinator moves copied declarations to unit headers. Since 2026-11-14 each
+worker's context also ends with up to three reference matches (`similar.py`) and `try.py` caps its graded attempts
+at the budget, 3 in the recipe (journal, "Lean kit: reference matches"). The rewritten brief has not been run by a
+worker yet. The coordinator of a piece of work merges it; the owner merges
 sweeping revisions of `main`.
 
 Route B (`docs/PORT_PLAN.md`): one program now, lifted code as a bridge that matching replaces. Hubs
