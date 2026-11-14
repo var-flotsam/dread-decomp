@@ -25,7 +25,6 @@
 
 using base::global::CStrId;
 
-struct UnkStruct_71002fda50;
 extern const u64 g_unk_710164aed8;  // reached through the GOT
 
 struct UnkShootHit_ovb0126 {
@@ -80,7 +79,7 @@ bool fn_7100891c8c(UnkShootActivatorHit_ovb0126* self, const UnkShootHit_ovb0126
         u64 key = *reinterpret_cast<const u64*>(reinterpret_cast<const u8*>(self->field_0x4d8.data) + 0x30);
         fn_7100d7c828(owner, &key, false);
         if (void* manager = fn_7100df5440(g_unk_7101d47310))
-            fn_71002fda50(static_cast<UnkStruct_71002fda50*>(manager), true, false);
+            fn_71002fda50(static_cast<CAbilityComponent*>(manager), true, false);
     }
     fn_7100d7c828(self->owner, &g_unk_710164aed8, false);
     return false;
