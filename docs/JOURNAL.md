@@ -171,6 +171,7 @@ unit from check.py's cache (`progress.quality_by_address`, split out of `quality
   units have no hint and read `UnkTU<index>`. The 526 listed functions in no unit are the import stubs.
 - *Not done:* the readable and layout-done states are not in the tracked file, since where a function's
   source lives is known only from check.py's cache (`--quality` reports them locally).
+
 **First rename batch: nine functions of the X parasite AI component (2026-11-14).** The class whose layout is
 settled (`include/game/UnkXParasiteAI.h`) is the first to lose address names, through `tools/rename.py`:
 `XParasiteAI_SetCanBeAbsorbed`, `_AttractToPowerBomb`, `_FleeFromTarget`, `_SetPrey`, `_FindFarthestEntry`,
