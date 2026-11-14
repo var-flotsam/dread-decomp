@@ -35,7 +35,6 @@ using base::global::CRntString;
 struct lua_State;
 struct UnkSoundMgr;
 struct UnkSoundHandle_b46a1;
-struct UnkStruct_71002fda50;
 
 // ---- game manager, one name key ----
 void fn_7100df71d4(UnkGameManager* self, const CRntString& name);
@@ -153,7 +152,7 @@ s32 fn_7101093a90(lua_State* L) {
         bool all = false;
         bool force_off = false;
         fn_71010c0270(L, "bb", &all, &force_off);
-        fn_71002fda50(reinterpret_cast<UnkStruct_71002fda50*>(object), all, force_off);
+        fn_71002fda50(static_cast<CAbilityComponent*>(object), all, force_off);
     }
     return 0;
 }

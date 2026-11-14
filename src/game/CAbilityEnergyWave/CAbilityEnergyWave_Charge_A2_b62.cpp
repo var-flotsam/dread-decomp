@@ -6,6 +6,7 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "game/CAbilityEnergyWave.h"
+#include "game/CAbilityLayout.h"
 #include "game/CAbilityMultiLockon.h"
 #include "game/UnkActor.h"
 #include "game/UnkTUProperty.h"
@@ -16,68 +17,26 @@ using base::global::CStrId;
 
 struct UnkEnergyWaveKey_b60a2;
 extern UnkEnergyWaveKey_b60a2 g_unk_7101648cf8;  // reached through the GOT
-struct UnkEntry;
-struct UnkOwner;
-UnkEntry* fn_7100300970(UnkOwner* self, const CStrId* id);
+CAbility* fn_7100300970(CAbilityComponent* self, const CStrId* id);
 
-struct UnkWaveSubState_b62a2 {
-    u8 pad_0x0[0x10];
-    s32 state;
-};
-struct UnkWaveEntry_b62a2 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual void vf_0x20();
-    virtual void vf_0x28();
-    virtual void vf_0x30();
-    virtual void vf_0x38();
-    virtual void vf_0x40();
-    virtual void vf_0x48();
-    virtual void vf_0x50();
-    virtual void vf_0x58();
-    virtual void vf_0x60();
-    virtual void vf_0x68();
-    virtual void vf_0x70();
-    virtual void vf_0x78();
-    virtual void vf_0x80();
-    virtual void vf_0x88();
-    virtual void vf_0x90();
-    virtual void vf_0x98();
-    virtual void vf_0xa0(bool);
-    u8 pad_0x8[0x18];
-    UnkWaveSubState_b62a2* sub;
-    u8 pad_0x28[0x8c];
-    s32 state;
-};
-
-struct UnkEnergyWave_b62a2 {
-    u8 pad_0x0[0x30];
-    UnkActor* owner;
-    u8 pad_0x38[0xe0 - 0x38];
-    f32 timer;
-};
-
-void fn_71002fe318(UnkEnergyWave_b62a2* self) {
+void fn_71002fe318(CAbilityComponent* self) {
     if (self->timer >= *reinterpret_cast<f32*>(reinterpret_cast<char*>(&g_unk_71726af8b0) + 0x54)) {
-        auto* timeline = static_cast<UnkTimelineComponent*>(self->owner->field_0x2e8);
+        auto* timeline = static_cast<UnkTimelineComponent*>(self->Owner<UnkActor>()->field_0x2e8);
         base::reflection::UnkReflTypeIdArg mask;
         mask.id = UnkAll_SpitSend().value;
         fn_7100a2cb7c(timeline, reinterpret_cast<const u64*>(&g_unk_7101648cf8), &mask.id, false, -1.0f);
     }
     self->timer = 0.0f;
     u64 id = fn_71003182d8();
-    auto* entry = reinterpret_cast<UnkWaveEntry_b62a2*>(
-        fn_7100300970(reinterpret_cast<UnkOwner*>(self), reinterpret_cast<const CStrId*>(id)));
+    CAbility* entry = fn_7100300970(self, reinterpret_cast<const CStrId*>(id));
     if (!entry)
         return;
     s32 state = entry->state;
     if (state == 7) {
-        if (!entry->sub)
+        if (!entry->state_holder)
             return;
-        state = entry->sub->state;
+        state = entry->state_holder->state;
     }
     if (state == 6)
-        entry->vf_0xa0(true);
+        entry->Virtual(0xa0, true);
 }
