@@ -152,6 +152,30 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**The callback-set types: one definition each, the whole-header copies by hand (2026-11-13).** The 23
+sources `tools/struct_migrate.py` left for `UnkCallbackBase` (13) and `UnkIterValue` (10) copied a header's
+worth of types, so including `game/UnkCallbackSetVector.h` collided with the rest. The header is now three
+layers, one per thing a file can share:
+
+| Header | Types | Sources that include it now |
+|---|---|---|
+| `game/UnkCallbackBase.h` | `UnkRefCounted`, `UnkCallbackBase` | 5 that define their own set class (`UnkCallbackSet` of vtable 0x7101a33fa0, `UnkCallbackSet_7101cb2880`, the `base::UnkRefHandle` view in `fn_71011141e8.cpp`) |
+| `game/UnkCallbackSet_7101a20950.h` | the set class of vtable 0x7101a20950 | 3 (`UnkTU1176_Central_ovb0230.cpp`, `UnkTU341_Arrays_ovb0227.cpp`, `fn_71002475b0.cpp`) |
+| `game/UnkCallbackSetVector.h` | the element, iterator value, iterator, array, `Begin` | 5 more `src/game_s7` copies |
+
+13 sources changed, about 1,330 lines out. The set class gained the default constructor two copies had; a
+constructor nobody calls changes no code. Evidence: each of the 13 sources and every includer of the header
+(25 objects) compiled with the project compiler before and after, and `llvm-objdump -d -r -s -t` of each is
+the same text. `struct_check.py`: definitions beyond the first 2,604 to 2,556; `UnkCallbackBase` 13 copies to
+none, `UnkIterValue` 10 to 5, `UnkCallbackSet_7101a20950` 4 different texts to 3.
+
+What is left, and why it stays: four files (`fn_710090dbb4.cpp`, `UnkTU1601_Thermal_ovb0237.cpp`,
+`fn_7100d88e14.cpp`, `fn_7101132350.cpp`) hold another set class, and `fn_71002475b0.cpp` an element with no
+u32 after the set. Their `UnkIterValue` and `UnkCallbackSetVector` have the header's text but are other
+types: the text names a different `UnkCallbackSetElem`. One definition for them is a template over the
+element, which renames the parameter types of the functions they define and so the symbols other files link
+against; that is the class-first step for those set classes, not a move.
+
 **Two qualities, measured apart: `tools/progress.py --quality` (2026-11-13).** The owner, the same day: "The
 project will not be considered to be absolutely done until the decompilation functions identically and is
 human readable", and: byte-matching and readable are two different qualities, both needed; identical

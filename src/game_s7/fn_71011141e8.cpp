@@ -8,6 +8,7 @@
 #include "base/UnkVector.h"
 #include "game/CBeamBoxComponent.h"
 #include "game/CCharClassShootActivatorComponent.h"
+#include "game/UnkCallbackBase.h"
 #include "game/UnkCallbackSetVectorFwd.h"
 #include "game/UnkTU2702.h"
 
@@ -48,15 +49,6 @@ struct UnkId : CStrId {
         other.data = &pool->empty;
         return *this;
     }
-};
-
-
-struct UnkCallbackBase {
-    virtual void vf0();
-    UnkOwnedErasedVector callbacks;
-    u32 field_0x30;
-
-    UnkCallbackBase() : field_0x30(0) {}
 };
 
 struct UnkCallbackSet_7101a20950 : UnkCallbackBase {
