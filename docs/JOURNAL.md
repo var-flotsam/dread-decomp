@@ -183,6 +183,40 @@ its mangled name now maps too (`UnkRegistryEntry`'s, 0x710002003c, matches). Fin
 lists six more non-matching functions with a callee difference. Promoted with it: `fn_710024657c` (passes).
 `fn_7101213858` is `UnkSingleton_71001039f8`'s constructor and could now be defined as one, but its layout
 and `fn_7101214c94.cpp`'s `UnkAtkSystem_b0150` disagree at +0x950 and +0x558/+0x5a8: held for that decision.
+**First rename batch: nine functions of the X parasite AI component (2026-11-14).** The class whose layout is
+settled (`include/game/UnkXParasiteAI.h`) is the first to lose address names, through `tools/rename.py`:
+`XParasiteAI_SetCanBeAbsorbed`, `_AttractToPowerBomb`, `_FleeFromTarget`, `_SetPrey`, `_FindFarthestEntry`,
+`_PickWeightedChoice`, `_Reset`, `_ApplyBehavior`, `_SetEffectActive` (reasons in `data/names.csv`). Three rest
+on the blackboard property names the unit's static initialiser registers (`fn_71006e5b10`: the ids at
+`g_unk_717270b898` + 0x20.. are v3StayPos, v3PowerBombPos, fInitTime, fWanderTime, bCanBeAbsorbed,
+bIsBeingAttracted, ...), which is how `g_unk_717270b8d8` reads as bCanBeAbsorbed. The functions are still free
+functions taking the component, so the names carry the class as a prefix; they become members when the class
+does. Left with their addresses, because what they are for is not established yet: the destructor and the
+static initialiser, `fn_71006eb590`, `fn_71006eba00`, `fn_71006e7754`, `fn_71006ea160`, `fn_71006e9fcc`,
+`fn_71006e808c`, `fn_71006e8a18`, `fn_71006e75e8` (the grab/link reading in their comments is itself a guess).
+A rename changes no code: only the nine rows' names differ in `data/functions/`.
+
+**Three rules taken from BotW's agent file; what other public projects do (2026-11-14).** A survey of the
+public projects nearest to this one, for what is worth borrowing. No project found rebuilds with Clang 9.0.x:
+zeldaret/botw uses upstream 4.0.1, OdysseyDecomp an older upstream Clang, shibbo/3DWDecomp the SDK's own
+compiler (which this project's rules forbid), MinecraftLCE an unstated Clang. Every Switch game that runs on PC
+today is a static recompilation or a compatibility layer; none is a source port from a decompilation.
+Samus Returns has a recompiled port (msr2ds) and no decompilation, so there is no other Mercury source to read.
+
+The owner adopted three rules of zeldaret/botw's `AGENTS.md` (`CLAUDE.md`, "Hard rules" and "Conventions"):
+code no developer would write is an optimization not undone yet; no `goto` to force a match; no assembly in
+commit messages or pull request descriptions. Not adopted: its registers-only rule (tier 2 is stricter), human
+review before every pull request, its work-order and cast rules. Its "name the component and most of its fields
+first" is taken as an order of work, not a naming gate: the class's layout header before its functions, names
+only with evidence. That order is to be tried on one class and its cost per match compared with the pilot's
+(736,000 tokens a match) before it becomes a rule.
+
+- 406 files under `src/` hold a `goto` today (`grep -rIl "goto " src | wc -l`); `tools/fakematch.py` does not
+  list them yet. A `goto` kind there would make the new rule checkable.
+- From the AI-assisted projects that finished (Snowboard Kids, the Mizuchi benchmark): give a worker similar,
+  already matched functions as references; cap attempts, since about half of the matches come on the first
+  try and few after the third; keep the permuter out of the worker's loop. The first two went to their own
+  threads.
 
 **The X parasite component's two leftovers: the destructor over the layout, and the owner's views
 (2026-11-13).** The pilot (below) left two things outside `include/game/UnkXParasiteAI.h`. Both are done, and
