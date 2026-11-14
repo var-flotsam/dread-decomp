@@ -77,8 +77,10 @@ void fn_7101110e18(UnkTimerSelf2_r* self, f32 dt) {
         next = 0.0f;
     CBlackboard* bb = reinterpret_cast<CBlackboard*>(self->blackboard);
     UnkTimerRamp_r* r = &self->ramp;
+#if defined(__aarch64__)
     // keeps the window bounds computed after the clamp
     asm("" : "+w"(v), "+w"(next));
+#endif
     f32 lo = v + -0.001f;
     f32 hi = v + 0.001f;
     if (!(hi >= next && lo <= next)) {
