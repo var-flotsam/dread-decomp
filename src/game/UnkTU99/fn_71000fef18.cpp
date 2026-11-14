@@ -21,8 +21,9 @@ struct UnkMaskedOwner {
 };
 
 // NON_MATCHING(minor): the epilogue is duplicated on the early-out path instead of branching to a shared one
-s32 fn_71000fef18(UnkMaskedOwner* self, u32 mask) {
-    s32 total = 0;
+u32 fn_71000fef18(void* member, u32 mask) {
+    UnkMaskedOwner* self = static_cast<UnkMaskedOwner*>(member);
+    u32 total = 0;
     if (__builtin_expect(!(g_unk_7108b6ab60 & 1), 0)) {
         fn_7100132cd0();
         fn_710006691c(&self->mutex);

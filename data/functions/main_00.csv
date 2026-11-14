@@ -5829,7 +5829,7 @@ address,size,name,name_source,subsystem,status
 0x71000feb3c,256,fn_71000feb3c,unknown,unknown,O
 0x71000fec3c,480,fn_71000fec3c,unknown,unknown,U
 0x71000fee1c,252,fn_71000fee1c,unknown,unknown,U
-0x71000fef18,224,fn_71000fef18,unknown,unknown,U
+0x71000fef18,224,fn_71000fef18,unknown,unknown,m
 0x71000feff8,536,fn_71000feff8,unknown,unknown,O
 0x71000ff210,32,fn_71000ff210,unknown,unknown,O
 0x71000ff230,8,fn_71000ff230,unknown,unknown,O

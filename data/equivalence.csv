@@ -14,6 +14,7 @@ address,digest,verdict,rules,detail
 0x71000cd658,0aca046f127df5da4458f29a7c3428f2,inconclusive,2,5 of 12 conditional branches went only one way
 0x71000cfe14,a79e3daa106f598fdb7902dad79fd5af,inconclusive,2,5 of 12 conditional branches went only one way
 0x71000fd1d4,cefc91838050d8d167457ce7beda6d57,pass,2,
+0x71000fef18,46e87f5e64ba9eba8d926888024b1384,pass,2,
 0x7100110420,bfeb95e7cbcf15507626ede5eb508242,pass,2,
 0x710011ec5c,88fe1b9031af625ce292c29badada502,pass,2,
 0x710012436c,4ccf526e05b76ea7d5a76da86a8bf0aa,inconclusive,2,unresolved UnkSegment2D::UnkSegment2D(base::math::CVector2D const&; base::math::CVector2D const&)
@@ -29,6 +30,7 @@ address,digest,verdict,rules,detail
 0x710015f500,dd4252f182e1fcde842889f71318d1e9,pass,2,
 0x7100161520,62aeb042bb595217d31207b041a43872,inconclusive,2,only 22% of the original's instructions ran
 0x7100161b90,577190862793adb5cf0802906207002b,inconclusive,2,unresolved guard variable for UnkFlagsNone_7100161b90()::s_none (no address in the original)
+0x710019da10,15670ad6f29e08620eaadd8b8c27019f,pass,2,
 0x71001b76ec,57a24d03591b69ba34d01f0cf4179b9d,pass,2,
 0x71001b7d80,49df6d5d9c751fee53dc3c026cf0a072,pass,2,
 0x71001bab30,25ea7aaff7298725fe05270fc67abd22,inconclusive,2,2 of 7 conditional branches went only one way

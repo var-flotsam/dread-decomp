@@ -152,6 +152,19 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Held drafts: 3 of 19 promoted (2026-11-13).** Of the 19 drafts whose note was "matches; held" or "passes
+tools/equiv_test.py; held", three needed only their own declarations fitted to the existing ones and moved
+to `src/`: `fn_71008866b8` (matches; the handler `fn_7100889040` declared with its definition's signature,
+`UnkSmOwner_b60` forward-declared), `fn_71000fef18` (passes; defined as `u32 (void*, u32)`, as
+`CSoundSystem_Groups_ovb0074.cpp` calls it), `fn_710019da10` (passes; `UnkVec3f` and `include/game/UnkTU54.h`
+for `fn_71000791a8` in place of its own vector type). A finding: `drafts.py promote` checks one file's
+declaration problems, not `decl_check --strict`'s ratchet, so four drafts it would move (`fn_71000708c8`,
+`fn_71008c3dcc`, `fn_7100e94e10`, `fn_7100ebfd4c`) still add local copies of symbols declared elsewhere
+(`g_unk_7101647790`, `fn_7100353be8`, `g_unk_710164be30`, six helpers of `fn_7100ebfd4c`) and stay held.
+`fn_7100e94e10`'s `UnkMinimapRect` now has the unit's text (it was a third different definition). The other
+eleven name a type that lives only inside another `.cpp`; `fn_7100e51078`'s second function,
+`fn_7100e3cee0`, is inconclusive in `tools/equiv_test.py` now.
+
 **Two qualities, measured apart: `tools/progress.py --quality` (2026-11-13).** The owner, the same day: "The
 project will not be considered to be absolutely done until the decompilation functions identically and is
 human readable", and: byte-matching and readable are two different qualities, both needed; identical

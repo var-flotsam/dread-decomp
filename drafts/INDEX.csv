@@ -22,7 +22,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71000fe56c,276,drafts/game/UnkTU99/fn_71000fe56c.cpp,calls,33.3,45,pilot50,inlined CFilePathStrId release: extra call; pool slot register and local slot differ
 0x71000fec3c,480,drafts/game/UnkTU99/fn_71000fec3c.cpp,conditions,95.8,5,overnight,
 0x71000fee1c,252,drafts/game/UnkTU99/fn_71000fee1c.cpp,operations,60.9,24,lean,
-0x71000fef18,224,drafts/game/UnkTU99/fn_71000fef18.cpp,registers or order,12.5,49,pilot50,passes tools/equiv_test.py; held: 1 declaration problem: src/game/UnkTU99/fn_71000fef18.cpp:24 fn_71000fef18: defined as s32 fn_71000fef18(UnkMaskedOwner*; u32) -> declared elsewhere with other types; use this parameter list and re...
 0x7100100170,336,drafts/game/UnkTU99/fn_7100100170.cpp,conditions,98.8,1,overnight,
 0x7100100628,268,drafts/game/UnkTU99/fn_7100100628.cpp,operations,97.0,2,overnight,
 0x710010df80,476,drafts/game/UnkTU107/fn_710010df80.cpp,registers or order,89.9,12,pilot50,register allocation of loop counters
@@ -33,7 +32,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71001997c8,140,drafts/game/UnkTU218/fn_71001997c8.cpp,operations,28.6,24,pilot50,final w component copy via x1+0xc pointer; KIND operations
 0x710019b184,384,drafts/game/UnkTU221/fn_710019b184.cpp,registers or order,95.8,4,overnight,
 0x710019b5ec,508,drafts/game/UnkTU222/fn_710019b5ec.cpp,operations,96.1,5,overnight,
-0x710019da10,224,drafts/game/UnkTU224/fn_710019da10.cpp,registers or order,98.2,1,overnight,passes tools/equiv_test.py; held: 1 declaration problem: src/game/UnkTU224/fn_710019da10.cpp:29 fn_71000791a8: UnkMatrix44 fn_71000791a8(const UnkVec3_ovb0245*; const UnkVec3_ovb0245&; const UnkVec3_ovb0245*) -> declared in include...
 0x710019dcac,380,drafts/game/UnkTU225/fn_710019dcac.cpp,registers or order,97.9,2,overnight,
 0x71001b47b4,400,drafts/game/UnkTU241/fn_71001b47b4.cpp,operations,94.0,6,pilot50,ands vs cbz on strlen result; ctor store order around GOT load
 0x71001c5db4,380,drafts/game/UnkTU258/fn_71001c5db4.cpp,conditions,98.9,1,overnight,
@@ -103,7 +101,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71008372ac,476,drafts/game/UnkTU1303/fn_71008372ac.cpp,registers or order,97.5,3,overnight,
 0x71008625a0,284,drafts/game/CCollisionComponent/fn_71008625a0.cpp,registers or order,74.6,18,pilot50,register allocation x19/x20; store order
 0x710086f9e0,324,drafts/game/UnkTU1325/fn_710086f9e0.cpp,registers or order,90.1,8,overnight,
-0x71008866b8,548,drafts/game/CMorphBallLauncherComponent/fn_71008866b8.cpp,match,100.0,0,lean,matches; held: 1 declaration problem: src/game/CMorphBallLauncherComponent/fn_71008866b8.cpp:9 fn_7100889040: void fn_7100889040() -> src/game/UnkStateMachineSet_b60.cpp defines it with other types; copy the defi...
 0x710088adf0,376,drafts/game/CCharClassMushroomPlatformComponent/fn_710088adf0.cpp,control flow,34.0,54,test40,block layout differs: original puts owner-target tail before state switch; loop shape differs
 0x71008c3dcc,360,drafts/game/CDemolitionBlockActivatableActorLifeComponent/fn_71008c3dcc.cpp,match,100.0,0,test40,matches; held: fn_7100353be8 (37 copies) returns UnkRef; a struct in some files and an alias in others; so no header can take it
 0x71009438e8,244,drafts/game/UnkTU1428/fn_71009438e8.cpp,operations,98.4,1,overnight,
