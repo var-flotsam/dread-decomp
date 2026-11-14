@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAbilityGhostAura.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkBehaviorTree.h"
@@ -21,8 +22,6 @@
 #include "game/UnkTypedValue.h"
 
 using base::global::CStrId;
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 inline CStrId* FlagName_ovb0124() {
     static UnkGameManagerIdTable s_table asm("g_unk_7101d552d0");

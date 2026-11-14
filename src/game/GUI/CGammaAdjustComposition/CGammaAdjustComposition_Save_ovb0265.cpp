@@ -7,6 +7,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/GUI/CIngameMenu.h"
 #include "game/GUI/CMainMenu.h"
@@ -33,8 +34,6 @@ static inline UnkUserDataOwner* GetOwner() {
     }
     return g_unk_7101d47308;
 }
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 struct UnkGammaAdjust {
     u8 pad_0x0[0x234];

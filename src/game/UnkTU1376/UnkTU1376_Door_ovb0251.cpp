@@ -19,6 +19,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CBreakableVignetteComponent.h"
 #include "game/CCharClassBreakableScenarioComponent.h"
@@ -92,8 +93,6 @@ struct UnkDoorNameValue_b0251 {
     };
     u64 field_0x8;
 };
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 static inline void SetSectionBool_b0251(CBlackboard* blackboard, const CStrId& section, UnkPropertyName* name,
                                         bool* value) {

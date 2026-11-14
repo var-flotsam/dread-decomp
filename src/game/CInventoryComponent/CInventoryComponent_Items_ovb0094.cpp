@@ -7,6 +7,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CComponent.h"
 #include "game/CInventoryComponent.h"
@@ -142,8 +143,6 @@ void fn_7101149354(UnkInvSection_ovb0094* self, const base::global::CRntString& 
     if (self->id.data != g_unk_7101d470e0.data && fn_7101047208(&g_unk_7101d47310->field_0x968, self->id))
         fn_710114433c(self, &fn_71010472e0(&g_unk_7101d47310->field_0x968, self->id)->data);
 }
-
-void fn_7100332c80(CBlackboard::CSection*, UnkPropertyName*, const UnkTypedValue*);
 
 // The item's qualified id, built on first use (as src/game_s7/fn_7100fc4b34.cpp's).
 static inline UnkQualifiedId& Qid_ovb0094(UnkPropertyEx<>& item) {

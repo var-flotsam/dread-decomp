@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkTUProperty.h"
 #include "game/behaviortree/CBehavior.h"
@@ -14,7 +15,6 @@
 using base::global::CStrId;
 
 // As src/game/CAIComponent/CAIComponent_StoreFloat_b49.cpp declares them.
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 struct UnkRobotBlackboardOwner_A3_b75 {
     u8 pad_0x0[0x1260];

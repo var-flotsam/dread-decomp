@@ -5,6 +5,7 @@
 // layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CScenario.h"
 #include "game/UnkGameManager.h"
@@ -15,8 +16,6 @@
 using base::global::CStrId;
 
 extern UnkProperty g_unk_7172a065e0;
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 struct UnkSpawnGroupValue_b49 {
     union {

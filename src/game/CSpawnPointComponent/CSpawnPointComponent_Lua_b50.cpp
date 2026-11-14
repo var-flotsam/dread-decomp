@@ -1,14 +1,13 @@
 // A spawn point's update when it spawns `actor`: resolves the weak reference to its spawner once
 // (fn_710023b580), tells the spawner's object (vf_0x178) and calls the Lua function named at +0xd8
 // with the owner and the actor. Names and layouts are placeholders.
-#include "base/UnkRefHandle.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/CDrop.h"
+#include "game/CSpawnPointComponent.h"
 #include "game/CLuaCallsLogicAction.h"
 #include "game/UnkTU2668.h"
 #include "game/UnkTU2677.h"
 #include "game/lua_lib.h"
-#include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct lua_State;
@@ -80,65 +79,34 @@ struct UnkSpawner_71011275d8 {
     bool field_0x13a;
 };
 
-struct UnkSpawnerRef_71011275d8 {
-    u8 pad_0x0[0x10];
-    void* field_0x10;
-};
-
 void fn_7100d7b964(void* actor, void* self);
 
-struct UnkSpawnPoint_71011275d8 {
-    u8 pad_0x0[0x30];
-    UnkOwnerDef_71011275d8* field_0x30;
-    u8 pad_0x38[0x30];
-    u8 field_0x68[0x28];
-    u32 field_0x90;
-    u8 pad_0x94[0x4];
-    UnkSpawnerRef_71011275d8* field_0x98;
-    u8 pad_0xa0[0x38];
-    const char* field_0xd8;
-    u8 pad_0xe0[0x30];
-    s32 field_0x110;
-    u8 pad_0x114[0x1a4];
-    bool field_0x2b8;
+// The object told of each spawn: the target of the link at +0x60, seen through fn_71007c04f0.
+static UnkSpawner_71011275d8* Spawner(CSpawnPointComponent* self) {
+    if (CActor* target = self->field_0x60.Target())
+        return static_cast<UnkSpawner_71011275d8*>(fn_71007c04f0(target));
+    return nullptr;
+}
 
-    void ResolveSpawner() {
-        if (field_0x90 == 1) {
-            {
-                UnkRefPtr ref = fn_710023b580(field_0x68);
-                fn_7100234f78(reinterpret_cast<base::UnkRefHandle*>(&field_0x98),
-                              reinterpret_cast<const base::UnkRefHandle*>(&ref));
-            }
-            field_0x90 = 2;
-        }
-    }
-    UnkSpawner_71011275d8* Spawner() {
-        if (field_0x98 && field_0x98->field_0x10)
-            return static_cast<UnkSpawner_71011275d8*>(fn_71007c04f0(field_0x98->field_0x10));
-        return nullptr;
-    }
-};
-static_assert(__builtin_offsetof(UnkSpawnPoint_71011275d8, field_0x2b8) == 0x2b8, "");
-
-void fn_71011275d8(UnkSpawnPoint_71011275d8* self, void* actor) {
+void fn_71011275d8(CSpawnPointComponent* self, void* actor) {
     if (!actor)
         return;
-    if (self->field_0x110 < 0) {
-        self->ResolveSpawner();
-        if (UnkSpawner_71011275d8* spawner = self->Spawner())
+    if (self->iMaxNumToGenerate < 0) {
+        self->ResolveField0x60();
+        if (UnkSpawner_71011275d8* spawner = Spawner(self))
             if (spawner->field_0x13a)
                 self->field_0x2b8 = false;
     }
     fn_7100d7b964(actor, self);
-    self->ResolveSpawner();
-    if (UnkSpawner_71011275d8* spawner = self->Spawner()) {
-        UnkOwnerDef_71011275d8* def = self->field_0x30;
+    self->ResolveField0x60();
+    if (UnkSpawner_71011275d8* spawner = Spawner(self)) {
+        UnkOwnerDef_71011275d8* def = self->Owner<UnkOwnerDef_71011275d8>();
         ++def->name->use_count;
         const char* str = def->name->str;
         spawner->vf_0x178(str ? str : g_unk_710162e2ed, actor);
     }
-    if (self->field_0x30 && fn_7100a506a8(self->field_0x30) && self->field_0xd8 && self->field_0xd8[0] &&
-        fn_71010c0bb0(g_unk_7172a01d18, self->field_0xd8)) {
+    if (self->field_0x30 && fn_7100a506a8(self->field_0x30) && self->sOnEntityGenerated.data &&
+        self->sOnEntityGenerated.data[0] && fn_71010c0bb0(g_unk_7172a01d18, self->sOnEntityGenerated.data)) {
         fn_7100fbc4e0(g_unk_7172a01d18, self->field_0x30);
         fn_7100fbc4e0(g_unk_7172a01d18, actor);
         char out[0x100];

@@ -5,6 +5,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2544.h"
@@ -16,8 +17,6 @@ using base::global::CStrId;
 
 struct UnkUserDataOwner;
 struct UnkPropertyName;
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 static inline UnkUserDataOwner* GetOwner() {
     if (!g_unk_7101d47308) {

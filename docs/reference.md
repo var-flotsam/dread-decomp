@@ -35,6 +35,7 @@ tools/baseline.py                trymatch output snapshot, compare and restore f
 tools/hub_migrate.py             mechanical canonical-header migration on top of baseline.py; LEFT lines are the hand work
 tools/rename.py                  give a function a readable name: data/names.csv, data/functions/, every hand-written use; --check (CI)
 tools/tu_map.py                  translation-unit map from .init_array + reflection groups -> data/tu_map.csv; --function
+tools/tu_status.py               status per translation unit (matched, done, partial, untouched) -> data/tu_status.csv; --list, --unit, --summary (PR job summary)
 tools/objdiff_gen.py             objdiff targets + objdiff.json (gitignored) for every src/ unit
 tools/shape_census.py            same-shape U families (maintenance)
 tools/sigmatch.py                names vendored-library functions in main -> data/library_symbols.csv
@@ -56,7 +57,7 @@ include/game/                    game headers shared by several files (UnkActor,
 tools/gen_class_getters.py, tools/port_sweep.py   class-getter header generator; host compile sweep of src/ for the port
 port/                            the PC port layer: CMake project, runtime stubs (M0; see docs/PORT_PLAN.md)
 lib/lua/, lib/dlmalloc/, lib/libcxx/   vendored upstream code with READMEs; lib/nnsdk, lib/musl submodules
-data/                            functions/ CSVs, reflection_types.csv, reflection_fields.csv, tu_map.csv, data_map.csv, library_symbols.csv, hashes, pins
+data/                            functions/ CSVs, reflection_types.csv, reflection_fields.csv, tu_map.csv, tu_status.csv, data_map.csv, library_symbols.csv, hashes, pins
 docs/                            this page, PORT_PLAN.md, JOURNAL.md, recon.md, compiler.md, references.md, maintaining.md
 ```
 

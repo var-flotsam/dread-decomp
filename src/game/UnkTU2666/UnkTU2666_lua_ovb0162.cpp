@@ -13,6 +13,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "base/snd/CSoundSystem.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CActorComponent.h"
 #include "game/CAttack.h"
 #include "game/CBossAIComponent.h"
@@ -267,8 +268,6 @@ static inline const UnkQualifiedId& GetQualifiedId_b0162(UnkPropertyEx<>& item) 
 }
 
 struct UnkDef_7100fc4b34;
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 // Stores true under the property's id in the current blackboard section, unless the blackboard is locked.
 static inline void SetFlag_b0162(UnkPropertyEx<>& property) {

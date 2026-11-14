@@ -191,8 +191,20 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710110a0a4,192,drafts/game/UnkTU2702/fn_710110a0a4.cpp,operations,91.7,4,overnight,
 0x71011104c0,564,drafts/game/UnkTU2702/fn_71011104c0.cpp,registers or order,97.2,4,overnight,
 0x7101110e18,436,drafts/game/UnkTU2702/fn_7101110e18.cpp,registers or order,96.3,4,overnight,
+0x710112688c,308,drafts/game/UnkTU2704/fn_710112688c.cpp,build fails,,,spawnpoint,CStrId dtor duplicated into null-section path (7 calls vs 6); original shares tail; header split of pad 0x290/
+0x7101126c34,244,drafts/game/UnkTU2704/fn_7101126c34.cpp,match,100.0,0,spawnpoint,matches; held: it defines UnkShapeHit_A5_b68 (the shape tester's result; game/UnkTU2509.h) as 8 bytes where three other sources define it as 16; with the 16-byte definition the function is at 75%. Settle the result's size first
+0x7101127834,304,drafts/game/UnkTU2704/fn_7101127834.cpp,registers or order,92.1,6,spawnpoint,instruction order only: flag load at +0x1b2 before the other link state test; and the final call arg setup ord
 0x710112a3bc,412,drafts/game/UnkTU2704/fn_710112a3bc.cpp,calls,31.0,67,pilot50,KIND calls: 3 calls vs 4; return-true block layout
+0x710112bce8,300,drafts/game/UnkTU2704/fn_710112bce8.cpp,control flow,82.1,11,spawnpoint,search loop: original uses a byte counter and shared found/end check tail; ours duplicates the end check
 0x710112c4d8,368,drafts/game/UnkTU2704/fn_710112c4d8.cpp,registers or order,95.7,4,overnight,
+0x710112f4a0,432,drafts/game/UnkTU2704/fn_710112f4a0.cpp,control flow,29.6,72,spawnpoint,control flow: original has 22 branches vs 20; register allocation (dst/other/payload) and tail duplication dif
+0x710112f960,408,drafts/game/UnkTU2704/fn_710112f960.cpp,operations,54.4,46,spawnpoint,element pointer (+0x18 payload) hoisted before null check; one extra insn; loop-exit cmp order and register us
+0x710112fb38,344,drafts/game/UnkTU2704/fn_710112fb38.cpp,registers or order,90.7,8,spawnpoint,register/schedule order in the element-init loop (trip count and offset registers)
+0x710112fe78,408,drafts/game/UnkTU2704/fn_710112fe78.cpp,calls,1.9,100,spawnpoint,calls 10 vs 9: loop tail-duplicates the value destroy call; extra callee-saved regs (data/0x18 not strength-re
+0x71011312cc,400,drafts/game/UnkTU2704/fn_71011312cc.cpp,operations,10.5,89,spawnpoint,move ctor of callback-set iterator value; ours hoists &callbacks into x21 (+x22; 105 vs 100 insns); vtable+dat
+0x710113156c,168,drafts/game/UnkTU2704/fn_710113156c.cpp,operations,14.3,34,spawnpoint,original keeps u32 index in w21 and a separate u64 loop index via lsl/lsr #6 pair; ours merges them (one reg);
+0x7101131b98,456,drafts/game/UnkTU2704/fn_7101131b98.cpp,match,100.0,0,spawnpoint,matches; held: its 0x40-byte entry type is a third view of the holder that CSpawnPointComponent_b42.cpp (UnkEntry_b42a3) and UnkTU2704_InsertHolder_l131ea8.cpp declare differently (the layout is CGameLink<CActor>'s: vtable; key at +0x8; state +0x30; handle +0x38); unify the three on one type first
+0x71011320dc,596,drafts/game/UnkTU2704/fn_71011320dc.cpp,registers or order,97.3,4,spawnpoint,UnkVector::MoveTo loop scheduling (mov x23;x27 vs cmp order; 4 insns); fixed in header only; flatten on fn; en
 0x7101136bb4,884,drafts/game/CAttackComponent/fn_7101136bb4.cpp,registers or order,93.7,14,lean,
 0x710114ccd0,132,drafts/game/CPositionalSoundComponent/fn_710114ccd0.cpp,control flow,0.0,32,test40,compiler fuses redundant null check and compares; branch count 10 vs 11
 0x710114e130,728,drafts/game/CFXComponent/fn_710114e130.cpp,operations,15.7,153,lean,

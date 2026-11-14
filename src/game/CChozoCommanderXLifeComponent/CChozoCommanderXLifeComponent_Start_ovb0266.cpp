@@ -8,6 +8,7 @@
 #include "base/UnkRefHandle.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CCutsceneComponent.h"
@@ -53,7 +54,6 @@ struct UnkSubId_7100fc4b34 {
     CStrId id;
     u64 field_0x8;
 };
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 const UnkSubId_7100fc4b34& fn_71008c0004(UnkQualifiedName* self, const char* name);
 extern UnkPropertyEx<0x160> g_unk_7172759848;
 

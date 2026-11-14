@@ -11,6 +11,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CArenaManager/CTunableArenaManager.h"
 #include "game/CBlackboard.h"
 #include "game/CScenario.h"
@@ -109,8 +110,6 @@ using base::global::CStrId;
 struct UnkArenaTimer_ovb0108 : base::UnkRefCounted {
     void* field_0x10;
 };
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 // The index of a key, or the count if it isn't there.
 static inline u64 IndexOf(const UnkStrIdTable& table, const UnkPropertyName& key) {

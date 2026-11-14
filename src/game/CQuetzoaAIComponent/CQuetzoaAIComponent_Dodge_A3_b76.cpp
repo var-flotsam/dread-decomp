@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkActor.h"
 #include "game/UnkTUProperty.h"
@@ -17,7 +18,6 @@
 using base::global::CStrId;
 
 // As src/game/CAIComponent/CAIComponent_StoreFloat_b49.cpp declares them.
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 struct UnkQuetzoaPos_A3_b76 {
     alignas(8) u32 v[4];  // 16 bytes: shares the name's slot and keeps its own place

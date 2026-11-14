@@ -16,6 +16,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CChozoCommanderAIComponent.h"
 #include "game/GUI/CIngameMenu.h"
@@ -397,8 +398,6 @@ int fn_7101097ee0(lua_State* L) {
 // "NumEmmisDefeated" (src/game_s7/fn_7100ae39e0.cpp).
 
 bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 struct UnkGameManagerData_b0007 {
     u8 pad_0x0[0x968];

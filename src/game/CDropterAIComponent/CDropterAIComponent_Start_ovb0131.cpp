@@ -10,6 +10,7 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBehaviorTreeAIComponent.h"
 #include "game/CBlackboard.h"
 #include "game/CDropterAIComponent.h"
@@ -73,7 +74,6 @@ void fn_71004ee434(UnkDropterAI_ovb0131* self, void* arg) {
     fn_71004ee590(reinterpret_cast<UnkDropterHit_b58*>(self));
 }
 
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 struct UnkDropterHitAI_ovb0131;
 void fn_71004ec714(UnkDropterHitAI_ovb0131* self, bool flag);
 

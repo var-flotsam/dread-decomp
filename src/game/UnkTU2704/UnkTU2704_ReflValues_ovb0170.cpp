@@ -388,7 +388,6 @@ bool fn_710112baa0(void* actor) {
 // ---- Callback iterator and weak reference
 
 struct UnkClone_fn_710112e7e0;
-extern void* g_unk_7101cb2880[];
 template <>
 struct base::UnkCallbackTraits<UnkClone_fn_710112e7e0> {
     static char* vtable() { return reinterpret_cast<char*>(g_unk_7101cb2880); }

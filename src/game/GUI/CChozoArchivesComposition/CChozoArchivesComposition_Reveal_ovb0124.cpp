@@ -7,6 +7,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/GUI/CMainMenu.h"
 #include "game/UnkGameBlackboard.h"
@@ -69,8 +70,6 @@ void fn_7100af77dc(UnkArchivesComposition_ovb0124* self, UnkGuiEvent_b49* event)
 }
 
 using base::global::CStrId;
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 struct UnkProfileSaveArg {
     void* field_0x0;
