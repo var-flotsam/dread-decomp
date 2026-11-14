@@ -8,6 +8,7 @@
 struct UnkAtkTaskManager;
 struct UnkAtkArchive;
 struct UnkAtkArchive_b0148;
+struct UnkAtkEmitter_b0147;
 struct UnkAtkEntryIndex_b0148;
 struct UnkAtkInfo_b0150;
 struct UnkAtkItemRefs;
@@ -44,6 +45,9 @@ void fn_710122b868(void* item);
 void fn_710122c43c(UnkListItem* item, u32 state);
 void fn_710122c958(UnkListOwner* self, UnkListItem* item);
 void fn_710122cf1c(UnkAtkListOwner* owner);
+// Two passes over the emitters of a set (fn_710122f380, fn_710122f3f0).
+void fn_710122d048(UnkAtkEmitter_b0147* e);
+void fn_710122d3bc(UnkAtkEmitter_b0147* e);
 void fn_710122faa0(UnkAtkVoice* self, void* params, u32 arg);
 [[noreturn]] void fn_71012390d0(const char* a, const char* b, const char* c, u32 line, const u32* result, const char* format);
 void fn_71012392d0(UnkAtkLock* lock);

@@ -1,3 +1,4 @@
+#include "game/UnkTU2772.h"
 #include "types.h"
 
 struct UnkAtkListLink_b0148 {
@@ -5,7 +6,7 @@ struct UnkAtkListLink_b0148 {
     UnkAtkListLink_b0148* next;
 };
 
-struct UnkAtkChannelItem_b0148 {
+struct UnkAtkEmitter_b0147 {
     u8 pad_0x0[0x278];
     u32 state;  // 0x278
     u8 pad_0x27c[0xc];
@@ -17,13 +18,11 @@ struct UnkAtkChannelOwner_b0148 {
     UnkAtkListLink_b0148 list;  // 0x8
 };
 
-void fn_710122d048(UnkAtkChannelItem_b0148* item);
-void fn_710122d3bc(UnkAtkChannelItem_b0148* item);
-
-static inline UnkAtkChannelItem_b0148* ItemOf(UnkAtkListLink_b0148* link) {
-    return reinterpret_cast<UnkAtkChannelItem_b0148*>(reinterpret_cast<u8*>(link) - 0x288);
+static inline UnkAtkEmitter_b0147* ItemOf(UnkAtkListLink_b0148* link) {
+    return reinterpret_cast<UnkAtkEmitter_b0147*>(reinterpret_cast<u8*>(link) - 0x288);
 }
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_710122f3f0(UnkAtkChannelOwner_b0148* self) {
     UnkAtkListLink_b0148* head = &self->list;
     for (UnkAtkListLink_b0148* it = head->next; head != it;) {
@@ -71,23 +70,20 @@ struct UnkAtkChannelOwner_o0319 {
     };
 };
 
-struct UnkAtkChannelItem_b0148;
-void fn_710122d048(UnkAtkChannelItem_b0148* item);
-void fn_710122d3bc(UnkAtkChannelItem_b0148* item);
-
+struct UnkAtkEmitter_b0147;
 void fn_710122f3f0(UnkAtkChannelOwner_o0319* self) {
     for (UnkAtkLink_o0319* it = self->list.next; &self->list != it;) {
         UnkAtkLink_o0319* next = it->next;
         UnkAtkChannelItem_o0319* item = reinterpret_cast<UnkAtkChannelItem_o0319*>(reinterpret_cast<u8*>(it) - 0x288);
         if (item->state == 0)
-            fn_710122d048(reinterpret_cast<UnkAtkChannelItem_b0148*>(item));
+            fn_710122d048(reinterpret_cast<UnkAtkEmitter_b0147*>(item));
         it = next;
     }
     for (UnkAtkLinkB_o0319* it = self->list_b.next; &self->list_b != it;) {
         UnkAtkLinkB_o0319* next = it->next;
         UnkAtkChannelItem_o0319* item = reinterpret_cast<UnkAtkChannelItem_o0319*>(reinterpret_cast<u8*>(it) - 0x288);
         if (item->state == 0)
-            fn_710122d3bc(reinterpret_cast<UnkAtkChannelItem_b0148*>(item));
+            fn_710122d3bc(reinterpret_cast<UnkAtkEmitter_b0147*>(item));
         it = next;
     }
 }

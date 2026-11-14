@@ -1,10 +1,9 @@
 // Getters returning a copy of a constant three-word vector (unit 132 of tools/tu_map.py): two
 // return the zero vector g_unk_710164779c, one the vector after it. The result
 // is a class with a user-written copy constructor (returned through x8, copied word by word). Names are placeholders.
+#include "base/math/UnkOneVector3.h"
 #include "base/math/UnkZeroVector3.h"
 #include "types.h"
-
-extern const base::math::CVector3D g_unk_71016477a8;
 
 struct UnkVector3Words_b42a1 {
     u32 x, y, z;

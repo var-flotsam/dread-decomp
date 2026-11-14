@@ -1,8 +1,13 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
+#include "game/CFrozenComponent.h"
+#include "game/UnkTU2702.h"
+#include "game/UnkTU500.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
+#include "game/CAbilityShinespark.h"
+#include "game/behaviortree/CBehavior.h"
 
 using base::global::CStrId;
 
@@ -10,17 +15,11 @@ struct UnkTypedValue {
     const base::reflection::CType* type;
     void* value;
 };
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
-bool fn_7100395b34(CBlackboard::CSection*, const void*, f32*);
-bool fn_71007f9f20(void* comp);
-bool fn_71007f9fd0(void* comp);
 
-extern base::global::CStrId g_unk_71726b7cb8;
-extern UnkPropertyName g_unk_7172a06338 __attribute__((visibility("hidden")));
 
 struct UnkTimerOwner_r {
     u8 pad_0x0[0x2c8];
-    void* field_0x2c8;
+    UnkFrostbiteComponent* field_0x2c8;
 };
 struct UnkTimerCfg_r {
     u8 pad_0x0[0x494];
@@ -57,8 +56,9 @@ struct UnkTimerSelf2_r {
     UnkTimerRamp_r ramp;
 };
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_7101110e18(UnkTimerSelf2_r* self, f32 dt) {
-    void* comp = self->owner->field_0x2c8;
+    UnkFrostbiteComponent* comp = self->owner->field_0x2c8;
     if (comp && fn_71007f9f20(comp) && !fn_71007f9fd0(comp))
         return;
     f32 v;

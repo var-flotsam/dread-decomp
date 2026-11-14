@@ -40,6 +40,7 @@
 #include "game/UnkTU2733.h"
 #include "game/UnkTU2744.h"
 #include "game/UnkTU341.h"
+#include "game/UnkTU500.h"
 #include "game/UnkTU99.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
@@ -301,7 +302,6 @@ s32 fn_7101096c50(lua_State*) {
 // ---- the player's inventory ----
 struct UnkInventory;
 struct UnkPlayer;
-bool fn_7100395b34(CBlackboard::CSection* section, const void* name, f32* out);
 
 struct UnkInventoryOwner_b0162 {
     u8 pad_0x0[0x270];

@@ -7,6 +7,7 @@
 #include "types.h"
 
 struct UnkAIBB_b0144;
+struct UnkPropertyName;
 struct UnkAIComponent;
 struct UnkAabb;
 struct UnkBigFistAI3_ovb0050;
@@ -72,3 +73,4 @@ void fn_7101114588(UnkEntryVector* v, const UnkEntry* value);
 extern u8* g_unk_7172a062e0 __attribute__((visibility("hidden")));
 void fn_710111094c(base::reflection::UnkReflObject* ai, u32 value);
 extern base::reflection::CType g_unk_7172a05520;
+extern UnkPropertyName g_unk_7172a06338 __attribute__((visibility("hidden")));

@@ -8,6 +8,7 @@
 #include "base/UnkMatrix44.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/UnkBillboardDrawable.h"
 #include "game/UnkGlobal_710b372a98.h"
 #include "game/UnkSphere.h"
 #include "game/UnkTU211.h"
@@ -32,12 +33,6 @@ struct UnkBillboardMaterial {
 
 // The identity matrix (a constant in .data, reached through the GOT).
 extern UnkMatrix44 g_unk_7101a1a680;
-
-// The drawable at +0x80 (constructor fn_710019a4e8): fn_710019b184 sets the matrix of one of its
-// parts.
-struct UnkBillboardDrawable {
-    u8 pad_0x0[0x128];
-};
 
 // The part at +0x1b0 (fn_7100196e64 builds it over the drawable): the drawable, the material and a
 // word set to 1 once the material is loaded.

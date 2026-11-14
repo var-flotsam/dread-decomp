@@ -3,6 +3,7 @@
 // +0x1c and the unit scale (fn_71000791a8, g_unk_71016477a8), then passes it to the effect (vf_0x170, vf_0x168).
 // fn_710081541c is the same for the angles. Answers the empty status {0, 0, 2, 1}. Names are placeholders.
 #include "base/UnkMatrix44.h"
+#include "base/math/UnkOneVector3.h"
 #include "base/math/UnkZeroVector3.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkTU54.h"
@@ -10,8 +11,6 @@
 #include "types.h"
 
 using base::reflection::UnkReflValue;
-
-extern const base::math::CVector3D g_unk_71016477a8;
 
 struct UnkFxOwner_A5_b67 {
     u8 pad_0x0[0x18];

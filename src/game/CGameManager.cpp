@@ -25,6 +25,7 @@
 #include "game/UnkTU2730.h"
 #include "game/UnkTU2768.h"
 #include "game/UnkTU341.h"
+#include "game/UnkTU500.h"
 #include "game/UnkTU57.h"
 #include "game/UnkTU63.h"
 #include "game/UnkTU83.h"
@@ -1227,7 +1228,6 @@ struct UnkEnumType;
 UnkEnumType* fn_710009fb38();  // refl_GetType<base::global::TRntString128>
 s32 fn_7100dfb930();
 bool fn_7100395c38(CBlackboard::CSection* section, const void* name, CRntString* out);
-bool fn_7100395b34(CBlackboard::CSection* section, const void* name, f32* out);
 
 // The current checkpoint (an object reference at +0x29b8): three words that name its start point.
 struct UnkCheckpoint {
