@@ -89,7 +89,18 @@ ROOT = Path(__file__).resolve().parent.parent
 GENERATED = ("src/reflection/", "src/reflection_types/", "src/reflection_statics/", "src/clones/",
              "src/lifted/", "src/tables/")
 SUFFIXES = (".cpp", ".cc", ".cxx", ".h", ".hpp")
-SYMBOL = re.compile(r"(?:fn|g_unk)_[0-9a-f]{10}")
+
+
+def symbol_pattern() -> re.Pattern:
+    """The names this tool tracks: fn_/g_unk_ placeholders, and the free functions data/names.csv has given a
+    name (tools/rename.py), so a renamed function keeps its one declaration under the same ratchet."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from dread import names
+    chosen = sorted({n for r in names.read() for q, n in [names.split(r["name"])] if not q})
+    return re.compile("|".join([r"(?:fn|g_unk)_[0-9a-f]{10}"] + [rf"\b{re.escape(n)}\b" for n in chosen]))
+
+
+SYMBOL = symbol_pattern()
 
 # Comments and literals, matched together so that a comment marker inside a literal is left alone.
 LEXEMES = re.compile(r'//[^\n]*|/\*.*?\*/|"(?:[^"\\\n]|\\.)*"|\'(?:[^\'\\\n]|\\.)*\'', re.S)
