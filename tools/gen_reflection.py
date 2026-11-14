@@ -236,7 +236,9 @@ def reflection_names(g: "Getter") -> dict[int, str]:
     return out
 
 
-KEY_DECL_RE = re.compile(r"^const base::reflection::UnkReflAttrKey& fn_([0-9a-f]+)\(\);$")
+# Declarations ReflectedFields.h already brings: the named attribute keys and the enum types of the typed ones.
+KEY_DECL_RE = re.compile(r"^(?:const base::reflection::UnkReflAttrKey& fn_|extern base::reflection::CType g_unk_)([0-9a-f]+)(?:\(\))?;$")
+DECLARED_KEYS = set(refl_attrs.ATTRIBUTE_NAMES) | set(refl_attrs.TYPED_KEYS.values())
 
 
 def readable_class_lines(orig: asmdiff.Original, g: "Getter", size: int, attr_sources: dict[int, tuple[list[str], str]],
@@ -255,7 +257,7 @@ def readable_class_lines(orig: asmdiff.Original, g: "Getter", size: int, attr_so
             extra, src = attr_sources[a]
             # One line per field (base/reflection/ReflectedFields.h); the named keys are declared there.
             src = "\n".join(refl_attrs.readable_fields(src.split("\n")))
-            extra = [d for d in extra if not (m := KEY_DECL_RE.match(d)) or int(m.group(1), 16) not in refl_attrs.ATTRIBUTE_NAMES]
+            extra = [d for d in extra if not (m := KEY_DECL_RE.match(d)) or int(m.group(1), 16) not in DECLARED_KEYS]
             pre += [d for d in extra if d not in declared]
             declared |= set(extra)
             inside.append(re.sub(rf"\bfn_{a:x}\(", f"{name}(", src, count=1))
