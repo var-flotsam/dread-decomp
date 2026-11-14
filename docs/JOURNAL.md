@@ -164,6 +164,7 @@ does. Left with their addresses, because what they are for is not established ye
 static initialiser, `fn_71006eb590`, `fn_71006eba00`, `fn_71006e7754`, `fn_71006ea160`, `fn_71006e9fcc`,
 `fn_71006e808c`, `fn_71006e8a18`, `fn_71006e75e8` (the grab/link reading in their comments is itself a guess).
 A rename changes no code: only the nine rows' names differ in `data/functions/`.
+
 **Three rules taken from BotW's agent file; what other public projects do (2026-11-14).** A survey of the
 public projects nearest to this one, for what is worth borrowing. No project found rebuilds with Clang 9.0.x:
 zeldaret/botw uses upstream 4.0.1, OdysseyDecomp an older upstream Clang, shibbo/3DWDecomp the SDK's own
