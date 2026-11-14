@@ -152,6 +152,17 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Audit of what slows progress; first clean-up (2026-11-14).** From 2026-11-12 11:32 to 2026-11-14 09:36 about 52
+pull requests merged and `O` went from 94,695 to 94,727 functions; 16 of them changed no source. Merging is not the
+bottleneck (most merged within 90 minutes). The owner chose the first clean-up from the audit: `tools/batch/overnight/`
+removed (its README called it a record not to run; it is at `eed157e8`); `tools/batch/tips.md` cut to the tips that
+are plain source forms (the barrier, union, inlining-attribute, untyped-store and macro tips went, since workers read
+the file and the rules refuse those forms); the phase prefix on commits and the "about 30 functions" floor on pull
+requests dropped from `CLAUDE.md`, `CONTRIBUTING.md`, `docs/maintaining.md` and the dread-match skill; the handoff's
+workstreams table refreshed (A to C folded into hand matching; held drafts brought up to date; rows for layouts,
+proof and names). The rest of the audit (the bulk hold, multi-function workers, a rule freeze, the registers-only
+drafts sweep, a readable reflection template, a slimmer `CLAUDE.md`, the journal split) waits on the owner.
+
 **`fn_7100353be8` declared once (2026-11-14).** The owner chose `base::UnkRefPtrMember` as its result: one
 counted pointer, returned in memory (x8), as the original builds it. It is declared in `include/game/UnkTU437.h`;
 37 files had their own copy (`UnkRef fn_7100353be8(void*)`), 9 with `UnkRef` an alias of that type and 28 with

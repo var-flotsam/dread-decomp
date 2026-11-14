@@ -279,8 +279,8 @@ Toolchain:
   card with `tools/status_card.py --write` (each pull request shows the card in its `policy` job summary)
   and the per-unit table `data/tu_status.csv` with `tools/tu_status.py --write` (feature branches leave it
   alone too; the same job summary lists the units a pull request moves).
-- Commit after each numbered step, with commit messages prefixed by phase and step
-  (e.g. `Phase 2.1: ...`). A pull request is a hub cluster or about 30 functions or more.
+- Commit messages say what changed; no phase prefix. A pull request is one coherent piece of work (a class, a hub
+  cluster, a tool change); there is no minimum size, since checks and merging take minutes.
 - **A layout batch is one class (owner, 2026-11-13).** Work that settles how sources describe an object is
   done a class at a time: that class's sources, its one layout in a header of its own (unit headers stay
   declarations only), one pull request. The recipe is the X parasite AI component's

@@ -115,12 +115,11 @@ git switch -c <topic> upstream/main
 
 - Pick work with `tools/hubs.py --version 2.1.0 --boot` (the unmatched functions with the most
   unmatched callers along the boot path, then the whole binary), or `--ready` (functions whose
-  callees are all matched). `docs/HANDOFF.md` ("Workstreams and next steps") says what each stream is on; open
+  callees are all matched). `docs/HANDOFF.md` ("Workstreams and next steps") says what is next; open
   an issue first for anything large (a new generator, a new subsystem, a change to shared
   headers) so two people don't do the same thing.
-- A PR is a hub cluster or about 30 functions or more; keep accumulating on your branch below
-  that (the maintainer guide explains why).
-- Commit messages start with the phase and step: `Phase 4.3: ...`.
+- A PR is one coherent piece of work (a class, a hub cluster, a tool change); there is no minimum size.
+- Commit messages say what changed; no phase prefix is needed.
 - Keep commits focused: a tool change and its regenerated output belong together; unrelated
   changes don't.
 - Before each commit: `tools/check.py --version 2.1.0 --update`, no `REGRESSION` lines.
