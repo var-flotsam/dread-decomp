@@ -152,6 +152,13 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**`CLAUDE.md` cut to the rules; a two-week rule freeze (2026-11-14).** The owner approved the audit's remaining
+items. `CLAUDE.md` went from 3,562 to about 2,200 words, every rule kept: the owner's words, dates and reasons
+moved to `docs/reference.md` ("The rules in `CLAUDE.md`, with their reasons"), the toolchain paragraph to its
+"Toolchain" section. New rule: no new rule, gate or CI check until 2026-11-28 unless a defect reaches `main`. The
+other two approved items, the permute and machine-test sweep of the 87 registers-only drafts and a readable
+reflection template, need the dump and go to threads of their own.
+
 **The hold on bulk runs is lifted; several functions to a worker (2026-11-14).** The owner approved the audit's
 first decision. A lean batch that keeps the shape in `tools/batch/README.md` ("Batches": about 100 functions or
 fewer, 400 bytes or less, every gate green, the pull request reporting matches, tokens per match and the
