@@ -171,6 +171,27 @@ unit from check.py's cache (`progress.quality_by_address`, split out of `quality
   units have no hint and read `UnkTU<index>`. The 526 listed functions in no unit are the import stubs.
 - *Not done:* the readable and layout-done states are not in the tracked file, since where a function's
   source lives is known only from check.py's cache (`--quality` reports them locally).
+**Three rules taken from BotW's agent file; what other public projects do (2026-11-14).** A survey of the
+public projects nearest to this one, for what is worth borrowing. No project found rebuilds with Clang 9.0.x:
+zeldaret/botw uses upstream 4.0.1, OdysseyDecomp an older upstream Clang, shibbo/3DWDecomp the SDK's own
+compiler (which this project's rules forbid), MinecraftLCE an unstated Clang. Every Switch game that runs on PC
+today is a static recompilation or a compatibility layer; none is a source port from a decompilation.
+Samus Returns has a recompiled port (msr2ds) and no decompilation, so there is no other Mercury source to read.
+
+The owner adopted three rules of zeldaret/botw's `AGENTS.md` (`CLAUDE.md`, "Hard rules" and "Conventions"):
+code no developer would write is an optimization not undone yet; no `goto` to force a match; no assembly in
+commit messages or pull request descriptions. Not adopted: its registers-only rule (tier 2 is stricter), human
+review before every pull request, its work-order and cast rules. Its "name the component and most of its fields
+first" is taken as an order of work, not a naming gate: the class's layout header before its functions, names
+only with evidence. That order is to be tried on one class and its cost per match compared with the pilot's
+(736,000 tokens a match) before it becomes a rule.
+
+- 406 files under `src/` hold a `goto` today (`grep -rIl "goto " src | wc -l`); `tools/fakematch.py` does not
+  list them yet. A `goto` kind there would make the new rule checkable.
+- From the AI-assisted projects that finished (Snowboard Kids, the Mizuchi benchmark): give a worker similar,
+  already matched functions as references; cap attempts, since about half of the matches come on the first
+  try and few after the third; keep the permuter out of the worker's loop. The first two went to their own
+  threads.
 
 **The X parasite component's two leftovers: the destructor over the layout, and the owner's views
 (2026-11-13).** The pilot (below) left two things outside `include/game/UnkXParasiteAI.h`. Both are done, and
