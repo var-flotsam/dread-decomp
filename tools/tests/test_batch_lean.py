@@ -207,6 +207,40 @@ class Cap(unittest.TestCase):
         self.assertEqual([e["budget"] for e in q], [2, 3])
         self.assertIn("Attempt budget: 2. It is a cap", jobs[0]["prompt"])
 
+    def test_a_worker_takes_several_functions_of_one_unit(self):
+        q = []
+        for i, unit in enumerate([7, 7, 9, 7, 7]):
+            e = entry()
+            e["addr"], e["unit"] = f"71000001{i}0", unit
+            q.append(e)
+        jobs = coord.wave(q, 8, per_worker=3, cfg={"model": "sonnet", "budget": 3})
+        self.assertEqual([j["addrs"] for j in jobs],
+                         [["7100000100", "7100000110", "7100000130"], ["7100000120"], ["7100000140"]])
+        self.assertTrue(all(e["status"] == "running" and e["budget"] == 3 for e in q))
+        text = jobs[0]["prompt"]
+        self.assertEqual(text.count("Follow tools/batch/lean/worker.md"), 1)
+        self.assertIn("You have 3 functions", text)
+        self.assertIn("Function 3 of 3:", text)
+        self.assertIn("Address: 7100000130", text)
+        self.assertEqual(text.count("Attempt budget: 3. It is a cap"), 3)
+        self.assertIn("Follow tools/batch/lean/worker.md exactly", jobs[1]["prompt"])   # one function: as before
+        self.assertNotIn("You have", jobs[1]["prompt"])
+
+    def test_the_job_count_caps_the_workers_not_the_functions(self):
+        q = []
+        for i in range(4):
+            e = entry()
+            e["addr"], e["unit"] = f"71000002{i}0", i
+            q.append(e)
+        jobs = coord.wave(q, 2, per_worker=10, cfg={"model": "sonnet", "budget": 3})
+        self.assertEqual(len(jobs), 2)
+        self.assertEqual([e["status"] for e in q], ["running", "running", "queued", "queued"])
+
+    def test_one_function_per_worker_is_still_the_default(self):
+        q = [entry(), entry()]
+        q[1]["addr"] = "7100000200"
+        self.assertEqual([j["addrs"] for j in coord.wave(q, 8, cfg={})], [["7100000100"], ["7100000200"]])
+
     def test_stats_say_which_attempt_matched(self):
         q = [dict(entry(attempts=[dict(attempt("match", 100), graded=[60.0, 100.0], matched_on=2)]), status="matched",
                   refs=[{"addr": "7100000900", "score": 0.6}]),

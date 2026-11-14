@@ -152,6 +152,16 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**The hold on bulk runs is lifted; several functions to a worker (2026-11-14).** The owner approved the audit's
+first decision. A lean batch that keeps the shape in `tools/batch/README.md` ("Batches": about 100 functions or
+fewer, 400 bytes or less, every gate green, the pull request reporting matches, tokens per match and the
+declaration counts) needs no go-ahead of its own. `coord.py wave --per-worker K` (default 10, set by
+`prepare.py --per-worker`) gives a worker up to K queued functions of one unit that get the same model, each with
+its own budget, which `try.py` already counted per function; `worker.md` says to finish each before the next and
+to read the brief and the tips once. Why: every lean worker starts at about 100,000 tokens, and the pilot's
+736,000 tokens a match was mostly that start-up, where the runs of 2026-11-09 to 11-11 came to about 10,000 a
+function at about 30 functions a worker. Not measured yet: the next batch is the measurement.
+
 **Audit of what slows progress; first clean-up (2026-11-14).** From 2026-11-12 11:32 to 2026-11-14 09:36 about 52
 pull requests merged and `O` went from 94,695 to 94,727 functions; 16 of them changed no source. Merging is not the
 bottleneck (most merged within 90 minutes). The owner chose the first clean-up from the audit: `tools/batch/overnight/`

@@ -284,8 +284,10 @@ Toolchain:
 - **A layout batch is one class (owner, 2026-11-13).** Work that settles how sources describe an object is
   done a class at a time: that class's sources, its one layout in a header of its own (unit headers stay
   declarations only), one pull request. The recipe is the X parasite AI component's
-  (`include/game/UnkXParasiteAI.h`; journal, 2026-11-13). The hold on bulk agent runs still applies; the
-  owner lifts it one batch at a time.
+  (`include/game/UnkXParasiteAI.h`; journal, 2026-11-13).
+- **Bulk agent runs (owner, 2026-11-14).** The hold of 2026-11-11 is lifted: a batch on the lean kit runs without
+  a go-ahead of its own when it keeps the shape in `tools/batch/README.md` ("Batches") and passes every gate;
+  each worker takes several functions of one unit.
 
 ## Status
 

@@ -59,6 +59,8 @@ def main():
     ap.add_argument("--prior", default="")
     ap.add_argument("--refs", type=int, default=3, help="reference matches per function (0: none)")
     ap.add_argument("--seed", type=int, default=1109)
+    ap.add_argument("--per-worker", type=int, default=10,
+                    help="functions of one unit per worker (coord.py wave); 1 for one worker per function")
     a = ap.parse_args()
 
     OUT.mkdir(parents=True, exist_ok=True)
@@ -89,6 +91,7 @@ def main():
         work = [x for x, (sz, _, st) in funcs.items() if st == "U" and 24 <= sz <= a.max and x not in defined]
     cfg = ({"model": a.model, "budget": a.budget, "effort": a.effort, "ghidra": a.ghidra, "refs": a.refs} if a.model
            else {"effort": a.effort, "ghidra": a.ghidra, "refs": a.refs})
+    cfg["per_worker"] = a.per_worker
     (OUT / "config.json").write_text(json.dumps(cfg), encoding="utf-8")
 
     units = tu_map.load_map()

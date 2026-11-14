@@ -1,8 +1,8 @@
 # Lean run: the coordinator's procedure
 
-You coordinate one batch: one worker agent per function, then the steps that turn their results into a pull
-request. Starting a batch needs the owner's go-ahead for that batch (`docs/HANDOFF.md`, "Direction": bulk runs
-are on hold); this file is how to run one once it is given, not permission to. `CLAUDE.md`'s hard rules apply
+You coordinate one batch: worker agents that each take several functions of one unit, then the steps that turn
+their results into a pull request. A batch that keeps the shape in `tools/batch/README.md` ("Batches") needs no
+go-ahead of its own since 2026-11-14; anything outside that shape is still the owner's call. `CLAUDE.md`'s hard rules apply
 throughout. Your own context is a cost too: don't read files you don't need, don't echo outputs back.
 
 The kit runs in place from `tools/batch/lean/`; everything it writes is under `build/lean/` of the run's
@@ -15,7 +15,7 @@ worktree. `PY` below is `.venv/Scripts/python`.
    `orig/`, the function bounds and the Ghidra export, the caches `tools/equiv_test.py` needs; it grades one
    known match as proof). Work only in that worktree from here on.
 2. The queue. Pick the functions, then `PY tools/batch/lean/prepare.py --addrs FILE --model sonnet --budget 3
-   --ghidra` (one model and one job per function), or `--sample N` / `--all` for the tiered recipe in
+   --ghidra` (one model; `--per-worker K`, 10 by default, puts up to K functions of one unit in a worker's job), or `--sample N` / `--all` for the tiered recipe in
    `coord.py`'s docstring. `PY tools/hubs.py --version 2.1.0 --ready --boot` lists functions whose callees are
    done; the pilot's result says to stay at 400 bytes or less. Two things in what prepare.py writes:
    - **Reference matches** (`--refs N`, default 3). Each function's context ends with the hand-written
@@ -32,13 +32,14 @@ worktree. `PY` below is `.venv/Scripts/python`.
 
 ## Workers
 
-4. `PY tools/batch/lean/coord.py wave 8` prints up to 8 JSON jobs `{addr, model, prompt}`. In ONE message,
+4. `PY tools/batch/lean/coord.py wave 8` prints up to 8 JSON jobs `{addr, addrs, model, prompt}`, each with up to
+   `--per-worker` functions of one unit (`prepare.py`'s value unless given here). In ONE message,
    start one Agent per job (subagent_type general-purpose, model = the job's model, prompt = the job's
    prompt verbatim, description "lean <addr>"), all in the foreground so the wave returns together. Don't
    inspect their work. Then the next wave, until it prints QUEUE EMPTY. After an interrupted wave:
    `coord.py reset-running`.
 
-A worker ends with `match` (its file is in `src/`), `registers` (the same instructions in another order or
+A worker ends each of its functions with `match` (its file is in `src/`), `registers` (the same instructions in another order or
 with other registers; no further model attempt is spent on it) or `differs`. Everything but a match is in
 `build/lean/drafts/`.
 
@@ -74,7 +75,7 @@ with other registers; no further model attempt is spent on it) or `differs`. Eve
     no type name gained a second, different definition), `PY tools/name_check.py --version 2.1.0 --strict`,
     `PY tools/policy_check.py --base origin/main`, `PY tools/port_sweep.py --version 2.1.0 --jobs 8`, the tool tests. A
     `REFS` line on a registers-only function is a wrong callee or global: fix it or send the file back.
-12. **Pull request.** Commit (`Phase 4.x: <run>: ...`, with your session's own attribution lines), add the
+12. **Pull request.** Commit (`<run>: ...`, with your session's own attribution lines), add the
     run's entry at the top of `docs/JOURNAL.md`, regenerate `docs/HANDOFF.md`'s table and the status card
     (`tools/progress.py --slice boot --handoff`, `tools/status_card.py --write`), push the branch and open
     the pull request with the template's headings. You are the coordinator of this work, so you merge it
