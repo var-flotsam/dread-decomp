@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSetRelativeCameraAnimationEvent
 DREAD_REFLECTED_CLASS(CCharClassSetRelativeCameraAnimationEvent, CCharClassSetRelativeCameraAnimationBaseEvent);
-

@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassScorpiusAvoidMediumHeadPositionTrack
 DREAD_REFLECTED_CLASS(CCharClassScorpiusAvoidMediumHeadPositionTrack, base::global::timeline::CTrack);
-

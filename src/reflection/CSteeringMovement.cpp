@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CSteeringMovement
 DREAD_REFLECTED_CLASS(CSteeringMovement, CMovementComponent);
-

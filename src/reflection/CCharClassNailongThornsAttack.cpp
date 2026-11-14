@@ -66,4 +66,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassNailongThornsAttack
 DREAD_REFLECTED_CLASS(CCharClassNailongThornsAttack, CCharClassAttack);
-

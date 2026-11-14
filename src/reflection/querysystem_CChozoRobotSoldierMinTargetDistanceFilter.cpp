@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace querysystem::CChozoRobotSoldierMinTargetDistanceFilter
 DREAD_REFLECTED_CLASS(querysystem::CChozoRobotSoldierMinTargetDistanceFilter, querysystem::CMinTargetDistanceFilter);
-

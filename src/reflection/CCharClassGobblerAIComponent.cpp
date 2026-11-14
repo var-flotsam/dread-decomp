@@ -87,5 +87,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassGobblerAIComponent::CTunableCharClassGobblerAIComponent
 DREAD_REFLECTED_CLASS(CCharClassGobblerAIComponent::CTunableCharClassGobblerAIComponent, base::tunable::CTunable);
-
-

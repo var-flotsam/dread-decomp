@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassIgnoreLaunchEmmyGrabByDistanceTrack
 DREAD_REFLECTED_CLASS(CCharClassIgnoreLaunchEmmyGrabByDistanceTrack, base::global::timeline::CTrack);
-

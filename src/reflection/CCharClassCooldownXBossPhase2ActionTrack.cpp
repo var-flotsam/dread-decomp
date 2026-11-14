@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCooldownXBossPhase2ActionTrack
 DREAD_REFLECTED_CLASS(CCharClassCooldownXBossPhase2ActionTrack, base::global::timeline::CTrack);
-

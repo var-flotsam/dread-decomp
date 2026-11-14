@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassEmmyVisionConeOffTrack
 DREAD_REFLECTED_CLASS(CCharClassEmmyVisionConeOffTrack, base::global::timeline::CTrack);
-

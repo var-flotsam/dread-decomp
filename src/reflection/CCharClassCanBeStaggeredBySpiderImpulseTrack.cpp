@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCanBeStaggeredBySpiderImpulseTrack
 DREAD_REFLECTED_CLASS(CCharClassCanBeStaggeredBySpiderImpulseTrack, base::global::timeline::CTrack);
-

@@ -56,4 +56,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassForceDeadEvent
 DREAD_REFLECTED_CLASS(CCharClassForceDeadEvent, base::global::timeline::CEvent);
-

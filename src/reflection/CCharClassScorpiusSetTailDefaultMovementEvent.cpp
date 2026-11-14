@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassScorpiusSetTailDefaultMovementEvent
 DREAD_REFLECTED_CLASS(CCharClassScorpiusSetTailDefaultMovementEvent, base::global::timeline::CEvent);
-

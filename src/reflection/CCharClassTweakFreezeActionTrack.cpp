@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTweakFreezeActionTrack
 DREAD_REFLECTED_CLASS(CCharClassTweakFreezeActionTrack, CCharClassTweakActionBaseTrack);
-

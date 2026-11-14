@@ -66,4 +66,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassMuteMusicTrackEvent
 DREAD_REFLECTED_CLASS(CCharClassMuteMusicTrackEvent, base::global::timeline::CEvent);
-

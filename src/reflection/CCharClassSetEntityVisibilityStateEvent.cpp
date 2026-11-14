@@ -56,4 +56,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSetEntityVisibilityStateEvent
 DREAD_REFLECTED_CLASS(CCharClassSetEntityVisibilityStateEvent, base::global::timeline::CEvent);
-

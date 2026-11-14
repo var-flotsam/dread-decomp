@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassIgnoreCalculateAimAngleToTargetTrack
 DREAD_REFLECTED_CLASS(CCharClassIgnoreCalculateAimAngleToTargetTrack, base::global::timeline::CTrack);
-

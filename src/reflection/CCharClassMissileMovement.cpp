@@ -53,4 +53,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassMissileMovement
 DREAD_REFLECTED_CLASS(CCharClassMissileMovement, CCharClassProjectileMovement);
-

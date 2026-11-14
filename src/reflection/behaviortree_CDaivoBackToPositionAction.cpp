@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CDaivoBackToPositionAction
 DREAD_REFLECTED_CLASS(behaviortree::CDaivoBackToPositionAction, behaviortree::CBaseAction);
-

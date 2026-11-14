@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTweakFallEndActionTrack
 DREAD_REFLECTED_CLASS(CCharClassTweakFallEndActionTrack, CCharClassTweakActionBaseTrack);
-

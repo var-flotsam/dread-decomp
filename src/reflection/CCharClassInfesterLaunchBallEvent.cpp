@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassInfesterLaunchBallEvent
 DREAD_REFLECTED_CLASS(CCharClassInfesterLaunchBallEvent, base::global::timeline::CEvent);
-

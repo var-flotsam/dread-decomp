@@ -44,4 +44,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CStimulusDef
 DREAD_REFLECTED_ROOT_CLASS(CStimulusDef);
-

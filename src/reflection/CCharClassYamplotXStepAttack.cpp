@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassYamplotXStepAttack
 DREAD_REFLECTED_CLASS(CCharClassYamplotXStepAttack, CCharClassAttack);
-

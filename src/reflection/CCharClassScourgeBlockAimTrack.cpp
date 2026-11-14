@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassScourgeBlockAimTrack
 DREAD_REFLECTED_CLASS(CCharClassScourgeBlockAimTrack, base::global::timeline::CTrack);
-

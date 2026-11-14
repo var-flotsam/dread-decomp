@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassIgnoreInterpolationTurnTrack
 DREAD_REFLECTED_CLASS(CCharClassIgnoreInterpolationTurnTrack, base::global::timeline::CTrack);
-

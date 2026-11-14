@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassForceBossCameraTrack
 DREAD_REFLECTED_CLASS(CCharClassForceBossCameraTrack, base::global::timeline::CTrack);
-

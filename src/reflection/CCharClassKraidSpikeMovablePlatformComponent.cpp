@@ -65,4 +65,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassKraidSpikeMovablePlatformComponent
 DREAD_REFLECTED_CLASS(CCharClassKraidSpikeMovablePlatformComponent, CCharClassMovablePlatformComponent);
-

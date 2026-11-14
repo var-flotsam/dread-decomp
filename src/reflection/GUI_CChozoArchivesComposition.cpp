@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace GUI::CChozoArchivesComposition
 DREAD_REFLECTED_CLASS(GUI::CChozoArchivesComposition, GUI::CChozoGalleryBase);
-

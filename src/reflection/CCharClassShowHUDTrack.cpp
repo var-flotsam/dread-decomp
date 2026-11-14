@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassShowHUDTrack
 DREAD_REFLECTED_CLASS(CCharClassShowHUDTrack, base::global::timeline::CTrack);
-

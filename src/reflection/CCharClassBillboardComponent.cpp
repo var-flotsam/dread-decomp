@@ -222,4 +222,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassBillboardComponent
 DREAD_REFLECTED_CLASS(CCharClassBillboardComponent, CCharClassComponent);
-

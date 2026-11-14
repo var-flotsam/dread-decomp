@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CIgnorePlayerCondition
 DREAD_REFLECTED_CLASS(behaviortree::CIgnorePlayerCondition, behaviortree::CBaseCondition);
-

@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CTrainWithPortalUsableComponent
 DREAD_REFLECTED_CLASS(CTrainWithPortalUsableComponent, CTrainUsableComponent);
-

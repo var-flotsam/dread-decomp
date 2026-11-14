@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassRodomithonXSuckAttack
 DREAD_REFLECTED_CLASS(CCharClassRodomithonXSuckAttack, CCharClassRodotukSuckAttack);
-

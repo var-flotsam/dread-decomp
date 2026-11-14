@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CComputeTargetPositionAction
 DREAD_REFLECTED_CLASS(behaviortree::CComputeTargetPositionAction, behaviortree::CBaseAction);
-

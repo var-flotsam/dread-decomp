@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassHydrogigaHalfEmptyTrack
 DREAD_REFLECTED_CLASS(CCharClassHydrogigaHalfEmptyTrack, base::global::timeline::CTrack);
-

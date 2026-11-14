@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassScorpiusRegeneratingMaskTrack
 DREAD_REFLECTED_CLASS(CCharClassScorpiusRegeneratingMaskTrack, base::global::timeline::CTrack);
-

@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CWaitRandomAction
 DREAD_REFLECTED_CLASS(behaviortree::CWaitRandomAction, behaviortree::CWaitAction);
-

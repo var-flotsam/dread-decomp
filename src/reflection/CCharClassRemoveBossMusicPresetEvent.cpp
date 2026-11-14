@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassRemoveBossMusicPresetEvent
 DREAD_REFLECTED_CLASS(CCharClassRemoveBossMusicPresetEvent, base::global::timeline::CEvent);
-

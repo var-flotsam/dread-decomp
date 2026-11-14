@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAllowChaseTransitionTrack
 DREAD_REFLECTED_CLASS(CCharClassAllowChaseTransitionTrack, CCharClassTweakActionBaseTrack);
-

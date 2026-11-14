@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CFakePhysicsMovement
 DREAD_REFLECTED_CLASS(CFakePhysicsMovement, CMovementComponent);
-

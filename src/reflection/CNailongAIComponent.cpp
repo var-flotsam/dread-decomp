@@ -47,4 +47,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CNailongAIComponent
 DREAD_REFLECTED_CLASS(CNailongAIComponent, CBehaviorTreeAIComponent);
-

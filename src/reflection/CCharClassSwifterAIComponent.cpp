@@ -85,5 +85,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSwifterAIComponent::CTunableCharClassSwifterAIComponent
 DREAD_REFLECTED_CLASS(CCharClassSwifterAIComponent::CTunableCharClassSwifterAIComponent, base::tunable::CTunable);
-
-

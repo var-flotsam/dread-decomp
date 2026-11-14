@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAllowEarlyJumpOverHangTrack
 DREAD_REFLECTED_CLASS(CCharClassAllowEarlyJumpOverHangTrack, base::global::timeline::CTrack);
-

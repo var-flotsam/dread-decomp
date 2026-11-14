@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTweakHangTransitionToShootingPoseActionTrack
 DREAD_REFLECTED_CLASS(CCharClassTweakHangTransitionToShootingPoseActionTrack, CCharClassTweakActionBaseTrack);
-

@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CInfesterBallLifeComponent
 DREAD_REFLECTED_CLASS(CInfesterBallLifeComponent, CEnemyLifeComponent);
-

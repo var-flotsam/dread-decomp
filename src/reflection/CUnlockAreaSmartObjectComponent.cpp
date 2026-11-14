@@ -98,5 +98,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CUnlockAreaSmartObjectComponent::CTunableUnlockAreaSmartObjectComponent
 DREAD_REFLECTED_CLASS(CUnlockAreaSmartObjectComponent::CTunableUnlockAreaSmartObjectComponent, base::tunable::CTunable);
-
-

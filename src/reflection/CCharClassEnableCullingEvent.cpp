@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassEnableCullingEvent
 DREAD_REFLECTED_CLASS(CCharClassEnableCullingEvent, base::global::timeline::CEvent);
-

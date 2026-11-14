@@ -43,4 +43,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CMagmaCentralUnitComponent
 DREAD_REFLECTED_CLASS(CMagmaCentralUnitComponent, CCentralUnitComponent);
-

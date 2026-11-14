@@ -53,4 +53,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CMassiveCaterzillaSpawnGroupComponent
 DREAD_REFLECTED_CLASS(CMassiveCaterzillaSpawnGroupComponent, CSpawnGroupComponent);
-

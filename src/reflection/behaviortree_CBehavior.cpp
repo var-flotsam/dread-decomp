@@ -37,7 +37,6 @@ struct refl_Description : ClassDescription {
 }  // namespace behaviortree::CBehavior
 DREAD_REFLECTED_CLASS(behaviortree::CBehavior, CGameObject);
 
-
 void fn_71003958e8();
 void fn_7100395950();
 void fn_710039595c();

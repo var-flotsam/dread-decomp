@@ -142,4 +142,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CLifeComponent
 DREAD_REFLECTED_CLASS(CLifeComponent, CComponent);
-

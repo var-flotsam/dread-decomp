@@ -93,4 +93,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CWorldGraph
 DREAD_REFLECTED_CLASS(CWorldGraph, CActorComponent);
-

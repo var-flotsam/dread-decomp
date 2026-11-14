@@ -55,4 +55,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassChozombieFXComponent
 DREAD_REFLECTED_CLASS(CCharClassChozombieFXComponent, CCharClassComponent);
-

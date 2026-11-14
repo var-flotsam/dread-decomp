@@ -65,4 +65,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CVulkranAttackManager::CTunableVulkranAttackManager
 DREAD_REFLECTED_CLASS(CVulkranAttackManager::CTunableVulkranAttackManager, base::tunable::CTunable);
-

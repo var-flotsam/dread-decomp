@@ -108,4 +108,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CSetAnimDependsOnDirAction
 DREAD_REFLECTED_CLASS(behaviortree::CSetAnimDependsOnDirAction, behaviortree::CBaseAction);
-

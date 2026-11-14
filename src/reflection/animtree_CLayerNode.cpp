@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace animtree::CLayerNode
 DREAD_REFLECTED_CLASS(animtree::CLayerNode, animtree::CAnimTreeNode);
-

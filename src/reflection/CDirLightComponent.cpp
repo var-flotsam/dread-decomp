@@ -92,4 +92,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CDirLightComponent
 DREAD_REFLECTED_CLASS(CDirLightComponent, CBaseLightComponent);
-

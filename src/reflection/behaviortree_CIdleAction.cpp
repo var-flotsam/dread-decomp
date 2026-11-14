@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CIdleAction
 DREAD_REFLECTED_CLASS(behaviortree::CIdleAction, behaviortree::CBaseAction);
-

@@ -53,7 +53,6 @@ struct refl_Description : ClassDescription {
 }  // namespace game::logic::collision::CPolygonCollectionShape
 DREAD_REFLECTED_CLASS(game::logic::collision::CPolygonCollectionShape, game::logic::collision::CShape);
 
-
 void fn_7100d661c8();
 void fn_7100d66230();
 void fn_7100d6623c();

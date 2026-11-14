@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassEmmyGrabSamusAttack
 DREAD_REFLECTED_CLASS(CCharClassEmmyGrabSamusAttack, CCharClassAttack);
-

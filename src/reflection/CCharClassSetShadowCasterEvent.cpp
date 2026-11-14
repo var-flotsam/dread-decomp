@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSetShadowCasterEvent
 DREAD_REFLECTED_CLASS(CCharClassSetShadowCasterEvent, base::global::timeline::CEvent);
-

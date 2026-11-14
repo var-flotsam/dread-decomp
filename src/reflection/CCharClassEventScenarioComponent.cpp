@@ -93,5 +93,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CEventScenarioComponent
 DREAD_REFLECTED_CLASS(CEventScenarioComponent, CComponent);
-
-

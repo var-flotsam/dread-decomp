@@ -128,4 +128,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassDropItemOverwriteProbabilitiesEvent
 DREAD_REFLECTED_CLASS(CCharClassDropItemOverwriteProbabilitiesEvent, base::global::timeline::CEvent);
-

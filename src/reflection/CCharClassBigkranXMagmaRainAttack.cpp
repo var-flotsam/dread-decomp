@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassBigkranXMagmaRainAttack
 DREAD_REFLECTED_CLASS(CCharClassBigkranXMagmaRainAttack, CCharClassAttack);
-

@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassChozoCommanderSetAuraStateEvent
 DREAD_REFLECTED_CLASS(CCharClassChozoCommanderSetAuraStateEvent, base::global::timeline::CEvent);
-

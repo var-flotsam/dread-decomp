@@ -67,5 +67,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CChozoCommanderUltimateGrabAttack::CTunableCommanderUltimateGrab
 DREAD_REFLECTED_CLASS(CChozoCommanderUltimateGrabAttack::CTunableCommanderUltimateGrab, base::tunable::CTunable);
-
-

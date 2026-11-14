@@ -52,4 +52,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CCanDoAttackCondition
 DREAD_REFLECTED_CLASS(behaviortree::CCanDoAttackCondition, behaviortree::CBaseCondition);
-

@@ -210,4 +210,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassModifyColliderStateBaseTrack
 DREAD_REFLECTED_CLASS(CCharClassModifyColliderStateBaseTrack, base::global::timeline::CTrack);
-

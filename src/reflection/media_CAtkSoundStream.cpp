@@ -29,4 +29,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace media::CAtkSoundStream
 DREAD_REFLECTED_CLASS(media::CAtkSoundStream, media::CMediaStream);
-

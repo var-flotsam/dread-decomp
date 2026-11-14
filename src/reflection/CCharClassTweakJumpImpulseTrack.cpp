@@ -56,4 +56,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTweakJumpImpulseTrack
 DREAD_REFLECTED_CLASS(CCharClassTweakJumpImpulseTrack, base::global::timeline::CTrack);
-

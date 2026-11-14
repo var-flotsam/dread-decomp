@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CMagmaKraidSpikeComponent
 DREAD_REFLECTED_CLASS(CMagmaKraidSpikeComponent, CComponent);
-

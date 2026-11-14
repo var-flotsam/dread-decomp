@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCooldownXBossEnableCoolShinesparkTriggerEvent
 DREAD_REFLECTED_CLASS(CCharClassCooldownXBossEnableCoolShinesparkTriggerEvent, base::global::timeline::CEvent);
-

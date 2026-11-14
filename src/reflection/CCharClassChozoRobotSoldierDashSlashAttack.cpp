@@ -91,5 +91,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassChozoRobotSoldierDashSlashAttack::CTunableCharClassChozoRobotSoldierDashSlashAttack
 DREAD_REFLECTED_CLASS(CCharClassChozoRobotSoldierDashSlashAttack::CTunableCharClassChozoRobotSoldierDashSlashAttack, base::tunable::CTunable);
-
-

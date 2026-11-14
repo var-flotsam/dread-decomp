@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace GUI::CCreditsButton
 DREAD_REFLECTED_CLASS(GUI::CCreditsButton, GUI::CButton);
-

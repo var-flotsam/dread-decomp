@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassHecathonLifeComponent
 DREAD_REFLECTED_CLASS(CCharClassHecathonLifeComponent, CCharClassEnemyLifeComponent);
-

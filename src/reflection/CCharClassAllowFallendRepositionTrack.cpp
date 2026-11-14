@@ -52,4 +52,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAllowFallendRepositionTrack
 DREAD_REFLECTED_CLASS(CCharClassAllowFallendRepositionTrack, base::global::timeline::CTrack);
-

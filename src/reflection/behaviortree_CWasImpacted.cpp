@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CWasImpacted
 DREAD_REFLECTED_CLASS(behaviortree::CWasImpacted, behaviortree::CBaseCondition);
-

@@ -52,4 +52,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CAreaFXComponent
 DREAD_REFLECTED_CLASS(CAreaFXComponent, CSceneComponent);
-

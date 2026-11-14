@@ -42,4 +42,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CSideEnemyMovement
 DREAD_REFLECTED_CLASS(CSideEnemyMovement, CEnemyMovement);
-

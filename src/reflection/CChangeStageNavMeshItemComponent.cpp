@@ -55,4 +55,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CChangeStageNavMeshItemComponent
 DREAD_REFLECTED_CLASS(CChangeStageNavMeshItemComponent, CComponent);
-

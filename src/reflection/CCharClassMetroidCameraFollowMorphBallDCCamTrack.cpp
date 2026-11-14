@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassMetroidCameraFollowMorphBallDCCamTrack
 DREAD_REFLECTED_CLASS(CCharClassMetroidCameraFollowMorphBallDCCamTrack, base::global::timeline::CTrack);
-

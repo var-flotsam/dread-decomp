@@ -48,4 +48,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CSamusAimAction
 DREAD_REFLECTED_CLASS(CSamusAimAction, CSamusAction);
-

@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassDoorCentralUnitLifeComponent
 DREAD_REFLECTED_CLASS(CCharClassDoorCentralUnitLifeComponent, CCharClassDoorLifeComponent);
-

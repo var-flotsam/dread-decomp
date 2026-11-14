@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCooldownXBossLavaDropsAttack
 DREAD_REFLECTED_CLASS(CCooldownXBossLavaDropsAttack, CCooldownXBossAttack);
-

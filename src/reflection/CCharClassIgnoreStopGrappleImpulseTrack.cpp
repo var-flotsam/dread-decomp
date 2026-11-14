@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassIgnoreStopGrappleImpulseTrack
 DREAD_REFLECTED_CLASS(CCharClassIgnoreStopGrappleImpulseTrack, base::global::timeline::CTrack);
-

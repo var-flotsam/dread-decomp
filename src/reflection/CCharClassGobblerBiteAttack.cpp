@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassGobblerBiteAttack
 DREAD_REFLECTED_CLASS(CCharClassGobblerBiteAttack, CCharClassAttack);
-

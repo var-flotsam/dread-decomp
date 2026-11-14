@@ -52,4 +52,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CXParasiteBehaviorCondition
 DREAD_REFLECTED_CLASS(behaviortree::CXParasiteBehaviorCondition, behaviortree::CBaseCondition);
-

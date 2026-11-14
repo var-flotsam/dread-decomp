@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CLavapumpThermalReactionComponent
 DREAD_REFLECTED_CLASS(CLavapumpThermalReactionComponent, CThermalReactionComponent);
-

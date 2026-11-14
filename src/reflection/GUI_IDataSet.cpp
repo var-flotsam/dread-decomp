@@ -34,4 +34,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace GUI::IDataSet
 DREAD_REFLECTED_CLASS(GUI::IDataSet, CGameObject);
-

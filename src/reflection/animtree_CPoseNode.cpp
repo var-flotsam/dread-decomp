@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace animtree::CPoseNode
 DREAD_REFLECTED_CLASS(animtree::CPoseNode, animtree::CAnimTreeNode);
-

@@ -188,5 +188,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassGooplotAIComponent
 DREAD_REFLECTED_CLASS(CCharClassGooplotAIComponent, CCharClassBehaviorTreeAIComponent);
-
-

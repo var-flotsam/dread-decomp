@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CAutsharpAIComponent
 DREAD_REFLECTED_CLASS(CAutsharpAIComponent, CRobotAIComponent);
-

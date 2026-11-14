@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassScriptComponent
 DREAD_REFLECTED_CLASS(CCharClassScriptComponent, CCharClassComponent);
-

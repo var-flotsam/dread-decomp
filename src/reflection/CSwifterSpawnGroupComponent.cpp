@@ -66,4 +66,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CSwifterSpawnGroupComponent
 DREAD_REFLECTED_CLASS(CSwifterSpawnGroupComponent, CSpawnGroupComponent);
-

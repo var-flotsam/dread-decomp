@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAnimSpeedTrack
 DREAD_REFLECTED_CLASS(CCharClassAnimSpeedTrack, base::global::timeline::CTrack);
-

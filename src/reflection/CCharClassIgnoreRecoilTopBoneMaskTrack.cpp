@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassIgnoreRecoilTopBoneMaskTrack
 DREAD_REFLECTED_CLASS(CCharClassIgnoreRecoilTopBoneMaskTrack, base::global::timeline::CTrack);
-

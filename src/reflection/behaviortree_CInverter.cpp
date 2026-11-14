@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CInverter
 DREAD_REFLECTED_CLASS(behaviortree::CInverter, behaviortree::CDecorator);
-

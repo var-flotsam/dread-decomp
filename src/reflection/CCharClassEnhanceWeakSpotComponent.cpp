@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassEnhanceWeakSpotComponent
 DREAD_REFLECTED_CLASS(CCharClassEnhanceWeakSpotComponent, CCharClassComponent);
-

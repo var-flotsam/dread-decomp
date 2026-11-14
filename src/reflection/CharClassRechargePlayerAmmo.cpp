@@ -58,4 +58,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CharClassRechargePlayerAmmo
 DREAD_REFLECTED_CLASS(CharClassRechargePlayerAmmo, base::global::timeline::CEvent);
-

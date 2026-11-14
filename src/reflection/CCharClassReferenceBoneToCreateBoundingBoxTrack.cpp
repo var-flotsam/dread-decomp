@@ -61,4 +61,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassReferenceBoneToCreateBoundingBoxTrack
 DREAD_REFLECTED_CLASS(CCharClassReferenceBoneToCreateBoundingBoxTrack, base::global::timeline::CTrack);
-

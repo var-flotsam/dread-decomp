@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassVulnerableToFloorSlideAvoidableAttacksTrack
 DREAD_REFLECTED_CLASS(CCharClassVulnerableToFloorSlideAvoidableAttacksTrack, base::global::timeline::CTrack);
-

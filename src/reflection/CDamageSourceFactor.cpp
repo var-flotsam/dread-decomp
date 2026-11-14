@@ -97,4 +97,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CDamageSourceFactor
 DREAD_REFLECTED_ROOT_CLASS(CDamageSourceFactor);
-

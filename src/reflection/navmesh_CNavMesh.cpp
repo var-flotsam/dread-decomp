@@ -40,4 +40,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace navmesh::CNavMesh
 DREAD_REFLECTED_CLASS(navmesh::CNavMesh, CGameObject);
-

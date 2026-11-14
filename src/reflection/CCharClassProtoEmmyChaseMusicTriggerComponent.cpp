@@ -63,5 +63,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CProtoEmmyChaseMusicTriggerComponent
 DREAD_REFLECTED_CLASS(CProtoEmmyChaseMusicTriggerComponent, CBaseTriggerComponent);
-
-

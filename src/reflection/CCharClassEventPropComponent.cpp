@@ -83,5 +83,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CEventPropComponent
 DREAD_REFLECTED_CLASS(CEventPropComponent, CComponent);
-
-

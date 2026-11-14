@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CXParasiteStayOnPlaceBehavior
 DREAD_REFLECTED_CLASS(CXParasiteStayOnPlaceBehavior, CXParasiteBehavior);
-

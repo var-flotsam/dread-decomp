@@ -78,4 +78,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CXParasiteGoToPointAction
 DREAD_REFLECTED_CLASS(behaviortree::CXParasiteGoToPointAction, behaviortree::CBaseAction);
-

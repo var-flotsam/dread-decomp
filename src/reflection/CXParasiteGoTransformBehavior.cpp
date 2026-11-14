@@ -56,4 +56,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CXParasiteGoTransformBehavior
 DREAD_REFLECTED_CLASS(CXParasiteGoTransformBehavior, CXParasiteBehavior);
-

@@ -57,4 +57,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassStopVibrationEvent
 DREAD_REFLECTED_CLASS(CCharClassStopVibrationEvent, base::global::timeline::CEvent);
-

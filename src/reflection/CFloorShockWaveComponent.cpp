@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CFloorShockWaveComponent
 DREAD_REFLECTED_CLASS(CFloorShockWaveComponent, CShockWaveComponent);
-

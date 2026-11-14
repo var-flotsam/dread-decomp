@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassKraidAllowGhostDashGrabTrack
 DREAD_REFLECTED_CLASS(CCharClassKraidAllowGhostDashGrabTrack, base::global::timeline::CTrack);
-

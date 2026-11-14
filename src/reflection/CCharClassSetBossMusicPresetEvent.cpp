@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSetBossMusicPresetEvent
 DREAD_REFLECTED_CLASS(CCharClassSetBossMusicPresetEvent, base::global::timeline::CEvent);
-

@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSuperQuetzoaSetVulnerableEvent
 DREAD_REFLECTED_CLASS(CCharClassSuperQuetzoaSetVulnerableEvent, base::global::timeline::CEvent);
-

@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CScorpiusPoisonousSpitAttack
 DREAD_REFLECTED_CLASS(CScorpiusPoisonousSpitAttack, CScorpiusAttack);
-

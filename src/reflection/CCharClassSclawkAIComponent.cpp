@@ -98,5 +98,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSclawkAIComponent::CTunableCharClassSclawkAIComponent
 DREAD_REFLECTED_CLASS(CCharClassSclawkAIComponent::CTunableCharClassSclawkAIComponent, base::tunable::CTunable);
-
-

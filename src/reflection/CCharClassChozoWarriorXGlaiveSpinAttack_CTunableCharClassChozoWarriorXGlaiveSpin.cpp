@@ -87,5 +87,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassChozoWarriorXGlaiveSpinAttack
 DREAD_REFLECTED_CLASS(CCharClassChozoWarriorXGlaiveSpinAttack, CCharClassChozoWarriorGlaiveSpinAttack);
-
-

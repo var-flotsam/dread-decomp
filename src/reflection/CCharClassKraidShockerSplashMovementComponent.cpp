@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassKraidShockerSplashMovementComponent
 DREAD_REFLECTED_CLASS(CCharClassKraidShockerSplashMovementComponent, CCharClassProjectileMovement);
-

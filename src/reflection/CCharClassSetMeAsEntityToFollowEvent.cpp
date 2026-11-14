@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSetMeAsEntityToFollowEvent
 DREAD_REFLECTED_CLASS(CCharClassSetMeAsEntityToFollowEvent, base::global::timeline::CEvent);
-

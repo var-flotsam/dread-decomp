@@ -58,4 +58,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassLightingSetRotOffsetEvent
 DREAD_REFLECTED_CLASS(CCharClassLightingSetRotOffsetEvent, base::global::timeline::CEvent);
-

@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CInIdleNavigationAction
 DREAD_REFLECTED_CLASS(behaviortree::CInIdleNavigationAction, behaviortree::CBaseAction);
-

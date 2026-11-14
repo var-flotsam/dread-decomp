@@ -91,8 +91,6 @@ struct refl_Description : ClassDescription {
 }  // namespace CFXPool::CDefinition
 DREAD_REFLECTED_ROOT_CLASS(CFXPool::CDefinition);
 
-
-
 const base::reflection::CType* fn_7100005178();
 const base::reflection::CType* fn_710104c598();
 const base::reflection::CType* fn_710104cc64();

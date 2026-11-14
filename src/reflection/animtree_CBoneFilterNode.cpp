@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace animtree::CBoneFilterNode
 DREAD_REFLECTED_CLASS(animtree::CBoneFilterNode, animtree::CAnimTreeNode);
-

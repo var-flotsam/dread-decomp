@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCanRetractTrack
 DREAD_REFLECTED_CLASS(CCharClassCanRetractTrack, CCharClassToStateTrack);
-

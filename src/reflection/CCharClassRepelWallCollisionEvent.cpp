@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassRepelWallCollisionEvent
 DREAD_REFLECTED_CLASS(CCharClassRepelWallCollisionEvent, base::global::timeline::CEvent);
-

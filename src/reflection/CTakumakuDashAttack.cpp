@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CTakumakuDashAttack
 DREAD_REFLECTED_CLASS(CTakumakuDashAttack, CAttack);
-

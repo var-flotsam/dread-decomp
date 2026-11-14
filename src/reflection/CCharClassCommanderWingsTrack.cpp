@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCommanderWingsTrack
 DREAD_REFLECTED_CLASS(CCharClassCommanderWingsTrack, base::global::timeline::CTrack);
-

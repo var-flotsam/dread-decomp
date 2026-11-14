@@ -40,4 +40,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CActorDef
 DREAD_REFLECTED_CLASS(CActorDef, base::core::CDefinition);
-

@@ -59,4 +59,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSetCameraNearEvent
 DREAD_REFLECTED_CLASS(CCharClassSetCameraNearEvent, base::global::timeline::CEvent);
-

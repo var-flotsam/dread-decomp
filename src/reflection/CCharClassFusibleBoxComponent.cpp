@@ -59,5 +59,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CFusibleBoxComponent
 DREAD_REFLECTED_CLASS(CFusibleBoxComponent, CComponent);
-
-

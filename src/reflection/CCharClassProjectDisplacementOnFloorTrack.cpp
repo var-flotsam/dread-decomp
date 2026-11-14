@@ -52,4 +52,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassProjectDisplacementOnFloorTrack
 DREAD_REFLECTED_CLASS(CCharClassProjectDisplacementOnFloorTrack, base::global::timeline::CTrack);
-

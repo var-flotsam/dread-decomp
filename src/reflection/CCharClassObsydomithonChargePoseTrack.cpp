@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassObsydomithonChargePoseTrack
 DREAD_REFLECTED_CLASS(CCharClassObsydomithonChargePoseTrack, base::global::timeline::CTrack);
-

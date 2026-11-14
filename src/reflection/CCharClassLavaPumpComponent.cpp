@@ -126,6 +126,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CLavaPumpComponent::CTunableLavaPumpComponent
 DREAD_REFLECTED_CLASS(CLavaPumpComponent::CTunableLavaPumpComponent, base::tunable::CTunable);
-
-
-

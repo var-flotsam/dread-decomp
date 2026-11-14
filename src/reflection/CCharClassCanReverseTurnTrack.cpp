@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCanReverseTurnTrack
 DREAD_REFLECTED_CLASS(CCharClassCanReverseTurnTrack, base::global::timeline::CTrack);
-

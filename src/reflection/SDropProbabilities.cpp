@@ -114,4 +114,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace SDropProbabilities
 DREAD_REFLECTED_ROOT_CLASS(SDropProbabilities);
-

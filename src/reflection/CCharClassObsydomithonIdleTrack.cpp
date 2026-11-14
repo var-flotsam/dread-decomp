@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassObsydomithonIdleTrack
 DREAD_REFLECTED_CLASS(CCharClassObsydomithonIdleTrack, base::global::timeline::CTrack);
-

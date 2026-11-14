@@ -42,4 +42,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace querysystem::CQuerySystemDef
 DREAD_REFLECTED_ROOT_CLASS(querysystem::CQuerySystemDef);
-

@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAIAttackCheckFinishedEvent
 DREAD_REFLECTED_CLASS(CCharClassAIAttackCheckFinishedEvent, base::global::timeline::CEvent);
-

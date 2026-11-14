@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CBoneToConstantComponent
 DREAD_REFLECTED_CLASS(CBoneToConstantComponent, CSceneComponent);
-

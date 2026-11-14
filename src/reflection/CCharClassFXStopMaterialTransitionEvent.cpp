@@ -62,4 +62,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassFXStopMaterialTransitionEvent
 DREAD_REFLECTED_CLASS(CCharClassFXStopMaterialTransitionEvent, base::global::timeline::CEvent);
-

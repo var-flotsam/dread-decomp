@@ -66,4 +66,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CSetRotationAction
 DREAD_REFLECTED_CLASS(behaviortree::CSetRotationAction, behaviortree::CBaseAction);
-

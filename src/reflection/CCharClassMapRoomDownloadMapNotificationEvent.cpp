@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassMapRoomDownloadMapNotificationEvent
 DREAD_REFLECTED_CLASS(CCharClassMapRoomDownloadMapNotificationEvent, base::global::timeline::CEvent);
-

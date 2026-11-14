@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassOverrideMeleeTrailFXTrack
 DREAD_REFLECTED_CLASS(CCharClassOverrideMeleeTrailFXTrack, base::global::timeline::CTrack);
-

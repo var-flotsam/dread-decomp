@@ -41,4 +41,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassDaivoSpitAttack
 DREAD_REFLECTED_CLASS(CCharClassDaivoSpitAttack, CCharClassAttack);
-

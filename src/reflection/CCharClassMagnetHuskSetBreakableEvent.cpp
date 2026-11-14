@@ -56,4 +56,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassMagnetHuskSetBreakableEvent
 DREAD_REFLECTED_CLASS(CCharClassMagnetHuskSetBreakableEvent, base::global::timeline::CEvent);
-

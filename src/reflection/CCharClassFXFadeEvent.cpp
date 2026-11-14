@@ -72,4 +72,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassFXFadeEvent
 DREAD_REFLECTED_CLASS(CCharClassFXFadeEvent, base::global::timeline::CEvent);
-

@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassMagnetSurfaceTransitionCompletedEvent
 DREAD_REFLECTED_CLASS(CCharClassMagnetSurfaceTransitionCompletedEvent, base::global::timeline::CEvent);
-

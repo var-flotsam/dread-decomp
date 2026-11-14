@@ -43,4 +43,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassChozoCommanderEnergyShardsAttack
 DREAD_REFLECTED_CLASS(CCharClassChozoCommanderEnergyShardsAttack, CCharClassChozoCommanderGroundAttack);
-

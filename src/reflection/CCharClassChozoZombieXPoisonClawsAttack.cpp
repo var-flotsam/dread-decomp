@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassChozoZombieXPoisonClawsAttack
 DREAD_REFLECTED_CLASS(CCharClassChozoZombieXPoisonClawsAttack, CCharClassAttack);
-

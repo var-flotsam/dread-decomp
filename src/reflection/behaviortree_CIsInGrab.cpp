@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CIsInGrab
 DREAD_REFLECTED_CLASS(behaviortree::CIsInGrab, behaviortree::CBaseCondition);
-

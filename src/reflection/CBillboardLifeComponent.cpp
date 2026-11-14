@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CBillboardLifeComponent
 DREAD_REFLECTED_CLASS(CBillboardLifeComponent, CLifeComponent);
-

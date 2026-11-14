@@ -43,4 +43,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CFrozenPlatformComponent
 DREAD_REFLECTED_CLASS(CFrozenPlatformComponent, CComponent);
-

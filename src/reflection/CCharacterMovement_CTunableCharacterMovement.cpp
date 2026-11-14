@@ -86,5 +86,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharacterMovement
 DREAD_REFLECTED_CLASS(CCharacterMovement, CMovementComponent);
-
-

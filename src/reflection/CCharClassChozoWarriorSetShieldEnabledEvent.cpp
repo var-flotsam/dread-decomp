@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassChozoWarriorSetShieldEnabledEvent
 DREAD_REFLECTED_CLASS(CCharClassChozoWarriorSetShieldEnabledEvent, base::global::timeline::CEvent);
-

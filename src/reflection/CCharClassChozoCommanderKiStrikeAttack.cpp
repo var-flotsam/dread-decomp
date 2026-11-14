@@ -53,4 +53,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassChozoCommanderKiStrikeAttack
 DREAD_REFLECTED_CLASS(CCharClassChozoCommanderKiStrikeAttack, CCharClassChozoCommanderGroundAttack);
-

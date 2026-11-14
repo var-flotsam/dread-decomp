@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CChozoCommanderSentenceSphereLifeComponent
 DREAD_REFLECTED_CLASS(CChozoCommanderSentenceSphereLifeComponent, CBasicLifeComponent);
-

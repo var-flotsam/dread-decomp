@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CCheckAttackOrderAction
 DREAD_REFLECTED_CLASS(behaviortree::CCheckAttackOrderAction, behaviortree::CBaseAction);
-

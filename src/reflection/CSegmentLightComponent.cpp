@@ -135,4 +135,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CSegmentLightComponent
 DREAD_REFLECTED_CLASS(CSegmentLightComponent, CBaseLightComponent);
-

@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassIgnoreHangTransitionToShootingPoseTrack
 DREAD_REFLECTED_CLASS(CCharClassIgnoreHangTransitionToShootingPoseTrack, base::global::timeline::CTrack);
-

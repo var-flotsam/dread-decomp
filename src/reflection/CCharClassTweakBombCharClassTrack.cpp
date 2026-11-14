@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTweakBombCharClassTrack
 DREAD_REFLECTED_CLASS(CCharClassTweakBombCharClassTrack, base::global::timeline::CTrack);
-

@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CMultiLockOnPointComponent
 DREAD_REFLECTED_CLASS(CMultiLockOnPointComponent, CActivatableByProjectileComponent);
-

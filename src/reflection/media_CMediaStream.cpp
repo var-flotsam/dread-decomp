@@ -37,4 +37,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace media::CMediaStream
 DREAD_REFLECTED_ROOT_CLASS(media::CMediaStream);
-

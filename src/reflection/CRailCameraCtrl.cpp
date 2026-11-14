@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CRailCameraCtrl
 DREAD_REFLECTED_CLASS(CRailCameraCtrl, CCameraBoundaryCtrl);
-

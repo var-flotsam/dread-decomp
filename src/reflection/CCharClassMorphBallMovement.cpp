@@ -81,4 +81,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassMorphBallMovement
 DREAD_REFLECTED_CLASS(CCharClassMorphBallMovement, CCharClassPlayerMovement);
-

@@ -55,4 +55,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassHeatableShieldEnhanceWeakSpotComponent
 DREAD_REFLECTED_CLASS(CCharClassHeatableShieldEnhanceWeakSpotComponent, CCharClassEnhanceWeakSpotComponent);
-

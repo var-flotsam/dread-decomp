@@ -43,4 +43,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace GUI::CBoolTunableButton
 DREAD_REFLECTED_CLASS(GUI::CBoolTunableButton, GUI::CButton);
-

@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CActionSwitcherComponent
 DREAD_REFLECTED_CLASS(CActionSwitcherComponent, CActivatableComponent);
-

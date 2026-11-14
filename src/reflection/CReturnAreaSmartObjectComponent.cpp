@@ -35,4 +35,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CReturnAreaSmartObjectComponent
 DREAD_REFLECTED_CLASS(CReturnAreaSmartObjectComponent, CSmartObjectComponent);
-

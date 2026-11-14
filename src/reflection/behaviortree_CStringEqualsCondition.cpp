@@ -55,4 +55,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CStringEqualsCondition
 DREAD_REFLECTED_CLASS(behaviortree::CStringEqualsCondition, behaviortree::CBaseCondition);
-

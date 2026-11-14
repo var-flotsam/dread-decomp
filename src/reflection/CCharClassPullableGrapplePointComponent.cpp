@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassPullableGrapplePointComponent
 DREAD_REFLECTED_CLASS(CCharClassPullableGrapplePointComponent, CCharClassGrapplePointComponent);
-

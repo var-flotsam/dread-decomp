@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCentralUnitCannonBeamMovementComponent
 DREAD_REFLECTED_CLASS(CCharClassCentralUnitCannonBeamMovementComponent, CCharClassProjectileMovement);
-

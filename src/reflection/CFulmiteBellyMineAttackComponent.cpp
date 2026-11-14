@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CFulmiteBellyMineAttackComponent
 DREAD_REFLECTED_CLASS(CFulmiteBellyMineAttackComponent, CAIAttackComponent);
-

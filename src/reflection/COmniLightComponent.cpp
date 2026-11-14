@@ -146,4 +146,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace COmniLightComponent
 DREAD_REFLECTED_CLASS(COmniLightComponent, CBaseLightComponent);
-

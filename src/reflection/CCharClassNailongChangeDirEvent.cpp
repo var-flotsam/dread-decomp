@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassNailongChangeDirEvent
 DREAD_REFLECTED_CLASS(CCharClassNailongChangeDirEvent, base::global::timeline::CEvent);
-

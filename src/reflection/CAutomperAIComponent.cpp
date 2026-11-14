@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CAutomperAIComponent
 DREAD_REFLECTED_CLASS(CAutomperAIComponent, CRobotAIComponent);
-

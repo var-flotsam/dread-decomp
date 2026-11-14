@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTakumakuDashAttack
 DREAD_REFLECTED_CLASS(CCharClassTakumakuDashAttack, CCharClassAttack);
-

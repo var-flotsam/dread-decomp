@@ -49,4 +49,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CMapAcquisitionComponent
 DREAD_REFLECTED_CLASS(CMapAcquisitionComponent, CUsableComponent);
-

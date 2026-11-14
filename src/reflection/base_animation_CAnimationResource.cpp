@@ -44,4 +44,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace base::animation::CAnimationResource
 DREAD_REFLECTED_CLASS(base::animation::CAnimationResource, base::core::CAsset);
-

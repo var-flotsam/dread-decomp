@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCanStartLavaStreamAttackTrack
 DREAD_REFLECTED_CLASS(CCharClassCanStartLavaStreamAttackTrack, base::global::timeline::CTrack);
-

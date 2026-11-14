@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassRotateToViewDirEvent
 DREAD_REFLECTED_CLASS(CCharClassRotateToViewDirEvent, base::global::timeline::CEvent);
-

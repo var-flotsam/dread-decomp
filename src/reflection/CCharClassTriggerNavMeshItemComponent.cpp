@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTriggerNavMeshItemComponent
 DREAD_REFLECTED_CLASS(CCharClassTriggerNavMeshItemComponent, CCharClassNavMeshItemComponent);
-

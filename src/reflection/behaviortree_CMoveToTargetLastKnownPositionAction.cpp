@@ -53,4 +53,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CMoveToTargetLastKnownPositionAction
 DREAD_REFLECTED_CLASS(behaviortree::CMoveToTargetLastKnownPositionAction, behaviortree::CBaseAction);
-

@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CActionSet
 DREAD_REFLECTED_CLASS(CActionSet, base::core::CAsset);
-

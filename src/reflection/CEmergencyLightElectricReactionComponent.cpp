@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CEmergencyLightElectricReactionComponent
 DREAD_REFLECTED_CLASS(CEmergencyLightElectricReactionComponent, CElectricReactionComponent);
-

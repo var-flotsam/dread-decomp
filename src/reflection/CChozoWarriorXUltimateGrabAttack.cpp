@@ -67,5 +67,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CChozoWarriorXUltimateGrabAttack::CTunableChozoWarriorXUltimateGrabAttack
 DREAD_REFLECTED_CLASS(CChozoWarriorXUltimateGrabAttack::CTunableChozoWarriorXUltimateGrabAttack, base::tunable::CTunable);
-
-

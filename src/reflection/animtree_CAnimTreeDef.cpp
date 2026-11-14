@@ -83,8 +83,6 @@ struct refl_Description : ClassDescription {
 }  // namespace animtree::CAnimTreeDef::TAnimTreeLinkDef
 DREAD_REFLECTED_ROOT_CLASS(animtree::CAnimTreeDef::TAnimTreeLinkDef);
 
-
-
 const base::reflection::CType* fn_7100005178();
 const base::reflection::CType* fn_71002d6b20();
 const base::reflection::CType* fn_71002d71ec();

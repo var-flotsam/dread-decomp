@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CBigFistChaseAction
 DREAD_REFLECTED_CLASS(behaviortree::CBigFistChaseAction, behaviortree::CBaseAction);
-

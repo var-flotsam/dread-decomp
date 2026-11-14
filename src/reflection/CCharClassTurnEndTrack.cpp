@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTurnEndTrack
 DREAD_REFLECTED_CLASS(CCharClassTurnEndTrack, base::global::timeline::CTrack);
-

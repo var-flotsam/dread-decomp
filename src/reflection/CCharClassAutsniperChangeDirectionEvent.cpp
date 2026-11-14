@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAutsniperChangeDirectionEvent
 DREAD_REFLECTED_CLASS(CCharClassAutsniperChangeDirectionEvent, base::global::timeline::CEvent);
-

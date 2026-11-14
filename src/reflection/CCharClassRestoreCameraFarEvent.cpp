@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassRestoreCameraFarEvent
 DREAD_REFLECTED_CLASS(CCharClassRestoreCameraFarEvent, base::global::timeline::CEvent);
-

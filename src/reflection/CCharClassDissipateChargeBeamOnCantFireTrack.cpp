@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassDissipateChargeBeamOnCantFireTrack
 DREAD_REFLECTED_CLASS(CCharClassDissipateChargeBeamOnCantFireTrack, base::global::timeline::CTrack);
-

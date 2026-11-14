@@ -85,4 +85,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassBigkranXSpitAttack
 DREAD_REFLECTED_CLASS(CCharClassBigkranXSpitAttack, CCharClassAttack);
-

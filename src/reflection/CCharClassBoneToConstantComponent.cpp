@@ -57,4 +57,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassBoneToConstantComponent
 DREAD_REFLECTED_CLASS(CCharClassBoneToConstantComponent, CCharClassComponent);
-

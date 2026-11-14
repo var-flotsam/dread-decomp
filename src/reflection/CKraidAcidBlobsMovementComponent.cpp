@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CKraidAcidBlobsMovementComponent
 DREAD_REFLECTED_CLASS(CKraidAcidBlobsMovementComponent, CProjectileMovement);
-

@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace GUI::CDebugMenuEntryItemRenderer
 DREAD_REFLECTED_CLASS(GUI::CDebugMenuEntryItemRenderer, GUI::CItemRenderer);
-

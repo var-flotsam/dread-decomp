@@ -784,5 +784,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAttackComponent
 DREAD_REFLECTED_CLASS(CCharClassAttackComponent, CCharClassComponent);
-
-

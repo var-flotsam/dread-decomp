@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassChozoCommanderEnergyShardsFragmentMovementComponent
 DREAD_REFLECTED_CLASS(CCharClassChozoCommanderEnergyShardsFragmentMovementComponent, CCharClassProjectileMovement);
-

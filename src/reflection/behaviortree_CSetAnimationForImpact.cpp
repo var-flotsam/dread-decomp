@@ -60,4 +60,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CSetAnimationForImpact
 DREAD_REFLECTED_CLASS(behaviortree::CSetAnimationForImpact, behaviortree::CBaseAction);
-

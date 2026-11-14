@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassForceAimDirectionTrack
 DREAD_REFLECTED_CLASS(CCharClassForceAimDirectionTrack, base::global::timeline::CTrack);
-

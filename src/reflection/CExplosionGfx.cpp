@@ -42,7 +42,6 @@ struct refl_Description : ClassDescription {
 }  // namespace CExplosionGfx
 DREAD_REFLECTED_ROOT_CLASS(CExplosionGfx);
 
-
 void fn_7100de179c();
 void fn_7100de1804();
 void fn_7100de1810();

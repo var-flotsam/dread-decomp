@@ -43,4 +43,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassDropterDiveAttack
 DREAD_REFLECTED_CLASS(CCharClassDropterDiveAttack, CCharClassAttack);
-

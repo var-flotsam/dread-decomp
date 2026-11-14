@@ -181,10 +181,6 @@ struct refl_Description : ClassDescription {
 }  // namespace CCharClassCooldownXBossWindTunnelAttack
 DREAD_REFLECTED_CLASS(CCharClassCooldownXBossWindTunnelAttack, CCharClassCooldownXBossAttack);
 
-
-
-
-
 const base::reflection::CType* fn_7100005178();
 const base::reflection::CType* fn_71004b7e3c();
 const base::reflection::CType* fn_71004b8508();

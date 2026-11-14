@@ -52,4 +52,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAutoolLeftThrusterFXTrack
 DREAD_REFLECTED_CLASS(CCharClassAutoolLeftThrusterFXTrack, base::global::timeline::CTrack);
-

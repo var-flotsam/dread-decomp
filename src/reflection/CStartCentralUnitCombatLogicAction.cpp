@@ -43,4 +43,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CStartCentralUnitCombatLogicAction
 DREAD_REFLECTED_CLASS(CStartCentralUnitCombatLogicAction, CTriggerLogicAction);
-

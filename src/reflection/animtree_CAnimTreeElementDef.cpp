@@ -50,7 +50,6 @@ struct refl_Description : ClassDescription {
 }  // namespace animtree::CAnimTreeElementDef
 DREAD_REFLECTED_ROOT_CLASS(animtree::CAnimTreeElementDef);
 
-
 void fn_71002dd198();
 void fn_71002dd200();
 void fn_71002dd224();

@@ -63,4 +63,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassDemolitionBlockLifeComponent
 DREAD_REFLECTED_CLASS(CCharClassDemolitionBlockLifeComponent, CCharClassLifeComponent);
-

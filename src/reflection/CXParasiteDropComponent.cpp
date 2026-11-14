@@ -42,4 +42,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CXParasiteDropComponent
 DREAD_REFLECTED_CLASS(CXParasiteDropComponent, CComponent);
-

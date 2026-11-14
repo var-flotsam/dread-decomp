@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CDummyMovement
 DREAD_REFLECTED_CLASS(CDummyMovement, CMovementComponent);
-

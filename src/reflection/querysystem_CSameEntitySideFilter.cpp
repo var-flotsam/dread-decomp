@@ -49,4 +49,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace querysystem::CSameEntitySideFilter
 DREAD_REFLECTED_CLASS(querysystem::CSameEntitySideFilter, querysystem::CFilter);
-

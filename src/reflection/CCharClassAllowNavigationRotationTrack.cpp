@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAllowNavigationRotationTrack
 DREAD_REFLECTED_CLASS(CCharClassAllowNavigationRotationTrack, base::global::timeline::CTrack);
-

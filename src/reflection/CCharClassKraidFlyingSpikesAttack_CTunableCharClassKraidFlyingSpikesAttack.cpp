@@ -98,5 +98,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassKraidFlyingSpikesAttack
 DREAD_REFLECTED_CLASS(CCharClassKraidFlyingSpikesAttack, CCharClassKraidAttack);
-
-

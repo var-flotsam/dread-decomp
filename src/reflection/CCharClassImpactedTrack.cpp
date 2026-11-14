@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassImpactedTrack
 DREAD_REFLECTED_CLASS(CCharClassImpactedTrack, CCharClassToStateTrack);
-

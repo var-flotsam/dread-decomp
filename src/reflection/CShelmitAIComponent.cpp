@@ -53,4 +53,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CShelmitAIComponent
 DREAD_REFLECTED_CLASS(CShelmitAIComponent, CBehaviorTreeAIComponent);
-

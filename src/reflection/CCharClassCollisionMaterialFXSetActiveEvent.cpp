@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCollisionMaterialFXSetActiveEvent
 DREAD_REFLECTED_CLASS(CCharClassCollisionMaterialFXSetActiveEvent, ICharClassFXSetActiveEvent);
-

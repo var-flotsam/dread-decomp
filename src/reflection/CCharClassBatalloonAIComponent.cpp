@@ -62,4 +62,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassBatalloonAIComponent
 DREAD_REFLECTED_CLASS(CCharClassBatalloonAIComponent, CCharClassBaseGroundShockerAIComponent);
-

@@ -57,4 +57,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassHecathonPlanktonFXComponent
 DREAD_REFLECTED_CLASS(CCharClassHecathonPlanktonFXComponent, CCharClassComponent);
-

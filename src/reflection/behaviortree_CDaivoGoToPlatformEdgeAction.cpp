@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CDaivoGoToPlatformEdgeAction
 DREAD_REFLECTED_CLASS(behaviortree::CDaivoGoToPlatformEdgeAction, behaviortree::CBaseAction);
-

@@ -295,8 +295,6 @@ struct refl_Description : ClassDescription {
 }  // namespace CAbilityOpticCamouflage::CTunableAbilityOpticCamouflage
 DREAD_REFLECTED_CLASS(CAbilityOpticCamouflage::CTunableAbilityOpticCamouflage, base::tunable::CTunable);
 
-
-
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).
 namespace {

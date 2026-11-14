@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAbortTurnTrack
 DREAD_REFLECTED_CLASS(CCharClassAbortTurnTrack, base::global::timeline::CTrack);
-

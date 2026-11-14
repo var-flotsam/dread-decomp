@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CPureFollowCameraCtrl
 DREAD_REFLECTED_CLASS(CPureFollowCameraCtrl, CCameraCtrl);
-

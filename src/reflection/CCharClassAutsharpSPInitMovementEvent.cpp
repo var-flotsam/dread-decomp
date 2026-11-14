@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAutsharpSPInitMovementEvent
 DREAD_REFLECTED_CLASS(CCharClassAutsharpSPInitMovementEvent, base::global::timeline::CEvent);
-

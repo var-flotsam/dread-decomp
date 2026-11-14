@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassOverrideMeleeCameraFXPresetTrack
 DREAD_REFLECTED_CLASS(CCharClassOverrideMeleeCameraFXPresetTrack, base::global::timeline::CTrack);
-

@@ -61,4 +61,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassPickableComponent
 DREAD_REFLECTED_CLASS(CCharClassPickableComponent, CCharClassComponent);
-

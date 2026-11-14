@@ -52,4 +52,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAnalogAimTrack
 DREAD_REFLECTED_CLASS(CCharClassAnalogAimTrack, base::global::timeline::CTrack);
-

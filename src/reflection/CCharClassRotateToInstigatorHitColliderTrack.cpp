@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassRotateToInstigatorHitColliderTrack
 DREAD_REFLECTED_CLASS(CCharClassRotateToInstigatorHitColliderTrack, base::global::timeline::CTrack);
-

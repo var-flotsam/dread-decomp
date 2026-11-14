@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassDoorShieldUnBlockEvent
 DREAD_REFLECTED_CLASS(CCharClassDoorShieldUnBlockEvent, base::global::timeline::CEvent);
-

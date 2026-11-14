@@ -55,4 +55,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CShotVariableSpeedLaunchConfig
 DREAD_REFLECTED_CLASS(CShotVariableSpeedLaunchConfig, CShotLaunchConfig);
-

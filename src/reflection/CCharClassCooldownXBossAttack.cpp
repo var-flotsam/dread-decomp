@@ -45,4 +45,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCooldownXBossAttack
 DREAD_REFLECTED_CLASS(CCharClassCooldownXBossAttack, CCharClassAttack);
-

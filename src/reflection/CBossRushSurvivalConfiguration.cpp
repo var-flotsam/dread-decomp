@@ -123,9 +123,6 @@ struct refl_Description : ClassDescription {
 }  // namespace CBossRushManager::CTunableBossRushManager
 DREAD_REFLECTED_CLASS(CBossRushManager::CTunableBossRushManager, base::tunable::CTunable);
 
-
-
-
 void fn_7100dcefb8();
 void fn_7100dcf020();
 void fn_7100dcf02c();

@@ -58,4 +58,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassLightingSetPosOffsetEvent
 DREAD_REFLECTED_CLASS(CCharClassLightingSetPosOffsetEvent, base::global::timeline::CEvent);
-

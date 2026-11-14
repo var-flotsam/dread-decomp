@@ -49,4 +49,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace ICharClassFXSetAutoManagedEvent
 DREAD_REFLECTED_CLASS(ICharClassFXSetAutoManagedEvent, base::global::timeline::CEvent);
-

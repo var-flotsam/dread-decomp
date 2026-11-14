@@ -69,4 +69,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassEnemyLifeComponent
 DREAD_REFLECTED_CLASS(CCharClassEnemyLifeComponent, CCharClassLifeComponent);
-

@@ -64,4 +64,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSetSlomoCustomEvent
 DREAD_REFLECTED_CLASS(CCharClassSetSlomoCustomEvent, base::global::timeline::CEvent);
-

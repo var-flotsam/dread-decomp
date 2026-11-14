@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCallEmmyEvent
 DREAD_REFLECTED_CLASS(CCharClassCallEmmyEvent, base::global::timeline::CEvent);
-

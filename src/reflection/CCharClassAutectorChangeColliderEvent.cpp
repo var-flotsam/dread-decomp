@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAutectorChangeColliderEvent
 DREAD_REFLECTED_CLASS(CCharClassAutectorChangeColliderEvent, base::global::timeline::CEvent);
-

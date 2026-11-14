@@ -177,5 +177,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassPoisonFlyAIComponent
 DREAD_REFLECTED_CLASS(CCharClassPoisonFlyAIComponent, CCharClassBehaviorTreeAIComponent);
-
-

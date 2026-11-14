@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CSaveSnapshotToCheckpointLogicAction
 DREAD_REFLECTED_CLASS(CSaveSnapshotToCheckpointLogicAction, CTriggerLogicAction);
-

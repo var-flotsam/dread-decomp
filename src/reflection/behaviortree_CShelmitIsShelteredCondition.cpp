@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CShelmitIsShelteredCondition
 DREAD_REFLECTED_CLASS(behaviortree::CShelmitIsShelteredCondition, behaviortree::CBaseCondition);
-

@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassGrappleBeamComponent
 DREAD_REFLECTED_CLASS(CCharClassGrappleBeamComponent, CCharClassWeaponMovement);
-

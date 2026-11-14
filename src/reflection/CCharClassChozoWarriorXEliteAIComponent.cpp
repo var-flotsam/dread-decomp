@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassChozoWarriorXEliteAIComponent
 DREAD_REFLECTED_CLASS(CCharClassChozoWarriorXEliteAIComponent, CCharClassChozoWarriorXAIComponent);
-

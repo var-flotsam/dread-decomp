@@ -70,4 +70,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CTeamManager::CTunableTeamManager
 DREAD_REFLECTED_CLASS(CTeamManager::CTunableTeamManager, base::tunable::CTunable);
-

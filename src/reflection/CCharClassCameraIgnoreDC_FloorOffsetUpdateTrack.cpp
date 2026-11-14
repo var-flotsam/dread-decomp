@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack
 DREAD_REFLECTED_CLASS(CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack, base::global::timeline::CTrack);
-

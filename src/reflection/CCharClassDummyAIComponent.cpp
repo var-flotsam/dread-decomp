@@ -41,4 +41,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassDummyAIComponent
 DREAD_REFLECTED_CLASS(CCharClassDummyAIComponent, CCharClassAIComponent);
-

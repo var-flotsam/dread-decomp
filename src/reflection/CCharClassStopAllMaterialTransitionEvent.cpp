@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassStopAllMaterialTransitionEvent
 DREAD_REFLECTED_CLASS(CCharClassStopAllMaterialTransitionEvent, base::global::timeline::CEvent);
-

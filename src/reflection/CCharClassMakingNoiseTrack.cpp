@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassMakingNoiseTrack
 DREAD_REFLECTED_CLASS(CCharClassMakingNoiseTrack, base::global::timeline::CTrack);
-

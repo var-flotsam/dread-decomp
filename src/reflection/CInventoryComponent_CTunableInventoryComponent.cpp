@@ -124,5 +124,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CInventoryComponent
 DREAD_REFLECTED_CLASS(CInventoryComponent, CComponent);
-
-

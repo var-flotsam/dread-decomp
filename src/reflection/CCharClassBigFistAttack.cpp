@@ -115,5 +115,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassBigFistAttack::CTunableCharClassBigFistAttack
 DREAD_REFLECTED_CLASS(CCharClassBigFistAttack::CTunableCharClassBigFistAttack, base::tunable::CTunable);
-
-

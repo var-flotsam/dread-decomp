@@ -52,4 +52,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CPowerUpLifeComponent
 DREAD_REFLECTED_CLASS(CPowerUpLifeComponent, CItemLifeComponent);
-

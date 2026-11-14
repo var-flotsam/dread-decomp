@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CPathToTargetWithSmartLinksCondition
 DREAD_REFLECTED_CLASS(behaviortree::CPathToTargetWithSmartLinksCondition, behaviortree::CBaseCondition);
-

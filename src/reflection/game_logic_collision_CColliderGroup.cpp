@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace game::logic::collision::CColliderGroup
 DREAD_REFLECTED_CLASS(game::logic::collision::CColliderGroup, game::logic::collision::CBroadphaseObject);
-

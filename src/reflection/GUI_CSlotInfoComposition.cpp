@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace GUI::CSlotInfoComposition
 DREAD_REFLECTED_CLASS(GUI::CSlotInfoComposition, GUI::CDisplayObjectContainer);
-

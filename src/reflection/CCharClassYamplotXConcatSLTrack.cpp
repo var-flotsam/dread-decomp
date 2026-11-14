@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassYamplotXConcatSLTrack
 DREAD_REFLECTED_CLASS(CCharClassYamplotXConcatSLTrack, base::global::timeline::CTrack);
-

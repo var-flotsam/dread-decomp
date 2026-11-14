@@ -170,7 +170,6 @@ struct refl_Description : ClassDescription {
 }  // namespace CCameraComponent
 DREAD_REFLECTED_CLASS(CCameraComponent, CComponent);
 
-
 void fn_71010e6cfc();
 void fn_71010e6d64();
 void fn_71010e6d70();

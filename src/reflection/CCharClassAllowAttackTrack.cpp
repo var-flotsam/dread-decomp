@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAllowAttackTrack
 DREAD_REFLECTED_CLASS(CCharClassAllowAttackTrack, base::global::timeline::CTrack);
-

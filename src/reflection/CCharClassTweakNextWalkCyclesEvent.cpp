@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTweakNextWalkCyclesEvent
 DREAD_REFLECTED_CLASS(CCharClassTweakNextWalkCyclesEvent, base::global::timeline::CEvent);
-

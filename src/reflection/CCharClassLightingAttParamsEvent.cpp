@@ -64,4 +64,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassLightingAttParamsEvent
 DREAD_REFLECTED_CLASS(CCharClassLightingAttParamsEvent, base::global::timeline::CEvent);
-

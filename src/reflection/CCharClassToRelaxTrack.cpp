@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassToRelaxTrack
 DREAD_REFLECTED_CLASS(CCharClassToRelaxTrack, CCharClassToStateTrack);
-

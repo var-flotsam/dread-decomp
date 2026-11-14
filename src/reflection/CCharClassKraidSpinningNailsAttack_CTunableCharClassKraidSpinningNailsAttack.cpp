@@ -130,9 +130,6 @@ struct refl_Description : ClassDescription {
 }  // namespace CCharClassKraidSpinningNailsAttack
 DREAD_REFLECTED_CLASS(CCharClassKraidSpinningNailsAttack, CCharClassKraidAttack);
 
-
-
-
 void fn_71005eafb8();
 void fn_71005eb020();
 void fn_71005eb02c();

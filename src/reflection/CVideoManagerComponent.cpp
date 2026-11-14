@@ -103,4 +103,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CVideoManagerComponent
 DREAD_REFLECTED_CLASS(CVideoManagerComponent, CComponent);
-

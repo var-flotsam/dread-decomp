@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassModifyColliderStateTrack
 DREAD_REFLECTED_CLASS(CCharClassModifyColliderStateTrack, CCharClassModifyColliderStateBaseTrack);
-

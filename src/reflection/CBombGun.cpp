@@ -113,5 +113,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CBombGun::CTunableBomb
 DREAD_REFLECTED_CLASS(CBombGun::CTunableBomb, base::tunable::CTunable);
-
-

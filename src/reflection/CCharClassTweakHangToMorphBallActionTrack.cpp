@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTweakHangToMorphBallActionTrack
 DREAD_REFLECTED_CLASS(CCharClassTweakHangToMorphBallActionTrack, CCharClassTweakActionBaseTrack);
-

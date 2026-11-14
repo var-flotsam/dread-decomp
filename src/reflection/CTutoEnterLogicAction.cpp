@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CTutoEnterLogicAction
 DREAD_REFLECTED_CLASS(CTutoEnterLogicAction, CTriggerLogicAction);
-

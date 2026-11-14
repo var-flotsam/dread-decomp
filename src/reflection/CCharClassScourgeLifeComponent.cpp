@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassScourgeLifeComponent
 DREAD_REFLECTED_CLASS(CCharClassScourgeLifeComponent, CCharClassEnemyLifeComponent);
-

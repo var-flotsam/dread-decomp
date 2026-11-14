@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CBTObserverComponent
 DREAD_REFLECTED_CLASS(CBTObserverComponent, CActorComponent);
-

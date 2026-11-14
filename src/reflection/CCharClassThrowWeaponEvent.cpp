@@ -86,4 +86,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassThrowWeaponEvent
 DREAD_REFLECTED_CLASS(CCharClassThrowWeaponEvent, base::global::timeline::CEvent);
-

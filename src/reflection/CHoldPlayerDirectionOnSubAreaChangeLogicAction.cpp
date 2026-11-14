@@ -43,4 +43,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CHoldPlayerDirectionOnSubAreaChangeLogicAction
 DREAD_REFLECTED_CLASS(CHoldPlayerDirectionOnSubAreaChangeLogicAction, CTriggerLogicAction);
-

@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassDeathAnimTrack
 DREAD_REFLECTED_CLASS(CCharClassDeathAnimTrack, base::global::timeline::CTrack);
-

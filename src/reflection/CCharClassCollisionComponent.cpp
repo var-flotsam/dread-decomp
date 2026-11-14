@@ -63,4 +63,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCollisionComponent
 DREAD_REFLECTED_CLASS(CCharClassCollisionComponent, CCharClassComponent);
-

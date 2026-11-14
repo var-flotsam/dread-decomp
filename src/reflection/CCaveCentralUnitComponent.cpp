@@ -43,4 +43,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCaveCentralUnitComponent
 DREAD_REFLECTED_CLASS(CCaveCentralUnitComponent, CCentralUnitComponent);
-

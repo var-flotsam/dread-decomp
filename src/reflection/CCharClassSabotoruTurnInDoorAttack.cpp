@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSabotoruTurnInDoorAttack
 DREAD_REFLECTED_CLASS(CCharClassSabotoruTurnInDoorAttack, CCharClassAttack);
-

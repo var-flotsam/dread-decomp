@@ -95,7 +95,6 @@ struct refl_Description : ClassDescription {
 }  // namespace CComponent
 DREAD_REFLECTED_CLASS(CComponent, CActorComponent);
 
-
 void fn_71010c4718();
 void fn_71010c4780();
 void fn_71010c478c();

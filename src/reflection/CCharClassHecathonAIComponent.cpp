@@ -121,5 +121,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassHecathonAIComponent::CTunableCharClassHecathoAIComponent
 DREAD_REFLECTED_CLASS(CCharClassHecathonAIComponent::CTunableCharClassHecathoAIComponent, base::tunable::CTunable);
-
-

@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CPerceptionComponent
 DREAD_REFLECTED_CLASS(CPerceptionComponent, CComponent);
-

@@ -112,5 +112,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassRodotukAIComponent::CTunableCharClassRodotukAIComponent
 DREAD_REFLECTED_CLASS(CCharClassRodotukAIComponent::CTunableCharClassRodotukAIComponent, base::tunable::CTunable);
-
-

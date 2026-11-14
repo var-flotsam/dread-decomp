@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassIgnoreGrabSlavePositionInterpolationTrack
 DREAD_REFLECTED_CLASS(CCharClassIgnoreGrabSlavePositionInterpolationTrack, base::global::timeline::CTrack);
-

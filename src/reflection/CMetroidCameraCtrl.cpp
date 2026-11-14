@@ -134,5 +134,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CMetroidCameraCtrl::CTunableMetroidCameraCtrl
 DREAD_REFLECTED_CLASS(CMetroidCameraCtrl::CTunableMetroidCameraCtrl, base::tunable::CTunable);
-
-

@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CIf
 DREAD_REFLECTED_CLASS(behaviortree::CIf, behaviortree::CComposite);
-

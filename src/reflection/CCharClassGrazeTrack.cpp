@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassGrazeTrack
 DREAD_REFLECTED_CLASS(CCharClassGrazeTrack, base::global::timeline::CTrack);
-

@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassIgnoreLaserFXTrack
 DREAD_REFLECTED_CLASS(CCharClassIgnoreLaserFXTrack, base::global::timeline::CTrack);
-

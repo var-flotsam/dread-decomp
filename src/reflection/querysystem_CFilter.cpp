@@ -47,7 +47,6 @@ struct refl_Description : ClassDescription {
 }  // namespace querysystem::CFilter
 DREAD_REFLECTED_ROOT_CLASS(querysystem::CFilter);
 
-
 void fn_71002bf04c();
 void fn_71002bf0b4();
 void fn_71002bf0c0();

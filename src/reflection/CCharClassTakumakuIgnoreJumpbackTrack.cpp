@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTakumakuIgnoreJumpbackTrack
 DREAD_REFLECTED_CLASS(CCharClassTakumakuIgnoreJumpbackTrack, base::global::timeline::CTrack);
-

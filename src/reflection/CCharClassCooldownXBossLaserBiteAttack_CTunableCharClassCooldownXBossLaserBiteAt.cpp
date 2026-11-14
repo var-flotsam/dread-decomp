@@ -90,5 +90,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCooldownXBossLaserBiteAttack
 DREAD_REFLECTED_CLASS(CCharClassCooldownXBossLaserBiteAttack, CCharClassCooldownXBossAttack);
-
-

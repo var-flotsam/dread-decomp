@@ -91,4 +91,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassFulmiteBellyMineAIComponent
 DREAD_REFLECTED_CLASS(CCharClassFulmiteBellyMineAIComponent, CCharClassBehaviorTreeAIComponent);
-

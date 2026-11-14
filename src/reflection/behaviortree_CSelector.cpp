@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CSelector
 DREAD_REFLECTED_CLASS(behaviortree::CSelector, behaviortree::CComposite);
-

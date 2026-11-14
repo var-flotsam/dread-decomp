@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassKraidAttack
 DREAD_REFLECTED_CLASS(CCharClassKraidAttack, CCharClassAttack);
-

@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassEmmyAllowCheckTargetReachableInSmartLinkTrack
 DREAD_REFLECTED_CLASS(CCharClassEmmyAllowCheckTargetReachableInSmartLinkTrack, base::global::timeline::CTrack);
-

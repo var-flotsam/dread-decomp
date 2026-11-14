@@ -55,4 +55,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassQuetzoaMultiTargetProjectileMovementComponent
 DREAD_REFLECTED_CLASS(CCharClassQuetzoaMultiTargetProjectileMovementComponent, CCharClassLockOnMissileMovement);
-

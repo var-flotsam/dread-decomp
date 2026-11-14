@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassFloorSlideShrinkCollisionTrack
 DREAD_REFLECTED_CLASS(CCharClassFloorSlideShrinkCollisionTrack, base::global::timeline::CTrack);
-

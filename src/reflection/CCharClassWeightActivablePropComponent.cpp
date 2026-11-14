@@ -49,4 +49,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassWeightActivablePropComponent
 DREAD_REFLECTED_CLASS(CCharClassWeightActivablePropComponent, CCharClassComponent);
-

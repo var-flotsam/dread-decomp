@@ -93,5 +93,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCoreXAIComponent
 DREAD_REFLECTED_CLASS(CCharClassCoreXAIComponent, CCharClassBossAIComponent);
-
-

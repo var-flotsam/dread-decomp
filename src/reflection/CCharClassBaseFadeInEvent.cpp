@@ -72,4 +72,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassBaseFadeInEvent
 DREAD_REFLECTED_CLASS(CCharClassBaseFadeInEvent, base::global::timeline::CEvent);
-

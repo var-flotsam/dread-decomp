@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassNonSnappedRotationIsValidTrack
 DREAD_REFLECTED_CLASS(CCharClassNonSnappedRotationIsValidTrack, base::global::timeline::CTrack);
-

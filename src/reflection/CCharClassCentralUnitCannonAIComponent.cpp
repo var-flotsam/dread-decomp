@@ -91,5 +91,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCentralUnitCannonAIComponent::CTunableCharClassCentralUnitCannonAIComponent
 DREAD_REFLECTED_CLASS(CCharClassCentralUnitCannonAIComponent::CTunableCharClassCentralUnitCannonAIComponent, base::tunable::CTunable);
-
-

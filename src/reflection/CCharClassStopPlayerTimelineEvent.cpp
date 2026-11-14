@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassStopPlayerTimelineEvent
 DREAD_REFLECTED_CLASS(CCharClassStopPlayerTimelineEvent, base::global::timeline::CEvent);
-

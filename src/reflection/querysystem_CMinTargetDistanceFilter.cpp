@@ -49,4 +49,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace querysystem::CMinTargetDistanceFilter
 DREAD_REFLECTED_CLASS(querysystem::CMinTargetDistanceFilter, querysystem::CFilter);
-

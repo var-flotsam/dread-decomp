@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassEscapeSequenceExplosionComponent
 DREAD_REFLECTED_CLASS(CCharClassEscapeSequenceExplosionComponent, CCharClassComponent);
-

@@ -47,4 +47,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CPoisonFlyChasePlayerAction
 DREAD_REFLECTED_CLASS(behaviortree::CPoisonFlyChasePlayerAction, behaviortree::CBaseAction);
-

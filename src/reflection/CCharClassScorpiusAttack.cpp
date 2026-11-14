@@ -43,4 +43,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassScorpiusAttack
 DREAD_REFLECTED_CLASS(CCharClassScorpiusAttack, CCharClassAttack);
-

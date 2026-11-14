@@ -73,4 +73,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSluggerSpitAttack
 DREAD_REFLECTED_CLASS(CCharClassSluggerSpitAttack, CCharClassAttack);
-

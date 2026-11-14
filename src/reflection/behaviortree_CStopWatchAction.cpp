@@ -70,4 +70,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CStopWatchAction
 DREAD_REFLECTED_CLASS(behaviortree::CStopWatchAction, behaviortree::CBaseAction);
-

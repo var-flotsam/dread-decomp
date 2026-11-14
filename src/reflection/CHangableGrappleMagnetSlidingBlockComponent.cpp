@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CHangableGrappleMagnetSlidingBlockComponent
 DREAD_REFLECTED_CLASS(CHangableGrappleMagnetSlidingBlockComponent, CHangableGrappleSurfaceComponent);
-

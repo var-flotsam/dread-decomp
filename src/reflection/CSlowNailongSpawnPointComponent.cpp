@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CSlowNailongSpawnPointComponent
 DREAD_REFLECTED_CLASS(CSlowNailongSpawnPointComponent, CSpawnPointComponent);
-

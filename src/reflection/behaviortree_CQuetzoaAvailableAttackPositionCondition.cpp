@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CQuetzoaAvailableAttackPositionCondition
 DREAD_REFLECTED_CLASS(behaviortree::CQuetzoaAvailableAttackPositionCondition, behaviortree::CBaseCondition);
-

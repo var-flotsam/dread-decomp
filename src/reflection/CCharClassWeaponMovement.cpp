@@ -106,4 +106,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassWeaponMovement
 DREAD_REFLECTED_CLASS(CCharClassWeaponMovement, CCharClassMovementComponent);
-

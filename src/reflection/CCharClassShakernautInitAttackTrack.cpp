@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassShakernautInitAttackTrack
 DREAD_REFLECTED_CLASS(CCharClassShakernautInitAttackTrack, CCharClassToStateTrack);
-

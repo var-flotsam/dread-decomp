@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace base::animation::CAnimationSkeletonTransformer
 DREAD_REFLECTED_CLASS(base::animation::CAnimationSkeletonTransformer, base::animation::ISkeletonTransformer);
-

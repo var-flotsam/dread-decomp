@@ -61,4 +61,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CEnemyMovementWalkingAnims
 DREAD_REFLECTED_ROOT_CLASS(CEnemyMovementWalkingAnims);
-

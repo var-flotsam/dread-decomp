@@ -40,4 +40,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAutomperAIComponent
 DREAD_REFLECTED_CLASS(CCharClassAutomperAIComponent, CCharClassRobotAIComponent);
-

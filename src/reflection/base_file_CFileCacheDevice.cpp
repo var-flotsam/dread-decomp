@@ -29,4 +29,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace base::file::CFileCacheDevice
 DREAD_REFLECTED_CLASS_INLINE_NAME(base::file::CFileCacheDevice, base::file::IDevice);
-

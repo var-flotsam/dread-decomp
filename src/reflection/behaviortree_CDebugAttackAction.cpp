@@ -52,4 +52,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CDebugAttackAction
 DREAD_REFLECTED_CLASS(behaviortree::CDebugAttackAction, behaviortree::CBaseAction);
-

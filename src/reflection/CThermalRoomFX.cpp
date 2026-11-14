@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CThermalRoomFX
 DREAD_REFLECTED_CLASS(CThermalRoomFX, CActivatableComponent);
-

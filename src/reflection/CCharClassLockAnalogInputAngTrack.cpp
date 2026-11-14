@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassLockAnalogInputAngTrack
 DREAD_REFLECTED_CLASS(CCharClassLockAnalogInputAngTrack, base::global::timeline::CTrack);
-

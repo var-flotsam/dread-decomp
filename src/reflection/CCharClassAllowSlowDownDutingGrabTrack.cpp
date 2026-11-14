@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAllowSlowDownDutingGrabTrack
 DREAD_REFLECTED_CLASS(CCharClassAllowSlowDownDutingGrabTrack, base::global::timeline::CTrack);
-

@@ -48,4 +48,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CLockRoomLogicAction
 DREAD_REFLECTED_CLASS(CLockRoomLogicAction, CTriggerLogicAction);
-

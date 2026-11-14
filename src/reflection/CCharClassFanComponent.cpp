@@ -153,5 +153,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CFanComponent
 DREAD_REFLECTED_CLASS(CFanComponent, CBaseTriggerComponent);
-
-

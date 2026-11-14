@@ -37,4 +37,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CHearingStimulusDef
 DREAD_REFLECTED_CLASS(CHearingStimulusDef, CStimulusDef);
-

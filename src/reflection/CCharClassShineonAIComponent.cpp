@@ -96,5 +96,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassShineonAIComponent::CTunableCharClassShineonAIComponent
 DREAD_REFLECTED_CLASS(CCharClassShineonAIComponent::CTunableCharClassShineonAIComponent, base::tunable::CTunable);
-
-

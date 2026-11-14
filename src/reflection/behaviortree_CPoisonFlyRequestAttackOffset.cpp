@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CPoisonFlyRequestAttackOffset
 DREAD_REFLECTED_CLASS(behaviortree::CPoisonFlyRequestAttackOffset, behaviortree::CBaseAction);
-

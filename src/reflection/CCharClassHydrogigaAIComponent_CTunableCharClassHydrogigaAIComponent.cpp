@@ -133,5 +133,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassHydrogigaAIComponent
 DREAD_REFLECTED_CLASS(CCharClassHydrogigaAIComponent, CCharClassBossAIComponent);
-
-

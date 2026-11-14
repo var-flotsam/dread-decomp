@@ -69,4 +69,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CMultiModelUpdaterComponent
 DREAD_REFLECTED_CLASS(CMultiModelUpdaterComponent, CModelUpdaterComponent);
-

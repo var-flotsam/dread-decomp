@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTweakParkourCloseActionTrack
 DREAD_REFLECTED_CLASS(CCharClassTweakParkourCloseActionTrack, CCharClassTweakActionBaseTrack);
-

@@ -40,4 +40,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassDaivoAIComponent
 DREAD_REFLECTED_CLASS(CCharClassDaivoAIComponent, CCharClassSluggerAIComponent);
-

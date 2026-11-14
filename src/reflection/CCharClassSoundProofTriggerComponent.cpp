@@ -89,5 +89,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CSoundProofTriggerComponent
 DREAD_REFLECTED_CLASS(CSoundProofTriggerComponent, CBaseTriggerComponent);
-
-

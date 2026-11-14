@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCutsceneActorTrack
 DREAD_REFLECTED_CLASS(CCharClassCutsceneActorTrack, base::global::timeline::CTrack);
-

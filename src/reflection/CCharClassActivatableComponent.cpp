@@ -91,5 +91,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CActivatableComponent
 DREAD_REFLECTED_CLASS(CActivatableComponent, CComponent);
-
-

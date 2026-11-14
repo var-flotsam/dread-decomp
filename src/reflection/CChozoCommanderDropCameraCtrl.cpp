@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CChozoCommanderDropCameraCtrl
 DREAD_REFLECTED_CLASS(CChozoCommanderDropCameraCtrl, CCameraBoundaryCtrl);
-

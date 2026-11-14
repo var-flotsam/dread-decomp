@@ -56,4 +56,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSetDoorLockedEvent
 DREAD_REFLECTED_CLASS(CCharClassSetDoorLockedEvent, base::global::timeline::CEvent);
-

@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTweakMotionSpeedTrack
 DREAD_REFLECTED_CLASS(CCharClassTweakMotionSpeedTrack, base::global::timeline::CTrack);
-

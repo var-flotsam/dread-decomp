@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassOverrideAngularSpeedTrack
 DREAD_REFLECTED_CLASS(CCharClassOverrideAngularSpeedTrack, base::global::timeline::CTrack);
-

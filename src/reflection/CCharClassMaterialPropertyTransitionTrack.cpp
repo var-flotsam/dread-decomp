@@ -88,4 +88,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassMaterialPropertyTransitionTrack
 DREAD_REFLECTED_CLASS(CCharClassMaterialPropertyTransitionTrack, base::global::timeline::CTrack);
-

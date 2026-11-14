@@ -48,4 +48,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CDefaultAction
 DREAD_REFLECTED_CLASS(CDefaultAction, CActionInstance);
-

@@ -76,4 +76,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CFloatCondition
 DREAD_REFLECTED_CLASS(behaviortree::CFloatCondition, behaviortree::CBaseCondition);
-

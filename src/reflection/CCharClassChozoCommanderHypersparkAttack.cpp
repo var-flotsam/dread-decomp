@@ -45,4 +45,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassChozoCommanderHypersparkAttack
 DREAD_REFLECTED_CLASS(CCharClassChozoCommanderHypersparkAttack, CCharClassChozoCommanderGroundAttack);
-

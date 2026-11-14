@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTakumakuChargeTrack
 DREAD_REFLECTED_CLASS(CCharClassTakumakuChargeTrack, base::global::timeline::CTrack);
-

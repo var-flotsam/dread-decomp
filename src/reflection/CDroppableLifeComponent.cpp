@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CDroppableLifeComponent
 DREAD_REFLECTED_CLASS(CDroppableLifeComponent, CDroppableComponent);
-

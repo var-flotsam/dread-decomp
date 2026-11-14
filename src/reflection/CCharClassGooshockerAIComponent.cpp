@@ -41,4 +41,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassGooshockerAIComponent
 DREAD_REFLECTED_CLASS(CCharClassGooshockerAIComponent, CCharClassGooplotAIComponent);
-

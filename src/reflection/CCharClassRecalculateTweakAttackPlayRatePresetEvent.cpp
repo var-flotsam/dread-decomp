@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassRecalculateTweakAttackPlayRatePresetEvent
 DREAD_REFLECTED_CLASS(CCharClassRecalculateTweakAttackPlayRatePresetEvent, base::global::timeline::CEvent);
-

@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CXParasiteTransformAction
 DREAD_REFLECTED_CLASS(behaviortree::CXParasiteTransformAction, behaviortree::CBaseAction);
-

@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSpinJumpTrack
 DREAD_REFLECTED_CLASS(CCharClassSpinJumpTrack, base::global::timeline::CTrack);
-

@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CCopyBlcValueAction
 DREAD_REFLECTED_CLASS(behaviortree::CCopyBlcValueAction, behaviortree::CBaseAction);
-

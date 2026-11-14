@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CActivatableByProjectileComponent
 DREAD_REFLECTED_CLASS(CActivatableByProjectileComponent, CComponent);
-

@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CBigkranXAIComponent
 DREAD_REFLECTED_CLASS(CBigkranXAIComponent, CBaseBigFistAIComponent);
-

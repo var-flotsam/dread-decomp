@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCooldownXBossLavaTrack
 DREAD_REFLECTED_CLASS(CCharClassCooldownXBossLavaTrack, base::global::timeline::CTrack);
-

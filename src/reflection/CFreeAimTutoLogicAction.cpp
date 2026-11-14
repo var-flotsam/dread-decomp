@@ -43,4 +43,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CFreeAimTutoLogicAction
 DREAD_REFLECTED_CLASS(CFreeAimTutoLogicAction, CTriggerLogicAction);
-

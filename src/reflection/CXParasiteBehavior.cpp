@@ -62,7 +62,6 @@ struct refl_Description : ClassDescription {
 }  // namespace CXParasiteBehavior
 DREAD_REFLECTED_ROOT_CLASS(CXParasiteBehavior);
 
-
 void fn_71007ca38c();
 void fn_71007ca3f4();
 void fn_71007ca400();

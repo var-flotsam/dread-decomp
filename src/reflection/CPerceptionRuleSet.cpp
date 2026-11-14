@@ -247,7 +247,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CExtendDetectionPerceptionRuleSet
 DREAD_REFLECTED_CLASS(CExtendDetectionPerceptionRuleSet, CPerceptionRuleSet);
-
-
-
-

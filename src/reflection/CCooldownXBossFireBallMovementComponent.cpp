@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCooldownXBossFireBallMovementComponent
 DREAD_REFLECTED_CLASS(CCooldownXBossFireBallMovementComponent, CProjectileMovement);
-

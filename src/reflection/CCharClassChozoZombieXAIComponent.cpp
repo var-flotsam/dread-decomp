@@ -40,4 +40,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassChozoZombieXAIComponent
 DREAD_REFLECTED_CLASS(CCharClassChozoZombieXAIComponent, CCharClassBehaviorTreeAIComponent);
-

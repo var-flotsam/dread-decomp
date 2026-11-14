@@ -52,4 +52,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTweakShinesparkImpactActionTrack
 DREAD_REFLECTED_CLASS(CCharClassTweakShinesparkImpactActionTrack, base::global::timeline::CTrack);
-

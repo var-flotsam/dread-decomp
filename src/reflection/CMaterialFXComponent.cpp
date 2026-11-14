@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CMaterialFXComponent
 DREAD_REFLECTED_CLASS(CMaterialFXComponent, CSceneComponent);
-

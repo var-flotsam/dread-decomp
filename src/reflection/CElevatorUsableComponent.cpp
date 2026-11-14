@@ -62,4 +62,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CElevatorUsableComponent
 DREAD_REFLECTED_CLASS(CElevatorUsableComponent, CUsableComponent);
-

@@ -42,4 +42,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CSubareaTransitionTypeLogicAction
 DREAD_REFLECTED_CLASS(CSubareaTransitionTypeLogicAction, CTriggerLogicAction);
-

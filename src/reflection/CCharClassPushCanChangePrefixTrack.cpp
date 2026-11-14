@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassPushCanChangePrefixTrack
 DREAD_REFLECTED_CLASS(CCharClassPushCanChangePrefixTrack, base::global::timeline::CTrack);
-

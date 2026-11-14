@@ -33,4 +33,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace animtree::CLookAtEntityControl
 DREAD_REFLECTED_CLASS(animtree::CLookAtEntityControl, animtree::CLookAtPosControl);
-

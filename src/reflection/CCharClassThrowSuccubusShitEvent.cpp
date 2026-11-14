@@ -58,4 +58,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassThrowSuccubusShitEvent
 DREAD_REFLECTED_CLASS(CCharClassThrowSuccubusShitEvent, base::global::timeline::CEvent);
-

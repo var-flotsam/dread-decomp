@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassDropXParasiteEvent
 DREAD_REFLECTED_CLASS(CCharClassDropXParasiteEvent, base::global::timeline::CEvent);
-

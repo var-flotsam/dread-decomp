@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassStartCentralUnitProtoEvent
 DREAD_REFLECTED_CLASS(CCharClassStartCentralUnitProtoEvent, base::global::timeline::CEvent);
-

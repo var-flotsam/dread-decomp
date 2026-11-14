@@ -58,4 +58,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSetLockEnvironmentEvent
 DREAD_REFLECTED_CLASS(CCharClassSetLockEnvironmentEvent, base::global::timeline::CEvent);
-

@@ -47,4 +47,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CChangeSetupLogicAction
 DREAD_REFLECTED_CLASS(CChangeSetupLogicAction, CTriggerLogicAction);
-

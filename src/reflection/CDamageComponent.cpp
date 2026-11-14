@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CDamageComponent
 DREAD_REFLECTED_CLASS(CDamageComponent, CComponent);
-

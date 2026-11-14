@@ -92,7 +92,6 @@ struct refl_Description : ClassDescription {
 }  // namespace game::logic::collision::CAABoxShape2D
 DREAD_REFLECTED_CLASS(game::logic::collision::CAABoxShape2D, game::logic::collision::CShape);
 
-
 void fn_7100d5e7b8();
 void fn_7100d5e820();
 void fn_7100d5e82c();

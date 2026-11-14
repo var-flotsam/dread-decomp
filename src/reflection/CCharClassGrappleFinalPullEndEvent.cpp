@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassGrappleFinalPullEndEvent
 DREAD_REFLECTED_CLASS(CCharClassGrappleFinalPullEndEvent, base::global::timeline::CEvent);
-

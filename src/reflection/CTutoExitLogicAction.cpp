@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CTutoExitLogicAction
 DREAD_REFLECTED_CLASS(CTutoExitLogicAction, CTriggerLogicAction);
-

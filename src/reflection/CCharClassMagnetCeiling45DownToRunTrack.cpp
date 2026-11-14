@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassMagnetCeiling45DownToRunTrack
 DREAD_REFLECTED_CLASS(CCharClassMagnetCeiling45DownToRunTrack, CCharClassToStateTrack);
-

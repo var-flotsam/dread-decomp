@@ -142,5 +142,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CUsableComponent::CTunableUsableComponent
 DREAD_REFLECTED_CLASS(CUsableComponent::CTunableUsableComponent, base::tunable::CTunable);
-
-

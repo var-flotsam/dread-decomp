@@ -65,4 +65,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace animtree::CSamusLegsBoneControlDef
 DREAD_REFLECTED_CLASS(animtree::CSamusLegsBoneControlDef, animtree::CCallbackBoneControlDef);
-

@@ -53,4 +53,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CPowerGeneratorComponent
 DREAD_REFLECTED_CLASS(CPowerGeneratorComponent, CActivatableComponent);
-

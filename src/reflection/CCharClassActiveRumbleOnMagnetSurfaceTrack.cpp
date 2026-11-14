@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassActiveRumbleOnMagnetSurfaceTrack
 DREAD_REFLECTED_CLASS(CCharClassActiveRumbleOnMagnetSurfaceTrack, base::global::timeline::CTrack);
-

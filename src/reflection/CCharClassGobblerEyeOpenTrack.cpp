@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassGobblerEyeOpenTrack
 DREAD_REFLECTED_CLASS(CCharClassGobblerEyeOpenTrack, base::global::timeline::CTrack);
-

@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassChozoRobotSoldierAllowForcedDashSlashTrack
 DREAD_REFLECTED_CLASS(CCharClassChozoRobotSoldierAllowForcedDashSlashTrack, base::global::timeline::CTrack);
-

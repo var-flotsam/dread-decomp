@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassMagnetSurfaceTransitionTrack
 DREAD_REFLECTED_CLASS(CCharClassMagnetSurfaceTransitionTrack, base::global::timeline::CTrack);
-

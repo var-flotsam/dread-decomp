@@ -55,4 +55,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassHUDSetForceVisibilityStateEvent
 DREAD_REFLECTED_CLASS(CCharClassHUDSetForceVisibilityStateEvent, base::global::timeline::CEvent);
-

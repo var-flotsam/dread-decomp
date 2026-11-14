@@ -56,4 +56,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTweakSlopeModelOffsetTrack
 DREAD_REFLECTED_CLASS(CCharClassTweakSlopeModelOffsetTrack, base::global::timeline::CTrack);
-

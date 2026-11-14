@@ -56,4 +56,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassPlayEntityTimelineEvent
 DREAD_REFLECTED_CLASS(CCharClassPlayEntityTimelineEvent, base::global::timeline::CEvent);
-

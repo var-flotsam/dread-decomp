@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CObsydomithonActivationAction
 DREAD_REFLECTED_CLASS(behaviortree::CObsydomithonActivationAction, behaviortree::CBaseAction);
-

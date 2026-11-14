@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CRotateToPlayer
 DREAD_REFLECTED_CLASS(behaviortree::CRotateToPlayer, behaviortree::CBaseAction);
-

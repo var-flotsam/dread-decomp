@@ -55,4 +55,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CParallel
 DREAD_REFLECTED_CLASS(behaviortree::CParallel, behaviortree::CComposite);
-

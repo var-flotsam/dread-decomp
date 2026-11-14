@@ -78,4 +78,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSetMaterialPropertyBonePositionEvent
 DREAD_REFLECTED_CLASS(CCharClassSetMaterialPropertyBonePositionEvent, base::global::timeline::CEvent);
-

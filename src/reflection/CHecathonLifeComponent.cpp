@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CHecathonLifeComponent
 DREAD_REFLECTED_CLASS(CHecathonLifeComponent, CEnemyLifeComponent);
-

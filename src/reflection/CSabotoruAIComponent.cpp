@@ -52,4 +52,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CSabotoruAIComponent
 DREAD_REFLECTED_CLASS(CSabotoruAIComponent, CBehaviorTreeAIComponent);
-

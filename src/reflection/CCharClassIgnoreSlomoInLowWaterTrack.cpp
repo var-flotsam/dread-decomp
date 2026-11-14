@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassIgnoreSlomoInLowWaterTrack
 DREAD_REFLECTED_CLASS(CCharClassIgnoreSlomoInLowWaterTrack, base::global::timeline::CTrack);
-

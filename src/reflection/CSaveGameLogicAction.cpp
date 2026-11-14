@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CSaveGameLogicAction
 DREAD_REFLECTED_CLASS(CSaveGameLogicAction, CTriggerLogicAction);
-

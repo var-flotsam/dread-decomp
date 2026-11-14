@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CPhotoModeCameraCtrl
 DREAD_REFLECTED_CLASS(CPhotoModeCameraCtrl, CCameraCtrl);
-

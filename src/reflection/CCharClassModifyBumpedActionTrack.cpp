@@ -56,4 +56,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassModifyBumpedActionTrack
 DREAD_REFLECTED_CLASS(CCharClassModifyBumpedActionTrack, base::global::timeline::CTrack);
-

@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassMorphBallLauncherTravellingAllowInputTrack
 DREAD_REFLECTED_CLASS(CCharClassMorphBallLauncherTravellingAllowInputTrack, base::global::timeline::CTrack);
-

@@ -58,4 +58,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CHyperDashAttackAction
 DREAD_REFLECTED_CLASS(behaviortree::CHyperDashAttackAction, behaviortree::CBaseAction);
-

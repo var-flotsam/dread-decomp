@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassHydrogigaTongueSwirlAttack
 DREAD_REFLECTED_CLASS(CCharClassHydrogigaTongueSwirlAttack, CCharClassHydrogigaAttack);
-

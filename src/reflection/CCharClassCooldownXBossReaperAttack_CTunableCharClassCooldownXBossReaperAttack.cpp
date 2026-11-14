@@ -85,5 +85,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCooldownXBossReaperAttack
 DREAD_REFLECTED_CLASS(CCharClassCooldownXBossReaperAttack, CCharClassCooldownXBossAttack);
-
-

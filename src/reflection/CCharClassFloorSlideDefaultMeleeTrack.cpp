@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassFloorSlideDefaultMeleeTrack
 DREAD_REFLECTED_CLASS(CCharClassFloorSlideDefaultMeleeTrack, base::global::timeline::CTrack);
-

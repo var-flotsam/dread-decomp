@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCheckFrontAimEndEvent
 DREAD_REFLECTED_CLASS(CCharClassCheckFrontAimEndEvent, base::global::timeline::CEvent);
-

@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CIsGrappled
 DREAD_REFLECTED_CLASS(behaviortree::CIsGrappled, behaviortree::CBaseCondition);
-

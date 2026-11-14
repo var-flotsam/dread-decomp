@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTweakMagnetCeilingUpToWallActionTrack
 DREAD_REFLECTED_CLASS(CCharClassTweakMagnetCeilingUpToWallActionTrack, CCharClassTweakActionBaseTrack);
-

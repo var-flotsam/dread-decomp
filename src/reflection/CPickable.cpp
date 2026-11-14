@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CPickable
 DREAD_REFLECTED_CLASS(CPickable, CGameObject);
-

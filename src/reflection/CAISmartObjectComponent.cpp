@@ -57,4 +57,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CAISmartObjectComponent
 DREAD_REFLECTED_CLASS(CAISmartObjectComponent, CComponent);
-

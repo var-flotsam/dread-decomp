@@ -40,4 +40,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CShowPopUpCompositionLogicAction
 DREAD_REFLECTED_CLASS(CShowPopUpCompositionLogicAction, CTriggerLogicAction);
-

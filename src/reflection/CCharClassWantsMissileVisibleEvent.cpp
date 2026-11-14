@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassWantsMissileVisibleEvent
 DREAD_REFLECTED_CLASS(CCharClassWantsMissileVisibleEvent, base::global::timeline::CEvent);
-

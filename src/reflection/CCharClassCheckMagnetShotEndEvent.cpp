@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCheckMagnetShotEndEvent
 DREAD_REFLECTED_CLASS(CCharClassCheckMagnetShotEndEvent, base::global::timeline::CEvent);
-

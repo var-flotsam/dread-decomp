@@ -42,4 +42,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassGoliathXAIComponent
 DREAD_REFLECTED_CLASS(CCharClassGoliathXAIComponent, CCharClassGoliathAIComponent);
-

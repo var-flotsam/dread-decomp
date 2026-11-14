@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTweakGrappleVisualNodeTrack
 DREAD_REFLECTED_CLASS(CCharClassTweakGrappleVisualNodeTrack, base::global::timeline::CTrack);
-

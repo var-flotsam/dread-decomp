@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSlidleOutSPAgitateTrack
 DREAD_REFLECTED_CLASS(CCharClassSlidleOutSPAgitateTrack, base::global::timeline::CTrack);
-

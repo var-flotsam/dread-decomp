@@ -60,4 +60,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSetCurrentCubemapIntensityEvent
 DREAD_REFLECTED_CLASS(CCharClassSetCurrentCubemapIntensityEvent, base::global::timeline::CEvent);
-

@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassOverrideMovementTransitionTrack
 DREAD_REFLECTED_CLASS(CCharClassOverrideMovementTransitionTrack, CCharClassToStateTrack);
-

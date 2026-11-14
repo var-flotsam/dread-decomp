@@ -91,5 +91,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassChozoCommanderAirChargeAttack::CTunableCharClassChozoCommanderAirAttack
 DREAD_REFLECTED_CLASS(CCharClassChozoCommanderAirChargeAttack::CTunableCharClassChozoCommanderAirAttack, base::tunable::CTunable);
-
-

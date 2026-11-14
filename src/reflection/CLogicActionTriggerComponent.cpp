@@ -42,4 +42,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CLogicActionTriggerComponent
 DREAD_REFLECTED_CLASS(CLogicActionTriggerComponent, CComponent);
-

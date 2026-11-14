@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassForceCameraDetphEntityPositionZeroTrack
 DREAD_REFLECTED_CLASS(CCharClassForceCameraDetphEntityPositionZeroTrack, base::global::timeline::CTrack);
-

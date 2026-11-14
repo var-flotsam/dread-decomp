@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CMagnetSlidingBlockCounterWeightMovablePlatformComponent
 DREAD_REFLECTED_CLASS(CMagnetSlidingBlockCounterWeightMovablePlatformComponent, CMagnetMovablePlatformComponent);
-

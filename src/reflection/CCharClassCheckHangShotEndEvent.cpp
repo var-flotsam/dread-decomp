@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCheckHangShotEndEvent
 DREAD_REFLECTED_CLASS(CCharClassCheckHangShotEndEvent, base::global::timeline::CEvent);
-

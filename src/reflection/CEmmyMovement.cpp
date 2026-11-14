@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CEmmyMovement
 DREAD_REFLECTED_CLASS(CEmmyMovement, CEnemyMovement);
-

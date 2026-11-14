@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CHasLineOfSightCondition
 DREAD_REFLECTED_CLASS(behaviortree::CHasLineOfSightCondition, behaviortree::CBaseCondition);
-

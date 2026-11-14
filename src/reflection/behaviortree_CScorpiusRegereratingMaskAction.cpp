@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CScorpiusRegereratingMaskAction
 DREAD_REFLECTED_CLASS(behaviortree::CScorpiusRegereratingMaskAction, behaviortree::CBaseAction);
-

@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CStoreSamusDirectionAction
 DREAD_REFLECTED_CLASS(behaviortree::CStoreSamusDirectionAction, behaviortree::CBaseAction);
-

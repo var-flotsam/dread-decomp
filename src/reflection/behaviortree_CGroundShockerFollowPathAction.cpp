@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CGroundShockerFollowPathAction
 DREAD_REFLECTED_CLASS(behaviortree::CGroundShockerFollowPathAction, behaviortree::CBaseAction);
-

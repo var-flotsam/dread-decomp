@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassMeleeHitStopTrack
 DREAD_REFLECTED_CLASS(CCharClassMeleeHitStopTrack, base::global::timeline::CTrack);
-

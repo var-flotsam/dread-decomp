@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassStaticLUACallbackEvent
 DREAD_REFLECTED_CLASS(CCharClassStaticLUACallbackEvent, base::global::timeline::CEvent);
-

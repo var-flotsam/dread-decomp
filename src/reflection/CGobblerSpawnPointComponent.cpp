@@ -67,4 +67,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CGobblerSpawnPointComponent
 DREAD_REFLECTED_CLASS(CGobblerSpawnPointComponent, CSpawnPointComponent);
-

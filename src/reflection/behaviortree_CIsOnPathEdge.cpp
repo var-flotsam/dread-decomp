@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CIsOnPathEdge
 DREAD_REFLECTED_CLASS(behaviortree::CIsOnPathEdge, behaviortree::CBaseCondition);
-

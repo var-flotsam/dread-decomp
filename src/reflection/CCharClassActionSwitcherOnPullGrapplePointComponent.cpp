@@ -66,4 +66,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassActionSwitcherOnPullGrapplePointComponent
 DREAD_REFLECTED_CLASS(CCharClassActionSwitcherOnPullGrapplePointComponent, CCharClassPullableGrapplePointComponent);
-

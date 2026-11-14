@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCoolShinesparkMarkMinimapLogicAction
 DREAD_REFLECTED_CLASS(CCoolShinesparkMarkMinimapLogicAction, CMarkMinimapLogicAction);
-

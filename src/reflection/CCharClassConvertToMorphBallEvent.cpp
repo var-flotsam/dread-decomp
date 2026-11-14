@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassConvertToMorphBallEvent
 DREAD_REFLECTED_CLASS(CCharClassConvertToMorphBallEvent, base::global::timeline::CEvent);
-

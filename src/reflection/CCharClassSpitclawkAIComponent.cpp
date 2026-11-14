@@ -49,4 +49,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSpitclawkAIComponent
 DREAD_REFLECTED_CLASS(CCharClassSpitclawkAIComponent, CCharClassSclawkAIComponent);
-

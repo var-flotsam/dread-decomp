@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CTakumakuSpikeBumpAction
 DREAD_REFLECTED_CLASS(behaviortree::CTakumakuSpikeBumpAction, behaviortree::CBaseAction);
-

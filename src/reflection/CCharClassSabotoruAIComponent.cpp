@@ -95,5 +95,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSabotoruAIComponent::CTunableCharClassSabotoruAIComponent
 DREAD_REFLECTED_CLASS(CCharClassSabotoruAIComponent::CTunableCharClassSabotoruAIComponent, base::tunable::CTunable);
-
-

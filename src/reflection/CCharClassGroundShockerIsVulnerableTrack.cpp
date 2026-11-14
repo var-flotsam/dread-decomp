@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassGroundShockerIsVulnerableTrack
 DREAD_REFLECTED_CLASS(CCharClassGroundShockerIsVulnerableTrack, base::global::timeline::CTrack);
-

@@ -72,4 +72,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCameraFX_OscillationShake
 DREAD_REFLECTED_CLASS(CCameraFX_OscillationShake, CCameraFX_Shake);
-

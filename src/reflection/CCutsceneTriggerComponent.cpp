@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCutsceneTriggerComponent
 DREAD_REFLECTED_CLASS(CCutsceneTriggerComponent, CBaseTriggerComponent);
-

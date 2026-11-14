@@ -81,4 +81,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CChaseTargetAction
 DREAD_REFLECTED_CLASS(behaviortree::CChaseTargetAction, behaviortree::CBaseAction);
-

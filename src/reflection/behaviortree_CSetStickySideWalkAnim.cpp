@@ -49,4 +49,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CSetStickySideWalkAnim
 DREAD_REFLECTED_CLASS(behaviortree::CSetStickySideWalkAnim, behaviortree::CBaseAction);
-

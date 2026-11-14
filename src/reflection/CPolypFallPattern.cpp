@@ -93,8 +93,6 @@ struct refl_Description : ClassDescription {
 }  // namespace CCharClassHydrogigaPolypsAttack
 DREAD_REFLECTED_CLASS(CCharClassHydrogigaPolypsAttack, CCharClassHydrogigaAttack);
 
-
-
 void fn_71005afc08();
 void fn_71005afc70();
 void fn_71005afc7c();

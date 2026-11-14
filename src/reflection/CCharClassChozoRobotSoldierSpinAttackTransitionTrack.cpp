@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassChozoRobotSoldierSpinAttackTransitionTrack
 DREAD_REFLECTED_CLASS(CCharClassChozoRobotSoldierSpinAttackTransitionTrack, base::global::timeline::CTrack);
-

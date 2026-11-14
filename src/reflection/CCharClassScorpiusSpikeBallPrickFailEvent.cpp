@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassScorpiusSpikeBallPrickFailEvent
 DREAD_REFLECTED_CLASS(CCharClassScorpiusSpikeBallPrickFailEvent, base::global::timeline::CEvent);
-

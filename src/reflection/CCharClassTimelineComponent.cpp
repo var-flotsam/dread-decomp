@@ -59,4 +59,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTimelineComponent
 DREAD_REFLECTED_CLASS(CCharClassTimelineComponent, CCharClassComponent);
-

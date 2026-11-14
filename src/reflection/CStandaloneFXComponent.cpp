@@ -72,4 +72,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CStandaloneFXComponent
 DREAD_REFLECTED_CLASS(CStandaloneFXComponent, CSceneComponent);
-

@@ -60,4 +60,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CInFuryPatrolAction
 DREAD_REFLECTED_CLASS(behaviortree::CInFuryPatrolAction, behaviortree::CBaseAction);
-

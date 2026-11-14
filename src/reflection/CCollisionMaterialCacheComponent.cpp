@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCollisionMaterialCacheComponent
 DREAD_REFLECTED_CLASS(CCollisionMaterialCacheComponent, CComponent);
-

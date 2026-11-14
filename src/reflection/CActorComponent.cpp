@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CActorComponent
 DREAD_REFLECTED_CLASS(CActorComponent, CGameObject);
-

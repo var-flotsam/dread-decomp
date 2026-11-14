@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassHydrogigaMaelstormAttack
 DREAD_REFLECTED_CLASS(CCharClassHydrogigaMaelstormAttack, CCharClassHydrogigaAttack);
-

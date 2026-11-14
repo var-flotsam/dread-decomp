@@ -105,5 +105,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassGoliathAttack::CTunableCharClassGoliathAttack
 DREAD_REFLECTED_CLASS(CCharClassGoliathAttack::CTunableCharClassGoliathAttack, base::tunable::CTunable);
-
-

@@ -66,4 +66,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCameraFX_SteadyCamera
 DREAD_REFLECTED_CLASS(CCameraFX_SteadyCamera, CCameraFX);
-

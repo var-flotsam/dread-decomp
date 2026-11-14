@@ -66,4 +66,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CMorphBallLauncherExitComponent
 DREAD_REFLECTED_CLASS(CMorphBallLauncherExitComponent, CComponent);
-

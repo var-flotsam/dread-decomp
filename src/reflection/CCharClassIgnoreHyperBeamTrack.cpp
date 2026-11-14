@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassIgnoreHyperBeamTrack
 DREAD_REFLECTED_CLASS(CCharClassIgnoreHyperBeamTrack, base::global::timeline::CTrack);
-

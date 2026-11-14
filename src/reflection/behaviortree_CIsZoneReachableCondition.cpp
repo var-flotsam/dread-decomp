@@ -49,4 +49,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CIsZoneReachableCondition
 DREAD_REFLECTED_CLASS(behaviortree::CIsZoneReachableCondition, behaviortree::CBaseCondition);
-

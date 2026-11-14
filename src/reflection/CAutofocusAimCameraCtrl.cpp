@@ -172,5 +172,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CAutofocusAimCameraCtrl::CTunableAutofocusAimCameraCtrl
 DREAD_REFLECTED_CLASS(CAutofocusAimCameraCtrl::CTunableAutofocusAimCameraCtrl, base::tunable::CTunable);
-
-

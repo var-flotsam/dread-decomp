@@ -97,4 +97,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassPersistenceComponent
 DREAD_REFLECTED_CLASS(CCharClassPersistenceComponent, CCharClassComponent);
-

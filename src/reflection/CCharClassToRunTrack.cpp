@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassToRunTrack
 DREAD_REFLECTED_CLASS(CCharClassToRunTrack, CCharClassToStateTrack);
-

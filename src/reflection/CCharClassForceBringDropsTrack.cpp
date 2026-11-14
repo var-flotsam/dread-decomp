@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassForceBringDropsTrack
 DREAD_REFLECTED_CLASS(CCharClassForceBringDropsTrack, base::global::timeline::CTrack);
-

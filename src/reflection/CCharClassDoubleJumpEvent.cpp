@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassDoubleJumpEvent
 DREAD_REFLECTED_CLASS(CCharClassDoubleJumpEvent, base::global::timeline::CEvent);
-

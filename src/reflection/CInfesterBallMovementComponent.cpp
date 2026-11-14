@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CInfesterBallMovementComponent
 DREAD_REFLECTED_CLASS(CInfesterBallMovementComponent, CProjectileMovement);
-

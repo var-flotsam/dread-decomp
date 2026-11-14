@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAnalogAimActionTrack
 DREAD_REFLECTED_CLASS(CCharClassAnalogAimActionTrack, CCharClassToStateTrack);
-

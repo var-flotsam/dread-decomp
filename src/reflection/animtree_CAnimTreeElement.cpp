@@ -33,4 +33,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace animtree::CAnimTreeElement
 DREAD_REFLECTED_CLASS(animtree::CAnimTreeElement, CGameObject);
-

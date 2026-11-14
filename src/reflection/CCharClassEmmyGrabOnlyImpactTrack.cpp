@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassEmmyGrabOnlyImpactTrack
 DREAD_REFLECTED_CLASS(CCharClassEmmyGrabOnlyImpactTrack, base::global::timeline::CTrack);
-

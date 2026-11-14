@@ -49,4 +49,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace querysystem::CIsInFrustumFilter
 DREAD_REFLECTED_CLASS(querysystem::CIsInFrustumFilter, querysystem::CFilter);
-

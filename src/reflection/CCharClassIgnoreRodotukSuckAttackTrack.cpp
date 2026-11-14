@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassIgnoreRodotukSuckAttackTrack
 DREAD_REFLECTED_CLASS(CCharClassIgnoreRodotukSuckAttackTrack, base::global::timeline::CTrack);
-

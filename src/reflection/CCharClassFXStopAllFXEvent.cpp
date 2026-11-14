@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassFXStopAllFXEvent
 DREAD_REFLECTED_CLASS(CCharClassFXStopAllFXEvent, base::global::timeline::CEvent);
-

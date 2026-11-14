@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassShipRechargeComponent
 DREAD_REFLECTED_CLASS(CCharClassShipRechargeComponent, CCharClassUsableComponent);
-

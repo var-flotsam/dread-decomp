@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CIsGooplotOnThePath
 DREAD_REFLECTED_CLASS(behaviortree::CIsGooplotOnThePath, behaviortree::CBaseCondition);
-

@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSetDesiredViewDirToPlayerEvent
 DREAD_REFLECTED_CLASS(CCharClassSetDesiredViewDirToPlayerEvent, base::global::timeline::CEvent);
-

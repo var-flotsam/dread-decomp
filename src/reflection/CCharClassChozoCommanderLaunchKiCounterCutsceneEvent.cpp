@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassChozoCommanderLaunchKiCounterCutsceneEvent
 DREAD_REFLECTED_CLASS(CCharClassChozoCommanderLaunchKiCounterCutsceneEvent, base::global::timeline::CEvent);
-

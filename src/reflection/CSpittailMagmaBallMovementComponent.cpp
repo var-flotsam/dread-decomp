@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CSpittailMagmaBallMovementComponent
 DREAD_REFLECTED_CLASS(CSpittailMagmaBallMovementComponent, CVulkranMagmaBallMovementComponent);
-

@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassMeleeSuccessBigAIActionTrack
 DREAD_REFLECTED_CLASS(CCharClassMeleeSuccessBigAIActionTrack, base::global::timeline::CTrack);
-

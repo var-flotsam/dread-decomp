@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSaveStationUsableComponent
 DREAD_REFLECTED_CLASS(CCharClassSaveStationUsableComponent, CCharClassUsableComponent);
-

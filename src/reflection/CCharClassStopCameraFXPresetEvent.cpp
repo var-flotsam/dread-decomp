@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassStopCameraFXPresetEvent
 DREAD_REFLECTED_CLASS(CCharClassStopCameraFXPresetEvent, base::global::timeline::CEvent);
-

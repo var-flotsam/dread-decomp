@@ -37,4 +37,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace base::file::CDeviceQueue
 DREAD_REFLECTED_CLASS_INLINE_NAME(base::file::CDeviceQueue, base::file::IDevice);
-

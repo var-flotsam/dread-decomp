@@ -55,4 +55,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCheckFloorHitExtraDistanceTrack
 DREAD_REFLECTED_CLASS(CCharClassCheckFloorHitExtraDistanceTrack, base::global::timeline::CTrack);
-

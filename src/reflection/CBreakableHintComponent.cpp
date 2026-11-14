@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CBreakableHintComponent
 DREAD_REFLECTED_CLASS(CBreakableHintComponent, CLogicShapeComponent);
-

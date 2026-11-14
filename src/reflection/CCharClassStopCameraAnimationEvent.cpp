@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassStopCameraAnimationEvent
 DREAD_REFLECTED_CLASS(CCharClassStopCameraAnimationEvent, base::global::timeline::CEvent);
-

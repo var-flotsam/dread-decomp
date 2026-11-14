@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassOverrideSamusMeleeActionTrack
 DREAD_REFLECTED_CLASS(CCharClassOverrideSamusMeleeActionTrack, base::global::timeline::CTrack);
-

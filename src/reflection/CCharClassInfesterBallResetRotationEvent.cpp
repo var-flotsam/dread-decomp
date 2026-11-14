@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassInfesterBallResetRotationEvent
 DREAD_REFLECTED_CLASS(CCharClassInfesterBallResetRotationEvent, base::global::timeline::CEvent);
-

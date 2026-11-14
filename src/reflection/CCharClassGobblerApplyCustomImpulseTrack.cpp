@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassGobblerApplyCustomImpulseTrack
 DREAD_REFLECTED_CLASS(CCharClassGobblerApplyCustomImpulseTrack, base::global::timeline::CTrack);
-

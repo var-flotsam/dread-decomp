@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CPickableSuitComponent
 DREAD_REFLECTED_CLASS(CPickableSuitComponent, CPickableItemComponent);
-

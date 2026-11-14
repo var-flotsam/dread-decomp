@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CEmmyAttackComponent
 DREAD_REFLECTED_CLASS(CEmmyAttackComponent, CAIAttackComponent);
-

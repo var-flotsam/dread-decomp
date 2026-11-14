@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassEmmyLaunchQTEVFXEvent
 DREAD_REFLECTED_CLASS(CCharClassEmmyLaunchQTEVFXEvent, base::global::timeline::CEvent);
-

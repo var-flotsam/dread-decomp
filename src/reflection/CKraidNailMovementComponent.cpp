@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CKraidNailMovementComponent
 DREAD_REFLECTED_CLASS(CKraidNailMovementComponent, CProjectileMovement);
-

@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CSynchronizedBlockCameraCtrl
 DREAD_REFLECTED_CLASS(CSynchronizedBlockCameraCtrl, CCameraBoundaryCtrl);
-

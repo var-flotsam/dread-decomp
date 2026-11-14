@@ -72,7 +72,6 @@ struct refl_Description : ClassDescription {
 }  // namespace CLogicCamera
 DREAD_REFLECTED_CLASS(CLogicCamera, CGameObject);
 
-
 void fn_7101052000();
 void fn_7101052068();
 void fn_7101052188();

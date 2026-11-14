@@ -61,4 +61,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassIgnoreBumpFXTrack
 DREAD_REFLECTED_CLASS(CCharClassIgnoreBumpFXTrack, base::global::timeline::CTrack);
-

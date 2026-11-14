@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CWarLotusAIComponent
 DREAD_REFLECTED_CLASS(CWarLotusAIComponent, CBehaviorTreeAIComponent);
-

@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassUseDC_ShotOrientationTrack
 DREAD_REFLECTED_CLASS(CCharClassUseDC_ShotOrientationTrack, base::global::timeline::CTrack);
-

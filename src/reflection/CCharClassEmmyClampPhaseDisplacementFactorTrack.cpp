@@ -52,4 +52,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassEmmyClampPhaseDisplacementFactorTrack
 DREAD_REFLECTED_CLASS(CCharClassEmmyClampPhaseDisplacementFactorTrack, base::global::timeline::CTrack);
-

@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTweakTurnActionTrack
 DREAD_REFLECTED_CLASS(CCharClassTweakTurnActionTrack, CCharClassTweakActionBaseTrack);
-

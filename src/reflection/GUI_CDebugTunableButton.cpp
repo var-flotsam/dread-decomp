@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace GUI::CDebugTunableButton
 DREAD_REFLECTED_CLASS(GUI::CDebugTunableButton, GUI::CButton);
-

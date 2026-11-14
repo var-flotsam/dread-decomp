@@ -43,4 +43,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CChangeStateDoorsLogicAction
 DREAD_REFLECTED_CLASS(CChangeStateDoorsLogicAction, CTriggerLogicAction);
-

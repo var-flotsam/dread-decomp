@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace STransition
 DREAD_REFLECTED_ROOT_CLASS(STransition);
-

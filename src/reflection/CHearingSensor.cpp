@@ -29,4 +29,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CHearingSensor
 DREAD_REFLECTED_CLASS(CHearingSensor, CSensor);
-

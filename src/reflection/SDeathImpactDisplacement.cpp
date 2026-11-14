@@ -55,4 +55,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace SDeathImpactDisplacement
 DREAD_REFLECTED_ROOT_CLASS(SDeathImpactDisplacement);
-

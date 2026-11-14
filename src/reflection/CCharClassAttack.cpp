@@ -98,4 +98,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAttack
 DREAD_REFLECTED_ROOT_CLASS(CCharClassAttack);
-

@@ -68,4 +68,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace animtree::CBoneControlDef
 DREAD_REFLECTED_CLASS(animtree::CBoneControlDef, animtree::CAnimTreeElementDef);
-

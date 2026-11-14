@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassScorpiusAllowDefensiveAttacksTrack
 DREAD_REFLECTED_CLASS(CCharClassScorpiusAllowDefensiveAttacksTrack, base::global::timeline::CTrack);
-

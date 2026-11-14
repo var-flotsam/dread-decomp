@@ -59,5 +59,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassRodotukSuckAttack::CTunableCharClassRodotukSuckAttack
 DREAD_REFLECTED_CLASS(CCharClassRodotukSuckAttack::CTunableCharClassRodotukSuckAttack, base::tunable::CTunable);
-
-

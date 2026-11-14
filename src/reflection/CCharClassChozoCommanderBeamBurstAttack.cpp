@@ -111,5 +111,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassChozoCommanderBeamBurstAttack::CTunableCharClassChozoCommanderBeamBurstAttack
 DREAD_REFLECTED_CLASS(CCharClassChozoCommanderBeamBurstAttack::CTunableCharClassChozoCommanderBeamBurstAttack, base::tunable::CTunable);
-
-

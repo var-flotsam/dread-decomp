@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassNailongThornMovementComponent
 DREAD_REFLECTED_CLASS(CCharClassNailongThornMovementComponent, CCharClassProjectileMovement);
-

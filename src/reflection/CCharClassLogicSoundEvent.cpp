@@ -56,4 +56,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassLogicSoundEvent
 DREAD_REFLECTED_CLASS(CCharClassLogicSoundEvent, base::global::timeline::CEvent);
-

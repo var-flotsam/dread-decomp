@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CHyperBeamBlockLifeComponent
 DREAD_REFLECTED_CLASS(CHyperBeamBlockLifeComponent, CItemLifeComponent);
-

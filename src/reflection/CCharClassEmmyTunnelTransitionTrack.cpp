@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassEmmyTunnelTransitionTrack
 DREAD_REFLECTED_CLASS(CCharClassEmmyTunnelTransitionTrack, base::global::timeline::CTrack);
-

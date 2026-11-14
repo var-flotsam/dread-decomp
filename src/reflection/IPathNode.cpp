@@ -34,4 +34,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace IPathNode
 DREAD_REFLECTED_ROOT_CLASS(IPathNode);
-

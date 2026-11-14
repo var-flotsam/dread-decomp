@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCooldownXBossCanFireTrack
 DREAD_REFLECTED_CLASS(CCharClassCooldownXBossCanFireTrack, base::global::timeline::CTrack);
-

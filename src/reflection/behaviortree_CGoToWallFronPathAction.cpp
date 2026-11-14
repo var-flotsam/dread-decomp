@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CGoToWallFronPathAction
 DREAD_REFLECTED_CLASS(behaviortree::CGoToWallFronPathAction, behaviortree::CBaseAction);
-

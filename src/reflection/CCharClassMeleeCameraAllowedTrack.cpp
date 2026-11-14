@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassMeleeCameraAllowedTrack
 DREAD_REFLECTED_CLASS(CCharClassMeleeCameraAllowedTrack, base::global::timeline::CTrack);
-

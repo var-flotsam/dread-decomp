@@ -52,4 +52,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CLogicPathNavMeshItemComponent
 DREAD_REFLECTED_CLASS(CLogicPathNavMeshItemComponent, CNavMeshItemComponent);
-

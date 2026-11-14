@@ -60,4 +60,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAreaSoundComponent
 DREAD_REFLECTED_CLASS(CCharClassAreaSoundComponent, CCharClassSoundTriggerComponent);
-

@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassFulmiteBellyMineMovementComponent
 DREAD_REFLECTED_CLASS(CCharClassFulmiteBellyMineMovementComponent, CCharClassProjectileMovement);
-

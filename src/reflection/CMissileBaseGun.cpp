@@ -90,5 +90,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CMissileBaseGun::CTunableSPR
 DREAD_REFLECTED_CLASS(CMissileBaseGun::CTunableSPR, base::tunable::CTunable);
-
-

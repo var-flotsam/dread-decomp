@@ -40,4 +40,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace navmesh::CDynamicSmartLinkRules
 DREAD_REFLECTED_CLASS(navmesh::CDynamicSmartLinkRules, base::core::CAsset);
-

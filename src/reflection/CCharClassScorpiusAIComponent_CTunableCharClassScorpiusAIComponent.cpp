@@ -214,5 +214,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassScorpiusAIComponent
 DREAD_REFLECTED_CLASS(CCharClassScorpiusAIComponent, CCharClassBossAIComponent);
-
-

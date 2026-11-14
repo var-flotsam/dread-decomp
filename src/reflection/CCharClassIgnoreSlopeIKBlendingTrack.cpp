@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassIgnoreSlopeIKBlendingTrack
 DREAD_REFLECTED_CLASS(CCharClassIgnoreSlopeIKBlendingTrack, base::global::timeline::CTrack);
-

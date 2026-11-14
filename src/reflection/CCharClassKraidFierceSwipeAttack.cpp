@@ -85,5 +85,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassKraidFierceSwipeAttack::CTunableCharClassKraidFierceSwipeAttack
 DREAD_REFLECTED_CLASS(CCharClassKraidFierceSwipeAttack::CTunableCharClassKraidFierceSwipeAttack, base::tunable::CTunable);
-
-

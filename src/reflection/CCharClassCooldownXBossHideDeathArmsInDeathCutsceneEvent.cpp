@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCooldownXBossHideDeathArmsInDeathCutsceneEvent
 DREAD_REFLECTED_CLASS(CCharClassCooldownXBossHideDeathArmsInDeathCutsceneEvent, base::global::timeline::CEvent);
-

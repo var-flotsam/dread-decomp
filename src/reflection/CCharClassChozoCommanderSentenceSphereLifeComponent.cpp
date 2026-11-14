@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassChozoCommanderSentenceSphereLifeComponent
 DREAD_REFLECTED_CLASS(CCharClassChozoCommanderSentenceSphereLifeComponent, CCharClassBasicLifeComponent);
-

@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CKraidBouncingCreaturesMovementComponent
 DREAD_REFLECTED_CLASS(CKraidBouncingCreaturesMovementComponent, CProjectileMovement);
-

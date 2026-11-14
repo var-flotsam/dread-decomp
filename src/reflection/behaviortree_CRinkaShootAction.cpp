@@ -55,4 +55,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CRinkaShootAction
 DREAD_REFLECTED_CLASS(behaviortree::CRinkaShootAction, behaviortree::CBaseAction);
-

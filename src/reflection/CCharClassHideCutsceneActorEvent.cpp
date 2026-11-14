@@ -56,4 +56,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassHideCutsceneActorEvent
 DREAD_REFLECTED_CLASS(CCharClassHideCutsceneActorEvent, base::global::timeline::CEvent);
-

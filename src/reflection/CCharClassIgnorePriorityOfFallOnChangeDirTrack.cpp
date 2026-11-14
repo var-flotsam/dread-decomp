@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassIgnorePriorityOfFallOnChangeDirTrack
 DREAD_REFLECTED_CLASS(CCharClassIgnorePriorityOfFallOnChangeDirTrack, base::global::timeline::CTrack);
-

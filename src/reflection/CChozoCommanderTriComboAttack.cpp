@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CChozoCommanderTriComboAttack
 DREAD_REFLECTED_CLASS(CChozoCommanderTriComboAttack, CChozoCommanderGroundAttack);
-

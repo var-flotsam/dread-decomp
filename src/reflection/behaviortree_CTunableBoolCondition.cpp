@@ -57,4 +57,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CTunableBoolCondition
 DREAD_REFLECTED_CLASS(behaviortree::CTunableBoolCondition, behaviortree::CBaseCondition);
-

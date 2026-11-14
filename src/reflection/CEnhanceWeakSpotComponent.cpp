@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CEnhanceWeakSpotComponent
 DREAD_REFLECTED_CLASS(CEnhanceWeakSpotComponent, CComponent);
-

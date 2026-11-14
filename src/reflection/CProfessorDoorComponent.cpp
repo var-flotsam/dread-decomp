@@ -58,4 +58,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CProfessorDoorComponent
 DREAD_REFLECTED_CLASS(CProfessorDoorComponent, CEventPropComponent);
-

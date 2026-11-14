@@ -100,5 +100,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CSamusHangMovementState::CTunableSamusHangMovementState
 DREAD_REFLECTED_CLASS(CSamusHangMovementState::CTunableSamusHangMovementState, base::tunable::CTunable);
-
-

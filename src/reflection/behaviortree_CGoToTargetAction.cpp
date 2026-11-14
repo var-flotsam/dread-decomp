@@ -49,4 +49,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CGoToTargetAction
 DREAD_REFLECTED_CLASS(behaviortree::CGoToTargetAction, behaviortree::CBaseAction);
-

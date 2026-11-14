@@ -49,4 +49,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CSamusOverrideDistanceToBorderLogicAction
 DREAD_REFLECTED_CLASS(CSamusOverrideDistanceToBorderLogicAction, CTriggerLogicAction);
-

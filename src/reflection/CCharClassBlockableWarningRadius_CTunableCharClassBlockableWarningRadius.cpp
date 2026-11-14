@@ -123,5 +123,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassBlockableWarningRadius
 DREAD_REFLECTED_CLASS(CCharClassBlockableWarningRadius, CCharClassComponent);
-
-

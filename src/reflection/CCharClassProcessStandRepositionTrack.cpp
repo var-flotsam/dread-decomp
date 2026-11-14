@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassProcessStandRepositionTrack
 DREAD_REFLECTED_CLASS(CCharClassProcessStandRepositionTrack, base::global::timeline::CTrack);
-

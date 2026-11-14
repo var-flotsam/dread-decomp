@@ -37,7 +37,6 @@ struct refl_Description : ClassDescription {
 }  // namespace navmesh::CDynamicSmartLinkRule
 DREAD_REFLECTED_CLASS(navmesh::CDynamicSmartLinkRule, CGameObject);
 
-
 void fn_710026ac08();
 void fn_710026ac70();
 void fn_710026ac7c();

@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CCentralUnitActivateWeaponAction
 DREAD_REFLECTED_CLASS(behaviortree::CCentralUnitActivateWeaponAction, behaviortree::CBaseAction);
-

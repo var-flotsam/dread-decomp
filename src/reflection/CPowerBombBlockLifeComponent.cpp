@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CPowerBombBlockLifeComponent
 DREAD_REFLECTED_CLASS(CPowerBombBlockLifeComponent, CLifeComponent);
-

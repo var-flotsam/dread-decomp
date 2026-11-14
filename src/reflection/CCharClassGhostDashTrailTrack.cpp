@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassGhostDashTrailTrack
 DREAD_REFLECTED_CLASS(CCharClassGhostDashTrailTrack, base::global::timeline::CTrack);
-

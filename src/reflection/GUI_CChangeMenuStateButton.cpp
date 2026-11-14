@@ -41,4 +41,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace GUI::CChangeMenuStateButton
 DREAD_REFLECTED_CLASS(GUI::CChangeMenuStateButton, GUI::CButton);
-

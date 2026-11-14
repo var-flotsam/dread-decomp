@@ -57,4 +57,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CStopInIdleAction
 DREAD_REFLECTED_CLASS(behaviortree::CStopInIdleAction, behaviortree::CBaseAction);
-

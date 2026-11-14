@@ -104,5 +104,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassScorpiusPoisonousGasAttack::CTunableCharClassScorpiusPoisonousGasAttack
 DREAD_REFLECTED_CLASS(CCharClassScorpiusPoisonousGasAttack::CTunableCharClassScorpiusPoisonousGasAttack, base::tunable::CTunable);
-
-

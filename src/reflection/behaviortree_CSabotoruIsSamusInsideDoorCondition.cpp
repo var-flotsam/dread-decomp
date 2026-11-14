@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CSabotoruIsSamusInsideDoorCondition
 DREAD_REFLECTED_CLASS(behaviortree::CSabotoruIsSamusInsideDoorCondition, behaviortree::CBaseCondition);
-

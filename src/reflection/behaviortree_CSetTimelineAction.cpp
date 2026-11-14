@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CSetTimelineAction
 DREAD_REFLECTED_CLASS(behaviortree::CSetTimelineAction, behaviortree::CBaseAction);
-

@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CChozombieFXComponent
 DREAD_REFLECTED_CLASS(CChozombieFXComponent, CSceneComponent);
-

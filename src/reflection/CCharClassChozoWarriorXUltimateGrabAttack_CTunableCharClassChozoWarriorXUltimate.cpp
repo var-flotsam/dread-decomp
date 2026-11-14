@@ -94,5 +94,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassChozoWarriorXUltimateGrabAttack
 DREAD_REFLECTED_CLASS(CCharClassChozoWarriorXUltimateGrabAttack, CCharClassChozoWarriorAttack);
-
-

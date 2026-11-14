@@ -55,4 +55,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CSetEndAnimAction
 DREAD_REFLECTED_CLASS(behaviortree::CSetEndAnimAction, behaviortree::CBaseAction);
-

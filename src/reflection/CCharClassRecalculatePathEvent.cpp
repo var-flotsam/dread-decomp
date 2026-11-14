@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassRecalculatePathEvent
 DREAD_REFLECTED_CLASS(CCharClassRecalculatePathEvent, base::global::timeline::CEvent);
-

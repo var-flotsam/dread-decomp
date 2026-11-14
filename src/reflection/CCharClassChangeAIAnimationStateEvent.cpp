@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassChangeAIAnimationStateEvent
 DREAD_REFLECTED_CLASS(CCharClassChangeAIAnimationStateEvent, base::global::timeline::CEvent);
-

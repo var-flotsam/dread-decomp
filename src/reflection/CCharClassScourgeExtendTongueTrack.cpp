@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassScourgeExtendTongueTrack
 DREAD_REFLECTED_CLASS(CCharClassScourgeExtendTongueTrack, base::global::timeline::CTrack);
-

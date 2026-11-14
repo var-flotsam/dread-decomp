@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAutoLockOnForbiddenTrack
 DREAD_REFLECTED_CLASS(CCharClassAutoLockOnForbiddenTrack, base::global::timeline::CTrack);
-

@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassFlotingPropActingStopFlotationEvent
 DREAD_REFLECTED_CLASS(CCharClassFlotingPropActingStopFlotationEvent, base::global::timeline::CEvent);
-

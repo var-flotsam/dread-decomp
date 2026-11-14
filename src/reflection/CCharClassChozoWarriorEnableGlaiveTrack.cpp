@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassChozoWarriorEnableGlaiveTrack
 DREAD_REFLECTED_CLASS(CCharClassChozoWarriorEnableGlaiveTrack, base::global::timeline::CTrack);
-

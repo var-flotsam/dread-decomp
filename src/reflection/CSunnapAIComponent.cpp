@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CSunnapAIComponent
 DREAD_REFLECTED_CLASS(CSunnapAIComponent, CRodotukAIComponent);
-

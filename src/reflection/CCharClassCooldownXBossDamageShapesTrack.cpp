@@ -67,4 +67,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCooldownXBossDamageShapesTrack
 DREAD_REFLECTED_CLASS(CCharClassCooldownXBossDamageShapesTrack, base::global::timeline::CTrack);
-

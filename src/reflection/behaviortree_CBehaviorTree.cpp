@@ -48,4 +48,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CBehaviorTree
 DREAD_REFLECTED_CLASS(behaviortree::CBehaviorTree, CGameObject);
-

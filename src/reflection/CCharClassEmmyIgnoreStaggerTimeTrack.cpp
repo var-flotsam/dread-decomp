@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassEmmyIgnoreStaggerTimeTrack
 DREAD_REFLECTED_CLASS(CCharClassEmmyIgnoreStaggerTimeTrack, base::global::timeline::CTrack);
-

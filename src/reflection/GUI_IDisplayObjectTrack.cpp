@@ -142,10 +142,6 @@ struct refl_Description : ClassDescription {
 }  // namespace GUI::CDisplayObjectTrackString
 DREAD_REFLECTED_CLASS(GUI::CDisplayObjectTrackString, GUI::IDisplayObjectTrack);
 
-
-
-
-
 void fn_7100b13064();
 void fn_7100b130cc();
 void fn_7100b130d8();

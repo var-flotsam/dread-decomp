@@ -52,4 +52,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassForceRotationOnActionTrack
 DREAD_REFLECTED_CLASS(CCharClassForceRotationOnActionTrack, base::global::timeline::CTrack);
-

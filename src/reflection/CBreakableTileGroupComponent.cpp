@@ -113,4 +113,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CBreakableTileGroupComponent
 DREAD_REFLECTED_CLASS(CBreakableTileGroupComponent, CSceneComponent);
-

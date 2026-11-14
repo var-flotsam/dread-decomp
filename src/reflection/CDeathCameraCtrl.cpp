@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CDeathCameraCtrl
 DREAD_REFLECTED_CLASS(CDeathCameraCtrl, CCameraCtrl);
-

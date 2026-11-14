@@ -66,4 +66,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassEmmyAIComponent
 DREAD_REFLECTED_CLASS(CCharClassEmmyAIComponent, CCharClassBehaviorTreeAIComponent);
-

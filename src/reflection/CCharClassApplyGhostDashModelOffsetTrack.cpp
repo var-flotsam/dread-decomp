@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassApplyGhostDashModelOffsetTrack
 DREAD_REFLECTED_CLASS(CCharClassApplyGhostDashModelOffsetTrack, base::global::timeline::CTrack);
-

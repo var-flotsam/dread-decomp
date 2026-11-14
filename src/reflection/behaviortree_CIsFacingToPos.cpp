@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CIsFacingToPos
 DREAD_REFLECTED_CLASS(behaviortree::CIsFacingToPos, behaviortree::CBaseCondition);
-

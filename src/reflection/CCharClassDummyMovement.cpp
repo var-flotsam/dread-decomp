@@ -62,4 +62,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassDummyMovement
 DREAD_REFLECTED_CLASS(CCharClassDummyMovement, CCharClassMovementComponent);
-

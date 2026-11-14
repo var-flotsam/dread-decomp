@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTweakComputeDeltaTrack
 DREAD_REFLECTED_CLASS(CCharClassTweakComputeDeltaTrack, base::global::timeline::CTrack);
-

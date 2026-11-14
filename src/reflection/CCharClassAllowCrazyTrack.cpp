@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAllowCrazyTrack
 DREAD_REFLECTED_CLASS(CCharClassAllowCrazyTrack, base::global::timeline::CTrack);
-

@@ -989,4 +989,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassEnemyMovement
 DREAD_REFLECTED_CLASS(CCharClassEnemyMovement, CCharClassCharacterMovement);
-

@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CHydrogigaMaelstormAttack
 DREAD_REFLECTED_CLASS(CHydrogigaMaelstormAttack, CHydrogigaAttack);
-

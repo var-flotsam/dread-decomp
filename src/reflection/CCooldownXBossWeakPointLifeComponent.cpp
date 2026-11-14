@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCooldownXBossWeakPointLifeComponent
 DREAD_REFLECTED_CLASS(CCooldownXBossWeakPointLifeComponent, CBasicLifeComponent);
-

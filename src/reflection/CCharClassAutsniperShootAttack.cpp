@@ -71,4 +71,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAutsniperShootAttack
 DREAD_REFLECTED_CLASS(CCharClassAutsniperShootAttack, CCharClassAttack);
-

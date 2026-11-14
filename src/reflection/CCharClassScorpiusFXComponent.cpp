@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassScorpiusFXComponent
 DREAD_REFLECTED_CLASS(CCharClassScorpiusFXComponent, CCharClassComponent);
-

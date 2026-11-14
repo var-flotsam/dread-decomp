@@ -44,4 +44,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassRevertMeleeDamageTrack
 DREAD_REFLECTED_CLASS(CCharClassRevertMeleeDamageTrack, base::global::timeline::CTrack);
-

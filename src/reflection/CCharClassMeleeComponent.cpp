@@ -64,4 +64,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassMeleeComponent
 DREAD_REFLECTED_CLASS(CCharClassMeleeComponent, CCharClassComponent);
-

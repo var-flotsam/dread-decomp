@@ -43,4 +43,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CProtoCentralUnitComponent
 DREAD_REFLECTED_CLASS(CProtoCentralUnitComponent, CCentralUnitComponent);
-

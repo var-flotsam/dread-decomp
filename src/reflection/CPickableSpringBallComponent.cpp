@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CPickableSpringBallComponent
 DREAD_REFLECTED_CLASS(CPickableSpringBallComponent, CPickableItemComponent);
-

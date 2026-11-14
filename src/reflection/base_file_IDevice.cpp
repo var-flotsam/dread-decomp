@@ -34,4 +34,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace base::file::IDevice
 DREAD_REFLECTED_ROOT_CLASS(base::file::IDevice);
-

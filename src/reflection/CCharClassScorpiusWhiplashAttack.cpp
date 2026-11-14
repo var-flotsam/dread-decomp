@@ -110,5 +110,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassScorpiusWhiplashAttack::CTunableCharClassScorpiusWhiplashAttack
 DREAD_REFLECTED_CLASS(CCharClassScorpiusWhiplashAttack::CTunableCharClassScorpiusWhiplashAttack, base::tunable::CTunable);
-
-

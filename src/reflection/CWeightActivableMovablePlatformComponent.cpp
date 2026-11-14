@@ -49,4 +49,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CWeightActivableMovablePlatformComponent
 DREAD_REFLECTED_CLASS(CWeightActivableMovablePlatformComponent, CMovablePlatformComponent);
-

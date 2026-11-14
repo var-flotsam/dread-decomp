@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassOverrideSpeedHyperDashTrack
 DREAD_REFLECTED_CLASS(CCharClassOverrideSpeedHyperDashTrack, base::global::timeline::CTrack);
-

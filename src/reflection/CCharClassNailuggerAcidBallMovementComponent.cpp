@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassNailuggerAcidBallMovementComponent
 DREAD_REFLECTED_CLASS(CCharClassNailuggerAcidBallMovementComponent, CCharClassProjectileMovement);
-

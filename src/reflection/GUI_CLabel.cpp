@@ -210,4 +210,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace GUI::CLabel
 DREAD_REFLECTED_CLASS(GUI::CLabel, GUI::CDisplayObject);
-

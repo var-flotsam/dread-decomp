@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCheckEndAutoLockOnEvent
 DREAD_REFLECTED_CLASS(CCharClassCheckEndAutoLockOnEvent, base::global::timeline::CEvent);
-

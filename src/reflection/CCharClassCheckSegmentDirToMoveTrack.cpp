@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCheckSegmentDirToMoveTrack
 DREAD_REFLECTED_CLASS(CCharClassCheckSegmentDirToMoveTrack, base::global::timeline::CTrack);
-

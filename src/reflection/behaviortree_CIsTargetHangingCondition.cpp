@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CIsTargetHangingCondition
 DREAD_REFLECTED_CLASS(behaviortree::CIsTargetHangingCondition, behaviortree::CBaseCondition);
-

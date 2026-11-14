@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CSluggerAcidBallMovementComponent
 DREAD_REFLECTED_CLASS(CSluggerAcidBallMovementComponent, CProjectileMovement);
-

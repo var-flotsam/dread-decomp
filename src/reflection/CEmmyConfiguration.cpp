@@ -336,7 +336,6 @@ struct refl_Description : ClassDescription {
 }  // namespace CEmmyConfiguration
 DREAD_REFLECTED_ROOT_CLASS(CEmmyConfiguration);
 
-
 void fn_7100570e10();
 void fn_7100570e78();
 void fn_7100570e84();

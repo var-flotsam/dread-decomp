@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassDissolveFanMudEvent
 DREAD_REFLECTED_CLASS(CCharClassDissolveFanMudEvent, base::global::timeline::CEvent);
-

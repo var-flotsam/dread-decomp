@@ -98,5 +98,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassObsydomithonAttack::CTunableCharClassObsydomithonAttack
 DREAD_REFLECTED_CLASS(CCharClassObsydomithonAttack::CTunableCharClassObsydomithonAttack, base::tunable::CTunable);
-
-

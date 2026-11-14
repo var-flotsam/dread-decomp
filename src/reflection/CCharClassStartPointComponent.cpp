@@ -95,5 +95,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CStartPointComponent
 DREAD_REFLECTED_CLASS(CStartPointComponent, CComponent);
-
-

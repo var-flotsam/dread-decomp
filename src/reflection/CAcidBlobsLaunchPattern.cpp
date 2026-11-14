@@ -138,9 +138,6 @@ struct refl_Description : ClassDescription {
 }  // namespace CCharClassKraidAcidBlobsAttack
 DREAD_REFLECTED_CLASS(CCharClassKraidAcidBlobsAttack, CCharClassKraidAttack);
 
-
-
-
 void fn_71005d706c();
 void fn_71005d70d4();
 void fn_71005d70e0();

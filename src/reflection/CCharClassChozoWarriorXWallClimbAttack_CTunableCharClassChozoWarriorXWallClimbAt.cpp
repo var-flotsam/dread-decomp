@@ -87,5 +87,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassChozoWarriorXWallClimbAttack
 DREAD_REFLECTED_CLASS(CCharClassChozoWarriorXWallClimbAttack, CCharClassChozoWarriorAttack);
-
-

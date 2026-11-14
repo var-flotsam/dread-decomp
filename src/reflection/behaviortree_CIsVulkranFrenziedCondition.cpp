@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CIsVulkranFrenziedCondition
 DREAD_REFLECTED_CLASS(behaviortree::CIsVulkranFrenziedCondition, behaviortree::CBaseCondition);
-

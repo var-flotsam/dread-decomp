@@ -75,4 +75,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace game::logic::collision::CCircleShape2D
 DREAD_REFLECTED_CLASS(game::logic::collision::CCircleShape2D, game::logic::collision::CShape);
-

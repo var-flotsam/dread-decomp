@@ -60,4 +60,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassElevatorUsableComponent
 DREAD_REFLECTED_CLASS(CCharClassElevatorUsableComponent, CCharClassUsableComponent);
-

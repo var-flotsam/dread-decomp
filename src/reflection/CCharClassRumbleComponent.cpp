@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassRumbleComponent
 DREAD_REFLECTED_CLASS(CCharClassRumbleComponent, CCharClassComponent);
-

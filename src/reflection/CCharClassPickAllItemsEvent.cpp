@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassPickAllItemsEvent
 DREAD_REFLECTED_CLASS(CCharClassPickAllItemsEvent, base::global::timeline::CEvent);
-

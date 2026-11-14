@@ -69,4 +69,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassPlayMusicEvent
 DREAD_REFLECTED_CLASS(CCharClassPlayMusicEvent, base::global::timeline::CEvent);
-

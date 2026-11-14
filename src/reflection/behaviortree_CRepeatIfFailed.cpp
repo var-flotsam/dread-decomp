@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CRepeatIfFailed
 DREAD_REFLECTED_CLASS(behaviortree::CRepeatIfFailed, behaviortree::CDecorator);
-

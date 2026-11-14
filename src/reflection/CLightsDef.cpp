@@ -74,7 +74,6 @@ struct refl_Description : ClassDescription {
 }  // namespace CLightsDef
 DREAD_REFLECTED_CLASS(CLightsDef, base::core::CAsset);
 
-
 void fn_7100d9f130();
 void fn_7100d9f198();
 void fn_7100d9f1a4();

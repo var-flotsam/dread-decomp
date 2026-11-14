@@ -49,4 +49,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace querysystem::CMaxTargetDistanceFilter
 DREAD_REFLECTED_CLASS(querysystem::CMaxTargetDistanceFilter, querysystem::CFilter);
-

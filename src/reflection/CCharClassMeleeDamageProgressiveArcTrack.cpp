@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassMeleeDamageProgressiveArcTrack
 DREAD_REFLECTED_CLASS(CCharClassMeleeDamageProgressiveArcTrack, base::global::timeline::CTrack);
-

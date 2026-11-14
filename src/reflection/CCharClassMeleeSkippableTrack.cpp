@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassMeleeSkippableTrack
 DREAD_REFLECTED_CLASS(CCharClassMeleeSkippableTrack, base::global::timeline::CTrack);
-

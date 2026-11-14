@@ -98,8 +98,6 @@ struct refl_Description : ClassDescription {
 }  // namespace CCharClassFrozenAsFrostbiteComponent
 DREAD_REFLECTED_CLASS(CCharClassFrozenAsFrostbiteComponent, CCharClassFrozenComponent);
 
-
-
 void fn_71007f0d30();
 void fn_71007f0d98();
 void fn_71007f0da4();

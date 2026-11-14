@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CDoNothingAction
 DREAD_REFLECTED_CLASS(behaviortree::CDoNothingAction, behaviortree::CBaseAction);
-

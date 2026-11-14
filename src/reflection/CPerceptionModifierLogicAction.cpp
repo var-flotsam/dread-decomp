@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CPerceptionModifierLogicAction
 DREAD_REFLECTED_CLASS(CPerceptionModifierLogicAction, CTriggerLogicAction);
-

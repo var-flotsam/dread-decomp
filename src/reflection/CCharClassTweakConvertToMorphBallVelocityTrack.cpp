@@ -74,4 +74,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTweakConvertToMorphBallVelocityTrack
 DREAD_REFLECTED_CLASS(CCharClassTweakConvertToMorphBallVelocityTrack, base::global::timeline::CTrack);
-

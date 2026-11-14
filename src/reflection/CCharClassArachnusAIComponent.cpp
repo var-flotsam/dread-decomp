@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassArachnusAIComponent
 DREAD_REFLECTED_CLASS(CCharClassArachnusAIComponent, CCharClassBehaviorTreeAIComponent);
-

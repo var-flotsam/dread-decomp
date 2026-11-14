@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CGoliathXBurstProjectionBombsAttack
 DREAD_REFLECTED_CLASS(CGoliathXBurstProjectionBombsAttack, CAttack);
-

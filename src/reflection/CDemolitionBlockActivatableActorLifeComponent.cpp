@@ -43,4 +43,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CDemolitionBlockActivatableActorLifeComponent
 DREAD_REFLECTED_CLASS(CDemolitionBlockActivatableActorLifeComponent, CDemolitionBlockLifeComponent);
-

@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CSamusFloorSlideMovementState::CParams
 DREAD_REFLECTED_CLASS(CSamusFloorSlideMovementState::CParams, CSamusGroundMovementState::CParams);
-

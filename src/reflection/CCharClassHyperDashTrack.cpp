@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassHyperDashTrack
 DREAD_REFLECTED_CLASS(CCharClassHyperDashTrack, base::global::timeline::CTrack);
-

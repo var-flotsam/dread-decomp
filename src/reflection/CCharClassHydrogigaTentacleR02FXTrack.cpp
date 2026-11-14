@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassHydrogigaTentacleR02FXTrack
 DREAD_REFLECTED_CLASS(CCharClassHydrogigaTentacleR02FXTrack, base::global::timeline::CTrack);
-

@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassEmmySmartLinkInvalidZoneTrack
 DREAD_REFLECTED_CLASS(CCharClassEmmySmartLinkInvalidZoneTrack, base::global::timeline::CTrack);
-

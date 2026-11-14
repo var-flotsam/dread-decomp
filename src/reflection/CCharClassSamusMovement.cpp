@@ -87,4 +87,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSamusMovement
 DREAD_REFLECTED_CLASS(CCharClassSamusMovement, CCharClassPlayerMovement);
-

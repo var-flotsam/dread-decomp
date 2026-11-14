@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassEmmyCheckReachableAndSetActionEvent
 DREAD_REFLECTED_CLASS(CCharClassEmmyCheckReachableAndSetActionEvent, base::global::timeline::CEvent);
-

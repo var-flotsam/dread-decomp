@@ -81,4 +81,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTweakActionBaseTrack
 DREAD_REFLECTED_CLASS(CCharClassTweakActionBaseTrack, base::global::timeline::CTrack);
-

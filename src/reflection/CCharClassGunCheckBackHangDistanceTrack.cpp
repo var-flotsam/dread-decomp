@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassGunCheckBackHangDistanceTrack
 DREAD_REFLECTED_CLASS(CCharClassGunCheckBackHangDistanceTrack, base::global::timeline::CTrack);
-

@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassChozoRobotSoldierExplosionEvent
 DREAD_REFLECTED_CLASS(CCharClassChozoRobotSoldierExplosionEvent, base::global::timeline::CEvent);
-

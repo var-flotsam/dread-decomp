@@ -91,5 +91,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassEmmyCaveAIComponent::CTunableEmmyCaveAIComponent
 DREAD_REFLECTED_CLASS(CCharClassEmmyCaveAIComponent::CTunableEmmyCaveAIComponent, base::tunable::CTunable);
-
-

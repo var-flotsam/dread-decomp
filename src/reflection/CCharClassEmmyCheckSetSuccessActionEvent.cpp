@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassEmmyCheckSetSuccessActionEvent
 DREAD_REFLECTED_CLASS(CCharClassEmmyCheckSetSuccessActionEvent, base::global::timeline::CEvent);
-

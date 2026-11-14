@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassStaggerRecoveryTrack
 DREAD_REFLECTED_CLASS(CCharClassStaggerRecoveryTrack, base::global::timeline::CTrack);
-

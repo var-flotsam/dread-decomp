@@ -43,4 +43,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassQuetzoaXAIComponent
 DREAD_REFLECTED_CLASS(CCharClassQuetzoaXAIComponent, CCharClassQuetzoaAIComponent);
-

@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassFadeToBlackDeathTrack
 DREAD_REFLECTED_CLASS(CCharClassFadeToBlackDeathTrack, base::global::timeline::CTrack);
-

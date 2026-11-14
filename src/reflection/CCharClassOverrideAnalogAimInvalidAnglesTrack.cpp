@@ -74,4 +74,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassOverrideAnalogAimInvalidAnglesTrack
 DREAD_REFLECTED_CLASS(CCharClassOverrideAnalogAimInvalidAnglesTrack, base::global::timeline::CTrack);
-

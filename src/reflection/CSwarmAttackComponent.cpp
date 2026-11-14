@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CSwarmAttackComponent
 DREAD_REFLECTED_CLASS(CSwarmAttackComponent, CAttackComponent);
-

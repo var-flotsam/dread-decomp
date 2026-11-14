@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CChozoCommanderZeroLaserBaseAttack
 DREAD_REFLECTED_CLASS(CChozoCommanderZeroLaserBaseAttack, CChozoCommanderAttack);
-

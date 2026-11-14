@@ -80,4 +80,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSetMaterialPropertyEvent
 DREAD_REFLECTED_CLASS(CCharClassSetMaterialPropertyEvent, base::global::timeline::CEvent);
-

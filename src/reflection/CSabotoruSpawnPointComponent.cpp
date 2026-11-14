@@ -71,4 +71,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CSabotoruSpawnPointComponent
 DREAD_REFLECTED_CLASS(CSabotoruSpawnPointComponent, CSpawnPointComponent);
-

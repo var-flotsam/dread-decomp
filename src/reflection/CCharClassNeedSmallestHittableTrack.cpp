@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassNeedSmallestHittableTrack
 DREAD_REFLECTED_CLASS(CCharClassNeedSmallestHittableTrack, base::global::timeline::CTrack);
-

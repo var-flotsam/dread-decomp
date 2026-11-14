@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassHomingMovement
 DREAD_REFLECTED_CLASS(CCharClassHomingMovement, CCharClassProjectileMovement);
-

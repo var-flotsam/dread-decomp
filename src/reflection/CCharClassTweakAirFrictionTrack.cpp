@@ -58,4 +58,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTweakAirFrictionTrack
 DREAD_REFLECTED_CLASS(CCharClassTweakAirFrictionTrack, base::global::timeline::CTrack);
-

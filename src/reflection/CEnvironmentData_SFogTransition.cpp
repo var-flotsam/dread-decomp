@@ -666,18 +666,6 @@ struct refl_Description : ClassDescription {
 }  // namespace CEnvironmentData::SIBLAttenuationTransition
 DREAD_REFLECTED_CLASS(CEnvironmentData::SIBLAttenuationTransition, STransition);
 
-
-
-
-
-
-
-
-
-
-
-
-
 const base::reflection::CType* fn_7100005178();
 const base::reflection::CType* fn_7100f1bb68();
 const base::reflection::CType* fn_7100f1c234();

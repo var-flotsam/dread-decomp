@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassReadySmartObjectEvent
 DREAD_REFLECTED_CLASS(CCharClassReadySmartObjectEvent, base::global::timeline::CEvent);
-

@@ -48,4 +48,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CAIAction
 DREAD_REFLECTED_CLASS(CAIAction, CActionInstance);
-

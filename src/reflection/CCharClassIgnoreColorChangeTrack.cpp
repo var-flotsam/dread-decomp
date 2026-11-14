@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassIgnoreColorChangeTrack
 DREAD_REFLECTED_CLASS(CCharClassIgnoreColorChangeTrack, base::global::timeline::CTrack);
-

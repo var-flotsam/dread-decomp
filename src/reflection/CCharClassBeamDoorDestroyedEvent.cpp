@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassBeamDoorDestroyedEvent
 DREAD_REFLECTED_CLASS(CCharClassBeamDoorDestroyedEvent, base::global::timeline::CEvent);
-

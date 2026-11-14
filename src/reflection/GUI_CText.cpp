@@ -86,4 +86,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace GUI::CText
 DREAD_REFLECTED_CLASS(GUI::CText, GUI::CDisplayObject);
-

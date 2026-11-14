@@ -75,4 +75,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CShakernautChaseTargetAction
 DREAD_REFLECTED_CLASS(behaviortree::CShakernautChaseTargetAction, behaviortree::CBaseAction);
-

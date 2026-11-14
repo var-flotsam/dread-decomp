@@ -38,7 +38,6 @@ struct refl_Description : ClassDescription {
 }  // namespace CTriggerLogicAction
 DREAD_REFLECTED_ROOT_CLASS(CTriggerLogicAction);
 
-
 void fn_7100a55c5c();
 void fn_7100a55cc4();
 void fn_7100a55cd0();

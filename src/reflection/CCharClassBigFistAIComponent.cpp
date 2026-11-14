@@ -92,5 +92,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassBigFistAIComponent::CTunableCharClassBigFistAIComponent
 DREAD_REFLECTED_CLASS(CCharClassBigFistAIComponent::CTunableCharClassBigFistAIComponent, base::tunable::CTunable);
-
-

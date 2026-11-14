@@ -48,4 +48,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CGameBlackboard
 DREAD_REFLECTED_CLASS(CGameBlackboard, CBlackboard);
-

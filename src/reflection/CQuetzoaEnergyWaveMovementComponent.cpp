@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CQuetzoaEnergyWaveMovementComponent
 DREAD_REFLECTED_CLASS(CQuetzoaEnergyWaveMovementComponent, CProjectileMovement);
-

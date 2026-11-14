@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CKraidBackSlapAttack
 DREAD_REFLECTED_CLASS(CKraidBackSlapAttack, CKraidAttack);
-

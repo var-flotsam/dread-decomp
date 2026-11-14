@@ -56,7 +56,6 @@ struct refl_Description : ClassDescription {
 }  // namespace CShotLaunchConfig
 DREAD_REFLECTED_ROOT_CLASS(CShotLaunchConfig);
 
-
 void fn_71009fbcac();
 void fn_71009fbd14();
 void fn_71009fbd20();

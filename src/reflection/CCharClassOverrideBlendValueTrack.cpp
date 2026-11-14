@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassOverrideBlendValueTrack
 DREAD_REFLECTED_CLASS(CCharClassOverrideBlendValueTrack, base::global::timeline::CTrack);
-

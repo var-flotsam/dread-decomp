@@ -33,4 +33,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace base::file::CPackManagerDevice
 DREAD_REFLECTED_CLASS(base::file::CPackManagerDevice, base::file::IDevice);
-

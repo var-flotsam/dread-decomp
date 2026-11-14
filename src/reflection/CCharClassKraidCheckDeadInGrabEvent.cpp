@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassKraidCheckDeadInGrabEvent
 DREAD_REFLECTED_CLASS(CCharClassKraidCheckDeadInGrabEvent, base::global::timeline::CEvent);
-

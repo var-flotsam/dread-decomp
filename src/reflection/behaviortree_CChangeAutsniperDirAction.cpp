@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CChangeAutsniperDirAction
 DREAD_REFLECTED_CLASS(behaviortree::CChangeAutsniperDirAction, behaviortree::CBaseAction);
-

@@ -58,4 +58,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassForceChangeToSubareaEvent
 DREAD_REFLECTED_CLASS(CCharClassForceChangeToSubareaEvent, base::global::timeline::CEvent);
-

@@ -34,4 +34,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CBeamGun
 DREAD_REFLECTED_CLASS(CBeamGun, CPrimaryGun);
-

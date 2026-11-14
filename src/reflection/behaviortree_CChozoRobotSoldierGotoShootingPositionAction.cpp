@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CChozoRobotSoldierGotoShootingPositionAction
 DREAD_REFLECTED_CLASS(behaviortree::CChozoRobotSoldierGotoShootingPositionAction, behaviortree::CBaseAction);
-

@@ -1158,4 +1158,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace sound::CMusicVolumeOverride::CTunableMusicVolumeOverride
 DREAD_REFLECTED_CLASS(sound::CMusicVolumeOverride::CTunableMusicVolumeOverride, base::tunable::CTunable);
-

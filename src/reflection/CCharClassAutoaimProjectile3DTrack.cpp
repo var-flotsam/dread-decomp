@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAutoaimProjectile3DTrack
 DREAD_REFLECTED_CLASS(CCharClassAutoaimProjectile3DTrack, base::global::timeline::CTrack);
-

@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CEmmyShipyardAIComponent
 DREAD_REFLECTED_CLASS(CEmmyShipyardAIComponent, CEmmyAIComponent);
-

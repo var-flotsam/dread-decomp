@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CShockWaveComponent
 DREAD_REFLECTED_CLASS(CShockWaveComponent, CComponent);
-

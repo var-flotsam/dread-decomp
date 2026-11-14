@@ -49,4 +49,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassLogicLookAtPlayerComponent
 DREAD_REFLECTED_CLASS(CCharClassLogicLookAtPlayerComponent, CCharClassComponent);
-

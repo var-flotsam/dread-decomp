@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CRodotukSuckAttack
 DREAD_REFLECTED_CLASS(CRodotukSuckAttack, CAttack);
-

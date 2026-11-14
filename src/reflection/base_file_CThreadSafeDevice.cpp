@@ -33,4 +33,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace base::file::CThreadSafeDevice
 DREAD_REFLECTED_CLASS_INLINE_NAME(base::file::CThreadSafeDevice, base::file::IDevice);
-

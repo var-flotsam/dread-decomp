@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAINotificationEvent
 DREAD_REFLECTED_CLASS(CCharClassAINotificationEvent, base::global::timeline::CEvent);
-

@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CAIGrapplePointComponent
 DREAD_REFLECTED_CLASS(CAIGrapplePointComponent, CPullableGrapplePointComponent);
-

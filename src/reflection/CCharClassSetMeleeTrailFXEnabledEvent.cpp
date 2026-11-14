@@ -55,4 +55,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSetMeleeTrailFXEnabledEvent
 DREAD_REFLECTED_CLASS(CCharClassSetMeleeTrailFXEnabledEvent, base::global::timeline::CEvent);
-

@@ -53,4 +53,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CAgitateInNervousnessAction
 DREAD_REFLECTED_CLASS(behaviortree::CAgitateInNervousnessAction, behaviortree::CBaseAction);
-

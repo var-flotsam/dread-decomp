@@ -257,5 +257,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTweakPlayRateTrack
 DREAD_REFLECTED_CLASS(CCharClassTweakPlayRateTrack, base::global::timeline::CTrack);
-
-

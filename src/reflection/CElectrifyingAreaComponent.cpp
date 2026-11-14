@@ -49,4 +49,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CElectrifyingAreaComponent
 DREAD_REFLECTED_CLASS(CElectrifyingAreaComponent, CComponent);
-

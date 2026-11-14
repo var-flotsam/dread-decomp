@@ -58,4 +58,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassDeleteEntityEvent
 DREAD_REFLECTED_CLASS(CCharClassDeleteEntityEvent, base::global::timeline::CEvent);
-

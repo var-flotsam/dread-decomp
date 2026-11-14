@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassGunCheckBackAnalogFallDistanceTrack
 DREAD_REFLECTED_CLASS(CCharClassGunCheckBackAnalogFallDistanceTrack, base::global::timeline::CTrack);
-

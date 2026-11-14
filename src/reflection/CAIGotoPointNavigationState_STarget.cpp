@@ -86,6 +86,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CAIGotoPointNavigationState::SEntityTarget
 DREAD_REFLECTED_CLASS(CAIGotoPointNavigationState::SEntityTarget, CAIGotoPointNavigationState::SPointTarget);
-
-
-

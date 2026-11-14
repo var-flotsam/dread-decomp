@@ -32,7 +32,6 @@ struct refl_Description : ClassDescription {
 }  // namespace GUI::CRumbleTunableButton
 DREAD_REFLECTED_CLASS(GUI::CRumbleTunableButton, GUI::CButton);
 
-
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).
 namespace {

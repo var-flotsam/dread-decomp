@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace ICharClassFXDeleteEvent
 DREAD_REFLECTED_CLASS(ICharClassFXDeleteEvent, base::global::timeline::CEvent);
-

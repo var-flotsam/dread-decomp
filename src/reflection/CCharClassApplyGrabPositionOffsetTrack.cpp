@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassApplyGrabPositionOffsetTrack
 DREAD_REFLECTED_CLASS(CCharClassApplyGrabPositionOffsetTrack, base::global::timeline::CTrack);
-

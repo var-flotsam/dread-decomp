@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassParkourTrack
 DREAD_REFLECTED_CLASS(CCharClassParkourTrack, base::global::timeline::CTrack);
-

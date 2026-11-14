@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTakumakuAllowFrontWallCrashTrack
 DREAD_REFLECTED_CLASS(CCharClassTakumakuAllowFrontWallCrashTrack, base::global::timeline::CTrack);
-

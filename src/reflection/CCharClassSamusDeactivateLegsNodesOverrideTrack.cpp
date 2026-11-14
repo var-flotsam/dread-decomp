@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSamusDeactivateLegsNodesOverrideTrack
 DREAD_REFLECTED_CLASS(CCharClassSamusDeactivateLegsNodesOverrideTrack, base::global::timeline::CTrack);
-

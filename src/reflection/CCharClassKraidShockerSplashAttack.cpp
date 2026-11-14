@@ -85,5 +85,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassKraidShockerSplashAttack::CTunableCharClassKraidShockerSplashAttack
 DREAD_REFLECTED_CLASS(CCharClassKraidShockerSplashAttack::CTunableCharClassKraidShockerSplashAttack, base::tunable::CTunable);
-
-

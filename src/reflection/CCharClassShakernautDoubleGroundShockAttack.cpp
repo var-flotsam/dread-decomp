@@ -47,4 +47,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassShakernautDoubleGroundShockAttack
 DREAD_REFLECTED_CLASS(CCharClassShakernautDoubleGroundShockAttack, CCharClassAttack);
-

@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassHydrogigaCancelAttackActionTrack
 DREAD_REFLECTED_CLASS(CCharClassHydrogigaCancelAttackActionTrack, base::global::timeline::CTrack);
-

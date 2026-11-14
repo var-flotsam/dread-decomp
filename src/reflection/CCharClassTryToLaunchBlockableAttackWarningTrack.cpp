@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTryToLaunchBlockableAttackWarningTrack
 DREAD_REFLECTED_CLASS(CCharClassTryToLaunchBlockableAttackWarningTrack, base::global::timeline::CTrack);
-

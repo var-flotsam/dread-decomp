@@ -95,5 +95,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassGroundShockerAttack::CTunableCharClassGroundShockerAttack
 DREAD_REFLECTED_CLASS(CCharClassGroundShockerAttack::CTunableCharClassGroundShockerAttack, base::tunable::CTunable);
-
-

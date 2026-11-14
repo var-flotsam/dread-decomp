@@ -76,4 +76,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CDroppableMissileComponent
 DREAD_REFLECTED_CLASS(CDroppableMissileComponent, CDroppableComponent);
-

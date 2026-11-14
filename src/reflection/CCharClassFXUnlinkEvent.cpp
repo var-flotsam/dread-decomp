@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassFXUnlinkEvent
 DREAD_REFLECTED_CLASS(CCharClassFXUnlinkEvent, base::global::timeline::CEvent);
-

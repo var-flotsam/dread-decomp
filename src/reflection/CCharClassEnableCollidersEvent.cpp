@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassEnableCollidersEvent
 DREAD_REFLECTED_CLASS(CCharClassEnableCollidersEvent, base::global::timeline::CEvent);
-

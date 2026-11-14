@@ -49,7 +49,6 @@ struct refl_Description : ClassDescription {
 }  // namespace querysystem::CEvaluator
 DREAD_REFLECTED_ROOT_CLASS(querysystem::CEvaluator);
 
-
 void fn_71002b82f4();
 void fn_71002b835c();
 void fn_71002b8368();

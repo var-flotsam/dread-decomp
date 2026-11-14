@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CFollowRouteAction
 DREAD_REFLECTED_CLASS(behaviortree::CFollowRouteAction, behaviortree::CBaseAction);
-

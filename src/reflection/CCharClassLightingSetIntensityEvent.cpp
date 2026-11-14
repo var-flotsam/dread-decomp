@@ -58,4 +58,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassLightingSetIntensityEvent
 DREAD_REFLECTED_CLASS(CCharClassLightingSetIntensityEvent, base::global::timeline::CEvent);
-

@@ -58,4 +58,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassBindLightToConstantAlphaEvent
 DREAD_REFLECTED_CLASS(CCharClassBindLightToConstantAlphaEvent, base::global::timeline::CEvent);
-

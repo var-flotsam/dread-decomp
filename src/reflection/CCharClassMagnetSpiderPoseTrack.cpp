@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassMagnetSpiderPoseTrack
 DREAD_REFLECTED_CLASS(CCharClassMagnetSpiderPoseTrack, base::global::timeline::CTrack);
-

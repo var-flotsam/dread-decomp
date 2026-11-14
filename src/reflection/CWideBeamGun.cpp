@@ -107,5 +107,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CWideBeamGun::CTunableWideBeam
 DREAD_REFLECTED_CLASS(CWideBeamGun::CTunableWideBeam, base::tunable::CTunable);
-
-

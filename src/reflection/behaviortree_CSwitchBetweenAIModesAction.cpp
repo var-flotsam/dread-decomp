@@ -86,4 +86,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CSwitchBetweenAIModesAction
 DREAD_REFLECTED_CLASS(behaviortree::CSwitchBetweenAIModesAction, behaviortree::CBaseAction);
-

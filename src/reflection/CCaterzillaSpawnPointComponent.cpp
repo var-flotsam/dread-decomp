@@ -60,4 +60,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCaterzillaSpawnPointComponent
 DREAD_REFLECTED_CLASS(CCaterzillaSpawnPointComponent, CSpawnPointComponent);
-

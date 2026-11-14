@@ -52,4 +52,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CSuppressDecorator
 DREAD_REFLECTED_CLASS(behaviortree::CSuppressDecorator, behaviortree::CDecorator);
-

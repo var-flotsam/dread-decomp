@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CNoFreezeRoomComponent
 DREAD_REFLECTED_CLASS(CNoFreezeRoomComponent, CLogicShapeComponent);
-

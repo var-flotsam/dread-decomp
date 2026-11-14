@@ -30,4 +30,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace GUI::CItemRenderer
 DREAD_REFLECTED_CLASS(GUI::CItemRenderer, GUI::CDisplayObjectContainer);
-

@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassEmmyMaintainChaseReachableTrack
 DREAD_REFLECTED_CLASS(CCharClassEmmyMaintainChaseReachableTrack, base::global::timeline::CTrack);
-

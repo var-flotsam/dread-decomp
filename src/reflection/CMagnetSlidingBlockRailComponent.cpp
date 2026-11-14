@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CMagnetSlidingBlockRailComponent
 DREAD_REFLECTED_CLASS(CMagnetSlidingBlockRailComponent, CComponent);
-

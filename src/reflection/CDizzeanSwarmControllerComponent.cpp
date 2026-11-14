@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CDizzeanSwarmControllerComponent
 DREAD_REFLECTED_CLASS(CDizzeanSwarmControllerComponent, CFlockingSwarmControllerComponent);
-

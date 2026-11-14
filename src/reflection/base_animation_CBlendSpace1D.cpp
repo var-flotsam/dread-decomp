@@ -38,4 +38,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace base::animation::CBlendSpace1D
 DREAD_REFLECTED_CLASS(base::animation::CBlendSpace1D, base::animation::ISkeletalPoseProvider);
-

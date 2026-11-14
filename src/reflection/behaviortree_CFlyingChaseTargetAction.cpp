@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CFlyingChaseTargetAction
 DREAD_REFLECTED_CLASS(behaviortree::CFlyingChaseTargetAction, behaviortree::CChaseTargetAction);
-

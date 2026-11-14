@@ -60,4 +60,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CParticleEnableEmission
 DREAD_REFLECTED_CLASS(behaviortree::CParticleEnableEmission, behaviortree::CBaseAction);
-

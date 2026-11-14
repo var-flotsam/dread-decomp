@@ -137,5 +137,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassRinkaAIComponent
 DREAD_REFLECTED_CLASS(CCharClassRinkaAIComponent, CCharClassAIComponent);
-
-

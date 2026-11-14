@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CNailongFollowPathAction
 DREAD_REFLECTED_CLASS(behaviortree::CNailongFollowPathAction, behaviortree::CBaseAction);
-

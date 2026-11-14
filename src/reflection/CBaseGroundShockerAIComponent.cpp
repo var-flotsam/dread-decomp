@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CBaseGroundShockerAIComponent
 DREAD_REFLECTED_CLASS(CBaseGroundShockerAIComponent, CBehaviorTreeAIComponent);
-

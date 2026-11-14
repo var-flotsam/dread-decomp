@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CChozoRobotSoldierPatrolAction
 DREAD_REFLECTED_CLASS(behaviortree::CChozoRobotSoldierPatrolAction, behaviortree::CBaseAction);
-

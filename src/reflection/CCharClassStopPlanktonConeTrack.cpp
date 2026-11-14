@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassStopPlanktonConeTrack
 DREAD_REFLECTED_CLASS(CCharClassStopPlanktonConeTrack, base::global::timeline::CTrack);
-

@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CChozoRobotSoldierIsMeleeEntityCondition
 DREAD_REFLECTED_CLASS(behaviortree::CChozoRobotSoldierIsMeleeEntityCondition, behaviortree::CBaseCondition);
-

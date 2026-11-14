@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassActivateHecathonFXEvent
 DREAD_REFLECTED_CLASS(CCharClassActivateHecathonFXEvent, base::global::timeline::CEvent);
-

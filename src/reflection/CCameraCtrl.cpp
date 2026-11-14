@@ -47,4 +47,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCameraCtrl
 DREAD_REFLECTED_CLASS(CCameraCtrl, CGameObject);
-

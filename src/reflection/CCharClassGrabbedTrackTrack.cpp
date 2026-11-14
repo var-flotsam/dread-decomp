@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassGrabbedTrackTrack
 DREAD_REFLECTED_CLASS(CCharClassGrabbedTrackTrack, base::global::timeline::CTrack);
-

@@ -128,5 +128,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassChozoRobotSoldierAIComponent
 DREAD_REFLECTED_CLASS(CCharClassChozoRobotSoldierAIComponent, CCharClassBossAIComponent);
-
-

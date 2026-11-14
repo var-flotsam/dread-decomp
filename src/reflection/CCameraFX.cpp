@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCameraFX
 DREAD_REFLECTED_CLASS(CCameraFX, CGameObject);
-

@@ -121,5 +121,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CGrappleBeamGun::CTunableGrappleBeamGun
 DREAD_REFLECTED_CLASS(CGrappleBeamGun::CTunableGrappleBeamGun, base::tunable::CTunable);
-
-

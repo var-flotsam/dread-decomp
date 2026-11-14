@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassMovingBackwardsTrack
 DREAD_REFLECTED_CLASS(CCharClassMovingBackwardsTrack, base::global::timeline::CTrack);
-

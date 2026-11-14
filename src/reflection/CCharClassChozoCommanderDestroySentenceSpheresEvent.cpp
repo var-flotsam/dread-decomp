@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassChozoCommanderDestroySentenceSpheresEvent
 DREAD_REFLECTED_CLASS(CCharClassChozoCommanderDestroySentenceSpheresEvent, base::global::timeline::CEvent);
-

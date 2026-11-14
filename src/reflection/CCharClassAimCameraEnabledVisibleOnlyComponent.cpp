@@ -67,5 +67,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CAimCameraEnabledVisibleOnlyComponent
 DREAD_REFLECTED_CLASS(CAimCameraEnabledVisibleOnlyComponent, CComponent);
-
-

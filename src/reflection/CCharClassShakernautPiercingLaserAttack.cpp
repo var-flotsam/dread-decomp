@@ -49,4 +49,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassShakernautPiercingLaserAttack
 DREAD_REFLECTED_CLASS(CCharClassShakernautPiercingLaserAttack, CCharClassAttack);
-

@@ -53,4 +53,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CMagmaKraidScenarioControllerComponent
 DREAD_REFLECTED_CLASS(CMagmaKraidScenarioControllerComponent, CComponent);
-

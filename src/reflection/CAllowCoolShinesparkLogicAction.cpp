@@ -55,4 +55,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CAllowCoolShinesparkLogicAction
 DREAD_REFLECTED_CLASS(CAllowCoolShinesparkLogicAction, CTriggerLogicAction);
-

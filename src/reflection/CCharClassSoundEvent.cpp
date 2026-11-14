@@ -119,4 +119,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSoundEvent
 DREAD_REFLECTED_CLASS(CCharClassSoundEvent, CCharClassSoundBaseEvent);
-

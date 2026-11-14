@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassScheduleFireTrack
 DREAD_REFLECTED_CLASS(CCharClassScheduleFireTrack, base::global::timeline::CTrack);
-

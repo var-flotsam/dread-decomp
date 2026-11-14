@@ -41,4 +41,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CEmmySpawnPointComponent
 DREAD_REFLECTED_CLASS(CEmmySpawnPointComponent, CSpawnPointComponent);
-

@@ -70,4 +70,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassModelUpdaterComponent
 DREAD_REFLECTED_CLASS(CCharClassModelUpdaterComponent, CCharClassComponent);
-

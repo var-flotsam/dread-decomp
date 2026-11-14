@@ -90,5 +90,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CBaseTriggerComponent
 DREAD_REFLECTED_CLASS(CBaseTriggerComponent, CActivatableComponent);
-
-

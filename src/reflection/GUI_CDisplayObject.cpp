@@ -637,4 +637,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace GUI::CDisplayObject
 DREAD_REFLECTED_CLASS(GUI::CDisplayObject, CGameObject);
-

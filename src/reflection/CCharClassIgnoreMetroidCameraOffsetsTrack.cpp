@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassIgnoreMetroidCameraOffsetsTrack
 DREAD_REFLECTED_CLASS(CCharClassIgnoreMetroidCameraOffsetsTrack, base::global::timeline::CTrack);
-

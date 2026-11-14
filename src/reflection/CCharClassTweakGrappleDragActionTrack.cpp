@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTweakGrappleDragActionTrack
 DREAD_REFLECTED_CLASS(CCharClassTweakGrappleDragActionTrack, CCharClassTweakActionBaseTrack);
-

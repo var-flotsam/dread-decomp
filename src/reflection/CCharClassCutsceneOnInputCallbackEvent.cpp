@@ -57,4 +57,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCutsceneOnInputCallbackEvent
 DREAD_REFLECTED_CLASS(CCharClassCutsceneOnInputCallbackEvent, base::global::timeline::CEvent);
-

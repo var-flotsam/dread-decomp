@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CSetWantsEnabledAction
 DREAD_REFLECTED_CLASS(behaviortree::CSetWantsEnabledAction, behaviortree::CBaseAction);
-

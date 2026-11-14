@@ -41,4 +41,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CRockDiverSpawnPointComponent
 DREAD_REFLECTED_CLASS(CRockDiverSpawnPointComponent, CSpawnPointComponent);
-

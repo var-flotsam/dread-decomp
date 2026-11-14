@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CQuetzoaChargeAttack
 DREAD_REFLECTED_CLASS(CQuetzoaChargeAttack, CAttack);
-

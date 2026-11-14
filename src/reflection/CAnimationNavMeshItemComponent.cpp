@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CAnimationNavMeshItemComponent
 DREAD_REFLECTED_CLASS(CAnimationNavMeshItemComponent, CNavMeshItemComponent);
-

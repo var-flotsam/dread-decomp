@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CKraidTripleFlyingSpikesAttack
 DREAD_REFLECTED_CLASS(CKraidTripleFlyingSpikesAttack, CKraidAttack);
-

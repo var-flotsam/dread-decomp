@@ -58,4 +58,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CFadeScreenTrack
 DREAD_REFLECTED_CLASS(CFadeScreenTrack, base::global::timeline::CTrack);
-

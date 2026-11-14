@@ -88,5 +88,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassRockDiverAIComponent::CTunableCharClassRockDiverAIComponent
 DREAD_REFLECTED_CLASS(CCharClassRockDiverAIComponent::CTunableCharClassRockDiverAIComponent, base::tunable::CTunable);
-
-

@@ -76,4 +76,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassFXControlTrack
 DREAD_REFLECTED_CLASS(CCharClassFXControlTrack, base::global::timeline::CTrack);
-

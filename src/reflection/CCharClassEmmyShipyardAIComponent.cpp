@@ -84,5 +84,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassEmmyShipyardAIComponent::CTunableEmmyShipyardAIComponent
 DREAD_REFLECTED_CLASS(CCharClassEmmyShipyardAIComponent::CTunableEmmyShipyardAIComponent, base::tunable::CTunable);
-
-

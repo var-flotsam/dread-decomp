@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CSamusImpactMovementState::CParams
 DREAD_REFLECTED_CLASS(CSamusImpactMovementState::CParams, CSamusMovementState::CParams);
-

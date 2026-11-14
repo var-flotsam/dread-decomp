@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassActivateCaterzillaMovementEvent
 DREAD_REFLECTED_CLASS(CCharClassActivateCaterzillaMovementEvent, base::global::timeline::CEvent);
-

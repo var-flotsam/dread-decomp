@@ -34,4 +34,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace base::animation::ISkeletalPoseProvider
 DREAD_REFLECTED_ROOT_CLASS_INLINE_NAME(base::animation::ISkeletalPoseProvider);
-

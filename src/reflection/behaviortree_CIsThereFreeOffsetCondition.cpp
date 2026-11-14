@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CIsThereFreeOffsetCondition
 DREAD_REFLECTED_CLASS(behaviortree::CIsThereFreeOffsetCondition, behaviortree::CBaseCondition);
-

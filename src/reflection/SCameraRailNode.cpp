@@ -208,9 +208,6 @@ struct refl_Description : ClassDescription {
 }  // namespace SCameraRail
 DREAD_REFLECTED_CLASS(SCameraRail, IPath);
 
-
-
-
 const base::reflection::CType* fn_7100005178();
 const base::reflection::CType* fn_7100c009dc();
 const base::reflection::CType* fn_7100c010a8();

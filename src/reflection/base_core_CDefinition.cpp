@@ -40,4 +40,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace base::core::CDefinition
 DREAD_REFLECTED_CLASS(base::core::CDefinition, base::core::CAsset);
-

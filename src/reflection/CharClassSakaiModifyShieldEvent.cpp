@@ -55,4 +55,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CharClassSakaiModifyShieldEvent
 DREAD_REFLECTED_CLASS(CharClassSakaiModifyShieldEvent, base::global::timeline::CEvent);
-

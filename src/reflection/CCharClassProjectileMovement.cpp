@@ -80,4 +80,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassProjectileMovement
 DREAD_REFLECTED_CLASS(CCharClassProjectileMovement, CCharClassWeaponMovement);
-

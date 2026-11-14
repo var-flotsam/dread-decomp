@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassChozoCommanderAuraScratchAttack
 DREAD_REFLECTED_CLASS(CCharClassChozoCommanderAuraScratchAttack, CCharClassChozoCommanderGroundAttack);
-

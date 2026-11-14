@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassBeamBoxComponent
 DREAD_REFLECTED_CLASS(CCharClassBeamBoxComponent, CCharClassItemLifeComponent);
-

@@ -62,4 +62,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CTrainUsableComponent
 DREAD_REFLECTED_CLASS(CTrainUsableComponent, CUsableComponent);
-

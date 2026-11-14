@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCanBeStaggeredTrack
 DREAD_REFLECTED_CLASS(CCharClassCanBeStaggeredTrack, base::global::timeline::CTrack);
-

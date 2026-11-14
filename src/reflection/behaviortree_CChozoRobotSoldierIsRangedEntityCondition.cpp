@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CChozoRobotSoldierIsRangedEntityCondition
 DREAD_REFLECTED_CLASS(behaviortree::CChozoRobotSoldierIsRangedEntityCondition, behaviortree::CBaseCondition);
-

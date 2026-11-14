@@ -41,4 +41,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCameraToRailLogicAction
 DREAD_REFLECTED_CLASS(CCameraToRailLogicAction, CTriggerLogicAction);
-

@@ -52,4 +52,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTweakSamusUpdateCollisionsTrack
 DREAD_REFLECTED_CLASS(CCharClassTweakSamusUpdateCollisionsTrack, base::global::timeline::CTrack);
-

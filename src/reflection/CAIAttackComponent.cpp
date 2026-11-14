@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CAIAttackComponent
 DREAD_REFLECTED_CLASS(CAIAttackComponent, CAttackComponent);
-

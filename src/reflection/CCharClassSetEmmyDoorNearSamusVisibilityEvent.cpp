@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSetEmmyDoorNearSamusVisibilityEvent
 DREAD_REFLECTED_CLASS(CCharClassSetEmmyDoorNearSamusVisibilityEvent, base::global::timeline::CEvent);
-

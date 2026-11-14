@@ -103,5 +103,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CSamusGunComponent::CTunableSamusGunComponent
 DREAD_REFLECTED_CLASS(CSamusGunComponent::CTunableSamusGunComponent, base::tunable::CTunable);
-
-

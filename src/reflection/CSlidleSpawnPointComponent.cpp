@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CSlidleSpawnPointComponent
 DREAD_REFLECTED_CLASS(CSlidleSpawnPointComponent, CComponent);
-

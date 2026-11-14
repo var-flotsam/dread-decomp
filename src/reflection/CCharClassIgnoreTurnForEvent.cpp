@@ -60,4 +60,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassIgnoreTurnForEvent
 DREAD_REFLECTED_CLASS(CCharClassIgnoreTurnForEvent, base::global::timeline::CEvent);
-

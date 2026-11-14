@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace GUI::CMenuEntryDataSet
 DREAD_REFLECTED_CLASS(GUI::CMenuEntryDataSet, GUI::IDataSet);
-

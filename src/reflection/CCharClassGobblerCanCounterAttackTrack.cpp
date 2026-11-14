@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassGobblerCanCounterAttackTrack
 DREAD_REFLECTED_CLASS(CCharClassGobblerCanCounterAttackTrack, base::global::timeline::CTrack);
-

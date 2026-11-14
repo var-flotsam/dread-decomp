@@ -71,4 +71,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CAreaMusicComponent
 DREAD_REFLECTED_CLASS(CAreaMusicComponent, CSoundTrigger);
-

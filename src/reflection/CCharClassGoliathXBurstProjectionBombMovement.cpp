@@ -61,4 +61,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassGoliathXBurstProjectionBombMovement
 DREAD_REFLECTED_CLASS(CCharClassGoliathXBurstProjectionBombMovement, CCharClassWeaponMovement);
-

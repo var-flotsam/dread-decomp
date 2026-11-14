@@ -94,7 +94,6 @@ struct refl_Description : ClassDescription {
 }  // namespace CAttackPreset
 DREAD_REFLECTED_ROOT_CLASS(CAttackPreset);
 
-
 void fn_7100366c78();
 void fn_7100366ce0();
 void fn_7100366cec();

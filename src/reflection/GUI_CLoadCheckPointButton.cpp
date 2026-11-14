@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace GUI::CLoadCheckPointButton
 DREAD_REFLECTED_CLASS(GUI::CLoadCheckPointButton, GUI::CButton);
-

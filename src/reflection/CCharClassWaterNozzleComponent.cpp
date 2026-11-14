@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassWaterNozzleComponent
 DREAD_REFLECTED_CLASS(CCharClassWaterNozzleComponent, CCharClassComponent);
-

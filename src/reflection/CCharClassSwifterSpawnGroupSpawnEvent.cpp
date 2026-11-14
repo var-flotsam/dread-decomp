@@ -57,4 +57,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSwifterSpawnGroupSpawnEvent
 DREAD_REFLECTED_CLASS(CCharClassSwifterSpawnGroupSpawnEvent, base::global::timeline::CEvent);
-

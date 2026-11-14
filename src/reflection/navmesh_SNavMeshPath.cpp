@@ -35,4 +35,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace navmesh::SNavMeshPath
 DREAD_REFLECTED_CLASS(navmesh::SNavMeshPath, IPath);
-

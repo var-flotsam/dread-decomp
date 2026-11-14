@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CIsFrozen
 DREAD_REFLECTED_CLASS(behaviortree::CIsFrozen, behaviortree::CBaseCondition);
-

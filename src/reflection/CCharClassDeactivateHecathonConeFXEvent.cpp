@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassDeactivateHecathonConeFXEvent
 DREAD_REFLECTED_CLASS(CCharClassDeactivateHecathonConeFXEvent, base::global::timeline::CEvent);
-

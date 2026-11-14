@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CConstantMovement
 DREAD_REFLECTED_CLASS(CConstantMovement, CCharacterMovement);
-

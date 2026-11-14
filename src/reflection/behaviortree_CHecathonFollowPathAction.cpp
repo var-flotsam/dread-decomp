@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CHecathonFollowPathAction
 DREAD_REFLECTED_CLASS(behaviortree::CHecathonFollowPathAction, behaviortree::CBaseAction);
-

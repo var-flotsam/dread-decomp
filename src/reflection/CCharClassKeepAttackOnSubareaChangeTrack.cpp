@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassKeepAttackOnSubareaChangeTrack
 DREAD_REFLECTED_CLASS(CCharClassKeepAttackOnSubareaChangeTrack, base::global::timeline::CTrack);
-

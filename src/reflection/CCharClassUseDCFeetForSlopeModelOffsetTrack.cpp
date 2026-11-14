@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassUseDCFeetForSlopeModelOffsetTrack
 DREAD_REFLECTED_CLASS(CCharClassUseDCFeetForSlopeModelOffsetTrack, base::global::timeline::CTrack);
-

@@ -57,4 +57,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CPoisonFlyAIComponent
 DREAD_REFLECTED_CLASS(CPoisonFlyAIComponent, CBehaviorTreeAIComponent);
-

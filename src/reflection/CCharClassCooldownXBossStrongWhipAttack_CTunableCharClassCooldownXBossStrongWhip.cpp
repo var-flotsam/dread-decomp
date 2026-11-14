@@ -88,5 +88,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCooldownXBossStrongWhipAttack
 DREAD_REFLECTED_CLASS(CCharClassCooldownXBossStrongWhipAttack, CCharClassCooldownXBossAttack);
-
-

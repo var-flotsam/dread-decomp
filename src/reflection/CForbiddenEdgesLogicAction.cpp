@@ -58,4 +58,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CForbiddenEdgesLogicAction
 DREAD_REFLECTED_CLASS(CForbiddenEdgesLogicAction, CTriggerLogicAction);
-

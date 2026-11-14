@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassToCrouchTrack
 DREAD_REFLECTED_CLASS(CCharClassToCrouchTrack, CCharClassToStateTrack);
-

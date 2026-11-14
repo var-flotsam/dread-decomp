@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CKraidBouncingCreaturesAttack
 DREAD_REFLECTED_CLASS(CKraidBouncingCreaturesAttack, CKraidAttack);
-

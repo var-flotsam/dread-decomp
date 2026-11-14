@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTweakFrontInitTrack
 DREAD_REFLECTED_CLASS(CCharClassTweakFrontInitTrack, CCharClassToStateTrack);
-

@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassApplyNoJumpingGravityFactorTrack
 DREAD_REFLECTED_CLASS(CCharClassApplyNoJumpingGravityFactorTrack, base::global::timeline::CTrack);
-

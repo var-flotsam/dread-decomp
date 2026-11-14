@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassLaunchJumpFXEvent
 DREAD_REFLECTED_CLASS(CCharClassLaunchJumpFXEvent, base::global::timeline::CEvent);
-

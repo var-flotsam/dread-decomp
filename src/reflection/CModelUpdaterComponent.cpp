@@ -104,4 +104,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CModelUpdaterComponent
 DREAD_REFLECTED_CLASS(CModelUpdaterComponent, CSceneComponent);
-

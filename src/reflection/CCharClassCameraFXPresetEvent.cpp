@@ -68,4 +68,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCameraFXPresetEvent
 DREAD_REFLECTED_CLASS(CCharClassCameraFXPresetEvent, base::global::timeline::CEvent);
-

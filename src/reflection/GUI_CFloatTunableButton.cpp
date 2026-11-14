@@ -49,4 +49,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace GUI::CFloatTunableButton
 DREAD_REFLECTED_CLASS(GUI::CFloatTunableButton, GUI::CButton);
-

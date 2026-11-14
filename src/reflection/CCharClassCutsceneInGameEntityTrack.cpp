@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCutsceneInGameEntityTrack
 DREAD_REFLECTED_CLASS(CCharClassCutsceneInGameEntityTrack, base::global::timeline::CTrack);
-

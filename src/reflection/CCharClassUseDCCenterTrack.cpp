@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassUseDCCenterTrack
 DREAD_REFLECTED_CLASS(CCharClassUseDCCenterTrack, base::global::timeline::CTrack);
-

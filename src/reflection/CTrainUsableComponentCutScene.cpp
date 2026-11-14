@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CTrainUsableComponentCutScene
 DREAD_REFLECTED_CLASS(CTrainUsableComponentCutScene, CTrainUsableComponent);
-

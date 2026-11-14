@@ -60,4 +60,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CIsAtDistanceXCondition
 DREAD_REFLECTED_CLASS(behaviortree::CIsAtDistanceXCondition, behaviortree::CBaseCondition);
-

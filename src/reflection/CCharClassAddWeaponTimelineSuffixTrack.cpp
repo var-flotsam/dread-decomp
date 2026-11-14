@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAddWeaponTimelineSuffixTrack
 DREAD_REFLECTED_CLASS(CCharClassAddWeaponTimelineSuffixTrack, base::global::timeline::CTrack);
-

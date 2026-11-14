@@ -85,5 +85,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassKraidBackSlapAttack::CTunableCharClassKraidBackSlapAttack
 DREAD_REFLECTED_CLASS(CCharClassKraidBackSlapAttack::CTunableCharClassKraidBackSlapAttack, base::tunable::CTunable);
-
-

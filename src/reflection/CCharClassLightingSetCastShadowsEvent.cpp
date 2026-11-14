@@ -56,4 +56,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassLightingSetCastShadowsEvent
 DREAD_REFLECTED_CLASS(CCharClassLightingSetCastShadowsEvent, base::global::timeline::CEvent);
-

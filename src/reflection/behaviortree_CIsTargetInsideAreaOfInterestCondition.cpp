@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CIsTargetInsideAreaOfInterestCondition
 DREAD_REFLECTED_CLASS(behaviortree::CIsTargetInsideAreaOfInterestCondition, behaviortree::CBaseCondition);
-

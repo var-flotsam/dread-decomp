@@ -33,4 +33,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace base::file::nx::CDeviceNX
 DREAD_REFLECTED_CLASS_INLINE_NAME(base::file::nx::CDeviceNX, base::file::IDevice);
-

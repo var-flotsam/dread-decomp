@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAreaMusicComponent
 DREAD_REFLECTED_CLASS(CCharClassAreaMusicComponent, CCharClassComponent);
-

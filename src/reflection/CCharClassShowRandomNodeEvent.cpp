@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassShowRandomNodeEvent
 DREAD_REFLECTED_CLASS(CCharClassShowRandomNodeEvent, base::global::timeline::CEvent);
-

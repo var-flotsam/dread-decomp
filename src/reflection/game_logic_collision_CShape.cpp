@@ -73,7 +73,6 @@ struct refl_Description : ClassDescription {
 }  // namespace game::logic::collision::CShape
 DREAD_REFLECTED_ROOT_CLASS(game::logic::collision::CShape);
 
-
 void fn_7100d6c4d8();
 void fn_7100d6c540();
 void fn_7100d6c54c();

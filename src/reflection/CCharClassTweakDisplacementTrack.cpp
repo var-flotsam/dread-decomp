@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTweakDisplacementTrack
 DREAD_REFLECTED_CLASS(CCharClassTweakDisplacementTrack, base::global::timeline::CTrack);
-

@@ -63,4 +63,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CShotVariableAngleLaunchConfig
 DREAD_REFLECTED_CLASS(CShotVariableAngleLaunchConfig, CShotLaunchConfig);
-

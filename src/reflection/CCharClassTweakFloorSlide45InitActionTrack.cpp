@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTweakFloorSlide45InitActionTrack
 DREAD_REFLECTED_CLASS(CCharClassTweakFloorSlide45InitActionTrack, CCharClassTweakActionBaseTrack);
-

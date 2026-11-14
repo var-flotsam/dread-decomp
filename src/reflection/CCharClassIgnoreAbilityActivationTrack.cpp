@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassIgnoreAbilityActivationTrack
 DREAD_REFLECTED_CLASS(CCharClassIgnoreAbilityActivationTrack, base::global::timeline::CTrack);
-

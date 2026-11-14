@@ -144,4 +144,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CHecathonAIComponent
 DREAD_REFLECTED_CLASS(CHecathonAIComponent, CBehaviorTreeAIComponent);
-

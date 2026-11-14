@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CCanUseHyperDashCondition
 DREAD_REFLECTED_CLASS(behaviortree::CCanUseHyperDashCondition, behaviortree::CBaseCondition);
-

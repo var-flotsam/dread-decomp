@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CTargetComponent
 DREAD_REFLECTED_CLASS(CTargetComponent, CComponent);
-

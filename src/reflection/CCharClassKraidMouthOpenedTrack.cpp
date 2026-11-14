@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassKraidMouthOpenedTrack
 DREAD_REFLECTED_CLASS(CCharClassKraidMouthOpenedTrack, base::global::timeline::CTrack);
-

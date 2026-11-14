@@ -42,4 +42,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CAutsniperSpawnPointComponent
 DREAD_REFLECTED_CLASS(CAutsniperSpawnPointComponent, CSpawnPointComponent);
-

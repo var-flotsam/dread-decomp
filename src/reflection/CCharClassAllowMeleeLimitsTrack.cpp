@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAllowMeleeLimitsTrack
 DREAD_REFLECTED_CLASS(CCharClassAllowMeleeLimitsTrack, base::global::timeline::CTrack);
-

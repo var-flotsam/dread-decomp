@@ -49,4 +49,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassDaivoSwarmControllerComponent
 DREAD_REFLECTED_CLASS(CCharClassDaivoSwarmControllerComponent, CCharClassRedenkiSwarmControllerComponent);
-

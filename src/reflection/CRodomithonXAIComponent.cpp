@@ -42,4 +42,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CRodomithonXAIComponent
 DREAD_REFLECTED_CLASS(CRodomithonXAIComponent, CRodotukAIComponent);
-

@@ -107,4 +107,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassRedenkiSwarmControllerComponent
 DREAD_REFLECTED_CLASS(CCharClassRedenkiSwarmControllerComponent, CCharClassFlockingSwarmControllerComponent);
-

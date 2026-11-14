@@ -41,4 +41,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassChozoCommanderSentenceSphereAttack
 DREAD_REFLECTED_CLASS(CCharClassChozoCommanderSentenceSphereAttack, CCharClassChozoCommanderGroundAttack);
-

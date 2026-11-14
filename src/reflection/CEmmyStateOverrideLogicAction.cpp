@@ -42,4 +42,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CEmmyStateOverrideLogicAction
 DREAD_REFLECTED_CLASS(CEmmyStateOverrideLogicAction, CTriggerLogicAction);
-

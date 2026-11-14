@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassKraidBellyGrabTrack
 DREAD_REFLECTED_CLASS(CCharClassKraidBellyGrabTrack, base::global::timeline::CTrack);
-

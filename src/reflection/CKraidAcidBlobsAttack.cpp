@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CKraidAcidBlobsAttack
 DREAD_REFLECTED_CLASS(CKraidAcidBlobsAttack, CKraidAttack);
-

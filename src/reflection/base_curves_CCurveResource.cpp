@@ -44,4 +44,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace base::curves::CCurveResource
 DREAD_REFLECTED_CLASS(base::curves::CCurveResource, base::core::CAsset);
-

@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTweakCameraDesiredInterpolationTrack
 DREAD_REFLECTED_CLASS(CCharClassTweakCameraDesiredInterpolationTrack, base::global::timeline::CTrack);
-

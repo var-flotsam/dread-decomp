@@ -95,5 +95,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassPoisonFlyDiveAttack::CTunableCharClassPoisonFlyDiveAttack
 DREAD_REFLECTED_CLASS(CCharClassPoisonFlyDiveAttack::CTunableCharClassPoisonFlyDiveAttack, base::tunable::CTunable);
-
-

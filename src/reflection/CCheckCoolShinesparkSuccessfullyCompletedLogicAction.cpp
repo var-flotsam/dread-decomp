@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCheckCoolShinesparkSuccessfullyCompletedLogicAction
 DREAD_REFLECTED_CLASS(CCheckCoolShinesparkSuccessfullyCompletedLogicAction, CTriggerLogicAction);
-

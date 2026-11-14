@@ -91,5 +91,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassScorpiusTailSmashAttack::CTunableCharClassScorpiusTailSmashAttack
 DREAD_REFLECTED_CLASS(CCharClassScorpiusTailSmashAttack::CTunableCharClassScorpiusTailSmashAttack, base::tunable::CTunable);
-
-

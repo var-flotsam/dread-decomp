@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassKraidLaunchDeathCutsceneEvent
 DREAD_REFLECTED_CLASS(CCharClassKraidLaunchDeathCutsceneEvent, base::global::timeline::CEvent);
-

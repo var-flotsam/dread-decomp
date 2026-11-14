@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CQuetzoaFollowInPathAction
 DREAD_REFLECTED_CLASS(behaviortree::CQuetzoaFollowInPathAction, behaviortree::CBaseAction);
-

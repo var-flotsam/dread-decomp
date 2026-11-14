@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassXParasiteEnableTrailParticlesEvent
 DREAD_REFLECTED_CLASS(CCharClassXParasiteEnableTrailParticlesEvent, base::global::timeline::CEvent);
-

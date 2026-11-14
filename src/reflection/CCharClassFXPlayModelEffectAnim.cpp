@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassFXPlayModelEffectAnim
 DREAD_REFLECTED_CLASS(CCharClassFXPlayModelEffectAnim, base::global::timeline::CEvent);
-

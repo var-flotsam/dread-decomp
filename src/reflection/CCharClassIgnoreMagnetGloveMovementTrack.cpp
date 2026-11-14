@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassIgnoreMagnetGloveMovementTrack
 DREAD_REFLECTED_CLASS(CCharClassIgnoreMagnetGloveMovementTrack, base::global::timeline::CTrack);
-

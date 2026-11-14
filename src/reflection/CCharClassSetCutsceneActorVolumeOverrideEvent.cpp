@@ -60,4 +60,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSetCutsceneActorVolumeOverrideEvent
 DREAD_REFLECTED_CLASS(CCharClassSetCutsceneActorVolumeOverrideEvent, base::global::timeline::CEvent);
-

@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace game::logic::collision::CTrigger
 DREAD_REFLECTED_CLASS(game::logic::collision::CTrigger, CGameObject);
-

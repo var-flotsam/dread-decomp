@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassFXStopModelEffectAnim
 DREAD_REFLECTED_CLASS(CCharClassFXStopModelEffectAnim, base::global::timeline::CEvent);
-

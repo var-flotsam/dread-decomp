@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CStorePosInBlcAction
 DREAD_REFLECTED_CLASS(behaviortree::CStorePosInBlcAction, behaviortree::CBaseAction);
-

@@ -43,4 +43,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace querysystem::CFilterToEvaluator
 DREAD_REFLECTED_CLASS(querysystem::CFilterToEvaluator, querysystem::CEvaluator);
-

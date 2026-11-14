@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CBeamDoorLifeComponent
 DREAD_REFLECTED_CLASS(CBeamDoorLifeComponent, CDoorShieldLifeComponent);
-

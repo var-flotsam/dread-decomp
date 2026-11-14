@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassPlayCurrentEnvironmentSoundEvent
 DREAD_REFLECTED_CLASS(CCharClassPlayCurrentEnvironmentSoundEvent, base::global::timeline::CEvent);
-

@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassInvertRotationEvent
 DREAD_REFLECTED_CLASS(CCharClassInvertRotationEvent, base::global::timeline::CEvent);
-

@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CXParasiteChooseWanderPositionAction
 DREAD_REFLECTED_CLASS(behaviortree::CXParasiteChooseWanderPositionAction, behaviortree::CBaseAction);
-

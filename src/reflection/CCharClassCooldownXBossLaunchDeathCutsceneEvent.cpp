@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCooldownXBossLaunchDeathCutsceneEvent
 DREAD_REFLECTED_CLASS(CCharClassCooldownXBossLaunchDeathCutsceneEvent, base::global::timeline::CEvent);
-

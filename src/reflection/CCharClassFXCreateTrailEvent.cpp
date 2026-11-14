@@ -93,4 +93,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassFXCreateTrailEvent
 DREAD_REFLECTED_CLASS(CCharClassFXCreateTrailEvent, base::global::timeline::CEvent);
-

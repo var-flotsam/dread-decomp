@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CIsAttacking
 DREAD_REFLECTED_CLASS(behaviortree::CIsAttacking, behaviortree::CBaseCondition);
-

@@ -42,4 +42,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CRodotukAIComponent
 DREAD_REFLECTED_CLASS(CRodotukAIComponent, CBehaviorTreeAIComponent);
-

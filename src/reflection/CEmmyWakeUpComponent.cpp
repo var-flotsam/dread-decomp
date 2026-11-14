@@ -48,4 +48,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CEmmyWakeUpComponent
 DREAD_REFLECTED_CLASS(CEmmyWakeUpComponent, CEventPropComponent);
-

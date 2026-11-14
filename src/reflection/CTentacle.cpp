@@ -60,7 +60,6 @@ struct refl_Description : ClassDescription {
 }  // namespace CTentacle
 DREAD_REFLECTED_ROOT_CLASS(CTentacle);
 
-
 void fn_710070a920();
 void fn_710070a988();
 void fn_710070a994();

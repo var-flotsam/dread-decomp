@@ -45,4 +45,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CColliderTriggerComponent
 DREAD_REFLECTED_CLASS(CColliderTriggerComponent, CTriggerComponent);
-

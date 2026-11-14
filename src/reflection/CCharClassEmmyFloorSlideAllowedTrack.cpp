@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassEmmyFloorSlideAllowedTrack
 DREAD_REFLECTED_CLASS(CCharClassEmmyFloorSlideAllowedTrack, base::global::timeline::CTrack);
-

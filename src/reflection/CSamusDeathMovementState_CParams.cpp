@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CSamusDeathMovementState::CParams
 DREAD_REFLECTED_CLASS(CSamusDeathMovementState::CParams, CSamusMovementState::CParams);
-

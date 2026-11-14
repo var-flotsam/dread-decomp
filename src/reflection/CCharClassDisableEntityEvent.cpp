@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassDisableEntityEvent
 DREAD_REFLECTED_CLASS(CCharClassDisableEntityEvent, base::global::timeline::CEvent);
-

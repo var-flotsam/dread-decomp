@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace engine::render::anim::CSkeletalAnimTree
 DREAD_REFLECTED_CLASS(engine::render::anim::CSkeletalAnimTree, base::animation::ISkeletonTransformer);
-

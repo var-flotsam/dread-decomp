@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CChozoCommanderPowerPulseAttack
 DREAD_REFLECTED_CLASS(CChozoCommanderPowerPulseAttack, CChozoCommanderGroundAttack);
-

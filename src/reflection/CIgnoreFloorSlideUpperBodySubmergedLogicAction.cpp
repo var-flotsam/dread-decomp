@@ -43,4 +43,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CIgnoreFloorSlideUpperBodySubmergedLogicAction
 DREAD_REFLECTED_CLASS(CIgnoreFloorSlideUpperBodySubmergedLogicAction, CTriggerLogicAction);
-

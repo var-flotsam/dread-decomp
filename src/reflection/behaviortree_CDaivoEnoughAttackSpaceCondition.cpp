@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CDaivoEnoughAttackSpaceCondition
 DREAD_REFLECTED_CLASS(behaviortree::CDaivoEnoughAttackSpaceCondition, behaviortree::CBaseCondition);
-

@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassStopForceEmmyChasePulseEvent
 DREAD_REFLECTED_CLASS(CCharClassStopForceEmmyChasePulseEvent, base::global::timeline::CEvent);
-

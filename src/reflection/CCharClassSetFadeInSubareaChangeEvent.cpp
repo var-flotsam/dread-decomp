@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSetFadeInSubareaChangeEvent
 DREAD_REFLECTED_CLASS(CCharClassSetFadeInSubareaChangeEvent, base::global::timeline::CEvent);
-

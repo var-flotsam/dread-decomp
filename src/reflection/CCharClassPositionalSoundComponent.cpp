@@ -60,4 +60,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassPositionalSoundComponent
 DREAD_REFLECTED_CLASS(CCharClassPositionalSoundComponent, CCharClassComponent);
-

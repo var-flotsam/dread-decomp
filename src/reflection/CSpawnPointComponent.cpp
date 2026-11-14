@@ -185,7 +185,6 @@ struct refl_Description : ClassDescription {
 }  // namespace CSpawnPointComponent
 DREAD_REFLECTED_CLASS(CSpawnPointComponent, CComponent);
 
-
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).
 namespace {

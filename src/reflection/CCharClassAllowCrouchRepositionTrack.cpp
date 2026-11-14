@@ -52,4 +52,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAllowCrouchRepositionTrack
 DREAD_REFLECTED_CLASS(CCharClassAllowCrouchRepositionTrack, base::global::timeline::CTrack);
-

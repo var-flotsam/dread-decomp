@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassObsydomithonBlockAimTrack
 DREAD_REFLECTED_CLASS(CCharClassObsydomithonBlockAimTrack, base::global::timeline::CTrack);
-

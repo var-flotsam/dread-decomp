@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CAttack
 DREAD_REFLECTED_ROOT_CLASS(CAttack);
-

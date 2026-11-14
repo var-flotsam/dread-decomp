@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassGunUnpossessCheckCantFireTrack
 DREAD_REFLECTED_CLASS(CCharClassGunUnpossessCheckCantFireTrack, base::global::timeline::CTrack);
-

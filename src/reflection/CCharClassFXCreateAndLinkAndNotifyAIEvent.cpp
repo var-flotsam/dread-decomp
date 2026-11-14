@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassFXCreateAndLinkAndNotifyAIEvent
 DREAD_REFLECTED_CLASS(CCharClassFXCreateAndLinkAndNotifyAIEvent, CCharClassFXCreateAndLinkBaseEvent);
-

@@ -91,5 +91,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassEmmyMagmaAIComponent::CTunableEmmyMagmaAIComponent
 DREAD_REFLECTED_CLASS(CCharClassEmmyMagmaAIComponent::CTunableEmmyMagmaAIComponent, base::tunable::CTunable);
-
-

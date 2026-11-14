@@ -94,5 +94,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassGoliathAIComponent::CTunableCharClassGoliathAIComponent
 DREAD_REFLECTED_CLASS(CCharClassGoliathAIComponent::CTunableCharClassGoliathAIComponent, base::tunable::CTunable);
-
-

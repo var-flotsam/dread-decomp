@@ -58,4 +58,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CharClassRechargePlayerLife
 DREAD_REFLECTED_CLASS(CharClassRechargePlayerLife, base::global::timeline::CEvent);
-

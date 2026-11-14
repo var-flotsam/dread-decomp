@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassFadeInEvent
 DREAD_REFLECTED_CLASS(CCharClassFadeInEvent, CCharClassBaseFadeInEvent);
-

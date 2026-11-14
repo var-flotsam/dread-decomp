@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CInfesterBallAttackComponent
 DREAD_REFLECTED_CLASS(CInfesterBallAttackComponent, CAIAttackComponent);
-

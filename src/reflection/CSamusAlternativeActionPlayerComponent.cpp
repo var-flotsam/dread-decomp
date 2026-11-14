@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CSamusAlternativeActionPlayerComponent
 DREAD_REFLECTED_CLASS(CSamusAlternativeActionPlayerComponent, CAlternativeActionPlayerComponent);
-

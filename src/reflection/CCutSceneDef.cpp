@@ -284,10 +284,6 @@ struct refl_Description : ClassDescription {
 }  // namespace CCutSceneDef::CTakeDef
 DREAD_REFLECTED_ROOT_CLASS(CCutSceneDef::CTakeDef);
 
-
-
-
-
 const base::reflection::CType* fn_7100005178();
 const base::reflection::CType* fn_7100009658();
 const base::reflection::CType* fn_7100c837d4();

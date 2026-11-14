@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCooldownXBossCheckDeadInGrabEvent
 DREAD_REFLECTED_CLASS(CCharClassCooldownXBossCheckDeadInGrabEvent, base::global::timeline::CEvent);
-

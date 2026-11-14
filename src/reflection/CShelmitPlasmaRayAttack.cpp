@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CShelmitPlasmaRayAttack
 DREAD_REFLECTED_CLASS(CShelmitPlasmaRayAttack, CAttack);
-

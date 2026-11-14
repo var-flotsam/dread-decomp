@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CTakumakuChaseAction
 DREAD_REFLECTED_CLASS(behaviortree::CTakumakuChaseAction, behaviortree::CBaseAction);
-

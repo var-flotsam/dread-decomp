@@ -43,4 +43,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAutomperAutomaticIrradiationAttack
 DREAD_REFLECTED_CLASS(CCharClassAutomperAutomaticIrradiationAttack, CCharClassAttack);
-

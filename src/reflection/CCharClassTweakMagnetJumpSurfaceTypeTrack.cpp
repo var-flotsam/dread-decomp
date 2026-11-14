@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTweakMagnetJumpSurfaceTypeTrack
 DREAD_REFLECTED_CLASS(CCharClassTweakMagnetJumpSurfaceTypeTrack, base::global::timeline::CTrack);
-

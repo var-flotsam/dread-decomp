@@ -40,7 +40,6 @@ struct refl_Description : ClassDescription {
 }  // namespace CSamusMovementState::CParams
 DREAD_REFLECTED_CLASS(CSamusMovementState::CParams, CStateParams);
 
-
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).
 namespace {

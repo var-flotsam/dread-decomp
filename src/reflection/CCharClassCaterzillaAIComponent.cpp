@@ -41,4 +41,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCaterzillaAIComponent
 DREAD_REFLECTED_CLASS(CCharClassCaterzillaAIComponent, CCharClassBehaviorTreeAIComponent);
-

@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CSabotoruIsFarFromCornerCondition
 DREAD_REFLECTED_CLASS(behaviortree::CSabotoruIsFarFromCornerCondition, behaviortree::CBaseCondition);
-

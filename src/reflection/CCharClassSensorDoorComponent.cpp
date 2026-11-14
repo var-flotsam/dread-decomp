@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSensorDoorComponent
 DREAD_REFLECTED_CLASS(CCharClassSensorDoorComponent, CCharClassComponent);
-

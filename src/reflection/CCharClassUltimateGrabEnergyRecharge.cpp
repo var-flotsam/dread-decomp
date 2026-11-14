@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassUltimateGrabEnergyRecharge
 DREAD_REFLECTED_CLASS(CCharClassUltimateGrabEnergyRecharge, base::global::timeline::CTrack);
-

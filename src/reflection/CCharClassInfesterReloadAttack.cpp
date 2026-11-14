@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassInfesterReloadAttack
 DREAD_REFLECTED_CLASS(CCharClassInfesterReloadAttack, CCharClassAttack);
-

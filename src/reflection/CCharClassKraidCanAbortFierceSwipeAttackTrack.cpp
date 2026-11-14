@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassKraidCanAbortFierceSwipeAttackTrack
 DREAD_REFLECTED_CLASS(CCharClassKraidCanAbortFierceSwipeAttackTrack, base::global::timeline::CTrack);
-

@@ -101,5 +101,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CReserveTankInfo::CTunableReserveTanks
 DREAD_REFLECTED_CLASS(CReserveTankInfo::CTunableReserveTanks, base::tunable::CTunable);
-
-

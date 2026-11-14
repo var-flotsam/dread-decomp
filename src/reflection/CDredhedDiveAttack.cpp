@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CDredhedDiveAttack
 DREAD_REFLECTED_CLASS(CDredhedDiveAttack, CAttack);
-

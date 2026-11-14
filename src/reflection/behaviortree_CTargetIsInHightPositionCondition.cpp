@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CTargetIsInHightPositionCondition
 DREAD_REFLECTED_CLASS(behaviortree::CTargetIsInHightPositionCondition, behaviortree::CBaseCondition);
-

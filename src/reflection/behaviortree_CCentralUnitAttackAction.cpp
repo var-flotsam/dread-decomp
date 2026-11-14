@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CCentralUnitAttackAction
 DREAD_REFLECTED_CLASS(behaviortree::CCentralUnitAttackAction, behaviortree::CBaseAction);
-

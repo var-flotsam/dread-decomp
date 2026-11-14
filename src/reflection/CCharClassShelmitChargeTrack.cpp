@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassShelmitChargeTrack
 DREAD_REFLECTED_CLASS(CCharClassShelmitChargeTrack, base::global::timeline::CTrack);
-

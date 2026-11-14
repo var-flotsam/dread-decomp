@@ -75,7 +75,6 @@ struct refl_Description : ClassDescription {
 }  // namespace media::CMoviePlayer
 DREAD_REFLECTED_ROOT_CLASS(media::CMoviePlayer);
 
-
 void fn_710021e130();
 void fn_710021e198();
 void fn_710021e210();

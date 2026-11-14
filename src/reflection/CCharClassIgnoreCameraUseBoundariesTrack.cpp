@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassIgnoreCameraUseBoundariesTrack
 DREAD_REFLECTED_CLASS(CCharClassIgnoreCameraUseBoundariesTrack, base::global::timeline::CTrack);
-

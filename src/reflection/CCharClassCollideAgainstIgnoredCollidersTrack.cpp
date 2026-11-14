@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCollideAgainstIgnoredCollidersTrack
 DREAD_REFLECTED_CLASS(CCharClassCollideAgainstIgnoredCollidersTrack, base::global::timeline::CTrack);
-

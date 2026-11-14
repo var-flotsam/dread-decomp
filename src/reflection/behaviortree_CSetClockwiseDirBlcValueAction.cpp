@@ -54,4 +54,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CSetClockwiseDirBlcValueAction
 DREAD_REFLECTED_CLASS(behaviortree::CSetClockwiseDirBlcValueAction, behaviortree::CBaseAction);
-

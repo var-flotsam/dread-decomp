@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassTweakShinesparkCollisionActionTrack
 DREAD_REFLECTED_CLASS(CCharClassTweakShinesparkCollisionActionTrack, CCharClassTweakActionBaseTrack);
-

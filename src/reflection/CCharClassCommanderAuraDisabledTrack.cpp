@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCommanderAuraDisabledTrack
 DREAD_REFLECTED_CLASS(CCharClassCommanderAuraDisabledTrack, base::global::timeline::CTrack);
-

@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassEmmyDeathRemoveCUEnergyEvent
 DREAD_REFLECTED_CLASS(CCharClassEmmyDeathRemoveCUEnergyEvent, base::global::timeline::CEvent);
-

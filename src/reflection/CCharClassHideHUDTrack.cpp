@@ -52,4 +52,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassHideHUDTrack
 DREAD_REFLECTED_CLASS(CCharClassHideHUDTrack, base::global::timeline::CTrack);
-

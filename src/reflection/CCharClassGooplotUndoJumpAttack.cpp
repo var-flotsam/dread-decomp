@@ -87,5 +87,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassGooplotUndoJumpAttack::CTunableCharClassGooplotUndoJumpAttack
 DREAD_REFLECTED_CLASS(CCharClassGooplotUndoJumpAttack::CTunableCharClassGooplotUndoJumpAttack, base::tunable::CTunable);
-
-

@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAutsniperInvertAngleEvent
 DREAD_REFLECTED_CLASS(CCharClassAutsniperInvertAngleEvent, base::global::timeline::CEvent);
-

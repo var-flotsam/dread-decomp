@@ -89,5 +89,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CLightingComponent
 DREAD_REFLECTED_CLASS(CLightingComponent, CComponent);
-
-

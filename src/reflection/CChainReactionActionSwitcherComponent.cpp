@@ -57,4 +57,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CChainReactionActionSwitcherComponent
 DREAD_REFLECTED_CLASS(CChainReactionActionSwitcherComponent, CComponent);
-

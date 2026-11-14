@@ -68,4 +68,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CSoundListenerComponent
 DREAD_REFLECTED_CLASS(CSoundListenerComponent, CComponent);
-

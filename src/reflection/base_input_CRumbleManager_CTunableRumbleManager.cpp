@@ -68,7 +68,6 @@ struct refl_Description : ClassDescription {
 }  // namespace base::input::CRumbleManager::CTunableRumbleManager
 DREAD_REFLECTED_CLASS(base::input::CRumbleManager::CTunableRumbleManager, base::tunable::CTunable);
 
-
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).
 namespace {

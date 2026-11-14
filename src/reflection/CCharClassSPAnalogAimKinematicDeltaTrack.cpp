@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSPAnalogAimKinematicDeltaTrack
 DREAD_REFLECTED_CLASS(CCharClassSPAnalogAimKinematicDeltaTrack, base::global::timeline::CTrack);
-

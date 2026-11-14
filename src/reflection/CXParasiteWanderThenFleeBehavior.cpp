@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CXParasiteWanderThenFleeBehavior
 DREAD_REFLECTED_CLASS(CXParasiteWanderThenFleeBehavior, CXParasiteBehavior);
-

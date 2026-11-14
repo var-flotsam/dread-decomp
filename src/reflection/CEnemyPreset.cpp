@@ -58,7 +58,6 @@ struct refl_Description : ClassDescription {
 }  // namespace CEnemyPreset
 DREAD_REFLECTED_ROOT_CLASS(CEnemyPreset);
 
-
 void fn_7100576d50();
 void fn_7100576db8();
 void fn_7100576dc4();

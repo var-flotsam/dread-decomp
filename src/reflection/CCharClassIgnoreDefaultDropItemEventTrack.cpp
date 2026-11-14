@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassIgnoreDefaultDropItemEventTrack
 DREAD_REFLECTED_CLASS(CCharClassIgnoreDefaultDropItemEventTrack, base::global::timeline::CTrack);
-

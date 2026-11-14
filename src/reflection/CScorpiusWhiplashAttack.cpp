@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CScorpiusWhiplashAttack
 DREAD_REFLECTED_CLASS(CScorpiusWhiplashAttack, CScorpiusAttack);
-

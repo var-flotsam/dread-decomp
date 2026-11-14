@@ -57,4 +57,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassHangableGrappleSurfaceComponent
 DREAD_REFLECTED_CLASS(CCharClassHangableGrappleSurfaceComponent, CCharClassGrapplePointComponent);
-

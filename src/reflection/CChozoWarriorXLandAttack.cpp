@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CChozoWarriorXLandAttack
 DREAD_REFLECTED_CLASS(CChozoWarriorXLandAttack, CChozoWarriorAttack);
-

@@ -79,4 +79,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CBossAIComponent
 DREAD_REFLECTED_CLASS(CBossAIComponent, CBehaviorTreeAIComponent);
-

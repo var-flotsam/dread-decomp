@@ -114,4 +114,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassDropItemCrazyEvent
 DREAD_REFLECTED_CLASS(CCharClassDropItemCrazyEvent, base::global::timeline::CEvent);
-

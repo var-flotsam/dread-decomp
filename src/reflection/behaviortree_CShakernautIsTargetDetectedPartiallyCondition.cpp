@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CShakernautIsTargetDetectedPartiallyCondition
 DREAD_REFLECTED_CLASS(behaviortree::CShakernautIsTargetDetectedPartiallyCondition, behaviortree::CBaseCondition);
-

@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CChozoRobotSoldierDashSlashAttack
 DREAD_REFLECTED_CLASS(CChozoRobotSoldierDashSlashAttack, CAttack);
-

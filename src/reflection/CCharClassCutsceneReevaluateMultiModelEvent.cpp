@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCutsceneReevaluateMultiModelEvent
 DREAD_REFLECTED_CLASS(CCharClassCutsceneReevaluateMultiModelEvent, base::global::timeline::CEvent);
-

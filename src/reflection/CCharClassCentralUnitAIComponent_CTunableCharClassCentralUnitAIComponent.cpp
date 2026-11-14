@@ -96,5 +96,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCentralUnitAIComponent
 DREAD_REFLECTED_CLASS(CCharClassCentralUnitAIComponent, CCharClassBehaviorTreeAIComponent);
-
-

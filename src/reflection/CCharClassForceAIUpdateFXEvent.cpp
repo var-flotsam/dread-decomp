@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassForceAIUpdateFXEvent
 DREAD_REFLECTED_CLASS(CCharClassForceAIUpdateFXEvent, base::global::timeline::CEvent);
-

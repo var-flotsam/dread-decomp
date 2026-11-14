@@ -61,4 +61,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassAlternativeActionPlayEvent
 DREAD_REFLECTED_CLASS(CCharClassAlternativeActionPlayEvent, base::global::timeline::CEvent);
-

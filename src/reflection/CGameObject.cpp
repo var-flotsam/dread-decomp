@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CGameObject
 DREAD_REFLECTED_CLASS(CGameObject, base::core::CBaseObject);
-

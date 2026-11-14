@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassGooplotCapsuleComponent
 DREAD_REFLECTED_CLASS(CCharClassGooplotCapsuleComponent, CCharClassComponent);
-

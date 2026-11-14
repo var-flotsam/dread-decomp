@@ -100,5 +100,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassMagnetSurfaceHuskComponent::CTunableCharClassMagnetSurfaceHuskComponent
 DREAD_REFLECTED_CLASS(CCharClassMagnetSurfaceHuskComponent::CTunableCharClassMagnetSurfaceHuskComponent, base::tunable::CTunable);
-
-

@@ -140,5 +140,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCooldownXBossAIComponent
 DREAD_REFLECTED_CLASS(CCharClassCooldownXBossAIComponent, CCharClassBossAIComponent);
-
-

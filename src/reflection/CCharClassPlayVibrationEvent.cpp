@@ -86,4 +86,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassPlayVibrationEvent
 DREAD_REFLECTED_CLASS(CCharClassPlayVibrationEvent, base::global::timeline::CEvent);
-

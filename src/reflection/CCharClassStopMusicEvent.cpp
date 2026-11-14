@@ -58,4 +58,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassStopMusicEvent
 DREAD_REFLECTED_CLASS(CCharClassStopMusicEvent, base::global::timeline::CEvent);
-

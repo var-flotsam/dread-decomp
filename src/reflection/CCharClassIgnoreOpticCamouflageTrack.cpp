@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassIgnoreOpticCamouflageTrack
 DREAD_REFLECTED_CLASS(CCharClassIgnoreOpticCamouflageTrack, base::global::timeline::CTrack);
-

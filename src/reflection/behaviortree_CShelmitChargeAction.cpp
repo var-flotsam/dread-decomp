@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CShelmitChargeAction
 DREAD_REFLECTED_CLASS(behaviortree::CShelmitChargeAction, behaviortree::CBaseAction);
-

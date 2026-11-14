@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassChozoCommanderXCheckWinEvent
 DREAD_REFLECTED_CLASS(CCharClassChozoCommanderXCheckWinEvent, base::global::timeline::CEvent);
-

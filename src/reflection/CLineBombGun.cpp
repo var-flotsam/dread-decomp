@@ -113,5 +113,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CLineBombGun::CTunableLineBomb
 DREAD_REFLECTED_CLASS(CLineBombGun::CTunableLineBomb, base::tunable::CTunable);
-
-

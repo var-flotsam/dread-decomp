@@ -28,4 +28,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace base::core::CAsset
 DREAD_REFLECTED_CLASS(base::core::CAsset, base::core::CBaseObject);
-

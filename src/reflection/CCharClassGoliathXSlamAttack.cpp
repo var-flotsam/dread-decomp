@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassGoliathXSlamAttack
 DREAD_REFLECTED_CLASS(CCharClassGoliathXSlamAttack, CCharClassGoliathAttack);
-

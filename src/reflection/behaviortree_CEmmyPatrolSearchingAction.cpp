@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CEmmyPatrolSearchingAction
 DREAD_REFLECTED_CLASS(behaviortree::CEmmyPatrolSearchingAction, behaviortree::CEmmyPatrolBaseAction);
-

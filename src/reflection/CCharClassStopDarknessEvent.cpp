@@ -56,4 +56,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassStopDarknessEvent
 DREAD_REFLECTED_CLASS(CCharClassStopDarknessEvent, base::global::timeline::CEvent);
-

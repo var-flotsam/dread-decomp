@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassIgnoreHitsFromMeleeFailEntityTrack
 DREAD_REFLECTED_CLASS(CCharClassIgnoreHitsFromMeleeFailEntityTrack, base::global::timeline::CTrack);
-

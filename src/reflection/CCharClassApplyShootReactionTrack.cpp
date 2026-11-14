@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassApplyShootReactionTrack
 DREAD_REFLECTED_CLASS(CCharClassApplyShootReactionTrack, base::global::timeline::CTrack);
-

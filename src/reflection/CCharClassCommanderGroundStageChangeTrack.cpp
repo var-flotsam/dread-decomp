@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassCommanderGroundStageChangeTrack
 DREAD_REFLECTED_CLASS(CCharClassCommanderGroundStageChangeTrack, base::global::timeline::CTrack);
-

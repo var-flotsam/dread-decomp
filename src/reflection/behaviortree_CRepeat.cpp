@@ -51,4 +51,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CRepeat
 DREAD_REFLECTED_CLASS(behaviortree::CRepeat, behaviortree::CDecorator);
-

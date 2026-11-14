@@ -34,4 +34,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CSceneComponent
 DREAD_REFLECTED_CLASS(CSceneComponent, CComponent);
-

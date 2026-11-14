@@ -57,4 +57,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassSetMusicInGameStateEvent
 DREAD_REFLECTED_CLASS(CCharClassSetMusicInGameStateEvent, base::global::timeline::CEvent);
-

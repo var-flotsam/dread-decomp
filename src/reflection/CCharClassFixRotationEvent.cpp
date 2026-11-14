@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassFixRotationEvent
 DREAD_REFLECTED_CLASS(CCharClassFixRotationEvent, base::global::timeline::CEvent);
-

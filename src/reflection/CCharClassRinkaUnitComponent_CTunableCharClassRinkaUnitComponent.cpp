@@ -95,5 +95,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassRinkaUnitComponent
 DREAD_REFLECTED_CLASS(CCharClassRinkaUnitComponent, CCharClassComponent);
-
-

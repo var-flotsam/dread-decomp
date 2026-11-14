@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassIgnoreBossCameraFinishedTrack
 DREAD_REFLECTED_CLASS(CCharClassIgnoreBossCameraFinishedTrack, base::global::timeline::CTrack);
-

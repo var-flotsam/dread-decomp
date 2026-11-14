@@ -58,4 +58,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassKraidSetOpenMouthFactorEvent
 DREAD_REFLECTED_CLASS(CCharClassKraidSetOpenMouthFactorEvent, base::global::timeline::CEvent);
-

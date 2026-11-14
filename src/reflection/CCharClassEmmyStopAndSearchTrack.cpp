@@ -46,4 +46,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassEmmyStopAndSearchTrack
 DREAD_REFLECTED_CLASS(CCharClassEmmyStopAndSearchTrack, base::global::timeline::CTrack);
-

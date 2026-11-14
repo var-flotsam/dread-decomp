@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace GUI::CSubtitleComposition
 DREAD_REFLECTED_CLASS(GUI::CSubtitleComposition, GUI::CDisplayObjectContainer);
-

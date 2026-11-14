@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassWaterValveAllowWaterLoopEndEvent
 DREAD_REFLECTED_CLASS(CCharClassWaterValveAllowWaterLoopEndEvent, base::global::timeline::CEvent);
-

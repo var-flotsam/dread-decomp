@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CVulkranActivationAction
 DREAD_REFLECTED_CLASS(behaviortree::CVulkranActivationAction, behaviortree::CBaseAction);
-

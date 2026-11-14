@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCooldownXBossWindTunnelAttack
 DREAD_REFLECTED_CLASS(CCooldownXBossWindTunnelAttack, CCooldownXBossAttack);
-

@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace querysystem::CChozoRobotSoldierLineOfFireFilter
 DREAD_REFLECTED_CLASS(querysystem::CChozoRobotSoldierLineOfFireFilter, querysystem::CFilter);
-

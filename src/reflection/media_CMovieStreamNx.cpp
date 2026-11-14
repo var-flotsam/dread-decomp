@@ -29,4 +29,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace media::CMovieStreamNx
 DREAD_REFLECTED_CLASS(media::CMovieStreamNx, media::CMediaStream);
-

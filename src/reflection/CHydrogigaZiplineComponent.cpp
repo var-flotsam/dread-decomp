@@ -47,4 +47,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CHydrogigaZiplineComponent
 DREAD_REFLECTED_CLASS(CHydrogigaZiplineComponent, CMagnetSlidingBlockComponent);
-

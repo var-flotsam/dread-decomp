@@ -99,5 +99,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CFanCoolDownComponent
 DREAD_REFLECTED_CLASS(CFanCoolDownComponent, CComponent);
-
-

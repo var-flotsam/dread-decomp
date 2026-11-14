@@ -134,9 +134,6 @@ struct refl_Description : ClassDescription {
 }  // namespace CCharClassKraidBouncingCreaturesAttack
 DREAD_REFLECTED_CLASS(CCharClassKraidBouncingCreaturesAttack, CCharClassKraidAttack);
 
-
-
-
 void fn_71005e00ec();
 void fn_71005e0154();
 void fn_71005e0160();

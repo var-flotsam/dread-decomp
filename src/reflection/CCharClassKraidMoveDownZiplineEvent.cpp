@@ -50,4 +50,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassKraidMoveDownZiplineEvent
 DREAD_REFLECTED_CLASS(CCharClassKraidMoveDownZiplineEvent, base::global::timeline::CEvent);
-

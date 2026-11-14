@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CInterpolationComponent
 DREAD_REFLECTED_CLASS(CInterpolationComponent, CComponent);
-

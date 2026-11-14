@@ -83,4 +83,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CBreakableTileManager::CTunableBreakableTileManager
 DREAD_REFLECTED_CLASS(CBreakableTileManager::CTunableBreakableTileManager, base::tunable::CTunable);
-

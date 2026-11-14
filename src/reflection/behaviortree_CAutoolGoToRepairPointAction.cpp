@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace behaviortree::CAutoolGoToRepairPointAction
 DREAD_REFLECTED_CLASS(behaviortree::CAutoolGoToRepairPointAction, behaviortree::CBaseAction);
-

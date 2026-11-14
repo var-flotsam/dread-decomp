@@ -31,4 +31,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CAutsharpLifeComponent
 DREAD_REFLECTED_CLASS(CAutsharpLifeComponent, CEnemyLifeComponent);
-

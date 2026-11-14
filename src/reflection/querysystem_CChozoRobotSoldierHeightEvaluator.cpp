@@ -39,4 +39,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace querysystem::CChozoRobotSoldierHeightEvaluator
 DREAD_REFLECTED_CLASS(querysystem::CChozoRobotSoldierHeightEvaluator, querysystem::CEvaluator);
-

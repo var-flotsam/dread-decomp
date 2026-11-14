@@ -47,4 +47,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassNailuggerAcidBallsAttack
 DREAD_REFLECTED_CLASS(CCharClassNailuggerAcidBallsAttack, CCharClassAttack);
-

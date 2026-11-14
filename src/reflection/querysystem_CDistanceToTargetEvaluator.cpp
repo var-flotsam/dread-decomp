@@ -73,4 +73,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace querysystem::CDistanceToTargetEvaluator
 DREAD_REFLECTED_CLASS(querysystem::CDistanceToTargetEvaluator, querysystem::CEvaluator);
-

@@ -117,5 +117,3 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CCharClassScorpiusSpikeBallPrickAttack::CTunableCharClassScorpiusSpikeBallPrickAttack
 DREAD_REFLECTED_CLASS(CCharClassScorpiusSpikeBallPrickAttack::CTunableCharClassScorpiusSpikeBallPrickAttack, base::tunable::CTunable);
-
-
