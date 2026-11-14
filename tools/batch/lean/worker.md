@@ -16,19 +16,25 @@ Keep your context small. It is the main cost of this run.
 ## Steps
 
 1. Read `build/lean/ctx/<addr>.txt` and `tools/batch/tips.md` (where a tip and the rules below disagree, the
-   rules win).
+   rules win). The context ends with the reference matches ("Reference matches" below): read them before you
+   write a line.
 2. Write the target file (replace `<What>` with one readable word for what the function does, e.g.
    `src/game/CFoo/CFoo_Reset_l3a7f10.cpp`). The function is at global scope, named `fn_<addr>`.
 3. Run try.py. Revise from the diff and its KIND line (fix calls first, then control flow, then
-   operations, then registers). Use the whole attempt budget from your brief: don't stop early on a low
-   score, since one extra or missing instruction near the top shifts everything after it and can make a
-   near-match score under 50%.
+   operations, then registers). Each run that builds is one attempt, and the budget in your brief is a cap:
+   try.py counts, ends its output with an `ATTEMPT n of N` line that says how many are left, and after the
+   last one prints `BUDGET SPENT` and grades nothing more. So make each attempt a considered one: read the
+   whole diff and fix everything it shows before you run again, not one line per run. A build failure is not
+   an attempt (a few are free). Use the whole budget: don't stop early on a low score, since one extra or
+   missing instruction near the top shifts everything after it and can make a near-match score under 50%.
+   When the budget is spent, go to step 5 with what you have: no other way of grading, and no further edits.
 4. Declarations: before declaring a callee or global, `git grep -n "fn_XXXX\|g_unk_XXXX" -- include src | head -3`.
    Include the header if include/ declares it; otherwise copy an existing signature exactly (forward-declare
    its struct names, cast at the call site). If a file under src/ DEFINES the callee (a line `... fn_XXXX(...) {`),
    the definition's signature is the one to copy: your own struct name for its parameter or result is a second
    set of types for one function, and CI fails it. When it matches, run
-   `.venv/Scripts/python tools/batch/lean/declfile.py <file>` and fix what it lists, then rerun try.py.
+   `.venv/Scripts/python tools/batch/lean/declfile.py <file>` and fix what it lists, then rerun try.py (after a
+   match two confirmation runs are free).
 5. Result. Only a match stays in src/; the coordinator places everything else.
    - MATCH (and no RELOC line): keep the file. Outcome `match`.
    - The budget is spent and the last KIND line says `registers` (the same instructions in another order or
@@ -40,7 +46,30 @@ Keep your context small. It is the main cost of this run.
    Write `build/lean/results/<addr>.json`:
    `{"addr": "<addr>", "outcome": "match"|"registers"|"differs"|"skipped", "best": <0-100>, "attempts": <n>,
      "file": "<the src path you used>", "blocker": "<few words on what still differs>"}`
+   (`attempts` is the n of try.py's last `ATTEMPT n of N` line.)
 6. Reply with exactly one line: `<addr> <outcome> <best>%`.
+
+## Reference matches
+
+The end of your context lists up to three functions that already match, each with its source. They are of
+two kinds, and each one's heading says which and how close it is:
+- "alike in code": its instructions line up with yours once registers and constants are set aside ("62% of
+  its instructions line up with yours"). The first of these comes with the original's disassembly of it, so
+  you can see which source this compiler turned into which instructions. Start from its shape: parameter and
+  return types, struct layouts, its control flow where your disassembly has the same.
+- "names what you name": its code may be nothing like yours, but it calls the callees and reads the globals
+  you do ("both name: ..."). Take from it how each of those is declared and what is passed to it.
+
+Rules for both:
+- Where a reference declares a callee or a global you also use, your declaration is the same one, character
+  for character (step 4 still applies: a header under include/ comes first). A struct you both need: include
+  the header it comes from, or copy its definition exactly under the same name; never a second, different
+  definition of one name.
+- "N% equal place for place" means your function is very likely the same source with other names, offsets
+  or callees: write that, with yours.
+- It is a guide, not a template. Your function does what your disassembly does: where they part, follow the
+  disassembly. Don't copy a reference's comment, name or address into your file.
+- "There is no reference" means nothing close has been matched yet: write from the disassembly alone.
 
 ## Readable first (this outranks a match)
 

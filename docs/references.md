@@ -59,6 +59,18 @@ before vendoring anything.
 | SwitchRecomp (MZ Labs) | The translator and runtime under the recomp above; not used directly | Apache-2.0 |
 | [theboy181/switch-ptchtxt-mods](https://github.com/theboy181/switch-ptchtxt-mods) | Cited by the recomp for the FXAA and 60 FPS cutscene addresses; not used | not checked |
 
+## Model-assisted decompilation (read for method, no code taken)
+
+Read on 2026-11-13 and 2026-11-14 for how other projects run a model on matching work. Two of their lessons are
+in `tools/batch/lean/` since 2026-11-14: reference matches in a worker's context (`similar.py`) and a capped
+attempt budget (`try.py`).
+
+| Project | What we take from it | License |
+|---|---|---|
+| Snowboard Kids 2 decompilation, as written up by Chris Lewis: [Using Coding Agents to Decompile Nintendo 64 Games](https://blog.chrislewis.au/using-coding-agents-to-decompile-nintendo-64-games/), [The Unexpected Effectiveness of One-Shot Decompilation with Claude](https://blog.chrislewis.au/the-unexpected-effectiveness-of-one-shot-decompilation-with-claude/), [The Long Tail of LLM-Assisted Decompilation](https://blog.chrislewis.au/the-long-tail-of-llm-assisted-decompilation/) | The practice of giving the model similar functions that already match, with their source, before it writes | blog posts; no code read |
+| Mizuchi, a pipeline and benchmark for matching decompilation with models: [Can LLMs Really Do Matching Decompilation? I Tested 60 Functions to Find Out](https://gambiconf.substack.com/p/can-llms-really-do-matching-decompilation) | Its figures on attempts: about half the matches on the first attempt, and odds of about a quarter after the third. The reason the attempt budget is a cap of 3 | article; no code read |
+| Super Smash Bros. Melee decompilation's search for similar functions ("decomp-search") | The same practice as the first row, as a tool of that project; known from the survey only, its repository was not read | not checked |
+
 ## Planned (approved, not yet vendored into the repo)
 
 | Project | Why | License |
