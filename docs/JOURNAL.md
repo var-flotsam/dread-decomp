@@ -152,6 +152,23 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Constructor and destructor calls checked (2026-11-14).** Clang 9 ignores `asm("fn_<addr>")` on a
+constructor or destructor: the object calls and defines the mangled name, which `check.py` could not
+resolve, so 6,115 such calls in hand-written objects (147 callees, the SDK's imports aside) went unchecked
+in matched functions. `tools/dread/asm_labels.py` now reads the address from the declaration (the asm
+label; a comment that starts with `fn_<addr>`; a template's `fn_<CTOR>`; `template <> X<0>::~X();  // fn_...`
+for one instantiation; a macro's `/* fn_##p */`) for `check.py`, `trymatch.py`, `drafts.py` and
+`equiv_test.py`, in the object's own source first and then the headers. A matching function's call to one
+that the object does not define and nothing names fails (`RELOC ... special`). Declarations that named no
+address got theirs (33 callees, each from the original's call targets, which agreed at every call and with
+the address in the class name where it has one); `gen_lift`'s and `gen_statics`' guard types carry labels.
+Whole tree: about 26,000 more calls checked and **no wrong target anywhere**. A constructor defined under
+its mangled name now maps too (`UnkRegistryEntry`'s, 0x710002003c, matches). Findings it brought out:
+`fn_710007e7f8` (minor) calls `~CRntString` where the original inlines it (its note now says so); `ref_check`
+lists six more non-matching functions with a callee difference. Promoted with it: `fn_710024657c` (passes).
+`fn_7101213858` is `UnkSingleton_71001039f8`'s constructor and could now be defined as one, but its layout
+and `fn_7101214c94.cpp`'s `UnkAtkSystem_b0150` disagree at +0x950 and +0x558/+0x5a8: held for that decision.
+
 **Readable function names: the name map and `tools/rename.py` (2026-11-14).** The owner asked how the
 address names (`fn_7100219588`) get replaced, and chose to allow names worked out by reading the code,
 recorded as `inferred`. What was in the way: the address is the identity nearly everywhere (data/equivalence.csv,
