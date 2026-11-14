@@ -152,6 +152,26 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Status per translation unit: `tools/tu_status.py` and `data/tu_status.csv` (2026-11-14).** The function
+list says how far each function is; nothing said how far each unit is, which is what OdysseyDecomp's
+`data/file_list.yml` gives a contributor picking work. `tools/tu_status.py` adds each unit of `data/tu_map.csv`
+up from `data/functions/` and the verdicts of `data/equivalence.csv`, so it is derived, never a second source
+of truth, and needs no game data. A unit is `matched` (every function `O`), `done` (every function `O` or `m`
+verified equivalent), `partial`, `untouched` (every function `U`) or `library` (`L` only). On this branch:
+1,686 of 2,772 game units matched (60.8% of units, 19.4% of code bytes), 4 done, 1,082 partial, none
+untouched; 20 partial units are one function short (`python tools/tu_status.py`). `--list STATE` lists a
+state, `--unit <index|name|address>` one unit's functions, `--quality` adds byte-matching and readable per
+unit from check.py's cache (`progress.quality_by_address`, split out of `quality_report`), and
+`tools/progress.py --units` prints the state table.
+- *Who writes the file.* `data/tu_status.csv` is refreshed with `--write` by the session that merges a round,
+  like the README's status card: a row is a unit's counts, so two branches working in one unit would conflict
+  in a file every branch regenerated. The `policy` job prints the units by state and the units a pull request
+  moves in its job summary, and a notice (never a failure) when the file is behind.
+- *What a name is worth.* A unit's name is its primary class hint with the map's confidence beside it; 626
+  units have no hint and read `UnkTU<index>`. The 526 listed functions in no unit are the import stubs.
+- *Not done:* the readable and layout-done states are not in the tracked file, since where a function's
+  source lives is known only from check.py's cache (`--quality` reports them locally).
+
 **First rename batch: nine functions of the X parasite AI component (2026-11-14).** The class whose layout is
 settled (`include/game/UnkXParasiteAI.h`) is the first to lose address names, through `tools/rename.py`:
 `XParasiteAI_SetCanBeAbsorbed`, `_AttractToPowerBomb`, `_FleeFromTarget`, `_SetPrey`, `_FindFarthestEntry`,
