@@ -33,7 +33,10 @@ first call results, set to 0, 1, 2, the function's comparison constants and thei
 and for a memory word what the run's other words held. It reaches the null-argument path, the count that
 hits zero and the `p == g_empty` branch, which is what full coverage most often lacked. Calibrated the same
 day on 94 registers-only mutants: 64 rejected and none accepted without it, 66 rejected and none accepted
-with it.
+with it. Since 2026-11-14 it also tries every index of a jump table up to its bound (jump_table_bounds), makes each
+register compare of a run equal by setting a word that held one side to the other (equal_variants: the
+emulator records the compares' values), and when that still leaves an instruction or a branch outcome
+unreached, sweeps once more, wider.
 
 Needs the dump, the Ghidra-derived caches of the port oracle (build/port/abi_facts_v*.pickle and
 pcode_cache.pickle; tools/worktree_setup.py --oracle copies them into a worktree) and, for names other than
@@ -363,6 +366,53 @@ SYS_CALLS = 8            # of the calls a run made, the first
 SYS_READ = 32            # of the words a run read, the first: their values, for the other words
 SYS_FRONTIER = 4         # runs each round starts from
 SYS_ROUNDS = 2
+# When those leave an instruction or a branch outcome unreached: once more, wider (2026-11-14).
+WIDE_WORDS, WIDE_ROUNDS, WIDE_FRONTIER = 48, 3, 8
+JUMP_TABLE_MAX = 64      # a jump table's bound up to which every index is tried
+SYS_COMPARES = 16        # of the register compares a run made (pcode_emu Machine.compares), the first
+
+
+def jump_table_bounds(code: bytes) -> list[int]:
+    """The bounds of the function's jump tables: `cmp wN, #K` directly followed by `b.hi` or `b.hs` (the
+    unsigned bounds check), with an indirect `br` within the next 12 instructions. Every index from 0 to K is
+    then worth a try (the systematic values alone miss the middle cases of a switch); bounds over
+    JUMP_TABLE_MAX are left to the other values."""
+    import capstone
+    cs = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
+    cs.detail = True
+    insns = list(cs.disasm(code, 0))
+    out: list[int] = []
+    for i, x in enumerate(insns[:-1]):
+        if x.mnemonic != "cmp" or insns[i + 1].mnemonic not in ("b.hi", "b.hs"):
+            continue
+        imm = [op.imm for op in x.operands if op.type == capstone.arm64_const.ARM64_OP_IMM]
+        if not imm or not 0 <= imm[0] <= JUMP_TABLE_MAX:
+            continue
+        if any(y.mnemonic == "br" for y in insns[i + 2:i + 14]) and imm[0] not in out:
+            out.append(imm[0])
+    return out
+
+
+def equal_variants(compares, words, held, inside, limit: int = SYS_COMPARES) -> list[tuple[int, int]]:
+    """(word, value) overrides that make a register compare of the function see two equal values: for each of
+    the first `limit` compares `(address, x, y)` at an address `inside` the function with x != y, each word
+    (of `words`, the mutable ones a run read) whose value as `held(word)` is one side, set to the other side.
+    A pointer-equality test (`p == q`, `p == &pool->empty`) compares two things the function loaded or
+    computed; random and systematic values almost never make them equal, and the other side need not be a
+    value any word held (an address plus a constant)."""
+    out: list[tuple[int, int]] = []
+    seen: set = set()
+    for pc, x, y in [c for c in compares if inside(c[0])][:limit]:
+        if x == y:
+            continue
+        mask = (1 << 32) - 1 if max(x, y) < 1 << 32 else (1 << 64) - 1
+        for w in words:
+            v = held(w) & mask
+            for want, other in ((x, y), (y, x)):
+                if v == want and (w, other) not in seen:
+                    seen.add((w, other))
+                    out.append((w, other))
+    return out
 
 
 def more_inputs(oracle, a: int) -> int:
@@ -373,27 +423,32 @@ def more_inputs(oracle, a: int) -> int:
     null argument (`cbz x0`), the count that reaches zero, the branch whose two sides are both reached by
     other paths. So from each of the first runs kept, every argument register, each of the first memory
     words the run read and each of its first calls' results is set in turn to 0, 1, 2, the constants the
-    function compares with and their neighbours, and all bits set, and a run is kept
-    when it reaches an instruction or a branch outcome of this function that no run before it did. A second
-    round starts from the runs the first one added. More inputs can only add comparisons: a function that
-    differs on one of them fails where it was inconclusive before."""
+    function compares with and their neighbours, every index of a jump table up to its bound
+    (jump_table_bounds), and all bits set, and a run is kept when it reaches an instruction or a branch
+    outcome of this function that no run before it did. A second round starts from the runs the first one
+    added. Then each kept run's register compares are made equal by setting a word that held one side to the
+    other (equal_variants: pointer-equality tests). When an instruction or a branch outcome is still not
+    reached, the sweep runs once more, wider (WIDE_WORDS words, WIDE_ROUNDS rounds, from the WIDE_FRONTIER newest
+    runs).
+    More inputs can only add comparisons: a function that differs on one of them fails where it was
+    inconclusive before."""
     import pcode_emu
     import port_lift
     runs = oracle.originals(a)
     size = oracle.orig.sizes[a]
-    own = set(conditional_branches(oracle.orig.function(a), a))
-    seen: set = set()
-    outs: set = set()
+    code = oracle.orig.function(a)
+    own = set(conditional_branches(code, a))
+    state = {"seen": set(), "outs": set(), "added": 0}
 
     def taken(m) -> set:
         return {o for o in m.outcomes if o[0] in own}
     for _, _, m in runs:
         if not isinstance(m, str):
-            seen |= m.visited
-            outs |= taken(m)
+            state["seen"] |= m.visited
+            state["outs"] |= taken(m)
 
     def done() -> bool:
-        return len(seen) * 4 >= size and not one_way(sorted(own), outs)
+        return len(state["seen"]) * 4 >= size and not one_way(sorted(own), state["outs"])
     f = oracle.af.facts(a)
     regs = sorted((f.args if f is not None else frozenset(range(8))) - {8})
     guard_words = {g & ~7 for g in oracle.preset_orig}
@@ -404,43 +459,76 @@ def more_inputs(oracle, a: int) -> int:
         return w not in guard_words and img.relocs.get(off) is None and not img.in_text(off) \
             and not img.rodata[0] <= off < img.rodata[1]
     floats = [pcode_emu.f_to(v, 4) for v in SYS_FLOATS]
-    # with the constants the function compares with and their neighbours, and all bits set (a sentinel)
-    consts = port_lift.compare_constants(oracle.orig.function(a))
+    # with the constants the function compares with and their neighbours, every index of a jump table, and all
+    # bits set (a sentinel)
+    consts = port_lift.compare_constants(code)
+    tables = [i for k in jump_table_bounds(code) for i in range(k + 1)]
     ints = list(dict.fromkeys([*SYSTEMATIC, *consts, *[c + 1 for c in consts], *[c - 1 for c in consts if c],
-                               0xFFFFFFFF, 0xFFFFFFFFFFFFFFFF]))
-    added = 0
-    frontier = [r for r in runs if not isinstance(r[2], str)][:SYS_FRONTIER]
-    for _ in range(SYS_ROUNDS):
-        found = []
-        for seed, ovr, base in frontier:
-            keys = [("r", k) for k in regs] \
-                + [("m", w) for w in [w for w in base.read_words if mutable(w)][:SYS_WORDS]] \
-                + [("c", n) for n in range(1, min(base.calls, SYS_CALLS) + 1)]
-            # a memory word also takes what the run's other words held: `if (p == g_empty)` compares two things
-            # the function loaded, and only one of them is the input's to choose
-            read = [v for v in dict.fromkeys(port_lift.held(base, w) for w in base.read_words[:SYS_READ]) if v > 2]
-            for key in keys:
-                if key in ovr:
-                    continue
-                pool = floats if key[0] == "r" and key[1] >= 100 else ints + read if key[0] == "m" else ints
-                for v in pool:
-                    if done() or oracle.out_of_time("systematic inputs"):
-                        return added
-                    o = {**ovr, key: port_lift.placed(base, key[1], v) if key[0] == "m" else v}
-                    try:
-                        m = oracle.run_original(a, seed, o)
-                    except pcode_emu.Inconclusive:
+                               *tables, 0xFFFFFFFF, 0xFFFFFFFFFFFFFFFF]))
+
+    def keep(seed, o, m) -> bool:
+        if m.visited - state["seen"] or taken(m) - state["outs"]:
+            runs.append((seed, o, m))
+            state["seen"] |= m.visited
+            state["outs"] |= taken(m)
+            state["added"] += 1
+            return True
+        return False
+
+    def sweep(words_n: int, rounds: int, frontier_n: int, frontier: list) -> bool:
+        """The systematic sweep; False when out of time or done."""
+        for _ in range(rounds):
+            found = []
+            for seed, ovr, base in frontier:
+                keys = [("r", k) for k in regs] \
+                    + [("m", w) for w in [w for w in base.read_words if mutable(w)][:words_n]] \
+                    + [("c", n) for n in range(1, min(base.calls, SYS_CALLS) + 1)]
+                # a memory word also takes what the run's other words held: `if (p == g_empty)` compares two
+                # things the function loaded, and only one of them is the input's to choose
+                read = [v for v in dict.fromkeys(port_lift.held(base, w) for w in base.read_words[:SYS_READ])
+                        if v > 2]
+                for key in keys:
+                    if key in ovr:
                         continue
-                    if m.visited - seen or taken(m) - outs:
-                        runs.append((seed, o, m))
-                        found.append((seed, o, m))
-                        seen |= m.visited
-                        outs |= taken(m)
-                        added += 1
-        frontier = found[:SYS_FRONTIER]
-        if not frontier:
-            break
-    return added
+                    pool = floats if key[0] == "r" and key[1] >= 100 else ints + read if key[0] == "m" else ints
+                    for v in pool:
+                        if done() or oracle.out_of_time("systematic inputs"):
+                            return False
+                        o = {**ovr, key: port_lift.placed(base, key[1], v) if key[0] == "m" else v}
+                        try:
+                            m = oracle.run_original(a, seed, o)
+                        except pcode_emu.Inconclusive:
+                            continue
+                        if keep(seed, o, m):
+                            found.append((seed, o, m))
+            frontier = found[:frontier_n]
+            if not frontier:
+                break
+        return True
+
+    def equalize() -> bool:
+        """equal_variants for every kept run; False when out of time or done."""
+        for seed, ovr, base in [r for r in runs if not isinstance(r[2], str)]:
+            words = [w for w in base.read_words[:SYS_READ] if mutable(w) and ("m", w) not in ovr]
+            for w, v in equal_variants(getattr(base, "compares", ()), words,
+                                       lambda w, base=base: port_lift.held(base, w), lambda pc: a <= pc < a + size):
+                if done() or oracle.out_of_time("equal inputs"):
+                    return False
+                o = {**ovr, ("m", w): port_lift.placed(base, w, v)}
+                try:
+                    m = oracle.run_original(a, seed, o)
+                except pcode_emu.Inconclusive:
+                    continue
+                keep(seed, o, m)
+        return True
+
+    first = [r for r in runs if not isinstance(r[2], str)][:SYS_FRONTIER]
+    if sweep(SYS_WORDS, SYS_ROUNDS, SYS_FRONTIER, first) and equalize() and not done():
+        # from the newest runs: the equal inputs open paths whose own words no sweep has set yet
+        wide = [r for r in runs if not isinstance(r[2], str)][-WIDE_FRONTIER:]
+        if sweep(WIDE_WORDS, WIDE_ROUNDS, WIDE_FRONTIER, wide):
+            equalize()
+    return state["added"]
 
 
 def judge(ctx: Context, oracle, obj: Path, a: int, text: str, budget: float = 60.0) -> tuple[str, str]:

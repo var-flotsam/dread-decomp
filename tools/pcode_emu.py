@@ -544,6 +544,8 @@ def native(w: int) -> bool:
 
 # --- the machine -----------------------------------------------------------------------------------
 
+MAX_COMPARES = 64  # register compares a tracked run records (Machine.compares)
+
 class Machine:
     res_read: set | None = None  # (__init__; a Machine built bare, as the tests do, tracks nothing)
     res_written: set = frozenset()
@@ -705,6 +707,9 @@ class Machine:
         self.scale = 1  # MAX_STEPS, MAX_EVENTS and MAX_SNAPSHOT times this (port_lift raises it to retry a cut-off run)
         self.visited: set[int] = set()
         self.outcomes: set[tuple[int, bool]] = set()  # (address of a conditional branch, taken)
+        # (address, first value, second value) of each register-to-register compare (`cmp x, x`), the first
+        # MAX_COMPARES, when reads are tracked: what a caller sets equal to reach a pointer-equality branch.
+        self.compares: list[tuple[int, int, int]] = []
         for a, v in preset.items():
             self.store(a, 1, v, track=False)
         self.own = lift.data if lift else (0, 0)
@@ -1402,6 +1407,12 @@ class Machine:
                     return
                 self.visited.add(pc)
                 w = self.code_word(pc)
+                if (w & 0x7FE0FC1F) == 0x6B00001F and self.track and len(self.compares) < MAX_COMPARES:
+                    # cmp wN/xN, wM/xM (subs to the zero register, no shift): both values, as they are now
+                    n, m = (w >> 5) & 31, (w >> 16) & 31
+                    if n != 31 and m != 31:
+                        size = 8 if w >> 31 else 4
+                        self.compares.append((pc, self.reg(X0 + 8 * n, size), self.reg(X0 + 8 * m, size)))
                 if w == TRAP_WORD or (w & 0xFFE0001F) == 0xD4200000:  # LLVM's trap word, brk (__builtin_trap)
                     self.finish("trap")  # (an end both runs must reach after the same events)
                     return
