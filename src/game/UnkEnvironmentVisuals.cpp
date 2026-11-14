@@ -29,17 +29,6 @@ using base::math::UnkVector4D;
 struct UnkEnvironmentFade;
 using UnkEnvFadeColor = base::math::UnkVector4D;
 
-// A 2D vector passed by value as a copy in memory (its copy constructor is user-provided).
-struct UnkEnvVec2 {
-    f32 x;
-    f32 y;
-
-    UnkEnvVec2(const UnkEnvVec2& other) {
-        x = other.x;
-        y = other.y;
-    }
-};
-
 // STransition (reflection; 0x10 bytes): the preset the transition is from (sPreset). The times
 // of each kind follow it.
 struct UnkTransition {

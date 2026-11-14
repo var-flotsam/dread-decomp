@@ -2,6 +2,7 @@
 // hashed from two words at 0x30; buckets read through fn_7100eb3814) and passes a box around
 // the record's position (100 units to either side, its height up) to fn_7100e796c4, first
 // initialising the record's part at 0xc once.
+#include "game/UnkTU2565.h"
 #include "game/UnkTU2566.h"
 #include "game/UnkTU2567.h"
 #include "types.h"
@@ -56,8 +57,6 @@ struct UnkRecordOwner {
     u8 field_0x118[0xd64210 - 0x118];
     UnkRecordBuckets records;
 };
-
-void fn_7100e796c4(void* target, const UnkBox* box, const UnkBox* bounds);
 
 // NON_MATCHING(minor): the original loads the record's y as an integer (copied to the box as
 // is, moved to a float register for the sum) and keeps x alone in a callee-saved register; ours

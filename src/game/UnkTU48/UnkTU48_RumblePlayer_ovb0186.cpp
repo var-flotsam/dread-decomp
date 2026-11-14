@@ -6,10 +6,10 @@
 
 #include "base/UnkDefaultAllocator.h"
 #include "base/input/UnkHidVibration.h"
+#include "base/math/UnkZeroVector3.h"
 #include "types.h"
 
 extern char unk_7101a1a3a8[];
-extern char g_unk_7101647790[];
 
 struct UnkRumbleVec_ovb0186 {
     f32 x, y, z;
@@ -54,7 +54,7 @@ struct UnkVibrationPlayer_ovb0186 : UnkVibrationPlayerBase_ovb0186 {
         from = 0.0f;
         to = 0.0f;
         duration = 0.0f;
-        const u32* src = reinterpret_cast<const u32*>(g_unk_7101647790);
+        const u32* src = reinterpret_cast<const u32*>(&g_unk_7101647790);
         u32* dst = reinterpret_cast<u32*>(&offset);
         dst[0] = src[0];
         dst[1] = src[1];

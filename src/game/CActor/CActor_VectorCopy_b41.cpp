@@ -8,10 +8,6 @@
 #include "types.h"
 
 // The move constructor, typed as CCentralUnitComponent's 0x40-byte half (one declaration per symbol).
-struct UnkHalf_cu {
-    u8 data[0x40];
-    UnkHalf_cu(UnkHalf_cu&& other) asm("fn_71002458a4");
-};
 
 struct UnkEntry_b41a1 {
     virtual ~UnkEntry_b41a1();

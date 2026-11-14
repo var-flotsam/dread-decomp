@@ -9,7 +9,6 @@
 #include "game/UnkSwitchObject.h"
 #include "types.h"
 
-extern char g_unk_7101647790[];
 
 struct UnkObject;
 
@@ -33,7 +32,7 @@ struct UnkSteamJetEffects_A4_b75 {
 static inline __attribute__((always_inline)) void PlaceSteamJetEffect(UnkSteamJetEffects_A4_b75* self, char* effect,
                                                                       char* UnkSteamJetEffects_A4_b75::*field) {
     fn_710115217c(self->object, effect, 0, 1, &g_unk_7101d470e0,
-                  base::math::CVector3D(*reinterpret_cast<const base::math::CVector3D*>(g_unk_7101647790)),
+                  base::math::CVector3D(g_unk_7101647790),
                   base::math::CVector3D(g_unk_710164779c), nullptr);
     fn_7101152c0c(static_cast<UnkObject*>(self->object), self->*field, 1, 1);
     fn_7100146e60(reinterpret_cast<UnkSwitchObject*>(self->*field), false);

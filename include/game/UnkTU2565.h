@@ -7,6 +7,7 @@
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
+struct UnkBox;
 struct UnkReflType;
 struct UnkTUHeader;
 struct UnkCharMap;
@@ -43,3 +44,4 @@ void fn_7100e76fd4(UnkReflType* self, const base::global::CStrId& name, UnkReflT
 void fn_7100e775b8(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
 void fn_7100e77d68(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
 extern UnkPropertyEx<> g_unk_71727c94c0;
+void fn_7100e796c4(void* target, const UnkBox* box, const UnkBox* bounds);
