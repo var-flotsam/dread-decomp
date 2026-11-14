@@ -27,7 +27,7 @@ struct UnkXParasitePreySink_b60a4 {
     UnkXParasitePreyName_b60a4* field_0x2b8;
 };
 
-void fn_71006ea9a4(UnkXParasiteAI* self, UnkWeakTarget* prey) {
+void XParasiteAI_SetPrey(UnkXParasiteAI* self, UnkWeakTarget* prey) {
     if (!prey)
         return;
     // Declared past a goto (no lifetime markers), so the three keep their own slots.

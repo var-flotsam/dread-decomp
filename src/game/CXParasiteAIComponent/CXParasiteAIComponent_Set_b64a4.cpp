@@ -7,5 +7,5 @@
 void fn_71006eba00(UnkXParasiteAI* self, u32 value, bool flag) {
     self->field_0x147b8 = true;
     self->field_0x14724 = value;
-    fn_71006ea3fc(self, flag);
+    XParasiteAI_SetCanBeAbsorbed(self, flag);
 }

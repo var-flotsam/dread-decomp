@@ -22,7 +22,7 @@ extern const u64 g_unk_710164a838;                                              
 // Sets the flag at +0x146e8. On a change the flag is stored in the blackboard section (unless the
 // blackboard is locked), and the owner's timeline component drops the id while the flag is set or
 // gets it (with the type id, after a delay of -1) when it is clear and unknown.
-void fn_71006ea3fc(UnkXParasiteAI* self, bool value) {
+void XParasiteAI_SetCanBeAbsorbed(UnkXParasiteAI* self, bool value) {
     bool& flag = self->field_0x146e8;
     if (flag == value)
         return;

@@ -34,12 +34,16 @@ equivalent) has a row of its own: acceptable now, a match later. "Readable" is a
 (hand-written, with none of tools/fakematch.py's steering forms in the function), not a reading. The same
 figures go under the handoff's table with --handoff when check.py's cache is there.
 
+`--units` adds the translation units by state (matched, done, partial, untouched), from tools/tu_status.py,
+which has the rest: one unit's functions, the units nearest to matched, data/tu_status.csv.
+
 Usage: python tools/progress.py [--json build/progress.json] [--top 15]
        python tools/progress.py --slice boot [--version 2.1.0] [--json build/progress.json]
        python tools/progress.py --slice boot --handoff
        python tools/progress.py --slice-from CGameBlackboard::refl_GetClass
        python tools/progress.py --origin [--version 2.1.0]
        python tools/progress.py --quality [--version 2.1.0]
+       python tools/progress.py --units
 """
 
 from __future__ import annotations
@@ -187,15 +191,10 @@ def quality(status: str, hand: bool, steered: bool, verified: bool) -> str:
     return "equivalent" if status == "m" and verified else "unproven"
 
 
-def quality_report(version: str, rows: list[dict], verified: frozenset[int] | None = None) -> dict:
-    """The game's functions by the two qualities the project needs of each: byte-matching, and readable.
-
-    Readable is measured as a floor, by what a tool can see: the function's source is hand-written (not in a
-    generated directory) and has none of the forms that are there to steer the compiler (tools/fakematch.py's
-    offset casts, `volatile`, empty blocks and barriers, attributed to the function they sit in). It cannot
-    see a wrong comment, a meaningless name, a struct private to one file or a form inside a shared inline
-    helper: reading does (tools/sample_review.py). Needs check.py's diff cache for where each function is
-    defined."""
+def quality_by_address(version: str, rows: list[dict], verified: frozenset[int] | None = None) -> dict[int, tuple[str, bool]]:
+    """Each function's row of the completeness table (a key of QUALITIES), and whether its source has a
+    steering form. tools/tu_status.py --quality adds these up per translation unit; quality_report, below,
+    for the whole binary, and its docstring says what readable means here."""
     import fakematch
     verified = VERIFIED if verified is None else verified
     cache = ROOT / "build" / "check" / version
@@ -223,15 +222,31 @@ def quality_report(version: str, rows: list[dict], verified: frozenset[int] | No
                                                                          src.read_text(encoding="utf-8", errors="replace"))
                    if h.kind in STEERING and h.function}
         steered.update(e["address"] for e in mine if e.get("name", "").split("::")[-1] in flagged)
-    out = {k: {"functions": 0, "bytes": 0} for k in QUALITIES}
-    out["equivalent_readable"] = {"functions": 0, "bytes": 0}
+    out: dict[int, tuple[str, bool]] = {}
     for a, r in by_addr.items():
         k = quality(r["status"], a in hand, a in steered, a in verified)
         if k == "match_generated" and a not in seen:
             k = "unproven"  # an O the cache does not know: the cache is older than the function list
-        for key in [k] + (["equivalent_readable"] if k == "equivalent" and a not in steered else []):
+        out[a] = (k, a in steered)
+    return out
+
+
+def quality_report(version: str, rows: list[dict], verified: frozenset[int] | None = None) -> dict:
+    """The game's functions by the two qualities the project needs of each: byte-matching, and readable.
+
+    Readable is measured as a floor, by what a tool can see: the function's source is hand-written (not in a
+    generated directory) and has none of the forms that are there to steer the compiler (tools/fakematch.py's
+    offset casts, `volatile`, empty blocks and barriers, attributed to the function they sit in). It cannot
+    see a wrong comment, a meaningless name, a struct private to one file or a form inside a shared inline
+    helper: reading does (tools/sample_review.py). Needs check.py's diff cache for where each function is
+    defined."""
+    by_addr = {int(r["address"], 16): r for r in rows}
+    out = {k: {"functions": 0, "bytes": 0} for k in QUALITIES}
+    out["equivalent_readable"] = {"functions": 0, "bytes": 0}
+    for a, (k, steered) in quality_by_address(version, rows, verified).items():
+        for key in [k] + (["equivalent_readable"] if k == "equivalent" and not steered else []):
             out[key]["functions"] += 1
-            out[key]["bytes"] += int(r["size"])
+            out[key]["bytes"] += int(by_addr[a]["size"])
     return out
 
 
@@ -316,6 +331,8 @@ def main() -> int:
     ap.add_argument("--quality", action="store_true",
                     help="the functions by the two qualities each needs: byte-matching, and readable (needs "
                          "build/check/<version>/)")
+    ap.add_argument("--units", action="store_true",
+                    help="the translation units by state (tools/tu_status.py has the per-unit views)")
     args = ap.parse_args()
     if args.handoff and args.slice_from:
         ap.error("--handoff takes the boot slice or none, not --slice-from")
@@ -368,6 +385,15 @@ def main() -> int:
         print()
         print("completeness by the two qualities each function needs, byte-matching and readable (whole binary):")
         print_quality(report["quality"], overall)
+
+    if args.units:
+        import tu_map
+        import tu_status
+        units = tu_status.build(tu_map.load_map(), rows, VERIFIED)
+        report["units"] = tu_status.by_state(units)
+        print()
+        print("translation units by state (data/tu_map.csv; tools/tu_status.py --list STATE, --unit U):")
+        print("\n".join(tu_status.state_table(units)))
 
     if args.handoff:
         update_handoff(args.handoff, overall, report["slice"]["overall"] if "slice" in report else None,

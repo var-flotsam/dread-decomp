@@ -250,6 +250,61 @@ or more.
 
 Next batch: the same order on a class whose unit is mostly the class's own methods, as CEW's was. Make the link holder's
 three types one `CGameLink<CActor>` first; that would land 0x7101131b98.
+**Status per translation unit: `tools/tu_status.py` and `data/tu_status.csv` (2026-11-14).** The function
+list says how far each function is; nothing said how far each unit is, which is what OdysseyDecomp's
+`data/file_list.yml` gives a contributor picking work. `tools/tu_status.py` adds each unit of `data/tu_map.csv`
+up from `data/functions/` and the verdicts of `data/equivalence.csv`, so it is derived, never a second source
+of truth, and needs no game data. A unit is `matched` (every function `O`), `done` (every function `O` or `m`
+verified equivalent), `partial`, `untouched` (every function `U`) or `library` (`L` only). On this branch:
+1,686 of 2,772 game units matched (60.8% of units, 19.4% of code bytes), 4 done, 1,082 partial, none
+untouched; 20 partial units are one function short (`python tools/tu_status.py`). `--list STATE` lists a
+state, `--unit <index|name|address>` one unit's functions, `--quality` adds byte-matching and readable per
+unit from check.py's cache (`progress.quality_by_address`, split out of `quality_report`), and
+`tools/progress.py --units` prints the state table.
+- *Who writes the file.* `data/tu_status.csv` is refreshed with `--write` by the session that merges a round,
+  like the README's status card: a row is a unit's counts, so two branches working in one unit would conflict
+  in a file every branch regenerated. The `policy` job prints the units by state and the units a pull request
+  moves in its job summary, and a notice (never a failure) when the file is behind.
+- *What a name is worth.* A unit's name is its primary class hint with the map's confidence beside it; 626
+  units have no hint and read `UnkTU<index>`. The 526 listed functions in no unit are the import stubs.
+- *Not done:* the readable and layout-done states are not in the tracked file, since where a function's
+  source lives is known only from check.py's cache (`--quality` reports them locally).
+
+**First rename batch: nine functions of the X parasite AI component (2026-11-14).** The class whose layout is
+settled (`include/game/UnkXParasiteAI.h`) is the first to lose address names, through `tools/rename.py`:
+`XParasiteAI_SetCanBeAbsorbed`, `_AttractToPowerBomb`, `_FleeFromTarget`, `_SetPrey`, `_FindFarthestEntry`,
+`_PickWeightedChoice`, `_Reset`, `_ApplyBehavior`, `_SetEffectActive` (reasons in `data/names.csv`). Three rest
+on the blackboard property names the unit's static initialiser registers (`fn_71006e5b10`: the ids at
+`g_unk_717270b898` + 0x20.. are v3StayPos, v3PowerBombPos, fInitTime, fWanderTime, bCanBeAbsorbed,
+bIsBeingAttracted, ...), which is how `g_unk_717270b8d8` reads as bCanBeAbsorbed. The functions are still free
+functions taking the component, so the names carry the class as a prefix; they become members when the class
+does. Left with their addresses, because what they are for is not established yet: the destructor and the
+static initialiser, `fn_71006eb590`, `fn_71006eba00`, `fn_71006e7754`, `fn_71006ea160`, `fn_71006e9fcc`,
+`fn_71006e808c`, `fn_71006e8a18`, `fn_71006e75e8` (the grab/link reading in their comments is itself a guess).
+A rename changes no code: only the nine rows' names differ in `data/functions/`.
+
+**Three rules taken from BotW's agent file; what other public projects do (2026-11-14).** A survey of the
+public projects nearest to this one, for what is worth borrowing. No project found rebuilds with Clang 9.0.x:
+zeldaret/botw uses upstream 4.0.1, OdysseyDecomp an older upstream Clang, shibbo/3DWDecomp the SDK's own
+compiler (which this project's rules forbid), MinecraftLCE an unstated Clang. Every Switch game that runs on PC
+today is a static recompilation or a compatibility layer; none is a source port from a decompilation.
+Samus Returns has a recompiled port (msr2ds) and no decompilation, so there is no other Mercury source to read.
+
+The owner adopted three rules of zeldaret/botw's `AGENTS.md` (`CLAUDE.md`, "Hard rules" and "Conventions"):
+code no developer would write is an optimization not undone yet; no `goto` to force a match; no assembly in
+commit messages or pull request descriptions. Not adopted: its registers-only rule (tier 2 is stricter), human
+review before every pull request, its work-order and cast rules. Its "name the component and most of its fields
+first" is taken as an order of work, not a naming gate: the class's layout header before its functions, names
+only with evidence. That order is to be tried on one class and its cost per match compared with the pilot's
+(736,000 tokens a match) before it becomes a rule.
+
+- 406 files under `src/` hold a `goto` today (`grep -rIl "goto " src | wc -l`); `tools/fakematch.py` does not
+  list them yet. A `goto` kind there would make the new rule checkable.
+- From the AI-assisted projects that finished (Snowboard Kids, the Mizuchi benchmark): give a worker similar,
+  already matched functions as references; cap attempts, since about half of the matches come on the first
+  try and few after the third; keep the permuter out of the worker's loop. The first two went to their own
+  threads.
+
 **The X parasite component's two leftovers: the destructor over the layout, and the owner's views
 (2026-11-13).** The pilot (below) left two things outside `include/game/UnkXParasiteAI.h`. Both are done, and
 every source that could see the change compiles to the same instructions and relocations as before: the 29

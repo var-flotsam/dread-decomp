@@ -16,4 +16,4 @@ struct UnkXParasiteResult_b0252 {
     }
 };
 
-UnkXParasiteResult_b0252 fn_71006eb7cc(UnkXParasiteAI* self);
+UnkXParasiteResult_b0252 XParasiteAI_FindFarthestEntry(UnkXParasiteAI* self);
