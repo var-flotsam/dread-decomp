@@ -45,7 +45,7 @@ bool fn_71006eb590(UnkXParasiteAI* self) {
 void fn_71006ea160(UnkXParasiteAI* self) {
     UnkWeakHandle* link = self->link;
     if (!link || !link->target) {
-        fn_71006e892c(self);
+        XParasiteAI_FleeFromTarget(self);
         return;
     }
     UnkXParasiteGrabbed* object = Grabbed(link);

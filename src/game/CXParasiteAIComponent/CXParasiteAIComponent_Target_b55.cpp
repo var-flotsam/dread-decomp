@@ -19,7 +19,7 @@ extern UnkPropertyName g_unk_717270b8c0 __attribute__((visibility("hidden")));  
 
 struct UnkVector3_b55;
 
-void fn_71006eb628(UnkXParasiteAI* self, UnkVector3_b55* position) {
+void XParasiteAI_AttractToPowerBomb(UnkXParasiteAI* self, UnkVector3_b55* position) {
     CBlackboard* blackboard = &self->blackboard;
     bool* locked = &blackboard->field_0xe8;
     self->field_0x146f0 = 0;
