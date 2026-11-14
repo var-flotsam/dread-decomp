@@ -154,6 +154,18 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Collection and pointer type descriptors: member roles (2026-11-14).** `CCollectionType`'s and
+`CPointerType`'s members now carry names, read from the slot functions the generated descriptors name
+(`src/reflection_types/`) and from the matched users. A collection's `u32` at +0xe0 is its kind: 1 for the
+115 indexed collections (key `unsigned`), 2 for the keyed ones (50 keyed by `CStrId`). Its accessors, in order
+from +0x108: size, clear, add (copy, move), erase by key, element at a position, find by key (null when
+absent), set at a key (copy, move), begin and end, const begin and const end. Add's copy and move split is by
+analogy with set's; the rest is read directly. A pointer type's bool at +0xe0 is whether it owns its pointee,
+and its three functions are get (the pointee's dynamic type and address), set (a no-op for some types) and
+increment. Only the class headers changed: the 20 sources that include them build to the same objects. The
+traits the generator writes (`UnkReflCollectionTraits`, `UnkReflPointerTraits`) keep their offset names until
+the type-descriptor work renames them.
+
 **Held equivalent drafts promoted; permuter pass over the drafts (2026-11-14).** `tools/permute.py --drafts`
 (1,500 tries each, 8 jobs, 25 min) tried 86 of the 87 registers-only drafts and matched none; `fn_7100f5d270`
 was skipped (its body comes from a template macro). Eight came closer without matching (differing instructions

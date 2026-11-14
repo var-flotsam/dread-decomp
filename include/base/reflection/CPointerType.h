@@ -3,7 +3,7 @@
 // base::reflection::CPointerType: the descriptor of a pointer type. The name comes from the
 // kind string its constructor hashes ("base::reflection::CPointerType", length 0x1e).
 // sizeof(T) is usually 8, but some pointer-like iterator types are larger (0x38).
-// Layout: CType, then a bool, the pointee's descriptor and three type-specific functions.
+// Layout: CType, then whether it owns its pointee, the pointee's descriptor and three accessors.
 //
 // Non-class type getters (refl_GetType<T>) are templates in the original: their guard and
 // static descriptor are reached through the GOT, as weak symbols are under -fPIC. Generated
@@ -26,11 +26,11 @@ public:
     CPointerType(const base::global::CStrId& name, T* extra, void* extra2);
     ~CPointerType() override;
 
-    bool field_0xe0;
+    bool m_owned;  // whether the pointer owns its pointee (read by the Lua binding)
     const CType* m_pointee;
-    UnkFn field_0xf0;
-    UnkFn field_0xf8;
-    UnkFn field_0x100;
+    UnkFn m_get;        // the pointee as a typed reference: its dynamic type and its address
+    UnkFn m_set;        // store the address of a typed reference (a no-op for some types)
+    UnkFn m_increment;  // advance by one
 };
 static_assert(sizeof(CPointerType) == 0x108, "CPointerType layout");
 
@@ -46,9 +46,9 @@ CPointerType::CPointerType(const base::global::CStrId& name, T*, void*)
              reinterpret_cast<UnkFn_0x48>(UnkReflPointerTraits<T>::fn_0x48),
              reinterpret_cast<UnkFn_0x48>(UnkReflPointerTraits<T>::fn_0x50)},
             false),
-      field_0xe0(UnkReflPointerTraits<T>::field_0xe0), m_pointee(UnkReflPointerTraits<T>::pointee()),
-      field_0xf0(UnkReflPointerTraits<T>::fn_0xf0), field_0xf8(UnkReflPointerTraits<T>::fn_0xf8),
-      field_0x100(UnkReflPointerTraits<T>::fn_0x100) {}
+      m_owned(UnkReflPointerTraits<T>::field_0xe0), m_pointee(UnkReflPointerTraits<T>::pointee()),
+      m_get(UnkReflPointerTraits<T>::fn_0xf0), m_set(UnkReflPointerTraits<T>::fn_0xf8),
+      m_increment(UnkReflPointerTraits<T>::fn_0x100) {}
 
 // Per-getter facts (generated): the type's name and its descriptor constructor's tag.
 template <class G>

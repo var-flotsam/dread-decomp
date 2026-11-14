@@ -20,27 +20,28 @@ public:
     CCollectionType(const base::global::CStrId& name, T* extra, void* extra2);
     ~CCollectionType() override;
 
-    u32 field_0xe0;
-    const CType* m_key;      // the index type (u32 for arrays)
+    u32 m_kind;               // 1: indexed by position (the key is u32); 2: keyed (a map)
+    const CType* m_key;       // the index type (u32 for arrays)
     const CType* m_element;
     const CType* m_iterator;        // pointer type of TElementIterator
     const CType* m_const_iterator;  // pointer type of TElementConstIterator
-    // Accessors (+0x108..+0x148), then two set after the iterator type and two after the
-    // const-iterator type. Separate members, not arrays: an all-constant array initialiser
-    // would be copied from a table instead of loaded through the GOT.
-    UnkFn field_0x108;
-    UnkFn field_0x110;
-    UnkFn field_0x118;
-    UnkFn field_0x120;
-    UnkFn field_0x128;
-    UnkFn field_0x130;
-    UnkFn field_0x138;
-    UnkFn field_0x140;
-    UnkFn field_0x148;
-    UnkFn field_0x150;
-    UnkFn field_0x158;
-    UnkFn field_0x160;
-    UnkFn field_0x168;
+    // Accessors, read from the slot functions the generated descriptors name. Separate members,
+    // not arrays: an all-constant array initialiser would be copied from a table instead of
+    // loaded through the GOT. The two pairs after m_iterator and m_const_iterator are set in
+    // the constructor's body, after those types.
+    UnkFn m_size;        // the element count
+    UnkFn m_clear;
+    UnkFn m_add_copy;    // insert a value at a key (an array's index, or appended to a map);
+    UnkFn m_add_move;    // copy and move by analogy with m_set_copy and m_set_move
+    UnkFn m_erase;       // by key
+    UnkFn m_at;          // the element at a position, unchecked
+    UnkFn m_find;        // the element at a key, or null
+    UnkFn m_set_copy;    // assign the value at a key
+    UnkFn m_set_move;
+    UnkFn m_begin;       // write an iterator to the first, or past the last, element
+    UnkFn m_end;
+    UnkFn m_const_begin;
+    UnkFn m_const_end;
 };
 static_assert(sizeof(CCollectionType) == 0x170, "CCollectionType layout");
 
@@ -57,24 +58,24 @@ CCollectionType::CCollectionType(const base::global::CStrId& name, T*, void*)
              reinterpret_cast<UnkFn_0x48>(UnkReflCollectionTraits<T>::fn_0x48),
              reinterpret_cast<UnkFn_0x48>(UnkReflCollectionTraits<T>::fn_0x50)},
             false),
-      field_0xe0(UnkReflCollectionTraits<T>::field_0xe0), m_key(UnkReflCollectionTraits<T>::key()),
+      m_kind(UnkReflCollectionTraits<T>::field_0xe0), m_key(UnkReflCollectionTraits<T>::key()),
       m_element(UnkReflCollectionTraits<T>::element()), m_iterator(nullptr), m_const_iterator(nullptr),
-      field_0x108(UnkReflCollectionTraits<T>::fn_0x108),
-      field_0x110(UnkReflCollectionTraits<T>::fn_0x110),
-      field_0x118(UnkReflCollectionTraits<T>::fn_0x118),
-      field_0x120(UnkReflCollectionTraits<T>::fn_0x120),
-      field_0x128(UnkReflCollectionTraits<T>::fn_0x128),
-      field_0x130(UnkReflCollectionTraits<T>::fn_0x130),
-      field_0x138(UnkReflCollectionTraits<T>::fn_0x138),
-      field_0x140(UnkReflCollectionTraits<T>::fn_0x140),
-      field_0x148(UnkReflCollectionTraits<T>::fn_0x148),
-      field_0x150(nullptr), field_0x158(nullptr), field_0x160(nullptr), field_0x168(nullptr) {
+      m_size(UnkReflCollectionTraits<T>::fn_0x108),
+      m_clear(UnkReflCollectionTraits<T>::fn_0x110),
+      m_add_copy(UnkReflCollectionTraits<T>::fn_0x118),
+      m_add_move(UnkReflCollectionTraits<T>::fn_0x120),
+      m_erase(UnkReflCollectionTraits<T>::fn_0x128),
+      m_at(UnkReflCollectionTraits<T>::fn_0x130),
+      m_find(UnkReflCollectionTraits<T>::fn_0x138),
+      m_set_copy(UnkReflCollectionTraits<T>::fn_0x140),
+      m_set_move(UnkReflCollectionTraits<T>::fn_0x148),
+      m_begin(nullptr), m_end(nullptr), m_const_begin(nullptr), m_const_end(nullptr) {
     m_iterator = UnkReflCollectionTraits<T>::iterator();
-    field_0x150 = UnkReflCollectionTraits<T>::fn_0x150;
-    field_0x158 = UnkReflCollectionTraits<T>::fn_0x158;
+    m_begin = UnkReflCollectionTraits<T>::fn_0x150;
+    m_end = UnkReflCollectionTraits<T>::fn_0x158;
     m_const_iterator = UnkReflCollectionTraits<T>::const_iterator();
-    field_0x160 = UnkReflCollectionTraits<T>::fn_0x160;
-    field_0x168 = UnkReflCollectionTraits<T>::fn_0x168;
+    m_const_begin = UnkReflCollectionTraits<T>::fn_0x160;
+    m_const_end = UnkReflCollectionTraits<T>::fn_0x168;
 }
 
 }  // namespace base::reflection
