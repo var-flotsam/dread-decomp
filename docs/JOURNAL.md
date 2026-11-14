@@ -165,26 +165,6 @@ static initialiser, `fn_71006eb590`, `fn_71006eba00`, `fn_71006e7754`, `fn_71006
 `fn_71006e808c`, `fn_71006e8a18`, `fn_71006e75e8` (the grab/link reading in their comments is itself a guess).
 A rename changes no code: only the nine rows' names differ in `data/functions/`.
 
-**Readable function names: the name map and `tools/rename.py` (2026-11-14).** The owner asked how the
-address names (`fn_7100219588`) get replaced, and chose to allow names worked out by reading the code,
-recorded as `inferred`. What was in the way: the address is the identity nearly everywhere (data/equivalence.csv,
-drafts/, the unit and data maps, NON_MATCHING notes), but `tools/check.py` and `tools/port_link.py` know a
-function by `fn_<addr>` in its symbol or by a name unique in data/functions/, and data/functions/ is
-regenerated from the dump with only statuses kept. A name typed into a source mapped to nothing, and check.py
-said nothing: the function dropped out of the results. The pieces: `data/names.csv` (address, qualified
-name, `inferred`, reason; `tools/dread/names.py`), applied by `tools/gen_functions_csv.py` after the
-subsystems so a name never moves a function's subsystem or status; `tools/rename.py`, which writes the map
-and the function row and replaces the old name in the code of every hand-written file (src/ and include/
-outside the generated directories, drafts/, port/), leaving comments and literals, refusing a change of
-scope (a free function made a member is a signature change) and a name spelled in a string (an asm label);
-`rename.py --check` in CI's policy job (valid rows, carried by data/functions/, unique, no hand-written code
-still using a renamed placeholder); check.py reports an `O` function no source defines any more as a
-REGRESSION; `tools/equiv_test.py`'s digest and `tools/drafts.py`'s spell a renamed callee as its placeholder
-(an Itanium nested name read as a run of source-names), so a rename leaves verdicts and grades current; and
-`tools/decl_check.py` tracks renamed free functions like the placeholders. Generated sources keep the
-placeholders; the port link already aliases them to the named definition through the function list. Tried on
-`fn_7100219588` (7 files, 9 uses) and reverted: no renames are in this change. Open: the generators reading
-the map, and a definition written inline in a class body (its scope is not checked; check.py is the judge).
 **The X parasite component's two leftovers: the destructor over the layout, and the owner's views
 (2026-11-13).** The pilot (below) left two things outside `include/game/UnkXParasiteAI.h`. Both are done, and
 every source that could see the change compiles to the same instructions and relocations as before: the 29
