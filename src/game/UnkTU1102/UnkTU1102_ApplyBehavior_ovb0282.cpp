@@ -37,11 +37,11 @@ struct UnkXParasiteMode_A3_b75;
 void fn_71006ea584(UnkXParasiteAI* self, void* inner);
 CStrId fn_71007cd398(void* behavior);
 
-void fn_71006ea210(UnkXParasiteAI* self, UnkParasiteBehavior_b0282* behavior) {
+void XParasiteAI_ApplyBehavior(UnkXParasiteAI* self, UnkParasiteBehavior_b0282* behavior) {
     u64 key;
     alignas(8) u32 kind_value;
     UnkXParasiteWeights* weights = &self->weights;
-    fn_71006ea3fc(self, behavior->flag);
+    XParasiteAI_SetCanBeAbsorbed(self, behavior->flag);
     if (behavior->param_0x10 >= 0.0f)
         weights->weight_2 = behavior->param_0x10;
     if (behavior->param_0x14 >= 0.0f)

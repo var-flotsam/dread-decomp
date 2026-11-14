@@ -19,7 +19,7 @@ static inline UnkPos3_b0252 operator-(const UnkPos3_b0252& a, const UnkPos3_b025
     return {a.x - b.x, a.y - b.y, a.z - b.z};
 }
 
-UnkXParasiteResult_b0252 fn_71006eb7cc(UnkXParasiteAI* self) {
+UnkXParasiteResult_b0252 XParasiteAI_FindFarthestEntry(UnkXParasiteAI* self) {
     UnkXParasiteResult_b0252 result;
     result.ptr = nullptr;
     UnkActor* actor = fn_7100d7c990(self->owner);
