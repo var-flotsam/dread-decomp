@@ -81,13 +81,13 @@ DREAD_REFLECTED_CLASS(CCharClassPoisonFlyAIComponent::CTunableCharClassPoisonFly
 
 // CCharClassPoisonFlyAIComponent
 extern base::reflection::CType g_unk_71726fa160;
-const base::reflection::CClass* fn_7100630148();
+namespace CCharClassPoisonFlyDiveAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassPoisonFlyAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("eSubspecies", true), &g_unk_71726fa160, 0x608, -1, -1);
     field0->attrs.Add<s32>(fn_7100075240(), &g_unk_71726fa160, 2147483647);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("oPoisonFlyDiveAttackDef", true), fn_7100630148(), 0x510, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassPoisonFlyDiveAttack, "oPoisonFlyDiveAttackDef", 0x510);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -41,10 +41,10 @@ DREAD_REFLECTED_CLASS(CCharClassEmmyProtoAIComponent, CCharClassEmmyAIComponent)
 
 // CCharClassEmmyProtoAIComponent::CTunableEmmyProtoAIComponent
 extern bool g_unk_71726dceb8;
-const base::reflection::CClass* fn_710056b20c();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726dcc88;
 void fn_71004f9e58(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CEmmyConfiguration { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassEmmyProtoAIComponent::CTunableEmmyProtoAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -53,7 +53,7 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726dceb8 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("rConfig", true), fn_710056b20c(), 0x28, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CEmmyConfiguration, "rConfig", 0x28);
     DREAD_REFLECTED_FIELD(f32, "fGrabTutoCameraDistance", 0x228, (DefaultValue, 120.0f), (ShowInConfig, true), (Description, "Grab tuto camera distance"), (MinValue, 50.0f), (MaxValue, 500.0f), (ControlFloatStep, 5.0f), (InternalTag, "Emmy|Common"));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {

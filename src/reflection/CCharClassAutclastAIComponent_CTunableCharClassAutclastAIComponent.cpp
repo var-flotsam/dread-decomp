@@ -80,11 +80,11 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassAutclastAIComponent::CTunableCharClassAutclastAIComponent, base::tunable::CTunable);
 
 // CCharClassAutclastAIComponent
-const base::reflection::CClass* fn_71003b815c();
+namespace CCharClassAutclastChargeAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassAutclastAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oAutclastChargeAttackDef", true), fn_71003b815c(), 0x520, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassAutclastChargeAttack, "oAutclastChargeAttackDef", 0x520);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

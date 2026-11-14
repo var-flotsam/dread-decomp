@@ -66,14 +66,14 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassQuetzoaAIComponent::CTunableCharClassQuetzoaAIComponent, base::tunable::CTunable);
 
 // CCharClassQuetzoaAIComponent
-const base::reflection::CClass* fn_7100642a78();
-const base::reflection::CClass* fn_7100643728();
 extern base::reflection::CType g_unk_71726fbc20;
+namespace CCharClassQuetzoaChargeAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassQuetzoaEnergyWaveAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassQuetzoaAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oQuetzoaChargeAttackDef", true), fn_7100642a78(), 0x528, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("oQuetzoaEnergyWaveAttackDef", true), fn_7100643728(), 0x618, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassQuetzoaChargeAttack, "oQuetzoaChargeAttackDef", 0x528);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassQuetzoaEnergyWaveAttack, "oQuetzoaEnergyWaveAttackDef", 0x618);
     UnkReflField* field2 = fn_7100096524(cls, CStrId("eSubspecies", true), &g_unk_71726fbc20, 0x708, -1, -1);
     field2->attrs.Add<s32>(fn_7100075240(), &g_unk_71726fbc20, 2147483647);
 }

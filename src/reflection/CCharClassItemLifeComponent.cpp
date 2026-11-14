@@ -20,11 +20,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassItemLifeComponent
-const base::reflection::CClass* fn_71008c1b4c();
+namespace CDamageSourceFactor { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassItemLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oDamageSourceFactor", true), fn_71008c1b4c(), 0xa8, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CDamageSourceFactor, "oDamageSourceFactor", 0xa8);
     DREAD_REFLECTED_FIELD(s32, "iHitCount", 0x118);
 }
 bool refl_Equals(const void*, const void*) { return false; }

@@ -30,7 +30,7 @@ void fn_7100737928();
 void fn_7100736874(UnkReflFunction* fn, const char* name);
 void fn_71007379b8();
 void fn_71007369f0(UnkReflFunction* fn, const char* name);
-const base::reflection::CClass* fn_71008c1b4c();
+namespace CDamageSourceFactor { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassSwarmControllerComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -128,7 +128,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fDefaultBeamsRadiusIncrement", 0x104, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fWideBeamRadiusIncrement", 0x108, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fPlasmaBeamRadiusIncrement", 0x10c, (DefaultValue, 0.0f));
-    UnkReflField* field49 = fn_7100096524(cls, CStrId("oDamageSourceFactor", true), fn_71008c1b4c(), 0x110, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CDamageSourceFactor, "oDamageSourceFactor", 0x110);
     DREAD_REFLECTED_FIELD(bool, "bDiesOfLoneliness", 0xf8, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(s32, "iLonelinessGroupSize", 0xfc, (DefaultValue, 2));
     DREAD_REFLECTED_FIELD(bool, "bApplyLonelinessToEachGroup", 0x100, (DefaultValue, true));

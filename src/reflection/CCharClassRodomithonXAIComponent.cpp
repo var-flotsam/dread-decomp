@@ -21,14 +21,14 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassRodomithonXAIComponent
 extern base::reflection::CType g_unk_71726fe140;
-const base::reflection::CClass* fn_7100663fcc();
+namespace CCharClassRodomithonXSuckAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassRodomithonXAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fFireActiveTime", 0x630, (DefaultValue, 5.0f));
     DREAD_REFLECTED_FIELD(f32, "fRestTime", 0x634, (DefaultValue, 2.0f));
     UnkReflField* field2 = fn_7100096524(cls, CStrId("vFirePillarConfigs", true), &g_unk_71726fe140, 0x638, -1, -1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("oRodomithonXSuckAttackDef", true), fn_7100663fcc(), 0x660, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassRodomithonXSuckAttack, "oRodomithonXSuckAttackDef", 0x660);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -20,13 +20,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassShakernautAIComponent
-const base::reflection::CClass* fn_71006a2730();
-const base::reflection::CClass* fn_71006a2dd4();
+namespace CCharClassShakernautDoubleGroundShockAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassShakernautPiercingLaserAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassShakernautAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oShakernautDoubleGroundShockAttackDef", true), fn_71006a2730(), 0x520, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("oShakernautPiercingLaserAttackDef", true), fn_71006a2dd4(), 0x620, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassShakernautDoubleGroundShockAttack, "oShakernautDoubleGroundShockAttackDef", 0x520);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassShakernautPiercingLaserAttack, "oShakernautPiercingLaserAttackDef", 0x620);
     DREAD_REFLECTED_FIELD(f32, "fMaxDistToMeleeAttack", 0x720, (DefaultValue, 800.0f));
     DREAD_REFLECTED_FIELD(f32, "fTimeSinceLastRangedAttack", 0x724, (DefaultValue, 6.0f));
     DREAD_REFLECTED_FIELD(f32, "fExplosionDuration", 0x728, (DefaultValue, 0.2f));

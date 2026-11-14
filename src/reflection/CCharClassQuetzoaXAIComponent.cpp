@@ -20,11 +20,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassQuetzoaXAIComponent
-const base::reflection::CClass* fn_710063ce30();
+namespace CCharClassQuetzoaXMultiTargetAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassQuetzoaXAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oQuetzoaXMultiTargetAttackDef", true), fn_710063ce30(), 0x710, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassQuetzoaXMultiTargetAttack, "oQuetzoaXMultiTargetAttackDef", 0x710);
     DREAD_REFLECTED_FIELD(f32, "fVulnerabilityTime", 0x808, (DefaultValue, 5.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }

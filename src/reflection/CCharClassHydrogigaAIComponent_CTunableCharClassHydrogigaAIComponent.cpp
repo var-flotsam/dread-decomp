@@ -71,22 +71,22 @@ DREAD_REFLECTED_CLASS(CCharClassHydrogigaAIComponent::CTunableCharClassHydrogiga
 
 // CCharClassHydrogigaAIComponent
 extern base::reflection::CType g_unk_717270d668;
-const base::reflection::CClass* fn_71005ad144();
-const base::reflection::CClass* fn_71005ad6a4();
-const base::reflection::CClass* fn_71005af03c();
-const base::reflection::CClass* fn_71005b2164();
-const base::reflection::CClass* fn_71005b2544();
-const base::reflection::CClass* fn_71008c1b4c();
+namespace CCharClassHydrogigaBraidAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassHydrogigaMaelstormAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassHydrogigaPolypsAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassHydrogigaTentacleBashAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassHydrogigaTongueSwirlAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CDamageSourceFactor { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassHydrogigaAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("tTentacles", true), &g_unk_717270d668, 0x528, -1, -1);
     field0->attrs_0x70.Add<bool>(fn_7100091d40(), true);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("oHydrogigaBraidAttackDef", true), fn_71005ad144(), 0x738, -1, -1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("oHydrogigaMaelstormAttackDef", true), fn_71005ad6a4(), 0x830, -1, -1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("oHydrogigaPolypsAttackDef", true), fn_71005af03c(), 0x920, -1, -1);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("oHydrogigaTentacleBashAttackDef", true), fn_71005b2164(), 0xa98, -1, -1);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("oHydrogigaTongueSwirlAttackDef", true), fn_71005b2544(), 0xb88, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassHydrogigaBraidAttack, "oHydrogigaBraidAttackDef", 0x738);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassHydrogigaMaelstormAttack, "oHydrogigaMaelstormAttackDef", 0x830);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassHydrogigaPolypsAttack, "oHydrogigaPolypsAttackDef", 0x920);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassHydrogigaTentacleBashAttack, "oHydrogigaTentacleBashAttackDef", 0xa98);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassHydrogigaTongueSwirlAttack, "oHydrogigaTongueSwirlAttackDef", 0xb88);
     DREAD_REFLECTED_FIELD(f32, "fTimeOpened", 0x550, (DefaultValue, 5.0f));
     DREAD_REFLECTED_FIELD(f32, "fTimeDry", 0x554, (DefaultValue, 5.0f));
     DREAD_REFLECTED_FIELD(f32, "fTimeStunned", 0x558, (DefaultValue, 5.0f));
@@ -97,10 +97,10 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMaxDamageStunned", 0x56c, (DefaultValue, 500.0f));
     DREAD_REFLECTED_FIELD(f32, "fDamageStage2", 0x570, (DefaultValue, 1800.0f));
     DREAD_REFLECTED_FIELD(f32, "fDamageFactorFillingPool", 0x574, (DefaultValue, 0.2f));
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("oDamageSourceFactorClose", true), fn_71008c1b4c(), 0x578, -1, -1);
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("oDamageSourceFactorOpen", true), fn_71008c1b4c(), 0x5e8, -1, -1);
-    UnkReflField* field18 = fn_7100096524(cls, CStrId("oDamageSourceFactorDry", true), fn_71008c1b4c(), 0x658, -1, -1);
-    UnkReflField* field19 = fn_7100096524(cls, CStrId("oDamageSourceFactorPolyps", true), fn_71008c1b4c(), 0x6c8, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CDamageSourceFactor, "oDamageSourceFactorClose", 0x578);
+    DREAD_REFLECTED_CLASS_FIELD(CDamageSourceFactor, "oDamageSourceFactorOpen", 0x5e8);
+    DREAD_REFLECTED_CLASS_FIELD(CDamageSourceFactor, "oDamageSourceFactorDry", 0x658);
+    DREAD_REFLECTED_CLASS_FIELD(CDamageSourceFactor, "oDamageSourceFactorPolyps", 0x6c8);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

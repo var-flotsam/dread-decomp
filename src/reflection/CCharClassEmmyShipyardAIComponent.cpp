@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -40,10 +41,10 @@ DREAD_REFLECTED_CLASS(CCharClassEmmyShipyardAIComponent, CCharClassEmmyAICompone
 
 // CCharClassEmmyShipyardAIComponent::CTunableEmmyShipyardAIComponent
 extern bool g_unk_71726ddfe8;
-const base::reflection::CClass* fn_710056b20c();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726dddc0;
 void fn_7100503b98(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CEmmyConfiguration { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassEmmyShipyardAIComponent::CTunableEmmyShipyardAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -52,7 +53,7 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726ddfe8 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("rConfig", true), fn_710056b20c(), 0x28, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CEmmyConfiguration, "rConfig", 0x28);
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

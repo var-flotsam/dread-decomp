@@ -79,16 +79,16 @@ DREAD_REFLECTED_CLASS(CCharClassGooplotAIComponent::CTunableCharClassGooplotAICo
 
 // CCharClassGooplotAIComponent
 extern base::reflection::CType g_unk_71726e7318;
-const base::reflection::CClass* fn_7100592874();
-const base::reflection::CClass* fn_710059347c();
+namespace CCharClassGooplotJumpAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassGooplotUndoJumpAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassGooplotAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("eSubspecies", true), &g_unk_71726e7318, 0x6f0, -1, -1);
     field0->attrs.Add<s32>(fn_7100075240(), &g_unk_71726e7318, 2147483647);
     DREAD_REFLECTED_FIELD(f32, "fExplosionTime", 0x6f4, (DefaultValue, 0.5f));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("oGooplotJumpAttackDef", true), fn_7100592874(), 0x510, -1, -1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("oGooplotUndoJumpAttackDef", true), fn_710059347c(), 0x600, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassGooplotJumpAttack, "oGooplotJumpAttackDef", 0x510);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassGooplotUndoJumpAttack, "oGooplotUndoJumpAttackDef", 0x600);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

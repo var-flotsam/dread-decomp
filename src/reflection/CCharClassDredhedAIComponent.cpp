@@ -21,14 +21,14 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassDredhedAIComponent
 extern base::reflection::CType g_unk_71726da478;
-const base::reflection::CClass* fn_71004e3d14();
+namespace CCharClassDredhedDiveAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassDredhedAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("eSubspecies", true), &g_unk_71726da478, 0x600, -1, -1);
     field0->attrs.Add<s32>(fn_7100075240(), &g_unk_71726da478, 2147483647);
     DREAD_REFLECTED_FIELD(f32, "fTimeBetweenCharges", 0x604, (DefaultValue, 0.0f));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("oDredhedDiveAttackDef", true), fn_71004e3d14(), 0x510, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassDredhedDiveAttack, "oDredhedDiveAttackDef", 0x510);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

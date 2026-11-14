@@ -28,7 +28,7 @@ extern base::reflection::CType g_unk_7172795110;
 extern base::reflection::CType g_unk_7172793b40;
 extern base::reflection::CType g_unk_7172793350;
 extern base::reflection::CType g_unk_7101d5d188;
-const base::reflection::CClass* fn_710104c290();
+namespace CFXPoolPack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCutSceneDef {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x80203u);
@@ -65,9 +65,7 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field16 = fn_7100096524(cls, CStrId("aSounds", true), &g_unk_7101d5d188, 0xb8, -1, -1);
     field16->attrs.Add<const char*>(fn_7100007e80(), "Sounds");
     field16->attrs.Add<bool>(fn_7100090c40(), false);
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("oPoolDefinitions", true), fn_710104c290(), 0xe0, -1, -1);
-    field17->attrs.Add<const char*>(fn_7100007e80(), "FX Pools");
-    field17->attrs.Add<bool>(fn_7100090c40(), false);
+    DREAD_REFLECTED_CLASS_FIELD(CFXPoolPack, "oPoolDefinitions", 0xe0, (Description, "FX Pools"), (CharEditorVisible, false));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

@@ -20,12 +20,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassTakumakuAIComponent
-const base::reflection::CClass* fn_71006cdc1c();
 extern base::reflection::CType g_unk_7172709868;
+namespace CCharClassTakumakuDashAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassTakumakuAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oTakumakuDashAttackDef", true), fn_71006cdc1c(), 0x510, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassTakumakuDashAttack, "oTakumakuDashAttackDef", 0x510);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("eSubspecies", true), &g_unk_7172709868, 0x600, -1, -1);
     field1->attrs.Add<s32>(fn_7100075240(), &g_unk_7172709868, 2147483647);
     DREAD_REFLECTED_FIELD(f32, "fMinTimeBetweenDigs", 0x604, (DefaultValue, -1.0f));

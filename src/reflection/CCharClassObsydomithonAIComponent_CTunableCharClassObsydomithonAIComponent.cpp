@@ -66,11 +66,11 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassObsydomithonAIComponent::CTunableCharClassObsydomithonAIComponent, base::tunable::CTunable);
 
 // CCharClassObsydomithonAIComponent
-const base::reflection::CClass* fn_7100626f94();
+namespace CCharClassObsydomithonAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassObsydomithonAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oObsydomithonAttackDef", true), fn_7100626f94(), 0x510, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassObsydomithonAttack, "oObsydomithonAttackDef", 0x510);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

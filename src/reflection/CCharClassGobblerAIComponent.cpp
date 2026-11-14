@@ -20,11 +20,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassGobblerAIComponent
-const base::reflection::CClass* fn_710057fbf4();
+namespace CCharClassGobblerBiteAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassGobblerAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oGobblerBiteAttackDef", true), fn_710057fbf4(), 0x510, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassGobblerBiteAttack, "oGobblerBiteAttackDef", 0x510);
     DREAD_REFLECTED_FIELD(f32, "fMinImpulseFactorX", 0x600, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(f32, "fMinImpulseFactorY", 0x604, (DefaultValue, 0.55f));
     DREAD_REFLECTED_FIELD(f32, "fMaxImpulseFactorX", 0x608, (DefaultValue, 1.6f));

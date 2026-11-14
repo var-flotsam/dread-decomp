@@ -81,29 +81,29 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassCooldownXBossAIComponent::CTunableCharClassCooldownXBossAIComponent, base::tunable::CTunable);
 
 // CCharClassCooldownXBossAIComponent
-const base::reflection::CClass* fn_71004a4bb4();
-const base::reflection::CClass* fn_71004add20();
-const base::reflection::CClass* fn_71004b4060();
-const base::reflection::CClass* fn_71004b4bc4();
-const base::reflection::CClass* fn_71004b9584();
-const base::reflection::CClass* fn_71004a13bc();
 extern base::reflection::CType g_unk_717270d668;
-const base::reflection::CClass* fn_71008c1b4c();
+namespace CCharClassCooldownXBossLaserBiteAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassCooldownXBossLavaCarpetAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassCooldownXBossLavaDropsAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassCooldownXBossReaperAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassCooldownXBossStrongWhipAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassCooldownXBossWindTunnelAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CDamageSourceFactor { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassCooldownXBossAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oCooldownXBossLavaCarpetAttackDef", true), fn_71004a4bb4(), 0x528, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("oCooldownXBossLavaDropsAttackDef", true), fn_71004add20(), 0x658, -1, -1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("oCooldownXBossReaperAttackDef", true), fn_71004b4060(), 0x7e8, -1, -1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("oCooldownXBossStrongWhipAttackDef", true), fn_71004b4bc4(), 0x8e8, -1, -1);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("oCooldownXBossWindTunnelAttackDef", true), fn_71004b9584(), 0x9f0, -1, -1);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("oCooldownXBossLaserBiteAttackDef", true), fn_71004a13bc(), 0xb38, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassCooldownXBossLavaCarpetAttack, "oCooldownXBossLavaCarpetAttackDef", 0x528);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassCooldownXBossLavaDropsAttack, "oCooldownXBossLavaDropsAttackDef", 0x658);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassCooldownXBossReaperAttack, "oCooldownXBossReaperAttackDef", 0x7e8);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassCooldownXBossStrongWhipAttack, "oCooldownXBossStrongWhipAttackDef", 0x8e8);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassCooldownXBossWindTunnelAttack, "oCooldownXBossWindTunnelAttackDef", 0x9f0);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassCooldownXBossLaserBiteAttack, "oCooldownXBossLaserBiteAttackDef", 0xb38);
     UnkReflField* field6 = fn_7100096524(cls, CStrId("tTentacles", true), &g_unk_717270d668, 0xc40, -1, -1);
     field6->attrs_0x70.Add<bool>(fn_7100091d40(), true);
     DREAD_REFLECTED_FIELD(f32, "fMinTimeToRelaxAction", 0xc68, (DefaultValue, 30.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxTimeToRelaxAction", 0xc6c, (DefaultValue, 50.0f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToGoToPhase3After4WPDestroyed", 0xc70, (DefaultValue, 1.3f));
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("oGrabDamageSourceFactor", true), fn_71008c1b4c(), 0xc78, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CDamageSourceFactor, "oGrabDamageSourceFactor", 0xc78);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

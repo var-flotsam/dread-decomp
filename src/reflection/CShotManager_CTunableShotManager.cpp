@@ -21,10 +21,10 @@ using base::reflection::DestroyDestructorFirst;
 
 // CShotManager::CTunableShotManager
 extern bool g_unk_71729d1540;
-const base::reflection::CClass* fn_7100ddf344();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71729cf280;
 void fn_7100ed419c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+namespace CExplosionGfx { const base::reflection::CClass* refl_GetClass(); }
 namespace CShotManager::CTunableShotManager {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -33,20 +33,20 @@ void refl_AddFields(CClass* cls) {
     g_unk_71729d1540 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("rPowerBeamNormalExplosion", true), fn_7100ddf344(), 0x28, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("rPowerBeamChargeExplosion", true), fn_7100ddf344(), 0x2a0, -1, -1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("rPowerBeamDiffusionExplosion", true), fn_7100ddf344(), 0x518, -1, -1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("rPlasmaBeamNormalExplosion", true), fn_7100ddf344(), 0x790, -1, -1);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("rPlasmaBeamChargeExplosion", true), fn_7100ddf344(), 0xa08, -1, -1);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("rPlasmaBeamDiffusionExplosion", true), fn_7100ddf344(), 0xc80, -1, -1);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("rWaveBeamNormalExplosion", true), fn_7100ddf344(), 0xef8, -1, -1);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("rWaveBeamChargeExplosion", true), fn_7100ddf344(), 0x1170, -1, -1);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("rWaveBeamDiffusionExplosion", true), fn_7100ddf344(), 0x13e8, -1, -1);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("rSPBExplosion", true), fn_7100ddf344(), 0x1660, -1, -1);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("rSPBBlockExplosion", true), fn_7100ddf344(), 0x18d8, -1, -1);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("rHyperBeamExplosion", true), fn_7100ddf344(), 0x1b50, -1, -1);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("rNoDamageExplosion", true), fn_7100ddf344(), 0x1dc8, -1, -1);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("rHeatedExplosion", true), fn_7100ddf344(), 0x2040, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CExplosionGfx, "rPowerBeamNormalExplosion", 0x28);
+    DREAD_REFLECTED_CLASS_FIELD(CExplosionGfx, "rPowerBeamChargeExplosion", 0x2a0);
+    DREAD_REFLECTED_CLASS_FIELD(CExplosionGfx, "rPowerBeamDiffusionExplosion", 0x518);
+    DREAD_REFLECTED_CLASS_FIELD(CExplosionGfx, "rPlasmaBeamNormalExplosion", 0x790);
+    DREAD_REFLECTED_CLASS_FIELD(CExplosionGfx, "rPlasmaBeamChargeExplosion", 0xa08);
+    DREAD_REFLECTED_CLASS_FIELD(CExplosionGfx, "rPlasmaBeamDiffusionExplosion", 0xc80);
+    DREAD_REFLECTED_CLASS_FIELD(CExplosionGfx, "rWaveBeamNormalExplosion", 0xef8);
+    DREAD_REFLECTED_CLASS_FIELD(CExplosionGfx, "rWaveBeamChargeExplosion", 0x1170);
+    DREAD_REFLECTED_CLASS_FIELD(CExplosionGfx, "rWaveBeamDiffusionExplosion", 0x13e8);
+    DREAD_REFLECTED_CLASS_FIELD(CExplosionGfx, "rSPBExplosion", 0x1660);
+    DREAD_REFLECTED_CLASS_FIELD(CExplosionGfx, "rSPBBlockExplosion", 0x18d8);
+    DREAD_REFLECTED_CLASS_FIELD(CExplosionGfx, "rHyperBeamExplosion", 0x1b50);
+    DREAD_REFLECTED_CLASS_FIELD(CExplosionGfx, "rNoDamageExplosion", 0x1dc8);
+    DREAD_REFLECTED_CLASS_FIELD(CExplosionGfx, "rHeatedExplosion", 0x2040);
     DREAD_REFLECTED_FIELD(f32, "fShotSpeed", 0x22b8, (DefaultValue, 2700.0f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {

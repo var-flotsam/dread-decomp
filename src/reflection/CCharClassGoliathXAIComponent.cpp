@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,13 +20,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassGoliathXAIComponent
-const base::reflection::CClass* fn_7100583110();
-const base::reflection::CClass* fn_7100583724();
+namespace CCharClassGoliathXBurstProjectionBombsAttack { const base::reflection::CClass* refl_GetClass(); }
+namespace CCharClassGoliathXSlamAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassGoliathXAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oGoliathXBurstProjectionBombsAttackDef", true), fn_7100583110(), 0x628, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("oGoliathXSlamAttackDef", true), fn_7100583724(), 0x720, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassGoliathXBurstProjectionBombsAttack, "oGoliathXBurstProjectionBombsAttackDef", 0x628);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassGoliathXSlamAttack, "oGoliathXSlamAttackDef", 0x720);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

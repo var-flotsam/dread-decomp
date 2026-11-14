@@ -21,7 +21,7 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassDropterAIComponent
 extern base::reflection::CType g_unk_71726dae18;
-const base::reflection::CClass* fn_71004e8674();
+namespace CCharClassDropterDiveAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassDropterAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -34,7 +34,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fFreezeExplosionRemanentDuration", 0x520, (DefaultValue, 2.0f));
     UnkReflField* field7 = fn_7100096524(cls, CStrId("eSubspecies", true), &g_unk_71726dae18, 0x620, -1, -1);
     field7->attrs.Add<s32>(fn_7100075240(), &g_unk_71726dae18, 2147483647);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("oDropterDiveAttackDef", true), fn_71004e8674(), 0x528, -1, -1);
+    DREAD_REFLECTED_CLASS_FIELD(CCharClassDropterDiveAttack, "oDropterDiveAttackDef", 0x528);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
