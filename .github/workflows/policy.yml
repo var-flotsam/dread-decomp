@@ -54,3 +54,13 @@ jobs:
         run: |
           if [ -n "$BASE_REF" ]; then base="--base=origin/$BASE_REF"; else base=""; fi
           python tools/status_card.py --summary "$GITHUB_STEP_SUMMARY" $base || echo "::warning::status card failed"
+      # Status per translation unit (tools/tu_status.py), under the card: the units by state and, on a pull
+      # request, the units the change moves. data/tu_status.csv itself is refreshed by the session that merges
+      # a round (docs/maintaining.md), so a stale file is a notice here, never a failure.
+      - name: Translation units (job summary)
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          if [ -n "$BASE_REF" ]; then base="--base=origin/$BASE_REF"; else base=""; fi
+          python tools/tu_status.py --summary "$GITHUB_STEP_SUMMARY" $base || echo "::warning::unit summary failed"
+          python tools/tu_status.py --check || echo "::notice::data/tu_status.csv is behind data/functions/; the merging session refreshes it (tools/tu_status.py --write)"

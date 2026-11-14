@@ -15,6 +15,7 @@ docs/commands.md linguist-generated=true
 data/functions/*.csv linguist-generated=true
 data/reflection_types.csv linguist-generated=true
 data/tu_map.csv linguist-generated=true
+data/tu_status.csv linguist-generated=true
 data/data_map.csv linguist-generated=true
 data/reflection_fields.csv linguist-generated=true
 data/library_symbols.csv linguist-generated=true

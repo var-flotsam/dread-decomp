@@ -335,6 +335,7 @@ python tools/progress.py --slice boot --handoff
 python tools/progress.py --slice-from CGameBlackboard::refl_GetClass
 python tools/progress.py --origin [--version 2.1.0]
 python tools/progress.py --quality [--version 2.1.0]
+python tools/progress.py --units
 ```
 
 ### `tools/policy_check.py`
@@ -471,6 +472,18 @@ The README's status card: a slim version of the project dashboard, from tracked 
 
 ```sh
 python tools/status_card.py [--write | --check] [--summary FILE] [--base REF]
+```
+
+### `tools/tu_status.py`
+
+Status per translation unit: each unit of data/tu_map.csv with its functions counted by status.
+
+```sh
+python tools/tu_status.py [--list partial] [--sort left] [--top 20]
+python tools/tu_status.py --unit CActor
+python tools/tu_status.py --quality [--version 2.1.0]
+python tools/tu_status.py --write | --check
+python tools/tu_status.py --summary FILE [--base REF]
 ```
 
 ### `tools/gen_commands.py`

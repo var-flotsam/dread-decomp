@@ -92,8 +92,10 @@ generator. For generator changes, also rerun the generator and confirm its outpu
 
 After a round of merges, the merging session refreshes `docs/HANDOFF.md`
 (`tools/progress.py --slice boot --handoff`), then the README's status card and `docs/status.svg`
-(`tools/status_card.py --write`, which reads the handoff, so it runs second). Each pull request's
-`policy` job writes the same card to its job summary, with what the change does to the whole binary.
+(`tools/status_card.py --write`, which reads the handoff, so it runs second), then the per-unit table
+`data/tu_status.csv` (`tools/tu_status.py --write`; `--check` says whether it is behind). Each pull request's
+`policy` job writes the same card to its job summary, with what the change does to the whole binary, and
+under it the translation units by state with the units the change moves.
 To refresh the private dashboard as well: `tools/dashboard_export.py`, then upload `build/dashboard/`.
 
 **Size of a pull request.** Each PR costs a session start and a review. Prefer one hub cluster
