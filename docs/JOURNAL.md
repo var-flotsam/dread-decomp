@@ -182,6 +182,52 @@ name, now that it takes the component).
 `base::math::CVector3D`; they name `CVector3D` directly. decl_check, struct_check and fakematch's `--base`
 and `--unset` pass. Ten type definitions fewer in the class's sources, one added (the prey's AI component,
 for the point at +0x15c4).
+**CAbilityEnergyWave's unit has one layout per object: the second class-first batch (2026-11-14).** The 45
+hand-written sources of `src/game/CAbilityEnergyWave` defined 148 structs of their own (`UnkOwner` ten times
+with the list at +0x40, `UnkParent` and `UnkChild` thirteen times each, among others). Reading them settled that
+they describe three objects, not one, and `include/game/CAbilityLayout.h` now gives each its layout:
+
+| Object | Reflection | How it is known | Views it replaces |
+|---|---|---|---|
+| `CAbilityComponent` | 0x108, base CComponent (0x40) | the functions call CComponent's own (`fn_71010c4228`) on themselves; its reflection registers `fn_7100302aa4` as an invoker; the constructor writes 0x40 to 0x108 | `UnkParent`, `UnkOwner` (+0x40 list), `UnkStruct_71002fda50`, `UnkAbilitySet_ovb22`, `UnkEnergyWave_b49` and others |
+| `CAbility` | 0x390 | the entries of the component's list: state at +0xb4 (7 defers to +0x20), component at +0xc0, definition at +0xc8 | `UnkChild`, `UnkEntry`, `UnkAbility_ovb22`, `UnkItem_71002fda50` and others |
+| `CAbilityEnergyWave` | 0x590, base CAbility | effects at +0x390/+0x398, gun id +0x3a8, gun +0x3d0, handle +0x400 | `UnkEnergyWaveAbility_ovb22`, `UnkSelf` (`fn_71003053c4`), `UnkEnergyWave_A2_b71` |
+
+Most of the unit is the component's code, so "the class" of the batch was mostly its component. The owning
+actor (the component's +0x30) stays the base component's untyped slot, read through each file's own view
+(`Owner<T>()`), until the actor has one layout; the 34 structs left are those actor views and objects that are
+not these three (script caller, effect holders, tunables). The functions of this unit that other units call
+(`fn_71002fda50`, `fn_71002fe318`, `fn_710030171c`, `fn_71003020f0`, `fn_71002fd814`) are declared once in
+`game/CAbilityEnergyWave.h` with the new types, and `fn_71002f8848` in `game/CAbility.h` takes a `CAbility*`;
+the other CAbility functions keep their declarations, so their calls here still cast.
+
+Evidence: every hand-written source (5,773) was compiled with Clang 9.0.1 before and after and the objects'
+disassembly and relocations compared with the symbols demangled and parameter lists dropped: no difference. Two
+first tries did differ and were written the original's way: an owner pointer hoisted into a local (the
+original reads it again after the call), and the name search taking the key before the list bounds (the
+original computes the bounds first, so `FindByName` takes them as arguments). 48 files, 454 lines in, 1352
+out. `struct_check`: 522 to 521 names with different definitions; `decl_check`: definitions that name a type
+differently 982 to 979.
+**Readable function names: the name map and `tools/rename.py` (2026-11-14).** The owner asked how the
+address names (`fn_7100219588`) get replaced, and chose to allow names worked out by reading the code,
+recorded as `inferred`. What was in the way: the address is the identity nearly everywhere (data/equivalence.csv,
+drafts/, the unit and data maps, NON_MATCHING notes), but `tools/check.py` and `tools/port_link.py` know a
+function by `fn_<addr>` in its symbol or by a name unique in data/functions/, and data/functions/ is
+regenerated from the dump with only statuses kept. A name typed into a source mapped to nothing, and check.py
+said nothing: the function dropped out of the results. The pieces: `data/names.csv` (address, qualified
+name, `inferred`, reason; `tools/dread/names.py`), applied by `tools/gen_functions_csv.py` after the
+subsystems so a name never moves a function's subsystem or status; `tools/rename.py`, which writes the map
+and the function row and replaces the old name in the code of every hand-written file (src/ and include/
+outside the generated directories, drafts/, port/), leaving comments and literals, refusing a change of
+scope (a free function made a member is a signature change) and a name spelled in a string (an asm label);
+`rename.py --check` in CI's policy job (valid rows, carried by data/functions/, unique, no hand-written code
+still using a renamed placeholder); check.py reports an `O` function no source defines any more as a
+REGRESSION; `tools/equiv_test.py`'s digest and `tools/drafts.py`'s spell a renamed callee as its placeholder
+(an Itanium nested name read as a run of source-names), so a rename leaves verdicts and grades current; and
+`tools/decl_check.py` tracks renamed free functions like the placeholders. Generated sources keep the
+placeholders; the port link already aliases them to the named definition through the function list. Tried on
+`fn_7100219588` (7 files, 9 uses) and reverted: no renames are in this change. Open: the generators reading
+the map, and a definition written inline in a class body (its scope is not checked; check.py is the judge).
 **The review's three open questions, answered (2026-11-13).** The handoff of the review left three questions
 with the owner. Each was put to the owner with a recommendation, and the owner said to make the changes:
 

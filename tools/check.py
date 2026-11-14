@@ -12,7 +12,9 @@ Function status codes follow zeldaret/botw (nx-decomp-tools); see docs/reference
 An annotation applies to the next function definition after it (a line starting
 at column 0 with `name(`). A compiled symbol maps to an original function by
 `fn_<addr>` in its name, or by its demangled name when that name is unique in
-data/functions/.
+data/functions/ (which carries the names data/names.csv gives, tools/rename.py). A function
+that was O and that no source defines any more is a REGRESSION too: its definition is gone,
+or has a name that maps to nothing.
 
 Relocation targets: a function whose bytes match is O only if every relocation it
 carries names the original's target too (asmdiff.check_relocs). A relocation's symbol
@@ -505,6 +507,15 @@ def main() -> int:
         for line in reloc_lines.get(addr, []):
             print(line)
         print(f"{status}  {addr}  {score:6.1%}  {name}{flag}")
+    # An O function no source defines any more is lost too, not only one that stopped matching: most often a
+    # name the sources give it that data/functions/ does not carry (a rename outside tools/rename.py), so its
+    # definition maps to no address. Not counted when a compile failed (its functions are missing then).
+    if not failed:
+        for addr, row in sorted(rows.items()):
+            if row.get("status") == "O" and addr not in results:
+                print(f"U  {addr}  {'':>6}  {row['name']}  REGRESSION (was O, no source defines it: a name "
+                      "check.py cannot resolve? tools/rename.py)")
+                regressions += 1
     counts = {s: sum(1 for v in results.values() if v[0] == s) for s in "OmMW"}
     print(f"{len(results)} functions in src/: " + ", ".join(f"{k} {v}" for k, v in counts.items()))
     if not args.no_reloc:

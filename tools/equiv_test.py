@@ -48,7 +48,8 @@ Usage:
   ... --json OUT       # every verdict with its detail
   ... --budget SECONDS # per function (default 60)
 data/equivalence.csv has one row per judged function of src/: address, the digest of the code that was judged
-(sha256 of our function's bytes in the object and of what its relocations name), the verdict and the
+(sha256 of our function's bytes in the object and of what its relocations name, a function data/names.csv
+names spelled as its fn_<addr> placeholder so that a rename leaves the row current), the verdict and the
 rules' version. A row whose digest is not
 the function's code any more says nothing: `current()` is how a reader of the table tells.
 """
@@ -87,10 +88,13 @@ def digest(code: bytes, relocs=None) -> str:
     """The identity of a judged function: its bytes in the object and what its relocations name. The bytes
     alone are not enough: the relocated fields are still zero there, so the same bytes can call another
     function or read another global. `relocs` maps an offset to an object with type, symbol, addend,
-    section and data (asmdiff.ObjReloc); a string or constant counts by its content, not its place."""
+    section and data (asmdiff.ObjReloc); a string or constant counts by its content, not its place. A symbol
+    that names a function of data/names.csv counts as its placeholder would (dread.names.normalise_symbol): a
+    rename changes no code, so it leaves the digest of every caller as it was."""
+    from dread.names import normalise_symbol
     h = hashlib.sha256(code)
     for off, r in sorted((relocs or {}).items()):
-        what = (r.data or b"").hex() if r.section else f"{r.symbol}+{r.addend}"
+        what = (r.data or b"").hex() if r.section else f"{normalise_symbol(r.symbol)}+{r.addend}"
         h.update(f"|{off}:{r.type}:{what}".encode())
     return h.hexdigest()[:32]
 

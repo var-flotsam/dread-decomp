@@ -5,13 +5,13 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct CAbility;  // game/CAbilityLayout.h
 struct UnkAbilityC_A2_b69;
 struct UnkOpticAbility_ovb0059;
 struct UnkSelf;
 struct UnkSmAbility3_A2_b63;
 struct UnkSmLockon_A1_b64;
-struct UnkWaveChild_A2_b72;
-void fn_71002f8848(UnkWaveChild_A2_b72* child);
+void fn_71002f8848(CAbility* ability);
 void fn_71002f9460(UnkSelf*, bool);
 void fn_71002f9694(UnkAbilityC_A2_b69* ability, bool on);
 void fn_71002fa070(UnkSmAbility3_A2_b63*);
