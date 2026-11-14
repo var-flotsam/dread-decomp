@@ -10,9 +10,17 @@ specialisation per type, and groups types back into their original translation u
 
 Helpers: the per-type functions a descriptor points to (CType+0x28..+0x68) and the two
 functions the getter passes in (x3/x4). Those with a known uniform code shape (HELPER_SHAPES)
-are defined under their own fn_<addr> names; the rest are declared with their slot's type.
-The x3/x4 functions (class attributes, member fields) are reconstructed by tools/refl_attrs.py
-and kept only when a scratch build of them is byte-identical (build/reflection_attrs/).
+are defined; the rest are declared with their slot's type. The x3/x4 functions (class
+attributes, member fields) are reconstructed by tools/refl_attrs.py and kept only when a scratch
+build of them is byte-identical (build/reflection_attrs/).
+
+Form: a class whose name is a C++ path is written as base/reflection/ReflectedClass.h describes:
+its functions in a namespace of its name under role names (T::refl_Equals, T::refl_AddFields, ...;
+ROLES), a description struct naming the ones its descriptor points to, and DREAD_REFLECTED_CLASS
+for the getter and descriptor constructor. tools/gen_functions_csv.py gives data/functions/ the same
+names (reflection_names), which is how their symbols map to addresses. base::reflection's own classes
+(whose names the headers' classes have) keep the older form: fn_<addr> helpers, traits specialised for
+an UnkRefl_fn_<addr> tag and DREAD_REFL_CLASS_GETTER (base/reflection/CClass.h).
 
 TU grouping: within a TU, Clang lays out all guard variables first, then the descriptors
 (0x138 bytes each), in definition order. A run of getter guards 8 bytes apart, whose
@@ -140,6 +148,130 @@ HELPER_SHAPES = {
     (0x70, "ret"): "void {name}(base::reflection::CClass*) {{}}",
     (0xe0, "ret"): "void {name}(base::reflection::CClass*) {{}}",
 }
+
+
+# The readable form (base/reflection/ReflectedClass.h): each class's functions live in a namespace with
+# the class's name, under role names (T::refl_<role>, the names data/functions/ gives them through
+# reflection_names below), and a description struct names the ones the descriptor points to.
+ROLES = {0x58: ("Equals", "equals"), 0x60: ("Hash", "hash"), 0x68: ("TypeOf", "type_of"),
+         0x28: ("Construct", "construct"), 0x30: ("CopyConstruct", "copy_construct"),
+         0x38: ("MoveConstruct", "move_construct"), 0x40: ("Destroy", "destroy"),
+         0x48: ("CopyAssign", "copy_assign"), 0x50: ("MoveAssign", "move_assign"),
+         0x70: ("AddAttributes", None), 0xe0: ("AddFields", None)}
+ROLE_DECLS = {
+    0x28: "void {name}(void* obj);",
+    0x30: "void {name}(void* dst, const void* src);",
+    0x38: "void {name}(void* dst, const void* src);",
+    0x40: "void {name}(void* obj);",
+    0x48: "void* {name}(void* dst, const void* src);",
+    0x50: "void* {name}(void* dst, const void* src);",
+    0x58: "bool {name}(const void* a, const void* b);",
+    0x60: "s32 {name}();",
+    0x68: "const base::reflection::CType& {name}(const void* obj);",
+    0x70: "void {name}(CClass* cls);",
+    0xe0: "void {name}(CClass* cls);",
+}
+# HELPER_SHAPES in the readable form (the same code).
+ROLE_SHAPES = {
+    "bool {name}(const void* a, const void* b) {{ return a == b; }}":
+        "bool {name}(const void* a, const void* b) {{ return a == b; }}",
+    "bool {name}(const void*, const void*) {{ return false; }}":
+        "bool {name}(const void*, const void*) {{ return false; }}",
+    "s32 {name}() {{ return -1; }}": "s32 {name}() {{ return -1; }}",
+    f"const base::reflection::CType& {{name}}(const void* obj) {{{{ return *static_cast<const {OBJ}*>(obj)->vf_0x0(); }}}}":
+        "const base::reflection::CType& {name}(const void* obj) {{ return ClassOf(obj); }}",
+    f"const base::reflection::CType& {{name}}(const void* obj) {{{{ return *static_cast<const {OBJ_B}*>(obj)->vf_0x18(); }}}}":
+        "const base::reflection::CType& {name}(const void* obj) {{ return ClassOfDestructorFirst(obj); }}",
+    f"void {{name}}(void* obj) {{{{ static_cast<{OBJ}*>(obj)->~UnkReflObject(); }}}}":
+        "void {name}(void* obj) {{ Destroy(obj); }}",
+    f"void {{name}}(void* obj) {{{{ static_cast<{OBJ_B}*>(obj)->~UnkReflObjectB(); }}}}":
+        "void {name}(void* obj) {{ DestroyDestructorFirst(obj); }}",
+    "void {name}(void*, const void*) {{}}": "void {name}(void*, const void*) {{}}",
+    "void* {name}(void*, const void*) {{ return nullptr; }}": "void* {name}(void*, const void*) {{ return nullptr; }}",
+    "void {name}(base::reflection::CClass*) {{}}": "void {name}(CClass*) {{}}",
+}
+READABLE_HEADER = [
+    "// each class's functions are in a namespace of its name (base/reflection/ReflectedClass.h): its",
+    "// getter (T::refl_GetClass) and descriptor constructor (T::refl_InitClass), the functions the",
+    "// descriptor points to (those of a known uniform shape defined, the others declared) and the",
+    "// attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.",
+]
+READABLE_PRELUDE = [
+    "using base::reflection::CClass;",
+    "using base::reflection::ClassDescription;",
+    "using base::reflection::ClassOf;",
+    "using base::reflection::ClassOfDestructorFirst;",
+    "using base::reflection::Destroy;",
+    "using base::reflection::DestroyDestructorFirst;",
+]
+TYPE_PATH_RE = re.compile(r"^[A-Za-z_]\w*(::[A-Za-z_]\w*)*$")
+
+
+def readable_type(name: str) -> bool:
+    """A class whose functions can live in a namespace of its name: the name is a C++ path, and no class
+    the reflection headers define has it (base::reflection's own classes keep the older form)."""
+    return bool(TYPE_PATH_RE.match(name)) and not name.startswith("base::reflection::")
+
+
+def role_name(slot: int) -> str:
+    return f"refl_{ROLES[slot][0]}"
+
+
+def role_helper(orig: asmdiff.Original, slot: int, addr: int) -> str | None:
+    """A helper with a known shape, in the readable form under its role name, or None."""
+    cs = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
+    text = "; ".join(f"{x.mnemonic} {x.op_str}".strip() for x in cs.disasm(orig.function(addr), addr))
+    shape_src = HELPER_SHAPES.get((slot, text))
+    return ROLE_SHAPES[shape_src].format(name=role_name(slot)) if shape_src else None
+
+
+def reflection_names(g: "Getter") -> dict[int, str]:
+    """Address -> data/functions/ name of a readable class's getter helpers (T::refl_<role>): the
+    attribute and member-field functions and the functions its descriptor constructor stores."""
+    if not readable_type(g.type) or not g.init or g.traits is None or not g.fn_0x70 or not g.fn_0xe0:
+        return {}
+    out = {a: f"{g.type}::{role_name(slot)}" for slot, a in g.traits.items()}
+    out[g.fn_0x70] = f"{g.type}::{role_name(0x70)}"
+    out[g.fn_0xe0] = f"{g.type}::{role_name(0xe0)}"
+    return out
+
+
+def readable_class_lines(orig: asmdiff.Original, g: "Getter", size: int, attr_sources: dict[int, tuple[list[str], str]],
+                         macro: str, parent: str | None, declared: set[str]) -> tuple[list[str], int, int]:
+    """One class in the readable form: the declarations its attribute and member-field functions need,
+    its namespace (helpers, those functions, the description) and the getter's macro. Returns the
+    lines, the helpers defined and the attribute/field functions defined. `declared` holds the file's
+    declarations so far (each is written once per file)."""
+    pre: list[str] = []
+    inside: list[str] = []
+    helpers_defined = attrs_defined = 0
+    helpers = sorted([(a, slot) for slot, a in g.traits.items()] + [(g.fn_0x70, 0x70), (g.fn_0xe0, 0xe0)])
+    for a, slot in helpers:
+        name = role_name(slot)
+        if a in attr_sources:
+            extra, src = attr_sources[a]
+            pre += [d for d in extra if d not in declared]
+            declared |= set(extra)
+            inside.append(re.sub(rf"\bfn_{a:x}\(", f"{name}(", src, count=1))
+            attrs_defined += 1
+            helpers_defined += 1
+            continue
+        src = role_helper(orig, slot, a)
+        if src:
+            inside.append(src)
+            helpers_defined += 1
+        else:
+            inside.append(ROLE_DECLS[slot].format(name=name))
+    desc = ["struct refl_Description : ClassDescription {", f"    static constexpr u64 size = {size:#x};"]
+    if g.abstract:
+        desc.append("    static constexpr bool abstract = true;")
+    for slot in TRAIT_SLOTS:
+        if slot in g.traits:
+            desc.append(f"    static constexpr auto {ROLES[slot][1]} = &{role_name(slot)};")
+    desc.append("};")
+    use = f"{macro}({g.type}, {parent});" if parent else f"{macro}({g.type});"
+    return ([f"// {g.type}", *pre, f"namespace {g.type} {{", *inside, *desc, f"}}  // namespace {g.type}", use],
+            helpers_defined, attrs_defined)
 
 
 def helper_definition(orig: asmdiff.Original, slot: int, addr: int) -> str | None:
@@ -388,6 +520,8 @@ def main() -> int:
     root_sig = shape(orig.function(ROOT_GETTER))
     local_sig = shape(orig.function(LOCAL_PARENT_GETTER))
     all_g = [Getter(r["type"], int(r["getter"], 16)) for r in rows]
+    type_of = {g.address: g.type for g in all_g}
+    by_address = {g.address: g for g in all_g}
     for g in all_g:
         analyse(orig, g, getters, ref_sig, inits, root_sig, local_sig)
 
@@ -493,6 +627,7 @@ def main() -> int:
         shutil.rmtree(OUT)
     OUT.mkdir(parents=True)
     files: dict[str, tuple[list[str], list]] = {}  # name -> (lines, local pointer pairs)
+    file_getters: dict[str, dict[int, str]] = {}  # name -> its readable classes' getters (address -> type)
     taken: set[str] = set()
     generated = skipped_shape = skipped_layout = helpers_defined = attrs_defined = ctors_generated = 0
     report = []
@@ -581,7 +716,22 @@ def main() -> int:
         lines.append("")
         declared: set[int] = set()
         decl_lines: set[str] = set()
+        readable = [g for g in block if readable_type(g.type) and (not g.parent or readable_type(type_of.get(g.parent, "")))]
+        if readable:
+            lines[2:6] = READABLE_HEADER
+            lines[lines.index('#include "base/reflection/CClass.h"')] = '#include "base/reflection/ReflectedClass.h"'
+            lines[-1:] = [u for u in READABLE_PRELUDE if u not in lines] + [""]
         for g in block:
+            if g in readable:
+                suffix = "_INLINE_NAME" if g.inline_name else ""  # ReflectedClass.h
+                macro = f"DREAD_REFLECTED_CLASS{suffix}" if g.parent else f"DREAD_REFLECTED_ROOT_CLASS{suffix}"
+                body, h, n_attrs = readable_class_lines(
+                    orig, g, sizes[g.address], {a: candidates[a] for a in attr_ok}, macro,
+                    type_of[g.parent] if g.parent else None, decl_lines)
+                lines += body + [""]
+                helpers_defined += h
+                attrs_defined += n_attrs
+                continue
             lines.append(f"// {g.type}")
             lines.append(f"DREAD_REFL_TAG({g.init:x});")
             helpers = sorted([(a, slot) for slot, a in g.traits.items()]
@@ -621,9 +771,10 @@ def main() -> int:
             lines += padding_lines(block, gap)
         ptrs = [p for g in block for p in items_by_getter.get(g.address, []) + local_others.get(g.address, [])]
         files[name] = (lines, ptrs)
+        file_getters[name] = {g.address: g.type for g in readable}
         generated += n
 
-    def text(lines: list[str], ptrs: list) -> str:
+    def text(lines: list[str], ptrs: list, getters: dict[int, str] | None = None) -> str:
         if not ptrs:
             return chr(10).join(lines)
         types = [p for p in ptrs if len(p) == 3]
@@ -631,9 +782,14 @@ def main() -> int:
         pointees = {f"fn_{p[2]:x}" for p in types}
         decls = [d for d in gen_types.used_decls(body, ptr_decls)
                  if gen_types.NAME_RE.search(d.split("(")[0]).group(0) not in pointees]
+        tail = decls + body + [line for p in ptrs if len(p) > 3 for line in p[0]]
+        # The file's readable classes: their getters are T::refl_GetClass, declared by the class's macro.
+        for a, type_name in (getters or {}).items():
+            tail = [re.sub(rf"\bfn_{a:x}\(\)", f"{type_name}::refl_GetClass()", line) for line in tail
+                    if line != f"const base::reflection::CClass* fn_{a:x}();"]
         return chr(10).join(lines[:1] + ['#include "base/reflection/CCollectionType.h"',
                                          '#include "base/reflection/CPointerType.h"'] + lines[1:]
-                            + decls + body + [line for p in ptrs if len(p) > 3 for line in p[0]]) + chr(10)
+                            + tail) + chr(10)
 
     # Pointer types: drop those that would redeclare a name the file already uses (unless the
     # declaration is the same text as one in the file or a header), then keep only the
@@ -648,19 +804,34 @@ def main() -> int:
             for d in gen_types.used_decls(p[0], ptr_decls))])
     work = ROOT / "build" / "reflection_ptrs"
     work.mkdir(parents=True, exist_ok=True)
+    # Qualified name -> address of the readable classes' functions (the names data/functions/ gives them).
+    readable_names: dict[str, int] = {}
+    for getters_of_file in file_getters.values():
+        for a, type_name in getters_of_file.items():
+            g = by_address[a]
+            names = {**reflection_names(g), a: f"{type_name}::refl_GetClass", g.init: f"{type_name}::refl_InitClass"}
+            for addr, n in names.items():
+                for key in [n, *asmdiff.name_aliases(n)]:
+                    readable_names[key] = addr
 
     def check_file(name: str) -> set[int]:
         src, obj = work / f"{name}.cpp", work / f"{name}.o"
-        src.write_text(text(*files[name]), encoding="utf-8")
+        src.write_text(text(*files[name], file_getters.get(name)), encoding="utf-8")
         r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
         if r.returncode != 0 and any(len(p) > 3 for p in files[name][1]):
             # Retry without the registration functions (their declarations may clash).
             files[name] = (files[name][0], [p for p in files[name][1] if len(p) == 3])
-            src.write_text(text(*files[name]), encoding="utf-8")
+            src.write_text(text(*files[name], file_getters.get(name)), encoding="utf-8")
             r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
         if r.returncode != 0:
             return set()
-        results = asmdiff.diff_object(obj, orig, strict=True)  # bytes and relocation targets
+        # bytes and relocation targets; the readable classes' functions map through their names
+        functions = asmdiff.read_object(obj)
+        demangled = asmdiff.demangle([f.symbol for f in functions], strip=False)
+
+        def resolve(symbol: str) -> int | None:
+            return readable_names.get(asmdiff.strip_params(demangled.get(symbol, symbol)))
+        results = asmdiff.diff_functions(functions, orig, resolve, strict=True)
         for line in asmdiff.reloc_rejects(results, limit=3):
             print(f"{name}: {line}")
         return {res.address for res in results if res.matching}
@@ -689,7 +860,7 @@ def main() -> int:
         ptrs = [p for p in ptrs if all(a in ok for a in p[1])]
         ptrs_generated += sum(1 for p in ptrs if len(p) == 3)
         others_local += sum(1 for p in ptrs if len(p) > 3)
-        (OUT / f"{name}.cpp").write_text(text(lines, ptrs), encoding="utf-8", newline=chr(10))
+        (OUT / f"{name}.cpp").write_text(text(lines, ptrs, file_getters.get(name)), encoding="utf-8", newline=chr(10))
 
     loose = sorted(a for a in ctor_ok if a not in attached_inits)
     for k in range(0, len(loose), REGISTRATION_CHUNK):

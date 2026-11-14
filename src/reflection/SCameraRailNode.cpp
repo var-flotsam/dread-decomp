@@ -2,11 +2,11 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CPointerType.h"
 // Reflection descriptors for one original translation unit (3 types):
-// for each type, its getter (T::refl_GetClass) and, through the traits below, its
-// descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape and the attribute/member-field functions that
-// tools/refl_attrs.py reconstructs byte-identically.
-#include "base/reflection/CClass.h"
+// each class's functions are in a namespace of its name (base/reflection/ReflectedClass.h): its
+// getter (T::refl_GetClass) and descriptor constructor (T::refl_InitClass), the functions the
+// descriptor points to (those of a known uniform shape defined, the others declared) and the
+// attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
+#include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -14,10 +14,13 @@ using base::reflection::UnkReflField;
 using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
+using base::reflection::ClassDescription;
+using base::reflection::ClassOf;
+using base::reflection::ClassOfDestructorFirst;
+using base::reflection::Destroy;
+using base::reflection::DestroyDestructorFirst;
 
 // SCameraRailNode
-DREAD_REFL_TAG(7100bfed98);
-void fn_7100bfe808(base::reflection::CClass*) {}
 void fn_7100c079cc();
 void fn_7100bfef1c(UnkReflFunction* fn, const char* name);
 const base::reflection::UnkReflAttrKey& fn_71000926d0();
@@ -27,7 +30,9 @@ const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
 const base::reflection::UnkReflAttrKey& fn_71000924b0();
 extern base::reflection::CType g_unk_717269bb48;
-void fn_7100bfe900(CClass* cls) {
+namespace SCameraRailNode {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vPos_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vPos_GetterFunction", true);
         fn->return_type = fn_71000246e4();
@@ -44,34 +49,31 @@ void fn_7100bfe900(CClass* cls) {
     field0->attrs.Add<bool>(fn_71000924b0(), true);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("wpLogicCamera", true), &g_unk_717269bb48, 0x18, -1, -1);
 }
-bool fn_7100c076e0(const void* a, const void* b) { return a == b; }
-s32 fn_7100c076ec() { return -1; }
-const base::reflection::CType& fn_7100c076f4(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100c07710();
-void fn_7100c0778c(void* dst, const void* src);
-void fn_7100c0787c(void* dst, const void* src);
-void fn_7100c078b4(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_7100c078c0(void* dst, const void* src);
-void* fn_7100c07924(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100bfed98> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x58;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100c076e0;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100c076ec;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100c076f4;
-    static constexpr UnkFn fn_0x28 = &fn_7100c07710;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_7100c0778c;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_7100c0787c;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100c078b4;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_7100c078c0;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100c07924;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(7100bfe80c, 7100bfed98, "SCameraRailNode", 7100da4088, 7100bfe808, 7100bfe900);
+}  // namespace SCameraRailNode
+DREAD_REFLECTED_CLASS(SCameraRailNode, IPathNode);
 
 // SCameraSubRail
-DREAD_REFL_TAG(7100bffde8);
-void fn_7100bff098(base::reflection::CClass*) {}
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100c07c30();
 void fn_7100c07c44();
@@ -90,7 +92,9 @@ const base::reflection::UnkReflAttrKey& fn_710008fe70();
 const base::reflection::UnkReflAttrKey& fn_710008fc50();
 const base::reflection::UnkReflAttrKey& fn_710008fb40();
 const base::reflection::UnkReflAttrKey& fn_710008ff80();
-void fn_7100bff190(CClass* cls) {
+namespace SCameraSubRail {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterNodesDeserialization", true))) {
         fn->name = base::global::UnkStrId("AfterNodesDeserialization", true);
         fn->return_type = &g_unk_7101d5af48;
@@ -147,36 +151,33 @@ void fn_7100bff190(CClass* cls) {
     field0->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeleteElement", true));
     field0->attrs.Add<CStrId>(fn_710008ff80(), CStrId("AfterNodesDeserialization", true));
 }
-bool fn_7100c07a70(const void* a, const void* b) { return a == b; }
-s32 fn_7100c07a7c() { return -1; }
-const base::reflection::CType& fn_7100c07a84(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100c07aa0();
-void fn_7100c07b00(void* dst, const void* src);
-void fn_7100c07b64(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_7100c07b70(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100bffde8> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x50;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100c07a70;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100c07a7c;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100c07a84;
-    static constexpr UnkFn fn_0x28 = &fn_7100c07aa0;
-    static constexpr UnkFn_0x30 fn_0x30 = nullptr;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_7100c07b00;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100c07b64;
-    static constexpr UnkFn_0x48 fn_0x48 = nullptr;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100c07b70;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(7100bff09c, 7100bffde8, "SCameraSubRail", 7100da43d4, 7100bff098, 7100bff190);
+}  // namespace SCameraSubRail
+DREAD_REFLECTED_CLASS(SCameraSubRail, ISubPath);
 
 // SCameraRail
-DREAD_REFL_TAG(7100c0087c);
-void fn_7100c00314(base::reflection::CClass*) {}
 extern base::reflection::CType g_unk_717277b908;
 const base::reflection::UnkReflAttrKey& fn_7100075240();
 const base::reflection::UnkReflAttrKey& fn_7100091c30();
-void fn_7100c0040c(CClass* cls) {
+namespace SCameraRail {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("tSubRails", true), &g_unk_717277b908, 0x10, -1, -1);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxRailSpeed", true), fn_710000abbc(), 0x38, -1, -1);
     field1->attrs.Add<f32>(fn_7100075240(), 1250.0f);
@@ -191,26 +192,21 @@ void fn_7100c0040c(CClass* cls) {
     field3->attrs.Add<const char*>(fn_7100007e80(), "Max distance the camera can have from the current closest point.");
     field3->attrs.Add<CStrId>(fn_7100091c30(), CStrId("Clamp Distance on Rail", true));
 }
-bool fn_7100c08168(const void* a, const void* b) { return a == b; }
-s32 fn_7100c08174() { return -1; }
-const base::reflection::CType& fn_7100c0817c(const void* obj);
-void fn_7100c08198();
-void fn_7100c0819c(void* obj);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100c0087c> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj);
+void refl_Construct(void* obj);
+void refl_Destroy(void* obj);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x60;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100c08168;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100c08174;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100c0817c;
-    static constexpr UnkFn fn_0x28 = &fn_7100c08198;
-    static constexpr UnkFn_0x30 fn_0x30 = nullptr;
-    static constexpr UnkFn_0x30 fn_0x38 = nullptr;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100c0819c;
-    static constexpr UnkFn_0x48 fn_0x48 = nullptr;
-    static constexpr UnkFn_0x48 fn_0x50 = nullptr;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto destroy = &refl_Destroy;
 };
-DREAD_REFL_CLASS_GETTER(7100c00318, 7100c0087c, "SCameraRail", 7100da3ba0, 7100c00314, 7100c0040c);
+}  // namespace SCameraRail
+DREAD_REFLECTED_CLASS(SCameraRail, IPath);
 
 const base::reflection::CType* fn_7100005178();
 const base::reflection::CType* fn_7100c009dc();
@@ -325,7 +321,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100c04948> {
     static constexpr UnkFn fn_0xf0 = &fn_7100c04ab8;
     static constexpr UnkFn fn_0xf8 = &fn_7100c04b20;
     static constexpr UnkFn fn_0x100 = &fn_7100c04b2c;
-    static const CType* pointee() { return fn_7100bfe80c(); }
+    static const CType* pointee() { return SCameraRailNode::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100c009dc> {
@@ -352,7 +348,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100c04bb8> {
     static constexpr UnkFn fn_0xf0 = &fn_7100c04d28;
     static constexpr UnkFn fn_0xf8 = &fn_7100c04d90;
     static constexpr UnkFn fn_0x100 = &fn_7100c04d9c;
-    static const CType* pointee() { return fn_7100bfe80c(); }
+    static const CType* pointee() { return SCameraRailNode::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100c00ab8> {
@@ -376,7 +372,7 @@ struct base::reflection::UnkReflCollectionTraits<UnkRefl_fn_7100c01774> {
     static constexpr UnkFn fn_0x60 = &fn_7100c08d7c;
     static constexpr UnkFn fn_0x68 = &fn_7100c08d84;
     static const CType* key() { return fn_7100005178(); }
-    static const CType* element() { return fn_7100bfe80c(); }
+    static const CType* element() { return SCameraRailNode::refl_GetClass(); }
     static const CType* iterator() { return fn_7100c009dc(); }
     static const CType* const_iterator() { return fn_7100c010a8(); }
     static constexpr UnkFn fn_0x108 = &fn_7100c08ac0;
@@ -412,7 +408,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100c059c0> {
     static constexpr UnkFn fn_0xf0 = &fn_7100c05b30;
     static constexpr UnkFn fn_0xf8 = &fn_7100c05b98;
     static constexpr UnkFn fn_0x100 = &fn_7100c05ba4;
-    static const CType* pointee() { return fn_7100bff09c(); }
+    static const CType* pointee() { return SCameraSubRail::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100c0196c> {
@@ -439,7 +435,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100c05c30> {
     static constexpr UnkFn fn_0xf0 = &fn_7100c05da0;
     static constexpr UnkFn fn_0xf8 = &fn_7100c05e08;
     static constexpr UnkFn fn_0x100 = &fn_7100c05e14;
-    static const CType* pointee() { return fn_7100bff09c(); }
+    static const CType* pointee() { return SCameraSubRail::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100c01a48> {
@@ -463,7 +459,7 @@ struct base::reflection::UnkReflCollectionTraits<UnkRefl_fn_7100c02704> {
     static constexpr UnkFn fn_0x60 = &fn_7100c0a2a4;
     static constexpr UnkFn fn_0x68 = &fn_7100c0a2ac;
     static const CType* key() { return fn_7100005178(); }
-    static const CType* element() { return fn_7100bff09c(); }
+    static const CType* element() { return SCameraSubRail::refl_GetClass(); }
     static const CType* iterator() { return fn_7100c0196c(); }
     static const CType* const_iterator() { return fn_7100c02038(); }
     static constexpr UnkFn fn_0x108 = &fn_7100c0a028;
@@ -492,7 +488,6 @@ void fn_7100c08624();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7100bfe80c();
 void fn_7100c08674();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100c00b94(CClass* cls) {
@@ -507,12 +502,12 @@ void fn_7100c00b94(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7100bfe80c();
+        fn->return_type = SCameraRailNode::refl_GetClass();
         fn->field_0xb2 = 0x1;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100c08674);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100bfe80c(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, SCameraRailNode::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -526,7 +521,6 @@ void fn_7100c08a10();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7100bfe80c();
 void fn_7100c08a60();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100c01184(CClass* cls) {
@@ -541,12 +535,12 @@ void fn_7100c01184(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7100bfe80c();
+        fn->return_type = SCameraRailNode::refl_GetClass();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100c08a60);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100bfe80c(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, SCameraRailNode::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -560,7 +554,6 @@ void fn_7100c09dc4();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7100bff09c();
 void fn_7100c09e14();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100c01b24(CClass* cls) {
@@ -575,12 +568,12 @@ void fn_7100c01b24(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7100bff09c();
+        fn->return_type = SCameraSubRail::refl_GetClass();
         fn->field_0xb2 = 0x1;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100c09e14);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100bff09c(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, SCameraSubRail::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -594,7 +587,6 @@ void fn_7100c09f78();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7100bff09c();
 void fn_7100c09fc8();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100c02114(CClass* cls) {
@@ -609,11 +601,11 @@ void fn_7100c02114(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7100bff09c();
+        fn->return_type = SCameraSubRail::refl_GetClass();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100c09fc8);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100bff09c(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, SCameraSubRail::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }

@@ -2,11 +2,11 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CPointerType.h"
 // Reflection descriptors for one original translation unit (3 types):
-// for each type, its getter (T::refl_GetClass) and, through the traits below, its
-// descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape and the attribute/member-field functions that
-// tools/refl_attrs.py reconstructs byte-identically.
-#include "base/reflection/CClass.h"
+// each class's functions are in a namespace of its name (base/reflection/ReflectedClass.h): its
+// getter (T::refl_GetClass) and descriptor constructor (T::refl_InitClass), the functions the
+// descriptor points to (those of a known uniform shape defined, the others declared) and the
+// attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
+#include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -14,19 +14,24 @@ using base::reflection::UnkReflField;
 using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
+using base::reflection::ClassDescription;
+using base::reflection::ClassOf;
+using base::reflection::ClassOfDestructorFirst;
+using base::reflection::Destroy;
+using base::reflection::DestroyDestructorFirst;
 
 // sound::CSoundEventsDef
-DREAD_REFL_TAG(710101fee0);
 const base::reflection::UnkReflAttrKey& fn_7100005070();
-void fn_710101facc(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10200u);
-}
 extern base::reflection::CType g_unk_71729f8d30;
 void fn_7101028a7c();
 const base::reflection::UnkReflAttrKey& fn_710008ff80();
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_7101028aa4();
-void fn_710101fc18(CClass* cls) {
+namespace sound::CSoundEventsDef {
+void refl_AddAttributes(CClass* cls) {
+    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10200u);
+}
+void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_aSoundEventRules_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_aSoundEventRules_GetterFunction", true);
         fn->return_type = &g_unk_71729f8d30;
@@ -44,69 +49,65 @@ void fn_710101fc18(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7101028aa4);
     }
 }
-bool fn_71010288e0(const void*, const void*) { return false; }
-s32 fn_71010288e8() { return -1; }
-const base::reflection::CType& fn_71010288f0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_710102890c();
-void fn_7101028970(void*, const void*) {}
-void fn_7101028974(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_7101028980(void*, const void*) { return nullptr; }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_710101fee0> {
+bool refl_Equals(const void*, const void*) { return false; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_MoveConstruct(void*, const void*) {}
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_MoveAssign(void*, const void*) { return nullptr; }
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0xa8;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_71010288e0;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_71010288e8;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_71010288f0;
-    static constexpr UnkFn fn_0x28 = &fn_710102890c;
-    static constexpr UnkFn_0x30 fn_0x30 = nullptr;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_7101028970;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7101028974;
-    static constexpr UnkFn_0x48 fn_0x48 = nullptr;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7101028980;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(710101fb24, 710101fee0, "sound::CSoundEventsDef", 7100016894, 710101facc, 710101fc18);
+}  // namespace sound::CSoundEventsDef
+DREAD_REFLECTED_CLASS(sound::CSoundEventsDef, base::core::CAsset);
 
 // sound::CSoundEventsDef::SSoundEventsSelector
-DREAD_REFL_TAG(71010201dc);
-void fn_7101020054(base::reflection::CClass*) {}
 const base::reflection::CType* fn_710009fb38();
-void fn_7101020148(CClass* cls) {
+namespace sound::CSoundEventsDef::SSoundEventsSelector {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("strSelectorDesc", true), fn_710009fb38(), 0x8, -1, -1);
 }
-bool fn_7101028ad8(const void* a, const void* b) { return a == b; }
-s32 fn_7101028ae4() { return -1; }
-const base::reflection::CType& fn_7101028aec(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7101028b08();
-void fn_7101028b90(void* dst, const void* src);
-void fn_7101028bf8(void* dst, const void* src);
-void fn_7101028c60(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_7101028c6c(void* dst, const void* src);
-void* fn_7101028ca0(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_71010201dc> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0xd0;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7101028ad8;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7101028ae4;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7101028aec;
-    static constexpr UnkFn fn_0x28 = &fn_7101028b08;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_7101028b90;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_7101028bf8;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7101028c60;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_7101028c6c;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7101028ca0;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_ROOT_CLASS_GETTER(7101020058, 71010201dc, "sound::CSoundEventsDef::SSoundEventsSelector", 7101020054, 7101020148);
+}  // namespace sound::CSoundEventsDef::SSoundEventsSelector
+DREAD_REFLECTED_ROOT_CLASS(sound::CSoundEventsDef::SSoundEventsSelector);
 
 // sound::CSoundManager
-DREAD_REFL_TAG(7101020978);
-void fn_71010206bc(base::reflection::CClass*) {}
 const base::reflection::CType* fn_7101020ac0();
 void fn_7101028f4c();
 const base::reflection::UnkReflAttrKey& fn_710025d990();
 extern base::reflection::CType g_unk_7172756f90;
-void fn_71010207b0(CClass* cls) {
+namespace sound::CSoundManager {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_pAudioPresets_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_pAudioPresets_GetterFunction", true);
         fn->return_type = fn_7101020ac0();
@@ -117,24 +118,17 @@ void fn_71010207b0(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("pAudioPresets", true), fn_7101020ac0(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(fn_710025d990(), &g_unk_7172756f90, 8);
 }
-bool fn_7101028f1c(const void* a, const void* b) { return a == b; }
-s32 fn_7101028f28() { return -1; }
-const base::reflection::CType& fn_7101028f30(const void* obj);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7101020978> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x98;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7101028f1c;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7101028f28;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7101028f30;
-    static constexpr UnkFn fn_0x28 = nullptr;
-    static constexpr UnkFn_0x30 fn_0x30 = nullptr;
-    static constexpr UnkFn_0x30 fn_0x38 = nullptr;
-    static constexpr UnkFn_0x40 fn_0x40 = nullptr;
-    static constexpr UnkFn_0x48 fn_0x48 = nullptr;
-    static constexpr UnkFn_0x48 fn_0x50 = nullptr;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
 };
-DREAD_REFL_ROOT_CLASS_GETTER(71010206c0, 7101020978, "sound::CSoundManager", 71010206bc, 71010207b0);
+}  // namespace sound::CSoundManager
+DREAD_REFLECTED_ROOT_CLASS(sound::CSoundManager);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).
@@ -187,7 +181,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710102615c> {
     static constexpr UnkFn fn_0xf0 = &fn_71010262bc;
     static constexpr UnkFn fn_0xf8 = &fn_7101026324;
     static constexpr UnkFn fn_0x100 = &fn_7101026348;
-    static const CType* pointee() { return fn_7101020058(); }
+    static const CType* pointee() { return sound::CSoundEventsDef::SSoundEventsSelector::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71010205e0> {
@@ -214,7 +208,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7101028224> {
     static constexpr UnkFn fn_0xf0 = &fn_7101028394;
     static constexpr UnkFn fn_0xf8 = &fn_71010283fc;
     static constexpr UnkFn fn_0x100 = &fn_7101028408;
-    static const CType* pointee() { return fn_71010206c0(); }
+    static const CType* pointee() { return sound::CSoundManager::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7101022c78> {

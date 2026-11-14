@@ -2,38 +2,41 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CPointerType.h"
 // Reflection descriptors for one original translation unit (1 type):
-// for each type, its getter (T::refl_GetClass) and, through the traits below, its
-// descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape and the attribute/member-field functions that
-// tools/refl_attrs.py reconstructs byte-identically.
-#include "base/reflection/CClass.h"
+// each class's functions are in a namespace of its name (base/reflection/ReflectedClass.h): its
+// getter (T::refl_GetClass) and descriptor constructor (T::refl_InitClass), the functions the
+// descriptor points to (those of a known uniform shape defined, the others declared) and the
+// attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
+#include "base/reflection/ReflectedClass.h"
+using base::reflection::CClass;
+using base::reflection::ClassDescription;
+using base::reflection::ClassOf;
+using base::reflection::ClassOfDestructorFirst;
+using base::reflection::Destroy;
+using base::reflection::DestroyDestructorFirst;
 
 // CTriggerLogicAction
-DREAD_REFL_TAG(7100a54818);
-void fn_7100a54720(base::reflection::CClass*) {}
-void fn_7100a54814(base::reflection::CClass*) {}
-bool fn_7100a56d68(const void* a, const void* b) { return a == b; }
-s32 fn_7100a56d74() { return -1; }
-const base::reflection::CType& fn_7100a56d7c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100a56d98();
-void fn_7100a56dac(void* dst, const void* src);
-void fn_7100a56dc8(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_7100a56dd4(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100a54818> {
+namespace CTriggerLogicAction {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass*) {}
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x10;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100a56d68;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100a56d74;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100a56d7c;
-    static constexpr UnkFn fn_0x28 = &fn_7100a56d98;
-    static constexpr UnkFn_0x30 fn_0x30 = nullptr;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_7100a56dac;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100a56dc8;
-    static constexpr UnkFn_0x48 fn_0x48 = nullptr;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100a56dd4;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_ROOT_CLASS_GETTER(7100a54724, 7100a54818, "CTriggerLogicAction", 7100a54720, 7100a54814);
+}  // namespace CTriggerLogicAction
+DREAD_REFLECTED_ROOT_CLASS(CTriggerLogicAction);
 
 void fn_7100a55c5c();
 void fn_7100a55cc4();
@@ -75,7 +78,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100a55aec> {
     static constexpr UnkFn fn_0xf0 = &fn_7100a55c5c;
     static constexpr UnkFn fn_0xf8 = &fn_7100a55cc4;
     static constexpr UnkFn fn_0x100 = &fn_7100a55cd0;
-    static const CType* pointee() { return fn_7100a54724(); }
+    static const CType* pointee() { return CTriggerLogicAction::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100a5498c> {
@@ -102,7 +105,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100a55d5c> {
     static constexpr UnkFn fn_0xf0 = &fn_7100a55ebc;
     static constexpr UnkFn fn_0xf8 = &fn_7100a55f24;
     static constexpr UnkFn fn_0x100 = &fn_7100a55f48;
-    static const CType* pointee() { return fn_7100a54724(); }
+    static const CType* pointee() { return CTriggerLogicAction::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100a54a68> {

@@ -120,11 +120,24 @@ public:
     UnkReflArray m_array_0xb8;
 };
 
-// Per-type facts for CClass's constructor, specialised for each reflected class (generated
-// into src/reflection/). Members: size, abstract, fn_0x58/0x60/0x68, and fn_0x28..fn_0x50 (null when the
-// type lacks that function).
+// Per-type facts for CClass's constructor. Members: size, abstract, fn_0x58/0x60/0x68, and
+// fn_0x28..fn_0x50 (null when the type lacks that function). Older sources specialise it for a tag
+// type; a class described with base/reflection/ReflectedClass.h gets it from this primary template,
+// which reads the description's named members.
 template <class T>
-struct UnkReflClassTraits;
+struct UnkReflClassTraits {
+    static constexpr u64 size = T::size;
+    static constexpr bool abstract = T::abstract;
+    static constexpr auto fn_0x58 = T::equals;
+    static constexpr auto fn_0x60 = T::hash;
+    static constexpr auto fn_0x68 = T::type_of;
+    static constexpr auto fn_0x28 = T::construct;
+    static constexpr auto fn_0x30 = T::copy_construct;
+    static constexpr auto fn_0x38 = T::move_construct;
+    static constexpr auto fn_0x40 = T::destroy;
+    static constexpr auto fn_0x48 = T::copy_assign;
+    static constexpr auto fn_0x50 = T::move_assign;
+};
 
 class CClass : public CType {
 public:
@@ -145,8 +158,9 @@ CClass::CClass(const base::global::CStrId& name, const CClass* parent, UnkFn_0x7
     : CType(fn_7100001570("base::reflection::CClass", 0x18), name, UnkReflClassTraits<T>::size,
             UnkReflClassTraits<T>::fn_0x58, UnkReflClassTraits<T>::fn_0x60, UnkReflClassTraits<T>::fn_0x68,
             fn_0x70, parent,
-            {UnkReflClassTraits<T>::fn_0x28, UnkReflClassTraits<T>::fn_0x30, UnkReflClassTraits<T>::fn_0x38,
-             UnkReflClassTraits<T>::fn_0x40, UnkReflClassTraits<T>::fn_0x48, UnkReflClassTraits<T>::fn_0x50},
+            {reinterpret_cast<UnkFn>(UnkReflClassTraits<T>::fn_0x28), UnkReflClassTraits<T>::fn_0x30,
+             UnkReflClassTraits<T>::fn_0x38, UnkReflClassTraits<T>::fn_0x40, UnkReflClassTraits<T>::fn_0x48,
+             UnkReflClassTraits<T>::fn_0x50},
             UnkReflClassTraits<T>::abstract),
       m_fn_0xe0(fn_0xe0), m_array_0xe8(10, 0xe), m_array_0x110(10, 0xe) {}
 

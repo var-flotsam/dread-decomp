@@ -174,9 +174,7 @@ def main() -> int:
     args = ap.parse_args()
 
     rows, _ = check.load_csv()
-    by_name: dict[str, list[int]] = {}
-    for r in rows.values():
-        by_name.setdefault(r["name"], []).append(int(r["address"], 16))
+    by_name = check.csv_by_name(rows)
     original = asmdiff.Original(args.version)
     units = []
     mismatched_calls = 0

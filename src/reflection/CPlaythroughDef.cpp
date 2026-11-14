@@ -2,11 +2,11 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CPointerType.h"
 // Reflection descriptors for one original translation unit (2 types):
-// for each type, its getter (T::refl_GetClass) and, through the traits below, its
-// descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape and the attribute/member-field functions that
-// tools/refl_attrs.py reconstructs byte-identically.
-#include "base/reflection/CClass.h"
+// each class's functions are in a namespace of its name (base/reflection/ReflectedClass.h): its
+// getter (T::refl_GetClass) and descriptor constructor (T::refl_InitClass), the functions the
+// descriptor points to (those of a known uniform shape defined, the others declared) and the
+// attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
+#include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -14,19 +14,24 @@ using base::reflection::UnkReflField;
 using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
+using base::reflection::ClassDescription;
+using base::reflection::ClassOf;
+using base::reflection::ClassOfDestructorFirst;
+using base::reflection::Destroy;
+using base::reflection::DestroyDestructorFirst;
 
 // CPlaythroughDef
-DREAD_REFL_TAG(71002f0504);
 const base::reflection::UnkReflAttrKey& fn_7100005070();
-void fn_71002eff6c(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10200u);
-}
 const base::reflection::UnkReflAttrKey& fn_710001b9f0();
 extern base::reflection::CType g_unk_71726adc98;
 void fn_71002f4644();
 void fn_71002f0664(UnkReflFunction* fn, const char* name);
 void fn_71002f471c();
-void fn_71002f00b8(CClass* cls) {
+namespace CPlaythroughDef {
+void refl_AddAttributes(CClass* cls) {
+    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10200u);
+}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sName", true), fn_7100009658(), 0x58, -1, -1);
     field0->attrs.Add<bool>(fn_710001b9f0(), true);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("sLevelID", true), fn_7100009658(), 0x60, -1, -1);
@@ -49,36 +54,31 @@ void fn_71002f00b8(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71002f471c);
     }
 }
-bool fn_71002f4560(const void*, const void*) { return false; }
-s32 fn_71002f4568() { return -1; }
-const base::reflection::CType& fn_71002f4570(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_71002f458c();
-void fn_71002f4638(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_71002f0504> {
+bool refl_Equals(const void*, const void*) { return false; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_Destroy(void* obj) { Destroy(obj); }
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x90;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_71002f4560;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_71002f4568;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_71002f4570;
-    static constexpr UnkFn fn_0x28 = &fn_71002f458c;
-    static constexpr UnkFn_0x30 fn_0x30 = nullptr;
-    static constexpr UnkFn_0x30 fn_0x38 = nullptr;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_71002f4638;
-    static constexpr UnkFn_0x48 fn_0x48 = nullptr;
-    static constexpr UnkFn_0x48 fn_0x50 = nullptr;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto destroy = &refl_Destroy;
 };
-DREAD_REFL_CLASS_GETTER(71002effc4, 71002f0504, "CPlaythroughDef", 7100016894, 71002eff6c, 71002f00b8);
+}  // namespace CPlaythroughDef
+DREAD_REFLECTED_CLASS(CPlaythroughDef, base::core::CAsset);
 
 // CPlaythroughDef::SCheckpointDef
-DREAD_REFL_TAG(71002f0e0c);
-void fn_71002f07dc(base::reflection::CClass*) {}
 const base::reflection::CType* fn_710009f69c();
 const base::reflection::CType* fn_710009fb38();
 void fn_71002f4f44();
 void fn_71002f0f90(UnkReflFunction* fn, const char* name);
 void fn_71002f110c(UnkReflFunction* fn, const char* name);
-void fn_71002f08d0(CClass* cls) {
+namespace CPlaythroughDef::SCheckpointDef {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sScenarioID", true), fn_7100009658(), 0x8, -1, -1);
     field0->attrs.Add<bool>(fn_710001b9f0(), true);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("sCheckpointID", true), fn_7100009658(), 0x10, -1, -1);
@@ -101,30 +101,29 @@ void fn_71002f08d0(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("HasTag", true)))
         fn_71002f110c(fn, "HasTag");
 }
-bool fn_71002f4744(const void* a, const void* b) { return a == b; }
-s32 fn_71002f4750() { return -1; }
-const base::reflection::CType& fn_71002f4758(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_71002f4774();
-void fn_71002f47ac(void* dst, const void* src);
-void fn_71002f47b0(void* dst, const void* src);
-void fn_71002f47b4(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_71002f47c0(void* dst, const void* src);
-void* fn_71002f47f0(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_71002f0e0c> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0xd0;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_71002f4744;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_71002f4750;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_71002f4758;
-    static constexpr UnkFn fn_0x28 = &fn_71002f4774;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_71002f47ac;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_71002f47b0;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_71002f47b4;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_71002f47c0;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_71002f47f0;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_ROOT_CLASS_GETTER(71002f07e0, 71002f0e0c, "CPlaythroughDef::SCheckpointDef", 71002f07dc, 71002f08d0);
+}  // namespace CPlaythroughDef::SCheckpointDef
+DREAD_REFLECTED_ROOT_CLASS(CPlaythroughDef::SCheckpointDef);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).
@@ -189,7 +188,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002f3edc> {
     static constexpr UnkFn fn_0xf0 = &fn_71002f404c;
     static constexpr UnkFn fn_0xf8 = &fn_71002f40b4;
     static constexpr UnkFn fn_0x100 = &fn_71002f4110;
-    static const CType* pointee() { return fn_71002effc4(); }
+    static const CType* pointee() { return CPlaythroughDef::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71002f22c0> {
@@ -216,7 +215,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002f338c> {
     static constexpr UnkFn fn_0xf0 = &fn_71002f34ec;
     static constexpr UnkFn fn_0xf8 = &fn_71002f3554;
     static constexpr UnkFn fn_0x100 = &fn_71002f3578;
-    static const CType* pointee() { return fn_71002f07e0(); }
+    static const CType* pointee() { return CPlaythroughDef::SCheckpointDef::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71002f1944> {
@@ -243,7 +242,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002f42f0> {
     static constexpr UnkFn fn_0xf0 = &fn_71002f4460;
     static constexpr UnkFn fn_0xf8 = &fn_71002f44c8;
     static constexpr UnkFn fn_0x100 = &fn_71002f44d4;
-    static const CType* pointee() { return fn_71002f07e0(); }
+    static const CType* pointee() { return CPlaythroughDef::SCheckpointDef::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71002f239c> {
