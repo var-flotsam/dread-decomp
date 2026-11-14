@@ -1,75 +1,46 @@
-// CXParasiteAIComponent's unit (tools/tu_map.py unit 1102): a component destructor (vtable 0x7101a6a1c8):
-// refcounted pointers at +0x147b0 and +0x147a0..+0x14790, a keyed table of 0x38-byte records (each with a
-// file-path id at +0x10) at +0x14768, an array of refcounted pointers at +0x14740, a refcounted pointer at
-// +0x146d0, then the base's destructor fn_7100369380. Names are placeholders.
-#include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+// CXParasiteAIComponent's unit (tools/tu_map.py unit 1102): the component's destructor (vtable 0x7101a6a1c8).
+// It drops the counted references at +0x147b0 to +0x14790, empties the keyed table of bindings (each
+// binding's file path id first) and the array of entries, drops the reference at +0x146d0, then runs the
+// base's destructor, fn_7100369380. Names are placeholders.
 #include "game/CBehaviorTreeAIComponent.h"
+#include "game/UnkXParasiteAI.h"
+#include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 extern void* g_unk_7101a6a1c8[];
 
-struct UnkXParasiteDtor_A4_b71;
+// One counted reference less; the last one deletes the object (vtable slot 0x10).
+static inline void Release(UnkRefObject* p) {
+    if (p && --p->ref_count == 0)
+        p->vf_0x10();
+}
 
-template <>
-struct base::UnkDtorTraits<UnkXParasiteDtor_A4_b71> {
-    static char* vtable() { return reinterpret_cast<char*>(g_unk_7101a6a1c8); }
-    static void base(char* self) { fn_7100369380(self); }
-};
+void fn_71006e6184(UnkXParasiteAI* self) {
+    self->vtable = &g_unk_7101a6a1c8[2];
+    Release(self->field_0x147b0);
+    Release(self->field_0x147a0);
+    Release(self->field_0x14798);
+    Release(self->link);
 
-// The arrays of refcounted pointers.
-template <u32 Offset>
-struct UnkXParasiteRefs_A4_b71 {
-    static void Release(char* self) {
-        auto* v = reinterpret_cast<base::UnkVector<base::UnkRefPtrMember>*>(self + Offset);
-        if (v->data) {
-            for (u64 i = 0; i < v->count; ++i) {
-                if (char* p = reinterpret_cast<char*>(v->data[i].ptr)) {
-                    s32* rc = reinterpret_cast<s32*>(p + 8);
-                    if (--*rc == 0)
-                        delete v->data[i].ptr;
-                }
-            }
-            v->count = 0;
-            v->allocator->vf_0x48(v->data);
-            v->capacity = 0;
-        }
+    UnkXParasiteBindings& bindings = self->bindings;
+    if (bindings.values)
+        for (u64 i = 0; i < bindings.count; ++i)
+            bindings.values[i].effect.~UnkStrIdMemberOf();
+    bindings.count = 0;
+    if (bindings.keys)
+        bindings.allocator->vf_0x48(bindings.keys);
+    if (bindings.values)
+        bindings.allocator->vf_0x48(bindings.values);
+
+    base::UnkVector<UnkWeakHandle*>& entries = self->entries;
+    if (entries.data) {
+        for (u64 i = 0; i < entries.count; ++i)
+            Release(entries.data[i]);
+        entries.count = 0;
+        entries.allocator->vf_0x48(entries.data);
+        entries.capacity = 0;
     }
-};
 
-struct UnkXParasiteRecord_A4_b71 {
-    u8 unk_0x0[0x10];
-    base::UnkStrIdMemberOf<g_unk_7101d47200> id;
-    u8 unk_0x18[0x20];
-};
-
-struct UnkXParasiteTable_A4_b71 {
-    UnkXParasiteRecord_A4_b71* data;
-    void* buckets;
-    u32 count;
-    u32 field_0x14;
-    u64 field_0x18;
-    base::UnkAllocator* allocator;
-};
-
-template <u32 Offset>
-struct UnkXParasiteTableRel_A4_b71 {
-    static void Release(char* self) {
-        auto* t = reinterpret_cast<UnkXParasiteTable_A4_b71*>(self + Offset);
-        if (t->data)
-            for (u64 i = 0; i < t->count; ++i)
-                t->data[i].id.~UnkStrIdMemberOf();
-        t->count = 0;
-        if (t->buckets)
-            t->allocator->vf_0x48(t->buckets);
-        if (t->data)
-            t->allocator->vf_0x48(t->data);
-    }
-};
-
-__attribute__((flatten)) void fn_71006e6184(char* self) {
-    base::refl_Dtor<UnkXParasiteDtor_A4_b71, base::UnkRefPtrAt<0x147b0>, base::UnkRefPtrAt<0x147a0>,
-                    base::UnkRefPtrAt<0x14798>, base::UnkRefPtrAt<0x14790>,
-                    UnkXParasiteTableRel_A4_b71<0x14768>, UnkXParasiteRefs_A4_b71<0x14740>,
-                    base::UnkRefPtrAt<0x146d0>>(self);
+    Release(self->field_0x146d0);
+    fn_7100369380(self);
 }

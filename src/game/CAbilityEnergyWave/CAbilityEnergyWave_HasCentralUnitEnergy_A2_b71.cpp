@@ -6,6 +6,7 @@
 #include "game/CInventoryComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkItemProperties.h"
+#include "game/CAbilityLayout.h"
 #include "types.h"
 
 struct UnkInventory;
@@ -17,39 +18,20 @@ static inline const UnkQualifiedId& GetQualifiedId_A2_b71(UnkPropertyEx<>& item)
     return qid;
 }
 
-struct UnkEnergyWaveState_A2_b71 {
-    u8 pad_0x0[0x10];
-    u32 id;  // 0x10
-};
-
 struct UnkEnergyWaveOwner_A2_b71 {
     u8 pad_0x0[0x270];
     UnkInventory* inventory;  // 0x270
 };
 
-struct UnkEnergyWaveActor_A2_b71 {
-    u8 pad_0x0[0x30];
-    UnkEnergyWaveOwner_A2_b71* owner;  // 0x30
-};
-
-struct UnkEnergyWave_A2_b71 {
-    u8 pad_0x0[0x20];
-    UnkEnergyWaveState_A2_b71* state;  // 0x20
-    u8 pad_0x28[0x8c];
-    u32 state_id;  // 0xb4
-    u8 pad_0xb8[0x8];
-    UnkEnergyWaveActor_A2_b71* actor;  // 0xc0
-};
-
-bool fn_7100304bd4(UnkEnergyWave_A2_b71* self) {
-    u32 id = self->state_id;
+bool fn_7100304bd4(CAbilityEnergyWave* self) {
+    s32 id = self->state;
     if (id == 7) {
-        if (!self->state)
+        if (!self->state_holder)
             return false;
-        id = self->state->id;
+        id = self->state_holder->state;
     }
     if (id == 4) {
-        UnkInventory* inventory = self->actor->owner->inventory;
+        UnkInventory* inventory = self->component->Owner<UnkEnergyWaveOwner_A2_b71>()->inventory;
         if (fn_71011428bc(inventory, GetQualifiedId_A2_b71(g_unk_717275ac18)))
             return true;
     }

@@ -12,11 +12,11 @@
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
+#include "game/CAbilityLayout.h"
 #include "types.h"
 
 struct UnkWorld;
 struct UnkPart;
-struct UnkParent;
 struct UnkPlayer;
 struct UnkOwner;
 struct UnkRinkaControl_ruc;
@@ -30,36 +30,19 @@ struct UnkEnergyWaveTargetOwner_b49 {
     UnkEnergyWaveTargetComp_b49* comp;
 };
 
-struct UnkEnergyWaveTarget_b49 {
-    u8 pad_0x0[0x30];
-    UnkEnergyWaveTargetOwner_b49* owner;
-};
+// The input component of a component's actor (+0x1d8), which holds the listener.
+static inline UnkEnergyWaveTargetComp_b49* InputOf(UnkBaseComponent* component) {
+    return OwnerOf<UnkEnergyWaveTargetOwner_b49>(component)->comp;
+}
 
 struct UnkEnergyWaveArg_b49 {
     u8 pad_0x0[0x1d8];
-    UnkEnergyWaveTarget_b49* target;
-};
-
-struct UnkEnergyWaveChild2_b49 {
-    void** vtable;
-    void vf_0x68(void* a) { reinterpret_cast<void (*)(UnkEnergyWaveChild2_b49*, void*)>(vtable[0x68 / 8])(this, a); }
-    void vf_0x70(void* a) { reinterpret_cast<void (*)(UnkEnergyWaveChild2_b49*, void*)>(vtable[0x70 / 8])(this, a); }
+    UnkBaseComponent* target;
 };
 
 struct UnkEnergyWaveOwner2_b49 {
     u8 pad_0x0[0x280];
     UnkWorld* world;
-};
-
-struct UnkEnergyWave2_b49 {
-    u8 pad_0x0[0x30];
-    UnkEnergyWaveOwner2_b49* owner;
-    u8 pad_0x38[0x8];
-    UnkEnergyWaveChild2_b49** children;
-    u32 count;
-    u8 pad_0x4c[0x2c];
-    u8 field_0x78[0x48];
-    UnkEnergyWaveTarget_b49* target;
 };
 
 struct UnkEnergyWavePlayer_b49 {
@@ -76,28 +59,28 @@ struct UnkEnergyWaveFxLink_b49 {
     UnkEnergyWaveFxHolder_b49* holder;
 };
 
-void fn_71002fe160(UnkEnergyWave2_b49* self, UnkEnergyWaveArg_b49* arg) {
-    void* link = self->field_0x78;
-    if (self->target && self->target->owner && self->target->owner->comp)
-        fn_7100872908(self->target->owner->comp, link);
+void fn_71002fe160(CAbilityComponent* self, UnkEnergyWaveArg_b49* arg) {
+    void* link = &self->input;
+    if (self->target && self->target->field_0x30 && InputOf(self->target))
+        fn_7100872908(InputOf(self->target), link);
     self->target = nullptr;
-    if (UnkEnergyWaveTarget_b49* target = arg->target) {
-        if (target->owner && target->owner->comp)
-            fn_7100872860(target->owner->comp, link);
+    if (UnkBaseComponent* target = arg->target) {
+        if (target->field_0x30 && InputOf(target))
+            fn_7100872860(InputOf(target), link);
         self->target = target;
     }
-    for (UnkEnergyWaveChild2_b49 **it = self->children, **end = it + self->count; it != end; ++it)
-        (*it)->vf_0x68(arg);
-    if (UnkWorld* world = self->owner->world) {
+    for (CAbility **it = self->begin(), **end = self->end(); it != end; ++it)
+        (*it)->Virtual(0x68, arg);
+    if (UnkWorld* world = self->Owner<UnkEnergyWaveOwner2_b49>()->world) {
         if (fn_7101152b90(world, 0xb1489dc93c1d38ddull))
             fn_710114ffb8(reinterpret_cast<UnkRinkaControl_ruc*>(world), 0xb1489dc93c1d38ddull, false, false);
     }
 }
 
-void fn_71002fe24c(UnkEnergyWave2_b49* self, void* arg) {
-    fn_71002fe318(reinterpret_cast<UnkParent*>(self));
-    for (UnkEnergyWaveChild2_b49 **it = self->children, **end = it + self->count; it != end; ++it)
-        (*it)->vf_0x70(arg);
+void fn_71002fe24c(CAbilityComponent* self, void* arg) {
+    fn_71002fe318(self);
+    for (CAbility **it = self->begin(), **end = self->end(); it != end; ++it)
+        (*it)->Virtual(0x70, arg);
     if (UnkWorld* world = reinterpret_cast<UnkEnergyWavePlayer_b49*>(fn_7100dec788(g_unk_7101d47310))->world)
         fn_710115372c(world);
     if (UnkEnergyWaveFxComp_b49* comp = reinterpret_cast<UnkEnergyWaveFxHolder_b49*>(fn_7100defcd4(g_unk_7101d47310))->comp)
