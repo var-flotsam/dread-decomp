@@ -359,7 +359,7 @@ class LiftObject:
     words: set = field(default_factory=set)
 
 
-def load_object(path, resolve, demangled: dict[str, str], anchor=None) -> LiftObject:
+def load_object(path, resolve, demangled: dict[str, str], anchor=None, address_of=None) -> LiftObject:
     """Lay out every allocatable section of an AArch64 ELF object (text first, then data), apply
     its relocations, and resolve undefined symbols with `resolve(demangled name) -> address`.
 
@@ -372,7 +372,10 @@ def load_object(path, resolve, demangled: dict[str, str], anchor=None) -> LiftOb
     stands for, None to keep the object's own copy, or False when the place must be the
     original's and its address is not known: that relocation is then listed in `unresolved`, so
     the function containing it is inconclusive. A reference from a function into itself, or to
-    the middle of a function (a jump table's), is never asked about: it stays the object's own."""
+    the middle of a function (a jump table's), is never asked about: it stays the object's own.
+
+    `address_of(mangled name) -> address or None` registers a defined function that is not named
+    fn_<addr> (a constructor or destructor, whose name Clang 9 never takes from its asm label)."""
     lo = LiftObject()
     with open(path, "rb") as fh:
         elf = ELFFile(fh)
@@ -418,6 +421,10 @@ def load_object(path, resolve, demangled: dict[str, str], anchor=None) -> LiftOb
                 m = name.split("(")[0]
                 if m.startswith("fn_") and len(m) == 13:
                     lo.functions[int(m[3:], 16)] = (sym_addr[-1], s["st_size"])
+                elif address_of is not None:
+                    there = address_of(s.name)
+                    if there is not None and there not in lo.functions:
+                        lo.functions[there] = (sym_addr[-1], s["st_size"])
             if s.name.startswith("_ZGV") and isinstance(sh, int) and sh in place:
                 lo.guards.append(sym_addr[-1])
         # Named symbols by section, to name what a section-relative reference points at (anchor).

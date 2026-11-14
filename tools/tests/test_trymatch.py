@@ -40,7 +40,7 @@ class Main(unittest.TestCase):
             self.commands.append((src, obj, extra))
             return ["clang", str(src), "-o", str(obj)]
 
-        def diff_with_targets(funcs, original, by_name):
+        def diff_with_targets(funcs, original, by_name, source=None):
             return self.results, {}, {}, None
 
         for p in (mock.patch.object(trymatch, "ROOT", self.root),
@@ -51,6 +51,7 @@ class Main(unittest.TestCase):
                   mock.patch.object(trymatch.asmdiff, "Original",
                                     lambda v: types.SimpleNamespace(function=lambda a: RET)),
                   mock.patch.object(trymatch.check, "diff_with_targets", diff_with_targets),
+                  mock.patch.object(trymatch.check, "special_mismatches", lambda *a, **k: []),
                   mock.patch.object(trymatch.asmdiff, "check_relocs",
                                     lambda r, o, t: types.SimpleNamespace(mismatches=self.reloc_mismatches)),
                   mock.patch.object(trymatch.asmdiff, "format_mismatch", lambda m, sym: f"{sym} differs")):

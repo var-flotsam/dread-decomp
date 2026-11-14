@@ -148,11 +148,15 @@ def functions(src: Path) -> list[dict] | str:
     funcs = asmdiff.read_object(obj)
     codes = {f.symbol: f.code for f in funcs}
     by_symbol = {f.symbol: f for f in funcs}
-    results, names, _, targets = check.diff_with_targets(funcs, _state["orig"], _state["by_name"])
+    source = src.resolve().relative_to(ROOT).as_posix()
+    results, names, full_names, targets = check.diff_with_targets(funcs, _state["orig"], _state["by_name"],
+                                                                  source=source)
+    defined = set(by_symbol)
     out = []
     for res in results:
         if res.bytes_match:
             bad = asmdiff.check_relocs(res, _state["orig"], targets).mismatches
+            bad += check.special_mismatches(res, _state["orig"], targets, full_names, source, defined)
             difference = "wrong reference" if bad else "match"
         else:
             kind = asmdiff.classify(_state["orig"].function(res.address), codes[res.symbol]).split(" ")[0]

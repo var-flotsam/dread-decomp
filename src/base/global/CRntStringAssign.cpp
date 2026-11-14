@@ -38,7 +38,8 @@ static inline void ReleaseTemporary(CRntString& s) {
 
 // NON_MATCHING(minor): the two temporaries' destruction (the string's clear and destructor, both
 // inlined) is emitted in a different shape: the original keeps the old data pointer in a register
-// and tests it again after the clear. The behaviour is the same.
+// and tests it again after the clear. Ours also calls the string's destructor (fn_710007ecd4) for each
+// temporary where the original has that same body inlined. The behaviour is the same.
 void fn_710007e7f8(CRntString* self, const char* str, u32 length) {
     if (self->borrowed)
         return;

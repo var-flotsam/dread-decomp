@@ -19,6 +19,7 @@ static inline void EraseAt(UnkSetVector_b2* self, u32 index) {
     }
 }
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_710024657c(UnkSetVector_b2* self, const u32* it) {
     UnkHalf_cu* base = reinterpret_cast<UnkHalf_cu*>(self);
     u64 offset = (u64)*it * sizeof(UnkHalf_cu);

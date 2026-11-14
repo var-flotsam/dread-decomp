@@ -4,7 +4,7 @@
 
 struct UnkMember_71002458a4 {
     u64 unk_0x0[8];
-    UnkMember_71002458a4(UnkMember_71002458a4&& other);
+    UnkMember_71002458a4(UnkMember_71002458a4&& other);  // fn_71002458a4
 };
 
 struct UnkRecord_7100779ad0 {

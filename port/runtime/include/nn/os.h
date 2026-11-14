@@ -141,7 +141,19 @@ void SetMultiWaitHolderUserData(MultiWaitHolderType* holder, u64 user_data);
 // runtime's own stubs create and signal them. Opaque like EventType, with the same first 16 bytes.
 // ClearSystemEvent is called by the lifted fn_710002b830, fn_710002b910 and fn_710002b9e0,
 // TimedWaitSystemEvent by fn_710002b130 and fn_7101215104.
-struct SystemEventType;
+// A system event. The sound system (include/game/UnkAtkSystem.h) embeds one, so it has the console's
+// layout: 0x28 bytes of event, then the state byte the game's constructor sets to "not initialized".
+// The port keeps its own event in a side table (os.cpp), as it does for EventType.
+struct SystemEventType {
+    enum State {
+        State_NotInitialized = 0,
+        State_InitializedAsEvent = 1,
+        State_InitializedAsInterProcessEvent = 2,
+    };
+    alignas(8) u8 storage[0x28];
+    u8 state;
+};
+static_assert(__builtin_offsetof(SystemEventType, state) == 0x28, "the console's system event: its state at +0x28");
 
 void ClearSystemEvent(SystemEventType* event);
 void DestroySystemEvent(SystemEventType* event);
