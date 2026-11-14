@@ -172,6 +172,36 @@ REGRESSION; `tools/equiv_test.py`'s digest and `tools/drafts.py`'s spell a renam
 placeholders; the port link already aliases them to the named definition through the function list. Tried on
 `fn_7100219588` (7 files, 9 uses) and reverted: no renames are in this change. Open: the generators reading
 the map, and a definition written inline in a class body (its scope is not checked; check.py is the judge).
+**The X parasite component's two leftovers: the destructor over the layout, and the owner's views
+(2026-11-13).** The pilot (below) left two things outside `include/game/UnkXParasiteAI.h`. Both are done, and
+every source that could see the change compiles to the same instructions and relocations as before: the 29
+sources of the class and unit 1102, and all 538 hand-written includers of `game/UnkActor.h` (Clang 9.0.1 with
+the project flags, objects disassembled before and after; the only difference is the destructor's mangled
+name, now that it takes the component).
+
+- *The destructor* (`fn_71006e6184`, `CXParasiteAIComponent_Dtor_A4_b71.cpp`) is written as a destructor of
+  the component: store the vtable, drop the four counted references, empty the bindings table and the entry
+  array, drop +0x146d0, run the base's. No offset templates, no `flatten`, six helper types fewer. It told
+  the layout three things: the entries at +0x14740 are a `base::UnkVector` of weak handles (its allocator at
+  +0x20 is what frees them), the bindings table has a count word and its allocator after the three members
+  the other sources read, and a binding's "effect" at +0x10 is a file path id
+  (`base::UnkStrIdMemberOf<g_unk_7101d47200>`, the id the destructor releases and `fn_71003b7db0` loads).
+  +0x147a0 is a counted reference.
+- *The owner's views.* Of the three, two were facts about any actor and went into `UnkActor`: vtable slot
+  0xd0 places the actor at a point (`UnkActor::vf_0xd0`, which `UnkTU2577_Follow_ovb0190.cpp` and the
+  Chozo commander sphere source also call with a point and `true`), and +0x280 is the object the actor's
+  effects and parts are in (`field_0x280`). The transform view only read the translation, which `UnkActor`
+  already has. `UnkTarget_xpa`, `UnkInner_xpa` and `UnkXParasiteActor_8208` are gone. The prey at +0x14798
+  is an actor too (`Prey()` in the header), so `UnkXParasitePrey_b60a4` went with them.
+- *What stays:* the model holder at +0x228. Its view (`UnkXParasiteHolder`, the shape at +0x50) is in the
+  class's header already, and four other classes (the Shelmit, Core-X and two frostbite sources) read the
+  same holder with three different ideas of what is at +0x50. Settling that is a pass over the holder type,
+  not this class.
+
+`UnkActor.h` forward-declares `UnkVec3f` now, which two behaviour-tree sources had made an alias of
+`base::math::CVector3D`; they name `CVector3D` directly. decl_check, struct_check and fakematch's `--base`
+and `--unset` pass. Ten type definitions fewer in the class's sources, one added (the prey's AI component,
+for the point at +0x15c4).
 **The review's three open questions, answered (2026-11-13).** The handoff of the review left three questions
 with the owner. Each was put to the owner with a recommendation, and the owner said to make the changes:
 
