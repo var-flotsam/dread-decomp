@@ -1,6 +1,7 @@
-// CAbilityEnergyWave's unit (tools/tu_map.py unit 429): through the part held at +0xe8, hands its
+// CAbilityEnergyWave's unit (tools/tu_map.py unit 429): through the life component's handle at +0xe8, hands its
 // +0x10 object the amount clamped to that object's +0x44 value, when the result is above
 // FLT_EPSILON (fn_7100a1feac). Names are placeholders.
+#include "game/CAbilityLayout.h"
 #include "types.h"
 
 struct UnkTarget429 {
@@ -10,22 +11,12 @@ struct UnkTarget429 {
 
 void fn_7100a1feac(UnkTarget429* self, f32 amount);
 
-struct UnkPart429 {
-    u8 pad_0x0[0x10];
-    UnkTarget429* target;  // 0x10
-};
-
-struct UnkAbility429 {
-    u8 pad_0x0[0xe8];
-    UnkPart429* part;  // 0xe8
-};
-
-void fn_710030171c(UnkAbility429* self, f32 amount) {
-    UnkPart429* part = self->part;
-    if (part == nullptr) {
+void fn_710030171c(CAbilityComponent* self, f32 amount) {
+    UnkWeakHandle* life = self->life;
+    if (life == nullptr) {
         return;
     }
-    UnkTarget429* target = part->target;
+    UnkTarget429* target = reinterpret_cast<UnkTarget429*>(life->target);
     if (target == nullptr) {
         return;
     }

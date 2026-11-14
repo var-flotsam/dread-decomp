@@ -1,56 +1,29 @@
-// CXParasiteAIComponent unit (tools/tu_map.py): when the flag at +0x146ec is set and the chain
-// +0x146e0+0xb8 -> +0x10 leads to an object, its +0x240 entry (if any) is handed, offset by 0x15c4, to
-// vtable slot 0xd0 of the object at +0x30 with `true`; otherwise state 7 (+0x146e0) runs fn_71006e77b8.
+// CXParasiteAIComponent unit (tools/tu_map.py): when the flag at +0x146ec is set and the prey (the weak
+// handle at +0x14798) is there, the owner (+0x30) is placed (vtable slot 0xd0, with `true`) at the point at
+// +0x15c4 of the prey's AI component (its +0x240), when it has one; otherwise state 7 (+0x146e0) runs
+// fn_71006e77b8.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
 #include "game/UnkTU1102.h"
+#include "game/UnkActor.h"
 #include "game/UnkXParasiteAI.h"
+#include "game/UnkXformNode.h"
 #include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
-struct UnkTarget_xpa {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual void vf_0x20();
-    virtual void vf_0x28();
-    virtual void vf_0x30();
-    virtual void vf_0x38();
-    virtual void vf_0x40();
-    virtual void vf_0x48();
-    virtual void vf_0x50();
-    virtual void vf_0x58();
-    virtual void vf_0x60();
-    virtual void vf_0x68();
-    virtual void vf_0x70();
-    virtual void vf_0x78();
-    virtual void vf_0x80();
-    virtual void vf_0x88();
-    virtual void vf_0x90();
-    virtual void vf_0x98();
-    virtual void vf_0xa0();
-    virtual void vf_0xa8();
-    virtual void vf_0xb0();
-    virtual void vf_0xb8();
-    virtual void vf_0xc0();
-    virtual void vf_0xc8();
-    virtual void vf_0xd0(void* entry, bool flag);
-};
-
-struct UnkInner_xpa {
-    u8 pad_0x0[0x240];
-    u8* entry;  // 0x240
+// The prey's AI component (its actor's +0x240), as far as this source reads it: a point at +0x15c4.
+struct UnkXParasitePreyAI {
+    u8 pad_0x0[0x15c4];
+    UnkVec3f point;  // 0x15c4
 };
 
 void fn_71006e77b8(UnkXParasiteAI* self);
 
 void fn_71006e7754(UnkXParasiteAI* self) {
     if (self->field_0x146ec && self->field_0x14798 && self->field_0x14798->target) {
-        u8* entry = reinterpret_cast<UnkInner_xpa*>(self->field_0x14798->target)->entry;
-        if (entry)
-            reinterpret_cast<UnkTarget_xpa*>(self->owner)->vf_0xd0(entry + 0x15c4, true);
+        if (auto* ai = static_cast<UnkXParasitePreyAI*>(Prey(self)->field_0x240))
+            self->owner->vf_0xd0(&ai->point, true);
         return;
     }
     if (self->state == 7)

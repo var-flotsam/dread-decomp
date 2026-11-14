@@ -4,6 +4,8 @@
 // (+0xc0) drops the link (+0x78), the wave's own component takes it. Returns true. Names and layouts are
 // placeholders.
 #include "game/CInputComponent.h"
+#include "game/CAbilityEnergyWave.h"
+#include "game/CAbilityLayout.h"
 #include "types.h"
 
 struct UnkEnergyWaveTargetComp_b49;
@@ -13,44 +15,25 @@ struct UnkWaveOwner_A2_b70 {
     UnkEnergyWaveTargetComp_b49* comp;
 };
 
-struct UnkWaveTarget_A2_b70 {
-    u8 pad_0x0[0x30];
-    UnkWaveOwner_A2_b70* owner;
-};
+// The input component of a component's actor (+0x1d8), which holds the listener.
+static inline UnkEnergyWaveTargetComp_b49* InputOf(UnkBaseComponent* component) {
+    return OwnerOf<UnkWaveOwner_A2_b70>(component)->comp;
+}
 
-struct UnkWaveChild_A2_b70 {
-    void** vtable;
-    void vf_0x40() { reinterpret_cast<void (*)(UnkWaveChild_A2_b70*)>(vtable[0x40 / 8])(this); }
-};
 
-struct UnkWave_A2_b70 {
-    u8 pad_0x0[0x30];
-    UnkWaveOwner_A2_b70* owner;
-    u8 pad_0x38[0x8];
-    UnkWaveChild_A2_b70** children;
-    u32 count;
-    u8 pad_0x4c[0x2c];
-    u8 field_0x78[0x48];
-    UnkWaveTarget_A2_b70* target;  // 0xc0
-    u8 pad_0xc8[0x20];
-    u8 field_0xe8[0x8];
-};
-
-void fn_71002fd814(UnkWaveOwner_A2_b70* owner, void* record);
-
-bool fn_71002fd774(UnkWave_A2_b70* self) {
-    fn_71002fd814(self->owner, self->field_0xe8);
-    for (UnkWaveChild_A2_b70 **it = self->children, **end = it + self->count; it != end; ++it)
-        (*it)->vf_0x40();
-    void* link = self->field_0x78;
+bool fn_71002fd774(CAbilityComponent* self) {
+    fn_71002fd814(self->Owner<UnkWaveOwner_A2_b70>(), &self->life);
+    for (CAbility **it = self->begin(), **end = self->end(); it != end; ++it)
+        (*it)->Virtual(0x40);
+    void* link = &self->input;
     if (self->target) {
-        if (self->target->owner && self->target->owner->comp)
-            fn_7100872908(self->target->owner->comp, link);
+        if (self->target->field_0x30 && InputOf(self->target))
+            fn_7100872908(InputOf(self->target), link);
         self->target = nullptr;
     }
-    UnkWaveTarget_A2_b70* target = reinterpret_cast<UnkWaveTarget_A2_b70*>(self);
-    if (target->owner && target->owner->comp)
-        fn_7100872860(target->owner->comp, link);
+    UnkBaseComponent* target = self;
+    if (target->field_0x30 && InputOf(target))
+        fn_7100872860(InputOf(target), link);
     self->target = target;
     return true;
 }

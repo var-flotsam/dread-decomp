@@ -172,6 +172,62 @@ unit from check.py's cache (`progress.quality_by_address`, split out of `quality
 - *Not done:* the readable and layout-done states are not in the tracked file, since where a function's
   source lives is known only from check.py's cache (`--quality` reports them locally).
 
+**The X parasite component's two leftovers: the destructor over the layout, and the owner's views
+(2026-11-13).** The pilot (below) left two things outside `include/game/UnkXParasiteAI.h`. Both are done, and
+every source that could see the change compiles to the same instructions and relocations as before: the 29
+sources of the class and unit 1102, and all 538 hand-written includers of `game/UnkActor.h` (Clang 9.0.1 with
+the project flags, objects disassembled before and after; the only difference is the destructor's mangled
+name, now that it takes the component).
+
+- *The destructor* (`fn_71006e6184`, `CXParasiteAIComponent_Dtor_A4_b71.cpp`) is written as a destructor of
+  the component: store the vtable, drop the four counted references, empty the bindings table and the entry
+  array, drop +0x146d0, run the base's. No offset templates, no `flatten`, six helper types fewer. It told
+  the layout three things: the entries at +0x14740 are a `base::UnkVector` of weak handles (its allocator at
+  +0x20 is what frees them), the bindings table has a count word and its allocator after the three members
+  the other sources read, and a binding's "effect" at +0x10 is a file path id
+  (`base::UnkStrIdMemberOf<g_unk_7101d47200>`, the id the destructor releases and `fn_71003b7db0` loads).
+  +0x147a0 is a counted reference.
+- *The owner's views.* Of the three, two were facts about any actor and went into `UnkActor`: vtable slot
+  0xd0 places the actor at a point (`UnkActor::vf_0xd0`, which `UnkTU2577_Follow_ovb0190.cpp` and the
+  Chozo commander sphere source also call with a point and `true`), and +0x280 is the object the actor's
+  effects and parts are in (`field_0x280`). The transform view only read the translation, which `UnkActor`
+  already has. `UnkTarget_xpa`, `UnkInner_xpa` and `UnkXParasiteActor_8208` are gone. The prey at +0x14798
+  is an actor too (`Prey()` in the header), so `UnkXParasitePrey_b60a4` went with them.
+- *What stays:* the model holder at +0x228. Its view (`UnkXParasiteHolder`, the shape at +0x50) is in the
+  class's header already, and four other classes (the Shelmit, Core-X and two frostbite sources) read the
+  same holder with three different ideas of what is at +0x50. Settling that is a pass over the holder type,
+  not this class.
+
+`UnkActor.h` forward-declares `UnkVec3f` now, which two behaviour-tree sources had made an alias of
+`base::math::CVector3D`; they name `CVector3D` directly. decl_check, struct_check and fakematch's `--base`
+and `--unset` pass. Ten type definitions fewer in the class's sources, one added (the prey's AI component,
+for the point at +0x15c4).
+**CAbilityEnergyWave's unit has one layout per object: the second class-first batch (2026-11-14).** The 45
+hand-written sources of `src/game/CAbilityEnergyWave` defined 148 structs of their own (`UnkOwner` ten times
+with the list at +0x40, `UnkParent` and `UnkChild` thirteen times each, among others). Reading them settled that
+they describe three objects, not one, and `include/game/CAbilityLayout.h` now gives each its layout:
+
+| Object | Reflection | How it is known | Views it replaces |
+|---|---|---|---|
+| `CAbilityComponent` | 0x108, base CComponent (0x40) | the functions call CComponent's own (`fn_71010c4228`) on themselves; its reflection registers `fn_7100302aa4` as an invoker; the constructor writes 0x40 to 0x108 | `UnkParent`, `UnkOwner` (+0x40 list), `UnkStruct_71002fda50`, `UnkAbilitySet_ovb22`, `UnkEnergyWave_b49` and others |
+| `CAbility` | 0x390 | the entries of the component's list: state at +0xb4 (7 defers to +0x20), component at +0xc0, definition at +0xc8 | `UnkChild`, `UnkEntry`, `UnkAbility_ovb22`, `UnkItem_71002fda50` and others |
+| `CAbilityEnergyWave` | 0x590, base CAbility | effects at +0x390/+0x398, gun id +0x3a8, gun +0x3d0, handle +0x400 | `UnkEnergyWaveAbility_ovb22`, `UnkSelf` (`fn_71003053c4`), `UnkEnergyWave_A2_b71` |
+
+Most of the unit is the component's code, so "the class" of the batch was mostly its component. The owning
+actor (the component's +0x30) stays the base component's untyped slot, read through each file's own view
+(`Owner<T>()`), until the actor has one layout; the 34 structs left are those actor views and objects that are
+not these three (script caller, effect holders, tunables). The functions of this unit that other units call
+(`fn_71002fda50`, `fn_71002fe318`, `fn_710030171c`, `fn_71003020f0`, `fn_71002fd814`) are declared once in
+`game/CAbilityEnergyWave.h` with the new types, and `fn_71002f8848` in `game/CAbility.h` takes a `CAbility*`;
+the other CAbility functions keep their declarations, so their calls here still cast.
+
+Evidence: every hand-written source (5,773) was compiled with Clang 9.0.1 before and after and the objects'
+disassembly and relocations compared with the symbols demangled and parameter lists dropped: no difference. Two
+first tries did differ and were written the original's way: an owner pointer hoisted into a local (the
+original reads it again after the call), and the name search taking the key before the list bounds (the
+original computes the bounds first, so `FindByName` takes them as arguments). 48 files, 454 lines in, 1352
+out. `struct_check`: 522 to 521 names with different definitions; `decl_check`: definitions that name a type
+differently 982 to 979.
 **Readable function names: the name map and `tools/rename.py` (2026-11-14).** The owner asked how the
 address names (`fn_7100219588`) get replaced, and chose to allow names worked out by reading the code,
 recorded as `inferred`. What was in the way: the address is the identity nearly everywhere (data/equivalence.csv,

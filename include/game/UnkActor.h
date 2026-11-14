@@ -1,15 +1,18 @@
 #pragma once
 
-// An actor as the hand-written AI sources (game_s2, game_s7, game_hi) see it: a transform at
-// +0x38 (the UnkXform of game/UnkXformNode.h, whose translation column the callers read directly
+// An actor as the hand-written AI sources (game_s2, game_s7, game_hi) see it: a vtable whose slot 0xd0
+// sets the position, a transform at +0x38 (the UnkXform of game/UnkXformNode.h, whose translation column the callers read directly
 // as the three floats at +0x44, +0x54 and +0x64), component and object slots from +0x1b8 to
 // +0x2e8, and the target slot at +0x290 that fn_7100d7c990 below follows. Only the members the
 // hand-written callers share are spelled out; the names and the layout are placeholders.
 
 #include "types.h"
 
+struct UnkVec3f;
+
 struct UnkActor {
-    u8 pad_0x0[0x38];
+    void** vtable;
+    u8 pad_0x8[0x30];
     u8 field_0x38[0xc];  // the transform; fn_710002614c returns its matrix
     f32 field_0x44;      // translation x
     u8 pad_0x48[0xc];
@@ -30,7 +33,9 @@ struct UnkActor {
     void* field_0x228;   // what shape queries run against (fn_71011735e8)
     u8 pad_0x230[0x10];
     void* field_0x240;   // the AI component (its class is tested against the *AIComponent getters)
-    u8 pad_0x248[0x48];
+    u8 pad_0x248[0x38];
+    void* field_0x280;   // the effects and parts the actor shows (fn_7101152988, fn_7101152b90)
+    u8 pad_0x288[0x8];
     void* field_0x290;   // the target slot: its +0x40 is the UnkWeakHandle (game_s2/UnkWeakHandle.h) of the target
     void* field_0x298;
     u8 pad_0x2a0[0x10];
@@ -39,6 +44,11 @@ struct UnkActor {
     void* field_0x2e8;
     u8 pad_0x2f0[0x8c];
     f32 field_0x37c;     // a radius (fn_710049eb04 adds the two actors')
+
+    // vtable slot 0xd0: places the actor at `pos` (the callers pass true).
+    void vf_0xd0(const UnkVec3f* pos, bool flag) {
+        reinterpret_cast<void (*)(UnkActor*, const UnkVec3f*, bool)>(vtable[0xd0 / 8])(this, pos, flag);
+    }
 };
 static_assert(sizeof(UnkActor) == 0x380, "UnkActor placeholder layout");
 
