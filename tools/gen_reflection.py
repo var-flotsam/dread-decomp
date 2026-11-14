@@ -258,7 +258,8 @@ def readable_class_lines(orig: asmdiff.Original, g: "Getter", size: int, attr_so
             extra, src = attr_sources[a]
             # One line per field (base/reflection/ReflectedFields.h); the named keys are declared there.
             src = "\n".join(refl_attrs.readable_fields(src.split("\n")))
-            extra = [d for d in extra if not (m := KEY_DECL_RE.match(d)) or int(m.group(1), 16) not in DECLARED_KEYS]
+            extra = [d for d in extra if not (m := KEY_DECL_RE.match(d)) or int(m.group(1), 16) not in DECLARED_KEYS
+                     or (d.startswith("extern") and re.search(rf"\bg_unk_{m.group(1)}\b", src))]
             pre += [d for d in extra if d not in declared]
             declared |= set(extra)
             inside.append(re.sub(rf"\bfn_{a:x}\(", f"{name}(", src, count=1))
