@@ -42,6 +42,23 @@ class Members(unittest.TestCase):
             ("game::CNode", 8, "pOwner", "fn_7100000def()"),
         ])
 
+    def test_members_of_the_readable_form(self):
+        source = '''namespace game::CNode {
+void refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fWeight", 0x14, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_CLASS_FIELD(game::CBase, "oBase", 0x18);
+    DREAD_REFLECTED_PROPERTY(bool, "bOn", (DefaultValue, false));
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("eKind", true), &g_unk_7101d00010, 0x10, -1, -1);
+}
+}  // namespace game::CNode
+'''
+        self.assertEqual(gen_fields.members(source), [
+            ("game::CNode", 0x10, "eKind", "&g_unk_7101d00010"),
+            ("game::CNode", 0x14, "fWeight", "fn_710000abbc()"),
+            ("game::CNode", 0x18, "oBase", "game::CBase"),
+            ("game::CNode", 0xFFFFFFFF, "bOn", "fn_710000d228()"),
+        ])
+
     def test_type_names(self):
         getters = gen_fields.getter_names([{"type": "int", "getter": "0x7100000111"}, {"type": "x", "getter": ""}],
                                           [TYPE_SOURCE])

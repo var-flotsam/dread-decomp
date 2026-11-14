@@ -39,6 +39,33 @@ GETTER = re.compile(r"DREAD_REFL_(?:ROOT_)?CLASS_GETTER(?:_INLINE_NAME)?\(([^)]*
 NAMED = re.compile(r'(?:UnkReflTypeGetter|UnkReflPrimitiveTraits)<UnkRefl_fn_(71[0-9a-f]{8})> \{\s*static constexpr const char\* name = "([^"]*)";')
 
 
+# The readable form (base/reflection/ReflectedClass.h, ReflectedFields.h): a class's functions in a
+# namespace of its name, its fields one line each.
+NAMESPACE = re.compile(r"^namespace ([\w:]+) \{\n(.*?)^\}  // namespace \1$", re.M | re.S)
+ADD_FIELDS = re.compile(r"^void refl_AddFields\(CClass\* cls\) \{\n(.*?)^\}", re.M | re.S)
+FIELD_LINE = re.compile(r'^    (DREAD_REFLECTED_(?:FIELD|CLASS_FIELD|PROPERTY|READ_ONLY_PROPERTY|FIELD_OF))\('
+                        r'("[^"]*"|[^,]+), "([^"]+)"(?:, (0x[0-9a-f]+|\d+))?', re.M)
+
+
+def readable_members(cls: str, body: str) -> list[tuple[str, int, str, str]]:
+    """(class, offset, member, type expression) for one refl_AddFields in the readable form. A field line's
+    type is turned back into the expression the long form has, or kept as a name."""
+    import refl_attrs
+
+    spelled = {v: f"fn_{k:x}()" for k, v in refl_attrs.FIELD_TYPES.items()}
+    out = [(cls, int(off, 0), member, expr.strip()) for member, expr, off in FIELD.findall(body)]
+    for macro, typ, member, off in FIELD_LINE.findall(body):
+        offset = int(off, 0) if off else 0xFFFFFFFF
+        if macro == "DREAD_REFLECTED_CLASS_FIELD":
+            expr = typ
+        elif macro == "DREAD_REFLECTED_FIELD_OF":
+            expr = typ.strip('"')
+        else:
+            expr = spelled.get(typ, typ)
+        out.append((cls, offset, member, expr))
+    return out
+
+
 def members(text: str) -> list[tuple[str, int, str, str]]:
     """(class, offset, member, type expression) for the classes one generated reflection source registers."""
     bodies = {m.group(1): FIELD.findall(m.group(2)) for m in FUNCTION.finditer(text)}
@@ -49,6 +76,10 @@ def members(text: str) -> list[tuple[str, int, str, str]]:
         if name is None:
             continue
         out += [(name, int(off, 0), member, expr.strip()) for member, expr, off in bodies.get(args[-1], [])]
+    for m in NAMESPACE.finditer(text):
+        f = ADD_FIELDS.search(m.group(2))
+        if f:
+            out += readable_members(m.group(1), f.group(1))
     return out
 
 
