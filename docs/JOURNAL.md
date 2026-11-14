@@ -152,6 +152,24 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Header moves for the held drafts; asm labels on constructors (2026-11-14).** `g_unk_7101647790` is
+three zero floats in .rodata, read as a vector everywhere: declared `const CVector3D` in
+`include/base/math/UnkZeroVector3.h` beside `g_unk_710164779c`, its eleven `char[]` copies gone.
+`g_unk_710164be30` went to `UnkTU2566.h`. The types the held drafts' callees take moved to the callees'
+unit headers: `UnkUnit2560Element` and `fn_7100744d90` to `UnkTU1159.h`, unit 151's setup types and
+calls to `UnkTU151.h`, `fn_7100e94254` and `fn_7100e9d7fc` to `UnkTU2566.h`, `UnkHalf_cu` to
+`UnkTU341.h` (with its first virtual, the in-place destructor: no includer's code changes). Every move
+was proved with `tools/baseline.py` or the migrate tools. Promoted: `fn_71000708c8`, `fn_7100e94e10`,
+`fn_7100745bdc`, `fn_7100e906bc` and `fn_7100e9d6f8` (one file: the two drafts were the same file
+twice), and `fn_71001db2b8`, which joins `UnkTU260_Render_ovb0237.cpp` (it calls that file's
+`fn_71001dba58` on the same object) and matches. A finding: **Clang 9 ignores `asm("fn_...")` on a
+constructor.** The call goes to the mangled name (`_ZN10UnkHalf_cuC1EOS_`,
+`_ZN23UnkSingleton_71001039f8C1Ev`), which `check.py` cannot resolve, so in the matched functions that
+call `UnkHalf_cu`'s move constructor or `UnkSingleton_71001039f8`'s constructor that relocation is
+unchecked, not verified; `tools/equiv_test.py` cannot judge a caller of one (`fn_710024657c`), and a
+constructor cannot be defined under its address (`fn_7101213858`). Both stay held, as does
+`fn_71003549a4` (its callee's record is 0x48 bytes in `UnkTU437_Aim_ovb0198.cpp`, 0x44 in the draft).
+
 **UnkTU2607's setters and `fn_71009881b0`'s second argument, read from the original (2026-11-14).**
 `fn_7100f98094`, `fn_7100f98d24`, `fn_7100f98dc4` and `fn_7100f990e0` read x0 (the fade object), s0 (the
 time) and x1 (a pointer), nothing else; their one caller, `fn_7100d8e398`, passes the address of a stack

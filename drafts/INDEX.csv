@@ -46,7 +46,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710021f2a8,1116,drafts/game/UnkTU324/fn_710021f2a8.cpp,control flow,4.7,265,fable1,
 0x710023b424,348,drafts/game/UnkTU341/fn_710023b424.cpp,registers or order,94.3,5,overnight,
 0x7100241440,284,drafts/game/UnkTU341/fn_7100241440.cpp,registers or order,91.5,6,overnight,
-0x710024657c,168,drafts/game/UnkTU341/fn_710024657c.cpp,registers or order,92.9,3,overnight,passes tools/equiv_test.py; held: 1 declaration problem: src/game/UnkTU341/fn_710024657c.cpp:12 fn_71002458a4: void fn_71002458a4(void*; void*) -> signature differs from every existing one; copy one of these exactly: UnkHalf_cu(Unk...
+0x710024657c,168,drafts/game/UnkTU341/fn_710024657c.cpp,registers or order,92.9,3,overnight,registers or order; held: tools/equiv_test.py inconclusive: the call to UnkHalf_cu's move constructor names _ZN10UnkHalf_cuC1EOS_ (Clang 9 ignores asm labels on constructors) so no address resolves
 0x7100246ba8,456,drafts/game/UnkTU341/fn_7100246ba8.cpp,registers or order,98.2,2,overnight,
 0x7100286420,236,drafts/game/UnkTU356/fn_7100286420.cpp,operations,11.3,52,pilot50,loop base register and pointer increment form differ
 0x710028659c,136,drafts/game/UnkTU357/fn_710028659c.cpp,operations,8.8,28,lean,
@@ -58,7 +58,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71002cc378,412,drafts/game/UnkTU395/fn_71002cc378.cpp,registers or order,93.2,7,overnight,
 0x710033187c,716,drafts/game/CAbilityShinespark/fn_710033187c.cpp,control flow,11.4,157,fable1,
 0x71003523bc,488,drafts/game/UnkTU437/fn_71003523bc.cpp,operations,98.4,2,overnight,
-0x71003549a4,400,drafts/game/UnkTU437/fn_71003549a4.cpp,match,100.0,0,overnight,matches; held: 1 declaration problem: src/game/UnkTU437/fn_71003549a4.cpp:58 fn_7100354b34: bool fn_7100354b34(UnkAimFilter_ovb0198k*; UnkAimTarget_ovb0198k*) -> signature differs from every existing one; copy on...
+0x71003549a4,400,drafts/game/UnkTU437/fn_71003549a4.cpp,match,100.0,0,overnight,matches; held: fn_7100354b34's record is 0x48 bytes in src/game/UnkTU437/UnkTU437_Aim_ovb0198.cpp (u64[9]) and 0x44 with its own assignment here; one layout needs a decision
 0x710035d5c4,504,drafts/game/UnkTU441/fn_710035d5c4.cpp,registers or order,96.0,5,overnight,
 0x710039d65c,504,drafts/game/behaviortree/CIsAtDistanceXCondition/fn_710039d65c.cpp,control flow,93.1,5,overnight,
 0x71003a4774,220,drafts/game/behaviortree/CTunableBoolCondition/fn_71003a4774.cpp,registers or order,87.3,7,test40,registers only in true/false select (x10/x8/x9 allocation)
@@ -143,7 +143,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100e1d620,368,drafts/game/UnkTU2560/fn_7100e1d620.cpp,operations,94.6,5,overnight,
 0x7100e2f398,292,drafts/game/UnkTU2562/fn_7100e2f398.cpp,operations,2.7,69,pilot50,operations: second loop strength-reduced; 2 insns off; first-loop counter register
 0x7100e3d080,2088,drafts/game/UnkTU2563/fn_7100e3d080.cpp,control flow,15.1,436,fable1,
-0x7100e51078,480,drafts/game/UnkTU2563/fn_7100e51078.cpp,registers or order,98.3,2,overnight,passes tools/equiv_test.py; held: include/game/UnkTU2563.h declares it (void*; void*)
+0x7100e51078,480,drafts/game/UnkTU2563/fn_7100e51078.cpp,registers or order,98.3,2,overnight,fn_7100e51078 passes tools/equiv_test.py; held: fn_7100e3cee0 in the same file is inconclusive (only 94% of the original's instructions ran)
 0x7100e5b944,324,drafts/game/UnkTU2563/fn_7100e5b944.cpp,operations,29.3,57,lean,
 0x7100e711dc,228,drafts/game/UnkTU2564/fn_7100e711dc.cpp,registers or order,96.5,2,overnight,
 0x7100e903ec,340,drafts/game/UnkTU2566/fn_7100e903ec.cpp,operations,75.3,21,pilot50,operations: orr operand order; fcsel order; fade branch layout
@@ -209,7 +209,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71011d968c,244,drafts/game/GUI/CDisplayObjectContainer/fn_71011d968c.cpp,control flow,15.9,51,pilot50,search loop exit condition: clang emits cset/orr instead of csel+ccmp
 0x71011fd160,212,drafts/game/GUI/CSpriteGrid/fn_71011fd160.cpp,operations,86.8,7,test40,stack slot assignment of three 8-byte locals
 0x71012129f0,264,drafts/game/UnkTU2772/fn_71012129f0.cpp,registers or order,98.5,1,overnight,
-0x7101213858,420,drafts/game/UnkTU2772/fn_7101213858.cpp,registers or order,94.3,6,overnight,passes tools/equiv_test.py; held: 1 declaration problem: src/game/UnkTU2772/fn_7101213858.cpp:89 fn_7101213858: defined as void fn_7101213858(UnkAtkSystem_b0150*) -> declared elsewhere with other types; use this parameter list and ...
+0x7101213858,420,drafts/game/UnkTU2772/fn_7101213858.cpp,registers or order,94.3,6,overnight,passes tools/equiv_test.py; held: src/game_lo/fn_71001039f8.cpp calls it as UnkSingleton_71001039f8's constructor; a constructor definition gets a mangled symbol (Clang 9 ignores asm labels on constructors)
 0x7101214bd0,196,drafts/game/UnkTU2772/fn_7101214bd0.cpp,operations,95.9,2,overnight,
 0x710122cf1c,264,drafts/game/UnkTU2772/fn_710122cf1c.cpp,conditions,97.0,2,overnight,
 0x710122f380,112,drafts/game/UnkTU2772/fn_710122f380.cpp,registers or order,96.4,1,overnight,
