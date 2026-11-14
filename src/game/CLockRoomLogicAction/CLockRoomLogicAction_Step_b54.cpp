@@ -14,12 +14,12 @@
 #include "game/UnkTU112.h"
 #include "game/UnkTU1376.h"
 #include "game/UnkTU367.h"
+#include "game/UnkTU437.h"
 #include "types.h"
 
 struct UnkTutoExitAction_b47;
 
 using UnkRef = base::UnkRefPtrMember;
-UnkRef fn_7100353be8(void* source);
 
 struct UnkWeakTarget;
 struct UnkDoorLock;

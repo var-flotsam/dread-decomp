@@ -21,8 +21,10 @@
 #include "game/UnkTU2547.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU367.h"
+#include "game/UnkTU437.h"
 #include "game/UnkTimelineComponent.h"
 #include "game/navmesh/SNavMeshPath.h"
+#include "base/UnkDestructors.h"
 #include "types.h"
 
 struct UnkSmStateA5_b61 {
@@ -301,15 +303,7 @@ struct UnkCountedA5_b61 : base::UnkRefCounted {
     };
 };
 
-struct UnkRef {
-    UnkCountedA5_b61* ptr;
-    ~UnkRef() {
-        if (ptr && --ptr->ref_count == 0)
-            delete ptr;
-    }
-};
-
-UnkRef fn_7100353be8(void* from);
+using UnkRef = base::UnkRefPtrMember;
 
 struct UnkHidrogigaActivatorA5_b61 {
     u8 pad_0x0[0x5c8];

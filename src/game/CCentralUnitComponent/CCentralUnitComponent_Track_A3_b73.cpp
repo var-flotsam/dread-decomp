@@ -6,11 +6,11 @@
 #include "base/UnkRefHandle.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"
+#include "game/UnkTU437.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 using UnkRef = base::UnkRefPtrMember;
-UnkRef fn_7100353be8(void* source);
 
 struct UnkCentralUnitTrack_A3_b73 {
     u8 pad_0x0[0x440];

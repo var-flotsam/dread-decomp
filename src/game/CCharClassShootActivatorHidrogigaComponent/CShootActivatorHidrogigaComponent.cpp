@@ -4,6 +4,7 @@
 // gives the object the slot's target refers to a back pointer (+0xa0). Clears the flag at +0x601.
 // Names and layouts are placeholders.
 #include "base/UnkRefHandle.h"
+#include "game/UnkTU437.h"
 #include "types.h"
 
 struct UnkHidrogigaShootActivator {
@@ -21,7 +22,6 @@ struct UnkHidrogigaShootActivator {
 void fn_7100890ae4(UnkHidrogigaShootActivator* self);
 char* fn_71005c1008(u64 id);
 using UnkRef = base::UnkRefPtrMember;
-UnkRef fn_7100353be8(void* source);
 
 void fn_7100897298(UnkHidrogigaShootActivator* self) {
     fn_7100890ae4(self);

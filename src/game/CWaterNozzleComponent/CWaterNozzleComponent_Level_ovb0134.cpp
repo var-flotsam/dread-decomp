@@ -9,22 +9,16 @@
 #include "base/math/CVector.h"
 #include "game/CCharClassLiquidPoolComponent.h"
 #include "game/UnkTU2523.h"
+#include "game/UnkTU437.h"
 #include "game/UnkTimelineComponent.h"
+#include "base/UnkDestructors.h"
 #include "types.h"
 
 struct UnkCountedWater_b51 : base::UnkRefCounted {
     void* field_0x10;
 };
 
-struct UnkRef {
-    UnkCountedWater_b51* ptr;
-    ~UnkRef() {
-        if (ptr && --ptr->ref_count == 0)
-            delete ptr;
-    }
-};
-
-UnkRef fn_7100353be8(void* from);
+using UnkRef = base::UnkRefPtrMember;
 
 struct UnkEntityBox {
     base::math::CVector3D min;

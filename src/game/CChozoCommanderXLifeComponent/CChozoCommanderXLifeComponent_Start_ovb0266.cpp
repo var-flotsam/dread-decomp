@@ -19,7 +19,9 @@
 #include "game/UnkTU0.h"
 #include "game/UnkTU2566.h"
 #include "game/UnkTU2730.h"
+#include "game/UnkTU437.h"
 #include "game/UnkTUProperty.h"
+#include "base/UnkDestructors.h"
 #include "types.h"
 #include "game/UnkTypedValue.h"
 
@@ -41,14 +43,7 @@ struct UnkCountedA5_b76 : base::UnkRefCounted {
     };
 };
 
-struct UnkRef {
-    UnkCountedA5_b76* ptr;
-    ~UnkRef() {
-        if (ptr && --ptr->ref_count == 0)
-            delete ptr;
-    }
-};
-UnkRef fn_7100353be8(void* from);
+using UnkRef = base::UnkRefPtrMember;
 
 struct UnkSubId_7100fc4b34 {
     CStrId id;

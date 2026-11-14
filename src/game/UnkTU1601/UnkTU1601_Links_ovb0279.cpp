@@ -9,6 +9,7 @@
 #include "game/UnkTU0.h"
 #include "game/UnkTU1601.h"
 #include "game/UnkTU367.h"
+#include "game/UnkTU437.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -25,7 +26,6 @@ struct UnkRef {
             ptr->vf_0x10();
     }
 };
-UnkRef fn_7100353be8(void*);
 
 struct UnkDoorState_b0279 {
     u8 pad_0x0[0x408];
@@ -72,7 +72,7 @@ struct UnkThermalDevice_b0279 {
 static inline void ResolveLink(UnkThermalLink_b0279* link) {
     if (link->state == 1) {
         {
-            UnkRef fresh = fn_7100353be8(link->source);
+            base::UnkRefPtrMember fresh = fn_7100353be8(link->source);
             fn_710031d208(reinterpret_cast<base::UnkRefHandle*>(&link->handle),
                           reinterpret_cast<const base::UnkRefHandle*>(&fresh));
         }

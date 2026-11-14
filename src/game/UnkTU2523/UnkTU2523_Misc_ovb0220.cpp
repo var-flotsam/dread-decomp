@@ -23,6 +23,7 @@
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU341.h"
+#include "game/UnkTU437.h"
 #include "game/UnkTU56.h"
 #include "types.h"
 
@@ -320,15 +321,7 @@ struct UnkCountedA5_b76 : base::UnkRefCounted {
     };
 };
 
-struct UnkRef {
-    UnkCountedA5_b76* ptr;
-    ~UnkRef() {
-        if (ptr && --ptr->ref_count == 0)
-            delete ptr;
-    }
-};
-
-UnkRef fn_7100353be8(void* from);
+using UnkRef = base::UnkRefPtrMember;
 
 struct UnkHandleSource_b0220 {
     void* vtable;

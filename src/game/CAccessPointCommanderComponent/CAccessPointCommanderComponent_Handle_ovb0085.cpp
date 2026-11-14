@@ -17,6 +17,7 @@
 #include "game/UnkTU2577.h"
 #include "game/UnkTU2656.h"
 #include "game/UnkTU341.h"
+#include "game/UnkTU437.h"
 #include "game/UnkTU883.h"
 #include "types.h"
 
@@ -36,15 +37,7 @@ struct UnkCountedA5_b76 : base::UnkRefCounted {
     };
 };
 
-struct UnkRef {
-    UnkCountedA5_b76* ptr;
-    ~UnkRef() {
-        if (ptr && --ptr->ref_count == 0)
-            delete ptr;
-    }
-};
-
-UnkRef fn_7100353be8(void* from);
+using UnkRef = base::UnkRefPtrMember;
 
 // As src/game/CChozoWarriorXUltimateGrabAttack/fn_710048a194.cpp declares it.
 struct UnkVec;

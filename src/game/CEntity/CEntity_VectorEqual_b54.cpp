@@ -6,10 +6,10 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkRefHandle.h"
 #include "base/UnkVector.h"
+#include "game/UnkTU437.h"
 #include "types.h"
 
 using UnkRef = base::UnkRefPtrMember;
-UnkRef fn_7100353be8(void* source);
 
 struct UnkLinkHandle_b54 {
     u8 pad_0x0[0x10];

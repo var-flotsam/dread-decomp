@@ -6,6 +6,8 @@
 // placeholders.
 #include "base/UnkRefHandle.h"
 #include "game/CCharClassShootActivatorHidrogigaComponent.h"
+#include "base/UnkDestructors.h"
+#include "game/UnkTU437.h"
 #include "types.h"
 
 // The handle's target (base::UnkRefCounted's layout); the object is at +0x10 (tested as a word and
@@ -18,15 +20,7 @@ struct UnkCounted_b44a2 : base::UnkRefCounted {
 };
 
 // A counted reference; the destructor decrements and tests in one step.
-struct UnkRef {
-    UnkCounted_b44a2* ptr;
-    ~UnkRef() {
-        if (ptr && --ptr->ref_count == 0)
-            delete ptr;
-    }
-};
-
-UnkRef fn_7100353be8(void* from);
+using UnkRef = base::UnkRefPtrMember;
 
 struct UnkHidrogigaPart_b44a2;
 void fn_71008a1598(UnkHidrogigaPart_b44a2* part, bool on);

@@ -11,6 +11,7 @@
 #include "game/UnkTU2677.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU367.h"
+#include "game/UnkTU437.h"
 #include "types.h"
 
 struct lua_State;
@@ -20,7 +21,6 @@ struct UnkDoorLock;
 struct UnkEntityState;
 
 using UnkRef = base::UnkRefPtrMember;
-UnkRef fn_7100353be8(void* source);
 
 struct UnkCentralUnitDoor_b46a2;
 UnkCentralUnitDoor_b46a2* fn_71004056fc(void* object);

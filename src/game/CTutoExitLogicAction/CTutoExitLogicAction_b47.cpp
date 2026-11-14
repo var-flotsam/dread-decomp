@@ -5,6 +5,8 @@
 #include "base/UnkRefHandle.h"
 #include "game/CTriggerLogicAction.h"
 #include "game/UnkTU341.h"
+#include "base/UnkDestructors.h"
+#include "game/UnkTU437.h"
 #include "types.h"
 
 struct UnkEntityState;
@@ -16,15 +18,7 @@ struct UnkCountedTuto_b47 : base::UnkRefCounted {
     };
 };
 
-struct UnkRef {
-    UnkCountedTuto_b47* ptr;
-    ~UnkRef() {
-        if (ptr && --ptr->ref_count == 0)
-            delete ptr;
-    }
-};
-
-UnkRef fn_7100353be8(void* from);
+using UnkRef = base::UnkRefPtrMember;
 
 struct UnkTutoExitAction_b47 {
     u8 pad_0x0[0x8];

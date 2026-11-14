@@ -14,13 +14,13 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU341.h"
+#include "game/UnkTU437.h"
 #include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
 struct UnkPlayer;
 
 using UnkRef = base::UnkRefPtrMember;
-UnkRef fn_7100353be8(void* source);
 
 struct UnkTutorialComposition;
 struct UnkTutorialRequest;

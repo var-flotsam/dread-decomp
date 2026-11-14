@@ -152,6 +152,15 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**`fn_7100353be8` declared once (2026-11-14).** The owner chose `base::UnkRefPtrMember` as its result: one
+counted pointer, returned in memory (x8), as the original builds it. It is declared in `include/game/UnkTU437.h`;
+37 files had their own copy (`UnkRef fn_7100353be8(void*)`), 9 with `UnkRef` an alias of that type and 28 with
+a struct of their own. 25 of the structs are the alias now and 34 files take the header
+(`tools/hub_migrate.py`); the other three keep their own `UnkRef` (a weak handle, with `CopyWeakRef` assignment
+in `CBossAIComponent_Doors_ovb0102.cpp`): they receive the result as the declared type, and Doors views it as its
+own through `UnkRef::Of`. `tools/baseline.py`: none of the 57 files and includers changes. 37 extra declaration
+copies go (1,139 to 1,102), and `fn_71008c3dcc`, held on this, matches.
+
 **Held drafts: two promoted, one split (2026-11-14).** `fn_71003549a4` (aim component, unit 437): the
 original copies its target record's 0x44 bytes both ways (copy constructor fn_7100331c7c; the slots'
 assignment, then 13 words) and keeps records at a stride of 0x48 from +0xc (fn_7100354d04), so the record is

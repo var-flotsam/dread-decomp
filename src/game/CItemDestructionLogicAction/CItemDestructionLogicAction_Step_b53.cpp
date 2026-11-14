@@ -7,6 +7,7 @@
 #include "base/UnkRefHandle.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CTriggerLogicAction.h"
+#include "game/UnkTU437.h"
 #include "game/navmesh/SNavMeshPath.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -14,7 +15,6 @@
 struct UnkTutoExitAction_b47;
 
 using UnkRef = base::UnkRefPtrMember;
-UnkRef fn_7100353be8(void* source);
 
 struct UnkLinkList;
 
