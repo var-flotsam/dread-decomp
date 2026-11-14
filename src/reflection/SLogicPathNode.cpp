@@ -2,11 +2,11 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CPointerType.h"
 // Reflection descriptors for one original translation unit (3 types):
-// for each type, its getter (T::refl_GetClass) and, through the traits below, its
-// descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape and the attribute/member-field functions that
-// tools/refl_attrs.py reconstructs byte-identically.
-#include "base/reflection/CClass.h"
+// each class's functions are in a namespace of its name (base/reflection/ReflectedClass.h): its
+// getter (T::refl_GetClass) and descriptor constructor (T::refl_InitClass), the functions the
+// descriptor points to (those of a known uniform shape defined, the others declared) and the
+// attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
+#include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -14,10 +14,13 @@ using base::reflection::UnkReflField;
 using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
+using base::reflection::ClassDescription;
+using base::reflection::ClassOf;
+using base::reflection::ClassOfDestructorFirst;
+using base::reflection::Destroy;
+using base::reflection::DestroyDestructorFirst;
 
 // SLogicPathNode
-DREAD_REFL_TAG(710105498c);
-void fn_710105432c(base::reflection::CClass*) {}
 void fn_710105cdb4();
 void fn_7101054b10(UnkReflFunction* fn, const char* name);
 const base::reflection::UnkReflAttrKey& fn_71000926d0();
@@ -27,7 +30,9 @@ const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
 const base::reflection::UnkReflAttrKey& fn_71000924b0();
 const base::reflection::UnkReflAttrKey& fn_7100075240();
-void fn_7101054424(CClass* cls) {
+namespace SLogicPathNode {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vPos_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vPos_GetterFunction", true);
         fn->return_type = fn_71000246e4();
@@ -47,34 +52,31 @@ void fn_7101054424(CClass* cls) {
     UnkReflField* field2 = fn_7100096524(cls, CStrId("fDiversionChance", true), fn_710000abbc(), 0x18, -1, -1);
     field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
 }
-bool fn_710105cc88(const void* a, const void* b) { return a == b; }
-s32 fn_710105cc94() { return -1; }
-const base::reflection::CType& fn_710105cc9c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_710105ccb8();
-void fn_710105ccd8(void* dst, const void* src);
-void fn_710105cd14(void* dst, const void* src);
-void fn_710105cd50(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_710105cd5c(void* dst, const void* src);
-void* fn_710105cd80(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_710105498c> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x20;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_710105cc88;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_710105cc94;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_710105cc9c;
-    static constexpr UnkFn fn_0x28 = &fn_710105ccb8;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_710105ccd8;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_710105cd14;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_710105cd50;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_710105cd5c;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_710105cd80;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(7101054330, 710105498c, "SLogicPathNode", 7100da4088, 710105432c, 7101054424);
+}  // namespace SLogicPathNode
+DREAD_REFLECTED_CLASS(SLogicPathNode, IPathNode);
 
 // SLogicSubPath
-DREAD_REFL_TAG(71010559b0);
-void fn_7101054c8c(base::reflection::CClass*) {}
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_710105d0a8();
 void fn_710105d0bc();
@@ -92,7 +94,9 @@ const base::reflection::UnkReflAttrKey& fn_710008fe70();
 const base::reflection::UnkReflAttrKey& fn_710008fc50();
 const base::reflection::UnkReflAttrKey& fn_710008fb40();
 const base::reflection::UnkReflAttrKey& fn_710008ff80();
-void fn_7101054d84(CClass* cls) {
+namespace SLogicSubPath {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterNodesDeserialization", true))) {
         fn->name = base::global::UnkStrId("AfterNodesDeserialization", true);
         fn->return_type = &g_unk_7101d5af48;
@@ -148,62 +152,63 @@ void fn_7101054d84(CClass* cls) {
     field0->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeleteElement", true));
     field0->attrs.Add<CStrId>(fn_710008ff80(), CStrId("AfterNodesDeserialization", true));
 }
-bool fn_710105ce58(const void* a, const void* b) { return a == b; }
-s32 fn_710105ce64() { return -1; }
-const base::reflection::CType& fn_710105ce6c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_710105ce88();
-void fn_710105cee8(void* dst, const void* src);
-void fn_710105cf38(void* dst, const void* src);
-void fn_710105cf9c(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_710105cfa8(void* dst, const void* src);
-void* fn_710105cfe8(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_71010559b0> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x50;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_710105ce58;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_710105ce64;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_710105ce6c;
-    static constexpr UnkFn fn_0x28 = &fn_710105ce88;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_710105cee8;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_710105cf38;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_710105cf9c;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_710105cfa8;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_710105cfe8;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(7101054c90, 71010559b0, "SLogicSubPath", 7100da43d4, 7101054c8c, 7101054d84);
+}  // namespace SLogicSubPath
+DREAD_REFLECTED_CLASS(SLogicSubPath, ISubPath);
 
 // SLogicPath
-DREAD_REFL_TAG(7101056078);
-void fn_7101055eec(base::reflection::CClass*) {}
 extern base::reflection::CType g_unk_71729fe930;
-void fn_7101055fe4(CClass* cls) {
+namespace SLogicPath {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("tSubPaths", true), &g_unk_71729fe930, 0x10, -1, -1);
 }
-bool fn_710105d5d0(const void* a, const void* b) { return a == b; }
-s32 fn_710105d5dc() { return -1; }
-const base::reflection::CType& fn_710105d5e4(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_710105d600();
-void fn_710105d604(void* dst, const void* src);
-void fn_710105d6a4(void* dst, const void* src);
-void fn_710105d744(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_710105d750(void* dst, const void* src);
-void* fn_710105d828(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7101056078> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x58;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_710105d5d0;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_710105d5dc;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_710105d5e4;
-    static constexpr UnkFn fn_0x28 = &fn_710105d600;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_710105d604;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_710105d6a4;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_710105d744;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_710105d750;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_710105d828;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(7101055ef0, 7101056078, "SLogicPath", 7100da3ba0, 7101055eec, 7101055fe4);
+}  // namespace SLogicPath
+DREAD_REFLECTED_CLASS(SLogicPath, IPath);
+
+
+
 
 const base::reflection::CType* fn_7100005178();
 const base::reflection::CType* fn_71010561fc();
@@ -320,7 +325,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710105a548> {
     static constexpr UnkFn fn_0xf0 = &fn_710105a6b8;
     static constexpr UnkFn fn_0xf8 = &fn_710105a720;
     static constexpr UnkFn fn_0x100 = &fn_710105a72c;
-    static const CType* pointee() { return fn_7101054330(); }
+    static const CType* pointee() { return SLogicPathNode::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71010561fc> {
@@ -347,7 +352,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710105a7b8> {
     static constexpr UnkFn fn_0xf0 = &fn_710105a928;
     static constexpr UnkFn fn_0xf8 = &fn_710105a990;
     static constexpr UnkFn fn_0x100 = &fn_710105a99c;
-    static const CType* pointee() { return fn_7101054330(); }
+    static const CType* pointee() { return SLogicPathNode::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71010562d8> {
@@ -371,7 +376,7 @@ struct base::reflection::UnkReflCollectionTraits<UnkRefl_fn_7101056f94> {
     static constexpr UnkFn fn_0x60 = &fn_710105e244;
     static constexpr UnkFn fn_0x68 = &fn_710105e24c;
     static const CType* key() { return fn_7100005178(); }
-    static const CType* element() { return fn_7101054330(); }
+    static const CType* element() { return SLogicPathNode::refl_GetClass(); }
     static const CType* iterator() { return fn_71010561fc(); }
     static const CType* const_iterator() { return fn_71010568c8(); }
     static constexpr UnkFn fn_0x108 = &fn_710105ddd4;
@@ -407,7 +412,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710105b0a8> {
     static constexpr UnkFn fn_0xf0 = &fn_710105b218;
     static constexpr UnkFn fn_0xf8 = &fn_710105b280;
     static constexpr UnkFn fn_0x100 = &fn_710105b28c;
-    static const CType* pointee() { return fn_7101054c90(); }
+    static const CType* pointee() { return SLogicSubPath::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_710105718c> {
@@ -434,7 +439,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710105b318> {
     static constexpr UnkFn fn_0xf0 = &fn_710105b488;
     static constexpr UnkFn fn_0xf8 = &fn_710105b4f0;
     static constexpr UnkFn fn_0x100 = &fn_710105b4fc;
-    static const CType* pointee() { return fn_7101054c90(); }
+    static const CType* pointee() { return SLogicSubPath::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7101057268> {
@@ -458,7 +463,7 @@ struct base::reflection::UnkReflCollectionTraits<UnkRefl_fn_7101057f24> {
     static constexpr UnkFn fn_0x60 = &fn_710105f004;
     static constexpr UnkFn fn_0x68 = &fn_710105f00c;
     static const CType* key() { return fn_7100005178(); }
-    static const CType* element() { return fn_7101054c90(); }
+    static const CType* element() { return SLogicSubPath::refl_GetClass(); }
     static const CType* iterator() { return fn_710105718c(); }
     static const CType* const_iterator() { return fn_7101057858(); }
     static constexpr UnkFn fn_0x108 = &fn_710105ed30;
@@ -487,7 +492,6 @@ void fn_710105db6c();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7101054330();
 void fn_710105dbbc();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_71010563b4(CClass* cls) {
@@ -502,12 +506,12 @@ void fn_71010563b4(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7101054330();
+        fn->return_type = SLogicPathNode::refl_GetClass();
         fn->field_0xb2 = 0x1;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710105dbbc);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7101054330(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, SLogicPathNode::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -521,7 +525,6 @@ void fn_710105dd24();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7101054330();
 void fn_710105dd74();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_71010569a4(CClass* cls) {
@@ -536,12 +539,12 @@ void fn_71010569a4(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7101054330();
+        fn->return_type = SLogicPathNode::refl_GetClass();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710105dd74);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7101054330(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, SLogicPathNode::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -555,7 +558,6 @@ void fn_710105ea20();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7101054c90();
 void fn_710105ea70();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7101057344(CClass* cls) {
@@ -570,12 +572,12 @@ void fn_7101057344(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7101054c90();
+        fn->return_type = SLogicSubPath::refl_GetClass();
         fn->field_0xb2 = 0x1;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710105ea70);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7101054c90(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, SLogicSubPath::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -589,7 +591,6 @@ void fn_710105ec80();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7101054c90();
 void fn_710105ecd0();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7101057934(CClass* cls) {
@@ -604,11 +605,11 @@ void fn_7101057934(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7101054c90();
+        fn->return_type = SLogicSubPath::refl_GetClass();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710105ecd0);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7101054c90(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, SLogicSubPath::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }

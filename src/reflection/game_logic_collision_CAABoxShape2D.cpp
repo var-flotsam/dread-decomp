@@ -2,11 +2,11 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CPointerType.h"
 // Reflection descriptors for one original translation unit (1 type):
-// for each type, its getter (T::refl_GetClass) and, through the traits below, its
-// descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape and the attribute/member-field functions that
-// tools/refl_attrs.py reconstructs byte-identically.
-#include "base/reflection/CClass.h"
+// each class's functions are in a namespace of its name (base/reflection/ReflectedClass.h): its
+// getter (T::refl_GetClass) and descriptor constructor (T::refl_InitClass), the functions the
+// descriptor points to (those of a known uniform shape defined, the others declared) and the
+// attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
+#include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -14,10 +14,13 @@ using base::reflection::UnkReflField;
 using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
+using base::reflection::ClassDescription;
+using base::reflection::ClassOf;
+using base::reflection::ClassOfDestructorFirst;
+using base::reflection::Destroy;
+using base::reflection::DestroyDestructorFirst;
 
 // game::logic::collision::CAABoxShape2D
-DREAD_REFL_TAG(7100d5da04);
-void fn_7100d5d23c(base::reflection::CClass*) {}
 void fn_7100d5ed18();
 void fn_7100d5db88(UnkReflFunction* fn, const char* name);
 const base::reflection::UnkReflAttrKey& fn_7100075240();
@@ -26,7 +29,9 @@ void fn_7100d5edcc();
 void fn_7100d5dd04(UnkReflFunction* fn, const char* name);
 void fn_7100d5ee80();
 void fn_7100d5de80(UnkReflFunction* fn, const char* name);
-void fn_7100d5d334(CClass* cls) {
+namespace game::logic::collision::CAABoxShape2D {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_v2Min_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_v2Min_GetterFunction", true);
         fn->return_type = fn_7100024504();
@@ -63,30 +68,30 @@ void fn_7100d5d334(CClass* cls) {
     UnkReflField* field2 = fn_7100096524(cls, CStrId("bOutwardsNormal", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field2->attrs.Add<bool>(fn_7100075240(), false);
 }
-bool fn_7100d5eb28(const void* a, const void* b) { return a == b; }
-s32 fn_7100d5eb34() { return -1; }
-const base::reflection::CType& fn_7100d5eb3c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100d5eb58();
-void fn_7100d5eb9c(void* dst, const void* src);
-void fn_7100d5ebf8(void* dst, const void* src);
-void fn_7100d5ec54(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_7100d5ec60(void* dst, const void* src);
-void* fn_7100d5ecbc(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100d5da04> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0xc0;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100d5eb28;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100d5eb34;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100d5eb3c;
-    static constexpr UnkFn fn_0x28 = &fn_7100d5eb58;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_7100d5eb9c;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_7100d5ebf8;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100d5ec54;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_7100d5ec60;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100d5ecbc;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(7100d5d240, 7100d5da04, "game::logic::collision::CAABoxShape2D", 7100d69690, 7100d5d23c, 7100d5d334);
+}  // namespace game::logic::collision::CAABoxShape2D
+DREAD_REFLECTED_CLASS(game::logic::collision::CAABoxShape2D, game::logic::collision::CShape);
+
 
 void fn_7100d5e7b8();
 void fn_7100d5e820();
@@ -130,7 +135,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100d5e648> {
     static constexpr UnkFn fn_0xf0 = &fn_7100d5e7b8;
     static constexpr UnkFn fn_0xf8 = &fn_7100d5e820;
     static constexpr UnkFn fn_0x100 = &fn_7100d5e82c;
-    static const CType* pointee() { return fn_7100d5d240(); }
+    static const CType* pointee() { return game::logic::collision::CAABoxShape2D::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100d5dffc> {
@@ -157,7 +162,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100d5e8b8> {
     static constexpr UnkFn fn_0xf0 = &fn_7100d5ea28;
     static constexpr UnkFn fn_0xf8 = &fn_7100d5ea90;
     static constexpr UnkFn fn_0x100 = &fn_7100d5ea9c;
-    static const CType* pointee() { return fn_7100d5d240(); }
+    static const CType* pointee() { return game::logic::collision::CAABoxShape2D::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100d5e0d8> {

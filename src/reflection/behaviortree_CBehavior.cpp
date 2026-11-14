@@ -2,37 +2,41 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CPointerType.h"
 // Reflection descriptors for one original translation unit (1 type):
-// for each type, its getter (T::refl_GetClass) and, through the traits below, its
-// descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape and the attribute/member-field functions that
-// tools/refl_attrs.py reconstructs byte-identically.
-#include "base/reflection/CClass.h"
+// each class's functions are in a namespace of its name (base/reflection/ReflectedClass.h): its
+// getter (T::refl_GetClass) and descriptor constructor (T::refl_InitClass), the functions the
+// descriptor points to (those of a known uniform shape defined, the others declared) and the
+// attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
+#include "base/reflection/ReflectedClass.h"
+using base::reflection::CClass;
+using base::reflection::ClassDescription;
+using base::reflection::ClassOf;
+using base::reflection::ClassOfDestructorFirst;
+using base::reflection::Destroy;
+using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CBehavior
-DREAD_REFL_TAG(710039491c);
-void fn_7100394820(base::reflection::CClass*) {}
-void fn_7100394918(base::reflection::CClass*) {}
-bool fn_71003959e8(const void*, const void*) { return false; }
-s32 fn_71003959f0() { return -1; }
-const base::reflection::CType& fn_71003959f8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100395a14(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_7100395a20(void*, const void*) { return nullptr; }
-void* fn_7100395a28(void*, const void*) { return nullptr; }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_710039491c> {
+namespace behaviortree::CBehavior {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass*) {}
+bool refl_Equals(const void*, const void*) { return false; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void*, const void*) { return nullptr; }
+void* refl_MoveAssign(void*, const void*) { return nullptr; }
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x30;
     static constexpr bool abstract = true;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_71003959e8;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_71003959f0;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_71003959f8;
-    static constexpr UnkFn fn_0x28 = nullptr;
-    static constexpr UnkFn_0x30 fn_0x30 = nullptr;
-    static constexpr UnkFn_0x30 fn_0x38 = nullptr;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100395a14;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_7100395a20;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100395a28;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(7100394824, 710039491c, "behaviortree::CBehavior", 7101043688, 7100394820, 7100394918);
+}  // namespace behaviortree::CBehavior
+DREAD_REFLECTED_CLASS(behaviortree::CBehavior, CGameObject);
+
 
 void fn_71003958e8();
 void fn_7100395950();
@@ -64,7 +68,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100395778> {
     static constexpr UnkFn fn_0xf0 = &fn_71003958e8;
     static constexpr UnkFn fn_0xf8 = &fn_7100395950;
     static constexpr UnkFn fn_0x100 = &fn_710039595c;
-    static const CType* pointee() { return fn_7100394824(); }
+    static const CType* pointee() { return behaviortree::CBehavior::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100395680> {

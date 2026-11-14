@@ -2,11 +2,11 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CPointerType.h"
 // Reflection descriptors for one original translation unit (3 types):
-// for each type, its getter (T::refl_GetClass) and, through the traits below, its
-// descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape and the attribute/member-field functions that
-// tools/refl_attrs.py reconstructs byte-identically.
-#include "base/reflection/CClass.h"
+// each class's functions are in a namespace of its name (base/reflection/ReflectedClass.h): its
+// getter (T::refl_GetClass) and descriptor constructor (T::refl_InitClass), the functions the
+// descriptor points to (those of a known uniform shape defined, the others declared) and the
+// attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
+#include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -14,50 +14,54 @@ using base::reflection::UnkReflField;
 using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
+using base::reflection::ClassDescription;
+using base::reflection::ClassOf;
+using base::reflection::ClassOfDestructorFirst;
+using base::reflection::Destroy;
+using base::reflection::DestroyDestructorFirst;
 
 // CEmmyOverrideDeathPositionDef
-DREAD_REFL_TAG(7100531e78);
-void fn_7100531c0c(base::reflection::CClass*) {}
 extern base::reflection::CType g_unk_717269bb48;
 const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
-void fn_7100531d00(CClass* cls) {
+namespace CEmmyOverrideDeathPositionDef {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("wpLandmark", true), &g_unk_717269bb48, 0x8, -1, -1);
     field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 6);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("wpLogicShape", true), &g_unk_717269bb48, 0x48, -1, -1);
     field1->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
 }
-bool fn_71005613c4(const void* a, const void* b) { return a == b; }
-s32 fn_71005613d0() { return -1; }
-const base::reflection::CType& fn_71005613d8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_71005613f4();
-void fn_710056149c(void* dst, const void* src);
-void fn_71005614a0(void* dst, const void* src);
-void fn_71005614a4(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_71005614b0(void* dst, const void* src);
-void* fn_710056151c(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100531e78> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x88;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_71005613c4;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_71005613d0;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_71005613d8;
-    static constexpr UnkFn fn_0x28 = &fn_71005613f4;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_710056149c;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_71005614a0;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_71005614a4;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_71005614b0;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_710056151c;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_ROOT_CLASS_GETTER(7100531c10, 7100531e78, "CEmmyOverrideDeathPositionDef", 7100531c0c, 7100531d00);
+}  // namespace CEmmyOverrideDeathPositionDef
+DREAD_REFLECTED_ROOT_CLASS(CEmmyOverrideDeathPositionDef);
 
 // CEmmyAutoForbiddenEdgesDef
-DREAD_REFL_TAG(7100533660);
-void fn_71005332f0(base::reflection::CClass*) {}
 extern base::reflection::CType g_unk_717269bf08;
 extern base::reflection::CType g_unk_7101d5c998;
-void fn_71005333e4(CClass* cls) {
+namespace CEmmyAutoForbiddenEdgesDef {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("wpCheckSamusLogicShape", true), &g_unk_717269bb48, 0x8, -1, -1);
     field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("wpCheckEmmyLogicShape", true), &g_unk_717269bb48, 0x48, -1, -1);
@@ -66,35 +70,34 @@ void fn_71005333e4(CClass* cls) {
     field2->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
     UnkReflField* field3 = fn_7100096524(cls, CStrId("tWeightedLogicShapeIDs", true), &g_unk_7101d5c998, 0xb0, -1, -1);
 }
-bool fn_710056261c(const void* a, const void* b) { return a == b; }
-s32 fn_7100562628() { return -1; }
-const base::reflection::CType& fn_7100562630(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_710056264c();
-void fn_7100562728(void* dst, const void* src);
-void fn_710056272c(void* dst, const void* src);
-void fn_7100562730(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_710056273c(void* dst, const void* src);
-void* fn_71005627c8(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100533660> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0xe0;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_710056261c;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100562628;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100562630;
-    static constexpr UnkFn fn_0x28 = &fn_710056264c;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_7100562728;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_710056272c;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100562730;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_710056273c;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_71005627c8;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_ROOT_CLASS_GETTER(71005332f4, 7100533660, "CEmmyAutoForbiddenEdgesDef", 71005332f0, 71005333e4);
+}  // namespace CEmmyAutoForbiddenEdgesDef
+DREAD_REFLECTED_ROOT_CLASS(CEmmyAutoForbiddenEdgesDef);
 
 // CEmmyAutoGlobalSmartLinkDef
-DREAD_REFL_TAG(7100534ef4);
-void fn_7100534bf0(base::reflection::CClass*) {}
-void fn_7100534ce4(CClass* cls) {
+namespace CEmmyAutoGlobalSmartLinkDef {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("wpStartLandmark", true), &g_unk_717269bb48, 0x8, -1, -1);
     field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 6);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("tEndLandmarks", true), &g_unk_717269bf08, 0x48, -1, -1);
@@ -102,30 +105,32 @@ void fn_7100534ce4(CClass* cls) {
     UnkReflField* field2 = fn_7100096524(cls, CStrId("wpActivateLogicShape", true), &g_unk_717269bb48, 0x70, -1, -1);
     field2->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
 }
-bool fn_71005639dc(const void* a, const void* b) { return a == b; }
-s32 fn_71005639e8() { return -1; }
-const base::reflection::CType& fn_71005639f0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100563a0c();
-void fn_7100563ae8(void* dst, const void* src);
-void fn_7100563aec(void* dst, const void* src);
-void fn_7100563af0(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_7100563afc(void* dst, const void* src);
-void* fn_7100563b88(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100534ef4> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0xe0;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_71005639dc;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_71005639e8;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_71005639f0;
-    static constexpr UnkFn fn_0x28 = &fn_7100563a0c;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_7100563ae8;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_7100563aec;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100563af0;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_7100563afc;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100563b88;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_ROOT_CLASS_GETTER(7100534bf4, 7100534ef4, "CEmmyAutoGlobalSmartLinkDef", 7100534bf0, 7100534ce4);
+}  // namespace CEmmyAutoGlobalSmartLinkDef
+DREAD_REFLECTED_ROOT_CLASS(CEmmyAutoGlobalSmartLinkDef);
+
+
+
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).
@@ -230,7 +235,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710055c420> {
     static constexpr UnkFn fn_0xf0 = &fn_710055c590;
     static constexpr UnkFn fn_0xf8 = &fn_710055c5f8;
     static constexpr UnkFn fn_0x100 = &fn_710055c604;
-    static const CType* pointee() { return fn_7100531c10(); }
+    static const CType* pointee() { return CEmmyOverrideDeathPositionDef::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71005321d8> {
@@ -257,7 +262,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710055c690> {
     static constexpr UnkFn fn_0xf0 = &fn_710055c7f0;
     static constexpr UnkFn fn_0xf8 = &fn_710055c858;
     static constexpr UnkFn fn_0x100 = &fn_710055c87c;
-    static const CType* pointee() { return fn_7100531c10(); }
+    static const CType* pointee() { return CEmmyOverrideDeathPositionDef::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71005322b4> {
@@ -284,7 +289,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710055d69c> {
     static constexpr UnkFn fn_0xf0 = &fn_710055d80c;
     static constexpr UnkFn fn_0xf8 = &fn_710055d874;
     static constexpr UnkFn fn_0x100 = &fn_710055d880;
-    static const CType* pointee() { return fn_71005332f4(); }
+    static const CType* pointee() { return CEmmyAutoForbiddenEdgesDef::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100533ad8> {
@@ -311,7 +316,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710055d90c> {
     static constexpr UnkFn fn_0xf0 = &fn_710055da6c;
     static constexpr UnkFn fn_0xf8 = &fn_710055dad4;
     static constexpr UnkFn fn_0x100 = &fn_710055daf8;
-    static const CType* pointee() { return fn_71005332f4(); }
+    static const CType* pointee() { return CEmmyAutoForbiddenEdgesDef::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100533bb4> {
@@ -338,7 +343,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710055e918> {
     static constexpr UnkFn fn_0xf0 = &fn_710055ea88;
     static constexpr UnkFn fn_0xf8 = &fn_710055eaf0;
     static constexpr UnkFn fn_0x100 = &fn_710055eafc;
-    static const CType* pointee() { return fn_7100534bf4(); }
+    static const CType* pointee() { return CEmmyAutoGlobalSmartLinkDef::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100535334> {
@@ -365,7 +370,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710055eb88> {
     static constexpr UnkFn fn_0xf0 = &fn_710055ece8;
     static constexpr UnkFn fn_0xf8 = &fn_710055ed50;
     static constexpr UnkFn fn_0x100 = &fn_710055ed74;
-    static const CType* pointee() { return fn_7100534bf4(); }
+    static const CType* pointee() { return CEmmyAutoGlobalSmartLinkDef::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100535410> {

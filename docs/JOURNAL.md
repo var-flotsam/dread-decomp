@@ -44,6 +44,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 **Reflection attributes and registration**
 - `AddField` takes the name by value; `Add` by const reference as a {type, ptr} temporary; struct-typed defaults and `CVector2D` globals copied member by member: [Field registrations the reflection parser stopped at](#field-registrations-the-reflection-parser-stopped-at).
 - Collection types are globals built by static initialisers, all reached through the GOT: [Collection-type registration](#collection-type-registration).
+- A class's reflection functions can live in a namespace of the class's name: it mangles as the class's static members would, so they map to `T::refl_<role>` names with no address in the source: [Reflected classes in a namespace of their name](#session-log-newest-first).
 
 **Transform nodes and math**
 - `UnkXform` layout (4x4 matrix, angle 0x40, scale 0x4c, flags 0x58); the same memory viewed through two struct paths defeats alias analysis, so use one view per function: [hubs batch 2](#slice-1-hubs-batch-2).
@@ -151,6 +152,29 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - An import name the runtime overloads (`movie::Buffer::Buffer` four times) must resolve by the dump's mangled name (the PLT stub's GOT slot), not by the reference's argument classes: a lifted call passes `this` as an argument, and a copy constructor looks like `Buffer(u64)`: [movie VP9](#session-log-newest-first).
 
 ## Session log (newest first)
+
+**Reflected classes in a namespace of their name (2026-11-14).** First step of the readable reflection template
+(owner-approved audit item). `src/reflection/` described each class by addresses: an `UnkRefl_fn_<init>` tag,
+traits whose members were `fn_0x58` and the like, helpers named `fn_<addr>` and a getter macro taking six
+addresses. Now `tools/gen_reflection.py` writes each class as `include/base/reflection/ReflectedClass.h` says: its
+functions sit in a namespace of the class's name under role names (`refl_Equals`, `refl_Hash`, `refl_TypeOf`,
+`refl_Construct`, `refl_CopyConstruct`, `refl_MoveConstruct`, `refl_Destroy`, `refl_CopyAssign`,
+`refl_MoveAssign`, `refl_AddAttributes`, `refl_AddFields`), a `refl_Description` struct names the operations the
+descriptor points to, and `DREAD_REFLECTED_CLASS(T, Parent)` defines the getter and the descriptor constructor.
+A namespace mangles as a class does, so the getter is the symbol `T::refl_GetClass` would be; the game's classes
+need not be declared. The roles come from how the engine calls the slots (0x28 constructs in place, see
+`CSoundManager_tables_ovb0038.cpp`; 0x60 is an enum's value, -1 for every class, so a hash). `CClass.h`'s traits
+template reads such a description; the older tag specialisations still work (580 objects built with and
+without the change are identical). `tools/gen_functions_csv.py` names the helpers the same way (source
+`reflection`, 22,331 functions), which is how their symbols map to addresses; the descriptor constructor's
+symbol (`CClass::CClass<T::refl_Description>`) maps to `T::refl_InitClass` through `asmdiff.name_aliases`
+(used by `check.csv_by_name`). The names also give 12,000 neighbouring functions a subsystem. 2,094 of the 2,100
+unit files changed form; base::reflection's own six classes keep the old one (a namespace of their name would
+collide with the class the headers define). Checked here without the dump: every converted file compiles to the
+same bytes and relocation targets as before, function by function with the names mapped. What is still not
+readable: the bodies of the attribute and member-field functions (`fn_7100096524(cls, CStrId(...),
+fn_710000abbc(), 0x50c, -1, -1)`: the field adder, the type getters and the attribute keys want names, then one
+line per field), the pointer types appended to some files, and the statics padding (`refl_UnkStaticsUse_<addr>`).
 
 **The hold on bulk runs is lifted; several functions to a worker (2026-11-14).** The owner approved the audit's
 first decision. A lean batch that keeps the shape in `tools/batch/README.md` ("Batches": about 100 functions or

@@ -2,11 +2,11 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CPointerType.h"
 // Reflection descriptors for one original translation unit (4 types):
-// for each type, its getter (T::refl_GetClass) and, through the traits below, its
-// descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape and the attribute/member-field functions that
-// tools/refl_attrs.py reconstructs byte-identically.
-#include "base/reflection/CClass.h"
+// each class's functions are in a namespace of its name (base/reflection/ReflectedClass.h): its
+// getter (T::refl_GetClass) and descriptor constructor (T::refl_InitClass), the functions the
+// descriptor points to (those of a known uniform shape defined, the others declared) and the
+// attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
+#include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -14,16 +14,21 @@ using base::reflection::UnkReflField;
 using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
+using base::reflection::ClassDescription;
+using base::reflection::ClassOf;
+using base::reflection::ClassOfDestructorFirst;
+using base::reflection::Destroy;
+using base::reflection::DestroyDestructorFirst;
 
 // CCharClassCooldownXBossLavaDropsAttack::CTunableCharClassCooldownXBossLavaDropsAttack
-DREAD_REFL_TAG(71004aa678);
-void fn_71004aa3a4(base::reflection::CClass*) {}
 extern bool g_unk_71726d37e0;
 const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726d37b8;
 void fn_71004aa7fc(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
-void fn_71004aa49c(CClass* cls) {
+namespace CCharClassCooldownXBossLavaDropsAttack::CTunableCharClassCooldownXBossLavaDropsAttack {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     if (g_unk_71726d37e0)
         return;
     g_unk_71726d37e0 = true;
@@ -41,36 +46,35 @@ void fn_71004aa49c(CClass* cls) {
     }
     fn_71004aa7fc(registry, &g_unk_71726d37b8, "CooldownXBoss");
 }
-bool fn_71004b07d8(const void*, const void*) { return false; }
-s32 fn_71004b07e0() { return -1; }
-const base::reflection::CType& fn_71004b07e8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_71004b0804();
-void fn_71004b0844(void*, const void*) {}
-void fn_71004b0848(void*, const void*) {}
-void fn_71004b084c(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_71004b0858(void*, const void*) { return nullptr; }
-void* fn_71004b0860(void*, const void*) { return nullptr; }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_71004aa678> {
+bool refl_Equals(const void*, const void*) { return false; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void*, const void*) {}
+void refl_MoveConstruct(void*, const void*) {}
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void*, const void*) { return nullptr; }
+void* refl_MoveAssign(void*, const void*) { return nullptr; }
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x28;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_71004b07d8;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_71004b07e0;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_71004b07e8;
-    static constexpr UnkFn fn_0x28 = &fn_71004b0804;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_71004b0844;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_71004b0848;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_71004b084c;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_71004b0858;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_71004b0860;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(71004aa3a8, 71004aa678, "CCharClassCooldownXBossLavaDropsAttack::CTunableCharClassCooldownXBossLavaDropsAttack", 7100135a94, 71004aa3a4, 71004aa49c);
+}  // namespace CCharClassCooldownXBossLavaDropsAttack::CTunableCharClassCooldownXBossLavaDropsAttack
+DREAD_REFLECTED_CLASS(CCharClassCooldownXBossLavaDropsAttack::CTunableCharClassCooldownXBossLavaDropsAttack, base::tunable::CTunable);
 
 // CCooldownXBossLavaDropsMovementDef
-DREAD_REFL_TAG(71004ab41c);
-void fn_71004ab10c(base::reflection::CClass*) {}
 extern base::reflection::CType g_unk_71726d37e8;
-void fn_71004ab200(CClass* cls) {
+namespace CCooldownXBossLavaDropsMovementDef {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("eArmToChange", true), &g_unk_71726d37e8, 0x8, -1, -1);
     field0->attrs.Add<s32>(fn_7100075240(), &g_unk_71726d37e8, 1);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("fDelay", true), fn_710000abbc(), 0xc, -1, -1);
@@ -78,37 +82,36 @@ void fn_71004ab200(CClass* cls) {
     UnkReflField* field2 = fn_7100096524(cls, CStrId("fAnimSpeed", true), fn_710000abbc(), 0x10, -1, -1);
     field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
 }
-bool fn_71004b0950(const void* a, const void* b) { return a == b; }
-s32 fn_71004b095c() { return -1; }
-const base::reflection::CType& fn_71004b0964(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_71004b0980();
-void fn_71004b09a0(void* dst, const void* src);
-void fn_71004b09c4(void* dst, const void* src);
-void fn_71004b09e8(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_71004b09f4(void* dst, const void* src);
-void* fn_71004b0a10(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_71004ab41c> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x18;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_71004b0950;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_71004b095c;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_71004b0964;
-    static constexpr UnkFn fn_0x28 = &fn_71004b0980;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_71004b09a0;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_71004b09c4;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_71004b09e8;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_71004b09f4;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_71004b0a10;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_ROOT_CLASS_GETTER(71004ab110, 71004ab41c, "CCooldownXBossLavaDropsMovementDef", 71004ab10c, 71004ab200);
+}  // namespace CCooldownXBossLavaDropsMovementDef
+DREAD_REFLECTED_ROOT_CLASS(CCooldownXBossLavaDropsMovementDef);
 
 // CCooldownXBossLavaDropsDef
-DREAD_REFL_TAG(71004ab998);
-void fn_71004ab5a8(base::reflection::CClass*) {}
 extern base::reflection::CType g_unk_71726d3948;
 extern base::reflection::CType g_unk_71726d4150;
-void fn_71004ab69c(CClass* cls) {
+namespace CCooldownXBossLavaDropsDef {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("eLeftUpArmPos", true), &g_unk_71726d3948, 0x8, -1, -1);
     field0->attrs.Add<s32>(fn_7100075240(), &g_unk_71726d3948, 0);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("eLeftDownArmPos", true), &g_unk_71726d3948, 0xc, -1, -1);
@@ -119,54 +122,53 @@ void fn_71004ab69c(CClass* cls) {
     field3->attrs.Add<s32>(fn_7100075240(), &g_unk_71726d3948, 0);
     UnkReflField* field4 = fn_7100096524(cls, CStrId("tActions", true), &g_unk_71726d4150, 0x18, -1, -1);
 }
-bool fn_71004b0a2c(const void* a, const void* b) { return a == b; }
-s32 fn_71004b0a38() { return -1; }
-const base::reflection::CType& fn_71004b0a40(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_71004b0a5c();
-void fn_71004b0aac(void* dst, const void* src);
-void fn_71004b0ad4(void* dst, const void* src);
-void fn_71004b0afc(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_71004b0b08(void* dst, const void* src);
-void* fn_71004b0b44(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_71004ab998> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x40;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_71004b0a2c;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_71004b0a38;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_71004b0a40;
-    static constexpr UnkFn fn_0x28 = &fn_71004b0a5c;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_71004b0aac;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_71004b0ad4;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_71004b0afc;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_71004b0b08;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_71004b0b44;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_ROOT_CLASS_GETTER(71004ab5ac, 71004ab998, "CCooldownXBossLavaDropsDef", 71004ab5a8, 71004ab69c);
+}  // namespace CCooldownXBossLavaDropsDef
+DREAD_REFLECTED_ROOT_CLASS(CCooldownXBossLavaDropsDef);
 
 // CCharClassCooldownXBossLavaDropsAttack
-DREAD_REFL_TAG(71004ae594);
-void fn_71004add1c(base::reflection::CClass*) {}
-bool fn_71004b30f4(const void* a, const void* b) { return a == b; }
-s32 fn_71004b3100() { return -1; }
-const base::reflection::CType& fn_71004b3108(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_71004b3124();
-void fn_71004b31e8(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_71004ae594> {
+namespace CCharClassCooldownXBossLavaDropsAttack {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls);
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_Destroy(void* obj) { Destroy(obj); }
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x190;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_71004b30f4;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_71004b3100;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_71004b3108;
-    static constexpr UnkFn fn_0x28 = &fn_71004b3124;
-    static constexpr UnkFn_0x30 fn_0x30 = nullptr;
-    static constexpr UnkFn_0x30 fn_0x38 = nullptr;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_71004b31e8;
-    static constexpr UnkFn_0x48 fn_0x48 = nullptr;
-    static constexpr UnkFn_0x48 fn_0x50 = nullptr;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto destroy = &refl_Destroy;
 };
-DREAD_REFL_CLASS_GETTER(71004add20, 71004ae594, "CCharClassCooldownXBossLavaDropsAttack", 71004a0534, 71004add1c, 71004ade14);
+}  // namespace CCharClassCooldownXBossLavaDropsAttack
+DREAD_REFLECTED_CLASS(CCharClassCooldownXBossLavaDropsAttack, CCharClassCooldownXBossAttack);
+
+
+
+
 
 const base::reflection::CType* fn_7100005178();
 const base::reflection::CType* fn_71004acd8c();
@@ -257,7 +259,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71004afc78> {
     static constexpr UnkFn fn_0xf0 = &fn_71004afde8;
     static constexpr UnkFn fn_0xf8 = &fn_71004afe50;
     static constexpr UnkFn fn_0x100 = &fn_71004afe5c;
-    static const CType* pointee() { return fn_71004ab110(); }
+    static const CType* pointee() { return CCooldownXBossLavaDropsMovementDef::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71004acd8c> {
@@ -284,7 +286,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71004afee8> {
     static constexpr UnkFn fn_0xf0 = &fn_71004b0058;
     static constexpr UnkFn fn_0xf8 = &fn_71004b00c0;
     static constexpr UnkFn fn_0x100 = &fn_71004b00cc;
-    static const CType* pointee() { return fn_71004ab110(); }
+    static const CType* pointee() { return CCooldownXBossLavaDropsMovementDef::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71004ace68> {
@@ -308,7 +310,7 @@ struct base::reflection::UnkReflCollectionTraits<UnkRefl_fn_71004adb24> {
     static constexpr UnkFn fn_0x60 = &fn_71004b25e4;
     static constexpr UnkFn fn_0x68 = &fn_71004b25ec;
     static const CType* key() { return fn_7100005178(); }
-    static const CType* element() { return fn_71004ab110(); }
+    static const CType* element() { return CCooldownXBossLavaDropsMovementDef::refl_GetClass(); }
     static const CType* iterator() { return fn_71004acd8c(); }
     static const CType* const_iterator() { return fn_71004ad458(); }
     static constexpr UnkFn fn_0x108 = &fn_71004b23e0;
@@ -344,7 +346,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71004ae9fc> {
     static constexpr UnkFn fn_0xf0 = &fn_71004aeb6c;
     static constexpr UnkFn fn_0xf8 = &fn_71004aebd4;
     static constexpr UnkFn fn_0x100 = &fn_71004aebe0;
-    static const CType* pointee() { return fn_71004ab5ac(); }
+    static const CType* pointee() { return CCooldownXBossLavaDropsDef::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71004abc74> {
@@ -371,7 +373,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71004aec6c> {
     static constexpr UnkFn fn_0xf0 = &fn_71004aedcc;
     static constexpr UnkFn fn_0xf8 = &fn_71004aee34;
     static constexpr UnkFn fn_0x100 = &fn_71004aee58;
-    static const CType* pointee() { return fn_71004ab5ac(); }
+    static const CType* pointee() { return CCooldownXBossLavaDropsDef::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71004abd50> {
@@ -391,7 +393,6 @@ void fn_71004b21a8();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_71004ab110();
 void fn_71004b21f8();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_71004acf44(CClass* cls) {
@@ -406,12 +407,12 @@ void fn_71004acf44(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_71004ab110();
+        fn->return_type = CCooldownXBossLavaDropsMovementDef::refl_GetClass();
         fn->field_0xb2 = 0x1;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71004b21f8);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_71004ab110(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, CCooldownXBossLavaDropsMovementDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -425,7 +426,6 @@ void fn_71004b2330();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_71004ab110();
 void fn_71004b2380();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_71004ad534(CClass* cls) {
@@ -440,11 +440,11 @@ void fn_71004ad534(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_71004ab110();
+        fn->return_type = CCooldownXBossLavaDropsMovementDef::refl_GetClass();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71004b2380);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_71004ab110(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, CCooldownXBossLavaDropsMovementDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }

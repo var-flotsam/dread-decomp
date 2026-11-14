@@ -5,6 +5,7 @@ import struct
 import unittest
 
 from tools.tests import _path  # noqa: F401
+import asmdiff
 import gen_reflection as gr
 import refl_attrs
 
@@ -160,6 +161,71 @@ class Helpers(unittest.TestCase):
                 text = src.format(name="fn_7100000010")
                 self.assertEqual(text.count("{"), text.count("}"))
                 self.assertIn("fn_7100000010", text)
+
+
+class ReadableForm(unittest.TestCase):
+    """base/reflection/ReflectedClass.h: a class's functions in a namespace of its name, under role names."""
+
+    def foo(self, **kw) -> gr.Getter:
+        g = gr.Getter(type="game::CFoo", address=0x7100000010, init=0x7100000020, fn_0x70=HELPER,
+                      fn_0xe0=HELPER + 0x40, parent=0x7100000100, **kw)
+        g.traits = {0x58: HELPER + 0x20, 0x60: HELPER + 0x30, 0x28: HELPER + 0x50}
+        return g
+
+    def test_readable_types(self):
+        self.assertTrue(gr.readable_type("CFoo::CTunableFoo"))
+        self.assertTrue(gr.readable_type("game::CFoo"))
+        self.assertFalse(gr.readable_type("base::reflection::CClass"))  # a class the headers define
+        self.assertFalse(gr.readable_type("CVector<CFoo*>"))
+
+    def test_role_names(self):
+        names = gr.reflection_names(self.foo())
+        self.assertEqual(names, {HELPER + 0x20: "game::CFoo::refl_Equals", HELPER + 0x30: "game::CFoo::refl_Hash",
+                                 HELPER + 0x50: "game::CFoo::refl_Construct", HELPER: "game::CFoo::refl_AddAttributes",
+                                 HELPER + 0x40: "game::CFoo::refl_AddFields"})
+        self.assertEqual(gr.reflection_names(gr.Getter(type="CVector<CFoo*>", address=1)), {})
+
+    def test_class_lines(self):
+        mov_m1 = 0x12800000  # mov w0, #-1
+        orig = FakeOriginal({HELPER: words(RET), HELPER + 0x20: words(CMP_X0_X1, CSET_W0_EQ, RET),
+                             HELPER + 0x30: words(mov_m1, RET), HELPER + 0x40: words(RET, RET),
+                             HELPER + 0x50: words(RET, RET)})
+        fields = (["void fn_7100000999();"], "void fn_7100000440(CClass* cls) {\n    fn_7100000999();\n}")
+        declared: set[str] = set()
+        lines, helpers, attrs = gr.readable_class_lines(orig, self.foo(abstract=True), 0x50, {HELPER + 0x40: fields},
+                                                        "DREAD_REFLECTED_CLASS", "game::CBar", declared)
+        self.assertEqual(lines, [
+            "// game::CFoo",
+            "void fn_7100000999();",
+            "namespace game::CFoo {",
+            "void refl_AddAttributes(CClass*) {}",
+            "bool refl_Equals(const void* a, const void* b) { return a == b; }",
+            "s32 refl_Hash() { return -1; }",
+            "void refl_AddFields(CClass* cls) {\n    fn_7100000999();\n}",
+            "void refl_Construct(void* obj);",
+            "struct refl_Description : ClassDescription {",
+            "    static constexpr u64 size = 0x50;",
+            "    static constexpr bool abstract = true;",
+            "    static constexpr auto equals = &refl_Equals;",
+            "    static constexpr auto hash = &refl_Hash;",
+            "    static constexpr auto construct = &refl_Construct;",
+            "};",
+            "}  // namespace game::CFoo",
+            "DREAD_REFLECTED_CLASS(game::CFoo, game::CBar);",
+        ])
+        self.assertEqual((helpers, attrs), (4, 1))
+        self.assertEqual(declared, {"void fn_7100000999();"})
+
+    def test_shapes_cover_helper_shapes(self):
+        for shape in gr.HELPER_SHAPES.values():
+            with self.subTest(shape=shape):
+                text = gr.ROLE_SHAPES[shape].format(name="refl_Equals")
+                self.assertEqual(text.count("{"), text.count("}"))
+
+    def test_descriptor_constructor_alias(self):
+        self.assertEqual(asmdiff.name_aliases("game::CFoo::refl_InitClass"),
+                         ["base::reflection::CClass::CClass<game::CFoo::refl_Description>"])
+        self.assertEqual(asmdiff.name_aliases("game::CFoo::refl_GetClass"), [])
 
 
 class InitStores(unittest.TestCase):

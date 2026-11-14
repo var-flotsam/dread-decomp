@@ -2,11 +2,11 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CPointerType.h"
 // Reflection descriptors for one original translation unit (2 types):
-// for each type, its getter (T::refl_GetClass) and, through the traits below, its
-// descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape and the attribute/member-field functions that
-// tools/refl_attrs.py reconstructs byte-identically.
-#include "base/reflection/CClass.h"
+// each class's functions are in a namespace of its name (base/reflection/ReflectedClass.h): its
+// getter (T::refl_GetClass) and descriptor constructor (T::refl_InitClass), the functions the
+// descriptor points to (those of a known uniform shape defined, the others declared) and the
+// attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
+#include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -14,73 +14,76 @@ using base::reflection::UnkReflField;
 using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
+using base::reflection::ClassDescription;
+using base::reflection::ClassOf;
+using base::reflection::ClassOfDestructorFirst;
+using base::reflection::Destroy;
+using base::reflection::DestroyDestructorFirst;
 
 // base::animation::CBlendSpaceResource
-DREAD_REFL_TAG(71000094e4);
 const base::reflection::UnkReflAttrKey& fn_7100005070();
-void fn_710000928c(CClass* cls) {
+extern base::reflection::CType g_unk_7101d4bfc0;
+namespace base::animation::CBlendSpaceResource {
+void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10202u);
 }
-extern base::reflection::CType g_unk_7101d4bfc0;
-void fn_71000093d8(CClass* cls) {
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sVarName", true), fn_7100009658(), 0x58, -1, -1);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("vTargets", true), &g_unk_7101d4bfc0, 0x60, -1, -1);
 }
-bool fn_710000d578(const void*, const void*) { return false; }
-s32 fn_710000d580() { return -1; }
-const base::reflection::CType& fn_710000d588(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_710000d5a4();
-void fn_710000d5f4(void*, const void*) {}
-void fn_710000d5f8(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_710000d604(void*, const void*) { return nullptr; }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_71000094e4> {
+bool refl_Equals(const void*, const void*) { return false; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_MoveConstruct(void*, const void*) {}
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_MoveAssign(void*, const void*) { return nullptr; }
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x88;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_710000d578;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_710000d580;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_710000d588;
-    static constexpr UnkFn fn_0x28 = &fn_710000d5a4;
-    static constexpr UnkFn_0x30 fn_0x30 = nullptr;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_710000d5f4;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_710000d5f8;
-    static constexpr UnkFn_0x48 fn_0x48 = nullptr;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_710000d604;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(71000092e4, 71000094e4, "base::animation::CBlendSpaceResource", 7100016894, 710000928c, 71000093d8);
+}  // namespace base::animation::CBlendSpaceResource
+DREAD_REFLECTED_CLASS(base::animation::CBlendSpaceResource, base::core::CAsset);
 
 // base::animation::CBlendSpaceResource::SBlendTarget
-DREAD_REFL_TAG(710000aa38);
-void fn_710000a7c8(base::reflection::CClass*) {}
-void fn_710000a8bc(CClass* cls) {
+namespace base::animation::CBlendSpaceResource::SBlendTarget {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("fSample", true), fn_710000abbc(), 0x0, -1, -1);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("fPlayRate", true), fn_710000abbc(), 0x4, -1, -1);
     UnkReflField* field2 = fn_7100096524(cls, CStrId("sAnimationResource", true), fn_710000ad9c(), 0x8, -1, -1);
 }
-bool fn_710000f330(const void* a, const void* b) { return a == b; }
-s32 fn_710000f33c() { return -1; }
-const base::reflection::CType& fn_710000f344(const void* obj);
-void fn_710000f360();
-void fn_710000f414(void* dst, const void* src);
-void fn_710000f49c(void* dst, const void* src);
-void fn_710000f514(void* obj);
-void* fn_710000f598(void* dst, const void* src);
-void* fn_710000f674(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_710000aa38> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj);
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj);
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x18;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_710000f330;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_710000f33c;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_710000f344;
-    static constexpr UnkFn fn_0x28 = &fn_710000f360;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_710000f414;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_710000f49c;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_710000f514;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_710000f598;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_710000f674;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_ROOT_CLASS_GETTER(710000a7cc, 710000aa38, "base::animation::CBlendSpaceResource::SBlendTarget", 710000a7c8, 710000a8bc);
+}  // namespace base::animation::CBlendSpaceResource::SBlendTarget
+DREAD_REFLECTED_ROOT_CLASS(base::animation::CBlendSpaceResource::SBlendTarget);
+
+
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).
@@ -160,7 +163,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710000baa0> {
     static constexpr UnkFn fn_0xf0 = &fn_710000bc10;
     static constexpr UnkFn fn_0xf8 = &fn_710000bc78;
     static constexpr UnkFn fn_0x100 = &fn_710000bc84;
-    static const CType* pointee() { return fn_710000a7cc(); }
+    static const CType* pointee() { return base::animation::CBlendSpaceResource::SBlendTarget::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100009838> {
@@ -187,7 +190,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710000bd10> {
     static constexpr UnkFn fn_0xf0 = &fn_710000be80;
     static constexpr UnkFn fn_0xf8 = &fn_710000bee8;
     static constexpr UnkFn fn_0x100 = &fn_710000bef4;
-    static const CType* pointee() { return fn_710000a7cc(); }
+    static const CType* pointee() { return base::animation::CBlendSpaceResource::SBlendTarget::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100009914> {
@@ -211,7 +214,7 @@ struct base::reflection::UnkReflCollectionTraits<UnkRefl_fn_710000a5d0> {
     static constexpr UnkFn fn_0x60 = &fn_710000e298;
     static constexpr UnkFn fn_0x68 = &fn_710000e2a0;
     static const CType* key() { return fn_7100005178(); }
-    static const CType* element() { return fn_710000a7cc(); }
+    static const CType* element() { return base::animation::CBlendSpaceResource::SBlendTarget::refl_GetClass(); }
     static const CType* iterator() { return fn_7100009838(); }
     static const CType* const_iterator() { return fn_7100009f04(); }
     static constexpr UnkFn fn_0x108 = &fn_710000df7c;
@@ -240,7 +243,6 @@ void fn_710000dc30();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_710000a7cc();
 void fn_710000dc80();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_71000099f0(CClass* cls) {
@@ -255,12 +257,12 @@ void fn_71000099f0(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_710000a7cc();
+        fn->return_type = base::animation::CBlendSpaceResource::SBlendTarget::refl_GetClass();
         fn->field_0xb2 = 0x1;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710000dc80);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_710000a7cc(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, base::animation::CBlendSpaceResource::SBlendTarget::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -274,7 +276,6 @@ void fn_710000ded4();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_710000a7cc();
 void fn_710000df24();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100009fe0(CClass* cls) {
@@ -289,11 +290,11 @@ void fn_7100009fe0(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_710000a7cc();
+        fn->return_type = base::animation::CBlendSpaceResource::SBlendTarget::refl_GetClass();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710000df24);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_710000a7cc(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, base::animation::CBlendSpaceResource::SBlendTarget::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }

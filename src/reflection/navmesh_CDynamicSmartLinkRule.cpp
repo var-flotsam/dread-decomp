@@ -2,37 +2,41 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CPointerType.h"
 // Reflection descriptors for one original translation unit (1 type):
-// for each type, its getter (T::refl_GetClass) and, through the traits below, its
-// descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape and the attribute/member-field functions that
-// tools/refl_attrs.py reconstructs byte-identically.
-#include "base/reflection/CClass.h"
+// each class's functions are in a namespace of its name (base/reflection/ReflectedClass.h): its
+// getter (T::refl_GetClass) and descriptor constructor (T::refl_InitClass), the functions the
+// descriptor points to (those of a known uniform shape defined, the others declared) and the
+// attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
+#include "base/reflection/ReflectedClass.h"
+using base::reflection::CClass;
+using base::reflection::ClassDescription;
+using base::reflection::ClassOf;
+using base::reflection::ClassOfDestructorFirst;
+using base::reflection::Destroy;
+using base::reflection::DestroyDestructorFirst;
 
 // navmesh::CDynamicSmartLinkRule
-DREAD_REFL_TAG(71002697dc);
-void fn_71002696e0(base::reflection::CClass*) {}
-void fn_71002697d8(base::reflection::CClass*) {}
-bool fn_710026b838(const void*, const void*) { return false; }
-s32 fn_710026b840() { return -1; }
-const base::reflection::CType& fn_710026b848(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_710026b864(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_710026b870(void*, const void*) { return nullptr; }
-void* fn_710026b878(void*, const void*) { return nullptr; }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_71002697dc> {
+namespace navmesh::CDynamicSmartLinkRule {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass*) {}
+bool refl_Equals(const void*, const void*) { return false; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void*, const void*) { return nullptr; }
+void* refl_MoveAssign(void*, const void*) { return nullptr; }
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x20;
     static constexpr bool abstract = true;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_710026b838;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_710026b840;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_710026b848;
-    static constexpr UnkFn fn_0x28 = nullptr;
-    static constexpr UnkFn_0x30 fn_0x30 = nullptr;
-    static constexpr UnkFn_0x30 fn_0x38 = nullptr;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_710026b864;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_710026b870;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_710026b878;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(71002696e4, 71002697dc, "navmesh::CDynamicSmartLinkRule", 7101043688, 71002696e0, 71002697d8);
+}  // namespace navmesh::CDynamicSmartLinkRule
+DREAD_REFLECTED_CLASS(navmesh::CDynamicSmartLinkRule, CGameObject);
+
 
 void fn_710026ac08();
 void fn_710026ac70();
@@ -64,7 +68,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710026aa98> {
     static constexpr UnkFn fn_0xf0 = &fn_710026ac08;
     static constexpr UnkFn fn_0xf8 = &fn_710026ac70;
     static constexpr UnkFn fn_0x100 = &fn_710026ac7c;
-    static const CType* pointee() { return fn_71002696e4(); }
+    static const CType* pointee() { return navmesh::CDynamicSmartLinkRule::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100269948> {

@@ -423,6 +423,15 @@ def diff_object(obj: Path, original: Original, resolve=None, strict: bool = Fals
     return diff_functions(read_object(obj), original, resolve, strict)
 
 
+def name_aliases(name: str) -> list[str]:
+    """Other qualified names under which an object defines the function data/functions/ calls `name`. A
+    descriptor constructor T::refl_InitClass is CClass's constructor instantiated for T::refl_Description
+    in a source written with base/reflection/ReflectedClass.h."""
+    if name.endswith("::refl_InitClass"):
+        return [f"base::reflection::CClass::CClass<{name[:-len('::refl_InitClass')]}::refl_Description>"]
+    return []
+
+
 def default_resolve(symbol: str) -> int | None:
     """fn_<addr> / g_unk_<addr> / unk_<addr> symbols (plain C names) -> address, without llvm-cxxfilt;
     object_resolver and check.py's resolver also demangle."""

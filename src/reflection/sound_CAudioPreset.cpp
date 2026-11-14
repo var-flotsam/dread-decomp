@@ -2,11 +2,11 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CPointerType.h"
 // Reflection descriptors for one original translation unit (1 type):
-// for each type, its getter (T::refl_GetClass) and, through the traits below, its
-// descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape and the attribute/member-field functions that
-// tools/refl_attrs.py reconstructs byte-identically.
-#include "base/reflection/CClass.h"
+// each class's functions are in a namespace of its name (base/reflection/ReflectedClass.h): its
+// getter (T::refl_GetClass) and descriptor constructor (T::refl_InitClass), the functions the
+// descriptor points to (those of a known uniform shape defined, the others declared) and the
+// attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
+#include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -14,10 +14,13 @@ using base::reflection::UnkReflField;
 using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
+using base::reflection::ClassDescription;
+using base::reflection::ClassOf;
+using base::reflection::ClassOfDestructorFirst;
+using base::reflection::Destroy;
+using base::reflection::DestroyDestructorFirst;
 
 // sound::CAudioPreset
-DREAD_REFL_TAG(71010322e0);
-void fn_710102df14(base::reflection::CClass*) {}
 void fn_710103aa44();
 void fn_7101032464(UnkReflFunction* fn, const char* name);
 void fn_710103ab44();
@@ -91,7 +94,9 @@ void fn_710103bbf4();
 void fn_71010350c4(UnkReflFunction* fn, const char* name);
 void fn_710103bc84();
 void fn_7101035240(UnkReflFunction* fn, const char* name);
-void fn_710102e00c(CClass* cls) {
+namespace sound::CAudioPreset {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sUniqueId_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sUniqueId_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -459,30 +464,30 @@ void fn_710102e00c(CClass* cls) {
     UnkReflField* field31 = fn_7100096524(cls, CStrId("fDimRecoverTime", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field31->attrs.Add<f32>(fn_7100075240(), 10.0f);
 }
-bool fn_710103a9c8(const void*, const void*) { return false; }
-s32 fn_710103a9d0() { return -1; }
-const base::reflection::CType& fn_710103a9d8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_710103a9f4();
-void fn_710103aa20(void*, const void*) {}
-void fn_710103aa24(void*, const void*) {}
-void fn_710103aa28(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_710103aa34(void*, const void*) { return nullptr; }
-void* fn_710103aa3c(void*, const void*) { return nullptr; }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_71010322e0> {
+bool refl_Equals(const void*, const void*) { return false; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void*, const void*) {}
+void refl_MoveConstruct(void*, const void*) {}
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void*, const void*) { return nullptr; }
+void* refl_MoveAssign(void*, const void*) { return nullptr; }
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x5d0;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_710103a9c8;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_710103a9d0;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_710103a9d8;
-    static constexpr UnkFn fn_0x28 = &fn_710103a9f4;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_710103aa20;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_710103aa24;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_710103aa28;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_710103aa34;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_710103aa3c;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(710102df18, 71010322e0, "sound::CAudioPreset", 7100016894, 710102df14, 710102e00c);
+}  // namespace sound::CAudioPreset
+DREAD_REFLECTED_CLASS(sound::CAudioPreset, base::core::CAsset);
+
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).
@@ -537,7 +542,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7101038914> {
     static constexpr UnkFn fn_0xf0 = &fn_7101038a84;
     static constexpr UnkFn fn_0xf8 = &fn_7101038aec;
     static constexpr UnkFn fn_0x100 = &fn_7101038af8;
-    static const CType* pointee() { return fn_710102df18(); }
+    static const CType* pointee() { return sound::CAudioPreset::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71010353bc> {
@@ -564,7 +569,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7101038b84> {
     static constexpr UnkFn fn_0xf0 = &fn_7101038cf4;
     static constexpr UnkFn fn_0xf8 = &fn_7101038d5c;
     static constexpr UnkFn fn_0x100 = &fn_7101038d68;
-    static const CType* pointee() { return fn_710102df18(); }
+    static const CType* pointee() { return sound::CAudioPreset::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7101035498> {

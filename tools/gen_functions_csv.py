@@ -232,6 +232,22 @@ def main() -> int:
             if t.init_helper is not None and helper_users[t.init_helper] == 1:
                 put(t.init_helper, f"base::reflection::refl_InitType<{t.name}>", "reflection")
 
+    # 3b. Reflection: each class's attribute and member-field functions and the per-type functions its
+    # descriptor points to, under their roles (T::refl_Equals, T::refl_AddFields, ...; the names
+    # tools/gen_reflection.py writes them under, base/reflection/ReflectedClass.h).
+    import asmdiff
+    import gen_reflection
+    orig = asmdiff.Original(args.version)
+    class_getters = {t.getter for t in types.values() if t.kind == "class"}
+    unique_inits = {t.init_helper for t in types.values()
+                    if t.kind == "class" and t.init_helper is not None and helper_users[t.init_helper] == 1}
+    for t in sorted(types.values(), key=lambda t: t.getter):
+        if t.kind == "class" and t.init_helper in unique_inits:
+            g = gen_reflection.Getter(t.name, t.getter)
+            gen_reflection.analyse(orig, g, class_getters, "", unique_inits)
+            for a, n in sorted(gen_reflection.reflection_names(g).items()):
+                put(a, n, "reflection")
+
     # 4. Strings: Lua C-function binding tables.
     lua = json.loads((recon / "main_lua_tables.json").read_text())
     seen_lua: dict[str, int] = {}

@@ -2,11 +2,11 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CPointerType.h"
 // Reflection descriptors for one original translation unit (3 types):
-// for each type, its getter (T::refl_GetClass) and, through the traits below, its
-// descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape and the attribute/member-field functions that
-// tools/refl_attrs.py reconstructs byte-identically.
-#include "base/reflection/CClass.h"
+// each class's functions are in a namespace of its name (base/reflection/ReflectedClass.h): its
+// getter (T::refl_GetClass) and descriptor constructor (T::refl_InitClass), the functions the
+// descriptor points to (those of a known uniform shape defined, the others declared) and the
+// attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
+#include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -14,12 +14,17 @@ using base::reflection::UnkReflField;
 using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
+using base::reflection::ClassDescription;
+using base::reflection::ClassOf;
+using base::reflection::ClassOfDestructorFirst;
+using base::reflection::Destroy;
+using base::reflection::DestroyDestructorFirst;
 
 // CAcidBlobsLaunchPattern
-DREAD_REFL_TAG(71005d3a14);
-void fn_71005d3700(base::reflection::CClass*) {}
 const base::reflection::UnkReflAttrKey& fn_7100075240();
-void fn_71005d37f4(CClass* cls) {
+namespace CAcidBlobsLaunchPattern {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("iDistance", true), fn_7100014768(), 0x8, -1, -1);
     field0->attrs.Add<s32>(fn_7100075240(), 0);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("fTime", true), fn_710000abbc(), 0x10, -1, -1);
@@ -27,39 +32,38 @@ void fn_71005d37f4(CClass* cls) {
     UnkReflField* field2 = fn_7100096524(cls, CStrId("bBreakable", true), fn_710000d228(), 0xc, -1, -1);
     field2->attrs.Add<bool>(fn_7100075240(), true);
 }
-bool fn_71005d9000(const void* a, const void* b) { return a == b; }
-s32 fn_71005d900c() { return -1; }
-const base::reflection::CType& fn_71005d9014(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_71005d9030();
-void fn_71005d9058(void* dst, const void* src);
-void fn_71005d907c(void* dst, const void* src);
-void fn_71005d90a0(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_71005d90ac(void* dst, const void* src);
-void* fn_71005d90c8(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_71005d3a14> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x18;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_71005d9000;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_71005d900c;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_71005d9014;
-    static constexpr UnkFn fn_0x28 = &fn_71005d9030;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_71005d9058;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_71005d907c;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_71005d90a0;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_71005d90ac;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_71005d90c8;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_ROOT_CLASS_GETTER(71005d3704, 71005d3a14, "CAcidBlobsLaunchPattern", 71005d3700, 71005d37f4);
+}  // namespace CAcidBlobsLaunchPattern
+DREAD_REFLECTED_ROOT_CLASS(CAcidBlobsLaunchPattern);
 
 // CCharClassKraidAcidBlobsAttack::CTunableCharClassKraidAcidBlobsAttack
-DREAD_REFL_TAG(71005d5e48);
-void fn_71005d5c1c(base::reflection::CClass*) {}
 extern bool g_unk_71726ed920;
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726ed8f8;
 void fn_71005d5fcc(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
-void fn_71005d5d14(CClass* cls) {
+namespace CCharClassKraidAcidBlobsAttack::CTunableCharClassKraidAcidBlobsAttack {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     if (g_unk_71726ed920)
         return;
     g_unk_71726ed920 = true;
@@ -75,36 +79,35 @@ void fn_71005d5d14(CClass* cls) {
     }
     fn_71005d5fcc(registry, &g_unk_71726ed8f8, "Kraid");
 }
-bool fn_71005db4c0(const void*, const void*) { return false; }
-s32 fn_71005db4c8() { return -1; }
-const base::reflection::CType& fn_71005db4d0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_71005db4ec();
-void fn_71005db52c(void*, const void*) {}
-void fn_71005db530(void*, const void*) {}
-void fn_71005db534(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_71005db540(void*, const void*) { return nullptr; }
-void* fn_71005db548(void*, const void*) { return nullptr; }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_71005d5e48> {
+bool refl_Equals(const void*, const void*) { return false; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void*, const void*) {}
+void refl_MoveConstruct(void*, const void*) {}
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void*, const void*) { return nullptr; }
+void* refl_MoveAssign(void*, const void*) { return nullptr; }
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x28;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_71005db4c0;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_71005db4c8;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_71005db4d0;
-    static constexpr UnkFn fn_0x28 = &fn_71005db4ec;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_71005db52c;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_71005db530;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_71005db534;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_71005db540;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_71005db548;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(71005d5c20, 71005d5e48, "CCharClassKraidAcidBlobsAttack::CTunableCharClassKraidAcidBlobsAttack", 7100135a94, 71005d5c1c, 71005d5d14);
+}  // namespace CCharClassKraidAcidBlobsAttack::CTunableCharClassKraidAcidBlobsAttack
+DREAD_REFLECTED_CLASS(CCharClassKraidAcidBlobsAttack::CTunableCharClassKraidAcidBlobsAttack, base::tunable::CTunable);
 
 // CCharClassKraidAcidBlobsAttack
-DREAD_REFL_TAG(71005d6858);
-void fn_71005d6284(base::reflection::CClass*) {}
 extern base::reflection::CType g_unk_71726ed758;
-void fn_71005d637c(CClass* cls) {
+namespace CCharClassKraidAcidBlobsAttack {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sEndAttackAnim", true), fn_7100009658(), 0xf0, -1, -1);
     field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("fDuration", true), fn_710000abbc(), 0xf8, -1, -1);
@@ -119,26 +122,24 @@ void fn_71005d637c(CClass* cls) {
     field5->attrs.Add<f32>(fn_7100075240(), 25.0f);
     UnkReflField* field6 = fn_7100096524(cls, CStrId("tLaunchPatterns", true), &g_unk_71726ed758, 0x110, -1, -1);
 }
-bool fn_71005db550(const void* a, const void* b) { return a == b; }
-s32 fn_71005db55c() { return -1; }
-const base::reflection::CType& fn_71005db564(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_71005db580();
-void fn_71005db584(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_71005d6858> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_Destroy(void* obj) { Destroy(obj); }
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x138;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_71005db550;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_71005db55c;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_71005db564;
-    static constexpr UnkFn fn_0x28 = &fn_71005db580;
-    static constexpr UnkFn_0x30 fn_0x30 = nullptr;
-    static constexpr UnkFn_0x30 fn_0x38 = nullptr;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_71005db584;
-    static constexpr UnkFn_0x48 fn_0x48 = nullptr;
-    static constexpr UnkFn_0x48 fn_0x50 = nullptr;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto destroy = &refl_Destroy;
 };
-DREAD_REFL_CLASS_GETTER(71005d6288, 71005d6858, "CCharClassKraidAcidBlobsAttack", 71005dbb7c, 71005d6284, 71005d637c);
+}  // namespace CCharClassKraidAcidBlobsAttack
+DREAD_REFLECTED_CLASS(CCharClassKraidAcidBlobsAttack, CCharClassKraidAttack);
+
+
+
 
 void fn_71005d706c();
 void fn_71005d70d4();
@@ -180,7 +181,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005d6efc> {
     static constexpr UnkFn fn_0xf0 = &fn_71005d706c;
     static constexpr UnkFn fn_0xf8 = &fn_71005d70d4;
     static constexpr UnkFn fn_0x100 = &fn_71005d70e0;
-    static const CType* pointee() { return fn_71005d3704(); }
+    static const CType* pointee() { return CAcidBlobsLaunchPattern::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71005d3ba0> {
@@ -207,7 +208,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005d716c> {
     static constexpr UnkFn fn_0xf0 = &fn_71005d72cc;
     static constexpr UnkFn fn_0xf8 = &fn_71005d7334;
     static constexpr UnkFn fn_0x100 = &fn_71005d7358;
-    static const CType* pointee() { return fn_71005d3704(); }
+    static const CType* pointee() { return CAcidBlobsLaunchPattern::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71005d3c7c> {

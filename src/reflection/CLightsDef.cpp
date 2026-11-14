@@ -2,11 +2,11 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CPointerType.h"
 // Reflection descriptors for one original translation unit (1 type):
-// for each type, its getter (T::refl_GetClass) and, through the traits below, its
-// descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape and the attribute/member-field functions that
-// tools/refl_attrs.py reconstructs byte-identically.
-#include "base/reflection/CClass.h"
+// each class's functions are in a namespace of its name (base/reflection/ReflectedClass.h): its
+// getter (T::refl_GetClass) and descriptor constructor (T::refl_InitClass), the functions the
+// descriptor points to (those of a known uniform shape defined, the others declared) and the
+// attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
+#include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -14,10 +14,13 @@ using base::reflection::UnkReflField;
 using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
+using base::reflection::ClassDescription;
+using base::reflection::ClassOf;
+using base::reflection::ClassOfDestructorFirst;
+using base::reflection::Destroy;
+using base::reflection::DestroyDestructorFirst;
 
 // CLightsDef
-DREAD_REFL_TAG(7100d9d4fc);
-void fn_7100d9cf1c(base::reflection::CClass*) {}
 extern base::reflection::CType g_unk_71727bac20;
 const base::reflection::UnkReflAttrKey& fn_710008fd60();
 const base::reflection::UnkReflAttrKey& fn_710008fb40();
@@ -26,7 +29,9 @@ const base::reflection::UnkReflAttrKey& fn_7100007e80();
 const base::reflection::UnkReflAttrKey& fn_710008f920();
 const base::reflection::UnkReflAttrKey& fn_71000903c0();
 void fn_7100d9d800(UnkReflFunction* fn, const char* name);
-void fn_7100d9d014(CClass* cls) {
+namespace CLightsDef {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sPath", true), fn_710000ad9c(), 0x58, -1, -1);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("vLights", true), &g_unk_71727bac20, 0x60, -1, -1);
     field1->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateElement", true));
@@ -45,30 +50,30 @@ void fn_7100d9d014(CClass* cls) {
         fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
     }
 }
-bool fn_7100da097c(const void*, const void*) { return false; }
-s32 fn_7100da0984() { return -1; }
-const base::reflection::CType& fn_7100da098c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100da09a8();
-void fn_7100da09d4(void*, const void*) {}
-void fn_7100da09d8(void*, const void*) {}
-void fn_7100da09dc(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_7100da09e8(void*, const void*) { return nullptr; }
-void* fn_7100da09f0(void*, const void*) { return nullptr; }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100d9d4fc> {
+bool refl_Equals(const void*, const void*) { return false; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void*, const void*) {}
+void refl_MoveConstruct(void*, const void*) {}
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void*, const void*) { return nullptr; }
+void* refl_MoveAssign(void*, const void*) { return nullptr; }
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x90;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100da097c;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100da0984;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100da098c;
-    static constexpr UnkFn fn_0x28 = &fn_7100da09a8;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_7100da09d4;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_7100da09d8;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100da09dc;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_7100da09e8;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100da09f0;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(7100d9cf20, 7100d9d4fc, "CLightsDef", 7100016894, 7100d9cf1c, 7100d9d014);
+}  // namespace CLightsDef
+DREAD_REFLECTED_CLASS(CLightsDef, base::core::CAsset);
+
 
 void fn_7100d9f130();
 void fn_7100d9f198();
@@ -112,7 +117,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100d9efc0> {
     static constexpr UnkFn fn_0xf0 = &fn_7100d9f130;
     static constexpr UnkFn fn_0xf8 = &fn_7100d9f198;
     static constexpr UnkFn fn_0x100 = &fn_7100d9f1a4;
-    static const CType* pointee() { return fn_7100d9cf20(); }
+    static const CType* pointee() { return CLightsDef::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100d9d978> {
@@ -139,7 +144,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100d9f230> {
     static constexpr UnkFn fn_0xf0 = &fn_7100d9f3a0;
     static constexpr UnkFn fn_0xf8 = &fn_7100d9f408;
     static constexpr UnkFn fn_0x100 = &fn_7100d9f414;
-    static const CType* pointee() { return fn_7100d9cf20(); }
+    static const CType* pointee() { return CLightsDef::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100d9da54> {

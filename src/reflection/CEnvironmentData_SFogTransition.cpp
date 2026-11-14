@@ -2,11 +2,11 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CPointerType.h"
 // Reflection descriptors for one original translation unit (12 types):
-// for each type, its getter (T::refl_GetClass) and, through the traits below, its
-// descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape and the attribute/member-field functions that
-// tools/refl_attrs.py reconstructs byte-identically.
-#include "base/reflection/CClass.h"
+// each class's functions are in a namespace of its name (base/reflection/ReflectedClass.h): its
+// getter (T::refl_GetClass) and descriptor constructor (T::refl_InitClass), the functions the
+// descriptor points to (those of a known uniform shape defined, the others declared) and the
+// attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
+#include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -14,10 +14,13 @@ using base::reflection::UnkReflField;
 using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
+using base::reflection::ClassDescription;
+using base::reflection::ClassOf;
+using base::reflection::ClassOfDestructorFirst;
+using base::reflection::Destroy;
+using base::reflection::DestroyDestructorFirst;
 
 // CEnvironmentData::SFogTransition
-DREAD_REFL_TAG(7100f1b570);
-void fn_7100f1ad90(base::reflection::CClass*) {}
 void fn_7100f5c7ac();
 void fn_7100f1b6f4(UnkReflFunction* fn, const char* name);
 void fn_7100f5c88c();
@@ -26,7 +29,9 @@ void fn_7100f5c96c();
 void fn_7100f1b9ec(UnkReflFunction* fn, const char* name);
 const base::reflection::UnkReflAttrKey& fn_7100075240();
 const base::reflection::UnkReflAttrKey& fn_7100091080();
-void fn_7100f1ae88(CClass* cls) {
+namespace CEnvironmentData::SFogTransition {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorInterp_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fColorInterp_GetterFunction", true);
@@ -62,37 +67,36 @@ void fn_7100f1ae88(CClass* cls) {
     field4->attrs.Add<f32>(fn_7100075240(), 1.0f);
     field4->attrs.Add<f32>(fn_7100091080(), 0.0f);
 }
-bool fn_7100f5c420(const void* a, const void* b) { return a == b; }
-s32 fn_7100f5c42c() { return -1; }
-const base::reflection::CType& fn_7100f5c434(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100f5c450();
-void fn_7100f5c51c(void* dst, const void* src);
-void fn_7100f5c574(void* dst, const void* src);
-void fn_7100f5c5cc(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_7100f5c5d8(void* dst, const void* src);
-void* fn_7100f5c674(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100f1b570> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x20;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100f5c420;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100f5c42c;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100f5c434;
-    static constexpr UnkFn fn_0x28 = &fn_7100f5c450;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_7100f5c51c;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_7100f5c574;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100f5c5cc;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_7100f5c5d8;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100f5c674;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(7100f1ad94, 7100f1b570, "CEnvironmentData::SFogTransition", 7100f977ec, 7100f1ad90, 7100f1ae88);
+}  // namespace CEnvironmentData::SFogTransition
+DREAD_REFLECTED_CLASS(CEnvironmentData::SFogTransition, STransition);
 
 // CEnvironmentData::SAmbientTransition
-DREAD_REFL_TAG(7100f1dabc);
-void fn_7100f1d74c(base::reflection::CClass*) {}
 void fn_7100f5ed10();
 void fn_7100f1dc40(UnkReflFunction* fn, const char* name);
-void fn_7100f1d844(CClass* cls) {
+namespace CEnvironmentData::SAmbientTransition {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorInterp_GetterFunction", true))) {
@@ -107,37 +111,36 @@ void fn_7100f1d844(CClass* cls) {
     }();
     UnkReflField* field1 = fn_7100096524(cls, CStrId("fColorInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
 }
-bool fn_7100f5e984(const void* a, const void* b) { return a == b; }
-s32 fn_7100f5e990() { return -1; }
-const base::reflection::CType& fn_7100f5e998(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100f5e9b4();
-void fn_7100f5ea80(void* dst, const void* src);
-void fn_7100f5ead8(void* dst, const void* src);
-void fn_7100f5eb30(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_7100f5eb3c(void* dst, const void* src);
-void* fn_7100f5ebd8(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100f1dabc> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x18;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100f5e984;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100f5e990;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100f5e998;
-    static constexpr UnkFn fn_0x28 = &fn_7100f5e9b4;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_7100f5ea80;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_7100f5ead8;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100f5eb30;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_7100f5eb3c;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100f5ebd8;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(7100f1d750, 7100f1dabc, "CEnvironmentData::SAmbientTransition", 7100f977ec, 7100f1d74c, 7100f1d844);
+}  // namespace CEnvironmentData::SAmbientTransition
+DREAD_REFLECTED_CLASS(CEnvironmentData::SAmbientTransition, STransition);
 
 // CEnvironmentData::SDepthTintTransition
-DREAD_REFL_TAG(7100f21414);
-void fn_7100f210a4(base::reflection::CClass*) {}
 void fn_7100f613ec();
 void fn_7100f21598(UnkReflFunction* fn, const char* name);
-void fn_7100f2119c(CClass* cls) {
+namespace CEnvironmentData::SDepthTintTransition {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fTintInterp_GetterFunction", true))) {
@@ -152,39 +155,38 @@ void fn_7100f2119c(CClass* cls) {
     }();
     UnkReflField* field1 = fn_7100096524(cls, CStrId("fTintInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
 }
-bool fn_7100f61060(const void* a, const void* b) { return a == b; }
-s32 fn_7100f6106c() { return -1; }
-const base::reflection::CType& fn_7100f61074(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100f61090();
-void fn_7100f6115c(void* dst, const void* src);
-void fn_7100f611b4(void* dst, const void* src);
-void fn_7100f6120c(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_7100f61218(void* dst, const void* src);
-void* fn_7100f612b4(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100f21414> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x18;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100f61060;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100f6106c;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100f61074;
-    static constexpr UnkFn fn_0x28 = &fn_7100f61090;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_7100f6115c;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_7100f611b4;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100f6120c;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_7100f61218;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100f612b4;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(7100f210a8, 7100f21414, "CEnvironmentData::SDepthTintTransition", 7100f977ec, 7100f210a4, 7100f2119c);
+}  // namespace CEnvironmentData::SDepthTintTransition
+DREAD_REFLECTED_CLASS(CEnvironmentData::SDepthTintTransition, STransition);
 
 // CEnvironmentData::SMaterialTintTransition
-DREAD_REFL_TAG(7100f23f6c);
-void fn_7100f23a28(base::reflection::CClass*) {}
 void fn_7100f636dc();
 void fn_7100f240f0(UnkReflFunction* fn, const char* name);
 void fn_7100f637bc();
 void fn_7100f2426c(UnkReflFunction* fn, const char* name);
-void fn_7100f23b20(CClass* cls) {
+namespace CEnvironmentData::SMaterialTintTransition {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorInterp_GetterFunction", true))) {
@@ -211,39 +213,38 @@ void fn_7100f23b20(CClass* cls) {
     }();
     UnkReflField* field2 = fn_7100096524(cls, CStrId("fBlendInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
 }
-bool fn_7100f63350(const void* a, const void* b) { return a == b; }
-s32 fn_7100f6335c() { return -1; }
-const base::reflection::CType& fn_7100f63364(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100f63380();
-void fn_7100f6344c(void* dst, const void* src);
-void fn_7100f634a4(void* dst, const void* src);
-void fn_7100f634fc(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_7100f63508(void* dst, const void* src);
-void* fn_7100f635a4(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100f23f6c> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x18;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100f63350;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100f6335c;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100f63364;
-    static constexpr UnkFn fn_0x28 = &fn_7100f63380;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_7100f6344c;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_7100f634a4;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100f634fc;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_7100f63508;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100f635a4;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(7100f23a2c, 7100f23f6c, "CEnvironmentData::SMaterialTintTransition", 7100f977ec, 7100f23a28, 7100f23b20);
+}  // namespace CEnvironmentData::SMaterialTintTransition
+DREAD_REFLECTED_CLASS(CEnvironmentData::SMaterialTintTransition, STransition);
 
 // CEnvironmentData::SPlayerLightTransition
-DREAD_REFL_TAG(7100f27348);
-void fn_7100f26e04(base::reflection::CClass*) {}
 void fn_7100f65e18();
 void fn_7100f274cc(UnkReflFunction* fn, const char* name);
 void fn_7100f65ef8();
 void fn_7100f27648(UnkReflFunction* fn, const char* name);
-void fn_7100f26efc(CClass* cls) {
+namespace CEnvironmentData::SPlayerLightTransition {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorInterp_GetterFunction", true))) {
@@ -270,39 +271,38 @@ void fn_7100f26efc(CClass* cls) {
     }();
     UnkReflField* field2 = fn_7100096524(cls, CStrId("fAttenuationInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
 }
-bool fn_7100f65a8c(const void* a, const void* b) { return a == b; }
-s32 fn_7100f65a98() { return -1; }
-const base::reflection::CType& fn_7100f65aa0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100f65abc();
-void fn_7100f65b88(void* dst, const void* src);
-void fn_7100f65be0(void* dst, const void* src);
-void fn_7100f65c38(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_7100f65c44(void* dst, const void* src);
-void* fn_7100f65ce0(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100f27348> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x18;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100f65a8c;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100f65a98;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100f65aa0;
-    static constexpr UnkFn fn_0x28 = &fn_7100f65abc;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_7100f65b88;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_7100f65be0;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100f65c38;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_7100f65c44;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100f65ce0;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(7100f26e08, 7100f27348, "CEnvironmentData::SPlayerLightTransition", 7100f977ec, 7100f26e04, 7100f26efc);
+}  // namespace CEnvironmentData::SPlayerLightTransition
+DREAD_REFLECTED_CLASS(CEnvironmentData::SPlayerLightTransition, STransition);
 
 // CEnvironmentData::SHemisphericalLightTransition
-DREAD_REFL_TAG(7100f2a020);
-void fn_7100f29adc(base::reflection::CClass*) {}
 void fn_7100f68298();
 void fn_7100f2a1a4(UnkReflFunction* fn, const char* name);
 void fn_7100f68378();
 void fn_7100f2a320(UnkReflFunction* fn, const char* name);
-void fn_7100f29bd4(CClass* cls) {
+namespace CEnvironmentData::SHemisphericalLightTransition {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorUpInterp_GetterFunction", true))) {
@@ -329,37 +329,36 @@ void fn_7100f29bd4(CClass* cls) {
     }();
     UnkReflField* field2 = fn_7100096524(cls, CStrId("fColorDownInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
 }
-bool fn_7100f67f0c(const void* a, const void* b) { return a == b; }
-s32 fn_7100f67f18() { return -1; }
-const base::reflection::CType& fn_7100f67f20(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100f67f3c();
-void fn_7100f68008(void* dst, const void* src);
-void fn_7100f68060(void* dst, const void* src);
-void fn_7100f680b8(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_7100f680c4(void* dst, const void* src);
-void* fn_7100f68160(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100f2a020> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x18;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100f67f0c;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100f67f18;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100f67f20;
-    static constexpr UnkFn fn_0x28 = &fn_7100f67f3c;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_7100f68008;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_7100f68060;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100f680b8;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_7100f680c4;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100f68160;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(7100f29ae0, 7100f2a020, "CEnvironmentData::SHemisphericalLightTransition", 7100f977ec, 7100f29adc, 7100f29bd4);
+}  // namespace CEnvironmentData::SHemisphericalLightTransition
+DREAD_REFLECTED_CLASS(CEnvironmentData::SHemisphericalLightTransition, STransition);
 
 // CEnvironmentData::SBloomTransition
-DREAD_REFL_TAG(7100f2c408);
-void fn_7100f2c098(base::reflection::CClass*) {}
 void fn_7100f6a4b4();
 void fn_7100f2c58c(UnkReflFunction* fn, const char* name);
-void fn_7100f2c190(CClass* cls) {
+namespace CEnvironmentData::SBloomTransition {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBloomInterp_GetterFunction", true))) {
@@ -374,34 +373,31 @@ void fn_7100f2c190(CClass* cls) {
     }();
     UnkReflField* field1 = fn_7100096524(cls, CStrId("fBloomInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
 }
-bool fn_7100f6a128(const void* a, const void* b) { return a == b; }
-s32 fn_7100f6a134() { return -1; }
-const base::reflection::CType& fn_7100f6a13c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100f6a158();
-void fn_7100f6a224(void* dst, const void* src);
-void fn_7100f6a27c(void* dst, const void* src);
-void fn_7100f6a2d4(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_7100f6a2e0(void* dst, const void* src);
-void* fn_7100f6a37c(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100f2c408> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x18;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100f6a128;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100f6a134;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100f6a13c;
-    static constexpr UnkFn fn_0x28 = &fn_7100f6a158;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_7100f6a224;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_7100f6a27c;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100f6a2d4;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_7100f6a2e0;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100f6a37c;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(7100f2c09c, 7100f2c408, "CEnvironmentData::SBloomTransition", 7100f977ec, 7100f2c098, 7100f2c190);
+}  // namespace CEnvironmentData::SBloomTransition
+DREAD_REFLECTED_CLASS(CEnvironmentData::SBloomTransition, STransition);
 
 // CEnvironmentData::SVerticalFogTransition
-DREAD_REFL_TAG(7100f31a4c);
-void fn_7100f30ec4(base::reflection::CClass*) {}
 void fn_7100f6d1dc();
 void fn_7100f31bd0(UnkReflFunction* fn, const char* name);
 void fn_7100f6d2bc();
@@ -412,7 +408,9 @@ void fn_7100f6d47c();
 void fn_7100f32044(UnkReflFunction* fn, const char* name);
 void fn_7100f6d55c();
 void fn_7100f321c0(UnkReflFunction* fn, const char* name);
-void fn_7100f30fbc(CClass* cls) {
+namespace CEnvironmentData::SVerticalFogTransition {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorInterp_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fColorInterp_GetterFunction", true);
@@ -468,37 +466,36 @@ void fn_7100f30fbc(CClass* cls) {
     field6->attrs.Add<f32>(fn_7100075240(), 1.0f);
     field6->attrs.Add<f32>(fn_7100091080(), 0.0f);
 }
-bool fn_7100f6ce2c(const void* a, const void* b) { return a == b; }
-s32 fn_7100f6ce38() { return -1; }
-const base::reflection::CType& fn_7100f6ce40(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100f6ce5c();
-void fn_7100f6cf2c(void* dst, const void* src);
-void fn_7100f6cf8c(void* dst, const void* src);
-void fn_7100f6cfec(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_7100f6cff8(void* dst, const void* src);
-void* fn_7100f6d09c(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100f31a4c> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x28;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100f6ce2c;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100f6ce38;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100f6ce40;
-    static constexpr UnkFn fn_0x28 = &fn_7100f6ce5c;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_7100f6cf2c;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_7100f6cf8c;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100f6cfec;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_7100f6cff8;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100f6d09c;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(7100f30ec8, 7100f31a4c, "CEnvironmentData::SVerticalFogTransition", 7100f977ec, 7100f30ec4, 7100f30fbc);
+}  // namespace CEnvironmentData::SVerticalFogTransition
+DREAD_REFLECTED_CLASS(CEnvironmentData::SVerticalFogTransition, STransition);
 
 // CEnvironmentData::SCubeMapTransition
-DREAD_REFL_TAG(7100f346f0);
-void fn_7100f34380(base::reflection::CClass*) {}
 void fn_7100f6fda0();
 void fn_7100f34874(UnkReflFunction* fn, const char* name);
-void fn_7100f34478(CClass* cls) {
+namespace CEnvironmentData::SCubeMapTransition {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fCubeMapInterp_GetterFunction", true))) {
@@ -513,37 +510,36 @@ void fn_7100f34478(CClass* cls) {
     }();
     UnkReflField* field1 = fn_7100096524(cls, CStrId("fCubeMapInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
 }
-bool fn_7100f6fa14(const void* a, const void* b) { return a == b; }
-s32 fn_7100f6fa20() { return -1; }
-const base::reflection::CType& fn_7100f6fa28(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100f6fa44();
-void fn_7100f6fb10(void* dst, const void* src);
-void fn_7100f6fb68(void* dst, const void* src);
-void fn_7100f6fbc0(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_7100f6fbcc(void* dst, const void* src);
-void* fn_7100f6fc68(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100f346f0> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x18;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100f6fa14;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100f6fa20;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100f6fa28;
-    static constexpr UnkFn fn_0x28 = &fn_7100f6fa44;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_7100f6fb10;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_7100f6fb68;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100f6fbc0;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_7100f6fbcc;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100f6fc68;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(7100f34384, 7100f346f0, "CEnvironmentData::SCubeMapTransition", 7100f977ec, 7100f34380, 7100f34478);
+}  // namespace CEnvironmentData::SCubeMapTransition
+DREAD_REFLECTED_CLASS(CEnvironmentData::SCubeMapTransition, STransition);
 
 // CEnvironmentData::SSSAOTransition
-DREAD_REFL_TAG(7100f3739c);
-void fn_7100f3702c(base::reflection::CClass*) {}
 void fn_7100f71f0c();
 void fn_7100f37520(UnkReflFunction* fn, const char* name);
-void fn_7100f37124(CClass* cls) {
+namespace CEnvironmentData::SSSAOTransition {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fInterp_GetterFunction", true))) {
@@ -558,37 +554,36 @@ void fn_7100f37124(CClass* cls) {
     }();
     UnkReflField* field1 = fn_7100096524(cls, CStrId("fInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
 }
-bool fn_7100f71b78(const void* a, const void* b) { return a == b; }
-s32 fn_7100f71b84() { return -1; }
-const base::reflection::CType& fn_7100f71b8c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100f71ba8();
-void fn_7100f71c7c(void* dst, const void* src);
-void fn_7100f71cd4(void* dst, const void* src);
-void fn_7100f71d2c(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_7100f71d38(void* dst, const void* src);
-void* fn_7100f71dd4(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100f3739c> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x18;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100f71b78;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100f71b84;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100f71b8c;
-    static constexpr UnkFn fn_0x28 = &fn_7100f71ba8;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_7100f71c7c;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_7100f71cd4;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100f71d2c;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_7100f71d38;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100f71dd4;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(7100f37030, 7100f3739c, "CEnvironmentData::SSSAOTransition", 7100f977ec, 7100f3702c, 7100f37124);
+}  // namespace CEnvironmentData::SSSAOTransition
+DREAD_REFLECTED_CLASS(CEnvironmentData::SSSAOTransition, STransition);
 
 // CEnvironmentData::SToneMappingTransition
-DREAD_REFL_TAG(7100f3b068);
-void fn_7100f3acf8(base::reflection::CClass*) {}
 void fn_7100f746cc();
 void fn_7100f3b1ec(UnkReflFunction* fn, const char* name);
-void fn_7100f3adf0(CClass* cls) {
+namespace CEnvironmentData::SToneMappingTransition {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fInterp_GetterFunction", true))) {
@@ -603,37 +598,36 @@ void fn_7100f3adf0(CClass* cls) {
     }();
     UnkReflField* field1 = fn_7100096524(cls, CStrId("fInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
 }
-bool fn_7100f74338(const void* a, const void* b) { return a == b; }
-s32 fn_7100f74344() { return -1; }
-const base::reflection::CType& fn_7100f7434c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100f74368();
-void fn_7100f7443c(void* dst, const void* src);
-void fn_7100f74494(void* dst, const void* src);
-void fn_7100f744ec(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_7100f744f8(void* dst, const void* src);
-void* fn_7100f74594(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100f3b068> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x18;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100f74338;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100f74344;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100f7434c;
-    static constexpr UnkFn fn_0x28 = &fn_7100f74368;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_7100f7443c;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_7100f74494;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100f744ec;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_7100f744f8;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100f74594;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(7100f3acfc, 7100f3b068, "CEnvironmentData::SToneMappingTransition", 7100f977ec, 7100f3acf8, 7100f3adf0);
+}  // namespace CEnvironmentData::SToneMappingTransition
+DREAD_REFLECTED_CLASS(CEnvironmentData::SToneMappingTransition, STransition);
 
 // CEnvironmentData::SIBLAttenuationTransition
-DREAD_REFL_TAG(7100f3da7c);
-void fn_7100f3d70c(base::reflection::CClass*) {}
 void fn_7100f768ec();
 void fn_7100f3dc00(UnkReflFunction* fn, const char* name);
-void fn_7100f3d804(CClass* cls) {
+namespace CEnvironmentData::SIBLAttenuationTransition {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fInterp_GetterFunction", true))) {
@@ -648,30 +642,41 @@ void fn_7100f3d804(CClass* cls) {
     }();
     UnkReflField* field1 = fn_7100096524(cls, CStrId("fInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
 }
-bool fn_7100f76558(const void* a, const void* b) { return a == b; }
-s32 fn_7100f76564() { return -1; }
-const base::reflection::CType& fn_7100f7656c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100f76588();
-void fn_7100f7665c(void* dst, const void* src);
-void fn_7100f766b4(void* dst, const void* src);
-void fn_7100f7670c(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_7100f76718(void* dst, const void* src);
-void* fn_7100f767b4(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100f3da7c> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x18;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100f76558;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100f76564;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100f7656c;
-    static constexpr UnkFn fn_0x28 = &fn_7100f76588;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_7100f7665c;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_7100f766b4;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100f7670c;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_7100f76718;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100f767b4;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(7100f3d710, 7100f3da7c, "CEnvironmentData::SIBLAttenuationTransition", 7100f977ec, 7100f3d70c, 7100f3d804);
+}  // namespace CEnvironmentData::SIBLAttenuationTransition
+DREAD_REFLECTED_CLASS(CEnvironmentData::SIBLAttenuationTransition, STransition);
+
+
+
+
+
+
+
+
+
+
+
+
 
 const base::reflection::CType* fn_7100005178();
 const base::reflection::CType* fn_7100f1bb68();
@@ -1268,7 +1273,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100f48efc> {
     static constexpr UnkFn fn_0xf0 = &fn_7100f4906c;
     static constexpr UnkFn fn_0xf8 = &fn_7100f490d4;
     static constexpr UnkFn fn_0x100 = &fn_7100f490e0;
-    static const CType* pointee() { return fn_7100f1ad94(); }
+    static const CType* pointee() { return CEnvironmentData::SFogTransition::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100f1bb68> {
@@ -1295,7 +1300,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100f4916c> {
     static constexpr UnkFn fn_0xf0 = &fn_7100f492dc;
     static constexpr UnkFn fn_0xf8 = &fn_7100f49344;
     static constexpr UnkFn fn_0x100 = &fn_7100f49350;
-    static const CType* pointee() { return fn_7100f1ad94(); }
+    static const CType* pointee() { return CEnvironmentData::SFogTransition::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100f1bc44> {
@@ -1319,7 +1324,7 @@ struct base::reflection::UnkReflCollectionTraits<UnkRefl_fn_7100f1c900> {
     static constexpr UnkFn fn_0x60 = &fn_7100f5d788;
     static constexpr UnkFn fn_0x68 = &fn_7100f5d790;
     static const CType* key() { return fn_7100005178(); }
-    static const CType* element() { return fn_7100f1ad94(); }
+    static const CType* element() { return CEnvironmentData::SFogTransition::refl_GetClass(); }
     static const CType* iterator() { return fn_7100f1bb68(); }
     static const CType* const_iterator() { return fn_7100f1c234(); }
     static constexpr UnkFn fn_0x108 = &fn_7100f5d1e8;
@@ -1355,7 +1360,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100f4a6e0> {
     static constexpr UnkFn fn_0xf0 = &fn_7100f4a850;
     static constexpr UnkFn fn_0xf8 = &fn_7100f4a8b8;
     static constexpr UnkFn fn_0x100 = &fn_7100f4a8c4;
-    static const CType* pointee() { return fn_7100f1d750(); }
+    static const CType* pointee() { return CEnvironmentData::SAmbientTransition::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100f1ddbc> {
@@ -1382,7 +1387,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100f4a950> {
     static constexpr UnkFn fn_0xf0 = &fn_7100f4aac0;
     static constexpr UnkFn fn_0xf8 = &fn_7100f4ab28;
     static constexpr UnkFn fn_0x100 = &fn_7100f4ab34;
-    static const CType* pointee() { return fn_7100f1d750(); }
+    static const CType* pointee() { return CEnvironmentData::SAmbientTransition::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100f1de98> {
@@ -1406,7 +1411,7 @@ struct base::reflection::UnkReflCollectionTraits<UnkRefl_fn_7100f1eb54> {
     static constexpr UnkFn fn_0x60 = &fn_7100f5f838;
     static constexpr UnkFn fn_0x68 = &fn_7100f5f840;
     static const CType* key() { return fn_7100005178(); }
-    static const CType* element() { return fn_7100f1d750(); }
+    static const CType* element() { return CEnvironmentData::SAmbientTransition::refl_GetClass(); }
     static const CType* iterator() { return fn_7100f1ddbc(); }
     static const CType* const_iterator() { return fn_7100f1e488(); }
     static constexpr UnkFn fn_0x108 = &fn_7100f5f524;
@@ -1442,7 +1447,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100f4be40> {
     static constexpr UnkFn fn_0xf0 = &fn_7100f4bfb0;
     static constexpr UnkFn fn_0xf8 = &fn_7100f4c018;
     static constexpr UnkFn fn_0x100 = &fn_7100f4c024;
-    static const CType* pointee() { return fn_7100f210a8(); }
+    static const CType* pointee() { return CEnvironmentData::SDepthTintTransition::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100f21714> {
@@ -1469,7 +1474,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100f4c0b0> {
     static constexpr UnkFn fn_0xf0 = &fn_7100f4c220;
     static constexpr UnkFn fn_0xf8 = &fn_7100f4c288;
     static constexpr UnkFn fn_0x100 = &fn_7100f4c294;
-    static const CType* pointee() { return fn_7100f210a8(); }
+    static const CType* pointee() { return CEnvironmentData::SDepthTintTransition::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100f217f0> {
@@ -1493,7 +1498,7 @@ struct base::reflection::UnkReflCollectionTraits<UnkRefl_fn_7100f224ac> {
     static constexpr UnkFn fn_0x60 = &fn_7100f61f14;
     static constexpr UnkFn fn_0x68 = &fn_7100f61f1c;
     static const CType* key() { return fn_7100005178(); }
-    static const CType* element() { return fn_7100f210a8(); }
+    static const CType* element() { return CEnvironmentData::SDepthTintTransition::refl_GetClass(); }
     static const CType* iterator() { return fn_7100f21714(); }
     static const CType* const_iterator() { return fn_7100f21de0(); }
     static constexpr UnkFn fn_0x108 = &fn_7100f61c00;
@@ -1529,7 +1534,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100f4d5a0> {
     static constexpr UnkFn fn_0xf0 = &fn_7100f4d710;
     static constexpr UnkFn fn_0xf8 = &fn_7100f4d778;
     static constexpr UnkFn fn_0x100 = &fn_7100f4d784;
-    static const CType* pointee() { return fn_7100f23a2c(); }
+    static const CType* pointee() { return CEnvironmentData::SMaterialTintTransition::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100f243e8> {
@@ -1556,7 +1561,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100f4d810> {
     static constexpr UnkFn fn_0xf0 = &fn_7100f4d980;
     static constexpr UnkFn fn_0xf8 = &fn_7100f4d9e8;
     static constexpr UnkFn fn_0x100 = &fn_7100f4d9f4;
-    static const CType* pointee() { return fn_7100f23a2c(); }
+    static const CType* pointee() { return CEnvironmentData::SMaterialTintTransition::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100f244c4> {
@@ -1580,7 +1585,7 @@ struct base::reflection::UnkReflCollectionTraits<UnkRefl_fn_7100f25180> {
     static constexpr UnkFn fn_0x60 = &fn_7100f6434c;
     static constexpr UnkFn fn_0x68 = &fn_7100f64354;
     static const CType* key() { return fn_7100005178(); }
-    static const CType* element() { return fn_7100f23a2c(); }
+    static const CType* element() { return CEnvironmentData::SMaterialTintTransition::refl_GetClass(); }
     static const CType* iterator() { return fn_7100f243e8(); }
     static const CType* const_iterator() { return fn_7100f24ab4(); }
     static constexpr UnkFn fn_0x108 = &fn_7100f64038;
@@ -1616,7 +1621,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100f4ed00> {
     static constexpr UnkFn fn_0xf0 = &fn_7100f4ee70;
     static constexpr UnkFn fn_0xf8 = &fn_7100f4eed8;
     static constexpr UnkFn fn_0x100 = &fn_7100f4eee4;
-    static const CType* pointee() { return fn_7100f26e08(); }
+    static const CType* pointee() { return CEnvironmentData::SPlayerLightTransition::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100f277c4> {
@@ -1643,7 +1648,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100f4ef70> {
     static constexpr UnkFn fn_0xf0 = &fn_7100f4f0e0;
     static constexpr UnkFn fn_0xf8 = &fn_7100f4f148;
     static constexpr UnkFn fn_0x100 = &fn_7100f4f154;
-    static const CType* pointee() { return fn_7100f26e08(); }
+    static const CType* pointee() { return CEnvironmentData::SPlayerLightTransition::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100f278a0> {
@@ -1667,7 +1672,7 @@ struct base::reflection::UnkReflCollectionTraits<UnkRefl_fn_7100f2855c> {
     static constexpr UnkFn fn_0x60 = &fn_7100f66a88;
     static constexpr UnkFn fn_0x68 = &fn_7100f66a90;
     static const CType* key() { return fn_7100005178(); }
-    static const CType* element() { return fn_7100f26e08(); }
+    static const CType* element() { return CEnvironmentData::SPlayerLightTransition::refl_GetClass(); }
     static const CType* iterator() { return fn_7100f277c4(); }
     static const CType* const_iterator() { return fn_7100f27e90(); }
     static constexpr UnkFn fn_0x108 = &fn_7100f66774;
@@ -1703,7 +1708,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100f50460> {
     static constexpr UnkFn fn_0xf0 = &fn_7100f505d0;
     static constexpr UnkFn fn_0xf8 = &fn_7100f50638;
     static constexpr UnkFn fn_0x100 = &fn_7100f50644;
-    static const CType* pointee() { return fn_7100f29ae0(); }
+    static const CType* pointee() { return CEnvironmentData::SHemisphericalLightTransition::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100f2a49c> {
@@ -1730,7 +1735,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100f506d0> {
     static constexpr UnkFn fn_0xf0 = &fn_7100f50840;
     static constexpr UnkFn fn_0xf8 = &fn_7100f508a8;
     static constexpr UnkFn fn_0x100 = &fn_7100f508b4;
-    static const CType* pointee() { return fn_7100f29ae0(); }
+    static const CType* pointee() { return CEnvironmentData::SHemisphericalLightTransition::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100f2a578> {
@@ -1754,7 +1759,7 @@ struct base::reflection::UnkReflCollectionTraits<UnkRefl_fn_7100f2b234> {
     static constexpr UnkFn fn_0x60 = &fn_7100f68f08;
     static constexpr UnkFn fn_0x68 = &fn_7100f68f10;
     static const CType* key() { return fn_7100005178(); }
-    static const CType* element() { return fn_7100f29ae0(); }
+    static const CType* element() { return CEnvironmentData::SHemisphericalLightTransition::refl_GetClass(); }
     static const CType* iterator() { return fn_7100f2a49c(); }
     static const CType* const_iterator() { return fn_7100f2ab68(); }
     static constexpr UnkFn fn_0x108 = &fn_7100f68bf4;
@@ -1790,7 +1795,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100f51c38> {
     static constexpr UnkFn fn_0xf0 = &fn_7100f51da8;
     static constexpr UnkFn fn_0xf8 = &fn_7100f51e10;
     static constexpr UnkFn fn_0x100 = &fn_7100f51e1c;
-    static const CType* pointee() { return fn_7100f2c09c(); }
+    static const CType* pointee() { return CEnvironmentData::SBloomTransition::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100f2c708> {
@@ -1817,7 +1822,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100f51ea8> {
     static constexpr UnkFn fn_0xf0 = &fn_7100f52018;
     static constexpr UnkFn fn_0xf8 = &fn_7100f52080;
     static constexpr UnkFn fn_0x100 = &fn_7100f5208c;
-    static const CType* pointee() { return fn_7100f2c09c(); }
+    static const CType* pointee() { return CEnvironmentData::SBloomTransition::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100f2c7e4> {
@@ -1841,7 +1846,7 @@ struct base::reflection::UnkReflCollectionTraits<UnkRefl_fn_7100f2d4a0> {
     static constexpr UnkFn fn_0x60 = &fn_7100f6afdc;
     static constexpr UnkFn fn_0x68 = &fn_7100f6afe4;
     static const CType* key() { return fn_7100005178(); }
-    static const CType* element() { return fn_7100f2c09c(); }
+    static const CType* element() { return CEnvironmentData::SBloomTransition::refl_GetClass(); }
     static const CType* iterator() { return fn_7100f2c708(); }
     static const CType* const_iterator() { return fn_7100f2cdd4(); }
     static constexpr UnkFn fn_0x108 = &fn_7100f6acc8;
@@ -1877,7 +1882,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100f53388> {
     static constexpr UnkFn fn_0xf0 = &fn_7100f534f8;
     static constexpr UnkFn fn_0xf8 = &fn_7100f53560;
     static constexpr UnkFn fn_0x100 = &fn_7100f5356c;
-    static const CType* pointee() { return fn_7100f30ec8(); }
+    static const CType* pointee() { return CEnvironmentData::SVerticalFogTransition::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100f3233c> {
@@ -1904,7 +1909,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100f535f8> {
     static constexpr UnkFn fn_0xf0 = &fn_7100f53768;
     static constexpr UnkFn fn_0xf8 = &fn_7100f537d0;
     static constexpr UnkFn fn_0x100 = &fn_7100f537dc;
-    static const CType* pointee() { return fn_7100f30ec8(); }
+    static const CType* pointee() { return CEnvironmentData::SVerticalFogTransition::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100f32418> {
@@ -1928,7 +1933,7 @@ struct base::reflection::UnkReflCollectionTraits<UnkRefl_fn_7100f330d4> {
     static constexpr UnkFn fn_0x60 = &fn_7100f6e3fc;
     static constexpr UnkFn fn_0x68 = &fn_7100f6e404;
     static const CType* key() { return fn_7100005178(); }
-    static const CType* element() { return fn_7100f30ec8(); }
+    static const CType* element() { return CEnvironmentData::SVerticalFogTransition::refl_GetClass(); }
     static const CType* iterator() { return fn_7100f3233c(); }
     static const CType* const_iterator() { return fn_7100f32a08(); }
     static constexpr UnkFn fn_0x108 = &fn_7100f6de08;
@@ -1964,7 +1969,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100f54ae8> {
     static constexpr UnkFn fn_0xf0 = &fn_7100f54c58;
     static constexpr UnkFn fn_0xf8 = &fn_7100f54cc0;
     static constexpr UnkFn fn_0x100 = &fn_7100f54ccc;
-    static const CType* pointee() { return fn_7100f34384(); }
+    static const CType* pointee() { return CEnvironmentData::SCubeMapTransition::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100f349f0> {
@@ -1991,7 +1996,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100f54d58> {
     static constexpr UnkFn fn_0xf0 = &fn_7100f54ec8;
     static constexpr UnkFn fn_0xf8 = &fn_7100f54f30;
     static constexpr UnkFn fn_0x100 = &fn_7100f54f3c;
-    static const CType* pointee() { return fn_7100f34384(); }
+    static const CType* pointee() { return CEnvironmentData::SCubeMapTransition::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100f34acc> {
@@ -2015,7 +2020,7 @@ struct base::reflection::UnkReflCollectionTraits<UnkRefl_fn_7100f35788> {
     static constexpr UnkFn fn_0x60 = &fn_7100f708c8;
     static constexpr UnkFn fn_0x68 = &fn_7100f708d0;
     static const CType* key() { return fn_7100005178(); }
-    static const CType* element() { return fn_7100f34384(); }
+    static const CType* element() { return CEnvironmentData::SCubeMapTransition::refl_GetClass(); }
     static const CType* iterator() { return fn_7100f349f0(); }
     static const CType* const_iterator() { return fn_7100f350bc(); }
     static constexpr UnkFn fn_0x108 = &fn_7100f705b4;
@@ -2051,7 +2056,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100f56248> {
     static constexpr UnkFn fn_0xf0 = &fn_7100f563b8;
     static constexpr UnkFn fn_0xf8 = &fn_7100f56420;
     static constexpr UnkFn fn_0x100 = &fn_7100f5642c;
-    static const CType* pointee() { return fn_7100f37030(); }
+    static const CType* pointee() { return CEnvironmentData::SSSAOTransition::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100f3769c> {
@@ -2078,7 +2083,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100f564b8> {
     static constexpr UnkFn fn_0xf0 = &fn_7100f56628;
     static constexpr UnkFn fn_0xf8 = &fn_7100f56690;
     static constexpr UnkFn fn_0x100 = &fn_7100f5669c;
-    static const CType* pointee() { return fn_7100f37030(); }
+    static const CType* pointee() { return CEnvironmentData::SSSAOTransition::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100f37778> {
@@ -2102,7 +2107,7 @@ struct base::reflection::UnkReflCollectionTraits<UnkRefl_fn_7100f38434> {
     static constexpr UnkFn fn_0x60 = &fn_7100f72a34;
     static constexpr UnkFn fn_0x68 = &fn_7100f72a3c;
     static const CType* key() { return fn_7100005178(); }
-    static const CType* element() { return fn_7100f37030(); }
+    static const CType* element() { return CEnvironmentData::SSSAOTransition::refl_GetClass(); }
     static const CType* iterator() { return fn_7100f3769c(); }
     static const CType* const_iterator() { return fn_7100f37d68(); }
     static constexpr UnkFn fn_0x108 = &fn_7100f72720;
@@ -2138,7 +2143,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100f579a8> {
     static constexpr UnkFn fn_0xf0 = &fn_7100f57b18;
     static constexpr UnkFn fn_0xf8 = &fn_7100f57b80;
     static constexpr UnkFn fn_0x100 = &fn_7100f57b8c;
-    static const CType* pointee() { return fn_7100f3acfc(); }
+    static const CType* pointee() { return CEnvironmentData::SToneMappingTransition::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100f3b368> {
@@ -2165,7 +2170,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100f57c18> {
     static constexpr UnkFn fn_0xf0 = &fn_7100f57d88;
     static constexpr UnkFn fn_0xf8 = &fn_7100f57df0;
     static constexpr UnkFn fn_0x100 = &fn_7100f57dfc;
-    static const CType* pointee() { return fn_7100f3acfc(); }
+    static const CType* pointee() { return CEnvironmentData::SToneMappingTransition::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100f3b444> {
@@ -2189,7 +2194,7 @@ struct base::reflection::UnkReflCollectionTraits<UnkRefl_fn_7100f3c100> {
     static constexpr UnkFn fn_0x60 = &fn_7100f751f4;
     static constexpr UnkFn fn_0x68 = &fn_7100f751fc;
     static const CType* key() { return fn_7100005178(); }
-    static const CType* element() { return fn_7100f3acfc(); }
+    static const CType* element() { return CEnvironmentData::SToneMappingTransition::refl_GetClass(); }
     static const CType* iterator() { return fn_7100f3b368(); }
     static const CType* const_iterator() { return fn_7100f3ba34(); }
     static constexpr UnkFn fn_0x108 = &fn_7100f74ee0;
@@ -2225,7 +2230,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100f59108> {
     static constexpr UnkFn fn_0xf0 = &fn_7100f59278;
     static constexpr UnkFn fn_0xf8 = &fn_7100f592e0;
     static constexpr UnkFn fn_0x100 = &fn_7100f592ec;
-    static const CType* pointee() { return fn_7100f3d710(); }
+    static const CType* pointee() { return CEnvironmentData::SIBLAttenuationTransition::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100f3dd7c> {
@@ -2252,7 +2257,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100f59378> {
     static constexpr UnkFn fn_0xf0 = &fn_7100f594e8;
     static constexpr UnkFn fn_0xf8 = &fn_7100f59550;
     static constexpr UnkFn fn_0x100 = &fn_7100f5955c;
-    static const CType* pointee() { return fn_7100f3d710(); }
+    static const CType* pointee() { return CEnvironmentData::SIBLAttenuationTransition::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100f3de58> {
@@ -2276,7 +2281,7 @@ struct base::reflection::UnkReflCollectionTraits<UnkRefl_fn_7100f3eb14> {
     static constexpr UnkFn fn_0x60 = &fn_7100f77414;
     static constexpr UnkFn fn_0x68 = &fn_7100f7741c;
     static const CType* key() { return fn_7100005178(); }
-    static const CType* element() { return fn_7100f3d710(); }
+    static const CType* element() { return CEnvironmentData::SIBLAttenuationTransition::refl_GetClass(); }
     static const CType* iterator() { return fn_7100f3dd7c(); }
     static const CType* const_iterator() { return fn_7100f3e448(); }
     static constexpr UnkFn fn_0x108 = &fn_7100f77100;
@@ -2305,7 +2310,6 @@ void fn_7100f5ced0();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7100f1ad94();
 void fn_7100f5cf20();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100f1bd20(CClass* cls) {
@@ -2320,12 +2324,12 @@ void fn_7100f1bd20(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7100f1ad94();
+        fn->return_type = CEnvironmentData::SFogTransition::refl_GetClass();
         fn->field_0xb2 = 0x1;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f5cf20);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f1ad94(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, CEnvironmentData::SFogTransition::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -2339,7 +2343,6 @@ void fn_7100f5d138();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7100f1ad94();
 void fn_7100f5d188();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100f1c310(CClass* cls) {
@@ -2354,12 +2357,12 @@ void fn_7100f1c310(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7100f1ad94();
+        fn->return_type = CEnvironmentData::SFogTransition::refl_GetClass();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f5d188);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f1ad94(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, CEnvironmentData::SFogTransition::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -2373,7 +2376,6 @@ void fn_7100f5f20c();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7100f1d750();
 void fn_7100f5f25c();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100f1df74(CClass* cls) {
@@ -2388,12 +2390,12 @@ void fn_7100f1df74(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7100f1d750();
+        fn->return_type = CEnvironmentData::SAmbientTransition::refl_GetClass();
         fn->field_0xb2 = 0x1;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f5f25c);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f1d750(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, CEnvironmentData::SAmbientTransition::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -2407,7 +2409,6 @@ void fn_7100f5f474();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7100f1d750();
 void fn_7100f5f4c4();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100f1e564(CClass* cls) {
@@ -2422,12 +2423,12 @@ void fn_7100f1e564(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7100f1d750();
+        fn->return_type = CEnvironmentData::SAmbientTransition::refl_GetClass();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f5f4c4);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f1d750(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, CEnvironmentData::SAmbientTransition::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -2441,7 +2442,6 @@ void fn_7100f618e8();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7100f210a8();
 void fn_7100f61938();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100f218cc(CClass* cls) {
@@ -2456,12 +2456,12 @@ void fn_7100f218cc(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7100f210a8();
+        fn->return_type = CEnvironmentData::SDepthTintTransition::refl_GetClass();
         fn->field_0xb2 = 0x1;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f61938);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f210a8(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, CEnvironmentData::SDepthTintTransition::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -2475,7 +2475,6 @@ void fn_7100f61b50();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7100f210a8();
 void fn_7100f61ba0();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100f21ebc(CClass* cls) {
@@ -2490,12 +2489,12 @@ void fn_7100f21ebc(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7100f210a8();
+        fn->return_type = CEnvironmentData::SDepthTintTransition::refl_GetClass();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f61ba0);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f210a8(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, CEnvironmentData::SDepthTintTransition::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -2509,7 +2508,6 @@ void fn_7100f63d20();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7100f23a2c();
 void fn_7100f63d70();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100f245a0(CClass* cls) {
@@ -2524,12 +2522,12 @@ void fn_7100f245a0(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7100f23a2c();
+        fn->return_type = CEnvironmentData::SMaterialTintTransition::refl_GetClass();
         fn->field_0xb2 = 0x1;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f63d70);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f23a2c(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, CEnvironmentData::SMaterialTintTransition::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -2543,7 +2541,6 @@ void fn_7100f63f88();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7100f23a2c();
 void fn_7100f63fd8();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100f24b90(CClass* cls) {
@@ -2558,12 +2555,12 @@ void fn_7100f24b90(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7100f23a2c();
+        fn->return_type = CEnvironmentData::SMaterialTintTransition::refl_GetClass();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f63fd8);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f23a2c(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, CEnvironmentData::SMaterialTintTransition::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -2577,7 +2574,6 @@ void fn_7100f6645c();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7100f26e08();
 void fn_7100f664ac();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100f2797c(CClass* cls) {
@@ -2592,12 +2588,12 @@ void fn_7100f2797c(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7100f26e08();
+        fn->return_type = CEnvironmentData::SPlayerLightTransition::refl_GetClass();
         fn->field_0xb2 = 0x1;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f664ac);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f26e08(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, CEnvironmentData::SPlayerLightTransition::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -2611,7 +2607,6 @@ void fn_7100f666c4();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7100f26e08();
 void fn_7100f66714();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100f27f6c(CClass* cls) {
@@ -2626,12 +2621,12 @@ void fn_7100f27f6c(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7100f26e08();
+        fn->return_type = CEnvironmentData::SPlayerLightTransition::refl_GetClass();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f66714);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f26e08(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, CEnvironmentData::SPlayerLightTransition::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -2645,7 +2640,6 @@ void fn_7100f688dc();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7100f29ae0();
 void fn_7100f6892c();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100f2a654(CClass* cls) {
@@ -2660,12 +2654,12 @@ void fn_7100f2a654(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7100f29ae0();
+        fn->return_type = CEnvironmentData::SHemisphericalLightTransition::refl_GetClass();
         fn->field_0xb2 = 0x1;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f6892c);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f29ae0(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, CEnvironmentData::SHemisphericalLightTransition::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -2679,7 +2673,6 @@ void fn_7100f68b44();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7100f29ae0();
 void fn_7100f68b94();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100f2ac44(CClass* cls) {
@@ -2694,12 +2687,12 @@ void fn_7100f2ac44(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7100f29ae0();
+        fn->return_type = CEnvironmentData::SHemisphericalLightTransition::refl_GetClass();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f68b94);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f29ae0(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, CEnvironmentData::SHemisphericalLightTransition::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -2713,7 +2706,6 @@ void fn_7100f6a9b0();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7100f2c09c();
 void fn_7100f6aa00();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100f2c8c0(CClass* cls) {
@@ -2728,12 +2720,12 @@ void fn_7100f2c8c0(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7100f2c09c();
+        fn->return_type = CEnvironmentData::SBloomTransition::refl_GetClass();
         fn->field_0xb2 = 0x1;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f6aa00);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f2c09c(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, CEnvironmentData::SBloomTransition::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -2747,7 +2739,6 @@ void fn_7100f6ac18();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7100f2c09c();
 void fn_7100f6ac68();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100f2ceb0(CClass* cls) {
@@ -2762,12 +2753,12 @@ void fn_7100f2ceb0(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7100f2c09c();
+        fn->return_type = CEnvironmentData::SBloomTransition::refl_GetClass();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f6ac68);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f2c09c(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, CEnvironmentData::SBloomTransition::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -2781,7 +2772,6 @@ void fn_7100f6dae0();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7100f30ec8();
 void fn_7100f6db30();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100f324f4(CClass* cls) {
@@ -2796,12 +2786,12 @@ void fn_7100f324f4(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7100f30ec8();
+        fn->return_type = CEnvironmentData::SVerticalFogTransition::refl_GetClass();
         fn->field_0xb2 = 0x1;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f6db30);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f30ec8(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, CEnvironmentData::SVerticalFogTransition::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -2815,7 +2805,6 @@ void fn_7100f6dd58();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7100f30ec8();
 void fn_7100f6dda8();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100f32ae4(CClass* cls) {
@@ -2830,12 +2819,12 @@ void fn_7100f32ae4(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7100f30ec8();
+        fn->return_type = CEnvironmentData::SVerticalFogTransition::refl_GetClass();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f6dda8);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f30ec8(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, CEnvironmentData::SVerticalFogTransition::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -2849,7 +2838,6 @@ void fn_7100f7029c();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7100f34384();
 void fn_7100f702ec();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100f34ba8(CClass* cls) {
@@ -2864,12 +2852,12 @@ void fn_7100f34ba8(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7100f34384();
+        fn->return_type = CEnvironmentData::SCubeMapTransition::refl_GetClass();
         fn->field_0xb2 = 0x1;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f702ec);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f34384(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, CEnvironmentData::SCubeMapTransition::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -2883,7 +2871,6 @@ void fn_7100f70504();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7100f34384();
 void fn_7100f70554();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100f35198(CClass* cls) {
@@ -2898,12 +2885,12 @@ void fn_7100f35198(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7100f34384();
+        fn->return_type = CEnvironmentData::SCubeMapTransition::refl_GetClass();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f70554);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f34384(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, CEnvironmentData::SCubeMapTransition::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -2917,7 +2904,6 @@ void fn_7100f72408();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7100f37030();
 void fn_7100f72458();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100f37854(CClass* cls) {
@@ -2932,12 +2918,12 @@ void fn_7100f37854(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7100f37030();
+        fn->return_type = CEnvironmentData::SSSAOTransition::refl_GetClass();
         fn->field_0xb2 = 0x1;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f72458);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f37030(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, CEnvironmentData::SSSAOTransition::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -2951,7 +2937,6 @@ void fn_7100f72670();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7100f37030();
 void fn_7100f726c0();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100f37e44(CClass* cls) {
@@ -2966,12 +2951,12 @@ void fn_7100f37e44(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7100f37030();
+        fn->return_type = CEnvironmentData::SSSAOTransition::refl_GetClass();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f726c0);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f37030(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, CEnvironmentData::SSSAOTransition::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -2985,7 +2970,6 @@ void fn_7100f74bc8();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7100f3acfc();
 void fn_7100f74c18();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100f3b520(CClass* cls) {
@@ -3000,12 +2984,12 @@ void fn_7100f3b520(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7100f3acfc();
+        fn->return_type = CEnvironmentData::SToneMappingTransition::refl_GetClass();
         fn->field_0xb2 = 0x1;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f74c18);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f3acfc(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, CEnvironmentData::SToneMappingTransition::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -3019,7 +3003,6 @@ void fn_7100f74e30();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7100f3acfc();
 void fn_7100f74e80();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100f3bb10(CClass* cls) {
@@ -3034,12 +3017,12 @@ void fn_7100f3bb10(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7100f3acfc();
+        fn->return_type = CEnvironmentData::SToneMappingTransition::refl_GetClass();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f74e80);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f3acfc(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, CEnvironmentData::SToneMappingTransition::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -3053,7 +3036,6 @@ void fn_7100f76de8();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7100f3d710();
 void fn_7100f76e38();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100f3df34(CClass* cls) {
@@ -3068,12 +3050,12 @@ void fn_7100f3df34(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7100f3d710();
+        fn->return_type = CEnvironmentData::SIBLAttenuationTransition::refl_GetClass();
         fn->field_0xb2 = 0x1;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f76e38);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f3d710(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, CEnvironmentData::SIBLAttenuationTransition::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -3087,7 +3069,6 @@ void fn_7100f77050();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::CClass* fn_7100f3d710();
 void fn_7100f770a0();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100f3e524(CClass* cls) {
@@ -3102,11 +3083,11 @@ void fn_7100f3e524(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = fn_7100f3d710();
+        fn->return_type = CEnvironmentData::SIBLAttenuationTransition::refl_GetClass();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f770a0);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f3d710(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, CEnvironmentData::SIBLAttenuationTransition::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }

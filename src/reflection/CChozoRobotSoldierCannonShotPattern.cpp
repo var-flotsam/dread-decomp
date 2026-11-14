@@ -2,11 +2,11 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CPointerType.h"
 // Reflection descriptors for one original translation unit (3 types):
-// for each type, its getter (T::refl_GetClass) and, through the traits below, its
-// descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape and the attribute/member-field functions that
-// tools/refl_attrs.py reconstructs byte-identically.
-#include "base/reflection/CClass.h"
+// each class's functions are in a namespace of its name (base/reflection/ReflectedClass.h): its
+// getter (T::refl_GetClass) and descriptor constructor (T::refl_InitClass), the functions the
+// descriptor points to (those of a known uniform shape defined, the others declared) and the
+// attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
+#include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -14,12 +14,17 @@ using base::reflection::UnkReflField;
 using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
+using base::reflection::ClassDescription;
+using base::reflection::ClassOf;
+using base::reflection::ClassOfDestructorFirst;
+using base::reflection::Destroy;
+using base::reflection::DestroyDestructorFirst;
 
 // CChozoRobotSoldierCannonShotPattern
-DREAD_REFL_TAG(710045d034);
-void fn_710045cd1c(base::reflection::CClass*) {}
 const base::reflection::UnkReflAttrKey& fn_7100075240();
-void fn_710045ce10(CClass* cls) {
+namespace CChozoRobotSoldierCannonShotPattern {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("fInitialTimeToShot", true), fn_710000abbc(), 0x8, -1, -1);
     field0->attrs.Add<f32>(fn_7100075240(), 0.75f);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeBetweenShot_1_2", true), fn_710000abbc(), 0xc, -1, -1);
@@ -27,39 +32,38 @@ void fn_710045ce10(CClass* cls) {
     UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeBetweenShot_2_3", true), fn_710000abbc(), 0x10, -1, -1);
     field2->attrs.Add<f32>(fn_7100075240(), 0.29f);
 }
-bool fn_710046043c(const void* a, const void* b) { return a == b; }
-s32 fn_7100460448() { return -1; }
-const base::reflection::CType& fn_7100460450(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_710046046c();
-void fn_7100460498(void* dst, const void* src);
-void fn_71004604bc(void* dst, const void* src);
-void fn_71004604e0(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_71004604ec(void* dst, const void* src);
-void* fn_7100460508(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_710045d034> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x18;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_710046043c;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100460448;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100460450;
-    static constexpr UnkFn fn_0x28 = &fn_710046046c;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_7100460498;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_71004604bc;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_71004604e0;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_71004604ec;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100460508;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_ROOT_CLASS_GETTER(710045cd20, 710045d034, "CChozoRobotSoldierCannonShotPattern", 710045cd1c, 710045ce10);
+}  // namespace CChozoRobotSoldierCannonShotPattern
+DREAD_REFLECTED_ROOT_CLASS(CChozoRobotSoldierCannonShotPattern);
 
 // CCharClassChozoRobotSoldierCannonShotAttack::CTunableCharClassChozoRobotSoldierCannonShotAttack
-DREAD_REFL_TAG(710045e6ec);
-void fn_710045e2d8(base::reflection::CClass*) {}
 extern bool g_unk_71726ca6c0;
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726ca688;
 void fn_710045e870(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
-void fn_710045e3d0(CClass* cls) {
+namespace CCharClassChozoRobotSoldierCannonShotAttack::CTunableCharClassChozoRobotSoldierCannonShotAttack {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     if (g_unk_71726ca6c0)
         return;
     g_unk_71726ca6c0 = true;
@@ -81,58 +85,55 @@ void fn_710045e3d0(CClass* cls) {
     }
     fn_710045e870(registry, &g_unk_71726ca688, "ChozoRobotSoldier");
 }
-bool fn_7100461460(const void*, const void*) { return false; }
-s32 fn_7100461468() { return -1; }
-const base::reflection::CType& fn_7100461470(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_710046148c();
-void fn_71004614d0(void*, const void*) {}
-void fn_71004614d4(void*, const void*) {}
-void fn_71004614d8(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_71004614e4(void*, const void*) { return nullptr; }
-void* fn_71004614ec(void*, const void*) { return nullptr; }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_710045e6ec> {
+bool refl_Equals(const void*, const void*) { return false; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void*, const void*) {}
+void refl_MoveConstruct(void*, const void*) {}
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void*, const void*) { return nullptr; }
+void* refl_MoveAssign(void*, const void*) { return nullptr; }
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x38;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100461460;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100461468;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100461470;
-    static constexpr UnkFn fn_0x28 = &fn_710046148c;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_71004614d0;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_71004614d4;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_71004614d8;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_71004614e4;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_71004614ec;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(710045e2dc, 710045e6ec, "CCharClassChozoRobotSoldierCannonShotAttack::CTunableCharClassChozoRobotSoldierCannonShotAttack", 7100135a94, 710045e2d8, 710045e3d0);
+}  // namespace CCharClassChozoRobotSoldierCannonShotAttack::CTunableCharClassChozoRobotSoldierCannonShotAttack
+DREAD_REFLECTED_CLASS(CCharClassChozoRobotSoldierCannonShotAttack::CTunableCharClassChozoRobotSoldierCannonShotAttack, base::tunable::CTunable);
 
 // CCharClassChozoRobotSoldierCannonShotAttack
-DREAD_REFL_TAG(710045ecb4);
-void fn_710045eb28(base::reflection::CClass*) {}
 extern base::reflection::CType g_unk_71726ca4e8;
-void fn_710045ec20(CClass* cls) {
+namespace CCharClassChozoRobotSoldierCannonShotAttack {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("tPatterns", true), &g_unk_71726ca4e8, 0xf0, -1, -1);
 }
-bool fn_71004614f4(const void* a, const void* b) { return a == b; }
-s32 fn_7100461500() { return -1; }
-const base::reflection::CType& fn_7100461508(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100461524();
-void fn_710046157c(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_710045ecb4> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_Destroy(void* obj) { Destroy(obj); }
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x118;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_71004614f4;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100461500;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100461508;
-    static constexpr UnkFn fn_0x28 = &fn_7100461524;
-    static constexpr UnkFn_0x30 fn_0x30 = nullptr;
-    static constexpr UnkFn_0x30 fn_0x38 = nullptr;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_710046157c;
-    static constexpr UnkFn_0x48 fn_0x48 = nullptr;
-    static constexpr UnkFn_0x48 fn_0x50 = nullptr;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto destroy = &refl_Destroy;
 };
-DREAD_REFL_CLASS_GETTER(710045eb2c, 710045ecb4, "CCharClassChozoRobotSoldierCannonShotAttack", 7100362e04, 710045eb28, 710045ec20);
+}  // namespace CCharClassChozoRobotSoldierCannonShotAttack
+DREAD_REFLECTED_CLASS(CCharClassChozoRobotSoldierCannonShotAttack, CCharClassAttack);
+
+
+
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).
@@ -185,7 +186,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710045f180> {
     static constexpr UnkFn fn_0xf0 = &fn_710045f2f0;
     static constexpr UnkFn fn_0xf8 = &fn_710045f358;
     static constexpr UnkFn fn_0x100 = &fn_710045f364;
-    static const CType* pointee() { return fn_710045cd20(); }
+    static const CType* pointee() { return CChozoRobotSoldierCannonShotPattern::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_710045d1c0> {
@@ -212,7 +213,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710045f3f0> {
     static constexpr UnkFn fn_0xf0 = &fn_710045f550;
     static constexpr UnkFn fn_0xf8 = &fn_710045f5b8;
     static constexpr UnkFn fn_0x100 = &fn_710045f5dc;
-    static const CType* pointee() { return fn_710045cd20(); }
+    static const CType* pointee() { return CChozoRobotSoldierCannonShotPattern::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_710045d29c> {

@@ -2,11 +2,11 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CPointerType.h"
 // Reflection descriptors for one original translation unit (3 types):
-// for each type, its getter (T::refl_GetClass) and, through the traits below, its
-// descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape and the attribute/member-field functions that
-// tools/refl_attrs.py reconstructs byte-identically.
-#include "base/reflection/CClass.h"
+// each class's functions are in a namespace of its name (base/reflection/ReflectedClass.h): its
+// getter (T::refl_GetClass) and descriptor constructor (T::refl_InitClass), the functions the
+// descriptor points to (those of a known uniform shape defined, the others declared) and the
+// attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
+#include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -14,16 +14,21 @@ using base::reflection::UnkReflField;
 using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
+using base::reflection::ClassDescription;
+using base::reflection::ClassOf;
+using base::reflection::ClassOfDestructorFirst;
+using base::reflection::Destroy;
+using base::reflection::DestroyDestructorFirst;
 
 // CCharClassKraidSpinningNailsAttack::CTunableCharClassKraidSpinningNailsAttack
-DREAD_REFL_TAG(71005e76fc);
-void fn_71005e7428(base::reflection::CClass*) {}
 extern bool g_unk_71726f0b38;
 const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726f0b10;
 void fn_71005e7880(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
-void fn_71005e7520(CClass* cls) {
+namespace CCharClassKraidSpinningNailsAttack::CTunableCharClassKraidSpinningNailsAttack {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     if (g_unk_71726f0b38)
         return;
     g_unk_71726f0b38 = true;
@@ -41,96 +46,92 @@ void fn_71005e7520(CClass* cls) {
     }
     fn_71005e7880(registry, &g_unk_71726f0b10, "Kraid");
 }
-bool fn_71005ecf0c(const void*, const void*) { return false; }
-s32 fn_71005ecf14() { return -1; }
-const base::reflection::CType& fn_71005ecf1c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_71005ecf38();
-void fn_71005ecf78(void*, const void*) {}
-void fn_71005ecf7c(void*, const void*) {}
-void fn_71005ecf80(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_71005ecf8c(void*, const void*) { return nullptr; }
-void* fn_71005ecf94(void*, const void*) { return nullptr; }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_71005e76fc> {
+bool refl_Equals(const void*, const void*) { return false; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void*, const void*) {}
+void refl_MoveConstruct(void*, const void*) {}
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void*, const void*) { return nullptr; }
+void* refl_MoveAssign(void*, const void*) { return nullptr; }
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x28;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_71005ecf0c;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_71005ecf14;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_71005ecf1c;
-    static constexpr UnkFn fn_0x28 = &fn_71005ecf38;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_71005ecf78;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_71005ecf7c;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_71005ecf80;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_71005ecf8c;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_71005ecf94;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(71005e742c, 71005e76fc, "CCharClassKraidSpinningNailsAttack::CTunableCharClassKraidSpinningNailsAttack", 7100135a94, 71005e7428, 71005e7520);
+}  // namespace CCharClassKraidSpinningNailsAttack::CTunableCharClassKraidSpinningNailsAttack
+DREAD_REFLECTED_CLASS(CCharClassKraidSpinningNailsAttack::CTunableCharClassKraidSpinningNailsAttack, base::tunable::CTunable);
 
 // CKraidSpinningNailsDef
-DREAD_REFL_TAG(71005e8590);
-void fn_71005e82b0(base::reflection::CClass*) {}
 extern base::reflection::CType g_unk_71726f0b40;
 extern base::reflection::CType g_unk_71726f0ca0;
-void fn_71005e83a4(CClass* cls) {
+namespace CKraidSpinningNailsDef {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("eState", true), &g_unk_71726f0b40, 0x8, -1, -1);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("eSpeed", true), &g_unk_71726f0ca0, 0xc, -1, -1);
     field1->attrs.Add<s32>(fn_7100075240(), &g_unk_71726f0ca0, 1);
     UnkReflField* field2 = fn_7100096524(cls, CStrId("fAngle", true), fn_710000abbc(), 0x10, -1, -1);
     field2->attrs.Add<f32>(fn_7100075240(), 45.0f);
 }
-bool fn_71005ed084(const void* a, const void* b) { return a == b; }
-s32 fn_71005ed090() { return -1; }
-const base::reflection::CType& fn_71005ed098(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_71005ed0b4();
-void fn_71005ed0d0(void* dst, const void* src);
-void fn_71005ed0f4(void* dst, const void* src);
-void fn_71005ed118(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_71005ed124(void* dst, const void* src);
-void* fn_71005ed140(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_71005e8590> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x18;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_71005ed084;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_71005ed090;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_71005ed098;
-    static constexpr UnkFn fn_0x28 = &fn_71005ed0b4;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_71005ed0d0;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_71005ed0f4;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_71005ed118;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_71005ed124;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_71005ed140;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_ROOT_CLASS_GETTER(71005e82b4, 71005e8590, "CKraidSpinningNailsDef", 71005e82b0, 71005e83a4);
+}  // namespace CKraidSpinningNailsDef
+DREAD_REFLECTED_ROOT_CLASS(CKraidSpinningNailsDef);
 
 // CCharClassKraidSpinningNailsAttack
-DREAD_REFL_TAG(71005ea99c);
-void fn_71005ea798(base::reflection::CClass*) {}
 extern base::reflection::CType g_unk_71726f1480;
-void fn_71005ea890(CClass* cls) {
+namespace CCharClassKraidSpinningNailsAttack {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("tPatternsPhase1", true), &g_unk_71726f1480, 0xf0, -1, -1);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("tPatternsPhase2", true), &g_unk_71726f1480, 0x118, -1, -1);
 }
-bool fn_71005ef76c(const void* a, const void* b) { return a == b; }
-s32 fn_71005ef778() { return -1; }
-const base::reflection::CType& fn_71005ef780(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_71005ef79c();
-void fn_71005ef810(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_71005ea99c> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_Destroy(void* obj) { Destroy(obj); }
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x140;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_71005ef76c;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_71005ef778;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_71005ef780;
-    static constexpr UnkFn fn_0x28 = &fn_71005ef79c;
-    static constexpr UnkFn_0x30 fn_0x30 = nullptr;
-    static constexpr UnkFn_0x30 fn_0x38 = nullptr;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_71005ef810;
-    static constexpr UnkFn_0x48 fn_0x48 = nullptr;
-    static constexpr UnkFn_0x48 fn_0x50 = nullptr;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto destroy = &refl_Destroy;
 };
-DREAD_REFL_CLASS_GETTER(71005ea79c, 71005ea99c, "CCharClassKraidSpinningNailsAttack", 71005dbb7c, 71005ea798, 71005ea890);
+}  // namespace CCharClassKraidSpinningNailsAttack
+DREAD_REFLECTED_CLASS(CCharClassKraidSpinningNailsAttack, CCharClassKraidAttack);
+
+
+
 
 void fn_71005eafb8();
 void fn_71005eb020();
@@ -172,7 +173,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005eae48> {
     static constexpr UnkFn fn_0xf0 = &fn_71005eafb8;
     static constexpr UnkFn fn_0xf8 = &fn_71005eb020;
     static constexpr UnkFn fn_0x100 = &fn_71005eb02c;
-    static const CType* pointee() { return fn_71005e82b4(); }
+    static const CType* pointee() { return CKraidSpinningNailsDef::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71005e871c> {
@@ -199,7 +200,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005eb0b8> {
     static constexpr UnkFn fn_0xf0 = &fn_71005eb218;
     static constexpr UnkFn fn_0xf8 = &fn_71005eb280;
     static constexpr UnkFn fn_0x100 = &fn_71005eb2a4;
-    static const CType* pointee() { return fn_71005e82b4(); }
+    static const CType* pointee() { return CKraidSpinningNailsDef::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71005e87f8> {

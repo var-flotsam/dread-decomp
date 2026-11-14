@@ -1301,7 +1301,8 @@ def bound_statics(symbols: list[tuple[str, str]], sizes: dict[str, int], known: 
             # A class getter's descriptor has CClass's real size (asserted against the .bss stride
             # in base/reflection/CClass.h), so a data name inside it is one of its fields, not a
             # neighbour; only another static or guard there means a wrong placement.
-            exact = m.startswith("_ZZ13fn_71") and m.endswith("vE7s_class")
+            exact = (m.startswith("_ZZ13fn_71") and m.endswith("vE7s_class")) \
+                or m.endswith("13refl_GetClassEvE7s_class")  # base/reflection/ReflectedClass.h
             bs = static_bounds if exact else bounds
             i = bisect.bisect_right(bs, a)
             if i < len(bs) and a + size > bs[i]:
