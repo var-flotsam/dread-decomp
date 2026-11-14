@@ -44,6 +44,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 **Reflection attributes and registration**
 - `AddField` takes the name by value; `Add` by const reference as a {type, ptr} temporary; struct-typed defaults and `CVector2D` globals copied member by member: [Field registrations the reflection parser stopped at](#field-registrations-the-reflection-parser-stopped-at).
 - Collection types are globals built by static initialisers, all reached through the GOT: [Collection-type registration](#collection-type-registration).
+- A class's reflection functions can live in a namespace of the class's name: it mangles as the class's static members would, so they map to `T::refl_<role>` names with no address in the source: [Reflected classes in a namespace of their name](#session-log-newest-first).
 
 **Transform nodes and math**
 - `UnkXform` layout (4x4 matrix, angle 0x40, scale 0x4c, flags 0x58); the same memory viewed through two struct paths defeats alias analysis, so use one view per function: [hubs batch 2](#slice-1-hubs-batch-2).
@@ -164,6 +165,55 @@ a real difference, it stays a draft). Cost: `--drafts` 470 s to 1,174 s, `--mino
 functions that stay inconclusive and use their budget. Of the 26 drafts, 9 moved to `src/` (`fn_7100e3cee0` among
 them: `fn_710007b444` is declared once now, in `UnkTU55.h`, for 21 files, and its ten id globals in `UnkTU2564.h`);
 the rest are held on declarations (their notes say which) or by another function of their file.
+**Reflected classes in a namespace of their name (2026-11-14).** First step of the readable reflection template
+(owner-approved audit item). `src/reflection/` described each class by addresses: an `UnkRefl_fn_<init>` tag,
+traits whose members were `fn_0x58` and the like, helpers named `fn_<addr>` and a getter macro taking six
+addresses. Now `tools/gen_reflection.py` writes each class as `include/base/reflection/ReflectedClass.h` says: its
+functions sit in a namespace of the class's name under role names (`refl_Equals`, `refl_Hash`, `refl_TypeOf`,
+`refl_Construct`, `refl_CopyConstruct`, `refl_MoveConstruct`, `refl_Destroy`, `refl_CopyAssign`,
+`refl_MoveAssign`, `refl_AddAttributes`, `refl_AddFields`), a `refl_Description` struct names the operations the
+descriptor points to, and `DREAD_REFLECTED_CLASS(T, Parent)` defines the getter and the descriptor constructor.
+A namespace mangles as a class does, so the getter is the symbol `T::refl_GetClass` would be; the game's classes
+need not be declared. The roles come from how the engine calls the slots (0x28 constructs in place, see
+`CSoundManager_tables_ovb0038.cpp`; 0x60 is an enum's value, -1 for every class, so a hash). `CClass.h`'s traits
+template reads such a description; the older tag specialisations still work (580 objects built with and
+without the change are identical). `tools/gen_functions_csv.py` names the helpers the same way (source
+`reflection`, 22,331 functions), which is how their symbols map to addresses; the descriptor constructor's
+symbol (`CClass::CClass<T::refl_Description>`) maps to `T::refl_InitClass` through `asmdiff.name_aliases`
+(used by `check.csv_by_name`). The names also give 12,000 neighbouring functions a subsystem. 2,094 of the 2,100
+unit files changed form; base::reflection's own six classes keep the old one (a namespace of their name would
+collide with the class the headers define). Checked here without the dump: every converted file compiles to the
+same bytes and relocation targets as before, function by function with the names mapped. What is still not
+readable: the bodies of the attribute and member-field functions (`fn_7100096524(cls, CStrId(...),
+fn_710000abbc(), 0x50c, -1, -1)`: the field adder, the type getters and the attribute keys want names, then one
+line per field), the pointer types appended to some files, and the statics padding (`refl_UnkStaticsUse_<addr>`).
+**`CLAUDE.md` cut to the rules; a two-week rule freeze (2026-11-14).** The owner approved the audit's remaining
+items. `CLAUDE.md` went from 3,562 to about 2,200 words, every rule kept: the owner's words, dates and reasons
+moved to `docs/reference.md` ("The rules in `CLAUDE.md`, with their reasons"), the toolchain paragraph to its
+"Toolchain" section. New rule: no new rule, gate or CI check until 2026-11-28 unless a defect reaches `main`. The
+other two approved items, the permute and machine-test sweep of the 87 registers-only drafts and a readable
+reflection template, need the dump and go to threads of their own.
+
+**The hold on bulk runs is lifted; several functions to a worker (2026-11-14).** The owner approved the audit's
+first decision. A lean batch that keeps the shape in `tools/batch/README.md` ("Batches": about 100 functions or
+fewer, 400 bytes or less, every gate green, the pull request reporting matches, tokens per match and the
+declaration counts) needs no go-ahead of its own. `coord.py wave --per-worker K` (default 10, set by
+`prepare.py --per-worker`) gives a worker up to K queued functions of one unit that get the same model, each with
+its own budget, which `try.py` already counted per function; `worker.md` says to finish each before the next and
+to read the brief and the tips once. Why: every lean worker starts at about 100,000 tokens, and the pilot's
+736,000 tokens a match was mostly that start-up, where the runs of 2026-11-09 to 11-11 came to about 10,000 a
+function at about 30 functions a worker. Not measured yet: the next batch is the measurement.
+
+**Audit of what slows progress; first clean-up (2026-11-14).** From 2026-11-12 11:32 to 2026-11-14 09:36 about 52
+pull requests merged and `O` went from 94,695 to 94,727 functions; 16 of them changed no source. Merging is not the
+bottleneck (most merged within 90 minutes). The owner chose the first clean-up from the audit: `tools/batch/overnight/`
+removed (its README called it a record not to run; it is at `eed157e8`); `tools/batch/tips.md` cut to the tips that
+are plain source forms (the barrier, union, inlining-attribute, untyped-store and macro tips went, since workers read
+the file and the rules refuse those forms); the phase prefix on commits and the "about 30 functions" floor on pull
+requests dropped from `CLAUDE.md`, `CONTRIBUTING.md`, `docs/maintaining.md` and the dread-match skill; the handoff's
+workstreams table refreshed (A to C folded into hand matching; held drafts brought up to date; rows for layouts,
+proof and names). The rest of the audit (the bulk hold, multi-function workers, a rule freeze, the registers-only
+drafts sweep, a readable reflection template, a slimmer `CLAUDE.md`, the journal split) waits on the owner.
 
 **`fn_7100353be8` declared once (2026-11-14).** The owner chose `base::UnkRefPtrMember` as its result: one
 counted pointer, returned in memory (x8), as the original builds it. It is declared in `include/game/UnkTU437.h`;

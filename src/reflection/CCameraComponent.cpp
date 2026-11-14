@@ -2,11 +2,11 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CPointerType.h"
 // Reflection descriptors for one original translation unit (1 type):
-// for each type, its getter (T::refl_GetClass) and, through the traits below, its
-// descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape and the attribute/member-field functions that
-// tools/refl_attrs.py reconstructs byte-identically.
-#include "base/reflection/CClass.h"
+// each class's functions are in a namespace of its name (base/reflection/ReflectedClass.h): its
+// getter (T::refl_GetClass) and descriptor constructor (T::refl_InitClass), the functions the
+// descriptor points to (those of a known uniform shape defined, the others declared) and the
+// attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
+#include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -14,10 +14,13 @@ using base::reflection::UnkReflField;
 using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
+using base::reflection::ClassDescription;
+using base::reflection::ClassOf;
+using base::reflection::ClassOfDestructorFirst;
+using base::reflection::Destroy;
+using base::reflection::DestroyDestructorFirst;
 
 // CCameraComponent
-DREAD_REFL_TAG(71010e0b80);
-void fn_71010df79c(base::reflection::CClass*) {}
 void fn_71010e70d0();
 const base::reflection::UnkReflAttrKey& fn_7100007e80();
 const base::reflection::UnkReflAttrKey& fn_71000923a0();
@@ -44,7 +47,9 @@ void fn_71010e7554(UnkReflFunction* fn);
 void fn_71010e15c8(UnkReflFunction* fn, const char* name);
 const base::reflection::UnkReflAttrKey& fn_71000904d0();
 void fn_71010e167c(UnkReflFunction* fn, const char* name);
-void fn_71010df894(CClass* cls) {
+namespace CCameraComponent {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fCurrentInterp_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fCurrentInterp_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -149,26 +154,21 @@ void fn_71010df894(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("GetCtrl", true)))
         fn_71010e167c(fn, "GetCtrl");
 }
-bool fn_71010e706c(const void*, const void*) { return false; }
-s32 fn_71010e7074() { return -1; }
-const base::reflection::CType& fn_71010e707c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_71010e7098();
-void fn_71010e70c4(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_71010e0b80> {
+bool refl_Equals(const void*, const void*) { return false; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_Destroy(void* obj) { Destroy(obj); }
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0xc50;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_71010e706c;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_71010e7074;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_71010e707c;
-    static constexpr UnkFn fn_0x28 = &fn_71010e7098;
-    static constexpr UnkFn_0x30 fn_0x30 = nullptr;
-    static constexpr UnkFn_0x30 fn_0x38 = nullptr;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_71010e70c4;
-    static constexpr UnkFn_0x48 fn_0x48 = nullptr;
-    static constexpr UnkFn_0x48 fn_0x50 = nullptr;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto destroy = &refl_Destroy;
 };
-DREAD_REFL_CLASS_GETTER(71010df7a0, 71010e0b80, "CCameraComponent", 71010c23d0, 71010df79c, 71010df894);
+}  // namespace CCameraComponent
+DREAD_REFLECTED_CLASS(CCameraComponent, CComponent);
 
 void fn_71010e6cfc();
 void fn_71010e6d64();
@@ -212,7 +212,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71010e6b8c> {
     static constexpr UnkFn fn_0xf0 = &fn_71010e6cfc;
     static constexpr UnkFn fn_0xf8 = &fn_71010e6d64;
     static constexpr UnkFn fn_0x100 = &fn_71010e6d70;
-    static const CType* pointee() { return fn_71010df7a0(); }
+    static const CType* pointee() { return CCameraComponent::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71010e17f4> {
@@ -239,7 +239,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71010e6dfc> {
     static constexpr UnkFn fn_0xf0 = &fn_71010e6f6c;
     static constexpr UnkFn fn_0xf8 = &fn_71010e6fd4;
     static constexpr UnkFn fn_0x100 = &fn_71010e6fe0;
-    static const CType* pointee() { return fn_71010df7a0(); }
+    static const CType* pointee() { return CCameraComponent::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71010e18d0> {

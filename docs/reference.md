@@ -42,7 +42,7 @@ tools/sigmatch.py                names vendored-library functions in main -> dat
 tools/gen_reflection.py, refl_attrs.py, gen_types.py, gen_statics.py, gen_clones.py, gen_tables.py, gen_lift.py
                                  generators (maintenance); regenerate, never hand-edit their output
 tools/policy_check.py, hooks/    content rules (CI and pre-commit)
-tools/batch/                     lean/: the batch kit (COORDINATOR.md, worker.md; runs in place); overnight/: a record; README.md
+tools/batch/                     lean/: the batch kit (COORDINATOR.md, worker.md; runs in place); tips.md; README.md
 .github/                         CI: policy + decl_check, compile + tool tests (hosted); check-local.yml (self-hosted check.py, enabled: "Known issues")
 src/compiler_id/, flag_id/, atk_id/   Phase 3 samples (frozen)
 src/reflection/, reflection_types/, reflection_statics/, clones/, lifted/, tables/   GENERATED
@@ -160,10 +160,45 @@ Clang 9.0.1 has no arm64 macOS build; the x86_64 build runs under Rosetta 2. Bef
 | Generated code (reflection, statics, clones, tables, lifted) is regenerated, never edited | Thousands of instances of one template; byte-identical by construction |
 | **Hub-first work order, canonical headers, files by unit** (2026-10-24) | The remaining `U` is typed game logic; per-file declarations (382 conflicting signatures) can never link; the port needs one program |
 | **Generators in maintenance** (2026-10-24) | `U` under 256 B is 0.9 MB; the lifter's byte-identical mode is at its limit (journal, item 1) |
-| **Handoff split into state and journal; PRs of 30+ functions; self-hosted check job** (2026-10-24) | Every session read a 28k-token log; 178 PRs in six days at a median of 10 functions and 3 minutes to merge |
+| **Handoff split into state and journal; self-hosted check job** (2026-10-24) | Every session read a 28k-token log; 178 PRs in six days at a median of 10 functions and 3 minutes to merge |
+| **No minimum pull request size; no phase prefix** (owner, 2026-11-14; replaces "PRs of 30+ functions") | The audit of 2026-11-14: most PRs merged within 90 minutes and nearly every one was "Phase 4.7"; the floor did not match one-class layout batches |
 | **Class getters declared once in a generated header** (`UnkClassGetters.h`, 2026-10-24) | 243 hand files declared getters locally as `void*`; the CSV knows every getter, so the header needs no game data and never drifts |
 | Route to a running build: **Route B** (`docs/PORT_PLAN.md`, 2026-10-24) | One program now, lifted code as a bridge that matching replaces; the port lives in `port/` on `main` |
 | **Vulkan first; shaders compiled to SPIR-V at build time** from the user's dump (owner, 2026-10-26; `docs/PORT_PLAN.md` decision 3) | NVN's object model maps onto Vulkan, the binding layout is already worked out for it, and it runs on all three systems; the sources need the NVIDIA-only `GL_NV_gpu_shader5` under OpenGL. A build step (`tools/bshdat.py --compile`) keeps a compiler out of the executable; its output stays local game-derived data |
+
+### The rules in `CLAUDE.md`, with their reasons
+
+`CLAUDE.md` was cut to the rules on 2026-11-14 (owner, in the audit of what slows progress): it loads into every
+session and every batch worker. Each rule's reason and the owner's words are here.
+
+| Rule | Reason |
+|---|---|
+| **Purpose** (owner, 2026-11-05) | A tool for the community's understanding of a game they already own: speedrunners reading the real code to find new methods, developers making mods that would otherwise be impossible. Deliberately different from the static recompilation "Metroid Dread Recomp": no translation layer in the product. The project hosts no keys, ROM or filesystem and never hands them to a user, to stay clear of piracy |
+| **Completion and the proof tiers** (owner, 2026-11-11) | Decompilation is complete when every function of the game is hand-written, readable and proven equivalent, measured over all the game's code (`L` excluded). Generated code is a stepping stone. Tier 2 counts because a permuter, not model attempts, is what turns a registers-only difference into a match; `tools/permute.py` matched about one in nine on 2026-11-12 |
+| **Behaviour, then readability, then bytes** (owner, 2026-11-13) | "Byte matching and readable are two different qualities but both are needed. Identical behavior but byte mismatch are okay for a later date"; "The project will not be considered to be absolutely done until the decompilation functions identically and is human readable" |
+| **Faithful first** (owner, 2026-11-13) | "We want faithful to original above our invented rules." Precedent: `src/game_lo/fn_7100219588.cpp` reads two locals the original also leaves unset rather than setting them |
+| **No assembly in commit messages or PR descriptions** (owner, 2026-11-14) | They are as public and as permanent as a tracked file |
+| **Inferred names** (owner, 2026-11-14) | Readable names are part of readable code. A real name from RTTI, reflection or strings replaces an inferred one when evidence turns up; `tools/rename.py` keeps the map, the function list and every hand-written use in step |
+| **`REFS` notes on minor functions** (owner, 2026-11-12) | A minor function that calls something else is not the same behaviour unless the note says why it is harmless |
+| **Drafts for unverified work** (owner, 2026-11-13) | A non-match in `src/` claimed behaviour nobody checked; the machine test's first run found four real bugs in functions marked minor by hand. The non-matching functions already in `src/` stay |
+| **Code no developer would write; no `goto` to force a match** (owner, 2026-11-14) | From zeldaret/botw's `AGENTS.md`: a match whose text no developer would write still holds the compiler's work, and a helper found once repairs every caller |
+| **No unset values** (owner, 2026-11-13) | A text that reads an unset local has no behaviour of its own; the compiler may make anything of it, the original's bytes included, so its match proves nothing |
+| **One declaration per shared symbol; the type ratchet** (2026-10-24, 2026-11-12, 2026-11-13) | The port links one program, and per-file declarations (382 conflicting signatures once) can never link; the agent runs of 2026-11-09 to 11-11 doubled the copies in two days |
+| **A layout batch is one class** (owner, 2026-11-13) | One layout per object, settled where the object's own code is; bulk moves of copied types were declined |
+| **Bulk runs: the hold and its lifting** (owner, 2026-11-11; lifted 2026-11-14) | Held after the runs of 2026-11-09 to 11-11 doubled declaration copies; lifted once CI gates blocked that damage and the 40-function test showed shared headers gave no gain. Workers take several functions each because a worker's start-up of about 100,000 tokens made the pilot cost 736,000 a match |
+| **Rule freeze** (owner, 2026-11-14, until 2026-11-28) | From 2026-11-12 to 11-14 about 52 PRs merged and 32 functions matched; 16 of those PRs changed no source. Most new rules brought a tool, a gate and doc text |
+| **Who merges** (owner, 2026-11-11) | The coordinator merges on green checks; `--admin` also skips the required checks, and the last-push approval it once bypassed is off |
+
+### Toolchain (the owner's machine)
+
+Python 3.12 in `.venv` (`lz4`, `mercury-engine-data-structures`, `capstone`, `pyelftools`, and `pyghidra` from
+Ghidra's bundled wheels); JDK 21 (Temurin) with Ghidra 12.1.4 at `%LOCALAPPDATA%\Programs\ghidra_12.1.4_PUBLIC`
+(headless: `support\analyzeHeadless.bat`); CMake 4.4, Ninja 1.13, LLVM/Clang + lld 23.1.3 for inspection; the
+project compiler, upstream Clang 9.0.1, from `tools/fetch_toolchains.py` (`%LOCALAPPDATA%\dread-decomp\toolchains\llvm-9.0.1`;
+on macOS the x86_64 build under Rosetta 2 in `~/Library/Caches/dread-decomp`, untested on hardware;
+paths in `tools/hostenv.py`), flags `-O3 -mcpu=cortex-a57 -fPIC -fasynchronous-unwind-tables -mno-implicit-float
+-fno-rtti -fno-exceptions` (`tools/buildcfg.py`, evidence in `docs/compiler.md`); objdiff 3.8.2 GUI and CLI in
+`%LOCALAPPDATA%\dread-decomp\tools\`. Shells opened before an install may need PATH refreshed from the registry.
 
 ## Known issues and gotchas
 

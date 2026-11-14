@@ -2,11 +2,11 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CPointerType.h"
 // Reflection descriptors for one original translation unit (1 type):
-// for each type, its getter (T::refl_GetClass) and, through the traits below, its
-// descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape and the attribute/member-field functions that
-// tools/refl_attrs.py reconstructs byte-identically.
-#include "base/reflection/CClass.h"
+// each class's functions are in a namespace of its name (base/reflection/ReflectedClass.h): its
+// getter (T::refl_GetClass) and descriptor constructor (T::refl_InitClass), the functions the
+// descriptor points to (those of a known uniform shape defined, the others declared) and the
+// attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
+#include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -14,17 +14,22 @@ using base::reflection::UnkReflField;
 using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
+using base::reflection::ClassDescription;
+using base::reflection::ClassOf;
+using base::reflection::ClassOfDestructorFirst;
+using base::reflection::Destroy;
+using base::reflection::DestroyDestructorFirst;
 
 // media::CMoviePlayer
-DREAD_REFL_TAG(710021dd84);
-void fn_710021d8ac(base::reflection::CClass*) {}
 extern base::reflection::CType g_unk_716e599948;
 void fn_710021e50c();
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_710021e558();
 void fn_710021e58c();
 void fn_710021e5d8();
-void fn_710021d9a0(CClass* cls) {
+namespace media::CMoviePlayer {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("Start", true))) {
         fn->name = base::global::UnkStrId("Start", true);
         fn->return_type = &g_unk_716e599948;
@@ -54,26 +59,21 @@ void fn_710021d9a0(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710021e5d8);
     }
 }
-bool fn_710021e474(const void* a, const void* b) { return a == b; }
-s32 fn_710021e480() { return -1; }
-const base::reflection::CType& fn_710021e488(const void* obj) { return *static_cast<const base::reflection::UnkReflObjectB*>(obj)->vf_0x18(); }
-void fn_710021e4a4();
-void fn_710021e500(void* obj) { static_cast<base::reflection::UnkReflObjectB*>(obj)->~UnkReflObjectB(); }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_710021dd84> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOfDestructorFirst(obj); }
+void refl_Construct(void* obj);
+void refl_Destroy(void* obj) { DestroyDestructorFirst(obj); }
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0xb20;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_710021e474;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_710021e480;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_710021e488;
-    static constexpr UnkFn fn_0x28 = &fn_710021e4a4;
-    static constexpr UnkFn_0x30 fn_0x30 = nullptr;
-    static constexpr UnkFn_0x30 fn_0x38 = nullptr;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_710021e500;
-    static constexpr UnkFn_0x48 fn_0x48 = nullptr;
-    static constexpr UnkFn_0x48 fn_0x50 = nullptr;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto destroy = &refl_Destroy;
 };
-DREAD_REFL_ROOT_CLASS_GETTER(710021d8b0, 710021dd84, "media::CMoviePlayer", 710021d8ac, 710021d9a0);
+}  // namespace media::CMoviePlayer
+DREAD_REFLECTED_ROOT_CLASS(media::CMoviePlayer);
 
 void fn_710021e130();
 void fn_710021e198();
@@ -105,7 +105,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710021dfc0> {
     static constexpr UnkFn fn_0xf0 = &fn_710021e130;
     static constexpr UnkFn fn_0xf8 = &fn_710021e198;
     static constexpr UnkFn fn_0x100 = &fn_710021e210;
-    static const CType* pointee() { return fn_710021d8b0(); }
+    static const CType* pointee() { return media::CMoviePlayer::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_710021dee4> {

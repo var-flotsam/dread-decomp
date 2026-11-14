@@ -2,11 +2,11 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CPointerType.h"
 // Reflection descriptors for one original translation unit (1 type):
-// for each type, its getter (T::refl_GetClass) and, through the traits below, its
-// descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape and the attribute/member-field functions that
-// tools/refl_attrs.py reconstructs byte-identically.
-#include "base/reflection/CClass.h"
+// each class's functions are in a namespace of its name (base/reflection/ReflectedClass.h): its
+// getter (T::refl_GetClass) and descriptor constructor (T::refl_InitClass), the functions the
+// descriptor points to (those of a known uniform shape defined, the others declared) and the
+// attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
+#include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -14,12 +14,17 @@ using base::reflection::UnkReflField;
 using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
+using base::reflection::ClassDescription;
+using base::reflection::ClassOf;
+using base::reflection::ClassOfDestructorFirst;
+using base::reflection::Destroy;
+using base::reflection::DestroyDestructorFirst;
 
 // CShotLaunchConfig
-DREAD_REFL_TAG(71009f9bdc);
-void fn_71009f98c0(base::reflection::CClass*) {}
 const base::reflection::UnkReflAttrKey& fn_7100075240();
-void fn_71009f99b4(CClass* cls) {
+namespace CShotLaunchConfig {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sID", true), fn_710000fd7c(), 0x10, -1, -1);
     field0->attrs.Add<base::global::CName>(fn_7100075240(), base::global::CName(base::global::UnkNameHash{}, 0xffffffffffffffffu));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxHitVerticalSpeed", true), fn_710000abbc(), 0x8, -1, -1);
@@ -27,30 +32,29 @@ void fn_71009f99b4(CClass* cls) {
     UnkReflField* field2 = fn_7100096524(cls, CStrId("fTrajectorySampleTimeInterval", true), fn_710000abbc(), 0xc, -1, -1);
     field2->attrs.Add<f32>(fn_7100075240(), 0.1f);
 }
-bool fn_71009fd028(const void* a, const void* b) { return a == b; }
-s32 fn_71009fd034() { return -1; }
-const base::reflection::CType& fn_71009fd03c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_71009fd058();
-void fn_71009fd07c(void* dst, const void* src);
-void fn_71009fd098(void* dst, const void* src);
-void fn_71009fd0b4(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_71009fd0c0(void* dst, const void* src);
-void* fn_71009fd0d4(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_71009f9bdc> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x18;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_71009fd028;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_71009fd034;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_71009fd03c;
-    static constexpr UnkFn fn_0x28 = &fn_71009fd058;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_71009fd07c;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_71009fd098;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_71009fd0b4;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_71009fd0c0;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_71009fd0d4;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_ROOT_CLASS_GETTER(71009f98c4, 71009f9bdc, "CShotLaunchConfig", 71009f98c0, 71009f99b4);
+}  // namespace CShotLaunchConfig
+DREAD_REFLECTED_ROOT_CLASS(CShotLaunchConfig);
 
 void fn_71009fbcac();
 void fn_71009fbd14();
@@ -104,7 +108,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71009fbb3c> {
     static constexpr UnkFn fn_0xf0 = &fn_71009fbcac;
     static constexpr UnkFn fn_0xf8 = &fn_71009fbd14;
     static constexpr UnkFn fn_0x100 = &fn_71009fbd20;
-    static const CType* pointee() { return fn_71009f98c4(); }
+    static const CType* pointee() { return CShotLaunchConfig::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71009fa92c> {
@@ -131,7 +135,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71009fbdac> {
     static constexpr UnkFn fn_0xf0 = &fn_71009fbf1c;
     static constexpr UnkFn fn_0xf8 = &fn_71009fbf84;
     static constexpr UnkFn fn_0x100 = &fn_71009fbf90;
-    static const CType* pointee() { return fn_71009f98c4(); }
+    static const CType* pointee() { return CShotLaunchConfig::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71009faa08> {
@@ -158,7 +162,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71009fc01c> {
     static constexpr UnkFn fn_0xf0 = &fn_71009fc17c;
     static constexpr UnkFn fn_0xf8 = &fn_71009fc1e4;
     static constexpr UnkFn fn_0x100 = &fn_71009fc208;
-    static const CType* pointee() { return fn_71009f98c4(); }
+    static const CType* pointee() { return CShotLaunchConfig::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71009faae4> {

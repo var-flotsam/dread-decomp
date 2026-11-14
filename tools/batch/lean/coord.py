@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """Lean run coordinator helper (all state in build/lean/queue.json; runs in place from tools/batch/lean/).
 
-  coord.py wave <n>       record finished results, then print the next n jobs as JSON lines
-                          {"addr", "model", "prompt"}: one Agent call each (model = the Agent tool's model)
+  coord.py wave <n> [--per-worker K]
+                          record finished results, then print the next n jobs as JSON lines
+                          {"addr", "addrs", "model", "prompt"}: one Agent call each (model = the Agent tool's
+                          model). A job holds up to K functions of one unit that get the same model (K from
+                          --per-worker, else prepare.py --per-worker, else 1); each keeps its own budget
   coord.py record         fold build/lean/results/*.json into the queue (wave does this first)
   coord.py land           grade every match again, check its declarations against the tree and `git add` it;
                           a file that does not match any more becomes a draft. Commits nothing
@@ -12,6 +15,10 @@
   coord.py stats          counts by outcome, tier and model; per-tier match rates; the attempt each match
                           came on (try.py's count), which is what the attempt budget is set from
   coord.py reset-running  requeue jobs left "running" by an interrupted wave
+
+A worker with several functions pays its start-up once: every lean worker starts at about 100,000 tokens, so
+one function per worker cost about 736,000 tokens a match in the pilot of 2026-11-12, where the batch runs of
+2026-11-09 to 11-11, about 30 functions to a worker, came to about 10,000 a function (docs/JOURNAL.md).
 
 Model and budget per job (prepare.py --model/--budget replaces the first three with one job per function):
   small (<= 600 B), first pass        sonnet, 2 attempts
@@ -106,6 +113,21 @@ def prompt(e, model, budget, cfg=None):
     return "\n".join(lines)
 
 
+def prompt_many(es, model, cfg=None):
+    """One worker's brief for several functions, done in order, each with its own budget."""
+    cfg = CFG if cfg is None else cfg
+    head = [f"Follow {(KIT / 'worker.md').relative_to(ROOT).as_posix()} exactly (read it first, and only once).",
+            f"Worktree: {ROOT}",
+            f"You have {len(es)} functions, in this order. Finish each one (its result file written) before you "
+            "start the next. Each has its own attempt budget, a cap that try.py enforces; one function's unused "
+            "attempts never carry over to another."]
+    blocks = []
+    for i, e in enumerate(es, 1):
+        lines = prompt(e, model, e["budget"], cfg).splitlines()[2:]   # without the two header lines
+        blocks.append(f"Function {i} of {len(es)}:\n" + "\n".join("  " + x for x in lines))
+    return "\n".join(head) + "\n\n" + "\n\n".join(blocks)
+
+
 def record(q):
     by = {e["addr"]: e for e in q}
     n = 0
@@ -130,21 +152,35 @@ def record(q):
     return n
 
 
-def wave(q, k):
-    jobs = []
+def wave(q, k, per_worker=None, cfg=None):
+    """Up to k jobs. A job takes up to per_worker queued functions of one unit that get the same model, in queue
+    order; with per_worker 1 (the default) it is one function, as before."""
+    cfg = CFG if cfg is None else cfg
+    per = max(1, int(per_worker or cfg.get("per_worker") or 1))
+    groups, open_group = [], {}
     for e in q:
-        if len(jobs) >= k:
-            break
         if e["status"] != "queued":
             continue
-        pl = plan(e)
+        pl = plan(e, cfg)
         if not pl:
             e["status"] = "failed"
             continue
+        key = (e.get("unit"), pl[0])
+        g = open_group.get(key)
+        if g is None or len(g["entries"]) >= per:
+            if len(groups) >= k:
+                continue
+            g = open_group[key] = {"model": pl[0], "entries": []}
+            groups.append(g)
         e["status"], e["running_model"], e["budget"] = "running", pl[0], pl[1]
-        job = {"addr": e["addr"], "model": pl[0], "prompt": prompt(e, *pl)}
-        if CFG.get("effort"):
-            job["effort"] = CFG["effort"]
+        g["entries"].append(e)
+    jobs = []
+    for g in groups:
+        es = g["entries"]
+        text = prompt(es[0], g["model"], es[0]["budget"], cfg) if len(es) == 1 else prompt_many(es, g["model"], cfg)
+        job = {"addr": es[0]["addr"], "addrs": [e["addr"] for e in es], "model": g["model"], "prompt": text}
+        if cfg.get("effort"):
+            job["effort"] = cfg["effort"]
         jobs.append(job)
     return jobs
 
@@ -254,7 +290,8 @@ def main():
         if cmd == "record":
             print(f"recorded {n}")
             return 0
-        jobs = wave(q, int(sys.argv[2]))
+        per = int(sys.argv[sys.argv.index("--per-worker") + 1]) if "--per-worker" in sys.argv else None
+        jobs = wave(q, int(sys.argv[2]), per)
         save(q)
         for j in jobs:
             print(json.dumps(j))

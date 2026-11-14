@@ -270,7 +270,8 @@ def csv_by_name(rows: dict[str, dict]) -> dict[str, list[int]]:
     """CSV name -> addresses carrying it (a name is a resolver key only when it has one)."""
     by_name: dict[str, list[int]] = {}
     for r in rows.values():
-        by_name.setdefault(r["name"], []).append(int(r["address"], 16))
+        for name in [r["name"], *asmdiff.name_aliases(r["name"])]:
+            by_name.setdefault(name, []).append(int(r["address"], 16))
     return by_name
 
 

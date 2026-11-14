@@ -265,7 +265,8 @@ A static stays in the executable, and `link.json` (`bound_statics`) says which, 
   original's object would overwrite its neighbours;
 - the harvest did not place it, or placed only one of static and guard.
 
-The reflected class getters (`DREAD_REFL_CLASS_GETTER`, `include/base/reflection/CClass.h`) are
+The reflected class getters (`DREAD_REFLECTED_CLASS`, `include/base/reflection/ReflectedClass.h`; the older
+`DREAD_REFL_CLASS_GETTER` in `CClass.h` for a few) are
 ordinary functions on the Switch and `inline __attribute__((used))` on the port. That makes each
 descriptor and its guard weak symbols, so they are bound like the rest: the game's lifted code
 registers and reads the image's descriptor, and before this it found 2,354 classes without a name.

@@ -2,11 +2,11 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CPointerType.h"
 // Reflection descriptors for one original translation unit (1 type):
-// for each type, its getter (T::refl_GetClass) and, through the traits below, its
-// descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape and the attribute/member-field functions that
-// tools/refl_attrs.py reconstructs byte-identically.
-#include "base/reflection/CClass.h"
+// each class's functions are in a namespace of its name (base/reflection/ReflectedClass.h): its
+// getter (T::refl_GetClass) and descriptor constructor (T::refl_InitClass), the functions the
+// descriptor points to (those of a known uniform shape defined, the others declared) and the
+// attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
+#include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -14,37 +14,41 @@ using base::reflection::UnkReflField;
 using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
+using base::reflection::ClassDescription;
+using base::reflection::ClassOf;
+using base::reflection::ClassOfDestructorFirst;
+using base::reflection::Destroy;
+using base::reflection::DestroyDestructorFirst;
 
 // base::tunable::CTunable
-DREAD_REFL_TAG(7100135c1c);
-void fn_7100135a90(base::reflection::CClass*) {}
-void fn_7100135b88(CClass* cls) {
+namespace base::tunable::CTunable {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sName", true), fn_7100009658(), 0x10, -1, -1);
 }
-bool fn_7100138064(const void*, const void*) { return false; }
-s32 fn_710013806c() { return -1; }
-const base::reflection::CType& fn_7100138074(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100138090();
-void fn_7100138108(void*, const void*) {}
-void fn_710013810c(void*, const void*) {}
-void fn_7100138110(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_710013811c(void*, const void*) { return nullptr; }
-void* fn_7100138124(void*, const void*) { return nullptr; }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100135c1c> {
+bool refl_Equals(const void*, const void*) { return false; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void*, const void*) {}
+void refl_MoveConstruct(void*, const void*) {}
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void*, const void*) { return nullptr; }
+void* refl_MoveAssign(void*, const void*) { return nullptr; }
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x28;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100138064;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_710013806c;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100138074;
-    static constexpr UnkFn fn_0x28 = &fn_7100138090;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_7100138108;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_710013810c;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100138110;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_710013811c;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100138124;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(7100135a94, 7100135c1c, "base::tunable::CTunable", 7100023464, 7100135a90, 7100135b88);
+}  // namespace base::tunable::CTunable
+DREAD_REFLECTED_CLASS(base::tunable::CTunable, base::core::CBaseObject);
 
 void fn_7100137208();
 void fn_7100137270();
@@ -76,7 +80,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100137098> {
     static constexpr UnkFn fn_0xf0 = &fn_7100137208;
     static constexpr UnkFn fn_0xf8 = &fn_7100137270;
     static constexpr UnkFn fn_0x100 = &fn_710013727c;
-    static const CType* pointee() { return fn_7100135a94(); }
+    static const CType* pointee() { return base::tunable::CTunable::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100135da0> {

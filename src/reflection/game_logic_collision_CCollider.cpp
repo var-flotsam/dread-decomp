@@ -2,11 +2,11 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CPointerType.h"
 // Reflection descriptors for one original translation unit (1 type):
-// for each type, its getter (T::refl_GetClass) and, through the traits below, its
-// descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape and the attribute/member-field functions that
-// tools/refl_attrs.py reconstructs byte-identically.
-#include "base/reflection/CClass.h"
+// each class's functions are in a namespace of its name (base/reflection/ReflectedClass.h): its
+// getter (T::refl_GetClass) and descriptor constructor (T::refl_InitClass), the functions the
+// descriptor points to (those of a known uniform shape defined, the others declared) and the
+// attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
+#include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -14,14 +14,19 @@ using base::reflection::UnkReflField;
 using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
+using base::reflection::ClassDescription;
+using base::reflection::ClassOf;
+using base::reflection::ClassOfDestructorFirst;
+using base::reflection::Destroy;
+using base::reflection::DestroyDestructorFirst;
 
 // game::logic::collision::CCollider
-DREAD_REFL_TAG(7100d364c4);
-void fn_7100d361bc(base::reflection::CClass*) {}
 const base::reflection::CType* fn_71009155a8();
 void fn_7100d3f7f4();
 void fn_71000e8118(UnkReflField* field, u64 index);
-void fn_7100d362b4(CClass* cls) {
+namespace game::logic::collision::CCollider {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("pShape", true), fn_71009155a8(), 0xffffffff, -1, -1);
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_pShape_GetterFunction", true))) {
@@ -34,26 +39,21 @@ void fn_7100d362b4(CClass* cls) {
     }();
     fn_71000e8118(base::reflection::refl_FindField(cls, base::global::CName("pShape")), cls->m_array_0x110.size() - 1);
 }
-bool fn_7100d3f74c(const void*, const void*) { return false; }
-s32 fn_7100d3f754() { return -1; }
-const base::reflection::CType& fn_7100d3f75c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100d3f778();
-void fn_7100d3f7e8(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100d364c4> {
+bool refl_Equals(const void*, const void*) { return false; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_Destroy(void* obj) { Destroy(obj); }
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x188;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100d3f74c;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100d3f754;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100d3f75c;
-    static constexpr UnkFn fn_0x28 = &fn_7100d3f778;
-    static constexpr UnkFn_0x30 fn_0x30 = nullptr;
-    static constexpr UnkFn_0x30 fn_0x38 = nullptr;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100d3f7e8;
-    static constexpr UnkFn_0x48 fn_0x48 = nullptr;
-    static constexpr UnkFn_0x48 fn_0x50 = nullptr;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto destroy = &refl_Destroy;
 };
-DREAD_REFL_CLASS_GETTER(7100d361c0, 7100d364c4, "game::logic::collision::CCollider", 7100d35454, 7100d361bc, 7100d362b4);
+}  // namespace game::logic::collision::CCollider
+DREAD_REFLECTED_CLASS(game::logic::collision::CCollider, game::logic::collision::CBroadphaseObject);
 
 void fn_7100d3b7d8();
 void fn_7100d3b840();
@@ -97,7 +97,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100d3b668> {
     static constexpr UnkFn fn_0xf0 = &fn_7100d3b7d8;
     static constexpr UnkFn fn_0xf8 = &fn_7100d3b840;
     static constexpr UnkFn fn_0x100 = &fn_7100d3b960;
-    static const CType* pointee() { return fn_7100d361c0(); }
+    static const CType* pointee() { return game::logic::collision::CCollider::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100d37398> {
@@ -124,7 +124,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100d3db1c> {
     static constexpr UnkFn fn_0xf0 = &fn_7100d3dc8c;
     static constexpr UnkFn fn_0xf8 = &fn_7100d3dcf4;
     static constexpr UnkFn fn_0x100 = &fn_7100d3dd00;
-    static const CType* pointee() { return fn_7100d361c0(); }
+    static const CType* pointee() { return game::logic::collision::CCollider::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100d394ec> {

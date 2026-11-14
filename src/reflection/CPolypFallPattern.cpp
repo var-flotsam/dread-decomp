@@ -2,11 +2,11 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CPointerType.h"
 // Reflection descriptors for one original translation unit (2 types):
-// for each type, its getter (T::refl_GetClass) and, through the traits below, its
-// descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape and the attribute/member-field functions that
-// tools/refl_attrs.py reconstructs byte-identically.
-#include "base/reflection/CClass.h"
+// each class's functions are in a namespace of its name (base/reflection/ReflectedClass.h): its
+// getter (T::refl_GetClass) and descriptor constructor (T::refl_InitClass), the functions the
+// descriptor points to (those of a known uniform shape defined, the others declared) and the
+// attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
+#include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -14,12 +14,17 @@ using base::reflection::UnkReflField;
 using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
+using base::reflection::ClassDescription;
+using base::reflection::ClassOf;
+using base::reflection::ClassOfDestructorFirst;
+using base::reflection::Destroy;
+using base::reflection::DestroyDestructorFirst;
 
 // CPolypFallPattern
-DREAD_REFL_TAG(71005add94);
-void fn_71005ada80(base::reflection::CClass*) {}
 const base::reflection::UnkReflAttrKey& fn_7100075240();
-void fn_71005adb74(CClass* cls) {
+namespace CPolypFallPattern {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("fFarSpeed", true), fn_710000abbc(), 0x8, -1, -1);
     field0->attrs.Add<f32>(fn_7100075240(), 1.0f);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("fMiddleSpeed", true), fn_710000abbc(), 0xc, -1, -1);
@@ -27,37 +32,36 @@ void fn_71005adb74(CClass* cls) {
     UnkReflField* field2 = fn_7100096524(cls, CStrId("CloseSpeed", true), fn_710000abbc(), 0x10, -1, -1);
     field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
 }
-bool fn_71005b0d14(const void* a, const void* b) { return a == b; }
-s32 fn_71005b0d20() { return -1; }
-const base::reflection::CType& fn_71005b0d28(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_71005b0d44();
-void fn_71005b0d58(void* dst, const void* src);
-void fn_71005b0d7c(void* dst, const void* src);
-void fn_71005b0da0(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_71005b0dac(void* dst, const void* src);
-void* fn_71005b0dc8(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_71005add94> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x18;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_71005b0d14;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_71005b0d20;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_71005b0d28;
-    static constexpr UnkFn fn_0x28 = &fn_71005b0d44;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_71005b0d58;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_71005b0d7c;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_71005b0da0;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_71005b0dac;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_71005b0dc8;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_ROOT_CLASS_GETTER(71005ada84, 71005add94, "CPolypFallPattern", 71005ada80, 71005adb74);
+}  // namespace CPolypFallPattern
+DREAD_REFLECTED_ROOT_CLASS(CPolypFallPattern);
 
 // CCharClassHydrogigaPolypsAttack
-DREAD_REFL_TAG(71005af5d4);
-void fn_71005af038(base::reflection::CClass*) {}
 extern base::reflection::CType g_unk_71726e9b38;
 const base::reflection::UnkReflAttrKey& fn_7100091d40();
-void fn_71005af130(CClass* cls) {
+namespace CCharClassHydrogigaPolypsAttack {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("iAttackPattern", true), fn_7100014768(), 0xec, -1, -1);
     field0->attrs.Add<s32>(fn_7100075240(), -1);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeBetweenWaves", true), fn_710000abbc(), 0xf0, -1, -1);
@@ -73,26 +77,21 @@ void fn_71005af130(CClass* cls) {
     UnkReflField* field6 = fn_7100096524(cls, CStrId("tUnbreakableClosePatterns", true), &g_unk_71726e9b38, 0x150, -1, -1);
     field6->attrs_0x70.Add<bool>(fn_7100091d40(), true);
 }
-bool fn_71005b1d20(const void* a, const void* b) { return a == b; }
-s32 fn_71005b1d2c() { return -1; }
-const base::reflection::CType& fn_71005b1d34(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_71005b1d50();
-void fn_71005b1df4(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_71005af5d4> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_Destroy(void* obj) { Destroy(obj); }
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x178;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_71005b1d20;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_71005b1d2c;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_71005b1d34;
-    static constexpr UnkFn fn_0x28 = &fn_71005b1d50;
-    static constexpr UnkFn_0x30 fn_0x30 = nullptr;
-    static constexpr UnkFn_0x30 fn_0x38 = nullptr;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_71005b1df4;
-    static constexpr UnkFn_0x48 fn_0x48 = nullptr;
-    static constexpr UnkFn_0x48 fn_0x50 = nullptr;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto destroy = &refl_Destroy;
 };
-DREAD_REFL_CLASS_GETTER(71005af03c, 71005af5d4, "CCharClassHydrogigaPolypsAttack", 71005acc60, 71005af038, 71005af130);
+}  // namespace CCharClassHydrogigaPolypsAttack
+DREAD_REFLECTED_CLASS(CCharClassHydrogigaPolypsAttack, CCharClassHydrogigaAttack);
 
 void fn_71005afc08();
 void fn_71005afc70();
@@ -134,7 +133,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005afa98> {
     static constexpr UnkFn fn_0xf0 = &fn_71005afc08;
     static constexpr UnkFn fn_0xf8 = &fn_71005afc70;
     static constexpr UnkFn fn_0x100 = &fn_71005afc7c;
-    static const CType* pointee() { return fn_71005ada84(); }
+    static const CType* pointee() { return CPolypFallPattern::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71005adf20> {
@@ -161,7 +160,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005afd08> {
     static constexpr UnkFn fn_0xf0 = &fn_71005afe68;
     static constexpr UnkFn fn_0xf8 = &fn_71005afed0;
     static constexpr UnkFn fn_0x100 = &fn_71005afef4;
-    static const CType* pointee() { return fn_71005ada84(); }
+    static const CType* pointee() { return CPolypFallPattern::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71005adffc> {

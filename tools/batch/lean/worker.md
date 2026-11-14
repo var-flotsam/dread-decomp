@@ -1,12 +1,19 @@
-# Lean worker: decompile ONE function
+# Lean worker: decompile the functions in your brief
 
-You decompile one status-U function of dread-decomp (Metroid Dread, AArch64) into readable C++17 that compiles
-byte-identically with the project's Clang 9.0.1. Your brief gives: the worktree, the address, the target
-file pattern, and the attempt budget. Work only inside that worktree (`cd` there in every command).
+You decompile status-U functions of dread-decomp (Metroid Dread, AArch64) into readable C++17 that compiles
+byte-identically with the project's Clang 9.0.1. Your brief gives the worktree and one function or several
+from one unit, each with its address, target file pattern and attempt budget. Work only inside that worktree
+(`cd` there in every command).
+
+Several functions: read this file and `tools/batch/tips.md` once, then do steps 1 to 5 for each function in
+the order given, one at a time: finish one (its result file written) before you open the next one's context.
+Each function has its own budget; attempts left over on one never carry over to another. What you learn on
+one (a header, a declaration, a struct's layout, a source form that matched) carries over: use it. A
+function's own files count toward its two extra files, not the batch's.
 
 Keep your context small. It is the main cost of this run.
 - Do NOT read CLAUDE.md, docs/, the journal, or browse src/ broadly. Everything you need is here and in
-  `build/lean/ctx/<addr>.txt`. Open at most 2 other files (a header named in ctx, or one matched sibling
+  `build/lean/ctx/<addr>.txt`. Open at most 2 other files per function (a header named in ctx, or one matched sibling
   file from the same directory) and only if you need a type.
 - Grade only with `.venv/Scripts/python tools/batch/lean/try.py <file>`. It prints a short diff. Never run
   tools/trymatch.py -v directly, check.py, verify.py, decl_check.py without --symbol, permute.py,
@@ -15,7 +22,7 @@ Keep your context small. It is the main cost of this run.
 
 ## Steps
 
-1. Read `build/lean/ctx/<addr>.txt` and `tools/batch/tips.md` (where a tip and the rules below disagree, the
+1. Read `build/lean/ctx/<addr>.txt` and, for your first function, `tools/batch/tips.md` (where a tip and the rules below disagree, the
    rules win). The context ends with the reference matches ("Reference matches" below): read them before you
    write a line.
 2. Write the target file (replace `<What>` with one readable word for what the function does, e.g.
@@ -47,7 +54,7 @@ Keep your context small. It is the main cost of this run.
    `{"addr": "<addr>", "outcome": "match"|"registers"|"differs"|"skipped", "best": <0-100>, "attempts": <n>,
      "file": "<the src path you used>", "blocker": "<few words on what still differs>"}`
    (`attempts` is the n of try.py's last `ATTEMPT n of N` line.)
-6. Reply with exactly one line: `<addr> <outcome> <best>%`.
+6. When every function is done, reply with one line per function, in the brief's order: `<addr> <outcome> <best>%`.
 
 ## Reference matches
 
@@ -105,5 +112,5 @@ Foo"). Inline asm with instructions in it is never allowed.
 - Every callee and global you name must be the one the original uses at that place (ctx names them). A RELOC
   line from try.py means one is not: fix it before anything else.
 - If the function you DEFINE is declared elsewhere (git grep), use that parameter list exactly.
-- Write only your one target file (plus the draft/result files above). Never edit any other file, a header
+- Write only your target files (plus the draft/result files above). Never edit any other file, a header
   included: parallel workers share them, and the coordinator moves shared declarations to headers afterwards.

@@ -7,7 +7,7 @@ description: Hand-match Metroid Dread functions in var-flotsam/dread-decomp one 
 
 Hand-matching for `var-flotsam/dread-decomp`: one session, one function at a time, a pull request per
 cluster. `CLAUDE.md` loads by itself and its hard rules apply; this is the working procedure under them.
-(A batch of worker agents is a different thing: `tools/batch/lean/`, and it needs the owner's go-ahead.)
+(A batch of worker agents is a different thing: `tools/batch/lean/`; its shape is in `tools/batch/README.md`, "Batches".)
 
 Run Python as `.venv/Scripts/python` from the repository root (Git Bash; forward slashes). Long commands
 (`tools/verify.py`, `tools/check.py`: 8 to 13 minutes) go in the background; don't edit `src/` or `include/`
@@ -93,7 +93,7 @@ shared template.
 
 ## Before the pull request
 
-Every 15 to 30 functions, or a hub cluster:
+When the work is ready to review (a class, a hub cluster, or any coherent set):
 
 ```sh
 git fetch origin main && git merge origin/main
@@ -108,7 +108,7 @@ python -m unittest discover -s tools/tests -t .           # when a tool changed
 a conflict in `data/functions/`, take `origin/main`'s files and let `check.py --update` derive the statuses
 again; never merge them by hand. Then:
 
-- Commit with a `Phase 4.x:` prefix. Add an entry at the top of `docs/JOURNAL.md` (what matched, what did
+- Commit with a message that says what changed. Add an entry at the top of `docs/JOURNAL.md` (what matched, what did
   not and why, anything reusable). Leave `docs/HANDOFF.md` alone unless you are the session that merges.
 - `git push -u origin <branch>`, then open the pull request with the template's headings (What this changes
   / Progress / Checklist); give matching and done before and after from `tools/progress.py`.

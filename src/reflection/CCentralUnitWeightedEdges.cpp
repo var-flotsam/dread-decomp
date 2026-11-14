@@ -2,11 +2,11 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CPointerType.h"
 // Reflection descriptors for one original translation unit (1 type):
-// for each type, its getter (T::refl_GetClass) and, through the traits below, its
-// descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape and the attribute/member-field functions that
-// tools/refl_attrs.py reconstructs byte-identically.
-#include "base/reflection/CClass.h"
+// each class's functions are in a namespace of its name (base/reflection/ReflectedClass.h): its
+// getter (T::refl_GetClass) and descriptor constructor (T::refl_InitClass), the functions the
+// descriptor points to (those of a known uniform shape defined, the others declared) and the
+// attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
+#include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -14,15 +14,20 @@ using base::reflection::UnkReflField;
 using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
+using base::reflection::ClassDescription;
+using base::reflection::ClassOf;
+using base::reflection::ClassOfDestructorFirst;
+using base::reflection::Destroy;
+using base::reflection::DestroyDestructorFirst;
 
 // CCentralUnitWeightedEdges
-DREAD_REFL_TAG(710076a50c);
-void fn_710076a0f4(base::reflection::CClass*) {}
 const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_717269bb48;
 const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
-void fn_710076a1e8(CClass* cls) {
+namespace CCentralUnitWeightedEdges {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sId", true), fn_7100009658(), 0x8, -1, -1);
     field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("pLogicShape", true), &g_unk_717269bb48, 0x10, -1, -1);
@@ -32,26 +37,21 @@ void fn_710076a1e8(CClass* cls) {
     UnkReflField* field3 = fn_7100096524(cls, CStrId("fFactorToMultiply", true), fn_710000abbc(), 0x54, -1, -1);
     field3->attrs.Add<f32>(fn_7100075240(), 1.0f);
 }
-bool fn_7100778894(const void* a, const void* b) { return a == b; }
-s32 fn_71007788a0() { return -1; }
-const base::reflection::CType& fn_71007788a8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_71007788c4();
-void fn_7100778988(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_710076a50c> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_Destroy(void* obj) { Destroy(obj); }
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0xc0;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100778894;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_71007788a0;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_71007788a8;
-    static constexpr UnkFn fn_0x28 = &fn_71007788c4;
-    static constexpr UnkFn_0x30 fn_0x30 = nullptr;
-    static constexpr UnkFn_0x30 fn_0x38 = nullptr;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100778988;
-    static constexpr UnkFn_0x48 fn_0x48 = nullptr;
-    static constexpr UnkFn_0x48 fn_0x50 = nullptr;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto destroy = &refl_Destroy;
 };
-DREAD_REFL_ROOT_CLASS_GETTER(710076a0f8, 710076a50c, "CCentralUnitWeightedEdges", 710076a0f4, 710076a1e8);
+}  // namespace CCentralUnitWeightedEdges
+DREAD_REFLECTED_ROOT_CLASS(CCentralUnitWeightedEdges);
 
 // Statics of this TU that aren't reconstructed: padding that puts the descriptors at
 // their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).
@@ -104,7 +104,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710077641c> {
     static constexpr UnkFn fn_0xf0 = &fn_710077658c;
     static constexpr UnkFn fn_0xf8 = &fn_71007765f4;
     static constexpr UnkFn fn_0x100 = &fn_7100776600;
-    static const CType* pointee() { return fn_710076a0f8(); }
+    static const CType* pointee() { return CCentralUnitWeightedEdges::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_710076a7d0> {
@@ -131,7 +131,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710077668c> {
     static constexpr UnkFn fn_0xf0 = &fn_71007767ec;
     static constexpr UnkFn fn_0xf8 = &fn_7100776854;
     static constexpr UnkFn fn_0x100 = &fn_7100776878;
-    static const CType* pointee() { return fn_710076a0f8(); }
+    static const CType* pointee() { return CCentralUnitWeightedEdges::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_710076a8ac> {

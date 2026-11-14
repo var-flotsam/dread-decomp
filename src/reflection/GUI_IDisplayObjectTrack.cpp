@@ -2,11 +2,11 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CPointerType.h"
 // Reflection descriptors for one original translation unit (4 types):
-// for each type, its getter (T::refl_GetClass) and, through the traits below, its
-// descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape and the attribute/member-field functions that
-// tools/refl_attrs.py reconstructs byte-identically.
-#include "base/reflection/CClass.h"
+// each class's functions are in a namespace of its name (base/reflection/ReflectedClass.h): its
+// getter (T::refl_GetClass) and descriptor constructor (T::refl_InitClass), the functions the
+// descriptor points to (those of a known uniform shape defined, the others declared) and the
+// attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
+#include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -14,134 +14,133 @@ using base::reflection::UnkReflField;
 using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
+using base::reflection::ClassDescription;
+using base::reflection::ClassOf;
+using base::reflection::ClassOfDestructorFirst;
+using base::reflection::Destroy;
+using base::reflection::DestroyDestructorFirst;
 
 // GUI::IDisplayObjectTrack
-DREAD_REFL_TAG(7100b0db48);
-void fn_7100b0da50(base::reflection::CClass*) {}
-void fn_7100b0db44(base::reflection::CClass*) {}
-bool fn_7100b15fdc(const void* a, const void* b) { return a == b; }
-s32 fn_7100b15fe8() { return -1; }
-const base::reflection::CType& fn_7100b15ff0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100b1600c(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_7100b16018(void* dst, const void* src);
-void* fn_7100b1601c(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100b0db48> {
+namespace GUI::IDisplayObjectTrack {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass*) {}
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x8;
     static constexpr bool abstract = true;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100b15fdc;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100b15fe8;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100b15ff0;
-    static constexpr UnkFn fn_0x28 = nullptr;
-    static constexpr UnkFn_0x30 fn_0x30 = nullptr;
-    static constexpr UnkFn_0x30 fn_0x38 = nullptr;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100b1600c;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_7100b16018;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100b1601c;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_ROOT_CLASS_GETTER(7100b0da54, 7100b0db48, "GUI::IDisplayObjectTrack", 7100b0da50, 7100b0db44);
+}  // namespace GUI::IDisplayObjectTrack
+DREAD_REFLECTED_ROOT_CLASS(GUI::IDisplayObjectTrack);
 
 // GUI::CDisplayObjectTrackFloat
-DREAD_REFL_TAG(7100b0ef74);
-void fn_7100b0ed00(base::reflection::CClass*) {}
 extern base::reflection::CType g_unk_71727600a0;
-void fn_7100b0edf8(CClass* cls) {
+namespace GUI::CDisplayObjectTrackFloat {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("aKeys", true), &g_unk_71727600a0, 0x40, -1, -1);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("sPropertyID", true), fn_7100007f84(), 0x8, -1, -1);
     UnkReflField* field2 = fn_7100096524(cls, CStrId("iLoopStartFrame", true), fn_7100014768(), 0x3c, -1, -1);
 }
-bool fn_7100b16dcc(const void* a, const void* b) { return a == b; }
-s32 fn_7100b16dd8() { return -1; }
-const base::reflection::CType& fn_7100b16de0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100b16dfc();
-void fn_7100b16e8c(void* dst, const void* src);
-void fn_7100b16eec(void* dst, const void* src);
-void fn_7100b16f4c(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_7100b16f58(void* dst, const void* src);
-void* fn_7100b16fa4(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100b0ef74> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x68;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100b16dcc;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100b16dd8;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100b16de0;
-    static constexpr UnkFn fn_0x28 = &fn_7100b16dfc;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_7100b16e8c;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_7100b16eec;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100b16f4c;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_7100b16f58;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100b16fa4;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(7100b0ed04, 7100b0ef74, "GUI::CDisplayObjectTrackFloat", 7100b0da54, 7100b0ed00, 7100b0edf8);
+}  // namespace GUI::CDisplayObjectTrackFloat
+DREAD_REFLECTED_CLASS(GUI::CDisplayObjectTrackFloat, GUI::IDisplayObjectTrack);
 
 // GUI::CDisplayObjectTrackBool
-DREAD_REFL_TAG(7100b10570);
-void fn_7100b102fc(base::reflection::CClass*) {}
 extern base::reflection::CType g_unk_71727605d8;
-void fn_7100b103f4(CClass* cls) {
+namespace GUI::CDisplayObjectTrackBool {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("aKeys", true), &g_unk_71727605d8, 0x40, -1, -1);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("sPropertyID", true), fn_7100007f84(), 0x8, -1, -1);
     UnkReflField* field2 = fn_7100096524(cls, CStrId("iLoopStartFrame", true), fn_7100014768(), 0x3c, -1, -1);
 }
-bool fn_7100b1851c(const void* a, const void* b) { return a == b; }
-s32 fn_7100b18528() { return -1; }
-const base::reflection::CType& fn_7100b18530(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100b1854c();
-void fn_7100b185dc(void* dst, const void* src);
-void fn_7100b1863c(void* dst, const void* src);
-void fn_7100b1869c(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_7100b186a8(void* dst, const void* src);
-void* fn_7100b186f4(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100b10570> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x68;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100b1851c;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100b18528;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100b18530;
-    static constexpr UnkFn fn_0x28 = &fn_7100b1854c;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_7100b185dc;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_7100b1863c;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100b1869c;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_7100b186a8;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100b186f4;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(7100b10300, 7100b10570, "GUI::CDisplayObjectTrackBool", 7100b0da54, 7100b102fc, 7100b103f4);
+}  // namespace GUI::CDisplayObjectTrackBool
+DREAD_REFLECTED_CLASS(GUI::CDisplayObjectTrackBool, GUI::IDisplayObjectTrack);
 
 // GUI::CDisplayObjectTrackString
-DREAD_REFL_TAG(7100b11b6c);
-void fn_7100b118f8(base::reflection::CClass*) {}
 extern base::reflection::CType g_unk_7172760b10;
-void fn_7100b119f0(CClass* cls) {
+namespace GUI::CDisplayObjectTrackString {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("aKeys", true), &g_unk_7172760b10, 0x40, -1, -1);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("sPropertyID", true), fn_7100007f84(), 0x8, -1, -1);
     UnkReflField* field2 = fn_7100096524(cls, CStrId("iLoopStartFrame", true), fn_7100014768(), 0x3c, -1, -1);
 }
-bool fn_7100b19d04(const void* a, const void* b) { return a == b; }
-s32 fn_7100b19d10() { return -1; }
-const base::reflection::CType& fn_7100b19d18(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100b19d34();
-void fn_7100b19dc4(void* dst, const void* src);
-void fn_7100b19e24(void* dst, const void* src);
-void fn_7100b19e84(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_7100b19e90(void* dst, const void* src);
-void* fn_7100b19edc(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100b11b6c> {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x68;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100b19d04;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100b19d10;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100b19d18;
-    static constexpr UnkFn fn_0x28 = &fn_7100b19d34;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_7100b19dc4;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_7100b19e24;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100b19e84;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_7100b19e90;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100b19edc;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_CLASS_GETTER(7100b118fc, 7100b11b6c, "GUI::CDisplayObjectTrackString", 7100b0da54, 7100b118f8, 7100b119f0);
+}  // namespace GUI::CDisplayObjectTrackString
+DREAD_REFLECTED_CLASS(GUI::CDisplayObjectTrackString, GUI::IDisplayObjectTrack);
 
 void fn_7100b13064();
 void fn_7100b130cc();
@@ -173,7 +172,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100b12ef4> {
     static constexpr UnkFn fn_0xf0 = &fn_7100b13064;
     static constexpr UnkFn fn_0xf8 = &fn_7100b130cc;
     static constexpr UnkFn fn_0x100 = &fn_7100b130d8;
-    static const CType* pointee() { return fn_7100b0da54(); }
+    static const CType* pointee() { return GUI::IDisplayObjectTrack::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100b0dcb4> {

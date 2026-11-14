@@ -2,39 +2,45 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CPointerType.h"
 // Reflection descriptors for one original translation unit (1 type):
-// for each type, its getter (T::refl_GetClass) and, through the traits below, its
-// descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape and the attribute/member-field functions that
-// tools/refl_attrs.py reconstructs byte-identically.
-#include "base/reflection/CClass.h"
+// each class's functions are in a namespace of its name (base/reflection/ReflectedClass.h): its
+// getter (T::refl_GetClass) and descriptor constructor (T::refl_InitClass), the functions the
+// descriptor points to (those of a known uniform shape defined, the others declared) and the
+// attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
+#include "base/reflection/ReflectedClass.h"
+using base::reflection::CClass;
+using base::reflection::ClassDescription;
+using base::reflection::ClassOf;
+using base::reflection::ClassOfDestructorFirst;
+using base::reflection::Destroy;
+using base::reflection::DestroyDestructorFirst;
 
 // CExplosionGfx
-DREAD_REFL_TAG(7100de0260);
-void fn_7100ddf340(base::reflection::CClass*) {}
-bool fn_7100de1b98(const void* a, const void* b) { return a == b; }
-s32 fn_7100de1ba4() { return -1; }
-const base::reflection::CType& fn_7100de1bac(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100de1bc8();
-void fn_7100de1bcc(void* dst, const void* src);
-void fn_7100de1bd0(void* dst, const void* src);
-void fn_7100de1bd4(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_7100de1be0(void* dst, const void* src);
-void* fn_7100de1c10(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100de0260> {
+namespace CExplosionGfx {
+void refl_AddAttributes(CClass*) {}
+void refl_AddFields(CClass* cls);
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
+void refl_Construct(void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj) { Destroy(obj); }
+void* refl_CopyAssign(void* dst, const void* src);
+void* refl_MoveAssign(void* dst, const void* src);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0x278;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100de1b98;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100de1ba4;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100de1bac;
-    static constexpr UnkFn fn_0x28 = &fn_7100de1bc8;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_7100de1bcc;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_7100de1bd0;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100de1bd4;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_7100de1be0;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100de1c10;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
 };
-DREAD_REFL_ROOT_CLASS_GETTER(7100ddf344, 7100de0260, "CExplosionGfx", 7100ddf340, 7100ddf434);
+}  // namespace CExplosionGfx
+DREAD_REFLECTED_ROOT_CLASS(CExplosionGfx);
 
 void fn_7100de179c();
 void fn_7100de1804();
@@ -78,7 +84,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100de162c> {
     static constexpr UnkFn fn_0xf0 = &fn_7100de179c;
     static constexpr UnkFn fn_0xf8 = &fn_7100de1804;
     static constexpr UnkFn fn_0x100 = &fn_7100de1810;
-    static const CType* pointee() { return fn_7100ddf344(); }
+    static const CType* pointee() { return CExplosionGfx::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100dded9c> {
@@ -105,7 +111,7 @@ struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100de189c> {
     static constexpr UnkFn fn_0xf0 = &fn_7100de1a0c;
     static constexpr UnkFn fn_0xf8 = &fn_7100de1a74;
     static constexpr UnkFn fn_0x100 = &fn_7100de1a80;
-    static const CType* pointee() { return fn_7100ddf344(); }
+    static const CType* pointee() { return CExplosionGfx::refl_GetClass(); }
 };
 template <>
 struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100ddee78> {
