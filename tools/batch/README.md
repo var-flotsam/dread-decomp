@@ -6,10 +6,19 @@ symbol, `drafts/`, and who merges. It runs in place from this folder. The kit th
 one worker per batch of about 30 functions of one unit) was removed on 2026-11-14; it is in git history at
 commit `eed157e8`.
 
-**Bulk runs are on hold** (owner, 2026-11-11; `docs/HANDOFF.md`, "Direction"). A kit that follows the rules is
-a precondition for lifting the hold, not the decision: each batch needs the owner's go-ahead.
+## Batches
 
-## lean/: one worker per function
+The hold on bulk runs (owner, 2026-11-11) was lifted on 2026-11-14. A batch needs no go-ahead of its own when
+it keeps this shape; anything else (larger functions, another kit, a change to shared headers by workers) is
+still the owner's call:
+- at most about 100 functions, `U`, 400 bytes or less (the pilot's rate fell above that), drawn from
+  `tools/hubs.py --ready` or one class's unit;
+- several functions of one unit to a worker (`coord.py wave --per-worker`, 10 by default from `prepare.py`);
+- every step of `lean/COORDINATOR.md` after the workers, and every gate of its step 11, green before the pull
+  request; the pull request reports matches, tokens per match (`lean/usage.py`) and the declaration counts
+  before and after, which is what the owner reads.
+
+## lean/: the kit
 
 `lean/COORDINATOR.md` is the procedure the coordinating session follows, `lean/worker.md` the brief each
 worker gets.
@@ -40,7 +49,8 @@ What changed from the kit the runs used, and why:
 What has been measured (details in `docs/JOURNAL.md`):
 
 - Every worker starts at about 100,000 tokens of context, so one-function workers cost two to eight times a
-  batch worker per match.
+  batch worker per match. Since 2026-11-14 a worker takes several functions of one unit (`--per-worker`);
+  not yet measured here.
 - 40-function test, 2026-11-12: giving workers the unit headers and the reflected members changed nothing
   (7 of 20 against 8 of 20 matches); about 310,000 Sonnet tokens per match.
 - Pilot of 50 ready boot-path functions of 130 to 600 bytes, 2026-11-12: 8 matches, 10 registers-only, about

@@ -67,8 +67,12 @@ they already own. Hand-typed code is the completion metric; lifted code is scaff
 public, to get outside help. Decompilation is complete when every function is hand-written, readable and
 proven equivalent: a byte match, or a registers-only difference that a machine test confirms (three tiers,
 `CLAUDE.md`); readability outranks a match. Generated code, `src/lifted` included, is a stepping stone. A template family (the reflection boilerplate) counts as hand-written once its template
-reads as source. `nn::atk` is decompiled as its own library (`docs/reference.md`). **Bulk agent runs are on hold**
-until class and declaration headers are generated for workers to share (`check.py` compares string and constant
+reads as source. `nn::atk` is decompiled as its own library (`docs/reference.md`). **The hold on bulk agent runs
+was lifted on 2026-11-14** (owner, in the audit of what slows progress): a batch runs without a go-ahead of its
+own when it keeps the kit's shape (`tools/batch/README.md`, "Batches") and passes every gate; the owner reads
+the numbers in its pull request. Each worker now takes several functions of one unit (`coord.py wave
+--per-worker`), since a worker's start-up of about 100,000 tokens is what made the pilot cost 736,000 a match.
+The hold had been on until class and declaration headers were generated for workers to share (`check.py` compares string and constant
 contents since #355; unit headers hold the one declaration of 2,025 shared symbols since #360 and #362, and
 `data/reflection_fields.csv` lists every reflected member since #365; the 40-function test of 2026-11-12 showed
 no gain from them, so what is left is a worker brief that adds declarations to headers, open decision 4); `nn::atk` is the exception. The owner allowed one measured pilot on 2026-11-12: 50 ready
@@ -100,7 +104,7 @@ the older per-stream lists are in the journal, "Handoff next-steps snapshot").
 | Proof and drafts | `drafts/`, `data/equivalence.csv`, `tools/equiv_test.py`, `tools/permute.py` | `claude/<topic>` | The machine test's inputs (in progress; then `fn_7100e3cee0`); then `permute.py` and `equiv_test.py` over the registers-only rows of `drafts/INDEX.csv`; steering forms out of matched functions (`tools/progress.py --quality`) |
 | Names | `data/names.csv` | `claude/<topic>` | The nine X parasite functions that keep their addresses until their purpose is clear (`tools/rename.py`) |
 | Port layer | `port/` | `claude/port-<topic>` | M1/M2: the frame loop's traps (`fn_710014d1a0`), the 26 unbindable function-local statics (journal round 8), drop the 11 byte-mode overrides once src/lifted is regenerated; M2: alpha test, Vulkan surface, texel upload, render-target formats 0x29/0x32 |
-| Tooling | `tools/`, `.github/` | `claude/<topic>` | Boot trace from Eden's GDB stub; the lean kit's first worker batch (reference matches, 3-attempt cap; needs the owner's go-ahead); the lifted-function recount for this page; subsystem inference from `tu_map.csv` and the `runtime?` inference that marks matched functions `L`; the 504 `src/game_*` files with no known unit and their 15 local headers (to `include/`) |
+| Tooling | `tools/`, `.github/` | `claude/<topic>` | Boot trace from Eden's GDB stub; the lean kit's first batch with several functions to a worker (reference matches, 3-attempt cap; measure tokens per match against the pilot's 736,000); the lifted-function recount for this page; subsystem inference from `tu_map.csv` and the `runtime?` inference that marks matched functions `L`; the 504 `src/game_*` files with no known unit and their 15 local headers (to `include/`) |
 | Generators | `tools/gen_*.py`, generated `src/` directories | `claude/gen-<topic>`, `claude/lifter-<topic>` | Indirect calls with stack arguments (count the outgoing slots, compare them in the oracle), inputs that crash or loop on every seed, the oracle's rejections |
 
 Merging: merge `main` into the branch, take `main`'s `data/functions/*.csv`, rerun only the generator you
@@ -110,7 +114,7 @@ journal entry.
 
 ## Open decisions for the owner
 
-None open. Decided on 2026-11-13: the hold on bulk runs stays; no bulk move of copied types (they go to
+None open. Decided on 2026-11-14: the hold on bulk runs is lifted for batches that keep the kit's shape and pass every gate, with several functions to a worker. Decided on 2026-11-13: no bulk move of copied types (they go to
 their class's header as each class is done); the weekly sampled read is not scheduled; a new function that
 neither matches nor is verified goes to `drafts/` unless the port needs it; a local that is never set is not
 read (`UnkNoArg`); `tools/struct_check.py --base` runs in CI. Decided on 2026-11-12:
