@@ -47,6 +47,7 @@
 #include "game/UnkTU2733.h"
 #include "game/UnkTU2768.h"
 #include "game/UnkTU341.h"
+#include "game/UnkTU500.h"
 #include "game/UnkTU57.h"
 #include "game/UnkTU63.h"
 #include "game/UnkTU83.h"
@@ -614,7 +615,6 @@ using base::global::CStrId;
 // The user data's owner, created on first use (as src/game/CBossRushManager.cpp has it).
 struct UnkUserDataOwner;
 bool fn_71010474f4(CBlackboard* self, const CStrId& section, const CStrId& name);
-bool fn_7100395b34(CBlackboard::CSection* section, const void* name, f32* out);
 extern u8 g_unk_71727be8a8[];
 
 static inline UnkUserDataOwner* GetOwner_e04b00() {

@@ -10,13 +10,13 @@
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU500.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 // As src/game/CSecondaryGun/CSecondaryGun_b41.cpp and src/game/CGameManager.cpp declare them.
 struct UnkInventory;
-bool fn_7100395b34(CBlackboard::CSection*, const void*, f32*);
 
 // The item's qualified id, built on first use (as src/game_s7/fn_7100fc4b34.cpp's).
 static inline const UnkQualifiedId& Qid(UnkPropertyEx<>& item) {

@@ -8,12 +8,12 @@
 #include "game/CScenario.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU341.h"
+#include "game/UnkTU500.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 bool fn_7100395a30(CBlackboard::CSection*, const void*, s32*);
-bool fn_7100395b34(CBlackboard::CSection*, const void*, f32*);
 struct UnkEntityState;
 
 struct UnkPersistenceKey_b49 {

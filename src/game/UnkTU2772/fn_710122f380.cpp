@@ -1,8 +1,5 @@
+#include "game/UnkTU2772.h"
 #include "types.h"
-
-struct UnkAtkEmitter_b0147;
-void fn_710122d048(UnkAtkEmitter_b0147* e);
-void fn_710122d3bc(UnkAtkEmitter_b0147* e);
 
 struct UnkAtkLink_b0147 {
     UnkAtkLink_b0147* prev;
@@ -35,11 +32,8 @@ void fn_710122f380(UnkAtkEmitterSet_b0147* self) {
 #if 0
 // o0319 alternative: walking the second pass through a different link type stops the empty-list jump threading;
 // only the second loop's compare operand order still differs.
+#include "game/UnkTU2772.h"
 #include "types.h"
-
-struct UnkAtkEmitter_b0147;
-void fn_710122d048(UnkAtkEmitter_b0147* e);
-void fn_710122d3bc(UnkAtkEmitter_b0147* e);
 
 struct UnkAtkLink_o0319 {
     UnkAtkLink_o0319* prev;

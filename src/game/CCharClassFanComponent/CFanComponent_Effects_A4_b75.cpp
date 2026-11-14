@@ -6,11 +6,11 @@
 #include "base/global/CStrId.h"
 #include "base/math/UnkZeroVector3.h"
 #include "game/CFXComponent.h"
+#include "game/UnkTU284.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 
-void fn_7100207be8(UnkXformNode* self, const UnkVec3f* v);
 
 struct UnkFanDesc_A4_b75 {
     u8 pad_0x0[0x60];

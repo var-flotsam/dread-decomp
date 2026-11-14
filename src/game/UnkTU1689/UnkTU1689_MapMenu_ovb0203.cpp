@@ -4,6 +4,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
+#include "base/math/UnkOneVector3.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/GUI/CAmiiboComposition.h"
@@ -172,7 +173,6 @@ extern UnkStateKey g_unk_71729f0178;
 struct UnkMapMenuControllerClose;
 
 // ---- fn_7100b37b80
-extern const base::math::CVector3D g_unk_71016477a8;
 
 static inline const base::math::CVector3D* Colors_ovb0203() {
     return reinterpret_cast<const base::math::CVector3D*>(&g_unk_71727ca410);

@@ -1671,7 +1671,7 @@ address,size,name,name_source,subsystem,status
 0x7100572734,468,fn_7100572734,unknown,unknown,U
 0x7100572908,320,fn_7100572908,unknown,unknown,U
 0x7100572a48,32,fn_7100572a48,unknown,unknown,O
-0x7100572a68,316,fn_7100572a68,unknown,unknown,U
+0x7100572a68,316,fn_7100572a68,unknown,unknown,m
 0x7100572ba4,1152,fn_7100572ba4,unknown,unknown,U
 0x7100573024,36,fn_7100573024,unknown,unknown,O
 0x7100573048,4,fn_7100573048,unknown,unknown,O

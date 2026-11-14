@@ -1,16 +1,15 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "base/math/UnkOneVector3.h"
+#include "game/UnkTU284.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
+#include "game/CFXComponent.h"
 
 struct UnkWorld;
 struct UnkPart;
-UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 struct UnkObject;
-bool fn_710114e680(UnkObject*, u8);
-void fn_7100207be8(UnkXformNode* self, const UnkVec3f* v);
-extern const base::math::CVector3D g_unk_71016477a8;
 
 struct UnkEmmyPart_b0258p {
     u8 pad_0x0[0xb];
@@ -54,6 +53,7 @@ struct UnkEmmyBehavior_b0258p {
     f32 field_0x68;
 };
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_7100572a68(UnkEmmyBehavior_b0258p* self) {
     if (!self->active)
         return;

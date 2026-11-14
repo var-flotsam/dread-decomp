@@ -11,6 +11,7 @@
 #include "base/math/CVector.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU500.h"
 #include "game/UnkTU85.h"
 #include "game/UnkTUProperty.h"
 #include "game/behaviortree/CBehavior.h"
@@ -103,7 +104,6 @@ static inline bool Get(UnkBehaviorObject_ovb0265* obj, u64 key, void* out) {
 
 
 // Signature as src/game/CBossRushManager.cpp declares it.
-bool fn_7100395b34(CBlackboard::CSection* section, const void* name, f32* out);
 
 struct UnkSelf;
 
