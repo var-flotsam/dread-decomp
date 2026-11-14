@@ -36,7 +36,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71001c5db4,380,drafts/game/UnkTU258/fn_71001c5db4.cpp,conditions,98.9,1,overnight,
 0x71001c9550,456,drafts/game/UnkTU259/fn_71001c9550.cpp,operations,93.0,8,overnight,
 0x71001d70b8,508,drafts/game/UnkTU259/fn_71001d70b8.cpp,registers or order,98.4,2,overnight,
-0x71001db2b8,252,drafts/game/UnkTU260/fn_71001db2b8.cpp,match,100.0,0,overnight,matches; held: 5 declaration problems: src/game/UnkTU260/fn_71001db2b8.cpp:26 fn_710014c864: void fn_710014c864(UnkSetupSubB*; void*; u32) -> signature differs from every existing one; copy one of these exactly: ...
 0x71001dea8c,348,drafts/game/UnkTU260/fn_71001dea8c.cpp,registers or order,97.7,2,overnight,
 0x71001f9e8c,188,drafts/game/UnkTU277/fn_71001f9e8c.cpp,conditions,97.9,1,overnight,
 0x71001fca5c,580,drafts/game/UnkTU280/fn_71001fca5c.cpp,registers or order,93.8,9,overnight,

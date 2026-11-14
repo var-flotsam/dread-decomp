@@ -13,6 +13,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2565.h"
 #include "game/UnkTU2566.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkXformNode.h"
@@ -32,7 +33,6 @@ struct UnkMapData;
 struct UnkBox;
 struct UnkPlayer;
 struct UnkFlagged;
-void fn_7100e796c4(void* target, const UnkBox* box, const UnkBox* bounds);
 struct UnkShape;
 struct UnkTypedValue {
     const base::reflection::CType* type;
@@ -157,4 +157,3 @@ bool fn_7100e9d6f8(UnkMmOwner_b0199* self, UnkMmArg2_b0199* arg) {
     fn_7100e9d7fc((UnkMapData*)self);
     return false;
 }
-

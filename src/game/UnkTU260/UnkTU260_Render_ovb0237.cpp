@@ -8,6 +8,7 @@
 #include "game/UnkTU182.h"
 #include "game/UnkTU259.h"
 #include "types.h"
+#include "game/UnkTU151.h"
 
 using base::global::CStrId;
 
@@ -65,19 +66,6 @@ struct UnkParamB_b0237 {
     u8 field_0x24;
 };
 
-struct UnkSetupSub_b0237 {
-    u8 pad_0x0[0x1];
-};
-struct UnkSetupArg_b0237 {
-    u64 a;
-    u32 b;
-    u32 c;
-};
-void fn_710014d150(UnkSetupSub_b0237* sub, void* block, u32 flag);
-void fn_710014d17c(UnkSetupSub_b0237* sub, UnkSetupArg_b0237* arg);
-void fn_710014cb98(UnkSetupSub_b0237* sub, u32 a, void* id, u32 b, u32 c);
-void fn_710014c864(UnkSetupSub_b0237* sub, void* p, u32 a);
-u64 fn_710014d1a0(UnkSetupSub_b0237* sub);
 void fn_710015c420(void* object, u32* w, u32* h);
 void fn_710014cfb4(UnkSetupSub_b0237* sub, u32 a, f32* v);
 f32 fn_71001d0a70(UnkRenderTargetA1* target);
@@ -193,6 +181,25 @@ __attribute__((noinline)) void fn_71001dba58(UnkRenderOwner_b0237* self, void* i
     fn_710014c864(sub, p, 0);
     fn_710014d1a0(sub);
     fn_71001cdd70(self->target);
+}
+
+// Draws with the slot the next index names: the current index is swapped for it around fn_71001dba58,
+// then the setup's values are kept at +0x420.
+void fn_71001db2b8(UnkRenderOwner_b0237* self) {
+    fn_71001cdd6c(self->target, g_unk_716e596120);
+    u32 index = self->next_slot_index;
+    u32 saved = self->slot_index;
+    self->slot_index = index;
+    fn_71001dba58(self, fn_710015c450(self->slots_0x470[index]), self->field_0x418);
+    self->field_0x420 = self->field_0x118;
+    u32 w = self->field_0x120;
+    u8* dst = self->field_0x42c;
+    self->slot_index = saved;
+    self->field_0x428 = w;
+    __builtin_memcpy(dst, reinterpret_cast<u8*>(&self->field_0x120) + 4, 8);
+    self->field_0x434 = self->field_0x12c;
+    fn_71001cdd70(self->target);
+    self->field_0x43c = 0;
 }
 
 void fn_71001de554(UnkRenderOwner_b0237* self) {
