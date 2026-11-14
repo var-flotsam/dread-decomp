@@ -238,16 +238,19 @@ def reflection_names(g: "Getter") -> dict[int, str]:
 
 # Declarations ReflectedFields.h already brings: the named attribute keys and the enum types of the typed ones.
 KEY_DECL_RE = re.compile(r"^(?:const base::reflection::UnkReflAttrKey& fn_|extern base::reflection::CType g_unk_)([0-9a-f]+)(?:\(\))?;$")
-FIELD_MACRO_RE = re.compile(r"\bDREAD_REFLECTED_(?:FIELD|PROPERTY|READ_ONLY_PROPERTY)\(")  # ReflectedFields.h
+GETTER_DECL_RE = re.compile(r"^const base::reflection::C(?:Type|Class)\* fn_([0-9a-f]+)\(\);$")
+FIELD_MACRO_RE = re.compile(r"\bDREAD_REFLECTED_(?:FIELD|CLASS_FIELD|PROPERTY|READ_ONLY_PROPERTY)\(")  # ReflectedFields.h
 DECLARED_KEYS = set(refl_attrs.ATTRIBUTE_NAMES) | set(refl_attrs.TYPED_KEYS.values())
 
 
 def readable_class_lines(orig: asmdiff.Original, g: "Getter", size: int, attr_sources: dict[int, tuple[list[str], str]],
-                         macro: str, parent: str | None, declared: set[str]) -> tuple[list[str], int, int]:
+                         macro: str, parent: str | None, declared: set[str],
+                         class_types: dict[int, str] | None = None) -> tuple[list[str], int, int]:
     """One class in the readable form: the declarations its attribute and member-field functions need,
     its namespace (helpers, those functions, the description) and the getter's macro. Returns the
     lines, the helpers defined and the attribute/field functions defined. `declared` holds the file's
-    declarations so far (each is written once per file)."""
+    declarations so far (each is written once per file). `class_types` maps the getters of the classes
+    in this form to their names, for fields of those classes."""
     pre: list[str] = []
     inside: list[str] = []
     helpers_defined = attrs_defined = 0
@@ -257,9 +260,15 @@ def readable_class_lines(orig: asmdiff.Original, g: "Getter", size: int, attr_so
         if a in attr_sources:
             extra, src = attr_sources[a]
             # One line per field (base/reflection/ReflectedFields.h); the named keys are declared there.
-            src = "\n".join(refl_attrs.readable_fields(src.split("\n")))
+            src = "\n".join(refl_attrs.readable_fields(src.split("\n"), class_types))
             extra = [d for d in extra if not (m := KEY_DECL_RE.match(d)) or int(m.group(1), 16) not in DECLARED_KEYS
                      or (d.startswith("extern") and re.search(rf"\bg_unk_{m.group(1)}\b", src))]
+            # A field of a class in this form calls T::refl_GetClass: declare it, in place of the
+            # getter's address-named declaration once nothing else names that.
+            for t in sorted(set(re.findall(r"DREAD_REFLECTED_CLASS_FIELD\(([\w:]+),", src))):
+                extra.append(f"namespace {t} {{ const base::reflection::CClass* refl_GetClass(); }}")
+            extra = [d for d in extra if not (m := GETTER_DECL_RE.match(d)) or int(m.group(1), 16) not in (class_types or {})
+                     or re.search(rf"\bfn_{m.group(1)}\b", src)]
             pre += [d for d in extra if d not in declared]
             declared |= set(extra)
             inside.append(re.sub(rf"\bfn_{a:x}\(", f"{name}(", src, count=1))
@@ -532,6 +541,9 @@ def main() -> int:
     all_g = [Getter(r["type"], int(r["getter"], 16)) for r in rows]
     type_of = {g.address: g.type for g in all_g}
     by_address = {g.address: g for g in all_g}
+    # the classes written in the namespace form, by getter (their fields of each other's type name them)
+    class_types = {g.address: g.type for g in all_g
+                   if readable_type(g.type) and (not g.parent or readable_type(type_of.get(g.parent, "")))}
     for g in all_g:
         analyse(orig, g, getters, ref_sig, inits, root_sig, local_sig)
 
@@ -737,7 +749,7 @@ def main() -> int:
                 macro = f"DREAD_REFLECTED_CLASS{suffix}" if g.parent else f"DREAD_REFLECTED_ROOT_CLASS{suffix}"
                 body, h, n_attrs = readable_class_lines(
                     orig, g, sizes[g.address], {a: candidates[a] for a in attr_ok}, macro,
-                    type_of[g.parent] if g.parent else None, decl_lines)
+                    type_of[g.parent] if g.parent else None, decl_lines, class_types)
                 lines += body + [""]
                 fields_include = '#include "base/reflection/ReflectedFields.h"'
                 if fields_include not in lines and any(FIELD_MACRO_RE.search(l) for l in body):

@@ -30,11 +30,16 @@
 #define DREAD_REFLECTED_READ_ONLY_PROPERTY(T, NAME, ...)                                               \
     DREAD_REFL_FIELD_(T, NAME, 0xffffffff, cls->m_array_0x110.size() - 1, -1, __VA_ARGS__)
 
+// A field holding an object of reflected class T (its descriptor from T::refl_GetClass).
+#define DREAD_REFLECTED_CLASS_FIELD(T, NAME, OFFSET, ...)                                              \
+    DREAD_REFL_FIELD_OF_(T::refl_GetClass(), NAME, OFFSET, -1, -1, __VA_ARGS__)
+
 #define DREAD_REFL_FIELD_(T, NAME, OFFSET, GETTER, SETTER, ...)                                        \
+    DREAD_REFL_FIELD_OF_(base::reflection::UnkReflTypeOf<T>::Get(), NAME, OFFSET, GETTER, SETTER, __VA_ARGS__)
+#define DREAD_REFL_FIELD_OF_(TYPE, NAME, OFFSET, GETTER, SETTER, ...)                                  \
     do {                                                                                               \
         [[maybe_unused]] base::reflection::UnkReflField* field_ =                                      \
-            fn_7100096524(cls, base::global::CStrId(NAME, true),                                       \
-                          base::reflection::UnkReflTypeOf<T>::Get(), OFFSET, GETTER, SETTER);          \
+            fn_7100096524(cls, base::global::CStrId(NAME, true), TYPE, OFFSET, GETTER, SETTER);        \
         DREAD_REFL_ATTRS_(DREAD_REFL_NARGS_(__VA_ARGS__), __VA_ARGS__)                                 \
     } while (false)
 

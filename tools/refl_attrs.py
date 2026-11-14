@@ -1100,21 +1100,31 @@ def _deduced(type_: str, value: str) -> bool:
     return value.startswith(f"{type_}(") or value.startswith(f"{type_}{{")
 
 
-def readable_fields(lines: list[str]) -> list[str]:
-    """Rewrite each field registration whose type and attributes all have names into one line."""
+def readable_fields(lines: list[str], class_types: dict[int, str] | None = None) -> list[str]:
+    """Rewrite each field registration whose type and attributes all have names into one line.
+    `class_types` maps the getters of classes in the namespace form to their names: a field of such a
+    class reads DREAD_REFLECTED_CLASS_FIELD (the caller declares T::refl_GetClass)."""
+    class_types = class_types or {}
     out: list[str] = []
     i = 0
     while i < len(lines):
         m = FIELD_RE.match(lines[i])
-        if not m or int(m.group(3), 16) not in FIELD_TYPES:
+        if not m or (int(m.group(3), 16) not in FIELD_TYPES and int(m.group(3), 16) not in class_types):
             out.append(lines[i])
             i += 1
             continue
         var, name, getter, tail = m.groups()
-        type_name = FIELD_TYPES[int(getter, 16)]
-        if tail in PROPERTY_TAILS:
+        if int(getter, 16) in class_types:
+            if not tail.endswith(", -1, -1"):
+                out.append(lines[i])
+                i += 1
+                continue
+            line = f"    DREAD_REFLECTED_CLASS_FIELD({class_types[int(getter, 16)]}, {name}, {tail[:-len(', -1, -1')]}"
+        elif tail in PROPERTY_TAILS:
+            type_name = FIELD_TYPES[int(getter, 16)]
             line = f"    {PROPERTY_TAILS[tail]}({type_name}, {name}"
         elif tail.endswith(", -1, -1"):
+            type_name = FIELD_TYPES[int(getter, 16)]
             line = f"    DREAD_REFLECTED_FIELD({type_name}, {name}, {tail[:-len(', -1, -1')]}"
         else:
             out.append(lines[i])

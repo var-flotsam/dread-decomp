@@ -189,6 +189,12 @@ a real difference, it stays a draft). Cost: `--drafts` 470 s to 1,174 s, `--mino
 functions that stay inconclusive and use their budget. Of the 26 drafts, 9 moved to `src/` (`fn_7100e3cee0` among
 them: `fn_710007b444` is declared once now, in `UnkTU55.h`, for 21 files, and its ten id globals in `UnkTU2564.h`);
 the rest are held on declarations (their notes say which) or by another function of their file.
+**Fields of reflected classes in the field form (2026-11-14).** A field whose type is a class written in the
+namespace form reads `DREAD_REFLECTED_CLASS_FIELD(SCameraRail, "oCameraRail", 0x30, ...)`: the macro calls
+`T::refl_GetClass()`, which the generator declares (`namespace T { const CClass* refl_GetClass(); }`) in place of
+the getter's address-named declaration. The call maps to the same address through the name, so the 144 fields
+in 55 files are byte- and relocation-identical.
+
 **Properties and enum-typed attributes in the field form (2026-11-14).** Third step of the readable
 reflection template. A property (a field with no offset, read and written through the two functions registered
 just before it) reads `DREAD_REFLECTED_PROPERTY(f32, "fWidth", (DefaultValue, 0.0f));`, or

@@ -242,6 +242,12 @@ class ReadableFields(unittest.TestCase):
             '    DREAD_REFLECTED_READ_ONLY_PROPERTY(u32, "uKey");',
         ])
 
+    def test_field_of_a_reflected_class(self):
+        lines = [self.REG.format(n=0, name="oRail", getter="7100c837d4", off="0x30")]
+        self.assertEqual(ra.readable_fields(lines, {0x7100C837D4: "SCameraRail"}),
+                         ['    DREAD_REFLECTED_CLASS_FIELD(SCameraRail, "oRail", 0x30);'])
+        self.assertEqual(ra.readable_fields(lines), lines)
+
     def test_unnamed_attribute_keeps_the_variable(self):
         lines = [
             self.REG.format(n=0, name="fSpeed", getter="710000abbc", off="0x510"),
