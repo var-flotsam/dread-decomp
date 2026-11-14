@@ -154,6 +154,29 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Held equivalent drafts promoted; permuter pass over the drafts (2026-11-14).** `tools/permute.py --drafts`
+(1,500 tries each, 8 jobs, 25 min) tried 86 of the 87 registers-only drafts and matched none; `fn_7100f5d270`
+was skipped (its body comes from a template macro). Eight came closer without matching (differing instructions
+before and after): `fn_710097c53c` 12 to 2, `fn_7100e3cee0` 17 to 4, `fn_710035d5c4` 5 to 2, `fn_710086f9e0` 8 to
+4, `fn_710096b334` 2 to 1, `fn_710010df80` 12 to 9, `fn_7101136bb4` 14 to 10, `fn_71009e0ec8` 15 to 14; the tool
+writes back matches only, so those drafts are unchanged. Of the 12 drafts held on declarations although they
+pass `tools/equiv_test.py`, five moved to `src/` as `NON_MATCHING(minor)` with passing verdicts:
+`fn_7100572a68` (its two copies were already in headers), `fn_7101110e18` (callees from `CFrozenComponent.h`;
+`fn_7100395b34` is now declared once, in a new `UnkTU500.h`, for nine files, and `g_unk_7172a06338` in
+`UnkTU2702.h`), `fn_710019b184` (the billboard's drawable has its layout in `UnkBillboardDrawable.h`, replacing
+`UnkBillboard.cpp`'s padding; the draft takes the header's types), `fn_7100d5abfc` (the header's parameter
+types; its tracked-entry type renamed off a name another file defines) and `fn_710122f3f0` (the two callees
+it shares with `fn_710122f380` declared once in `UnkTU2772.h`, on the emitter type). `fn_7100207be8` went to
+`UnkTU284.h` (two files) and the (1, 1, 1) constant `g_unk_71016477a8` to `base/math/UnkOneVector3.h` (eight).
+Seven stay held, each on a type that two or more files describe differently (a layout batch of its own):
+`fn_710002589c` (its node is `UnkTransformNode.cpp`'s, and `fn_7100025d10`'s object, three views of one 0xd0-byte
+node), `fn_71008625a0` (the header's manager and node types are defined in two other files; three of its own
+type names are taken; it keeps a union around a member), `fn_7100979a60` (its result `UnkVec3Bits` already has
+three definitions), `fn_7100e13abc` (the caller's types differ for all four parameters, and it declares it
+void), `fn_7100e51078` (one record type for four callers), `fn_7100e711dc` (`fn_7100e71984` is defined over
+another view of the keyed array) and `fn_7101005fcc` (its caller passes another map and node type).
+`fn_7100558bcc` really fails and stays a draft.
+
 **equiv_test reaches switches and pointer equality (2026-11-14).** Three input rules (owner-approved): every
 index of a jump table up to its bounds check (`jump_table_bounds`), each register compare a run made made equal
 by setting a word that held one side to the other (`equal_variants`; `pcode_emu` now records the two values of

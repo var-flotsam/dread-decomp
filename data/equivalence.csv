@@ -31,6 +31,7 @@ address,digest,verdict,rules,detail
 0x710015f500,dd4252f182e1fcde842889f71318d1e9,pass,2,
 0x7100161520,62aeb042bb595217d31207b041a43872,inconclusive,2,only 22% of the original's instructions ran
 0x7100161b90,577190862793adb5cf0802906207002b,inconclusive,2,unresolved guard variable for UnkFlagsNone_7100161b90()::s_none (no address in the original)
+0x710019b184,57f127c99a2f4486692b4fffb97fdc04,pass,2,
 0x710019da10,15670ad6f29e08620eaadd8b8c27019f,pass,2,
 0x71001b76ec,57a24d03591b69ba34d01f0cf4179b9d,pass,2,
 0x71001b7d80,49df6d5d9c751fee53dc3c026cf0a072,pass,2,
@@ -79,6 +80,7 @@ address,digest,verdict,rules,detail
 0x7100550e18,3d892f3881ddeaee3f29bdce21cf180f,pass,2,
 0x7100558e14,03df53f844cfb38c773dd4aa4b9077b0,pass,2,
 0x7100569e58,16b8a501d00ba1a57a796d4681a885a8,inconclusive,2,unresolved guard variable for base::global::UnkEnsureStringPool()::s_holder (no address in the original)
+0x7100572a68,825235b2f78d997f3e2579529208032f,pass,2,
 0x71006eb484,47135ee84631131e2dc775321549c3d7,inconclusive,2,only 89% of the original's instructions ran
 0x7100700594,21cf0846eb26c983648e2fde4f1454a4,pass,2,
 0x7100714808,0722c41dde09ac2c8cbd44951f777767,inconclusive,2,1 of 6 conditional branches went only one way
@@ -111,6 +113,7 @@ address,digest,verdict,rules,detail
 0x7100d55920,345487375da462bbe2ac5934e90833d7,inconclusive,2,unresolved guard variable for NoContact()::s_none (no address in the original)
 0x7100d55b80,30961f70cd535d2d7fa8c8167e77fd95,inconclusive,2,unresolved guard variable for NoContact()::s_none (no address in the original)
 0x7100d56604,9e6844c2f0da1c8f311de6740c2b1a39,inconclusive,2,unresolved guard variable for NoFlags_d56604()::s (no address in the original)
+0x7100d5abfc,8e73330e64cde430b8f34abf246ef343,pass,2,
 0x7100d5afa4,2064d7b98f7484c07e200490b2609e26,inconclusive,2,only 57% of the original's instructions ran
 0x7100d5b720,4322a7e9c4ee4d7619c68d8a34241d0e,inconclusive,2,only 69% of the original's instructions ran
 0x7100d845b4,56eb895e901a5ef7dc0ccb0d33085e52,inconclusive,2,only 75% of the original's instructions ran
@@ -151,6 +154,7 @@ address,digest,verdict,rules,detail
 0x7101059530,c71253ff60d5dbd515e40c1467fa8c6b,pass,2,
 0x710106b2bc,112cf8d14fa662df9e091193279f87ae,pass,2,
 0x71010bf400,b52bb19a6538b8000fcf7397bb49b128,inconclusive,2,only 17% of the original's instructions ran
+0x7101110e18,4b2fe63a056e9abba149030bf2075366,pass,2,
 0x710111c0fc,97c43128e4cb8d48d04eda9473f44f4f,inconclusive,2,only 79% of the original's instructions ran
 0x710117e5b0,015028da5a71252479c1fe1d0ac23362,inconclusive,2,no definition of the function found in the source: its result type is not known
 0x71011b7e7c,274dcd780552faf03754d378cf2de86b,pass,2,both runs were cut off
@@ -158,4 +162,5 @@ address,digest,verdict,rules,detail
 0x7101213858,04792d204afbcaef21f98a1514806588,pass,2,
 0x7101215464,f6e5699454957d50fb6cd1edbe55d576,pass,2,
 0x710122f380,9f109320c45a0da48defbd67e11c068c,pass,2,
+0x710122f3f0,4c2223414cf4dc354c185f99bd8ac9e2,pass,2,
 0x7101230a00,74ce25ae78de4fb1b744bd9fd1959a36,pass,2,

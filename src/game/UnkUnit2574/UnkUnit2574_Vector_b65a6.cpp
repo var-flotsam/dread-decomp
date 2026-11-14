@@ -1,10 +1,9 @@
 // Unit 2574: three getters returning a copy of the constant vector g_unk_71016477a8 (as
 // src/base/UnkUnit132/UnkVector3Getters_b42.cpp: a class with a user-written copy constructor, returned
 // through x8). Names are placeholders.
+#include "base/math/UnkOneVector3.h"
 #include "base/math/UnkZeroVector3.h"
 #include "types.h"
-
-extern const base::math::CVector3D g_unk_71016477a8;
 
 struct UnkVector3Words_b65a6 {
     u32 x, y, z;

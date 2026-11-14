@@ -4,10 +4,9 @@
 #include <math.h>
 
 #include "base/math/CVector.h"
+#include "base/math/UnkOneVector3.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
-
-extern const base::math::CVector3D g_unk_71016477a8;
 
 struct UnkTimedCurve_ovb0219 {
     u8 pad_0x0[8];

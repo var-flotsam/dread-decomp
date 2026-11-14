@@ -29,7 +29,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710012f880,3620,drafts/game/malloc/fn_710012f880.cpp,control flow,8.7,749,fable1,
 0x710016c038,400,drafts/game/UnkTU208/fn_710016c038.cpp,operations,99.0,1,overnight,
 0x71001997c8,140,drafts/game/UnkTU218/fn_71001997c8.cpp,operations,28.6,24,pilot50,final w component copy via x1+0xc pointer; KIND operations
-0x710019b184,384,drafts/game/UnkTU221/fn_710019b184.cpp,registers or order,95.8,4,overnight,passes tools/equiv_test.py; held: 1 declaration problem: src/game/UnkTU221/fn_710019b184.cpp:29 fn_710019b184: defined as void fn_710019b184(UnkTable_b0236b*; u32; u32; UnkMat34_b0236b*) -> declared elsewhere with other types; use ...
 0x710019b5ec,508,drafts/game/UnkTU222/fn_710019b5ec.cpp,operations,96.1,5,overnight,
 0x710019dcac,380,drafts/game/UnkTU225/fn_710019dcac.cpp,registers or order,97.9,2,overnight,
 0x71001b47b4,400,drafts/game/UnkTU241/fn_71001b47b4.cpp,operations,94.0,6,pilot50,ands vs cbz on strlen result; ctor store order around GOT load
@@ -69,7 +68,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710051b5a8,1372,drafts/game/behaviortree/CEmmySearchingAction/fn_710051b5a8.cpp,control flow,7.0,318,lean,
 0x710054b4b0,324,drafts/game/UnkTU811/fn_710054b4b0.cpp,registers or order,93.8,5,overnight,
 0x7100558bcc,584,drafts/game/UnkTU811/fn_7100558bcc.cpp,registers or order,93.8,9,overnight,fails tools/equiv_test.py (2026-11-14; inconclusive before): on input 0 its second call's fourth argument differs (0x5000 in the original against another value): not equivalent as written
-0x7100572a68,316,drafts/game/UnkTU816/fn_7100572a68.cpp,registers or order,94.9,4,overnight,passes tools/equiv_test.py; held: it adds copies of fn_7100207be8 (2 files) and g_unk_71016477a8 (8 files; a constant vector with no header yet)
 0x71005c042c,388,drafts/game/UnkTU883/fn_71005c042c.cpp,operations,95.9,4,overnight,
 0x71005c3160,372,drafts/game/UnkTU883/fn_71005c3160.cpp,registers or order,92.5,7,overnight,
 0x7100686860,256,drafts/game/CScorpiusAttack/fn_7100686860.cpp,control flow,56.1,27,lean,
@@ -117,7 +115,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100d4a544,508,drafts/game/UnkTU2506/fn_7100d4a544.cpp,operations,27.6,92,pilot50,operations: src/dst pointer and count register assignment swapped
 0x7100d4ba54,280,drafts/game/UnkTU2506/fn_7100d4ba54.cpp,control flow,46.6,36,pilot50,control flow: loop-count phi and tail layout differ; load order of groups/count
 0x7100d59dd8,1324,drafts/game/UnkTU2510/fn_7100d59dd8.cpp,control flow,11.8,288,fable1,
-0x7100d5abfc,84,drafts/game/UnkTU2510/fn_7100d5abfc.cpp,registers or order,90.5,2,overnight,passes tools/equiv_test.py; held: 1 declaration problem: src/game/UnkTU2510/fn_7100d5abfc.cpp:18 fn_7100d5abfc: defined as void fn_7100d5abfc(UnkTracker_7100863a8c*; UnkCollisionObject*) -> declared elsewhere with other types; use ...
 0x7100d5b268,540,drafts/game/UnkTU2510/fn_7100d5b268.cpp,operations,22.2,89,pilot50,13-word copy gets merged into wide loads; init/store scheduling and hoisted out-slot compare differ
 0x7100d5be04,440,drafts/game/UnkTU2510/fn_7100d5be04.cpp,operations,19.1,88,pilot50,entry guard ccmp and loop shape; KIND operations
 0x7100d5c6dc,392,drafts/game/UnkTU2510/fn_7100d5c6dc.cpp,operations,84.7,15,pilot50,entry cond ccmp and loop counter form (cbz vs adds)
@@ -180,7 +177,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7101104d58,488,drafts/game/UnkTU2702/fn_7101104d58.cpp,registers or order,96.7,4,overnight,
 0x710110a0a4,192,drafts/game/UnkTU2702/fn_710110a0a4.cpp,operations,91.7,4,overnight,
 0x71011104c0,564,drafts/game/UnkTU2702/fn_71011104c0.cpp,registers or order,97.2,4,overnight,
-0x7101110e18,436,drafts/game/UnkTU2702/fn_7101110e18.cpp,registers or order,96.3,4,overnight,passes tools/equiv_test.py; held: 1 declaration problem: src/game/UnkTU2702/fn_7101110e18.cpp:17 fn_71007f9fd0: bool fn_71007f9fd0(void*) -> declared in include/game/CFrozenComponent.h: include that header and drop this declaration
 0x710112688c,308,drafts/game/UnkTU2704/fn_710112688c.cpp,build fails,,,spawnpoint,CStrId dtor duplicated into null-section path (7 calls vs 6); original shares tail; header split of pad 0x290/
 0x7101126c34,244,drafts/game/UnkTU2704/fn_7101126c34.cpp,match,100.0,0,spawnpoint,matches; held: it defines UnkShapeHit_A5_b68 (the shape tester's result; game/UnkTU2509.h) as 8 bytes where three other sources define it as 16; with the 16-byte definition the function is at 75%. Settle the result's size first
 0x7101127834,304,drafts/game/UnkTU2704/fn_7101127834.cpp,registers or order,92.1,6,spawnpoint,instruction order only: flag load at +0x1b2 before the other link state test; and the final call arg setup ord
@@ -212,7 +208,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71012129f0,264,drafts/game/UnkTU2772/fn_71012129f0.cpp,registers or order,98.5,1,overnight,
 0x7101214bd0,196,drafts/game/UnkTU2772/fn_7101214bd0.cpp,operations,95.9,2,overnight,
 0x710122cf1c,264,drafts/game/UnkTU2772/fn_710122cf1c.cpp,conditions,97.0,2,overnight,
-0x710122f3f0,156,drafts/game/UnkTU2772/fn_710122f3f0.cpp,registers or order,97.4,1,overnight,passes tools/equiv_test.py; held: 4 declaration problems: src/game/UnkTU2772/fn_710122f3f0.cpp:20 fn_710122d048: void fn_710122d048(UnkAtkChannelItem_b0148*) -> signature differs from every existing one; copy one of these exactly: ...
 0x710122faa0,580,drafts/game/UnkTU2772/fn_710122faa0.cpp,conditions,96.6,5,overnight,
 0x710122ff10,288,drafts/game/UnkTU2772/fn_710122ff10.cpp,registers or order,97.2,2,overnight,
 0x7101238c14,212,drafts/game/UnkTU2772/fn_7101238c14.cpp,registers or order,90.6,5,overnight,

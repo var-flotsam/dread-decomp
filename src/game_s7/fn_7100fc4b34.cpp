@@ -12,6 +12,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkTU1645.h"
+#include "game/UnkTU500.h"
 #include "game/UnkTU57.h"
 
 using namespace unk_prop;
@@ -57,7 +58,6 @@ static inline UnkSubId_7100fc4b34 SubId(UnkNamedDef_7100fc4b34& def, const CStrI
 }
 
 // Typed reads of a section's value (refl_GetKeyedValue copies).
-bool fn_7100395b34(CBlackboard::CSection* section, const void* name, f32* out);
 bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
 bool fn_7100a68fb0(CBlackboard::CSection* section, const void* name, u32* out);
 

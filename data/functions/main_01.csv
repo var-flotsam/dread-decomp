@@ -3252,7 +3252,7 @@ address,size,name,name_source,subsystem,status
 0x710019ab0c,736,fn_710019ab0c,unknown,unknown,O
 0x710019adec,192,fn_710019adec,unknown,unknown,O
 0x710019aeac,728,fn_710019aeac,unknown,unknown,U
-0x710019b184,384,fn_710019b184,unknown,unknown,U
+0x710019b184,384,fn_710019b184,unknown,unknown,m
 0x710019b304,560,fn_710019b304,unknown,unknown,U
 0x710019b534,32,fn_710019b534,unknown,unknown,O
 0x710019b560,140,fn_710019b560,unknown,unknown,O

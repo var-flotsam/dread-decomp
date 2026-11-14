@@ -8,6 +8,7 @@
 // iterator move, and the scale setter. Names and layouts are placeholders.
 #include "base/UnkCollectionIter.h"
 #include "base/UnkVector.h"
+#include "base/math/UnkOneVector3.h"
 #include "base/reflection/UnkReflValue.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/UnkMatrix44.h"
@@ -318,7 +319,6 @@ base::reflection::UnkReflValue fn_7100815534(void*, char* obj, base::reflection:
     return base::reflection::refl_EmptyValue();
 }
 
-extern const base::math::CVector3D g_unk_71016477a8;
 UnkFxHandle_ovb0103* fn_71011a9c2c(UnkModelManager* self, u32 id, const CFilePathStrId* path, u32 kind, u32 flags);
 
 void fn_7100811f28(UnkStandaloneFx* fx) {

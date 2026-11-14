@@ -6,6 +6,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
+#include "base/math/UnkOneVector3.h"
 #include "base/math/UnkZeroVector3.h"
 #include "game/UnkTU25.h"
 #include "game/UnkTU32.h"
@@ -54,7 +55,6 @@ void fn_7100025624(void* self) {
     r->flags = UnkXformDefaultFlags();
 }
 
-extern const base::math::CVector3D g_unk_71016477a8;
 
 void fn_7100025a98(void* self) {
     UnkXform* r = static_cast<UnkXform*>(self);

@@ -13,6 +13,7 @@
 #include "game/UnkTU0.h"
 #include "game/UnkTU2544.h"
 #include "game/UnkTU2768.h"
+#include "game/UnkTU500.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -49,7 +50,6 @@ struct base::reflection::UnkFieldTraits<UnkRushRecordTag> {
 
 // Read an int and a float from a section (src/clones/: refl_GetKeyedValue instances).
 bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
-bool fn_7100395b34(CBlackboard::CSection* section, const void* name, f32* out);
 
 // The property's qualified id, built on first use.
 static inline const UnkQualifiedId& Qid(UnkPropertyEx<>& item) {

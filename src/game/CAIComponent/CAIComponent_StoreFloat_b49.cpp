@@ -5,6 +5,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
+#include "game/UnkTU2702.h"
 #include "game/UnkTUProperty.h"
 #include "game/behaviortree/CBehavior.h"
 #include "types.h"
@@ -12,7 +13,6 @@
 
 using base::global::CStrId;
 
-extern UnkPropertyName g_unk_7172a06338 __attribute__((visibility("hidden")));
 
 struct UnkBlackboardOwner_b49 {
     u8 pad_0x0[0x1260];
