@@ -248,6 +248,22 @@ class ReadableFields(unittest.TestCase):
                          ['    DREAD_REFLECTED_CLASS_FIELD(SCameraRail, "oRail", 0x30);'])
         self.assertEqual(ra.readable_fields(lines), lines)
 
+    def test_field_of_a_named_type_object(self):
+        reg = '    UnkReflField* field0 = fn_7100096524(cls, CStrId("eDir", true), &g_unk_7101d00010, 0x3b8, -1, -1);'
+        lines = [reg, "    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_7101d00010, 2);"]
+        self.assertEqual(ra.readable_fields(lines, type_objects={0x7101D00010: "EDir"}),
+                         ['    DREAD_REFLECTED_FIELD_OF("EDir", "eDir", 0x3b8, (DefaultValue, 2));'])
+        untyped = [reg, "    field0->attrs.Add<s32>(fn_7100075240(), 2);"]
+        self.assertEqual(ra.readable_fields(untyped, type_objects={0x7101D00010: "EDir"}), untyped)
+
+    def test_type_object_names(self):
+        src = '    UnkReflField* field0 = fn_7100096524(cls, CStrId("eDir", true), &g_unk_7101d00010, 0x3b8, -1, -1);'
+        names = ra.type_object_names({"CA": src, "CB": src.replace("eDir", "eWay")},
+                                     {("CA", "eDir"): "EDir", ("CB", "eWay"): "EDir"}, set())
+        self.assertEqual(names, {0x7101D00010: "EDir"})
+        self.assertEqual(ra.type_object_names({"CA": src}, {("CA", "eDir"): "EDir"}, {0x7101D00010}), {})
+        self.assertIn('if (name == "EDir")', ra.type_objects_header(names))
+
     def test_unnamed_attribute_keeps_the_variable(self):
         lines = [
             self.REG.format(n=0, name="fSpeed", getter="710000abbc", off="0x510"),

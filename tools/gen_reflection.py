@@ -65,6 +65,7 @@ from image import BASE  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "src" / "reflection"
+TYPES_HEADER = OUT / "ReflectedTypes.h"
 DESCRIPTOR_SIZE = 0x138
 REFERENCE_GETTER = 0x7100227448  # CActor::refl_GetClass, the common code shape
 ROOT_GETTER = 0x7100023464       # base::core::CBaseObject::refl_GetClass: no parent
@@ -238,19 +239,22 @@ def reflection_names(g: "Getter") -> dict[int, str]:
 
 # Declarations ReflectedFields.h already brings: the named attribute keys and the enum types of the typed ones.
 KEY_DECL_RE = re.compile(r"^(?:const base::reflection::UnkReflAttrKey& fn_|extern base::reflection::CType g_unk_)([0-9a-f]+)(?:\(\))?;$")
+OBJECT_DECL_RE = re.compile(r"^extern base::reflection::CType g_unk_([0-9a-f]+);$")
 GETTER_DECL_RE = re.compile(r"^const base::reflection::C(?:Type|Class)\* fn_([0-9a-f]+)\(\);$")
-FIELD_MACRO_RE = re.compile(r"\bDREAD_REFLECTED_(?:FIELD|CLASS_FIELD|PROPERTY|READ_ONLY_PROPERTY)\(")  # ReflectedFields.h
+FIELD_MACRO_RE = re.compile(r"\bDREAD_REFLECTED_(?:FIELD|CLASS_FIELD|FIELD_OF|PROPERTY|READ_ONLY_PROPERTY)\(")  # ReflectedFields.h
 DECLARED_KEYS = set(refl_attrs.ATTRIBUTE_NAMES) | set(refl_attrs.TYPED_KEYS.values())
 
 
 def readable_class_lines(orig: asmdiff.Original, g: "Getter", size: int, attr_sources: dict[int, tuple[list[str], str]],
                          macro: str, parent: str | None, declared: set[str],
-                         class_types: dict[int, str] | None = None) -> tuple[list[str], int, int]:
+                         class_types: dict[int, str] | None = None,
+                         type_objects: dict[int, str] | None = None) -> tuple[list[str], int, int]:
     """One class in the readable form: the declarations its attribute and member-field functions need,
     its namespace (helpers, those functions, the description) and the getter's macro. Returns the
     lines, the helpers defined and the attribute/field functions defined. `declared` holds the file's
     declarations so far (each is written once per file). `class_types` maps the getters of the classes
-    in this form to their names, for fields of those classes."""
+    in this form to their names, for fields of those classes; `type_objects` names the type objects
+    ReflectedTypes.h lists."""
     pre: list[str] = []
     inside: list[str] = []
     helpers_defined = attrs_defined = 0
@@ -260,9 +264,11 @@ def readable_class_lines(orig: asmdiff.Original, g: "Getter", size: int, attr_so
         if a in attr_sources:
             extra, src = attr_sources[a]
             # One line per field (base/reflection/ReflectedFields.h); the named keys are declared there.
-            src = "\n".join(refl_attrs.readable_fields(src.split("\n"), class_types))
+            src = "\n".join(refl_attrs.readable_fields(src.split("\n"), class_types, type_objects))
             extra = [d for d in extra if not (m := KEY_DECL_RE.match(d)) or int(m.group(1), 16) not in DECLARED_KEYS
                      or (d.startswith("extern") and re.search(rf"\bg_unk_{m.group(1)}\b", src))]
+            extra = [d for d in extra if not (m := OBJECT_DECL_RE.match(d)) or int(m.group(1), 16) not in (type_objects or {})
+                     or re.search(rf"\bg_unk_{m.group(1)}\b", src)]
             # A field of a class in this form calls T::refl_GetClass: declare it, in place of the
             # getter's address-named declaration once nothing else names that.
             for t in sorted(set(re.findall(r"DREAD_REFLECTED_CLASS_FIELD\(([\w:]+),", src))):
@@ -563,6 +569,15 @@ def main() -> int:
                 if parsed:
                     candidates[a] = parsed
     attr_ok = refl_attrs.verify(args.version, candidates, ROOT / "build" / "reflection_attrs")
+    # Type objects static initialisers build, named by data/reflection_fields.csv for the fields they type
+    # (ReflectedTypes.h); those another header already declares keep their address.
+    with (ROOT / "data" / "reflection_fields.csv").open(newline="", encoding="utf-8") as f:
+        field_types = {(r["class"], r["name"]): r["type"] for r in csv.DictReader(f)}
+    declared_elsewhere = {int(a, 16) for h in (ROOT / "include").rglob("*.h")
+                          for a in re.findall(r"\bg_unk_([0-9a-f]{10});", h.read_text(encoding="utf-8"))}
+    type_objects = refl_attrs.type_object_names(
+        {g.type: candidates[g.fn_0xe0][1] for g in all_g if g.address in class_types and g.fn_0xe0 in attr_ok},
+        field_types, declared_elsewhere)
     # The same kind of functions outside the class getters (e.g. passed by static initialisers to
     # collection types): they don't depend on their TU either.
     attached = {a for b in blocks for g in b for a in (g.fn_0x70, g.fn_0xe0) if a}
@@ -648,6 +663,8 @@ def main() -> int:
     if OUT.exists():
         shutil.rmtree(OUT)
     OUT.mkdir(parents=True)
+    with TYPES_HEADER.open("w", encoding="utf-8", newline="\n") as f:
+        f.write(refl_attrs.type_objects_header(type_objects))
     files: dict[str, tuple[list[str], list]] = {}  # name -> (lines, local pointer pairs)
     file_getters: dict[str, dict[int, str]] = {}  # name -> its readable classes' getters (address -> type)
     taken: set[str] = set()
@@ -749,11 +766,14 @@ def main() -> int:
                 macro = f"DREAD_REFLECTED_CLASS{suffix}" if g.parent else f"DREAD_REFLECTED_ROOT_CLASS{suffix}"
                 body, h, n_attrs = readable_class_lines(
                     orig, g, sizes[g.address], {a: candidates[a] for a in attr_ok}, macro,
-                    type_of[g.parent] if g.parent else None, decl_lines, class_types)
+                    type_of[g.parent] if g.parent else None, decl_lines, class_types, type_objects)
                 lines += body + [""]
                 fields_include = '#include "base/reflection/ReflectedFields.h"'
                 if fields_include not in lines and any(FIELD_MACRO_RE.search(l) for l in body):
                     lines.insert(lines.index('#include "base/reflection/ReflectedClass.h"') + 1, fields_include)
+                types_include = '#include "ReflectedTypes.h"'  # src/reflection/, for DREAD_REFLECTED_FIELD_OF
+                if types_include not in lines and any("DREAD_REFLECTED_FIELD_OF(" in l for l in body):
+                    lines.insert(lines.index(fields_include) + 1, types_include)
                 helpers_defined += h
                 attrs_defined += n_attrs
                 continue
@@ -829,6 +849,7 @@ def main() -> int:
             for d in gen_types.used_decls(p[0], ptr_decls))])
     work = ROOT / "build" / "reflection_ptrs"
     work.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(TYPES_HEADER, work / TYPES_HEADER.name)  # the files there include it as their neighbour
     # Qualified name -> address of the readable classes' functions (the names data/functions/ gives them).
     readable_names: dict[str, int] = {}
     for getters_of_file in file_getters.values():

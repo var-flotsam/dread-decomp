@@ -1078,8 +1078,8 @@ ATTRIBUTE_NAMES = {  # attribute key getter -> the name it registers (attr:: in 
 }
 TYPED_KEYS = {0x710000BF80: 0x7101D679F0, 0x71000923A0: 0x7101D55008}  # key -> its enum type (TypedAttrKey)
 FIELD_RE = re.compile(r'^    UnkReflField\* (field\d+) = fn_7100096524\(cls, CStrId\(("(?:[^"\\]|\\.)*"), true\), '
-                      r'fn_([0-9a-f]{10})\(\), (0x[0-9a-f]+, -1, -1|0xffffffff, cls->m_array_0x110\.size\(\) - [12], '
-                      r'(?:cls->m_array_0x110\.size\(\) - 1|-1))\);$')
+                      r'(?:fn_([0-9a-f]{10})\(\)|&g_unk_([0-9a-f]{10})), (0x[0-9a-f]+, -1, -1|0xffffffff, '
+                      r'cls->m_array_0x110\.size\(\) - [12], (?:cls->m_array_0x110\.size\(\) - 1|-1))\);$')
 PROPERTY_TAILS = {  # a property's offset and accessor indices -> its macro (ReflectedFields.h)
     "0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1": "DREAD_REFLECTED_PROPERTY",
     "0xffffffff, cls->m_array_0x110.size() - 1, -1": "DREAD_REFLECTED_READ_ONLY_PROPERTY",
@@ -1100,21 +1100,33 @@ def _deduced(type_: str, value: str) -> bool:
     return value.startswith(f"{type_}(") or value.startswith(f"{type_}{{")
 
 
-def readable_fields(lines: list[str], class_types: dict[int, str] | None = None) -> list[str]:
+def readable_fields(lines: list[str], class_types: dict[int, str] | None = None,
+                    type_objects: dict[int, str] | None = None) -> list[str]:
     """Rewrite each field registration whose type and attributes all have names into one line.
     `class_types` maps the getters of classes in the namespace form to their names: a field of such a
-    class reads DREAD_REFLECTED_CLASS_FIELD (the caller declares T::refl_GetClass)."""
+    class reads DREAD_REFLECTED_CLASS_FIELD (the caller declares T::refl_GetClass). `type_objects` maps
+    type objects that static initialisers build (enums, collections, links) to their names, which
+    base/reflection/ReflectedTypes.h looks up: such a field reads DREAD_REFLECTED_FIELD_OF."""
     class_types = class_types or {}
+    type_objects = type_objects or {}
     out: list[str] = []
     i = 0
     while i < len(lines):
         m = FIELD_RE.match(lines[i])
-        if not m or (int(m.group(3), 16) not in FIELD_TYPES and int(m.group(3), 16) not in class_types):
+        known = m and (int(m.group(3), 16) in FIELD_TYPES or int(m.group(3), 16) in class_types if m.group(3)
+                       else int(m.group(4), 16) in type_objects)
+        if not known:
             out.append(lines[i])
             i += 1
             continue
-        var, name, getter, tail = m.groups()
-        if int(getter, 16) in class_types:
+        var, name, getter, obj, tail = m.groups()
+        if obj:
+            if not tail.endswith(", -1, -1"):
+                out.append(lines[i])
+                i += 1
+                continue
+            line = f'    DREAD_REFLECTED_FIELD_OF("{type_objects[int(obj, 16)]}", {name}, {tail[:-len(", -1, -1")]}'
+        elif int(getter, 16) in class_types:
             if not tail.endswith(", -1, -1"):
                 out.append(lines[i])
                 i += 1
@@ -1137,11 +1149,17 @@ def readable_fields(lines: list[str], class_types: dict[int, str] | None = None)
             key = int(a.group(3), 16)
             if value.startswith("&"):
                 typed = re.fullmatch(r"&g_unk_([0-9a-f]+), (.*)", value)
+                if typed and obj and int(typed.group(1), 16) == int(obj, 16) and type_ == "s32" \
+                        and re.fullmatch(r"-?\d+", typed.group(2)) and key not in TYPED_KEYS:
+                    # a value of the field's own type: DREAD_REFLECTED_FIELD_OF adds an integer under it
+                    line += f", ({ATTRIBUTE_NAMES[key]}, {typed.group(2)})"
+                    j += 1
+                    continue
                 if not typed or TYPED_KEYS.get(key) != int(typed.group(1), 16):
                     break
                 value = typed.group(2)
-            elif key in TYPED_KEYS:
-                break
+            elif key in TYPED_KEYS or (obj and type_ == "s32"):
+                break  # (in a field of a type object, an untyped integer would read as one of that type)
             if not _deduced(type_, value):
                 if not re.fullmatch(r"[\w:]+", type_):
                     break
@@ -1155,3 +1173,56 @@ def readable_fields(lines: list[str], class_types: dict[int, str] | None = None)
         out.append(line + ");")
         i = j
     return out
+
+
+FIELD_OBJECT_RE = re.compile(r'fn_7100096524\(cls, CStrId\(("(?:[^"\\]|\\.)*"), true\), &g_unk_([0-9a-f]{10}), ')
+
+
+def type_object_names(sources: dict[str, str], field_types: dict[tuple[str, str], str],
+                      excluded: set[int]) -> dict[int, str]:
+    """{type object address: type name} for the type objects the fields in `sources` (class -> its
+    refl_AddFields source) are typed by, named by data/reflection_fields.csv (`field_types`, (class, member)
+    -> type). An object named two ways, or not by name, is left out, and so are the `excluded` ones."""
+    seen: dict[int, set[str]] = {}
+    for cls, src in sources.items():
+        for name, obj in FIELD_OBJECT_RE.findall(src):
+            typ = field_types.get((cls, name.strip('"')))
+            seen.setdefault(int(obj, 16), set()).add(typ if typ and not typ.startswith("&") else "")
+    return {a: next(iter(n)) for a, n in sorted(seen.items())
+            if len(n) == 1 and "" not in n and a not in excluded and '"' not in next(iter(n))}
+
+
+def type_objects_header(names: dict[int, str]) -> str:
+    """src/reflection/ReflectedTypes.h: the named type objects and their lookup by name, for the generated
+    reflection sources that use DREAD_REFLECTED_FIELD_OF (they include it)."""
+    lines = [
+        "#pragma once",
+        "",
+        "// Generated by tools/gen_reflection.py from main; regenerate rather than edit.",
+        "// The type objects that static initialisers build (enums, flag sets, collections, links), by the",
+        "// names data/reflection_fields.csv gives them: a field typed by one reads",
+        '// DREAD_REFLECTED_FIELD_OF("CGameLink<CActor>", ...) (base/reflection/ReflectedFields.h), which looks',
+        "// it up here at compile time.",
+        "",
+        '#include "base/reflection/CClass.h"',
+        "",
+        "#include <string_view>",
+        "",
+    ]
+    lines += [f"extern base::reflection::CType g_unk_{a:x};" for a in names]
+    lines += [
+        "",
+        "namespace base::reflection {",
+        "",
+        "// The type object of that name; null for a name not listed (a compile error where it is used).",
+        "constexpr const CType* TypeNamed(std::string_view name) {",
+    ]
+    lines += [f'    if (name == "{n}")\n        return &g_unk_{a:x};' for a, n in sorted(names.items(), key=lambda x: x[1])]
+    lines += [
+        "    return nullptr;",
+        "}",
+        "",
+        "}  // namespace base::reflection",
+        "",
+    ]
+    return "\n".join(lines)
