@@ -8,6 +8,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CScenario.h"
 #include "game/CUsableComponent.h"
@@ -19,8 +20,6 @@
 
 using base::global::CRntString;
 using base::global::CStrId;
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 // Stores the bool at `value` under `name` in the blackboard section `section` names (unless the
 // blackboard is locked).

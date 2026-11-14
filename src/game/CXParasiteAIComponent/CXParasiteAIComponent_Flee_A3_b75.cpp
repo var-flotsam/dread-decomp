@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CXParasiteAIComponent.h"
 #include "game/UnkActor.h"
@@ -19,7 +20,6 @@
 using base::global::CStrId;
 
 // As src/game/CAIComponent/CAIComponent_StoreFloat_b49.cpp declares them.
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 // As src/game_s7/fn_71006e1010.cpp declares it.
 
 // What fn_71006e9384 is asked to do (only the kind is set here).

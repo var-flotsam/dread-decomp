@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAIManager/CTunableAIManager.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CCharacterLifeComponent.h"
 #include "game/CFrozenComponent.h"
@@ -196,8 +197,6 @@ bool fn_710115bdcc(UnkEnemyLifeComponent2_ovb0043* self, bool flag) {
     }
     return result;
 }
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 struct UnkEnemyLifeAI3_ovb0043 {
     u8 pad_0x0[0x1260];

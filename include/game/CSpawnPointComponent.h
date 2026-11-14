@@ -45,7 +45,11 @@ struct CSpawnPointComponent : UnkBaseComponent {
     CGameLink<CActor> wpAreaOfInterestEnd;   // 0x238
     f32 fTimeOnAOIEndToUseAsMainAOI;         // 0x278
     bool bAutomanaged;                       // 0x27c
-    u8 pad_0x27d[0x2b8 - 0x27d];
+    u8 pad_0x27d[0x290 - 0x27d];
+    void* field_0x290;  // 16-byte entries, one per key: the first 8 bytes are the blackboard property's id
+    base::global::UnkStringData** field_0x298;  // the keys: the name ids of the properties
+    u32 field_0x2a0;    // how many keys
+    u8 pad_0x2a4[0x2b8 - 0x2a4];
     bool field_0x2b8;  // cleared when a spawn finds the field_0x60 object's +0x13a set
     u8 pad_0x2b9[0x3];
     f32 fSpawnFromXCellProbability;            // 0x2bc
@@ -53,12 +57,14 @@ struct CSpawnPointComponent : UnkBaseComponent {
     EXCellSpawnPositionMode eXCellSpawnPositionMode;              // 0x2c4
     base::UnkVector<CGameLink<CActor>> tXCellTransformTargets;    // 0x2c8
     CGameLink<CActor> wpXCellActivationAreaShape;                 // 0x2f0
-    u8 pad_0x330[0x351 - 0x330];
+    u8 pad_0x330[0x350 - 0x330];
+    bool field_0x350;  // whether the owner is on the Emmy zone's shape (set by fn_7101126c34)
     bool bUseDynamicSpawnPosition;  // 0x351
     u8 pad_0x352[0x2];
     EDynamicSpawnPositionMode eDynamicSpawnPositionMode;          // 0x354
     base::UnkVector<CGameLink<CActor>> tDynamicSpawnPositions;    // 0x358
-    u8 pad_0x380[0x390 - 0x380];
+    UnkWeakHandle* field_0x380;  // the weak handle of the object found by fn_710112c4d8
+    u8 pad_0x388[0x390 - 0x388];
     base::UnkVector<CSpawnerActorBlueprint> voActorBlueprint;     // 0x390
 
     // Resolves the link at +0x60 the way this unit resolves links (fn_710023b580, fn_7100234f78): once, while

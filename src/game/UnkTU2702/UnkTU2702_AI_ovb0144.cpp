@@ -11,6 +11,7 @@
 #include "base/math/UnkZeroVector3.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CCharClassAIComponent.h"
 #include "game/CCharacterMovement.h"
@@ -32,8 +33,6 @@
 using base::global::CStrId;
 
 // ---- Blackboard flags under properties of the id table
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 struct UnkAIBlackboard_b0144 {
     u8 pad_0x0[0x1260];

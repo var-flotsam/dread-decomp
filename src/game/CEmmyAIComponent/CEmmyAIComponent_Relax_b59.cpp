@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CAnimationComponent.h"
 #include "game/CBlackboard.h"
 #include "game/UnkActor.h"
@@ -21,8 +22,6 @@
 using base::global::CStrId;
 
 struct UnkEmmyActor_b55;
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 extern UnkPropertyName g_unk_71726debd8;
 

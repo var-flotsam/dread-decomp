@@ -7,6 +7,7 @@
 // layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CActorComponent.h"
 #include "game/CBlackboard.h"
 #include "game/CHeatRoomComponent.h"
@@ -26,8 +27,6 @@ struct UnkSubId_7100fc4b34 {
 };
 using UnkQualifiedName_7100fc4b34 = UnkQualifiedName;
 const UnkSubId_7100fc4b34& fn_71003327a4(UnkQualifiedName_7100fc4b34* self, const CStrId* name);
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 // The activatable base, as CCharClassActivatableComponent_b48.cpp defines it.
 struct UnkActivatable_b48;

@@ -11,7 +11,9 @@
 
 struct UnkBaseComponent {
     void** vtable;
-    u8 unk_0x8[0x28];
+    u8 unk_0x8[0x10];
+    void* field_0x18;  // the entity the component belongs to (fn_7100232864 enables and disables it)
+    u8 unk_0x20[0x10];
     void* field_0x30;  // an owner whose +0x28 member the property handler reads
     u8 unk_0x38[0x8];  // a flag byte at +0x3c is passed to the property stream
 };

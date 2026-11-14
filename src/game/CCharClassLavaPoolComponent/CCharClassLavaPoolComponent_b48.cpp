@@ -9,6 +9,7 @@
 // placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CCharClassLiquidPoolComponent.h"
 #include "game/CScenario.h"
@@ -29,8 +30,6 @@ struct UnkLavaPoolValue_b48 {
     };
     u64 field_0x8;
 };
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 extern u64 g_unk_710164b1d8;
 extern u64 g_unk_710164b1e0;

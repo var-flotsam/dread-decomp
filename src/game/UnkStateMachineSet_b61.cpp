@@ -5,6 +5,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CCollisionComponent.h"
 #include "game/CComponent.h"
@@ -363,7 +364,6 @@ void fn_7100a701c8(UnkAccessPointSm_b61* self) {
 // CWeightActivatedPlatformSmartObjectComponent's unit: requests state 7, stores true under the
 // component's property (g_unk_71727434e0) in the blackboard section of the current scenario unless the
 // blackboard is locked (as CElevatorUsableComponent_b48.cpp), then notifies the linked object.
-void fn_7100332c80(CBlackboard::CSection*, UnkPropertyName*, const UnkTypedValue*);
 
 struct UnkPlatformValue_b61 {
     UnkPropertyName name;

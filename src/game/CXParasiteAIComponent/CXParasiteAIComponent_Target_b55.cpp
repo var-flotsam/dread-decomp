@@ -4,6 +4,7 @@
 // src/game/CXParasiteAIComponent.cpp does. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkTU1102.h"
 #include "game/UnkXParasiteAI.h"
@@ -12,8 +13,6 @@
 #include "game/UnkTypedValue.h"
 
 struct UnkPropertyName;
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 extern UnkPropertyName g_unk_717270b8c0 __attribute__((visibility("hidden")));  // a CVector3D in it
 

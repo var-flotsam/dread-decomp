@@ -4,6 +4,7 @@
 #include "base/file/IDevice.h"
 #include "base/global/CRntString.h"
 #include "base/snd/CSoundSystem.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBTObserverComponent.h"
 #include "game/CBossAIComponent.h"
 #include "game/CCameraComponent.h"
@@ -452,8 +453,6 @@ static inline bool ReadU32(CBlackboard::CSection* section, UnkGameManagerNamedDe
     UnkSubId_7100fc4b34 id = SubId(def, name);
     return fn_7100a68fb0(section, &id, out);
 }
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 // The world's object reference at +0xd63f40 (as in src/game/GUI/CIngameMenu/fn_7100b2de48.cpp).
 struct UnkGameManagerObjRef {

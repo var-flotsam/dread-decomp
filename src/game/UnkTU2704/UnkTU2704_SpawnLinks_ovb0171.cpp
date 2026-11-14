@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "game/CBatalloonAIComponent.h"
 #include "game/UnkTU1102.h"
+#include "game/UnkTU2704.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU365.h"
 #include "game/logic/collision/CCollider.h"
@@ -144,8 +145,6 @@ struct UnkCameraHolder_ovb0171 {
     u32 pad_0x34;
     base::UnkRefHandle handle;
 };
-
-extern void* g_unk_7101cb2880[];
 
 // The callback set behind the camera's lazily resolved handle: callbacks at +0x8, the state at
 // +0x30 (1: not resolved yet, 2: resolved) and the handle at +0x38.

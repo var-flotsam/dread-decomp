@@ -3,6 +3,7 @@
 // locked (the setter as in src/game/CDoorLifeComponent.cpp). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkTUProperty.h"
 #include "game/behaviortree/CBehavior.h"
@@ -10,8 +11,6 @@
 #include "game/UnkTypedValue.h"
 
 using base::global::CStrId;
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 extern UnkPropertyName g_unk_7172a06338 __attribute__((visibility("hidden")));
 

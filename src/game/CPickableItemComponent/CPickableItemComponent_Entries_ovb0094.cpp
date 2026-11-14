@@ -7,6 +7,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CBreakableTileGroup.h"
 #include "game/CCharClassBreakableScenarioComponent.h"
@@ -187,7 +188,6 @@ void fn_71009d0570(UnkPickTimed_ovb0094* self, f32 dt) {
 
 using base::global::CStrId;
 
-void fn_7100332c80(CBlackboard::CSection*, UnkPropertyName*, const UnkTypedValue*);
 extern UnkProperty g_unk_717273fe08;
 struct UnkPickList_ovb0094;
 extern u8 g_unk_717273fe60[];

@@ -5,6 +5,7 @@
 // the current scenario. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CScenario.h"
 #include "game/UnkGameManager.h"
@@ -105,8 +106,6 @@ struct UnkDoorLife {
 static_assert(__builtin_offsetof(UnkDoorLife, field_0x624) == 0x624, "UnkDoorLife layout");
 static_assert(__builtin_offsetof(UnkDoorLife, field_0x6ac) == 0x6ac, "UnkDoorLife layout");
 static_assert(__builtin_offsetof(UnkDoorLife, field_0xa18) == 0xa18, "UnkDoorLife layout");
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 // The "NextState" property and the CDoorLifeComponent::SState enum (src/game_s7/fn_71008da6c0.cpp).
 struct UnkEnumType;

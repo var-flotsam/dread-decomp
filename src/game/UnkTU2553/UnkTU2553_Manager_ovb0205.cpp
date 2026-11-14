@@ -21,6 +21,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/snd/CSoundSystem.h"
 #include "game/CAbilityEnergyWave.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBTObserverComponent.h"
 #include "game/CBlackboard.h"
 #include "game/CBombGun.h"
@@ -531,7 +532,6 @@ bool fn_7100dfc344(UnkGameManager* manager, const char* const& a, const char* co
 
 // ---- fn_7100dffc58 / fn_7100dffe04
 bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 struct UnkTgmBlackboards_b205 {
     u8 pad_0x0[0x820];
     CBlackboard field_0x820;
@@ -570,8 +570,6 @@ void fn_7100dffe04(UnkGameManager* manager, s32 value) {
         }
     }
 }
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 // ---- fn_7100e00f74
 struct UnkTgmFlagOwner_b205 {

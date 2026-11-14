@@ -7,6 +7,7 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CSabotoruAIComponent.h"
 #include "game/UnkActor.h"
@@ -20,7 +21,6 @@ using base::global::CStrId;
 using base::reflection::UnkReflObject;
 
 // As src/game/CAIComponent/CAIComponent_StoreFloat_b49.cpp declares them.
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 // As src/game/CGobblerAIComponent/fn_71005820c4.cpp declares it.
 struct UnkGobblerComponent;
 // As src/game/CSabotoruTurnInDoorAttack/CSabotoruTurnInDoorAttack.cpp declares it.

@@ -4,6 +4,7 @@
 // timeline component).
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU1102.h"
@@ -14,8 +15,6 @@
 #include "game/UnkTypedValue.h"
 
 struct UnkPropertyName;
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 extern UnkPropertyName g_unk_717270b8d8 __attribute__((visibility("hidden")));  // the property in it
 extern const u64 g_unk_710164a838;                                               // the timeline id

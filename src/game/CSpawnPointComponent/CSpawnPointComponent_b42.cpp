@@ -4,17 +4,16 @@
 // and allocator, reserve the other's capacity (entries moved, the old ones destroyed through their
 // virtual destructor), then append a copy of each entry. Names and layouts are placeholders.
 #include "base/UnkVector.h"
+#include "game/CSpawnGroupComponent.h"
+#include "game/UnkTU2704.h"
 #include "types.h"
 
 // As src/clones/clones_06.cpp declares it: moves the entry at the second pointer into the first.
-void fn_710111fd80(void*, void*);
 
 struct UnkEntry_b42a3 {
     virtual ~UnkEntry_b42a3();
     u8 pad_0x8[0x38];
 };
-
-void fn_7101131b98(base::UnkVector<UnkEntry_b42a3>* self, const UnkEntry_b42a3* value);
 
 void fn_7101131a84(base::UnkVector<UnkEntry_b42a3>* self, const base::UnkVector<UnkEntry_b42a3>* other) {
     self->data = nullptr;
