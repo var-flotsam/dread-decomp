@@ -340,7 +340,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 338,0x71002271f0,0x710022727c,UnkTU338,high,unknown,matched,1,140,1,0,0,0,0,0,0,140,140
 339,0x7100227280,0x710022730c,UnkTU339,high,unknown,matched,1,140,1,0,0,0,0,0,0,140,140
 340,0x7100227310,0x710022739c,UnkTU340,high,unknown,matched,1,140,1,0,0,0,0,0,0,140,140
-341,0x710022739c,0x710024e2e8,CActor,medium,unknown,partial,1186,159504,1174,1,0,0,0,11,1,153440,153440
+341,0x710022739c,0x710024e2e8,CActor,medium,unknown,partial,1186,159504,1174,2,1,0,0,10,1,153440,153608
 342,0x710024e2e8,0x7100252568,CActorComponent,high,unknown,partial,180,17020,176,0,0,0,0,4,0,15020,15020
 343,0x7100252568,0x71002548bc,CActorComponentDef,high,game,partial,40,9044,38,0,0,0,0,2,0,6760,6760
 344,0x71002548c0,0x7100254abc,UnkTU344,high,game,partial,2,496,1,0,0,0,0,1,0,140,140
@@ -2771,4 +2771,4 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 2769,0x710120391c,0x7101203fe0,CharClassRechargePlayerAmmo,high,unknown,matched,18,1732,18,0,0,0,0,0,0,1732,1732
 2770,0x7101203fe0,0x71012046c0,CharClassRechargePlayerLife,high,unknown,matched,18,1752,18,0,0,0,0,0,0,1752,1752
 2771,0x71012046c0,0x71012063dc,nn::atk,low,middleware/nn-atk,matched,1,84,1,0,0,0,0,0,59,84,84
-2772,0x71012063dc,0x710123ac10,nn::atk,low,middleware/nn-atk,partial,291,41780,229,1,1,0,0,61,1581,20572,20612
+2772,0x71012063dc,0x710123ac10,nn::atk,low,middleware/nn-atk,partial,291,41780,229,2,2,0,0,60,1581,20572,21032
