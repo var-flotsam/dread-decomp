@@ -236,6 +236,9 @@ def reflection_names(g: "Getter") -> dict[int, str]:
     return out
 
 
+KEY_DECL_RE = re.compile(r"^const base::reflection::UnkReflAttrKey& fn_([0-9a-f]+)\(\);$")
+
+
 def readable_class_lines(orig: asmdiff.Original, g: "Getter", size: int, attr_sources: dict[int, tuple[list[str], str]],
                          macro: str, parent: str | None, declared: set[str]) -> tuple[list[str], int, int]:
     """One class in the readable form: the declarations its attribute and member-field functions need,
@@ -250,6 +253,9 @@ def readable_class_lines(orig: asmdiff.Original, g: "Getter", size: int, attr_so
         name = role_name(slot)
         if a in attr_sources:
             extra, src = attr_sources[a]
+            # One line per field (base/reflection/ReflectedFields.h); the named keys are declared there.
+            src = "\n".join(refl_attrs.readable_fields(src.split("\n")))
+            extra = [d for d in extra if not (m := KEY_DECL_RE.match(d)) or int(m.group(1), 16) not in refl_attrs.ATTRIBUTE_NAMES]
             pre += [d for d in extra if d not in declared]
             declared |= set(extra)
             inside.append(re.sub(rf"\bfn_{a:x}\(", f"{name}(", src, count=1))
@@ -729,6 +735,9 @@ def main() -> int:
                     orig, g, sizes[g.address], {a: candidates[a] for a in attr_ok}, macro,
                     type_of[g.parent] if g.parent else None, decl_lines)
                 lines += body + [""]
+                fields_include = '#include "base/reflection/ReflectedFields.h"'
+                if fields_include not in lines and any("DREAD_REFLECTED_FIELD(" in l for l in body):
+                    lines.insert(lines.index('#include "base/reflection/ReflectedClass.h"') + 1, fields_include)
                 helpers_defined += h
                 attrs_defined += n_attrs
                 continue

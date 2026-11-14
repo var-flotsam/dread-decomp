@@ -1041,3 +1041,85 @@ def verify(version: str, candidates: dict[int, tuple[list[str], str]], workdir: 
             candidates[a] = retry[a]
         ok |= good
     return ok
+
+
+# The one-line form of a member field (base/reflection/ReflectedFields.h): AddField<T>(cls, "name", offset)
+# followed by its attributes by key name. Used for the classes gen_reflection.py writes in the readable form.
+FIELD_TYPES = {  # type getter -> the field's type as written
+    0x7100005178: "u32", 0x71000081e8: "const char*", 0x7100009658: "CStrId", 0x7100014768: "s32",
+    0x710000abbc: "f32", 0x710000d228: "bool", 0x7100024504: "base::math::CVector2D",
+    0x71000246e4: "base::math::CVector3D", 0x71000248c4: "base::math::CVector4D",
+    0x7100007f84: "base::global::CRntString", 0x710000ad9c: "base::global::CFilePathStrId",
+    0x710000fd7c: "base::global::CName",
+}
+ATTRIBUTE_NAMES = {  # attribute key getter -> the name it registers (attr:: in base/reflection/ReflectedFields.h)
+    0x7100005070: "Version", 0x7100007e80: "Description", 0x710000bf80: "Persistence",
+    0x7100011040: "sBinaryDeserialize", 0x710001b9f0: "XmlAttribute", 0x7100026bf0: "sSerializationType",
+    0x7100075240: "DefaultValue", 0x710008f920: "Name", 0x710008fa30: "UniqueId", 0x710008fb40: "DeleteElement",
+    0x710008fc50: "EraseElement", 0x710008fd60: "CreateElement", 0x710008fe70: "InsertElement",
+    0x710008ff80: "AfterElementDeserialization", 0x7100090090: "FixedCollection",
+    0x71000901a0: "ElementKeyVariable", 0x71000903c0: "Required", 0x71000904d0: "RntFilePackedParams",
+    0x7100090800: "bBinaryDumpable", 0x7100090910: "IsLink", 0x7100090a20: "EditorVisible",
+    0x7100090c40: "CharEditorVisible", 0x7100090d50: "EventGroup", 0x7100090e60: "TrackGroup",
+    0x7100091080: "MinValue", 0x7100091190: "MaxValue", 0x71000912a0: "EmptyTrack",
+    0x71000913b0: "MinValueProperty", 0x71000914c0: "MaxValueProperty", 0x71000916e0: "MinValueI",
+    0x71000917f0: "MaxValueI", 0x7100091900: "Extension", 0x7100091c30: "DisplayName",
+    0x7100091d40: "TypeSelectionEnabled", 0x7100091e50: "SPointChClassSelectEnabled",
+    0x7100091f60: "AddNewItemButtonEnabled", 0x7100092070: "DeleteItemButtonEnabled",
+    0x71000923a0: "EditorModeDataFlow", 0x71000924b0: "bEditorModeDataFlowInit", 0x71000925c0: "bSkipDataFlowOrder",
+    0x71000926d0: "CompleteGameModelActionTreeFrom", 0x7100092b10: "DisableListAddRemove",
+    0x7100092c20: "DisableListAdd", 0x7100093170: "ShowInConfig", 0x7100093280: "ShowInDevConfig",
+    0x7100093390: "DeprecatedVar", 0x7100234410: "WidgetReadOnly", 0x7100234780: "SetRenderItemSelectionIdCall",
+    0x710025d990: "ePersistenceTarget", 0x710025daa0: "eLinkTarget", 0x710025dbb0: "bWeakLink",
+    0x7100263720: "ePersistenceTargetExclude", 0x7100324af0: "ControlFloatStep", 0x7100324c00: "InternalTag",
+    0x7100324d10: "ControlIntStep", 0x71003ba540: "InternalDevTag", 0x710075a400: "DefaultPasteValue",
+    0x7100ed8b60: "FileFilter", 0x7100f9e870: "AssetType", 0x7100f9e980: "BasePath", 0x7100f9ea90: "FolderFilter",
+    0x7100f9eba0: "FileNameOnly", 0x71010434d0: "eActorLinkToComponentLinkTransform",
+}
+FIELD_RE = re.compile(r'^    UnkReflField\* (field\d+) = fn_7100096524\(cls, CStrId\(("(?:[^"\\]|\\.)*"), true\), '
+                      r'fn_([0-9a-f]{10})\(\), (0x[0-9a-f]+), -1, -1\);$')
+ATTR_RE = re.compile(r'^    (field\d+)->attrs\.Add<(.+?)>\(fn_([0-9a-f]{10})\(\), (.*)\);$')
+
+
+def _deduced(type_: str, value: str) -> bool:
+    """Whether a setter's template argument deduced from `value` is `type_` (the value's own type)."""
+    if type_ == "f32":
+        return re.fullmatch(r"-?(\d+\.\d*(e[-+]?\d+)?|inf|nan)f", value) is not None
+    if type_ == "bool":
+        return value in ("true", "false")
+    if type_ == "s32":
+        return re.fullmatch(r"-?\d+", value) is not None
+    if type_ == "const char*":
+        return re.fullmatch(r'"(?:[^"\\]|\\.)*"', value) is not None
+    return value.startswith(f"{type_}(") or value.startswith(f"{type_}{{")
+
+
+def readable_fields(lines: list[str]) -> list[str]:
+    """Rewrite each field registration whose type and attributes all have names into one line."""
+    out: list[str] = []
+    i = 0
+    while i < len(lines):
+        m = FIELD_RE.match(lines[i])
+        if not m or int(m.group(3), 16) not in FIELD_TYPES:
+            out.append(lines[i])
+            i += 1
+            continue
+        var, name, getter, offset = m.groups()
+        line = f"    DREAD_REFLECTED_FIELD({FIELD_TYPES[int(getter, 16)]}, {name}, {offset}"
+        j = i + 1
+        while j < len(lines) and (a := ATTR_RE.match(lines[j])) and a.group(1) == var \
+                and int(a.group(3), 16) in ATTRIBUTE_NAMES and not a.group(4).startswith("&"):
+            type_, value = a.group(2), a.group(4)
+            if not _deduced(type_, value):
+                if not re.fullmatch(r"[\w:]+", type_):
+                    break
+                value = f"{type_}({value})"
+            line += f", ({ATTRIBUTE_NAMES[int(a.group(3), 16)]}, {value})"
+            j += 1
+        if j < len(lines) and re.search(rf"\b{var}\b", lines[j]):
+            out.append(lines[i])  # an attribute without a name yet: the field keeps its variable
+            i += 1
+            continue
+        out.append(line + ");")
+        i = j
+    return out

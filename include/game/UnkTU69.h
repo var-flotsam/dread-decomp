@@ -5,5 +5,3 @@
 // Names and layouts are placeholders.
 #include "base/reflection/UnkReflAttributes.h"
 #include "types.h"
-const base::reflection::UnkReflAttrKey& fn_710008f920();
-const base::reflection::UnkReflAttrKey& fn_710008fd60();
