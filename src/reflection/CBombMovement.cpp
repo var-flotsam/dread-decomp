@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,14 +20,10 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CBombMovement
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CBombMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sCollisionFX", true), fn_710000ad9c(), 0x480, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "");
-    field0->attrs.Add<const char*>(fn_7100007e80(), "FX to launch on collision");
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sCollisionFX", 0x480, (DefaultValue, ""), (Description, "FX to launch on collision"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -65,21 +62,11 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172753b08 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fTimeToExplode", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.81f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Time it takes for the bomb to explode after it's been placed");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fExplosionRadius", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Final explosion radius to hit entities other than the player");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fExplosionRadiusPlayer", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Final explosion radius to hit player");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fExplosionExpansionTime", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.35f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Time it takes for the explosion radius to get to the final one");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fExplosionLifeTime", true), fn_710000abbc(), 0x34, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Time after bomb explodes until it can be deployed again (includes the time it takes for the bomb to expand)");
+    DREAD_REFLECTED_FIELD(f32, "fTimeToExplode", 0x24, (DefaultValue, 0.81f), (Description, "Time it takes for the bomb to explode after it's been placed"));
+    DREAD_REFLECTED_FIELD(f32, "fExplosionRadius", 0x28, (DefaultValue, 100.0f), (Description, "Final explosion radius to hit entities other than the player"));
+    DREAD_REFLECTED_FIELD(f32, "fExplosionRadiusPlayer", 0x2c, (DefaultValue, 100.0f), (Description, "Final explosion radius to hit player"));
+    DREAD_REFLECTED_FIELD(f32, "fExplosionExpansionTime", 0x30, (DefaultValue, 0.35f), (Description, "Time it takes for the explosion radius to get to the final one"));
+    DREAD_REFLECTED_FIELD(f32, "fExplosionLifeTime", 0x34, (DefaultValue, 0.5f), (Description, "Time after bomb explodes until it can be deployed again (includes the time it takes for the bomb to expand)"));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

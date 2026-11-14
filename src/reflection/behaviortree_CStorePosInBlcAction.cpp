@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,17 +20,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CStorePosInBlcAction
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace behaviortree::CStorePosInBlcAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sEntityNameBlc", true), fn_7100009658(), 0x38, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "");
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Blackboard variable that contains the entity name. If it is empty, the owner entity is used");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sPropName", true), fn_7100009658(), 0x30, -1, -1);
-    field1->attrs.Add<const char*>(fn_7100075240(), "4");
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Property name");
+    DREAD_REFLECTED_FIELD(CStrId, "sEntityNameBlc", 0x38, (DefaultValue, ""), (Description, "Blackboard variable that contains the entity name. If it is empty, the owner entity is used"));
+    DREAD_REFLECTED_FIELD(CStrId, "sPropName", 0x30, (DefaultValue, "4"), (Description, "Property name"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

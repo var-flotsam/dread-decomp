@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -22,11 +23,11 @@ using base::reflection::DestroyDestructorFirst;
 namespace GUI::CGlobalMapArea {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sTopArea", true), fn_7100009658(), 0x298, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sBottomArea", true), fn_7100009658(), 0x2a0, -1, -1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sLeftArea", true), fn_7100009658(), 0x2a8, -1, -1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sRightArea", true), fn_7100009658(), 0x2b0, -1, -1);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sScenarioId", true), fn_7100009658(), 0x290, -1, -1);
+    DREAD_REFLECTED_FIELD(CStrId, "sTopArea", 0x298);
+    DREAD_REFLECTED_FIELD(CStrId, "sBottomArea", 0x2a0);
+    DREAD_REFLECTED_FIELD(CStrId, "sLeftArea", 0x2a8);
+    DREAD_REFLECTED_FIELD(CStrId, "sRightArea", 0x2b0);
+    DREAD_REFLECTED_FIELD(CStrId, "sScenarioId", 0x290);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

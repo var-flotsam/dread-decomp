@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CSamusAnimationComponent::CTunableSamusAnimationComponent
 extern bool g_unk_717270e908;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_717270e8d0;
 void fn_71007138f4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -32,16 +32,11 @@ void refl_AddFields(CClass* cls) {
     g_unk_717270e908 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fToRecoilBlendTime", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.03f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fFromRecoilBlendTime", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.2f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fToAimBlendTime", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.12f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fToDefaultBlendTime", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.12f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fRecoilTime", true), fn_710000abbc(), 0x34, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.12f);
+    DREAD_REFLECTED_FIELD(f32, "fToRecoilBlendTime", 0x24, (DefaultValue, 0.03f));
+    DREAD_REFLECTED_FIELD(f32, "fFromRecoilBlendTime", 0x28, (DefaultValue, 0.2f));
+    DREAD_REFLECTED_FIELD(f32, "fToAimBlendTime", 0x2c, (DefaultValue, 0.12f));
+    DREAD_REFLECTED_FIELD(f32, "fToDefaultBlendTime", 0x30, (DefaultValue, 0.12f));
+    DREAD_REFLECTED_FIELD(f32, "fRecoilTime", 0x34, (DefaultValue, 0.12f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,23 +22,14 @@ using base::reflection::DestroyDestructorFirst;
 // CBreakableTileGroupComponent
 void fn_710075d2e4();
 void fn_71007542cc(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
-const base::reflection::UnkReflAttrKey& fn_710075a400();
 extern base::reflection::CType g_unk_7172711ad0;
-const base::reflection::UnkReflAttrKey& fn_710008fd60();
-const base::reflection::UnkReflAttrKey& fn_710008fb40();
-const base::reflection::UnkReflAttrKey& fn_710008ff80();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_7172791c90;
 void fn_710075d374();
 void fn_7100754448(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern base::reflection::CType g_unk_71727115d0;
 void fn_710075d73c();
 void fn_710075d430(UnkReflFunction* fn);
-const base::reflection::UnkReflAttrKey& fn_710008f920();
-const base::reflection::UnkReflAttrKey& fn_71000903c0();
 void fn_71007545bc(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_710075d94c();
@@ -60,8 +52,7 @@ void refl_AddFields(CClass* cls) {
     field1->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateNewTile", true));
     field1->attrs.Add<const char*>(fn_710008fb40(), "DeleteTileAt");
     field1->attrs.Add<const char*>(fn_710008ff80(), "AfterGridDeserialization");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bFakeHusks", true), fn_710000d228(), 0x4c, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(bool, "bFakeHusks", 0x4c, (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_eCollisionMaterial_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_eCollisionMaterial_GetterFunction", true);
         fn->return_type = &g_unk_7172791c90;

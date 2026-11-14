@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassChozoCommanderAIComponent::CTunableCharClassChozoCommanderAIComponent
 extern bool g_unk_71726c9218;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726c91d0;
 void fn_710044ce04(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -32,50 +32,28 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726c9218 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMotionSpeed", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 800.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bKiCounterDeactivateAura", true), fn_710000d228(), 0x28, -1, -1);
-    field1->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bKiCounterShowMeleableFX", true), fn_710000d228(), 0x29, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bKiCounterUseZoomCamera", true), fn_710000d228(), 0x2a, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("iInitialStage", true), fn_7100014768(), 0x2c, -1, -1);
-    field4->attrs.Add<s32>(fn_7100075240(), 0);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fSentenceSphereSpeed", true), fn_710000abbc(), 0x30, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 440.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("TRI_COMBO", true), fn_710000d228(), 0x34, -1, -1);
-    field6->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("KI_STRIKE", true), fn_710000d228(), 0x35, -1, -1);
-    field7->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("SENTENCE_SPHERE", true), fn_710000d228(), 0x36, -1, -1);
-    field8->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("POWER_PULSE", true), fn_710000d228(), 0x37, -1, -1);
-    field9->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("AURA_SCRATCH", true), fn_710000d228(), 0x38, -1, -1);
-    field10->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("KI_COUNTER", true), fn_710000d228(), 0x39, -1, -1);
-    field11->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("LANDING_SLAM", true), fn_710000d228(), 0x3a, -1, -1);
-    field12->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("AIR_CHARGE", true), fn_710000d228(), 0x3b, -1, -1);
-    field13->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("ZERO_LASER", true), fn_710000d228(), 0x3c, -1, -1);
-    field14->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("BEAM_BURST", true), fn_710000d228(), 0x3d, -1, -1);
-    field15->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("HYPER_SPARK", true), fn_710000d228(), 0x3e, -1, -1);
-    field16->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("ENERGY_SHARDS", true), fn_710000d228(), 0x3f, -1, -1);
-    field17->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field18 = fn_7100096524(cls, CStrId("ZERO_LASER_GROUNDED", true), fn_710000d228(), 0x40, -1, -1);
-    field18->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field19 = fn_7100096524(cls, CStrId("HYPER_DASH", true), fn_710000d228(), 0x41, -1, -1);
-    field19->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field20 = fn_7100096524(cls, CStrId("ULTIMATE_GRAB", true), fn_710000d228(), 0x42, -1, -1);
-    field20->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field21 = fn_7100096524(cls, CStrId("KI_GRAB", true), fn_710000d228(), 0x43, -1, -1);
-    field21->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_FIELD(f32, "fMotionSpeed", 0x24, (DefaultValue, 800.0f));
+    DREAD_REFLECTED_FIELD(bool, "bKiCounterDeactivateAura", 0x28, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bKiCounterShowMeleableFX", 0x29, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bKiCounterUseZoomCamera", 0x2a, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(s32, "iInitialStage", 0x2c, (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD(f32, "fSentenceSphereSpeed", 0x30, (DefaultValue, 440.0f));
+    DREAD_REFLECTED_FIELD(bool, "TRI_COMBO", 0x34, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "KI_STRIKE", 0x35, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "SENTENCE_SPHERE", 0x36, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "POWER_PULSE", 0x37, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "AURA_SCRATCH", 0x38, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "KI_COUNTER", 0x39, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "LANDING_SLAM", 0x3a, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "AIR_CHARGE", 0x3b, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "ZERO_LASER", 0x3c, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "BEAM_BURST", 0x3d, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "HYPER_SPARK", 0x3e, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "ENERGY_SHARDS", 0x3f, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "ZERO_LASER_GROUNDED", 0x40, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "HYPER_DASH", 0x41, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "ULTIMATE_GRAB", 0x42, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "KI_GRAB", 0x43, (DefaultValue, true));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
@@ -145,22 +123,14 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field13 = fn_7100096524(cls, CStrId("oChozoCommanderHyperDashAttackDef", true), fn_710041f164(), 0x12b8, -1, -1);
     UnkReflField* field14 = fn_7100096524(cls, CStrId("oChozoCommanderUltimateGrabAttackDef", true), fn_7100422f04(), 0x13c0, -1, -1);
     UnkReflField* field15 = fn_7100096524(cls, CStrId("oChozoCommanderKiGrabAttackDef", true), fn_71004204a4(), 0x14b0, -1, -1);
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("fAuraLife", true), fn_710000abbc(), 0x15a0, -1, -1);
-    field16->attrs.Add<f32>(fn_7100075240(), 1000.0f);
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("fLifeToRecoverAfterUltimateGrabStage1", true), fn_710000abbc(), 0x15a4, -1, -1);
-    field17->attrs.Add<f32>(fn_7100075240(), 500.0f);
-    UnkReflField* field18 = fn_7100096524(cls, CStrId("fLifeToRecoverAfterUltimateGrabStage3", true), fn_710000abbc(), 0x15a8, -1, -1);
-    field18->attrs.Add<f32>(fn_7100075240(), 1000.0f);
-    UnkReflField* field19 = fn_7100096524(cls, CStrId("fUltimateGrabDamage", true), fn_710000abbc(), 0x15ac, -1, -1);
-    field19->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    UnkReflField* field20 = fn_7100096524(cls, CStrId("fTimeBetweenKiStrikeAttacks", true), fn_710000abbc(), 0x15b0, -1, -1);
-    field20->attrs.Add<f32>(fn_7100075240(), 20.0f);
-    UnkReflField* field21 = fn_7100096524(cls, CStrId("fAttackWaitTimeBetweenPhases", true), fn_710000abbc(), 0x15b4, -1, -1);
-    field21->attrs.Add<f32>(fn_7100075240(), 0.6f);
-    UnkReflField* field22 = fn_7100096524(cls, CStrId("fMinDistToHyperDash", true), fn_710000abbc(), 0x15b8, -1, -1);
-    field22->attrs.Add<f32>(fn_7100075240(), 250.0f);
-    UnkReflField* field23 = fn_7100096524(cls, CStrId("fMaxVerticalDiffToAboveHyperDash", true), fn_710000abbc(), 0x15bc, -1, -1);
-    field23->attrs.Add<f32>(fn_7100075240(), 200.0f);
+    DREAD_REFLECTED_FIELD(f32, "fAuraLife", 0x15a0, (DefaultValue, 1000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLifeToRecoverAfterUltimateGrabStage1", 0x15a4, (DefaultValue, 500.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLifeToRecoverAfterUltimateGrabStage3", 0x15a8, (DefaultValue, 1000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fUltimateGrabDamage", 0x15ac, (DefaultValue, 100.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeBetweenKiStrikeAttacks", 0x15b0, (DefaultValue, 20.0f));
+    DREAD_REFLECTED_FIELD(f32, "fAttackWaitTimeBetweenPhases", 0x15b4, (DefaultValue, 0.6f));
+    DREAD_REFLECTED_FIELD(f32, "fMinDistToHyperDash", 0x15b8, (DefaultValue, 250.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxVerticalDiffToAboveHyperDash", 0x15bc, (DefaultValue, 200.0f));
     UnkReflField* field24 = fn_7100096524(cls, CStrId("oDamageSourceFactorShortShootingGrab", true), fn_71008c1b4c(), 0x15c0, -1, -1);
     UnkReflField* field25 = fn_7100096524(cls, CStrId("oDamageSourceFactorLongShootingGrab", true), fn_71008c1b4c(), 0x1630, -1, -1);
 }

@@ -20,7 +20,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CLogicActionTriggerComponent
 extern base::reflection::CType g_unk_717274caa0;
-const base::reflection::UnkReflAttrKey& fn_7100091d40();
 namespace CLogicActionTriggerComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

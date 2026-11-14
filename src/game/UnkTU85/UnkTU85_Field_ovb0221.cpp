@@ -33,7 +33,6 @@ struct UnkFieldAccessor85 {
     virtual UnkReflValue vf_0x10(const UnkTypedRef& obj, const UnkFieldArgs85& args, u32 flags);
 };
 
-const base::reflection::UnkReflAttrKey& fn_7100090910();
 struct UnkVersionEntry;
 
 // Whether the bool attribute under the key (fn_7100090910) is set; false for a null holder.

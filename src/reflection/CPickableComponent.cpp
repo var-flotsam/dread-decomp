@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,16 +20,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CPickableComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_71009ce3e4();
 namespace CPickableComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sOnPickFX", true), fn_710000ad9c(), 0x58, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "system/fx/generic/onpick_small.bcptl");
-    field0->attrs.Add<const char*>(fn_7100007e80(), "fx on pick");
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sOnPickFX", 0x58, (DefaultValue, "system/fx/generic/onpick_small.bcptl"), (Description, "fx on pick"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OnPickUpAfterCutScene", true))) {
         fn->name = base::global::UnkStrId("OnPickUpAfterCutScene", true);
         fn->return_type = &g_unk_7101d5af48;

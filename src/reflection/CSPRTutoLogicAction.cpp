@@ -20,10 +20,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // CSPRTutoLogicAction
 extern base::reflection::CType g_unk_717269bb48;
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 extern base::reflection::CType g_unk_717274caa0;
-const base::reflection::UnkReflAttrKey& fn_7100091d40();
 namespace CSPRTutoLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

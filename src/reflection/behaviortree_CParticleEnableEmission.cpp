@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,23 +20,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CParticleEnableEmission
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace behaviortree::CParticleEnableEmission {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sFX", true), fn_7100009658(), 0x30, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "");
-    field0->attrs.Add<const char*>(fn_7100007e80(), "FX to enable emission");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bEnable", true), fn_710000d228(), 0x38, -1, -1);
-    field1->attrs.Add<bool>(fn_7100075240(), true);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Enable or disable (true = enable)");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bDisableOnEmpty", true), fn_710000d228(), 0x39, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), true);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Disable the effect after emission stoped (true)");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bWaitEmissionStop", true), fn_710000d228(), 0x3a, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), true);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Wait until the effect is not alive (true)");
+    DREAD_REFLECTED_FIELD(CStrId, "sFX", 0x30, (DefaultValue, ""), (Description, "FX to enable emission"));
+    DREAD_REFLECTED_FIELD(bool, "bEnable", 0x38, (DefaultValue, true), (Description, "Enable or disable (true = enable)"));
+    DREAD_REFLECTED_FIELD(bool, "bDisableOnEmpty", 0x39, (DefaultValue, true), (Description, "Disable the effect after emission stoped (true)"));
+    DREAD_REFLECTED_FIELD(bool, "bWaitEmissionStop", 0x3a, (DefaultValue, true), (Description, "Wait until the effect is not alive (true)"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

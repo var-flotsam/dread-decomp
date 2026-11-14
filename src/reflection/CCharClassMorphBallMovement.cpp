@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,44 +20,20 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassMorphBallMovement
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CCharClassMorphBallMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fSlopeExitFrictionFactorTime", true), fn_710000abbc(), 0x9c, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.3f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "When moving out of a slope, time while we alter friction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fSlopeExitFrictionFactor", true), fn_710000abbc(), 0xa0, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 3.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "When moving out of a slope, altered friction we apply");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sSlopeAccelerationFunction", true), fn_7100009658(), 0xa8, -1, -1);
-    field2->attrs.Add<const char*>(fn_7100075240(), "");
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Function to use when accelerating through the slope");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fSlopeTimeToAccelerate", true), fn_710000abbc(), 0xb0, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Time it takes to fully accelerate through the slope");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fSlopeMinImpulse", true), fn_710000abbc(), 0xb4, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 5000.0f);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Minimum impulse when on a slope");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fSlopeMaxImpulse", true), fn_710000abbc(), 0xb8, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 10000.0f);
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Maximum impulse when on a slope");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("sMovementAudioPreset", true), fn_710000ad9c(), 0xc0, -1, -1);
-    field6->attrs.Add<const char*>(fn_7100075240(), "");
-    field6->attrs.Add<const char*>(fn_7100007e80(), "Movement Audio Preset");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fInitialSpeedDiffDecrease", true), fn_710000abbc(), 0xc8, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 200.0f);
-    field7->attrs.Add<const char*>(fn_7100007e80(), "Initial Speed Decrease per Second");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fMaxInitialSpeedDiff", true), fn_710000abbc(), 0xcc, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 400.0f);
-    field8->attrs.Add<const char*>(fn_7100007e80(), "Max allowed Initial Speed. Higher values are clamped.");
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fOnAirImpulseFactor", true), fn_710000abbc(), 0xd0, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 0.75f);
-    field9->attrs.Add<const char*>(fn_7100007e80(), "Factor to apply as Drag to the previous Impulse when on air");
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fXImpulseStrenght", true), fn_710000abbc(), 0xd4, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 2000.0f);
-    field10->attrs.Add<const char*>(fn_7100007e80(), "Strength of the X impulse on Input.");
+    DREAD_REFLECTED_FIELD(f32, "fSlopeExitFrictionFactorTime", 0x9c, (DefaultValue, 0.3f), (Description, "When moving out of a slope, time while we alter friction"));
+    DREAD_REFLECTED_FIELD(f32, "fSlopeExitFrictionFactor", 0xa0, (DefaultValue, 3.0f), (Description, "When moving out of a slope, altered friction we apply"));
+    DREAD_REFLECTED_FIELD(CStrId, "sSlopeAccelerationFunction", 0xa8, (DefaultValue, ""), (Description, "Function to use when accelerating through the slope"));
+    DREAD_REFLECTED_FIELD(f32, "fSlopeTimeToAccelerate", 0xb0, (DefaultValue, 1.0f), (Description, "Time it takes to fully accelerate through the slope"));
+    DREAD_REFLECTED_FIELD(f32, "fSlopeMinImpulse", 0xb4, (DefaultValue, 5000.0f), (Description, "Minimum impulse when on a slope"));
+    DREAD_REFLECTED_FIELD(f32, "fSlopeMaxImpulse", 0xb8, (DefaultValue, 10000.0f), (Description, "Maximum impulse when on a slope"));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sMovementAudioPreset", 0xc0, (DefaultValue, ""), (Description, "Movement Audio Preset"));
+    DREAD_REFLECTED_FIELD(f32, "fInitialSpeedDiffDecrease", 0xc8, (DefaultValue, 200.0f), (Description, "Initial Speed Decrease per Second"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxInitialSpeedDiff", 0xcc, (DefaultValue, 400.0f), (Description, "Max allowed Initial Speed. Higher values are clamped."));
+    DREAD_REFLECTED_FIELD(f32, "fOnAirImpulseFactor", 0xd0, (DefaultValue, 0.75f), (Description, "Factor to apply as Drag to the previous Impulse when on air"));
+    DREAD_REFLECTED_FIELD(f32, "fXImpulseStrenght", 0xd4, (DefaultValue, 2000.0f), (Description, "Strength of the X impulse on Input."));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

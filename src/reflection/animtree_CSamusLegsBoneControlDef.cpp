@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,28 +20,17 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // animtree::CSamusLegsBoneControlDef
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace animtree::CSamusLegsBoneControlDef {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Samus Legs Control");
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sThigh", true), fn_710000fd7c(), 0x10, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Tight Bone");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sCalf", true), fn_710000fd7c(), 0x18, -1, -1);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Calf Bone");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sFoot", true), fn_710000fd7c(), 0x20, -1, -1);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Foot, Bone");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMaxRotationFootUp", true), fn_710000abbc(), 0x28, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.45f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Foot Max Up Rotation ");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fMaxRotationFootDown", true), fn_710000abbc(), 0x2c, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.45f);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Foot Max Down Rotation");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("sMaxFootCorrectionDist", true), fn_710000abbc(), 0x30, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 80.0f);
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Foot Max Dist Correcion");
+    DREAD_REFLECTED_FIELD(base::global::CName, "sThigh", 0x10, (Description, "Tight Bone"));
+    DREAD_REFLECTED_FIELD(base::global::CName, "sCalf", 0x18, (Description, "Calf Bone"));
+    DREAD_REFLECTED_FIELD(base::global::CName, "sFoot", 0x20, (Description, "Foot, Bone"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxRotationFootUp", 0x28, (DefaultValue, 0.45f), (Description, "Foot Max Up Rotation "));
+    DREAD_REFLECTED_FIELD(f32, "fMaxRotationFootDown", 0x2c, (DefaultValue, 0.45f), (Description, "Foot Max Down Rotation"));
+    DREAD_REFLECTED_FIELD(f32, "sMaxFootCorrectionDist", 0x30, (DefaultValue, 80.0f), (Description, "Foot Max Dist Correcion"));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

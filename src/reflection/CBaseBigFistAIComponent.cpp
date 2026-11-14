@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,23 +20,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CBaseBigFistAIComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CBaseBigFistAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMinTimeBetweenDigs", true), fn_710000abbc(), 0x149a0, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Min random time (s) between digs");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxTimeBetweenDigs", true), fn_710000abbc(), 0x149a4, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Max random time (s) between digs");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMinTimeDigging", true), fn_710000abbc(), 0x149a8, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Min random time (s) digging");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMaxTimeDigging", true), fn_710000abbc(), 0x149ac, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Max random time (s) digging");
+    DREAD_REFLECTED_FIELD(f32, "fMinTimeBetweenDigs", 0x149a0, (DefaultValue, -1.0f), (Description, "Min random time (s) between digs"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxTimeBetweenDigs", 0x149a4, (DefaultValue, -1.0f), (Description, "Max random time (s) between digs"));
+    DREAD_REFLECTED_FIELD(f32, "fMinTimeDigging", 0x149a8, (DefaultValue, -1.0f), (Description, "Min random time (s) digging"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxTimeDigging", 0x149ac, (DefaultValue, -1.0f), (Description, "Max random time (s) digging"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

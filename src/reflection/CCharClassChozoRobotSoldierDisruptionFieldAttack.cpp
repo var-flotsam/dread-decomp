@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -40,7 +41,6 @@ DREAD_REFLECTED_CLASS(CCharClassChozoRobotSoldierDisruptionFieldAttack, CCharCla
 
 // CCharClassChozoRobotSoldierDisruptionFieldAttack::CTunableCharClassChozoRobotSoldierDisruptionFieldAttack
 extern bool g_unk_71726cb438;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726cb3f8;
 void fn_7100462ff4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -52,18 +52,12 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726cb438 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMinAttackDistance", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxAttackDistance", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fExplosionRadius", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 3000.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fExplosionTimeToReachRadius", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.7f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fExplosionTimeAtMaxRadius", true), fn_710000abbc(), 0x34, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fSpecialEnergyConsume", true), fn_710000abbc(), 0x38, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 1000.0f);
+    DREAD_REFLECTED_FIELD(f32, "fMinAttackDistance", 0x24, (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxAttackDistance", 0x28, (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fExplosionRadius", 0x2c, (DefaultValue, 3000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fExplosionTimeToReachRadius", 0x30, (DefaultValue, 0.7f));
+    DREAD_REFLECTED_FIELD(f32, "fExplosionTimeAtMaxRadius", 0x34, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSpecialEnergyConsume", 0x38, (DefaultValue, 1000.0f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

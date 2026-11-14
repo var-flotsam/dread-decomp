@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,23 +20,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassElevatorUsableComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CCharClassElevatorUsableComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sUsableUpAction", true), fn_7100009658(), 0x1b8, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "");
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Elevator up Usable animation");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sUsableDownAction", true), fn_7100009658(), 0x1c0, -1, -1);
-    field1->attrs.Add<const char*>(fn_7100075240(), "");
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Elevator down Usable animation");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sUsableLevelChangeUpAction", true), fn_7100009658(), 0x1c8, -1, -1);
-    field2->attrs.Add<const char*>(fn_7100075240(), "");
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Elevator up Usable level change animation");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sUsableLevelChangeDownAction", true), fn_7100009658(), 0x1d0, -1, -1);
-    field3->attrs.Add<const char*>(fn_7100075240(), "");
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Elevator down Usable level change animation");
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableUpAction", 0x1b8, (DefaultValue, ""), (Description, "Elevator up Usable animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableDownAction", 0x1c0, (DefaultValue, ""), (Description, "Elevator down Usable animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableLevelChangeUpAction", 0x1c8, (DefaultValue, ""), (Description, "Elevator up Usable level change animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableLevelChangeDownAction", 0x1d0, (DefaultValue, ""), (Description, "Elevator down Usable level change animation"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

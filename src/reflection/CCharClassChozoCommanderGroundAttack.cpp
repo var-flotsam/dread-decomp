@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,16 +20,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassChozoCommanderGroundAttack
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassChozoCommanderGroundAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fDesiredDistanceToAttack", true), fn_710000abbc(), 0xf0, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMinHyperDashDistance", true), fn_710000abbc(), 0xf4, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 700.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMaxHyperDashDistance", true), fn_710000abbc(), 0xf8, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1000.0f);
+    DREAD_REFLECTED_FIELD(f32, "fDesiredDistanceToAttack", 0xf0, (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinHyperDashDistance", 0xf4, (DefaultValue, 700.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxHyperDashDistance", 0xf8, (DefaultValue, 1000.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

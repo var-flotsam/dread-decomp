@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,22 +20,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassShelmitPlasmaRayAttack
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassShelmitPlasmaRayAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fDistanceToInitShooting", true), fn_710000abbc(), 0xec, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 400.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fDistanceToInitShootingWithGrapple", true), fn_710000abbc(), 0xf0, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 400.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMinYAimForGrappleShootDistance", true), fn_710000abbc(), 0xf4, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMaxTimeShooting", true), fn_710000abbc(), 0xf8, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 3.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fMaxTrackedDistance2ReleaseTurn", true), fn_710000abbc(), 0xfc, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 200.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fMaxLaunchedTime2ReleaseTurn", true), fn_710000abbc(), 0x100, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    DREAD_REFLECTED_FIELD(f32, "fDistanceToInitShooting", 0xec, (DefaultValue, 400.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDistanceToInitShootingWithGrapple", 0xf0, (DefaultValue, 400.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinYAimForGrappleShootDistance", 0xf4, (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxTimeShooting", 0xf8, (DefaultValue, 3.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxTrackedDistance2ReleaseTurn", 0xfc, (DefaultValue, 200.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxLaunchedTime2ReleaseTurn", 0x100, (DefaultValue, 1.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

@@ -20,7 +20,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CRodomithonXAIComponent
 extern base::reflection::CType g_unk_71726fdc20;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CRodomithonXAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

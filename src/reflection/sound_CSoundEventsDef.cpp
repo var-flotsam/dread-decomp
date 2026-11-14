@@ -21,10 +21,8 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // sound::CSoundEventsDef
-const base::reflection::UnkReflAttrKey& fn_7100005070();
 extern base::reflection::CType g_unk_71729f8d30;
 void fn_7101028a7c();
-const base::reflection::UnkReflAttrKey& fn_710008ff80();
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_7101028aa4();
 namespace sound::CSoundEventsDef {
@@ -103,7 +101,6 @@ DREAD_REFLECTED_ROOT_CLASS(sound::CSoundEventsDef::SSoundEventsSelector);
 // sound::CSoundManager
 const base::reflection::CType* fn_7101020ac0();
 void fn_7101028f4c();
-const base::reflection::UnkReflAttrKey& fn_710025d990();
 extern base::reflection::CType g_unk_7172756f90;
 namespace sound::CSoundManager {
 void refl_AddAttributes(CClass*) {}

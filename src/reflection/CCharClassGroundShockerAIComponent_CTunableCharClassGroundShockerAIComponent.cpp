@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassGroundShockerAIComponent::CTunableCharClassGroundShockerAIComponent
 extern bool g_unk_71726e85e8;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726e85b8;
 void fn_71005a3418(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -32,10 +32,8 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726e85e8 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fCombatMotionSpeed", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 300.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMotionSpeed", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 200.0f);
+    DREAD_REFLECTED_FIELD(f32, "fCombatMotionSpeed", 0x24, (DefaultValue, 300.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMotionSpeed", 0x28, (DefaultValue, 200.0f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

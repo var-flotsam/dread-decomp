@@ -19,10 +19,8 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CMinimapDef
-const base::reflection::UnkReflAttrKey& fn_7100005070();
 extern base::reflection::CType g_unk_7101d4ec50;
 extern base::reflection::CType g_unk_71727c7a78;
-const base::reflection::UnkReflAttrKey& fn_710008ff80();
 extern base::reflection::CType g_unk_71727c7e70;
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100e6e81c();

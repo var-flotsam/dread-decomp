@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,12 +20,10 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassScorpiusSpikeBallPrickAttack
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassScorpiusSpikeBallPrickAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sMagnetAttackAnim", true), fn_7100009658(), 0xf8, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "");
+    DREAD_REFLECTED_FIELD(CStrId, "sMagnetAttackAnim", 0xf8, (DefaultValue, ""));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -44,12 +43,6 @@ DREAD_REFLECTED_CLASS(CCharClassScorpiusSpikeBallPrickAttack, CCharClassScorpius
 
 // CCharClassScorpiusSpikeBallPrickAttack::CTunableCharClassScorpiusSpikeBallPrickAttack
 extern bool g_unk_7172702640;
-const base::reflection::UnkReflAttrKey& fn_7100093280();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_71003ba540();
-const base::reflection::UnkReflAttrKey& fn_7100091080();
-const base::reflection::UnkReflAttrKey& fn_7100091190();
-const base::reflection::UnkReflAttrKey& fn_7100324af0();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172702608;
 void fn_7100683e98(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -61,31 +54,11 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172702640 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bEnabled", true), fn_710000d228(), 0x21, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), true);
-    field0->attrs.Add<bool>(fn_7100093280(), true);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Enabled");
-    field0->attrs.Add<const char*>(fn_71003ba540(), "Bosses|Scorpius|SpikeBall");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMinAttackDistance", true), fn_710000abbc(), 0x24, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field1->attrs.Add<bool>(fn_7100093280(), true);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Min distance");
-    field1->attrs.Add<f32>(fn_7100091080(), -1.0f);
-    field1->attrs.Add<f32>(fn_7100091190(), 2000.0f);
-    field1->attrs.Add<f32>(fn_7100324af0(), 50.0f);
-    field1->attrs.Add<const char*>(fn_71003ba540(), "Bosses|Scorpius|SpikeBall");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMaxAttackDistance", true), fn_710000abbc(), 0x28, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 500.0f);
-    field2->attrs.Add<bool>(fn_7100093280(), true);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Max distance");
-    field2->attrs.Add<f32>(fn_7100091080(), -1.0f);
-    field2->attrs.Add<f32>(fn_7100091190(), 2000.0f);
-    field2->attrs.Add<f32>(fn_7100324af0(), 50.0f);
-    field2->attrs.Add<const char*>(fn_71003ba540(), "Bosses|Scorpius|SpikeBall");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fTimeToDisableAttackAfterMeleeSuccess", true), fn_710000abbc(), 0x2c, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 50.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fFrameToReleaseTail", true), fn_710000abbc(), 0x30, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 136.0f);
+    DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x21, (DefaultValue, true), (ShowInDevConfig, true), (Description, "Enabled"), (InternalDevTag, "Bosses|Scorpius|SpikeBall"));
+    DREAD_REFLECTED_FIELD(f32, "fMinAttackDistance", 0x24, (DefaultValue, -1.0f), (ShowInDevConfig, true), (Description, "Min distance"), (MinValue, -1.0f), (MaxValue, 2000.0f), (ControlFloatStep, 50.0f), (InternalDevTag, "Bosses|Scorpius|SpikeBall"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxAttackDistance", 0x28, (DefaultValue, 500.0f), (ShowInDevConfig, true), (Description, "Max distance"), (MinValue, -1.0f), (MaxValue, 2000.0f), (ControlFloatStep, 50.0f), (InternalDevTag, "Bosses|Scorpius|SpikeBall"));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToDisableAttackAfterMeleeSuccess", 0x2c, (DefaultValue, 50.0f));
+    DREAD_REFLECTED_FIELD(f32, "fFrameToReleaseTail", 0x30, (DefaultValue, 136.0f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

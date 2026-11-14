@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -22,13 +23,12 @@ using base::reflection::DestroyDestructorFirst;
 
 // animtree::CAnimTreeDef
 extern base::reflection::CType g_unk_71726aa3a0;
-const base::reflection::UnkReflAttrKey& fn_710008ff80();
 extern base::reflection::CType g_unk_71726a9658;
 void fn_71002d69a4(UnkReflFunction* fn, const char* name);
 namespace animtree::CAnimTreeDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sRootNode", true), fn_7100009658(), 0x10, -1, -1);
+    DREAD_REFLECTED_FIELD(CStrId, "sRootNode", 0x10);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("aNodes", true), &g_unk_71726aa3a0, 0x18, -1, -1);
     field1->attrs_0x70.Add<CStrId>(fn_710008ff80(), CStrId("AfterNodeDefDeserialization", true));
     UnkReflField* field2 = fn_7100096524(cls, CStrId("aControls", true), &g_unk_71726aa3a0, 0x48, -1, -1);
@@ -56,8 +56,8 @@ DREAD_REFLECTED_CLASS(animtree::CAnimTreeDef, animtree::CAnimTreeElementDef);
 namespace animtree::CAnimTreeDef::TAnimTreeLinkDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("pNode", true), fn_7100009658(), 0x0, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("pParent", true), fn_7100009658(), 0x8, -1, -1);
+    DREAD_REFLECTED_FIELD(CStrId, "pNode", 0x0);
+    DREAD_REFLECTED_FIELD(CStrId, "pParent", 0x8);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

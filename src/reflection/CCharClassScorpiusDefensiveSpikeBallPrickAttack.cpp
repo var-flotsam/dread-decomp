@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -40,7 +41,6 @@ DREAD_REFLECTED_CLASS(CCharClassScorpiusDefensiveSpikeBallPrickAttack, CCharClas
 
 // CCharClassScorpiusDefensiveSpikeBallPrickAttack::CTunableCharClassScorpiusDefensiveSpikeBallPrickAttack
 extern bool g_unk_71727017d8;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71727017a8;
 void fn_710067ea08(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -52,12 +52,9 @@ void refl_AddFields(CClass* cls) {
     g_unk_71727017d8 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bEnabled", true), fn_710000d228(), 0x21, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMinAttackDistance", true), fn_710000abbc(), 0x24, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMaxAttackDistance", true), fn_710000abbc(), 0x28, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 300.0f);
+    DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x21, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(f32, "fMinAttackDistance", 0x24, (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxAttackDistance", 0x28, (DefaultValue, 300.0f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

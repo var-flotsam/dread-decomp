@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CShootActivatorComponent::CTunableShootActivatorComponent
 extern bool g_unk_717272c480;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_717272c450;
 void fn_710088d830(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -32,12 +32,9 @@ void refl_AddFields(CClass* cls) {
     g_unk_717272c480 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fVolumeMin", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fDecreaseVolumeFactor", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fPitchMin", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    DREAD_REFLECTED_FIELD(f32, "fVolumeMin", 0x24, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDecreaseVolumeFactor", 0x28, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPitchMin", 0x2c, (DefaultValue, 0.0f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
@@ -71,16 +68,11 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CShootActivatorComponent::CTunableShootActivatorComponent, base::tunable::CTunable);
 
 // CCharClassShootActivatorComponent
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CCharClassShootActivatorComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fActivationTime", true), fn_710000abbc(), 0x11c, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Default damage");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimePerShot", true), fn_710000abbc(), 0x120, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.3f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Time loaded Per Shot");
+    DREAD_REFLECTED_FIELD(f32, "fActivationTime", 0x11c, (DefaultValue, 2.0f), (Description, "Default damage"));
+    DREAD_REFLECTED_FIELD(f32, "fTimePerShot", 0x120, (DefaultValue, 0.3f), (Description, "Time loaded Per Shot"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -107,37 +99,23 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassShootActivatorComponent, CCharClassItemLifeComponent);
 
 // CShootActivatorComponent
-const base::reflection::UnkReflAttrKey& fn_7100091080();
-const base::reflection::UnkReflAttrKey& fn_7100091190();
 extern base::reflection::CType g_unk_717269bf08;
-const base::reflection::UnkReflAttrKey& fn_7100090090();
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 extern base::reflection::CType g_unk_71727b6270;
 extern base::reflection::CType g_unk_717272c848;
 namespace CShootActivatorComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fInitialAccumulatedTime", true), fn_710000abbc(), 0x4b8, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field0->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field0->attrs.Add<f32>(fn_7100091190(), 100.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fActivationTime", true), fn_710000abbc(), 0x4b0, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    field1->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field1->attrs.Add<f32>(fn_7100091190(), 100.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimePerShot", true), fn_710000abbc(), 0x4b4, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.3f);
-    field2->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field2->attrs.Add<f32>(fn_7100091190(), 100.0f);
+    DREAD_REFLECTED_FIELD(f32, "fInitialAccumulatedTime", 0x4b8, (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 100.0f));
+    DREAD_REFLECTED_FIELD(f32, "fActivationTime", 0x4b0, (DefaultValue, 2.0f), (MinValue, 0.0f), (MaxValue, 100.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimePerShot", 0x4b4, (DefaultValue, 0.3f), (MinValue, 0.0f), (MaxValue, 100.0f));
     UnkReflField* field3 = fn_7100096524(cls, CStrId("vTargetsToActivate", true), &g_unk_717269bf08, 0x388, -1, -1);
     field3->attrs.Add<bool>(fn_7100090090(), false);
     field3->attrs_0x70.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 10);
     UnkReflField* field4 = fn_7100096524(cls, CStrId("vTargetsToDeactivate", true), &g_unk_717269bf08, 0x3b0, -1, -1);
     field4->attrs.Add<bool>(fn_7100090090(), false);
     field4->attrs_0x70.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 10);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("sOnUseEntityTimeline", true), fn_7100009658(), 0x4d8, -1, -1);
-    field5->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnUseEntityTimeline", 0x4d8, (DefaultValue, CStrId(g_unk_7101d470e0)));
     UnkReflField* field6 = fn_7100096524(cls, CStrId("wpAtmosphereEntity", true), &g_unk_71727b6270, 0x530, -1, -1);
     field6->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
     UnkReflField* field7 = fn_7100096524(cls, CStrId("vEntitiesActivatabledOnEvent", true), &g_unk_717272c848, 0x4e0, -1, -1);

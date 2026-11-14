@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,25 +20,18 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CTutoEnterLogicAction
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_717269bb48;
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 namespace CTutoEnterLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sLiteralID", true), fn_7100009658(), 0x18, -1, -1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bShowMessage", true), fn_710000d228(), 0x10, -1, -1);
-    field1->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bWaitForInput", true), fn_710000d228(), 0x11, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(CStrId, "sLiteralID", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(bool, "bShowMessage", 0x10, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bWaitForInput", 0x11, (DefaultValue, false));
     UnkReflField* field3 = fn_7100096524(cls, CStrId("wpObserver", true), &g_unk_717269bb48, 0x20, -1, -1);
     field3->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sLuaCallbackOnMessageClosed", true), fn_7100009658(), 0x60, -1, -1);
-    field4->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("sMissionLogTutoId", true), fn_7100009658(), 0x80, -1, -1);
-    field5->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_FIELD(CStrId, "sLuaCallbackOnMessageClosed", 0x60, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sMissionLogTutoId", 0x80, (DefaultValue, CStrId(g_unk_7101d470e0)));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

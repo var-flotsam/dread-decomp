@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,70 +20,39 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassRedenkiSwarmControllerComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassRedenkiSwarmControllerComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fDistToStartCharge", true), fn_710000abbc(), 0x47c, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 700.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fDistToEndRecovery", true), fn_710000abbc(), 0x478, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 200.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bAlwaysForceRailMovement", true), fn_710000d228(), 0x49c, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fPathRecalculationTime", true), fn_710000abbc(), 0x480, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fAttackPathLength", true), fn_710000abbc(), 0x484, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 1600.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fDistToForceAttack", true), fn_710000abbc(), 0x490, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 50.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fMinChaos", true), fn_710000abbc(), 0x488, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fMaxChaos", true), fn_710000abbc(), 0x48c, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 2.5f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fMinMovementAnimSpeed", true), fn_710000abbc(), 0x494, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fMaxMovementAnimSpeed", true), fn_710000abbc(), 0x498, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 4.0f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fWallChargeStunDuration", true), fn_710000abbc(), 0x4a0, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 0.6f);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("sCombatSoundSmallGroup", true), fn_7100007f84(), 0x4c8, -1, -1);
-    field11->attrs.Add<const char*>(fn_7100075240(), "");
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("sCombatSoundMediumGroup", true), fn_7100007f84(), 0x4f8, -1, -1);
-    field12->attrs.Add<const char*>(fn_7100075240(), "");
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("sCombatSoundLargeGroup", true), fn_7100007f84(), 0x528, -1, -1);
-    field13->attrs.Add<const char*>(fn_7100075240(), "");
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("sPreparationSoundSmallGroup", true), fn_7100007f84(), 0x558, -1, -1);
-    field14->attrs.Add<const char*>(fn_7100075240(), "");
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("sPreparationSoundMediumGroup", true), fn_7100007f84(), 0x588, -1, -1);
-    field15->attrs.Add<const char*>(fn_7100075240(), "");
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("sPreparationSoundLargeGroup", true), fn_7100007f84(), 0x5b8, -1, -1);
-    field16->attrs.Add<const char*>(fn_7100075240(), "");
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("sStartChargeSoundSmallGroup", true), fn_7100007f84(), 0x5e8, -1, -1);
-    field17->attrs.Add<const char*>(fn_7100075240(), "");
-    UnkReflField* field18 = fn_7100096524(cls, CStrId("sStartChargeSoundMediumGroup", true), fn_7100007f84(), 0x618, -1, -1);
-    field18->attrs.Add<const char*>(fn_7100075240(), "");
-    UnkReflField* field19 = fn_7100096524(cls, CStrId("sStartChargeSoundLargeGroup", true), fn_7100007f84(), 0x648, -1, -1);
-    field19->attrs.Add<const char*>(fn_7100075240(), "");
-    UnkReflField* field20 = fn_7100096524(cls, CStrId("sCollisionWithWallSoundSmallGroup", true), fn_7100007f84(), 0x678, -1, -1);
-    field20->attrs.Add<const char*>(fn_7100075240(), "");
-    UnkReflField* field21 = fn_7100096524(cls, CStrId("sCollisionWithWallSoundMediumGroup", true), fn_7100007f84(), 0x6a8, -1, -1);
-    field21->attrs.Add<const char*>(fn_7100075240(), "");
-    UnkReflField* field22 = fn_7100096524(cls, CStrId("sCollisionWithWallSoundLargeGroup", true), fn_7100007f84(), 0x6d8, -1, -1);
-    field22->attrs.Add<const char*>(fn_7100075240(), "");
-    UnkReflField* field23 = fn_7100096524(cls, CStrId("bPreparationBackAllowed", true), fn_710000d228(), 0x4a4, -1, -1);
-    field23->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field24 = fn_7100096524(cls, CStrId("fMinPreparationTime", true), fn_710000abbc(), 0x4a8, -1, -1);
-    field24->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    UnkReflField* field25 = fn_7100096524(cls, CStrId("fBackDistanceLength", true), fn_710000abbc(), 0x4ac, -1, -1);
-    field25->attrs.Add<f32>(fn_7100075240(), 0.35f);
-    UnkReflField* field26 = fn_7100096524(cls, CStrId("fBackDistanceWidth", true), fn_710000abbc(), 0x4b0, -1, -1);
-    field26->attrs.Add<f32>(fn_7100075240(), 1.2f);
-    UnkReflField* field27 = fn_7100096524(cls, CStrId("fAttackCooldown", true), fn_710000abbc(), 0x4b4, -1, -1);
-    field27->attrs.Add<f32>(fn_7100075240(), 1.5f);
-    UnkReflField* field28 = fn_7100096524(cls, CStrId("fAngleLimitDeg", true), fn_710000abbc(), 0x4b8, -1, -1);
-    field28->attrs.Add<f32>(fn_7100075240(), 20.0f);
-    UnkReflField* field29 = fn_7100096524(cls, CStrId("fMinDistForAngleLimit", true), fn_710000abbc(), 0x4c0, -1, -1);
-    field29->attrs.Add<f32>(fn_7100075240(), 100.0f);
+    DREAD_REFLECTED_FIELD(f32, "fDistToStartCharge", 0x47c, (DefaultValue, 700.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDistToEndRecovery", 0x478, (DefaultValue, 200.0f));
+    DREAD_REFLECTED_FIELD(bool, "bAlwaysForceRailMovement", 0x49c, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fPathRecalculationTime", 0x480, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fAttackPathLength", 0x484, (DefaultValue, 1600.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDistToForceAttack", 0x490, (DefaultValue, 50.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinChaos", 0x488, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxChaos", 0x48c, (DefaultValue, 2.5f));
+    DREAD_REFLECTED_FIELD(f32, "fMinMovementAnimSpeed", 0x494, (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxMovementAnimSpeed", 0x498, (DefaultValue, 4.0f));
+    DREAD_REFLECTED_FIELD(f32, "fWallChargeStunDuration", 0x4a0, (DefaultValue, 0.6f));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sCombatSoundSmallGroup", 0x4c8, (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sCombatSoundMediumGroup", 0x4f8, (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sCombatSoundLargeGroup", 0x528, (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sPreparationSoundSmallGroup", 0x558, (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sPreparationSoundMediumGroup", 0x588, (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sPreparationSoundLargeGroup", 0x5b8, (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sStartChargeSoundSmallGroup", 0x5e8, (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sStartChargeSoundMediumGroup", 0x618, (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sStartChargeSoundLargeGroup", 0x648, (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sCollisionWithWallSoundSmallGroup", 0x678, (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sCollisionWithWallSoundMediumGroup", 0x6a8, (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sCollisionWithWallSoundLargeGroup", 0x6d8, (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(bool, "bPreparationBackAllowed", 0x4a4, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fMinPreparationTime", 0x4a8, (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fBackDistanceLength", 0x4ac, (DefaultValue, 0.35f));
+    DREAD_REFLECTED_FIELD(f32, "fBackDistanceWidth", 0x4b0, (DefaultValue, 1.2f));
+    DREAD_REFLECTED_FIELD(f32, "fAttackCooldown", 0x4b4, (DefaultValue, 1.5f));
+    DREAD_REFLECTED_FIELD(f32, "fAngleLimitDeg", 0x4b8, (DefaultValue, 20.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinDistForAngleLimit", 0x4c0, (DefaultValue, 100.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,50 +20,28 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassSamusMovement
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CCharClassSamusMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMinTimeToSpaceJump", true), fn_710000abbc(), 0x98, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.29f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMinTimeToDoubleJump", true), fn_710000abbc(), 0x9c, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.29f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sFallOilFX", true), fn_710000ad9c(), 0xa0, -1, -1);
-    field2->attrs.Add<const char*>(fn_7100075240(), "actors/characters/morphball/fx/oilimpact.bcptl");
-    field2->attrs.Add<const char*>(fn_7100007e80(), "fx id");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fRunningImpulseX", true), fn_710000abbc(), 0xa8, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 600.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fImpulseY", true), fn_710000abbc(), 0xac, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 1720.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fHighJumpBootImpulseY", true), fn_710000abbc(), 0xb0, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 2107.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fMinImpulseY", true), fn_710000abbc(), 0xb4, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), -1800.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fMaxImpulseY", true), fn_710000abbc(), 0xb8, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 2085.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fChangeDirectionOnAirBrakeFactor", true), fn_710000abbc(), 0xbc, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fTimeOnAirAllowingJump", true), fn_710000abbc(), 0xc0, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 0.1f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fNoJumpingDefaultGravityFactor", true), fn_710000abbc(), 0xc4, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 2.5f);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fTimeToAimUpAfterRaise", true), fn_710000abbc(), 0xc8, -1, -1);
-    field11->attrs.Add<f32>(fn_7100075240(), 0.33f);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fTimeToHangClimb", true), fn_710000abbc(), 0xcc, -1, -1);
-    field12->attrs.Add<f32>(fn_7100075240(), 0.3f);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("fRunningFallInitImpulse", true), fn_710000abbc(), 0xd0, -1, -1);
-    field13->attrs.Add<f32>(fn_7100075240(), 550.0f);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("fWalkingFallInitImpulse", true), fn_710000abbc(), 0xd4, -1, -1);
-    field14->attrs.Add<f32>(fn_7100075240(), 385.0f);
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("fTimeToAbortSpinJump", true), fn_710000abbc(), 0xd8, -1, -1);
-    field15->attrs.Add<f32>(fn_7100075240(), 0.1f);
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("fSpinJumpVelocityX", true), fn_710000abbc(), 0xdc, -1, -1);
-    field16->attrs.Add<f32>(fn_7100075240(), 600.0f);
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("fAirRunningVelocityX", true), fn_710000abbc(), 0xe0, -1, -1);
-    field17->attrs.Add<f32>(fn_7100075240(), 400.0f);
-    UnkReflField* field18 = fn_7100096524(cls, CStrId("fAirWalkingVelocityX", true), fn_710000abbc(), 0xe4, -1, -1);
-    field18->attrs.Add<f32>(fn_7100075240(), 285.0f);
+    DREAD_REFLECTED_FIELD(f32, "fMinTimeToSpaceJump", 0x98, (DefaultValue, 0.29f));
+    DREAD_REFLECTED_FIELD(f32, "fMinTimeToDoubleJump", 0x9c, (DefaultValue, 0.29f));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sFallOilFX", 0xa0, (DefaultValue, "actors/characters/morphball/fx/oilimpact.bcptl"), (Description, "fx id"));
+    DREAD_REFLECTED_FIELD(f32, "fRunningImpulseX", 0xa8, (DefaultValue, 600.0f));
+    DREAD_REFLECTED_FIELD(f32, "fImpulseY", 0xac, (DefaultValue, 1720.0f));
+    DREAD_REFLECTED_FIELD(f32, "fHighJumpBootImpulseY", 0xb0, (DefaultValue, 2107.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinImpulseY", 0xb4, (DefaultValue, -1800.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxImpulseY", 0xb8, (DefaultValue, 2085.0f));
+    DREAD_REFLECTED_FIELD(f32, "fChangeDirectionOnAirBrakeFactor", 0xbc, (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeOnAirAllowingJump", 0xc0, (DefaultValue, 0.1f));
+    DREAD_REFLECTED_FIELD(f32, "fNoJumpingDefaultGravityFactor", 0xc4, (DefaultValue, 2.5f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToAimUpAfterRaise", 0xc8, (DefaultValue, 0.33f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToHangClimb", 0xcc, (DefaultValue, 0.3f));
+    DREAD_REFLECTED_FIELD(f32, "fRunningFallInitImpulse", 0xd0, (DefaultValue, 550.0f));
+    DREAD_REFLECTED_FIELD(f32, "fWalkingFallInitImpulse", 0xd4, (DefaultValue, 385.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToAbortSpinJump", 0xd8, (DefaultValue, 0.1f));
+    DREAD_REFLECTED_FIELD(f32, "fSpinJumpVelocityX", 0xdc, (DefaultValue, 600.0f));
+    DREAD_REFLECTED_FIELD(f32, "fAirRunningVelocityX", 0xe0, (DefaultValue, 400.0f));
+    DREAD_REFLECTED_FIELD(f32, "fAirWalkingVelocityX", 0xe4, (DefaultValue, 285.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

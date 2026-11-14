@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -48,35 +49,26 @@ DREAD_REFLECTED_CLASS(CCharClassEventScenarioComponent, CCharClassComponent);
 
 // CEventScenarioComponent
 extern base::reflection::CType g_unk_717269bf08;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100091080();
 namespace CEventScenarioComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("vEventActors", true), &g_unk_717269bf08, 0x108, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sIdleAction", true), fn_7100009658(), 0xd8, -1, -1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sReactionAction", true), fn_7100009658(), 0xe0, -1, -1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sFinishedAction", true), fn_7100009658(), 0xe8, -1, -1);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sRecoveryAction", true), fn_7100009658(), 0xf0, -1, -1);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("bPersistent", true), fn_710000d228(), 0x1e4, -1, -1);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("bDisableOnXParasite", true), fn_710000d228(), 0x1e5, -1, -1);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("bDisableOnCoolDown", true), fn_710000d228(), 0x1e6, -1, -1);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("bReactOnFireOnly", true), fn_710000d228(), 0x1e9, -1, -1);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("bReactOnEnemies", true), fn_710000d228(), 0x1ea, -1, -1);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("bReactToSamus", true), fn_710000d228(), 0x1e7, -1, -1);
-    field10->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("bIgnoreSamusWithOC", true), fn_710000d228(), 0x1e8, -1, -1);
-    field11->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("bReactToSamusFiring", true), fn_710000d228(), 0x1eb, -1, -1);
-    field12->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("bReactToFireImpact", true), fn_710000d228(), 0x1ec, -1, -1);
-    field13->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("fTimeForRecoveryOnStay", true), fn_710000abbc(), 0x1d0, -1, -1);
-    field14->attrs.Add<f32>(fn_7100091080(), -1.0f);
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("fTimeForRecoveryOnExit", true), fn_710000abbc(), 0x1d4, -1, -1);
-    field15->attrs.Add<f32>(fn_7100091080(), -1.0f);
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("fInitRelaxFrame", true), fn_710000abbc(), 0x1e0, -1, -1);
-    field16->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    DREAD_REFLECTED_FIELD(CStrId, "sIdleAction", 0xd8);
+    DREAD_REFLECTED_FIELD(CStrId, "sReactionAction", 0xe0);
+    DREAD_REFLECTED_FIELD(CStrId, "sFinishedAction", 0xe8);
+    DREAD_REFLECTED_FIELD(CStrId, "sRecoveryAction", 0xf0);
+    DREAD_REFLECTED_FIELD(bool, "bPersistent", 0x1e4);
+    DREAD_REFLECTED_FIELD(bool, "bDisableOnXParasite", 0x1e5);
+    DREAD_REFLECTED_FIELD(bool, "bDisableOnCoolDown", 0x1e6);
+    DREAD_REFLECTED_FIELD(bool, "bReactOnFireOnly", 0x1e9);
+    DREAD_REFLECTED_FIELD(bool, "bReactOnEnemies", 0x1ea);
+    DREAD_REFLECTED_FIELD(bool, "bReactToSamus", 0x1e7, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bIgnoreSamusWithOC", 0x1e8, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bReactToSamusFiring", 0x1eb, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bReactToFireImpact", 0x1ec, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(f32, "fTimeForRecoveryOnStay", 0x1d0, (MinValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeForRecoveryOnExit", 0x1d4, (MinValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fInitRelaxFrame", 0x1e0, (MinValue, 0.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

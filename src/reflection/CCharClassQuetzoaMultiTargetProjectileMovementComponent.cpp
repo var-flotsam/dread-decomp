@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,18 +20,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassQuetzoaMultiTargetProjectileMovementComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassQuetzoaMultiTargetProjectileMovementComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fLaunchAngle", true), fn_710000abbc(), 0x140, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 30.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fLaunchDist", true), fn_710000abbc(), 0x144, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 200.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fSteeringSpeed", true), fn_710000abbc(), 0x148, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 20.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMaxDistanceFromGuide", true), fn_710000abbc(), 0x14c, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 10.0f);
+    DREAD_REFLECTED_FIELD(f32, "fLaunchAngle", 0x140, (DefaultValue, 30.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLaunchDist", 0x144, (DefaultValue, 200.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSteeringSpeed", 0x148, (DefaultValue, 20.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxDistanceFromGuide", 0x14c, (DefaultValue, 10.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

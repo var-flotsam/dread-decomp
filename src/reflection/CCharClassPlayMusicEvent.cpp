@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,32 +20,19 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassPlayMusicEvent
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100090d50();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_71729f0d58;
-const base::reflection::UnkReflAttrKey& fn_7100091080();
-const base::reflection::UnkReflAttrKey& fn_7100091190();
 namespace CCharClassPlayMusicEvent {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Play Music");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Sound", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPath", true), fn_710000ad9c(), 0x10, -1, -1);
-    field0->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(g_unk_7101d470e8));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sPath", 0x10, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("ePriority", true), &g_unk_71729f0d58, 0x18, -1, -1);
     field1->attrs.Add<s32>(fn_7100075240(), &g_unk_71729f0d58, 5);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fVolume", true), fn_710000abbc(), 0x1c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field2->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field2->attrs.Add<f32>(fn_7100091190(), 1.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bLoop", true), fn_710000d228(), 0x20, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fFadeInTime", true), fn_710000abbc(), 0x24, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field4->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field4->attrs.Add<f32>(fn_7100091190(), 10.0f);
+    DREAD_REFLECTED_FIELD(f32, "fVolume", 0x1c, (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 1.0f));
+    DREAD_REFLECTED_FIELD(bool, "bLoop", 0x20, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fFadeInTime", 0x24, (DefaultValue, -1.0f), (MinValue, 0.0f), (MaxValue, 10.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

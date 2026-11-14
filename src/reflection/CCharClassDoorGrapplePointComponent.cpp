@@ -20,7 +20,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassDoorGrapplePointComponent
 extern base::reflection::CType g_unk_7101d5c998;
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CCharClassDoorGrapplePointComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

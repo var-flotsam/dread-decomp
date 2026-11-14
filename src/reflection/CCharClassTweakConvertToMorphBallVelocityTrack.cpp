@@ -19,11 +19,8 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassTweakConvertToMorphBallVelocityTrack
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100090e60();
 void fn_7100d2eb80();
 void fn_7100d2e758(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 void fn_7100d2ec10();
 void fn_7100d2e8d4(UnkReflFunction* fn, const char* name);
 namespace CCharClassTweakConvertToMorphBallVelocityTrack {

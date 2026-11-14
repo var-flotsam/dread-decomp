@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,48 +20,23 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassFXLinkEvent
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100090d50();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_71727b8ef8;
-const base::reflection::UnkReflAttrKey& fn_7100091080();
-const base::reflection::UnkReflAttrKey& fn_7100091190();
 namespace CCharClassFXLinkEvent {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "FX Link");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("FX", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sName", true), fn_7100009658(), 0x10, -1, -1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_FIELD(CStrId, "sName", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("eLinkType", true), &g_unk_71727b8ef8, 0x18, -1, -1);
     field1->attrs.Add<s32>(fn_7100075240(), &g_unk_71727b8ef8, 4);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fPositionOffsetX", true), fn_710000abbc(), 0x28, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field2->attrs.Add<f32>(fn_7100091080(), -3.4028235e+38f);
-    field2->attrs.Add<f32>(fn_7100091190(), 3.4028235e+38f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fPositionOffsetY", true), fn_710000abbc(), 0x2c, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field3->attrs.Add<f32>(fn_7100091080(), -3.4028235e+38f);
-    field3->attrs.Add<f32>(fn_7100091190(), 3.4028235e+38f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fPositionOffsetZ", true), fn_710000abbc(), 0x30, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field4->attrs.Add<f32>(fn_7100091080(), -3.4028235e+38f);
-    field4->attrs.Add<f32>(fn_7100091190(), 3.4028235e+38f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fAngleOffsetX", true), fn_710000abbc(), 0x34, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field5->attrs.Add<f32>(fn_7100091080(), -3.14f);
-    field5->attrs.Add<f32>(fn_7100091190(), 3.14f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fAngleOffsetY", true), fn_710000abbc(), 0x38, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field6->attrs.Add<f32>(fn_7100091080(), -3.14f);
-    field6->attrs.Add<f32>(fn_7100091190(), 3.14f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fAngleOffsetZ", true), fn_710000abbc(), 0x3c, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field7->attrs.Add<f32>(fn_7100091080(), -3.14f);
-    field7->attrs.Add<f32>(fn_7100091190(), 3.14f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("sAdditional", true), fn_7100009658(), 0x40, -1, -1);
-    field8->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_FIELD(f32, "fPositionOffsetX", 0x28, (DefaultValue, 0.0f), (MinValue, -3.4028235e+38f), (MaxValue, 3.4028235e+38f));
+    DREAD_REFLECTED_FIELD(f32, "fPositionOffsetY", 0x2c, (DefaultValue, 0.0f), (MinValue, -3.4028235e+38f), (MaxValue, 3.4028235e+38f));
+    DREAD_REFLECTED_FIELD(f32, "fPositionOffsetZ", 0x30, (DefaultValue, 0.0f), (MinValue, -3.4028235e+38f), (MaxValue, 3.4028235e+38f));
+    DREAD_REFLECTED_FIELD(f32, "fAngleOffsetX", 0x34, (DefaultValue, 0.0f), (MinValue, -3.14f), (MaxValue, 3.14f));
+    DREAD_REFLECTED_FIELD(f32, "fAngleOffsetY", 0x38, (DefaultValue, 0.0f), (MinValue, -3.14f), (MaxValue, 3.14f));
+    DREAD_REFLECTED_FIELD(f32, "fAngleOffsetZ", 0x3c, (DefaultValue, 0.0f), (MinValue, -3.14f), (MaxValue, 3.14f));
+    DREAD_REFLECTED_FIELD(CStrId, "sAdditional", 0x40, (DefaultValue, CStrId(g_unk_7101d470e0)));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

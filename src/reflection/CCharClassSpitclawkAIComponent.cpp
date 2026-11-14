@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,20 +20,14 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassSpitclawkAIComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassSpitclawkAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fAcidRadius", true), fn_710000abbc(), 0x51c, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 50.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fAcidGrowthTime", true), fn_710000abbc(), 0x520, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeAtMaxRadius", true), fn_710000abbc(), 0x524, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fWidthMax", true), fn_710000abbc(), 0x528, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 200.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fWidthMin", true), fn_710000abbc(), 0x52c, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 100.0f);
+    DREAD_REFLECTED_FIELD(f32, "fAcidRadius", 0x51c, (DefaultValue, 50.0f));
+    DREAD_REFLECTED_FIELD(f32, "fAcidGrowthTime", 0x520, (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeAtMaxRadius", 0x524, (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fWidthMax", 0x528, (DefaultValue, 200.0f));
+    DREAD_REFLECTED_FIELD(f32, "fWidthMin", 0x52c, (DefaultValue, 100.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

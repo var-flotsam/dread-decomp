@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,8 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassAnimationComponent
 void fn_7100711508();
 void fn_710071108c(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern base::reflection::CType g_unk_717270dfd0;
 namespace CCharClassAnimationComponent {
 void refl_AddAttributes(CClass*) {}
@@ -38,22 +37,14 @@ void refl_AddFields(CClass* cls) {
         fn_710071108c(fn, "_bOverrideDisableInEditor_SetterFunction");
     UnkReflField* field0 = fn_7100096524(cls, CStrId("bOverrideDisableInEditor", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field0->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sInitialAction", true), fn_7100009658(), 0x58, -1, -1);
-    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Initial Action");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sDefaultLoop", true), fn_7100009658(), 0x60, -1, -1);
-    field2->attrs.Add<CStrId>(fn_7100075240(), CStrId(base::reflection::refl_GetStrIdTable<0x7100031894>().ids[943]));
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Default Loop");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sAnimTree", true), fn_710000ad9c(), 0x68, -1, -1);
-    field3->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field3->attrs.Add<const char*>(fn_7100007e80(), "AnimTree File");
+    DREAD_REFLECTED_FIELD(CStrId, "sInitialAction", 0x58, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Initial Action"));
+    DREAD_REFLECTED_FIELD(CStrId, "sDefaultLoop", 0x60, (DefaultValue, CStrId(base::reflection::refl_GetStrIdTable<0x7100031894>().ids[943])), (Description, "Default Loop"));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAnimTree", 0x68, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "AnimTree File"));
     UnkReflField* field4 = fn_7100096524(cls, CStrId("sInitialPrefix", true), &g_unk_717270dfd0, 0x70, -1, -1);
     field4->attrs.Add<s32>(fn_7100075240(), &g_unk_717270dfd0, 0);
     field4->attrs.Add<const char*>(fn_7100007e80(), "Initial Prefix");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("iDebugLine", true), fn_7100014768(), 0x74, -1, -1);
-    field5->attrs.Add<s32>(fn_7100075240(), 0);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fInitialFrame", true), fn_710000abbc(), 0x78, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    DREAD_REFLECTED_FIELD(s32, "iDebugLine", 0x74, (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD(f32, "fInitialFrame", 0x78, (DefaultValue, 0.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

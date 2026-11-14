@@ -21,8 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 // CDroppablePowerBombComponent
 void fn_71007bd9e8();
 void fn_71007bd3e8(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 void fn_71007bdb68();
 void fn_71007bd564(UnkReflFunction* fn, const char* name);
 namespace CDroppablePowerBombComponent {

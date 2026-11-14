@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,33 +20,19 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassBatalloonAIComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CCharClassBatalloonAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fCallDistMaxDelayTime", true), fn_710000abbc(), 0x518, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Rule of 3: distance(caller,called) = 0 <=> delay = 0; distance(caller,called) >= m_fCallDistLimit <=> delay = m_fCallDistMaxDelayTime. If -1 then m_fCallDistMaxDelayTime = caller's call action's duration");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fCallDistLimit", true), fn_710000abbc(), 0x51c, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1000.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "See m_fCallDistMaxDelayTime");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fCallRandMinDelayTime", true), fn_710000abbc(), 0x520, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.1f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fCallRandMaxDelayTime", true), fn_710000abbc(), 0x524, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.4f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fRandMinTimeForPathUpdate", true), fn_710000abbc(), 0x528, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.1f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fRandMaxTimeForPathUpdate", true), fn_710000abbc(), 0x52c, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 0.2f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fDotNegativeMaxTimeForPathUpdate", true), fn_710000abbc(), 0x530, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 0.2f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fMovementShakeRadius", true), fn_710000abbc(), 0x538, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 140.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fMovementShakeInterpolationSpeed", true), fn_710000abbc(), 0x53c, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fBrothersDist2Stop", true), fn_710000abbc(), 0x534, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 150.0f);
+    DREAD_REFLECTED_FIELD(f32, "fCallDistMaxDelayTime", 0x518, (DefaultValue, 1.0f), (Description, "Rule of 3: distance(caller,called) = 0 <=> delay = 0; distance(caller,called) >= m_fCallDistLimit <=> delay = m_fCallDistMaxDelayTime. If -1 then m_fCallDistMaxDelayTime = caller's call action's duration"));
+    DREAD_REFLECTED_FIELD(f32, "fCallDistLimit", 0x51c, (DefaultValue, 1000.0f), (Description, "See m_fCallDistMaxDelayTime"));
+    DREAD_REFLECTED_FIELD(f32, "fCallRandMinDelayTime", 0x520, (DefaultValue, 0.1f));
+    DREAD_REFLECTED_FIELD(f32, "fCallRandMaxDelayTime", 0x524, (DefaultValue, 0.4f));
+    DREAD_REFLECTED_FIELD(f32, "fRandMinTimeForPathUpdate", 0x528, (DefaultValue, 0.1f));
+    DREAD_REFLECTED_FIELD(f32, "fRandMaxTimeForPathUpdate", 0x52c, (DefaultValue, 0.2f));
+    DREAD_REFLECTED_FIELD(f32, "fDotNegativeMaxTimeForPathUpdate", 0x530, (DefaultValue, 0.2f));
+    DREAD_REFLECTED_FIELD(f32, "fMovementShakeRadius", 0x538, (DefaultValue, 140.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMovementShakeInterpolationSpeed", 0x53c, (DefaultValue, 2.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBrothersDist2Stop", 0x534, (DefaultValue, 150.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

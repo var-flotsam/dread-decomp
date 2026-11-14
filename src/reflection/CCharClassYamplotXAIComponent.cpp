@@ -22,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 const base::reflection::CClass* fn_71006ebfa0();
 const base::reflection::CClass* fn_71006ec384();
 extern base::reflection::CType g_unk_717270c198;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassYamplotXAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

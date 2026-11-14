@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,16 +20,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassGoliathXBurstProjectionBombsAttack
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassGoliathXBurstProjectionBombsAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fChargingTime", true), fn_710000abbc(), 0xec, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 1.5f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeBetweenWaves", true), fn_710000abbc(), 0xf0, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 2.5f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("uNumWaves", true), fn_7100005178(), 0xf4, -1, -1);
-    field2->attrs.Add<u32>(fn_7100075240(), 0x3u);
+    DREAD_REFLECTED_FIELD(f32, "fChargingTime", 0xec, (DefaultValue, 1.5f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeBetweenWaves", 0xf0, (DefaultValue, 2.5f));
+    DREAD_REFLECTED_FIELD(u32, "uNumWaves", 0xf4, (DefaultValue, u32(0x3u)));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

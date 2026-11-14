@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,24 +20,16 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassGoliathXBurstProjectionBombMovement
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassGoliathXBurstProjectionBombMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fExplosionRadius", true), fn_710000abbc(), 0xf0, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 50.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fExplosionGrowthTime", true), fn_710000abbc(), 0xf4, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.35f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fExplosionLifeTime", true), fn_710000abbc(), 0xf8, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 3.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fSubExplosionLifeTime", true), fn_710000abbc(), 0xfc, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.4f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fSubExplosionStepTime", true), fn_710000abbc(), 0x100, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.05f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fClosestAxisSpeedMultiplier", true), fn_710000abbc(), 0x104, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fDetonationTime", true), fn_710000abbc(), 0x108, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 2.0f);
+    DREAD_REFLECTED_FIELD(f32, "fExplosionRadius", 0xf0, (DefaultValue, 50.0f));
+    DREAD_REFLECTED_FIELD(f32, "fExplosionGrowthTime", 0xf4, (DefaultValue, 0.35f));
+    DREAD_REFLECTED_FIELD(f32, "fExplosionLifeTime", 0xf8, (DefaultValue, 3.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSubExplosionLifeTime", 0xfc, (DefaultValue, 0.4f));
+    DREAD_REFLECTED_FIELD(f32, "fSubExplosionStepTime", 0x100, (DefaultValue, 0.05f));
+    DREAD_REFLECTED_FIELD(f32, "fClosestAxisSpeedMultiplier", 0x104, (DefaultValue, 2.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDetonationTime", 0x108, (DefaultValue, 2.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

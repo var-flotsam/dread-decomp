@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,8 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CGun::CTunableGun
 extern bool g_unk_7172725ee8;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172725ea8;
 void fn_7100834e28(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -33,24 +32,12 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172725ee8 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fCheckBackDefaultDistance", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 90.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Fire check back distance (default)");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fCheckBackAnalogDistance", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 120.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Fire check back distance (analog)");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fCheckBackAnalogFallDistance", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 140.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Fire check back distance (analogfall)");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fCheckBackHangDistance", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 120.0f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Fire check back distance (hang)");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fTimeHitMissedModifierDuration", true), fn_710000abbc(), 0x34, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.7f);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Time to not modify volume of missed hits");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fVolumeHitMissedModifier", true), fn_710000abbc(), 0x38, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 0.2f);
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Volume multiplier for missed hits after a hit");
+    DREAD_REFLECTED_FIELD(f32, "fCheckBackDefaultDistance", 0x24, (DefaultValue, 90.0f), (Description, "Fire check back distance (default)"));
+    DREAD_REFLECTED_FIELD(f32, "fCheckBackAnalogDistance", 0x28, (DefaultValue, 120.0f), (Description, "Fire check back distance (analog)"));
+    DREAD_REFLECTED_FIELD(f32, "fCheckBackAnalogFallDistance", 0x2c, (DefaultValue, 140.0f), (Description, "Fire check back distance (analogfall)"));
+    DREAD_REFLECTED_FIELD(f32, "fCheckBackHangDistance", 0x30, (DefaultValue, 120.0f), (Description, "Fire check back distance (hang)"));
+    DREAD_REFLECTED_FIELD(f32, "fTimeHitMissedModifierDuration", 0x34, (DefaultValue, 0.7f), (Description, "Time to not modify volume of missed hits"));
+    DREAD_REFLECTED_FIELD(f32, "fVolumeHitMissedModifier", 0x38, (DefaultValue, 0.2f), (Description, "Volume multiplier for missed hits after a hit"));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

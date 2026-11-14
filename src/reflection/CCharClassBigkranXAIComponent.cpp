@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -22,7 +23,6 @@ using base::reflection::DestroyDestructorFirst;
 const base::reflection::CClass* fn_71003ef1a4();
 const base::reflection::CClass* fn_71003ef9b4();
 extern base::reflection::CType g_unk_71726a7b48;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassBigkranXAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -31,20 +31,13 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field2 = fn_7100096524(cls, CStrId("sLaunchConfig", true), &g_unk_71726a7b48, 0x530, -1, -1);
     UnkReflField* field3 = fn_7100096524(cls, CStrId("sLaunchConfig2", true), &g_unk_71726a7b48, 0x578, -1, -1);
     UnkReflField* field4 = fn_7100096524(cls, CStrId("sLaunchConfig3", true), &g_unk_71726a7b48, 0x5c0, -1, -1);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fMaxDistance1", true), fn_710000abbc(), 0x608, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 550.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fMaxDistance2", true), fn_710000abbc(), 0x60c, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 700.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("sMagmaBallCharClass", true), fn_7100009658(), 0x610, -1, -1);
-    field7->attrs.Add<const char*>(fn_7100075240(), "vulkranmagmaball");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fShotHeightOffset", true), fn_710000abbc(), 0x618, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 45.0f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fReachableHeightBeforeAttack", true), fn_710000abbc(), 0x61c, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 600.0f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fReachableHeightOnAttack", true), fn_710000abbc(), 0x620, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 900.0f);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fTimeBeforeWarningAttack", true), fn_710000abbc(), 0x624, -1, -1);
-    field11->attrs.Add<f32>(fn_7100075240(), 2.5f);
+    DREAD_REFLECTED_FIELD(f32, "fMaxDistance1", 0x608, (DefaultValue, 550.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxDistance2", 0x60c, (DefaultValue, 700.0f));
+    DREAD_REFLECTED_FIELD(CStrId, "sMagmaBallCharClass", 0x610, (DefaultValue, "vulkranmagmaball"));
+    DREAD_REFLECTED_FIELD(f32, "fShotHeightOffset", 0x618, (DefaultValue, 45.0f));
+    DREAD_REFLECTED_FIELD(f32, "fReachableHeightBeforeAttack", 0x61c, (DefaultValue, 600.0f));
+    DREAD_REFLECTED_FIELD(f32, "fReachableHeightOnAttack", 0x620, (DefaultValue, 900.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeBeforeWarningAttack", 0x624, (DefaultValue, 2.5f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,16 +22,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CAcidBlobsLaunchPattern
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CAcidBlobsLaunchPattern {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("iDistance", true), fn_7100014768(), 0x8, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), 0);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTime", true), fn_710000abbc(), 0x10, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bBreakable", true), fn_710000d228(), 0xc, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_FIELD(s32, "iDistance", 0x8, (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD(f32, "fTime", 0x10, (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(bool, "bBreakable", 0xc, (DefaultValue, true));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -69,8 +66,7 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726ed920 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bEnabled", true), fn_710000d228(), 0x21, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x21, (DefaultValue, true));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
@@ -108,18 +104,12 @@ extern base::reflection::CType g_unk_71726ed758;
 namespace CCharClassKraidAcidBlobsAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sEndAttackAnim", true), fn_7100009658(), 0xf0, -1, -1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fDuration", true), fn_710000abbc(), 0xf8, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 6.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fUnbreakableGravity", true), fn_710000abbc(), 0xfc, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1000.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fBreakableGravity", true), fn_710000abbc(), 0x100, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 2000.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fMaxAngle", true), fn_710000abbc(), 0x104, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 45.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fMinAngle", true), fn_710000abbc(), 0x108, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 25.0f);
+    DREAD_REFLECTED_FIELD(CStrId, "sEndAttackAnim", 0xf0, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(f32, "fDuration", 0xf8, (DefaultValue, 6.0f));
+    DREAD_REFLECTED_FIELD(f32, "fUnbreakableGravity", 0xfc, (DefaultValue, 1000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBreakableGravity", 0x100, (DefaultValue, 2000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxAngle", 0x104, (DefaultValue, 45.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinAngle", 0x108, (DefaultValue, 25.0f));
     UnkReflField* field6 = fn_7100096524(cls, CStrId("tLaunchPatterns", true), &g_unk_71726ed758, 0x110, -1, -1);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

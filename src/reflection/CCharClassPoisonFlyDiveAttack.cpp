@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,17 +20,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassPoisonFlyDiveAttack
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CCharClassPoisonFlyDiveAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fAttackDiveDistance", true), fn_710000abbc(), 0xec, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 600.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Attack dive distance");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fAttackPreparationTime", true), fn_710000abbc(), 0xf0, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.1f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Attack preparation time");
+    DREAD_REFLECTED_FIELD(f32, "fAttackDiveDistance", 0xec, (DefaultValue, 600.0f), (Description, "Attack dive distance"));
+    DREAD_REFLECTED_FIELD(f32, "fAttackPreparationTime", 0xf0, (DefaultValue, 0.1f), (Description, "Attack preparation time"));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -60,10 +55,8 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726f95d8 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMinAttackDistance", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 50.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxAttackDistance", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 550.0f);
+    DREAD_REFLECTED_FIELD(f32, "fMinAttackDistance", 0x24, (DefaultValue, 50.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxAttackDistance", 0x28, (DefaultValue, 550.0f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

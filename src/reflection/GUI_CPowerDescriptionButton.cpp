@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -34,9 +35,9 @@ void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sLabelName_SetterFunction", true)))
         fn_7100b62574(fn, "_m_sLabelName_SetterFunction");
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sLabelName", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sPowerName", true), fn_7100007f84(), 0x2a8, -1, -1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sPowerDescription", true), fn_7100007f84(), 0x2d8, -1, -1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sPowerImage", true), fn_7100009658(), 0x310, -1, -1);
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sPowerName", 0x2a8);
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sPowerDescription", 0x2d8);
+    DREAD_REFLECTED_FIELD(CStrId, "sPowerImage", 0x310);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

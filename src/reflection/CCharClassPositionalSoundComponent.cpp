@@ -21,7 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassPositionalSoundComponent
 void fn_7100795488();
 void fn_7100795238(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassPositionalSoundComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

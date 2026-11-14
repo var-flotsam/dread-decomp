@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,31 +20,20 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // animtree::CBoneControlDef
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern base::reflection::CType g_unk_7101d58900;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace animtree::CBoneControlDef {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Bone Control Definition");
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sBone", true), fn_7100009658(), 0x10, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Bone affected by control");
+    DREAD_REFLECTED_FIELD(CStrId, "sBone", 0x10, (Description, "Bone affected by control"));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("eSpace", true), &g_unk_7101d58900, 0x18, -1, -1);
     field1->attrs.Add<s32>(fn_7100075240(), &g_unk_7101d58900, 0);
     field1->attrs.Add<const char*>(fn_7100007e80(), "Bone transform space");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bAdditive", true), fn_710000d228(), 0x1c, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Control is additive");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bApplyTranslation", true), fn_710000d228(), 0x1d, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), true);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Control transforms translation");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fBlendInTime", true), fn_710000abbc(), 0x20, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Blendin Time");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fBlendOutTime", true), fn_710000abbc(), 0x24, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Blendout Time");
+    DREAD_REFLECTED_FIELD(bool, "bAdditive", 0x1c, (DefaultValue, false), (Description, "Control is additive"));
+    DREAD_REFLECTED_FIELD(bool, "bApplyTranslation", 0x1d, (DefaultValue, true), (Description, "Control transforms translation"));
+    DREAD_REFLECTED_FIELD(f32, "fBlendInTime", 0x20, (DefaultValue, 0.0f), (Description, "Blendin Time"));
+    DREAD_REFLECTED_FIELD(f32, "fBlendOutTime", 0x24, (DefaultValue, 0.0f), (Description, "Blendout Time"));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

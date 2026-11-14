@@ -22,8 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 extern bool g_unk_7172a0b678;
 void fn_7101186130();
 void fn_7101183378(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 void fn_71011862f0();
 void fn_71011834f4(UnkReflFunction* fn, const char* name);
 void fn_71011864b0();

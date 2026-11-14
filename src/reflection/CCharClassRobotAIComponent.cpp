@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,17 +20,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassRobotAIComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CCharClassRobotAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sBumpedFX", true), fn_710000ad9c(), 0x510, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "");
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Defeated Enemy class");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sDeathTimeline", true), fn_7100009658(), 0x518, -1, -1);
-    field1->attrs.Add<const char*>(fn_7100075240(), "ondeath");
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Dead default timeline");
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sBumpedFX", 0x510, (DefaultValue, ""), (Description, "Defeated Enemy class"));
+    DREAD_REFLECTED_FIELD(CStrId, "sDeathTimeline", 0x518, (DefaultValue, "ondeath"), (Description, "Dead default timeline"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

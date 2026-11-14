@@ -21,7 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassEmmyMovement
 void fn_710052d8f8();
 void fn_7100527ee0(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 void fn_710052d9f8();
 void fn_710052805c(UnkReflFunction* fn, const char* name);
 void fn_710052daf8();

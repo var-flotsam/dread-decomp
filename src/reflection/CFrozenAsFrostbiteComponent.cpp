@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -40,7 +41,6 @@ DREAD_REFLECTED_CLASS(CFrozenAsFrostbiteComponent, CFrozenComponent);
 
 // CFrozenAsFrostbiteComponent::CTunableFrozenAsFrostbiteComponent
 extern bool g_unk_7172720df8;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172720dc0;
 void fn_71007f3dd0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -52,16 +52,11 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172720df8 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fFrostbiteColorR", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fFrostbiteColorG", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fFrostbiteColorB", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fFrostbiteColorMinA", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.3f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fFrostbiteColorMaxA", true), fn_710000abbc(), 0x34, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.8f);
+    DREAD_REFLECTED_FIELD(f32, "fFrostbiteColorR", 0x24, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fFrostbiteColorG", 0x28, (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fFrostbiteColorB", 0x2c, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fFrostbiteColorMinA", 0x30, (DefaultValue, 0.3f));
+    DREAD_REFLECTED_FIELD(f32, "fFrostbiteColorMaxA", 0x34, (DefaultValue, 0.8f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

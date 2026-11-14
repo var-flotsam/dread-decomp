@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,20 +20,14 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // GUI::CIntTunableButton
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace GUI::CIntTunableButton {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("iTunableValue", true), fn_7100014768(), 0x2b0, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), 0);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("iTunableIncrement", true), fn_7100014768(), 0x2c0, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), 1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("iTunableMin", true), fn_7100014768(), 0x2c4, -1, -1);
-    field2->attrs.Add<s32>(fn_7100075240(), 0);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("iTunableMax", true), fn_7100014768(), 0x2c8, -1, -1);
-    field3->attrs.Add<s32>(fn_7100075240(), 1);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sTunableCallback", true), fn_7100009658(), 0x2e0, -1, -1);
-    field4->attrs.Add<const char*>(fn_7100075240(), "");
+    DREAD_REFLECTED_FIELD(s32, "iTunableValue", 0x2b0, (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD(s32, "iTunableIncrement", 0x2c0, (DefaultValue, 1));
+    DREAD_REFLECTED_FIELD(s32, "iTunableMin", 0x2c4, (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD(s32, "iTunableMax", 0x2c8, (DefaultValue, 1));
+    DREAD_REFLECTED_FIELD(CStrId, "sTunableCallback", 0x2e0, (DefaultValue, ""));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

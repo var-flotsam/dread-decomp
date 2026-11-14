@@ -29,8 +29,6 @@ void fn_71009be404(UnkReflFunction* fn, const char* name);
 void fn_71009be580(UnkReflFunction* fn, const char* name);
 void fn_71009be6fc(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_71727b6630;
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 namespace CNavMeshItemComponent {
 void refl_AddAttributes(CClass*) {}

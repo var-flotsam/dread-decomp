@@ -20,10 +20,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // CQuetzoaAIComponent
 extern base::reflection::CType g_unk_717269bb48;
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 extern base::reflection::CType g_unk_71727bb8e8;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CQuetzoaAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

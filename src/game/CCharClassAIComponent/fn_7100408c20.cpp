@@ -53,7 +53,6 @@ void fn_7100416414();
 void fn_710041279c(UnkReflFunction* fn, const char* name);
 void fn_71004164bc();
 void fn_7100412918(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100091d40();
 void fn_7100416554();
 void fn_7100412a94(UnkReflFunction* fn, const char* name);
 void fn_71004165e4();

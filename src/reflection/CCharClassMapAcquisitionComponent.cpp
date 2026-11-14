@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,41 +20,19 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassMapAcquisitionComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CCharClassMapAcquisitionComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sUsePrepareLeftMRNoUsedAction", true), fn_7100009658(), 0x1b8, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "");
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Left prepare use animation when the Map Room has not been used");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sUsePrepareRightMRNoUsedAction", true), fn_7100009658(), 0x1c0, -1, -1);
-    field1->attrs.Add<const char*>(fn_7100075240(), "");
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Right prepare use animation When the Map Room has not been used");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sUseInitMRUsedAction", true), fn_7100009658(), 0x1c8, -1, -1);
-    field2->attrs.Add<const char*>(fn_7100075240(), "");
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Init Use animation when the Map Room has been used");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sUseMRUsedAction", true), fn_7100009658(), 0x1d0, -1, -1);
-    field3->attrs.Add<const char*>(fn_7100075240(), "");
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Use animation When the Map Room has been used");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sUseAfterDownLoadMapAction", true), fn_7100009658(), 0x1d8, -1, -1);
-    field4->attrs.Add<const char*>(fn_7100075240(), "");
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Use animation When the Map Room has been used after download map");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("sUseEndUseAfterDownLoadMapAction", true), fn_7100009658(), 0x1e0, -1, -1);
-    field5->attrs.Add<const char*>(fn_7100075240(), "");
-    field5->attrs.Add<const char*>(fn_7100007e80(), "End Use animation When the Map Room has been used");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("sUsableInitMRUsedAction", true), fn_7100009658(), 0x1e8, -1, -1);
-    field6->attrs.Add<const char*>(fn_7100075240(), "");
-    field6->attrs.Add<const char*>(fn_7100007e80(), "Init Usable animation when the Map Room has been used");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("sSaveRingsOpenAction", true), fn_7100009658(), 0x1f0, -1, -1);
-    field7->attrs.Add<const char*>(fn_7100075240(), "");
-    field7->attrs.Add<const char*>(fn_7100007e80(), "Usable rings save animation begin saving");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("sSaveRingsCloseAction", true), fn_7100009658(), 0x1f8, -1, -1);
-    field8->attrs.Add<const char*>(fn_7100075240(), "");
-    field8->attrs.Add<const char*>(fn_7100007e80(), "Usable rings save animation saving");
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("sSaveRingLoopAction", true), fn_7100009658(), 0x200, -1, -1);
-    field9->attrs.Add<const char*>(fn_7100075240(), "");
-    field9->attrs.Add<const char*>(fn_7100007e80(), "Usable rings save animation end saving");
+    DREAD_REFLECTED_FIELD(CStrId, "sUsePrepareLeftMRNoUsedAction", 0x1b8, (DefaultValue, ""), (Description, "Left prepare use animation when the Map Room has not been used"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsePrepareRightMRNoUsedAction", 0x1c0, (DefaultValue, ""), (Description, "Right prepare use animation When the Map Room has not been used"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseInitMRUsedAction", 0x1c8, (DefaultValue, ""), (Description, "Init Use animation when the Map Room has been used"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseMRUsedAction", 0x1d0, (DefaultValue, ""), (Description, "Use animation When the Map Room has been used"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseAfterDownLoadMapAction", 0x1d8, (DefaultValue, ""), (Description, "Use animation When the Map Room has been used after download map"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseEndUseAfterDownLoadMapAction", 0x1e0, (DefaultValue, ""), (Description, "End Use animation When the Map Room has been used"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableInitMRUsedAction", 0x1e8, (DefaultValue, ""), (Description, "Init Usable animation when the Map Room has been used"));
+    DREAD_REFLECTED_FIELD(CStrId, "sSaveRingsOpenAction", 0x1f0, (DefaultValue, ""), (Description, "Usable rings save animation begin saving"));
+    DREAD_REFLECTED_FIELD(CStrId, "sSaveRingsCloseAction", 0x1f8, (DefaultValue, ""), (Description, "Usable rings save animation saving"));
+    DREAD_REFLECTED_FIELD(CStrId, "sSaveRingLoopAction", 0x200, (DefaultValue, ""), (Description, "Usable rings save animation end saving"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

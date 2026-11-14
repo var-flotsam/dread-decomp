@@ -19,7 +19,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // animtree::CBoneFilterNodeDef
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern base::reflection::CType g_unk_7101d5c998;
 namespace animtree::CBoneFilterNodeDef {
 void refl_AddAttributes(CClass* cls) {

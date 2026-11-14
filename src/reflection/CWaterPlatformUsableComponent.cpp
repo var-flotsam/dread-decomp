@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,32 +20,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CWaterPlatformUsableComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100091080();
 namespace CWaterPlatformUsableComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fTotalMetersToFill", true), fn_710000abbc(), 0x54c, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 3.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Water will push floating platform up to this height, in local coordinates");
-    field0->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fSnapToMeters", true), fn_710000abbc(), 0x554, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "When player stops using the platform, it will continue filling up to the next snap");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMetersToBreakValve", true), fn_710000abbc(), 0x550, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Valve will break when floating platform moves this high, causing water to fill tank automatically");
-    field2->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fTimeToBreakValve", true), fn_710000abbc(), 0x558, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 5.0f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Time to stay on the weight platform to cover the meters before valve breaks");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fTimeToFillAfterValveBreaks", true), fn_710000abbc(), 0x55c, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Time to move floating platform from the position where valve breaks to the total height");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fPlatformMovementDelaySinceUseStart", true), fn_710000abbc(), 0x560, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 0.65f);
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Time to wait since water starts flowing until platform starts moving");
+    DREAD_REFLECTED_FIELD(f32, "fTotalMetersToFill", 0x54c, (DefaultValue, 3.0f), (Description, "Water will push floating platform up to this height, in local coordinates"), (MinValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSnapToMeters", 0x554, (DefaultValue, 1.0f), (Description, "When player stops using the platform, it will continue filling up to the next snap"));
+    DREAD_REFLECTED_FIELD(f32, "fMetersToBreakValve", 0x550, (DefaultValue, 2.0f), (Description, "Valve will break when floating platform moves this high, causing water to fill tank automatically"), (MinValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToBreakValve", 0x558, (DefaultValue, 5.0f), (Description, "Time to stay on the weight platform to cover the meters before valve breaks"));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToFillAfterValveBreaks", 0x55c, (DefaultValue, 0.5f), (Description, "Time to move floating platform from the position where valve breaks to the total height"));
+    DREAD_REFLECTED_FIELD(f32, "fPlatformMovementDelaySinceUseStart", 0x560, (DefaultValue, 0.65f), (Description, "Time to wait since water starts flowing until platform starts moving"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -23,8 +23,6 @@ using base::reflection::DestroyDestructorFirst;
 // game::logic::collision::CShape
 void fn_7100d6e0d4();
 void fn_7100d69d64(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 void fn_7100d6e19c();
 void fn_7100d69ee0(UnkReflFunction* fn, const char* name);
 namespace game::logic::collision::CShape {

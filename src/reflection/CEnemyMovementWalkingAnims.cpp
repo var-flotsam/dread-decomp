@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,24 +20,16 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CEnemyMovementWalkingAnims
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CEnemyMovementWalkingAnims {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sRelaxAnim", true), fn_7100009658(), 0x8, -1, -1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId("relax", true));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sFrontAnim", true), fn_7100009658(), 0x10, -1, -1);
-    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId("walk", true));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sBackAnim", true), fn_7100009658(), 0x18, -1, -1);
-    field2->attrs.Add<CStrId>(fn_7100075240(), CStrId("back", true));
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sFrontInitAnim", true), fn_7100009658(), 0x20, -1, -1);
-    field3->attrs.Add<CStrId>(fn_7100075240(), CStrId("walkinit", true));
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sBackInitAnim", true), fn_7100009658(), 0x28, -1, -1);
-    field4->attrs.Add<CStrId>(fn_7100075240(), CStrId("backinit", true));
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("sFrontEndAnim", true), fn_7100009658(), 0x30, -1, -1);
-    field5->attrs.Add<CStrId>(fn_7100075240(), CStrId("walkend", true));
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("sBackEndAnim", true), fn_7100009658(), 0x38, -1, -1);
-    field6->attrs.Add<CStrId>(fn_7100075240(), CStrId("backend", true));
+    DREAD_REFLECTED_FIELD(CStrId, "sRelaxAnim", 0x8, (DefaultValue, CStrId("relax", true)));
+    DREAD_REFLECTED_FIELD(CStrId, "sFrontAnim", 0x10, (DefaultValue, CStrId("walk", true)));
+    DREAD_REFLECTED_FIELD(CStrId, "sBackAnim", 0x18, (DefaultValue, CStrId("back", true)));
+    DREAD_REFLECTED_FIELD(CStrId, "sFrontInitAnim", 0x20, (DefaultValue, CStrId("walkinit", true)));
+    DREAD_REFLECTED_FIELD(CStrId, "sBackInitAnim", 0x28, (DefaultValue, CStrId("backinit", true)));
+    DREAD_REFLECTED_FIELD(CStrId, "sFrontEndAnim", 0x30, (DefaultValue, CStrId("walkend", true)));
+    DREAD_REFLECTED_FIELD(CStrId, "sBackEndAnim", 0x38, (DefaultValue, CStrId("backend", true)));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

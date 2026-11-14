@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -43,7 +44,6 @@ DREAD_REFLECTED_CLASS(CCharClassBigFistAIComponent, CCharClassBaseBigFistAICompo
 
 // CCharClassBigFistAIComponent::CTunableCharClassBigFistAIComponent
 extern bool g_unk_71726c13f8;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726c13c8;
 void fn_71003e9950(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -55,12 +55,9 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726c13f8 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fFleeTimeToReturnToPatrol", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 5.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fChaseMinDist", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 275.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fChaseMaxDist", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 375.0f);
+    DREAD_REFLECTED_FIELD(f32, "fFleeTimeToReturnToPatrol", 0x24, (DefaultValue, 5.0f));
+    DREAD_REFLECTED_FIELD(f32, "fChaseMinDist", 0x28, (DefaultValue, 275.0f));
+    DREAD_REFLECTED_FIELD(f32, "fChaseMaxDist", 0x2c, (DefaultValue, 375.0f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

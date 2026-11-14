@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,10 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CDropComponent::CTunableDropComponent
 extern bool g_unk_717271b6b0;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100093280();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_71003ba540();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_717271b668;
 void fn_71007c1420(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -35,45 +32,18 @@ void refl_AddFields(CClass* cls) {
     g_unk_717271b6b0 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fTimeToFade", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 1.5f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bUseCrazyWeaponBoostConfiguration", true), fn_710000d228(), 0x28, -1, -1);
-    field1->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bForceNoDrop", true), fn_710000d228(), 0x29, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bForceXParasiteDrop", true), fn_710000d228(), 0x2a, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), false);
-    field3->attrs.Add<bool>(fn_7100093280(), true);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Force X-Parasite drop");
-    field3->attrs.Add<const char*>(fn_71003ba540(), "General");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("bForceXParasiteSelfSpawnLoop", true), fn_710000d228(), 0x2b, -1, -1);
-    field4->attrs.Add<bool>(fn_7100075240(), false);
-    field4->attrs.Add<bool>(fn_7100093280(), true);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Force X-Parasite self spawn loop");
-    field4->attrs.Add<const char*>(fn_71003ba540(), "General");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("bIgnoreXParasiteDrop", true), fn_710000d228(), 0x2c, -1, -1);
-    field5->attrs.Add<bool>(fn_7100075240(), false);
-    field5->attrs.Add<bool>(fn_7100093280(), true);
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Ignore X-Parasite drop");
-    field5->attrs.Add<const char*>(fn_71003ba540(), "General");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fLowHealthRuleMaxLife", true), fn_710000abbc(), 0x30, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 50.0f);
-    field6->attrs.Add<const char*>(fn_7100007e80(), "When the entity that will receive drops is under this life (absolute value), the low health rule will apply");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fCriticalHealthRuleMaxLife", true), fn_710000abbc(), 0x34, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 25.0f);
-    field7->attrs.Add<const char*>(fn_7100007e80(), "When the entity that will receive drops is under this life (absolute value), the critical health rule will apply");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("bSkipCriticalHealthRuleTakingCurrentDropsIntoAccount", true), fn_710000d228(), 0x38, -1, -1);
-    field8->attrs.Add<bool>(fn_7100075240(), true);
-    field8->attrs.Add<const char*>(fn_7100007e80(), "When under critical health, whether to stop applying its rule when current life plus current drops would make player leave low health zone");
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("bApplyLowHealthRuleCountingPreviousDrops", true), fn_710000d228(), 0x39, -1, -1);
-    field9->attrs.Add<bool>(fn_7100075240(), true);
-    field9->attrs.Add<const char*>(fn_7100007e80(), "When under critical health, whether to force low health drops when current life plus current drops would make player leave low health zone");
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fXParasiteOrangeReductionOnFullPowerBombAmmo", true), fn_710000abbc(), 0x3c, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    field10->attrs.Add<const char*>(fn_7100007e80(), "When dropping X-Parasites, if Power Bomb ammo is full, reduce base orange parasite probability by this factor");
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fXParasiteOrangeRelativeProbabilityOnOtherResourcesFull", true), fn_710000abbc(), 0x40, -1, -1);
-    field11->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    field11->attrs.Add<const char*>(fn_7100007e80(), "When dropping X-Parasite, if Power Bomb ammo is empty and other resources are full (life, missiles), alter orange parasite probability to be this relative value within the total parasite probabilities");
+    DREAD_REFLECTED_FIELD(f32, "fTimeToFade", 0x24, (DefaultValue, 1.5f));
+    DREAD_REFLECTED_FIELD(bool, "bUseCrazyWeaponBoostConfiguration", 0x28, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bForceNoDrop", 0x29, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bForceXParasiteDrop", 0x2a, (DefaultValue, false), (ShowInDevConfig, true), (Description, "Force X-Parasite drop"), (InternalDevTag, "General"));
+    DREAD_REFLECTED_FIELD(bool, "bForceXParasiteSelfSpawnLoop", 0x2b, (DefaultValue, false), (ShowInDevConfig, true), (Description, "Force X-Parasite self spawn loop"), (InternalDevTag, "General"));
+    DREAD_REFLECTED_FIELD(bool, "bIgnoreXParasiteDrop", 0x2c, (DefaultValue, false), (ShowInDevConfig, true), (Description, "Ignore X-Parasite drop"), (InternalDevTag, "General"));
+    DREAD_REFLECTED_FIELD(f32, "fLowHealthRuleMaxLife", 0x30, (DefaultValue, 50.0f), (Description, "When the entity that will receive drops is under this life (absolute value), the low health rule will apply"));
+    DREAD_REFLECTED_FIELD(f32, "fCriticalHealthRuleMaxLife", 0x34, (DefaultValue, 25.0f), (Description, "When the entity that will receive drops is under this life (absolute value), the critical health rule will apply"));
+    DREAD_REFLECTED_FIELD(bool, "bSkipCriticalHealthRuleTakingCurrentDropsIntoAccount", 0x38, (DefaultValue, true), (Description, "When under critical health, whether to stop applying its rule when current life plus current drops would make player leave low health zone"));
+    DREAD_REFLECTED_FIELD(bool, "bApplyLowHealthRuleCountingPreviousDrops", 0x39, (DefaultValue, true), (Description, "When under critical health, whether to force low health drops when current life plus current drops would make player leave low health zone"));
+    DREAD_REFLECTED_FIELD(f32, "fXParasiteOrangeReductionOnFullPowerBombAmmo", 0x3c, (DefaultValue, 0.5f), (Description, "When dropping X-Parasites, if Power Bomb ammo is full, reduce base orange parasite probability by this factor"));
+    DREAD_REFLECTED_FIELD(f32, "fXParasiteOrangeRelativeProbabilityOnOtherResourcesFull", 0x40, (DefaultValue, 0.5f), (Description, "When dropping X-Parasite, if Power Bomb ammo is empty and other resources are full (life, missiles), alter orange parasite probability to be this relative value within the total parasite probabilities"));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

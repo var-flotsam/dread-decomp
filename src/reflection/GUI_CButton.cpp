@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,14 +20,9 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // GUI::CButton
-const base::reflection::UnkReflAttrKey& fn_7100093390();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
 extern base::reflection::CType g_unk_7172a0d1b8;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace GUI::CButton {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -70,12 +66,11 @@ void refl_AddFields(CClass* cls) {
     field7->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     field7->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
     field7->attrs.Add<bool>(fn_7100090a20(), false);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("sTopNeighbour", true), fn_7100009658(), 0x230, -1, -1);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("sBottomNeighbour", true), fn_7100009658(), 0x238, -1, -1);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("sRightNeighbour", true), fn_7100009658(), 0x248, -1, -1);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("sLeftNeighbour", true), fn_7100009658(), 0x240, -1, -1);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("bDebugBehaviour", true), fn_710000d228(), 0x250, -1, -1);
-    field12->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(CStrId, "sTopNeighbour", 0x230);
+    DREAD_REFLECTED_FIELD(CStrId, "sBottomNeighbour", 0x238);
+    DREAD_REFLECTED_FIELD(CStrId, "sRightNeighbour", 0x248);
+    DREAD_REFLECTED_FIELD(CStrId, "sLeftNeighbour", 0x240);
+    DREAD_REFLECTED_FIELD(bool, "bDebugBehaviour", 0x250, (DefaultValue, false));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

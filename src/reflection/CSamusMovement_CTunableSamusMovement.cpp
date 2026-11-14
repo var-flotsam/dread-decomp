@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,14 +21,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // CSamusMovement::CTunableSamusMovement
 extern bool g_unk_7172740e60;
-const base::reflection::UnkReflAttrKey& fn_7100093390();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172740de0;
 void fn_71009dd760(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -44,56 +39,30 @@ void refl_AddFields(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
     field0->attrs.Add<bool>(fn_7100090a20(), false);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fFloorSlideDistance", true), fn_710000abbc(), 0x24, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 900.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fFloorSlideSpeedBoosterDistance", true), fn_710000abbc(), 0x28, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1500.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fFloorSlideMinTunnelDistanceToExit", true), fn_710000abbc(), 0x2c, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 200.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fFloorSlideSpeedBoosterMinTunnelDistanceToExit", true), fn_710000abbc(), 0x30, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 500.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fFloorSlide45JumpForbiddenTimeOnEnterFromAir", true), fn_710000abbc(), 0x34, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 0.15f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fFloorSlide45JumpForbiddenTimeOnEnterFromGround", true), fn_710000abbc(), 0x38, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fTimeToScheduleFloorSlide", true), fn_710000abbc(), 0x3c, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 0.1f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fImpulseOnPushOutOfCorner", true), fn_710000abbc(), 0x40, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 200.0f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fImpulseOnIgnoredSlopeSupport", true), fn_710000abbc(), 0x44, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 600.0f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fJumpHorizontalImpulseFactor", true), fn_710000abbc(), 0x48, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 1.2f);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fJumpUnderCornerDistanceCheckFromCapsule", true), fn_710000abbc(), 0x4c, -1, -1);
-    field11->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fJumpUnderCornerImpulseOnlyOneSideCollided", true), fn_710000abbc(), 0x50, -1, -1);
-    field12->attrs.Add<f32>(fn_7100075240(), 250.0f);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("fJumpUnderCornerImpulseCenterCollided", true), fn_710000abbc(), 0x54, -1, -1);
-    field13->attrs.Add<f32>(fn_7100075240(), 800.0f);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("fJumpUnderCornerCenterCollisionThresholdDistance", true), fn_710000abbc(), 0x58, -1, -1);
-    field14->attrs.Add<f32>(fn_7100075240(), 15.0f);
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("bClimbToMorphBallAutoConvertToSamusOnTunnelExit", true), fn_710000d228(), 0x5c, -1, -1);
-    field15->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("fMorphBallAutoConvertToSamusOnTunnelExitFromFloorSlideMaxTime", true), fn_710000abbc(), 0x60, -1, -1);
-    field16->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("fMorphBallAutoConvertToSamusOnTunnelExitFromClimbMaxTime", true), fn_710000abbc(), 0x64, -1, -1);
-    field17->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    UnkReflField* field18 = fn_7100096524(cls, CStrId("fFallEndTransitionSpeed", true), fn_710000abbc(), 0x68, -1, -1);
-    field18->attrs.Add<f32>(fn_7100075240(), 25.0f);
-    UnkReflField* field19 = fn_7100096524(cls, CStrId("fDistanceToLaunchRunEndBackward", true), fn_710000abbc(), 0x70, -1, -1);
-    field19->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field20 = fn_7100096524(cls, CStrId("fDistanceToLaunchRunInitBackward", true), fn_710000abbc(), 0x74, -1, -1);
-    field20->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field21 = fn_7100096524(cls, CStrId("bOverrideLegsNodes", true), fn_710000d228(), 0x78, -1, -1);
-    field21->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field22 = fn_7100096524(cls, CStrId("bConvertToMorphBallOnWallNoLowerTunnel", true), fn_710000d228(), 0x79, -1, -1);
-    field22->attrs.Add<bool>(fn_7100075240(), false);
-    field22->attrs.Add<const char*>(fn_7100007e80(), "When pushing a wall (runnearwall) without a lower tunnel to slide into, should we convert to MorphBall instead?");
-    UnkReflField* field23 = fn_7100096524(cls, CStrId("bForceSnapRotationToSides", true), fn_710000d228(), 0x7a, -1, -1);
-    field23->attrs.Add<bool>(fn_7100075240(), false);
-    field23->attrs.Add<const char*>(fn_7100007e80(), "After each ApplyDeltas, ensure Samus is facing a valid orientation?");
-    UnkReflField* field24 = fn_7100096524(cls, CStrId("fTimeIgnoringKickJumpAfterWeightBlock", true), fn_710000abbc(), 0x7c, -1, -1);
-    field24->attrs.Add<f32>(fn_7100075240(), 0.3f);
+    DREAD_REFLECTED_FIELD(f32, "fFloorSlideDistance", 0x24, (DefaultValue, 900.0f));
+    DREAD_REFLECTED_FIELD(f32, "fFloorSlideSpeedBoosterDistance", 0x28, (DefaultValue, 1500.0f));
+    DREAD_REFLECTED_FIELD(f32, "fFloorSlideMinTunnelDistanceToExit", 0x2c, (DefaultValue, 200.0f));
+    DREAD_REFLECTED_FIELD(f32, "fFloorSlideSpeedBoosterMinTunnelDistanceToExit", 0x30, (DefaultValue, 500.0f));
+    DREAD_REFLECTED_FIELD(f32, "fFloorSlide45JumpForbiddenTimeOnEnterFromAir", 0x34, (DefaultValue, 0.15f));
+    DREAD_REFLECTED_FIELD(f32, "fFloorSlide45JumpForbiddenTimeOnEnterFromGround", 0x38, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToScheduleFloorSlide", 0x3c, (DefaultValue, 0.1f));
+    DREAD_REFLECTED_FIELD(f32, "fImpulseOnPushOutOfCorner", 0x40, (DefaultValue, 200.0f));
+    DREAD_REFLECTED_FIELD(f32, "fImpulseOnIgnoredSlopeSupport", 0x44, (DefaultValue, 600.0f));
+    DREAD_REFLECTED_FIELD(f32, "fJumpHorizontalImpulseFactor", 0x48, (DefaultValue, 1.2f));
+    DREAD_REFLECTED_FIELD(f32, "fJumpUnderCornerDistanceCheckFromCapsule", 0x4c, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fJumpUnderCornerImpulseOnlyOneSideCollided", 0x50, (DefaultValue, 250.0f));
+    DREAD_REFLECTED_FIELD(f32, "fJumpUnderCornerImpulseCenterCollided", 0x54, (DefaultValue, 800.0f));
+    DREAD_REFLECTED_FIELD(f32, "fJumpUnderCornerCenterCollisionThresholdDistance", 0x58, (DefaultValue, 15.0f));
+    DREAD_REFLECTED_FIELD(bool, "bClimbToMorphBallAutoConvertToSamusOnTunnelExit", 0x5c, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fMorphBallAutoConvertToSamusOnTunnelExitFromFloorSlideMaxTime", 0x60, (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMorphBallAutoConvertToSamusOnTunnelExitFromClimbMaxTime", 0x64, (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fFallEndTransitionSpeed", 0x68, (DefaultValue, 25.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDistanceToLaunchRunEndBackward", 0x70, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDistanceToLaunchRunInitBackward", 0x74, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(bool, "bOverrideLegsNodes", 0x78, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bConvertToMorphBallOnWallNoLowerTunnel", 0x79, (DefaultValue, false), (Description, "When pushing a wall (runnearwall) without a lower tunnel to slide into, should we convert to MorphBall instead?"));
+    DREAD_REFLECTED_FIELD(bool, "bForceSnapRotationToSides", 0x7a, (DefaultValue, false), (Description, "After each ApplyDeltas, ensure Samus is facing a valid orientation?"));
+    DREAD_REFLECTED_FIELD(f32, "fTimeIgnoringKickJumpAfterWeightBlock", 0x7c, (DefaultValue, 0.3f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
@@ -130,7 +99,6 @@ DREAD_REFLECTED_CLASS(CSamusMovement::CTunableSamusMovement, base::tunable::CTun
 void fn_71009f0f38();
 void fn_71009f0f7c();
 void fn_71009df12c(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_71000904d0();
 namespace CSamusMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -157,58 +125,32 @@ void refl_AddFields(CClass* cls) {
         fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Force detach grapple"));
         fn->Attrs()->Add<bool>(fn_71000904d0(), true);
     }
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fFixedModelOffsetYGoingUp", true), fn_710000abbc(), 0x54f8, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 30.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fFixedModelOffsetYGoingDown", true), fn_710000abbc(), 0x54fc, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 25.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fFixedRightLegSwivelAngleOffsetGoingUp", true), fn_710000abbc(), 0x54d8, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fFixedLeftLegSwivelAngleOffsetGoingUp", true), fn_710000abbc(), 0x54dc, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 0.523599f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fFixedRightLegSwivelAngleOffsetGoingDown", true), fn_710000abbc(), 0x54e0, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fFixedLeftLegSwivelAngleOffsetGoingDown", true), fn_710000abbc(), 0x54e4, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fFixedRightLegOffsetGoingUp", true), fn_71000246e4(), 0x5478, -1, -1);
-    field8->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fFixedLeftLegOffsetGoingUp", true), fn_71000246e4(), 0x5484, -1, -1);
-    field9->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, -20.0f});
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fFixedRightLegOffsetGoingDown", true), fn_71000246e4(), 0x5490, -1, -1);
-    field10->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fFixedLeftLegOffsetGoingDown", true), fn_71000246e4(), 0x549c, -1, -1);
-    field11->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fModelOffsetYGoingUp", true), fn_710000abbc(), 0x5500, -1, -1);
-    field12->attrs.Add<f32>(fn_7100075240(), 8.5f);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("fModelOffsetYGoingDown", true), fn_710000abbc(), 0x5504, -1, -1);
-    field13->attrs.Add<f32>(fn_7100075240(), 5.0f);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("fRightLegSwivelAngleOffsetGoingUp", true), fn_710000abbc(), 0x54e8, -1, -1);
-    field14->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("fLeftLegSwivelAngleOffsetGoingUp", true), fn_710000abbc(), 0x54ec, -1, -1);
-    field15->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("fRightLegSwivelAngleOffsetGoingDown", true), fn_710000abbc(), 0x54f0, -1, -1);
-    field16->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("fLeftLegSwivelAngleOffsetGoingDown", true), fn_710000abbc(), 0x54f4, -1, -1);
-    field17->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field18 = fn_7100096524(cls, CStrId("fRightLegOffsetGoingUp", true), fn_71000246e4(), 0x54a8, -1, -1);
-    field18->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{7.0f, 0.0f, 0.0f});
-    UnkReflField* field19 = fn_7100096524(cls, CStrId("fLeftLegOffsetGoingUp", true), fn_71000246e4(), 0x54b4, -1, -1);
-    field19->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
-    UnkReflField* field20 = fn_7100096524(cls, CStrId("fRightLegOffsetGoingDown", true), fn_71000246e4(), 0x54c0, -1, -1);
-    field20->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
-    UnkReflField* field21 = fn_7100096524(cls, CStrId("fLeftLegOffsetGoingDown", true), fn_71000246e4(), 0x54cc, -1, -1);
-    field21->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{-10.0f, 0.0f, 0.0f});
-    UnkReflField* field22 = fn_7100096524(cls, CStrId("s_fModelOffsetRunningYGoingUp", true), fn_710000abbc(), 0x5508, -1, -1);
-    field22->attrs.Add<f32>(fn_7100075240(), 25.0f);
-    UnkReflField* field23 = fn_7100096524(cls, CStrId("s_fModelOffsetRunningYGoingDown", true), fn_710000abbc(), 0x550c, -1, -1);
-    field23->attrs.Add<f32>(fn_7100075240(), -25.0f);
-    UnkReflField* field24 = fn_7100096524(cls, CStrId("s_fModelOffsetRunningYOCGoingUp", true), fn_710000abbc(), 0x5510, -1, -1);
-    field24->attrs.Add<f32>(fn_7100075240(), 15.0f);
-    UnkReflField* field25 = fn_7100096524(cls, CStrId("s_fModelOffsetRunningYOCGoingDown", true), fn_710000abbc(), 0x5514, -1, -1);
-    field25->attrs.Add<f32>(fn_7100075240(), -15.0f);
-    UnkReflField* field26 = fn_7100096524(cls, CStrId("s_fModelOffsetRunningYSlowDownGoingUp", true), fn_710000abbc(), 0x5518, -1, -1);
-    field26->attrs.Add<f32>(fn_7100075240(), 15.0f);
-    UnkReflField* field27 = fn_7100096524(cls, CStrId("s_fModelOffsetRunningYSlowDownGoingDown", true), fn_710000abbc(), 0x551c, -1, -1);
-    field27->attrs.Add<f32>(fn_7100075240(), -15.0f);
+    DREAD_REFLECTED_FIELD(f32, "fFixedModelOffsetYGoingUp", 0x54f8, (DefaultValue, 30.0f));
+    DREAD_REFLECTED_FIELD(f32, "fFixedModelOffsetYGoingDown", 0x54fc, (DefaultValue, 25.0f));
+    DREAD_REFLECTED_FIELD(f32, "fFixedRightLegSwivelAngleOffsetGoingUp", 0x54d8, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fFixedLeftLegSwivelAngleOffsetGoingUp", 0x54dc, (DefaultValue, 0.523599f));
+    DREAD_REFLECTED_FIELD(f32, "fFixedRightLegSwivelAngleOffsetGoingDown", 0x54e0, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fFixedLeftLegSwivelAngleOffsetGoingDown", 0x54e4, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "fFixedRightLegOffsetGoingUp", 0x5478, (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}));
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "fFixedLeftLegOffsetGoingUp", 0x5484, (DefaultValue, base::math::CVector3D{0.0f, 0.0f, -20.0f}));
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "fFixedRightLegOffsetGoingDown", 0x5490, (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}));
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "fFixedLeftLegOffsetGoingDown", 0x549c, (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}));
+    DREAD_REFLECTED_FIELD(f32, "fModelOffsetYGoingUp", 0x5500, (DefaultValue, 8.5f));
+    DREAD_REFLECTED_FIELD(f32, "fModelOffsetYGoingDown", 0x5504, (DefaultValue, 5.0f));
+    DREAD_REFLECTED_FIELD(f32, "fRightLegSwivelAngleOffsetGoingUp", 0x54e8, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLeftLegSwivelAngleOffsetGoingUp", 0x54ec, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fRightLegSwivelAngleOffsetGoingDown", 0x54f0, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLeftLegSwivelAngleOffsetGoingDown", 0x54f4, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "fRightLegOffsetGoingUp", 0x54a8, (DefaultValue, base::math::CVector3D{7.0f, 0.0f, 0.0f}));
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "fLeftLegOffsetGoingUp", 0x54b4, (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}));
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "fRightLegOffsetGoingDown", 0x54c0, (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}));
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "fLeftLegOffsetGoingDown", 0x54cc, (DefaultValue, base::math::CVector3D{-10.0f, 0.0f, 0.0f}));
+    DREAD_REFLECTED_FIELD(f32, "s_fModelOffsetRunningYGoingUp", 0x5508, (DefaultValue, 25.0f));
+    DREAD_REFLECTED_FIELD(f32, "s_fModelOffsetRunningYGoingDown", 0x550c, (DefaultValue, -25.0f));
+    DREAD_REFLECTED_FIELD(f32, "s_fModelOffsetRunningYOCGoingUp", 0x5510, (DefaultValue, 15.0f));
+    DREAD_REFLECTED_FIELD(f32, "s_fModelOffsetRunningYOCGoingDown", 0x5514, (DefaultValue, -15.0f));
+    DREAD_REFLECTED_FIELD(f32, "s_fModelOffsetRunningYSlowDownGoingUp", 0x5518, (DefaultValue, 15.0f));
+    DREAD_REFLECTED_FIELD(f32, "s_fModelOffsetRunningYSlowDownGoingDown", 0x551c, (DefaultValue, -15.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

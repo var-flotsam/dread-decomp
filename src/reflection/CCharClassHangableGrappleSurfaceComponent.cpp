@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,20 +20,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassHangableGrappleSurfaceComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CCharClassHangableGrappleSurfaceComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMagnetSurfaceMaxIntensityOnGrappleNotAllowed", true), fn_710000abbc(), 0x68, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Magnet surface's material max alpha value when grapple isn't allowed");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sGrappleHelperColliderId", true), fn_7100009658(), 0x70, -1, -1);
-    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Collider ID to use as grapple helper (reposition grapple point on hit)");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fGrappleHelperMaxSegmentLengthToUseCenter", true), fn_710000abbc(), 0x78, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "When selecting grapple point on hit, segments smaller than this value will use their center as grapple point");
+    DREAD_REFLECTED_FIELD(f32, "fMagnetSurfaceMaxIntensityOnGrappleNotAllowed", 0x68, (DefaultValue, 0.5f), (Description, "Magnet surface's material max alpha value when grapple isn't allowed"));
+    DREAD_REFLECTED_FIELD(CStrId, "sGrappleHelperColliderId", 0x70, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Collider ID to use as grapple helper (reposition grapple point on hit)"));
+    DREAD_REFLECTED_FIELD(f32, "fGrappleHelperMaxSegmentLengthToUseCenter", 0x78, (DefaultValue, 100.0f), (Description, "When selecting grapple point on hit, segments smaller than this value will use their center as grapple point"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

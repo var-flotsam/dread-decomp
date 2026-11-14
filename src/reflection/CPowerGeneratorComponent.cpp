@@ -20,7 +20,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CPowerGeneratorComponent
 extern base::reflection::CType g_unk_71727b6270;
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 namespace CPowerGeneratorComponent {
 void refl_AddAttributes(CClass*) {}

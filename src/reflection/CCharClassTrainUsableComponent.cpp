@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,47 +20,21 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassTrainUsableComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CCharClassTrainUsableComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sUsableLeftAction", true), fn_7100009658(), 0x1b8, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "");
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Train left Usable animation");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sUsableRightAction", true), fn_7100009658(), 0x1c0, -1, -1);
-    field1->attrs.Add<const char*>(fn_7100075240(), "");
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Train right Usable animation");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sUsableLevelChangeLeftAction", true), fn_7100009658(), 0x1c8, -1, -1);
-    field2->attrs.Add<const char*>(fn_7100075240(), "");
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Train left Usable level change animation");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sUsableLevelChangeRightAction", true), fn_7100009658(), 0x1d0, -1, -1);
-    field3->attrs.Add<const char*>(fn_7100075240(), "");
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Train right Usable level change animation");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sUseInitRightAction", true), fn_7100009658(), 0x1d8, -1, -1);
-    field4->attrs.Add<const char*>(fn_7100075240(), "");
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Begin right interaction animation");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("sUseInitLeftAction", true), fn_7100009658(), 0x1e0, -1, -1);
-    field5->attrs.Add<const char*>(fn_7100075240(), "");
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Begin left interaction animation");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("sUseLeftAction", true), fn_7100009658(), 0x1e8, -1, -1);
-    field6->attrs.Add<const char*>(fn_7100075240(), "");
-    field6->attrs.Add<const char*>(fn_7100007e80(), "Interaction left use animation");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("sUseRightAction", true), fn_7100009658(), 0x1f0, -1, -1);
-    field7->attrs.Add<const char*>(fn_7100075240(), "");
-    field7->attrs.Add<const char*>(fn_7100007e80(), "Interaction right use animation");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("sUseLeftLevelChangeAction", true), fn_7100009658(), 0x1f8, -1, -1);
-    field8->attrs.Add<const char*>(fn_7100075240(), "");
-    field8->attrs.Add<const char*>(fn_7100007e80(), "Interaction left level change use animation");
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("sUseRightLevelChangeAction", true), fn_7100009658(), 0x200, -1, -1);
-    field9->attrs.Add<const char*>(fn_7100075240(), "");
-    field9->attrs.Add<const char*>(fn_7100007e80(), "Interaction right level change use animation");
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("sUseLeftEndAction", true), fn_7100009658(), 0x208, -1, -1);
-    field10->attrs.Add<const char*>(fn_7100075240(), "");
-    field10->attrs.Add<const char*>(fn_7100007e80(), "End left interaction animation");
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("sUseRightEndAction", true), fn_7100009658(), 0x210, -1, -1);
-    field11->attrs.Add<const char*>(fn_7100075240(), "");
-    field11->attrs.Add<const char*>(fn_7100007e80(), "End right interaction animation");
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableLeftAction", 0x1b8, (DefaultValue, ""), (Description, "Train left Usable animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableRightAction", 0x1c0, (DefaultValue, ""), (Description, "Train right Usable animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableLevelChangeLeftAction", 0x1c8, (DefaultValue, ""), (Description, "Train left Usable level change animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableLevelChangeRightAction", 0x1d0, (DefaultValue, ""), (Description, "Train right Usable level change animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseInitRightAction", 0x1d8, (DefaultValue, ""), (Description, "Begin right interaction animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseInitLeftAction", 0x1e0, (DefaultValue, ""), (Description, "Begin left interaction animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseLeftAction", 0x1e8, (DefaultValue, ""), (Description, "Interaction left use animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseRightAction", 0x1f0, (DefaultValue, ""), (Description, "Interaction right use animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseLeftLevelChangeAction", 0x1f8, (DefaultValue, ""), (Description, "Interaction left level change use animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseRightLevelChangeAction", 0x200, (DefaultValue, ""), (Description, "Interaction right level change use animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseLeftEndAction", 0x208, (DefaultValue, ""), (Description, "End left interaction animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseRightEndAction", 0x210, (DefaultValue, ""), (Description, "End right interaction animation"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

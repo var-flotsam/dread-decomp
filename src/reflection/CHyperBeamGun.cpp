@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -40,8 +41,6 @@ DREAD_REFLECTED_CLASS(CHyperBeamGun, CBeamGun);
 
 // CHyperBeamGun::CTunableHyperBeam
 extern bool g_unk_7172726568;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172726520;
 void fn_7100843194(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -53,33 +52,15 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172726568 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fDamageAmount", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Single shot damage amount");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fChargeDamageMult", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Single charged shot damage multiplier");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMaximumHeat", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.75f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Maximun damage to the shield");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fFractionOfHeatAddedPerShot", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "fraction of heat incremented per shot");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fSlowDownFactor", true), fn_710000abbc(), 0x34, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.1f);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Slow down for the aiming when shooting");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fFirstTimeChargeTime", true), fn_710000abbc(), 0x38, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 4.0f);
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Time to charge the hyperbeam for the first time, during CommanderX");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fSingleFireChargeTime", true), fn_710000abbc(), 0x3c, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    field6->attrs.Add<const char*>(fn_7100007e80(), "Time to charge when you fire after releasing the button for a period of time");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fRepeatedlyFireChargeTime", true), fn_710000abbc(), 0x40, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 0.3f);
-    field7->attrs.Add<const char*>(fn_7100007e80(), "Time to charge if you trigger the fire button multiple times");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fInterruptFireChargeTime", true), fn_710000abbc(), 0x44, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 0.07f);
-    field8->attrs.Add<const char*>(fn_7100007e80(), "Time to charge if the beam was interrupted without releasing the fire button");
+    DREAD_REFLECTED_FIELD(f32, "fDamageAmount", 0x24, (DefaultValue, 0.0f), (Description, "Single shot damage amount"));
+    DREAD_REFLECTED_FIELD(f32, "fChargeDamageMult", 0x28, (DefaultValue, 0.0f), (Description, "Single charged shot damage multiplier"));
+    DREAD_REFLECTED_FIELD(f32, "fMaximumHeat", 0x2c, (DefaultValue, 0.75f), (Description, "Maximun damage to the shield"));
+    DREAD_REFLECTED_FIELD(f32, "fFractionOfHeatAddedPerShot", 0x30, (DefaultValue, 0.0f), (Description, "fraction of heat incremented per shot"));
+    DREAD_REFLECTED_FIELD(f32, "fSlowDownFactor", 0x34, (DefaultValue, 0.1f), (Description, "Slow down for the aiming when shooting"));
+    DREAD_REFLECTED_FIELD(f32, "fFirstTimeChargeTime", 0x38, (DefaultValue, 4.0f), (Description, "Time to charge the hyperbeam for the first time, during CommanderX"));
+    DREAD_REFLECTED_FIELD(f32, "fSingleFireChargeTime", 0x3c, (DefaultValue, 0.5f), (Description, "Time to charge when you fire after releasing the button for a period of time"));
+    DREAD_REFLECTED_FIELD(f32, "fRepeatedlyFireChargeTime", 0x40, (DefaultValue, 0.3f), (Description, "Time to charge if you trigger the fire button multiple times"));
+    DREAD_REFLECTED_FIELD(f32, "fInterruptFireChargeTime", 0x44, (DefaultValue, 0.07f), (Description, "Time to charge if the beam was interrupted without releasing the fire button"));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

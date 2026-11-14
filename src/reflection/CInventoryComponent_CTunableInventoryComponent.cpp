@@ -22,13 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 extern bool g_unk_7172a09290;
 void fn_7101149248();
 void fn_710113ff7c(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100093170();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_71000916e0();
-const base::reflection::UnkReflAttrKey& fn_71000917f0();
-const base::reflection::UnkReflAttrKey& fn_7100324d10();
-const base::reflection::UnkReflAttrKey& fn_7100324c00();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172a09268;
 void fn_71011400f8(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -92,7 +85,6 @@ DREAD_REFLECTED_CLASS(CInventoryComponent::CTunableInventoryComponent, base::tun
 // CInventoryComponent
 void fn_7101140d84(UnkReflFunction* fn, const char* name);
 void fn_7101140f00(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_71000904d0();
 void fn_7101140fb4(UnkReflFunction* fn, const char* name);
 namespace CInventoryComponent {
 void refl_AddAttributes(CClass*) {}

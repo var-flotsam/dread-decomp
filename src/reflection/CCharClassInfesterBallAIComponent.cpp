@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,40 +20,24 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassInfesterBallAIComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassInfesterBallAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fLifeTime", true), fn_710000abbc(), 0x50c, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 5.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fExplosionRadius", true), fn_710000abbc(), 0x510, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeToExplosion", true), fn_710000abbc(), 0x514, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.1f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fTimeAtMaxRadiusExplosion", true), fn_710000abbc(), 0x518, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.2f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fDamageInfesterBallExplosion", true), fn_710000abbc(), 0x51c, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 20.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("bChangeDirOnLand", true), fn_710000d228(), 0x520, -1, -1);
-    field5->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fXImpulseInWallSpawn", true), fn_710000abbc(), 0x524, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("bNotExplodeInWallCollision", true), fn_710000d228(), 0x528, -1, -1);
-    field7->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("iNumCollisionsToExplode", true), fn_7100014768(), 0x52c, -1, -1);
-    field8->attrs.Add<s32>(fn_7100075240(), 3);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("iNumWallCollisions", true), fn_7100014768(), 0x530, -1, -1);
-    field9->attrs.Add<s32>(fn_7100075240(), 2);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("bExplodeInVerticalTunnelCollision", true), fn_710000d228(), 0x529, -1, -1);
-    field10->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fTunnelImpulseFactor", true), fn_710000abbc(), 0x534, -1, -1);
-    field11->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fReboundInWallFactor", true), fn_710000abbc(), 0x538, -1, -1);
-    field12->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("fReboundInGroundFactor", true), fn_710000abbc(), 0x53c, -1, -1);
-    field13->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("fReboundInSlopeFactor", true), fn_710000abbc(), 0x540, -1, -1);
-    field14->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    DREAD_REFLECTED_FIELD(f32, "fLifeTime", 0x50c, (DefaultValue, 5.0f));
+    DREAD_REFLECTED_FIELD(f32, "fExplosionRadius", 0x510, (DefaultValue, 100.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToExplosion", 0x514, (DefaultValue, 0.1f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeAtMaxRadiusExplosion", 0x518, (DefaultValue, 0.2f));
+    DREAD_REFLECTED_FIELD(f32, "fDamageInfesterBallExplosion", 0x51c, (DefaultValue, 20.0f));
+    DREAD_REFLECTED_FIELD(bool, "bChangeDirOnLand", 0x520, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(f32, "fXImpulseInWallSpawn", 0x524, (DefaultValue, 100.0f));
+    DREAD_REFLECTED_FIELD(bool, "bNotExplodeInWallCollision", 0x528, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(s32, "iNumCollisionsToExplode", 0x52c, (DefaultValue, 3));
+    DREAD_REFLECTED_FIELD(s32, "iNumWallCollisions", 0x530, (DefaultValue, 2));
+    DREAD_REFLECTED_FIELD(bool, "bExplodeInVerticalTunnelCollision", 0x529, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fTunnelImpulseFactor", 0x534, (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fReboundInWallFactor", 0x538, (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fReboundInGroundFactor", 0x53c, (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fReboundInSlopeFactor", 0x540, (DefaultValue, 0.5f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

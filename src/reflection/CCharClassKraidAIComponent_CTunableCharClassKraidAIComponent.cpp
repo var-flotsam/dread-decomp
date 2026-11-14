@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,13 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassKraidAIComponent::CTunableCharClassKraidAIComponent
 extern bool g_unk_71726f3480;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100093170();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100091080();
-const base::reflection::UnkReflAttrKey& fn_7100091190();
-const base::reflection::UnkReflAttrKey& fn_7100324af0();
-const base::reflection::UnkReflAttrKey& fn_7100324c00();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726f3440;
 void fn_71005f9478(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -38,50 +32,19 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726f3480 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fFlyingSpikeMotionSpeed", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 1400.0f);
-    field0->attrs.Add<bool>(fn_7100093170(), true);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Kraid flying spike motion speed");
-    field0->attrs.Add<f32>(fn_7100091080(), 1.0f);
-    field0->attrs.Add<f32>(fn_7100091190(), 100000.0f);
-    field0->attrs.Add<f32>(fn_7100324af0(), 50.0f);
-    field0->attrs.Add<const char*>(fn_7100324c00(), "Bosses");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fFlyingSpikeStickedWallTime", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field1->attrs.Add<bool>(fn_7100093170(), true);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Kraid flying spike sticked wall time");
-    field1->attrs.Add<f32>(fn_7100091080(), 1.0f);
-    field1->attrs.Add<f32>(fn_7100091190(), 100000.0f);
-    field1->attrs.Add<f32>(fn_7100324af0(), 50.0f);
-    field1->attrs.Add<const char*>(fn_7100324c00(), "Bosses");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fZipLineDownTime", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field2->attrs.Add<bool>(fn_7100093170(), true);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Kraid zip-line down time");
-    field2->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field2->attrs.Add<f32>(fn_7100091190(), 10.0f);
-    field2->attrs.Add<f32>(fn_7100324af0(), 50.0f);
-    field2->attrs.Add<const char*>(fn_7100324c00(), "Bosses");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("iInitialStage", true), fn_7100014768(), 0x30, -1, -1);
-    field3->attrs.Add<s32>(fn_7100075240(), 0);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("uBombsToDieInMorphGrab", true), fn_7100005178(), 0x34, -1, -1);
-    field4->attrs.Add<u32>(fn_7100075240(), 0x6u);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("SPINNING_NAILS", true), fn_710000d228(), 0x38, -1, -1);
-    field5->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("BACK_SLAP", true), fn_710000d228(), 0x39, -1, -1);
-    field6->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("ACID_BLOBS", true), fn_710000d228(), 0x3a, -1, -1);
-    field7->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("FLYING_SPIKES", true), fn_710000d228(), 0x3b, -1, -1);
-    field8->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("TRIPLE_FLYING_SPIKES", true), fn_710000d228(), 0x3c, -1, -1);
-    field9->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("BOUNCING_CREATURES", true), fn_710000d228(), 0x3d, -1, -1);
-    field10->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("SHOCKER_SPLASH", true), fn_710000d228(), 0x3e, -1, -1);
-    field11->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("FIERCE_SWIPE", true), fn_710000d228(), 0x3f, -1, -1);
-    field12->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_FIELD(f32, "fFlyingSpikeMotionSpeed", 0x24, (DefaultValue, 1400.0f), (ShowInConfig, true), (Description, "Kraid flying spike motion speed"), (MinValue, 1.0f), (MaxValue, 100000.0f), (ControlFloatStep, 50.0f), (InternalTag, "Bosses"));
+    DREAD_REFLECTED_FIELD(f32, "fFlyingSpikeStickedWallTime", 0x28, (DefaultValue, 0.0f), (ShowInConfig, true), (Description, "Kraid flying spike sticked wall time"), (MinValue, 1.0f), (MaxValue, 100000.0f), (ControlFloatStep, 50.0f), (InternalTag, "Bosses"));
+    DREAD_REFLECTED_FIELD(f32, "fZipLineDownTime", 0x2c, (DefaultValue, 1.0f), (ShowInConfig, true), (Description, "Kraid zip-line down time"), (MinValue, 0.0f), (MaxValue, 10.0f), (ControlFloatStep, 50.0f), (InternalTag, "Bosses"));
+    DREAD_REFLECTED_FIELD(s32, "iInitialStage", 0x30, (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD(u32, "uBombsToDieInMorphGrab", 0x34, (DefaultValue, u32(0x6u)));
+    DREAD_REFLECTED_FIELD(bool, "SPINNING_NAILS", 0x38, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "BACK_SLAP", 0x39, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "ACID_BLOBS", 0x3a, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "FLYING_SPIKES", 0x3b, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "TRIPLE_FLYING_SPIKES", 0x3c, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "BOUNCING_CREATURES", 0x3d, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "SHOCKER_SPLASH", 0x3e, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "FIERCE_SWIPE", 0x3f, (DefaultValue, true));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
@@ -137,24 +100,15 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field5 = fn_7100096524(cls, CStrId("oKraidTripleFlyingSpikesAttackDef", true), fn_71005f0668(), 0xb90, -1, -1);
     UnkReflField* field6 = fn_7100096524(cls, CStrId("oKraidBouncingCreaturesAttackDef", true), fn_71005df894(), 0xc98, -1, -1);
     UnkReflField* field7 = fn_7100096524(cls, CStrId("oKraidShockerSplashAttackDef", true), fn_71005e68cc(), 0xdb8, -1, -1);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fOpenMouthInterpolationSpeed", true), fn_710000abbc(), 0x524, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 3.0f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fDesiredTimeToCloseMouth", true), fn_710000abbc(), 0x528, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 5.0f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fDamageToCloseMouth", true), fn_710000abbc(), 0x52c, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 400.0f);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fBellyLife", true), fn_710000abbc(), 0x530, -1, -1);
-    field11->attrs.Add<f32>(fn_7100075240(), 1000.0f);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fMinTimeToRelaxAction", true), fn_710000abbc(), 0x53c, -1, -1);
-    field12->attrs.Add<f32>(fn_7100075240(), 30.0f);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("fMaxTimeToRelaxAction", true), fn_710000abbc(), 0x540, -1, -1);
-    field13->attrs.Add<f32>(fn_7100075240(), 50.0f);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("fTimeToUncoverBelly", true), fn_710000abbc(), 0x544, -1, -1);
-    field14->attrs.Add<f32>(fn_7100075240(), 15.0f);
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("fIgnoreOpenMouthTimeAfterCloseMouth", true), fn_710000abbc(), 0x548, -1, -1);
-    field15->attrs.Add<f32>(fn_7100075240(), 0.8f);
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("fTimeToBellyDamage", true), fn_710000abbc(), 0x54c, -1, -1);
-    field16->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    DREAD_REFLECTED_FIELD(f32, "fOpenMouthInterpolationSpeed", 0x524, (DefaultValue, 3.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDesiredTimeToCloseMouth", 0x528, (DefaultValue, 5.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDamageToCloseMouth", 0x52c, (DefaultValue, 400.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBellyLife", 0x530, (DefaultValue, 1000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinTimeToRelaxAction", 0x53c, (DefaultValue, 30.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxTimeToRelaxAction", 0x540, (DefaultValue, 50.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToUncoverBelly", 0x544, (DefaultValue, 15.0f));
+    DREAD_REFLECTED_FIELD(f32, "fIgnoreOpenMouthTimeAfterCloseMouth", 0x548, (DefaultValue, 0.8f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToBellyDamage", 0x54c, (DefaultValue, 1.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fBellyButtonRadius_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fBellyButtonRadius_GetterFunction", true);
         fn->return_type = fn_710000abbc();

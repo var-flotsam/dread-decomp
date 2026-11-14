@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,22 +20,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassChozoCommanderEnergyShardsSphereMovementComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassChozoCommanderEnergyShardsSphereMovementComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fAngleDispersion", true), fn_710000abbc(), 0x134, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fPositionDispersion", true), fn_710000abbc(), 0x138, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("iNumExplosions", true), fn_7100014768(), 0x13c, -1, -1);
-    field2->attrs.Add<s32>(fn_7100075240(), -1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fTimeBetweenExplosions", true), fn_710000abbc(), 0x140, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 2.5f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fInitialTimeBetweenExplosions", true), fn_710000abbc(), 0x144, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fMaxLifeTime", true), fn_710000abbc(), 0x148, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 15.0f);
+    DREAD_REFLECTED_FIELD(f32, "fAngleDispersion", 0x134, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPositionDispersion", 0x138, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(s32, "iNumExplosions", 0x13c, (DefaultValue, -1));
+    DREAD_REFLECTED_FIELD(f32, "fTimeBetweenExplosions", 0x140, (DefaultValue, 2.5f));
+    DREAD_REFLECTED_FIELD(f32, "fInitialTimeBetweenExplosions", 0x144, (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxLifeTime", 0x148, (DefaultValue, 15.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

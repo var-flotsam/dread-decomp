@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,17 +20,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CBreakableVignetteComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CBreakableVignetteComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sVignetteSG", true), fn_7100009658(), 0x40, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bUnhideWhenPlayerInside", true), fn_710000d228(), 0x3a, -1, -1);
-    field1->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bPreventVisibilityOnly", true), fn_710000d228(), 0x3b, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bForceNotVisible", true), fn_710000d228(), 0x3c, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(CStrId, "sVignetteSG", 0x40);
+    DREAD_REFLECTED_FIELD(bool, "bUnhideWhenPlayerInside", 0x3a, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bPreventVisibilityOnly", 0x3b, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bForceNotVisible", 0x3c, (DefaultValue, false));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

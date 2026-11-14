@@ -20,7 +20,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CXParasiteDropComponent
 extern base::reflection::CType g_unk_717271c1a0;
-const base::reflection::UnkReflAttrKey& fn_7100091d40();
 namespace CXParasiteDropComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

@@ -20,7 +20,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CDoorCentralUnitLifeComponent
 extern base::reflection::CType g_unk_7172714248;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CDoorCentralUnitLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

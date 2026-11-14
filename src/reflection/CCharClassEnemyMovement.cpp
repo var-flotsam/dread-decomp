@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,8 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassEnemyMovement
 void fn_7100965124();
 void fn_710095f1d4(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern base::reflection::CType g_unk_717273a108;
 extern base::reflection::CType g_unk_717273a2e0;
 void fn_71009651b4();
@@ -155,9 +154,7 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("bCanFall", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field0->attrs.Add<bool>(fn_7100075240(), true);
     field0->attrs.Add<const char*>(fn_7100007e80(), "Can fall? (set fall animation is IsOnAir change)");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bShouldMakeExtraMove", true), fn_710000d228(), 0x1b9, -1, -1);
-    field1->attrs.Add<bool>(fn_7100075240(), false);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Should make an extra movement tick after collision?");
+    DREAD_REFLECTED_FIELD(bool, "bShouldMakeExtraMove", 0x1b9, (DefaultValue, false), (Description, "Should make an extra movement tick after collision?"));
     UnkReflField* field2 = fn_7100096524(cls, CStrId("eInitialState", true), &g_unk_717273a108, 0x70, -1, -1);
     field2->attrs.Add<s32>(fn_7100075240(), &g_unk_717273a108, 1);
     field2->attrs.Add<const char*>(fn_7100007e80(), "Walking or Flying");
@@ -926,8 +923,7 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field59 = fn_7100096524(cls, CStrId("bBipedMode", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field59->attrs.Add<bool>(fn_7100075240(), false);
     field59->attrs.Add<const char*>(fn_7100007e80(), "Whether it should be always stand");
-    UnkReflField* field60 = fn_7100096524(cls, CStrId("bIgnoreOpenCorner", true), fn_710000d228(), 0x1b2, -1, -1);
-    field60->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(bool, "bIgnoreOpenCorner", 0x1b2, (DefaultValue, false));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bRelocateOnFrozen_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_bRelocateOnFrozen_GetterFunction", true);
@@ -955,16 +951,11 @@ void refl_AddFields(CClass* cls) {
     }();
     UnkReflField* field62 = fn_7100096524(cls, CStrId("bForceNextTransformCharClassScale", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field62->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field63 = fn_7100096524(cls, CStrId("fAngularSpeed", true), fn_710000abbc(), 0x6c, -1, -1);
-    field63->attrs.Add<f32>(fn_7100075240(), 10.0f);
-    UnkReflField* field64 = fn_7100096524(cls, CStrId("fSteeringAcceleration", true), fn_710000abbc(), 0x13c, -1, -1);
-    field64->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field65 = fn_7100096524(cls, CStrId("fMaxTargetDistanceToAccelerateCloseToTarget", true), fn_710000abbc(), 0x140, -1, -1);
-    field65->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    UnkReflField* field66 = fn_7100096524(cls, CStrId("fCloseToTargetAcceleration", true), fn_710000abbc(), 0x144, -1, -1);
-    field66->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field67 = fn_7100096524(cls, CStrId("bLookAtHorizontalDir", true), fn_710000d228(), 0x1c9, -1, -1);
-    field67->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(f32, "fAngularSpeed", 0x6c, (DefaultValue, 10.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSteeringAcceleration", 0x13c, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxTargetDistanceToAccelerateCloseToTarget", 0x140, (DefaultValue, 100.0f));
+    DREAD_REFLECTED_FIELD(f32, "fCloseToTargetAcceleration", 0x144, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(bool, "bLookAtHorizontalDir", 0x1c9, (DefaultValue, false));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

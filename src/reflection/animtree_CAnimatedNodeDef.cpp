@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,9 +20,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // animtree::CAnimatedNodeDef
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern base::reflection::CType g_unk_71726a8fa0;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_7101d5c998;
 namespace animtree::CAnimatedNodeDef {
 void refl_AddAttributes(CClass* cls) {
@@ -31,15 +30,9 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("eNodeType", true), &g_unk_71726a8fa0, 0x10, -1, -1);
     field0->attrs.Add<s32>(fn_7100075240(), &g_unk_71726a8fa0, 0);
     field0->attrs.Add<const char*>(fn_7100007e80(), "Animated Node Type");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fEventsWeightThreshold", true), fn_710000abbc(), 0x14, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Events Weight Threshold");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bLaunchEvents", true), fn_710000d228(), 0x68, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), true);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Can Launch Events");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bAllowRootMotion", true), fn_710000d228(), 0x69, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), true);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Allow Root Motion");
+    DREAD_REFLECTED_FIELD(f32, "fEventsWeightThreshold", 0x14, (DefaultValue, 0.0f), (Description, "Events Weight Threshold"));
+    DREAD_REFLECTED_FIELD(bool, "bLaunchEvents", 0x68, (DefaultValue, true), (Description, "Can Launch Events"));
+    DREAD_REFLECTED_FIELD(bool, "bAllowRootMotion", 0x69, (DefaultValue, true), (Description, "Allow Root Motion"));
     UnkReflField* field4 = fn_7100096524(cls, CStrId("vBones", true), &g_unk_7101d5c998, 0x18, -1, -1);
     field4->attrs.Add<const char*>(fn_7100007e80(), "List of bone filters");
     UnkReflField* field5 = fn_7100096524(cls, CStrId("vBoneHierarchies", true), &g_unk_7101d5c998, 0x40, -1, -1);

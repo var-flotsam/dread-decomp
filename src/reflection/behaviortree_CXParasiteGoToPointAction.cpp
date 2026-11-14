@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,41 +20,19 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CXParasiteGoToPointAction
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace behaviortree::CXParasiteGoToPointAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sGoToPosBlackboard", true), fn_7100009658(), 0x30, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "");
-    field0->attrs.Add<const char*>(fn_7100007e80(), "GoTo Position (blackboard)");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sGoToEntityBlackboard", true), fn_7100009658(), 0x38, -1, -1);
-    field1->attrs.Add<const char*>(fn_7100075240(), "");
-    field1->attrs.Add<const char*>(fn_7100007e80(), "GoTo Entity (blackboard)");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bStopOnArrive", true), fn_710000d228(), 0x40, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Exact arrive at destiny position (blackboard)");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bUseWaypoints", true), fn_710000d228(), 0x41, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), false);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Use curves to arrive (blackboard)");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fMotionSpeed", true), fn_710000abbc(), 0x5c, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Motion Speed (blackboard)");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fAccelerationForce", true), fn_710000abbc(), 0x60, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Acceleration force (blackboard)");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fBrakeForce", true), fn_710000abbc(), 0x64, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field6->attrs.Add<const char*>(fn_7100007e80(), "Brake force (blackboard)");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fBrakeDistance", true), fn_710000abbc(), 0x68, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field7->attrs.Add<const char*>(fn_7100007e80(), "Brake distance (blackboard)");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fTurningForce", true), fn_710000abbc(), 0x6c, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field8->attrs.Add<const char*>(fn_7100007e80(), "Turning force (blackboard)");
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fMaxTurningAngle", true), fn_710000abbc(), 0x74, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field9->attrs.Add<const char*>(fn_7100007e80(), "Max turning angle (blackboard)");
+    DREAD_REFLECTED_FIELD(CStrId, "sGoToPosBlackboard", 0x30, (DefaultValue, ""), (Description, "GoTo Position (blackboard)"));
+    DREAD_REFLECTED_FIELD(CStrId, "sGoToEntityBlackboard", 0x38, (DefaultValue, ""), (Description, "GoTo Entity (blackboard)"));
+    DREAD_REFLECTED_FIELD(bool, "bStopOnArrive", 0x40, (DefaultValue, false), (Description, "Exact arrive at destiny position (blackboard)"));
+    DREAD_REFLECTED_FIELD(bool, "bUseWaypoints", 0x41, (DefaultValue, false), (Description, "Use curves to arrive (blackboard)"));
+    DREAD_REFLECTED_FIELD(f32, "fMotionSpeed", 0x5c, (DefaultValue, -1.0f), (Description, "Motion Speed (blackboard)"));
+    DREAD_REFLECTED_FIELD(f32, "fAccelerationForce", 0x60, (DefaultValue, -1.0f), (Description, "Acceleration force (blackboard)"));
+    DREAD_REFLECTED_FIELD(f32, "fBrakeForce", 0x64, (DefaultValue, -1.0f), (Description, "Brake force (blackboard)"));
+    DREAD_REFLECTED_FIELD(f32, "fBrakeDistance", 0x68, (DefaultValue, -1.0f), (Description, "Brake distance (blackboard)"));
+    DREAD_REFLECTED_FIELD(f32, "fTurningForce", 0x6c, (DefaultValue, -1.0f), (Description, "Turning force (blackboard)"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxTurningAngle", 0x74, (DefaultValue, -1.0f), (Description, "Max turning angle (blackboard)"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

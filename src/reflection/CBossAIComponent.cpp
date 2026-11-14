@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,10 +20,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CBossAIComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_71727b6630;
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 extern base::reflection::CType g_unk_717269bb48;
 extern base::reflection::CType g_unk_7101d5af48;
@@ -31,12 +29,9 @@ void fn_7100302d14(UnkReflFunction* fn);
 namespace CBossAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sArenaLeftLandmark", true), fn_7100009658(), 0x146f0, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sArenaRightLandmark", true), fn_7100009658(), 0x146f8, -1, -1);
-    field1->attrs.Add<const char*>(fn_7100075240(), "");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fArenaLimitDist", true), fn_710000abbc(), 0x14700, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    DREAD_REFLECTED_FIELD(CStrId, "sArenaLeftLandmark", 0x146f0, (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(CStrId, "sArenaRightLandmark", 0x146f8, (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(f32, "fArenaLimitDist", 0x14700, (DefaultValue, 0.0f));
     UnkReflField* field3 = fn_7100096524(cls, CStrId("tDoors", true), &g_unk_71727b6630, 0x146c8, -1, -1);
     field3->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Door to lock on emmy spawn"));
     field3->attrs_0x70.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
@@ -57,12 +52,10 @@ void refl_AddFields(CClass* cls) {
     }
     UnkReflField* field7 = fn_7100096524(cls, CStrId("wpStartCombatCheckpointStartPoint", true), &g_unk_717269bb48, 0x14910, -1, -1);
     field7->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("sStartCombatCheckpointSnapshotId", true), fn_7100009658(), 0x14950, -1, -1);
-    field8->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_FIELD(CStrId, "sStartCombatCheckpointSnapshotId", 0x14950, (DefaultValue, CStrId(g_unk_7101d470e0)));
     UnkReflField* field9 = fn_7100096524(cls, CStrId("wpDeadCheckpointStartPoint", true), &g_unk_717269bb48, 0x14958, -1, -1);
     field9->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("bSaveGameOnAfterDead", true), fn_710000d228(), 0x14998, -1, -1);
-    field10->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_FIELD(bool, "bSaveGameOnAfterDead", 0x14998, (DefaultValue, true));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

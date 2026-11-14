@@ -20,7 +20,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassMultiModelUpdaterComponent
 extern base::reflection::CType g_unk_7101d5f6a8;
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CCharClassMultiModelUpdaterComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

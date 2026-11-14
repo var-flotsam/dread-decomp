@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,55 +20,32 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassMaterialPropertyTransitionTrack
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100090e60();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassMaterialPropertyTransitionTrack {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Material Property Transition");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Material", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fColorR1", true), fn_710000abbc(), 0x18, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fColorG1", true), fn_710000abbc(), 0x1c, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fColorB1", true), fn_710000abbc(), 0x20, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fAlpha1", true), fn_710000abbc(), 0x24, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sName1", true), fn_7100009658(), 0x28, -1, -1);
-    field4->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("sProperty1", true), fn_7100009658(), 0x30, -1, -1);
-    field5->attrs.Add<CStrId>(fn_7100075240(), CStrId("Constant0Color", true));
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fColorR2", true), fn_710000abbc(), 0x38, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fColorG2", true), fn_710000abbc(), 0x3c, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fColorB2", true), fn_710000abbc(), 0x40, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fAlpha2", true), fn_710000abbc(), 0x44, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("sName2", true), fn_7100009658(), 0x48, -1, -1);
-    field10->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("sProperty2", true), fn_7100009658(), 0x50, -1, -1);
-    field11->attrs.Add<CStrId>(fn_7100075240(), CStrId("Constant0Color", true));
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fColorR3", true), fn_710000abbc(), 0x58, -1, -1);
-    field12->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("fColorG3", true), fn_710000abbc(), 0x5c, -1, -1);
-    field13->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("fColorB3", true), fn_710000abbc(), 0x60, -1, -1);
-    field14->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("fAlpha3", true), fn_710000abbc(), 0x64, -1, -1);
-    field15->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("sName3", true), fn_7100009658(), 0x68, -1, -1);
-    field16->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("sProperty3", true), fn_7100009658(), 0x70, -1, -1);
-    field17->attrs.Add<CStrId>(fn_7100075240(), CStrId("Constant0Color", true));
-    UnkReflField* field18 = fn_7100096524(cls, CStrId("fIn", true), fn_710000abbc(), 0x78, -1, -1);
-    field18->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field19 = fn_7100096524(cls, CStrId("fOut", true), fn_710000abbc(), 0x7c, -1, -1);
-    field19->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    DREAD_REFLECTED_FIELD(f32, "fColorR1", 0x18, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fColorG1", 0x1c, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fColorB1", 0x20, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fAlpha1", 0x24, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(CStrId, "sName1", 0x28, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sProperty1", 0x30, (DefaultValue, CStrId("Constant0Color", true)));
+    DREAD_REFLECTED_FIELD(f32, "fColorR2", 0x38, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fColorG2", 0x3c, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fColorB2", 0x40, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fAlpha2", 0x44, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(CStrId, "sName2", 0x48, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sProperty2", 0x50, (DefaultValue, CStrId("Constant0Color", true)));
+    DREAD_REFLECTED_FIELD(f32, "fColorR3", 0x58, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fColorG3", 0x5c, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fColorB3", 0x60, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fAlpha3", 0x64, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(CStrId, "sName3", 0x68, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sProperty3", 0x70, (DefaultValue, CStrId("Constant0Color", true)));
+    DREAD_REFLECTED_FIELD(f32, "fIn", 0x78, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fOut", 0x7c, (DefaultValue, 0.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

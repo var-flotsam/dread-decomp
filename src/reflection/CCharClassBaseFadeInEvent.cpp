@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,35 +20,17 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassBaseFadeInEvent
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100090d50();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100091080();
-const base::reflection::UnkReflAttrKey& fn_7100091190();
 namespace CCharClassBaseFadeInEvent {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Fade In");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Fade", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fTime", true), fn_710000abbc(), 0xc, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.3f);
-    field0->attrs.Add<f32>(fn_7100091080(), 0.1f);
-    field0->attrs.Add<f32>(fn_7100091190(), 20.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fDelay", true), fn_710000abbc(), 0x10, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.1f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fR", true), fn_710000abbc(), 0x14, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field2->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field2->attrs.Add<f32>(fn_7100091190(), 1.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fG", true), fn_710000abbc(), 0x18, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field3->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field3->attrs.Add<f32>(fn_7100091190(), 1.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fB", true), fn_710000abbc(), 0x1c, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field4->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field4->attrs.Add<f32>(fn_7100091190(), 1.0f);
+    DREAD_REFLECTED_FIELD(f32, "fTime", 0xc, (DefaultValue, 0.3f), (MinValue, 0.1f), (MaxValue, 20.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDelay", 0x10, (DefaultValue, 0.1f));
+    DREAD_REFLECTED_FIELD(f32, "fR", 0x14, (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fG", 0x18, (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fB", 0x1c, (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 1.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

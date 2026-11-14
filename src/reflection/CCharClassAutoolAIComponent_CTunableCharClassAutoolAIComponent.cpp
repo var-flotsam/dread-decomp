@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,13 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassAutoolAIComponent::CTunableCharClassAutoolAIComponent
 extern bool g_unk_71726beb68;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100093280();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_71003ba540();
-const base::reflection::UnkReflAttrKey& fn_7100091080();
-const base::reflection::UnkReflAttrKey& fn_7100091190();
-const base::reflection::UnkReflAttrKey& fn_7100324af0();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726beb18;
 void fn_71003c82a0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -38,55 +32,17 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726beb68 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bRepairEnabled", true), fn_710000d228(), 0x21, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), true);
-    field0->attrs.Add<bool>(fn_7100093280(), true);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Repair points");
-    field0->attrs.Add<const char*>(fn_71003ba540(), "RegularEnemies|Autool");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fExtraTimeAfterKill", true), fn_710000abbc(), 0x24, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 5.0f);
-    field1->attrs.Add<bool>(fn_7100093280(), true);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Extra time after kill");
-    field1->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field1->attrs.Add<f32>(fn_7100091190(), 10000.0f);
-    field1->attrs.Add<f32>(fn_7100324af0(), 10.0f);
-    field1->attrs.Add<const char*>(fn_71003ba540(), "RegularEnemies|Autool");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fRandTimeFirstSpawnMin", true), fn_710000abbc(), 0x28, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 3.0f);
-    field2->attrs.Add<bool>(fn_7100093280(), true);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Min rand for first spawn wait time");
-    field2->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field2->attrs.Add<f32>(fn_7100091190(), 1000.0f);
-    field2->attrs.Add<f32>(fn_7100324af0(), 1.0f);
-    field2->attrs.Add<const char*>(fn_71003ba540(), "RegularEnemies|Autool");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fRandTimeFirstSpawnMax", true), fn_710000abbc(), 0x2c, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 10.0f);
-    field3->attrs.Add<bool>(fn_7100093280(), true);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Max rand for first spawn wait time");
-    field3->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field3->attrs.Add<f32>(fn_7100091190(), 1000.0f);
-    field3->attrs.Add<f32>(fn_7100324af0(), 1.0f);
-    field3->attrs.Add<const char*>(fn_71003ba540(), "RegularEnemies|Autool");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fBrakeDistance", true), fn_710000abbc(), 0x30, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 600.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fMinSpeed", true), fn_710000abbc(), 0x34, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 0.1f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fMaxInclination", true), fn_710000abbc(), 0x38, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 0.7f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fReachedDistance", true), fn_710000abbc(), 0x3c, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 10.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fMaxAcceleration", true), fn_710000abbc(), 0x40, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 1.5f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fMinAcceleration", true), fn_710000abbc(), 0x44, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 0.8f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fMotionSpeed", true), fn_710000abbc(), 0x48, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 800.0f);
-    field10->attrs.Add<bool>(fn_7100093280(), true);
-    field10->attrs.Add<const char*>(fn_7100007e80(), "Motion speed");
-    field10->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field10->attrs.Add<f32>(fn_7100091190(), 5000.0f);
-    field10->attrs.Add<f32>(fn_7100324af0(), 50.0f);
-    field10->attrs.Add<const char*>(fn_71003ba540(), "RegularEnemies|Autool");
+    DREAD_REFLECTED_FIELD(bool, "bRepairEnabled", 0x21, (DefaultValue, true), (ShowInDevConfig, true), (Description, "Repair points"), (InternalDevTag, "RegularEnemies|Autool"));
+    DREAD_REFLECTED_FIELD(f32, "fExtraTimeAfterKill", 0x24, (DefaultValue, 5.0f), (ShowInDevConfig, true), (Description, "Extra time after kill"), (MinValue, 0.0f), (MaxValue, 10000.0f), (ControlFloatStep, 10.0f), (InternalDevTag, "RegularEnemies|Autool"));
+    DREAD_REFLECTED_FIELD(f32, "fRandTimeFirstSpawnMin", 0x28, (DefaultValue, 3.0f), (ShowInDevConfig, true), (Description, "Min rand for first spawn wait time"), (MinValue, 0.0f), (MaxValue, 1000.0f), (ControlFloatStep, 1.0f), (InternalDevTag, "RegularEnemies|Autool"));
+    DREAD_REFLECTED_FIELD(f32, "fRandTimeFirstSpawnMax", 0x2c, (DefaultValue, 10.0f), (ShowInDevConfig, true), (Description, "Max rand for first spawn wait time"), (MinValue, 0.0f), (MaxValue, 1000.0f), (ControlFloatStep, 1.0f), (InternalDevTag, "RegularEnemies|Autool"));
+    DREAD_REFLECTED_FIELD(f32, "fBrakeDistance", 0x30, (DefaultValue, 600.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinSpeed", 0x34, (DefaultValue, 0.1f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxInclination", 0x38, (DefaultValue, 0.7f));
+    DREAD_REFLECTED_FIELD(f32, "fReachedDistance", 0x3c, (DefaultValue, 10.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxAcceleration", 0x40, (DefaultValue, 1.5f));
+    DREAD_REFLECTED_FIELD(f32, "fMinAcceleration", 0x44, (DefaultValue, 0.8f));
+    DREAD_REFLECTED_FIELD(f32, "fMotionSpeed", 0x48, (DefaultValue, 800.0f), (ShowInDevConfig, true), (Description, "Motion speed"), (MinValue, 0.0f), (MaxValue, 5000.0f), (ControlFloatStep, 50.0f), (InternalDevTag, "RegularEnemies|Autool"));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

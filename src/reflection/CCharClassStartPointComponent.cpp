@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,12 +20,10 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassStartPointComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassStartPointComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bProjectOnFloor", true), fn_710000d228(), 0x58, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(bool, "bProjectOnFloor", 0x58, (DefaultValue, false));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -55,20 +54,13 @@ void fn_710116b5f4(UnkReflFunction* fn, const char* name);
 namespace CStartPointComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sOnTeleport", true), fn_7100007f84(), 0x40, -1, -1);
-    field0->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString(refl_GlobalRntString()));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sOnTeleportLogicCamera", true), fn_7100009658(), 0x70, -1, -1);
-    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bOnTeleportLogicCameraRaw", true), fn_710000d228(), 0x78, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bProjectOnFloor", true), fn_710000d228(), 0x79, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("bMorphballMode", true), fn_710000d228(), 0x7a, -1, -1);
-    field4->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("bSaveGameToCheckpoint", true), fn_710000d228(), 0x7b, -1, -1);
-    field5->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("bIsBossStartPoint", true), fn_710000d228(), 0x7c, -1, -1);
-    field6->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sOnTeleport", 0x40, (DefaultValue, base::global::CRntString(refl_GlobalRntString())));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnTeleportLogicCamera", 0x70, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(bool, "bOnTeleportLogicCameraRaw", 0x78, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bProjectOnFloor", 0x79, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bMorphballMode", 0x7a, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bSaveGameToCheckpoint", 0x7b, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bIsBossStartPoint", 0x7c, (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetSaveGameToCheckpoint", true)))
         fn_710116b5f4(fn, "SetSaveGameToCheckpoint");
 }

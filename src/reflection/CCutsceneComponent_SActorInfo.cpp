@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -24,17 +25,13 @@ using base::reflection::DestroyDestructorFirst;
 extern base::reflection::CType g_unk_717269bb48;
 void fn_71007ad0ec();
 void fn_71007a2ac8(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
-const base::reflection::UnkReflAttrKey& fn_71000926d0();
 extern base::reflection::CType g_unk_7101d60ff0;
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_7101d60e78;
 namespace CCutsceneComponent::SActorInfo {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sId", true), fn_7100009658(), 0x30, -1, -1);
+    DREAD_REFLECTED_FIELD(CStrId, "sId", 0x30);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_lnkActor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_lnkActor_GetterFunction", true);
         fn->return_type = &g_unk_717269bb48;
@@ -47,11 +44,8 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field1 = fn_7100096524(cls, CStrId("lnkActor", true), &g_unk_717269bb48, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field1->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
     field1->attrs.Add(fn_71000926d0(), &g_unk_7101d60ff0, base::reflection::UnkReflStringList(0x1, base::reflection::UnkReflList<base::global::CRntString>({"sId"}, 0xa, nullptr, 0xf)));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bStartingVisibleState", true), fn_710000d228(), 0x81, -1, -1);
-    field2->attrs.Add<bool>(fn_7100090a20(), false);
-    field2->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bReceiveLogicUpdate", true), fn_710000d228(), 0x82, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_FIELD(bool, "bStartingVisibleState", 0x81, (EditorVisible, false), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bReceiveLogicUpdate", 0x82, (DefaultValue, true));
     UnkReflField* field4 = fn_7100096524(cls, CStrId("vctVisibilityPerTake", true), &g_unk_7101d60e78, 0x8, -1, -1);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

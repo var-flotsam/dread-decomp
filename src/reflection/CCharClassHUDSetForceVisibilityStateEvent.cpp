@@ -19,10 +19,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassHUDSetForceVisibilityStateEvent
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100090d50();
 extern base::reflection::CType g_unk_7172a0f690;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassHUDSetForceVisibilityStateEvent {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Change the HUD force visibility state");

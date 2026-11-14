@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,18 +20,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CScenario
-const base::reflection::UnkReflAttrKey& fn_7100005070();
 extern base::reflection::CType g_unk_71727b06e8;
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern base::reflection::CType g_unk_71726a07a0;
 void fn_71011a4a54();
-const base::reflection::UnkReflAttrKey& fn_710025d990();
 extern base::reflection::CType g_unk_7172756f90;
-const base::reflection::UnkReflAttrKey& fn_7100263720();
 void fn_71011a4a7c();
 void fn_71011a4aa4();
 extern base::reflection::CType g_unk_7101d5c998;
@@ -42,10 +37,8 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("awpScenarioColliders", true), &g_unk_71727b06e8, 0x828, -1, -1);
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sLevelID", true), fn_7100009658(), 0x10, -1, -1);
-    field1->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Level_Id"));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sScenarioID", true), fn_7100009658(), 0x18, -1, -1);
-    field2->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Scenario_Id"));
+    DREAD_REFLECTED_FIELD(CStrId, "sLevelID", 0x10, (Description, base::global::CRntString("Level_Id")));
+    DREAD_REFLECTED_FIELD(CStrId, "sScenarioID", 0x18, (Description, base::global::CRntString("Scenario_Id")));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_rEntitiesLayer_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_rEntitiesLayer_GetterFunction", true);
         fn->return_type = &g_unk_71726a07a0;
@@ -100,7 +93,6 @@ DREAD_REFLECTED_CLASS(CScenario, CGameObject);
 
 // CScenario::CTunableScenario
 extern bool g_unk_7172a0bee0;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172a0bea8;
 void fn_710119fb40(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -112,14 +104,10 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172a0bee0 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fAreaTextLabelX", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fAreaTextLabelY", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), -0.28f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fAreaTextSpriteX", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fAreaTextSpriteY", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), -0.36f);
+    DREAD_REFLECTED_FIELD(f32, "fAreaTextLabelX", 0x24, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fAreaTextLabelY", 0x28, (DefaultValue, -0.28f));
+    DREAD_REFLECTED_FIELD(f32, "fAreaTextSpriteX", 0x2c, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fAreaTextSpriteY", 0x30, (DefaultValue, -0.36f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

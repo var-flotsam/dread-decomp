@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -49,8 +50,8 @@ namespace GUI::CDisplayObjectTrackFloat {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("aKeys", true), &g_unk_71727600a0, 0x40, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sPropertyID", true), fn_7100007f84(), 0x8, -1, -1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("iLoopStartFrame", true), fn_7100014768(), 0x3c, -1, -1);
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sPropertyID", 0x8);
+    DREAD_REFLECTED_FIELD(s32, "iLoopStartFrame", 0x3c);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -82,8 +83,8 @@ namespace GUI::CDisplayObjectTrackBool {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("aKeys", true), &g_unk_71727605d8, 0x40, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sPropertyID", true), fn_7100007f84(), 0x8, -1, -1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("iLoopStartFrame", true), fn_7100014768(), 0x3c, -1, -1);
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sPropertyID", 0x8);
+    DREAD_REFLECTED_FIELD(s32, "iLoopStartFrame", 0x3c);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -115,8 +116,8 @@ namespace GUI::CDisplayObjectTrackString {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("aKeys", true), &g_unk_7172760b10, 0x40, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sPropertyID", true), fn_7100007f84(), 0x8, -1, -1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("iLoopStartFrame", true), fn_7100014768(), 0x3c, -1, -1);
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sPropertyID", 0x8);
+    DREAD_REFLECTED_FIELD(s32, "iLoopStartFrame", 0x3c);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

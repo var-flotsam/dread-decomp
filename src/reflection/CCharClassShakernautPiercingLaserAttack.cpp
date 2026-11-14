@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,20 +20,14 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassShakernautPiercingLaserAttack
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassShakernautPiercingLaserAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fTimeToChargePiercingLaser", true), fn_710000abbc(), 0xec, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 2.5f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeToChargeSecondLaser", true), fn_710000abbc(), 0xf0, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeToPrepareLaser", true), fn_710000abbc(), 0xf4, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fTimeLaser", true), fn_710000abbc(), 0xf8, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fTimeToRelocateEye", true), fn_710000abbc(), 0xfc, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    DREAD_REFLECTED_FIELD(f32, "fTimeToChargePiercingLaser", 0xec, (DefaultValue, 2.5f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToChargeSecondLaser", 0xf0, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToPrepareLaser", 0xf4, (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeLaser", 0xf8, (DefaultValue, 2.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToRelocateEye", 0xfc, (DefaultValue, 0.5f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

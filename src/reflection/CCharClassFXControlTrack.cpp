@@ -19,11 +19,8 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassFXControlTrack
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100090e60();
 void fn_7100cfd080();
 void fn_7100cfc500(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 void fn_7100cfd18c();
 void fn_7100cfc67c(UnkReflFunction* fn, const char* name);
 namespace CCharClassFXControlTrack {

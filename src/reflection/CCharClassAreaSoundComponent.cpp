@@ -21,7 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassAreaSoundComponent
 void fn_710077f56c();
 void fn_710077f2f8(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassAreaSoundComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

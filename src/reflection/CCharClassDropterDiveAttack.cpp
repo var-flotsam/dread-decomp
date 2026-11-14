@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,14 +20,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassDropterDiveAttack
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassDropterDiveAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fStartAttackDistance", true), fn_710000abbc(), 0xec, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 800.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxAttackTravelDistance", true), fn_710000abbc(), 0xf0, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1200.0f);
+    DREAD_REFLECTED_FIELD(f32, "fStartAttackDistance", 0xec, (DefaultValue, 800.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxAttackTravelDistance", 0xf0, (DefaultValue, 1200.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

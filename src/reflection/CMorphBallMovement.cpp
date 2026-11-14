@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,11 +21,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // CMorphBallMovement
 void fn_710094fe70();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
 void fn_710094feb8();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CMorphBallMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -46,63 +44,29 @@ void refl_AddFields(CClass* cls) {
     }
     UnkReflField* field1 = fn_7100096524(cls, CStrId("bIsSamus", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fRunningSpeedX", true), fn_710000abbc(), 0x228c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 700.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fSpiderRunningSpeedX", true), fn_710000abbc(), 0x2290, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 350.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fSpiderImpulseSpeedX", true), fn_710000abbc(), 0x2294, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 4000.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fAirRunningSpeedX", true), fn_710000abbc(), 0x2298, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 600.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fSpeedY", true), fn_710000abbc(), 0x229c, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 1490.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fHighJumpBootSpeedY", true), fn_710000abbc(), 0x22a0, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 1720.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fMinSpeedY", true), fn_710000abbc(), 0x22a4, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), -2000.0f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fMaxSpeedY", true), fn_710000abbc(), 0x22a8, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 2085.0f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fTimeOnAirAllowingJump", true), fn_710000abbc(), 0x22ac, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 0.1f);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fNoJumpingGravityFactor", true), fn_710000abbc(), 0x22b0, -1, -1);
-    field11->attrs.Add<f32>(fn_7100075240(), 2.5f);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fImpactIgnoreInputTime", true), fn_710000abbc(), 0x22b4, -1, -1);
-    field12->attrs.Add<f32>(fn_7100075240(), 0.23333333f);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("fImpactIgnoreFrictionTime", true), fn_710000abbc(), 0x22b8, -1, -1);
-    field13->attrs.Add<f32>(fn_7100075240(), 0.23333333f);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("sMovingFX", true), fn_7100009658(), 0x2560, -1, -1);
-    field14->attrs.Add<const char*>(fn_7100075240(), "rolldust");
-    field14->attrs.Add<const char*>(fn_7100007e80(), "dust fx when morphball is rolling");
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("sMovingOilFX", true), fn_7100009658(), 0x2568, -1, -1);
-    field15->attrs.Add<const char*>(fn_7100075240(), "rolloil");
-    field15->attrs.Add<const char*>(fn_7100007e80(), "oil fx when morphball is rolling");
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("sMovingOilSlidingFX", true), fn_7100009658(), 0x2570, -1, -1);
-    field16->attrs.Add<const char*>(fn_7100075240(), "rolloilsliding");
-    field16->attrs.Add<const char*>(fn_7100007e80(), "oil fx when morphball is rolling");
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("sTransformationCustomMaterialFX", true), fn_7100009658(), 0x2578, -1, -1);
-    field17->attrs.Add<const char*>(fn_7100075240(), "transformation");
-    field17->attrs.Add<const char*>(fn_7100007e80(), "fx id");
-    UnkReflField* field18 = fn_7100096524(cls, CStrId("sTransformationParticlesFX", true), fn_7100009658(), 0x2580, -1, -1);
-    field18->attrs.Add<const char*>(fn_7100075240(), "transformation_glow");
-    field18->attrs.Add<const char*>(fn_7100007e80(), "fx id");
-    UnkReflField* field19 = fn_7100096524(cls, CStrId("sImpulseFX", true), fn_7100009658(), 0x2588, -1, -1);
-    field19->attrs.Add<const char*>(fn_7100075240(), "impulse");
-    field19->attrs.Add<const char*>(fn_7100007e80(), "fx id");
-    UnkReflField* field20 = fn_7100096524(cls, CStrId("sFallDustFX", true), fn_710000ad9c(), 0x2590, -1, -1);
-    field20->attrs.Add<const char*>(fn_7100075240(), "system/fx/generic/fall.bcptl");
-    field20->attrs.Add<const char*>(fn_7100007e80(), "fx id");
-    UnkReflField* field21 = fn_7100096524(cls, CStrId("sFallOilFX", true), fn_710000ad9c(), 0x2598, -1, -1);
-    field21->attrs.Add<const char*>(fn_7100075240(), "actors/characters/morphball/fx/oilimpact.bcptl");
-    field21->attrs.Add<const char*>(fn_7100007e80(), "fx id");
-    UnkReflField* field22 = fn_7100096524(cls, CStrId("fMinTimeInOilState", true), fn_710000abbc(), 0x2548, -1, -1);
-    field22->attrs.Add<f32>(fn_7100075240(), 0.25f);
-    field22->attrs.Add<const char*>(fn_7100007e80(), "The time that samus stay in oil mode when she left an oil surface");
-    UnkReflField* field23 = fn_7100096524(cls, CStrId("fTotalTimeIgnoringGoToSpider", true), fn_710000abbc(), 0x2524, -1, -1);
-    field23->attrs.Add<f32>(fn_7100075240(), 0.2f);
-    field23->attrs.Add<const char*>(fn_7100007e80(), "The time that samus cannot hook to a surface");
-    UnkReflField* field24 = fn_7100096524(cls, CStrId("sSpiderImpulseEndShake", true), fn_7100009658(), 0x25c8, -1, -1);
-    field24->attrs.Add<const char*>(fn_7100075240(), "");
-    field24->attrs.Add<const char*>(fn_7100007e80(), "Spider impulse end shake id");
+    DREAD_REFLECTED_FIELD(f32, "fRunningSpeedX", 0x228c, (DefaultValue, 700.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSpiderRunningSpeedX", 0x2290, (DefaultValue, 350.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSpiderImpulseSpeedX", 0x2294, (DefaultValue, 4000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fAirRunningSpeedX", 0x2298, (DefaultValue, 600.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSpeedY", 0x229c, (DefaultValue, 1490.0f));
+    DREAD_REFLECTED_FIELD(f32, "fHighJumpBootSpeedY", 0x22a0, (DefaultValue, 1720.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinSpeedY", 0x22a4, (DefaultValue, -2000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxSpeedY", 0x22a8, (DefaultValue, 2085.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeOnAirAllowingJump", 0x22ac, (DefaultValue, 0.1f));
+    DREAD_REFLECTED_FIELD(f32, "fNoJumpingGravityFactor", 0x22b0, (DefaultValue, 2.5f));
+    DREAD_REFLECTED_FIELD(f32, "fImpactIgnoreInputTime", 0x22b4, (DefaultValue, 0.23333333f));
+    DREAD_REFLECTED_FIELD(f32, "fImpactIgnoreFrictionTime", 0x22b8, (DefaultValue, 0.23333333f));
+    DREAD_REFLECTED_FIELD(CStrId, "sMovingFX", 0x2560, (DefaultValue, "rolldust"), (Description, "dust fx when morphball is rolling"));
+    DREAD_REFLECTED_FIELD(CStrId, "sMovingOilFX", 0x2568, (DefaultValue, "rolloil"), (Description, "oil fx when morphball is rolling"));
+    DREAD_REFLECTED_FIELD(CStrId, "sMovingOilSlidingFX", 0x2570, (DefaultValue, "rolloilsliding"), (Description, "oil fx when morphball is rolling"));
+    DREAD_REFLECTED_FIELD(CStrId, "sTransformationCustomMaterialFX", 0x2578, (DefaultValue, "transformation"), (Description, "fx id"));
+    DREAD_REFLECTED_FIELD(CStrId, "sTransformationParticlesFX", 0x2580, (DefaultValue, "transformation_glow"), (Description, "fx id"));
+    DREAD_REFLECTED_FIELD(CStrId, "sImpulseFX", 0x2588, (DefaultValue, "impulse"), (Description, "fx id"));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sFallDustFX", 0x2590, (DefaultValue, "system/fx/generic/fall.bcptl"), (Description, "fx id"));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sFallOilFX", 0x2598, (DefaultValue, "actors/characters/morphball/fx/oilimpact.bcptl"), (Description, "fx id"));
+    DREAD_REFLECTED_FIELD(f32, "fMinTimeInOilState", 0x2548, (DefaultValue, 0.25f), (Description, "The time that samus stay in oil mode when she left an oil surface"));
+    DREAD_REFLECTED_FIELD(f32, "fTotalTimeIgnoringGoToSpider", 0x2524, (DefaultValue, 0.2f), (Description, "The time that samus cannot hook to a surface"));
+    DREAD_REFLECTED_FIELD(CStrId, "sSpiderImpulseEndShake", 0x25c8, (DefaultValue, ""), (Description, "Spider impulse end shake id"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -135,22 +99,14 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172739438 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fWaterBombFirstImpactFactor", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fWaterBombSecondImpactFactor", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fWaterBombThirdImpactFactor", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.6f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fWaterBombFourthImpactFactor", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.4f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fWaterBombFifthImpactFactor", true), fn_710000abbc(), 0x34, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.2f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fSqrDistanceToMakeSpiderJumpWithBomb", true), fn_710000abbc(), 0x38, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 625.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("iForceSpiderBallAvailableMode", true), fn_7100014768(), 0x3c, -1, -1);
-    field6->attrs.Add<s32>(fn_7100075240(), 0);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("bForceSpringBallAvailable", true), fn_710000d228(), 0x40, -1, -1);
-    field7->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(f32, "fWaterBombFirstImpactFactor", 0x24, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fWaterBombSecondImpactFactor", 0x28, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fWaterBombThirdImpactFactor", 0x2c, (DefaultValue, 0.6f));
+    DREAD_REFLECTED_FIELD(f32, "fWaterBombFourthImpactFactor", 0x30, (DefaultValue, 0.4f));
+    DREAD_REFLECTED_FIELD(f32, "fWaterBombFifthImpactFactor", 0x34, (DefaultValue, 0.2f));
+    DREAD_REFLECTED_FIELD(f32, "fSqrDistanceToMakeSpiderJumpWithBomb", 0x38, (DefaultValue, 625.0f));
+    DREAD_REFLECTED_FIELD(s32, "iForceSpiderBallAvailableMode", 0x3c, (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD(bool, "bForceSpringBallAvailable", 0x40, (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fWalkingSpeedFactor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fWalkingSpeedFactor_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -162,22 +118,12 @@ void refl_AddFields(CClass* cls) {
         fn_710093d6cc(fn, "_fWalkingSpeedFactor_SetterFunction");
     UnkReflField* field8 = fn_7100096524(cls, CStrId("fWalkingSpeedFactor", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field8->attrs.Add<f32>(fn_7100075240(), 0.6f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fTimeToIgnoreJumpAfterLandingOnSlope", true), fn_710000abbc(), 0x44, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 0.15f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fCornerAssistStoppedMaxOverlapFactor", true), fn_710000abbc(), 0x48, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field10->attrs.Add<const char*>(fn_7100007e80(), "When stationary, multiplier to MorphBall's radius when checking distance to corner");
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fCornerAssistMovingMaxOverlapFactor", true), fn_710000abbc(), 0x4c, -1, -1);
-    field11->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field11->attrs.Add<const char*>(fn_7100007e80(), "When moving, multiplier to MorphBall's radius when checking distance to corner");
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fCornerAssistHorizontalVelocityToConsiderMoving", true), fn_710000abbc(), 0x50, -1, -1);
-    field12->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field12->attrs.Add<const char*>(fn_7100007e80(), "Minimum horizontal physics velocity to decide whether it's stationary or moving");
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("fCornerAssistMovingAwayFromCornerThresholdFactor", true), fn_710000abbc(), 0x54, -1, -1);
-    field13->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field13->attrs.Add<const char*>(fn_7100007e80(), "When jumping against a corner, but hitting past the corner, this is the multiplier to MorphBall's radius to consider we're still close enough to the corner to apply assistance");
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("fAirTimeBeforeSoundRelauch", true), fn_710000abbc(), 0x58, -1, -1);
-    field14->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    DREAD_REFLECTED_FIELD(f32, "fTimeToIgnoreJumpAfterLandingOnSlope", 0x44, (DefaultValue, 0.15f));
+    DREAD_REFLECTED_FIELD(f32, "fCornerAssistStoppedMaxOverlapFactor", 0x48, (DefaultValue, 0.0f), (Description, "When stationary, multiplier to MorphBall's radius when checking distance to corner"));
+    DREAD_REFLECTED_FIELD(f32, "fCornerAssistMovingMaxOverlapFactor", 0x4c, (DefaultValue, 0.0f), (Description, "When moving, multiplier to MorphBall's radius when checking distance to corner"));
+    DREAD_REFLECTED_FIELD(f32, "fCornerAssistHorizontalVelocityToConsiderMoving", 0x50, (DefaultValue, 0.0f), (Description, "Minimum horizontal physics velocity to decide whether it's stationary or moving"));
+    DREAD_REFLECTED_FIELD(f32, "fCornerAssistMovingAwayFromCornerThresholdFactor", 0x54, (DefaultValue, 0.0f), (Description, "When jumping against a corner, but hitting past the corner, this is the multiplier to MorphBall's radius to consider we're still close enough to the corner to apply assistance"));
+    DREAD_REFLECTED_FIELD(f32, "fAirTimeBeforeSoundRelauch", 0x58, (DefaultValue, 1.0f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

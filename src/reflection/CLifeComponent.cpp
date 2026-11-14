@@ -19,16 +19,10 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CLifeComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
 void fn_710115f078(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_71000904d0();
 void fn_710116132c();
 void fn_710115f12c(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_71000926d0();
 extern base::reflection::CType g_unk_7101d60ff0;
 void fn_71011613dc();
 void fn_71000e8118(UnkReflField* field, u64 index);
@@ -36,8 +30,6 @@ void fn_710115f2a8(UnkReflFunction* fn, const char* name);
 void fn_71000e8180(UnkReflField* field, u64 index);
 void fn_7101161490();
 void fn_710115f424(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100093170();
-const base::reflection::UnkReflAttrKey& fn_7100324c00();
 void fn_710115f5a0(UnkReflFunction* fn, const char* name);
 void fn_710115f654(UnkReflFunction* fn, const char* name);
 void fn_710115f708(UnkReflFunction* fn, const char* name);

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,41 +20,26 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassSetMaterialPropertyBonePositionEvent
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100090d50();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_716e599140;
 extern base::reflection::CType g_unk_716e34af70;
-const base::reflection::UnkReflAttrKey& fn_7100091080();
-const base::reflection::UnkReflAttrKey& fn_7100091190();
 namespace CCharClassSetMaterialPropertyBonePositionEvent {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Set Material Property Transition Using Bone");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Material", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sNode", true), fn_7100009658(), 0x10, -1, -1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sActor", true), fn_7100009658(), 0x18, -1, -1);
-    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sFXId", true), fn_7100009658(), 0x20, -1, -1);
-    field2->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sMaterialName", true), fn_7100009658(), 0x28, -1, -1);
-    field3->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_FIELD(CStrId, "sNode", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sActor", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sFXId", 0x20, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sMaterialName", 0x28, (DefaultValue, CStrId(g_unk_7101d470e0)));
     UnkReflField* field4 = fn_7100096524(cls, CStrId("ePropertyName", true), &g_unk_716e599140, 0x30, -1, -1);
     field4->attrs.Add<s32>(fn_7100075240(), &g_unk_716e599140, 0);
     UnkReflField* field5 = fn_7100096524(cls, CStrId("eStage", true), &g_unk_716e34af70, 0x34, -1, -1);
     field5->attrs.Add<s32>(fn_7100075240(), &g_unk_716e34af70, 1);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fColorASrc", true), fn_710000abbc(), 0x38, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fColorADst", true), fn_710000abbc(), 0x3c, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("bLocalPosition", true), fn_710000d228(), 0x44, -1, -1);
-    field8->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fTime", true), fn_710000abbc(), 0x40, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field9->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field9->attrs.Add<f32>(fn_7100091190(), 1000.0f);
+    DREAD_REFLECTED_FIELD(f32, "fColorASrc", 0x38, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fColorADst", 0x3c, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(bool, "bLocalPosition", 0x44, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fTime", 0x40, (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 1000.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

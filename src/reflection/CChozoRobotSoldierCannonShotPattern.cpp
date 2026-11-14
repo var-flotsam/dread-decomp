@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,16 +22,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CChozoRobotSoldierCannonShotPattern
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CChozoRobotSoldierCannonShotPattern {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fInitialTimeToShot", true), fn_710000abbc(), 0x8, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.75f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeBetweenShot_1_2", true), fn_710000abbc(), 0xc, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.29f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeBetweenShot_2_3", true), fn_710000abbc(), 0x10, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.29f);
+    DREAD_REFLECTED_FIELD(f32, "fInitialTimeToShot", 0x8, (DefaultValue, 0.75f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeBetweenShot_1_2", 0xc, (DefaultValue, 0.29f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeBetweenShot_2_3", 0x10, (DefaultValue, 0.29f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -69,14 +66,10 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726ca6c0 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMinAttackDistance", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxAttackDistance", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeToFinishAttack", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.25f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fTimeToWaitAfterBeamCharged", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.75f);
+    DREAD_REFLECTED_FIELD(f32, "fMinAttackDistance", 0x24, (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxAttackDistance", 0x28, (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToFinishAttack", 0x2c, (DefaultValue, 0.25f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToWaitAfterBeamCharged", 0x30, (DefaultValue, 0.75f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

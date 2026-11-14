@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassHydrogigaAIComponent::CTunableCharClassHydrogigaAIComponent
 extern bool g_unk_71726eb130;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726eb108;
 void fn_71005b87f0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -32,16 +32,11 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726eb130 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("HYDROGIGA_BRAID_ATTACK", true), fn_710000d228(), 0x21, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("HYDROGIGA_MAELSTORM_ATTACK", true), fn_710000d228(), 0x22, -1, -1);
-    field1->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("HYDROGIGA_POLYPS_ATTACK", true), fn_710000d228(), 0x23, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("HYDROGIGA_TENTACLE_BASH_ATTACK", true), fn_710000d228(), 0x24, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("HYDROGIGA_TONGUE_SWIRL_ATTACK", true), fn_710000d228(), 0x25, -1, -1);
-    field4->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_FIELD(bool, "HYDROGIGA_BRAID_ATTACK", 0x21, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "HYDROGIGA_MAELSTORM_ATTACK", 0x22, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "HYDROGIGA_POLYPS_ATTACK", 0x23, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "HYDROGIGA_TENTACLE_BASH_ATTACK", 0x24, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "HYDROGIGA_TONGUE_SWIRL_ATTACK", 0x25, (DefaultValue, true));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
@@ -76,7 +71,6 @@ DREAD_REFLECTED_CLASS(CCharClassHydrogigaAIComponent::CTunableCharClassHydrogiga
 
 // CCharClassHydrogigaAIComponent
 extern base::reflection::CType g_unk_717270d668;
-const base::reflection::UnkReflAttrKey& fn_7100091d40();
 const base::reflection::CClass* fn_71005ad144();
 const base::reflection::CClass* fn_71005ad6a4();
 const base::reflection::CClass* fn_71005af03c();
@@ -93,26 +87,16 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field3 = fn_7100096524(cls, CStrId("oHydrogigaPolypsAttackDef", true), fn_71005af03c(), 0x920, -1, -1);
     UnkReflField* field4 = fn_7100096524(cls, CStrId("oHydrogigaTentacleBashAttackDef", true), fn_71005b2164(), 0xa98, -1, -1);
     UnkReflField* field5 = fn_7100096524(cls, CStrId("oHydrogigaTongueSwirlAttackDef", true), fn_71005b2544(), 0xb88, -1, -1);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fTimeOpened", true), fn_710000abbc(), 0x550, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 5.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fTimeDry", true), fn_710000abbc(), 0x554, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 5.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fTimeStunned", true), fn_710000abbc(), 0x558, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 5.0f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fUnderwaterZipLineMultiplier", true), fn_710000abbc(), 0x55c, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fTurbineRestoreTime", true), fn_710000abbc(), 0x560, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 10.0f);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("bMeleeDestroyPolyps", true), fn_710000d228(), 0x564, -1, -1);
-    field11->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fMaxDamageDry", true), fn_710000abbc(), 0x568, -1, -1);
-    field12->attrs.Add<f32>(fn_7100075240(), 500.0f);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("fMaxDamageStunned", true), fn_710000abbc(), 0x56c, -1, -1);
-    field13->attrs.Add<f32>(fn_7100075240(), 500.0f);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("fDamageStage2", true), fn_710000abbc(), 0x570, -1, -1);
-    field14->attrs.Add<f32>(fn_7100075240(), 1800.0f);
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("fDamageFactorFillingPool", true), fn_710000abbc(), 0x574, -1, -1);
-    field15->attrs.Add<f32>(fn_7100075240(), 0.2f);
+    DREAD_REFLECTED_FIELD(f32, "fTimeOpened", 0x550, (DefaultValue, 5.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeDry", 0x554, (DefaultValue, 5.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeStunned", 0x558, (DefaultValue, 5.0f));
+    DREAD_REFLECTED_FIELD(f32, "fUnderwaterZipLineMultiplier", 0x55c, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTurbineRestoreTime", 0x560, (DefaultValue, 10.0f));
+    DREAD_REFLECTED_FIELD(bool, "bMeleeDestroyPolyps", 0x564, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(f32, "fMaxDamageDry", 0x568, (DefaultValue, 500.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxDamageStunned", 0x56c, (DefaultValue, 500.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDamageStage2", 0x570, (DefaultValue, 1800.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDamageFactorFillingPool", 0x574, (DefaultValue, 0.2f));
     UnkReflField* field16 = fn_7100096524(cls, CStrId("oDamageSourceFactorClose", true), fn_71008c1b4c(), 0x578, -1, -1);
     UnkReflField* field17 = fn_7100096524(cls, CStrId("oDamageSourceFactorOpen", true), fn_71008c1b4c(), 0x5e8, -1, -1);
     UnkReflField* field18 = fn_7100096524(cls, CStrId("oDamageSourceFactorDry", true), fn_71008c1b4c(), 0x658, -1, -1);

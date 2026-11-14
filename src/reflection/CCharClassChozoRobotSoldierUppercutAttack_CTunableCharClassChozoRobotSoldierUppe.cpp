@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassChozoRobotSoldierUppercutAttack::CTunableCharClassChozoRobotSoldierUppercutAttack
 extern bool g_unk_71726cb710;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726cb6e0;
 void fn_71004639d0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -32,10 +32,8 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726cb710 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMinAttackDistance", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxAttackDistance", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 300.0f);
+    DREAD_REFLECTED_FIELD(f32, "fMinAttackDistance", 0x24, (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxAttackDistance", 0x28, (DefaultValue, 300.0f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
@@ -72,16 +70,11 @@ DREAD_REFLECTED_CLASS(CCharClassChozoRobotSoldierUppercutAttack::CTunableCharCla
 namespace CCharClassChozoRobotSoldierUppercutAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fTraveledMaxDistanceToAddToMaxDistance", true), fn_710000abbc(), 0xec, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fDistanceToReachableTarget", true), fn_710000abbc(), 0xf0, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 400.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fDistanceToReachableTargetMB", true), fn_710000abbc(), 0xf4, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 335.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fDistanceToNonReachableTarget", true), fn_710000abbc(), 0xf8, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 150.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fDistanceToLaunchEnd4m", true), fn_710000abbc(), 0xfc, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 250.0f);
+    DREAD_REFLECTED_FIELD(f32, "fTraveledMaxDistanceToAddToMaxDistance", 0xec, (DefaultValue, 100.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDistanceToReachableTarget", 0xf0, (DefaultValue, 400.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDistanceToReachableTargetMB", 0xf4, (DefaultValue, 335.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDistanceToNonReachableTarget", 0xf8, (DefaultValue, 150.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDistanceToLaunchEnd4m", 0xfc, (DefaultValue, 250.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

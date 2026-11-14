@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,15 +20,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CCanDoAttackCondition
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::global::CRntString g_unk_7101d58d10;
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace behaviortree::CCanDoAttackCondition {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sAttack", true), fn_7100007f84(), 0x38, -1, -1);
-    field0->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString(g_unk_7101d58d10));
-    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Attack"));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sAttack", 0x38, (DefaultValue, base::global::CRntString(g_unk_7101d58d10)), (Description, base::global::CRntString("Attack")));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

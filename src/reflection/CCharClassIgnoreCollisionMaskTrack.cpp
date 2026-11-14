@@ -19,11 +19,8 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassIgnoreCollisionMaskTrack
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100090e60();
 void fn_7100c29f5c();
 void fn_7100c299c0(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 void fn_7100c2a0d0();
 void fn_7100c29b3c(UnkReflFunction* fn, const char* name);
 namespace CCharClassIgnoreCollisionMaskTrack {

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,36 +20,18 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CFloatCondition
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern base::reflection::CType g_unk_71726bc290;
 namespace behaviortree::CFloatCondition {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fValueA", true), fn_710000abbc(), 0x38, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Value A");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sValueA", true), fn_7100009658(), 0x40, -1, -1);
-    field1->attrs.Add<const char*>(fn_7100075240(), "");
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Value A (blackboard)");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sTunableA", true), fn_7100009658(), 0x48, -1, -1);
-    field2->attrs.Add<const char*>(fn_7100075240(), "");
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Value A (tunable class)");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sTunableVarA", true), fn_7100009658(), 0x50, -1, -1);
-    field3->attrs.Add<const char*>(fn_7100075240(), "");
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Value A (tunable var)");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fValueB", true), fn_710000abbc(), 0x58, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Value B");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("sValueB", true), fn_7100009658(), 0x60, -1, -1);
-    field5->attrs.Add<const char*>(fn_7100075240(), "");
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Value B (blackboard)");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("sTunableB", true), fn_7100009658(), 0x68, -1, -1);
-    field6->attrs.Add<const char*>(fn_7100075240(), "");
-    field6->attrs.Add<const char*>(fn_7100007e80(), "Value B (tunable class)");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("sTunableVarB", true), fn_7100009658(), 0x70, -1, -1);
-    field7->attrs.Add<const char*>(fn_7100075240(), "");
-    field7->attrs.Add<const char*>(fn_7100007e80(), "Value B (tunable var)");
+    DREAD_REFLECTED_FIELD(f32, "fValueA", 0x38, (DefaultValue, 0.0f), (Description, "Value A"));
+    DREAD_REFLECTED_FIELD(CStrId, "sValueA", 0x40, (DefaultValue, ""), (Description, "Value A (blackboard)"));
+    DREAD_REFLECTED_FIELD(CStrId, "sTunableA", 0x48, (DefaultValue, ""), (Description, "Value A (tunable class)"));
+    DREAD_REFLECTED_FIELD(CStrId, "sTunableVarA", 0x50, (DefaultValue, ""), (Description, "Value A (tunable var)"));
+    DREAD_REFLECTED_FIELD(f32, "fValueB", 0x58, (DefaultValue, 0.0f), (Description, "Value B"));
+    DREAD_REFLECTED_FIELD(CStrId, "sValueB", 0x60, (DefaultValue, ""), (Description, "Value B (blackboard)"));
+    DREAD_REFLECTED_FIELD(CStrId, "sTunableB", 0x68, (DefaultValue, ""), (Description, "Value B (tunable class)"));
+    DREAD_REFLECTED_FIELD(CStrId, "sTunableVarB", 0x70, (DefaultValue, ""), (Description, "Value B (tunable var)"));
     UnkReflField* field8 = fn_7100096524(cls, CStrId("eCompareOperator", true), &g_unk_71726bc290, 0x78, -1, -1);
     field8->attrs.Add<s32>(fn_7100075240(), &g_unk_71726bc290, 2);
     field8->attrs.Add<const char*>(fn_7100007e80(), "Compare operator (LESS, LESSEQUAL, EQUAL, GREATEREQUAL or GREATER)");

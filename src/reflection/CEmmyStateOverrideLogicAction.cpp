@@ -20,7 +20,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CEmmyStateOverrideLogicAction
 extern base::reflection::CType g_unk_717274b478;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CEmmyStateOverrideLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

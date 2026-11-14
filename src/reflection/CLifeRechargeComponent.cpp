@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,20 +20,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CLifeRechargeComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CLifeRechargeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sRechargeFX", true), fn_7100009658(), 0x550, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "recharge");
-    field0->attrs.Add<const char*>(fn_7100007e80(), "fx id");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sEyeRFX", true), fn_7100009658(), 0x548, -1, -1);
-    field1->attrs.Add<const char*>(fn_7100075240(), "eyeglowr");
-    field1->attrs.Add<const char*>(fn_7100007e80(), "fx id");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sEyeLFX", true), fn_7100009658(), 0x540, -1, -1);
-    field2->attrs.Add<const char*>(fn_7100075240(), "eyeglowl");
-    field2->attrs.Add<const char*>(fn_7100007e80(), "fx id");
+    DREAD_REFLECTED_FIELD(CStrId, "sRechargeFX", 0x550, (DefaultValue, "recharge"), (Description, "fx id"));
+    DREAD_REFLECTED_FIELD(CStrId, "sEyeRFX", 0x548, (DefaultValue, "eyeglowr"), (Description, "fx id"));
+    DREAD_REFLECTED_FIELD(CStrId, "sEyeLFX", 0x540, (DefaultValue, "eyeglowl"), (Description, "fx id"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

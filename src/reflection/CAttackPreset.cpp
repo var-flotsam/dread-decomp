@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,54 +22,24 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CAttackPreset
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CAttackPreset {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bEnabled", true), fn_710000d228(), 0x10, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), true);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Can use the attack?");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMinNextAttackTime", true), fn_710000abbc(), 0x14, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Min time to do a new attack (any attack)");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMaxNextAttackTime", true), fn_710000abbc(), 0x18, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Max time to do a new attack (any attack)");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMandatoryMinNextAttackTime", true), fn_710000abbc(), 0x1c, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Mandatory min time to do a new attack (any attack)");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fMandatoryMaxNextAttackTime", true), fn_710000abbc(), 0x20, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Mandatory max time to do a new attack (any attack)");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fRepeatAttackTime", true), fn_710000abbc(), 0x24, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Time to repeat the attack (same attack)");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fShortDistanceProb", true), fn_710000abbc(), 0x2c, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field6->attrs.Add<const char*>(fn_7100007e80(), "Attack prob [0,1] in short distance");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fMediumDistanceProb", true), fn_710000abbc(), 0x30, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field7->attrs.Add<const char*>(fn_7100007e80(), "Attack prob [0,1] in medium distance");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fLongDistanceProb", true), fn_710000abbc(), 0x34, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field8->attrs.Add<const char*>(fn_7100007e80(), "Attack prob [0,1] in long distance");
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fAbuseShortDistanceProb", true), fn_710000abbc(), 0x38, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field9->attrs.Add<const char*>(fn_7100007e80(), "Attack prob [0,1] in short distance and abuse");
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fAbuseMediumDistanceProb", true), fn_710000abbc(), 0x3c, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field10->attrs.Add<const char*>(fn_7100007e80(), "Attack prob [0,1] in medium distance and abuse");
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fAbuseLongDistanceProb", true), fn_710000abbc(), 0x40, -1, -1);
-    field11->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field11->attrs.Add<const char*>(fn_7100007e80(), "Attack prob [0,1] in long distance and abuse");
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fAbuseTime", true), fn_710000abbc(), 0x28, -1, -1);
-    field12->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field12->attrs.Add<const char*>(fn_7100007e80(), "Time to check abuse (if -1 never abuse)");
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("uMaxOccurrencesInLastAttacks", true), fn_7100005178(), 0x48, -1, -1);
-    field13->attrs.Add<u32>(fn_7100075240(), 0x2u);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("uNumOfAttacksToEvaluate", true), fn_7100005178(), 0x4c, -1, -1);
-    field14->attrs.Add<u32>(fn_7100075240(), 0x5u);
+    DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x10, (DefaultValue, true), (Description, "Can use the attack?"));
+    DREAD_REFLECTED_FIELD(f32, "fMinNextAttackTime", 0x14, (DefaultValue, 0.0f), (Description, "Min time to do a new attack (any attack)"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxNextAttackTime", 0x18, (DefaultValue, 0.0f), (Description, "Max time to do a new attack (any attack)"));
+    DREAD_REFLECTED_FIELD(f32, "fMandatoryMinNextAttackTime", 0x1c, (DefaultValue, 0.0f), (Description, "Mandatory min time to do a new attack (any attack)"));
+    DREAD_REFLECTED_FIELD(f32, "fMandatoryMaxNextAttackTime", 0x20, (DefaultValue, 0.0f), (Description, "Mandatory max time to do a new attack (any attack)"));
+    DREAD_REFLECTED_FIELD(f32, "fRepeatAttackTime", 0x24, (DefaultValue, 0.0f), (Description, "Time to repeat the attack (same attack)"));
+    DREAD_REFLECTED_FIELD(f32, "fShortDistanceProb", 0x2c, (DefaultValue, 1.0f), (Description, "Attack prob [0,1] in short distance"));
+    DREAD_REFLECTED_FIELD(f32, "fMediumDistanceProb", 0x30, (DefaultValue, 1.0f), (Description, "Attack prob [0,1] in medium distance"));
+    DREAD_REFLECTED_FIELD(f32, "fLongDistanceProb", 0x34, (DefaultValue, 1.0f), (Description, "Attack prob [0,1] in long distance"));
+    DREAD_REFLECTED_FIELD(f32, "fAbuseShortDistanceProb", 0x38, (DefaultValue, 1.0f), (Description, "Attack prob [0,1] in short distance and abuse"));
+    DREAD_REFLECTED_FIELD(f32, "fAbuseMediumDistanceProb", 0x3c, (DefaultValue, 1.0f), (Description, "Attack prob [0,1] in medium distance and abuse"));
+    DREAD_REFLECTED_FIELD(f32, "fAbuseLongDistanceProb", 0x40, (DefaultValue, 1.0f), (Description, "Attack prob [0,1] in long distance and abuse"));
+    DREAD_REFLECTED_FIELD(f32, "fAbuseTime", 0x28, (DefaultValue, -1.0f), (Description, "Time to check abuse (if -1 never abuse)"));
+    DREAD_REFLECTED_FIELD(u32, "uMaxOccurrencesInLastAttacks", 0x48, (DefaultValue, u32(0x2u)));
+    DREAD_REFLECTED_FIELD(u32, "uNumOfAttacksToEvaluate", 0x4c, (DefaultValue, u32(0x5u)));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

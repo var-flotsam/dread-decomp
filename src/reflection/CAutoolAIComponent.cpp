@@ -20,8 +20,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CAutoolAIComponent
 extern base::reflection::CType g_unk_717269bf08;
-const base::reflection::UnkReflAttrKey& fn_7100090090();
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 namespace CAutoolAIComponent {
 void refl_AddAttributes(CClass*) {}

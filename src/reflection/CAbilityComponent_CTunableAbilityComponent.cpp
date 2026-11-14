@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,8 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CAbilityComponent::CTunableAbilityComponent
 extern bool g_unk_71726aebe8;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726aeb90;
 void fn_71002fb83c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -33,35 +32,18 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726aebe8 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fSynchronizedBlockTime", true), fn_710000abbc(), 0x28, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.34f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Time to start synch block");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fSpecialEnergyConsumedOnBlock", true), fn_710000abbc(), 0x2c, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Energy consumed at block");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMinTimeBetweenMeleeActions", true), fn_710000abbc(), 0x30, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.83f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "MinTimeBetweenmeleeActions");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fActivationHoldToStartDeactivateAll", true), fn_710000abbc(), 0x34, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.3f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Activation hold time to deactivate all abilities");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fActivationHoldToCompleteDeactivateAll", true), fn_710000abbc(), 0x38, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 1.3f);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Activation hold time to deactivate all abilities");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fDashMeleeAutoLockOnMoveLockedTime", true), fn_710000abbc(), 0x3c, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("bAllMeleeAutoLockOn", true), fn_710000d228(), 0x40, -1, -1);
-    field6->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fDashMeleeExtraDistanceToEnemies", true), fn_710000abbc(), 0x44, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 20.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fDashMeleePowerSuitDamage", true), fn_710000abbc(), 0x48, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 20.0f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fDashMeleeVariaSuitDamage", true), fn_710000abbc(), 0x4c, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 20.0f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fDashMeleeGravitySuitDamage", true), fn_710000abbc(), 0x50, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 20.0f);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("bStunnedEnemiesLoseCollision", true), fn_710000d228(), 0x54, -1, -1);
-    field11->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_FIELD(f32, "fSynchronizedBlockTime", 0x28, (DefaultValue, 0.34f), (Description, "Time to start synch block"));
+    DREAD_REFLECTED_FIELD(f32, "fSpecialEnergyConsumedOnBlock", 0x2c, (DefaultValue, 0.0f), (Description, "Energy consumed at block"));
+    DREAD_REFLECTED_FIELD(f32, "fMinTimeBetweenMeleeActions", 0x30, (DefaultValue, 0.83f), (Description, "MinTimeBetweenmeleeActions"));
+    DREAD_REFLECTED_FIELD(f32, "fActivationHoldToStartDeactivateAll", 0x34, (DefaultValue, 0.3f), (Description, "Activation hold time to deactivate all abilities"));
+    DREAD_REFLECTED_FIELD(f32, "fActivationHoldToCompleteDeactivateAll", 0x38, (DefaultValue, 1.3f), (Description, "Activation hold time to deactivate all abilities"));
+    DREAD_REFLECTED_FIELD(f32, "fDashMeleeAutoLockOnMoveLockedTime", 0x3c, (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(bool, "bAllMeleeAutoLockOn", 0x40, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fDashMeleeExtraDistanceToEnemies", 0x44, (DefaultValue, 20.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDashMeleePowerSuitDamage", 0x48, (DefaultValue, 20.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDashMeleeVariaSuitDamage", 0x4c, (DefaultValue, 20.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDashMeleeGravitySuitDamage", 0x50, (DefaultValue, 20.0f));
+    DREAD_REFLECTED_FIELD(bool, "bStunnedEnemiesLoseCollision", 0x54, (DefaultValue, true));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
@@ -154,9 +136,7 @@ void refl_AddFields(CClass* cls) {
         fn_7100302d14(fn);
         fn->Attrs()->Add<const char*>(fn_7100007e80(), "deactivate all abilities");
     }
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sBlockSyncFX", true), fn_7100009658(), 0xf8, -1, -1);
-    field1->attrs.Add<const char*>(fn_7100075240(), "blocksync");
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Synch block fx id");
+    DREAD_REFLECTED_FIELD(CStrId, "sBlockSyncFX", 0xf8, (DefaultValue, "blocksync"), (Description, "Synch block fx id"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

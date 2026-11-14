@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,84 +20,50 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassVulkranAIComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_71726a7b48;
 extern base::reflection::CType g_unk_71726a7f08;
 extern base::reflection::CType g_unk_717270a2f8;
 namespace CCharClassVulkranAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fFrenzyTime", true), fn_710000abbc(), 0x50c, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 5.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fActivationTime", true), fn_710000abbc(), 0x510, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fPatrolMinTimeBetweenBalls", true), fn_710000abbc(), 0x514, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fPatrolMaxTimeBetweenBalls", true), fn_710000abbc(), 0x518, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fCombatMinTimeBetweenBalls", true), fn_710000abbc(), 0x51c, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.4f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fCombatMaxTimeBetweenBalls", true), fn_710000abbc(), 0x520, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 0.6f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fBallGravity", true), fn_710000abbc(), 0x524, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 2500.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fLaunchUpAngleRef", true), fn_710000abbc(), 0x528, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 90.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fLaunchUpAngleLowerOffset", true), fn_710000abbc(), 0x52c, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), -30.0f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fLaunchUpAngleUpperOffset", true), fn_710000abbc(), 0x530, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 30.0f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fLaunchRightAngleRef", true), fn_710000abbc(), 0x534, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 15.0f);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fLaunchLeftAngleRef", true), fn_710000abbc(), 0x538, -1, -1);
-    field11->attrs.Add<f32>(fn_7100075240(), 165.0f);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fLaunchSideAngleLowerOffset", true), fn_710000abbc(), 0x53c, -1, -1);
-    field12->attrs.Add<f32>(fn_7100075240(), -30.0f);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("fLaunchSideAngleUpperOffset", true), fn_710000abbc(), 0x540, -1, -1);
-    field13->attrs.Add<f32>(fn_7100075240(), 30.0f);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("fLaunchDownAngleRef", true), fn_710000abbc(), 0x544, -1, -1);
-    field14->attrs.Add<f32>(fn_7100075240(), 210.0f);
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("bMirrorLaunchDown", true), fn_710000d228(), 0x548, -1, -1);
-    field15->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("fLaunchDownAngleLowerOffset", true), fn_710000abbc(), 0x54c, -1, -1);
-    field16->attrs.Add<f32>(fn_7100075240(), -15.0f);
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("fLaunchDownAngleUpperOffset", true), fn_710000abbc(), 0x550, -1, -1);
-    field17->attrs.Add<f32>(fn_7100075240(), 15.0f);
-    UnkReflField* field18 = fn_7100096524(cls, CStrId("fLaunchUpMinInitialSpeed", true), fn_710000abbc(), 0x554, -1, -1);
-    field18->attrs.Add<f32>(fn_7100075240(), 800.0f);
-    UnkReflField* field19 = fn_7100096524(cls, CStrId("fLaunchUpMaxInitialSpeed", true), fn_710000abbc(), 0x558, -1, -1);
-    field19->attrs.Add<f32>(fn_7100075240(), 1100.0f);
-    UnkReflField* field20 = fn_7100096524(cls, CStrId("fLaunchSideMinInitialSpeed", true), fn_710000abbc(), 0x55c, -1, -1);
-    field20->attrs.Add<f32>(fn_7100075240(), 300.0f);
-    UnkReflField* field21 = fn_7100096524(cls, CStrId("fLaunchSideMaxInitialSpeed", true), fn_710000abbc(), 0x560, -1, -1);
-    field21->attrs.Add<f32>(fn_7100075240(), 600.0f);
-    UnkReflField* field22 = fn_7100096524(cls, CStrId("fLaunchDownMinInitialSpeed", true), fn_710000abbc(), 0x564, -1, -1);
-    field22->attrs.Add<f32>(fn_7100075240(), 300.0f);
-    UnkReflField* field23 = fn_7100096524(cls, CStrId("fLaunchDownMaxInitialSpeed", true), fn_710000abbc(), 0x568, -1, -1);
-    field23->attrs.Add<f32>(fn_7100075240(), 500.0f);
+    DREAD_REFLECTED_FIELD(f32, "fFrenzyTime", 0x50c, (DefaultValue, 5.0f));
+    DREAD_REFLECTED_FIELD(f32, "fActivationTime", 0x510, (DefaultValue, 2.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPatrolMinTimeBetweenBalls", 0x514, (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPatrolMaxTimeBetweenBalls", 0x518, (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fCombatMinTimeBetweenBalls", 0x51c, (DefaultValue, 0.4f));
+    DREAD_REFLECTED_FIELD(f32, "fCombatMaxTimeBetweenBalls", 0x520, (DefaultValue, 0.6f));
+    DREAD_REFLECTED_FIELD(f32, "fBallGravity", 0x524, (DefaultValue, 2500.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLaunchUpAngleRef", 0x528, (DefaultValue, 90.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLaunchUpAngleLowerOffset", 0x52c, (DefaultValue, -30.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLaunchUpAngleUpperOffset", 0x530, (DefaultValue, 30.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLaunchRightAngleRef", 0x534, (DefaultValue, 15.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLaunchLeftAngleRef", 0x538, (DefaultValue, 165.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLaunchSideAngleLowerOffset", 0x53c, (DefaultValue, -30.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLaunchSideAngleUpperOffset", 0x540, (DefaultValue, 30.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLaunchDownAngleRef", 0x544, (DefaultValue, 210.0f));
+    DREAD_REFLECTED_FIELD(bool, "bMirrorLaunchDown", 0x548, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(f32, "fLaunchDownAngleLowerOffset", 0x54c, (DefaultValue, -15.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLaunchDownAngleUpperOffset", 0x550, (DefaultValue, 15.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLaunchUpMinInitialSpeed", 0x554, (DefaultValue, 800.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLaunchUpMaxInitialSpeed", 0x558, (DefaultValue, 1100.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLaunchSideMinInitialSpeed", 0x55c, (DefaultValue, 300.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLaunchSideMaxInitialSpeed", 0x560, (DefaultValue, 600.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLaunchDownMinInitialSpeed", 0x564, (DefaultValue, 300.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLaunchDownMaxInitialSpeed", 0x568, (DefaultValue, 500.0f));
     UnkReflField* field24 = fn_7100096524(cls, CStrId("sWalkRightLaunchUpConfig", true), &g_unk_71726a7b48, 0x570, -1, -1);
     UnkReflField* field25 = fn_7100096524(cls, CStrId("sWalkDownLaunchRightConfig", true), &g_unk_71726a7b48, 0x5b8, -1, -1);
     UnkReflField* field26 = fn_7100096524(cls, CStrId("sWalkLeftLaunchDownConfig", true), &g_unk_71726a7b48, 0x648, -1, -1);
     UnkReflField* field27 = fn_7100096524(cls, CStrId("sWalkUpLaunchLeftConfig", true), &g_unk_71726a7b48, 0x600, -1, -1);
     UnkReflField* field28 = fn_7100096524(cls, CStrId("tLaunchConfigs", true), &g_unk_71726a7f08, 0x690, -1, -1);
-    UnkReflField* field29 = fn_7100096524(cls, CStrId("fMinTimeBetweenAttacks", true), fn_710000abbc(), 0x6b8, -1, -1);
-    field29->attrs.Add<f32>(fn_7100075240(), 1.5f);
-    UnkReflField* field30 = fn_7100096524(cls, CStrId("fMaxTimeBetweenAttacks", true), fn_710000abbc(), 0x6bc, -1, -1);
-    field30->attrs.Add<f32>(fn_7100075240(), 2.5f);
-    UnkReflField* field31 = fn_7100096524(cls, CStrId("fMinTimeAttacking", true), fn_710000abbc(), 0x6c0, -1, -1);
-    field31->attrs.Add<f32>(fn_7100075240(), 2.5f);
-    UnkReflField* field32 = fn_7100096524(cls, CStrId("fMaxTimeAttacking", true), fn_710000abbc(), 0x6c4, -1, -1);
-    field32->attrs.Add<f32>(fn_7100075240(), 3.5f);
-    UnkReflField* field33 = fn_7100096524(cls, CStrId("fShotHeightOffset", true), fn_710000abbc(), 0x6c8, -1, -1);
-    field33->attrs.Add<f32>(fn_7100075240(), 45.0f);
-    UnkReflField* field34 = fn_7100096524(cls, CStrId("fTimeInFrustumToStartAttack", true), fn_710000abbc(), 0x6cc, -1, -1);
-    field34->attrs.Add<f32>(fn_7100075240(), 0.25f);
-    UnkReflField* field35 = fn_7100096524(cls, CStrId("fTimeOutOfFrustumToEndAttack", true), fn_710000abbc(), 0x6d0, -1, -1);
-    field35->attrs.Add<f32>(fn_7100075240(), 0.25f);
-    UnkReflField* field36 = fn_7100096524(cls, CStrId("fMaxLOSDistanceToChasePoint", true), fn_710000abbc(), 0x6d4, -1, -1);
-    field36->attrs.Add<f32>(fn_7100075240(), 600.0f);
-    UnkReflField* field37 = fn_7100096524(cls, CStrId("sMagmaBallCharClass", true), fn_7100009658(), 0x6d8, -1, -1);
-    field37->attrs.Add<const char*>(fn_7100075240(), "vulkranmagmaball");
+    DREAD_REFLECTED_FIELD(f32, "fMinTimeBetweenAttacks", 0x6b8, (DefaultValue, 1.5f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxTimeBetweenAttacks", 0x6bc, (DefaultValue, 2.5f));
+    DREAD_REFLECTED_FIELD(f32, "fMinTimeAttacking", 0x6c0, (DefaultValue, 2.5f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxTimeAttacking", 0x6c4, (DefaultValue, 3.5f));
+    DREAD_REFLECTED_FIELD(f32, "fShotHeightOffset", 0x6c8, (DefaultValue, 45.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeInFrustumToStartAttack", 0x6cc, (DefaultValue, 0.25f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeOutOfFrustumToEndAttack", 0x6d0, (DefaultValue, 0.25f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxLOSDistanceToChasePoint", 0x6d4, (DefaultValue, 600.0f));
+    DREAD_REFLECTED_FIELD(CStrId, "sMagmaBallCharClass", 0x6d8, (DefaultValue, "vulkranmagmaball"));
     UnkReflField* field38 = fn_7100096524(cls, CStrId("eSubspecies", true), &g_unk_717270a2f8, 0x6e0, -1, -1);
     field38->attrs.Add<s32>(fn_7100075240(), &g_unk_717270a2f8, 2147483647);
 }

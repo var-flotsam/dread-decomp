@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,17 +20,10 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CPickableItemComponent
-const base::reflection::UnkReflAttrKey& fn_7100093390();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
 void fn_71009cedb8(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_71000904d0();
 void fn_71009cee6c(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CPickableItemComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -53,11 +47,8 @@ void refl_AddFields(CClass* cls) {
         fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("On Item End"));
         fn->Attrs()->Add<bool>(fn_71000904d0(), true);
     }
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeToCanBePicked", true), fn_710000abbc(), 0x12c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Time to can be picked");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sStartPoint", true), fn_7100009658(), 0x120, -1, -1);
-    field3->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToCanBePicked", 0x12c, (DefaultValue, 0.0f), (Description, "Time to can be picked"));
+    DREAD_REFLECTED_FIELD(CStrId, "sStartPoint", 0x120, (DefaultValue, CStrId(g_unk_7101d470e0)));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

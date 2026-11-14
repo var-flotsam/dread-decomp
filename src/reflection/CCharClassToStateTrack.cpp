@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,23 +20,17 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassToStateTrack
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_71727adf10;
 namespace CCharClassToStateTrack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sAction", true), fn_7100009658(), 0x18, -1, -1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bMaintainFrame", true), fn_710000d228(), 0x20, -1, -1);
-    field1->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(CStrId, "sAction", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(bool, "bMaintainFrame", 0x20, (DefaultValue, false));
     UnkReflField* field2 = fn_7100096524(cls, CStrId("eMaintainFrameMode", true), &g_unk_71727adf10, 0x24, -1, -1);
     field2->attrs.Add<s32>(fn_7100075240(), &g_unk_71727adf10, 0);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("iFrame", true), fn_7100014768(), 0x28, -1, -1);
-    field3->attrs.Add<s32>(fn_7100075240(), 0);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("bForce", true), fn_710000d228(), 0x2c, -1, -1);
-    field4->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fBlendTime", true), fn_710000abbc(), 0x30, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_FIELD(s32, "iFrame", 0x28, (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD(bool, "bForce", 0x2c, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fBlendTime", 0x30, (DefaultValue, -1.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

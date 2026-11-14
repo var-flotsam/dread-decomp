@@ -22,11 +22,7 @@ using base::reflection::DestroyDestructorFirst;
 
 // CComponent
 void fn_71010c57bc();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 void fn_71010c580c();
 void fn_71010c2d24(UnkReflFunction* fn, const char* name);
 void fn_71010c58b4();

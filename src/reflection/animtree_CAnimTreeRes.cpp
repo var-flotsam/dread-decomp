@@ -19,7 +19,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // animtree::CAnimTreeRes
-const base::reflection::UnkReflAttrKey& fn_7100005070();
 const base::reflection::CClass* fn_71002d6464();
 namespace animtree::CAnimTreeRes {
 void refl_AddAttributes(CClass* cls) {

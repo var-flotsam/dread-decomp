@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,16 +20,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassRodotukAIComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_71726ff368;
 const base::reflection::CClass* fn_71006695e4();
 namespace CCharClassRodotukAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fBiteAnticipationDistance", true), fn_710000abbc(), 0x50c, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 400.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fBombForceExplosionDistance", true), fn_710000abbc(), 0x510, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 50.0f);
+    DREAD_REFLECTED_FIELD(f32, "fBiteAnticipationDistance", 0x50c, (DefaultValue, 400.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBombForceExplosionDistance", 0x510, (DefaultValue, 50.0f));
     UnkReflField* field2 = fn_7100096524(cls, CStrId("vAbsorbConfigs", true), &g_unk_71726ff368, 0x518, -1, -1);
     UnkReflField* field3 = fn_7100096524(cls, CStrId("oRodotukSuckAttackDef", true), fn_71006695e4(), 0x540, -1, -1);
 }
@@ -61,26 +59,16 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726fee40 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fBaseAbsorbDistance", true), fn_710000abbc(), 0x28, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 800.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fAngryAbsorbDistance", true), fn_710000abbc(), 0x3c, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1000.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMaxAbsorbAngle", true), fn_710000abbc(), 0x24, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 45.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fAbsorbBaseSpeed", true), fn_710000abbc(), 0x2c, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 500.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fAbsorbMaxSpeed", true), fn_710000abbc(), 0x30, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 5000.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fAbsorbTimeToLoseControl", true), fn_710000abbc(), 0x34, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fAbsorbAcceleration", true), fn_710000abbc(), 0x38, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 400.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fBombAbsorbBaseSpeed", true), fn_710000abbc(), 0x40, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 1000.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fBombAbsorbAcceleration", true), fn_710000abbc(), 0x44, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 800.0f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fBiteAnticipationDistance", true), fn_710000abbc(), 0x48, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 400.0f);
+    DREAD_REFLECTED_FIELD(f32, "fBaseAbsorbDistance", 0x28, (DefaultValue, 800.0f));
+    DREAD_REFLECTED_FIELD(f32, "fAngryAbsorbDistance", 0x3c, (DefaultValue, 1000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxAbsorbAngle", 0x24, (DefaultValue, 45.0f));
+    DREAD_REFLECTED_FIELD(f32, "fAbsorbBaseSpeed", 0x2c, (DefaultValue, 500.0f));
+    DREAD_REFLECTED_FIELD(f32, "fAbsorbMaxSpeed", 0x30, (DefaultValue, 5000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fAbsorbTimeToLoseControl", 0x34, (DefaultValue, 2.0f));
+    DREAD_REFLECTED_FIELD(f32, "fAbsorbAcceleration", 0x38, (DefaultValue, 400.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBombAbsorbBaseSpeed", 0x40, (DefaultValue, 1000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBombAbsorbAcceleration", 0x44, (DefaultValue, 800.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBiteAnticipationDistance", 0x48, (DefaultValue, 400.0f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

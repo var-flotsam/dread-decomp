@@ -23,8 +23,6 @@ using base::reflection::DestroyDestructorFirst;
 // game::logic::collision::CAABoxShape2D
 void fn_7100d5ed18();
 void fn_7100d5db88(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 void fn_7100d5edcc();
 void fn_7100d5dd04(UnkReflFunction* fn, const char* name);
 void fn_7100d5ee80();

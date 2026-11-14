@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,29 +20,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassMorphBallLauncherComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CCharClassMorphBallLauncherComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fTimeShootSequence", true), fn_710000abbc(), 0x58, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Time it takes from bomb placement until shot is performed");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeRepositioningEntities", true), fn_710000abbc(), 0x5c, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Time it takes to re-position MorphBall and bomb during the shoot sequence");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeToAccelerateCannon", true), fn_710000abbc(), 0x60, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Time it takes for the cannon to reach its maximum rotation speed");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMinCannonActionPlayRate", true), fn_710000abbc(), 0x64, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Minimum play rate for cannon's layer");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fMaxCannonActionPlayRate", true), fn_710000abbc(), 0x68, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Maximum play rate for cannon's layer");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("sCannonActionPlayRateEasingFunction", true), fn_7100009658(), 0x70, -1, -1);
-    field5->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Easing function to apply when transitioning from minimum to maximum play rate on cannon's layer");
+    DREAD_REFLECTED_FIELD(f32, "fTimeShootSequence", 0x58, (DefaultValue, 0.0f), (Description, "Time it takes from bomb placement until shot is performed"));
+    DREAD_REFLECTED_FIELD(f32, "fTimeRepositioningEntities", 0x5c, (DefaultValue, 0.0f), (Description, "Time it takes to re-position MorphBall and bomb during the shoot sequence"));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToAccelerateCannon", 0x60, (DefaultValue, 0.0f), (Description, "Time it takes for the cannon to reach its maximum rotation speed"));
+    DREAD_REFLECTED_FIELD(f32, "fMinCannonActionPlayRate", 0x64, (DefaultValue, 0.0f), (Description, "Minimum play rate for cannon's layer"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxCannonActionPlayRate", 0x68, (DefaultValue, 0.0f), (Description, "Maximum play rate for cannon's layer"));
+    DREAD_REFLECTED_FIELD(CStrId, "sCannonActionPlayRateEasingFunction", 0x70, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Easing function to apply when transitioning from minimum to maximum play rate on cannon's layer"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

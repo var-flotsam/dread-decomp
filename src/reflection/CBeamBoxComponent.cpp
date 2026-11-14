@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,14 +20,9 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CBeamBoxComponent
-const base::reflection::UnkReflAttrKey& fn_7100093390();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
 extern base::reflection::CType g_unk_717272e550;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CBeamBoxComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -36,8 +32,7 @@ void refl_AddFields(CClass* cls) {
     field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
     field0->attrs.Add<bool>(fn_7100090a20(), false);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("vActivatables", true), &g_unk_717272e550, 0x388, -1, -1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sAnimationId", true), fn_7100009658(), 0x478, -1, -1);
-    field2->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_FIELD(CStrId, "sAnimationId", 0x478, (DefaultValue, CStrId(g_unk_7101d470e0)));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

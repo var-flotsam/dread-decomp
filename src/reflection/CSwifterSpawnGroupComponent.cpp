@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -22,7 +23,6 @@ using base::reflection::DestroyDestructorFirst;
 extern base::reflection::CType g_unk_7172743e90;
 void fn_7100a13530();
 void fn_7100a12648(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_7172743ff0;
 namespace CSwifterSpawnGroupComponent {
 void refl_AddAttributes(CClass*) {}
@@ -40,8 +40,7 @@ void refl_AddFields(CClass* cls) {
     field0->attrs.Add<s32>(fn_7100075240(), &g_unk_7172743e90, 1);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("eMode", true), &g_unk_7172743ff0, 0x424, -1, -1);
     field1->attrs.Add<s32>(fn_7100075240(), &g_unk_7172743ff0, 1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeToSpawn", true), fn_710000abbc(), 0x434, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 5.0f);
+    DREAD_REFLECTED_FIELD(f32, "fTimeToSpawn", 0x434, (DefaultValue, 5.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

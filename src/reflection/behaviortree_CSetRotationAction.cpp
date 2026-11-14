@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,29 +20,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CSetRotationAction
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace behaviortree::CSetRotationAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bSetX", true), fn_710000d228(), 0x2c, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), true);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Set the X value [true]");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bSetY", true), fn_710000d228(), 0x2d, -1, -1);
-    field1->attrs.Add<bool>(fn_7100075240(), true);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Set the Y value [true]");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bSetZ", true), fn_710000d228(), 0x2e, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), true);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Set the Z value [true]");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fXValue", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Value for the X component [0.0]");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fYValue", true), fn_710000abbc(), 0x34, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Value for the Y component [0.0]");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fZValue", true), fn_710000abbc(), 0x38, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Value for the Z component [0.0]");
+    DREAD_REFLECTED_FIELD(bool, "bSetX", 0x2c, (DefaultValue, true), (Description, "Set the X value [true]"));
+    DREAD_REFLECTED_FIELD(bool, "bSetY", 0x2d, (DefaultValue, true), (Description, "Set the Y value [true]"));
+    DREAD_REFLECTED_FIELD(bool, "bSetZ", 0x2e, (DefaultValue, true), (Description, "Set the Z value [true]"));
+    DREAD_REFLECTED_FIELD(f32, "fXValue", 0x30, (DefaultValue, 0.0f), (Description, "Value for the X component [0.0]"));
+    DREAD_REFLECTED_FIELD(f32, "fYValue", 0x34, (DefaultValue, 0.0f), (Description, "Value for the Y component [0.0]"));
+    DREAD_REFLECTED_FIELD(f32, "fZValue", 0x38, (DefaultValue, 0.0f), (Description, "Value for the Z component [0.0]"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

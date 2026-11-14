@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,37 +20,24 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassNailongThornsAttack
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_71726f48e0;
 namespace CCharClassNailongThornsAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bAttackInIntervals", true), fn_710000d228(), 0xec, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fIntervalMin", true), fn_710000abbc(), 0xf0, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fIntervalMax", true), fn_710000abbc(), 0xf4, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 3.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fRepeatAttackTimer", true), fn_710000abbc(), 0xf8, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fTimeToChargeAttack", true), fn_710000abbc(), 0xfc, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("sProjectile", true), fn_7100009658(), 0x100, -1, -1);
-    field5->attrs.Add<const char*>(fn_7100075240(), "nailongthorn");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fBallGravity", true), fn_710000abbc(), 0x108, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 4000.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fBallInitialSpeed", true), fn_710000abbc(), 0x10c, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 1000.0f);
+    DREAD_REFLECTED_FIELD(bool, "bAttackInIntervals", 0xec, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fIntervalMin", 0xf0, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fIntervalMax", 0xf4, (DefaultValue, 3.0f));
+    DREAD_REFLECTED_FIELD(f32, "fRepeatAttackTimer", 0xf8, (DefaultValue, 2.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToChargeAttack", 0xfc, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(CStrId, "sProjectile", 0x100, (DefaultValue, "nailongthorn"));
+    DREAD_REFLECTED_FIELD(f32, "fBallGravity", 0x108, (DefaultValue, 4000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBallInitialSpeed", 0x10c, (DefaultValue, 1000.0f));
     UnkReflField* field8 = fn_7100096524(cls, CStrId("eDepthornAttackType", true), &g_unk_71726f48e0, 0x110, -1, -1);
     field8->attrs.Add<s32>(fn_7100075240(), &g_unk_71726f48e0, 2147483647);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fTimeBetweenThornsMin", true), fn_710000abbc(), 0x114, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 0.03f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fTimeBetweenThornsMax", true), fn_710000abbc(), 0x118, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 0.08f);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("bUseSineWavesInSequenceShoot", true), fn_710000d228(), 0x11c, -1, -1);
-    field11->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("uNumSequences", true), fn_7100005178(), 0x120, -1, -1);
-    field12->attrs.Add<s32>(fn_7100075240(), 1);
+    DREAD_REFLECTED_FIELD(f32, "fTimeBetweenThornsMin", 0x114, (DefaultValue, 0.03f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeBetweenThornsMax", 0x118, (DefaultValue, 0.08f));
+    DREAD_REFLECTED_FIELD(bool, "bUseSineWavesInSequenceShoot", 0x11c, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(u32, "uNumSequences", 0x120, (DefaultValue, 1));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

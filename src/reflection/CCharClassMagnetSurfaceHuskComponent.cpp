@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,14 +20,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassMagnetSurfaceHuskComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassMagnetSurfaceHuskComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sHuskName", true), fn_7100009658(), 0x58, -1, -1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId("cover_magnet_cv_002_HUSK", true));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sBrokenHuskName", true), fn_7100009658(), 0x60, -1, -1);
-    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId("cover_magnet_cv_002", true));
+    DREAD_REFLECTED_FIELD(CStrId, "sHuskName", 0x58, (DefaultValue, CStrId("cover_magnet_cv_002_HUSK", true)));
+    DREAD_REFLECTED_FIELD(CStrId, "sBrokenHuskName", 0x60, (DefaultValue, CStrId("cover_magnet_cv_002", true)));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -65,10 +63,8 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172737a30 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fTimeToRespawn", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 5.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeToRespawnAfterMagnet", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    DREAD_REFLECTED_FIELD(f32, "fTimeToRespawn", 0x24, (DefaultValue, 5.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToRespawnAfterMagnet", 0x28, (DefaultValue, 0.5f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

@@ -70,7 +70,6 @@ struct UnkBaseContext_f2af4 {
     }* source;  // 0x20
 };
 
-const base::reflection::UnkReflAttrKey& fn_7100090800();  // the attribute "bBinaryDumpable"
 UnkReflValue fn_71000e8044(void* cls, const UnkReflAttrKey& key);
 
 // Whether the class of the innermost context's source has the attribute "bBinaryDumpable" set.

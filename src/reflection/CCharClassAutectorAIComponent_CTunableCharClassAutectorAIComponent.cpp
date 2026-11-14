@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,13 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassAutectorAIComponent::CTunableCharClassAutectorAIComponent
 extern bool g_unk_71726bdbd0;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100093280();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100091080();
-const base::reflection::UnkReflAttrKey& fn_7100091190();
-const base::reflection::UnkReflAttrKey& fn_7100324af0();
-const base::reflection::UnkReflAttrKey& fn_71003ba540();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726bdb98;
 void fn_71003bcc38(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -38,35 +32,10 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726bdbd0 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fExplosionRadius", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 600.0f);
-    field0->attrs.Add<bool>(fn_7100093280(), true);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Explosion radius");
-    field0->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field0->attrs.Add<f32>(fn_7100091190(), 10000.0f);
-    field0->attrs.Add<f32>(fn_7100324af0(), 100.0f);
-    field0->attrs.Add<const char*>(fn_71003ba540(), "RegularEnemies|Autector");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeToExplosion", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.1f);
-    field1->attrs.Add<bool>(fn_7100093280(), true);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Explosion time");
-    field1->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field1->attrs.Add<f32>(fn_7100091190(), 10.0f);
-    field1->attrs.Add<f32>(fn_7100324af0(), 0.1f);
-    field1->attrs.Add<const char*>(fn_71003ba540(), "RegularEnemies|Autector");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeAtMaxRadiusExplosion", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.1f);
-    field2->attrs.Add<bool>(fn_7100093280(), true);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Explosion time at max radius");
-    field2->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field2->attrs.Add<f32>(fn_7100091190(), 10.0f);
-    field2->attrs.Add<f32>(fn_7100324af0(), 0.1f);
-    field2->attrs.Add<const char*>(fn_71003ba540(), "RegularEnemies|Autector");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bCanBeSpawned", true), fn_710000d228(), 0x30, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), true);
-    field3->attrs.Add<bool>(fn_7100093280(), true);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Can be spawned");
-    field3->attrs.Add<const char*>(fn_71003ba540(), "RegularEnemies|Autector");
+    DREAD_REFLECTED_FIELD(f32, "fExplosionRadius", 0x24, (DefaultValue, 600.0f), (ShowInDevConfig, true), (Description, "Explosion radius"), (MinValue, 0.0f), (MaxValue, 10000.0f), (ControlFloatStep, 100.0f), (InternalDevTag, "RegularEnemies|Autector"));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToExplosion", 0x28, (DefaultValue, 0.1f), (ShowInDevConfig, true), (Description, "Explosion time"), (MinValue, 0.0f), (MaxValue, 10.0f), (ControlFloatStep, 0.1f), (InternalDevTag, "RegularEnemies|Autector"));
+    DREAD_REFLECTED_FIELD(f32, "fTimeAtMaxRadiusExplosion", 0x2c, (DefaultValue, 0.1f), (ShowInDevConfig, true), (Description, "Explosion time at max radius"), (MinValue, 0.0f), (MaxValue, 10.0f), (ControlFloatStep, 0.1f), (InternalDevTag, "RegularEnemies|Autector"));
+    DREAD_REFLECTED_FIELD(bool, "bCanBeSpawned", 0x30, (DefaultValue, true), (ShowInDevConfig, true), (Description, "Can be spawned"), (InternalDevTag, "RegularEnemies|Autector"));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

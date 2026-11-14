@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,8 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // base::snd::CSoundSystem::CTunableSoundSystem
 extern bool g_unk_7108b6c620;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7108b6c5f0;
 void fn_7100107410(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -33,27 +32,13 @@ void refl_AddFields(CClass* cls) {
     g_unk_7108b6c620 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bSFXEnabled", true), fn_710000d228(), 0x21, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), true);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "SFX Group enabled");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bMUSICEnabled", true), fn_710000d228(), 0x22, -1, -1);
-    field1->attrs.Add<bool>(fn_7100075240(), true);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "MUSIC Group enabled");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bSPEECHEnabled", true), fn_710000d228(), 0x23, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), true);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "SPEECH Group enabled");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bGRUNTEnabled", true), fn_710000d228(), 0x24, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), true);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "GRUNT Group enabled");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("bGUIEnabled", true), fn_710000d228(), 0x25, -1, -1);
-    field4->attrs.Add<bool>(fn_7100075240(), true);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "GUI Group enabled");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("bENVIRONMENT_STREAMSEnabled", true), fn_710000d228(), 0x26, -1, -1);
-    field5->attrs.Add<bool>(fn_7100075240(), true);
-    field5->attrs.Add<const char*>(fn_7100007e80(), "ENVIRONMENT_STREAMS Group enabled");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("bSFX_EMMYEnabled", true), fn_710000d228(), 0x27, -1, -1);
-    field6->attrs.Add<bool>(fn_7100075240(), true);
-    field6->attrs.Add<const char*>(fn_7100007e80(), "SFX_EMMY Group enabled");
+    DREAD_REFLECTED_FIELD(bool, "bSFXEnabled", 0x21, (DefaultValue, true), (Description, "SFX Group enabled"));
+    DREAD_REFLECTED_FIELD(bool, "bMUSICEnabled", 0x22, (DefaultValue, true), (Description, "MUSIC Group enabled"));
+    DREAD_REFLECTED_FIELD(bool, "bSPEECHEnabled", 0x23, (DefaultValue, true), (Description, "SPEECH Group enabled"));
+    DREAD_REFLECTED_FIELD(bool, "bGRUNTEnabled", 0x24, (DefaultValue, true), (Description, "GRUNT Group enabled"));
+    DREAD_REFLECTED_FIELD(bool, "bGUIEnabled", 0x25, (DefaultValue, true), (Description, "GUI Group enabled"));
+    DREAD_REFLECTED_FIELD(bool, "bENVIRONMENT_STREAMSEnabled", 0x26, (DefaultValue, true), (Description, "ENVIRONMENT_STREAMS Group enabled"));
+    DREAD_REFLECTED_FIELD(bool, "bSFX_EMMYEnabled", 0x27, (DefaultValue, true), (Description, "SFX_EMMY Group enabled"));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

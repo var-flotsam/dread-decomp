@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,23 +20,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CMissileMovement
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CMissileMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sTrailFX", true), fn_7100009658(), 0x5d8, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "trail");
-    field0->attrs.Add<const char*>(fn_7100007e80(), "trail FX id");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sBurstFX", true), fn_7100009658(), 0x5e0, -1, -1);
-    field1->attrs.Add<const char*>(fn_7100075240(), "burstmodel");
-    field1->attrs.Add<const char*>(fn_7100007e80(), "trail FX id");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sIgnitionFX", true), fn_7100009658(), 0x5e8, -1, -1);
-    field2->attrs.Add<const char*>(fn_7100075240(), "ignition");
-    field2->attrs.Add<const char*>(fn_7100007e80(), "trail FX id");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sSPRNoDamageFX", true), fn_710000ad9c(), 0x600, -1, -1);
-    field3->attrs.Add<const char*>(fn_7100075240(), "");
-    field3->attrs.Add<const char*>(fn_7100007e80(), "FX to launch on no damaged entity when the projectil is charged");
+    DREAD_REFLECTED_FIELD(CStrId, "sTrailFX", 0x5d8, (DefaultValue, "trail"), (Description, "trail FX id"));
+    DREAD_REFLECTED_FIELD(CStrId, "sBurstFX", 0x5e0, (DefaultValue, "burstmodel"), (Description, "trail FX id"));
+    DREAD_REFLECTED_FIELD(CStrId, "sIgnitionFX", 0x5e8, (DefaultValue, "ignition"), (Description, "trail FX id"));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sSPRNoDamageFX", 0x600, (DefaultValue, ""), (Description, "FX to launch on no damaged entity when the projectil is charged"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

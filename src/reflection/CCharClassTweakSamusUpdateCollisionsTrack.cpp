@@ -19,10 +19,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassTweakSamusUpdateCollisionsTrack
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100090e60();
 extern base::reflection::CType g_unk_7172740e68;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassTweakSamusUpdateCollisionsTrack {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Tweak Samus Update Collisions");

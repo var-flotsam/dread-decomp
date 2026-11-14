@@ -20,7 +20,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CSubareaTransitionTypeLogicAction
 extern base::reflection::CType g_unk_71729da710;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CSubareaTransitionTypeLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

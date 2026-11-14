@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,31 +20,18 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassSteamJetComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CCharClassSteamJetComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fDefaultDamage", true), fn_710000abbc(), 0x5c, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Default damage");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sFX_init", true), fn_710000ad9c(), 0x60, -1, -1);
-    field1->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId("actors/props/steamjet/fx/steamjet_init.bcptl", true));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sFX_end", true), fn_710000ad9c(), 0x68, -1, -1);
-    field2->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId("actors/props/steamjet/fx/steamjet_end.bcptl", true));
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sFX_1_1", true), fn_710000ad9c(), 0x70, -1, -1);
-    field3->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId("actors/props/steamjet/fx/steamjet1x1.bcptl", true));
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sFX_1_2", true), fn_710000ad9c(), 0x78, -1, -1);
-    field4->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId("actors/props/steamjet/fx/steamjet1x2.bcptl", true));
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("sFX_1_3", true), fn_710000ad9c(), 0x80, -1, -1);
-    field5->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId("actors/props/steamjet/fx/steamjet1x3.bcptl", true));
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("sFX_1_4", true), fn_710000ad9c(), 0x88, -1, -1);
-    field6->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId("actors/props/steamjet/fx/steamjet1x4.bcptl", true));
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("sFX_1_5", true), fn_710000ad9c(), 0x90, -1, -1);
-    field7->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId("actors/props/steamjet/fx/steamjet1x5.bcptl", true));
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("bSteamOnly", true), fn_710000d228(), 0x98, -1, -1);
-    field8->attrs.Add<bool>(fn_7100075240(), false);
-    field8->attrs.Add<const char*>(fn_7100007e80(), "Steam or Fire");
+    DREAD_REFLECTED_FIELD(f32, "fDefaultDamage", 0x5c, (DefaultValue, 1.0f), (Description, "Default damage"));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sFX_init", 0x60, (DefaultValue, base::global::CFilePathStrId("actors/props/steamjet/fx/steamjet_init.bcptl", true)));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sFX_end", 0x68, (DefaultValue, base::global::CFilePathStrId("actors/props/steamjet/fx/steamjet_end.bcptl", true)));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sFX_1_1", 0x70, (DefaultValue, base::global::CFilePathStrId("actors/props/steamjet/fx/steamjet1x1.bcptl", true)));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sFX_1_2", 0x78, (DefaultValue, base::global::CFilePathStrId("actors/props/steamjet/fx/steamjet1x2.bcptl", true)));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sFX_1_3", 0x80, (DefaultValue, base::global::CFilePathStrId("actors/props/steamjet/fx/steamjet1x3.bcptl", true)));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sFX_1_4", 0x88, (DefaultValue, base::global::CFilePathStrId("actors/props/steamjet/fx/steamjet1x4.bcptl", true)));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sFX_1_5", 0x90, (DefaultValue, base::global::CFilePathStrId("actors/props/steamjet/fx/steamjet1x5.bcptl", true)));
+    DREAD_REFLECTED_FIELD(bool, "bSteamOnly", 0x98, (DefaultValue, false), (Description, "Steam or Fire"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -70,8 +58,6 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassSteamJetComponent, CCharClassBaseDamageTriggerComponent);
 
 // CSteamJetComponent
-const base::reflection::UnkReflAttrKey& fn_7100091080();
-const base::reflection::UnkReflAttrKey& fn_7100091190();
 void fn_710089fcb4();
 void fn_710089d17c(UnkReflFunction* fn, const char* name);
 void fn_710089fd6c();
@@ -87,15 +73,11 @@ void fn_710089d8e8(UnkReflFunction* fn, const char* name);
 void fn_71008a00d4();
 void fn_710089da64(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_717269bb48;
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 namespace CSteamJetComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fDelayStart", true), fn_710000abbc(), 0xbf4, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    field0->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field0->attrs.Add<f32>(fn_7100091190(), 100.0f);
+    DREAD_REFLECTED_FIELD(f32, "fDelayStart", 0xbf4, (DefaultValue, 2.0f), (MinValue, 0.0f), (MaxValue, 100.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fDamage_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fDamage_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -135,18 +117,9 @@ void refl_AddFields(CClass* cls) {
     field3->attrs.Add<f32>(fn_7100075240(), 100.0f);
     field3->attrs.Add<f32>(fn_7100091080(), 50.0f);
     field3->attrs.Add<f32>(fn_7100091190(), 100.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fOnTime", true), fn_710000abbc(), 0xbec, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field4->attrs.Add<f32>(fn_7100091080(), -1.0f);
-    field4->attrs.Add<f32>(fn_7100091190(), 100.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fOffTime", true), fn_710000abbc(), 0xbf0, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field5->attrs.Add<f32>(fn_7100091080(), -1.0f);
-    field5->attrs.Add<f32>(fn_7100091190(), 100.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fOnOffTime", true), fn_710000abbc(), 0xc04, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field6->attrs.Add<f32>(fn_7100091080(), 0.1f);
-    field6->attrs.Add<f32>(fn_7100091190(), 2.0f);
+    DREAD_REFLECTED_FIELD(f32, "fOnTime", 0xbec, (DefaultValue, 1.0f), (MinValue, -1.0f), (MaxValue, 100.0f));
+    DREAD_REFLECTED_FIELD(f32, "fOffTime", 0xbf0, (DefaultValue, 1.0f), (MinValue, -1.0f), (MaxValue, 100.0f));
+    DREAD_REFLECTED_FIELD(f32, "fOnOffTime", 0xc04, (DefaultValue, 1.0f), (MinValue, 0.1f), (MaxValue, 2.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fParticleScale_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fParticleScale_GetterFunction", true);
         fn->return_type = fn_710000abbc();

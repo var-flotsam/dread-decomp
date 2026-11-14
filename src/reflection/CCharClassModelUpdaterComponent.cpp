@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,19 +20,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassModelUpdaterComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 void fn_710079252c();
 void fn_7100792280(UnkReflFunction* fn, const char* name);
 namespace CCharClassModelUpdaterComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("vInitPosWorldOffset", true), fn_71000246e4(), 0x58, -1, -1);
-    field0->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Pos World Offset");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("vInitAngWorldOffset", true), fn_71000246e4(), 0x64, -1, -1);
-    field1->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Ang World Offset");
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vInitPosWorldOffset", 0x58, (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}), (Description, "Pos World Offset"));
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vInitAngWorldOffset", 0x64, (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}), (Description, "Ang World Offset"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bOverrideDisableInEditor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bOverrideDisableInEditor_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -43,9 +38,7 @@ void refl_AddFields(CClass* cls) {
         fn_7100792280(fn, "_bOverrideDisableInEditor_SetterFunction");
     UnkReflField* field2 = fn_7100096524(cls, CStrId("bOverrideDisableInEditor", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field2->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("vInitScale", true), fn_71000246e4(), 0x70, -1, -1);
-    field3->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{1.0f, 1.0f, 1.0f});
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Init Scale");
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vInitScale", 0x70, (DefaultValue, base::math::CVector3D{1.0f, 1.0f, 1.0f}), (Description, "Init Scale"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

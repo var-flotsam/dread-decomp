@@ -21,11 +21,7 @@ using base::reflection::DestroyDestructorFirst;
 // CSoundListenerComponent
 void fn_710090ee6c();
 void fn_710090e924(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
-const base::reflection::UnkReflAttrKey& fn_71000925c0();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
 namespace CSoundListenerComponent {
 void refl_AddAttributes(CClass*) {}

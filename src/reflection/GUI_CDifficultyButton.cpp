@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -22,9 +23,9 @@ using base::reflection::DestroyDestructorFirst;
 namespace GUI::CDifficultyButton {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("iDifficulty", true), fn_7100014768(), 0x2ac, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sDescription", true), fn_7100007f84(), 0x2b0, -1, -1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sImage", true), fn_7100009658(), 0x2e0, -1, -1);
+    DREAD_REFLECTED_FIELD(s32, "iDifficulty", 0x2ac);
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sDescription", 0x2b0);
+    DREAD_REFLECTED_FIELD(CStrId, "sImage", 0x2e0);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,14 +20,9 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // GUI::CList
-const base::reflection::UnkReflAttrKey& fn_7100093390();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
 extern base::reflection::CType g_unk_7172a0d1b8;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace GUI::CList {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -65,12 +61,9 @@ void refl_AddFields(CClass* cls) {
     field6->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     field6->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
     field6->attrs.Add<bool>(fn_7100090a20(), false);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("iMaxItemNum", true), fn_7100014768(), 0x238, -1, -1);
-    field7->attrs.Add<s32>(fn_7100075240(), 10);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("bDebugBehaviour", true), fn_710000d228(), 0x260, -1, -1);
-    field8->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("bVerticalLayout", true), fn_710000d228(), 0x261, -1, -1);
-    field9->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_FIELD(s32, "iMaxItemNum", 0x238, (DefaultValue, 10));
+    DREAD_REFLECTED_FIELD(bool, "bDebugBehaviour", 0x260, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bVerticalLayout", 0x261, (DefaultValue, true));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -206,3 +206,29 @@ class Parse(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ReadableFields(unittest.TestCase):
+    REG = '    UnkReflField* field{n} = fn_7100096524(cls, CStrId("{name}", true), fn_{getter}(), {off}, -1, -1);'
+
+    def test_one_line_per_field(self):
+        lines = [
+            self.REG.format(n=0, name="fSpeed", getter="710000abbc", off="0x510"),
+            "    field0->attrs.Add<f32>(fn_7100075240(), 1.0f);",
+            '    field0->attrs.Add<const char*>(fn_7100007e80(), "Speed");',
+            self.REG.format(n=1, name="uCount", getter="7100005178", off="0x514"),
+            "    field1->attrs.Add<u32>(fn_7100075240(), 0x2u);",
+            self.REG.format(n=2, name="bOn", getter="710000d228", off="0x518"),
+        ]
+        self.assertEqual(ra.readable_fields(lines), [
+            '    DREAD_REFLECTED_FIELD(f32, "fSpeed", 0x510, (DefaultValue, 1.0f), (Description, "Speed"));',
+            '    DREAD_REFLECTED_FIELD(u32, "uCount", 0x514, (DefaultValue, u32(0x2u)));',
+            '    DREAD_REFLECTED_FIELD(bool, "bOn", 0x518);',
+        ])
+
+    def test_unnamed_attribute_keeps_the_variable(self):
+        lines = [
+            self.REG.format(n=0, name="fSpeed", getter="710000abbc", off="0x510"),
+            "    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);",
+        ]
+        self.assertEqual(ra.readable_fields(lines), lines)

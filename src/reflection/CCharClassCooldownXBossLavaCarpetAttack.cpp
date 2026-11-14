@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,15 +21,12 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassCooldownXBossLavaCarpetAttack
 extern base::reflection::CType g_unk_71726d2758;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassCooldownXBossLavaCarpetAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("tPatterns", true), &g_unk_71726d2758, 0x100, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fBreatheSpeedFactor", true), fn_710000abbc(), 0x128, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.1f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeToPuddleDamage", true), fn_710000abbc(), 0x12c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    DREAD_REFLECTED_FIELD(f32, "fBreatheSpeedFactor", 0x128, (DefaultValue, 0.1f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToPuddleDamage", 0x12c, (DefaultValue, 1.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

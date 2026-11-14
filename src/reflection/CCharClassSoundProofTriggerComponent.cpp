@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -48,24 +49,17 @@ DREAD_REFLECTED_CLASS(CCharClassSoundProofTriggerComponent, CCharClassBaseTrigge
 
 // CSoundProofTriggerComponent
 extern base::reflection::CType g_unk_7108b6cde8;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_717269bf08;
-const base::reflection::UnkReflAttrKey& fn_7100090090();
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 namespace CSoundProofTriggerComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("eLowPassFilterToApply", true), &g_unk_7108b6cde8, 0xae8, -1, -1);
     field0->attrs.Add<s32>(fn_7100075240(), &g_unk_7108b6cde8, 9);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fFadeInTime", true), fn_710000abbc(), 0xaec, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fFadeOutTime", true), fn_710000abbc(), 0xaf0, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bMuteActors", true), fn_710000d228(), 0xaf6, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("bFilterSpecificActors", true), fn_710000d228(), 0xaf5, -1, -1);
-    field4->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(f32, "fFadeInTime", 0xaec, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fFadeOutTime", 0xaf0, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(bool, "bMuteActors", 0xaf6, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bFilterSpecificActors", 0xaf5, (DefaultValue, false));
     UnkReflField* field5 = fn_7100096524(cls, CStrId("vActorsToIgnore", true), &g_unk_717269bf08, 0xac0, -1, -1);
     field5->attrs.Add<bool>(fn_7100090090(), false);
     field5->attrs_0x70.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 13);

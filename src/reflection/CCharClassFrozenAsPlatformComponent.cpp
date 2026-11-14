@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,16 +20,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassFrozenAsPlatformComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 void fn_71007fd394();
 void fn_71007fc518(UnkReflFunction* fn, const char* name);
 namespace CCharClassFrozenAsPlatformComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sCollisionMaskToFreeze", true), fn_7100007f84(), 0xa0, -1, -1);
-    field0->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString("DAMAGE"));
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Collision Mask to create the ice platform");
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sCollisionMaskToFreeze", 0xa0, (DefaultValue, base::global::CRntString("DAMAGE")), (Description, "Collision Mask to create the ice platform"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sCollisionTagsExcludedFromFreezing_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_sCollisionTagsExcludedFromFreezing_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -41,14 +38,9 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field1 = fn_7100096524(cls, CStrId("sCollisionTagsExcludedFromFreezing", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
     field1->attrs.Add<const char*>(fn_7100007e80(), "Comma separated list of collision tags to exclude in the ice platform created");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fPlatformDepth", true), fn_710000abbc(), 0x100, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Size of the platform in Z");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sIceCubeCharClass", true), fn_7100009658(), 0x108, -1, -1);
-    field3->attrs.Add<CStrId>(fn_7100075240(), CStrId("ice_cube", true));
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("vIceCubeSize", true), fn_7100024504(), 0x110, -1, -1);
-    field4->attrs.Add<base::math::CVector2D>(fn_7100075240(), base::math::CVector2D{100.0f, 100.0f});
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Size X,Y of the ice cube");
+    DREAD_REFLECTED_FIELD(f32, "fPlatformDepth", 0x100, (DefaultValue, 100.0f), (Description, "Size of the platform in Z"));
+    DREAD_REFLECTED_FIELD(CStrId, "sIceCubeCharClass", 0x108, (DefaultValue, CStrId("ice_cube", true)));
+    DREAD_REFLECTED_FIELD(base::math::CVector2D, "vIceCubeSize", 0x110, (DefaultValue, base::math::CVector2D{100.0f, 100.0f}), (Description, "Size X,Y of the ice cube"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

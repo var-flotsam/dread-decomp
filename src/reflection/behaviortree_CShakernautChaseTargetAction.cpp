@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,38 +20,18 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CShakernautChaseTargetAction
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace behaviortree::CShakernautChaseTargetAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bMaintainViewDirOnReached", true), fn_710000d228(), 0x48, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), false);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Maintain View Dir On Reached");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bIgnoreTargetAccesible", true), fn_710000d228(), 0x49, -1, -1);
-    field1->attrs.Add<bool>(fn_7100075240(), false);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Ignore target accesible");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bGotoMovingIfNotInFrustum", true), fn_710000d228(), 0x4a, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Goto Moving If Not In Frustum");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bAllowTargetToJumpOver", true), fn_710000d228(), 0x60, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), true);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Allow Target To Jump Over");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fMovingToIdleLimitsOffset", true), fn_710000abbc(), 0x64, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Moving to Idle limits offset");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("bIgnoreNextAttackTimeOnIdle", true), fn_710000d228(), 0x68, -1, -1);
-    field5->attrs.Add<bool>(fn_7100075240(), false);
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Reset Next Attack Time On Idle");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fMinDist", true), fn_710000abbc(), 0x6c, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field6->attrs.Add<const char*>(fn_7100007e80(), "Chase min dist");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fMaxDist", true), fn_710000abbc(), 0x70, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field7->attrs.Add<const char*>(fn_7100007e80(), "Chase max dist");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fCenterDistance", true), fn_710000abbc(), 0x74, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field8->attrs.Add<const char*>(fn_7100007e80(), "Chase center dist");
+    DREAD_REFLECTED_FIELD(bool, "bMaintainViewDirOnReached", 0x48, (DefaultValue, false), (Description, "Maintain View Dir On Reached"));
+    DREAD_REFLECTED_FIELD(bool, "bIgnoreTargetAccesible", 0x49, (DefaultValue, false), (Description, "Ignore target accesible"));
+    DREAD_REFLECTED_FIELD(bool, "bGotoMovingIfNotInFrustum", 0x4a, (DefaultValue, false), (Description, "Goto Moving If Not In Frustum"));
+    DREAD_REFLECTED_FIELD(bool, "bAllowTargetToJumpOver", 0x60, (DefaultValue, true), (Description, "Allow Target To Jump Over"));
+    DREAD_REFLECTED_FIELD(f32, "fMovingToIdleLimitsOffset", 0x64, (DefaultValue, 100.0f), (Description, "Moving to Idle limits offset"));
+    DREAD_REFLECTED_FIELD(bool, "bIgnoreNextAttackTimeOnIdle", 0x68, (DefaultValue, false), (Description, "Reset Next Attack Time On Idle"));
+    DREAD_REFLECTED_FIELD(f32, "fMinDist", 0x6c, (DefaultValue, -1.0f), (Description, "Chase min dist"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxDist", 0x70, (DefaultValue, -1.0f), (Description, "Chase max dist"));
+    DREAD_REFLECTED_FIELD(f32, "fCenterDistance", 0x74, (DefaultValue, -1.0f), (Description, "Chase center dist"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

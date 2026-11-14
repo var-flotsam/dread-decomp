@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,12 +20,10 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // base::core::CDefinition
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace base::core::CDefinition {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sLabel", true), fn_7100009658(), 0x58, -1, -1);
-    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Definition Label"));
+    DREAD_REFLECTED_FIELD(CStrId, "sLabel", 0x58, (Description, base::global::CRntString("Definition Label")));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

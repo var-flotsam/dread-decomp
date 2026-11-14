@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,16 +22,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CPolypFallPattern
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CPolypFallPattern {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fFarSpeed", true), fn_710000abbc(), 0x8, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMiddleSpeed", true), fn_710000abbc(), 0xc, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("CloseSpeed", true), fn_710000abbc(), 0x10, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    DREAD_REFLECTED_FIELD(f32, "fFarSpeed", 0x8, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMiddleSpeed", 0xc, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "CloseSpeed", 0x10, (DefaultValue, 1.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -58,18 +55,13 @@ DREAD_REFLECTED_ROOT_CLASS(CPolypFallPattern);
 
 // CCharClassHydrogigaPolypsAttack
 extern base::reflection::CType g_unk_71726e9b38;
-const base::reflection::UnkReflAttrKey& fn_7100091d40();
 namespace CCharClassHydrogigaPolypsAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("iAttackPattern", true), fn_7100014768(), 0xec, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeBetweenWaves", true), fn_710000abbc(), 0xf0, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 5.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("uMinNumWaves", true), fn_7100005178(), 0xf4, -1, -1);
-    field2->attrs.Add<s32>(fn_7100075240(), 5);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("uMaxNumWaves", true), fn_7100005178(), 0xf8, -1, -1);
-    field3->attrs.Add<s32>(fn_7100075240(), 5);
+    DREAD_REFLECTED_FIELD(s32, "iAttackPattern", 0xec, (DefaultValue, -1));
+    DREAD_REFLECTED_FIELD(f32, "fTimeBetweenWaves", 0xf0, (DefaultValue, 5.0f));
+    DREAD_REFLECTED_FIELD(u32, "uMinNumWaves", 0xf4, (DefaultValue, 5));
+    DREAD_REFLECTED_FIELD(u32, "uMaxNumWaves", 0xf8, (DefaultValue, 5));
     UnkReflField* field4 = fn_7100096524(cls, CStrId("tUnbreakableFarPatterns", true), &g_unk_71726e9b38, 0x100, -1, -1);
     field4->attrs_0x70.Add<bool>(fn_7100091d40(), true);
     UnkReflField* field5 = fn_7100096524(cls, CStrId("tUnbreakableMiddlePatterns", true), &g_unk_71726e9b38, 0x128, -1, -1);

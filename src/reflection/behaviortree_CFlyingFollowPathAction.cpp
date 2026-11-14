@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,30 +20,19 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CFlyingFollowPathAction
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace behaviortree::CFlyingFollowPathAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fAcceleration", true), fn_710000abbc(), 0x3c, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 9999.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fSpeedMultiplier", true), fn_710000abbc(), 0x40, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fHareDistance", true), fn_710000abbc(), 0x44, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 50.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bLookAtMoveDir", true), fn_710000d228(), 0x48, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("bIgnoreCollisionInPath", true), fn_710000d228(), 0x51, -1, -1);
-    field4->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("sPatrolAnim", true), fn_7100009658(), 0x58, -1, -1);
-    field5->attrs.Add<const char*>(fn_7100075240(), "patrol");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("bShouldSetPatrolAnim", true), fn_710000d228(), 0x71, -1, -1);
-    field6->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("bUseSteering", true), fn_710000d228(), 0x72, -1, -1);
-    field7->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("bRestartnOnPush", true), fn_710000d228(), 0x73, -1, -1);
-    field8->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("bUseDesiredViewDirAsInitialDir", true), fn_710000d228(), 0x74, -1, -1);
-    field9->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(f32, "fAcceleration", 0x3c, (DefaultValue, 9999.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSpeedMultiplier", 0x40, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fHareDistance", 0x44, (DefaultValue, 50.0f));
+    DREAD_REFLECTED_FIELD(bool, "bLookAtMoveDir", 0x48, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bIgnoreCollisionInPath", 0x51, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(CStrId, "sPatrolAnim", 0x58, (DefaultValue, "patrol"));
+    DREAD_REFLECTED_FIELD(bool, "bShouldSetPatrolAnim", 0x71, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bUseSteering", 0x72, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bRestartnOnPush", 0x73, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bUseDesiredViewDirAsInitialDir", 0x74, (DefaultValue, false));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

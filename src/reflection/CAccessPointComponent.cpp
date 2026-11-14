@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,20 +21,15 @@ using base::reflection::DestroyDestructorFirst;
 
 // CAccessPointComponent
 extern base::reflection::CType g_unk_71727b6630;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_717274ef10;
 extern base::reflection::CType g_unk_71727b6270;
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 void fn_7100a6bc44(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_71000904d0();
 namespace CAccessPointComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("vDoorsToChange", true), &g_unk_71727b6630, 0x898, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sInteractionLiteralID", true), fn_7100009658(), 0x588, -1, -1);
-    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_FIELD(CStrId, "sInteractionLiteralID", 0x588, (DefaultValue, CStrId(g_unk_7101d470e0)));
     UnkReflField* field2 = fn_7100096524(cls, CStrId("tCaptionList", true), &g_unk_717274ef10, 0x5a0, -1, -1);
     UnkReflField* field3 = fn_7100096524(cls, CStrId("wpThermalDevice", true), &g_unk_71727b6270, 0x540, -1, -1);
     field3->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
@@ -72,33 +68,15 @@ void refl_AddFields(CClass* cls) {
     g_unk_717274ec88 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fLoopGainMax", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.2f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Loop Gain");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fLoopFadeInTime", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.2f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Loop Fade In Time");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fLoopFadeOutTime", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.2f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Loop Fade Out Time");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fLoopReverb", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Loop Reverb Intensity");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fVoiceGainMax", true), fn_710000abbc(), 0x34, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.2f);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Voice Gain");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fVoiceFadeInTime", true), fn_710000abbc(), 0x38, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 0.2f);
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Voice Fade In Time");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fVoiceFadeOutTime", true), fn_710000abbc(), 0x3c, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 0.2f);
-    field6->attrs.Add<const char*>(fn_7100007e80(), "Voice Fade Out Time");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fVoiceReverb", true), fn_710000abbc(), 0x40, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    field7->attrs.Add<const char*>(fn_7100007e80(), "Voice Reverb Intensity");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fAdamSpeechVolume", true), fn_710000abbc(), 0x44, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field8->attrs.Add<const char*>(fn_7100007e80(), "Adam Speech Volume");
+    DREAD_REFLECTED_FIELD(f32, "fLoopGainMax", 0x24, (DefaultValue, 0.2f), (Description, "Loop Gain"));
+    DREAD_REFLECTED_FIELD(f32, "fLoopFadeInTime", 0x28, (DefaultValue, 0.2f), (Description, "Loop Fade In Time"));
+    DREAD_REFLECTED_FIELD(f32, "fLoopFadeOutTime", 0x2c, (DefaultValue, 0.2f), (Description, "Loop Fade Out Time"));
+    DREAD_REFLECTED_FIELD(f32, "fLoopReverb", 0x30, (DefaultValue, 0.5f), (Description, "Loop Reverb Intensity"));
+    DREAD_REFLECTED_FIELD(f32, "fVoiceGainMax", 0x34, (DefaultValue, 0.2f), (Description, "Voice Gain"));
+    DREAD_REFLECTED_FIELD(f32, "fVoiceFadeInTime", 0x38, (DefaultValue, 0.2f), (Description, "Voice Fade In Time"));
+    DREAD_REFLECTED_FIELD(f32, "fVoiceFadeOutTime", 0x3c, (DefaultValue, 0.2f), (Description, "Voice Fade Out Time"));
+    DREAD_REFLECTED_FIELD(f32, "fVoiceReverb", 0x40, (DefaultValue, 0.5f), (Description, "Voice Reverb Intensity"));
+    DREAD_REFLECTED_FIELD(f32, "fAdamSpeechVolume", 0x44, (DefaultValue, 1.0f), (Description, "Adam Speech Volume"));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

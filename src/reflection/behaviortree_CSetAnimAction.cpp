@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,44 +20,20 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CSetAnimAction
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace behaviortree::CSetAnimAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sAnim", true), fn_7100009658(), 0x30, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "");
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Animation to set");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sAnimProp", true), fn_7100009658(), 0x38, -1, -1);
-    field1->attrs.Add<const char*>(fn_7100075240(), "");
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Animation to set (from blackboard)");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sTimelineStart", true), fn_7100009658(), 0x50, -1, -1);
-    field2->attrs.Add<const char*>(fn_7100075240(), "");
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Timeline to start");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sTimelineEnd", true), fn_7100009658(), 0x58, -1, -1);
-    field3->attrs.Add<const char*>(fn_7100075240(), "");
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Timeline to end");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("bForce", true), fn_710000d228(), 0x40, -1, -1);
-    field4->attrs.Add<bool>(fn_7100075240(), false);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Force set anim");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("bUpdateModel", true), fn_710000d228(), 0x41, -1, -1);
-    field5->attrs.Add<bool>(fn_7100075240(), false);
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Force update model");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("bWaitAnimEnd", true), fn_710000d228(), 0x42, -1, -1);
-    field6->attrs.Add<bool>(fn_7100075240(), false);
-    field6->attrs.Add<const char*>(fn_7100007e80(), "Wait for animation end");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("bWaitIfFrozen", true), fn_710000d228(), 0x43, -1, -1);
-    field7->attrs.Add<bool>(fn_7100075240(), true);
-    field7->attrs.Add<const char*>(fn_7100007e80(), "Wait if frozen");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("bSyncWithCurrent", true), fn_710000d228(), 0x61, -1, -1);
-    field8->attrs.Add<bool>(fn_7100075240(), false);
-    field8->attrs.Add<const char*>(fn_7100007e80(), "Sync target animation with current [false]");
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("iMinRandSuffix", true), fn_7100014768(), 0x44, -1, -1);
-    field9->attrs.Add<s32>(fn_7100075240(), -1);
-    field9->attrs.Add<const char*>(fn_7100007e80(), "Minimum suffix value. -1 means not to use suffix [-1]");
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("iMaxRandSuffix", true), fn_7100014768(), 0x48, -1, -1);
-    field10->attrs.Add<s32>(fn_7100075240(), -1);
-    field10->attrs.Add<const char*>(fn_7100007e80(), "Maximum suffix value. -1 means not to use suffix [-1]");
+    DREAD_REFLECTED_FIELD(CStrId, "sAnim", 0x30, (DefaultValue, ""), (Description, "Animation to set"));
+    DREAD_REFLECTED_FIELD(CStrId, "sAnimProp", 0x38, (DefaultValue, ""), (Description, "Animation to set (from blackboard)"));
+    DREAD_REFLECTED_FIELD(CStrId, "sTimelineStart", 0x50, (DefaultValue, ""), (Description, "Timeline to start"));
+    DREAD_REFLECTED_FIELD(CStrId, "sTimelineEnd", 0x58, (DefaultValue, ""), (Description, "Timeline to end"));
+    DREAD_REFLECTED_FIELD(bool, "bForce", 0x40, (DefaultValue, false), (Description, "Force set anim"));
+    DREAD_REFLECTED_FIELD(bool, "bUpdateModel", 0x41, (DefaultValue, false), (Description, "Force update model"));
+    DREAD_REFLECTED_FIELD(bool, "bWaitAnimEnd", 0x42, (DefaultValue, false), (Description, "Wait for animation end"));
+    DREAD_REFLECTED_FIELD(bool, "bWaitIfFrozen", 0x43, (DefaultValue, true), (Description, "Wait if frozen"));
+    DREAD_REFLECTED_FIELD(bool, "bSyncWithCurrent", 0x61, (DefaultValue, false), (Description, "Sync target animation with current [false]"));
+    DREAD_REFLECTED_FIELD(s32, "iMinRandSuffix", 0x44, (DefaultValue, -1), (Description, "Minimum suffix value. -1 means not to use suffix [-1]"));
+    DREAD_REFLECTED_FIELD(s32, "iMaxRandSuffix", 0x48, (DefaultValue, -1), (Description, "Maximum suffix value. -1 means not to use suffix [-1]"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

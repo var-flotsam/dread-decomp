@@ -20,15 +20,11 @@ using base::reflection::DestroyDestructorFirst;
 
 // CHecathonAIComponent
 extern base::reflection::CType g_unk_717269bb48;
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 extern base::reflection::CType g_unk_71727bb8e8;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 void fn_71005abe98();
 void fn_71005a9250(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
 void fn_71005abef0();
 void fn_71005a93cc(UnkReflFunction* fn, const char* name);
 void fn_71005abf48();

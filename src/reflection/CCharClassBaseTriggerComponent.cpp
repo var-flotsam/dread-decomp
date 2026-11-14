@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -48,9 +49,6 @@ DREAD_REFLECTED_CLASS(CCharClassBaseTriggerComponent, CCharClassActivatableCompo
 
 // CBaseTriggerComponent
 void fn_7100a46978(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_71000904d0();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100a4953c();
 void fn_71003540d8(UnkReflFunction* fn);
@@ -62,8 +60,7 @@ void refl_AddFields(CClass* cls) {
         fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
         fn->Attrs()->Add<bool>(fn_71000904d0(), true);
     }
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bCheckAllEntities", true), fn_710000d228(), 0x9bc, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(bool, "bCheckAllEntities", 0x9bc, (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DisableLogic", true))) {
         fn->name = base::global::UnkStrId("DisableLogic", true);
         fn->return_type = &g_unk_7101d5af48;

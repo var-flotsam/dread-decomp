@@ -20,8 +20,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CSuppressDecorator
 extern base::reflection::CType g_unk_71726bc130;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace behaviortree::CSuppressDecorator {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

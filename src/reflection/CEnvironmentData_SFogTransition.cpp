@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -27,12 +28,10 @@ void fn_7100f5c88c();
 void fn_7100f1b870(UnkReflFunction* fn, const char* name);
 void fn_7100f5c96c();
 void fn_7100f1b9ec(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100091080();
 namespace CEnvironmentData::SFogTransition {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
+    DREAD_REFLECTED_FIELD(CStrId, "sPreset", 0x8);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorInterp_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fColorInterp_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -63,9 +62,7 @@ void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fRangeInterp_SetterFunction", true)))
         fn_7100f1b9ec(fn, "_fRangeInterp_SetterFunction");
     UnkReflField* field3 = fn_7100096524(cls, CStrId("fRangeInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fWaveInterp", true), fn_710000abbc(), 0x1c, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field4->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    DREAD_REFLECTED_FIELD(f32, "fWaveInterp", 0x1c, (DefaultValue, 1.0f), (MinValue, 0.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -97,7 +94,7 @@ void fn_7100f1dc40(UnkReflFunction* fn, const char* name);
 namespace CEnvironmentData::SAmbientTransition {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
+    DREAD_REFLECTED_FIELD(CStrId, "sPreset", 0x8);
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorInterp_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fColorInterp_GetterFunction", true);
@@ -141,7 +138,7 @@ void fn_7100f21598(UnkReflFunction* fn, const char* name);
 namespace CEnvironmentData::SDepthTintTransition {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
+    DREAD_REFLECTED_FIELD(CStrId, "sPreset", 0x8);
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fTintInterp_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fTintInterp_GetterFunction", true);
@@ -187,7 +184,7 @@ void fn_7100f2426c(UnkReflFunction* fn, const char* name);
 namespace CEnvironmentData::SMaterialTintTransition {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
+    DREAD_REFLECTED_FIELD(CStrId, "sPreset", 0x8);
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorInterp_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fColorInterp_GetterFunction", true);
@@ -245,7 +242,7 @@ void fn_7100f27648(UnkReflFunction* fn, const char* name);
 namespace CEnvironmentData::SPlayerLightTransition {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
+    DREAD_REFLECTED_FIELD(CStrId, "sPreset", 0x8);
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorInterp_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fColorInterp_GetterFunction", true);
@@ -303,7 +300,7 @@ void fn_7100f2a320(UnkReflFunction* fn, const char* name);
 namespace CEnvironmentData::SHemisphericalLightTransition {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
+    DREAD_REFLECTED_FIELD(CStrId, "sPreset", 0x8);
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorUpInterp_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fColorUpInterp_GetterFunction", true);
@@ -359,7 +356,7 @@ void fn_7100f2c58c(UnkReflFunction* fn, const char* name);
 namespace CEnvironmentData::SBloomTransition {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
+    DREAD_REFLECTED_FIELD(CStrId, "sPreset", 0x8);
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBloomInterp_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fBloomInterp_GetterFunction", true);
@@ -411,7 +408,7 @@ void fn_7100f321c0(UnkReflFunction* fn, const char* name);
 namespace CEnvironmentData::SVerticalFogTransition {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
+    DREAD_REFLECTED_FIELD(CStrId, "sPreset", 0x8);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorInterp_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fColorInterp_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -462,9 +459,7 @@ void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttInterp_SetterFunction", true)))
         fn_7100f321c0(fn, "_fAttInterp_SetterFunction");
     UnkReflField* field5 = fn_7100096524(cls, CStrId("fAttInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fWaveInterp", true), fn_710000abbc(), 0x1c, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field6->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    DREAD_REFLECTED_FIELD(f32, "fWaveInterp", 0x1c, (DefaultValue, 1.0f), (MinValue, 0.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -496,7 +491,7 @@ void fn_7100f34874(UnkReflFunction* fn, const char* name);
 namespace CEnvironmentData::SCubeMapTransition {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
+    DREAD_REFLECTED_FIELD(CStrId, "sPreset", 0x8);
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fCubeMapInterp_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fCubeMapInterp_GetterFunction", true);
@@ -540,7 +535,7 @@ void fn_7100f37520(UnkReflFunction* fn, const char* name);
 namespace CEnvironmentData::SSSAOTransition {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
+    DREAD_REFLECTED_FIELD(CStrId, "sPreset", 0x8);
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fInterp_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fInterp_GetterFunction", true);
@@ -584,7 +579,7 @@ void fn_7100f3b1ec(UnkReflFunction* fn, const char* name);
 namespace CEnvironmentData::SToneMappingTransition {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
+    DREAD_REFLECTED_FIELD(CStrId, "sPreset", 0x8);
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fInterp_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fInterp_GetterFunction", true);
@@ -628,7 +623,7 @@ void fn_7100f3dc00(UnkReflFunction* fn, const char* name);
 namespace CEnvironmentData::SIBLAttenuationTransition {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
+    DREAD_REFLECTED_FIELD(CStrId, "sPreset", 0x8);
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fInterp_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fInterp_GetterFunction", true);

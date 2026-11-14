@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,17 +21,13 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassSluggerAIComponent
 const base::reflection::CClass* fn_71006bf2f4();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassSluggerAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("oSluggerSpitAttackDef", true), fn_71006bf2f4(), 0x510, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sAcidBallCharClass", true), fn_7100009658(), 0x640, -1, -1);
-    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId("sluggeracidball", true));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fAttackReachableHeight", true), fn_710000abbc(), 0x648, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 400.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fBallTrajectoryCheckRadius", true), fn_710000abbc(), 0x64c, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 20.0f);
+    DREAD_REFLECTED_FIELD(CStrId, "sAcidBallCharClass", 0x640, (DefaultValue, CStrId("sluggeracidball", true)));
+    DREAD_REFLECTED_FIELD(f32, "fAttackReachableHeight", 0x648, (DefaultValue, 400.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBallTrajectoryCheckRadius", 0x64c, (DefaultValue, 20.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

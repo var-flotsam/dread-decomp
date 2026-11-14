@@ -20,8 +20,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CXParasiteBehaviorCondition
 extern base::reflection::CType g_unk_717270b710;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace behaviortree::CXParasiteBehaviorCondition {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

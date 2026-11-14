@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,20 +20,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CSetFXAction
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace behaviortree::CSetFXAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sFX", true), fn_7100009658(), 0x30, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "");
-    field0->attrs.Add<const char*>(fn_7100007e80(), "FX to set");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bSet", true), fn_710000d228(), 0x38, -1, -1);
-    field1->attrs.Add<bool>(fn_7100075240(), true);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Set or remove FX");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bEnd", true), fn_710000d228(), 0x39, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "End after setting the FX (false)");
+    DREAD_REFLECTED_FIELD(CStrId, "sFX", 0x30, (DefaultValue, ""), (Description, "FX to set"));
+    DREAD_REFLECTED_FIELD(bool, "bSet", 0x38, (DefaultValue, true), (Description, "Set or remove FX"));
+    DREAD_REFLECTED_FIELD(bool, "bEnd", 0x39, (DefaultValue, false), (Description, "End after setting the FX (false)"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

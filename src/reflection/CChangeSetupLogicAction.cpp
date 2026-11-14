@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,18 +20,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CChangeSetupLogicAction
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CChangeSetupLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sSetupID", true), fn_7100009658(), 0x10, -1, -1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bPersistent", true), fn_710000d228(), 0x18, -1, -1);
-    field1->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bForceChange", true), fn_710000d228(), 0x19, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bPush", true), fn_710000d228(), 0x1a, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_FIELD(CStrId, "sSetupID", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(bool, "bPersistent", 0x18, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bForceChange", 0x19, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bPush", 0x1a, (DefaultValue, true));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

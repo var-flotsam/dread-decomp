@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,29 +20,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCameraFX_SteadyCamera
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CCameraFX_SteadyCamera {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMinAngleXAxis", true), fn_710000abbc(), 0x34, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Min angle in X axis");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxAngleXAxis", true), fn_710000abbc(), 0x3c, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Max angle in X axis");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMinAngleYAxis", true), fn_710000abbc(), 0x38, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Min angle in Y axis");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMaxAngleYAxis", true), fn_710000abbc(), 0x40, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Max angle in Y axis");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sFunction", true), fn_7100007f84(), 0x48, -1, -1);
-    field4->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString("SqooooooszI"));
-    field4->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Function (p.ej: SqooooooszI)"));
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("bCentered", true), fn_710000d228(), 0x78, -1, -1);
-    field5->attrs.Add<bool>(fn_7100075240(), false);
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Centered in player path");
+    DREAD_REFLECTED_FIELD(f32, "fMinAngleXAxis", 0x34, (DefaultValue, 0.0f), (Description, "Min angle in X axis"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxAngleXAxis", 0x3c, (DefaultValue, 0.0f), (Description, "Max angle in X axis"));
+    DREAD_REFLECTED_FIELD(f32, "fMinAngleYAxis", 0x38, (DefaultValue, 0.0f), (Description, "Min angle in Y axis"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxAngleYAxis", 0x40, (DefaultValue, 0.0f), (Description, "Max angle in Y axis"));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sFunction", 0x48, (DefaultValue, base::global::CRntString("SqooooooszI")), (Description, base::global::CRntString("Function (p.ej: SqooooooszI)")));
+    DREAD_REFLECTED_FIELD(bool, "bCentered", 0x78, (DefaultValue, false), (Description, "Centered in player path"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

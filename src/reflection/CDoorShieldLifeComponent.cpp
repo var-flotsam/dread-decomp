@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,27 +20,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CDoorShieldLifeComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern base::reflection::CType g_unk_7172731d68;
-const base::reflection::UnkReflAttrKey& fn_7100093390();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
 namespace CDoorShieldLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fDamageFXTime", true), fn_710000abbc(), 0x3e8, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.15f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Damage FX Time");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sDamageSound", true), fn_7100007f84(), 0x388, -1, -1);
-    field1->attrs.Add<const char*>(fn_7100075240(), "");
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Sound on damaged");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sKillSound", true), fn_7100007f84(), 0x3b8, -1, -1);
-    field2->attrs.Add<const char*>(fn_7100075240(), "");
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Sound on opened");
+    DREAD_REFLECTED_FIELD(f32, "fDamageFXTime", 0x3e8, (DefaultValue, 0.15f), (Description, "Damage FX Time"));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sDamageSound", 0x388, (DefaultValue, ""), (Description, "Sound on damaged"));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sKillSound", 0x3b8, (DefaultValue, ""), (Description, "Sound on opened"));
     UnkReflField* field3 = fn_7100096524(cls, CStrId("eColor", true), &g_unk_7172731d68, 0xffffffff, -1, -1);
     field3->attrs.Add<bool>(fn_7100093390(), true);
     field3->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);

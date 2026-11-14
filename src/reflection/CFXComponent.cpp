@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,18 +20,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CFXComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 void fn_710114dc08(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_71000904d0();
 void fn_710114dcbc(UnkReflFunction* fn, const char* name);
 namespace CFXComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fSelectedHighRadius", true), fn_710000abbc(), 0x118, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 250.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fSelectedLowRadius", true), fn_710000abbc(), 0x114, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 350.0f);
+    DREAD_REFLECTED_FIELD(f32, "fSelectedHighRadius", 0x118, (DefaultValue, 250.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSelectedLowRadius", 0x114, (DefaultValue, 350.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetEffectEmissionEnabled", true))) {
         fn_710114dc08(fn, "SetEffectEmissionEnabled");
         fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));

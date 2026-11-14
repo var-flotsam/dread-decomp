@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,28 +20,18 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassKraidSpikeMovablePlatformComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassKraidSpikeMovablePlatformComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fInitialMotionSpeed", true), fn_710000abbc(), 0x74, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 400.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMotionSpeed", true), fn_710000abbc(), 0x78, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fInitialDisplacement", true), fn_710000abbc(), 0x7c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 200.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fPreparationTime", true), fn_710000abbc(), 0x80, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fShakeDisplacementX", true), fn_710000abbc(), 0x84, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 3.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fShakeSpeedX", true), fn_710000abbc(), 0x88, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 400.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fShakeDisplacementY", true), fn_710000abbc(), 0x8c, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 3.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fShakeSpeedY", true), fn_710000abbc(), 0x90, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 400.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fFlyingSpikeStickedWallTime", true), fn_710000abbc(), 0x94, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_FIELD(f32, "fInitialMotionSpeed", 0x74, (DefaultValue, 400.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMotionSpeed", 0x78, (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fInitialDisplacement", 0x7c, (DefaultValue, 200.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPreparationTime", 0x80, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fShakeDisplacementX", 0x84, (DefaultValue, 3.0f));
+    DREAD_REFLECTED_FIELD(f32, "fShakeSpeedX", 0x88, (DefaultValue, 400.0f));
+    DREAD_REFLECTED_FIELD(f32, "fShakeDisplacementY", 0x8c, (DefaultValue, 3.0f));
+    DREAD_REFLECTED_FIELD(f32, "fShakeSpeedY", 0x90, (DefaultValue, 400.0f));
+    DREAD_REFLECTED_FIELD(f32, "fFlyingSpikeStickedWallTime", 0x94, (DefaultValue, -1.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

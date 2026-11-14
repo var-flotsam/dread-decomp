@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,36 +20,22 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassXParasiteAIComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassXParasiteAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fAbsorptionDistance", true), fn_710000abbc(), 0x50c, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 200.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("uMaxSimultaneous", true), fn_7100005178(), 0x510, -1, -1);
-    field1->attrs.Add<u32>(fn_7100075240(), 0x5u);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMaxSteeringAcceleration", true), fn_710000abbc(), 0x514, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 2000.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMaxSteeringBrake", true), fn_710000abbc(), 0x518, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 2000.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fMaxSteeringChangingDir", true), fn_710000abbc(), 0x51c, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 2000.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fBrakeDistance", true), fn_710000abbc(), 0x520, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("bLimitSteeringForceAngle", true), fn_710000d228(), 0x524, -1, -1);
-    field6->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fMaxSteeringForceAngle", true), fn_710000abbc(), 0x528, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 2.3561945f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fWanderRadius", true), fn_710000abbc(), 0x52c, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 200.0f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fInitTime", true), fn_710000abbc(), 0x530, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fWanderTime", true), fn_710000abbc(), 0x534, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 4.0f);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fOffSetDisplacementNearPowerBomb", true), fn_710000abbc(), 0x538, -1, -1);
-    field11->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fDistanceArriveEndAttract", true), fn_710000abbc(), 0x53c, -1, -1);
-    field12->attrs.Add<f32>(fn_7100075240(), 100.0f);
+    DREAD_REFLECTED_FIELD(f32, "fAbsorptionDistance", 0x50c, (DefaultValue, 200.0f));
+    DREAD_REFLECTED_FIELD(u32, "uMaxSimultaneous", 0x510, (DefaultValue, u32(0x5u)));
+    DREAD_REFLECTED_FIELD(f32, "fMaxSteeringAcceleration", 0x514, (DefaultValue, 2000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxSteeringBrake", 0x518, (DefaultValue, 2000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxSteeringChangingDir", 0x51c, (DefaultValue, 2000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBrakeDistance", 0x520, (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(bool, "bLimitSteeringForceAngle", 0x524, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(f32, "fMaxSteeringForceAngle", 0x528, (DefaultValue, 2.3561945f));
+    DREAD_REFLECTED_FIELD(f32, "fWanderRadius", 0x52c, (DefaultValue, 200.0f));
+    DREAD_REFLECTED_FIELD(f32, "fInitTime", 0x530, (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fWanderTime", 0x534, (DefaultValue, 4.0f));
+    DREAD_REFLECTED_FIELD(f32, "fOffSetDisplacementNearPowerBomb", 0x538, (DefaultValue, 100.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDistanceArriveEndAttract", 0x53c, (DefaultValue, 100.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

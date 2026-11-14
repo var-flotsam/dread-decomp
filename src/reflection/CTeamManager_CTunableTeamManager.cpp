@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,8 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CTeamManager::CTunableTeamManager
 extern bool g_unk_7172a0c2a0;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100093170();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172a0c270;
 void fn_71011a6394(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -33,12 +32,8 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172a0c2a0 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fCoordinatedAttacksMinTime", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field0->attrs.Add<bool>(fn_7100093170(), false);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fCoordinatedAttacksMaxTime", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field1->attrs.Add<bool>(fn_7100093170(), false);
+    DREAD_REFLECTED_FIELD(f32, "fCoordinatedAttacksMinTime", 0x24, (DefaultValue, 0.0f), (ShowInConfig, false));
+    DREAD_REFLECTED_FIELD(f32, "fCoordinatedAttacksMaxTime", 0x28, (DefaultValue, 0.0f), (ShowInConfig, false));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

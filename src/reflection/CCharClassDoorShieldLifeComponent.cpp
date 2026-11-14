@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,15 +20,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassDoorShieldLifeComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_7172731ec8;
 namespace CCharClassDoorShieldLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bDisolveByMaterial", true), fn_710000d228(), 0x11c, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeToStartDisolve", true), fn_710000abbc(), 0x120, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    DREAD_REFLECTED_FIELD(bool, "bDisolveByMaterial", 0x11c, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToStartDisolve", 0x120, (DefaultValue, 0.0f));
     UnkReflField* field2 = fn_7100096524(cls, CStrId("eDoorShieldType", true), &g_unk_7172731ec8, 0x124, -1, -1);
     field2->attrs.Add<s32>(fn_7100075240(), &g_unk_7172731ec8, 2147483647);
 }

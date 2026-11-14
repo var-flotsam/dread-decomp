@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,43 +20,27 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassProjectileMovement
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_7172755268;
 namespace CCharClassProjectileMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sCameraFXPresetOnImpact", true), fn_7100009658(), 0xf0, -1, -1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bUseCheckBeforeCast", true), fn_710000d228(), 0xf8, -1, -1);
-    field1->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fGravity", true), fn_710000abbc(), 0xfc, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bApplyGravityOnInitialSpeed", true), fn_710000d228(), 0x100, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sColliderToCheckCollisions", true), fn_7100009658(), 0x108, -1, -1);
-    field4->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("sColliderToCheckDamage", true), fn_7100009658(), 0x110, -1, -1);
-    field5->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("bDeleteAfterCollisionProcessed", true), fn_710000d228(), 0x118, -1, -1);
-    field6->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("bAddOwnerVelocityOnBeginPlay", true), fn_710000d228(), 0x11a, -1, -1);
-    field7->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fOwnerVelocityFactor", true), fn_710000abbc(), 0x11c, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fVelocityHorizontalFriction", true), fn_710000abbc(), 0x120, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fVelocityVerticalFriction", true), fn_710000abbc(), 0x124, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("bDestroyOnImpactSpeedBooster", true), fn_710000d228(), 0x119, -1, -1);
-    field11->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("bIgnoreInvulnerableEntities", true), fn_710000d228(), 0x128, -1, -1);
-    field12->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_FIELD(CStrId, "sCameraFXPresetOnImpact", 0xf0, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(bool, "bUseCheckBeforeCast", 0xf8, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fGravity", 0xfc, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(bool, "bApplyGravityOnInitialSpeed", 0x100, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(CStrId, "sColliderToCheckCollisions", 0x108, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sColliderToCheckDamage", 0x110, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(bool, "bDeleteAfterCollisionProcessed", 0x118, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bAddOwnerVelocityOnBeginPlay", 0x11a, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fOwnerVelocityFactor", 0x11c, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fVelocityHorizontalFriction", 0x120, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fVelocityVerticalFriction", 0x124, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(bool, "bDestroyOnImpactSpeedBooster", 0x119, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bIgnoreInvulnerableEntities", 0x128, (DefaultValue, true));
     UnkReflField* field13 = fn_7100096524(cls, CStrId("eDefaultProjectileMeleeHitReaction", true), &g_unk_7172755268, 0x12c, -1, -1);
     field13->attrs.Add<s32>(fn_7100075240(), &g_unk_7172755268, 2);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("bAutoCalculateSpeedForParabola", true), fn_710000d228(), 0x130, -1, -1);
-    field14->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("bIgnoreMovementOnCollision", true), fn_710000d228(), 0x131, -1, -1);
-    field15->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(bool, "bAutoCalculateSpeedForParabola", 0x130, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bIgnoreMovementOnCollision", 0x131, (DefaultValue, false));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CProgressStatsManager::CTunableProgressStatManager
 extern bool g_unk_71729ce170;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71729ce138;
 void fn_7100ec60f4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -32,18 +32,12 @@ void refl_AddFields(CClass* cls) {
     g_unk_71729ce170 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bDebugEnabled", true), fn_710000d228(), 0x21, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("iDebugExtraClearTimeSeconds", true), fn_7100014768(), 0x24, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), 0);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("iDebugExtraPlayTimeSeconds", true), fn_7100014768(), 0x28, -1, -1);
-    field2->attrs.Add<s32>(fn_7100075240(), 0);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("iDebugExtraPlayerDeaths", true), fn_7100014768(), 0x2c, -1, -1);
-    field3->attrs.Add<s32>(fn_7100075240(), 0);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("iDebugExtraDamageReceived", true), fn_7100014768(), 0x30, -1, -1);
-    field4->attrs.Add<s32>(fn_7100075240(), 0);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("iDebugExtraSaveCount", true), fn_7100014768(), 0x34, -1, -1);
-    field5->attrs.Add<s32>(fn_7100075240(), 0);
+    DREAD_REFLECTED_FIELD(bool, "bDebugEnabled", 0x21, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(s32, "iDebugExtraClearTimeSeconds", 0x24, (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD(s32, "iDebugExtraPlayTimeSeconds", 0x28, (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD(s32, "iDebugExtraPlayerDeaths", 0x2c, (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD(s32, "iDebugExtraDamageReceived", 0x30, (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD(s32, "iDebugExtraSaveCount", 0x34, (DefaultValue, 0));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

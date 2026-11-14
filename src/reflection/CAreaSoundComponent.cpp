@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,48 +21,34 @@ using base::reflection::DestroyDestructorFirst;
 
 // CAreaSoundComponent
 extern base::reflection::CType g_unk_7108b6c9c8;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_7108b6cf48;
 namespace CAreaSoundComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sOnEnterSound", true), fn_710000ad9c(), 0xb08, -1, -1);
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sOnEnterSound", 0xb08);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("eOnEnterSoundType", true), &g_unk_7108b6c9c8, 0xb20, -1, -1);
     field1->attrs.Add<s32>(fn_7100075240(), &g_unk_7108b6c9c8, 5);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fEnterVol", true), fn_710000abbc(), 0xb34, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fEnterPitch", true), fn_710000abbc(), 0xb38, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fEnterFadeInTime", true), fn_710000abbc(), 0xb3c, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fEnterFadeOutTime", true), fn_710000abbc(), 0xb40, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    DREAD_REFLECTED_FIELD(f32, "fEnterVol", 0xb34, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fEnterPitch", 0xb38, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fEnterFadeInTime", 0xb3c, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fEnterFadeOutTime", 0xb40, (DefaultValue, 1.0f));
     UnkReflField* field6 = fn_7100096524(cls, CStrId("eOnEnterPositional", true), &g_unk_7108b6cf48, 0xb2c, -1, -1);
     field6->attrs.Add<s32>(fn_7100075240(), &g_unk_7108b6cf48, 0);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("sLoopSound", true), fn_710000ad9c(), 0xb10, -1, -1);
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sLoopSound", 0xb10);
     UnkReflField* field8 = fn_7100096524(cls, CStrId("eLoopSoundType", true), &g_unk_7108b6c9c8, 0xb24, -1, -1);
     field8->attrs.Add<s32>(fn_7100075240(), &g_unk_7108b6c9c8, 5);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fLoopVol", true), fn_710000abbc(), 0xb44, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fLoopPitch", true), fn_710000abbc(), 0xb48, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fLoopPan", true), fn_710000abbc(), 0xb4c, -1, -1);
-    field11->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fLoopFadeInTime", true), fn_710000abbc(), 0xb50, -1, -1);
-    field12->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("fLoopFadeOutTime", true), fn_710000abbc(), 0xb54, -1, -1);
-    field13->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("sOnExitSound", true), fn_710000ad9c(), 0xb18, -1, -1);
+    DREAD_REFLECTED_FIELD(f32, "fLoopVol", 0xb44, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLoopPitch", 0xb48, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLoopPan", 0xb4c, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLoopFadeInTime", 0xb50, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLoopFadeOutTime", 0xb54, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sOnExitSound", 0xb18);
     UnkReflField* field15 = fn_7100096524(cls, CStrId("eOnExitSoundType", true), &g_unk_7108b6c9c8, 0xb28, -1, -1);
     field15->attrs.Add<s32>(fn_7100075240(), &g_unk_7108b6c9c8, 5);
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("fExitVol", true), fn_710000abbc(), 0xb58, -1, -1);
-    field16->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("fExitPitch", true), fn_710000abbc(), 0xb5c, -1, -1);
-    field17->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field18 = fn_7100096524(cls, CStrId("fExitFadeInTime", true), fn_710000abbc(), 0xb60, -1, -1);
-    field18->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field19 = fn_7100096524(cls, CStrId("fExitFadeOutTime", true), fn_710000abbc(), 0xb64, -1, -1);
-    field19->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    DREAD_REFLECTED_FIELD(f32, "fExitVol", 0xb58, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fExitPitch", 0xb5c, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fExitFadeInTime", 0xb60, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fExitFadeOutTime", 0xb64, (DefaultValue, 1.0f));
     UnkReflField* field20 = fn_7100096524(cls, CStrId("eOnExitPositional", true), &g_unk_7108b6cf48, 0xb30, -1, -1);
     field20->attrs.Add<s32>(fn_7100075240(), &g_unk_7108b6cf48, 0);
 }

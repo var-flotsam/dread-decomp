@@ -20,11 +20,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // CKraidAIComponent
 extern base::reflection::CType g_unk_717269bb48;
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 void fn_71005fb320(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_71000904d0();
 extern base::reflection::CType g_unk_71727b6270;
 namespace CKraidAIComponent {
 void refl_AddAttributes(CClass*) {}

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,14 +20,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassChozoCommanderHyperDashAttack
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassChozoCommanderHyperDashAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fHeightOverSamus", true), fn_710000abbc(), 0xfc, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 800.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fDistanceBehindSamus", true), fn_710000abbc(), 0x100, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 500.0f);
+    DREAD_REFLECTED_FIELD(f32, "fHeightOverSamus", 0xfc, (DefaultValue, 800.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDistanceBehindSamus", 0x100, (DefaultValue, 500.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

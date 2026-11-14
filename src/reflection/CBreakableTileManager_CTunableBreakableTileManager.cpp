@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CBreakableTileManager::CTunableBreakableTileManager
 extern bool g_unk_7172796970;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172796920;
 void fn_7100ca4c4c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -32,26 +32,16 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172796970 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fPowerBeamRespawnTime", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 5.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fBombRespawnTime", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 5.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMissileRespawnTime", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 5.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fSuperMissileRespawnTime", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 5.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fPowerBombRespawnTime", true), fn_710000abbc(), 0x34, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fScrewAttackRespawnTime", true), fn_710000abbc(), 0x38, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 5.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fWeightRespawnTime", true), fn_710000abbc(), 0x3c, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 0.25f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fSpeedBoostRespawnTime", true), fn_710000abbc(), 0x40, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fChainDestructionTimePerTile", true), fn_710000abbc(), 0x44, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 0.05f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fRespawnTimeWhenDestroyedWithHyperBeam", true), fn_710000abbc(), 0x48, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 5.0f);
+    DREAD_REFLECTED_FIELD(f32, "fPowerBeamRespawnTime", 0x24, (DefaultValue, 5.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBombRespawnTime", 0x28, (DefaultValue, 5.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMissileRespawnTime", 0x2c, (DefaultValue, 5.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSuperMissileRespawnTime", 0x30, (DefaultValue, 5.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPowerBombRespawnTime", 0x34, (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fScrewAttackRespawnTime", 0x38, (DefaultValue, 5.0f));
+    DREAD_REFLECTED_FIELD(f32, "fWeightRespawnTime", 0x3c, (DefaultValue, 0.25f));
+    DREAD_REFLECTED_FIELD(f32, "fSpeedBoostRespawnTime", 0x40, (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fChainDestructionTimePerTile", 0x44, (DefaultValue, 0.05f));
+    DREAD_REFLECTED_FIELD(f32, "fRespawnTimeWhenDestroyedWithHyperBeam", 0x48, (DefaultValue, 5.0f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

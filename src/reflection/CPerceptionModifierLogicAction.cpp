@@ -20,9 +20,7 @@ using base::reflection::DestroyDestructorFirst;
 
 // CPerceptionModifierLogicAction
 extern base::reflection::CType g_unk_717274bf98;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_717269bb48;
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 extern base::reflection::CType g_unk_71727bc290;
 namespace CPerceptionModifierLogicAction {

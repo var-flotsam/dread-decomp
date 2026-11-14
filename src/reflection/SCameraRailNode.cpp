@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -23,12 +24,8 @@ using base::reflection::DestroyDestructorFirst;
 // SCameraRailNode
 void fn_7100c079cc();
 void fn_7100bfef1c(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_71000926d0();
 extern base::reflection::CType g_unk_7101d60ff0;
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
-const base::reflection::UnkReflAttrKey& fn_71000924b0();
 extern base::reflection::CType g_unk_717269bb48;
 namespace SCameraRailNode {
 void refl_AddAttributes(CClass*) {}
@@ -78,20 +75,11 @@ extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100c07c30();
 void fn_7100c07c44();
 void fn_7100bfff5c(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_710008f920();
-const base::reflection::UnkReflAttrKey& fn_71000903c0();
 void fn_7100c07eb0();
 void fn_7100c07d10(UnkReflFunction* fn);
 void fn_7100c0001c(UnkReflFunction* fn, const char* name);
 void fn_7100c00198(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_717277b510;
-const base::reflection::UnkReflAttrKey& fn_7100092b10();
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
-const base::reflection::UnkReflAttrKey& fn_710008fd60();
-const base::reflection::UnkReflAttrKey& fn_710008fe70();
-const base::reflection::UnkReflAttrKey& fn_710008fc50();
-const base::reflection::UnkReflAttrKey& fn_710008fb40();
-const base::reflection::UnkReflAttrKey& fn_710008ff80();
 namespace SCameraSubRail {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -173,24 +161,13 @@ DREAD_REFLECTED_CLASS(SCameraSubRail, ISubPath);
 
 // SCameraRail
 extern base::reflection::CType g_unk_717277b908;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100091c30();
 namespace SCameraRail {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("tSubRails", true), &g_unk_717277b908, 0x10, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxRailSpeed", true), fn_710000abbc(), 0x38, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1250.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Camera's speed per second on the rails.");
-    field1->attrs.Add<CStrId>(fn_7100091c30(), CStrId("Speed on rail u/s", true));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMinRailSpeed", true), fn_710000abbc(), 0x3c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 200.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Camera's min speed per second on the rails when clamping.");
-    field2->attrs.Add<CStrId>(fn_7100091c30(), CStrId("Min speed on clamp", true));
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMaxRailDistance", true), fn_710000abbc(), 0x40, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 500.0f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Max distance the camera can have from the current closest point.");
-    field3->attrs.Add<CStrId>(fn_7100091c30(), CStrId("Clamp Distance on Rail", true));
+    DREAD_REFLECTED_FIELD(f32, "fMaxRailSpeed", 0x38, (DefaultValue, 1250.0f), (Description, "Camera's speed per second on the rails."), (DisplayName, CStrId("Speed on rail u/s", true)));
+    DREAD_REFLECTED_FIELD(f32, "fMinRailSpeed", 0x3c, (DefaultValue, 200.0f), (Description, "Camera's min speed per second on the rails when clamping."), (DisplayName, CStrId("Min speed on clamp", true)));
+    DREAD_REFLECTED_FIELD(f32, "fMaxRailDistance", 0x40, (DefaultValue, 500.0f), (Description, "Max distance the camera can have from the current closest point."), (DisplayName, CStrId("Clamp Distance on Rail", true)));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

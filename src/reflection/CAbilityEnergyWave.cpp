@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -40,8 +41,6 @@ DREAD_REFLECTED_CLASS(CAbilityEnergyWave, CAbility);
 
 // CAbilityEnergyWave::CTunableAbilityEnergyWave
 extern bool g_unk_71726af0a0;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100093170();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726af060;
 void fn_7100303a94(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -53,19 +52,12 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726af0a0 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fWeaponBoostDamageMult_emmy", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fWeaponBoostDamageMult_emmycave", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fSpecialBurstWidth", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 5.0f);
-    field2->attrs.Add<bool>(fn_7100093170(), true);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fSpecialRocketTimeActivate", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fSpecialRocketSpeed", true), fn_710000abbc(), 0x34, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 10000.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("bSpecialRocketUseInitialAcceleration", true), fn_710000d228(), 0x38, -1, -1);
-    field5->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_FIELD(f32, "fWeaponBoostDamageMult_emmy", 0x24, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fWeaponBoostDamageMult_emmycave", 0x28, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSpecialBurstWidth", 0x2c, (DefaultValue, 5.0f), (ShowInConfig, true));
+    DREAD_REFLECTED_FIELD(f32, "fSpecialRocketTimeActivate", 0x30, (DefaultValue, 2.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSpecialRocketSpeed", 0x34, (DefaultValue, 10000.0f));
+    DREAD_REFLECTED_FIELD(bool, "bSpecialRocketUseInitialAcceleration", 0x38, (DefaultValue, true));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

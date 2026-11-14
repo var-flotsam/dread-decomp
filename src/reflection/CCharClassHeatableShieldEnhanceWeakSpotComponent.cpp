@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,18 +20,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassHeatableShieldEnhanceWeakSpotComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassHeatableShieldEnhanceWeakSpotComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sOnWeakSpotAimedWithMask", true), fn_710000fd7c(), 0x68, -1, -1);
-    field0->attrs.Add<base::global::CName>(fn_7100075240(), base::global::CName("protblueon"));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sOnWeakSpotAimedWithoutMask", true), fn_710000fd7c(), 0x70, -1, -1);
-    field1->attrs.Add<base::global::CName>(fn_7100075240(), base::global::CName("eyeblueon"));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sOnWeakSpotNotAimedWithMask", true), fn_710000fd7c(), 0x78, -1, -1);
-    field2->attrs.Add<base::global::CName>(fn_7100075240(), base::global::CName("protblueoff"));
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sOnWeakSpotNotAimedWithoutMask", true), fn_710000fd7c(), 0x80, -1, -1);
-    field3->attrs.Add<base::global::CName>(fn_7100075240(), base::global::CName("eyeblueoff"));
+    DREAD_REFLECTED_FIELD(base::global::CName, "sOnWeakSpotAimedWithMask", 0x68, (DefaultValue, base::global::CName("protblueon")));
+    DREAD_REFLECTED_FIELD(base::global::CName, "sOnWeakSpotAimedWithoutMask", 0x70, (DefaultValue, base::global::CName("eyeblueon")));
+    DREAD_REFLECTED_FIELD(base::global::CName, "sOnWeakSpotNotAimedWithMask", 0x78, (DefaultValue, base::global::CName("protblueoff")));
+    DREAD_REFLECTED_FIELD(base::global::CName, "sOnWeakSpotNotAimedWithoutMask", 0x80, (DefaultValue, base::global::CName("eyeblueoff")));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -44,6 +44,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 **Reflection attributes and registration**
 - `AddField` takes the name by value; `Add` by const reference as a {type, ptr} temporary; struct-typed defaults and `CVector2D` globals copied member by member: [Field registrations the reflection parser stopped at](#field-registrations-the-reflection-parser-stopped-at).
 - Collection types are globals built by static initialisers, all reached through the GOT: [Collection-type registration](#collection-type-registration).
+- A reflected field's attributes must each be their own statement, with the value's temporary materialized after the key call in the caller (no inlined setter, no chain): [One line per reflected field](#session-log-newest-first).
 - A class's reflection functions can live in a namespace of the class's name: it mangles as the class's static members would, so they map to `T::refl_<role>` names with no address in the source: [Reflected classes in a namespace of their name](#session-log-newest-first).
 
 **Transform nodes and math**
@@ -165,6 +166,18 @@ a real difference, it stays a draft). Cost: `--drafts` 470 s to 1,174 s, `--mino
 functions that stay inconclusive and use their budget. Of the 26 drafts, 9 moved to `src/` (`fn_7100e3cee0` among
 them: `fn_710007b444` is declared once now, in `UnkTU55.h`, for 21 files, and its ten id globals in `UnkTU2564.h`);
 the rest are held on declarations (their notes say which) or by another function of their file.
+**One line per reflected field (2026-11-14).** Second step of the readable reflection template. A field
+registration and its attributes now read `DREAD_REFLECTED_FIELD(f32, "fSpeed", 0x510, (DefaultValue, 1.0f),
+(Description, "..."));` (`include/base/reflection/ReflectedFields.h`), and the 63 attribute keys have the names
+they register (`attr::DefaultValue()` and so on). Byte-identical on all 819 changed files. What it took: a
+setter method (`.Default(1.0f)`) materializes the value before the key getter's call, and an inlined setter's
+temporary is hoisted to the entry block, which swaps two stack slots; a chain keeps every value's temporary
+alive to the end, which changes the frame; a string literal passed through a `const char*` parameter moves its
+pointer temporary into the callee. The macro expands each (key, value) pair into its own
+`field_->attrs.Add<std::decay_t<decltype(value)>>(key, value);` statement inside a `do` block, after the
+registration whose `CStrId` temporary has already ended. Fields with an attribute typed by a global
+descriptor (`Persistence`) or registered as a property (getter/setter functions) keep the long form for now.
+
 **Reflected classes in a namespace of their name (2026-11-14).** First step of the readable reflection template
 (owner-approved audit item). `src/reflection/` described each class by addresses: an `UnkRefl_fn_<init>` tag,
 traits whose members were `fn_0x58` and the like, helpers named `fn_<addr>` and a getter macro taking six

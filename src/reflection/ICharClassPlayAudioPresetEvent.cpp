@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,13 +20,8 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // ICharClassPlayAudioPresetEvent
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100090d50();
 void fn_7100beee0c();
 void fn_7100bee960(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100091080();
-const base::reflection::UnkReflAttrKey& fn_7100091190();
 namespace ICharClassPlayAudioPresetEvent {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Play Preset Iterface");
@@ -43,16 +39,9 @@ void refl_AddFields(CClass* cls) {
         fn_7100bee960(fn, "_sPresetUniqueID_SetterFunction");
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sPresetUniqueID", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fVolume", true), fn_710000abbc(), 0x30, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field1->attrs.Add<f32>(fn_7100091080(), -1.0f);
-    field1->attrs.Add<f32>(fn_7100091190(), 2.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fPitch", true), fn_710000abbc(), 0x34, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field2->attrs.Add<f32>(fn_7100091080(), -1.0f);
-    field2->attrs.Add<f32>(fn_7100091190(), 2.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bApplyModifier", true), fn_710000d228(), 0x38, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_FIELD(f32, "fVolume", 0x30, (DefaultValue, -1.0f), (MinValue, -1.0f), (MaxValue, 2.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPitch", 0x34, (DefaultValue, -1.0f), (MinValue, -1.0f), (MaxValue, 2.0f));
+    DREAD_REFLECTED_FIELD(bool, "bApplyModifier", 0x38, (DefaultValue, true));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

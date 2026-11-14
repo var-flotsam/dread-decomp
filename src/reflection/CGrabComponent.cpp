@@ -20,12 +20,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // CGrabComponent
 void fn_710113f59c();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
 extern base::reflection::CType g_unk_7172a08f58;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CGrabComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

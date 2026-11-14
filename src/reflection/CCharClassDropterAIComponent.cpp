@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,26 +20,18 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassDropterAIComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_71726dae18;
 const base::reflection::CClass* fn_71004e8674();
 namespace CCharClassDropterAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bWantsIceExplosion", true), fn_710000d228(), 0x50c, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxFreezeTime", true), fn_710000abbc(), 0x510, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 3.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMinFreezeTime", true), fn_710000abbc(), 0x514, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fFreezeExplosionPreparationTime", true), fn_710000abbc(), 0x518, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 1.5f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fFreezeExplosionRadius", true), fn_710000abbc(), 0x524, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 1000.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fFreezeExplosionDuration", true), fn_710000abbc(), 0x51c, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 0.35f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fFreezeExplosionRemanentDuration", true), fn_710000abbc(), 0x520, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 2.0f);
+    DREAD_REFLECTED_FIELD(bool, "bWantsIceExplosion", 0x50c, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fMaxFreezeTime", 0x510, (DefaultValue, 3.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinFreezeTime", 0x514, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fFreezeExplosionPreparationTime", 0x518, (DefaultValue, 1.5f));
+    DREAD_REFLECTED_FIELD(f32, "fFreezeExplosionRadius", 0x524, (DefaultValue, 1000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fFreezeExplosionDuration", 0x51c, (DefaultValue, 0.35f));
+    DREAD_REFLECTED_FIELD(f32, "fFreezeExplosionRemanentDuration", 0x520, (DefaultValue, 2.0f));
     UnkReflField* field7 = fn_7100096524(cls, CStrId("eSubspecies", true), &g_unk_71726dae18, 0x620, -1, -1);
     field7->attrs.Add<s32>(fn_7100075240(), &g_unk_71726dae18, 2147483647);
     UnkReflField* field8 = fn_7100096524(cls, CStrId("oDropterDiveAttackDef", true), fn_71004e8674(), 0x528, -1, -1);

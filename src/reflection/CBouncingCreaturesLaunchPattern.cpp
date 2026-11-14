@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,18 +22,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CBouncingCreaturesLaunchPattern
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CBouncingCreaturesLaunchPattern {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fAngle", true), fn_710000abbc(), 0x8, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 45.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fSpeed", true), fn_710000abbc(), 0xc, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1000.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fReboundImpulse", true), fn_710000abbc(), 0x10, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1000.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fDelay", true), fn_710000abbc(), 0x14, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    DREAD_REFLECTED_FIELD(f32, "fAngle", 0x8, (DefaultValue, 45.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSpeed", 0xc, (DefaultValue, 1000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fReboundImpulse", 0x10, (DefaultValue, 1000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDelay", 0x14, (DefaultValue, 0.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -71,10 +67,8 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726ef418 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bEnabled", true), fn_710000d228(), 0x21, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("iPattern", true), fn_7100014768(), 0x24, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), -1);
+    DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x21, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(s32, "iPattern", 0x24, (DefaultValue, -1));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
@@ -109,12 +103,10 @@ DREAD_REFLECTED_CLASS(CCharClassKraidBouncingCreaturesAttack::CTunableCharClassK
 
 // CCharClassKraidBouncingCreaturesAttack
 extern base::reflection::CType g_unk_71726ef250;
-const base::reflection::UnkReflAttrKey& fn_7100091d40();
 namespace CCharClassKraidBouncingCreaturesAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sEndAttackAnim", true), fn_7100009658(), 0xf0, -1, -1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_FIELD(CStrId, "sEndAttackAnim", 0xf0, (DefaultValue, CStrId(g_unk_7101d470e0)));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("tPatterns", true), &g_unk_71726ef250, 0xf8, -1, -1);
     field1->attrs_0x70.Add<bool>(fn_7100091d40(), true);
 }

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,8 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassMovementComponent
 void fn_710097b370();
 void fn_710097b0d4(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CCharClassMovementComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -38,11 +37,8 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("fPhysicsVelocityFriction", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
     field0->attrs.Add<const char*>(fn_7100007e80(), "Physics Velocity Friction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fGravityScalar", true), fn_710000abbc(), 0x60, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 2200.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Gravity Scalar");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bWantsCheckViewDirInComputeKinematicRotationDelta", true), fn_710000d228(), 0x58, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_FIELD(f32, "fGravityScalar", 0x60, (DefaultValue, 2200.0f), (Description, "Gravity Scalar"));
+    DREAD_REFLECTED_FIELD(bool, "bWantsCheckViewDirInComputeKinematicRotationDelta", 0x58, (DefaultValue, true));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

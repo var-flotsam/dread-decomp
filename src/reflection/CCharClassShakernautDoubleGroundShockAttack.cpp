@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,18 +20,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassShakernautDoubleGroundShockAttack
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassShakernautDoubleGroundShockAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fTimeToChargeDoubleGroundShock", true), fn_710000abbc(), 0xec, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.6f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("uNumShocks", true), fn_7100005178(), 0xf0, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), 12);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeBetweenShockwaves", true), fn_710000abbc(), 0xf4, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.08f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fTimeToEndShockwaves", true), fn_710000abbc(), 0xf8, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.6f);
+    DREAD_REFLECTED_FIELD(f32, "fTimeToChargeDoubleGroundShock", 0xec, (DefaultValue, 0.6f));
+    DREAD_REFLECTED_FIELD(u32, "uNumShocks", 0xf0, (DefaultValue, 12));
+    DREAD_REFLECTED_FIELD(f32, "fTimeBetweenShockwaves", 0xf4, (DefaultValue, 0.08f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToEndShockwaves", 0xf8, (DefaultValue, 0.6f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

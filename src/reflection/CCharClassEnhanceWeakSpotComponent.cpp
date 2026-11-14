@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,14 +20,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassEnhanceWeakSpotComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassEnhanceWeakSpotComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sOnWeakSpotAimed", true), fn_710000fd7c(), 0x58, -1, -1);
-    field0->attrs.Add<base::global::CName>(fn_7100075240(), base::global::CName("onweakspotaimed"));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sOnWeakSpotNotAimed", true), fn_710000fd7c(), 0x60, -1, -1);
-    field1->attrs.Add<base::global::CName>(fn_7100075240(), base::global::CName("onweakspotnotaimed"));
+    DREAD_REFLECTED_FIELD(base::global::CName, "sOnWeakSpotAimed", 0x58, (DefaultValue, base::global::CName("onweakspotaimed")));
+    DREAD_REFLECTED_FIELD(base::global::CName, "sOnWeakSpotNotAimed", 0x60, (DefaultValue, base::global::CName("onweakspotnotaimed")));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

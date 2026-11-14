@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,33 +20,17 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CGoToPointAction
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace behaviortree::CGoToPointAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sTargetPos", true), fn_7100009658(), 0x30, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "");
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Desired position");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bUpdateEachTick", true), fn_710000d228(), 0x39, -1, -1);
-    field1->attrs.Add<bool>(fn_7100075240(), false);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Should refresh destination with target pos value");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fReachedDistance", true), fn_710000abbc(), 0x12aec, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 10.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Reached distance");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bLookAtDir", true), fn_710000d228(), 0x38, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), true);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Should look at direction");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("bForceStop", true), fn_710000d228(), 0x12af0, -1, -1);
-    field4->attrs.Add<bool>(fn_7100075240(), true);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Force stop when finishing the action");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("bResetParams", true), fn_710000d228(), 0x12af1, -1, -1);
-    field5->attrs.Add<bool>(fn_7100075240(), false);
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Reset movement state params");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("bCheckIfSmartLink", true), fn_710000d228(), 0x12af2, -1, -1);
-    field6->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("bGeneratePathOnly", true), fn_710000d228(), 0x12af4, -1, -1);
-    field7->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(CStrId, "sTargetPos", 0x30, (DefaultValue, ""), (Description, "Desired position"));
+    DREAD_REFLECTED_FIELD(bool, "bUpdateEachTick", 0x39, (DefaultValue, false), (Description, "Should refresh destination with target pos value"));
+    DREAD_REFLECTED_FIELD(f32, "fReachedDistance", 0x12aec, (DefaultValue, 10.0f), (Description, "Reached distance"));
+    DREAD_REFLECTED_FIELD(bool, "bLookAtDir", 0x38, (DefaultValue, true), (Description, "Should look at direction"));
+    DREAD_REFLECTED_FIELD(bool, "bForceStop", 0x12af0, (DefaultValue, true), (Description, "Force stop when finishing the action"));
+    DREAD_REFLECTED_FIELD(bool, "bResetParams", 0x12af1, (DefaultValue, false), (Description, "Reset movement state params"));
+    DREAD_REFLECTED_FIELD(bool, "bCheckIfSmartLink", 0x12af2, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bGeneratePathOnly", 0x12af4, (DefaultValue, false));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

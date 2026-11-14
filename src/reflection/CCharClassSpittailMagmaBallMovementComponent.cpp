@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,20 +20,14 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassSpittailMagmaBallMovementComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassSpittailMagmaBallMovementComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fWidthMax", true), fn_710000abbc(), 0x134, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 200.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fWidthMin", true), fn_710000abbc(), 0x138, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fYOffset", true), fn_710000abbc(), 0x13c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 10.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fTimeToGrow", true), fn_710000abbc(), 0x140, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fTimeAtMaxSize", true), fn_710000abbc(), 0x144, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 2.0f);
+    DREAD_REFLECTED_FIELD(f32, "fWidthMax", 0x134, (DefaultValue, 200.0f));
+    DREAD_REFLECTED_FIELD(f32, "fWidthMin", 0x138, (DefaultValue, 100.0f));
+    DREAD_REFLECTED_FIELD(f32, "fYOffset", 0x13c, (DefaultValue, 10.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToGrow", 0x140, (DefaultValue, 2.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeAtMaxSize", 0x144, (DefaultValue, 2.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

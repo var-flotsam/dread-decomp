@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassBlockableWarningRadius::CTunableCharClassBlockableWarningRadius
 extern bool g_unk_71726c48f8;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726c4890;
 void fn_7100417f14(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -32,38 +32,22 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726c48f8 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fBlockableAttackWarningRadiusGooplot", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 800.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fBlockableAttackWarningRadiusChozoCommanderKiCounter", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 700.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fBlockableAttackWarningRadiusChozoCommanderKiStrike", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1300.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fBlockableAttackWarningRadiusPoisonfly", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 800.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fBlockableAttackWarningRadiusQuetzoa", true), fn_710000abbc(), 0x34, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 1200.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fBlockableAttackWarningRadiusIceflea", true), fn_710000abbc(), 0x38, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 700.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fBlockableAttackWarningRadiusTakumaku", true), fn_710000abbc(), 0x3c, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 600.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fBlockableAttackWarningRadiusDredhed", true), fn_710000abbc(), 0x40, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 900.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fBlockableAttackWarningRadiusBlindfly", true), fn_710000abbc(), 0x44, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 800.0f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fBlockableAttackWarningRadiusKlaida", true), fn_710000abbc(), 0x48, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 600.0f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fBlockableAttackWarningRadiusArmadigger", true), fn_710000abbc(), 0x4c, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 600.0f);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fBlockableAttackWarningRadiusShelmit", true), fn_710000abbc(), 0x50, -1, -1);
-    field11->attrs.Add<f32>(fn_7100075240(), 700.0f);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fBlockableAttackWarningRadiusDropter", true), fn_710000abbc(), 0x54, -1, -1);
-    field12->attrs.Add<f32>(fn_7100075240(), 700.0f);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("fBlockableAttackWarningRadiusSakai", true), fn_710000abbc(), 0x58, -1, -1);
-    field13->attrs.Add<f32>(fn_7100075240(), 1000.0f);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("fBlockableAttackWarningRadiusSharpaw", true), fn_710000abbc(), 0x5c, -1, -1);
-    field14->attrs.Add<f32>(fn_7100075240(), 700.0f);
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("fBlockableAttackWarningRadiusQuetshockerX", true), fn_710000abbc(), 0x60, -1, -1);
-    field15->attrs.Add<f32>(fn_7100075240(), 1200.0f);
+    DREAD_REFLECTED_FIELD(f32, "fBlockableAttackWarningRadiusGooplot", 0x24, (DefaultValue, 800.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBlockableAttackWarningRadiusChozoCommanderKiCounter", 0x28, (DefaultValue, 700.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBlockableAttackWarningRadiusChozoCommanderKiStrike", 0x2c, (DefaultValue, 1300.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBlockableAttackWarningRadiusPoisonfly", 0x30, (DefaultValue, 800.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBlockableAttackWarningRadiusQuetzoa", 0x34, (DefaultValue, 1200.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBlockableAttackWarningRadiusIceflea", 0x38, (DefaultValue, 700.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBlockableAttackWarningRadiusTakumaku", 0x3c, (DefaultValue, 600.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBlockableAttackWarningRadiusDredhed", 0x40, (DefaultValue, 900.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBlockableAttackWarningRadiusBlindfly", 0x44, (DefaultValue, 800.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBlockableAttackWarningRadiusKlaida", 0x48, (DefaultValue, 600.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBlockableAttackWarningRadiusArmadigger", 0x4c, (DefaultValue, 600.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBlockableAttackWarningRadiusShelmit", 0x50, (DefaultValue, 700.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBlockableAttackWarningRadiusDropter", 0x54, (DefaultValue, 700.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBlockableAttackWarningRadiusSakai", 0x58, (DefaultValue, 1000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBlockableAttackWarningRadiusSharpaw", 0x5c, (DefaultValue, 700.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBlockableAttackWarningRadiusQuetshockerX", 0x60, (DefaultValue, 1200.0f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassChozoCommanderPowerPulseAttack
 void fn_7100422470();
 void fn_7100422084(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassChozoCommanderPowerPulseAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -36,14 +36,10 @@ void refl_AddFields(CClass* cls) {
         fn_7100422084(fn, "_fFinalAngleDeg_SetterFunction");
     UnkReflField* field0 = fn_7100096524(cls, CStrId("fFinalAngleDeg", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field0->attrs.Add<f32>(fn_7100075240(), 55.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeAtFinalAngle", true), fn_710000abbc(), 0x104, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeToReachFinalAngle", true), fn_710000abbc(), 0x108, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMinDistToWall", true), fn_710000abbc(), 0x10c, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 800.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sAngleIncrementCurve", true), fn_7100009658(), 0x110, -1, -1);
-    field4->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_FIELD(f32, "fTimeAtFinalAngle", 0x104, (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToReachFinalAngle", 0x108, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinDistToWall", 0x10c, (DefaultValue, 800.0f));
+    DREAD_REFLECTED_FIELD(CStrId, "sAngleIncrementCurve", 0x110, (DefaultValue, CStrId(g_unk_7101d470e0)));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

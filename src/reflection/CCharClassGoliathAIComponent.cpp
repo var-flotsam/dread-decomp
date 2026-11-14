@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,13 +21,11 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassGoliathAIComponent
 const base::reflection::CClass* fn_710058cb04();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassGoliathAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("oGoliathAttackDef", true), fn_710058cb04(), 0x530, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fAnimSpeedMultiplier", true), fn_710000abbc(), 0x620, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    DREAD_REFLECTED_FIELD(f32, "fAnimSpeedMultiplier", 0x620, (DefaultValue, 1.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -57,12 +56,9 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726e6468 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fFleeTimeToReturnToPatrol", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 5.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fChaseMinDistance", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 550.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fChaseMaxDistance", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 550.0f);
+    DREAD_REFLECTED_FIELD(f32, "fFleeTimeToReturnToPatrol", 0x24, (DefaultValue, 5.0f));
+    DREAD_REFLECTED_FIELD(f32, "fChaseMinDistance", 0x28, (DefaultValue, 550.0f));
+    DREAD_REFLECTED_FIELD(f32, "fChaseMaxDistance", 0x2c, (DefaultValue, 550.0f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

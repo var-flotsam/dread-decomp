@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,17 +21,14 @@ using base::reflection::DestroyDestructorFirst;
 
 // CPowerUpLifeComponent
 extern base::reflection::CType g_unk_71727b6270;
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 void fn_71008e4a70(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_71000904d0();
 namespace CPowerUpLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("wpCheckPointEntity", true), &g_unk_71727b6270, 0x388, -1, -1);
     field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sPowerupNameLabelID", true), fn_7100009658(), 0x3d8, -1, -1);
+    DREAD_REFLECTED_FIELD(CStrId, "sPowerupNameLabelID", 0x3d8);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetCustomParams", true))) {
         fn_71008e4a70(fn, "SetCustomParams");
         fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Set Custom Params"));

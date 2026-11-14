@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -48,14 +49,7 @@ DREAD_REFLECTED_CLASS(CGrappleBeamGun, CPrimaryGun);
 
 // CGrappleBeamGun::CTunableGrappleBeamGun
 extern bool g_unk_7172725c00;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern base::reflection::CType g_unk_7172725900;
-const base::reflection::UnkReflAttrKey& fn_7100093170();
-const base::reflection::UnkReflAttrKey& fn_71000916e0();
-const base::reflection::UnkReflAttrKey& fn_71000917f0();
-const base::reflection::UnkReflAttrKey& fn_7100324d10();
-const base::reflection::UnkReflAttrKey& fn_7100324c00();
 extern base::reflection::CType g_unk_7172725a60;
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172725bc8;
@@ -68,12 +62,8 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172725c00 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fDamageAmount", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 25.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Single shot damage amount");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fHeat", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.3f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Maximun damage to the shield");
+    DREAD_REFLECTED_FIELD(f32, "fDamageAmount", 0x24, (DefaultValue, 25.0f), (Description, "Single shot damage amount"));
+    DREAD_REFLECTED_FIELD(f32, "fHeat", 0x28, (DefaultValue, 0.3f), (Description, "Maximun damage to the shield"));
     UnkReflField* field2 = fn_7100096524(cls, CStrId("iSelectionMode", true), fn_7100014768(), 0x2c, -1, -1);
     field2->attrs.Add<s32>(fn_7100075240(), &g_unk_7172725900, 0);
     field2->attrs.Add<bool>(fn_7100093170(), true);

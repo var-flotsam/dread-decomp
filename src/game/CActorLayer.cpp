@@ -82,14 +82,6 @@ static inline const CType* AnyListType() { return reinterpret_cast<const CType*>
 
 // Attribute keys used only here (their strings are unknown).
 const base::reflection::UnkReflAttrKey& fn_710025d550();
-const base::reflection::UnkReflAttrKey& fn_710008fb40();
-const base::reflection::UnkReflAttrKey& fn_71000901a0();
-const base::reflection::UnkReflAttrKey& fn_7100234780();
-const base::reflection::UnkReflAttrKey& fn_7100092b10();
-const base::reflection::UnkReflAttrKey& fn_710008ff80();
-const base::reflection::UnkReflAttrKey& fn_710025d990();
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
-const base::reflection::UnkReflAttrKey& fn_710025dbb0();
 const base::reflection::UnkReflAttrKey& fn_710025dcc0();
 
 // The getters' invokers and the functions' set-up (each given the function's name).

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,9 +20,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassFXCreateTrailEvent
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100090d50();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_71727b8ef8;
 namespace CCharClassFXCreateTrailEvent {
 void refl_AddAttributes(CClass* cls) {
@@ -29,46 +27,27 @@ void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("FX", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sName", true), fn_7100009658(), 0x10, -1, -1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sMaterial", true), fn_710000ad9c(), 0x18, -1, -1);
-    field1->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(g_unk_7101d470e8));
+    DREAD_REFLECTED_FIELD(CStrId, "sName", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sMaterial", 0x18, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)));
     UnkReflField* field2 = fn_7100096524(cls, CStrId("eLinkType", true), &g_unk_71727b8ef8, 0x20, -1, -1);
     field2->attrs.Add<s32>(fn_7100075240(), &g_unk_71727b8ef8, 4);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sBone", true), fn_7100009658(), 0x28, -1, -1);
-    field3->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fColorR", true), fn_710000abbc(), 0x30, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fColorG", true), fn_710000abbc(), 0x34, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fColorB", true), fn_710000abbc(), 0x38, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fColorA", true), fn_710000abbc(), 0x3c, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fLength", true), fn_710000abbc(), 0x40, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 500.0f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fStepLength", true), fn_710000abbc(), 0x44, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 50.0f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fWidth", true), fn_710000abbc(), 0x48, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("bUVCycling", true), fn_710000d228(), 0x4c, -1, -1);
-    field11->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fUVCyclingDistance", true), fn_710000abbc(), 0x50, -1, -1);
-    field12->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("fLifeTime", true), fn_710000abbc(), 0x54, -1, -1);
-    field13->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("fPositionOffsetX", true), fn_710000abbc(), 0x58, -1, -1);
-    field14->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("fPositionOffsetY", true), fn_710000abbc(), 0x5c, -1, -1);
-    field15->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("fPositionOffsetZ", true), fn_710000abbc(), 0x60, -1, -1);
-    field16->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("fRotationOffsetX", true), fn_710000abbc(), 0x64, -1, -1);
-    field17->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field18 = fn_7100096524(cls, CStrId("fRotationOffsetY", true), fn_710000abbc(), 0x68, -1, -1);
-    field18->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field19 = fn_7100096524(cls, CStrId("fRotationOffsetZ", true), fn_710000abbc(), 0x6c, -1, -1);
-    field19->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    DREAD_REFLECTED_FIELD(CStrId, "sBone", 0x28, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(f32, "fColorR", 0x30, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fColorG", 0x34, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fColorB", 0x38, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fColorA", 0x3c, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLength", 0x40, (DefaultValue, 500.0f));
+    DREAD_REFLECTED_FIELD(f32, "fStepLength", 0x44, (DefaultValue, 50.0f));
+    DREAD_REFLECTED_FIELD(f32, "fWidth", 0x48, (DefaultValue, 100.0f));
+    DREAD_REFLECTED_FIELD(bool, "bUVCycling", 0x4c, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fUVCyclingDistance", 0x50, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLifeTime", 0x54, (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPositionOffsetX", 0x58, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPositionOffsetY", 0x5c, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPositionOffsetZ", 0x60, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fRotationOffsetX", 0x64, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fRotationOffsetY", 0x68, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fRotationOffsetZ", 0x6c, (DefaultValue, 0.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

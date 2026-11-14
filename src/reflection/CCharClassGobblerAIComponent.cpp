@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,29 +21,19 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassGobblerAIComponent
 const base::reflection::CClass* fn_710057fbf4();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassGobblerAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("oGobblerBiteAttackDef", true), fn_710057fbf4(), 0x510, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMinImpulseFactorX", true), fn_710000abbc(), 0x600, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMinImpulseFactorY", true), fn_710000abbc(), 0x604, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.55f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMaxImpulseFactorX", true), fn_710000abbc(), 0x608, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 1.6f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fMaxImpulseFactorY", true), fn_710000abbc(), 0x60c, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.55f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fDistForMaxImpulse", true), fn_710000abbc(), 0x610, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 300.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fDistForMinImpulse", true), fn_710000abbc(), 0x614, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 700.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fDistanceToBiteAttack", true), fn_710000abbc(), 0x618, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 500.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fMinNervousnessDist", true), fn_710000abbc(), 0x61c, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 900.0f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fMaxNervousnessDist", true), fn_710000abbc(), 0x620, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 650.0f);
+    DREAD_REFLECTED_FIELD(f32, "fMinImpulseFactorX", 0x600, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinImpulseFactorY", 0x604, (DefaultValue, 0.55f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxImpulseFactorX", 0x608, (DefaultValue, 1.6f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxImpulseFactorY", 0x60c, (DefaultValue, 0.55f));
+    DREAD_REFLECTED_FIELD(f32, "fDistForMaxImpulse", 0x610, (DefaultValue, 300.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDistForMinImpulse", 0x614, (DefaultValue, 700.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDistanceToBiteAttack", 0x618, (DefaultValue, 500.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinNervousnessDist", 0x61c, (DefaultValue, 900.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxNervousnessDist", 0x620, (DefaultValue, 650.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,14 +20,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassSluggerAcidBallMovementComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassSluggerAcidBallMovementComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fTimeMeleeable", true), fn_710000abbc(), 0x134, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.3f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeAbortable", true), fn_710000abbc(), 0x138, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_FIELD(f32, "fTimeMeleeable", 0x134, (DefaultValue, 0.3f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeAbortable", 0x138, (DefaultValue, -1.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

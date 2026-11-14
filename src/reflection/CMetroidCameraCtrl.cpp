@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -40,8 +41,6 @@ DREAD_REFLECTED_CLASS(CMetroidCameraCtrl, CCameraBoundaryCtrl);
 
 // CMetroidCameraCtrl::CTunableMetroidCameraCtrl
 extern bool g_unk_7172738cb8;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172738c28;
 void fn_710093446c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -53,56 +52,30 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172738cb8 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fZoomMinDistCamZ", true), fn_710000abbc(), 0x28, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 1000.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fZoomMaxDistCamZ", true), fn_710000abbc(), 0x2c, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 2630.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fZoomMinCamDistToApplyOffsetX", true), fn_710000abbc(), 0x30, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 700.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fEmmyPhase1ChaseMinEmmyDist", true), fn_710000abbc(), 0x44, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 1000.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fEmmyPhase1ChaseMaxEmmyDist", true), fn_710000abbc(), 0x48, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 3000.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fEmmyPhase1ChaseMinEmmyDistCamZ", true), fn_710000abbc(), 0x4c, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 2630.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fEmmyPhase1ChaseMaxEmmyDistCamZ", true), fn_710000abbc(), 0x50, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 2630.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fEmmyPhase1NoChaseMinEmmyDist", true), fn_710000abbc(), 0x34, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 1000.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fEmmyPhase1NoChaseMaxEmmyDist", true), fn_710000abbc(), 0x38, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 3000.0f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fEmmyPhase1NoChaseMinEmmyDistCamZ", true), fn_710000abbc(), 0x3c, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 1600.0f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fEmmyPhase1NoChaseMaxEmmyDistCamZ", true), fn_710000abbc(), 0x40, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 2630.0f);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fEmmyPhase2MinEmmyDist", true), fn_710000abbc(), 0x54, -1, -1);
-    field11->attrs.Add<f32>(fn_7100075240(), 1000.0f);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fEmmyPhase2MaxEmmyDist", true), fn_710000abbc(), 0x58, -1, -1);
-    field12->attrs.Add<f32>(fn_7100075240(), 3000.0f);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("fEmmyPhase2MinEmmyDistCamZ", true), fn_710000abbc(), 0x5c, -1, -1);
-    field13->attrs.Add<f32>(fn_7100075240(), 1600.0f);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("fEmmyPhase2MaxEmmyDistCamZ", true), fn_710000abbc(), 0x60, -1, -1);
-    field14->attrs.Add<f32>(fn_7100075240(), 2630.0f);
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("fEmmyDistanceZoomWalkDefault", true), fn_710000abbc(), 0x64, -1, -1);
-    field15->attrs.Add<f32>(fn_7100075240(), 2630.0f);
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("fEmmyDistanceZoomWalkMinEmmyDist", true), fn_710000abbc(), 0x68, -1, -1);
-    field16->attrs.Add<f32>(fn_7100075240(), 1000.0f);
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("fEmmyDistanceZoomWalkMaxEmmyDist", true), fn_710000abbc(), 0x6c, -1, -1);
-    field17->attrs.Add<f32>(fn_7100075240(), 3000.0f);
-    UnkReflField* field18 = fn_7100096524(cls, CStrId("fEmmyDistanceZoomWalkMinEmmyDistCamZ", true), fn_710000abbc(), 0x70, -1, -1);
-    field18->attrs.Add<f32>(fn_7100075240(), 2000.0f);
-    UnkReflField* field19 = fn_7100096524(cls, CStrId("fEmmyDistanceZoomWalkMaxEmmyDistCamZ", true), fn_710000abbc(), 0x74, -1, -1);
-    field19->attrs.Add<f32>(fn_7100075240(), 2630.0f);
-    UnkReflField* field20 = fn_7100096524(cls, CStrId("fEmmyDistanceZoomWalkOCStoppedCamZ", true), fn_710000abbc(), 0x78, -1, -1);
-    field20->attrs.Add<f32>(fn_7100075240(), 800.0f);
-    field20->attrs.Add<const char*>(fn_7100007e80(), "Obsolete");
-    UnkReflField* field21 = fn_7100096524(cls, CStrId("fEmmyDistanceZoomWalkOCStoppedCamMaxOffsetX", true), fn_710000abbc(), 0x7c, -1, -1);
-    field21->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    field21->attrs.Add<const char*>(fn_7100007e80(), "Obsolete");
-    UnkReflField* field22 = fn_7100096524(cls, CStrId("fEmmyDistanceZoomWalkDisableAutoFocusEmmyExtraDistance", true), fn_710000abbc(), 0x80, -1, -1);
-    field22->attrs.Add<f32>(fn_7100075240(), 300.0f);
-    UnkReflField* field23 = fn_7100096524(cls, CStrId("fEmmyDistanceZoomWalkAutoFocusDistCamZ", true), fn_710000abbc(), 0x84, -1, -1);
-    field23->attrs.Add<f32>(fn_7100075240(), 1600.0f);
+    DREAD_REFLECTED_FIELD(f32, "fZoomMinDistCamZ", 0x28, (DefaultValue, 1000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fZoomMaxDistCamZ", 0x2c, (DefaultValue, 2630.0f));
+    DREAD_REFLECTED_FIELD(f32, "fZoomMinCamDistToApplyOffsetX", 0x30, (DefaultValue, 700.0f));
+    DREAD_REFLECTED_FIELD(f32, "fEmmyPhase1ChaseMinEmmyDist", 0x44, (DefaultValue, 1000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fEmmyPhase1ChaseMaxEmmyDist", 0x48, (DefaultValue, 3000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fEmmyPhase1ChaseMinEmmyDistCamZ", 0x4c, (DefaultValue, 2630.0f));
+    DREAD_REFLECTED_FIELD(f32, "fEmmyPhase1ChaseMaxEmmyDistCamZ", 0x50, (DefaultValue, 2630.0f));
+    DREAD_REFLECTED_FIELD(f32, "fEmmyPhase1NoChaseMinEmmyDist", 0x34, (DefaultValue, 1000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fEmmyPhase1NoChaseMaxEmmyDist", 0x38, (DefaultValue, 3000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fEmmyPhase1NoChaseMinEmmyDistCamZ", 0x3c, (DefaultValue, 1600.0f));
+    DREAD_REFLECTED_FIELD(f32, "fEmmyPhase1NoChaseMaxEmmyDistCamZ", 0x40, (DefaultValue, 2630.0f));
+    DREAD_REFLECTED_FIELD(f32, "fEmmyPhase2MinEmmyDist", 0x54, (DefaultValue, 1000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fEmmyPhase2MaxEmmyDist", 0x58, (DefaultValue, 3000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fEmmyPhase2MinEmmyDistCamZ", 0x5c, (DefaultValue, 1600.0f));
+    DREAD_REFLECTED_FIELD(f32, "fEmmyPhase2MaxEmmyDistCamZ", 0x60, (DefaultValue, 2630.0f));
+    DREAD_REFLECTED_FIELD(f32, "fEmmyDistanceZoomWalkDefault", 0x64, (DefaultValue, 2630.0f));
+    DREAD_REFLECTED_FIELD(f32, "fEmmyDistanceZoomWalkMinEmmyDist", 0x68, (DefaultValue, 1000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fEmmyDistanceZoomWalkMaxEmmyDist", 0x6c, (DefaultValue, 3000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fEmmyDistanceZoomWalkMinEmmyDistCamZ", 0x70, (DefaultValue, 2000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fEmmyDistanceZoomWalkMaxEmmyDistCamZ", 0x74, (DefaultValue, 2630.0f));
+    DREAD_REFLECTED_FIELD(f32, "fEmmyDistanceZoomWalkOCStoppedCamZ", 0x78, (DefaultValue, 800.0f), (Description, "Obsolete"));
+    DREAD_REFLECTED_FIELD(f32, "fEmmyDistanceZoomWalkOCStoppedCamMaxOffsetX", 0x7c, (DefaultValue, 100.0f), (Description, "Obsolete"));
+    DREAD_REFLECTED_FIELD(f32, "fEmmyDistanceZoomWalkDisableAutoFocusEmmyExtraDistance", 0x80, (DefaultValue, 300.0f));
+    DREAD_REFLECTED_FIELD(f32, "fEmmyDistanceZoomWalkAutoFocusDistCamZ", 0x84, (DefaultValue, 1600.0f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,20 +20,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassNavMeshItemComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_717273d9d0;
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CCharClassNavMeshItemComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sInitialStage", true), fn_7100009658(), 0x58, -1, -1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_FIELD(CStrId, "sInitialStage", 0x58, (DefaultValue, CStrId(g_unk_7101d470e0)));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("eType", true), &g_unk_717273d9d0, 0x60, -1, -1);
     field1->attrs.Add<s32>(fn_7100075240(), &g_unk_717273d9d0, 0);
     field1->attrs.Add<const char*>(fn_7100007e80(), "Type (Static, Dynamic or Destructible)");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bConnectSubareas", true), fn_710000d228(), 0x64, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Connect subareas?");
+    DREAD_REFLECTED_FIELD(bool, "bConnectSubareas", 0x64, (DefaultValue, false), (Description, "Connect subareas?"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
