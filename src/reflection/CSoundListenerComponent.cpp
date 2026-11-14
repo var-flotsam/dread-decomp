@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,8 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 // CSoundListenerComponent
 void fn_710090ee6c();
 void fn_710090e924(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d55008;
-extern base::reflection::CType g_unk_7101d679f0;
 namespace CSoundListenerComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -35,11 +34,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vLookAt_SetterFunction", true)))
         fn_710090e924(fn, "_vLookAt_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("vLookAt", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{1.0f, 0.0f, 0.0f});
-    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 3);
-    field0->attrs.Add<bool>(fn_71000925c0(), true);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vLookAt", (DefaultValue, base::math::CVector3D{1.0f, 0.0f, 0.0f}), (EditorModeDataFlow, 3), (bSkipDataFlowOrder, true), (Persistence, 0));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

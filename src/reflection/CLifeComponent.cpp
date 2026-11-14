@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -39,11 +40,7 @@ void fn_7100302d14(UnkReflFunction* fn);
 namespace CLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bWantsCameraFXPreset", true), fn_710000d228(), 0xe0, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), true);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Wants Camera FX Preset");
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field0->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_FIELD(bool, "bWantsCameraFXPreset", 0xe0, (DefaultValue, true), (Description, "Wants Camera FX Preset"), (Persistence, 0), (EditorVisible, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetOnDamageCallback", true))) {
         fn_710115f078(fn, "SetOnDamageCallback");
         fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Set on damage lua callback"));
@@ -64,11 +61,7 @@ void refl_AddFields(CClass* cls) {
     field1->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("max life"));
     field1->attrs.Add(fn_71000926d0(), &g_unk_7101d60ff0, base::reflection::UnkReflStringList(0x0, base::reflection::UnkReflList<base::global::CRntString>({""}, 0xa, nullptr, 0xf)));
     field1->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fCurrentLife", true), fn_710000abbc(), 0x54, -1, -1);
-    field2->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field2->attrs.Add<bool>(fn_7100090a20(), false);
-    field2->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Current Life");
+    DREAD_REFLECTED_FIELD(f32, "fCurrentLife", 0x54, (Persistence, 0), (EditorVisible, false), (DefaultValue, -1.0f), (Description, "Current Life"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fCurrentLife_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fCurrentLife_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -89,13 +82,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bCurrentLifeLocked_SetterFunction", true)))
         fn_710115f424(fn, "_m_bCurrentLifeLocked_SetterFunction");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bCurrentLifeLocked", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field3->attrs.Add<bool>(fn_7100075240(), false);
-    field3->attrs.Add<bool>(fn_7100093170(), true);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Player life locked");
-    field3->attrs.Add<const char*>(fn_7100324c00(), "General");
-    field3->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field3->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_PROPERTY(bool, "bCurrentLifeLocked", (DefaultValue, false), (ShowInConfig, true), (Description, "Player life locked"), (InternalTag, "General"), (Persistence, 0), (EditorVisible, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetInvulnerableWithReaction", true))) {
         fn_710115f5a0(fn, "SetInvulnerableWithReaction");
         fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Set invulnerability"));

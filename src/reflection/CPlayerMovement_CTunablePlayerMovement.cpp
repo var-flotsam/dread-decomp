@@ -23,8 +23,6 @@ using base::reflection::DestroyDestructorFirst;
 extern bool g_unk_7172a03df0;
 void fn_71010dce08();
 void fn_71010d6424(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d679f0;
-extern base::reflection::CType g_unk_7101d55008;
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172a03d80;
 void fn_71010d65a0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -69,13 +67,8 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iFocusMode_SetterFunction", true)))
         fn_71010d6424(fn, "_iFocusMode_SetterFunction");
-    UnkReflField* field24 = fn_7100096524(cls, CStrId("iFocusMode", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field24->attrs.Add<s32>(fn_7100075240(), 0);
-    UnkReflField* field25 = fn_7100096524(cls, CStrId("fParkourMinAdaptiveAnticipationFactor", true), fn_710000abbc(), 0xffffffff, -1, -1);
-    field25->attrs.Add<bool>(fn_7100093390(), true);
-    field25->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field25->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field25->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_PROPERTY(s32, "iFocusMode", (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD(f32, "fParkourMinAdaptiveAnticipationFactor", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

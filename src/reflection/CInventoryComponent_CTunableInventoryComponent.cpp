@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -42,14 +43,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iMaxNumMissiles_SetterFunction", true)))
         fn_710113ff7c(fn, "_iMaxNumMissiles_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("iMaxNumMissiles", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<s32>(fn_7100075240(), 100);
-    field0->attrs.Add<bool>(fn_7100093170(), true);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Max missiles");
-    field0->attrs.Add<s32>(fn_71000916e0(), 0);
-    field0->attrs.Add<s32>(fn_71000917f0(), 500);
-    field0->attrs.Add<s32>(fn_7100324d10(), 1);
-    field0->attrs.Add<const char*>(fn_7100324c00(), "General");
+    DREAD_REFLECTED_PROPERTY(s32, "iMaxNumMissiles", (DefaultValue, 100), (ShowInConfig, true), (Description, "Max missiles"), (MinValueI, 0), (MaxValueI, 500), (ControlIntStep, 1), (InternalTag, "General"));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

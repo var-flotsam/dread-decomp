@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -39,9 +40,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_v2Min_SetterFunction", true)))
         fn_7100d5db88(fn, "_v2Min_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("v2Min", true), fn_7100024504(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<base::math::CVector2D>(fn_7100075240(), base::math::CVector2D{-200.0f, -200.0f});
-    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Min Point"));
+    DREAD_REFLECTED_PROPERTY(base::math::CVector2D, "v2Min", (DefaultValue, base::math::CVector2D{-200.0f, -200.0f}), (Description, base::global::CRntString("Min Point")));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_v2Max_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_v2Max_GetterFunction", true);
         fn->return_type = fn_7100024504();
@@ -51,9 +50,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_v2Max_SetterFunction", true)))
         fn_7100d5dd04(fn, "_v2Max_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("v2Max", true), fn_7100024504(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<base::math::CVector2D>(fn_7100075240(), base::math::CVector2D{200.0f, 200.0f});
-    field1->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Max Point"));
+    DREAD_REFLECTED_PROPERTY(base::math::CVector2D, "v2Max", (DefaultValue, base::math::CVector2D{200.0f, 200.0f}), (Description, base::global::CRntString("Max Point")));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bOutwardsNormal_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bOutwardsNormal_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -63,8 +60,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bOutwardsNormal_SetterFunction", true)))
         fn_7100d5de80(fn, "_bOutwardsNormal_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bOutwardsNormal", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_PROPERTY(bool, "bOutwardsNormal", (DefaultValue, false));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

@@ -25,7 +25,6 @@ void fn_710087412c();
 void fn_7100874050(UnkReflFunction* fn);
 void fn_7100870a5c(UnkReflFunction* fn, const char* name);
 void fn_7100874290();
-extern base::reflection::CType g_unk_7101d679f0;
 namespace CInputComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -49,8 +48,7 @@ void refl_AddFields(CClass* cls) {
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100874290);
     }
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bInputIgnored", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_READ_ONLY_PROPERTY(bool, "bInputIgnored", (Persistence, 0));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

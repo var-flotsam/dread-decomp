@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -37,9 +38,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vPos_SetterFunction", true)))
         fn_7100d69d64(fn, "_vPos_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("vPos", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Position");
+    DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vPos", (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}), (Description, "Position"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bIsSolid_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bIsSolid_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -49,8 +48,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bIsSolid_SetterFunction", true)))
         fn_7100d69ee0(fn, "_m_bIsSolid_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bIsSolid", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_PROPERTY(bool, "bIsSolid", (DefaultValue, true));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

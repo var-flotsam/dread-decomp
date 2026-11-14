@@ -69,8 +69,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sModelPath_SetterFunction", true)))
         fn_71008fec3c(fn, "_m_sModelPath_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sModelPath", true), fn_710000ad9c(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId("", true));
+    DREAD_REFLECTED_PROPERTY(base::global::CFilePathStrId, "sModelPath", (DefaultValue, base::global::CFilePathStrId("", true)));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("eLowPassFilter", true), &g_unk_7108b6cde8, 0xc08, -1, -1);
     field1->attrs.Add<s32>(fn_7100075240(), &g_unk_7108b6cde8, 14);
     UnkReflField* field2 = fn_7100096524(cls, CStrId("eReverb", true), &g_unk_7108b6cc88, 0xc0c, -1, -1);

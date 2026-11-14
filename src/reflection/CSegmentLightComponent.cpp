@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 // CSegmentLightComponent
 void fn_71008f49e4();
 void fn_71008f36b4(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d55008;
 void fn_71008f4c34();
 void fn_71008f3830(UnkReflFunction* fn, const char* name);
 void fn_71008f4db0();
@@ -44,9 +44,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vDir_SetterFunction", true)))
         fn_71008f36b4(fn, "_vDir_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("vDir", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{1.0f, 0.0f, 0.0f});
-    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vDir", (DefaultValue, base::math::CVector3D{1.0f, 0.0f, 0.0f}), (EditorModeDataFlow, 1));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fSegmentLength_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fSegmentLength_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -56,8 +54,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fSegmentLength_SetterFunction", true)))
         fn_71008f3830(fn, "_fSegmentLength_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fSegmentLength", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<f32>(fn_7100075240(), 400.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fSegmentLength", (DefaultValue, 400.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttMin_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fAttMin_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -67,9 +64,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttMin_SetterFunction", true)))
         fn_71008f39ac(fn, "_fAttMin_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fAttMin", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field2->attrs.Add<f32>(fn_7100075240(), 400.0f);
-    field2->attrs.Add<CStrId>(fn_71000914c0(), CStrId("fAttMax", true));
+    DREAD_REFLECTED_PROPERTY(f32, "fAttMin", (DefaultValue, 400.0f), (MaxValueProperty, CStrId("fAttMax", true)));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttMax_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fAttMax_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -79,9 +74,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttMax_SetterFunction", true)))
         fn_71008f3b28(fn, "_fAttMax_SetterFunction");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fAttMax", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field3->attrs.Add<f32>(fn_7100075240(), 500.0f);
-    field3->attrs.Add<CStrId>(fn_71000913b0(), CStrId("fAttMin", true));
+    DREAD_REFLECTED_PROPERTY(f32, "fAttMax", (DefaultValue, 500.0f), (MinValueProperty, CStrId("fAttMin", true)));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttConstantFactor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fAttConstantFactor_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -91,9 +84,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttConstantFactor_SetterFunction", true)))
         fn_71008f3ca4(fn, "_fAttConstantFactor_SetterFunction");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fAttConstantFactor", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field4->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fAttConstantFactor", (DefaultValue, 0.0f), (MinValue, 0.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttQuadraticFactor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fAttQuadraticFactor_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -103,9 +94,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttQuadraticFactor_SetterFunction", true)))
         fn_71008f3e20(fn, "_fAttQuadraticFactor_SetterFunction");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fAttQuadraticFactor", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field5->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field5->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fAttQuadraticFactor", (DefaultValue, 0.0f), (MinValue, 0.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

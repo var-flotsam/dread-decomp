@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -46,9 +47,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vColorTitle_SetterFunction", true)))
         fn_7101183378(fn, "_m_vColorTitle_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("vColorTitle", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{1.0f, 1.0f, 1.0f});
-    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Title color"));
+    DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vColorTitle", (DefaultValue, base::math::CVector3D{1.0f, 1.0f, 1.0f}), (Description, base::global::CRntString("Title color")));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vColorSubtitle_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_vColorSubtitle_GetterFunction", true);
         fn->return_type = fn_71000246e4();
@@ -58,9 +57,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vColorSubtitle_SetterFunction", true)))
         fn_71011834f4(fn, "_m_vColorSubtitle_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("vColorSubtitle", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{1.0f, 1.0f, 1.0f});
-    field1->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Subtitle color"));
+    DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vColorSubtitle", (DefaultValue, base::math::CVector3D{1.0f, 1.0f, 1.0f}), (Description, base::global::CRntString("Subtitle color")));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vColorEntry_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_vColorEntry_GetterFunction", true);
         fn->return_type = fn_71000246e4();
@@ -70,9 +67,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vColorEntry_SetterFunction", true)))
         fn_7101183670(fn, "_m_vColorEntry_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("vColorEntry", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field2->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{1.0f, 1.0f, 1.0f});
-    field2->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Entry color"));
+    DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vColorEntry", (DefaultValue, base::math::CVector3D{1.0f, 1.0f, 1.0f}), (Description, base::global::CRntString("Entry color")));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

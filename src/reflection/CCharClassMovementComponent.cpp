@@ -34,9 +34,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fPhysicsVelocityFriction_SetterFunction", true)))
         fn_710097b0d4(fn, "_m_fPhysicsVelocityFriction_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fPhysicsVelocityFriction", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Physics Velocity Friction");
+    DREAD_REFLECTED_PROPERTY(f32, "fPhysicsVelocityFriction", (DefaultValue, 0.0f), (Description, "Physics Velocity Friction"));
     DREAD_REFLECTED_FIELD(f32, "fGravityScalar", 0x60, (DefaultValue, 2200.0f), (Description, "Gravity Scalar"));
     DREAD_REFLECTED_FIELD(bool, "bWantsCheckViewDirInComputeKinematicRotationDelta", 0x58, (DefaultValue, true));
 }

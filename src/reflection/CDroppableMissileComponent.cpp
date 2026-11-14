@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -35,9 +36,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sItemMax_SetterFunction", true)))
         fn_71007bc318(fn, "_sItemMax_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sItemMax", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "");
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Inventory item max");
+    DREAD_REFLECTED_PROPERTY(CStrId, "sItemMax", (DefaultValue, ""), (Description, "Inventory item max"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sItemCurrent_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sItemCurrent_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -47,9 +46,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sItemCurrent_SetterFunction", true)))
         fn_71007bc494(fn, "_sItemCurrent_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sItemCurrent", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<const char*>(fn_7100075240(), "");
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Inventory item current");
+    DREAD_REFLECTED_PROPERTY(CStrId, "sItemCurrent", (DefaultValue, ""), (Description, "Inventory item current"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

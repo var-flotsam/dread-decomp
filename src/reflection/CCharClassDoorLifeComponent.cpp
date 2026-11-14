@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -53,9 +54,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMinTimeClosed_SetterFunction", true)))
         fn_71008b1b68(fn, "_fMinTimeClosed_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMinTimeClosed", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Minimum time to stay closed");
+    DREAD_REFLECTED_PROPERTY(f32, "fMinTimeClosed", (DefaultValue, 0.0f), (Description, "Minimum time to stay closed"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMaxDistanceOpened_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fMaxDistanceOpened_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -65,9 +64,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMaxDistanceOpened_SetterFunction", true)))
         fn_71008b1ce4(fn, "_fMaxDistanceOpened_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxDistanceOpened", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<f32>(fn_7100075240(), 500.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Max distance to be opened");
+    DREAD_REFLECTED_PROPERTY(f32, "fMaxDistanceOpened", (DefaultValue, 500.0f), (Description, "Max distance to be opened"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUsesPresenceDetection_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bUsesPresenceDetection_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -77,9 +74,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUsesPresenceDetection_SetterFunction", true)))
         fn_71008b1e60(fn, "_bUsesPresenceDetection_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bUsesPresenceDetection", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Whether this door uses presence detection (requires collider)");
+    DREAD_REFLECTED_PROPERTY(bool, "bUsesPresenceDetection", (DefaultValue, false), (Description, "Whether this door uses presence detection (requires collider)"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bPresenceOpenEnabled_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bPresenceOpenEnabled_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -89,9 +84,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bPresenceOpenEnabled_SetterFunction", true)))
         fn_71008b1fdc(fn, "_bPresenceOpenEnabled_SetterFunction");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bPresenceOpenEnabled", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field3->attrs.Add<bool>(fn_7100075240(), false);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Whether this door should try to open when player is outside of the presence collider");
+    DREAD_REFLECTED_PROPERTY(bool, "bPresenceOpenEnabled", (DefaultValue, false), (Description, "Whether this door should try to open when player is outside of the presence collider"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUseDoorLockOnLocked_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bUseDoorLockOnLocked_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -101,9 +94,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUseDoorLockOnLocked_SetterFunction", true)))
         fn_71008b2158(fn, "_bUseDoorLockOnLocked_SetterFunction");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("bUseDoorLockOnLocked", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field4->attrs.Add<bool>(fn_7100075240(), false);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Whether this door has a separate door lock actor to be used when it's locked");
+    DREAD_REFLECTED_PROPERTY(bool, "bUseDoorLockOnLocked", (DefaultValue, false), (Description, "Whether this door has a separate door lock actor to be used when it's locked"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vDefaultLightColor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_vDefaultLightColor_GetterFunction", true);
         fn->return_type = fn_71000248c4();
@@ -113,8 +104,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vDefaultLightColor_SetterFunction", true)))
         fn_71008b22d4(fn, "_m_vDefaultLightColor_SetterFunction");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("vDefaultLightColor", true), fn_71000248c4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field5->attrs.Add<base::math::CVector4D>(fn_7100075240(), base::math::CVector4D{1.0f, 0.8f, 0.34f, 1.0f});
+    DREAD_REFLECTED_PROPERTY(base::math::CVector4D, "vDefaultLightColor", (DefaultValue, base::math::CVector4D{1.0f, 0.8f, 0.34f, 1.0f}));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vBlockLightColor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_vBlockLightColor_GetterFunction", true);
         fn->return_type = fn_71000248c4();
@@ -124,8 +114,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vBlockLightColor_SetterFunction", true)))
         fn_71008b2450(fn, "_m_vBlockLightColor_SetterFunction");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("vBlockLightColor", true), fn_71000248c4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field6->attrs.Add<base::math::CVector4D>(fn_7100075240(), base::math::CVector4D{0.1f, 0.1f, 0.1f, 1.0f});
+    DREAD_REFLECTED_PROPERTY(base::math::CVector4D, "vBlockLightColor", (DefaultValue, base::math::CVector4D{0.1f, 0.1f, 0.1f, 1.0f}));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bVerticalDimensionInFrustum_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bVerticalDimensionInFrustum_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -135,9 +124,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bVerticalDimensionInFrustum_SetterFunction", true)))
         fn_71008b25cc(fn, "_bVerticalDimensionInFrustum_SetterFunction");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("bVerticalDimensionInFrustum", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field7->attrs.Add<bool>(fn_7100075240(), false);
-    field7->attrs.Add<const char*>(fn_7100007e80(), "Vertical Dimension has to be in frustum to react");
+    DREAD_REFLECTED_PROPERTY(bool, "bVerticalDimensionInFrustum", (DefaultValue, false), (Description, "Vertical Dimension has to be in frustum to react"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bHorizontalDimensionInFrustum_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bHorizontalDimensionInFrustum_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -147,9 +134,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bHorizontalDimensionInFrustum_SetterFunction", true)))
         fn_71008b2748(fn, "_bHorizontalDimensionInFrustum_SetterFunction");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("bHorizontalDimensionInFrustum", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field8->attrs.Add<bool>(fn_7100075240(), false);
-    field8->attrs.Add<const char*>(fn_7100007e80(), "Horizontal Dimension has to be in frustum to react");
+    DREAD_REFLECTED_PROPERTY(bool, "bHorizontalDimensionInFrustum", (DefaultValue, false), (Description, "Horizontal Dimension has to be in frustum to react"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUseHeatDeviceActivation_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bUseHeatDeviceActivation_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -159,9 +144,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUseHeatDeviceActivation_SetterFunction", true)))
         fn_71008b28c4(fn, "_bUseHeatDeviceActivation_SetterFunction");
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("bUseHeatDeviceActivation", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field9->attrs.Add<bool>(fn_7100075240(), false);
-    field9->attrs.Add<const char*>(fn_7100007e80(), "Whether this door uses heat device to open");
+    DREAD_REFLECTED_PROPERTY(bool, "bUseHeatDeviceActivation", (DefaultValue, false), (Description, "Whether this door uses heat device to open"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bStartOpened_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bStartOpened_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -171,9 +154,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bStartOpened_SetterFunction", true)))
         fn_71008b2a40(fn, "_m_bStartOpened_SetterFunction");
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("bStartOpened", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field10->attrs.Add<bool>(fn_7100075240(), false);
-    field10->attrs.Add<const char*>(fn_7100007e80(), "Doorframe must start as opened");
+    DREAD_REFLECTED_PROPERTY(bool, "bStartOpened", (DefaultValue, false), (Description, "Doorframe must start as opened"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

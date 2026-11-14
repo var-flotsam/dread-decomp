@@ -37,8 +37,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sPresetID_SetterFunction", true)))
         fn_7100be42fc(fn, "_sPresetID_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPresetID", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sPresetID", (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(f32, "fFadeOut", 0x30, (DefaultValue, -1.0f), (MinValue, -1.0f), (MaxValue, 10.0f));
     DREAD_REFLECTED_FIELD(f32, "fDelayed", 0x34, (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 10.0f));
 }

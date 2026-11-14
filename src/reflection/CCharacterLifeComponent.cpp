@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 // CCharacterLifeComponent
 void fn_71011592e0();
 void fn_7101158a9c(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d679f0;
 namespace CCharacterLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -34,8 +34,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sImpactAnim_SetterFunction", true)))
         fn_7101158a9c(fn, "_sImpactAnim_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sImpactAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_PROPERTY(CStrId, "sImpactAnim", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sDeadAnim_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sDeadAnim_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -45,8 +44,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sDeadAnim_SetterFunction", true)))
         fn_7101158a9c(fn, "_sDeadAnim_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sDeadAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_PROPERTY(CStrId, "sDeadAnim", (Persistence, 0));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

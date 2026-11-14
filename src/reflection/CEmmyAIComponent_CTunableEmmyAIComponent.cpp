@@ -85,8 +85,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iMinimapMode_SetterFunction", true)))
         fn_710053b4fc(fn, "_iMinimapMode_SetterFunction");
-    UnkReflField* field25 = fn_7100096524(cls, CStrId("iMinimapMode", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field25->attrs.Add<s32>(fn_7100075240(), 3);
+    DREAD_REFLECTED_PROPERTY(s32, "iMinimapMode", (DefaultValue, 3));
     DREAD_REFLECTED_FIELD(f32, "fMinimapPatrol2SearchTime", 0x78, (DefaultValue, 6.0f), (ShowInConfig, true), (Description, "Patrol 2 search time"), (MinValue, 0.5f), (MaxValue, 100.0f), (ControlFloatStep, 0.5f), (InternalTag, "Minimap"));
     DREAD_REFLECTED_FIELD(bool, "bWaveInSearch", 0x7c, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bWaveInChase", 0x7d, (DefaultValue, true));
@@ -203,9 +202,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sCurrentPatrol_SetterFunction", true)))
         fn_710053d6e8(fn, "_sCurrentPatrol_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sCurrentPatrol", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Current patrol");
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_PROPERTY(CStrId, "sCurrentPatrol", (Description, "Current patrol"), (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bPerceptionFeedbackEnabled_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bPerceptionFeedbackEnabled_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -215,9 +212,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bPerceptionFeedbackEnabled_SetterFunction", true)))
         fn_710053d864(fn, "_bPerceptionFeedbackEnabled_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bPerceptionFeedbackEnabled", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Perception feedback enabled");
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_PROPERTY(bool, "bPerceptionFeedbackEnabled", (Description, "Perception feedback enabled"), (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bShowBehaviorDebug_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bShowBehaviorDebug_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -227,8 +222,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bShowBehaviorDebug_SetterFunction", true)))
         fn_710053d9e0(fn, "_bShowBehaviorDebug_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bShowBehaviorDebug", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field2->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_PROPERTY(bool, "bShowBehaviorDebug", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPhaseDisplacementFactor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fPhaseDisplacementFactor_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -238,8 +232,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPhaseDisplacementFactor_SetterFunction", true)))
         fn_710053db5c(fn, "_fPhaseDisplacementFactor_SetterFunction");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fPhaseDisplacementFactor", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field3->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_PROPERTY(f32, "fPhaseDisplacementFactor", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fGrabQTEFailTime_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fGrabQTEFailTime_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -249,8 +242,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fGrabQTEFailTime_SetterFunction", true)))
         fn_710053dcd8(fn, "_fGrabQTEFailTime_SetterFunction");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fGrabQTEFailTime", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field4->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_PROPERTY(f32, "fGrabQTEFailTime", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bPlayerNoiseEnabled_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bPlayerNoiseEnabled_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -260,8 +252,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bPlayerNoiseEnabled_SetterFunction", true)))
         fn_710053de54(fn, "_bPlayerNoiseEnabled_SetterFunction");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("bPlayerNoiseEnabled", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field5->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_PROPERTY(bool, "bPlayerNoiseEnabled", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPatrolSearchMaxTime_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fPatrolSearchMaxTime_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -271,8 +262,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPatrolSearchMaxTime_SetterFunction", true)))
         fn_710053dfd0(fn, "_fPatrolSearchMaxTime_SetterFunction");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fPatrolSearchMaxTime", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field6->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_PROPERTY(f32, "fPatrolSearchMaxTime", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fGrabZoomOffset_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fGrabZoomOffset_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -282,8 +272,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fGrabZoomOffset_SetterFunction", true)))
         fn_710053e14c(fn, "_fGrabZoomOffset_SetterFunction");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fGrabZoomOffset", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field7->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_PROPERTY(f32, "fGrabZoomOffset", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fGrabZoomTime_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fGrabZoomTime_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -293,8 +282,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fGrabZoomTime_SetterFunction", true)))
         fn_710053e2c8(fn, "_fGrabZoomTime_SetterFunction");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fGrabZoomTime", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field8->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_PROPERTY(f32, "fGrabZoomTime", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bTargetDetectionEnabled_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bTargetDetectionEnabled_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -304,8 +292,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bTargetDetectionEnabled_SetterFunction", true)))
         fn_710053e444(fn, "_bTargetDetectionEnabled_SetterFunction");
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("bTargetDetectionEnabled", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field9->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_PROPERTY(bool, "bTargetDetectionEnabled", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bTargetInsideEmmyZone_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bTargetInsideEmmyZone_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -313,8 +300,7 @@ void refl_AddFields(CClass* cls) {
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100565954);
     }
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("bTargetInsideEmmyZone", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field10->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_READ_ONLY_PROPERTY(bool, "bTargetInsideEmmyZone", (Persistence, 0));
     UnkReflField* field11 = fn_7100096524(cls, CStrId("tOverrideGrabPosition", true), &g_unk_71726e00c8, 0x2a610, -1, -1);
     UnkReflField* field12 = fn_7100096524(cls, CStrId("tOverrideDeathPosition", true), &g_unk_71726e00c8, 0x2a638, -1, -1);
     UnkReflField* field13 = fn_7100096524(cls, CStrId("tAutoForbiddenEdges", true), &g_unk_71726e04e8, 0x2a660, -1, -1);

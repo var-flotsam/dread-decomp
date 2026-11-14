@@ -20,24 +20,14 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassHydrogigaZiplineComponent
-extern base::reflection::CType g_unk_7101d679f0;
-extern base::reflection::CType g_unk_7101d55008;
 namespace CCharClassHydrogigaZiplineComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMovementMultiplierUnderwater", true), fn_710000abbc(), 0xffffffff, -1, -1);
-    field0->attrs.Add<bool>(fn_7100093390(), true);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field0->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_FIELD(f32, "fMovementMultiplierUnderwater", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(f32, "fWaterLevelToSlowDownBeforeUnderwater", 0x60, (DefaultValue, 0.8f));
     DREAD_REFLECTED_FIELD(f32, "fWaterLevelToConsiderUnderwater", 0x64, (DefaultValue, 0.9f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToMatchMovementMultiplierGoingBackToStartUnderwater", 0x68, (DefaultValue, 0.01f));
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fTimeToMatchMovementMultiplierSlowingDown", true), fn_710000abbc(), 0xffffffff, -1, -1);
-    field4->attrs.Add<bool>(fn_7100093390(), true);
-    field4->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field4->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field4->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_FIELD(f32, "fTimeToMatchMovementMultiplierSlowingDown", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

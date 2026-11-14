@@ -41,9 +41,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sDamageSource_SetterFunction", true)))
         fn_7100a4a448(fn, "_m_sDamageSource_SetterFunction");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("sDamageSource", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field6->attrs.Add<CStrId>(fn_7100075240(), CStrId("LAVA", true));
-    field6->attrs.Add<const char*>(fn_7100007e80(), "Damage source");
+    DREAD_REFLECTED_PROPERTY(CStrId, "sDamageSource", (DefaultValue, CStrId("LAVA", true)), (Description, "Damage source"));
     DREAD_REFLECTED_FIELD(CStrId, "sDamageID", 0x88, (DefaultValue, CStrId("Lava Pool", true)));
     DREAD_REFLECTED_FIELD(bool, "bIgnoreReaction", 0x90, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bContinuousDamageHit", 0x91, (DefaultValue, false));

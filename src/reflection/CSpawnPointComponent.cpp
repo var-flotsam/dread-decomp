@@ -22,7 +22,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CSpawnPointComponent
-extern base::reflection::CType g_unk_7101d679f0;
 extern base::reflection::CType g_unk_717269bb48;
 extern base::reflection::CType g_unk_71727bc110;
 extern base::reflection::CType g_unk_7172a07528;
@@ -54,10 +53,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTimeToActivate", 0x10c, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(s32, "iMaxNumToGenerate", 0x110, (DefaultValue, -1));
     DREAD_REFLECTED_FIELD(bool, "bAllowSpawnInFrustum", 0x114, (DefaultValue, false));
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("bStartEnabled", true), fn_710000d228(), 0x115, -1, -1);
-    field9->attrs.Add<bool>(fn_7100075240(), true);
-    field9->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field9->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_FIELD(bool, "bStartEnabled", 0x115, (DefaultValue, true), (Persistence, 0), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(bool, "bAutomanaged", 0x27c, (DefaultValue, false));
     UnkReflField* field11 = fn_7100096524(cls, CStrId("wpSceneShapeId", true), &g_unk_717269bb48, 0x120, -1, -1);
     field11->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
@@ -103,9 +99,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sCharClass_SetterFunction", true)))
         fn_7101125760(fn, "_sCharClass_SetterFunction");
-    UnkReflField* field25 = fn_7100096524(cls, CStrId("sCharClass", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field25->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field25->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_PROPERTY(CStrId, "sCharClass", (DefaultValue, CStrId(g_unk_7101d470e0)), (EditorVisible, false));
     UnkReflField* field26 = fn_7100096524(cls, CStrId("voActorBlueprint", true), &g_unk_7172a06cf0, 0x390, -1, -1);
     field26->attrs.Add<const char*>(fn_710008fd60(), "AddNewActorBlueprintAt");
     field26->attrs.Add<const char*>(fn_710008fb40(), "DeleteActorBlueprintAt");

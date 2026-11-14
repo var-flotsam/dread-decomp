@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -55,9 +56,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sCollidersEnabled_SetterFunction", true)))
         fn_7100d1dcc4(fn, "_m_sCollidersEnabled_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sCollidersEnabled", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Colliders Enabled");
+    DREAD_REFLECTED_PROPERTY(CStrId, "sCollidersEnabled", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Colliders Enabled"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sLayersEnabled_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_sLayersEnabled_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -67,9 +66,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sLayersEnabled_SetterFunction", true)))
         fn_7100d1de40(fn, "_m_sLayersEnabled_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sLayersEnabled", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Layers Enabled");
+    DREAD_REFLECTED_PROPERTY(CStrId, "sLayersEnabled", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Layers Enabled"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sCollidersDisabled_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_sCollidersDisabled_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -79,9 +76,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sCollidersDisabled_SetterFunction", true)))
         fn_7100d1dfbc(fn, "_m_sCollidersDisabled_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sCollidersDisabled", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field2->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Colliders Disabled");
+    DREAD_REFLECTED_PROPERTY(CStrId, "sCollidersDisabled", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Colliders Disabled"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sLayersDisabled_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_sLayersDisabled_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -91,9 +86,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sLayersDisabled_SetterFunction", true)))
         fn_7100d1e138(fn, "_m_sLayersDisabled_SetterFunction");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sLayersDisabled", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field3->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Layers Disabled");
+    DREAD_REFLECTED_PROPERTY(CStrId, "sLayersDisabled", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Layers Disabled"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sCollidersEnabled2_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_sCollidersEnabled2_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -103,9 +96,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sCollidersEnabled2_SetterFunction", true)))
         fn_7100d1e2b4(fn, "_m_sCollidersEnabled2_SetterFunction");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sCollidersEnabled2", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field4->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Colliders Enabled2");
+    DREAD_REFLECTED_PROPERTY(CStrId, "sCollidersEnabled2", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Colliders Enabled2"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sLayersEnabled2_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_sLayersEnabled2_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -115,9 +106,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sLayersEnabled2_SetterFunction", true)))
         fn_7100d1e430(fn, "_m_sLayersEnabled2_SetterFunction");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("sLayersEnabled2", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field5->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Layers Enabled2");
+    DREAD_REFLECTED_PROPERTY(CStrId, "sLayersEnabled2", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Layers Enabled2"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sCollidersDisabled2_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_sCollidersDisabled2_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -127,9 +116,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sCollidersDisabled2_SetterFunction", true)))
         fn_7100d1e5ac(fn, "_m_sCollidersDisabled2_SetterFunction");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("sCollidersDisabled2", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field6->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field6->attrs.Add<const char*>(fn_7100007e80(), "Colliders Disabled2");
+    DREAD_REFLECTED_PROPERTY(CStrId, "sCollidersDisabled2", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Colliders Disabled2"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sLayersDisabled2_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_sLayersDisabled2_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -139,9 +126,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sLayersDisabled2_SetterFunction", true)))
         fn_7100d1e728(fn, "_m_sLayersDisabled2_SetterFunction");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("sLayersDisabled2", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field7->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field7->attrs.Add<const char*>(fn_7100007e80(), "Layers Disabled2");
+    DREAD_REFLECTED_PROPERTY(CStrId, "sLayersDisabled2", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Layers Disabled2"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sCollidersEnabled3_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_sCollidersEnabled3_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -151,9 +136,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sCollidersEnabled3_SetterFunction", true)))
         fn_7100d1e8a4(fn, "_m_sCollidersEnabled3_SetterFunction");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("sCollidersEnabled3", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field8->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field8->attrs.Add<const char*>(fn_7100007e80(), "Colliders Enabled3");
+    DREAD_REFLECTED_PROPERTY(CStrId, "sCollidersEnabled3", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Colliders Enabled3"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sLayersEnabled3_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_sLayersEnabled3_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -163,9 +146,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sLayersEnabled3_SetterFunction", true)))
         fn_7100d1ea20(fn, "_m_sLayersEnabled3_SetterFunction");
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("sLayersEnabled3", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field9->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field9->attrs.Add<const char*>(fn_7100007e80(), "Layers Enabled3");
+    DREAD_REFLECTED_PROPERTY(CStrId, "sLayersEnabled3", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Layers Enabled3"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sCollidersDisabled3_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_sCollidersDisabled3_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -175,9 +156,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sCollidersDisabled3_SetterFunction", true)))
         fn_7100d1eb9c(fn, "_m_sCollidersDisabled3_SetterFunction");
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("sCollidersDisabled3", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field10->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field10->attrs.Add<const char*>(fn_7100007e80(), "Colliders Disabled3");
+    DREAD_REFLECTED_PROPERTY(CStrId, "sCollidersDisabled3", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Colliders Disabled3"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sLayersDisabled3_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_sLayersDisabled3_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -187,9 +166,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sLayersDisabled3_SetterFunction", true)))
         fn_7100d1ed18(fn, "_m_sLayersDisabled3_SetterFunction");
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("sLayersDisabled3", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field11->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field11->attrs.Add<const char*>(fn_7100007e80(), "Layers Disabled3");
+    DREAD_REFLECTED_PROPERTY(CStrId, "sLayersDisabled3", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Layers Disabled3"));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

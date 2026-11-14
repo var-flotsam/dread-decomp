@@ -34,8 +34,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bAutoLockOnMelee_SetterFunction", true)))
         fn_710092816c(fn, "_m_bAutoLockOnMelee_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bAutoLockOnMelee", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_PROPERTY(bool, "bAutoLockOnMelee", (DefaultValue, true));
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sMeleeKillFX", 0x60, (DefaultValue, "system/fx/generic/energyblocksuc.bcptl"));
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sMeleeKillSound", 0x68, (DefaultValue, ""));
 }

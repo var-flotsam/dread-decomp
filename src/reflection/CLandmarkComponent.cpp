@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CLandmarkComponent
 void fn_71008a34f0();
-extern base::reflection::CType g_unk_7101d679f0;
 namespace CLandmarkComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -31,9 +31,7 @@ void refl_AddFields(CClass* cls) {
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008a34f0);
     }
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sLandmarkID", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Landmark ID"));
+    DREAD_REFLECTED_READ_ONLY_PROPERTY(CStrId, "sLandmarkID", (Persistence, 0), (Description, base::global::CRntString("Landmark ID")));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

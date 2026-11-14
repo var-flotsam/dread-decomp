@@ -23,8 +23,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCameraComponent
 void fn_71010e70d0();
-extern base::reflection::CType g_unk_7101d55008;
-extern base::reflection::CType g_unk_7101d679f0;
 void fn_71010e711c();
 void fn_71010e0ce0(UnkReflFunction* fn, const char* name);
 void fn_71010e7218();
@@ -52,10 +50,7 @@ void refl_AddFields(CClass* cls) {
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71010e70d0);
     }
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fCurrentInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Current interpolation speed"));
-    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 2);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_READ_ONLY_PROPERTY(f32, "fCurrentInterp", (Description, base::global::CRntString("Current interpolation speed")), (EditorModeDataFlow, 2), (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vCurrentPos_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vCurrentPos_GetterFunction", true);
         fn->return_type = fn_71000246e4();
@@ -65,9 +60,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vCurrentPos_SetterFunction", true)))
         fn_71010e0ce0(fn, "_vCurrentPos_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("vCurrentPos", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Current position"));
-    field1->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 3);
+    DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vCurrentPos", (Description, base::global::CRntString("Current position")), (EditorModeDataFlow, 3));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vCurrentDir_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vCurrentDir_GetterFunction", true);
         fn->return_type = fn_71000246e4();
@@ -77,9 +70,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vCurrentDir_SetterFunction", true)))
         fn_71010e0e5c(fn, "_vCurrentDir_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("vCurrentDir", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field2->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Current direction"));
-    field2->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 3);
+    DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vCurrentDir", (Description, base::global::CRntString("Current direction")), (EditorModeDataFlow, 3));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fDefaultInterp_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fDefaultInterp_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -89,9 +80,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fDefaultInterp_SetterFunction", true)))
         fn_71010e0fd8(fn, "_m_fDefaultInterp_SetterFunction");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fDefaultInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field3->attrs.Add<f32>(fn_7100075240(), 10.0f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Default interpolation speed");
+    DREAD_REFLECTED_PROPERTY(f32, "fDefaultInterp", (DefaultValue, 10.0f), (Description, "Default interpolation speed"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fCurrentInterpChangeSpeed_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fCurrentInterpChangeSpeed_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -101,9 +90,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fCurrentInterpChangeSpeed_SetterFunction", true)))
         fn_71010e1154(fn, "_m_fCurrentInterpChangeSpeed_SetterFunction");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fCurrentInterpChangeSpeed", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field4->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Current interpolation change speed");
+    DREAD_REFLECTED_PROPERTY(f32, "fCurrentInterpChangeSpeed", (DefaultValue, -1.0f), (Description, "Current interpolation change speed"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fDefaultNear_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fDefaultNear_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -113,11 +100,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fDefaultNear_SetterFunction", true)))
         fn_71010e12d0(fn, "_m_fDefaultNear_SetterFunction");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fDefaultNear", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field5->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field5->attrs.Add<bool>(fn_7100090a20(), false);
-    field5->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Default near plane dist");
+    DREAD_REFLECTED_PROPERTY(f32, "fDefaultNear", (Persistence, 0), (EditorVisible, false), (DefaultValue, 100.0f), (Description, "Default near plane dist"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fDefaultFar_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fDefaultFar_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -127,11 +110,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fDefaultFar_SetterFunction", true)))
         fn_71010e144c(fn, "_m_fDefaultFar_SetterFunction");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fDefaultFar", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field6->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field6->attrs.Add<bool>(fn_7100090a20(), false);
-    field6->attrs.Add<f32>(fn_7100075240(), 60000.0f);
-    field6->attrs.Add<const char*>(fn_7100007e80(), "Default far plane dist");
+    DREAD_REFLECTED_PROPERTY(f32, "fDefaultFar", (Persistence, 0), (EditorVisible, false), (DefaultValue, 60000.0f), (Description, "Default far plane dist"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetLogicCameraParams", true))) {
         fn->name = base::global::UnkStrId("SetLogicCameraParams", true);
         fn->return_type = &g_unk_7101d5af48;

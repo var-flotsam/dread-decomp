@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -51,7 +52,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_ProcessInput_SetterFunction", true)))
         fn_7100b714a8(fn, "_ProcessInput_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("ProcessInput", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(bool, "ProcessInput");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CameraPathAnimation_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_CameraPathAnimation_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -61,7 +62,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CameraPathAnimation_SetterFunction", true)))
         fn_7100b71624(fn, "_CameraPathAnimation_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("CameraPathAnimation", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(CStrId, "CameraPathAnimation");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CameraTargetNode_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_CameraTargetNode_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -71,7 +72,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CameraTargetNode_SetterFunction", true)))
         fn_7100b717a0(fn, "_CameraTargetNode_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("CameraTargetNode", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(CStrId, "CameraTargetNode");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_GUIScene_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_GUIScene_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -81,7 +82,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_GUIScene_SetterFunction", true)))
         fn_7100b7191c(fn, "_GUIScene_SetterFunction");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("GUIScene", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(CStrId, "GUIScene");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CameraDepthOffset_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_CameraDepthOffset_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -91,7 +92,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CameraDepthOffset_SetterFunction", true)))
         fn_7100b71a98(fn, "_CameraDepthOffset_SetterFunction");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("CameraDepthOffset", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "CameraDepthOffset");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CameraPathAnimationSpeed_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_CameraPathAnimationSpeed_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -101,7 +102,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CameraPathAnimationSpeed_SetterFunction", true)))
         fn_7100b71c14(fn, "_CameraPathAnimationSpeed_SetterFunction");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("CameraPathAnimationSpeed", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "CameraPathAnimationSpeed");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_ManualRotationSpeed_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_ManualRotationSpeed_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -111,7 +112,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_ManualRotationSpeed_SetterFunction", true)))
         fn_7100b71d90(fn, "_ManualRotationSpeed_SetterFunction");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("ManualRotationSpeed", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "ManualRotationSpeed");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_ManualZoomSpeed_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_ManualZoomSpeed_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -121,7 +122,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_ManualZoomSpeed_SetterFunction", true)))
         fn_7100b71f0c(fn, "_ManualZoomSpeed_SetterFunction");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("ManualZoomSpeed", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "ManualZoomSpeed");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_PitchInterpSpeed_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_PitchInterpSpeed_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -131,7 +132,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_PitchInterpSpeed_SetterFunction", true)))
         fn_7100b72088(fn, "_PitchInterpSpeed_SetterFunction");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("PitchInterpSpeed", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "PitchInterpSpeed");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_DepthInterpSpeed_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_DepthInterpSpeed_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -141,7 +142,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_DepthInterpSpeed_SetterFunction", true)))
         fn_7100b72204(fn, "_DepthInterpSpeed_SetterFunction");
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("DepthInterpSpeed", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "DepthInterpSpeed");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -43,8 +43,6 @@ void fn_71008cd0a8(UnkReflFunction* fn, const char* name);
 void fn_71008cd15c(UnkReflFunction* fn, const char* name);
 void fn_71008cd210(UnkReflFunction* fn, const char* name);
 void fn_71008dcc08();
-extern base::reflection::CType g_unk_7101d679f0;
-extern base::reflection::CType g_unk_7101d55008;
 namespace CDoorLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -62,9 +60,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMinTimeOpened_SetterFunction", true)))
         fn_71008cca04(fn, "_m_fMinTimeOpened_SetterFunction");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMinTimeOpened", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field3->attrs.Add<f32>(fn_7100075240(), 3.0f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Min time opened");
+    DREAD_REFLECTED_PROPERTY(f32, "fMinTimeOpened", (DefaultValue, 3.0f), (Description, "Min time opened"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bStayOpen_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bStayOpen_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -74,9 +70,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bStayOpen_SetterFunction", true)))
         fn_71008ccb80(fn, "_m_bStayOpen_SetterFunction");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("bStayOpen", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field4->attrs.Add<bool>(fn_7100075240(), false);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Stay open");
+    DREAD_REFLECTED_PROPERTY(bool, "bStayOpen", (DefaultValue, false), (Description, "Stay open"));
     DREAD_REFLECTED_FIELD(bool, "bStartOpened", 0x419, (DefaultValue, false), (Description, "Start opened"));
     DREAD_REFLECTED_FIELD(bool, "bOnBlackOutOpened", 0x41a, (DefaultValue, false), (Description, "On Black Out event opened"));
     DREAD_REFLECTED_FIELD(bool, "bDoorIsWet", 0x41d, (DefaultValue, false), (Description, "Should freeze when cooldown"));
@@ -90,9 +84,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iAreaLeft_SetterFunction", true)))
         fn_71008cccfc(fn, "_iAreaLeft_SetterFunction");
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("iAreaLeft", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field9->attrs.Add<s32>(fn_7100075240(), 0);
-    field9->attrs.Add<const char*>(fn_7100007e80(), "Area left type");
+    DREAD_REFLECTED_PROPERTY(s32, "iAreaLeft", (DefaultValue, 0), (Description, "Area left type"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iAreaRight_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_iAreaRight_GetterFunction", true);
         fn->return_type = fn_7100014768();
@@ -102,9 +94,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iAreaRight_SetterFunction", true)))
         fn_71008cce78(fn, "_iAreaRight_SetterFunction");
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("iAreaRight", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field10->attrs.Add<s32>(fn_7100075240(), 0);
-    field10->attrs.Add<const char*>(fn_7100007e80(), "Area right type");
+    DREAD_REFLECTED_PROPERTY(s32, "iAreaRight", (DefaultValue, 0), (Description, "Area right type"));
     UnkReflField* field11 = fn_7100096524(cls, CStrId("aVignettes", true), &g_unk_717269bf08, 0xbd8, -1, -1);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetInteractionParams", true))) {
         fn->name = base::global::UnkStrId("SetInteractionParams", true);
@@ -155,11 +145,7 @@ void refl_AddFields(CClass* cls) {
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008dcc08);
     }
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("sShieldEntity", true), fn_7100009658(), 0xffffffff, -1, -1);
-    field12->attrs.Add<bool>(fn_7100093390(), true);
-    field12->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field12->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field12->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_FIELD(CStrId, "sShieldEntity", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -204,7 +190,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bForceAllDoorsOpened_SetterFunction", true)))
         fn_71008cda44(fn, "_bForceAllDoorsOpened_SetterFunction");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bForceAllDoorsOpened", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(bool, "bForceAllDoorsOpened");
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

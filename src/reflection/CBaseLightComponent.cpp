@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -60,7 +61,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vLightPos_SetterFunction", true)))
         fn_71008edb54(fn, "_vLightPos_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("vLightPos", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vLightPos");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fIntensity_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fIntensity_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -70,7 +71,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fIntensity_SetterFunction", true)))
         fn_71008edcd0(fn, "_fIntensity_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fIntensity", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "fIntensity");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fVIntensity_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fVIntensity_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -80,7 +81,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fVIntensity_SetterFunction", true)))
         fn_71008ede4c(fn, "_fVIntensity_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fVIntensity", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "fVIntensity");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fFIntensity_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fFIntensity_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -90,7 +91,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fFIntensity_SetterFunction", true)))
         fn_71008edfc8(fn, "_fFIntensity_SetterFunction");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fFIntensity", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "fFIntensity");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vAmbient_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vAmbient_GetterFunction", true);
         fn->return_type = fn_71000248c4();
@@ -100,7 +101,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vAmbient_SetterFunction", true)))
         fn_71008ee144(fn, "_vAmbient_SetterFunction");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("vAmbient", true), fn_71000248c4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(base::math::CVector4D, "vAmbient");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vDiffuse_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vDiffuse_GetterFunction", true);
         fn->return_type = fn_71000248c4();
@@ -110,8 +111,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vDiffuse_SetterFunction", true)))
         fn_71008ee2c0(fn, "_vDiffuse_SetterFunction");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("vDiffuse", true), fn_71000248c4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field5->attrs.Add<base::math::CVector4D>(fn_7100075240(), base::math::CVector4D{1.0f, 1.0f, 1.0f, 1.0f});
+    DREAD_REFLECTED_PROPERTY(base::math::CVector4D, "vDiffuse", (DefaultValue, base::math::CVector4D{1.0f, 1.0f, 1.0f, 1.0f}));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vSpecular0_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vSpecular0_GetterFunction", true);
         fn->return_type = fn_71000248c4();
@@ -121,7 +121,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vSpecular0_SetterFunction", true)))
         fn_71008ee43c(fn, "_vSpecular0_SetterFunction");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("vSpecular0", true), fn_71000248c4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(base::math::CVector4D, "vSpecular0");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vSpecular1_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vSpecular1_GetterFunction", true);
         fn->return_type = fn_71000248c4();
@@ -131,7 +131,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vSpecular1_SetterFunction", true)))
         fn_71008ee5b8(fn, "_vSpecular1_SetterFunction");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("vSpecular1", true), fn_71000248c4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(base::math::CVector4D, "vSpecular1");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bVertexLight_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bVertexLight_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -141,7 +141,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bVertexLight_SetterFunction", true)))
         fn_71008ee734(fn, "_bVertexLight_SetterFunction");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("bVertexLight", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(bool, "bVertexLight");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_eLightPreset_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_eLightPreset_GetterFunction", true);
         fn->return_type = &g_unk_716e5992a0;
@@ -161,7 +161,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vLightPresetParams_SetterFunction", true)))
         fn_71008eea24(fn, "_vLightPresetParams_SetterFunction");
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("vLightPresetParams", true), fn_71000248c4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(base::math::CVector4D, "vLightPresetParams");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bSubstractive_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bSubstractive_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -171,7 +171,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bSubstractive_SetterFunction", true)))
         fn_71008eeba0(fn, "_bSubstractive_SetterFunction");
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("bSubstractive", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(bool, "bSubstractive");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUseFaceCull_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bUseFaceCull_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -181,7 +181,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUseFaceCull_SetterFunction", true)))
         fn_71008eed1c(fn, "_bUseFaceCull_SetterFunction");
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("bUseFaceCull", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(bool, "bUseFaceCull");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUseSpecular_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bUseSpecular_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -191,7 +191,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUseSpecular_SetterFunction", true)))
         fn_71008eee98(fn, "_bUseSpecular_SetterFunction");
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("bUseSpecular", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(bool, "bUseSpecular");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

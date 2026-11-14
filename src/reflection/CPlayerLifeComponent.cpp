@@ -20,8 +20,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CPlayerLifeComponent
-extern base::reflection::CType g_unk_7101d679f0;
-extern base::reflection::CType g_unk_7101d55008;
 void fn_710116a30c();
 void fn_71011623bc(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_7101d5af48;
@@ -29,11 +27,7 @@ void fn_710116a3b4();
 namespace CPlayerLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fImpactInvulnerableTime", true), fn_710000abbc(), 0xffffffff, -1, -1);
-    field0->attrs.Add<bool>(fn_7100093390(), true);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field0->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_FIELD(f32, "fImpactInvulnerableTime", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(CStrId, "sImpactHardAnim", 0x300, (DefaultValue, ""), (Description, "Impact hard animation"));
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sHardImpactFX", 0x328, (DefaultValue, "system/fx/hits/hardimpact.bcptl"), (Description, "fx on hard impact"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fLifeShards_GetterFunction", true))) {
@@ -45,7 +39,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fLifeShards_SetterFunction", true)))
         fn_71011623bc(fn, "_m_fLifeShards_SetterFunction");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fLifeShards", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "fLifeShards");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("StopLifeAlarmSFX", true))) {
         fn->name = base::global::UnkStrId("StopLifeAlarmSFX", true);
         fn->return_type = &g_unk_7101d5af48;

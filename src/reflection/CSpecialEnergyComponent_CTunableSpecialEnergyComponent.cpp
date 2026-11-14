@@ -97,9 +97,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMaxEnergy_SetterFunction", true)))
         fn_7100a1f0ac(fn, "_fMaxEnergy_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMaxEnergy", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Max energy");
+    DREAD_REFLECTED_PROPERTY(f32, "fMaxEnergy", (DefaultValue, -1.0f), (Description, "Max energy"));
     DREAD_REFLECTED_FIELD(f32, "fEnergy", 0xffffffff, (DefaultValue, -1.0f), (Description, "Current energy"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEnergy_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fEnergy_GetterFunction", true);
@@ -121,9 +119,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bSpecialEnergyLocked_SetterFunction", true)))
         fn_7100a1f3a4(fn, "_m_bSpecialEnergyLocked_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bSpecialEnergyLocked", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "special energy locked");
+    DREAD_REFLECTED_PROPERTY(bool, "bSpecialEnergyLocked", (DefaultValue, false), (Description, "special energy locked"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

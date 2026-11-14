@@ -118,8 +118,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fBellyButtonRadius_SetterFunction", true)))
         fn_71005fa5e4(fn, "_m_fBellyButtonRadius_SetterFunction");
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("fBellyButtonRadius", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field17->attrs.Add<f32>(fn_7100075240(), 150.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fBellyButtonRadius", (DefaultValue, 150.0f));
     UnkReflField* field18 = fn_7100096524(cls, CStrId("oGrabDamageSourceFactor", true), fn_71008c1b4c(), 0x550, -1, -1);
     UnkReflField* field19 = fn_7100096524(cls, CStrId("oFierceswipeActingDamageSourceFactor", true), fn_71008c1b4c(), 0x5c0, -1, -1);
 }

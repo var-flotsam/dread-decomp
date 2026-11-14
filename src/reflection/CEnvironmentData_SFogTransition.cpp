@@ -41,7 +41,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorInterp_SetterFunction", true)))
         fn_7100f1b6f4(fn, "_fColorInterp_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fColorInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "fColorInterp");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fScaleInterp_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fScaleInterp_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -51,7 +51,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fScaleInterp_SetterFunction", true)))
         fn_7100f1b870(fn, "_fScaleInterp_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fScaleInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "fScaleInterp");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fRangeInterp_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fRangeInterp_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -61,7 +61,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fRangeInterp_SetterFunction", true)))
         fn_7100f1b9ec(fn, "_fRangeInterp_SetterFunction");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fRangeInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "fRangeInterp");
     DREAD_REFLECTED_FIELD(f32, "fWaveInterp", 0x1c, (DefaultValue, 1.0f), (MinValue, 0.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
@@ -106,7 +106,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorInterp_SetterFunction", true)))
             fn_7100f1dc40(fn, "_fColorInterp_SetterFunction");
     }();
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fColorInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "fColorInterp");
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -150,7 +150,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fTintInterp_SetterFunction", true)))
             fn_7100f21598(fn, "_fTintInterp_SetterFunction");
     }();
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTintInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "fTintInterp");
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -196,7 +196,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorInterp_SetterFunction", true)))
             fn_7100f240f0(fn, "_fColorInterp_SetterFunction");
     }();
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fColorInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "fColorInterp");
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBlendInterp_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fBlendInterp_GetterFunction", true);
@@ -208,7 +208,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBlendInterp_SetterFunction", true)))
             fn_7100f2426c(fn, "_fBlendInterp_SetterFunction");
     }();
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fBlendInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "fBlendInterp");
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -254,7 +254,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorInterp_SetterFunction", true)))
             fn_7100f274cc(fn, "_fColorInterp_SetterFunction");
     }();
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fColorInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "fColorInterp");
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttenuationInterp_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fAttenuationInterp_GetterFunction", true);
@@ -266,7 +266,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttenuationInterp_SetterFunction", true)))
             fn_7100f27648(fn, "_fAttenuationInterp_SetterFunction");
     }();
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fAttenuationInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "fAttenuationInterp");
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -312,7 +312,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorUpInterp_SetterFunction", true)))
             fn_7100f2a1a4(fn, "_fColorUpInterp_SetterFunction");
     }();
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fColorUpInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "fColorUpInterp");
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorDownInterp_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fColorDownInterp_GetterFunction", true);
@@ -324,7 +324,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorDownInterp_SetterFunction", true)))
             fn_7100f2a320(fn, "_fColorDownInterp_SetterFunction");
     }();
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fColorDownInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "fColorDownInterp");
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -368,7 +368,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBloomInterp_SetterFunction", true)))
             fn_7100f2c58c(fn, "_fBloomInterp_SetterFunction");
     }();
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fBloomInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "fBloomInterp");
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -418,7 +418,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorInterp_SetterFunction", true)))
         fn_7100f31bd0(fn, "_fColorInterp_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fColorInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "fColorInterp");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBaseInterp_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fBaseInterp_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -428,7 +428,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBaseInterp_SetterFunction", true)))
         fn_7100f31d4c(fn, "_fBaseInterp_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fBaseInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "fBaseInterp");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fNearInterp_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fNearInterp_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -438,7 +438,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fNearInterp_SetterFunction", true)))
         fn_7100f31ec8(fn, "_fNearInterp_SetterFunction");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fNearInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "fNearInterp");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fFarInterp_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fFarInterp_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -448,7 +448,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fFarInterp_SetterFunction", true)))
         fn_7100f32044(fn, "_fFarInterp_SetterFunction");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fFarInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "fFarInterp");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttInterp_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fAttInterp_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -458,7 +458,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttInterp_SetterFunction", true)))
         fn_7100f321c0(fn, "_fAttInterp_SetterFunction");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fAttInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "fAttInterp");
     DREAD_REFLECTED_FIELD(f32, "fWaveInterp", 0x1c, (DefaultValue, 1.0f), (MinValue, 0.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
@@ -503,7 +503,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fCubeMapInterp_SetterFunction", true)))
             fn_7100f34874(fn, "_fCubeMapInterp_SetterFunction");
     }();
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fCubeMapInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "fCubeMapInterp");
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -547,7 +547,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fInterp_SetterFunction", true)))
             fn_7100f37520(fn, "_fInterp_SetterFunction");
     }();
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "fInterp");
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -591,7 +591,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fInterp_SetterFunction", true)))
             fn_7100f3b1ec(fn, "_fInterp_SetterFunction");
     }();
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "fInterp");
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -635,7 +635,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fInterp_SetterFunction", true)))
             fn_7100f3dc00(fn, "_fInterp_SetterFunction");
     }();
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "fInterp");
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

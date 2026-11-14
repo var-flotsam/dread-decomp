@@ -34,8 +34,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fFinalAngleDeg_SetterFunction", true)))
         fn_7100422084(fn, "_fFinalAngleDeg_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fFinalAngleDeg", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<f32>(fn_7100075240(), 55.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fFinalAngleDeg", (DefaultValue, 55.0f));
     DREAD_REFLECTED_FIELD(f32, "fTimeAtFinalAngle", 0x104, (DefaultValue, 0.5f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToReachFinalAngle", 0x108, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(f32, "fMinDistToWall", 0x10c, (DefaultValue, 800.0f));

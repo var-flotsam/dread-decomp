@@ -30,8 +30,6 @@ void fn_710041a690();
 void fn_7100419ea0(UnkReflFunction* fn, const char* name);
 void fn_710041a720();
 void fn_710041a01c(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d679f0;
-extern base::reflection::CType g_unk_7101d55008;
 namespace CCharClassBossAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -44,9 +42,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bUseIsInFrustumForBossCamera_SetterFunction", true)))
         fn_7100419a2c(fn, "_m_bUseIsInFrustumForBossCamera_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bUseIsInFrustumForBossCamera", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<bool>(fn_7100075240(), true);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Use Is In Frustum For Boss Camera");
+    DREAD_REFLECTED_PROPERTY(bool, "bUseIsInFrustumForBossCamera", (DefaultValue, true), (Description, "Use Is In Frustum For Boss Camera"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bUseAngry_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bUseAngry_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -56,9 +52,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bUseAngry_SetterFunction", true)))
         fn_7100419ba8(fn, "_m_bUseAngry_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bUseAngry", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<bool>(fn_7100075240(), false);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Use angry?");
+    DREAD_REFLECTED_PROPERTY(bool, "bUseAngry", (DefaultValue, false), (Description, "Use angry?"));
     DREAD_REFLECTED_FIELD(bool, "bManuallyRemoveFromTeamManager", 0x50f, (DefaultValue, false), (Description, "Manually remove from team manager?"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bWantsLifeFeedback_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bWantsLifeFeedback_GetterFunction", true);
@@ -69,9 +63,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bWantsLifeFeedback_SetterFunction", true)))
         fn_7100419d24(fn, "_m_bWantsLifeFeedback_SetterFunction");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bWantsLifeFeedback", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field3->attrs.Add<bool>(fn_7100075240(), false);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Wants Life Feedback?");
+    DREAD_REFLECTED_PROPERTY(bool, "bWantsLifeFeedback", (DefaultValue, false), (Description, "Wants Life Feedback?"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bRemovePlayerInputOnDeath_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bRemovePlayerInputOnDeath_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -81,9 +73,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bRemovePlayerInputOnDeath_SetterFunction", true)))
         fn_7100419ea0(fn, "_m_bRemovePlayerInputOnDeath_SetterFunction");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("bRemovePlayerInputOnDeath", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field4->attrs.Add<bool>(fn_7100075240(), true);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Remove player input on death?");
+    DREAD_REFLECTED_PROPERTY(bool, "bRemovePlayerInputOnDeath", (DefaultValue, true), (Description, "Remove player input on death?"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bSetPlayerInvulnerableWithReactionOnDeath_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bSetPlayerInvulnerableWithReactionOnDeath_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -93,15 +83,9 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bSetPlayerInvulnerableWithReactionOnDeath_SetterFunction", true)))
         fn_710041a01c(fn, "_m_bSetPlayerInvulnerableWithReactionOnDeath_SetterFunction");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("bSetPlayerInvulnerableWithReactionOnDeath", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field5->attrs.Add<bool>(fn_7100075240(), true);
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Set Samus invulnerable with reaction on death?");
+    DREAD_REFLECTED_PROPERTY(bool, "bSetPlayerInvulnerableWithReactionOnDeath", (DefaultValue, true), (Description, "Set Samus invulnerable with reaction on death?"));
     DREAD_REFLECTED_FIELD(bool, "bOpenDoorWhenDie", 0x513, (DefaultValue, true), (Description, "Opens door after death?"));
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("sBossBattleLabel", true), fn_7100009658(), 0xffffffff, -1, -1);
-    field7->attrs.Add<bool>(fn_7100093390(), true);
-    field7->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field7->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field7->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_FIELD(CStrId, "sBossBattleLabel", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(CStrId, "sInventoryItemOnKilled", 0x518, (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(bool, "bCheckOrientationInGrab", 0x520, (DefaultValue, true), (Description, "Check orientation in grab?"));
     DREAD_REFLECTED_FIELD(bool, "bPersistenBossDefeatedPushSetup", 0x521, (DefaultValue, false));

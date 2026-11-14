@@ -27,7 +27,6 @@ extern base::global::CRntString g_unk_7101d58d10;
 extern base::reflection::CType g_unk_717269bb48;
 extern base::reflection::CType g_unk_71727bc110;
 void fn_710111fd34();
-extern base::reflection::CType g_unk_7101d679f0;
 extern base::reflection::CType g_unk_7172a07250;
 namespace CSpawnGroupComponent {
 void refl_AddAttributes(CClass*) {}
@@ -81,9 +80,7 @@ void refl_AddFields(CClass* cls) {
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710111fd34);
     }
-    UnkReflField* field26 = fn_7100096524(cls, CStrId("iNumDeaths", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field26->attrs.Add<s32>(fn_7100075240(), 0);
-    field26->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_READ_ONLY_PROPERTY(s32, "iNumDeaths", (DefaultValue, 0), (Persistence, 0));
     UnkReflField* field27 = fn_7100096524(cls, CStrId("vectSpawnPoints", true), &g_unk_7172a07250, 0x68, -1, -1);
     field27->attrs.Add<bool>(fn_7100092c20(), true);
     field27->attrs_0x70.Add<bool>(fn_710025dbb0(), true);

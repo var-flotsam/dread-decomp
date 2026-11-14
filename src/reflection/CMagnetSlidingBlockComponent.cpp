@@ -22,8 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 // CMagnetSlidingBlockComponent
 extern base::reflection::CType g_unk_71727b6270;
 extern base::reflection::CType g_unk_71727bc110;
-extern base::reflection::CType g_unk_7101d679f0;
-extern base::reflection::CType g_unk_7101d55008;
 namespace CMagnetSlidingBlockComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -35,21 +33,9 @@ void refl_AddFields(CClass* cls) {
     field4->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
     UnkReflField* field5 = fn_7100096524(cls, CStrId("wpDoorOpeningOnAnimatedCamera", true), &g_unk_71727b6270, 0x4a0, -1, -1);
     field5->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fTotalMetersToMoveY", true), fn_710000abbc(), 0xffffffff, -1, -1);
-    field6->attrs.Add<bool>(fn_7100093390(), true);
-    field6->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field6->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field6->attrs.Add<bool>(fn_7100090a20(), false);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fTimeToOpen", true), fn_710000abbc(), 0xffffffff, -1, -1);
-    field7->attrs.Add<bool>(fn_7100093390(), true);
-    field7->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field7->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field7->attrs.Add<bool>(fn_7100090a20(), false);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("bAutoOpenAfterPreparing", true), fn_710000d228(), 0xffffffff, -1, -1);
-    field8->attrs.Add<bool>(fn_7100093390(), true);
-    field8->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field8->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field8->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_FIELD(f32, "fTotalMetersToMoveY", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToOpen", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
+    DREAD_REFLECTED_FIELD(bool, "bAutoOpenAfterPreparing", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

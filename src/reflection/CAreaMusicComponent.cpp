@@ -39,7 +39,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sPreset_SetterFunction", true)))
         fn_7100715c7c(fn, "_sPreset_SetterFunction");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(CStrId, "sPreset");
     UnkReflField* field5 = fn_7100096524(cls, CStrId("eEnterFadeType", true), &g_unk_71729f1018, 0xadc, -1, -1);
     field5->attrs.Add<s32>(fn_7100075240(), &g_unk_71729f1018, 1);
     field5->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));

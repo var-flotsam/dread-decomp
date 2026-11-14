@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -41,8 +42,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sDefaultModelPath_SetterFunction", true)))
         fn_71011704b4(fn, "_m_sDefaultModelPath_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sDefaultModelPath", true), fn_710000ad9c(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(base::global::UnkStrIdInline{}, "", true));
+    DREAD_REFLECTED_PROPERTY(base::global::CFilePathStrId, "sDefaultModelPath", (DefaultValue, base::global::CFilePathStrId(base::global::UnkStrIdInline{}, "", true)));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetMeshVisible", true))) {
         fn_7101170630(fn, "SetMeshVisible");
         fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Set mesh visible"));

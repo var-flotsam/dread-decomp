@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -188,8 +189,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fTitleScreen_SetterFunction", true)))
             fn_71010113e8(fn, "_fTitleScreen_SetterFunction");
     }();
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fTitleScreen", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fTitleScreen", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fSamusStory_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fSamusStory_GetterFunction", true);
@@ -201,8 +201,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fSamusStory_SetterFunction", true)))
             fn_7101011564(fn, "_fSamusStory_SetterFunction");
     }();
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fSamusStory", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fSamusStory", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fOpening_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fOpening_GetterFunction", true);
@@ -214,8 +213,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fOpening_SetterFunction", true)))
             fn_71010116e0(fn, "_fOpening_SetterFunction");
     }();
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fOpening", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field2->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fOpening", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fGameOver_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fGameOver_GetterFunction", true);
@@ -227,8 +225,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fGameOver_SetterFunction", true)))
             fn_710101185c(fn, "_fGameOver_SetterFunction");
     }();
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fGameOver", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field3->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fGameOver", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fSaveStation_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fSaveStation_GetterFunction", true);
@@ -240,8 +237,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fSaveStation_SetterFunction", true)))
             fn_71010119d8(fn, "_fSaveStation_SetterFunction");
     }();
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fSaveStation", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field4->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fSaveStation", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMapStation_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fMapStation_GetterFunction", true);
@@ -253,8 +249,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMapStation_SetterFunction", true)))
             fn_7101011b54(fn, "_fMapStation_SetterFunction");
     }();
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fMapStation", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field5->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fMapStation", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAccessPoint_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fAccessPoint_GetterFunction", true);
@@ -266,8 +261,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAccessPoint_SetterFunction", true)))
             fn_7101011cd0(fn, "_fAccessPoint_SetterFunction");
     }();
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fAccessPoint", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field6->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fAccessPoint", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fStatueRoom_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fStatueRoom_GetterFunction", true);
@@ -279,8 +273,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fStatueRoom_SetterFunction", true)))
             fn_7101011e4c(fn, "_fStatueRoom_SetterFunction");
     }();
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fStatueRoom", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field7->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fStatueRoom", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fTrainStation_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fTrainStation_GetterFunction", true);
@@ -292,8 +285,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fTrainStation_SetterFunction", true)))
             fn_7101011fc8(fn, "_fTrainStation_SetterFunction");
     }();
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fTrainStation", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field8->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fTrainStation", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fCave001_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fCave001_GetterFunction", true);
@@ -305,8 +297,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fCave001_SetterFunction", true)))
             fn_7101012144(fn, "_fCave001_SetterFunction");
     }();
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fCave001", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field9->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fCave001", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fCave002_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fCave002_GetterFunction", true);
@@ -318,8 +309,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fCave002_SetterFunction", true)))
             fn_71010122c0(fn, "_fCave002_SetterFunction");
     }();
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fCave002", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field10->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fCave002", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fCave003_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fCave003_GetterFunction", true);
@@ -331,8 +321,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fCave003_SetterFunction", true)))
             fn_710101243c(fn, "_fCave003_SetterFunction");
     }();
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fCave003", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field11->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fCave003", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fCaveThermalDevice_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fCaveThermalDevice_GetterFunction", true);
@@ -344,8 +333,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fCaveThermalDevice_SetterFunction", true)))
             fn_71010125b8(fn, "_fCaveThermalDevice_SetterFunction");
     }();
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fCaveThermalDevice", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field12->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fCaveThermalDevice", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fCaveCooldDown_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fCaveCooldDown_GetterFunction", true);
@@ -357,8 +345,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fCaveCooldDown_SetterFunction", true)))
             fn_7101012734(fn, "_fCaveCooldDown_SetterFunction");
     }();
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("fCaveCooldDown", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field13->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fCaveCooldDown", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMagma001_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fMagma001_GetterFunction", true);
@@ -370,8 +357,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMagma001_SetterFunction", true)))
             fn_71010128b0(fn, "_fMagma001_SetterFunction");
     }();
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("fMagma001", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field14->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fMagma001", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMagma002_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fMagma002_GetterFunction", true);
@@ -383,8 +369,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMagma002_SetterFunction", true)))
             fn_7101012a2c(fn, "_fMagma002_SetterFunction");
     }();
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("fMagma002", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field15->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fMagma002", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMagmaCoolDown_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fMagmaCoolDown_GetterFunction", true);
@@ -396,8 +381,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMagmaCoolDown_SetterFunction", true)))
             fn_7101012ba8(fn, "_fMagmaCoolDown_SetterFunction");
     }();
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("fMagmaCoolDown", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field16->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fMagmaCoolDown", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBaseLab001_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fBaseLab001_GetterFunction", true);
@@ -409,8 +393,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBaseLab001_SetterFunction", true)))
             fn_7101012d24(fn, "_fBaseLab001_SetterFunction");
     }();
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("fBaseLab001", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field17->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fBaseLab001", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBaseLabBlackOut_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fBaseLabBlackOut_GetterFunction", true);
@@ -422,8 +405,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBaseLabBlackOut_SetterFunction", true)))
             fn_7101012ea0(fn, "_fBaseLabBlackOut_SetterFunction");
     }();
-    UnkReflField* field18 = fn_7100096524(cls, CStrId("fBaseLabBlackOut", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field18->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fBaseLabBlackOut", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAqua001_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fAqua001_GetterFunction", true);
@@ -435,8 +417,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAqua001_SetterFunction", true)))
             fn_710101301c(fn, "_fAqua001_SetterFunction");
     }();
-    UnkReflField* field19 = fn_7100096524(cls, CStrId("fAqua001", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field19->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fAqua001", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAqua002_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fAqua002_GetterFunction", true);
@@ -448,8 +429,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAqua002_SetterFunction", true)))
             fn_7101013198(fn, "_fAqua002_SetterFunction");
     }();
-    UnkReflField* field20 = fn_7100096524(cls, CStrId("fAqua002", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field20->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fAqua002", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fForest001_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fForest001_GetterFunction", true);
@@ -461,8 +441,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fForest001_SetterFunction", true)))
             fn_7101013314(fn, "_fForest001_SetterFunction");
     }();
-    UnkReflField* field21 = fn_7100096524(cls, CStrId("fForest001", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field21->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fForest001", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fQuarantine001_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fQuarantine001_GetterFunction", true);
@@ -474,8 +453,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fQuarantine001_SetterFunction", true)))
             fn_7101013490(fn, "_fQuarantine001_SetterFunction");
     }();
-    UnkReflField* field22 = fn_7100096524(cls, CStrId("fQuarantine001", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field22->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fQuarantine001", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fSancturary001_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fSancturary001_GetterFunction", true);
@@ -487,8 +465,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fSancturary001_SetterFunction", true)))
             fn_710101360c(fn, "_fSancturary001_SetterFunction");
     }();
-    UnkReflField* field23 = fn_7100096524(cls, CStrId("fSancturary001", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field23->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fSancturary001", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fShipyard001_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fShipyard001_GetterFunction", true);
@@ -500,8 +477,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fShipyard001_SetterFunction", true)))
             fn_7101013788(fn, "_fShipyard001_SetterFunction");
     }();
-    UnkReflField* field24 = fn_7100096524(cls, CStrId("fShipyard001", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field24->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fShipyard001", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fSkybase001_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fSkybase001_GetterFunction", true);
@@ -513,8 +489,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fSkybase001_SetterFunction", true)))
             fn_7101013904(fn, "_fSkybase001_SetterFunction");
     }();
-    UnkReflField* field25 = fn_7100096524(cls, CStrId("fSkybase001", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field25->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fSkybase001", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEscapeSequence_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fEscapeSequence_GetterFunction", true);
@@ -526,8 +501,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEscapeSequence_SetterFunction", true)))
             fn_7101013a80(fn, "_fEscapeSequence_SetterFunction");
     }();
-    UnkReflField* field26 = fn_7100096524(cls, CStrId("fEscapeSequence", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field26->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fEscapeSequence", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEmmyPatrol_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fEmmyPatrol_GetterFunction", true);
@@ -539,8 +513,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEmmyPatrol_SetterFunction", true)))
             fn_7101013bfc(fn, "_fEmmyPatrol_SetterFunction");
     }();
-    UnkReflField* field27 = fn_7100096524(cls, CStrId("fEmmyPatrol", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field27->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fEmmyPatrol", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEmmySearch_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fEmmySearch_GetterFunction", true);
@@ -552,8 +525,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEmmySearch_SetterFunction", true)))
             fn_7101013d78(fn, "_fEmmySearch_SetterFunction");
     }();
-    UnkReflField* field28 = fn_7100096524(cls, CStrId("fEmmySearch", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field28->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fEmmySearch", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEmmyChase_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fEmmyChase_GetterFunction", true);
@@ -565,8 +537,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEmmyChase_SetterFunction", true)))
             fn_7101013ef4(fn, "_fEmmyChase_SetterFunction");
     }();
-    UnkReflField* field29 = fn_7100096524(cls, CStrId("fEmmyChase", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field29->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fEmmyChase", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEmmyDefeated_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fEmmyDefeated_GetterFunction", true);
@@ -578,8 +549,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEmmyDefeated_SetterFunction", true)))
             fn_7101014070(fn, "_fEmmyDefeated_SetterFunction");
     }();
-    UnkReflField* field30 = fn_7100096524(cls, CStrId("fEmmyDefeated", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field30->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fEmmyDefeated", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEmmyDefeatedMagma_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fEmmyDefeatedMagma_GetterFunction", true);
@@ -591,8 +561,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEmmyDefeatedMagma_SetterFunction", true)))
             fn_71010141ec(fn, "_fEmmyDefeatedMagma_SetterFunction");
     }();
-    UnkReflField* field31 = fn_7100096524(cls, CStrId("fEmmyDefeatedMagma", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field31->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fEmmyDefeatedMagma", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEmmyDefeatedBaselab_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fEmmyDefeatedBaselab_GetterFunction", true);
@@ -604,8 +573,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEmmyDefeatedBaselab_SetterFunction", true)))
             fn_7101014368(fn, "_fEmmyDefeatedBaselab_SetterFunction");
     }();
-    UnkReflField* field32 = fn_7100096524(cls, CStrId("fEmmyDefeatedBaselab", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field32->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fEmmyDefeatedBaselab", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEmmyDefeatedForest_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fEmmyDefeatedForest_GetterFunction", true);
@@ -617,8 +585,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEmmyDefeatedForest_SetterFunction", true)))
             fn_71010144e4(fn, "_fEmmyDefeatedForest_SetterFunction");
     }();
-    UnkReflField* field33 = fn_7100096524(cls, CStrId("fEmmyDefeatedForest", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field33->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fEmmyDefeatedForest", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEmmyDefeatedSanctuary_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fEmmyDefeatedSanctuary_GetterFunction", true);
@@ -630,8 +597,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEmmyDefeatedSanctuary_SetterFunction", true)))
             fn_7101014660(fn, "_fEmmyDefeatedSanctuary_SetterFunction");
     }();
-    UnkReflField* field34 = fn_7100096524(cls, CStrId("fEmmyDefeatedSanctuary", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field34->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fEmmyDefeatedSanctuary", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEmmyDefeatedShipyard_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fEmmyDefeatedShipyard_GetterFunction", true);
@@ -643,8 +609,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEmmyDefeatedShipyard_SetterFunction", true)))
             fn_71010147dc(fn, "_fEmmyDefeatedShipyard_SetterFunction");
     }();
-    UnkReflField* field35 = fn_7100096524(cls, CStrId("fEmmyDefeatedShipyard", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field35->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fEmmyDefeatedShipyard", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fCentralUnitPhase1_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fCentralUnitPhase1_GetterFunction", true);
@@ -656,8 +621,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fCentralUnitPhase1_SetterFunction", true)))
             fn_7101014958(fn, "_fCentralUnitPhase1_SetterFunction");
     }();
-    UnkReflField* field36 = fn_7100096524(cls, CStrId("fCentralUnitPhase1", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field36->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fCentralUnitPhase1", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fCentralUnitPhase2_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fCentralUnitPhase2_GetterFunction", true);
@@ -669,8 +633,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fCentralUnitPhase2_SetterFunction", true)))
             fn_7101014ad4(fn, "_fCentralUnitPhase2_SetterFunction");
     }();
-    UnkReflField* field37 = fn_7100096524(cls, CStrId("fCentralUnitPhase2", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field37->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fCentralUnitPhase2", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossDefeated_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fBossDefeated_GetterFunction", true);
@@ -682,8 +645,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossDefeated_SetterFunction", true)))
             fn_7101014c50(fn, "_fBossDefeated_SetterFunction");
     }();
-    UnkReflField* field38 = fn_7100096524(cls, CStrId("fBossDefeated", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field38->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fBossDefeated", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossScorpius001_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fBossScorpius001_GetterFunction", true);
@@ -695,8 +657,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossScorpius001_SetterFunction", true)))
             fn_7101014dcc(fn, "_fBossScorpius001_SetterFunction");
     }();
-    UnkReflField* field39 = fn_7100096524(cls, CStrId("fBossScorpius001", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field39->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fBossScorpius001", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossScorpius002_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fBossScorpius002_GetterFunction", true);
@@ -708,8 +669,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossScorpius002_SetterFunction", true)))
             fn_7101014f48(fn, "_fBossScorpius002_SetterFunction");
     }();
-    UnkReflField* field40 = fn_7100096524(cls, CStrId("fBossScorpius002", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field40->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fBossScorpius002", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossScorpiusPresentation_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fBossScorpiusPresentation_GetterFunction", true);
@@ -721,8 +681,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossScorpiusPresentation_SetterFunction", true)))
             fn_71010150c4(fn, "_fBossScorpiusPresentation_SetterFunction");
     }();
-    UnkReflField* field41 = fn_7100096524(cls, CStrId("fBossScorpiusPresentation", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field41->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fBossScorpiusPresentation", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossCoolDownX_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fBossCoolDownX_GetterFunction", true);
@@ -734,8 +693,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossCoolDownX_SetterFunction", true)))
             fn_7101015240(fn, "_fBossCoolDownX_SetterFunction");
     }();
-    UnkReflField* field42 = fn_7100096524(cls, CStrId("fBossCoolDownX", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field42->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fBossCoolDownX", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossCoolDownXPresentation_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fBossCoolDownXPresentation_GetterFunction", true);
@@ -747,8 +705,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossCoolDownXPresentation_SetterFunction", true)))
             fn_71010153bc(fn, "_fBossCoolDownXPresentation_SetterFunction");
     }();
-    UnkReflField* field43 = fn_7100096524(cls, CStrId("fBossCoolDownXPresentation", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field43->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fBossCoolDownXPresentation", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossKraid001_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fBossKraid001_GetterFunction", true);
@@ -760,8 +717,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossKraid001_SetterFunction", true)))
             fn_7101015538(fn, "_fBossKraid001_SetterFunction");
     }();
-    UnkReflField* field44 = fn_7100096524(cls, CStrId("fBossKraid001", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field44->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fBossKraid001", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossKraid002_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fBossKraid002_GetterFunction", true);
@@ -773,8 +729,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossKraid002_SetterFunction", true)))
             fn_71010156b4(fn, "_fBossKraid002_SetterFunction");
     }();
-    UnkReflField* field45 = fn_7100096524(cls, CStrId("fBossKraid002", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field45->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fBossKraid002", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossKraidPresentation_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fBossKraidPresentation_GetterFunction", true);
@@ -786,8 +741,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossKraidPresentation_SetterFunction", true)))
             fn_7101015830(fn, "_fBossKraidPresentation_SetterFunction");
     }();
-    UnkReflField* field46 = fn_7100096524(cls, CStrId("fBossKraidPresentation", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field46->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fBossKraidPresentation", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fHydrogiga001_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fHydrogiga001_GetterFunction", true);
@@ -799,8 +753,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fHydrogiga001_SetterFunction", true)))
             fn_71010159ac(fn, "_fHydrogiga001_SetterFunction");
     }();
-    UnkReflField* field47 = fn_7100096524(cls, CStrId("fHydrogiga001", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field47->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fHydrogiga001", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fHydrogiga002_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fHydrogiga002_GetterFunction", true);
@@ -812,8 +765,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fHydrogiga002_SetterFunction", true)))
             fn_7101015b28(fn, "_fHydrogiga002_SetterFunction");
     }();
-    UnkReflField* field48 = fn_7100096524(cls, CStrId("fHydrogiga002", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field48->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fHydrogiga002", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fSuperGoliathX_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fSuperGoliathX_GetterFunction", true);
@@ -825,8 +777,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fSuperGoliathX_SetterFunction", true)))
             fn_7101015ca4(fn, "_fSuperGoliathX_SetterFunction");
     }();
-    UnkReflField* field49 = fn_7100096524(cls, CStrId("fSuperGoliathX", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field49->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fSuperGoliathX", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fSuperQuetzoaX_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fSuperQuetzoaX_GetterFunction", true);
@@ -838,8 +789,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fSuperQuetzoaX_SetterFunction", true)))
             fn_7101015e20(fn, "_fSuperQuetzoaX_SetterFunction");
     }();
-    UnkReflField* field50 = fn_7100096524(cls, CStrId("fSuperQuetzoaX", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field50->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fSuperQuetzoaX", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossMidChozoRobotSoldier_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fBossMidChozoRobotSoldier_GetterFunction", true);
@@ -851,8 +801,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossMidChozoRobotSoldier_SetterFunction", true)))
             fn_7101015f9c(fn, "_fBossMidChozoRobotSoldier_SetterFunction");
     }();
-    UnkReflField* field51 = fn_7100096524(cls, CStrId("fBossMidChozoRobotSoldier", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field51->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fBossMidChozoRobotSoldier", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossMidChozoWarriorX001_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fBossMidChozoWarriorX001_GetterFunction", true);
@@ -864,8 +813,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossMidChozoWarriorX001_SetterFunction", true)))
             fn_7101016118(fn, "_fBossMidChozoWarriorX001_SetterFunction");
     }();
-    UnkReflField* field52 = fn_7100096524(cls, CStrId("fBossMidChozoWarriorX001", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field52->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fBossMidChozoWarriorX001", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossMidChozoWarriorX002_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fBossMidChozoWarriorX002_GetterFunction", true);
@@ -877,8 +825,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossMidChozoWarriorX002_SetterFunction", true)))
             fn_7101016294(fn, "_fBossMidChozoWarriorX002_SetterFunction");
     }();
-    UnkReflField* field53 = fn_7100096524(cls, CStrId("fBossMidChozoWarriorX002", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field53->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fBossMidChozoWarriorX002", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossCommanderPresentation_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fBossCommanderPresentation_GetterFunction", true);
@@ -890,8 +837,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossCommanderPresentation_SetterFunction", true)))
             fn_7101016410(fn, "_fBossCommanderPresentation_SetterFunction");
     }();
-    UnkReflField* field54 = fn_7100096524(cls, CStrId("fBossCommanderPresentation", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field54->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fBossCommanderPresentation", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossCommander001_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fBossCommander001_GetterFunction", true);
@@ -903,8 +849,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossCommander001_SetterFunction", true)))
             fn_710101658c(fn, "_fBossCommander001_SetterFunction");
     }();
-    UnkReflField* field55 = fn_7100096524(cls, CStrId("fBossCommander001", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field55->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fBossCommander001", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossCommander002_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fBossCommander002_GetterFunction", true);
@@ -916,8 +861,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossCommander002_SetterFunction", true)))
             fn_7101016708(fn, "_fBossCommander002_SetterFunction");
     }();
-    UnkReflField* field56 = fn_7100096524(cls, CStrId("fBossCommander002", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field56->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fBossCommander002", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossCommander003_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fBossCommander003_GetterFunction", true);
@@ -929,8 +873,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossCommander003_SetterFunction", true)))
             fn_7101016884(fn, "_fBossCommander003_SetterFunction");
     }();
-    UnkReflField* field57 = fn_7100096524(cls, CStrId("fBossCommander003", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field57->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fBossCommander003", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossCommanderX001_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fBossCommanderX001_GetterFunction", true);
@@ -942,8 +885,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossCommanderX001_SetterFunction", true)))
             fn_7101016a00(fn, "_fBossCommanderX001_SetterFunction");
     }();
-    UnkReflField* field58 = fn_7100096524(cls, CStrId("fBossCommanderX001", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field58->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fBossCommanderX001", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossCommanderX002_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fBossCommanderX002_GetterFunction", true);
@@ -955,8 +897,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBossCommanderX002_SetterFunction", true)))
             fn_7101016b7c(fn, "_fBossCommanderX002_SetterFunction");
     }();
-    UnkReflField* field59 = fn_7100096524(cls, CStrId("fBossCommanderX002", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field59->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fBossCommanderX002", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fProfessorX_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fProfessorX_GetterFunction", true);
@@ -968,8 +909,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fProfessorX_SetterFunction", true)))
             fn_7101016cf8(fn, "_fProfessorX_SetterFunction");
     }();
-    UnkReflField* field60 = fn_7100096524(cls, CStrId("fProfessorX", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field60->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fProfessorX", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEncounterProfessor_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fEncounterProfessor_GetterFunction", true);
@@ -981,8 +921,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEncounterProfessor_SetterFunction", true)))
             fn_7101016e74(fn, "_fEncounterProfessor_SetterFunction");
     }();
-    UnkReflField* field61 = fn_7100096524(cls, CStrId("fEncounterProfessor", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field61->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fEncounterProfessor", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fSancEmmyPresentation_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fSancEmmyPresentation_GetterFunction", true);
@@ -994,8 +933,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fSancEmmyPresentation_SetterFunction", true)))
             fn_7101016ff0(fn, "_fSancEmmyPresentation_SetterFunction");
     }();
-    UnkReflField* field62 = fn_7100096524(cls, CStrId("fSancEmmyPresentation", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field62->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fSancEmmyPresentation", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fStrongReaction_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fStrongReaction_GetterFunction", true);
@@ -1007,8 +945,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fStrongReaction_SetterFunction", true)))
             fn_710101716c(fn, "_fStrongReaction_SetterFunction");
     }();
-    UnkReflField* field63 = fn_7100096524(cls, CStrId("fStrongReaction", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field63->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fStrongReaction", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPowerBomb_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fPowerBomb_GetterFunction", true);
@@ -1020,8 +957,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPowerBomb_SetterFunction", true)))
             fn_71010172e8(fn, "_fPowerBomb_SetterFunction");
     }();
-    UnkReflField* field64 = fn_7100096524(cls, CStrId("fPowerBomb", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field64->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fPowerBomb", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fCommanderOutro_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fCommanderOutro_GetterFunction", true);
@@ -1033,8 +969,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fCommanderOutro_SetterFunction", true)))
             fn_7101017464(fn, "_fCommanderOutro_SetterFunction");
     }();
-    UnkReflField* field65 = fn_7100096524(cls, CStrId("fCommanderOutro", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field65->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fCommanderOutro", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEndGame_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fEndGame_GetterFunction", true);
@@ -1046,8 +981,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEndGame_SetterFunction", true)))
             fn_71010175e0(fn, "_fEndGame_SetterFunction");
     }();
-    UnkReflField* field66 = fn_7100096524(cls, CStrId("fEndGame", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field66->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fEndGame", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fStaffRoll_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fStaffRoll_GetterFunction", true);
@@ -1059,8 +993,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fStaffRoll_SetterFunction", true)))
             fn_710101775c(fn, "_fStaffRoll_SetterFunction");
     }();
-    UnkReflField* field67 = fn_7100096524(cls, CStrId("fStaffRoll", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field67->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fStaffRoll", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEndScreen_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fEndScreen_GetterFunction", true);
@@ -1072,8 +1005,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEndScreen_SetterFunction", true)))
             fn_71010178d8(fn, "_fEndScreen_SetterFunction");
     }();
-    UnkReflField* field68 = fn_7100096524(cls, CStrId("fEndScreen", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field68->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fEndScreen", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fJingleTojo_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fJingleTojo_GetterFunction", true);
@@ -1085,8 +1017,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fJingleTojo_SetterFunction", true)))
             fn_7101017a54(fn, "_fJingleTojo_SetterFunction");
     }();
-    UnkReflField* field69 = fn_7100096524(cls, CStrId("fJingleTojo", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field69->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fJingleTojo", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fJingleItemGet_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fJingleItemGet_GetterFunction", true);
@@ -1098,8 +1029,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fJingleItemGet_SetterFunction", true)))
             fn_7101017bd0(fn, "_fJingleItemGet_SetterFunction");
     }();
-    UnkReflField* field70 = fn_7100096524(cls, CStrId("fJingleItemGet", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field70->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fJingleItemGet", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fJingleItemGetUnknown_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fJingleItemGetUnknown_GetterFunction", true);
@@ -1111,8 +1041,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fJingleItemGetUnknown_SetterFunction", true)))
             fn_7101017d4c(fn, "_fJingleItemGetUnknown_SetterFunction");
     }();
-    UnkReflField* field71 = fn_7100096524(cls, CStrId("fJingleItemGetUnknown", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field71->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fJingleItemGetUnknown", (DefaultValue, -1.0f));
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fJinglePowerUpGet_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fJinglePowerUpGet_GetterFunction", true);
@@ -1124,8 +1053,7 @@ void refl_AddFields(CClass* cls) {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fJinglePowerUpGet_SetterFunction", true)))
             fn_7101017ec8(fn, "_fJinglePowerUpGet_SetterFunction");
     }();
-    UnkReflField* field72 = fn_7100096524(cls, CStrId("fJinglePowerUpGet", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field72->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fJinglePowerUpGet", (DefaultValue, -1.0f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

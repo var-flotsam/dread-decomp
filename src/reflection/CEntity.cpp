@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -49,10 +50,7 @@ void refl_AddFields(CClass* cls) {
     field0->attrs.Add<const char*>(fn_7100007e80(), "Entity BBox");
     field0->attrs.Add<CStrId>(fn_7100091c30(), CStrId("Bounding Box", true));
     field0->attrs.Add<bool>(fn_7100234410(), true);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bIsInFrustum", true), fn_710000d228(), 0xffffffff, -1, -1);
-    field1->attrs.Add<CStrId>(fn_7100091c30(), CStrId("Inside Frustum", true));
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field1->attrs.Add<bool>(fn_7100090a20(), false);
+    DREAD_REFLECTED_FIELD(bool, "bIsInFrustum", 0xffffffff, (DisplayName, CStrId("Inside Frustum", true)), (Persistence, 0), (EditorVisible, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bIsInFrustum_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bIsInFrustum_GetterFunction", true);
         fn->return_type = fn_710000d228();

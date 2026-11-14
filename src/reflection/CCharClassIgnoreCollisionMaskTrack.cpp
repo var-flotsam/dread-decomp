@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -38,9 +39,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sMasksToIgnore_SetterFunction", true)))
         fn_7100c299c0(fn, "_m_sMasksToIgnore_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sMasksToIgnore", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Mask to Ignore");
+    DREAD_REFLECTED_PROPERTY(CStrId, "sMasksToIgnore", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Mask to Ignore"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sMasksToEnforce_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_sMasksToEnforce_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -50,9 +49,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sMasksToEnforce_SetterFunction", true)))
         fn_7100c29b3c(fn, "_m_sMasksToEnforce_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sMasksToEnforce", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Mask to Enforce");
+    DREAD_REFLECTED_PROPERTY(CStrId, "sMasksToEnforce", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Mask to Enforce"));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

@@ -41,7 +41,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sDamageID_SetterFunction", true)))
         fn_7100ab342c(fn, "_m_sDamageID_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sDamageID", true), fn_7100007f84(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(base::global::CRntString, "sDamageID");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sDamageSource_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_sDamageSource_GetterFunction", true);
         fn->return_type = fn_7100007f84();
@@ -51,7 +51,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sDamageSource_SetterFunction", true)))
         fn_7100ab35a8(fn, "_m_sDamageSource_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sDamageSource", true), fn_7100007f84(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(base::global::CRntString, "sDamageSource");
     UnkReflField* field2 = fn_7100096524(cls, CStrId("eDamageType", true), &g_unk_7172730420, 0xcc, -1, -1);
     field2->attrs.Add<s32>(fn_7100075240(), &g_unk_7172730420, 0);
     field2->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
@@ -68,8 +68,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sCollisionMask_SetterFunction", true)))
         fn_7100ab3724(fn, "_sCollisionMask_SetterFunction");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("sCollisionMask", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field5->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sCollisionMask", (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(bool, "bWantsProcessBreakableTileHit", 0xe4, (DefaultValue, true));
     UnkReflField* field7 = fn_7100096524(cls, CStrId("eForcedDamageMode", true), &g_unk_7172730580, 0xe8, -1, -1);
     field7->attrs.Add<s32>(fn_7100075240(), &g_unk_7172730580, 0);

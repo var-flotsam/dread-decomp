@@ -73,9 +73,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sDamageSource_SetterFunction", true)))
         fn_71008560b4(fn, "_sDamageSource_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sDamageSource", true), fn_7100007f84(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString(g_unk_7101d58d10));
-    field1->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Source of the damage to be dealt"));
+    DREAD_REFLECTED_PROPERTY(base::global::CRntString, "sDamageSource", (DefaultValue, base::global::CRntString(g_unk_7101d58d10)), (Description, base::global::CRntString("Source of the damage to be dealt")));
     DREAD_REFLECTED_FIELD(f32, "fHeat", 0x60, (DefaultValue, 0.7f), (Description, "Maximun damage to the shield"));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {

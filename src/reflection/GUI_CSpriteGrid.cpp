@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -45,7 +46,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_Image_SetterFunction", true)))
         fn_71011fc00c(fn, "_Image_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("Image", true), fn_710000ad9c(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(base::global::CFilePathStrId, "Image");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CellDefaultSpriteSheetItem_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_CellDefaultSpriteSheetItem_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -55,7 +56,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CellDefaultSpriteSheetItem_SetterFunction", true)))
         fn_71011fc188(fn, "_CellDefaultSpriteSheetItem_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("CellDefaultSpriteSheetItem", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(CStrId, "CellDefaultSpriteSheetItem");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_GridSizeX_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_GridSizeX_GetterFunction", true);
         fn->return_type = fn_7100014768();
@@ -65,7 +66,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_GridSizeX_SetterFunction", true)))
         fn_71011fc304(fn, "_GridSizeX_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("GridSizeX", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(s32, "GridSizeX");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_GridSizeY_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_GridSizeY_GetterFunction", true);
         fn->return_type = fn_7100014768();
@@ -75,7 +76,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_GridSizeY_SetterFunction", true)))
         fn_71011fc480(fn, "_GridSizeY_SetterFunction");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("GridSizeY", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(s32, "GridSizeY");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CellSizeX_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_CellSizeX_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -85,7 +86,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CellSizeX_SetterFunction", true)))
         fn_71011fc5fc(fn, "_CellSizeX_SetterFunction");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("CellSizeX", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "CellSizeX");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CellSizeY_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_CellSizeY_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -95,7 +96,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CellSizeY_SetterFunction", true)))
         fn_71011fc778(fn, "_CellSizeY_SetterFunction");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("CellSizeY", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(f32, "CellSizeY");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_BlendMode_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_BlendMode_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -105,7 +106,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_BlendMode_SetterFunction", true)))
         fn_71011fc8f4(fn, "_BlendMode_SetterFunction");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("BlendMode", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_PROPERTY(CStrId, "BlendMode");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

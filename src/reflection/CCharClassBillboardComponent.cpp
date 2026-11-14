@@ -54,8 +54,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fGroupRadius_SetterFunction", true)))
         fn_710072e150(fn, "_m_fGroupRadius_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fGroupRadius", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<f32>(fn_7100075240(), 10.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fGroupRadius", (DefaultValue, 10.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fBillboardRadius_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fBillboardRadius_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -65,8 +64,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fBillboardRadius_SetterFunction", true)))
         fn_710072e2cc(fn, "_m_fBillboardRadius_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fBillboardRadius", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<f32>(fn_7100075240(), 10.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fBillboardRadius", (DefaultValue, 10.0f));
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sPath", 0x68, (DefaultValue, ""));
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sBgPath", 0x70, (DefaultValue, ""));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iTextureWidth_GetterFunction", true))) {
@@ -78,8 +76,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iTextureWidth_SetterFunction", true)))
         fn_710072e448(fn, "_m_iTextureWidth_SetterFunction");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("iTextureWidth", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field4->attrs.Add<s32>(fn_7100075240(), 1);
+    DREAD_REFLECTED_PROPERTY(s32, "iTextureWidth", (DefaultValue, 1));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iTextureHeight_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_iTextureHeight_GetterFunction", true);
         fn->return_type = fn_7100014768();
@@ -89,8 +86,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iTextureHeight_SetterFunction", true)))
         fn_710072e5c4(fn, "_m_iTextureHeight_SetterFunction");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("iTextureHeight", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field5->attrs.Add<s32>(fn_7100075240(), 1);
+    DREAD_REFLECTED_PROPERTY(s32, "iTextureHeight", (DefaultValue, 1));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vInitialColor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_vInitialColor_GetterFunction", true);
         fn->return_type = fn_71000246e4();
@@ -100,8 +96,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vInitialColor_SetterFunction", true)))
         fn_710072e740(fn, "_m_vInitialColor_SetterFunction");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("vInitialColor", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field6->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{1.0f, 1.0f, 1.0f});
+    DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vInitialColor", (DefaultValue, base::math::CVector3D{1.0f, 1.0f, 1.0f}));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fUniformColorOffset_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fUniformColorOffset_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -111,8 +106,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fUniformColorOffset_SetterFunction", true)))
         fn_710072e8bc(fn, "_m_fUniformColorOffset_SetterFunction");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fUniformColorOffset", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field7->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fUniformColorOffset", (DefaultValue, 0.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vColorOffset_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_vColorOffset_GetterFunction", true);
         fn->return_type = fn_71000246e4();
@@ -122,8 +116,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vColorOffset_SetterFunction", true)))
         fn_710072ea38(fn, "_m_vColorOffset_SetterFunction");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("vColorOffset", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field8->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
+    DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vColorOffset", (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fInitialAlpha_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fInitialAlpha_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -133,8 +126,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fInitialAlpha_SetterFunction", true)))
         fn_710072ebb4(fn, "_m_fInitialAlpha_SetterFunction");
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fInitialAlpha", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field9->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fInitialAlpha", (DefaultValue, 1.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAlphaOffset_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fAlphaOffset_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -144,8 +136,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAlphaOffset_SetterFunction", true)))
         fn_710072ed30(fn, "_m_fAlphaOffset_SetterFunction");
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fAlphaOffset", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field10->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fAlphaOffset", (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(CStrId, "sBillboardDefaultLoop", 0xa8, (DefaultValue, "relax"));
     DREAD_REFLECTED_FIELD(CStrId, "sBillboardMotionDefaultLoop", 0xb0, (DefaultValue, ""));
     DREAD_REFLECTED_FIELD(CStrId, "sGroupMotionDefaultLoop", 0xc0, (DefaultValue, ""));
@@ -159,8 +150,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fBillboardMotionDefaultScale_SetterFunction", true)))
         fn_710072eeac(fn, "_m_fBillboardMotionDefaultScale_SetterFunction");
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("fBillboardMotionDefaultScale", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field15->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fBillboardMotionDefaultScale", (DefaultValue, 0.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fGroupMotionDefaultScale_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fGroupMotionDefaultScale_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -170,8 +160,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fGroupMotionDefaultScale_SetterFunction", true)))
         fn_710072f028(fn, "_m_fGroupMotionDefaultScale_SetterFunction");
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("fGroupMotionDefaultScale", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field16->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fGroupMotionDefaultScale", (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(CStrId, "sSoundLoopLot", 0x130, (DefaultValue, ""));
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sSoundLoopLit", 0x140, (DefaultValue, ""));
     DREAD_REFLECTED_FIELD(f32, "fSoundLoopLotAmountPct", 0x138, (DefaultValue, 0.2f));

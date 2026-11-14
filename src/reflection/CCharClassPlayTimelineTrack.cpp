@@ -20,7 +20,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassPlayTimelineTrack
-extern base::reflection::CType g_unk_7101d679f0;
 extern base::reflection::CType g_unk_7172733be8;
 namespace CCharClassPlayTimelineTrack {
 void refl_AddAttributes(CClass* cls) {
@@ -29,10 +28,7 @@ void refl_AddAttributes(CClass* cls) {
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sOnStartTimeline", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Main Timeline"));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sLoopTimeline", true), fn_7100009658(), 0x20, -1, -1);
-    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Main Timeline");
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    DREAD_REFLECTED_FIELD(CStrId, "sLoopTimeline", 0x20, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Main Timeline"), (Persistence, 0));
     DREAD_REFLECTED_FIELD(CStrId, "sOnEndTimeline", 0x28, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "On End Timeline"));
     UnkReflField* field3 = fn_7100096524(cls, CStrId("ePlayOnly", true), &g_unk_7172733be8, 0x30, -1, -1);
     field3->attrs.Add<s32>(fn_7100075240(), &g_unk_7172733be8, 0);

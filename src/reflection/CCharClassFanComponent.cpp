@@ -73,10 +73,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fWindLength_SetterFunction", true)))
         fn_710087d4b0(fn, "_m_fWindLength_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fWindLength", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<f32>(fn_7100075240(), 1200.0f);
-    field0->attrs.Add<f32>(fn_7100091080(), 800.0f);
-    field0->attrs.Add<f32>(fn_7100091190(), 1200.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fWindLength", (DefaultValue, 1200.0f), (MinValue, 800.0f), (MaxValue, 1200.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fHurricaneLength_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fHurricaneLength_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -86,10 +83,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fHurricaneLength_SetterFunction", true)))
         fn_710087d62c(fn, "_m_fHurricaneLength_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fHurricaneLength", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<f32>(fn_7100075240(), 800.0f);
-    field1->attrs.Add<f32>(fn_7100091080(), 600.0f);
-    field1->attrs.Add<f32>(fn_7100091190(), 800.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fHurricaneLength", (DefaultValue, 800.0f), (MinValue, 600.0f), (MaxValue, 800.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fBarrierLength_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fBarrierLength_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -99,10 +93,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fBarrierLength_SetterFunction", true)))
         fn_710087d7a8(fn, "_m_fBarrierLength_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fBarrierLength", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field2->attrs.Add<f32>(fn_7100075240(), 200.0f);
-    field2->attrs.Add<f32>(fn_7100091080(), 100.0f);
-    field2->attrs.Add<f32>(fn_7100091190(), 400.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fBarrierLength", (DefaultValue, 200.0f), (MinValue, 100.0f), (MaxValue, 400.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fWidth_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fWidth_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -112,10 +103,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fWidth_SetterFunction", true)))
         fn_710087d924(fn, "_m_fWidth_SetterFunction");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fWidth", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field3->attrs.Add<f32>(fn_7100075240(), 400.0f);
-    field3->attrs.Add<f32>(fn_7100091080(), 400.0f);
-    field3->attrs.Add<f32>(fn_7100091190(), 400.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fWidth", (DefaultValue, 400.0f), (MinValue, 400.0f), (MaxValue, 400.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fParticleScale_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fParticleScale_GetterFunction", true);
         fn->return_type = fn_710000abbc();
@@ -125,10 +113,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fParticleScale_SetterFunction", true)))
         fn_710087daa0(fn, "_m_fParticleScale_SetterFunction");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fParticleScale", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field4->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field4->attrs.Add<f32>(fn_7100091080(), 0.1f);
-    field4->attrs.Add<f32>(fn_7100091190(), 2.0f);
+    DREAD_REFLECTED_PROPERTY(f32, "fParticleScale", (DefaultValue, 1.0f), (MinValue, 0.1f), (MaxValue, 2.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

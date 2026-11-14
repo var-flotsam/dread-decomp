@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -22,7 +23,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CComponent
 void fn_71010c57bc();
-extern base::reflection::CType g_unk_7101d679f0;
 void fn_71010c580c();
 void fn_71010c2d24(UnkReflFunction* fn, const char* name);
 void fn_71010c58b4();
@@ -37,11 +37,7 @@ void refl_AddFields(CClass* cls) {
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71010c57bc);
     }
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bEnabled", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), true);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field0->attrs.Add<bool>(fn_7100090a20(), false);
-    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Enabled?"));
+    DREAD_REFLECTED_READ_ONLY_PROPERTY(bool, "bEnabled", (DefaultValue, true), (Persistence, 0), (EditorVisible, false), (Description, base::global::CRntString("Enabled?")));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bWantsEnabled_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bWantsEnabled_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -51,9 +47,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bWantsEnabled_SetterFunction", true)))
         fn_71010c2d24(fn, "_bWantsEnabled_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bWantsEnabled", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<bool>(fn_7100075240(), true);
-    field1->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("States if the component should be enabled at the begining"));
+    DREAD_REFLECTED_PROPERTY(bool, "bWantsEnabled", (DefaultValue, true), (Description, base::global::CRntString("States if the component should be enabled at the begining")));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUseDefaultValues_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bUseDefaultValues_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -63,9 +57,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUseDefaultValues_SetterFunction", true)))
         fn_71010c2ea0(fn, "_bUseDefaultValues_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bUseDefaultValues", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field2->attrs.Add<bool>(fn_7100075240(), true);
-    field2->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Use charclass values instead of specific values"));
+    DREAD_REFLECTED_PROPERTY(bool, "bUseDefaultValues", (DefaultValue, true), (Description, base::global::CRntString("Use charclass values instead of specific values")));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
