@@ -10,8 +10,9 @@ each file stays under the 1 MB pre-commit limit. Columns: address,size,name,name
   address      absolute (image base 0x7100000000)
   size         bytes; from .eh_frame when available, else Ghidra's body extent
   name         best guess, demangled; fn_<addr> when unknown
-  name_source  symbol | library | rtti | reflection | string | unknown
-               (library = matched against vendored upstream code, data/library_symbols.csv)
+  name_source  symbol | library | rtti | reflection | string | inferred | unknown
+               (library = matched against vendored upstream code, data/library_symbols.csv;
+               inferred = a name a person chose, from data/names.csv, tools/rename.py)
   subsystem    guess (see SUBSYSTEM_RULES); "?"-suffixed when inferred from neighbours
   status       BotW / nx-decomp-tools codes (see docs/references.md):
                  O matching, m non-matching (minor), M non-matching (major), W work in progress,
@@ -40,6 +41,7 @@ from image import BASE, Image  # noqa: E402
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import hostenv  # noqa: E402
+from dread import names as name_map  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 CXXFILT = hostenv.cxxfilt()
@@ -242,6 +244,23 @@ def main() -> int:
             name = key if seen_lua[key] == 1 else f"{key}_{tbl['addr'][-6:]}"
             put(int(e["func"], 16), name, "string")
 
+    # 5. Names people chose (data/names.csv, tools/rename.py), for functions the binary does not name. They
+    # are applied to the written rows only, after the subsystems: a chosen name never moves a function to
+    # another subsystem or status, so tools/rename.py writes the same row this does (dread.names.apply).
+    chosen = name_map.read()
+    chosen_names: dict[int, tuple[str, str]] = {}
+    problems = name_map.row_problems(chosen)
+    for r in chosen:
+        a = int(r["address"], 16)
+        if a not in funcs:
+            problems.append(f"{r['address']} ({r['name']}): not a function of the module")
+        elif a in names and names[a][0] != r["name"]:
+            problems.append(f"{r['address']} ({r['name']}): the binary names it {names[a][0]} ({names[a][1]})")
+        else:
+            chosen_names[a] = (r["name"], r["name_source"])
+    if problems:
+        raise SystemExit("data/names.csv:\n  " + "\n  ".join(problems))
+
     # Subsystems: from the name; otherwise from the nearest named neighbours if they agree.
     ordered = sorted(funcs)
     sub: dict[int, str] = {}
@@ -286,6 +305,7 @@ def main() -> int:
                 status = old_status.get(addr)
                 if status not in DECOMP_STATUSES:
                     status = "L" if is_library(subsystem, source) else "U"
+                name, source = chosen_names.get(a, (name, source))
                 w.writerow([addr, funcs[a], name, source, subsystem, status])
 
     rt = ROOT / "data" / "reflection_types.csv"

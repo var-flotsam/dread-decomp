@@ -4,25 +4,8 @@
 // fn_7100d88e14). Names are placeholders.
 #include "base/UnkErasedVector.h"
 #include "base/UnkVector.h"
+#include "game/UnkCallbackBase.h"
 #include "game/UnkTU2523.h"
-
-
-struct UnkRefCounted {
-    virtual void vf0();
-    virtual void vf8();
-    virtual void Delete();
-    union {
-        s32 ref_count;
-    };
-};
-
-struct UnkCallbackBase {
-    virtual void vf0();
-    UnkOwnedErasedVector callbacks;
-    u32 field_0x30;
-
-    UnkCallbackBase() : field_0x30(0) {}
-};
 
 struct UnkCallbackSet : UnkCallbackBase {
     virtual void vf8();

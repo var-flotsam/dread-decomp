@@ -1,20 +1,19 @@
 // Unit 1161 of tools/tu_map.py (no class hint): resets an object: its ids and links cleared, its
 // sub-object at +0xe8 reset (fn_710074580c), and the entries of the list at +0xb8 (count at +0xc0)
 // released one by one. Names and layouts are placeholders.
+#include "game/UnkTU1159.h"
 #include "types.h"
 
 struct UnkEntryList_b0202;
-struct UnkEntry_b0202;
 void fn_710074580c(void* sub);
-UnkEntry_b0202** fn_7100745c5c(UnkEntryList_b0202* list, u32 index);
-void fn_7100744d90(UnkEntry_b0202* entry);
+UnkUnit2560Element** fn_7100745c5c(UnkEntryList_b0202* list, u32 index);
 
 struct UnkEntryList_b0202 {
     void* data;  // 0x0
     u32 count;   // 0x8
 };
 
-struct UnkHolder_b0202 {
+struct UnkTU1161Holder {
     u8 pad_0x0[0x8];
     u64 field_0x8;
     u64 field_0x10;
@@ -29,7 +28,8 @@ struct UnkHolder_b0202 {
     u8 sub[1];  // 0xe8
 };
 
-void fn_7100745bdc(UnkHolder_b0202* self) {
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
+void fn_7100745bdc(UnkTU1161Holder* self) {
     self->field_0x24 = false;
     self->field_0x20 = -1;
     void* sub = self->sub;

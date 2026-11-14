@@ -283,7 +283,6 @@ void fn_7100b459e4(UnkMapMenuController_ovb0203* self, bool flag) {
 
 // ---- fn_7100b464e0
 void fn_7100ea64b4(UnkMapData* self);
-void fn_7100e9d7fc(UnkMapData* self);
 void fn_7100e91a28(UnkMapData* self, bool flag);
 struct UnkEnumType;
 extern UnkEnumType g_unk_71729f0238;

@@ -4,65 +4,20 @@
 // type-erased array, a count and a refcounted owner (0x40 bytes), and each element adds a u32.
 // Reserve, Truncate, Erase and Insert are the array's own, Begin makes an iterator at the first
 // element. The hand-written files of the copies of this array type (one per reflected type) share
-// it: src/game_s7/fn_71011143d8.cpp and src/game_s7/fn_7101114ae0.cpp. Names are placeholders.
+// it: src/game_s7/fn_71011143d8.cpp, fn_7101114ae0.cpp, fn_710111344c.cpp, fn_71011146c0.cpp,
+// fn_7101114d10.cpp, fn_7101114f80.cpp and fn_71011150bc.cpp. Names are placeholders.
 //
-// The set class here is the one with vtable 0x7101a20950 and move constructor fn_71002458a4, so it
-// carries that address in its name: other arrays hold sets of other classes, which the files that
-// define them name apart (UnkCallbackSet, vtable 0x7101a33fa0 and move constructor fn_71007b1928,
-// in src/game/CCharClassWaterPoolComponent/fn_710090dbb4.cpp and its copies). One placeholder name
-// for both would give their constructors and vtables two addresses (tools/port_addresses.py).
+// The set class here is UnkCallbackSet_7101a20950 (game/UnkCallbackSet_7101a20950.h): other arrays
+// hold sets of other classes, which the files that define them name apart (UnkCallbackSet, vtable
+// 0x7101a33fa0 and move constructor fn_71007b1928, in
+// src/game/CCharClassWaterPoolComponent/fn_710090dbb4.cpp and its copies).
 // CCharClassWaterPoolComponent_Assign.cpp uses this header for the array layout alone, which the
 // two classes share.
 
 #include "base/UnkErasedVector.h"
 #include "base/UnkVector.h"
+#include "game/UnkCallbackSet_7101a20950.h"
 #include "game/UnkCallbackSetVectorFwd.h"
-
-struct UnkRefCounted {
-    virtual void vf0();
-    virtual void vf8();
-    virtual void Delete();
-    union {
-        s32 ref_count;
-    };
-};
-
-struct UnkCallbackBase {
-    virtual void vf0();
-    UnkOwnedErasedVector callbacks;
-    u32 field_0x30;
-
-    UnkCallbackBase() : field_0x30(0) {}
-};
-
-struct UnkCallbackSet_7101a20950 : UnkCallbackBase {
-    virtual void vf8();
-    UnkRefCounted* owner;
-
-    UnkCallbackSet_7101a20950(const UnkCallbackSet_7101a20950& other) : owner(nullptr) {
-        UnkRefCounted* p = other.owner;
-        if (p != owner) {
-            if (p)
-                ++p->ref_count;
-            if (UnkRefCounted* old = owner) {
-                if (--old->ref_count == 0)
-                    old->Delete();
-            }
-            owner = p;
-        }
-        field_0x30 = other.field_0x30;
-        fn_710023b29c(&callbacks, &other.callbacks);
-    }
-
-    UnkCallbackSet_7101a20950(UnkCallbackSet_7101a20950&& other);  // fn_71002458a4
-
-    __attribute__((always_inline)) ~UnkCallbackSet_7101a20950() {
-        if (UnkRefCounted* p = owner) {
-            if (--p->ref_count == 0)
-                p->Delete();
-        }
-    }
-};
 
 struct UnkCallbackSetElem {
     UnkCallbackSet_7101a20950 set;

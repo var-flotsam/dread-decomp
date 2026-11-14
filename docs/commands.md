@@ -381,6 +381,17 @@ python tools/name_check.py --version 2.1.0            # the report; exit 0
 python tools/name_check.py --version 2.1.0 --strict   # exit 1 when a name points to more than one address
 ```
 
+### `tools/rename.py`
+
+Give a function a readable name: the name map (data/names.csv), the function list and every hand-written use.
+
+```sh
+python tools/rename.py 0x7100219588 UnkRenderManager::ProjectToScreen --reason "projects a point through the view"
+python tools/rename.py 0x7100219588 ... --dry-run    # what would change, nothing written
+python tools/rename.py --check                       # the map is valid, applied and complete; exit 1 if not
+python tools/rename.py --list                        # the map
+```
+
 ### `tools/equiv_test.py`
 
 The machine test for tier 2: is a hand-written function that does not match equivalent to the original?
@@ -432,6 +443,7 @@ python tools/fakematch.py --list [--kind K]   # every hit: file:line, kind, func
 python tools/fakematch.py --base origin/main  # only files changed since <ref> (a branch's or a PR's)
 python tools/fakematch.py --strict            # exit 1 on any barrier-no-comment
 python tools/fakematch.py --unset [PATH...]   # every read of a variable that is not set, by the project
+python tools/fakematch.py --unset --strict --base origin/main
 python tools/fakematch.py --unneeded-barriers [--write] [--list] [PATH...]
 python tools/fakematch.py PATH...             # only these files or directories
 ```

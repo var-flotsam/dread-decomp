@@ -6,7 +6,10 @@
 #include "game/UnkComponent.h"
 #include "types.h"
 
-extern void fn_7100889040();
+// The handler is defined in src/game/UnkStateMachineSet_b60.cpp.
+template <u32 Offset>
+struct UnkSmOwner_b60;
+bool fn_7100889040(UnkSmOwner_b60<0x208>* self, const s32* message);
 extern void fn_7100889160();
 extern void fn_7100889178();
 extern void fn_710088917c();

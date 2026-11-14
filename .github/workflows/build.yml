@@ -8,6 +8,9 @@
 #  - port sweep: every src/ file for x86-64 Linux with the runner's Clang (`tools/port_sweep.py`);
 #    fails when a file does not compile.
 #  - tool tests: tools/tests (unittest), including the ones that need the project compiler.
+#  - unset reads: no hand-written source reads a variable before it is set, unless its declaration
+#    says the original program leaves it unset (`tools/fakematch.py --unset --strict`; CLAUDE.md,
+#    "No unset values"). The project compiler's own warnings, syntax only, the whole tree.
 #    A second job runs them on Windows, without the compiler (those tests skip there).
 #
 # A pull request that changes only documentation (every changed path under docs/ or ending in .md)
@@ -90,6 +93,8 @@ jobs:
           git diff --exit-code -- data/toolchains.json data/sources.json   # pins must already match
       - name: Tool tests (tools/tests, with the project compiler)
         run: python -m unittest discover -s tools/tests -t . -v
+      - name: No unset reads (tools/fakematch.py --unset --strict)
+        run: python tools/fakematch.py --unset --strict
       - name: Matching build (tools/check.py --compile-only)
         if: >-
           vars.SELF_HOSTED_CHECK != 'true' ||

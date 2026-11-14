@@ -38,6 +38,12 @@ eventually be replaced. The proof has tiers:
 Readability outranks a match: when a function matches only with a union around a member, an empty barrier
 or an inlining attribute, commit the readable version as tier 2 instead.
 
+**The order of the two (owner, 2026-11-13).** Behaviour comes first, then readability, then bytes. Among texts
+that behave as the original does, the readable one is kept even when it does not match (above). A text that
+reads better but behaves otherwise is not kept: "faithful first" (Conventions) wins. The precedent is
+`src/game_lo/fn_7100219588.cpp`, which reads two locals the original program also leaves unset rather than
+setting them.
+
 **Complete** (owner, 2026-11-13: "The project will not be considered to be absolutely done until the
 decompilation functions identically and is human readable"; "byte matching and readable are two different
 qualities but both are needed. Identical behavior but byte mismatch are okay for a later date"). A function
@@ -86,7 +92,7 @@ files over 1 MB, `.nso/.nro/.nca/.nsp/.xci/.nsz/.xcz/.keys/.elf`, and anything u
 | `tools/` | yes | Python tooling; `tools/ghidra/` holds headless Ghidra scripts; `tools/hooks/` holds git hooks |
 | `src/`, `include/` | yes | reconstructed C++17 game code; shared declarations and layouts live in `include/` (one per symbol) |
 | `lib/` | yes | vendored upstream Lua 5.1.4 (`lib/lua`), dlmalloc 2.8.4, one libc++ sort; submodules `lib/nnsdk`, `lib/musl` (headers only) |
-| `data/` | yes | metadata only: `hashes.json`, `functions/main_XX.csv`, `reflection_types.csv`, `reflection_fields.csv`, `tu_map.csv`, `data_map.csv`, `equivalence.csv`, `library_symbols.csv`, `toolchains.json`, `sources.json`; never code bytes |
+| `data/` | yes | metadata only: `hashes.json`, `functions/main_XX.csv`, `names.csv`, `reflection_types.csv`, `reflection_fields.csv`, `tu_map.csv`, `data_map.csv`, `equivalence.csv`, `library_symbols.csv`, `toolchains.json`, `sources.json`; never code bytes |
 | `docs/` | yes | `HANDOFF.md` (state), `PORT_PLAN.md`, `reference.md` (stable facts), `commands.md` (generated), `JOURNAL.md` (history), `recon.md`, `compiler.md`, `maintaining.md`, `references.md` |
 | `port/` | yes | PC port layer (Route B): CMake project (`dread_game`, `dread_libs`, `dread_runtime`, `dread`, `sweep`, `link_report`), the port's own `nn::` runtime under `runtime/`, `sample_duplicates.txt`; `port/README.md` has the layout, the sweep and the link |
 
@@ -107,6 +113,7 @@ python tools/trymatch.py --version <ver> <file.cpp> -v # build and diff one sour
 python tools/hubs.py --version <ver> --boot | --ready --boot | --callers <fn>   # what to match next
 python tools/gen_lift.py --version <ver> --best ADDR,...   # closest lifted draft -> build/lift_best/ (hand-matching start)
 python tools/tu_map.py --function <addr|name>          # the unit a function belongs to, and its file name
+python tools/rename.py <addr> <Name> --reason "..." [--dry-run]   # give a function a readable name (data/names.csv)
 python tools/data_map.py --address <addr>              # the unit a global belongs to
 python tools/gen_fields.py --class <Class>             # a reflected class's members by offset, bases included
 python tools/decl_check.py --strict --base origin/main # one declaration per shared symbol (CI)
@@ -176,17 +183,25 @@ Toolchain:
 - Tool scripts must be reproducible. Outputs are always regenerated, never hand-edited.
 - Names you aren't sure of keep an address-based placeholder: `fn_<addr>` (e.g.
   `fn_7100123456`), `UnkStruct_0x40` (size suffix), `field_0x18`, `unk_<addr>` for data.
-  Only use a real name when it comes from RTTI, reflection, strings, or
-  mercury-engine-data-structures. Record that source in the `name_source` column of `data/functions/main_XX.csv`.
+  A real name comes from RTTI, reflection, strings, or mercury-engine-data-structures; its source is the
+  `name_source` column of `data/functions/main_XX.csv`.
   For `nn::atk` only (owner, 2026-11-11), names may also be read from the decompilation of its Wii U
   predecessor and from games that shipped with symbols: reading references, never copied, each listed in
   `docs/references.md`.
+- **Inferred names (owner, 2026-11-14).** A function the binary does not name may get a name worked out by
+  reading what it does. It is recorded in `data/names.csv` (address, qualified name, `inferred`, a one-line
+  reason; `tools/dread/names.py`), which `tools/gen_functions_csv.py` applies, so it survives regeneration;
+  a real name replaces it when evidence turns up. Rename only with `tools/rename.py`, never by hand: it writes
+  the map and the function list and rewrites every hand-written use (comments keep the address). A rename
+  keeps the function's scope and changes no code: `check.py --update` shows no REGRESSION and only the
+  renamed rows' names change in `data/functions/`; CI's `policy` job runs `rename.py --check`. Rename a
+  class's functions together, with its layout batch where there is one; free functions by unit.
 - The function list is `data/functions/main_XX.csv` (one file per MiB of address space,
   to stay under the 1 MB hook limit), generated by `tools/gen_functions_csv.py`. Columns are
   `address,size,name,name_source,subsystem,status`. `name_source` is one of
-  `symbol|library|rtti|reflection|string|unknown` (`library` = matched against vendored
-  upstream code by `tools/sigmatch.py`). `status` uses the zeldaret/botw codes: `O` matching,
-  `m` non-matching (minor), `M` non-matching (major), `W` work in progress, `U` not
+  `symbol|library|rtti|reflection|string|inferred|unknown` (`library` = matched against vendored
+  upstream code by `tools/sigmatch.py`; `inferred` = from `data/names.csv`). `status` uses the
+  zeldaret/botw codes: `O` matching, `m` non-matching (minor), `M` non-matching (major), `W` work in progress, `U` not
   decompiled, `L` library. `tools/check.py --update` derives `O/m/M/W` from `src/`; only those
   survive regeneration.
 - Mark a non-matching function with `// NON_MATCHING(minor): <reason>` or
@@ -222,7 +237,9 @@ Toolchain:
   is `UnkNoArg` (`include/base/UnkNoArg.h`, an empty class by value) and the call passes `UnkNoArg()`.
   A parameter the callee does not have comes out of its declaration. A variable the original program
   itself leaves unset on a path (an out-parameter's local written on one branch only) stays, with a
-  comment at its declaration saying so. `python tools/fakematch.py --unset` lists every read.
+  comment at its declaration saying so in the words "unset in the original" (on its line, or in the comment
+  directly above it and the declarations under that). `python tools/fakematch.py --unset` lists every read;
+  with `--strict` it fails on one that is not marked so, and CI's `compile` job runs it on the whole tree.
 - **Faithful first** (owner, 2026-11-13: "We want faithful to original above our invented rules"). When a
   rule of this file would make the source do something the original program does not, keep what the
   original does and say so in a comment.
@@ -247,6 +264,11 @@ Toolchain:
   card with `tools/status_card.py --write` (each pull request shows the card in its `policy` job summary).
 - Commit after each numbered step, with commit messages prefixed by phase and step
   (e.g. `Phase 2.1: ...`). A pull request is a hub cluster or about 30 functions or more.
+- **A layout batch is one class (owner, 2026-11-13).** Work that settles how sources describe an object is
+  done a class at a time: that class's sources, its one layout in a header of its own (unit headers stay
+  declarations only), one pull request. The recipe is the X parasite AI component's
+  (`include/game/UnkXParasiteAI.h`; journal, 2026-11-13). The hold on bulk agent runs still applies; the
+  owner lifts it one batch at a time.
 
 ## Status
 

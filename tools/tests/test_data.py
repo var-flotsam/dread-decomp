@@ -6,7 +6,7 @@ from tools.tests import _path  # noqa: F401
 from dread import functions
 
 STATUSES = set("OmMWUL")
-NAME_SOURCES = {"symbol", "library", "rtti", "reflection", "string", "unknown"}
+NAME_SOURCES = {"symbol", "library", "rtti", "reflection", "string", "inferred", "unknown"}
 
 
 class FunctionList(unittest.TestCase):

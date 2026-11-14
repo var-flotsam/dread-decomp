@@ -164,10 +164,13 @@ def functions(src: Path) -> list[dict] | str:
 
 
 def code_digest(f) -> str:
-    """A function of an object as a digest of its bytes and of what each relocation names."""
+    """A function of an object as a digest of its bytes and of what each relocation names (a function
+    data/names.csv names as its placeholder, so a rename leaves a draft's grade current)."""
+    from dread.names import normalise_symbol
     h = hashlib.sha256(f.code)
     for off, r in sorted(f.relocs.items()):
-        h.update(repr((off, r.type, r.symbol, r.addend, r.section, r.data)).encode())
+        h.update(repr((off, r.type, normalise_symbol(r.symbol) if r.symbol else r.symbol, r.addend, r.section,
+                       r.data)).encode())
     return h.hexdigest()
 
 
