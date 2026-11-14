@@ -6,7 +6,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71000687d8,376,drafts/game/UnkTU42/fn_71000687d8.cpp,operations,10.6,74,lean,
 0x710006981c,288,drafts/game/UnkTU42/fn_710006981c.cpp,conditions,97.2,2,overnight,
 0x710006e7a4,348,drafts/game/UnkTU46/fn_710006e7a4.cpp,registers or order,92.0,7,overnight,
-0x71000708c8,244,drafts/game/UnkTU48/fn_71000708c8.cpp,registers or order,91.8,5,overnight,passes tools/equiv_test.py; held: it declares g_unk_7101647790; which other files declare too and no unit header can take
 0x710007966c,328,drafts/game/UnkTU54/fn_710007966c.cpp,operations,32.9,55,pilot50,float op scheduling order differs (KIND operations)
 0x7100079fb0,160,drafts/game/UnkTU54/fn_7100079fb0.cpp,registers or order,92.5,3,overnight,
 0x7100087ddc,240,drafts/game/UnkTU63/fn_7100087ddc.cpp,registers or order,95.0,3,overnight,

@@ -54,7 +54,6 @@ void fn_7100025624(void* self) {
     r->flags = UnkXformDefaultFlags();
 }
 
-extern char g_unk_7101647790[];
 extern const base::math::CVector3D g_unk_71016477a8;
 
 void fn_7100025a98(void* self) {
@@ -65,7 +64,7 @@ void fn_7100025a98(void* self) {
     r->m[2][2] = 1.0f;
     r->m[1][1] = 1.0f;
     r->m[0][0] = 1.0f;
-    r->angle = *reinterpret_cast<const UnkVec3f*>(g_unk_7101647790);
+    r->angle = *reinterpret_cast<const UnkVec3f*>(&g_unk_7101647790);
     r->scale = *reinterpret_cast<const UnkVec3f*>(&g_unk_71016477a8);
     r->flags = UnkXformDefaultFlags();
 }
