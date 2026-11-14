@@ -140,8 +140,9 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100e1cbdc,148,drafts/game/UnkTU2560/fn_7100e1cbdc.cpp,operations,94.6,2,overnight,
 0x7100e1d620,368,drafts/game/UnkTU2560/fn_7100e1d620.cpp,operations,94.6,5,overnight,
 0x7100e2f398,292,drafts/game/UnkTU2562/fn_7100e2f398.cpp,operations,2.7,69,pilot50,operations: second loop strength-reduced; 2 insns off; first-loop counter register
+0x7100e3cee0,408,drafts/game/UnkTU2563/fn_7100e3cee0.cpp,registers or order,83.3,17,overnight,registers or order; not proven: tools/equiv_test.py never tries kind 3 of its jump table (systematic values are 0-2 and the compared bound 5 with 4 and 6) and with wider inputs still sees its two pointer-equality branches (old id = new id; old = the pool's empty string) go one way
 0x7100e3d080,2088,drafts/game/UnkTU2563/fn_7100e3d080.cpp,control flow,15.1,436,fable1,
-0x7100e51078,480,drafts/game/UnkTU2563/fn_7100e51078.cpp,registers or order,98.3,2,overnight,fn_7100e51078 passes tools/equiv_test.py; held: fn_7100e3cee0 in the same file is inconclusive (only 94% of the original's instructions ran)
+0x7100e51078,480,drafts/game/UnkTU2563/fn_7100e51078.cpp,registers or order,98.3,2,overnight,passes tools/equiv_test.py; held: include/game/UnkTU2563.h declares it (void*; void*) for its four callers' own 0x138-byte record types (CMinimapData.cpp; CMinimapData_Record138EraseAt_A6_b76.cpp; UnkTU2563_Record138_ovb0222.cpp; UnkTU2563_Records_ovb0223.cpp) and a void* definition compiles to other code (62.5%): one record type for them is a layout batch
 0x7100e5b944,324,drafts/game/UnkTU2563/fn_7100e5b944.cpp,operations,29.3,57,lean,
 0x7100e711dc,228,drafts/game/UnkTU2564/fn_7100e711dc.cpp,registers or order,96.5,2,overnight,
 0x7100e903ec,340,drafts/game/UnkTU2566/fn_7100e903ec.cpp,operations,75.3,21,pilot50,operations: orr operand order; fcsel order; fade branch layout

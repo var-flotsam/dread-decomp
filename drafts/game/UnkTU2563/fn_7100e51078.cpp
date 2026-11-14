@@ -1,3 +1,5 @@
+// Unit 2563: the move constructor of an area item (its name, item and two paths moved in place).
+// Names and layouts are placeholders.
 #include <new>
 
 #include "base/UnkFreedVectorPair.h"
@@ -11,68 +13,6 @@ using base::global::CStrId;
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-// ---- 3cee0
-struct UnkVec3 {
-    u32 a, b, c;
-};
-void fn_710007b444(void*, const UnkVec3*);
-
-extern CStrId g_unk_71727c81e8, g_unk_71727c81f0, g_unk_71727c81f8, g_unk_71727c8200;
-extern CStrId g_unk_71727c8208, g_unk_71727c8210, g_unk_71727c8218, g_unk_71727c8220;
-extern CStrId g_unk_71727c8188, g_unk_71727c8190;
-
-struct UnkMinimapIconOut {
-    f32 x, y;
-    f32 x1, y1, x2, y2;
-    CStrId id;
-};
-
-struct UnkMinimapIconObj {
-    u8 unk_0x0[0x38];
-    UnkMatrix44 xform;  // 0x38
-};
-
-struct UnkMinimapIconKind {
-    u8 unk_0x0[0x124];
-    u32 kind;
-};
-
-struct UnkMinimapIconSelf {
-    u8 unk_0x0[0x18];
-    u8* obj;  // 0x18
-    u8 unk_0x20[0x468];
-    UnkMinimapIconKind* kind;  // 0x488
-};
-
-void fn_7100e3cee0(UnkMinimapIconSelf* self, UnkMinimapIconOut* out) {
-    u32 vb = *(u32*)(self->obj + 0x54);
-    u32 va = *(u32*)(self->obj + 0x44);
-    u32 vc = *(u32*)(self->obj + 0x64);
-    UnkVec3 v = {va, vb, vc};
-    fn_710007b444(out, &v);
-    f32 z = fn_710002614c(reinterpret_cast<const UnkMatrix44*>(self->obj + 0x38)).m[2];
-    bool neg = z < 0.0f;
-    f32 x = out->x;
-    f32 y = out->y;
-    f32 lo = neg ? -300.0f : 150.0f;
-    f32 hi = neg ? -150.0f : 300.0f;
-    out->x2 = x + hi;
-    out->y2 = y + 300.0f;
-    out->x1 = x + lo;
-    out->y1 = y + 0.0f;
-    const CStrId* id;
-    switch (self->kind->kind) {
-    case 0: id = neg ? &g_unk_71727c81e8 : &g_unk_71727c81f0; break;
-    case 1: id = neg ? &g_unk_71727c81f8 : &g_unk_71727c8200; break;
-    case 3: id = neg ? &g_unk_71727c8208 : &g_unk_71727c8210; break;
-    case 4: id = neg ? &g_unk_71727c8218 : &g_unk_71727c8220; break;
-    case 5: id = neg ? &g_unk_71727c8188 : &g_unk_71727c8190; break;
-    default: return;
-    }
-    out->id = *id;
-}
-
-// ---- area item
 struct UnkReleasedStrIdB {
     UnkStringData* data;
     __attribute__((always_inline)) UnkReleasedStrIdB(UnkReleasedStrIdB&& o) : data(o.data) { o.data = &g_unk_7101d47108->empty; }
