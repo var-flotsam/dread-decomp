@@ -4,6 +4,7 @@
 // Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/CAbility.h"
+#include "game/CAbilityEnergyWave.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTimelineCalls.h"
@@ -12,10 +13,7 @@
 #include "types.h"
 
 struct UnkPlayer;
-struct UnkAbility429;
-void fn_710030171c(UnkAbility429* self, f32 amount);
 struct UnkAbility_b60a2;
-void fn_71003020f0(UnkAbility429* part, UnkAbility_b60a2* ability);
 
 namespace {
 struct UnkAbilityState_b60a2 {
@@ -92,7 +90,7 @@ void fn_71002f9f18(UnkAbility_b60a2* self, s32 kind) {
     }
     f32 amount = self->vtbl->vf_0xc0(self);
     if (amount > 0.0f)
-        fn_710030171c(reinterpret_cast<UnkAbility429*>(self->field_0xc0), amount);
-    fn_71003020f0(reinterpret_cast<UnkAbility429*>(self->field_0xc0), self);
+        fn_710030171c(reinterpret_cast<CAbilityComponent*>(self->field_0xc0), amount);
+    fn_71003020f0(reinterpret_cast<CAbilityComponent*>(self->field_0xc0), reinterpret_cast<CAbility*>(self));
     self->field_0xe4 = 0;
 }

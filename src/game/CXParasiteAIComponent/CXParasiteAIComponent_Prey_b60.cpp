@@ -27,13 +27,6 @@ struct UnkXParasitePreySink_b60a4 {
     UnkXParasitePreyName_b60a4* field_0x2b8;
 };
 
-struct UnkXParasitePrey_b60a4 {
-    u8 pad_0x0[0x218];
-    void* field_0x218;
-    u8 pad_0x220[0x37c - 0x220];
-    f32 field_0x37c;
-};
-
 void fn_71006ea9a4(UnkXParasiteAI* self, UnkWeakTarget* prey) {
     if (!prey)
         return;
@@ -54,7 +47,7 @@ start:
         timeline_mask.id = UnkAll_SpitSend().value;
         fn_7100a2cb7c(timeline, reinterpret_cast<const u64*>(&g_unk_710164a840), &timeline_mask.id, false, -1.0f);
     }
-    UnkXParasitePrey_b60a4* target = reinterpret_cast<UnkXParasitePrey_b60a4*>(self->field_0x14798->target);
+    UnkActor* target = Prey(self);
     if (!target->field_0x218)
         self->field_0x147a8 = target->field_0x37c;
     else
