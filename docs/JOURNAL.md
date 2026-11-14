@@ -152,6 +152,21 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**UnkTU2607's setters and `fn_71009881b0`'s second argument, read from the original (2026-11-14).**
+`fn_7100f98094`, `fn_7100f98d24`, `fn_7100f98dc4` and `fn_7100f990e0` read x0 (the fade object), s0 (the
+time) and x1 (a pointer), nothing else; their one caller, `fn_7100d8e398`, passes the address of a stack
+copy in x1 for the 2D and 4D values and a field's address for the 3D ones. That is what
+`UnkEnvironmentVisuals.cpp`'s declarations say (a value whose copy constructor is user-provided goes in
+memory); the drafts' `(obj, f32, f32*)` compiled to the same registers under other names. The four
+stores of each are channels 2, 10, 11 and 26 of `UnkEnvironmentFade`'s `progress`/`duration`/`done`
+arrays, so the setters now live in `src/game/UnkEnvironmentFade.cpp` (`UnkEnvVec2` moved to
+`include/game/UnkTU2607.h`). A finding: they match only with `done` written before `duration`; the
+`Start` helper's order moves the render manager's GOT `adrp` after the progress store. Three match,
+`fn_7100f990e0` passes `tools/equiv_test.py` (it never matched in the drafts). `fn_7100331c7c` reads x1
+(a copy of two counted references), and `fn_71009881b0` leaves its own second argument, the visited
+record, in x1 at the call: the draft now passes it, uses `UnkTU365.h`'s `UnkVisitResult_b0040` (the
+same text as its six other definitions) and moved to `src/` (passes `tools/equiv_test.py`).
+
 **Held drafts: 3 of 19 promoted (2026-11-13).** Of the 19 drafts whose note was "matches; held" or "passes
 tools/equiv_test.py; held", three needed only their own declarations fitted to the existing ones and moved
 to `src/`: `fn_71008866b8` (matches; the handler `fn_7100889040` declared with its definition's signature,

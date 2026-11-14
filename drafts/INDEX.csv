@@ -110,7 +110,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100973f30,276,drafts/game/UnkTU1444/fn_7100973f30.cpp,operations,92.8,5,overnight,
 0x7100979a60,208,drafts/game/CCharacterMovement/fn_7100979a60.cpp,registers or order,96.2,2,lean,
 0x710097c53c,508,drafts/game/UnkTU1449/fn_710097c53c.cpp,registers or order,90.6,12,overnight,
-0x71009881b0,236,drafts/game/UnkTU1454/fn_71009881b0.cpp,registers or order,94.9,3,overnight,passes tools/equiv_test.py; held: 3 declaration problems: src/game/UnkTU1454/fn_71009881b0.cpp:27 fn_7100331c7c: void fn_7100331c7c(void*) -> declared in include/game/CAbilityShinespark.h: include that header and drop this declaration
 0x710099bf20,484,drafts/game/UnkTU1461/fn_710099bf20.cpp,operations,98.3,2,overnight,
 0x71009e0ec8,760,drafts/game/UnkTU1501/fn_71009e0ec8.cpp,registers or order,92.1,15,lean,
 0x71009e9390,236,drafts/game/UnkTU1501/fn_71009e9390.cpp,operations,98.3,1,overnight,
@@ -176,9 +175,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100f86fec,340,drafts/game/UnkTU2601/fn_7100f86fec.cpp,registers or order,94.1,5,overnight,
 0x7100f89e44,404,drafts/game/UnkTU2602/fn_7100f89e44.cpp,conditions,98.0,2,overnight,
 0x7100f97d90,468,drafts/game/UnkTU2607/fn_7100f97d90.cpp,registers or order,92.3,9,overnight,
-0x7100f98094,148,drafts/game/UnkTU2607/fn_7100f98094.cpp,match,100.0,0,overnight,matches; held: 4 declaration problems: src/game/UnkTU2607/fn_7100f98094.cpp:109 fn_7100f98094: defined as void fn_7100f98094(UnkObj98094*; f32; f32*) -> declared elsewhere with other types; use this parameter lis...
-0x7100f98d24,160,drafts/game/UnkTU2607/fn_7100f98d24.cpp,match,100.0,0,overnight,matches; held: 4 declaration problems: src/game/UnkTU2607/fn_7100f98d24.cpp:109 fn_7100f98094: defined as void fn_7100f98094(UnkObj98094*; f32; f32*) -> declared elsewhere with other types; use this parameter lis...
-0x7100f98dc4,160,drafts/game/UnkTU2607/fn_7100f98dc4.cpp,match,100.0,0,overnight,matches; held: 4 declaration problems: src/game/UnkTU2607/fn_7100f98dc4.cpp:109 fn_7100f98094: defined as void fn_7100f98094(UnkObj98094*; f32; f32*) -> declared elsewhere with other types; use this parameter lis...
 0x7100fa64bc,1176,drafts/base/reflection/fn_7100fa64bc.cpp,control flow,22.4,210,fable1,
 0x7100faa3d8,1556,drafts/game/UnkTU2611/fn_7100faa3d8.cpp,operations,40.6,226,fable1,
 0x7100fc39b0,336,drafts/game/UnkTU2621/fn_7100fc39b0.cpp,registers or order,97.6,2,overnight,

@@ -1,17 +1,17 @@
+#include "game/CAbilityShinespark.h"
+#include "game/UnkTU365.h"
 #include "types.h"
 
 extern "C" int __cxa_guard_acquire(u64* guard);
 extern "C" void __cxa_guard_release(u64* guard);
-struct UnkVisitResult_b0248 {
+struct UnkVisitResult_b0040 {
     s32 value;
-    UnkVisitResult_b0248(s32 v) : value(v) {}
-    UnkVisitResult_b0248(const UnkVisitResult_b0248& other) = default;
-    ~UnkVisitResult_b0248() {}
+    UnkVisitResult_b0040(s32 v) : value(v) {}
+    UnkVisitResult_b0040(const UnkVisitResult_b0040& other) = default;
+    ~UnkVisitResult_b0040() {}
 };
-extern UnkVisitResult_b0248 g_unk_71726a4778;
-extern u64 g_unk_71726a4780;
 
-static inline UnkVisitResult_b0248 Skip_b0248() {
+static inline UnkVisitResult_b0040 Skip_b0248() {
     if (__builtin_expect(!(__atomic_load_n(reinterpret_cast<u8*>(&g_unk_71726a4780), __ATOMIC_ACQUIRE) & 1), 0)) {
         if (__cxa_guard_acquire(&g_unk_71726a4780)) {
             g_unk_71726a4778.value = 0;
@@ -24,7 +24,6 @@ static inline UnkVisitResult_b0248 Skip_b0248() {
 struct UnkSlotElem_b0248 {
     u8 unk_0x0[0x48];
 };
-void fn_7100331c7c(void* elem);
 
 struct UnkSlotArray_b0248 {
     u32 count;
@@ -45,14 +44,16 @@ struct UnkDir_b0248 {
     f32 x, y, z;
 };
 
-UnkVisitResult_b0248 fn_71009881b0(UnkSlotList_b0248* self, UnkDir_b0248* dir) {
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
+UnkVisitResult_b0040 fn_71009881b0(UnkSlotList_b0248* self, UnkDir_b0248* dir) {
     if (!(dir->x * self->plane_x + dir->y * self->plane_y + dir->z * self->plane_z >= self->plane_d))
         return Skip_b0248();
     s32 room = 16 - self->slots.count;
     if (room > 0) {
-        fn_7100331c7c(&self->slots.items[self->slots.count]);
+        // The record visited is copied into the free slot.
+        fn_7100331c7c(&self->slots.items[self->slots.count], dir);
         self->slots.count++;
-        return UnkVisitResult_b0248(room == 1 ? 3 : 1);
+        return UnkVisitResult_b0040(room == 1 ? 3 : 1);
     }
-    return UnkVisitResult_b0248(2);
+    return UnkVisitResult_b0040(2);
 }
