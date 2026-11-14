@@ -40,6 +40,10 @@ jobs:
       - name: Type definitions (vs base branch)
         if: github.event_name == 'pull_request'
         run: python tools/struct_check.py --base "origin/${{ github.base_ref }}"
+      # The name map (data/names.csv, tools/rename.py): valid rows, carried by data/functions/, and no
+      # hand-written code still using a renamed function's fn_<addr> placeholder.
+      - name: Name map
+        run: python tools/rename.py --check
       - name: Command index current (docs/commands.md)
         run: python tools/gen_commands.py --check
       # The README's status card (tools/status_card.py) for this commit, in the job summary; on a pull

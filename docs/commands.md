@@ -381,6 +381,17 @@ python tools/name_check.py --version 2.1.0            # the report; exit 0
 python tools/name_check.py --version 2.1.0 --strict   # exit 1 when a name points to more than one address
 ```
 
+### `tools/rename.py`
+
+Give a function a readable name: the name map (data/names.csv), the function list and every hand-written use.
+
+```sh
+python tools/rename.py 0x7100219588 UnkRenderManager::ProjectToScreen --reason "projects a point through the view"
+python tools/rename.py 0x7100219588 ... --dry-run    # what would change, nothing written
+python tools/rename.py --check                       # the map is valid, applied and complete; exit 1 if not
+python tools/rename.py --list                        # the map
+```
+
 ### `tools/equiv_test.py`
 
 The machine test for tier 2: is a hand-written function that does not match equivalent to the original?
