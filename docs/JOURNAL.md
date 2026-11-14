@@ -175,6 +175,12 @@ same bytes and relocation targets as before, function by function with the names
 readable: the bodies of the attribute and member-field functions (`fn_7100096524(cls, CStrId(...),
 fn_710000abbc(), 0x50c, -1, -1)`: the field adder, the type getters and the attribute keys want names, then one
 line per field), the pointer types appended to some files, and the statics padding (`refl_UnkStaticsUse_<addr>`).
+**`CLAUDE.md` cut to the rules; a two-week rule freeze (2026-11-14).** The owner approved the audit's remaining
+items. `CLAUDE.md` went from 3,562 to about 2,200 words, every rule kept: the owner's words, dates and reasons
+moved to `docs/reference.md` ("The rules in `CLAUDE.md`, with their reasons"), the toolchain paragraph to its
+"Toolchain" section. New rule: no new rule, gate or CI check until 2026-11-28 unless a defect reaches `main`. The
+other two approved items, the permute and machine-test sweep of the 87 registers-only drafts and a readable
+reflection template, need the dump and go to threads of their own.
 
 **The hold on bulk runs is lifted; several functions to a worker (2026-11-14).** The owner approved the audit's
 first decision. A lean batch that keeps the shape in `tools/batch/README.md` ("Batches": about 100 functions or
