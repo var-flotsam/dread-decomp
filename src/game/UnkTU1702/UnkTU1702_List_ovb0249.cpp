@@ -5,6 +5,7 @@
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityShinespark.h"
 #include "game/GUI/CMainMenu.h"
 #include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameManager.h"
@@ -81,8 +82,6 @@ void fn_7100b52284(UnkListOwner_b0249* owner, UnkListScreen_b0249* screen) {
 
 using base::global::CStrId;
 using base::reflection::UnkReflObject;
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 struct UnkProfileSaveArg {
     void* field_0x0;

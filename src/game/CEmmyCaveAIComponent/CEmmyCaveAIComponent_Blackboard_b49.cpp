@@ -5,6 +5,7 @@
 // and stores false under it unless the blackboard is locked. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CEmmyCaveAIComponent.h"
 #include "game/CScenario.h"
@@ -14,8 +15,6 @@
 #include "game/UnkTypedValue.h"
 
 using base::global::CStrId;
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 struct UnkEmmyCaveValue_b49 {
     union {

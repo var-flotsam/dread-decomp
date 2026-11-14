@@ -2703,7 +2703,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 2701,0x71010f3610,0x71010f41a0,CCameraFX_Shake,high,game,matched,23,2948,23,0,0,0,0,0,0,2948,2948
 2702,0x71010f41a0,0x71011173fc,CAIComponent,medium,unknown,partial,458,143944,351,2,0,0,0,105,0,49064,49064
 2703,0x71011173fc,0x7101120afc,CSpawnGroupComponent,high,unknown,partial,103,38652,86,2,0,0,0,15,0,23368,23368
-2704,0x7101120afc,0x71011336b0,CSpawnPointComponent,medium,unknown,partial,409,76712,380,0,0,0,0,29,0,54600,54600
+2704,0x7101120afc,0x71011336b0,CSpawnPointComponent,medium,unknown,partial,409,76712,385,0,0,0,0,24,0,56352,56352
 2705,0x71011336b0,0x7101135a60,CAIAttackComponent,high,unknown,partial,44,9124,34,0,0,0,0,10,0,3000,3000
 2706,0x7101135a60,0x7101138930,CAttackComponent,high,game/components,partial,51,11984,44,0,0,0,0,7,0,5576,5576
 2707,0x7101138930,0x7101139a5c,CFactionComponent,high,game/components,partial,29,4384,27,0,0,0,0,2,0,3104,3104

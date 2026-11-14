@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkActor.h"
 #include "game/UnkTUProperty.h"
@@ -16,7 +17,6 @@
 using base::global::CStrId;
 
 // As src/game/CAIComponent/CAIComponent_StoreFloat_b49.cpp declares them.
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 // As src/game/CGobblerAIComponent/fn_71005820c4.cpp declares it.
 struct UnkGobblerComponent;
 

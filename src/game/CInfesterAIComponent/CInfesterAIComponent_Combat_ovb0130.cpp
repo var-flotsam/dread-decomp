@@ -5,6 +5,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CEnemyMovement.h"
 #include "game/CFrozenComponent.h"
@@ -72,8 +73,6 @@ bool fn_71005cbcb4(UnkInfesterAI_ovb0130* self) {
 }
 
 using base::global::CStrId;
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 struct UnkInfesterOwner2_ovb0130 {
     u8 pad_0x0[0x2c8];

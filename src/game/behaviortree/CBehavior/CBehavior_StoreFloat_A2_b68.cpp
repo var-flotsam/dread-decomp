@@ -4,13 +4,12 @@
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkTUProperty.h"
 #include "game/behaviortree/CBehavior.h"
 #include "types.h"
 #include "game/UnkTypedValue.h"
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 struct UnkBehaviorAI_A2_b68 {
     u8 pad_0x0[0x1260];

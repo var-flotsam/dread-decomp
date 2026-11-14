@@ -3,6 +3,7 @@
 // blackboard section g_unk_71726b7cb8 (blackboard at +0x1260, unless locked). Names are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkTU2702.h"
 #include "game/UnkTUProperty.h"
@@ -14,8 +15,6 @@ using base::global::CStrId;
 
 struct UnkNailongAI_b46a2;
 struct UnkNailongMsg_b46a2;
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 struct UnkInfesterAI_A3_b68 {
     u8 pad_0x0[0x1260];

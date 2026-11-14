@@ -11,6 +11,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CInventoryComponent.h"
 #include "game/CReserveTankInfo.h"
@@ -34,8 +35,6 @@ using base::reflection::UnkReflObject;
 extern u8 g_unk_7172753170[];  // a UnkProperty
 extern u8 g_unk_7172753198[];  // a UnkProperty
 extern u8 g_unk_71727531c0[];  // a UnkProperty
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 // Stores the bool at `value` under `name` in the blackboard section `section` names (unless the
 // blackboard is locked).

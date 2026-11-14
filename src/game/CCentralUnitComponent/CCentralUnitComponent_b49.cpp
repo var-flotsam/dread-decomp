@@ -7,6 +7,7 @@
 // itself). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CScenario.h"
 #include "game/UnkGameManager.h"
@@ -18,8 +19,6 @@
 using base::global::CStrId;
 
 bool fn_71010474f4(CBlackboard* self, const CStrId& section, const CStrId& name);
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 struct UnkCentralUnitState_b49 {
     u8 pad_0x0[0x10];

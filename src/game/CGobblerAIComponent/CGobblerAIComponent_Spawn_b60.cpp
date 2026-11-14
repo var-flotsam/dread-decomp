@@ -55,7 +55,8 @@ void fn_710058252c(UnkGobblerAI_b60* self, void* arg) {
     UnkGobblerSpawnPoint_b60* spawn = slot->object;
     if (!spawn || !fn_710009d50c(spawn->vf_0x0(), fn_7100a19b44()))
         return;
-    fn_7101126af4(spawn);
+    // The Gobbler spawn point is a spawn point component (its view here has only the members this source reads).
+    fn_7101126af4(reinterpret_cast<CSpawnPointComponent*>(spawn));
     auto* target = reinterpret_cast<UnkGobblerLinkTarget_b60*>(
         *fn_71003b0c4c(reinterpret_cast<UnkZiplineLink_b49*>(spawn->link)));
     if (!target)

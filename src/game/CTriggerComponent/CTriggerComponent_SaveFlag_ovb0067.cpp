@@ -5,6 +5,7 @@
 // CCharClassActivatableComponent_b48.cpp. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CTriggerComponent.h"
 #include "game/UnkGameManager.h"
@@ -14,8 +15,6 @@
 #include "game/UnkTypedValue.h"
 
 using base::global::CStrId;
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 static inline void SetSectionBool(CBlackboard* blackboard, const CStrId& section, UnkPropertyName* name, bool* value) {
     if (CBlackboard::CSection* s = fn_71010472e0(blackboard, section)) {

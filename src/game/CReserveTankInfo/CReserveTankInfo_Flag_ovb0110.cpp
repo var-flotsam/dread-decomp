@@ -6,6 +6,7 @@
 
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CGameObject.h"
 #include "game/CReserveTankInfo.h"
@@ -58,8 +59,6 @@ struct UnkQidPairFlag_ov110 : UnkQidPairBase_ov110 {
 void fn_7100f10e18(void* self) {
     new (self) UnkQidPairFlag_ov110(Qid_ov110(g_unk_71729dbcc0), Qid_ov110(g_unk_71729dbd00));
 }
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 struct UnkReserveTankFlag_ov110 {
     u8 pad_0x0[0x20];

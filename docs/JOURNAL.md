@@ -152,6 +152,104 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Layout first, then the lean kit: CSpawnPointComponent (2026-11-14).** A measured trial the owner approved. One class's
+layout was written before any worker ran, then the pilot's setup ran unchanged (journal, "Pilot batch of 50 functions":
+Sonnet workers, `prepare.py --model sonnet --budget 6 --ghidra`, no reference option, the kit at commit 56aa20d7, before
+#431). Each job prompt got one added paragraph: include `game/CSpawnPointComponent.h`, define no struct of your own for the
+component, and split a padding array into a `field_0x..` member when a member is missing.
+
+*Phase A, the layout* (`include/game/CSpawnPointComponent.h`, commit "Phase 4.7: CSpawnPointComponent layout"). The layout
+has the 27 reflected members by name from `tools/gen_fields.py`, on the base `UnkBaseComponent`, and what the class's 6
+sources read. Reading those sources settled one type: the members at 0x60, 0x120, 0x170, 0x1b8, 0x1f8, 0x238 and 0x2f0 are
+all reflection's `CGameLink<CActor>`, 0x40 bytes: a key at +0x8, a state at +0x30 that is 1 until the link is resolved,
+and a counted reference to the target's weak handle at +0x38. The reflected vectors `tXCellTransformTargets` and
+`tDynamicSpawnPositions` hold it too. The link type has a header of its own (`game/CGameLink.h`). The member at +0x60 is
+not reflected; it is such a link, to the object told of each spawn. The members at 0x118, 0x160, 0x168 and 0x1b0, which
+the unit's collider sources read, fill the gaps between the shape links.
+
+- *Folded into the layout:* `UnkSpawnPoint_71011275d8`, `UnkSpawnerRef_71011275d8` and `UnkSpawnPointLink` (the component
+  and its link); `UnkSpawnTargetHolder` (the link's handle, now `CGameLinkHandle<T>`); `UnkLink_c3` with its handle (the
+  vector equality's element, now `CGameLink<CActor>`).
+- *Left as they were,* because they describe other objects:
+  - the views of the object told of each spawn (`UnkSpawner_71011275d8`) and of the linked actor (`UnkSpawnTarget`), which
+    wait for one actor layout;
+  - `UnkRef_c3`, the counted reference `fn_71003df480` returns (the Batalloon header declares it so);
+  - the b52 holder (`UnkSpawnDefHolder_b52`, `UnkSpawnDefRef_b52`), which no evidence ties to the component.
+- *Result:* all 6 sources still match, and `check.py` reports no REGRESSION in the tree.
+- *Tried and taken back:* declaring `fn_710112bf20` with the component's type in `game/UnkTU2704.h` changed the code of its
+  two callers in other units (the Boss AI caller went from a match to 61%). The header keeps `void*`, and the definition
+  takes the component, as it took its own view before.
+
+*Phase B, the workers.* `tools/tu_map.py` confirmed all 19 functions (130 to 600 bytes) in unit 2704; none was dropped.
+Two had been tried before: 0x710112a3bc in the pilot and 0x710112c4d8 overnight. Their older drafts were better or equal,
+and stayed.
+
+| | Functions | Of 19 | Pilot (of 50) |
+|---|---|---|---|
+| Match (the worker's verdict, graded again) | 7 | 37% | 8 (16%) |
+| of them now in `src/` | 5 | 26% | |
+| Registers-only | 4 | 21% | 10 (20%) |
+| Anything else | 8 | 42% | 32 (64%) |
+
+- *Matches in `src/`* (1,752 bytes):
+  - 0x71011269c0 and 0x7101126af4 enable and disable the component; when it is automanaged, they also store its "Enabled"
+    blackboard property.
+  - 0x710112f85c and 0x7101130010 clear and reserve an array of reflected values.
+  - 0x7101131ea8 inserts into a vector of 0x40-byte link holders.
+- *Matches held in `drafts/`* (each row has its reason):
+  - 0x7101131b98, the append. It defines its 0x40-byte entry as a third type, where `CSpawnPointComponent_b42.cpp` and the
+    insert declare another. The three are one object with `CGameLink<CActor>`'s layout, but making them one type means
+    reopening three matched files.
+  - 0x7101126c34. It defines `UnkShapeHit_A5_b68` with 8 bytes where three other sources have 16, so `struct_check` fails.
+    With the 16-byte definition the function is at 75%.
+- *Registers-only:* 0x7101127834 (92%), 0x710112fb38 (91%), 0x71011320dc (97%) and the older draft of 0x710112c4d8 (96%).
+  `tools/permute.py` changed none of them. `tools/equiv_test.py` could judge none: its runs covered only 61% to 92% of the
+  original's instructions. All four stay in `drafts/`.
+- *Did the layout do it?* Of the 7 matches, only 3 touch the component: enable, disable, and the held Emmy-zone check.
+  The other 4 work on value arrays and the link vector, which the header does not describe. So the layout can claim at
+  most 3. The rest of the gain comes from the unit's mix of functions: vector and array helpers, and an enable/disable
+  pair whose second half took one attempt once the first was written.
+- *Private views.* Workers added five members to the layout (0x290, 0x298, 0x2a0, 0x350, 0x380). None defined a struct of
+  its own for the component: 0 private views, against 9 in the class's sources before Phase A.
+- *Budget.* Two workers overran the 6-attempt budget (8 and 7 attempts).
+
+*Declarations.* The matched files copied 4 shared symbols.
+- `decl_plan.py` and `hub_migrate.py` moved two: `fn_710111fd80` and `fn_7101131b98`.
+- The planner could not plan the other two, so a hand-written plan moved them through `hub_migrate.py`:
+  - the blackboard section setter `fn_7100332c80` now has its one declaration in `game/CAbilityShinespark.h` (its unit),
+    and all 81 local copies are gone;
+  - the holder vtable `g_unk_7101cb2880` is in `game/UnkTU2704.h`, and its 4 copies are gone.
+- The enable and disable functions return `bool` and take the component. `game/UnkTU2704.h` declares them so, with the
+  "Enabled" property global. Their callers in `game_s1` and the Gobbler AI cast to the component and still match.
+- `UnkBaseComponent` names its +0x18: the entity the component belongs to, which the enable/disable pair passes on.
+
+| Count | Before (origin/main, 56aa20d7) | After Phase A | Now |
+|---|---|---|---|
+| Symbols in more than one file | 380 | 380 | 378 |
+| Extra copies | 1,219 | 1,219 | 1,139 |
+| Conflicting signatures | 0 | 0 | 0 |
+| Definitions that name a type differently | 979 | 979 | 979 |
+| `struct_check`: names with different definitions | 521 | 521 | 521 (PASS) |
+
+*Cost.*
+- *The pilot's measure* (each worker's final context): the 19 workers came to 1,859,057 tokens, 97,800 each against the
+  pilot's 117,700. That is 265,600 per match counting all 7, and 371,800 per match in `src/`.
+- *Phase A* was written by the coordinator on Opus. It added 68,800 tokens to that session's context (5.63 million
+  processed, cache reads included). With it, the cost is 275,400 per match for 7 and 385,600 for 5, against the pilot's
+  736,000.
+- *`tools/batch/lean/usage.py`'s measure* (all tokens processed): the workers averaged 2.2 million cache reads, 99,000
+  cache writes and 15,000 output each. That is 7.0 million per matched function, by its count.
+
+*Verdict.* The note before the run set the bar: the pilot's 16% predicts about 3 matches of 19, so call it a gain only at 6
+or more.
+- By the workers' verdict it cleared, with 7. By what reached `src/` it did not, with 5; two of the 7 are held only on
+  type questions this batch did not settle.
+- 19 functions is a small sample, two of them were tried before, and at most 3 matches touched the layout.
+- What it does show: the layout-first order costs little (Phase A was about a twentieth of the run's context) and keeps
+  the class to one layout. It does not show that the layout raises the match rate.
+
+Next batch: the same order on a class whose unit is mostly the class's own methods, as CEW's was. Make the link holder's
+three types one `CGameLink<CActor>` first; that would land 0x7101131b98.
 **Status per translation unit: `tools/tu_status.py` and `data/tu_status.csv` (2026-11-14).** The function
 list says how far each function is; nothing said how far each unit is, which is what OdysseyDecomp's
 `data/file_list.yml` gives a contributor picking work. `tools/tu_status.py` adds each unit of `data/tu_map.csv`

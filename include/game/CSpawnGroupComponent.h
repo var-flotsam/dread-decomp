@@ -10,3 +10,4 @@ struct UnkSubAreaEntityList;
 UnkSubAreaEntityList* fn_7101119514();
 void fn_7101119a50(void* p);
 extern UnkSpawnGroupKey g_unk_7172a067c0 __attribute__((visibility("hidden")));
+void fn_710111fd80(void*, void*);

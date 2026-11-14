@@ -9,6 +9,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "engine/scene/UnkToggle.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
@@ -112,8 +113,6 @@ void fn_7100ec9640(UnkMusicList_b0166* self) {
 }
 
 // ---- the counters ----
-
-void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 struct UnkSubId_7100fc4b34 {
     CStrId id;
