@@ -490,8 +490,6 @@ void fn_7100e90e6c(UnkMinimapOwner* self) {
 extern "C" int __cxa_guard_acquire(u64* guard);
 extern "C" void __cxa_guard_release(u64* guard);
 
-extern const f32 g_unk_710164be30;
-
 void fn_7100e79fa4(void* field_0x118, const UnkMinimapRect* view, u32 flags, u32* count, void* out);
 bool fn_71001bb54c(UnkMinimapCameraSub* sub, UnkMinimapVec2* size);
 

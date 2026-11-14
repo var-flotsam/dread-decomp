@@ -8,6 +8,7 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkMatrix44.h"
 #include "base/global/CStrId.h"
+#include "base/math/UnkZeroVector3.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -546,7 +547,6 @@ bool fn_71010d32ec(UnkObj_71010d3508* obj, const CRntString& name) {
     return false;
 }
 
-extern char g_unk_7101647790[];
 
 struct UnkResetMovement_ovb0048;
 
@@ -570,7 +570,7 @@ static_assert(__builtin_offsetof(UnkResetMovement_ovb0048, speed) == 0x118, "lay
 void fn_71010d45b8(UnkResetMovement_ovb0048* self, UnkXform* xform, const u32* what) {
     if (*what & 1) {
         self->position = xform->GetTranslation();
-        self->velocity = *reinterpret_cast<const UnkVec3f*>(g_unk_7101647790);
+        self->velocity = *reinterpret_cast<const UnkVec3f*>(&g_unk_7101647790);
         self->speed = sqrtf(self->velocity.x * self->velocity.x + self->velocity.y * self->velocity.y +
                             self->velocity.z * self->velocity.z);
     }

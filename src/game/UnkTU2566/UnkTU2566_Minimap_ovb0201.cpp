@@ -212,7 +212,6 @@ void fn_7100ea9934(UnkKeyed100Array_d* self, u32 capacity) {
 extern "C" int __cxa_guard_acquire(u64* guard);
 extern "C" void __cxa_guard_release(u64* guard);
 
-extern const f32 g_unk_710164be30;
 extern u32 g_unk_7101aa9e38[][1024];
 extern const f32 g_unk_7101647bec[4] HIDDEN;
 

@@ -9,7 +9,6 @@
 #include "game/UnkXformNode.h"
 #include "types.h"
 
-extern char g_unk_7101647790[];
 
 void fn_7100207be8(UnkXformNode* self, const UnkVec3f* v);
 
@@ -49,7 +48,7 @@ static inline __attribute__((always_inline)) void CreateFanEffect(UnkFanEffects_
     if (!effect)
         return;
     fn_710115217c(self->object, effect, 0, 1, &g_unk_7101d470e0,
-                  base::math::CVector3D(*reinterpret_cast<const base::math::CVector3D*>(g_unk_7101647790)),
+                  base::math::CVector3D(g_unk_7101647790),
                   base::math::CVector3D(g_unk_710164779c), nullptr);
     f32 s = self->*Size / scale;
     UnkXformNode* node = reinterpret_cast<UnkXformNode*>(self->*Effect + 0x28);

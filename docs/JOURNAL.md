@@ -175,6 +175,51 @@ with the owner. Each was put to the owner with a recommendation, and the owner s
    cores, syntax only). `fn_7100219588`'s comment was reworded to carry the mark; its code is unchanged.
    What the gate does not prove: the compiler's flow analysis misses reads through a pointer or in a callee,
    so a clean run means the compiler saw none, not that there are none.
+**Header moves for the held drafts; asm labels on constructors (2026-11-14).** `g_unk_7101647790` is
+three zero floats in .rodata, read as a vector everywhere: declared `const CVector3D` in
+`include/base/math/UnkZeroVector3.h` beside `g_unk_710164779c`, its eleven `char[]` copies gone.
+`g_unk_710164be30` went to `UnkTU2566.h`. The types the held drafts' callees take moved to the callees'
+unit headers: `UnkUnit2560Element` and `fn_7100744d90` to `UnkTU1159.h`, unit 151's setup types and
+calls to `UnkTU151.h`, `fn_7100e94254` and `fn_7100e9d7fc` to `UnkTU2566.h`, `UnkHalf_cu` to
+`UnkTU341.h` (with its first virtual, the in-place destructor: no includer's code changes). Every move
+was proved with `tools/baseline.py` or the migrate tools. Promoted: `fn_71000708c8`, `fn_7100e94e10`,
+`fn_7100745bdc`, `fn_7100e906bc` and `fn_7100e9d6f8` (one file: the two drafts were the same file
+twice), and `fn_71001db2b8`, which joins `UnkTU260_Render_ovb0237.cpp` (it calls that file's
+`fn_71001dba58` on the same object) and matches. A finding: **Clang 9 ignores `asm("fn_...")` on a
+constructor.** The call goes to the mangled name (`_ZN10UnkHalf_cuC1EOS_`,
+`_ZN23UnkSingleton_71001039f8C1Ev`), which `check.py` cannot resolve, so in the matched functions that
+call `UnkHalf_cu`'s move constructor or `UnkSingleton_71001039f8`'s constructor that relocation is
+unchecked, not verified; `tools/equiv_test.py` cannot judge a caller of one (`fn_710024657c`), and a
+constructor cannot be defined under its address (`fn_7101213858`). Both stay held, as does
+`fn_71003549a4` (its callee's record is 0x48 bytes in `UnkTU437_Aim_ovb0198.cpp`, 0x44 in the draft).
+
+**UnkTU2607's setters and `fn_71009881b0`'s second argument, read from the original (2026-11-14).**
+`fn_7100f98094`, `fn_7100f98d24`, `fn_7100f98dc4` and `fn_7100f990e0` read x0 (the fade object), s0 (the
+time) and x1 (a pointer), nothing else; their one caller, `fn_7100d8e398`, passes the address of a stack
+copy in x1 for the 2D and 4D values and a field's address for the 3D ones. That is what
+`UnkEnvironmentVisuals.cpp`'s declarations say (a value whose copy constructor is user-provided goes in
+memory); the drafts' `(obj, f32, f32*)` compiled to the same registers under other names. The four
+stores of each are channels 2, 10, 11 and 26 of `UnkEnvironmentFade`'s `progress`/`duration`/`done`
+arrays, so the setters now live in `src/game/UnkEnvironmentFade.cpp` (`UnkEnvVec2` moved to
+`include/game/UnkTU2607.h`). A finding: they match only with `done` written before `duration`; the
+`Start` helper's order moves the render manager's GOT `adrp` after the progress store. Three match,
+`fn_7100f990e0` passes `tools/equiv_test.py` (it never matched in the drafts). `fn_7100331c7c` reads x1
+(a copy of two counted references), and `fn_71009881b0` leaves its own second argument, the visited
+record, in x1 at the call: the draft now passes it, uses `UnkTU365.h`'s `UnkVisitResult_b0040` (the
+same text as its six other definitions) and moved to `src/` (passes `tools/equiv_test.py`).
+
+**Held drafts: 3 of 19 promoted (2026-11-13).** Of the 19 drafts whose note was "matches; held" or "passes
+tools/equiv_test.py; held", three needed only their own declarations fitted to the existing ones and moved
+to `src/`: `fn_71008866b8` (matches; the handler `fn_7100889040` declared with its definition's signature,
+`UnkSmOwner_b60` forward-declared), `fn_71000fef18` (passes; defined as `u32 (void*, u32)`, as
+`CSoundSystem_Groups_ovb0074.cpp` calls it), `fn_710019da10` (passes; `UnkVec3f` and `include/game/UnkTU54.h`
+for `fn_71000791a8` in place of its own vector type). A finding: `drafts.py promote` checks one file's
+declaration problems, not `decl_check --strict`'s ratchet, so four drafts it would move (`fn_71000708c8`,
+`fn_71008c3dcc`, `fn_7100e94e10`, `fn_7100ebfd4c`) still add local copies of symbols declared elsewhere
+(`g_unk_7101647790`, `fn_7100353be8`, `g_unk_710164be30`, six helpers of `fn_7100ebfd4c`) and stay held.
+`fn_7100e94e10`'s `UnkMinimapRect` now has the unit's text (it was a third different definition). The other
+eleven name a type that lives only inside another `.cpp`; `fn_7100e51078`'s second function,
+`fn_7100e3cee0`, is inconclusive in `tools/equiv_test.py` now.
 **The callback-set types: one definition each, the whole-header copies by hand (2026-11-13).** The 23
 sources `tools/struct_migrate.py` left for `UnkCallbackBase` (13) and `UnkIterValue` (10) copied a header's
 worth of types, so including `game/UnkCallbackSetVector.h` collided with the rest. The header is now three

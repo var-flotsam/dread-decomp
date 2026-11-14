@@ -9,3 +9,8 @@ struct UnkSwarmMember_ovb6;
 struct UnkTarget;
 void fn_7100745440(UnkTarget* target, void* effect, u32 flag);
 bool fn_7100744e1c(UnkSwarmMember_ovb6* member);
+
+struct UnkUnit2560Element {
+    u8 data[0x190];
+};
+void fn_7100744d90(UnkUnit2560Element* element);  // Resets one element.

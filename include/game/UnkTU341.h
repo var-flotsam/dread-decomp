@@ -55,3 +55,12 @@ base::reflection::UnkReflObject* fn_7100233684(UnkStruct_7100233684* self);
 // Moves the components named in `names` from `from` to `to`, then lets both rebuild.
 base::reflection::UnkReflObject* fn_710023341c(void* owner, const base::global::CStrId& name);
 void fn_7100246ba8(base::UnkVector<UnkEntry_b41a1>* self, const UnkEntry_b41a1* value);
+
+// A 0x40-byte entry of the callback sets (src/game_71001e2acc/fn_71002475b0.cpp): its in-place
+// destructor is the first virtual and its move constructor is fn_71002458a4.
+struct UnkHalf_cu {
+    virtual void vf_0x0();
+    u8 data[0x38];
+    UnkHalf_cu(UnkHalf_cu&& other) asm("fn_71002458a4");
+};
+static_assert(sizeof(UnkHalf_cu) == 0x40, "UnkHalf_cu layout");
