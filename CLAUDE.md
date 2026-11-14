@@ -77,6 +77,9 @@ is complete when no lifted code is left in it. `nn::atk` is decompiled too, as i
 - Short excerpts (a few instructions or one function) may be shown in conversation
   to discuss a match. Never write them into tracked files. That includes the output of
   `tools/ghidra/decompile.py`, which is for reading only.
+- **None in commit messages or pull request descriptions either (owner, 2026-11-14).** Assembly,
+  disassembly and decompiler output stay out of both: they are as public and as permanent as a tracked
+  file. Describe a difference in words (`trymatch.py`'s `KIND` line, the registers, the callee by address).
 
 The pre-commit hook (`tools/hooks/pre-commit`) enforces part of this. It rejects
 files over 1 MB, `.nso/.nro/.nca/.nsp/.xci/.nsz/.xcz/.keys/.elf`, and anything under
@@ -230,6 +233,17 @@ Toolchain:
   A barrier, an offset cast, `volatile` or an empty `if` usually stands for a missing helper, a wrong
   field type or two variables merged into one: look for that first. `tools/fakematch.py` lists them, and its
   `--unneeded-barriers` finds the barriers that change no function's code when taken out.
+- **Code no developer would write is an optimization not undone yet (owner, 2026-11-14; from zeldaret/botw's
+  `AGENTS.md`).** When the text that matches does not look like something a developer would plausibly have
+  written, the compiler's work is still in it: a helper it inlined (the same run of code in several
+  functions is one helper, written once), a `switch` it turned into a lookup table or a chain of tests, a
+  loop it unrolled, a tail it duplicated. Find the source form before keeping the match. It is the same
+  search the barrier rule asks for, and a helper found once repairs every caller. When no such form is found
+  in the time box, the rules above decide where the function goes; the note says what was tried.
+- **No `goto` to force a match (owner, 2026-11-14; same source).** A `goto` is written only where the
+  original source plausibly had one (a shared clean-up exit, for instance), with a comment saying so. One
+  that only steers block order stands for a missing helper, loop or early return. The `goto`s already in
+  `src/` stay until their functions are next worked on.
 - **No unset values (owner, 2026-11-13).** A local that is never set is not read: not passed to a callee,
   not returned. Such a text has no behaviour of its own, so the compiler may make anything of it, the
   original's bytes included, and its match proves nothing. What the original does at those places has an
