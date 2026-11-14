@@ -7,6 +7,7 @@
 #include "game/CFXComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTimelineComponent.h"
+#include "game/CAbilityLayout.h"
 #include "types.h"
 
 struct UnkVec4 {
@@ -32,25 +33,20 @@ struct UnkOwner {
     UnkWorld* field_0x280;
 };
 
-struct UnkSelf {
-    u8 pad_0x0[0x30];
-    UnkOwner* field_0x30;
-};
-
 extern u64 g_unk_7101648d40;
 void fn_71011e49fc(UnkIngameMenuHud* hud);
 struct UnkObject;
 
-UnkPart* fn_7100300bd0(UnkSelf* self, u32 flags) {
+UnkPart* fn_7100300bd0(CAbilityComponent* self, u32 flags) {
     if (flags & 1) {
         if (UnkIngameMenuHud* hud = fn_7100deac84(g_unk_7101d47310)->field_0x2d0)
             fn_71011e49fc(hud);
     }
-    fn_7100d7c828(reinterpret_cast<UnkActor*>(self->field_0x30), &g_unk_7101648d40, false);
+    fn_7100d7c828(self->Owner<UnkActor>(), &g_unk_7101648d40, false);
     UnkVec4 vector;
     vector.xy = 0;
     vector.zw = 0x3f80000000000000ull;
-    UnkWorld* world = self->field_0x30->field_0x280;
+    UnkWorld* world = self->Owner<UnkOwner>()->field_0x280;
     UnkPart* part = fn_7101152b90(world, 0x6923d83cbb01adc0ull);
     if (part) {
         if (fn_710114e668(reinterpret_cast<UnkObject*>(world), part->field_0xb)) {

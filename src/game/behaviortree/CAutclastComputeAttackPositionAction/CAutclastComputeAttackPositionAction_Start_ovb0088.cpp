@@ -35,7 +35,7 @@ __attribute__((flatten)) void fn_71003b4078(char* self) {
                     base::UnkStrIdAt<0x40>>(self);
 }
 
-using UnkVec3f = base::math::CVector3D;
+using base::math::CVector3D;
 using base::math::CVector2D;
 
 struct UnkTunable;
@@ -48,7 +48,7 @@ struct UnkAutclastTunable_ovb0088 {
 
 struct UnkSelf;
 struct UnkStruct_0x68;
-bool fn_710039525c(UnkSelf* self, void* arg, UnkVec3f* out);
+bool fn_710039525c(UnkSelf* self, void* arg, CVector3D* out);
 
 struct UnkAutclastBody_ovb0088 {
     u8 pad_0x0[0x44];
@@ -84,11 +84,11 @@ void fn_71003b3188(UnkAutclastAction_ovb0088* self) {
     fn_7100394bd0(reinterpret_cast<UnkStruct_0x68*>(self));
     auto* target = reinterpret_cast<UnkAutclastBody_ovb0088*>(
         fn_7100d7c990(reinterpret_cast<UnkActor*>(self->actor)));
-    UnkVec3f from;
+    CVector3D from;
     from.x = 0;
     from.y = 0;
     from.z = 0;
-    UnkVec3f to;
+    CVector3D to;
     to.x = 0;
     to.y = 0;
     to.z = 0;
