@@ -20,8 +20,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CColliderTriggerComponent
 extern base::reflection::CType g_unk_717269bb48;
-const base::reflection::UnkReflAttrKey& fn_7100091c30();
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 namespace CColliderTriggerComponent {
 void refl_AddAttributes(CClass*) {}

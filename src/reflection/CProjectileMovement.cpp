@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,32 +20,16 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CProjectileMovement
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CProjectileMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMaxDist", true), fn_710000abbc(), 0x480, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Distance to delete the instance");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxLifeTime", true), fn_710000abbc(), 0x484, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Life time to delete the instance");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sCollisionFX", true), fn_710000ad9c(), 0x488, -1, -1);
-    field2->attrs.Add<const char*>(fn_7100075240(), "");
-    field2->attrs.Add<const char*>(fn_7100007e80(), "FX to launch on collision");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fFXAngZOffset", true), fn_710000abbc(), 0x4a0, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "FX to launch on collision");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fFXScl", true), fn_710000abbc(), 0x4a4, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Collision FX Scale");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("sNoDamageFX", true), fn_710000ad9c(), 0x490, -1, -1);
-    field5->attrs.Add<const char*>(fn_7100075240(), "");
-    field5->attrs.Add<const char*>(fn_7100007e80(), "FX to launch on no damaged entity");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("sEnergyCollisionFX", true), fn_710000ad9c(), 0x498, -1, -1);
-    field6->attrs.Add<const char*>(fn_7100075240(), "");
-    field6->attrs.Add<const char*>(fn_7100007e80(), "FX to launch on collision with energy coat");
+    DREAD_REFLECTED_FIELD(f32, "fMaxDist", 0x480, (DefaultValue, -1.0f), (Description, "Distance to delete the instance"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxLifeTime", 0x484, (DefaultValue, -1.0f), (Description, "Life time to delete the instance"));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sCollisionFX", 0x488, (DefaultValue, ""), (Description, "FX to launch on collision"));
+    DREAD_REFLECTED_FIELD(f32, "fFXAngZOffset", 0x4a0, (DefaultValue, 0.0f), (Description, "FX to launch on collision"));
+    DREAD_REFLECTED_FIELD(f32, "fFXScl", 0x4a4, (DefaultValue, 1.0f), (Description, "Collision FX Scale"));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sNoDamageFX", 0x490, (DefaultValue, ""), (Description, "FX to launch on no damaged entity"));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sEnergyCollisionFX", 0x498, (DefaultValue, ""), (Description, "FX to launch on collision with energy coat"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

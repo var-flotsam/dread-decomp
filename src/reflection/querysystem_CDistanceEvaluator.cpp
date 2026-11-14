@@ -21,7 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 // querysystem::CDistanceEvaluator
 void fn_71002bbee8();
 void fn_71002bb714(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 void fn_71002bbf78();
 void fn_71002bb890(UnkReflFunction* fn, const char* name);
 namespace querysystem::CDistanceEvaluator {

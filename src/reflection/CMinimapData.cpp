@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,20 +20,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CMinimapData
-const base::reflection::UnkReflAttrKey& fn_7100005070();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_71727c9380;
 extern base::reflection::CType g_unk_71727c2130;
 extern base::reflection::CType g_unk_71727c2d18;
 extern base::reflection::CType g_unk_71727c15f0;
-const base::reflection::UnkReflAttrKey& fn_7100093390();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
 extern base::reflection::CType g_unk_71727c2920;
-const base::reflection::UnkReflAttrKey& fn_710008ff80();
 extern base::reflection::CType g_unk_71727c3cf8;
 extern base::reflection::CType g_unk_71727c44e8;
 extern base::reflection::CType g_unk_71727c40f0;
@@ -47,8 +41,7 @@ void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10200u);
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("uDataVersion", true), fn_7100005178(), 0x58, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), 0);
+    DREAD_REFLECTED_FIELD(u32, "uDataVersion", 0x58, (DefaultValue, 0));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("gridDef", true), &g_unk_71727c9380, 0x60, -1, -1);
     UnkReflField* field2 = fn_7100096524(cls, CStrId("aNavmeshGeos", true), &g_unk_71727c2130, 0x5fd8, -1, -1);
     UnkReflField* field3 = fn_7100096524(cls, CStrId("mapOccluderGeos", true), &g_unk_71727c2d18, 0x6000, -1, -1);

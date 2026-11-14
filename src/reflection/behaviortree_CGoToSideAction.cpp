@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,14 +20,10 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CGoToSideAction
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace behaviortree::CGoToSideAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sDesiredClockwise", true), fn_7100009658(), 0x30, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "");
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Desired clockwise dir property name");
+    DREAD_REFLECTED_FIELD(CStrId, "sDesiredClockwise", 0x30, (DefaultValue, ""), (Description, "Desired clockwise dir property name"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

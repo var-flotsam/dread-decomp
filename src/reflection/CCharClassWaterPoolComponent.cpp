@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,20 +20,14 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassWaterPoolComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassWaterPoolComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fDamagePerTime", true), fn_710000abbc(), 0x88, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fInBetweenDamageTime", true), fn_710000abbc(), 0x8c, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fInitTimeDamageIncrease", true), fn_710000abbc(), 0x90, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fDamageIncreaseAmount", true), fn_710000abbc(), 0x94, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fMaxDamage", true), fn_710000abbc(), 0x98, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    DREAD_REFLECTED_FIELD(f32, "fDamagePerTime", 0x88, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fInBetweenDamageTime", 0x8c, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fInitTimeDamageIncrease", 0x90, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDamageIncreaseAmount", 0x94, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxDamage", 0x98, (DefaultValue, 0.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -62,21 +57,15 @@ DREAD_REFLECTED_CLASS(CCharClassWaterPoolComponent, CCharClassLiquidPoolComponen
 extern base::reflection::CType g_unk_7101d5e168;
 extern base::reflection::CType g_unk_7172734a68;
 extern base::reflection::CType g_unk_71727b6630;
-const base::reflection::UnkReflAttrKey& fn_7100093390();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
 namespace CWaterPoolComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("vWaterLevelChanges", true), &g_unk_7101d5e168, 0xd00, -1, -1);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("tFloatingEntities", true), &g_unk_7172734a68, 0xc90, -1, -1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sOnActivatedLuaCallback", true), fn_7100009658(), 0xd28, -1, -1);
-    field2->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bChangedLevelOnCooldownEvent", true), fn_710000d228(), 0xd30, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(CStrId, "sOnActivatedLuaCallback", 0xd28, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(bool, "bChangedLevelOnCooldownEvent", 0xd30, (DefaultValue, false));
     UnkReflField* field4 = fn_7100096524(cls, CStrId("vFloatingEntities", true), &g_unk_71727b6630, 0xffffffff, -1, -1);
     field4->attrs.Add<bool>(fn_7100093390(), true);
     field4->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);

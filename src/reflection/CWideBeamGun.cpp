@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -48,8 +49,6 @@ DREAD_REFLECTED_CLASS(CWideBeamGun, CPowerBeamGun);
 
 // CWideBeamGun::CTunableWideBeam
 extern bool g_unk_7172729058;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172729020;
 void fn_7100868be8(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -61,21 +60,11 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172729058 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fDamageAmount", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Single shot damage amount");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fChargeDamageMult", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Single charged shot damage multiplier");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fPerpendicularOffsetSize", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 50.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Perpendicular offset");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fBackwardCheckLenght", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Perpendicular offset");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fForwardCheckLenght", true), fn_710000abbc(), 0x34, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 120.0f);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Perpendicular offset");
+    DREAD_REFLECTED_FIELD(f32, "fDamageAmount", 0x24, (DefaultValue, 0.0f), (Description, "Single shot damage amount"));
+    DREAD_REFLECTED_FIELD(f32, "fChargeDamageMult", 0x28, (DefaultValue, 0.0f), (Description, "Single charged shot damage multiplier"));
+    DREAD_REFLECTED_FIELD(f32, "fPerpendicularOffsetSize", 0x2c, (DefaultValue, 50.0f), (Description, "Perpendicular offset"));
+    DREAD_REFLECTED_FIELD(f32, "fBackwardCheckLenght", 0x30, (DefaultValue, 100.0f), (Description, "Perpendicular offset"));
+    DREAD_REFLECTED_FIELD(f32, "fForwardCheckLenght", 0x34, (DefaultValue, 120.0f), (Description, "Perpendicular offset"));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

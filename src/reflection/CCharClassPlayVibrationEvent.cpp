@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,10 +20,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassPlayVibrationEvent
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100090d50();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100091900();
 extern CStrId* g_unk_7101d676d8[];
 extern base::reflection::CType g_unk_7101d58410;
 namespace CCharClassPlayVibrationEvent {
@@ -31,37 +28,22 @@ void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Vibration", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPath", true), fn_710000ad9c(), 0x10, -1, -1);
-    field0->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(g_unk_7101d470e8));
-    field0->attrs.Add<CStrId>(fn_7100091900(), CStrId(*g_unk_7101d676d8[6]));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sNode", true), fn_7100009658(), 0x18, -1, -1);
-    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sPath", 0x10, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)), (Extension, CStrId(*g_unk_7101d676d8[6])));
+    DREAD_REFLECTED_FIELD(CStrId, "sNode", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));
     UnkReflField* field2 = fn_7100096524(cls, CStrId("eType", true), &g_unk_7101d58410, 0x20, -1, -1);
     field2->attrs.Add<s32>(fn_7100075240(), &g_unk_7101d58410, 2147483647);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fAttMaxRange", true), fn_710000abbc(), 0x24, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 2000.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fAttMinRange", true), fn_710000abbc(), 0x28, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 500.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fGain", true), fn_710000abbc(), 0x2c, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fPitch", true), fn_710000abbc(), 0x30, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fPan", true), fn_710000abbc(), 0x34, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fFadeInTime", true), fn_710000abbc(), 0x38, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fFadeOutTime", true), fn_710000abbc(), 0x3c, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fSpeed", true), fn_710000abbc(), 0x40, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("b3D", true), fn_710000d228(), 0x44, -1, -1);
-    field11->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("bLoop", true), fn_710000d228(), 0x45, -1, -1);
-    field12->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("bStopOnEntityDead", true), fn_710000d228(), 0x46, -1, -1);
-    field13->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("bStopOnChangeAnim", true), fn_710000d228(), 0x47, -1, -1);
-    field14->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_FIELD(f32, "fAttMaxRange", 0x24, (DefaultValue, 2000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fAttMinRange", 0x28, (DefaultValue, 500.0f));
+    DREAD_REFLECTED_FIELD(f32, "fGain", 0x2c, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPitch", 0x30, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPan", 0x34, (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fFadeInTime", 0x38, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fFadeOutTime", 0x3c, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSpeed", 0x40, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(bool, "b3D", 0x44, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bLoop", 0x45, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bStopOnEntityDead", 0x46, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bStopOnChangeAnim", 0x47, (DefaultValue, true));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

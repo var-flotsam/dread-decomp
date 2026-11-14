@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,8 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CWaterNozzleComponent::CTunableWaterNozzle
 extern bool g_unk_717272dbd0;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_717272dba8;
 void fn_71008a0b3c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -33,9 +32,7 @@ void refl_AddFields(CClass* cls) {
     g_unk_717272dbd0 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fStopWaterJetDelayTime", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Delay time to stop water jet ");
+    DREAD_REFLECTED_FIELD(f32, "fStopWaterJetDelayTime", 0x24, (DefaultValue, 1.0f), (Description, "Delay time to stop water jet "));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
@@ -70,7 +67,6 @@ DREAD_REFLECTED_CLASS(CWaterNozzleComponent::CTunableWaterNozzle, base::tunable:
 
 // CWaterNozzleComponent
 extern base::reflection::CType g_unk_71727b6270;
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 namespace CWaterNozzleComponent {
 void refl_AddAttributes(CClass*) {}

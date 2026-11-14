@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassChozoWarriorAIComponent::CTunableCharClassChozoWarriorAIComponent
 extern bool g_unk_71726d0e40;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726d0e00;
 void fn_7100496d00(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -32,18 +32,12 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726d0e40 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fGrappleTime", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 3.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fShieldLife", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 300.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fShieldDamagePerMissile", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 30.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fShieldDamagePerMelee", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("bAllowShieldImpactAnim", true), fn_710000d228(), 0x34, -1, -1);
-    field4->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fMinTimeBetweenShieldImpactAnim", true), fn_710000abbc(), 0x38, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 1.5f);
+    DREAD_REFLECTED_FIELD(f32, "fGrappleTime", 0x24, (DefaultValue, 3.0f));
+    DREAD_REFLECTED_FIELD(f32, "fShieldLife", 0x28, (DefaultValue, 300.0f));
+    DREAD_REFLECTED_FIELD(f32, "fShieldDamagePerMissile", 0x2c, (DefaultValue, 30.0f));
+    DREAD_REFLECTED_FIELD(f32, "fShieldDamagePerMelee", 0x30, (DefaultValue, 100.0f));
+    DREAD_REFLECTED_FIELD(bool, "bAllowShieldImpactAnim", 0x34, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(f32, "fMinTimeBetweenShieldImpactAnim", 0x38, (DefaultValue, 1.5f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
@@ -86,12 +80,9 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("oChozoWarriorGlaiveSpinAttackDef", true), fn_710049219c(), 0x528, -1, -1);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("oChozoWarriorGlaiveWalljumpAttackDef", true), fn_7100492e70(), 0x618, -1, -1);
     UnkReflField* field2 = fn_7100096524(cls, CStrId("oChozoWarriorDeflectorShieldAttackDef", true), fn_7100491578(), 0x708, -1, -1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bUsesShield", true), fn_710000d228(), 0x7f8, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fTargetMinDistanceToFloorToForceGlaiveSpinAttack", true), fn_710000abbc(), 0x7fc, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 450.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fGlaiveSpinAttackOffsetDistanceIfTargetOnAir", true), fn_710000abbc(), 0x800, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 250.0f);
+    DREAD_REFLECTED_FIELD(bool, "bUsesShield", 0x7f8, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(f32, "fTargetMinDistanceToFloorToForceGlaiveSpinAttack", 0x7fc, (DefaultValue, 450.0f));
+    DREAD_REFLECTED_FIELD(f32, "fGlaiveSpinAttackOffsetDistanceIfTargetOnAir", 0x800, (DefaultValue, 250.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

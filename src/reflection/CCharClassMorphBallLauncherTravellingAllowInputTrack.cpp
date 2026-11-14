@@ -19,8 +19,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassMorphBallLauncherTravellingAllowInputTrack
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100090e60();
 namespace CCharClassMorphBallLauncherTravellingAllowInputTrack {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "MorphBall Launcher Travelling Allow Input");

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,11 +22,10 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassLightingComponent
 void fn_71008e8694();
 void fn_71008e70f4(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassLightingComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sLightsDefPath", true), fn_710000ad9c(), 0x58, -1, -1);
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sLightsDefPath", 0x58);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bOverrideDisableInEditor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bOverrideDisableInEditor_GetterFunction", true);
         fn->return_type = fn_710000d228();

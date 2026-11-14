@@ -20,7 +20,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CItemDestructionLogicAction
 extern base::reflection::CType g_unk_71727b6270;
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 extern base::reflection::CType g_unk_717269bb48;
 namespace CItemDestructionLogicAction {

@@ -21,7 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 // CModelInstanceComponent
 void fn_71009374ac();
 void fn_71009368f8(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 void fn_7100937554();
 void fn_7100936a74(UnkReflFunction* fn, const char* name);
 namespace CModelInstanceComponent {

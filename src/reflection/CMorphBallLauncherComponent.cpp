@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,21 +21,14 @@ using base::reflection::DestroyDestructorFirst;
 
 // CMorphBallLauncherComponent
 extern base::reflection::CType g_unk_71727b6270;
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CMorphBallLauncherComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("wpLauncherExit", true), &g_unk_71727b6270, 0x2b8, -1, -1);
     field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 11);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sTravellingAction", true), fn_7100009658(), 0x2f8, -1, -1);
-    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Action to play on the morphball to travel towards the exit");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bManualActivation", true), fn_710000d228(), 0x300, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), true);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Whether we require a bomb to start launch sequence");
+    DREAD_REFLECTED_FIELD(CStrId, "sTravellingAction", 0x2f8, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Action to play on the morphball to travel towards the exit"));
+    DREAD_REFLECTED_FIELD(bool, "bManualActivation", 0x300, (DefaultValue, true), (Description, "Whether we require a bomb to start launch sequence"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

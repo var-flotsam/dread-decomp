@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,17 +22,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCutSceneDef
-const base::reflection::UnkReflAttrKey& fn_7100005070();
-const base::reflection::UnkReflAttrKey& fn_710008ff80();
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100c8d374();
 extern base::reflection::CType g_unk_7172795110;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern base::reflection::CType g_unk_7172793b40;
 extern base::reflection::CType g_unk_7172793350;
 extern base::reflection::CType g_unk_7101d5d188;
-const base::reflection::UnkReflAttrKey& fn_7100090c40();
 const base::reflection::CClass* fn_710104c290();
 namespace CCutSceneDef {
 void refl_AddAttributes(CClass* cls) {
@@ -49,44 +45,19 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("eDevelopmentState", true), &g_unk_7172795110, 0x0, -1, -1);
     field0->attrs.Add<s32>(fn_7100075240(), &g_unk_7172795110, 1);
     field0->attrs.Add<const char*>(fn_7100007e80(), "Development State");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sId", true), fn_7100009658(), 0x8, -1, -1);
-    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Id");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sActionSet", true), fn_710000ad9c(), 0x10, -1, -1);
-    field2->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(g_unk_7101d470e8));
-    field2->attrs.Add<const char*>(fn_7100007e80(), "ActionSet File");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("vWorldOffset", true), fn_71000246e4(), 0x18, -1, -1);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "CutScene world position");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sOnLoaded", true), fn_7100009658(), 0x28, -1, -1);
-    field4->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field4->attrs.Add<const char*>(fn_7100007e80(), "On Cutscene Loaded LUA Function");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("sOnBeforeStart", true), fn_7100009658(), 0x30, -1, -1);
-    field5->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field5->attrs.Add<const char*>(fn_7100007e80(), "On Before Starting Cutscene LUA Function");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("sOnStart", true), fn_7100009658(), 0x38, -1, -1);
-    field6->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field6->attrs.Add<const char*>(fn_7100007e80(), "On Start LUA Function");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("sOnFinished", true), fn_7100009658(), 0x40, -1, -1);
-    field7->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field7->attrs.Add<const char*>(fn_7100007e80(), "On Finished LUA Function");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("sOnEnd", true), fn_7100009658(), 0x48, -1, -1);
-    field8->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field8->attrs.Add<const char*>(fn_7100007e80(), "On End LUA Function");
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("sOnSkip", true), fn_7100009658(), 0x50, -1, -1);
-    field9->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field9->attrs.Add<const char*>(fn_7100007e80(), "On Skip LUA Function");
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fCamInitInterpTime", true), fn_710000abbc(), 0x60, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field10->attrs.Add<const char*>(fn_7100007e80(), "Camera Init Interpolation Time");
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fCamExitInterpTime", true), fn_710000abbc(), 0x5c, -1, -1);
-    field11->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field11->attrs.Add<const char*>(fn_7100007e80(), "Camera Exit Interpolation Time");
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fFps", true), fn_7100014768(), 0x58, -1, -1);
-    field12->attrs.Add<s32>(fn_7100075240(), 30);
-    field12->attrs.Add<const char*>(fn_7100007e80(), "Frames per Second");
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("bSkippable", true), fn_710000d228(), 0x64, -1, -1);
-    field13->attrs.Add<bool>(fn_7100075240(), true);
-    field13->attrs.Add<const char*>(fn_7100007e80(), "Can be skipped?");
+    DREAD_REFLECTED_FIELD(CStrId, "sId", 0x8, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Id"));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sActionSet", 0x10, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)), (Description, "ActionSet File"));
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vWorldOffset", 0x18, (Description, "CutScene world position"));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnLoaded", 0x28, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "On Cutscene Loaded LUA Function"));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnBeforeStart", 0x30, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "On Before Starting Cutscene LUA Function"));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnStart", 0x38, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "On Start LUA Function"));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnFinished", 0x40, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "On Finished LUA Function"));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnEnd", 0x48, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "On End LUA Function"));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnSkip", 0x50, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "On Skip LUA Function"));
+    DREAD_REFLECTED_FIELD(f32, "fCamInitInterpTime", 0x60, (DefaultValue, -1.0f), (Description, "Camera Init Interpolation Time"));
+    DREAD_REFLECTED_FIELD(f32, "fCamExitInterpTime", 0x5c, (DefaultValue, -1.0f), (Description, "Camera Exit Interpolation Time"));
+    DREAD_REFLECTED_FIELD(s32, "fFps", 0x58, (DefaultValue, 30), (Description, "Frames per Second"));
+    DREAD_REFLECTED_FIELD(bool, "bSkippable", 0x64, (DefaultValue, true), (Description, "Can be skipped?"));
     UnkReflField* field14 = fn_7100096524(cls, CStrId("aTakes", true), &g_unk_7172793b40, 0x68, -1, -1);
     field14->attrs.Add<const char*>(fn_7100007e80(), "Takes");
     UnkReflField* field15 = fn_7100096524(cls, CStrId("aActors", true), &g_unk_7172793350, 0x90, -1, -1);
@@ -129,42 +100,23 @@ extern base::reflection::CType g_unk_7172793748;
 namespace CCutSceneDef::CActorDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sId", true), fn_7100009658(), 0x0, -1, -1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Actor Id");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sCharClass", true), fn_710000ad9c(), 0x8, -1, -1);
-    field1->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(g_unk_7101d470e8));
-    field1->attrs.Add<const char*>(fn_7100007e80(), "CharClass File");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sInGameEntityId", true), fn_7100009658(), 0x18, -1, -1);
-    field2->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field2->attrs.Add<const char*>(fn_7100007e80(), "InGame Entity Id");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bInGameEntityVisibleOnEnd", true), fn_710000d228(), 0x20, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), true);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Set InGame Entity Visible On End");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("bExitClearTags", true), fn_710000d228(), 0x21, -1, -1);
-    field4->attrs.Add<bool>(fn_7100075240(), false);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "InGame Entity Exit Clear Animation Tags");
+    DREAD_REFLECTED_FIELD(CStrId, "sId", 0x0, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Actor Id"));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sCharClass", 0x8, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)), (Description, "CharClass File"));
+    DREAD_REFLECTED_FIELD(CStrId, "sInGameEntityId", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "InGame Entity Id"));
+    DREAD_REFLECTED_FIELD(bool, "bInGameEntityVisibleOnEnd", 0x20, (DefaultValue, true), (Description, "Set InGame Entity Visible On End"));
+    DREAD_REFLECTED_FIELD(bool, "bExitClearTags", 0x21, (DefaultValue, false), (Description, "InGame Entity Exit Clear Animation Tags"));
     UnkReflField* field5 = fn_7100096524(cls, CStrId("fExitAnimTags", true), &g_unk_717270e348, 0x24, -1, -1);
     field5->attrs.Add<s32>(fn_7100075240(), &g_unk_717270e348, s32(base::reflection::refl_GetEnumZero<0x7172794a88>()));
     field5->attrs.Add<const char*>(fn_7100007e80(), "InGame Entity Exit Animation Tags");
     UnkReflField* field6 = fn_7100096524(cls, CStrId("dBlendSpaceVars", true), &g_unk_7101d60688, 0x28, -1, -1);
     field6->attrs.Add<const char*>(fn_7100007e80(), "BlendSpace variable values");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("sSkelRootNode", true), fn_710000fd7c(), 0x50, -1, -1);
-    field7->attrs.Add<base::global::CName>(fn_7100075240(), base::global::CName(base::global::UnkNameHash{}, 0xffffffffffffffffu));
-    field7->attrs.Add<const char*>(fn_7100007e80(), "Node in the cutscene entity skeleton to be used to match the final position");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("sExitAnim", true), fn_7100009658(), 0x58, -1, -1);
-    field8->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field8->attrs.Add<const char*>(fn_7100007e80(), "InGame Entity Exit Action Name");
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("sExitAnimChannel", true), fn_7100009658(), 0x60, -1, -1);
-    field9->attrs.Add<CStrId>(fn_7100075240(), CStrId(base::reflection::refl_GetStrIdTable<0x7100031894>().ids[433]));
-    field9->attrs.Add<const char*>(fn_7100007e80(), "InGame Entity Exit Action Channel Name");
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fExitAnimFrame", true), fn_710000abbc(), 0x68, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field10->attrs.Add<const char*>(fn_7100007e80(), "InGame Entity Exit Action Frame");
+    DREAD_REFLECTED_FIELD(base::global::CName, "sSkelRootNode", 0x50, (DefaultValue, base::global::CName(base::global::UnkNameHash{}, 0xffffffffffffffffu)), (Description, "Node in the cutscene entity skeleton to be used to match the final position"));
+    DREAD_REFLECTED_FIELD(CStrId, "sExitAnim", 0x58, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "InGame Entity Exit Action Name"));
+    DREAD_REFLECTED_FIELD(CStrId, "sExitAnimChannel", 0x60, (DefaultValue, CStrId(base::reflection::refl_GetStrIdTable<0x7100031894>().ids[433])), (Description, "InGame Entity Exit Action Channel Name"));
+    DREAD_REFLECTED_FIELD(f32, "fExitAnimFrame", 0x68, (DefaultValue, 0.0f), (Description, "InGame Entity Exit Action Frame"));
     UnkReflField* field11 = fn_7100096524(cls, CStrId("dLayersExitAnim", true), &g_unk_7172793748, 0x70, -1, -1);
     field11->attrs.Add<const char*>(fn_7100007e80(), "Other Layers Exit Action Config");
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("sLightingDef", true), fn_710000ad9c(), 0x98, -1, -1);
-    field12->attrs.Add<const char*>(fn_7100007e80(), ".bldef File path");
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sLightingDef", 0x98, (Description, ".bldef File path"));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -194,15 +146,9 @@ DREAD_REFLECTED_ROOT_CLASS(CCutSceneDef::CActorDef);
 namespace CCutSceneDef::CAnimationLayerDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sExitAnim", true), fn_7100009658(), 0x0, -1, -1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field0->attrs.Add<const char*>(fn_7100007e80(), "InGame Entity Exit Action Name");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sExitAnimChannel", true), fn_7100009658(), 0x8, -1, -1);
-    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(base::reflection::refl_GetStrIdTable<0x7100031894>().ids[433]));
-    field1->attrs.Add<const char*>(fn_7100007e80(), "InGame Entity Exit Action Channel Name");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fExitAnimFrame", true), fn_710000abbc(), 0x10, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "InGame Entity Exit Action Frame");
+    DREAD_REFLECTED_FIELD(CStrId, "sExitAnim", 0x0, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "InGame Entity Exit Action Name"));
+    DREAD_REFLECTED_FIELD(CStrId, "sExitAnimChannel", 0x8, (DefaultValue, CStrId(base::reflection::refl_GetStrIdTable<0x7100031894>().ids[433])), (Description, "InGame Entity Exit Action Channel Name"));
+    DREAD_REFLECTED_FIELD(f32, "fExitAnimFrame", 0x10, (DefaultValue, 0.0f), (Description, "InGame Entity Exit Action Frame"));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -232,33 +178,15 @@ DREAD_REFLECTED_ROOT_CLASS(CCutSceneDef::CAnimationLayerDef);
 namespace CCutSceneDef::CTakeDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sId", true), fn_7100009658(), 0x0, -1, -1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Take Id");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("iFrames", true), fn_7100014768(), 0x8, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), 0);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Duration in frames");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sCamera", true), fn_710000ad9c(), 0x10, -1, -1);
-    field2->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Camera resource");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sOnStart", true), fn_7100009658(), 0x18, -1, -1);
-    field3->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field3->attrs.Add<const char*>(fn_7100007e80(), "On Start Take LUA Function");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sOnExit", true), fn_7100009658(), 0x20, -1, -1);
-    field4->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field4->attrs.Add<const char*>(fn_7100007e80(), "On Exit Take LUA Function");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("sOnSkip", true), fn_7100009658(), 0x28, -1, -1);
-    field5->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field5->attrs.Add<const char*>(fn_7100007e80(), "On Skip Take LUA Function");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fInitialDistanceListenerToTarget", true), fn_710000abbc(), 0x30, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field6->attrs.Add<const char*>(fn_7100007e80(), "Initial Distance Listener To Target");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fMinimumDistanceListenerToTarget", true), fn_710000abbc(), 0x34, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field7->attrs.Add<const char*>(fn_7100007e80(), "Initial Min Distance Listener To Target");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fMaximumDistanceListenerToTarget", true), fn_710000abbc(), 0x38, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field8->attrs.Add<const char*>(fn_7100007e80(), "Initial Max Distance Listener To Target");
+    DREAD_REFLECTED_FIELD(CStrId, "sId", 0x0, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Take Id"));
+    DREAD_REFLECTED_FIELD(s32, "iFrames", 0x8, (DefaultValue, 0), (Description, "Duration in frames"));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sCamera", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Camera resource"));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnStart", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "On Start Take LUA Function"));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnExit", 0x20, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "On Exit Take LUA Function"));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnSkip", 0x28, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "On Skip Take LUA Function"));
+    DREAD_REFLECTED_FIELD(f32, "fInitialDistanceListenerToTarget", 0x30, (DefaultValue, 0.0f), (Description, "Initial Distance Listener To Target"));
+    DREAD_REFLECTED_FIELD(f32, "fMinimumDistanceListenerToTarget", 0x34, (DefaultValue, -1.0f), (Description, "Initial Min Distance Listener To Target"));
+    DREAD_REFLECTED_FIELD(f32, "fMaximumDistanceListenerToTarget", 0x38, (DefaultValue, -1.0f), (Description, "Initial Max Distance Listener To Target"));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

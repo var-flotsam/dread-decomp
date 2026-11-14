@@ -20,18 +20,11 @@ using base::reflection::DestroyDestructorFirst;
 
 // CWorldGraph
 extern base::reflection::CType g_unk_7172756230;
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_710008fd60();
-const base::reflection::UnkReflAttrKey& fn_710008fb40();
-const base::reflection::UnkReflAttrKey& fn_710008ff80();
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100acceb8();
 extern base::reflection::CType g_unk_7172755e70;
 void fn_7100accfc8();
 void fn_7100acceec(UnkReflFunction* fn);
-const base::reflection::UnkReflAttrKey& fn_710008f920();
-const base::reflection::UnkReflAttrKey& fn_71000903c0();
 void fn_7100acbea0(UnkReflFunction* fn, const char* name);
 namespace CWorldGraph {
 void refl_AddAttributes(CClass*) {}

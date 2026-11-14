@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,20 +20,14 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassChozoCommanderZeroLaserGroundedAttack
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassChozoCommanderZeroLaserGroundedAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fAimingTime", true), fn_710000abbc(), 0xfc, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fChargingTime", true), fn_710000abbc(), 0x100, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fFiringTime", true), fn_710000abbc(), 0x104, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fAimAngleInterpSpeedMin", true), fn_710000abbc(), 0x108, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 1.5707964f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fAimAngleInterpSpeedMax", true), fn_710000abbc(), 0x10c, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 1.5707964f);
+    DREAD_REFLECTED_FIELD(f32, "fAimingTime", 0xfc, (DefaultValue, 2.0f));
+    DREAD_REFLECTED_FIELD(f32, "fChargingTime", 0x100, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fFiringTime", 0x104, (DefaultValue, 2.0f));
+    DREAD_REFLECTED_FIELD(f32, "fAimAngleInterpSpeedMin", 0x108, (DefaultValue, 1.5707964f));
+    DREAD_REFLECTED_FIELD(f32, "fAimAngleInterpSpeedMax", 0x10c, (DefaultValue, 1.5707964f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

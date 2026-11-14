@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,24 +22,20 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassDemolitionBlockLifeComponent
 const base::reflection::CClass* fn_71008c1b4c();
 extern base::reflection::CType g_unk_7172730b30;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassDemolitionBlockLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("oDamageSourceFactor", true), fn_71008c1b4c(), 0xa8, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("iHitCount", true), fn_7100014768(), 0x118, -1, -1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeAfterHuskDestroyed", true), fn_710000abbc(), 0x11c, -1, -1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fTimeAfterFirstHit", true), fn_710000abbc(), 0x120, -1, -1);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fTimeMaterialExplosive", true), fn_710000abbc(), 0x124, -1, -1);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fTimeAfterDiffuseHuskDestroyed", true), fn_710000abbc(), 0x128, -1, -1);
+    DREAD_REFLECTED_FIELD(s32, "iHitCount", 0x118);
+    DREAD_REFLECTED_FIELD(f32, "fTimeAfterHuskDestroyed", 0x11c);
+    DREAD_REFLECTED_FIELD(f32, "fTimeAfterFirstHit", 0x120);
+    DREAD_REFLECTED_FIELD(f32, "fTimeMaterialExplosive", 0x124);
+    DREAD_REFLECTED_FIELD(f32, "fTimeAfterDiffuseHuskDestroyed", 0x128);
     UnkReflField* field6 = fn_7100096524(cls, CStrId("eDemolitionPhase", true), &g_unk_7172730b30, 0x12c, -1, -1);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("bHuskInitiallyRemoved", true), fn_710000d228(), 0x130, -1, -1);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("sCameraFXPresetHusk", true), fn_7100009658(), 0x138, -1, -1);
-    field8->attrs.Add<CStrId>(fn_7100075240(), CStrId("DEMOLITION_BLOCK_HUSK", true));
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("sCameraFXPresetOnImpact", true), fn_7100009658(), 0x140, -1, -1);
-    field9->attrs.Add<CStrId>(fn_7100075240(), CStrId("DEMOLITION_BLOCK_IMPACT", true));
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("sCameraFXPresetOnDead", true), fn_7100009658(), 0x148, -1, -1);
-    field10->attrs.Add<CStrId>(fn_7100075240(), CStrId("DEMOLITION_BLOCK_DEAD", true));
+    DREAD_REFLECTED_FIELD(bool, "bHuskInitiallyRemoved", 0x130);
+    DREAD_REFLECTED_FIELD(CStrId, "sCameraFXPresetHusk", 0x138, (DefaultValue, CStrId("DEMOLITION_BLOCK_HUSK", true)));
+    DREAD_REFLECTED_FIELD(CStrId, "sCameraFXPresetOnImpact", 0x140, (DefaultValue, CStrId("DEMOLITION_BLOCK_IMPACT", true)));
+    DREAD_REFLECTED_FIELD(CStrId, "sCameraFXPresetOnDead", 0x148, (DefaultValue, CStrId("DEMOLITION_BLOCK_DEAD", true)));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

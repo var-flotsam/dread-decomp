@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,16 +22,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CBarelyFrozenIceInfo
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CBarelyFrozenIceInfo {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sModel", true), fn_7100009658(), 0x8, -1, -1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sNode", true), fn_7100009658(), 0x10, -1, -1);
-    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fScale", true), fn_710000abbc(), 0x18, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    DREAD_REFLECTED_FIELD(CStrId, "sModel", 0x8, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sNode", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(f32, "fScale", 0x18, (DefaultValue, 1.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -57,29 +54,16 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_ROOT_CLASS(CBarelyFrozenIceInfo);
 
 // CCharClassFrozenAsFrostbiteComponent
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern base::reflection::CType g_unk_7172720320;
 namespace CCharClassFrozenAsFrostbiteComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("iRequiredFrostbiteLevel", true), fn_7100014768(), 0xa0, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), 0);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Required Ice Missile impacts before entity gets frozen");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fFrostbiteLevelResetTime", true), fn_710000abbc(), 0xa4, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 4.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Accumulated frostbite level will reset after this time passes since last Ice Missile hit");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fAfterHitNoFrostbiteLevelResetTime", true), fn_710000abbc(), 0xa8, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "After receiving an Ice Missile hit, time while frostbite level reset time isn't modified");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sTimelineIdOnFrostbiteStart", true), fn_7100009658(), 0xb0, -1, -1);
-    field3->attrs.Add<const char*>(fn_7100075240(), "frozen_onfrostbitestart");
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Timeline to play when frostbite level passes from 0 to 1");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sTimelineIdOnFrostbiteStop", true), fn_7100009658(), 0xb8, -1, -1);
-    field4->attrs.Add<const char*>(fn_7100075240(), "frozen_onfrostbitestop");
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Timeline to play when frostbite is cancelled (any reason)");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("bShouldDieWithDashMelee", true), fn_710000d228(), 0xc0, -1, -1);
-    field5->attrs.Add<bool>(fn_7100075240(), true);
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Die when player uses Dash against this entity");
+    DREAD_REFLECTED_FIELD(s32, "iRequiredFrostbiteLevel", 0xa0, (DefaultValue, 0), (Description, "Required Ice Missile impacts before entity gets frozen"));
+    DREAD_REFLECTED_FIELD(f32, "fFrostbiteLevelResetTime", 0xa4, (DefaultValue, 4.0f), (Description, "Accumulated frostbite level will reset after this time passes since last Ice Missile hit"));
+    DREAD_REFLECTED_FIELD(f32, "fAfterHitNoFrostbiteLevelResetTime", 0xa8, (DefaultValue, 0.0f), (Description, "After receiving an Ice Missile hit, time while frostbite level reset time isn't modified"));
+    DREAD_REFLECTED_FIELD(CStrId, "sTimelineIdOnFrostbiteStart", 0xb0, (DefaultValue, "frozen_onfrostbitestart"), (Description, "Timeline to play when frostbite level passes from 0 to 1"));
+    DREAD_REFLECTED_FIELD(CStrId, "sTimelineIdOnFrostbiteStop", 0xb8, (DefaultValue, "frozen_onfrostbitestop"), (Description, "Timeline to play when frostbite is cancelled (any reason)"));
+    DREAD_REFLECTED_FIELD(bool, "bShouldDieWithDashMelee", 0xc0, (DefaultValue, true), (Description, "Die when player uses Dash against this entity"));
     UnkReflField* field6 = fn_7100096524(cls, CStrId("tBarelyIceInfo", true), &g_unk_7172720320, 0xc8, -1, -1);
 }
 bool refl_Equals(const void*, const void*) { return false; }

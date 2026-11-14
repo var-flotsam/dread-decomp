@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -48,8 +49,6 @@ DREAD_REFLECTED_CLASS(CLineBombMovement, CBombMovement);
 
 // CLineBombMovement::CTunableLineBombMovement
 extern bool g_unk_7172753df8;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172753dc0;
 void fn_7100aad3c4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -61,24 +60,14 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172753df8 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fExplosionRadius", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Final explosion radius");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fExplosionExpansionTime", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.35f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Time it takes for the explosion radius to get to the final one");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fExplosionLifeTime", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.7f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fCheckDistance", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 80.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("bSingleHit", true), fn_710000d228(), 0x34, -1, -1);
-    field4->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("bEachBombImpulsesPlayer", true), fn_710000d228(), 0x35, -1, -1);
-    field5->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("bStickyBomb", true), fn_710000d228(), 0x36, -1, -1);
-    field6->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("bOrientateToClosestSurfaceNormal", true), fn_710000d228(), 0x37, -1, -1);
-    field7->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_FIELD(f32, "fExplosionRadius", 0x24, (DefaultValue, 100.0f), (Description, "Final explosion radius"));
+    DREAD_REFLECTED_FIELD(f32, "fExplosionExpansionTime", 0x28, (DefaultValue, 0.35f), (Description, "Time it takes for the explosion radius to get to the final one"));
+    DREAD_REFLECTED_FIELD(f32, "fExplosionLifeTime", 0x2c, (DefaultValue, 0.7f));
+    DREAD_REFLECTED_FIELD(f32, "fCheckDistance", 0x30, (DefaultValue, 80.0f));
+    DREAD_REFLECTED_FIELD(bool, "bSingleHit", 0x34, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bEachBombImpulsesPlayer", 0x35, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bStickyBomb", 0x36, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bOrientateToClosestSurfaceNormal", 0x37, (DefaultValue, true));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

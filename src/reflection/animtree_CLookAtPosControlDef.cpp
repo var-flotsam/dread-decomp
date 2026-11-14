@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,9 +20,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // animtree::CLookAtPosControlDef
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern base::reflection::CType g_unk_7101d58a60;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace animtree::CLookAtPosControlDef {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Look at Pos Control Definition");
@@ -33,15 +32,9 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field1 = fn_7100096524(cls, CStrId("eUpAxis", true), &g_unk_7101d58a60, 0x38, -1, -1);
     field1->attrs.Add<s32>(fn_7100075240(), &g_unk_7101d58a60, 2);
     field1->attrs.Add<const char*>(fn_7100007e80(), "Up Axis");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMinAttAngle", true), fn_710000abbc(), 0x28, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Min attenuation angle");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMaxAttAngle", true), fn_710000abbc(), 0x2c, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Max attenuation angle");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fWorldOffsetAngZ", true), fn_710000abbc(), 0x30, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "World Offset Angle Z");
+    DREAD_REFLECTED_FIELD(f32, "fMinAttAngle", 0x28, (DefaultValue, 0.0f), (Description, "Min attenuation angle"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxAttAngle", 0x2c, (DefaultValue, 0.0f), (Description, "Max attenuation angle"));
+    DREAD_REFLECTED_FIELD(f32, "fWorldOffsetAngZ", 0x30, (DefaultValue, 0.0f), (Description, "World Offset Angle Z"));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

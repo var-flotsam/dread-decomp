@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,10 +21,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // CSwarmControllerComponent
 extern base::reflection::CType g_unk_717269bb48;
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 extern base::reflection::CType g_unk_71727bb8e8;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CSwarmControllerComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -31,8 +30,7 @@ void refl_AddFields(CClass* cls) {
     field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("ePathType", true), &g_unk_71727bb8e8, 0x88, -1, -1);
     field1->attrs.Add<s32>(fn_7100075240(), &g_unk_71727bb8e8, 3);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fGroupVelocity", true), fn_710000abbc(), 0x1a0, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 150.0f);
+    DREAD_REFLECTED_FIELD(f32, "fGroupVelocity", 0x1a0, (DefaultValue, 150.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -52,7 +50,6 @@ DREAD_REFLECTED_CLASS(CSwarmControllerComponent, CComponent);
 
 // CSwarmControllerComponent::CTunableSwarmDamage
 extern bool g_unk_7172710c78;
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172710c40;
 void fn_7100747540(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -64,21 +61,11 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172710c78 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fChargedImpactExtraRadius", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 10.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Extra radius of the charged weapon impact [10]");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMissileColliderRadius", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 20.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Radius to check the impact of a missile/supermissile [20]");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMissileSplashDamageRadius", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 30.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Radius of the splash damage of the missile [30]");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fSuperMissileSplashDamageRadius", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 60.0f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Radius of the splash damage of the super missile [60]");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fBeamRadius", true), fn_710000abbc(), 0x34, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 25.0f);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Radius of the beam shots when calculating impacts [25]");
+    DREAD_REFLECTED_FIELD(f32, "fChargedImpactExtraRadius", 0x24, (DefaultValue, 10.0f), (Description, "Extra radius of the charged weapon impact [10]"));
+    DREAD_REFLECTED_FIELD(f32, "fMissileColliderRadius", 0x28, (DefaultValue, 20.0f), (Description, "Radius to check the impact of a missile/supermissile [20]"));
+    DREAD_REFLECTED_FIELD(f32, "fMissileSplashDamageRadius", 0x2c, (DefaultValue, 30.0f), (Description, "Radius of the splash damage of the missile [30]"));
+    DREAD_REFLECTED_FIELD(f32, "fSuperMissileSplashDamageRadius", 0x30, (DefaultValue, 60.0f), (Description, "Radius of the splash damage of the super missile [60]"));
+    DREAD_REFLECTED_FIELD(f32, "fBeamRadius", 0x34, (DefaultValue, 25.0f), (Description, "Radius of the beam shots when calculating impacts [25]"));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

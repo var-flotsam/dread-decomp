@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,24 +20,17 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassCollisionComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern base::reflection::CType g_unk_7172791c90;
 extern base::reflection::CType g_unk_7172718518;
-const base::reflection::UnkReflAttrKey& fn_7100091d40();
 namespace CCharClassCollisionComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("v3SpawnPointCollisionSizeInc", true), fn_71000246e4(), 0x8c, -1, -1);
-    field0->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Life of the enemy");
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "v3SpawnPointCollisionSizeInc", 0x8c, (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}), (Description, "Life of the enemy"));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("eDefaultCollisionMaterial", true), &g_unk_7172791c90, 0x98, -1, -1);
     field1->attrs.Add<s32>(fn_7100075240(), &g_unk_7172791c90, 0);
     field1->attrs.Add<const char*>(fn_7100007e80(), "General Collision Material");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bShouldIgnoreSlopeSupport", true), fn_710000d228(), 0xc8, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bForceSlopeDirectionOnFloorHit", true), fn_710000d228(), 0xc9, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(bool, "bShouldIgnoreSlopeSupport", 0xc8, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bForceSlopeDirectionOnFloorHit", 0xc9, (DefaultValue, false));
     UnkReflField* field4 = fn_7100096524(cls, CStrId("mExplicitCollisionMaterials", true), &g_unk_7172718518, 0xa0, -1, -1);
     field4->attrs_0x70.Add<bool>(fn_7100091d40(), true);
 }

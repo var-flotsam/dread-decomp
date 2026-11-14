@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,28 +20,18 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassChozoCommanderZeroLaserAttack
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassChozoCommanderZeroLaserAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fHeight", true), fn_710000abbc(), 0xf0, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 800.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fAimingAngle", true), fn_710000abbc(), 0xf4, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), -10.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMinTrackingTime", true), fn_710000abbc(), 0xf8, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMaxTrackingTime", true), fn_710000abbc(), 0xfc, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fChargingTime", true), fn_710000abbc(), 0x100, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.3f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fShootingTime", true), fn_710000abbc(), 0x104, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fMinXDistToAttack", true), fn_710000abbc(), 0x108, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 250.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fMinYDistToAttack", true), fn_710000abbc(), 0x10c, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fMinXDistToShot", true), fn_710000abbc(), 0x110, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 200.0f);
+    DREAD_REFLECTED_FIELD(f32, "fHeight", 0xf0, (DefaultValue, 800.0f));
+    DREAD_REFLECTED_FIELD(f32, "fAimingAngle", 0xf4, (DefaultValue, -10.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinTrackingTime", 0xf8, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxTrackingTime", 0xfc, (DefaultValue, 2.0f));
+    DREAD_REFLECTED_FIELD(f32, "fChargingTime", 0x100, (DefaultValue, 0.3f));
+    DREAD_REFLECTED_FIELD(f32, "fShootingTime", 0x104, (DefaultValue, 2.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinXDistToAttack", 0x108, (DefaultValue, 250.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinYDistToAttack", 0x10c, (DefaultValue, 100.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinXDistToShot", 0x110, (DefaultValue, 200.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -40,8 +41,6 @@ DREAD_REFLECTED_CLASS(CAbilitySpeedBooster, CAbility);
 
 // CAbilitySpeedBooster::CTunableAbilitySpeedBooster
 extern bool g_unk_71726b1010;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726b0fc0;
 void fn_710033b030(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -53,32 +52,17 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726b1010 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fTimeToShowPreparationFX", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bInstantActivation", true), fn_710000d228(), 0x28, -1, -1);
-    field1->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeToActivate", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1.5f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fVelocityXFactor", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 2.5f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fMorphballVelocityXFactor", true), fn_710000abbc(), 0x34, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 2.75f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("bAllowJump", true), fn_710000d228(), 0x38, -1, -1);
-    field5->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fWallVerticalEndDistance", true), fn_710000abbc(), 0x3c, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 200.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fDefaultImpactDamage", true), fn_710000abbc(), 0x40, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 10000.0f);
-    field7->attrs.Add<const char*>(fn_7100007e80(), "Damage to apply when hitting an entity while Speed Booster is active");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fDefaultDamageAndRepelVerticalImpulse", true), fn_710000abbc(), 0x44, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 300.0f);
-    field8->attrs.Add<const char*>(fn_7100007e80(), "Vertical impulse to apply to Samus when hitting an entity that receives damage and repels her");
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fMorphBallDamageAndRepelImpulse", true), fn_710000abbc(), 0x48, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 1500.0f);
-    field9->attrs.Add<const char*>(fn_7100007e80(), "When Morph Ball can't convert to Samus after hitting an entity that repels her, apply this impulse to Morph Ball");
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fBufferedActivationTime", true), fn_710000abbc(), 0x4c, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 0.25f);
-    field10->attrs.Add<const char*>(fn_7100007e80(), "When player tries to activate the ability and it can't be done, we re-check for activation for this time");
+    DREAD_REFLECTED_FIELD(f32, "fTimeToShowPreparationFX", 0x24, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(bool, "bInstantActivation", 0x28, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToActivate", 0x2c, (DefaultValue, 1.5f));
+    DREAD_REFLECTED_FIELD(f32, "fVelocityXFactor", 0x30, (DefaultValue, 2.5f));
+    DREAD_REFLECTED_FIELD(f32, "fMorphballVelocityXFactor", 0x34, (DefaultValue, 2.75f));
+    DREAD_REFLECTED_FIELD(bool, "bAllowJump", 0x38, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(f32, "fWallVerticalEndDistance", 0x3c, (DefaultValue, 200.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDefaultImpactDamage", 0x40, (DefaultValue, 10000.0f), (Description, "Damage to apply when hitting an entity while Speed Booster is active"));
+    DREAD_REFLECTED_FIELD(f32, "fDefaultDamageAndRepelVerticalImpulse", 0x44, (DefaultValue, 300.0f), (Description, "Vertical impulse to apply to Samus when hitting an entity that receives damage and repels her"));
+    DREAD_REFLECTED_FIELD(f32, "fMorphBallDamageAndRepelImpulse", 0x48, (DefaultValue, 1500.0f), (Description, "When Morph Ball can't convert to Samus after hitting an entity that repels her, apply this impulse to Morph Ball"));
+    DREAD_REFLECTED_FIELD(f32, "fBufferedActivationTime", 0x4c, (DefaultValue, 0.25f), (Description, "When player tries to activate the ability and it can't be done, we re-check for activation for this time"));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

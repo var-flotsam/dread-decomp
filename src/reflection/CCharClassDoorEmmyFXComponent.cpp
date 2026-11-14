@@ -21,7 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassDoorEmmyFXComponent
 void fn_71007b6f68();
 void fn_71007b5464(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassDoorEmmyFXComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

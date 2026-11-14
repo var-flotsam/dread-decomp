@@ -21,8 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 // CSceneModelAnimationComponent
 void fn_71009f3394();
 void fn_71009f2f60(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CSceneModelAnimationComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

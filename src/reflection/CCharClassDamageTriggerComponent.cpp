@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,26 +20,18 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassDamageTriggerComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 void fn_7100a4b3d8();
 void fn_7100a4a448(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern base::reflection::CType g_unk_7172730580;
 namespace CCharClassDamageTriggerComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fDamagePerTime", true), fn_710000abbc(), 0x68, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 10.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sDamagePerTime", true), fn_7100009658(), 0x70, -1, -1);
-    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId("", true));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fInBetweenDamageTime", true), fn_710000abbc(), 0x78, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fInitTimeDamageIncrease", true), fn_710000abbc(), 0x7c, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fDamageIncreaseAmount", true), fn_710000abbc(), 0x80, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 10.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fMaxDamage", true), fn_710000abbc(), 0x84, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 100.0f);
+    DREAD_REFLECTED_FIELD(f32, "fDamagePerTime", 0x68, (DefaultValue, 10.0f));
+    DREAD_REFLECTED_FIELD(CStrId, "sDamagePerTime", 0x70, (DefaultValue, CStrId("", true)));
+    DREAD_REFLECTED_FIELD(f32, "fInBetweenDamageTime", 0x78, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fInitTimeDamageIncrease", 0x7c, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDamageIncreaseAmount", 0x80, (DefaultValue, 10.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxDamage", 0x84, (DefaultValue, 100.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sDamageSource_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_sDamageSource_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -51,12 +44,9 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field6 = fn_7100096524(cls, CStrId("sDamageSource", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field6->attrs.Add<CStrId>(fn_7100075240(), CStrId("LAVA", true));
     field6->attrs.Add<const char*>(fn_7100007e80(), "Damage source");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("sDamageID", true), fn_7100009658(), 0x88, -1, -1);
-    field7->attrs.Add<CStrId>(fn_7100075240(), CStrId("Lava Pool", true));
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("bIgnoreReaction", true), fn_710000d228(), 0x90, -1, -1);
-    field8->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("bContinuousDamageHit", true), fn_710000d228(), 0x91, -1, -1);
-    field9->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(CStrId, "sDamageID", 0x88, (DefaultValue, CStrId("Lava Pool", true)));
+    DREAD_REFLECTED_FIELD(bool, "bIgnoreReaction", 0x90, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bContinuousDamageHit", 0x91, (DefaultValue, false));
     UnkReflField* field10 = fn_7100096524(cls, CStrId("eForceDamageModeHit", true), &g_unk_7172730580, 0x94, -1, -1);
     field10->attrs.Add<s32>(fn_7100075240(), &g_unk_7172730580, 0);
 }

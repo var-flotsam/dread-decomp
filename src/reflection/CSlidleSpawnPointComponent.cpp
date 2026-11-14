@@ -20,7 +20,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CSlidleSpawnPointComponent
 extern base::reflection::CType g_unk_7172745348;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CSlidleSpawnPointComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

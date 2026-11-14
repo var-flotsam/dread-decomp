@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,39 +20,19 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassFrozenComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CCharClassFrozenComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fTotalFreezeTime", true), fn_710000abbc(), 0x58, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 4.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Time this entity is frozen");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fThawingTime", true), fn_710000abbc(), 0x5c, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Time while the entity is thawing, as a warning. This time is included in the total freeze time");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sTimelineIdOnFrozen", true), fn_7100009658(), 0x60, -1, -1);
-    field2->attrs.Add<const char*>(fn_7100075240(), "frozen_onfrozen");
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Timeline to play when frozen");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sTimelineIdOnThawing", true), fn_7100009658(), 0x68, -1, -1);
-    field3->attrs.Add<const char*>(fn_7100075240(), "frozen_onthawing");
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Timeline to play when thawing starts");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sTimelineIdOnUnfreeze", true), fn_7100009658(), 0x70, -1, -1);
-    field4->attrs.Add<const char*>(fn_7100075240(), "frozen_onunfreeze");
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Timeline to play when unfreezing (any reason)");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("sActionFreezeInit", true), fn_7100009658(), 0x78, -1, -1);
-    field5->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Action to play when freezing starts. If empty, entity will freeze in frame");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("sActionFreezeEnd", true), fn_7100009658(), 0x80, -1, -1);
-    field6->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field6->attrs.Add<const char*>(fn_7100007e80(), "Action to play when freezing ends. Required if m_sActionFreezeInit is filled");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("sActionFreezeEndFalling", true), fn_7100009658(), 0x88, -1, -1);
-    field7->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field7->attrs.Add<const char*>(fn_7100007e80(), "Action to play when freezing ends if falling");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("sCustomLayer", true), fn_7100009658(), 0x90, -1, -1);
-    field8->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("sCustomLayerMixerNode", true), fn_7100009658(), 0x98, -1, -1);
-    field9->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_FIELD(f32, "fTotalFreezeTime", 0x58, (DefaultValue, 4.0f), (Description, "Time this entity is frozen"));
+    DREAD_REFLECTED_FIELD(f32, "fThawingTime", 0x5c, (DefaultValue, 1.0f), (Description, "Time while the entity is thawing, as a warning. This time is included in the total freeze time"));
+    DREAD_REFLECTED_FIELD(CStrId, "sTimelineIdOnFrozen", 0x60, (DefaultValue, "frozen_onfrozen"), (Description, "Timeline to play when frozen"));
+    DREAD_REFLECTED_FIELD(CStrId, "sTimelineIdOnThawing", 0x68, (DefaultValue, "frozen_onthawing"), (Description, "Timeline to play when thawing starts"));
+    DREAD_REFLECTED_FIELD(CStrId, "sTimelineIdOnUnfreeze", 0x70, (DefaultValue, "frozen_onunfreeze"), (Description, "Timeline to play when unfreezing (any reason)"));
+    DREAD_REFLECTED_FIELD(CStrId, "sActionFreezeInit", 0x78, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Action to play when freezing starts. If empty, entity will freeze in frame"));
+    DREAD_REFLECTED_FIELD(CStrId, "sActionFreezeEnd", 0x80, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Action to play when freezing ends. Required if m_sActionFreezeInit is filled"));
+    DREAD_REFLECTED_FIELD(CStrId, "sActionFreezeEndFalling", 0x88, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Action to play when freezing ends if falling"));
+    DREAD_REFLECTED_FIELD(CStrId, "sCustomLayer", 0x90, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sCustomLayerMixerNode", 0x98, (DefaultValue, CStrId(g_unk_7101d470e0)));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,8 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // base::snd::CSoundSystemATK::CTunableSoundSystemATK
 extern bool g_unk_7101d685c0;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7101d68580;
 void fn_71000f60e4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -33,27 +32,13 @@ void refl_AddFields(CClass* cls) {
     g_unk_7101d685c0 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMainVolume", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Main Volume");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fSfxVolume", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "SFX Volume");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMusicVolume", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Music Volume");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fSpeechVolume", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Speech Volume");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fGruntVolume", true), fn_710000abbc(), 0x34, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Grunt Volume");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fGUIVolume", true), fn_710000abbc(), 0x38, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    field5->attrs.Add<const char*>(fn_7100007e80(), "GUI Volume");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fEnvironmentStreamsVolume", true), fn_710000abbc(), 0x3c, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    field6->attrs.Add<const char*>(fn_7100007e80(), "Environment Streams Volume");
+    DREAD_REFLECTED_FIELD(f32, "fMainVolume", 0x24, (DefaultValue, 0.5f), (Description, "Main Volume"));
+    DREAD_REFLECTED_FIELD(f32, "fSfxVolume", 0x28, (DefaultValue, 0.5f), (Description, "SFX Volume"));
+    DREAD_REFLECTED_FIELD(f32, "fMusicVolume", 0x2c, (DefaultValue, 0.5f), (Description, "Music Volume"));
+    DREAD_REFLECTED_FIELD(f32, "fSpeechVolume", 0x30, (DefaultValue, 0.5f), (Description, "Speech Volume"));
+    DREAD_REFLECTED_FIELD(f32, "fGruntVolume", 0x34, (DefaultValue, 0.5f), (Description, "Grunt Volume"));
+    DREAD_REFLECTED_FIELD(f32, "fGUIVolume", 0x38, (DefaultValue, 0.5f), (Description, "GUI Volume"));
+    DREAD_REFLECTED_FIELD(f32, "fEnvironmentStreamsVolume", 0x3c, (DefaultValue, 0.5f), (Description, "Environment Streams Volume"));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -48,7 +49,6 @@ DREAD_REFLECTED_CLASS(CSamusAirMovementState::CParams, CSamusMovementState::CPar
 
 // CSamusAirMovementState::CTunableSamusAirMovementState
 extern bool g_unk_717273b008;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_717273afe0;
 void fn_7100988ac0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -60,12 +60,9 @@ void refl_AddFields(CClass* cls) {
     g_unk_717273b008 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bSpinDoubleJump", true), fn_710000d228(), 0x21, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bWallDoubleJump", true), fn_710000d228(), 0x22, -1, -1);
-    field1->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bAllowKickJumpWithSpaceJump", true), fn_710000d228(), 0x23, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_FIELD(bool, "bSpinDoubleJump", 0x21, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bWallDoubleJump", 0x22, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bAllowKickJumpWithSpaceJump", 0x23, (DefaultValue, true));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

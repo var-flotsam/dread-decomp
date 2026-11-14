@@ -19,9 +19,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // msapi::material::SAlpha
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
 extern base::reflection::CType g_unk_716e34bc10;
 namespace msapi::material::SAlpha {
@@ -435,7 +432,6 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(msapi::material::STexture, base::core::CBaseObject);
 
 // msapi::material::CMaterial
-const base::reflection::UnkReflAttrKey& fn_7100005070();
 extern base::reflection::CType g_unk_716e352788;
 namespace msapi::material::CMaterial {
 void refl_AddAttributes(CClass* cls) {

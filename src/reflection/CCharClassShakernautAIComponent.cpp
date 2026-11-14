@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,22 +22,16 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassShakernautAIComponent
 const base::reflection::CClass* fn_71006a2730();
 const base::reflection::CClass* fn_71006a2dd4();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassShakernautAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("oShakernautDoubleGroundShockAttackDef", true), fn_71006a2730(), 0x520, -1, -1);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("oShakernautPiercingLaserAttackDef", true), fn_71006a2dd4(), 0x620, -1, -1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMaxDistToMeleeAttack", true), fn_710000abbc(), 0x720, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 800.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fTimeSinceLastRangedAttack", true), fn_710000abbc(), 0x724, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 6.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fExplosionDuration", true), fn_710000abbc(), 0x728, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.2f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fExplosionWidth", true), fn_710000abbc(), 0x72c, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fExplosionHeight", true), fn_710000abbc(), 0x730, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 100.0f);
+    DREAD_REFLECTED_FIELD(f32, "fMaxDistToMeleeAttack", 0x720, (DefaultValue, 800.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeSinceLastRangedAttack", 0x724, (DefaultValue, 6.0f));
+    DREAD_REFLECTED_FIELD(f32, "fExplosionDuration", 0x728, (DefaultValue, 0.2f));
+    DREAD_REFLECTED_FIELD(f32, "fExplosionWidth", 0x72c, (DefaultValue, 100.0f));
+    DREAD_REFLECTED_FIELD(f32, "fExplosionHeight", 0x730, (DefaultValue, 100.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

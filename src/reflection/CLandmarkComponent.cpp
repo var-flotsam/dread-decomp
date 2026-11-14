@@ -20,9 +20,7 @@ using base::reflection::DestroyDestructorFirst;
 
 // CLandmarkComponent
 void fn_71008a34f0();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CLandmarkComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

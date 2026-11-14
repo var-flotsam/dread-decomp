@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,16 +20,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassRodomithonXAIComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_71726fe140;
 const base::reflection::CClass* fn_7100663fcc();
 namespace CCharClassRodomithonXAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fFireActiveTime", true), fn_710000abbc(), 0x630, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 5.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fRestTime", true), fn_710000abbc(), 0x634, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 2.0f);
+    DREAD_REFLECTED_FIELD(f32, "fFireActiveTime", 0x630, (DefaultValue, 5.0f));
+    DREAD_REFLECTED_FIELD(f32, "fRestTime", 0x634, (DefaultValue, 2.0f));
     UnkReflField* field2 = fn_7100096524(cls, CStrId("vFirePillarConfigs", true), &g_unk_71726fe140, 0x638, -1, -1);
     UnkReflField* field3 = fn_7100096524(cls, CStrId("oRodomithonXSuckAttackDef", true), fn_7100663fcc(), 0x660, -1, -1);
 }

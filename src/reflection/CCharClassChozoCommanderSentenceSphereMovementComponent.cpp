@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassChozoCommanderSentenceSphereMovementComponent
 void fn_7100459370();
 void fn_71004590e4(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassChozoCommanderSentenceSphereMovementComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -36,16 +36,11 @@ void refl_AddFields(CClass* cls) {
         fn_71004590e4(fn, "_m_fRotationSpeedDeg_SetterFunction");
     UnkReflField* field0 = fn_7100096524(cls, CStrId("fRotationSpeedDeg", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field0->attrs.Add<f32>(fn_7100075240(), 90.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fInitialRadius", true), fn_710000abbc(), 0x13c, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 30.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMinRadius", true), fn_710000abbc(), 0x140, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 90.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMaxRadius", true), fn_710000abbc(), 0x144, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 200.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fTimeToReachMinRadius", true), fn_710000abbc(), 0x148, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fTimeToReachMaxRadius", true), fn_710000abbc(), 0x14c, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 4.0f);
+    DREAD_REFLECTED_FIELD(f32, "fInitialRadius", 0x13c, (DefaultValue, 30.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinRadius", 0x140, (DefaultValue, 90.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxRadius", 0x144, (DefaultValue, 200.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToReachMinRadius", 0x148, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToReachMaxRadius", 0x14c, (DefaultValue, 4.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

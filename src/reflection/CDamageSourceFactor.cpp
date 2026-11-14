@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,60 +20,34 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CDamageSourceFactor
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CDamageSourceFactor {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fPowerBeamFactor", true), fn_710000abbc(), 0x8, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fWideBeamFactor", true), fn_710000abbc(), 0xc, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fPlasmaBeamFactor", true), fn_710000abbc(), 0x10, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fWaveBeamFactor", true), fn_710000abbc(), 0x14, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fGrappleBeamFactor", true), fn_710000abbc(), 0x18, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fHyperBeamFactor", true), fn_710000abbc(), 0x1c, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fChargePowerBeamFactor", true), fn_710000abbc(), 0x20, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fChargeWideBeamFactor", true), fn_710000abbc(), 0x24, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fChargePlasmaBeamFactor", true), fn_710000abbc(), 0x28, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fChargeWaveBeamFactor", true), fn_710000abbc(), 0x2c, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fMeleeChargePowerBeamFactor", true), fn_710000abbc(), 0x30, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fMeleeChargeWideBeamFactor", true), fn_710000abbc(), 0x34, -1, -1);
-    field11->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fMeleeChargePlasmaBeamFactor", true), fn_710000abbc(), 0x38, -1, -1);
-    field12->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("fMeleeChargeWaveBeamFactor", true), fn_710000abbc(), 0x3c, -1, -1);
-    field13->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("fMissileFactor", true), fn_710000abbc(), 0x40, -1, -1);
-    field14->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("fSuperMissileFactor", true), fn_710000abbc(), 0x44, -1, -1);
-    field15->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("fIceMissileFactor", true), fn_710000abbc(), 0x48, -1, -1);
-    field16->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("fMultiLockonMissileFactor", true), fn_710000abbc(), 0x4c, -1, -1);
-    field17->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field18 = fn_7100096524(cls, CStrId("fBombFactor", true), fn_710000abbc(), 0x50, -1, -1);
-    field18->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field19 = fn_7100096524(cls, CStrId("fLineBombFactor", true), fn_710000abbc(), 0x54, -1, -1);
-    field19->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field20 = fn_7100096524(cls, CStrId("fPowerBombFactor", true), fn_710000abbc(), 0x58, -1, -1);
-    field20->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field21 = fn_7100096524(cls, CStrId("fScrewAttackFactor", true), fn_710000abbc(), 0x5c, -1, -1);
-    field21->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field22 = fn_7100096524(cls, CStrId("fDashMeleeFactor", true), fn_710000abbc(), 0x60, -1, -1);
-    field22->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field23 = fn_7100096524(cls, CStrId("fSpeedBoosterFactor", true), fn_710000abbc(), 0x64, -1, -1);
-    field23->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field24 = fn_7100096524(cls, CStrId("fShineSparkFactor", true), fn_710000abbc(), 0x68, -1, -1);
-    field24->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    DREAD_REFLECTED_FIELD(f32, "fPowerBeamFactor", 0x8, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fWideBeamFactor", 0xc, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPlasmaBeamFactor", 0x10, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fWaveBeamFactor", 0x14, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fGrappleBeamFactor", 0x18, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fHyperBeamFactor", 0x1c, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fChargePowerBeamFactor", 0x20, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fChargeWideBeamFactor", 0x24, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fChargePlasmaBeamFactor", 0x28, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fChargeWaveBeamFactor", 0x2c, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMeleeChargePowerBeamFactor", 0x30, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMeleeChargeWideBeamFactor", 0x34, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMeleeChargePlasmaBeamFactor", 0x38, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMeleeChargeWaveBeamFactor", 0x3c, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMissileFactor", 0x40, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSuperMissileFactor", 0x44, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fIceMissileFactor", 0x48, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMultiLockonMissileFactor", 0x4c, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBombFactor", 0x50, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLineBombFactor", 0x54, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPowerBombFactor", 0x58, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fScrewAttackFactor", 0x5c, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDashMeleeFactor", 0x60, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSpeedBoosterFactor", 0x64, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fShineSparkFactor", 0x68, (DefaultValue, 1.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,23 +20,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CIsAtDistanceXCondition
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace behaviortree::CIsAtDistanceXCondition {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sFirstPos", true), fn_7100009658(), 0x38, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "");
-    field0->attrs.Add<const char*>(fn_7100007e80(), "First pos");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sSecondPos", true), fn_7100009658(), 0x50, -1, -1);
-    field1->attrs.Add<const char*>(fn_7100075240(), "");
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Second pos");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fDistance", true), fn_710000abbc(), 0x64, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Distance");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fHightDistance", true), fn_710000abbc(), 0x68, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Distance");
+    DREAD_REFLECTED_FIELD(CStrId, "sFirstPos", 0x38, (DefaultValue, ""), (Description, "First pos"));
+    DREAD_REFLECTED_FIELD(CStrId, "sSecondPos", 0x50, (DefaultValue, ""), (Description, "Second pos"));
+    DREAD_REFLECTED_FIELD(f32, "fDistance", 0x64, (DefaultValue, 0.0f), (Description, "Distance"));
+    DREAD_REFLECTED_FIELD(f32, "fHightDistance", 0x68, (DefaultValue, 0.0f), (Description, "Distance"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

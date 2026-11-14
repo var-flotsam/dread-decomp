@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,17 +20,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassPullableGrapplePointComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CCharClassPullableGrapplePointComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sOnDestructionLeftTimeline", true), fn_7100009658(), 0x68, -1, -1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Name of the destruction timeline on the left side");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sOnDestructionRightTimeline", true), fn_7100009658(), 0x70, -1, -1);
-    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Name of the destruction timeline on the right sidee");
+    DREAD_REFLECTED_FIELD(CStrId, "sOnDestructionLeftTimeline", 0x68, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Name of the destruction timeline on the left side"));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnDestructionRightTimeline", 0x70, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Name of the destruction timeline on the right sidee"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

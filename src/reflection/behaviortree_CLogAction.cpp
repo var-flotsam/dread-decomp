@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,17 +20,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CLogAction
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace behaviortree::CLogAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("iCount", true), fn_7100014768(), 0x2c, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), -1);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Num logs");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sText", true), fn_7100007f84(), 0x30, -1, -1);
-    field1->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString("Default log"));
-    field1->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Text to print"));
+    DREAD_REFLECTED_FIELD(s32, "iCount", 0x2c, (DefaultValue, -1), (Description, "Num logs"));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sText", 0x30, (DefaultValue, base::global::CRntString("Default log")), (Description, base::global::CRntString("Text to print")));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

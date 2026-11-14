@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,21 +20,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassSetLockEnvironmentEvent
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100090d50();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassSetLockEnvironmentEvent {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Set Lock Environment");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Environment", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bMusic", true), fn_710000d228(), 0xc, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bEnvironment", true), fn_710000d228(), 0xd, -1, -1);
-    field1->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bSound", true), fn_710000d228(), 0xe, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(bool, "bMusic", 0xc, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bEnvironment", 0xd, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bSound", 0xe, (DefaultValue, false));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,23 +20,16 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassSetCurrentCubemapIntensityEvent
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100090d50();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassSetCurrentCubemapIntensityEvent {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Set Current Cubemap Intensity");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Lighting", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fIntensity", true), fn_710000abbc(), 0xc, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTime", true), fn_710000abbc(), 0x10, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bRelative", true), fn_710000d228(), 0x14, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bInSameSubareaEntity", true), fn_710000d228(), 0x15, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(f32, "fIntensity", 0xc, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTime", 0x10, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(bool, "bRelative", 0x14, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bInSameSubareaEntity", 0x15, (DefaultValue, false));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

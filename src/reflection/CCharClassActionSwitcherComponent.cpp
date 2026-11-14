@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,18 +20,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassActionSwitcherComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassActionSwitcherComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sActivateAction", true), fn_7100009658(), 0x58, -1, -1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sDeactivateAction", true), fn_7100009658(), 0x60, -1, -1);
-    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bScalePlayRate", true), fn_710000d228(), 0x68, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bDisableOnActivatedOnDeattachActor", true), fn_710000d228(), 0x69, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(CStrId, "sActivateAction", 0x58, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sDeactivateAction", 0x60, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(bool, "bScalePlayRate", 0x68, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bDisableOnActivatedOnDeattachActor", 0x69, (DefaultValue, false));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

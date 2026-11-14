@@ -19,16 +19,10 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CBlackboard
-const base::reflection::UnkReflAttrKey& fn_7100005070();
 extern base::reflection::CType g_unk_71729fc870;
 void fn_7101049fa8();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::UnkReflAttrKey& fn_710008fd60();
-const base::reflection::UnkReflAttrKey& fn_710008ff80();
 void fn_7101045544(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_710008f920();
-const base::reflection::UnkReflAttrKey& fn_71000903c0();
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_710104a108();
 namespace CBlackboard {

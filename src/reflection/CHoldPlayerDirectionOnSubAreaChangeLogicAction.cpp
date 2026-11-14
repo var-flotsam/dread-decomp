@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,14 +20,10 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CHoldPlayerDirectionOnSubAreaChangeLogicAction
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CHoldPlayerDirectionOnSubAreaChangeLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bForce", true), fn_710000d228(), 0x10, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), false);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Force to hold Samus direction");
+    DREAD_REFLECTED_FIELD(bool, "bForce", 0x10, (DefaultValue, false), (Description, "Force to hold Samus direction"));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

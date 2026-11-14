@@ -20,8 +20,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CItemLifeComponent
 void fn_71008e0328(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_71000904d0();
 namespace CItemLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

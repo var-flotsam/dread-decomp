@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassAimComponent
 void fn_710035c020();
 void fn_710035b488(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 void fn_710035c0b0();
 void fn_710035b604(UnkReflFunction* fn, const char* name);
 void fn_710035c140();
@@ -34,7 +34,6 @@ void fn_710035c2f0();
 void fn_710035bbf4(UnkReflFunction* fn, const char* name);
 void fn_710035c380();
 void fn_710035bd70(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CCharClassAimComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -115,29 +114,16 @@ void refl_AddFields(CClass* cls) {
         fn_710035bd70(fn, "_m_fAutoAimLockAfterDeadTime_SetterFunction");
     UnkReflField* field6 = fn_7100096524(cls, CStrId("fAutoAimLockAfterDeadTime", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field6->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fMaxTimeMaintainingFront", true), fn_710000abbc(), 0x74, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 0.66f);
-    field7->attrs.Add<const char*>(fn_7100007e80(), "Max Time Maintaining Front");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fLaserDeactivationTime", true), fn_710000abbc(), 0x78, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 0.4f);
-    field8->attrs.Add<const char*>(fn_7100007e80(), "Laser deactivation time");
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fAnalogModeDefaultInterp", true), fn_710000abbc(), 0x7c, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 15.707964f);
-    field9->attrs.Add<const char*>(fn_7100007e80(), "Aim Analog mode default inter");
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fForcedFrontTimeAfterFire", true), fn_710000abbc(), 0x80, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fForcedFrontTimeAfterFireOnAir", true), fn_710000abbc(), 0x84, -1, -1);
-    field11->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fForcedFrontTimeAfterDiagonal", true), fn_710000abbc(), 0x88, -1, -1);
-    field12->attrs.Add<f32>(fn_7100075240(), 0.9f);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("fForcedFrontTimeAfterSecondaryWeapon", true), fn_710000abbc(), 0x8c, -1, -1);
-    field13->attrs.Add<f32>(fn_7100075240(), 0.45f);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("fForcedFrontTimeAfterStealthRun", true), fn_710000abbc(), 0x90, -1, -1);
-    field14->attrs.Add<f32>(fn_7100075240(), 0.45f);
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("fForcedFrontTimeAfterParkour", true), fn_710000abbc(), 0x94, -1, -1);
-    field15->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("fForcedFrontTimeAfterFloorSlide45End", true), fn_710000abbc(), 0x98, -1, -1);
-    field16->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    DREAD_REFLECTED_FIELD(f32, "fMaxTimeMaintainingFront", 0x74, (DefaultValue, 0.66f), (Description, "Max Time Maintaining Front"));
+    DREAD_REFLECTED_FIELD(f32, "fLaserDeactivationTime", 0x78, (DefaultValue, 0.4f), (Description, "Laser deactivation time"));
+    DREAD_REFLECTED_FIELD(f32, "fAnalogModeDefaultInterp", 0x7c, (DefaultValue, 15.707964f), (Description, "Aim Analog mode default inter"));
+    DREAD_REFLECTED_FIELD(f32, "fForcedFrontTimeAfterFire", 0x80, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fForcedFrontTimeAfterFireOnAir", 0x84, (DefaultValue, 2.0f));
+    DREAD_REFLECTED_FIELD(f32, "fForcedFrontTimeAfterDiagonal", 0x88, (DefaultValue, 0.9f));
+    DREAD_REFLECTED_FIELD(f32, "fForcedFrontTimeAfterSecondaryWeapon", 0x8c, (DefaultValue, 0.45f));
+    DREAD_REFLECTED_FIELD(f32, "fForcedFrontTimeAfterStealthRun", 0x90, (DefaultValue, 0.45f));
+    DREAD_REFLECTED_FIELD(f32, "fForcedFrontTimeAfterParkour", 0x94, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fForcedFrontTimeAfterFloorSlide45End", 0x98, (DefaultValue, 0.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

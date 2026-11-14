@@ -24,12 +24,8 @@ void fn_71005003fc();
 void fn_7100500260(UnkReflFunction* fn);
 void fn_71005004a4();
 extern base::reflection::CType g_unk_717269bf08;
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 extern base::reflection::CType g_unk_717269bb48;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
 namespace CEmmySancAIComponent {
 void refl_AddAttributes(CClass*) {}

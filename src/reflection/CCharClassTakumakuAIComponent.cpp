@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,53 +22,32 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassTakumakuAIComponent
 const base::reflection::CClass* fn_71006cdc1c();
 extern base::reflection::CType g_unk_7172709868;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassTakumakuAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("oTakumakuDashAttackDef", true), fn_71006cdc1c(), 0x510, -1, -1);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("eSubspecies", true), &g_unk_7172709868, 0x600, -1, -1);
     field1->attrs.Add<s32>(fn_7100075240(), &g_unk_7172709868, 2147483647);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMinTimeBetweenDigs", true), fn_710000abbc(), 0x604, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMaxTimeBetweenDigs", true), fn_710000abbc(), 0x608, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fMinTimeDigging", true), fn_710000abbc(), 0x60c, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fMaxTimeDigging", true), fn_710000abbc(), 0x610, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fReachableHeightBeforeAttack", true), fn_710000abbc(), 0x614, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 300.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fReachableHeightOnAttack", true), fn_710000abbc(), 0x618, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 600.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fSpikeTime", true), fn_710000abbc(), 0x61c, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fSpikeActivationInterpolationSpeed", true), fn_710000abbc(), 0x620, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 8.0f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fSpikeDeactivationInterpolationSpeed", true), fn_710000abbc(), 0x624, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 4.0f);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fSpikeShakeActivationInterpolationSpeed", true), fn_710000abbc(), 0x62c, -1, -1);
-    field11->attrs.Add<f32>(fn_7100075240(), 8.0f);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fSpikeShakeDeactivationInterpolationSpeed", true), fn_710000abbc(), 0x630, -1, -1);
-    field12->attrs.Add<f32>(fn_7100075240(), 4.0f);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("fMinChaseDistance", true), fn_710000abbc(), 0x634, -1, -1);
-    field13->attrs.Add<f32>(fn_7100075240(), 400.0f);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("fMaxChaseDistance", true), fn_710000abbc(), 0x638, -1, -1);
-    field14->attrs.Add<f32>(fn_7100075240(), 9999.0f);
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("iChaseMaxNumJumps", true), fn_7100014768(), 0x63c, -1, -1);
-    field15->attrs.Add<s32>(fn_7100075240(), 2);
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("fMinChargeTime", true), fn_710000abbc(), 0x640, -1, -1);
-    field16->attrs.Add<f32>(fn_7100075240(), 0.2f);
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("bWantsAttackPreparationAfterMelee", true), fn_710000d228(), 0x644, -1, -1);
-    field17->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field18 = fn_7100096524(cls, CStrId("bWantsAttackPreparationAfterDetection", true), fn_710000d228(), 0x645, -1, -1);
-    field18->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field19 = fn_7100096524(cls, CStrId("fMaxTargetSeparationBehindToTurn", true), fn_710000abbc(), 0x648, -1, -1);
-    field19->attrs.Add<f32>(fn_7100075240(), 300.0f);
-    UnkReflField* field20 = fn_7100096524(cls, CStrId("fMaxTimeDetectingBehindToTurn", true), fn_710000abbc(), 0x64c, -1, -1);
-    field20->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    UnkReflField* field21 = fn_7100096524(cls, CStrId("fMaxTimeMissingToStop", true), fn_710000abbc(), 0x650, -1, -1);
-    field21->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    DREAD_REFLECTED_FIELD(f32, "fMinTimeBetweenDigs", 0x604, (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxTimeBetweenDigs", 0x608, (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinTimeDigging", 0x60c, (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxTimeDigging", 0x610, (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fReachableHeightBeforeAttack", 0x614, (DefaultValue, 300.0f));
+    DREAD_REFLECTED_FIELD(f32, "fReachableHeightOnAttack", 0x618, (DefaultValue, 600.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSpikeTime", 0x61c, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSpikeActivationInterpolationSpeed", 0x620, (DefaultValue, 8.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSpikeDeactivationInterpolationSpeed", 0x624, (DefaultValue, 4.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSpikeShakeActivationInterpolationSpeed", 0x62c, (DefaultValue, 8.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSpikeShakeDeactivationInterpolationSpeed", 0x630, (DefaultValue, 4.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinChaseDistance", 0x634, (DefaultValue, 400.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxChaseDistance", 0x638, (DefaultValue, 9999.0f));
+    DREAD_REFLECTED_FIELD(s32, "iChaseMaxNumJumps", 0x63c, (DefaultValue, 2));
+    DREAD_REFLECTED_FIELD(f32, "fMinChargeTime", 0x640, (DefaultValue, 0.2f));
+    DREAD_REFLECTED_FIELD(bool, "bWantsAttackPreparationAfterMelee", 0x644, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bWantsAttackPreparationAfterDetection", 0x645, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fMaxTargetSeparationBehindToTurn", 0x648, (DefaultValue, 300.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxTimeDetectingBehindToTurn", 0x64c, (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxTimeMissingToStop", 0x650, (DefaultValue, 0.5f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

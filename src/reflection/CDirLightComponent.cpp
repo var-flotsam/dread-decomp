@@ -21,11 +21,7 @@ using base::reflection::DestroyDestructorFirst;
 // CDirLightComponent
 void fn_71008eba60();
 void fn_71008eabb0(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
-const base::reflection::UnkReflAttrKey& fn_71000925c0();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
 void fn_71008ebb34();
 void fn_71008ead2c(UnkReflFunction* fn, const char* name);

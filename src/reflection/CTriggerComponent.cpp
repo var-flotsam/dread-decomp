@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,9 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CTriggerComponent
 void fn_7100a5cbcc(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_71000904d0();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 void fn_7100a6463c();
 void fn_7100a5cc80(UnkReflFunction* fn, const char* name);
 void fn_7100a646ec();
@@ -30,7 +28,6 @@ void fn_7100a5cdfc(UnkReflFunction* fn, const char* name);
 void fn_7100a64790();
 void fn_7100a5cf78(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_717274dad8;
-const base::reflection::UnkReflAttrKey& fn_710008ff80();
 void fn_7100a5d0f4(UnkReflFunction* fn, const char* name);
 namespace CTriggerComponent {
 void refl_AddAttributes(CClass*) {}
@@ -40,8 +37,7 @@ void refl_AddFields(CClass* cls) {
         fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
         fn->Attrs()->Add<bool>(fn_71000904d0(), true);
     }
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bCallEntityLuaCallback", true), fn_710000d228(), 0x3d, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(bool, "bCallEntityLuaCallback", 0x3d, (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iReverb_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_iReverb_GetterFunction", true);
         fn->return_type = fn_7100014768();
@@ -64,20 +60,13 @@ void refl_AddFields(CClass* cls) {
         fn_7100a5cdfc(fn, "_m_iLowPassFilter_SetterFunction");
     UnkReflField* field2 = fn_7100096524(cls, CStrId("iLowPassFilter", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field2->attrs.Add<s32>(fn_7100075240(), -1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sOnEnable", true), fn_7100009658(), 0x1f0, -1, -1);
-    field3->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sOnDisable", true), fn_7100009658(), 0x1f8, -1, -1);
-    field4->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("bOnEnableAlways", true), fn_710000d228(), 0x200, -1, -1);
-    field5->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("bOnDisableAlways", true), fn_710000d228(), 0x201, -1, -1);
-    field6->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("bStartEnabled", true), fn_710000d228(), 0x418, -1, -1);
-    field7->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("bCheckAllEntities", true), fn_710000d228(), 0x204, -1, -1);
-    field8->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("bPersistentState", true), fn_710000d228(), 0x278, -1, -1);
-    field9->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(CStrId, "sOnEnable", 0x1f0, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnDisable", 0x1f8, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(bool, "bOnEnableAlways", 0x200, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bOnDisableAlways", 0x201, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bStartEnabled", 0x418, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bCheckAllEntities", 0x204, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bPersistentState", 0x278, (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sSfxType_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sSfxType_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -122,14 +111,10 @@ void refl_AddFields(CClass* cls) {
     g_unk_717274de10 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("iWaterReverb", true), fn_7100014768(), 0x24, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("iWaterLowPassFilter", true), fn_7100014768(), 0x28, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), 1550);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("iLavaReverb", true), fn_7100014768(), 0x2c, -1, -1);
-    field2->attrs.Add<s32>(fn_7100075240(), -1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("iLavaLowPassFilter", true), fn_7100014768(), 0x30, -1, -1);
-    field3->attrs.Add<s32>(fn_7100075240(), 1900);
+    DREAD_REFLECTED_FIELD(s32, "iWaterReverb", 0x24, (DefaultValue, -1));
+    DREAD_REFLECTED_FIELD(s32, "iWaterLowPassFilter", 0x28, (DefaultValue, 1550));
+    DREAD_REFLECTED_FIELD(s32, "iLavaReverb", 0x2c, (DefaultValue, -1));
+    DREAD_REFLECTED_FIELD(s32, "iLavaLowPassFilter", 0x30, (DefaultValue, 1900));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

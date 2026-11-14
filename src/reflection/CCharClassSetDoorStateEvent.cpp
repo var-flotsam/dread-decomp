@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,25 +20,17 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassSetDoorStateEvent
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100090d50();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassSetDoorStateEvent {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Set Door State (open|close)");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Door", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sEntityName", true), fn_710000fd7c(), 0x38, -1, -1);
-    field0->attrs.Add<base::global::CName>(fn_7100075240(), base::global::CName(""));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bState", true), fn_710000d228(), 0x44, -1, -1);
-    field1->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bUseTransitionAnims", true), fn_710000d228(), 0x45, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bPlaySFX", true), fn_710000d228(), 0x46, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fSpeed", true), fn_710000abbc(), 0x40, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    DREAD_REFLECTED_FIELD(base::global::CName, "sEntityName", 0x38, (DefaultValue, base::global::CName("")));
+    DREAD_REFLECTED_FIELD(bool, "bState", 0x44, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bUseTransitionAnims", 0x45, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bPlaySFX", 0x46, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(f32, "fSpeed", 0x40, (DefaultValue, 1.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

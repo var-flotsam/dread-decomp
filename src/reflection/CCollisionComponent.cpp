@@ -20,8 +20,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCollisionComponent
 void fn_710085fff4(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_71000904d0();
 namespace CCollisionComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

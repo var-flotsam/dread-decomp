@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,8 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CGunComponent::CTunableGunComponent
 extern bool g_unk_7172726270;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172726228;
 void fn_7100837e98(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -33,30 +32,14 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172726270 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fPowerBombMinTimeToStartCharge", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.1f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Min time to Start Recharge");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fNormalFireChargeMinTime", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Min time to Start Charge Normal Beams");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fNormalFireChargeMaxTime", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Max time to End Charge Normal Beams");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fSPBFireChargeMinTime", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Min time to Start Charge SPB");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fSPBFireChargeMaxTime", true), fn_710000abbc(), 0x34, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Max time to End Charge SPB");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fDiffusionFireChargeMinTime", true), fn_710000abbc(), 0x38, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Min time to Start Charge Diffusion Beams");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fDiffusionFireChargeMaxTime", true), fn_710000abbc(), 0x3c, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field6->attrs.Add<const char*>(fn_7100007e80(), "Max time to End Charge Diffusion Beams");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fIgnoreFireAfterChargeReleasedTime", true), fn_710000abbc(), 0x40, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 0.2f);
-    field7->attrs.Add<const char*>(fn_7100007e80(), "Time after firing a charged beam that the fire input is ignored");
+    DREAD_REFLECTED_FIELD(f32, "fPowerBombMinTimeToStartCharge", 0x24, (DefaultValue, 0.1f), (Description, "Min time to Start Recharge"));
+    DREAD_REFLECTED_FIELD(f32, "fNormalFireChargeMinTime", 0x28, (DefaultValue, 0.5f), (Description, "Min time to Start Charge Normal Beams"));
+    DREAD_REFLECTED_FIELD(f32, "fNormalFireChargeMaxTime", 0x2c, (DefaultValue, 1.0f), (Description, "Max time to End Charge Normal Beams"));
+    DREAD_REFLECTED_FIELD(f32, "fSPBFireChargeMinTime", 0x30, (DefaultValue, 0.0f), (Description, "Min time to Start Charge SPB"));
+    DREAD_REFLECTED_FIELD(f32, "fSPBFireChargeMaxTime", 0x34, (DefaultValue, 0.0f), (Description, "Max time to End Charge SPB"));
+    DREAD_REFLECTED_FIELD(f32, "fDiffusionFireChargeMinTime", 0x38, (DefaultValue, 0.0f), (Description, "Min time to Start Charge Diffusion Beams"));
+    DREAD_REFLECTED_FIELD(f32, "fDiffusionFireChargeMaxTime", 0x3c, (DefaultValue, 0.0f), (Description, "Max time to End Charge Diffusion Beams"));
+    DREAD_REFLECTED_FIELD(f32, "fIgnoreFireAfterChargeReleasedTime", 0x40, (DefaultValue, 0.2f), (Description, "Time after firing a charged beam that the fire input is ignored"));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
@@ -91,7 +74,6 @@ DREAD_REFLECTED_CLASS(CGunComponent::CTunableGunComponent, base::tunable::CTunab
 
 // CGunComponent
 void fn_71008388f8(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_71000904d0();
 void fn_71008389ac(UnkReflFunction* fn, const char* name);
 void fn_7100838a60(UnkReflFunction* fn, const char* name);
 void fn_7100838b14(UnkReflFunction* fn, const char* name);

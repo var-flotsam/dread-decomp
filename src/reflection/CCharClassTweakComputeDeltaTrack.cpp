@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,21 +20,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassTweakComputeDeltaTrack
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100090e60();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassTweakComputeDeltaTrack {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Tweak Compute Delta");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Tweak", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMultiplierX", true), fn_710000abbc(), 0x18, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMultiplierY", true), fn_710000abbc(), 0x1c, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMultiplierZ", true), fn_710000abbc(), 0x20, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    DREAD_REFLECTED_FIELD(f32, "fMultiplierX", 0x18, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMultiplierY", 0x1c, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMultiplierZ", 0x20, (DefaultValue, 1.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

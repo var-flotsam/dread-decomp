@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassEmmyAIComponent
 void fn_710051ef68();
 void fn_710051e7a8(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 void fn_710051eff8();
 void fn_710051e924(UnkReflFunction* fn, const char* name);
 namespace CCharClassEmmyAIComponent {
@@ -49,8 +49,7 @@ void refl_AddFields(CClass* cls) {
         fn_710051e924(fn, "_m_bCanUseTunnels_SetterFunction");
     UnkReflField* field1 = fn_7100096524(cls, CStrId("bCanUseTunnels", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field1->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sInventoryItemOnKilled", true), fn_7100009658(), 0x618, -1, -1);
-    field2->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_FIELD(CStrId, "sInventoryItemOnKilled", 0x618, (DefaultValue, CStrId(g_unk_7101d470e0)));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

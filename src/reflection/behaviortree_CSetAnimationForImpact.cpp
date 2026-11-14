@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,23 +20,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CSetAnimationForImpact
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace behaviortree::CSetAnimationForImpact {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sFrontImpact", true), fn_7100009658(), 0x30, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "");
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Animation for front impact");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sBackImpact", true), fn_7100009658(), 0x38, -1, -1);
-    field1->attrs.Add<const char*>(fn_7100075240(), "");
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Animation for back impact");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bWaitAnimEnd", true), fn_710000d228(), 0x48, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Wait for animation end");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bWaitIfFrozen", true), fn_710000d228(), 0x49, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), true);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Wait if frozen");
+    DREAD_REFLECTED_FIELD(CStrId, "sFrontImpact", 0x30, (DefaultValue, ""), (Description, "Animation for front impact"));
+    DREAD_REFLECTED_FIELD(CStrId, "sBackImpact", 0x38, (DefaultValue, ""), (Description, "Animation for back impact"));
+    DREAD_REFLECTED_FIELD(bool, "bWaitAnimEnd", 0x48, (DefaultValue, false), (Description, "Wait for animation end"));
+    DREAD_REFLECTED_FIELD(bool, "bWaitIfFrozen", 0x49, (DefaultValue, true), (Description, "Wait if frozen"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

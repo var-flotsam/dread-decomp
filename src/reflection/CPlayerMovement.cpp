@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,12 +21,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // CPlayerMovement
 void fn_71010dced0();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 void fn_71010d74bc(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_71000904d0();
 void fn_71010d7570(UnkReflFunction* fn, const char* name);
 void fn_71010d7624(UnkReflFunction* fn, const char* name);
 namespace CPlayerMovement {
@@ -40,24 +37,12 @@ void refl_AddFields(CClass* cls) {
     }
     UnkReflField* field0 = fn_7100096524(cls, CStrId("bForcedAnalogInput", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fImpactImpulseX", true), fn_710000abbc(), 0x7cc, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 700.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Impact impulse X");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fImpactImpulseY", true), fn_710000abbc(), 0x7d0, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1700.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Impact impulse Y");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fImpactAirImpulseY", true), fn_710000abbc(), 0x7d4, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 1200.0f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Impact impulse Y (on air)");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fImpactHardImpulseX", true), fn_710000abbc(), 0x7d8, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 2000.0f);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Impact hard impulse X");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fImpactHardImpulseY", true), fn_710000abbc(), 0x7dc, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 3400.0f);
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Impact hard impulse Y");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fImpactHardAirImpulseY", true), fn_710000abbc(), 0x7e0, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 2400.0f);
-    field6->attrs.Add<const char*>(fn_7100007e80(), "Impact hard impulse Y (on air)");
+    DREAD_REFLECTED_FIELD(f32, "fImpactImpulseX", 0x7cc, (DefaultValue, 700.0f), (Description, "Impact impulse X"));
+    DREAD_REFLECTED_FIELD(f32, "fImpactImpulseY", 0x7d0, (DefaultValue, 1700.0f), (Description, "Impact impulse Y"));
+    DREAD_REFLECTED_FIELD(f32, "fImpactAirImpulseY", 0x7d4, (DefaultValue, 1200.0f), (Description, "Impact impulse Y (on air)"));
+    DREAD_REFLECTED_FIELD(f32, "fImpactHardImpulseX", 0x7d8, (DefaultValue, 2000.0f), (Description, "Impact hard impulse X"));
+    DREAD_REFLECTED_FIELD(f32, "fImpactHardImpulseY", 0x7dc, (DefaultValue, 3400.0f), (Description, "Impact hard impulse Y"));
+    DREAD_REFLECTED_FIELD(f32, "fImpactHardAirImpulseY", 0x7e0, (DefaultValue, 2400.0f), (Description, "Impact hard impulse Y (on air)"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetRunEnabled", true))) {
         fn_71010d74bc(fn, "SetRunEnabled");
         fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));

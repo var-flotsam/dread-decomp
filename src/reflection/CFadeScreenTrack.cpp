@@ -19,11 +19,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CFadeScreenTrack
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_71000912a0();
-const base::reflection::UnkReflAttrKey& fn_7100090e60();
 const base::reflection::CType* fn_71000a87a4();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 const base::reflection::CType* fn_71000a41b4();
 namespace CFadeScreenTrack {
 void refl_AddAttributes(CClass* cls) {

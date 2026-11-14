@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,8 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CPowerBombMovement::CTunablePowerBombMovement
 extern bool g_unk_7172754170;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172754138;
 void fn_7100ab005c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -33,18 +32,10 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172754170 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fColdDownPowerBombMinTime", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Min time between Power Bombs");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fPowerBombExplosionMaxRadius", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 3000.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Radius at maximum extension");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fPowerBombExplosionSpeed", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 3800.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Radius growth speed");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fPowerBombImplosionSpeed", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 3800.0f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Radius decreasing speed");
+    DREAD_REFLECTED_FIELD(f32, "fColdDownPowerBombMinTime", 0x24, (DefaultValue, 0.0f), (Description, "Min time between Power Bombs"));
+    DREAD_REFLECTED_FIELD(f32, "fPowerBombExplosionMaxRadius", 0x28, (DefaultValue, 3000.0f), (Description, "Radius at maximum extension"));
+    DREAD_REFLECTED_FIELD(f32, "fPowerBombExplosionSpeed", 0x2c, (DefaultValue, 3800.0f), (Description, "Radius growth speed"));
+    DREAD_REFLECTED_FIELD(f32, "fPowerBombImplosionSpeed", 0x30, (DefaultValue, 3800.0f), (Description, "Radius decreasing speed"));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
@@ -81,9 +72,7 @@ DREAD_REFLECTED_CLASS(CPowerBombMovement::CTunablePowerBombMovement, base::tunab
 namespace CPowerBombMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fRadiusToAlertMorphball", true), fn_710000abbc(), 0x4c0, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 75.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Radius");
+    DREAD_REFLECTED_FIELD(f32, "fRadiusToAlertMorphball", 0x4c0, (DefaultValue, 75.0f), (Description, "Radius"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

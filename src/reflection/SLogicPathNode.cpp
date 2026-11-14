@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -23,13 +24,8 @@ using base::reflection::DestroyDestructorFirst;
 // SLogicPathNode
 void fn_710105cdb4();
 void fn_7101054b10(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_71000926d0();
 extern base::reflection::CType g_unk_7101d60ff0;
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
-const base::reflection::UnkReflAttrKey& fn_71000924b0();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace SLogicPathNode {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -47,10 +43,8 @@ void refl_AddFields(CClass* cls) {
     field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Position"));
     field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 3);
     field0->attrs.Add<bool>(fn_71000924b0(), true);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fSwarmRadius", true), fn_710000abbc(), 0x14, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fDiversionChance", true), fn_710000abbc(), 0x18, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    DREAD_REFLECTED_FIELD(f32, "fSwarmRadius", 0x14, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDiversionChance", 0x18, (DefaultValue, 1.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -81,19 +75,11 @@ extern base::reflection::CType g_unk_7101d5af48;
 void fn_710105d0a8();
 void fn_710105d0bc();
 void fn_7101055b34(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_710008f920();
-const base::reflection::UnkReflAttrKey& fn_71000903c0();
 void fn_710105d328();
 void fn_710105d188(UnkReflFunction* fn);
 void fn_7101055bf4(UnkReflFunction* fn, const char* name);
 void fn_7101055d70(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_71729fe538;
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
-const base::reflection::UnkReflAttrKey& fn_710008fd60();
-const base::reflection::UnkReflAttrKey& fn_710008fe70();
-const base::reflection::UnkReflAttrKey& fn_710008fc50();
-const base::reflection::UnkReflAttrKey& fn_710008fb40();
-const base::reflection::UnkReflAttrKey& fn_710008ff80();
 namespace SLogicSubPath {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,9 +21,7 @@ using base::reflection::DestroyDestructorFirst;
 
 // CFootstepPlatformComponent
 extern base::reflection::CType g_unk_71727b6270;
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_71007e8b58();
 namespace CFootstepPlatformComponent {
@@ -32,10 +31,8 @@ void refl_AddFields(CClass* cls) {
     field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("wpPartnerFootStepPlatformEntity", true), &g_unk_71727b6270, 0x88, -1, -1);
     field1->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sCallbackOnOpened", true), fn_7100009658(), 0xe0, -1, -1);
-    field2->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sCallbackOnClosed", true), fn_7100009658(), 0xe8, -1, -1);
-    field3->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_FIELD(CStrId, "sCallbackOnOpened", 0xe0, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sCallbackOnClosed", 0xe8, (DefaultValue, CStrId(g_unk_7101d470e0)));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CloseDoor", true))) {
         fn->name = base::global::UnkStrId("CloseDoor", true);
         fn->return_type = &g_unk_7101d5af48;

@@ -20,7 +20,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CHydrogigaZiplineRailComponent
 extern base::reflection::CType g_unk_71727b6630;
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 namespace CHydrogigaZiplineRailComponent {
 void refl_AddAttributes(CClass*) {}

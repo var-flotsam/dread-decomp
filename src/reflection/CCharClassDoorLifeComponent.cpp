@@ -21,8 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassDoorLifeComponent
 void fn_71008b2d64();
 void fn_71008b1b68(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 void fn_71008b2df4();
 void fn_71008b1ce4(UnkReflFunction* fn, const char* name);
 void fn_71008b2e84();

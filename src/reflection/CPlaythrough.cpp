@@ -21,11 +21,8 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CPlaythrough
-const base::reflection::UnkReflAttrKey& fn_7100005070();
-const base::reflection::UnkReflAttrKey& fn_710008ff80();
 void fn_71002edffc();
 void fn_71002ea054(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_710001b9f0();
 extern base::reflection::CType g_unk_7101d4ec50;
 void fn_71002ee0fc();
 extern base::reflection::CType g_unk_71726acd78;

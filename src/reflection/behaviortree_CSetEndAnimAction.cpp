@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,23 +20,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CSetEndAnimAction
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace behaviortree::CSetEndAnimAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bForce", true), fn_710000d228(), 0x2c, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), false);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Force set anim");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bWaitAnimEnd", true), fn_710000d228(), 0x2d, -1, -1);
-    field1->attrs.Add<bool>(fn_7100075240(), false);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Wait for animation end");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bWaitIfFrozen", true), fn_710000d228(), 0x2e, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), true);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Wait if frozen");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bSyncWithCurrent", true), fn_710000d228(), 0x30, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), false);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Sync target animation with current [false]");
+    DREAD_REFLECTED_FIELD(bool, "bForce", 0x2c, (DefaultValue, false), (Description, "Force set anim"));
+    DREAD_REFLECTED_FIELD(bool, "bWaitAnimEnd", 0x2d, (DefaultValue, false), (Description, "Wait for animation end"));
+    DREAD_REFLECTED_FIELD(bool, "bWaitIfFrozen", 0x2e, (DefaultValue, true), (Description, "Wait if frozen"));
+    DREAD_REFLECTED_FIELD(bool, "bSyncWithCurrent", 0x30, (DefaultValue, false), (Description, "Sync target animation with current [false]"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 // CShotManager::CTunableShotManager
 extern bool g_unk_71729d1540;
 const base::reflection::CClass* fn_7100ddf344();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71729cf280;
 void fn_7100ed419c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -47,8 +47,7 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field11 = fn_7100096524(cls, CStrId("rHyperBeamExplosion", true), fn_7100ddf344(), 0x1b50, -1, -1);
     UnkReflField* field12 = fn_7100096524(cls, CStrId("rNoDamageExplosion", true), fn_7100ddf344(), 0x1dc8, -1, -1);
     UnkReflField* field13 = fn_7100096524(cls, CStrId("rHeatedExplosion", true), fn_7100ddf344(), 0x2040, -1, -1);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("fShotSpeed", true), fn_710000abbc(), 0x22b8, -1, -1);
-    field14->attrs.Add<f32>(fn_7100075240(), 2700.0f);
+    DREAD_REFLECTED_FIELD(f32, "fShotSpeed", 0x22b8, (DefaultValue, 2700.0f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

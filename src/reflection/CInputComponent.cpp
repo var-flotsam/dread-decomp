@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -23,10 +24,7 @@ extern base::reflection::CType g_unk_7101d5af48;
 void fn_710087412c();
 void fn_7100874050(UnkReflFunction* fn);
 void fn_7100870a5c(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_71000904d0();
 void fn_7100874290();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
 namespace CInputComponent {
 void refl_AddAttributes(CClass*) {}
@@ -72,7 +70,6 @@ DREAD_REFLECTED_CLASS(CInputComponent, CComponent);
 
 // CInputComponent::CTunableInputComponent
 extern bool g_unk_71727298f8;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71727298b0;
 void fn_7100871330(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -84,22 +81,14 @@ void refl_AddFields(CClass* cls) {
     g_unk_71727298f8 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("iWalkInputMode", true), fn_7100014768(), 0x24, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), 0);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fNoWalkMusicVolume", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fWalkMusicVolume", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fNoWalkEnvironmentVolume", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fWalkEnvironmentVolume", true), fn_710000abbc(), 0x34, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.3f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fWalkSamusMovementVolume", true), fn_710000abbc(), 0x38, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 0.2f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("bWalkEmmySoundReverb", true), fn_710000d228(), 0x3c, -1, -1);
-    field6->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("iInputPreset", true), fn_7100014768(), 0x40, -1, -1);
-    field7->attrs.Add<s32>(fn_7100075240(), 0);
+    DREAD_REFLECTED_FIELD(s32, "iWalkInputMode", 0x24, (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD(f32, "fNoWalkMusicVolume", 0x28, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fWalkMusicVolume", 0x2c, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fNoWalkEnvironmentVolume", 0x30, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fWalkEnvironmentVolume", 0x34, (DefaultValue, 0.3f));
+    DREAD_REFLECTED_FIELD(f32, "fWalkSamusMovementVolume", 0x38, (DefaultValue, 0.2f));
+    DREAD_REFLECTED_FIELD(bool, "bWalkEmmySoundReverb", 0x3c, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(s32, "iInputPreset", 0x40, (DefaultValue, 0));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

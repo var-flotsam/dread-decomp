@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,8 +22,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CPlaythroughDef
-const base::reflection::UnkReflAttrKey& fn_7100005070();
-const base::reflection::UnkReflAttrKey& fn_710001b9f0();
 extern base::reflection::CType g_unk_71726adc98;
 void fn_71002f4644();
 void fn_71002f0664(UnkReflFunction* fn, const char* name);
@@ -32,10 +31,8 @@ void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10200u);
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sName", true), fn_7100009658(), 0x58, -1, -1);
-    field0->attrs.Add<bool>(fn_710001b9f0(), true);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sLevelID", true), fn_7100009658(), 0x60, -1, -1);
-    field1->attrs.Add<bool>(fn_710001b9f0(), true);
+    DREAD_REFLECTED_FIELD(CStrId, "sName", 0x58, (XmlAttribute, true));
+    DREAD_REFLECTED_FIELD(CStrId, "sLevelID", 0x60, (XmlAttribute, true));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_aCheckpointDefs_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_aCheckpointDefs_GetterFunction", true);
         fn->return_type = &g_unk_71726adc98;
@@ -79,14 +76,11 @@ void fn_71002f110c(UnkReflFunction* fn, const char* name);
 namespace CPlaythroughDef::SCheckpointDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sScenarioID", true), fn_7100009658(), 0x8, -1, -1);
-    field0->attrs.Add<bool>(fn_710001b9f0(), true);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sCheckpointID", true), fn_7100009658(), 0x10, -1, -1);
-    field1->attrs.Add<bool>(fn_710001b9f0(), true);
+    DREAD_REFLECTED_FIELD(CStrId, "sScenarioID", 0x8, (XmlAttribute, true));
+    DREAD_REFLECTED_FIELD(CStrId, "sCheckpointID", 0x10, (XmlAttribute, true));
     UnkReflField* field2 = fn_7100096524(cls, CStrId("strDesc", true), fn_710009f69c(), 0x18, -1, -1);
     field2->attrs.Add<bool>(fn_710001b9f0(), true);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sStartPoint", true), fn_7100009658(), 0xa0, -1, -1);
-    field3->attrs.Add<bool>(fn_710001b9f0(), true);
+    DREAD_REFLECTED_FIELD(CStrId, "sStartPoint", 0xa0, (XmlAttribute, true));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_strTags_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_strTags_GetterFunction", true);
         fn->return_type = fn_710009fb38();

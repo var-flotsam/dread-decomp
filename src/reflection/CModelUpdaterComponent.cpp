@@ -21,10 +21,7 @@ using base::reflection::DestroyDestructorFirst;
 // CModelUpdaterComponent
 void fn_7101174534();
 void fn_71011704b4(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 void fn_7101170630(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_71000904d0();
 void fn_71011706e4(UnkReflFunction* fn, const char* name);
 void fn_7101170798(UnkReflFunction* fn, const char* name);
 void fn_710117084c(UnkReflFunction* fn, const char* name);

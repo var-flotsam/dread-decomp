@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,14 +20,10 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CActionSwitcherOnPullGrapplePointComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CActionSwitcherOnPullGrapplePointComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sActionOnPull", true), fn_7100009658(), 0xa0, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "right3down4");
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Action to play when the pull is performed");
+    DREAD_REFLECTED_FIELD(CStrId, "sActionOnPull", 0xa0, (DefaultValue, "right3down4"), (Description, "Action to play when the pull is performed"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

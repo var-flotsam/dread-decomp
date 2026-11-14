@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,28 +22,18 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CSpawnPointComponent
-const base::reflection::UnkReflAttrKey& fn_7100091e50();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
 extern base::reflection::CType g_unk_717269bb48;
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 extern base::reflection::CType g_unk_7172a07528;
 extern base::reflection::CType g_unk_7172a073c8;
 extern base::reflection::CType g_unk_717269bf08;
-const base::reflection::UnkReflAttrKey& fn_7100090090();
-const base::reflection::UnkReflAttrKey& fn_710025dbb0();
 void fn_71011255e4(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_7101132780();
 void fn_71011327d8();
 void fn_7101125760(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_7172a06cf0;
-const base::reflection::UnkReflAttrKey& fn_710008fd60();
-const base::reflection::UnkReflAttrKey& fn_710008fb40();
-const base::reflection::UnkReflAttrKey& fn_710008ff80();
 void fn_71011328d8();
 void fn_7101132928();
 extern base::reflection::CType g_unk_7172a06930;
@@ -54,30 +45,20 @@ void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<bool>(fn_7100091e50(), true);
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sOnBeforeGenerate", true), fn_7100007f84(), 0xa8, -1, -1);
-    field0->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString(refl_GlobalRntString()));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sOnEntityGenerated", true), fn_7100007f84(), 0xd8, -1, -1);
-    field1->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString(refl_GlobalRntString()));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sStartAnimation", true), fn_7100009658(), 0xa0, -1, -1);
-    field2->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bSpawnOnFloor", true), fn_710000d228(), 0x108, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("bEntityCheckFloor", true), fn_710000d228(), 0x109, -1, -1);
-    field4->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("bCheckCollisions", true), fn_710000d228(), 0x10a, -1, -1);
-    field5->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fTimeToActivate", true), fn_710000abbc(), 0x10c, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("iMaxNumToGenerate", true), fn_7100014768(), 0x110, -1, -1);
-    field7->attrs.Add<s32>(fn_7100075240(), -1);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("bAllowSpawnInFrustum", true), fn_710000d228(), 0x114, -1, -1);
-    field8->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sOnBeforeGenerate", 0xa8, (DefaultValue, base::global::CRntString(refl_GlobalRntString())));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sOnEntityGenerated", 0xd8, (DefaultValue, base::global::CRntString(refl_GlobalRntString())));
+    DREAD_REFLECTED_FIELD(CStrId, "sStartAnimation", 0xa0, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(bool, "bSpawnOnFloor", 0x108, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bEntityCheckFloor", 0x109, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bCheckCollisions", 0x10a, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToActivate", 0x10c, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(s32, "iMaxNumToGenerate", 0x110, (DefaultValue, -1));
+    DREAD_REFLECTED_FIELD(bool, "bAllowSpawnInFrustum", 0x114, (DefaultValue, false));
     UnkReflField* field9 = fn_7100096524(cls, CStrId("bStartEnabled", true), fn_710000d228(), 0x115, -1, -1);
     field9->attrs.Add<bool>(fn_7100075240(), true);
     field9->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     field9->attrs.Add<bool>(fn_7100090a20(), false);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("bAutomanaged", true), fn_710000d228(), 0x27c, -1, -1);
-    field10->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(bool, "bAutomanaged", 0x27c, (DefaultValue, false));
     UnkReflField* field11 = fn_7100096524(cls, CStrId("wpSceneShapeId", true), &g_unk_717269bb48, 0x120, -1, -1);
     field11->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
     UnkReflField* field12 = fn_7100096524(cls, CStrId("wpCollisionSceneShapeId", true), &g_unk_717269bb48, 0x170, -1, -1);
@@ -88,16 +69,12 @@ void refl_AddFields(CClass* cls) {
     field14->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
     UnkReflField* field15 = fn_7100096524(cls, CStrId("wpAreaOfInterestEnd", true), &g_unk_717269bb48, 0x238, -1, -1);
     field15->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("fTimeOnAOIEndToUseAsMainAOI", true), fn_710000abbc(), 0x278, -1, -1);
-    field16->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("fSpawnFromXCellProbability", true), fn_710000abbc(), 0x2bc, -1, -1);
-    field17->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field18 = fn_7100096524(cls, CStrId("fSpawnFromXCellProbabilityAfterFirst", true), fn_710000abbc(), 0x2c0, -1, -1);
-    field18->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    DREAD_REFLECTED_FIELD(f32, "fTimeOnAOIEndToUseAsMainAOI", 0x278, (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSpawnFromXCellProbability", 0x2bc, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSpawnFromXCellProbabilityAfterFirst", 0x2c0, (DefaultValue, 0.0f));
     UnkReflField* field19 = fn_7100096524(cls, CStrId("eXCellSpawnPositionMode", true), &g_unk_7172a07528, 0x2c4, -1, -1);
     field19->attrs.Add<s32>(fn_7100075240(), &g_unk_7172a07528, 0);
-    UnkReflField* field20 = fn_7100096524(cls, CStrId("bUseDynamicSpawnPosition", true), fn_710000d228(), 0x351, -1, -1);
-    field20->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(bool, "bUseDynamicSpawnPosition", 0x351, (DefaultValue, false));
     UnkReflField* field21 = fn_7100096524(cls, CStrId("eDynamicSpawnPositionMode", true), &g_unk_7172a073c8, 0x354, -1, -1);
     field21->attrs.Add<s32>(fn_7100075240(), &g_unk_7172a073c8, 1);
     UnkReflField* field22 = fn_7100096524(cls, CStrId("tDynamicSpawnPositions", true), &g_unk_717269bf08, 0x358, -1, -1);

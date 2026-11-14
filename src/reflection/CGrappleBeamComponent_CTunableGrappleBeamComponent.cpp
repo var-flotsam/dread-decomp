@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,8 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CGrappleBeamComponent::CTunableGrappleBeamComponent
 extern bool g_unk_7172723310;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71727232d8;
 void fn_71008174c0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -33,18 +32,10 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172723310 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fAdvanceSpeed", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 3500.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "advance speed");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fRetractSpeed", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 8000.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "retract speed");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMaxLength", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1100.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "max length");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMaxLengthToStartRetract", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 1100.0f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "max length before retracting");
+    DREAD_REFLECTED_FIELD(f32, "fAdvanceSpeed", 0x24, (DefaultValue, 3500.0f), (Description, "advance speed"));
+    DREAD_REFLECTED_FIELD(f32, "fRetractSpeed", 0x28, (DefaultValue, 8000.0f), (Description, "retract speed"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxLength", 0x2c, (DefaultValue, 1100.0f), (Description, "max length"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxLengthToStartRetract", 0x30, (DefaultValue, 1100.0f), (Description, "max length before retracting"));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
@@ -81,15 +72,9 @@ DREAD_REFLECTED_CLASS(CGrappleBeamComponent::CTunableGrappleBeamComponent, base:
 namespace CGrappleBeamComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sIniFXId", true), fn_7100009658(), 0x720, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "inigrapplebeam");
-    field0->attrs.Add<const char*>(fn_7100007e80(), "fx init id");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sEndFXId", true), fn_7100009658(), 0x728, -1, -1);
-    field1->attrs.Add<const char*>(fn_7100075240(), "end");
-    field1->attrs.Add<const char*>(fn_7100007e80(), "fx end id");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sGrappleFX", true), fn_7100009658(), 0x730, -1, -1);
-    field2->attrs.Add<const char*>(fn_7100075240(), "grapplebeam");
-    field2->attrs.Add<const char*>(fn_7100007e80(), "grapple main effect");
+    DREAD_REFLECTED_FIELD(CStrId, "sIniFXId", 0x720, (DefaultValue, "inigrapplebeam"), (Description, "fx init id"));
+    DREAD_REFLECTED_FIELD(CStrId, "sEndFXId", 0x728, (DefaultValue, "end"), (Description, "fx end id"));
+    DREAD_REFLECTED_FIELD(CStrId, "sGrappleFX", 0x730, (DefaultValue, "grapplebeam"), (Description, "grapple main effect"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

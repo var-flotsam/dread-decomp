@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -22,7 +23,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassCooldownXBossLavaDropsAttack::CTunableCharClassCooldownXBossLavaDropsAttack
 extern bool g_unk_71726d37e0;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726d37b8;
 void fn_71004aa7fc(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -34,10 +34,8 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726d37e0 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bEnabled", true), fn_710000d228(), 0x21, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("iForcedPattern", true), fn_7100014768(), 0x24, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), -1);
+    DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x21, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(s32, "iForcedPattern", 0x24, (DefaultValue, -1));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
@@ -77,10 +75,8 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("eArmToChange", true), &g_unk_71726d37e8, 0x8, -1, -1);
     field0->attrs.Add<s32>(fn_7100075240(), &g_unk_71726d37e8, 1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fDelay", true), fn_710000abbc(), 0xc, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fAnimSpeed", true), fn_710000abbc(), 0x10, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    DREAD_REFLECTED_FIELD(f32, "fDelay", 0xc, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fAnimSpeed", 0x10, (DefaultValue, 1.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

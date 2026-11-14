@@ -22,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // game::logic::collision::CPolygonCollectionShape
 extern base::reflection::CType g_unk_7108b6fd78;
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace game::logic::collision::CPolygonCollectionShape {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

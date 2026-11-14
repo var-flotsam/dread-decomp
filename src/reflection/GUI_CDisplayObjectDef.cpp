@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -22,8 +23,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // GUI::CDisplayObjectDef
 extern base::reflection::CType g_unk_717275f310;
-const base::reflection::UnkReflAttrKey& fn_710008fd60();
-const base::reflection::UnkReflAttrKey& fn_710008ff80();
 const base::reflection::CType* fn_7100b08378();
 void fn_7100b086b8();
 void fn_7100b05218(UnkReflFunction* fn, const char* name);
@@ -33,7 +32,7 @@ void fn_7100b087d4();
 namespace GUI::CDisplayObjectDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sID", true), fn_7100007f84(), 0x8, -1, -1);
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sID", 0x8);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("lstpStates", true), &g_unk_717275f310, 0x38, -1, -1);
     field1->attrs.Add<CStrId>(fn_710008fd60(), CStrId("AddNewDOStateDef", true));
     field1->attrs_0x70.Add<CStrId>(fn_710008ff80(), CStrId("AfterStateDeserialization", true));

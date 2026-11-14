@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassChozoRobotSoldierAIComponent::CTunableCharClassChozoRobotSoldierAIComponent
 extern bool g_unk_71726cc730;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726cc6d8;
 void fn_710046d724(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -32,32 +32,19 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726cc730 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMinTimeToStartChargeBeam", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 10.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxTimeToStartChargeBeam", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 13.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeToChargeBeam", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fExplosionRadius", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 500.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fExplosionTimeToReachRadius", true), fn_710000abbc(), 0x34, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.1f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fExplosionTimeAtMaxRadius", true), fn_710000abbc(), 0x38, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 0.2f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fCoreDamageFactor", true), fn_710000abbc(), 0x3c, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fTimeBetweenAttackGoingToShootingPosition", true), fn_710000abbc(), 0x40, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 4.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fTimeBetweenAttackInShootingPosition", true), fn_710000abbc(), 0x44, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fRangedAttackAfterMeleeAttackProbability", true), fn_710000abbc(), 0x48, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fMeleeAttackAfterRangedAttackProbability", true), fn_710000abbc(), 0x4c, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fChangeToRangedAttackOnSamePlatformProbability", true), fn_710000abbc(), 0x50, -1, -1);
-    field11->attrs.Add<f32>(fn_7100075240(), 0.2f);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("bAllCanUseChargeBeam", true), fn_710000d228(), 0x54, -1, -1);
-    field12->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(f32, "fMinTimeToStartChargeBeam", 0x24, (DefaultValue, 10.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxTimeToStartChargeBeam", 0x28, (DefaultValue, 13.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToChargeBeam", 0x2c, (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fExplosionRadius", 0x30, (DefaultValue, 500.0f));
+    DREAD_REFLECTED_FIELD(f32, "fExplosionTimeToReachRadius", 0x34, (DefaultValue, 0.1f));
+    DREAD_REFLECTED_FIELD(f32, "fExplosionTimeAtMaxRadius", 0x38, (DefaultValue, 0.2f));
+    DREAD_REFLECTED_FIELD(f32, "fCoreDamageFactor", 0x3c, (DefaultValue, 2.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeBetweenAttackGoingToShootingPosition", 0x40, (DefaultValue, 4.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeBetweenAttackInShootingPosition", 0x44, (DefaultValue, 2.0f));
+    DREAD_REFLECTED_FIELD(f32, "fRangedAttackAfterMeleeAttackProbability", 0x48, (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fMeleeAttackAfterRangedAttackProbability", 0x4c, (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fChangeToRangedAttackOnSamePlatformProbability", 0x50, (DefaultValue, 0.2f));
+    DREAD_REFLECTED_FIELD(bool, "bAllCanUseChargeBeam", 0x54, (DefaultValue, false));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

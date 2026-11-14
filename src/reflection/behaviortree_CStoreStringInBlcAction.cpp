@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,18 +20,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CStoreStringInBlcAction
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern base::global::CRntString g_unk_7101d58d10;
 namespace behaviortree::CStoreStringInBlcAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPropName", true), fn_7100009658(), 0x30, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "");
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Property name");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sValue", true), fn_7100007f84(), 0x38, -1, -1);
-    field1->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString(g_unk_7101d58d10));
-    field1->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Property value"));
+    DREAD_REFLECTED_FIELD(CStrId, "sPropName", 0x30, (DefaultValue, ""), (Description, "Property name"));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sValue", 0x38, (DefaultValue, base::global::CRntString(g_unk_7101d58d10)), (Description, base::global::CRntString("Property value")));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

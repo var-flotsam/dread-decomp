@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,16 +22,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCooldownXBossFireBallDef
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCooldownXBossFireBallDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bEnabled", true), fn_710000d228(), 0x8, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fPreparationTimeOffset", true), fn_710000abbc(), 0xc, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bBreakable", true), fn_710000d228(), 0x10, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x8, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(f32, "fPreparationTimeOffset", 0xc, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(bool, "bBreakable", 0x10, (DefaultValue, false));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -62,16 +59,11 @@ namespace CCooldownXBossFireWallDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("tFireBalls", true), &g_unk_71726d62c0, 0x8, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fDelay", true), fn_710000abbc(), 0x30, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fHorizontalOffset", true), fn_710000abbc(), 0x34, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 500.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bSpawnWallDamage", true), fn_710000d228(), 0x38, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("bStartWind", true), fn_710000d228(), 0x39, -1, -1);
-    field4->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("bStartStun", true), fn_710000d228(), 0x3a, -1, -1);
-    field5->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(f32, "fDelay", 0x30, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fHorizontalOffset", 0x34, (DefaultValue, 500.0f));
+    DREAD_REFLECTED_FIELD(bool, "bSpawnWallDamage", 0x38, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bStartWind", 0x39, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bStartStun", 0x3a, (DefaultValue, false));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -110,12 +102,9 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726d6468 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bEnabled", true), fn_710000d228(), 0x21, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("iForcedPattern", true), fn_7100014768(), 0x24, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), -1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fShinesparkChargeExtensionWindTunnelPlayRate", true), fn_710000abbc(), 0x28, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x21, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(s32, "iForcedPattern", 0x24, (DefaultValue, -1));
+    DREAD_REFLECTED_FIELD(f32, "fShinesparkChargeExtensionWindTunnelPlayRate", 0x28, (DefaultValue, 1.0f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
@@ -153,16 +142,11 @@ extern base::reflection::CType g_unk_71726d5ea0;
 namespace CCharClassCooldownXBossWindTunnelAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sEndAttackAnim", true), fn_7100009658(), 0x100, -1, -1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sShotAttackAnim", true), fn_7100009658(), 0x108, -1, -1);
-    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sStunAttackAnim", true), fn_7100009658(), 0x110, -1, -1);
-    field2->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("iNumShots", true), fn_7100014768(), 0x118, -1, -1);
-    field3->attrs.Add<s32>(fn_7100075240(), 8);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fTimeToEndAttack", true), fn_710000abbc(), 0x11c, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 1.5f);
+    DREAD_REFLECTED_FIELD(CStrId, "sEndAttackAnim", 0x100, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sShotAttackAnim", 0x108, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sStunAttackAnim", 0x110, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(s32, "iNumShots", 0x118, (DefaultValue, 8));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToEndAttack", 0x11c, (DefaultValue, 1.5f));
     UnkReflField* field5 = fn_7100096524(cls, CStrId("tLaunchPatterns", true), &g_unk_71726d5ea0, 0x120, -1, -1);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

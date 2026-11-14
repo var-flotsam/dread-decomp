@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,12 +21,7 @@ using base::reflection::DestroyDestructorFirst;
 
 // CLogicShapeComponent
 const base::reflection::CType* fn_7100913068();
-const base::reflection::UnkReflAttrKey& fn_7100234780();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100091d40();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 const base::reflection::CType* fn_71009155a8();
-const base::reflection::UnkReflAttrKey& fn_710008ff80();
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_71009158dc();
 void fn_7100913144(UnkReflFunction* fn, const char* name);
@@ -38,8 +34,7 @@ void refl_AddFields(CClass* cls) {
     field0->attrs.Add<bool>(fn_7100091d40(), true);
     field0->attrs.AddTyped<s64, &fn_71009155a8>(fn_7100075240(), 0);
     field0->attrs.Add<CStrId>(fn_710008ff80(), CStrId("AfterShapeDeserialization", true));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bWantsToGenerateNavMeshEdges", true), fn_710000d228(), 0x38, -1, -1);
-    field1->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(bool, "bWantsToGenerateNavMeshEdges", 0x38, (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterShapeDeserialization", true))) {
         fn->name = base::global::UnkStrId("AfterShapeDeserialization", true);
         fn->return_type = &g_unk_7101d5af48;

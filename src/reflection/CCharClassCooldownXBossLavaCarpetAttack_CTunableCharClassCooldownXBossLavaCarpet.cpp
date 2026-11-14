@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -22,7 +23,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassCooldownXBossLavaCarpetAttack::CTunableCharClassCooldownXBossLavaCarpetAttack
 extern bool g_unk_71726d1f70;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726d1f48;
 void fn_71004a1e80(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -34,10 +34,8 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726d1f70 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bEnabled", true), fn_710000d228(), 0x21, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("iPattern", true), fn_7100014768(), 0x24, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), -1);
+    DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x21, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(s32, "iPattern", 0x24, (DefaultValue, -1));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
@@ -76,14 +74,10 @@ namespace CCooldownXBossLavaCarpetDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("eState", true), &g_unk_71726d1f78, 0x8, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fWidth", true), fn_710000abbc(), 0xc, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 50.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTime", true), fn_710000abbc(), 0x10, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 3.5f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fPlayRateFactor", true), fn_710000abbc(), 0x14, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("bChangeDirection", true), fn_710000d228(), 0x18, -1, -1);
-    field4->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(f32, "fWidth", 0xc, (DefaultValue, 50.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTime", 0x10, (DefaultValue, 3.5f));
+    DREAD_REFLECTED_FIELD(f32, "fPlayRateFactor", 0x14, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(bool, "bChangeDirection", 0x18, (DefaultValue, false));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

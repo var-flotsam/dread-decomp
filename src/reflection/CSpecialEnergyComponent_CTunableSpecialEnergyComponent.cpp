@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CSpecialEnergyComponent::CTunableSpecialEnergyComponent
 extern bool g_unk_71727457b0;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172745770;
 void fn_7100a1e21c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -32,18 +32,12 @@ void refl_AddFields(CClass* cls) {
     g_unk_71727457b0 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fTimeToStartEnergyRecover", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.25f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeToRecoverAllEnergy", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1.5f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeToRecoverAllEnergyGhostDash", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1.5f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fTimeToRecoverAllEnergyOpticalCamuflage", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 6.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fTimeToRecoverAllEnergyOpticalCamuflageNotMoving", true), fn_710000abbc(), 0x34, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 12.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fTimeToRecoverAllEnergySonar", true), fn_710000abbc(), 0x38, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 1.5f);
+    DREAD_REFLECTED_FIELD(f32, "fTimeToStartEnergyRecover", 0x24, (DefaultValue, 0.25f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToRecoverAllEnergy", 0x28, (DefaultValue, 1.5f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToRecoverAllEnergyGhostDash", 0x2c, (DefaultValue, 1.5f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToRecoverAllEnergyOpticalCamuflage", 0x30, (DefaultValue, 6.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToRecoverAllEnergyOpticalCamuflageNotMoving", 0x34, (DefaultValue, 12.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToRecoverAllEnergySonar", 0x38, (DefaultValue, 1.5f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
@@ -78,8 +72,6 @@ DREAD_REFLECTED_CLASS(CSpecialEnergyComponent::CTunableSpecialEnergyComponent, b
 
 // CSpecialEnergyComponent
 void fn_7100a1eff8(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_71000904d0();
 void fn_7100a20250();
 void fn_7100a1f0ac(UnkReflFunction* fn, const char* name);
 void fn_7100a202f8();
@@ -108,9 +100,7 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("fMaxEnergy", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field0->attrs.Add<f32>(fn_7100075240(), -1.0f);
     field0->attrs.Add<const char*>(fn_7100007e80(), "Max energy");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fEnergy", true), fn_710000abbc(), 0xffffffff, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Current energy");
+    DREAD_REFLECTED_FIELD(f32, "fEnergy", 0xffffffff, (DefaultValue, -1.0f), (Description, "Current energy"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEnergy_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fEnergy_GetterFunction", true);
         fn->return_type = fn_710000abbc();

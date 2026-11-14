@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,34 +21,22 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassShelmitAIComponent
 const base::reflection::CClass* fn_71006b271c();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 const base::reflection::CClass* fn_71007c6784();
 namespace CCharClassShelmitAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("oShelmitPlasmaRayAttackDef", true), fn_71006b271c(), 0x510, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMinOpenGrappleTimeAfterAttack", true), fn_710000abbc(), 0x618, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMaxGrappledTime", true), fn_710000abbc(), 0x61c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 3.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMinGrapplePullTimeToBreak", true), fn_710000abbc(), 0x620, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.2f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fMinPlatformRotationSpeed", true), fn_710000abbc(), 0x624, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fMaxPlatformRotationSpeed", true), fn_710000abbc(), 0x628, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fMinEntitySpeedForMinRotation", true), fn_710000abbc(), 0x62c, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fMaxEntitySpeedForMaxRotation", true), fn_710000abbc(), 0x630, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 250.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fCrystalMinAlbedoEmissiveFactor", true), fn_710000abbc(), 0x634, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fCrystalMaxAlbedoEmissiveFactor", true), fn_710000abbc(), 0x638, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 50.0f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fTimeToDisableCrystal", true), fn_710000abbc(), 0x63c, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 0.3f);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fChargeLoopTime", true), fn_710000abbc(), 0x640, -1, -1);
-    field11->attrs.Add<f32>(fn_7100075240(), 2.0f);
+    DREAD_REFLECTED_FIELD(f32, "fMinOpenGrappleTimeAfterAttack", 0x618, (DefaultValue, 2.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxGrappledTime", 0x61c, (DefaultValue, 3.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinGrapplePullTimeToBreak", 0x620, (DefaultValue, 0.2f));
+    DREAD_REFLECTED_FIELD(f32, "fMinPlatformRotationSpeed", 0x624, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxPlatformRotationSpeed", 0x628, (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fMinEntitySpeedForMinRotation", 0x62c, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxEntitySpeedForMaxRotation", 0x630, (DefaultValue, 250.0f));
+    DREAD_REFLECTED_FIELD(f32, "fCrystalMinAlbedoEmissiveFactor", 0x634, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fCrystalMaxAlbedoEmissiveFactor", 0x638, (DefaultValue, 50.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToDisableCrystal", 0x63c, (DefaultValue, 0.3f));
+    DREAD_REFLECTED_FIELD(f32, "fChargeLoopTime", 0x640, (DefaultValue, 2.0f));
     UnkReflField* field12 = fn_7100096524(cls, CStrId("oRegularShelmitMeleeChargeShotDropProbabilities", true), fn_71007c6784(), 0x648, -1, -1);
 }
 bool refl_Equals(const void*, const void*) { return false; }

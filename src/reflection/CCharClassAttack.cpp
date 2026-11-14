@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,68 +21,35 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassAttack
 extern base::reflection::CType g_unk_71726b28e0;
-const base::reflection::UnkReflAttrKey& fn_7100091d40();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CCharClassAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("tPresets", true), &g_unk_71726b28e0, 0x8, -1, -1);
     field0->attrs_0x70.Add<bool>(fn_7100091d40(), true);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sAttackAnim", true), fn_7100009658(), 0x30, -1, -1);
-    field1->attrs.Add<const char*>(fn_7100075240(), "");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sName", true), fn_7100009658(), 0x38, -1, -1);
-    field2->attrs.Add<const char*>(fn_7100075240(), "");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bCheckInFrustum", true), fn_710000d228(), 0x4c, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fMinDistance", true), fn_710000abbc(), 0x40, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fMaxDistance", true), fn_710000abbc(), 0x44, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("bCheckTargetReachable", true), fn_710000d228(), 0x79, -1, -1);
-    field6->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("bCheckTargetDetected", true), fn_710000d228(), 0x7b, -1, -1);
-    field7->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("bCheckTargetNotInvulnerable", true), fn_710000d228(), 0x7c, -1, -1);
-    field8->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("bCheckViewDirection", true), fn_710000d228(), 0xac, -1, -1);
-    field9->attrs.Add<bool>(fn_7100075240(), true);
-    field9->attrs.Add<const char*>(fn_7100007e80(), "Check enemy in view direction");
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("bCheckNotViewDirection", true), fn_710000d228(), 0xad, -1, -1);
-    field10->attrs.Add<bool>(fn_7100075240(), false);
-    field10->attrs.Add<const char*>(fn_7100007e80(), "Check enemy in NOT view direction");
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("bUpdateAttackWhileFrozen", true), fn_710000d228(), 0x7e, -1, -1);
-    field11->attrs.Add<bool>(fn_7100075240(), false);
-    field11->attrs.Add<const char*>(fn_7100007e80(), "When frozen, if true, update attack");
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("bFreezeEndsAttack", true), fn_710000d228(), 0x7f, -1, -1);
-    field12->attrs.Add<bool>(fn_7100075240(), false);
-    field12->attrs.Add<const char*>(fn_7100007e80(), "When frozen, if true, it cancels the current attack");
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("sCancelAttackAnim", true), fn_7100009658(), 0x80, -1, -1);
-    field13->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field13->attrs.Add<const char*>(fn_7100007e80(), "Action to set if m_bFreezeEndsAttack is true and entity is frozen");
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("sAttackOnEndTimeline", true), fn_7100009658(), 0x88, -1, -1);
-    field14->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field14->attrs.Add<const char*>(fn_7100007e80(), "Timeline called when attack finishes");
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("fMinTimeBossInCombatToAttack", true), fn_710000abbc(), 0xa0, -1, -1);
-    field15->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("iMaxToRepeat", true), fn_7100014768(), 0xa4, -1, -1);
-    field16->attrs.Add<s32>(fn_7100075240(), -1);
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("iMaxWithoutLaunch", true), fn_7100014768(), 0xa8, -1, -1);
-    field17->attrs.Add<s32>(fn_7100075240(), -1);
-    UnkReflField* field18 = fn_7100096524(cls, CStrId("fMinTimeToReachDesiredAttackPos", true), fn_710000abbc(), 0xd0, -1, -1);
-    field18->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    UnkReflField* field19 = fn_7100096524(cls, CStrId("fChaseCenterDistance", true), fn_710000abbc(), 0xd4, -1, -1);
-    field19->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    UnkReflField* field20 = fn_7100096524(cls, CStrId("fMinTimeSinceLastGrab", true), fn_710000abbc(), 0xe8, -1, -1);
-    field20->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field21 = fn_7100096524(cls, CStrId("bCheckTargetOnFloor", true), fn_710000d228(), 0x7a, -1, -1);
-    field21->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field22 = fn_7100096524(cls, CStrId("bCheckNotTurning", true), fn_710000d228(), 0x7d, -1, -1);
-    field22->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field23 = fn_7100096524(cls, CStrId("fTimeSinceLastFrozen", true), fn_710000abbc(), 0xdc, -1, -1);
-    field23->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field24 = fn_7100096524(cls, CStrId("bCheckInSubarea", true), fn_710000d228(), 0xe0, -1, -1);
-    field24->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_FIELD(CStrId, "sAttackAnim", 0x30, (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(CStrId, "sName", 0x38, (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(bool, "bCheckInFrustum", 0x4c, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(f32, "fMinDistance", 0x40, (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxDistance", 0x44, (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(bool, "bCheckTargetReachable", 0x79, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bCheckTargetDetected", 0x7b, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bCheckTargetNotInvulnerable", 0x7c, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bCheckViewDirection", 0xac, (DefaultValue, true), (Description, "Check enemy in view direction"));
+    DREAD_REFLECTED_FIELD(bool, "bCheckNotViewDirection", 0xad, (DefaultValue, false), (Description, "Check enemy in NOT view direction"));
+    DREAD_REFLECTED_FIELD(bool, "bUpdateAttackWhileFrozen", 0x7e, (DefaultValue, false), (Description, "When frozen, if true, update attack"));
+    DREAD_REFLECTED_FIELD(bool, "bFreezeEndsAttack", 0x7f, (DefaultValue, false), (Description, "When frozen, if true, it cancels the current attack"));
+    DREAD_REFLECTED_FIELD(CStrId, "sCancelAttackAnim", 0x80, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Action to set if m_bFreezeEndsAttack is true and entity is frozen"));
+    DREAD_REFLECTED_FIELD(CStrId, "sAttackOnEndTimeline", 0x88, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Timeline called when attack finishes"));
+    DREAD_REFLECTED_FIELD(f32, "fMinTimeBossInCombatToAttack", 0xa0, (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(s32, "iMaxToRepeat", 0xa4, (DefaultValue, -1));
+    DREAD_REFLECTED_FIELD(s32, "iMaxWithoutLaunch", 0xa8, (DefaultValue, -1));
+    DREAD_REFLECTED_FIELD(f32, "fMinTimeToReachDesiredAttackPos", 0xd0, (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fChaseCenterDistance", 0xd4, (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinTimeSinceLastGrab", 0xe8, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(bool, "bCheckTargetOnFloor", 0x7a, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bCheckNotTurning", 0x7d, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(f32, "fTimeSinceLastFrozen", 0xdc, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(bool, "bCheckInSubarea", 0xe0, (DefaultValue, true));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -48,8 +49,6 @@ DREAD_REFLECTED_CLASS(CPlasmaBeamGun, CBeamGun);
 
 // CPlasmaBeamGun::CTunablePlasmaBeam
 extern bool g_unk_7172727740;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172727708;
 void fn_7100851694(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -61,20 +60,11 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172727740 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fDamageAmount", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Single shot damage amount");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fChargeDamageMult", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Single charged shot damage multiplier");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMaximumHeat", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.75f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Maximun damage to the shield");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fFractionOfHeatAddedPerShot", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "fraction of heat incremented per shot");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fDiffusionRadius", true), fn_710000abbc(), 0x34, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 200.0f);
+    DREAD_REFLECTED_FIELD(f32, "fDamageAmount", 0x24, (DefaultValue, 0.0f), (Description, "Single shot damage amount"));
+    DREAD_REFLECTED_FIELD(f32, "fChargeDamageMult", 0x28, (DefaultValue, 0.0f), (Description, "Single charged shot damage multiplier"));
+    DREAD_REFLECTED_FIELD(f32, "fMaximumHeat", 0x2c, (DefaultValue, 0.75f), (Description, "Maximun damage to the shield"));
+    DREAD_REFLECTED_FIELD(f32, "fFractionOfHeatAddedPerShot", 0x30, (DefaultValue, 0.0f), (Description, "fraction of heat incremented per shot"));
+    DREAD_REFLECTED_FIELD(f32, "fDiffusionRadius", 0x34, (DefaultValue, 200.0f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,17 +20,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CSamusGunComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CSamusGunComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sSpinAttackFX", true), fn_7100009658(), 0x328, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "spinattack");
-    field0->attrs.Add<const char*>(fn_7100007e80(), "spinattack fx id");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sScrewAttackFX", true), fn_7100009658(), 0x338, -1, -1);
-    field1->attrs.Add<const char*>(fn_7100075240(), "screwattack");
-    field1->attrs.Add<const char*>(fn_7100007e80(), "spinattack fx id");
+    DREAD_REFLECTED_FIELD(CStrId, "sSpinAttackFX", 0x328, (DefaultValue, "spinattack"), (Description, "spinattack fx id"));
+    DREAD_REFLECTED_FIELD(CStrId, "sScrewAttackFX", 0x338, (DefaultValue, "screwattack"), (Description, "spinattack fx id"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -60,18 +55,10 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172728188 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fScrewAttackDamage", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 75.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Screw attack damage");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fBurstChargeBeamActiveTime", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 5.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Burst Charge Beam max active time");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fBurstChargeBeamIdleActiveTimeFactor", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1.3f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Burst Charge Beam idle active time factor");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fBurstChargeBeamInitialBurstTime", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Burst Charge Beam Initial burst time");
+    DREAD_REFLECTED_FIELD(f32, "fScrewAttackDamage", 0x24, (DefaultValue, 75.0f), (Description, "Screw attack damage"));
+    DREAD_REFLECTED_FIELD(f32, "fBurstChargeBeamActiveTime", 0x28, (DefaultValue, 5.0f), (Description, "Burst Charge Beam max active time"));
+    DREAD_REFLECTED_FIELD(f32, "fBurstChargeBeamIdleActiveTimeFactor", 0x2c, (DefaultValue, 1.3f), (Description, "Burst Charge Beam idle active time factor"));
+    DREAD_REFLECTED_FIELD(f32, "fBurstChargeBeamInitialBurstTime", 0x30, (DefaultValue, 0.0f), (Description, "Burst Charge Beam Initial burst time"));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

@@ -21,14 +21,8 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CLightManager
-const base::reflection::UnkReflAttrKey& fn_7100005070();
 extern base::reflection::CType g_unk_71727bfc38;
-const base::reflection::UnkReflAttrKey& fn_71000901a0();
-const base::reflection::UnkReflAttrKey& fn_710008fd60();
-const base::reflection::UnkReflAttrKey& fn_710008fb40();
 void fn_7100e082bc(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_710008f920();
 void fn_7100e08438(UnkReflFunction* fn, const char* name);
 namespace CLightManager {
 void refl_AddAttributes(CClass* cls) {

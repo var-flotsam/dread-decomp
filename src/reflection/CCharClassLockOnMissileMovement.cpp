@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -48,7 +49,6 @@ DREAD_REFLECTED_CLASS(CCharClassLockOnMissileMovement, CCharClassMissileMovement
 
 // CLockOnMissileMovement::CTunableLockOnMissileMovement
 extern bool g_unk_71727548d0;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172754868;
 void fn_7100ab5ac4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -60,36 +60,21 @@ void refl_AddFields(CClass* cls) {
     g_unk_71727548d0 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("vTrailColor", true), fn_71000246e4(), 0x24, -1, -1);
-    field0->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{1.0f, 0.0f, 1.0f});
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fStabalizingSpeed", true), fn_710000abbc(), 0x38, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 3.5f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fSteeringSpeed", true), fn_710000abbc(), 0x34, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 10.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fStabalizingDistance", true), fn_710000abbc(), 0x3c, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fEdgeCrossingDistance", true), fn_710000abbc(), 0x40, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 300.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fFromEdgeMaxDistance", true), fn_710000abbc(), 0x44, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fNoiseAmplitude", true), fn_710000abbc(), 0x48, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fNoiseFrequency", true), fn_710000abbc(), 0x4c, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fDistanceFromScenario", true), fn_710000abbc(), 0x50, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fDistanceFromPath", true), fn_710000abbc(), 0x54, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 50.0f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fTrailVerticalSize", true), fn_710000abbc(), 0x58, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 15.0f);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fTrailVerticalOffset", true), fn_710000abbc(), 0x5c, -1, -1);
-    field11->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fTrailLength", true), fn_710000abbc(), 0x60, -1, -1);
-    field12->attrs.Add<f32>(fn_7100075240(), 500.0f);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("bSwarmMovement", true), fn_710000d228(), 0x64, -1, -1);
-    field13->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("bTextureCycling", true), fn_710000d228(), 0x65, -1, -1);
-    field14->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vTrailColor", 0x24, (DefaultValue, base::math::CVector3D{1.0f, 0.0f, 1.0f}));
+    DREAD_REFLECTED_FIELD(f32, "fStabalizingSpeed", 0x38, (DefaultValue, 3.5f));
+    DREAD_REFLECTED_FIELD(f32, "fSteeringSpeed", 0x34, (DefaultValue, 10.0f));
+    DREAD_REFLECTED_FIELD(f32, "fStabalizingDistance", 0x3c, (DefaultValue, 100.0f));
+    DREAD_REFLECTED_FIELD(f32, "fEdgeCrossingDistance", 0x40, (DefaultValue, 300.0f));
+    DREAD_REFLECTED_FIELD(f32, "fFromEdgeMaxDistance", 0x44, (DefaultValue, 100.0f));
+    DREAD_REFLECTED_FIELD(f32, "fNoiseAmplitude", 0x48, (DefaultValue, 100.0f));
+    DREAD_REFLECTED_FIELD(f32, "fNoiseFrequency", 0x4c, (DefaultValue, 100.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDistanceFromScenario", 0x50, (DefaultValue, 100.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDistanceFromPath", 0x54, (DefaultValue, 50.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTrailVerticalSize", 0x58, (DefaultValue, 15.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTrailVerticalOffset", 0x5c, (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTrailLength", 0x60, (DefaultValue, 500.0f));
+    DREAD_REFLECTED_FIELD(bool, "bSwarmMovement", 0x64, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bTextureCycling", 0x65, (DefaultValue, true));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

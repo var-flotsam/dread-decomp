@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,8 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassBossAIComponent
 void fn_710041a4e0();
 void fn_7100419a2c(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 void fn_710041a570();
 void fn_7100419ba8(UnkReflFunction* fn, const char* name);
 void fn_710041a600();
@@ -31,12 +30,8 @@ void fn_710041a690();
 void fn_7100419ea0(UnkReflFunction* fn, const char* name);
 void fn_710041a720();
 void fn_710041a01c(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100093390();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
 namespace CCharClassBossAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -64,9 +59,7 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field1 = fn_7100096524(cls, CStrId("bUseAngry", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field1->attrs.Add<bool>(fn_7100075240(), false);
     field1->attrs.Add<const char*>(fn_7100007e80(), "Use angry?");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bManuallyRemoveFromTeamManager", true), fn_710000d228(), 0x50f, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Manually remove from team manager?");
+    DREAD_REFLECTED_FIELD(bool, "bManuallyRemoveFromTeamManager", 0x50f, (DefaultValue, false), (Description, "Manually remove from team manager?"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bWantsLifeFeedback_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bWantsLifeFeedback_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -103,23 +96,16 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field5 = fn_7100096524(cls, CStrId("bSetPlayerInvulnerableWithReactionOnDeath", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field5->attrs.Add<bool>(fn_7100075240(), true);
     field5->attrs.Add<const char*>(fn_7100007e80(), "Set Samus invulnerable with reaction on death?");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("bOpenDoorWhenDie", true), fn_710000d228(), 0x513, -1, -1);
-    field6->attrs.Add<bool>(fn_7100075240(), true);
-    field6->attrs.Add<const char*>(fn_7100007e80(), "Opens door after death?");
+    DREAD_REFLECTED_FIELD(bool, "bOpenDoorWhenDie", 0x513, (DefaultValue, true), (Description, "Opens door after death?"));
     UnkReflField* field7 = fn_7100096524(cls, CStrId("sBossBattleLabel", true), fn_7100009658(), 0xffffffff, -1, -1);
     field7->attrs.Add<bool>(fn_7100093390(), true);
     field7->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     field7->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
     field7->attrs.Add<bool>(fn_7100090a20(), false);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("sInventoryItemOnKilled", true), fn_7100009658(), 0x518, -1, -1);
-    field8->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("bCheckOrientationInGrab", true), fn_710000d228(), 0x520, -1, -1);
-    field9->attrs.Add<bool>(fn_7100075240(), true);
-    field9->attrs.Add<const char*>(fn_7100007e80(), "Check orientation in grab?");
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("bPersistenBossDefeatedPushSetup", true), fn_710000d228(), 0x521, -1, -1);
-    field10->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("bGiveInventoryItemOnDead", true), fn_710000d228(), 0x522, -1, -1);
-    field11->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_FIELD(CStrId, "sInventoryItemOnKilled", 0x518, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(bool, "bCheckOrientationInGrab", 0x520, (DefaultValue, true), (Description, "Check orientation in grab?"));
+    DREAD_REFLECTED_FIELD(bool, "bPersistenBossDefeatedPushSetup", 0x521, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bGiveInventoryItemOnDead", 0x522, (DefaultValue, true));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,21 +21,17 @@ using base::reflection::DestroyDestructorFirst;
 
 // CSaveGameLogicAction
 extern base::reflection::CType g_unk_717274a090;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_717269bb48;
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 namespace CSaveGameLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("eDestination", true), &g_unk_717274a090, 0x10, -1, -1);
     field0->attrs.Add<s32>(fn_7100075240(), &g_unk_717274a090, 1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sCheckpointKey", true), fn_7100009658(), 0x18, -1, -1);
-    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_FIELD(CStrId, "sCheckpointKey", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));
     UnkReflField* field2 = fn_7100096524(cls, CStrId("wpStartPoint", true), &g_unk_717269bb48, 0x20, -1, -1);
     field2->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bForce", true), fn_710000d228(), 0x60, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(bool, "bForce", 0x60, (DefaultValue, false));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

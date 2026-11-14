@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,17 +20,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCameraFX_CrossShake
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CCameraFX_CrossShake {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fDistance", true), fn_710000abbc(), 0x58, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Distance");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fIterations", true), fn_710000abbc(), 0x5c, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Numer of iterations in fShakeTime");
+    DREAD_REFLECTED_FIELD(f32, "fDistance", 0x58, (DefaultValue, 0.0f), (Description, "Distance"));
+    DREAD_REFLECTED_FIELD(f32, "fIterations", 0x5c, (DefaultValue, 0.0f), (Description, "Numer of iterations in fShakeTime"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

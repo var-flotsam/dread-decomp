@@ -21,8 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 // game::logic::collision::CCircleShape2D
 void fn_7100d61b7c();
 void fn_7100d6136c(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 void fn_7100d61c30();
 void fn_7100d614e8(UnkReflFunction* fn, const char* name);
 namespace game::logic::collision::CCircleShape2D {

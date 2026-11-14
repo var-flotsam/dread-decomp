@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -24,8 +25,6 @@ void fn_7100ab342c(UnkReflFunction* fn, const char* name);
 void fn_7100ab3af0();
 void fn_7100ab35a8(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_7172730420;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern base::reflection::CType g_unk_7172730858;
 void fn_7100ab3bb4();
 void fn_7100ab3724(UnkReflFunction* fn, const char* name);
@@ -59,8 +58,7 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field3 = fn_7100096524(cls, CStrId("eDamageStrength", true), &g_unk_7172730858, 0xd0, -1, -1);
     field3->attrs.Add<s32>(fn_7100075240(), &g_unk_7172730858, 0);
     field3->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fSpeed", true), fn_710000abbc(), 0xd4, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    DREAD_REFLECTED_FIELD(f32, "fSpeed", 0xd4, (DefaultValue, 0.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sCollisionMask_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sCollisionMask_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -72,16 +70,12 @@ void refl_AddFields(CClass* cls) {
         fn_7100ab3724(fn, "_sCollisionMask_SetterFunction");
     UnkReflField* field5 = fn_7100096524(cls, CStrId("sCollisionMask", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field5->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("bWantsProcessBreakableTileHit", true), fn_710000d228(), 0xe4, -1, -1);
-    field6->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_FIELD(bool, "bWantsProcessBreakableTileHit", 0xe4, (DefaultValue, true));
     UnkReflField* field7 = fn_7100096524(cls, CStrId("eForcedDamageMode", true), &g_unk_7172730580, 0xe8, -1, -1);
     field7->attrs.Add<s32>(fn_7100075240(), &g_unk_7172730580, 0);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("bSetHitPosOnCollisionProcessed", true), fn_710000d228(), 0xec, -1, -1);
-    field8->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("bAllowMultipleHitsToSameEntity", true), fn_710000d228(), 0xed, -1, -1);
-    field9->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("bIgnoreSamusCannonImpactDuringMelee", true), fn_710000d228(), 0xee, -1, -1);
-    field10->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_FIELD(bool, "bSetHitPosOnCollisionProcessed", 0xec, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bAllowMultipleHitsToSameEntity", 0xed, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bIgnoreSamusCannonImpactDuringMelee", 0xee, (DefaultValue, true));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

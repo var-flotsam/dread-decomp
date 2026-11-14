@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,10 +20,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CDoorLifeComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern base::reflection::CType g_unk_71727b6270;
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 void fn_71008dc010();
 void fn_71008cca04(UnkReflFunction* fn, const char* name);
@@ -42,22 +40,15 @@ void fn_7100302d14(UnkReflFunction* fn);
 void fn_71008dca4c();
 void fn_71003540d8(UnkReflFunction* fn);
 void fn_71008cd0a8(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_71000904d0();
 void fn_71008cd15c(UnkReflFunction* fn, const char* name);
 void fn_71008cd210(UnkReflFunction* fn, const char* name);
 void fn_71008dcc08();
-const base::reflection::UnkReflAttrKey& fn_7100093390();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
 namespace CDoorLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMaxDistanceOpened", true), fn_710000abbc(), 0x414, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 400.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Max distance to be opened");
+    DREAD_REFLECTED_FIELD(f32, "fMaxDistanceOpened", 0x414, (DefaultValue, 400.0f), (Description, "Max distance to be opened"));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("wpLeftDoorShieldEntity", true), &g_unk_71727b6270, 0x388, -1, -1);
     field1->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
     UnkReflField* field2 = fn_7100096524(cls, CStrId("wpRightDoorShieldEntity", true), &g_unk_71727b6270, 0x3c8, -1, -1);
@@ -86,18 +77,10 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field4 = fn_7100096524(cls, CStrId("bStayOpen", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field4->attrs.Add<bool>(fn_7100075240(), false);
     field4->attrs.Add<const char*>(fn_7100007e80(), "Stay open");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("bStartOpened", true), fn_710000d228(), 0x419, -1, -1);
-    field5->attrs.Add<bool>(fn_7100075240(), false);
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Start opened");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("bOnBlackOutOpened", true), fn_710000d228(), 0x41a, -1, -1);
-    field6->attrs.Add<bool>(fn_7100075240(), false);
-    field6->attrs.Add<const char*>(fn_7100007e80(), "On Black Out event opened");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("bDoorIsWet", true), fn_710000d228(), 0x41d, -1, -1);
-    field7->attrs.Add<bool>(fn_7100075240(), false);
-    field7->attrs.Add<const char*>(fn_7100007e80(), "Should freeze when cooldown");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("bFrozenDuringColdown", true), fn_710000d228(), 0x41e, -1, -1);
-    field8->attrs.Add<bool>(fn_7100075240(), true);
-    field8->attrs.Add<const char*>(fn_7100007e80(), "Should freeze when cooldown");
+    DREAD_REFLECTED_FIELD(bool, "bStartOpened", 0x419, (DefaultValue, false), (Description, "Start opened"));
+    DREAD_REFLECTED_FIELD(bool, "bOnBlackOutOpened", 0x41a, (DefaultValue, false), (Description, "On Black Out event opened"));
+    DREAD_REFLECTED_FIELD(bool, "bDoorIsWet", 0x41d, (DefaultValue, false), (Description, "Should freeze when cooldown"));
+    DREAD_REFLECTED_FIELD(bool, "bFrozenDuringColdown", 0x41e, (DefaultValue, true), (Description, "Should freeze when cooldown"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iAreaLeft_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_iAreaLeft_GetterFunction", true);
         fn->return_type = fn_7100014768();
@@ -196,7 +179,6 @@ DREAD_REFLECTED_CLASS(CDoorLifeComponent, CItemLifeComponent);
 
 // CDoorLifeComponent::CTunableDoorLifeComponent
 extern bool g_unk_71727313a0;
-const base::reflection::UnkReflAttrKey& fn_7100093170();
 void fn_71008dccec();
 void fn_71008cda44(UnkReflFunction* fn, const char* name);
 extern UnkTunableRegistry* g_unk_7101d47350;
@@ -210,16 +192,9 @@ void refl_AddFields(CClass* cls) {
     g_unk_71727313a0 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fPhaseDisplacementFactorOverride", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.4f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Phase Displacement Factor Override");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fOneWayDoorCloseDistance", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 750.0f);
-    field1->attrs.Add<bool>(fn_7100093170(), true);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "One way door close distance");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fIceBlockOffSet", true), fn_710000abbc(), 0x30, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Ice Block Offset");
+    DREAD_REFLECTED_FIELD(f32, "fPhaseDisplacementFactorOverride", 0x24, (DefaultValue, 0.4f), (Description, "Phase Displacement Factor Override"));
+    DREAD_REFLECTED_FIELD(f32, "fOneWayDoorCloseDistance", 0x28, (DefaultValue, 750.0f), (ShowInConfig, true), (Description, "One way door close distance"));
+    DREAD_REFLECTED_FIELD(f32, "fIceBlockOffSet", 0x30, (DefaultValue, 0.0f), (Description, "Ice Block Offset"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bForceAllDoorsOpened_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bForceAllDoorsOpened_GetterFunction", true);
         fn->return_type = fn_710000d228();

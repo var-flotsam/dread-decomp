@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,8 +20,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CAimComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 void fn_7100353e98();
 void fn_7100340cac(UnkReflFunction* fn, const char* name);
 void fn_7100353f28();
@@ -35,12 +34,8 @@ void fn_71003540d8(UnkReflFunction* fn);
 namespace CAimComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sLaserFX", true), fn_7100009658(), 0x4e0, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "lasertarget");
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Laser target ID");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sAutoAimLaserFX", true), fn_7100009658(), 0x4e8, -1, -1);
-    field1->attrs.Add<const char*>(fn_7100075240(), "lasertargeautoaim");
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Autoaim laser target ID");
+    DREAD_REFLECTED_FIELD(CStrId, "sLaserFX", 0x4e0, (DefaultValue, "lasertarget"), (Description, "Laser target ID"));
+    DREAD_REFLECTED_FIELD(CStrId, "sAutoAimLaserFX", 0x4e8, (DefaultValue, "lasertargeautoaim"), (Description, "Autoaim laser target ID"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bAutoAimActive_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bAutoAimActive_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -123,67 +118,30 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726b1500 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("vLaserLockedColor0", true), fn_71000246e4(), 0x24, -1, -1);
-    field0->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{1.0f, 0.0f, 0.0f});
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Laser locked constat 0");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fLaserLockedAlpha0", true), fn_710000abbc(), 0x30, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.75f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Laser locked constat 0 Alpha");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("vLaserUnlockedColor0", true), fn_71000246e4(), 0x34, -1, -1);
-    field2->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{1.0f, 0.0f, 0.0f});
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Laser unlocked constat 0");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fLaserUnlockedAlpha0", true), fn_710000abbc(), 0x40, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.45f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Laser unlocked constat 0 Alpha");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("vLaserLockedColor2", true), fn_71000246e4(), 0x44, -1, -1);
-    field4->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.3f, 0.3f, 0.3f});
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Laser locked constat 2");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("vLaserUnlockedColor2", true), fn_71000246e4(), 0x50, -1, -1);
-    field5->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.3f, 0.3f, 0.3f});
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Laser unlocked constat 2");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fLaserLockedScale", true), fn_710000abbc(), 0x5c, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    field6->attrs.Add<const char*>(fn_7100007e80(), "Laser locked scale");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fLaserUnlockedScale", true), fn_710000abbc(), 0x60, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field7->attrs.Add<const char*>(fn_7100007e80(), "Laser unlocked scale");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("vGrappleLaserLockedColor0", true), fn_71000246e4(), 0x64, -1, -1);
-    field8->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 1.0f, 1.0f});
-    field8->attrs.Add<const char*>(fn_7100007e80(), "Grapple Laser locked constat 0");
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("vGrappleLaserUnlockedColor0", true), fn_71000246e4(), 0x70, -1, -1);
-    field9->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.5f, 1.0f});
-    field9->attrs.Add<const char*>(fn_7100007e80(), "Grapple Laser unlocked constat 0");
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("vGrappleLaserLockedColor2", true), fn_71000246e4(), 0x7c, -1, -1);
-    field10->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.3f, 0.3f, 0.3f});
-    field10->attrs.Add<const char*>(fn_7100007e80(), "Grapple Laser locked constat 2");
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("vGrappleLaserUnlockedColor2", true), fn_71000246e4(), 0x88, -1, -1);
-    field11->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.3f, 0.3f, 0.3f});
-    field11->attrs.Add<const char*>(fn_7100007e80(), "Grapple Laser unlocked constat 2");
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("bAutoLockOnForceAutoGrapple", true), fn_710000d228(), 0x94, -1, -1);
-    field12->attrs.Add<bool>(fn_7100075240(), false);
-    field12->attrs.Add<const char*>(fn_7100007e80(), "AutoLockOn after melee success force Auto Grapple");
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("fEndForceFullyChargedTime", true), fn_710000abbc(), 0x98, -1, -1);
-    field13->attrs.Add<f32>(fn_7100075240(), 0.4f);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("fWalkToRunInputSize", true), fn_710000abbc(), 0x9c, -1, -1);
-    field14->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("fRunToWalkInputSize", true), fn_710000abbc(), 0xa0, -1, -1);
-    field15->attrs.Add<f32>(fn_7100075240(), 0.8f);
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("fFrontUp", true), fn_710000abbc(), 0xa4, -1, -1);
-    field16->attrs.Add<f32>(fn_7100075240(), 0.7853982f);
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("fFrontUpUp", true), fn_710000abbc(), 0xa8, -1, -1);
-    field17->attrs.Add<f32>(fn_7100075240(), 1.3744467f);
-    UnkReflField* field18 = fn_7100096524(cls, CStrId("fFrontUpDown", true), fn_710000abbc(), 0xac, -1, -1);
-    field18->attrs.Add<f32>(fn_7100075240(), 0.3926991f);
-    UnkReflField* field19 = fn_7100096524(cls, CStrId("fFrontDown", true), fn_710000abbc(), 0xb0, -1, -1);
-    field19->attrs.Add<f32>(fn_7100075240(), -0.7853982f);
-    UnkReflField* field20 = fn_7100096524(cls, CStrId("fFrontDownUp", true), fn_710000abbc(), 0xb4, -1, -1);
-    field20->attrs.Add<f32>(fn_7100075240(), -0.3926991f);
-    UnkReflField* field21 = fn_7100096524(cls, CStrId("fFrontDownDown", true), fn_710000abbc(), 0xb8, -1, -1);
-    field21->attrs.Add<f32>(fn_7100075240(), -1.1780972f);
-    UnkReflField* field22 = fn_7100096524(cls, CStrId("fFrontLockUp", true), fn_710000abbc(), 0xbc, -1, -1);
-    field22->attrs.Add<f32>(fn_7100075240(), 0.19634955f);
-    UnkReflField* field23 = fn_7100096524(cls, CStrId("fFrontLockDown", true), fn_710000abbc(), 0xc0, -1, -1);
-    field23->attrs.Add<f32>(fn_7100075240(), -0.19634955f);
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vLaserLockedColor0", 0x24, (DefaultValue, base::math::CVector3D{1.0f, 0.0f, 0.0f}), (Description, "Laser locked constat 0"));
+    DREAD_REFLECTED_FIELD(f32, "fLaserLockedAlpha0", 0x30, (DefaultValue, 0.75f), (Description, "Laser locked constat 0 Alpha"));
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vLaserUnlockedColor0", 0x34, (DefaultValue, base::math::CVector3D{1.0f, 0.0f, 0.0f}), (Description, "Laser unlocked constat 0"));
+    DREAD_REFLECTED_FIELD(f32, "fLaserUnlockedAlpha0", 0x40, (DefaultValue, 0.45f), (Description, "Laser unlocked constat 0 Alpha"));
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vLaserLockedColor2", 0x44, (DefaultValue, base::math::CVector3D{0.3f, 0.3f, 0.3f}), (Description, "Laser locked constat 2"));
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vLaserUnlockedColor2", 0x50, (DefaultValue, base::math::CVector3D{0.3f, 0.3f, 0.3f}), (Description, "Laser unlocked constat 2"));
+    DREAD_REFLECTED_FIELD(f32, "fLaserLockedScale", 0x5c, (DefaultValue, 2.0f), (Description, "Laser locked scale"));
+    DREAD_REFLECTED_FIELD(f32, "fLaserUnlockedScale", 0x60, (DefaultValue, 1.0f), (Description, "Laser unlocked scale"));
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vGrappleLaserLockedColor0", 0x64, (DefaultValue, base::math::CVector3D{0.0f, 1.0f, 1.0f}), (Description, "Grapple Laser locked constat 0"));
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vGrappleLaserUnlockedColor0", 0x70, (DefaultValue, base::math::CVector3D{0.0f, 0.5f, 1.0f}), (Description, "Grapple Laser unlocked constat 0"));
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vGrappleLaserLockedColor2", 0x7c, (DefaultValue, base::math::CVector3D{0.3f, 0.3f, 0.3f}), (Description, "Grapple Laser locked constat 2"));
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vGrappleLaserUnlockedColor2", 0x88, (DefaultValue, base::math::CVector3D{0.3f, 0.3f, 0.3f}), (Description, "Grapple Laser unlocked constat 2"));
+    DREAD_REFLECTED_FIELD(bool, "bAutoLockOnForceAutoGrapple", 0x94, (DefaultValue, false), (Description, "AutoLockOn after melee success force Auto Grapple"));
+    DREAD_REFLECTED_FIELD(f32, "fEndForceFullyChargedTime", 0x98, (DefaultValue, 0.4f));
+    DREAD_REFLECTED_FIELD(f32, "fWalkToRunInputSize", 0x9c, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fRunToWalkInputSize", 0xa0, (DefaultValue, 0.8f));
+    DREAD_REFLECTED_FIELD(f32, "fFrontUp", 0xa4, (DefaultValue, 0.7853982f));
+    DREAD_REFLECTED_FIELD(f32, "fFrontUpUp", 0xa8, (DefaultValue, 1.3744467f));
+    DREAD_REFLECTED_FIELD(f32, "fFrontUpDown", 0xac, (DefaultValue, 0.3926991f));
+    DREAD_REFLECTED_FIELD(f32, "fFrontDown", 0xb0, (DefaultValue, -0.7853982f));
+    DREAD_REFLECTED_FIELD(f32, "fFrontDownUp", 0xb4, (DefaultValue, -0.3926991f));
+    DREAD_REFLECTED_FIELD(f32, "fFrontDownDown", 0xb8, (DefaultValue, -1.1780972f));
+    DREAD_REFLECTED_FIELD(f32, "fFrontLockUp", 0xbc, (DefaultValue, 0.19634955f));
+    DREAD_REFLECTED_FIELD(f32, "fFrontLockDown", 0xc0, (DefaultValue, -0.19634955f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

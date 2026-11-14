@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,20 +22,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CTentacle
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_7101d5c998;
-const base::reflection::UnkReflAttrKey& fn_7100091d40();
 namespace CTentacle {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sName", true), fn_7100009658(), 0x8, -1, -1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fExtraNodeLengthFactor", true), fn_710000abbc(), 0x38, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_FIELD(CStrId, "sName", 0x8, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(f32, "fExtraNodeLengthFactor", 0x38, (DefaultValue, -1.0f));
     UnkReflField* field2 = fn_7100096524(cls, CStrId("tTentacleNodes", true), &g_unk_7101d5c998, 0x10, -1, -1);
     field2->attrs_0x70.Add<bool>(fn_7100091d40(), true);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bAllowTrail", true), fn_710000d228(), 0x3c, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(bool, "bAllowTrail", 0x3c, (DefaultValue, false));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,27 +22,18 @@ using base::reflection::DestroyDestructorFirst;
 // CHeatRoomComponent
 extern base::reflection::CType g_unk_71727464f0;
 extern base::reflection::CType g_unk_7172746630;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_717269bb48;
-const base::reflection::UnkReflAttrKey& fn_7100093390();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
 extern base::reflection::CType g_unk_717269bf08;
-const base::reflection::UnkReflAttrKey& fn_7100090090();
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 namespace CHeatRoomComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("oHeatConfig", true), &g_unk_71727464f0, 0xbe4, -1, -1);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("oCoolConfig", true), &g_unk_7172746630, 0xc04, -1, -1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sEnterZoneSound", true), fn_710000ad9c(), 0xc50, -1, -1);
-    field2->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(base::global::UnkStrIdInline{}, "levels/lava_pain_01.wav", true));
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sVisualPresetOverride", true), fn_7100009658(), 0xc58, -1, -1);
-    field3->attrs.Add<CStrId>(fn_7100075240(), CStrId("HeatZone", true));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sEnterZoneSound", 0xc50, (DefaultValue, base::global::CFilePathStrId(base::global::UnkStrIdInline{}, "levels/lava_pain_01.wav", true)));
+    DREAD_REFLECTED_FIELD(CStrId, "sVisualPresetOverride", 0xc58, (DefaultValue, CStrId("HeatZone", true)));
     UnkReflField* field4 = fn_7100096524(cls, CStrId("pEnvironmentFXActor", true), &g_unk_717269bb48, 0xffffffff, -1, -1);
     field4->attrs.Add<bool>(fn_7100093390(), true);
     field4->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);

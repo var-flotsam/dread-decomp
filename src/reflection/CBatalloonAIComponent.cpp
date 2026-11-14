@@ -19,10 +19,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CBatalloonAIComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
 namespace CBatalloonAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

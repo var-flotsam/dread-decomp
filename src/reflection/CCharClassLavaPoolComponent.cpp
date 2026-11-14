@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,24 +20,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassLavaPoolComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CCharClassLavaPoolComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fDamagePerTime", true), fn_710000abbc(), 0x88, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 10.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fInBetweenDamageTime", true), fn_710000abbc(), 0x8c, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fInitTimeDamageIncrease", true), fn_710000abbc(), 0x90, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fDamageIncreaseAmount", true), fn_710000abbc(), 0x94, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 10.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fMaxDamage", true), fn_710000abbc(), 0x98, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("sLevelChangeEasingFunction", true), fn_7100009658(), 0xa0, -1, -1);
-    field5->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Easing function to apply when the lavapool is changing level");
+    DREAD_REFLECTED_FIELD(f32, "fDamagePerTime", 0x88, (DefaultValue, 10.0f));
+    DREAD_REFLECTED_FIELD(f32, "fInBetweenDamageTime", 0x8c, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fInitTimeDamageIncrease", 0x90, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDamageIncreaseAmount", 0x94, (DefaultValue, 10.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxDamage", 0x98, (DefaultValue, 100.0f));
+    DREAD_REFLECTED_FIELD(CStrId, "sLevelChangeEasingFunction", 0xa0, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Easing function to apply when the lavapool is changing level"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -68,9 +60,7 @@ namespace CLavaPoolComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("oConfig", true), &g_unk_71727333a8, 0xc90, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fChangeTime", true), fn_710000abbc(), 0xcbc, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Time level change");
+    DREAD_REFLECTED_FIELD(f32, "fChangeTime", 0xcbc, (DefaultValue, 2.0f), (Description, "Time level change"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

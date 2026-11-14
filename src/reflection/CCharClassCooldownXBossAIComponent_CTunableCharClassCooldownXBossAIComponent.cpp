@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassCooldownXBossAIComponent::CTunableCharClassCooldownXBossAIComponent
 extern bool g_unk_71726d82b8;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726d8260;
 void fn_71004cdb44(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -32,38 +32,22 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726d82b8 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("iInitialStage", true), fn_7100014768(), 0x24, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), 0);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("LAVA_CARPET", true), fn_710000d228(), 0x28, -1, -1);
-    field1->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("WIND_TUNNEL", true), fn_710000d228(), 0x29, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("STRONG_WHIP", true), fn_710000d228(), 0x2a, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("REAPER", true), fn_710000d228(), 0x2b, -1, -1);
-    field4->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("LAVA_DROPS", true), fn_710000d228(), 0x2c, -1, -1);
-    field5->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("LASER_BITE", true), fn_710000d228(), 0x2d, -1, -1);
-    field6->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fMinLifeRestored4Arms", true), fn_710000abbc(), 0x30, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 8500.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fMaxLifeRestored4Arms", true), fn_710000abbc(), 0x34, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 12000.0f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fMinLifeRestored3Arms", true), fn_710000abbc(), 0x38, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 6500.0f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fMaxLifeRestored3Arms", true), fn_710000abbc(), 0x3c, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 9500.0f);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fMinLifeRestored2Arms", true), fn_710000abbc(), 0x40, -1, -1);
-    field11->attrs.Add<f32>(fn_7100075240(), 5000.0f);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fMaxLifeRestored2Arms", true), fn_710000abbc(), 0x44, -1, -1);
-    field12->attrs.Add<f32>(fn_7100075240(), 7500.0f);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("fMinLifeRestored1Arms", true), fn_710000abbc(), 0x48, -1, -1);
-    field13->attrs.Add<f32>(fn_7100075240(), 4000.0f);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("fMaxLifeRestored1Arms", true), fn_710000abbc(), 0x4c, -1, -1);
-    field14->attrs.Add<f32>(fn_7100075240(), 6000.0f);
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("fPhase2Timeout", true), fn_710000abbc(), 0x50, -1, -1);
-    field15->attrs.Add<f32>(fn_7100075240(), 20.0f);
+    DREAD_REFLECTED_FIELD(s32, "iInitialStage", 0x24, (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD(bool, "LAVA_CARPET", 0x28, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "WIND_TUNNEL", 0x29, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "STRONG_WHIP", 0x2a, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "REAPER", 0x2b, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "LAVA_DROPS", 0x2c, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "LASER_BITE", 0x2d, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(f32, "fMinLifeRestored4Arms", 0x30, (DefaultValue, 8500.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxLifeRestored4Arms", 0x34, (DefaultValue, 12000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinLifeRestored3Arms", 0x38, (DefaultValue, 6500.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxLifeRestored3Arms", 0x3c, (DefaultValue, 9500.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinLifeRestored2Arms", 0x40, (DefaultValue, 5000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxLifeRestored2Arms", 0x44, (DefaultValue, 7500.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinLifeRestored1Arms", 0x48, (DefaultValue, 4000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxLifeRestored1Arms", 0x4c, (DefaultValue, 6000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPhase2Timeout", 0x50, (DefaultValue, 20.0f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
@@ -104,7 +88,6 @@ const base::reflection::CClass* fn_71004b4bc4();
 const base::reflection::CClass* fn_71004b9584();
 const base::reflection::CClass* fn_71004a13bc();
 extern base::reflection::CType g_unk_717270d668;
-const base::reflection::UnkReflAttrKey& fn_7100091d40();
 const base::reflection::CClass* fn_71008c1b4c();
 namespace CCharClassCooldownXBossAIComponent {
 void refl_AddAttributes(CClass*) {}
@@ -117,12 +100,9 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field5 = fn_7100096524(cls, CStrId("oCooldownXBossLaserBiteAttackDef", true), fn_71004a13bc(), 0xb38, -1, -1);
     UnkReflField* field6 = fn_7100096524(cls, CStrId("tTentacles", true), &g_unk_717270d668, 0xc40, -1, -1);
     field6->attrs_0x70.Add<bool>(fn_7100091d40(), true);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fMinTimeToRelaxAction", true), fn_710000abbc(), 0xc68, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 30.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fMaxTimeToRelaxAction", true), fn_710000abbc(), 0xc6c, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 50.0f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fTimeToGoToPhase3After4WPDestroyed", true), fn_710000abbc(), 0xc70, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 1.3f);
+    DREAD_REFLECTED_FIELD(f32, "fMinTimeToRelaxAction", 0xc68, (DefaultValue, 30.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxTimeToRelaxAction", 0xc6c, (DefaultValue, 50.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToGoToPhase3After4WPDestroyed", 0xc70, (DefaultValue, 1.3f));
     UnkReflField* field10 = fn_7100096524(cls, CStrId("oGrabDamageSourceFactor", true), fn_71008c1b4c(), 0xc78, -1, -1);
 }
 bool refl_Equals(const void*, const void*) { return false; }

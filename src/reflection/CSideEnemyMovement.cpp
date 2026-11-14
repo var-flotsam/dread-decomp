@@ -20,7 +20,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CSideEnemyMovement
 extern base::reflection::CType g_unk_717273d020;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CSideEnemyMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

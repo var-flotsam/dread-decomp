@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,12 +20,8 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CAbilityMultiLockon
-const base::reflection::UnkReflAttrKey& fn_7100093390();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
 namespace CAbilityMultiLockon {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -60,7 +57,6 @@ DREAD_REFLECTED_CLASS(CAbilityMultiLockon, CAbility);
 
 // CAbilityMultiLockon::CTunableAbilityMultiLockon
 extern bool g_unk_71726af920;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726af8b0;
 void fn_7100317550(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -72,32 +68,19 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726af920 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("vColorLocked0", true), fn_71000246e4(), 0x24, -1, -1);
-    field0->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{1.0f, 0.0f, 1.0f});
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("vColorUnLocked0", true), fn_71000246e4(), 0x30, -1, -1);
-    field1->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{1.0f, 0.0f, 1.0f});
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("vColorLocked2", true), fn_71000246e4(), 0x3c, -1, -1);
-    field2->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{1.0f, 0.0f, 1.0f});
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("vColorUnLocked2", true), fn_71000246e4(), 0x48, -1, -1);
-    field3->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{1.0f, 0.0f, 1.0f});
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fMinChargeTime", true), fn_710000abbc(), 0x54, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fChargeTime", true), fn_710000abbc(), 0x58, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 1.2f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fTargetBumbingEffectScale", true), fn_710000abbc(), 0x5c, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fTargetBumbingEffectSize", true), fn_710000abbc(), 0x60, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 0.15f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fTargetBumbingEffectSpeed", true), fn_710000abbc(), 0x64, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 10.0f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fTargetingTime", true), fn_710000abbc(), 0x68, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("bActivationInput_R3", true), fn_710000d228(), 0x6c, -1, -1);
-    field10->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("bActivationInput_FireCharge", true), fn_710000d228(), 0x6d, -1, -1);
-    field11->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("bActivationInput_AimCharge", true), fn_710000d228(), 0x6e, -1, -1);
-    field12->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vColorLocked0", 0x24, (DefaultValue, base::math::CVector3D{1.0f, 0.0f, 1.0f}));
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vColorUnLocked0", 0x30, (DefaultValue, base::math::CVector3D{1.0f, 0.0f, 1.0f}));
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vColorLocked2", 0x3c, (DefaultValue, base::math::CVector3D{1.0f, 0.0f, 1.0f}));
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vColorUnLocked2", 0x48, (DefaultValue, base::math::CVector3D{1.0f, 0.0f, 1.0f}));
+    DREAD_REFLECTED_FIELD(f32, "fMinChargeTime", 0x54, (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fChargeTime", 0x58, (DefaultValue, 1.2f));
+    DREAD_REFLECTED_FIELD(f32, "fTargetBumbingEffectScale", 0x5c, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTargetBumbingEffectSize", 0x60, (DefaultValue, 0.15f));
+    DREAD_REFLECTED_FIELD(f32, "fTargetBumbingEffectSpeed", 0x64, (DefaultValue, 10.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTargetingTime", 0x68, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(bool, "bActivationInput_R3", 0x6c, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bActivationInput_FireCharge", 0x6d, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bActivationInput_AimCharge", 0x6e, (DefaultValue, true));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

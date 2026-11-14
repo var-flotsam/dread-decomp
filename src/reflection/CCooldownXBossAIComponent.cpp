@@ -20,9 +20,7 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCooldownXBossAIComponent
 extern base::reflection::CType g_unk_71727b6270;
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
-const base::reflection::UnkReflAttrKey& fn_7100091c30();
 namespace CCooldownXBossAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

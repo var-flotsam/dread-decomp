@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,22 +20,16 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CAreaMusicComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 void fn_71007161c4();
 void fn_7100715c7c(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_71729f1018;
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CAreaMusicComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fEnterFadeIn", true), fn_710000abbc(), 0xacc, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fEnterFadeOut", true), fn_710000abbc(), 0xad0, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fExitFadeIn", true), fn_710000abbc(), 0xad4, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fExitFadeOut", true), fn_710000abbc(), 0xad8, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    DREAD_REFLECTED_FIELD(f32, "fEnterFadeIn", 0xacc, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fEnterFadeOut", 0xad0, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fExitFadeIn", 0xad4, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fExitFadeOut", 0xad8, (DefaultValue, 0.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sPreset_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sPreset_GetterFunction", true);
         fn->return_type = fn_7100009658();

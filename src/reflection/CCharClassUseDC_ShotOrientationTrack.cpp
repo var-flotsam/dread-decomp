@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,18 +20,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassUseDC_ShotOrientationTrack
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100090e60();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassUseDC_ShotOrientationTrack {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Use DC_Shot Orientation");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Gun", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bProjectOnXY", true), fn_710000d228(), 0x18, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), true);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Project DC_Shot Dir on XY plane");
+    DREAD_REFLECTED_FIELD(bool, "bProjectOnXY", 0x18, (DefaultValue, true), (Description, "Project DC_Shot Dir on XY plane"));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

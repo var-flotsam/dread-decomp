@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,21 +20,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CAttackAction
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::global::CRntString g_unk_7101d58d10;
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace behaviortree::CAttackAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sAttack", true), fn_7100007f84(), 0x30, -1, -1);
-    field0->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString(g_unk_7101d58d10));
-    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Selected attack"));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sAttackBlc", true), fn_7100009658(), 0x60, -1, -1);
-    field1->attrs.Add<const char*>(fn_7100075240(), "");
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Selected attack (from blackboard)");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bWaitOnAbort", true), fn_710000d228(), 0x68, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), true);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Waits for the end of the attack before aborting the action");
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sAttack", 0x30, (DefaultValue, base::global::CRntString(g_unk_7101d58d10)), (Description, base::global::CRntString("Selected attack")));
+    DREAD_REFLECTED_FIELD(CStrId, "sAttackBlc", 0x60, (DefaultValue, ""), (Description, "Selected attack (from blackboard)"));
+    DREAD_REFLECTED_FIELD(bool, "bWaitOnAbort", 0x68, (DefaultValue, true), (Description, "Waits for the end of the attack before aborting the action"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

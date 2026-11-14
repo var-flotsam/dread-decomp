@@ -20,8 +20,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CAnimationComponent
 void fn_71011753bc(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_71000904d0();
 void fn_7101175470(UnkReflFunction* fn, const char* name);
 void fn_7101175524(UnkReflFunction* fn, const char* name);
 void fn_71011755d8(UnkReflFunction* fn, const char* name);

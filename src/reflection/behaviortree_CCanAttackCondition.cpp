@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,24 +20,14 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CCanAttackCondition
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::global::CRntString g_unk_7101d58d10;
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace behaviortree::CCanAttackCondition {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sAttack", true), fn_7100007f84(), 0x38, -1, -1);
-    field0->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString(g_unk_7101d58d10));
-    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Attack"));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bCheckRotation", true), fn_710000d228(), 0x68, -1, -1);
-    field1->attrs.Add<bool>(fn_7100075240(), true);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Check rotation?");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bIgnoreDistance", true), fn_710000d228(), 0x69, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Ignore distance?");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bUseSuitableAttack", true), fn_710000d228(), 0x6a, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), false);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Use suitable attack if attack order is NULL?");
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sAttack", 0x38, (DefaultValue, base::global::CRntString(g_unk_7101d58d10)), (Description, base::global::CRntString("Attack")));
+    DREAD_REFLECTED_FIELD(bool, "bCheckRotation", 0x68, (DefaultValue, true), (Description, "Check rotation?"));
+    DREAD_REFLECTED_FIELD(bool, "bIgnoreDistance", 0x69, (DefaultValue, false), (Description, "Ignore distance?"));
+    DREAD_REFLECTED_FIELD(bool, "bUseSuitableAttack", 0x6a, (DefaultValue, false), (Description, "Use suitable attack if attack order is NULL?"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

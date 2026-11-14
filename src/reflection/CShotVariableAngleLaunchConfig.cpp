@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,26 +20,17 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CShotVariableAngleLaunchConfig
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CShotVariableAngleLaunchConfig {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fGravity", true), fn_710000abbc(), 0x18, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 2300.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fLaunchSpeed", true), fn_710000abbc(), 0x1c, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1800.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMinLaunchAngleDegs", true), fn_710000abbc(), 0x20, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMaxLaunchAngleDegs", true), fn_710000abbc(), 0x24, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 70.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("bMakeLaunchSpeedProportionalToDistance", true), fn_710000d228(), 0x28, -1, -1);
-    field4->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fLaunchSpeedAtMinDistance", true), fn_710000abbc(), 0x2c, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 1000.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fDist4MinLaunchSpeed", true), fn_710000abbc(), 0x30, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 300.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fDist4MaxLaunchSpeed", true), fn_710000abbc(), 0x34, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 1400.0f);
+    DREAD_REFLECTED_FIELD(f32, "fGravity", 0x18, (DefaultValue, 2300.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLaunchSpeed", 0x1c, (DefaultValue, 1800.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinLaunchAngleDegs", 0x20, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxLaunchAngleDegs", 0x24, (DefaultValue, 70.0f));
+    DREAD_REFLECTED_FIELD(bool, "bMakeLaunchSpeedProportionalToDistance", 0x28, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fLaunchSpeedAtMinDistance", 0x2c, (DefaultValue, 1000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDist4MinLaunchSpeed", 0x30, (DefaultValue, 300.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDist4MaxLaunchSpeed", 0x34, (DefaultValue, 1400.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

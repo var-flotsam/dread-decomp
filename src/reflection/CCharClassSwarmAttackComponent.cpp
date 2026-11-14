@@ -21,8 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassSwarmAttackComponent
 void fn_710073332c();
 void fn_71007330e4(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CCharClassSwarmAttackComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

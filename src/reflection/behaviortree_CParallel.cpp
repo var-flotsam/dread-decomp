@@ -20,8 +20,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CParallel
 extern base::reflection::CType g_unk_71726bbbb0;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace behaviortree::CParallel {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

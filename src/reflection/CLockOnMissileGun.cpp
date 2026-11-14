@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -40,8 +41,6 @@ DREAD_REFLECTED_CLASS(CLockOnMissileGun, CMissileBaseGun);
 
 // CLockOnMissileGun::CTunableLockOnMissile
 extern bool g_unk_7172726e98;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 void fn_710084db80();
 void fn_710084c724(UnkReflFunction* fn, const char* name);
 extern UnkTunableRegistry* g_unk_7101d47350;
@@ -55,9 +54,7 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172726e98 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fDamageAmount", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Single shot damage amount");
+    DREAD_REFLECTED_FIELD(f32, "fDamageAmount", 0x24, (DefaultValue, 0.0f), (Description, "Single shot damage amount"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sDamageSource_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sDamageSource_GetterFunction", true);
         fn->return_type = fn_7100009658();
@@ -70,15 +67,10 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field1 = fn_7100096524(cls, CStrId("sDamageSource", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
     field1->attrs.Add<const char*>(fn_7100007e80(), "Source of the damage to be dealt");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("iMissilesPerShot", true), fn_7100014768(), 0x3c, -1, -1);
-    field2->attrs.Add<s32>(fn_7100075240(), 3);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fHeat", true), fn_710000abbc(), 0x38, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.75f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Maximun damage to the shield");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("bSwarmMode", true), fn_710000d228(), 0x28, -1, -1);
-    field4->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("bMachineGunMode", true), fn_710000d228(), 0x29, -1, -1);
-    field5->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_FIELD(s32, "iMissilesPerShot", 0x3c, (DefaultValue, 3));
+    DREAD_REFLECTED_FIELD(f32, "fHeat", 0x38, (DefaultValue, 0.75f), (Description, "Maximun damage to the shield"));
+    DREAD_REFLECTED_FIELD(bool, "bSwarmMode", 0x28, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bMachineGunMode", 0x29, (DefaultValue, true));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

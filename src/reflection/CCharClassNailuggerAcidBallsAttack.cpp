@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,18 +20,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassNailuggerAcidBallsAttack
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassNailuggerAcidBallsAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fIntervalMin", true), fn_710000abbc(), 0xec, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fIntervalMax", true), fn_710000abbc(), 0xf0, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 3.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fRepeatAttackTimer", true), fn_710000abbc(), 0xf4, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fTimeToChargeAttack", true), fn_710000abbc(), 0xf8, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    DREAD_REFLECTED_FIELD(f32, "fIntervalMin", 0xec, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fIntervalMax", 0xf0, (DefaultValue, 3.0f));
+    DREAD_REFLECTED_FIELD(f32, "fRepeatAttackTimer", 0xf4, (DefaultValue, 2.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToChargeAttack", 0xf8, (DefaultValue, 1.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

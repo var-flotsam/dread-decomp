@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,95 +20,43 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CPerceptionRuleSet
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern base::reflection::CType g_unk_7172a05520;
 extern base::reflection::CType g_unk_7172a05680;
 namespace CPerceptionRuleSet {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fTimeForTargetDetection", true), fn_710000abbc(), 0x8, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.2f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Continous time (s) satisfying ALL detection conditions to start detecting the target");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeForTargetDetectionEnd", true), fn_710000abbc(), 0xc, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Continous time (s) not satisfying ANY detection condition to stop detecting the target");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bForceTargetDetectionByOtherSpawnGroupMember", true), fn_710000d228(), 0x4c, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Force detection if detected by other unit in spawngroup");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bCanSeeThroughOpticCamo", true), fn_710000d228(), 0x10, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fInvisibleDetectionTime", true), fn_710000abbc(), 0x14, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("bRequiresTargetInFront", true), fn_710000d228(), 0x18, -1, -1);
-    field5->attrs.Add<bool>(fn_7100075240(), false);
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Should the target be in front of us to start detecting her");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("bRequiresLOSToTarget", true), fn_710000d228(), 0x19, -1, -1);
-    field6->attrs.Add<bool>(fn_7100075240(), false);
-    field6->attrs.Add<const char*>(fn_7100007e80(), "Is LOS required to detect the target");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("bRequiresDamaged", true), fn_710000d228(), 0x1a, -1, -1);
-    field7->attrs.Add<bool>(fn_7100075240(), false);
-    field7->attrs.Add<const char*>(fn_7100007e80(), "Is damage required to detect the target");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("bRequiresShooted", true), fn_710000d228(), 0x1b, -1, -1);
-    field8->attrs.Add<bool>(fn_7100075240(), false);
-    field8->attrs.Add<const char*>(fn_7100007e80(), "Is shooted required to detect the target");
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("bRequiresImpacted", true), fn_710000d228(), 0x1c, -1, -1);
-    field9->attrs.Add<bool>(fn_7100075240(), false);
-    field9->attrs.Add<const char*>(fn_7100007e80(), "Is any impact required to detect the target");
+    DREAD_REFLECTED_FIELD(f32, "fTimeForTargetDetection", 0x8, (DefaultValue, 0.2f), (Description, "Continous time (s) satisfying ALL detection conditions to start detecting the target"));
+    DREAD_REFLECTED_FIELD(f32, "fTimeForTargetDetectionEnd", 0xc, (DefaultValue, 0.0f), (Description, "Continous time (s) not satisfying ANY detection condition to stop detecting the target"));
+    DREAD_REFLECTED_FIELD(bool, "bForceTargetDetectionByOtherSpawnGroupMember", 0x4c, (DefaultValue, false), (Description, "Force detection if detected by other unit in spawngroup"));
+    DREAD_REFLECTED_FIELD(bool, "bCanSeeThroughOpticCamo", 0x10, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fInvisibleDetectionTime", 0x14, (DefaultValue, 2.0f));
+    DREAD_REFLECTED_FIELD(bool, "bRequiresTargetInFront", 0x18, (DefaultValue, false), (Description, "Should the target be in front of us to start detecting her"));
+    DREAD_REFLECTED_FIELD(bool, "bRequiresLOSToTarget", 0x19, (DefaultValue, false), (Description, "Is LOS required to detect the target"));
+    DREAD_REFLECTED_FIELD(bool, "bRequiresDamaged", 0x1a, (DefaultValue, false), (Description, "Is damage required to detect the target"));
+    DREAD_REFLECTED_FIELD(bool, "bRequiresShooted", 0x1b, (DefaultValue, false), (Description, "Is shooted required to detect the target"));
+    DREAD_REFLECTED_FIELD(bool, "bRequiresImpacted", 0x1c, (DefaultValue, false), (Description, "Is any impact required to detect the target"));
     UnkReflField* field10 = fn_7100096524(cls, CStrId("eLOSMode", true), &g_unk_7172a05520, 0x20, -1, -1);
     field10->attrs.Add<s32>(fn_7100075240(), &g_unk_7172a05520, 1);
     field10->attrs.Add<const char*>(fn_7100007e80(), "LOS mode for detection");
     UnkReflField* field11 = fn_7100096524(cls, CStrId("eLOSCheckLevel", true), &g_unk_7172a05680, 0x24, -1, -1);
     field11->attrs.Add<s32>(fn_7100075240(), &g_unk_7172a05680, 1);
     field11->attrs.Add<const char*>(fn_7100007e80(), "LOS check level for detection");
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fMaxDistanceToTarget", true), fn_710000abbc(), 0x28, -1, -1);
-    field12->attrs.Add<f32>(fn_7100075240(), 10000000.0f);
-    field12->attrs.Add<const char*>(fn_7100007e80(), "Maximum dist to see the target at start");
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("bShouldBeInFrustrum", true), fn_710000d228(), 0x2c, -1, -1);
-    field13->attrs.Add<bool>(fn_7100075240(), true);
-    field13->attrs.Add<const char*>(fn_7100007e80(), "Should we be on frustrum to detect the Target at start");
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("bShouldBeTargetInAreaOfInterest", true), fn_710000d228(), 0x34, -1, -1);
-    field14->attrs.Add<bool>(fn_7100075240(), false);
-    field14->attrs.Add<const char*>(fn_7100007e80(), "Should the target be within our interest area at start");
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("bUseStartAOIWhenEndAOIIsEmpty", true), fn_710000d228(), 0x35, -1, -1);
-    field15->attrs.Add<bool>(fn_7100075240(), true);
-    field15->attrs.Add<const char*>(fn_7100007e80(), "Use start AOI if end AOI is empty (e.g. false when AI ONLY needs AOI to awake)");
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("bIsAreaOfInterestOptional", true), fn_710000d228(), 0x36, -1, -1);
-    field16->attrs.Add<bool>(fn_7100075240(), false);
-    field16->attrs.Add<const char*>(fn_7100007e80(), "True if some of these AIs might have AOI to detect target while others not (e.g. true when an AI can be either spawned 'awaken' or 'in patrol'");
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("bShouldTargetBeReachable", true), fn_710000d228(), 0x37, -1, -1);
-    field17->attrs.Add<bool>(fn_7100075240(), false);
-    field17->attrs.Add<const char*>(fn_7100007e80(), "Should the target be reachable to detect it at start");
-    UnkReflField* field18 = fn_7100096524(cls, CStrId("bRequiresPathToTarget", true), fn_710000d228(), 0x38, -1, -1);
-    field18->attrs.Add<bool>(fn_7100075240(), false);
-    field18->attrs.Add<const char*>(fn_7100007e80(), "Is a valid navmesh path required to detect the target");
-    UnkReflField* field19 = fn_7100096524(cls, CStrId("bForceIfDamaged", true), fn_710000d228(), 0x58, -1, -1);
-    field19->attrs.Add<bool>(fn_7100075240(), false);
-    field19->attrs.Add<const char*>(fn_7100007e80(), "Force target perception if we're damaged");
-    UnkReflField* field20 = fn_7100096524(cls, CStrId("fForceIfDamagedTime", true), fn_710000abbc(), 0x5c, -1, -1);
-    field20->attrs.Add<f32>(fn_7100075240(), 5.0f);
-    field20->attrs.Add<const char*>(fn_7100007e80(), "Force target perception if we're damaged for at least this time");
-    UnkReflField* field21 = fn_7100096524(cls, CStrId("fForceDetectionIfTargetBehindDist", true), fn_710000abbc(), 0x50, -1, -1);
-    field21->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field21->attrs.Add<const char*>(fn_7100007e80(), "Force detection if target is behind at a certain sqr distance or closer");
-    UnkReflField* field22 = fn_7100096524(cls, CStrId("fForceDetectionIfTargetBehindTime", true), fn_710000abbc(), 0x54, -1, -1);
-    field22->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field22->attrs.Add<const char*>(fn_7100007e80(), "Force detection if target is behind for at least this time");
-    UnkReflField* field23 = fn_7100096524(cls, CStrId("bChangeAreaOfInterestOnDamage", true), fn_710000d228(), 0x3a, -1, -1);
-    field23->attrs.Add<bool>(fn_7100075240(), true);
-    field23->attrs.Add<const char*>(fn_7100007e80(), "Change Start AOI with Exit AOI on damage");
-    UnkReflField* field24 = fn_7100096524(cls, CStrId("fTimeToUseEndAOIAfterDamage", true), fn_710000abbc(), 0x3c, -1, -1);
-    field24->attrs.Add<f32>(fn_7100075240(), 5.0f);
-    field24->attrs.Add<const char*>(fn_7100007e80(), "Time to use end area of interest to detect player after damaged");
-    UnkReflField* field25 = fn_7100096524(cls, CStrId("bCanDetectWhileFrozen", true), fn_710000d228(), 0x40, -1, -1);
-    field25->attrs.Add<bool>(fn_7100075240(), false);
-    field25->attrs.Add<const char*>(fn_7100007e80(), "Allow detection while the entity is frozen");
-    UnkReflField* field26 = fn_7100096524(cls, CStrId("bShouldBeInCurrentSubarea", true), fn_710000d228(), 0x41, -1, -1);
-    field26->attrs.Add<bool>(fn_7100075240(), false);
-    field26->attrs.Add<const char*>(fn_7100007e80(), "Should the enemy be in the current subarea");
-    UnkReflField* field27 = fn_7100096524(cls, CStrId("bShouldBeInCurrentSubareaFailSkipTimeWait", true), fn_710000d228(), 0x42, -1, -1);
-    field27->attrs.Add<bool>(fn_7100075240(), false);
-    field27->attrs.Add<const char*>(fn_7100007e80(), "Skip time wait if current subarea condition fails");
+    DREAD_REFLECTED_FIELD(f32, "fMaxDistanceToTarget", 0x28, (DefaultValue, 10000000.0f), (Description, "Maximum dist to see the target at start"));
+    DREAD_REFLECTED_FIELD(bool, "bShouldBeInFrustrum", 0x2c, (DefaultValue, true), (Description, "Should we be on frustrum to detect the Target at start"));
+    DREAD_REFLECTED_FIELD(bool, "bShouldBeTargetInAreaOfInterest", 0x34, (DefaultValue, false), (Description, "Should the target be within our interest area at start"));
+    DREAD_REFLECTED_FIELD(bool, "bUseStartAOIWhenEndAOIIsEmpty", 0x35, (DefaultValue, true), (Description, "Use start AOI if end AOI is empty (e.g. false when AI ONLY needs AOI to awake)"));
+    DREAD_REFLECTED_FIELD(bool, "bIsAreaOfInterestOptional", 0x36, (DefaultValue, false), (Description, "True if some of these AIs might have AOI to detect target while others not (e.g. true when an AI can be either spawned 'awaken' or 'in patrol'"));
+    DREAD_REFLECTED_FIELD(bool, "bShouldTargetBeReachable", 0x37, (DefaultValue, false), (Description, "Should the target be reachable to detect it at start"));
+    DREAD_REFLECTED_FIELD(bool, "bRequiresPathToTarget", 0x38, (DefaultValue, false), (Description, "Is a valid navmesh path required to detect the target"));
+    DREAD_REFLECTED_FIELD(bool, "bForceIfDamaged", 0x58, (DefaultValue, false), (Description, "Force target perception if we're damaged"));
+    DREAD_REFLECTED_FIELD(f32, "fForceIfDamagedTime", 0x5c, (DefaultValue, 5.0f), (Description, "Force target perception if we're damaged for at least this time"));
+    DREAD_REFLECTED_FIELD(f32, "fForceDetectionIfTargetBehindDist", 0x50, (DefaultValue, -1.0f), (Description, "Force detection if target is behind at a certain sqr distance or closer"));
+    DREAD_REFLECTED_FIELD(f32, "fForceDetectionIfTargetBehindTime", 0x54, (DefaultValue, -1.0f), (Description, "Force detection if target is behind for at least this time"));
+    DREAD_REFLECTED_FIELD(bool, "bChangeAreaOfInterestOnDamage", 0x3a, (DefaultValue, true), (Description, "Change Start AOI with Exit AOI on damage"));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToUseEndAOIAfterDamage", 0x3c, (DefaultValue, 5.0f), (Description, "Time to use end area of interest to detect player after damaged"));
+    DREAD_REFLECTED_FIELD(bool, "bCanDetectWhileFrozen", 0x40, (DefaultValue, false), (Description, "Allow detection while the entity is frozen"));
+    DREAD_REFLECTED_FIELD(bool, "bShouldBeInCurrentSubarea", 0x41, (DefaultValue, false), (Description, "Should the enemy be in the current subarea"));
+    DREAD_REFLECTED_FIELD(bool, "bShouldBeInCurrentSubareaFailSkipTimeWait", 0x42, (DefaultValue, false), (Description, "Skip time wait if current subarea condition fails"));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -141,12 +90,8 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("eOverridedInFrustumMode", true), &g_unk_71727952a8, 0x30, -1, -1);
     field0->attrs.Add<s32>(fn_7100075240(), &g_unk_71727952a8, 2147483647);
     field0->attrs.Add<const char*>(fn_7100007e80(), "Frustum mode for checks to override AI's default mode");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fInstantDetectionFrontDistance", true), fn_710000abbc(), 0x44, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Within this front distance target is instantly detected if tests passed");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fInstantDetectionBackDistance", true), fn_710000abbc(), 0x48, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Within this back distance target is instantly detected if tests passed");
+    DREAD_REFLECTED_FIELD(f32, "fInstantDetectionFrontDistance", 0x44, (DefaultValue, -1.0f), (Description, "Within this front distance target is instantly detected if tests passed"));
+    DREAD_REFLECTED_FIELD(f32, "fInstantDetectionBackDistance", 0x48, (DefaultValue, -1.0f), (Description, "Within this back distance target is instantly detected if tests passed"));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -179,12 +124,8 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("eOverridedInFrustumMode", true), &g_unk_71727952a8, 0x30, -1, -1);
     field0->attrs.Add<s32>(fn_7100075240(), &g_unk_71727952a8, 2147483647);
     field0->attrs.Add<const char*>(fn_7100007e80(), "Frustum mode for checks to override AI's default mode");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fInstantDetectionFrontDistance", true), fn_710000abbc(), 0x44, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 300.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Within this front distance target is instantly detected if tests passed");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fInstantDetectionBackDistance", true), fn_710000abbc(), 0x48, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 300.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Within this back distance target is instantly detected if tests passed");
+    DREAD_REFLECTED_FIELD(f32, "fInstantDetectionFrontDistance", 0x44, (DefaultValue, 300.0f), (Description, "Within this front distance target is instantly detected if tests passed"));
+    DREAD_REFLECTED_FIELD(f32, "fInstantDetectionBackDistance", 0x48, (DefaultValue, 300.0f), (Description, "Within this back distance target is instantly detected if tests passed"));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -217,12 +158,8 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("eOverridedInFrustumMode", true), &g_unk_71727952a8, 0x30, -1, -1);
     field0->attrs.Add<s32>(fn_7100075240(), &g_unk_71727952a8, 1);
     field0->attrs.Add<const char*>(fn_7100007e80(), "Frustum mode for checks to override AI's default mode");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fInstantDetectionFrontDistance", true), fn_710000abbc(), 0x44, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Within this front distance target is instantly detected if tests passed");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fInstantDetectionBackDistance", true), fn_710000abbc(), 0x48, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Within this back distance target is instantly detected if tests passed");
+    DREAD_REFLECTED_FIELD(f32, "fInstantDetectionFrontDistance", 0x44, (DefaultValue, -1.0f), (Description, "Within this front distance target is instantly detected if tests passed"));
+    DREAD_REFLECTED_FIELD(f32, "fInstantDetectionBackDistance", 0x48, (DefaultValue, -1.0f), (Description, "Within this back distance target is instantly detected if tests passed"));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,37 +20,23 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassForceEnableSubareaEvent
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100090d50();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassForceEnableSubareaEvent {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Subarea Force Enable");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Subarea", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sSubareaID", true), fn_7100009658(), 0x10, -1, -1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bAllSubareaItems", true), fn_710000d228(), 0x18, -1, -1);
-    field1->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bScenarioCollider", true), fn_710000d228(), 0x19, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bLightGroup", true), fn_710000d228(), 0x1a, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("bSoundGroup", true), fn_710000d228(), 0x1b, -1, -1);
-    field4->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("bSceneGroup", true), fn_710000d228(), 0x1c, -1, -1);
-    field5->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("bLogicEntityGroup", true), fn_710000d228(), 0x1d, -1, -1);
-    field6->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("bBreakableTileGroupGroup", true), fn_710000d228(), 0x1e, -1, -1);
-    field7->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("bEnvironmentPreset", true), fn_710000d228(), 0x1f, -1, -1);
-    field8->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("bEnvironmentSoundPreset", true), fn_710000d228(), 0x20, -1, -1);
-    field9->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("bEnvironmentMusicPreset", true), fn_710000d228(), 0x21, -1, -1);
-    field10->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(CStrId, "sSubareaID", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(bool, "bAllSubareaItems", 0x18, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bScenarioCollider", 0x19, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bLightGroup", 0x1a, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bSoundGroup", 0x1b, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bSceneGroup", 0x1c, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bLogicEntityGroup", 0x1d, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bBreakableTileGroupGroup", 0x1e, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bEnvironmentPreset", 0x1f, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bEnvironmentSoundPreset", 0x20, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bEnvironmentMusicPreset", 0x21, (DefaultValue, false));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

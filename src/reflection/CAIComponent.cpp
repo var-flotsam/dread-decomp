@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -22,15 +23,10 @@ using base::reflection::DestroyDestructorFirst;
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_7101115758();
 void fn_71011155bc(UnkReflFunction* fn);
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 void fn_71010f7d90(UnkReflFunction* fn, const char* name);
 void fn_71010f7f0c(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
 extern base::reflection::CType g_unk_717269bb48;
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 extern base::reflection::CType g_unk_7172a05bc8;
 extern base::reflection::CType g_unk_71727bb8e8;
@@ -56,12 +52,8 @@ void refl_AddFields(CClass* cls) {
         fn_71010f7f0c(fn, "AddBlackboardParam");
         fn->Attrs()->Add<const char*>(fn_7100007e80(), "Add Blackboard Param");
     }
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sForcedAttack", true), fn_7100009658(), 0x1780, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "");
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Forced attack");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("iForcedAttackPreset", true), fn_7100014768(), 0x1788, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), 0);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Forced attack preset");
+    DREAD_REFLECTED_FIELD(CStrId, "sForcedAttack", 0x1780, (DefaultValue, ""), (Description, "Forced attack"));
+    DREAD_REFLECTED_FIELD(s32, "iForcedAttackPreset", 0x1788, (DefaultValue, 0), (Description, "Forced attack preset"));
     UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeSinceTargetLastSeen", true), fn_710000abbc(), 0x14fc, -1, -1);
     field2->attrs.Add<f32>(fn_7100075240(), 100000000.0f);
     field2->attrs.Add<const char*>(fn_7100007e80(), "Time since target was seen for the last time");
@@ -75,25 +67,16 @@ void refl_AddFields(CClass* cls) {
     field4->attrs.Add<f32>(fn_7100075240(), -1.0f);
     field4->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     field4->attrs.Add<bool>(fn_7100090a20(), false);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fPathLeftCut", true), fn_710000abbc(), 0x13c0, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Desired left cut distance for this ground enemy's (patrol) path");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fPathRightCut", true), fn_710000abbc(), 0x13c4, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field6->attrs.Add<const char*>(fn_7100007e80(), "Desired right cut distance for this ground enemy's (patrol) path");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fCutDistanceClockwise", true), fn_710000abbc(), 0x13c8, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field7->attrs.Add<const char*>(fn_7100007e80(), "Desired navigable path cut distance [0,inf) for this ground enemy's only clockwise limit");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fCutDistanceCounterClockwise", true), fn_710000abbc(), 0x13cc, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field8->attrs.Add<const char*>(fn_7100007e80(), "Desired navigable path cut distance [0,inf) for this ground enemy's only counter clockwise limit");
+    DREAD_REFLECTED_FIELD(f32, "fPathLeftCut", 0x13c0, (DefaultValue, 0.0f), (Description, "Desired left cut distance for this ground enemy's (patrol) path"));
+    DREAD_REFLECTED_FIELD(f32, "fPathRightCut", 0x13c4, (DefaultValue, 0.0f), (Description, "Desired right cut distance for this ground enemy's (patrol) path"));
+    DREAD_REFLECTED_FIELD(f32, "fCutDistanceClockwise", 0x13c8, (DefaultValue, -1.0f), (Description, "Desired navigable path cut distance [0,inf) for this ground enemy's only clockwise limit"));
+    DREAD_REFLECTED_FIELD(f32, "fCutDistanceCounterClockwise", 0x13cc, (DefaultValue, -1.0f), (Description, "Desired navigable path cut distance [0,inf) for this ground enemy's only counter clockwise limit"));
     UnkReflField* field9 = fn_7100096524(cls, CStrId("wpPathToFollow", true), &g_unk_717269bb48, 0x1350, -1, -1);
     field9->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
     UnkReflField* field10 = fn_7100096524(cls, CStrId("tFallbackPaths", true), &g_unk_7172a05bc8, 0x1390, -1, -1);
     UnkReflField* field11 = fn_7100096524(cls, CStrId("ePathType", true), &g_unk_71727bb8e8, 0x13b8, -1, -1);
     field11->attrs.Add<s32>(fn_7100075240(), &g_unk_71727bb8e8, 2);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("bIndividualRequiresActivationPerception", true), fn_710000d228(), 0x121c, -1, -1);
-    field12->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(bool, "bIndividualRequiresActivationPerception", 0x121c, (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bIgnoreAttack_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bIgnoreAttack_GetterFunction", true);
         fn->return_type = fn_710000d228();

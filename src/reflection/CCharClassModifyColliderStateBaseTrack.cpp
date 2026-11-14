@@ -21,8 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassModifyColliderStateBaseTrack
 void fn_7100d206e4();
 void fn_7100d1dcc4(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 void fn_7100d207f4();
 void fn_7100d1de40(UnkReflFunction* fn, const char* name);
 void fn_7100d2089c();

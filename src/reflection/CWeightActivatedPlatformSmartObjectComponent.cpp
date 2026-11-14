@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,23 +20,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CWeightActivatedPlatformSmartObjectComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100a0d274();
 void fn_7100a0d2a8();
 namespace CWeightActivatedPlatformSmartObjectComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sDustFX", true), fn_7100009658(), 0x178, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "dust");
-    field0->attrs.Add<const char*>(fn_7100007e80(), "fx id");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bDisableWhenEmmyNearby", true), fn_710000d228(), 0x558, -1, -1);
-    field1->attrs.Add<bool>(fn_7100075240(), false);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Should disable (or prevent usability) when Emmy is nearby?");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bDisableWhenUsed", true), fn_710000d228(), 0x559, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Should disable once is used?");
+    DREAD_REFLECTED_FIELD(CStrId, "sDustFX", 0x178, (DefaultValue, "dust"), (Description, "fx id"));
+    DREAD_REFLECTED_FIELD(bool, "bDisableWhenEmmyNearby", 0x558, (DefaultValue, false), (Description, "Should disable (or prevent usability) when Emmy is nearby?"));
+    DREAD_REFLECTED_FIELD(bool, "bDisableWhenUsed", 0x559, (DefaultValue, false), (Description, "Should disable once is used?"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetStateAfterCutScene", true))) {
         fn->name = base::global::UnkStrId("SetStateAfterCutScene", true);
         fn->return_type = &g_unk_7101d5af48;

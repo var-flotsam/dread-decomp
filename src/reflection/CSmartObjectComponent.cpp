@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 // CSmartObjectComponent
 void fn_7100a04d10();
 void fn_7100a01964(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 void fn_7100a04e10();
 void fn_7100a01ae0(UnkReflFunction* fn, const char* name);
 void fn_7100a04f10();
@@ -34,10 +34,8 @@ void fn_7100a051b8();
 void fn_7100a020d0(UnkReflFunction* fn, const char* name);
 void fn_7100a05260();
 void fn_7100a0224c(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 void fn_7100a023c8(UnkReflFunction* fn, const char* name);
 void fn_7100a02540(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_71000904d0();
 void fn_7100a025f4(UnkReflFunction* fn, const char* name);
 void fn_7100a026a8(UnkReflFunction* fn, const char* name);
 void fn_7100a0275c(UnkReflFunction* fn, const char* name);
@@ -122,9 +120,7 @@ void refl_AddFields(CClass* cls) {
         fn_7100a0224c(fn, "_m_bStartEnabled_SetterFunction");
     UnkReflField* field6 = fn_7100096524(cls, CStrId("bStartEnabled", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field6->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fInterpolationTime", true), fn_710000abbc(), 0x40, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field7->attrs.Add<const char*>(fn_7100007e80(), "Interpolation time");
+    DREAD_REFLECTED_FIELD(f32, "fInterpolationTime", 0x40, (DefaultValue, 1.0f), (Description, "Interpolation time"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OnLevelChangeUse", true)))
         fn_7100a023c8(fn, "OnLevelChangeUse");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetUseState", true))) {

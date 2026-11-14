@@ -20,7 +20,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCapsuleUsableComponent
 extern base::reflection::CType g_unk_71727b6270;
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 namespace CCapsuleUsableComponent {
 void refl_AddAttributes(CClass*) {}

@@ -20,9 +20,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CLogicPathComponent
 const base::reflection::CClass* fn_7101055ef0();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100234780();
-const base::reflection::UnkReflAttrKey& fn_710008ff80();
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100912888();
 namespace CLogicPathComponent {

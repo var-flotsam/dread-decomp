@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CThermalDeviceComponent
 extern base::reflection::CType g_unk_7172751fe8;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_7172752160;
 void fn_7100a94804();
 void fn_7100a90798(UnkReflFunction* fn, const char* name);
@@ -30,16 +30,11 @@ namespace CThermalDeviceComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("vThermalDoors", true), &g_unk_7172751fe8, 0x548, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sOnEnterUseLuaCallback", true), fn_7100009658(), 0x570, -1, -1);
-    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sOnSetupInitialStateLuaCallback", true), fn_7100009658(), 0x578, -1, -1);
-    field2->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sOnSetupUseStateLuaCallback", true), fn_7100009658(), 0x580, -1, -1);
-    field3->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sUseEndActionOverride", true), fn_7100009658(), 0x590, -1, -1);
-    field4->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("bCheckpointBeforeUsage", true), fn_710000d228(), 0x59c, -1, -1);
-    field5->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(CStrId, "sOnEnterUseLuaCallback", 0x570, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnSetupInitialStateLuaCallback", 0x578, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnSetupUseStateLuaCallback", 0x580, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseEndActionOverride", 0x590, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(bool, "bCheckpointBeforeUsage", 0x59c, (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_ePipeGroup1_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_ePipeGroup1_GetterFunction", true);
         fn->return_type = &g_unk_7172752160;

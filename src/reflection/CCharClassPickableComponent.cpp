@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,24 +20,16 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassPickableComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassPickableComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sOnPickFX", true), fn_710000ad9c(), 0x58, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sOnPickCaption", true), fn_7100009658(), 0x60, -1, -1);
-    field1->attrs.Add<const char*>(fn_7100075240(), "");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sOnPickEnergyFragment1Caption", true), fn_7100009658(), 0x68, -1, -1);
-    field2->attrs.Add<const char*>(fn_7100075240(), "");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sOnPickEnergyFragment2Caption", true), fn_7100009658(), 0x70, -1, -1);
-    field3->attrs.Add<const char*>(fn_7100075240(), "");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sOnPickEnergyFragment3Caption", true), fn_7100009658(), 0x78, -1, -1);
-    field4->attrs.Add<const char*>(fn_7100075240(), "");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("sOnPickEnergyFragmentCompleteCaption", true), fn_7100009658(), 0x80, -1, -1);
-    field5->attrs.Add<const char*>(fn_7100075240(), "");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("sOnPickTankUnknownCaption", true), fn_7100009658(), 0x88, -1, -1);
-    field6->attrs.Add<const char*>(fn_7100075240(), "");
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sOnPickFX", 0x58, (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnPickCaption", 0x60, (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnPickEnergyFragment1Caption", 0x68, (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnPickEnergyFragment2Caption", 0x70, (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnPickEnergyFragment3Caption", 0x78, (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnPickEnergyFragmentCompleteCaption", 0x80, (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnPickTankUnknownCaption", 0x88, (DefaultValue, ""));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

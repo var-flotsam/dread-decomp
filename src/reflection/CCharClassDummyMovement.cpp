@@ -21,8 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassDummyMovement
 void fn_710078ef60();
 void fn_710078ed14(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CCharClassDummyMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -22,17 +23,12 @@ using base::reflection::DestroyDestructorFirst;
 
 // CLightsDef
 extern base::reflection::CType g_unk_71727bac20;
-const base::reflection::UnkReflAttrKey& fn_710008fd60();
-const base::reflection::UnkReflAttrKey& fn_710008fb40();
 void fn_7100d9d680(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_710008f920();
-const base::reflection::UnkReflAttrKey& fn_71000903c0();
 void fn_7100d9d800(UnkReflFunction* fn, const char* name);
 namespace CLightsDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPath", true), fn_710000ad9c(), 0x58, -1, -1);
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sPath", 0x58);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("vLights", true), &g_unk_71727bac20, 0x60, -1, -1);
     field1->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateElement", true));
     field1->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeleteElement", true));

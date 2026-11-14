@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,20 +20,14 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassFireActionBaseTrack
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassFireActionBaseTrack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bWantsRecoil", true), fn_710000d228(), 0x58, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sActionForward", true), fn_7100009658(), 0x38, -1, -1);
-    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sActionForwardShort", true), fn_7100009658(), 0x40, -1, -1);
-    field2->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sActionBackward", true), fn_7100009658(), 0x48, -1, -1);
-    field3->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sActionBackwardShort", true), fn_7100009658(), 0x50, -1, -1);
-    field4->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_FIELD(bool, "bWantsRecoil", 0x58, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(CStrId, "sActionForward", 0x38, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sActionForwardShort", 0x40, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sActionBackward", 0x48, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sActionBackwardShort", 0x50, (DefaultValue, CStrId(g_unk_7101d470e0)));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

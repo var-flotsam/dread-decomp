@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -22,10 +23,7 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCameraComponent
 void fn_71010e70d0();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
 void fn_71010e711c();
 void fn_71010e0ce0(UnkReflFunction* fn, const char* name);
@@ -33,19 +31,16 @@ void fn_71010e7218();
 void fn_71010e0e5c(UnkReflFunction* fn, const char* name);
 void fn_71010e7314();
 void fn_71010e0fd8(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 void fn_71010e73a4();
 void fn_71010e1154(UnkReflFunction* fn, const char* name);
 void fn_71010e7434();
 void fn_71010e12d0(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
 void fn_71010e74c4();
 void fn_71010e144c(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_71010e7828();
 void fn_71010e7554(UnkReflFunction* fn);
 void fn_71010e15c8(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_71000904d0();
 void fn_71010e167c(UnkReflFunction* fn, const char* name);
 namespace CCameraComponent {
 void refl_AddAttributes(CClass*) {}
@@ -150,7 +145,7 @@ void refl_AddFields(CClass* cls) {
         fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
         fn->Attrs()->Add<bool>(fn_71000904d0(), true);
     }
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("bIgnoreSlomo", true), fn_710000d228(), 0xc20, -1, -1);
+    DREAD_REFLECTED_FIELD(bool, "bIgnoreSlomo", 0xc20);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("GetCtrl", true)))
         fn_71010e167c(fn, "GetCtrl");
 }

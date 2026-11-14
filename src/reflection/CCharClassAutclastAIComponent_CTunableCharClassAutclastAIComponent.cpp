@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,16 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassAutclastAIComponent::CTunableCharClassAutclastAIComponent
 extern bool g_unk_71726bd328;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100093280();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_71000916e0();
-const base::reflection::UnkReflAttrKey& fn_71000917f0();
-const base::reflection::UnkReflAttrKey& fn_7100324d10();
-const base::reflection::UnkReflAttrKey& fn_71003ba540();
-const base::reflection::UnkReflAttrKey& fn_7100091080();
-const base::reflection::UnkReflAttrKey& fn_7100091190();
-const base::reflection::UnkReflAttrKey& fn_7100324af0();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726bd2c8;
 void fn_71003b9d4c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -41,60 +32,21 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726bd328 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("iMaxExplosions", true), fn_7100014768(), 0x24, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), 10);
-    field0->attrs.Add<bool>(fn_7100093280(), true);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Max explosions");
-    field0->attrs.Add<s32>(fn_71000916e0(), 0);
-    field0->attrs.Add<s32>(fn_71000917f0(), 100);
-    field0->attrs.Add<s32>(fn_7100324d10(), 1);
-    field0->attrs.Add<const char*>(fn_71003ba540(), "RegularEnemies|Autclast");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeBetweenExplosions", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.15f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fExplosionWidth", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    field2->attrs.Add<bool>(fn_7100093280(), true);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Explosion width");
-    field2->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field2->attrs.Add<f32>(fn_7100091190(), 1000.0f);
-    field2->attrs.Add<f32>(fn_7100324af0(), 100.0f);
-    field2->attrs.Add<const char*>(fn_71003ba540(), "RegularEnemies|Autclast");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMaxExplosionHeightOnGround", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 500.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fMaxExplosionHeightOnWall", true), fn_710000abbc(), 0x34, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 500.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fMaxExplosionHeightOnCeilling", true), fn_710000abbc(), 0x38, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 500.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fExplosionHeightStartAttackOffset", true), fn_710000abbc(), 0x40, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 100.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fMinExplosionHeight", true), fn_710000abbc(), 0x3c, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 200.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fAttackRecoveryTime", true), fn_710000abbc(), 0x4c, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fExplosionDamage", true), fn_710000abbc(), 0x44, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 25.0f);
-    field9->attrs.Add<bool>(fn_7100093280(), true);
-    field9->attrs.Add<const char*>(fn_7100007e80(), "Explosion damage");
-    field9->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field9->attrs.Add<f32>(fn_7100091190(), 100.0f);
-    field9->attrs.Add<f32>(fn_7100324af0(), 5.0f);
-    field9->attrs.Add<const char*>(fn_71003ba540(), "RegularEnemies|Autclast");
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fExplosionDuration", true), fn_710000abbc(), 0x48, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 0.25f);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fMaxDistToAttack", true), fn_710000abbc(), 0x50, -1, -1);
-    field11->attrs.Add<f32>(fn_7100075240(), 500.0f);
-    field11->attrs.Add<bool>(fn_7100093280(), true);
-    field11->attrs.Add<const char*>(fn_7100007e80(), "Max dist to target to start attack");
-    field11->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field11->attrs.Add<f32>(fn_7100091190(), 10000.0f);
-    field11->attrs.Add<f32>(fn_7100324af0(), 100.0f);
-    field11->attrs.Add<const char*>(fn_71003ba540(), "RegularEnemies|Autclast");
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fMaxPropagationHeight", true), fn_710000abbc(), 0x54, -1, -1);
-    field12->attrs.Add<f32>(fn_7100075240(), 210.0f);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("fMinDistToSlope", true), fn_710000abbc(), 0x58, -1, -1);
-    field13->attrs.Add<f32>(fn_7100075240(), 150.0f);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("fBaseRotationEffectFactor", true), fn_710000abbc(), 0x5c, -1, -1);
-    field14->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    DREAD_REFLECTED_FIELD(s32, "iMaxExplosions", 0x24, (DefaultValue, 10), (ShowInDevConfig, true), (Description, "Max explosions"), (MinValueI, 0), (MaxValueI, 100), (ControlIntStep, 1), (InternalDevTag, "RegularEnemies|Autclast"));
+    DREAD_REFLECTED_FIELD(f32, "fTimeBetweenExplosions", 0x28, (DefaultValue, 0.15f));
+    DREAD_REFLECTED_FIELD(f32, "fExplosionWidth", 0x2c, (DefaultValue, 100.0f), (ShowInDevConfig, true), (Description, "Explosion width"), (MinValue, 0.0f), (MaxValue, 1000.0f), (ControlFloatStep, 100.0f), (InternalDevTag, "RegularEnemies|Autclast"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxExplosionHeightOnGround", 0x30, (DefaultValue, 500.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxExplosionHeightOnWall", 0x34, (DefaultValue, 500.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxExplosionHeightOnCeilling", 0x38, (DefaultValue, 500.0f));
+    DREAD_REFLECTED_FIELD(f32, "fExplosionHeightStartAttackOffset", 0x40, (DefaultValue, 100.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinExplosionHeight", 0x3c, (DefaultValue, 200.0f));
+    DREAD_REFLECTED_FIELD(f32, "fAttackRecoveryTime", 0x4c, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fExplosionDamage", 0x44, (DefaultValue, 25.0f), (ShowInDevConfig, true), (Description, "Explosion damage"), (MinValue, 0.0f), (MaxValue, 100.0f), (ControlFloatStep, 5.0f), (InternalDevTag, "RegularEnemies|Autclast"));
+    DREAD_REFLECTED_FIELD(f32, "fExplosionDuration", 0x48, (DefaultValue, 0.25f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxDistToAttack", 0x50, (DefaultValue, 500.0f), (ShowInDevConfig, true), (Description, "Max dist to target to start attack"), (MinValue, 0.0f), (MaxValue, 10000.0f), (ControlFloatStep, 100.0f), (InternalDevTag, "RegularEnemies|Autclast"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxPropagationHeight", 0x54, (DefaultValue, 210.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinDistToSlope", 0x58, (DefaultValue, 150.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBaseRotationEffectFactor", 0x5c, (DefaultValue, 1.0f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

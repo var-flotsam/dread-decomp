@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,24 +20,16 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassChozoCommanderKiStrikeAttack
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassChozoCommanderKiStrikeAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fNoReactionTimeCharging", true), fn_710000abbc(), 0xfc, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.4f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMinTimeCharging", true), fn_710000abbc(), 0x100, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMaxTimeCharging", true), fn_710000abbc(), 0x104, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fSlomo", true), fn_710000abbc(), 0x108, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.01f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fSlomotime", true), fn_710000abbc(), 0x10c, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.7f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("sSlomoFunction", true), fn_7100007f84(), 0x110, -1, -1);
-    field5->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString("22si"));
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fDistanceToEndCharge", true), fn_710000abbc(), 0x140, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 250.0f);
+    DREAD_REFLECTED_FIELD(f32, "fNoReactionTimeCharging", 0xfc, (DefaultValue, 0.4f));
+    DREAD_REFLECTED_FIELD(f32, "fMinTimeCharging", 0x100, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxTimeCharging", 0x104, (DefaultValue, 2.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSlomo", 0x108, (DefaultValue, 0.01f));
+    DREAD_REFLECTED_FIELD(f32, "fSlomotime", 0x10c, (DefaultValue, 0.7f));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sSlomoFunction", 0x110, (DefaultValue, base::global::CRntString("22si")));
+    DREAD_REFLECTED_FIELD(f32, "fDistanceToEndCharge", 0x140, (DefaultValue, 250.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

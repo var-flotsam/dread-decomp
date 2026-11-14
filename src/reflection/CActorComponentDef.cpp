@@ -19,11 +19,8 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CActorComponentDef
-const base::reflection::UnkReflAttrKey& fn_7100005070();
 void fn_7100254640();
 void fn_71002530c0(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 void fn_71002546d0();
 void fn_710025323c(UnkReflFunction* fn, const char* name);
 void fn_7100254728();

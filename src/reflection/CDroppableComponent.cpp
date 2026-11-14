@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,14 +20,10 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CDroppableComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CDroppableComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMaxTimeAlive", true), fn_710000abbc(), 0x40, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 10.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Max time alive");
+    DREAD_REFLECTED_FIELD(f32, "fMaxTimeAlive", 0x40, (DefaultValue, 10.0f), (Description, "Max time alive"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -60,12 +57,8 @@ void refl_AddFields(CClass* cls) {
     g_unk_717271ab40 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fSpawnSpeedFactor", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Speed factor related with the distance");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxSpawnVelocity", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 300.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Max velocity in the dispersion");
+    DREAD_REFLECTED_FIELD(f32, "fSpawnSpeedFactor", 0x24, (DefaultValue, 2.0f), (Description, "Speed factor related with the distance"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxSpawnVelocity", 0x28, (DefaultValue, 300.0f), (Description, "Max velocity in the dispersion"));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

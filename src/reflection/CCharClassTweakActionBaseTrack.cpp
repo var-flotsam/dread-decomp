@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,9 +20,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassTweakActionBaseTrack
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100090e60();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 void fn_7100d2c7f0();
 void fn_7100d2c1e8(UnkReflFunction* fn, const char* name);
 void fn_7100d2c880();
@@ -33,8 +31,7 @@ void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100090e60(), "Tweak");
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sAction", true), fn_7100009658(), 0x18, -1, -1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_FIELD(CStrId, "sAction", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bMaintainFrame_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bMaintainFrame_GetterFunction", true);
         fn->return_type = fn_710000d228();
@@ -57,10 +54,8 @@ void refl_AddFields(CClass* cls) {
         fn_7100d2c364(fn, "_bMaintainFrameUsePercentage_SetterFunction");
     UnkReflField* field2 = fn_7100096524(cls, CStrId("bMaintainFrameUsePercentage", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field2->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fToFrame", true), fn_710000abbc(), 0x28, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fBlendTime", true), fn_710000abbc(), 0x2c, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    DREAD_REFLECTED_FIELD(f32, "fToFrame", 0x28, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBlendTime", 0x2c, (DefaultValue, -1.0f));
     UnkReflField* field5 = fn_7100096524(cls, CStrId("oAditionalActionInsertFlags", true), &g_unk_71727695f8, 0x30, -1, -1);
     field5->attrs.Add<s32>(fn_7100075240(), &g_unk_71727695f8, 0);
 }

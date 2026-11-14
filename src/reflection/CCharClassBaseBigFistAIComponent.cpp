@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,17 +20,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassBaseBigFistAIComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CCharClassBaseBigFistAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMaxHeightAttackBehindDist", true), fn_710000abbc(), 0x524, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Distance behind the enemy for which it stretchs to reach max height before describing the attack arc");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxHeightAttackFrontalDist", true), fn_710000abbc(), 0x528, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Distance in front of the enemy for which it stretchs to reach max height before describing the attack arc");
+    DREAD_REFLECTED_FIELD(f32, "fMaxHeightAttackBehindDist", 0x524, (DefaultValue, 0.0f), (Description, "Distance behind the enemy for which it stretchs to reach max height before describing the attack arc"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxHeightAttackFrontalDist", 0x528, (DefaultValue, 0.0f), (Description, "Distance in front of the enemy for which it stretchs to reach max height before describing the attack arc"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

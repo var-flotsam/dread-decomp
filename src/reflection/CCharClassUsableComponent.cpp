@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,105 +20,41 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassUsableComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CCharClassUsableComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fGrabInterpTime", true), fn_710000abbc(), 0x198, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 5.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Grab interpolation time");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fUseTime", true), fn_710000abbc(), 0x19c, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Interaction time");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sUseQuestionID", true), fn_7100007f84(), 0x58, -1, -1);
-    field2->attrs.Add<const char*>(fn_7100075240(), "");
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Use question ID");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sCanNotUseID", true), fn_7100007f84(), 0x88, -1, -1);
-    field3->attrs.Add<const char*>(fn_7100075240(), "");
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Can not use ID");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sUseSuccessMessage", true), fn_7100007f84(), 0xb8, -1, -1);
-    field4->attrs.Add<const char*>(fn_7100075240(), "");
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Use Success Message");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("sUsePrepareLeftAction", true), fn_7100009658(), 0xe8, -1, -1);
-    field5->attrs.Add<const char*>(fn_7100075240(), "leftuseinit");
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Left prepare use animation");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("sUsePrepareRightAction", true), fn_7100009658(), 0xf0, -1, -1);
-    field6->attrs.Add<const char*>(fn_7100075240(), "rightuseinit");
-    field6->attrs.Add<const char*>(fn_7100007e80(), "Right prepare use animation");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("sUseInitAction", true), fn_7100009658(), 0x100, -1, -1);
-    field7->attrs.Add<const char*>(fn_7100075240(), "");
-    field7->attrs.Add<const char*>(fn_7100007e80(), "Begin interaction animation");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("sUseAction", true), fn_7100009658(), 0x110, -1, -1);
-    field8->attrs.Add<const char*>(fn_7100075240(), "");
-    field8->attrs.Add<const char*>(fn_7100007e80(), "Interaction use animation");
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("sUseLevelChangeAction", true), fn_7100009658(), 0x120, -1, -1);
-    field9->attrs.Add<const char*>(fn_7100075240(), "");
-    field9->attrs.Add<const char*>(fn_7100007e80(), "Interaction level change use animation");
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("sUseEndAction", true), fn_7100009658(), 0x130, -1, -1);
-    field10->attrs.Add<const char*>(fn_7100075240(), "");
-    field10->attrs.Add<const char*>(fn_7100007e80(), "End interaction animation");
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("sUseIdleAction", true), fn_7100009658(), 0x140, -1, -1);
-    field11->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString(base::reflection::refl_RntStringOf(base::reflection::refl_GetStrIdTable<0x7100031894>().ids[1181])));
-    field11->attrs.Add<const char*>(fn_7100007e80(), "Idle animation");
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("sUsablePrepareToUseAction", true), fn_7100009658(), 0xf8, -1, -1);
-    field12->attrs.Add<const char*>(fn_7100075240(), "");
-    field12->attrs.Add<const char*>(fn_7100007e80(), "Usable Prepare To Use animation");
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("sUsableInitAction", true), fn_7100009658(), 0x108, -1, -1);
-    field13->attrs.Add<const char*>(fn_7100075240(), "");
-    field13->attrs.Add<const char*>(fn_7100007e80(), "Begin usable animation");
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("sUsableAction", true), fn_7100009658(), 0x118, -1, -1);
-    field14->attrs.Add<const char*>(fn_7100075240(), "");
-    field14->attrs.Add<const char*>(fn_7100007e80(), "Usable animation");
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("sUsableLevelChangeAction", true), fn_7100009658(), 0x128, -1, -1);
-    field15->attrs.Add<const char*>(fn_7100075240(), "");
-    field15->attrs.Add<const char*>(fn_7100007e80(), "Usable level change animation");
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("sUsableEndAction", true), fn_7100009658(), 0x138, -1, -1);
-    field16->attrs.Add<const char*>(fn_7100075240(), "");
-    field16->attrs.Add<const char*>(fn_7100007e80(), "End usable animation");
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("sUsableIdleAction", true), fn_7100009658(), 0x148, -1, -1);
-    field17->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString(base::reflection::refl_RntStringOf(base::reflection::refl_GetStrIdTable<0x7100031894>().ids[1181])));
-    field17->attrs.Add<const char*>(fn_7100007e80(), "Idle animation");
-    UnkReflField* field18 = fn_7100096524(cls, CStrId("sUseDiscoverRightAction", true), fn_7100009658(), 0x158, -1, -1);
-    field18->attrs.Add<const char*>(fn_7100075240(), "");
-    field18->attrs.Add<const char*>(fn_7100007e80(), "Discover right animation");
-    UnkReflField* field19 = fn_7100096524(cls, CStrId("sUseDiscoverLeftAction", true), fn_7100009658(), 0x160, -1, -1);
-    field19->attrs.Add<const char*>(fn_7100075240(), "");
-    field19->attrs.Add<const char*>(fn_7100007e80(), "Discover left animation");
-    UnkReflField* field20 = fn_7100096524(cls, CStrId("sUsableDiscoverAction", true), fn_7100009658(), 0x168, -1, -1);
-    field20->attrs.Add<const char*>(fn_7100075240(), "");
-    field20->attrs.Add<const char*>(fn_7100007e80(), "Discover usable animation");
-    UnkReflField* field21 = fn_7100096524(cls, CStrId("sUsableUndiscoverAction", true), fn_7100009658(), 0x150, -1, -1);
-    field21->attrs.Add<const char*>(fn_7100075240(), "");
-    field21->attrs.Add<const char*>(fn_7100007e80(), "UnDiscover usable animation");
-    UnkReflField* field22 = fn_7100096524(cls, CStrId("sUsePrepareLeftAfterDiscoverAction", true), fn_7100009658(), 0x170, -1, -1);
-    field22->attrs.Add<const char*>(fn_7100075240(), "");
-    field22->attrs.Add<const char*>(fn_7100007e80(), "Left prepare use animation after discover");
-    UnkReflField* field23 = fn_7100096524(cls, CStrId("sUsePrepareRightAfterDiscoverAction", true), fn_7100009658(), 0x178, -1, -1);
-    field23->attrs.Add<const char*>(fn_7100075240(), "");
-    field23->attrs.Add<const char*>(fn_7100007e80(), "Right prepare use animation after discover");
-    UnkReflField* field24 = fn_7100096524(cls, CStrId("sUseReadyToSaveBackgroundAction", true), fn_7100009658(), 0x180, -1, -1);
-    field24->attrs.Add<const char*>(fn_7100075240(), "");
-    field24->attrs.Add<const char*>(fn_7100007e80(), "Ready to save on background use animation after using station");
-    UnkReflField* field25 = fn_7100096524(cls, CStrId("fDiscoverInterpTime", true), fn_710000abbc(), 0x1a0, -1, -1);
-    field25->attrs.Add<f32>(fn_7100075240(), 0.666f);
-    field25->attrs.Add<const char*>(fn_7100007e80(), "Interaction time to reposition Samus when the Station has been discovered");
-    UnkReflField* field26 = fn_7100096524(cls, CStrId("fStationUseInterpTime", true), fn_710000abbc(), 0x1a4, -1, -1);
-    field26->attrs.Add<f32>(fn_7100075240(), 0.75f);
-    field26->attrs.Add<const char*>(fn_7100007e80(), "Interaction time to reposition Samus when the Station has already been used");
-    UnkReflField* field27 = fn_7100096524(cls, CStrId("fStationNotUsedInterpTime", true), fn_710000abbc(), 0x1a8, -1, -1);
-    field27->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field27->attrs.Add<const char*>(fn_7100007e80(), "Interaction time to reposition Samus when the Station has not been used");
-    UnkReflField* field28 = fn_7100096524(cls, CStrId("sStartLevelMusicID", true), fn_710000ad9c(), 0x190, -1, -1);
-    field28->attrs.Add<const char*>(fn_7100007e80(), "Start Level Music link");
-    UnkReflField* field29 = fn_7100096524(cls, CStrId("sSaveSoundID", true), fn_710000ad9c(), 0x188, -1, -1);
-    field29->attrs.Add<const char*>(fn_7100007e80(), "Save Sound link");
-    UnkReflField* field30 = fn_7100096524(cls, CStrId("fPostponeFadeInTime", true), fn_710000abbc(), 0x1ac, -1, -1);
-    field30->attrs.Add<f32>(fn_7100075240(), 0.01f);
-    field30->attrs.Add<const char*>(fn_7100007e80(), "Delay time to fade in");
-    UnkReflField* field31 = fn_7100096524(cls, CStrId("fFadeInTime", true), fn_710000abbc(), 0x1b0, -1, -1);
-    field31->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field31->attrs.Add<const char*>(fn_7100007e80(), "Fade in time");
+    DREAD_REFLECTED_FIELD(f32, "fGrabInterpTime", 0x198, (DefaultValue, 5.0f), (Description, "Grab interpolation time"));
+    DREAD_REFLECTED_FIELD(f32, "fUseTime", 0x19c, (DefaultValue, 0.0f), (Description, "Interaction time"));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sUseQuestionID", 0x58, (DefaultValue, ""), (Description, "Use question ID"));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sCanNotUseID", 0x88, (DefaultValue, ""), (Description, "Can not use ID"));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sUseSuccessMessage", 0xb8, (DefaultValue, ""), (Description, "Use Success Message"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsePrepareLeftAction", 0xe8, (DefaultValue, "leftuseinit"), (Description, "Left prepare use animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsePrepareRightAction", 0xf0, (DefaultValue, "rightuseinit"), (Description, "Right prepare use animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseInitAction", 0x100, (DefaultValue, ""), (Description, "Begin interaction animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseAction", 0x110, (DefaultValue, ""), (Description, "Interaction use animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseLevelChangeAction", 0x120, (DefaultValue, ""), (Description, "Interaction level change use animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseEndAction", 0x130, (DefaultValue, ""), (Description, "End interaction animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseIdleAction", 0x140, (DefaultValue, base::global::CRntString(base::reflection::refl_RntStringOf(base::reflection::refl_GetStrIdTable<0x7100031894>().ids[1181]))), (Description, "Idle animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsablePrepareToUseAction", 0xf8, (DefaultValue, ""), (Description, "Usable Prepare To Use animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableInitAction", 0x108, (DefaultValue, ""), (Description, "Begin usable animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableAction", 0x118, (DefaultValue, ""), (Description, "Usable animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableLevelChangeAction", 0x128, (DefaultValue, ""), (Description, "Usable level change animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableEndAction", 0x138, (DefaultValue, ""), (Description, "End usable animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableIdleAction", 0x148, (DefaultValue, base::global::CRntString(base::reflection::refl_RntStringOf(base::reflection::refl_GetStrIdTable<0x7100031894>().ids[1181]))), (Description, "Idle animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseDiscoverRightAction", 0x158, (DefaultValue, ""), (Description, "Discover right animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseDiscoverLeftAction", 0x160, (DefaultValue, ""), (Description, "Discover left animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableDiscoverAction", 0x168, (DefaultValue, ""), (Description, "Discover usable animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableUndiscoverAction", 0x150, (DefaultValue, ""), (Description, "UnDiscover usable animation"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsePrepareLeftAfterDiscoverAction", 0x170, (DefaultValue, ""), (Description, "Left prepare use animation after discover"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsePrepareRightAfterDiscoverAction", 0x178, (DefaultValue, ""), (Description, "Right prepare use animation after discover"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseReadyToSaveBackgroundAction", 0x180, (DefaultValue, ""), (Description, "Ready to save on background use animation after using station"));
+    DREAD_REFLECTED_FIELD(f32, "fDiscoverInterpTime", 0x1a0, (DefaultValue, 0.666f), (Description, "Interaction time to reposition Samus when the Station has been discovered"));
+    DREAD_REFLECTED_FIELD(f32, "fStationUseInterpTime", 0x1a4, (DefaultValue, 0.75f), (Description, "Interaction time to reposition Samus when the Station has already been used"));
+    DREAD_REFLECTED_FIELD(f32, "fStationNotUsedInterpTime", 0x1a8, (DefaultValue, 1.0f), (Description, "Interaction time to reposition Samus when the Station has not been used"));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sStartLevelMusicID", 0x190, (Description, "Start Level Music link"));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sSaveSoundID", 0x188, (Description, "Save Sound link"));
+    DREAD_REFLECTED_FIELD(f32, "fPostponeFadeInTime", 0x1ac, (DefaultValue, 0.01f), (Description, "Delay time to fade in"));
+    DREAD_REFLECTED_FIELD(f32, "fFadeInTime", 0x1b0, (DefaultValue, 1.0f), (Description, "Fade in time"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

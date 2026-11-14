@@ -21,7 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 // querysystem::CDistanceToTargetEvaluator
 void fn_71002bcf74();
 void fn_71002bc774(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 void fn_71002bd004();
 void fn_71002bc8f0(UnkReflFunction* fn, const char* name);
 namespace querysystem::CDistanceToTargetEvaluator {

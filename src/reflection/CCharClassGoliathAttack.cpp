@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,12 +20,10 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassGoliathAttack
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassGoliathAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fPostAttackLoopDuration", true), fn_710000abbc(), 0xec, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.8f);
+    DREAD_REFLECTED_FIELD(f32, "fPostAttackLoopDuration", 0xec, (DefaultValue, 0.8f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -44,7 +43,6 @@ DREAD_REFLECTED_CLASS(CCharClassGoliathAttack, CCharClassAttack);
 
 // CCharClassGoliathAttack::CTunableCharClassGoliathAttack
 extern bool g_unk_71726e5eb8;
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726e5e70;
 void fn_710058d6a8(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -56,24 +54,14 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726e5eb8 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMinAttackDistance", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxAttackDistance", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 540.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Desired max distance to start attack");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMaxAttackDistanceWShockwave", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 900.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Desired max distance to start attack when shockwave is preferred");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fFrontSpaceToForbidAttack", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fShockWaveLength", true), fn_710000abbc(), 0x34, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 900.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fShockWaveTimeGrowing", true), fn_710000abbc(), 0x38, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 0.4f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fShockWaveTimeAtMaxRadius", true), fn_710000abbc(), 0x3c, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 0.6f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fShockWaveAttackHeight", true), fn_710000abbc(), 0x40, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 110.0f);
+    DREAD_REFLECTED_FIELD(f32, "fMinAttackDistance", 0x24, (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxAttackDistance", 0x28, (DefaultValue, 540.0f), (Description, "Desired max distance to start attack"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxAttackDistanceWShockwave", 0x2c, (DefaultValue, 900.0f), (Description, "Desired max distance to start attack when shockwave is preferred"));
+    DREAD_REFLECTED_FIELD(f32, "fFrontSpaceToForbidAttack", 0x30, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fShockWaveLength", 0x34, (DefaultValue, 900.0f));
+    DREAD_REFLECTED_FIELD(f32, "fShockWaveTimeGrowing", 0x38, (DefaultValue, 0.4f));
+    DREAD_REFLECTED_FIELD(f32, "fShockWaveTimeAtMaxRadius", 0x3c, (DefaultValue, 0.6f));
+    DREAD_REFLECTED_FIELD(f32, "fShockWaveAttackHeight", 0x40, (DefaultValue, 110.0f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

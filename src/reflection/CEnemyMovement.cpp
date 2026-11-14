@@ -20,8 +20,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CEnemyMovement
 void fn_71010c786c(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_71000904d0();
 namespace CEnemyMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

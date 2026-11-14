@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,37 +20,24 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassDropComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 const base::reflection::CClass* fn_71007c6784();
 namespace CCharClassDropComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bDropOnDeath", true), fn_710000d228(), 0x58, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bDropItemOnDeath", true), fn_710000d228(), 0x59, -1, -1);
-    field1->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bDropItemOnDeathByMelee", true), fn_710000d228(), 0x5a, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bRestrictFloorSectors", true), fn_710000d228(), 0x5b, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("vDropOffset", true), fn_71000246e4(), 0x5c, -1, -1);
-    field4->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("bCanDropXParasite", true), fn_710000d228(), 0x68, -1, -1);
-    field5->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fXCellDropInitialSpeed", true), fn_710000abbc(), 0x6c, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fXCellDropEndSpeed", true), fn_710000abbc(), 0x70, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fXCellDropTime", true), fn_710000abbc(), 0x74, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 0.1f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fXCellDropRotationAngSpeed", true), fn_710000abbc(), 0x78, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("sXParasiteTypeMask", true), fn_7100009658(), 0x80, -1, -1);
-    field10->attrs.Add<CStrId>(fn_7100075240(), CStrId("ALL", true));
+    DREAD_REFLECTED_FIELD(bool, "bDropOnDeath", 0x58, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bDropItemOnDeath", 0x59, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bDropItemOnDeathByMelee", 0x5a, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bRestrictFloorSectors", 0x5b, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vDropOffset", 0x5c, (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}));
+    DREAD_REFLECTED_FIELD(bool, "bCanDropXParasite", 0x68, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(f32, "fXCellDropInitialSpeed", 0x6c, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fXCellDropEndSpeed", 0x70, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fXCellDropTime", 0x74, (DefaultValue, 0.1f));
+    DREAD_REFLECTED_FIELD(f32, "fXCellDropRotationAngSpeed", 0x78, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(CStrId, "sXParasiteTypeMask", 0x80, (DefaultValue, CStrId("ALL", true)));
     UnkReflField* field11 = fn_7100096524(cls, CStrId("oDropProbabilities", true), fn_71007c6784(), 0x88, -1, -1);
     UnkReflField* field12 = fn_7100096524(cls, CStrId("oMeleeChargeShotDropProbabilities", true), fn_71007c6784(), 0x118, -1, -1);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("bSkipUsefulItemsRule", true), fn_710000d228(), 0x1a8, -1, -1);
-    field13->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(bool, "bSkipUsefulItemsRule", 0x1a8, (DefaultValue, false));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,29 +20,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassActionSwitcherOnPullGrapplePointComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CCharClassActionSwitcherOnPullGrapplePointComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sGrappleCollider", true), fn_7100009658(), 0x78, -1, -1);
-    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Name of the Collider to use as a grapple point");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fGrappleMinAlignmentX", true), fn_710000abbc(), 0xa0, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.98f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Minimum grapple hit dot X-axis to allow grappling");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sActionOnGrappleAttach", true), fn_7100009658(), 0x80, -1, -1);
-    field2->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Action to play when grapple beam attaches");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sActionOnPullStart", true), fn_7100009658(), 0x88, -1, -1);
-    field3->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Action to play when player starts pulling");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sActionOnPullAbort", true), fn_7100009658(), 0x90, -1, -1);
-    field4->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Action to play when player stops pulling");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("sActionOnGrappleDetach", true), fn_7100009658(), 0x98, -1, -1);
-    field5->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Action to play when grapple beam detaches without performing the pull");
+    DREAD_REFLECTED_FIELD(CStrId, "sGrappleCollider", 0x78, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Name of the Collider to use as a grapple point"));
+    DREAD_REFLECTED_FIELD(f32, "fGrappleMinAlignmentX", 0xa0, (DefaultValue, 0.98f), (Description, "Minimum grapple hit dot X-axis to allow grappling"));
+    DREAD_REFLECTED_FIELD(CStrId, "sActionOnGrappleAttach", 0x80, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Action to play when grapple beam attaches"));
+    DREAD_REFLECTED_FIELD(CStrId, "sActionOnPullStart", 0x88, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Action to play when player starts pulling"));
+    DREAD_REFLECTED_FIELD(CStrId, "sActionOnPullAbort", 0x90, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Action to play when player stops pulling"));
+    DREAD_REFLECTED_FIELD(CStrId, "sActionOnGrappleDetach", 0x98, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Action to play when grapple beam detaches without performing the pull"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

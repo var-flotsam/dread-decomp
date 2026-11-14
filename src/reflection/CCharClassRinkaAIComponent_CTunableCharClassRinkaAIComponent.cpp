@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,15 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassRinkaAIComponent::CTunableCharClassRinkaAIComponent
 extern bool g_unk_71726fc750;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100093280();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100091080();
-const base::reflection::UnkReflAttrKey& fn_7100091190();
-const base::reflection::UnkReflAttrKey& fn_7100324af0();
-const base::reflection::UnkReflAttrKey& fn_71003ba540();
-const base::reflection::UnkReflAttrKey& fn_7100093170();
-const base::reflection::UnkReflAttrKey& fn_7100324c00();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726fc718;
 void fn_710065c5ac(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -40,52 +32,11 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726fc750 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fInitialScale", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.1f);
-    field0->attrs.Add<bool>(fn_7100093280(), true);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Rinka initial scale");
-    field0->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field0->attrs.Add<f32>(fn_7100091190(), 1.0f);
-    field0->attrs.Add<f32>(fn_7100324af0(), 0.05f);
-    field0->attrs.Add<const char*>(fn_71003ba540(), "MidBosses");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeToMaxScale", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.3f);
-    field1->attrs.Add<bool>(fn_7100093280(), true);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Rinka time to max scale");
-    field1->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field1->attrs.Add<f32>(fn_7100091190(), 10.0f);
-    field1->attrs.Add<f32>(fn_7100324af0(), 0.1f);
-    field1->attrs.Add<const char*>(fn_71003ba540(), "MidBosses");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fATypeMotionSpeed", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 400.0f);
-    field2->attrs.Add<bool>(fn_7100093170(), true);
-    field2->attrs.Add<bool>(fn_7100093280(), true);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Rinka Type A speed");
-    field2->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field2->attrs.Add<f32>(fn_7100091190(), 10000.0f);
-    field2->attrs.Add<f32>(fn_7100324af0(), 10.0f);
-    field2->attrs.Add<const char*>(fn_7100324c00(), "MidBosses");
-    field2->attrs.Add<const char*>(fn_71003ba540(), "MidBosses");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fBTypeMotionSpeed", true), fn_710000abbc(), 0x30, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 800.0f);
-    field3->attrs.Add<bool>(fn_7100093170(), true);
-    field3->attrs.Add<bool>(fn_7100093280(), true);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Rinka Type B speed");
-    field3->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field3->attrs.Add<f32>(fn_7100091190(), 10000.0f);
-    field3->attrs.Add<f32>(fn_7100324af0(), 10.0f);
-    field3->attrs.Add<const char*>(fn_7100324c00(), "MidBosses");
-    field3->attrs.Add<const char*>(fn_71003ba540(), "MidBosses");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fCTypeMotionSpeed", true), fn_710000abbc(), 0x34, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 400.0f);
-    field4->attrs.Add<bool>(fn_7100093170(), true);
-    field4->attrs.Add<bool>(fn_7100093280(), true);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Rinka Type C speed");
-    field4->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field4->attrs.Add<f32>(fn_7100091190(), 10000.0f);
-    field4->attrs.Add<f32>(fn_7100324af0(), 10.0f);
-    field4->attrs.Add<const char*>(fn_7100324c00(), "MidBosses");
-    field4->attrs.Add<const char*>(fn_71003ba540(), "MidBosses");
+    DREAD_REFLECTED_FIELD(f32, "fInitialScale", 0x24, (DefaultValue, 0.1f), (ShowInDevConfig, true), (Description, "Rinka initial scale"), (MinValue, 0.0f), (MaxValue, 1.0f), (ControlFloatStep, 0.05f), (InternalDevTag, "MidBosses"));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToMaxScale", 0x28, (DefaultValue, 0.3f), (ShowInDevConfig, true), (Description, "Rinka time to max scale"), (MinValue, 0.0f), (MaxValue, 10.0f), (ControlFloatStep, 0.1f), (InternalDevTag, "MidBosses"));
+    DREAD_REFLECTED_FIELD(f32, "fATypeMotionSpeed", 0x2c, (DefaultValue, 400.0f), (ShowInConfig, true), (ShowInDevConfig, true), (Description, "Rinka Type A speed"), (MinValue, 0.0f), (MaxValue, 10000.0f), (ControlFloatStep, 10.0f), (InternalTag, "MidBosses"), (InternalDevTag, "MidBosses"));
+    DREAD_REFLECTED_FIELD(f32, "fBTypeMotionSpeed", 0x30, (DefaultValue, 800.0f), (ShowInConfig, true), (ShowInDevConfig, true), (Description, "Rinka Type B speed"), (MinValue, 0.0f), (MaxValue, 10000.0f), (ControlFloatStep, 10.0f), (InternalTag, "MidBosses"), (InternalDevTag, "MidBosses"));
+    DREAD_REFLECTED_FIELD(f32, "fCTypeMotionSpeed", 0x34, (DefaultValue, 400.0f), (ShowInConfig, true), (ShowInDevConfig, true), (Description, "Rinka Type C speed"), (MinValue, 0.0f), (MaxValue, 10000.0f), (ControlFloatStep, 10.0f), (InternalTag, "MidBosses"), (InternalDevTag, "MidBosses"));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

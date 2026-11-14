@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,13 +21,11 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassQuetzoaXAIComponent
 const base::reflection::CClass* fn_710063ce30();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassQuetzoaXAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("oQuetzoaXMultiTargetAttackDef", true), fn_710063ce30(), 0x710, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fVulnerabilityTime", true), fn_710000abbc(), 0x808, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 5.0f);
+    DREAD_REFLECTED_FIELD(f32, "fVulnerabilityTime", 0x808, (DefaultValue, 5.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

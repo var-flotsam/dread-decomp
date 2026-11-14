@@ -19,7 +19,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // base::animation::CAnimationResource
-const base::reflection::UnkReflAttrKey& fn_7100005070();
 namespace base::animation::CAnimationResource {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x1000au);

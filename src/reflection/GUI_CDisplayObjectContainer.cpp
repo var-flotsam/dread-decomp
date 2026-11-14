@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,21 +22,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // GUI::CDisplayObjectContainer
-const base::reflection::UnkReflAttrKey& fn_7100005070();
 void fn_71011d8690(UnkReflFunction* fn, const char* name);
 void fn_71011d8808(UnkReflFunction* fn, const char* name);
 void fn_71011d8980(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_7172a0db28;
-const base::reflection::UnkReflAttrKey& fn_710008fd60();
-const base::reflection::UnkReflAttrKey& fn_710008fb40();
-const base::reflection::UnkReflAttrKey& fn_710008ff80();
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_71011dc5bc();
 void fn_71011d8af8(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_710008f920();
-const base::reflection::UnkReflAttrKey& fn_71000903c0();
 void fn_71011d8bac(UnkReflFunction* fn, const char* name);
 namespace GUI::CDisplayObjectContainer {
 void refl_AddAttributes(CClass* cls) {
@@ -48,8 +41,7 @@ void refl_AddFields(CClass* cls) {
         fn_71011d8808(fn, "FindChild");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("FindDescendant", true)))
         fn_71011d8980(fn, "FindDescendant");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sChildToFocus", true), fn_7100007f84(), 0x190, -1, -1);
-    field0->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString("ListComposition"));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sChildToFocus", 0x190, (DefaultValue, base::global::CRntString("ListComposition")));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("lstChildren", true), &g_unk_7172a0db28, 0x1c0, -1, -1);
     field1->attrs.Add<CStrId>(fn_710008fd60(), CStrId("AddDisplayObj", true));
     field1->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeleteDO", true));

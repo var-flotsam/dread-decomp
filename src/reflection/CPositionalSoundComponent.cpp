@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,9 +20,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CPositionalSoundComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_71000914c0();
-const base::reflection::UnkReflAttrKey& fn_71000913b0();
 const base::reflection::CType* fn_71000a7740();
 void fn_710114cf08();
 void fn_710114affc(UnkReflFunction* fn, const char* name);
@@ -34,28 +32,16 @@ void fn_710114b470(UnkReflFunction* fn, const char* name);
 namespace CPositionalSoundComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMinAtt", true), fn_710000abbc(), 0x70, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 250.0f);
-    field0->attrs.Add<CStrId>(fn_71000914c0(), CStrId("fMaxAtt", true));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxAtt", true), fn_710000abbc(), 0x74, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 500.0f);
-    field1->attrs.Add<CStrId>(fn_71000913b0(), CStrId("fMinAtt", true));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fVol", true), fn_710000abbc(), 0x7c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fPitch", true), fn_710000abbc(), 0x80, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fLaunchEvery", true), fn_710000abbc(), 0x78, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fHorizontalMult", true), fn_710000abbc(), 0xc0, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fVerticalMult", true), fn_710000abbc(), 0xc4, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("bLoop", true), fn_710000d228(), 0xa8, -1, -1);
-    field7->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fFadeInTime", true), fn_710000abbc(), 0xb8, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 0.2f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fFadeOutTime", true), fn_710000abbc(), 0xbc, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 0.2f);
+    DREAD_REFLECTED_FIELD(f32, "fMinAtt", 0x70, (DefaultValue, 250.0f), (MaxValueProperty, CStrId("fMaxAtt", true)));
+    DREAD_REFLECTED_FIELD(f32, "fMaxAtt", 0x74, (DefaultValue, 500.0f), (MinValueProperty, CStrId("fMinAtt", true)));
+    DREAD_REFLECTED_FIELD(f32, "fVol", 0x7c, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPitch", 0x80, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLaunchEvery", 0x78, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fHorizontalMult", 0xc0, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fVerticalMult", 0xc4, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(bool, "bLoop", 0xa8, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(f32, "fFadeInTime", 0xb8, (DefaultValue, 0.2f));
+    DREAD_REFLECTED_FIELD(f32, "fFadeOutTime", 0xbc, (DefaultValue, 0.2f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sSound1_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sSound1_GetterFunction", true);
         fn->return_type = fn_71000a7740();

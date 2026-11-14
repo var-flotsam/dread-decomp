@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,17 +20,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CEmmyProtoAIComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 void fn_71004fa958(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_71004fd4d8();
 namespace CEmmyProtoAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sDirtMaterialConstantId", true), fn_7100009658(), 0x2a700, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "vDirtColor");
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Dirt effect constant id");
+    DREAD_REFLECTED_FIELD(CStrId, "sDirtMaterialConstantId", 0x2a700, (DefaultValue, "vDirtColor"), (Description, "Dirt effect constant id"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("StandStillFor", true)))
         fn_71004fa958(fn, "StandStillFor");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OnPresentationCutsceneEnd", true))) {

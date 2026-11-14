@@ -20,11 +20,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // CPlayerInfo
 void fn_7100f0ed90();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
 void fn_7100f07cf0(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_71000904d0();
 void fn_7100f07da4(UnkReflFunction* fn, const char* name);
 void fn_7100f0ef94();
 void fn_7100f07e58(UnkReflFunction* fn, const char* name);

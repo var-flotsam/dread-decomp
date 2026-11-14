@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,71 +20,29 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CSetAnimDependsOnDirAction
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace behaviortree::CSetAnimDependsOnDirAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sInDirAnim", true), fn_7100009658(), 0x30, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "");
-    field0->attrs.Add<const char*>(fn_7100007e80(), "In dir animation to set");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sInDirAnimProp", true), fn_7100009658(), 0x38, -1, -1);
-    field1->attrs.Add<const char*>(fn_7100075240(), "");
-    field1->attrs.Add<const char*>(fn_7100007e80(), "In dir animation to set (from blackboard)");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sNotInDirAnim", true), fn_7100009658(), 0x40, -1, -1);
-    field2->attrs.Add<const char*>(fn_7100075240(), "");
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Not in dir animation to set");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sNotInDirAnimProp", true), fn_7100009658(), 0x48, -1, -1);
-    field3->attrs.Add<const char*>(fn_7100075240(), "");
-    field3->attrs.Add<const char*>(fn_7100007e80(), "not in dir animation to set (from blackboard)");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sInDirIdleAnim", true), fn_7100009658(), 0x50, -1, -1);
-    field4->attrs.Add<const char*>(fn_7100075240(), "");
-    field4->attrs.Add<const char*>(fn_7100007e80(), "In dir animation in place to set");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("sInDirIdleAnimProp", true), fn_7100009658(), 0x58, -1, -1);
-    field5->attrs.Add<const char*>(fn_7100075240(), "");
-    field5->attrs.Add<const char*>(fn_7100007e80(), "In dir animationin place to set (from blackboard)");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("sTargetPos", true), fn_7100009658(), 0x60, -1, -1);
-    field6->attrs.Add<const char*>(fn_7100075240(), "");
-    field6->attrs.Add<const char*>(fn_7100007e80(), "Target pos");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("bForceViewDir", true), fn_710000d228(), 0x74, -1, -1);
-    field7->attrs.Add<bool>(fn_7100075240(), false);
-    field7->attrs.Add<const char*>(fn_7100007e80(), "Force view dir");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("bInvertViewDir", true), fn_710000d228(), 0x75, -1, -1);
-    field8->attrs.Add<bool>(fn_7100075240(), false);
-    field8->attrs.Add<const char*>(fn_7100007e80(), "Force view dir");
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("bForce", true), fn_710000d228(), 0x76, -1, -1);
-    field9->attrs.Add<bool>(fn_7100075240(), false);
-    field9->attrs.Add<const char*>(fn_7100007e80(), "Force set anim");
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("bUpdateModel", true), fn_710000d228(), 0x77, -1, -1);
-    field10->attrs.Add<bool>(fn_7100075240(), false);
-    field10->attrs.Add<const char*>(fn_7100007e80(), "Force update model");
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("bWaitAnimEnd", true), fn_710000d228(), 0x78, -1, -1);
-    field11->attrs.Add<bool>(fn_7100075240(), false);
-    field11->attrs.Add<const char*>(fn_7100007e80(), "Wait for animation end");
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("bWaitIfFrozen", true), fn_710000d228(), 0x79, -1, -1);
-    field12->attrs.Add<bool>(fn_7100075240(), true);
-    field12->attrs.Add<const char*>(fn_7100007e80(), "Wait if frozen");
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("bSyncWithCurrent", true), fn_710000d228(), 0x89, -1, -1);
-    field13->attrs.Add<bool>(fn_7100075240(), false);
-    field13->attrs.Add<const char*>(fn_7100007e80(), "Sync target animation with current [false]");
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("iMinRandSuffix", true), fn_7100014768(), 0x7c, -1, -1);
-    field14->attrs.Add<s32>(fn_7100075240(), -1);
-    field14->attrs.Add<const char*>(fn_7100007e80(), "Minimum suffix value. -1 means not to use suffix [-1]");
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("iMaxRandSuffix", true), fn_7100014768(), 0x80, -1, -1);
-    field15->attrs.Add<s32>(fn_7100075240(), -1);
-    field15->attrs.Add<const char*>(fn_7100007e80(), "Maximum suffix value. -1 means not to use suffix [-1]");
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("bCheckInSmartlink", true), fn_710000d228(), 0x8a, -1, -1);
-    field16->attrs.Add<bool>(fn_7100075240(), false);
-    field16->attrs.Add<const char*>(fn_7100007e80(), "Abort when is in smartlink");
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("bCheckInTurn", true), fn_710000d228(), 0x8c, -1, -1);
-    field17->attrs.Add<bool>(fn_7100075240(), false);
-    field17->attrs.Add<const char*>(fn_7100007e80(), "Abort when is in turn");
-    UnkReflField* field18 = fn_7100096524(cls, CStrId("sReturnActionDisp", true), fn_7100009658(), 0x90, -1, -1);
-    field18->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    field18->attrs.Add<const char*>(fn_7100007e80(), "Action launched");
-    UnkReflField* field19 = fn_7100096524(cls, CStrId("bFailIfSmartlink", true), fn_710000d228(), 0x8b, -1, -1);
-    field19->attrs.Add<bool>(fn_7100075240(), false);
-    field19->attrs.Add<const char*>(fn_7100007e80(), "Abort when is in turn");
+    DREAD_REFLECTED_FIELD(CStrId, "sInDirAnim", 0x30, (DefaultValue, ""), (Description, "In dir animation to set"));
+    DREAD_REFLECTED_FIELD(CStrId, "sInDirAnimProp", 0x38, (DefaultValue, ""), (Description, "In dir animation to set (from blackboard)"));
+    DREAD_REFLECTED_FIELD(CStrId, "sNotInDirAnim", 0x40, (DefaultValue, ""), (Description, "Not in dir animation to set"));
+    DREAD_REFLECTED_FIELD(CStrId, "sNotInDirAnimProp", 0x48, (DefaultValue, ""), (Description, "not in dir animation to set (from blackboard)"));
+    DREAD_REFLECTED_FIELD(CStrId, "sInDirIdleAnim", 0x50, (DefaultValue, ""), (Description, "In dir animation in place to set"));
+    DREAD_REFLECTED_FIELD(CStrId, "sInDirIdleAnimProp", 0x58, (DefaultValue, ""), (Description, "In dir animationin place to set (from blackboard)"));
+    DREAD_REFLECTED_FIELD(CStrId, "sTargetPos", 0x60, (DefaultValue, ""), (Description, "Target pos"));
+    DREAD_REFLECTED_FIELD(bool, "bForceViewDir", 0x74, (DefaultValue, false), (Description, "Force view dir"));
+    DREAD_REFLECTED_FIELD(bool, "bInvertViewDir", 0x75, (DefaultValue, false), (Description, "Force view dir"));
+    DREAD_REFLECTED_FIELD(bool, "bForce", 0x76, (DefaultValue, false), (Description, "Force set anim"));
+    DREAD_REFLECTED_FIELD(bool, "bUpdateModel", 0x77, (DefaultValue, false), (Description, "Force update model"));
+    DREAD_REFLECTED_FIELD(bool, "bWaitAnimEnd", 0x78, (DefaultValue, false), (Description, "Wait for animation end"));
+    DREAD_REFLECTED_FIELD(bool, "bWaitIfFrozen", 0x79, (DefaultValue, true), (Description, "Wait if frozen"));
+    DREAD_REFLECTED_FIELD(bool, "bSyncWithCurrent", 0x89, (DefaultValue, false), (Description, "Sync target animation with current [false]"));
+    DREAD_REFLECTED_FIELD(s32, "iMinRandSuffix", 0x7c, (DefaultValue, -1), (Description, "Minimum suffix value. -1 means not to use suffix [-1]"));
+    DREAD_REFLECTED_FIELD(s32, "iMaxRandSuffix", 0x80, (DefaultValue, -1), (Description, "Maximum suffix value. -1 means not to use suffix [-1]"));
+    DREAD_REFLECTED_FIELD(bool, "bCheckInSmartlink", 0x8a, (DefaultValue, false), (Description, "Abort when is in smartlink"));
+    DREAD_REFLECTED_FIELD(bool, "bCheckInTurn", 0x8c, (DefaultValue, false), (Description, "Abort when is in turn"));
+    DREAD_REFLECTED_FIELD(CStrId, "sReturnActionDisp", 0x90, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Action launched"));
+    DREAD_REFLECTED_FIELD(bool, "bFailIfSmartlink", 0x8b, (DefaultValue, false), (Description, "Abort when is in turn"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

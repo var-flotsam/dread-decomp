@@ -20,7 +20,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassEscapeSequenceExplosionComponent
 extern base::reflection::CType g_unk_717271e138;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassEscapeSequenceExplosionComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

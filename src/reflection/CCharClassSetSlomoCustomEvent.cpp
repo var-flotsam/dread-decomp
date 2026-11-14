@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,27 +20,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassSetSlomoCustomEvent
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100090d50();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100091080();
-const base::reflection::UnkReflAttrKey& fn_7100091190();
 namespace CCharClassSetSlomoCustomEvent {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Set Slomo Custom");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Time", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fSlomo", true), fn_710000abbc(), 0xc, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field0->attrs.Add<f32>(fn_7100091080(), 0.1f);
-    field0->attrs.Add<f32>(fn_7100091190(), 10.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTime", true), fn_710000abbc(), 0x10, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field1->attrs.Add<f32>(fn_7100091080(), 0.1f);
-    field1->attrs.Add<f32>(fn_7100091190(), 1000.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sFunction", true), fn_7100009658(), 0x18, -1, -1);
-    field2->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_FIELD(f32, "fSlomo", 0xc, (DefaultValue, 1.0f), (MinValue, 0.1f), (MaxValue, 10.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTime", 0x10, (DefaultValue, 1.0f), (MinValue, 0.1f), (MaxValue, 1000.0f));
+    DREAD_REFLECTED_FIELD(CStrId, "sFunction", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

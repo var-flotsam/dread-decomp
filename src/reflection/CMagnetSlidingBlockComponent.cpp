@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,32 +20,17 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CMagnetSlidingBlockComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern base::reflection::CType g_unk_71727b6270;
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
-const base::reflection::UnkReflAttrKey& fn_7100093390();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
 namespace CMagnetSlidingBlockComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fTimePreparingToOpen", true), fn_710000abbc(), 0x330, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Seconds it takes between hanging starts and opening movement starts");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeToCompleteMovementTowardsEnd", true), fn_710000abbc(), 0x334, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Seconds it takes to complete movement through the path");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeToCompleteMovementTowardsStart", true), fn_710000abbc(), 0x338, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Seconds it takes to complete movement from the end to the start of the path");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bContinueMovingOnStopHang", true), fn_710000d228(), 0x340, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), false);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Whether movement should continue regardless of having an entity hanging, after the initial hang");
+    DREAD_REFLECTED_FIELD(f32, "fTimePreparingToOpen", 0x330, (DefaultValue, 0.0f), (Description, "Seconds it takes between hanging starts and opening movement starts"));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToCompleteMovementTowardsEnd", 0x334, (DefaultValue, 0.0f), (Description, "Seconds it takes to complete movement through the path"));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToCompleteMovementTowardsStart", 0x338, (DefaultValue, 0.0f), (Description, "Seconds it takes to complete movement from the end to the start of the path"));
+    DREAD_REFLECTED_FIELD(bool, "bContinueMovingOnStopHang", 0x340, (DefaultValue, false), (Description, "Whether movement should continue regardless of having an entity hanging, after the initial hang"));
     UnkReflField* field4 = fn_7100096524(cls, CStrId("wpRail", true), &g_unk_71727b6270, 0x428, -1, -1);
     field4->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
     UnkReflField* field5 = fn_7100096524(cls, CStrId("wpDoorOpeningOnAnimatedCamera", true), &g_unk_71727b6270, 0x4a0, -1, -1);

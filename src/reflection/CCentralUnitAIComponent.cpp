@@ -20,11 +20,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCentralUnitAIComponent
 extern base::reflection::CType g_unk_717269bf08;
-const base::reflection::UnkReflAttrKey& fn_7100090090();
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 extern base::reflection::CType g_unk_71726fcf90;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_71727b6270;
 namespace CCentralUnitAIComponent {
 void refl_AddAttributes(CClass*) {}

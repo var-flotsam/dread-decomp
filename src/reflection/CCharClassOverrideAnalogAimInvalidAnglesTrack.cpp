@@ -19,11 +19,8 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassOverrideAnalogAimInvalidAnglesTrack
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100090e60();
 void fn_7100c431fc();
 void fn_7100c42dd8(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 void fn_7100c432bc();
 void fn_7100c42f54(UnkReflFunction* fn, const char* name);
 namespace CCharClassOverrideAnalogAimInvalidAnglesTrack {

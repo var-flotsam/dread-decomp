@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,8 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassAINavigationComponent
 extern base::reflection::CType g_unk_717270c900;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 void fn_71006f7b0c();
 void fn_71006f7008(UnkReflFunction* fn, const char* name);
 void fn_71006f7b9c();
@@ -106,8 +105,7 @@ void refl_AddFields(CClass* cls) {
         fn_71006f7774(fn, "_m_fGotoPointReachedDistance_SetterFunction");
     UnkReflField* field6 = fn_7100096524(cls, CStrId("fGotoPointReachedDistance", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field6->attrs.Add<f32>(fn_7100075240(), 10.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fTurnWeightPenalization", true), fn_710000abbc(), 0x7c, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 400.0f);
+    DREAD_REFLECTED_FIELD(f32, "fTurnWeightPenalization", 0x7c, (DefaultValue, 400.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

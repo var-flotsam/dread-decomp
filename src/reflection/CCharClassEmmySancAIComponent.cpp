@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -41,7 +42,6 @@ DREAD_REFLECTED_CLASS(CCharClassEmmySancAIComponent, CCharClassEmmyAIComponent);
 // CCharClassEmmySancAIComponent::CTunableEmmySancAIComponent
 extern bool g_unk_71726dd628;
 const base::reflection::CClass* fn_710056b20c();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726dd3f0;
 void fn_71004fe388(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -54,14 +54,10 @@ void refl_AddFields(CClass* cls) {
     if (!cls)
         return;
     UnkReflField* field0 = fn_7100096524(cls, CStrId("rConfig", true), fn_710056b20c(), 0x28, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fHeadHeatIncrementFactor", true), fn_710000abbc(), 0x228, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.3f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fHeadHeatIncrementFactorDuringPursuit", true), fn_710000abbc(), 0x22c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.15f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fTimeToStartHeatRecover", true), fn_710000abbc(), 0x230, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fHeadHeatRecoveredPerSecond", true), fn_710000abbc(), 0x234, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.15f);
+    DREAD_REFLECTED_FIELD(f32, "fHeadHeatIncrementFactor", 0x228, (DefaultValue, 0.3f));
+    DREAD_REFLECTED_FIELD(f32, "fHeadHeatIncrementFactorDuringPursuit", 0x22c, (DefaultValue, 0.15f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToStartHeatRecover", 0x230, (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fHeadHeatRecoveredPerSecond", 0x234, (DefaultValue, 0.15f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

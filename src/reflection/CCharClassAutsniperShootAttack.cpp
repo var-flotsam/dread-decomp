@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,42 +20,25 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassAutsniperShootAttack
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassAutsniperShootAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fTimeToReload", true), fn_710000abbc(), 0xec, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeToChargeRay", true), fn_710000abbc(), 0xf0, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 4.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeToUnchargeRay", true), fn_710000abbc(), 0xf4, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 4.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fTimeToRelocateCannon", true), fn_710000abbc(), 0xf8, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fTimeBeforeShoot", true), fn_710000abbc(), 0xfc, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.3f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fTimeAfterShoot", true), fn_710000abbc(), 0x100, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 0.3f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fMaxPitch", true), fn_710000abbc(), 0x104, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 1.4f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fMinPitch", true), fn_710000abbc(), 0x108, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fMaxVolume", true), fn_710000abbc(), 0x10c, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 0.6f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fMinVolume", true), fn_710000abbc(), 0x110, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 0.1f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fTimeCannonLocked", true), fn_710000abbc(), 0x114, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 0.25f);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fTimeToGoPatrol", true), fn_710000abbc(), 0x118, -1, -1);
-    field11->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fTimeToLoseTarget", true), fn_710000abbc(), 0x11c, -1, -1);
-    field12->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("fDistToStopCloseToTarget", true), fn_710000abbc(), 0x120, -1, -1);
-    field13->attrs.Add<f32>(fn_7100075240(), 200.0f);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("fTimeBeforeBlockeableWarning", true), fn_710000abbc(), 0x124, -1, -1);
-    field14->attrs.Add<f32>(fn_7100075240(), 0.2f);
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("fTimeAfterBlockeableWarning", true), fn_710000abbc(), 0x128, -1, -1);
-    field15->attrs.Add<f32>(fn_7100075240(), 0.8f);
+    DREAD_REFLECTED_FIELD(f32, "fTimeToReload", 0xec, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToChargeRay", 0xf0, (DefaultValue, 4.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToUnchargeRay", 0xf4, (DefaultValue, 4.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToRelocateCannon", 0xf8, (DefaultValue, 2.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeBeforeShoot", 0xfc, (DefaultValue, 0.3f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeAfterShoot", 0x100, (DefaultValue, 0.3f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxPitch", 0x104, (DefaultValue, 1.4f));
+    DREAD_REFLECTED_FIELD(f32, "fMinPitch", 0x108, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxVolume", 0x10c, (DefaultValue, 0.6f));
+    DREAD_REFLECTED_FIELD(f32, "fMinVolume", 0x110, (DefaultValue, 0.1f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeCannonLocked", 0x114, (DefaultValue, 0.25f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToGoPatrol", 0x118, (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToLoseTarget", 0x11c, (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fDistToStopCloseToTarget", 0x120, (DefaultValue, 200.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeBeforeBlockeableWarning", 0x124, (DefaultValue, 0.2f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeAfterBlockeableWarning", 0x128, (DefaultValue, 0.8f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

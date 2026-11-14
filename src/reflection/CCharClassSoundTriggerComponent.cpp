@@ -50,7 +50,6 @@ DREAD_REFLECTED_CLASS(CCharClassSoundTriggerComponent, CCharClassBaseTriggerComp
 extern base::reflection::CType g_unk_7108b6cc88;
 void fn_7100718544();
 void fn_7100717e9c(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_7108b6cde8;
 void fn_71007185d0();
 void fn_7100718010(UnkReflFunction* fn, const char* name);

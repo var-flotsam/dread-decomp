@@ -21,20 +21,15 @@ using base::reflection::DestroyDestructorFirst;
 // CSegmentLightComponent
 void fn_71008f49e4();
 void fn_71008f36b4(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
 void fn_71008f4c34();
 void fn_71008f3830(UnkReflFunction* fn, const char* name);
 void fn_71008f4db0();
 void fn_71008f39ac(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_71000914c0();
 void fn_71008f4e60();
 void fn_71008f3b28(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_71000913b0();
 void fn_71008f4f34();
 void fn_71008f3ca4(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100091080();
 void fn_71008f4fdc();
 void fn_71008f3e20(UnkReflFunction* fn, const char* name);
 namespace CSegmentLightComponent {

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,8 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CSaveStationUsableComponent::CTunableSaveStationUsableComponent
 extern bool g_unk_7172751140;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172751118;
 void fn_7100a8940c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -33,9 +32,7 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172751140 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fTimeMaxSaveInteract", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.5f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Max time save station interact");
+    DREAD_REFLECTED_FIELD(f32, "fTimeMaxSaveInteract", 0x24, (DefaultValue, 0.5f), (Description, "Max time save station interact"));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

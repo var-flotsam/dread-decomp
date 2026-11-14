@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,21 +20,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassTweakFloorSlideEndActionTrack
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100090e60();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100091080();
-const base::reflection::UnkReflAttrKey& fn_7100091190();
 namespace CCharClassTweakFloorSlideEndActionTrack {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Tweak Floor Slide End Action");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Floor Slide", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMaxDistanceToCollision", true), fn_710000abbc(), 0x34, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field0->attrs.Add<f32>(fn_7100091080(), -1.0f);
-    field0->attrs.Add<f32>(fn_7100091190(), 1000.0f);
+    DREAD_REFLECTED_FIELD(f32, "fMaxDistanceToCollision", 0x34, (DefaultValue, -1.0f), (MinValue, -1.0f), (MaxValue, 1000.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

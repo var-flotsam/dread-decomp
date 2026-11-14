@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,19 +20,14 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CUsableComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 void fn_7100a9c458(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_71000904d0();
 void fn_7100a9c50c(UnkReflFunction* fn, const char* name);
 void fn_7100a9c5c0(UnkReflFunction* fn, const char* name);
 void fn_7100a9c674(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_710008f920();
 namespace CUsableComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bFadeInActived", true), fn_710000d228(), 0xfd, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(bool, "bFadeInActived", 0xfd, (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OnCanNotUseAccepted", true))) {
         fn_7100a9c458(fn, "OnCanNotUseAccepted");
         fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("On Can Not Use Accepted"));
@@ -90,27 +86,16 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172753258 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fOnLoadBackGroundTimeMax", true), fn_710000abbc(), 0x24, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Max time to stay on backgorund when player loads game");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fDistanceChannelMin", true), fn_710000abbc(), 0x28, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 25.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fDistanceChannelA", true), fn_710000abbc(), 0x2c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 75.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sForwardChannelA", true), fn_7100009658(), 0x30, -1, -1);
-    field3->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sBackwardChannelA", true), fn_7100009658(), 0x38, -1, -1);
-    field4->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fDistanceChannelB", true), fn_710000abbc(), 0x40, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 125.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("sForwardChannelB", true), fn_7100009658(), 0x48, -1, -1);
-    field6->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("sBackwardChannelB", true), fn_7100009658(), 0x50, -1, -1);
-    field7->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("sForwardChannelC", true), fn_7100009658(), 0x58, -1, -1);
-    field8->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("sBackwardChannelC", true), fn_7100009658(), 0x60, -1, -1);
-    field9->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_FIELD(f32, "fOnLoadBackGroundTimeMax", 0x24, (DefaultValue, 0.0f), (Description, "Max time to stay on backgorund when player loads game"));
+    DREAD_REFLECTED_FIELD(f32, "fDistanceChannelMin", 0x28, (DefaultValue, 25.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDistanceChannelA", 0x2c, (DefaultValue, 75.0f));
+    DREAD_REFLECTED_FIELD(CStrId, "sForwardChannelA", 0x30, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sBackwardChannelA", 0x38, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(f32, "fDistanceChannelB", 0x40, (DefaultValue, 125.0f));
+    DREAD_REFLECTED_FIELD(CStrId, "sForwardChannelB", 0x48, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sBackwardChannelB", 0x50, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sForwardChannelC", 0x58, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sBackwardChannelC", 0x60, (DefaultValue, CStrId(g_unk_7101d470e0)));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

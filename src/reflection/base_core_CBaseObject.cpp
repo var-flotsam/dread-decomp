@@ -21,7 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 // base::core::CBaseObject
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100024edc();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace base::core::CBaseObject {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

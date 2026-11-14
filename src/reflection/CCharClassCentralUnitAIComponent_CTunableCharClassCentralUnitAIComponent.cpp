@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,10 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassCentralUnitAIComponent::CTunableCharClassCentralUnitAIComponent
 extern bool g_unk_71726c42c8;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100093280();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_71003ba540();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726c42a0;
 void fn_7100407f7c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -35,11 +32,7 @@ void refl_AddFields(CClass* cls) {
     g_unk_71726c42c8 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bAllowSimultaneousRinkas", true), fn_710000d228(), 0x21, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), false);
-    field0->attrs.Add<bool>(fn_7100093280(), true);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Allow simultaneous Rinkas");
-    field0->attrs.Add<const char*>(fn_71003ba540(), "MidBosses");
+    DREAD_REFLECTED_FIELD(bool, "bAllowSimultaneousRinkas", 0x21, (DefaultValue, false), (ShowInDevConfig, true), (Description, "Allow simultaneous Rinkas"), (InternalDevTag, "MidBosses"));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
@@ -76,10 +69,8 @@ DREAD_REFLECTED_CLASS(CCharClassCentralUnitAIComponent::CTunableCharClassCentral
 namespace CCharClassCentralUnitAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bPlaceholder", true), fn_710000d228(), 0x50c, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sArmorLifeTunableId", true), fn_7100009658(), 0x510, -1, -1);
-    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    DREAD_REFLECTED_FIELD(bool, "bPlaceholder", 0x50c, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(CStrId, "sArmorLifeTunableId", 0x510, (DefaultValue, CStrId(g_unk_7101d470e0)));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

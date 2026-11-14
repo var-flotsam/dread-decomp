@@ -22,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 extern base::reflection::CType g_unk_7172707020;
 void fn_71006bcb7c();
 void fn_71006b9d50(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CShelmitAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

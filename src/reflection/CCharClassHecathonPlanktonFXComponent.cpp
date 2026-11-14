@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,20 +20,14 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassHecathonPlanktonFXComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassHecathonPlanktonFXComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sModelResPath", true), fn_710000ad9c(), 0x58, -1, -1);
-    field0->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(base::global::UnkStrIdInline{}, "", true));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fScale", true), fn_710000abbc(), 0x60, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fScaleRandom", true), fn_710000abbc(), 0x64, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("vRotation", true), fn_71000246e4(), 0x68, -1, -1);
-    field3->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("vRotationRandom", true), fn_71000246e4(), 0x74, -1, -1);
-    field4->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sModelResPath", 0x58, (DefaultValue, base::global::CFilePathStrId(base::global::UnkStrIdInline{}, "", true)));
+    DREAD_REFLECTED_FIELD(f32, "fScale", 0x60, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fScaleRandom", 0x64, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vRotation", 0x68, (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}));
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vRotationRandom", 0x74, (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

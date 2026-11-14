@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,8 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CHeatableShieldComponent::CTunableHeatableShield
 extern bool g_unk_7172729370;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172729300;
 void fn_710086a398(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -33,26 +32,13 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172729370 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sFunction", true), fn_7100007f84(), 0x28, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "S");
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Function for the heat");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fHeatRecoveredPerSecond", true), fn_710000abbc(), 0x58, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.2f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Heat recovered per second");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeToStartHeatRecover", true), fn_710000abbc(), 0x5c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.2f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fHeatIncrementFactor", true), fn_710000abbc(), 0x60, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Heat increment factor");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fMaxRGBColor", true), fn_710000abbc(), 0x64, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Maximum value of red, green or blue [0..1]");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fStartEmmitingParticlesOnHeat", true), fn_710000abbc(), 0x68, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Heat value that when reached causes the heat particles to be spawned.");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fStopEmmitingParticlesOnCooldown", true), fn_710000abbc(), 0x6c, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 0.1f);
-    field6->attrs.Add<const char*>(fn_7100007e80(), "Heat value that when reduced to from a higher point causes the heat particles to be despawned.");
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sFunction", 0x28, (DefaultValue, "S"), (Description, "Function for the heat"));
+    DREAD_REFLECTED_FIELD(f32, "fHeatRecoveredPerSecond", 0x58, (DefaultValue, 0.2f), (Description, "Heat recovered per second"));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToStartHeatRecover", 0x5c, (DefaultValue, 0.2f));
+    DREAD_REFLECTED_FIELD(f32, "fHeatIncrementFactor", 0x60, (DefaultValue, 1.0f), (Description, "Heat increment factor"));
+    DREAD_REFLECTED_FIELD(f32, "fMaxRGBColor", 0x64, (DefaultValue, 1.0f), (Description, "Maximum value of red, green or blue [0..1]"));
+    DREAD_REFLECTED_FIELD(f32, "fStartEmmitingParticlesOnHeat", 0x68, (DefaultValue, 0.0f), (Description, "Heat value that when reached causes the heat particles to be spawned."));
+    DREAD_REFLECTED_FIELD(f32, "fStopEmmitingParticlesOnCooldown", 0x6c, (DefaultValue, 0.1f), (Description, "Heat value that when reduced to from a higher point causes the heat particles to be despawned."));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

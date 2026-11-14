@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,35 +20,17 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCameraFX_OscillationShake
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CCameraFX_OscillationShake {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sFunction", true), fn_7100009658(), 0x58, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100075240(), "");
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Function (p.ej: SqooooooszI)");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fAmplitudeX", true), fn_710000abbc(), 0x60, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Max Oscillation Amplitude in Camera local x axis");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fSpeedX", true), fn_710000abbc(), 0x64, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Max Oscillation speed in Camera local x axis");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fAmplitudeY", true), fn_710000abbc(), 0x68, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Max Oscillation Amplitude in Camera local y axis");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fSpeedY", true), fn_710000abbc(), 0x6c, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field4->attrs.Add<const char*>(fn_7100007e80(), "Max Oscillation speed in Camera local y axis");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fAmplitudeZ", true), fn_710000abbc(), 0x70, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field5->attrs.Add<const char*>(fn_7100007e80(), "Max Oscillation Amplitude in Camera local z axis");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fSpeedZ", true), fn_710000abbc(), 0x74, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field6->attrs.Add<const char*>(fn_7100007e80(), "Max Oscillation speed in Camera local z axis");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fTimeToMax", true), fn_710000abbc(), 0x78, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field7->attrs.Add<const char*>(fn_7100007e80(), "Time to reach max values");
+    DREAD_REFLECTED_FIELD(CStrId, "sFunction", 0x58, (DefaultValue, ""), (Description, "Function (p.ej: SqooooooszI)"));
+    DREAD_REFLECTED_FIELD(f32, "fAmplitudeX", 0x60, (DefaultValue, 0.0f), (Description, "Max Oscillation Amplitude in Camera local x axis"));
+    DREAD_REFLECTED_FIELD(f32, "fSpeedX", 0x64, (DefaultValue, 0.0f), (Description, "Max Oscillation speed in Camera local x axis"));
+    DREAD_REFLECTED_FIELD(f32, "fAmplitudeY", 0x68, (DefaultValue, 0.0f), (Description, "Max Oscillation Amplitude in Camera local y axis"));
+    DREAD_REFLECTED_FIELD(f32, "fSpeedY", 0x6c, (DefaultValue, 0.0f), (Description, "Max Oscillation speed in Camera local y axis"));
+    DREAD_REFLECTED_FIELD(f32, "fAmplitudeZ", 0x70, (DefaultValue, 0.0f), (Description, "Max Oscillation Amplitude in Camera local z axis"));
+    DREAD_REFLECTED_FIELD(f32, "fSpeedZ", 0x74, (DefaultValue, 0.0f), (Description, "Max Oscillation speed in Camera local z axis"));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToMax", 0x78, (DefaultValue, 0.0f), (Description, "Time to reach max values"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

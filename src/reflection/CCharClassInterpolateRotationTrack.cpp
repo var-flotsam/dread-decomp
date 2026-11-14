@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,10 +20,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassInterpolateRotationTrack
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100090e60();
 extern base::reflection::CType g_unk_7172a0aa28;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_7172a0a8c8;
 namespace CCharClassInterpolateRotationTrack {
 void refl_AddAttributes(CClass* cls) {
@@ -34,8 +32,7 @@ void refl_AddFields(CClass* cls) {
     field0->attrs.Add<s32>(fn_7100075240(), &g_unk_7172a0aa28, 0);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("eDirection", true), &g_unk_7172a0a8c8, 0x1c, -1, -1);
     field1->attrs.Add<s32>(fn_7100075240(), &g_unk_7172a0a8c8, 2);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fInterpolationSpeed", true), fn_710000abbc(), 0x20, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    DREAD_REFLECTED_FIELD(f32, "fInterpolationSpeed", 0x20, (DefaultValue, 0.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

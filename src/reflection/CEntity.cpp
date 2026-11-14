@@ -21,18 +21,11 @@ using base::reflection::DestroyDestructorFirst;
 // CEntity
 extern base::reflection::CType g_unk_7108b6d3d0;
 void fn_7100d823f4();
-const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100091c30();
-const base::reflection::UnkReflAttrKey& fn_7100234410();
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
 void fn_7100d82448();
 void fn_71000e8118(UnkReflField* field, u64 index);
 void fn_7100d71900(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_71000904d0();
 void fn_7100d719b4(UnkReflFunction* fn, const char* name);
 void fn_7100d71a68(UnkReflFunction* fn, const char* name);
 void fn_7100d71b1c(UnkReflFunction* fn, const char* name);

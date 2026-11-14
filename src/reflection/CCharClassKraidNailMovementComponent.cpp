@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,24 +20,16 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassKraidNailMovementComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassKraidNailMovementComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fRotationFactor", true), fn_710000abbc(), 0x134, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fPhase1LeftHandCloseSpeed", true), fn_710000abbc(), 0x138, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 300.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fPhase1LeftHandFarSpeed", true), fn_710000abbc(), 0x13c, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 1500.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fPhase1RightHandCloseSpeed", true), fn_710000abbc(), 0x140, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 300.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fPhase1RightHandFarSpeed", true), fn_710000abbc(), 0x144, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 1500.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fPhase2LeftHandSpeed", true), fn_710000abbc(), 0x148, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 1800.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fPhase2RightHandSpeed", true), fn_710000abbc(), 0x14c, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 1800.0f);
+    DREAD_REFLECTED_FIELD(f32, "fRotationFactor", 0x134, (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPhase1LeftHandCloseSpeed", 0x138, (DefaultValue, 300.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPhase1LeftHandFarSpeed", 0x13c, (DefaultValue, 1500.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPhase1RightHandCloseSpeed", 0x140, (DefaultValue, 300.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPhase1RightHandFarSpeed", 0x144, (DefaultValue, 1500.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPhase2LeftHandSpeed", 0x148, (DefaultValue, 1800.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPhase2RightHandSpeed", 0x14c, (DefaultValue, 1800.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

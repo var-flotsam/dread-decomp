@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,14 +20,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassFanComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassFanComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sFX_wind", true), fn_710000ad9c(), 0x60, -1, -1);
-    field0->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId("", true));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sFX_hurricane", true), fn_710000ad9c(), 0x68, -1, -1);
-    field1->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId("", true));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sFX_wind", 0x60, (DefaultValue, base::global::CFilePathStrId("", true)));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sFX_hurricane", 0x68, (DefaultValue, base::global::CFilePathStrId("", true)));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -55,8 +53,6 @@ DREAD_REFLECTED_CLASS(CCharClassFanComponent, CCharClassBaseTriggerComponent);
 // CFanComponent
 void fn_710087f868();
 void fn_710087d4b0(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100091080();
-const base::reflection::UnkReflAttrKey& fn_7100091190();
 void fn_710087f914();
 void fn_710087d62c(UnkReflFunction* fn, const char* name);
 void fn_710087f9a4();

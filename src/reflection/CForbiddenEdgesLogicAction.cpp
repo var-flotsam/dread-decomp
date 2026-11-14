@@ -20,12 +20,8 @@ using base::reflection::DestroyDestructorFirst;
 
 // CForbiddenEdgesLogicAction
 extern base::reflection::CType g_unk_717274b898;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
 extern base::reflection::CType g_unk_71727b6270;
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 extern base::reflection::CType g_unk_717269bb48;
 extern base::reflection::CType g_unk_717274b9f8;

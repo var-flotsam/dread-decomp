@@ -28,7 +28,6 @@ void fn_71009c9dc4();
 void fn_71009c9614(UnkReflFunction* fn, const char* name);
 void fn_71009c9eb0();
 void fn_71009c9788(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassPersistenceComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {

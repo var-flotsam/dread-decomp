@@ -7,6 +7,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,14 +22,8 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CLogicCamera
-const base::reflection::UnkReflAttrKey& fn_7100093390();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
-const base::reflection::UnkReflAttrKey& fn_71000914c0();
-const base::reflection::UnkReflAttrKey& fn_71000913b0();
 namespace CLogicCamera {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -37,16 +32,14 @@ void refl_AddFields(CClass* cls) {
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
     field0->attrs.Add<bool>(fn_7100090a20(), false);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sControllerID", true), fn_7100009658(), 0x18, -1, -1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bStatic", true), fn_710000d228(), 0x20, -1, -1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("v3Position", true), fn_71000246e4(), 0x24, -1, -1);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("v3Dir", true), fn_71000246e4(), 0x30, -1, -1);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fFovX", true), fn_710000abbc(), 0x3c, -1, -1);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fMinExtraZDist", true), fn_710000abbc(), 0x40, -1, -1);
-    field6->attrs.Add<CStrId>(fn_71000914c0(), CStrId("fMaxExtraZDist", true));
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fMaxExtraZDist", true), fn_710000abbc(), 0x44, -1, -1);
-    field7->attrs.Add<CStrId>(fn_71000913b0(), CStrId("fMinExtraZDist", true));
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fDefaultInterp", true), fn_710000abbc(), 0x48, -1, -1);
+    DREAD_REFLECTED_FIELD(CStrId, "sControllerID", 0x18);
+    DREAD_REFLECTED_FIELD(bool, "bStatic", 0x20);
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "v3Position", 0x24);
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "v3Dir", 0x30);
+    DREAD_REFLECTED_FIELD(f32, "fFovX", 0x3c);
+    DREAD_REFLECTED_FIELD(f32, "fMinExtraZDist", 0x40, (MaxValueProperty, CStrId("fMaxExtraZDist", true)));
+    DREAD_REFLECTED_FIELD(f32, "fMaxExtraZDist", 0x44, (MinValueProperty, CStrId("fMinExtraZDist", true)));
+    DREAD_REFLECTED_FIELD(f32, "fDefaultInterp", 0x48);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

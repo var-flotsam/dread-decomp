@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -21,32 +22,21 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassScourgeAIComponent
 const base::reflection::CClass* fn_7100699a74();
 const base::reflection::CClass* fn_7100708410();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassScourgeAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("oScourgeTongueSlashAttackDef", true), fn_7100699a74(), 0x510, -1, -1);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("oTongue", true), fn_7100708410(), 0x608, -1, -1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTentacleWidth", true), fn_710000abbc(), 0x648, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 60.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("vTentacleZAxisThreshold", true), fn_71000246e4(), 0x64c, -1, -1);
-    field3->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{-150.0f, 150.0f, 0.0f});
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fTongueCheckWidth", true), fn_710000abbc(), 0x658, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 80.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fTongueArcCheckBigWidth", true), fn_710000abbc(), 0x65c, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 150.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fTongueArcCheckSmallWidth", true), fn_710000abbc(), 0x660, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 20.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fTongueScenarioCheckWidth", true), fn_710000abbc(), 0x664, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 60.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fDefaultShootOffset", true), fn_710000abbc(), 0x668, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fCrouchingShootOffset", true), fn_710000abbc(), 0x66c, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), -20.0f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fHangingAboveVerticalShootOffset", true), fn_710000abbc(), 0x670, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), -50.0f);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fHangingHorizontalShootOffset", true), fn_710000abbc(), 0x674, -1, -1);
-    field11->attrs.Add<f32>(fn_7100075240(), 20.0f);
+    DREAD_REFLECTED_FIELD(f32, "fTentacleWidth", 0x648, (DefaultValue, 60.0f));
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vTentacleZAxisThreshold", 0x64c, (DefaultValue, base::math::CVector3D{-150.0f, 150.0f, 0.0f}));
+    DREAD_REFLECTED_FIELD(f32, "fTongueCheckWidth", 0x658, (DefaultValue, 80.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTongueArcCheckBigWidth", 0x65c, (DefaultValue, 150.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTongueArcCheckSmallWidth", 0x660, (DefaultValue, 20.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTongueScenarioCheckWidth", 0x664, (DefaultValue, 60.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDefaultShootOffset", 0x668, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fCrouchingShootOffset", 0x66c, (DefaultValue, -20.0f));
+    DREAD_REFLECTED_FIELD(f32, "fHangingAboveVerticalShootOffset", 0x670, (DefaultValue, -50.0f));
+    DREAD_REFLECTED_FIELD(f32, "fHangingHorizontalShootOffset", 0x674, (DefaultValue, 20.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

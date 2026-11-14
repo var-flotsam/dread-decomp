@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -41,13 +42,6 @@ DREAD_REFLECTED_CLASS(CCharClassEmmyProtoAIComponent, CCharClassEmmyAIComponent)
 // CCharClassEmmyProtoAIComponent::CTunableEmmyProtoAIComponent
 extern bool g_unk_71726dceb8;
 const base::reflection::CClass* fn_710056b20c();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100093170();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100091080();
-const base::reflection::UnkReflAttrKey& fn_7100091190();
-const base::reflection::UnkReflAttrKey& fn_7100324af0();
-const base::reflection::UnkReflAttrKey& fn_7100324c00();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726dcc88;
 void fn_71004f9e58(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -60,14 +54,7 @@ void refl_AddFields(CClass* cls) {
     if (!cls)
         return;
     UnkReflField* field0 = fn_7100096524(cls, CStrId("rConfig", true), fn_710056b20c(), 0x28, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fGrabTutoCameraDistance", true), fn_710000abbc(), 0x228, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 120.0f);
-    field1->attrs.Add<bool>(fn_7100093170(), true);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Grab tuto camera distance");
-    field1->attrs.Add<f32>(fn_7100091080(), 50.0f);
-    field1->attrs.Add<f32>(fn_7100091190(), 500.0f);
-    field1->attrs.Add<f32>(fn_7100324af0(), 5.0f);
-    field1->attrs.Add<const char*>(fn_7100324c00(), "Emmy|Common");
+    DREAD_REFLECTED_FIELD(f32, "fGrabTutoCameraDistance", 0x228, (DefaultValue, 120.0f), (ShowInConfig, true), (Description, "Grab tuto camera distance"), (MinValue, 50.0f), (MaxValue, 500.0f), (ControlFloatStep, 5.0f), (InternalTag, "Emmy|Common"));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

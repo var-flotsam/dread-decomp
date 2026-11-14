@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,7 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CAIManager::CTunableAIManager
 extern bool g_unk_71727bc590;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_71727bc3f0;
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71727bc558;
@@ -33,20 +33,14 @@ void refl_AddFields(CClass* cls) {
     g_unk_71727bc590 = true;
     if (!cls)
         return;
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("iIgnorePlayerMode", true), fn_7100014768(), 0x24, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), 0);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("bShowBossLifebar", true), fn_710000d228(), 0x28, -1, -1);
-    field1->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(s32, "iIgnorePlayerMode", 0x24, (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD(bool, "bShowBossLifebar", 0x28, (DefaultValue, false));
     UnkReflField* field2 = fn_7100096524(cls, CStrId("eBumpMode", true), &g_unk_71727bc3f0, 0x2c, -1, -1);
     field2->attrs.Add<s32>(fn_7100075240(), &g_unk_71727bc3f0, 3);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bShowEnemyLife", true), fn_710000d228(), 0x30, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("bShowEnemyDamage", true), fn_710000d228(), 0x31, -1, -1);
-    field4->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("bShowPlayerDamage", true), fn_710000d228(), 0x32, -1, -1);
-    field5->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fDistanceToDestroyProjectile", true), fn_710000abbc(), 0x34, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 3000.0f);
+    DREAD_REFLECTED_FIELD(bool, "bShowEnemyLife", 0x30, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bShowEnemyDamage", 0x31, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bShowPlayerDamage", 0x32, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fDistanceToDestroyProjectile", 0x34, (DefaultValue, 3000.0f));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,46 +20,22 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CInPathPatrolAction
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace behaviortree::CInPathPatrolAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("fReachedDistance", true), fn_710000abbc(), 0x64, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 10.0f);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Reach distance");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sGrazeInitAction", true), fn_7100009658(), 0x68, -1, -1);
-    field1->attrs.Add<const char*>(fn_7100075240(), "");
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Name of the action to init grazing");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sGrazeEndAction", true), fn_7100009658(), 0x70, -1, -1);
-    field2->attrs.Add<const char*>(fn_7100075240(), "");
-    field2->attrs.Add<const char*>(fn_7100007e80(), "Name of the action to end grazing");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("sMinTimeBetweenGrazings", true), fn_7100009658(), 0x78, -1, -1);
-    field3->attrs.Add<const char*>(fn_7100075240(), "");
-    field3->attrs.Add<const char*>(fn_7100007e80(), "(Variable) Min random time (s) between grazings");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("sMaxTimeBetweenGrazings", true), fn_7100009658(), 0x80, -1, -1);
-    field4->attrs.Add<const char*>(fn_7100075240(), "");
-    field4->attrs.Add<const char*>(fn_7100007e80(), "(Variable) Max random time (s) between grazings");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("sMinTimeGrazing", true), fn_7100009658(), 0x88, -1, -1);
-    field5->attrs.Add<const char*>(fn_7100075240(), "");
-    field5->attrs.Add<const char*>(fn_7100007e80(), "(Variable) Min random time (s) grazing");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("sMaxTimeGrazing", true), fn_7100009658(), 0x90, -1, -1);
-    field6->attrs.Add<const char*>(fn_7100075240(), "");
-    field6->attrs.Add<const char*>(fn_7100007e80(), "(Variable) Max random time (s) grazing");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("bStopInAbort", true), fn_710000d228(), 0x98, -1, -1);
-    field7->attrs.Add<bool>(fn_7100075240(), false);
-    field7->attrs.Add<const char*>(fn_7100007e80(), "Stop movement in abort");
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("bWantsModifyPathIfTargetNear", true), fn_710000d228(), 0x99, -1, -1);
-    field8->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("bCheckDirToMove", true), fn_710000d228(), 0xc8, -1, -1);
-    field9->attrs.Add<bool>(fn_7100075240(), false);
-    field9->attrs.Add<const char*>(fn_7100007e80(), "Check dir to init movement");
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("bAlwaysInDir", true), fn_710000d228(), 0xc9, -1, -1);
-    field10->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fMaxDistToModifyPath", true), fn_710000abbc(), 0xcc, -1, -1);
-    field11->attrs.Add<f32>(fn_7100075240(), 250.0f);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fMinDist2GoAway", true), fn_710000abbc(), 0xd0, -1, -1);
-    field12->attrs.Add<f32>(fn_7100075240(), 300.0f);
+    DREAD_REFLECTED_FIELD(f32, "fReachedDistance", 0x64, (DefaultValue, 10.0f), (Description, "Reach distance"));
+    DREAD_REFLECTED_FIELD(CStrId, "sGrazeInitAction", 0x68, (DefaultValue, ""), (Description, "Name of the action to init grazing"));
+    DREAD_REFLECTED_FIELD(CStrId, "sGrazeEndAction", 0x70, (DefaultValue, ""), (Description, "Name of the action to end grazing"));
+    DREAD_REFLECTED_FIELD(CStrId, "sMinTimeBetweenGrazings", 0x78, (DefaultValue, ""), (Description, "(Variable) Min random time (s) between grazings"));
+    DREAD_REFLECTED_FIELD(CStrId, "sMaxTimeBetweenGrazings", 0x80, (DefaultValue, ""), (Description, "(Variable) Max random time (s) between grazings"));
+    DREAD_REFLECTED_FIELD(CStrId, "sMinTimeGrazing", 0x88, (DefaultValue, ""), (Description, "(Variable) Min random time (s) grazing"));
+    DREAD_REFLECTED_FIELD(CStrId, "sMaxTimeGrazing", 0x90, (DefaultValue, ""), (Description, "(Variable) Max random time (s) grazing"));
+    DREAD_REFLECTED_FIELD(bool, "bStopInAbort", 0x98, (DefaultValue, false), (Description, "Stop movement in abort"));
+    DREAD_REFLECTED_FIELD(bool, "bWantsModifyPathIfTargetNear", 0x99, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bCheckDirToMove", 0xc8, (DefaultValue, false), (Description, "Check dir to init movement"));
+    DREAD_REFLECTED_FIELD(bool, "bAlwaysInDir", 0xc9, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fMaxDistToModifyPath", 0xcc, (DefaultValue, 250.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinDist2GoAway", 0xd0, (DefaultValue, 300.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

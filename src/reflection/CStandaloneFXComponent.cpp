@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,18 +21,9 @@ using base::reflection::DestroyDestructorFirst;
 
 // CStandaloneFXComponent
 extern base::reflection::CType g_unk_71727227b0;
-const base::reflection::UnkReflAttrKey& fn_7100234780();
-const base::reflection::UnkReflAttrKey& fn_7100092b10();
-const base::reflection::UnkReflAttrKey& fn_710008fd60();
 void fn_7100812860(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_710008f920();
-const base::reflection::UnkReflAttrKey& fn_71000903c0();
-const base::reflection::UnkReflAttrKey& fn_7100093390();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
 namespace CStandaloneFXComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -45,7 +37,7 @@ void refl_AddFields(CClass* cls) {
         fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
         fn->ParamAttrs(0)->Add<bool>(fn_71000903c0(), true);
     }
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("uPoolSize", true), fn_7100005178(), 0x48, -1, -1);
+    DREAD_REFLECTED_FIELD(u32, "uPoolSize", 0x48);
     UnkReflField* field2 = fn_7100096524(cls, CStrId("vScale", true), fn_71000246e4(), 0xffffffff, -1, -1);
     field2->attrs.Add<bool>(fn_7100093390(), true);
     field2->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);

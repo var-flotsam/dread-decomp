@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,31 +20,17 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassSetActionEvent
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100090d50();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100091080();
-const base::reflection::UnkReflAttrKey& fn_7100091190();
 namespace CCharClassSetActionEvent {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Set Action");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Actions", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bForce", true), fn_710000d228(), 0xc, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), true);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("iFrame", true), fn_7100014768(), 0x10, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), 0);
-    field1->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field1->attrs.Add<f32>(fn_7100091190(), 100000.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("sAction", true), fn_7100009658(), 0x18, -1, -1);
-    field2->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("bIsAttack", true), fn_710000d228(), 0x20, -1, -1);
-    field3->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fProbability", true), fn_710000abbc(), 0x24, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 1.0f);
-    field4->attrs.Add<f32>(fn_7100091080(), 0.0f);
-    field4->attrs.Add<f32>(fn_7100091190(), 1.0f);
+    DREAD_REFLECTED_FIELD(bool, "bForce", 0xc, (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(s32, "iFrame", 0x10, (DefaultValue, 0), (MinValue, 0.0f), (MaxValue, 100000.0f));
+    DREAD_REFLECTED_FIELD(CStrId, "sAction", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(bool, "bIsAttack", 0x20, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fProbability", 0x24, (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 1.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

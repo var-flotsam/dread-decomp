@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,21 +20,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassForceAnalogInputAngTrack
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100090e60();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 namespace CCharClassForceAnalogInputAngTrack {
 void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Force Analog Input Ang");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Aim", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bForce", true), fn_710000d228(), 0x18, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fAngle", true), fn_710000abbc(), 0x1c, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("bIgnoreOnFire", true), fn_710000d228(), 0x20, -1, -1);
-    field2->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_FIELD(bool, "bForce", 0x18, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fAngle", 0x1c, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(bool, "bIgnoreOnFire", 0x20, (DefaultValue, true));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

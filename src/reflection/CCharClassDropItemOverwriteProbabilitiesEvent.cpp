@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,9 +20,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassDropItemOverwriteProbabilitiesEvent
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::UnkReflAttrKey& fn_7100090d50();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_717271bad0;
 void fn_7100cb869c();
 void fn_7100cb7a04(UnkReflFunction* fn, const char* name);
@@ -31,66 +29,36 @@ void refl_AddAttributes(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100090d50(), "Drops");
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("iMinNumOfDroppedItems", true), fn_7100014768(), 0xc, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), 0);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("iMaxNumOfDroppedItems", true), fn_7100014768(), 0x10, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), 0);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("iMaxItemTypeMin", true), fn_7100014768(), 0x14, -1, -1);
-    field2->attrs.Add<s32>(fn_7100075240(), 0);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("iMaxItemTypeMax", true), fn_7100014768(), 0x18, -1, -1);
-    field3->attrs.Add<s32>(fn_7100075240(), 0);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("fNothingProbability", true), fn_710000abbc(), 0x1c, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("fLifeProbability", true), fn_710000abbc(), 0x20, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("fLifeBigProbability", true), fn_710000abbc(), 0x24, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("fMissileProbability", true), fn_710000abbc(), 0x28, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("fMissileBigProbability", true), fn_710000abbc(), 0x2c, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("fPowerBombProbability", true), fn_710000abbc(), 0x30, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("fPowerBombBigProbability", true), fn_710000abbc(), 0x34, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("fXParasiteYellowTypeProbability", true), fn_710000abbc(), 0x38, -1, -1);
-    field11->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("fXParasiteGreenTypeProbability", true), fn_710000abbc(), 0x3c, -1, -1);
-    field12->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("fXParasiteRedTypeProbability", true), fn_710000abbc(), 0x40, -1, -1);
-    field13->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field14 = fn_7100096524(cls, CStrId("fXParasiteOrangeTypeProbability", true), fn_710000abbc(), 0x44, -1, -1);
-    field14->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("fMinDistance", true), fn_710000abbc(), 0x48, -1, -1);
-    field15->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field16 = fn_7100096524(cls, CStrId("fMaxDistance", true), fn_710000abbc(), 0x4c, -1, -1);
-    field16->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("fMaxZDisp", true), fn_710000abbc(), 0x50, -1, -1);
-    field17->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field18 = fn_7100096524(cls, CStrId("sNode", true), fn_7100009658(), 0x58, -1, -1);
-    field18->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field19 = fn_7100096524(cls, CStrId("fOffsetX", true), fn_710000abbc(), 0x60, -1, -1);
-    field19->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field20 = fn_7100096524(cls, CStrId("fOffsetY", true), fn_710000abbc(), 0x64, -1, -1);
-    field20->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field21 = fn_7100096524(cls, CStrId("fOffsetZ", true), fn_710000abbc(), 0x68, -1, -1);
-    field21->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field22 = fn_7100096524(cls, CStrId("fRawOffsetX", true), fn_710000abbc(), 0x6c, -1, -1);
-    field22->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field23 = fn_7100096524(cls, CStrId("fRawOffsetY", true), fn_710000abbc(), 0x70, -1, -1);
-    field23->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field24 = fn_7100096524(cls, CStrId("fRawOffsetZ", true), fn_710000abbc(), 0x74, -1, -1);
-    field24->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field25 = fn_7100096524(cls, CStrId("sDirection", true), fn_7100009658(), 0x78, -1, -1);
-    field25->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
-    UnkReflField* field26 = fn_7100096524(cls, CStrId("bStrictDirection", true), fn_710000d228(), 0x80, -1, -1);
-    field26->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field27 = fn_7100096524(cls, CStrId("bForceAttract", true), fn_710000d228(), 0x81, -1, -1);
-    field27->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field28 = fn_7100096524(cls, CStrId("bIgnoreAttractionRadius", true), fn_710000d228(), 0x82, -1, -1);
-    field28->attrs.Add<bool>(fn_7100075240(), false);
-    UnkReflField* field29 = fn_7100096524(cls, CStrId("bDoNotDropWithNormalMelee", true), fn_710000d228(), 0x83, -1, -1);
-    field29->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(s32, "iMinNumOfDroppedItems", 0xc, (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD(s32, "iMaxNumOfDroppedItems", 0x10, (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD(s32, "iMaxItemTypeMin", 0x14, (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD(s32, "iMaxItemTypeMax", 0x18, (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD(f32, "fNothingProbability", 0x1c, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLifeProbability", 0x20, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fLifeBigProbability", 0x24, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMissileProbability", 0x28, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMissileBigProbability", 0x2c, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPowerBombProbability", 0x30, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPowerBombBigProbability", 0x34, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fXParasiteYellowTypeProbability", 0x38, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fXParasiteGreenTypeProbability", 0x3c, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fXParasiteRedTypeProbability", 0x40, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fXParasiteOrangeTypeProbability", 0x44, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinDistance", 0x48, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxDistance", 0x4c, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxZDisp", 0x50, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(CStrId, "sNode", 0x58, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(f32, "fOffsetX", 0x60, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fOffsetY", 0x64, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fOffsetZ", 0x68, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fRawOffsetX", 0x6c, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fRawOffsetY", 0x70, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(f32, "fRawOffsetZ", 0x74, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(CStrId, "sDirection", 0x78, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(bool, "bStrictDirection", 0x80, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bForceAttract", 0x81, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bIgnoreAttractionRadius", 0x82, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(bool, "bDoNotDropWithNormalMelee", 0x83, (DefaultValue, false));
     UnkReflField* field30 = fn_7100096524(cls, CStrId("eType", true), &g_unk_717271bad0, 0x84, -1, -1);
     field30->attrs.Add<s32>(fn_7100075240(), &g_unk_717271bad0, 1);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sNodes_GetterFunction", true))) {

@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -19,17 +20,13 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CChozoRobotSoldierAIComponent
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_717269bb48;
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
 extern base::reflection::CType g_unk_717269bf08;
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 namespace CChozoRobotSoldierAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("bAlternativeSkin", true), fn_710000d228(), 0x27790, -1, -1);
-    field0->attrs.Add<bool>(fn_7100075240(), false);
+    DREAD_REFLECTED_FIELD(bool, "bAlternativeSkin", 0x27790, (DefaultValue, false));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("wpPatrolPath", true), &g_unk_717269bb48, 0x14ad8, -1, -1);
     field1->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
     UnkReflField* field2 = fn_7100096524(cls, CStrId("tShootingPositions", true), &g_unk_717269bf08, 0x14b28, -1, -1);

@@ -21,7 +21,6 @@ using base::reflection::DestroyDestructorFirst;
 // CCharacterLifeComponent
 void fn_71011592e0();
 void fn_7101158a9c(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
 namespace CCharacterLifeComponent {
 void refl_AddAttributes(CClass*) {}

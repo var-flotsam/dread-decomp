@@ -5,6 +5,7 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
+#include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -20,15 +21,9 @@ using base::reflection::DestroyDestructorFirst;
 
 // CWaterTriggerChangeComponent
 extern base::reflection::CType g_unk_71727b6270;
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
 extern base::reflection::CType g_unk_71727bc110;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100093390();
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
 namespace CWaterTriggerChangeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -36,12 +31,9 @@ void refl_AddFields(CClass* cls) {
     field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("wpTargetWaterTrigger", true), &g_unk_71727b6270, 0xe8, -1, -1);
     field1->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("fChangeTime", true), fn_710000abbc(), 0x168, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 2.0f);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("fDelay", true), fn_710000abbc(), 0x16c, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("bDeactivateOnFinished", true), fn_710000d228(), 0x1a0, -1, -1);
-    field4->attrs.Add<bool>(fn_7100075240(), true);
+    DREAD_REFLECTED_FIELD(f32, "fChangeTime", 0x168, (DefaultValue, 2.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDelay", 0x16c, (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(bool, "bDeactivateOnFinished", 0x1a0, (DefaultValue, true));
     UnkReflField* field5 = fn_7100096524(cls, CStrId("wpOtherWaterTriggerChange", true), &g_unk_71727b6270, 0x128, -1, -1);
     field5->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
     UnkReflField* field6 = fn_7100096524(cls, CStrId("fOriginChange", true), fn_710000abbc(), 0xffffffff, -1, -1);
