@@ -147,5 +147,6 @@ address,digest,verdict,rules,detail
 0x710117e5b0,015028da5a71252479c1fe1d0ac23362,inconclusive,2,no definition of the function found in the source: its result type is not known
 0x71011b7e7c,274dcd780552faf03754d378cf2de86b,pass,2,both runs were cut off
 0x71011b7fc8,870cfedad1877e58e1d6de99ffb4fd06,pass,2,both runs were cut off
+0x7101213858,04792d204afbcaef21f98a1514806588,pass,2,
 0x7101215464,f6e5699454957d50fb6cd1edbe55d576,pass,2,
 0x7101230a00,74ce25ae78de4fb1b744bd9fd1959a36,pass,2,

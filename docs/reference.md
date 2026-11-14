@@ -184,7 +184,8 @@ Clang 9.0.1 has no arm64 macOS build; the x86_64 build runs under Rosetta 2. Bef
   defines the mangled name (`_ZN10UnkHalf_cuC1EOS_`), never `fn_<addr>`. The declaration still names the
   address, by the label or by a comment that starts with it (`~CRntString();  // fn_710007ecd4`; a
   template's `// fn_<CTOR>`, `template <> X<0>::~X();  // fn_...` for one instantiation, a macro's
-  `/* fn_##p */`), and `tools/dread/asm_labels.py` reads it for `check.py`, `trymatch.py`, `drafts.py` and
+  `/* fn_##p */`; a class's vtable by `struct X : Base {  // vtable g_unk_<addr>`), and
+  `tools/dread/asm_labels.py` reads it for `check.py`, `trymatch.py`, `drafts.py` and
   `equiv_test.py`. A matching function's call to a constructor or destructor that the object does not
   define and nothing names fails as `RELOC ... special`; a wrong address fails as any RELOC does.
 - **Relocation check limits:** the content of string literals and constant-pool entries is compared

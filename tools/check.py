@@ -291,7 +291,7 @@ def with_labels(resolve, full_names: dict[str, str], source: str | None):
     an asm label on one, so the object has only the mangled name."""
     def resolve2(sym: str) -> int | None:
         hit = resolve(sym)
-        if hit is None and asm_labels.is_special(sym):
+        if hit is None and (asm_labels.is_special(sym) or asm_labels.is_vtable(sym)):
             hit, _ = labels().lookup(sym, full_names.get(sym, sym), source)
         return hit
     return resolve2

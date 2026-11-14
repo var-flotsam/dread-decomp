@@ -1,5 +1,6 @@
 // nn::atk-ish unit 2772: small accessors on packed parameter blocks, a flag word followed by optional
 // values. Names and layouts are placeholders.
+#include "game/UnkAtkSystem.h"
 #include "game/UnkTU2772.h"
 #include "types.h"
 
@@ -15,15 +16,6 @@ u32 fn_7101213700(s32 n) {
         return 3;
     return n == 1 ? 2 : 1;
 }
-
-struct UnkAtkCounter_b0147 {
-    u64 field_0x0;
-    u64 field_0x8;
-    u32 field_0x10;
-    u64 field_0x18;
-    u32 field_0x20;
-    u32 field_0x24;
-};
 
 void fn_710122fef4(UnkAtkCounter_b0147* self) {
     self->field_0x18 = 0;

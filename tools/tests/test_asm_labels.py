@@ -58,6 +58,9 @@ struct UnkDup {
 """
 
 
+VTABLE = "struct UnkPart : UnkBase {  // vtable g_unk_7101cb8da0\n    virtual void Run();\n};\n"
+
+
 class Scan(unittest.TestCase):
     def test_forms(self):
         found = {(lab.cls, lab.kind, lab.params, lab.address, lab.targs) for lab in scan_text(HEADER, "x.h")}
@@ -77,6 +80,10 @@ class Scan(unittest.TestCase):
         self.assertIn(("UnkState_7100722124", 0x7100722124), found)
         self.assertIn(("UnkState_71010f06bc", 0x71010F06BC), found)
         self.assertIn(("UnkState_71007977dc", 0x71007977DC), found)  # an argument with parentheses
+
+    def test_vtable(self):
+        found = scan_text(VTABLE, "x.h")
+        self.assertEqual([(lab.cls, lab.kind, lab.address) for lab in found], [("UnkPart", "vtable", 0x7101CB8DA0)])
 
     def test_one_line_only(self):
         # a macro use followed by a declaration on the next line is not one declaration
@@ -122,6 +129,11 @@ class Lookup(unittest.TestCase):
         self.assertEqual(self.look("_ZN4base6global10CRntStringC1ERKS1_",
                                    "base::global::CRntString::CRntString(base::global::CRntString const&)")[0],
                          0x710007E7F8)
+
+    def test_vtable_lookup(self):
+        root = Path(self.tmp.name)
+        (root / "include" / "v.h").write_text(VTABLE, encoding="utf-8")
+        self.assertEqual(Labels(root).lookup("_ZTV7UnkPart", "vtable for UnkPart", None)[0], 0x7101CB8DA0)
 
     def test_deleting_destructor_never_maps(self):
         self.assertFalse(is_special("_ZN10UnkHalf_cuD0Ev"))

@@ -242,13 +242,14 @@ def original_refs(code: bytes, address: int) -> set[int]:
 
 
 SOURCES: dict[Path, str] = {}  # object -> its source (a repository path), for the special members' labels
+SPECIAL_DEFS: set[tuple[Path, int]] = set()  # (object, address) of a constructor or destructor it defines
 
 
 def special_address(sym: str, name: str, obj: Path) -> int | None:
     """A constructor's or destructor's address from its declaration (tools/dread/asm_labels.py): Clang 9
     ignores an asm label on one, so the object names only the mangled symbol."""
     from dread import asm_labels
-    if not asm_labels.is_special(sym):
+    if not (asm_labels.is_special(sym) or asm_labels.is_vtable(sym)):
         return None
     import check
     return check.labels().lookup(sym, name, SOURCES.get(obj))[0]
@@ -305,7 +306,13 @@ def load(ctx: Context, obj: Path, addr: int):
             return there + offset if there is not None else False  # state or identity: must be the original's
         return None  # read-only named data (a switch's table, a constant array): the object's own copy
 
-    return pcode_emu.load_object(str(obj), resolve, demangled, anchor=anchor), missing
+    def defined_special(sym: str) -> int | None:
+        hit = special_address(sym, demangled.get(sym, sym), obj)
+        if hit is not None:
+            SPECIAL_DEFS.add((obj, hit))
+        return hit
+
+    return pcode_emu.load_object(str(obj), resolve, demangled, anchor=anchor, address_of=defined_special), missing
 
 
 def words_of(ctx: Context, pairs) -> set[int]:
@@ -455,6 +462,8 @@ def judge(ctx: Context, oracle, obj: Path, a: int, text: str, budget: float = 60
         if missing and any(start <= p < start + size for p in lo.unresolved):
             return "fail", f"string not in the original: {missing[0][:40]!r}"
         rtype = return_type(text, a)
+        if rtype is None and (obj, a) in SPECIAL_DEFS:
+            rtype = "void"  # a constructor or destructor (on AArch64 neither returns this)
         if rtype is None:
             return "inconclusive", "no definition of the function found in the source: its result type is not known"
         ret = result_kind(rtype, ctx.af.result_shape(a))

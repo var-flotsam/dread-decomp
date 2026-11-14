@@ -15,6 +15,8 @@ all read here:
     #define STATE(ctor, ...) struct UnkState_##ctor ... { UnkState_##ctor(); /* fn_##ctor */ };
                                                                    // a macro: each use STATE(7100722124, ...)
                                                                    // declares UnkState_7100722124 at that address
+    struct UnkAtkPart_b0150 : UnkAtkPartBase_b0150 {  // vtable g_unk_7101cb8da0
+                                                                   // the class's vtable (_ZTV...) is that object
 
 `Labels.lookup` maps a mangled symbol to that address. The declaration must be visible to the object,
 so it is looked for in the object's own source first, then in every header (`.h` under include/ and
@@ -52,6 +54,9 @@ _DEFINE = re.compile(r"^[ \t]*#[ \t]*define[ \t]+(?P<macro>[A-Za-z_]\w*)\((?P<mp
                      r"(?P<body>(?:[^\n]*\\\n)*[^\n]*)", re.M)
 _MACRO_DECL = re.compile(r"(?P<tilde>~?)(?P<prefix>[A-Za-z_]\w*)##(?P<p>\w+)\s*" + _PARAMS
                          + r"\s*;\s*/\*\s*fn_##(?P=p)\s*\*/")
+# `struct Name ... {  // vtable g_unk_ADDR`: the class's vtable (`_ZTV...`) is the original's object at ADDR.
+_VTABLE = re.compile(r"^[ \t]*(?:struct|class)[ \t]+(?P<name>[A-Za-z_]\w*)\b[^;{\n]*\{[ \t]*//[ \t]*vtable[ \t]+"
+                     r"(?:g_unk|unk)_(?P<addr>[0-9a-f]{10})\b", re.M)
 # The mangled kinds that stand for the declared member: complete and base object constructor and
 # destructor. C3 (inheriting constructor) and D0 (deleting destructor) are other functions.
 _KIND = re.compile(r"^_ZN.*?(?P<k>C[12]|D[12])E")
@@ -67,10 +72,15 @@ class Label:
     path: str      # repository path of the declaring file
     line: int
     cls: str       # the class's own name (its last component, without template arguments)
-    kind: str      # "ctor" or "dtor"
+    kind: str      # "ctor", "dtor" or "vtable"
     params: tuple  # parameter types, normalized (param_key)
     address: int | None  # None: the class template's (single) argument is the address
     targs: tuple | None = None  # a specialization's template arguments, normalized
+
+
+def is_vtable(symbol: str) -> bool:
+    """Whether a mangled symbol is a class's vtable (`_ZTV...`)."""
+    return symbol.startswith("_ZTV")
 
 
 def is_special(symbol: str) -> bool:
@@ -156,6 +166,9 @@ def _address(m) -> int | None:
 
 def scan_text(text: str, path: str) -> list[Label]:
     out = []
+    for m in _VTABLE.finditer(text):
+        line = text.count("\n", 0, m.start()) + 1
+        out.append(Label(path, line, m.group("name"), "vtable", (), int(m.group("addr"), 16)))
     for m in _DECL.finditer(text):
         if m.group("name") in _NOT_NAMES:
             continue
@@ -222,7 +235,7 @@ class Labels:
         self.by_file: dict[str, list[Label]] = {}
         for p in (files if files is not None else hand_written_files(root)):
             text = p.read_text(encoding="utf-8", errors="replace")
-            if "fn_" not in text:
+            if "fn_" not in text and "// vtable" not in text:
                 continue
             found = scan_text(text, p.relative_to(root).as_posix())
             if found:
@@ -249,11 +262,15 @@ class Labels:
         (None, why). `demangled` is the symbol's full demangled name (with its parameter list);
         `source` the repository path of the object's source."""
         m = _KIND.match(symbol)
-        if not m:
-            return None, "not a constructor or destructor"
-        kind = "dtor" if m.group("k").startswith("D") else "ctor"
-        cls, targs, _, params_text = split_member(demangled)
-        params = param_key(params_text, named=False)
+        if symbol.startswith("_ZTV") and demangled.startswith("vtable for "):
+            kind, params = "vtable", ()
+            cls, targs = split_member(demangled[len("vtable for "):] + "::x()")[:2]
+        elif not m:
+            return None, "not a constructor, destructor or vtable"
+        else:
+            kind = "dtor" if m.group("k").startswith("D") else "ctor"
+            cls, targs, _, params_text = split_member(demangled)
+            params = param_key(params_text, named=False)
         scope = self.in_file(source) if source else []
         for wanted in (scope, self.headers):
             hits = set()

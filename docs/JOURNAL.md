@@ -152,6 +152,21 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**The sound system's layout, from its constructor (2026-11-14).** `fn_7101213858` (held as a draft) and
+`fn_7101214c94.cpp` described the object at +0x950 and +0x558/+0x5a8 differently. The original settles both.
+At +0x950 the constructor makes one 64-bit store of 0x0000010000000100, setting the bytes at +0x951 and
++0x955 to 1 and the other six to 0; `fn_7101214c94` reads bytes there (ldrb +0x950 to +0x953, strb +0x955,
+strh +0x956): eight byte flags, which Clang initializes with one merged store. At +0x558 the constructor
+calls a base constructor (fn_710123675c) and stores a vtable through a GOT slot (0x7101cb8da0): a derived
+part built in place. At +0x5a8, +0x6a0 and +0x798 it calls fn_71012372c4 on each: three 0xf8-byte banks,
+which `fn_7101214c94` drains through their vtables. The one layout is `include/game/UnkAtkSystem.h`
+(the class, its banks, part, counter and event; the singleton getter and the shutdown take it from there,
+code unchanged). Its constructor is now written as one: the members the original builds first are members
+(defaults and sub-object constructors, in declaration order), the rest is its body. It passes
+`tools/equiv_test.py` and is in `src/`. The tools needed two things for that: a constructor defined under
+its mangled name is registered at its address in `equiv_test`, and `asm_labels.py` reads a class's vtable
+from `struct X : Base {  // vtable g_unk_<addr>` (the store stays checked).
+
 **Constructor and destructor calls checked (2026-11-14).** Clang 9 ignores `asm("fn_<addr>")` on a
 constructor or destructor: the object calls and defines the mangled name, which `check.py` could not
 resolve, so 6,115 such calls in hand-written objects (147 callees, the SDK's imports aside) went unchecked

@@ -208,7 +208,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71011d968c,244,drafts/game/GUI/CDisplayObjectContainer/fn_71011d968c.cpp,control flow,15.9,51,pilot50,search loop exit condition: clang emits cset/orr instead of csel+ccmp
 0x71011fd160,212,drafts/game/GUI/CSpriteGrid/fn_71011fd160.cpp,operations,86.8,7,test40,stack slot assignment of three 8-byte locals
 0x71012129f0,264,drafts/game/UnkTU2772/fn_71012129f0.cpp,registers or order,98.5,1,overnight,
-0x7101213858,420,drafts/game/UnkTU2772/fn_7101213858.cpp,registers or order,94.3,6,overnight,passes tools/equiv_test.py; held: it is UnkSingleton_71001039f8's constructor (src/game_lo/fn_71001039f8.cpp; a constructor definition now maps through its declaration's address) but its layout disagrees with src/game/UnkTU2772/fn_7101214c94.cpp's UnkAtkSystem_b0150 at +0x950 (two u32 0x100 stores vs eight byte flags) and +0x558/+0x5a8 (raw parts vs members with vtables): one layout needs a decision
 0x7101214bd0,196,drafts/game/UnkTU2772/fn_7101214bd0.cpp,operations,95.9,2,overnight,
 0x710122cf1c,264,drafts/game/UnkTU2772/fn_710122cf1c.cpp,conditions,97.0,2,overnight,
 0x710122f380,112,drafts/game/UnkTU2772/fn_710122f380.cpp,registers or order,96.4,1,overnight,
