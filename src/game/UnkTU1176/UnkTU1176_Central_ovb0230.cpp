@@ -22,6 +22,7 @@
 #include "game/CCharClassStartPointComponent.h"
 #include "game/CInventoryComponent.h"
 #include "game/CModelUpdaterComponent.h"
+#include "game/UnkCallbackSet_7101a20950.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1176.h"
@@ -40,54 +41,6 @@
 #include "types.h"
 
 using base::global::CStrId;
-
-struct UnkRefCounted {
-    virtual void vf0();
-    virtual void vf8();
-    virtual void Delete();
-    union {
-        s32 ref_count;
-    };
-};
-
-struct UnkCallbackBase {
-    virtual void vf0();
-    UnkOwnedErasedVector callbacks;
-    u32 field_0x30;
-
-    UnkCallbackBase() : field_0x30(0) {}
-};
-
-// The callback set of vtable 0x7101a20950 (0x40 bytes).
-struct UnkCallbackSet_7101a20950 : UnkCallbackBase {
-    virtual void vf8();
-    UnkRefCounted* owner;
-
-    UnkCallbackSet_7101a20950() : owner(nullptr) {}
-    UnkCallbackSet_7101a20950(const UnkCallbackSet_7101a20950& other) : owner(nullptr) {
-        UnkRefCounted* p = other.owner;
-        if (p != owner) {
-            if (p)
-                ++p->ref_count;
-            if (UnkRefCounted* old = owner) {
-                if (--old->ref_count == 0)
-                    old->Delete();
-            }
-            owner = p;
-        }
-        field_0x30 = other.field_0x30;
-        fn_710023b29c(&callbacks, &other.callbacks);
-    }
-
-    UnkCallbackSet_7101a20950(UnkCallbackSet_7101a20950&& other);  // fn_71002458a4
-
-    __attribute__((always_inline)) ~UnkCallbackSet_7101a20950() {
-        if (UnkRefCounted* p = owner) {
-            if (--p->ref_count == 0)
-                p->Delete();
-        }
-    }
-};
 
 struct UnkSetPair_b0230 {
     UnkCallbackSet_7101a20950 first;
