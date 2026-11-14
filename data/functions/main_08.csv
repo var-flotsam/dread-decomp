@@ -2956,7 +2956,7 @@ address,size,name,name_source,subsystem,status
 0x710088664c,28,fn_710088664c,unknown,unknown,O
 0x7100886668,44,fn_7100886668,unknown,unknown,O
 0x7100886694,36,fn_7100886694,unknown,unknown,O
-0x71008866b8,548,fn_71008866b8,unknown,unknown,U
+0x71008866b8,548,fn_71008866b8,unknown,unknown,O
 0x71008868dc,4,fn_71008868dc,unknown,unknown,O
 0x71008868e0,288,fn_71008868e0,unknown,unknown,O
 0x7100886a00,528,fn_7100886a00,unknown,unknown,O

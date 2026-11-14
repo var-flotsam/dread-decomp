@@ -8,6 +8,7 @@
 #include "base/color/CColor4F.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
+#include "base/math/UnkZeroVector3.h"
 #include "game/CActorComponent.h"
 #include "game/CAutclastChargeAttack.h"
 #include "game/CFXComponent.h"
@@ -147,7 +148,6 @@ struct UnkXParasiteKeyed_8208 {
     u64 key;  // 0x30
 };
 extern UnkXParasiteKeyed_8208* g_unk_717270b910[2] __attribute__((visibility("hidden")));
-extern char g_unk_7101647790[];
 
 struct UnkXParasitePartHandle_8208 {
     u8 pad_0x0[0xb];
@@ -178,7 +178,7 @@ void fn_71006e8208(UnkXParasiteAI* self, bool on) {
         fn_7100146d84(fx, &position);
         fn_7101152988(static_cast<UnkRinkaControl_ovb0090*>(control), fx, reinterpret_cast<UnkRinkaEntry_ruc**>(g_unk_717270b910),
                       nullptr, 0);
-        const UnkVec3f& src = *reinterpret_cast<const UnkVec3f*>(g_unk_7101647790);
+        const UnkVec3f& src = *reinterpret_cast<const UnkVec3f*>(&g_unk_7101647790);
         UnkVec3f first(src);
         UnkVec3f second(src);
         fn_710115217c(control, fx, 0, 7, &g_unk_7101d470e0, reinterpret_cast<const base::math::CVector3D&>(first),

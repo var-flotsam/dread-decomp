@@ -9,12 +9,9 @@
 #include "base/UnkVector.h"
 #include "game/SCameraRailNode.h"
 #include "types.h"
+#include "game/UnkTU341.h"
 
 // The move constructor, typed as CCentralUnitComponent's 0x40-byte half (one declaration per symbol).
-struct UnkHalf_cu {
-    u8 data[0x40];
-    UnkHalf_cu(UnkHalf_cu&& other) asm("fn_71002458a4");
-};
 
 // As SCameraRailNode_VectorCopy_b43.cpp's UnkRailNode_b43a3 (the same type, for fn_7100c090cc).
 struct UnkRailNode_b43a3 {

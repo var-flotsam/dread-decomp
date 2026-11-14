@@ -7,4 +7,16 @@
 #include "types.h"
 
 struct UnkEnvironmentFade;
+
+// A 2D vector passed by value as a copy in memory (its copy constructor is user-provided).
+struct UnkEnvVec2 {
+    f32 x;
+    f32 y;
+
+    UnkEnvVec2(const UnkEnvVec2& other) {
+        x = other.x;
+        y = other.y;
+    }
+};
+
 void fn_7100f985d8(f32 time, UnkEnvironmentFade* self, const base::math::CVector2D* to);

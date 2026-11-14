@@ -16,11 +16,6 @@
 #include "game/UnkTU341.h"
 #include "types.h"
 
-struct UnkHalf_cu {
-    u8 data[0x40];
-    UnkHalf_cu(UnkHalf_cu&& other) asm("fn_71002458a4");
-};
-
 struct UnkEntry_cu {
     UnkHalf_cu first;
     UnkHalf_cu second;
