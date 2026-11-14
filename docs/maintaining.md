@@ -98,9 +98,9 @@ After a round of merges, the merging session refreshes `docs/HANDOFF.md`
 under it the translation units by state with the units the change moves.
 To refresh the private dashboard as well: `tools/dashboard_export.py`, then upload `build/dashboard/`.
 
-**Size of a pull request.** Each PR costs a session start and a review. Prefer one hub cluster
-(a hub and the callers it unblocks) or at least about 30 functions per PR; a branch under that
-keeps accumulating. The exception is a tool or header change that other streams wait on.
+**Size of a pull request.** One coherent piece of work per PR (a class, a hub cluster, a tool change), with
+no minimum size: the checks and the merge take minutes (2026-11-14 audit; the old "about 30 functions" floor
+did not match practice).
 
 ## The self-hosted check job
 

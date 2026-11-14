@@ -85,22 +85,23 @@ sweeping revisions of `main`.
 Route B (`docs/PORT_PLAN.md`): one program now, lifted code as a bridge that matching replaces. Hubs
 first along the boot slice; one declaration per shared symbol in `include/`; files by unit, not by
 address; relocation targets are part of a match; generators in maintenance except the lifter's
-semantic mode; pull requests of a hub cluster or about 30 functions, merged on a green check.
+semantic mode; pull requests of one coherent piece of work, merged on a green check.
 
 ## Workstreams and next steps
 
-One session per stream; each edits only its files. Changes to `include/` say so in the PR title.
-The full per-stream lists as of 2026-10-27 are in the journal, "Handoff next-steps snapshot".
+Work runs as project threads; a thread edits one class, unit or tool at a time, and changes to `include/` say so
+in the PR title. Rows A to C of 2026-10-27 are folded into "Hand matching" (refreshed in the audit of 2026-11-14;
+the older per-stream lists are in the journal, "Handoff next-steps snapshot").
 
 | Stream | Files | Branches | Next |
 |---|---|---|---|
-| A. Boot slice and hubs | `src/<subsystem>/`, migrated `src/game_*/`, `include/` | `claude/boot-<topic>` | The resource registry's lookups (`fn_71000ea448`, `fn_71000ead80`; base/UnkResKey.h has their types), `fn_7100ee1f34` and the rest of `hubs.py --boot`; near copies below 90% (`tools/nearcopy.py`); the low-scoring minors of #264-#266 |
-| B. Core engine types | `src/base/`, `include/base/` | `claude/core-<topic>` | Reflected function array growth and ctor/dtor; allocator functions by `operator new`; string pool's `m` functions; fix the `runtime?` inference that marks matched functions `L` |
-| C. Gameplay slice | `src/game/`, `include/game/` | `claude/game-<topic>` | After the title screen |
-| D. Port layer | `port/` | `claude/port-<topic>` | M1/M2: the frame loop's traps (`fn_710014d1a0`), the 26 unbindable function-local statics (journal round 8), drop the 11 byte-mode overrides once src/lifted is regenerated; M2: alpha test, Vulkan surface, texel upload, render-target formats 0x29/0x32 |
-| E. Tooling | `tools/`, `.github/` | `claude/tools-<topic>` | Boot trace from Eden's GDB stub; subsystem inference from `tu_map.csv`; the 504 `src/game_*` files with no known unit and their 15 local headers (to `include/`) |
-| R. Maintenance (from the review of 2026-11-11) | whatever the item touches; one pull request an item | `claude/<topic>-<date>` | In order: one layout per object, a class at a time (the worked example is `include/game/UnkXParasiteAI.h`; journal, 2026-11-13); the four held drafts left of 19 (`fn_71003549a4`, `fn_7100e51078`, `fn_71008c3dcc`, `fn_7100ebfd4c`; `drafts/INDEX.csv` says what holds each); the machine test's coverage; steering forms out of matched functions (`tools/progress.py --quality`). No bulk runs, no bulk move of copied types, no schedule for the weekly read (owner, 2026-11-13) |
-| M. Generators | `tools/gen_*.py`, generated `src/` directories | `claude/gen-<topic>`, `claude/lifter-<topic>` | Indirect calls with stack arguments (count the outgoing slots, compare them in the oracle), inputs that crash or loop on every seed, the oracle's rejections |
+| Hand matching | `src/<subsystem>/`, migrated `src/game_*/`, `include/` | `claude/<topic>` | `hubs.py --boot`, then `--ready --boot`: the resource registry's lookups (`fn_71000ea448`, `fn_71000ead80`; base/UnkResKey.h has their types), `fn_7100ee1f34`; near copies below 90% (`tools/nearcopy.py`); the low-scoring minors of #264-#266; core types: reflected function array growth and ctor/dtor, allocator functions by `operator new`, the string pool's `m` functions |
+| Layouts, a class at a time | that class's sources and its own header | `claude/<topic>` | The minimap's 0x138-byte record as one type (unblocks the held draft `fn_7100e51078`); the navmesh: an `UnkNavMesh` header and one `Vec2`. Worked example: `include/game/UnkXParasiteAI.h` (journal, 2026-11-13) |
+| Proof and drafts | `drafts/`, `data/equivalence.csv`, `tools/equiv_test.py`, `tools/permute.py` | `claude/<topic>` | The machine test's inputs (in progress; then `fn_7100e3cee0`); then `permute.py` and `equiv_test.py` over the registers-only rows of `drafts/INDEX.csv`; steering forms out of matched functions (`tools/progress.py --quality`) |
+| Names | `data/names.csv` | `claude/<topic>` | The nine X parasite functions that keep their addresses until their purpose is clear (`tools/rename.py`) |
+| Port layer | `port/` | `claude/port-<topic>` | M1/M2: the frame loop's traps (`fn_710014d1a0`), the 26 unbindable function-local statics (journal round 8), drop the 11 byte-mode overrides once src/lifted is regenerated; M2: alpha test, Vulkan surface, texel upload, render-target formats 0x29/0x32 |
+| Tooling | `tools/`, `.github/` | `claude/<topic>` | Boot trace from Eden's GDB stub; the lean kit's first worker batch (reference matches, 3-attempt cap; needs the owner's go-ahead); the lifted-function recount for this page; subsystem inference from `tu_map.csv` and the `runtime?` inference that marks matched functions `L`; the 504 `src/game_*` files with no known unit and their 15 local headers (to `include/`) |
+| Generators | `tools/gen_*.py`, generated `src/` directories | `claude/gen-<topic>`, `claude/lifter-<topic>` | Indirect calls with stack arguments (count the outgoing slots, compare them in the oracle), inputs that crash or loop on every seed, the oracle's rejections |
 
 Merging: merge `main` into the branch, take `main`'s `data/functions/*.csv`, rerun only the generator you
 own, then `tools/check.py --update` (`tools/verify.py --regen <generator>` does both). Before the PR:

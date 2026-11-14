@@ -1,12 +1,10 @@
 # tools/batch/
 
-The kits behind the parallel agent runs. Two things are here, and they are not alike:
-
-- **`lean/` is the kit to use**, rewritten on 2026-11-12 for the rules made since the runs of 2026-11-09 to
-  2026-11-11: the proof tiers (`CLAUDE.md`, "Completion"), one declaration per shared symbol, `drafts/`, and who
-  merges. It runs in place from this folder.
-- **`overnight/` is a record** of how the batch runs of those three days were made. Its worker rules contradict
-  the rules of today (below); do not run it.
+The kit behind the parallel agent runs. **`lean/`** was rewritten on 2026-11-12 for the rules made since the
+runs of 2026-11-09 to 2026-11-11: the proof tiers (`CLAUDE.md`, "Completion"), one declaration per shared
+symbol, `drafts/`, and who merges. It runs in place from this folder. The kit those runs used (`overnight/`,
+one worker per batch of about 30 functions of one unit) was removed on 2026-11-14; it is in git history at
+commit `eed157e8`.
 
 **Bulk runs are on hold** (owner, 2026-11-11; `docs/HANDOFF.md`, "Direction"). A kit that follows the rules is
 a precondition for lifting the hold, not the decision: each batch needs the owner's go-ahead.
@@ -28,7 +26,7 @@ worker gets.
 
 What changed from the kit the runs used, and why:
 
-| The runs' rule | Now | Because |
+| The old kit's rule | Now | Because |
 |---|---|---|
 | A non-match is deleted, or kept in `src/` as `NON_MATCHING(minor)` on the worker's word | A worker reports `match`, `registers` or `differs`; the coordinator files every non-match in `drafts/`, and only a function that passes `tools/equiv_test.py` enters `src/` without matching | Tier 2 needs the machine test; the test's first run found four real bugs in functions marked minor by hand |
 | A close non-match gets another model attempt | A registers-only result gets none: `tools/permute.py` tries it for free, then the machine test judges it | The tiers: a permuter, not model attempts, turns a registers-only difference into a match |
@@ -59,20 +57,12 @@ filing drafts: the same rows the pilot's one-off scripts wrote). The worker brie
 run by a worker: the first batch that uses it is also its test, and the test of the reference matches and the
 attempt cap added on 2026-11-14 (neither has been measured here).
 
-## overnight/: the record
-
-One worker per batch of about 30 functions of one translation unit. `coord.py` holds the ledger and the
-worker prompt, `system_prompt.txt` an earlier single-shot prompt, `finish.sh`, `step.sh`, `trym.sh`,
-`requeue.py` and `mkopus.py` the glue around them. The scripts expect to sit in `build/overnight/` of a
-worktree and carry a `<repos>` placeholder where its path was. Its rules that no longer hold: a worker never
-edits another file and copies every declaration it needs; non-matching code is kept out of the tree; a
-function is dropped early on a low first score.
-
 ## tips.md
 
-Matching tips the workers collected and read. Many are true observations about Clang 9 (compare order, store
-order, `fmin` against `fminnm`); many others are ways to steer the compiler (untyped stores, unions, inlining
-attributes), which `lean/worker.md` now rules out. A worker reads it with that rule above it.
+Matching tips the workers collected: source forms that reproduce what Clang 9 does (compare order, store
+order, `fmin` against `fminnm`). The tips that steered the compiler with forms the rules rule out (untyped
+stores, unions, inlining attributes, barriers) were taken out on 2026-11-14, so a worker no longer spends
+attempts on them.
 
 Not here, and never to be tracked: each function's context file and the Ghidra views given to some workers
 (game-derived), the objects, the ledgers and per-function results. The journal has the runs' totals.

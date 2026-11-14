@@ -93,7 +93,7 @@ shared template.
 
 ## Before the pull request
 
-Every 15 to 30 functions, or a hub cluster:
+When the work is ready to review (a class, a hub cluster, or any coherent set):
 
 ```sh
 git fetch origin main && git merge origin/main

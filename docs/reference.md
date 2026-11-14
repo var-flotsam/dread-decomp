@@ -42,7 +42,7 @@ tools/sigmatch.py                names vendored-library functions in main -> dat
 tools/gen_reflection.py, refl_attrs.py, gen_types.py, gen_statics.py, gen_clones.py, gen_tables.py, gen_lift.py
                                  generators (maintenance); regenerate, never hand-edit their output
 tools/policy_check.py, hooks/    content rules (CI and pre-commit)
-tools/batch/                     lean/: the batch kit (COORDINATOR.md, worker.md; runs in place); overnight/: a record; README.md
+tools/batch/                     lean/: the batch kit (COORDINATOR.md, worker.md; runs in place); tips.md; README.md
 .github/                         CI: policy + decl_check, compile + tool tests (hosted); check-local.yml (self-hosted check.py, enabled: "Known issues")
 src/compiler_id/, flag_id/, atk_id/   Phase 3 samples (frozen)
 src/reflection/, reflection_types/, reflection_statics/, clones/, lifted/, tables/   GENERATED
