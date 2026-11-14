@@ -5,6 +5,8 @@
 // a member it does not have yet. Its base, CBehaviorTreeAIComponent, ends at 0x146c8 (tools/gen_fields.py);
 // what follows are the component's own members, which reflection does not name. Names and layouts are
 // placeholders.
+#include "base/UnkDestructors.h"
+#include "base/UnkVector.h"
 #include "base/math/CVector4D.h"
 #include "game/CBlackboard.h"
 #include "game/UnkActor.h"
@@ -12,16 +14,11 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-// The component's table of entries at +0x14740: counted weak handles, each to a holder that has the entry's
-// actor.
+// The component's array of entries at +0x14740 (a base::UnkVector): counted weak handles, each to a holder
+// that has the entry's actor.
 struct UnkXParasiteEntryHolder {
     u8 pad_0x0[0x18];
     UnkActor* actor;  // 0x18
-};
-
-struct UnkXParasiteEntryTable {
-    UnkWeakHandle** data;
-    u32 count;
 };
 
 static inline UnkXParasiteEntryHolder* Holder(UnkWeakHandle* entry) {
@@ -76,21 +73,26 @@ static inline UnkXParasiteHolder* ModelHolder(UnkActor* owner) {
     return static_cast<UnkXParasiteHolder*>(owner->field_0x228);
 }
 
-// What each state shows: an effect (fn_71003b7db0 takes it from +0x10) and two colours for the shape's slots,
-// in the table at +0x14768, keyed by the value at +0x14724.
+// What each state shows: an effect (the file path id at +0x10 that fn_71003b7db0 loads) and two colours for
+// the shape's slots, in the table at +0x14768, keyed by the value at +0x14724.
 struct UnkXParasiteBinding {
     u8 pad_0x0[0x10];
-    u8 effect[8];                  // 0x10
+    base::UnkStrIdMemberOf<g_unk_7101d47200> effect;  // 0x10
     base::math::CVector4D first;   // 0x18
     base::math::CVector4D second;  // 0x28
 };
 static_assert(sizeof(UnkXParasiteBinding) == 0x38, "placeholder layout");
 
+// The values and their keys are two arrays from one allocator.
 struct UnkXParasiteBindings {
     UnkXParasiteBinding* values;
     u32* keys;
     u32 count;
+    u32 field_0x14;
+    u64 field_0x18;
+    base::UnkAllocator* allocator;  // 0x20
 };
+static_assert(sizeof(UnkXParasiteBindings) == 0x28, "placeholder layout");
 
 // The weights at +0x14728 of the four choices fn_71006e73f4 picks from at random, and the mask of those in use.
 // A behaviour can override each weight (fn_71006ea210).
@@ -104,7 +106,8 @@ struct UnkXParasiteWeights {
 
 struct UnkXParasiteAI {
     // CBehaviorTreeAIComponent and its bases: the members these sources touch
-    u8 pad_0x0[0x30];
+    void** vtable;
+    u8 pad_0x8[0x28];
     UnkActor* owner;  // 0x30
     u8 pad_0x38[0x1260 - 0x38];
     CBlackboard blackboard;  // 0x1260
@@ -135,13 +138,11 @@ struct UnkXParasiteAI {
     u32 field_0x14724;
     UnkXParasiteWeights weights;  // 0x14728
     u8 pad_0x1473c[4];
-    UnkXParasiteEntryTable entries;  // 0x14740
-    u8 pad_0x14750[0x14768 - 0x14750];
-    UnkXParasiteBindings bindings;  // 0x14768
-    u8 pad_0x14780[0x14790 - 0x14780];
+    base::UnkVector<UnkWeakHandle*> entries;  // 0x14740
+    UnkXParasiteBindings bindings;            // 0x14768
     UnkWeakHandle* link;  // 0x14790: the grabbed object's weak handle
-    UnkWeakHandle* field_0x14798;
-    u8 pad_0x147a0[8];
+    UnkWeakHandle* field_0x14798;  // the prey's weak handle (fn_71006ea9a4)
+    UnkRefObject* field_0x147a0;
     f32 field_0x147a8;
     u8 pad_0x147ac[4];
     UnkWeakHandle* field_0x147b0;  // what fn_71006e808c locks on to: a found entry's handle
@@ -158,6 +159,11 @@ static_assert(__builtin_offsetof(UnkXParasiteAI, bindings) == 0x14768, "placehol
 static_assert(__builtin_offsetof(UnkXParasiteAI, link) == 0x14790, "placeholder layout");
 static_assert(__builtin_offsetof(UnkXParasiteAI, released) == 0x147b9, "placeholder layout");
 static_assert(sizeof(UnkXParasiteAI) == 0x147c0, "placeholder layout");
+
+// The prey (the target of the weak handle at +0x14798) is an actor.
+static inline UnkActor* Prey(UnkXParasiteAI* self) {
+    return reinterpret_cast<UnkActor*>(self->field_0x14798->target);
+}
 
 // The binding of the current state (one past the end when none).
 static inline UnkXParasiteBinding* CurrentBinding(UnkXParasiteAI* self) {
