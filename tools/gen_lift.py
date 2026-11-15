@@ -3514,7 +3514,30 @@ def defined_outside(out: Path) -> set[int]:
             # generators define functions that way; hand-written code may just use a tag.
             if any(ROOT / "src" / d in f.parents for d in TAGGED_DIRS):
                 skip |= {int(a, 16) for a in TAG_RE.findall(text)}
+                # Value operations named by their type (base/reflection/ValueOps.h), with no address in the
+                # source: the addresses data/functions/ gives those names.
+                for t in VALUE_OPS_RE.findall(text):
+                    skip |= named_value_ops().get(t, set())
     return skip
+
+
+VALUE_OPS_RE = re.compile(r"^template struct base::reflection::ValueOps<(.+)>;$", re.M)
+_VALUE_OPS: dict[str, set[int]] | None = None
+
+
+def named_value_ops() -> dict[str, set[int]]:
+    """{type: addresses} of the functions data/functions/ names ValueOps<T>::<op> or refl_InitType<T>."""
+    global _VALUE_OPS
+    if _VALUE_OPS is None:
+        _VALUE_OPS = {}
+        pat = re.compile(r"^base::reflection::(?:ValueOps<(.+)>::\w+|refl_InitType<(.+)>)$")
+        for f in sorted((ROOT / "data" / "functions").glob("main_*.csv")):
+            with f.open(newline="", encoding="utf-8") as fh:
+                for r in csv.DictReader(fh):
+                    m = pat.match(r["name"])
+                    if m:
+                        _VALUE_OPS.setdefault(m.group(1) or m.group(2), set()).add(int(r["address"], 16))
+    return _VALUE_OPS
 
 
 def candidates(orig: asmdiff.Original) -> list[int]:

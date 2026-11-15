@@ -188,6 +188,37 @@ class Emission(unittest.TestCase):
         self.assertFalse(any("CPointerType::CPointerType" in ln for ln in inline))
 
 
+class EnumValueOps(unittest.TestCase):
+    BODY = ["    static constexpr u64 size = 0x4;",
+            "    static constexpr UnkFn construct = &fn_7100000040;",
+            "    static const CType* underlying() { return fn_7100000050(); }"]
+
+    def test_declaration_scopes_become_namespaces(self):
+        self.assertEqual(gt.enum_declaration("EFoo"), "enum class EFoo : u32;")
+        self.assertEqual(gt.enum_declaration("base::CBar::EFoo"), "namespace base::CBar { enum class EFoo : u32; }")
+
+    def test_named_form(self):
+        out = gt.emit_enum_ops(0x7100000020, "base::EFoo", 0x7101000000, self.BODY)
+        self.assertIn("const CType& base::reflection::ValueOps<base::EFoo>::TypeOf(const void*) "
+                      "{ return g_unk_7101000000; }", out)
+        self.assertIn("template struct base::reflection::ValueOps<base::EFoo>;", out)
+        self.assertIn("struct base::reflection::EnumTypeDescription<base::EFoo> "
+                      ": base::reflection::ValueOpsDescription<base::EFoo> {", out)
+        self.assertNotIn(self.BODY[1], out)  # the slots come from ValueOpsDescription
+        self.assertIn(self.BODY[2], out)
+        self.assertFalse(any("fn_7100000020" in ln for ln in out))
+        self.assertTrue(out[-1].endswith(", base::EFoo*);"))
+
+    def test_qualified_names_only(self):
+        self.assertTrue(gt.QUALIFIED_RE.fullmatch("CFoo::EBar"))
+        self.assertFalse(gt.QUALIFIED_RE.fullmatch("CFoo<int>::EBar"))
+
+    def test_constructor_alias(self):
+        import asmdiff
+        self.assertEqual(asmdiff.name_aliases("base::reflection::refl_InitType<base::EFoo>"),
+                         ["base::reflection::CEnumType::CEnumType<base::EFoo>"])
+
+
 class Declarations(unittest.TestCase):
     DECLS = {"void fn_7100000010();", "extern base::reflection::CType g_unk_7100000020;",
              "void fn_7100000030();"}

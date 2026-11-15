@@ -39,7 +39,7 @@ CEnumType::CEnumType(const base::global::CStrId& name, const void* arg, T*)
             reinterpret_cast<UnkFn_0x58>(EnumTypeDescription<T>::equals),
             reinterpret_cast<UnkFn_0x60>(EnumTypeDescription<T>::hash),
             reinterpret_cast<UnkFn_0x68>(EnumTypeDescription<T>::type_of), nullptr, nullptr,
-            {EnumTypeDescription<T>::construct, reinterpret_cast<UnkFn_0x30>(EnumTypeDescription<T>::copy_construct),
+            {reinterpret_cast<UnkFn>(EnumTypeDescription<T>::construct), reinterpret_cast<UnkFn_0x30>(EnumTypeDescription<T>::copy_construct),
              reinterpret_cast<UnkFn_0x30>(EnumTypeDescription<T>::move_construct),
              reinterpret_cast<UnkFn_0x40>(EnumTypeDescription<T>::destroy),
              reinterpret_cast<UnkFn_0x48>(EnumTypeDescription<T>::copy_assign),
