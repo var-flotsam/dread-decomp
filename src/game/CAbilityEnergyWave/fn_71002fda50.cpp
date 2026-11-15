@@ -19,7 +19,9 @@ struct UnkOwner_71002fda50 {
     UnkComponentA_71002fda50* field_0x260;
 };
 
-void fn_71003014e0(CAbilityComponent* self, void* arg);
+struct UnkEffect_l3014e0;
+struct UnkTarget_l3014e0;
+UnkEffect_l3014e0* fn_71003014e0(CAbilityComponent* self, UnkTarget_l3014e0* target);
 
 void fn_71002fda50(CAbilityComponent* self, bool all, bool force_off) {
     CAbility** begin = self->abilities.data;

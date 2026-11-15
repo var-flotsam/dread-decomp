@@ -20,6 +20,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU1141.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU1728.h"
 #include "game/UnkTU1730.h"
@@ -631,8 +632,6 @@ struct UnkTimeline {
     u8 pad_0x28[0x58];
     UnkMotionTracks* tracks;  // 0x80
 };
-
-void fn_71007142e8(UnkStruct_71007142e8* self);
 
 f32 fn_7100991e30(void* self, UnkTimeline* timeline) {
     UnkStruct_71007142e8 motion;

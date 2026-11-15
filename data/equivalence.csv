@@ -4,7 +4,9 @@ address,digest,verdict,rules,detail
 0x710006cd9c,e0d3c6ac3d1574487fb23bd532041934,pass,2,
 0x71000708c8,81506c18b14baabb966729e413c9fdda,pass,2,
 0x7100077c70,6934c6958abf061e9fc7872df6275096,pass,2,
+0x7100078e54,3fc173749ecfaf9e19ab02496151189d,pass,2,
 0x7100079b18,1ffde30061d52aea37354f768c7470d0,pass,2,
+0x7100079ed0,0ceec1b426f305dfef0e2de52bcb98d6,pass,2,
 0x710007ba20,6e7e160062c437e038f8aa7a73b18494,pass,2,
 0x710007c514,b9371f41929029b3a309b2cbee507206,pass,2,
 0x710007f050,6c772666cbe027abc2ea56aade0021d0,pass,2,
@@ -57,6 +59,8 @@ address,digest,verdict,rules,detail
 0x71002d58e4,f950997817fa89d139c87fbc170f171f,pass,2,
 0x71002e5db0,41ab470806377e4da6b4a051a28d550b,pass,2,
 0x71002e5e80,b5c0b3643a0eb62623c0f3a06b6c8aa0,pass,2,
+0x7100314fb4,7b991dcfbc6a092321535ae9ed0b91c0,pass,2,both runs faulted; on different accesses
+0x7100315190,d52d346b3ea8c506ddc028145e9a8ebd,pass,2,both runs faulted; on different accesses
 0x7100336ca0,940181a911ee0c41b9bc72f35f0177f4,inconclusive,2,no definition of the function found in the source: its result type is not known
 0x71003376b0,7d886d9d4126be551549260859a960bd,inconclusive,2,no definition of the function found in the source: its result type is not known
 0x7100337a80,ee6efb438a48f30f35c2057705dfd926,inconclusive,2,no definition of the function found in the source: its result type is not known
@@ -96,6 +100,7 @@ address,digest,verdict,rules,detail
 0x710087f018,4cdde458ffff53b070002450edaff6d6,pass,2,
 0x71009881b0,5afb7e2395df36e3ca9d150ff4d1a495,pass,2,
 0x71009cde54,d980ce8242f098adb0ef195783b93d79,inconclusive,2,only 79% of the original's instructions ran
+0x71009e307c,d2d74df9929cd064da2bfd12de663cbb,pass,2,
 0x71009f194c,e442597291dc8a2c87982ef4e4ddc7f8,pass,2,both runs faulted; on different accesses
 0x7100af45b0,934078e612346f3dbb073e4fbf4b5105,pass,2,
 0x7100b1a568,80d01da80cf5062dc65c492ebf04214f,inconclusive,2,only 37% of the original's instructions ran

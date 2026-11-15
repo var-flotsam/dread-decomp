@@ -21,6 +21,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU1134.h"
+#include "game/UnkTU1141.h"
 #include "game/UnkTU1643.h"
 #include "game/UnkTU1728.h"
 #include "game/UnkTU1730.h"
@@ -509,7 +510,6 @@ void fn_7101179de0(UnkAnimActionSetsOwner* self, void* id, u64 key, f32 seconds,
 // ---- Updates --------------------------------------------------------------------------------
 
 struct UnkStruct_71007142e8;
-void fn_71007142e8(UnkStruct_71007142e8* self);
 struct UnkParent;
 void fn_71002d58e4(UnkParent* self, const float* dt);
 

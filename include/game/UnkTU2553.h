@@ -80,3 +80,4 @@ bool fn_7100dfc0c8(UnkGameManager* self, const base::UnkNamedEntry* a, const bas
 bool fn_7100dfc344(UnkGameManager* manager, const char* const& a, const char* const& b, const base::global::CRntString& name, bool flag);
 void fn_7100dfc638(UnkGameManager* self, CBlackboard* blackboard, const base::global::CRntString* name, const base::global::CRntString* tag);
 s32 fn_7100dff1a8(UnkGameManager* self, const base::UnkNamedEntry* key, bool a, bool b);
+UnkAbility* fn_7100df5928(UnkPlayer* self);

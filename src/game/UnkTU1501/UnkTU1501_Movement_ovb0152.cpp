@@ -11,6 +11,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CAbilityGhostAura.h"
+#include "game/CAbilitySpeedBooster.h"
 #include "game/CAnimationComponent.h"
 #include "game/CBreakableTileGroup.h"
 #include "game/CCharacterMovement.h"
@@ -334,8 +335,6 @@ struct UnkTrackResult_b152 {
 };
 
 char* fn_71009e5330(UnkMove_b152* self, char* a1, char* a2, char* a3, char* a4, char* a5);
-UnkAbility* fn_7100df5928(UnkPlayer* self);
-bool fn_710033cf20(UnkAbility* ability);
 f32 fn_71007965a8(UnkRunInfo_b152* info);
 f32 fn_71007965c0(UnkRunInfo_b152* info);
 void fn_7100976940(UnkMove_b152* self);

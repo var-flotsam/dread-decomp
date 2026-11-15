@@ -11,6 +11,7 @@
 #include "game/CAnimationComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
@@ -50,8 +51,6 @@ struct UnkTimeline {
     u8 pad_0x28[0x58];
     UnkMotionTracks* tracks;  // 0x80
 };
-
-void fn_71007142e8(UnkStruct_71007142e8* self);
 
 struct UnkHypersparkOwner_ovb0023 {
     u8 pad_0x0[0x38];

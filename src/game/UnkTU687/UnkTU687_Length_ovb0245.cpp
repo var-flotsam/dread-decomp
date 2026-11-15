@@ -6,6 +6,7 @@
 #include <math.h>
 
 #include "game/CAnimationComponent.h"
+#include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
 #include "types.h"
 
@@ -40,8 +41,6 @@ struct UnkTimeline {
     u8 pad_0x28[0x58];
     UnkMotionTracks* tracks;  // 0x80
 };
-
-void fn_71007142e8(UnkStruct_71007142e8* self);
 
 struct UnkUppercutOwner_ovb0245 {
     u8 pad_0x0[0x220];
