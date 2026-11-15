@@ -201,6 +201,33 @@ first: 9% and 39%), with one shared construct tail (6% and 7%), or with the slot
 loop that stops when the counter wraps (14% and 7%): the original also hoists the path pool's address to
 the top. `permute.py` and `equiv_test.py` find a function only as `fn_<addr>` in the source (a body
 to permute) or in the object (a symbol to run), so neither takes a template member yet.
+**Lean batch lean-b4: 98 ready functions of 16 more units (2026-11-15).** Same shape (units 2686, 2688, 811, 111,
+2647, 25, 36, 2540, 1163, 2666, 208, 1428, 2200, 1671, 2544, 2503); 16 Sonnet workers, budget 3, reference matches
+for 71 of 98. Results: 18 matches (10 on the first graded attempt, 2 on the second, 6 on the third), 15
+registers-only, 65 that differ; 255 graded attempts; about 2.48 million worker tokens, about 138,000 per match.
+16 matches are in `src/`; `fn_71010cd6f4` and `fn_710054095c` wait in `drafts/`: each matches only with its own
+layout of a type name another file defines differently (`UnkNavMeshHit`, `UnkEmmyAI2_b57a3`), and a cast to a
+local layout changes `fn_710054095c`'s code. The permuter matched 1 of 15 (held on its declaration);
+`tools/equiv_test.py` passed 7, now verified minor in `src/`. 23 functions into `src/` in all. One worker found
+`fn_7101086370` matches only with two single-member unions; the readable text differs in operations, so it stays
+a draft. Lean-b3's two `nn::atk` buffer-size functions needed `nn::audio`'s renderer parameter in the port's own
+header (`port/runtime/include/nn/audio.h`) for the port sweep. After four batches, about 70 percent of the
+worker matches came on the first attempt or the reference's own shape; the units left with four or more ready
+functions are mostly one-off helpers, so the rate is falling (20, 24, 14, 18 percent).
+
+**Lean batch lean-b3: 98 ready functions of 11 more units (2026-11-15).** Same shape as lean-b1 and lean-b2
+(units 365, 2712, 366, 2637, 229, 307, 2772, 2661, 108, 2640, 34); 14 Sonnet workers, budget 3, reference matches
+for 65 of 98. Results: 14 matches (8 on the first graded attempt, 6 on the second), 14 registers-only, 70 that
+differ; 257 graded attempts; about 2.08 million worker tokens, about 149,000 per match. These units are less
+alike than the first two batches' (math and audio helpers, curve evaluators), and fewer had a reference match.
+13 matches are in `src/`; `fn_7100fddf18` waits in `drafts/` (declared as a copy constructor by asm label over
+another layout). The permuter matched none of the 14 registers-only drafts, but `tools/equiv_test.py` passed 11,
+now verified minor in `src/` (one of them, `fn_71011579c8`, matches only with a union around a moved-from slot,
+so it is kept readable as tier 2); one failed the machine test. 24 functions into `src/` in all. Worth reusing:
+unit 34's curve lookups came closest with the key array as an accessor (`(f32*)(this + 1)`) for float keys and
+a one-element member for byte keys, and one shared index written after the search; a branch the original takes
+on `b.ls` for floats is `!(key <= x)`.
+
 **Lean batch lean-b2: 100 more ready functions by whole units (2026-11-15).** The same shape as lean-b1 on the
 next 11 units with four or more ready functions (units 54, 1501, 429, 2216, 110, 2702, 2657, 47, 430, 180, 2523);
 15 Sonnet workers, budget 3, reference matches for 85 of 100. Results: 24 matches (11 on the first graded

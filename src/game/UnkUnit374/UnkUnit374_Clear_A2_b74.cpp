@@ -4,10 +4,10 @@
 // Names and layouts are placeholders.
 #include "base/UnkEmptyDtorElem.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkTU362.h"
 #include "types.h"
 
 struct UnkElem_7100286624;
-void fn_710028760c(UnkElem_7100286624* self);
 
 struct UnkElem4_A2_b74 {
     u32 value;

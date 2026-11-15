@@ -1281,7 +1281,7 @@ address,size,name,name_source,subsystem,status
 0x710074e82c,268,fn_710074e82c,unknown,unknown,O
 0x710074e938,240,fn_710074e938,unknown,unknown,O
 0x710074ea28,24,fn_710074ea28,unknown,unknown,O
-0x710074ea40,348,fn_710074ea40,unknown,unknown,U
+0x710074ea40,348,fn_710074ea40,unknown,unknown,m
 0x710074eba0,260,fn_710074eba0,unknown,unknown,O
 0x710074eca4,4,CBossCameraCtrl::refl_AddAttributes,reflection,game,O
 0x710074eca8,244,CBossCameraCtrl::refl_GetClass,reflection,game,O

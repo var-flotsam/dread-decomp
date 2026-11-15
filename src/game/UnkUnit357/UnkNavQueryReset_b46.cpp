@@ -3,13 +3,13 @@
 // 12-byte hits at +0x94 (count at +0x90) destroyed one by one (fn_710028760c) and emptied. Names and
 // layouts are placeholders.
 #include "base/math/CVector.h"
+#include "game/UnkTU362.h"
 #include "types.h"
 
 using base::math::CVector2D;
 
 // Signature as src/game/CAIComponent.cpp declares it.
 struct UnkElem_7100286624;
-void fn_710028760c(UnkElem_7100286624* self);
 
 struct UnkNavHit_b46a1 {
     u8 data[0xc];
