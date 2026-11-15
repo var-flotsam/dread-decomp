@@ -1,0 +1,98 @@
+// CAbilityEnergyWave unit: the weapon boost damage multiplier tunable named "fWeaponBoostDamageMult_<name>"
+// (the name is the string at the start of `stats`), read through reflection; 1.0 when there is none.
+// Names and layouts are placeholders.
+#include <stdio.h>
+
+#include "base/global/CFilePathStrId.h"
+#include "base/global/CStrId.h"
+#include "base/global/timeline/CEvent.h"
+#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkReflTypedPtr.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU85.h"
+#include "types.h"
+
+using base::global::UnkStringData;
+using base::reflection::CType;
+using base::reflection::UnkReflTypedPtr;
+
+extern base::reflection::UnkTunable g_unk_71726af060;
+
+struct UnkBoostField_l305c24 {
+    u8 pad_0x0[0xb0];
+};
+
+// A class as the lookup sees it: its fields and their name hashes.
+struct UnkBoostClass_l305c24 {
+    u8 pad_0x0[0xe8];
+    UnkBoostField_l305c24* fields;  // 0xe8
+    u64* keys;                      // 0xf0
+    u32 count;                      // 0xf8
+
+    UnkBoostField_l305c24* End() { return fields + count; }
+    UnkBoostField_l305c24* Find(u64 key) {
+        for (u64 i = 0; i < count; ++i)
+            if (keys[i] == key)
+                return &fields[i];
+        return End();
+    }
+    // The field with that name hash, null when there is none.
+    UnkBoostField_l305c24* FindField(u64 key) {
+        UnkBoostField_l305c24* it = Find(key);
+        return it != End() ? it : nullptr;
+    }
+};
+
+// A reflected object: its class is vtable slot 0.
+struct UnkBoostObject_l305c24 {
+    virtual UnkBoostClass_l305c24* GetClass();
+};
+
+struct UnkBoostValue_l305c24 {
+    const CType* type;
+    void* value;
+};
+
+static inline bool Get(UnkBoostObject_l305c24* obj, u64 key, f32* out) {
+    UnkBoostClass_l305c24* cls = obj->GetClass();
+    UnkReflTypedPtr typed;
+    typed.type = reinterpret_cast<char*>(obj->GetClass());
+    typed.ptr = obj;
+    UnkBoostValue_l305c24 value = {fn_710000abbc(), out};
+    if (UnkBoostField_l305c24* field = cls->FindField(key)) {
+        fn_71000e78e0(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
+                      reinterpret_cast<UnkReflValueArg*>(&value));
+        return true;
+    }
+    return false;
+}
+
+// A string id's data: using its text counts a use (+0x44); the text is at +0x10.
+struct UnkBoostStrData_l305c24 {
+    u8 pad_0x0[0x10];
+    const char* str;
+    u8 pad_0x18[0x2c];
+    union {
+        s32 field_0x44;
+    };
+};
+
+struct UnkBoostStats_l305c24 {
+    UnkBoostStrData_l305c24* name;
+};
+
+f32 fn_7100305c24(UnkBoostStats_l305c24* stats) {
+    f32 v = 1.0f;
+    if (reinterpret_cast<UnkStringData*>(stats->name) != &g_unk_7101d47108->empty) {
+        ++stats->name->field_0x44;
+        const char* text = stats->name->str ? stats->name->str : g_unk_710162e2ed;
+        char buf[0x100];
+        sprintf(buf, "fWeaponBoostDamageMult_%s", text);
+        u64 key;
+        fn_710006663c(&key, buf);
+        UnkBoostObject_l305c24* tunable = reinterpret_cast<UnkBoostObject_l305c24*>(&g_unk_71726af060);
+        if (Get(tunable, key, &v))
+            return v;
+    }
+    return 1.0f;
+}

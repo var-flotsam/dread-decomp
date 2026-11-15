@@ -1,0 +1,66 @@
+// UnkTU180: copies up to `count` words of `data` into a sub-range of one uniform block's current frame
+// buffer, marking the block, its table and the global flag changed. Names and layouts are placeholders.
+#include "game/UnkTU172.h"
+#include "game/UnkTU180.h"
+#include "types.h"
+
+extern "C" void* memcpy(void* dst, const void* src, u64 n);
+
+struct UnkUniformBlock {
+    u8 pad_0x00[0x38];
+    u64 field_0x38;     // size in bytes
+    void* buffers[10];  // one per frame
+    u8 pad_0x90[0x40];
+    u8 field_0xd0;      // changed
+    u8 pad_0xd1[7];
+};
+static_assert(sizeof(UnkUniformBlock) == 0xd8);
+
+struct UnkUniformRange {
+    u8 pad_0x00[0x30];
+    u32 offset;
+    u32 size;
+    u32 block;
+    u8 pad_0x3c[4];
+};
+static_assert(sizeof(UnkUniformRange) == 0x40);
+
+struct UnkUniformTable {
+    u8 pad_0x00[0xa8];
+    UnkUniformRange* ranges;
+    UnkUniformBlock* blocks;
+    u8 field_0xb8;  // changed
+};
+
+struct UnkUniformTables {
+    UnkUniformTable* tables[3];
+};
+
+void fn_710015e110(UnkUniformTables* self, u32 kind, u64 handle, u32 count, const void* data) {
+    u64 index = handle - 15;
+    if (!handle || !self)
+        return;
+    UnkUniformTable* table;
+    switch (kind) {
+    case 0:
+        table = self->tables[0];
+        break;
+    case 1:
+        table = self->tables[1];
+        break;
+    case 2:
+        table = self->tables[2];
+        break;
+    default:
+        table = nullptr;
+        break;
+    }
+    UnkUniformRange* range = &table->ranges[(u32)index];
+    UnkUniformBlock* block = &table->blocks[range->block];
+    if (!block->field_0x38)
+        return;
+    memcpy((u8*)block->buffers[fn_7100153da0()] + range->offset, data, count * 4 < range->size ? count * 4 : range->size);
+    block->field_0xd0 = 1;
+    table->field_0xb8 = 1;
+    g_unk_716e2a3450 = 1;
+}

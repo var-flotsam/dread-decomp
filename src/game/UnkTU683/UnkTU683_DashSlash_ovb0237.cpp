@@ -6,6 +6,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAIComponent.h"
+#include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
 #include "game/UnkTU2702.h"
 #include "game/UnkTU681.h"
@@ -82,8 +83,6 @@ struct UnkTimeline {
     u8 pad_0x28[0x58];
     UnkMotionTracks* tracks;  // 0x80
 };
-
-void fn_71007142e8(UnkStruct_71007142e8* self);
 
 struct UnkDashSlashOwner2_b0237 {
     u8 pad_0x0[0x220];

@@ -30,3 +30,4 @@ bool fn_7100127bb0(const UnkOrientedBox2D* box, const UnkSegment2D* seg, UnkCont
 bool fn_710012deb0(const UnkCircle2D* circle, const UnkVec2Result* delta, const UnkBox2D* box, UnkContact2D* out);
 bool fn_710012e5c0(const UnkBox2D* box, const UnkVec2Result* delta, const UnkCircle2D* circle, UnkContact2D* out);
 void fn_7100132248(UnkStatsObject* self, const base::global::CStrId& name, f32 value);
+extern void* g_unk_7101a1bdf8[];

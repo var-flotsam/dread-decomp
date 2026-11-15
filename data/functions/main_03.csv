@@ -16,7 +16,7 @@ address,size,name,name_source,subsystem,status
 0x71003010e0,536,fn_71003010e0,unknown,unknown,O
 0x71003012f8,244,fn_71003012f8,unknown,unknown,U
 0x71003013ec,244,fn_71003013ec,unknown,unknown,U
-0x71003014e0,268,fn_71003014e0,unknown,unknown,U
+0x71003014e0,268,fn_71003014e0,unknown,unknown,O
 0x71003015ec,4,fn_71003015ec,unknown,unknown,O
 0x71003015f0,16,fn_71003015f0,unknown,unknown,O
 0x7100301600,256,fn_7100301600,unknown,unknown,O
@@ -137,7 +137,7 @@ address,size,name,name_source,subsystem,status
 0x7100306c64,6312,CAbilityGhostAura::CTunableAbilityGhostAura::refl_AddFields,reflection,game,O
 0x710030850c,388,CAbilityGhostAura::CTunableAbilityGhostAura::refl_InitClass,reflection,game,O
 0x7100308690,696,fn_7100308690,unknown,unknown,O
-0x7100308950,320,fn_7100308950,unknown,unknown,U
+0x7100308950,320,fn_7100308950,unknown,unknown,O
 0x7100308a90,484,fn_7100308a90,unknown,unknown,U
 0x7100308c74,128,fn_7100308c74,unknown,unknown,O
 0x7100308cf4,20,fn_7100308cf4,unknown,unknown,O
@@ -152,7 +152,7 @@ address,size,name,name_source,subsystem,status
 0x71003096fc,436,fn_71003096fc,unknown,unknown,U
 0x71003098b0,1832,fn_71003098b0,unknown,unknown,U
 0x7100309fd8,2016,fn_7100309fd8,unknown,unknown,U
-0x710030a7b8,104,fn_710030a7b8,unknown,unknown,U
+0x710030a7b8,104,fn_710030a7b8,unknown,unknown,O
 0x710030a820,220,fn_710030a820,unknown,unknown,O
 0x710030a8fc,2892,fn_710030a8fc,unknown,unknown,U
 0x710030b448,1132,fn_710030b448,unknown,unknown,U
@@ -242,10 +242,10 @@ address,size,name,name_source,subsystem,status
 0x7100314d94,48,fn_7100314d94,unknown,game?,O
 0x7100314dc4,144,fn_7100314dc4,unknown,game?,O
 0x7100314e54,352,fn_7100314e54,unknown,game?,O
-0x7100314fb4,220,fn_7100314fb4,unknown,game?,U
+0x7100314fb4,220,fn_7100314fb4,unknown,game?,m
 0x7100315090,4,operator.delete,symbol,game?,O
 0x7100315094,252,fn_7100315094,unknown,game?,O
-0x7100315190,220,fn_7100315190,unknown,game?,U
+0x7100315190,220,fn_7100315190,unknown,game?,m
 0x710031526c,1004,fn_710031526c,unknown,game?,U
 0x7100315658,960,fn_7100315658,unknown,game?,U
 0x7100315a18,1532,fn_7100315a18,unknown,game?,U

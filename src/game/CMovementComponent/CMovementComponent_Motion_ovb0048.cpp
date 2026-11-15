@@ -141,7 +141,6 @@ UnkVec3f fn_71010d252c(bool flag, const UnkContact_ovb0048* contact) {
 
 struct UnkAssignedSlot;
 struct UnkStruct_71007142e8;
-void fn_71007142e8(UnkStruct_71007142e8* self);
 void fn_7101179d08(UnkAnimationComponent* self, UnkStruct_71007142e8* motion, const void* key);
 extern u8 g_unk_717270ec68;
 

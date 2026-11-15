@@ -2,6 +2,7 @@
 // reads from its animation. Names and layouts are placeholders.
 #include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"
+#include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
 #include "game_s2/UnkParams.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -112,8 +113,6 @@ struct UnkTimeline {
     u8 pad_0x28[0x58];
     UnkMotionTracks* tracks;  // 0x80
 };
-
-void fn_71007142e8(UnkStruct_71007142e8* self);
 
 struct UnkPoisonClawsOwner_ovb0122 {
     u8 pad_0x0[0x220];

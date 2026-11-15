@@ -1,6 +1,7 @@
 // CChozoWarriorDeflectorShieldAttack's unit (tools/tu_map.py, unit 729): the shield's height from its
 // animation. Names and layouts are placeholders.
 #include "game/CAnimationComponent.h"
+#include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
 #include "types.h"
 
@@ -40,8 +41,6 @@ struct UnkTimeline {
     u8 pad_0x28[0x58];
     UnkMotionTracks* tracks;  // 0x80
 };
-
-void fn_71007142e8(UnkStruct_71007142e8* self);
 
 struct UnkShieldOwner_ovb0130 {
     u8 pad_0x0[0x220];

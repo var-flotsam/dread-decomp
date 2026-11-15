@@ -6,7 +6,6 @@
 #include "types.h"
 
 struct UnkStruct_71007142e8;
-void fn_71007142e8(UnkStruct_71007142e8* self);
 struct UnkWeighted_7100714808;
 
 struct alignas(8) UnkAnimChannel_ovb0125 {

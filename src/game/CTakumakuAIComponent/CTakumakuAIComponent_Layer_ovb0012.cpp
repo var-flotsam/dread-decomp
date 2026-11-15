@@ -9,6 +9,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAnimationComponent.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
 #include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
@@ -180,8 +181,6 @@ struct UnkTimeline {
     u8 pad_0x28[0x58];
     UnkMotionTracks* tracks;  // 0x80
 };
-
-void fn_71007142e8(UnkStruct_71007142e8* self);
 
 struct UnkTakumakuMotion_b0012 {
     UnkStruct_71007142e8 motion;
