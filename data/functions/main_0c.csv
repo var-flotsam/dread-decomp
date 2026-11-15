@@ -174,28 +174,28 @@ address,size,name,name_source,subsystem,status
 0x7100c06a14,96,fn_7100c06a14,unknown,unknown,O
 0x7100c06a74,12,fn_7100c06a74,unknown,unknown,O
 0x7100c06a80,16,fn_7100c06a80,unknown,unknown,O
-0x7100c06a90,20,fn_7100c06a90,unknown,unknown,O
-0x7100c06aa4,8,fn_7100c06aa4,unknown,unknown,O
-0x7100c06aac,20,fn_7100c06aac,unknown,unknown,O
-0x7100c06ac0,8,fn_7100c06ac0,unknown,unknown,O
-0x7100c06ac8,12,fn_7100c06ac8,unknown,unknown,O
-0x7100c06ad4,12,fn_7100c06ad4,unknown,unknown,O
-0x7100c06ae0,4,fn_7100c06ae0,unknown,unknown,O
-0x7100c06ae4,20,fn_7100c06ae4,unknown,unknown,O
-0x7100c06af8,20,fn_7100c06af8,unknown,unknown,O
+0x7100c06a90,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::TElementIterator>::Equals,reflection,engine/reflection,O
+0x7100c06aa4,8,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::TElementIterator>::Hash,reflection,engine/reflection,O
+0x7100c06aac,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::TElementIterator>::TypeOf,reflection,engine/reflection,O
+0x7100c06ac0,8,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::TElementIterator>::Construct,reflection,engine/reflection,O
+0x7100c06ac8,12,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::TElementIterator>::CopyConstruct,reflection,engine/reflection,O
+0x7100c06ad4,12,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::TElementIterator>::MoveConstruct,reflection,engine/reflection,O
+0x7100c06ae0,4,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::TElementIterator>::Destroy,reflection,engine/reflection,O
+0x7100c06ae4,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::TElementIterator>::CopyAssign,reflection,engine/reflection,O
+0x7100c06af8,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::TElementIterator>::MoveAssign,reflection,engine/reflection,O
 0x7100c06b0c,364,fn_7100c06b0c,unknown,unknown,O
 0x7100c06c78,96,fn_7100c06c78,unknown,unknown,O
 0x7100c06cd8,12,fn_7100c06cd8,unknown,unknown,O
 0x7100c06ce4,16,fn_7100c06ce4,unknown,unknown,O
-0x7100c06cf4,20,fn_7100c06cf4,unknown,unknown,O
-0x7100c06d08,8,fn_7100c06d08,unknown,unknown,O
-0x7100c06d10,20,fn_7100c06d10,unknown,unknown,O
-0x7100c06d24,8,fn_7100c06d24,unknown,unknown,O
-0x7100c06d2c,12,fn_7100c06d2c,unknown,unknown,O
-0x7100c06d38,12,fn_7100c06d38,unknown,unknown,O
-0x7100c06d44,4,fn_7100c06d44,unknown,unknown,O
-0x7100c06d48,20,fn_7100c06d48,unknown,unknown,O
-0x7100c06d5c,20,fn_7100c06d5c,unknown,unknown,O
+0x7100c06cf4,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::TElementConstIterator>::Equals,reflection,engine/reflection,O
+0x7100c06d08,8,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::TElementConstIterator>::Hash,reflection,engine/reflection,O
+0x7100c06d10,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::TElementConstIterator>::TypeOf,reflection,engine/reflection,O
+0x7100c06d24,8,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::TElementConstIterator>::Construct,reflection,engine/reflection,O
+0x7100c06d2c,12,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::TElementConstIterator>::CopyConstruct,reflection,engine/reflection,O
+0x7100c06d38,12,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::TElementConstIterator>::MoveConstruct,reflection,engine/reflection,O
+0x7100c06d44,4,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::TElementConstIterator>::Destroy,reflection,engine/reflection,O
+0x7100c06d48,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::TElementConstIterator>::CopyAssign,reflection,engine/reflection,O
+0x7100c06d5c,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::TElementConstIterator>::MoveAssign,reflection,engine/reflection,O
 0x7100c06d70,364,fn_7100c06d70,unknown,unknown,O
 0x7100c06edc,60,fn_7100c06edc,unknown,unknown,O
 0x7100c06f18,4,fn_7100c06f18,unknown,unknown,O
@@ -5015,28 +5015,28 @@ address,size,name,name_source,subsystem,status
 0x7100ca8554,64,fn_7100ca8554,unknown,unknown,O
 0x7100ca8594,4,fn_7100ca8594,unknown,unknown,O
 0x7100ca8598,16,fn_7100ca8598,unknown,unknown,O
-0x7100ca85a8,20,fn_7100ca85a8,unknown,unknown,O
-0x7100ca85bc,8,fn_7100ca85bc,unknown,unknown,O
-0x7100ca85c4,20,fn_7100ca85c4,unknown,unknown,O
-0x7100ca85d8,8,fn_7100ca85d8,unknown,unknown,O
-0x7100ca85e0,12,fn_7100ca85e0,unknown,unknown,O
-0x7100ca85ec,12,fn_7100ca85ec,unknown,unknown,O
-0x7100ca85f8,4,fn_7100ca85f8,unknown,unknown,O
-0x7100ca85fc,20,fn_7100ca85fc,unknown,unknown,O
-0x7100ca8610,20,fn_7100ca8610,unknown,unknown,O
+0x7100ca85a8,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntPooledDictionary<base::global::CStrId, CBreakableTileManager::STileGroupGroup>>::TElementIterator>::Equals",reflection,engine/reflection,O
+0x7100ca85bc,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntPooledDictionary<base::global::CStrId, CBreakableTileManager::STileGroupGroup>>::TElementIterator>::Hash",reflection,engine/reflection,O
+0x7100ca85c4,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntPooledDictionary<base::global::CStrId, CBreakableTileManager::STileGroupGroup>>::TElementIterator>::TypeOf",reflection,engine/reflection,O
+0x7100ca85d8,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntPooledDictionary<base::global::CStrId, CBreakableTileManager::STileGroupGroup>>::TElementIterator>::Construct",reflection,engine/reflection,O
+0x7100ca85e0,12,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntPooledDictionary<base::global::CStrId, CBreakableTileManager::STileGroupGroup>>::TElementIterator>::CopyConstruct",reflection,engine/reflection,O
+0x7100ca85ec,12,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntPooledDictionary<base::global::CStrId, CBreakableTileManager::STileGroupGroup>>::TElementIterator>::MoveConstruct",reflection,engine/reflection,O
+0x7100ca85f8,4,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntPooledDictionary<base::global::CStrId, CBreakableTileManager::STileGroupGroup>>::TElementIterator>::Destroy",reflection,engine/reflection,O
+0x7100ca85fc,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntPooledDictionary<base::global::CStrId, CBreakableTileManager::STileGroupGroup>>::TElementIterator>::CopyAssign",reflection,engine/reflection,O
+0x7100ca8610,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntPooledDictionary<base::global::CStrId, CBreakableTileManager::STileGroupGroup>>::TElementIterator>::MoveAssign",reflection,engine/reflection,O
 0x7100ca8624,364,fn_7100ca8624,unknown,unknown,O
 0x7100ca8790,64,fn_7100ca8790,unknown,unknown,O
 0x7100ca87d0,4,fn_7100ca87d0,unknown,unknown,O
 0x7100ca87d4,16,fn_7100ca87d4,unknown,unknown,O
-0x7100ca87e4,20,fn_7100ca87e4,unknown,unknown,O
-0x7100ca87f8,8,fn_7100ca87f8,unknown,unknown,O
-0x7100ca8800,20,fn_7100ca8800,unknown,unknown,O
-0x7100ca8814,8,fn_7100ca8814,unknown,unknown,O
-0x7100ca881c,12,fn_7100ca881c,unknown,unknown,O
-0x7100ca8828,12,fn_7100ca8828,unknown,unknown,O
-0x7100ca8834,4,fn_7100ca8834,unknown,unknown,O
-0x7100ca8838,20,fn_7100ca8838,unknown,unknown,O
-0x7100ca884c,20,fn_7100ca884c,unknown,unknown,O
+0x7100ca87e4,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntPooledDictionary<base::global::CStrId, CBreakableTileManager::STileGroupGroup>>::TElementConstIterator>::Equals",reflection,engine/reflection,O
+0x7100ca87f8,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntPooledDictionary<base::global::CStrId, CBreakableTileManager::STileGroupGroup>>::TElementConstIterator>::Hash",reflection,engine/reflection,O
+0x7100ca8800,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntPooledDictionary<base::global::CStrId, CBreakableTileManager::STileGroupGroup>>::TElementConstIterator>::TypeOf",reflection,engine/reflection,O
+0x7100ca8814,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntPooledDictionary<base::global::CStrId, CBreakableTileManager::STileGroupGroup>>::TElementConstIterator>::Construct",reflection,engine/reflection,O
+0x7100ca881c,12,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntPooledDictionary<base::global::CStrId, CBreakableTileManager::STileGroupGroup>>::TElementConstIterator>::CopyConstruct",reflection,engine/reflection,O
+0x7100ca8828,12,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntPooledDictionary<base::global::CStrId, CBreakableTileManager::STileGroupGroup>>::TElementConstIterator>::MoveConstruct",reflection,engine/reflection,O
+0x7100ca8834,4,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntPooledDictionary<base::global::CStrId, CBreakableTileManager::STileGroupGroup>>::TElementConstIterator>::Destroy",reflection,engine/reflection,O
+0x7100ca8838,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntPooledDictionary<base::global::CStrId, CBreakableTileManager::STileGroupGroup>>::TElementConstIterator>::CopyAssign",reflection,engine/reflection,O
+0x7100ca884c,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntPooledDictionary<base::global::CStrId, CBreakableTileManager::STileGroupGroup>>::TElementConstIterator>::MoveAssign",reflection,engine/reflection,O
 0x7100ca8860,364,fn_7100ca8860,unknown,unknown,O
 0x7100ca89cc,60,fn_7100ca89cc,unknown,unknown,O
 0x7100ca8a08,4,fn_7100ca8a08,unknown,unknown,O

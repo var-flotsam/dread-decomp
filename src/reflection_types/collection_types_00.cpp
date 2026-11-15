@@ -4,6 +4,7 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CEnumType.h"
 #include "base/reflection/CFlagsetType.h"
+#include "base/reflection/CollectionTypeMapper.h"
 #include "base/reflection/CPointerType.h"
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/ValueOps.h"

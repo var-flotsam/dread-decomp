@@ -295,7 +295,8 @@ def parse_type(text: str):
     def one(i: int):
         const = toks[i] == "const"
         i += const
-        if i >= len(toks) or not re.fullmatch(r"[A-Za-z_][\w:]*", toks[i]) or toks[i] == "const":
+        if (i >= len(toks) or not re.fullmatch(r"[A-Za-z_][\w:]*", toks[i])
+                or toks[i] in ("const", "true", "false")):
             raise ValueError
         name, args = toks[i], None
         i += 1
@@ -393,35 +394,78 @@ def pointer_slots(orig: asmdiff.Original, init: int) -> dict[int, int] | None:
     return out
 
 
+# An element iterator's descriptor (base/reflection/CollectionTypeMapper.h), named for its collection.
+ITERATOR_RE = re.compile(r"base::reflection::CollectionTypeMapper<(.+)>::(TElementIterator|TElementConstIterator)")
+
+
+def pointer_value_type(name: str):
+    """(the name as llvm-cxxfilt prints it, the parsed type whose names it declares) of a pointer type
+    whose value operations can come from ValueOps.h: a plain pointer (`T*`, `T const*`) or an element
+    iterator of a collection whose name parses; None for anything else."""
+    m = ITERATOR_RE.fullmatch(re.sub(r"\s+", "", name))
+    if m:
+        node = parse_type(m.group(1))
+        if node and not node[2]:
+            return f"base::reflection::CollectionTypeMapper<{render_type(node)}>::{m.group(2)}", node
+        return None
+    node = parse_type(name)
+    if node and node[2] and node[2][-1] == "*":
+        return render_type(node), node
+    return None
+
+
+def _scopes_of(full: str) -> set[str]:
+    parts = full.split("::")
+    return {"::".join(parts[:k]) for k in range(1, len(parts))}
+
+
+def declaration_clashes(nodes: list, enums: frozenset[str] = frozenset()) -> set[str]:
+    """The names whose declarations would collide if `nodes` (parsed types) and `enums` shared a
+    translation unit: a class some name also uses as a scope, and a template named with two argument
+    counts or also as a class."""
+    names = [type_names(n) for n in nodes]
+    classes = set().union(*(c for c, _ in names)) | set(enums)
+    types = classes | set().union(*(set(t) for _, t in names))
+    clash = types & set().union(*(_scopes_of(f) for f in types))
+    counts: dict[str, set[int]] = {}
+    for _, templates in names:
+        for t, n in templates.items():
+            counts.setdefault(t, set()).add(n)
+    return clash | {t for t, ns in counts.items() if len(ns) > 1 or t in classes}
+
+
 def named_pointers(orig: asmdiff.Original, pairs: list, enums: frozenset[str] = frozenset()) -> dict[int, str]:
-    """{getter: name} of the plain pointer types (`T*`, `T const*`) whose value operations can come from
-    ValueOps.h: a name that parses, every CType slot a function, and no class that a name in the set
-    also uses as a scope (the two declarations would collide)."""
+    """{getter: name} of the pointer types (pointer_value_type) whose value operations can come from
+    ValueOps.h: a name that parses, every CType slot a function, and no name whose declaration would
+    collide with another's (declaration_clashes). The plain pointers are taken first, all together;
+    each element iterator then joins only if it adds no collision."""
     cands = {}
     for g, name, init, _ in pairs:
-        node = parse_type(name)
-        if node and node[2] and node[2][-1] == "*" and pointer_slots(orig, init):
-            cands[g] = node
-    def scopes_of(full: str) -> set[str]:
-        parts = full.split("::")
-        return {"::".join(parts[:k]) for k in range(1, len(parts))}
-
-    # The enums count too: their declarations share the scope (and the candidates' translation unit).
-    refs = {g: (lambda c, t: c | set(t))(*type_names(n)) for g, n in cands.items()}
-    names = list(refs.values()) + [{e} for e in enums]
-    types = set().union(*names) if names else set()
-    clash = types & set().union(*(scopes_of(f) for r in names for f in r)) if names else set()
+        vt = pointer_value_type(name)
+        if vt and pointer_slots(orig, init):
+            cands[g] = vt
+    refs = {g: (lambda c, t: c | set(t))(*type_names(n)) for g, (_, n) in cands.items()}
+    plain = {g for g, (canon, _) in cands.items() if not ITERATOR_RE.fullmatch(canon)}
+    clash = declaration_clashes([cands[g][1] for g in plain], enums)
     out: dict[int, str] = {}
-    for g, node in cands.items():
-        canon = render_type(node)
-        if not any(f in clash or scopes_of(f) & clash for f in refs[g]) and canon not in out.values():
+    for g in plain:
+        canon = cands[g][0]
+        if not any(f in clash or _scopes_of(f) & clash for f in refs[g]) and canon not in out.values():
             out[g] = canon
+    taken = [cands[g][1] for g in out]
+    base = declaration_clashes(taken, enums)
+    for g, (canon, node) in cands.items():
+        if g in plain or canon in out.values():
+            continue
+        if declaration_clashes(taken + [node], enums) <= base:
+            out[g] = canon
+            taken.append(node)
     return out
 
 
 def emit_pointer_ops(getter: int, name: str, init: int, body: list[str], canon: str,
                      enums: frozenset[str] = frozenset()) -> list[str]:
-    """A plain pointer type's description with its CType slots from ValueOps<T> (ValueOps.h), T spelled
+    """A pointer type's description with its CType slots from ValueOps<T> (ValueOps.h), T spelled
     `canon`; the pointer-specific slots (get, set, increment) and the getter (whose string is `name`)
     stay as they are."""
     slot_members = {f" {m} = " for m in SLOTS.values() if m not in ("get", "set", "increment")}
@@ -436,11 +480,11 @@ def emit_pointer_ops(getter: int, name: str, init: int, body: list[str], canon: 
            f"const CType& base::reflection::ValueOps<{name}>::TypeOf(const void*) "
            f"{{ return *base::reflection::refl_GetPointerType<UnkRefl_fn_{getter:x}>(); }}",
            f"template struct base::reflection::ValueOps<{name}>;"]
-    return type_declarations(parse_type(canon), enums) + out[:head] + ops + out[head:]
+    return type_declarations(pointer_value_type(canon)[1], enums) + out[:head] + ops + out[head:]
 
 
 def pointer_ops_names(orig: asmdiff.Original, init: int, name: str) -> dict[int, str]:
-    """data/functions/ names of a plain pointer type's value operations."""
+    """data/functions/ names of a pointer type's value operations (pointer_value_type)."""
     return {a: f"base::reflection::ValueOps<{name}>::{VALUE_OPS[off]}"
             for off, a in (pointer_slots(orig, init) or {}).items()}
 
@@ -849,6 +893,7 @@ def scan_primitives(orig: asmdiff.Original, decls: set[str]) -> tuple[list, list
 PRELUDE = ['#include "base/reflection/CCollectionType.h"',
            '#include "base/reflection/CEnumType.h"',
            '#include "base/reflection/CFlagsetType.h"',
+           '#include "base/reflection/CollectionTypeMapper.h"',
            '#include "base/reflection/CPointerType.h"',
            '#include "base/reflection/UnkReflPrimitiveType.h"',
            '#include "base/reflection/ValueOps.h"',

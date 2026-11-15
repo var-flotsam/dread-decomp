@@ -270,6 +270,32 @@ class TypeNames(unittest.TestCase):
         self.assertIn('    static constexpr const char* name = "CFoo const*";', out)
 
 
+    def test_iterator_value_type(self):
+        name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<base::core::AssetName> >::TElementIterator"
+        canon, node = gt.pointer_value_type(name)
+        self.assertEqual(canon, "base::reflection::CollectionTypeMapper<"
+                                "base::global::CRntVector<base::core::AssetName>>::TElementIterator")
+        self.assertEqual(gt.type_declarations(node), [
+            "namespace base::core { class AssetName; }",
+            "namespace base::global { template <class> class CRntVector; }"])
+        self.assertEqual(gt.pointer_value_type(canon)[0], canon)
+        self.assertIsNone(gt.pointer_value_type(
+            "base::reflection::CollectionTypeMapper<base::global::CRntVector<X>>::TKeyElementIterator"))
+        self.assertIsNone(gt.pointer_value_type("CFoo"))
+        self.assertEqual(gt.pointer_value_type("unsigned int*")[0], "unsigned int*")
+
+
+    def test_iterators_join_without_clashes(self):
+        it = "base::reflection::CollectionTypeMapper<{}>::TElementIterator"
+        pairs = [(1, "CFoo*", 11, None), (2, "base::global::CRntVector<CBar>*", 12, None),
+                 (3, it.format("base::global::CRntVector<CFoo::SItem>"), 13, None),
+                 (4, it.format("base::global::CRntVector<CBar, false>"), 14, None),
+                 (5, it.format("base::global::CRntVector<CBaz>"), 15, None)]
+        with mock.patch.object(gt, "pointer_slots", return_value={0x28: 1}):
+            out = gt.named_pointers(None, pairs)
+        self.assertEqual(sorted(out), [1, 2, 5])
+
+
 class Declarations(unittest.TestCase):
     DECLS = {"void fn_7100000010();", "extern base::reflection::CType g_unk_7100000020;",
              "void fn_7100000030();"}
