@@ -93,14 +93,13 @@ struct CRntVector {
     // Copies other's elements over this one's (fn_710001e744).
     void Assign(const CRntVector& other);
 
-    // Equal when the counts are and every element compares equal (fn_710001e1d0).
+    // Equal when the counts are and every element compares equal, the other's element on the left
+    // (fn_710001e1d0 for base::core::AssetName, and the pointer and number vectors' Equals).
     bool operator==(const CRntVector& other) const {
         if (count != other.count)
             return false;
-        const T* a = data;
-        const T* b = other.data;
-        for (u64 n = count; n != 0; --n, ++a, ++b)
-            if (!(*b == *a))
+        for (u32 i = 0; i < count; ++i)
+            if (!(other.data[i] == data[i]))
                 return false;
         return true;
     }
