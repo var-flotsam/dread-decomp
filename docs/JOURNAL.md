@@ -168,6 +168,16 @@ release in two steps and share one base holding the string, so a store to the pa
 (CStrId and CFilePathStrId, whose destructors release in one step, give 50% on `Truncate`); the members
 map to their addresses only by name, so the route is naming them in `data/functions/` as the ValueOps work
 did. The pilot source is `drafts/base/global/CRntVector/AssetName_pilot.cpp`.
+Follow-up the same day: `base::core::AssetName` has its own header (`include/base/core/AssetName.h`), with ids
+`base::UnkPooledStrId<Pool>` (`include/base/UnkPooledStrId.h`): two-step release over one base shared by every
+pool. Giving `base::UnkStrIdMemberOf` a base for its string, shared or per pool, breaks three of CActor's
+functions (fn_7100248e50, fn_710024b290, fn_710024b780): they need the string held as the id's own member.
+So `UnkStrIdPathPair`, the same layout with `UnkStrIdMemberOf` ids and 83 users, is not yet an alias of
+`AssetName`. The two inserts did not move with the branches swapped (`index < count` or `count != index`
+first: 9% and 39%), with one shared construct tail (6% and 7%), or with the slot taken as a pointer and a
+loop that stops when the counter wraps (14% and 7%): the original also hoists the path pool's address to
+the top. `permute.py` and `equiv_test.py` find a function only as `fn_<addr>` in the source (a body
+to permute) or in the object (a symbol to run), so neither takes a template member yet.
 **`base::UnkVector` is `base::global::CRntVector` (2026-11-15).** The reflected collections name the engine's
 growable array (`CollectionTypeMapper<base::global::CRntVector<T>>`), and their descriptors' constructors build
 exactly `UnkVector`'s 0x28 bytes: the array and count at 0 and 8, growth step 10 at 0x10, the flag byte at 0x14,
