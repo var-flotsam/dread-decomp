@@ -67,4 +67,43 @@ VoiceType::PlayState GetVoicePlayState(const VoiceType* voice);
 void SetVoicePlayState(VoiceType* voice, VoiceType::PlayState state);
 bool AppendWaveBuffer(VoiceType* voice, const WaveBuffer* buffer);
 
+// The renderer's parameters, which nn::atk fills from the sound system's settings to size its
+// buffers (src/game/UnkTU2772/UnkTU2772_RequiredSize_l2143bc.cpp and
+// UnkTU2772_RequiredSinkSize_l213c30.cpp). The console's layout.
+enum AudioRendererRenderingDevice {
+    AudioRendererRenderingDevice_AudioCoprocessor,
+    AudioRendererRenderingDevice_Cpu,
+};
+enum AudioRendererExecutionMode {
+    AudioRendererExecutionMode_AutoExecution,
+    AudioRendererExecutionMode_ManualExecution,
+};
+enum SampleFormat {
+    SampleFormat_Invalid,
+    SampleFormat_PcmInt8,
+    SampleFormat_PcmInt16,
+};
+struct AudioRendererParameter {
+    s32 sampleRate;
+    s32 sampleCount;
+    s32 mixBufferCount;
+    s32 subMixCount;
+    s32 voiceCount;
+    s32 sinkCount;
+    s32 effectCount;
+    s32 performanceFrameCount;
+    bool isVoiceDropEnabled;
+    s32 splitterCount;
+    s32 splitterSendChannelCount;
+    AudioRendererRenderingDevice renderingDevice;
+    AudioRendererExecutionMode executionMode;
+    u32 magic;
+};
+static_assert(sizeof(AudioRendererParameter) == 0x38, "nn::audio::AudioRendererParameter");
+
+void InitializeAudioRendererParameter(AudioRendererParameter* parameter);
+u64 GetRequiredBufferSizeForPerformanceFrames(const AudioRendererParameter& parameter);
+u64 GetRequiredBufferSizeForCircularBufferSink(const AudioRendererParameter* parameter, s32 input_count,
+                                               s32 frame_count, SampleFormat format);
+
 }  // namespace nn::audio

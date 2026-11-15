@@ -27,7 +27,7 @@ struct UnkAtkSettings_l213c30 {
     u8 flag_0x27;
 };
 
-size_t fn_7101213c30(UnkAtkSystem_l213c30* self, UnkAtkSettings_l213c30* settings) {
+u64 fn_7101213c30(UnkAtkSystem_l213c30* self, UnkAtkSettings_l213c30* settings) {
     nn::audio::AudioRendererParameter param;
     nn::audio::InitializeAudioRendererParameter(&param);
     param.sampleRate = settings->sample_rate;
