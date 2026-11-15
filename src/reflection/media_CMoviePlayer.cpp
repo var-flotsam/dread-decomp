@@ -90,21 +90,21 @@ void fn_710021e3f0();
 struct UnkRefl_fn_710021dfc0;
 struct UnkRefl_fn_710021dee4;
 template <>
-struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710021dfc0> {
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_710021dfc0> {
     static constexpr u64 size = 0x8;
-    static constexpr bool field_0xe0 = false;
-    static constexpr UnkFn fn_0x28 = &fn_710021e250;
-    static constexpr UnkFn fn_0x30 = &fn_710021e258;
-    static constexpr UnkFn fn_0x38 = &fn_710021e2c8;
-    static constexpr UnkFn fn_0x40 = &fn_710021e338;
-    static constexpr UnkFn fn_0x48 = &fn_710021e36c;
-    static constexpr UnkFn fn_0x50 = &fn_710021e3f0;
-    static constexpr UnkFn fn_0x58 = &fn_710021e214;
-    static constexpr UnkFn fn_0x60 = &fn_710021e234;
-    static constexpr UnkFn fn_0x68 = &fn_710021e23c;
-    static constexpr UnkFn fn_0xf0 = &fn_710021e130;
-    static constexpr UnkFn fn_0xf8 = &fn_710021e198;
-    static constexpr UnkFn fn_0x100 = &fn_710021e210;
+    static constexpr bool owned = false;
+    static constexpr UnkFn construct = &fn_710021e250;
+    static constexpr UnkFn copy_construct = &fn_710021e258;
+    static constexpr UnkFn move_construct = &fn_710021e2c8;
+    static constexpr UnkFn destroy = &fn_710021e338;
+    static constexpr UnkFn copy_assign = &fn_710021e36c;
+    static constexpr UnkFn move_assign = &fn_710021e3f0;
+    static constexpr UnkFn equals = &fn_710021e214;
+    static constexpr UnkFn hash = &fn_710021e234;
+    static constexpr UnkFn type_of = &fn_710021e23c;
+    static constexpr UnkFn get = &fn_710021e130;
+    static constexpr UnkFn set = &fn_710021e198;
+    static constexpr UnkFn increment = &fn_710021e210;
     static const CType* pointee() { return media::CMoviePlayer::refl_GetClass(); }
 };
 template <>

@@ -90,136 +90,136 @@ void fn_7100e1b6d0();
 void fn_7100e1b6e4();
 struct UnkRefl_fn_7100069fa0;
 template <>
-struct base::reflection::UnkReflFlagsetTraits<UnkRefl_fn_7100069fa0> {
+struct base::reflection::FlagsetTypeDescription<UnkRefl_fn_7100069fa0> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710006a1bc;
-    static constexpr UnkFn fn_0x30 = &fn_710006a1c4;
-    static constexpr UnkFn fn_0x38 = &fn_710006a1d0;
-    static constexpr UnkFn fn_0x40 = &fn_710006a1dc;
-    static constexpr UnkFn fn_0x48 = &fn_710006a1e0;
-    static constexpr UnkFn fn_0x50 = &fn_710006a1f4;
-    static constexpr UnkFn fn_0x58 = &fn_710006a194;
-    static constexpr UnkFn fn_0x60 = &fn_710006a1a8;
-    static constexpr UnkFn fn_0x68 = &fn_710006a1b0;
+    static constexpr UnkFn construct = &fn_710006a1bc;
+    static constexpr UnkFn copy_construct = &fn_710006a1c4;
+    static constexpr UnkFn move_construct = &fn_710006a1d0;
+    static constexpr UnkFn destroy = &fn_710006a1dc;
+    static constexpr UnkFn copy_assign = &fn_710006a1e0;
+    static constexpr UnkFn move_assign = &fn_710006a1f4;
+    static constexpr UnkFn equals = &fn_710006a194;
+    static constexpr UnkFn hash = &fn_710006a1a8;
+    static constexpr UnkFn type_of = &fn_710006a1b0;
     static const CType* underlying() { return fn_7100005178(); }
     static const CType* field_0xe8() { return &g_unk_7101d57cf8; }
 };
 template base::reflection::CFlagsetType::CFlagsetType(const base::global::CStrId&, UnkRefl_fn_7100069fa0*);
 struct UnkRefl_fn_710006a8d4;
 template <>
-struct base::reflection::UnkReflFlagsetTraits<UnkRefl_fn_710006a8d4> {
+struct base::reflection::FlagsetTypeDescription<UnkRefl_fn_710006a8d4> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710006aaf0;
-    static constexpr UnkFn fn_0x30 = &fn_710006aaf8;
-    static constexpr UnkFn fn_0x38 = &fn_710006ab04;
-    static constexpr UnkFn fn_0x40 = &fn_710006ab10;
-    static constexpr UnkFn fn_0x48 = &fn_710006ab14;
-    static constexpr UnkFn fn_0x50 = &fn_710006ab28;
-    static constexpr UnkFn fn_0x58 = &fn_710006aac8;
-    static constexpr UnkFn fn_0x60 = &fn_710006aadc;
-    static constexpr UnkFn fn_0x68 = &fn_710006aae4;
+    static constexpr UnkFn construct = &fn_710006aaf0;
+    static constexpr UnkFn copy_construct = &fn_710006aaf8;
+    static constexpr UnkFn move_construct = &fn_710006ab04;
+    static constexpr UnkFn destroy = &fn_710006ab10;
+    static constexpr UnkFn copy_assign = &fn_710006ab14;
+    static constexpr UnkFn move_assign = &fn_710006ab28;
+    static constexpr UnkFn equals = &fn_710006aac8;
+    static constexpr UnkFn hash = &fn_710006aadc;
+    static constexpr UnkFn type_of = &fn_710006aae4;
     static const CType* underlying() { return fn_7100005178(); }
     static const CType* field_0xe8() { return &g_unk_7101d57f90; }
 };
 template base::reflection::CFlagsetType::CFlagsetType(const base::global::CStrId&, UnkRefl_fn_710006a8d4*);
 struct UnkRefl_fn_7100327808;
 template <>
-struct base::reflection::UnkReflFlagsetTraits<UnkRefl_fn_7100327808> {
+struct base::reflection::FlagsetTypeDescription<UnkRefl_fn_7100327808> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100331f4c;
-    static constexpr UnkFn fn_0x30 = &fn_7100331f54;
-    static constexpr UnkFn fn_0x38 = &fn_7100331f60;
-    static constexpr UnkFn fn_0x40 = &fn_7100331f6c;
-    static constexpr UnkFn fn_0x48 = &fn_7100331f70;
-    static constexpr UnkFn fn_0x50 = &fn_7100331f84;
-    static constexpr UnkFn fn_0x58 = &fn_7100331f24;
-    static constexpr UnkFn fn_0x60 = &fn_7100331f38;
-    static constexpr UnkFn fn_0x68 = &fn_7100331f40;
+    static constexpr UnkFn construct = &fn_7100331f4c;
+    static constexpr UnkFn copy_construct = &fn_7100331f54;
+    static constexpr UnkFn move_construct = &fn_7100331f60;
+    static constexpr UnkFn destroy = &fn_7100331f6c;
+    static constexpr UnkFn copy_assign = &fn_7100331f70;
+    static constexpr UnkFn move_assign = &fn_7100331f84;
+    static constexpr UnkFn equals = &fn_7100331f24;
+    static constexpr UnkFn hash = &fn_7100331f38;
+    static constexpr UnkFn type_of = &fn_7100331f40;
     static const CType* underlying() { return fn_7100005178(); }
     static const CType* field_0xe8() { return &g_unk_71726b0410; }
 };
 template base::reflection::CFlagsetType::CFlagsetType(const base::global::CStrId&, UnkRefl_fn_7100327808*);
 struct UnkRefl_fn_7100327bc4;
 template <>
-struct base::reflection::UnkReflFlagsetTraits<UnkRefl_fn_7100327bc4> {
+struct base::reflection::FlagsetTypeDescription<UnkRefl_fn_7100327bc4> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100332034;
-    static constexpr UnkFn fn_0x30 = &fn_710033203c;
-    static constexpr UnkFn fn_0x38 = &fn_7100332048;
-    static constexpr UnkFn fn_0x40 = &fn_7100332054;
-    static constexpr UnkFn fn_0x48 = &fn_7100332058;
-    static constexpr UnkFn fn_0x50 = &fn_710033206c;
-    static constexpr UnkFn fn_0x58 = &fn_710033200c;
-    static constexpr UnkFn fn_0x60 = &fn_7100332020;
-    static constexpr UnkFn fn_0x68 = &fn_7100332028;
+    static constexpr UnkFn construct = &fn_7100332034;
+    static constexpr UnkFn copy_construct = &fn_710033203c;
+    static constexpr UnkFn move_construct = &fn_7100332048;
+    static constexpr UnkFn destroy = &fn_7100332054;
+    static constexpr UnkFn copy_assign = &fn_7100332058;
+    static constexpr UnkFn move_assign = &fn_710033206c;
+    static constexpr UnkFn equals = &fn_710033200c;
+    static constexpr UnkFn hash = &fn_7100332020;
+    static constexpr UnkFn type_of = &fn_7100332028;
     static const CType* underlying() { return fn_7100005178(); }
     static const CType* field_0xe8() { return &g_unk_71726b06a8; }
 };
 template base::reflection::CFlagsetType::CFlagsetType(const base::global::CStrId&, UnkRefl_fn_7100327bc4*);
 struct UnkRefl_fn_71007100e8;
 template <>
-struct base::reflection::UnkReflFlagsetTraits<UnkRefl_fn_71007100e8> {
+struct base::reflection::FlagsetTypeDescription<UnkRefl_fn_71007100e8> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100710304;
-    static constexpr UnkFn fn_0x30 = &fn_710071030c;
-    static constexpr UnkFn fn_0x38 = &fn_7100710318;
-    static constexpr UnkFn fn_0x40 = &fn_7100710324;
-    static constexpr UnkFn fn_0x48 = &fn_7100710328;
-    static constexpr UnkFn fn_0x50 = &fn_710071033c;
-    static constexpr UnkFn fn_0x58 = &fn_71007102dc;
-    static constexpr UnkFn fn_0x60 = &fn_71007102f0;
-    static constexpr UnkFn fn_0x68 = &fn_71007102f8;
+    static constexpr UnkFn construct = &fn_7100710304;
+    static constexpr UnkFn copy_construct = &fn_710071030c;
+    static constexpr UnkFn move_construct = &fn_7100710318;
+    static constexpr UnkFn destroy = &fn_7100710324;
+    static constexpr UnkFn copy_assign = &fn_7100710328;
+    static constexpr UnkFn move_assign = &fn_710071033c;
+    static constexpr UnkFn equals = &fn_71007102dc;
+    static constexpr UnkFn hash = &fn_71007102f0;
+    static constexpr UnkFn type_of = &fn_71007102f8;
     static const CType* underlying() { return fn_7100005178(); }
     static const CType* field_0xe8() { return &g_unk_717270e1e8; }
 };
 template base::reflection::CFlagsetType::CFlagsetType(const base::global::CStrId&, UnkRefl_fn_71007100e8*);
 struct UnkRefl_fn_7100adf508;
 template <>
-struct base::reflection::UnkReflFlagsetTraits<UnkRefl_fn_7100adf508> {
+struct base::reflection::FlagsetTypeDescription<UnkRefl_fn_7100adf508> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100adf724;
-    static constexpr UnkFn fn_0x30 = &fn_7100adf72c;
-    static constexpr UnkFn fn_0x38 = &fn_7100adf738;
-    static constexpr UnkFn fn_0x40 = &fn_7100adf744;
-    static constexpr UnkFn fn_0x48 = &fn_7100adf748;
-    static constexpr UnkFn fn_0x50 = &fn_7100adf75c;
-    static constexpr UnkFn fn_0x58 = &fn_7100adf6fc;
-    static constexpr UnkFn fn_0x60 = &fn_7100adf710;
-    static constexpr UnkFn fn_0x68 = &fn_7100adf718;
+    static constexpr UnkFn construct = &fn_7100adf724;
+    static constexpr UnkFn copy_construct = &fn_7100adf72c;
+    static constexpr UnkFn move_construct = &fn_7100adf738;
+    static constexpr UnkFn destroy = &fn_7100adf744;
+    static constexpr UnkFn copy_assign = &fn_7100adf748;
+    static constexpr UnkFn move_assign = &fn_7100adf75c;
+    static constexpr UnkFn equals = &fn_7100adf6fc;
+    static constexpr UnkFn hash = &fn_7100adf710;
+    static constexpr UnkFn type_of = &fn_7100adf718;
     static const CType* underlying() { return fn_7100005178(); }
     static const CType* field_0xe8() { return &g_unk_7172758838; }
 };
 template base::reflection::CFlagsetType::CFlagsetType(const base::global::CStrId&, UnkRefl_fn_7100adf508*);
 struct UnkRefl_fn_7100b8dd9c;
 template <>
-struct base::reflection::UnkReflFlagsetTraits<UnkRefl_fn_7100b8dd9c> {
+struct base::reflection::FlagsetTypeDescription<UnkRefl_fn_7100b8dd9c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100b8e3d8;
-    static constexpr UnkFn fn_0x30 = &fn_7100b8e3e0;
-    static constexpr UnkFn fn_0x38 = &fn_7100b8e3ec;
-    static constexpr UnkFn fn_0x40 = &fn_7100b8e3f8;
-    static constexpr UnkFn fn_0x48 = &fn_7100b8e3fc;
-    static constexpr UnkFn fn_0x50 = &fn_7100b8e410;
-    static constexpr UnkFn fn_0x58 = &fn_7100b8e3b0;
-    static constexpr UnkFn fn_0x60 = &fn_7100b8e3c4;
-    static constexpr UnkFn fn_0x68 = &fn_7100b8e3cc;
+    static constexpr UnkFn construct = &fn_7100b8e3d8;
+    static constexpr UnkFn copy_construct = &fn_7100b8e3e0;
+    static constexpr UnkFn move_construct = &fn_7100b8e3ec;
+    static constexpr UnkFn destroy = &fn_7100b8e3f8;
+    static constexpr UnkFn copy_assign = &fn_7100b8e3fc;
+    static constexpr UnkFn move_assign = &fn_7100b8e410;
+    static constexpr UnkFn equals = &fn_7100b8e3b0;
+    static constexpr UnkFn hash = &fn_7100b8e3c4;
+    static constexpr UnkFn type_of = &fn_7100b8e3cc;
     static const CType* underlying() { return fn_7100005178(); }
     static const CType* field_0xe8() { return &g_unk_7172769498; }
 };
 template base::reflection::CFlagsetType::CFlagsetType(const base::global::CStrId&, UnkRefl_fn_7100b8dd9c*);
 struct UnkRefl_fn_7100e177ec;
 template <>
-struct base::reflection::UnkReflFlagsetTraits<UnkRefl_fn_7100e177ec> {
+struct base::reflection::FlagsetTypeDescription<UnkRefl_fn_7100e177ec> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100e1b6ac;
-    static constexpr UnkFn fn_0x30 = &fn_7100e1b6b4;
-    static constexpr UnkFn fn_0x38 = &fn_7100e1b6c0;
-    static constexpr UnkFn fn_0x40 = &fn_7100e1b6cc;
-    static constexpr UnkFn fn_0x48 = &fn_7100e1b6d0;
-    static constexpr UnkFn fn_0x50 = &fn_7100e1b6e4;
-    static constexpr UnkFn fn_0x58 = &fn_7100e1b684;
-    static constexpr UnkFn fn_0x60 = &fn_7100e1b698;
-    static constexpr UnkFn fn_0x68 = &fn_7100e1b6a0;
+    static constexpr UnkFn construct = &fn_7100e1b6ac;
+    static constexpr UnkFn copy_construct = &fn_7100e1b6b4;
+    static constexpr UnkFn move_construct = &fn_7100e1b6c0;
+    static constexpr UnkFn destroy = &fn_7100e1b6cc;
+    static constexpr UnkFn copy_assign = &fn_7100e1b6d0;
+    static constexpr UnkFn move_assign = &fn_7100e1b6e4;
+    static constexpr UnkFn equals = &fn_7100e1b684;
+    static constexpr UnkFn hash = &fn_7100e1b698;
+    static constexpr UnkFn type_of = &fn_7100e1b6a0;
     static const CType* underlying() { return fn_7100005178(); }
     static const CType* field_0xe8() { return &g_unk_71727c0bc0; }
 };
