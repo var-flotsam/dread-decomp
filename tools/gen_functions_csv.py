@@ -251,8 +251,11 @@ def main() -> int:
     # 3c. Enums whose value operations src/reflection_types/ writes with base/reflection/ValueOps.h: those
     # functions and the descriptor constructor, by enum (ValueOps<E>::Construct, refl_InitType<E>), the
     # names tools/gen_types.py writes them under.
+    # They are template instances placed in whichever unit uses the enum, so they say nothing about their
+    # neighbours' subsystem (below).
     import gen_types
-    for a, n in sorted(gen_types.reflection_names(orig, args.version).items()):
+    value_ops = gen_types.reflection_names(orig, args.version)
+    for a, n in sorted(value_ops.items()):
         put(a, n, "reflection")
 
     # 4. Strings: Lua C-function binding tables.
@@ -295,7 +298,7 @@ def main() -> int:
             s = subsystem_for(owner)
             if s:
                 sub[a] = s
-    named_idx = [i for i, a in enumerate(ordered) if a in sub]
+    named_idx = [i for i, a in enumerate(ordered) if a in sub and a not in value_ops]
     for left, right in zip(named_idx, named_idx[1:]):
         if sub[ordered[left]] == sub[ordered[right]] and right - left <= 64:
             for i in range(left + 1, right):
