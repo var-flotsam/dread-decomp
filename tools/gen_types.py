@@ -877,7 +877,7 @@ def emit_primitive(getter: int, body: list[str], value_type: str | None = None) 
                 f": base::reflection::ValueOpsDescription<{value_type}> {{")
         ops = ["template <>",
                f"const CType& base::reflection::ValueOps<{value_type}>::TypeOf(const void*) "
-               f"{{ return *base::reflection::refl_GetPrimitiveType<UnkRefl_fn_{getter:x}>(); }}",
+               f"{{ return base::reflection::refl_GetPrimitiveType<UnkRefl_fn_{getter:x}>(); }}",
                f"template struct base::reflection::ValueOps<{value_type}>;"]
     return [f"struct UnkRefl_fn_{getter:x};",
             *ops,
@@ -885,7 +885,7 @@ def emit_primitive(getter: int, body: list[str], value_type: str | None = None) 
             head,
             *body,
             "};",
-            f"template const base::reflection::CType* "
+            f"template const base::reflection::CType& "
             f"base::reflection::refl_GetPrimitiveType<UnkRefl_fn_{getter:x}>();"]
 
 

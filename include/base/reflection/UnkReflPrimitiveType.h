@@ -32,11 +32,14 @@ inline CType refl_MakePrimitiveType(const base::global::CStrId& name) {
                  false);
 }
 
-// refl_GetType<T> for a plain type. G is a tag named after the getter's address.
+// refl_GetType<T> for a plain type. G is a tag named after the getter's address. It returns a
+// reference: a plain type's TypeOf (ValueOps.h) tail-calls it, which Clang does only when the
+// caller's and callee's returns carry the same attributes (a pointer's TypeOf, which dereferences a
+// pointer-returning getter, calls it instead).
 template <class G>
-const CType* refl_GetPrimitiveType() {
+const CType& refl_GetPrimitiveType() {
     static CType s_type = refl_MakePrimitiveType<G>(base::global::CStrId(UnkReflPrimitiveTraits<G>::name, true));
-    return &s_type;
+    return s_type;
 }
 
 }  // namespace base::reflection
