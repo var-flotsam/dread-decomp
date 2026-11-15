@@ -279,7 +279,9 @@ QUALIFIED_RE = re.compile(r"[A-Za-z_]\w*(?:::[A-Za-z_]\w*)*")
 # declare what they name and so that data/functions/ can spell them as llvm-cxxfilt does.
 TYPE_TOKEN_RE = re.compile(r"\s*([A-Za-z_]\w*(?:::[A-Za-z_]\w*)*|[<>,*&])")
 BUILTIN_TYPES = {"unsigned": "unsigned int", "char": "char", "int": "int", "void": "void", "bool": "bool",
-                 "float": "float", "double": "double", "short": "short", "long": "long"}
+                 "float": "float", "double": "double", "short": "short", "long": "long",
+                 "unsigned int": "unsigned int", "unsigned char": "unsigned char", "unsigned short": "unsigned short",
+                 "unsigned long": "unsigned long", "long long": "long long", "signed char": "signed char"}
 
 
 def parse_type(text: str):
@@ -297,6 +299,9 @@ def parse_type(text: str):
             raise ValueError
         name, args = toks[i], None
         i += 1
+        # Two-word builtins ("unsigned int", "long long", ...), as canonical spellings have them.
+        while name in ("unsigned", "signed", "long", "short") and i < len(toks) and toks[i] in ("int", "char", "short", "long"):
+            name, i = f"{name} {toks[i]}", i + 1
         if i < len(toks) and toks[i] == "<":
             args, i = [], i + 1
             while True:
@@ -428,7 +433,7 @@ def emit_pointer_ops(getter: int, name: str, init: int, body: list[str], canon: 
            f"const CType& base::reflection::ValueOps<{name}>::TypeOf(const void*) "
            f"{{ return *base::reflection::refl_GetPointerType<UnkRefl_fn_{getter:x}>(); }}",
            f"template struct base::reflection::ValueOps<{name}>;"]
-    return type_declarations(parse_type(name)) + out[:head] + ops + out[head:]
+    return type_declarations(parse_type(canon)) + out[:head] + ops + out[head:]
 
 
 def pointer_ops_names(orig: asmdiff.Original, init: int, name: str) -> dict[int, str]:

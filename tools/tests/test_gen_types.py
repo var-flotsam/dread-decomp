@@ -224,10 +224,12 @@ class TypeNames(unittest.TestCase):
         cases = {"char const*": "char const*", "unsigned*": "unsigned int*",
                  "base::global::CRntVector<base::global::CStrId>const*":
                      "base::global::CRntVector<base::global::CStrId> const*",
-                 "A<B, C> const *": "A<B, C> const*", "const CFoo*": "CFoo const*"}
+                 "A<B, C> const *": "A<B, C> const*", "const CFoo*": "CFoo const*",
+                 "unsigned int const*": "unsigned int const*", "long long*": "long long*"}
         for text, want in cases.items():
             with self.subTest(text=text):
                 self.assertEqual(gt.canonical_type(text), want)
+                self.assertEqual(gt.canonical_type(want), want)  # a canonical spelling parses back
 
     def test_unparsed_names(self):
         for text in ("std::unique_ptr<CFoo>", "CArray<A, EnumClass<E>::Count, E>*", "A<B>::C*", "A<"):
