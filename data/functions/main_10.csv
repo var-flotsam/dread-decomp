@@ -2594,12 +2594,12 @@ address,size,name,name_source,subsystem,status
 0x7101070608,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::Clear,reflection,engine/reflection,O
 0x7101070610,16,base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::AddCopy,reflection,engine/reflection,O
 0x7101070620,16,base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::AddMove,reflection,engine/reflection,O
-0x7101070630,92,fn_7101070630,unknown,unknown,U
+0x7101070630,92,base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::Erase,reflection,engine/reflection,O
 0x710107068c,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::At,reflection,engine/reflection,O
 0x7101070698,36,base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::Find,reflection,engine/reflection,O
-0x71010706bc,40,fn_71010706bc,unknown,unknown,O
-0x71010706e4,40,fn_71010706e4,unknown,unknown,O
-0x710107070c,76,fn_710107070c,unknown,unknown,O
+0x71010706bc,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::SetCopy,reflection,engine/reflection,O
+0x71010706e4,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::SetMove,reflection,engine/reflection,O
+0x710107070c,76,base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::Equals,reflection,engine/reflection,O
 0x7101070758,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::Hash,reflection,engine/reflection,O
 0x7101070760,12,fn_7101070760,unknown,unknown,O
 0x710107076c,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::Construct,reflection,engine/reflection,O
@@ -2610,7 +2610,7 @@ address,size,name,name_source,subsystem,status
 0x71010709ac,76,base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::MoveAssign,reflection,engine/reflection,O
 0x71010709f8,432,base::global::CRntVector<CCutscene*>::InsertCopy,reflection,engine/base,O
 0x7101070ba8,432,base::global::CRntVector<CCutscene*>::InsertMove,reflection,engine/base,O
-0x7101070d58,336,fn_7101070d58,unknown,unknown,O
+0x7101070d58,336,base::global::CRntVector<CCutscene*>::GrowAt,reflection,engine/base,O
 0x7101070ea8,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::Begin,reflection,engine/reflection,O
 0x7101070eb4,20,base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::End,reflection,engine/reflection,O
 0x7101070ec8,168,fn_7101070ec8,unknown,unknown,O

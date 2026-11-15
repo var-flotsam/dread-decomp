@@ -2549,7 +2549,7 @@ address,size,name,name_source,subsystem,status
 0x71011b5050,372,fn_71011b5050,unknown,unknown,U
 0x71011b51c4,980,fn_71011b51c4,unknown,unknown,m
 0x71011b5598,220,fn_71011b5598,unknown,unknown,O
-0x71011b5674,336,fn_71011b5674,unknown,unknown,O
+0x71011b5674,336,base::global::CRntVector<GUI::CDisplayObject*>::GrowAt,reflection,engine/base,O
 0x71011b57c4,736,fn_71011b57c4,unknown,unknown,U
 0x71011b5aa4,664,fn_71011b5aa4,unknown,unknown,U
 0x71011b5d3c,88,fn_71011b5d3c,unknown,unknown,O
@@ -3096,9 +3096,9 @@ address,size,name,name_source,subsystem,status
 0x71011d1cf0,92,fn_71011d1cf0,unknown,unknown,O
 0x71011d1d4c,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObject*>>::At,reflection,engine/reflection,O
 0x71011d1d58,36,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObject*>>::Find,reflection,engine/reflection,O
-0x71011d1d7c,40,fn_71011d1d7c,unknown,unknown,O
-0x71011d1da4,40,fn_71011d1da4,unknown,unknown,O
-0x71011d1dcc,76,fn_71011d1dcc,unknown,unknown,O
+0x71011d1d7c,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObject*>>::SetCopy,reflection,engine/reflection,O
+0x71011d1da4,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObject*>>::SetMove,reflection,engine/reflection,O
+0x71011d1dcc,76,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObject*>>::Equals,reflection,engine/reflection,O
 0x71011d1e18,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObject*>>::Hash,reflection,engine/reflection,O
 0x71011d1e20,12,fn_71011d1e20,unknown,unknown,O
 0x71011d1e2c,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObject*>>::Construct,reflection,engine/reflection,O
@@ -3424,9 +3424,9 @@ address,size,name,name_source,subsystem,status
 0x71011db990,92,fn_71011db990,unknown,unknown,O
 0x71011db9ec,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectContainer*>>::At,reflection,engine/reflection,O
 0x71011db9f8,36,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectContainer*>>::Find,reflection,engine/reflection,O
-0x71011dba1c,40,fn_71011dba1c,unknown,unknown,O
-0x71011dba44,40,fn_71011dba44,unknown,unknown,O
-0x71011dba6c,76,fn_71011dba6c,unknown,unknown,O
+0x71011dba1c,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectContainer*>>::SetCopy,reflection,engine/reflection,O
+0x71011dba44,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectContainer*>>::SetMove,reflection,engine/reflection,O
+0x71011dba6c,76,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectContainer*>>::Equals,reflection,engine/reflection,O
 0x71011dbab8,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectContainer*>>::Hash,reflection,engine/reflection,O
 0x71011dbac0,12,fn_71011dbac0,unknown,unknown,O
 0x71011dbacc,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectContainer*>>::Construct,reflection,engine/reflection,O
@@ -3437,7 +3437,7 @@ address,size,name,name_source,subsystem,status
 0x71011dbd0c,76,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectContainer*>>::MoveAssign,reflection,engine/reflection,O
 0x71011dbd58,432,base::global::CRntVector<GUI::CDisplayObjectContainer*>::InsertCopy,reflection,engine/base,O
 0x71011dbf08,432,base::global::CRntVector<GUI::CDisplayObjectContainer*>::InsertMove,reflection,engine/base,O
-0x71011dc0b8,336,fn_71011dc0b8,unknown,unknown,O
+0x71011dc0b8,336,base::global::CRntVector<GUI::CDisplayObjectContainer*>::GrowAt,reflection,engine/base,O
 0x71011dc208,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectContainer*>>::Begin,reflection,engine/reflection,O
 0x71011dc214,20,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectContainer*>>::End,reflection,engine/reflection,O
 0x71011dc228,168,fn_71011dc228,unknown,unknown,O
