@@ -2,7 +2,7 @@
 // placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "game/CBossAIComponent.h"
 #include "game/UnkGameManager.h"

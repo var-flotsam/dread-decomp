@@ -1,16 +1,16 @@
 // sound::CSoundManager unit (tools/tu_map.py, unit 2646): another copy of the 11-bucket table
-// constructor of fn_71002f75ac (src/base/UnkUnit27/UnkBucketTable_Ctor_b41.cpp): a base::UnkVector of
+// constructor of fn_71002f75ac (src/base/UnkUnit27/UnkBucketTable_Ctor_b41.cpp): a base::global::CRntVector of
 // bucket pointers (step 10, the given flags, the given or default allocator), a word -1, a cleared
 // pointer, the allocator again, the flags and the pair (0, 1), then the buckets resized to 11 cleared
 // ones. Names and layouts are placeholders.
 #include <string.h>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkBucket_b42a3;
 
-// base::UnkVector's layout, without its member initialisers.
+// base::global::CRntVector's layout, without its member initialisers.
 struct UnkBucketArray_b42a3 {
     UnkBucket_b42a3** data;
     u32 count;

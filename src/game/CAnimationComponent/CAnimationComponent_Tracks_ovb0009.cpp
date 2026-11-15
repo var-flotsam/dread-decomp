@@ -5,7 +5,7 @@
 // src/game_s2/UnkSpitSend.h). The listener lists at +0x438 are CAnimationComponent_b52.cpp's.
 // Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"
@@ -801,9 +801,9 @@ f32 fn_710117a994(UnkAnimComponent_a994* self, const UnkAnimTiming* timing, f32 
 
 // The component's listener lists (+0x438), as UnkAnimListeners_b52 (CAnimationComponent_b52.cpp).
 struct UnkAnimListeners {
-    base::UnkVector<void*> active;   // 0x0
-    base::UnkVector<void*> pending;  // 0x28
-    base::UnkVector<void*> queued;   // 0x50
+    base::global::CRntVector<void*> active;   // 0x0
+    base::global::CRntVector<void*> pending;  // 0x28
+    base::global::CRntVector<void*> queued;   // 0x50
     union {
         s32 lock;  // 0x78
     };

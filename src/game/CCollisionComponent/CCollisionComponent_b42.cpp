@@ -25,7 +25,7 @@ struct UnkCollisionQuery_b42 {
 struct UnkCollisionContainer_b42 {
     UnkCollisionRefresh_b42* vtable;
     u8 unk_0x8[0x40];
-    base::UnkVector<UnkCollisionRecord> records;  // 0x48
+    base::global::CRntVector<UnkCollisionRecord> records;  // 0x48
     u8 unk_0x70[0x58];
     bool active;  // 0xc8
     bool refresh;  // 0xc9

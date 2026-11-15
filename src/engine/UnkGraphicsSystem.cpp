@@ -10,7 +10,7 @@
 #include "base/UnkDefaultAllocator.h"
 #include "base/UnkMatrix44.h"
 #include "base/UnkParallelFind.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/color/CColor4F.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
@@ -216,9 +216,9 @@ struct UnkGraphicsSystem {
     f32 field_0x54;
     f32 field_0x58;
     f32 field_0x5c;  // 2.2, a gamma
-    base::UnkVector<UnkGfxDisplayMode> display_modes;  // 0x60
-    base::UnkVector<u8> field_0x88;
-    base::UnkVector<u8> field_0xb0;  // reserved by fn_71000231f4 (element type unknown)
+    base::global::CRntVector<UnkGfxDisplayMode> display_modes;  // 0x60
+    base::global::CRntVector<u8> field_0x88;
+    base::global::CRntVector<u8> field_0xb0;  // reserved by fn_71000231f4 (element type unknown)
     u8 unk_0xd8[0x20];
     u32 field_0xf8;
     u8 unk_0xfc[0x24];
@@ -242,7 +242,7 @@ struct UnkGraphicsSystem {
     u32 field_0x317a998;
     u32 field_0x317a99c;  // the draw mode (fn_71001cb604)
     u8 field_0x317a9a0[0x40];  // constructed by fn_7100216dfc
-    base::UnkVector<UnkGfxPairList> pair_lists;  // 0x317a9e0
+    base::global::CRntVector<UnkGfxPairList> pair_lists;  // 0x317a9e0
     // The viewport (src/game_lo/fn_71001cdd74.cpp): x, y, width, height and the depth range.
     s32 viewport[4];  // 0x317aa08
     f32 viewport_min_depth;
@@ -257,7 +257,7 @@ struct UnkGraphicsSystem {
     base::UnkAllocator* field_0x317aa70;
     u32 field_0x317aa78;
     u32 field_0x317aa7c;
-    base::UnkVector<u64> field_0x317aa80;
+    base::global::CRntVector<u64> field_0x317aa80;
     u64 field_0x317aaa8;
     u64 field_0x317aab0;
     UnkGfxScaleEntry scales[2];  // 0x317aab8
@@ -771,7 +771,7 @@ void fn_71001c8294(UnkGraphicsSystem* self) {
     self->field_0x5c = 2.2f;
 
     // The display modes: no growth step, room for 128.
-    base::UnkVector<UnkGfxDisplayMode>& modes = self->display_modes;
+    base::global::CRntVector<UnkGfxDisplayMode>& modes = self->display_modes;
     modes.data = nullptr;
     modes.count = 0;
     modes.capacity = 0;
@@ -790,7 +790,7 @@ void fn_71001c8294(UnkGraphicsSystem* self) {
         modes.capacity = 0x80;
     }
 
-    base::UnkVector<u8>& v88 = self->field_0x88;
+    base::global::CRntVector<u8>& v88 = self->field_0x88;
     v88.data = nullptr;
     v88.count = 0;
     v88.capacity = 0;
@@ -798,7 +798,7 @@ void fn_71001c8294(UnkGraphicsSystem* self) {
     v88.field_0x14 = true;
     v88.flags = 0xf;
     v88.allocator = fn_7100083990();
-    base::UnkVector<u8>& vb0 = self->field_0xb0;
+    base::global::CRntVector<u8>& vb0 = self->field_0xb0;
     vb0.data = nullptr;
     vb0.count = 0;
     vb0.capacity = 0;
@@ -831,7 +831,7 @@ void fn_71001c8294(UnkGraphicsSystem* self) {
     fn_7100216dfc(self->field_0x317a9a0);
 
     // The pair lists: no growth step, room for 8 (moved as fn_71001cdba4 copies them).
-    base::UnkVector<UnkGfxPairList>& lists = self->pair_lists;
+    base::global::CRntVector<UnkGfxPairList>& lists = self->pair_lists;
     lists.data = nullptr;
     lists.count = 0;
     lists.capacity = 0;
@@ -871,7 +871,7 @@ void fn_71001c8294(UnkGraphicsSystem* self) {
     self->field_0x317aa7c = 0;
 
     // A vector of 64-bit values, resized to 11 zeroes.
-    base::UnkVector<u64>& words = self->field_0x317aa80;
+    base::global::CRntVector<u64>& words = self->field_0x317aa80;
     words.data = nullptr;
     words.count = 0;
     words.capacity = 0;

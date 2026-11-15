@@ -4,13 +4,13 @@
 // object, destroyed inline. Two in CBTObserverComponent's unit (tools/tu_map.py unit 2216) and one
 // in CSubAreaManager's (unit 2577). Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 template <int Tag>
 struct UnkIdArrayObject_b55 {
     base::UnkStrIdMember id;
-    base::UnkVector<u8> items;
+    base::global::CRntVector<u8> items;
 
     __attribute__((always_inline)) void Destroy() {
         items.Free();

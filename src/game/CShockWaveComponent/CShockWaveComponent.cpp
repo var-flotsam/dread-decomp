@@ -2,7 +2,7 @@
 // fn_71010cf260 (src/game/CFakePhysicsMovement/fn_71010cf260.cpp): restore the vtables, free the
 // node list at 0x250, destroy the member at 0x40 (fn_71003cc474) and run the component's base
 // destructor (fn_71010c4194). Names and the layout are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CAutsharpAIComponent.h"
 #include "game/CShockWaveComponent.h"
 #include "game/UnkComponent.h"

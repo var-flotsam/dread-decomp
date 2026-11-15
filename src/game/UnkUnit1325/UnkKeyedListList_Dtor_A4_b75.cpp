@@ -2,7 +2,7 @@
 // hold a string id and an inner linked list (vtable g_unk_7101a46040) of plain nodes: frees every inner node, empties
 // the inner list, releases the id and frees the node through the outer list's allocator. Two identical copies
 // (fn_710086f394, fn_710086f4a0). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CEmmyProtoAIComponent.h"
 #include "game/UnkTU1325.h"

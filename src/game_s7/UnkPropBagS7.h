@@ -5,7 +5,7 @@
 // Names and layouts are placeholders.
 
 #include "base/UnkHashStream.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"
 
@@ -27,9 +27,9 @@ struct UnkPropBag;
 void fn_710050e8e4(UnkPropBag* bag);  // the destructor
 
 struct UnkPropBag {
-    base::UnkVector<u64> values{0x3d};
+    base::global::CRntVector<u64> values{0x3d};
     UnkLock lock;
-    base::UnkVector<UnkStrId> names{0x3d};
+    base::global::CRntVector<UnkStrId> names{0x3d};
 
     ~UnkPropBag() { fn_710050e8e4(this); }
 };

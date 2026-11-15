@@ -17,10 +17,10 @@ struct UnkMovedPtr_ovb0130 : UnkOwnedPtr {
 
 struct UnkReflOwnedSet_ovb0130 {
     u8 pad_0x0[0x10];
-    base::UnkVector<UnkMovedPtr_ovb0130> items;  // 0x10
+    base::global::CRntVector<UnkMovedPtr_ovb0130> items;  // 0x10
 };
 
-static inline void EraseAt_ovb0130(base::UnkVector<UnkMovedPtr_ovb0130>* v, u32 index) {
+static inline void EraseAt_ovb0130(base::global::CRntVector<UnkMovedPtr_ovb0130>* v, u32 index) {
     if (index < v->count) {
         u64 i = index;
         v->data[i].~UnkMovedPtr_ovb0130();

@@ -16,7 +16,7 @@
 #include <new>
 
 #include "../../game/CMinimapData/UnkStrIdIterBeginEnd_A6_b75.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU0.h"
@@ -24,7 +24,7 @@
 #include "types.h"
 
 using base::UnkAllocator;
-using base::UnkVector;
+using base::global::CRntVector;
 using namespace base::global;
 
 void fn_7100262dd4(char*);
@@ -52,8 +52,8 @@ struct UnkAllocatorHandle_ovb0036 {
 };
 
 template <class T>
-struct UnkResizedVector_ovb0036 : UnkVector<T> {
-    using UnkVector<T>::UnkVector;
+struct UnkResizedVector_ovb0036 : CRntVector<T> {
+    using CRntVector<T>::CRntVector;
 
     // Resizes to n entries, zeroing the new ones.
     __attribute__((always_inline)) void Resize(u32 n) {

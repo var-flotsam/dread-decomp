@@ -3,7 +3,7 @@
 // that share a count, a capacity and a growth step (fn_710013ac14 builds them; fn_710013c2ac
 // appends; src/game_lo/fn_710013c3c8.cpp looks a group up). Names and layouts are placeholders
 // inferred from the code.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/core/CBaseObject.h"
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"
@@ -14,7 +14,7 @@
 #include "types.h"
 
 using base::UnkAllocator;
-using base::UnkVector;
+using base::global::CRntVector;
 using base::global::CStrId;
 
 struct UnkTunableGroup;
@@ -25,9 +25,9 @@ struct UnkTunableMember {
 };
 
 struct UnkTunableGroup {
-    UnkVector<UnkTunableMember*> members;  // flags 0xf, like the two other lists
-    UnkVector<void*> field_0x28;
-    UnkVector<void*> field_0x50;
+    CRntVector<UnkTunableMember*> members;  // flags 0xf, like the two other lists
+    CRntVector<void*> field_0x28;
+    CRntVector<void*> field_0x50;
     bool field_0x78;
 
     // The members are detached and the three lists emptied, then freed last to first.
@@ -291,7 +291,7 @@ bool fn_710013b0e0(UnkTunableRegistry* self, bool generate) {
     bool result = false;
     if (opened) {
         UnkTunableLine line;
-        base::UnkVector<UnkTunableLine> lines(0xf);
+        base::global::CRntVector<UnkTunableLine> lines(0xf);
         UnkTunableObject* tunable = nullptr;
         result = true;
         while (reader.file.position < reader.file.size) {

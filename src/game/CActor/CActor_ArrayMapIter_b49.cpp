@@ -4,7 +4,7 @@
 // re-point its cached (key, value) through fn_710023c550, kept out of line. Names are placeholders.
 #include "base/UnkCollectionIter.h"
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 // Destroyed through its vtable's first slot.

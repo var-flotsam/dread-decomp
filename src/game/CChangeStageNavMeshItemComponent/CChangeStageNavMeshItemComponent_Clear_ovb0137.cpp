@@ -1,14 +1,14 @@
 // CChangeStageNavMeshItemComponent's unit (tools/tu_map.py): emptying the component's parallel id and id-list arrays.
 // Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CChangeStageNavMeshItemComponent.h"
 #include "types.h"
 
 // Two parallel arrays sharing a count: a list of ids for each entry (0x28-byte arrays) and an id.
 struct UnkStageNavMeshItems_ovb0137 {
-    base::UnkVector<base::UnkStrIdMember>* lists;  // 0x0
+    base::global::CRntVector<base::UnkStrIdMember>* lists;  // 0x0
     base::UnkStrIdMember* ids;                     // 0x8
     u32 count;                                     // 0x10
 };

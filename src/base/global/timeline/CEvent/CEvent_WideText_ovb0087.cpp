@@ -11,7 +11,7 @@
 
 #include <nn/os.h>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/timeline/CEvent.h"
 #include "game/nn/time.h"

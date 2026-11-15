@@ -1,6 +1,6 @@
 // In the CCharClassRodotukAIComponent unit: the constructor without the post-construction call (as
 // fn_71006707e8, CCharClassRodotukAIComponent.cpp). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCharClassBehaviorTreeAIComponent.h"
 #include "game/CCharClassRodotukAIComponent.h"
 #include "game/CCharClassRodotukSuckAttack.h"

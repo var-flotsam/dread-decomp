@@ -2,7 +2,7 @@
 // vf_0x548, as src/game/UnkNavQuery.cpp calls it): the side nearest the goal through the navigation mesh
 // (fn_710027b780, with the query's filter and this unit's verdict fn_71006f328c), else the base's
 // (fn_710110f318). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "game/UnkNavMeshManager.h"
 #include "types.h"

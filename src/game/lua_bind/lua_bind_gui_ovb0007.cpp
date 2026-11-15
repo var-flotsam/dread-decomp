@@ -7,7 +7,7 @@
 #include "../../../lib/lua/lua.h"
 #include "../../game_s7/UnkPropBagS7.h"
 #include "base/UnkCloneRecords.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/core/CBaseObject.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
@@ -475,7 +475,7 @@ struct UnkIdArg_b0007 {
 struct UnkIdRequest_b0007 {
     u32 field_0x0;
     UnkListedId_b0007 id;
-    base::UnkVector<UnkListedId_b0007> ids{0xc};
+    base::global::CRntVector<UnkListedId_b0007> ids{0xc};
 
     UnkIdRequest_b0007(UnkIdArg_b0007 id) : field_0x0(0), id(id.Id()) {}
     __attribute__((always_inline)) ~UnkIdRequest_b0007() { ids.Free(); }

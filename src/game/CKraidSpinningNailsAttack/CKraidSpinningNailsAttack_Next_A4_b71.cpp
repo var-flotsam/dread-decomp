@@ -3,7 +3,7 @@
 // +0x1140), limited to two unless the component's +0x1170 is set: stores the entry's pointer at +0x58 and
 // advances the counter at +0x54, or clears +0x58 when done. Names and layouts are placeholders.
 #include "UnkClone.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
@@ -13,7 +13,7 @@ using base::reflection::CClass;
 // The out-of-line accessor of the groups' vectors (src/clones/clones_02.cpp).
 struct UnkClone_fn_71005edc34;
 using UnkKraidNailElem_A4_b71 = UnkCloneOwner<UnkClone_fn_71005edc34>;
-extern template UnkKraidNailElem_A4_b71& base::UnkVector<UnkKraidNailElem_A4_b71>::GrowAt(u32);
+extern template UnkKraidNailElem_A4_b71& base::global::CRntVector<UnkKraidNailElem_A4_b71>::GrowAt(u32);
 
 struct UnkKraidComp_A4_b71 {
     void** vtable;
@@ -30,9 +30,9 @@ struct UnkKraidOwner_A4_b71 {
 
 struct UnkKraidNailDef_A4_b71 {
     u8 pad_0x0[0xf0];
-    base::UnkVector<UnkKraidNailElem_A4_b71>* groups0;  // 0xf0
+    base::global::CRntVector<UnkKraidNailElem_A4_b71>* groups0;  // 0xf0
     u8 pad_0xf8[0x118 - 0xf8];
-    base::UnkVector<UnkKraidNailElem_A4_b71>* groups1;  // 0x118
+    base::global::CRntVector<UnkKraidNailElem_A4_b71>* groups1;  // 0x118
 };
 
 struct UnkKraidNailsAttack_A4_b71 {
@@ -52,7 +52,7 @@ void fn_71005f67cc(UnkKraidNailsAttack_A4_b71* self) {
             ? obj
             : nullptr;
     UnkKraidNailDef_A4_b71* def = self->def;
-    base::UnkVector<UnkKraidNailElem_A4_b71>& g = (kraid->phase != 0 ? def->groups1 : def->groups0)[self->group];
+    base::global::CRntVector<UnkKraidNailElem_A4_b71>& g = (kraid->phase != 0 ? def->groups1 : def->groups0)[self->group];
     u32 n = g.count;
     u32 limit = kraid->field_0x1170 == 0 ? (n < 2 ? n : 2) : n;
     if (self->next < limit) {

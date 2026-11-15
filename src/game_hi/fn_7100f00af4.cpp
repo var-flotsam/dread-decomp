@@ -1,7 +1,7 @@
 // Starts the sound registered under an id unless it is already playing: optionally replaces its
 // file path, asks the player for an instance, names it, keeps it in the playing list and marks the
 // id as started. Returns false when disabled or when nothing could be started.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/msapi/res/CRenderRes.h"
 #include "types.h"

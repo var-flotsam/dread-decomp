@@ -7,7 +7,7 @@
 #include <nn/os.h>
 
 #include "UnkUnit36_Nfp.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 UnkUnit36Static* fn_710002cbec();

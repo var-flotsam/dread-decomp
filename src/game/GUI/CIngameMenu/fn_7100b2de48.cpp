@@ -8,7 +8,7 @@
 #include "base/UnkDeferredSet.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkStrIdPathPair.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -727,8 +727,8 @@ struct UnkIdPair {
 inline UnkIdPair::~UnkIdPair() { fn_7100026f70(this); }
 
 // An array of pointers whose destructor frees its storage.
-struct UnkPtrArray : base::UnkVector<void*> {
-    using base::UnkVector<void*>::UnkVector;
+struct UnkPtrArray : base::global::CRntVector<void*> {
+    using base::global::CRntVector<void*>::CRntVector;
     ~UnkPtrArray() { Free(); }
 };
 
@@ -868,9 +868,9 @@ struct UnkStateFns {
 };
 struct UnkStateTable;
 
-// The table's entry for a state, growing the table when needed (base::UnkVector::GrowAt).
+// The table's entry for a state, growing the table when needed (base::global::CRntVector::GrowAt).
 __attribute__((flatten)) UnkStateFns* fn_7100b2f03c(UnkStateTable** table, s32 state) {
-    return &reinterpret_cast<base::UnkVector<UnkStateFns>*>(table)->GrowAt(state);
+    return &reinterpret_cast<base::global::CRntVector<UnkStateFns>*>(table)->GrowAt(state);
 }
 struct UnkHighlight {
     u8 unk_0x0[0x2e1];

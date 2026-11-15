@@ -2,7 +2,7 @@
 // src/game/UnkStateMachineUpdateA5_b62.cpp), places its display objects for the current layout and
 // language, and reports a mode from the current state. Names and layouts are placeholders.
 #include "types.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "game/UnkGuiDisplayObject.h"
 

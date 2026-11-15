@@ -1,6 +1,6 @@
 // A callback list with a string id at +0x40 (the layout of fn_7100893dc8 in
 // CCharClassShootActivatorComponent.cpp): this unit's own copy of its constructor.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/UnkTU341.h"

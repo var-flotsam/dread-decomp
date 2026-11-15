@@ -6,7 +6,7 @@
 #include "game/CTriggerLogicAction.h"
 #include "types.h"
 
-struct UnkArrayMember_b50a5 : base::UnkVector<void*> {
+struct UnkArrayMember_b50a5 : base::global::CRntVector<void*> {
     ~UnkArrayMember_b50a5() { Free(); }
 };
 

@@ -5,7 +5,7 @@
 // a member it does not have yet. The reflected members keep their reflected names (tools/gen_fields.py
 // --class CSpawnPointComponent); the others are placeholders. The owning actor (the base component's +0x30)
 // is left untyped: each source reads it through its own view, until the actor has one layout.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CGameLink.h"
@@ -55,17 +55,17 @@ struct CSpawnPointComponent : UnkBaseComponent {
     f32 fSpawnFromXCellProbability;            // 0x2bc
     f32 fSpawnFromXCellProbabilityAfterFirst;  // 0x2c0
     EXCellSpawnPositionMode eXCellSpawnPositionMode;              // 0x2c4
-    base::UnkVector<CGameLink<CActor>> tXCellTransformTargets;    // 0x2c8
+    base::global::CRntVector<CGameLink<CActor>> tXCellTransformTargets;    // 0x2c8
     CGameLink<CActor> wpXCellActivationAreaShape;                 // 0x2f0
     u8 pad_0x330[0x350 - 0x330];
     bool field_0x350;  // whether the owner is on the Emmy zone's shape (set by fn_7101126c34)
     bool bUseDynamicSpawnPosition;  // 0x351
     u8 pad_0x352[0x2];
     EDynamicSpawnPositionMode eDynamicSpawnPositionMode;          // 0x354
-    base::UnkVector<CGameLink<CActor>> tDynamicSpawnPositions;    // 0x358
+    base::global::CRntVector<CGameLink<CActor>> tDynamicSpawnPositions;    // 0x358
     UnkWeakHandle* field_0x380;  // the weak handle of the object found by fn_710112c4d8
     u8 pad_0x388[0x390 - 0x388];
-    base::UnkVector<CSpawnerActorBlueprint> voActorBlueprint;     // 0x390
+    base::global::CRntVector<CSpawnerActorBlueprint> voActorBlueprint;     // 0x390
 
     // Resolves the link at +0x60 the way this unit resolves links (fn_710023b580, fn_7100234f78): once, while
     // its state is 1.

@@ -3,7 +3,7 @@
 // "Hearing" perception (a 0x10-byte object: its vtable and the name). Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CCharClassComponent.h"
 #include "game/CCharClassPerceptionComponent.h"
@@ -47,14 +47,14 @@ struct UnkPerceptionComponent_b0266 {
     u8 pad_0x8[0x10];
     u64 field_0x18;
     u8 pad_0x20[0x38];
-    base::UnkVector<UnkPerceptionPtr_b0266> list;  // 0x58
+    base::global::CRntVector<UnkPerceptionPtr_b0266> list;  // 0x58
 };
 static_assert(__builtin_offsetof(UnkPerceptionComponent_b0266, list) == 0x58, "layout");
 
 void fn_71009c7a48(UnkPerceptionComponent_b0266* self) {
     fn_71011acd10(reinterpret_cast<UnkStruct_71008bca30*>(self));
     self->vtable = g_unk_7101a88c60 + 2;
-    new (&self->list) base::UnkVector<UnkPerceptionPtr_b0266>(0xf);
+    new (&self->list) base::global::CRntVector<UnkPerceptionPtr_b0266>(0xf);
     self->field_0x18 = 5000;
     static CStrId s_hearing("Hearing", true);
     auto* perception = static_cast<UnkPerceptionRaw_b0266*>(fn_71000839a0(0x10, 5));

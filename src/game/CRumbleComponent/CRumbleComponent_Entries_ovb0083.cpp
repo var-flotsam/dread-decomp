@@ -1,11 +1,11 @@
 // CRumbleComponent's unit (tools/tu_map.py unit 1500): the component's record list (+0x48, a
-// base::UnkVector of 0x68-byte records; its shrink and resize) and the stop of the rumbles played
+// base::global::CRntVector of 0x68-byte records; its shrink and resize) and the stop of the rumbles played
 // from a given file. Names and layouts are placeholders; the records
 // are the ones src/game/CRumbleComponent.cpp fills (UnkRumbleRecord there), seen here with their
 // default values and the two string ids released in two steps.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/input/UnkRumbleManager.h"
@@ -85,7 +85,7 @@ struct UnkRumbleEntry_ovb0083 {
 };
 static_assert(sizeof(UnkRumbleEntry_ovb0083) == 0x68, "UnkRumbleEntry_ovb0083 layout");
 
-using UnkRumbleEntries_ovb0083 = base::UnkVector<UnkRumbleEntry_ovb0083>;
+using UnkRumbleEntries_ovb0083 = base::global::CRntVector<UnkRumbleEntry_ovb0083>;
 
 struct UnkRumbleComponent_ovb0083 {
     u8 unk_0x0[0x48];

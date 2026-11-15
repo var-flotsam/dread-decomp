@@ -2,7 +2,7 @@
 // record of four arrays with allocator flags 0xe (step 10, the default allocator; the second built out
 // of line, fn_7100dcf890, with 5) and a last word. Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 void fn_7100dcf890(void* self, u32 a, u32 flags);

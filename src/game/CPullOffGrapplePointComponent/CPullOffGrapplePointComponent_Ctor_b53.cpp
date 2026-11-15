@@ -6,7 +6,7 @@
 #include "game/CPullOffGrapplePointComponent.h"
 #include "game/UnkTU341.h"
 #include "types.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 
 void fn_710082ca34(char*);
 void fn_710082eba4(char*);

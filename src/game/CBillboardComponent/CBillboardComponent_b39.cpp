@@ -2,7 +2,7 @@
 // in the manager g_unk_71726da048 (created on first use, as in
 // src/game/CFingSwarmControllerComponent/fn_7100579d08.cpp) has the flag at +0x10d of its data clear.
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CDizzeanSwarmControllerComponent.h"
 #include "game/UnkTU2560.h"
 #include "types.h"

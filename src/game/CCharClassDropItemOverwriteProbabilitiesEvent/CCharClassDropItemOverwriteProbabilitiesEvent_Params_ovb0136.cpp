@@ -6,7 +6,7 @@
 // vtable, the id list at +0x90 and the ids at +0x88, +0x78 and +0x58 released, then the base destructor
 // fn_7100067ed4, as src/game/CCharClassFXCreateTrailEvent/CCharClassFXCreateTrailEvent_Copy_ovb0121.cpp).
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"
@@ -240,7 +240,7 @@ struct UnkOverwriteEventDtor_ovb0136 {
     UnkReleasedId_ovb0136 field_0x78;
     u8 pad_0x80[0x8];
     UnkReleasedId_ovb0136 field_0x88;
-    base::UnkVector<UnkReleasedId_ovb0136> field_0x90;
+    base::global::CRntVector<UnkReleasedId_ovb0136> field_0x90;
 
     __attribute__((always_inline)) ~UnkOverwriteEventDtor_ovb0136() {
         vtable = reinterpret_cast<void**>(g_unk_7101aa5860 + 0x10);

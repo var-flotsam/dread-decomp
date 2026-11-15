@@ -9,7 +9,7 @@
 // placeholders.
 #include "base/UnkAtExit.h"
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -77,7 +77,7 @@ struct UnkMlogText_b55 : base::global::UnkStrIdBase {
 struct UnkMlogMessage_b55 {
     u32 kind;
     UnkMlogText_b55 text;
-    base::UnkVector<base::UnkStrIdMember> args;
+    base::global::CRntVector<base::UnkStrIdMember> args;
 
     __attribute__((always_inline)) UnkMlogMessage_b55(u32 k, const CStrId& t) : kind(k), text(t), args(0xc) {}
     __attribute__((always_inline)) ~UnkMlogMessage_b55() { args.Free(); }

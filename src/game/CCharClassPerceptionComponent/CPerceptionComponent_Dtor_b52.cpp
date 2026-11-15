@@ -6,7 +6,7 @@
 #include "game/CCharClassComponent.h"
 #include "game/CCharClassPerceptionComponent.h"
 #include "game/UnkComponent.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 // Signature as src/game/CCharClassCollisionComponent/CCharClassCollisionComponent.cpp declares it.

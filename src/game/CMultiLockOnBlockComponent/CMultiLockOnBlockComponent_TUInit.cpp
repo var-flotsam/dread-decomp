@@ -1,7 +1,7 @@
 // CMultiLockOnBlockComponent's static initialiser: the unit header, the tunable's and the
 // component's registrations with the tunable itself, the component's id, one bool property, two
 // name prefixes and a global block of three empty vectors.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CMultiLockOnBlockComponent.h"
@@ -22,11 +22,11 @@ struct UnkMultiLockOnBlockTU {
 
 // Three vectors and a flag; element types are unknown.
 struct UnkMultiLockOnLists {
-    base::UnkVector<void*> lists[3];
+    base::global::CRntVector<void*> lists[3];
     bool field_0x78;
 
     UnkMultiLockOnLists()
-        : lists{base::UnkVector<void*>(0xf), base::UnkVector<void*>(0xf), base::UnkVector<void*>(0xf)} {
+        : lists{base::global::CRntVector<void*>(0xf), base::global::CRntVector<void*>(0xf), base::global::CRntVector<void*>(0xf)} {
         field_0x78 = false;
     }
 };

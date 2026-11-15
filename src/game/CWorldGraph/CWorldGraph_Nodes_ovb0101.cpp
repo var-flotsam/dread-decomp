@@ -5,9 +5,9 @@
 // erasing nodes while telling the listeners (the 0xd0-byte values of the keyed map at +0x16a8), the
 // lookup by id that adds a node when there is none, and the destructor. Names and layouts are
 // placeholders.
-// The array's element accessor is inlined here (base/UnkVector.h).
+// The array's element accessor is inlined here (base/global/CRntVector.h).
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "game/CActorComponent.h"
@@ -47,7 +47,7 @@ void fn_71006fadf0(UnkWorldGraphListener_b0101* self, void* node, u32 index);
 
 struct UnkWorldGraph_b0101 {
     u8 pad_0x0[0x30];
-    base::UnkVector<UnkWorldGraphNode_b0101> nodes;  // 0x30
+    base::global::CRntVector<UnkWorldGraphNode_b0101> nodes;  // 0x30
     u8 pad_0x58[0x1650];
     UnkWorldGraphListener_b0101* listeners;  // 0x16a8: the map's values
     u64 field_0x16b0;                        // the map's keys
@@ -60,7 +60,7 @@ void fn_7100acc92c(UnkWorldGraph_b0101* self, u32 index) {
     void* node = fn_7100acc418(reinterpret_cast<UnkWorldGraphArray*>(&self->nodes), index);
     for (UnkWorldGraphListener_b0101 *it = self->listeners, *end = it + self->listener_count; it != end; ++it)
         fn_71006fae70(it, node, index);
-    base::UnkVector<UnkWorldGraphNode_b0101>* v = &self->nodes;
+    base::global::CRntVector<UnkWorldGraphNode_b0101>* v = &self->nodes;
     if (index < v->count) {
         u64 i = index;
         v->data[i].~UnkWorldGraphNode_b0101();
@@ -75,11 +75,11 @@ void fn_7100acc92c(UnkWorldGraph_b0101* self, u32 index) {
 
 // The node at `index`, growing the array to hold it.
 __attribute__((noinline)) void* fn_7100acc418(UnkWorldGraphArray* array, u32 index) {
-    return &reinterpret_cast<base::UnkVector<UnkWorldGraphNode_b0101>*>(array)->GrowAt(index);
+    return &reinterpret_cast<base::global::CRntVector<UnkWorldGraphNode_b0101>*>(array)->GrowAt(index);
 }
 
 // Moves `node` in at `index`.
-__attribute__((flatten)) void fn_7100acd2a0(base::UnkVector<UnkWorldGraphNode_b0101>* nodes, UnkWorldGraphNode_b0101* node, u32 index) {
+__attribute__((flatten)) void fn_7100acd2a0(base::global::CRntVector<UnkWorldGraphNode_b0101>* nodes, UnkWorldGraphNode_b0101* node, u32 index) {
     nodes->Insert(static_cast<UnkWorldGraphNode_b0101&&>(*node), index);
 }
 
@@ -104,7 +104,7 @@ void* fn_7100acc2f0(UnkWorldGraph_b0101* self, u32 index, const base::math::CVec
     u16 cell_index = fn_710027a41c(mesh, &point, 1);
     UnkNavMeshCell* cell = cell_index != 0xffff ? fn_710027a328(mesh, cell_index) : nullptr;
     alignas(8) u8 node[0x80];
-    base::UnkVector<UnkWorldGraphNode_b0101>* nodes = &self->nodes;
+    base::global::CRntVector<UnkWorldGraphNode_b0101>* nodes = &self->nodes;
     fn_7100acf8d4(node, &point, arg, cell, self);
     fn_7100acd2a0(nodes, reinterpret_cast<UnkWorldGraphNode_b0101*>(node), index);
     fn_7100ad04c4(node);
@@ -117,7 +117,7 @@ void* fn_7100acc2f0(UnkWorldGraph_b0101* self, u32 index, const base::math::CVec
 // The node whose id is `*key`; when there is none, a new node at `point` (none off the navigation
 // mesh), appended and announced to the listeners.
 __attribute__((disable_tail_calls)) void* fn_7100acc650(UnkWorldGraph_b0101* self, u64* key, const base::math::CVector2D* point) {
-    base::UnkVector<UnkWorldGraphNode_b0101>* nodes = &self->nodes;
+    base::global::CRntVector<UnkWorldGraphNode_b0101>* nodes = &self->nodes;
     for (u32 i = 0; i < self->nodes.count; ++i) {
         auto* node = static_cast<UnkWorldGraphNodeData_b0101*>(fn_7100acc418(reinterpret_cast<UnkWorldGraphArray*>(nodes), i));
         if (node->id == *key)
@@ -172,7 +172,7 @@ struct UnkWorldGraphMap_b0101 {
 struct UnkWorldGraphDtor_b0101 {
     void** vtable;
     u8 pad_0x8[0x28];
-    base::UnkVector<UnkWorldGraphNode_b0101> nodes;  // 0x30
+    base::global::CRntVector<UnkWorldGraphNode_b0101> nodes;  // 0x30
     u32 field_0x58;
     u8 pad_0x5c[0x320];
     u32 field_0x37c;

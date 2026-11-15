@@ -7,7 +7,7 @@
 
 #include "base/UnkCloneRecords.h"
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/animtree/CAnimatedNodeDef.h"
 #include "types.h"
@@ -19,8 +19,8 @@ struct UnkAnimatedNodeDef_ovb0138 {
     char* vtable;
     UnkStrIdMember name;                         // 0x8
     u64 field_0x10;
-    base::UnkVector<UnkStrIdMember> bones;        // 0x18
-    base::UnkVector<UnkStrIdMember> hierarchies;  // 0x40
+    base::global::CRntVector<UnkStrIdMember> bones;        // 0x18
+    base::global::CRntVector<UnkStrIdMember> hierarchies;  // 0x40
     bool launch_events;                           // 0x68
     bool allow_root_motion;                       // 0x69
 };
@@ -56,8 +56,8 @@ void* fn_71002d44dc(void* dst, const void* src) {
     if (self != other) {
         self->name = other->name;
         self->field_0x10 = other->field_0x10;
-        self->bones = static_cast<base::UnkVector<UnkStrIdMember>&&>(other->bones);
-        self->hierarchies = static_cast<base::UnkVector<UnkStrIdMember>&&>(other->hierarchies);
+        self->bones = static_cast<base::global::CRntVector<UnkStrIdMember>&&>(other->bones);
+        self->hierarchies = static_cast<base::global::CRntVector<UnkStrIdMember>&&>(other->hierarchies);
         __builtin_memcpy(&self->launch_events, &other->launch_events, 2);
     }
     return self;

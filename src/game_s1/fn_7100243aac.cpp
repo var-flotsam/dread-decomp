@@ -1,8 +1,8 @@
-// Frees an array of owned objects (base::UnkVector's layout, as UnkOwnedList in
+// Frees an array of owned objects (base::global::CRntVector's layout, as UnkOwnedList in
 // include/game_s2/UnkOwnedList.h): each element is taken out, shut down through its slot 0x90
 // and deleted through its slot 0x10, then the array is freed. fn_71002de984 is a relative.
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkOwned_7100243aac {

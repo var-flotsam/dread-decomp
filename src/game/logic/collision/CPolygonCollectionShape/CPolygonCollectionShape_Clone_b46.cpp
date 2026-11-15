@@ -5,7 +5,7 @@
 // +0xf0. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU109.h"
 #include "game/logic/collision/CPolygonCollectionShape.h"
 #include "game/logic/collision/CShape.h"
@@ -18,7 +18,7 @@ struct UnkPolygonShape_b46a3 {
     u8 unk_0x8[0xa0];
     u8 field_0xa8[0x40];
     bool field_0xe8;
-    base::UnkVector<UnkPolygonElem_b46a3*> field_0xf0;
+    base::global::CRntVector<UnkPolygonElem_b46a3*> field_0xf0;
 };
 
 struct UnkPolygonCollectionShape_b42a3;  // CPolygonCollectionShape_b42.cpp
@@ -30,6 +30,6 @@ UnkPolygonShape_b46a3* fn_7100d6350c(const UnkPolygonShape_b46a3* other) {
     self->vtable = g_unk_7101aa8b80 + 0x10;
     fn_7100123f1c(self->field_0xa8, other->field_0xa8);
     self->field_0xe8 = other->field_0xe8;
-    new (&self->field_0xf0) base::UnkVector<UnkPolygonElem_b46a3*>(7);
+    new (&self->field_0xf0) base::global::CRntVector<UnkPolygonElem_b46a3*>(7);
     return self;
 }

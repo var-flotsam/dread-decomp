@@ -3,7 +3,7 @@
 #include <new>
 
 #include "base/UnkCountedResource.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/CSwarmControllerComponent.h"
@@ -56,7 +56,7 @@ struct UnkShotWeakRef {
 
 struct UnkSoundManager_ovb0039 {
     u8 pad_0x0[0x68];
-    base::UnkVector<UnkShotWeakRef>* lists;  // 0x68
+    base::global::CRntVector<UnkShotWeakRef>* lists;  // 0x68
     u8 pad_0x70[0x8];
     u32 list_count;  // 0x78
 };
@@ -69,7 +69,7 @@ void fn_7100fcd7f0(void* self);
 struct UnkStatsObject;
 
 // Removes element i, moving the later ones down.
-static inline void EraseAt(base::UnkVector<UnkShotWeakRef>* v, u32 i) {
+static inline void EraseAt(base::global::CRntVector<UnkShotWeakRef>* v, u32 i) {
     if (i < v->count) {
         for (u32 j = i; j < v->count - 1; ++j)
             v->data[j] = v->data[j + 1];
@@ -84,7 +84,7 @@ void fn_7101023c3c(UnkSoundManager_ovb0039* self, f32 dt) {
     fn_710010829c(g_unk_7101d4d820, render_running);
     reinterpret_cast<UnkSoundSystem_ovb0039*>(g_unk_7101d4d820)->vf_0x28(dt);
 
-    for (base::UnkVector<UnkShotWeakRef>* list = self->lists; list != self->lists + self->list_count;
+    for (base::global::CRntVector<UnkShotWeakRef>* list = self->lists; list != self->lists + self->list_count;
          ++list) {
         for (s32 i = (s32)list->count - 1; i >= 0; --i) {
             UnkShotWeakRef* ref = fn_7100748064(list, i);

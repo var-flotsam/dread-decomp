@@ -3,7 +3,7 @@
 // elements to hold an index (fn_710019cf9c). Names and layouts are placeholders.
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
 #include "base/UnkMatrix44.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU178.h"
 #include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
@@ -50,12 +50,12 @@ struct UnkPair_ovb0245 {
     }
 };
 
-// As src/game/UnkFrameSource.cpp declares it (UnkFrameVector derives from UnkVector, UnkFramePair is the element above).
+// As src/game/UnkFrameSource.cpp declares it (UnkFrameVector derives from CRntVector, UnkFramePair is the element above).
 template <class T>
 struct UnkFrameVector;
 struct UnkFramePair;
 
 UnkFramePair* fn_710019cf9c(UnkFrameVector<UnkFramePair>* v, u32 index) {
-    auto* self = reinterpret_cast<base::UnkVector<UnkPair_ovb0245>*>(v);
+    auto* self = reinterpret_cast<base::global::CRntVector<UnkPair_ovb0245>*>(v);
     return reinterpret_cast<UnkFramePair*>(&self->GrowAt(index));
 }

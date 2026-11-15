@@ -9,7 +9,7 @@
 
 #include "../../game_aca57c/UnkBufferString.h"
 #include "../../game_s7/UnkPropBagS7.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntStringAssign.h"
@@ -96,7 +96,7 @@ void fn_71011b5d94(UnkGuiRoot* root, UnkGuiDisplayObject* object) {
 
 struct UnkGuiRootQueue_b0210 {
     u8 pad_0x0[0xa0];
-    base::UnkVector<UnkGuiDisplayObject*> queue;  // 0xa0
+    base::global::CRntVector<UnkGuiDisplayObject*> queue;  // 0xa0
 };
 
 struct UnkQueuedObject_b0210 {
@@ -148,7 +148,7 @@ struct UnkRecord_b0210 {
     };
     CFilePathStrId path;  // 0x8
     u64 field_0x10;
-    base::UnkVector<void*> items;  // 0x18
+    base::global::CRntVector<void*> items;  // 0x18
 };
 
 struct UnkRecordNode_b0210 {
@@ -195,7 +195,7 @@ UnkRecord_b0210* fn_71011b94ac(UnkRecordMap_b0210* self, const CStrId* key) {
     record->ref_count = 0;
     new (&record->path) CFilePathStrId(g_unk_710162e2ed, true);
     record->field_0x10 = 0;
-    new (&record->items) base::UnkVector<void*>(0xc);
+    new (&record->items) base::global::CRntVector<void*>(0xc);
     record->items.Reserve(0x28);
     ++record->ref_count;
 

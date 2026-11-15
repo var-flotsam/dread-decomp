@@ -2,7 +2,7 @@
 // (the layout of src/base/UnkUnit122/UnkChainedMapErase_b54.cpp with the list ends the other way
 // round): the node is unlinked from its bucket and from the list of all nodes, its id released and the
 // node freed; returns the node that followed it. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 

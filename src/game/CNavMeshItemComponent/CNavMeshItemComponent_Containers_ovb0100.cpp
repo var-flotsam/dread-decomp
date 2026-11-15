@@ -18,7 +18,7 @@
 
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDeferredSet.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CEnumType.h"
 #include "base/reflection/UnkReflValue.h"
@@ -44,19 +44,19 @@ using base::reflection::UnkReflValue;
 struct UnkStateObject;
 
 struct UnkNavMeshItemFields_ovb0100 {
-    base::UnkVector<void*> field_0x48{0xf};
-    base::UnkVector<void*> field_0x70{0xf};
-    base::UnkVector<void*> field_0x98{0xf};
+    base::global::CRntVector<void*> field_0x48{0xf};
+    base::global::CRntVector<void*> field_0x70{0xf};
+    base::global::CRntVector<void*> field_0x98{0xf};
     bool field_0xc0 = false;
-    base::UnkVector<void*> field_0xc8{0xf};
-    base::UnkVector<void*> field_0xf0{0xf};
-    base::UnkVector<void*> field_0x118{0xf};
+    base::global::CRntVector<void*> field_0xc8{0xf};
+    base::global::CRntVector<void*> field_0xf0{0xf};
+    base::global::CRntVector<void*> field_0x118{0xf};
     bool field_0x140 = false;
-    base::UnkVector<void*> sources{0x57};  // 0x148
+    base::global::CRntVector<void*> sources{0x57};  // 0x148
     bool field_0x170 = false;
     void* field_0x178 = nullptr;
     void* current = nullptr;  // 0x180
-    base::UnkVector<void*> field_0x188{0xf};
+    base::global::CRntVector<void*> field_0x188{0xf};
     u64 field_0x1b0 = 0;
     bool field_0x1b8 = true;
 };
@@ -212,7 +212,7 @@ struct UnkNavMeshItemUpdate_ovb0100 {
     bool started;                    // 0x170
     UnkNavSource_ovb0100* selected;  // 0x178
     UnkNavSource_ovb0100* current;   // 0x180
-    base::UnkVector<UnkNavLink_ovb0100> links;  // 0x188
+    base::global::CRntVector<UnkNavLink_ovb0100> links;  // 0x188
 
     UnkNavSource_ovb0100* SourceAt(u32 i) {
         return reinterpret_cast<UnkNavSource_ovb0100*>(fn_71009c0bf0(reinterpret_cast<UnkSourceList*>(&sources), i));
@@ -300,7 +300,7 @@ void fn_71009c189c(UnkNavPairOwner_ovb0100* self, UnkNavIdPair_ovb0100* pair) {
 
 // ---- The map of arrays ----
 
-using UnkNavElemVector_ovb0100 = base::UnkVector<u64>;
+using UnkNavElemVector_ovb0100 = base::global::CRntVector<u64>;
 
 struct UnkNavElemMap_ovb0100 {
     UnkNavElemVector_ovb0100* values;  // 0x0
@@ -587,11 +587,11 @@ struct UnkNavIdVecVariant_ovb0100 {
     union {
         struct {
             UnkStrIdMember id;
-            base::UnkVector<void*> vec;
+            base::global::CRntVector<void*> vec;
         } named;
         struct {
             UnkStrIdMember* id;
-            base::UnkVector<void*>* vec;
+            base::global::CRntVector<void*>* vec;
         } refs;
     };
     s32 state;  // 0x30
@@ -600,7 +600,7 @@ struct UnkNavIdVecVariant_ovb0100 {
     ~UnkNavIdVecVariant_ovb0100() {}
 
     UnkStrIdMember& Id() { return state == 2 ? *refs.id : named.id; }
-    base::UnkVector<void*>& Vec() { return state == 2 ? *refs.vec : named.vec; }
+    base::global::CRntVector<void*>& Vec() { return state == 2 ? *refs.vec : named.vec; }
 };
 
 // Releases `to`, then takes `from`'s id, leaving the empty string (stored untyped: the original
@@ -616,12 +616,12 @@ UnkNavIdVecVariant_ovb0100* fn_71009c32f0(UnkNavIdVecVariant_ovb0100* self, UnkN
     switch (other->state) {
     case 1:
         MoveId(self->Id(), other->named.id);
-        self->Vec() = static_cast<base::UnkVector<void*>&&>(other->named.vec);
+        self->Vec() = static_cast<base::global::CRntVector<void*>&&>(other->named.vec);
         break;
     case 2: {
         UnkStrIdMember* id = other->refs.id;
         MoveId(self->Id(), *id);
-        self->Vec() = static_cast<base::UnkVector<void*>&&>(*other->refs.vec);
+        self->Vec() = static_cast<base::global::CRntVector<void*>&&>(*other->refs.vec);
         break;
     }
     }

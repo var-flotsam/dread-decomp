@@ -3,7 +3,7 @@
 // entries (fn_7100455554), the end of its grab (fn_7100454fc8) and the push of its target along its
 // facing (fn_7100450ef0). Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAIManager/CTunableAIManager.h"

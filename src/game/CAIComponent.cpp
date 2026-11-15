@@ -7,7 +7,7 @@
 #include <new>
 
 #include "base/UnkMatrix44.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "game/CCharacterMovement.h"
 #include "game/UnkActor.h"

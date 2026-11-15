@@ -4,7 +4,7 @@
 
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkGameManager.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -175,7 +175,7 @@ struct UnkSetVector {
 
 struct UnkOrphanNode {
     CStrId key;
-    base::UnkVector<void*> members;
+    base::global::CRntVector<void*> members;
     UnkOrphanNode* next;
     UnkOrphanNode* prev;
     UnkOrphanNode* chain;
@@ -204,7 +204,7 @@ struct UnkOrphanMap {
     base::UnkAllocator* allocator = fn_7100083990();
     u32 flags = 0xe;
     u32 count = 0;
-    base::UnkVector<UnkOrphanNode*> buckets{0xe};
+    base::global::CRntVector<UnkOrphanNode*> buckets{0xe};
     UnkOrphanNode* tail = nullptr;
     UnkOrphanNode* head = nullptr;
 
@@ -259,11 +259,11 @@ struct UnkOrphanMap {
 struct UnkOrphanIter {
     struct Value {
         CStrId key;
-        base::UnkVector<void*> members;
+        base::global::CRntVector<void*> members;
     };
     struct Ref {
         CStrId* key;
-        base::UnkVector<void*>* members;
+        base::global::CRntVector<void*>* members;
     };
     UnkOrphanNode* node;
     alignas(8) u8 storage[0x30];
@@ -274,7 +274,7 @@ struct UnkOrphanIter {
         node = node->next;
         fn_7100ef1abc(this);
     }
-    const base::UnkVector<void*>& Members() {
+    const base::global::CRntVector<void*>& Members() {
         return state == 2 ? *reinterpret_cast<Ref*>(storage)->members : reinterpret_cast<Value*>(storage)->members;
     }
     ~UnkOrphanIter() {
@@ -367,7 +367,7 @@ void fn_7100eebbd4(UnkSubAreaManager* self) {
             {
                 UnkOrphanIter it(map.head);
                 while (!AtEnd(it)) {
-                    const base::UnkVector<void*>& members = it.Members();
+                    const base::global::CRntVector<void*>& members = it.Members();
                     for (void **member = members.data, **member_end = member + members.count; member != member_end;
                          ++member) {
                         void* object = *member;

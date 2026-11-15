@@ -1,5 +1,5 @@
 // CSubAreaManager::CTunableSubAreaManager unit (tools/tu_map.py unit 2577): fn_7100ee4704: handles a sub-area request that names an entry of the current sub-area: with the set of changes it makes non-empty the manager switches to it (fn_7100ee6884); otherwise the objects of that name are told the ids (fn_7100eee61c). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CChangeStageNavMeshItemComponent.h"
 #include "game/UnkTU2577.h"
@@ -69,7 +69,7 @@ struct UnkSubAreaMgr_b190 {
     bool field_0x408;
     bool field_0x409;
     u8 pad_0x40a[0x426];
-    base::UnkVector<UnkNamedObjectPtr_b190> field_0x830;
+    base::global::CRntVector<UnkNamedObjectPtr_b190> field_0x830;
 };
 static_assert(__builtin_offsetof(UnkSubAreaMgr_b190, field_0x3f0) == 0x3f0, "layout");
 static_assert(__builtin_offsetof(UnkSubAreaMgr_b190, field_0x830) == 0x830, "layout");

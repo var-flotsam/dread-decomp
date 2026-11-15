@@ -2,7 +2,7 @@
 // (fn_71002874dc): the array grows to the next multiple of its step first, moving the elements over one
 // by one.
 #include "base/UnkEmptyDtorElem.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkElem;
@@ -13,6 +13,6 @@ struct UnkElem {
     ~UnkElem() { fn_71002874dc(this); }
 };
 
-void fn_710035f70c(base::UnkVector<UnkElem>* self, UnkElem* value) {
+void fn_710035f70c(base::global::CRntVector<UnkElem>* self, UnkElem* value) {
     self->EmplaceBack(static_cast<UnkElem&&>(*value));
 }

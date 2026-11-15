@@ -6,7 +6,7 @@
 // ones of src/game/navmesh/CNavMesh.cpp (the same definitions). Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "game/UnkNavMeshManager.h"

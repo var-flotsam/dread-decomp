@@ -4,7 +4,7 @@
 // through fn_7100eea3fc, otherwise through fn_7100eee1f8 with a copy of the sub-area id (the manager's
 // current one at +0x3f0 when the event names the placeholder id g_unk_717279de58). Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2577.h"

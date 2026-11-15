@@ -4,16 +4,16 @@
 // removals then go to pending lists (fn_71002aeebc, fn_71002ae87c and their copies). Names
 // are placeholders.
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 namespace base {
 
 template <class T>
 struct UnkDeferredSet {
-    UnkVector<T*> items;
-    UnkVector<T*> pending_add;
-    UnkVector<T*> pending_remove;
+    global::CRntVector<T*> items;
+    global::CRntVector<T*> pending_add;
+    global::CRntVector<T*> pending_remove;
     bool locked;
 
     void Add(T* item) {

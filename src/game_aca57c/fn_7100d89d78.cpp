@@ -1,7 +1,7 @@
 // Replaces the array stored under a key in a hash map (keyed by object pointers, hashed by the
 // two words at +0x30 of the object): when the key is present, its array is move-assigned from
 // `value`; otherwise nothing happens.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkMapKey {
@@ -17,7 +17,7 @@ struct UnkMapElem40 {
 
 struct UnkArrayMapNode {
     UnkMapKey* key;
-    base::UnkVector<UnkMapElem40> value;
+    base::global::CRntVector<UnkMapElem40> value;
     u8 unk_0x30[0x10];
     UnkArrayMapNode* next;
 };
@@ -29,7 +29,7 @@ struct UnkArrayMap {
     u32 modulus;
 };
 
-void fn_7100d89d78(UnkArrayMap* self, UnkMapKey* const* key, base::UnkVector<UnkMapElem40>&& value) {
+void fn_7100d89d78(UnkArrayMap* self, UnkMapKey* const* key, base::global::CRntVector<UnkMapElem40>&& value) {
     if (self->bucket_count == 0)
         return;
     u32 index = ((*key)->field_0x30 ^ (*key)->field_0x34) % self->modulus;
@@ -38,7 +38,7 @@ void fn_7100d89d78(UnkArrayMap* self, UnkMapKey* const* key, base::UnkVector<Unk
         return;
     for (UnkArrayMapNode* node = *bucket; node; node = node->next) {
         if (node->key == *key) {
-            node->value = static_cast<base::UnkVector<UnkMapElem40>&&>(value);
+            node->value = static_cast<base::global::CRntVector<UnkMapElem40>&&>(value);
             return;
         }
     }

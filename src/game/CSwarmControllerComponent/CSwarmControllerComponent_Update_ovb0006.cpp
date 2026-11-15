@@ -9,7 +9,7 @@
 #include <string.h>
 
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkZeroVector3.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -103,7 +103,7 @@ struct UnkSwarmSlots_ovb6 {
     base::UnkAllocator* allocator;
 };
 
-// The layout of a base::UnkVector, freed when it goes out of scope.
+// The layout of a base::global::CRntVector, freed when it goes out of scope.
 struct UnkSwarmTargets_ovb6 {
     void** data;
     u32 count;
@@ -316,7 +316,7 @@ void fn_710074a0d4(UnkSwarmController_ovb6* self, f32 dt) {
     }
     if (self->slots.count != 0) {
         // An unused array (only its default allocator is fetched).
-        base::UnkVector<void*> unused;
+        base::global::CRntVector<void*> unused;
         UnkSwarmSlot_ovb6* it = self->slots.slots;
         while (self->slots.slots + self->slots.count != it) {
             if (it->field_0x10)
@@ -369,7 +369,7 @@ void fn_710074c684(UnkSwarmUpdate_b65a4* controller, void* arg) {
 }
 
 // Two parallel arrays, the first of words and the second of word pairs (the growth step and the
-// allocation flags of base::UnkVector, then its allocator).
+// allocation flags of base::global::CRntVector, then its allocator).
 struct UnkSwarmPair_ovb6 {
     u32 a;
     u32 b;
@@ -461,6 +461,6 @@ struct UnkShotWeakRef {
 };
 
 // The weak reference at index i, growing the array (with empty references) to reach it.
-UnkShotWeakRef* fn_7100748064(base::UnkVector<UnkShotWeakRef>* self, u32 i) {
+UnkShotWeakRef* fn_7100748064(base::global::CRntVector<UnkShotWeakRef>* self, u32 i) {
     return &self->GrowAt(i);
 }

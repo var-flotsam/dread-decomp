@@ -1,6 +1,6 @@
 // Move-assignment of a counted array of a file path id with three values, as fn_710104f9e4
 // (src/game/CFXPool/CDefinition/fn_710104ee34.cpp): fn_7100ffb9d8.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 

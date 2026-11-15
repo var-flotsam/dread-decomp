@@ -3,7 +3,7 @@
 // arrays) and four lists of untimed ones, each event read by fn_7100067848. Names and layouts are
 // placeholders.
 // Holds fn_7100068f5c.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntFile.h"
 #include "types.h"
 
@@ -24,8 +24,8 @@ static inline void StoreSlot(T* slot, T value) {
     __builtin_memcpy(slot, &value, sizeof(value));
 }
 
-// An array of owning event pointers (base::UnkVector's layout), moved when it grows.
-struct UnkEventArray : base::UnkVector<UnkTimelineEvent*> {
+// An array of owning event pointers (base::global::CRntVector's layout), moved when it grows.
+struct UnkEventArray : base::global::CRntVector<UnkTimelineEvent*> {
     __attribute__((always_inline)) void Grow(u32 n) {
         if (capacity < n) {
             auto** p = static_cast<UnkTimelineEvent**>(allocator->vf_0x40((u64)n * 8, 8, flags));

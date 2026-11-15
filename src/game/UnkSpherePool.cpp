@@ -6,7 +6,7 @@
 #include <new>
 
 #include "base/UnkMatrix44.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkSphere.h"
 #include "game/UnkTU308.h"
 #include "types.h"
@@ -71,7 +71,7 @@ struct UnkSpherePool {
     u16 field_0x5e9b84;
     bool field_0x5e9b86;
     bool field_0x5e9b87;
-    base::UnkVector<void*> field_0x5e9b88;
+    base::global::CRntVector<void*> field_0x5e9b88;
 };
 static_assert(sizeof(UnkSpherePool) == 0x5e9bb0, "UnkSpherePool layout");
 
@@ -117,7 +117,7 @@ void fn_71001eaa28(UnkSpherePool* self) {
     self->field_0x5e9b78 = 0;
     self->field_0x5e9b7c = 0;
     self->field_0x5e9b86 = true;
-    new (&self->field_0x5e9b88) base::UnkVector<void*>(7);
+    new (&self->field_0x5e9b88) base::global::CRntVector<void*>(7);
     self->field_0x5e9ac8 = fn_7100083990()->vf_0x40(kSpherePoolSize * sizeof(void*), 8, 0x42);
 }
 

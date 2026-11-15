@@ -6,7 +6,7 @@
 // is up. Names and layouts are placeholders.
 #include <wchar.h>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -235,7 +235,7 @@ void fn_7100da92b0(UnkAIManager_da92b0* self, f32 dt) {
     }
 
     if (!fn_7100deabe4(g_unk_7101d47310)) {
-        base::UnkVector<UnkListedItem*>* items = fn_7100552d7c();
+        base::global::CRntVector<UnkListedItem*>* items = fn_7100552d7c();
         for (u32 i = 0; i < items->count; ++i) {
             UnkListedItem* item = items->data[i];
             base::reflection::UnkReflObject* component = item ? item->field_0x10 : nullptr;

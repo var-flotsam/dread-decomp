@@ -4,7 +4,7 @@
 // object at +0x318 (vtable g_unk_7101a22d48, a count of 1 at +0x340), then makes the post-construction virtual
 // call (slot 3). Defined under the `void()` symbol src/reflection/CItemLifeComponent.cpp declares. Names and
 // layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CItemLifeComponent.h"
 #include "game/CLifeComponent.h"
@@ -56,7 +56,7 @@ struct UnkItemLifeCtor_A4_b72 {
 };
 static_assert(__builtin_offsetof(UnkItemLifeCtor_A4_b72, field_0x380) == 0x380, "layout");
 
-// An engine array (base/UnkVector.h, flags 0xf) written as flat members, so the flag at +0x14 is stored at its
+// An engine array (base/global/CRntVector.h, flags 0xf) written as flat members, so the flag at +0x14 is stored at its
 // own offset (as CDoorShieldLifeComponent_Ctor_A5_b71.cpp).
 #define INIT_LIST_A4_B72(o)               \
     self->o##_data = nullptr;             \

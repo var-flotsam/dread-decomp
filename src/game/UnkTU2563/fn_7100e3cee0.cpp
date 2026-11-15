@@ -4,7 +4,7 @@
 
 #include "base/UnkFreedVectorPair.h"
 #include "base/UnkMatrix44.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU2564.h"
 #include "game/UnkTU55.h"

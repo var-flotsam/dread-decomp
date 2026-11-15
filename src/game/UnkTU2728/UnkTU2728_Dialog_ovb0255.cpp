@@ -1,7 +1,7 @@
 // Unit 2728: starts a voice for a caption id and, for the languages whose setting asks for it, shows its
 // text on the dialog target (fn_7101192664: a localized text or a clear, by the blackboard dialog mode).
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"
 #include "game/CBlackboard.h"

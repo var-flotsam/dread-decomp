@@ -1,10 +1,10 @@
 // A unit with no known name (tools/tu_map.py unit 277, 0x71001f9d74-0x71001fa6d0): arrays of 0x18-byte
-// conditions (a key and a kind, base/UnkVector.h's layout and the 0x10 and 0x18 members of the list
+// conditions (a key and a kind, base/global/CRntVector.h's layout and the 0x10 and 0x18 members of the list
 // that holds them). fn_71001f9d74 removes the first condition equal to a key, shifting the later ones
 // down; fn_71001fa4e4 copy-constructs the array (flags, step and allocator taken over, the capacity
 // reserved, each condition appended). Names and layouts are placeholders.
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 // A condition. The destructor makes it non-trivially copyable, so the array's growth moves its
@@ -49,8 +49,8 @@ struct UnkConditionVector_b0235;
 
 // Copy-constructs the array of conditions.
 __attribute__((flatten)) void fn_71001fa4e4(UnkConditionVector_b0235* self_, const UnkConditionVector_b0235* other_) {
-    auto* self = reinterpret_cast<base::UnkVector<UnkCondition_b0235>*>(self_);
-    auto* other = reinterpret_cast<const base::UnkVector<UnkCondition_b0235>*>(other_);
+    auto* self = reinterpret_cast<base::global::CRntVector<UnkCondition_b0235>*>(self_);
+    auto* other = reinterpret_cast<const base::global::CRntVector<UnkCondition_b0235>*>(other_);
     self->data = nullptr;
     self->count = 0;
     self->capacity = 0;

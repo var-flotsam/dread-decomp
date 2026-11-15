@@ -1,4 +1,4 @@
-// SCameraRailNode's unit (tools/tu_map.py): the copy assignment of an array (base::UnkVector's layout)
+// SCameraRailNode's unit (tools/tu_map.py): the copy assignment of an array (base::global::CRntVector's layout)
 // of camera-rail nodes (0x58 bytes), the counterpart of the copy constructor in
 // src/game/SCameraRailNode/SCameraRailNode_VectorCopy_b43.cpp: unless assigned to itself, destroy the
 // nodes (their vf_0x8), reserve the other's capacity (each node moved over: its vtable, three words and
@@ -6,7 +6,7 @@
 // (fn_7100c090cc). Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/SCameraRailNode.h"
 #include "types.h"
 #include "game/UnkTU341.h"
@@ -34,8 +34,8 @@ struct UnkRailNodeRaw_b49 {
     UnkHalf_cu set;
 };
 
-base::UnkVector<UnkRailNode_b43a3>* fn_7100c092ec(base::UnkVector<UnkRailNode_b43a3>* self,
-                                                  const base::UnkVector<UnkRailNode_b43a3>* other) {
+base::global::CRntVector<UnkRailNode_b43a3>* fn_7100c092ec(base::global::CRntVector<UnkRailNode_b43a3>* self,
+                                                  const base::global::CRntVector<UnkRailNode_b43a3>* other) {
     if (self != other) {
         for (u64 i = 0; i < self->count; ++i)
             self->data[i].vf_0x8();

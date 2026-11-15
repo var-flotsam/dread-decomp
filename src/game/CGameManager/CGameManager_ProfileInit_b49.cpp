@@ -3,7 +3,7 @@
 // g_unk_7101aa99b0 and g_unk_7101aa99b8 at +0x8a0 and +0x8d0), then tells the user data's owner
 // (created on first use; fn_7101203768), finishes the pending profile operation (fn_7100dee46c) and
 // hands the owner a callback (fn_7100df81fc through fn_71012037bc). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU0.h"

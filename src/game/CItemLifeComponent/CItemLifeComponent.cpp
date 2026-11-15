@@ -1,6 +1,6 @@
 // CItemLifeComponent's static initialiser: the unit header, the component's id, two bool
 // properties, a name, the class's registration and a global block of three empty vectors.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CItemLifeComponent.h"
 #include "game/UnkTUInit.h"
@@ -16,10 +16,10 @@ struct UnkItemLifeTU {
 
 // Three vectors and a flag; element types are unknown.
 struct UnkItemLifeLists {
-    base::UnkVector<void*> lists[3];
+    base::global::CRntVector<void*> lists[3];
     bool field_0x78;
 
-    UnkItemLifeLists() : lists{base::UnkVector<void*>(0xf), base::UnkVector<void*>(0xf), base::UnkVector<void*>(0xf)} {
+    UnkItemLifeLists() : lists{base::global::CRntVector<void*>(0xf), base::global::CRntVector<void*>(0xf), base::global::CRntVector<void*>(0xf)} {
         field_0x78 = false;
     }
 };

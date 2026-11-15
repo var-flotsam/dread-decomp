@@ -1,7 +1,7 @@
 // Destructors of CHydrogigaZiplineComponent (unit 1410) and CHydrogigaZiplineRailComponent
 // (unit 1411): each frees an array of 0x40-byte entries (at +0x4f8 and +0x40), then runs its base
 // destructor (fn_710091e510, and the component's fn_71010c4194).
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkComponent.h"
 
 struct UnkZiplineEntry {
@@ -18,7 +18,7 @@ template <u32 Offset>
 struct UnkZiplineComponentT {
     void* vtable;
     u8 pad_0x8[Offset - 0x8];
-    base::UnkVector<UnkZiplineEntry> entries;
+    base::global::CRntVector<UnkZiplineEntry> entries;
 };
 
 typedef UnkZiplineComponentT<0x4f8> UnkZiplineComponent;

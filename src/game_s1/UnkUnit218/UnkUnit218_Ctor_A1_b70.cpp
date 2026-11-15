@@ -5,7 +5,7 @@
 #include <new>
 
 #include "../UnkUnit211/UnkPtrArrayHolder_b70.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU218.h"
 #include "game/UnkTU226.h"
 #include "types.h"
@@ -32,7 +32,7 @@ struct UnkObject218_b70a1 {
     void* vtable;
     u8 base_0x8[0x18];
     u64 field_0x20[7];
-    base::UnkVector<void*> v0;  // 0x58
+    base::global::CRntVector<void*> v0;  // 0x58
     u64 field_0x80;
     UnkIdentity44_218_b70a1 m;  // 0x88
     u64 field_0xc8;
@@ -53,7 +53,7 @@ void fn_7100198aac(void* p) {
     self->vtable = reinterpret_cast<char*>(g_unk_7101a1e0a8) + 0x10;
     for (u64& w : self->field_0x20)
         w = 0;
-    new (&self->v0) base::UnkVector<void*>(0xf);
+    new (&self->v0) base::global::CRntVector<void*>(0xf);
     self->field_0x80 = 0;
     new (&self->m) UnkIdentity44_218_b70a1();
     self->field_0xc8 = 0;

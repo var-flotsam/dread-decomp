@@ -3,7 +3,7 @@
 
 #include "base/UnkDestructors.h"
 #include "base/UnkResPathVec.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 
 using UnkPathIdMember = base::UnkStrIdMemberOf<g_unk_7101d47200>;  // a file-path id
@@ -15,7 +15,7 @@ inline void UnkEnsureFilePathPool_l08c174() {
     fn_710007fdb4();
 }
 
-UnkPathIdMember* fn_710008c174(base::UnkVector<UnkPathIdMember>* list, u32 index) {
+UnkPathIdMember* fn_710008c174(base::global::CRntVector<UnkPathIdMember>* list, u32 index) {
     // The grower is declared on the same layout under another name.
     UnkResPathVec* vec = reinterpret_cast<UnkResPathVec*>(list);
     if (list->field_0x14 && list->count <= index) {

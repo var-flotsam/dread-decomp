@@ -3,7 +3,7 @@
 // base/UnkCloneHelpers.h; the zeroed record at +0x1a8, vtable 0x7101a5be58, clears 0x10..0x24; the counted
 // reference at +0x260) are destroyed in reverse order before the component base (fn_71010c4194). Names and
 // layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CRinkaUnitComponent.h"
 #include "game/UnkComponent.h"

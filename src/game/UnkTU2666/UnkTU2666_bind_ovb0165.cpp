@@ -2,7 +2,7 @@
 // as a table. Names and layouts are placeholders.
 #include "../../../lib/lua/lua.h"
 #include "../../../lib/lua/lauxlib.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CAIManager/CTunableAIManager.h"
 #include "game/CCharClassAIComponent.h"

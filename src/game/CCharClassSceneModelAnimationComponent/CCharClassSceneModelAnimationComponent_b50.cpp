@@ -15,7 +15,7 @@ struct UnkEntry_b50a5 {
     ~UnkEntry_b50a5() { fn_71009f26a0(this); }
 };
 
-struct UnkEntryArray_b50a5 : base::UnkVector<UnkEntry_b50a5> {
+struct UnkEntryArray_b50a5 : base::global::CRntVector<UnkEntry_b50a5> {
     ~UnkEntryArray_b50a5() {
         Clear();
         Free();

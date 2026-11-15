@@ -7,7 +7,7 @@
 #include "../../../lib/lua/lauxlib.h"
 #include "../../../lib/lua/lua.h"
 #include "base/UnkHashStream.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -123,7 +123,7 @@ struct UnkReflObject_ovb0109 {
 // The call's arguments read from the Lua stack: a file the values were read through and the values.
 struct UnkLuaArgs_ovb0109 : UnkHashStream_0x38 {
     union {
-        base::UnkVector<UnkReflValue> values;  // 0x38
+        base::global::CRntVector<UnkReflValue> values;  // 0x38
     };
     ~UnkLuaArgs_ovb0109() {
         fn_710007c144(this);

@@ -1,5 +1,5 @@
 // In the navmesh::CFixedDynamicSmartLinkRule unit: appends an entry (0x50 bytes) to an array
-// (base/UnkVector.h's layout), growing it to the next multiple of the step through fn_7100272474
+// (base/global/CRntVector.h's layout), growing it to the next multiple of the step through fn_7100272474
 // first and moving the entry in (its inner array is taken over and the source's emptied).
 // Names and layouts are placeholders.
 #include <new>

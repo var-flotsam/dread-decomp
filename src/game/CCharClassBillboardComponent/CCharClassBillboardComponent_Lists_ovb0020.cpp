@@ -4,7 +4,7 @@
 // +0x90 of the component at 8, and returns an empty result of kind 2. fn_71007302e4: when the list at +0x108 is
 // not empty, appends an item to the list at +0xe0, switches off the item's toggle (+0x18; fn_71001f3224 and
 // fn_71001f32b0) and removes it from the list at +0x108. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "engine/scene/UnkToggle.h"
 #include "game/UnkTU272.h"
 #include "types.h"
@@ -73,8 +73,8 @@ UnkResult_0x18_ovb0020 fn_710073106c(void* unused, UnkBillboardOwner_ovb0020* ow
 
 struct UnkCharClassBillboardLists_ovb0020 {
     u8 unk_0x0[0xe0];
-    base::UnkVector<char*> shown;   // 0xe0
-    base::UnkVector<char*> hidden;  // 0x108
+    base::global::CRntVector<char*> shown;   // 0xe0
+    base::global::CRntVector<char*> hidden;  // 0x108
 };
 
 void fn_71007302e4(UnkCharClassBillboardLists_ovb0020* self, char* item) {

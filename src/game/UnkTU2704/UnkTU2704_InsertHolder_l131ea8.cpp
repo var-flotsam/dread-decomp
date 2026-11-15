@@ -4,7 +4,7 @@
 // Names and layouts are placeholders.
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CSpawnGroupComponent.h"
 #include "game/UnkTU2704.h"
 #include "types.h"
@@ -39,10 +39,10 @@ static_assert(sizeof(UnkSpawnHolder_l131ea8) == 0x40, "layout");
 // The append, as src/game/CSpawnPointComponent/CSpawnPointComponent_b42.cpp declares it (its entry type is this holder).
 struct UnkEntry_b42a3;
 
-void fn_7101131ea8(base::UnkVector<UnkSpawnHolder_l131ea8>* self, const UnkSpawnHolder_l131ea8* value, u32 index) {
+void fn_7101131ea8(base::global::CRntVector<UnkSpawnHolder_l131ea8>* self, const UnkSpawnHolder_l131ea8* value, u32 index) {
     u32 n = self->count;
     if (n == index) {
-        fn_7101131b98(reinterpret_cast<base::UnkVector<UnkEntry_b42a3>*>(self),
+        fn_7101131b98(reinterpret_cast<base::global::CRntVector<UnkEntry_b42a3>*>(self),
                       reinterpret_cast<const UnkEntry_b42a3*>(value));
         return;
     }

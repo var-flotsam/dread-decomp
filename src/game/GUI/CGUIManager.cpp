@@ -55,9 +55,9 @@ struct UnkWeakRef_71011b51c4 {
 struct UnkGuiRootObjects {
     u8 unk_0x0[0x70];
     bool updating;
-    base::UnkVector<UnkGuiDisplayObject*> objects;
-    base::UnkVector<UnkGuiDisplayObject*> added;
-    base::UnkVector<UnkWeakRef_71011b51c4> reported;
+    base::global::CRntVector<UnkGuiDisplayObject*> objects;
+    base::global::CRntVector<UnkGuiDisplayObject*> added;
+    base::global::CRntVector<UnkWeakRef_71011b51c4> reported;
 };
 static_assert(__builtin_offsetof(UnkGuiRootObjects, objects) == 0x78, "UnkGuiRootObjects placeholder layout");
 static_assert(__builtin_offsetof(UnkGuiRootObjects, reported) == 0xc8, "UnkGuiRootObjects placeholder layout");
@@ -65,11 +65,11 @@ static_assert(__builtin_offsetof(UnkGuiRootObjects, reported) == 0xc8, "UnkGuiRo
 // The element accessor of the object list is the shared out-of-line copy (src/clones/, fn_71011b5674).
 struct UnkClone_fn_71011b5674;
 using UnkObjectSlot = UnkCloneElem<UnkClone_fn_71011b5674, 8>;
-extern template UnkObjectSlot& base::UnkVector<UnkObjectSlot>::GrowAt(u32);
+extern template UnkObjectSlot& base::global::CRntVector<UnkObjectSlot>::GrowAt(u32);
 
-static inline UnkGuiDisplayObject* ObjectAt(base::UnkVector<UnkGuiDisplayObject*>* v, u32 index) {
+static inline UnkGuiDisplayObject* ObjectAt(base::global::CRntVector<UnkGuiDisplayObject*>* v, u32 index) {
     return *reinterpret_cast<UnkGuiDisplayObject**>(
-        reinterpret_cast<base::UnkVector<UnkObjectSlot>*>(v)->GrowAt(index).data);
+        reinterpret_cast<base::global::CRntVector<UnkObjectSlot>*>(v)->GrowAt(index).data);
 }
 
 // The display object's per-frame update (vtable slot 0x58).
@@ -97,14 +97,14 @@ struct UnkGuiObjectList {
     }
 };
 
-static inline u64 IndexOf(base::UnkVector<UnkGuiDisplayObject*>* v, UnkGuiDisplayObject* p) {
+static inline u64 IndexOf(base::global::CRntVector<UnkGuiDisplayObject*>* v, UnkGuiDisplayObject* p) {
     for (u64 i = 0; i < v->count; ++i)
         if (v->data[i] == p)
             return i;
     return v->count;
 }
 
-static inline void EraseAt(base::UnkVector<UnkGuiDisplayObject*>* v, u32 i) {
+static inline void EraseAt(base::global::CRntVector<UnkGuiDisplayObject*>* v, u32 i) {
     if (i < v->count) {
         UnkGuiDisplayObject** p = &v->data[i];
         __builtin_memcpy(p, p + 1, (u64)(v->count - i - 1) * 8);
@@ -112,7 +112,7 @@ static inline void EraseAt(base::UnkVector<UnkGuiDisplayObject*>* v, u32 i) {
     }
 }
 
-static inline bool Contains(base::UnkVector<UnkGuiDisplayObject*>* v, UnkGuiDisplayObject* p) {
+static inline bool Contains(base::global::CRntVector<UnkGuiDisplayObject*>* v, UnkGuiDisplayObject* p) {
     for (u32 i = 0; i < v->count; ++i)
         if (v->data[i] == p)
             return true;
@@ -492,7 +492,7 @@ void fn_71011ba714(UnkGuiRoot* root, const UnkStrPair_0x10* path) {
 // The root's third container (a std::unique_ptr at +0x38; its type is fn_71011b1b28): an array of
 // words.
 const base::reflection::CType* fn_71011b1b28();
-using UnkWordArray = base::UnkVector<u64>;
+using UnkWordArray = base::global::CRntVector<u64>;
 
 struct UnkOwnedWords {
     UnkWordArray* ptr = nullptr;

@@ -4,7 +4,7 @@
 // (fn_71002b46ec), the word array at +0x78 freed and the member at +0x50 destroyed (fn_71007586b0)
 // before the base destructor (fn_71010c4194). Names and layouts are placeholders.
 #include "base/UnkStrIdTable.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CBreakableTileGroupComponent.h"
 #include "game/UnkComponent.h"
@@ -20,7 +20,7 @@ void fn_71007586b0(void* member);
 struct UnkBreakableTileGroup_b52 : UnkBaseComponent {
     u8 pad_0x40[0x10];
     u8 field_0x50[0x28];
-    base::UnkVector<u32> list_0x78;
+    base::global::CRntVector<u32> list_0x78;
     u64 field_0xa0;
     UnkLinkList* link;  // 0xa8
     void* link_owner;

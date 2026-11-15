@@ -6,7 +6,7 @@
 // list. Begin of the same maps: a temporary iterator starts at the map's first node and is advanced (fn_71000c2f58),
 // the result starts at the node it reached and is advanced in turn, and the temporary's cached entry (kind 1: a key and
 // a value) is destroyed.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"

@@ -1,17 +1,17 @@
 // Unit 27 (tools/tu_map.py, no name hint) and two others: the constructor of a table of 11 buckets,
-// one copy per unit: a base::UnkVector of bucket pointers (step 10, the given flags, the given
+// one copy per unit: a base::global::CRntVector of bucket pointers (step 10, the given flags, the given
 // allocator or the default one) followed by a word -1, a cleared pointer, the allocator again (asked
 // for a second time when none was given), the flags and the pair (0, 1); the bucket array is then
 // resized to 11 cleared buckets (grown element by element; the copy loop counts in 32 bits beside a
 // 64-bit index). Names and layouts are placeholders.
 #include <string.h>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkBucket_b41a1;
 
-// base::UnkVector's layout, without its member initialisers.
+// base::global::CRntVector's layout, without its member initialisers.
 struct UnkBucketArray_b41a1 {
     UnkBucket_b41a1** data;
     u32 count;

@@ -7,7 +7,7 @@
 // root that take the class object (from its refl_GetClass), with empty or global string ids.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CCharClassCooldownXBossDamageShapesTrack.h"
@@ -280,7 +280,7 @@ void fn_7100c45f60(UnkRootThreeIdsWord<g_unk_7101aa41f8>* self) {
 template <void** Vtable>
 struct UnkRootIdArray : UnkRoot {
     CStrId id;
-    base::UnkVector<u64> values;
+    base::global::CRntVector<u64> values;
 
     __attribute__((always_inline)) explicit UnkRootIdArray(UnkClass* cls)
         : UnkRoot(cls), id((SetVtable(Vtable), CStrId("", true))), values(0xf) {}
@@ -361,7 +361,7 @@ struct UnkRootIdsFlagsId : UnkRoot {
 
 struct UnkIdArrayPair {
     CStrId id;
-    base::UnkVector<u64> values;
+    base::global::CRntVector<u64> values;
 
     __attribute__((always_inline)) UnkIdArrayPair() : id("", true), values(5) {}
 };
@@ -462,7 +462,7 @@ void fn_7100c1f318(UnkRootTwoDirectEmptyIds<g_unk_7101aa30a8>* self) {
 template <u32 Flags>
 struct UnkIdArrayIdWordGroup {
     CStrId id;
-    base::UnkVector<u64> values;
+    base::global::CRntVector<u64> values;
     CStrId id_0x30;
     u32 field_0x38;
 

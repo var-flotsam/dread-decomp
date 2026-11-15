@@ -1,6 +1,6 @@
 // Unit 221 (no reliable name): frees a table of entries. Each entry's block at +0x18 is released with delete[] and its
 // object at +0x0 through the default allocator; then the entry array itself. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkEntry_b0236a {

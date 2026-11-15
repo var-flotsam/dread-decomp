@@ -1,5 +1,5 @@
 // More copies of fn_710036828c (src/game/querysystem/UnkOwnedPtrVectorErase_b41.cpp), an erase by index
-// from a base::UnkVector of owning pointers, in further units (two in base::reflection's, one in
+// from a base::global::CRntVector of owning pointers, in further units (two in base::reflection's, one in
 // GUI::CHUD's; fn_7100fb6c80 destroys each entry through its deleting destructor instead). Names and layouts are placeholders.
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
@@ -15,7 +15,7 @@ inline void MoveInto_b43a3(UnkOwnedPtr* dst, UnkOwnedPtr* src) {
 
 }  // namespace
 
-struct UnkOwnedPtrVector_b43a3 : base::UnkVector<UnkOwnedPtr> {};
+struct UnkOwnedPtrVector_b43a3 : base::global::CRntVector<UnkOwnedPtr> {};
 
 static inline __attribute__((always_inline)) void Erase_b43a3(UnkOwnedPtrVector_b43a3* self, const u32* index) {
     u32 at = *index;
@@ -55,7 +55,7 @@ struct UnkOwned8Ptr_b43a3 {
     }
 };
 
-struct UnkOwned8PtrVector_b43a3 : base::UnkVector<UnkOwned8Ptr_b43a3> {};
+struct UnkOwned8PtrVector_b43a3 : base::global::CRntVector<UnkOwned8Ptr_b43a3> {};
 
 // Moves the pointer in `src` into the empty slot `dst`, leaving `src` empty.
 inline void MoveInto8_b43a3(UnkOwned8Ptr_b43a3* dst, UnkOwned8Ptr_b43a3* src) {

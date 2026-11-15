@@ -2,7 +2,7 @@
 // (the lists at +0xf8, walked under their counter; fn_7100a2e4a0 ends the walk) about an event: a kind
 // (3 or 2), a value and a name id copied from the message's timeline. A listener without a callback, or
 // whose callback returns false, is removed (fn_7100a2e30c). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CActionInstance.h"
 #include "game/UnkTU1134.h"
@@ -11,9 +11,9 @@
 using base::global::CStrId;
 
 struct UnkTimelineListenerLists_ovb0089 {
-    base::UnkVector<void*> field_0x0;
-    base::UnkVector<void*> field_0x28;
-    base::UnkVector<void*> field_0x50;
+    base::global::CRntVector<void*> field_0x0;
+    base::global::CRntVector<void*> field_0x28;
+    base::global::CRntVector<void*> field_0x50;
     union {
         s32 lock;  // 0x78
     };

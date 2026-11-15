@@ -4,7 +4,7 @@
 // (fn_71010742f0, fn_7101074410) and selecting a slot of the blackboard named "savedata",
 // "checkpoint" or "current" (fn_71010750e0). Names and layouts are placeholders.
 #include "../../../lib/lua/lua.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/file/nx/CDeviceNX.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"

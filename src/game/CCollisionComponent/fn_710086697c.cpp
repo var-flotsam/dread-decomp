@@ -1,7 +1,7 @@
 // A collider group read from the collision file (unit 1319, CCollisionComponent): its name, then the
 // names of its members, each looked up among the records already read and linked both ways; the
 // group is appended to the list of groups. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -63,7 +63,7 @@ struct UnkCollisionComponentOwner {
 // NON_MATCHING(minor): the same calls in the same order; the locals sit in other stack slots (the
 // frame is 0x10 bytes smaller) and the loops are scheduled differently.
 void fn_710086697c(UnkCollisionComponentOwner* self, base::global::CRntFile* stream,
-                   base::UnkVector<UnkCollisionRecord>* records, base::UnkVector<UnkColliderNode*>* groups) {
+                   base::global::CRntVector<UnkCollisionRecord>* records, base::global::CRntVector<UnkColliderNode*>* groups) {
     const char* name;
     fn_710007cee4(stream, &name);
     UnkManager_7100863a8c* manager = GetManager();

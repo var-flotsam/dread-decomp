@@ -1,7 +1,7 @@
 // Unit 371 (tools/tu_map.py): initialises a timed scale record: the id and a value, a scale of
 // `rate` (1 when not positive) with its inverse, cleared counters, a capacity of 10, a step of 15
 // and the default allocator (fn_7100083990). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 
 using base::global::CStrId;

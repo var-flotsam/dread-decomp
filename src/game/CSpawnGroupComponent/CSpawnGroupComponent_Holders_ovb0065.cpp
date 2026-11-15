@@ -6,7 +6,7 @@
 
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -197,7 +197,7 @@ struct UnkSpawnWeakHandle_ovb0065 {
 
 // Appends to `out` every registered group (the game manager's list under the class id, of the class)
 // that has a holder whose object's key id (+0x48, its +0x30) is `id`.
-void fn_710111952c(const u64* id, base::UnkVector<UnkSpawnGroupHolders_ovb0065*>* out) {
+void fn_710111952c(const u64* id, base::global::CRntVector<UnkSpawnGroupHolders_ovb0065*>* out) {
     UnkGameManagerIdList* list = fn_7100de94cc(g_unk_7101d47310, reinterpret_cast<const u64*>(&g_unk_7172a067c0));
     for (void **it = list->data, **end = it + list->count; it != end; ++it) {
         auto* handle = static_cast<UnkSpawnWeakHandle_ovb0065*>(*it);
@@ -687,7 +687,7 @@ bool fn_710111c56c(UnkSpawnGroupCounters_ovb0065* self, UnkSpawnedActor_ovb0065*
 }
 
 // CSpawnGroupComponent unit (tools/tu_map.py): fn_710111b96c adds a spawned actor to the group's
-// list of weak handles (+0x40; base::UnkVector's layout): the entries that are gone are dropped first
+// list of weak handles (+0x40; base::global::CRntVector's layout): the entries that are gone are dropped first
 // (fn_710111aeb8), then the actor's weak handle (created on first use) is appended, the array grown
 // by fn_710031da18 as CBossCameraCtrl's targets are (src/game/CBossCameraCtrl/CBossCameraCtrl_Targets_ovb0008.cpp).
 // Names and layouts are placeholders.
@@ -704,7 +704,7 @@ struct UnkSpawnHandlePtr_ovb0065 {
 
 struct UnkSpawnGroupList_ovb0065 {
     u8 pad_0x0[0x40];
-    base::UnkVector<UnkSpawnHandlePtr_ovb0065> spawned;  // 0x40
+    base::global::CRntVector<UnkSpawnHandlePtr_ovb0065> spawned;  // 0x40
 };
 
 
@@ -726,7 +726,7 @@ struct UnkSpawnHandleRef_ovb0065 {
 void fn_710111b96c(UnkSpawnGroupList_ovb0065* self, UnkWeakTarget* target) {
     fn_710111aeb8(self);
     UnkSpawnHandleRef_ovb0065 ref(GetWeakHandle(target));
-    base::UnkVector<UnkSpawnHandlePtr_ovb0065>& v = self->spawned;
+    base::global::CRntVector<UnkSpawnHandlePtr_ovb0065>& v = self->spawned;
     u32 n = v.count;
     u32 capacity = v.capacity;
     if (capacity <= n && v.step != 0)

@@ -3,7 +3,7 @@
 // is stored by its class's 64-bit id; the class is looked up, created through its descriptor and
 // read in place. Names and layouts are placeholders.
 // Holds fn_710006b6e4.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CRntFile.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -41,7 +41,7 @@ static inline void StoreSlot(UnkTrack** slot, UnkTrack* value) {
 }
 
 // The tracks' array: owning pointers, moved when it grows.
-struct UnkTrackArray : base::UnkVector<UnkTrack*> {
+struct UnkTrackArray : base::global::CRntVector<UnkTrack*> {
     void Grow(u32 n) {
         if (capacity < n) {
             auto** p = static_cast<UnkTrack**>(allocator->vf_0x40((u64)n * 8, 8, flags));

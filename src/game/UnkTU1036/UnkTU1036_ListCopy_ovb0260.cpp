@@ -1,7 +1,7 @@
 // Unit 1036: the copy constructor of a pooled list of reference-counted values (16-byte nodes; a source without
 // a pool only gives its allocator). Names and layouts are placeholders.
 #include "base/UnkBlockFreeList.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU852.h"
 #include "types.h"
 

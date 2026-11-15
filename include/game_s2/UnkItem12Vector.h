@@ -1,13 +1,13 @@
 #pragma once
 
 // An array of 12-byte elements (moved with a memcpy of the whole element) and the Insert that
-// fn_71003ee274 and fn_71003ee494 share. It is UnkVector<T>::Insert written out: the append
+// fn_71003ee274 and fn_71003ee494 share. It is CRntVector<T>::Insert written out: the append
 // path and the shifting path each compute the slot themselves (the append one with byte
 // arithmetic, which keeps the compiler from merging the two stores).
 
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkItem12 {
@@ -20,7 +20,7 @@ struct UnkItem12 {
     ~UnkItem12() {}
 };
 
-__attribute__((always_inline)) static inline void InsertItem12(base::UnkVector<UnkItem12>* self, UnkItem12* value,
+__attribute__((always_inline)) static inline void InsertItem12(base::global::CRntVector<UnkItem12>* self, UnkItem12* value,
                                                               u32 index) {
     u32 cap = self->capacity;
     u32 n = self->count;

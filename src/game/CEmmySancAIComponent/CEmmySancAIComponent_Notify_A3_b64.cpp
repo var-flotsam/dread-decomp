@@ -1,6 +1,6 @@
 // CEmmySancAIComponent's unit (tools/tu_map.py): hands the unit's name g_unk_71726dd8f8 and 0 to the
 // AI manager g_unk_71726af468 (created on first use) through fn_7100daa92c. Names are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CAIManager/CTunableAIManager.h"
 #include "game/UnkManager_71726af468.h"

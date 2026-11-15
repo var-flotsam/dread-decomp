@@ -2,7 +2,7 @@
 // handlers that, when the global sound holder (created on first use) has a group, the composition
 // has its object at +0x5f0 and the group accepts the request (virtual slot 0x30 with 0x2000, 0xfd),
 // pass that object to fn_7100b26470. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/GUI/CGlobalMapComposition.h"
 #include "game/UnkTU0.h"
 #include "game/nn/time.h"

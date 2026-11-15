@@ -4,7 +4,7 @@
 // own vtable and a cleared owner. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CSaveSnapshotToCheckpointLogicAction.h"
 #include "game/CTriggerLogicAction.h"
@@ -20,7 +20,7 @@ struct UnkSaveSnapshotCallable_b52;
 
 struct UnkSaveSnapshotCallbackSet_b52 {
     void* vtable;
-    base::UnkVector<UnkSaveSnapshotCallable_b52*> items;
+    base::global::CRntVector<UnkSaveSnapshotCallable_b52*> items;
     u32 field_0x30;
     void* owner;
 };
@@ -46,7 +46,7 @@ void fn_7100a42800(UnkSaveSnapshotLogicAction_b52* self) {
     InitEmpty_ss52(&self->first);
     InitEmpty_ss52(&self->second);
     self->callbacks.vtable = g_unk_7101a20998 + 2;
-    new (&self->callbacks.items) base::UnkVector<UnkSaveSnapshotCallable_b52*>(0xf);
+    new (&self->callbacks.items) base::global::CRntVector<UnkSaveSnapshotCallable_b52*>(0xf);
     self->callbacks.field_0x30 = 0;
     self->callbacks.vtable = g_unk_7101a20950 + 2;
     self->callbacks.owner = nullptr;

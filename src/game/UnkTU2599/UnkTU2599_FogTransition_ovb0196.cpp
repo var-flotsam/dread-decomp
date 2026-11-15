@@ -7,7 +7,7 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkCollectionIter.h"
 #include "base/UnkStrIdValueVec.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
@@ -157,7 +157,7 @@ struct base::UnkStrIdValueTraits<UnkFogTag_b0196> {
     static char* base_vtable() { return g_unk_7101cab1f8; }
     static char* vtable() { return g_unk_7101cab220; }
     static void init(UnkFogValue_b0196&) {}
-    static void resize(base::UnkVector<base::UnkStrIdValueElem<UnkFogTag_b0196, UnkFogValue_b0196>>* v, u32 n) {
+    static void resize(base::global::CRntVector<base::UnkStrIdValueElem<UnkFogTag_b0196, UnkFogValue_b0196>>* v, u32 n) {
         fn_7100f799b0(v, n);
     }
 };
@@ -166,7 +166,7 @@ struct base::UnkStrIdValueTraits<UnkVFogTag_b0196> {
     static char* base_vtable() { return g_unk_7101cab1f8; }
     static char* vtable() { return g_unk_7101cab338; }
     static void init(UnkVFogValue_b0196&) {}
-    static void resize(base::UnkVector<base::UnkStrIdValueElem<UnkVFogTag_b0196, UnkVFogValue_b0196>>* v, u32 n) {
+    static void resize(base::global::CRntVector<base::UnkStrIdValueElem<UnkVFogTag_b0196, UnkVFogValue_b0196>>* v, u32 n) {
         fn_7100f7a7c8(v, n);
     }
 };
@@ -174,7 +174,7 @@ struct base::UnkStrIdValueTraits<UnkVFogTag_b0196> {
 namespace base {
 // UnkStrIdValueResize with the new elements placed by byte offset.
 template <class Tag, class T>
-void Resize2_b0196(UnkVector<UnkStrIdValueElem<Tag, T>>* v, u32 n) {
+void Resize2_b0196(global::CRntVector<UnkStrIdValueElem<Tag, T>>* v, u32 n) {
     using E = UnkStrIdValueElem<Tag, T>;
     if (v->capacity < n)
         refl_StrIdValueReallocate(v, n);
@@ -188,8 +188,8 @@ void Resize2_b0196(UnkVector<UnkStrIdValueElem<Tag, T>>* v, u32 n) {
 
 using UnkFogElem_b0196 = base::UnkStrIdValueElem<UnkFogTag_b0196, UnkFogValue_b0196>;
 using UnkVFogElem_b0196 = base::UnkStrIdValueElem<UnkVFogTag_b0196, UnkVFogValue_b0196>;
-using UnkFogVec_b0196 = base::UnkVector<UnkFogElem_b0196>;
-using UnkVFogVec_b0196 = base::UnkVector<UnkVFogElem_b0196>;
+using UnkFogVec_b0196 = base::global::CRntVector<UnkFogElem_b0196>;
+using UnkVFogVec_b0196 = base::global::CRntVector<UnkVFogElem_b0196>;
 
 __attribute__((noinline)) void fn_7100f799b0(void* v, u32 n) {
     base::Resize2_b0196(static_cast<UnkFogVec_b0196*>(v), n);
@@ -281,7 +281,7 @@ template <char* Vtable>
 using UnkIdValueVecElem_b43a3 = base::UnkIdValueElem<UnkIdValueVecTag_b43a3<Vtable>,
                                                      UnkCloneElem<UnkIdValueVecTag_b43a3<Vtable>, UnkIdValueVecSize_b43a3<Vtable>::value>>;
 template <char* Vtable>
-using UnkIdValueVec_b43a3 = base::UnkVector<UnkIdValueVecElem_b43a3<Vtable>>;
+using UnkIdValueVec_b43a3 = base::global::CRntVector<UnkIdValueVecElem_b43a3<Vtable>>;
 
 __attribute__((noinline)) void fn_7100f6e784(UnkIdValueVec_b43a3<g_unk_7101cab338>* v,
                                              const UnkIdValueVecElem_b43a3<g_unk_7101cab338>& x);

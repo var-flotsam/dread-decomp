@@ -2,7 +2,7 @@
 // CBouncingCreaturesLaunchPattern, fn_71005dfcc4) that share a base (constructor fn_71005dbdd4):
 // set the vtable, make the string id at 0xf0 the empty string (creating the pool first when there
 // is none) and set up the array after it (capacity 10, growth 15, default allocator).
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CAcidBlobsLaunchPattern.h"
 #include "game/CBouncingCreaturesLaunchPattern.h"

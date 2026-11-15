@@ -5,7 +5,7 @@
 // CFlockingSwarmControllerComponent_Reset_A3_b72.cpp), the two lists of 12-byte entries the reset
 // resizes (+0x340, +0x368), a value-initialised block with an array at +0x3b8 and the collider count
 // at +0x3e0. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game_s2/UnkItem50.h"
 #include "types.h"
 
@@ -28,7 +28,7 @@ struct UnkSwarmPathNode_ovb0063 {
 
 struct UnkSwarmPath_ovb0063 {
     void** vtable;
-    base::UnkVector<UnkSwarmPathNode_ovb0063> nodes;
+    base::global::CRntVector<UnkSwarmPathNode_ovb0063> nodes;
     bool dirty;
     f32 bounds[6];
 
@@ -63,8 +63,8 @@ inline const UnkSwarmFlags_ovb0063& SwarmFlagsAll_ovb0063() {
 
 // Two arrays of entries (the reset resizes both to the member count).
 struct UnkSwarmLists_ovb0063 {
-    base::UnkVector<UnkSwarmEntry_ovb0063> a{0xf};
-    base::UnkVector<UnkSwarmEntry_ovb0063> b{0xf};
+    base::global::CRntVector<UnkSwarmEntry_ovb0063> a{0xf};
+    base::global::CRntVector<UnkSwarmEntry_ovb0063> b{0xf};
 };
 
 // Value-initialised as a whole (zeroed first), then its array set up.
@@ -72,7 +72,7 @@ struct UnkSwarmWordList_ovb0063 {
     u64 field_0x0;
     u64 field_0x8;
     u64 field_0x10;
-    base::UnkVector<UnkSwarmWord_ovb0063> words{0xf};
+    base::global::CRntVector<UnkSwarmWord_ovb0063> words{0xf};
 };
 
 struct UnkSwarmCtrl_ovb0063 {

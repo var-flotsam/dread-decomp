@@ -1,7 +1,7 @@
 // Unit 1444 of tools/tu_map.py: the wall the stored object names, as the position it pushes against:
 // the stored point moved back along the side's normal by the answer of the owner's shape, and, when the
 // stored object asks for it, snapped to the owner's own x or y. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "game/CCharacterMovement.h"
 #include "game/UnkNavMeshCell.h"

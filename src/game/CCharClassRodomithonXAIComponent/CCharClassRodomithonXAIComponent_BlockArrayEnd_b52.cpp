@@ -3,12 +3,12 @@
 // elements, as base::refl_End. Names are placeholders.
 #include "UnkClone.h"
 #include "base/UnkCollectionIter.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 
 struct UnkRodomithonBlockTag_b52;
 using UnkRodomithonBlock_b52 = UnkCloneBlock<UnkRodomithonBlockTag_b52, 0x10>;
 
-void fn_71006685ac(const base::UnkVector<UnkRodomithonBlock_b52>* v,
+void fn_71006685ac(const base::global::CRntVector<UnkRodomithonBlock_b52>* v,
                    base::UnkCollectionIter<UnkRodomithonBlock_b52>* out) {
     base::refl_End(v, out);
 }

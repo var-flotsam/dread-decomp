@@ -5,7 +5,7 @@
 // registration at +0xf8 (no set yet, this object and fn_7100516248 as its callback), the point, wait and
 // flag at +0x110..+0x11c cleared, the member at +0x120 (fn_71006fbadc), which then takes the point
 // wrapped in a temporary (vtable 0x7101a47d80) through fn_7100515388. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/behaviortree/CEmmyStateAction.h"
 #include "types.h"
 

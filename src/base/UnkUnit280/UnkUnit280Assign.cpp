@@ -3,7 +3,7 @@
 // count, capacity, the allocator's flags at +0x18 and the allocator at +0x20; grown to the source's
 // capacity when smaller, then copied bitwise), eight words at +0x28, a hundred 0x28-byte records at
 // +0x48 (entry arrays, each assigned by fn_71001fdacc) and a word at +0xfe8. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU280.h"
 #include "types.h"
 
@@ -14,8 +14,8 @@ struct UnkUnit280Record {
     u64 words[5];
 
     UnkUnit280Record& operator=(const UnkUnit280Record& other) {
-        fn_71001fdacc(reinterpret_cast<base::UnkVector<UnkSceneEntry>*>(this),
-                      reinterpret_cast<const base::UnkVector<UnkSceneEntry>*>(&other));
+        fn_71001fdacc(reinterpret_cast<base::global::CRntVector<UnkSceneEntry>*>(this),
+                      reinterpret_cast<const base::global::CRntVector<UnkSceneEntry>*>(&other));
         return *this;
     }
 };

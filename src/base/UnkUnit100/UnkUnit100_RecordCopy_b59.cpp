@@ -1,10 +1,10 @@
 // From unit 100 of tools/tu_map.py (0x71001043e4-0x7100104ef4): the copy constructor (reflection
 // slot 0x30 of class_descriptors_00.cpp) of a reflected 0x30-byte record: a word, then an array
-// (base::UnkVector's layout) of 12-byte trivially copied elements, grown to the source's capacity
+// (base::global::CRntVector's layout) of 12-byte trivially copied elements, grown to the source's capacity
 // and copied bitwise. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkUnit100Elem_b59 {

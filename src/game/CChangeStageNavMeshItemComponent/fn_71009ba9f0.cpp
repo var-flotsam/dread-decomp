@@ -3,7 +3,7 @@
 // some TUs' data has function records after the header, and collection and vector types are
 // registered for the reflected containers.
 #include "base/UnkStrIdRegistry.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"

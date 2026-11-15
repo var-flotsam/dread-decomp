@@ -1,7 +1,7 @@
 // Destructors of a record of a string id and an array of reference-counted pointers (fn_7100239e0c and
 // its copies): the array's elements are released and the array freed, then the id. Names are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU341.h"
 #include "game_s2/UnkTwoStepStrId.h"
 #include "types.h"
@@ -28,9 +28,9 @@ struct UnkRefPtr_A1_b63 {
 
 struct UnkIdRefVector_A1_b63 {
     UnkStrIdTwoStep id;
-    base::UnkVector<UnkRefPtr_A1_b63> items;
+    base::global::CRntVector<UnkRefPtr_A1_b63> items;
 
-    // (UnkVector::Free with a 64-bit index.)
+    // (CRntVector::Free with a 64-bit index.)
     __attribute__((always_inline)) ~UnkIdRefVector_A1_b63() {
         if (items.data) {
             for (u64 i = 0; i < items.count; ++i)

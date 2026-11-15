@@ -5,7 +5,7 @@
 // fn_710015f100 and fn_7100161520 run during the device set-up (fn_71001587f0). Names and layouts
 // are placeholders.
 #include "game/UnkGraphicsState.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU170.h"
 #include "game/UnkTU172.h"
 #include "game/UnkTU176.h"

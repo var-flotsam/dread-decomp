@@ -11,7 +11,7 @@ struct UnkRange {
 
 // NON_MATCHING(minor): the three zero stores of a moved element (0x34, 0x3c, 0x44) are emitted in
 // ascending order, the original has the first and last swapped
-void fn_71004dcb40(base::UnkVector<UnkItem>* self, const base::UnkVector<UnkItem>* other) {
+void fn_71004dcb40(base::global::CRntVector<UnkItem>* self, const base::global::CRntVector<UnkItem>* other) {
     self->data = nullptr;
     self->count = 0;
     self->capacity = 0;

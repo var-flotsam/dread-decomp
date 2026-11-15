@@ -1,7 +1,7 @@
 // GUI::CScene3D's unit: the constructor of the 3D model scene. It runs the base constructor, sets the
 // vtable and fills the members with their defaults. Names and layouts are placeholders.
 #include "base/UnkNamedRegistry.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/math/CVector.h"
 #include "game/CPhotoModeCameraCtrl.h"

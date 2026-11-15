@@ -7,7 +7,7 @@
 // inferred from the code.
 
 #include "base/UnkChainedMap.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 // An entry of the request array at +0xb8 (0x60 bytes: a file-path id list and a string id; the
@@ -74,9 +74,9 @@ struct UnkMusicManager {
     s32 field_0xa4;
     u16 field_0xa8;
     u8 unk_0xaa[0xe];
-    base::UnkVector<UnkMusicEntry_0x60> entries;  // 0xb8
-    base::UnkVector<UnkMusicSlot_0x38> slots;     // 0xe0
-    base::UnkVector<u8> slot_active;              // 0x108
+    base::global::CRntVector<UnkMusicEntry_0x60> entries;  // 0xb8
+    base::global::CRntVector<UnkMusicSlot_0x38> slots;     // 0xe0
+    base::global::CRntVector<u8> slot_active;              // 0x108
     UnkChainedMap map_0;  // 0x130 (each starts with 11 empty buckets)
     UnkChainedMap map_1;  // 0x178
     UnkChainedMap map_2;  // 0x1c0
@@ -103,8 +103,8 @@ static_assert(sizeof(UnkMusicManager) == 0xf18, "UnkMusicManager layout");
 void fn_7100fd3804(void* block);
 
 // Grow the request and slot arrays to hold n elements (out-of-line reserves).
-void fn_7100fddcb4(base::UnkVector<UnkMusicEntry_0x60>* v, u32 n);
-void fn_7100fde040(base::UnkVector<UnkMusicSlot_0x38>* v, u32 n);
+void fn_7100fddcb4(base::global::CRntVector<UnkMusicEntry_0x60>* v, u32 n);
+void fn_7100fde040(base::global::CRntVector<UnkMusicSlot_0x38>* v, u32 n);
 
 // The channel constructor (also the base of the bank at +0x2b8): the kind is its index.
 void fn_7100fe1028(UnkMusicChannel_0x30* p, u32 kind);

@@ -3,7 +3,7 @@
 // the first base's vtable, the second base at +0x8 with its member at +0x10 (fn_71002f75ac) and a cleared
 // word, then the final vtables, the cleared buffer pair at +0x68, +0x78, growth 10 / flags 14, the default
 // allocator and an empty resource), then hands it to fn_71002f66c8. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU426.h"
 #include "types.h"
 

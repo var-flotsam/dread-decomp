@@ -4,7 +4,7 @@
 // point raised by 20 with the given angles; fn_7100ac3efc runs the move (virtual slot 0x2b0) and, after a
 // successful one unless the definition (+0x5c8) says otherwise, re-aims (slot 0x348, from fn_710007a7f0
 // of +0x548) and hands the owner to fn_7100232c68. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/CAutclastChargeAttack.h"

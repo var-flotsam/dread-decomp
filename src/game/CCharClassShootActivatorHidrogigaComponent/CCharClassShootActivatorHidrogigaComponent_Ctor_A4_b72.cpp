@@ -3,7 +3,7 @@
 // lists (base vtable g_unk_7101a20998, then g_unk_7101a33fa0) at +0x580 and +0x5c0, clears the fields after them
 // (three 1.0f scales at +0x604), then makes the post-construction virtual call (slot 3). Defined under the `void()`
 // symbol src/reflection/CCharClassShootActivatorHidrogigaComponent.cpp declares. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CCharClassShootActivatorHidrogigaComponent.h"
 #include "game/UnkTU341.h"

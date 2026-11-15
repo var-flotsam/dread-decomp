@@ -1,4 +1,4 @@
-// CCentralUnitComponent unit (tools/tu_map.py unit 1176): fn_710077a630 is base::UnkVector's Reserve for
+// CCentralUnitComponent unit (tools/tu_map.py unit 1176): fn_710077a630 is base::global::CRntVector's Reserve for
 // 0x80-byte entries, out of line: each entry is moved as two 0x40-byte halves (fn_71002458a4) and the
 // old one destroyed (fn_7100778228). fn_710077a51c and fn_710077a82c are the array's copy constructor
 // and copy assignment: reserve the other's capacity, then append a copy of each entry (fn_710077a700).
@@ -10,7 +10,7 @@
 // handle (+0x38), word (+0x30) and array (+0x8).
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU1176.h"
 #include "game/UnkTU341.h"
@@ -24,17 +24,17 @@ struct UnkEntry_cu {
     ~UnkEntry_cu() asm("fn_7100778228");
 };
 
-void fn_710077a630(base::UnkVector<UnkEntry_cu>* self, u32 n) {
+void fn_710077a630(base::global::CRntVector<UnkEntry_cu>* self, u32 n) {
     self->Reserve(n);
 }
 
-static inline __attribute__((always_inline)) void AppendAll_cu(base::UnkVector<UnkEntry_cu>* self,
-                                                               const base::UnkVector<UnkEntry_cu>* other) {
+static inline __attribute__((always_inline)) void AppendAll_cu(base::global::CRntVector<UnkEntry_cu>* self,
+                                                               const base::global::CRntVector<UnkEntry_cu>* other) {
     for (const UnkEntry_cu *it = other->data, *end = other->data + other->count; it != end; ++it)
         fn_710077a700(self, it);
 }
 
-void fn_710077a51c(base::UnkVector<UnkEntry_cu>* self, const base::UnkVector<UnkEntry_cu>* other) {
+void fn_710077a51c(base::global::CRntVector<UnkEntry_cu>* self, const base::global::CRntVector<UnkEntry_cu>* other) {
     self->data = nullptr;
     self->count = 0;
     self->capacity = 0;
@@ -46,8 +46,8 @@ void fn_710077a51c(base::UnkVector<UnkEntry_cu>* self, const base::UnkVector<Unk
     AppendAll_cu(self, other);
 }
 
-base::UnkVector<UnkEntry_cu>* fn_710077a82c(base::UnkVector<UnkEntry_cu>* self,
-                                           const base::UnkVector<UnkEntry_cu>* other) {
+base::global::CRntVector<UnkEntry_cu>* fn_710077a82c(base::global::CRntVector<UnkEntry_cu>* self,
+                                           const base::global::CRntVector<UnkEntry_cu>* other) {
     if (self != other) {
         self->Clear();
         self->Reserve(other->capacity);

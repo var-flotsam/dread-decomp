@@ -44,7 +44,7 @@ struct UnkReflAnyValue {
     }
 };
 
-// A list of such values (base::UnkVector's layout), built from one value by fn_7100ad3404.
+// A list of such values (base::global::CRntVector's layout), built from one value by fn_7100ad3404.
 struct UnkReflAnyList {
     UnkReflAnyValue* data;
     u32 count;

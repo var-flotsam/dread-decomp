@@ -1,8 +1,8 @@
 // Unit 140 of tools/tu_map.py (see game/UnkSceneObject.h): the element at an index of an array of
-// 16-byte records, growing the array first when the index is past its end (UnkVector::GrowAt). The
+// 16-byte records, growing the array first when the index is past its end (CRntVector::GrowAt). The
 // new records are zeroed; the old ones move over word by word.
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 typedef u32 __attribute__((may_alias)) a_u32_9230;
@@ -19,6 +19,6 @@ struct UnkRecord16_9230 {
     }
 };
 
-UnkRecord16_9230* fn_7100149230(base::UnkVector<UnkRecord16_9230>* self, u32 index) {
+UnkRecord16_9230* fn_7100149230(base::global::CRntVector<UnkRecord16_9230>* self, u32 index) {
     return &self->GrowAt(index);
 }

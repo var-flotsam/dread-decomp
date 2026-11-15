@@ -12,7 +12,7 @@
 #include "base/global/UnkStringPoolBody.h"
 #include "base/math/CVector.h"
 #include "base/math/CVector4D.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU2607.h"
 #include "types.h"
 
@@ -63,7 +63,7 @@ static_assert(sizeof(UnkVerticalFogTransition) == 0x28, "UnkVerticalFogTransitio
 
 // The transition from the preset whose key is `key`, if the list has one.
 template <class T>
-static inline const T* FindTransition(const base::UnkVector<T>& transitions, s64 key) {
+static inline const T* FindTransition(const base::global::CRntVector<T>& transitions, s64 key) {
     const T* end = transitions.data + transitions.count;
     const T* it = transitions.data;
     if (it != end && PresetKey(it->preset) != key) {
@@ -86,22 +86,22 @@ struct UnkEnvironmentData {
     UnkEnvVec2 field_0x20;
     UnkVector4D field_0x28;
     f32 field_0x38;  // time
-    base::UnkVector<UnkFogTransition> field_0x40;
+    base::global::CRntVector<UnkFogTransition> field_0x40;
     // 0x68.
     f32 field_0x68;  // time
     UnkEnvFadeColor field_0x6c;
-    base::UnkVector<UnkTransition1> field_0x80;
+    base::global::CRntVector<UnkTransition1> field_0x80;
     // 0xa8: two colours passed by value.
     f32 field_0xa8;  // time
     CVector4D field_0xac;
     CVector4D field_0xbc;
-    base::UnkVector<UnkTransition1> field_0xd0;
+    base::global::CRntVector<UnkTransition1> field_0xd0;
     // 0xf8.
     f32 field_0xf8;  // time
     UnkEnvFadeColor field_0xfc;
     f32 field_0x10c;  // time
     f32 field_0x110;
-    base::UnkVector<UnkTransition2> field_0x118;
+    base::global::CRntVector<UnkTransition2> field_0x118;
     // 0x140.
     f32 field_0x140;  // time
     UnkEnvFadeColor field_0x144;
@@ -109,17 +109,17 @@ struct UnkEnvironmentData {
     UnkEnvFadeColor field_0x164;
     f32 field_0x174;  // time
     CVector2D field_0x178;
-    base::UnkVector<UnkTransition2> field_0x180;
+    base::global::CRntVector<UnkTransition2> field_0x180;
     // 0x1a8.
     f32 field_0x1a8;  // time
     CVector3D field_0x1ac;
     f32 field_0x1b8;  // time
     CVector3D field_0x1bc;
-    base::UnkVector<UnkTransition2> field_0x1c8;
+    base::global::CRntVector<UnkTransition2> field_0x1c8;
     // 0x1f0.
     f32 field_0x1f0;  // time
     CVector3D field_0x1f4;
-    base::UnkVector<UnkTransition1> field_0x200;
+    base::global::CRntVector<UnkTransition1> field_0x200;
     // Vertical fog (0x228).
     bool field_0x228;
     UnkEnvFadeColor field_0x22c;
@@ -134,28 +134,28 @@ struct UnkEnvironmentData {
     f32 field_0x26c;  // time
     f32 field_0x270;
     f32 field_0x274;  // time
-    base::UnkVector<UnkVerticalFogTransition> field_0x278;
+    base::global::CRntVector<UnkVerticalFogTransition> field_0x278;
     // Cube map (0x2a0): no transitions are looked up.
     u32 field_0x2a0;
     bool field_0x2a4;
     CFilePathStrId field_0x2a8;  // the texture's path
-    base::UnkVector<UnkTransition1> field_0x2b0;
+    base::global::CRntVector<UnkTransition1> field_0x2b0;
     // 0x2d8.
     f32 field_0x2d8;  // time
     f32 field_0x2dc;
     f32 field_0x2e0;
-    base::UnkVector<UnkTransition1> field_0x2e8;
+    base::global::CRntVector<UnkTransition1> field_0x2e8;
     // 0x310.
     f32 field_0x310;  // time
     f32 field_0x314[5];
     UnkVector4D field_0x328;
     f32 field_0x338;
     bool field_0x33c;
-    base::UnkVector<UnkTransition1> field_0x340;
+    base::global::CRntVector<UnkTransition1> field_0x340;
     // 0x368.
     f32 field_0x368;  // time
     f32 field_0x36c[3];
-    base::UnkVector<UnkTransition1> field_0x378;
+    base::global::CRntVector<UnkTransition1> field_0x378;
     CStrId field_0x3a0;  // the preset's name
 };
 static_assert(__builtin_offsetof(UnkEnvironmentData, field_0x40) == 0x40, "UnkEnvironmentData layout");

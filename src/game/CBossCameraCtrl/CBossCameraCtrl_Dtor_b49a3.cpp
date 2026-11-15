@@ -1,7 +1,7 @@
 // CBossCameraCtrl unit (tools/tu_map.py unit 1164). Its destructors: the vtable, the array of counted
 // references at +0x2a0 (each dropped, then the array freed), then the base destructor fn_7100763f74;
 // fn_710074f058 also frees the object. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CBossCameraCtrl.h"
 #include "game/CCameraBoundaryCtrl.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -21,7 +21,7 @@ struct UnkRefSlot_b49a3 {
 struct UnkBossCameraCtrl_b49a3 {
     void** vtable;
     u8 pad_0x8[0x298];
-    base::UnkVector<UnkRefSlot_b49a3> refs;  // 0x2a0
+    base::global::CRntVector<UnkRefSlot_b49a3> refs;  // 0x2a0
 };
 
 __attribute__((always_inline)) static inline void Destroy_b49a3(UnkBossCameraCtrl_b49a3* self) {

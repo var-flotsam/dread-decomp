@@ -3,7 +3,7 @@
 // fn_0x50). Four words at +0x0, an array of 0x50-byte entries at +0x10 (destroyed by
 // fn_710026ead0, taken over from the source) and a 0x15-byte block at +0x38. Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/navmesh/CFixedDynamicSmartLinkRule.h"
 #include "types.h"
 
@@ -27,7 +27,7 @@ struct UnkNavRuleValue {
     UnkNavRuleWord field_0x4;
     UnkNavRuleWord field_0x8;
     UnkNavRuleWord field_0xc;
-    base::UnkVector<UnkNavRuleEntry> entries;  // 0x10
+    base::global::CRntVector<UnkNavRuleEntry> entries;  // 0x10
     u8 field_0x38[0x15];
 
     UnkNavRuleValue& operator=(UnkNavRuleValue&& other) = default;

@@ -7,7 +7,7 @@
 // placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
@@ -36,14 +36,14 @@ struct UnkModel_u207 {
 struct UnkController_u207 {
     u8 pad_0x0[8];
     UnkModel_u207* model;                    // 0x8
-    base::UnkVector<UnkEntry_u207> entries;  // 0x10
+    base::global::CRntVector<UnkEntry_u207> entries;  // 0x10
 };
 
-void fn_710016b21c(base::UnkVector<UnkEntry_u207>* self, u32 capacity);
+void fn_710016b21c(base::global::CRntVector<UnkEntry_u207>* self, u32 capacity);
 
 // Erases the entry at `index`: its id is released, the later entries move down and the moved-from
-// ones are released again (UnkVector::EraseAt, inlined).
-void fn_710016b34c(base::UnkVector<UnkEntry_u207>* self, u32 index) {
+// ones are released again (CRntVector::EraseAt, inlined).
+void fn_710016b34c(base::global::CRntVector<UnkEntry_u207>* self, u32 index) {
     if (index < self->count) {
         self->data[index].id.Reset();
         for (u32 i = index; i < (u32)(self->count - 1); ++i) {

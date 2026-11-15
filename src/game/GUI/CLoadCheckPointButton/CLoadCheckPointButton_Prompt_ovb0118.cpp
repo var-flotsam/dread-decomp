@@ -7,7 +7,7 @@
 // g_unk_7172763578 gets fn_7100e19954 and the game manager fn_7100dff93c. Names and layouts are
 // placeholders.
 #include "base/global/CStrId.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/GUI/CIngameMenu.h"

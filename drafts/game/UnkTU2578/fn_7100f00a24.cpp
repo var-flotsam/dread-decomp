@@ -3,7 +3,7 @@
 #include <new>
 
 #include "base/UnkChainedMap.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkRenderManager.h"
 #include "types.h"
 

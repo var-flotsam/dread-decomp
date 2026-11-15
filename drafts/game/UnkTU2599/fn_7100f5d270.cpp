@@ -2,7 +2,7 @@
 
 #include "UnkClone.h"
 #include "base/UnkCloneHelpers.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 extern char g_unk_7101cab220[];
@@ -21,7 +21,7 @@ using UnkIdValueEraseElem_b0196 =
     base::UnkIdValueElem<UnkIdValueEraseTag_b0196<Vtable, Size>, UnkCloneElem<UnkIdValueEraseTag_b0196<Vtable, Size>, Size>>;
 
 template <char* Vtable, u64 Size>
-using UnkIdValueEraseVec_b0196 = base::UnkVector<UnkIdValueEraseElem_b0196<Vtable, Size>>;
+using UnkIdValueEraseVec_b0196 = base::global::CRntVector<UnkIdValueEraseElem_b0196<Vtable, Size>>;
 
 template <char* Vtable, u64 Size>
 static inline __attribute__((always_inline)) void IdValueEraseAt_b0196(UnkIdValueEraseVec_b0196<Vtable, Size>* self,

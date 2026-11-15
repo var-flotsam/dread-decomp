@@ -3,7 +3,7 @@
 // the bucket capacity). A node holds the id, the value (released by fn_71000a1c60), the list
 // links (next +0x20, prev +0x28) and the bucket chain (+0x30). Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"

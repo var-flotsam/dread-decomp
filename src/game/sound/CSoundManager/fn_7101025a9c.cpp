@@ -2,7 +2,7 @@
 // table at 0x80: restore the vtable, clear the table (fn_71010287d4) and free its two arrays,
 // delete the owned objects (fn_710102796c) and free their array, then run the base destructor
 // (fn_7100016f88); the deleting one then frees the object.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/sound/CSoundManager.h"
 #include "types.h"
 
@@ -53,7 +53,7 @@ struct UnkTable_0x28 {
 
 struct UnkObject_7101025a9c : UnkBase_0x58 {
     union {
-        base::UnkVector<UnkOwnedPtr> objects;
+        base::global::CRntVector<UnkOwnedPtr> objects;
     };
     // Destroyed before the array above, so both are destroyed by hand.
     union {

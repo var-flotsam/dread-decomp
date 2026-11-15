@@ -2,7 +2,7 @@
 // be excluded by fn_71002b005c; the other entity must pass fn_7100ad00ac, and both need a model
 // (at 0x68 of their object at 0x18). The answer comes from the navmesh manager
 // (game/UnkNavMeshManager.h), created on first use.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
 #include "types.h"

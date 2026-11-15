@@ -11,7 +11,7 @@
 // CAttack part and the plain fields as blocks, shares the listener's (+0x38) counted reference to its
 // owner's weak handle unless the attack is assigned to itself, and copies the six words at +0x64 one
 // by one. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkZeroVector3.h"
 #include "base/reflection/UnkClassGetters.h"

@@ -4,7 +4,7 @@
 // set to 1. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CForbiddenEdgesLogicAction.h"
 #include "game/CTriggerLogicAction.h"
@@ -18,13 +18,13 @@ struct UnkForbiddenEdgesCallable_ovb0085;
 
 struct UnkForbiddenEdgesCallbackSet_ovb0085 {
     void* vtable;
-    base::UnkVector<UnkForbiddenEdgesCallable_ovb0085*> items;
+    base::global::CRntVector<UnkForbiddenEdgesCallable_ovb0085*> items;
     u32 field_0x30;
     void* owner;
 
     __attribute__((always_inline)) void Init(void** own) {
         vtable = g_unk_7101a20998 + 2;
-        new (&items) base::UnkVector<UnkForbiddenEdgesCallable_ovb0085*>(0xf);
+        new (&items) base::global::CRntVector<UnkForbiddenEdgesCallable_ovb0085*>(0xf);
         field_0x30 = 0;
         vtable = own + 2;
         owner = nullptr;

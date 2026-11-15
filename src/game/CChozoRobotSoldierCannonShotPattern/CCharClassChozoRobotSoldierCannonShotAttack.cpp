@@ -4,7 +4,7 @@
 // flags 0xf, the default allocator), and the base's flag at +0xc0 cleared. Layout placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCharClassAttack.h"
 #include "game/CChozoRobotSoldierCannonShotPattern.h"
 #include "types.h"
@@ -17,12 +17,12 @@ struct UnkCannonShotAttackDef {
     u8 pad_0x8[0xb8];
     bool field_0xc0;
     u8 pad_0xc1[0x2f];
-    base::UnkVector<void*> patterns;  // 0xf0
+    base::global::CRntVector<void*> patterns;  // 0xf0
 };
 
 void fn_710045ee14(UnkCannonShotAttackDef* self) {
     fn_71003641fc(reinterpret_cast<UnkStruct_71003641fc*>(self));
     self->vtable = g_unk_7101a38100 + 2;
-    new (&self->patterns) base::UnkVector<void*>(0xf);
+    new (&self->patterns) base::global::CRntVector<void*>(0xf);
     self->field_0xc0 = false;
 }

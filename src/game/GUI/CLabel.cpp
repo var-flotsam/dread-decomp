@@ -192,7 +192,7 @@ void fn_71011ee5a8(UnkLabel* self) {
 
 #include "base/Char32.h"
 #include "base/UnkSList.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 
@@ -293,7 +293,7 @@ struct UnkLabelGlyph {
 };
 static_assert(sizeof(UnkLabelGlyph) == 0x30, "UnkLabelGlyph placeholder layout");
 
-using UnkGlyphVector = base::UnkVector<UnkLabelGlyph>;
+using UnkGlyphVector = base::global::CRntVector<UnkLabelGlyph>;
 // Reserves `capacity` glyphs; assigns another vector's glyphs.
 void fn_71011f05d4(UnkGlyphVector* self, u32 capacity);
 void fn_71011ee3b4(UnkGlyphVector* self, const UnkGlyphVector* other);

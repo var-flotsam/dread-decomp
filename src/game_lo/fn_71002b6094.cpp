@@ -2,7 +2,7 @@
 // pointer: releases them in reverse order of declaration.
 #include "base/UnkDestructors.h"
 #include "base/UnkEmptyDtorElem.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkObject_0x100.h"
 #include "types.h"
 
@@ -16,10 +16,10 @@ struct UnkStruct_71002b6094 {
     u8 pad_0x0[0x38];
     base::UnkStrIdMember field_0x38;
     u8 pad_0x40[0x18];
-    base::UnkVector<u32> field_0x58;
-    base::UnkVector<UnkStruct_71002b6094_Elem> field_0x80;
-    base::UnkVector<UnkStruct_71002b6094_Elem> field_0xa8;
-    base::UnkVector<UnkStruct_71002b6094_Elem> field_0xd0;
+    base::global::CRntVector<u32> field_0x58;
+    base::global::CRntVector<UnkStruct_71002b6094_Elem> field_0x80;
+    base::global::CRntVector<UnkStruct_71002b6094_Elem> field_0xa8;
+    base::global::CRntVector<UnkStruct_71002b6094_Elem> field_0xd0;
     base::UnkRefPtrMember field_0xf8;
 };
 

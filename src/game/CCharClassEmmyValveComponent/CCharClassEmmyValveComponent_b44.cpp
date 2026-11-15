@@ -3,7 +3,7 @@
 // (fn_71004f11f8) and its two arrays freed, then the id is released, as the same members are in
 // src/game/CUsableComponent/fn_7100a9e6bc.cpp. Names and layout are placeholders.
 #include "base/UnkStrIdTable.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 

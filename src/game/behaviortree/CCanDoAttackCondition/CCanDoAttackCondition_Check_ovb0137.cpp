@@ -1,6 +1,6 @@
 // behaviortree::CCanDoAttackCondition's unit (tools/tu_map.py): the condition's check (the attack query as src/game/behaviortree/CCheckCancelAttackOrderAction/CCheckCancelAttackOrderAction_Run_ovb0128.cpp builds it).
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"

@@ -3,7 +3,7 @@
 // polymorphic entries at +0x48 (each destroyed through its vtable, then the array freed), then the
 // component destructor fn_71010c4194; fn_7100751708 also frees the object. Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkComponent.h"
 #include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
@@ -19,7 +19,7 @@ struct UnkBreakableEntry_b49a3 {
 
 struct UnkBreakableScenarioComponent_b49a3 : UnkBaseComponent {
     u8 pad_0x40[0x8];
-    base::UnkVector<UnkBreakableEntry_b49a3> entries;  // 0x48
+    base::global::CRntVector<UnkBreakableEntry_b49a3> entries;  // 0x48
     UnkLinkList* link;  // 0x70
     u64 field_0x78;
     u64 field_0x80;

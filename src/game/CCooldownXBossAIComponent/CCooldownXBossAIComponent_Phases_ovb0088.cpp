@@ -10,7 +10,7 @@
 // (fn_71004d2cc4) turning the colliders on while the locator g_unk_7101649bb8 is between -400 and 50 high.
 // Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -400,7 +400,7 @@ u32 fn_71004d2e14(UnkCooldownXDamageAI_ovb0088* self, UnkCooldownXDamage_ovb0088
 struct UnkEntity;
 struct UnkStruct_71008651c8_Entry;
 struct UnkStruct_71008651c8;
-using UnkOut_71008651c8 = base::UnkVector<UnkStruct_71008651c8_Entry*>;
+using UnkOut_71008651c8 = base::global::CRntVector<UnkStruct_71008651c8_Entry*>;
 void fn_71008651c8(UnkStruct_71008651c8*, void* const*, UnkOut_71008651c8*);
 
 extern char g_unk_7101649bb8[];  // the locator's name

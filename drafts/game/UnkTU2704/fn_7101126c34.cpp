@@ -1,7 +1,7 @@
 // CSpawnPointComponent's unit (tools/tu_map.py unit 2704): after the base setup (a virtual of the component, given
 // the game manager's blackboard), records whether the owner's position lies on the shape of the "LS_EmmyZone"
 // object, tested with the shared shape tester. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkZeroVector3.h"

@@ -6,7 +6,7 @@
 // function in slot 3 is called at the end. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/core/CAsset.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/navmesh/CDynamicSmartLinkGroup.h"
@@ -16,7 +16,7 @@ struct UnkSmartLinkRules_b58 {
     void** vtable;
     u8 pad_0x8[0x50];
     base::global::CFilePathStrId field_0x58;
-    base::UnkVector<void*> field_0x60;
+    base::global::CRntVector<void*> field_0x60;
     bool field_0x88;
 };
 static_assert(sizeof(UnkSmartLinkRules_b58) == 0x90, "UnkSmartLinkRules_b58 layout");
@@ -26,7 +26,7 @@ void fn_7100267254(UnkSmartLinkRules_b58* self) {
     fn_7100016ad8(self);
     self->vtable = reinterpret_cast<void**>(reinterpret_cast<char*>(g_unk_7101a20cc0) + 0x10);
     new (&self->field_0x58) base::global::CFilePathStrId(g_unk_7101d470e8);
-    new (&self->field_0x60) base::UnkVector<void*>(0xf);
+    new (&self->field_0x60) base::global::CRntVector<void*>(0xf);
     self->field_0x88 = false;
     reinterpret_cast<void (*)(UnkSmartLinkRules_b58*)>(self->vtable[3])(self);
 }

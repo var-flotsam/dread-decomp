@@ -1,6 +1,6 @@
 // CCharClassProtoEmmyChaseMusicTriggerComponent's unit (tools/tu_map.py): the trigger's update (the music manager as src/game/CCharClassFadeOutMusicEvent/CCharClassFadeOutMusicEvent_Run_ovb0116.cpp reaches it).
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CAbilityEnergyWave.h"

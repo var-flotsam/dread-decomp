@@ -2,7 +2,7 @@
 // then frees the list's nodes.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/snd/CSoundSystem.h"
 #include "game/UnkTU23.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
@@ -76,7 +76,7 @@ inline UnkNodeList_0x38& UnkListArray::operator[](u32 index) {
         if (capacity <= index && step != 0)
             n = (index / step + 1) * step;
         // the music manager's slot array (game/sound/CMusicManager.h) under a local view
-        auto* v = reinterpret_cast<base::UnkVector<UnkMusicSlot_0x38>*>(this);
+        auto* v = reinterpret_cast<base::global::CRntVector<UnkMusicSlot_0x38>*>(this);
         fn_7100fde040(v, n);
         fn_7100fde040(v, index + 1);
         for (u32 i = count; i < index + 1; ++i)

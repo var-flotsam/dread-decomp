@@ -4,7 +4,7 @@
 // src/game/CEmmyProtoAIComponent/CEmmyProtoAIComponent_Defeat_ovb0003.cpp), then the base handler
 // (fn_710048e708) runs. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CChozoCommanderAIComponent.h"
 #include "game/UnkGameManager.h"
@@ -34,7 +34,7 @@ struct UnkMlogText_ovb0138 : base::global::UnkStrIdBase {
 struct UnkMlogMessage_ovb0138 {
     u32 kind;
     UnkMlogText_ovb0138 text;
-    base::UnkVector<base::UnkStrIdMember> args;
+    base::global::CRntVector<base::UnkStrIdMember> args;
 
     __attribute__((always_inline)) UnkMlogMessage_ovb0138(const CStrId& t) : kind(0), text(t), args(0xc) {}
     __attribute__((always_inline)) ~UnkMlogMessage_ovb0138() { args.Free(); }

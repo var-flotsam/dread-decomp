@@ -2,7 +2,7 @@
 // (owned when +0x160 is set: its slot 0x10 and then the collider's own slot 0x38; else unlinked through
 // fn_7100d35a74), clears +0x164, empties the node list at +0x128 (nodes freed through the allocator at
 // +0x148), then runs the base destructor fn_7100d35944. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/logic/collision/CBroadphaseObject.h"
 #include "game/logic/collision/CCollider.h"
 #include "types.h"

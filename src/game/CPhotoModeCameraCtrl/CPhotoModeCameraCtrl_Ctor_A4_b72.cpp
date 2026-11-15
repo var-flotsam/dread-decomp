@@ -4,7 +4,7 @@
 // class name string and a flags word), clears the fields at +0xbb0, sets an angle of 45 and a flag, then makes the
 // post-construction virtual call (slot 3). Defined under the `void()` symbol src/reflection/CPhotoModeCameraCtrl.cpp
 // declares. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCameraCtrl.h"
 #include "game/CPhotoModeCameraCtrl.h"
 #include "types.h"

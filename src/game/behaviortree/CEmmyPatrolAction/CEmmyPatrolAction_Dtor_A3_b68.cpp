@@ -1,9 +1,9 @@
 // behaviortree::CEmmyPatrolAction unit (tools/tu_map.py): the destructors of a class without a base
-// destructor call (vtable 0x7101a47c40) holding a string id at +8 and, at +0x18, a base::UnkVector of
+// destructor call (vtable 0x7101a47c40) holding a string id at +8 and, at +0x18, a base::global::CRntVector of
 // 0x10-byte polymorphic elements (each destroyed through its vtable slot 0, then the array freed;
-// UnkVector::Free). fn_7100514880 is the plain form, fn_7100514a70 the deleting one. Names are placeholders.
+// CRntVector::Free). fn_7100514880 is the plain form, fn_7100514a70 the deleting one. Names are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/behaviortree/CEmmyPatrolAction.h"
 #include "types.h"
 
@@ -21,7 +21,7 @@ struct base::UnkDtorTraits<UnkPatrolDtor_A3_b68> {
 
 struct UnkPatrolVector_A3_b68 {
     static void Release(char* self) {
-        reinterpret_cast<base::UnkVector<UnkPatrolElem_A3_b68>*>(self + 0x18)->Free();
+        reinterpret_cast<base::global::CRntVector<UnkPatrolElem_A3_b68>*>(self + 0x18)->Free();
     }
 };
 

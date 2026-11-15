@@ -1,9 +1,9 @@
 // CMinimapData's unit: a reflected flat map's "set by key" move slot (CCollectionType +0x148;
-// src/reflection_types/collection_types_00.cpp) with 8-byte keys and engine arrays (base::UnkVector) of string
+// src/reflection_types/collection_types_00.cpp) with 8-byte keys and engine arrays (base::global::CRntVector) of string
 // ids as values, moved in by the array's move assignment. The ids are released in two steps (as CStrId::Reset).
 // The b72 shape (src/game/CNavMeshItemComponent/UnkReflFlatMapSet_A4_b72.cpp). Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -22,7 +22,7 @@ struct UnkIdElem_A6_b76 : base::global::UnkStrIdBase {
     }
 };
 
-using UnkIdVector_A6_b76 = base::UnkVector<UnkIdElem_A6_b76>;
+using UnkIdVector_A6_b76 = base::global::CRntVector<UnkIdElem_A6_b76>;
 
 struct UnkIdVectorFlatMap_A6_b76 {
     UnkIdVector_A6_b76* values;

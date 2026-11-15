@@ -4,7 +4,7 @@
 // layouts are placeholders.
 #include <string.h>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "game/UnkTU170.h"
 #include "game/UnkTU172.h"

@@ -2,7 +2,7 @@
 // the entry at +0xd0 is handed back to the collision manager (created on first use; fn_7100d46c60), the
 // tile array at +0x48 (0xa8-byte tiles, destroyed by fn_7100c9dd20) and the arrays at +0x58 and +0x50
 // are deleted, and the counters are cleared. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU365.h"
 #include "types.h"
 

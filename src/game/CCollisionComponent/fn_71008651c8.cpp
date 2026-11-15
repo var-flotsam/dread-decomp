@@ -1,6 +1,6 @@
 // Collects the entries (0x30 bytes each, array at +0x48) whose key matches into `out`,
 // first notifying the owner through a virtual for each entry with its flag set.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkStruct_71008651c8_Entry {
@@ -12,13 +12,13 @@ struct UnkStruct_71008651c8_Entry {
 };
 static_assert(sizeof(UnkStruct_71008651c8_Entry) == 0x30, "entry size");
 
-using UnkOut_71008651c8 = base::UnkVector<UnkStruct_71008651c8_Entry*>;
+using UnkOut_71008651c8 = base::global::CRntVector<UnkStruct_71008651c8_Entry*>;
 UnkStruct_71008651c8_Entry** fn_7100865270(UnkOut_71008651c8* vec, u32 index);  // grows to fit
 
 struct UnkStruct_71008651c8 {
     void** vtable;
     u8 pad_0x8[0x40];
-    base::UnkVector<UnkStruct_71008651c8_Entry> field_0x48;
+    base::global::CRntVector<UnkStruct_71008651c8_Entry> field_0x48;
 };
 
 void fn_71008651c8(UnkStruct_71008651c8* self, void* const* key, UnkOut_71008651c8* out) {

@@ -6,7 +6,7 @@
 // count; the record is then copy-assigned (the value, the id, then the array out of line,
 // fn_71000ce19c) or move-assigned (fn_7100b5b31c). The shape of fn_7100c92080
 // (src/game/CCutSceneDef/CCutSceneDef_b42.cpp). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU83.h"
 #include "types.h"

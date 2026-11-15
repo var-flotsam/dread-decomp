@@ -4,7 +4,7 @@
 // the owner's array at +0x88, and a copy of that id is appended to `out`. False when there is no
 // such set. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/UnkTU63.h"
 #include "game/UnkTU67.h"
@@ -47,11 +47,11 @@ struct UnkFilePathList {
 
 // fn_710008c174's signature as src/game/CSubAreaManager.cpp declares it.
 using UnkPathIdMember = base::UnkStrIdMemberOf<g_unk_7101d47200>;
-UnkPathIdMember* fn_710008c174(base::UnkVector<UnkPathIdMember>*, u32);
+UnkPathIdMember* fn_710008c174(base::global::CRntVector<UnkPathIdMember>*, u32);
 
 struct UnkPathSetNode_A1b72 {
     base::global::UnkStringData* key;
-    base::UnkVector<u32> indices;  // 0x8
+    base::global::CRntVector<u32> indices;  // 0x8
     u8 pad_0x30[0x10];
     UnkPathSetNode_A1b72* chain;  // 0x40
 };
@@ -67,7 +67,7 @@ struct UnkPathSetOwner_A1b72 {
     u32 bucket_count;                // 0x18
     u32 bucket_capacity;             // 0x1c
     u8 pad_0x20[0x68];
-    base::UnkVector<UnkPathIdMember> ids;  // 0x88
+    base::global::CRntVector<UnkPathIdMember> ids;  // 0x88
 };
 
 // The signature src/base/file/CPackManagerDevice.cpp declares.

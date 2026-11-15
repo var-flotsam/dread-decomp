@@ -1,17 +1,17 @@
 // CGunComponent unit (tools/tu_map.py, the name from reflection). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 // Three pointer lists and a lock count (+0x78); copy of fn_710117eb1c's listener set.
 struct UnkGunListeners_b53 {
-    base::UnkVector<void*> active;   // 0x0
-    base::UnkVector<void*> pending;  // 0x28
-    base::UnkVector<void*> queued;   // 0x50
+    base::global::CRntVector<void*> active;   // 0x0
+    base::global::CRntVector<void*> pending;  // 0x28
+    base::global::CRntVector<void*> queued;   // 0x50
     s32 lock;                        // 0x78
 };
 
 // Removes the first `value` from the array (data, count), shifting the rest down.
-static inline __attribute__((always_inline)) void RemoveFirst_b53(base::UnkVector<void*>& v, void* value) {
+static inline __attribute__((always_inline)) void RemoveFirst_b53(base::global::CRntVector<void*>& v, void* value) {
     u32 count = v.count;
     if (count == 0)
         return;

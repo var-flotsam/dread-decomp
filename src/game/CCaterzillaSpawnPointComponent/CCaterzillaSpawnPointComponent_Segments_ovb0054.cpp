@@ -15,7 +15,7 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkRefHandle.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU2523.h"
@@ -159,7 +159,7 @@ struct UnkCaterzillaSpawnPoint_ovb0054 {
     u8 pad_0x8[0x3e0 - 0x8];
     base::UnkCallbackListShort<UnkCaterzillaCallbacks_ovb0054> callbacks;  // 0x3e0
     u8 pad_0x420[0x18];
-    base::UnkVector<UnkCaterzillaSegmentLink_ovb0054> links;  // 0x438
+    base::global::CRntVector<UnkCaterzillaSegmentLink_ovb0054> links;  // 0x438
 };
 static_assert(__builtin_offsetof(UnkCaterzillaSpawnPoint_ovb0054, links) == 0x438, "layout");
 

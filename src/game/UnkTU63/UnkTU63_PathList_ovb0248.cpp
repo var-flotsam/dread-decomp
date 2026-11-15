@@ -5,7 +5,7 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkRegistry.h"
 #include "base/UnkStrIdPathPair.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/file/CThreadSafeDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/UnkTU63.h"

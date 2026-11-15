@@ -1,10 +1,10 @@
 #pragma once
 
 // A growable array of owned objects (each destroyed through its vtable slot at +0x10) and the
-// element type of the arrays of such lists. The list has UnkVector's layout. Neither name is
+// element type of the arrays of such lists. The list has CRntVector's layout. Neither name is
 // known; both keep placeholders.
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 
 struct UnkOwned {
     virtual void vf_0x0();

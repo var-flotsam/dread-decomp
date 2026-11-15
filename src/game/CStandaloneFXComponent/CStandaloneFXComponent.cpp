@@ -1,8 +1,8 @@
-// Destructors of a component (vtable 0x7101a75008) holding an array (base::UnkVector's layout) of
+// Destructors of a component (vtable 0x7101a75008) holding an array (base::global::CRntVector's layout) of
 // 0x40-byte records released by fn_710081348c; the same shape as fn_7100b19f44.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CStandaloneFXComponent.h"
 #include "game/UnkComponent.h"
 #include "types.h"

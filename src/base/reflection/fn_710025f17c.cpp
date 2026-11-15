@@ -1,12 +1,12 @@
 // Two identical constructors of a class (vtable unk_7101a20c98) with an empty string id at 8, an
 // allocator handle at 0x10 and an array of 8-byte values at 0x20 that is resized to 11 zeroed
 // entries: fn_710025f17c, fn_7100262c34.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
 using base::UnkAllocator;
-using base::UnkVector;
+using base::global::CRntVector;
 using base::global::UnkStringData;
 
 // A string id constructed empty: the pool is created first when there is none yet.
@@ -28,8 +28,8 @@ struct UnkAllocatorHandle_710025f17c {
 };
 
 template <class T>
-struct UnkResizedVector_710025f17c : UnkVector<T> {
-    using UnkVector<T>::UnkVector;
+struct UnkResizedVector_710025f17c : CRntVector<T> {
+    using CRntVector<T>::CRntVector;
 
     // Resizes to n entries, zeroing the new ones.
     __attribute__((always_inline)) void Resize(u32 n) {

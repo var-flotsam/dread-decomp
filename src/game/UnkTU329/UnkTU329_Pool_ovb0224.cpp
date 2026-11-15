@@ -8,7 +8,7 @@
 #include <new>
 
 #include "base/UnkDefaultAllocator.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/timeline/CEvent.h"
 #include "game/UnkTU182.h"
 #include "types.h"
@@ -25,7 +25,7 @@ struct UnkPoolSlot_ovb0224 {
 };
 
 // The slot at the index, growing the array to hold it.
-__attribute__((noinline)) UnkPoolSlot_ovb0224* fn_7100224910(base::UnkVector<UnkPoolSlot_ovb0224>* self, u32 index) {
+__attribute__((noinline)) UnkPoolSlot_ovb0224* fn_7100224910(base::global::CRntVector<UnkPoolSlot_ovb0224>* self, u32 index) {
     return &self->GrowAt(index);
 }
 
@@ -35,7 +35,7 @@ struct UnkSlotPool_ovb0224 {
     u8 field_0x68[0x780];
     u8 field_0x7e8[0x9f8];
     u8 queue[0x48];                           // 0x11e0
-    base::UnkVector<UnkPoolSlot_ovb0224> slots;  // 0x1228
+    base::global::CRntVector<UnkPoolSlot_ovb0224> slots;  // 0x1228
     nn::os::MutexType mutex;                  // 0x1250
 };
 
@@ -101,7 +101,7 @@ void fn_71002245ec(UnkSlotPool_ovb0224* self) {
         fn_7100081378(&g_unk_7172699f08.allocator_b);
     }
     // Reached by offset, as the original does (a separate address calculation from the loop's).
-    reinterpret_cast<base::UnkVector<UnkPoolSlot_ovb0224>*>(reinterpret_cast<u8*>(self) + 0x1228)->Free();
+    reinterpret_cast<base::global::CRntVector<UnkPoolSlot_ovb0224>*>(reinterpret_cast<u8*>(self) + 0x1228)->Free();
     fn_7100222bb0(reinterpret_cast<UnkMovieUnit327_b50*>(self->field_0x68));
     fn_710021c808(reinterpret_cast<UnkMovieUnit322_b50*>(self));
 }
@@ -129,7 +129,7 @@ void fn_71002236ac(UnkPlayer* player) {
     fn_7100222970(self->field_0x68);
     __builtin_memset(reinterpret_cast<u8*>(self) + 0x9cc, 0, 0x14);
     void* thread = self->field_0x7e8;
-    new (&self->slots) base::UnkVector<UnkPoolSlot_ovb0224>(0xf);
+    new (&self->slots) base::global::CRntVector<UnkPoolSlot_ovb0224>(0xf);
     if (!(g_unk_7172699f08.in_use & 1)) {
         fn_7100081330(&g_unk_7172699f08.allocator_a, g_unk_716e599f08,
                       g_unk_716e599f08 + 0x3200000, "VideoNX_Big", 0);

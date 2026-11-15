@@ -1,7 +1,7 @@
 // Unit 2177 (no class name): paths in the world path pool. fn_7100c66b50 replaces one path inner
 // entries with another, fn_7100c77a9c tests a path (on a copy with a reset bounding box) against a
 // target, and fn_7100c778f8 keeps the nearer of two targets that pass. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU108.h"
 #include "game/UnkTU109.h"
 #include "game/UnkTU365.h"
@@ -64,7 +64,7 @@ struct UnkPool_0x48;
 struct UnkStruct_0x48;
 
 struct UnkPathCopy_b0255 {
-    u8 points[0x28];  // 0x0, a base::UnkVector<UnkVec3f>
+    u8 points[0x28];  // 0x0, a base::global::CRntVector<UnkVec3f>
     u32 field_0x28;
     u8 field_0x2c;
     bool field_0x2d;
@@ -126,7 +126,7 @@ __attribute__((noinline)) bool fn_7100c77a9c(UnkPathUser_b0255* self, UnkPathRef
         path.max_y = -3.4028235e38f;
         path.field_0x40 = slot->field_0x40;
         bool inside = fn_7100118ef0(&path, self->target);
-        auto* points = reinterpret_cast<base::UnkVector<UnkVec3f>*>(path.points);
+        auto* points = reinterpret_cast<base::global::CRntVector<UnkVec3f>*>(path.points);
         if (self->target) {
             bool missing = fn_710012431c(pool, ref->handle) == nullptr;
             if (!(inside | missing)) {

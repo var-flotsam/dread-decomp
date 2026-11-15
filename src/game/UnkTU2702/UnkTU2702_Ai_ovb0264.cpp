@@ -4,7 +4,7 @@
 
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/UnkMatrix44.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -451,8 +451,8 @@ struct UnkSelf_n {
 
 f32 fn_710110f4f4(UnkSelf_n* self, UnkOther_n* other, u32 a, u32 b, f32* pair, UnkSlot_n* slot, f32 value) {
     u8* raw = reinterpret_cast<u8*>(self);
-    base::UnkVector<void*>* v1 = reinterpret_cast<base::UnkVector<void*>*>(raw + 0x14520);
-    base::UnkVector<void*>* v2 = reinterpret_cast<base::UnkVector<void*>*>(raw + 0x14548);
+    base::global::CRntVector<void*>* v1 = reinterpret_cast<base::global::CRntVector<void*>*>(raw + 0x14520);
+    base::global::CRntVector<void*>* v2 = reinterpret_cast<base::global::CRntVector<void*>*>(raw + 0x14548);
     for (void **it = v1->data, **end = it + v1->count; it != end; ++it)
         fn_71002b27d4(*it, a, b, &value);
     for (void **it = v2->data, **end = it + v2->count; it != end; ++it)

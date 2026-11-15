@@ -2,7 +2,7 @@
 // it started and registers its id with the global manager (created on first use), then calls the
 // target's slot-0x178 callback unless that is disabled (0x1472c). Finally unregisters the id from the
 // manager and releases the counted reference at 0x146d0.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkManager_71726af468.h"
 #include "types.h"
 

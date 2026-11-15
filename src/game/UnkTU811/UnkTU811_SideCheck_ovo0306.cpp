@@ -2,7 +2,7 @@
 // edge on that side (fn_71002afbe4) points up steeply. Names and layouts are placeholders.
 #include "game/UnkTU2702.h"
 #include "types.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
 

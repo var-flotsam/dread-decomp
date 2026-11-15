@@ -9,7 +9,7 @@
 // layouts are placeholders.
 #include "base/UnkDeferredSet.h"
 #include "base/UnkMatrix44.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CCharClassEventScenarioComponent.h"
 #include "game/CComponent.h"
@@ -154,11 +154,11 @@ struct UnkEventScenario_ovb0097 {
     CStrId react2relax;  // 0xf0
     UnkScenarioCollider_ovb0097* collider;  // 0xf8
     void* shape;                            // 0x100
-    base::UnkVector<void*> field_0x108;
-    base::UnkVector<UnkEventScenarioEntry_ovb0097> entries;  // 0x130
-    base::UnkVector<u32> randoms;                            // 0x158
-    base::UnkVector<UnkScenarioTimer_ovb0097> timers;        // 0x180
-    base::UnkVector<void*> field_0x1a8;
+    base::global::CRntVector<void*> field_0x108;
+    base::global::CRntVector<UnkEventScenarioEntry_ovb0097> entries;  // 0x130
+    base::global::CRntVector<u32> randoms;                            // 0x158
+    base::global::CRntVector<UnkScenarioTimer_ovb0097> timers;        // 0x180
+    base::global::CRntVector<void*> field_0x1a8;
     f32 on_delay;   // 0x1d0
     f32 off_delay;  // 0x1d4
     f32 on_timer;   // 0x1d8
@@ -193,11 +193,11 @@ void fn_71007e0d60(UnkEventScenario_ovb0097* self) {
     new (&self->react2relax) CStrId("react2relax", true);
     self->collider = nullptr;
     self->shape = nullptr;
-    new (&self->field_0x108) base::UnkVector<void*>(0xf);
-    new (&self->entries) base::UnkVector<UnkEventScenarioEntry_ovb0097>(0xf);
-    new (&self->randoms) base::UnkVector<u32>(0xf);
-    new (&self->timers) base::UnkVector<UnkScenarioTimer_ovb0097>(0xf);
-    new (&self->field_0x1a8) base::UnkVector<void*>(0xf);
+    new (&self->field_0x108) base::global::CRntVector<void*>(0xf);
+    new (&self->entries) base::global::CRntVector<UnkEventScenarioEntry_ovb0097>(0xf);
+    new (&self->randoms) base::global::CRntVector<u32>(0xf);
+    new (&self->timers) base::global::CRntVector<UnkScenarioTimer_ovb0097>(0xf);
+    new (&self->field_0x1a8) base::global::CRntVector<void*>(0xf);
     self->on_delay = -1.0f;
     self->off_delay = -1.0f;
     self->on_timer = 0.0f;
@@ -308,8 +308,8 @@ void fn_71007e4328(UnkEventScenario_ovb0097* self, void* shape, const UnkMatrix4
     fn_7100d35a98(reinterpret_cast<UnkEntry*>(self->collider), true);
 }
 
-// The timer at `index`, growing the array to cover it first (UnkVector::GrowAt, out of line).
-__attribute__((flatten)) UnkScenarioTimer_ovb0097& fn_71007e45dc(base::UnkVector<UnkScenarioTimer_ovb0097>* self,
+// The timer at `index`, growing the array to cover it first (CRntVector::GrowAt, out of line).
+__attribute__((flatten)) UnkScenarioTimer_ovb0097& fn_71007e45dc(base::global::CRntVector<UnkScenarioTimer_ovb0097>* self,
                                                                  u32 index) {
     return self->GrowAt(index);
 }

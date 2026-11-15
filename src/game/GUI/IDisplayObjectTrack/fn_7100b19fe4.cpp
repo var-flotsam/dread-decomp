@@ -1,9 +1,9 @@
-// Destructors of a class (vtable 0x7101a9a628) with a string at 8 and an array (base::UnkVector's
+// Destructors of a class (vtable 0x7101a9a628) with a string at 8 and an array (base::global::CRntVector's
 // layout) of 0x38-byte records holding a string at 8: the records are destroyed and the array
 // freed, then the string.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "game/GUI/IDisplayObjectTrack.h"
 #include "types.h"

@@ -1,8 +1,8 @@
 // Unit 2525 (base::reflection): a destructor slot with the same code as fn_710025d890
-// (src/base/reflection/UnkUnit346/UnkUnit346_GameModelIndexDtor_b60.cpp): an array (base::UnkVector) of 16-byte
+// (src/base/reflection/UnkUnit346/UnkUnit346_GameModelIndexDtor_b60.cpp): an array (base::global::CRntVector) of 16-byte
 // entries, each destroyed through its operations table (the function at +0x40) when it has one, then freed.
 // fn_7100f7b200 registers it. Names are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkOpsEntry_A6_b63;
@@ -25,5 +25,5 @@ struct UnkOpsEntry_A6_b63 {
 };
 
 void fn_7100d8ce3c(void* self) {
-    static_cast<base::UnkVector<UnkOpsEntry_A6_b63>*>(self)->Free();
+    static_cast<base::global::CRntVector<UnkOpsEntry_A6_b63>*>(self)->Free();
 }

@@ -2,7 +2,7 @@
 // the music manager, the game manager, the render manager, the GUI, the debug statistics or a lookup by name.
 // Names and layouts are placeholders.
 #include "base/UnkNamedRegistry.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"

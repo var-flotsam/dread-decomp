@@ -3,7 +3,7 @@
 // Names and layouts are placeholders.
 #include <string.h>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkGameManager.h"
 #include "types.h"

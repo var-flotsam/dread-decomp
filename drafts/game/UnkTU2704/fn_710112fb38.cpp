@@ -3,7 +3,7 @@
 #include <new>
 
 #include "base/UnkHashStream.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkGameManager.h"

@@ -3,11 +3,11 @@
 // rectangle at +0x30, a stack of up to eight parents at +0x48 and a view at +0xa0. Here: the owner's
 // constructor (fn_71001ffb38), an entry's rectangle (fn_71002028c4), dropping the view (fn_710020002c),
 // and the entry array's resize (fn_71002056f0), growing access (fn_71002002c0) and copy constructor
-// (fn_7100204338). The arrays have base/UnkVector.h's layout. Names and layouts are placeholders.
+// (fn_7100204338). The arrays have base/global/CRntVector.h's layout. Names and layouts are placeholders.
 #include <new>
 
 #include "base/UnkNamedRegistry.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/reflection.h"
 #include "base/tunable/CTunable.h"
@@ -170,7 +170,7 @@ struct UnkRectParent_ovb0061 {
     virtual s32 vf_0x48();
 };
 
-// A pointer array with base/UnkVector.h's layout, made with its growth step and flags.
+// A pointer array with base/global/CRntVector.h's layout, made with its growth step and flags.
 struct UnkRectPtrArray_ovb0061 {
     void** data;
     u32 count;

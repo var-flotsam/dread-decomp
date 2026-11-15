@@ -8,7 +8,7 @@
 #include "UnkClone.h"
 #include "base/UnkCloneCalls.h"
 #include "base/UnkCollectionIter.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/CFXPool/CDefinition.h"
 #include "game/CPlasmaBeamGun.h"
@@ -40,7 +40,7 @@ UnkFXPathEntry_b0068* fn_71010504d4(UnkFXPathEntry_b0068* self, UnkFXPathEntry_b
 using UnkFxPathIdElem_b0068 = UnkCloneStrIdElem<UnkBeginIdArrayOwner, 0, 0x10, UnkCloneStrIdB<UnkBeginIdArrayOwner>>;
 
 // The iterator past the last entry, synced by the unit's out-of-line fn_710104e720.
-void fn_71010501b0(const base::UnkVector<UnkFxPathIdElem_b0068>* v,
+void fn_71010501b0(const base::global::CRntVector<UnkFxPathIdElem_b0068>* v,
                    base::UnkCollectionIter<UnkFxPathIdElem_b0068>* out) {
     base::UnkCollectionIter<UnkFxPathIdElem_b0068> it(v->count, v->data + v->count);
     if (out != &it) {
@@ -72,7 +72,7 @@ UnkFXPathIterValue_b0068* fn_710104f1c0(UnkFXPathIterValue_b0068* self, UnkFXPat
 
 // The entry at `index`; when growing is allowed (field_0x14), an index past the end grows the array
 // to the step's next multiple and then to index + 1 entries, value-initialising the new ones.
-UnkFXPathEntry_b0068* fn_710104ff64(base::UnkVector<UnkFXPathEntry_b0068>* self, u32 index) {
+UnkFXPathEntry_b0068* fn_710104ff64(base::global::CRntVector<UnkFXPathEntry_b0068>* self, u32 index) {
     if (self->field_0x14 && self->count <= index) {
         u32 cap = self->capacity;
         if (cap <= index && self->step != 0)
@@ -96,7 +96,7 @@ struct UnkFxReleasable_b0068 {
 
 struct UnkFxObjectPool_b0068 {
     u8 pad_0x0[0x10];
-    base::UnkVector<UnkFxPooledObject*> objects;  // 0x10
+    base::global::CRntVector<UnkFxPooledObject*> objects;  // 0x10
     u32 used;                                     // 0x38
 };
 

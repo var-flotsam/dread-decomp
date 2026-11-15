@@ -2,7 +2,7 @@
 // are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU109.h"
 #include "game/logic/collision/CPolygonCollectionShape.h"
 #include "game/logic/collision/CShape.h"
@@ -16,7 +16,7 @@ struct UnkPolygonShape_ovb0044 {
     u8 unk_0x8[0xa0];
     u8 field_0xa8[0x40];
     bool field_0xe8;
-    base::UnkVector<UnkPolygonElem_ovb0044*> field_0xf0;
+    base::global::CRntVector<UnkPolygonElem_ovb0044*> field_0xf0;
 };
 
 // The copy constructor: the base shape copied, the vtable, the polygon list at +0xa8 copied, the
@@ -27,7 +27,7 @@ void fn_7100d62b68(UnkPolygonShape_ovb0044* self, const UnkPolygonShape_ovb0044*
     self->vtable = g_unk_7101aa8b80 + 0x10;
     fn_7100123f1c(self->field_0xa8, other->field_0xa8);
     self->field_0xe8 = other->field_0xe8;
-    new (&self->field_0xf0) base::UnkVector<UnkPolygonElem_ovb0044*>(7);
+    new (&self->field_0xf0) base::global::CRntVector<UnkPolygonElem_ovb0044*>(7);
 }
 
 // A polygon: its point array (data, count, capacity, ..., allocator at +0x20) and the rest.

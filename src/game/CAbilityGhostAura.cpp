@@ -1,7 +1,7 @@
 // Unit 430 (0x7100306910-0x71003162a8), whose reflected class is CAbilityGhostAura (the Flash
 // Shift ability). Holds fn_710030c5fc, the lookup of the grapple beam gun among an owner's guns by
 // its id. Names and layouts are placeholders inferred from the code.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -19,8 +19,8 @@ struct UnkAuraGun : UnkReflObject {
 // The guns, in two lists of groups.
 struct UnkAuraGunOwner {
     u8 unk_0x0[0xc8];
-    base::UnkVector<base::UnkVector<UnkAuraGun*>> guns_0xc8;
-    base::UnkVector<base::UnkVector<UnkAuraGun*>> guns_0xf0;
+    base::global::CRntVector<base::global::CRntVector<UnkAuraGun*>> guns_0xc8;
+    base::global::CRntVector<base::global::CRntVector<UnkAuraGun*>> guns_0xf0;
 };
 
 struct CGrappleBeamGun;
@@ -32,7 +32,7 @@ static inline CGrappleBeamGun* AsGrappleBeamGun(UnkAuraGun* gun) {
 }
 
 // The last gun of the group with the id, as a grapple beam gun (null if it is another gun).
-static inline CGrappleBeamGun* FindIn(const base::UnkVector<UnkAuraGun*>& group, const CStrId& id) {
+static inline CGrappleBeamGun* FindIn(const base::global::CRntVector<UnkAuraGun*>& group, const CStrId& id) {
     CGrappleBeamGun* found = nullptr;
     for (UnkAuraGun* const* it = group.data; it != group.data + group.count; ++it) {
         UnkAuraGun* gun = *it;
@@ -43,7 +43,7 @@ static inline CGrappleBeamGun* FindIn(const base::UnkVector<UnkAuraGun*>& group,
 }
 
 // The last gun of all groups with the id, as a grapple beam gun.
-static inline CGrappleBeamGun* FindInAll(const base::UnkVector<base::UnkVector<UnkAuraGun*>>& groups,
+static inline CGrappleBeamGun* FindInAll(const base::global::CRntVector<base::global::CRntVector<UnkAuraGun*>>& groups,
                                          const CStrId& id) {
     CGrappleBeamGun* found = nullptr;
     for (auto* group = groups.data; group != groups.data + groups.count; ++group) {

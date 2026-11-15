@@ -2,7 +2,7 @@
 // are built by fn_710014d930; entries cut off release their owned block (fn_7100083c00) and their string id.
 // Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU230.h"

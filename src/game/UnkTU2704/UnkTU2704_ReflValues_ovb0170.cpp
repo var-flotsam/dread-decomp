@@ -9,7 +9,7 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkCollectionIter.h"
 #include "base/UnkHashStream.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -189,13 +189,13 @@ void fn_7101130270(UnkValueArray_b0170* self, UnkValueIter_b0170* out) {
     *out = UnkValueIter_b0170(self->count, self->data + self->count);
 }
 
-void fn_71011266cc(base::UnkVector<UnkReflElem_b0170>* self) {
+void fn_71011266cc(base::global::CRntVector<UnkReflElem_b0170>* self) {
     self->Free();
 }
 
-base::UnkVector<UnkReflElem_b0170>* fn_710112fd34(base::UnkVector<UnkReflElem_b0170>* self,
-                                                   base::UnkVector<UnkReflElem_b0170>* other) {
-    *self = static_cast<base::UnkVector<UnkReflElem_b0170>&&>(*other);
+base::global::CRntVector<UnkReflElem_b0170>* fn_710112fd34(base::global::CRntVector<UnkReflElem_b0170>* self,
+                                                   base::global::CRntVector<UnkReflElem_b0170>* other) {
+    *self = static_cast<base::global::CRntVector<UnkReflElem_b0170>&&>(*other);
     return self;
 }
 
@@ -415,7 +415,7 @@ struct UnkSpawnCallbackIter_248c {
     }
 };
 
-void fn_710113248c(const base::UnkVector<UnkSpawnCallbackList_248c>* v, UnkSpawnCallbackIter_248c* out) {
+void fn_710113248c(const base::global::CRntVector<UnkSpawnCallbackList_248c>* v, UnkSpawnCallbackIter_248c* out) {
     *out = UnkSpawnCallbackIter_248c{v->count, v->data + v->count};
 }
 

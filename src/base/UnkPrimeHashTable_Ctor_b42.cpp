@@ -1,12 +1,12 @@
 // The constructor of a hash table whose bucket count is rounded up to a prime, one copy per unit
 // (the first in malloc's unit, the others in base::reflection's): the allocator (the given one or
-// the default) and the flags, a cleared word, a base::UnkVector of bucket pointers (step 10, the
+// the default) and the flags, a cleared word, a base::global::CRntVector of bucket pointers (step 10, the
 // given flags, the allocator asked for a second time when none was given) and two cleared
 // pointers; the bucket array is then resized to the requested count, or the next prime above it,
 // with the new buckets cleared. Names and layouts are placeholders.
 #include <string.h>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/timeline/CEvent.h"
 #include "types.h"
 

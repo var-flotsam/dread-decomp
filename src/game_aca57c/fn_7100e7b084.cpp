@@ -4,7 +4,7 @@
 #include <new>
 
 #include "UnkBufferString.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"

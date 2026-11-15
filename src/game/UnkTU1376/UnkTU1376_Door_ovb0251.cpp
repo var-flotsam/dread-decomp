@@ -11,7 +11,7 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkRefHandle.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/color/CColor4F.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
@@ -178,9 +178,9 @@ void fn_71008cde78(UnkDoorFlag_b0251* self, bool on) {
 }
 
 struct UnkDoorVecs_b0251 {
-    base::UnkVector<u8> a;
-    base::UnkVector<u8> b;
-    base::UnkVector<u8> c;
+    base::global::CRntVector<u8> a;
+    base::global::CRntVector<u8> b;
+    base::global::CRntVector<u8> c;
     bool flag;
     UnkDoorVecs_b0251() : a(15), b(15), c(15), flag(false) {}
 };

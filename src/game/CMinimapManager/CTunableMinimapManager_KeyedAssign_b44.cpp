@@ -1,7 +1,7 @@
 // CMinimapManager::CTunableMinimapManager's unit (tools/tu_map.py): two functions that assign a value to
 // the entry of a keyed array (0x118-byte values, u32 keys) whose key matches, if any (each with its own value type). Shaped like fn_7100e545b4 in
 // src/clones/ with integer keys. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 void* fn_7100eac64c(void* dst, const void* src);

@@ -7,7 +7,7 @@
 
 #include "base/UnkDestructors.h"
 #include "base/UnkStrIdPathPair.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "types.h"
 
@@ -50,7 +50,7 @@ struct UnkAssetKeyedMap {
     }
 };
 
-// An array of file-path ids (base::UnkVector's layout), freed with its elements.
+// An array of file-path ids (base::global::CRntVector's layout), freed with its elements.
 struct UnkAssetPathIdVector {
     UnkAssetPathId* data;
     u32 count;

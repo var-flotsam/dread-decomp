@@ -21,7 +21,7 @@ struct UnkValuePairRef {
     Y& GetY() { return state == 2 ? *refs.y : values.y; }
 };
 
-// base::UnkVector's layout.
+// base::global::CRntVector's layout.
 struct UnkAssignedArray {
     u64 field_0x0[5];
 };

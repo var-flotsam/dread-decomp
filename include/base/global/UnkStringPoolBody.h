@@ -8,7 +8,7 @@
 // are placeholders inferred from the code.
 
 #include "base/UnkBlockFreeList.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -35,11 +35,11 @@ struct UnkPoolNode {
 };
 static_assert(sizeof(UnkPoolNode) == 0x58, "UnkPoolNode layout");
 
-// The set: the bucket array (an UnkVector; `count` buckets in use of `capacity`, which is also the
+// The set: the bucket array (an CRntVector; `count` buckets in use of `capacity`, which is also the
 // hash modulus), the first non-empty bucket and its first node, the node allocator and the number
 // of nodes. `version` counts changes (UnkPoolBucketRef in base/global/UnkStringPool.h).
 struct UnkPoolSet {
-    UnkVector<char*> buckets;
+    CRntVector<char*> buckets;
     u32 first_bucket;  // +0x28: -1 when empty
     UnkPoolNode* first_node;
     UnkAllocator* node_allocator;

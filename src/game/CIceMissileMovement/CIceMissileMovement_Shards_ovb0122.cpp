@@ -10,7 +10,7 @@
 #include "game/CCharClassLavaPoolComponent.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkGameManager.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2550.h"
 #include "game/UnkTU2553.h"

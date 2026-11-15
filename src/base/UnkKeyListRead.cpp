@@ -5,13 +5,13 @@
 // placeholders.
 // Holds fn_71002b5338.
 #include "base/UnkIdKindKey.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntFile.h"
 #include "types.h"
 
 struct UnkKeyList {
     u8 pad_0x0[0x8];
-    base::UnkVector<UnkIdKindKey> keys;
+    base::global::CRntVector<UnkIdKindKey> keys;
     u16 field_0x30;
     u8 field_0x32;
     u8 pad_0x33;

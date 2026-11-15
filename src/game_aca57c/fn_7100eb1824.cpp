@@ -2,7 +2,7 @@
 // ids) sharing a count and capacity: its clear (destroys the ids, then destroys and frees each
 // inner array), shrink-to-fit and reserve. Both reallocations move the inner arrays over; the
 // shrink copies the ids and destroys the old ones, the reserve moves them.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -39,7 +39,7 @@ struct UnkIdValues {
     u32 field_0xc;
 };
 
-// base::UnkVector<UnkIdValues>'s layout, with a move constructor (used when the container
+// base::global::CRntVector<UnkIdValues>'s layout, with a move constructor (used when the container
 // reallocates).
 struct UnkMovedIdValuesVector {
     UnkIdValues* data;
@@ -60,7 +60,7 @@ struct UnkMovedIdValuesVector {
 };
 
 struct UnkIdValuesArrays {
-    base::UnkVector<UnkIdValues>* records;
+    base::global::CRntVector<UnkIdValues>* records;
     UnkReleasedStrId* ids;
     u32 count;
     u32 capacity;
@@ -109,7 +109,7 @@ void fn_7100eb166c(UnkIdValuesArrays* self) {
         }
         self->allocator->vf_0x48(self->ids);
     }
-    self->records = reinterpret_cast<base::UnkVector<UnkIdValues>*>(records);
+    self->records = reinterpret_cast<base::global::CRntVector<UnkIdValues>*>(records);
     self->ids = ids;
     self->capacity = self->count;
 }
@@ -130,7 +130,7 @@ void fn_7100b48944(UnkIdValuesArrays* self, u32 n) {
         }
         self->allocator->vf_0x48(self->ids);
     }
-    self->records = reinterpret_cast<base::UnkVector<UnkIdValues>*>(records);
+    self->records = reinterpret_cast<base::global::CRntVector<UnkIdValues>*>(records);
     self->ids = ids;
     self->capacity = n;
 }

@@ -5,7 +5,7 @@
 // is raised and never lowered, as in the original) becomes a file path (fn_710001a270), and the channel is
 // stopped (fn_7100f00f4c), given the path (fn_7100f00af4) and started (fn_7100f01838). Names and layouts
 // are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU0.h"

@@ -3,7 +3,7 @@
 // by calling the vtable's slot at +0x18 on itself.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBigkranXAIComponent.h"
@@ -21,7 +21,7 @@ struct UnkComponent {
     f32 field_0x14b4c;
     f32 field_0x14b50;
     u8 pad_0x14b54[4];
-    base::UnkVector<void*> field_0x14b58;
+    base::global::CRntVector<void*> field_0x14b58;
     CStrId field_0x14b80;
     f32 field_0x14b88;
     f32 field_0x14b8c;
@@ -43,7 +43,7 @@ void fn_71003f543c(UnkComponent* self) {
     self->field_0x14b48 = 0;
     self->field_0x14b4c = -1.0f;
     self->field_0x14b50 = 0.0f;
-    new (&self->field_0x14b58) base::UnkVector<void*>(0xf);
+    new (&self->field_0x14b58) base::global::CRntVector<void*>(0xf);
     new (&self->field_0x14b80) CStrId(g_unk_7101d470e0);
     self->field_0x14b88 = -1.0f;
     self->field_0x14b8c = -1.0f;

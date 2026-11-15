@@ -4,7 +4,7 @@
 // state) of the growable array that fn_71004dccac appends to; its destructor goes through the
 // vtable (slot 1), so the array's element moves call it virtually.
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 extern void* g_unk_7101cac938[];
@@ -62,4 +62,4 @@ struct UnkItem {
     ~UnkItem() { reinterpret_cast<void (*)(UnkItem*)>(vtable[1])(this); }
 };
 
-void fn_71004dccac(base::UnkVector<UnkItem>* self, const UnkItem* value);  // appends a copy
+void fn_71004dccac(base::global::CRntVector<UnkItem>* self, const UnkItem* value);  // appends a copy

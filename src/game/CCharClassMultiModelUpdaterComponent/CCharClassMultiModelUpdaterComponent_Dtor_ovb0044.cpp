@@ -2,7 +2,7 @@
 // the multi-model updater (vtable g_unk_7101a6f6b8): the body of fn_71007937f0
 // (src/game/CMultiModelUpdaterComponent/CMultiModelUpdaterComponent_b34.cpp), then operator delete
 // (fn_7100083c00). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CCharClassModelUpdaterComponent.h"
 #include "game/CCharClassMultiModelUpdaterComponent.h"

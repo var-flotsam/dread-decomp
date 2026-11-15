@@ -2,7 +2,7 @@
 // of 0x18-byte entries at +0x208, destroys the member at +0x90 (vtable g_unk_7101a6bff8, with a
 // 0x100-byte object at its +0x40) and runs the base destructor fn_7100969058. Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkObject_0x100.h"
 #include "game/UnkTU1130.h"
 #include "game/UnkTU1440.h"
@@ -26,7 +26,7 @@ struct UnkUnit1444 {
     u8 pad_0x8[0x88];
     UnkMember_1444 member;  // 0x90
     u8 pad_0x190[0x38];
-    base::UnkVector<UnkEntry_1444> entries;  // 0x208
+    base::global::CRntVector<UnkEntry_1444> entries;  // 0x208
 };
 static_assert(__builtin_offsetof(UnkUnit1444, entries) == 0x208, "UnkUnit1444 layout");
 

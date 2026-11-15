@@ -2,7 +2,7 @@
 // eight 8-byte items) and their 4-byte keys. Names and layouts are placeholders.
 #include <cstring>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 
 struct UnkCollisionEntry {
     u32 count;

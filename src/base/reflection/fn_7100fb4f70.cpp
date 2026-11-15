@@ -3,7 +3,7 @@
 // releases the id (the deleting one then frees the object).
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -55,7 +55,7 @@ extern void* g_unk_7101cab468[];
 struct UnkOwner_7100fb4f70 {
     void** vtable;
     UnkOwnerId id;
-    base::UnkVector<UnkOwnedPtr> objects;
+    base::global::CRntVector<UnkOwnedPtr> objects;
 
     ~UnkOwner_7100fb4f70() {
         vtable = &g_unk_7101cab468[2];

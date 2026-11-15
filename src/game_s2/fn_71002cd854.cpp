@@ -2,14 +2,14 @@
 // (an array member, a string id and three words) and destroying the old one.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkList {
-    base::UnkVector<void*> list;
+    base::global::CRntVector<void*> list;
     UnkList(const UnkList& other);  // fn_71002cbc20
     ~UnkList() { list.Free(); }
 };
@@ -41,8 +41,8 @@ struct UnkElement {
     }
 };
 
-// The same growth as UnkVector::Reserve, written out: the original inlines all of it.
-void fn_71002cd854(base::UnkVector<UnkElement>* self, u32 capacity) {
+// The same growth as CRntVector::Reserve, written out: the original inlines all of it.
+void fn_71002cd854(base::global::CRntVector<UnkElement>* self, u32 capacity) {
     if (self->capacity < capacity) {
         UnkElement* fresh = static_cast<UnkElement*>(
             self->allocator->vf_0x40((u64)capacity * sizeof(UnkElement), 8, self->flags));

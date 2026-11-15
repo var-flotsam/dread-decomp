@@ -3,7 +3,7 @@
 // player (not with the varia or gravity suit), the environment switch when an actor enters or
 // leaves, and the destructor. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection.h"
 #include "base/reflection/CClass.h"
@@ -253,7 +253,7 @@ struct UnkHeatPart_ovb0083 {
 struct UnkHeatRoomMembers_ovb0083 {
     char* vtable;
     u8 pad_0x8[0xc20];
-    base::UnkVector<UnkHeatPart_ovb0083> parts;  // 0xc28
+    base::global::CRntVector<UnkHeatPart_ovb0083> parts;  // 0xc28
     base::UnkStrIdMemberOf<g_unk_7101d47200> sound_path;  // 0xc50
     base::UnkStrIdMember environment;  // 0xc58
     base::UnkStrIdMember previous_environment;  // 0xc60

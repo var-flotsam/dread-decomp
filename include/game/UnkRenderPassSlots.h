@@ -6,14 +6,14 @@
 // construct the same type out of line (fn_7100b1df48, fn_710119d484). Names and layouts are
 // placeholders.
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkRenderPassSlots {
     base::UnkAllocator* allocator;
     u32 field_0x8;
     u32 field_0xc;
-    base::UnkVector<void*> slots;
+    base::global::CRntVector<void*> slots;
     u64 field_0x38;
     u64 field_0x40;
 
@@ -22,7 +22,7 @@ struct UnkRenderPassSlots {
 static_assert(sizeof(UnkRenderPassSlots) == 0x48, "UnkRenderPassSlots layout");
 
 // Sets the array to `n` elements: new ones are null; the array only grows to exactly `n`.
-__attribute__((always_inline)) inline void UnkResizeSlots(base::UnkVector<void*>& v, u32 n) {
+__attribute__((always_inline)) inline void UnkResizeSlots(base::global::CRntVector<void*>& v, u32 n) {
     u32 count = v.count;
     if (count < n) {
         v.Reserve(n);

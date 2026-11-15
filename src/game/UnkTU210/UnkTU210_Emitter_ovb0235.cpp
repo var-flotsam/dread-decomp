@@ -2,7 +2,7 @@
 // system's emitters. fn_7100170184 ages an emitter's particles (the ones whose age has reached their
 // lifetime are swapped out of the live range) and hands its two buffers back to the free list;
 // fn_710016e910 creates the 0x400 resource slots and their handles. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU182.h"
 #include "types.h"
 

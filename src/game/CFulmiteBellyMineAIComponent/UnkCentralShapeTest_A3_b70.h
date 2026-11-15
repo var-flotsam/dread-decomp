@@ -7,7 +7,7 @@
 // src/game/CLogicShapeComponent/CLogicShapeComponent_Test_A5_b68.cpp). Used by
 // CFulmiteBellyMineAIComponent_InShape_A3_b70.cpp; fn_710057d6f0 and fn_71005d09a8 (CInfesterBallAIComponent)
 // are the same test of a moved point. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkZeroVector3.h"
 #include "base/reflection/UnkReflStatics.h"

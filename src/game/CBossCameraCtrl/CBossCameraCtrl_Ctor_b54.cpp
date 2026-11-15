@@ -1,10 +1,10 @@
 // CBossCameraCtrl's unit (tools/tu_map.py): the twin of fn_7100750b80
 // (src/game/CBossCameraCtrl_Ctor_b53.cpp) without the post-construction virtual call. The vtable
-// is stored by the base's constructor and the list is a real base::UnkVector (allocation flags
+// is stored by the base's constructor and the list is a real base::global::CRntVector (allocation flags
 // 0xf), which gives the address-based bool store. Names are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CBossCameraCtrl.h"
 #include "game/CCameraBoundaryCtrl.h"
 #include "types.h"
@@ -27,7 +27,7 @@ struct UnkBossCameraBase_b54 {
 };
 
 struct UnkBossCameraCtrl_b54 : UnkBossCameraBase_b54 {
-    base::UnkVector<u64> list;
+    base::global::CRntVector<u64> list;
     u64 field_0x2c8[15] = {};
     u8 unk_0x340[4];
     f32 field_0x344 = 1.0f;

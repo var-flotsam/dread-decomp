@@ -1,9 +1,9 @@
 // base::animation::CAnimationResource's unit (unit 11 of tools/tu_map.py): the destructor of the
 // resource type registry (base/UnkResType.h): a string id, an array of 0x38-byte type descriptions
-// (each destroyed by fn_7100004a44) and two arrays of string ids (base::UnkVector's layout),
+// (each destroyed by fn_7100004a44) and two arrays of string ids (base::global::CRntVector's layout),
 // destroyed in reverse order. Names and layouts are placeholders.
 #include "base/UnkResType.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 

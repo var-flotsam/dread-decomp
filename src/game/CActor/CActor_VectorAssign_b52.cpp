@@ -1,9 +1,9 @@
 // Copy of fn_7101131d60 (src/game/CSpawnPointComponent/CSpawnPointComponent_b42.cpp) in the CActor
-// unit: the copy assignment of a base::UnkVector of 0x40-byte entries beside fn_7100246a94
+// unit: the copy assignment of a base::global::CRntVector of 0x40-byte entries beside fn_7100246a94
 // (CActor_VectorCopy_b41.cpp): destroy the entries, reserve the other's capacity (entries moved with
 // fn_71002458a4), then append a copy of each entry (fn_7100246ba8). Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
@@ -15,8 +15,8 @@ struct UnkEntry_b41a1 {
     u8 pad_0x8[0x38];
 };
 
-base::UnkVector<UnkEntry_b41a1>* fn_7100246d70(base::UnkVector<UnkEntry_b41a1>* self,
-                                            const base::UnkVector<UnkEntry_b41a1>* other) {
+base::global::CRntVector<UnkEntry_b41a1>* fn_7100246d70(base::global::CRntVector<UnkEntry_b41a1>* self,
+                                            const base::global::CRntVector<UnkEntry_b41a1>* other) {
     if (self == other)
         return self;
     for (u64 i = 0; i < self->count; ++i)

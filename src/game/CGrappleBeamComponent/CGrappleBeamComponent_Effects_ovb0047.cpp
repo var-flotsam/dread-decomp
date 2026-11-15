@@ -3,7 +3,7 @@
 // target, switches its three effects (+0x720 through the owner's world, +0x730 and +0x728) to the flag.
 // fn_7100817ffc loads the lightning model once and gives it a cleared array of slots. fn_710081ba20 spawns the
 // beam's hit effect from the model manager. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/CAutclastChargeAttack.h"

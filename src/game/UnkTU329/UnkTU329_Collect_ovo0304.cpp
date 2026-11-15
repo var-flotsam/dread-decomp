@@ -2,7 +2,7 @@
 // (vf_0x18) derives from the stream class (fn_7100225620) to the collector's list at +0x68.
 // Names are placeholders.
 #include "base/UnkDefaultAllocator.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkTU327.h"

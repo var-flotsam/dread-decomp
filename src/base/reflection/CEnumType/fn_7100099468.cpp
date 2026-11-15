@@ -11,7 +11,7 @@
 // id is released (fn_71000d0f1c, CFilePathStrId's pool; fn_71000ce8b8, the default one).
 #include "UnkClone.h"
 #include "base/UnkCloneCalls.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/CType.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "game/UnkTU83.h"
@@ -24,7 +24,7 @@ using UnkIdRecord = UnkCloneStrIdElem<UnkIdRecordOwner_0xf0, 0, 0x10, UnkCloneSt
 
 static inline void Destroy(char* self) {
     *reinterpret_cast<char**>(self) = unk_7101a1b3a0 + 0x10;
-    reinterpret_cast<base::UnkVector<UnkIdRecord>*>(self + 0xf0)->Free();
+    reinterpret_cast<base::global::CRntVector<UnkIdRecord>*>(self + 0xf0)->Free();
     fn_710009cc04(self);
 }
 
@@ -41,36 +41,36 @@ using UnkWordIdRecord = UnkCloneStrIdElem<UnkIdRecordOwner_0xf0, 8, 0x10, UnkClo
 
 void fn_710016a714(char* self) {
     *reinterpret_cast<char**>(self) = unk_7101a1d8b8 + 0x10;
-    reinterpret_cast<base::UnkVector<UnkWordIdRecord>*>(self + 0x10)->Free();
+    reinterpret_cast<base::global::CRntVector<UnkWordIdRecord>*>(self + 0x10)->Free();
 }
 
 void fn_710016a7f8(char* self) {
     *reinterpret_cast<char**>(self) = unk_7101a1d8b8 + 0x10;
-    reinterpret_cast<base::UnkVector<UnkWordIdRecord>*>(self + 0x10)->Free();
+    reinterpret_cast<base::global::CRntVector<UnkWordIdRecord>*>(self + 0x10)->Free();
     __builtin_operator_delete(self);
 }
 
 using UnkFilePathIdElem = UnkCloneStrIdElem<UnkIdRecordOwner_0xf0, 0, 8, UnkCloneStrIdB<UnkIdRecordOwner_0xf0>>;
 using UnkIdElem = UnkCloneStrIdElem<UnkIdRecordOwner_0xf0, 0, 8, UnkCloneStrId<UnkIdRecordOwner_0xf0>>;
 
-void fn_71001b15b4(base::UnkVector<UnkFilePathIdElem>* self) { self->Free(); }
+void fn_71001b15b4(base::global::CRntVector<UnkFilePathIdElem>* self) { self->Free(); }
 
-void fn_71000d076c(base::UnkVector<UnkFilePathIdElem>* self) { self->Free(); }
+void fn_71000d076c(base::global::CRntVector<UnkFilePathIdElem>* self) { self->Free(); }
 
-void fn_71000cdfb0(base::UnkVector<UnkIdElem>* self) { self->Free(); }
+void fn_71000cdfb0(base::global::CRntVector<UnkIdElem>* self) { self->Free(); }
 
 // The same in the CCollisionComponent unit.
-void fn_71008600a8(base::UnkVector<UnkIdElem>* self) { self->Free(); }
+void fn_71008600a8(base::global::CRntVector<UnkIdElem>* self) { self->Free(); }
 
 // And of such an array held at 8 in another object (fn_7100e503ac).
 struct UnkIdArrayAt8 {
     u64 field_0x0;
-    base::UnkVector<UnkIdElem> ids;
+    base::global::CRntVector<UnkIdElem> ids;
 };
 void fn_7100e503ac(UnkIdArrayAt8* self) { self->ids.Free(); }
 
 template <class Elem, void (*Sync)(void*)>
-__attribute__((always_inline)) static inline void Begin(const base::UnkVector<Elem>* v,
+__attribute__((always_inline)) static inline void Begin(const base::global::CRntVector<Elem>* v,
                                                         base::UnkCollectionIter<Elem>* out) {
     base::UnkCollectionIter<Elem> it(0, v->data);
     if (out != &it) {
@@ -80,10 +80,10 @@ __attribute__((always_inline)) static inline void Begin(const base::UnkVector<El
     }
 }
 
-void fn_71000d0f1c(const base::UnkVector<UnkFilePathIdElem>* v, base::UnkCollectionIter<UnkFilePathIdElem>* out) {
+void fn_71000d0f1c(const base::global::CRntVector<UnkFilePathIdElem>* v, base::UnkCollectionIter<UnkFilePathIdElem>* out) {
     Begin<UnkFilePathIdElem, fn_71000be6c0>(v, out);
 }
 
-void fn_71000ce8b8(const base::UnkVector<UnkIdElem>* v, base::UnkCollectionIter<UnkIdElem>* out) {
+void fn_71000ce8b8(const base::global::CRntVector<UnkIdElem>* v, base::UnkCollectionIter<UnkIdElem>* out) {
     Begin<UnkIdElem, fn_71000bce50>(v, out);
 }

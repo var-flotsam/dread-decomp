@@ -2,7 +2,7 @@
 // argument is set and the event's id (+0x10) is not empty, the central unit of the lazily created
 // registry g_unk_71726bee10 (fn_7100ddb768) starts the forced chase pulse with that id
 // (fn_7100775610, on). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CAutsharpAIComponent.h"
 #include "game/UnkTU1176.h"

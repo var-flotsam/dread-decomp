@@ -1,5 +1,5 @@
 // Copy of fn_7100f68c7c (src/game/CEnvironmentData/CEnvironmentData_IdValueEraseAt_A6_b74.cpp): reflected
-// collection erase slot (0x128) of a base::UnkVector of polymorphic {vtable, string id, 8-byte value} elements
+// collection erase slot (0x128) of a base::global::CRntVector of polymorphic {vtable, string id, 8-byte value} elements
 // (base::UnkIdValueElem, include/base/UnkCloneHelpers.h) in CEnvironmentData::SFogTransition's unit: destroy the
 // entry an index iterator names through its vtable, then copy each later entry down one and destroy the
 // copied-from one. Names and layouts are placeholders.
@@ -7,7 +7,7 @@
 
 #include "UnkClone.h"
 #include "base/UnkCloneHelpers.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 extern char g_unk_7101cab298[];
@@ -25,7 +25,7 @@ using UnkIdValueEraseElem_A6_b76 =
     base::UnkIdValueElem<UnkIdValueEraseTag_A6_b76<Vtable, Size>, UnkCloneElem<UnkIdValueEraseTag_A6_b76<Vtable, Size>, Size>>;
 
 template <char* Vtable, u64 Size>
-using UnkIdValueEraseVec_A6_b76 = base::UnkVector<UnkIdValueEraseElem_A6_b76<Vtable, Size>>;
+using UnkIdValueEraseVec_A6_b76 = base::global::CRntVector<UnkIdValueEraseElem_A6_b76<Vtable, Size>>;
 
 template <char* Vtable, u64 Size>
 static inline __attribute__((always_inline)) void IdValueEraseAt_A6_b76(UnkIdValueEraseVec_A6_b76<Vtable, Size>* self,

@@ -9,10 +9,10 @@
 
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
-// An array in base::UnkVector's layout with its Reserve and MoveFrom inlined: MoveFrom destroys
+// An array in base::global::CRntVector's layout with its Reserve and MoveFrom inlined: MoveFrom destroys
 // the elements (the storage is kept), then takes the other's array and leaves it empty.
 template <class T>
 struct UnkMovedArray {

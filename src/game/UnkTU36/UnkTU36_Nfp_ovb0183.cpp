@@ -6,7 +6,7 @@
 #include <nn/os.h>
 
 #include "../../base/UnkUnit36/UnkUnit36_Nfp.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU36.h"
 #include "game/nn/time.h"

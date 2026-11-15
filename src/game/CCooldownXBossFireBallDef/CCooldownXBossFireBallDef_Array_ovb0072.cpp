@@ -1,12 +1,12 @@
 // CCooldownXBossFireBallDef's unit (tools/tu_map.py): the reflected-array helpers of its array of
-// 0x18-byte polymorphic elements (base/UnkVector.h), as CCooldownXBossLavaDropsMovementDef's
+// 0x18-byte polymorphic elements (base/global/CRntVector.h), as CCooldownXBossLavaDropsMovementDef's
 // (../CCooldownXBossLavaDropsMovementDef/CCooldownXBossLavaDropsMovementDef_Array_ovb0072.cpp): the
 // begin iterator, erase, grow-to-index and copy constructor. The element is a vtable (unk_7101a3e2b0),
 // a flag, a word and a flag; the default constructor sets them to true, 0 and false. Names and layouts
 // are placeholders.
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
 #include "base/UnkCollectionIter.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCooldownXBossFireBallDef.h"
 #include "types.h"
 
@@ -53,13 +53,13 @@ struct UnkFireBallDefWords_ovb0072 {
 
 
 
-using UnkFireBallDefVector_ovb0072 = base::UnkVector<UnkFireBallDef_ovb0072>;
+using UnkFireBallDefVector_ovb0072 = base::global::CRntVector<UnkFireBallDef_ovb0072>;
 
-void fn_71004c0bac(const base::UnkVector<UnkFireBallDefWords_ovb0072>* v, base::UnkCollectionIter<UnkFireBallDefWords_ovb0072>* out) {
+void fn_71004c0bac(const base::global::CRntVector<UnkFireBallDefWords_ovb0072>* v, base::UnkCollectionIter<UnkFireBallDefWords_ovb0072>* out) {
     base::refl_Begin(v, out);
 }
 
-// UnkVector::EraseAt, written as fn_71004bf588 (this unit): the moved-from
+// CRntVector::EraseAt, written as fn_71004bf588 (this unit): the moved-from
 // element is destroyed through a reload of the array.
 static inline void EraseAt(UnkFireBallDefVector_ovb0072* self, u32 index) {
     if (index < self->count) {

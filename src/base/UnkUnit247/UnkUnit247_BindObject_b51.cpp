@@ -4,10 +4,10 @@
 // placeholders inferred from the code.
 
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
-base::UnkStrIdMember* fn_71000ce740(base::UnkVector<base::UnkStrIdMember>* self, u32 index);
+base::UnkStrIdMember* fn_71000ce740(base::global::CRntVector<base::UnkStrIdMember>* self, u32 index);
 bool fn_7100199558(void* object, const u64* hash);
 void fn_710016ac04(void* list, void* object, base::UnkStrIdMember* name);
 void fn_710016aa9c(void* list, void* object);
@@ -20,7 +20,7 @@ struct UnkBindSource_71001bbee4 {
 struct UnkBinder_71001bbee4 {
     u8 pad_0x0[0x80];
     u8 list[0x58];
-    base::UnkVector<base::UnkStrIdMember> names;
+    base::global::CRntVector<base::UnkStrIdMember> names;
 };
 static_assert(__builtin_offsetof(UnkBinder_71001bbee4, names) == 0xd8, "");
 

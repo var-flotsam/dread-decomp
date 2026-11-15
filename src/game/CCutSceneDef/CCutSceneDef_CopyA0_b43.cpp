@@ -1,10 +1,10 @@
 // CCutSceneDef's unit (tools/tu_map.py): the copy constructor and copy assignment of the unit's array of 0xa0-byte
-// elements (base::UnkVector's layout; src/game/CCutSceneDef/CCutSceneDef_b42.cpp has its reserve and
+// elements (base::global::CRntVector's layout; src/game/CCutSceneDef/CCutSceneDef_b42.cpp has its reserve and
 // element assignments): reset, copy the step, flags and allocator, reserve the other's capacity
 // (fn_7100c8b9c8), then append a copy of each element (fn_7100c8bba4) with the push-back inlined: the
 // capacity grows to the next multiple of the step, and a count that can't grow hangs, as in
-// base::UnkVector::PushBack. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+// base::global::CRntVector::PushBack. Names and layouts are placeholders.
+#include "base/global/CRntVector.h"
 #include "game/UnkTU2200.h"
 #include "types.h"
 

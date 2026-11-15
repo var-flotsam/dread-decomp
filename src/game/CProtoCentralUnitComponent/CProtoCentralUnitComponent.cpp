@@ -3,7 +3,7 @@
 // src/game/CCentralUnitAIComponent/fn_71004076e4.cpp builds its own (base vtable 0x7101a20998,
 // an empty array with step 10 and flags 0xf, then the final vtable 0x7101a33fa0 and the default
 // allocator), then the post-construction virtual call (slot 3). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/UnkTU1176.h"
 #include "game/UnkTU341.h"

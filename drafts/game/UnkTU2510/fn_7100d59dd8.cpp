@@ -2,7 +2,7 @@
 // erased; each live item is given its index, added to the active list and its flags are merged.
 // Names and layouts are placeholders.
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -48,19 +48,19 @@ struct UnkTU2510Ref {
     }
 };
 
-typedef base::UnkVector<UnkTU2510Ref> UnkTU2510RefVector;
+typedef base::global::CRntVector<UnkTU2510Ref> UnkTU2510RefVector;
 
 // Grows the array to at least `capacity` elements.
 void fn_7100864cec(UnkTU2510RefVector* self, u32 capacity);
 // Takes over `other`'s array.
-void fn_710010d6e8(base::UnkVector<void*>* self, base::UnkVector<void*>* other);
+void fn_710010d6e8(base::global::CRntVector<void*>* self, base::global::CRntVector<void*>* other);
 
 struct UnkTU2510Owner {
     void* vtable;
     UnkTU2510RefVector field_0x8;
     u8 pad_0x30[0x2c];
     u32 field_0x5c;
-    base::UnkVector<void*> field_0x60;
+    base::global::CRntVector<void*> field_0x60;
     u8 field_0x88;
     UnkTU2510RefVector field_0x90;
 };
@@ -99,7 +99,7 @@ void fn_7100d59dd8(UnkTU2510Owner* self) {
     self->field_0x90.Clear();
     fn_7100864cec(&self->field_0x90, self->field_0x8.count);
 
-    base::UnkVector<void*> active(5);
+    base::global::CRntVector<void*> active(5);
     active.Reserve(self->field_0x8.count);
 
     UnkTU2510Ref* it = self->field_0x8.data;

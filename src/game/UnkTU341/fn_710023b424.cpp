@@ -12,7 +12,7 @@ void fn_710023b424(UnkErasedVector* self, const UnkErasedValue_0x10* value) {
     u32 new_capacity = capacity;
     if (capacity <= n && self->step != 0)
         new_capacity = (n / self->step + 1) * self->step;
-    if ((s32)n >= (s32)new_capacity)  // hangs, as base::UnkVector::PushBack does
+    if ((s32)n >= (s32)new_capacity)  // hangs, as base::global::CRntVector::PushBack does
         for (;;) {
         }
     UnkErasedValue_0x10* p;

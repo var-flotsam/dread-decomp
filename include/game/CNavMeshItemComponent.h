@@ -15,7 +15,7 @@ void fn_71009bfda8(UnkOwner* self, UnkSource* src);
 void fn_71009bffdc(UnkOwner* self, bool arg);
 void fn_71009c0974(void*, bool);
 
-// The element at `index`, growing the list when it is growable (base::UnkVector::GrowAt).
+// The element at `index`, growing the list when it is growable (base::global::CRntVector::GrowAt).
 UnkSource*& fn_71009c0bf0(UnkSourceList* self, u32 index);
 extern void* g_unk_7101a889c8[];
 

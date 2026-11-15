@@ -4,7 +4,7 @@
 // two other copies that were here use other set classes: fn_7100d88e14 is in
 // src/game_aca57c/fn_7100d88e14.cpp, fn_7101132350 in src/game_s7/fn_7101132350.cpp.
 #include "base/UnkErasedVector.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CChangeStateDoorsLogicAction.h"
 #include "game/CCharClassWaterPoolComponent.h"
 #include "game/UnkCallbackSet_7101a20950.h"
@@ -154,7 +154,7 @@ struct UnkCallbackSetVector {
             u32 new_capacity = capacity;
             if (new_capacity <= n && step != 0)
                 new_capacity = (n / step + 1) * step;
-            if ((s32)n >= (s32)new_capacity)  // hangs, as UnkVector::PushBack does
+            if ((s32)n >= (s32)new_capacity)  // hangs, as CRntVector::PushBack does
                 for (;;) {
                 }
             Reserve(this, new_capacity);

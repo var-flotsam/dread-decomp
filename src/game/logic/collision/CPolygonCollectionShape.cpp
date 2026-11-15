@@ -9,7 +9,7 @@
 // type-8 shape moved along a direction) and fn_7100d65b70 (query box), and the edge loops
 // fn_7100d644d0, fn_7100d64f70, fn_7100d65410 and fn_7100d658e0. Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "game/UnkTU109.h"
@@ -569,7 +569,7 @@ struct UnkPolygonCollectionShapeView {
     u8 base_0x8[0xa0];  // the shape base, built by fn_7100d6bfd8
     UnkTileOutlineList outlines;      // 0xa8
     bool field_0xe8;
-    base::UnkVector<u64> field_0xf0;  // allocation flags 7
+    base::global::CRntVector<u64> field_0xf0;  // allocation flags 7
 };
 static_assert(__builtin_offsetof(UnkPolygonCollectionShapeView, field_0xf0) == 0xf0, "UnkPolygonCollectionShapeView layout");
 
@@ -581,5 +581,5 @@ void fn_7100d62b04(void* block) {
     self->vtable = g_unk_7101aa8b80 + 0x10;
     fn_7100123eb4(&self->outlines);
     self->field_0xe8 = false;
-    new (&self->field_0xf0) base::UnkVector<u64>(7);
+    new (&self->field_0xf0) base::global::CRntVector<u64>(7);
 }

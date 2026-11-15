@@ -1,8 +1,8 @@
 // Unit 346 (base::reflection): the destructor slot (0x40) of the reflected primitive
-// gameeditor::CGameModelIndex (fn_710025d890): an array (base::UnkVector) of 16-byte entries, each
+// gameeditor::CGameModelIndex (fn_710025d890): an array (base::global::CRntVector) of 16-byte entries, each
 // destroyed through its operations table (the function at +0x40, which takes the entry) when it
 // has one, then freed. Names are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkModelIndexEntry_b60;
@@ -24,6 +24,6 @@ struct UnkModelIndexEntry_b60 {
     }
 };
 
-void fn_710025d890(base::UnkVector<UnkModelIndexEntry_b60>* self) {
+void fn_710025d890(base::global::CRntVector<UnkModelIndexEntry_b60>* self) {
     self->Free();
 }

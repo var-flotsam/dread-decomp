@@ -1,7 +1,7 @@
 // Unit 1115 (tools/tu_map.py): a destructor without a base call (vtable 0x7101a6b7f8): an array of
 // string ids at +0x40, a plain array at +0x18 and a string id at +0x10. Names are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU1115.h"
 #include "types.h"
 
@@ -15,7 +15,7 @@ struct base::UnkDtorTraits<UnkUnit1115Dtor_A4_b71> {
 template <class T, u32 Offset>
 struct UnkUnit1115Vec_A4_b71 {
     static void Release(char* self) {
-        auto* v = reinterpret_cast<base::UnkVector<T>*>(self + Offset);
+        auto* v = reinterpret_cast<base::global::CRntVector<T>*>(self + Offset);
         if (v->data) {
             for (u64 i = 0; i < v->count; ++i)
                 v->data[i].~T();

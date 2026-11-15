@@ -5,7 +5,7 @@
 // one. Names and layouts are placeholders.
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CCharClassWaterPoolComponent.h"
 #include "game/UnkTU341.h"

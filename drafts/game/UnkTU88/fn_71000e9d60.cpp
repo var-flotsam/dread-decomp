@@ -1,4 +1,4 @@
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 // src/base/global/timeline/CEvent/UnkPrime.cpp.
@@ -8,7 +8,7 @@ u32 fn_7100066930(u32 n);
 struct UnkResBucket_b257j;
 
 // The resource registry's chained set (the path map at +0x10 of the registry, src/base/UnkResRegistry.cpp):
-// buckets as an UnkVector, then the first bucket and node in use, a node allocator and counts.
+// buckets as an CRntVector, then the first bucket and node in use, a node allocator and counts.
 struct UnkResSetInit_b257j {
     UnkResBucket_b257j** data;
     u32 count;

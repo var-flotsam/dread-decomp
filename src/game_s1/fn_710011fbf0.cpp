@@ -5,7 +5,7 @@
 #include "base/UnkCollectionIter.h"
 #include "types.h"
 
-struct UnkPlainVector : base::UnkVector<u32> {
+struct UnkPlainVector : base::global::CRntVector<u32> {
     ~UnkPlainVector() { Free(); }
 };
 
@@ -16,9 +16,9 @@ struct UnkPlainVectorRecord {
 
 using UnkPlainVectorRecordIter = base::UnkCollectionIter<UnkPlainVectorRecord>;
 
-void fn_710011fbf0(const base::UnkVector<UnkPlainVectorRecord>* v, UnkPlainVectorRecordIter* out) {
+void fn_710011fbf0(const base::global::CRntVector<UnkPlainVectorRecord>* v, UnkPlainVectorRecordIter* out) {
     *out = UnkPlainVectorRecordIter(0, v->data);
 }
-void fn_710011fd0c(const base::UnkVector<UnkPlainVectorRecord>* v, UnkPlainVectorRecordIter* out) {
+void fn_710011fd0c(const base::global::CRntVector<UnkPlainVectorRecord>* v, UnkPlainVectorRecordIter* out) {
     *out = UnkPlainVectorRecordIter(v->count, v->data + v->count);
 }

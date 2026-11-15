@@ -3,7 +3,7 @@
 // navmesh manager's current mesh (game/UnkNavMeshManager.h; the manager is created on first
 // use), and two derived pointers.
 #include "base/UnkMatrix44.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkTU2702.h"
 #include "game/UnkTU357.h"

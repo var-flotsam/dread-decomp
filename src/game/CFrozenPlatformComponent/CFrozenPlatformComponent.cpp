@@ -3,7 +3,7 @@
 // callback list at +0x58 (base vtable with an empty array of callables: step 10, flags 0xf; then the
 // list's vtable and cleared fields), then the post-construction virtual call (slot 3). The fields are
 // addressed by offset. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CComponent.h"
 #include "game/CFrozenPlatformComponent.h"

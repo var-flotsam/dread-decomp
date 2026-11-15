@@ -10,7 +10,7 @@
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
 #include "base/UnkSList.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -112,7 +112,7 @@ struct UnkOwner_b0220 {
 
 struct UnkListHolder_b0220 {
     CStrId id;
-    base::UnkVector<UnkElem64_b0220> items;
+    base::global::CRntVector<UnkElem64_b0220> items;
 };
 
 void fn_7100d89f0c(UnkOwner_b0220* owner, UnkListHolder_b0220* holder) {

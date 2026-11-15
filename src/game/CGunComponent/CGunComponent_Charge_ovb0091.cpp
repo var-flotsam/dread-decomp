@@ -3,7 +3,7 @@
 // the one at +0x120 otherwise; the weapons of both slots are kept in two grouped lists (+0xc8, +0xf0).
 // A charge (+0x178 on, +0x17c its amount) starts from the times fn_7100837220 gives for the gun mode
 // (+0x134) and is released or dropped by the cancel helper below. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
@@ -50,8 +50,8 @@ struct UnkGunWeapon_ovb0091 {
     bool ready;  // 0x78
 };
 
-using UnkGunWeaponList_ovb0091 = base::UnkVector<UnkGunWeapon_ovb0091*>;
-using UnkGunGroups_ovb0091 = base::UnkVector<UnkGunWeaponList_ovb0091>;
+using UnkGunWeaponList_ovb0091 = base::global::CRntVector<UnkGunWeapon_ovb0091*>;
+using UnkGunGroups_ovb0091 = base::global::CRntVector<UnkGunWeaponList_ovb0091>;
 
 struct UnkGunActor_ovb0091 {
     u8 pad_0x0[0x208];
@@ -89,9 +89,9 @@ struct UnkGunListener_ovb0091 {
 // Three pointer lists and a lock count, as CGunComponent_b53.cpp has them: while locked, additions
 // and removals are recorded in the first two lists and applied to the third on unlock.
 struct UnkGunListeners_ovb0091 {
-    base::UnkVector<void*> added;    // 0x0
-    base::UnkVector<void*> removed;  // 0x28
-    base::UnkVector<void*> items;    // 0x50
+    base::global::CRntVector<void*> added;    // 0x0
+    base::global::CRntVector<void*> removed;  // 0x28
+    base::global::CRntVector<void*> items;    // 0x50
     // A union member: the original reloads the holder's pointer and the counter after the
     // decrement (no type-based alias info).
     union {
@@ -187,8 +187,8 @@ void* fn_71007bad34(void* object);
 void fn_710034f374(void* object);
 void fn_710083dd48(UnkGun_ovb0091* self, void* value);
 void fn_710083c17c(UnkGun_ovb0091* self);
-// base::UnkVector<void*>::GrowAt, out of line.
-void** fn_7100841e10(base::UnkVector<void*>* self, u32 index);
+// base::global::CRntVector<void*>::GrowAt, out of line.
+void** fn_7100841e10(base::global::CRntVector<void*>* self, u32 index);
 
 struct UnkGunReleaseArgs_ovb0091 {
     s32 mode;

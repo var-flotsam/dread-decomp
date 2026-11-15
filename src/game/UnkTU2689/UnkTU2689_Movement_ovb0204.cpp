@@ -4,7 +4,7 @@
 // (fn_71010db084), the released check (fn_71010dbcc0), the request dispatch (fn_71010dc968), the timed hold
 // (fn_71010da7e8), the copy into the other movement (fn_71010da468) and the script method that hands a
 // string id to the movement (fn_71010dd0d4). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"

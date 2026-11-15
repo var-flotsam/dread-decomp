@@ -1,14 +1,14 @@
 // Unit 2563 of tools/tu_map.py (no reliable name; hint CMinimapData): clearing a table of 0x60-byte list pairs keyed by string ids: the keys are
 // released, each value's two lists freed, and the count zeroed. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
 struct UnkRec60IdArray_b0223;
 
 struct UnkListPair_o0312 {
-    base::UnkVector<void*> list0{0xf};
-    base::UnkVector<void*> list1{0xf};
+    base::global::CRntVector<void*> list0{0xf};
+    base::global::CRntVector<void*> list1{0xf};
     f32 min[2] = {__FLT_MAX__, __FLT_MAX__};
     f32 max[2] = {-__FLT_MAX__, -__FLT_MAX__};
     ~UnkListPair_o0312() {

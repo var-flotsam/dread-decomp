@@ -33,13 +33,13 @@ void fn_7100fd3804(void* block) {
     self->field_0xa4 = 0x7fffffff;
     self->field_0xa8 = 0;
     u32 n = fn_7100108b7c(g_unk_7101d4d820, 1) >> 1;
-    new (&self->entries) base::UnkVector<UnkMusicEntry_0x60>(0xb);
+    new (&self->entries) base::global::CRntVector<UnkMusicEntry_0x60>(0xb);
     fn_7100fddcb4(&self->entries, n);
     n = fn_7100108b7c(g_unk_7101d4d820, 1) >> 1;
-    new (&self->slots) base::UnkVector<UnkMusicSlot_0x38>(0xb);
+    new (&self->slots) base::global::CRntVector<UnkMusicSlot_0x38>(0xb);
     fn_7100fde040(&self->slots, n);
     n = fn_7100108b7c(g_unk_7101d4d820, 1) >> 1;
-    new (&self->slot_active) base::UnkVector<u8>(0xb);
+    new (&self->slot_active) base::global::CRntVector<u8>(0xb);
     self->slot_active.Reserve(n);
     new (&self->map_0) UnkChainedMap();
     self->map_0.ResizeBucketsPtrFirst(11);
@@ -83,7 +83,7 @@ void fn_7100fd3804(void* block) {
         d->vtable = g_unk_7101cac2d0 + 0x10;
         d->field_0x8 = fn_7100fd37f0;
         slot->field_0x30 = d;
-        base::UnkVector<u8>& active = self->slot_active;
+        base::global::CRntVector<u8>& active = self->slot_active;
         if (active.field_0x14 && active.count <= i) {
             u64 cap = active.capacity;
             if (cap <= i && active.step != 0) {

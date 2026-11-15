@@ -2,7 +2,7 @@
 // virtual getters at 0x1f8 and 0x200), the thaw blend and its layer weight, and the destructor. Names
 // and layouts are placeholders.
 #include "base/UnkCloneHelpers.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -211,7 +211,7 @@ struct UnkFrozenMachine_ov110 {
 };
 
 template <class T>
-static inline __attribute__((always_inline)) void Free_ov110(base::UnkVector<T>* v) {
+static inline __attribute__((always_inline)) void Free_ov110(base::global::CRntVector<T>* v) {
     if (v->data) {
         v->count = 0;
         v->allocator->vf_0x48(v->data);
@@ -230,9 +230,9 @@ struct UnkFrozenComponentDtor_ov110 {
     UnkFrozenMachine_ov110 machine;  // 0x228
     u8 pad_0x250[0x88];
     void* field_0x2d8;
-    base::UnkVector<void**> slots;  // 0x2e0
-    base::UnkVector<void*> field_0x308;
-    base::UnkVector<void*> field_0x330;
+    base::global::CRntVector<void**> slots;  // 0x2e0
+    base::global::CRntVector<void*> field_0x308;
+    base::global::CRntVector<void*> field_0x330;
     u8 pad_0x358[0x8];
     UnkLinkList* link;     // 0x360
     void* callback_owner;  // 0x368

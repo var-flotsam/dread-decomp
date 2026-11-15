@@ -7,7 +7,7 @@
 #include <new>
 
 #include "base/UnkCloneHelpers.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -172,7 +172,7 @@ struct UnkNamedPoint_b0025 {
 };
 
 // Removes the point at `index`, moving the later ones down.
-void fn_7100dac138(base::UnkVector<UnkNamedPoint_b0025>* self, u32 index) {
+void fn_7100dac138(base::global::CRntVector<UnkNamedPoint_b0025>* self, u32 index) {
     if (index < self->count) {
         self->data[index].~UnkNamedPoint_b0025();
         for (u32 i = index; i < self->count - 1; ++i) {
@@ -186,7 +186,7 @@ void fn_7100dac138(base::UnkVector<UnkNamedPoint_b0025>* self, u32 index) {
 
 // The point lists by key (values and keys in parallel arrays).
 struct UnkPointMap_b0025 {
-    base::UnkVector<UnkNamedPoint_b0025>* values;
+    base::global::CRntVector<UnkNamedPoint_b0025>* values;
     u32* keys;
     u32 count;
 };
@@ -195,7 +195,7 @@ struct UnkPointMap_b0025 {
 void fn_7100daa178(UnkPointMap_b0025* self) {
     if (self->values) {
         for (u64 i = 0; i < self->count; ++i) {
-            base::UnkVector<UnkNamedPoint_b0025>* points = &self->values[i];
+            base::global::CRntVector<UnkNamedPoint_b0025>* points = &self->values[i];
             if (points->data) {
                 for (u64 j = 0; j < points->count; ++j)
                     points->data[j].~UnkNamedPoint_b0025();
@@ -394,7 +394,7 @@ struct UnkEmmyCheckActor_b0025 {
 bool fn_7100daa560(void* self, UnkEmmyCheckActor_b0025* actor) {
     if (!actor->field_0x350 || fn_710112baa0(actor))
         return true;
-    base::UnkVector<UnkListedItem*>* items = fn_7100552d7c();
+    base::global::CRntVector<UnkListedItem*>* items = fn_7100552d7c();
     UnkListedItem** it = items->data;
     UnkListedItem** end = it + items->count;
     for (; it != end; ++it) {

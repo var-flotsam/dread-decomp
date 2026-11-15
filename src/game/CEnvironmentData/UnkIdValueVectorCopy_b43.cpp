@@ -1,4 +1,4 @@
-// The copy constructor and copy assignment of arrays (base::UnkVector) of polymorphic {vtable, string
+// The copy constructor and copy assignment of arrays (base::global::CRntVector) of polymorphic {vtable, string
 // id, value} elements (base::UnkIdValueElem, include/base/UnkCloneHelpers.h), one copy per
 // element class: reset and copy the step, flags and allocator (the assignment destroys the elements
 // instead), grow to the other's capacity (the elements copied over and destroyed through their
@@ -30,7 +30,7 @@ template <char* Vtable>
 using UnkIdValueVecElem_b43a3 = base::UnkIdValueElem<UnkIdValueVecTag_b43a3<Vtable>,
                                                      UnkCloneElem<UnkIdValueVecTag_b43a3<Vtable>, UnkIdValueVecSize_b43a3<Vtable>::value>>;
 template <char* Vtable>
-using UnkIdValueVec_b43a3 = base::UnkVector<UnkIdValueVecElem_b43a3<Vtable>>;
+using UnkIdValueVec_b43a3 = base::global::CRntVector<UnkIdValueVecElem_b43a3<Vtable>>;
 
 // The push-backs, out of line.
 void fn_7100f5db00(UnkIdValueVec_b43a3<g_unk_7101cab220>* v, const UnkIdValueVecElem_b43a3<g_unk_7101cab220>& x);

@@ -3,7 +3,7 @@
 // the step run when the pending flag at +0x203 is set. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkBroadphaseObject.h"
@@ -88,7 +88,7 @@ struct UnkUnit1444_ovb0177 {
     bool field_0x203;
     u8 field_0x204[2];
     u8 pad_0x206[2];
-    base::UnkVector<UnkEntry_ovb0177> entries;  // 0x208
+    base::global::CRntVector<UnkEntry_ovb0177> entries;  // 0x208
 };
 static_assert(__builtin_offsetof(UnkUnit1444_ovb0177, entries) == 0x208, "UnkUnit1444_ovb0177 layout");
 
@@ -245,7 +245,7 @@ void fn_7100973f30(UnkUnit1444_ovb0177* self) {
     f32 progress = fn_710117808c(animation, 0xf4061ff25a2163d6);
     if (!(progress > 0.0f))
         return;
-    base::UnkVector<UnkTimed_ovb0177>& entries = reinterpret_cast<base::UnkVector<UnkTimed_ovb0177>&>(self->entries);
+    base::global::CRntVector<UnkTimed_ovb0177>& entries = reinterpret_cast<base::global::CRntVector<UnkTimed_ovb0177>&>(self->entries);
     u64 bytes = (u64)entries.count * sizeof(UnkTimed_ovb0177);
     for (UnkTimed_ovb0177* e = entries.data; bytes != 0; bytes -= sizeof(UnkTimed_ovb0177), ++e) {
         UnkHeld_ovb0177* held = e->held;

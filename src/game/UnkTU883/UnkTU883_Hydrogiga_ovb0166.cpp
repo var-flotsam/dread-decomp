@@ -8,7 +8,7 @@
 // src/game/CMaterialFXComponent/fn_7100926874.cpp). Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkSList.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/color/CColor4F.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU108.h"

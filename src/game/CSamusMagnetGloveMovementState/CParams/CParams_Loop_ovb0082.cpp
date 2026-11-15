@@ -1,7 +1,7 @@
 // In the CSamusMagnetGloveMovementState::CParams unit: fn_71009aefb8 starts the looping vibration (the unit's
 // file at g_unk_717273c6f0) unless the rumble the handle at +0x338 refers to is still playing and not stopping
 // (+0x9d). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/input/UnkRumbleManager.h"
 #include "base/math/UnkZeroVector3.h"

@@ -1,7 +1,7 @@
 // CAnimationNavMeshItemComponent's unit (tools/tu_map.py unit 1473): the id of the animation the item
 // plays, and the navigation-mesh item's destructor (its layout as
 // src/game/CNavMeshItemComponent/CNavMeshItemComponent_Containers_ovb0100.cpp constructs it). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CNavMeshItemComponent.h"
 #include "game/UnkComponent.h"
@@ -91,7 +91,7 @@ struct UnkNavMeshItemDtor_ov110 {
         UnkOwnedList sources;  // 0x148
     };
     u8 pad_0x170[0x18];
-    base::UnkVector<UnkNavMeshEntry_ov110> entries;       // 0x188
+    base::global::CRntVector<UnkNavMeshEntry_ov110> entries;       // 0x188
 };
 static_assert(__builtin_offsetof(UnkNavMeshItemDtor_ov110, entries) == 0x188, "layout");
 

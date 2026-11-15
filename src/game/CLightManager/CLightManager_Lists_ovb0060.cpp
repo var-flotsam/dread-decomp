@@ -11,7 +11,7 @@
 //
 // A fourth copy of the list pair of src/game/CLightManager/fn_7100e0babc.cpp, at +0xf0
 // (fn_7100e0bf48, fn_7100e0b9a0). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/core/CAsset.h"
 #include "base/global/CStrId.h"
 #include "game/CLightsDef.h"
@@ -184,7 +184,7 @@ void fn_7100e0e788(UnkLightMap_ovb0060* self, const UnkLightPathId_ovb0060* key,
 struct UnkListedObj;
 
 // Erasing moves the later entries down with memcpy.
-struct UnkPtrList_ovb0060 : base::UnkVector<UnkListedObj*> {
+struct UnkPtrList_ovb0060 : base::global::CRntVector<UnkListedObj*> {
     __attribute__((always_inline)) void EraseAt(u64 index) {
         if (index < count) {
             __builtin_memcpy(&data[index], &data[index + 1], (u64)(u32)(count - 1 - (u32)index) * 8);
@@ -195,7 +195,7 @@ struct UnkPtrList_ovb0060 : base::UnkVector<UnkListedObj*> {
 
 struct UnkListPair_ovb0060 {
     u8 unk_0x0[0x8];
-    base::UnkVector<UnkListedObj*> active;
+    base::global::CRntVector<UnkListedObj*> active;
     UnkPtrList_ovb0060 pending;
 };
 

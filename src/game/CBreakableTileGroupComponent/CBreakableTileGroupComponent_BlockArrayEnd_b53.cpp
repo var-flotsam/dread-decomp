@@ -3,12 +3,12 @@
 // elements, as base::refl_End. Names are placeholders.
 #include "UnkClone.h"
 #include "base/UnkCollectionIter.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 
 struct UnkBreakableTileBlockTag_b53;
 using UnkBreakableTileBlock_b53 = UnkCloneBlock<UnkBreakableTileBlockTag_b53, 0x10>;
 
-void fn_710075f638(const base::UnkVector<UnkBreakableTileBlock_b53>* v,
+void fn_710075f638(const base::global::CRntVector<UnkBreakableTileBlock_b53>* v,
                    base::UnkCollectionIter<UnkBreakableTileBlock_b53>* out) {
     base::refl_End(v, out);
 }

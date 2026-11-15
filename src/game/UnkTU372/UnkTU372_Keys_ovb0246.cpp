@@ -4,7 +4,7 @@
 #include "game/UnkTU372.h"
 #include "game/UnkTU39.h"
 #include "types.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CStrId.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -56,7 +56,7 @@ struct UnkNavMeshItem;
 
 struct UnkNavMeshReadItem_b0246 {
     u8 pad_0x0[0xc8];
-    base::UnkVector<u16> cells;  // 0xc8
+    base::global::CRntVector<u16> cells;  // 0xc8
 };
 
 void fn_71002b3524(UnkNavMeshItem* item, base::global::CRntFile* file) {
@@ -96,8 +96,8 @@ struct UnkDtorItem_b0246 {
     s32 field_0x10;
     u8 pad_0x14[4];
     u8 field_0x18[0xb0];
-    base::UnkVector<u16> cells;  // 0xc8
-    base::UnkVector<UnkDtorLink_b0246> links;  // 0xf0
+    base::global::CRntVector<u16> cells;  // 0xc8
+    base::global::CRntVector<UnkDtorLink_b0246> links;  // 0xf0
     u32 field_0x118;
     u32 field_0x11c;
     u32 field_0x120;

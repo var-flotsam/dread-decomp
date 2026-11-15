@@ -5,7 +5,7 @@
 #include <new>
 
 #include "base/UnkStrIdPathPair.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/reflection.h"
 #include "base/reflection/UnkReflCast.h"
@@ -16,7 +16,7 @@ using base::global::CRntString;
 using base::reflection::UnkReflValue;
 
 template <typename T, void (*Move)(T*, T*), void (*Destroy)(T*)>
-static inline __attribute__((always_inline)) void EraseAt_A1_b73(base::UnkVector<T>* self, u32 index) {
+static inline __attribute__((always_inline)) void EraseAt_A1_b73(base::global::CRntVector<T>* self, u32 index) {
     if (index >= self->count)
         return;
     Destroy(&self->data[index]);
@@ -32,18 +32,18 @@ static void MoveValue_A1_b73(UnkReflValue* dst, UnkReflValue* src) { fn_71000a17
 static void DestroyValue_A1_b73(UnkReflValue* v) { fn_71000a1c60(v); }
 
 template <typename T, void (*Move)(T*, T*), void (*Destroy)(T*)>
-static inline __attribute__((always_inline)) void EraseAtIter_A1_b73(base::UnkVector<T>* self, const u32* it) {
+static inline __attribute__((always_inline)) void EraseAtIter_A1_b73(base::global::CRntVector<T>* self, const u32* it) {
     T* base = reinterpret_cast<T*>(self);
     u64 offset = (u64)*it * sizeof(T);
     T* p = reinterpret_cast<T*>(reinterpret_cast<char*>(base) + offset);
     EraseAt_A1_b73<T, Move, Destroy>(self, (u32)(p - base));
 }
 
-void fn_71000d538c(base::UnkVector<UnkReflValue>* self, const u32* it) {
+void fn_71000d538c(base::global::CRntVector<UnkReflValue>* self, const u32* it) {
     EraseAtIter_A1_b73<UnkReflValue, MoveValue_A1_b73, DestroyValue_A1_b73>(self, it);
 }
 
-void fn_71000dff68(base::UnkVector<CRntString>* self, const u32* it) {
+void fn_71000dff68(base::global::CRntVector<CRntString>* self, const u32* it) {
     EraseAtIter_A1_b73<CRntString, fn_710007eab4, fn_710007ecd4>(self, it);
 }
 
@@ -90,7 +90,7 @@ static inline __attribute__((always_inline)) void DestroyOwned_A1_b73(UnkOwnedPt
     }
 }
 
-void fn_7100243850(base::UnkVector<UnkOwnedPtr_A1_b73>* self, const u32* it) {
+void fn_7100243850(base::global::CRntVector<UnkOwnedPtr_A1_b73>* self, const u32* it) {
     EraseAt_A1_b73<UnkOwnedPtr_A1_b73, MoveOwned_A1_b73, DestroyOwned_A1_b73>(self, *it);
 }
 
@@ -107,6 +107,6 @@ static inline __attribute__((always_inline)) void DestroyPair_A1_b73(UnkStrIdPat
     p->~UnkStrIdPathPair();
 }
 
-void fn_710001dc08(base::UnkVector<UnkStrIdPathPair>* self, const u32* it) {
+void fn_710001dc08(base::global::CRntVector<UnkStrIdPathPair>* self, const u32* it) {
     EraseAtIter_A1_b73<UnkStrIdPathPair, MovePair_A1_b73, DestroyPair_A1_b73>(self, it);
 }

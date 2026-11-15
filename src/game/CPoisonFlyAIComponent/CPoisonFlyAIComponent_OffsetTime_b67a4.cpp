@@ -3,7 +3,7 @@
 // the owner (+0x30) with flag 1, a zeroed position and a scratch object, as
 // CPoisonFlyRequestAttackOffset_Update_b65a4.cpp does; when one was found and the scratch's byte at +8
 // is set, the time at +0x14774 restarts, else it grows by `dt`. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkTU958.h"
 #include "game/navmesh/SNavMeshPath.h"

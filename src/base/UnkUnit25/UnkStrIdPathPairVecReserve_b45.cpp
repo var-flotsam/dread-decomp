@@ -1,9 +1,9 @@
 // Unit 25: grows an array of id and path pairs (the words of base/UnkStrIdPathPair.h; the
-// base::UnkVector layout) to a new capacity, moving the pairs over and destroying the old ones.
+// base::global::CRntVector layout) to a new capacity, moving the pairs over and destroying the old ones.
 // Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 

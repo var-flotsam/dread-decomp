@@ -1,7 +1,7 @@
 // CCharClassForceDisableSubareaEvent's unit (tools/tu_map.py): applies the event. Unless its setup id (+0x10) is empty it builds a sub-area mask (all nine bits when
 // the flag at +0x18 is set, otherwise the individual flags +0x19..+0x21), hands it to the sub-area manager g_unk_7101d47360 with the
 // setup id and disabling, then nudges the manager g_unk_7101d47368. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection.h"
 #include "game/UnkTU0.h"

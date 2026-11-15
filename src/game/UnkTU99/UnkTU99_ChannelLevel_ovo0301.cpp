@@ -6,7 +6,7 @@
 #include <nn/os.h>
 
 #include "base/UnkDefaultAllocator.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/snd/UnkSoundSystemATK.h"
 #include "base/tunable/CTunable.h"
 #include "game/UnkTU101.h"
@@ -35,8 +35,8 @@ struct UnkSndChannels_o0301 {
     u32 mask;       // 0x348
     s32 levels[8];  // 0x34c
     u8 pad_0x36c[0x3f0 - 0x36c];
-    base::UnkVector<UnkSndChannelVoice_o0301*> voices_a;  // 0x3f0
-    base::UnkVector<UnkSndChannelVoice_o0301*> voices_b;  // 0x418
+    base::global::CRntVector<UnkSndChannelVoice_o0301*> voices_a;  // 0x3f0
+    base::global::CRntVector<UnkSndChannelVoice_o0301*> voices_b;  // 0x418
     u8 pad_0x440[0x400568 - 0x440];
     nn::os::MutexType mutex;  // 0x400568
 };

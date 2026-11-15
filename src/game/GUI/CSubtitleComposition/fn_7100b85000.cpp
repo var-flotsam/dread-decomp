@@ -2,7 +2,7 @@
 // 0x280: the objects the first one points to have their first word cleared, the three are
 // emptied and freed, then the base destructor (fn_71011d8e90 for the first
 // two) runs.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CMissileBaseGun.h"
 #include "game/UnkComponent.h"
 #include "game/UnkGuiDisplayObject.h"
@@ -14,7 +14,7 @@ struct UnkLinked {
 
 // A vector of plain values whose destructor frees the array.
 template <class T>
-struct UnkFreedVector : base::UnkVector<T> {
+struct UnkFreedVector : base::global::CRntVector<T> {
     __attribute__((always_inline)) ~UnkFreedVector() { this->Free(); }
 };
 

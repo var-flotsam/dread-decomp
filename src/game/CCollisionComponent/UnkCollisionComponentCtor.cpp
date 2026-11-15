@@ -4,7 +4,7 @@
 // two empty arrays (step 10, flags 7, default allocator), a word 0x100 at +0xc8, a third array at
 // +0xd0, a cleared half-word at +0x100, a listener at +0x108 and a cleared flag at +0x128. Names and
 // layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CCollisionComponent.h"
 #include "game/CComponent.h"

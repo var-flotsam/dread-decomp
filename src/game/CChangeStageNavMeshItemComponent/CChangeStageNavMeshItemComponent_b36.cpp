@@ -1,6 +1,6 @@
 // CChangeStageNavMeshItemComponent's deleting destructor: the destructor body of fn_71009b99e8
 // (CChangeStageNavMeshItemComponent_b34.cpp), then the memory is freed (fn_7100083c00).
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CChangeStageNavMeshItemComponent.h"
 #include "game/UnkComponent.h"
 #include "types.h"

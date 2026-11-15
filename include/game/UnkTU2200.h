@@ -5,7 +5,7 @@
 // Names and layouts are placeholders.
 #include "base/reflection/CClass.h"
 #include "base/global/CStrId.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkFXPathEntry_b0068;
@@ -83,5 +83,5 @@ void fn_7100c858dc(UnkReflType* self, const base::global::CStrId& name, UnkReflT
 void fn_7100c86e34(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
 void fn_7100c87424(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
 // Grows the array to at least `capacity` entries (out of line).
-void fn_7100c8c210(base::UnkVector<UnkFXPathEntry_b0068>* self, u32 capacity);
+void fn_7100c8c210(base::global::CRntVector<UnkFXPathEntry_b0068>* self, u32 capacity);
 extern const base::reflection::CType g_unk_7172794d40 __attribute__((visibility("hidden")));

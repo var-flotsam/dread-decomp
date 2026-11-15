@@ -5,7 +5,7 @@
 // the sound manager and the manager's own list of loaded paths, then goes on to the setup's next list.
 // Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
@@ -16,12 +16,12 @@ using UnkPathIdMember = base::UnkStrIdMemberOf<g_unk_7101d47200>;  // a file-pat
 
 struct UnkSubAreaMgrPaths {
     u8 pad_0x0[0x388];
-    base::UnkVector<UnkPathIdMember> field_0x388;  // the loaded paths
+    base::global::CRntVector<UnkPathIdMember> field_0x388;  // the loaded paths
 };
 
 struct UnkSubAreaSetupLists {
     u8 pad_0x0[0xa0];
-    base::UnkVector<UnkPathIdMember> field_0xa0;
+    base::global::CRntVector<UnkPathIdMember> field_0xa0;
     u8 pad_0xc8[8];
     u32 field_0xd0;
 };
@@ -34,7 +34,7 @@ void fn_710008987c(base::file::UnkFileDevice* self, const CFilePathStrId* path, 
 void fn_7100108c94(UnkSoundMgr* self, const CFilePathStrId* path);
 bool fn_7100089848(base::file::UnkFileDevice* self, const CFilePathStrId* path);
 void fn_710008985c(base::file::UnkFileDevice* self, const CFilePathStrId* path);
-UnkPathIdMember* fn_710008c174(base::UnkVector<UnkPathIdMember>* self, u32 index);
+UnkPathIdMember* fn_710008c174(base::global::CRntVector<UnkPathIdMember>* self, u32 index);
 void fn_7100ee9f1c(UnkSubAreaMgrPaths* self, UnkSubAreaSetupLists* lists);
 
 // Both report whether the path was released; the other users ignore the result.

@@ -3,7 +3,7 @@
 // tDynamicSpawnPositions). Each link is resolved first (game/CGameLink.h); links are equal when their
 // targets are. Names and layouts are placeholders.
 #include "base/UnkRefHandle.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CBatalloonAIComponent.h"
 #include "game/CGameLink.h"
 #include "game/UnkTU1102.h"
@@ -38,7 +38,7 @@ static CActor* Get(CGameLink<CActor>& link) {
     return link.Target();
 }
 
-bool fn_710113192c(base::UnkVector<CGameLink<CActor>>* self, base::UnkVector<CGameLink<CActor>>* other) {
+bool fn_710113192c(base::global::CRntVector<CGameLink<CActor>>* self, base::global::CRntVector<CGameLink<CActor>>* other) {
     if (self->count != other->count)
         return false;
     for (u64 i = 0; i < self->count; ++i) {

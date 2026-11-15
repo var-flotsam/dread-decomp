@@ -7,7 +7,7 @@
 // lets the camera finish (fn_710074f91c). Names and layouts are placeholders.
 #include <math.h>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -56,7 +56,7 @@ struct UnkBossCameraCtrl_ovb0008 {
     f32 target_distance;  // 0x258
     f32 distance_speed;   // 0x25c
     u8 pad_0x260[0x40];
-    base::UnkVector<UnkHandlePtr_ovb0008> targets;  // 0x2a0
+    base::global::CRntVector<UnkHandlePtr_ovb0008> targets;  // 0x2a0
     u8 pad_0x2c8[0x60];
     u64 field_0x328;
     u64 field_0x330;
@@ -116,7 +116,7 @@ void fn_7100750804(UnkBossCameraCtrl_ovb0008* self, UnkWeakTarget* target) {
     if (!target || self->Contains(target))
         return;
     UnkHandleRef_ovb0008 ref(fn_7100d78378(target));
-    base::UnkVector<UnkHandlePtr_ovb0008>& v = self->targets;
+    base::global::CRntVector<UnkHandlePtr_ovb0008>& v = self->targets;
     u32 n = v.count;
     u32 capacity = v.capacity;
     if (capacity <= n && v.step != 0)

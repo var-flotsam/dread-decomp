@@ -2,7 +2,7 @@
 // callback object at +0x260 (fn_71005c4828), then fades out (0.2, fn_7100105a80) every sound still
 // alive among the weak references of the array at +0x230 (fn_7100748064 gives reference i, as in
 // src/game/CShotManager.cpp). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/snd/UnkSound.h"
 #include "game/CSwarmControllerComponent.h"
 #include "game/UnkTU883.h"
@@ -21,7 +21,7 @@ struct UnkShotWeakRef {
 
 struct UnkSwarmController_sw {
     u8 pad_0x0[0x230];
-    base::UnkVector<UnkShotWeakRef> sounds;
+    base::global::CRntVector<UnkShotWeakRef> sounds;
     u8 pad_0x258[0x8];
     void* field_0x260;
 };

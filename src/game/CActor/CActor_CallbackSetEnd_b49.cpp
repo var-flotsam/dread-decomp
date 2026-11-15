@@ -4,7 +4,7 @@
 // through fn_710023ac4c, kept out of line. Names are placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkCollectionIter.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU341.h"
 
 struct UnkClone_fn_710023ac4c;
@@ -36,6 +36,6 @@ struct UnkActorCallbackIter_b49a1 {
 };
 
 // The braces evaluate the count before the data, as the original does.
-void fn_71002476ec(const base::UnkVector<UnkActorCallbackList_b49a1>* v, UnkActorCallbackIter_b49a1* out) {
+void fn_71002476ec(const base::global::CRntVector<UnkActorCallbackList_b49a1>* v, UnkActorCallbackIter_b49a1* out) {
     *out = UnkActorCallbackIter_b49a1{v->count, v->data + v->count};
 }

@@ -7,7 +7,7 @@
 
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CDemolitionBlockComponent.h"
 #include "game/UnkTU341.h"

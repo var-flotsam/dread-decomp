@@ -9,7 +9,7 @@
 
 #include "base/UnkCountedResource.h"
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU344.h"
@@ -96,7 +96,7 @@ struct UnkResourceCache_ca4ec {
     u8 pad_0x1[7];
     u8 table_a[0x50];                   // 0x8
     u8 table_b[0x50];                   // 0x58
-    base::UnkVector<void*> pending;     // 0xa8
+    base::global::CRntVector<void*> pending;     // 0xa8
     base::global::CFilePathStrId path;  // 0xd0
 };
 static_assert(__builtin_offsetof(UnkResourceCache_ca4ec, pending) == 0xa8, "layout");
@@ -109,7 +109,7 @@ void fn_7100eca4ec(UnkResourceCache_ca4ec* self) {
     self->field_0x0 = 0;
     fn_7100eca5dc(reinterpret_cast<UnkTableA_ca4ec*>(self->table_a), nullptr, 0xe);
     fn_7100eca778(reinterpret_cast<UnkTableB_ca4ec*>(self->table_b), nullptr, 0xe);
-    new (&self->pending) base::UnkVector<void*>(0xf);
+    new (&self->pending) base::global::CRntVector<void*>(0xf);
     new (&self->path) base::global::CFilePathStrId();
 }
 

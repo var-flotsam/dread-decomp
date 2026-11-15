@@ -6,7 +6,7 @@
 // component (+0x240) is a CScourgeAIComponent, copies its pair at +0x14740 to +0x64 and calls fn_710069f43c
 // on it; finally hands the owner to the registry at +0x5e0 of the manager g_unk_71726af468 (created on
 // first use). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityGhostAura.h"

@@ -1,7 +1,7 @@
 // Flushes a pending request: if the dirty flag is set, clears it, submits the two stored
 // requests to the manager singleton with the full mask, empties both path lists and resets
 // the two string ids to the global default and the priority to the maximum.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CBossAIComponent.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
@@ -79,13 +79,13 @@ struct UnkStruct_0x150 {
     UnkRequest field_0x88;
     f32 field_0x94;
     u8 pad_0x98[0x18];
-    base::UnkVector<UnkPathEntry_0x18> field_0xb0;
+    base::global::CRntVector<UnkPathEntry_0x18> field_0xb0;
     u8 pad_0xd8[0x8];
     base::global::CStrId field_0xe0;
     UnkRequest field_0xe8;
     f32 field_0xf4;
     u8 pad_0xf8[0x18];
-    base::UnkVector<UnkPathEntry_0x18> field_0x110;
+    base::global::CRntVector<UnkPathEntry_0x18> field_0x110;
     u8 pad_0x138[0x8];
     base::global::CStrId field_0x140;
     u32 field_0x148;

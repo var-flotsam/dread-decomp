@@ -3,7 +3,7 @@
 // (fn_710059c970); then the component's state is reset (flags, counters, a vector set to the
 // zero vector) and fn_7100599ec4 runs. Names and layouts are placeholders.
 #include "base/math/UnkZeroVector3.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkManager_71726af468.h"
 #include "types.h"
 

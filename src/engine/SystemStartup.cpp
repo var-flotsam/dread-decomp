@@ -9,7 +9,7 @@
 // lacks several of them and the port's runtime defines the same names (port/runtime/include/nn/).
 // Results are taken as s32, which is how they come back in w0.
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU110.h"
 #include "game/malloc.h"
 #include "types.h"

@@ -7,7 +7,7 @@
 
 #include <string.h>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 namespace base {
@@ -36,7 +36,7 @@ void refl_HashMapClear(char* self) {
     }
 }
 
-// A chained hash set whose bucket array (an UnkVector at +0) is read through an out-of-line
+// A chained hash set whose bucket array (an CRntVector at +0) is read through an out-of-line
 // accessor; the node count is at +0x44, the nodes' allocator at +0x38 and a count of freed nodes
 // at +0x48. Clearing destroys each node's key (at 0; the link at `Next`) and frees the node, then
 // zeroes the buckets (fn_7100021128 and its copies).

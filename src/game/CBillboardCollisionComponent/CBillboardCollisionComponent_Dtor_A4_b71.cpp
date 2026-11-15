@@ -3,7 +3,7 @@
 // +0x190 and +0x168, a keyed table at +0x140, refcounted pointers at +0x138 and +0x130, then the base's
 // destructor fn_7100860364. Names are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU883.h"
 #include "types.h"
 
@@ -28,7 +28,7 @@ struct UnkBbLink_A4_b71 {
 
 template <u32 Offset>
 struct UnkBbVec_A4_b71 {
-    static void Release(char* self) { reinterpret_cast<base::UnkVector<u32>*>(self + Offset)->Free(); }
+    static void Release(char* self) { reinterpret_cast<base::global::CRntVector<u32>*>(self + Offset)->Free(); }
 };
 
 struct UnkBbTable_A4_b71 {

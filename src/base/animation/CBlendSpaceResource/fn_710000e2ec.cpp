@@ -3,7 +3,7 @@
 // settings are taken over, the array reserves the other's capacity (out of line, fn_710000e610) and appends a copy of
 // each element (fn_710000e7a4).
 #include "base/UnkFreedVectorPair.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkElem18 {

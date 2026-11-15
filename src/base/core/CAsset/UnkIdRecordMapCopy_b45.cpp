@@ -4,7 +4,7 @@
 // reserved (fn_7100017948), the records copied one by one (fn_7100017ba0), then the keys and the
 // path copied, counting a use of each. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/core/CAsset.h"
 #include "base/global/CStrId.h"
 #include "types.h"

@@ -4,7 +4,7 @@
 // +0x338) by the current speed (between +0x408 and +0x40c by how much of +0x410 is left), the colliders
 // switched on or off and the glow material faded with the speed. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/color/CColor4F.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
@@ -126,7 +126,7 @@ extern base::global::CFilePathStrId g_unk_71727375f0 __attribute__((visibility("
 // As src/game/CCollisionComponent/fn_71008651c8.cpp declares it.
 struct UnkStruct_71008651c8_Entry;
 struct UnkStruct_71008651c8;
-using UnkOut_71008651c8 = base::UnkVector<UnkStruct_71008651c8_Entry*>;
+using UnkOut_71008651c8 = base::global::CRntVector<UnkStruct_71008651c8_Entry*>;
 void fn_71008651c8(UnkStruct_71008651c8* self, void* const* key, UnkOut_71008651c8* out);
 extern void* const g_unk_71727375d0 __attribute__((visibility("hidden")));  // the block's colliders' key
 

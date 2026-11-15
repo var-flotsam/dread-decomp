@@ -1,10 +1,10 @@
 // CCharClassDropItemOverwriteProbabilitiesEvent's unit (tools/tu_map.py): its constructor, on the
 // event base (fn_7100067ea4): the vtable, a cleared block, a copy of the empty string id
 // (g_unk_7101d470e0), another cleared block, a second copy, the pair (0, 1), a third copy and an
-// empty base::UnkVector (allocator flags 0xf). Names and the layout are placeholders.
+// empty base::global::CRntVector (allocator flags 0xf). Names and the layout are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"
 #include "game/CCharClassDropItemOverwriteProbabilitiesEvent.h"
@@ -24,7 +24,7 @@ struct UnkDropItemOverwriteProbabilitiesEvent_b42a3 {
     u32 field_0x80;
     u32 field_0x84;
     CStrId id_0x88;
-    base::UnkVector<UnkDropItemOverwriteEntry_b42a3*> items;
+    base::global::CRntVector<UnkDropItemOverwriteEntry_b42a3*> items;
 };
 
 void fn_7100cb81b4(UnkDropItemOverwriteProbabilitiesEvent_b42a3* self) {
@@ -37,5 +37,5 @@ void fn_7100cb81b4(UnkDropItemOverwriteProbabilitiesEvent_b42a3* self) {
     self->field_0x80 = 0;
     self->field_0x84 = 1;
     new (&self->id_0x88) CStrId(g_unk_7101d470e0);
-    new (&self->items) base::UnkVector<UnkDropItemOverwriteEntry_b42a3*>(0xf);
+    new (&self->items) base::global::CRntVector<UnkDropItemOverwriteEntry_b42a3*>(0xf);
 }

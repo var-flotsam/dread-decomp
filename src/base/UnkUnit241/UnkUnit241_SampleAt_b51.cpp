@@ -4,7 +4,7 @@
 // code.
 
 #include "UnkClone.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -12,7 +12,7 @@
 
 struct UnkClone_fn_71001b459c;
 using UnkElem_71001b46ec = UnkCloneElem<UnkClone_fn_71001b459c, 8>;
-extern template UnkElem_71001b46ec& base::UnkVector<UnkElem_71001b46ec>::GrowAt(u32);
+extern template UnkElem_71001b46ec& base::global::CRntVector<UnkElem_71001b46ec>::GrowAt(u32);
 
 struct UnkSampled_71001b46ec {
     u8 pad_0x0[0xac];
@@ -32,7 +32,7 @@ void fn_7100151758(UnkSampled_71001b46ec* object, f32 time);
 
 struct UnkSampler_71001b46ec {
     u8 pad_0x0[0x80];
-    base::UnkVector<UnkElem_71001b46ec> entries;
+    base::global::CRntVector<UnkElem_71001b46ec> entries;
     u8 pad_0xa8[0x10];
     u32 count;
     u32 field_0xbc;

@@ -8,7 +8,7 @@
 #include "game/CComponent.h"
 #include "types.h"
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 
 struct UnkStateObject;
 void fn_7100a44d38(char*);

@@ -1,6 +1,6 @@
 // CPlayerInfo's unit (the class name from reflection; the object is 0x400 bytes): its constructor.
 // Names and layouts are placeholders inferred from the constructor.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/CGameObject.h"

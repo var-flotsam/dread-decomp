@@ -2,7 +2,7 @@
 // the reset after the component base's (fn_71010c4228): the member at 0x40 is assigned a freshly constructed
 // one (fn_71009f5730, fn_71009f5d50), the node list at 0x278 is freed and emptied, and the fields after it are
 // cleared. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CComponent.h"
 #include "game/CSpitclawkAIComponent.h"
 #include "types.h"

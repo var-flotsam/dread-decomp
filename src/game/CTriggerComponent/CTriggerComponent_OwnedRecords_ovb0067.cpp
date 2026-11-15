@@ -4,7 +4,7 @@
 // two-state variant that holds either the pair itself (state 1) or pointers to a pair kept elsewhere
 // (state 2), the variant of src/game/CTriggerComponent/CTriggerComponent_OwnedIterSync_b56.cpp. Names
 // and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CTriggerComponent.h"
 #include "types.h"
 
@@ -30,7 +30,7 @@ struct UnkTriggerOwnedPtr_ovb0067 {
     }
 };
 
-void fn_7100a63f40(base::UnkVector<UnkTriggerOwnedPtr_ovb0067>* self) {
+void fn_7100a63f40(base::global::CRntVector<UnkTriggerOwnedPtr_ovb0067>* self) {
     self->Free();
 }
 

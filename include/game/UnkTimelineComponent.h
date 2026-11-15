@@ -9,7 +9,7 @@
 // reaches the component through the actor. Only the members the sources share are spelled out; the
 // names and the layout are placeholders.
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkActor.h"
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
@@ -65,8 +65,8 @@ struct UnkTimelineComponent {
     UnkKeyedTable table;
     u8 unk_0x80[0x10];
     bool locked;                                 // while set, changes to the table are queued
-    base::UnkVector<UnkPendingAdd> pending_add;  // the additions queued
-    base::UnkVector<u64> pending_remove;         // the ids to remove, queued
+    base::global::CRntVector<UnkPendingAdd> pending_add;  // the additions queued
+    base::global::CRntVector<u64> pending_remove;         // the ids to remove, queued
     u8 unk_0xe8[0x98];
     // A union member: no type-based alias info, so the count is reloaded after the link
     // stores.

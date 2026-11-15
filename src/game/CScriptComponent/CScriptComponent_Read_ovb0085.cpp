@@ -6,7 +6,7 @@
 // (fn_7101139e08: the id table's key at +0x16a0 writes or reads the name at +0x68 as a string; other keys
 // go to the base handler). Names and layouts are placeholders.
 #include "../../game_s7/UnkPropS7.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
@@ -36,7 +36,7 @@ struct UnkScriptEntry_ovb0085;
 struct UnkScriptComponent_ovb0085 {
     void* vtable;
     u8 pad_0x8[0x38];
-    base::UnkVector<UnkScriptEntry_ovb0085*> entries;  // 0x40
+    base::global::CRntVector<UnkScriptEntry_ovb0085*> entries;  // 0x40
     CRntString name_0x68;
     CRntString name_0x98;
 };

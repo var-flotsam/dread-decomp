@@ -1,16 +1,16 @@
-// CCutsceneComponent's unit (tools/tu_map.py): the component's actor entries (a base::UnkVector of 0x88-byte
+// CCutsceneComponent's unit (tools/tu_map.py): the component's actor entries (a base::global::CRntVector of 0x88-byte
 // polymorphic entries at +0xd0, each with a reflected property that resolves once into a weak handle to an
 // actor), their updates and the cutscene manager calls on them; the entries' copy (fn_71007abba4), copy
 // assignment and the vector's copy, assignment, PushBack and Insert; a reflected CStrId getter, and a CStrId
 // set from a number's text. Names and layouts are placeholders.
-// The flag array's element accessor (base::UnkVector::GrowAt) is inlined in this unit.
+// The flag array's element accessor (base::global::CRntVector::GrowAt) is inlined in this unit.
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
 #include <new>
 #include <string>
 
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/math/UnkZeroVector3.h"
@@ -147,8 +147,8 @@ struct UnkCutsceneEntryRef_ovb0077 {
 
 using Entry = UnkCutsceneEntryRef_ovb0077;
 
-// base::UnkVector's MoveTo for these entries (copied by fn_71007abba4, then destroyed).
-__attribute__((always_inline)) static inline Entry* MoveTo(base::UnkVector<Entry>* self, u32 capacity) {
+// base::global::CRntVector's MoveTo for these entries (copied by fn_71007abba4, then destroyed).
+__attribute__((always_inline)) static inline Entry* MoveTo(base::global::CRntVector<Entry>* self, u32 capacity) {
     Entry* p = static_cast<Entry*>(self->allocator->vf_0x40((u64)capacity * sizeof(Entry), 8, self->flags));
     if (self->data) {
         Entry* src = self->data;
@@ -164,8 +164,8 @@ __attribute__((always_inline)) static inline Entry* MoveTo(base::UnkVector<Entry
     return p;
 }
 
-// base::UnkVector::PushBackCopy.
-__attribute__((always_inline)) static inline void PushBack(base::UnkVector<Entry>* self, const Entry* value) {
+// base::global::CRntVector::PushBackCopy.
+__attribute__((always_inline)) static inline void PushBack(base::global::CRntVector<Entry>* self, const Entry* value) {
     u32 n = self->count;
     u32 old_capacity = self->capacity;
     u32 new_capacity = old_capacity;
@@ -184,12 +184,12 @@ __attribute__((always_inline)) static inline void PushBack(base::UnkVector<Entry
     ++self->count;
 }
 
-void fn_71007acd14(base::UnkVector<Entry>* self, const Entry* value) {
+void fn_71007acd14(base::global::CRntVector<Entry>* self, const Entry* value) {
     PushBack(self, value);
 }
 
 // The copy constructor: the other's settings, its capacity reserved and each entry pushed.
-void fn_71007ac4ac(base::UnkVector<Entry>* self, const base::UnkVector<Entry>* other) {
+void fn_71007ac4ac(base::global::CRntVector<Entry>* self, const base::global::CRntVector<Entry>* other) {
     self->data = nullptr;
     self->count = 0;
     self->capacity = 0;
@@ -206,7 +206,7 @@ void fn_71007ac4ac(base::UnkVector<Entry>* self, const base::UnkVector<Entry>* o
         PushBack(self, p);
 }
 
-void fn_71007acb7c(base::UnkVector<Entry>* self, const Entry* value, u32 index) {
+void fn_71007acb7c(base::global::CRntVector<Entry>* self, const Entry* value, u32 index) {
     u32 n = self->count;
     if (n == index) {
         fn_71007acd14(self, value);
@@ -234,7 +234,7 @@ void fn_71007acb7c(base::UnkVector<Entry>* self, const Entry* value, u32 index) 
 }
 
 // Copy assignment: the entries are destroyed, the other's capacity reserved and each entry pushed.
-base::UnkVector<Entry>* fn_71007ac6c8(base::UnkVector<Entry>* self, const base::UnkVector<Entry>* other) {
+base::global::CRntVector<Entry>* fn_71007ac6c8(base::global::CRntVector<Entry>* self, const base::global::CRntVector<Entry>* other) {
     if (self != other) {
         for (u64 i = 0; i < self->count; ++i)
             self->data[i].~Entry();
@@ -359,11 +359,11 @@ struct UnkCutsceneComponent_ovb0077 {
     u8 offsets[0x8];  // 0x58: an array of three-word offsets
     u32 offset_count;  // 0x60
     u8 pad_0x64[0x6c];
-    base::UnkVector<UnkElem_0x88> actors;  // 0xd0
+    base::global::CRntVector<UnkElem_0x88> actors;  // 0xd0
     u8 pad_0xf8[0x58];
     base::global::CFilePathStrId path;  // 0x150
     u8 pad_0x158[0x8];
-    base::UnkVector<u8> flags;  // 0x160
+    base::global::CRntVector<u8> flags;  // 0x160
     u8 pad_0x188[0x50];
     bool field_0x1d8;  // 0x1d8
     bool field_0x1d9;  // 0x1d9
@@ -510,7 +510,7 @@ bool fn_71007aa610(UnkCutsceneComponent_ovb0077* self) {
 }
 
 // Resizes the array to n elements, zeroing the new ones.
-static inline void Resize(base::UnkVector<u8>* v, u32 n) {
+static inline void Resize(base::global::CRntVector<u8>* v, u32 n) {
     if (v->count < n) {
         if (v->capacity < n) {
             u8* p = static_cast<u8*>(v->allocator->vf_0x40(n, 8, v->flags));

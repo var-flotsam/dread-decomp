@@ -1,6 +1,6 @@
 // CElectrifyingAreaComponent's unit (tools/tu_map.py unit 1236): the area's shape test. Names and
 // layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "game/CLifeComponent.h"
 #include "game/UnkNavMeshManager.h"
@@ -28,7 +28,7 @@ struct UnkAreaVertex_ov110 {
 // A 2D polygon: its vertices, whether it is closed, and a bounding box kept up to date lazily
 // (the 0x48-byte layout of src/base/spatial/UnkPolygon2D.cpp).
 struct UnkAreaPolygon_ov110 {
-    base::UnkVector<UnkAreaVertex_ov110> vertices{7};
+    base::global::CRntVector<UnkAreaVertex_ov110> vertices{7};
     u32 field_0x28 = 0;
     bool closed = false;    // 0x2c
     bool box_dirty = true;  // 0x2d

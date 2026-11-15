@@ -2,7 +2,7 @@
 // src/game/behaviortree/CBehaviorTree/fn_71003aad48.cpp): each entry's node is told fn_7100394b30(node, 0, 7),
 // then every entry is freed through the allocator (vtable slot 0x48) and the list is emptied.
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkBehaviorNode_A2_b69;

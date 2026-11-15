@@ -2,7 +2,7 @@
 // the default state and flags, then the derived vtable, builds the member at +0x108 from the
 // argument and finishes by calling virtual slot 0x50 (the tail call).
 #include "base/UnkInitRecord_0x5c.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkSphere.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU167.h"

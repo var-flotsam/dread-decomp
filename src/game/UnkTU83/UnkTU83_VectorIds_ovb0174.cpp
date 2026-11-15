@@ -1,5 +1,5 @@
 // Unit 83 of tools/tu_map.py (base::reflection by its names), batch b0174: the engine's vector, hash
-// set and id helpers: inserts, grows and copies of base::UnkVector instantiations (ids, reflected
+// set and id helpers: inserts, grows and copies of base::global::CRntVector instantiations (ids, reflected
 // values, strings, words), the erase of parallel id arrays, the move and copy assignment of id
 // pairs, the attribute arrays' copy assignment and shrink, and the registry
 // (UnkVersionRegistry, src/engine/UnkEngineStart.cpp) constructor and set-up. Names and layouts are
@@ -12,7 +12,7 @@
 #include "base/UnkCloneRecords.h"
 #include "base/UnkNamedRegistry.h"
 #include "base/UnkResPathVec.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/file/UnkFileCacheSet.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
@@ -141,7 +141,7 @@ struct UnkNegKey_b0174 {
     UnkNegKey_b0174() { __builtin_memset(&v, 0xff, 8); }
     UnkNegKey_b0174(UnkNegKey_b0174&& o) { __builtin_memcpy(&v, &o.v, 8); }
 };
-UnkNegKey_b0174* fn_71000cf92c(base::UnkVector<UnkNegKey_b0174>* self, u32 index) {
+UnkNegKey_b0174* fn_71000cf92c(base::global::CRntVector<UnkNegKey_b0174>* self, u32 index) {
     return &self->GrowAt(index);
 }
 
@@ -158,7 +158,7 @@ struct UnkStringElem_b0174 {
     ~UnkStringElem_b0174() { fn_710007ecd4(Str()); }
 };
 
-UnkStringElem_b0174* fn_71000e0bb8(base::UnkVector<UnkStringElem_b0174>* self, u32 index) {
+UnkStringElem_b0174* fn_71000e0bb8(base::global::CRntVector<UnkStringElem_b0174>* self, u32 index) {
     return &self->GrowAt(index);
 }
 
@@ -169,7 +169,7 @@ struct UnkWord_b0174 {
     UnkWord_b0174(UnkWord_b0174&& o) { __builtin_memcpy(&v, &o.v, 8); }
 };
 
-__attribute__((flatten)) void fn_71000cf1fc(base::UnkVector<UnkWord_b0174>* self, const base::UnkVector<UnkWord_b0174>* other) {
+__attribute__((flatten)) void fn_71000cf1fc(base::global::CRntVector<UnkWord_b0174>* self, const base::global::CRntVector<UnkWord_b0174>* other) {
     self->data = nullptr;
     self->count = 0;
     self->capacity = 0;
@@ -186,7 +186,7 @@ __attribute__((flatten)) void fn_71000cf1fc(base::UnkVector<UnkWord_b0174>* self
 }
 
 
-__attribute__((flatten)) void fn_71000e0320(base::UnkVector<UnkStringElem_b0174>* self, const base::UnkVector<UnkStringElem_b0174>* other) {
+__attribute__((flatten)) void fn_71000e0320(base::global::CRntVector<UnkStringElem_b0174>* self, const base::global::CRntVector<UnkStringElem_b0174>* other) {
     self->data = nullptr;
     self->count = 0;
     self->capacity = 0;
@@ -202,7 +202,7 @@ __attribute__((flatten)) void fn_71000e0320(base::UnkVector<UnkStringElem_b0174>
     }
 }
 
-__attribute__((flatten)) base::UnkVector<UnkStringElem_b0174>* fn_71000e0524(base::UnkVector<UnkStringElem_b0174>* self, const base::UnkVector<UnkStringElem_b0174>* other) {
+__attribute__((flatten)) base::global::CRntVector<UnkStringElem_b0174>* fn_71000e0524(base::global::CRntVector<UnkStringElem_b0174>* self, const base::global::CRntVector<UnkStringElem_b0174>* other) {
     if (self != other) {
         self->Clear();
         self->Reserve(other->capacity);
@@ -239,7 +239,7 @@ struct UnkReflValueElem_b0174 {
     ~UnkReflValueElem_b0174() { fn_71000a1c60(&value); }
 };
 
-typedef base::UnkVector<UnkReflValueElem_b0174> ReflValueVector_b0174;
+typedef base::global::CRntVector<UnkReflValueElem_b0174> ReflValueVector_b0174;
 
 // Appends a copy (src/base/reflection/UnkReflValueVectorAssign_b52.cpp declares it with its own names).
 struct UnkReflValueVector_7100095acc;
@@ -499,14 +499,14 @@ struct UnkZeroVec3f_b0174 : UnkVec3f {
     UnkZeroVec3f_b0174(UnkZeroVec3f_b0174&& o) : UnkVec3f(o) {}
 };
 
-UnkZeroVec3f_b0174* fn_71000cc374(base::UnkVector<UnkZeroVec3f_b0174>* self, u32 index) {
+UnkZeroVec3f_b0174* fn_71000cc374(base::global::CRntVector<UnkZeroVec3f_b0174>* self, u32 index) {
     return &self->GrowAt(index);
 }
 
 // ---- insert into a 3D vector array (fn_71000cbef4, fn_71000cc134) ----
 namespace {
 
-typedef base::UnkVector<UnkVec3f> Vec3Vector_b0174;
+typedef base::global::CRntVector<UnkVec3f> Vec3Vector_b0174;
 
 __attribute__((always_inline)) inline UnkVec3f* MoveTo_b0174(Vec3Vector_b0174* self, u32 new_capacity) {
     UnkVec3f* p = static_cast<UnkVec3f*>(self->allocator->vf_0x40((u64)new_capacity * sizeof(UnkVec3f), 8, self->flags));
@@ -588,11 +588,11 @@ struct UnkVersionRegistry;
 struct UnkVersionRegistryLayout_b0174 {
     char* vtable;                        // 0x0
     UnkFileCacheSet set_a;               // 0x8
-    base::UnkVector<void*> list_a;       // 0x98
+    base::global::CRntVector<void*> list_a;       // 0x98
     UnkKeyedArray_b0174 keyed;           // 0xc0
     UnkFileCacheSet set_b;               // 0xe8
     u64 field_0x178;
-    base::UnkVector<void*> list_b;       // 0x180
+    base::global::CRntVector<void*> list_b;       // 0x180
 };
 static_assert(sizeof(UnkVersionRegistryLayout_b0174) == 0x1a8, "layout");
 static_assert(__builtin_offsetof(UnkVersionRegistryLayout_b0174, set_b) == 0xe8, "layout");
@@ -668,7 +668,7 @@ extern UnkStartHook_b0174* g_unk_7101d5bdd0;
 
 void fn_71000a4b60(UnkVersionRegistry* self);
 void fn_710009dba0(UnkKeyedPtrsOwner_b52* self, const u64* key, void* value);
-UnkFileCacheSetNode** fn_71000a5c1c(base::UnkVector<UnkFileCacheSetNode*>* self, u32 index);
+UnkFileCacheSetNode** fn_71000a5c1c(base::global::CRntVector<UnkFileCacheSetNode*>* self, u32 index);
 void fn_710009ea3c(CType* type);
 
 // A registered type: the object a type's id (+0x30) names and the type that owns it.

@@ -3,7 +3,7 @@
 // a listener at +0x70 (vtable g_unk_7101a22d48) with two callbacks bound to the component (+0x78:
 // fn_7100712538, +0x98: fn_71007124d8), then the post-construction virtual call (slot 3). The fields
 // are addressed by offset. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CAlternativeActionPlayerComponent.h"
 #include "game/CComponent.h"

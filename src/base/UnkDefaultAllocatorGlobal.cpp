@@ -5,7 +5,7 @@
 #include <new>
 
 #include "base/UnkDefaultAllocator.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/operator_new.h"
 
 using base::UnkDefaultAllocator;

@@ -2,7 +2,7 @@
 // arrays of owned-object lists (game_s2/UnkOwnedList.h) at +0x118 and +0xf0, then the shared base's
 // destructor fn_71005dbe04. Names are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCharClassKraidAttack.h"
 #include "game/CKraidSpinningNailsDef.h"
 #include "game_s2/UnkOwnedList.h"
@@ -18,7 +18,7 @@ struct base::UnkDtorTraits<UnkSpinningNailsDtor_A3_b69> {
 
 template <u32 Offset>
 struct UnkSpinningNailsLists_A3_b69 {
-    static void Release(char* self) { reinterpret_cast<base::UnkVector<UnkOwnedList>*>(self + Offset)->Free(); }
+    static void Release(char* self) { reinterpret_cast<base::global::CRntVector<UnkOwnedList>*>(self + Offset)->Free(); }
 };
 
 __attribute__((flatten)) void fn_71005eab7c(char* self) {

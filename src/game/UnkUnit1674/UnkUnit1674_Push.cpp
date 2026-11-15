@@ -1,7 +1,7 @@
 // From unit 1674 of tools/tu_map.py (0x7100b1df48-0x7100b1e70c, no reflected class): fn_7100b1e34c finds or
 // creates the list for (a, b) (fn_7100b1e1f4) and pushes a new item {p, value, q} at its front. Names and
 // layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkUnit1674Item {

@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/timeline/CEvent.h"
 #include "game/CBossAIComponent.h"
 #include "game/UnkGuiDisplayObject.h"

@@ -4,7 +4,7 @@
 // gravity suit), and the two places that hand the jet's sound target (+0x2b8 of the owner) a volume
 // by strength band on every channel (fn_710071a398): setting the strength (fn_710089f238) and the
 // restart (fn_710089eed0). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CAudioComponent.h"
 #include "game/CCharClassBaseDamageTriggerComponent.h"

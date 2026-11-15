@@ -2,7 +2,7 @@
 // sharing a count and capacity: when the capacity is below `n`, both are reallocated to `n`,
 // the records moved over (each source destroyed by fn_7100b8b7e8), the ids copied and the old
 // arrays freed.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 

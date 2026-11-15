@@ -2,7 +2,7 @@
 // then copy-constructs each one in place from the source (fn_710103a240).
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/UnkTU2647.h"
 #include "types.h"
@@ -10,8 +10,8 @@
 using base::global::CFilePathStrId;
 
 struct UnkPathIdListPair_710103a240 {
-    base::UnkVector<CFilePathStrId> first{0xf};
-    base::UnkVector<CFilePathStrId> second{0xf};
+    base::global::CRntVector<CFilePathStrId> first{0xf};
+    base::global::CRntVector<CFilePathStrId> second{0xf};
 };
 
 struct UnkPathIdTable_710103c4e8 {

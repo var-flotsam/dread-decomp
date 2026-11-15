@@ -1,9 +1,9 @@
 // Copy constructors of records holding a vector of 8-byte values: a word, a file path, a word
-// and the vector, or a string id and the vector (base::UnkVector's layout, which takes the
+// and the vector, or a string id and the vector (base::global::CRntVector's layout, which takes the
 // source's settings, reserves its capacity and copies the values with memcpy).
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "types.h"

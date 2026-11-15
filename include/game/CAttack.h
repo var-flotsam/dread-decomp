@@ -5,7 +5,7 @@
 // (descriptor slot 0x30) and a move constructor (0x38); for these classes both are the
 // implicit ones, and their members have no separate moves, so the two are identical.
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkActor.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"

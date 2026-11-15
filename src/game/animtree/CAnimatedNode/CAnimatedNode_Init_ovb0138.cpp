@@ -4,7 +4,7 @@
 // skeleton, a value from vtable slot 0x90 and the field at +0x68, points it at the owner's pose,
 // copies the definition's two flags and adds every filtered bone and bone hierarchy (by name hash) to
 // the mask at +0x28 (slots 0xc0 and 0xc8). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPoolBody.h"
 #include "types.h"

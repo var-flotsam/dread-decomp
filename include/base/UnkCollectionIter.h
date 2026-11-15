@@ -7,7 +7,7 @@
 
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 namespace base {
@@ -191,17 +191,17 @@ void* refl_IterValueCopy(void* dst, const void* src) {
 
 // The collection functions a reflected array type points to.
 template <class T>
-void refl_Begin(const UnkVector<T>* v, UnkCollectionIter<T>* out) {
+void refl_Begin(const global::CRntVector<T>* v, UnkCollectionIter<T>* out) {
     *out = UnkCollectionIter<T>(0, v->data);
 }
 
 template <class T>
-void refl_End(const UnkVector<T>* v, UnkCollectionIter<T>* out) {
+void refl_End(const global::CRntVector<T>* v, UnkCollectionIter<T>* out) {
     *out = UnkCollectionIter<T>(v->count, v->data + v->count);
 }
 
 template <class T>
-void refl_Erase(UnkVector<T>* v, const UnkCollectionIter<T>* it) {
+void refl_Erase(global::CRntVector<T>* v, const UnkCollectionIter<T>* it) {
     v->EraseAt(it->index);
 }
 

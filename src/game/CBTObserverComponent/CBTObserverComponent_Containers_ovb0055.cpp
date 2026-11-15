@@ -17,7 +17,7 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkPairArrays.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/CBTObserverComponent.h"
@@ -43,9 +43,9 @@ using base::global::CStrId;
 // ---- The keyed entries ----
 
 struct UnkBTObserverEntry_ovb0055 {
-    base::UnkVector<void**> links;  // 0x0: slots that point back at the entry
-    base::UnkVector<void*> field_0x28;
-    base::UnkVector<void*> field_0x50;
+    base::global::CRntVector<void**> links;  // 0x0: slots that point back at the entry
+    base::global::CRntVector<void*> field_0x28;
+    base::global::CRntVector<void*> field_0x50;
     bool field_0x78;
 
     ~UnkBTObserverEntry_ovb0055() {
@@ -81,9 +81,9 @@ __attribute__((noinline)) void fn_7100ca720c(UnkBTObserverEntries_ovb0055* self)
 
 // Constructs `self` from `other`, pointing other's back-pointing slots at `self`.
 __attribute__((noinline)) void fn_7100ca9380(UnkBTObserverEntry_ovb0055* self, UnkBTObserverEntry_ovb0055* other) {
-    new (&self->links) base::UnkVector<void**>(0xf);
-    new (&self->field_0x28) base::UnkVector<void*>(0xf);
-    new (&self->field_0x50) base::UnkVector<void*>(0xf);
+    new (&self->links) base::global::CRntVector<void**>(0xf);
+    new (&self->field_0x28) base::global::CRntVector<void*>(0xf);
+    new (&self->field_0x50) base::global::CRntVector<void*>(0xf);
     self->field_0x78 = other->field_0x78;
     for (void*** it = other->links.data, ***end = other->links.data + other->links.count; it != end; ++it) {
         void** slot = *it;
@@ -424,11 +424,11 @@ struct UnkIdVecVariant_ovb0055 {
     union {
         struct {
             UnkStrIdMember id;
-            base::UnkVector<void*> vec;
+            base::global::CRntVector<void*> vec;
         } named;
         struct {
             UnkStrIdMember* id;
-            base::UnkVector<void*>* vec;
+            base::global::CRntVector<void*>* vec;
         } refs;
     };
     s32 state;  // 0x30
@@ -437,7 +437,7 @@ struct UnkIdVecVariant_ovb0055 {
     ~UnkIdVecVariant_ovb0055() {}
 
     UnkStrIdMember& Id() { return state == 2 ? *refs.id : named.id; }
-    base::UnkVector<void*>& Vec() { return state == 2 ? *refs.vec : named.vec; }
+    base::global::CRntVector<void*>& Vec() { return state == 2 ? *refs.vec : named.vec; }
 };
 
 // Releases `to`, then takes `from`'s id, leaving the empty string (stored untyped: the original
@@ -453,12 +453,12 @@ UnkIdVecVariant_ovb0055* fn_7100ca9dc8(UnkIdVecVariant_ovb0055* self, UnkIdVecVa
     switch (other->state) {
     case 1:
         MoveId(self->Id(), other->named.id);
-        self->Vec() = static_cast<base::UnkVector<void*>&&>(other->named.vec);
+        self->Vec() = static_cast<base::global::CRntVector<void*>&&>(other->named.vec);
         break;
     case 2: {
         UnkStrIdMember* id = other->refs.id;
         MoveId(self->Id(), *id);
-        self->Vec() = static_cast<base::UnkVector<void*>&&>(*other->refs.vec);
+        self->Vec() = static_cast<base::global::CRntVector<void*>&&>(*other->refs.vec);
         break;
     }
     }
@@ -634,7 +634,7 @@ struct UnkObserverGroupsBase_ovb0055 {
 
     __attribute__((always_inline)) ~UnkObserverGroupsBase_ovb0055() {
         fn_7100ca7900(&map);
-        reinterpret_cast<base::UnkVector<void*>*>(&map.buckets)->Free();
+        reinterpret_cast<base::global::CRntVector<void*>*>(&map.buckets)->Free();
     }
 };
 

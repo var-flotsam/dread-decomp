@@ -2,7 +2,7 @@
 // of a class over fn_710019e82c's (vtable unk_7101a1e278): it returns its three pooled objects
 // (+0x118, +0x120 and +0x130), frees its block at +0x80 through the default allocator and lets go
 // of its three arrays (each with its own allocator). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU174.h"
 #include "game/UnkTU182.h"
 #include "game/UnkTU224.h"

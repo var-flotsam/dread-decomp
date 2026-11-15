@@ -6,7 +6,7 @@
 
 #include "base/UnkCloneRecords.h"
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/animtree/CAnimatedNodeDef.h"
 #include "game/animtree/CBoneFilterNodeDef.h"
@@ -18,8 +18,8 @@ using base::UnkStrIdMember;
 struct UnkBoneFilterNodeDef_ovb0138 {
     char* vtable;
     UnkStrIdMember name;                         // 0x8
-    base::UnkVector<UnkStrIdMember> bones;        // 0x10
-    base::UnkVector<UnkStrIdMember> hierarchies;  // 0x38
+    base::global::CRntVector<UnkStrIdMember> bones;        // 0x10
+    base::global::CRntVector<UnkStrIdMember> hierarchies;  // 0x38
 };
 static_assert(sizeof(UnkBoneFilterNodeDef_ovb0138) == 0x60, "UnkBoneFilterNodeDef_ovb0138 layout");
 
@@ -49,8 +49,8 @@ void* fn_71002e3608(void* dst, const void* src) {
         const_cast<UnkBoneFilterNodeDef_ovb0138*>(static_cast<const UnkBoneFilterNodeDef_ovb0138*>(src));
     if (self != other) {
         self->name = other->name;
-        self->bones = static_cast<base::UnkVector<UnkStrIdMember>&&>(other->bones);
-        self->hierarchies = static_cast<base::UnkVector<UnkStrIdMember>&&>(other->hierarchies);
+        self->bones = static_cast<base::global::CRntVector<UnkStrIdMember>&&>(other->bones);
+        self->hierarchies = static_cast<base::global::CRntVector<UnkStrIdMember>&&>(other->hierarchies);
     }
     return self;
 }

@@ -2,7 +2,7 @@
 // file: its class's 64-bit id, the class looked up in the registry of reflected types and, when it is
 // a CEvent with an in-place constructor, the object created (0x58 allocation flags), constructed and
 // read by fn_710006790c. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CRntFile.h"
 #include "base/reflection/UnkClassGetters.h"

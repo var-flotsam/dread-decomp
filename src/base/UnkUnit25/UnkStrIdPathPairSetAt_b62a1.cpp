@@ -1,12 +1,12 @@
 // Unit 25: the "set element at index" functions (slots 0x140 and 0x148 of the reflected collection
-// type) of an array (base::UnkVector's layout) of string id and file-path id pairs, in the shape of
+// type) of an array (base::global::CRntVector's layout) of string id and file-path id pairs, in the shape of
 // src/game/animtree/CAnimTreeDef/CAnimTreeDef_IdPairSetAt_b49.cpp: an index past the end of a
 // growable array first reserves (fn_710001e4e8) and constructs the new pairs as copies of the empty
 // ids (g_unk_7101d470e0, g_unk_7101d470e8), then the pair is assigned member by member. Names and
 // layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "types.h"

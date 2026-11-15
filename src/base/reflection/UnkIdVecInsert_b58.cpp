@@ -1,5 +1,5 @@
 // Unit 83 (base::reflection): fn_71000ce49c and fn_71000d0c58 move a string id in at `index` of
-// an id vector, shifting the later ids up: base::UnkVector's Insert written out over the out-of-line Reserve. fn_71000ce49c works on
+// an id vector, shifting the later ids up: base::global::CRntVector's Insert written out over the out-of-line Reserve. fn_71000ce49c works on
 // a CStrId vector (base::UnkStrIdVec, Reserve fn_710000542c), fn_71000d0c58 on a file-path id
 // vector (UnkResPathVec, Reserve fn_7100018450). Each shifted id is taken bitwise and its slot
 // released in two steps (decrement, then reload and test). Names are placeholders.

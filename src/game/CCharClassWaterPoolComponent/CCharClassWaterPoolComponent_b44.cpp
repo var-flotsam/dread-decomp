@@ -3,7 +3,7 @@
 // 0xf and the default allocator, then its own vtable g_unk_7101a33fa0), followed by a cleared word
 // and -1 at +0x40. Fields are addressed by offset, as in
 // src/game/CCentralUnitAIComponent/fn_71004076e4.cpp. Names and layout are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/UnkTU341.h"
 #include "types.h"

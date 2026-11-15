@@ -7,7 +7,7 @@
 // CCharClassEmmyValveComponent_b44.cpp) and frees the component. Names and layouts are placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkStrIdTable.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkComponent.h"

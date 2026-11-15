@@ -2,7 +2,7 @@
 // objects of the entries at +0x50 are collected and dropped (fn_7101153c6c), the ids at +0x58
 // reset, the count cleared and the three models handed back to the model manager.
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkModelManager.h"
 #include "types.h"
@@ -48,7 +48,7 @@ static inline void ReleaseModel(UnkFXComponent_l14e130* self, void*& model) {
 }
 
 void fn_710114e130(UnkFXComponent_l14e130* self) {
-    base::UnkVector<void*> effects(0x1a);
+    base::global::CRntVector<void*> effects(0x1a);
     if (self->count) {
         for (UnkFXEntry_0x20* e = self->entries; e != self->entries + self->count; ++e)
             effects.PushBack(e->effect);

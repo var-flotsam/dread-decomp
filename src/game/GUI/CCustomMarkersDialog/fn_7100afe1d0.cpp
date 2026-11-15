@@ -1,10 +1,10 @@
-// Reserve of a growable array of reference-counted pointers (base::UnkVector's layout): moves
+// Reserve of a growable array of reference-counted pointers (base::global::CRntVector's layout): moves
 // each pointer into the new storage by copying it (taking a reference) and releasing the old
 // slot, then frees the old storage. Four array types share the same body. Also the arrays'
 // destructor and Clear.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 // A reference-counted object released through vf_0x10. The count is a union member (no

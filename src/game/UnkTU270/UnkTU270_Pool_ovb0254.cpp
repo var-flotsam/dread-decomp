@@ -7,7 +7,7 @@
 #include <new>
 
 #include "base/UnkMatrix44.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkSphere.h"
 #include "game/UnkTU307.h"
 #include "game/UnkTU58.h"
@@ -100,7 +100,7 @@ struct UnkPool_ovb0254 {
     bool field_0x5e9b85;
     bool field_0x5e9b86;
     u8 changed;                                          // 0x5e9b87
-    base::UnkVector<UnkTreeNode_ovb0254> tree;           // 0x5e9b88
+    base::global::CRntVector<UnkTreeNode_ovb0254> tree;           // 0x5e9b88
 };
 static_assert(__builtin_offsetof(UnkPool_ovb0254, entries) == 0x30d48, "pool layout");
 static_assert(__builtin_offsetof(UnkPool_ovb0254, tableA) == 0x588048, "pool layout");
@@ -170,7 +170,7 @@ void fn_71001ec09c(UnkPool_ovb0254* self, UnkFrustum_ovb0254* view, UnkPoolEntry
 }
 
 // Grows the tree's array to `n` nodes (the nodes are copied from their corners).
-void fn_71001ec680(base::UnkVector<UnkTreeNode_ovb0254>* self, u32 n) { self->Reserve(n); }
+void fn_71001ec680(base::global::CRntVector<UnkTreeNode_ovb0254>* self, u32 n) { self->Reserve(n); }
 
 
 void fn_7100215dac(UnkPoolBox* self);                                  // its default constructor

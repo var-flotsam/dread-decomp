@@ -12,7 +12,7 @@
 #include "base/UnkCountedResource.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkParallelFind.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -321,7 +321,7 @@ struct UnkCellData_ec1710 {
 };
 
 UnkCandidate_ec1710* fn_710054cdac(UnkCandidates_ec1710* list, u32 index);
-void fn_7100ec1970(const CVector2D* start, UnkCellData_ec1710* data, base::UnkVector<void*>* tmp,
+void fn_7100ec1970(const CVector2D* start, UnkCellData_ec1710* data, base::global::CRntVector<void*>* tmp,
                    UnkCandidates_ec1710* out);
 bool fn_71002811b4(UnkNavMeshState_0x5ddf0* state, UnkNavQuery* query, UnkScratch_ec1710* scratch);
 f32 fn_71002aca24(void* result);
@@ -358,7 +358,7 @@ void fn_7100ec1710(UnkNavMeshManager* self, const CVector2D* start, const CVecto
         return;
     if (fn_710002fb70(data->field_0x18))
         return;
-    base::UnkVector<void*> tmp(0xf);
+    base::global::CRntVector<void*> tmp(0xf);
     fn_7100ec1970(start, data, &tmp, candidates);
     f32 best = 3.4028235e38f;
     for (u32 i = 0; i < candidates->count; ++i) {

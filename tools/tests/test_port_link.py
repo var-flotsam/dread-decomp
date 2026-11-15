@@ -18,7 +18,7 @@ class ReturnType(unittest.TestCase):
     def test_pointer_scalar_void_and_plain_names(self):
         for dem in (GET, "void base::refl_IterSync<Unk_fn_7100000010>(int)", "unsigned long f<Unk_fn_7100000010>()",
                     "fn_7100000010(int)", "void* operator new<Unk_fn_7100000010>(unsigned long)",
-                    "base::UnkVector<int>& g<Unk_fn_7100000010>()"):
+                    "base::global::CRntVector<int>& g<Unk_fn_7100000010>()"):
             self.assertFalse(pl.returns_class_by_value(dem), dem)
 
 

@@ -5,7 +5,7 @@
 #include <new>
 
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/file/CPackManagerDevice.h"
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"
@@ -141,7 +141,7 @@ extern base::file::UnkFileDevice* g_unk_7101d4d828;
 
 struct UnkMgrPaths_b189 {
     u8 pad_0x0[0x3b8];
-    base::UnkVector<UnkPathIdMember_b189> field_0x3b8;
+    base::global::CRntVector<UnkPathIdMember_b189> field_0x3b8;
 };
 
 void fn_7100ee48ec(UnkMgrPaths_b189* self) {
@@ -187,10 +187,10 @@ struct UnkOwnedObjectPtr_b189 {
 
 struct UnkOwnerA_b189 {
     u8 pad_0x0[0x830];
-    base::UnkVector<UnkOwnedObjectPtr_b189> field_0x830;
+    base::global::CRntVector<UnkOwnedObjectPtr_b189> field_0x830;
 };
 
-static inline void EraseAtA(base::UnkVector<UnkOwnedObjectPtr_b189>* self, u32 index) {
+static inline void EraseAtA(base::global::CRntVector<UnkOwnedObjectPtr_b189>* self, u32 index) {
     if (index < self->count) {
         u64 i = index;
         self->data[i].~UnkOwnedObjectPtr_b189();
@@ -247,10 +247,10 @@ struct UnkNamedIdsPtr_b189 {
 
 struct UnkOwnerB_b189 {
     u8 pad_0x0[0x888];
-    base::UnkVector<UnkNamedIdsPtr_b189> field_0x888;
+    base::global::CRntVector<UnkNamedIdsPtr_b189> field_0x888;
 };
 
-static inline void EraseAtB(base::UnkVector<UnkNamedIdsPtr_b189>* self, u32 index) {
+static inline void EraseAtB(base::global::CRntVector<UnkNamedIdsPtr_b189>* self, u32 index) {
     if (index < self->count) {
         u64 i = index;
         self->data[i].~UnkNamedIdsPtr_b189();
@@ -297,7 +297,7 @@ struct UnkSubAreaRecord_0x188 {
     ~UnkSubAreaRecord_0x188() { fn_7100faa3d8(this); }
 };
 
-void fn_7100ef1d24(base::UnkVector<UnkSubAreaRecord_0x188>* self, u32 n) {
+void fn_7100ef1d24(base::global::CRntVector<UnkSubAreaRecord_0x188>* self, u32 n) {
     self->Reserve(n);
     for (u32 i = self->count; i < n; ++i)
         new (&self->data[i]) UnkSubAreaRecord_0x188();
@@ -461,7 +461,7 @@ UnkAreaObject_b189* fn_7100eeb730(UnkAreaMgr_b189* self, const base::math::CVect
 // ---- fn_7100eecb08: erases the node of a string-id hash map ----
 struct UnkHashNode_b189 {
     base::UnkStrIdMember key;
-    base::UnkVector<void*> field_0x8;
+    base::global::CRntVector<void*> field_0x8;
     // Union members: the original reloads them after each link store.
     union {
         UnkHashNode_b189* next;  // 0x30: list order
@@ -658,7 +658,7 @@ void fn_7100ee4550(CSubAreaManager* manager, const UnkPoppedRequest* request, bo
         const CStrId* id = reinterpret_cast<const CStrId*>(request);
         for (u32 i = 0; i < self->field_0x830.count; ++i) {
             UnkGroup_b189* group = *reinterpret_cast<UnkGroup_b189**>(
-                fn_7100eee97c(reinterpret_cast<base::UnkVector<UnkNamedObjectPtr_b190>*>(&self->field_0x830), i));
+                fn_7100eee97c(reinterpret_cast<base::global::CRntVector<UnkNamedObjectPtr_b190>*>(&self->field_0x830), i));
             if (group->field_0x8 == reinterpret_cast<const u64&>(*id)) {
                 for (u64 j = 0; j < group->field_0x18; ++j)
                     fn_7100eee1f8(manager, reinterpret_cast<CStrId*>(group->field_0x10[j]->field_0x10), id, a, b);
@@ -742,7 +742,7 @@ struct UnkObjMgrB_b189 {
 
 UnkRecB_b189* fn_7100ee2d84(UnkObjMgrB_b189* self, const CStrId* id);
 
-bool fn_7100ee2bd8(UnkObjMgrB_b189* self, base::UnkVector<UnkRecB_b189*>* out, const base::math::CVector2D* pos,
+bool fn_7100ee2bd8(UnkObjMgrB_b189* self, base::global::CRntVector<UnkRecB_b189*>* out, const base::math::CVector2D* pos,
                    u32 mask, UnkObjB_b189* skip) {
     bool any = false;
     UnkObjListB_b189* list = self->field_0x930;

@@ -4,7 +4,7 @@
 // number of blocks carved from one allocation of the default allocator, with a stack of the
 // free ones. fn_7100084030 allocates, fn_7100084144 frees. Names and layouts are placeholders inferred from the code.
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 namespace base::global {

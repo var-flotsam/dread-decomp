@@ -3,7 +3,7 @@
 // heading (fn_71004e2494), the members' colour fades (fn_71004e081c), the destructor (fn_71004e2630) and a
 // navigation-mesh probe (fn_71004e05d8).
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/color/CColor4F.h"
 #include "base/math/CVector4D.h"
 #include "game/CFlockingSwarmControllerComponent.h"
@@ -242,16 +242,16 @@ void fn_71004e081c(UnkDaivoFade_b0012* self, UnkFadeGroup_b0012* group) {
 
 // An array that frees itself when destroyed.
 template <class T>
-struct UnkOwnedVector_b0012 : base::UnkVector<T> {
+struct UnkOwnedVector_b0012 : base::global::CRntVector<T> {
     ~UnkOwnedVector_b0012() { this->Free(); }
 };
 
 struct UnkDaivoLists_b0012 {
     u8 pad_0x0[0x488];
-    base::UnkVector<UnkOwnedVector_b0012<u32>> field_0x488;
+    base::global::CRntVector<UnkOwnedVector_b0012<u32>> field_0x488;
     u8 pad_0x4b0[0x28];
-    base::UnkVector<u32> field_0x4d8;
-    base::UnkVector<UnkOwnedVector_b0012<u32>> field_0x500;
+    base::global::CRntVector<u32> field_0x4d8;
+    base::global::CRntVector<UnkOwnedVector_b0012<u32>> field_0x500;
 };
 static_assert(__builtin_offsetof(UnkDaivoLists_b0012, field_0x500) == 0x500, "UnkDaivoLists_b0012 layout");
 

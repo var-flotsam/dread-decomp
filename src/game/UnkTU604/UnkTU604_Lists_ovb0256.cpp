@@ -2,7 +2,7 @@
 // inlined into its owners) and a lookup that clears a slot's reference. Names and layouts are placeholders.
 #include "base/UnkBlockFreeList.h"
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU604.h"
 #include "types.h"
 

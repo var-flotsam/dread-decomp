@@ -3,7 +3,7 @@
 // appended to the first (once per entry). The index moves on after an erase, as in the
 // original. The two lists sit at `Offset` + 8 and `Offset` + 0x30. Three more take the last
 // object off the first list, set its flag and append it to the second.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CLightManager.h"
 #include "game/UnkTU290.h"
 #include "types.h"
@@ -11,7 +11,7 @@
 struct UnkListedObj;
 
 // Erasing moves the later entries down with memcpy.
-struct UnkPtrList : base::UnkVector<UnkListedObj*> {
+struct UnkPtrList : base::global::CRntVector<UnkListedObj*> {
     __attribute__((always_inline)) void EraseAt(u64 index) {
         if (index < count) {
             __builtin_memcpy(&data[index], &data[index + 1], (u64)(u32)(count - 1 - (u32)index) * 8);
@@ -22,7 +22,7 @@ struct UnkPtrList : base::UnkVector<UnkListedObj*> {
 
 struct UnkListPair {
     u8 unk_0x0[0x8];
-    base::UnkVector<UnkListedObj*> active;
+    base::global::CRntVector<UnkListedObj*> active;
     UnkPtrList pending;
 };
 

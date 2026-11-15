@@ -1,7 +1,7 @@
 // Initialises an entity's two smart-link group handles from the navmesh manager's registry
 // (game/UnkNavMeshManager.h; the manager is created on first use), runs two virtual set-up
 // steps and stores the squares of two floats.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCharClassComponent.h"
 #include "game/UnkNavMeshManager.h"
 #include "types.h"

@@ -5,7 +5,7 @@
 // default one when null, flags 0x11). Names and layouts are placeholders.
 #include <stddef.h>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 extern "C" size_t wcslen(const wchar_t* s);

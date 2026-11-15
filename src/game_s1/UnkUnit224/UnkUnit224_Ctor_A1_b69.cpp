@@ -4,7 +4,7 @@
 // diagonal set from the last element) and a count of 3. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU224.h"
 #include "game/UnkTU226.h"
 #include "types.h"
@@ -47,9 +47,9 @@ struct UnkObject224_b69a1 {
     u64 field_0x88;
     u64 field_0x90;
     u64 field_0x98;
-    base::UnkVector<void*> v0;  // 0xa0
-    base::UnkVector<void*> v1;  // 0xc8
-    base::UnkVector<void*> v2;  // 0xf0
+    base::global::CRntVector<void*> v0;  // 0xa0
+    base::global::CRntVector<void*> v1;  // 0xc8
+    base::global::CRntVector<void*> v2;  // 0xf0
     u64 field_0x118;
     u64 field_0x120;
     u32 field_0x128;
@@ -100,9 +100,9 @@ void fn_710019c6c0(UnkObject224_b69a1* self) {
     self->field_0x88 = 0;
     self->field_0x90 = 0;
     self->field_0x98 = 0;
-    new (&self->v0) base::UnkVector<void*>(12);
-    new (&self->v1) base::UnkVector<void*>(12);
-    new (&self->v2) base::UnkVector<void*>(12);
+    new (&self->v0) base::global::CRntVector<void*>(12);
+    new (&self->v1) base::global::CRntVector<void*>(12);
+    new (&self->v2) base::global::CRntVector<void*>(12);
     self->field_0x128 = 0;
     self->field_0x130 = 0;
     self->field_0x138 = 0;

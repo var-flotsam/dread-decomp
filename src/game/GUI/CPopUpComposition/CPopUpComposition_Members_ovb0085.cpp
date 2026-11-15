@@ -10,7 +10,7 @@
 
 #include "base/UnkDeferredSet.h"
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -111,9 +111,9 @@ struct UnkPopUpEntry_ovb0085 {
 
 // Value-constructed as a whole: three arrays with allocator flags 0xf.
 struct UnkPopUpLists_ovb0085 {
-    base::UnkVector<UnkPopUpEntry_ovb0085*> list_0x0 = base::UnkVector<UnkPopUpEntry_ovb0085*>(0xf);
-    base::UnkVector<UnkPopUpEntry_ovb0085*> list_0x28 = base::UnkVector<UnkPopUpEntry_ovb0085*>(0xf);
-    base::UnkVector<UnkPopUpEntry_ovb0085*> list_0x50 = base::UnkVector<UnkPopUpEntry_ovb0085*>(0xf);
+    base::global::CRntVector<UnkPopUpEntry_ovb0085*> list_0x0 = base::global::CRntVector<UnkPopUpEntry_ovb0085*>(0xf);
+    base::global::CRntVector<UnkPopUpEntry_ovb0085*> list_0x28 = base::global::CRntVector<UnkPopUpEntry_ovb0085*>(0xf);
+    base::global::CRntVector<UnkPopUpEntry_ovb0085*> list_0x50 = base::global::CRntVector<UnkPopUpEntry_ovb0085*>(0xf);
 
     // The first list's entries forget their owner; then all three are emptied and freed.
     __attribute__((always_inline)) void Destroy() {
@@ -192,7 +192,7 @@ struct UnkPopUpComposition_ovb0085 {
     u8 pad_0x2e5[0x3];
     s32 mode;  // 0x2e8
     u8 pad_0x2ec[0x4];
-    base::UnkVector<UnkPopUpIdRecord_ovb0085> records;  // 0x2f0
+    base::global::CRntVector<UnkPopUpIdRecord_ovb0085> records;  // 0x2f0
     base::UnkRefPtrMember panel;                         // 0x318
     base::UnkRefPtrMember field_0x320;
     UnkReleasedStrId_ovb0085 id_0x328;
@@ -224,7 +224,7 @@ void fn_7100b5e5c0(UnkPopUpComposition_ovb0085* self) {
     self->field_0x2e2 = false;
     self->field_0x2e3 = false;
     self->field_0x2e4 = false;
-    new (&self->records) base::UnkVector<UnkPopUpIdRecord_ovb0085>(0xf);
+    new (&self->records) base::global::CRntVector<UnkPopUpIdRecord_ovb0085>(0xf);
     self->panel.ptr = nullptr;
     self->field_0x320.ptr = nullptr;
     new (reinterpret_cast<CStrId*>(&self->id_0x328)) CStrId(g_unk_7101d470e0);

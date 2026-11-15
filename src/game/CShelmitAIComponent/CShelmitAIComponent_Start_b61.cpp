@@ -4,7 +4,7 @@
 // +0x3f0 object (fn_71006bd4f0) and the attack at +0x146d0 starts (fn_71006b641c). Names and layouts are
 // placeholders.
 #include "../../game_s2/UnkSpitSend.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkManager_71726af468.h"

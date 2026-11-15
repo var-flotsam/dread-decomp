@@ -1,6 +1,6 @@
 // SLogicPathNode unit: two owners' arrays of polymorphic elements (0x50 bytes at +0x10, 0x20 bytes at
 // +0x8) cleared in place: each element destroyed through vtable slot 1, then the count zeroed. The
-// shape of base::UnkVector::Clear (include/base/UnkVector.h). Names and layouts are placeholders.
+// shape of base::global::CRntVector::Clear (include/base/global/CRntVector.h). Names and layouts are placeholders.
 #include "types.h"
 
 template <u64 Size>

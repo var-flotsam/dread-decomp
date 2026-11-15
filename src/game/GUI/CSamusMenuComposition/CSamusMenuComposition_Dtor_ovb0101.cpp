@@ -3,7 +3,7 @@
 // registration, string ids, the sub-object at +0x288 (fn_7100b6d41c) and the chained map of named
 // entry lists at +0x240, then the display-object container's destructor. Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CChozoCommanderAIComponent.h"
 #include "game/UnkGuiDisplayObject.h"
@@ -22,7 +22,7 @@ struct UnkMenuEntry_b0101 {
 // A named list of entries.
 struct UnkMenuEntryList_b0101 {
     CStrId id;
-    base::UnkVector<UnkMenuEntry_b0101> entries;  // 0x8
+    base::global::CRntVector<UnkMenuEntry_b0101> entries;  // 0x8
 };
 
 // The named list's destructor.
@@ -60,7 +60,7 @@ struct UnkMenuMap_b0101 {
     base::UnkAllocator* allocator;  // 0x240
     u32 field_0x248;
     u32 count;  // 0x24c
-    base::UnkVector<UnkMenuMapNode_b0101*> buckets;  // 0x250
+    base::global::CRntVector<UnkMenuMapNode_b0101*> buckets;  // 0x250
     u64 field_0x278;
     UnkMenuMapNode_b0101* head;  // 0x280
 };

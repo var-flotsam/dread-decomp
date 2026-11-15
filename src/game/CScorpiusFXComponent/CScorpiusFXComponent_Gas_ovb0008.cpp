@@ -6,7 +6,7 @@
 // shutdown fn_710080f710 and the destructors fn_710080f184 and fn_710080f284) hands each one back
 // to the model manager. Reading the array past its count grows it with zeroed slots. Names and
 // layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/core/CBaseObject.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"

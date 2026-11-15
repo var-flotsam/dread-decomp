@@ -3,7 +3,7 @@
 // (fn_7100e8d8b0, fn_7100e95130) about it when shown and flagged (+0x3c), then moves the callback link at
 // +0x48 to the manager g_unk_7101d47360 (created on first use; its list at +0xa60).
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2566.h"

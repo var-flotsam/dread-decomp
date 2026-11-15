@@ -1,7 +1,7 @@
 // The clear of a container of two parallel arrays (inner arrays and string ids) in CFXComponent's
 // unit, as fn_7100eb1824 (src/game_aca57c/fn_7100eb1824.cpp): destroys the ids, then frees each
 // inner array.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -39,7 +39,7 @@ struct UnkFXIdValues {
 };
 
 struct UnkFXIdValuesArrays {
-    base::UnkVector<UnkFXIdValues>* records;
+    base::global::CRntVector<UnkFXIdValues>* records;
     UnkFXReleasedStrId* ids;
     u32 count;
     u32 capacity;

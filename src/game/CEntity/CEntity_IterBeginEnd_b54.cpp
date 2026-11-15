@@ -6,7 +6,7 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkCollectionIter.h"
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU341.h"
@@ -103,7 +103,7 @@ struct UnkEntityCallbackIter_b54 {
 };
 
 // The braces evaluate the count before the data, as the original does.
-void fn_7100d88f50(const base::UnkVector<UnkEntityCallbackList_b54>* v, UnkEntityCallbackIter_b54* out) {
+void fn_7100d88f50(const base::global::CRntVector<UnkEntityCallbackList_b54>* v, UnkEntityCallbackIter_b54* out) {
     *out = UnkEntityCallbackIter_b54{v->count, v->data + v->count};
 }
 

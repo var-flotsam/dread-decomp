@@ -3,7 +3,7 @@
 // file-path id and runs the base destructor; then the outer id is released. Three identical
 // copies.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CLightsDef.h"
 #include "types.h"
 
@@ -15,7 +15,7 @@ struct UnkBase_0x58 {
 
 struct UnkClearedArray;
 
-// base::UnkVector's layout; cleared out of line before its storage is freed.
+// base::global::CRntVector's layout; cleared out of line before its storage is freed.
 struct UnkClearedArray {
     void* data;
     u32 count;

@@ -1,6 +1,6 @@
 // Unit 2628 (tools/tu_map.py): asks the music manager (created on first use) to do something once the object
 // at +0x2f8 is in state 6. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CBossAIComponent.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"

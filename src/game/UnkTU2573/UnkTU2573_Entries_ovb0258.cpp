@@ -1,7 +1,7 @@
 // Unit 2573 (no reliable name): a growing array of 0x18-byte records (a counted reference and two ids), and the
 // damage request built from an attack. Names and layouts are placeholders.
 #include "base/UnkRefHandle.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/UnkZeroVector3.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -15,7 +15,7 @@ struct UnkRefEntry_b0258b {
     u32 value;
 };
 
-void fn_7100ecf4c8(base::UnkVector<UnkRefEntry_b0258b>* self, u32 n) {
+void fn_7100ecf4c8(base::global::CRntVector<UnkRefEntry_b0258b>* self, u32 n) {
     if (self->capacity < n) {
         UnkRefEntry_b0258b* p = static_cast<UnkRefEntry_b0258b*>(self->allocator->vf_0x40((u64)n * sizeof(UnkRefEntry_b0258b), 8, self->flags));
         UnkRefEntry_b0258b* src = self->data;

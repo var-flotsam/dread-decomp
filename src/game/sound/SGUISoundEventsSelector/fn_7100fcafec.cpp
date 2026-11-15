@@ -3,7 +3,7 @@
 // and destroys its name string, fn_710007ed40 and CRntString's destructor) and frees the object.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/sound/SGUISoundEventsSelector.h"
@@ -48,7 +48,7 @@ struct UnkNamedBase_0x38 {
 
 struct UnkIdArrayOwner_7100fcafec : UnkNamedBase_0x38 {
     u8 unk_0x38[0x98];
-    base::UnkVector<UnkIdEntry_0x10> entries;
+    base::global::CRntVector<UnkIdEntry_0x10> entries;
 
     __attribute__((always_inline)) ~UnkIdArrayOwner_7100fcafec() {
         vtable = &g_unk_7101caba40[2];

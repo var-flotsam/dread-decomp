@@ -5,7 +5,7 @@
 // the narrow text into them with fn_710006c000 and terminates it), and the deleting destructor. Names and layouts are placeholders.
 #include <stddef.h>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/timeline/CEvent.h"
 #include "game/nn/time.h"

@@ -8,7 +8,7 @@
 #include <new>
 
 #include "../../../lib/lua/lua.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "game/CAIManager/CTunableAIManager.h"

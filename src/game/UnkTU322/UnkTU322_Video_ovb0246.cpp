@@ -1,6 +1,6 @@
 // Unit 322 (no reliable name): a player's media object creation and the widget it adds for a video. Names and layouts are placeholders.
 #include <new>
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU223.h"
 #include "game/UnkTU287.h"
 #include "types.h"
@@ -61,7 +61,7 @@ void fn_71002206fc(void* obj);
 void fn_710021d394(char*, void*, u32);
 void fn_710021ff8c(void* obj, void* pair);
 void fn_710021ecb4(void* obj, const UnkPathKey& path, u32 a, bool b);
-void fn_710021d238(base::UnkVector<UnkRef>* vec, u32 n);
+void fn_710021d238(base::global::CRntVector<UnkRef>* vec, u32 n);
 
 struct UnkCab8Obj_b0246 : UnkRefObj {
     u8 pad_0xc[0xacc];
@@ -71,7 +71,7 @@ struct UnkCab8Obj_b0246 : UnkRefObj {
 
 struct UnkCab8Player_b0246 {
     u8 pad_0x0[0x18];
-    base::UnkVector<UnkRef> list;  // 0x18
+    base::global::CRntVector<UnkRef> list;  // 0x18
 };
 
 struct UnkCab8Pair_b0246 {
@@ -90,7 +90,7 @@ UnkRef fn_710021cab8(UnkPlayer* player, const UnkPathKey& path, u32 a, u32 b) {
     fn_71002206fc(obj->field_0xae0);
     *reinterpret_cast<void**>(mem) = &g_unk_7101a20440[2];
     {
-        base::UnkVector<UnkRef>& list = self->list;
+        base::global::CRntVector<UnkRef>& list = self->list;
         UnkRef local;
         local.ptr = obj;
         RefAdd(obj);

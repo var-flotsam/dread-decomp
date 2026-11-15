@@ -4,7 +4,7 @@
 // copied and destroyed one by one, the old arrays freed.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 

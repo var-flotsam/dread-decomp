@@ -2,7 +2,7 @@
 // object with an array of 256 entries of 0xa0 bytes at 0x858, each with a member destroyed by
 // fn_7100216934 (in reverse order), and its deleting form. Names and layouts are placeholders.
 #include "base/UnkCloneHelpers.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU269.h"
 #include "types.h"
 

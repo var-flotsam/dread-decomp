@@ -5,7 +5,7 @@
 // Names and layouts are placeholders.
 #include "UnkLeftoverReg.h"
 #include "base/global/CStrId.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkNamedObjectPtr_b190;
@@ -41,4 +41,4 @@ void fn_7100eed3a4(void* manager, const base::global::CStrId* id, UnkCamMask_b01
 void fn_7100eee61c(void* manager, base::global::CStrId* a, base::global::CStrId* b, bool flag, bool other);
 void fn_7100eeeda4(void* manager, const base::global::CStrId* setup, bool enable, const u32* mask);
 extern base::global::UnkStrIdBase g_unk_71729daa38[/* 9; unsized: x86-64 would assume 16-byte alignment */];
-UnkNamedObjectPtr_b190* fn_7100eee97c(base::UnkVector<UnkNamedObjectPtr_b190>* v, u32 index);
+UnkNamedObjectPtr_b190* fn_7100eee97c(base::global::CRntVector<UnkNamedObjectPtr_b190>* v, u32 index);

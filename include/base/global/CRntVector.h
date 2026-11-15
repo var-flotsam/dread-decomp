@@ -1,7 +1,7 @@
 #pragma once
 
-// The engine's growable array and the allocator interface it allocates through. Neither name
-// is known; both keep placeholders. The layout is shared by CType+0x90 (default-constructed
+// The engine's growable array, base::global::CRntVector (the name reflection gives it), and the
+// allocator interface it allocates through (a placeholder name). The layout is shared by CType+0x90 (default-constructed
 // there: growth step 10, flags 0x3e) and the parameter-type list of a reflected function
 // (UnkReflFunction+0x8, filled by fn_7100a19530).
 
@@ -55,10 +55,10 @@ void* fn_7100083bc0(u64 size, u32 flags, u64 align, base::UnkAllocator* allocato
 void fn_7100083c00(void* ptr);
 void fn_7100083c30(void* ptr);
 
-namespace base {
+namespace base::global {
 
 template <class T>
-struct UnkVector {
+struct CRntVector {
     T* data = nullptr;
     u32 count = 0;
     u32 capacity = 0;
@@ -67,8 +67,8 @@ struct UnkVector {
     u32 flags = 0x3e;  // passed to the allocator
     UnkAllocator* allocator = fn_7100083990();
 
-    UnkVector() = default;
-    explicit UnkVector(u32 flags) : flags(flags) {}
+    CRntVector() = default;
+    explicit CRntVector(u32 flags) : flags(flags) {}
 
     // Inlined in fn_7100a19530. A capacity that doesn't grow past the count (no step) hangs
     // in an empty loop, as in the original. Elements are copied bitwise: the original reloads
@@ -117,7 +117,7 @@ struct UnkVector {
 
     // Takes over other's array after destroying the elements (the old array is not freed;
     // fn_71002b9bbc and its copies).
-    UnkVector& operator=(UnkVector&& other) {
+    CRntVector& operator=(CRntVector&& other) {
         if (this != &other) {
             Clear();
             allocator = other.allocator;
@@ -305,6 +305,6 @@ private:
 
 public:
 };
-static_assert(sizeof(UnkVector<void*>) == 0x28, "UnkVector layout");
+static_assert(sizeof(CRntVector<void*>) == 0x28, "CRntVector layout");
 
-}  // namespace base
+}  // namespace base::global

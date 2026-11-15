@@ -3,7 +3,7 @@
 // component base constructor fn_71010c4148, the vtable, 0.5 at +0x40, an empty array from +0x48, a
 // listener at +0x70 with two callbacks bound to the component. The fields are addressed by offset.
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CAlternativeActionPlayerComponent.h"
 #include "game/CComponent.h"

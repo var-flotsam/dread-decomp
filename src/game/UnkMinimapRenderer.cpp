@@ -5,7 +5,7 @@
 // placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 extern void* g_unk_7101a1e9c8[];  // the renderer's vtable (GOT 0x7101cc7568)
@@ -27,10 +27,10 @@ void fn_710014ea24(UnkMinimapPassObject* self);
 
 struct UnkMinimapRenderer {
     void** vtable;
-    base::UnkVector<void*> field_0x8;
-    base::UnkVector<void*> field_0x30;
-    base::UnkVector<void*> field_0x58;
-    base::UnkVector<void*> field_0x80;
+    base::global::CRntVector<void*> field_0x8;
+    base::global::CRntVector<void*> field_0x30;
+    base::global::CRntVector<void*> field_0x58;
+    base::global::CRntVector<void*> field_0x80;
     u64 field_0xa8;
     u64 field_0xb0;
     u64 field_0xb8;
@@ -50,10 +50,10 @@ static_assert(__builtin_offsetof(UnkMinimapRenderer, field_0x3d0) == 0x3d0, "Unk
 // The constructor: four empty arrays, cleared state with a scale of 1, then the member at +0x3d0.
 void fn_71001e12dc(UnkMinimapRenderer* self) {
     self->vtable = &g_unk_7101a1e9c8[2];
-    new (&self->field_0x8) base::UnkVector<void*>(0xf);
-    new (&self->field_0x30) base::UnkVector<void*>(0xf);
-    new (&self->field_0x58) base::UnkVector<void*>(0xf);
-    new (&self->field_0x80) base::UnkVector<void*>(0xf);
+    new (&self->field_0x8) base::global::CRntVector<void*>(0xf);
+    new (&self->field_0x30) base::global::CRntVector<void*>(0xf);
+    new (&self->field_0x58) base::global::CRntVector<void*>(0xf);
+    new (&self->field_0x80) base::global::CRntVector<void*>(0xf);
     self->field_0xa8 = 0;
     self->field_0xb0 = 0;
     self->field_0xb8 = 0;

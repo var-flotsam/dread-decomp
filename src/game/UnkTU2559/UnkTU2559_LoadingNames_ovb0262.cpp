@@ -2,7 +2,7 @@
 // five of them, unless the screen (+0x1b0) is already busy. With the flag set each name gets a
 // weight of 1000; without it, a name takes its own weight (+0x14) once there are at least two.
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU0.h"
@@ -40,7 +40,7 @@ struct UnkLoadName_ovb0262m {
     f32 weight;  // 0x14
 };
 
-void fn_7100e19b40(UnkNameSource_ovb0262m* self, base::UnkVector<UnkLoadName_ovb0262m*>* out);
+void fn_7100e19b40(UnkNameSource_ovb0262m* self, base::global::CRntVector<UnkLoadName_ovb0262m*>* out);
 void fn_7100e13784(UnkLoadingScreen* self, const base::global::CRntString* name, f32 weight);
 
 // The text of the name's pooled data, its use count raised first (a CRntString at +0x10).
@@ -61,7 +61,7 @@ void fn_7100e19954(UnkLoadCheckPointSingleton_ovb0118* self_, bool flag) {
     if (reinterpret_cast<UnkLoadingScreenBusy_ovb0262m*>(
             Singleton<UnkLoadingScreen, 0x220, fn_7100e0f89c>(g_unk_7101d47380))->busy)
         return;
-    base::UnkVector<UnkLoadName_ovb0262m*> names(0xf);
+    base::global::CRntVector<UnkLoadName_ovb0262m*> names(0xf);
     names.Reserve(self->count);
     fn_7100e19b40(self, &names);
     for (u64 i = 0; i < names.count && i < 5; ++i) {

@@ -4,7 +4,7 @@
 // at +0x30 of its +0xd0 (creating the global manager on first use), then stores the member's byte
 // value shifted by 128 (fn_71007452a4 / fn_71007456fc) and its float at +0x168, and makes the float
 // at +0x160 non-negative. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CDizzeanSwarmControllerComponent.h"

@@ -2,7 +2,7 @@
 // constructor fn_71007ee4c8, the vtable, cleared fields, two copies of the empty string id
 // (g_unk_7101d470e0) at +0xb0 and +0xb8, an empty array at +0xc8 (capacity 10, flags 0xf, the
 // default allocator), then the vtable's slot at +0x18 on itself. Names and layout are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CBarelyFrozenIceInfo.h"
 #include "game/CCharClassFrozenComponent.h"

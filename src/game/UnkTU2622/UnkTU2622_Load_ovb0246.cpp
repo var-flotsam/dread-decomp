@@ -1,6 +1,6 @@
 // Unit 2622 (no reliable name): the scenario load request's entries (clear, append, reserve) and the directory iterator step. Names and layouts are placeholders.
 #include <new>
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/UnkNamedRegistry.h"
 #include "base/global/CRntString.h"
@@ -66,7 +66,7 @@ struct UnkLoadRequest_b0246 {
     u32 kind;
     bool flag;
     void (*fn)();
-    base::UnkVector<UnkLoadEntry_b0246> entries;  // 0x10
+    base::global::CRntVector<UnkLoadEntry_b0246> entries;  // 0x10
     bool pending;  // 0x38
 };
 static_assert(__builtin_offsetof(UnkLoadRequest_b0246, pending) == 0x38, "UnkLoadRequest_b0246 layout");
@@ -82,7 +82,7 @@ struct alignas(8) UnkEntryRaw_b0246 {
     __attribute__((always_inline)) ~UnkEntryRaw_b0246() { reinterpret_cast<UnkLoadEntry_b0246*>(this)->~UnkLoadEntry_b0246(); }
 };
 
-__attribute__((noinline)) void fn_7100fc7d94(base::UnkVector<UnkEntryRaw_b0246>* self, u32 capacity);
+__attribute__((noinline)) void fn_7100fc7d94(base::global::CRntVector<UnkEntryRaw_b0246>* self, u32 capacity);
 
 struct UnkScenarioLoadEntry;
 struct UnkString_7100fc4b34;
@@ -132,8 +132,8 @@ static inline void InitEntry_b0246(UnkLoadEntry_b0246* e) {
     __builtin_memset(raw + 0x188, 0, 16);
 }
 
-UnkScenarioLoadEntry* fn_7100fc77b0(base::UnkVector<UnkScenarioLoadEntry>* entries_) {
-    auto* entries = reinterpret_cast<base::UnkVector<UnkEntryRaw_b0246>*>(entries_);
+UnkScenarioLoadEntry* fn_7100fc77b0(base::global::CRntVector<UnkScenarioLoadEntry>* entries_) {
+    auto* entries = reinterpret_cast<base::global::CRntVector<UnkEntryRaw_b0246>*>(entries_);
     u32 n = entries->count;
     u32 want = n + 1;
     fn_7100fc7d94(entries, want);
@@ -146,7 +146,7 @@ UnkScenarioLoadEntry* fn_7100fc77b0(base::UnkVector<UnkScenarioLoadEntry>* entri
     return reinterpret_cast<UnkScenarioLoadEntry*>(want ? end - 1 : end);
 }
 
-void fn_7100fc7d94(base::UnkVector<UnkEntryRaw_b0246>* self, u32 capacity) {
+void fn_7100fc7d94(base::global::CRntVector<UnkEntryRaw_b0246>* self, u32 capacity) {
     if (self->capacity < capacity) {
         auto* p = static_cast<UnkEntryRaw_b0246*>(self->allocator->vf_0x40((u64)capacity * sizeof(UnkEntryRaw_b0246), 8, self->flags));
         if (self->data) {

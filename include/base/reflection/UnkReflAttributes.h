@@ -11,7 +11,7 @@
 
 #include <initializer_list>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CName.h"
 #include "base/global/CRntString.h"
@@ -50,7 +50,7 @@ struct UnkReflFunctionVtbl {
 };
 struct UnkReflFunction {
     const UnkReflFunctionVtbl* vtbl;
-    base::UnkVector<const CType*> params;  // parameter types (fn_7100a19530 adds one)
+    base::global::CRntVector<const CType*> params;  // parameter types (fn_7100a19530 adds one)
     base::global::UnkStrId name;
     const CType* return_type;
     void* field_0x40;
@@ -136,8 +136,8 @@ inline UnkReflField* refl_FindField(CClass* cls, const base::global::CName& name
     return it == &fields.data[fields.count] ? nullptr : reinterpret_cast<UnkReflField*>(it);
 }
 
-// A list value (base::UnkVector's layout) built from an initializer list, moved into a
-// reflected value and destroyed like UnkVector::Free.
+// A list value (base::global::CRntVector's layout) built from an initializer list, moved into a
+// reflected value and destroyed like CRntVector::Free.
 template <class T>
 struct UnkReflList {
     T* data;

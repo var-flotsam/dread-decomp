@@ -5,7 +5,7 @@
 #include "../../../lib/lua/lua.h"
 #include "../../game_s7/UnkPropBagS7.h"
 #include "base/UnkNamedRegistry.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"

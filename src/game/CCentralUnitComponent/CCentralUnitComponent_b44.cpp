@@ -3,7 +3,7 @@
 // clears its array, capacity 10, flags 0xf, the default allocator, then its own vtable).
 // The fields are addressed by offset, as in src/game/CCentralUnitAIComponent/fn_71004076e4.cpp.
 // Names and layout are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU341.h"
 #include "types.h"

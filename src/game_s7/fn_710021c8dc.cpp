@@ -5,7 +5,7 @@
 // bytes) and from a pair. Reset releases the second id, then the first.
 #include "base/UnkDestructors.h"
 #include "base/UnkKeyedStrIds.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 using base::UnkStrIdMember;

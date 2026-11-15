@@ -6,7 +6,7 @@
 #include "base/tunable/CTunable.h"
 #include "game/UnkGraphicsState.h"
 #include "base/UnkDefaultAllocator.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU170.h"
 #include "game/UnkTU172.h"
 #include "game/UnkTU176.h"

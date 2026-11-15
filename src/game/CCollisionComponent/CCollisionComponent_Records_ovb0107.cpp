@@ -6,7 +6,7 @@
 #include <new>
 
 #include "base/UnkMatrix44.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -64,7 +64,7 @@ static inline void RefreshRecords(UnkCollisionContainer* self, s32 mode) {
 }
 
 static inline void ResetObjects(UnkCollisionContainer* self) {
-    auto* objects = reinterpret_cast<base::UnkVector<UnkReflObject*>*>(&self->objects);
+    auto* objects = reinterpret_cast<base::global::CRntVector<UnkReflObject*>*>(&self->objects);
     for (u32 i = 0; i < self->objects.count; ++i) {
         UnkReflObject* object = fn_7100862088(objects, i);
         if (object)
@@ -105,7 +105,7 @@ struct UnkCollisionComponent_ovb0107 {
     u8 unk_0x0[0x30];
     UnkActor* owner;  // 0x30
     u8 unk_0x38[0x10];
-    base::UnkVector<UnkCollisionRecord> records;  // 0x48
+    base::global::CRntVector<UnkCollisionRecord> records;  // 0x48
     u8 unk_0x70[0x58];
     bool registered;  // 0xc8
     bool active;      // 0xc9
@@ -178,7 +178,7 @@ void fn_71008615b4(UnkCollisionContainer* container) {
 // Constructing the record array with a growth step, allocation flags and an initial capacity.
 
 void fn_710086023c(char* self, u32 capacity, u32 step, u32 flags) {
-    auto* records = reinterpret_cast<base::UnkVector<UnkCollisionRecord>*>(self);
+    auto* records = reinterpret_cast<base::global::CRntVector<UnkCollisionRecord>*>(self);
     records->data = nullptr;
     records->count = 0;
     records->capacity = 0;
@@ -195,13 +195,13 @@ struct UnkManager_7100863a8c;
 void fn_7100d46804(UnkManager_7100863a8c* self);
 void fn_7100d46c60(UnkManager_7100863a8c* self, UnkCollisionObject* entry);
 void fn_7100d46e4c(UnkManager_7100863a8c* self, UnkCollisionObject* group);
-UnkCollisionObject*& fn_7100863cb4(base::UnkVector<UnkCollisionObject*>* self, u32 index);
+UnkCollisionObject*& fn_7100863cb4(base::global::CRntVector<UnkCollisionObject*>* self, u32 index);
 
 struct UnkCollisionComponent_Clear_ovb0107 {
     u8 unk_0x0[0x48];
-    base::UnkVector<UnkCollisionRecord> records;   // 0x48
-    base::UnkVector<UnkCollisionObject*> groups;   // 0x70
-    base::UnkVector<UnkCollisionObject*> objects;  // 0x98
+    base::global::CRntVector<UnkCollisionRecord> records;   // 0x48
+    base::global::CRntVector<UnkCollisionObject*> groups;   // 0x70
+    base::global::CRntVector<UnkCollisionObject*> objects;  // 0x98
 };
 
 static inline UnkManager_7100863a8c* Manager() {
@@ -373,7 +373,7 @@ struct UnkCollisionComponent_Groups_ovb0107 {
     u8 unk_0x0[0x30];
     void* owner;  // 0x30
     u8 unk_0x38[0x38];
-    base::UnkVector<UnkColliderNode*> groups;  // 0x70
+    base::global::CRntVector<UnkColliderNode*> groups;  // 0x70
 };
 
 UnkColliderNode* fn_7100862400(UnkCollisionComponent_Groups_ovb0107* self, const CStrId* name) {
@@ -412,9 +412,9 @@ struct UnkCollisionComponent_Dtor_ovb0107 {
     void** vtable;
     u8 unk_0x8[0x38];
     void** vtable2;  // 0x40
-    base::UnkVector<UnkCollisionRecord> records;  // 0x48
-    base::UnkVector<void*> groups;                // 0x70
-    base::UnkVector<void*> objects;               // 0x98
+    base::global::CRntVector<UnkCollisionRecord> records;  // 0x48
+    base::global::CRntVector<void*> groups;                // 0x70
+    base::global::CRntVector<void*> objects;               // 0x98
     u8 unk_0xc0[0x18];
     UnkCollisionFilterEntry_ovb0107* filters;  // 0xd8
     u32* masks;                                // 0xe0
@@ -856,7 +856,7 @@ struct UnkCollisionComponent_Load_ovb0107 {
     u8 unk_0x0[0x10];
     UnkReflObject* charClass;  // 0x10
     u8 unk_0x18[0x30];
-    base::UnkVector<UnkCollisionRecord> records;  // 0x48
+    base::global::CRntVector<UnkCollisionRecord> records;  // 0x48
     u8 groups[0x28];  // 0x70
     u8 unk_0x98[0x31];
     bool active;  // 0xc9

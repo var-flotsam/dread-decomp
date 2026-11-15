@@ -4,7 +4,7 @@
 // then both reset to -1), the two render items at +0x120 and +0x128 (fn_71002199d8), the member at
 // +0xc0 (fn_7100216934), then the component base (fn_71010c4194). Names and layouts are placeholders.
 #include "base/UnkCloneHelpers.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CDizzeanSwarmControllerComponent.h"
 #include "game/UnkComponent.h"
 #include "game/UnkRenderManager.h"

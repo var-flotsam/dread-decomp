@@ -4,7 +4,7 @@
 // of line (as src/base/UnkUnit25/UnkIdPathIterBeginEnd_b49.cpp). Names are placeholders.
 #include "base/UnkCollectionIter.h"
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 // An array freed by its destructor: the count is cleared before the free, the capacity after.

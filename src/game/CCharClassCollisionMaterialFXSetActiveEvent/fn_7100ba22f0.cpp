@@ -5,7 +5,7 @@
 #include <new>
 
 #include "base/UnkCloneRecords.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -103,7 +103,7 @@ __attribute__((always_inline)) static inline void CopyPathIds(UnkPathIdsRecord* 
 void fn_7100cc7c1c(UnkPathIdsRecord* self, const UnkPathIdsRecord* other) { CopyPathIds(self, other); }
 void fn_7100cc7ce4(UnkPathIdsRecord* self, const UnkPathIdsRecord* other) { CopyPathIds(self, other); }
 
-// An array of 8-byte values at 0x10 (base::UnkVector's layout: takes the source's settings,
+// An array of 8-byte values at 0x10 (base::global::CRntVector's layout: takes the source's settings,
 // reserves its capacity and copies the elements), then 16 plain bytes.
 extern char unk_7101aa1a68[];
 
@@ -209,7 +209,7 @@ void fn_7100bde12c(UnkMixedRecord* self, const UnkMixedRecord* other) {
         new (&self->paths[i]) CFilePathStrId(other->paths[i]);
 }
 
-// Plain bytes and string ids, then an array of string ids at 0x90 (base::UnkVector's layout,
+// Plain bytes and string ids, then an array of string ids at 0x90 (base::global::CRntVector's layout,
 // with an out-of-line Reserve, fn_710000542c): takes the source's settings, reserves its capacity
 // and appends each id, growing like PushBack (including its hang).
 extern char unk_7101aa5860[];

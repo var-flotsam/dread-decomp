@@ -3,7 +3,7 @@
 // UnkCallbackSet (vtable 0x7101a33fa0, as in src/game/CCharClassWaterPoolComponent/fn_710090dbb4.cpp;
 // fn_7100d88e14). Names are placeholders.
 #include "base/UnkErasedVector.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkCallbackBase.h"
 #include "game/UnkTU2523.h"
 
@@ -176,7 +176,7 @@ struct UnkCallbackSetVector {
             u32 new_capacity = capacity;
             if (new_capacity <= n && step != 0)
                 new_capacity = (n / step + 1) * step;
-            if ((s32)n >= (s32)new_capacity)  // hangs, as UnkVector::PushBack does
+            if ((s32)n >= (s32)new_capacity)  // hangs, as CRntVector::PushBack does
                 for (;;) {
                 }
             Reserve(this, new_capacity);

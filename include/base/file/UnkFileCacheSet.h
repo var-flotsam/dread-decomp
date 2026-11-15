@@ -7,7 +7,7 @@
 
 #include "base/UnkBlockFreeList.h"
 #include "base/UnkCloneHelpers.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkFileCacheSetNode;
@@ -16,7 +16,7 @@ struct UnkFileCacheSetNode;
 // allocator (+0x38: the pool at +0x50 once set up) with its flags (+0x40), the node count
 // (+0x44) and the count of freed nodes (+0x48).
 struct UnkFileCacheSet {
-    base::UnkVector<UnkFileCacheSetNode*> buckets;
+    base::global::CRntVector<UnkFileCacheSetNode*> buckets;
     s32 field_0x28;
     UnkFileCacheSetNode* field_0x30;
     base::UnkAllocator* allocator;
@@ -46,7 +46,7 @@ __attribute__((always_inline)) inline void UnkFileCacheSetSetUp(UnkFileCacheSet*
     // The pool's address, formed as an integer: the original recomputes it here rather than
     // keeping it live across the calls (as base::UnkPoolList::Init).
     self->allocator = reinterpret_cast<base::UnkAllocator*>(reinterpret_cast<u64>(self) + 0x50);
-    base::UnkVector<UnkFileCacheSetNode*>& v = self->buckets;
+    base::global::CRntVector<UnkFileCacheSetNode*>& v = self->buckets;
     u32 count = v.count;
     if (count < buckets) {
         if (v.capacity < buckets) {

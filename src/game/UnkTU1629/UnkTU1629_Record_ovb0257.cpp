@@ -8,7 +8,7 @@
 
 #include "base/UnkCloneRecords.h"
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU1629.h"
 #include "types.h"
@@ -30,7 +30,7 @@ struct UnkRecord_b257g {
     CStrId id;  // 0x8
     u8 field_0x10;
     void* field_0x18;
-    base::UnkVector<UnkChild_b257g*> children;  // 0x20
+    base::global::CRntVector<UnkChild_b257g*> children;  // 0x20
     base::UnkStrIdVec ids;  // 0x48
     void* field_0x70;
     u8 field_0x78;
@@ -78,7 +78,7 @@ void fn_7100acfb14(void* record, const void* source) {
 bool fn_7100ad0294(UnkRecord_b257g* self, bool a, u32 b, UnkChild_b257g* child);
 
 // Appends the children the record accepts for (a, b) to `out`.
-void fn_7100ad0380(UnkRecord_b257g* self, bool a, u32 b, base::UnkVector<UnkChild_b257g*>* out) {
+void fn_7100ad0380(UnkRecord_b257g* self, bool a, u32 b, base::global::CRntVector<UnkChild_b257g*>* out) {
     out->count = 0;
     if (!self->children.count)
         return;
@@ -99,7 +99,7 @@ struct UnkRecordElem_b257h {
     __attribute__((always_inline)) ~UnkRecordElem_b257h() { fn_7100ad04c4(this); }
 };
 
-using UnkRecordVec_b257h = base::UnkVector<UnkRecordElem_b257h>;
+using UnkRecordVec_b257h = base::global::CRntVector<UnkRecordElem_b257h>;
 
 UnkRecordVec_b257h* fn_7100ad22a4(UnkRecordVec_b257h* self, const UnkRecordVec_b257h* other) {
     if (self != other) {

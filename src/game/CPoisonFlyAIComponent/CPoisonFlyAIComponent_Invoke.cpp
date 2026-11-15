@@ -3,7 +3,7 @@
 // reflected function with no result, runs fn_710063cab8 on it and returns an empty value (kind 2,
 // by reference); fn_7100639274 runs the base step fn_71010ff2b8 and then fn_710063c670 on it.
 // Names are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkTU2702.h"

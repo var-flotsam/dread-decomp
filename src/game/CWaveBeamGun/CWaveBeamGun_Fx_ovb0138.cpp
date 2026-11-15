@@ -3,7 +3,7 @@
 // (fn_7100867b2c, the shape of CSPBGun's fn_710085e1c8 in src/game/CSPBGun/CSPBGun_b51.cpp), and
 // releasing them again before the other base step (fn_7100867d14). Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CPlasmaBeamGun.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkTU2739.h"

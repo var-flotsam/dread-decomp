@@ -3,7 +3,7 @@
 // the step run when the pending flag at +0x203 is set. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "game/CAnimationComponent.h"
 #include "game/CCollisionComponent.h"
@@ -95,7 +95,7 @@ struct UnkUnit1444_ovb0177 {
     bool field_0x203;
     u8 field_0x204[2];
     u8 pad_0x206[2];
-    base::UnkVector<UnkEntry_ovb0177> entries;  // 0x208
+    base::global::CRntVector<UnkEntry_ovb0177> entries;  // 0x208
 };
 static_assert(__builtin_offsetof(UnkUnit1444_ovb0177, entries) == 0x208, "UnkUnit1444_ovb0177 layout");
 
@@ -264,7 +264,7 @@ void fn_7100974798(UnkUnit1444_ovb0177* self, u32 mode) {
 // As src/game/CCollisionComponent/fn_71008651c8.cpp declares the lookup of the colliders under a key.
 struct UnkStruct_71008651c8_Entry;
 struct UnkStruct_71008651c8;
-using UnkOut_71008651c8 = base::UnkVector<UnkStruct_71008651c8_Entry*>;
+using UnkOut_71008651c8 = base::global::CRntVector<UnkStruct_71008651c8_Entry*>;
 void fn_71008651c8(UnkStruct_71008651c8* self, void* const* key, UnkOut_71008651c8* out);
 struct UnkPlayerMovementSource;
 

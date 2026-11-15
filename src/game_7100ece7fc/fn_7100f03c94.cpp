@@ -3,7 +3,7 @@
 // (the deleting one then frees the object).
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCooldownXBossLavaDropsMovementDef.h"
 #include "types.h"
 
@@ -36,7 +36,7 @@ template <void** Vtable, u32 At = 0x20, class Elem = UnkPolyElem_0x18>
 struct UnkPolyArrayOwner {
     void** vtable;
     u8 unk_0x8[At - 0x8];
-    base::UnkVector<Elem> elems;
+    base::global::CRntVector<Elem> elems;
 
     ~UnkPolyArrayOwner() {
         vtable = &Vtable[2];

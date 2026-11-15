@@ -26,7 +26,7 @@ using UnkElementA0Iter = base::UnkCollectionIter<UnkElementA0>;
 
 // Erase: destroys the element at the iterator's index and moves the later ones down.
 template <class T>
-__attribute__((always_inline)) static inline void Erase(base::UnkVector<T>* v, const base::UnkCollectionIter<T>* it) {
+__attribute__((always_inline)) static inline void Erase(base::global::CRntVector<T>* v, const base::UnkCollectionIter<T>* it) {
     u32 index = it->index;
     if (index < v->count) {
         u64 i = index;
@@ -45,10 +45,10 @@ __attribute__((always_inline)) static inline void Erase(base::UnkVector<T>* v, c
 // The End of an array of words.
 using UnkWordIter = base::UnkCollectionIter<u32>;
 
-void fn_71000d2e54(const base::UnkVector<u32>* v, UnkWordIter* out) { *out = UnkWordIter(v->count, v->data + v->count); }
+void fn_71000d2e54(const base::global::CRntVector<u32>* v, UnkWordIter* out) { *out = UnkWordIter(v->count, v->data + v->count); }
 
-void fn_71000d4c68(const base::UnkVector<u32>* v, UnkWordIter* out) { *out = UnkWordIter(v->count, v->data + v->count); }
+void fn_71000d4c68(const base::global::CRntVector<u32>* v, UnkWordIter* out) { *out = UnkWordIter(v->count, v->data + v->count); }
 
-void fn_7100a35b54(const base::UnkVector<u32>* v, UnkWordIter* out) { *out = UnkWordIter(v->count, v->data + v->count); }
+void fn_7100a35b54(const base::global::CRntVector<u32>* v, UnkWordIter* out) { *out = UnkWordIter(v->count, v->data + v->count); }
 
-void fn_7100a36a34(const base::UnkVector<u32>* v, UnkWordIter* out) { *out = UnkWordIter(v->count, v->data + v->count); }
+void fn_7100a36a34(const base::global::CRntVector<u32>* v, UnkWordIter* out) { *out = UnkWordIter(v->count, v->data + v->count); }

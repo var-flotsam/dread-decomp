@@ -5,7 +5,7 @@
 // (fn_7100b0704c) and the case-insensitive search of the tree for a name (fn_7100b0694c). Names and
 // layouts are placeholders.
 #include "base/UnkNamedRegistry.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/core/CBaseObject.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
@@ -31,8 +31,8 @@ struct UnkCompared_0x30;
 struct UnkDisplayObjectDef_ovb0108 {
     void* vtable;
     base::global::CRntString name;                         // 0x8
-    base::UnkVector<UnkDisplayChild_ovb0108*> children;    // 0x38
-    base::UnkVector<UnkDisplayItem_ovb0108*> items;        // 0x60
+    base::global::CRntVector<UnkDisplayChild_ovb0108*> children;    // 0x38
+    base::global::CRntVector<UnkDisplayItem_ovb0108*> items;        // 0x60
     void* field_0x88;
 };
 static_assert(sizeof(UnkDisplayObjectDef_ovb0108) == 0x90, "UnkDisplayObjectDef_ovb0108 layout");
@@ -41,14 +41,14 @@ void fn_7100b064bc(UnkDisplayObjectDef_ovb0108* self) {
     fn_7100023838(self);
     self->vtable = g_unk_7101a9a488 + 0x10;
     fn_710007e704(reinterpret_cast<base::UnkNamedEntry*>(&self->name), g_unk_710162e2ed);
-    new (&self->children) base::UnkVector<UnkDisplayChild_ovb0108*>(0xf);
-    new (&self->items) base::UnkVector<UnkDisplayItem_ovb0108*>(0xc);
+    new (&self->children) base::global::CRntVector<UnkDisplayChild_ovb0108*>(0xf);
+    new (&self->items) base::global::CRntVector<UnkDisplayItem_ovb0108*>(0xc);
     self->items.Reserve(20);
     self->field_0x88 = nullptr;
 }
 
 template <class T>
-static inline void DeleteAll(base::UnkVector<T*>& v) {
+static inline void DeleteAll(base::global::CRntVector<T*>& v) {
     for (T** it = v.data; it != v.data + v.count; ++it) {
         if (*it) {
             delete *it;
@@ -71,7 +71,7 @@ void fn_7100b065a8(UnkDisplayObjectDef_ovb0108* self) {
 
 // Adds an item unless one with the same name is there; whether it was added.
 bool fn_7100b0704c(UnkDisplayObjectDef_ovb0108* self, UnkDisplayItem_ovb0108* item) {
-    base::UnkVector<UnkDisplayItem_ovb0108*>& items = self->items;
+    base::global::CRntVector<UnkDisplayItem_ovb0108*>& items = self->items;
     bool found = false;
     for (UnkDisplayItem_ovb0108** it = items.data; it != items.data + items.count;) {
         if (found)
@@ -115,7 +115,7 @@ UnkDisplayItem_ovb0108* fn_7100b0694c(UnkDisplayItem_ovb0108* self, const base::
     }
     if (equal)
         return self;
-    base::UnkVector<UnkDisplayItem_ovb0108*>& items = reinterpret_cast<UnkDisplayObjectDef_ovb0108*>(self)->items;
+    base::global::CRntVector<UnkDisplayItem_ovb0108*>& items = reinterpret_cast<UnkDisplayObjectDef_ovb0108*>(self)->items;
     for (UnkDisplayItem_ovb0108** it = items.data; it != items.data + items.count; ++it) {
         if (UnkDisplayItem_ovb0108* found = fn_7100b0694c(*it, name))
             return found;

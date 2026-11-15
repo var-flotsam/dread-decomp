@@ -3,7 +3,7 @@
 // (fn_7100ca0cb0), three lists cleared and freed (fn_7100c9da0c) and the tiles of a kind set off
 // with a delay that grows with their distance from a tile (fn_7100ca35ec). Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CBreakableTileGroup.h"
 #include "game/CBreakableTileManager/CTunableBreakableTileManager.h"
 #include "types.h"
@@ -114,9 +114,9 @@ UnkQueryObj* fn_7100ca0cb0(UnkTileGroupB* self, void* unused, const f32* pos) {
 
 // Three vectors; the first holds pointers to words that are cleared before it is freed.
 struct UnkTileLists {
-    base::UnkVector<u64*> field_0x0;
-    base::UnkVector<u64> field_0x28;
-    base::UnkVector<u64> field_0x50;
+    base::global::CRntVector<u64*> field_0x0;
+    base::global::CRntVector<u64> field_0x28;
+    base::global::CRntVector<u64> field_0x50;
 };
 
 void fn_7100c9da0c(UnkTileLists* self) {

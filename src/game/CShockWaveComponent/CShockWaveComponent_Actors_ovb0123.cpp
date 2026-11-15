@@ -12,7 +12,7 @@
 #include <math.h>
 
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "game/CShockWaveComponent.h"
 #include "game/UnkGameManager.h"

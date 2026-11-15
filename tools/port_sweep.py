@@ -411,7 +411,7 @@ def demangle(cxxfilt: str, names: set[str]) -> dict[str, str]:
 def own_name(demangled: str) -> str:
     """A demangled symbol's qualified name without parameter list or template arguments, so a
     function address inside a template argument (`UnkOutOfLineElement<48u, &fn_710007ecd4>`) is
-    not taken for the function's own name. `fn_71000e027c(base::UnkVector<...>&&)` gives
+    not taken for the function's own name. `fn_71000e027c(base::global::CRntVector<...>&&)` gives
     `fn_71000e027c`; `Unk_fn_71005a2dd8::Unk_fn_71005a2dd8()` keeps both components."""
     out: list[str] = []
     depth = 0

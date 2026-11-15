@@ -4,7 +4,7 @@
 // existing one is big enough, flags the slot (and its entry in the list through fn_71001c04bc) and hands the pass's
 // source and word to the holder. Always answers false. Names and layouts are placeholders.
 #define UNK_VECTOR_GROW_AT_ATTR
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU221.h"
 #include "game/UnkTU252.h"
 #include "types.h"
@@ -51,7 +51,7 @@ struct UnkSlot252x {
 
 struct UnkSetupOwner252 {
     u8 pad_0x0[0xf0];
-    base::UnkVector<UnkSlotRef252> refs;  // 0xf0
+    base::global::CRntVector<UnkSlotRef252> refs;  // 0xf0
     u8 pad_0x118[0x28];
     UnkSlot252x slots[5];  // 0x140
 };

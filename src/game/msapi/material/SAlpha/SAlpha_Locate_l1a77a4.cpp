@@ -3,7 +3,7 @@
 // all three. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU230.h"
 #include "game/msapi/material/SAlpha.h"
@@ -40,7 +40,7 @@ static_assert(sizeof(UnkMaterialValues_l1a77a4) == 0x38, "UnkMaterialValues_l1a7
 // Grows a value block array to n elements, default-constructing the new ones.
 struct UnkMaterialValuesVector;
 
-struct UnkMaterialValuesVector_l1a77a4 : base::UnkVector<UnkMaterialValues_l1a77a4> {
+struct UnkMaterialValuesVector_l1a77a4 : base::global::CRntVector<UnkMaterialValues_l1a77a4> {
     // Grows the array to hold n elements, copying them over and destroying the old ones.
     void Reserve(u32 n) {
         if (capacity < n) {

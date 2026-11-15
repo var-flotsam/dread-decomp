@@ -10,7 +10,7 @@
 #include "base/UnkCloneRecords.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkParallelFind.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CHeatableShieldComponent.h"
@@ -63,9 +63,9 @@ void fn_710086ad24(UnkHeatableShieldD_b0080* self) {
 
 // Three arrays and a flag.
 struct UnkHeatableGroup_b0080 {
-    base::UnkVector<void*> a{0xf};
-    base::UnkVector<void*> b{0xf};
-    base::UnkVector<void*> c{0xf};
+    base::global::CRntVector<void*> a{0xf};
+    base::global::CRntVector<void*> b{0xf};
+    base::global::CRntVector<void*> c{0xf};
     bool flag = false;
 };
 static_assert(sizeof(UnkHeatableGroup_b0080) == 0x80, "layout");

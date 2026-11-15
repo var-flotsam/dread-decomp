@@ -2,7 +2,7 @@
 // fn_710091d194 and fn_710091d244 (CHydrogigaZiplineComponent_Dtor_b51.cpp). Each frees an array of
 // 0x40-byte entries at +0xac0, then runs the base destructor fn_7100a46b64; fn_7100a2fedc also frees
 // the object. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCharClassSoundProofTriggerComponent.h"
 #include "game/UnkComponent.h"
 
@@ -16,7 +16,7 @@ void fn_7100a46b64(char*);
 struct UnkSoundProofTriggerComponent_b52 {
     void* vtable;
     u8 pad_0x8[0xab8];
-    base::UnkVector<UnkSoundProofEntry_b52> entries;
+    base::global::CRntVector<UnkSoundProofEntry_b52> entries;
 };
 
 static inline void SoundProofDtor_b52(UnkSoundProofTriggerComponent_b52* self) {

@@ -1,11 +1,11 @@
 // Records of a word and a string (base::global::CRntString's layout, copied by fn_710007ea60 and
 // moved by fn_710007eab4): moves of iterator values over them (one record type copies its string,
-// the other moves it), and base::UnkVector operations on an array of them (copy, assignment,
+// the other moves it), and base::global::CRntVector operations on an array of them (copy, assignment,
 // PushBack, Insert, GrowAt and a shifting Erase).
 #include <new>
 
 #include "base/UnkNamedRegistry.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "game/UnkTU57.h"
 #include "types.h"
@@ -105,9 +105,9 @@ void fn_7100b1b030(UnkWordStringArray* self, const u32* index) {
     }
 }
 
-// base::UnkVector of the records: PushBack of a copy, and the copy constructor (which reserves
+// base::global::CRntVector of the records: PushBack of a copy, and the copy constructor (which reserves
 // the source's capacity and pushes each record).
-using UnkWordStringVector = base::UnkVector<UnkWordMovedString>;
+using UnkWordStringVector = base::global::CRntVector<UnkWordMovedString>;
 
 void fn_7100b1a860(UnkWordStringVector* self, const UnkWordMovedString* value) { self->PushBackCopy(*value); }
 
@@ -138,7 +138,7 @@ UnkWordStringVector* fn_7100b1a98c(UnkWordStringVector* self, const UnkWordStrin
     return self;
 }
 
-// base::UnkVector's MoveTo and Reallocate: the records are moved into new storage and the old ones
+// base::global::CRntVector's MoveTo and Reallocate: the records are moved into new storage and the old ones
 // destroyed.
 __attribute__((always_inline)) static inline UnkWordMovedString* MoveTo(UnkWordStringVector* self, u32 capacity) {
     UnkWordMovedString* p = static_cast<UnkWordMovedString*>(
@@ -162,7 +162,7 @@ __attribute__((always_inline)) static inline void Reallocate(UnkWordStringVector
 }
 
 // Insert of a copy at `index`: appending is PushBack; otherwise the array grows by its step and
-// the later records are moved up one by one (as base::UnkVector::Insert).
+// the later records are moved up one by one (as base::global::CRntVector::Insert).
 void fn_7100b1b39c(UnkWordStringVector* self, const UnkWordMovedString* value, u32 index) {
     u32 n = self->count;
     if (n == index) {
@@ -189,7 +189,7 @@ void fn_7100b1b39c(UnkWordStringVector* self, const UnkWordMovedString* value, u
 }
 
 // The record at `index`, growing the array (with default records) when it is past the end.
-// (base::UnkVector::GrowAt.)
+// (base::global::CRntVector::GrowAt.)
 // NON_MATCHING(minor): the default-construction loop's counter and offset swap registers.
 UnkWordMovedString* fn_7100b1a568(UnkWordStringVector* self, u32 index) {
     if (self->field_0x14 && self->count <= index) {
@@ -211,7 +211,7 @@ UnkWordMovedString* fn_7100b1a568(UnkWordStringVector* self, u32 index) {
     return &self->data[index];
 }
 
-// Insert of a moved record at `index` (base::UnkVector::Insert, written out).
+// Insert of a moved record at `index` (base::global::CRntVector::Insert, written out).
 // NON_MATCHING(minor): the original computes the slot in each branch and jumps to the shared
 // move; ours joins first. The branches are laid out in a different order.
 void fn_7100b1b544(UnkWordStringVector* self, UnkWordMovedString* value, u32 index) {

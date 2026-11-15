@@ -1,13 +1,13 @@
 // Removes the entry with the given id (-1 = none) from a keyed table: right away (after
 // notifying fn_710070d5dc) unless the table is locked, in which case the id is queued.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU1134.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 // Appends to the engine's array, copying the old elements one by one and reloading the count.
 template <class T>
-static inline void AppendBitwise(base::UnkVector<T>& a, const T& value) {
+static inline void AppendBitwise(base::global::CRntVector<T>& a, const T& value) {
     u32 n = a.count;
     u32 old_capacity = a.capacity;
     u32 new_capacity = old_capacity;

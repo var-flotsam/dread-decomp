@@ -1,7 +1,7 @@
 // CSubAreaManager::CTunableSubAreaManager unit (tools/tu_map.py unit 2577): fn_7100ee7e74: appends the file-path ids that the file device lists for the id at +0x20 of the source (fn_7100089eec) to the list. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkResPathVec.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/UnkTU63.h"

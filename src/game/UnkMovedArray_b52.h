@@ -8,7 +8,7 @@
 #include "base/UnkCollectionIter.h"
 #include "types.h"
 
-// An array with base::UnkVector's layout whose move takes the buffer and empties the source.
+// An array with base::global::CRntVector's layout whose move takes the buffer and empties the source.
 struct UnkMovedArray_b52 {
     void* data;
     u32 count;

@@ -1,11 +1,11 @@
 // Unit 2640 (tools/tu_map.py, no name hint): the constructor, copy constructor and copy assignment of a reflected
-// record holding a string id and an array (base::UnkVector's layout) of 0x78-byte elements, through
+// record holding a string id and an array (base::global::CRntVector's layout) of 0x78-byte elements, through
 // the unit's out-of-line Reserve (fn_710100147c), push-back (fn_7101001694) and clear
 // (fn_71010017f4), the ones fn_71010012d4 (src/game/GUI/CMissionLog/fn_7100b5bfdc.cpp) copies with.
 // Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 

@@ -3,7 +3,7 @@
 // id table's id at +0x980 when the owner's animation has no such track), less the Kraid fight's count
 // (+0x149f0 of the Kraid AI the global behaviour-tree manager's actor reports), is above zero and the
 // inventory has ITEM_WEAPON_BOMB. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"

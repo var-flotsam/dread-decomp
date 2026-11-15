@@ -2,7 +2,7 @@
 // src/reflection_types/collection_types_00.cpp) inlined into the owner. Strings (CRntString)
 // at +0x8 (fn_71000e1fec); 0x50-byte tree nodes at +0x10, each with its own children at +0x10, so
 // freeing a node's children frees theirs through the same function (fn_710026ead0 calls itself).
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "game/navmesh/CFixedDynamicSmartLinkRule.h"
 #include "types.h"
@@ -10,7 +10,7 @@
 template <class T, u64 Offset>
 struct UnkVectorAt {
     u8 unk_0x0[Offset];
-    base::UnkVector<T> items;
+    base::global::CRntVector<T> items;
 };
 
 struct UnkTreeNode_0x50 {

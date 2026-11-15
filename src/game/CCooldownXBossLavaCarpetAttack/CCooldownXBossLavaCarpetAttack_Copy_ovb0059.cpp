@@ -10,7 +10,7 @@
 // src/game/CBreakableTileGroup.cpp). Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "game/UnkTU108.h"
 #include "game/logic/collision/CPolygonCollectionShape.h"
@@ -183,7 +183,7 @@ struct UnkLavaPoint_ovb0059 {
 };
 
 struct UnkLavaOutline_ovb0059 {
-    base::UnkVector<UnkLavaPoint_ovb0059> points;
+    base::global::CRntVector<UnkLavaPoint_ovb0059> points;
     f32 field_0x28;
     bool field_0x2c;
     bool field_0x2d;
