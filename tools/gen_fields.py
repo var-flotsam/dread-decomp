@@ -36,7 +36,7 @@ TYPES = ROOT / "data" / "reflection_types.csv"
 FIELD = re.compile(r'fn_7100096524\(cls, CStrId\("([^"]+)", true\), ([^,]+), (0x[0-9a-f]+|\d+), ')
 FUNCTION = re.compile(r"^void fn_(71[0-9a-f]{8})\((?:base::reflection::)?CClass\* cls\) \{\n(.*?)^\}", re.M | re.S)
 GETTER = re.compile(r"DREAD_REFL_(?:ROOT_)?CLASS_GETTER(?:_INLINE_NAME)?\(([^)]*)\)")
-NAMED = re.compile(r'(?:UnkReflTypeGetter|UnkReflPrimitiveTraits)<UnkRefl_fn_(71[0-9a-f]{8})> \{\s*static constexpr const char\* name = "([^"]*)";')
+NAMED = re.compile(r'(?:UnkReflTypeGetter|UnkReflPrimitiveTraits)<UnkRefl_fn_(71[0-9a-f]{8})>(?: : [^{]*)? \{\s*static constexpr const char\* name = "([^"]*)";')
 
 
 # The readable form (base/reflection/ReflectedClass.h, ReflectedFields.h): a class's functions in a
