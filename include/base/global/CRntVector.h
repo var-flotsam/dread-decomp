@@ -70,6 +70,62 @@ struct CRntVector {
     CRntVector() = default;
     explicit CRntVector(u32 flags) : flags(flags) {}
 
+    // Takes the source's settings and allocator, reserves its capacity and appends copies of its
+    // elements (fn_710001e3b4 for base::core::AssetName; fn_71000cbae4 inlines all of it).
+    CRntVector(const CRntVector& other)
+        : step(other.step), field_0x14(other.field_0x14), flags(other.flags), allocator(other.allocator) {
+        Reserve(other.capacity);
+        if (other.count != 0) {
+            const T* end = other.data + other.count;
+            for (const T* p = other.data; p != end; ++p)
+                PushBackCopy(*p);
+        }
+    }
+
+    // Equal when the counts are and every element compares equal (fn_710001e1d0).
+    bool operator==(const CRntVector& other) const {
+        if (count != other.count)
+            return false;
+        for (u32 i = 0; i < count; ++i)
+            if (!(data[i] == other.data[i]))
+                return false;
+        return true;
+    }
+
+    // Destroys the elements from `n` on and keeps the first n (fn_710001e62c).
+    void Truncate(u32 n) {
+        for (u32 i = n; i < count; ++i)
+            data[i].~T();
+        count = n;
+    }
+
+    // Copies `value` in at `index`, shifting the elements after it up (fn_710001e870).
+    void InsertCopy(const T& value, u32 index) {
+        u32 n = count;
+        u32 cap = capacity;
+        if (n == index) {
+            if (cap <= n && step != 0)
+                cap = (index / step + 1) * step;
+            if ((s32)cap <= (s32)index)
+                for (;;) {
+                }
+            Reserve(cap);
+            new (&data[count]) T(value);
+        } else {
+            if (cap <= n && step != 0)
+                cap = (n / step + 1) * step;
+            Reserve(cap);
+            for (u32 i = count - 1; i >= index; --i) {
+                new (&data[i + 1]) T(static_cast<T&&>(data[i]));
+                data[i].~T();
+                if (i == 0)
+                    break;
+            }
+            new (&data[index]) T(value);
+        }
+        ++count;
+    }
+
     // Inlined in fn_7100a19530. A capacity that doesn't grow past the count (no step) hangs
     // in an empty loop, as in the original. Elements are copied bitwise: the original reloads
     // `count` after storing the element, which a typed store wouldn't force.
@@ -258,18 +314,60 @@ struct CRntVector {
         if ((s32)n >= (s32)new_capacity)
             for (;;) {
             }
-        if (old_capacity < new_capacity) {
-            Reallocate(new_capacity);
-            n = count;
-        }
+        Reserve(new_capacity);
+        n = count;
         new (&data[n]) T(value);
         ++count;
     }
 
-    // Grows the array to at least n elements (fn_7100c77cd0 inlines it).
+    // Grows the array to at least n elements, moving the elements over and freeing the old array
+    // (fn_710001e4e8 for base::core::AssetName; fn_7100c77cd0 inlines it).
     void Reserve(u32 n) {
-        if (capacity < n)
-            Reallocate(n);
+        if (capacity < n) {
+            T* p = static_cast<T*>(allocator->vf_0x40((u64)n * sizeof(T), 8, flags));
+            if (data) {
+                if constexpr (kTrivial) {
+                    __builtin_memcpy(p, data, (u64)count * sizeof(T));
+                } else {
+                    T* src = data;
+                    T* dst = p;
+                    for (u32 i = 0; i < count; ++i, ++dst, ++src) {
+                        new (dst) T(static_cast<T&&>(*src));
+                        src->~T();
+                    }
+                }
+                allocator->vf_0x48(data);
+            }
+            data = p;
+            capacity = n;
+        }
+    }
+
+    // InsertCopy with a moved element (fn_710001ead8). Trial name: Insert above grows inline.
+    void InsertMove(T&& value, u32 index) {
+        u32 n = count;
+        u32 cap = capacity;
+        if (n == index) {
+            if (cap <= n && step != 0)
+                cap = (index / step + 1) * step;
+            if ((s32)cap <= (s32)index)
+                for (;;) {
+                }
+            Reserve(cap);
+            new (&data[count]) T(static_cast<T&&>(value));
+        } else {
+            if (cap <= n && step != 0)
+                cap = (n / step + 1) * step;
+            Reserve(cap);
+            for (u32 i = count - 1; i >= index; --i) {
+                new (&data[i + 1]) T(static_cast<T&&>(data[i]));
+                data[i].~T();
+                if (i == 0)
+                    break;
+            }
+            new (&data[index]) T(static_cast<T&&>(value));
+        }
+        ++count;
     }
 
 private:

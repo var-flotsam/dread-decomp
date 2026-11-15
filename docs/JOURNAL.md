@@ -154,6 +154,20 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**CRntVector pilot: AssetName's helpers from the template (2026-11-15).** Pilot for generating the vector collection descriptors' slots from readable templates, on
+`base::global::CRntVector<base::core::AssetName>` (descriptor constructor 0x7100019dcc). New members of
+`include/base/global/CRntVector.h`: a copy constructor (reserve the source's capacity, append copies),
+`operator==`, `Truncate`, `InsertCopy` and the trial `InsertMove`; `Reserve` now holds the growth body
+itself and `PushBackCopy` grows through it. `check.py` is unchanged (O 94743, no regression). Per helper,
+with the addresses named after the members in a local copy of `data/functions/`:
+`Truncate` (0x710001e62c) matches; `Reserve` (0x710001e4e8, 84%), the copy constructor (0x710001e3b4,
+93.5%) and `operator==` (0x710001e1d0, 56%) differ in registers only; `InsertCopy` (0x710001e870, 39%) and
+`InsertMove` (0x710001ead8, 6%) differ in block placement. Findings: for a non-trivial element every
+growth is one out-of-line `Reserve` call (the callers don't test the capacity first); AssetName's ids
+release in two steps and share one base holding the string, so a store to the path makes the id reload
+(CStrId and CFilePathStrId, whose destructors release in one step, give 50% on `Truncate`); the members
+map to their addresses only by name, so the route is naming them in `data/functions/` as the ValueOps work
+did. The pilot source is `drafts/base/global/CRntVector/AssetName_pilot.cpp`.
 **`base::UnkVector` is `base::global::CRntVector` (2026-11-15).** The reflected collections name the engine's
 growable array (`CollectionTypeMapper<base::global::CRntVector<T>>`), and their descriptors' constructors build
 exactly `UnkVector`'s 0x28 bytes: the array and count at 0 and 8, growth step 10 at 0x10, the flag byte at 0x14,
