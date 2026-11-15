@@ -8,7 +8,7 @@
 // Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/CDemolitionBlockSonarTargetComponent.h"
 #include "game/CSonarTargetComponent.h"
@@ -34,7 +34,7 @@ struct UnkSonarTarget_ovb0054 {
     void** vtable;
     u8 pad_0x8[0x38];
     UnkRefObject* ref;                                     // 0x40
-    base::UnkVector<UnkSonarTargetEntry_ovb0054> entries;  // 0x48
+    base::global::CRntVector<UnkSonarTargetEntry_ovb0054> entries;  // 0x48
 };
 
 // By reference, like the deleting form.

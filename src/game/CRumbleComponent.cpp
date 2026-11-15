@@ -2,7 +2,7 @@
 // that plays controller rumbles through the rumble manager (base/input/UnkRumbleManager.h) and
 // keeps a record of each one it started.
 // Holds fn_71009dacbc (start a rumble). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/input/UnkRumbleManager.h"
 #include "game/UnkTU50.h"
@@ -104,7 +104,7 @@ struct UnkRumbleRecord {
 };
 static_assert(sizeof(UnkRumbleRecord) == 0x68, "UnkRumbleRecord layout");
 
-struct UnkRumbleRecords : base::UnkVector<UnkRumbleRecord> {
+struct UnkRumbleRecords : base::global::CRntVector<UnkRumbleRecord> {
     UnkRumbleRecord& Back() {
         u32 n = count;
         UnkRumbleRecord* end = data + n;

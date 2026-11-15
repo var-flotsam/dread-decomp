@@ -12,7 +12,7 @@
 #include "base/UnkNamedRegistry.h"
 #include "base/UnkNoArg.h"
 #include "base/UnkTimedCurve.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
@@ -82,9 +82,9 @@ struct UnkMmOwner_b0199 {
 // The hidden icon kinds (+0xd642c8): found by id, shown again by a callback that erases the kind
 // (fn_71000ce604) and refreshes the map (fn_7100e957a8). Find() returns the slot past the last kind
 // when there is none, and callers compare it with the end through the vector.
-void fn_7100e9565c(base::UnkVector<CStrId>* self, const CStrId* id);
+void fn_7100e9565c(base::global::CRntVector<CStrId>* self, const CStrId* id);
 
-struct UnkMmKinds_b0199 : base::UnkVector<CStrId> {
+struct UnkMmKinds_b0199 : base::global::CRntVector<CStrId> {
     CStrId* Find(const CStrId& id) {
         for (u32 i = 0; i < count; ++i)
             if (data[i].data == id.data)
@@ -397,22 +397,22 @@ void fn_7100e9867c(void* world, const CStrId& area) {
 
 // ---- fn_7100e9d578 ----
 // A component callback: for a grapple point component adds its two kinds and refreshes the map.
-void fn_7100e9565c(base::UnkVector<CStrId>* self, const CStrId* id);
+void fn_7100e9565c(base::global::CRntVector<CStrId>* self, const CStrId* id);
 
 struct UnkMmOwner3_b0199 {
     u8 unk_0x0[0xd642c8];
-    base::UnkVector<CStrId> hidden_kinds;
+    base::global::CRntVector<CStrId> hidden_kinds;
 };
 
 bool fn_7100e9d578(UnkMmOwner3_b0199* self, base::reflection::UnkReflObject* obj) {
     if (!obj)
         return false;
     if (fn_710009d50c(obj->vf_0x0(), fn_71008259c4())) {
-        base::UnkVector<CStrId>* kinds = &self->hidden_kinds;
+        base::global::CRntVector<CStrId>* kinds = &self->hidden_kinds;
         fn_7100e9565c(kinds, &g_unk_71727c8358);
         fn_7100e9565c(kinds, &g_unk_71727c8360);
     } else if (fn_710009d50c(obj->vf_0x0(), fn_710082d5b8())) {
-        base::UnkVector<CStrId>* kinds = &self->hidden_kinds;
+        base::global::CRntVector<CStrId>* kinds = &self->hidden_kinds;
         fn_7100e9565c(kinds, &g_unk_71727c8368);
         fn_7100e9565c(kinds, &g_unk_71727c8370);
     } else {

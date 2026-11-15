@@ -10,7 +10,7 @@
 // layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkReflAttributes.h"
@@ -95,7 +95,7 @@ void fn_710075e1f0(UnkTileInfoVector_ovb0028* self) {
     self->count = 0;
 }
 
-// Move assignment (the old array is not freed, as in base::UnkVector's).
+// Move assignment (the old array is not freed, as in base::global::CRntVector's).
 UnkTileInfoVector_ovb0028* fn_710075e508(UnkTileInfoVector_ovb0028* self, UnkTileInfoVector_ovb0028* other) {
     if (self != other) {
         for (u64 i = 0; i < self->count; ++i)
@@ -199,7 +199,7 @@ struct UnkTileElem_ovb0028 {
     u64 a;
     u64 b;
 };
-using UnkTileElemVector_ovb0028 = base::UnkVector<UnkTileElem_ovb0028>;
+using UnkTileElemVector_ovb0028 = base::global::CRntVector<UnkTileElem_ovb0028>;
 
 struct UnkTileStatesMap_ovb0028 {
     UnkTileElemVector_ovb0028* values;  // 0x0

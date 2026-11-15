@@ -2,7 +2,7 @@
 // run fn_710007ed40 and then the string destructor (as in fn_7100103cb8,
 // src/game_s1/fn_7100219134.cpp), linked through 0x68, with vtable unk_7101a222c8.
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "types.h"
 

@@ -4,7 +4,7 @@
 // src/game/CCharClassChozoCommanderEvents/CCharClassChozoCommanderCutsceneEvents.cpp) has a
 // CGoliathXAIComponent at +0x240, else g_unk_710164ad68 (fn_7100d7c828). Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CTeamManager/CTunableTeamManager.h"

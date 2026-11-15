@@ -6,7 +6,7 @@
 // placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CFrozenComponent.h"
 #include "types.h"
@@ -42,7 +42,7 @@ struct UnkAreaFXBase_ovb0081 {
     u8 pad_0x3b8[0x50];
     u8 field_0x408[0x8];  // a CStrId
     u8 pad_0x410[0x28];
-    base::UnkVector<UnkRefPtr_ovb0081> refs;  // 0x438
+    base::global::CRntVector<UnkRefPtr_ovb0081> refs;  // 0x438
 };
 static_assert(__builtin_offsetof(UnkAreaFXBase_ovb0081, refs) == 0x438, "UnkAreaFXBase_ovb0081 layout");
 
@@ -50,7 +50,7 @@ void fn_71007f8d80(UnkAreaFXBase_ovb0081* self);
 
 void fn_710080260c(UnkAreaFXBase_ovb0081* self) {
     self->vtable = g_unk_7101a74498 + 2;
-    base::UnkVector<UnkRefPtr_ovb0081>& refs = self->refs;
+    base::global::CRntVector<UnkRefPtr_ovb0081>& refs = self->refs;
     if (refs.data) {
         for (u64 i = 0; i < refs.count; ++i)
             refs.data[i].~UnkRefPtr_ovb0081();
@@ -89,7 +89,7 @@ struct UnkAreaFXCtor_ovb0081 {
     u32 field_0x420;
     void* field_0x428;
     u32 field_0x430;
-    base::UnkVector<void*> refs;  // 0x438
+    base::global::CRntVector<void*> refs;  // 0x438
 };
 static_assert(__builtin_offsetof(UnkAreaFXCtor_ovb0081, refs) == 0x438, "UnkAreaFXCtor_ovb0081 layout");
 
@@ -113,5 +113,5 @@ void fn_71007fe1e4(UnkAreaFXCtor_ovb0081* self) {
     self->field_0x420 = 0;
     self->field_0x428 = nullptr;
     self->field_0x430 = 0;
-    new (&self->refs) base::UnkVector<void*>(0xf);
+    new (&self->refs) base::global::CRntVector<void*>(0xf);
 }

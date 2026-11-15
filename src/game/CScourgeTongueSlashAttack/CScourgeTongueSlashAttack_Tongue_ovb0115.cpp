@@ -8,7 +8,7 @@
 // fn_710069b8a0 gives the tongue's collider (created on first use as a 2D polygon collection) an outline.
 // Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"

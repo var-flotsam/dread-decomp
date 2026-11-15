@@ -3,7 +3,7 @@
 // component with three arrays and two file path ids, the Emmy AI's speed factor, the navigation query it
 // builds for a target and a navigation-cell test. Names and layouts are placeholders.
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -42,16 +42,16 @@ struct UnkMsg_b0194 {
     ~UnkMsg_b0194() { fn_7100287954(reinterpret_cast<UnkMsg_b152*>(this)); }
 };
 
-UnkRecord_b0194* fn_71005499f8(base::UnkVector<UnkRecord_b0194>* self, u32 index) {
+UnkRecord_b0194* fn_71005499f8(base::global::CRntVector<UnkRecord_b0194>* self, u32 index) {
     return &self->GrowAt(index);
 }
 
-UnkMsg_b0194* fn_710054cdac(base::UnkVector<UnkMsg_b0194>* self, u32 index) {
+UnkMsg_b0194* fn_710054cdac(base::global::CRntVector<UnkMsg_b0194>* self, u32 index) {
     return &self->GrowAt(index);
 }
 
-base::UnkVector<UnkRecord_b0194>* fn_7100563f88(base::UnkVector<UnkRecord_b0194>* self,
-                                                const base::UnkVector<UnkRecord_b0194>* other) {
+base::global::CRntVector<UnkRecord_b0194>* fn_7100563f88(base::global::CRntVector<UnkRecord_b0194>* self,
+                                                const base::global::CRntVector<UnkRecord_b0194>* other) {
     if (self != other) {
         self->Clear();
         self->Reserve(other->capacity);
@@ -94,9 +94,9 @@ struct UnkComponentBase_b0194 {
     CFilePathStrId path;      // 0x68
     CFilePathStrId path_alt;  // 0x70
     u8 pad_0x78[8];
-    base::UnkVector<UnkSlot_b0194> slots;  // 0x80
-    base::UnkVector<void*> field_0xa8;
-    base::UnkVector<void*> field_0xd0;
+    base::global::CRntVector<UnkSlot_b0194> slots;  // 0x80
+    base::global::CRntVector<void*> field_0xa8;
+    base::global::CRntVector<void*> field_0xd0;
 };
 static_assert(__builtin_offsetof(UnkComponentBase_b0194, field_0xd0) == 0xd0, "layout");
 

@@ -2,7 +2,7 @@
 // the manager g_unk_71726af468 (created on first use) for an attack offset for the owner (+0x18),
 // with a zeroed position and a 0x12a88-byte scratch object (fn_71002acfe4 / fn_71002ad0dc); returns
 // 5 when it found one, else 6. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkTU958.h"
 #include "game/navmesh/SNavMeshPath.h"

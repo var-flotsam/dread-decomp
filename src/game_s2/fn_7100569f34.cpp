@@ -2,7 +2,7 @@
 // (game/UnkNavMeshManager.h; the manager is created on first use) answers true. Skipped when
 // the low 16 bits of the key are all ones or the flag at 0x611 of the owner's linked object is
 // set.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
 #include "types.h"

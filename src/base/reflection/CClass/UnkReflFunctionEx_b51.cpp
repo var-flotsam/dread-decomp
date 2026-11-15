@@ -7,7 +7,7 @@
 
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
@@ -28,9 +28,9 @@ struct UnkReflFunctionEx_7100095bdc {
     char* vtable;
     u8 base[0xb0];
     void* owner;
-    base::UnkVector<UnkOwnedReflValue_7100095bdc> values;
+    base::global::CRntVector<UnkOwnedReflValue_7100095bdc> values;
     UnkOwnedReflValue_7100095bdc value;
-    base::UnkVector<void*> words;
+    base::global::CRntVector<void*> words;
 };
 static_assert(__builtin_offsetof(UnkReflFunctionEx_7100095bdc, words) == 0x100, "");
 
@@ -49,7 +49,7 @@ void fn_7100095684(UnkReflFunctionEx_7100095bdc* self, void* owner, const UnkRef
     fn_710009a5b4(self);
     self->vtable = unk_7101a1b260 + 0x10;
     self->owner = owner;
-    new (&self->values) base::UnkVector<UnkOwnedReflValue_7100095bdc>(0x59);
+    new (&self->values) base::global::CRntVector<UnkOwnedReflValue_7100095bdc>(0x59);
     u32 by_ref = value->field_0x14;
     self->value.field_0x0 = nullptr;
     self->value.type = nullptr;
@@ -57,7 +57,7 @@ void fn_7100095684(UnkReflFunctionEx_7100095bdc* self, void* owner, const UnkRef
     *reinterpret_cast<u32*>(&self->value.kind) = value->kind;
     fn_71000a18d4(&self->value, reinterpret_cast<const base::reflection::CType*>(value->type), ValueAddress(value),
                   by_ref);
-    new (&self->words) base::UnkVector<void*>(0x59);
+    new (&self->words) base::global::CRntVector<void*>(0x59);
     fn_7100094fc0(self, owner, x3);
 }
 

@@ -4,7 +4,7 @@
 // the output, the output synced out of line (fn_7100e46b58), and the temporary's value reset (state
 // 1 owns an index and a record holding two arrays). Names and layouts are placeholders.
 #include "base/UnkCollectionIter.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkRecord60;  // src/game_aca57c/fn_7100e5493c.cpp
@@ -16,8 +16,8 @@ struct UnkRecord60Iter_b56 {
     union {
         struct {
             u32 index;
-            base::UnkVector<u8> part;
-            base::UnkVector<u16> values;
+            base::global::CRntVector<u8> part;
+            base::global::CRntVector<u16> values;
             u8 unk_0x58[0x10];
         } value;
         struct {

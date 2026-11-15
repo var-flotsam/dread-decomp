@@ -6,7 +6,7 @@
 #include <new>
 #include <utility>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/UnkSphere.h"
 #include "game/UnkTU204.h"

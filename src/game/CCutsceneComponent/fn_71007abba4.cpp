@@ -5,7 +5,7 @@
 
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkErasedVector.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CCutsceneComponent.h"
 #include "types.h"
@@ -55,7 +55,7 @@ public:
         field_0x68 = 0;
     }
 
-    UnkErasedVector values;  // built field by field (base::UnkVector's constructor doesn't match)
+    UnkErasedVector values;  // built field by field (base::global::CRntVector's constructor doesn't match)
     u32 field_0x68;
 };
 

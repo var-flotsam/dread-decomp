@@ -2,7 +2,7 @@
 // Names and layouts are placeholders.
 #include <new>
 #include "base/UnkNamedRegistry.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -123,7 +123,7 @@ static inline void* InputOf(UnkBaseComponent* component) {
 void fn_7100302424(CAbilityComponent* self) {
     fn_71010c4148(reinterpret_cast<UnkStateObject*>(self));
     self->vtable = g_unk_7101a22690 + 2;
-    new (&self->abilities) base::UnkVector<CAbility*>(0xf);
+    new (&self->abilities) base::global::CRntVector<CAbility*>(0xf);
     self->current = nullptr;
     self->hold = {0, 0.0f};
     self->input.vtable = g_unk_7101a22878 + 2;

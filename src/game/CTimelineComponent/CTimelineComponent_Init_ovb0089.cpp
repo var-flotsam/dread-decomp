@@ -45,7 +45,7 @@ void fn_7100a2ea20() {
     UnkBlockArrayPool* pool = &g_unk_7172746f00;
     pool->allocator = nullptr;
     fn_710008377c(&pool->list);
-    new (&pool->entries) base::UnkVector<UnkBlockArrayEntry>(0xf);
+    new (&pool->entries) base::global::CRntVector<UnkBlockArrayEntry>(0xf);
     fn_7100a2ddec(pool, 500, 0x1c, nullptr);
     fn_7100000250(fn_7100a2ab14, pool, &g_unk_7101a19000);
 }

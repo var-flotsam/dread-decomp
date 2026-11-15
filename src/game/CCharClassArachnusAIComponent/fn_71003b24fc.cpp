@@ -2,7 +2,7 @@
 // owned objects: at `index` (replacing and deleting what was there) or, for a negative
 // index, at the end. Returns the new object.
 #include "UnkClone.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -15,11 +15,11 @@ struct UnkClone_fn_71003b2904;
 using UnkOwner_71003b24fc = UnkCloneOwner<UnkClone_fn_71003b2904>;
 
 // The element accessor is the shared out-of-line copy (src/clones/, fn_71003b2904).
-extern template UnkOwner_71003b24fc& base::UnkVector<UnkOwner_71003b24fc>::GrowAt(u32);
+extern template UnkOwner_71003b24fc& base::global::CRntVector<UnkOwner_71003b24fc>::GrowAt(u32);
 
 struct UnkStruct_71003b24fc {
     u8 unk_0x0[0x58];
-    base::UnkVector<UnkOwner_71003b24fc> field_0x58;
+    base::global::CRntVector<UnkOwner_71003b24fc> field_0x58;
 };
 
 static inline UnkCloneObject* CreateEnemyPreset() {
@@ -35,7 +35,7 @@ static inline UnkCloneObject* CreateEnemyPreset() {
 
 UnkCloneObject* fn_71003b24fc(UnkStruct_71003b24fc* self, s32 index) {
     UnkCloneObject* obj = CreateEnemyPreset();
-    base::UnkVector<UnkOwner_71003b24fc>* v = &self->field_0x58;
+    base::global::CRntVector<UnkOwner_71003b24fc>* v = &self->field_0x58;
     UnkOwner_71003b24fc owner;
     owner.ptr = obj;
     if (index < 0) {

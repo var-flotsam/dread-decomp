@@ -6,7 +6,7 @@
 #include <new>
 #include <string.h>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU2647.h"
 #include "types.h"

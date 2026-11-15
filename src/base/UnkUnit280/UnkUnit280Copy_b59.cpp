@@ -3,7 +3,7 @@
 // UnkUnit280Assign.cpp, and the copy constructor of its 0x28-byte entry arrays (fn_71001fe260):
 // reserve the source's capacity, then append each entry with the out-of-line PushBack. Names and
 // layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU280.h"
 #include "types.h"
 
@@ -69,7 +69,7 @@ struct UnkUnit280Record_b59 {
             capacity = cap;
         }
         for (const UnkUnit280Entry_b59 *it = o.data, *end = it + o.count; it != end; ++it)
-            fn_71001fe390(reinterpret_cast<base::UnkVector<UnkSceneEntry>*>(this),
+            fn_71001fe390(reinterpret_cast<base::global::CRntVector<UnkSceneEntry>*>(this),
                           reinterpret_cast<const UnkSceneEntry*>(it));
     }
 };

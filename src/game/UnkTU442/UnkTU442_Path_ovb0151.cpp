@@ -1,7 +1,7 @@
 // Unit 442: a polyline path (points of 12 bytes: position and a kind word; a closed flag at +0x2c) that
 // also keeps the length of each leg (+0x48) and one word per leg (+0x70). Names are placeholders.
 #include "base/UnkEmptyDtorElem.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "types.h"
 
@@ -36,12 +36,12 @@ struct UnkPathCtx_b0151 {
 };
 
 struct UnkPath_b0151 {
-    base::UnkVector<UnkPathPoint_b0151> points;  // 0x0
+    base::global::CRntVector<UnkPathPoint_b0151> points;  // 0x0
     f32 field_0x28;
     u8 closed;  // 0x2c
     u8 pad_0x2d[0x1b];
-    base::UnkVector<f32> lengths;  // 0x48
-    base::UnkVector<UnkElem> elems;  // 0x70
+    base::global::CRntVector<f32> lengths;  // 0x48
+    base::global::CRntVector<UnkElem> elems;  // 0x70
     u8 pad_0x98[0x1008];
     void* field_0x10a0;
 };
@@ -49,8 +49,8 @@ static_assert(__builtin_offsetof(UnkPath_b0151, lengths) == 0x48, "UnkPath_b0151
 static_assert(__builtin_offsetof(UnkPath_b0151, elems) == 0x70, "UnkPath_b0151 layout");
 static_assert(__builtin_offsetof(UnkPath_b0151, field_0x10a0) == 0x10a0, "UnkPath_b0151 layout");
 
-void fn_710035f70c(base::UnkVector<UnkElem>* self, UnkElem* value);
-void fn_710035f810(base::UnkVector<UnkElem>* self, UnkElem* value, u32 index);
+void fn_710035f70c(base::global::CRntVector<UnkElem>* self, UnkElem* value);
+void fn_710035f810(base::global::CRntVector<UnkElem>* self, UnkElem* value, u32 index);
 void fn_710035ded8(UnkPath_b0151* self, UnkSegment2D* seg, UnkElem* elem);
 void fn_710035e124(UnkPath_b0151* self, UnkSegment2D* seg, UnkElem* elem);
 bool fn_710027df74(void* obj, UnkElem* elem);
@@ -69,7 +69,7 @@ static inline u32 Legs(const UnkPath_b0151* p) {
     return n - open;
 }
 
-__attribute__((flatten)) void fn_710035f810(base::UnkVector<UnkElem>* self, UnkElem* value, u32 index) {
+__attribute__((flatten)) void fn_710035f810(base::global::CRntVector<UnkElem>* self, UnkElem* value, u32 index) {
     if (self->count == index) {
         fn_710035f70c(self, value);
         return;

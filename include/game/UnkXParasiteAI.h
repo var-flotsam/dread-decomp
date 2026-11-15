@@ -6,7 +6,7 @@
 // what follows are the component's own members, which reflection does not name. Names and layouts are
 // placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector4D.h"
 #include "game/CBlackboard.h"
 #include "game/UnkActor.h"
@@ -14,7 +14,7 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-// The component's array of entries at +0x14740 (a base::UnkVector): counted weak handles, each to a holder
+// The component's array of entries at +0x14740 (a base::global::CRntVector): counted weak handles, each to a holder
 // that has the entry's actor.
 struct UnkXParasiteEntryHolder {
     u8 pad_0x0[0x18];
@@ -138,7 +138,7 @@ struct UnkXParasiteAI {
     u32 field_0x14724;
     UnkXParasiteWeights weights;  // 0x14728
     u8 pad_0x1473c[4];
-    base::UnkVector<UnkWeakHandle*> entries;  // 0x14740
+    base::global::CRntVector<UnkWeakHandle*> entries;  // 0x14740
     UnkXParasiteBindings bindings;            // 0x14768
     UnkWeakHandle* link;  // 0x14790: the grabbed object's weak handle
     UnkWeakHandle* field_0x14798;  // the prey's weak handle (fn_71006ea9a4)

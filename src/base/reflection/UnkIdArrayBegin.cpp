@@ -3,7 +3,7 @@
 // each with its own unit's out-of-line iterator sync; the temporary's id is released after it.
 #include "UnkClone.h"
 #include "base/UnkCloneCalls.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CFXPool/CDefinition.h"
 #include "game/UnkTU2566.h"
 #include "game/UnkTU2640.h"
@@ -16,7 +16,7 @@ using UnkBeginFilePathIdElem_0x18 = UnkCloneStrIdElem<UnkBeginIdArrayOwner, 0, 0
 using UnkBeginIdElem_0x10 = UnkCloneStrIdElem<UnkBeginIdArrayOwner, 0, 0x10, UnkCloneStrId<UnkBeginIdArrayOwner>>;
 
 template <class Elem, void (*Sync)(void*)>
-__attribute__((always_inline)) static inline void Begin(const base::UnkVector<Elem>* v,
+__attribute__((always_inline)) static inline void Begin(const base::global::CRntVector<Elem>* v,
                                                         base::UnkCollectionIter<Elem>* out) {
     base::UnkCollectionIter<Elem> it(0, v->data);
     if (out != &it) {
@@ -26,16 +26,16 @@ __attribute__((always_inline)) static inline void Begin(const base::UnkVector<El
     }
 }
 
-void fn_7100eb01cc(const base::UnkVector<UnkBeginIdElem_0x10>* v, base::UnkCollectionIter<UnkBeginIdElem_0x10>* out) {
+void fn_7100eb01cc(const base::global::CRntVector<UnkBeginIdElem_0x10>* v, base::UnkCollectionIter<UnkBeginIdElem_0x10>* out) {
     Begin<UnkBeginIdElem_0x10, fn_7100ea7c6c>(v, out);
 }
 
-void fn_71010500d8(const base::UnkVector<UnkBeginFilePathIdElem_0x10>* v,
+void fn_71010500d8(const base::global::CRntVector<UnkBeginFilePathIdElem_0x10>* v,
                    base::UnkCollectionIter<UnkBeginFilePathIdElem_0x10>* out) {
     Begin<UnkBeginFilePathIdElem_0x10, fn_710104e720>(v, out);
 }
 
-void fn_7100ffc2c0(const base::UnkVector<UnkBeginFilePathIdElem_0x18>* v,
+void fn_7100ffc2c0(const base::global::CRntVector<UnkBeginFilePathIdElem_0x18>* v,
                    base::UnkCollectionIter<UnkBeginFilePathIdElem_0x18>* out) {
     Begin<UnkBeginFilePathIdElem_0x18, fn_7100fefde0>(v, out);
 }

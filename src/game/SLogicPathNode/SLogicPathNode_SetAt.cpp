@@ -1,10 +1,10 @@
 // SLogicPathNode unit: two "set element `index`" functions of an array of 0x20-byte polymorphic
 // elements (vtable g_unk_7101cac8f0, five words from +0x8, destroyed through slot 1) laid out as
-// base::UnkVector (include/base/UnkVector.h). An index past the end grows the array to the next
+// base::global::CRntVector (include/base/global/CRntVector.h). An index past the end grows the array to the next
 // multiple of the step (the elements moved over, the old array freed) and resizes it to index + 1
 // (fn_710106111c); then the element's first three words, or all five, are assigned. Names and
 // layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 extern char g_unk_7101cac8f0[];

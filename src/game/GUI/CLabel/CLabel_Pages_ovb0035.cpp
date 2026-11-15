@@ -12,7 +12,7 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDeferredSet.h"
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"
@@ -140,9 +140,9 @@ struct UnkLabelDtorLineNode_b0035 {
 struct UnkLabelDtor_b0035 {
     char* vtable;
     u8 pad_0x8[0x190];
-    base::UnkVector<UnkLabelCallback_b0035*> items;           // 0x198
-    base::UnkVector<UnkLabelCallback_b0035*> pending_add;     // 0x1c0
-    base::UnkVector<UnkLabelCallback_b0035*> pending_remove;  // 0x1e8
+    base::global::CRntVector<UnkLabelCallback_b0035*> items;           // 0x198
+    base::global::CRntVector<UnkLabelCallback_b0035*> pending_add;     // 0x1c0
+    base::global::CRntVector<UnkLabelCallback_b0035*> pending_remove;  // 0x1e8
     bool locked;                                              // 0x210
     u8 pad_0x211[7];
     u8 text[0x20];         // 0x218
@@ -212,7 +212,7 @@ struct UnkLabelRun_b0035 {
     u8 pad_0x4[4];
     u8 text[0x20];  // 0x8
     u8 pad_0x28[0x18];
-    base::UnkVector<UnkLabelGlyph_b0035> glyphs;  // 0x40
+    base::global::CRntVector<UnkLabelGlyph_b0035> glyphs;  // 0x40
     void* object;                                 // 0x68
 };
 static_assert(__builtin_offsetof(UnkLabelRun_b0035, object) == 0x68, "UnkLabelRun_b0035 layout");

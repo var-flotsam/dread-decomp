@@ -8,7 +8,7 @@
 #include "base/UnkFreedVectorPair.h"
 #include "base/UnkKeyedStrIds.h"
 #include "base/UnkStrIdTable.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CGameBlackboard.h"
 #include "types.h"
@@ -161,7 +161,7 @@ void fn_7100e58e40(const UnkIdRecordTable<UnkValue28B>* self, base::UnkIterValue
     End(self, out);
 }
 
-// A table of 0x60-byte records holding two arrays (base::UnkVector's layout, freed when
+// A table of 0x60-byte records holding two arrays (base::global::CRntVector's layout, freed when
 // destroyed) and four words.
 struct UnkFreedArray {
     void* data;

@@ -1,7 +1,7 @@
 // A copy of fn_710019e100 (src/game_lo/fn_710019e100.cpp) for another owner: if a 64-bit key is
 // in the hash set at +0 (buckets indexed by the key's low 32 bits modulo the bucket capacity),
 // it is appended to the array at +0x88, then erased from the set. Returns whether it was there.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 
 extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
 
@@ -34,7 +34,7 @@ struct UnkKeySet {
 struct UnkKeyOwner {
     UnkKeySet set;  // +0x0
     u8 field_0x20[0x68];
-    base::UnkVector<u64> moved;  // +0x88
+    base::global::CRntVector<u64> moved;  // +0x88
 };
 
 void* fn_7100142504(UnkKeySet* set, const u64* key);  // erases the key

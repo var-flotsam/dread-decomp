@@ -6,7 +6,7 @@
 // each of that class's entries (+0x58, count at +0x60) under the entry's name (copied as raw bytes, then
 // referenced); fn_71009c86a0 grows the map, moving both arrays into new storage.
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/global/CStrId.h"

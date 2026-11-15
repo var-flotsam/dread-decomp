@@ -3,7 +3,7 @@
 // (game_s2/UnkOwnedList.h) is freed and the string ids at +0x110, +0x108 and +0x100 are released, then
 // the CCharClassCooldownXBossAttack base's destructor (fn_71004a0a10) runs. Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CCharClassCooldownXBossAttack.h"
 #include "game_s2/UnkOwnedList.h"
@@ -21,7 +21,7 @@ struct UnkFireBallAttackDef_ovb0072 {
     CStrId field_0x108;
     CStrId field_0x110;
     u8 pad_0x118[0x8];
-    base::UnkVector<UnkOwnedList> field_0x120;
+    base::global::CRntVector<UnkOwnedList> field_0x120;
 };
 static_assert(sizeof(UnkFireBallAttackDef_ovb0072) == 0x148, "UnkFireBallAttackDef_ovb0072 layout");
 

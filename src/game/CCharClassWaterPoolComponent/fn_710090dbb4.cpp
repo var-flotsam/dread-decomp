@@ -2,7 +2,7 @@
 // at the first element or one past the last, its cached value re-pointed by the iterator's sync
 // function), Reserve, Truncate, Erase and Insert of a moved element.
 #include "base/UnkErasedVector.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CChangeStateDoorsLogicAction.h"
 #include "game/CCharClassWaterPoolComponent.h"
 #include "game/UnkCallbackBase.h"
@@ -181,7 +181,7 @@ struct UnkCallbackSetVector {
             u32 new_capacity = capacity;
             if (new_capacity <= n && step != 0)
                 new_capacity = (n / step + 1) * step;
-            if ((s32)n >= (s32)new_capacity)  // hangs, as UnkVector::PushBack does
+            if ((s32)n >= (s32)new_capacity)  // hangs, as CRntVector::PushBack does
                 for (;;) {
                 }
             Reserve(this, new_capacity);

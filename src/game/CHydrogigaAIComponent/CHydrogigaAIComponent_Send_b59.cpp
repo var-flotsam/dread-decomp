@@ -4,7 +4,7 @@
 // sub-object at +0x220 a one under id 0x3bef2eb1f76bd18c for two kinds (all-flags mask, then the empty one)
 // and clears +0x149c4; finally sets the timeline (+0x2e8) id g_unk_710164a0e0 to the all-flags mask. Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkTU883.h"
@@ -15,7 +15,7 @@
 // As in src/game/CCollisionComponent/fn_71008651c8.cpp.
 struct UnkStruct_71008651c8_Entry;
 struct UnkStruct_71008651c8;
-using UnkOut_71008651c8 = base::UnkVector<UnkStruct_71008651c8_Entry*>;
+using UnkOut_71008651c8 = base::global::CRntVector<UnkStruct_71008651c8_Entry*>;
 void fn_71008651c8(UnkStruct_71008651c8* self, void* const* key, UnkOut_71008651c8* out);
 
 extern void* const g_unk_71726eb438 __attribute__((visibility("hidden")));

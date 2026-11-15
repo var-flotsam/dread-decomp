@@ -1,10 +1,10 @@
 // The destructor of fn_7100e4a1d0 (src/game_aca57c/fn_7100e4fd1c.cpp) for a 0x38-byte record without
-// the leading words: two string ids and an array of string ids (base::UnkVector's layout):
+// the leading words: two string ids and an array of string ids (base::global::CRntVector's layout):
 // fn_7100004a44.
 #include <new>
 
 #include "base/UnkResType.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 

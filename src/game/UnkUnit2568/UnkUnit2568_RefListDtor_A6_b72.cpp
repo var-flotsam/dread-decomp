@@ -3,7 +3,7 @@
 // (fn_710001737c on the last one) before the allocator frees the node. fn_7100ec2f58 is the plain form,
 // fn_7100ec2fe4 the deleting one. Names and layouts are placeholders.
 #include "base/UnkCountedResource.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU2568.h"
 #include "types.h"
 

@@ -7,7 +7,7 @@
 #include "game/UnkTU341.h"
 #include "types.h"
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 
 struct UnkThermalDeviceList {
     void** vtable;

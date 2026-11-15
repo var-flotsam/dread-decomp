@@ -3,7 +3,7 @@
 #include <nn/os.h>
 
 #include "base/UnkDefaultAllocator.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2622.h"
 #include "game/UnkTU2768.h"

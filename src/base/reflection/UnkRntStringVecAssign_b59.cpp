@@ -1,10 +1,10 @@
 // Unit 83 of tools/tu_map.py (base::reflection): the copy assignment (reflection slot 0x48 of
-// class_descriptors_00.cpp) of a reflected array of strings (base::UnkVector's layout, 0x30-byte
+// class_descriptors_00.cpp) of a reflected array of strings (base::global::CRntVector's layout, 0x30-byte
 // base::global::CRntString elements destroyed by fn_710007ecd4): copy and swap, through the
 // array's out-of-line copy constructor fn_71000e0320. Names are placeholders.
 #include <utility>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "types.h"
 
@@ -26,7 +26,7 @@ struct UnkRntStringVec_b59 {
     base::UnkAllocator* allocator;
 
     UnkRntStringVec_b59(const UnkRntStringVec_b59& other) { fn_71000e0320(this, &other); }
-    ~UnkRntStringVec_b59() { reinterpret_cast<base::UnkVector<UnkRntString_b59>*>(this)->Free(); }
+    ~UnkRntStringVec_b59() { reinterpret_cast<base::global::CRntVector<UnkRntString_b59>*>(this)->Free(); }
 
     UnkRntStringVec_b59& operator=(const UnkRntStringVec_b59& other) {
         if (this != &other) {

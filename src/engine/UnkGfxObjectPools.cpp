@@ -3,7 +3,7 @@
 // shader programs: fn_710015c690 releases one), a sync object and a memory pool, all created by
 // fn_710015c520 during the device set-up (fn_71001587f0); and the uniform setter fn_710015e1f0.
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU170.h"
 #include "game/UnkTU172.h"
 #include "game/UnkTU176.h"

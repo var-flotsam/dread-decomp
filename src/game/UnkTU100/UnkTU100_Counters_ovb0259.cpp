@@ -8,7 +8,7 @@
 
 #include "base/UnkHashStream.h"
 #include "base/UnkStrIdPathPair.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/file/CThreadSafeDevice.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
@@ -28,7 +28,7 @@ struct UnkCounter_ovb0259 {
 struct UnkCounters_ovb0259 {
     u32 limit;
     u32 pad_0x4;
-    base::UnkVector<UnkCounter_ovb0259> items;  // 0x8
+    base::global::CRntVector<UnkCounter_ovb0259> items;  // 0x8
 };
 
 struct UnkFileReader;
@@ -36,13 +36,13 @@ bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base:
 void fn_710007c144(UnkHashStream_0x38* s);
 extern const char* g_unk_7101a1bd30;
 
-__attribute__((noinline)) UnkCounter_ovb0259* fn_71001047e0(base::UnkVector<UnkCounter_ovb0259>* v, u32 index) {
+__attribute__((noinline)) UnkCounter_ovb0259* fn_71001047e0(base::global::CRntVector<UnkCounter_ovb0259>* v, u32 index) {
     return &v->GrowAt(index);
 }
 
 // Counts one use of a key against its limit.
 bool fn_7100104940(UnkCounters_ovb0259* self, const u32* key) {
-    base::UnkVector<UnkCounter_ovb0259>& v = self->items;
+    base::global::CRntVector<UnkCounter_ovb0259>& v = self->items;
     UnkCounter_ovb0259* entry = nullptr;
     if (v.count) {
         UnkCounter_ovb0259* p = v.data;
@@ -91,7 +91,7 @@ void fn_7100104600(void* self_) {
         fn_710007c714(&file, self, 4, 1);
         u32 count;
         fn_710007c714(&file, &count, 4, 1);
-        base::UnkVector<UnkCounter_ovb0259>& v = self->items;
+        base::global::CRntVector<UnkCounter_ovb0259>& v = self->items;
         u32 n = count;
         if (v.count < n) {
             v.Reserve(n);

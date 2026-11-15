@@ -6,7 +6,7 @@
 
 #include "base/UnkCollectionIter.h"
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU2640.h"
@@ -141,7 +141,7 @@ struct UnkPathEntry_b0213 {
 struct UnkPathGroup_b0213 {
     u32 field_0x0;
     union {
-        base::UnkVector<UnkPathEntry_b0213> entries;  // 0x8
+        base::global::CRntVector<UnkPathEntry_b0213> entries;  // 0x8
     };
     u64 field_0x30;
     u64 field_0x38;
@@ -149,7 +149,7 @@ struct UnkPathGroup_b0213 {
     u32 field_0x48;
     bool field_0x4c;
     union {
-        base::UnkVector<u64> ids;  // 0x50
+        base::global::CRntVector<u64> ids;  // 0x50
     };
 
     UnkPathGroup_b0213(UnkPathGroup_b0213&& o) : field_0x0(o.field_0x0) {
@@ -235,7 +235,7 @@ static_assert(__builtin_offsetof(UnkPathGroup_b0213, ids) == 0x50, "UnkPathGroup
 
 // Destroys every group, keeping the array.
 void fn_71010017f4(UnkElemArray<UnkElem78>* array) {
-    auto* self = reinterpret_cast<base::UnkVector<UnkPathGroup_b0213>*>(array);
+    auto* self = reinterpret_cast<base::global::CRntVector<UnkPathGroup_b0213>*>(array);
     for (u32 i = 0; i < self->count; ++i)
         self->data[i].~UnkPathGroup_b0213();
     self->count = 0;
@@ -243,7 +243,7 @@ void fn_71010017f4(UnkElemArray<UnkElem78>* array) {
 
 // Grows the array to n groups, moving the old ones over.
 __attribute__((noinline)) void fn_710100147c(UnkElemArray<UnkElem78>* array, u32 n) {
-    auto* self = reinterpret_cast<base::UnkVector<UnkPathGroup_b0213>*>(array);
+    auto* self = reinterpret_cast<base::global::CRntVector<UnkPathGroup_b0213>*>(array);
     if (self->capacity < n) {
         auto* p = static_cast<UnkPathGroup_b0213*>(
             self->allocator->vf_0x40((u64)n * sizeof(UnkPathGroup_b0213), 8, self->flags));
@@ -303,7 +303,7 @@ struct UnkPathPoint_b0213 {
 };
 
 void fn_7100ffbff0(UnkCollection_U2640x18_A6_b67* array, u32 index) {
-    auto* self = reinterpret_cast<base::UnkVector<UnkPathPoint_b0213>*>(array);
+    auto* self = reinterpret_cast<base::global::CRntVector<UnkPathPoint_b0213>*>(array);
     if (index < self->count) {
         self->data[index].~UnkPathPoint_b0213();
         for (u32 i = index; i < self->count - 1; ++i) {
@@ -354,7 +354,7 @@ struct UnkNodeMap_b0213 {
     u32 flags;
     u32 count;
     union {
-        base::UnkVector<void*> buckets;  // 0x10
+        base::global::CRntVector<void*> buckets;  // 0x10
     };
     char* tail;  // 0x38
     char* head;  // 0x40
@@ -436,7 +436,7 @@ void fn_7101004b0c(const UnkNodeMapHead_b0213* map, UnkMapIter_b0213* out) {
 
 // Destroys every group and frees the array.
 void fn_7100ffaa88(void* array) {
-    auto* self = static_cast<base::UnkVector<UnkPathGroup_b0213>*>(array);
+    auto* self = static_cast<base::global::CRntVector<UnkPathGroup_b0213>*>(array);
     if (self->data) {
         for (u64 i = 0; i < self->count; ++i)
             self->data[i].~UnkPathGroup_b0213();
@@ -530,7 +530,7 @@ struct UnkIdMapOf_b0213 {
     u32 flags;
     u32 count;
     union {
-        base::UnkVector<Node*> buckets;  // 0x18
+        base::global::CRntVector<Node*> buckets;  // 0x18
     };
     Node* tail;  // 0x40
     Node* head;  // 0x48
@@ -598,9 +598,9 @@ void fn_7100fed7b0(void* dst, const void* src) {
 // Move assignment: the word, the entries taken over, the run of fields, the ids taken over.
 UnkPathGroup_b0213* fn_7101000724(UnkPathGroup_b0213* self, UnkPathGroup_b0213* other) {
     self->field_0x0 = other->field_0x0;
-    self->entries = static_cast<base::UnkVector<UnkPathEntry_b0213>&&>(other->entries);
+    self->entries = static_cast<base::global::CRntVector<UnkPathEntry_b0213>&&>(other->entries);
     __builtin_memcpy(&self->field_0x30, &other->field_0x30, 0x1d);
-    self->ids = static_cast<base::UnkVector<u64>&&>(other->ids);
+    self->ids = static_cast<base::global::CRntVector<u64>&&>(other->ids);
     return self;
 }
 

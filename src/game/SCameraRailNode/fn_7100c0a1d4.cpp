@@ -1,6 +1,6 @@
 // Move assignment of an indexed entry (its array takes over the other's and the flag at 0x30 is
 // copied), on its own and on the entry stored under an index (fn_7100c0a828 finds or makes it).
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkElem58 {
@@ -11,11 +11,11 @@ struct UnkElem58 {
 
 struct UnkIndexedEntry {
     u64 field_0x0;
-    base::UnkVector<UnkElem58> items;
+    base::global::CRntVector<UnkElem58> items;
     bool field_0x30;
 
     UnkIndexedEntry& operator=(UnkIndexedEntry&& other) {
-        items = static_cast<base::UnkVector<UnkElem58>&&>(other.items);
+        items = static_cast<base::global::CRntVector<UnkElem58>&&>(other.items);
         field_0x30 = other.field_0x30;
         return *this;
     }
@@ -45,11 +45,11 @@ struct UnkElem20 {
 
 struct UnkIndexedEntry20 {
     u64 field_0x0;
-    base::UnkVector<UnkElem20> items;
+    base::global::CRntVector<UnkElem20> items;
     bool field_0x30;
 
     UnkIndexedEntry20& operator=(UnkIndexedEntry20&& other) {
-        items = static_cast<base::UnkVector<UnkElem20>&&>(other.items);
+        items = static_cast<base::global::CRntVector<UnkElem20>&&>(other.items);
         field_0x30 = other.field_0x30;
         return *this;
     }

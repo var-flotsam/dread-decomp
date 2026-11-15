@@ -6,7 +6,7 @@
 // matched yet). Names and layouts are placeholders.
 #include "base/UnkNodeOwner.h"
 #include "base/UnkSList.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkTU604.h"

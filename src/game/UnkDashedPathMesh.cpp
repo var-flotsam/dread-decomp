@@ -4,7 +4,7 @@
 // tip), its vertices at the given depth; the mesh keeps the path's bounds grown by half the width.
 // Names and layouts are placeholders.
 // Holds fn_7100ebda30 and fn_7100ebc7f0 (a segment as a quad).
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "game/SLogicPathNode.h"
@@ -48,8 +48,8 @@ static inline void Assign(CVector2D* out, const UnkMinimapPathPoint& point) {
 using UnkMeshVertex = UnkVec3f;
 
 struct UnkDashMesh {
-    base::UnkVector<UnkMeshVertex> vertices;
-    base::UnkVector<u16> indices;
+    base::global::CRntVector<UnkMeshVertex> vertices;
+    base::global::CRntVector<u16> indices;
     f32 min_x;
     f32 min_y;
     f32 max_x;
@@ -58,7 +58,7 @@ struct UnkDashMesh {
 static_assert(__builtin_offsetof(UnkDashMesh, min_x) == 0x50, "UnkDashMesh placeholder layout");
 
 // Appends a vertex (the vertex array's out-of-line PushBack).
-void fn_7100149810(base::UnkVector<UnkMeshVertex>* self, const UnkMeshVertex* v);
+void fn_7100149810(base::global::CRntVector<UnkMeshVertex>* self, const UnkMeshVertex* v);
 
 static inline void Push(UnkDashMesh* mesh, const UnkMeshVertex& v) {
     fn_7100149810(&mesh->vertices, &v);

@@ -6,7 +6,7 @@
 
 #include "base/UnkChainedMap.h"
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "../UnkUnit2601/UnkUnit2601_VecCopy_b56.h"
 #include "game/UnkTU2640.h"
@@ -37,14 +37,14 @@ void fn_71010017f4(UnkElemArray<UnkElem78>* self);  // clear
 
 struct UnkRec78Init_b0212 {
     u64 field_0x0;
-    base::UnkVector<u8> items_0x8{0xf};
+    base::global::CRntVector<u8> items_0x8{0xf};
     u64 field_0x30 = 0;
     f32 scale_x = 1.0f;
     f32 scale_y = 1.0f;
     u64 field_0x40 = 0;
     u32 field_0x48;
     u8 field_0x4c = 0;
-    base::UnkVector<u8> items_0x50{0xf};
+    base::global::CRntVector<u8> items_0x50{0xf};
 };
 
 // The array's resize: reserve, then value-initialise the new records.
@@ -266,9 +266,9 @@ struct UnkIdRecord18_b0212 {
 template <int Tag, u32 Pre>
 struct UnkTwoArrays_b0212 {
     u8 unk_0x0[Pre];
-    base::UnkVector<UnkIdRecord18_b0212> records;
+    base::global::CRntVector<UnkIdRecord18_b0212> records;
     u8 unk_gap[0x20];
-    base::UnkVector<u64> words;
+    base::global::CRntVector<u64> words;
 };
 
 template <class T>
@@ -350,7 +350,7 @@ void* fn_7101002ae0(void* dst, const void* src) {
 
 struct UnkIdRecords_b0212 {
     u32 field_0x0;
-    base::UnkVector<UnkIdRecord18_b0212> items_0x8;
+    base::global::CRntVector<UnkIdRecord18_b0212> items_0x8;
     u8 tail[0x1d];  // 0x30
 };
 
@@ -360,7 +360,7 @@ void* fn_7100ffc6c0(void* dst, const void* src) {
     UnkIdRecords_b0212* other = static_cast<UnkIdRecords_b0212*>(const_cast<void*>(src));
     if (self != other) {
         self->field_0x0 = other->field_0x0;
-        self->items_0x8 = static_cast<base::UnkVector<UnkIdRecord18_b0212>&&>(other->items_0x8);
+        self->items_0x8 = static_cast<base::global::CRntVector<UnkIdRecord18_b0212>&&>(other->items_0x8);
         __builtin_memcpy(self->tail, other->tail, sizeof(self->tail));
     }
     return self;

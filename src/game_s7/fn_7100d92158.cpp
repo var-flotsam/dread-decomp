@@ -1,6 +1,6 @@
 // Registers a set of descriptors with the registry, three of them with a factory object
 // (created on first use). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU2527.h"
 #include "game/UnkTU27.h"

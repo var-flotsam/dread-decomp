@@ -2,7 +2,7 @@
 // resolved on first use as src/game/CActor/UnkLinkVectorEqual_b54.cpp does. Names and layouts are placeholders.
 #include <new>
 #include "base/UnkRefHandle.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -36,7 +36,7 @@ struct UnkLink_ovb0130 {
 static_assert(sizeof(UnkLink_ovb0130) == 0x40, "UnkLink_ovb0130 layout");
 
 // fn_7100a30948: whether the list holds a link to the target of `link`.
-bool fn_7100a30948(base::UnkVector<UnkLink_ovb0130>* self, UnkLink_ovb0130* link) {
+bool fn_7100a30948(base::global::CRntVector<UnkLink_ovb0130>* self, UnkLink_ovb0130* link) {
     for (u64 i = 0; i < self->count; ++i) {
         UnkLink_ovb0130& entry = self->data[i];
         void* target = link->Get();

@@ -6,7 +6,7 @@
 #include <new>
 
 #include "base/UnkCountedResource.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSceneObject.h"

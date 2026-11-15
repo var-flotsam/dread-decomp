@@ -1,12 +1,12 @@
 // A navigation-mesh cell (include/game/UnkNavMeshCell.h), translation unit 367 of
 // data/tu_map.csv, next to src/game/UnkNavMeshCell.cpp: setting a cell's edge record by side and
 // reading a cell from a file. A cell has its id at +0, the vertex ids of its corners at +8 and the
-// edge table at +0x30 (base::UnkVector, of 0x38-byte records; growable flag at +0x44), then the mesh
+// edge table at +0x30 (base::global::CRntVector, of 0x38-byte records; growable flag at +0x44), then the mesh
 // it belongs to at +0x58.
 // Holds fn_71002afa48 and fn_71002b0880. Names and layouts are placeholders.
 #include <math.h>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntFile.h"
 #include "base/math/CVector.h"
 #include "game/UnkNavMeshCell.h"
@@ -41,7 +41,7 @@ struct UnkNavEdgeRecord {
 };
 static_assert(sizeof(UnkNavEdgeRecord) == 0x38, "UnkNavEdgeRecord placeholder layout");
 
-using UnkNavEdgeVector = base::UnkVector<UnkNavEdgeRecord>;
+using UnkNavEdgeVector = base::global::CRntVector<UnkNavEdgeRecord>;
 
 // Resizes the table to `n` records (same unit, not decompiled yet).
 void fn_71002b0e78(UnkNavEdgeVector* v, u32 n);
@@ -71,7 +71,7 @@ struct Mesh;
 struct Vec2;
 struct UnkNavCellData {
     u16 id;
-    base::UnkVector<u16> vertices;
+    base::global::CRntVector<u16> vertices;
     UnkNavEdgeVector edges;
     Mesh* mesh;
 };

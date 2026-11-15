@@ -4,7 +4,7 @@
 // released, and the old arrays freed.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -34,7 +34,7 @@ struct UnkReleasedStrId {
     }
 };
 
-// base::UnkVector's layout for plain elements: moving takes over the storage, destroying frees it.
+// base::global::CRntVector's layout for plain elements: moving takes over the storage, destroying frees it.
 struct UnkArray {
     void* data;
     u32 count;

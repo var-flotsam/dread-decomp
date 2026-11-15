@@ -10,7 +10,7 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkResKey.h"
 #include "base/UnkResPathVec.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/file/UnkFileCacheSet.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
@@ -19,7 +19,7 @@
 
 using base::UnkAllocator;
 using base::UnkBlockPool;
-using base::UnkVector;
+using base::global::CRntVector;
 using base::global::CFilePathStrId;
 using base::global::CStrId;
 using base::global::UnkStringPool;
@@ -175,7 +175,7 @@ void fn_71000ec708(UnkResDescArrays* self, u32 new_capacity) {
 // The registry's hash set of entries, laid out as the string pool's (base::global::UnkPoolSetWithNodes
 // in base/global/UnkStringPoolBody.h), with 0x14-byte nodes; fn_71000ec184 sets it up.
 struct UnkResSet {
-    UnkVector<char*> buckets;
+    CRntVector<char*> buckets;
     u32 first_bucket;
     char* first_node;
     UnkAllocator* node_allocator;
@@ -214,7 +214,7 @@ void fn_71000e9c78(UnkResRegistry* self) {
     self->vtable_0x8 = g_unk_7101a1b888 + 0x60;
     fn_71000e9d60(self->field_0x10, 300, 0xe);
     UnkResSet* set = &self->set;
-    new (&set->buckets) UnkVector<char*>(0xe);
+    new (&set->buckets) CRntVector<char*>(0xe);
     set->first_node = nullptr;
     set->first_bucket = -1;
     set->node_allocator = fn_7100083990();

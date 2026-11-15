@@ -3,7 +3,7 @@
 // does) with fn_7100089850 and flag 1, then clears the flag at +0x3b0. Names and layouts are placeholders.
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;

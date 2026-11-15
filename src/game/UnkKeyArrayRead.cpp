@@ -2,7 +2,7 @@
 // keys (two words and a value that defaults to 30) read from a file. Names and layouts are
 // placeholders.
 // Holds fn_7100b8948c.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntFile.h"
 #include "types.h"
 
@@ -13,7 +13,7 @@ struct UnkKey12 {
 };
 static_assert(sizeof(UnkKey12) == 0xc, "UnkKey12 placeholder layout");
 
-struct UnkKey12Array : base::UnkVector<UnkKey12> {
+struct UnkKey12Array : base::global::CRntVector<UnkKey12> {
     // Grows the array to exactly n elements' room, copying the old ones over.
     void Grow(u32 n) {
         auto* p = static_cast<UnkKey12*>(allocator->vf_0x40((u64)n * sizeof(UnkKey12), 8, flags));

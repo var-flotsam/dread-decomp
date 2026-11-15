@@ -7,7 +7,7 @@
 // Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCentralUnitCannonBeamMovementComponent.h"
 #include "game/CMovementComponent.h"
 #include "game/CWeaponMovement.h"
@@ -58,7 +58,7 @@ struct UnkWeaponMovement_ovb0054 {
     UnkWeaponDamage_ovb0054 last_damage;  // 0x348
     u32 kinds;                            // 0x448
     u8 pad_0x44c[0x4];
-    base::UnkVector<UnkWeaponShot_ovb0054> shots;  // 0x450
+    base::global::CRntVector<UnkWeaponShot_ovb0054> shots;  // 0x450
     u64 field_0x478;
 };
 static_assert(__builtin_offsetof(UnkWeaponMovement_ovb0054, field_0x478) == 0x478, "UnkWeaponMovement_ovb0054 layout");
@@ -81,7 +81,7 @@ void fn_7100ac7224(UnkWeaponMovement_ovb0054* self) {
     fn_71008c0c74(AsCtorArg(&self->damage));
     fn_71008c0c74(AsCtorArg(&self->last_damage));
     self->kinds = 1;
-    new (&self->shots) base::UnkVector<UnkWeaponShot_ovb0054>(0xf);
+    new (&self->shots) base::global::CRntVector<UnkWeaponShot_ovb0054>(0xf);
     self->field_0x478 = 0;
 }
 

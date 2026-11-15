@@ -4,7 +4,7 @@
 // string-id sets at +0x130 and +0x178. Names and layouts are placeholders inferred from the code.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/snd/CSoundSystem.h"
 #include "game/UnkTU23.h"
@@ -241,7 +241,7 @@ struct UnkEntryArray_b0019 {
             u32 n = capacity;
             if (i >= capacity && step != 0)
                 n = ((u32)i / step + 1) * step;
-            fn_7100fddcb4(reinterpret_cast<base::UnkVector<UnkMusicEntry_0x60>*>(this), n);
+            fn_7100fddcb4(reinterpret_cast<base::global::CRntVector<UnkMusicEntry_0x60>*>(this), n);
             fn_7100fde4d8(reinterpret_cast<UnkArray*>(this), i + 1);
         }
         return data[i];
@@ -334,7 +334,7 @@ struct UnkPathEntry_0x18 {
     u64 field_0x10;
 };
 
-struct UnkPathList : base::UnkVector<UnkPathEntry_0x18> {
+struct UnkPathList : base::global::CRntVector<UnkPathEntry_0x18> {
     ~UnkPathList() { Free(); }
 };
 
@@ -427,7 +427,7 @@ struct UnkSlotArray_b0019 {
             u32 n = capacity;
             if (capacity <= index && step != 0)
                 n = (index / step + 1) * step;
-            auto* v = reinterpret_cast<base::UnkVector<UnkMusicSlot_0x38>*>(this);
+            auto* v = reinterpret_cast<base::global::CRntVector<UnkMusicSlot_0x38>*>(this);
             fn_7100fde040(v, n);
             fn_7100fde040(v, index + 1);
             for (u32 i = count; i < index + 1; ++i)

@@ -1,4 +1,4 @@
-// The step callback array's element accessor is inlined (base/UnkVector.h).
+// The step callback array's element accessor is inlined (base/global/CRntVector.h).
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
 
 // CGameManager::CTunableGameManager's unit (tools/tu_map.py unit 2553): the game manager's registries, load and start-up
@@ -13,7 +13,7 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkNamedRegistry.h"
 #include "base/UnkSList.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
@@ -557,7 +557,7 @@ struct UnkStepCallback {
     UnkStepCallback(const UnkStepCallback& other) : context(other.context), fn(other.fn) {}
 };
 struct UnkStepCallbacks {
-    base::UnkVector<UnkStepCallback> callbacks;
+    base::global::CRntVector<UnkStepCallback> callbacks;
 };
 
 UnkStepCallback* fn_7100dfc428(UnkStepCallbacks* self, u32 index) { return &self->callbacks.GrowAt(index); }

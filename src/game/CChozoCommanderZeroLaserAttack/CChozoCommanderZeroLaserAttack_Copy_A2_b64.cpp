@@ -2,7 +2,7 @@
 // bases of src/game/CChozoCommanderAirAttack/fn_7100424c08.cpp, then the last layer: two words, a word,
 // an array of 8-byte elements copied with its settings and reserved to the other's capacity, and four
 // words). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 extern void* g_unk_7101a24060[];
@@ -20,8 +20,8 @@ static inline __attribute__((always_inline)) void CopyZeroLaser(char* self, cons
     *reinterpret_cast<void***>(self) = &g_unk_7101a364e8[2];
     __builtin_memcpy(self + 0x50, other + 0x50, 20);
 
-    auto* v = reinterpret_cast<base::UnkVector<u64>*>(self + 0x68);
-    auto* o = reinterpret_cast<const base::UnkVector<u64>*>(other + 0x68);
+    auto* v = reinterpret_cast<base::global::CRntVector<u64>*>(self + 0x68);
+    auto* o = reinterpret_cast<const base::global::CRntVector<u64>*>(other + 0x68);
     v->data = nullptr;
     v->count = 0;
     v->capacity = 0;

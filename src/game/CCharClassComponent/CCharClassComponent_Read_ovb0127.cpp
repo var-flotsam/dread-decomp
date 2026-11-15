@@ -5,7 +5,7 @@
 
 #include "base/UnkHashStream.h"
 #include "base/global/CRntFile.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -14,7 +14,7 @@ using base::global::CStrId;
 struct UnkCharClassRecord_ovb0127 {
     CStrId field_0x0;
     CStrId field_0x8;
-    base::UnkVector<void*> field_0x10;
+    base::global::CRntVector<void*> field_0x10;
     UnkHashStream_0x38 field_0x38;
     u64 field_0x70;
 };
@@ -31,7 +31,7 @@ static inline void InitEmpty(CStrId* id) {
 void fn_71011ad358(UnkCharClassRecord_ovb0127* self) {
     InitEmpty(&self->field_0x0);
     InitEmpty(&self->field_0x8);
-    new (&self->field_0x10) base::UnkVector<void*>(5);
+    new (&self->field_0x10) base::global::CRntVector<void*>(5);
     fn_710007be8c(&self->field_0x38, 0x16, nullptr);
     self->field_0x70 = 0;
 }

@@ -3,7 +3,7 @@
 // 0xf), then the class's own vtable is set.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "game/GUI/IDisplayObjectTrack.h"
 #include "types.h"
@@ -17,7 +17,7 @@ struct UnkNamedListFields {
     CRntString name = CRntString("");
     u32 field_0x38 = 1;
     s32 field_0x3c = -1;
-    base::UnkVector<void*> list{0xf};
+    base::global::CRntVector<void*> list{0xf};
 };
 static_assert(sizeof(UnkNamedListFields<nullptr>) == 0x68, "UnkNamedListFields layout");
 

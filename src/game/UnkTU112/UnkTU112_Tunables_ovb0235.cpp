@@ -7,7 +7,7 @@
 #include <string.h>
 
 #include "base/UnkHashStream.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/core/CBaseObject.h"
 #include "base/global/CRntFile.h"
@@ -24,7 +24,7 @@
 #include "base/UnkFileReader.h"
 
 using base::UnkAllocator;
-using base::UnkVector;
+using base::global::CRntVector;
 using base::global::CRntString;
 using base::global::CStrId;
 using base::reflection::UnkReflTypedPtr;
@@ -40,9 +40,9 @@ struct UnkTunableMember {
 
 // A group of tunables (0x80 bytes): three lists, each with flags 0xf.
 struct UnkTunableGroup {
-    UnkVector<UnkTunableMember*> members{0xf};
-    UnkVector<void*> field_0x28{0xf};
-    UnkVector<void*> field_0x50{0xf};
+    CRntVector<UnkTunableMember*> members{0xf};
+    CRntVector<void*> field_0x28{0xf};
+    CRntVector<void*> field_0x50{0xf};
     bool field_0x78;
 };
 static_assert(sizeof(UnkTunableGroup) == 0x80, "");
@@ -65,9 +65,9 @@ void fn_710013ef1c(UnkTunableGroup* self, UnkTunableGroup* other) {
 
 // A new group, as the appended one is made: zeroed, then the lists set up.
 struct UnkNewTunableGroup {
-    UnkVector<UnkTunableMember*> members{0xf};
-    UnkVector<void*> field_0x28{0xf};
-    UnkVector<void*> field_0x50{0xf};
+    CRntVector<UnkTunableMember*> members{0xf};
+    CRntVector<void*> field_0x28{0xf};
+    CRntVector<void*> field_0x50{0xf};
     bool field_0x78 = false;
 };
 static_assert(sizeof(UnkNewTunableGroup) == 0x80, "");

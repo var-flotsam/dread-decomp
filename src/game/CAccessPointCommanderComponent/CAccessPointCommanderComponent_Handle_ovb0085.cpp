@@ -5,7 +5,7 @@
 // callback). Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkRefHandle.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CAccessPointCommanderComponent.h"
@@ -83,7 +83,7 @@ struct UnkAccessPointCallable_ovb0085 {
 
 struct UnkAccessPointSource_ovb0085 {
     void* vtable;
-    base::UnkVector<UnkAccessPointCallable_ovb0085> items;
+    base::global::CRntVector<UnkAccessPointCallable_ovb0085> items;
     u32 state;
     union {
         base::UnkRefPtrMember handle;    // 0x38

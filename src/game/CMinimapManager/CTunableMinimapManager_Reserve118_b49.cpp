@@ -7,7 +7,7 @@
 #include <string.h>
 
 #include "../../game_aca57c/UnkBufferString.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU2566.h"

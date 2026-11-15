@@ -1,10 +1,10 @@
 // CLightsDef's unit (tools/tu_map.py): the copy constructor and copy assignment of the unit's array
-// (base::UnkVector's layout) of 0x60-byte elements (src/game/CLightsDef/CLightsDef_b42.cpp has its
+// (base::global::CRntVector's layout) of 0x60-byte elements (src/game/CLightsDef/CLightsDef_b42.cpp has its
 // setters): reset (the assignment resizes to nothing, fn_7100da0870, instead), reserve the other's
 // capacity (fn_7100da1508), then append a copy of each element (fn_7100d9bffc) with the push-back
-// inlined, as base::UnkVector::PushBack. The shape of fn_7100c8b688
+// inlined, as base::global::CRntVector::PushBack. The shape of fn_7100c8b688
 // (src/game/CCutSceneDef/CCutSceneDef_CopyA0_b43.cpp). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CLightsDef.h"
 #include "types.h"
 

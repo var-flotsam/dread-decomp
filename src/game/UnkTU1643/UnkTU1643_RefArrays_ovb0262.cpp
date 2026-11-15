@@ -1,6 +1,6 @@
 // Unit 1643: a record holding three reference-counted pointer arrays and its owner, which clears an
 // inline array of such records plus three more arrays of its own. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU107.h"
 #include "types.h"

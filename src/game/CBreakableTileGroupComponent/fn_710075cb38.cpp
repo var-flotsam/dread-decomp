@@ -6,7 +6,7 @@
 #include <new>
 
 #include "base/global/CStrId.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;

@@ -6,7 +6,7 @@
 #include "base/UnkCloneRecords.h"
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkObject_0x100.h"
 #include "game/UnkTU341.h"
 #include "types.h"
@@ -18,7 +18,7 @@ extern void* g_unk_7101a48270[];
 extern void* g_unk_7101a48298[];
 
 void fn_7100246a94(void*, const void*);  // copy of a 0x28-byte array
-using UnkDefObjects_A3_b69 = base::UnkVector<UnkObject_0x100>;
+using UnkDefObjects_A3_b69 = base::global::CRntVector<UnkObject_0x100>;
 void fn_7100563d8c(UnkDefObjects_A3_b69* self, const UnkDefObjects_A3_b69* other);
 
 

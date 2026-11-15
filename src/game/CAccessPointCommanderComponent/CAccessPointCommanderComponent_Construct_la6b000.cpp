@@ -1,7 +1,7 @@
 // CAccessPointCommanderComponent's unit: the constructor body (fn_7100a6b000). Runs the base constructor,
 // sets the vtable and the handle source's fields, then calls the object's vtable slot 3.
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CAccessPointCommanderComponent.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/UnkTU341.h"

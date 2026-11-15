@@ -22,19 +22,19 @@ using UnkElement80Iter = base::UnkCollectionIter<UnkElement80>;
 using UnkElement40Iter = base::UnkCollectionIter<UnkElement40>;
 using UnkElementA0Iter = base::UnkCollectionIter<UnkElementA0>;
 
-void fn_7100ad2800(const base::UnkVector<UnkElement80>* v, UnkElement80Iter* out) {
+void fn_7100ad2800(const base::global::CRntVector<UnkElement80>* v, UnkElement80Iter* out) {
     *out = UnkElement80Iter(v->count, v->data + v->count);
 }
-void fn_7100c92a28(const base::UnkVector<UnkElement40>* v, UnkElement40Iter* out) {
+void fn_7100c92a28(const base::global::CRntVector<UnkElement40>* v, UnkElement40Iter* out) {
     *out = UnkElement40Iter(v->count, v->data + v->count);
 }
-void fn_7100c8f61c(const base::UnkVector<UnkElementA0>* v, UnkElementA0Iter* out) {
+void fn_7100c8f61c(const base::global::CRntVector<UnkElementA0>* v, UnkElementA0Iter* out) {
     *out = UnkElementA0Iter(v->count, v->data + v->count);
 }
 
 // Erase: destroys the element at the iterator's index and moves the later ones down.
 template <class T>
-__attribute__((always_inline)) static inline void Erase(base::UnkVector<T>* v, const base::UnkCollectionIter<T>* it) {
+__attribute__((always_inline)) static inline void Erase(base::global::CRntVector<T>* v, const base::UnkCollectionIter<T>* it) {
     u32 index = it->index;
     if (index < v->count) {
         u64 i = index;
@@ -49,10 +49,10 @@ __attribute__((always_inline)) static inline void Erase(base::UnkVector<T>* v, c
 
 // NON_MATCHING(minor): the original keeps the index and a 57-bit masked copy of it (as from an
 // element offset divided by the size) in separate registers.
-void fn_7100ad1d40(base::UnkVector<UnkElement80>* v, const UnkElement80Iter* it) { Erase(v, it); }
+void fn_7100ad1d40(base::global::CRntVector<UnkElement80>* v, const UnkElement80Iter* it) { Erase(v, it); }
 
 // The End of an array of words.
 using UnkWordIter = base::UnkCollectionIter<u32>;
 
-void fn_7100adbb44(const base::UnkVector<u32>* v, UnkWordIter* out) { *out = UnkWordIter(v->count, v->data + v->count); }
-void fn_7100eb2c10(const base::UnkVector<u32>* v, UnkWordIter* out) { *out = UnkWordIter(v->count, v->data + v->count); }
+void fn_7100adbb44(const base::global::CRntVector<u32>* v, UnkWordIter* out) { *out = UnkWordIter(v->count, v->data + v->count); }
+void fn_7100eb2c10(const base::global::CRntVector<u32>* v, UnkWordIter* out) { *out = UnkWordIter(v->count, v->data + v->count); }

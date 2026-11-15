@@ -3,7 +3,7 @@
 // list an enum's values give); the first may be the index or key ("uIdx" or "sKey", by the caller's
 // mode) and the next the object's type ("oType"). Names and layouts are placeholders.
 // Holds fn_71000f01d0.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -20,7 +20,7 @@ struct UnkReflParam {
     CStrId name;
     const base::reflection::CType* type;
 };
-struct UnkEnumNames : base::UnkVector<UnkReflParam> {
+struct UnkEnumNames : base::global::CRntVector<UnkReflParam> {
     UnkEnumNames(const UnkEnumNames& other);
 };
 UnkEnumNames fn_710009b050(const UnkEnumType* type);

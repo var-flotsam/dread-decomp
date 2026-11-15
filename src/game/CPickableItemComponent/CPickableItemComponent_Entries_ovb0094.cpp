@@ -4,7 +4,7 @@
 // fn_71009d2be0), placing the item on a breakable tile (fn_71009d0404), its timer (fn_71009d0570) and
 // marking it picked in the blackboard (fn_71009d383c). Names and layouts are placeholders.
 #include "base/UnkDeferredSet.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAbilityShinespark.h"

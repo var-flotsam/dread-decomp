@@ -4,7 +4,7 @@
 // radii (+0x608), a name (+0x610), two more pairs and its two attack definitions (+0x628, +0x730). Names
 // and layouts are placeholders.
 #include <new>
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CCharClassBaseBigFistAIComponent.h"
 #include "game/CCharClassBossAIComponent.h"
@@ -26,7 +26,7 @@ void fn_71003ef808(UnkBigkranXAttackDef_ovb0135* self);
 void fn_71003ef84c(UnkBigkranXAttackDef_ovb0135* self);
 
 struct UnkBigkranRange_ovb0135 {
-    base::UnkVector<void*> list;  // 0x0
+    base::global::CRntVector<void*> list;  // 0x0
     CStrId name;                  // 0x28
     f32 min;                      // 0x30
     f32 max;                      // 0x34

@@ -3,7 +3,7 @@
 // guard}, its nodes also linked in insertion order (head +0x40, tail +0x38). fn_7100b1e0d0 destroys
 // every handler and list and empties the map; fn_7100b1e3fc runs the handlers whose mask meets the event's, dropping the ones whose guard
 // says they are done. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkEvent_b257f;

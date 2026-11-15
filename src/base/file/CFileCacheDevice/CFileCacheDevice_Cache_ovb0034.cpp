@@ -6,7 +6,7 @@
 #include <new>
 
 #include "base/UnkRegistry.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/animation/CAnimationResource.h"
 #include "base/file/CFileCacheDevice.h"
 #include "base/global/UnkStringPool.h"

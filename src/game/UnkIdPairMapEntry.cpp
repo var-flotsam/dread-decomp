@@ -4,7 +4,7 @@
 // buckets and the count. Names and layouts are placeholders.
 // Holds fn_7100f8da4c (the entry's destructor).
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -16,7 +16,7 @@ struct UnkIdPairMap {
     base::UnkAllocator* allocator;  // frees the nodes
     u32 field_0x8;
     u32 count;
-    base::UnkVector<void*> buckets;
+    base::global::CRntVector<void*> buckets;
     void* field_0x38;
     void* nodes;  // a list linked at +0x28
 

@@ -1,6 +1,6 @@
 // Unit 2530 of tools/tu_map.py (no reflected class): appends a counted reference to an engine array of
-// counted references (base::UnkVector's layout): grows the capacity to the next multiple of the
-// step when it is full (hanging when there is no room, as base::UnkVector::PushBack does), has
+// counted references (base::global::CRntVector's layout): grows the capacity to the next multiple of the
+// step when it is full (hanging when there is no room, as base::global::CRntVector::PushBack does), has
 // fn_7100da2900 make room, then stores the reference in a cleared slot and counts it. Names are
 // placeholders.
 #include "game_s2/UnkWeakHandle.h"

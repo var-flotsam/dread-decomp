@@ -4,7 +4,7 @@
 // three cleared flags, then the post-construction virtual call (slot 3). fn_71007db53c builds a
 // derived component on that one (inlined): its own vtable, two cleared ranges, two containers on the
 // default allocator, then the same virtual call. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CComponent.h"
 #include "game/CEmmyWakeUpComponent.h"
 #include "game/UnkTU1246.h"

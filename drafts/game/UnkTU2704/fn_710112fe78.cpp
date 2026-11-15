@@ -2,7 +2,7 @@
 // The array grows first; values from the index up are moved one place along (the payload of each moved-from
 // value is released through the game manager or deleted). Names and layouts are placeholders.
 #include "base/UnkHashStream.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"

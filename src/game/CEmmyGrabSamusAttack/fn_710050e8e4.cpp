@@ -1,7 +1,7 @@
 // Frees an object's array of string ids while holding its lock, then frees its other
 // array (whose elements need no destruction).
 #include "base/UnkHashStream.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -26,9 +26,9 @@ struct UnkStrId_710050e8e4 {
 };
 
 struct UnkStruct_710050e8e4 {
-    base::UnkVector<u64> field_0x0;
+    base::global::CRntVector<u64> field_0x0;
     UnkHashStream_0x38 field_0x28;
-    base::UnkVector<UnkStrId_710050e8e4> field_0x60;
+    base::global::CRntVector<UnkStrId_710050e8e4> field_0x60;
 };
 
 void fn_710050e8e4(UnkStruct_710050e8e4* self) {

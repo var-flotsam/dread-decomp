@@ -3,7 +3,7 @@
 // and test in two steps), the array at +0x148 freed, then the base destructor fn_7100364430. Names and
 // layouts are placeholders.
 #include "base/CDeviceQueue.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCharClassAttack.h"
 #include "game/CCharClassBigkranXSpitAttack.h"
 #include "game/UnkComponent.h"
@@ -11,7 +11,7 @@
 
 struct UnkSpitAttack_A2_b70 : UnkBaseComponent {
     u8 pad_0x40[0x108];
-    base::UnkVector<u32> list;  // 0x148
+    base::global::CRntVector<u32> list;  // 0x148
     base::file::UnkDeviceName name;   // 0x170
 };
 static_assert(__builtin_offsetof(UnkSpitAttack_A2_b70, name) == 0x170, "UnkSpitAttack_A2_b70 layout");

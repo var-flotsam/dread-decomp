@@ -4,7 +4,7 @@
 // their data) are switched off, +0xa8 is reset and a live effect handle (+0x98) is stopped through the
 // owner's (+0x30) effect player (+0x2b8, fn_7100719894) and cleared to the empty handle g_unk_7108b6c460.
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CAudioComponent.h"
 #include "game/CComponent.h"
 #include "game/CDizzeanSwarmControllerComponent.h"

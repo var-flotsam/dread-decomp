@@ -2,7 +2,7 @@
 // vtable (g_unk_7101a88a20), every id in its inline table (+0x4c entries from +0x50) and its name (+0x40)
 // released to the empty id, the table emptied, and the buffer at +0x10 handed back to its allocator
 // (+0x30). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 

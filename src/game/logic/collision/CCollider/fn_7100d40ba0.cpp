@@ -39,14 +39,14 @@ struct UnkRefPtr {
 
 using UnkRefPtrIter = base::UnkCollectionIter<UnkRefPtr>;
 
-void fn_7100d40ba0(const base::UnkVector<UnkRefPtr>* v, UnkRefPtrIter* out) { *out = UnkRefPtrIter(0, v->data); }
-void fn_7100d40cc8(const base::UnkVector<UnkRefPtr>* v, UnkRefPtrIter* out) { *out = UnkRefPtrIter(v->count, v->data + v->count); }
-void fn_7100d84af8(const base::UnkVector<UnkRefPtr>* v, UnkRefPtrIter* out) { *out = UnkRefPtrIter(0, v->data); }
-void fn_7100d84c20(const base::UnkVector<UnkRefPtr>* v, UnkRefPtrIter* out) { *out = UnkRefPtrIter(v->count, v->data + v->count); }
+void fn_7100d40ba0(const base::global::CRntVector<UnkRefPtr>* v, UnkRefPtrIter* out) { *out = UnkRefPtrIter(0, v->data); }
+void fn_7100d40cc8(const base::global::CRntVector<UnkRefPtr>* v, UnkRefPtrIter* out) { *out = UnkRefPtrIter(v->count, v->data + v->count); }
+void fn_7100d84af8(const base::global::CRntVector<UnkRefPtr>* v, UnkRefPtrIter* out) { *out = UnkRefPtrIter(0, v->data); }
+void fn_7100d84c20(const base::global::CRntVector<UnkRefPtr>* v, UnkRefPtrIter* out) { *out = UnkRefPtrIter(v->count, v->data + v->count); }
 
-// Erase (base::refl_Erase, with UnkVector::EraseAt inlined): the pointers after the iterator's
+// Erase (base::refl_Erase, with CRntVector::EraseAt inlined): the pointers after the iterator's
 // index move down one by one.
-__attribute__((always_inline)) static inline void Erase(base::UnkVector<UnkRefPtr>* v, const UnkRefPtrIter* it) {
+__attribute__((always_inline)) static inline void Erase(base::global::CRntVector<UnkRefPtr>* v, const UnkRefPtrIter* it) {
     u32 index = it->index;
     if (index < v->count) {
         u64 i = index;
@@ -61,21 +61,21 @@ __attribute__((always_inline)) static inline void Erase(base::UnkVector<UnkRefPt
 
 // NON_MATCHING(minor): the original derives the loop index from the index with a shift pair and
 // keeps i + 1 out of a callee-saved register (one register more here).
-void fn_7100d3ff6c(base::UnkVector<UnkRefPtr>* v, const UnkRefPtrIter* it) { Erase(v, it); }
+void fn_7100d3ff6c(base::global::CRntVector<UnkRefPtr>* v, const UnkRefPtrIter* it) { Erase(v, it); }
 // NON_MATCHING(minor): as fn_7100d3ff6c.
-void fn_7100d83fd8(base::UnkVector<UnkRefPtr>* v, const UnkRefPtrIter* it) { Erase(v, it); }
+void fn_7100d83fd8(base::global::CRntVector<UnkRefPtr>* v, const UnkRefPtrIter* it) { Erase(v, it); }
 
 // The same for an array of vectors of plain values (an owned vector is freed).
-struct UnkPlainVector : base::UnkVector<u32> {
+struct UnkPlainVector : base::global::CRntVector<u32> {
     ~UnkPlainVector() { Free(); }
 };
 
 using UnkPlainVectorIter = base::UnkCollectionIter<UnkPlainVector>;
 
-void fn_7100d44810(const base::UnkVector<UnkPlainVector>* v, UnkPlainVectorIter* out) {
+void fn_7100d44810(const base::global::CRntVector<UnkPlainVector>* v, UnkPlainVectorIter* out) {
     *out = UnkPlainVectorIter(0, v->data);
 }
-void fn_7100d4492c(const base::UnkVector<UnkPlainVector>* v, UnkPlainVectorIter* out) {
+void fn_7100d4492c(const base::global::CRntVector<UnkPlainVector>* v, UnkPlainVectorIter* out) {
     *out = UnkPlainVectorIter(v->count, v->data + v->count);
 }
 

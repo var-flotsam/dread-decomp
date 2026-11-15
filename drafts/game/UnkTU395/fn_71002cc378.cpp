@@ -1,7 +1,7 @@
 // Draft (93.2%): GrowAt of the 16-byte entries; only the fill loop's register choice differs.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkEntry16_ovb0180 {
@@ -17,7 +17,7 @@ struct UnkEntry16_ovb0180 {
         return *this;
     }
 };
-// base::UnkVector::GrowAt on a copy of the array whose data pointer is a union member: the original
+// base::global::CRntVector::GrowAt on a copy of the array whose data pointer is a union member: the original
 // reloads it after each element is initialised.
 struct UnkGrowEntries16_ovb0180 {
     union {

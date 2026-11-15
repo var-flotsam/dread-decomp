@@ -2,7 +2,7 @@
 // restored, the array of owned-object lists at +0x100 is freed (game_s2/UnkOwnedList.h), then the
 // CCharClassCooldownXBossAttack base's destructor (fn_71004a0a10) runs. Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCharClassCooldownXBossAttack.h"
 #include "game/UnkTU740.h"
 #include "game_s2/UnkOwnedList.h"
@@ -13,7 +13,7 @@ struct UnkCooldownXBossAttackDef;
 struct UnkLavaCarpetDef_b0225 {
     void** vtable;
     u8 pad_0x8[0xf8];
-    base::UnkVector<UnkOwnedList> lists;  // 0x100
+    base::global::CRntVector<UnkOwnedList> lists;  // 0x100
 };
 
 void fn_71004a5060(UnkLavaCarpetDef_b0225* self) {

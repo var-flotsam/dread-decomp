@@ -3,7 +3,7 @@
 // otherwise), lets the sub-area manager (g_unk_7101d47360, created on first use) update
 // (fn_7100eeb834) and clears the reference at +0xc30 (fn_71010e6038). Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2577.h"

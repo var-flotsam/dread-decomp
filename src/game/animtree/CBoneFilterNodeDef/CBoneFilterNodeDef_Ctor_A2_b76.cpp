@@ -6,7 +6,7 @@
 // src/reflection/animtree_CBoneFilterNodeDef.cpp declares. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/animtree/CAnimatedNodeDef.h"
 #include "game/animtree/CBoneFilterNodeDef.h"
@@ -16,8 +16,8 @@ using base::global::CStrId;
 struct UnkBoneFilterNodeDef_A2_b76 {
     char* vtable;
     CStrId name;                      // 0x8
-    base::UnkVector<u64> field_0x10;  // 0x10
-    base::UnkVector<u64> field_0x38;  // 0x38
+    base::global::CRntVector<u64> field_0x10;  // 0x10
+    base::global::CRntVector<u64> field_0x38;  // 0x38
 };
 
 void fn_71002e319c_A2_b76(UnkBoneFilterNodeDef_A2_b76* self) asm("_Z13fn_71002e319cv");
@@ -26,6 +26,6 @@ void fn_71002e319c_A2_b76(UnkBoneFilterNodeDef_A2_b76* self) {
     self->vtable = reinterpret_cast<char*>(g_unk_7101a21718) + 0x10;
     new (&self->name) CStrId(g_unk_7101d470e0);
     self->vtable = reinterpret_cast<char*>(g_unk_7101a21c70) + 0x10;
-    new (&self->field_0x10) base::UnkVector<u64>(0xf);
-    new (&self->field_0x38) base::UnkVector<u64>(0xf);
+    new (&self->field_0x10) base::global::CRntVector<u64>(0xf);
+    new (&self->field_0x38) base::global::CRntVector<u64>(0xf);
 }

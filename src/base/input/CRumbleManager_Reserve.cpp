@@ -7,7 +7,7 @@
 #include <string.h>
 
 #include "base/UnkNamedRegistry.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "types.h"
 

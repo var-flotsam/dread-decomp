@@ -92,7 +92,7 @@ void fn_710006ddc8(UnkPadSet* self) {
 
 #include <math.h>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/input/UnkRumbleManager.h"
 
 using base::input::UnkRumbleManager;

@@ -1,6 +1,6 @@
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkRcObject {
@@ -32,9 +32,9 @@ struct UnkRcRef {
     }
 };
 
-using UnkRcRefVector = base::UnkVector<UnkRcRef>;
+using UnkRcRefVector = base::global::CRntVector<UnkRcRef>;
 
-// UnkVector::EraseAt as fn_71004bf588 writes it, over reference-counted pointers.
+// CRntVector::EraseAt as fn_71004bf588 writes it, over reference-counted pointers.
 static inline void EraseAt(UnkRcRefVector* self, u32 index) {
     if (index < self->count) {
         u64 i = index;

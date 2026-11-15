@@ -11,7 +11,7 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkCollectionIter.h"
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
@@ -80,7 +80,7 @@ struct UnkPathPoints {
     virtual void vf_0x28();
     virtual void vf_0x30();
     virtual const UnkPathBox* GetBounds();
-    base::UnkVector<UnkPathNodePoint> points;
+    base::global::CRntVector<UnkPathNodePoint> points;
     bool dirty;  // 0x30
     UnkPathBox bounds;  // 0x34
 };
@@ -89,7 +89,7 @@ static_assert(sizeof(UnkPathPoints) == 0x50, "UnkPathPoints layout");
 struct UnkPathShapes {
     u64 field_0x0;
     u64 field_0x8;
-    base::UnkVector<UnkPathPoints> shapes;
+    base::global::CRntVector<UnkPathPoints> shapes;
     bool dirty;  // 0x38
     UnkPathBox bounds;  // 0x3c
 };
@@ -180,7 +180,7 @@ struct UnkPathPointArray;
 
 // Resizes the array to `count` points, the new ones at (0, 0, 0) with a weight of 1.
 void fn_710106111c(UnkPathPointArray* array, u32 count) {
-    auto* self = reinterpret_cast<base::UnkVector<UnkPathPointV>*>(array);
+    auto* self = reinterpret_cast<base::global::CRntVector<UnkPathPointV>*>(array);
     self->Reserve(count);
     for (u32 i = self->count; i < count; ++i)
         new (&self->data[i]) UnkPathPointV();
@@ -202,7 +202,7 @@ struct UnkPathPointInit {
 
 struct UnkPathPointsData {
     u64 field_0x0;
-    base::UnkVector<UnkPathPointV> points;
+    base::global::CRntVector<UnkPathPointV> points;
     bool dirty;  // 0x30
 };
 
@@ -220,7 +220,7 @@ UnkReflObject* fn_71010590dc(char* self, u32 index, void* arg) {
     point.field_0x18 = 1.0f;
     fn_710106146c(reinterpret_cast<UnkInsertTarget*>(&node->points), reinterpret_cast<const UnkArgObj*>(&point), index);
     node->dirty = true;
-    base::UnkVector<UnkPathPointV>* v = &node->points;
+    base::global::CRntVector<UnkPathPointV>* v = &node->points;
     if (v->field_0x14 && v->count <= index) {
         if (v->capacity <= index && v->step != 0) {
             u32 grown = (index / v->step + 1) * v->step;
@@ -277,7 +277,7 @@ struct base::UnkDtorTraits<UnkPathDtor> {
 };
 
 struct UnkPathDtorVector {
-    static void Release(char* self) { reinterpret_cast<base::UnkVector<UnkPathElem50>*>(self + 0x10)->Free(); }
+    static void Release(char* self) { reinterpret_cast<base::global::CRntVector<UnkPathElem50>*>(self + 0x10)->Free(); }
 };
 
 __attribute__((flatten)) void fn_7101059d40(char* self) {
@@ -289,7 +289,7 @@ __attribute__((flatten)) void fn_7101059d40(char* self) {
 struct UnkPathBlockTag;
 using UnkPathBlock20 = UnkCloneBlock<UnkPathBlockTag, 0x20>;
 
-void fn_710105e51c(const base::UnkVector<UnkPathBlock20>* v, base::UnkCollectionIter<UnkPathBlock20>* out) {
+void fn_710105e51c(const base::global::CRntVector<UnkPathBlock20>* v, base::UnkCollectionIter<UnkPathBlock20>* out) {
     base::refl_End(v, out);
 }
 
@@ -451,7 +451,7 @@ struct UnkPathSubElem {
 
 struct UnkPathItemD {
     void** vtable;
-    base::UnkVector<UnkPathSubElem> field_0x8;
+    base::global::CRntVector<UnkPathSubElem> field_0x8;
     u8 field_0x30;
     u8 pad_0x31[3];
     u64_a4 field_0x34;
@@ -459,7 +459,7 @@ struct UnkPathItemD {
     u64_a4 field_0x44;
 
     UnkPathItemD& operator=(UnkPathItemD&& other) {
-        field_0x8 = static_cast<base::UnkVector<UnkPathSubElem>&&>(other.field_0x8);
+        field_0x8 = static_cast<base::global::CRntVector<UnkPathSubElem>&&>(other.field_0x8);
         field_0x30 = other.field_0x30;
         return *this;
     }
@@ -473,12 +473,12 @@ struct UnkPathItemD {
 template <>
 void base::refl_IterSync(base::UnkCollectionIter<UnkPathItemD, u32>* it) asm("fn_710105b904");
 
-__attribute__((flatten)) void fn_710105fb10(const base::UnkVector<UnkPathItemD>* v,
+__attribute__((flatten)) void fn_710105fb10(const base::global::CRntVector<UnkPathItemD>* v,
                                             base::UnkCollectionIter<UnkPathItemD>* out) {
     base::refl_Begin(v, out);
 }
 
-__attribute__((flatten)) void fn_710105fc24(const base::UnkVector<UnkPathItemD>* v,
+__attribute__((flatten)) void fn_710105fc24(const base::global::CRntVector<UnkPathItemD>* v,
                                             base::UnkCollectionIter<UnkPathItemD>* out) {
     base::refl_End(v, out);
 }
@@ -513,6 +513,6 @@ struct UnkPathLink {
     }
 };
 
-__attribute__((flatten)) UnkPathLink* fn_7101060dcc(base::UnkVector<UnkPathLink>* self, u32 index) {
+__attribute__((flatten)) UnkPathLink* fn_7101060dcc(base::global::CRntVector<UnkPathLink>* self, u32 index) {
     return &self->GrowAt(index);
 }

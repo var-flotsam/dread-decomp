@@ -4,7 +4,7 @@
 // +0x158, counted down at +0xcc and +0xd0) and the messages that switch, tint or reset named effects.
 // Names and layouts are placeholders.
 #include "../../game_s7/UnkPropS7.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"
 #include "game/CActorComponent.h"

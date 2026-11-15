@@ -3,7 +3,7 @@
 #include <math.h>
 
 #include "base/UnkMatrix44.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -105,7 +105,7 @@ void fn_7100aaa6d0(UnkBombMovementState_ovb0078* self) {
     if (void* shape = self->owner->field_0x228)
         fn_71009f19b0(shape, false);
     fn_7100d7c828(self->owner, &g_unk_710164b688, false);
-    base::UnkVector<UnkListedItem*>* items = fn_7100552d7c();
+    base::global::CRntVector<UnkListedItem*>* items = fn_7100552d7c();
     UnkListedItem** it = items->data;
     UnkListedItem** end = it + items->count;
     for (; it != end; ++it) {

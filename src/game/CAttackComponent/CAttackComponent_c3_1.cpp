@@ -8,7 +8,7 @@
 // placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CAttackComponent.h"
 #include "game/CComponent.h"
 #include "game/UnkComponent.h"
@@ -23,9 +23,9 @@ struct UnkAttackPartBase_c3 {
 };
 
 struct UnkAttackPart_c3 : UnkAttackPartBase_c3 {
-    base::UnkVector<u8> field_0x8;
-    base::UnkVector<u8> field_0x30;
-    base::UnkVector<u8> field_0x58;
+    base::global::CRntVector<u8> field_0x8;
+    base::global::CRntVector<u8> field_0x30;
+    base::global::CRntVector<u8> field_0x58;
 
     UnkAttackPart_c3() : field_0x8(0xf), field_0x30(0xf), field_0x58(0xf) {}
 };

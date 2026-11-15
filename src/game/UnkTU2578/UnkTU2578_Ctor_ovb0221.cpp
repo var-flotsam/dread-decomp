@@ -6,7 +6,7 @@
 #include <new>
 
 #include "base/UnkChainedMap.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU2578.h"
 #include "types.h"
 
@@ -43,7 +43,7 @@ struct UnkStruct_0x128 {
     f32 field_0x11c;
     u16 field_0x120;
     bool field_0x122;
-    base::UnkVector<u32> field_0x128;
+    base::global::CRntVector<u32> field_0x128;
 
     UnkStruct_0x128()
         : field_0x108(nullptr), field_0x110(nullptr), field_0x118(1.0f), field_0x11c(1.0f), field_0x120(0),

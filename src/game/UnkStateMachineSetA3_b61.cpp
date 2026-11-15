@@ -3,7 +3,7 @@
 // stores the pending id, gives up past the last state or while busy, and otherwise switches state.
 // Batch 61 callers: CEmmyGrabSamusAttack (machine at +0x28, states 0..13, "none" 14) and
 // CHydrogigaAIComponent. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CBossAIComponent.h"

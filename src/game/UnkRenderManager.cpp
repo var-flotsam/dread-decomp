@@ -5,7 +5,7 @@
 #include <new>
 
 #include "base/UnkSList.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU280.h"

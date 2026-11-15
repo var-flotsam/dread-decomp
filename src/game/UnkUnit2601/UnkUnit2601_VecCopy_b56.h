@@ -1,13 +1,13 @@
 #pragma once
 
-// Unit 2601 of tools/tu_map.py: growable arrays (base::UnkVector's layout) whose Reserve stays out of
+// Unit 2601 of tools/tu_map.py: growable arrays (base::global::CRntVector's layout) whose Reserve stays out of
 // line (fn_7100f86020, fn_7100f85d24), and their copy constructors (fn_7100f85f00 for 0x18-byte
 // {file path id, u64, u32} records, fn_7100f85c28 for 0x50-byte records holding such an array):
 // the settings are copied, the array reserved to the other's capacity, and each element appended
 // with PushBack's growth. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "types.h"
 

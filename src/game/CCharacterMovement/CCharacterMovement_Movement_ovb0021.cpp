@@ -6,7 +6,7 @@
 // fn_7100976944); the ground probe (fn_7100977cec); the destructor (fn_7100975f10); keeping the hit
 // against the id table's source (fn_7100977974); placing the owner (fn_7100978f58); and taking a
 // transform's translation and angles (fn_7100979854). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -65,7 +65,7 @@ struct UnkTimedRef_ovb0021 {
     }
 };
 
-using UnkTimedRefList_ovb0021 = base::UnkVector<UnkTimedRef_ovb0021>;
+using UnkTimedRefList_ovb0021 = base::global::CRntVector<UnkTimedRef_ovb0021>;
 
 // Removes `it` by moving the last entry into its place; returns the entry now at its position.
 UnkTimedRef_ovb0021* fn_7100979360(UnkTimedRefList_ovb0021* list, UnkTimedRef_ovb0021* it) {
@@ -105,7 +105,7 @@ struct UnkCharacterMovement_ovb0021 {
     UnkTimedRefList_ovb0021 timed;  // 0x3f8
 };
 
-// Grows the list's storage to `capacity` entries (base::UnkVector's reserve, written out).
+// Grows the list's storage to `capacity` entries (base::global::CRntVector's reserve, written out).
 void fn_710097a850(UnkTimedRefList_ovb0021* self, u32 capacity) {
     if (self->capacity < capacity) {
         auto* p = static_cast<UnkTimedRef_ovb0021*>(
@@ -552,7 +552,7 @@ struct UnkCharacterMovementFull_ovb0021 {
     u8 unk_0x3a0[0x10];
     UnkMoveTracker_ovb0021 tracker;  // 0x3b0
     u8 unk_0x3b8[0x40];
-    base::UnkVector<UnkTimedRef_ovb0021> timed;  // 0x3f8
+    base::global::CRntVector<UnkTimedRef_ovb0021> timed;  // 0x3f8
     u16 cell;  // 0x420
     u32 cell_frame;  // 0x424
     UnkMoveSlot_0xb0 slot_0x428;

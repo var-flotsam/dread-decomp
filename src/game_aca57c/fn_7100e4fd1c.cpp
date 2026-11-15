@@ -1,10 +1,10 @@
 // Copy constructor and destructor of a 0x60-byte record (the values of the id map assigned by
-// fn_7100e59f50): plain words, two string ids, and an array of string ids (base::UnkVector's
+// fn_7100e59f50): plain words, two string ids, and an array of string ids (base::global::CRntVector's
 // layout, with an out-of-line Reserve, fn_710000542c) copied by appending each id.
 #include <new>
 
 #include "base/UnkCloneRecords.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU2563.h"
 #include "types.h"

@@ -5,7 +5,7 @@
 #include <new>
 
 #include "base/UnkMatrix44.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 // The base's vtable and the class's (reached through the GOT).

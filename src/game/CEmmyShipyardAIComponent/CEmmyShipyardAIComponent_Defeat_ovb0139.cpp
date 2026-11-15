@@ -2,7 +2,7 @@
 // src/game/CEmmyCaveAIComponent/UnkEmmyDefeatedMessage_b42.cpp: the "defeated" message to the game manager's callback set,
 // the component's own handler (fn_7100554740), then the scenario script's OnEmmyShipyardDead. Names are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CChozoCommanderAIComponent.h"
 #include "game/UnkGameManager.h"
@@ -35,7 +35,7 @@ struct UnkMlogText_b42a1 : base::global::UnkStrIdBase {
 struct UnkMlogMessage_b42a1 {
     u32 kind;
     UnkMlogText_b42a1 text;
-    base::UnkVector<base::UnkStrIdMember> args;
+    base::global::CRntVector<base::UnkStrIdMember> args;
 
     __attribute__((always_inline)) UnkMlogMessage_b42a1(const CStrId& t) : kind(0), text(t), args(0xc) {}
     __attribute__((always_inline)) ~UnkMlogMessage_b42a1() {

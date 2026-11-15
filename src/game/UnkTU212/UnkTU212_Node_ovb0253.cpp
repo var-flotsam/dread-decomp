@@ -1,7 +1,7 @@
 // Unit 212 (a node with a transform and an id list, no reliable name): its default and move
 // constructors, and the refresh of its matrices from the parent's. Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -26,7 +26,7 @@ struct UnkNode_b0253 {
     void* field_0x58;  // 0x58
     void* field_0x60;  // 0x60
     CStrId id;  // 0x68
-    base::UnkVector<void*> list;  // 0x70
+    base::global::CRntVector<void*> list;  // 0x70
 };
 static_assert(__builtin_offsetof(UnkNode_b0253, id) == 0x68, "UnkNode_b0253 layout");
 static_assert(__builtin_offsetof(UnkNode_b0253, list) == 0x70, "UnkNode_b0253 layout");
@@ -43,7 +43,7 @@ void fn_7100194a9c(UnkNode_b0253* self) {
     if (!g_unk_7101d47108)
         base::global::UnkEnsureStringPool();
     self->id.data = &g_unk_7101d47108->empty;
-    new (&self->list) base::UnkVector<void*>(10);
+    new (&self->list) base::global::CRntVector<void*>(10);
 }
 
 void fn_7100194ba4(UnkNode_b0253* self, UnkNode_b0253* other) {

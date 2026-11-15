@@ -1,7 +1,7 @@
 // Destructors (complete and deleting) of an object with a node list at 0x238: restore the
 // vtables, free the nodes and run the base destructor (fn_71010d092c); the deleting one then
 // frees the object.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CGooplotAIComponent.h"
 #include "types.h"
 

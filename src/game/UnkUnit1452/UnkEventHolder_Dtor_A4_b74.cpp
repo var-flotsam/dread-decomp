@@ -2,7 +2,7 @@
 // fn_710099a084 (src/game_hi/fn_710099a084.cpp) embeds at +0x8e0: three callback-slot members (+0xe8, +0x158,
 // +0x1c8), the record at +0x30, then the base (vtable g_unk_7101a85c80, member at +0x18). Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkTU1449.h"
 #include "game/UnkTU1452.h"

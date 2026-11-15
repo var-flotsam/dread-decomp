@@ -4,7 +4,7 @@
 // array (+0x258) and the revealed-index array (+0x280). The rest: the event handler (fn_7100af8450), confirm
 // (fn_7100af8cf4), next and previous visible entry (fn_7100af9108, fn_7100af94e4) and the reveal queue's step
 // (fn_7100af999c). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/UnkDeferredSet.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -60,8 +60,8 @@ struct UnkGallery_A5_b75 {
     u32 selected;
     u8 field_0x254;
     u8 field_0x255;
-    base::UnkVector<UnkGalleryEntry_A5_b75> entries;
-    base::UnkVector<u32> revealed;
+    base::global::CRntVector<UnkGalleryEntry_A5_b75> entries;
+    base::global::CRntVector<u32> revealed;
     f32 field_0x2a0;
     UnkReflObject* inspector;  // GUI::CArchivesInspectorComposition, found through the main menu
 };
@@ -76,8 +76,8 @@ void fn_7100af820c(UnkGallery_A5_b75* self) {
     self->columns = 0;
     self->field_0x254 = 0;
     self->field_0x255 = 0;
-    new (&self->entries) base::UnkVector<UnkGalleryEntry_A5_b75>(0xf);
-    new (&self->revealed) base::UnkVector<u32>(0xf);
+    new (&self->entries) base::global::CRntVector<UnkGalleryEntry_A5_b75>(0xf);
+    new (&self->revealed) base::global::CRntVector<u32>(0xf);
     self->field_0x2a0 = -1.0f;
     self->inspector = nullptr;
 }

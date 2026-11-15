@@ -2,7 +2,7 @@
 // count at +0x18, allocator at +0x28; 0x98-byte records), the shape of fn_71000dc294
 // (src/base/reflection/UnkReflKeyedB0_b44.cpp); the records are destroyed by fn_710019506c.
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU212.h"
 #include "types.h"
 

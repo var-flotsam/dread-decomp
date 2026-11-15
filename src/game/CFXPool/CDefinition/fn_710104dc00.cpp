@@ -2,7 +2,7 @@
 // in the mask at +0x38), resets it (vf_0x118) and marks it used; null when all are in use. The
 // objects are in a growable array at +0x10 read through its out-of-line accessor fn_7100852548.
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CPlasmaBeamGun.h"
 
 struct UnkFxPooledObject {
@@ -13,7 +13,7 @@ struct UnkFxPooledObject {
 
 struct UnkFxObjectPool {
     u8 pad_0x0[0x10];
-    base::UnkVector<UnkFxPooledObject*> objects;  // 0x10
+    base::global::CRntVector<UnkFxPooledObject*> objects;  // 0x10
     u32 used;                                     // 0x38
 };
 

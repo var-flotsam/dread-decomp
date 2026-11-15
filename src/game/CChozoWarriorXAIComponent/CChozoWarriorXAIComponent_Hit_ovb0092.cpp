@@ -5,7 +5,7 @@
 // set (fn_710048f3c4): unless the player (+0x278 of the owner) is in an ultimate grab attack, runs
 // fn_710048ecbc, the player's slot 0x178 and fn_7101134420 with the entry at +0x14dd0; then
 // fn_7100da928c. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"

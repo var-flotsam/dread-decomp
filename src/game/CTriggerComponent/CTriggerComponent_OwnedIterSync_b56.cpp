@@ -2,7 +2,7 @@
 // two-state variant (copies of src/base/UnkUnit2609/UnkUnit2609_OwnedIterSync_b55.cpp): with a current
 // entry (+8) the variant becomes the pair {iterator, entry}, else it is reset. State 1 owns an object at
 // +0x18 (fn_7100a632e8 destroys it, fn_7100083c00 frees it). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CTriggerComponent.h"
 #include "types.h"
 

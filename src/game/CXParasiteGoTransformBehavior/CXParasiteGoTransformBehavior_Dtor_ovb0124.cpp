@@ -3,7 +3,7 @@
 // then its callbacks) and an array of 0x40-byte polymorphic elements at +0x60. Names and layouts are
 // placeholders.
 #include "base/UnkErasedVector.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CXParasiteGoTransformBehavior.h"
 #include "game/UnkTU341.h"
 #include "types.h"
@@ -44,7 +44,7 @@ struct UnkGoBehavior_ovb0124 {
     void** vtable;
     u8 pad_0x8[0x18];
     UnkGoCallbackSet_ovb0124 set;                  // 0x20
-    base::UnkVector<UnkGoElem_ovb0124> elements;  // 0x60
+    base::global::CRntVector<UnkGoElem_ovb0124> elements;  // 0x60
 };
 static_assert(sizeof(UnkGoBehavior_ovb0124) == 0x88, "layout");
 

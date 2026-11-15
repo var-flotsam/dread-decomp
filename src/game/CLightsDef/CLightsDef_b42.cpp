@@ -1,11 +1,11 @@
 // CLightsDef's unit (tools/tu_map.py): the "set element at index" functions (slots 0x140 and 0x148 of
-// the reflected collection type) of an array (base::UnkVector's layout) of 0x60-byte elements. An
+// the reflected collection type) of an array (base::global::CRntVector's layout) of 0x60-byte elements. An
 // index past the end of a growable array first reserves its capacity (grown to the next multiple of
 // the step when the index reaches it, fn_7100da1508) and then index + 1 elements, constructs the new
 // ones (fn_7100d9b128) and extends the count. The copying setter stops there (the element's copy
 // assignment does nothing); the moving one then move-assigns the element (fn_7100d9b27c). The shape of
 // fn_7100c92080 (src/game/CCutSceneDef/CCutSceneDef_b42.cpp). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CLightsDef.h"
 #include "types.h"
 

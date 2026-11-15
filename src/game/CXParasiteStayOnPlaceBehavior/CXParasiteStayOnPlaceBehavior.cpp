@@ -1,7 +1,7 @@
 // CXParasiteStayOnPlaceBehavior: its constructor (fn_71007cdebc). Stores the vtable and builds the
 // callback list at +0x20 (base vtable with an empty array of callables: step 10, flags 0xf; then the
 // list's vtable and its cleared fields). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CXParasiteStayOnPlaceBehavior.h"
 #include "game/UnkTU341.h"
 

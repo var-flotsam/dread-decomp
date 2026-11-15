@@ -2,7 +2,7 @@
 // definition's vf_0x18 gives, when that is an animtree::CAnimTreeControl and has a constructor at
 // +0x28), lets the node read the definition (vf_0x38) and appends it to the vector at +0xa0.
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -31,7 +31,7 @@ struct UnkClassView_b0249 {
 
 struct UnkNodeOwner_b0249 {
     u8 pad_0x0[0xa0];
-    base::UnkVector<UnkNode_b0249*> nodes;  // 0xa0
+    base::global::CRntVector<UnkNode_b0249*> nodes;  // 0xa0
 };
 
 UnkNode_b0249* fn_71002d5070(UnkNodeOwner_b0249* self, base::reflection::UnkReflObjectB* def) {

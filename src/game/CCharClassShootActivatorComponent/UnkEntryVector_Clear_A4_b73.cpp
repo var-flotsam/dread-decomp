@@ -96,7 +96,7 @@ void fn_71008ab0b8(UnkClearVector_A4_b73* self) {
 }
 
 // PushBack of a copy (fn_710089566c, fn_71008ab6b4: one per array type, each calling its own Reserve): grows like
-// base::UnkVector::PushBack (hang included), then copy-constructs the entry in place.
+// base::global::CRntVector::PushBack (hang included), then copy-constructs the entry in place.
 struct UnkPushEntry_A4_b73 {
     void* vtable;
     UnkErasedValue_0x10* list_data;  // 0x8, an UnkErasedVector written as flat members

@@ -4,7 +4,7 @@
 
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU108.h"
@@ -254,7 +254,7 @@ UnkU32ValueStringPair* fn_7100b1acf8(UnkU32ValueStringPair* self, UnkU32ValueStr
 // A value and an optional external array, with a pair referring to both: assignment copies the
 // value and the array pointer and rebinds the pair. The in-place array frees its storage.
 template <class T>
-struct UnkFreedVector : base::UnkVector<T> {
+struct UnkFreedVector : base::global::CRntVector<T> {
     ~UnkFreedVector() { this->Free(); }
 };
 

@@ -2,7 +2,7 @@
 // its clear (CCollectionType +0x110), destructor (+0x40), find (+0x138), "set by key" slots (+0x140
 // copy, +0x148 move, identical for these values), Begin (+0x160) and End (+0x168). Names and
 // layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "../reflection/UnkTempIterValue_b44.h"
 #include "base/global/CRntString.h"
 #include "game/UnkTU57.h"

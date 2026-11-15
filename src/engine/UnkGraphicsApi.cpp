@@ -5,7 +5,7 @@
 // copies name fewer arguments than the callees read (the AArch64 bytes are the same; an x86-64
 // build would lose them): the creator passed the constructor no object, the scale setter no value,
 // each factory its constructor no object. Names are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "engine/UnkGraphicsSystem.h"
 #include "game/UnkGlobal_710b372a98.h"
 #include "game/UnkTU167.h"

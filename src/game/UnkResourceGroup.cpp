@@ -4,7 +4,7 @@
 // at +0x58, the file-path ids of files it loaded at +0xa8 and a directory path at +0xd0 whose files
 // it loaded. The types of the file device's list repeat src/game/CGameManager.cpp's.
 // Holds fn_7100ecb00c (releases everything). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/file/CPackManagerDevice.h"
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"
@@ -126,7 +126,7 @@ struct UnkResourceSetNode {
 };
 
 struct UnkResourceSet {
-    base::UnkVector<UnkResourceSetNode*> buckets;
+    base::global::CRntVector<UnkResourceSetNode*> buckets;
     u32 first_bucket;  // where an iteration starts
     UnkResourceSetNode* first;
     u8 pad_0x38[0x10];
@@ -137,7 +137,7 @@ struct UnkResourceGroup {
     u8 pad_0x0[0x8];
     UnkResourceSet objects;
     u8 others[0x50];
-    base::UnkVector<UnkListedPathId> files;
+    base::global::CRntVector<UnkListedPathId> files;
     CFilePathStrId directory;
 };
 static_assert(__builtin_offsetof(UnkResourceGroup, objects.first_bucket) == 0x30, "UnkResourceGroup placeholder layout");

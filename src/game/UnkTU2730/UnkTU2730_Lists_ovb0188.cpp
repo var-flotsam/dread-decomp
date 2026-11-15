@@ -4,7 +4,7 @@
 // sections; and the unit's static initialiser. Names and layouts are placeholders.
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
 #include "base/UnkNoArg.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/input/UnkRumbleManager.h"
@@ -105,16 +105,16 @@ struct UnkCallback_kr {
 
 struct UnkCallbackList_b0188 {
     u8 pad_0x0[0x30];
-    base::UnkVector<UnkCallback_kr> callbacks;
+    base::global::CRntVector<UnkCallback_kr> callbacks;
 };
 
-__attribute__((noinline)) UnkCallback_kr* fn_71011998b4(base::UnkVector<UnkCallback_kr>* v, u32 index) {
+__attribute__((noinline)) UnkCallback_kr* fn_71011998b4(base::global::CRntVector<UnkCallback_kr>* v, u32 index) {
     return &v->GrowAt(index);
 }
 
 void fn_7101199818(void* manager, void* component) {
     UnkCallbackList_b0188* self = static_cast<UnkCallbackList_b0188*>(manager);
-    base::UnkVector<UnkCallback_kr>& list = self->callbacks;
+    base::global::CRntVector<UnkCallback_kr>& list = self->callbacks;
     u32 i = 0;
     while (i < list.count) {
         UnkCallback_kr* e = fn_71011998b4(&list, i);
@@ -358,7 +358,7 @@ struct UnkRefElem_b0188 {
     }
 };
 
-void fn_710119a874(base::UnkVector<UnkRefElem_b0188>* v, u32 n) {
+void fn_710119a874(base::global::CRntVector<UnkRefElem_b0188>* v, u32 n) {
     if (v->capacity < n) {
         UnkRefElem_b0188* p = static_cast<UnkRefElem_b0188*>(v->allocator->vf_0x40((u64)n * sizeof(UnkRefElem_b0188), 8, v->flags));
         if (v->data) {
@@ -399,7 +399,7 @@ struct UnkRefPtr_b0188 {
     }
 };
 
-void fn_710119a9bc(base::UnkVector<UnkRefPtr_b0188>* v, u32 n) {
+void fn_710119a9bc(base::global::CRntVector<UnkRefPtr_b0188>* v, u32 n) {
     if (v->capacity < n) {
         UnkRefPtr_b0188* p = static_cast<UnkRefPtr_b0188*>(v->allocator->vf_0x40((u64)n * sizeof(UnkRefPtr_b0188), 8, v->flags));
         if (v->data) {
@@ -563,7 +563,7 @@ struct UnkMenuView_b0188 {
 
 struct UnkScene_b0188 {
     u8 pad_0x0[0x30];
-    base::UnkVector<UnkCallback_b0188> callbacks;  // 0x30
+    base::global::CRntVector<UnkCallback_b0188> callbacks;  // 0x30
     UnkRefObj_b0188* field_0x58;
     u8 pad_0x60[0xb0];
     u32 pending;  // 0x110

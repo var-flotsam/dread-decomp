@@ -1,7 +1,7 @@
 // Shrink-to-fit of a container of two parallel arrays (records and their string ids) sharing a
 // count and capacity: both are reallocated to the count, the elements moved over (each source
 // destroyed) and the old arrays freed.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU2563.h"
 #include "types.h"

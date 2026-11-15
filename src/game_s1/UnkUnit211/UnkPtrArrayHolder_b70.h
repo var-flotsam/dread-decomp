@@ -1,13 +1,13 @@
 #pragma once
 
 // A 0x48-byte holder found in the fn_710019e76c-family constructors (fn_7100192994, fn_7100198aac):
-// an allocator and its flags, then an array of pointers (base::UnkVector<void*>'s layout, same
+// an allocator and its flags, then an array of pointers (base::global::CRntVector<void*>'s layout, same
 // flags) resized to 11 zeroed elements, then two cleared words. Names and layouts are placeholders.
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
-// base::UnkVector<void*>'s layout with a resize that zero-fills the new elements.
+// base::global::CRntVector<void*>'s layout with a resize that zero-fills the new elements.
 struct UnkPtrArray_b70a1 {
     void** data;
     u32 count;

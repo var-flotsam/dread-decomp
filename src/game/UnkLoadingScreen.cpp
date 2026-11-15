@@ -2,7 +2,7 @@
 // ELoadingScreen enum and names "LoadingScreen", "LoadinScreenTip%d" and the loading animations):
 // the loading screen. Names and layouts are placeholders.
 // Holds fn_7100e10aac (closes the loading screen) and fn_7100e0fc00 (the tips' labels).
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CBossAIComponent.h"
 #include "game/GUI/CLabel.h"
 #include "game/UnkGuiRoot.h"

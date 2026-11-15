@@ -7,7 +7,7 @@
 // constructor hashes the string "base::reflection::CClass"; "base::reflection::CType" is a
 // reflected type). Members that aren't understood yet keep offset-based names.
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -116,7 +116,7 @@ public:
     const CType* m_parent;
     void* field_0x80 = nullptr;  // attribute container, created on first use (fn_710009dd6c)
     void* field_0x88 = nullptr;
-    base::UnkVector<void*> m_array_0x90;
+    base::global::CRntVector<void*> m_array_0x90;
     UnkReflArray m_array_0xb8;
 };
 

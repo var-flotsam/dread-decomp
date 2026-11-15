@@ -1,7 +1,7 @@
 // The reflected End of an array of 0x30-byte records: an iterator at the element count. Near copy
 // of fn_71000d4c68 (src/game_s7/fn_71000d2e54.cpp).
 #include "base/UnkCollectionIter.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCharClassBehaviorTreeAIComponent.h"
 #include "game/CCharClassRodotukAIComponent.h"
 #include "game/CCharClassRodotukSuckAttack.h"
@@ -13,7 +13,7 @@ struct UnkRecord_7100671864 {
 
 using UnkRecordIter_7100671864 = base::UnkCollectionIter<UnkRecord_7100671864>;
 
-void fn_7100671864(const base::UnkVector<UnkRecord_7100671864>* v, UnkRecordIter_7100671864* out) {
+void fn_7100671864(const base::global::CRntVector<UnkRecord_7100671864>* v, UnkRecordIter_7100671864* out) {
     *out = UnkRecordIter_7100671864(v->count, v->data + v->count);
 }
 

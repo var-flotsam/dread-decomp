@@ -24,13 +24,13 @@ inline const UnkMaskB& UnkMaskAll_7101d57cb8() {
 }
 
 // The queued addition with the key, or the end of the queue.
-static inline UnkPendingAdd* FindPending(base::UnkVector<UnkPendingAdd>& list, u64 key) {
+static inline UnkPendingAdd* FindPending(base::global::CRntVector<UnkPendingAdd>& list, u64 key) {
     for (u32 i = 0; i < list.count; ++i)
         if (list.data[i].key == key)
             return &list.data[i];
     return &list.data[list.count];
 }
-static inline UnkPendingAdd* EndPending(base::UnkVector<UnkPendingAdd>& list) { return &list.data[list.count]; }
+static inline UnkPendingAdd* EndPending(base::global::CRntVector<UnkPendingAdd>& list) { return &list.data[list.count]; }
 
 bool fn_7100a2be94(UnkTimelineComponent* self, const u64* id) {
     u64 key = *id;

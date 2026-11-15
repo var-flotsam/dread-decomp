@@ -3,7 +3,7 @@
 // given a cleared 1000-byte buffer.
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CSpittailMagmaBallMovementComponent.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU127.h"

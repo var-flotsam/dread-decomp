@@ -4,7 +4,7 @@
 // a stream (fn_7101144178), applying the blackboard section an id names (fn_7101149354) and writing the
 // missile amounts to the blackboard (fn_71011406cc). Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAbilityShinespark.h"

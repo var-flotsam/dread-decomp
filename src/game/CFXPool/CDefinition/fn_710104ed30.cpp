@@ -23,9 +23,9 @@ __attribute__((always_inline)) static inline bool Equal(const UnkRecord80IterVal
     return x->field_0x8 == y->field_0x8;
 }
 
-// Free of an array (base::UnkVector's layout) of file-path ids (CFilePathStrId's pool) paired with a word: each id is
+// Free of an array (base::global::CRntVector's layout) of file-path ids (CFilePathStrId's pool) paired with a word: each id is
 // released (and left as the empty id) before the array is freed.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 
 using base::global::UnkStringData;
@@ -53,7 +53,7 @@ struct UnkIdWordPair {
     u64 field_0x8;
 };
 
-void fn_710104ed30(base::UnkVector<UnkIdWordPair>* self) {
+void fn_710104ed30(base::global::CRntVector<UnkIdWordPair>* self) {
     if (self->data) {
         for (u64 i = 0; i < self->count; ++i)
             self->data[i].~UnkIdWordPair();
@@ -63,7 +63,7 @@ void fn_710104ed30(base::UnkVector<UnkIdWordPair>* self) {
     }
 }
 
-void fn_710104f8e0(base::UnkVector<UnkIdWordPair>* self) {
+void fn_710104f8e0(base::global::CRntVector<UnkIdWordPair>* self) {
     if (self->data) {
         for (u64 i = 0; i < self->count; ++i)
             self->data[i].~UnkIdWordPair();

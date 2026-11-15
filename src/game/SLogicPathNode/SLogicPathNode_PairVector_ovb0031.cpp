@@ -1,9 +1,9 @@
-// SLogicPathNode unit: an array (base::UnkVector, include/base/UnkVector.h) of 8-byte two-word
+// SLogicPathNode unit: an array (base::global::CRntVector, include/base/global/CRntVector.h) of 8-byte two-word
 // elements whose moves copy each word bitwise (the original reloads the count and the array after
 // each element store). fn_71010605cc copy-constructs such an array (the other's capacity reserved,
 // then each element appended); fn_710106099c and fn_7101060bb4 move an element in at `index`,
 // shifting the later ones up. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 // An 8-byte element of two words, copied member by member.
@@ -21,7 +21,7 @@ struct UnkPathPair {
 
 // Allocates new_capacity elements and moves the elements over, freeing the old array.
 template <class T>
-__attribute__((always_inline)) static inline T* MoveTo(base::UnkVector<T>* self, u32 new_capacity) {
+__attribute__((always_inline)) static inline T* MoveTo(base::global::CRntVector<T>* self, u32 new_capacity) {
     T* p = static_cast<T*>(self->allocator->vf_0x40((u64)new_capacity * sizeof(T), 8, self->flags));
     if (self->data) {
         T* src = self->data;
@@ -35,7 +35,7 @@ __attribute__((always_inline)) static inline T* MoveTo(base::UnkVector<T>* self,
     return p;
 }
 
-__attribute__((flatten)) void fn_71010605cc(base::UnkVector<UnkPathPair>* self, const base::UnkVector<UnkPathPair>* other) {
+__attribute__((flatten)) void fn_71010605cc(base::global::CRntVector<UnkPathPair>* self, const base::global::CRntVector<UnkPathPair>* other) {
     self->data = nullptr;
     self->count = 0;
     self->capacity = 0;
@@ -48,9 +48,9 @@ __attribute__((flatten)) void fn_71010605cc(base::UnkVector<UnkPathPair>* self, 
         self->PushBackCopy(*it);
 }
 
-// base::UnkVector::Insert with the new element's slot taken in each branch.
+// base::global::CRntVector::Insert with the new element's slot taken in each branch.
 template <class T>
-__attribute__((always_inline)) static inline void InsertAt(base::UnkVector<T>* self, T* value, u32 index) {
+__attribute__((always_inline)) static inline void InsertAt(base::global::CRntVector<T>* self, T* value, u32 index) {
     u32 cap = self->capacity;
     u32 n = self->count;
     if (n == index) {
@@ -92,10 +92,10 @@ __attribute__((always_inline)) static inline void InsertAt(base::UnkVector<T>* s
     ++self->count;
 }
 
-void fn_710106099c(base::UnkVector<UnkPathPair>* self, UnkPathPair* value, u32 index) {
+void fn_710106099c(base::global::CRntVector<UnkPathPair>* self, UnkPathPair* value, u32 index) {
     InsertAt(self, value, index);
 }
 
-void fn_7101060bb4(base::UnkVector<UnkPathPair>* self, UnkPathPair* value, u32 index) {
+void fn_7101060bb4(base::global::CRntVector<UnkPathPair>* self, UnkPathPair* value, u32 index) {
     InsertAt(self, value, index);
 }

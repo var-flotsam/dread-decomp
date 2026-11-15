@@ -4,7 +4,7 @@
 // pointer. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CTriggerLogicAction.h"
 #include "game/UnkTU341.h"
 #include "types.h"
@@ -17,7 +17,7 @@ struct UnkCombatLogicElem_b42a3;
 
 struct UnkCombatLogicMember_b42a3 {
     void* vtable;
-    base::UnkVector<UnkCombatLogicElem_b42a3*> items;
+    base::global::CRntVector<UnkCombatLogicElem_b42a3*> items;
     u32 field_0x30;
     void* field_0x38;
 };
@@ -32,7 +32,7 @@ void fn_7100f183a4(UnkStartCentralUnitCombatLogicAction_b42a3* self) {
     fn_7100a55aa4(reinterpret_cast<UnkChangeSetupLogicActionDef*>(self));
     self->vtable = g_unk_7101cab190 + 0x10;
     self->member.vtable = g_unk_7101a20998 + 2;
-    new (&self->member.items) base::UnkVector<UnkCombatLogicElem_b42a3*>(0xf);
+    new (&self->member.items) base::global::CRntVector<UnkCombatLogicElem_b42a3*>(0xf);
     self->member.field_0x30 = 0;
     self->member.vtable = g_unk_7101a20950 + 2;
     self->member.field_0x38 = nullptr;

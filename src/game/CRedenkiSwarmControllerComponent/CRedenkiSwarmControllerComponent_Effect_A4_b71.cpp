@@ -2,7 +2,7 @@
 // component under +0xe8 (as CRedenkiSwarmControllerComponent_Start_b55.cpp), starts the effect keyed by the
 // value at +0x30 of its +0xd0 through the global manager (created on first use) and hands it to
 // fn_710074e190 with 1.0. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CDizzeanSwarmControllerComponent.h"

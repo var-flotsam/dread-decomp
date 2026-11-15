@@ -9,7 +9,7 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkResPathVec.h"
 #include "base/UnkStrIdPathPair.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntStringAssign.h"
@@ -112,7 +112,7 @@ typedef base::UnkStrIdMemberOf<g_unk_7101d47200> UnkPathId;
 struct UnkPathListRecord {
     u8 field_0x0[0x28];
     u8 field_0x28[0x28];
-    base::UnkVector<CFilePathStrId> paths;  // 0x50
+    base::global::CRntVector<CFilePathStrId> paths;  // 0x50
     UnkPathId path;                         // 0x78
 };
 static_assert(sizeof(UnkPathListRecord) == 0x80, "UnkPathListRecord layout");
@@ -147,11 +147,11 @@ static inline UnkPathListRecord* UnkFindOrAdd(UnkPathListTable* self, const CStr
 
 // Appends each of `paths` to the record of `key`.
 void fn_710001acf8(UnkPathListTable* self, const CStrId* key,
-                   const base::UnkVector<CFilePathStrId>* paths) {
+                   const base::global::CRntVector<CFilePathStrId>* paths) {
     UnkPathListRecord* record = UnkFindOrAdd(self, key);
     const CFilePathStrId* end = paths->data + paths->count;
     for (const CFilePathStrId* it = paths->data; it != end; ++it) {
-        base::UnkVector<CFilePathStrId>& list = record->paths;
+        base::global::CRntVector<CFilePathStrId>& list = record->paths;
         u32 n = list.count;
         u32 new_capacity = list.capacity;
         if (new_capacity <= n && list.step != 0)

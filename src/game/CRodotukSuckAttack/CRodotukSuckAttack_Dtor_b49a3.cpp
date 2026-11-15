@@ -3,7 +3,7 @@
 // and the next node, released and freed through the allocator at +0x48; the count and both ends
 // cleared) and CAttack's destructor (fn_71003606c0); fn_710066a4b0 also frees the object. Names and
 // layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "../../game_5821e4/CAttackDtor.h"
 #include "game/CRodotukSuckAttack.h"
 #include "game/logic/collision/CPolygonCollectionShape.h"

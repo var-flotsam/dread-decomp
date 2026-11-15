@@ -3,7 +3,7 @@
 // +0xaf8 and +0xafc, two pooled lists at +0xb08 and +0xb78 (fn_710087dc1c, fn_710087dd34: 10
 // nodes per block, flags 0, allocation flags 0x13, the default allocator), then the vtable's slot
 // at +0x18 on itself. Names and layout are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCharClassBaseTriggerComponent.h"
 #include "types.h"
 

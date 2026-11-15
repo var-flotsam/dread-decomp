@@ -89,7 +89,7 @@ bool fn_71001c02e8(UnkGfxSlots252* self, u32 index, const UnkGfxData252* vertice
 
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 
 extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
 

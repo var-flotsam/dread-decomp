@@ -4,7 +4,7 @@
 // post-construction virtual call (slot 3). Names and layout are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/CSceneComponent.h"
 #include "types.h"
@@ -22,7 +22,7 @@ struct UnkPlanktonFX_b53 {
     u32 field_0x50;
     u8 pad_0x54[0x1240];
     f32 intensity;  // 0x1294
-    base::UnkVector<u64> list_0x1298{0xf};
+    base::global::CRntVector<u64> list_0x1298{0xf};
     void* model;  // 0x12c0
 };
 
@@ -32,7 +32,7 @@ void fn_710080ed3c(UnkPlanktonFX_b53* self) {
     new (&self->path_0x48) CFilePathStrId(g_unk_7101d470e8);
     self->field_0x50 = 0;
     self->intensity = 0.0f;
-    new (&self->list_0x1298) base::UnkVector<u64>(0xf);
+    new (&self->list_0x1298) base::global::CRntVector<u64>(0xf);
     self->model = nullptr;
     reinterpret_cast<void (*)(UnkPlanktonFX_b53*)>(self->vtable[3])(self);
 }

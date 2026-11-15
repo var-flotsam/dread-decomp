@@ -1,7 +1,7 @@
 // Unit 2702 (hint CAIComponent): an AI component's list of path segments (a key, a start and an end point,
 // their length and direction). Names and layouts are placeholders.
 #include "base/UnkIdKindKey.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 float sqrtf(float);

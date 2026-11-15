@@ -1,8 +1,8 @@
 // tools/tu_map.py unit 110: a polygon's vertex at an index (the polygon of fn_7100130ab0's callers in
-// src/engine/SystemStartup.cpp), base::UnkVector::GrowAt inlined: an index past the end grows the
+// src/engine/SystemStartup.cpp), base::global::CRntVector::GrowAt inlined: an index past the end grows the
 // vertex array first. Names and layouts are placeholders.
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/UnkZeroVector3.h"
 #include "types.h"
 
@@ -26,7 +26,7 @@ struct UnkPolygonVertex {
 };
 
 struct UnkPolygon {
-    base::UnkVector<UnkPolygonVertex> vertices;
+    base::global::CRntVector<UnkPolygonVertex> vertices;
 };
 
 UnkPolygonVertex* fn_7100130ab0(UnkPolygon* self, u32 index) {

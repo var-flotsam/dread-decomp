@@ -2,7 +2,7 @@
 // its bucket, moves the set's first non-empty bucket and first node on if they were this one's,
 // destroys the node's string buffer and frees the node. An iterator from before the set's last
 // change (its modification count differs) is reset to the end first.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/UnkStringPool.h"
 
 using base::global::UnkPoolIter;

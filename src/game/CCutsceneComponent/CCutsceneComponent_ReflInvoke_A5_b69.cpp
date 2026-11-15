@@ -1,7 +1,7 @@
 // CCutsceneComponent's unit (tools/tu_map.py unit 1208): a reflected function's invoker (fn_71007ae4e8) that passes
 // two u32 arguments and a bool with the object at +8 to fn_71007a8724 and answers the empty status {0, 0, 2, 1}.
 // Names are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CCutsceneComponent.h"
 #include "types.h"
@@ -37,7 +37,7 @@ struct UnkElem_0x88;
 
 struct UnkCutsceneOwner_A5_b69 {
     u8 pad_0x0[0xd0];
-    base::UnkVector<UnkElem_0x88> entries;
+    base::global::CRntVector<UnkElem_0x88> entries;
 };
 
 void fn_71007a95f8(UnkCutsceneOwner_A5_b69* self, u32 index, bool a, bool b, bool c);

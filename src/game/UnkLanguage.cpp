@@ -7,7 +7,7 @@
 
 #include "base/UnkHashStream.h"
 #include "base/UnkStrIdPathPair.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/file/CThreadSafeDevice.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
@@ -81,7 +81,7 @@ static inline u32 Hash(const CStrId& key) {
 }
 
 // The bucket array's slot for a hash.
-static inline UnkLanguageNode** Slot(base::UnkVector<UnkLanguageNode*>& buckets, u32 h) {
+static inline UnkLanguageNode** Slot(base::global::CRntVector<UnkLanguageNode*>& buckets, u32 h) {
     u32 i = h % buckets.capacity;
     return buckets.data + i;
 }
@@ -90,7 +90,7 @@ struct UnkLanguage {
     base::UnkAllocator* allocator;  // the nodes'
     u32 flags;
     u32 count;
-    base::UnkVector<UnkLanguageNode*> buckets;  // `capacity` is the hash modulus
+    base::global::CRntVector<UnkLanguageNode*> buckets;  // `capacity` is the hash modulus
     UnkLanguageNode* last;
     UnkLanguageNode* first;
     bool field_0x48;

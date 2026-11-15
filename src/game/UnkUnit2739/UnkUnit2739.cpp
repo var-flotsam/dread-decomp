@@ -2,7 +2,7 @@
 // counted singly linked list with its allocator), handing each item to fn_71011a91c4 without
 // deferring, frees the nodes, clears the list and finishes with fn_71011a9980. Names and layouts
 // are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU2739.h"
 #include "types.h"
 

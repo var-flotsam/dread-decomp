@@ -6,7 +6,7 @@
 // the destructor as the shared list type. Names and layouts are placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CCentralUnitAIComponent.h"
@@ -22,7 +22,7 @@ struct UnkCapsuleUsableComponent_ovb0109 {
     void** vtable;
     u8 pad_0x8[0x570];
     u8 name[0x30];  // 0x578: a CRntString
-    // Two callback lists (vtable, array laid out as base::UnkVector, a word and the owner).
+    // Two callback lists (vtable, array laid out as base::global::CRntVector, a word and the owner).
     void** list_a_vtable;  // 0x5a8
     void* list_a_data;
     u64 list_a_count;  // count and capacity

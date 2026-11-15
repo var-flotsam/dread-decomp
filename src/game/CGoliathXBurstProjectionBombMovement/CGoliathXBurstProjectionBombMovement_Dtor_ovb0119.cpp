@@ -3,7 +3,7 @@
 // model manager (fn_71011a91c4, created on first use), the count at +0x518 cleared, the three
 // arrays at +0xd48, +0xd20 and +0x4b8 freed, then the base's destructor runs (fn_7100aa9f3c).
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CBombMovement.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkTU2739.h"
@@ -24,14 +24,14 @@ static inline UnkModelManager* ModelManager() {
 struct UnkGoliathBombMovement_b0119 {
     char* vtable;
     u8 pad_0x8[0x4b0];
-    base::UnkVector<u64> field_0x4b8;
+    base::global::CRntVector<u64> field_0x4b8;
     u8 pad_0x4e0[0x38];
     u32 field_0x518;
     u8 pad_0x51c[0x4];
     void* models_a[128];  // 0x520
     void* models_b[128];  // 0x920
-    base::UnkVector<u64> field_0xd20;
-    base::UnkVector<u64> field_0xd48;
+    base::global::CRntVector<u64> field_0xd20;
+    base::global::CRntVector<u64> field_0xd48;
 };
 static_assert(__builtin_offsetof(UnkGoliathBombMovement_b0119, field_0xd48) == 0xd48,
               "UnkGoliathBombMovement_b0119 layout");

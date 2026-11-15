@@ -1,7 +1,7 @@
 // Erase at an iterator of another hash set laid out as the string pool set, as fn_7100080a00
 // (src/base/global/fn_7100080a00.cpp) does: here the node's link is at 0x10 and the node has
 // nothing to destroy before it is freed (buckets through fn_7100086810): fn_71000866dc.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/file/CFileCacheDevice.h"
 #include "base/global/UnkStringPool.h"
 

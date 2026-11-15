@@ -7,7 +7,7 @@
 // toward its target and sets value 1 (fn_710111094c). Names and layouts are placeholders.
 #include <math.h>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/CClass.h"
 #include "game/CCharClassBlockableWarningRadius.h"
 #include "game/CComponent.h"

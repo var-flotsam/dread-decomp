@@ -3,7 +3,7 @@
 // create the lazily built manager g_unk_7101d47368 (0x4c8 bytes with flags 0x3f, constructed by fn_7100d8ced8) when
 // there is none yet, then call one of its methods and return what it returns. Names are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection.h"
 #include "game/UnkTU0.h"
 #include "types.h"

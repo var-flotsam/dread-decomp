@@ -1,6 +1,6 @@
 // Unit 1118 (no class hint): an AI state object. Names and layouts are placeholders.
 #include "game/UnkAIComponent.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "game/UnkXformNode.h"
 #include "types.h"

@@ -6,7 +6,7 @@
 #include <new>
 
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection.h"
 #include "base/reflection/UnkReflAttributes.h"
@@ -48,7 +48,7 @@ struct UnkReflParamAttrs_ovb0102 {
 };
 
 // Grows the parameter attribute array to `n` containers (exactly n when it must reallocate).
-__attribute__((flatten, noinline)) void fn_710009b6f0(base::UnkVector<UnkReflParamAttrs_ovb0102>* self, u32 n) {
+__attribute__((flatten, noinline)) void fn_710009b6f0(base::global::CRntVector<UnkReflParamAttrs_ovb0102>* self, u32 n) {
     self->Reserve(n);
     for (u32 i = self->count; i < n; ++i)
         new (&self->data[i]) UnkReflParamAttrs_ovb0102();
@@ -58,12 +58,12 @@ __attribute__((flatten, noinline)) void fn_710009b6f0(base::UnkVector<UnkReflPar
 // A reflected function's parameter attributes as this file sees the function.
 struct UnkReflFunctionParams_ovb0102 {
     u8 pad_0x0[0x88];
-    base::UnkVector<UnkReflParamAttrs_ovb0102> param_attrs;  // +0x88
+    base::global::CRntVector<UnkReflParamAttrs_ovb0102> param_attrs;  // +0x88
 };
 
 // The container at `index`, growing the array to index + 1 containers first when it may grow.
 __attribute__((flatten)) static inline UnkReflParamAttrs_ovb0102& ParamAttrsAt(
-    base::UnkVector<UnkReflParamAttrs_ovb0102>* v, u32 index) {
+    base::global::CRntVector<UnkReflParamAttrs_ovb0102>* v, u32 index) {
     if (v->field_0x14 && v->count <= index) {
         u32 cap = v->capacity;
         if (cap <= index && v->step != 0) {
@@ -78,7 +78,7 @@ __attribute__((flatten)) static inline UnkReflParamAttrs_ovb0102& ParamAttrsAt(
 
 // Resizes the function's parameter attribute containers to `count` and sets each one's +0x30 to 3.
 void fn_710009ae5c(base::reflection::UnkReflFunction* function, u32 count) {
-    base::UnkVector<UnkReflParamAttrs_ovb0102>* v =
+    base::global::CRntVector<UnkReflParamAttrs_ovb0102>* v =
         &reinterpret_cast<UnkReflFunctionParams_ovb0102*>(function)->param_attrs;
     if (v->count < count) {
         fn_710009b6f0(v, count);
@@ -101,11 +101,11 @@ struct UnkReflFunctionAttrs_ovb0102 {
 // UnkReflFunction (base/reflection/UnkReflAttributes.h) with the members its destructor releases.
 struct UnkReflFunctionData_ovb0102 {
     char* vtable;
-    base::UnkVector<const void*> params;  // +0x8
+    base::global::CRntVector<const void*> params;  // +0x8
     base::UnkStrIdMember name;            // +0x30
     u8 unk_0x38[0x18];
     UnkReflFunctionAttrs_ovb0102 attrs;                           // +0x50
-    base::UnkVector<UnkReflFunctionAttrs_ovb0102> param_attrs;  // +0x88
+    base::global::CRntVector<UnkReflFunctionAttrs_ovb0102> param_attrs;  // +0x88
 };
 static_assert(__builtin_offsetof(UnkReflFunctionData_ovb0102, param_attrs) == 0x88, "layout");
 
@@ -139,7 +139,7 @@ using UnkReflInvoker_ovb0102 = UnkReflValue (*)(void* function, void* object, Un
 
 struct UnkReflCallable_ovb0102 {
     void* vtable;
-    base::UnkVector<const CType*> params;  // +0x8
+    base::global::CRntVector<const CType*> params;  // +0x8
     u8 pad_0x30[0x10];
     void* field_0x40;
     UnkReflInvoker_ovb0102 invoker;  // +0x48

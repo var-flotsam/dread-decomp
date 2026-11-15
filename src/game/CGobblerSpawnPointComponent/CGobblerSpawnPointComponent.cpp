@@ -6,7 +6,7 @@
 //
 // The fields are addressed by offset: through a struct, clang forms the list's address once and
 // stores its flag through it, unlike the original.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/core/CBaseObject.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CGobblerSpawnPointComponent.h"

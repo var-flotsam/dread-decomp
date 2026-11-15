@@ -5,7 +5,7 @@
 // the post-construction virtual call (slot 3). The containers' fields are written out flat (as
 // sub-objects, Clang addresses a byte store from the container's base). Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CComponent.h"
 #include "game/UnkTU341.h"

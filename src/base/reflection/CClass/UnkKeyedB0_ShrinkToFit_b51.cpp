@@ -4,7 +4,7 @@
 // are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU85.h"
 #include "types.h"
 

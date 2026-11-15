@@ -11,7 +11,7 @@
 #include "base/UnkHashStream.h"
 #include "base/UnkNamedRegistry.h"
 #include "base/UnkStrIdPathPair.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
@@ -411,7 +411,7 @@ void fn_7100e531e8(UnkPairArray* self, UnkFreedVectorPair* value, u32 index) {
 
 
 
-// base::UnkVector's layout, copied out of line.
+// base::global::CRntVector's layout, copied out of line.
 struct UnkPart48 {
     union {
         void* data;
@@ -423,7 +423,7 @@ struct UnkPart48 {
     u32 flags;
     base::UnkAllocator* allocator;
 
-    // base::UnkVector's defaults.
+    // base::global::CRntVector's defaults.
     __attribute__((always_inline)) UnkPart48()
         : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(0xf),
           allocator(fn_7100083990()) {}
@@ -445,7 +445,7 @@ struct UnkPart48 {
 };
 inline UnkPart48::UnkPart48(const UnkPart48& other) { fn_71000cbae4(this, &other); }
 
-// base::UnkVector<u16>'s layout.
+// base::global::CRntVector<u16>'s layout.
 struct UnkU16Array_b0223 {
     union {
         u16* data;
@@ -457,7 +457,7 @@ struct UnkU16Array_b0223 {
     u32 flags;
     base::UnkAllocator* allocator;
 
-    // base::UnkVector's defaults.
+    // base::global::CRntVector's defaults.
     __attribute__((always_inline)) UnkU16Array_b0223()
         : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(0xf),
           allocator(fn_7100083990()) {}

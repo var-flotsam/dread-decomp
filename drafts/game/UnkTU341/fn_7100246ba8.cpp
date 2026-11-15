@@ -1,6 +1,6 @@
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/UnkErasedVector.h"
 #include "types.h"
 
@@ -56,13 +56,13 @@ struct UnkEntry_b41a1 {
 
 // Appends a copy of the set: the array grows first (its sets moved over and destroyed), and the
 // copy is made in place.
-void fn_7100246ba8(base::UnkVector<UnkEntry_b41a1>* self, const UnkEntry_b41a1* value) {
+void fn_7100246ba8(base::global::CRntVector<UnkEntry_b41a1>* self, const UnkEntry_b41a1* value) {
     u32 n = self->count;
     u32 capacity = self->capacity;
     u32 new_capacity = capacity;
     if (capacity <= n && self->step != 0)
         new_capacity = (n / self->step + 1) * self->step;
-    if ((s32)n >= (s32)new_capacity)  // hangs, as base::UnkVector::PushBack does
+    if ((s32)n >= (s32)new_capacity)  // hangs, as base::global::CRntVector::PushBack does
         for (;;) {
         }
     UnkEntry_b41a1* p;

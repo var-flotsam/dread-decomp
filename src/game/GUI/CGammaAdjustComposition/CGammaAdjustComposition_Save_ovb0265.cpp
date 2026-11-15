@@ -2,7 +2,7 @@
 // the user data's "USER_DATA" section (unless the data is locked), tells the user data's owner, then, for the main
 // menu or the in-game menu that is current, reacts through fn_7100b35704 or fn_7100b2eaac. Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"

@@ -1,11 +1,11 @@
-// Assignment at an index of a growable array of pointer-sized slots (base::UnkVector's
+// Assignment at an index of a growable array of pointer-sized slots (base::global::CRntVector's
 // layout, Reserve out of line): when the array may grow (+0x14) and the index is past the end,
 // it reserves (rounded up to the step), then exactly enough, fills the new slots with nulls and
 // takes the new count; the slot is then assigned (out of line). Two array types (one Reserve and
 // one slot assignment each), two copies each.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 template <class Tag>

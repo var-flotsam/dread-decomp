@@ -10,12 +10,12 @@
 #include "../../lib/lua/lua.h"
 #include "../../lib/lua/lauxlib.h"
 #include "base/UnkFormat.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkTU2668.h"
 #include "types.h"
 
-// An array of 8-byte elements (base::UnkVector's layout) on the scratch stack below, which packs
+// An array of 8-byte elements (base::global::CRntVector's layout) on the scratch stack below, which packs
 // its arrays after its count, so their words are only 4-byte aligned.
 struct __attribute__((packed, aligned(4))) UnkLuaScratch {
     u64* data;

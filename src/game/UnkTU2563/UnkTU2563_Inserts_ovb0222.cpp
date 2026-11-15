@@ -5,7 +5,7 @@
 
 #include "base/UnkCloneRecords.h"
 #include "base/UnkFreedVectorPair.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CChangeStageNavMeshItemComponent.h"
 #include "types.h"

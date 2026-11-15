@@ -2,7 +2,7 @@
 // from the code.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "game/UnkTU2563.h"
@@ -34,7 +34,7 @@ struct UnkMinimapBoundsEntry {
     f32 max1[2] = {-__FLT_MAX__, -__FLT_MAX__};
     UnkMinimapEmptyStrId name0;          // +0x28
     UnkMinimapEmptyStrId name1;          // +0x30
-    base::UnkVector<void*> items{0xf};  // +0x38
+    base::global::CRntVector<void*> items{0xf};  // +0x38
 
     __attribute__((always_inline)) UnkMinimapBoundsEntry() {}
 };
@@ -82,8 +82,8 @@ void fn_7100e4f6c4(UnkMinimapBoundsName* self) {
 
 // Two arrays and an empty 2D bound (0x60 bytes), built value-initialised.
 struct UnkMinimapListPair {
-    base::UnkVector<void*> list0{0xf};
-    base::UnkVector<void*> list1{0xf};  // +0x28
+    base::global::CRntVector<void*> list0{0xf};
+    base::global::CRntVector<void*> list1{0xf};  // +0x28
     f32 min[2] = {__FLT_MAX__, __FLT_MAX__};
     f32 max[2] = {-__FLT_MAX__, -__FLT_MAX__};
 };
@@ -96,15 +96,15 @@ void fn_7100e4f0f8(UnkMinimapListPair* self) {
 
 // Three arrays, two flags and two empty 2D bounds (0xa8 bytes), built value-initialised.
 struct UnkMinimapLayer {
-    base::UnkVector<void*> list0{7};
+    base::global::CRntVector<void*> list0{7};
     u32 field_0x28 = 0;
     bool field_0x2c = false;
     bool field_0x2d = true;
     f32 min0[2] = {__FLT_MAX__, __FLT_MAX__};
     f32 max0[2] = {-__FLT_MAX__, -__FLT_MAX__};
     u32 field_0x40 = 0;
-    base::UnkVector<void*> list1{0xf};  // +0x48
-    base::UnkVector<void*> list2{0xf};  // +0x70
+    base::global::CRntVector<void*> list1{0xf};  // +0x48
+    base::global::CRntVector<void*> list2{0xf};  // +0x70
     f32 min1[2] = {__FLT_MAX__, __FLT_MAX__};
     f32 max1[2] = {-__FLT_MAX__, -__FLT_MAX__};
 };
@@ -115,7 +115,7 @@ void fn_7100e505e0(UnkMinimapLayer* self) {
     new (self) UnkMinimapLayer();
 }
 
-// The base::UnkVector fields, without its default values (moved into in place).
+// The base::global::CRntVector fields, without its default values (moved into in place).
 struct UnkMinimapList {
     void* data;
     u32 count;
@@ -282,7 +282,7 @@ struct UnkPart48;
 struct UnkMinimapPathItem {
     base::global::UnkStringData* name;
     u8 points[0x28];                // +0x8: copied by fn_71000cbae4
-    base::UnkVector<u16> indices;  // +0x30
+    base::global::CRntVector<u16> indices;  // +0x30
     u32 field_0x58;
     u32 field_0x5c;
     u32 field_0x60;
@@ -292,7 +292,7 @@ static_assert(sizeof(UnkMinimapPathItem) == 0x68, "layout");
 
 // Copies an array of 16-bit values: the source's settings and allocator, its capacity and its
 // elements.
-static inline void CopyIndices(base::UnkVector<u16>* list, const base::UnkVector<u16>* src) {
+static inline void CopyIndices(base::global::CRntVector<u16>* list, const base::global::CRntVector<u16>* src) {
     list->data = nullptr;
     list->count = 0;
     list->capacity = 0;
@@ -331,7 +331,7 @@ struct UnkMinimapStrId {
 // A path: an array of vectors, an array of 16-bit values and four plain words (0x60 bytes).
 struct UnkMinimapPath {
     u8 points[0x28];               // copied by fn_71000cbae4
-    alignas(8) u8 indices[0x28];  // +0x28: a base::UnkVector<u16>, built by CopyIndices
+    alignas(8) u8 indices[0x28];  // +0x28: a base::global::CRntVector<u16>, built by CopyIndices
     u32 field_0x50;
     u32 field_0x54;
     u32 field_0x58;
@@ -339,8 +339,8 @@ struct UnkMinimapPath {
 
     __attribute__((always_inline)) UnkMinimapPath(const UnkMinimapPath& other) {
         fn_71000cbae4(reinterpret_cast<UnkPart48*>(points), reinterpret_cast<const UnkPart48*>(other.points));
-        CopyIndices(reinterpret_cast<base::UnkVector<u16>*>(indices),
-                    reinterpret_cast<const base::UnkVector<u16>*>(other.indices));
+        CopyIndices(reinterpret_cast<base::global::CRntVector<u16>*>(indices),
+                    reinterpret_cast<const base::global::CRntVector<u16>*>(other.indices));
         field_0x50 = other.field_0x50;
         field_0x54 = other.field_0x54;
         field_0x58 = other.field_0x58;

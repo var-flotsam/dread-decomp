@@ -11,7 +11,7 @@
 // owner's melee tracks and the victim's tracks or weapon movement. fn_7100931d54 spawns the hit effect
 // (g_unk_71727385b0) at the message's position (+0x14) through the model manager. Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"

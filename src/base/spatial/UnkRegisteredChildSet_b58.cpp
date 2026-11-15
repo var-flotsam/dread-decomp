@@ -5,7 +5,7 @@
 // owner (fn_710019e95c) and entered in the registry. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU204.h"
 #include "game/UnkTU225.h"
 #include "game/UnkTU226.h"

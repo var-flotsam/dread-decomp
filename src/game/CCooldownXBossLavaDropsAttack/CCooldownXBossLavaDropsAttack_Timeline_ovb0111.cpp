@@ -7,7 +7,7 @@
 // placeholders.
 #include "../../game_5821e4/CAttackDtor.h"
 #include "../../game_s2/UnkSpitSend.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "base/reflection/UnkReflValue.h"

@@ -2,7 +2,7 @@
 // The element class here is the copy's own (vtable 0x7101cac938), named apart from the original's.
 // Constructor of an array of 0x50-byte polymorphic elements with the given allocator flags,
 // reserving `n` elements up front.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 using base::UnkAllocator;
@@ -39,8 +39,8 @@ struct UnkElem50_7101cac938 {
 };
 static_assert(sizeof(UnkElem50_7101cac938) == 0x50, "UnkElem50_7101cac938 layout");
 
-void fn_7101059bfc(base::UnkVector<UnkElem50_7101cac938>* self, u32 n, u32 flags) {
-    new (self) base::UnkVector<UnkElem50_7101cac938>(flags);
+void fn_7101059bfc(base::global::CRntVector<UnkElem50_7101cac938>* self, u32 n, u32 flags) {
+    new (self) base::global::CRntVector<UnkElem50_7101cac938>(flags);
     self->Reserve(n);
 }
 
@@ -48,7 +48,7 @@ void fn_7101059bfc(base::UnkVector<UnkElem50_7101cac938>* self, u32 n, u32 flags
 // sets the flag (fn_7101059e5c, a copy of fn_7100c04134, which keeps its flag at 0x44).
 struct UnkElem50Owner38 {
     u8 unk_0x0[0x10];
-    base::UnkVector<UnkElem50_7101cac938> elems;
+    base::global::CRntVector<UnkElem50_7101cac938> elems;
     bool field_0x38;
 };
 

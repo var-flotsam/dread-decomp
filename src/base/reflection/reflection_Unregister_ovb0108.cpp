@@ -4,7 +4,7 @@
 // fn_71001efc90), then by its kind (vtable slot 0x88): kind 2 from the map at +0x78
 // (fn_71001efddc), kind 0x10 from the one at +0xc0 (fn_71001eff28). Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "types.h"

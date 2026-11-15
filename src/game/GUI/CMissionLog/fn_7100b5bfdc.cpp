@@ -1,7 +1,7 @@
-// Copy constructor of an array (base::UnkVector's layout) of 0x38-byte elements through an
+// Copy constructor of an array (base::global::CRntVector's layout) of 0x38-byte elements through an
 // out-of-line Reserve (fn_7100b5c28c) and push-back (fn_7100b593d0): takes the source's settings,
 // reserves its capacity and appends each element.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkElem38 {

@@ -5,7 +5,7 @@
 
 #include "base/UnkCloneRecords.h"
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/timeline/CTrack.h"
 #include "game/CCharClassFXControlTrack.h"
 #include "types.h"
@@ -18,9 +18,9 @@ struct UnkFXControlTrack_ovb0139 {
     void** vtable;
     u8 pad_0x8[0x10];
     base::UnkStrIdMember name_0x18;
-    base::UnkVector<base::UnkStrIdMember> ids_0x20;  // 0x20
+    base::global::CRntVector<base::UnkStrIdMember> ids_0x20;  // 0x20
     base::UnkStrIdMember name_0x48;
-    base::UnkVector<base::UnkStrIdMember> ids_0x50;  // 0x50
+    base::global::CRntVector<base::UnkStrIdMember> ids_0x50;  // 0x50
 };
 
 void fn_7100cfc7f8(UnkFXControlTrack_ovb0139* self) {

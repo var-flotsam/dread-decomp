@@ -3,7 +3,7 @@
 // the deleting destructor (fn_7100db4434), the complete one (fn_7100db4360) and the one of the registry
 // that owns its block pool (fn_7100db3918). Names and layouts are placeholders.
 #include "base/UnkBlockFreeList.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/CBlackboard.h"
 #include "game/UnkPathRegistry.h"

@@ -1,6 +1,6 @@
 // Unit 1115: adds a name and an id to an object's lists unless already present.
 #include "base/UnkCloneRecords.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -11,7 +11,7 @@ struct UnkRegObj_b0255 {
     u32 id;                          // 0x8
     u32 field_0xc;                   // 0xc
     base::global::CStrId name;       // 0x10
-    base::UnkVector<u32> ids;        // 0x18
+    base::global::CRntVector<u32> ids;        // 0x18
     base::UnkStrIdVec names;         // 0x40
     UnkRegistry_b0255* registry;     // 0x68
 };

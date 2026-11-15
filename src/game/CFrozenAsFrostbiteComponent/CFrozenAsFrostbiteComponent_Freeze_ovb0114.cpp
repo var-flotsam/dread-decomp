@@ -3,7 +3,7 @@
 // a delay and a time down and thaws; the definition's parts get one object each (fn_71007f4170,
 // fn_71007f4514), handed back to the lazily created manager on thawing. Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector4D.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -72,7 +72,7 @@ struct __attribute__((packed, aligned(4))) UnkFrozenAsFrostbite_ovb0114 {
     u8 pad_0x3c8[0x18];
     f32 field_0x3e0;
     u8 pad_0x3e4[0x4];
-    base::UnkVector<UnkSwitchObject*> objects;  // 0x3e8
+    base::global::CRntVector<UnkSwitchObject*> objects;  // 0x3e8
 };
 static_assert(__builtin_offsetof(UnkFrozenAsFrostbite_ovb0114, objects) == 0x3e8, "layout");
 
@@ -125,7 +125,7 @@ bool fn_71007f4170(UnkFrozenAsFrostbite_ovb0114* self, void* arg) {
     self->def = reinterpret_cast<UnkFrostbiteDef_ovb0114*>(
         object && fn_710009d50c(object->vf_0x0(), fn_71007f0258()) ? object : nullptr);
     u32 n = self->def->partCount;
-    base::UnkVector<UnkSwitchObject*>& objects = self->objects;
+    base::global::CRntVector<UnkSwitchObject*>& objects = self->objects;
     if (n && objects.capacity < n) {
         UnkSwitchObject** data =
             static_cast<UnkSwitchObject**>(objects.allocator->vf_0x40((u64)n * sizeof(UnkSwitchObject*), 8, objects.flags));
@@ -190,7 +190,7 @@ void fn_71007f4378(UnkFrozenAsFrostbite_ovb0114* self, f32 dt) {
 }
 
 struct UnkEntity;
-UnkSwitchObject*& fn_71007f4d8c(base::UnkVector<UnkSwitchObject*>* self, u32 index);
+UnkSwitchObject*& fn_71007f4d8c(base::global::CRntVector<UnkSwitchObject*>* self, u32 index);
 
 struct UnkFrostbitePartName_ovb0114 {
     u8 pad_0x0[0x30];

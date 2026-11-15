@@ -1,7 +1,7 @@
 // tools/tu_map.py unit 220 (no class hint): a constructor over the base built by fn_710019e76c
 // (fn_710019a2b8): sets the vtable unk_7101a1e188, an identity 4x4 matrix at +0x28 (as in unit 196), a few words, and
 // a zeroed 0x40-byte block from fn_7100083ba0 (flags 0x32) at +0x78. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU226.h"
 #include "types.h"
 

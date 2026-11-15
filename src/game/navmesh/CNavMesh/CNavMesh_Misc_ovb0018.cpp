@@ -5,7 +5,7 @@
 #include <new>
 #include "UnkClone.h"
 #include "base/UnkEmptyDtorElem.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "game/CGameObject.h"
@@ -47,17 +47,17 @@ struct UnkNavMesh47f8 {
     void** vtable;
     u8 pad_0x8[0x8];
     u8 field_0x10[0x280];
-    base::UnkVector<UnkNavLoadCell> cells;  // +0x290
-    base::UnkVector<u8> vertices;           // +0x2b8
+    base::global::CRntVector<UnkNavLoadCell> cells;  // +0x290
+    base::global::CRntVector<u8> vertices;           // +0x2b8
     u32 field_0x2e0;
     UnkNavMeshMap47f8 field_0x2e8;
     UnkNavMeshMap47f8 field_0x310;
     UnkNavMeshMap47f8 field_0x338;
     UnkNavMeshMap47f8 field_0x360;
     UnkNavMeshMap47f8 field_0x388;
-    base::UnkVector<u8> field_0x3b0;
-    base::UnkVector<u8> items;  // +0x3d8
-    base::UnkVector<u8> tree;   // +0x400
+    base::global::CRntVector<u8> field_0x3b0;
+    base::global::CRntVector<u8> items;  // +0x3d8
+    base::global::CRntVector<u8> tree;   // +0x400
 };
 static_assert(__builtin_offsetof(UnkNavMesh47f8, field_0x2e8) == 0x2e8, "UnkNavMesh47f8 layout");
 static_assert(__builtin_offsetof(UnkNavMesh47f8, tree) == 0x400, "UnkNavMesh47f8 layout");
@@ -67,18 +67,18 @@ void fn_71002747f8(UnkNavMesh47f8* self) {
     fn_7101043904(self);
     self->vtable = reinterpret_cast<void**>(g_unk_7101a20e58 + 0x10);
     fn_710027497c(reinterpret_cast<UnkLinkGroups*>(self->field_0x10));
-    new (&self->cells) base::UnkVector<UnkNavLoadCell>(0x57);
+    new (&self->cells) base::global::CRntVector<UnkNavLoadCell>(0x57);
     fn_7100279600(&self->cells, 0);
-    new (&self->vertices) base::UnkVector<u8>(0x57);
+    new (&self->vertices) base::global::CRntVector<u8>(0x57);
     self->field_0x2e0 = 0;
     new (&self->field_0x2e8) UnkNavMeshMap47f8();
     new (&self->field_0x310) UnkNavMeshMap47f8();
     new (&self->field_0x338) UnkNavMeshMap47f8();
     new (&self->field_0x360) UnkNavMeshMap47f8();
     new (&self->field_0x388) UnkNavMeshMap47f8();
-    new (&self->field_0x3b0) base::UnkVector<u8>(0x57);
-    new (&self->items) base::UnkVector<u8>(0x57);
-    new (&self->tree) base::UnkVector<u8>(0x57);
+    new (&self->field_0x3b0) base::global::CRntVector<u8>(0x57);
+    new (&self->items) base::global::CRntVector<u8>(0x57);
+    new (&self->tree) base::global::CRntVector<u8>(0x57);
 }
 
 struct UnkOwner;
@@ -255,9 +255,9 @@ struct UnkNode;
 // The mesh's per-cell link lists (the element accessor is a shared out-of-line copy, src/clones/).
 struct UnkClone_fn_71002797bc;
 using UnkNavLinkSlotE02c = UnkCloneElem<UnkClone_fn_71002797bc, 8>;
-extern template UnkNavLinkSlotE02c& base::UnkVector<UnkNavLinkSlotE02c>::GrowAt(u32);
+extern template UnkNavLinkSlotE02c& base::global::CRntVector<UnkNavLinkSlotE02c>::GrowAt(u32);
 
-using UnkNavLinkListE02c = base::UnkVector<UnkNode*>;
+using UnkNavLinkListE02c = base::global::CRntVector<UnkNode*>;
 
 // A link: the cell it sits in at +0xa.
 struct UnkNavLinkE02c {
@@ -267,7 +267,7 @@ struct UnkNavLinkE02c {
 
 struct UnkNavMeshLinksE02c {
     u8 pad_0x0[0x3b0];
-    base::UnkVector<UnkNavLinkSlotE02c> links;  // +0x3b0, per cell
+    base::global::CRntVector<UnkNavLinkSlotE02c> links;  // +0x3b0, per cell
 };
 
 static inline UnkNavLinkListE02c*& ListAt(UnkNavMeshLinksE02c* mesh, u32 cell) {
@@ -299,7 +299,7 @@ struct UnkNavKeyE5a0 {
 
 // Two parallel tables of `count` entries: key lists and string ids.
 struct UnkNavTablesE5a0 {
-    base::UnkVector<UnkNavKeyE5a0>* lists;
+    base::global::CRntVector<UnkNavKeyE5a0>* lists;
     UnkStringData** names;
     u32 count;
 };
@@ -357,7 +357,7 @@ struct UnkNavBucketE93c {
 
 // Two parallel tables of `count` entries: key lists and string ids.
 struct UnkNavTablesE93c {
-    base::UnkVector<UnkNavBucketE93c>* lists;
+    base::global::CRntVector<UnkNavBucketE93c>* lists;
     UnkStringData** names;
     u32 count;
 };
@@ -399,18 +399,18 @@ struct UnkNavLoadItem;
 // by copying (the edge array by fn_710027ebe4) and destroyed out of line (fn_71002af6a0).
 struct UnkNavCellRecord9600 {
     u16 id;
-    alignas(8) u8 vertices_raw[0x28];  // +0x8, a base::UnkVector<u16>
-    alignas(8) u8 edges_raw[0x28];     // +0x30, a base::UnkVector<UnkNavMeshEdge>
+    alignas(8) u8 vertices_raw[0x28];  // +0x8, a base::global::CRntVector<u16>
+    alignas(8) u8 edges_raw[0x28];     // +0x30, a base::global::CRntVector<UnkNavMeshEdge>
     u64 field_0x58;
     u64 field_0x60;
     UnkNavLoadItem* item;  // +0x68
 
-    base::UnkVector<u16>& Vertices() { return *reinterpret_cast<base::UnkVector<u16>*>(vertices_raw); }
-    base::UnkVector<UnkNavMeshEdge>& Edges() { return *reinterpret_cast<base::UnkVector<UnkNavMeshEdge>*>(edges_raw); }
+    base::global::CRntVector<u16>& Vertices() { return *reinterpret_cast<base::global::CRntVector<u16>*>(vertices_raw); }
+    base::global::CRntVector<UnkNavMeshEdge>& Edges() { return *reinterpret_cast<base::global::CRntVector<UnkNavMeshEdge>*>(edges_raw); }
 
     __attribute__((always_inline)) UnkNavCellRecord9600(UnkNavCellRecord9600&& src) {
-        base::UnkVector<u16>& vertices = Vertices();
-        base::UnkVector<u16>& other = src.Vertices();
+        base::global::CRntVector<u16>& vertices = Vertices();
+        base::global::CRntVector<u16>& other = src.Vertices();
         id = src.id;
         vertices.data = nullptr;
         vertices.count = 0;
@@ -431,8 +431,8 @@ struct UnkNavCellRecord9600 {
 static_assert(sizeof(UnkNavCellRecord9600) == 0x70, "UnkNavCellRecord9600 layout");
 
 // The cell array's reserve: the cells are moved into the new array one by one.
-void fn_7100279600(base::UnkVector<UnkNavLoadCell>* self, u32 capacity) {
-    auto* v = reinterpret_cast<base::UnkVector<UnkNavCellRecord9600>*>(self);
+void fn_7100279600(base::global::CRntVector<UnkNavLoadCell>* self, u32 capacity) {
+    auto* v = reinterpret_cast<base::global::CRntVector<UnkNavCellRecord9600>*>(self);
     if (v->capacity < capacity) {
         auto* p = static_cast<UnkNavCellRecord9600*>(
             v->allocator->vf_0x40((u64)capacity * sizeof(UnkNavCellRecord9600), 8, v->flags));
@@ -469,8 +469,8 @@ struct alignas(8) UnkNavItem9dd4 {
 };
 
 // The item array's element accessor (it grows the array to cover the index).
-__attribute__((flatten)) UnkNavMeshItem* fn_7100279dd4(base::UnkVector<UnkNavMeshItem>* self, u32 index) {
-    return reinterpret_cast<base::UnkVector<UnkNavItem9dd4>*>(self)->GrowAt(index).Get();
+__attribute__((flatten)) UnkNavMeshItem* fn_7100279dd4(base::global::CRntVector<UnkNavMeshItem>* self, u32 index) {
+    return reinterpret_cast<base::global::CRntVector<UnkNavItem9dd4>*>(self)->GrowAt(index).Get();
 }
 
 // An edge record (game/UnkNavMeshCell.h) with the copy the cell copies use: the side and neighbour
@@ -499,9 +499,9 @@ struct UnkNavEdgeCopyEbe4 {
 static_assert(sizeof(UnkNavEdgeCopyEbe4) == sizeof(UnkNavMeshEdge), "UnkNavEdgeCopyEbe4 layout");
 
 // The edge array's copy constructor: the other's settings, its capacity, then its edges one by one.
-__attribute__((flatten)) void fn_710027ebe4(base::UnkVector<UnkNavMeshEdge>* self, const base::UnkVector<UnkNavMeshEdge>* other) {
-    auto* dst = reinterpret_cast<base::UnkVector<UnkNavEdgeCopyEbe4>*>(self);
-    auto* src = reinterpret_cast<const base::UnkVector<UnkNavEdgeCopyEbe4>*>(other);
+__attribute__((flatten)) void fn_710027ebe4(base::global::CRntVector<UnkNavMeshEdge>* self, const base::global::CRntVector<UnkNavMeshEdge>* other) {
+    auto* dst = reinterpret_cast<base::global::CRntVector<UnkNavEdgeCopyEbe4>*>(self);
+    auto* src = reinterpret_cast<const base::global::CRntVector<UnkNavEdgeCopyEbe4>*>(other);
     dst->data = nullptr;
     dst->count = 0;
     dst->capacity = 0;
@@ -523,8 +523,8 @@ struct UnkNavLinkKeyE258 {
 
 // The key array's copy constructor: the other's settings, its capacity, then its keys one by one.
 __attribute__((flatten)) void fn_710027e258(void* self, const void* other) {
-    auto* dst = static_cast<base::UnkVector<UnkNavLinkKeyE258>*>(self);
-    auto* src = static_cast<const base::UnkVector<UnkNavLinkKeyE258>*>(other);
+    auto* dst = static_cast<base::global::CRntVector<UnkNavLinkKeyE258>*>(self);
+    auto* src = static_cast<const base::global::CRntVector<UnkNavLinkKeyE258>*>(other);
     dst->data = nullptr;
     dst->count = 0;
     dst->capacity = 0;

@@ -2,7 +2,7 @@
 // to CScourgeLifeComponent's unit; no reflected class of its own). fn_71006a1ef0 picks, from the
 // candidates whose CScourgeAIComponent ranks highest, the one the object follows (unless its
 // current one is still held), then empties the list.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAttackComponent.h"

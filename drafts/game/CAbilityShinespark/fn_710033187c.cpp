@@ -4,7 +4,7 @@
 
 #include "base/UnkCloneRecords.h"
 #include "base/UnkHashStream.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -34,7 +34,7 @@ struct UnkRecordEntry {
 };
 
 struct UnkRecordWriter {
-    base::UnkVector<UnkRecordEntry> entries;
+    base::global::CRntVector<UnkRecordEntry> entries;
     base::global::CRntFile file;
     base::UnkStrIdVec ids;
 

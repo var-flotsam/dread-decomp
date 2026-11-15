@@ -4,7 +4,7 @@
 // (fn_7100a62a68, src/game/CTriggerComponent/CTriggerComponent_OwnedIterSync_b56.cpp) and the
 // temporary's variant reset (state 1 owns an object: fn_7100a632e8 destroys it, fn_7100083c00 frees
 // it). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CTriggerComponent.h"
 #include "types.h"
 

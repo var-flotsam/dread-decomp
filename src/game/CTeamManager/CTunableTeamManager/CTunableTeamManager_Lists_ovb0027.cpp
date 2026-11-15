@@ -8,7 +8,7 @@
 #include <new>
 
 #include "base/UnkBlockFreeList.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CTeamManager/CTunableTeamManager.h"

@@ -1,12 +1,12 @@
 // The destructor of thirteen groups of three pointer arrays (one member of fn_7100de60b0's object):
 // each group first clears the back pointers of the objects in its first array, then empties all
 // three, then frees them. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 namespace unk_link_groups {
 
-// The layout of base::UnkVector, with a destructor that frees the array.
+// The layout of base::global::CRntVector, with a destructor that frees the array.
 template <class T>
 struct UnkPtrArray {
     T* data;

@@ -104,7 +104,7 @@ forward-declared. What a declaration needs in its header now travels with it in 
 `tools/hub_migrate.py` writes it with the declaration and takes it back with it.
 
 A sixth pass the same day moved 159 more: declarations with a function-pointer type, and with a
-template that a header defines (`base::UnkVector<u8>*`), which comes with that header. One run, nothing
+template that a header defines (`base::global::CRntVector<u8>*`), which comes with that header. One run, nothing
 left half-moved. 409 symbols are still declared in more than one file: the globals between two units'
 data spans (108), the ones whose type is a name some file gives another meaning, the ones whose files
 would not build the same with the shared declaration (they are in the lists here), and the 20 with

@@ -4,7 +4,7 @@
 // CChozoRobotSoldierUppercutAttack_b49.cpp): the attack's actor, its CChozoRobotSoldierAIComponent
 // (+0x240) and the state tests on it, the lazily created manager (g_unk_71726af468) whose +0x2a0 is
 // the actor allowed to attack, and the target's life (+0x208). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAttackComponent.h"

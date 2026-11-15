@@ -5,12 +5,12 @@
 // cached iterator values with 64-bit indices (as in fn_7101070418: fn_71001f1c04, fn_71001f1ef4), and a
 // byte array copy constructor (fn_71000e1848).
 #include "base/UnkCollectionIter.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 using base::UnkCollectionIter;
 using base::UnkIterValue;
-using base::UnkVector;
+using base::global::CRntVector;
 
 struct UnkElem_0x2 {
     u8 data[2];
@@ -26,19 +26,19 @@ struct UnkWord64 {
     bool operator==(const UnkWord64& other) const { return value == other.value; }
 };
 
-void fn_71000d1f3c(const UnkVector<u16>* v, UnkCollectionIter<u16>* out) { base::refl_End(v, out); }
+void fn_71000d1f3c(const CRntVector<u16>* v, UnkCollectionIter<u16>* out) { base::refl_End(v, out); }
 
-void fn_71000e1e84(const UnkVector<u8>* v, UnkCollectionIter<u8>* out) { base::refl_End(v, out); }
+void fn_71000e1e84(const CRntVector<u8>* v, UnkCollectionIter<u8>* out) { base::refl_End(v, out); }
 
-void fn_71000cc60c(const UnkVector<UnkElem_0xc>* v, UnkCollectionIter<UnkElem_0xc>* out) { base::refl_End(v, out); }
+void fn_71000cc60c(const CRntVector<UnkElem_0xc>* v, UnkCollectionIter<UnkElem_0xc>* out) { base::refl_End(v, out); }
 
-void fn_71001205d0(const UnkVector<UnkElem_0xc>* v, UnkCollectionIter<UnkElem_0xc>* out) { base::refl_End(v, out); }
+void fn_71001205d0(const CRntVector<UnkElem_0xc>* v, UnkCollectionIter<UnkElem_0xc>* out) { base::refl_End(v, out); }
 
-__attribute__((flatten)) void fn_71000d19c4(UnkVector<UnkElem_0x2>* v, UnkElem_0x2&& value, u32 index) {
+__attribute__((flatten)) void fn_71000d19c4(CRntVector<UnkElem_0x2>* v, UnkElem_0x2&& value, u32 index) {
     v->Insert(static_cast<UnkElem_0x2&&>(value), index);
 }
 
-__attribute__((flatten)) void fn_71000d1b74(UnkVector<UnkElem_0x2>* v, UnkElem_0x2&& value, u32 index) {
+__attribute__((flatten)) void fn_71000d1b74(CRntVector<UnkElem_0x2>* v, UnkElem_0x2&& value, u32 index) {
     v->Insert(static_cast<UnkElem_0x2&&>(value), index);
 }
 
@@ -50,9 +50,9 @@ bool fn_71001f1ef4(const UnkIterValue<UnkWord64, u64>& a, const UnkIterValue<Unk
     return base::refl_IterValueEqualByValue(a, b);
 }
 
-// base::UnkVector's copy constructor for bytes: the source's capacity is reserved, then its
+// base::global::CRntVector's copy constructor for bytes: the source's capacity is reserved, then its
 // elements copied with memcpy (as the generated fn_7100adb380 does for words): fn_71000e1848.
-void fn_71000e1848(UnkVector<u8>* self, const UnkVector<u8>* other) {
+void fn_71000e1848(CRntVector<u8>* self, const CRntVector<u8>* other) {
     self->data = nullptr;
     self->count = 0;
     self->capacity = 0;

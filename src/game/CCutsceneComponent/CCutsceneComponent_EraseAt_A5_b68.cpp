@@ -1,8 +1,8 @@
-// CCutsceneComponent's unit: reflected collection erase for a base::UnkVector of 0x88-byte polymorphic entries
+// CCutsceneComponent's unit: reflected collection erase for a base::global::CRntVector of 0x88-byte polymorphic entries
 // (destructor in vtable slot 1): erase the entry an index iterator names, inlined: destroy it, then move each later
 // entry down one (fn_71007abba4) and destroy the moved-from one. The index goes through a byte offset from the
 // vector itself (build/b67/b67a6.md). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCutsceneComponent.h"
 #include "types.h"
 
@@ -12,7 +12,7 @@ struct UnkCutsceneEntry_A5_b68 {
     u8 pad_0x8[0x80];
 };
 
-static inline __attribute__((always_inline)) void EraseAt_A5_b68(base::UnkVector<UnkCutsceneEntry_A5_b68>* self,
+static inline __attribute__((always_inline)) void EraseAt_A5_b68(base::global::CRntVector<UnkCutsceneEntry_A5_b68>* self,
                                                                  u32 index) {
     if (index >= self->count)
         return;
@@ -25,7 +25,7 @@ static inline __attribute__((always_inline)) void EraseAt_A5_b68(base::UnkVector
     self->count = self->count - 1;
 }
 
-void fn_71007ac148(base::UnkVector<UnkCutsceneEntry_A5_b68>* self, const u32* it) {
+void fn_71007ac148(base::global::CRntVector<UnkCutsceneEntry_A5_b68>* self, const u32* it) {
     UnkCutsceneEntry_A5_b68* base = reinterpret_cast<UnkCutsceneEntry_A5_b68*>(self);
     u64 offset = (u64)*it * sizeof(UnkCutsceneEntry_A5_b68);
     UnkCutsceneEntry_A5_b68* p = reinterpret_cast<UnkCutsceneEntry_A5_b68*>(reinterpret_cast<char*>(base) + offset);

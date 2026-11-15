@@ -70,7 +70,7 @@ class Kind:
 
 
 def elem_size(insns: Insns) -> int | None:
-    """The element size of an UnkVector method: 1 << the shift of the allocation size."""
+    """The element size of an CRntVector method: 1 << the shift of the allocation size."""
     for m, o in insns:
         hit = re.fullmatch(r"lsl x1, x8, #(\d)", f"{m} {o}")
         if hit:
@@ -93,13 +93,13 @@ ELEMENTS = {"ptr": "{tag}*", "elem": "UnkCloneElem<{tag}, {size}>", "owner": "Un
 # reference per element type, and whether the element size is read from the code ("elem" only).
 # Element types without a reference become probe kinds.
 COLLECTIONS = {
-    "vector_grow_at": ("base/UnkVector.h", "template {T}& base::UnkVector<{T}>::GrowAt(u32);",
+    "vector_grow_at": ("base/global/CRntVector.h", "template {T}& base::global::CRntVector<{T}>::GrowAt(u32);",
                        {"elem": 0x71000305D8, "owner": 0x71002B9ED8, "handle": 0x7100020CD0}),
-    "vector_insert": ("base/UnkVector.h", "template void base::UnkVector<{T}>::Insert({T}&&, u32);",
+    "vector_insert": ("base/global/CRntVector.h", "template void base::global::CRntVector<{T}>::Insert({T}&&, u32);",
                       {"elem": 0x71000D37D8, "owner": 0x71002B9C74}),
-    "vector_free": ("base/UnkVector.h", "template void base::UnkVector<{T}>::Free();", {"owner": 0x71002B9B2C}),
-    "vector_move": ("base/UnkVector.h",
-                    "template base::UnkVector<{T}>& base::UnkVector<{T}>::operator=(base::UnkVector<{T}>&&);",
+    "vector_free": ("base/global/CRntVector.h", "template void base::global::CRntVector<{T}>::Free();", {"owner": 0x71002B9B2C}),
+    "vector_move": ("base/global/CRntVector.h",
+                    "template base::global::CRntVector<{T}>& base::global::CRntVector<{T}>::operator=(base::global::CRntVector<{T}>&&);",
                     {"owner": 0x71002B9BBC}),
     "iter_assign": ("base/UnkCollectionIter.h",
                     "template base::UnkCollectionIter<{T}>& base::UnkCollectionIter<{T}>::operator=("
@@ -121,10 +121,10 @@ COLLECTIONS = {
     "iter_value_copy": ("base/UnkCollectionIter.h",
                         "template void* base::refl_IterValueCopy<{T}>(void*, const void*);", {"word": 0x71000CEBA4}),
     "iter_begin": ("base/UnkCollectionIter.h",
-                   "template void base::refl_Begin(const base::UnkVector<{T}>*, base::UnkCollectionIter<{T}>*);",
+                   "template void base::refl_Begin(const base::global::CRntVector<{T}>*, base::UnkCollectionIter<{T}>*);",
                    {"ptr": 0x71000CC564, "owner": 0x71002BA12C}),
     "iter_end": ("base/UnkCollectionIter.h",
-                 "template void base::refl_End(const base::UnkVector<{T}>*, base::UnkCollectionIter<{T}>*);",
+                 "template void base::refl_End(const base::global::CRntVector<{T}>*, base::UnkCollectionIter<{T}>*);",
                  {"owner": 0x71002BA230}),
 }
 
@@ -473,7 +473,7 @@ STRID_POOL = 0x7101D47108  # the string-id pool pointer (UnkCloneStrId)
 
 
 def vector_move_poly(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str | None:
-    """UnkVector<T>::operator=(&&) for polymorphic elements (UnkClonePolyElem): the destructor's
+    """CRntVector<T>::operator=(&&) for polymorphic elements (UnkClonePolyElem): the destructor's
     vtable slot and the element size."""
     if len(insns) != 43 or insns[4:6] != [("mov", "x19, x0"), ("cmp", "x0, x1")] \
             or insns[12:15] != [("ldr", "x8, [x19]"), ("add", "x0, x8, x21"), ("ldr", "x8, [x0]")] \
@@ -483,7 +483,7 @@ def vector_move_poly(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) 
     size = re.fullmatch(r"x21, x21, #(0x[0-9a-f]+)", insns[19][1])
     if base is None or insns[19][0] != "add" or not size or int(size.group(1), 16) % 8:
         return None
-    v = f"base::UnkVector<UnkClonePolyElem<{tag}, {base}, {int(size.group(1), 16):#x}>>"
+    v = f"base::global::CRntVector<UnkClonePolyElem<{tag}, {base}, {int(size.group(1), 16):#x}>>"
     return f"template {v}& {v}::operator=({v}&&);"
 
 
@@ -1104,7 +1104,7 @@ def strid_value_resize(orig: asmdiff.Original, addr: int, tag: str, insns: Insns
     base, vt, t, _ = facts
     t = "f32" if one else t
     init = "    static void init(f32& v) { v = 1.0f; }" if one else f"    static void init({t}&) {{}}"
-    vec = f"base::UnkVector<base::UnkStrIdValueElem<{tag}, {t}>>"
+    vec = f"base::global::CRntVector<base::UnkStrIdValueElem<{tag}, {t}>>"
     return "\n".join(strid_value_traits(tag, base, vt, [], [init]) +
                      [f"template void base::refl_StrIdValueResize<{tag}, {t}>({vec}*, u32);"])
 
@@ -1115,7 +1115,7 @@ def strid_value_grow_at(orig: asmdiff.Original, addr: int, tag: str, insns: Insn
     if not facts or len(facts[3]) != 1:
         return None
     base, vt, t, (callee,) = facts
-    vec = f"base::UnkVector<base::UnkStrIdValueElem<{tag}, {t}>>"
+    vec = f"base::global::CRntVector<base::UnkStrIdValueElem<{tag}, {t}>>"
     return "\n".join(strid_value_traits(tag, base, vt, [f"void fn_{callee:x}(void*, u32);"],
                                         [f"    static void resize(void* v, u32 n) {{ fn_{callee:x}(v, n); }}"]) +
                      [f"template base::UnkStrIdValueElem<{tag}, {t}>& base::refl_StrIdValueGrowAt<{tag}, {t}>({vec}*, u32);"])
@@ -1127,7 +1127,7 @@ def strid_value_vec_copy(orig: asmdiff.Original, addr: int, tag: str, insns: Ins
     if not facts or len(facts[3]) != 1:
         return None
     base, vt, t, (callee,) = facts
-    vec = f"base::UnkVector<base::UnkStrIdValueElem<{tag}, {t}>>"
+    vec = f"base::global::CRntVector<base::UnkStrIdValueElem<{tag}, {t}>>"
     return "\n".join(strid_value_traits(tag, base, vt, [f"void fn_{callee:x}(void*, const void*);"],
                                         [f"    static void push_back(void* v, const void* e) {{ fn_{callee:x}(v, e); }}"]) +
                      [f"template void base::refl_StrIdValueVecCopy<{tag}, {t}>({vec}*, const {vec}*);"])
@@ -1142,7 +1142,7 @@ def strid_value_insert(orig: asmdiff.Original, addr: int, tag: str, insns: Insns
     if len(gots) < 3 or gots[1] != STRID_POOL or None in gots[:3] or not t:
         return None
     base, vt = gots[0], gots[2]
-    vec = f"base::UnkVector<base::UnkStrIdValueElem<{tag}, {t}>>"
+    vec = f"base::global::CRntVector<base::UnkStrIdValueElem<{tag}, {t}>>"
     return "\n".join(strid_value_traits(tag, base, vt, [], []) +
                      [f"template void base::refl_StrIdValueInsert<{tag}, {t}>({vec}*, "
                       f"const base::UnkStrIdValueElem<{tag}, {t}>&, u32);"])
@@ -1304,9 +1304,9 @@ def deferred_invoke(orig, addr: int, tag: str, insns) -> str | None:
         return None
     at = int(insns[18][1][1:], 16)
     cb = f"base::UnkDeferredCallback<{arg}>"
-    return "\n".join([f"namespace deferred_invoke {{ {cb}** fn_{at:x}(base::UnkVector<{cb}*>*, u32); }}",
+    return "\n".join([f"namespace deferred_invoke {{ {cb}** fn_{at:x}(base::global::CRntVector<{cb}*>*, u32); }}",
                       f"template <> struct base::UnkDeferredInvokeTraits<{tag}> {{",
-                      f"    static {cb}** at(base::UnkVector<{cb}*>* v, u32 i) {{ return deferred_invoke::fn_{at:x}(v, i); }}",
+                      f"    static {cb}** at(base::global::CRntVector<{cb}*>* v, u32 i) {{ return deferred_invoke::fn_{at:x}(v, i); }}",
                       "};",
                       f"template void base::refl_DeferredInvoke<{tag}, {arg}>(base::UnkDeferredSet<{cb}>*, const {arg}*);"])
 
@@ -1325,9 +1325,9 @@ def deferred_invoke_ptr(orig, addr: int, tag: str, insns) -> str | None:
         return None
     at = int(insns[18][1][1:], 16)
     cb = "base::UnkDeferredCallback<const void*>"
-    return "\n".join([f"namespace deferred_invoke {{ {cb}** fn_{at:x}(base::UnkVector<{cb}*>*, u32); }}",
+    return "\n".join([f"namespace deferred_invoke {{ {cb}** fn_{at:x}(base::global::CRntVector<{cb}*>*, u32); }}",
                       f"template <> struct base::UnkDeferredInvokeTraits<{tag}> {{",
-                      f"    static {cb}** at(base::UnkVector<{cb}*>* v, u32 i) {{ return deferred_invoke::fn_{at:x}(v, i); }}",
+                      f"    static {cb}** at(base::global::CRntVector<{cb}*>* v, u32 i) {{ return deferred_invoke::fn_{at:x}(v, i); }}",
                       "};",
                       f"template void base::refl_DeferredInvokePtr<{tag}>(base::UnkDeferredSet<{cb}>*, const void*);"])
 
@@ -1423,7 +1423,7 @@ def chain_map_erase(orig, addr: int, tag: str, insns) -> str | None:
 
 
 def vector_free_poly(orig, addr, tag, insns):
-    """UnkVector<T>::Free() for polymorphic elements (UnkClonePolyElem): the destructor's vtable
+    """CRntVector<T>::Free() for polymorphic elements (UnkClonePolyElem): the destructor's vtable
     slot and the element size."""
     if len(insns) != 39 or insns[4:6] != [("ldr", "x1, [x0]"), ("cbz", "x1, @+8c")] \
             or insns[18:21] != [("ldr", "x8, [x19]"), ("add", "x0, x8, x21"), ("ldr", "x8, [x0]")] \
@@ -1439,12 +1439,12 @@ def vector_free_poly(orig, addr, tag, insns):
     size = int(size.group(1), 16)
     if size % 8 or size < 8:
         return None
-    v = f"base::UnkVector<UnkClonePolyElem<{tag}, {base}, {size:#x}>>"
+    v = f"base::global::CRntVector<UnkClonePolyElem<{tag}, {base}, {size:#x}>>"
     return f"template void {v}::Free();"
 
 
 def vector_clear_poly(orig, addr, tag, insns):
-    """UnkVector<T>::Clear() for polymorphic elements (UnkClonePolyElem): the destructor's vtable
+    """CRntVector<T>::Clear() for polymorphic elements (UnkClonePolyElem): the destructor's vtable
     slot and the element size."""
     if len(insns) != 24 or insns[9:11] != [("ldr", "x8, [x19]"), ("add", "x0, x8, x20")] \
             or insns[19] != ("str", "wzr, [x19, #8]") or insns[13] != ("blr", "x8"):
@@ -1453,7 +1453,7 @@ def vector_clear_poly(orig, addr, tag, insns):
     size = re.fullmatch(r"x20, x20, #(0x[0-9a-f]+)", insns[16][1])
     if base is None or insns[16][0] != "add" or not size or int(size.group(1), 16) % 8:
         return None
-    return f"template void base::UnkVector<UnkClonePolyElem<{tag}, {base}, {size.group(1)}>>::Clear();"
+    return f"template void base::global::CRntVector<UnkClonePolyElem<{tag}, {base}, {size.group(1)}>>::Clear();"
 
 
 def value_holder_deleting_dtor(orig, addr, tag, insns):
@@ -1687,7 +1687,7 @@ def id_value_push_back(orig, addr, tag, insns):
     return "\n".join([f"extern char g_unk_{vtable:x}[];",
                       f"template <> struct base::UnkIdValueTraits<{tag}> {{",
                       f"    static char* vtable() {{ return g_unk_{vtable:x}; }}", "};",
-                      f"template void base::refl_IdValuePushBack(base::UnkVector<{e}>*, const {e}&);"])
+                      f"template void base::refl_IdValuePushBack(base::global::CRntVector<{e}>*, const {e}&);"])
 
 
 def id_value_assign(orig, addr, tag, insns):
@@ -1707,12 +1707,12 @@ def id_value_assign(orig, addr, tag, insns):
     push = int(insns[93][1][1:], 16)
     e = f"base::UnkIdValueElem<{tag}, {value.format(tag=tag)}>"
     return "\n".join([f"extern char g_unk_{vtable:x}[];",
-                      f"void fn_{push:x}(base::UnkVector<{e}>*, const {e}&);",
+                      f"void fn_{push:x}(base::global::CRntVector<{e}>*, const {e}&);",
                       f"template <> struct base::UnkIdValueTraits<{tag}> {{",
                       f"    static char* vtable() {{ return g_unk_{vtable:x}; }}",
-                      f"    static void push_back(base::UnkVector<{e}>* v, const {e}& x) {{ fn_{push:x}(v, x); }}", "};",
-                      f"template base::UnkVector<{e}>* base::refl_IdValueAssign(base::UnkVector<{e}>*, "
-                      f"const base::UnkVector<{e}>*);"])
+                      f"    static void push_back(base::global::CRntVector<{e}>* v, const {e}& x) {{ fn_{push:x}(v, x); }}", "};",
+                      f"template base::global::CRntVector<{e}>* base::refl_IdValueAssign(base::global::CRntVector<{e}>*, "
+                      f"const base::global::CRntVector<{e}>*);"])
 
 
 def owner_vec_destroy(orig, addr, tag, insns):
@@ -1927,7 +1927,7 @@ def keyed_find_assign(orig, addr, tag, insns):
 
 
 def vector_free_dtor(orig, addr, tag, insns):
-    """UnkVector<T>::Free() for elements with an out-of-line destructor (UnkCloneDtorElem): the
+    """CRntVector<T>::Free() for elements with an out-of-line destructor (UnkCloneDtorElem): the
     element's size and destructor."""
     if len(insns) != 35 or insns[10][0] != "bl" or insns[18] != insns[10] or insns[26] != ("str", "wzr, [x19, #8]") \
             or insns[30] != ("str", "wzr, [x19, #0xc]") or insns[28] != ("ldr", "x8, [x8, #0x48]"):
@@ -1935,7 +1935,7 @@ def vector_free_dtor(orig, addr, tag, insns):
     size = re.fullmatch(r"w21, #(0x[0-9a-f]+)", insns[15][1])
     if not size or int(size.group(1), 16) % 8 or insns[21] != ("add", f"x21, x21, #{size.group(1)}"):
         return None
-    return dtor_traits(tag, insns[10]) + f"template void base::UnkVector<UnkCloneDtorElem<{tag}, {size.group(1)}>>::Free();"
+    return dtor_traits(tag, insns[10]) + f"template void base::global::CRntVector<UnkCloneDtorElem<{tag}, {size.group(1)}>>::Free();"
 
 
 def value_holder_dtor(orig, addr, tag, insns):
@@ -2004,7 +2004,7 @@ def pair_counts(orig, addr, tag, insns):
 
 
 def vector_clear_dtor(orig, addr, tag, insns):
-    """UnkVector<T>::Clear() for elements with an out-of-line destructor (UnkCloneDtorElem): the
+    """CRntVector<T>::Clear() for elements with an out-of-line destructor (UnkCloneDtorElem): the
     element's size and destructor."""
     if len(insns) != 22 or insns[4] != ("ldr", "w8, [x0, #8]") or insns[8] != ("mov", "x21, xzr") \
             or insns[11][0] != "bl" or insns[17] != ("str", "wzr, [x19, #8]"):
@@ -2012,7 +2012,7 @@ def vector_clear_dtor(orig, addr, tag, insns):
     size = re.fullmatch(r"x20, x20, #(0x[0-9a-f]+)", insns[14][1])
     if not size or int(size.group(1), 16) % 8:
         return None
-    return dtor_traits(tag, insns[11]) + f"template void base::UnkVector<UnkCloneDtorElem<{tag}, {size.group(1)}>>::Clear();"
+    return dtor_traits(tag, insns[11]) + f"template void base::global::CRntVector<UnkCloneDtorElem<{tag}, {size.group(1)}>>::Clear();"
 
 
 def iter_value_destroy_refptr(orig, addr, tag, insns):
@@ -2153,7 +2153,7 @@ def _vt_iter_606b8(orig, tag, insns, which, frame_i, sync_i, base_i):
                       f"template <> struct base::UnkVtIterTraits<{tag}> {{",
                       f"    static char* base_vtable() {{ return g_unk_{base:x}; }}",
                       f"    static void sync(void* it) {{ fn_{sync:x}(it); }}", "};",
-                      f"template void base::refl_Vt{which}(const base::UnkVector<{e}>*, "
+                      f"template void base::refl_Vt{which}(const base::global::CRntVector<{e}>*, "
                       f"base::UnkCollectionIter<{e}>*);"])
 
 
@@ -2207,7 +2207,7 @@ def owner_vec_insert(orig, addr, tag, insns):
     return "\n".join([f"void fn_{append:x}(void*, void*);",
                       f"template <> struct base::UnkOwnerVecInsertTraits<{tag}> {{",
                       f"    static void append(void* v, void* e) {{ fn_{append:x}(v, e); }}", "};",
-                      f"template void base::refl_OwnerVecInsert(base::UnkVector<{e}>*, {e}*, u32);"])
+                      f"template void base::refl_OwnerVecInsert(base::global::CRntVector<{e}>*, {e}*, u32);"])
 
 
 def dtor_traits(tag, call):
@@ -2334,7 +2334,7 @@ def find_by_id_call(orig, addr, tag, insns):
     args = ", ".join(f"a{i}" for i in range(len(params)))
     return "\n".join(call_traits(tag, [f"void fn_{call:x}(u32*, {sig});"], [
         f"    static void call(u32* p, {named}) {{ fn_{call:x}(p, {args}); }}"]) +
-        [f"template void base::refl_FindByIdCall<{tag}, {k - 1}>(base::UnkVector<u32*>*, {sig});"])
+        [f"template void base::refl_FindByIdCall<{tag}, {k - 1}>(base::global::CRntVector<u32*>*, {sig});"])
 
 
 def call_arg_return_one(orig, addr, tag, insns):
@@ -2359,7 +2359,7 @@ def elem_at(orig, addr, tag, insns):
     if insns[2][0] != "add" or not shift:
         return None
     size = 1 << int(shift.group(1))
-    return (f"template UnkCloneElem<{tag}, {size}>* base::refl_ElemAt(base::UnkVector<UnkCloneElem<{tag}, {size}>>*, "
+    return (f"template UnkCloneElem<{tag}, {size}>* base::refl_ElemAt(base::global::CRntVector<UnkCloneElem<{tag}, {size}>>*, "
             "u64);")
 
 
@@ -2716,7 +2716,7 @@ KINDS = {
                                    exact=False),
     "iter_assign_block": Kind(0x71002CA39C, "base/UnkCollectionIter.h", lambda tag, ins: iter_assign_block(tag, ins),
                               exact=False),
-    "vector_clear_poly": Kind(None, "base/UnkVector.h", lambda tag, _: None, scan=vector_clear_poly),
+    "vector_clear_poly": Kind(None, "base/global/CRntVector.h", lambda tag, _: None, scan=vector_clear_poly),
     "value_holder_deleting_dtor": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None,
                                        scan=value_holder_deleting_dtor),
     "derived_copy_ctor_48": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=derived_copy_ctor_48),
@@ -2737,7 +2737,7 @@ KINDS = {
     "ref_handle_copy_ctor": Kind(0x7100234E38, "base/UnkCloneHelpers.h", lambda tag, _: (
         f"template void base::refl_RefHandleCopyCtor<{tag}>(base::UnkRefHandle*, const base::UnkRefHandle*);")),
     "iter_value_destroy_key16": Kind(None, "base/UnkCollectionIter.h", lambda tag, _: None, scan=iter_value_destroy_key16),
-    "vector_clear_dtor": Kind(None, "base/UnkVector.h", lambda tag, _: None, scan=vector_clear_dtor),
+    "vector_clear_dtor": Kind(None, "base/global/CRntVector.h", lambda tag, _: None, scan=vector_clear_dtor),
     "iter_value_destroy_refptr": Kind(None, "base/UnkCollectionIter.h", lambda tag, _: None,
                                       scan=iter_value_destroy_refptr),
     "add_f32": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=add_f32),
@@ -2746,7 +2746,7 @@ KINDS = {
     "zeroed_ctor": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=zeroed_ctor),
     "dtor_call_clear": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=dtor_call_clear),
     "keyed_find_assign": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=keyed_find_assign),
-    "vector_free_dtor": Kind(None, "base/UnkVector.h", lambda tag, _: None, scan=vector_free_dtor),
+    "vector_free_dtor": Kind(None, "base/global/CRntVector.h", lambda tag, _: None, scan=vector_free_dtor),
     "keyed_find": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=keyed_find),
     "keyed_find_then": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=keyed_find_then),
     "strid_dtor_at": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=strid_dtor_at),
@@ -2801,7 +2801,7 @@ KINDS = {
     "linked_dtor": Kind(None, "base/UnkDestructors.h", lambda tag, _: None, scan=linked_dtor),
     "list_deleting_dtor": Kind(None, "base/UnkDestructors.h", lambda tag, _: None, scan=list_deleting_dtor),
     "list_dtor": Kind(None, "base/UnkDestructors.h", lambda tag, _: None, scan=list_dtor),
-    "vector_move_poly": Kind(None, "base/UnkVector.h", lambda tag, _: None, scan=vector_move_poly),
+    "vector_move_poly": Kind(None, "base/global/CRntVector.h", lambda tag, _: None, scan=vector_move_poly),
     "id_record_assign": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=id_record_assign),
     "strid_member_ctor": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=strid_member_ctor),
     "hash_map_clear": Kind(None, "base/UnkHashMap.h", lambda tag, _: None, scan=hash_map_clear),
@@ -2838,8 +2838,8 @@ KINDS = {
     "slot_pool_pair_dtor": Kind(0x71002880D4, "base/UnkCloneHelpers.h", lambda tag, _: (
         f"template void base::refl_SlotPoolPairDtor<{tag}>(char*);")),
     "vector_equal_word": Kind(0x71000CDDD8, "base/UnkCloneHelpers.h", lambda tag, _: (
-        f"template bool base::refl_VectorEqual<{tag}>(const base::UnkVector<UnkCloneWord<{tag}>>*, "
-        f"const base::UnkVector<UnkCloneWord<{tag}>>*);")),
+        f"template bool base::refl_VectorEqual<{tag}>(const base::global::CRntVector<UnkCloneWord<{tag}>>*, "
+        f"const base::global::CRntVector<UnkCloneWord<{tag}>>*);")),
     "keyed_array_reserve": Kind(0x710021D58C, "base/UnkCloneHelpers.h", lambda tag, _: (
         f"template void base::UnkCloneKeyedArray<{tag}>::Reserve(u32);")),
     "iter_value_move_assign_strkey": Kind(0x7100120984, "base/UnkCloneHelpers.h", lambda tag, _: (
@@ -2861,7 +2861,7 @@ KINDS = {
     "shared_record_assign": Kind(0x7100B8F094, "base/UnkSharedRecord.h", lambda tag, _: (
         f"template UnkSharedRecord<{tag}>& UnkSharedRecord<{tag}>::operator=(const UnkSharedRecord<{tag}>&);")),
     "vector_clear_wide_owner": Kind(0x71002B9890, "base/UnkCloneHelpers.h", lambda tag, _: (
-        f"template void base::refl_ClearWide(base::UnkVector<UnkCloneOwner<{tag}>>*);")),
+        f"template void base::refl_ClearWide(base::global::CRntVector<UnkCloneOwner<{tag}>>*);")),
     "iter_destroy_vt": Kind(0x7100F4ADF8, "base/UnkCloneHelpers.h", lambda tag, _: (
         "extern char g_unk_7101cab1f8[];\n"
         f"template <> struct base::UnkDtorTraits<{tag}> {{\n"
@@ -2896,7 +2896,7 @@ KINDS = {
         f"template base::UnkCollectionIter<UnkCloneRefPtr<{tag}>>& base::UnkCollectionIter<UnkCloneRefPtr<{tag}>>::"
         f"operator=(const base::UnkCollectionIter<UnkCloneRefPtr<{tag}>>&);")),
     "resize_sub_vecs": Kind(0x710065B1B0, "base/UnkCloneHelpers.h", lambda tag, _: (
-        f"template void base::refl_ResizeSubVecs(base::UnkVector<base::UnkCloneSubVec<{tag}>>*, u32);")),
+        f"template void base::refl_ResizeSubVecs(base::global::CRntVector<base::UnkCloneSubVec<{tag}>>*, u32);")),
     "iter_value_assign_raw_strkey": Kind(0x71000C9490, "base/UnkCloneHelpers.h", lambda tag, _: (
         f"template base::UnkStrKeyWordValue<{tag}, UnkCloneWord<{tag}>>* base::refl_IterValueAssignRaw("
         f"base::UnkStrKeyWordValue<{tag}, UnkCloneWord<{tag}>>*, const base::UnkStrKeyWordValue<{tag}, UnkCloneWord<{tag}>>*);")),
@@ -2915,15 +2915,15 @@ KINDS = {
         "    static char* vtable() { return g_unk_7101a209e0; }\n};\n"
         f"template void base::refl_AssignHandleFromSource<{tag}>(base::UnkRefHandle*, const char*);")),
     "iter_value_move_from_owner_vec": Kind(0x71004A8728, "base/UnkCloneHelpers.h", lambda tag, _: (
-        f"template base::UnkIterValue<base::UnkVector<UnkCloneOwner<{tag}>>, u32>& base::refl_IterValueMoveFrom("
-        f"base::UnkIterValue<base::UnkVector<UnkCloneOwner<{tag}>>, u32>*, "
-        f"base::UnkIterValue<base::UnkVector<UnkCloneOwner<{tag}>>, u32>*);")),
+        f"template base::UnkIterValue<base::global::CRntVector<UnkCloneOwner<{tag}>>, u32>& base::refl_IterValueMoveFrom("
+        f"base::UnkIterValue<base::global::CRntVector<UnkCloneOwner<{tag}>>, u32>*, "
+        f"base::UnkIterValue<base::global::CRntVector<UnkCloneOwner<{tag}>>, u32>*);")),
     "deferred_remove": Kind(0x71002AE87C, "base/UnkDeferredSet.h", lambda tag, _: (
         f"template void base::UnkDeferredSet<{tag}>::Remove({tag}*);")),
     "strid_array_move": Kind(0x71000DF128, "base/UnkCloneHelpers.h", lambda tag, _: (
         f"template base::UnkStrIdArray<{tag}>& base::UnkStrIdArray<{tag}>::operator=(base::UnkStrIdArray<{tag}>&&);")),
     "vector_emplace_vec_handle": Kind(0x71004A940C, "base/UnkCloneHelpers.h", lambda tag, _: (
-        f"template void base::UnkVector<UnkCloneVecHandle<{tag}>>::EmplaceBack(UnkCloneVecHandle<{tag}>&&);")),
+        f"template void base::global::CRntVector<UnkCloneVecHandle<{tag}>>::EmplaceBack(UnkCloneVecHandle<{tag}>&&);")),
     "keyed_iter_sync_poly_vec": Kind(0x710023C550, "base/UnkCloneHelpers.h", lambda tag, _: (
         f"template void base::refl_KeyedIterSync(base::UnkKeyedIter<UnkClonePolyVec<{tag}>, UnkCloneStrId<{tag}>>*);")),
 }

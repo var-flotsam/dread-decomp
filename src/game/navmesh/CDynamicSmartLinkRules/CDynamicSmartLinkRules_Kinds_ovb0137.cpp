@@ -5,7 +5,7 @@
 #include "base/UnkAtExit.h"
 #include "base/UnkBlockFreeList.h"
 #include "base/UnkNodeOwner.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/file/nx/CDeviceNX.h"
 #include "base/global/CRntString.h"
 #include "types.h"

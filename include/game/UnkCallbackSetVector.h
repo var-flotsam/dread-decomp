@@ -1,6 +1,6 @@
 #pragma once
 
-// An engine array (base::UnkVector's layout) of callback sets: a set is a vtable, an owned
+// An engine array (base::global::CRntVector's layout) of callback sets: a set is a vtable, an owned
 // type-erased array, a count and a refcounted owner (0x40 bytes), and each element adds a u32.
 // Reserve, Truncate, Erase and Insert are the array's own, Begin makes an iterator at the first
 // element. The hand-written files of the copies of this array type (one per reflected type) share
@@ -15,7 +15,7 @@
 // two classes share.
 
 #include "base/UnkErasedVector.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkCallbackSet_7101a20950.h"
 #include "game/UnkCallbackSetVectorFwd.h"
 
@@ -160,7 +160,7 @@ struct UnkCallbackSetVector {
             u32 new_capacity = capacity;
             if (new_capacity <= n && step != 0)
                 new_capacity = (n / step + 1) * step;
-            if ((s32)n >= (s32)new_capacity)  // hangs, as UnkVector::PushBack does
+            if ((s32)n >= (s32)new_capacity)  // hangs, as CRntVector::PushBack does
                 for (;;) {
                 }
             Reserve(this, new_capacity);

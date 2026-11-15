@@ -2,7 +2,7 @@
 // +0x148; src/reflection_types/collection_types_00.cpp). Keys are 8-byte words, values 0x28-byte growable arrays:
 // the entry is found by key and, unless it is the given array itself, emptied and the given array moved in (the
 // shape of src/game/CActor/UnkReflMapMoveSet_b44.cpp). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkTileArray_A5_b71 {
@@ -58,7 +58,7 @@ struct UnkTileElem_A5_b71 {
     u64 a;
     u64 b;
 };
-using UnkTileVector_A5_b71 = base::UnkVector<UnkTileElem_A5_b71>;
+using UnkTileVector_A5_b71 = base::global::CRntVector<UnkTileElem_A5_b71>;
 
 struct UnkTileVecFlatMap_A5_b71 {
     UnkTileVector_A5_b71* values;

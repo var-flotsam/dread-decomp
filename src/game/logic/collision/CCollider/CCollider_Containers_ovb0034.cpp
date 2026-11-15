@@ -6,7 +6,7 @@
 #include <string.h>
 
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/logic/collision/CBroadphaseObject.h"
 #include "game/logic/collision/CCollider.h"
 #include "types.h"
@@ -104,7 +104,7 @@ void fn_7100d418c8(UnkColliderMap_ovb0034* self) {
     self->last = nullptr;
 }
 
-// An array of pointers that owns its storage (0x28 bytes, laid out as base::UnkVector).
+// An array of pointers that owns its storage (0x28 bytes, laid out as base::global::CRntVector).
 struct UnkPtrArray_ovb0034 {
     void** data;
     u32 count;

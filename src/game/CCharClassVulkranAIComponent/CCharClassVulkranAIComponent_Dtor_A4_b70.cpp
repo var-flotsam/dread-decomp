@@ -3,14 +3,14 @@
 // +0x600, +0x5b8 and +0x570, then the base's destructor fn_7100416e80. A record is a plain array and a
 // string id. Names are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCharClassBehaviorTreeAIComponent.h"
 #include "game/CCharClassVulkranAIComponent.h"
 #include "types.h"
 
 struct UnkStruct_7100416e80;
 
-struct UnkVulkranValues_A4_b70 : base::UnkVector<u32> {
+struct UnkVulkranValues_A4_b70 : base::global::CRntVector<u32> {
     ~UnkVulkranValues_A4_b70() { Free(); }
 };
 
@@ -31,7 +31,7 @@ struct base::UnkDtorTraits<UnkCharClassVulkranDtor_A4_b70> {
 
 struct UnkVulkranRecords_A4_b70 {
     static void Release(char* self) {
-        reinterpret_cast<base::UnkVector<UnkVulkranRecord_A4_b70>*>(self + 0x690)->Free();
+        reinterpret_cast<base::global::CRntVector<UnkVulkranRecord_A4_b70>*>(self + 0x690)->Free();
     }
 };
 

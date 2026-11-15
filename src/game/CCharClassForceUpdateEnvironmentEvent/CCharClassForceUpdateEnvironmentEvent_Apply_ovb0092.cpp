@@ -2,7 +2,7 @@
 // (g_unk_7101d47360, 0xae8 bytes, created on first use) has a current entry at +0x3f0, forces the
 // environment manager (g_unk_7101d47368, 0x4c8 bytes, created on first use) to that entry's id
 // (+0x98) through fn_7100d8e32c. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection.h"
 #include "game/UnkTU0.h"

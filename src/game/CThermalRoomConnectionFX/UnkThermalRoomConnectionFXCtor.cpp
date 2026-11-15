@@ -4,7 +4,7 @@
 // allocator, final vtable), cleared fields from +0xf8, 1.0 at +0x7c; then, while the flag at +0x78
 // is clear, the virtual call at slot 17, and the post-construction virtual call (slot 3). The
 // containers' fields are written out flat. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCharClassActivatableComponent.h"
 #include "game/CComponent.h"
 #include "game/CDemolitionBlockComponent.h"

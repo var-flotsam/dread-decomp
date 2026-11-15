@@ -2,7 +2,7 @@
 // base constructor fn_710036069c. Names and layouts are placeholders.
 #include "game/CAutclastChargeAttack.h"
 #include "types.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 
 void fn_710036069c(void* self);
 

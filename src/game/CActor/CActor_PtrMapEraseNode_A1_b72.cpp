@@ -3,7 +3,7 @@
 // the node is unlinked from its bucket chain (+0x40) and the list of all nodes (prev +0x30, next +0x38),
 // destroyed with fn_710024515c and freed through the map's allocator. Returns the node before it in
 // the list. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkHashedObject_A1b72 {

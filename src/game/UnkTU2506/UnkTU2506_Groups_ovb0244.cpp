@@ -9,7 +9,7 @@
 
 #include "base/UnkDestructors.h"
 #include "base/UnkSList.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CAbilityShinespark.h"
 #include "game_s2/UnkWeakHandle.h"

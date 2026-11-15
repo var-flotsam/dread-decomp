@@ -3,7 +3,7 @@
 // +0x1c) over the event's time (+0x18): fn_7100fd7b44, or fn_7100fd82dc with the name of the file path
 // at +0x10 unless it is the empty one. The mask types are src/game/UnkLoadingScreen.cpp's. Names and
 // layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CBossAIComponent.h"
 #include "game/sound/CMusicManager.h"

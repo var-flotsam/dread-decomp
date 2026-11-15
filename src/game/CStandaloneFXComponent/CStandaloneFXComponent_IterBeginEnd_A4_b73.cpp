@@ -4,7 +4,7 @@
 // own index and record (base/UnkCollectionIter.h's shape); the assignment resets an owned copy through the
 // out-of-line destructor, while the temporary's destructor has it inlined. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CStandaloneFXComponent.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkTU2739.h"

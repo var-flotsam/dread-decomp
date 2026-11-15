@@ -6,7 +6,7 @@
 #include <new>
 
 #include "base/UnkEmptyDtorElem.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
@@ -83,8 +83,8 @@ using base::global::CStrId;
 struct UnkEntry_b0228 {
     CStrId name;  // 0x0
     u8 pad_0x8[8];
-    base::UnkVector<void*> list0;  // 0x10
-    base::UnkVector<void*> list1;  // 0x38
+    base::global::CRntVector<void*> list0;  // 0x10
+    base::global::CRntVector<void*> list1;  // 0x38
 
     void Destroy() {
         list1.Free();
@@ -138,7 +138,7 @@ struct UnkSubList_b0228 {
 };
 
 struct UnkPayload_b0228 {
-    base::UnkVector<void*> items;  // 0x0
+    base::global::CRntVector<void*> items;  // 0x0
     u8 pad_0x28[0x20];
     UnkSubList_b0228 sub;  // 0x48
 };
@@ -195,15 +195,15 @@ struct UnkKey_b0228 {
 
 struct UnkKeyList_b0228 {
     u8 pad_0x0[8];
-    base::UnkVector<UnkKey_b0228> keys;  // 0x8
+    base::global::CRntVector<UnkKey_b0228> keys;  // 0x8
     ~UnkKeyList_b0228() { keys.Free(); }
 };
 static_assert(sizeof(UnkKeyList_b0228) == 0x30, "UnkKeyList_b0228 layout");
 
 struct UnkKeyListOwner_b0228 {
     u8 pad_0x0[8];
-    base::UnkVector<void*> field_0x8;
-    base::UnkVector<UnkKeyList_b0228> lists;  // 0x30
+    base::global::CRntVector<void*> field_0x8;
+    base::global::CRntVector<UnkKeyList_b0228> lists;  // 0x30
 };
 
 void fn_71002a0680(UnkKeyListOwner_b0228* self) {
@@ -573,8 +573,8 @@ struct UnkNavMeshEdge;
 struct UnkSubObject_b0228 {
     alignas(8) u8 data[0x28];
     UnkSubObject_b0228(const UnkSubObject_b0228& o) {
-        fn_710027ebe4(reinterpret_cast<base::UnkVector<UnkNavMeshEdge>*>(this),
-                      reinterpret_cast<const base::UnkVector<UnkNavMeshEdge>*>(&o));
+        fn_710027ebe4(reinterpret_cast<base::global::CRntVector<UnkNavMeshEdge>*>(this),
+                      reinterpret_cast<const base::global::CRntVector<UnkNavMeshEdge>*>(&o));
     }
 };
 
@@ -607,7 +607,7 @@ void fn_71002a1ff8(UnkRecordArray_b0228* self, const UnkRecord_b0228* value) {
     if ((s32)n >= (s32)cap)
         for (;;) {
         }
-    fn_7100279600(reinterpret_cast<base::UnkVector<UnkNavLoadCell>*>(self), cap);
+    fn_7100279600(reinterpret_cast<base::global::CRntVector<UnkNavLoadCell>*>(self), cap);
     new (&self->data[self->count]) UnkRecord_b0228(*value);
     self->count = self->count + 1;
 }
@@ -620,7 +620,7 @@ struct UnkPair16_b0228 {
     UnkPair16_b0228(const UnkPair16_b0228& o) { __builtin_memcpy(this, &o, sizeof(*this)); }
 };
 
-using UnkPair16Vector_b0228 = base::UnkVector<UnkPair16_b0228>;
+using UnkPair16Vector_b0228 = base::global::CRntVector<UnkPair16_b0228>;
 
 // The array before its elements exist: raw storage the copy fills in.
 struct UnkPair16Storage_b0228 {
@@ -745,7 +745,7 @@ struct UnkBigSlot_b0228 {
 };
 static_assert(sizeof(UnkBigSlot_b0228) == 0x158, "UnkBigSlot_b0228 layout");
 
-void fn_71002a9558(base::UnkVector<UnkBigSlot_b0228>* self, u32 capacity) { self->Reserve(capacity); }
+void fn_71002a9558(base::global::CRntVector<UnkBigSlot_b0228>* self, u32 capacity) { self->Reserve(capacity); }
 
 // ---- fn_71002a0a00 ----
 // A 4-byte key built by an out-of-line constructor (fn_71002874bc) and destroyed by fn_71002874dc.
@@ -758,7 +758,7 @@ struct UnkKeyCtor_b0228 {
     ~UnkKeyCtor_b0228() { fn_71002874dc(this); }
 };
 
-UnkKeyCtor_b0228* fn_71002a0a00(base::UnkVector<UnkKeyCtor_b0228>* self, u32 index) { return &self->GrowAt(index); }
+UnkKeyCtor_b0228* fn_71002a0a00(base::global::CRntVector<UnkKeyCtor_b0228>* self, u32 index) { return &self->GrowAt(index); }
 
 // ---- fn_71002aa0a4 ----
 using base::global::CStrId;

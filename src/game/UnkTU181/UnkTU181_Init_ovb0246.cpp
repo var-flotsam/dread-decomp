@@ -2,7 +2,7 @@
 #include <new>
 #include "base/UnkAtExit.h"
 #include "base/UnkPairArrays.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkGraphicsState.h"
 #include "game/UnkTU172.h"
@@ -34,7 +34,7 @@ struct UnkUnit181Statics_b0246 {
     u32 header;
     CStrId binaries;
     CStrId sources;
-    base::UnkVector<UnkEntry181_b0246> entries;  // 0x18
+    base::global::CRntVector<UnkEntry181_b0246> entries;  // 0x18
 };
 extern UnkUnit181Statics_b0246 g_unk_716e2aadb0 __attribute__((visibility("hidden")));
 

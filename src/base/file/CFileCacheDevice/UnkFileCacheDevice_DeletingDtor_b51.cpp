@@ -2,7 +2,7 @@
 // body, then the object is freed (fn_7100083c00).
 
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/file/CFileCacheDevice.h"
 #include "types.h"
 

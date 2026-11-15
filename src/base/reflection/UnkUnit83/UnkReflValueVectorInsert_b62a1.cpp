@@ -1,9 +1,9 @@
-// Unit 83: the "insert at index" function (base::UnkVector::Insert) of arrays of reflected values
+// Unit 83: the "insert at index" function (base::global::CRntVector::Insert) of arrays of reflected values
 // (0x18 bytes: moved with the copy constructor fn_71000a179c and destroyed with fn_71000a1c60, as in
 // src/base/reflection/UnkReflValueVectorCopy.cpp; fn_71000d5c20) and of strings (fn_71000e0988 moves
 // the new one in, fn_71000e0758 copies it). Names are placeholders.
 #include "base/UnkNamedRegistry.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/reflection.h"
 #include "base/reflection/UnkReflCast.h"
@@ -19,7 +19,7 @@ struct UnkReflValueElem_b62a1 {
     ~UnkReflValueElem_b62a1() { fn_71000a1c60(&value); }
 };
 
-__attribute__((flatten)) void fn_71000d5c20(base::UnkVector<UnkReflValueElem_b62a1>* self, UnkReflValueElem_b62a1* value, u32 index) {
+__attribute__((flatten)) void fn_71000d5c20(base::global::CRntVector<UnkReflValueElem_b62a1>* self, UnkReflValueElem_b62a1* value, u32 index) {
     self->Insert(static_cast<UnkReflValueElem_b62a1&&>(*value), index);
 }
 // Strings (base::global::CRntString, 0x30 bytes): moved with fn_710007eab4, copied with
@@ -34,9 +34,9 @@ struct UnkStringElem_b62a1 {
     ~UnkStringElem_b62a1() { fn_710007ecd4(Str()); }
 };
 
-// base::UnkVector::Insert with the new element copied in (the header's moves it).
+// base::global::CRntVector::Insert with the new element copied in (the header's moves it).
 template <class T>
-__attribute__((always_inline)) static inline void InsertCopy_b62a1(base::UnkVector<T>* self, const T& value,
+__attribute__((always_inline)) static inline void InsertCopy_b62a1(base::global::CRntVector<T>* self, const T& value,
                                                                    u32 index) {
     u32 cap = self->capacity;
     u32 n = self->count;
@@ -97,10 +97,10 @@ __attribute__((always_inline)) static inline void InsertCopy_b62a1(base::UnkVect
     ++self->count;
 }
 
-void fn_71000e0758(base::UnkVector<UnkStringElem_b62a1>* self, const UnkStringElem_b62a1* value, u32 index) {
+void fn_71000e0758(base::global::CRntVector<UnkStringElem_b62a1>* self, const UnkStringElem_b62a1* value, u32 index) {
     InsertCopy_b62a1(self, *value, index);
 }
-__attribute__((flatten)) void fn_71000e0988(base::UnkVector<UnkStringElem_b62a1>* self, UnkStringElem_b62a1* value,
+__attribute__((flatten)) void fn_71000e0988(base::global::CRntVector<UnkStringElem_b62a1>* self, UnkStringElem_b62a1* value,
                                             u32 index) {
     self->Insert(static_cast<UnkStringElem_b62a1&&>(*value), index);
 }

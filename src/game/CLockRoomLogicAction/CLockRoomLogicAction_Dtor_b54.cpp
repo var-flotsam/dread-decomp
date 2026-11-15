@@ -22,7 +22,7 @@ struct base::UnkCallbackTraits<UnkLockRoomCallbacks_b54> {
 };
 using UnkLockRoomCallbackList_b54 = base::UnkCallbackListShort<UnkLockRoomCallbacks_b54>;
 
-struct UnkLockRoomArray_b54 : base::UnkVector<void**> {
+struct UnkLockRoomArray_b54 : base::global::CRntVector<void**> {
     ~UnkLockRoomArray_b54() { Free(); }
 };
 

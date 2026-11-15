@@ -3,7 +3,7 @@
 // +0x19 to the manager g_unk_7101d47360 (created on first use, as in
 // src/game/CBreakableVignetteComponent/CBreakableVignetteComponent_b40.cpp): through fn_7100eea3fc when
 // the flag at +0x1a is set, else fn_7100eea334. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CTriggerLogicAction.h"
 #include "game/UnkTU0.h"

@@ -1,6 +1,6 @@
 // Creates a 0x188-byte object, retains it and appends it to the owner's list, then sets its
 // owner pointer (0x10), name (0x20) and an index (0x18). Returns the object.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/logic/collision/CCollider.h"
 #include "types.h"

@@ -8,7 +8,7 @@
 // above a base whose destructor is fn_710002384c: fn_71001a98dc, fn_71001a9978.
 #include "base/UnkCountedResource.h"
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/core/CAsset.h"
 #include "base/core/CBaseObject.h"
 #include "base/global/CRntString.h"
@@ -54,7 +54,7 @@ void fn_710002de3c(UnkNamedId_710002ddc0* self) {
 struct UnkIdValues_71001f9c3c {
     char* vtable;
     base::UnkStrIdMember id;
-    base::UnkVector<u32> values;
+    base::global::CRntVector<u32> values;
 
     __attribute__((always_inline)) ~UnkIdValues_71001f9c3c() {
         vtable = unk_7101a1f380 + 0x10;
@@ -75,7 +75,7 @@ struct UnkIdValues_710026cd30 {
     char base[0x58];
     base::UnkStrIdMember id;
     u64 field_0x60;
-    base::UnkVector<u32> values;
+    base::global::CRntVector<u32> values;
 };
 
 template <char* Vtable = unk_7101a20d68, class Base = void, void (*BaseDtor)(Base*) = fn_7100016f88, class Self>
@@ -102,7 +102,7 @@ struct UnkIdValues_71007aef88 {
     char base[0x40];
     base::UnkStrIdMember id;
     u64 field_0x48;
-    base::UnkVector<u32> values;
+    base::global::CRntVector<u32> values;
 };
 
 void fn_71007aef88(UnkIdValues_71007aef88* self) { Destroy<unk_7101a700c8, UnkBaseComponent, fn_71010c4194>(self); }

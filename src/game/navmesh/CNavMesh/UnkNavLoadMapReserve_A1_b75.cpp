@@ -7,7 +7,7 @@
 #include <new>
 
 #include "base/UnkCloneRecords.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkObject_0x100.h"
 #include "types.h"
@@ -119,21 +119,21 @@ __attribute__((always_inline)) static inline void Reserve(UnkOuterMap* self, u32
 using navmesh_load_a1_b75::UnkInnerMap;
 using navmesh_load_a1_b75::UnkOuterMap;
 
-using UnkNavLoadRecordMap = UnkNavLoadMap<base::UnkVector<UnkNavLoadPathRecord>>;
+using UnkNavLoadRecordMap = UnkNavLoadMap<base::global::CRntVector<UnkNavLoadPathRecord>>;
 void fn_710027fb10(UnkNavLoadRecordMap* self);  // as CNavMesh.cpp declares it
 
 static inline void ClearCellRecordMap(UnkInnerMap* map) {
     reinterpret_cast<base::UnkKeyedVecArray<UnkClone_fn_710027ead8>*>(map)->Clear();
 }
 static inline void ClearRecordMap(UnkInnerMap* map) {
-    fn_710027fb10(reinterpret_cast<UnkNavLoadMap<base::UnkVector<UnkNavLoadPathRecord>>*>(map));
+    fn_710027fb10(reinterpret_cast<UnkNavLoadMap<base::global::CRntVector<UnkNavLoadPathRecord>>*>(map));
 }
 
-void fn_710027f348(UnkNavLoadMap<UnkNavLoadMap<base::UnkVector<UnkNavLoadSlot360>>>* self, u32 capacity) {
+void fn_710027f348(UnkNavLoadMap<UnkNavLoadMap<base::global::CRntVector<UnkNavLoadSlot360>>>* self, u32 capacity) {
     navmesh_load_a1_b75::Reserve<ClearCellRecordMap>(reinterpret_cast<UnkOuterMap*>(self), capacity);
 }
 
-void fn_710027fc88(UnkNavLoadMap<UnkNavLoadMap<base::UnkVector<UnkNavLoadPathRecord>>>* self, u32 capacity) {
+void fn_710027fc88(UnkNavLoadMap<UnkNavLoadMap<base::global::CRntVector<UnkNavLoadPathRecord>>>* self, u32 capacity) {
     navmesh_load_a1_b75::Reserve<ClearRecordMap>(reinterpret_cast<UnkOuterMap*>(self), capacity);
 }
 
@@ -156,7 +156,7 @@ struct UnkRecordMaps {
 };
 }  // namespace navmesh_load_a1_b75
 
-void fn_710027f8ac(UnkNavLoadMap<UnkNavLoadMap<base::UnkVector<UnkNavLoadPathRecord>>>* self) {
+void fn_710027f8ac(UnkNavLoadMap<UnkNavLoadMap<base::global::CRntVector<UnkNavLoadPathRecord>>>* self) {
     using base::UnkStrIdMember;
     auto* map = reinterpret_cast<navmesh_load_a1_b75::UnkRecordMaps*>(self);
     if (map->keys && map->count)
@@ -176,13 +176,13 @@ struct UnkPathRecord {
     UnkObject_0x100 data;
 };
 struct UnkPathRecordMap {
-    base::UnkVector<UnkPathRecord>* values;
+    base::global::CRntVector<UnkPathRecord>* values;
     base::UnkStrIdMember* keys;
     u32 count;
 };
 }  // namespace navmesh_load_a1_b75
 
-void fn_710027fb10(UnkNavLoadMap<base::UnkVector<UnkNavLoadPathRecord>>* self) {
+void fn_710027fb10(UnkNavLoadMap<base::global::CRntVector<UnkNavLoadPathRecord>>* self) {
     using base::UnkStrIdMember;
     auto* map = reinterpret_cast<navmesh_load_a1_b75::UnkPathRecordMap*>(self);
     if (map->keys && map->count)
@@ -194,7 +194,7 @@ void fn_710027fb10(UnkNavLoadMap<base::UnkVector<UnkNavLoadPathRecord>>* self) {
     map->count = 0;
 }
 
-// The reserve of an array (base::UnkVector's layout) of the outer maps (fn_710027f9d0): moved over
+// The reserve of an array (base::global::CRntVector's layout) of the outer maps (fn_710027f9d0): moved over
 // as in the reserves above, each destroyed by fn_710027f8ac and its two arrays freed.
 namespace navmesh_load_a1_b75 {
 struct UnkMapArray {
@@ -208,7 +208,7 @@ struct UnkMapArray {
 };
 }  // namespace navmesh_load_a1_b75
 
-void fn_710027f9d0(base::UnkVector<UnkNavLoadMap<UnkNavLoadMap<base::UnkVector<UnkNavLoadPathRecord>>>>* self,
+void fn_710027f9d0(base::global::CRntVector<UnkNavLoadMap<UnkNavLoadMap<base::global::CRntVector<UnkNavLoadPathRecord>>>>* self,
                    u32 capacity) {
     auto* v = reinterpret_cast<navmesh_load_a1_b75::UnkMapArray*>(self);
     if (v->capacity >= capacity)
@@ -219,7 +219,7 @@ void fn_710027f9d0(base::UnkVector<UnkNavLoadMap<UnkNavLoadMap<base::UnkVector<U
         UnkInnerMap* dst = data;
         for (u32 i = 0; i < v->count; ++i, ++dst, ++src) {
             new (dst) UnkInnerMap(static_cast<UnkInnerMap&&>(*src));
-            fn_710027f8ac(reinterpret_cast<UnkNavLoadMap<UnkNavLoadMap<base::UnkVector<UnkNavLoadPathRecord>>>*>(src));
+            fn_710027f8ac(reinterpret_cast<UnkNavLoadMap<UnkNavLoadMap<base::global::CRntVector<UnkNavLoadPathRecord>>>*>(src));
             if (src->keys)
                 src->allocator->vf_0x48(src->keys);
             if (src->values)

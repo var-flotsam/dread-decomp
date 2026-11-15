@@ -25,9 +25,9 @@ __attribute__((always_inline)) static inline bool Equal(const UnkRecord80IterVal
 bool fn_7100ad17ec(const UnkRecord80IterValue* a, const UnkRecord80IterValue* b) { return Equal(a, b); }
 bool fn_7100ad1af4(const UnkRecord80IterValue* a, const UnkRecord80IterValue* b) { return Equal(a, b); }
 
-// Free of an array (base::UnkVector's layout) of string ids paired with a word: each id is
+// Free of an array (base::global::CRntVector's layout) of string ids paired with a word: each id is
 // released (and left as the empty id) before the array is freed.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 
 using base::global::UnkStringData;
@@ -55,7 +55,7 @@ struct UnkIdWordPair {
     u64 field_0x8;
 };
 
-void fn_7100eaf85c(base::UnkVector<UnkIdWordPair>* self) {
+void fn_7100eaf85c(base::global::CRntVector<UnkIdWordPair>* self) {
     if (self->data) {
         for (u64 i = 0; i < self->count; ++i)
             self->data[i].~UnkIdWordPair();

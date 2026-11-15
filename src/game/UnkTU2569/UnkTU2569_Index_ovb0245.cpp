@@ -1,7 +1,7 @@
 // Unit 2569: an array of 32-byte entries (two string ids, a u64 and a u32): its reserve, copy-assign and the append of
 // another array's entries to a record's array at +0x18; and the index of an id among nine globals.
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -43,16 +43,16 @@ struct UnkIdEntryT_ovb0245 {
 using UnkIdEntry_ovb0245 = UnkIdEntryT_ovb0245<true>;
 using UnkIdEntryMove_ovb0245 = UnkIdEntryT_ovb0245<false>;
 
-using UnkIdVec_ovb0245 = base::UnkVector<UnkIdEntry_ovb0245>;
+using UnkIdVec_ovb0245 = base::global::CRntVector<UnkIdEntry_ovb0245>;
 
 void fn_7100ec4fd4(UnkIdVec_ovb0245* v, u32 n);
 
 // As src/game/UnkPlayReport.cpp declares it (its record type is the entry above).
 struct UnkRecord_7101147868;
-__attribute__((noinline, flatten)) void fn_7100ec51e8(base::UnkVector<UnkRecord_7101147868>* vec_, u32 n) {
+__attribute__((noinline, flatten)) void fn_7100ec51e8(base::global::CRntVector<UnkRecord_7101147868>* vec_, u32 n) {
     using Entry = UnkIdEntryMove_ovb0245;
     auto* vec = reinterpret_cast<UnkIdVec_ovb0245*>(vec_);
-    auto* v = reinterpret_cast<base::UnkVector<Entry>*>(vec);
+    auto* v = reinterpret_cast<base::global::CRntVector<Entry>*>(vec);
     if (v->capacity < n) {
         Entry* p = static_cast<Entry*>(v->allocator->vf_0x40((u64)n * sizeof(Entry), 8, v->flags));
         if (v->data) {
@@ -78,7 +78,7 @@ static inline void AppendCopy(UnkIdVec_ovb0245* v, const UnkIdEntry_ovb0245& val
     if ((s32)n >= (s32)new_capacity)
         for (;;) {
         }
-    fn_7100ec51e8(reinterpret_cast<base::UnkVector<UnkRecord_7101147868>*>(v), new_capacity);
+    fn_7100ec51e8(reinterpret_cast<base::global::CRntVector<UnkRecord_7101147868>*>(v), new_capacity);
     new (&v->data[v->count]) UnkIdEntry_ovb0245(value);
     ++v->count;
 }
@@ -86,13 +86,13 @@ static inline void AppendCopy(UnkIdVec_ovb0245* v, const UnkIdEntry_ovb0245& val
 // As src/game/UnkPlayReport_Copy_b49.cpp declares it (its record type is the entry above). The original returns
 // `self`.
 struct UnkPlayReportRecord_b49;
-base::UnkVector<UnkPlayReportRecord_b49>* fn_7100ec55ac(base::UnkVector<UnkPlayReportRecord_b49>* self_,
-                                                         const base::UnkVector<UnkPlayReportRecord_b49>* other_) {
+base::global::CRntVector<UnkPlayReportRecord_b49>* fn_7100ec55ac(base::global::CRntVector<UnkPlayReportRecord_b49>* self_,
+                                                         const base::global::CRntVector<UnkPlayReportRecord_b49>* other_) {
     auto* self = reinterpret_cast<UnkIdVec_ovb0245*>(self_);
     auto* other = reinterpret_cast<const UnkIdVec_ovb0245*>(other_);
     if (self != other) {
         fn_7100ec4fd4(self, 0);
-        fn_7100ec51e8(reinterpret_cast<base::UnkVector<UnkRecord_7101147868>*>(self), other->capacity);
+        fn_7100ec51e8(reinterpret_cast<base::global::CRntVector<UnkRecord_7101147868>*>(self), other->capacity);
         for (UnkIdEntry_ovb0245 *it = other->data, *end = it + other->count; it != end; ++it)
             AppendCopy(self, *it);
     }

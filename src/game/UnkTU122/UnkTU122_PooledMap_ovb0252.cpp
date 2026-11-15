@@ -4,7 +4,7 @@
 #include "base/UnkChainedMap.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkCountedResource.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU127.h"
 #include "game/UnkTU291.h"
 #include "types.h"
@@ -12,7 +12,7 @@
 struct UnkPooledChainedMap_b0252 {
     UnkChainedMap map;
     base::UnkBlockPool pool;  // 0x48
-    base::UnkVector<void*> entries;  // 0x88
+    base::global::CRntVector<void*> entries;  // 0x88
 };
 static_assert(__builtin_offsetof(UnkPooledChainedMap_b0252, entries) == 0x88, "layout");
 
@@ -24,7 +24,7 @@ void fn_71001420d8(UnkPooledChainedMap_b0252* self) {
     self->pool.field_0x38 = 0;
     self->pool.field_0x3c = false;
     fn_7100142798(self, 0x400, 0x4000);
-    new (&self->entries) base::UnkVector<void*>(0xf);
+    new (&self->entries) base::global::CRntVector<void*>(0xf);
     self->entries.Reserve(0x1000);
 }
 

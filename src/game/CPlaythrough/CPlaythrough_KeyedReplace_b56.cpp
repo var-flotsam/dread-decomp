@@ -1,7 +1,7 @@
 // CPlaythrough's unit: replaces the owned record stored for a key in a flat map (parallel value
 // and key arrays) with the one passed in, then destroys the old record (its owned object at +0x30,
 // its string id at +0x8) and frees it. Names are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 

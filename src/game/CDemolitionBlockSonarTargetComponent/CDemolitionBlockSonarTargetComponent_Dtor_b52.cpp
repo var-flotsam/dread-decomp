@@ -2,7 +2,7 @@
 // vtable, the array of 0x20-byte polymorphic entries at +0x48 (each destroyed through its vtable slot
 // at +0x30, then the array freed), the counted reference at +0x40 dropped, then the base destructor
 // fn_7100a1082c and operator delete. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CDemolitionBlockSonarTargetComponent.h"
 #include "game/CSonarTargetComponent.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -23,7 +23,7 @@ struct UnkSonarTarget_b52 {
     void** vtable;
     u8 pad_0x8[0x38];
     UnkRefObject* ref;                                   // 0x40
-    base::UnkVector<UnkSonarTargetEntry_b52> entries;  // 0x48
+    base::global::CRntVector<UnkSonarTargetEntry_b52> entries;  // 0x48
 };
 
 // By reference: the object is known to exist, so the delete has no null check.

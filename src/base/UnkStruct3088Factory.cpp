@@ -2,7 +2,7 @@
 // 0x3088-byte one (four 0xc10-byte tables at +0x10, +0xc20, +0x1830, +0x2440, constructor
 // fn_71001d81f8) or the 0x178-byte one (constructor fn_71001e83cc).
 #include "types.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 
 struct UnkStruct_0x3088;
 struct UnkStruct_0x178;

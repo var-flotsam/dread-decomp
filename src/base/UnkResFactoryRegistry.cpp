@@ -5,7 +5,7 @@
 // and fn_71000113b0.cpp) and a factory object, three string ids and two callbacks; fn_710001fc00
 // registers the three, each with a factory created on first use (their deleting destructors are in
 // src/game_s1/fn_7100022518.cpp). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/animation/CAnimationResource.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/curves/CCurveResource.h"

@@ -5,7 +5,7 @@
 // with the timer (+0x320) at 0 or when forced; then always without a segment of points (+0x2a8), else
 // when the actor's box (fn_7100d7bc70), projected to 2D, touches the segment of the first two points
 // (fn_710012b2c0). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "game/UnkGameManager.h"

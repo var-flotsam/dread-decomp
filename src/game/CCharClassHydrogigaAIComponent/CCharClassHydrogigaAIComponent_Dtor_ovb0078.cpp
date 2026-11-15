@@ -2,7 +2,7 @@
 // members of fn_71005b981c in reverse, the owned objects at +0x528, then the base destructor) and a hit
 // classifier (fn_71005b9a00: 3 when the collision container's id for the hit object is "polyp", else 7).
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CCharClassBossAIComponent.h"
 #include "game/CCharClassHydrogigaAIComponent.h"

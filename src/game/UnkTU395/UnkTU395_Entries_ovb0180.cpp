@@ -5,7 +5,7 @@
 #include <new>
 
 #include "base/UnkCollectionIter.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -21,7 +21,7 @@ struct UnkEntry16_ovb0180 {
 
     UnkEntry16_ovb0180(const UnkEntry16_ovb0180& other) { __builtin_memcpy(this, &other, sizeof(*this)); }
 };
-using UnkEntries16_ovb0180 = base::UnkVector<UnkEntry16_ovb0180>;
+using UnkEntries16_ovb0180 = base::global::CRntVector<UnkEntry16_ovb0180>;
 
 void fn_71002cbc20(UnkEntries16_ovb0180* self, const UnkEntries16_ovb0180* other) {
     self->data = nullptr;
@@ -53,7 +53,7 @@ UnkPart* fn_71002cbddc(UnkPart* dst, UnkPart* src) {
 // ---- 0x48-byte entries ----
 
 struct UnkList {
-    base::UnkVector<void*> list;
+    base::global::CRntVector<void*> list;
     UnkList() : list(0xf) {}
     UnkList(const UnkList& other) asm("fn_71002cbc20");
     UnkList& operator=(const UnkList& other) asm("fn_71002cbddc");
@@ -124,8 +124,8 @@ inline UnkElement::UnkElement() : id(g_unk_7101d470e0.data) {
     field_0x30.field_0x0 = 0xbf800000bf800000ull;
 }
 
-typedef base::UnkVector<UnkElement> UnkElements;
-void fn_71002cd854(base::UnkVector<UnkElement>* self, u32 capacity);
+typedef base::global::CRntVector<UnkElement> UnkElements;
+void fn_71002cd854(base::global::CRntVector<UnkElement>* self, u32 capacity);
 
 void fn_71002cd178(UnkElements* v) { v->Clear(); }
 

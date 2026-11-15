@@ -4,7 +4,7 @@
 // fn_71000a1c60) between plain words and an array of reflected values (+0x48); the first derived
 // record adds a word and an owned polymorphic object (+0x88), the second two words, an owned object
 // (+0x90), a flag, another value (+0xa0) and two words. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
@@ -20,7 +20,7 @@ struct UnkReflValueElem_b58 {
 };
 static_assert(sizeof(UnkReflValueElem_b58) == 0x18, "UnkReflValueElem_b58 layout");
 
-// The array (base::UnkVector's layout), moved by taking the other's (left empty).
+// The array (base::global::CRntVector's layout), moved by taking the other's (left empty).
 struct UnkReflValueArray_b58 {
     UnkReflValueElem_b58* data;
     u32 count;
@@ -42,7 +42,7 @@ struct UnkReflValueArray_b58 {
         other.count = 0;
         other.capacity = 0;
     }
-    ~UnkReflValueArray_b58() { reinterpret_cast<base::UnkVector<UnkReflValueElem_b58>*>(this)->Free(); }
+    ~UnkReflValueArray_b58() { reinterpret_cast<base::global::CRntVector<UnkReflValueElem_b58>*>(this)->Free(); }
 };
 
 // An owned polymorphic object, released through its deleting destructor (vtable slot 1).

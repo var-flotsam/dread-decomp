@@ -5,7 +5,7 @@
 // sound-handle state; fn_71005579b0, fn_71005592ac, fn_7100541e64, fn_710054782c and fn_7100545138 are queries
 // and resets of the AI's state. Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"

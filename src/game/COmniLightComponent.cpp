@@ -5,7 +5,7 @@
 #include <new>
 
 #include "base/UnkCountedResource.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU290.h"
 #include "types.h"
 

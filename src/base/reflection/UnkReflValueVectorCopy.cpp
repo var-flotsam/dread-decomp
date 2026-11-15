@@ -1,9 +1,9 @@
 // From unit 72 of tools/tu_map.py (base::reflection::CClass's unit): the copy constructor of an
-// array of reflected values (base::UnkVector of UnkReflValue): the other's settings, room for its
+// array of reflected values (base::global::CRntVector of UnkReflValue): the other's settings, room for its
 // capacity (the values moved with fn_71000a179c and destroyed with fn_71000a1c60, as the array's
 // reallocation does), then each value appended with fn_7100095e98 (fn_7100095acc). Names are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
@@ -18,7 +18,7 @@ struct UnkReflValueElem_7100095acc {
     ~UnkReflValueElem_7100095acc() { fn_71000a1c60(&value); }
 };
 
-using UnkReflValueVector_7100095acc = base::UnkVector<UnkReflValueElem_7100095acc>;
+using UnkReflValueVector_7100095acc = base::global::CRntVector<UnkReflValueElem_7100095acc>;
 
 void fn_7100095e98(UnkReflValueVector_7100095acc* self, const UnkReflValueElem_7100095acc* value);
 

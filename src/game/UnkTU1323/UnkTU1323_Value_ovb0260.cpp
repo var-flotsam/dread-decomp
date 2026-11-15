@@ -1,7 +1,7 @@
 // Unit 1323: the heatable shield value record (0xd0 bytes): its default constructor and destructor
 // (string ids released like CStrId, an id list freed, a record of five ids). Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU1323.h"
 #include "types.h"
@@ -37,7 +37,7 @@ struct UnkHeatableValue_b260 {
     s32 field_0x8;
     CStrId id10;                      // 0x10
     CStrId id18;                      // 0x18
-    base::UnkVector<CStrId> list;     // 0x20
+    base::global::CRntVector<CStrId> list;     // 0x20
     CStrId id48;                      // 0x48
     u64 field_0x50, field_0x58;
     u32 field_0x60;
@@ -68,7 +68,7 @@ void fn_710086e0ac(UnkHeatableValue_0xd0* self_) {
     UnkHeatableValue_b260* self = reinterpret_cast<UnkHeatableValue_b260*>(self_);
     fn_710086e288(reinterpret_cast<UnkIdRecord_0x28*>(self->ids78));
     self->id48.Reset();
-    reinterpret_cast<base::UnkVector<UnkTwoStepId_b260>&>(self->list).Free();
+    reinterpret_cast<base::global::CRntVector<UnkTwoStepId_b260>&>(self->list).Free();
     self->id18.Reset();
     self->id10.Reset();
     self->id0.Reset();

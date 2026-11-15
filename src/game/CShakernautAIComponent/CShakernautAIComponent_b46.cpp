@@ -2,7 +2,7 @@
 // constructor, vtable, two members constructed out of line, then its state block at +0x14800 (two
 // timers at -1, two allocator-backed lists, a cleared range and an id of -1), then a virtual call.
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 extern char g_unk_7101a62f60[];

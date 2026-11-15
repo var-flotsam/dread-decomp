@@ -2,7 +2,7 @@
 // in three more units (CAbilityGhostAura, CAbilityOpticCamouflage, CAutclastChargeAttack): a listener's
 // destructor stores its vtable, detaches itself from the owner of the counted link at +0x18 and drops the
 // link's reference; the second of each pair is the deleting form. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CAbilityOpticCamouflage.h"
 #include "game/CAutclastChargeAttack.h"

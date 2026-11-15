@@ -3,7 +3,7 @@
 // reverse, then the item (its base vtable set, its array of virtual elements destroyed and freed), then the
 // string id. Names and layouts are placeholders.
 #include "base/UnkFreedVectorPair.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU2563.h"
 #include "game_s2/UnkItem50.h"
@@ -40,7 +40,7 @@ static_assert(sizeof(UnkPolyElemDtor_ovb0222) == 0x20, "layout");
 
 struct UnkItemDtor_ovb0222 {
     void** vtable;
-    base::UnkVector<UnkPolyElemDtor_ovb0222> elems;
+    base::global::CRntVector<UnkPolyElemDtor_ovb0222> elems;
     u8 unk_0x30[0x20];
     __attribute__((always_inline)) ~UnkItemDtor_ovb0222() {
         vtable = g_unk_7101cac938 + 2;

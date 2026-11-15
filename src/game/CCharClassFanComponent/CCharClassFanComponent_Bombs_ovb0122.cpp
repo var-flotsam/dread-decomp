@@ -4,7 +4,7 @@
 // +0x158) gets a node from the fan's allocator (+0xb98, flags +0xba0). The parameter type is that of
 // src/game/CCharClassFanComponent/CFanComponent_Update_A4_b74.cpp's declaration. Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"

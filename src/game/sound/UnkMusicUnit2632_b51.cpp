@@ -1,7 +1,7 @@
 // Unit 2632 (tools/tu_map.py; no reflected class): asks the music manager (g_unk_71726bc560, created on
 // first use, game/sound/CMusicManager.h) for fn_7100fd7b44 with the values 10 and 0x40 and -1.
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CBossAIComponent.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"

@@ -3,7 +3,7 @@
 // holds a table of counted resources and string ids at +0xd0 (cleared by fn_71011ac8e8), a counted
 // resource at +0xf8 and a list of file-path ids at +0x100. Names and layouts are placeholders.
 #include "base/UnkCountedResource.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntFile.h"
 #include "game/UnkTU56.h"

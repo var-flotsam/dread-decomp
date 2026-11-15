@@ -3,7 +3,7 @@
 // fn_71002880d4 and fn_71002b17a0) at +0x28: the pools go first, then every inner array is freed and
 // the outer one with them. Names and layouts are placeholders.
 #include "base/UnkCloneHelpers.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkClone_fn_71002880d4;
@@ -13,13 +13,13 @@ extern template void base::refl_SlotPoolPairDtor<UnkClone_fn_71002b17a0>(char*);
 
 // An inner array of unknown trivially destructible elements, freed when destroyed.
 struct UnkSlotPoolOwnerList_b64a2 {
-    base::UnkVector<u8> items;
+    base::global::CRntVector<u8> items;
     ~UnkSlotPoolOwnerList_b64a2() { items.Free(); }
 };
 
 template <class Tag>
 struct UnkSlotPoolOwner_b64a2 {
-    base::UnkVector<UnkSlotPoolOwnerList_b64a2> lists;
+    base::global::CRntVector<UnkSlotPoolOwnerList_b64a2> lists;
     char pools[0x100];  // base::UnkSlotPool pair
 };
 

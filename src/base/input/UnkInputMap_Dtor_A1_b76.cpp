@@ -3,14 +3,14 @@
 // unk_7101a1a2b0; arrays at +0x18 (values, each a byte vector) and +0x20 (u32 ids), count at +0x28,
 // allocator at +0x38): frees every value's array, then the two arrays. fn_710006dc28 and its
 // identical copy fn_710006f230. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU46.h"
 #include "types.h"
 
 struct UnkInputMapA1 {
     void* vtable;
     u8 pad_0x8[0x10];
-    base::UnkVector<u8>* values;  // 0x18
+    base::global::CRntVector<u8>* values;  // 0x18
     u32* keys;                    // 0x20
     u32 count;                    // 0x28
     u8 pad_0x2c[0xc];

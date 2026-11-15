@@ -4,7 +4,7 @@
 // (base vtable g_unk_7101a20998, then g_unk_7101a33fa0) at +0x2b0 and +0x2f0, then makes the post-construction
 // virtual call (slot 3). Defined under the `void()` symbol src/reflection/CChozoCommanderXLifeComponent.cpp
 // declares. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CLifeComponent.h"

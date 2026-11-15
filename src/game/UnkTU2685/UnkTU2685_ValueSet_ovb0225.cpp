@@ -4,7 +4,7 @@
 #include <new>
 
 #include "base/UnkHashStream.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
@@ -27,7 +27,7 @@ struct UnkValueSet_b0225 {
     union {
         CStrId key;  // 0x8
     };
-    base::UnkVector<UnkValueElem_b0225> values;  // 0x10
+    base::global::CRntVector<UnkValueElem_b0225> values;  // 0x10
     UnkHashStream_0x38 stream;                   // 0x38
     void* arg;                                   // 0x70
     bool flag;                                   // 0x78
@@ -36,7 +36,7 @@ struct UnkValueSet_b0225 {
 void fn_71010c7284(UnkValueSet_b0225* self, const CStrId* name, const CRntString* key, bool flag, void* arg) {
     new (&self->name) CStrId(*name);
     fn_7100000850(&self->key, *key, true);
-    new (&self->values) base::UnkVector<UnkValueElem_b0225>(5);
+    new (&self->values) base::global::CRntVector<UnkValueElem_b0225>(5);
     fn_710007be8c(&self->stream, 0x16, nullptr);
     self->arg = arg;
     self->flag = flag;

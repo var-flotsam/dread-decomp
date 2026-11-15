@@ -6,7 +6,7 @@
 #include <new>
 
 #include "base/UnkFreedVectorPair.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU83.h"
 #include "game_s2/UnkItem50.h"
@@ -43,8 +43,8 @@ struct UnkReleasedStrId_ovb0222 {
 
 // Two arrays that free their storage when destroyed, and an empty 2D bound (0x60 bytes).
 struct UnkListPair_ovb0222 {
-    base::UnkVector<void*> list0{0xf};
-    base::UnkVector<void*> list1{0xf};
+    base::global::CRntVector<void*> list0{0xf};
+    base::global::CRntVector<void*> list1{0xf};
     f32 min[2] = {__FLT_MAX__, __FLT_MAX__};
     f32 max[2] = {-__FLT_MAX__, -__FLT_MAX__};
     ~UnkListPair_ovb0222() {
@@ -55,19 +55,19 @@ struct UnkListPair_ovb0222 {
 static_assert(sizeof(UnkListPair_ovb0222) == 0x60, "layout");
 
 // Frees the pairs' arrays and the array itself.
-void fn_7100e52958(base::UnkVector<UnkListPair_ovb0222>* self) { self->Free(); }
+void fn_7100e52958(base::global::CRntVector<UnkListPair_ovb0222>* self) { self->Free(); }
 
 // Three arrays, two flags and two empty 2D bounds (0xa8 bytes), built value-initialised.
 struct UnkLayer_ovb0222 {
-    base::UnkVector<void*> list0{7};
+    base::global::CRntVector<void*> list0{7};
     u32 field_0x28 = 0;
     bool field_0x2c = false;
     bool field_0x2d = true;
     f32 min0[2] = {__FLT_MAX__, __FLT_MAX__};
     f32 max0[2] = {-__FLT_MAX__, -__FLT_MAX__};
     u32 field_0x40 = 0;
-    base::UnkVector<void*> list1{0xf};
-    base::UnkVector<void*> list2{0xf};
+    base::global::CRntVector<void*> list1{0xf};
+    base::global::CRntVector<void*> list2{0xf};
     f32 min1[2] = {__FLT_MAX__, __FLT_MAX__};
     f32 max1[2] = {-__FLT_MAX__, -__FLT_MAX__};
     ~UnkLayer_ovb0222() {
@@ -121,11 +121,11 @@ __attribute__((flatten)) void* fn_7100e4feb8(void* self, const void* other) {
     return &(*static_cast<UnkIdRecord_ovb0222*>(self) = *static_cast<const UnkIdRecord_ovb0222*>(other));
 }
 
-// Erases the list pair at the index from an array of them (UnkVector::EraseAt; the moved-from pair is destroyed
+// Erases the list pair at the index from an array of them (CRntVector::EraseAt; the moved-from pair is destroyed
 // again, its storage reloaded through the array).
 struct UnkCollection_Minimap_A6_b67;
 void fn_7100e53520(UnkCollection_Minimap_A6_b67* self_, u32 index) {
-    auto* self = reinterpret_cast<base::UnkVector<UnkFreedVectorPair>*>(self_);
+    auto* self = reinterpret_cast<base::global::CRntVector<UnkFreedVectorPair>*>(self_);
     if (index < self->count) {
         u64 i = index;
         self->data[i].~UnkFreedVectorPair();
@@ -143,8 +143,8 @@ void fn_7100e53520(UnkCollection_Minimap_A6_b67* self_, u32 index) {
 struct UnkKeyedItem_ovb0222 {
     u32 field_0x0 = 0, field_0x4 = 0, field_0x8 = 0, field_0xc = 0;
     UnkReleasedStrId_ovb0222 name;
-    base::UnkVector<void*> list0{0xf};
-    base::UnkVector<void*> list1{0xf};
+    base::global::CRntVector<void*> list0{0xf};
+    base::global::CRntVector<void*> list1{0xf};
     f32 min[2] = {__FLT_MAX__, __FLT_MAX__};
     f32 max[2] = {-__FLT_MAX__, -__FLT_MAX__};
     u32 field_0x78;

@@ -1,7 +1,7 @@
 // behaviortree::CIsThereFreeOffsetCondition: fn_71006360b8 is false while the condition has no
 // owner (+0x18), else asks fn_710063c0bc about the part at +0x80 of the manager g_unk_71726af468
 // (created on first use). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkManager_71726af468.h"
 #include "types.h"
 

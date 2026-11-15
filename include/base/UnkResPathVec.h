@@ -1,11 +1,11 @@
 #pragma once
 
-// A list of file-path ids, laid out as an UnkVector of CFilePathStrId (base/UnkVector.h): the
+// A list of file-path ids, laid out as an CRntVector of CFilePathStrId (base/global/CRntVector.h): the
 // resource registry's records keep one (src/base/UnkResRegistry.cpp), and a sub-area change builds
 // them (src/game/CSubAreaManager.cpp). Growing it is out of line (fn_7100018450); its copy
 // constructor is inlined where it is used. The name is a placeholder.
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "types.h"
 

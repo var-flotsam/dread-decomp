@@ -1,10 +1,10 @@
 // Grows an array of (string id, counted resource reference) pairs to `capacity` elements:
-// base::UnkVector's Reserve written out, as fn_71000231f4 (src/base/UnkUnit27/
+// base::global::CRntVector's Reserve written out, as fn_71000231f4 (src/base/UnkUnit27/
 // UnkCountedRefVector_Reserve_b53.cpp) with a string id in front of the reference. Two copies:
 // fn_71001d7b64 (unit 259) over the string pool and fn_71002682e8 (unit 351,
 // navmesh::CDynamicSmartLinkGroup) over the file-path pool. Names and layouts are placeholders.
 #include "base/UnkCountedResource.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -67,9 +67,9 @@ struct UnkNamedRef_b58 {
 };
 
 template <UnkStringPool** Pool>
-__attribute__((always_inline)) inline void Reserve(base::UnkVector<u8>* vector, u32 capacity) {
+__attribute__((always_inline)) inline void Reserve(base::global::CRntVector<u8>* vector, u32 capacity) {
     using T = UnkNamedRef_b58<Pool>;
-    auto* self = reinterpret_cast<base::UnkVector<T>*>(vector);
+    auto* self = reinterpret_cast<base::global::CRntVector<T>*>(vector);
     if (self->capacity < capacity) {
         auto* p = static_cast<T*>(self->allocator->vf_0x40((u64)capacity * sizeof(T), 8, self->flags));
         if (self->data) {
@@ -88,10 +88,10 @@ __attribute__((always_inline)) inline void Reserve(base::UnkVector<u8>* vector, 
 
 }  // namespace
 
-void fn_71001d7b64(base::UnkVector<u8>* vector, u32 capacity) {
+void fn_71001d7b64(base::global::CRntVector<u8>* vector, u32 capacity) {
     Reserve<&g_unk_7101d47108>(vector, capacity);
 }
 
-void fn_71002682e8(base::UnkVector<u8>* vector, u32 capacity) {
+void fn_71002682e8(base::global::CRntVector<u8>* vector, u32 capacity) {
     Reserve<&g_unk_7101d47200>(vector, capacity);
 }

@@ -10,7 +10,7 @@
 #include "base/UnkHashMap.h"
 #include "base/UnkNamedRegistry.h"
 #include "base/UnkNoArg.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/file/CPackManagerDevice.h"
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"

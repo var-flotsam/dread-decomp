@@ -15,7 +15,7 @@
 // Names and layouts are placeholders.
 #include "base/UnkDeferredSet.h"
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
@@ -65,7 +65,7 @@ struct UnkMapAreaEntry_ovb0109 {
 };
 static_assert(sizeof(UnkMapAreaEntry_ovb0109) == 0x18, "UnkMapAreaEntry_ovb0109 size");
 
-// An array of area entries laid out as base::UnkVector, moved by taking the other's storage.
+// An array of area entries laid out as base::global::CRntVector, moved by taking the other's storage.
 struct UnkMapAreaList_ovb0109 {
     UnkMapAreaEntry_ovb0109* data;
     u32 count;

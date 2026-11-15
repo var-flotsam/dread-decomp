@@ -3,7 +3,7 @@
 // layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CBossAIComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2595.h"

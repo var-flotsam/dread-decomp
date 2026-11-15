@@ -1,11 +1,11 @@
 // CSpawnPointComponent unit (tools/tu_map.py, unit 2704): appends a copy of a lazily resolved holder (0x40
-// bytes: vtable, callback vector, state, refcounted handle) to a base::UnkVector of them, growing the array
+// bytes: vtable, callback vector, state, refcounted handle) to a base::global::CRntVector of them, growing the array
 // by moving the entries (fn_710111fd80). Names and layouts are placeholders.
 #include <new>
 
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
@@ -38,7 +38,7 @@ struct UnkHolder_l131b98 : UnkHolderBase_l131b98 {
     void Destroy() { (*reinterpret_cast<void (**)(UnkHolder_l131b98*)>(vtable))(this); }
 };
 
-void fn_7101131b98(base::UnkVector<UnkHolder_l131b98>* self, const UnkHolder_l131b98* value) {
+void fn_7101131b98(base::global::CRntVector<UnkHolder_l131b98>* self, const UnkHolder_l131b98* value) {
     u32 n = self->count;
     u32 old_capacity = self->capacity;
     u32 new_capacity = old_capacity;

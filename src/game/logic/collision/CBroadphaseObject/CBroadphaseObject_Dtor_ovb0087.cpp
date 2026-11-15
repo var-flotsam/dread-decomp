@@ -3,7 +3,7 @@
 // handler nodes (handler, mask, next; count +0xf8, head +0x100, tail +0x108) freed through the list's allocator
 // (+0x110), the name id at +0x20 released, then the base destructor fn_7101043934. Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CGameObject.h"
 #include "game/logic/collision/CBroadphaseObject.h"

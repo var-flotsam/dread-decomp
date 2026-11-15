@@ -6,7 +6,7 @@
 // (the path id, the object) is linked into the bucket chosen by the path id's hash. Layout and
 // names are placeholders (fn_7100020b48 and its copies).
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 

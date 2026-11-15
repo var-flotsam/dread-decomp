@@ -7,7 +7,7 @@
 #include "game/CMultiModelUpdaterComponent.h"
 #include "types.h"
 #include "base/UnkStrIdPathPair.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 
 using base::global::CStrId;
 using base::global::UnkStringData;

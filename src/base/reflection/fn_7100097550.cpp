@@ -51,7 +51,7 @@ struct UnkKeyedArray {
 };
 static_assert(sizeof(UnkKeyedArray<int>) == sizeof(base::reflection::UnkReflArray), "UnkReflArray layout");
 
-// base::UnkVector's layout, with the move constructor UnkReflFunction's uses.
+// base::global::CRntVector's layout, with the move constructor UnkReflFunction's uses.
 template <class T>
 struct UnkVectorView {
     T* data;
@@ -70,7 +70,7 @@ struct UnkVectorView {
         other.capacity = 0;
     }
 };
-static_assert(sizeof(UnkVectorView<void*>) == sizeof(base::UnkVector<void*>), "UnkVector layout");
+static_assert(sizeof(UnkVectorView<void*>) == sizeof(base::global::CRntVector<void*>), "CRntVector layout");
 
 // A reflected function (UnkReflFunction) with its whole layout.
 struct UnkReflFunctionData {

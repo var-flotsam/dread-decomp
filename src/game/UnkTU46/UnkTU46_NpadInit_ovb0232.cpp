@@ -3,7 +3,7 @@
 // styles and nine supported ids (handheld first, then 0 to 7). Names and layouts are placeholders.
 #include <nn/hid.h>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU46.h"
 #include "types.h"
 

@@ -4,7 +4,7 @@
 // each copy is instantiated here with its own tag. Names and layouts are placeholders.
 #include <memory>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 extern char g_unk_7101aa50e0[];

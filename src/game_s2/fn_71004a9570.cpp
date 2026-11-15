@@ -1,9 +1,9 @@
 // Erases the list at the given index from an array of owned-object lists (fn_71004bf588 and its
-// copies are the same): destroys it and moves the later lists down by one (UnkVector::EraseAt,
+// copies are the same): destroys it and moves the later lists down by one (CRntVector::EraseAt,
 // inlined; the moved-from list is destroyed again, its storage reloaded through the array).
 #include "game_s2/UnkOwnedList.h"
 
-void fn_71004a9570(base::UnkVector<UnkOwnedList>* self, u32 index) {
+void fn_71004a9570(base::global::CRntVector<UnkOwnedList>* self, u32 index) {
     if (index < self->count) {
         u64 i = index;
         self->data[i].~UnkOwnedList();

@@ -134,7 +134,7 @@ Clang 9.0.1 has no arm64 macOS build; the x86_64 build runs under Rosetta 2. Bef
   `+0x18`. Layout in `include/base/reflection/CClass.h`. The getter's x3/x4 functions add class
   attributes and register member fields (`fn_7100096524`); an attribute is `attrs->Add<T>(KEY(), value)`.
   `UnkReflName` is `base::global::CStrId`. Two string-id types share one constructor
-  (`UnkStrIdBase` with `CStrId` and `UnkStrId` on top). `UnkVector<T>` (0x28 bytes) is the engine's
+  (`UnkStrIdBase` with `CStrId` and `UnkStrId` on top). `CRntVector<T>` (0x28 bytes) is the engine's
   growable array. Details and matching facts: `docs/JOURNAL.md` ("Key facts" of earlier sessions
   are kept there verbatim).
 - **Memory:** 1.82 GB `.bss`; the engine reserves its memory statically. **Codename:** "cazadora".

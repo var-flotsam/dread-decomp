@@ -2,7 +2,7 @@
 // fn_71011bfd28): whether rumble is enabled, from the rumble manager (created on first use), kept at
 // +0x2a1, the button's label (fn_71011c08dc) set to the matching "on"/"off" text, and the label
 // refreshed. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/input/UnkRumbleManager.h"
 #include "game/GUI/CButton.h"

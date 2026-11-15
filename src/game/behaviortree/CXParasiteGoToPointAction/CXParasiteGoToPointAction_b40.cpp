@@ -2,7 +2,7 @@
 // (fn_71006e2404). The action node's base constructor, the vtable, two empty string ids at +0x30 and
 // +0x38, cleared fields from +0x44 and an array at +0x78 (allocator flags 0xf). Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkBehaviorTree.h"
 #include "game/UnkTU1095.h"
@@ -16,7 +16,7 @@ struct UnkXParasiteGoToPointAction : UnkBehaviorTreeNodeBase {
     u8 field_0x44[0x2d];
     u8 pad_0x71[3];
     u32 field_0x74;
-    base::UnkVector<void*> field_0x78;
+    base::global::CRntVector<void*> field_0x78;
 };
 
 static inline __attribute__((always_inline)) void InitEmpty_xp(base::global::UnkStringData** id) {
@@ -33,5 +33,5 @@ void fn_71006e2404(UnkXParasiteGoToPointAction* self) {
     InitEmpty_xp(&self->field_0x38);
     __builtin_memset(self->field_0x44, 0, sizeof(self->field_0x44));
     self->field_0x74 = 0;
-    new (&self->field_0x78) base::UnkVector<void*>(0xf);
+    new (&self->field_0x78) base::global::CRntVector<void*>(0xf);
 }

@@ -4,7 +4,7 @@
 // neighbour flags (fn_7100e78060); and a run-length text of one row of the minimap grid, one symbol of
 // the character table per cell kind (fn_7100e7a110). Names and layouts are placeholders.
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "game/UnkTU2565.h"
 #include "game/UnkTU57.h"
@@ -146,7 +146,7 @@ void fn_7100e78060(UnkLinkedCell_e* self) {
     self->field_0x42 = 0;
 }
 
-struct UnkCharMap : base::UnkVector<u8> {
+struct UnkCharMap : base::global::CRntVector<u8> {
     UnkCharMap() = delete;
 };
 

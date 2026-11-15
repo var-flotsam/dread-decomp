@@ -1,7 +1,7 @@
 // From the CInputComponent unit: clears the component's input state: the pair at +0x9e0, the word at
 // +0x3c of each listener in the list at +0xab0, and the five flags at +0xb04 when any is set. Names
 // and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CInputComponent.h"
 #include "types.h"
 

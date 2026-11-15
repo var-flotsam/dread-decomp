@@ -4,7 +4,7 @@
 // when found, erase it (fn_7100f87480 / fn_7100f89fd8) and tell the music manager (created on
 // first use, game/sound/CMusicManager.h) through fn_7100fd9bf8 / fn_7100fd9c00 /
 // fn_7100fd9e94 / fn_7100fd9e9c. Return whether it was found. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"

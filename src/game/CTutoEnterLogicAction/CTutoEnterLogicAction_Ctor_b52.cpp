@@ -6,7 +6,7 @@
 // +0x80. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CTriggerLogicAction.h"
 #include "game/CTutoEnterLogicAction.h"
@@ -25,7 +25,7 @@ struct UnkTutoEnterCallable_b52;
 
 struct UnkTutoEnterCallbackSet_b52 {
     void* vtable;
-    base::UnkVector<UnkTutoEnterCallable_b52*> items;
+    base::global::CRntVector<UnkTutoEnterCallable_b52*> items;
     u32 field_0x30;
     void* owner;
 };
@@ -59,7 +59,7 @@ void fn_7100a585a8(UnkTutoEnterLogicAction_b52* self) {
     self->field_0x11 = false;
     new (&self->id) CStrId("", true);
     self->callbacks.vtable = g_unk_7101a20998 + 2;
-    new (&self->callbacks.items) base::UnkVector<UnkTutoEnterCallable_b52*>(0xf);
+    new (&self->callbacks.items) base::global::CRntVector<UnkTutoEnterCallable_b52*>(0xf);
     self->callbacks.field_0x30 = 0;
     self->callbacks.vtable = g_unk_7101a20950 + 2;
     self->callbacks.owner = nullptr;

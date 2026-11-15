@@ -1,9 +1,9 @@
 // CCutSceneDef's unit (tools/tu_map.py): the copy constructor and copy assignment of an array
-// (base::UnkVector's layout) of 0x40-byte elements, through the unit's out-of-line Reserve
+// (base::global::CRntVector's layout) of 0x40-byte elements, through the unit's out-of-line Reserve
 // (fn_7100c8b758) and push-back (fn_7100c8b894); the assignment destroys the old elements one by one
 // (fn_7100c8a490) first. The shape of fn_71010012d4 (src/game/GUI/CMissionLog/fn_7100b5bfdc.cpp).
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU2200.h"
 #include "types.h"
 

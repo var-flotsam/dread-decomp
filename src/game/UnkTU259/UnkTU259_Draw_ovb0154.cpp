@@ -5,7 +5,7 @@
 #include <new>
 
 #include "base/UnkBlockFreeList.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/tunable/CTunable.h"
 #include "game/UnkGlobal_710b372a98.h"
 #include "game/UnkTU177.h"
@@ -306,8 +306,8 @@ struct UnkScissor_b0154e {
 
 struct UnkOwner_b0154e {
     u8 pad_0x0[0x317a9e0];
-    base::UnkVector<UnkEntry_b0154e> entries;  // 0x317a9e0
-    u8 pad_0x317aXXX[0x317ae20 - 0x317a9e0 - sizeof(base::UnkVector<UnkEntry_b0154e>)];
+    base::global::CRntVector<UnkEntry_b0154e> entries;  // 0x317a9e0
+    u8 pad_0x317aXXX[0x317ae20 - 0x317a9e0 - sizeof(base::global::CRntVector<UnkEntry_b0154e>)];
     u64 field_0x317ae20;
     u8 pad_0x317ae28[0x317af68 - 0x317ae28];
     void* field_0x317af68;
@@ -331,7 +331,7 @@ void fn_71001d4f84(UnkOwner_b0154e* self, UnkEntry_b0154e* entry, UnkViewport_b0
     if (fn_7100159c80())
         fn_7100159f90(0, -1);
     fn_7100159530();
-    base::UnkVector<UnkEntry_b0154e>& v = self->entries;
+    base::global::CRntVector<UnkEntry_b0154e>& v = self->entries;
     u32 n = v.count - 1;
     typedef u32 __attribute__((may_alias)) UnkAliasCount;
     *reinterpret_cast<UnkAliasCount*>(&v.data[(s32)n].count) = 0;

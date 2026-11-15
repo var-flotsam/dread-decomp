@@ -2,7 +2,7 @@
 // as a table. Names and layouts are placeholders.
 #include "../../../lib/lua/lua.h"
 #include "../../../lib/lua/lauxlib.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
@@ -48,7 +48,7 @@ struct UnkPathArg_b0165 {
 
 // A path of arguments, built by fn_7100ad3118 from the text of a name (so it starts out unconstructed).
 union UnkPath_b0165 {
-    base::UnkVector<UnkPathArg_b0165> args;
+    base::global::CRntVector<UnkPathArg_b0165> args;
     UnkPath_b0165() {}
     ~UnkPath_b0165() {}
 };

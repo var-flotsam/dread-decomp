@@ -1,7 +1,7 @@
 // CChozoCommanderAIComponent's unit: a step that runs the base node routine fn_71003ace0c, releases the handle
 // at +0x15ce0 through fn_71004567dc, calls fn_7100ed78c0 on the sound player g_unk_71726af0b0 and then hands the
 // lazily created manager g_unk_71726af468 to fn_7100da928c (as fn_710048e38c). Names are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CAIManager/CTunableAIManager.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CBossAIComponent.h"

@@ -10,7 +10,7 @@
 #include "base/CDeviceQueue.h"
 #include "base/UnkDefaultAllocator.h"
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
@@ -84,7 +84,7 @@ struct CPackManagerDevice {
     UnkAllocator* allocator;  // +0x20
     u32 flags;                // +0x28
     u8 pad_0x2c[4];
-    UnkVector<UnkPack*> packs;  // +0x30
+    global::CRntVector<UnkPack*> packs;  // +0x30
     UnkCallback callback;       // +0x58
     nn::os::MutexType mutex;    // +0x68
 };
@@ -251,8 +251,8 @@ extern char g_unk_7101a1b108[];  // its vtable (GOT 0x7101cbc4d8)
 // Looks `key` up in the pack (unit 65); releases a file reference.
 bool fn_7100089124(UnkPack* pack, const UnkPackKey& key, UnkPackFindResult* out, const UnkPackFindFlags& flags);
 bool fn_71000890e0(UnkPack* pack, const UnkPackKey& key, bool flag);
-// The vector's element accessor, out of line (base/UnkVector.h, GrowAt).
-UnkPack** fn_710008aecc(base::UnkVector<UnkPack*>* v, u32 index);
+// The vector's element accessor, out of line (base/global/CRntVector.h, GrowAt).
+UnkPack** fn_710008aecc(base::global::CRntVector<UnkPack*>* v, u32 index);
 // Unmounts every pack, last first (stops at the first that won't).
 bool fn_710008a52c(CPackManagerDevice* self, bool flag);
 
@@ -280,7 +280,7 @@ UnkPack* fn_710008a648(CPackManagerDevice* self, const UnkPackKey& key, bool any
     result.found = false;
     result.flags = 0;
     UnkPack* found;
-    base::UnkVector<UnkPack*>* packs = &self->packs;
+    base::global::CRntVector<UnkPack*>* packs = &self->packs;
     if (!any) {
         for (u32 i = 0; i < self->packs.count; ++i) {
             UnkPack* pack = *fn_710008aecc(packs, i);
@@ -347,8 +347,8 @@ static inline void CopyConstruct(CPackManagerDevice* dst, const CPackManagerDevi
     if (&g_unk_7101d47108->empty != dst->name.data)
         ++dst->name.data->ref_count;
     __builtin_memcpy(&dst->mounted, &src->mounted, 0x1c);
-    base::UnkVector<UnkPack*>& v = dst->packs;
-    const base::UnkVector<UnkPack*>& o = src->packs;
+    base::global::CRntVector<UnkPack*>& v = dst->packs;
+    const base::global::CRntVector<UnkPack*>& o = src->packs;
     v.data = nullptr;
     v.count = 0;
     v.capacity = 0;

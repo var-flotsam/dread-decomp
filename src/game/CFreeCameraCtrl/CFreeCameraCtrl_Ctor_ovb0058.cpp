@@ -8,7 +8,7 @@
 #include <new>
 
 #include "base/UnkStrIdPathPair.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/CCameraCtrl.h"
@@ -97,7 +97,7 @@ struct UnkFreeCameraCtrl_b0058 {
     u8 pad_0x35[0xb0 - 0x35];
     UnkFreeCameraOwner_b0058* owner;  // 0xb0
     u8 pad_0xb8[0x1d8 - 0xb8];
-    base::UnkVector<UnkFreeCameraCallback_b0058*> list;  // 0x1d8
+    base::global::CRntVector<UnkFreeCameraCallback_b0058*> list;  // 0x1d8
     bool field_0x200;
     f32 field_0x204;
     f32 field_0x208;
@@ -173,7 +173,7 @@ static inline void ConstructRest(T* self) {
 void fn_71010ef0ec(UnkFreeCameraCtrl_b0058* self) {
     fn_71010ed044(reinterpret_cast<UnkBase_7100763ed4*>(self));
     self->vtable = &g_unk_7101cb1860[2];
-    new (&self->list) base::UnkVector<UnkFreeCameraCallback_b0058*>(0xf);
+    new (&self->list) base::global::CRntVector<UnkFreeCameraCallback_b0058*>(0xf);
     ConstructRest(self);
 }
 

@@ -1,6 +1,6 @@
 // Constructor of an array of 0x50-byte polymorphic elements with the given allocator flags,
 // reserving `n` elements up front.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/SCameraRailNode.h"
 #include "types.h"
 
@@ -38,15 +38,15 @@ struct UnkElem50 {
 };
 static_assert(sizeof(UnkElem50) == 0x50, "UnkElem50 layout");
 
-void fn_7100c073f0(base::UnkVector<UnkElem50>* self, u32 n, u32 flags) {
-    new (self) base::UnkVector<UnkElem50>(flags);
+void fn_7100c073f0(base::global::CRntVector<UnkElem50>* self, u32 n, u32 flags) {
+    new (self) base::global::CRntVector<UnkElem50>(flags);
     self->Reserve(n);
 }
 
 // An owner of such an array at 0x10: reserves `n` elements and sets the flag at 0x44.
 struct UnkElem50Owner {
     u8 unk_0x0[0x10];
-    base::UnkVector<UnkElem50> elems;
+    base::global::CRntVector<UnkElem50> elems;
     u8 unk_0x38[0xc];
     bool field_0x44;
 };

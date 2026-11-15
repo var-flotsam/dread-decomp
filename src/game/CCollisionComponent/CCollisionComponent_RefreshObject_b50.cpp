@@ -8,7 +8,7 @@ typedef void (*UnkCollisionRefresh_b50)(void* self, UnkCollisionRecord* record, 
 struct UnkCollisionContainer_b50 {
     UnkCollisionRefresh_b50* vtable;
     u8 unk_0x8[0x40];
-    base::UnkVector<UnkCollisionRecord> records;  // 0x48
+    base::global::CRntVector<UnkCollisionRecord> records;  // 0x48
     u8 unk_0x70[0x58];
     bool active;  // 0xc8
 };

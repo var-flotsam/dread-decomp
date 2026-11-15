@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 

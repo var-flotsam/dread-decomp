@@ -2,7 +2,7 @@
 // the new storage and destroying the old one (each entry owns a file-path id list and a string id).
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/sound/CMusicManager.h"
@@ -37,7 +37,7 @@ struct UnkPathEntry_0x18 {
     u64 field_0x10;
 };
 
-struct UnkPathList : base::UnkVector<UnkPathEntry_0x18> {
+struct UnkPathList : base::global::CRntVector<UnkPathEntry_0x18> {
     UnkPathList(const UnkPathList& other) asm("fn_7100fddf18");  // fn_7100fddf18
     ~UnkPathList() { Free(); }
 };
@@ -67,7 +67,7 @@ struct UnkEntry_0x60 {
           field_0x50(o.field_0x50), field_0x58(o.field_0x58) {}
 };
 
-void fn_7100fddcb4(base::UnkVector<UnkEntry_0x60>* v, u32 n) {
+void fn_7100fddcb4(base::global::CRntVector<UnkEntry_0x60>* v, u32 n) {
     if (v->capacity < n) {
         UnkEntry_0x60* p =
             static_cast<UnkEntry_0x60*>(v->allocator->vf_0x40((u64)n * sizeof(UnkEntry_0x60), 8, v->flags));

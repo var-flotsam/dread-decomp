@@ -3,7 +3,7 @@
 // +0x58 reset and its arrays freed, the string id at +0x50 released, then the counted reference at
 // +0x40 dropped and the component destructor fn_71010c4194. Names and layouts are placeholders.
 #include "base/UnkStrIdTable.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkComponent.h"
 #include "game_s2/UnkWeakHandle.h"

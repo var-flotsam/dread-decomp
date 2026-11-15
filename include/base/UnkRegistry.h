@@ -3,10 +3,10 @@
 // The 0x70-byte registry that the GUI script loader (src/game_hi/fn_71011b69d8.cpp) creates on
 // first use. Its vtable is at GOT 0x7101cbc3d8; the layout is inferred from the constructor
 // fn_7100087388 and the names are placeholders: an allocator and flags word (0xe), a pointer
-// vector (base/UnkVector.h, flags 0xe, reserved to 11 entries through its own allocator) and six
+// vector (base/global/CRntVector.h, flags 0xe, reserved to 11 entries through its own allocator) and six
 // zeroed words.
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkRegistry_0x70 {
@@ -14,7 +14,7 @@ struct UnkRegistry_0x70 {
     base::UnkAllocator* allocator;  // +0x8, fn_7100083990
     u32 flags;                      // +0x10, 0xe
     u8 pad_0x14[4];
-    base::UnkVector<void*> entries;  // +0x18
+    base::global::CRntVector<void*> entries;  // +0x18
     u64 field_0x40;
     u64 field_0x48;
     u64 field_0x50;

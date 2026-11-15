@@ -4,7 +4,7 @@
 // array with allocation flags 7. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU109.h"
 #include "game/logic/collision/CPolygonCollectionShape.h"
 #include "game/logic/collision/CShape.h"
@@ -19,7 +19,7 @@ struct UnkPolygonCollectionShapeView2 {
     u8 base_0x8[0xa0];
     UnkTileOutlineList outlines;
     bool field_0xe8;
-    base::UnkVector<u64> field_0xf0;
+    base::global::CRntVector<u64> field_0xf0;
 };
 static_assert(__builtin_offsetof(UnkPolygonCollectionShapeView2, field_0xf0) == 0xf0, "layout");
 
@@ -29,5 +29,5 @@ void fn_7100d66568(void* block) {
     self->vtable = g_unk_7101aa8b80 + 0x10;
     fn_7100123eb4(&self->outlines);
     self->field_0xe8 = false;
-    new (&self->field_0xf0) base::UnkVector<u64>(7);
+    new (&self->field_0xf0) base::global::CRntVector<u64>(7);
 }

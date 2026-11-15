@@ -4,7 +4,7 @@
 // layouts are placeholders.
 #include <new>
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
@@ -36,7 +36,7 @@ using base::math::CVector3D;
 struct UnkRedenkiSwarmController;
 extern u32 g_unk_71726fc5ac;
 
-// The layout of a base::UnkVector, freed in place.
+// The layout of a base::global::CRntVector, freed in place.
 struct UnkRedenkiSubList_ovb0084 {
     void* data;
     u32 count;
@@ -80,7 +80,7 @@ static inline __attribute__((always_inline)) void ResizeLists(UnkRedenkiSubLists
     }
 }
 
-// The layout of a base::UnkVector of flags.
+// The layout of a base::global::CRntVector of flags.
 struct UnkRedenkiFlagArray_Reset_ovb0084 {
     bool* data;
     u32 count;
@@ -598,7 +598,7 @@ void fn_7100656238(UnkRedenkiClose_ovb0084* self) {
 // ---- fn_7100656da8: the attack state's entry: every group's flag (+0x4d8, grown on demand) is cleared, bit 0 of +0x338
 // too, +0x558 takes the tuning's +0x4a0 and +0x528 is cleared. ----
 
-// The layout of a base::UnkVector of flags, grown on demand by SetAt.
+// The layout of a base::global::CRntVector of flags, grown on demand by SetAt.
 struct UnkRedenkiFlagArray_Attack_ovb0084 {
     bool* data;
     u32 count;
@@ -922,7 +922,7 @@ struct UnkRedenkiCell_ovb0084 {
 };
 static_assert(sizeof(UnkRedenkiCell_ovb0084) == 0x28, "UnkRedenkiCell_ovb0084 layout");
 
-// The layout of a base::UnkVector of cells, grown on demand by At.
+// The layout of a base::global::CRntVector of cells, grown on demand by At.
 struct UnkRedenkiCellArray_ovb0084 {
     UnkRedenkiCell_ovb0084* data;
     u32 count;
@@ -1119,7 +1119,7 @@ bool fn_710065ab50(UnkRedenkiHandler_ovb0084* self, UnkRedenkiMemberFx_ovb0084* 
 
 // ---- fn_710065b430: Reserve of an array of named lists (0x38 bytes: a list, a word, a string id), moved over one by one. ----
 
-// The layout of a base::UnkVector, freed when destroyed and left empty when moved.
+// The layout of a base::global::CRntVector, freed when destroyed and left empty when moved.
 template <class T>
 struct UnkOwnedVector_ovb0084 {
     T* data;
@@ -1164,7 +1164,7 @@ struct UnkRedenkiNamedList_ovb0084 {
 };
 static_assert(sizeof(UnkRedenkiNamedList_ovb0084) == 0x38, "UnkRedenkiNamedList_ovb0084 layout");
 
-void fn_710065b430(base::UnkVector<UnkRedenkiNamedList_ovb0084>* self, u32 n) {
+void fn_710065b430(base::global::CRntVector<UnkRedenkiNamedList_ovb0084>* self, u32 n) {
     if (self->capacity >= n)
         return;
     UnkRedenkiNamedList_ovb0084* p = static_cast<UnkRedenkiNamedList_ovb0084*>(
@@ -1203,7 +1203,7 @@ struct UnkRedenkiSlot_ovb0084 {
 };
 static_assert(sizeof(UnkRedenkiSlot_ovb0084) == 0x20, "UnkRedenkiSlot_ovb0084 layout");
 
-// The layout of a base::UnkVector of slots.
+// The layout of a base::global::CRntVector of slots.
 struct UnkRedenkiSlotArray_ovb0084 {
     UnkRedenkiSlot_ovb0084* data;
     u32 count;

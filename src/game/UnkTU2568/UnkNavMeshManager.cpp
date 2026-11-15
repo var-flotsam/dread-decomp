@@ -4,7 +4,7 @@
 // edges that the position lies on and keeps the closer of the two results); fn_7100ebf278 is the
 // manager's constructor.
 #include "base/UnkParallelFind.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"

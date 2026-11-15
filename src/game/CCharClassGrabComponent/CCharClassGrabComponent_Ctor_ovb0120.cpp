@@ -4,7 +4,7 @@
 // byte, both guarded statics) at +0x90 and 0x10cc at +0x18. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/CCharClassComponent.h"

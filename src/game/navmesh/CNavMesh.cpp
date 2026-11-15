@@ -10,7 +10,7 @@
 #include <algorithm>
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/file/CThreadSafeDevice.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
@@ -750,7 +750,7 @@ bool fn_710027bbf0(UnkNavMesh* mesh, const CVector2D* point, u32 flags, u64 filt
 // then five maps from string ids to per-cell data, a per-cell pointer table, the mesh items
 // (src/game/navmesh/UnkNavMeshItem.cpp, each read by fn_71002b3524 and linked from the cells it
 // covers), the links between items and last, for every side of every cell, the sides the walks
-// round its two corners end on (fn_7100279fac). The containers are base::UnkVector arrays and maps
+// round its two corners end on (fn_7100279fac). The containers are base::global::CRntVector arrays and maps
 // of two parallel arrays (values, then string-id keys; src/base/tunable/CTunable/fn_71001358e0.cpp reserves most
 // of them). Layouts and names are placeholders inferred from the code.
 #include "UnkClone.h"
@@ -843,7 +843,7 @@ static inline void InitMap(UnkNavLoadMap<V>* map, base::UnkAllocator* allocator)
     map->allocator = allocator;
 }
 template <class T>
-static inline void InitVector(base::UnkVector<T>* v, T* data, u32 capacity, base::UnkAllocator* allocator) {
+static inline void InitVector(base::global::CRntVector<T>* v, T* data, u32 capacity, base::UnkAllocator* allocator) {
     v->data = data;
     v->count = 0;
     v->capacity = capacity;
@@ -856,7 +856,7 @@ static inline void InitVector(base::UnkVector<T>* v, T* data, u32 capacity, base
 // The capacity an append grows the array to: the next multiple of the step once it is full. A
 // full array that cannot grow (no step) hangs, as in the original.
 template <class T>
-__attribute__((always_inline)) static inline u32 GrownCapacity(const base::UnkVector<T>* v) {
+__attribute__((always_inline)) static inline u32 GrownCapacity(const base::global::CRntVector<T>* v) {
     u32 n = v->count;
     u32 grown = v->capacity;
     if (grown <= n && v->step != 0)
@@ -870,7 +870,7 @@ __attribute__((always_inline)) static inline u32 GrownCapacity(const base::UnkVe
 // The element at `index` of an array whose reserve is out of line (`reserve`), growing a growable
 // array to cover it first (`init` constructs the new elements).
 template <class T, class Reserve, class Init>
-__attribute__((always_inline)) static inline T* GrowAt(base::UnkVector<T>* v, u32 index, Reserve reserve, Init init) {
+__attribute__((always_inline)) static inline T* GrowAt(base::global::CRntVector<T>* v, u32 index, Reserve reserve, Init init) {
     if (v->field_0x14 && v->count <= index) {
         u32 cap = v->capacity;
         if (cap <= index && v->step != 0)
@@ -892,12 +892,12 @@ struct UnkClone_fn_7100279a5c;
 using UnkNavLoadSlot3b0 = UnkCloneElem<UnkClone_fn_71002797bc, 8>;
 using UnkNavLoadSlot338 = UnkCloneElem<UnkClone_fn_710027990c, 8>;
 using UnkNavLoadSlot360 = UnkCloneElem<UnkClone_fn_7100279a5c, 8>;
-extern template UnkNavLoadSlot3b0& base::UnkVector<UnkNavLoadSlot3b0>::GrowAt(u32);
-extern template UnkNavLoadSlot338& base::UnkVector<UnkNavLoadSlot338>::GrowAt(u32);
-extern template UnkNavLoadSlot360& base::UnkVector<UnkNavLoadSlot360>::GrowAt(u32);
+extern template UnkNavLoadSlot3b0& base::global::CRntVector<UnkNavLoadSlot3b0>::GrowAt(u32);
+extern template UnkNavLoadSlot338& base::global::CRntVector<UnkNavLoadSlot338>::GrowAt(u32);
+extern template UnkNavLoadSlot360& base::global::CRntVector<UnkNavLoadSlot360>::GrowAt(u32);
 
 template <class P, class S>
-static inline P*& SlotAt(base::UnkVector<S>* v, u32 index) {
+static inline P*& SlotAt(base::global::CRntVector<S>* v, u32 index) {
     return *reinterpret_cast<P**>(v->GrowAt(index).data);
 }
 
@@ -917,8 +917,8 @@ struct UnkNavLoadItem;
 // array is copied by fn_710027ebe4).
 struct UnkNavLoadCell {
     u16 id;
-    base::UnkVector<u16> vertices;          // +0x8: the side count is the count's low byte
-    base::UnkVector<UnkNavMeshEdge> edges;  // +0x30
+    base::global::CRntVector<u16> vertices;          // +0x8: the side count is the count's low byte
+    base::global::CRntVector<UnkNavMeshEdge> edges;  // +0x30
     u64 field_0x58;                         // the mesh
     u64 field_0x60;
     UnkNavLoadItem* item;  // +0x68: the item the cell is in
@@ -1028,8 +1028,8 @@ struct alignas(8) UnkNavLoadItem {
     ~UnkNavLoadItem() { fn_71002b3328(Get()); }
 
     UnkNavMeshItem* Get() { return reinterpret_cast<UnkNavMeshItem*>(this); }
-    base::UnkVector<u16>* Cells() { return reinterpret_cast<base::UnkVector<u16>*>(raw + 0xc8); }
-    base::UnkVector<UnkNavLoadLink>* Links() { return reinterpret_cast<base::UnkVector<UnkNavLoadLink>*>(raw + 0xf0); }
+    base::global::CRntVector<u16>* Cells() { return reinterpret_cast<base::global::CRntVector<u16>*>(raw + 0xc8); }
+    base::global::CRntVector<UnkNavLoadLink>* Links() { return reinterpret_cast<base::global::CRntVector<UnkNavLoadLink>*>(raw + 0xf0); }
 };
 
 union UnkNavLoadItemBuf {
@@ -1040,7 +1040,7 @@ union UnkNavLoadItemBuf {
 };
 
 // The item array's element accessor (it grows a growable array to cover the index).
-UnkNavMeshItem* fn_7100279dd4(base::UnkVector<UnkNavMeshItem>* self, u32 index);
+UnkNavMeshItem* fn_7100279dd4(base::global::CRntVector<UnkNavMeshItem>* self, u32 index);
 
 // An entry of an item's list (UnkNavMeshItemEntry's layout): a key, a counted weak handle and a
 // value.
@@ -1115,10 +1115,10 @@ struct alignas(8) UnkNavLoadRecord {
     u8 pad_0x4e[2];
     u32 field_0x50;
     u8 pad_0x54[4];
-    base::UnkVector<u16> field_0x58;
-    base::UnkVector<UnkIdKindKey> field_0x80;
-    base::UnkVector<UnkIdKindKey> field_0xa8;
-    base::UnkVector<UnkIdKindKey> field_0xd0;
+    base::global::CRntVector<u16> field_0x58;
+    base::global::CRntVector<UnkIdKindKey> field_0x80;
+    base::global::CRntVector<UnkIdKindKey> field_0xa8;
+    base::global::CRntVector<UnkIdKindKey> field_0xd0;
     void* field_0xf8;
 };
 static_assert(__builtin_offsetof(UnkNavLoadRecord, field_0x38) == 0x38, "UnkNavLoadRecord layout");
@@ -1153,19 +1153,19 @@ struct UnkNavLoadPathRecord {
 static_assert(sizeof(UnkNavLoadPathRecord) == 0x108, "UnkNavLoadPathRecord layout");
 
 struct UnkWordObject;
-void fn_7100279bac(base::UnkVector<UnkWordObject>* self, u32 capacity, u32 flags);  // constructor
-void fn_7100279ca0(base::UnkVector<UnkWordObject>* self, const UnkWordObject* value);
-static inline base::UnkVector<UnkWordObject>* AsWordObjects(base::UnkVector<UnkNavLoadPathRecord>* v) {
-    return reinterpret_cast<base::UnkVector<UnkWordObject>*>(v);
+void fn_7100279bac(base::global::CRntVector<UnkWordObject>* self, u32 capacity, u32 flags);  // constructor
+void fn_7100279ca0(base::global::CRntVector<UnkWordObject>* self, const UnkWordObject* value);
+static inline base::global::CRntVector<UnkWordObject>* AsWordObjects(base::global::CRntVector<UnkNavLoadPathRecord>* v) {
+    return reinterpret_cast<base::global::CRntVector<UnkWordObject>*>(v);
 }
 
 // The maps of +0x360 and +0x388 and their out-of-line parts.
-using UnkNavLoadRecordMap = UnkNavLoadMap<base::UnkVector<UnkNavLoadPathRecord>>;
+using UnkNavLoadRecordMap = UnkNavLoadMap<base::global::CRntVector<UnkNavLoadPathRecord>>;
 using UnkNavLoadRecordMaps = UnkNavLoadMap<UnkNavLoadRecordMap>;
-using UnkNavLoadCellRecordMap = UnkNavLoadMap<base::UnkVector<UnkNavLoadSlot360>>;
+using UnkNavLoadCellRecordMap = UnkNavLoadMap<base::global::CRntVector<UnkNavLoadSlot360>>;
 void fn_710027f348(UnkNavLoadMap<UnkNavLoadCellRecordMap>* self, u32 capacity);
 void fn_710027f8ac(UnkNavLoadRecordMaps* self);  // releases the keys and empties the values
-void fn_710027f9d0(base::UnkVector<UnkNavLoadRecordMaps>* self, u32 capacity);
+void fn_710027f9d0(base::global::CRntVector<UnkNavLoadRecordMaps>* self, u32 capacity);
 void fn_710027fb10(UnkNavLoadRecordMap* self);  // the same for the inner maps
 void fn_710027fc88(UnkNavLoadRecordMaps* self, u32 capacity);
 
@@ -1196,16 +1196,16 @@ void fn_7100279fac(UnkNavMesh* self, const u16* cell, const u8* side, bool forwa
 // The members of the mesh the loader fills.
 struct UnkNavLoadMesh {
     u8 pad_0x0[0x290];
-    base::UnkVector<UnkNavLoadCell> cells;                          // +0x290
-    base::UnkVector<UnkNavLoadVertex> vertices;                     // +0x2b8
+    base::global::CRntVector<UnkNavLoadCell> cells;                          // +0x290
+    base::global::CRntVector<UnkNavLoadVertex> vertices;                     // +0x2b8
     u8 pad_0x2e0[0x8];
-    UnkNavLoadMap<base::UnkVector<u16>> field_0x2e8;                // cell id lists
-    UnkNavLoadMap<base::UnkVector<UnkIdKindKey>> field_0x310;       // key lists
-    UnkNavLoadMap<base::UnkVector<UnkNavLoadSlot338>> field_0x338;  // per cell: a record array
+    UnkNavLoadMap<base::global::CRntVector<u16>> field_0x2e8;                // cell id lists
+    UnkNavLoadMap<base::global::CRntVector<UnkIdKindKey>> field_0x310;       // key lists
+    UnkNavLoadMap<base::global::CRntVector<UnkNavLoadSlot338>> field_0x338;  // per cell: a record array
     UnkNavLoadMap<UnkNavLoadCellRecordMap> field_0x360;             // per name pair, per cell
-    UnkNavLoadMap<base::UnkVector<UnkNavLoadRecordMaps>> field_0x388;
-    base::UnkVector<UnkNavLoadSlot3b0> field_0x3b0;  // per cell
-    base::UnkVector<UnkNavLoadItem> items;           // +0x3d8
+    UnkNavLoadMap<base::global::CRntVector<UnkNavLoadRecordMaps>> field_0x388;
+    base::global::CRntVector<UnkNavLoadSlot3b0> field_0x3b0;  // per cell
+    base::global::CRntVector<UnkNavLoadItem> items;           // +0x3d8
     u8 tree[0x8];                                    // +0x400
 };
 static_assert(__builtin_offsetof(UnkNavLoadMesh, field_0x2e8) == 0x2e8, "UnkNavLoadMesh layout");
@@ -1215,13 +1215,13 @@ static_assert(__builtin_offsetof(UnkNavLoadMesh, tree) == 0x400, "UnkNavLoadMesh
 // The cell at `index`, growing a growable array to cover it.
 __attribute__((always_inline)) static inline UnkNavLoadCell* CellAt(UnkNavLoadMesh* m, u32 index) {
     return GrowAt(
-        &m->cells, index, [](base::UnkVector<UnkNavLoadCell>* v, u32 n) { fn_7100279600(v, n); },
+        &m->cells, index, [](base::global::CRntVector<UnkNavLoadCell>* v, u32 n) { fn_7100279600(v, n); },
         [](UnkNavLoadCell* c) { fn_71002af630(AsCell(c)); });
 }
 
 __attribute__((always_inline)) static inline UnkNavLoadItem* ItemAt(UnkNavLoadMesh* m, u32 index) {
     return reinterpret_cast<UnkNavLoadItem*>(
-        fn_7100279dd4(reinterpret_cast<base::UnkVector<UnkNavMeshItem>*>(&m->items), index));
+        fn_7100279dd4(reinterpret_cast<base::global::CRntVector<UnkNavMeshItem>*>(&m->items), index));
 }
 
 // The members the three record lists share: three words narrowed to flags and counters, two
@@ -1257,7 +1257,7 @@ __attribute__((always_inline)) static inline void ReadRecordBody(UnkNavLoadRecor
 }
 
 // A key list: the count, then each key's id and kind as words.
-__attribute__((always_inline)) static inline void ReadKeys(base::UnkVector<UnkIdKindKey>* keys, UnkFileReader* f) {
+__attribute__((always_inline)) static inline void ReadKeys(base::global::CRntVector<UnkIdKindKey>* keys, UnkFileReader* f) {
     s32 n = 0;
     Read(f, &n, 4);
     keys->Reserve(n);
@@ -1311,7 +1311,7 @@ __attribute__((always_inline)) static inline void ReadRecordTail(UnkNavLoadRecor
 // uninitialised here too.
 // NON_MATCHING(minor): the frame layout, register allocation and block order differ throughout
 // (the same calls, loads and stores in the same order); the first key list's append
-// (base::UnkVector<UnkIdKindKey>::EmplaceBack) is a weak out-of-line instantiation where the
+// (base::global::CRntVector<UnkIdKindKey>::EmplaceBack) is a weak out-of-line instantiation where the
 // original inlines it; the graph array's element accessor keeps an element-construction loop the
 // original drops (unreachable: it only runs once the count has wrapped round to 0); the "rb" mode
 // literal is this file's own.
@@ -1380,7 +1380,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
                     fn_710027ee38(AsIdMap(&map), map.step + map.count);
                 InitVector(map.AppendKey(key.id), static_cast<u16*>(nullptr), 0, a);
                 ++map.count;
-                base::UnkVector<u16>* list = &map.values[map.IndexOf(key.id)];
+                base::global::CRntVector<u16>* list = &map.values[map.IndexOf(key.id)];
                 list->Reserve(n);
                 for (s32 j = 0; j < n; ++j) {
                     u32 v = 0;
@@ -1409,7 +1409,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
                 fn_710027efe8(AsIdMap(&map), map.step + map.count);
             InitVector(map.AppendKey(key.id), data, capacity, a);
             ++map.count;
-            base::UnkVector<UnkIdKindKey>* keys = &map.values[map.IndexOf(key.id)];
+            base::global::CRntVector<UnkIdKindKey>* keys = &map.values[map.IndexOf(key.id)];
             s32 ngroups = 0;
             Read(f, &ngroups, 4);
             for (s32 j = 0; j < ngroups; ++j) {
@@ -1442,7 +1442,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
                 fn_710027f198(AsIdMap(&map), map.step + map.count);
             InitVector(map.AppendKey(key.id), static_cast<UnkNavLoadSlot338*>(nullptr), 0, a);
             ++map.count;
-            base::UnkVector<UnkNavLoadSlot338>* cells = &map.values[map.IndexOf(key.id)];
+            base::global::CRntVector<UnkNavLoadSlot338>* cells = &map.values[map.IndexOf(key.id)];
             cells->Reserve(ncells);
             for (s32 j = 0; j < ncells; ++j)
                 SlotAt<void>(cells, j) = nullptr;
@@ -1451,15 +1451,15 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
             for (s32 j = 0; j < nused; ++j) {
                 u32 cell = 0;
                 Read(f, &cell, 4);
-                auto* list = new (fn_71000839a0(0x28, 0x57)) base::UnkVector<UnkObject_0x100>(0xf);
-                SlotAt<base::UnkVector<UnkObject_0x100>>(cells, cell) = list;
+                auto* list = new (fn_71000839a0(0x28, 0x57)) base::global::CRntVector<UnkObject_0x100>(0xf);
+                SlotAt<base::global::CRntVector<UnkObject_0x100>>(cells, cell) = list;
                 s32 n = 0;
                 Read(f, &n, 4);
                 for (s32 k = 0; k < n; ++k) {
                     UnkNavLoadRecordBuf rec;
                     rec.data.field_0x2 = cell;
                     ReadRecordBody(&rec.data, f);
-                    SlotAt<base::UnkVector<UnkObject_0x100>>(cells, cell)->PushBackCopy(*AsObject(&rec.data));
+                    SlotAt<base::global::CRntVector<UnkObject_0x100>>(cells, cell)->PushBackCopy(*AsObject(&rec.data));
                 }
             }
         }
@@ -1484,7 +1484,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
                 fn_710027f54c(AsIdMap(inner), inner->step + inner->count);
             InitVector(inner->AppendKey(key2.id), static_cast<UnkNavLoadSlot360*>(nullptr), 0, a);
             ++inner->count;
-            base::UnkVector<UnkNavLoadSlot360>* cells = &inner->values[inner->IndexOf(key2.id)];
+            base::global::CRntVector<UnkNavLoadSlot360>* cells = &inner->values[inner->IndexOf(key2.id)];
             cells->Reserve(ncells);
             for (s32 j = 0; j < ncells; ++j)
                 SlotAt<void>(cells, j) = nullptr;
@@ -1495,9 +1495,9 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
                 Read(f, &cell, 4);
                 s32 n = 0;
                 Read(f, &n, 4);
-                auto* list = static_cast<base::UnkVector<UnkNavLoadPathRecord>*>(fn_71000839a0(0x28, 0x57));
+                auto* list = static_cast<base::global::CRntVector<UnkNavLoadPathRecord>*>(fn_71000839a0(0x28, 0x57));
                 fn_7100279bac(AsWordObjects(list), n, 0x57);
-                SlotAt<base::UnkVector<UnkNavLoadPathRecord>>(cells, cell) = list;
+                SlotAt<base::global::CRntVector<UnkNavLoadPathRecord>>(cells, cell) = list;
                 for (s32 k = 0; k < n; ++k) {
                     s32 word = -1;
                     Read(f, &word, 4);
@@ -1505,7 +1505,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
                     rec.data.field_0x2 = cell;
                     ReadRecordBody(&rec.data, f);
                     ReadRecordTail(&rec.data, f);
-                    fn_7100279ca0(AsWordObjects(SlotAt<base::UnkVector<UnkNavLoadPathRecord>>(cells, cell)),
+                    fn_7100279ca0(AsWordObjects(SlotAt<base::global::CRntVector<UnkNavLoadPathRecord>>(cells, cell)),
                                   reinterpret_cast<const UnkWordObject*>(&rec));
                 }
             }
@@ -1522,7 +1522,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
                 fn_710027f6fc(AsIdMap(&map), map.step + map.count);
             InitVector(map.AppendKey(key.id), static_cast<UnkNavLoadRecordMaps*>(nullptr), 0, a);
             ++map.count;
-            base::UnkVector<UnkNavLoadRecordMaps>* graphs = &map.values[map.IndexOf(key.id)];
+            base::global::CRntVector<UnkNavLoadRecordMaps>* graphs = &map.values[map.IndexOf(key.id)];
             s32 ngraph = 0;
             Read(f, &ngraph, 4);
             for (s32 j = 0; j < ngraph; ++j) {
@@ -1536,7 +1536,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
                 }
                 UnkNavLoadRecordMaps* graph = GrowAt(
                     graphs, graphs->count - 1,
-                    [](base::UnkVector<UnkNavLoadRecordMaps>* v, u32 n) { fn_710027f9d0(v, n); },
+                    [](base::global::CRntVector<UnkNavLoadRecordMaps>* v, u32 n) { fn_710027f9d0(v, n); },
                     [](UnkNavLoadRecordMaps* p) { InitMap(p, fn_7100083990()); });
                 s32 nnodes = 0;
                 Read(f, &nnodes, 4);
@@ -1566,7 +1566,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
                         fn_710027fe8c(AsIdMap(node), node->step + node->count);
                     InitVector(node->AppendKey(key3.id), data, capacity, a3);
                     ++node->count;
-                    base::UnkVector<UnkNavLoadPathRecord>* list = &node->values[node->IndexOf(key3.id)];
+                    base::global::CRntVector<UnkNavLoadPathRecord>* list = &node->values[node->IndexOf(key3.id)];
                     for (s32 r = 0; r < n; ++r) {
                         s32 word = -1;
                         Read(f, &word, 4);
@@ -1622,7 +1622,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
                 }
                 UnkNavLoadItem* it = ItemAt(m, m->items.count - 1);
                 fn_71002b3524(it->Get(), &reader.file);
-                base::UnkVector<u16>* covered = it->Cells();
+                base::global::CRntVector<u16>* covered = it->Cells();
                 for (u16 *p = covered->data, *end = p + covered->count; p != end; ++p)
                     CellAt(m, *p)->item = it;
             }

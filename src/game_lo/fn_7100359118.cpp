@@ -3,7 +3,7 @@
 // clears the remaining fields.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU437.h"
 #include "types.h"
 
@@ -17,16 +17,16 @@ struct UnkAllocHandle_7100359118 {
 
 struct UnkObject_7100359118 {
     char* vtable;
-    base::UnkVector<u64> field_0x8;
-    base::UnkVector<u64> field_0x30;
-    base::UnkVector<u64> field_0x58;
-    base::UnkVector<u64> field_0x80;
-    base::UnkVector<u64> field_0xa8;
-    base::UnkVector<u64> field_0xd0;
-    base::UnkVector<u64> field_0xf8;
-    base::UnkVector<u64> field_0x120;
+    base::global::CRntVector<u64> field_0x8;
+    base::global::CRntVector<u64> field_0x30;
+    base::global::CRntVector<u64> field_0x58;
+    base::global::CRntVector<u64> field_0x80;
+    base::global::CRntVector<u64> field_0xa8;
+    base::global::CRntVector<u64> field_0xd0;
+    base::global::CRntVector<u64> field_0xf8;
+    base::global::CRntVector<u64> field_0x120;
     UnkAllocHandle_7100359118 field_0x148;
-    base::UnkVector<u64> field_0x158;
+    base::global::CRntVector<u64> field_0x158;
     u64 field_0x180;
     u64 field_0x188;
     bool field_0x190;
@@ -34,21 +34,21 @@ struct UnkObject_7100359118 {
 
 void fn_7100359118(UnkObject_7100359118* self) {
     self->vtable = g_unk_7101aa9b20 + 0x10;
-    new (&self->field_0x8) base::UnkVector<u64>(0xf);
-    new (&self->field_0x30) base::UnkVector<u64>(0xf);
-    new (&self->field_0x58) base::UnkVector<u64>(0xf);
-    new (&self->field_0x80) base::UnkVector<u64>(0xf);
-    new (&self->field_0xa8) base::UnkVector<u64>(0xf);
-    new (&self->field_0xd0) base::UnkVector<u64>(0xf);
-    new (&self->field_0xf8) base::UnkVector<u64>(0xf);
-    new (&self->field_0x120) base::UnkVector<u64>(0xf);
+    new (&self->field_0x8) base::global::CRntVector<u64>(0xf);
+    new (&self->field_0x30) base::global::CRntVector<u64>(0xf);
+    new (&self->field_0x58) base::global::CRntVector<u64>(0xf);
+    new (&self->field_0x80) base::global::CRntVector<u64>(0xf);
+    new (&self->field_0xa8) base::global::CRntVector<u64>(0xf);
+    new (&self->field_0xd0) base::global::CRntVector<u64>(0xf);
+    new (&self->field_0xf8) base::global::CRntVector<u64>(0xf);
+    new (&self->field_0x120) base::global::CRntVector<u64>(0xf);
     new (&self->field_0x148) UnkAllocHandle_7100359118;
-    new (&self->field_0x158) base::UnkVector<u64>(0xe);
+    new (&self->field_0x158) base::global::CRntVector<u64>(0xe);
     self->field_0x180 = 0;
     self->field_0x188 = 0;
 
     // Resize to 11 zeroed entries.
-    base::UnkVector<u64>& v = self->field_0x158;
+    base::global::CRntVector<u64>& v = self->field_0x158;
     u32 n = v.count;
     if (n < 11) {
         if (v.capacity < 11) {

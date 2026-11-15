@@ -2,7 +2,7 @@
 // (src/game_s7/fn_7100ef1e1c.cpp destroys one, fn_7100083c00 frees it): clearing an array, and
 // assigning a pair that either holds its key and set or refers to them.
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkNamedIds;  // src/game/CSubAreaManager.cpp

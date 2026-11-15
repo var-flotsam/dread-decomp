@@ -4,7 +4,7 @@
 // its vtable. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 extern char g_unk_7101caa330[];  // the holder's base vtable

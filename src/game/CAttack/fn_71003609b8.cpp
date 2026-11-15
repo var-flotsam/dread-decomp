@@ -1,6 +1,6 @@
 // When the owning actor's AI component (a CCharClassAIComponent) has a flag set, hands the
 // actor to a lazily created manager; then pokes two other actor components.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkAttack.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkTimelineComponent.h"

@@ -7,7 +7,7 @@
 #include <new>
 
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCharClassSceneModelAnimationComponent.h"
 #include "types.h"
 

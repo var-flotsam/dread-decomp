@@ -3,10 +3,10 @@
 // out of the source. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
-// An array of the engine's growable-array layout (base/UnkVector.h); moves take the other's array.
+// An array of the engine's growable-array layout (base/global/CRntVector.h); moves take the other's array.
 struct UnkMovedArray {
     void* data;
     u32 count;

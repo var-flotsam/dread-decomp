@@ -8,7 +8,7 @@
 // src/game/sound/CMusicManager/CMusicManager_b41.cpp and src/game/CLightManager/CLightManager_b41.cpp.
 // Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection.h"
 #include "game/UnkTU2604.h"

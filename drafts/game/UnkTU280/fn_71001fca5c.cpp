@@ -1,6 +1,6 @@
 // Unit 280 (tools/tu_map.py): the scene manager's entry arrays (0x28-byte entries, src/engine/scene/CSceneManager.cpp)
 // and their out-of-line operations. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkSceneEntry;
@@ -39,9 +39,9 @@ struct UnkEntry_ovb0254 {
 };
 static_assert(sizeof(UnkEntry_ovb0254) == 0x28, "entry layout");
 
-using EntryVec_ovb0254 = base::UnkVector<UnkEntry_ovb0254>;
+using EntryVec_ovb0254 = base::global::CRntVector<UnkEntry_ovb0254>;
 
-void fn_71001fe390(base::UnkVector<UnkSceneEntry>* self_, const UnkSceneEntry* entry_) {
+void fn_71001fe390(base::global::CRntVector<UnkSceneEntry>* self_, const UnkSceneEntry* entry_) {
     EntryVec_ovb0254* self = reinterpret_cast<EntryVec_ovb0254*>(self_);
     const UnkEntry_ovb0254* entry = reinterpret_cast<const UnkEntry_ovb0254*>(entry_);
     u32 n = self->count;
@@ -78,8 +78,8 @@ void fn_71001fe390(base::UnkVector<UnkSceneEntry>* self_, const UnkSceneEntry* e
 }
 
 // Copy-assigns an entry array: reserve the source's capacity, then append its entries.
-base::UnkVector<UnkSceneEntry>* fn_71001fdacc(base::UnkVector<UnkSceneEntry>* self_,
-                                              const base::UnkVector<UnkSceneEntry>* other_) {
+base::global::CRntVector<UnkSceneEntry>* fn_71001fdacc(base::global::CRntVector<UnkSceneEntry>* self_,
+                                              const base::global::CRntVector<UnkSceneEntry>* other_) {
     EntryVec_ovb0254* self = reinterpret_cast<EntryVec_ovb0254*>(self_);
     const EntryVec_ovb0254* other = reinterpret_cast<const EntryVec_ovb0254*>(other_);
     if (self != other) {
@@ -124,7 +124,7 @@ static inline void Reallocate_ovb0254(EntryVec_ovb0254* self, u32 new_capacity) 
 
 // The entry at `index`; an index past the end first grows the array (to the next multiple of the step,
 // then to exactly index + 1) and fills the new entries with defaults.
-UnkSceneEntry* fn_71001fca5c(base::UnkVector<UnkSceneEntry>* self_, u32 index) {
+UnkSceneEntry* fn_71001fca5c(base::global::CRntVector<UnkSceneEntry>* self_, u32 index) {
     EntryVec_ovb0254* self = reinterpret_cast<EntryVec_ovb0254*>(self_);
     if (self->field_0x14 && self->count <= index) {
         u32 cap = self->capacity;

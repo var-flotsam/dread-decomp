@@ -6,7 +6,7 @@
 #include <new>
 
 #include "base/UnkAtExit.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
@@ -97,9 +97,9 @@ struct UnkEnumName {
 static_assert(sizeof(UnkEnumName) == 0x10, "UnkEnumName layout");
 
 // Reserves room for n names (out of line).
-void fn_710009b46c(base::UnkVector<UnkEnumName>* v, u32 n);
+void fn_710009b46c(base::global::CRntVector<UnkEnumName>* v, u32 n);
 
-static inline void PushBack(base::UnkVector<UnkEnumName>* v, UnkEnumName&& e) {
+static inline void PushBack(base::global::CRntVector<UnkEnumName>* v, UnkEnumName&& e) {
     u32 n = v->count;
     u32 cap = v->capacity;
     if (cap <= n && v->step != 0)
@@ -128,8 +128,8 @@ struct UnkDefaultStrId {
 };
 
 // The names, returned in memory (the copy is declared for the return only; it is elided).
-struct UnkEnumNames : base::UnkVector<UnkEnumName> {
-    explicit UnkEnumNames(u32 flags) : base::UnkVector<UnkEnumName>(flags) {}
+struct UnkEnumNames : base::global::CRntVector<UnkEnumName> {
+    explicit UnkEnumNames(u32 flags) : base::global::CRntVector<UnkEnumName>(flags) {}
     UnkEnumNames(const UnkEnumNames& other);
 };
 

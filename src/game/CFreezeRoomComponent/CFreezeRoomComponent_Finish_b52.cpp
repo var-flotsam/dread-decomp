@@ -4,7 +4,7 @@
 // set, switches the manager to that one (fn_7100d8e32c). The manager g_unk_7101d47368 is created
 // lazily (0x4c8 bytes with flags 0x3f, constructed by fn_7100d8ced8). Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection.h"
 #include "game/CActorComponent.h"

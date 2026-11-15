@@ -4,7 +4,7 @@
 // post-construction virtual call (slot 3). The container is laid out as in
 // src/game/CAutsharpSpawnPointComponent/CAutsharpSpawnPointComponent.cpp. Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CSabotoruSpawnPointComponent.h"
 #include "game/UnkTU2704.h"

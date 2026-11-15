@@ -2,7 +2,7 @@
 // player's shield object when one is up), sorts the hits by distance and hands each to the attack's hit
 // handlers until one stops it. Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkZeroVector3.h"
 #include "base/reflection/UnkClassGetters.h"

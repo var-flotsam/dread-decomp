@@ -1,5 +1,5 @@
 // CSubAreaManager::CTunableSubAreaManager unit (tools/tu_map.py unit 2577): fn_7100eeaa48: announces a sub-area change: the script CurrentScenario.OnSubAreaChange gets the four ids and the flag, the central units are told (fn_7100ddb7bc) and the change is queued at +0xa60 (fn_7100ef1608). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"

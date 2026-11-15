@@ -1,6 +1,6 @@
 // Finds an item with the given id in one of two grouped item lists (chosen by `primary`) that
 // also accepts the query through a virtual check; null if there is none.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CGunComponent.h"
 #include "types.h"
 
@@ -17,10 +17,10 @@ struct UnkItem_710083e9d4 {
     u64 id;  // 0x20
 };
 
-using UnkGroups_710083e9d4 = base::UnkVector<base::UnkVector<UnkItem_710083e9d4*>>;
+using UnkGroups_710083e9d4 = base::global::CRntVector<base::global::CRntVector<UnkItem_710083e9d4*>>;
 
 static inline UnkItem_710083e9d4* Find(UnkGroups_710083e9d4& groups, const u64* id) {
-    for (base::UnkVector<UnkItem_710083e9d4*>* g = groups.data; g != groups.data + groups.count; ++g) {
+    for (base::global::CRntVector<UnkItem_710083e9d4*>* g = groups.data; g != groups.data + groups.count; ++g) {
         for (UnkItem_710083e9d4** it = g->data; it != g->data + g->count; ++it) {
             if ((*it)->id == *id && (*it)->vf_0x30())
                 return *it;

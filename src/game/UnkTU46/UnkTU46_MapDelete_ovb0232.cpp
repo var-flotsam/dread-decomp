@@ -1,14 +1,14 @@
 // Unit 46 of tools/tu_map.py: the deleting destructor of the object holding the flat map of
 // src/base/input/UnkInputMap_Dtor_A1_b76.cpp (vtable unk_7101a1a2b0): frees every value, the two arrays, then itself.
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU46.h"
 #include "types.h"
 
 struct UnkInputMapB0232 {
     void* vtable;
     u8 pad_0x8[0x10];
-    base::UnkVector<u8>* values;  // 0x18
+    base::global::CRntVector<u8>* values;  // 0x18
     u32* keys;                    // 0x20
     u32 count;                    // 0x28
     u8 pad_0x2c[0xc];

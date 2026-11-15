@@ -1,7 +1,7 @@
 // GUI::CArchivesInspectorComposition's unit (tools/tu_map.py): the show/hide toggle (fn_7100af25dc) and the
 // destructor (fn_7100af21a8). Names and layouts are placeholders.
 #include "base/UnkDeferredSet.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "types.h"
 
@@ -61,9 +61,9 @@ struct UnkArchivesInspectorFull_ovb0043 {
     u8 pad_0x8[0x228];
     UnkArchivesCallback_ovb0043 first;  // 0x230
     UnkArchivesCallback_ovb0043 second;  // 0x248
-    base::UnkVector<UnkArchivesLinked_ovb0043*> linked;  // 0x260
-    base::UnkVector<u64> field_0x288;
-    base::UnkVector<u64> field_0x2b0;
+    base::global::CRntVector<UnkArchivesLinked_ovb0043*> linked;  // 0x260
+    base::global::CRntVector<u64> field_0x288;
+    base::global::CRntVector<u64> field_0x2b0;
 };
 
 // The destructor: the vtable; every linked object (+0x260) loses its back pointer; the three arrays are

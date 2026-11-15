@@ -5,7 +5,7 @@
 // src/game/CChozoCommanderAIComponent/fn_7100453eec.cpp) goes to the owner's object at +0x218;
 // otherwise the flag at +0x121e is stored in the blackboard section (as fn_71006395fc in
 // CPoisonFlyAIComponent_b36.cpp). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CAutsharpAIComponent.h"

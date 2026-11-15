@@ -4,7 +4,7 @@
 // item list singleton (g_unk_7172729910, built on first use; src/game/UnkItemListSingleton.cpp).
 // Names and layout are placeholders.
 #include "base/UnkSList.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CInputComponent.h"
 #include "game/UnkTU2732.h"
 #include "types.h"

@@ -2,7 +2,7 @@
 // allocated (0x220 bytes, flags 0x3f) and constructed in place (the constructor fn_7100e0f89c inlined: an
 // array of 17 entries of 0x18 bytes, a few flags and a block of seven words), then the instance is handed
 // to fn_7100e0f77c. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU0.h"
 #include "types.h"
 

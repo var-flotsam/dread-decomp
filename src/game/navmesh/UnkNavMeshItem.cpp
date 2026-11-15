@@ -5,7 +5,7 @@
 // Holds fn_71002b2f68 (the constructor from its values).
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU39.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -52,8 +52,8 @@ struct UnkNavMeshItem {
     s32 field_0x10;
     u8 pad_0x14[4];
     u8 field_0x18[0xb0];  // built by fn_710002f4e4
-    base::UnkVector<UnkNavMeshItemElem> field_0xc8;
-    base::UnkVector<UnkNavMeshItemElem> field_0xf0;
+    base::global::CRntVector<UnkNavMeshItemElem> field_0xc8;
+    base::global::CRntVector<UnkNavMeshItemElem> field_0xf0;
     u32 field_0x118;
     u32 field_0x11c;
     u32 field_0x120;
@@ -85,8 +85,8 @@ void fn_71002b2f68(UnkNavMeshItem* self, u64 field_0x0, const CStrId& id, s32 fi
     new (&self->field_0x8) CStrId(id);
     self->field_0x10 = field_0x10;
     fn_710002f4e4(self->field_0x18);
-    new (&self->field_0xc8) base::UnkVector<UnkNavMeshItemElem>(0x57);
-    new (&self->field_0xf0) base::UnkVector<UnkNavMeshItemElem>(0x57);
+    new (&self->field_0xc8) base::global::CRntVector<UnkNavMeshItemElem>(0x57);
+    new (&self->field_0xf0) base::global::CRntVector<UnkNavMeshItemElem>(0x57);
     self->field_0x118 = pair->field_0x0;
     self->field_0x11c = pair->field_0x4;
     self->field_0x120 = flag;

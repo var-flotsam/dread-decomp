@@ -1,7 +1,7 @@
 // CGameManager::CTunableGameManager's unit (tools/tu_map.py unit 2553): tears the current game down: tells the
 // script environment behind +0x608 it is leaving, releases it and the players, and resets the managers that
 // `flags` selects. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "game/CAbilityEnergyWave.h"

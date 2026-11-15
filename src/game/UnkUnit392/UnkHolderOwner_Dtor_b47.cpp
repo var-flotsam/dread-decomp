@@ -1,7 +1,7 @@
 // Unit 392 (tools/tu_map.py): the destructor and the deleting destructor of a class holding two growable
-// arrays (base/UnkVector.h): bytes at +0x40, and at +0x18 0x40-byte records destroyed by fn_71002b67e8
+// arrays (base/global/CRntVector.h): bytes at +0x40, and at +0x18 0x40-byte records destroyed by fn_71002b67e8
 // (src/game/UnkUnit377/UnkRefVectorHolder_Dtor_b47.cpp). Names are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU377.h"
 
 struct UnkRefVectorHolder_b47;
@@ -18,8 +18,8 @@ extern void* g_unk_7101a214f8[];  // the class's vtable
 struct UnkHolderOwner_b47 {
     void** vtable;
     u8 pad_0x8[0x10];
-    base::UnkVector<UnkHolderElem_b47> holders;  // 0x18
-    base::UnkVector<u8> bytes;                   // 0x40
+    base::global::CRntVector<UnkHolderElem_b47> holders;  // 0x18
+    base::global::CRntVector<u8> bytes;                   // 0x40
 
     ~UnkHolderOwner_b47() {
         vtable = &g_unk_7101a214f8[2];

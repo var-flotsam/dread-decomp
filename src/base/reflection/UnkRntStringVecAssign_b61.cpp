@@ -4,7 +4,7 @@
 // Names are placeholders.
 #include <utility>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "types.h"
 
@@ -26,7 +26,7 @@ struct UnkRntStringVec_b61 {
     base::UnkAllocator* allocator;
 
     UnkRntStringVec_b61(const UnkRntStringVec_b61& other) { fn_71000e25b8(this, &other); }
-    ~UnkRntStringVec_b61() { reinterpret_cast<base::UnkVector<UnkRntString_b61>*>(this)->Free(); }
+    ~UnkRntStringVec_b61() { reinterpret_cast<base::global::CRntVector<UnkRntString_b61>*>(this)->Free(); }
 
     UnkRntStringVec_b61& operator=(const UnkRntStringVec_b61& other) {
         if (this != &other) {

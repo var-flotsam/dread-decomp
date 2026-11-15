@@ -7,7 +7,7 @@
 #include "base/UnkAtExit.h"
 #include "base/UnkCloneRecords.h"
 #include "base/UnkNoArg.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
@@ -58,7 +58,7 @@ struct UnkIdSlot_b0200 {
 // The entry at `index`; when growing is allowed (field_0x14), an index past the end grows the array
 // to the step's next multiple and then to index + 1 entries, value-initialising the new ones.
 UnkIdSlot_b0200* fn_7100eb0058(void* array, u32 index) {
-    auto* self = static_cast<base::UnkVector<UnkIdSlot_b0200>*>(array);
+    auto* self = static_cast<base::global::CRntVector<UnkIdSlot_b0200>*>(array);
     if (self->field_0x14 && self->count <= index) {
         u32 cap = self->capacity;
         if (cap <= index && self->step != 0)
@@ -124,7 +124,7 @@ struct UnkIdWords_b0200 {
 };
 
 // Destroys the element at `index` and moves the later ones down.
-void fn_7100eb408c(base::UnkVector<UnkIdWords_b0200>* self, u32 index) {
+void fn_7100eb408c(base::global::CRntVector<UnkIdWords_b0200>* self, u32 index) {
     if (index < self->count) {
         self->data[index].~UnkIdWords_b0200();
         u32 i = index;
@@ -407,7 +407,7 @@ struct UnkIdValues_b0200 {
     }
 };
 
-using UnkIdValuesVector_b0200 = base::UnkVector<UnkIdValues_b0200>;
+using UnkIdValuesVector_b0200 = base::global::CRntVector<UnkIdValues_b0200>;
 
 static inline void Reserve(UnkIdValuesVector_b0200* self, u32 capacity) {
     fn_7100b48af4(reinterpret_cast<UnkIdValuesArray*>(self), capacity);
@@ -511,12 +511,12 @@ struct UnkIdWords_b0200c {
     }
 };
 
-static inline void Grow(base::UnkVector<UnkIdWords_b0200c>* self, u32 capacity) {
+static inline void Grow(base::global::CRntVector<UnkIdWords_b0200c>* self, u32 capacity) {
     fn_7100b48af4(reinterpret_cast<UnkIdValuesArray*>(self), capacity);
 }
 
 // Puts `value` in at `index`, shifting the entries after it up; appending hangs when the array cannot grow.
-void fn_7100eafeb8(base::UnkVector<UnkIdWords_b0200c>* self, UnkIdWords_b0200c* value, u32 index) {
+void fn_7100eafeb8(base::global::CRntVector<UnkIdWords_b0200c>* self, UnkIdWords_b0200c* value, u32 index) {
     u32 cap = self->capacity;
     u32 n = self->count;
     if (n == index) {

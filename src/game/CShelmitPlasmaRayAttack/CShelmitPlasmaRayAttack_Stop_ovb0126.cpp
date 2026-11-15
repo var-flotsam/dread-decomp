@@ -7,7 +7,7 @@
 // at +0x70 (game_s2/UnkParams.h) and the object a kind-3 block (vtable g_unk_7101a2e208, fn_71010c7e6c), and
 // the object's flag at +0xf9 is cleared through its slot 0x260. The state ends at 0x7fffffff. Names and
 // layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CAutsharpAIComponent.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkActor.h"

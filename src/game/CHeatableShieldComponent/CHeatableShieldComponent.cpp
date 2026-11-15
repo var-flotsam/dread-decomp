@@ -2,7 +2,7 @@
 // fn_71010c4148, the vtable (0x7101a7a260), an empty array at +0x48 (default allocator), the member
 // at +0x68 (fn_710086abb4), two cleared words, then the post-construction virtual call (slot 3).
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CComponent.h"
 #include "game/CHeatableShieldComponent.h"
 #include "game/UnkComponent.h"

@@ -4,7 +4,7 @@
 // +0x10 and the unit's callback), unless it is flagged at +0x30 and fn_7100fd1ad8 takes it first;
 // otherwise the music manager singleton (created on first use) gets fn_7100fdb9e0. Names and
 // layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CBossAIComponent.h"
 #include "game/UnkGameManager.h"

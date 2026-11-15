@@ -2,7 +2,7 @@
 // base constructor, vtable, three allocator-backed lists, then the timers at -1, then a virtual call.
 // The repeated zero stores are the original's (value-initialised members then their constructors).
 // Names are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CRedenkiSwarmControllerComponent.h"
 #include "types.h"
 

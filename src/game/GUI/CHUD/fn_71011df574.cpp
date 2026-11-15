@@ -24,9 +24,9 @@ __attribute__((always_inline)) static inline bool Equal(const UnkRecord80IterVal
     return x->field_0x8 == y->field_0x8;
 }
 
-// Free of an array (base::UnkVector's layout) of string ids paired with a word: each id is
+// Free of an array (base::global::CRntVector's layout) of string ids paired with a word: each id is
 // released (and left as the empty id) before the array is freed.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 
 using base::global::UnkStringData;
@@ -59,7 +59,7 @@ struct UnkIdWordPair {
 };
 
 template <class T>
-static inline void Clear(base::UnkVector<T>* self) {
+static inline void Clear(base::global::CRntVector<T>* self) {
     if (self->data) {
         for (u64 i = 0; i < self->count; ++i)
             self->data[i].~T();
@@ -69,7 +69,7 @@ static inline void Clear(base::UnkVector<T>* self) {
     }
 }
 
-void fn_71011df574(base::UnkVector<UnkIdWordPair>* self) { Clear(self); }
+void fn_71011df574(base::global::CRntVector<UnkIdWordPair>* self) { Clear(self); }
 // The same for an array of 0x18-byte records led by a path id, after a word, in another unit.
 struct UnkPathIdRecord_0x18 {
     UnkEmptiedStrIdT<&g_unk_7101d47200> path;
@@ -79,7 +79,7 @@ struct UnkPathIdRecord_0x18 {
 
 struct UnkWordPathIdRecords {
     u64 field_0x0;
-    base::UnkVector<UnkPathIdRecord_0x18> records;  // 0x8
+    base::global::CRntVector<UnkPathIdRecord_0x18> records;  // 0x8
 };
 
 void fn_7100ffc598(UnkWordPathIdRecords* self) { Clear(&self->records); }

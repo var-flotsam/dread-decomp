@@ -4,7 +4,7 @@
 #include <new>
 
 #include "base/UnkCountedResource.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/core/CAsset.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/navmesh/CDynamicSmartLinkGroup.h"
@@ -75,15 +75,15 @@ struct UnkSmartLinkEntry_ovb0128 {
 };
 
 // Grows the array to at least `capacity` entries (out of line; src/base/UnkUnit259/UnkNamedRefVector_Reserve_b58.cpp).
-void fn_71002682e8(base::UnkVector<u8>* vector, u32 capacity);
+void fn_71002682e8(base::global::CRntVector<u8>* vector, u32 capacity);
 
-static inline void Grow(base::UnkVector<UnkSmartLinkEntry_ovb0128>* self, u32 capacity) {
-    fn_71002682e8(reinterpret_cast<base::UnkVector<u8>*>(self), capacity);
+static inline void Grow(base::global::CRntVector<UnkSmartLinkEntry_ovb0128>* self, u32 capacity) {
+    fn_71002682e8(reinterpret_cast<base::global::CRntVector<u8>*>(self), capacity);
 }
 
 // Reserves the other's capacity and appends a copy of each of its entries (the growth is out of line).
-static inline void AppendAll(base::UnkVector<UnkSmartLinkEntry_ovb0128>* self,
-                             const base::UnkVector<UnkSmartLinkEntry_ovb0128>* other) {
+static inline void AppendAll(base::global::CRntVector<UnkSmartLinkEntry_ovb0128>* self,
+                             const base::global::CRntVector<UnkSmartLinkEntry_ovb0128>* other) {
     Grow(self, other->capacity);
     for (const UnkSmartLinkEntry_ovb0128 *it = other->data, *end = it + other->count; it != end; ++it) {
         u32 n = self->count;
@@ -100,8 +100,8 @@ static inline void AppendAll(base::UnkVector<UnkSmartLinkEntry_ovb0128>* self,
 }
 
 // Copy-constructs the array: the other's settings, its capacity reserved, then each entry appended.
-void fn_71002681a8(base::UnkVector<UnkSmartLinkEntry_ovb0128>* self,
-                   const base::UnkVector<UnkSmartLinkEntry_ovb0128>* other) {
+void fn_71002681a8(base::global::CRntVector<UnkSmartLinkEntry_ovb0128>* self,
+                   const base::global::CRntVector<UnkSmartLinkEntry_ovb0128>* other) {
     self->data = nullptr;
     self->count = 0;
     self->capacity = 0;
@@ -113,8 +113,8 @@ void fn_71002681a8(base::UnkVector<UnkSmartLinkEntry_ovb0128>* self,
 }
 
 // Copy-assignment: the entries destroyed, then the other's appended.
-base::UnkVector<UnkSmartLinkEntry_ovb0128>* fn_7100268474(base::UnkVector<UnkSmartLinkEntry_ovb0128>* self,
-                                                          const base::UnkVector<UnkSmartLinkEntry_ovb0128>* other) {
+base::global::CRntVector<UnkSmartLinkEntry_ovb0128>* fn_7100268474(base::global::CRntVector<UnkSmartLinkEntry_ovb0128>* self,
+                                                          const base::global::CRntVector<UnkSmartLinkEntry_ovb0128>* other) {
     if (self != other) {
         self->Clear();
         AppendAll(self, other);
@@ -123,7 +123,7 @@ base::UnkVector<UnkSmartLinkEntry_ovb0128>* fn_7100268474(base::UnkVector<UnkSma
 }
 
 // Destroys the entry at `index` and moves the later ones down.
-__attribute__((flatten)) void fn_7100268ab8(base::UnkVector<UnkSmartLinkEntry_ovb0128>* self, u32 index) {
+__attribute__((flatten)) void fn_7100268ab8(base::global::CRntVector<UnkSmartLinkEntry_ovb0128>* self, u32 index) {
     if (index < self->count) {
         u64 i = index;
         self->data[i].~UnkSmartLinkEntry_ovb0128();
@@ -137,9 +137,9 @@ __attribute__((flatten)) void fn_7100268ab8(base::UnkVector<UnkSmartLinkEntry_ov
 }
 
 // Puts `value` in at `index` (moved for fn_7100268898, copied for fn_7100268654), shifting the
-// entries after it up; appending hangs when the array cannot grow, as base::UnkVector::Insert.
+// entries after it up; appending hangs when the array cannot grow, as base::global::CRntVector::Insert.
 template <class V>
-static inline void InsertAt(base::UnkVector<UnkSmartLinkEntry_ovb0128>* self, V&& value, u32 index) {
+static inline void InsertAt(base::global::CRntVector<UnkSmartLinkEntry_ovb0128>* self, V&& value, u32 index) {
     u32 cap = self->capacity;
     u32 n = self->count;
     if (n == index) {
@@ -166,11 +166,11 @@ static inline void InsertAt(base::UnkVector<UnkSmartLinkEntry_ovb0128>* self, V&
     ++self->count;
 }
 
-void fn_7100268898(base::UnkVector<UnkSmartLinkEntry_ovb0128>* self, UnkSmartLinkEntry_ovb0128* value, u32 index) {
+void fn_7100268898(base::global::CRntVector<UnkSmartLinkEntry_ovb0128>* self, UnkSmartLinkEntry_ovb0128* value, u32 index) {
     InsertAt(self, static_cast<UnkSmartLinkEntry_ovb0128&&>(*value), index);
 }
 
-void fn_7100268654(base::UnkVector<UnkSmartLinkEntry_ovb0128>* self, const UnkSmartLinkEntry_ovb0128* value,
+void fn_7100268654(base::global::CRntVector<UnkSmartLinkEntry_ovb0128>* self, const UnkSmartLinkEntry_ovb0128* value,
                    u32 index) {
     InsertAt(self, *value, index);
 }
@@ -181,7 +181,7 @@ struct UnkSmartLinkMap_b49a1;
 // The entry at `index`; when growing is allowed (field_0x14), an index past the end grows the array
 // to the step's next multiple and then to index + 1 entries, value-initialising the new ones.
 UnkSmartLinkEntry_ovb0128* fn_7100268c64(UnkSmartLinkMap_b49a1* map, u32 index) {
-    base::UnkVector<UnkSmartLinkEntry_ovb0128>* self = reinterpret_cast<base::UnkVector<UnkSmartLinkEntry_ovb0128>*>(map);
+    base::global::CRntVector<UnkSmartLinkEntry_ovb0128>* self = reinterpret_cast<base::global::CRntVector<UnkSmartLinkEntry_ovb0128>*>(map);
     if (self->field_0x14 && self->count <= index) {
         u32 cap = self->capacity;
         if (cap <= index && self->step != 0)
@@ -201,7 +201,7 @@ struct UnkSmartLinkGroup_ovb0128 {
     void** vtable;
     u8 base_0x8[0x50];
     UnkLinkPath_ovb0128 path;                           // 0x58
-    base::UnkVector<UnkSmartLinkEntry_ovb0128> links;   // 0x60
+    base::global::CRntVector<UnkSmartLinkEntry_ovb0128> links;   // 0x60
 
     __attribute__((always_inline)) ~UnkSmartLinkGroup_ovb0128() {
         vtable = &g_unk_7101a20cc0[2];

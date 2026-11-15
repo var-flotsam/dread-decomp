@@ -6,7 +6,7 @@
 #include "game/CCharClassSoundProofTriggerComponent.h"
 #include "types.h"
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 
 struct UnkSoundProofTrigger {
     void** vtable;

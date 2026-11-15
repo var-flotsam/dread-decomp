@@ -4,7 +4,7 @@
 // 0x710085fc40-0x7100866e84). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkCollisionRecord.h"
 #include "base/reflection/CClass.h"
 #include "types.h"
@@ -26,5 +26,5 @@ void fn_71008659c4(UnkCollisionContainer*, u32, u32, void*);
 void fn_7100863e04(UnkCollisionContainer* self, UnkCollisionObject* object);
 base::global::CStrId* fn_7100864018(UnkCollisionContainer* self, void* object);
 UnkColliderNode* fn_71008625a0(UnkManager_7100863a8c* self, void* owner, const base::global::CStrId* name);
-void fn_7100860830(UnkCollisionFileReader* self, const char* path, base::UnkVector<UnkCollisionRecord>* out, bool a, void* b);
-base::reflection::UnkReflObject*& fn_7100862088(base::UnkVector<base::reflection::UnkReflObject*>* self, u32 index);
+void fn_7100860830(UnkCollisionFileReader* self, const char* path, base::global::CRntVector<UnkCollisionRecord>* out, bool a, void* b);
+base::reflection::UnkReflObject*& fn_7100862088(base::global::CRntVector<base::reflection::UnkReflObject*>* self, u32 index);

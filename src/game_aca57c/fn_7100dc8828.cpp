@@ -2,7 +2,7 @@
 // singleton's data (unless that data is locked at 0xe8), then tell the singleton (created on
 // first use) through fn_7101203854. Three getters read the same properties (false when the
 // section is missing).
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAbilityShinespark.h"

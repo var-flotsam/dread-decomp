@@ -11,7 +11,7 @@
 #include "base/UnkCountedResource.h"
 #include "base/UnkHashStream.h"
 #include "base/UnkStrIdPathPair.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/core/CAsset.h"
 #include "base/global/CFilePathStrId.h"
@@ -378,7 +378,7 @@ struct UnkSoundOwnedPtr_b0038 {
     }
 };
 
-using UnkSoundOwnedArray_b0038 = base::UnkVector<UnkSoundOwnedPtr_b0038>;
+using UnkSoundOwnedArray_b0038 = base::global::CRntVector<UnkSoundOwnedPtr_b0038>;
 
 // The array of owning pointers: its constructor with room for `capacity`, and its Free.
 void fn_7101028988(UnkSoundOwnedArray_b0038* self, u32 capacity, u32 flags) {

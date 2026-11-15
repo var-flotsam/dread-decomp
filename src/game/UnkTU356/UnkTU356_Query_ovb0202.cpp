@@ -2,7 +2,7 @@
 // query state's reset, the search driver that runs it to the end and builds the path, and the one that
 // hands each opened node's cell to a callback until it answers. Names and layouts are placeholders.
 #include "base/math/CVector.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkTU357.h"

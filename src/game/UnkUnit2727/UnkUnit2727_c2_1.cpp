@@ -1,7 +1,7 @@
 // Unit 2727 (near gui/scripts/msemenu_mainmenu.lua's strings): passes a value to a lazily created
 // object (g_unk_71727bc260), to the GUI object (g_unk_7101d47330) while it answers fn_7101196fd8,
 // and otherwise to the game manager (g_unk_7101d47310). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2538.h"

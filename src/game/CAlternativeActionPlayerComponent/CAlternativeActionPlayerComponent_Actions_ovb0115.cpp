@@ -7,7 +7,7 @@
 // entry's animation once a random draw falls under its building chance. Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/UnkDeferredSet.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CAlternativeActionPlayerComponent.h"

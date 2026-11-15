@@ -9,7 +9,7 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkKeyedStrIds.h"
 #include "base/UnkResPathVec.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -68,9 +68,9 @@ bool fn_71000daf10(const UnkKeyedVals_ovb0173<u64>* a, const UnkKeyedVals_ovb017
     return KeyedEqual(a, b);
 }
 
-// ---- Arrays of strings (UnkVector's layout, 0x30-byte CRntString elements) ----
+// ---- Arrays of strings (CRntVector's layout, 0x30-byte CRntString elements) ----
 
-static inline void SwapVec(base::UnkVector<CRntString>& a, base::UnkVector<CRntString>& b) {
+static inline void SwapVec(base::global::CRntVector<CRntString>& a, base::global::CRntVector<CRntString>& b) {
     std::swap(a.data, b.data);
     std::swap(a.count, b.count);
     std::swap(a.capacity, b.capacity);
@@ -82,7 +82,7 @@ static inline void SwapVec(base::UnkVector<CRntString>& a, base::UnkVector<CRntS
 
 // A one-element string array in the making (flags 0x59), freed when the assignment is done.
 struct UnkTmpStrVec_ovb0173 {
-    base::UnkVector<CRntString> v{0x59};
+    base::global::CRntVector<CRntString> v{0x59};
     ~UnkTmpStrVec_ovb0173() { v.Free(); }
 };
 
@@ -103,7 +103,7 @@ struct UnkRntStringVec_ovb0173 {
         other.count = 0;
         other.capacity = 0;
     }
-    ~UnkRntStringVec_ovb0173() { reinterpret_cast<base::UnkVector<CRntString>*>(this)->Free(); }
+    ~UnkRntStringVec_ovb0173() { reinterpret_cast<base::global::CRntVector<CRntString>*>(this)->Free(); }
 
     UnkRntStringVec_ovb0173& operator=(UnkRntStringVec_ovb0173&& other) {
         if (this != &other) {
@@ -135,11 +135,11 @@ struct UnkStringHolder_ovb0173 {
 };
 
 // Assigns the array a single copy of the string a refcounted holder keeps (the count is retained).
-__attribute__((flatten)) base::UnkVector<CRntString>* fn_71000e26f8(base::UnkVector<CRntString>* self,
+__attribute__((flatten)) base::global::CRntVector<CRntString>* fn_71000e26f8(base::global::CRntVector<CRntString>* self,
                                                                     UnkStringHolder_ovb0173** holder) {
     if (reinterpret_cast<void*>(holder) != reinterpret_cast<void*>(self)) {
         UnkTmpStrVec_ovb0173 guard;
-        base::UnkVector<CRntString>& tmp = guard.v;
+        base::global::CRntVector<CRntString>& tmp = guard.v;
         ++*reinterpret_cast<UnkAliasU32_ovb0173*>(&(*holder)->ref_count);
         tmp.PushBackCopy((*holder)->str);
         SwapVec(*self, tmp);
@@ -148,12 +148,12 @@ __attribute__((flatten)) base::UnkVector<CRntString>* fn_71000e26f8(base::UnkVec
 }
 
 // Assigns the array a single string built from a literal.
-__attribute__((flatten)) base::UnkVector<CRntString>* fn_71000e23ac(base::UnkVector<CRntString>* self,
+__attribute__((flatten)) base::global::CRntVector<CRntString>* fn_71000e23ac(base::global::CRntVector<CRntString>* self,
                                                                     const char** src) {
     if (reinterpret_cast<void*>(src) != reinterpret_cast<void*>(self)) {
         const char* s = *src;
         UnkTmpStrVec_ovb0173 guard;
-        base::UnkVector<CRntString>& tmp = guard.v;
+        base::global::CRntVector<CRntString>& tmp = guard.v;
         {
             CRntString str(s);
             tmp.EmplaceBack(static_cast<CRntString&&>(str));
@@ -165,13 +165,13 @@ __attribute__((flatten)) base::UnkVector<CRntString>* fn_71000e23ac(base::UnkVec
 
 // ---- Byte arrays: set the element at an index, growing the array first ----
 
-void fn_71000e1518(base::UnkVector<u8>* self, const u32* index, const u8* value) {
+void fn_71000e1518(base::global::CRntVector<u8>* self, const u32* index, const u8* value) {
     u8 v = *value;
     self->GrowAt(*index) = v;
 }
 
 // An identical copy.
-void fn_71000e1660(base::UnkVector<u8>* self, const u32* index, const u8* value) {
+void fn_71000e1660(base::global::CRntVector<u8>* self, const u32* index, const u8* value) {
     u8 v = *value;
     self->GrowAt(*index) = v;
 }
@@ -380,7 +380,7 @@ struct UnkTreeNode_ovb0173 {
     u32 child_count;                 // 0x98
 };
 
-void fn_71000a5020(UnkTreeNode_ovb0173* node, base::UnkVector<UnkTreeNode_ovb0173*>* out) {
+void fn_71000a5020(UnkTreeNode_ovb0173* node, base::global::CRntVector<UnkTreeNode_ovb0173*>* out) {
     out->PushBack(node);
     for (UnkTreeNode_ovb0173 **p = node->children, **e = p + node->child_count; p != e; ++p)
         fn_71000a5020(*p, out);

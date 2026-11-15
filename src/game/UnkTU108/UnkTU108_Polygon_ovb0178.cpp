@@ -1,11 +1,11 @@
 // Unit 108 (tools/tu_map.py, 0x7100110c54-0x71001239b0; no name hint): 2D polygon helpers and the
 // arrays they live in. The polygons are 0x48-byte records (a vertex array of 12-byte points, a
 // closed flag at 0x2c, a dirty flag at 0x2d, bounds at 0x30 and the winding state at 0x40); the
-// arrays are base::UnkVector's layout. Names and layouts are placeholders.
+// arrays are base::global::CRntVector's layout. Names and layouts are placeholders.
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "game/UnkTU108.h"
@@ -31,7 +31,7 @@ struct UnkPathPair {
 
 // Allocates new_capacity elements and moves the elements over, freeing the old array.
 template <class T>
-__attribute__((always_inline)) static inline T* MoveTo(base::UnkVector<T>* self, u32 new_capacity) {
+__attribute__((always_inline)) static inline T* MoveTo(base::global::CRntVector<T>* self, u32 new_capacity) {
     T* p = static_cast<T*>(self->allocator->vf_0x40((u64)new_capacity * sizeof(T), 8, self->flags));
     if (self->data) {
         T* src = self->data;
@@ -46,8 +46,8 @@ __attribute__((always_inline)) static inline T* MoveTo(base::UnkVector<T>* self,
 }
 
 // Copy constructor: the source settings and capacity, then each element appended.
-__attribute__((flatten)) void fn_7100121d90(base::UnkVector<UnkPathPair>* self,
-                                            const base::UnkVector<UnkPathPair>* other) {
+__attribute__((flatten)) void fn_7100121d90(base::global::CRntVector<UnkPathPair>* self,
+                                            const base::global::CRntVector<UnkPathPair>* other) {
     self->data = nullptr;
     self->count = 0;
     self->capacity = 0;
@@ -60,9 +60,9 @@ __attribute__((flatten)) void fn_7100121d90(base::UnkVector<UnkPathPair>* self,
         self->PushBackCopy(*it);
 }
 
-// base::UnkVector::Insert with the new element's slot taken in each branch.
+// base::global::CRntVector::Insert with the new element's slot taken in each branch.
 template <class T>
-__attribute__((always_inline)) static inline void InsertAt(base::UnkVector<T>* self, T* value, u32 index) {
+__attribute__((always_inline)) static inline void InsertAt(base::global::CRntVector<T>* self, T* value, u32 index) {
     u32 cap = self->capacity;
     u32 n = self->count;
     if (n == index) {
@@ -104,7 +104,7 @@ __attribute__((always_inline)) static inline void InsertAt(base::UnkVector<T>* s
     ++self->count;
 }
 
-void fn_7100122160(base::UnkVector<UnkPathPair>* self, UnkPathPair* value, u32 index) {
+void fn_7100122160(base::global::CRntVector<UnkPathPair>* self, UnkPathPair* value, u32 index) {
     InsertAt(self, value, index);
 }
 
@@ -123,7 +123,7 @@ struct UnkPathLink {
     }
 };
 
-__attribute__((flatten)) UnkPathLink* fn_7100122590(base::UnkVector<UnkPathLink>* self, u32 index) {
+__attribute__((flatten)) UnkPathLink* fn_7100122590(base::global::CRntVector<UnkPathLink>* self, u32 index) {
     return &self->GrowAt(index);
 }
 
@@ -131,7 +131,7 @@ __attribute__((flatten)) UnkPathLink* fn_7100122590(base::UnkVector<UnkPathLink>
 
 struct UnkPart0;
 
-// base::UnkVector's layout with plain members.
+// base::global::CRntVector's layout with plain members.
 struct UnkVertexArray {
     void* data;
     u32 count;
@@ -155,7 +155,7 @@ struct UnkPolygon48 {
     u32 pad_0x44;
 
     UnkPolygon48() {
-        new (&vertices) base::UnkVector<UnkVec3f>(7);
+        new (&vertices) base::global::CRntVector<UnkVec3f>(7);
         field_0x28 = 0.0f;
         closed = false;
         dirty = true;
@@ -189,7 +189,7 @@ struct UnkPolygon48 {
         state = other.state;
     }
 
-    ~UnkPolygon48() { reinterpret_cast<base::UnkVector<UnkVec3f>*>(&vertices)->Free(); }
+    ~UnkPolygon48() { reinterpret_cast<base::global::CRntVector<UnkVec3f>*>(&vertices)->Free(); }
 };
 
 struct UnkPolygonArray {
@@ -280,7 +280,7 @@ struct UnkVertex12 {
     }
 };
 
-struct UnkPointSet_b61 : base::UnkVector<UnkVertex12> {};
+struct UnkPointSet_b61 : base::global::CRntVector<UnkVertex12> {};
 
 // The vertex at index, growing the array to it first.
 __attribute__((noinline)) void* fn_7100118950(UnkPointSet_b61* self, u32 index) {

@@ -1,9 +1,9 @@
 // In the CCharClassRodotukAIComponent unit: the copy constructor (fn_7100670fe4) and the copy
 // assignment (fn_7100671130) of a reflected array of 0x30-byte trivially copyable entries (the
-// UnkVector layout: data, count, capacity, step, a flag, the allocator's flags and the allocator).
+// CRntVector layout: data, count, capacity, step, a flag, the allocator's flags and the allocator).
 // Both size the array to the source's capacity and copy the entries bitwise. Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 namespace {

@@ -2,15 +2,15 @@
 // fn_710103c4e8): every list is empty, growth step 10, allocator flags 0xf.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 
 struct UnkPathIdListPair_710103a240 {
-    base::UnkVector<CFilePathStrId> first{0xf};
-    base::UnkVector<CFilePathStrId> second{0xf};
+    base::global::CRntVector<CFilePathStrId> first{0xf};
+    base::global::CRntVector<CFilePathStrId> second{0xf};
 };
 
 

@@ -6,7 +6,7 @@
 // the object and fn_7100a52ebc. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CSPBTutoLogicAction.h"
 #include "game/CTriggerLogicAction.h"
 #include "game/UnkTU341.h"
@@ -22,13 +22,13 @@ struct UnkSPBTutoCallable_b52;
 
 struct UnkSPBTutoCallbackSet_b52 {
     void* vtable;
-    base::UnkVector<UnkSPBTutoCallable_b52*> items;
+    base::global::CRntVector<UnkSPBTutoCallable_b52*> items;
     u32 field_0x30;
     void* owner;
 
     __attribute__((always_inline)) void Init() {
         vtable = g_unk_7101a20998 + 2;
-        new (&items) base::UnkVector<UnkSPBTutoCallable_b52*>(0xf);
+        new (&items) base::global::CRntVector<UnkSPBTutoCallable_b52*>(0xf);
         field_0x30 = 0;
         vtable = g_unk_7101a20950 + 2;
         owner = nullptr;

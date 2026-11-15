@@ -1,5 +1,5 @@
 // CSubAreaManager::CTunableSubAreaManager unit (tools/tu_map.py unit 2577): fn_7100eeebb0: finds the object of the array at +0x830 (owned, 0x38 bytes, id at +8) with the given id, else builds one (fn_7100fb4b4c), names it and appends it. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU2577.h"
 #include "types.h"
@@ -33,7 +33,7 @@ struct UnkNamedObjectPtr_b190 {
 
 struct UnkSubAreaMgr_b190 {
     u8 pad_0x0[0x830];
-    base::UnkVector<UnkNamedObjectPtr_b190> objects;  // 0x830
+    base::global::CRntVector<UnkNamedObjectPtr_b190> objects;  // 0x830
 };
 static_assert(__builtin_offsetof(UnkSubAreaMgr_b190, objects) == 0x830, "layout");
 

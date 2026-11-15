@@ -2,7 +2,7 @@
 // open list (a min-heap on cost + estimate) and its start, stop and movement-listener handling.
 // The action keeps its search flags from +0x12af1 (stopped, searching, the pending state at +0x12b35)
 // and a callback the movement component calls back (+0x12b40). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkTU811.h"

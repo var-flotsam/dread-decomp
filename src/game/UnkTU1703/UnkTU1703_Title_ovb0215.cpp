@@ -3,7 +3,7 @@
 // the sound out, and the title screen's phases that fade their sound (0.2 and 0), tell the scene-state singleton
 // (g_unk_7101d47320, created on first use) the music modes 0x48, 0x49 (and 0x4a), and step the screen on.
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/snd/UnkSound.h"

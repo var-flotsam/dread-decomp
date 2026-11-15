@@ -4,7 +4,7 @@
 // the bucket count.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -54,7 +54,7 @@ struct UnkKeyedNode {
     }
 };
 
-// A vector (base::UnkVector's layout) that is moved into the node.
+// A vector (base::global::CRntVector's layout) that is moved into the node.
 struct UnkMovedVector {
     void* data;
     u32 count;

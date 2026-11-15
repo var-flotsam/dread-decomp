@@ -5,7 +5,7 @@
 // Holds fn_7101078d20, fn_7101085e00, fn_7101087980, fn_710108da20, fn_710108eda0, fn_710108ee00,
 // fn_71010945d0 and fn_7101094e20.
 #include "../../lib/lua/lua.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection.h"

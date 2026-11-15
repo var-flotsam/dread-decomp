@@ -1,6 +1,6 @@
 // Runs fn_7100413ef8 and, when it succeeds and the path id at 0x500 isn't the empty one,
 // passes that id to the global registry (created on first use).
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkPathRegistry.h"
 #include "types.h"
 #include "base/global/CStrId.h"

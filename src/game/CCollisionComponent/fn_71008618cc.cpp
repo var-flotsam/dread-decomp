@@ -1,7 +1,7 @@
 // Registers everything once (flag 0xc8): passes each record to a virtual hook, then adds each
 // collision object to the global collision tracker, as a collider group or as a single collider
 // depending on its reflected class.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -26,9 +26,9 @@ struct UnkVtbl_71008618cc {
 struct UnkStruct_71008618cc {
     UnkVtbl_71008618cc* vtbl;
     u8 unk_0x8[0x40];
-    base::UnkVector<UnkCollisionRecord> records;
+    base::global::CRntVector<UnkCollisionRecord> records;
     u8 unk_0x70[0x28];
-    base::UnkVector<UnkReflObject*> objects;
+    base::global::CRntVector<UnkReflObject*> objects;
     u8 unk_0xc0[8];
     bool registered;  // 0xc8
 };

@@ -1,7 +1,7 @@
 // Copy of fn_7100eae08c (src/game/logic/collision/CCollider/fn_7100d3d424.cpp) for another array type, naming its own callees and data
 // (the comments are adapted from the original's): fn_7100138ee0. Move-assignment of an array whose elements follow
 // another pointer (destroying the elements through fn_710007ecd4, keeping the storage).
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "types.h"
 

@@ -4,7 +4,7 @@
 // counted reference at +0x80 dropped, then the activatable component's destructor (fn_71007d70d8,
 // CDemolitionBlockComponent_Dtor_b44.cpp). Names and layouts are placeholders.
 #include "base/UnkKeyedStrIds.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU1246.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -24,7 +24,7 @@ struct UnkEvacuationCountDown_b49a3 {
     UnkRefObject* ref;  // 0x80
     UnkKeyedStrIds ids;  // 0x88
     u8 pad_0xb0[0x18];
-    base::UnkVector<UnkCountDownEntry_b49a3> entries;  // 0xc8
+    base::global::CRntVector<UnkCountDownEntry_b49a3> entries;  // 0xc8
 };
 
 void fn_71007d9e34(UnkEvacuationCountDown_b49a3* self) {

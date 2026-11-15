@@ -2,7 +2,7 @@
 // CLogicDroppedItemManager::CTunableDroppableBillboard): the billboard tunable's constructor and
 // destructors, the per-entry copy, the manager's frame update and the pickup effects. Names and layouts
 // are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/color/CColor4F.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"

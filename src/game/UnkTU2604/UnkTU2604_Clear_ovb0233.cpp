@@ -1,6 +1,6 @@
 // Unit 2604: clearing a string-id map (fn_7100f8db84). Names and layouts are placeholders.
 #include <string.h>
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 

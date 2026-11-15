@@ -4,7 +4,7 @@
 // temporary's variant reset (state 1 holds a {string id, array} object). Names and layouts are
 // placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 template <int Tag>
@@ -16,7 +16,7 @@ struct UnkIdArrayIter_b56 {
     union {
         struct {
             base::UnkStrIdMember id;
-            base::UnkVector<u8> items;
+            base::global::CRntVector<u8> items;
         } object;
         struct {
             void* first;

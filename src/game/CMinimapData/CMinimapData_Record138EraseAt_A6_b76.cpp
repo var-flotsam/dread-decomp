@@ -1,10 +1,10 @@
-// CMinimapData's unit: reflected collection erase (slot 0x128) for a base::UnkVector of 0x138-byte records with
+// CMinimapData's unit: reflected collection erase (slot 0x128) for a base::global::CRntVector of 0x138-byte records with
 // an out-of-line destructor (fn_7100e4e310) and move constructor (fn_7100e51078): the record an index iterator
 // names is destroyed, each later one moved down one and the moved-from one destroyed. The index goes through a
 // byte offset from the vector itself (build/b67/b67a6.md). Names are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CMinimapData.h"
 #include "game/UnkTU2563.h"
 #include "types.h"
@@ -12,7 +12,7 @@
 // A moving magnet surface (include/game/CMinimapData.h).
 using UnkRecord138_A6_b76 = CMinimapData::SMovingMagnetSurfaceData;
 
-static inline __attribute__((always_inline)) void EraseAt_A6_b76(base::UnkVector<UnkRecord138_A6_b76>* self,
+static inline __attribute__((always_inline)) void EraseAt_A6_b76(base::global::CRntVector<UnkRecord138_A6_b76>* self,
                                                                  u32 index) {
     if (index >= self->count)
         return;
@@ -25,7 +25,7 @@ static inline __attribute__((always_inline)) void EraseAt_A6_b76(base::UnkVector
     self->count = self->count - 1;
 }
 
-void fn_7100e61f8c(base::UnkVector<UnkRecord138_A6_b76>* self, const u32* it) {
+void fn_7100e61f8c(base::global::CRntVector<UnkRecord138_A6_b76>* self, const u32* it) {
     UnkRecord138_A6_b76* base = reinterpret_cast<UnkRecord138_A6_b76*>(self);
     u64 offset = (u64)*it * sizeof(UnkRecord138_A6_b76);
     UnkRecord138_A6_b76* p = reinterpret_cast<UnkRecord138_A6_b76*>(reinterpret_cast<char*>(base) + offset);

@@ -5,7 +5,7 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkCountedResource.h"
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU275.h"
 #include "types.h"
 
@@ -57,7 +57,7 @@ struct UnkHelperPtr275 {
 };
 
 template <class T>
-struct UnkOwnedVector275 : base::UnkVector<T> {
+struct UnkOwnedVector275 : base::global::CRntVector<T> {
     __attribute__((always_inline)) ~UnkOwnedVector275() { this->Free(); }
 };
 

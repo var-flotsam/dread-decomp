@@ -41,7 +41,7 @@ struct UnkLaunchPatternBase_b56a3 {
 template <u32 Pad>
 struct UnkLaunchPattern_b56a3 : UnkLaunchPatternBase_b56a3 {
     u8 unk_0xf8[Pad];
-    base::UnkVector<UnkOwnedList> lists;
+    base::global::CRntVector<UnkOwnedList> lists;
 };
 
 template <u32 Pad>

@@ -3,7 +3,7 @@
 // are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/core/CAsset.h"
 #include "base/global/CStrId.h"
 #include "base/global/CFilePathStrId.h"

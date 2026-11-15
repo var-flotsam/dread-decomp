@@ -1,7 +1,7 @@
 // CTriggerComponent unit (tools/tu_map.py). fn_7100a6317c: the constructor of a 0x60-byte record: an empty id, the
 // limit INT_MAX, an empty name (fn_71000003d4), two flags, two -1 defaults, an empty array (step 10,
 // flags 0xf, the default allocator) and a cleared flag. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"

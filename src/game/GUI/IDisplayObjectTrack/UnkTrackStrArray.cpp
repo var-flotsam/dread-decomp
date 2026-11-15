@@ -2,7 +2,7 @@
 // (base/UnkCollectionIter.h), as fn_7100ad2728 and fn_71000e0e8c (src/game_aca57c/fn_7100ad2728.cpp,
 // src/game_s1/fn_71000d5888.cpp) for this unit's element type.
 #include "base/UnkCollectionIter.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "types.h"
 
@@ -16,10 +16,10 @@ struct UnkTrackStrElement {
 
 using UnkTrackStrIter = base::UnkCollectionIter<UnkTrackStrElement>;
 
-void fn_7100b1b7d0(const base::UnkVector<UnkTrackStrElement>* v, UnkTrackStrIter* out) {
+void fn_7100b1b7d0(const base::global::CRntVector<UnkTrackStrElement>* v, UnkTrackStrIter* out) {
     *out = UnkTrackStrIter(0, v->data);
 }
 
-void fn_7100b1b8a8(const base::UnkVector<UnkTrackStrElement>* v, UnkTrackStrIter* out) {
+void fn_7100b1b8a8(const base::global::CRntVector<UnkTrackStrElement>* v, UnkTrackStrIter* out) {
     *out = UnkTrackStrIter(v->count, v->data + v->count);
 }

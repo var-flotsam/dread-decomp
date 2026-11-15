@@ -1,6 +1,6 @@
 // Copy constructor of a container of two parallel u32 arrays sharing a count and capacity:
 // takes the source's settings, reserves its count and copies both arrays.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 using base::UnkAllocator;

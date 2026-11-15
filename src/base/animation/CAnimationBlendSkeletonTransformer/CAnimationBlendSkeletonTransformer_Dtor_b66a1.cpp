@@ -5,7 +5,7 @@
 // Names and layouts are placeholders.
 #include <memory>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/animation/CAnimationBlendSkeletonTransformer.h"
 #include "game/UnkTU23.h"
 #include "types.h"

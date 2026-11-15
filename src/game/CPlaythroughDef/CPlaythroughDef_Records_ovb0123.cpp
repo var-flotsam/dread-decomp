@@ -5,7 +5,7 @@
 #include <new>
 
 #include "base/UnkCloneRecords.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/core/CAsset.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"

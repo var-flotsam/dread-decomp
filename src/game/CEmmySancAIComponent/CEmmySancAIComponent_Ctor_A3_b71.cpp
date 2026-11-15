@@ -3,7 +3,7 @@
 // fn_710053e5c0, a cleared word, an empty array of 0x40-byte elements (flags 0xf), a byte, two empty callback
 // lists (base vtable 0x7101a20998, then 0x7101a20950), then the material path at +0x147f0 set from a literal.
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/CEmmySancAIComponent.h"
 #include "game/UnkTU341.h"
@@ -46,7 +46,7 @@ struct UnkSancListVt_A3_b71 {
 };
 
 struct UnkSancListBase_A3_b71 : UnkSancListVt_A3_b71 {
-    base::UnkVector<void*> callables{0xf};
+    base::global::CRntVector<void*> callables{0xf};
     u32 field_0x30 = 0;
 };
 
@@ -72,7 +72,7 @@ struct UnkSancVt_A3_b71 {
 
 struct UnkSanc_A3_b71 : UnkSancVt_A3_b71 {
     u64 field_0x2a6f8 = 0;
-    base::UnkVector<UnkSancElem_A3_b71> elems{0xf};
+    base::global::CRntVector<UnkSancElem_A3_b71> elems{0xf};
     bool field_0x2a728 = false;
     UnkSancList_A3_b71 first;
     UnkSancList_A3_b71 second;

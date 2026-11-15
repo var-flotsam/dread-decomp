@@ -5,7 +5,7 @@
 #include <algorithm>
 
 #include "../../../game_s7/UnkIter.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "types.h"
 
@@ -16,7 +16,7 @@ struct UnkTimelineEntry_ovb0044 {
     f32 end;    // 0x14
 };
 
-struct UnkTimelineEntries_ovb0044 : base::UnkVector<UnkTimelineEntry_ovb0044*> {
+struct UnkTimelineEntries_ovb0044 : base::global::CRntVector<UnkTimelineEntry_ovb0044*> {
     UnkIter<UnkTimelineEntry_ovb0044*> begin() { return {data}; }
     UnkIter<UnkTimelineEntry_ovb0044*> end() { return {data + count}; }
 };

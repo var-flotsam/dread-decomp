@@ -3,7 +3,7 @@
 // fn_71006dcdec sends the buried track's value once; fn_71006dcfa8 registers the owner with the global manager and
 // sets up its animation. Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CAnimationComponent.h"

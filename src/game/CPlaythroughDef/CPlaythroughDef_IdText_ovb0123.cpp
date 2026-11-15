@@ -6,7 +6,7 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkCloneRecords.h"
 #include "base/UnkNodeOwner.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CPlaythroughDef.h"

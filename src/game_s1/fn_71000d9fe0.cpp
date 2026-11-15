@@ -3,7 +3,7 @@
 // fn_71000da0c0. The table's Begin and End, which point an iterator value at the first key and value or one past the
 // last.
 #include "base/UnkCollectionIter.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 

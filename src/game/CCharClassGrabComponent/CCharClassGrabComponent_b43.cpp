@@ -3,7 +3,7 @@
 // zero), then the list member at +0x58 (its vtable, then each node of the list at +0x68 destroyed by
 // fn_7100431cec and freed through the allocator at +0x78; the count at +0x60 and both ends cleared)
 // and the base destructor fn_71011acd74. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CCharClassComponent.h"
 #include "game/CCharClassGrabComponent.h"

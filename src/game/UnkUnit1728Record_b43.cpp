@@ -1,7 +1,7 @@
 // Unit 1728 (tools/tu_map.py, no name hint): the constructor of a record of a string id (starting
-// empty), a base::UnkVector (allocator flags 0x58) and two members built out of line (fn_7100068eb4 at
+// empty), a base::global::CRntVector (allocator flags 0x58) and two members built out of line (fn_7100068eb4 at
 // +0x30, fn_710006b6a4 at +0xf8). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU42.h"
 #include "game/nn/time.h"
@@ -36,7 +36,7 @@ struct UnkMemberF8_b43a3 {
 
 struct UnkUnit1728Record_b43a3 {
     UnkEmptyStrId_b43a3 name;
-    base::UnkVector<void*> list{0x58};  // 0x8
+    base::global::CRntVector<void*> list{0x58};  // 0x8
     UnkMember30_b43a3 field_0x30;
     UnkMemberF8_b43a3 field_0xf8;
 };

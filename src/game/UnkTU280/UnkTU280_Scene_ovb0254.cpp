@@ -3,7 +3,7 @@
 // element of an item set handed on (fn_71001fd07c, fn_71001fd1b4), and the entry array's copy assignment and
 // PushBack (fn_71001fdacc, fn_71001fe390). Names and layouts are placeholders.
 #include "UnkClone.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection.h"
 #include "game/UnkTU280.h"
 #include "types.h"
@@ -95,7 +95,7 @@ bool fn_71001fbde0() {
 
 struct UnkClone_fn_71001fc54c;
 using UnkSceneSlot = UnkCloneElem<UnkClone_fn_71001fc54c, 8>;
-extern template UnkSceneSlot& base::UnkVector<UnkSceneSlot>::GrowAt(u32);
+extern template UnkSceneSlot& base::global::CRntVector<UnkSceneSlot>::GrowAt(u32);
 
 
 struct UnkSceneDrawer_ovb0254 {
@@ -108,12 +108,12 @@ struct UnkSceneLayerEntry_ovb0254 {
 };
 
 struct UnkSceneManager_ovb0254 {
-    base::UnkVector<UnkSceneSlot> items;
+    base::global::CRntVector<UnkSceneSlot> items;
     UnkSceneDrawer_ovb0254* field_0x28;
     u8 unk_0x30[0x18];
-    base::UnkVector<UnkSceneLayerEntry_ovb0254> layers[100];  // 0x48
+    base::global::CRntVector<UnkSceneLayerEntry_ovb0254> layers[100];  // 0x48
 };
-static_assert(sizeof(base::UnkVector<UnkSceneLayerEntry_ovb0254>) == 0x28, "layer size");
+static_assert(sizeof(base::global::CRntVector<UnkSceneLayerEntry_ovb0254>) == 0x28, "layer size");
 
 void fn_71001ffe08(UnkSceneItem* item);
 
@@ -145,7 +145,7 @@ void fn_7100202d14(UnkItem* item, void* arg1, void* arg2);
 
 // A set of item pointers whose first element is created on demand.
 struct UnkItemSet_ovb0254 {
-    base::UnkVector<UnkItem*> items;
+    base::global::CRntVector<UnkItem*> items;
 };
 
 __attribute__((flatten)) void fn_71001fd07c(UnkItemSet_ovb0254* self, void* arg, bool value) {
@@ -192,9 +192,9 @@ struct UnkEntry_ovb0254 {
 };
 static_assert(sizeof(UnkEntry_ovb0254) == 0x28, "entry layout");
 
-using EntryVec_ovb0254 = base::UnkVector<UnkEntry_ovb0254>;
+using EntryVec_ovb0254 = base::global::CRntVector<UnkEntry_ovb0254>;
 
-void fn_71001fe390(base::UnkVector<UnkSceneEntry>* self_, const UnkSceneEntry* entry_) {
+void fn_71001fe390(base::global::CRntVector<UnkSceneEntry>* self_, const UnkSceneEntry* entry_) {
     EntryVec_ovb0254* self = reinterpret_cast<EntryVec_ovb0254*>(self_);
     const UnkEntry_ovb0254* entry = reinterpret_cast<const UnkEntry_ovb0254*>(entry_);
     u32 n = self->count;
@@ -231,8 +231,8 @@ void fn_71001fe390(base::UnkVector<UnkSceneEntry>* self_, const UnkSceneEntry* e
 }
 
 // Copy-assigns an entry array: reserve the source's capacity, then append its entries.
-base::UnkVector<UnkSceneEntry>* fn_71001fdacc(base::UnkVector<UnkSceneEntry>* self_,
-                                              const base::UnkVector<UnkSceneEntry>* other_) {
+base::global::CRntVector<UnkSceneEntry>* fn_71001fdacc(base::global::CRntVector<UnkSceneEntry>* self_,
+                                              const base::global::CRntVector<UnkSceneEntry>* other_) {
     EntryVec_ovb0254* self = reinterpret_cast<EntryVec_ovb0254*>(self_);
     const EntryVec_ovb0254* other = reinterpret_cast<const EntryVec_ovb0254*>(other_);
     if (self != other) {

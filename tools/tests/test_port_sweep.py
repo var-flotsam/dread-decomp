@@ -98,7 +98,7 @@ class Llp64Checks(unittest.TestCase):
 
 class OwnName(unittest.TestCase):
     def test_parameters_dropped(self):
-        self.assertEqual(ps.own_name("fn_71000e027c(base::UnkVector<int>&&)"), "fn_71000e027c")
+        self.assertEqual(ps.own_name("fn_71000e027c(base::global::CRntVector<int>&&)"), "fn_71000e027c")
 
     def test_template_arguments_dropped(self):
         self.assertEqual(ps.own_name("UnkOutOfLineElement<48u, &fn_710007ecd4>::Get() const"),

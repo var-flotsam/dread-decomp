@@ -4,7 +4,7 @@
 
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU2542.h"
 #include "game/UnkTU426.h"
 #include "game/sound/CSoundManager.h"
@@ -62,5 +62,5 @@ void fn_7100db31a8(UnkSetHolder_71002f7850* self) {
 }
 
 void fn_7101028690(UnkSetHolder_71002f7850* self) {
-    Destroy<unk_7101cac6e8, base::UnkVector<u64>, fn_710102be04>(self);
+    Destroy<unk_7101cac6e8, base::global::CRntVector<u64>, fn_710102be04>(self);
 }

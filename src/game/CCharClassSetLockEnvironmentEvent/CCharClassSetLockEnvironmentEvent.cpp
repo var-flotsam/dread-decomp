@@ -1,7 +1,7 @@
 // CCharClassSetLockEnvironmentEvent's unit: passes the event's three flags to the environment
 // manager (created on first use, as the lua_bind getters do in src/script/lua_bind.cpp) through
 // fn_7100d8efd0. Names and the layout are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection.h"
 #include "game/UnkTU0.h"
 #include "types.h"

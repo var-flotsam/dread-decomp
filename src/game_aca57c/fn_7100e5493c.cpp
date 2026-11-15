@@ -8,12 +8,12 @@
 
 #include "base/UnkCollectionIter.h"
 #include "base/UnkFreedVectorPair.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU2563.h"
 #include "game/UnkTU83.h"
 #include "types.h"
 
-// base::UnkVector's layout, copied out of line.
+// base::global::CRntVector's layout, copied out of line.
 struct UnkPart48 {
     union {
         void* data;
@@ -25,7 +25,7 @@ struct UnkPart48 {
     u32 flags;
     base::UnkAllocator* allocator;
 
-    // base::UnkVector's defaults.
+    // base::global::CRntVector's defaults.
     __attribute__((always_inline)) UnkPart48()
         : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(0xf),
           allocator(fn_7100083990()) {}
@@ -47,7 +47,7 @@ struct UnkPart48 {
 };
 inline UnkPart48::UnkPart48(const UnkPart48& other) { fn_71000cbae4(this, &other); }
 
-// base::UnkVector<u16>'s layout.
+// base::global::CRntVector<u16>'s layout.
 struct UnkU16Array {
     union {
         u16* data;
@@ -59,7 +59,7 @@ struct UnkU16Array {
     u32 flags;
     base::UnkAllocator* allocator;
 
-    // base::UnkVector's defaults.
+    // base::global::CRntVector's defaults.
     __attribute__((always_inline)) UnkU16Array()
         : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(0xf),
           allocator(fn_7100083990()) {}
@@ -172,7 +172,7 @@ void fn_7100e5493c(UnkRecord60Array* self, const UnkRecord60Array& other) {
     new (self) UnkRecord60Array(other);
 }
 
-// A plain array of the records (base::UnkVector's layout) with an out-of-line Reserve
+// A plain array of the records (base::global::CRntVector's layout) with an out-of-line Reserve
 // (fn_7100e52b58): appends a copy, growing like PushBack (including its hang).
 struct UnkRecord60List {
     UnkRecord60* data;

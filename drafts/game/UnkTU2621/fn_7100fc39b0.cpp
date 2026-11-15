@@ -2,7 +2,7 @@
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
 #include "base/UnkNoArg.h"
 #include "base/UnkRegistry.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/UnkHashStream.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
@@ -218,7 +218,7 @@ __attribute__((noinline)) void fn_7100fc6fc0(UnkEntry_b0235* self_, const UnkEnt
     fn_7100afa4c0(&self->data, &o->data);
 }
 
-void fn_7100fc6e20(base::UnkVector<UnkEntry_b0235>* self, const UnkEntry_b0235* value) {
+void fn_7100fc6e20(base::global::CRntVector<UnkEntry_b0235>* self, const UnkEntry_b0235* value) {
     u32 n = self->count;
     u32 old_capacity = self->capacity;
     u32 new_capacity = old_capacity;

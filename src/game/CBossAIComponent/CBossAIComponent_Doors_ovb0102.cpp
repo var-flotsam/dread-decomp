@@ -3,7 +3,7 @@
 // the colour-slot timer and its update, the active/inactive timers that hand the camera back, the
 // slot blink and the death handling. Names and layouts are placeholders.
 #include "base/UnkRefHandle.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -97,7 +97,7 @@ struct UnkBossDoorAI_ovb0102 {
     u8 pad_0x8[0x28];
     UnkBossDoorOwner_ovb0102* owner;  // +0x30
     u8 pad_0x38[0x14690];
-    base::UnkVector<UnkBossDoorLink_ovb0102> doors;  // +0x146c8
+    base::global::CRntVector<UnkBossDoorLink_ovb0102> doors;  // +0x146c8
 };
 
 // The door locks the boss's links resolve to, each told the owner's id through `notify`.

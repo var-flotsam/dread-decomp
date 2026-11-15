@@ -4,7 +4,7 @@
 // CCharClassCooldownXBossAttack's (its destructor fn_71004a0a10). tInitialState holds a vtable
 // (unk_7101a3e090) and an array of 0x18-byte polymorphic entries at its +0x18; tPatterns is an array
 // of owned definitions deleted through their vtables. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCharClassCooldownXBossAttack.h"
 #include "game/CCooldownXBossLavaDropsMovementDef.h"
 #include "game_s2/UnkOwnedList.h"
@@ -22,7 +22,7 @@ struct UnkLavaDropsPolyEntry_ovb0072 {
 struct UnkLavaDropsState_ovb0072 {
     char* vtable;
     u8 pad_0x8[0x10];
-    base::UnkVector<UnkLavaDropsPolyEntry_ovb0072> entries;  // 0x18
+    base::global::CRntVector<UnkLavaDropsPolyEntry_ovb0072> entries;  // 0x18
 };
 
 struct UnkLavaDropsAttackDef_ovb0072 {
@@ -39,7 +39,7 @@ struct UnkLavaDropsAttackDef_ovb0072 {
     f32 fAimMaxSpeed;             // 0x120
     f32 fAimMaxSpeedMaxDistance;  // 0x124
     UnkLavaDropsState_ovb0072 tInitialState;                    // 0x128
-    base::UnkVector<UnkOwnedPtr> tPatterns;                     // 0x168
+    base::global::CRntVector<UnkOwnedPtr> tPatterns;                     // 0x168
 };
 static_assert(__builtin_offsetof(UnkLavaDropsAttackDef_ovb0072, tPatterns) == 0x168, "layout");
 

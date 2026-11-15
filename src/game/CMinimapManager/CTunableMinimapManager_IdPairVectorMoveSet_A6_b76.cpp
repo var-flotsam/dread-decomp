@@ -1,9 +1,9 @@
 // CTunableMinimapManager's unit: a reflected flat map's "set by key" move slot (CCollectionType +0x148;
-// src/reflection_types/collection_types_00.cpp) with 8-byte keys and engine arrays (base::UnkVector) of 0x10-byte
+// src/reflection_types/collection_types_00.cpp) with 8-byte keys and engine arrays (base::global::CRntVector) of 0x10-byte
 // {string id, word} records as values, moved in by the array's move assignment. The ids are released in two
 // steps (as CStrId::Reset). As src/game/CMinimapData/CMinimapData_IdVectorMoveSet_A6_b76.cpp. Names and layouts
 // are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -23,7 +23,7 @@ struct UnkIdElem_A6_b76m : base::global::UnkStrIdBase {
     u64 field_0x8;
 };
 
-using UnkIdVector_A6_b76m = base::UnkVector<UnkIdElem_A6_b76m>;
+using UnkIdVector_A6_b76m = base::global::CRntVector<UnkIdElem_A6_b76m>;
 
 struct UnkIdVectorFlatMap_A6_b76m {
     UnkIdVector_A6_b76m* values;

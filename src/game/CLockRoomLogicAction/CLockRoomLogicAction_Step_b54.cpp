@@ -8,7 +8,7 @@
 // fn_710013ffbc with that array. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkRefHandle.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CTriggerLogicAction.h"
 #include "game/UnkTU112.h"
@@ -57,10 +57,10 @@ struct UnkLockRoomLazyRef_b54 {
 };
 static_assert(sizeof(UnkLockRoomLazyRef_b54) == 0x40, "layout");
 
-using UnkLockRoomRefArray_b54 = base::UnkVector<UnkLockRoomLazyRef_b54>;
+using UnkLockRoomRefArray_b54 = base::global::CRntVector<UnkLockRoomLazyRef_b54>;
 // The array's copy constructor (src/game/CEntity/CEntity_VectorCopy_b43.cpp).
 struct UnkEntry_b43a3;
-void fn_7100d88548(base::UnkVector<UnkEntry_b43a3>* self, const base::UnkVector<UnkEntry_b43a3>* other);
+void fn_7100d88548(base::global::CRntVector<UnkEntry_b43a3>* self, const base::global::CRntVector<UnkEntry_b43a3>* other);
 
 struct UnkLockRoomArgs_b54;
 void fn_7100a6e01c(void* component, UnkLockRoomArgs_b54* args);
@@ -82,8 +82,8 @@ void fn_7100da3374(UnkLockRoomAction_b54* self) {
         if (self->flag) {
             alignas(8) char buf[sizeof(UnkLockRoomRefArray_b54)];
             auto& refs = *reinterpret_cast<UnkLockRoomRefArray_b54*>(buf);
-            fn_7100d88548(reinterpret_cast<base::UnkVector<UnkEntry_b43a3>*>(&refs),
-                          reinterpret_cast<base::UnkVector<UnkEntry_b43a3>*>(comp + 0x898));
+            fn_7100d88548(reinterpret_cast<base::global::CRntVector<UnkEntry_b43a3>*>(&refs),
+                          reinterpret_cast<base::global::CRntVector<UnkEntry_b43a3>*>(comp + 0x898));
             for (UnkLockRoomLazyRef_b54 *it = refs.data, *end = refs.data + refs.count; it != end; ++it) {
                 if (void* actor = it->Get())
                     if (UnkDoorLock* lock = fn_71002af860(reinterpret_cast<UnkWeakTarget*>(actor)))

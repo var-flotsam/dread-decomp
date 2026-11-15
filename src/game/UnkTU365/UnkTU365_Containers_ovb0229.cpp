@@ -10,7 +10,7 @@
 #include <stdio.h>
 
 #include "base/UnkNoArg.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkObject_0x100.h"
 #include "game/UnkTU109.h"
@@ -30,7 +30,7 @@ struct UnkObjectRecord_ovb0229 {
 };
 static_assert(sizeof(UnkObjectRecord_ovb0229) == 0x108, "UnkObjectRecord_ovb0229 layout");
 
-using UnkObjectRecords_ovb0229 = base::UnkVector<UnkObjectRecord_ovb0229>;
+using UnkObjectRecords_ovb0229 = base::global::CRntVector<UnkObjectRecord_ovb0229>;
 
 void fn_71002aa29c(UnkObjectRecords_ovb0229* self, const UnkObjectRecords_ovb0229* other) {
     self->data = nullptr;
@@ -48,12 +48,12 @@ void fn_71002aa29c(UnkObjectRecords_ovb0229* self, const UnkObjectRecords_ovb022
 // ---- The record erase ----
 
 // erases the 0x60-byte record at an index from an
-// array: destroys it and moves the later ones down by one (UnkVector::EraseAt, inlined; the moved-from record
+// array: destroys it and moves the later ones down by one (CRntVector::EraseAt, inlined; the moved-from record
 // is destroyed again, its storage reloaded through the array). A record is a string id, a few small fields and
 // two growable arrays. Names and layouts are placeholders.
 using base::global::CStrId;
 
-// base::UnkVector's layout with plain members.
+// base::global::CRntVector's layout with plain members.
 struct UnkRawArray_ovb0229 {
     u32* data;
     u32 count;
@@ -63,7 +63,7 @@ struct UnkRawArray_ovb0229 {
     u32 flags;
     base::UnkAllocator* allocator;
 
-    void Free() { reinterpret_cast<base::UnkVector<u32>*>(this)->Free(); }
+    void Free() { reinterpret_cast<base::global::CRntVector<u32>*>(this)->Free(); }
 };
 
 struct UnkNavRecord_ovb0229 {
@@ -104,7 +104,7 @@ struct UnkNavRecord_ovb0229 {
 };
 static_assert(sizeof(UnkNavRecord_ovb0229) == 0x60, "UnkNavRecord_ovb0229 layout");
 
-void fn_71002a6248(base::UnkVector<UnkNavRecord_ovb0229>* self, u32 index) {
+void fn_71002a6248(base::global::CRntVector<UnkNavRecord_ovb0229>* self, u32 index) {
     if (index < self->count) {
         u64 i = index;
         self->data[i].~UnkNavRecord_ovb0229();

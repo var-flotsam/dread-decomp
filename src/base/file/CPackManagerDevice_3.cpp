@@ -6,7 +6,7 @@
 
 #include "base/UnkDefaultAllocator.h"
 #include "base/UnkRegistry.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/animation/CAnimationResource.h"
 #include "game/UnkTU63.h"
 #include "types.h"
@@ -65,7 +65,7 @@ struct UnkPackManagerView {
     base::UnkAllocator* allocator;  // +0x20
     u32 flags;                      // +0x28
     u8 pad_0x2c[4];
-    base::UnkVector<UnkMountedPack*> packs;  // +0x30
+    base::global::CRntVector<UnkMountedPack*> packs;  // +0x30
     UnkPackCallback callback;                // +0x58
     nn::os::MutexType mutex;                 // +0x68
 

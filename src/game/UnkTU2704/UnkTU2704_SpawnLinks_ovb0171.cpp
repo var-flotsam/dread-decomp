@@ -13,7 +13,7 @@
 #include "game/UnkTU365.h"
 #include "game/logic/collision/CCollider.h"
 #include "types.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/CClass.h"
 #include <new>
 #include "game/UnkBroadphaseObject.h"

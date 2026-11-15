@@ -2,7 +2,7 @@
 // blended by its weight, and the removal of an entry from a list of words. Names and layouts are placeholders.
 #include <string.h>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "engine/render/anim/CSkeletalAnimTree.h"
 #include "game/UnkTU23.h"
 #include "types.h"
@@ -57,7 +57,7 @@ void fn_7100149da4(UnkBlendNode_k* self, void* target) {
 
 struct UnkPtrListOwner_k {
     u8 unk_0x0[0x10];
-    base::UnkVector<u64> items;  // 0x10
+    base::global::CRntVector<u64> items;  // 0x10
 };
 
 // Removes the first entry equal to `value`, shifting the later ones down; always true.

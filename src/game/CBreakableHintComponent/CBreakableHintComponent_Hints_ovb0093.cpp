@@ -11,7 +11,7 @@
 #include <new>
 
 #include "base/UnkDeferredSet.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"

@@ -4,7 +4,7 @@
 // emptied and its two arrays freed, the count zeroed; the arrays are kept. Names and layouts are
 // placeholders.
 #include "base/UnkCloneRecords.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 template <class V>
@@ -42,7 +42,7 @@ struct UnkCellRecordMaps {
 
 }  // namespace navmesh_load_a1_b76
 
-void fn_710027e818(UnkNavLoadMap<UnkNavLoadMap<base::UnkVector<UnkNavLoadSlot360>>>* self) {
+void fn_710027e818(UnkNavLoadMap<UnkNavLoadMap<base::global::CRntVector<UnkNavLoadSlot360>>>* self) {
     using base::UnkStrIdMember;
     using navmesh_load_a1_b76::UnkCellRecordMap;
     auto* map = reinterpret_cast<navmesh_load_a1_b76::UnkCellRecordMaps*>(self);

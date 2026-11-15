@@ -1,7 +1,7 @@
 // CAutoolAIComponent's unit (tools/tu_map.py): the AI's reset, its collider and effect switches, and the reserve of its two parallel point arrays.
 // Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/UnkZeroVector3.h"
 #include "base/reflection/UnkReflAttributes.h"

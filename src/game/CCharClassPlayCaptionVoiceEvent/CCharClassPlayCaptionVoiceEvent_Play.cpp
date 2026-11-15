@@ -2,7 +2,7 @@
 // the event's caption (the string id at +0x10, a float at +0x18 and three flags at +0x1c..+0x1e)
 // through the global caption player (0x40 bytes, created on first use). Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU1643.h"
 #include "game/UnkTU2728.h"
 #include "types.h"

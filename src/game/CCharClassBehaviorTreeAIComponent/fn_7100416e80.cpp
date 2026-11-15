@@ -1,7 +1,7 @@
 // Destructor of an unidentified class: if its file-path id at 0x500 is set, unregisters it from
 // a lazily created manager, resets it to a shared global id, releases it, then runs the base
 // class destructor.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCharClassBehaviorTreeAIComponent.h"
 #include "game/UnkPathRegistry.h"
 #include "base/global/CFilePathStrId.h"

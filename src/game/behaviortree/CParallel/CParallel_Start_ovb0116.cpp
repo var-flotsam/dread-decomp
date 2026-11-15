@@ -8,14 +8,14 @@
 // placeholders.
 #include "UnkClone.h"
 #include "base/UnkNodeOwner.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/behaviortree/CBehaviorTree.h"
 #include "game/behaviortree/CParallel.h"
 #include "types.h"
 
 struct UnkClone_fn_710039657c;
 using UnkParallelChild_ovb0116 = UnkCloneElem<UnkClone_fn_710039657c, 8>;
-extern template UnkParallelChild_ovb0116& base::UnkVector<UnkParallelChild_ovb0116>::GrowAt(u32);
+extern template UnkParallelChild_ovb0116& base::global::CRntVector<UnkParallelChild_ovb0116>::GrowAt(u32);
 
 struct UnkSelectorTree_A2_b68;
 struct UnkSelectorNode_A2_b68;
@@ -29,7 +29,7 @@ struct UnkParallel_ovb0116 {
     u8 pad_0x0[0x10];
     UnkSelectorTree_A2_b68* tree;  // 0x10
     u8 pad_0x18[0x18];
-    base::UnkVector<UnkParallelChild_ovb0116> children;  // 0x30
+    base::global::CRntVector<UnkParallelChild_ovb0116> children;  // 0x30
     u8 pad_0x58[0x8];
     s32 state;  // 0x60
     u8 pad_0x64[0xc];

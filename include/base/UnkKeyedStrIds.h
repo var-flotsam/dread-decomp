@@ -5,7 +5,7 @@
 // are defined in src/game_s7/fn_710021c8dc.cpp and src/game_aca57c/fn_7100e4afd8.cpp.
 
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkKeyedStrIds {

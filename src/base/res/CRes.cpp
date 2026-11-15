@@ -4,15 +4,15 @@
 // are typed here: the name, two file-path ids, the list of file-path ids and the last file-path id.
 
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
 typedef base::UnkStrIdMemberOf<g_unk_7101d47200> UnkResDescPathId;
 
-// The list of file-path ids (an UnkVector, flags 9): destroying it frees the array.
-struct UnkResDescPathList : base::UnkVector<UnkResDescPathId> {
+// The list of file-path ids (an CRntVector, flags 9): destroying it frees the array.
+struct UnkResDescPathList : base::global::CRntVector<UnkResDescPathId> {
     ~UnkResDescPathList() { Free(); }
 };
 

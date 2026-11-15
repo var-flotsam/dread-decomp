@@ -2,7 +2,7 @@
 // data (the comments are adapted from the original's): fn_710011eff4, fn_7100125584, fn_7100124084. Move-assignments
 // of arrays of records holding an array (which frees its storage) and 0x20 more bytes: the old elements are destroyed
 // (the storage is kept), the other's array is taken and left empty.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 template <class T>

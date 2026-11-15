@@ -7,7 +7,7 @@
 // fn_7100301700 reports the actor's +0x2e0 above zero. Names and layouts are placeholders.
 #include <math.h>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbility.h"
 #include "game/CAbilityOpticCamouflage.h"
@@ -201,8 +201,8 @@ void fn_710031da18(UnkSlotArray<UnkTag_710031da18>* v, u32 capacity);
 
 // The vector's copy constructor: the same growth settings and allocator, then each reference
 // appended (fn_710031da18 grows the array).
-void fn_710031d904(base::UnkVector<UnkOpticHandlePtr_ovb0059>* self,
-                   const base::UnkVector<UnkOpticHandlePtr_ovb0059>* other) {
+void fn_710031d904(base::global::CRntVector<UnkOpticHandlePtr_ovb0059>* self,
+                   const base::global::CRntVector<UnkOpticHandlePtr_ovb0059>* other) {
     self->data = nullptr;
     self->count = 0;
     self->capacity = 0;

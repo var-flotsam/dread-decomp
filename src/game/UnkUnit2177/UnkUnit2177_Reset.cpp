@@ -2,7 +2,7 @@
 // fn_7100d476e4), releases every node of the list at +0x10 (fn_7100d62bd8, then the owner's +0x20
 // through its vtable slot 0x48; a node's next link is at +0x120), empties the list and destroys the
 // elements of the global array g_unk_7172791e48. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU2177.h"
 #include "game/UnkTU365.h"
 #include "game/logic/collision/CPolygonCollectionShape.h"

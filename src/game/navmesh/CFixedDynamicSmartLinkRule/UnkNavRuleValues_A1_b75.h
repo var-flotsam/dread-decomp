@@ -10,7 +10,7 @@
 // or moved. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/navmesh/CFixedDynamicSmartLinkRule.h"
 #include "types.h"
 
@@ -28,7 +28,7 @@ UnkAssignedArray* fn_7100272348(UnkAssignedArray* self, const UnkAssignedArray* 
 
 namespace navmesh {
 
-// base::UnkVector's layout, with the copy operations out of line.
+// base::global::CRntVector's layout, with the copy operations out of line.
 struct UnkNavRuleValues_A1_b75 {
     UnkNavRuleValue_A1_b75* data;
     u32 count;
@@ -117,7 +117,7 @@ __attribute__((always_inline)) inline void UnkNavRuleValues_A1_b75::Clear() {
     count = 0;
 }
 
-// As base::UnkVector's move assignment.
+// As base::global::CRntVector's move assignment.
 inline UnkNavRuleValues_A1_b75& UnkNavRuleValues_A1_b75::operator=(UnkNavRuleValues_A1_b75&& other) {
     if (this != &other) {
         Clear();

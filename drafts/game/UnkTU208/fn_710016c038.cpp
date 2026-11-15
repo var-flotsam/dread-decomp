@@ -3,7 +3,7 @@
 // placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 extern char g_unk_7101a1db18[];

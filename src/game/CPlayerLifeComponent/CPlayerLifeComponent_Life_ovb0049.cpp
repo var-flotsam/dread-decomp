@@ -5,7 +5,7 @@
 // AI manager blocks damage (fn_7101165e74). Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/CAIManager/CTunableAIManager.h"

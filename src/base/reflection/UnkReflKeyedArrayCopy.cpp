@@ -3,7 +3,7 @@
 // fn_71000dc190. Like refl_KeyedArrayCopy (base/UnkCloneCalls.h) without the key references. The
 // keys are copied through a word type that may alias the array, so the count and the key
 // pointers are reloaded as in the original. Names are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU85.h"
 #include "types.h"
 

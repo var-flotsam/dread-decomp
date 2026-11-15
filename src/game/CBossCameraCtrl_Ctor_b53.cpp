@@ -5,7 +5,7 @@
 // (slot 3). Names are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CBossCameraCtrl.h"
 #include "game/CCameraBoundaryCtrl.h"
 #include "types.h"
@@ -25,7 +25,7 @@ struct UnkBossCameraBase_b53 {
 };
 
 struct UnkBossCameraCtrl_b53 : UnkBossCameraBase_b53 {
-    // A list (base::UnkVector, allocation flags 0xf) spelled out field by field.
+    // A list (base::global::CRntVector, allocation flags 0xf) spelled out field by field.
     u64 list_data;
     u32 list_count = 0;
     u32 list_capacity = 0;

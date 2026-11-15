@@ -2,12 +2,12 @@
 // callback set) about a change, through base::refl_DeferredInvoke. Names and layouts are placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDeferredSet.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 using base::UnkDeferredCallback;
 using base::UnkDeferredSet;
-using base::UnkVector;
+using base::global::CRntVector;
 
 // What the energy listeners receive: the energy, its maximum and a flag.
 struct UnkSpecialEnergyEvent_ovb0043 {
@@ -19,12 +19,12 @@ struct UnkSpecialEnergyEvent_ovb0043 {
 struct UnkDeferredInvoke_7100a20438;
 
 UnkDeferredCallback<UnkSpecialEnergyEvent_ovb0043>** fn_7100a20654(
-    UnkVector<UnkDeferredCallback<UnkSpecialEnergyEvent_ovb0043>*>* v, u32 i);
+    CRntVector<UnkDeferredCallback<UnkSpecialEnergyEvent_ovb0043>*>* v, u32 i);
 
 template <>
 struct base::UnkDeferredInvokeTraits<UnkDeferredInvoke_7100a20438> {
     static UnkDeferredCallback<UnkSpecialEnergyEvent_ovb0043>** at(
-        UnkVector<UnkDeferredCallback<UnkSpecialEnergyEvent_ovb0043>*>* v, u32 i) {
+        CRntVector<UnkDeferredCallback<UnkSpecialEnergyEvent_ovb0043>*>* v, u32 i) {
         return fn_7100a20654(v, i);
     }
 };

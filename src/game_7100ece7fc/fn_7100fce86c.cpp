@@ -2,7 +2,7 @@
 // empty id, and the manager singleton's state is not 6, they call fn_7100fdb9e0 on
 // the manager. The state is the override at 0x38c, or, while that is unset (INT_MAX), the one
 // at +0x10 of the object at 0x2f8 (none skips the test).
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CBossAIComponent.h"
 #include "game/UnkGameManager.h"

@@ -3,7 +3,7 @@
 // path and creates three empty arrays (flags 0xf).
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "types.h"
 
@@ -27,9 +27,9 @@ struct UnkComponent {
     CFilePathStrId field_0x68;
     base::global::UnkFilePathStrIdBase field_0x70;
     u16 field_0x78;
-    base::UnkVector<void*> field_0x80;
-    base::UnkVector<void*> field_0xa8;
-    base::UnkVector<void*> field_0xd0;
+    base::global::CRntVector<void*> field_0x80;
+    base::global::CRntVector<void*> field_0xa8;
+    base::global::CRntVector<void*> field_0xd0;
     u8 field_0xf8;
 };
 
@@ -59,8 +59,8 @@ void fn_71005732dc(UnkComponent* self, void* arg, const CFilePathStrId* path) {
         base::global::UnkEnsureFilePathPool();
     self->field_0x70.data = &g_unk_7101d47200->empty;
     self->field_0x78 = 0;
-    new (&self->field_0x80) base::UnkVector<void*>(0xf);
-    new (&self->field_0xa8) base::UnkVector<void*>(0xf);
-    new (&self->field_0xd0) base::UnkVector<void*>(0xf);
+    new (&self->field_0x80) base::global::CRntVector<void*>(0xf);
+    new (&self->field_0xa8) base::global::CRntVector<void*>(0xf);
+    new (&self->field_0xd0) base::global::CRntVector<void*>(0xf);
     self->field_0xf8 = 0;
 }

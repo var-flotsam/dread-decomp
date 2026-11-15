@@ -1,6 +1,6 @@
 // Copy constructor of the object destroyed by fn_71002b6094: copies the plain fields and the
 // string id, deep-copies the arrays, sets the first flag and leaves the refcounted pointer null.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkObject_0x100.h"
 #include "types.h"

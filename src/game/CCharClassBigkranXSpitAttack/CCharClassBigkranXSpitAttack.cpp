@@ -3,7 +3,7 @@
 // flags 0xf, the default allocator) and an empty string id at +0x170. Layout placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CCharClassAttack.h"
 #include "game/CCharClassBigkranXSpitAttack.h"
@@ -21,7 +21,7 @@ struct UnkBigkranXSpitAttackDef {
     f32 field_0xf8;
     f32 field_0xfc;
     u8 pad_0x100[0x48];
-    base::UnkVector<void*> field_0x148;
+    base::global::CRntVector<void*> field_0x148;
     base::global::UnkStringData* field_0x170;
 };
 
@@ -33,7 +33,7 @@ void fn_71003f0aac(UnkBigkranXSpitAttackDef* self) {
     self->field_0xf4 = -1.0f;
     self->field_0xf8 = -1.0f;
     self->field_0xfc = -1.0f;
-    new (&self->field_0x148) base::UnkVector<void*>(0xf);
+    new (&self->field_0x148) base::global::CRntVector<void*>(0xf);
     self->field_0x170 = nullptr;
     if (!g_unk_7101d47108)
         base::global::UnkEnsureStringPool();

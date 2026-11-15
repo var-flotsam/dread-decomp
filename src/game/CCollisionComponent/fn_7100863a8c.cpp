@@ -3,7 +3,7 @@
 // object from a pointer list and hands it to a lazily created manager.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkGameManager.h"

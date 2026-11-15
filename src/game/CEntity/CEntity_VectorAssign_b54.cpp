@@ -1,8 +1,8 @@
-// CEntity's unit (tools/tu_map.py unit 2523): the copy assignment of a base::UnkVector of 0x40-byte
+// CEntity's unit (tools/tu_map.py unit 2523): the copy assignment of a base::global::CRntVector of 0x40-byte
 // entries, a copy of fn_7101131d60 (src/game/CSpawnPointComponent/CSpawnPointComponent_b42.cpp) with
 // this unit's entry move (fn_71007b1928) and append (fn_7100d8865c), as the copy constructor beside it
 // (fn_7100d88548, src/game/CEntity/CEntity_VectorCopy_b43.cpp). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CDemolitionBlockComponent.h"
 #include "game/UnkTU2523.h"
 #include "types.h"
@@ -12,8 +12,8 @@ struct UnkEntry_b43a3 {
     u8 pad_0x8[0x38];
 };
 
-base::UnkVector<UnkEntry_b43a3>* fn_7100d88824(base::UnkVector<UnkEntry_b43a3>* self,
-                                               const base::UnkVector<UnkEntry_b43a3>* other) {
+base::global::CRntVector<UnkEntry_b43a3>* fn_7100d88824(base::global::CRntVector<UnkEntry_b43a3>* self,
+                                               const base::global::CRntVector<UnkEntry_b43a3>* other) {
     if (self == other)
         return self;
     for (u64 i = 0; i < self->count; ++i)

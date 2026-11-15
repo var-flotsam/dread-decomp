@@ -8,7 +8,7 @@
 #include <new>
 
 #include "base/UnkMatrix44.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/reflection/CClass.h"
@@ -646,11 +646,11 @@ UnkColliderResult fn_7100d597b4(UnkSelf_597b4* self, const UnkQueryIn_597b4* q) 
 struct UnkTreeSubTail_c96c {
     u32 mask;                       // 0x8
     u32 notMask;                    // 0xc
-    base::UnkVector<void*> list;    // 0x10
+    base::global::CRntVector<void*> list;    // 0x10
     bool field_0x38;
     u32 field_0x3c;
-    base::UnkVector<void*> boxes;   // 0x40
-    base::UnkVector<void*> extras;  // 0x68
+    base::global::CRntVector<void*> boxes;   // 0x40
+    base::global::CRntVector<void*> extras;  // 0x68
 
     UnkTreeSubTail_c96c() : mask(0), notMask(~0u), list(7), field_0x38(false), field_0x3c(0), boxes(0xf), extras(0xf) {}
 };

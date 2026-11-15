@@ -2,20 +2,20 @@
 // initialises it, then sizes the array to 11 zeroed slots.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkSlots_0x48 {
     base::UnkAllocator* allocator = fn_7100083990();
     u32 flags = 0xe;
     u32 field_0xc = 0;
-    base::UnkVector<void*> slots = base::UnkVector<void*>(0xe);
+    base::global::CRntVector<void*> slots = base::global::CRntVector<void*>(0xe);
     void* field_0x38 = nullptr;
     void* field_0x40 = nullptr;
 };
 
 template <class T>
-inline void Resize(base::UnkVector<T>& v, u32 n) {
+inline void Resize(base::global::CRntVector<T>& v, u32 n) {
     if (v.count < n) {
         if (v.capacity < n) {
             T* p = static_cast<T*>(v.allocator->vf_0x40((u64)n * sizeof(T), 8, v.flags));

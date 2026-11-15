@@ -1,11 +1,11 @@
 // Refills an object's list with the addresses of fourteen of its members. Layout is a
 // placeholder; the members' types are unknown.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkObj_7100b34b44 {
     u8 pad_0x0[0x2b8];
-    base::UnkVector<void*> list;
+    base::global::CRntVector<void*> list;
     u8 pad_0x2e0[0x300];
 
     void* At(u32 offset) { return reinterpret_cast<u8*>(this) + offset; }

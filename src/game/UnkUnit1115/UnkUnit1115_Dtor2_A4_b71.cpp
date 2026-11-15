@@ -3,7 +3,7 @@
 // and +0x68, a keyed table at +0x40, a keyed table of 0x30-byte records (each an array of arrays) at
 // +0x18 and releases the string id at +8. Names are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU1115.h"
 #include "types.h"
 
@@ -14,7 +14,7 @@ namespace {
 struct UnkU1115Tag_A4_b71;
 
 template <class T>
-struct UnkU1115Vec_A4_b71 : base::UnkVector<T> {
+struct UnkU1115Vec_A4_b71 : base::global::CRntVector<T> {
     __attribute__((always_inline)) void Release() {
         if (this->data) {
             for (u64 i = 0; i < this->count; ++i)
@@ -48,7 +48,7 @@ struct UnkU1115Table_A4_b71 {
 
 template <u32 Offset>
 struct UnkU1115PlainVec_A4_b71 {
-    static void Release(char* self) { reinterpret_cast<base::UnkVector<u32>*>(self + Offset)->Free(); }
+    static void Release(char* self) { reinterpret_cast<base::global::CRntVector<u32>*>(self + Offset)->Free(); }
 };
 
 template <u32 Offset>
