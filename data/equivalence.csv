@@ -14,8 +14,10 @@ address,digest,verdict,rules,detail
 0x710009b050,1b5414776460a2b32d3e838fccc54e5c,inconclusive,2,unresolved guard variable for base::global::UnkEnsureStringPool()::s_holder (no address in the original)
 0x71000cd658,0aca046f127df5da4458f29a7c3428f2,pass,2,
 0x71000cfe14,a79e3daa106f598fdb7902dad79fd5af,pass,2,
+0x71000f9e84,c14623b3715aac62d42f13d0ffe84108,pass,2,
 0x71000fd1d4,cefc91838050d8d167457ce7beda6d57,pass,2,
 0x71000fef18,46e87f5e64ba9eba8d926888024b1384,pass,2,
+0x7100100088,33ef273ca2ceea46eeef3511b9c3517d,pass,2,
 0x7100110420,bfeb95e7cbcf15507626ede5eb508242,pass,2,
 0x710011ec5c,88fe1b9031af625ce292c29badada502,pass,2,
 0x710012436c,4ccf526e05b76ea7d5a76da86a8bf0aa,inconclusive,2,unresolved UnkSegment2D::UnkSegment2D(base::math::CVector2D const&; base::math::CVector2D const&)
@@ -137,6 +139,7 @@ address,digest,verdict,rules,detail
 0x7100e8f6bc,f278d1f52b4ee78c5f3997bb16265075,pass,2,
 0x7100e906bc,95a477431a53bcdfe6f5aa55c859dac8,pass,2,
 0x7100e90e6c,b1468ac42000bf07715af95b4272dbfd,pass,2,
+0x7100e91018,2c59d243b991dd4bc564711fb10d7fe8,pass,2,both runs were cut off
 0x7100e91d68,6f3c9de0dde0ceb5d24ca712cb2c8581,pass,2,
 0x7100e94e10,dc7011ed5cd98181dc653fe57e0684f3,pass,2,
 0x7100e9d6f8,743e3a93eeae5188c487d7e857f6594f,pass,2,

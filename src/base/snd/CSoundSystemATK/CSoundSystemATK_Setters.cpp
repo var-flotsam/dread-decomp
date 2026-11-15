@@ -7,6 +7,7 @@
 
 #include "base/UnkDefaultAllocator.h"
 #include "base/snd/UnkSoundSystemATK.h"
+#include "game/UnkTU99.h"
 
 using base::snd::UnkSoundSystemATK;
 
@@ -22,9 +23,6 @@ struct UnkSoundQueue2View {
     nn::os::MutexType field_0x400548;
 };
 static_assert(__builtin_offsetof(UnkSoundQueue2View, field_0x400548) == 0x400548, "layout");
-
-// The payload size of each command of the second queue.
-extern const s32 g_unk_7101647aa8[] __attribute__((visibility("hidden")));
 
 // fn_71000faac4 (include/base/snd/UnkSoundSystemATK.h) under a local name whose payload parameter is
 // marked noescape: in the original unit the definition is visible, so its payload is known not to be

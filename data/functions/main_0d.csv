@@ -5545,7 +5545,7 @@ address,size,name,name_source,subsystem,status
 0x7100de9f78,908,fn_7100de9f78,unknown,unknown,U
 0x7100dea304,524,fn_7100dea304,unknown,unknown,O
 0x7100dea510,612,fn_7100dea510,unknown,unknown,U
-0x7100dea774,348,fn_7100dea774,unknown,unknown,U
+0x7100dea774,348,fn_7100dea774,unknown,unknown,O
 0x7100dea8d0,672,fn_7100dea8d0,unknown,unknown,U
 0x7100deab70,84,fn_7100deab70,unknown,unknown,O
 0x7100deabc4,32,fn_7100deabc4,unknown,unknown,O

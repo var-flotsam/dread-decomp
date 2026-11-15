@@ -4090,11 +4090,11 @@ address,size,name,name_source,subsystem,status
 0x7100f98410,156,fn_7100f98410,unknown,unknown,m
 0x7100f984ac,300,fn_7100f984ac,unknown,unknown,U
 0x7100f985d8,240,fn_7100f985d8,unknown,unknown,U
-0x7100f986c8,116,fn_7100f986c8,unknown,unknown,U
+0x7100f986c8,116,fn_7100f986c8,unknown,unknown,O
 0x7100f9873c,116,fn_7100f9873c,unknown,unknown,O
 0x7100f987b0,20,fn_7100f987b0,unknown,unknown,O
 0x7100f987c4,88,fn_7100f987c4,unknown,unknown,O
-0x7100f9881c,104,fn_7100f9881c,unknown,unknown,U
+0x7100f9881c,104,fn_7100f9881c,unknown,unknown,O
 0x7100f98884,116,fn_7100f98884,unknown,unknown,O
 0x7100f988f8,80,fn_7100f988f8,unknown,unknown,O
 0x7100f98948,80,fn_7100f98948,unknown,unknown,O
