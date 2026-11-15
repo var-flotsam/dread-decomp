@@ -295,7 +295,8 @@ def parse_type(text: str):
     def one(i: int):
         const = toks[i] == "const"
         i += const
-        if i >= len(toks) or not re.fullmatch(r"[A-Za-z_][\w:]*", toks[i]) or toks[i] == "const":
+        if (i >= len(toks) or not re.fullmatch(r"[A-Za-z_][\w:]*", toks[i])
+                or toks[i] in ("const", "true", "false")):
             raise ValueError
         name, args = toks[i], None
         i += 1
@@ -413,35 +414,52 @@ def pointer_value_type(name: str):
     return None
 
 
+def _scopes_of(full: str) -> set[str]:
+    parts = full.split("::")
+    return {"::".join(parts[:k]) for k in range(1, len(parts))}
+
+
+def declaration_clashes(nodes: list, enums: frozenset[str] = frozenset()) -> set[str]:
+    """The names whose declarations would collide if `nodes` (parsed types) and `enums` shared a
+    translation unit: a class some name also uses as a scope, and a template named with two argument
+    counts or also as a class."""
+    names = [type_names(n) for n in nodes]
+    classes = set().union(*(c for c, _ in names)) | set(enums)
+    types = classes | set().union(*(set(t) for _, t in names))
+    clash = types & set().union(*(_scopes_of(f) for f in types))
+    counts: dict[str, set[int]] = {}
+    for _, templates in names:
+        for t, n in templates.items():
+            counts.setdefault(t, set()).add(n)
+    return clash | {t for t, ns in counts.items() if len(ns) > 1 or t in classes}
+
+
 def named_pointers(orig: asmdiff.Original, pairs: list, enums: frozenset[str] = frozenset()) -> dict[int, str]:
     """{getter: name} of the pointer types (pointer_value_type) whose value operations can come from
-    ValueOps.h: a name that parses, every CType slot a function, no class that a name in the set also
-    uses as a scope (the two declarations would collide), and no template named with two argument
-    counts or also as a class."""
+    ValueOps.h: a name that parses, every CType slot a function, and no name whose declaration would
+    collide with another's (declaration_clashes). The plain pointers are taken first, all together;
+    each element iterator then joins only if it adds no collision."""
     cands = {}
     for g, name, init, _ in pairs:
         vt = pointer_value_type(name)
         if vt and pointer_slots(orig, init):
             cands[g] = vt
-    def scopes_of(full: str) -> set[str]:
-        parts = full.split("::")
-        return {"::".join(parts[:k]) for k in range(1, len(parts))}
-
-    # The enums count too: their declarations share the scope (and the candidates' translation unit).
     refs = {g: (lambda c, t: c | set(t))(*type_names(n)) for g, (_, n) in cands.items()}
-    names = list(refs.values()) + [{e} for e in enums]
-    types = set().union(*names) if names else set()
-    clash = types & set().union(*(scopes_of(f) for r in names for f in r)) if names else set()
-    classes = set().union(*(type_names(n)[0] for _, n in cands.values())) | set(enums)
-    counts: dict[str, set[int]] = {}
-    for _, node in cands.values():
-        for t, n in type_names(node)[1].items():
-            counts.setdefault(t, set()).add(n)
-    clash |= {t for t, ns in counts.items() if len(ns) > 1 or t in classes}
+    plain = {g for g, (canon, _) in cands.items() if not ITERATOR_RE.fullmatch(canon)}
+    clash = declaration_clashes([cands[g][1] for g in plain], enums)
     out: dict[int, str] = {}
-    for g, (canon, _) in cands.items():
-        if not any(f in clash or scopes_of(f) & clash for f in refs[g]) and canon not in out.values():
+    for g in plain:
+        canon = cands[g][0]
+        if not any(f in clash or _scopes_of(f) & clash for f in refs[g]) and canon not in out.values():
             out[g] = canon
+    taken = [cands[g][1] for g in out]
+    base = declaration_clashes(taken, enums)
+    for g, (canon, node) in cands.items():
+        if g in plain or canon in out.values():
+            continue
+        if declaration_clashes(taken + [node], enums) <= base:
+            out[g] = canon
+            taken.append(node)
     return out
 
 

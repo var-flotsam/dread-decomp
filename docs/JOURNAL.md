@@ -161,7 +161,7 @@ only `increment` (the element's stride) and `get`/`set` differ, and those stay a
 `include/base/reflection/CollectionTypeMapper.h` writes the two iterators once, with the element untyped because
 reflection reaches it only through the pointee's descriptor. Their nine slot functions are `ValueOps<iterator>`, as
 a plain pointer type's are. A collection whose name has a `std::` type or a non-type argument (`CArray<T, N, E>`)
-keeps the address form, as does a template named with two argument counts. The key-element iterators hold the key
+keeps the address form, as does one whose declarations would collide with a name already taken: the plain pointers are taken first, and each iterator joins only if it adds no collision (`CRntVector<SFXInstanceData, false>` would give the template two argument counts; `CCutscene::CActor` would make the class `CCutscene` a scope). The key-element iterators hold the key
 and element as they are read, are laid out per collection kind, and are not written yet. Checked here on
 `CRntVector<base::core::AssetName>`: eight of the nine are byte-identical to the lifted ones, and `TypeOf` is the
 pointer types' form.

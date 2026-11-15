@@ -285,6 +285,17 @@ class TypeNames(unittest.TestCase):
         self.assertEqual(gt.pointer_value_type("unsigned int*")[0], "unsigned int*")
 
 
+    def test_iterators_join_without_clashes(self):
+        it = "base::reflection::CollectionTypeMapper<{}>::TElementIterator"
+        pairs = [(1, "CFoo*", 11, None), (2, "base::global::CRntVector<CBar>*", 12, None),
+                 (3, it.format("base::global::CRntVector<CFoo::SItem>"), 13, None),
+                 (4, it.format("base::global::CRntVector<CBar, false>"), 14, None),
+                 (5, it.format("base::global::CRntVector<CBaz>"), 15, None)]
+        with mock.patch.object(gt, "pointer_slots", return_value={0x28: 1}):
+            out = gt.named_pointers(None, pairs)
+        self.assertEqual(sorted(out), [1, 2, 5])
+
+
 class Declarations(unittest.TestCase):
     DECLS = {"void fn_7100000010();", "extern base::reflection::CType g_unk_7100000020;",
              "void fn_7100000030();"}
