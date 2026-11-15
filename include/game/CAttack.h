@@ -103,3 +103,4 @@ struct UnkAttackWords {
             w[i] = other.w[i];
     }
 };
+void fn_710036069c(void* attack);

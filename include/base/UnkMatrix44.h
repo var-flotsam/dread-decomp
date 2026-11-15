@@ -38,3 +38,4 @@ UnkMatrix44 fn_7100079138(f32 x, f32 y, f32 z);
 UnkMatrix44 fn_7100078d8c(f32 angle);
 // The matrix product a * b, returned through x8.
 UnkMatrix44 fn_71000127c8(const UnkMatrix44& a, const UnkMatrix44& b);
+extern UnkMatrix44 g_unk_7101a1a680;

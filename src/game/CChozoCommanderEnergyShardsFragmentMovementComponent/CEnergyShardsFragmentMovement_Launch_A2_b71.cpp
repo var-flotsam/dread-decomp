@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CCharClassAttackComponent.h"
 #include "game/UnkTU1370.h"
 #include "game/UnkTU55.h"
 #include "types.h"
@@ -14,7 +15,6 @@ using base::global::CStrId;
 using base::math::CVector3D;
 
 struct UnkRequest;
-extern base::reflection::UnkTunable g_unk_7172716160;
 extern CStrId g_unk_71726c9c80 __attribute__((visibility("hidden")));
 
 struct UnkVec3;

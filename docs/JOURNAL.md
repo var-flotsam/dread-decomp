@@ -154,6 +154,19 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Lean batch lean-b5: 99 ready functions of 26 units with three or four each (2026-11-15).** The units with
+four or more ready functions were used up by lean-b4, so this batch took units of three and four: 26 Sonnet
+workers, budget 3, reference matches for 81 of 99. Results: 18 matches, 22 registers-only, 59 that differ; 257
+graded attempts; about 3.25 million worker tokens, about 181,000 per match (smaller units pay the worker's
+start-up over fewer functions). 17 matches are in `src/`; `fn_710027da54` waits in `drafts/` on its declaration.
+A worker matched three of `CSpotLightComponent`'s four colour setters with the clamp in a helper that returns the
+vector by value; the same form, applied by hand, matched the fourth and all four of `COmniLightComponent`'s
+(five more). The permuter matched 4 of 16 registers-only drafts (2 in `src/`, 2 held on declarations) and
+`tools/equiv_test.py` passed 4 more. 28 functions into `src/` in all. Three symbols the new files copied
+(`fn_710036069c`, the identity matrix `g_unk_7101a1a680`, `g_unk_7172716160`) were declared in their headers
+and every copy moved there (`tools/hub_migrate.py` with a hand plan; extra declaration copies 1,042 -> 1,014).
+Recommendation: finish a family by hand once one worker finds its form, before filing the rest as drafts.
+
 **Vector descriptor slots from CollectionTypeMapper (2026-11-15).** The functions a vector's
 CCollectionType descriptor points to are now static members of `base::reflection::CollectionTypeMapper<C>`
 (`include/base/reflection/CollectionTypeMapper.h`): the CType slots `Construct` … `Hash` (with `TypeOf`

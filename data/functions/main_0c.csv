@@ -56,12 +56,12 @@ address,size,name,name_source,subsystem,status
 0x7100c046c8,96,fn_7100c046c8,unknown,unknown,O
 0x7100c04728,8,fn_7100c04728,unknown,unknown,O
 0x7100c04730,16,fn_7100c04730,unknown,unknown,O
-0x7100c04740,232,fn_7100c04740,unknown,unknown,U
+0x7100c04740,232,fn_7100c04740,unknown,unknown,O
 0x7100c04828,28,fn_7100c04828,unknown,unknown,O
 0x7100c04844,8,fn_7100c04844,unknown,unknown,O
 0x7100c0484c,8,fn_7100c0484c,unknown,unknown,O
 0x7100c04854,16,fn_7100c04854,unknown,unknown,O
-0x7100c04864,228,fn_7100c04864,unknown,unknown,U
+0x7100c04864,228,fn_7100c04864,unknown,unknown,O
 0x7100c04948,368,fn_7100c04948,unknown,unknown,O
 0x7100c04ab8,104,fn_7100c04ab8,unknown,unknown,O
 0x7100c04b20,12,fn_7100c04b20,unknown,unknown,O

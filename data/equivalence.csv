@@ -12,6 +12,7 @@ address,digest,verdict,rules,detail
 0x710007f050,6c772666cbe027abc2ea56aade0021d0,pass,2,
 0x710007fe68,0df6e29da9ee048cdc649cbdca100684,inconclusive,2,no definition of the function found in the source: its result type is not known
 0x7100080578,f29094bb630d1b2d8d38a784264e4e5a,inconclusive,2,only 95% of the original's instructions ran
+0x7100086ec8,6e2de01bd74502d92dae42c45ebe54b1,pass,2,
 0x7100089668,c35c1faa8999e7305008544d37fde105,pass,2,
 0x710009b050,1b5414776460a2b32d3e838fccc54e5c,inconclusive,2,unresolved guard variable for base::global::UnkEnsureStringPool()::s_holder (no address in the original)
 0x71000cd658,0aca046f127df5da4458f29a7c3428f2,pass,2,
@@ -95,6 +96,7 @@ address,digest,verdict,rules,detail
 0x7100558e14,03df53f844cfb38c773dd4aa4b9077b0,pass,2,
 0x7100569e58,16b8a501d00ba1a57a796d4681a885a8,inconclusive,2,unresolved guard variable for base::global::UnkEnsureStringPool()::s_holder (no address in the original)
 0x7100572a68,825235b2f78d997f3e2579529208032f,pass,2,
+0x71006c083c,e01bf5f33f060f8d620f49fe0899d74e,pass,2,
 0x71006eb484,47135ee84631131e2dc775321549c3d7,inconclusive,2,only 89% of the original's instructions ran
 0x7100700594,21cf0846eb26c983648e2fde4f1454a4,pass,2,
 0x7100714808,0722c41dde09ac2c8cbd44951f777767,inconclusive,2,1 of 6 conditional branches went only one way
@@ -159,9 +161,11 @@ address,digest,verdict,rules,detail
 0x7100e9d6f8,743e3a93eeae5188c487d7e857f6594f,pass,2,
 0x7100eca5dc,056cff2f7069cf909a91ac97438182f9,inconclusive,2,only 83% of the original's instructions ran
 0x7100eca778,056cff2f7069cf909a91ac97438182f9,inconclusive,2,only 83% of the original's instructions ran
+0x7100ed6448,09645bab1b5be5048472ebb1dd83b426,pass,2,
 0x7100ee4f84,105bfc17d8be1c6f6e47540cc8428d48,inconclusive,2,unresolved guard variable for GameManagerIdTable()::s_table (no address in the original)
 0x7100f06034,3146cd331b7a02411be77b776ce4c68d,pass,2,both runs were cut off
 0x7100f90c50,116a9a32b213e829107f2d7d06f67ca0,pass,2,
+0x7100f91fe4,f33ed8fc7cf7b4effee085a8d9e81ce0,pass,2,
 0x7100f97d90,9432c5e90c43b504d44b800505165bb2,pass,2,
 0x7100f97f64,8a546b87d5dd88e59be02d4da8ebd851,pass,2,
 0x7100f98370,e45c3dbd1c4a79bf1e67fb67608bf708,pass,2,

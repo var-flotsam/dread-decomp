@@ -15,7 +15,6 @@
 #include "game/UnkActor.h"
 #include "types.h"
 
-void fn_710036069c(void* self);
 extern void* g_unk_7101a62b48[];
 
 struct UnkShakernautVec3_ovb0037 {

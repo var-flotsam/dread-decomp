@@ -6,3 +6,4 @@
 #include "types.h"
 extern char g_unk_7101a9d490[];
 extern char g_unk_7101a9d4b0[];
+extern char g_unk_7101a9d220[];

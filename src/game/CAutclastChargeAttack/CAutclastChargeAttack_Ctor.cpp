@@ -1,10 +1,9 @@
 // CAutclastChargeAttack: two identical constructors (fn_71003b4500, fn_71003b7614) on the attack
 // base constructor fn_710036069c. Names and layouts are placeholders.
+#include "game/CAttack.h"
 #include "game/CAutclastChargeAttack.h"
 #include "types.h"
 #include "base/global/CRntVector.h"
-
-void fn_710036069c(void* self);
 
 struct UnkAutclastChargeAttack {
     void** vtable;

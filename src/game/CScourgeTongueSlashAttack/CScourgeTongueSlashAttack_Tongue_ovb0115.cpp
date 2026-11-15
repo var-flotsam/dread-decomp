@@ -210,8 +210,6 @@ void fn_710069afac(UnkScourgeSlash_b0115* self, bool aim) {
 
 using base::global::CStrId;
 
-extern UnkMatrix44 g_unk_7101a1a680;
-
 struct UnkTileOutlines;
 struct UnkTileOutline;
 

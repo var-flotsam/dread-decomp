@@ -7,10 +7,9 @@
 
 #include "base/global/CRntVector.h"
 #include "game/CAbilityGhostAura.h"
+#include "game/CAttack.h"
 #include "game/CBigkranXSpitAttack.h"
 #include "types.h"
-
-void fn_710036069c(void* attack);  // CAttack's constructor
 
 struct UnkSpitAttackListener {
     void* vtable;

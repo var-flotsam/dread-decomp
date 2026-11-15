@@ -1,8 +1,7 @@
 // CSluggerSpitAttack's destructor: its ref-counted pointer (+0xe0), the two pointers of the
 // member at +0x88, its listener (+0x38), then CAttack's.
 #include "../../game_5821e4/CAttackDtor.h"
-
-extern void* g_unk_7101a64db0[];  // CSluggerSpitAttack's vtable
+#include "game/CSluggerSpitAttack.h"
 
 struct UnkAttack_71006c3a64 {
     void** vtable;

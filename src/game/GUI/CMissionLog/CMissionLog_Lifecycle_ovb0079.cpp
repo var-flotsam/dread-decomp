@@ -31,7 +31,6 @@ struct UnkElemArray;
 using UnkElem38Array = UnkElemArray<UnkElem38>;
 
 void fn_7100b55d4c(UnkElem38Array* self);
-extern char g_unk_7101a9d220[];
 
 struct UnkMissionLog_ovb0079 {
     char* vtable;

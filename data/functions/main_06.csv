@@ -4677,10 +4677,10 @@ address,size,name,name_source,subsystem,status
 0x71006c02cc,388,CSluggerSpitAttack::refl_InitClass,reflection,game/ai,O
 0x71006c0450,620,fn_71006c0450,unknown,game/ai?,O
 0x71006c06bc,384,base::reflection::refl_InitType<CSluggerSpitAttack::EState>,reflection,engine/reflection,O
-0x71006c083c,144,fn_71006c083c,unknown,game/ai?,U
+0x71006c083c,144,fn_71006c083c,unknown,game/ai?,m
 0x71006c08cc,100,fn_71006c08cc,unknown,game/ai?,O
 0x71006c0930,284,fn_71006c0930,unknown,game/ai?,O
-0x71006c0a4c,332,fn_71006c0a4c,unknown,game/ai?,U
+0x71006c0a4c,332,fn_71006c0a4c,unknown,game/ai?,O
 0x71006c0b98,672,fn_71006c0b98,unknown,game/ai?,U
 0x71006c0e38,524,fn_71006c0e38,unknown,game/ai?,U
 0x71006c1044,196,fn_71006c1044,unknown,game/ai?,O
