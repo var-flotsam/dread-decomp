@@ -60,7 +60,6 @@ static_assert(__builtin_offsetof(UnkTileGroup, field_0xd0) == 0xd0, "UnkTileGrou
 static const u64 kNoRenderObject = 0xffffffff;
 
 extern const UnkVec3f g_unk_710164ba64 __attribute__((visibility("hidden")));
-void fn_7100ca1180(UnkTileGroup* group);
 void fn_7100c9fdd8(UnkQueryObj* tile);
 void fn_7100c9f9bc(UnkQueryObj* tile);
 void fn_7100c9fc88(UnkQueryObj* tile);

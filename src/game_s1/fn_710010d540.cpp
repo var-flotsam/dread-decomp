@@ -4,12 +4,12 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflTypeDtors.h"
+#include "game/UnkTU106.h"
 
 #define HIDDEN __attribute__((visibility("hidden")))
 
 using base::global::CStrId;
 
-extern u8 g_unk_7108b6d530[];
 extern u8 g_unk_7108b6d668[];
 
 void fn_710010c7a4(void*);

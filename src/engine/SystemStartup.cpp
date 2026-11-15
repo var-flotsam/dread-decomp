@@ -644,7 +644,6 @@ static inline CVector3D UnkLiftAt(const UnkVec2Result& v, const CVector2D& origi
 }
 
 // A segment and an aligned box, tested in the box's frame (`mode` 2).
-bool fn_710012b7f0(const UnkSweep2D* seg, const UnkBox2D* box, UnkContact2D* out, s32 mode);
 
 // A segment against an oriented box: fn_710012b7f0 in the box's frame, the contact (point and
 // both normals) taken back to the world's.

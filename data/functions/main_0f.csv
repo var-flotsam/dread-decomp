@@ -117,7 +117,7 @@ address,size,name,name_source,subsystem,status
 0x7100f05610,244,CPickable::refl_GetClass,reflection,game,O
 0x7100f05704,4,CPickable::refl_AddFields,reflection,game,O
 0x7100f05708,388,CPickable::refl_InitClass,reflection,game,O
-0x7100f0588c,216,fn_7100f0588c,unknown,game?,U
+0x7100f0588c,216,fn_7100f0588c,unknown,game?,m
 0x7100f05964,212,fn_7100f05964,unknown,game?,O
 0x7100f05a38,36,fn_7100f05a38,unknown,game?,O
 0x7100f05a5c,444,fn_7100f05a5c,unknown,game?,O
@@ -141,7 +141,7 @@ address,size,name,name_source,subsystem,status
 0x7100f06420,8,CPickable::refl_Equals,reflection,game,O
 0x7100f06428,8,CPickable::refl_Hash,reflection,game,O
 0x7100f06430,28,CPickable::refl_TypeOf,reflection,game,O
-0x7100f0644c,228,CPickable::refl_Construct,reflection,game,U
+0x7100f0644c,228,CPickable::refl_Construct,reflection,game,m
 0x7100f06530,4,CPickable::refl_CopyConstruct,reflection,game,O
 0x7100f06534,4,CPickable::refl_MoveConstruct,reflection,game,O
 0x7100f06538,12,CPickable::refl_Destroy,reflection,game,O

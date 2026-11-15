@@ -21,10 +21,10 @@ struct UnkRange_b0166 {
 
 void fn_7100216d30(UnkRange_b0166* self, f32 scale) {
     f32 v = self->far_b * scale;
-    s64 t = (s64)(v * 10000.0f);
-    self->ticks = t;
     self->far_a = v;
     self->reach = v;
+    s64 t = (s64)(v * 10000.0f);
+    self->ticks = t;
     self->flag = t == 0;
 }
 
