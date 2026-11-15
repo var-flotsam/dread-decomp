@@ -73,4 +73,26 @@ struct CollectionTypeMapper {
     }
 };
 
+// The mapper's functions under the members a collection's description gives its descriptor's constructor
+// (CCollectionType.h). A description derives from this and adds the rest: size, kind, the key, element and
+// iterator types, and the slots not written yet.
+template <class C>
+struct CollectionMapperDescription {
+    static constexpr auto construct = &CollectionTypeMapper<C>::Construct;
+    static constexpr auto copy_construct = &CollectionTypeMapper<C>::CopyConstruct;
+    static constexpr auto move_construct = &CollectionTypeMapper<C>::MoveConstruct;
+    static constexpr auto destroy = &CollectionTypeMapper<C>::Destroy;
+    static constexpr auto copy_assign = &CollectionTypeMapper<C>::CopyAssign;
+    static constexpr auto move_assign = &CollectionTypeMapper<C>::MoveAssign;
+    static constexpr auto hash = &CollectionTypeMapper<C>::Hash;
+    static constexpr auto count = &CollectionTypeMapper<C>::Count;
+    static constexpr auto clear = &CollectionTypeMapper<C>::Clear;
+    static constexpr auto add_copy = &CollectionTypeMapper<C>::AddCopy;
+    static constexpr auto add_move = &CollectionTypeMapper<C>::AddMove;
+    static constexpr auto at = &CollectionTypeMapper<C>::At;
+    static constexpr auto find = &CollectionTypeMapper<C>::Find;
+    static constexpr auto begin = &CollectionTypeMapper<C>::Begin;
+    static constexpr auto end = &CollectionTypeMapper<C>::End;
+};
+
 }  // namespace base::reflection
