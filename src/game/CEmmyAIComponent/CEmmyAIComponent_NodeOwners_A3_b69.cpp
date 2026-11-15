@@ -3,12 +3,12 @@
 // vtables are 0x7101a48be0/0x7101a21030, 0x7101a48c00/0x7101a1bdf8 and 0x7101a48be0/0x7101a21030.
 // Names are placeholders.
 #include "base/UnkNodeOwner.h"
+#include "game/malloc.h"
 #include "types.h"
 
 extern void* g_unk_7101a48be0[];
 extern void* g_unk_7101a21030[];
 extern void* g_unk_7101a48c00[];
-extern void* g_unk_7101a1bdf8[];
 
 __attribute__((always_inline)) inline void UnkEmmyNoNodeDtor_A3_b69(UnkListNode<8>*) {}
 

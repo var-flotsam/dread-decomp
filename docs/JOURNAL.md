@@ -154,6 +154,21 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Lean batch lean-b2: 100 more ready functions by whole units (2026-11-15).** The same shape as lean-b1 on the
+next 11 units with four or more ready functions (units 54, 1501, 429, 2216, 110, 2702, 2657, 47, 430, 180, 2523);
+15 Sonnet workers, budget 3, reference matches for 85 of 100. Results: 24 matches (11 on the first graded
+attempt, 9 on the second, 4 on the third), 18 registers-only, 58 that differ; 257 graded attempts; about 2.37
+million worker tokens, about 99,000 per match. 23 matches are in `src/`; `fn_71009ea070` waits in `drafts/` (its
+declaration names a type local to another file, and a cast to this layout changes the code). The permuter matched
+2 of the 18 registers-only drafts and `tools/equiv_test.py` passed 5 more, now verified minor in `src/`; 4 more pass
+the machine test but are held on declarations whose types differ, and 7 were inconclusive. 30 functions into
+`src/` in all. Worth reusing: unit 47's rumble functions search a keyed table twice and matched only when the
+existence test is its own `Has(key)` helper over `Find(key) != End()` (six functions on that form); unit 54's
+matrix helpers keep float products in an order source edits do not move, which the permuter or the machine test
+settles. Declaration fixes by hand: `fn_7100ca7a64`'s caller declares the 32-bit id the definition takes,
+`fn_71003014e0`'s caller declares its result, and two new layouts got per-file names (`UnkAbility`,
+`UnkPathPoint`).
+
 **Lean batch lean-b1: 98 ready functions, whole units to a worker (2026-11-15).** The first batch on the
 rewritten kit since workers take several functions of one unit. Queue: 98 `U` functions of 400 bytes or less
 from `tools/hubs.py --ready`, taken as whole units (13 units with four or more ready functions each, boot-slice

@@ -4260,7 +4260,7 @@ address,size,name,name_source,subsystem,status
 0x71009e29ec,528,fn_71009e29ec,unknown,unknown,U
 0x71009e2bfc,56,fn_71009e2bfc,unknown,unknown,O
 0x71009e2c34,1096,fn_71009e2c34,unknown,unknown,U
-0x71009e307c,268,fn_71009e307c,unknown,unknown,U
+0x71009e307c,268,fn_71009e307c,unknown,unknown,m
 0x71009e3188,408,fn_71009e3188,unknown,unknown,O
 0x71009e3320,644,fn_71009e3320,unknown,unknown,U
 0x71009e35a4,3168,fn_71009e35a4,unknown,unknown,U

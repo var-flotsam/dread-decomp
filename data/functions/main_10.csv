@@ -1960,7 +1960,7 @@ address,size,name,name_source,subsystem,status
 0x710105a2d0,96,fn_710105a2d0,unknown,unknown,O
 0x710105a330,8,fn_710105a330,unknown,unknown,O
 0x710105a338,16,fn_710105a338,unknown,unknown,O
-0x710105a348,220,fn_710105a348,unknown,unknown,U
+0x710105a348,220,fn_710105a348,unknown,unknown,O
 0x710105a424,28,fn_710105a424,unknown,unknown,O
 0x710105a440,8,fn_710105a440,unknown,unknown,O
 0x710105a448,8,fn_710105a448,unknown,unknown,O
@@ -2152,7 +2152,7 @@ address,size,name,name_source,subsystem,status
 0x710105ce6c,28,SLogicSubPath::refl_TypeOf,reflection,game,O
 0x710105ce88,96,SLogicSubPath::refl_Construct,reflection,game,O
 0x710105cee8,80,SLogicSubPath::refl_CopyConstruct,reflection,game,O
-0x710105cf38,100,SLogicSubPath::refl_MoveConstruct,reflection,game,U
+0x710105cf38,100,SLogicSubPath::refl_MoveConstruct,reflection,game,O
 0x710105cf9c,12,SLogicSubPath::refl_Destroy,reflection,game,O
 0x710105cfa8,64,SLogicSubPath::refl_CopyAssign,reflection,game,O
 0x710105cfe8,192,SLogicSubPath::refl_MoveAssign,reflection,game,O
@@ -4886,13 +4886,13 @@ address,size,name,name_source,subsystem,status
 0x71010faac0,152,fn_71010faac0,unknown,unknown,O
 0x71010fab58,1704,fn_71010fab58,unknown,unknown,U
 0x71010fb200,136,fn_71010fb200,unknown,unknown,O
-0x71010fb288,272,fn_71010fb288,unknown,unknown,U
+0x71010fb288,272,fn_71010fb288,unknown,unknown,O
 0x71010fb398,164,fn_71010fb398,unknown,unknown,O
 0x71010fb43c,3132,fn_71010fb43c,unknown,unknown,U
 0x71010fc078,24,fn_71010fc078,unknown,unknown,O
 0x71010fc090,196,fn_71010fc090,unknown,unknown,O
 0x71010fc154,160,fn_71010fc154,unknown,unknown,U
-0x71010fc1f4,144,fn_71010fc1f4,unknown,unknown,U
+0x71010fc1f4,144,fn_71010fc1f4,unknown,unknown,O
 0x71010fc284,152,fn_71010fc284,unknown,unknown,m
 0x71010fc31c,128,fn_71010fc31c,unknown,unknown,O
 0x71010fc39c,220,fn_71010fc39c,unknown,unknown,U
