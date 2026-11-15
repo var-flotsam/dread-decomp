@@ -268,6 +268,98 @@ def emit_enum(init: int, body: list[str]) -> list[str]:
             f"UnkRefl_fn_{init:x}*);"]
 
 
+# An enum's value operations (include/base/reflection/ValueOps.h): slot offset -> ValueOps member.
+VALUE_OPS = {0x28: "Construct", 0x30: "CopyConstruct", 0x38: "MoveConstruct", 0x40: "Destroy",
+             0x48: "CopyAssign", 0x50: "MoveAssign", 0x58: "Equals", 0x60: "Hash", 0x68: "TypeOf"}
+# A qualified name a declaration can spell: identifiers joined by `::`.
+QUALIFIED_RE = re.compile(r"[A-Za-z_]\w*(?:::[A-Za-z_]\w*)*")
+
+
+def enum_slots(orig: asmdiff.Original, init: int) -> dict[int, int] | None:
+    """{slot offset: function} of an enum constructor, when it stores a function in every CType slot."""
+    _, st, _ = emulate(orig, init)
+    out = {}
+    for off in VALUE_OPS:
+        v = st.get(off)
+        if not v or v[0] != "fn":
+            return None
+        out[off] = v[1]
+    return out
+
+
+def returned_object(orig: asmdiff.Original, addr: int) -> int | None:
+    """The global a function returns from its GOT slot (`adrp; ldr x0, [slot]; ret`), or None."""
+    ins = disasm(orig, addr)
+    if [x.mnemonic for x in ins] != ["adrp", "ldr", "ret"]:
+        return None
+    page, mem = ins[0].operands[1].imm, ins[1].operands[1].mem
+    target = orig.img.pointer(page + mem.disp - BASE)
+    return BASE + target if target is not None else None
+
+
+def enum_names(orig: asmdiff.Original, version: str, enums: list) -> dict[int, tuple[str, int]]:
+    """{constructor: (enum name, its descriptor)} for the enums whose static initialiser names them
+    (tools/gen_fields.py's built_objects) under a name a declaration can spell."""
+    import gen_fields
+    objects = {}
+    for init, _ in enums:
+        slots = enum_slots(orig, init)
+        obj = returned_object(orig, slots[0x68]) if slots else None
+        if obj is not None:
+            objects[init] = obj
+    names = gen_fields.built_objects(version, set(objects.values()))
+    return {init: (names[obj], obj) for init, obj in objects.items()
+            if obj in names and QUALIFIED_RE.fullmatch(names[obj])}
+
+
+def enum_declaration(name: str) -> str:
+    """`namespace A::B { enum class E : u32; }`: an enclosing class is declared as a namespace,
+    which mangles the same."""
+    scope, _, leaf = name.rpartition("::")
+    decl = f"enum class {leaf} : u32;"
+    return f"namespace {scope} {{ {decl} }}" if scope else decl
+
+
+def emit_enum_ops(init: int, name: str, obj: int, body: list[str]) -> list[str]:
+    """An enum's description and value operations, named by the enum (ValueOps.h). `body` is
+    enum_traits' lines; the slot lines give way to ValueOpsDescription."""
+    rest = [line for line in body if " UnkFn " not in line]
+    return ["template <>",
+            f"const CType& base::reflection::ValueOps<{name}>::TypeOf(const void*) {{ return g_unk_{obj:x}; }}",
+            f"template struct base::reflection::ValueOps<{name}>;",
+            "template <>",
+            f"struct base::reflection::EnumTypeDescription<{name}> "
+            f": base::reflection::ValueOpsDescription<{name}> {{",
+            *rest,
+            "};",
+            f"template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, {name}*);"]
+
+
+def enum_ops_names(orig: asmdiff.Original, init: int, name: str) -> dict[int, str]:
+    """data/functions/ names of an enum's constructor and value operations, as its symbols demangle
+    (asmdiff.name_aliases maps refl_InitType<E> to the constructor)."""
+    out = {a: f"base::reflection::ValueOps<{name}>::{VALUE_OPS[off]}"
+           for off, a in (enum_slots(orig, init) or {}).items()}
+    out[init] = f"base::reflection::refl_InitType<{name}>"
+    return out
+
+
+ENUM_OPS_RE = re.compile(r"^template struct base::reflection::ValueOps<(.+)>;$", re.M)
+
+
+def reflection_names(orig: asmdiff.Original, version: str) -> dict[int, str]:
+    """data/functions/ names of the enums written in their named form in src/reflection_types/
+    (tools/gen_functions_csv.py)."""
+    written = {m.group(1) for f in OUT.glob("enum_types_*.cpp")
+               for m in ENUM_OPS_RE.finditer(f.read_text(encoding="utf-8"))}
+    _, _, enums, _ = scan(orig)
+    out = {}
+    for init, (name, _) in enum_names(orig, version, enums).items():
+        if name in written:
+            out.update(enum_ops_names(orig, init, name))
+    return out
+
+
 COLLECTION_KIND = "base::reflection::CCollectionType"
 
 
@@ -556,6 +648,7 @@ PRELUDE = ['#include "base/reflection/CCollectionType.h"',
            '#include "base/reflection/CFlagsetType.h"',
            '#include "base/reflection/CPointerType.h"',
            '#include "base/reflection/UnkReflPrimitiveType.h"',
+           '#include "base/reflection/ValueOps.h"',
            "using base::reflection::CType;",
            "using base::reflection::UnkFn;"]
 NAME_RE = re.compile(r"\b(?:fn|g_unk)_[0-9a-f]{10}\b")
@@ -631,23 +724,51 @@ def main() -> int:
     colls, _ = scan_collections(orig, decls)
     prims, inline_ptrs = scan_primitives(orig, decls)
     flagsets = scan_flagsets(orig, decls)
+    # Enums named by their static initialisers get their value operations from ValueOps.h; a name
+    # two descriptors share, or a named form that does not match, keeps the address form.
+    named = enum_names(orig, args.version, enums)
+    counts: dict[str, int] = {}
+    for name, _ in named.values():
+        counts[name] = counts.get(name, 0) + 1
+    named = {i: v for i, v in named.items() if counts[v[0]] == 1}
+    for _, o in named.values():
+        decls.add(f"extern base::reflection::CType g_unk_{o:x};")
+
+    def enum_block(init: int, body: list[str]) -> list[str]:
+        if init in named:
+            name, o = named[init]
+            return [enum_declaration(name)] + emit_enum_ops(init, name, o, body)
+        return emit_enum(init, body)
 
     work = ROOT / "build" / "gen_types"
     work.mkdir(parents=True, exist_ok=True)
     src, obj = work / "candidates.cpp", work / "candidates.o"
-    text = (PRELUDE + sorted(decls) + [line for g, nm, i, b in pairs for line in emit(g, nm, i, b)]
-            + [line for i, b in enums for line in emit_enum(i, b)]
-            + [line for i, b in colls for line in emit_collection(i, b)]
-            + [line for g, b in prims for line in emit_primitive(g, b)]
-            + [line for p in inline_ptrs for line in emit_inline_pointer(*p)]
-            + [line for i, b in flagsets for line in emit_flagset(i, b)])
-    src.write_text("\n".join(text) + "\n", encoding="utf-8")
-    r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
-    if r.returncode != 0:
-        raise SystemExit(f"candidates failed to compile:\n{r.stderr[:4000]}")
-    # strict: a byte match whose relocations name the wrong callee, global or GOT slot is rejected
-    results = asmdiff.diff_object(obj, orig, strict=True)
-    ok = {res.address for res in results if res.matching}
+    for attempt in range(2):
+        text = (PRELUDE + sorted(decls) + [line for g, nm, i, b in pairs for line in emit(g, nm, i, b)]
+                + [line for i, b in enums for line in enum_block(i, b)]
+                + [line for i, b in colls for line in emit_collection(i, b)]
+                + [line for g, b in prims for line in emit_primitive(g, b)]
+                + [line for p in inline_ptrs for line in emit_inline_pointer(*p)]
+                + [line for i, b in flagsets for line in emit_flagset(i, b)])
+        src.write_text("\n".join(text) + "\n", encoding="utf-8")
+        r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
+        if r.returncode != 0:
+            raise SystemExit(f"candidates failed to compile:\n{r.stderr[:4000]}")
+        # The named forms' symbols carry no address: they map through the names data/functions/
+        # will give them.
+        expected = {n: a for i, (name, _) in named.items() for a, n in enum_ops_names(orig, i, name).items()}
+        expected.update({alias: a for n, a in list(expected.items()) for alias in asmdiff.name_aliases(n)})
+        symbols = [f.symbol for f in asmdiff.read_object(obj)]
+        demangled = asmdiff.demangle(symbols)
+        # strict: a byte match whose relocations name the wrong callee, global or GOT slot is rejected
+        results = asmdiff.diff_object(obj, orig, resolve=lambda sym: expected.get(demangled.get(sym, sym)),
+                                      strict=True)
+        ok = {res.address for res in results if res.matching}
+        failed = {i for i, (name, _) in named.items() if not set(enum_ops_names(orig, i, name)) <= ok}
+        if not failed:
+            break
+        print(f"named enum forms that do not match, kept by address: {' '.join(f'{i:x}' for i in sorted(failed))}")
+        named = {i: v for i, v in named.items() if i not in failed}
     for line in asmdiff.reloc_rejects(results):
         print(line)
     good = [p for p in pairs if p[0] in ok and p[2] in ok]
@@ -664,7 +785,7 @@ def main() -> int:
     write_chunks("pointer_types", [emit(*p) for p in good] + [emit_inline_pointer(*p) for p in good_inline], decls,
                  [note, "// Getters (refl_GetType<T>) and descriptor constructors (refl_InitType<T>) of pointer",
                   "// types, byte-identical to the original."])
-    write_chunks("enum_types", [emit_enum(*e) for e in good_enums], decls,
+    write_chunks("enum_types", [enum_block(*e) for e in good_enums], decls,
                  [note, "// Descriptor constructors (refl_InitType<E>) of enums, byte-identical to the original."])
     write_chunks("collection_types", [emit_collection(*c) for c in good_colls], decls,
                  [note, "// Descriptor constructors of collection types (globals built by static initialisers),",
@@ -674,7 +795,8 @@ def main() -> int:
     write_chunks("primitive_types", [emit_primitive(*p) for p in good_prims], decls,
                  [note, "// Getters (refl_GetType<T>) of plain CType descriptors, byte-identical to the original."])
     print(f"pointer types: {len(pairs)} getter/constructor candidates, {len(good)} pairs byte-identical; "
-          f"enums: {len(enums)} constructor candidates, {len(good_enums)} byte-identical; "
+          f"enums: {len(enums)} constructor candidates, {len(good_enums)} byte-identical "
+          f"({sum(e[0] in named for e in good_enums)} with named value operations); "
           f"collections: {len(colls)} constructor candidates, {len(good_colls)} byte-identical; "
           f"plain types: {len(prims)} getter candidates, {len(good_prims)} byte-identical; "
           f"pointer types with an inlined constructor: {len(inline_ptrs)} getter candidates, "

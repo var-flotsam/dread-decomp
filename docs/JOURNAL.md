@@ -154,6 +154,20 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Enum value operations from one template (2026-11-15).** The nine CType slot functions of an enum's
+descriptor (construct, copy and move construct, destroy, copy and move assign, equals, hash, type of) are one
+template's instantiations, `base::reflection::ValueOps<E>` (`include/base/reflection/ValueOps.h`), one per enum,
+with no folding: 238 enums, 2,142 functions, all lifted code until now. `tools/gen_types.py` names each enum
+from the static initialiser that builds its descriptor (`gen_fields.built_objects`), declares it (`enum class E
+: u32`, an enclosing class as a namespace, which mangles the same), and writes its description as
+`EnumTypeDescription<E> : ValueOpsDescription<E>`, with only `TypeOf` specialised to return the descriptor
+global. The symbols carry no address, so they map through data/functions/ names that `gen_functions_csv.py`
+now gives (`ValueOps<E>::Construct`, ..., and `refl_InitType<E>` for the constructor, which
+`asmdiff.name_aliases` maps to `CEnumType::CEnumType<E>`); `gen_lift.py` drops the lifted copies by those names.
+A name two descriptors share, or a named form that does not match, keeps the address form. Flag sets share
+every shape but the hash (always -1) and follow separately. Checked here on one enum (`EBlendFunction`): the
+nine functions and the constructor are byte-identical to the lifted and generated ones.
+
 **Collection and pointer type descriptors: member roles (2026-11-14).** `CCollectionType`'s and
 `CPointerType`'s members now carry names, read from the slot functions the generated descriptors name
 (`src/reflection_types/`) and from the matched users. A collection's `u32` at +0xe0 is its kind: 1 for the

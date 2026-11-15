@@ -248,6 +248,13 @@ def main() -> int:
             for a, n in sorted(gen_reflection.reflection_names(g).items()):
                 put(a, n, "reflection")
 
+    # 3c. Enums whose value operations src/reflection_types/ writes with base/reflection/ValueOps.h: those
+    # functions and the descriptor constructor, by enum (ValueOps<E>::Construct, refl_InitType<E>), the
+    # names tools/gen_types.py writes them under.
+    import gen_types
+    for a, n in sorted(gen_types.reflection_names(orig, args.version).items()):
+        put(a, n, "reflection")
+
     # 4. Strings: Lua C-function binding tables.
     lua = json.loads((recon / "main_lua_tables.json").read_text())
     seen_lua: dict[str, int] = {}
