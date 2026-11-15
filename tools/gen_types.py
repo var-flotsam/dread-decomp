@@ -1138,8 +1138,9 @@ def main() -> int:
     prim_bodies = dict(prims)
     known_types = enum_names_known | {name for name, _ in named_flags.values()}
     by_hand = defined_by_hand()
+    # a slot or helper the mapper would name that a hand-written source defines keeps the vector by address
     named_colls = {i: v for i, b in colls if (v := mapped_vector(b, named_ptrs, enum_names_known))
-                   and not set(collection_slots(b).values()) & by_hand}
+                   and not set(collection_ops_names(orig, b, *v)) & by_hand}
     coll_bodies = dict(colls)
 
     def collection_block(init: int, body: list[str]) -> list[str]:
