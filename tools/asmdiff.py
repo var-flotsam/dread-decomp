@@ -426,13 +426,14 @@ def diff_object(obj: Path, original: Original, resolve=None, strict: bool = Fals
 def name_aliases(name: str) -> list[str]:
     """Other qualified names under which an object defines the function data/functions/ calls `name`. A
     descriptor constructor T::refl_InitClass is CClass's constructor instantiated for T::refl_Description
-    in a source written with base/reflection/ReflectedClass.h; refl_InitType<E>, CEnumType's for E."""
+    in a source written with base/reflection/ReflectedClass.h; refl_InitType<E>, CEnumType's or CFlagsetType's for E."""
     if name.endswith("::refl_InitClass"):
         return [f"base::reflection::CClass::CClass<{name[:-len('::refl_InitClass')]}::refl_Description>"]
-    # An enum's, written with base/reflection/ValueOps.h (tools/gen_types.py), is CEnumType's
-    # constructor instantiated for the enum.
+    # An enum's or a flag set's, written with base/reflection/ValueOps.h (tools/gen_types.py), is its
+    # descriptor's constructor instantiated for the type.
     if name.startswith("base::reflection::refl_InitType<") and name.endswith(">"):
-        return [f"base::reflection::CEnumType::CEnumType<{name[len('base::reflection::refl_InitType<'):-1]}>"]
+        t = name[len("base::reflection::refl_InitType<"):-1]
+        return [f"base::reflection::CEnumType::CEnumType<{t}>", f"base::reflection::CFlagsetType::CFlagsetType<{t}>"]
     return []
 
 
