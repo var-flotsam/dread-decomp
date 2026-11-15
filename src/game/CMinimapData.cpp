@@ -10,6 +10,7 @@
 #include "base/UnkVector.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
+#include "game/CMinimapData.h"
 #include "game/SLogicPathNode.h"
 #include "game/UnkTU2563.h"
 #include "game/malloc.h"
@@ -23,14 +24,8 @@ using base::math::CVector3D;
 // move constructor, the destructor and the implicit default constructor run after zeroing.
 void fn_7100e50c98(void* self);
 
-// An entry of the array (0x138 bytes; its members are not spelled out).
-struct UnkMinimapEntry_0x138 {
-    u8 unk_0x0[0x138];
-
-    UnkMinimapEntry_0x138(UnkMinimapEntry_0x138&& other) { fn_7100e51078(this, &other); }
-    ~UnkMinimapEntry_0x138() { fn_7100e4e310(reinterpret_cast<char*>(this)); }
-};
-static_assert(sizeof(UnkMinimapEntry_0x138) == 0x138, "UnkMinimapEntry_0x138 layout");
+// An entry of the array: a moving magnet surface (include/game/CMinimapData.h).
+using UnkMinimapEntry_0x138 = CMinimapData::SMovingMagnetSurfaceData;
 
 // Resizes the array to `n` entries: the array grows to exactly `n` when it is too small (the
 // entries are moved over), and the new entries are value-initialised (zeroed, then constructed).
