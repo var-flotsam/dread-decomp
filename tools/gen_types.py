@@ -679,6 +679,9 @@ MAPPER_SLOTS = {"construct": "Construct", "copy_construct": "CopyConstruct", "mo
                 "find": "Find", "begin": "Begin", "end": "End", "equals": "Equals", "erase": "Erase",
                 "set_copy": "SetCopy", "set_move": "SetMove"}
 # The CRntVector member each calls out of line, and its declaration (E: the element type).
+# Class elements whose header gives CollectionTypeMapper what it needs: the include a generated file adds.
+CLASS_ELEMENT_HEADERS = {"base::core::AssetName": "base/core/AssetName.h"}
+
 MAPPER_HELPERS = {"add_copy": ("InsertCopy", "void {C}::InsertCopy({E} const&, u32)"),
                   "add_move": ("InsertMove", "void {C}::InsertMove({E}&&, u32)"),
                   "set_copy": ("GrowAt", "{E}& {C}::GrowAt(u32)"),
@@ -695,7 +698,7 @@ def collection_slots(body: list[str]) -> dict[str, int]:
 def mapped_vector(body: list[str], named_ptrs: dict[int, str], enums: frozenset[str]) -> tuple[str, str] | None:
     """(C, element) of a vector collection whose slots CollectionTypeMapper<C> writes today: kind 1 and 0x28
     bytes, C named by its element iterator's named form (named_pointers), every mapper slot a function, and an
-    element that is a pointer, an enum or a plain number. Elements that are classes need their own headers."""
+    element that is a pointer, an enum, a plain number or a class of CLASS_ELEMENT_HEADERS."""
     text = "\n".join(body)
     if "size = 0x28;" not in text or "kind = 0x1;" not in text:
         return None
@@ -706,7 +709,8 @@ def mapped_vector(body: list[str], named_ptrs: dict[int, str], enums: frozenset[
     if v is None or not set(MAPPER_SLOTS) <= set(collection_slots(body)):
         return None
     element = v.group(1)
-    if element.endswith("*") or element in enums or element in PRIMITIVE_VALUE_TYPES.values():
+    if (element.endswith("*") or element in enums or element in PRIMITIVE_VALUE_TYPES.values()
+            or element in CLASS_ELEMENT_HEADERS):
         return it.group(1), element
     return None
 
@@ -760,7 +764,8 @@ def emit_collection_ops(init: int, body: list[str], vector: str, element: str, m
     node = pointer_value_type(f"base::reflection::CollectionTypeMapper<{vector}>::TElementIterator")[1]
     helpers = sorted({"extern template " + MAPPER_HELPERS[d][1].format(C=vector, E=element) + ";"
                       for d in members if d in MAPPER_HELPERS})
-    return type_declarations(node, enums) + helpers + out
+    include = [f'#include "{CLASS_ELEMENT_HEADERS[element]}"'] if element in CLASS_ELEMENT_HEADERS else []
+    return type_declarations(node, enums) + include + helpers + out
 
 
 def defined_by_hand() -> set[int]:
@@ -1225,8 +1230,11 @@ def main() -> int:
         failed_prims = {g for g, v in named_prims.items()
                         if not set(primitive_ops_names(prim_bodies[g], v)) | {g} <= ok}
         # the helpers are not emitted: the slots that call them match only if the call names them
-        failed_colls = {i for i, v in named_colls.items()
-                        if not set(collection_slots(coll_bodies[i])[d] for d in v[2]) | {i} <= ok}
+        # {collection: the mapper members that do not match}; those keep their addresses, and a collection
+        # whose constructor or every member fails is kept by address whole
+        failed_colls = {i: frozenset(d for d in v[2] if collection_slots(coll_bodies[i])[d] not in ok)
+                        for i, v in named_colls.items()}
+        failed_colls = {i: bad for i, bad in failed_colls.items() if bad or i not in ok}
         if not failed and not failed_ptrs and not failed_flags and not failed_prims and not failed_colls:
             break
         print(f"named forms that do not match, kept by address: enums {' '.join(f'{i:x}' for i in sorted(failed))}; "
@@ -1235,9 +1243,11 @@ def main() -> int:
         named_ptrs = {g: v for g, v in named_ptrs.items() if g not in failed_ptrs}
         named_flags = {i: v for i, v in named_flags.items() if i not in failed_flags}
         named_prims = {g: v for g, v in named_prims.items() if g not in failed_prims}
-        named_colls = {i: v for i, v in named_colls.items() if i not in failed_colls}
+        named_colls = {i: (*v[:2], v[2] - failed_colls.get(i, frozenset())) for i, v in named_colls.items()}
+        named_colls = {i: v for i, v in named_colls.items() if v[2] and i in ok}
         if failed_colls:
-            print(f"vector collections kept by address: {' '.join(f'{i:x}' for i in sorted(failed_colls))}")
+            print("vector collection slots kept by address: " + "; ".join(
+                f"{i:x} {' '.join(sorted(bad)) or '(constructor)'}" for i, bad in sorted(failed_colls.items())))
         if failed_prims:
             print(f"plain types kept by address: {' '.join(f'{g:x}' for g in sorted(failed_prims))}")
         if failed_flags:

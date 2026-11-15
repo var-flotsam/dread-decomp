@@ -13,7 +13,7 @@
 // The descriptor's own functions (its CType value slots and CCollectionType's accessors, from +0x108)
 // are the mapper's static members, one instantiation per collection type. They are written for
 // CRntVector<T> (base/global/CRntVector.h), whose key is the element's index; a keyed collection's are
-// not written yet. Erase, SetCopy, SetMove, ConstBegin and ConstEnd are not written yet either.
+// not written yet. ConstBegin and ConstEnd are not written yet either.
 
 #include <new>
 #include <utility>
