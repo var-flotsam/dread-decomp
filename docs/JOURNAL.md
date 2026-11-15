@@ -154,6 +154,15 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Plain types' value operations from the same template (2026-11-15).** The C++ number types the game reflects
+(`bool`, `char`, `signed char`, `unsigned char`, `short`, `unsigned short`, `int`, `unsigned`, `long`, `unsigned
+long`, `long long`, `unsigned long long`, `float`, `double`) have their nine CType slot functions from `ValueOps<T>`,
+like the enums. Their hashes show the engine hashes only some plain types by value: `bool`, `int`, `unsigned`, `long`
+and `unsigned long` return the value, the rest -1 (`ValueOps.h`, `HashedByValue`). `TypeOf` calls the type's getter.
+`UnkReflPrimitiveTraits` now names its slots by role (`construct`, ..., `type_of`, and `add_attributes` for
+CType+0x70). The plain classes (`CStrId`, `CVector3D`, the colours, ...) keep the address form until their own
+operators are written.
+
 **The minimap's 0x138-byte record is `CMinimapData::SMovingMagnetSurfaceData` (2026-11-15).** Four files of
 unit 2563 each had their own 0x138-byte record and called its move constructor `fn_7100e51078` as a free
 function on untyped pointers. The record is the element of `CMinimapData`'s `aMovingMagnetSurfaces` vector:

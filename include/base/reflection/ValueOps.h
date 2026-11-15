@@ -18,6 +18,12 @@ namespace base::reflection {
 
 class CType;
 
+// The plain types the engine hashes by value: the others (char, short, the 64-bit long long, the
+// floating-point types, ...) hash to -1 as classes do.
+template <class T>
+constexpr bool HashedByValue = std::is_same_v<T, bool> || std::is_same_v<T, int> || std::is_same_v<T, unsigned> ||
+                               std::is_same_v<T, long> || std::is_same_v<T, unsigned long>;
+
 template <class T>
 struct ValueOps {
     static void* Construct(void* obj) { return new (obj) T(); }
@@ -37,11 +43,11 @@ struct ValueOps {
     static bool Equals(const void* a, const void* b) {
         return *static_cast<const T*>(a) == *static_cast<const T*>(b);
     }
-    // An enum hashes to its value, a pointer to its address's low word, anything else (a flag set, as
-    // every class) to -1.
+    // An enum, a pointer and the integers listed in HashedByValue hash to their value (a pointer to its
+    // address's low word); anything else (a flag set, every class) to -1.
     static s32 Hash(const void* obj) {
         const T& value = *static_cast<const T*>(obj);
-        if constexpr (std::is_enum_v<T>)
+        if constexpr (std::is_enum_v<T> || HashedByValue<T>)
             return static_cast<s32>(value);
         else if constexpr (std::is_pointer_v<T>)
             return static_cast<s32>(reinterpret_cast<uintptr_t>(value));

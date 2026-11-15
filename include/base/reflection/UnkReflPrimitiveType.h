@@ -10,8 +10,10 @@
 
 namespace base::reflection {
 
-// Per-getter facts (generated): name and its length, size, and the function slots, typed as
-// UnkFn and cast at the use site (null when the type lacks that function).
+// Per-getter facts (generated): name and its length, size, and the function slots under the role
+// names of base/reflection/ValueOps.h (construct, ..., type_of) plus add_attributes (CType+0x70),
+// cast at the use site (null when the type lacks that function). A named plain type takes the
+// value operations from ValueOpsDescription<T>.
 template <class G>
 struct UnkReflPrimitiveTraits;
 
@@ -20,12 +22,13 @@ struct UnkReflPrimitiveTraits;
 template <class G>
 inline CType refl_MakePrimitiveType(const base::global::CStrId& name) {
     using Tr = UnkReflPrimitiveTraits<G>;
-    return CType(fn_7100001570(Tr::name, Tr::length), name, Tr::size, reinterpret_cast<UnkFn_0x58>(Tr::fn_0x58),
-                 reinterpret_cast<UnkFn_0x60>(Tr::fn_0x60), reinterpret_cast<UnkFn_0x68>(Tr::fn_0x68),
-                 reinterpret_cast<UnkFn_0x70>(Tr::fn_0x70), nullptr,
-                 {Tr::fn_0x28, reinterpret_cast<UnkFn_0x30>(Tr::fn_0x30), reinterpret_cast<UnkFn_0x30>(Tr::fn_0x38),
-                  reinterpret_cast<UnkFn_0x40>(Tr::fn_0x40), reinterpret_cast<UnkFn_0x48>(Tr::fn_0x48),
-                  reinterpret_cast<UnkFn_0x48>(Tr::fn_0x50)},
+    return CType(fn_7100001570(Tr::name, Tr::length), name, Tr::size, reinterpret_cast<UnkFn_0x58>(Tr::equals),
+                 reinterpret_cast<UnkFn_0x60>(Tr::hash), reinterpret_cast<UnkFn_0x68>(Tr::type_of),
+                 reinterpret_cast<UnkFn_0x70>(Tr::add_attributes), nullptr,
+                 {reinterpret_cast<UnkFn>(Tr::construct), reinterpret_cast<UnkFn_0x30>(Tr::copy_construct),
+                  reinterpret_cast<UnkFn_0x30>(Tr::move_construct),
+                  reinterpret_cast<UnkFn_0x40>(Tr::destroy), reinterpret_cast<UnkFn_0x48>(Tr::copy_assign),
+                  reinterpret_cast<UnkFn_0x48>(Tr::move_assign)},
                  false);
 }
 

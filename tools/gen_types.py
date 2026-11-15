@@ -562,7 +562,7 @@ ENUM_OPS_RE = re.compile(r"^template struct base::reflection::ValueOps<(.+)>;$",
 
 
 def reflection_names(orig: asmdiff.Original, version: str) -> dict[int, str]:
-    """data/functions/ names of the enums, flag sets and pointer types written in their named form in
+    """data/functions/ names of the enums, flag sets, pointer and plain types written in their named form in
     src/reflection_types/ (tools/gen_functions_csv.py)."""
     written = {m.group(1) for f in OUT.glob("*_types_*.cpp")
                for m in ENUM_OPS_RE.finditer(f.read_text(encoding="utf-8"))}
@@ -581,6 +581,11 @@ def reflection_names(orig: asmdiff.Original, version: str) -> dict[int, str]:
     for g, canon in named_pointers(orig, pairs, known).items():
         if canon in written:
             out.update(pointer_ops_names(orig, inits[g], canon))
+    prims, _ = scan_primitives(orig, set())
+    for g, body in prims:
+        value_type = primitive_value_type(body)
+        if value_type and value_type in written:
+            out.update(primitive_ops_names(body, value_type))
     return out
 
 
@@ -827,24 +832,71 @@ def primitive_traits(orig: asmdiff.Original, addr: int, decls: set[str]) -> list
              f"    static constexpr u64 size = {size[1]:#x};"]
     for off in (0x28, 0x30, 0x38, 0x40, 0x48, 0x50, 0x58, 0x60, 0x68, 0x70):
         v = st.get(off)
+        member = PRIMITIVE_SLOTS[off]
         if v == ("imm", 0):
-            lines.append(f"    static constexpr UnkFn fn_{off:#x} = nullptr;")
+            lines.append(f"    static constexpr UnkFn {member} = nullptr;")
         elif v and v[0] == "fn":
             decls.add(f"void fn_{v[1]:x}();")
-            lines.append(f"    static constexpr UnkFn fn_{off:#x} = &fn_{v[1]:x};")
+            lines.append(f"    static constexpr UnkFn {member} = &fn_{v[1]:x};")
         else:
             return None
     return lines
 
 
-def emit_primitive(getter: int, body: list[str]) -> list[str]:
+# A plain type's CType slots by role (UnkReflPrimitiveType.h): the value operations and CType+0x70.
+PRIMITIVE_SLOTS = {**{off: SLOTS[off] for off in VALUE_OPS}, 0x70: "add_attributes"}
+
+# The plain types, by the name the game gives them, whose value operations come from ValueOps.h:
+# the C++ arithmetic types.
+PRIMITIVE_VALUE_TYPES = {name: name for name in (
+    "bool", "char", "signed char", "unsigned char", "short", "unsigned short", "int", "long", "long long",
+    "unsigned long", "unsigned long long", "float", "double")}
+PRIMITIVE_VALUE_TYPES["unsigned"] = "unsigned int"
+
+
+def primitive_value_type(body: list[str]) -> str | None:
+    """The C++ type a plain type's traits describe, when its value operations can come from
+    ValueOps.h (PRIMITIVE_VALUE_TYPES) and every slot is a function."""
+    m = re.search(r'static constexpr const char\* name = "([^"]*)";', "\n".join(body))
+    if not m or m.group(1) not in PRIMITIVE_VALUE_TYPES:
+        return None
+    if any(f" {SLOTS[off]} = nullptr;" in line for line in body for off in VALUE_OPS):
+        return None
+    return PRIMITIVE_VALUE_TYPES[m.group(1)]
+
+
+def emit_primitive(getter: int, body: list[str], value_type: str | None = None) -> list[str]:
+    """A plain type's traits and getter; with `value_type`, its CType slots come from
+    ValueOps<value_type> (ValueOps.h)."""
+    head = f"struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_{getter:x}> {{"
+    ops = []
+    if value_type:
+        slot_members = {f" {SLOTS[off]} = " for off in VALUE_OPS}
+        body = [line for line in body if not any(m in line for m in slot_members)]
+        head = (f"struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_{getter:x}> "
+                f": base::reflection::ValueOpsDescription<{value_type}> {{")
+        ops = ["template <>",
+               f"const CType& base::reflection::ValueOps<{value_type}>::TypeOf(const void*) "
+               f"{{ return *base::reflection::refl_GetPrimitiveType<UnkRefl_fn_{getter:x}>(); }}",
+               f"template struct base::reflection::ValueOps<{value_type}>;"]
     return [f"struct UnkRefl_fn_{getter:x};",
+            *ops,
             "template <>",
-            f"struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_{getter:x}> {{",
+            head,
             *body,
             "};",
             f"template const base::reflection::CType* "
             f"base::reflection::refl_GetPrimitiveType<UnkRefl_fn_{getter:x}>();"]
+
+
+def primitive_ops_names(body: list[str], value_type: str) -> dict[int, str]:
+    """data/functions/ names of a plain type's value operations, read from its address-form traits."""
+    out = {}
+    for off in VALUE_OPS:
+        m = re.search(rf" {SLOTS[off]} = &fn_([0-9a-f]+);", "\n".join(body))
+        if m:
+            out[int(m.group(1), 16)] = f"base::reflection::ValueOps<{value_type}>::{VALUE_OPS[off]}"
+    return out
 
 
 def emit_inline_pointer(getter: int, name: str, body: list[str]) -> list[str]:
@@ -996,6 +1048,8 @@ def main() -> int:
     for _, o in named_flags.values():
         decls.add(f"extern base::reflection::CType g_unk_{o:x};")
     named_ptrs = named_pointers(orig, pairs, enum_names_known | {name for name, _ in named_flags.values()})
+    named_prims = {g: v for g, b in prims if (v := primitive_value_type(b))}
+    prim_bodies = dict(prims)
 
     def flagset_block(init: int, body: list[str]) -> list[str]:
         if init in named_flags:
@@ -1020,7 +1074,7 @@ def main() -> int:
         text = (PRELUDE + sorted(decls) + [line for p in pairs for line in pointer_block(*p)]
                 + [line for i, b in enums for line in enum_block(i, b)]
                 + [line for i, b in colls for line in emit_collection(i, b)]
-                + [line for g, b in prims for line in emit_primitive(g, b)]
+                + [line for g, b in prims for line in emit_primitive(g, b, named_prims.get(g))]
                 + [line for p in inline_ptrs for line in emit_inline_pointer(*p)]
                 + [line for i, b in flagsets for line in flagset_block(i, b)])
         src.write_text("\n".join(text) + "\n", encoding="utf-8")
@@ -1034,6 +1088,7 @@ def main() -> int:
         inits = {g: i for g, _, i, _ in pairs}
         expected.update({n: a for g, canon in named_ptrs.items()
                          for a, n in pointer_ops_names(orig, inits[g], canon).items()})
+        expected.update({n: a for g, v in named_prims.items() for a, n in primitive_ops_names(prim_bodies[g], v).items()})
         expected.update({alias: a for n, a in list(expected.items()) for alias in asmdiff.name_aliases(n)})
         symbols = [f.symbol for f in asmdiff.read_object(obj)]
         demangled = asmdiff.demangle(symbols)
@@ -1045,13 +1100,18 @@ def main() -> int:
         failed_ptrs = {g for g, canon in named_ptrs.items()
                        if not set(pointer_ops_names(orig, inits[g], canon)) | {g, inits[g]} <= ok}
         failed_flags = {i for i, (name, _) in named_flags.items() if not set(enum_ops_names(orig, i, name)) <= ok}
-        if not failed and not failed_ptrs and not failed_flags:
+        failed_prims = {g for g, v in named_prims.items()
+                        if not set(primitive_ops_names(prim_bodies[g], v)) | {g} <= ok}
+        if not failed and not failed_ptrs and not failed_flags and not failed_prims:
             break
         print(f"named forms that do not match, kept by address: enums {' '.join(f'{i:x}' for i in sorted(failed))}; "
               f"pointer types {' '.join(f'{g:x}' for g in sorted(failed_ptrs))}")
         named = {i: v for i, v in named.items() if i not in failed}
         named_ptrs = {g: v for g, v in named_ptrs.items() if g not in failed_ptrs}
         named_flags = {i: v for i, v in named_flags.items() if i not in failed_flags}
+        named_prims = {g: v for g, v in named_prims.items() if g not in failed_prims}
+        if failed_prims:
+            print(f"plain types kept by address: {' '.join(f'{g:x}' for g in sorted(failed_prims))}")
         if failed_flags:
             print(f"flag sets kept by address: {' '.join(f'{i:x}' for i in sorted(failed_flags))}")
     for line in asmdiff.reloc_rejects(results):
@@ -1077,14 +1137,15 @@ def main() -> int:
                   "// byte-identical to the original."])
     write_chunks("flagset_types", [flagset_block(*f) for f in good_flagsets], decls,
                  [note, "// Descriptor constructors of flag sets, byte-identical to the original."])
-    write_chunks("primitive_types", [emit_primitive(*p) for p in good_prims], decls,
+    write_chunks("primitive_types", [emit_primitive(g, b, named_prims.get(g)) for g, b in good_prims], decls,
                  [note, "// Getters (refl_GetType<T>) of plain CType descriptors, byte-identical to the original."])
     print(f"pointer types: {len(pairs)} getter/constructor candidates, {len(good)} pairs byte-identical "
           f"({sum(p[0] in named_ptrs for p in good)} with named value operations); "
           f"enums: {len(enums)} constructor candidates, {len(good_enums)} byte-identical "
           f"({sum(e[0] in named for e in good_enums)} with named value operations); "
           f"collections: {len(colls)} constructor candidates, {len(good_colls)} byte-identical; "
-          f"plain types: {len(prims)} getter candidates, {len(good_prims)} byte-identical; "
+          f"plain types: {len(prims)} getter candidates, {len(good_prims)} byte-identical "
+          f"({sum(p[0] in named_prims for p in good_prims)} with named value operations); "
           f"pointer types with an inlined constructor: {len(inline_ptrs)} getter candidates, "
           f"{len(good_inline)} byte-identical; "
           f"flag sets: {len(flagsets)} constructor candidates, {len(good_flagsets)} byte-identical "
