@@ -219,6 +219,43 @@ class EnumValueOps(unittest.TestCase):
                          ["base::reflection::CEnumType::CEnumType<base::EFoo>"])
 
 
+class TypeNames(unittest.TestCase):
+    def test_canonical_as_cxxfilt_prints(self):
+        cases = {"char const*": "char const*", "unsigned*": "unsigned int*",
+                 "base::global::CRntVector<base::global::CStrId>const*":
+                     "base::global::CRntVector<base::global::CStrId> const*",
+                 "A<B, C> const *": "A<B, C> const*", "const CFoo*": "CFoo const*"}
+        for text, want in cases.items():
+            with self.subTest(text=text):
+                self.assertEqual(gt.canonical_type(text), want)
+
+    def test_unparsed_names(self):
+        for text in ("std::unique_ptr<CFoo>", "CArray<A, EnumClass<E>::Count, E>*", "A<B>::C*", "A<"):
+            with self.subTest(text=text):
+                self.assertIsNone(gt.parse_type(text))
+                self.assertEqual(gt.canonical_type(text), text)
+
+    def test_declarations(self):
+        node = gt.parse_type("base::global::CRntDictionary<base::global::CStrId, CFoo::SBar>*")
+        self.assertEqual(gt.type_declarations(node), [
+            "namespace CFoo { class SBar; }", "namespace base::global { class CStrId; }",
+            "namespace base::global { template <class, class> class CRntDictionary; }"])
+        for line in gt.type_declarations(node) + [gt.enum_declaration("A::E")]:
+            self.assertTrue(gt.TYPE_DECL_RE.match(line), line)
+
+    def test_pointer_named_form(self):
+        body = ["    static constexpr u64 size = 0x8;", "    static constexpr UnkFn construct = &fn_7100000040;",
+                "    static constexpr UnkFn get = &fn_7100000044;"]
+        out = gt.emit_pointer_ops(0x7100000010, "CFoo const*", 0x7100000020, body, "CFoo const*")
+        self.assertEqual(out[0], "class CFoo;")
+        self.assertIn("template struct base::reflection::ValueOps<CFoo const*>;", out)
+        self.assertIn("struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100000020> "
+                      ": base::reflection::ValueOpsDescription<CFoo const*> {", out)
+        self.assertNotIn(body[1], out)
+        self.assertIn(body[2], out)
+        self.assertIn('    static constexpr const char* name = "CFoo const*";', out)
+
+
 class Declarations(unittest.TestCase):
     DECLS = {"void fn_7100000010();", "extern base::reflection::CType g_unk_7100000020;",
              "void fn_7100000030();"}

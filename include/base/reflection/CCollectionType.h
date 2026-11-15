@@ -51,7 +51,7 @@ CCollectionType::CCollectionType(const base::global::CStrId& name, T*, void*)
             reinterpret_cast<UnkFn_0x58>(CollectionTypeDescription<T>::equals),
             reinterpret_cast<UnkFn_0x60>(CollectionTypeDescription<T>::hash),
             reinterpret_cast<UnkFn_0x68>(CollectionTypeDescription<T>::type_of), nullptr, nullptr,
-            {CollectionTypeDescription<T>::construct,
+            {reinterpret_cast<UnkFn>(CollectionTypeDescription<T>::construct),
              reinterpret_cast<UnkFn_0x30>(CollectionTypeDescription<T>::copy_construct),
              reinterpret_cast<UnkFn_0x30>(CollectionTypeDescription<T>::move_construct),
              reinterpret_cast<UnkFn_0x40>(CollectionTypeDescription<T>::destroy),

@@ -40,7 +40,7 @@ CPointerType::CPointerType(const base::global::CStrId& name, T*, void*)
             reinterpret_cast<UnkFn_0x58>(PointerTypeDescription<T>::equals),
             reinterpret_cast<UnkFn_0x60>(PointerTypeDescription<T>::hash),
             reinterpret_cast<UnkFn_0x68>(PointerTypeDescription<T>::type_of), nullptr, nullptr,
-            {PointerTypeDescription<T>::construct, reinterpret_cast<UnkFn_0x30>(PointerTypeDescription<T>::copy_construct),
+            {reinterpret_cast<UnkFn>(PointerTypeDescription<T>::construct), reinterpret_cast<UnkFn_0x30>(PointerTypeDescription<T>::copy_construct),
              reinterpret_cast<UnkFn_0x30>(PointerTypeDescription<T>::move_construct),
              reinterpret_cast<UnkFn_0x40>(PointerTypeDescription<T>::destroy),
              reinterpret_cast<UnkFn_0x48>(PointerTypeDescription<T>::copy_assign),
