@@ -61,21 +61,21 @@ void fn_71002bf138();
 struct UnkRefl_fn_71002beedc;
 struct UnkRefl_fn_71002bda60;
 template <>
-struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002beedc> {
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_71002beedc> {
     static constexpr u64 size = 0x8;
-    static constexpr bool field_0xe0 = false;
-    static constexpr UnkFn fn_0x28 = &fn_71002bf100;
-    static constexpr UnkFn fn_0x30 = &fn_71002bf108;
-    static constexpr UnkFn fn_0x38 = &fn_71002bf114;
-    static constexpr UnkFn fn_0x40 = &fn_71002bf120;
-    static constexpr UnkFn fn_0x48 = &fn_71002bf124;
-    static constexpr UnkFn fn_0x50 = &fn_71002bf138;
-    static constexpr UnkFn fn_0x58 = &fn_71002bf0d0;
-    static constexpr UnkFn fn_0x60 = &fn_71002bf0e4;
-    static constexpr UnkFn fn_0x68 = &fn_71002bf0ec;
-    static constexpr UnkFn fn_0xf0 = &fn_71002bf04c;
-    static constexpr UnkFn fn_0xf8 = &fn_71002bf0b4;
-    static constexpr UnkFn fn_0x100 = &fn_71002bf0c0;
+    static constexpr bool owned = false;
+    static constexpr UnkFn construct = &fn_71002bf100;
+    static constexpr UnkFn copy_construct = &fn_71002bf108;
+    static constexpr UnkFn move_construct = &fn_71002bf114;
+    static constexpr UnkFn destroy = &fn_71002bf120;
+    static constexpr UnkFn copy_assign = &fn_71002bf124;
+    static constexpr UnkFn move_assign = &fn_71002bf138;
+    static constexpr UnkFn equals = &fn_71002bf0d0;
+    static constexpr UnkFn hash = &fn_71002bf0e4;
+    static constexpr UnkFn type_of = &fn_71002bf0ec;
+    static constexpr UnkFn get = &fn_71002bf04c;
+    static constexpr UnkFn set = &fn_71002bf0b4;
+    static constexpr UnkFn increment = &fn_71002bf0c0;
     static const CType* pointee() { return querysystem::CFilter::refl_GetClass(); }
 };
 template <>

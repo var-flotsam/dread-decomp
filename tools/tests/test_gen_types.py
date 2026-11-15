@@ -129,9 +129,9 @@ class Emulate(unittest.TestCase):
         decls: set[str] = set()
         lines = gt.traits(fake(a), a.start, decls)
         self.assertEqual(lines[0], "    static constexpr u64 size = 0x10;")
-        self.assertEqual(lines[1], "    static constexpr bool field_0xe0 = true;")
-        self.assertIn("    static constexpr UnkFn fn_0x28 = &fn_7100000040;", lines)
-        self.assertIn("    static constexpr UnkFn fn_0x30 = nullptr;", lines)
+        self.assertEqual(lines[1], "    static constexpr bool owned = true;")
+        self.assertIn("    static constexpr UnkFn construct = &fn_7100000040;", lines)
+        self.assertIn("    static constexpr UnkFn copy_construct = nullptr;", lines)
         self.assertEqual(lines[-1], "    static const CType* pointee() { return fn_7100000080(); }")
         self.assertEqual(decls, {"void fn_7100000040();", "const base::reflection::CType* fn_7100000080();"})
 
@@ -169,9 +169,9 @@ class Emission(unittest.TestCase):
 
     def test_kinds_name_their_traits(self):
         cases = {
-            "UnkReflEnumTraits": gt.emit_enum(0x7100000020, self.BODY),
-            "UnkReflCollectionTraits": gt.emit_collection(0x7100000020, self.BODY),
-            "UnkReflFlagsetTraits": gt.emit_flagset(0x7100000020, self.BODY),
+            "EnumTypeDescription": gt.emit_enum(0x7100000020, self.BODY),
+            "CollectionTypeDescription": gt.emit_collection(0x7100000020, self.BODY),
+            "FlagsetTypeDescription": gt.emit_flagset(0x7100000020, self.BODY),
         }
         for traits, out in cases.items():
             with self.subTest(traits=traits):

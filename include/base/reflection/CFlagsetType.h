@@ -14,7 +14,7 @@ namespace base::reflection {
 // (typed UnkFn and cast at the use site), the underlying type's getter and the second
 // descriptor.
 template <class T>
-struct UnkReflFlagsetTraits;
+struct FlagsetTypeDescription;
 
 class CFlagsetType : public CType {
 public:
@@ -30,16 +30,16 @@ static_assert(sizeof(CFlagsetType) == 0xf0, "CFlagsetType layout");
 
 template <class T>
 CFlagsetType::CFlagsetType(const base::global::CStrId& name, T*)
-    : CType(fn_7100001570("base::reflection::CFlagsetType", 0x1e), name, UnkReflFlagsetTraits<T>::size,
-            reinterpret_cast<UnkFn_0x58>(UnkReflFlagsetTraits<T>::fn_0x58),
-            reinterpret_cast<UnkFn_0x60>(UnkReflFlagsetTraits<T>::fn_0x60),
-            reinterpret_cast<UnkFn_0x68>(UnkReflFlagsetTraits<T>::fn_0x68), nullptr, nullptr,
-            {UnkReflFlagsetTraits<T>::fn_0x28, reinterpret_cast<UnkFn_0x30>(UnkReflFlagsetTraits<T>::fn_0x30),
-             reinterpret_cast<UnkFn_0x30>(UnkReflFlagsetTraits<T>::fn_0x38),
-             reinterpret_cast<UnkFn_0x40>(UnkReflFlagsetTraits<T>::fn_0x40),
-             reinterpret_cast<UnkFn_0x48>(UnkReflFlagsetTraits<T>::fn_0x48),
-             reinterpret_cast<UnkFn_0x48>(UnkReflFlagsetTraits<T>::fn_0x50)},
+    : CType(fn_7100001570("base::reflection::CFlagsetType", 0x1e), name, FlagsetTypeDescription<T>::size,
+            reinterpret_cast<UnkFn_0x58>(FlagsetTypeDescription<T>::equals),
+            reinterpret_cast<UnkFn_0x60>(FlagsetTypeDescription<T>::hash),
+            reinterpret_cast<UnkFn_0x68>(FlagsetTypeDescription<T>::type_of), nullptr, nullptr,
+            {FlagsetTypeDescription<T>::construct, reinterpret_cast<UnkFn_0x30>(FlagsetTypeDescription<T>::copy_construct),
+             reinterpret_cast<UnkFn_0x30>(FlagsetTypeDescription<T>::move_construct),
+             reinterpret_cast<UnkFn_0x40>(FlagsetTypeDescription<T>::destroy),
+             reinterpret_cast<UnkFn_0x48>(FlagsetTypeDescription<T>::copy_assign),
+             reinterpret_cast<UnkFn_0x48>(FlagsetTypeDescription<T>::move_assign)},
             false),
-      m_underlying(UnkReflFlagsetTraits<T>::underlying()), field_0xe8(UnkReflFlagsetTraits<T>::field_0xe8()) {}
+      m_underlying(FlagsetTypeDescription<T>::underlying()), field_0xe8(FlagsetTypeDescription<T>::field_0xe8()) {}
 
 }  // namespace base::reflection

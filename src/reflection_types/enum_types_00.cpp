@@ -1812,3400 +1812,3400 @@ void fn_7100d9bd18();
 void fn_7100d9bd2c();
 struct UnkRefl_fn_71000145e8;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71000145e8> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71000145e8> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100014c24;
-    static constexpr UnkFn fn_0x30 = &fn_7100014c2c;
-    static constexpr UnkFn fn_0x38 = &fn_7100014c38;
-    static constexpr UnkFn fn_0x40 = &fn_7100014c44;
-    static constexpr UnkFn fn_0x48 = &fn_7100014c48;
-    static constexpr UnkFn fn_0x50 = &fn_7100014c5c;
-    static constexpr UnkFn fn_0x58 = &fn_7100014bfc;
-    static constexpr UnkFn fn_0x60 = &fn_7100014c10;
-    static constexpr UnkFn fn_0x68 = &fn_7100014c18;
+    static constexpr UnkFn construct = &fn_7100014c24;
+    static constexpr UnkFn copy_construct = &fn_7100014c2c;
+    static constexpr UnkFn move_construct = &fn_7100014c38;
+    static constexpr UnkFn destroy = &fn_7100014c44;
+    static constexpr UnkFn copy_assign = &fn_7100014c48;
+    static constexpr UnkFn move_assign = &fn_7100014c5c;
+    static constexpr UnkFn equals = &fn_7100014bfc;
+    static constexpr UnkFn hash = &fn_7100014c10;
+    static constexpr UnkFn type_of = &fn_7100014c18;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71000145e8*);
 struct UnkRefl_fn_7100028d58;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100028d58> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100028d58> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71000295a0;
-    static constexpr UnkFn fn_0x30 = &fn_71000295a8;
-    static constexpr UnkFn fn_0x38 = &fn_71000295b4;
-    static constexpr UnkFn fn_0x40 = &fn_71000295c0;
-    static constexpr UnkFn fn_0x48 = &fn_71000295c4;
-    static constexpr UnkFn fn_0x50 = &fn_71000295d8;
-    static constexpr UnkFn fn_0x58 = &fn_7100029578;
-    static constexpr UnkFn fn_0x60 = &fn_710002958c;
-    static constexpr UnkFn fn_0x68 = &fn_7100029594;
+    static constexpr UnkFn construct = &fn_71000295a0;
+    static constexpr UnkFn copy_construct = &fn_71000295a8;
+    static constexpr UnkFn move_construct = &fn_71000295b4;
+    static constexpr UnkFn destroy = &fn_71000295c0;
+    static constexpr UnkFn copy_assign = &fn_71000295c4;
+    static constexpr UnkFn move_assign = &fn_71000295d8;
+    static constexpr UnkFn equals = &fn_7100029578;
+    static constexpr UnkFn hash = &fn_710002958c;
+    static constexpr UnkFn type_of = &fn_7100029594;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100028d58*);
 struct UnkRefl_fn_7100029084;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100029084> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100029084> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100029614;
-    static constexpr UnkFn fn_0x30 = &fn_710002961c;
-    static constexpr UnkFn fn_0x38 = &fn_7100029628;
-    static constexpr UnkFn fn_0x40 = &fn_7100029634;
-    static constexpr UnkFn fn_0x48 = &fn_7100029638;
-    static constexpr UnkFn fn_0x50 = &fn_710002964c;
-    static constexpr UnkFn fn_0x58 = &fn_71000295ec;
-    static constexpr UnkFn fn_0x60 = &fn_7100029600;
-    static constexpr UnkFn fn_0x68 = &fn_7100029608;
+    static constexpr UnkFn construct = &fn_7100029614;
+    static constexpr UnkFn copy_construct = &fn_710002961c;
+    static constexpr UnkFn move_construct = &fn_7100029628;
+    static constexpr UnkFn destroy = &fn_7100029634;
+    static constexpr UnkFn copy_assign = &fn_7100029638;
+    static constexpr UnkFn move_assign = &fn_710002964c;
+    static constexpr UnkFn equals = &fn_71000295ec;
+    static constexpr UnkFn hash = &fn_7100029600;
+    static constexpr UnkFn type_of = &fn_7100029608;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100029084*);
 struct UnkRefl_fn_71000293b0;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71000293b0> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71000293b0> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100029688;
-    static constexpr UnkFn fn_0x30 = &fn_7100029690;
-    static constexpr UnkFn fn_0x38 = &fn_710002969c;
-    static constexpr UnkFn fn_0x40 = &fn_71000296a8;
-    static constexpr UnkFn fn_0x48 = &fn_71000296ac;
-    static constexpr UnkFn fn_0x50 = &fn_71000296c0;
-    static constexpr UnkFn fn_0x58 = &fn_7100029660;
-    static constexpr UnkFn fn_0x60 = &fn_7100029674;
-    static constexpr UnkFn fn_0x68 = &fn_710002967c;
+    static constexpr UnkFn construct = &fn_7100029688;
+    static constexpr UnkFn copy_construct = &fn_7100029690;
+    static constexpr UnkFn move_construct = &fn_710002969c;
+    static constexpr UnkFn destroy = &fn_71000296a8;
+    static constexpr UnkFn copy_assign = &fn_71000296ac;
+    static constexpr UnkFn move_assign = &fn_71000296c0;
+    static constexpr UnkFn equals = &fn_7100029660;
+    static constexpr UnkFn hash = &fn_7100029674;
+    static constexpr UnkFn type_of = &fn_710002967c;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71000293b0*);
 struct UnkRefl_fn_710002d62c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710002d62c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710002d62c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710002d7ec;
-    static constexpr UnkFn fn_0x30 = &fn_710002d7f4;
-    static constexpr UnkFn fn_0x38 = &fn_710002d800;
-    static constexpr UnkFn fn_0x40 = &fn_710002d80c;
-    static constexpr UnkFn fn_0x48 = &fn_710002d810;
-    static constexpr UnkFn fn_0x50 = &fn_710002d824;
-    static constexpr UnkFn fn_0x58 = &fn_710002d7c4;
-    static constexpr UnkFn fn_0x60 = &fn_710002d7d8;
-    static constexpr UnkFn fn_0x68 = &fn_710002d7e0;
+    static constexpr UnkFn construct = &fn_710002d7ec;
+    static constexpr UnkFn copy_construct = &fn_710002d7f4;
+    static constexpr UnkFn move_construct = &fn_710002d800;
+    static constexpr UnkFn destroy = &fn_710002d80c;
+    static constexpr UnkFn copy_assign = &fn_710002d810;
+    static constexpr UnkFn move_assign = &fn_710002d824;
+    static constexpr UnkFn equals = &fn_710002d7c4;
+    static constexpr UnkFn hash = &fn_710002d7d8;
+    static constexpr UnkFn type_of = &fn_710002d7e0;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710002d62c*);
 struct UnkRefl_fn_7100069e20;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100069e20> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100069e20> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710006a148;
-    static constexpr UnkFn fn_0x30 = &fn_710006a150;
-    static constexpr UnkFn fn_0x38 = &fn_710006a15c;
-    static constexpr UnkFn fn_0x40 = &fn_710006a168;
-    static constexpr UnkFn fn_0x48 = &fn_710006a16c;
-    static constexpr UnkFn fn_0x50 = &fn_710006a180;
-    static constexpr UnkFn fn_0x58 = &fn_710006a120;
-    static constexpr UnkFn fn_0x60 = &fn_710006a134;
-    static constexpr UnkFn fn_0x68 = &fn_710006a13c;
+    static constexpr UnkFn construct = &fn_710006a148;
+    static constexpr UnkFn copy_construct = &fn_710006a150;
+    static constexpr UnkFn move_construct = &fn_710006a15c;
+    static constexpr UnkFn destroy = &fn_710006a168;
+    static constexpr UnkFn copy_assign = &fn_710006a16c;
+    static constexpr UnkFn move_assign = &fn_710006a180;
+    static constexpr UnkFn equals = &fn_710006a120;
+    static constexpr UnkFn hash = &fn_710006a134;
+    static constexpr UnkFn type_of = &fn_710006a13c;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100069e20*);
 struct UnkRefl_fn_710006a754;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710006a754> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710006a754> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710006aa7c;
-    static constexpr UnkFn fn_0x30 = &fn_710006aa84;
-    static constexpr UnkFn fn_0x38 = &fn_710006aa90;
-    static constexpr UnkFn fn_0x40 = &fn_710006aa9c;
-    static constexpr UnkFn fn_0x48 = &fn_710006aaa0;
-    static constexpr UnkFn fn_0x50 = &fn_710006aab4;
-    static constexpr UnkFn fn_0x58 = &fn_710006aa54;
-    static constexpr UnkFn fn_0x60 = &fn_710006aa68;
-    static constexpr UnkFn fn_0x68 = &fn_710006aa70;
+    static constexpr UnkFn construct = &fn_710006aa7c;
+    static constexpr UnkFn copy_construct = &fn_710006aa84;
+    static constexpr UnkFn move_construct = &fn_710006aa90;
+    static constexpr UnkFn destroy = &fn_710006aa9c;
+    static constexpr UnkFn copy_assign = &fn_710006aaa0;
+    static constexpr UnkFn move_assign = &fn_710006aab4;
+    static constexpr UnkFn equals = &fn_710006aa54;
+    static constexpr UnkFn hash = &fn_710006aa68;
+    static constexpr UnkFn type_of = &fn_710006aa70;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710006a754*);
 struct UnkRefl_fn_710007131c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710007131c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710007131c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71000716e0;
-    static constexpr UnkFn fn_0x30 = &fn_71000716e8;
-    static constexpr UnkFn fn_0x38 = &fn_71000716f4;
-    static constexpr UnkFn fn_0x40 = &fn_7100071700;
-    static constexpr UnkFn fn_0x48 = &fn_7100071704;
-    static constexpr UnkFn fn_0x50 = &fn_7100071718;
-    static constexpr UnkFn fn_0x58 = &fn_71000716b8;
-    static constexpr UnkFn fn_0x60 = &fn_71000716cc;
-    static constexpr UnkFn fn_0x68 = &fn_71000716d4;
+    static constexpr UnkFn construct = &fn_71000716e0;
+    static constexpr UnkFn copy_construct = &fn_71000716e8;
+    static constexpr UnkFn move_construct = &fn_71000716f4;
+    static constexpr UnkFn destroy = &fn_7100071700;
+    static constexpr UnkFn copy_assign = &fn_7100071704;
+    static constexpr UnkFn move_assign = &fn_7100071718;
+    static constexpr UnkFn equals = &fn_71000716b8;
+    static constexpr UnkFn hash = &fn_71000716cc;
+    static constexpr UnkFn type_of = &fn_71000716d4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710007131c*);
 struct UnkRefl_fn_710007aac8;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710007aac8> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710007aac8> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710007b14c;
-    static constexpr UnkFn fn_0x30 = &fn_710007b154;
-    static constexpr UnkFn fn_0x38 = &fn_710007b160;
-    static constexpr UnkFn fn_0x40 = &fn_710007b16c;
-    static constexpr UnkFn fn_0x48 = &fn_710007b170;
-    static constexpr UnkFn fn_0x50 = &fn_710007b184;
-    static constexpr UnkFn fn_0x58 = &fn_710007b124;
-    static constexpr UnkFn fn_0x60 = &fn_710007b138;
-    static constexpr UnkFn fn_0x68 = &fn_710007b140;
+    static constexpr UnkFn construct = &fn_710007b14c;
+    static constexpr UnkFn copy_construct = &fn_710007b154;
+    static constexpr UnkFn move_construct = &fn_710007b160;
+    static constexpr UnkFn destroy = &fn_710007b16c;
+    static constexpr UnkFn copy_assign = &fn_710007b170;
+    static constexpr UnkFn move_assign = &fn_710007b184;
+    static constexpr UnkFn equals = &fn_710007b124;
+    static constexpr UnkFn hash = &fn_710007b138;
+    static constexpr UnkFn type_of = &fn_710007b140;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710007aac8*);
 struct UnkRefl_fn_710007af74;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710007af74> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710007af74> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710007b1c0;
-    static constexpr UnkFn fn_0x30 = &fn_710007b1c8;
-    static constexpr UnkFn fn_0x38 = &fn_710007b1d4;
-    static constexpr UnkFn fn_0x40 = &fn_710007b1e0;
-    static constexpr UnkFn fn_0x48 = &fn_710007b1e4;
-    static constexpr UnkFn fn_0x50 = &fn_710007b1f8;
-    static constexpr UnkFn fn_0x58 = &fn_710007b198;
-    static constexpr UnkFn fn_0x60 = &fn_710007b1ac;
-    static constexpr UnkFn fn_0x68 = &fn_710007b1b4;
+    static constexpr UnkFn construct = &fn_710007b1c0;
+    static constexpr UnkFn copy_construct = &fn_710007b1c8;
+    static constexpr UnkFn move_construct = &fn_710007b1d4;
+    static constexpr UnkFn destroy = &fn_710007b1e0;
+    static constexpr UnkFn copy_assign = &fn_710007b1e4;
+    static constexpr UnkFn move_assign = &fn_710007b1f8;
+    static constexpr UnkFn equals = &fn_710007b198;
+    static constexpr UnkFn hash = &fn_710007b1ac;
+    static constexpr UnkFn type_of = &fn_710007b1b4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710007af74*);
 struct UnkRefl_fn_710009410c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710009410c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710009410c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71000942b4;
-    static constexpr UnkFn fn_0x30 = &fn_71000942bc;
-    static constexpr UnkFn fn_0x38 = &fn_71000942c8;
-    static constexpr UnkFn fn_0x40 = &fn_71000942d4;
-    static constexpr UnkFn fn_0x48 = &fn_71000942d8;
-    static constexpr UnkFn fn_0x50 = &fn_71000942ec;
-    static constexpr UnkFn fn_0x58 = &fn_710009428c;
-    static constexpr UnkFn fn_0x60 = &fn_71000942a0;
-    static constexpr UnkFn fn_0x68 = &fn_71000942a8;
+    static constexpr UnkFn construct = &fn_71000942b4;
+    static constexpr UnkFn copy_construct = &fn_71000942bc;
+    static constexpr UnkFn move_construct = &fn_71000942c8;
+    static constexpr UnkFn destroy = &fn_71000942d4;
+    static constexpr UnkFn copy_assign = &fn_71000942d8;
+    static constexpr UnkFn move_assign = &fn_71000942ec;
+    static constexpr UnkFn equals = &fn_710009428c;
+    static constexpr UnkFn hash = &fn_71000942a0;
+    static constexpr UnkFn type_of = &fn_71000942a8;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710009410c*);
 struct UnkRefl_fn_7100098410;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100098410> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100098410> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71000985b8;
-    static constexpr UnkFn fn_0x30 = &fn_71000985c0;
-    static constexpr UnkFn fn_0x38 = &fn_71000985cc;
-    static constexpr UnkFn fn_0x40 = &fn_71000985d8;
-    static constexpr UnkFn fn_0x48 = &fn_71000985dc;
-    static constexpr UnkFn fn_0x50 = &fn_71000985f0;
-    static constexpr UnkFn fn_0x58 = &fn_7100098590;
-    static constexpr UnkFn fn_0x60 = &fn_71000985a4;
-    static constexpr UnkFn fn_0x68 = &fn_71000985ac;
+    static constexpr UnkFn construct = &fn_71000985b8;
+    static constexpr UnkFn copy_construct = &fn_71000985c0;
+    static constexpr UnkFn move_construct = &fn_71000985cc;
+    static constexpr UnkFn destroy = &fn_71000985d8;
+    static constexpr UnkFn copy_assign = &fn_71000985dc;
+    static constexpr UnkFn move_assign = &fn_71000985f0;
+    static constexpr UnkFn equals = &fn_7100098590;
+    static constexpr UnkFn hash = &fn_71000985a4;
+    static constexpr UnkFn type_of = &fn_71000985ac;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100098410*);
 struct UnkRefl_fn_71000a2270;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71000a2270> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71000a2270> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71000a4424;
-    static constexpr UnkFn fn_0x30 = &fn_71000a442c;
-    static constexpr UnkFn fn_0x38 = &fn_71000a4438;
-    static constexpr UnkFn fn_0x40 = &fn_71000a4444;
-    static constexpr UnkFn fn_0x48 = &fn_71000a4448;
-    static constexpr UnkFn fn_0x50 = &fn_71000a445c;
-    static constexpr UnkFn fn_0x58 = &fn_71000a43fc;
-    static constexpr UnkFn fn_0x60 = &fn_71000a4410;
-    static constexpr UnkFn fn_0x68 = &fn_71000a4418;
+    static constexpr UnkFn construct = &fn_71000a4424;
+    static constexpr UnkFn copy_construct = &fn_71000a442c;
+    static constexpr UnkFn move_construct = &fn_71000a4438;
+    static constexpr UnkFn destroy = &fn_71000a4444;
+    static constexpr UnkFn copy_assign = &fn_71000a4448;
+    static constexpr UnkFn move_assign = &fn_71000a445c;
+    static constexpr UnkFn equals = &fn_71000a43fc;
+    static constexpr UnkFn hash = &fn_71000a4410;
+    static constexpr UnkFn type_of = &fn_71000a4418;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71000a2270*);
 struct UnkRefl_fn_71000eceec;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71000eceec> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71000eceec> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71000ed0ac;
-    static constexpr UnkFn fn_0x30 = &fn_71000ed0b4;
-    static constexpr UnkFn fn_0x38 = &fn_71000ed0c0;
-    static constexpr UnkFn fn_0x40 = &fn_71000ed0cc;
-    static constexpr UnkFn fn_0x48 = &fn_71000ed0d0;
-    static constexpr UnkFn fn_0x50 = &fn_71000ed0e4;
-    static constexpr UnkFn fn_0x58 = &fn_71000ed084;
-    static constexpr UnkFn fn_0x60 = &fn_71000ed098;
-    static constexpr UnkFn fn_0x68 = &fn_71000ed0a0;
+    static constexpr UnkFn construct = &fn_71000ed0ac;
+    static constexpr UnkFn copy_construct = &fn_71000ed0b4;
+    static constexpr UnkFn move_construct = &fn_71000ed0c0;
+    static constexpr UnkFn destroy = &fn_71000ed0cc;
+    static constexpr UnkFn copy_assign = &fn_71000ed0d0;
+    static constexpr UnkFn move_assign = &fn_71000ed0e4;
+    static constexpr UnkFn equals = &fn_71000ed084;
+    static constexpr UnkFn hash = &fn_71000ed098;
+    static constexpr UnkFn type_of = &fn_71000ed0a0;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71000eceec*);
 struct UnkRefl_fn_71000ef204;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71000ef204> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71000ef204> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71000ef3c4;
-    static constexpr UnkFn fn_0x30 = &fn_71000ef3cc;
-    static constexpr UnkFn fn_0x38 = &fn_71000ef3d8;
-    static constexpr UnkFn fn_0x40 = &fn_71000ef3e4;
-    static constexpr UnkFn fn_0x48 = &fn_71000ef3e8;
-    static constexpr UnkFn fn_0x50 = &fn_71000ef3fc;
-    static constexpr UnkFn fn_0x58 = &fn_71000ef39c;
-    static constexpr UnkFn fn_0x60 = &fn_71000ef3b0;
-    static constexpr UnkFn fn_0x68 = &fn_71000ef3b8;
+    static constexpr UnkFn construct = &fn_71000ef3c4;
+    static constexpr UnkFn copy_construct = &fn_71000ef3cc;
+    static constexpr UnkFn move_construct = &fn_71000ef3d8;
+    static constexpr UnkFn destroy = &fn_71000ef3e4;
+    static constexpr UnkFn copy_assign = &fn_71000ef3e8;
+    static constexpr UnkFn move_assign = &fn_71000ef3fc;
+    static constexpr UnkFn equals = &fn_71000ef39c;
+    static constexpr UnkFn hash = &fn_71000ef3b0;
+    static constexpr UnkFn type_of = &fn_71000ef3b8;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71000ef204*);
 struct UnkRefl_fn_71000f5500;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71000f5500> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71000f5500> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100103b8c;
-    static constexpr UnkFn fn_0x30 = &fn_7100103b94;
-    static constexpr UnkFn fn_0x38 = &fn_7100103ba0;
-    static constexpr UnkFn fn_0x40 = &fn_7100103bac;
-    static constexpr UnkFn fn_0x48 = &fn_7100103bb0;
-    static constexpr UnkFn fn_0x50 = &fn_7100103bc4;
-    static constexpr UnkFn fn_0x58 = &fn_7100103b64;
-    static constexpr UnkFn fn_0x60 = &fn_7100103b78;
-    static constexpr UnkFn fn_0x68 = &fn_7100103b80;
+    static constexpr UnkFn construct = &fn_7100103b8c;
+    static constexpr UnkFn copy_construct = &fn_7100103b94;
+    static constexpr UnkFn move_construct = &fn_7100103ba0;
+    static constexpr UnkFn destroy = &fn_7100103bac;
+    static constexpr UnkFn copy_assign = &fn_7100103bb0;
+    static constexpr UnkFn move_assign = &fn_7100103bc4;
+    static constexpr UnkFn equals = &fn_7100103b64;
+    static constexpr UnkFn hash = &fn_7100103b78;
+    static constexpr UnkFn type_of = &fn_7100103b80;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71000f5500*);
 struct UnkRefl_fn_71001066a0;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71001066a0> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71001066a0> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71001069f4;
-    static constexpr UnkFn fn_0x30 = &fn_71001069fc;
-    static constexpr UnkFn fn_0x38 = &fn_7100106a08;
-    static constexpr UnkFn fn_0x40 = &fn_7100106a14;
-    static constexpr UnkFn fn_0x48 = &fn_7100106a18;
-    static constexpr UnkFn fn_0x50 = &fn_7100106a2c;
-    static constexpr UnkFn fn_0x58 = &fn_71001069cc;
-    static constexpr UnkFn fn_0x60 = &fn_71001069e0;
-    static constexpr UnkFn fn_0x68 = &fn_71001069e8;
+    static constexpr UnkFn construct = &fn_71001069f4;
+    static constexpr UnkFn copy_construct = &fn_71001069fc;
+    static constexpr UnkFn move_construct = &fn_7100106a08;
+    static constexpr UnkFn destroy = &fn_7100106a14;
+    static constexpr UnkFn copy_assign = &fn_7100106a18;
+    static constexpr UnkFn move_assign = &fn_7100106a2c;
+    static constexpr UnkFn equals = &fn_71001069cc;
+    static constexpr UnkFn hash = &fn_71001069e0;
+    static constexpr UnkFn type_of = &fn_71001069e8;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71001066a0*);
 struct UnkRefl_fn_7100109230;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100109230> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100109230> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710010b6f8;
-    static constexpr UnkFn fn_0x30 = &fn_710010b700;
-    static constexpr UnkFn fn_0x38 = &fn_710010b70c;
-    static constexpr UnkFn fn_0x40 = &fn_710010b718;
-    static constexpr UnkFn fn_0x48 = &fn_710010b71c;
-    static constexpr UnkFn fn_0x50 = &fn_710010b730;
-    static constexpr UnkFn fn_0x58 = &fn_710010b6d0;
-    static constexpr UnkFn fn_0x60 = &fn_710010b6e4;
-    static constexpr UnkFn fn_0x68 = &fn_710010b6ec;
+    static constexpr UnkFn construct = &fn_710010b6f8;
+    static constexpr UnkFn copy_construct = &fn_710010b700;
+    static constexpr UnkFn move_construct = &fn_710010b70c;
+    static constexpr UnkFn destroy = &fn_710010b718;
+    static constexpr UnkFn copy_assign = &fn_710010b71c;
+    static constexpr UnkFn move_assign = &fn_710010b730;
+    static constexpr UnkFn equals = &fn_710010b6d0;
+    static constexpr UnkFn hash = &fn_710010b6e4;
+    static constexpr UnkFn type_of = &fn_710010b6ec;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100109230*);
 struct UnkRefl_fn_71001094fc;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71001094fc> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71001094fc> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710010b76c;
-    static constexpr UnkFn fn_0x30 = &fn_710010b774;
-    static constexpr UnkFn fn_0x38 = &fn_710010b780;
-    static constexpr UnkFn fn_0x40 = &fn_710010b78c;
-    static constexpr UnkFn fn_0x48 = &fn_710010b790;
-    static constexpr UnkFn fn_0x50 = &fn_710010b7a4;
-    static constexpr UnkFn fn_0x58 = &fn_710010b744;
-    static constexpr UnkFn fn_0x60 = &fn_710010b758;
-    static constexpr UnkFn fn_0x68 = &fn_710010b760;
+    static constexpr UnkFn construct = &fn_710010b76c;
+    static constexpr UnkFn copy_construct = &fn_710010b774;
+    static constexpr UnkFn move_construct = &fn_710010b780;
+    static constexpr UnkFn destroy = &fn_710010b78c;
+    static constexpr UnkFn copy_assign = &fn_710010b790;
+    static constexpr UnkFn move_assign = &fn_710010b7a4;
+    static constexpr UnkFn equals = &fn_710010b744;
+    static constexpr UnkFn hash = &fn_710010b758;
+    static constexpr UnkFn type_of = &fn_710010b760;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71001094fc*);
 struct UnkRefl_fn_71001098e8;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71001098e8> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71001098e8> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710010b7e0;
-    static constexpr UnkFn fn_0x30 = &fn_710010b7e8;
-    static constexpr UnkFn fn_0x38 = &fn_710010b7f4;
-    static constexpr UnkFn fn_0x40 = &fn_710010b800;
-    static constexpr UnkFn fn_0x48 = &fn_710010b804;
-    static constexpr UnkFn fn_0x50 = &fn_710010b818;
-    static constexpr UnkFn fn_0x58 = &fn_710010b7b8;
-    static constexpr UnkFn fn_0x60 = &fn_710010b7cc;
-    static constexpr UnkFn fn_0x68 = &fn_710010b7d4;
+    static constexpr UnkFn construct = &fn_710010b7e0;
+    static constexpr UnkFn copy_construct = &fn_710010b7e8;
+    static constexpr UnkFn move_construct = &fn_710010b7f4;
+    static constexpr UnkFn destroy = &fn_710010b800;
+    static constexpr UnkFn copy_assign = &fn_710010b804;
+    static constexpr UnkFn move_assign = &fn_710010b818;
+    static constexpr UnkFn equals = &fn_710010b7b8;
+    static constexpr UnkFn hash = &fn_710010b7cc;
+    static constexpr UnkFn type_of = &fn_710010b7d4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71001098e8*);
 struct UnkRefl_fn_710010a454;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710010a454> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710010a454> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710010b854;
-    static constexpr UnkFn fn_0x30 = &fn_710010b85c;
-    static constexpr UnkFn fn_0x38 = &fn_710010b868;
-    static constexpr UnkFn fn_0x40 = &fn_710010b874;
-    static constexpr UnkFn fn_0x48 = &fn_710010b878;
-    static constexpr UnkFn fn_0x50 = &fn_710010b88c;
-    static constexpr UnkFn fn_0x58 = &fn_710010b82c;
-    static constexpr UnkFn fn_0x60 = &fn_710010b840;
-    static constexpr UnkFn fn_0x68 = &fn_710010b848;
+    static constexpr UnkFn construct = &fn_710010b854;
+    static constexpr UnkFn copy_construct = &fn_710010b85c;
+    static constexpr UnkFn move_construct = &fn_710010b868;
+    static constexpr UnkFn destroy = &fn_710010b874;
+    static constexpr UnkFn copy_assign = &fn_710010b878;
+    static constexpr UnkFn move_assign = &fn_710010b88c;
+    static constexpr UnkFn equals = &fn_710010b82c;
+    static constexpr UnkFn hash = &fn_710010b840;
+    static constexpr UnkFn type_of = &fn_710010b848;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710010a454*);
 struct UnkRefl_fn_710010a720;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710010a720> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710010a720> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710010b8c8;
-    static constexpr UnkFn fn_0x30 = &fn_710010b8d0;
-    static constexpr UnkFn fn_0x38 = &fn_710010b8dc;
-    static constexpr UnkFn fn_0x40 = &fn_710010b8e8;
-    static constexpr UnkFn fn_0x48 = &fn_710010b8ec;
-    static constexpr UnkFn fn_0x50 = &fn_710010b900;
-    static constexpr UnkFn fn_0x58 = &fn_710010b8a0;
-    static constexpr UnkFn fn_0x60 = &fn_710010b8b4;
-    static constexpr UnkFn fn_0x68 = &fn_710010b8bc;
+    static constexpr UnkFn construct = &fn_710010b8c8;
+    static constexpr UnkFn copy_construct = &fn_710010b8d0;
+    static constexpr UnkFn move_construct = &fn_710010b8dc;
+    static constexpr UnkFn destroy = &fn_710010b8e8;
+    static constexpr UnkFn copy_assign = &fn_710010b8ec;
+    static constexpr UnkFn move_assign = &fn_710010b900;
+    static constexpr UnkFn equals = &fn_710010b8a0;
+    static constexpr UnkFn hash = &fn_710010b8b4;
+    static constexpr UnkFn type_of = &fn_710010b8bc;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710010a720*);
 struct UnkRefl_fn_710010ae7c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710010ae7c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710010ae7c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710010b93c;
-    static constexpr UnkFn fn_0x30 = &fn_710010b944;
-    static constexpr UnkFn fn_0x38 = &fn_710010b950;
-    static constexpr UnkFn fn_0x40 = &fn_710010b95c;
-    static constexpr UnkFn fn_0x48 = &fn_710010b960;
-    static constexpr UnkFn fn_0x50 = &fn_710010b974;
-    static constexpr UnkFn fn_0x58 = &fn_710010b914;
-    static constexpr UnkFn fn_0x60 = &fn_710010b928;
-    static constexpr UnkFn fn_0x68 = &fn_710010b930;
+    static constexpr UnkFn construct = &fn_710010b93c;
+    static constexpr UnkFn copy_construct = &fn_710010b944;
+    static constexpr UnkFn move_construct = &fn_710010b950;
+    static constexpr UnkFn destroy = &fn_710010b95c;
+    static constexpr UnkFn copy_assign = &fn_710010b960;
+    static constexpr UnkFn move_assign = &fn_710010b974;
+    static constexpr UnkFn equals = &fn_710010b914;
+    static constexpr UnkFn hash = &fn_710010b928;
+    static constexpr UnkFn type_of = &fn_710010b930;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710010ae7c*);
 struct UnkRefl_fn_710010b4a8;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710010b4a8> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710010b4a8> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710010b9b0;
-    static constexpr UnkFn fn_0x30 = &fn_710010b9b8;
-    static constexpr UnkFn fn_0x38 = &fn_710010b9c4;
-    static constexpr UnkFn fn_0x40 = &fn_710010b9d0;
-    static constexpr UnkFn fn_0x48 = &fn_710010b9d4;
-    static constexpr UnkFn fn_0x50 = &fn_710010b9e8;
-    static constexpr UnkFn fn_0x58 = &fn_710010b988;
-    static constexpr UnkFn fn_0x60 = &fn_710010b99c;
-    static constexpr UnkFn fn_0x68 = &fn_710010b9a4;
+    static constexpr UnkFn construct = &fn_710010b9b0;
+    static constexpr UnkFn copy_construct = &fn_710010b9b8;
+    static constexpr UnkFn move_construct = &fn_710010b9c4;
+    static constexpr UnkFn destroy = &fn_710010b9d0;
+    static constexpr UnkFn copy_assign = &fn_710010b9d4;
+    static constexpr UnkFn move_assign = &fn_710010b9e8;
+    static constexpr UnkFn equals = &fn_710010b988;
+    static constexpr UnkFn hash = &fn_710010b99c;
+    static constexpr UnkFn type_of = &fn_710010b9a4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710010b4a8*);
 struct UnkRefl_fn_7100163228;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100163228> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100163228> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100167d38;
-    static constexpr UnkFn fn_0x30 = &fn_7100167d40;
-    static constexpr UnkFn fn_0x38 = &fn_7100167d4c;
-    static constexpr UnkFn fn_0x40 = &fn_7100167d58;
-    static constexpr UnkFn fn_0x48 = &fn_7100167d5c;
-    static constexpr UnkFn fn_0x50 = &fn_7100167d70;
-    static constexpr UnkFn fn_0x58 = &fn_7100167d10;
-    static constexpr UnkFn fn_0x60 = &fn_7100167d24;
-    static constexpr UnkFn fn_0x68 = &fn_7100167d2c;
+    static constexpr UnkFn construct = &fn_7100167d38;
+    static constexpr UnkFn copy_construct = &fn_7100167d40;
+    static constexpr UnkFn move_construct = &fn_7100167d4c;
+    static constexpr UnkFn destroy = &fn_7100167d58;
+    static constexpr UnkFn copy_assign = &fn_7100167d5c;
+    static constexpr UnkFn move_assign = &fn_7100167d70;
+    static constexpr UnkFn equals = &fn_7100167d10;
+    static constexpr UnkFn hash = &fn_7100167d24;
+    static constexpr UnkFn type_of = &fn_7100167d2c;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100163228*);
 struct UnkRefl_fn_7100163d34;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100163d34> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100163d34> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100167dac;
-    static constexpr UnkFn fn_0x30 = &fn_7100167db4;
-    static constexpr UnkFn fn_0x38 = &fn_7100167dc0;
-    static constexpr UnkFn fn_0x40 = &fn_7100167dcc;
-    static constexpr UnkFn fn_0x48 = &fn_7100167dd0;
-    static constexpr UnkFn fn_0x50 = &fn_7100167de4;
-    static constexpr UnkFn fn_0x58 = &fn_7100167d84;
-    static constexpr UnkFn fn_0x60 = &fn_7100167d98;
-    static constexpr UnkFn fn_0x68 = &fn_7100167da0;
+    static constexpr UnkFn construct = &fn_7100167dac;
+    static constexpr UnkFn copy_construct = &fn_7100167db4;
+    static constexpr UnkFn move_construct = &fn_7100167dc0;
+    static constexpr UnkFn destroy = &fn_7100167dcc;
+    static constexpr UnkFn copy_assign = &fn_7100167dd0;
+    static constexpr UnkFn move_assign = &fn_7100167de4;
+    static constexpr UnkFn equals = &fn_7100167d84;
+    static constexpr UnkFn hash = &fn_7100167d98;
+    static constexpr UnkFn type_of = &fn_7100167da0;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100163d34*);
 struct UnkRefl_fn_7100164180;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100164180> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100164180> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100167e20;
-    static constexpr UnkFn fn_0x30 = &fn_7100167e28;
-    static constexpr UnkFn fn_0x38 = &fn_7100167e34;
-    static constexpr UnkFn fn_0x40 = &fn_7100167e40;
-    static constexpr UnkFn fn_0x48 = &fn_7100167e44;
-    static constexpr UnkFn fn_0x50 = &fn_7100167e58;
-    static constexpr UnkFn fn_0x58 = &fn_7100167df8;
-    static constexpr UnkFn fn_0x60 = &fn_7100167e0c;
-    static constexpr UnkFn fn_0x68 = &fn_7100167e14;
+    static constexpr UnkFn construct = &fn_7100167e20;
+    static constexpr UnkFn copy_construct = &fn_7100167e28;
+    static constexpr UnkFn move_construct = &fn_7100167e34;
+    static constexpr UnkFn destroy = &fn_7100167e40;
+    static constexpr UnkFn copy_assign = &fn_7100167e44;
+    static constexpr UnkFn move_assign = &fn_7100167e58;
+    static constexpr UnkFn equals = &fn_7100167df8;
+    static constexpr UnkFn hash = &fn_7100167e0c;
+    static constexpr UnkFn type_of = &fn_7100167e14;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100164180*);
 struct UnkRefl_fn_710016450c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710016450c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710016450c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100167e94;
-    static constexpr UnkFn fn_0x30 = &fn_7100167e9c;
-    static constexpr UnkFn fn_0x38 = &fn_7100167ea8;
-    static constexpr UnkFn fn_0x40 = &fn_7100167eb4;
-    static constexpr UnkFn fn_0x48 = &fn_7100167eb8;
-    static constexpr UnkFn fn_0x50 = &fn_7100167ecc;
-    static constexpr UnkFn fn_0x58 = &fn_7100167e6c;
-    static constexpr UnkFn fn_0x60 = &fn_7100167e80;
-    static constexpr UnkFn fn_0x68 = &fn_7100167e88;
+    static constexpr UnkFn construct = &fn_7100167e94;
+    static constexpr UnkFn copy_construct = &fn_7100167e9c;
+    static constexpr UnkFn move_construct = &fn_7100167ea8;
+    static constexpr UnkFn destroy = &fn_7100167eb4;
+    static constexpr UnkFn copy_assign = &fn_7100167eb8;
+    static constexpr UnkFn move_assign = &fn_7100167ecc;
+    static constexpr UnkFn equals = &fn_7100167e6c;
+    static constexpr UnkFn hash = &fn_7100167e80;
+    static constexpr UnkFn type_of = &fn_7100167e88;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710016450c*);
 struct UnkRefl_fn_7100164d18;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100164d18> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100164d18> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100167f08;
-    static constexpr UnkFn fn_0x30 = &fn_7100167f10;
-    static constexpr UnkFn fn_0x38 = &fn_7100167f1c;
-    static constexpr UnkFn fn_0x40 = &fn_7100167f28;
-    static constexpr UnkFn fn_0x48 = &fn_7100167f2c;
-    static constexpr UnkFn fn_0x50 = &fn_7100167f40;
-    static constexpr UnkFn fn_0x58 = &fn_7100167ee0;
-    static constexpr UnkFn fn_0x60 = &fn_7100167ef4;
-    static constexpr UnkFn fn_0x68 = &fn_7100167efc;
+    static constexpr UnkFn construct = &fn_7100167f08;
+    static constexpr UnkFn copy_construct = &fn_7100167f10;
+    static constexpr UnkFn move_construct = &fn_7100167f1c;
+    static constexpr UnkFn destroy = &fn_7100167f28;
+    static constexpr UnkFn copy_assign = &fn_7100167f2c;
+    static constexpr UnkFn move_assign = &fn_7100167f40;
+    static constexpr UnkFn equals = &fn_7100167ee0;
+    static constexpr UnkFn hash = &fn_7100167ef4;
+    static constexpr UnkFn type_of = &fn_7100167efc;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100164d18*);
 struct UnkRefl_fn_71001650a4;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71001650a4> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71001650a4> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100167f7c;
-    static constexpr UnkFn fn_0x30 = &fn_7100167f84;
-    static constexpr UnkFn fn_0x38 = &fn_7100167f90;
-    static constexpr UnkFn fn_0x40 = &fn_7100167f9c;
-    static constexpr UnkFn fn_0x48 = &fn_7100167fa0;
-    static constexpr UnkFn fn_0x50 = &fn_7100167fb4;
-    static constexpr UnkFn fn_0x58 = &fn_7100167f54;
-    static constexpr UnkFn fn_0x60 = &fn_7100167f68;
-    static constexpr UnkFn fn_0x68 = &fn_7100167f70;
+    static constexpr UnkFn construct = &fn_7100167f7c;
+    static constexpr UnkFn copy_construct = &fn_7100167f84;
+    static constexpr UnkFn move_construct = &fn_7100167f90;
+    static constexpr UnkFn destroy = &fn_7100167f9c;
+    static constexpr UnkFn copy_assign = &fn_7100167fa0;
+    static constexpr UnkFn move_assign = &fn_7100167fb4;
+    static constexpr UnkFn equals = &fn_7100167f54;
+    static constexpr UnkFn hash = &fn_7100167f68;
+    static constexpr UnkFn type_of = &fn_7100167f70;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71001650a4*);
 struct UnkRefl_fn_7100165430;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100165430> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100165430> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100167ff0;
-    static constexpr UnkFn fn_0x30 = &fn_7100167ff8;
-    static constexpr UnkFn fn_0x38 = &fn_7100168004;
-    static constexpr UnkFn fn_0x40 = &fn_7100168010;
-    static constexpr UnkFn fn_0x48 = &fn_7100168014;
-    static constexpr UnkFn fn_0x50 = &fn_7100168028;
-    static constexpr UnkFn fn_0x58 = &fn_7100167fc8;
-    static constexpr UnkFn fn_0x60 = &fn_7100167fdc;
-    static constexpr UnkFn fn_0x68 = &fn_7100167fe4;
+    static constexpr UnkFn construct = &fn_7100167ff0;
+    static constexpr UnkFn copy_construct = &fn_7100167ff8;
+    static constexpr UnkFn move_construct = &fn_7100168004;
+    static constexpr UnkFn destroy = &fn_7100168010;
+    static constexpr UnkFn copy_assign = &fn_7100168014;
+    static constexpr UnkFn move_assign = &fn_7100168028;
+    static constexpr UnkFn equals = &fn_7100167fc8;
+    static constexpr UnkFn hash = &fn_7100167fdc;
+    static constexpr UnkFn type_of = &fn_7100167fe4;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100165430*);
 struct UnkRefl_fn_710016587c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710016587c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710016587c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100168064;
-    static constexpr UnkFn fn_0x30 = &fn_710016806c;
-    static constexpr UnkFn fn_0x38 = &fn_7100168078;
-    static constexpr UnkFn fn_0x40 = &fn_7100168084;
-    static constexpr UnkFn fn_0x48 = &fn_7100168088;
-    static constexpr UnkFn fn_0x50 = &fn_710016809c;
-    static constexpr UnkFn fn_0x58 = &fn_710016803c;
-    static constexpr UnkFn fn_0x60 = &fn_7100168050;
-    static constexpr UnkFn fn_0x68 = &fn_7100168058;
+    static constexpr UnkFn construct = &fn_7100168064;
+    static constexpr UnkFn copy_construct = &fn_710016806c;
+    static constexpr UnkFn move_construct = &fn_7100168078;
+    static constexpr UnkFn destroy = &fn_7100168084;
+    static constexpr UnkFn copy_assign = &fn_7100168088;
+    static constexpr UnkFn move_assign = &fn_710016809c;
+    static constexpr UnkFn equals = &fn_710016803c;
+    static constexpr UnkFn hash = &fn_7100168050;
+    static constexpr UnkFn type_of = &fn_7100168058;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710016587c*);
 struct UnkRefl_fn_7100165cc8;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100165cc8> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100165cc8> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71001680d8;
-    static constexpr UnkFn fn_0x30 = &fn_71001680e0;
-    static constexpr UnkFn fn_0x38 = &fn_71001680ec;
-    static constexpr UnkFn fn_0x40 = &fn_71001680f8;
-    static constexpr UnkFn fn_0x48 = &fn_71001680fc;
-    static constexpr UnkFn fn_0x50 = &fn_7100168110;
-    static constexpr UnkFn fn_0x58 = &fn_71001680b0;
-    static constexpr UnkFn fn_0x60 = &fn_71001680c4;
-    static constexpr UnkFn fn_0x68 = &fn_71001680cc;
+    static constexpr UnkFn construct = &fn_71001680d8;
+    static constexpr UnkFn copy_construct = &fn_71001680e0;
+    static constexpr UnkFn move_construct = &fn_71001680ec;
+    static constexpr UnkFn destroy = &fn_71001680f8;
+    static constexpr UnkFn copy_assign = &fn_71001680fc;
+    static constexpr UnkFn move_assign = &fn_7100168110;
+    static constexpr UnkFn equals = &fn_71001680b0;
+    static constexpr UnkFn hash = &fn_71001680c4;
+    static constexpr UnkFn type_of = &fn_71001680cc;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100165cc8*);
 struct UnkRefl_fn_71001662f4;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71001662f4> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71001662f4> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710016814c;
-    static constexpr UnkFn fn_0x30 = &fn_7100168154;
-    static constexpr UnkFn fn_0x38 = &fn_7100168160;
-    static constexpr UnkFn fn_0x40 = &fn_710016816c;
-    static constexpr UnkFn fn_0x48 = &fn_7100168170;
-    static constexpr UnkFn fn_0x50 = &fn_7100168184;
-    static constexpr UnkFn fn_0x58 = &fn_7100168124;
-    static constexpr UnkFn fn_0x60 = &fn_7100168138;
-    static constexpr UnkFn fn_0x68 = &fn_7100168140;
+    static constexpr UnkFn construct = &fn_710016814c;
+    static constexpr UnkFn copy_construct = &fn_7100168154;
+    static constexpr UnkFn move_construct = &fn_7100168160;
+    static constexpr UnkFn destroy = &fn_710016816c;
+    static constexpr UnkFn copy_assign = &fn_7100168170;
+    static constexpr UnkFn move_assign = &fn_7100168184;
+    static constexpr UnkFn equals = &fn_7100168124;
+    static constexpr UnkFn hash = &fn_7100168138;
+    static constexpr UnkFn type_of = &fn_7100168140;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71001662f4*);
 struct UnkRefl_fn_7100166680;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100166680> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100166680> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71001681c0;
-    static constexpr UnkFn fn_0x30 = &fn_71001681c8;
-    static constexpr UnkFn fn_0x38 = &fn_71001681d4;
-    static constexpr UnkFn fn_0x40 = &fn_71001681e0;
-    static constexpr UnkFn fn_0x48 = &fn_71001681e4;
-    static constexpr UnkFn fn_0x50 = &fn_71001681f8;
-    static constexpr UnkFn fn_0x58 = &fn_7100168198;
-    static constexpr UnkFn fn_0x60 = &fn_71001681ac;
-    static constexpr UnkFn fn_0x68 = &fn_71001681b4;
+    static constexpr UnkFn construct = &fn_71001681c0;
+    static constexpr UnkFn copy_construct = &fn_71001681c8;
+    static constexpr UnkFn move_construct = &fn_71001681d4;
+    static constexpr UnkFn destroy = &fn_71001681e0;
+    static constexpr UnkFn copy_assign = &fn_71001681e4;
+    static constexpr UnkFn move_assign = &fn_71001681f8;
+    static constexpr UnkFn equals = &fn_7100168198;
+    static constexpr UnkFn hash = &fn_71001681ac;
+    static constexpr UnkFn type_of = &fn_71001681b4;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100166680*);
 struct UnkRefl_fn_7100166bec;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100166bec> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100166bec> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100168234;
-    static constexpr UnkFn fn_0x30 = &fn_710016823c;
-    static constexpr UnkFn fn_0x38 = &fn_7100168248;
-    static constexpr UnkFn fn_0x40 = &fn_7100168254;
-    static constexpr UnkFn fn_0x48 = &fn_7100168258;
-    static constexpr UnkFn fn_0x50 = &fn_710016826c;
-    static constexpr UnkFn fn_0x58 = &fn_710016820c;
-    static constexpr UnkFn fn_0x60 = &fn_7100168220;
-    static constexpr UnkFn fn_0x68 = &fn_7100168228;
+    static constexpr UnkFn construct = &fn_7100168234;
+    static constexpr UnkFn copy_construct = &fn_710016823c;
+    static constexpr UnkFn move_construct = &fn_7100168248;
+    static constexpr UnkFn destroy = &fn_7100168254;
+    static constexpr UnkFn copy_assign = &fn_7100168258;
+    static constexpr UnkFn move_assign = &fn_710016826c;
+    static constexpr UnkFn equals = &fn_710016820c;
+    static constexpr UnkFn hash = &fn_7100168220;
+    static constexpr UnkFn type_of = &fn_7100168228;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100166bec*);
 struct UnkRefl_fn_7100167158;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100167158> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100167158> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71001682a8;
-    static constexpr UnkFn fn_0x30 = &fn_71001682b0;
-    static constexpr UnkFn fn_0x38 = &fn_71001682bc;
-    static constexpr UnkFn fn_0x40 = &fn_71001682c8;
-    static constexpr UnkFn fn_0x48 = &fn_71001682cc;
-    static constexpr UnkFn fn_0x50 = &fn_71001682e0;
-    static constexpr UnkFn fn_0x58 = &fn_7100168280;
-    static constexpr UnkFn fn_0x60 = &fn_7100168294;
-    static constexpr UnkFn fn_0x68 = &fn_710016829c;
+    static constexpr UnkFn construct = &fn_71001682a8;
+    static constexpr UnkFn copy_construct = &fn_71001682b0;
+    static constexpr UnkFn move_construct = &fn_71001682bc;
+    static constexpr UnkFn destroy = &fn_71001682c8;
+    static constexpr UnkFn copy_assign = &fn_71001682cc;
+    static constexpr UnkFn move_assign = &fn_71001682e0;
+    static constexpr UnkFn equals = &fn_7100168280;
+    static constexpr UnkFn hash = &fn_7100168294;
+    static constexpr UnkFn type_of = &fn_710016829c;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100167158*);
 struct UnkRefl_fn_71001674e4;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71001674e4> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71001674e4> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710016831c;
-    static constexpr UnkFn fn_0x30 = &fn_7100168324;
-    static constexpr UnkFn fn_0x38 = &fn_7100168330;
-    static constexpr UnkFn fn_0x40 = &fn_710016833c;
-    static constexpr UnkFn fn_0x48 = &fn_7100168340;
-    static constexpr UnkFn fn_0x50 = &fn_7100168354;
-    static constexpr UnkFn fn_0x58 = &fn_71001682f4;
-    static constexpr UnkFn fn_0x60 = &fn_7100168308;
-    static constexpr UnkFn fn_0x68 = &fn_7100168310;
+    static constexpr UnkFn construct = &fn_710016831c;
+    static constexpr UnkFn copy_construct = &fn_7100168324;
+    static constexpr UnkFn move_construct = &fn_7100168330;
+    static constexpr UnkFn destroy = &fn_710016833c;
+    static constexpr UnkFn copy_assign = &fn_7100168340;
+    static constexpr UnkFn move_assign = &fn_7100168354;
+    static constexpr UnkFn equals = &fn_71001682f4;
+    static constexpr UnkFn hash = &fn_7100168308;
+    static constexpr UnkFn type_of = &fn_7100168310;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71001674e4*);
 struct UnkRefl_fn_7100167870;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100167870> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100167870> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100168390;
-    static constexpr UnkFn fn_0x30 = &fn_7100168398;
-    static constexpr UnkFn fn_0x38 = &fn_71001683a4;
-    static constexpr UnkFn fn_0x40 = &fn_71001683b0;
-    static constexpr UnkFn fn_0x48 = &fn_71001683b4;
-    static constexpr UnkFn fn_0x50 = &fn_71001683c8;
-    static constexpr UnkFn fn_0x58 = &fn_7100168368;
-    static constexpr UnkFn fn_0x60 = &fn_710016837c;
-    static constexpr UnkFn fn_0x68 = &fn_7100168384;
+    static constexpr UnkFn construct = &fn_7100168390;
+    static constexpr UnkFn copy_construct = &fn_7100168398;
+    static constexpr UnkFn move_construct = &fn_71001683a4;
+    static constexpr UnkFn destroy = &fn_71001683b0;
+    static constexpr UnkFn copy_assign = &fn_71001683b4;
+    static constexpr UnkFn move_assign = &fn_71001683c8;
+    static constexpr UnkFn equals = &fn_7100168368;
+    static constexpr UnkFn hash = &fn_710016837c;
+    static constexpr UnkFn type_of = &fn_7100168384;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100167870*);
 struct UnkRefl_fn_7100167b3c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100167b3c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100167b3c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100168404;
-    static constexpr UnkFn fn_0x30 = &fn_710016840c;
-    static constexpr UnkFn fn_0x38 = &fn_7100168418;
-    static constexpr UnkFn fn_0x40 = &fn_7100168424;
-    static constexpr UnkFn fn_0x48 = &fn_7100168428;
-    static constexpr UnkFn fn_0x50 = &fn_710016843c;
-    static constexpr UnkFn fn_0x58 = &fn_71001683dc;
-    static constexpr UnkFn fn_0x60 = &fn_71001683f0;
-    static constexpr UnkFn fn_0x68 = &fn_71001683f8;
+    static constexpr UnkFn construct = &fn_7100168404;
+    static constexpr UnkFn copy_construct = &fn_710016840c;
+    static constexpr UnkFn move_construct = &fn_7100168418;
+    static constexpr UnkFn destroy = &fn_7100168424;
+    static constexpr UnkFn copy_assign = &fn_7100168428;
+    static constexpr UnkFn move_assign = &fn_710016843c;
+    static constexpr UnkFn equals = &fn_71001683dc;
+    static constexpr UnkFn hash = &fn_71001683f0;
+    static constexpr UnkFn type_of = &fn_71001683f8;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100167b3c*);
 struct UnkRefl_fn_71001a1680;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71001a1680> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71001a1680> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71001a93f0;
-    static constexpr UnkFn fn_0x30 = &fn_71001a93f8;
-    static constexpr UnkFn fn_0x38 = &fn_71001a9404;
-    static constexpr UnkFn fn_0x40 = &fn_71001a9410;
-    static constexpr UnkFn fn_0x48 = &fn_71001a9414;
-    static constexpr UnkFn fn_0x50 = &fn_71001a9428;
-    static constexpr UnkFn fn_0x58 = &fn_71001a93c8;
-    static constexpr UnkFn fn_0x60 = &fn_71001a93dc;
-    static constexpr UnkFn fn_0x68 = &fn_71001a93e4;
+    static constexpr UnkFn construct = &fn_71001a93f0;
+    static constexpr UnkFn copy_construct = &fn_71001a93f8;
+    static constexpr UnkFn move_construct = &fn_71001a9404;
+    static constexpr UnkFn destroy = &fn_71001a9410;
+    static constexpr UnkFn copy_assign = &fn_71001a9414;
+    static constexpr UnkFn move_assign = &fn_71001a9428;
+    static constexpr UnkFn equals = &fn_71001a93c8;
+    static constexpr UnkFn hash = &fn_71001a93dc;
+    static constexpr UnkFn type_of = &fn_71001a93e4;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71001a1680*);
 struct UnkRefl_fn_71001f92a8;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71001f92a8> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71001f92a8> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71001fa324;
-    static constexpr UnkFn fn_0x30 = &fn_71001fa32c;
-    static constexpr UnkFn fn_0x38 = &fn_71001fa338;
-    static constexpr UnkFn fn_0x40 = &fn_71001fa344;
-    static constexpr UnkFn fn_0x48 = &fn_71001fa348;
-    static constexpr UnkFn fn_0x50 = &fn_71001fa35c;
-    static constexpr UnkFn fn_0x58 = &fn_71001fa2fc;
-    static constexpr UnkFn fn_0x60 = &fn_71001fa310;
-    static constexpr UnkFn fn_0x68 = &fn_71001fa318;
+    static constexpr UnkFn construct = &fn_71001fa324;
+    static constexpr UnkFn copy_construct = &fn_71001fa32c;
+    static constexpr UnkFn move_construct = &fn_71001fa338;
+    static constexpr UnkFn destroy = &fn_71001fa344;
+    static constexpr UnkFn copy_assign = &fn_71001fa348;
+    static constexpr UnkFn move_assign = &fn_71001fa35c;
+    static constexpr UnkFn equals = &fn_71001fa2fc;
+    static constexpr UnkFn hash = &fn_71001fa310;
+    static constexpr UnkFn type_of = &fn_71001fa318;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71001f92a8*);
 struct UnkRefl_fn_71002174c8;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71002174c8> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71002174c8> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100217aec;
-    static constexpr UnkFn fn_0x30 = &fn_7100217af4;
-    static constexpr UnkFn fn_0x38 = &fn_7100217b00;
-    static constexpr UnkFn fn_0x40 = &fn_7100217b0c;
-    static constexpr UnkFn fn_0x48 = &fn_7100217b10;
-    static constexpr UnkFn fn_0x50 = &fn_7100217b24;
-    static constexpr UnkFn fn_0x58 = &fn_7100217ac4;
-    static constexpr UnkFn fn_0x60 = &fn_7100217ad8;
-    static constexpr UnkFn fn_0x68 = &fn_7100217ae0;
+    static constexpr UnkFn construct = &fn_7100217aec;
+    static constexpr UnkFn copy_construct = &fn_7100217af4;
+    static constexpr UnkFn move_construct = &fn_7100217b00;
+    static constexpr UnkFn destroy = &fn_7100217b0c;
+    static constexpr UnkFn copy_assign = &fn_7100217b10;
+    static constexpr UnkFn move_assign = &fn_7100217b24;
+    static constexpr UnkFn equals = &fn_7100217ac4;
+    static constexpr UnkFn hash = &fn_7100217ad8;
+    static constexpr UnkFn type_of = &fn_7100217ae0;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71002174c8*);
 struct UnkRefl_fn_7100217914;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100217914> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100217914> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100217b60;
-    static constexpr UnkFn fn_0x30 = &fn_7100217b68;
-    static constexpr UnkFn fn_0x38 = &fn_7100217b74;
-    static constexpr UnkFn fn_0x40 = &fn_7100217b80;
-    static constexpr UnkFn fn_0x48 = &fn_7100217b84;
-    static constexpr UnkFn fn_0x50 = &fn_7100217b98;
-    static constexpr UnkFn fn_0x58 = &fn_7100217b38;
-    static constexpr UnkFn fn_0x60 = &fn_7100217b4c;
-    static constexpr UnkFn fn_0x68 = &fn_7100217b54;
+    static constexpr UnkFn construct = &fn_7100217b60;
+    static constexpr UnkFn copy_construct = &fn_7100217b68;
+    static constexpr UnkFn move_construct = &fn_7100217b74;
+    static constexpr UnkFn destroy = &fn_7100217b80;
+    static constexpr UnkFn copy_assign = &fn_7100217b84;
+    static constexpr UnkFn move_assign = &fn_7100217b98;
+    static constexpr UnkFn equals = &fn_7100217b38;
+    static constexpr UnkFn hash = &fn_7100217b4c;
+    static constexpr UnkFn type_of = &fn_7100217b54;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100217914*);
 struct UnkRefl_fn_710021c118;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710021c118> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710021c118> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710021c2d8;
-    static constexpr UnkFn fn_0x30 = &fn_710021c2e0;
-    static constexpr UnkFn fn_0x38 = &fn_710021c2ec;
-    static constexpr UnkFn fn_0x40 = &fn_710021c2f8;
-    static constexpr UnkFn fn_0x48 = &fn_710021c2fc;
-    static constexpr UnkFn fn_0x50 = &fn_710021c310;
-    static constexpr UnkFn fn_0x58 = &fn_710021c2b0;
-    static constexpr UnkFn fn_0x60 = &fn_710021c2c4;
-    static constexpr UnkFn fn_0x68 = &fn_710021c2cc;
+    static constexpr UnkFn construct = &fn_710021c2d8;
+    static constexpr UnkFn copy_construct = &fn_710021c2e0;
+    static constexpr UnkFn move_construct = &fn_710021c2ec;
+    static constexpr UnkFn destroy = &fn_710021c2f8;
+    static constexpr UnkFn copy_assign = &fn_710021c2fc;
+    static constexpr UnkFn move_assign = &fn_710021c310;
+    static constexpr UnkFn equals = &fn_710021c2b0;
+    static constexpr UnkFn hash = &fn_710021c2c4;
+    static constexpr UnkFn type_of = &fn_710021c2cc;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710021c118*);
 struct UnkRefl_fn_710025ab8c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710025ab8c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710025ab8c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100261360;
-    static constexpr UnkFn fn_0x30 = &fn_7100261368;
-    static constexpr UnkFn fn_0x38 = &fn_7100261374;
-    static constexpr UnkFn fn_0x40 = &fn_7100261380;
-    static constexpr UnkFn fn_0x48 = &fn_7100261384;
-    static constexpr UnkFn fn_0x50 = &fn_7100261398;
-    static constexpr UnkFn fn_0x58 = &fn_7100261338;
-    static constexpr UnkFn fn_0x60 = &fn_710026134c;
-    static constexpr UnkFn fn_0x68 = &fn_7100261354;
+    static constexpr UnkFn construct = &fn_7100261360;
+    static constexpr UnkFn copy_construct = &fn_7100261368;
+    static constexpr UnkFn move_construct = &fn_7100261374;
+    static constexpr UnkFn destroy = &fn_7100261380;
+    static constexpr UnkFn copy_assign = &fn_7100261384;
+    static constexpr UnkFn move_assign = &fn_7100261398;
+    static constexpr UnkFn equals = &fn_7100261338;
+    static constexpr UnkFn hash = &fn_710026134c;
+    static constexpr UnkFn type_of = &fn_7100261354;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710025ab8c*);
 struct UnkRefl_fn_71002d3b70;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71002d3b70> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71002d3b70> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71002d4720;
-    static constexpr UnkFn fn_0x30 = &fn_71002d4728;
-    static constexpr UnkFn fn_0x38 = &fn_71002d4734;
-    static constexpr UnkFn fn_0x40 = &fn_71002d4740;
-    static constexpr UnkFn fn_0x48 = &fn_71002d4744;
-    static constexpr UnkFn fn_0x50 = &fn_71002d4758;
-    static constexpr UnkFn fn_0x58 = &fn_71002d46f8;
-    static constexpr UnkFn fn_0x60 = &fn_71002d470c;
-    static constexpr UnkFn fn_0x68 = &fn_71002d4714;
+    static constexpr UnkFn construct = &fn_71002d4720;
+    static constexpr UnkFn copy_construct = &fn_71002d4728;
+    static constexpr UnkFn move_construct = &fn_71002d4734;
+    static constexpr UnkFn destroy = &fn_71002d4740;
+    static constexpr UnkFn copy_assign = &fn_71002d4744;
+    static constexpr UnkFn move_assign = &fn_71002d4758;
+    static constexpr UnkFn equals = &fn_71002d46f8;
+    static constexpr UnkFn hash = &fn_71002d470c;
+    static constexpr UnkFn type_of = &fn_71002d4714;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71002d3b70*);
 struct UnkRefl_fn_71003164b4;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71003164b4> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71003164b4> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710031db88;
-    static constexpr UnkFn fn_0x30 = &fn_710031db90;
-    static constexpr UnkFn fn_0x38 = &fn_710031db9c;
-    static constexpr UnkFn fn_0x40 = &fn_710031dba8;
-    static constexpr UnkFn fn_0x48 = &fn_710031dbac;
-    static constexpr UnkFn fn_0x50 = &fn_710031dbc0;
-    static constexpr UnkFn fn_0x58 = &fn_710031db60;
-    static constexpr UnkFn fn_0x60 = &fn_710031db74;
-    static constexpr UnkFn fn_0x68 = &fn_710031db7c;
+    static constexpr UnkFn construct = &fn_710031db88;
+    static constexpr UnkFn copy_construct = &fn_710031db90;
+    static constexpr UnkFn move_construct = &fn_710031db9c;
+    static constexpr UnkFn destroy = &fn_710031dba8;
+    static constexpr UnkFn copy_assign = &fn_710031dbac;
+    static constexpr UnkFn move_assign = &fn_710031dbc0;
+    static constexpr UnkFn equals = &fn_710031db60;
+    static constexpr UnkFn hash = &fn_710031db74;
+    static constexpr UnkFn type_of = &fn_710031db7c;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71003164b4*);
 struct UnkRefl_fn_7100320638;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100320638> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100320638> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100324fd8;
-    static constexpr UnkFn fn_0x30 = &fn_7100324fe0;
-    static constexpr UnkFn fn_0x38 = &fn_7100324fec;
-    static constexpr UnkFn fn_0x40 = &fn_7100324ff8;
-    static constexpr UnkFn fn_0x48 = &fn_7100324ffc;
-    static constexpr UnkFn fn_0x50 = &fn_7100325010;
-    static constexpr UnkFn fn_0x58 = &fn_7100324fb0;
-    static constexpr UnkFn fn_0x60 = &fn_7100324fc4;
-    static constexpr UnkFn fn_0x68 = &fn_7100324fcc;
+    static constexpr UnkFn construct = &fn_7100324fd8;
+    static constexpr UnkFn copy_construct = &fn_7100324fe0;
+    static constexpr UnkFn move_construct = &fn_7100324fec;
+    static constexpr UnkFn destroy = &fn_7100324ff8;
+    static constexpr UnkFn copy_assign = &fn_7100324ffc;
+    static constexpr UnkFn move_assign = &fn_7100325010;
+    static constexpr UnkFn equals = &fn_7100324fb0;
+    static constexpr UnkFn hash = &fn_7100324fc4;
+    static constexpr UnkFn type_of = &fn_7100324fcc;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100320638*);
 struct UnkRefl_fn_7100320904;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100320904> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100320904> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710032504c;
-    static constexpr UnkFn fn_0x30 = &fn_7100325054;
-    static constexpr UnkFn fn_0x38 = &fn_7100325060;
-    static constexpr UnkFn fn_0x40 = &fn_710032506c;
-    static constexpr UnkFn fn_0x48 = &fn_7100325070;
-    static constexpr UnkFn fn_0x50 = &fn_7100325084;
-    static constexpr UnkFn fn_0x58 = &fn_7100325024;
-    static constexpr UnkFn fn_0x60 = &fn_7100325038;
-    static constexpr UnkFn fn_0x68 = &fn_7100325040;
+    static constexpr UnkFn construct = &fn_710032504c;
+    static constexpr UnkFn copy_construct = &fn_7100325054;
+    static constexpr UnkFn move_construct = &fn_7100325060;
+    static constexpr UnkFn destroy = &fn_710032506c;
+    static constexpr UnkFn copy_assign = &fn_7100325070;
+    static constexpr UnkFn move_assign = &fn_7100325084;
+    static constexpr UnkFn equals = &fn_7100325024;
+    static constexpr UnkFn hash = &fn_7100325038;
+    static constexpr UnkFn type_of = &fn_7100325040;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100320904*);
 struct UnkRefl_fn_7100327688;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100327688> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100327688> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100331ed8;
-    static constexpr UnkFn fn_0x30 = &fn_7100331ee0;
-    static constexpr UnkFn fn_0x38 = &fn_7100331eec;
-    static constexpr UnkFn fn_0x40 = &fn_7100331ef8;
-    static constexpr UnkFn fn_0x48 = &fn_7100331efc;
-    static constexpr UnkFn fn_0x50 = &fn_7100331f10;
-    static constexpr UnkFn fn_0x58 = &fn_7100331eb0;
-    static constexpr UnkFn fn_0x60 = &fn_7100331ec4;
-    static constexpr UnkFn fn_0x68 = &fn_7100331ecc;
+    static constexpr UnkFn construct = &fn_7100331ed8;
+    static constexpr UnkFn copy_construct = &fn_7100331ee0;
+    static constexpr UnkFn move_construct = &fn_7100331eec;
+    static constexpr UnkFn destroy = &fn_7100331ef8;
+    static constexpr UnkFn copy_assign = &fn_7100331efc;
+    static constexpr UnkFn move_assign = &fn_7100331f10;
+    static constexpr UnkFn equals = &fn_7100331eb0;
+    static constexpr UnkFn hash = &fn_7100331ec4;
+    static constexpr UnkFn type_of = &fn_7100331ecc;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100327688*);
 struct UnkRefl_fn_7100327a44;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100327a44> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100327a44> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100331fc0;
-    static constexpr UnkFn fn_0x30 = &fn_7100331fc8;
-    static constexpr UnkFn fn_0x38 = &fn_7100331fd4;
-    static constexpr UnkFn fn_0x40 = &fn_7100331fe0;
-    static constexpr UnkFn fn_0x48 = &fn_7100331fe4;
-    static constexpr UnkFn fn_0x50 = &fn_7100331ff8;
-    static constexpr UnkFn fn_0x58 = &fn_7100331f98;
-    static constexpr UnkFn fn_0x60 = &fn_7100331fac;
-    static constexpr UnkFn fn_0x68 = &fn_7100331fb4;
+    static constexpr UnkFn construct = &fn_7100331fc0;
+    static constexpr UnkFn copy_construct = &fn_7100331fc8;
+    static constexpr UnkFn move_construct = &fn_7100331fd4;
+    static constexpr UnkFn destroy = &fn_7100331fe0;
+    static constexpr UnkFn copy_assign = &fn_7100331fe4;
+    static constexpr UnkFn move_assign = &fn_7100331ff8;
+    static constexpr UnkFn equals = &fn_7100331f98;
+    static constexpr UnkFn hash = &fn_7100331fac;
+    static constexpr UnkFn type_of = &fn_7100331fb4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100327a44*);
 struct UnkRefl_fn_7100342d64;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100342d64> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100342d64> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100354438;
-    static constexpr UnkFn fn_0x30 = &fn_7100354440;
-    static constexpr UnkFn fn_0x38 = &fn_710035444c;
-    static constexpr UnkFn fn_0x40 = &fn_7100354458;
-    static constexpr UnkFn fn_0x48 = &fn_710035445c;
-    static constexpr UnkFn fn_0x50 = &fn_7100354470;
-    static constexpr UnkFn fn_0x58 = &fn_7100354410;
-    static constexpr UnkFn fn_0x60 = &fn_7100354424;
-    static constexpr UnkFn fn_0x68 = &fn_710035442c;
+    static constexpr UnkFn construct = &fn_7100354438;
+    static constexpr UnkFn copy_construct = &fn_7100354440;
+    static constexpr UnkFn move_construct = &fn_710035444c;
+    static constexpr UnkFn destroy = &fn_7100354458;
+    static constexpr UnkFn copy_assign = &fn_710035445c;
+    static constexpr UnkFn move_assign = &fn_7100354470;
+    static constexpr UnkFn equals = &fn_7100354410;
+    static constexpr UnkFn hash = &fn_7100354424;
+    static constexpr UnkFn type_of = &fn_710035442c;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100342d64*);
 struct UnkRefl_fn_71003598f8;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71003598f8> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71003598f8> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100359ab8;
-    static constexpr UnkFn fn_0x30 = &fn_7100359ac0;
-    static constexpr UnkFn fn_0x38 = &fn_7100359acc;
-    static constexpr UnkFn fn_0x40 = &fn_7100359ad8;
-    static constexpr UnkFn fn_0x48 = &fn_7100359adc;
-    static constexpr UnkFn fn_0x50 = &fn_7100359af0;
-    static constexpr UnkFn fn_0x58 = &fn_7100359a90;
-    static constexpr UnkFn fn_0x60 = &fn_7100359aa4;
-    static constexpr UnkFn fn_0x68 = &fn_7100359aac;
+    static constexpr UnkFn construct = &fn_7100359ab8;
+    static constexpr UnkFn copy_construct = &fn_7100359ac0;
+    static constexpr UnkFn move_construct = &fn_7100359acc;
+    static constexpr UnkFn destroy = &fn_7100359ad8;
+    static constexpr UnkFn copy_assign = &fn_7100359adc;
+    static constexpr UnkFn move_assign = &fn_7100359af0;
+    static constexpr UnkFn equals = &fn_7100359a90;
+    static constexpr UnkFn hash = &fn_7100359aa4;
+    static constexpr UnkFn type_of = &fn_7100359aac;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71003598f8*);
 struct UnkRefl_fn_710035c5fc;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710035c5fc> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710035c5fc> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710035d0ec;
-    static constexpr UnkFn fn_0x30 = &fn_710035d0f4;
-    static constexpr UnkFn fn_0x38 = &fn_710035d100;
-    static constexpr UnkFn fn_0x40 = &fn_710035d10c;
-    static constexpr UnkFn fn_0x48 = &fn_710035d110;
-    static constexpr UnkFn fn_0x50 = &fn_710035d124;
-    static constexpr UnkFn fn_0x58 = &fn_710035d0c4;
-    static constexpr UnkFn fn_0x60 = &fn_710035d0d8;
-    static constexpr UnkFn fn_0x68 = &fn_710035d0e0;
+    static constexpr UnkFn construct = &fn_710035d0ec;
+    static constexpr UnkFn copy_construct = &fn_710035d0f4;
+    static constexpr UnkFn move_construct = &fn_710035d100;
+    static constexpr UnkFn destroy = &fn_710035d10c;
+    static constexpr UnkFn copy_assign = &fn_710035d110;
+    static constexpr UnkFn move_assign = &fn_710035d124;
+    static constexpr UnkFn equals = &fn_710035d0c4;
+    static constexpr UnkFn hash = &fn_710035d0d8;
+    static constexpr UnkFn type_of = &fn_710035d0e0;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710035c5fc*);
 struct UnkRefl_fn_710035c9e8;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710035c9e8> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710035c9e8> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710035d160;
-    static constexpr UnkFn fn_0x30 = &fn_710035d168;
-    static constexpr UnkFn fn_0x38 = &fn_710035d174;
-    static constexpr UnkFn fn_0x40 = &fn_710035d180;
-    static constexpr UnkFn fn_0x48 = &fn_710035d184;
-    static constexpr UnkFn fn_0x50 = &fn_710035d198;
-    static constexpr UnkFn fn_0x58 = &fn_710035d138;
-    static constexpr UnkFn fn_0x60 = &fn_710035d14c;
-    static constexpr UnkFn fn_0x68 = &fn_710035d154;
+    static constexpr UnkFn construct = &fn_710035d160;
+    static constexpr UnkFn copy_construct = &fn_710035d168;
+    static constexpr UnkFn move_construct = &fn_710035d174;
+    static constexpr UnkFn destroy = &fn_710035d180;
+    static constexpr UnkFn copy_assign = &fn_710035d184;
+    static constexpr UnkFn move_assign = &fn_710035d198;
+    static constexpr UnkFn equals = &fn_710035d138;
+    static constexpr UnkFn hash = &fn_710035d14c;
+    static constexpr UnkFn type_of = &fn_710035d154;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710035c9e8*);
 struct UnkRefl_fn_710038fde8;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710038fde8> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710038fde8> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100390814;
-    static constexpr UnkFn fn_0x30 = &fn_710039081c;
-    static constexpr UnkFn fn_0x38 = &fn_7100390828;
-    static constexpr UnkFn fn_0x40 = &fn_7100390834;
-    static constexpr UnkFn fn_0x48 = &fn_7100390838;
-    static constexpr UnkFn fn_0x50 = &fn_710039084c;
-    static constexpr UnkFn fn_0x58 = &fn_71003907ec;
-    static constexpr UnkFn fn_0x60 = &fn_7100390800;
-    static constexpr UnkFn fn_0x68 = &fn_7100390808;
+    static constexpr UnkFn construct = &fn_7100390814;
+    static constexpr UnkFn copy_construct = &fn_710039081c;
+    static constexpr UnkFn move_construct = &fn_7100390828;
+    static constexpr UnkFn destroy = &fn_7100390834;
+    static constexpr UnkFn copy_assign = &fn_7100390838;
+    static constexpr UnkFn move_assign = &fn_710039084c;
+    static constexpr UnkFn equals = &fn_71003907ec;
+    static constexpr UnkFn hash = &fn_7100390800;
+    static constexpr UnkFn type_of = &fn_7100390808;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710038fde8*);
 struct UnkRefl_fn_71003a76bc;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71003a76bc> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71003a76bc> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71003a87dc;
-    static constexpr UnkFn fn_0x30 = &fn_71003a87e4;
-    static constexpr UnkFn fn_0x38 = &fn_71003a87f0;
-    static constexpr UnkFn fn_0x40 = &fn_71003a87fc;
-    static constexpr UnkFn fn_0x48 = &fn_71003a8800;
-    static constexpr UnkFn fn_0x50 = &fn_71003a8814;
-    static constexpr UnkFn fn_0x58 = &fn_71003a87b4;
-    static constexpr UnkFn fn_0x60 = &fn_71003a87c8;
-    static constexpr UnkFn fn_0x68 = &fn_71003a87d0;
+    static constexpr UnkFn construct = &fn_71003a87dc;
+    static constexpr UnkFn copy_construct = &fn_71003a87e4;
+    static constexpr UnkFn move_construct = &fn_71003a87f0;
+    static constexpr UnkFn destroy = &fn_71003a87fc;
+    static constexpr UnkFn copy_assign = &fn_71003a8800;
+    static constexpr UnkFn move_assign = &fn_71003a8814;
+    static constexpr UnkFn equals = &fn_71003a87b4;
+    static constexpr UnkFn hash = &fn_71003a87c8;
+    static constexpr UnkFn type_of = &fn_71003a87d0;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71003a76bc*);
 struct UnkRefl_fn_71003a9a9c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71003a9a9c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71003a9a9c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71003aaf94;
-    static constexpr UnkFn fn_0x30 = &fn_71003aaf9c;
-    static constexpr UnkFn fn_0x38 = &fn_71003aafa8;
-    static constexpr UnkFn fn_0x40 = &fn_71003aafb4;
-    static constexpr UnkFn fn_0x48 = &fn_71003aafb8;
-    static constexpr UnkFn fn_0x50 = &fn_71003aafcc;
-    static constexpr UnkFn fn_0x58 = &fn_71003aaf6c;
-    static constexpr UnkFn fn_0x60 = &fn_71003aaf80;
-    static constexpr UnkFn fn_0x68 = &fn_71003aaf88;
+    static constexpr UnkFn construct = &fn_71003aaf94;
+    static constexpr UnkFn copy_construct = &fn_71003aaf9c;
+    static constexpr UnkFn move_construct = &fn_71003aafa8;
+    static constexpr UnkFn destroy = &fn_71003aafb4;
+    static constexpr UnkFn copy_assign = &fn_71003aafb8;
+    static constexpr UnkFn move_assign = &fn_71003aafcc;
+    static constexpr UnkFn equals = &fn_71003aaf6c;
+    static constexpr UnkFn hash = &fn_71003aaf80;
+    static constexpr UnkFn type_of = &fn_71003aaf88;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71003a9a9c*);
 struct UnkRefl_fn_71003a9ee8;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71003a9ee8> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71003a9ee8> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71003ab008;
-    static constexpr UnkFn fn_0x30 = &fn_71003ab010;
-    static constexpr UnkFn fn_0x38 = &fn_71003ab01c;
-    static constexpr UnkFn fn_0x40 = &fn_71003ab028;
-    static constexpr UnkFn fn_0x48 = &fn_71003ab02c;
-    static constexpr UnkFn fn_0x50 = &fn_71003ab040;
-    static constexpr UnkFn fn_0x58 = &fn_71003aafe0;
-    static constexpr UnkFn fn_0x60 = &fn_71003aaff4;
-    static constexpr UnkFn fn_0x68 = &fn_71003aaffc;
+    static constexpr UnkFn construct = &fn_71003ab008;
+    static constexpr UnkFn copy_construct = &fn_71003ab010;
+    static constexpr UnkFn move_construct = &fn_71003ab01c;
+    static constexpr UnkFn destroy = &fn_71003ab028;
+    static constexpr UnkFn copy_assign = &fn_71003ab02c;
+    static constexpr UnkFn move_assign = &fn_71003ab040;
+    static constexpr UnkFn equals = &fn_71003aafe0;
+    static constexpr UnkFn hash = &fn_71003aaff4;
+    static constexpr UnkFn type_of = &fn_71003aaffc;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71003a9ee8*);
 struct UnkRefl_fn_71003badfc;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71003badfc> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71003badfc> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71003bbb34;
-    static constexpr UnkFn fn_0x30 = &fn_71003bbb3c;
-    static constexpr UnkFn fn_0x38 = &fn_71003bbb48;
-    static constexpr UnkFn fn_0x40 = &fn_71003bbb54;
-    static constexpr UnkFn fn_0x48 = &fn_71003bbb58;
-    static constexpr UnkFn fn_0x50 = &fn_71003bbb6c;
-    static constexpr UnkFn fn_0x58 = &fn_71003bbb0c;
-    static constexpr UnkFn fn_0x60 = &fn_71003bbb20;
-    static constexpr UnkFn fn_0x68 = &fn_71003bbb28;
+    static constexpr UnkFn construct = &fn_71003bbb34;
+    static constexpr UnkFn copy_construct = &fn_71003bbb3c;
+    static constexpr UnkFn move_construct = &fn_71003bbb48;
+    static constexpr UnkFn destroy = &fn_71003bbb54;
+    static constexpr UnkFn copy_assign = &fn_71003bbb58;
+    static constexpr UnkFn move_assign = &fn_71003bbb6c;
+    static constexpr UnkFn equals = &fn_71003bbb0c;
+    static constexpr UnkFn hash = &fn_71003bbb20;
+    static constexpr UnkFn type_of = &fn_71003bbb28;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71003badfc*);
 struct UnkRefl_fn_71003c2f9c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71003c2f9c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71003c2f9c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71003c6f58;
-    static constexpr UnkFn fn_0x30 = &fn_71003c6f60;
-    static constexpr UnkFn fn_0x38 = &fn_71003c6f6c;
-    static constexpr UnkFn fn_0x40 = &fn_71003c6f78;
-    static constexpr UnkFn fn_0x48 = &fn_71003c6f7c;
-    static constexpr UnkFn fn_0x50 = &fn_71003c6f90;
-    static constexpr UnkFn fn_0x58 = &fn_71003c6f30;
-    static constexpr UnkFn fn_0x60 = &fn_71003c6f44;
-    static constexpr UnkFn fn_0x68 = &fn_71003c6f4c;
+    static constexpr UnkFn construct = &fn_71003c6f58;
+    static constexpr UnkFn copy_construct = &fn_71003c6f60;
+    static constexpr UnkFn move_construct = &fn_71003c6f6c;
+    static constexpr UnkFn destroy = &fn_71003c6f78;
+    static constexpr UnkFn copy_assign = &fn_71003c6f7c;
+    static constexpr UnkFn move_assign = &fn_71003c6f90;
+    static constexpr UnkFn equals = &fn_71003c6f30;
+    static constexpr UnkFn hash = &fn_71003c6f44;
+    static constexpr UnkFn type_of = &fn_71003c6f4c;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71003c2f9c*);
 struct UnkRefl_fn_71003d32d0;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71003d32d0> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71003d32d0> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71003d87ac;
-    static constexpr UnkFn fn_0x30 = &fn_71003d87b4;
-    static constexpr UnkFn fn_0x38 = &fn_71003d87c0;
-    static constexpr UnkFn fn_0x40 = &fn_71003d87cc;
-    static constexpr UnkFn fn_0x48 = &fn_71003d87d0;
-    static constexpr UnkFn fn_0x50 = &fn_71003d87e4;
-    static constexpr UnkFn fn_0x58 = &fn_71003d8784;
-    static constexpr UnkFn fn_0x60 = &fn_71003d8798;
-    static constexpr UnkFn fn_0x68 = &fn_71003d87a0;
+    static constexpr UnkFn construct = &fn_71003d87ac;
+    static constexpr UnkFn copy_construct = &fn_71003d87b4;
+    static constexpr UnkFn move_construct = &fn_71003d87c0;
+    static constexpr UnkFn destroy = &fn_71003d87cc;
+    static constexpr UnkFn copy_assign = &fn_71003d87d0;
+    static constexpr UnkFn move_assign = &fn_71003d87e4;
+    static constexpr UnkFn equals = &fn_71003d8784;
+    static constexpr UnkFn hash = &fn_71003d8798;
+    static constexpr UnkFn type_of = &fn_71003d87a0;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71003d32d0*);
 struct UnkRefl_fn_71003d35fc;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71003d35fc> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71003d35fc> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71003d8820;
-    static constexpr UnkFn fn_0x30 = &fn_71003d8828;
-    static constexpr UnkFn fn_0x38 = &fn_71003d8834;
-    static constexpr UnkFn fn_0x40 = &fn_71003d8840;
-    static constexpr UnkFn fn_0x48 = &fn_71003d8844;
-    static constexpr UnkFn fn_0x50 = &fn_71003d8858;
-    static constexpr UnkFn fn_0x58 = &fn_71003d87f8;
-    static constexpr UnkFn fn_0x60 = &fn_71003d880c;
-    static constexpr UnkFn fn_0x68 = &fn_71003d8814;
+    static constexpr UnkFn construct = &fn_71003d8820;
+    static constexpr UnkFn copy_construct = &fn_71003d8828;
+    static constexpr UnkFn move_construct = &fn_71003d8834;
+    static constexpr UnkFn destroy = &fn_71003d8840;
+    static constexpr UnkFn copy_assign = &fn_71003d8844;
+    static constexpr UnkFn move_assign = &fn_71003d8858;
+    static constexpr UnkFn equals = &fn_71003d87f8;
+    static constexpr UnkFn hash = &fn_71003d880c;
+    static constexpr UnkFn type_of = &fn_71003d8814;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71003d35fc*);
 struct UnkRefl_fn_71003e045c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71003e045c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71003e045c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71003e13f8;
-    static constexpr UnkFn fn_0x30 = &fn_71003e1400;
-    static constexpr UnkFn fn_0x38 = &fn_71003e140c;
-    static constexpr UnkFn fn_0x40 = &fn_71003e1418;
-    static constexpr UnkFn fn_0x48 = &fn_71003e141c;
-    static constexpr UnkFn fn_0x50 = &fn_71003e1430;
-    static constexpr UnkFn fn_0x58 = &fn_71003e13d0;
-    static constexpr UnkFn fn_0x60 = &fn_71003e13e4;
-    static constexpr UnkFn fn_0x68 = &fn_71003e13ec;
+    static constexpr UnkFn construct = &fn_71003e13f8;
+    static constexpr UnkFn copy_construct = &fn_71003e1400;
+    static constexpr UnkFn move_construct = &fn_71003e140c;
+    static constexpr UnkFn destroy = &fn_71003e1418;
+    static constexpr UnkFn copy_assign = &fn_71003e141c;
+    static constexpr UnkFn move_assign = &fn_71003e1430;
+    static constexpr UnkFn equals = &fn_71003e13d0;
+    static constexpr UnkFn hash = &fn_71003e13e4;
+    static constexpr UnkFn type_of = &fn_71003e13ec;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71003e045c*);
 struct UnkRefl_fn_71003ea384;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71003ea384> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71003ea384> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71003eb380;
-    static constexpr UnkFn fn_0x30 = &fn_71003eb388;
-    static constexpr UnkFn fn_0x38 = &fn_71003eb394;
-    static constexpr UnkFn fn_0x40 = &fn_71003eb3a0;
-    static constexpr UnkFn fn_0x48 = &fn_71003eb3a4;
-    static constexpr UnkFn fn_0x50 = &fn_71003eb3b8;
-    static constexpr UnkFn fn_0x58 = &fn_71003eb358;
-    static constexpr UnkFn fn_0x60 = &fn_71003eb36c;
-    static constexpr UnkFn fn_0x68 = &fn_71003eb374;
+    static constexpr UnkFn construct = &fn_71003eb380;
+    static constexpr UnkFn copy_construct = &fn_71003eb388;
+    static constexpr UnkFn move_construct = &fn_71003eb394;
+    static constexpr UnkFn destroy = &fn_71003eb3a0;
+    static constexpr UnkFn copy_assign = &fn_71003eb3a4;
+    static constexpr UnkFn move_assign = &fn_71003eb3b8;
+    static constexpr UnkFn equals = &fn_71003eb358;
+    static constexpr UnkFn hash = &fn_71003eb36c;
+    static constexpr UnkFn type_of = &fn_71003eb374;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71003ea384*);
 struct UnkRefl_fn_71003f127c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71003f127c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71003f127c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71003f41b4;
-    static constexpr UnkFn fn_0x30 = &fn_71003f41bc;
-    static constexpr UnkFn fn_0x38 = &fn_71003f41c8;
-    static constexpr UnkFn fn_0x40 = &fn_71003f41d4;
-    static constexpr UnkFn fn_0x48 = &fn_71003f41d8;
-    static constexpr UnkFn fn_0x50 = &fn_71003f41ec;
-    static constexpr UnkFn fn_0x58 = &fn_71003f418c;
-    static constexpr UnkFn fn_0x60 = &fn_71003f41a0;
-    static constexpr UnkFn fn_0x68 = &fn_71003f41a8;
+    static constexpr UnkFn construct = &fn_71003f41b4;
+    static constexpr UnkFn copy_construct = &fn_71003f41bc;
+    static constexpr UnkFn move_construct = &fn_71003f41c8;
+    static constexpr UnkFn destroy = &fn_71003f41d4;
+    static constexpr UnkFn copy_assign = &fn_71003f41d8;
+    static constexpr UnkFn move_assign = &fn_71003f41ec;
+    static constexpr UnkFn equals = &fn_71003f418c;
+    static constexpr UnkFn hash = &fn_71003f41a0;
+    static constexpr UnkFn type_of = &fn_71003f41a8;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71003f127c*);
 struct UnkRefl_fn_71003fb528;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71003fb528> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71003fb528> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71003fe534;
-    static constexpr UnkFn fn_0x30 = &fn_71003fe53c;
-    static constexpr UnkFn fn_0x38 = &fn_71003fe548;
-    static constexpr UnkFn fn_0x40 = &fn_71003fe554;
-    static constexpr UnkFn fn_0x48 = &fn_71003fe558;
-    static constexpr UnkFn fn_0x50 = &fn_71003fe56c;
-    static constexpr UnkFn fn_0x58 = &fn_71003fe50c;
-    static constexpr UnkFn fn_0x60 = &fn_71003fe520;
-    static constexpr UnkFn fn_0x68 = &fn_71003fe528;
+    static constexpr UnkFn construct = &fn_71003fe534;
+    static constexpr UnkFn copy_construct = &fn_71003fe53c;
+    static constexpr UnkFn move_construct = &fn_71003fe548;
+    static constexpr UnkFn destroy = &fn_71003fe554;
+    static constexpr UnkFn copy_assign = &fn_71003fe558;
+    static constexpr UnkFn move_assign = &fn_71003fe56c;
+    static constexpr UnkFn equals = &fn_71003fe50c;
+    static constexpr UnkFn hash = &fn_71003fe520;
+    static constexpr UnkFn type_of = &fn_71003fe528;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71003fb528*);
 struct UnkRefl_fn_710042fd24;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710042fd24> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710042fd24> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100433920;
-    static constexpr UnkFn fn_0x30 = &fn_7100433928;
-    static constexpr UnkFn fn_0x38 = &fn_7100433934;
-    static constexpr UnkFn fn_0x40 = &fn_7100433940;
-    static constexpr UnkFn fn_0x48 = &fn_7100433944;
-    static constexpr UnkFn fn_0x50 = &fn_7100433958;
-    static constexpr UnkFn fn_0x58 = &fn_71004338f8;
-    static constexpr UnkFn fn_0x60 = &fn_710043390c;
-    static constexpr UnkFn fn_0x68 = &fn_7100433914;
+    static constexpr UnkFn construct = &fn_7100433920;
+    static constexpr UnkFn copy_construct = &fn_7100433928;
+    static constexpr UnkFn move_construct = &fn_7100433934;
+    static constexpr UnkFn destroy = &fn_7100433940;
+    static constexpr UnkFn copy_assign = &fn_7100433944;
+    static constexpr UnkFn move_assign = &fn_7100433958;
+    static constexpr UnkFn equals = &fn_71004338f8;
+    static constexpr UnkFn hash = &fn_710043390c;
+    static constexpr UnkFn type_of = &fn_7100433914;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710042fd24*);
 struct UnkRefl_fn_710043d464;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710043d464> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710043d464> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100441c08;
-    static constexpr UnkFn fn_0x30 = &fn_7100441c10;
-    static constexpr UnkFn fn_0x38 = &fn_7100441c1c;
-    static constexpr UnkFn fn_0x40 = &fn_7100441c28;
-    static constexpr UnkFn fn_0x48 = &fn_7100441c2c;
-    static constexpr UnkFn fn_0x50 = &fn_7100441c40;
-    static constexpr UnkFn fn_0x58 = &fn_7100441be0;
-    static constexpr UnkFn fn_0x60 = &fn_7100441bf4;
-    static constexpr UnkFn fn_0x68 = &fn_7100441bfc;
+    static constexpr UnkFn construct = &fn_7100441c08;
+    static constexpr UnkFn copy_construct = &fn_7100441c10;
+    static constexpr UnkFn move_construct = &fn_7100441c1c;
+    static constexpr UnkFn destroy = &fn_7100441c28;
+    static constexpr UnkFn copy_assign = &fn_7100441c2c;
+    static constexpr UnkFn move_assign = &fn_7100441c40;
+    static constexpr UnkFn equals = &fn_7100441be0;
+    static constexpr UnkFn hash = &fn_7100441bf4;
+    static constexpr UnkFn type_of = &fn_7100441bfc;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710043d464*);
 struct UnkRefl_fn_7100486004;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100486004> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100486004> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710048abb8;
-    static constexpr UnkFn fn_0x30 = &fn_710048abc0;
-    static constexpr UnkFn fn_0x38 = &fn_710048abcc;
-    static constexpr UnkFn fn_0x40 = &fn_710048abd8;
-    static constexpr UnkFn fn_0x48 = &fn_710048abdc;
-    static constexpr UnkFn fn_0x50 = &fn_710048abf0;
-    static constexpr UnkFn fn_0x58 = &fn_710048ab90;
-    static constexpr UnkFn fn_0x60 = &fn_710048aba4;
-    static constexpr UnkFn fn_0x68 = &fn_710048abac;
+    static constexpr UnkFn construct = &fn_710048abb8;
+    static constexpr UnkFn copy_construct = &fn_710048abc0;
+    static constexpr UnkFn move_construct = &fn_710048abcc;
+    static constexpr UnkFn destroy = &fn_710048abd8;
+    static constexpr UnkFn copy_assign = &fn_710048abdc;
+    static constexpr UnkFn move_assign = &fn_710048abf0;
+    static constexpr UnkFn equals = &fn_710048ab90;
+    static constexpr UnkFn hash = &fn_710048aba4;
+    static constexpr UnkFn type_of = &fn_710048abac;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100486004*);
 struct UnkRefl_fn_7100498514;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100498514> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100498514> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710049d5d4;
-    static constexpr UnkFn fn_0x30 = &fn_710049d5dc;
-    static constexpr UnkFn fn_0x38 = &fn_710049d5e8;
-    static constexpr UnkFn fn_0x40 = &fn_710049d5f4;
-    static constexpr UnkFn fn_0x48 = &fn_710049d5f8;
-    static constexpr UnkFn fn_0x50 = &fn_710049d60c;
-    static constexpr UnkFn fn_0x58 = &fn_710049d5ac;
-    static constexpr UnkFn fn_0x60 = &fn_710049d5c0;
-    static constexpr UnkFn fn_0x68 = &fn_710049d5c8;
+    static constexpr UnkFn construct = &fn_710049d5d4;
+    static constexpr UnkFn copy_construct = &fn_710049d5dc;
+    static constexpr UnkFn move_construct = &fn_710049d5e8;
+    static constexpr UnkFn destroy = &fn_710049d5f4;
+    static constexpr UnkFn copy_assign = &fn_710049d5f8;
+    static constexpr UnkFn move_assign = &fn_710049d60c;
+    static constexpr UnkFn equals = &fn_710049d5ac;
+    static constexpr UnkFn hash = &fn_710049d5c0;
+    static constexpr UnkFn type_of = &fn_710049d5c8;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100498514*);
 struct UnkRefl_fn_710049e34c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710049e34c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710049e34c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710049f3e0;
-    static constexpr UnkFn fn_0x30 = &fn_710049f3e8;
-    static constexpr UnkFn fn_0x38 = &fn_710049f3f4;
-    static constexpr UnkFn fn_0x40 = &fn_710049f400;
-    static constexpr UnkFn fn_0x48 = &fn_710049f404;
-    static constexpr UnkFn fn_0x50 = &fn_710049f418;
-    static constexpr UnkFn fn_0x58 = &fn_710049f3b8;
-    static constexpr UnkFn fn_0x60 = &fn_710049f3cc;
-    static constexpr UnkFn fn_0x68 = &fn_710049f3d4;
+    static constexpr UnkFn construct = &fn_710049f3e0;
+    static constexpr UnkFn copy_construct = &fn_710049f3e8;
+    static constexpr UnkFn move_construct = &fn_710049f3f4;
+    static constexpr UnkFn destroy = &fn_710049f400;
+    static constexpr UnkFn copy_assign = &fn_710049f404;
+    static constexpr UnkFn move_assign = &fn_710049f418;
+    static constexpr UnkFn equals = &fn_710049f3b8;
+    static constexpr UnkFn hash = &fn_710049f3cc;
+    static constexpr UnkFn type_of = &fn_710049f3d4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710049e34c*);
 struct UnkRefl_fn_71004a2404;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71004a2404> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71004a2404> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71004a7458;
-    static constexpr UnkFn fn_0x30 = &fn_71004a7460;
-    static constexpr UnkFn fn_0x38 = &fn_71004a746c;
-    static constexpr UnkFn fn_0x40 = &fn_71004a7478;
-    static constexpr UnkFn fn_0x48 = &fn_71004a747c;
-    static constexpr UnkFn fn_0x50 = &fn_71004a7490;
-    static constexpr UnkFn fn_0x58 = &fn_71004a7430;
-    static constexpr UnkFn fn_0x60 = &fn_71004a7444;
-    static constexpr UnkFn fn_0x68 = &fn_71004a744c;
+    static constexpr UnkFn construct = &fn_71004a7458;
+    static constexpr UnkFn copy_construct = &fn_71004a7460;
+    static constexpr UnkFn move_construct = &fn_71004a746c;
+    static constexpr UnkFn destroy = &fn_71004a7478;
+    static constexpr UnkFn copy_assign = &fn_71004a747c;
+    static constexpr UnkFn move_assign = &fn_71004a7490;
+    static constexpr UnkFn equals = &fn_71004a7430;
+    static constexpr UnkFn hash = &fn_71004a7444;
+    static constexpr UnkFn type_of = &fn_71004a744c;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71004a2404*);
 struct UnkRefl_fn_71004aacc0;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71004aacc0> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71004aacc0> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71004b0890;
-    static constexpr UnkFn fn_0x30 = &fn_71004b0898;
-    static constexpr UnkFn fn_0x38 = &fn_71004b08a4;
-    static constexpr UnkFn fn_0x40 = &fn_71004b08b0;
-    static constexpr UnkFn fn_0x48 = &fn_71004b08b4;
-    static constexpr UnkFn fn_0x50 = &fn_71004b08c8;
-    static constexpr UnkFn fn_0x58 = &fn_71004b0868;
-    static constexpr UnkFn fn_0x60 = &fn_71004b087c;
-    static constexpr UnkFn fn_0x68 = &fn_71004b0884;
+    static constexpr UnkFn construct = &fn_71004b0890;
+    static constexpr UnkFn copy_construct = &fn_71004b0898;
+    static constexpr UnkFn move_construct = &fn_71004b08a4;
+    static constexpr UnkFn destroy = &fn_71004b08b0;
+    static constexpr UnkFn copy_assign = &fn_71004b08b4;
+    static constexpr UnkFn move_assign = &fn_71004b08c8;
+    static constexpr UnkFn equals = &fn_71004b0868;
+    static constexpr UnkFn hash = &fn_71004b087c;
+    static constexpr UnkFn type_of = &fn_71004b0884;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71004aacc0*);
 struct UnkRefl_fn_71004aaf8c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71004aaf8c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71004aaf8c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71004b0904;
-    static constexpr UnkFn fn_0x30 = &fn_71004b090c;
-    static constexpr UnkFn fn_0x38 = &fn_71004b0918;
-    static constexpr UnkFn fn_0x40 = &fn_71004b0924;
-    static constexpr UnkFn fn_0x48 = &fn_71004b0928;
-    static constexpr UnkFn fn_0x50 = &fn_71004b093c;
-    static constexpr UnkFn fn_0x58 = &fn_71004b08dc;
-    static constexpr UnkFn fn_0x60 = &fn_71004b08f0;
-    static constexpr UnkFn fn_0x68 = &fn_71004b08f8;
+    static constexpr UnkFn construct = &fn_71004b0904;
+    static constexpr UnkFn copy_construct = &fn_71004b090c;
+    static constexpr UnkFn move_construct = &fn_71004b0918;
+    static constexpr UnkFn destroy = &fn_71004b0924;
+    static constexpr UnkFn copy_assign = &fn_71004b0928;
+    static constexpr UnkFn move_assign = &fn_71004b093c;
+    static constexpr UnkFn equals = &fn_71004b08dc;
+    static constexpr UnkFn hash = &fn_71004b08f0;
+    static constexpr UnkFn type_of = &fn_71004b08f8;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71004aaf8c*);
 struct UnkRefl_fn_71004e65ec;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71004e65ec> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71004e65ec> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71004e6ce8;
-    static constexpr UnkFn fn_0x30 = &fn_71004e6cf0;
-    static constexpr UnkFn fn_0x38 = &fn_71004e6cfc;
-    static constexpr UnkFn fn_0x40 = &fn_71004e6d08;
-    static constexpr UnkFn fn_0x48 = &fn_71004e6d0c;
-    static constexpr UnkFn fn_0x50 = &fn_71004e6d20;
-    static constexpr UnkFn fn_0x58 = &fn_71004e6cc0;
-    static constexpr UnkFn fn_0x60 = &fn_71004e6cd4;
-    static constexpr UnkFn fn_0x68 = &fn_71004e6cdc;
+    static constexpr UnkFn construct = &fn_71004e6ce8;
+    static constexpr UnkFn copy_construct = &fn_71004e6cf0;
+    static constexpr UnkFn move_construct = &fn_71004e6cfc;
+    static constexpr UnkFn destroy = &fn_71004e6d08;
+    static constexpr UnkFn copy_assign = &fn_71004e6d0c;
+    static constexpr UnkFn move_assign = &fn_71004e6d20;
+    static constexpr UnkFn equals = &fn_71004e6cc0;
+    static constexpr UnkFn hash = &fn_71004e6cd4;
+    static constexpr UnkFn type_of = &fn_71004e6cdc;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71004e65ec*);
 struct UnkRefl_fn_71004eb14c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71004eb14c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71004eb14c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71004ebc5c;
-    static constexpr UnkFn fn_0x30 = &fn_71004ebc64;
-    static constexpr UnkFn fn_0x38 = &fn_71004ebc70;
-    static constexpr UnkFn fn_0x40 = &fn_71004ebc7c;
-    static constexpr UnkFn fn_0x48 = &fn_71004ebc80;
-    static constexpr UnkFn fn_0x50 = &fn_71004ebc94;
-    static constexpr UnkFn fn_0x58 = &fn_71004ebc34;
-    static constexpr UnkFn fn_0x60 = &fn_71004ebc48;
-    static constexpr UnkFn fn_0x68 = &fn_71004ebc50;
+    static constexpr UnkFn construct = &fn_71004ebc5c;
+    static constexpr UnkFn copy_construct = &fn_71004ebc64;
+    static constexpr UnkFn move_construct = &fn_71004ebc70;
+    static constexpr UnkFn destroy = &fn_71004ebc7c;
+    static constexpr UnkFn copy_assign = &fn_71004ebc80;
+    static constexpr UnkFn move_assign = &fn_71004ebc94;
+    static constexpr UnkFn equals = &fn_71004ebc34;
+    static constexpr UnkFn hash = &fn_71004ebc48;
+    static constexpr UnkFn type_of = &fn_71004ebc50;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71004eb14c*);
 struct UnkRefl_fn_7100531314;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100531314> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100531314> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100561290;
-    static constexpr UnkFn fn_0x30 = &fn_7100561298;
-    static constexpr UnkFn fn_0x38 = &fn_71005612a4;
-    static constexpr UnkFn fn_0x40 = &fn_71005612b0;
-    static constexpr UnkFn fn_0x48 = &fn_71005612b4;
-    static constexpr UnkFn fn_0x50 = &fn_71005612c8;
-    static constexpr UnkFn fn_0x58 = &fn_7100561268;
-    static constexpr UnkFn fn_0x60 = &fn_710056127c;
-    static constexpr UnkFn fn_0x68 = &fn_7100561284;
+    static constexpr UnkFn construct = &fn_7100561290;
+    static constexpr UnkFn copy_construct = &fn_7100561298;
+    static constexpr UnkFn move_construct = &fn_71005612a4;
+    static constexpr UnkFn destroy = &fn_71005612b0;
+    static constexpr UnkFn copy_assign = &fn_71005612b4;
+    static constexpr UnkFn move_assign = &fn_71005612c8;
+    static constexpr UnkFn equals = &fn_7100561268;
+    static constexpr UnkFn hash = &fn_710056127c;
+    static constexpr UnkFn type_of = &fn_7100561284;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100531314*);
 struct UnkRefl_fn_7100531760;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100531760> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100531760> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100561304;
-    static constexpr UnkFn fn_0x30 = &fn_710056130c;
-    static constexpr UnkFn fn_0x38 = &fn_7100561318;
-    static constexpr UnkFn fn_0x40 = &fn_7100561324;
-    static constexpr UnkFn fn_0x48 = &fn_7100561328;
-    static constexpr UnkFn fn_0x50 = &fn_710056133c;
-    static constexpr UnkFn fn_0x58 = &fn_71005612dc;
-    static constexpr UnkFn fn_0x60 = &fn_71005612f0;
-    static constexpr UnkFn fn_0x68 = &fn_71005612f8;
+    static constexpr UnkFn construct = &fn_7100561304;
+    static constexpr UnkFn copy_construct = &fn_710056130c;
+    static constexpr UnkFn move_construct = &fn_7100561318;
+    static constexpr UnkFn destroy = &fn_7100561324;
+    static constexpr UnkFn copy_assign = &fn_7100561328;
+    static constexpr UnkFn move_assign = &fn_710056133c;
+    static constexpr UnkFn equals = &fn_71005612dc;
+    static constexpr UnkFn hash = &fn_71005612f0;
+    static constexpr UnkFn type_of = &fn_71005612f8;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100531760*);
 struct UnkRefl_fn_7100531a8c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100531a8c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100531a8c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100561378;
-    static constexpr UnkFn fn_0x30 = &fn_7100561380;
-    static constexpr UnkFn fn_0x38 = &fn_710056138c;
-    static constexpr UnkFn fn_0x40 = &fn_7100561398;
-    static constexpr UnkFn fn_0x48 = &fn_710056139c;
-    static constexpr UnkFn fn_0x50 = &fn_71005613b0;
-    static constexpr UnkFn fn_0x58 = &fn_7100561350;
-    static constexpr UnkFn fn_0x60 = &fn_7100561364;
-    static constexpr UnkFn fn_0x68 = &fn_710056136c;
+    static constexpr UnkFn construct = &fn_7100561378;
+    static constexpr UnkFn copy_construct = &fn_7100561380;
+    static constexpr UnkFn move_construct = &fn_710056138c;
+    static constexpr UnkFn destroy = &fn_7100561398;
+    static constexpr UnkFn copy_assign = &fn_710056139c;
+    static constexpr UnkFn move_assign = &fn_71005613b0;
+    static constexpr UnkFn equals = &fn_7100561350;
+    static constexpr UnkFn hash = &fn_7100561364;
+    static constexpr UnkFn type_of = &fn_710056136c;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100531a8c*);
 struct UnkRefl_fn_7100571cc4;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100571cc4> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100571cc4> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100572294;
-    static constexpr UnkFn fn_0x30 = &fn_710057229c;
-    static constexpr UnkFn fn_0x38 = &fn_71005722a8;
-    static constexpr UnkFn fn_0x40 = &fn_71005722b4;
-    static constexpr UnkFn fn_0x48 = &fn_71005722b8;
-    static constexpr UnkFn fn_0x50 = &fn_71005722cc;
-    static constexpr UnkFn fn_0x58 = &fn_710057226c;
-    static constexpr UnkFn fn_0x60 = &fn_7100572280;
-    static constexpr UnkFn fn_0x68 = &fn_7100572288;
+    static constexpr UnkFn construct = &fn_7100572294;
+    static constexpr UnkFn copy_construct = &fn_710057229c;
+    static constexpr UnkFn move_construct = &fn_71005722a8;
+    static constexpr UnkFn destroy = &fn_71005722b4;
+    static constexpr UnkFn copy_assign = &fn_71005722b8;
+    static constexpr UnkFn move_assign = &fn_71005722cc;
+    static constexpr UnkFn equals = &fn_710057226c;
+    static constexpr UnkFn hash = &fn_7100572280;
+    static constexpr UnkFn type_of = &fn_7100572288;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100571cc4*);
 struct UnkRefl_fn_7100571f90;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100571f90> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100571f90> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100572308;
-    static constexpr UnkFn fn_0x30 = &fn_7100572310;
-    static constexpr UnkFn fn_0x38 = &fn_710057231c;
-    static constexpr UnkFn fn_0x40 = &fn_7100572328;
-    static constexpr UnkFn fn_0x48 = &fn_710057232c;
-    static constexpr UnkFn fn_0x50 = &fn_7100572340;
-    static constexpr UnkFn fn_0x58 = &fn_71005722e0;
-    static constexpr UnkFn fn_0x60 = &fn_71005722f4;
-    static constexpr UnkFn fn_0x68 = &fn_71005722fc;
+    static constexpr UnkFn construct = &fn_7100572308;
+    static constexpr UnkFn copy_construct = &fn_7100572310;
+    static constexpr UnkFn move_construct = &fn_710057231c;
+    static constexpr UnkFn destroy = &fn_7100572328;
+    static constexpr UnkFn copy_assign = &fn_710057232c;
+    static constexpr UnkFn move_assign = &fn_7100572340;
+    static constexpr UnkFn equals = &fn_71005722e0;
+    static constexpr UnkFn hash = &fn_71005722f4;
+    static constexpr UnkFn type_of = &fn_71005722fc;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100571f90*);
 struct UnkRefl_fn_710058df44;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710058df44> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710058df44> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710058f354;
-    static constexpr UnkFn fn_0x30 = &fn_710058f35c;
-    static constexpr UnkFn fn_0x38 = &fn_710058f368;
-    static constexpr UnkFn fn_0x40 = &fn_710058f374;
-    static constexpr UnkFn fn_0x48 = &fn_710058f378;
-    static constexpr UnkFn fn_0x50 = &fn_710058f38c;
-    static constexpr UnkFn fn_0x58 = &fn_710058f32c;
-    static constexpr UnkFn fn_0x60 = &fn_710058f340;
-    static constexpr UnkFn fn_0x68 = &fn_710058f348;
+    static constexpr UnkFn construct = &fn_710058f354;
+    static constexpr UnkFn copy_construct = &fn_710058f35c;
+    static constexpr UnkFn move_construct = &fn_710058f368;
+    static constexpr UnkFn destroy = &fn_710058f374;
+    static constexpr UnkFn copy_assign = &fn_710058f378;
+    static constexpr UnkFn move_assign = &fn_710058f38c;
+    static constexpr UnkFn equals = &fn_710058f32c;
+    static constexpr UnkFn hash = &fn_710058f340;
+    static constexpr UnkFn type_of = &fn_710058f348;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710058df44*);
 struct UnkRefl_fn_7100598b1c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100598b1c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100598b1c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71005993bc;
-    static constexpr UnkFn fn_0x30 = &fn_71005993c4;
-    static constexpr UnkFn fn_0x38 = &fn_71005993d0;
-    static constexpr UnkFn fn_0x40 = &fn_71005993dc;
-    static constexpr UnkFn fn_0x48 = &fn_71005993e0;
-    static constexpr UnkFn fn_0x50 = &fn_71005993f4;
-    static constexpr UnkFn fn_0x58 = &fn_7100599394;
-    static constexpr UnkFn fn_0x60 = &fn_71005993a8;
-    static constexpr UnkFn fn_0x68 = &fn_71005993b0;
+    static constexpr UnkFn construct = &fn_71005993bc;
+    static constexpr UnkFn copy_construct = &fn_71005993c4;
+    static constexpr UnkFn move_construct = &fn_71005993d0;
+    static constexpr UnkFn destroy = &fn_71005993dc;
+    static constexpr UnkFn copy_assign = &fn_71005993e0;
+    static constexpr UnkFn move_assign = &fn_71005993f4;
+    static constexpr UnkFn equals = &fn_7100599394;
+    static constexpr UnkFn hash = &fn_71005993a8;
+    static constexpr UnkFn type_of = &fn_71005993b0;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100598b1c*);
 struct UnkRefl_fn_71005a0814;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71005a0814> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71005a0814> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71005a1740;
-    static constexpr UnkFn fn_0x30 = &fn_71005a1748;
-    static constexpr UnkFn fn_0x38 = &fn_71005a1754;
-    static constexpr UnkFn fn_0x40 = &fn_71005a1760;
-    static constexpr UnkFn fn_0x48 = &fn_71005a1764;
-    static constexpr UnkFn fn_0x50 = &fn_71005a1778;
-    static constexpr UnkFn fn_0x58 = &fn_71005a1718;
-    static constexpr UnkFn fn_0x60 = &fn_71005a172c;
-    static constexpr UnkFn fn_0x68 = &fn_71005a1734;
+    static constexpr UnkFn construct = &fn_71005a1740;
+    static constexpr UnkFn copy_construct = &fn_71005a1748;
+    static constexpr UnkFn move_construct = &fn_71005a1754;
+    static constexpr UnkFn destroy = &fn_71005a1760;
+    static constexpr UnkFn copy_assign = &fn_71005a1764;
+    static constexpr UnkFn move_assign = &fn_71005a1778;
+    static constexpr UnkFn equals = &fn_71005a1718;
+    static constexpr UnkFn hash = &fn_71005a172c;
+    static constexpr UnkFn type_of = &fn_71005a1734;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71005a0814*);
 struct UnkRefl_fn_71005a610c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71005a610c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71005a610c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71005a7714;
-    static constexpr UnkFn fn_0x30 = &fn_71005a771c;
-    static constexpr UnkFn fn_0x38 = &fn_71005a7728;
-    static constexpr UnkFn fn_0x40 = &fn_71005a7734;
-    static constexpr UnkFn fn_0x48 = &fn_71005a7738;
-    static constexpr UnkFn fn_0x50 = &fn_71005a774c;
-    static constexpr UnkFn fn_0x58 = &fn_71005a76ec;
-    static constexpr UnkFn fn_0x60 = &fn_71005a7700;
-    static constexpr UnkFn fn_0x68 = &fn_71005a7708;
+    static constexpr UnkFn construct = &fn_71005a7714;
+    static constexpr UnkFn copy_construct = &fn_71005a771c;
+    static constexpr UnkFn move_construct = &fn_71005a7728;
+    static constexpr UnkFn destroy = &fn_71005a7734;
+    static constexpr UnkFn copy_assign = &fn_71005a7738;
+    static constexpr UnkFn move_assign = &fn_71005a774c;
+    static constexpr UnkFn equals = &fn_71005a76ec;
+    static constexpr UnkFn hash = &fn_71005a7700;
+    static constexpr UnkFn type_of = &fn_71005a7708;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71005a610c*);
 struct UnkRefl_fn_71005c6204;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71005c6204> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71005c6204> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71005c77d8;
-    static constexpr UnkFn fn_0x30 = &fn_71005c77e0;
-    static constexpr UnkFn fn_0x38 = &fn_71005c77ec;
-    static constexpr UnkFn fn_0x40 = &fn_71005c77f8;
-    static constexpr UnkFn fn_0x48 = &fn_71005c77fc;
-    static constexpr UnkFn fn_0x50 = &fn_71005c7810;
-    static constexpr UnkFn fn_0x58 = &fn_71005c77b0;
-    static constexpr UnkFn fn_0x60 = &fn_71005c77c4;
-    static constexpr UnkFn fn_0x68 = &fn_71005c77cc;
+    static constexpr UnkFn construct = &fn_71005c77d8;
+    static constexpr UnkFn copy_construct = &fn_71005c77e0;
+    static constexpr UnkFn move_construct = &fn_71005c77ec;
+    static constexpr UnkFn destroy = &fn_71005c77f8;
+    static constexpr UnkFn copy_assign = &fn_71005c77fc;
+    static constexpr UnkFn move_assign = &fn_71005c7810;
+    static constexpr UnkFn equals = &fn_71005c77b0;
+    static constexpr UnkFn hash = &fn_71005c77c4;
+    static constexpr UnkFn type_of = &fn_71005c77cc;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71005c6204*);
 struct UnkRefl_fn_71005c9acc;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71005c9acc> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71005c9acc> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71005ca404;
-    static constexpr UnkFn fn_0x30 = &fn_71005ca40c;
-    static constexpr UnkFn fn_0x38 = &fn_71005ca418;
-    static constexpr UnkFn fn_0x40 = &fn_71005ca424;
-    static constexpr UnkFn fn_0x48 = &fn_71005ca428;
-    static constexpr UnkFn fn_0x50 = &fn_71005ca43c;
-    static constexpr UnkFn fn_0x58 = &fn_71005ca3dc;
-    static constexpr UnkFn fn_0x60 = &fn_71005ca3f0;
-    static constexpr UnkFn fn_0x68 = &fn_71005ca3f8;
+    static constexpr UnkFn construct = &fn_71005ca404;
+    static constexpr UnkFn copy_construct = &fn_71005ca40c;
+    static constexpr UnkFn move_construct = &fn_71005ca418;
+    static constexpr UnkFn destroy = &fn_71005ca424;
+    static constexpr UnkFn copy_assign = &fn_71005ca428;
+    static constexpr UnkFn move_assign = &fn_71005ca43c;
+    static constexpr UnkFn equals = &fn_71005ca3dc;
+    static constexpr UnkFn hash = &fn_71005ca3f0;
+    static constexpr UnkFn type_of = &fn_71005ca3f8;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71005c9acc*);
 struct UnkRefl_fn_71005e7e04;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71005e7e04> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71005e7e04> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71005ecfc4;
-    static constexpr UnkFn fn_0x30 = &fn_71005ecfcc;
-    static constexpr UnkFn fn_0x38 = &fn_71005ecfd8;
-    static constexpr UnkFn fn_0x40 = &fn_71005ecfe4;
-    static constexpr UnkFn fn_0x48 = &fn_71005ecfe8;
-    static constexpr UnkFn fn_0x50 = &fn_71005ecffc;
-    static constexpr UnkFn fn_0x58 = &fn_71005ecf9c;
-    static constexpr UnkFn fn_0x60 = &fn_71005ecfb0;
-    static constexpr UnkFn fn_0x68 = &fn_71005ecfb8;
+    static constexpr UnkFn construct = &fn_71005ecfc4;
+    static constexpr UnkFn copy_construct = &fn_71005ecfcc;
+    static constexpr UnkFn move_construct = &fn_71005ecfd8;
+    static constexpr UnkFn destroy = &fn_71005ecfe4;
+    static constexpr UnkFn copy_assign = &fn_71005ecfe8;
+    static constexpr UnkFn move_assign = &fn_71005ecffc;
+    static constexpr UnkFn equals = &fn_71005ecf9c;
+    static constexpr UnkFn hash = &fn_71005ecfb0;
+    static constexpr UnkFn type_of = &fn_71005ecfb8;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71005e7e04*);
 struct UnkRefl_fn_71005e8130;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71005e8130> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71005e8130> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71005ed038;
-    static constexpr UnkFn fn_0x30 = &fn_71005ed040;
-    static constexpr UnkFn fn_0x38 = &fn_71005ed04c;
-    static constexpr UnkFn fn_0x40 = &fn_71005ed058;
-    static constexpr UnkFn fn_0x48 = &fn_71005ed05c;
-    static constexpr UnkFn fn_0x50 = &fn_71005ed070;
-    static constexpr UnkFn fn_0x58 = &fn_71005ed010;
-    static constexpr UnkFn fn_0x60 = &fn_71005ed024;
-    static constexpr UnkFn fn_0x68 = &fn_71005ed02c;
+    static constexpr UnkFn construct = &fn_71005ed038;
+    static constexpr UnkFn copy_construct = &fn_71005ed040;
+    static constexpr UnkFn move_construct = &fn_71005ed04c;
+    static constexpr UnkFn destroy = &fn_71005ed058;
+    static constexpr UnkFn copy_assign = &fn_71005ed05c;
+    static constexpr UnkFn move_assign = &fn_71005ed070;
+    static constexpr UnkFn equals = &fn_71005ed010;
+    static constexpr UnkFn hash = &fn_71005ed024;
+    static constexpr UnkFn type_of = &fn_71005ed02c;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71005e8130*);
 struct UnkRefl_fn_71006098b4;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71006098b4> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71006098b4> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710060a724;
-    static constexpr UnkFn fn_0x30 = &fn_710060a72c;
-    static constexpr UnkFn fn_0x38 = &fn_710060a738;
-    static constexpr UnkFn fn_0x40 = &fn_710060a744;
-    static constexpr UnkFn fn_0x48 = &fn_710060a748;
-    static constexpr UnkFn fn_0x50 = &fn_710060a75c;
-    static constexpr UnkFn fn_0x58 = &fn_710060a6fc;
-    static constexpr UnkFn fn_0x60 = &fn_710060a710;
-    static constexpr UnkFn fn_0x68 = &fn_710060a718;
+    static constexpr UnkFn construct = &fn_710060a724;
+    static constexpr UnkFn copy_construct = &fn_710060a72c;
+    static constexpr UnkFn move_construct = &fn_710060a738;
+    static constexpr UnkFn destroy = &fn_710060a744;
+    static constexpr UnkFn copy_assign = &fn_710060a748;
+    static constexpr UnkFn move_assign = &fn_710060a75c;
+    static constexpr UnkFn equals = &fn_710060a6fc;
+    static constexpr UnkFn hash = &fn_710060a710;
+    static constexpr UnkFn type_of = &fn_710060a718;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71006098b4*);
 struct UnkRefl_fn_710060aeb0;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710060aeb0> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710060aeb0> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710060dd50;
-    static constexpr UnkFn fn_0x30 = &fn_710060dd58;
-    static constexpr UnkFn fn_0x38 = &fn_710060dd64;
-    static constexpr UnkFn fn_0x40 = &fn_710060dd70;
-    static constexpr UnkFn fn_0x48 = &fn_710060dd74;
-    static constexpr UnkFn fn_0x50 = &fn_710060dd88;
-    static constexpr UnkFn fn_0x58 = &fn_710060dd28;
-    static constexpr UnkFn fn_0x60 = &fn_710060dd3c;
-    static constexpr UnkFn fn_0x68 = &fn_710060dd44;
+    static constexpr UnkFn construct = &fn_710060dd50;
+    static constexpr UnkFn copy_construct = &fn_710060dd58;
+    static constexpr UnkFn move_construct = &fn_710060dd64;
+    static constexpr UnkFn destroy = &fn_710060dd70;
+    static constexpr UnkFn copy_assign = &fn_710060dd74;
+    static constexpr UnkFn move_assign = &fn_710060dd88;
+    static constexpr UnkFn equals = &fn_710060dd28;
+    static constexpr UnkFn hash = &fn_710060dd3c;
+    static constexpr UnkFn type_of = &fn_710060dd44;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710060aeb0*);
 struct UnkRefl_fn_710061f9e8;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710061f9e8> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710061f9e8> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100622450;
-    static constexpr UnkFn fn_0x30 = &fn_7100622458;
-    static constexpr UnkFn fn_0x38 = &fn_7100622464;
-    static constexpr UnkFn fn_0x40 = &fn_7100622470;
-    static constexpr UnkFn fn_0x48 = &fn_7100622474;
-    static constexpr UnkFn fn_0x50 = &fn_7100622488;
-    static constexpr UnkFn fn_0x58 = &fn_7100622428;
-    static constexpr UnkFn fn_0x60 = &fn_710062243c;
-    static constexpr UnkFn fn_0x68 = &fn_7100622444;
+    static constexpr UnkFn construct = &fn_7100622450;
+    static constexpr UnkFn copy_construct = &fn_7100622458;
+    static constexpr UnkFn move_construct = &fn_7100622464;
+    static constexpr UnkFn destroy = &fn_7100622470;
+    static constexpr UnkFn copy_assign = &fn_7100622474;
+    static constexpr UnkFn move_assign = &fn_7100622488;
+    static constexpr UnkFn equals = &fn_7100622428;
+    static constexpr UnkFn hash = &fn_710062243c;
+    static constexpr UnkFn type_of = &fn_7100622444;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710061f9e8*);
 struct UnkRefl_fn_71006247ac;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71006247ac> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71006247ac> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100625b4c;
-    static constexpr UnkFn fn_0x30 = &fn_7100625b54;
-    static constexpr UnkFn fn_0x38 = &fn_7100625b60;
-    static constexpr UnkFn fn_0x40 = &fn_7100625b6c;
-    static constexpr UnkFn fn_0x48 = &fn_7100625b70;
-    static constexpr UnkFn fn_0x50 = &fn_7100625b84;
-    static constexpr UnkFn fn_0x58 = &fn_7100625b24;
-    static constexpr UnkFn fn_0x60 = &fn_7100625b38;
-    static constexpr UnkFn fn_0x68 = &fn_7100625b40;
+    static constexpr UnkFn construct = &fn_7100625b4c;
+    static constexpr UnkFn copy_construct = &fn_7100625b54;
+    static constexpr UnkFn move_construct = &fn_7100625b60;
+    static constexpr UnkFn destroy = &fn_7100625b6c;
+    static constexpr UnkFn copy_assign = &fn_7100625b70;
+    static constexpr UnkFn move_assign = &fn_7100625b84;
+    static constexpr UnkFn equals = &fn_7100625b24;
+    static constexpr UnkFn hash = &fn_7100625b38;
+    static constexpr UnkFn type_of = &fn_7100625b40;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71006247ac*);
 struct UnkRefl_fn_71006284d4;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71006284d4> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71006284d4> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710062adc0;
-    static constexpr UnkFn fn_0x30 = &fn_710062adc8;
-    static constexpr UnkFn fn_0x38 = &fn_710062add4;
-    static constexpr UnkFn fn_0x40 = &fn_710062ade0;
-    static constexpr UnkFn fn_0x48 = &fn_710062ade4;
-    static constexpr UnkFn fn_0x50 = &fn_710062adf8;
-    static constexpr UnkFn fn_0x58 = &fn_710062ad98;
-    static constexpr UnkFn fn_0x60 = &fn_710062adac;
-    static constexpr UnkFn fn_0x68 = &fn_710062adb4;
+    static constexpr UnkFn construct = &fn_710062adc0;
+    static constexpr UnkFn copy_construct = &fn_710062adc8;
+    static constexpr UnkFn move_construct = &fn_710062add4;
+    static constexpr UnkFn destroy = &fn_710062ade0;
+    static constexpr UnkFn copy_assign = &fn_710062ade4;
+    static constexpr UnkFn move_assign = &fn_710062adf8;
+    static constexpr UnkFn equals = &fn_710062ad98;
+    static constexpr UnkFn hash = &fn_710062adac;
+    static constexpr UnkFn type_of = &fn_710062adb4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71006284d4*);
 struct UnkRefl_fn_7100638090;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100638090> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100638090> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100638894;
-    static constexpr UnkFn fn_0x30 = &fn_710063889c;
-    static constexpr UnkFn fn_0x38 = &fn_71006388a8;
-    static constexpr UnkFn fn_0x40 = &fn_71006388b4;
-    static constexpr UnkFn fn_0x48 = &fn_71006388b8;
-    static constexpr UnkFn fn_0x50 = &fn_71006388cc;
-    static constexpr UnkFn fn_0x58 = &fn_710063886c;
-    static constexpr UnkFn fn_0x60 = &fn_7100638880;
-    static constexpr UnkFn fn_0x68 = &fn_7100638888;
+    static constexpr UnkFn construct = &fn_7100638894;
+    static constexpr UnkFn copy_construct = &fn_710063889c;
+    static constexpr UnkFn move_construct = &fn_71006388a8;
+    static constexpr UnkFn destroy = &fn_71006388b4;
+    static constexpr UnkFn copy_assign = &fn_71006388b8;
+    static constexpr UnkFn move_assign = &fn_71006388cc;
+    static constexpr UnkFn equals = &fn_710063886c;
+    static constexpr UnkFn hash = &fn_7100638880;
+    static constexpr UnkFn type_of = &fn_7100638888;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100638090*);
 struct UnkRefl_fn_7100648b5c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100648b5c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100648b5c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100649344;
-    static constexpr UnkFn fn_0x30 = &fn_710064934c;
-    static constexpr UnkFn fn_0x38 = &fn_7100649358;
-    static constexpr UnkFn fn_0x40 = &fn_7100649364;
-    static constexpr UnkFn fn_0x48 = &fn_7100649368;
-    static constexpr UnkFn fn_0x50 = &fn_710064937c;
-    static constexpr UnkFn fn_0x58 = &fn_710064931c;
-    static constexpr UnkFn fn_0x60 = &fn_7100649330;
-    static constexpr UnkFn fn_0x68 = &fn_7100649338;
+    static constexpr UnkFn construct = &fn_7100649344;
+    static constexpr UnkFn copy_construct = &fn_710064934c;
+    static constexpr UnkFn move_construct = &fn_7100649358;
+    static constexpr UnkFn destroy = &fn_7100649364;
+    static constexpr UnkFn copy_assign = &fn_7100649368;
+    static constexpr UnkFn move_assign = &fn_710064937c;
+    static constexpr UnkFn equals = &fn_710064931c;
+    static constexpr UnkFn hash = &fn_7100649330;
+    static constexpr UnkFn type_of = &fn_7100649338;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100648b5c*);
 struct UnkRefl_fn_710065ece4;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710065ece4> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710065ece4> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100660fa0;
-    static constexpr UnkFn fn_0x30 = &fn_7100660fa8;
-    static constexpr UnkFn fn_0x38 = &fn_7100660fb4;
-    static constexpr UnkFn fn_0x40 = &fn_7100660fc0;
-    static constexpr UnkFn fn_0x48 = &fn_7100660fc4;
-    static constexpr UnkFn fn_0x50 = &fn_7100660fd8;
-    static constexpr UnkFn fn_0x58 = &fn_7100660f78;
-    static constexpr UnkFn fn_0x60 = &fn_7100660f8c;
-    static constexpr UnkFn fn_0x68 = &fn_7100660f94;
+    static constexpr UnkFn construct = &fn_7100660fa0;
+    static constexpr UnkFn copy_construct = &fn_7100660fa8;
+    static constexpr UnkFn move_construct = &fn_7100660fb4;
+    static constexpr UnkFn destroy = &fn_7100660fc0;
+    static constexpr UnkFn copy_assign = &fn_7100660fc4;
+    static constexpr UnkFn move_assign = &fn_7100660fd8;
+    static constexpr UnkFn equals = &fn_7100660f78;
+    static constexpr UnkFn hash = &fn_7100660f8c;
+    static constexpr UnkFn type_of = &fn_7100660f94;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710065ece4*);
 struct UnkRefl_fn_710065f0d0;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710065f0d0> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710065f0d0> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100661014;
-    static constexpr UnkFn fn_0x30 = &fn_710066101c;
-    static constexpr UnkFn fn_0x38 = &fn_7100661028;
-    static constexpr UnkFn fn_0x40 = &fn_7100661034;
-    static constexpr UnkFn fn_0x48 = &fn_7100661038;
-    static constexpr UnkFn fn_0x50 = &fn_710066104c;
-    static constexpr UnkFn fn_0x58 = &fn_7100660fec;
-    static constexpr UnkFn fn_0x60 = &fn_7100661000;
-    static constexpr UnkFn fn_0x68 = &fn_7100661008;
+    static constexpr UnkFn construct = &fn_7100661014;
+    static constexpr UnkFn copy_construct = &fn_710066101c;
+    static constexpr UnkFn move_construct = &fn_7100661028;
+    static constexpr UnkFn destroy = &fn_7100661034;
+    static constexpr UnkFn copy_assign = &fn_7100661038;
+    static constexpr UnkFn move_assign = &fn_710066104c;
+    static constexpr UnkFn equals = &fn_7100660fec;
+    static constexpr UnkFn hash = &fn_7100661000;
+    static constexpr UnkFn type_of = &fn_7100661008;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710065f0d0*);
 struct UnkRefl_fn_7100665544;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100665544> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100665544> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100667808;
-    static constexpr UnkFn fn_0x30 = &fn_7100667810;
-    static constexpr UnkFn fn_0x38 = &fn_710066781c;
-    static constexpr UnkFn fn_0x40 = &fn_7100667828;
-    static constexpr UnkFn fn_0x48 = &fn_710066782c;
-    static constexpr UnkFn fn_0x50 = &fn_7100667840;
-    static constexpr UnkFn fn_0x58 = &fn_71006677e0;
-    static constexpr UnkFn fn_0x60 = &fn_71006677f4;
-    static constexpr UnkFn fn_0x68 = &fn_71006677fc;
+    static constexpr UnkFn construct = &fn_7100667808;
+    static constexpr UnkFn copy_construct = &fn_7100667810;
+    static constexpr UnkFn move_construct = &fn_710066781c;
+    static constexpr UnkFn destroy = &fn_7100667828;
+    static constexpr UnkFn copy_assign = &fn_710066782c;
+    static constexpr UnkFn move_assign = &fn_7100667840;
+    static constexpr UnkFn equals = &fn_71006677e0;
+    static constexpr UnkFn hash = &fn_71006677f4;
+    static constexpr UnkFn type_of = &fn_71006677fc;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100665544*);
 struct UnkRefl_fn_710066e054;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710066e054> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710066e054> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100670920;
-    static constexpr UnkFn fn_0x30 = &fn_7100670928;
-    static constexpr UnkFn fn_0x38 = &fn_7100670934;
-    static constexpr UnkFn fn_0x40 = &fn_7100670940;
-    static constexpr UnkFn fn_0x48 = &fn_7100670944;
-    static constexpr UnkFn fn_0x50 = &fn_7100670958;
-    static constexpr UnkFn fn_0x58 = &fn_71006708f8;
-    static constexpr UnkFn fn_0x60 = &fn_710067090c;
-    static constexpr UnkFn fn_0x68 = &fn_7100670914;
+    static constexpr UnkFn construct = &fn_7100670920;
+    static constexpr UnkFn copy_construct = &fn_7100670928;
+    static constexpr UnkFn move_construct = &fn_7100670934;
+    static constexpr UnkFn destroy = &fn_7100670940;
+    static constexpr UnkFn copy_assign = &fn_7100670944;
+    static constexpr UnkFn move_assign = &fn_7100670958;
+    static constexpr UnkFn equals = &fn_71006708f8;
+    static constexpr UnkFn hash = &fn_710067090c;
+    static constexpr UnkFn type_of = &fn_7100670914;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710066e054*);
 struct UnkRefl_fn_710067307c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710067307c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710067307c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100674170;
-    static constexpr UnkFn fn_0x30 = &fn_7100674178;
-    static constexpr UnkFn fn_0x38 = &fn_7100674184;
-    static constexpr UnkFn fn_0x40 = &fn_7100674190;
-    static constexpr UnkFn fn_0x48 = &fn_7100674194;
-    static constexpr UnkFn fn_0x50 = &fn_71006741a8;
-    static constexpr UnkFn fn_0x58 = &fn_7100674148;
-    static constexpr UnkFn fn_0x60 = &fn_710067415c;
-    static constexpr UnkFn fn_0x68 = &fn_7100674164;
+    static constexpr UnkFn construct = &fn_7100674170;
+    static constexpr UnkFn copy_construct = &fn_7100674178;
+    static constexpr UnkFn move_construct = &fn_7100674184;
+    static constexpr UnkFn destroy = &fn_7100674190;
+    static constexpr UnkFn copy_assign = &fn_7100674194;
+    static constexpr UnkFn move_assign = &fn_71006741a8;
+    static constexpr UnkFn equals = &fn_7100674148;
+    static constexpr UnkFn hash = &fn_710067415c;
+    static constexpr UnkFn type_of = &fn_7100674164;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710067307c*);
 struct UnkRefl_fn_710067664c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710067664c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710067664c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100677518;
-    static constexpr UnkFn fn_0x30 = &fn_7100677520;
-    static constexpr UnkFn fn_0x38 = &fn_710067752c;
-    static constexpr UnkFn fn_0x40 = &fn_7100677538;
-    static constexpr UnkFn fn_0x48 = &fn_710067753c;
-    static constexpr UnkFn fn_0x50 = &fn_7100677550;
-    static constexpr UnkFn fn_0x58 = &fn_71006774f0;
-    static constexpr UnkFn fn_0x60 = &fn_7100677504;
-    static constexpr UnkFn fn_0x68 = &fn_710067750c;
+    static constexpr UnkFn construct = &fn_7100677518;
+    static constexpr UnkFn copy_construct = &fn_7100677520;
+    static constexpr UnkFn move_construct = &fn_710067752c;
+    static constexpr UnkFn destroy = &fn_7100677538;
+    static constexpr UnkFn copy_assign = &fn_710067753c;
+    static constexpr UnkFn move_assign = &fn_7100677550;
+    static constexpr UnkFn equals = &fn_71006774f0;
+    static constexpr UnkFn hash = &fn_7100677504;
+    static constexpr UnkFn type_of = &fn_710067750c;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710067664c*);
 struct UnkRefl_fn_710068de8c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710068de8c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710068de8c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100690844;
-    static constexpr UnkFn fn_0x30 = &fn_710069084c;
-    static constexpr UnkFn fn_0x38 = &fn_7100690858;
-    static constexpr UnkFn fn_0x40 = &fn_7100690864;
-    static constexpr UnkFn fn_0x48 = &fn_7100690868;
-    static constexpr UnkFn fn_0x50 = &fn_710069087c;
-    static constexpr UnkFn fn_0x58 = &fn_710069081c;
-    static constexpr UnkFn fn_0x60 = &fn_7100690830;
-    static constexpr UnkFn fn_0x68 = &fn_7100690838;
+    static constexpr UnkFn construct = &fn_7100690844;
+    static constexpr UnkFn copy_construct = &fn_710069084c;
+    static constexpr UnkFn move_construct = &fn_7100690858;
+    static constexpr UnkFn destroy = &fn_7100690864;
+    static constexpr UnkFn copy_assign = &fn_7100690868;
+    static constexpr UnkFn move_assign = &fn_710069087c;
+    static constexpr UnkFn equals = &fn_710069081c;
+    static constexpr UnkFn hash = &fn_7100690830;
+    static constexpr UnkFn type_of = &fn_7100690838;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710068de8c*);
 struct UnkRefl_fn_710069a57c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710069a57c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710069a57c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710069cd30;
-    static constexpr UnkFn fn_0x30 = &fn_710069cd38;
-    static constexpr UnkFn fn_0x38 = &fn_710069cd44;
-    static constexpr UnkFn fn_0x40 = &fn_710069cd50;
-    static constexpr UnkFn fn_0x48 = &fn_710069cd54;
-    static constexpr UnkFn fn_0x50 = &fn_710069cd68;
-    static constexpr UnkFn fn_0x58 = &fn_710069cd08;
-    static constexpr UnkFn fn_0x60 = &fn_710069cd1c;
-    static constexpr UnkFn fn_0x68 = &fn_710069cd24;
+    static constexpr UnkFn construct = &fn_710069cd30;
+    static constexpr UnkFn copy_construct = &fn_710069cd38;
+    static constexpr UnkFn move_construct = &fn_710069cd44;
+    static constexpr UnkFn destroy = &fn_710069cd50;
+    static constexpr UnkFn copy_assign = &fn_710069cd54;
+    static constexpr UnkFn move_assign = &fn_710069cd68;
+    static constexpr UnkFn equals = &fn_710069cd08;
+    static constexpr UnkFn hash = &fn_710069cd1c;
+    static constexpr UnkFn type_of = &fn_710069cd24;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710069a57c*);
 struct UnkRefl_fn_71006a3d0c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71006a3d0c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71006a3d0c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71006a5cd4;
-    static constexpr UnkFn fn_0x30 = &fn_71006a5cdc;
-    static constexpr UnkFn fn_0x38 = &fn_71006a5ce8;
-    static constexpr UnkFn fn_0x40 = &fn_71006a5cf4;
-    static constexpr UnkFn fn_0x48 = &fn_71006a5cf8;
-    static constexpr UnkFn fn_0x50 = &fn_71006a5d0c;
-    static constexpr UnkFn fn_0x58 = &fn_71006a5cac;
-    static constexpr UnkFn fn_0x60 = &fn_71006a5cc0;
-    static constexpr UnkFn fn_0x68 = &fn_71006a5cc8;
+    static constexpr UnkFn construct = &fn_71006a5cd4;
+    static constexpr UnkFn copy_construct = &fn_71006a5cdc;
+    static constexpr UnkFn move_construct = &fn_71006a5ce8;
+    static constexpr UnkFn destroy = &fn_71006a5cf4;
+    static constexpr UnkFn copy_assign = &fn_71006a5cf8;
+    static constexpr UnkFn move_assign = &fn_71006a5d0c;
+    static constexpr UnkFn equals = &fn_71006a5cac;
+    static constexpr UnkFn hash = &fn_71006a5cc0;
+    static constexpr UnkFn type_of = &fn_71006a5cc8;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71006a3d0c*);
 struct UnkRefl_fn_71006a4038;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71006a4038> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71006a4038> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71006a5d48;
-    static constexpr UnkFn fn_0x30 = &fn_71006a5d50;
-    static constexpr UnkFn fn_0x38 = &fn_71006a5d5c;
-    static constexpr UnkFn fn_0x40 = &fn_71006a5d68;
-    static constexpr UnkFn fn_0x48 = &fn_71006a5d6c;
-    static constexpr UnkFn fn_0x50 = &fn_71006a5d80;
-    static constexpr UnkFn fn_0x58 = &fn_71006a5d20;
-    static constexpr UnkFn fn_0x60 = &fn_71006a5d34;
-    static constexpr UnkFn fn_0x68 = &fn_71006a5d3c;
+    static constexpr UnkFn construct = &fn_71006a5d48;
+    static constexpr UnkFn copy_construct = &fn_71006a5d50;
+    static constexpr UnkFn move_construct = &fn_71006a5d5c;
+    static constexpr UnkFn destroy = &fn_71006a5d68;
+    static constexpr UnkFn copy_assign = &fn_71006a5d6c;
+    static constexpr UnkFn move_assign = &fn_71006a5d80;
+    static constexpr UnkFn equals = &fn_71006a5d20;
+    static constexpr UnkFn hash = &fn_71006a5d34;
+    static constexpr UnkFn type_of = &fn_71006a5d3c;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71006a4038*);
 struct UnkRefl_fn_71006a6938;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71006a6938> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71006a6938> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71006a999c;
-    static constexpr UnkFn fn_0x30 = &fn_71006a99a4;
-    static constexpr UnkFn fn_0x38 = &fn_71006a99b0;
-    static constexpr UnkFn fn_0x40 = &fn_71006a99bc;
-    static constexpr UnkFn fn_0x48 = &fn_71006a99c0;
-    static constexpr UnkFn fn_0x50 = &fn_71006a99d4;
-    static constexpr UnkFn fn_0x58 = &fn_71006a9974;
-    static constexpr UnkFn fn_0x60 = &fn_71006a9988;
-    static constexpr UnkFn fn_0x68 = &fn_71006a9990;
+    static constexpr UnkFn construct = &fn_71006a999c;
+    static constexpr UnkFn copy_construct = &fn_71006a99a4;
+    static constexpr UnkFn move_construct = &fn_71006a99b0;
+    static constexpr UnkFn destroy = &fn_71006a99bc;
+    static constexpr UnkFn copy_assign = &fn_71006a99c0;
+    static constexpr UnkFn move_assign = &fn_71006a99d4;
+    static constexpr UnkFn equals = &fn_71006a9974;
+    static constexpr UnkFn hash = &fn_71006a9988;
+    static constexpr UnkFn type_of = &fn_71006a9990;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71006a6938*);
 struct UnkRefl_fn_71006a6c64;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71006a6c64> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71006a6c64> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71006a9a10;
-    static constexpr UnkFn fn_0x30 = &fn_71006a9a18;
-    static constexpr UnkFn fn_0x38 = &fn_71006a9a24;
-    static constexpr UnkFn fn_0x40 = &fn_71006a9a30;
-    static constexpr UnkFn fn_0x48 = &fn_71006a9a34;
-    static constexpr UnkFn fn_0x50 = &fn_71006a9a48;
-    static constexpr UnkFn fn_0x58 = &fn_71006a99e8;
-    static constexpr UnkFn fn_0x60 = &fn_71006a99fc;
-    static constexpr UnkFn fn_0x68 = &fn_71006a9a04;
+    static constexpr UnkFn construct = &fn_71006a9a10;
+    static constexpr UnkFn copy_construct = &fn_71006a9a18;
+    static constexpr UnkFn move_construct = &fn_71006a9a24;
+    static constexpr UnkFn destroy = &fn_71006a9a30;
+    static constexpr UnkFn copy_assign = &fn_71006a9a34;
+    static constexpr UnkFn move_assign = &fn_71006a9a48;
+    static constexpr UnkFn equals = &fn_71006a99e8;
+    static constexpr UnkFn hash = &fn_71006a99fc;
+    static constexpr UnkFn type_of = &fn_71006a9a04;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71006a6c64*);
 struct UnkRefl_fn_71006b36bc;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71006b36bc> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71006b36bc> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71006b6d64;
-    static constexpr UnkFn fn_0x30 = &fn_71006b6d6c;
-    static constexpr UnkFn fn_0x38 = &fn_71006b6d78;
-    static constexpr UnkFn fn_0x40 = &fn_71006b6d84;
-    static constexpr UnkFn fn_0x48 = &fn_71006b6d88;
-    static constexpr UnkFn fn_0x50 = &fn_71006b6d9c;
-    static constexpr UnkFn fn_0x58 = &fn_71006b6d3c;
-    static constexpr UnkFn fn_0x60 = &fn_71006b6d50;
-    static constexpr UnkFn fn_0x68 = &fn_71006b6d58;
+    static constexpr UnkFn construct = &fn_71006b6d64;
+    static constexpr UnkFn copy_construct = &fn_71006b6d6c;
+    static constexpr UnkFn move_construct = &fn_71006b6d78;
+    static constexpr UnkFn destroy = &fn_71006b6d84;
+    static constexpr UnkFn copy_assign = &fn_71006b6d88;
+    static constexpr UnkFn move_assign = &fn_71006b6d9c;
+    static constexpr UnkFn equals = &fn_71006b6d3c;
+    static constexpr UnkFn hash = &fn_71006b6d50;
+    static constexpr UnkFn type_of = &fn_71006b6d58;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71006b36bc*);
 struct UnkRefl_fn_71006b973c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71006b973c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71006b973c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71006bca94;
-    static constexpr UnkFn fn_0x30 = &fn_71006bca9c;
-    static constexpr UnkFn fn_0x38 = &fn_71006bcaa8;
-    static constexpr UnkFn fn_0x40 = &fn_71006bcab4;
-    static constexpr UnkFn fn_0x48 = &fn_71006bcab8;
-    static constexpr UnkFn fn_0x50 = &fn_71006bcacc;
-    static constexpr UnkFn fn_0x58 = &fn_71006bca6c;
-    static constexpr UnkFn fn_0x60 = &fn_71006bca80;
-    static constexpr UnkFn fn_0x68 = &fn_71006bca88;
+    static constexpr UnkFn construct = &fn_71006bca94;
+    static constexpr UnkFn copy_construct = &fn_71006bca9c;
+    static constexpr UnkFn move_construct = &fn_71006bcaa8;
+    static constexpr UnkFn destroy = &fn_71006bcab4;
+    static constexpr UnkFn copy_assign = &fn_71006bcab8;
+    static constexpr UnkFn move_assign = &fn_71006bcacc;
+    static constexpr UnkFn equals = &fn_71006bca6c;
+    static constexpr UnkFn hash = &fn_71006bca80;
+    static constexpr UnkFn type_of = &fn_71006bca88;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71006b973c*);
 struct UnkRefl_fn_71006c06bc;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71006c06bc> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71006c06bc> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71006c41c8;
-    static constexpr UnkFn fn_0x30 = &fn_71006c41d0;
-    static constexpr UnkFn fn_0x38 = &fn_71006c41dc;
-    static constexpr UnkFn fn_0x40 = &fn_71006c41e8;
-    static constexpr UnkFn fn_0x48 = &fn_71006c41ec;
-    static constexpr UnkFn fn_0x50 = &fn_71006c4200;
-    static constexpr UnkFn fn_0x58 = &fn_71006c41a0;
-    static constexpr UnkFn fn_0x60 = &fn_71006c41b4;
-    static constexpr UnkFn fn_0x68 = &fn_71006c41bc;
+    static constexpr UnkFn construct = &fn_71006c41c8;
+    static constexpr UnkFn copy_construct = &fn_71006c41d0;
+    static constexpr UnkFn move_construct = &fn_71006c41dc;
+    static constexpr UnkFn destroy = &fn_71006c41e8;
+    static constexpr UnkFn copy_assign = &fn_71006c41ec;
+    static constexpr UnkFn move_assign = &fn_71006c4200;
+    static constexpr UnkFn equals = &fn_71006c41a0;
+    static constexpr UnkFn hash = &fn_71006c41b4;
+    static constexpr UnkFn type_of = &fn_71006c41bc;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71006c06bc*);
 struct UnkRefl_fn_71006ce58c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71006ce58c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71006ce58c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71006d0dcc;
-    static constexpr UnkFn fn_0x30 = &fn_71006d0dd4;
-    static constexpr UnkFn fn_0x38 = &fn_71006d0de0;
-    static constexpr UnkFn fn_0x40 = &fn_71006d0dec;
-    static constexpr UnkFn fn_0x48 = &fn_71006d0df0;
-    static constexpr UnkFn fn_0x50 = &fn_71006d0e04;
-    static constexpr UnkFn fn_0x58 = &fn_71006d0da4;
-    static constexpr UnkFn fn_0x60 = &fn_71006d0db8;
-    static constexpr UnkFn fn_0x68 = &fn_71006d0dc0;
+    static constexpr UnkFn construct = &fn_71006d0dcc;
+    static constexpr UnkFn copy_construct = &fn_71006d0dd4;
+    static constexpr UnkFn move_construct = &fn_71006d0de0;
+    static constexpr UnkFn destroy = &fn_71006d0dec;
+    static constexpr UnkFn copy_assign = &fn_71006d0df0;
+    static constexpr UnkFn move_assign = &fn_71006d0e04;
+    static constexpr UnkFn equals = &fn_71006d0da4;
+    static constexpr UnkFn hash = &fn_71006d0db8;
+    static constexpr UnkFn type_of = &fn_71006d0dc0;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71006ce58c*);
 struct UnkRefl_fn_71006d3360;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71006d3360> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71006d3360> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71006d3970;
-    static constexpr UnkFn fn_0x30 = &fn_71006d3978;
-    static constexpr UnkFn fn_0x38 = &fn_71006d3984;
-    static constexpr UnkFn fn_0x40 = &fn_71006d3990;
-    static constexpr UnkFn fn_0x48 = &fn_71006d3994;
-    static constexpr UnkFn fn_0x50 = &fn_71006d39a8;
-    static constexpr UnkFn fn_0x58 = &fn_71006d3948;
-    static constexpr UnkFn fn_0x60 = &fn_71006d395c;
-    static constexpr UnkFn fn_0x68 = &fn_71006d3964;
+    static constexpr UnkFn construct = &fn_71006d3970;
+    static constexpr UnkFn copy_construct = &fn_71006d3978;
+    static constexpr UnkFn move_construct = &fn_71006d3984;
+    static constexpr UnkFn destroy = &fn_71006d3990;
+    static constexpr UnkFn copy_assign = &fn_71006d3994;
+    static constexpr UnkFn move_assign = &fn_71006d39a8;
+    static constexpr UnkFn equals = &fn_71006d3948;
+    static constexpr UnkFn hash = &fn_71006d395c;
+    static constexpr UnkFn type_of = &fn_71006d3964;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71006d3360*);
 struct UnkRefl_fn_71006da1f8;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71006da1f8> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71006da1f8> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71006dad7c;
-    static constexpr UnkFn fn_0x30 = &fn_71006dad84;
-    static constexpr UnkFn fn_0x38 = &fn_71006dad90;
-    static constexpr UnkFn fn_0x40 = &fn_71006dad9c;
-    static constexpr UnkFn fn_0x48 = &fn_71006dada0;
-    static constexpr UnkFn fn_0x50 = &fn_71006dadb4;
-    static constexpr UnkFn fn_0x58 = &fn_71006dad54;
-    static constexpr UnkFn fn_0x60 = &fn_71006dad68;
-    static constexpr UnkFn fn_0x68 = &fn_71006dad70;
+    static constexpr UnkFn construct = &fn_71006dad7c;
+    static constexpr UnkFn copy_construct = &fn_71006dad84;
+    static constexpr UnkFn move_construct = &fn_71006dad90;
+    static constexpr UnkFn destroy = &fn_71006dad9c;
+    static constexpr UnkFn copy_assign = &fn_71006dada0;
+    static constexpr UnkFn move_assign = &fn_71006dadb4;
+    static constexpr UnkFn equals = &fn_71006dad54;
+    static constexpr UnkFn hash = &fn_71006dad68;
+    static constexpr UnkFn type_of = &fn_71006dad70;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71006da1f8*);
 struct UnkRefl_fn_71006da4c4;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71006da4c4> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71006da4c4> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71006dadf0;
-    static constexpr UnkFn fn_0x30 = &fn_71006dadf8;
-    static constexpr UnkFn fn_0x38 = &fn_71006dae04;
-    static constexpr UnkFn fn_0x40 = &fn_71006dae10;
-    static constexpr UnkFn fn_0x48 = &fn_71006dae14;
-    static constexpr UnkFn fn_0x50 = &fn_71006dae28;
-    static constexpr UnkFn fn_0x58 = &fn_71006dadc8;
-    static constexpr UnkFn fn_0x60 = &fn_71006daddc;
-    static constexpr UnkFn fn_0x68 = &fn_71006dade4;
+    static constexpr UnkFn construct = &fn_71006dadf0;
+    static constexpr UnkFn copy_construct = &fn_71006dadf8;
+    static constexpr UnkFn move_construct = &fn_71006dae04;
+    static constexpr UnkFn destroy = &fn_71006dae10;
+    static constexpr UnkFn copy_assign = &fn_71006dae14;
+    static constexpr UnkFn move_assign = &fn_71006dae28;
+    static constexpr UnkFn equals = &fn_71006dadc8;
+    static constexpr UnkFn hash = &fn_71006daddc;
+    static constexpr UnkFn type_of = &fn_71006dade4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71006da4c4*);
 struct UnkRefl_fn_71006e590c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71006e590c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71006e590c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71006ebb08;
-    static constexpr UnkFn fn_0x30 = &fn_71006ebb10;
-    static constexpr UnkFn fn_0x38 = &fn_71006ebb1c;
-    static constexpr UnkFn fn_0x40 = &fn_71006ebb28;
-    static constexpr UnkFn fn_0x48 = &fn_71006ebb2c;
-    static constexpr UnkFn fn_0x50 = &fn_71006ebb40;
-    static constexpr UnkFn fn_0x58 = &fn_71006ebae0;
-    static constexpr UnkFn fn_0x60 = &fn_71006ebaf4;
-    static constexpr UnkFn fn_0x68 = &fn_71006ebafc;
+    static constexpr UnkFn construct = &fn_71006ebb08;
+    static constexpr UnkFn copy_construct = &fn_71006ebb10;
+    static constexpr UnkFn move_construct = &fn_71006ebb1c;
+    static constexpr UnkFn destroy = &fn_71006ebb28;
+    static constexpr UnkFn copy_assign = &fn_71006ebb2c;
+    static constexpr UnkFn move_assign = &fn_71006ebb40;
+    static constexpr UnkFn equals = &fn_71006ebae0;
+    static constexpr UnkFn hash = &fn_71006ebaf4;
+    static constexpr UnkFn type_of = &fn_71006ebafc;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71006e590c*);
 struct UnkRefl_fn_71006ee52c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71006ee52c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71006ee52c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71006eed70;
-    static constexpr UnkFn fn_0x30 = &fn_71006eed78;
-    static constexpr UnkFn fn_0x38 = &fn_71006eed84;
-    static constexpr UnkFn fn_0x40 = &fn_71006eed90;
-    static constexpr UnkFn fn_0x48 = &fn_71006eed94;
-    static constexpr UnkFn fn_0x50 = &fn_71006eeda8;
-    static constexpr UnkFn fn_0x58 = &fn_71006eed48;
-    static constexpr UnkFn fn_0x60 = &fn_71006eed5c;
-    static constexpr UnkFn fn_0x68 = &fn_71006eed64;
+    static constexpr UnkFn construct = &fn_71006eed70;
+    static constexpr UnkFn copy_construct = &fn_71006eed78;
+    static constexpr UnkFn move_construct = &fn_71006eed84;
+    static constexpr UnkFn destroy = &fn_71006eed90;
+    static constexpr UnkFn copy_assign = &fn_71006eed94;
+    static constexpr UnkFn move_assign = &fn_71006eeda8;
+    static constexpr UnkFn equals = &fn_71006eed48;
+    static constexpr UnkFn hash = &fn_71006eed5c;
+    static constexpr UnkFn type_of = &fn_71006eed64;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71006ee52c*);
 struct UnkRefl_fn_71006f3ae8;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71006f3ae8> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71006f3ae8> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71006f3ca8;
-    static constexpr UnkFn fn_0x30 = &fn_71006f3cb0;
-    static constexpr UnkFn fn_0x38 = &fn_71006f3cbc;
-    static constexpr UnkFn fn_0x40 = &fn_71006f3cc8;
-    static constexpr UnkFn fn_0x48 = &fn_71006f3ccc;
-    static constexpr UnkFn fn_0x50 = &fn_71006f3ce0;
-    static constexpr UnkFn fn_0x58 = &fn_71006f3c80;
-    static constexpr UnkFn fn_0x60 = &fn_71006f3c94;
-    static constexpr UnkFn fn_0x68 = &fn_71006f3c9c;
+    static constexpr UnkFn construct = &fn_71006f3ca8;
+    static constexpr UnkFn copy_construct = &fn_71006f3cb0;
+    static constexpr UnkFn move_construct = &fn_71006f3cbc;
+    static constexpr UnkFn destroy = &fn_71006f3cc8;
+    static constexpr UnkFn copy_assign = &fn_71006f3ccc;
+    static constexpr UnkFn move_assign = &fn_71006f3ce0;
+    static constexpr UnkFn equals = &fn_71006f3c80;
+    static constexpr UnkFn hash = &fn_71006f3c94;
+    static constexpr UnkFn type_of = &fn_71006f3c9c;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71006f3ae8*);
 struct UnkRefl_fn_71006f5aac;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71006f5aac> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71006f5aac> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71006f798c;
-    static constexpr UnkFn fn_0x30 = &fn_71006f7994;
-    static constexpr UnkFn fn_0x38 = &fn_71006f79a0;
-    static constexpr UnkFn fn_0x40 = &fn_71006f79ac;
-    static constexpr UnkFn fn_0x48 = &fn_71006f79b0;
-    static constexpr UnkFn fn_0x50 = &fn_71006f79c4;
-    static constexpr UnkFn fn_0x58 = &fn_71006f7964;
-    static constexpr UnkFn fn_0x60 = &fn_71006f7978;
-    static constexpr UnkFn fn_0x68 = &fn_71006f7980;
+    static constexpr UnkFn construct = &fn_71006f798c;
+    static constexpr UnkFn copy_construct = &fn_71006f7994;
+    static constexpr UnkFn move_construct = &fn_71006f79a0;
+    static constexpr UnkFn destroy = &fn_71006f79ac;
+    static constexpr UnkFn copy_assign = &fn_71006f79b0;
+    static constexpr UnkFn move_assign = &fn_71006f79c4;
+    static constexpr UnkFn equals = &fn_71006f7964;
+    static constexpr UnkFn hash = &fn_71006f7978;
+    static constexpr UnkFn type_of = &fn_71006f7980;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71006f5aac*);
 struct UnkRefl_fn_71006f5e38;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71006f5e38> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71006f5e38> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71006f7a00;
-    static constexpr UnkFn fn_0x30 = &fn_71006f7a08;
-    static constexpr UnkFn fn_0x38 = &fn_71006f7a14;
-    static constexpr UnkFn fn_0x40 = &fn_71006f7a20;
-    static constexpr UnkFn fn_0x48 = &fn_71006f7a24;
-    static constexpr UnkFn fn_0x50 = &fn_71006f7a38;
-    static constexpr UnkFn fn_0x58 = &fn_71006f79d8;
-    static constexpr UnkFn fn_0x60 = &fn_71006f79ec;
-    static constexpr UnkFn fn_0x68 = &fn_71006f79f4;
+    static constexpr UnkFn construct = &fn_71006f7a00;
+    static constexpr UnkFn copy_construct = &fn_71006f7a08;
+    static constexpr UnkFn move_construct = &fn_71006f7a14;
+    static constexpr UnkFn destroy = &fn_71006f7a20;
+    static constexpr UnkFn copy_assign = &fn_71006f7a24;
+    static constexpr UnkFn move_assign = &fn_71006f7a38;
+    static constexpr UnkFn equals = &fn_71006f79d8;
+    static constexpr UnkFn hash = &fn_71006f79ec;
+    static constexpr UnkFn type_of = &fn_71006f79f4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71006f5e38*);
 struct UnkRefl_fn_710070ef18;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710070ef18> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710070ef18> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710070f36c;
-    static constexpr UnkFn fn_0x30 = &fn_710070f374;
-    static constexpr UnkFn fn_0x38 = &fn_710070f380;
-    static constexpr UnkFn fn_0x40 = &fn_710070f38c;
-    static constexpr UnkFn fn_0x48 = &fn_710070f390;
-    static constexpr UnkFn fn_0x50 = &fn_710070f3a4;
-    static constexpr UnkFn fn_0x58 = &fn_710070f344;
-    static constexpr UnkFn fn_0x60 = &fn_710070f358;
-    static constexpr UnkFn fn_0x68 = &fn_710070f360;
+    static constexpr UnkFn construct = &fn_710070f36c;
+    static constexpr UnkFn copy_construct = &fn_710070f374;
+    static constexpr UnkFn move_construct = &fn_710070f380;
+    static constexpr UnkFn destroy = &fn_710070f38c;
+    static constexpr UnkFn copy_assign = &fn_710070f390;
+    static constexpr UnkFn move_assign = &fn_710070f3a4;
+    static constexpr UnkFn equals = &fn_710070f344;
+    static constexpr UnkFn hash = &fn_710070f358;
+    static constexpr UnkFn type_of = &fn_710070f360;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710070ef18*);
 struct UnkRefl_fn_710070ff68;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710070ff68> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710070ff68> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100710290;
-    static constexpr UnkFn fn_0x30 = &fn_7100710298;
-    static constexpr UnkFn fn_0x38 = &fn_71007102a4;
-    static constexpr UnkFn fn_0x40 = &fn_71007102b0;
-    static constexpr UnkFn fn_0x48 = &fn_71007102b4;
-    static constexpr UnkFn fn_0x50 = &fn_71007102c8;
-    static constexpr UnkFn fn_0x58 = &fn_7100710268;
-    static constexpr UnkFn fn_0x60 = &fn_710071027c;
-    static constexpr UnkFn fn_0x68 = &fn_7100710284;
+    static constexpr UnkFn construct = &fn_7100710290;
+    static constexpr UnkFn copy_construct = &fn_7100710298;
+    static constexpr UnkFn move_construct = &fn_71007102a4;
+    static constexpr UnkFn destroy = &fn_71007102b0;
+    static constexpr UnkFn copy_assign = &fn_71007102b4;
+    static constexpr UnkFn move_assign = &fn_71007102c8;
+    static constexpr UnkFn equals = &fn_7100710268;
+    static constexpr UnkFn hash = &fn_710071027c;
+    static constexpr UnkFn type_of = &fn_7100710284;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710070ff68*);
 struct UnkRefl_fn_71007314ec;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71007314ec> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71007314ec> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100732940;
-    static constexpr UnkFn fn_0x30 = &fn_7100732948;
-    static constexpr UnkFn fn_0x38 = &fn_7100732954;
-    static constexpr UnkFn fn_0x40 = &fn_7100732960;
-    static constexpr UnkFn fn_0x48 = &fn_7100732964;
-    static constexpr UnkFn fn_0x50 = &fn_7100732978;
-    static constexpr UnkFn fn_0x58 = &fn_7100732918;
-    static constexpr UnkFn fn_0x60 = &fn_710073292c;
-    static constexpr UnkFn fn_0x68 = &fn_7100732934;
+    static constexpr UnkFn construct = &fn_7100732940;
+    static constexpr UnkFn copy_construct = &fn_7100732948;
+    static constexpr UnkFn move_construct = &fn_7100732954;
+    static constexpr UnkFn destroy = &fn_7100732960;
+    static constexpr UnkFn copy_assign = &fn_7100732964;
+    static constexpr UnkFn move_assign = &fn_7100732978;
+    static constexpr UnkFn equals = &fn_7100732918;
+    static constexpr UnkFn hash = &fn_710073292c;
+    static constexpr UnkFn type_of = &fn_7100732934;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71007314ec*);
 struct UnkRefl_fn_710076bb6c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710076bb6c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710076bb6c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100779a54;
-    static constexpr UnkFn fn_0x30 = &fn_7100779a5c;
-    static constexpr UnkFn fn_0x38 = &fn_7100779a68;
-    static constexpr UnkFn fn_0x40 = &fn_7100779a74;
-    static constexpr UnkFn fn_0x48 = &fn_7100779a78;
-    static constexpr UnkFn fn_0x50 = &fn_7100779a8c;
-    static constexpr UnkFn fn_0x58 = &fn_7100779a2c;
-    static constexpr UnkFn fn_0x60 = &fn_7100779a40;
-    static constexpr UnkFn fn_0x68 = &fn_7100779a48;
+    static constexpr UnkFn construct = &fn_7100779a54;
+    static constexpr UnkFn copy_construct = &fn_7100779a5c;
+    static constexpr UnkFn move_construct = &fn_7100779a68;
+    static constexpr UnkFn destroy = &fn_7100779a74;
+    static constexpr UnkFn copy_assign = &fn_7100779a78;
+    static constexpr UnkFn move_assign = &fn_7100779a8c;
+    static constexpr UnkFn equals = &fn_7100779a2c;
+    static constexpr UnkFn hash = &fn_7100779a40;
+    static constexpr UnkFn type_of = &fn_7100779a48;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710076bb6c*);
 struct UnkRefl_fn_710077cb6c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710077cb6c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710077cb6c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710077cd14;
-    static constexpr UnkFn fn_0x30 = &fn_710077cd1c;
-    static constexpr UnkFn fn_0x38 = &fn_710077cd28;
-    static constexpr UnkFn fn_0x40 = &fn_710077cd34;
-    static constexpr UnkFn fn_0x48 = &fn_710077cd38;
-    static constexpr UnkFn fn_0x50 = &fn_710077cd4c;
-    static constexpr UnkFn fn_0x58 = &fn_710077ccec;
-    static constexpr UnkFn fn_0x60 = &fn_710077cd00;
-    static constexpr UnkFn fn_0x68 = &fn_710077cd08;
+    static constexpr UnkFn construct = &fn_710077cd14;
+    static constexpr UnkFn copy_construct = &fn_710077cd1c;
+    static constexpr UnkFn move_construct = &fn_710077cd28;
+    static constexpr UnkFn destroy = &fn_710077cd34;
+    static constexpr UnkFn copy_assign = &fn_710077cd38;
+    static constexpr UnkFn move_assign = &fn_710077cd4c;
+    static constexpr UnkFn equals = &fn_710077ccec;
+    static constexpr UnkFn hash = &fn_710077cd00;
+    static constexpr UnkFn type_of = &fn_710077cd08;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710077cb6c*);
 struct UnkRefl_fn_71007c62d4;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71007c62d4> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71007c62d4> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71007c7ec8;
-    static constexpr UnkFn fn_0x30 = &fn_71007c7ed0;
-    static constexpr UnkFn fn_0x38 = &fn_71007c7edc;
-    static constexpr UnkFn fn_0x40 = &fn_71007c7ee8;
-    static constexpr UnkFn fn_0x48 = &fn_71007c7eec;
-    static constexpr UnkFn fn_0x50 = &fn_71007c7f00;
-    static constexpr UnkFn fn_0x58 = &fn_71007c7ea0;
-    static constexpr UnkFn fn_0x60 = &fn_71007c7eb4;
-    static constexpr UnkFn fn_0x68 = &fn_71007c7ebc;
+    static constexpr UnkFn construct = &fn_71007c7ec8;
+    static constexpr UnkFn copy_construct = &fn_71007c7ed0;
+    static constexpr UnkFn move_construct = &fn_71007c7edc;
+    static constexpr UnkFn destroy = &fn_71007c7ee8;
+    static constexpr UnkFn copy_assign = &fn_71007c7eec;
+    static constexpr UnkFn move_assign = &fn_71007c7f00;
+    static constexpr UnkFn equals = &fn_71007c7ea0;
+    static constexpr UnkFn hash = &fn_71007c7eb4;
+    static constexpr UnkFn type_of = &fn_71007c7ebc;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71007c62d4*);
 struct UnkRefl_fn_71007c6600;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71007c6600> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71007c6600> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71007c7f3c;
-    static constexpr UnkFn fn_0x30 = &fn_71007c7f44;
-    static constexpr UnkFn fn_0x38 = &fn_71007c7f50;
-    static constexpr UnkFn fn_0x40 = &fn_71007c7f5c;
-    static constexpr UnkFn fn_0x48 = &fn_71007c7f60;
-    static constexpr UnkFn fn_0x50 = &fn_71007c7f74;
-    static constexpr UnkFn fn_0x58 = &fn_71007c7f14;
-    static constexpr UnkFn fn_0x60 = &fn_71007c7f28;
-    static constexpr UnkFn fn_0x68 = &fn_71007c7f30;
+    static constexpr UnkFn construct = &fn_71007c7f3c;
+    static constexpr UnkFn copy_construct = &fn_71007c7f44;
+    static constexpr UnkFn move_construct = &fn_71007c7f50;
+    static constexpr UnkFn destroy = &fn_71007c7f5c;
+    static constexpr UnkFn copy_assign = &fn_71007c7f60;
+    static constexpr UnkFn move_assign = &fn_71007c7f74;
+    static constexpr UnkFn equals = &fn_71007c7f14;
+    static constexpr UnkFn hash = &fn_71007c7f28;
+    static constexpr UnkFn type_of = &fn_71007c7f30;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71007c6600*);
 struct UnkRefl_fn_71007d573c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71007d573c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71007d573c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71007d5f98;
-    static constexpr UnkFn fn_0x30 = &fn_71007d5fa0;
-    static constexpr UnkFn fn_0x38 = &fn_71007d5fac;
-    static constexpr UnkFn fn_0x40 = &fn_71007d5fb8;
-    static constexpr UnkFn fn_0x48 = &fn_71007d5fbc;
-    static constexpr UnkFn fn_0x50 = &fn_71007d5fd0;
-    static constexpr UnkFn fn_0x58 = &fn_71007d5f70;
-    static constexpr UnkFn fn_0x60 = &fn_71007d5f84;
-    static constexpr UnkFn fn_0x68 = &fn_71007d5f8c;
+    static constexpr UnkFn construct = &fn_71007d5f98;
+    static constexpr UnkFn copy_construct = &fn_71007d5fa0;
+    static constexpr UnkFn move_construct = &fn_71007d5fac;
+    static constexpr UnkFn destroy = &fn_71007d5fb8;
+    static constexpr UnkFn copy_assign = &fn_71007d5fbc;
+    static constexpr UnkFn move_assign = &fn_71007d5fd0;
+    static constexpr UnkFn equals = &fn_71007d5f70;
+    static constexpr UnkFn hash = &fn_71007d5f84;
+    static constexpr UnkFn type_of = &fn_71007d5f8c;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71007d573c*);
 struct UnkRefl_fn_71007e8e2c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71007e8e2c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71007e8e2c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71007ecea4;
-    static constexpr UnkFn fn_0x30 = &fn_71007eceac;
-    static constexpr UnkFn fn_0x38 = &fn_71007eceb8;
-    static constexpr UnkFn fn_0x40 = &fn_71007ecec4;
-    static constexpr UnkFn fn_0x48 = &fn_71007ecec8;
-    static constexpr UnkFn fn_0x50 = &fn_71007ecedc;
-    static constexpr UnkFn fn_0x58 = &fn_71007ece7c;
-    static constexpr UnkFn fn_0x60 = &fn_71007ece90;
-    static constexpr UnkFn fn_0x68 = &fn_71007ece98;
+    static constexpr UnkFn construct = &fn_71007ecea4;
+    static constexpr UnkFn copy_construct = &fn_71007eceac;
+    static constexpr UnkFn move_construct = &fn_71007eceb8;
+    static constexpr UnkFn destroy = &fn_71007ecec4;
+    static constexpr UnkFn copy_assign = &fn_71007ecec8;
+    static constexpr UnkFn move_assign = &fn_71007ecedc;
+    static constexpr UnkFn equals = &fn_71007ece7c;
+    static constexpr UnkFn hash = &fn_71007ece90;
+    static constexpr UnkFn type_of = &fn_71007ece98;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71007e8e2c*);
 struct UnkRefl_fn_710083251c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710083251c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710083251c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71008341e4;
-    static constexpr UnkFn fn_0x30 = &fn_71008341ec;
-    static constexpr UnkFn fn_0x38 = &fn_71008341f8;
-    static constexpr UnkFn fn_0x40 = &fn_7100834204;
-    static constexpr UnkFn fn_0x48 = &fn_7100834208;
-    static constexpr UnkFn fn_0x50 = &fn_710083421c;
-    static constexpr UnkFn fn_0x58 = &fn_71008341bc;
-    static constexpr UnkFn fn_0x60 = &fn_71008341d0;
-    static constexpr UnkFn fn_0x68 = &fn_71008341d8;
+    static constexpr UnkFn construct = &fn_71008341e4;
+    static constexpr UnkFn copy_construct = &fn_71008341ec;
+    static constexpr UnkFn move_construct = &fn_71008341f8;
+    static constexpr UnkFn destroy = &fn_7100834204;
+    static constexpr UnkFn copy_assign = &fn_7100834208;
+    static constexpr UnkFn move_assign = &fn_710083421c;
+    static constexpr UnkFn equals = &fn_71008341bc;
+    static constexpr UnkFn hash = &fn_71008341d0;
+    static constexpr UnkFn type_of = &fn_71008341d8;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710083251c*);
 struct UnkRefl_fn_7100832848;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100832848> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100832848> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100834258;
-    static constexpr UnkFn fn_0x30 = &fn_7100834260;
-    static constexpr UnkFn fn_0x38 = &fn_710083426c;
-    static constexpr UnkFn fn_0x40 = &fn_7100834278;
-    static constexpr UnkFn fn_0x48 = &fn_710083427c;
-    static constexpr UnkFn fn_0x50 = &fn_7100834290;
-    static constexpr UnkFn fn_0x58 = &fn_7100834230;
-    static constexpr UnkFn fn_0x60 = &fn_7100834244;
-    static constexpr UnkFn fn_0x68 = &fn_710083424c;
+    static constexpr UnkFn construct = &fn_7100834258;
+    static constexpr UnkFn copy_construct = &fn_7100834260;
+    static constexpr UnkFn move_construct = &fn_710083426c;
+    static constexpr UnkFn destroy = &fn_7100834278;
+    static constexpr UnkFn copy_assign = &fn_710083427c;
+    static constexpr UnkFn move_assign = &fn_7100834290;
+    static constexpr UnkFn equals = &fn_7100834230;
+    static constexpr UnkFn hash = &fn_7100834244;
+    static constexpr UnkFn type_of = &fn_710083424c;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100832848*);
 struct UnkRefl_fn_71008751e4;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71008751e4> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71008751e4> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100875730;
-    static constexpr UnkFn fn_0x30 = &fn_7100875738;
-    static constexpr UnkFn fn_0x38 = &fn_7100875744;
-    static constexpr UnkFn fn_0x40 = &fn_7100875750;
-    static constexpr UnkFn fn_0x48 = &fn_7100875754;
-    static constexpr UnkFn fn_0x50 = &fn_7100875768;
-    static constexpr UnkFn fn_0x58 = &fn_7100875708;
-    static constexpr UnkFn fn_0x60 = &fn_710087571c;
-    static constexpr UnkFn fn_0x68 = &fn_7100875724;
+    static constexpr UnkFn construct = &fn_7100875730;
+    static constexpr UnkFn copy_construct = &fn_7100875738;
+    static constexpr UnkFn move_construct = &fn_7100875744;
+    static constexpr UnkFn destroy = &fn_7100875750;
+    static constexpr UnkFn copy_assign = &fn_7100875754;
+    static constexpr UnkFn move_assign = &fn_7100875768;
+    static constexpr UnkFn equals = &fn_7100875708;
+    static constexpr UnkFn hash = &fn_710087571c;
+    static constexpr UnkFn type_of = &fn_7100875724;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71008751e4*);
 struct UnkRefl_fn_7100875570;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100875570> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100875570> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71008757a4;
-    static constexpr UnkFn fn_0x30 = &fn_71008757ac;
-    static constexpr UnkFn fn_0x38 = &fn_71008757b8;
-    static constexpr UnkFn fn_0x40 = &fn_71008757c4;
-    static constexpr UnkFn fn_0x48 = &fn_71008757c8;
-    static constexpr UnkFn fn_0x50 = &fn_71008757dc;
-    static constexpr UnkFn fn_0x58 = &fn_710087577c;
-    static constexpr UnkFn fn_0x60 = &fn_7100875790;
-    static constexpr UnkFn fn_0x68 = &fn_7100875798;
+    static constexpr UnkFn construct = &fn_71008757a4;
+    static constexpr UnkFn copy_construct = &fn_71008757ac;
+    static constexpr UnkFn move_construct = &fn_71008757b8;
+    static constexpr UnkFn destroy = &fn_71008757c4;
+    static constexpr UnkFn copy_assign = &fn_71008757c8;
+    static constexpr UnkFn move_assign = &fn_71008757dc;
+    static constexpr UnkFn equals = &fn_710087577c;
+    static constexpr UnkFn hash = &fn_7100875790;
+    static constexpr UnkFn type_of = &fn_7100875798;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100875570*);
 struct UnkRefl_fn_71008c07c8;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71008c07c8> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71008c07c8> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71008c17f0;
-    static constexpr UnkFn fn_0x30 = &fn_71008c17f8;
-    static constexpr UnkFn fn_0x38 = &fn_71008c1804;
-    static constexpr UnkFn fn_0x40 = &fn_71008c1810;
-    static constexpr UnkFn fn_0x48 = &fn_71008c1814;
-    static constexpr UnkFn fn_0x50 = &fn_71008c1828;
-    static constexpr UnkFn fn_0x58 = &fn_71008c17c8;
-    static constexpr UnkFn fn_0x60 = &fn_71008c17dc;
-    static constexpr UnkFn fn_0x68 = &fn_71008c17e4;
+    static constexpr UnkFn construct = &fn_71008c17f0;
+    static constexpr UnkFn copy_construct = &fn_71008c17f8;
+    static constexpr UnkFn move_construct = &fn_71008c1804;
+    static constexpr UnkFn destroy = &fn_71008c1810;
+    static constexpr UnkFn copy_assign = &fn_71008c1814;
+    static constexpr UnkFn move_assign = &fn_71008c1828;
+    static constexpr UnkFn equals = &fn_71008c17c8;
+    static constexpr UnkFn hash = &fn_71008c17dc;
+    static constexpr UnkFn type_of = &fn_71008c17e4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71008c07c8*);
 struct UnkRefl_fn_71008c0af4;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71008c0af4> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71008c0af4> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71008c1864;
-    static constexpr UnkFn fn_0x30 = &fn_71008c186c;
-    static constexpr UnkFn fn_0x38 = &fn_71008c1878;
-    static constexpr UnkFn fn_0x40 = &fn_71008c1884;
-    static constexpr UnkFn fn_0x48 = &fn_71008c1888;
-    static constexpr UnkFn fn_0x50 = &fn_71008c189c;
-    static constexpr UnkFn fn_0x58 = &fn_71008c183c;
-    static constexpr UnkFn fn_0x60 = &fn_71008c1850;
-    static constexpr UnkFn fn_0x68 = &fn_71008c1858;
+    static constexpr UnkFn construct = &fn_71008c1864;
+    static constexpr UnkFn copy_construct = &fn_71008c186c;
+    static constexpr UnkFn move_construct = &fn_71008c1878;
+    static constexpr UnkFn destroy = &fn_71008c1884;
+    static constexpr UnkFn copy_assign = &fn_71008c1888;
+    static constexpr UnkFn move_assign = &fn_71008c189c;
+    static constexpr UnkFn equals = &fn_71008c183c;
+    static constexpr UnkFn hash = &fn_71008c1850;
+    static constexpr UnkFn type_of = &fn_71008c1858;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71008c0af4*);
 struct UnkRefl_fn_71008c348c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71008c348c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71008c348c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71008c364c;
-    static constexpr UnkFn fn_0x30 = &fn_71008c3654;
-    static constexpr UnkFn fn_0x38 = &fn_71008c3660;
-    static constexpr UnkFn fn_0x40 = &fn_71008c366c;
-    static constexpr UnkFn fn_0x48 = &fn_71008c3670;
-    static constexpr UnkFn fn_0x50 = &fn_71008c3684;
-    static constexpr UnkFn fn_0x58 = &fn_71008c3624;
-    static constexpr UnkFn fn_0x60 = &fn_71008c3638;
-    static constexpr UnkFn fn_0x68 = &fn_71008c3640;
+    static constexpr UnkFn construct = &fn_71008c364c;
+    static constexpr UnkFn copy_construct = &fn_71008c3654;
+    static constexpr UnkFn move_construct = &fn_71008c3660;
+    static constexpr UnkFn destroy = &fn_71008c366c;
+    static constexpr UnkFn copy_assign = &fn_71008c3670;
+    static constexpr UnkFn move_assign = &fn_71008c3684;
+    static constexpr UnkFn equals = &fn_71008c3624;
+    static constexpr UnkFn hash = &fn_71008c3638;
+    static constexpr UnkFn type_of = &fn_71008c3640;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71008c348c*);
 struct UnkRefl_fn_71008c448c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71008c448c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71008c448c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71008c8d9c;
-    static constexpr UnkFn fn_0x30 = &fn_71008c8da4;
-    static constexpr UnkFn fn_0x38 = &fn_71008c8db0;
-    static constexpr UnkFn fn_0x40 = &fn_71008c8dbc;
-    static constexpr UnkFn fn_0x48 = &fn_71008c8dc0;
-    static constexpr UnkFn fn_0x50 = &fn_71008c8dd4;
-    static constexpr UnkFn fn_0x58 = &fn_71008c8d74;
-    static constexpr UnkFn fn_0x60 = &fn_71008c8d88;
-    static constexpr UnkFn fn_0x68 = &fn_71008c8d90;
+    static constexpr UnkFn construct = &fn_71008c8d9c;
+    static constexpr UnkFn copy_construct = &fn_71008c8da4;
+    static constexpr UnkFn move_construct = &fn_71008c8db0;
+    static constexpr UnkFn destroy = &fn_71008c8dbc;
+    static constexpr UnkFn copy_assign = &fn_71008c8dc0;
+    static constexpr UnkFn move_assign = &fn_71008c8dd4;
+    static constexpr UnkFn equals = &fn_71008c8d74;
+    static constexpr UnkFn hash = &fn_71008c8d88;
+    static constexpr UnkFn type_of = &fn_71008c8d90;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71008c448c*);
 struct UnkRefl_fn_71008caef4;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71008caef4> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71008caef4> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71008dbf60;
-    static constexpr UnkFn fn_0x30 = &fn_71008dbf68;
-    static constexpr UnkFn fn_0x38 = &fn_71008dbf74;
-    static constexpr UnkFn fn_0x40 = &fn_71008dbf80;
-    static constexpr UnkFn fn_0x48 = &fn_71008dbf84;
-    static constexpr UnkFn fn_0x50 = &fn_71008dbf98;
-    static constexpr UnkFn fn_0x58 = &fn_71008dbf38;
-    static constexpr UnkFn fn_0x60 = &fn_71008dbf4c;
-    static constexpr UnkFn fn_0x68 = &fn_71008dbf54;
+    static constexpr UnkFn construct = &fn_71008dbf60;
+    static constexpr UnkFn copy_construct = &fn_71008dbf68;
+    static constexpr UnkFn move_construct = &fn_71008dbf74;
+    static constexpr UnkFn destroy = &fn_71008dbf80;
+    static constexpr UnkFn copy_assign = &fn_71008dbf84;
+    static constexpr UnkFn move_assign = &fn_71008dbf98;
+    static constexpr UnkFn equals = &fn_71008dbf38;
+    static constexpr UnkFn hash = &fn_71008dbf4c;
+    static constexpr UnkFn type_of = &fn_71008dbf54;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71008caef4*);
 struct UnkRefl_fn_71008dd720;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71008dd720> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71008dd720> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71008df3d8;
-    static constexpr UnkFn fn_0x30 = &fn_71008df3e0;
-    static constexpr UnkFn fn_0x38 = &fn_71008df3ec;
-    static constexpr UnkFn fn_0x40 = &fn_71008df3f8;
-    static constexpr UnkFn fn_0x48 = &fn_71008df3fc;
-    static constexpr UnkFn fn_0x50 = &fn_71008df410;
-    static constexpr UnkFn fn_0x58 = &fn_71008df3b0;
-    static constexpr UnkFn fn_0x60 = &fn_71008df3c4;
-    static constexpr UnkFn fn_0x68 = &fn_71008df3cc;
+    static constexpr UnkFn construct = &fn_71008df3d8;
+    static constexpr UnkFn copy_construct = &fn_71008df3e0;
+    static constexpr UnkFn move_construct = &fn_71008df3ec;
+    static constexpr UnkFn destroy = &fn_71008df3f8;
+    static constexpr UnkFn copy_assign = &fn_71008df3fc;
+    static constexpr UnkFn move_assign = &fn_71008df410;
+    static constexpr UnkFn equals = &fn_71008df3b0;
+    static constexpr UnkFn hash = &fn_71008df3c4;
+    static constexpr UnkFn type_of = &fn_71008df3cc;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71008dd720*);
 struct UnkRefl_fn_71008ddb6c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71008ddb6c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71008ddb6c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71008df44c;
-    static constexpr UnkFn fn_0x30 = &fn_71008df454;
-    static constexpr UnkFn fn_0x38 = &fn_71008df460;
-    static constexpr UnkFn fn_0x40 = &fn_71008df46c;
-    static constexpr UnkFn fn_0x48 = &fn_71008df470;
-    static constexpr UnkFn fn_0x50 = &fn_71008df484;
-    static constexpr UnkFn fn_0x58 = &fn_71008df424;
-    static constexpr UnkFn fn_0x60 = &fn_71008df438;
-    static constexpr UnkFn fn_0x68 = &fn_71008df440;
+    static constexpr UnkFn construct = &fn_71008df44c;
+    static constexpr UnkFn copy_construct = &fn_71008df454;
+    static constexpr UnkFn move_construct = &fn_71008df460;
+    static constexpr UnkFn destroy = &fn_71008df46c;
+    static constexpr UnkFn copy_assign = &fn_71008df470;
+    static constexpr UnkFn move_assign = &fn_71008df484;
+    static constexpr UnkFn equals = &fn_71008df424;
+    static constexpr UnkFn hash = &fn_71008df438;
+    static constexpr UnkFn type_of = &fn_71008df440;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71008ddb6c*);
 struct UnkRefl_fn_71008fff3c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71008fff3c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71008fff3c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710090529c;
-    static constexpr UnkFn fn_0x30 = &fn_71009052a4;
-    static constexpr UnkFn fn_0x38 = &fn_71009052b0;
-    static constexpr UnkFn fn_0x40 = &fn_71009052bc;
-    static constexpr UnkFn fn_0x48 = &fn_71009052c0;
-    static constexpr UnkFn fn_0x50 = &fn_71009052d4;
-    static constexpr UnkFn fn_0x58 = &fn_7100905274;
-    static constexpr UnkFn fn_0x60 = &fn_7100905288;
-    static constexpr UnkFn fn_0x68 = &fn_7100905290;
+    static constexpr UnkFn construct = &fn_710090529c;
+    static constexpr UnkFn copy_construct = &fn_71009052a4;
+    static constexpr UnkFn move_construct = &fn_71009052b0;
+    static constexpr UnkFn destroy = &fn_71009052bc;
+    static constexpr UnkFn copy_assign = &fn_71009052c0;
+    static constexpr UnkFn move_assign = &fn_71009052d4;
+    static constexpr UnkFn equals = &fn_7100905274;
+    static constexpr UnkFn hash = &fn_7100905288;
+    static constexpr UnkFn type_of = &fn_7100905290;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71008fff3c*);
 struct UnkRefl_fn_710092872c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_710092872c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_710092872c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100931f34;
-    static constexpr UnkFn fn_0x30 = &fn_7100931f3c;
-    static constexpr UnkFn fn_0x38 = &fn_7100931f48;
-    static constexpr UnkFn fn_0x40 = &fn_7100931f54;
-    static constexpr UnkFn fn_0x48 = &fn_7100931f58;
-    static constexpr UnkFn fn_0x50 = &fn_7100931f6c;
-    static constexpr UnkFn fn_0x58 = &fn_7100931f0c;
-    static constexpr UnkFn fn_0x60 = &fn_7100931f20;
-    static constexpr UnkFn fn_0x68 = &fn_7100931f28;
+    static constexpr UnkFn construct = &fn_7100931f34;
+    static constexpr UnkFn copy_construct = &fn_7100931f3c;
+    static constexpr UnkFn move_construct = &fn_7100931f48;
+    static constexpr UnkFn destroy = &fn_7100931f54;
+    static constexpr UnkFn copy_assign = &fn_7100931f58;
+    static constexpr UnkFn move_assign = &fn_7100931f6c;
+    static constexpr UnkFn equals = &fn_7100931f0c;
+    static constexpr UnkFn hash = &fn_7100931f20;
+    static constexpr UnkFn type_of = &fn_7100931f28;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710092872c*);
 struct UnkRefl_fn_7100954438;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100954438> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100954438> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100954758;
-    static constexpr UnkFn fn_0x30 = &fn_7100954760;
-    static constexpr UnkFn fn_0x38 = &fn_710095476c;
-    static constexpr UnkFn fn_0x40 = &fn_7100954778;
-    static constexpr UnkFn fn_0x48 = &fn_710095477c;
-    static constexpr UnkFn fn_0x50 = &fn_7100954790;
-    static constexpr UnkFn fn_0x58 = &fn_7100954730;
-    static constexpr UnkFn fn_0x60 = &fn_7100954744;
-    static constexpr UnkFn fn_0x68 = &fn_710095474c;
+    static constexpr UnkFn construct = &fn_7100954758;
+    static constexpr UnkFn copy_construct = &fn_7100954760;
+    static constexpr UnkFn move_construct = &fn_710095476c;
+    static constexpr UnkFn destroy = &fn_7100954778;
+    static constexpr UnkFn copy_assign = &fn_710095477c;
+    static constexpr UnkFn move_assign = &fn_7100954790;
+    static constexpr UnkFn equals = &fn_7100954730;
+    static constexpr UnkFn hash = &fn_7100954744;
+    static constexpr UnkFn type_of = &fn_710095474c;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100954438*);
 struct UnkRefl_fn_7100956118;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100956118> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100956118> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_710096505c;
-    static constexpr UnkFn fn_0x30 = &fn_7100965064;
-    static constexpr UnkFn fn_0x38 = &fn_7100965070;
-    static constexpr UnkFn fn_0x40 = &fn_710096507c;
-    static constexpr UnkFn fn_0x48 = &fn_7100965080;
-    static constexpr UnkFn fn_0x50 = &fn_7100965094;
-    static constexpr UnkFn fn_0x58 = &fn_7100965034;
-    static constexpr UnkFn fn_0x60 = &fn_7100965048;
-    static constexpr UnkFn fn_0x68 = &fn_7100965050;
+    static constexpr UnkFn construct = &fn_710096505c;
+    static constexpr UnkFn copy_construct = &fn_7100965064;
+    static constexpr UnkFn move_construct = &fn_7100965070;
+    static constexpr UnkFn destroy = &fn_710096507c;
+    static constexpr UnkFn copy_assign = &fn_7100965080;
+    static constexpr UnkFn move_assign = &fn_7100965094;
+    static constexpr UnkFn equals = &fn_7100965034;
+    static constexpr UnkFn hash = &fn_7100965048;
+    static constexpr UnkFn type_of = &fn_7100965050;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100956118*);
 struct UnkRefl_fn_71009828d0;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71009828d0> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71009828d0> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100982a90;
-    static constexpr UnkFn fn_0x30 = &fn_7100982a98;
-    static constexpr UnkFn fn_0x38 = &fn_7100982aa4;
-    static constexpr UnkFn fn_0x40 = &fn_7100982ab0;
-    static constexpr UnkFn fn_0x48 = &fn_7100982ab4;
-    static constexpr UnkFn fn_0x50 = &fn_7100982ac8;
-    static constexpr UnkFn fn_0x58 = &fn_7100982a68;
-    static constexpr UnkFn fn_0x60 = &fn_7100982a7c;
-    static constexpr UnkFn fn_0x68 = &fn_7100982a84;
+    static constexpr UnkFn construct = &fn_7100982a90;
+    static constexpr UnkFn copy_construct = &fn_7100982a98;
+    static constexpr UnkFn move_construct = &fn_7100982aa4;
+    static constexpr UnkFn destroy = &fn_7100982ab0;
+    static constexpr UnkFn copy_assign = &fn_7100982ab4;
+    static constexpr UnkFn move_assign = &fn_7100982ac8;
+    static constexpr UnkFn equals = &fn_7100982a68;
+    static constexpr UnkFn hash = &fn_7100982a7c;
+    static constexpr UnkFn type_of = &fn_7100982a84;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71009828d0*);
 struct UnkRefl_fn_71009a4b9c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71009a4b9c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71009a4b9c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71009af9a8;
-    static constexpr UnkFn fn_0x30 = &fn_71009af9b0;
-    static constexpr UnkFn fn_0x38 = &fn_71009af9bc;
-    static constexpr UnkFn fn_0x40 = &fn_71009af9c8;
-    static constexpr UnkFn fn_0x48 = &fn_71009af9cc;
-    static constexpr UnkFn fn_0x50 = &fn_71009af9e0;
-    static constexpr UnkFn fn_0x58 = &fn_71009af980;
-    static constexpr UnkFn fn_0x60 = &fn_71009af994;
-    static constexpr UnkFn fn_0x68 = &fn_71009af99c;
+    static constexpr UnkFn construct = &fn_71009af9a8;
+    static constexpr UnkFn copy_construct = &fn_71009af9b0;
+    static constexpr UnkFn move_construct = &fn_71009af9bc;
+    static constexpr UnkFn destroy = &fn_71009af9c8;
+    static constexpr UnkFn copy_assign = &fn_71009af9cc;
+    static constexpr UnkFn move_assign = &fn_71009af9e0;
+    static constexpr UnkFn equals = &fn_71009af980;
+    static constexpr UnkFn hash = &fn_71009af994;
+    static constexpr UnkFn type_of = &fn_71009af99c;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71009a4b9c*);
 struct UnkRefl_fn_71009b5c38;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71009b5c38> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71009b5c38> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71009b6db0;
-    static constexpr UnkFn fn_0x30 = &fn_71009b6db8;
-    static constexpr UnkFn fn_0x38 = &fn_71009b6dc4;
-    static constexpr UnkFn fn_0x40 = &fn_71009b6dd0;
-    static constexpr UnkFn fn_0x48 = &fn_71009b6dd4;
-    static constexpr UnkFn fn_0x50 = &fn_71009b6de8;
-    static constexpr UnkFn fn_0x58 = &fn_71009b6d88;
-    static constexpr UnkFn fn_0x60 = &fn_71009b6d9c;
-    static constexpr UnkFn fn_0x68 = &fn_71009b6da4;
+    static constexpr UnkFn construct = &fn_71009b6db0;
+    static constexpr UnkFn copy_construct = &fn_71009b6db8;
+    static constexpr UnkFn move_construct = &fn_71009b6dc4;
+    static constexpr UnkFn destroy = &fn_71009b6dd0;
+    static constexpr UnkFn copy_assign = &fn_71009b6dd4;
+    static constexpr UnkFn move_assign = &fn_71009b6de8;
+    static constexpr UnkFn equals = &fn_71009b6d88;
+    static constexpr UnkFn hash = &fn_71009b6d9c;
+    static constexpr UnkFn type_of = &fn_71009b6da4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71009b5c38*);
 struct UnkRefl_fn_71009bb50c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71009bb50c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71009bb50c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71009bbe00;
-    static constexpr UnkFn fn_0x30 = &fn_71009bbe08;
-    static constexpr UnkFn fn_0x38 = &fn_71009bbe14;
-    static constexpr UnkFn fn_0x40 = &fn_71009bbe20;
-    static constexpr UnkFn fn_0x48 = &fn_71009bbe24;
-    static constexpr UnkFn fn_0x50 = &fn_71009bbe38;
-    static constexpr UnkFn fn_0x58 = &fn_71009bbdd8;
-    static constexpr UnkFn fn_0x60 = &fn_71009bbdec;
-    static constexpr UnkFn fn_0x68 = &fn_71009bbdf4;
+    static constexpr UnkFn construct = &fn_71009bbe00;
+    static constexpr UnkFn copy_construct = &fn_71009bbe08;
+    static constexpr UnkFn move_construct = &fn_71009bbe14;
+    static constexpr UnkFn destroy = &fn_71009bbe20;
+    static constexpr UnkFn copy_assign = &fn_71009bbe24;
+    static constexpr UnkFn move_assign = &fn_71009bbe38;
+    static constexpr UnkFn equals = &fn_71009bbdd8;
+    static constexpr UnkFn hash = &fn_71009bbdec;
+    static constexpr UnkFn type_of = &fn_71009bbdf4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71009bb50c*);
 struct UnkRefl_fn_71009c5814;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71009c5814> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71009c5814> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71009c6888;
-    static constexpr UnkFn fn_0x30 = &fn_71009c6890;
-    static constexpr UnkFn fn_0x38 = &fn_71009c689c;
-    static constexpr UnkFn fn_0x40 = &fn_71009c68a8;
-    static constexpr UnkFn fn_0x48 = &fn_71009c68ac;
-    static constexpr UnkFn fn_0x50 = &fn_71009c68c0;
-    static constexpr UnkFn fn_0x58 = &fn_71009c6860;
-    static constexpr UnkFn fn_0x60 = &fn_71009c6874;
-    static constexpr UnkFn fn_0x68 = &fn_71009c687c;
+    static constexpr UnkFn construct = &fn_71009c6888;
+    static constexpr UnkFn copy_construct = &fn_71009c6890;
+    static constexpr UnkFn move_construct = &fn_71009c689c;
+    static constexpr UnkFn destroy = &fn_71009c68a8;
+    static constexpr UnkFn copy_assign = &fn_71009c68ac;
+    static constexpr UnkFn move_assign = &fn_71009c68c0;
+    static constexpr UnkFn equals = &fn_71009c6860;
+    static constexpr UnkFn hash = &fn_71009c6874;
+    static constexpr UnkFn type_of = &fn_71009c687c;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71009c5814*);
 struct UnkRefl_fn_71009d7c0c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71009d7c0c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71009d7c0c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71009d93a8;
-    static constexpr UnkFn fn_0x30 = &fn_71009d93b0;
-    static constexpr UnkFn fn_0x38 = &fn_71009d93bc;
-    static constexpr UnkFn fn_0x40 = &fn_71009d93c8;
-    static constexpr UnkFn fn_0x48 = &fn_71009d93cc;
-    static constexpr UnkFn fn_0x50 = &fn_71009d93e0;
-    static constexpr UnkFn fn_0x58 = &fn_71009d9380;
-    static constexpr UnkFn fn_0x60 = &fn_71009d9394;
-    static constexpr UnkFn fn_0x68 = &fn_71009d939c;
+    static constexpr UnkFn construct = &fn_71009d93a8;
+    static constexpr UnkFn copy_construct = &fn_71009d93b0;
+    static constexpr UnkFn move_construct = &fn_71009d93bc;
+    static constexpr UnkFn destroy = &fn_71009d93c8;
+    static constexpr UnkFn copy_assign = &fn_71009d93cc;
+    static constexpr UnkFn move_assign = &fn_71009d93e0;
+    static constexpr UnkFn equals = &fn_71009d9380;
+    static constexpr UnkFn hash = &fn_71009d9394;
+    static constexpr UnkFn type_of = &fn_71009d939c;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71009d7c0c*);
 struct UnkRefl_fn_71009df32c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_71009df32c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_71009df32c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_71009f10e0;
-    static constexpr UnkFn fn_0x30 = &fn_71009f10e8;
-    static constexpr UnkFn fn_0x38 = &fn_71009f10f4;
-    static constexpr UnkFn fn_0x40 = &fn_71009f1100;
-    static constexpr UnkFn fn_0x48 = &fn_71009f1104;
-    static constexpr UnkFn fn_0x50 = &fn_71009f1118;
-    static constexpr UnkFn fn_0x58 = &fn_71009f10b8;
-    static constexpr UnkFn fn_0x60 = &fn_71009f10cc;
-    static constexpr UnkFn fn_0x68 = &fn_71009f10d4;
+    static constexpr UnkFn construct = &fn_71009f10e0;
+    static constexpr UnkFn copy_construct = &fn_71009f10e8;
+    static constexpr UnkFn move_construct = &fn_71009f10f4;
+    static constexpr UnkFn destroy = &fn_71009f1100;
+    static constexpr UnkFn copy_assign = &fn_71009f1104;
+    static constexpr UnkFn move_assign = &fn_71009f1118;
+    static constexpr UnkFn equals = &fn_71009f10b8;
+    static constexpr UnkFn hash = &fn_71009f10cc;
+    static constexpr UnkFn type_of = &fn_71009f10d4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71009df32c*);
 struct UnkRefl_fn_7100a11bfc;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100a11bfc> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100a11bfc> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100a133dc;
-    static constexpr UnkFn fn_0x30 = &fn_7100a133e4;
-    static constexpr UnkFn fn_0x38 = &fn_7100a133f0;
-    static constexpr UnkFn fn_0x40 = &fn_7100a133fc;
-    static constexpr UnkFn fn_0x48 = &fn_7100a13400;
-    static constexpr UnkFn fn_0x50 = &fn_7100a13414;
-    static constexpr UnkFn fn_0x58 = &fn_7100a133b4;
-    static constexpr UnkFn fn_0x60 = &fn_7100a133c8;
-    static constexpr UnkFn fn_0x68 = &fn_7100a133d0;
+    static constexpr UnkFn construct = &fn_7100a133dc;
+    static constexpr UnkFn copy_construct = &fn_7100a133e4;
+    static constexpr UnkFn move_construct = &fn_7100a133f0;
+    static constexpr UnkFn destroy = &fn_7100a133fc;
+    static constexpr UnkFn copy_assign = &fn_7100a13400;
+    static constexpr UnkFn move_assign = &fn_7100a13414;
+    static constexpr UnkFn equals = &fn_7100a133b4;
+    static constexpr UnkFn hash = &fn_7100a133c8;
+    static constexpr UnkFn type_of = &fn_7100a133d0;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100a11bfc*);
 struct UnkRefl_fn_7100a11ec8;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100a11ec8> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100a11ec8> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100a13450;
-    static constexpr UnkFn fn_0x30 = &fn_7100a13458;
-    static constexpr UnkFn fn_0x38 = &fn_7100a13464;
-    static constexpr UnkFn fn_0x40 = &fn_7100a13470;
-    static constexpr UnkFn fn_0x48 = &fn_7100a13474;
-    static constexpr UnkFn fn_0x50 = &fn_7100a13488;
-    static constexpr UnkFn fn_0x58 = &fn_7100a13428;
-    static constexpr UnkFn fn_0x60 = &fn_7100a1343c;
-    static constexpr UnkFn fn_0x68 = &fn_7100a13444;
+    static constexpr UnkFn construct = &fn_7100a13450;
+    static constexpr UnkFn copy_construct = &fn_7100a13458;
+    static constexpr UnkFn move_construct = &fn_7100a13464;
+    static constexpr UnkFn destroy = &fn_7100a13470;
+    static constexpr UnkFn copy_assign = &fn_7100a13474;
+    static constexpr UnkFn move_assign = &fn_7100a13488;
+    static constexpr UnkFn equals = &fn_7100a13428;
+    static constexpr UnkFn hash = &fn_7100a1343c;
+    static constexpr UnkFn type_of = &fn_7100a13444;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100a11ec8*);
 struct UnkRefl_fn_7100a13a4c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100a13a4c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100a13a4c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100a147b4;
-    static constexpr UnkFn fn_0x30 = &fn_7100a147bc;
-    static constexpr UnkFn fn_0x38 = &fn_7100a147c8;
-    static constexpr UnkFn fn_0x40 = &fn_7100a147d4;
-    static constexpr UnkFn fn_0x48 = &fn_7100a147d8;
-    static constexpr UnkFn fn_0x50 = &fn_7100a147ec;
-    static constexpr UnkFn fn_0x58 = &fn_7100a1478c;
-    static constexpr UnkFn fn_0x60 = &fn_7100a147a0;
-    static constexpr UnkFn fn_0x68 = &fn_7100a147a8;
+    static constexpr UnkFn construct = &fn_7100a147b4;
+    static constexpr UnkFn copy_construct = &fn_7100a147bc;
+    static constexpr UnkFn move_construct = &fn_7100a147c8;
+    static constexpr UnkFn destroy = &fn_7100a147d4;
+    static constexpr UnkFn copy_assign = &fn_7100a147d8;
+    static constexpr UnkFn move_assign = &fn_7100a147ec;
+    static constexpr UnkFn equals = &fn_7100a1478c;
+    static constexpr UnkFn hash = &fn_7100a147a0;
+    static constexpr UnkFn type_of = &fn_7100a147a8;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100a13a4c*);
 struct UnkRefl_fn_7100a14bf8;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100a14bf8> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100a14bf8> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100a151a8;
-    static constexpr UnkFn fn_0x30 = &fn_7100a151b0;
-    static constexpr UnkFn fn_0x38 = &fn_7100a151bc;
-    static constexpr UnkFn fn_0x40 = &fn_7100a151c8;
-    static constexpr UnkFn fn_0x48 = &fn_7100a151cc;
-    static constexpr UnkFn fn_0x50 = &fn_7100a151e0;
-    static constexpr UnkFn fn_0x58 = &fn_7100a15180;
-    static constexpr UnkFn fn_0x60 = &fn_7100a15194;
-    static constexpr UnkFn fn_0x68 = &fn_7100a1519c;
+    static constexpr UnkFn construct = &fn_7100a151a8;
+    static constexpr UnkFn copy_construct = &fn_7100a151b0;
+    static constexpr UnkFn move_construct = &fn_7100a151bc;
+    static constexpr UnkFn destroy = &fn_7100a151c8;
+    static constexpr UnkFn copy_assign = &fn_7100a151cc;
+    static constexpr UnkFn move_assign = &fn_7100a151e0;
+    static constexpr UnkFn equals = &fn_7100a15180;
+    static constexpr UnkFn hash = &fn_7100a15194;
+    static constexpr UnkFn type_of = &fn_7100a1519c;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100a14bf8*);
 struct UnkRefl_fn_7100a15560;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100a15560> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100a15560> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100a17980;
-    static constexpr UnkFn fn_0x30 = &fn_7100a17988;
-    static constexpr UnkFn fn_0x38 = &fn_7100a17994;
-    static constexpr UnkFn fn_0x40 = &fn_7100a179a0;
-    static constexpr UnkFn fn_0x48 = &fn_7100a179a4;
-    static constexpr UnkFn fn_0x50 = &fn_7100a179b8;
-    static constexpr UnkFn fn_0x58 = &fn_7100a17958;
-    static constexpr UnkFn fn_0x60 = &fn_7100a1796c;
-    static constexpr UnkFn fn_0x68 = &fn_7100a17974;
+    static constexpr UnkFn construct = &fn_7100a17980;
+    static constexpr UnkFn copy_construct = &fn_7100a17988;
+    static constexpr UnkFn move_construct = &fn_7100a17994;
+    static constexpr UnkFn destroy = &fn_7100a179a0;
+    static constexpr UnkFn copy_assign = &fn_7100a179a4;
+    static constexpr UnkFn move_assign = &fn_7100a179b8;
+    static constexpr UnkFn equals = &fn_7100a17958;
+    static constexpr UnkFn hash = &fn_7100a1796c;
+    static constexpr UnkFn type_of = &fn_7100a17974;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100a15560*);
 struct UnkRefl_fn_7100a1588c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100a1588c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100a1588c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100a179f4;
-    static constexpr UnkFn fn_0x30 = &fn_7100a179fc;
-    static constexpr UnkFn fn_0x38 = &fn_7100a17a08;
-    static constexpr UnkFn fn_0x40 = &fn_7100a17a14;
-    static constexpr UnkFn fn_0x48 = &fn_7100a17a18;
-    static constexpr UnkFn fn_0x50 = &fn_7100a17a2c;
-    static constexpr UnkFn fn_0x58 = &fn_7100a179cc;
-    static constexpr UnkFn fn_0x60 = &fn_7100a179e0;
-    static constexpr UnkFn fn_0x68 = &fn_7100a179e8;
+    static constexpr UnkFn construct = &fn_7100a179f4;
+    static constexpr UnkFn copy_construct = &fn_7100a179fc;
+    static constexpr UnkFn move_construct = &fn_7100a17a08;
+    static constexpr UnkFn destroy = &fn_7100a17a14;
+    static constexpr UnkFn copy_assign = &fn_7100a17a18;
+    static constexpr UnkFn move_assign = &fn_7100a17a2c;
+    static constexpr UnkFn equals = &fn_7100a179cc;
+    static constexpr UnkFn hash = &fn_7100a179e0;
+    static constexpr UnkFn type_of = &fn_7100a179e8;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100a1588c*);
 struct UnkRefl_fn_7100a1cd3c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100a1cd3c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100a1cd3c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100a1d480;
-    static constexpr UnkFn fn_0x30 = &fn_7100a1d488;
-    static constexpr UnkFn fn_0x38 = &fn_7100a1d494;
-    static constexpr UnkFn fn_0x40 = &fn_7100a1d4a0;
-    static constexpr UnkFn fn_0x48 = &fn_7100a1d4a4;
-    static constexpr UnkFn fn_0x50 = &fn_7100a1d4b8;
-    static constexpr UnkFn fn_0x58 = &fn_7100a1d458;
-    static constexpr UnkFn fn_0x60 = &fn_7100a1d46c;
-    static constexpr UnkFn fn_0x68 = &fn_7100a1d474;
+    static constexpr UnkFn construct = &fn_7100a1d480;
+    static constexpr UnkFn copy_construct = &fn_7100a1d488;
+    static constexpr UnkFn move_construct = &fn_7100a1d494;
+    static constexpr UnkFn destroy = &fn_7100a1d4a0;
+    static constexpr UnkFn copy_assign = &fn_7100a1d4a4;
+    static constexpr UnkFn move_assign = &fn_7100a1d4b8;
+    static constexpr UnkFn equals = &fn_7100a1d458;
+    static constexpr UnkFn hash = &fn_7100a1d46c;
+    static constexpr UnkFn type_of = &fn_7100a1d474;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100a1cd3c*);
 struct UnkRefl_fn_7100a21a4c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100a21a4c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100a21a4c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100a243dc;
-    static constexpr UnkFn fn_0x30 = &fn_7100a243e4;
-    static constexpr UnkFn fn_0x38 = &fn_7100a243f0;
-    static constexpr UnkFn fn_0x40 = &fn_7100a243fc;
-    static constexpr UnkFn fn_0x48 = &fn_7100a24400;
-    static constexpr UnkFn fn_0x50 = &fn_7100a24414;
-    static constexpr UnkFn fn_0x58 = &fn_7100a243b4;
-    static constexpr UnkFn fn_0x60 = &fn_7100a243c8;
-    static constexpr UnkFn fn_0x68 = &fn_7100a243d0;
+    static constexpr UnkFn construct = &fn_7100a243dc;
+    static constexpr UnkFn copy_construct = &fn_7100a243e4;
+    static constexpr UnkFn move_construct = &fn_7100a243f0;
+    static constexpr UnkFn destroy = &fn_7100a243fc;
+    static constexpr UnkFn copy_assign = &fn_7100a24400;
+    static constexpr UnkFn move_assign = &fn_7100a24414;
+    static constexpr UnkFn equals = &fn_7100a243b4;
+    static constexpr UnkFn hash = &fn_7100a243c8;
+    static constexpr UnkFn type_of = &fn_7100a243d0;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100a21a4c*);
 struct UnkRefl_fn_7100a24c3c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100a24c3c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100a24c3c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100a2812c;
-    static constexpr UnkFn fn_0x30 = &fn_7100a28134;
-    static constexpr UnkFn fn_0x38 = &fn_7100a28140;
-    static constexpr UnkFn fn_0x40 = &fn_7100a2814c;
-    static constexpr UnkFn fn_0x48 = &fn_7100a28150;
-    static constexpr UnkFn fn_0x50 = &fn_7100a28164;
-    static constexpr UnkFn fn_0x58 = &fn_7100a28104;
-    static constexpr UnkFn fn_0x60 = &fn_7100a28118;
-    static constexpr UnkFn fn_0x68 = &fn_7100a28120;
+    static constexpr UnkFn construct = &fn_7100a2812c;
+    static constexpr UnkFn copy_construct = &fn_7100a28134;
+    static constexpr UnkFn move_construct = &fn_7100a28140;
+    static constexpr UnkFn destroy = &fn_7100a2814c;
+    static constexpr UnkFn copy_assign = &fn_7100a28150;
+    static constexpr UnkFn move_assign = &fn_7100a28164;
+    static constexpr UnkFn equals = &fn_7100a28104;
+    static constexpr UnkFn hash = &fn_7100a28118;
+    static constexpr UnkFn type_of = &fn_7100a28120;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100a24c3c*);
 struct UnkRefl_fn_7100a2a00c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100a2a00c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100a2a00c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100a2d880;
-    static constexpr UnkFn fn_0x30 = &fn_7100a2d888;
-    static constexpr UnkFn fn_0x38 = &fn_7100a2d894;
-    static constexpr UnkFn fn_0x40 = &fn_7100a2d8a0;
-    static constexpr UnkFn fn_0x48 = &fn_7100a2d8a4;
-    static constexpr UnkFn fn_0x50 = &fn_7100a2d8b8;
-    static constexpr UnkFn fn_0x58 = &fn_7100a2d858;
-    static constexpr UnkFn fn_0x60 = &fn_7100a2d86c;
-    static constexpr UnkFn fn_0x68 = &fn_7100a2d874;
+    static constexpr UnkFn construct = &fn_7100a2d880;
+    static constexpr UnkFn copy_construct = &fn_7100a2d888;
+    static constexpr UnkFn move_construct = &fn_7100a2d894;
+    static constexpr UnkFn destroy = &fn_7100a2d8a0;
+    static constexpr UnkFn copy_assign = &fn_7100a2d8a4;
+    static constexpr UnkFn move_assign = &fn_7100a2d8b8;
+    static constexpr UnkFn equals = &fn_7100a2d858;
+    static constexpr UnkFn hash = &fn_7100a2d86c;
+    static constexpr UnkFn type_of = &fn_7100a2d874;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100a2a00c*);
 struct UnkRefl_fn_7100a37aac;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100a37aac> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100a37aac> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100a3a79c;
-    static constexpr UnkFn fn_0x30 = &fn_7100a3a7a4;
-    static constexpr UnkFn fn_0x38 = &fn_7100a3a7b0;
-    static constexpr UnkFn fn_0x40 = &fn_7100a3a7bc;
-    static constexpr UnkFn fn_0x48 = &fn_7100a3a7c0;
-    static constexpr UnkFn fn_0x50 = &fn_7100a3a7d4;
-    static constexpr UnkFn fn_0x58 = &fn_7100a3a774;
-    static constexpr UnkFn fn_0x60 = &fn_7100a3a788;
-    static constexpr UnkFn fn_0x68 = &fn_7100a3a790;
+    static constexpr UnkFn construct = &fn_7100a3a79c;
+    static constexpr UnkFn copy_construct = &fn_7100a3a7a4;
+    static constexpr UnkFn move_construct = &fn_7100a3a7b0;
+    static constexpr UnkFn destroy = &fn_7100a3a7bc;
+    static constexpr UnkFn copy_assign = &fn_7100a3a7c0;
+    static constexpr UnkFn move_assign = &fn_7100a3a7d4;
+    static constexpr UnkFn equals = &fn_7100a3a774;
+    static constexpr UnkFn hash = &fn_7100a3a788;
+    static constexpr UnkFn type_of = &fn_7100a3a790;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100a37aac*);
 struct UnkRefl_fn_7100a40d1c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100a40d1c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100a40d1c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100a41950;
-    static constexpr UnkFn fn_0x30 = &fn_7100a41958;
-    static constexpr UnkFn fn_0x38 = &fn_7100a41964;
-    static constexpr UnkFn fn_0x40 = &fn_7100a41970;
-    static constexpr UnkFn fn_0x48 = &fn_7100a41974;
-    static constexpr UnkFn fn_0x50 = &fn_7100a41988;
-    static constexpr UnkFn fn_0x58 = &fn_7100a41928;
-    static constexpr UnkFn fn_0x60 = &fn_7100a4193c;
-    static constexpr UnkFn fn_0x68 = &fn_7100a41944;
+    static constexpr UnkFn construct = &fn_7100a41950;
+    static constexpr UnkFn copy_construct = &fn_7100a41958;
+    static constexpr UnkFn move_construct = &fn_7100a41964;
+    static constexpr UnkFn destroy = &fn_7100a41970;
+    static constexpr UnkFn copy_assign = &fn_7100a41974;
+    static constexpr UnkFn move_assign = &fn_7100a41988;
+    static constexpr UnkFn equals = &fn_7100a41928;
+    static constexpr UnkFn hash = &fn_7100a4193c;
+    static constexpr UnkFn type_of = &fn_7100a41944;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100a40d1c*);
 struct UnkRefl_fn_7100a4d014;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100a4d014> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100a4d014> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100a4d76c;
-    static constexpr UnkFn fn_0x30 = &fn_7100a4d774;
-    static constexpr UnkFn fn_0x38 = &fn_7100a4d780;
-    static constexpr UnkFn fn_0x40 = &fn_7100a4d78c;
-    static constexpr UnkFn fn_0x48 = &fn_7100a4d790;
-    static constexpr UnkFn fn_0x50 = &fn_7100a4d7a4;
-    static constexpr UnkFn fn_0x58 = &fn_7100a4d744;
-    static constexpr UnkFn fn_0x60 = &fn_7100a4d758;
-    static constexpr UnkFn fn_0x68 = &fn_7100a4d760;
+    static constexpr UnkFn construct = &fn_7100a4d76c;
+    static constexpr UnkFn copy_construct = &fn_7100a4d774;
+    static constexpr UnkFn move_construct = &fn_7100a4d780;
+    static constexpr UnkFn destroy = &fn_7100a4d78c;
+    static constexpr UnkFn copy_assign = &fn_7100a4d790;
+    static constexpr UnkFn move_assign = &fn_7100a4d7a4;
+    static constexpr UnkFn equals = &fn_7100a4d744;
+    static constexpr UnkFn hash = &fn_7100a4d758;
+    static constexpr UnkFn type_of = &fn_7100a4d760;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100a4d014*);
 struct UnkRefl_fn_7100a4e66c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100a4e66c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100a4e66c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100a4f514;
-    static constexpr UnkFn fn_0x30 = &fn_7100a4f51c;
-    static constexpr UnkFn fn_0x38 = &fn_7100a4f528;
-    static constexpr UnkFn fn_0x40 = &fn_7100a4f534;
-    static constexpr UnkFn fn_0x48 = &fn_7100a4f538;
-    static constexpr UnkFn fn_0x50 = &fn_7100a4f54c;
-    static constexpr UnkFn fn_0x58 = &fn_7100a4f4ec;
-    static constexpr UnkFn fn_0x60 = &fn_7100a4f500;
-    static constexpr UnkFn fn_0x68 = &fn_7100a4f508;
+    static constexpr UnkFn construct = &fn_7100a4f514;
+    static constexpr UnkFn copy_construct = &fn_7100a4f51c;
+    static constexpr UnkFn move_construct = &fn_7100a4f528;
+    static constexpr UnkFn destroy = &fn_7100a4f534;
+    static constexpr UnkFn copy_assign = &fn_7100a4f538;
+    static constexpr UnkFn move_assign = &fn_7100a4f54c;
+    static constexpr UnkFn equals = &fn_7100a4f4ec;
+    static constexpr UnkFn hash = &fn_7100a4f500;
+    static constexpr UnkFn type_of = &fn_7100a4f508;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100a4e66c*);
 struct UnkRefl_fn_7100a4e938;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100a4e938> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100a4e938> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100a4f588;
-    static constexpr UnkFn fn_0x30 = &fn_7100a4f590;
-    static constexpr UnkFn fn_0x38 = &fn_7100a4f59c;
-    static constexpr UnkFn fn_0x40 = &fn_7100a4f5a8;
-    static constexpr UnkFn fn_0x48 = &fn_7100a4f5ac;
-    static constexpr UnkFn fn_0x50 = &fn_7100a4f5c0;
-    static constexpr UnkFn fn_0x58 = &fn_7100a4f560;
-    static constexpr UnkFn fn_0x60 = &fn_7100a4f574;
-    static constexpr UnkFn fn_0x68 = &fn_7100a4f57c;
+    static constexpr UnkFn construct = &fn_7100a4f588;
+    static constexpr UnkFn copy_construct = &fn_7100a4f590;
+    static constexpr UnkFn move_construct = &fn_7100a4f59c;
+    static constexpr UnkFn destroy = &fn_7100a4f5a8;
+    static constexpr UnkFn copy_assign = &fn_7100a4f5ac;
+    static constexpr UnkFn move_assign = &fn_7100a4f5c0;
+    static constexpr UnkFn equals = &fn_7100a4f560;
+    static constexpr UnkFn hash = &fn_7100a4f574;
+    static constexpr UnkFn type_of = &fn_7100a4f57c;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100a4e938*);
 struct UnkRefl_fn_7100a50a2c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100a50a2c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100a50a2c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100a51538;
-    static constexpr UnkFn fn_0x30 = &fn_7100a51540;
-    static constexpr UnkFn fn_0x38 = &fn_7100a5154c;
-    static constexpr UnkFn fn_0x40 = &fn_7100a51558;
-    static constexpr UnkFn fn_0x48 = &fn_7100a5155c;
-    static constexpr UnkFn fn_0x50 = &fn_7100a51570;
-    static constexpr UnkFn fn_0x58 = &fn_7100a51510;
-    static constexpr UnkFn fn_0x60 = &fn_7100a51524;
-    static constexpr UnkFn fn_0x68 = &fn_7100a5152c;
+    static constexpr UnkFn construct = &fn_7100a51538;
+    static constexpr UnkFn copy_construct = &fn_7100a51540;
+    static constexpr UnkFn move_construct = &fn_7100a5154c;
+    static constexpr UnkFn destroy = &fn_7100a51558;
+    static constexpr UnkFn copy_assign = &fn_7100a5155c;
+    static constexpr UnkFn move_assign = &fn_7100a51570;
+    static constexpr UnkFn equals = &fn_7100a51510;
+    static constexpr UnkFn hash = &fn_7100a51524;
+    static constexpr UnkFn type_of = &fn_7100a5152c;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100a50a2c*);
 struct UnkRefl_fn_7100a5b92c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100a5b92c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100a5b92c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100a644a8;
-    static constexpr UnkFn fn_0x30 = &fn_7100a644b0;
-    static constexpr UnkFn fn_0x38 = &fn_7100a644bc;
-    static constexpr UnkFn fn_0x40 = &fn_7100a644c8;
-    static constexpr UnkFn fn_0x48 = &fn_7100a644cc;
-    static constexpr UnkFn fn_0x50 = &fn_7100a644e0;
-    static constexpr UnkFn fn_0x58 = &fn_7100a64480;
-    static constexpr UnkFn fn_0x60 = &fn_7100a64494;
-    static constexpr UnkFn fn_0x68 = &fn_7100a6449c;
+    static constexpr UnkFn construct = &fn_7100a644a8;
+    static constexpr UnkFn copy_construct = &fn_7100a644b0;
+    static constexpr UnkFn move_construct = &fn_7100a644bc;
+    static constexpr UnkFn destroy = &fn_7100a644c8;
+    static constexpr UnkFn copy_assign = &fn_7100a644cc;
+    static constexpr UnkFn move_assign = &fn_7100a644e0;
+    static constexpr UnkFn equals = &fn_7100a64480;
+    static constexpr UnkFn hash = &fn_7100a64494;
+    static constexpr UnkFn type_of = &fn_7100a6449c;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100a5b92c*);
 struct UnkRefl_fn_7100a7c630;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100a7c630> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100a7c630> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100a7dd34;
-    static constexpr UnkFn fn_0x30 = &fn_7100a7dd3c;
-    static constexpr UnkFn fn_0x38 = &fn_7100a7dd48;
-    static constexpr UnkFn fn_0x40 = &fn_7100a7dd54;
-    static constexpr UnkFn fn_0x48 = &fn_7100a7dd58;
-    static constexpr UnkFn fn_0x50 = &fn_7100a7dd6c;
-    static constexpr UnkFn fn_0x58 = &fn_7100a7dd0c;
-    static constexpr UnkFn fn_0x60 = &fn_7100a7dd20;
-    static constexpr UnkFn fn_0x68 = &fn_7100a7dd28;
+    static constexpr UnkFn construct = &fn_7100a7dd34;
+    static constexpr UnkFn copy_construct = &fn_7100a7dd3c;
+    static constexpr UnkFn move_construct = &fn_7100a7dd48;
+    static constexpr UnkFn destroy = &fn_7100a7dd54;
+    static constexpr UnkFn copy_assign = &fn_7100a7dd58;
+    static constexpr UnkFn move_assign = &fn_7100a7dd6c;
+    static constexpr UnkFn equals = &fn_7100a7dd0c;
+    static constexpr UnkFn hash = &fn_7100a7dd20;
+    static constexpr UnkFn type_of = &fn_7100a7dd28;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100a7c630*);
 struct UnkRefl_fn_7100a8106c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100a8106c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100a8106c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100a827ec;
-    static constexpr UnkFn fn_0x30 = &fn_7100a827f4;
-    static constexpr UnkFn fn_0x38 = &fn_7100a82800;
-    static constexpr UnkFn fn_0x40 = &fn_7100a8280c;
-    static constexpr UnkFn fn_0x48 = &fn_7100a82810;
-    static constexpr UnkFn fn_0x50 = &fn_7100a82824;
-    static constexpr UnkFn fn_0x58 = &fn_7100a827c4;
-    static constexpr UnkFn fn_0x60 = &fn_7100a827d8;
-    static constexpr UnkFn fn_0x68 = &fn_7100a827e0;
+    static constexpr UnkFn construct = &fn_7100a827ec;
+    static constexpr UnkFn copy_construct = &fn_7100a827f4;
+    static constexpr UnkFn move_construct = &fn_7100a82800;
+    static constexpr UnkFn destroy = &fn_7100a8280c;
+    static constexpr UnkFn copy_assign = &fn_7100a82810;
+    static constexpr UnkFn move_assign = &fn_7100a82824;
+    static constexpr UnkFn equals = &fn_7100a827c4;
+    static constexpr UnkFn hash = &fn_7100a827d8;
+    static constexpr UnkFn type_of = &fn_7100a827e0;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100a8106c*);
 struct UnkRefl_fn_7100a8cad4;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100a8cad4> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100a8cad4> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100a8f82c;
-    static constexpr UnkFn fn_0x30 = &fn_7100a8f834;
-    static constexpr UnkFn fn_0x38 = &fn_7100a8f840;
-    static constexpr UnkFn fn_0x40 = &fn_7100a8f84c;
-    static constexpr UnkFn fn_0x48 = &fn_7100a8f850;
-    static constexpr UnkFn fn_0x50 = &fn_7100a8f864;
-    static constexpr UnkFn fn_0x58 = &fn_7100a8f804;
-    static constexpr UnkFn fn_0x60 = &fn_7100a8f818;
-    static constexpr UnkFn fn_0x68 = &fn_7100a8f820;
+    static constexpr UnkFn construct = &fn_7100a8f82c;
+    static constexpr UnkFn copy_construct = &fn_7100a8f834;
+    static constexpr UnkFn move_construct = &fn_7100a8f840;
+    static constexpr UnkFn destroy = &fn_7100a8f84c;
+    static constexpr UnkFn copy_assign = &fn_7100a8f850;
+    static constexpr UnkFn move_assign = &fn_7100a8f864;
+    static constexpr UnkFn equals = &fn_7100a8f804;
+    static constexpr UnkFn hash = &fn_7100a8f818;
+    static constexpr UnkFn type_of = &fn_7100a8f820;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100a8cad4*);
 struct UnkRefl_fn_7100a91d80;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100a91d80> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100a91d80> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100a9650c;
-    static constexpr UnkFn fn_0x30 = &fn_7100a96514;
-    static constexpr UnkFn fn_0x38 = &fn_7100a96520;
-    static constexpr UnkFn fn_0x40 = &fn_7100a9652c;
-    static constexpr UnkFn fn_0x48 = &fn_7100a96530;
-    static constexpr UnkFn fn_0x50 = &fn_7100a96544;
-    static constexpr UnkFn fn_0x58 = &fn_7100a964e4;
-    static constexpr UnkFn fn_0x60 = &fn_7100a964f8;
-    static constexpr UnkFn fn_0x68 = &fn_7100a96500;
+    static constexpr UnkFn construct = &fn_7100a9650c;
+    static constexpr UnkFn copy_construct = &fn_7100a96514;
+    static constexpr UnkFn move_construct = &fn_7100a96520;
+    static constexpr UnkFn destroy = &fn_7100a9652c;
+    static constexpr UnkFn copy_assign = &fn_7100a96530;
+    static constexpr UnkFn move_assign = &fn_7100a96544;
+    static constexpr UnkFn equals = &fn_7100a964e4;
+    static constexpr UnkFn hash = &fn_7100a964f8;
+    static constexpr UnkFn type_of = &fn_7100a96500;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100a91d80*);
 struct UnkRefl_fn_7100a98b4c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100a98b4c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100a98b4c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100a9a4c0;
-    static constexpr UnkFn fn_0x30 = &fn_7100a9a4c8;
-    static constexpr UnkFn fn_0x38 = &fn_7100a9a4d4;
-    static constexpr UnkFn fn_0x40 = &fn_7100a9a4e0;
-    static constexpr UnkFn fn_0x48 = &fn_7100a9a4e4;
-    static constexpr UnkFn fn_0x50 = &fn_7100a9a4f8;
-    static constexpr UnkFn fn_0x58 = &fn_7100a9a498;
-    static constexpr UnkFn fn_0x60 = &fn_7100a9a4ac;
-    static constexpr UnkFn fn_0x68 = &fn_7100a9a4b4;
+    static constexpr UnkFn construct = &fn_7100a9a4c0;
+    static constexpr UnkFn copy_construct = &fn_7100a9a4c8;
+    static constexpr UnkFn move_construct = &fn_7100a9a4d4;
+    static constexpr UnkFn destroy = &fn_7100a9a4e0;
+    static constexpr UnkFn copy_assign = &fn_7100a9a4e4;
+    static constexpr UnkFn move_assign = &fn_7100a9a4f8;
+    static constexpr UnkFn equals = &fn_7100a9a498;
+    static constexpr UnkFn hash = &fn_7100a9a4ac;
+    static constexpr UnkFn type_of = &fn_7100a9a4b4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100a98b4c*);
 struct UnkRefl_fn_7100ab6188;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100ab6188> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100ab6188> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100ab900c;
-    static constexpr UnkFn fn_0x30 = &fn_7100ab9014;
-    static constexpr UnkFn fn_0x38 = &fn_7100ab9020;
-    static constexpr UnkFn fn_0x40 = &fn_7100ab902c;
-    static constexpr UnkFn fn_0x48 = &fn_7100ab9030;
-    static constexpr UnkFn fn_0x50 = &fn_7100ab9044;
-    static constexpr UnkFn fn_0x58 = &fn_7100ab8fe4;
-    static constexpr UnkFn fn_0x60 = &fn_7100ab8ff8;
-    static constexpr UnkFn fn_0x68 = &fn_7100ab9000;
+    static constexpr UnkFn construct = &fn_7100ab900c;
+    static constexpr UnkFn copy_construct = &fn_7100ab9014;
+    static constexpr UnkFn move_construct = &fn_7100ab9020;
+    static constexpr UnkFn destroy = &fn_7100ab902c;
+    static constexpr UnkFn copy_assign = &fn_7100ab9030;
+    static constexpr UnkFn move_assign = &fn_7100ab9044;
+    static constexpr UnkFn equals = &fn_7100ab8fe4;
+    static constexpr UnkFn hash = &fn_7100ab8ff8;
+    static constexpr UnkFn type_of = &fn_7100ab9000;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100ab6188*);
 struct UnkRefl_fn_7100ac05ac;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100ac05ac> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100ac05ac> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100ac1884;
-    static constexpr UnkFn fn_0x30 = &fn_7100ac188c;
-    static constexpr UnkFn fn_0x38 = &fn_7100ac1898;
-    static constexpr UnkFn fn_0x40 = &fn_7100ac18a4;
-    static constexpr UnkFn fn_0x48 = &fn_7100ac18a8;
-    static constexpr UnkFn fn_0x50 = &fn_7100ac18bc;
-    static constexpr UnkFn fn_0x58 = &fn_7100ac185c;
-    static constexpr UnkFn fn_0x60 = &fn_7100ac1870;
-    static constexpr UnkFn fn_0x68 = &fn_7100ac1878;
+    static constexpr UnkFn construct = &fn_7100ac1884;
+    static constexpr UnkFn copy_construct = &fn_7100ac188c;
+    static constexpr UnkFn move_construct = &fn_7100ac1898;
+    static constexpr UnkFn destroy = &fn_7100ac18a4;
+    static constexpr UnkFn copy_assign = &fn_7100ac18a8;
+    static constexpr UnkFn move_assign = &fn_7100ac18bc;
+    static constexpr UnkFn equals = &fn_7100ac185c;
+    static constexpr UnkFn hash = &fn_7100ac1870;
+    static constexpr UnkFn type_of = &fn_7100ac1878;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100ac05ac*);
 struct UnkRefl_fn_7100ad6bcc;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100ad6bcc> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100ad6bcc> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100adacc8;
-    static constexpr UnkFn fn_0x30 = &fn_7100adacd0;
-    static constexpr UnkFn fn_0x38 = &fn_7100adacdc;
-    static constexpr UnkFn fn_0x40 = &fn_7100adace8;
-    static constexpr UnkFn fn_0x48 = &fn_7100adacec;
-    static constexpr UnkFn fn_0x50 = &fn_7100adad00;
-    static constexpr UnkFn fn_0x58 = &fn_7100adaca0;
-    static constexpr UnkFn fn_0x60 = &fn_7100adacb4;
-    static constexpr UnkFn fn_0x68 = &fn_7100adacbc;
+    static constexpr UnkFn construct = &fn_7100adacc8;
+    static constexpr UnkFn copy_construct = &fn_7100adacd0;
+    static constexpr UnkFn move_construct = &fn_7100adacdc;
+    static constexpr UnkFn destroy = &fn_7100adace8;
+    static constexpr UnkFn copy_assign = &fn_7100adacec;
+    static constexpr UnkFn move_assign = &fn_7100adad00;
+    static constexpr UnkFn equals = &fn_7100adaca0;
+    static constexpr UnkFn hash = &fn_7100adacb4;
+    static constexpr UnkFn type_of = &fn_7100adacbc;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100ad6bcc*);
 struct UnkRefl_fn_7100adf388;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100adf388> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100adf388> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100adf6b0;
-    static constexpr UnkFn fn_0x30 = &fn_7100adf6b8;
-    static constexpr UnkFn fn_0x38 = &fn_7100adf6c4;
-    static constexpr UnkFn fn_0x40 = &fn_7100adf6d0;
-    static constexpr UnkFn fn_0x48 = &fn_7100adf6d4;
-    static constexpr UnkFn fn_0x50 = &fn_7100adf6e8;
-    static constexpr UnkFn fn_0x58 = &fn_7100adf688;
-    static constexpr UnkFn fn_0x60 = &fn_7100adf69c;
-    static constexpr UnkFn fn_0x68 = &fn_7100adf6a4;
+    static constexpr UnkFn construct = &fn_7100adf6b0;
+    static constexpr UnkFn copy_construct = &fn_7100adf6b8;
+    static constexpr UnkFn move_construct = &fn_7100adf6c4;
+    static constexpr UnkFn destroy = &fn_7100adf6d0;
+    static constexpr UnkFn copy_assign = &fn_7100adf6d4;
+    static constexpr UnkFn move_assign = &fn_7100adf6e8;
+    static constexpr UnkFn equals = &fn_7100adf688;
+    static constexpr UnkFn hash = &fn_7100adf69c;
+    static constexpr UnkFn type_of = &fn_7100adf6a4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100adf388*);
 struct UnkRefl_fn_7100b2390c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100b2390c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100b2390c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100b2b26c;
-    static constexpr UnkFn fn_0x30 = &fn_7100b2b274;
-    static constexpr UnkFn fn_0x38 = &fn_7100b2b280;
-    static constexpr UnkFn fn_0x40 = &fn_7100b2b28c;
-    static constexpr UnkFn fn_0x48 = &fn_7100b2b290;
-    static constexpr UnkFn fn_0x50 = &fn_7100b2b2a4;
-    static constexpr UnkFn fn_0x58 = &fn_7100b2b244;
-    static constexpr UnkFn fn_0x60 = &fn_7100b2b258;
-    static constexpr UnkFn fn_0x68 = &fn_7100b2b260;
+    static constexpr UnkFn construct = &fn_7100b2b26c;
+    static constexpr UnkFn copy_construct = &fn_7100b2b274;
+    static constexpr UnkFn move_construct = &fn_7100b2b280;
+    static constexpr UnkFn destroy = &fn_7100b2b28c;
+    static constexpr UnkFn copy_assign = &fn_7100b2b290;
+    static constexpr UnkFn move_assign = &fn_7100b2b2a4;
+    static constexpr UnkFn equals = &fn_7100b2b244;
+    static constexpr UnkFn hash = &fn_7100b2b258;
+    static constexpr UnkFn type_of = &fn_7100b2b260;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100b2390c*);
 struct UnkRefl_fn_7100b378f4;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100b378f4> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100b378f4> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100b483a0;
-    static constexpr UnkFn fn_0x30 = &fn_7100b483a8;
-    static constexpr UnkFn fn_0x38 = &fn_7100b483b4;
-    static constexpr UnkFn fn_0x40 = &fn_7100b483c0;
-    static constexpr UnkFn fn_0x48 = &fn_7100b483c4;
-    static constexpr UnkFn fn_0x50 = &fn_7100b483d8;
-    static constexpr UnkFn fn_0x58 = &fn_7100b48378;
-    static constexpr UnkFn fn_0x60 = &fn_7100b4838c;
-    static constexpr UnkFn fn_0x68 = &fn_7100b48394;
+    static constexpr UnkFn construct = &fn_7100b483a0;
+    static constexpr UnkFn copy_construct = &fn_7100b483a8;
+    static constexpr UnkFn move_construct = &fn_7100b483b4;
+    static constexpr UnkFn destroy = &fn_7100b483c0;
+    static constexpr UnkFn copy_assign = &fn_7100b483c4;
+    static constexpr UnkFn move_assign = &fn_7100b483d8;
+    static constexpr UnkFn equals = &fn_7100b48378;
+    static constexpr UnkFn hash = &fn_7100b4838c;
+    static constexpr UnkFn type_of = &fn_7100b48394;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100b378f4*);
 struct UnkRefl_fn_7100b8caec;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100b8caec> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100b8caec> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100b8e194;
-    static constexpr UnkFn fn_0x30 = &fn_7100b8e19c;
-    static constexpr UnkFn fn_0x38 = &fn_7100b8e1a8;
-    static constexpr UnkFn fn_0x40 = &fn_7100b8e1b4;
-    static constexpr UnkFn fn_0x48 = &fn_7100b8e1b8;
-    static constexpr UnkFn fn_0x50 = &fn_7100b8e1cc;
-    static constexpr UnkFn fn_0x58 = &fn_7100b8e16c;
-    static constexpr UnkFn fn_0x60 = &fn_7100b8e180;
-    static constexpr UnkFn fn_0x68 = &fn_7100b8e188;
+    static constexpr UnkFn construct = &fn_7100b8e194;
+    static constexpr UnkFn copy_construct = &fn_7100b8e19c;
+    static constexpr UnkFn move_construct = &fn_7100b8e1a8;
+    static constexpr UnkFn destroy = &fn_7100b8e1b4;
+    static constexpr UnkFn copy_assign = &fn_7100b8e1b8;
+    static constexpr UnkFn move_assign = &fn_7100b8e1cc;
+    static constexpr UnkFn equals = &fn_7100b8e16c;
+    static constexpr UnkFn hash = &fn_7100b8e180;
+    static constexpr UnkFn type_of = &fn_7100b8e188;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100b8caec*);
 struct UnkRefl_fn_7100b8cdb8;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100b8cdb8> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100b8cdb8> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100b8e208;
-    static constexpr UnkFn fn_0x30 = &fn_7100b8e210;
-    static constexpr UnkFn fn_0x38 = &fn_7100b8e21c;
-    static constexpr UnkFn fn_0x40 = &fn_7100b8e228;
-    static constexpr UnkFn fn_0x48 = &fn_7100b8e22c;
-    static constexpr UnkFn fn_0x50 = &fn_7100b8e240;
-    static constexpr UnkFn fn_0x58 = &fn_7100b8e1e0;
-    static constexpr UnkFn fn_0x60 = &fn_7100b8e1f4;
-    static constexpr UnkFn fn_0x68 = &fn_7100b8e1fc;
+    static constexpr UnkFn construct = &fn_7100b8e208;
+    static constexpr UnkFn copy_construct = &fn_7100b8e210;
+    static constexpr UnkFn move_construct = &fn_7100b8e21c;
+    static constexpr UnkFn destroy = &fn_7100b8e228;
+    static constexpr UnkFn copy_assign = &fn_7100b8e22c;
+    static constexpr UnkFn move_assign = &fn_7100b8e240;
+    static constexpr UnkFn equals = &fn_7100b8e1e0;
+    static constexpr UnkFn hash = &fn_7100b8e1f4;
+    static constexpr UnkFn type_of = &fn_7100b8e1fc;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100b8cdb8*);
 struct UnkRefl_fn_7100b8d144;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100b8d144> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100b8d144> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100b8e27c;
-    static constexpr UnkFn fn_0x30 = &fn_7100b8e284;
-    static constexpr UnkFn fn_0x38 = &fn_7100b8e290;
-    static constexpr UnkFn fn_0x40 = &fn_7100b8e29c;
-    static constexpr UnkFn fn_0x48 = &fn_7100b8e2a0;
-    static constexpr UnkFn fn_0x50 = &fn_7100b8e2b4;
-    static constexpr UnkFn fn_0x58 = &fn_7100b8e254;
-    static constexpr UnkFn fn_0x60 = &fn_7100b8e268;
-    static constexpr UnkFn fn_0x68 = &fn_7100b8e270;
+    static constexpr UnkFn construct = &fn_7100b8e27c;
+    static constexpr UnkFn copy_construct = &fn_7100b8e284;
+    static constexpr UnkFn move_construct = &fn_7100b8e290;
+    static constexpr UnkFn destroy = &fn_7100b8e29c;
+    static constexpr UnkFn copy_assign = &fn_7100b8e2a0;
+    static constexpr UnkFn move_assign = &fn_7100b8e2b4;
+    static constexpr UnkFn equals = &fn_7100b8e254;
+    static constexpr UnkFn hash = &fn_7100b8e268;
+    static constexpr UnkFn type_of = &fn_7100b8e270;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100b8d144*);
 struct UnkRefl_fn_7100b8d470;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100b8d470> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100b8d470> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100b8e2f0;
-    static constexpr UnkFn fn_0x30 = &fn_7100b8e2f8;
-    static constexpr UnkFn fn_0x38 = &fn_7100b8e304;
-    static constexpr UnkFn fn_0x40 = &fn_7100b8e310;
-    static constexpr UnkFn fn_0x48 = &fn_7100b8e314;
-    static constexpr UnkFn fn_0x50 = &fn_7100b8e328;
-    static constexpr UnkFn fn_0x58 = &fn_7100b8e2c8;
-    static constexpr UnkFn fn_0x60 = &fn_7100b8e2dc;
-    static constexpr UnkFn fn_0x68 = &fn_7100b8e2e4;
+    static constexpr UnkFn construct = &fn_7100b8e2f0;
+    static constexpr UnkFn copy_construct = &fn_7100b8e2f8;
+    static constexpr UnkFn move_construct = &fn_7100b8e304;
+    static constexpr UnkFn destroy = &fn_7100b8e310;
+    static constexpr UnkFn copy_assign = &fn_7100b8e314;
+    static constexpr UnkFn move_assign = &fn_7100b8e328;
+    static constexpr UnkFn equals = &fn_7100b8e2c8;
+    static constexpr UnkFn hash = &fn_7100b8e2dc;
+    static constexpr UnkFn type_of = &fn_7100b8e2e4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100b8d470*);
 struct UnkRefl_fn_7100b8dc1c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100b8dc1c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100b8dc1c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100b8e364;
-    static constexpr UnkFn fn_0x30 = &fn_7100b8e36c;
-    static constexpr UnkFn fn_0x38 = &fn_7100b8e378;
-    static constexpr UnkFn fn_0x40 = &fn_7100b8e384;
-    static constexpr UnkFn fn_0x48 = &fn_7100b8e388;
-    static constexpr UnkFn fn_0x50 = &fn_7100b8e39c;
-    static constexpr UnkFn fn_0x58 = &fn_7100b8e33c;
-    static constexpr UnkFn fn_0x60 = &fn_7100b8e350;
-    static constexpr UnkFn fn_0x68 = &fn_7100b8e358;
+    static constexpr UnkFn construct = &fn_7100b8e364;
+    static constexpr UnkFn copy_construct = &fn_7100b8e36c;
+    static constexpr UnkFn move_construct = &fn_7100b8e378;
+    static constexpr UnkFn destroy = &fn_7100b8e384;
+    static constexpr UnkFn copy_assign = &fn_7100b8e388;
+    static constexpr UnkFn move_assign = &fn_7100b8e39c;
+    static constexpr UnkFn equals = &fn_7100b8e33c;
+    static constexpr UnkFn hash = &fn_7100b8e350;
+    static constexpr UnkFn type_of = &fn_7100b8e358;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100b8dc1c*);
 struct UnkRefl_fn_7100bcde7c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100bcde7c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100bcde7c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100bce540;
-    static constexpr UnkFn fn_0x30 = &fn_7100bce548;
-    static constexpr UnkFn fn_0x38 = &fn_7100bce554;
-    static constexpr UnkFn fn_0x40 = &fn_7100bce560;
-    static constexpr UnkFn fn_0x48 = &fn_7100bce564;
-    static constexpr UnkFn fn_0x50 = &fn_7100bce578;
-    static constexpr UnkFn fn_0x58 = &fn_7100bce518;
-    static constexpr UnkFn fn_0x60 = &fn_7100bce52c;
-    static constexpr UnkFn fn_0x68 = &fn_7100bce534;
+    static constexpr UnkFn construct = &fn_7100bce540;
+    static constexpr UnkFn copy_construct = &fn_7100bce548;
+    static constexpr UnkFn move_construct = &fn_7100bce554;
+    static constexpr UnkFn destroy = &fn_7100bce560;
+    static constexpr UnkFn copy_assign = &fn_7100bce564;
+    static constexpr UnkFn move_assign = &fn_7100bce578;
+    static constexpr UnkFn equals = &fn_7100bce518;
+    static constexpr UnkFn hash = &fn_7100bce52c;
+    static constexpr UnkFn type_of = &fn_7100bce534;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100bcde7c*);
 struct UnkRefl_fn_7100c10e2c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100c10e2c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100c10e2c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100c1144c;
-    static constexpr UnkFn fn_0x30 = &fn_7100c11454;
-    static constexpr UnkFn fn_0x38 = &fn_7100c11460;
-    static constexpr UnkFn fn_0x40 = &fn_7100c1146c;
-    static constexpr UnkFn fn_0x48 = &fn_7100c11470;
-    static constexpr UnkFn fn_0x50 = &fn_7100c11484;
-    static constexpr UnkFn fn_0x58 = &fn_7100c11424;
-    static constexpr UnkFn fn_0x60 = &fn_7100c11438;
-    static constexpr UnkFn fn_0x68 = &fn_7100c11440;
+    static constexpr UnkFn construct = &fn_7100c1144c;
+    static constexpr UnkFn copy_construct = &fn_7100c11454;
+    static constexpr UnkFn move_construct = &fn_7100c11460;
+    static constexpr UnkFn destroy = &fn_7100c1146c;
+    static constexpr UnkFn copy_assign = &fn_7100c11470;
+    static constexpr UnkFn move_assign = &fn_7100c11484;
+    static constexpr UnkFn equals = &fn_7100c11424;
+    static constexpr UnkFn hash = &fn_7100c11438;
+    static constexpr UnkFn type_of = &fn_7100c11440;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100c10e2c*);
 struct UnkRefl_fn_7100c66688;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100c66688> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100c66688> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100c66860;
-    static constexpr UnkFn fn_0x30 = &fn_7100c66868;
-    static constexpr UnkFn fn_0x38 = &fn_7100c66874;
-    static constexpr UnkFn fn_0x40 = &fn_7100c66880;
-    static constexpr UnkFn fn_0x48 = &fn_7100c66884;
-    static constexpr UnkFn fn_0x50 = &fn_7100c66898;
-    static constexpr UnkFn fn_0x58 = &fn_7100c66838;
-    static constexpr UnkFn fn_0x60 = &fn_7100c6684c;
-    static constexpr UnkFn fn_0x68 = &fn_7100c66854;
+    static constexpr UnkFn construct = &fn_7100c66860;
+    static constexpr UnkFn copy_construct = &fn_7100c66868;
+    static constexpr UnkFn move_construct = &fn_7100c66874;
+    static constexpr UnkFn destroy = &fn_7100c66880;
+    static constexpr UnkFn copy_assign = &fn_7100c66884;
+    static constexpr UnkFn move_assign = &fn_7100c66898;
+    static constexpr UnkFn equals = &fn_7100c66838;
+    static constexpr UnkFn hash = &fn_7100c6684c;
+    static constexpr UnkFn type_of = &fn_7100c66854;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100c66688*);
 struct UnkRefl_fn_7100c797bc;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100c797bc> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100c797bc> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100c7a900;
-    static constexpr UnkFn fn_0x30 = &fn_7100c7a908;
-    static constexpr UnkFn fn_0x38 = &fn_7100c7a914;
-    static constexpr UnkFn fn_0x40 = &fn_7100c7a920;
-    static constexpr UnkFn fn_0x48 = &fn_7100c7a924;
-    static constexpr UnkFn fn_0x50 = &fn_7100c7a938;
-    static constexpr UnkFn fn_0x58 = &fn_7100c7a8d8;
-    static constexpr UnkFn fn_0x60 = &fn_7100c7a8ec;
-    static constexpr UnkFn fn_0x68 = &fn_7100c7a8f4;
+    static constexpr UnkFn construct = &fn_7100c7a900;
+    static constexpr UnkFn copy_construct = &fn_7100c7a908;
+    static constexpr UnkFn move_construct = &fn_7100c7a914;
+    static constexpr UnkFn destroy = &fn_7100c7a920;
+    static constexpr UnkFn copy_assign = &fn_7100c7a924;
+    static constexpr UnkFn move_assign = &fn_7100c7a938;
+    static constexpr UnkFn equals = &fn_7100c7a8d8;
+    static constexpr UnkFn hash = &fn_7100c7a8ec;
+    static constexpr UnkFn type_of = &fn_7100c7a8f4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100c797bc*);
 struct UnkRefl_fn_7100c93470;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100c93470> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100c93470> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100c93ca0;
-    static constexpr UnkFn fn_0x30 = &fn_7100c93ca8;
-    static constexpr UnkFn fn_0x38 = &fn_7100c93cb4;
-    static constexpr UnkFn fn_0x40 = &fn_7100c93cc0;
-    static constexpr UnkFn fn_0x48 = &fn_7100c93cc4;
-    static constexpr UnkFn fn_0x50 = &fn_7100c93cd8;
-    static constexpr UnkFn fn_0x58 = &fn_7100c93c78;
-    static constexpr UnkFn fn_0x60 = &fn_7100c93c8c;
-    static constexpr UnkFn fn_0x68 = &fn_7100c93c94;
+    static constexpr UnkFn construct = &fn_7100c93ca0;
+    static constexpr UnkFn copy_construct = &fn_7100c93ca8;
+    static constexpr UnkFn move_construct = &fn_7100c93cb4;
+    static constexpr UnkFn destroy = &fn_7100c93cc0;
+    static constexpr UnkFn copy_assign = &fn_7100c93cc4;
+    static constexpr UnkFn move_assign = &fn_7100c93cd8;
+    static constexpr UnkFn equals = &fn_7100c93c78;
+    static constexpr UnkFn hash = &fn_7100c93c8c;
+    static constexpr UnkFn type_of = &fn_7100c93c94;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100c93470*);
 struct UnkRefl_fn_7100c9385c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100c9385c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100c9385c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100c93d14;
-    static constexpr UnkFn fn_0x30 = &fn_7100c93d1c;
-    static constexpr UnkFn fn_0x38 = &fn_7100c93d28;
-    static constexpr UnkFn fn_0x40 = &fn_7100c93d34;
-    static constexpr UnkFn fn_0x48 = &fn_7100c93d38;
-    static constexpr UnkFn fn_0x50 = &fn_7100c93d4c;
-    static constexpr UnkFn fn_0x58 = &fn_7100c93cec;
-    static constexpr UnkFn fn_0x60 = &fn_7100c93d00;
-    static constexpr UnkFn fn_0x68 = &fn_7100c93d08;
+    static constexpr UnkFn construct = &fn_7100c93d14;
+    static constexpr UnkFn copy_construct = &fn_7100c93d1c;
+    static constexpr UnkFn move_construct = &fn_7100c93d28;
+    static constexpr UnkFn destroy = &fn_7100c93d34;
+    static constexpr UnkFn copy_assign = &fn_7100c93d38;
+    static constexpr UnkFn move_assign = &fn_7100c93d4c;
+    static constexpr UnkFn equals = &fn_7100c93cec;
+    static constexpr UnkFn hash = &fn_7100c93d00;
+    static constexpr UnkFn type_of = &fn_7100c93d08;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100c9385c*);
 struct UnkRefl_fn_7100c94510;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100c94510> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100c94510> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100c946d0;
-    static constexpr UnkFn fn_0x30 = &fn_7100c946d8;
-    static constexpr UnkFn fn_0x38 = &fn_7100c946e4;
-    static constexpr UnkFn fn_0x40 = &fn_7100c946f0;
-    static constexpr UnkFn fn_0x48 = &fn_7100c946f4;
-    static constexpr UnkFn fn_0x50 = &fn_7100c94708;
-    static constexpr UnkFn fn_0x58 = &fn_7100c946a8;
-    static constexpr UnkFn fn_0x60 = &fn_7100c946bc;
-    static constexpr UnkFn fn_0x68 = &fn_7100c946c4;
+    static constexpr UnkFn construct = &fn_7100c946d0;
+    static constexpr UnkFn copy_construct = &fn_7100c946d8;
+    static constexpr UnkFn move_construct = &fn_7100c946e4;
+    static constexpr UnkFn destroy = &fn_7100c946f0;
+    static constexpr UnkFn copy_assign = &fn_7100c946f4;
+    static constexpr UnkFn move_assign = &fn_7100c94708;
+    static constexpr UnkFn equals = &fn_7100c946a8;
+    static constexpr UnkFn hash = &fn_7100c946bc;
+    static constexpr UnkFn type_of = &fn_7100c946c4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100c94510*);
 struct UnkRefl_fn_7100c9c5d0;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100c9c5d0> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100c9c5d0> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100ca00cc;
-    static constexpr UnkFn fn_0x30 = &fn_7100ca00d4;
-    static constexpr UnkFn fn_0x38 = &fn_7100ca00e0;
-    static constexpr UnkFn fn_0x40 = &fn_7100ca00ec;
-    static constexpr UnkFn fn_0x48 = &fn_7100ca00f0;
-    static constexpr UnkFn fn_0x50 = &fn_7100ca0104;
-    static constexpr UnkFn fn_0x58 = &fn_7100ca00a4;
-    static constexpr UnkFn fn_0x60 = &fn_7100ca00b8;
-    static constexpr UnkFn fn_0x68 = &fn_7100ca00c0;
+    static constexpr UnkFn construct = &fn_7100ca00cc;
+    static constexpr UnkFn copy_construct = &fn_7100ca00d4;
+    static constexpr UnkFn move_construct = &fn_7100ca00e0;
+    static constexpr UnkFn destroy = &fn_7100ca00ec;
+    static constexpr UnkFn copy_assign = &fn_7100ca00f0;
+    static constexpr UnkFn move_assign = &fn_7100ca0104;
+    static constexpr UnkFn equals = &fn_7100ca00a4;
+    static constexpr UnkFn hash = &fn_7100ca00b8;
+    static constexpr UnkFn type_of = &fn_7100ca00c0;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100c9c5d0*);
 struct UnkRefl_fn_7100cd1954;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100cd1954> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100cd1954> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100cd1f94;
-    static constexpr UnkFn fn_0x30 = &fn_7100cd1f9c;
-    static constexpr UnkFn fn_0x38 = &fn_7100cd1fa8;
-    static constexpr UnkFn fn_0x40 = &fn_7100cd1fb4;
-    static constexpr UnkFn fn_0x48 = &fn_7100cd1fb8;
-    static constexpr UnkFn fn_0x50 = &fn_7100cd1fcc;
-    static constexpr UnkFn fn_0x58 = &fn_7100cd1f6c;
-    static constexpr UnkFn fn_0x60 = &fn_7100cd1f80;
-    static constexpr UnkFn fn_0x68 = &fn_7100cd1f88;
+    static constexpr UnkFn construct = &fn_7100cd1f94;
+    static constexpr UnkFn copy_construct = &fn_7100cd1f9c;
+    static constexpr UnkFn move_construct = &fn_7100cd1fa8;
+    static constexpr UnkFn destroy = &fn_7100cd1fb4;
+    static constexpr UnkFn copy_assign = &fn_7100cd1fb8;
+    static constexpr UnkFn move_assign = &fn_7100cd1fcc;
+    static constexpr UnkFn equals = &fn_7100cd1f6c;
+    static constexpr UnkFn hash = &fn_7100cd1f80;
+    static constexpr UnkFn type_of = &fn_7100cd1f88;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100cd1954*);
 struct UnkRefl_fn_7100ceb308;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100ceb308> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100ceb308> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100ceb5f8;
-    static constexpr UnkFn fn_0x30 = &fn_7100ceb600;
-    static constexpr UnkFn fn_0x38 = &fn_7100ceb60c;
-    static constexpr UnkFn fn_0x40 = &fn_7100ceb618;
-    static constexpr UnkFn fn_0x48 = &fn_7100ceb61c;
-    static constexpr UnkFn fn_0x50 = &fn_7100ceb630;
-    static constexpr UnkFn fn_0x58 = &fn_7100ceb5d0;
-    static constexpr UnkFn fn_0x60 = &fn_7100ceb5e4;
-    static constexpr UnkFn fn_0x68 = &fn_7100ceb5ec;
+    static constexpr UnkFn construct = &fn_7100ceb5f8;
+    static constexpr UnkFn copy_construct = &fn_7100ceb600;
+    static constexpr UnkFn move_construct = &fn_7100ceb60c;
+    static constexpr UnkFn destroy = &fn_7100ceb618;
+    static constexpr UnkFn copy_assign = &fn_7100ceb61c;
+    static constexpr UnkFn move_assign = &fn_7100ceb630;
+    static constexpr UnkFn equals = &fn_7100ceb5d0;
+    static constexpr UnkFn hash = &fn_7100ceb5e4;
+    static constexpr UnkFn type_of = &fn_7100ceb5ec;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100ceb308*);
 struct UnkRefl_fn_7100d2a00c;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100d2a00c> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100d2a00c> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100d2aaa8;
-    static constexpr UnkFn fn_0x30 = &fn_7100d2aab0;
-    static constexpr UnkFn fn_0x38 = &fn_7100d2aabc;
-    static constexpr UnkFn fn_0x40 = &fn_7100d2aac8;
-    static constexpr UnkFn fn_0x48 = &fn_7100d2aacc;
-    static constexpr UnkFn fn_0x50 = &fn_7100d2aae0;
-    static constexpr UnkFn fn_0x58 = &fn_7100d2aa80;
-    static constexpr UnkFn fn_0x60 = &fn_7100d2aa94;
-    static constexpr UnkFn fn_0x68 = &fn_7100d2aa9c;
+    static constexpr UnkFn construct = &fn_7100d2aaa8;
+    static constexpr UnkFn copy_construct = &fn_7100d2aab0;
+    static constexpr UnkFn move_construct = &fn_7100d2aabc;
+    static constexpr UnkFn destroy = &fn_7100d2aac8;
+    static constexpr UnkFn copy_assign = &fn_7100d2aacc;
+    static constexpr UnkFn move_assign = &fn_7100d2aae0;
+    static constexpr UnkFn equals = &fn_7100d2aa80;
+    static constexpr UnkFn hash = &fn_7100d2aa94;
+    static constexpr UnkFn type_of = &fn_7100d2aa9c;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100d2a00c*);
 struct UnkRefl_fn_7100d91564;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100d91564> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100d91564> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100d91eb8;
-    static constexpr UnkFn fn_0x30 = &fn_7100d91ec0;
-    static constexpr UnkFn fn_0x38 = &fn_7100d91ecc;
-    static constexpr UnkFn fn_0x40 = &fn_7100d91ed8;
-    static constexpr UnkFn fn_0x48 = &fn_7100d91edc;
-    static constexpr UnkFn fn_0x50 = &fn_7100d91ef0;
-    static constexpr UnkFn fn_0x58 = &fn_7100d91e90;
-    static constexpr UnkFn fn_0x60 = &fn_7100d91ea4;
-    static constexpr UnkFn fn_0x68 = &fn_7100d91eac;
+    static constexpr UnkFn construct = &fn_7100d91eb8;
+    static constexpr UnkFn copy_construct = &fn_7100d91ec0;
+    static constexpr UnkFn move_construct = &fn_7100d91ecc;
+    static constexpr UnkFn destroy = &fn_7100d91ed8;
+    static constexpr UnkFn copy_assign = &fn_7100d91edc;
+    static constexpr UnkFn move_assign = &fn_7100d91ef0;
+    static constexpr UnkFn equals = &fn_7100d91e90;
+    static constexpr UnkFn hash = &fn_7100d91ea4;
+    static constexpr UnkFn type_of = &fn_7100d91eac;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100d91564*);
 struct UnkRefl_fn_7100d91d10;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100d91d10> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100d91d10> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100d91f2c;
-    static constexpr UnkFn fn_0x30 = &fn_7100d91f34;
-    static constexpr UnkFn fn_0x38 = &fn_7100d91f40;
-    static constexpr UnkFn fn_0x40 = &fn_7100d91f4c;
-    static constexpr UnkFn fn_0x48 = &fn_7100d91f50;
-    static constexpr UnkFn fn_0x50 = &fn_7100d91f64;
-    static constexpr UnkFn fn_0x58 = &fn_7100d91f04;
-    static constexpr UnkFn fn_0x60 = &fn_7100d91f18;
-    static constexpr UnkFn fn_0x68 = &fn_7100d91f20;
+    static constexpr UnkFn construct = &fn_7100d91f2c;
+    static constexpr UnkFn copy_construct = &fn_7100d91f34;
+    static constexpr UnkFn move_construct = &fn_7100d91f40;
+    static constexpr UnkFn destroy = &fn_7100d91f4c;
+    static constexpr UnkFn copy_assign = &fn_7100d91f50;
+    static constexpr UnkFn move_assign = &fn_7100d91f64;
+    static constexpr UnkFn equals = &fn_7100d91f04;
+    static constexpr UnkFn hash = &fn_7100d91f18;
+    static constexpr UnkFn type_of = &fn_7100d91f20;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100d91d10*);
 struct UnkRefl_fn_7100d977e4;
 template <>
-struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_7100d977e4> {
+struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100d977e4> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn fn_0x28 = &fn_7100d9bcf4;
-    static constexpr UnkFn fn_0x30 = &fn_7100d9bcfc;
-    static constexpr UnkFn fn_0x38 = &fn_7100d9bd08;
-    static constexpr UnkFn fn_0x40 = &fn_7100d9bd14;
-    static constexpr UnkFn fn_0x48 = &fn_7100d9bd18;
-    static constexpr UnkFn fn_0x50 = &fn_7100d9bd2c;
-    static constexpr UnkFn fn_0x58 = &fn_7100d9bccc;
-    static constexpr UnkFn fn_0x60 = &fn_7100d9bce0;
-    static constexpr UnkFn fn_0x68 = &fn_7100d9bce8;
+    static constexpr UnkFn construct = &fn_7100d9bcf4;
+    static constexpr UnkFn copy_construct = &fn_7100d9bcfc;
+    static constexpr UnkFn move_construct = &fn_7100d9bd08;
+    static constexpr UnkFn destroy = &fn_7100d9bd14;
+    static constexpr UnkFn copy_assign = &fn_7100d9bd18;
+    static constexpr UnkFn move_assign = &fn_7100d9bd2c;
+    static constexpr UnkFn equals = &fn_7100d9bccc;
+    static constexpr UnkFn hash = &fn_7100d9bce0;
+    static constexpr UnkFn type_of = &fn_7100d9bce8;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };

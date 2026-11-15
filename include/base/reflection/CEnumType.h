@@ -17,7 +17,7 @@ namespace base::reflection {
 // (typed UnkFn and cast at the use site), the underlying type's getter and the out-of-line
 // function that reserves the value list (one instance per element type).
 template <class T>
-struct UnkReflEnumTraits;
+struct EnumTypeDescription;
 
 class CEnumType : public CType {
 public:
@@ -35,18 +35,18 @@ static_assert(sizeof(CEnumType) == 0x118, "CEnumType layout");
 
 template <class T>
 CEnumType::CEnumType(const base::global::CStrId& name, const void* arg, T*)
-    : CType(fn_7100001570("base::reflection::CEnumType", 0x1b), name, UnkReflEnumTraits<T>::size,
-            reinterpret_cast<UnkFn_0x58>(UnkReflEnumTraits<T>::fn_0x58),
-            reinterpret_cast<UnkFn_0x60>(UnkReflEnumTraits<T>::fn_0x60),
-            reinterpret_cast<UnkFn_0x68>(UnkReflEnumTraits<T>::fn_0x68), nullptr, nullptr,
-            {UnkReflEnumTraits<T>::fn_0x28, reinterpret_cast<UnkFn_0x30>(UnkReflEnumTraits<T>::fn_0x30),
-             reinterpret_cast<UnkFn_0x30>(UnkReflEnumTraits<T>::fn_0x38),
-             reinterpret_cast<UnkFn_0x40>(UnkReflEnumTraits<T>::fn_0x40),
-             reinterpret_cast<UnkFn_0x48>(UnkReflEnumTraits<T>::fn_0x48),
-             reinterpret_cast<UnkFn_0x48>(UnkReflEnumTraits<T>::fn_0x50)},
+    : CType(fn_7100001570("base::reflection::CEnumType", 0x1b), name, EnumTypeDescription<T>::size,
+            reinterpret_cast<UnkFn_0x58>(EnumTypeDescription<T>::equals),
+            reinterpret_cast<UnkFn_0x60>(EnumTypeDescription<T>::hash),
+            reinterpret_cast<UnkFn_0x68>(EnumTypeDescription<T>::type_of), nullptr, nullptr,
+            {EnumTypeDescription<T>::construct, reinterpret_cast<UnkFn_0x30>(EnumTypeDescription<T>::copy_construct),
+             reinterpret_cast<UnkFn_0x30>(EnumTypeDescription<T>::move_construct),
+             reinterpret_cast<UnkFn_0x40>(EnumTypeDescription<T>::destroy),
+             reinterpret_cast<UnkFn_0x48>(EnumTypeDescription<T>::copy_assign),
+             reinterpret_cast<UnkFn_0x48>(EnumTypeDescription<T>::move_assign)},
             false),
-      m_underlying(UnkReflEnumTraits<T>::underlying()), field_0xe8(arg) {
-    UnkReflEnumTraits<T>::reserve(&m_values, 0x10);
+      m_underlying(EnumTypeDescription<T>::underlying()), field_0xe8(arg) {
+    EnumTypeDescription<T>::reserve(&m_values, 0x10);
 }
 
 }  // namespace base::reflection

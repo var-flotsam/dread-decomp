@@ -82,21 +82,21 @@ void fn_7100d3dd78();
 struct UnkRefl_fn_7100d3b668;
 struct UnkRefl_fn_7100d37398;
 template <>
-struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100d3b668> {
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100d3b668> {
     static constexpr u64 size = 0x8;
-    static constexpr bool field_0xe0 = false;
-    static constexpr UnkFn fn_0x28 = &fn_7100d3b9a4;
-    static constexpr UnkFn fn_0x30 = &fn_7100d3b9ac;
-    static constexpr UnkFn fn_0x38 = &fn_7100d3ba08;
-    static constexpr UnkFn fn_0x40 = &fn_7100d3ba64;
-    static constexpr UnkFn fn_0x48 = &fn_7100d3ba8c;
-    static constexpr UnkFn fn_0x50 = &fn_7100d3babc;
-    static constexpr UnkFn fn_0x58 = &fn_7100d3b964;
-    static constexpr UnkFn fn_0x60 = &fn_7100d3b988;
-    static constexpr UnkFn fn_0x68 = &fn_7100d3b990;
-    static constexpr UnkFn fn_0xf0 = &fn_7100d3b7d8;
-    static constexpr UnkFn fn_0xf8 = &fn_7100d3b840;
-    static constexpr UnkFn fn_0x100 = &fn_7100d3b960;
+    static constexpr bool owned = false;
+    static constexpr UnkFn construct = &fn_7100d3b9a4;
+    static constexpr UnkFn copy_construct = &fn_7100d3b9ac;
+    static constexpr UnkFn move_construct = &fn_7100d3ba08;
+    static constexpr UnkFn destroy = &fn_7100d3ba64;
+    static constexpr UnkFn copy_assign = &fn_7100d3ba8c;
+    static constexpr UnkFn move_assign = &fn_7100d3babc;
+    static constexpr UnkFn equals = &fn_7100d3b964;
+    static constexpr UnkFn hash = &fn_7100d3b988;
+    static constexpr UnkFn type_of = &fn_7100d3b990;
+    static constexpr UnkFn get = &fn_7100d3b7d8;
+    static constexpr UnkFn set = &fn_7100d3b840;
+    static constexpr UnkFn increment = &fn_7100d3b960;
     static const CType* pointee() { return game::logic::collision::CCollider::refl_GetClass(); }
 };
 template <>
@@ -109,21 +109,21 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100d3db1c;
 struct UnkRefl_fn_7100d394ec;
 template <>
-struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100d3db1c> {
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100d3db1c> {
     static constexpr u64 size = 0x8;
-    static constexpr bool field_0xe0 = false;
-    static constexpr UnkFn fn_0x28 = &fn_7100d3dd40;
-    static constexpr UnkFn fn_0x30 = &fn_7100d3dd48;
-    static constexpr UnkFn fn_0x38 = &fn_7100d3dd54;
-    static constexpr UnkFn fn_0x40 = &fn_7100d3dd60;
-    static constexpr UnkFn fn_0x48 = &fn_7100d3dd64;
-    static constexpr UnkFn fn_0x50 = &fn_7100d3dd78;
-    static constexpr UnkFn fn_0x58 = &fn_7100d3dd10;
-    static constexpr UnkFn fn_0x60 = &fn_7100d3dd24;
-    static constexpr UnkFn fn_0x68 = &fn_7100d3dd2c;
-    static constexpr UnkFn fn_0xf0 = &fn_7100d3dc8c;
-    static constexpr UnkFn fn_0xf8 = &fn_7100d3dcf4;
-    static constexpr UnkFn fn_0x100 = &fn_7100d3dd00;
+    static constexpr bool owned = false;
+    static constexpr UnkFn construct = &fn_7100d3dd40;
+    static constexpr UnkFn copy_construct = &fn_7100d3dd48;
+    static constexpr UnkFn move_construct = &fn_7100d3dd54;
+    static constexpr UnkFn destroy = &fn_7100d3dd60;
+    static constexpr UnkFn copy_assign = &fn_7100d3dd64;
+    static constexpr UnkFn move_assign = &fn_7100d3dd78;
+    static constexpr UnkFn equals = &fn_7100d3dd10;
+    static constexpr UnkFn hash = &fn_7100d3dd24;
+    static constexpr UnkFn type_of = &fn_7100d3dd2c;
+    static constexpr UnkFn get = &fn_7100d3dc8c;
+    static constexpr UnkFn set = &fn_7100d3dcf4;
+    static constexpr UnkFn increment = &fn_7100d3dd00;
     static const CType* pointee() { return game::logic::collision::CCollider::refl_GetClass(); }
 };
 template <>
