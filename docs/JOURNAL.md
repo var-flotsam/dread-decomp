@@ -158,7 +158,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 `CPointerType`'s members now carry names, read from the slot functions the generated descriptors name
 (`src/reflection_types/`) and from the matched users. A collection's `u32` at +0xe0 is its kind: 1 for the
 115 indexed collections (key `unsigned`), 2 for the keyed ones (50 keyed by `CStrId`). Its accessors, in order
-from +0x108: size, clear, add (copy, move), erase by key, element at a position, find by key (null when
+from +0x108: count, clear, add (copy, move), erase by key, element at a position, find by key (null when
 absent), set at a key (copy, move), begin and end, const begin and const end. Add's copy and move split is by
 analogy with set's; the rest is read directly. A pointer type's bool at +0xe0 is whether it owns its pointee,
 and its three functions are get (the pointee's dynamic type and address), set (a no-op for some types) and

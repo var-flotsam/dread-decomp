@@ -29,7 +29,7 @@ public:
     // not arrays: an all-constant array initialiser would be copied from a table instead of
     // loaded through the GOT. The two pairs after m_iterator and m_const_iterator are set in
     // the constructor's body, after those types.
-    UnkFn m_size;        // the element count
+    UnkFn m_count;       // the element count
     UnkFn m_clear;
     UnkFn m_add_copy;    // insert a value at a key (an array's index, or appended to a map);
     UnkFn m_add_move;    // copy and move by analogy with m_set_copy and m_set_move
@@ -60,7 +60,7 @@ CCollectionType::CCollectionType(const base::global::CStrId& name, T*, void*)
             false),
       m_kind(UnkReflCollectionTraits<T>::field_0xe0), m_key(UnkReflCollectionTraits<T>::key()),
       m_element(UnkReflCollectionTraits<T>::element()), m_iterator(nullptr), m_const_iterator(nullptr),
-      m_size(UnkReflCollectionTraits<T>::fn_0x108),
+      m_count(UnkReflCollectionTraits<T>::fn_0x108),
       m_clear(UnkReflCollectionTraits<T>::fn_0x110),
       m_add_copy(UnkReflCollectionTraits<T>::fn_0x118),
       m_add_move(UnkReflCollectionTraits<T>::fn_0x120),
