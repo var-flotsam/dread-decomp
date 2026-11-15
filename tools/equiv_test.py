@@ -102,11 +102,42 @@ def digest(code: bytes, relocs=None) -> str:
     return h.hexdigest()[:32]
 
 
-def return_type(text: str, address: int) -> str | None:
+def with_headers(text: str) -> str:
+    """`text` followed by the include/ headers it includes, directly or not: where a class template's
+    member (defined in its header) is written."""
+    seen: set[Path] = set()
+    out = [text]
+    todo = re.findall(r'^#include "([^"]+)"', text, re.M)
+    while todo:
+        h = ROOT / "include" / todo.pop()
+        if h in seen or not h.is_file():
+            continue
+        seen.add(h)
+        body = h.read_text(encoding="utf-8", errors="replace")
+        out.append(body)
+        todo += re.findall(r'^#include "([^"]+)"', body, re.M)
+    return "\n".join(out)
+
+
+def member_name(name: str) -> str:
+    """The unqualified name of a data/functions/ name: `base::global::CRntVector<T>::Reserve` -> `Reserve`."""
+    while True:
+        bare = re.sub(r"<[^<>]*>", "", name)
+        if bare == name:
+            return name.split("::")[-1]
+        name = bare
+
+
+def return_type(text: str, address: int, name: str | None = None) -> str | None:
     """The return type the definition of fn_<address> is written with, attributes and storage dropped; None
-    when the text has no such definition (a call or a declaration of it does not count)."""
+    when the text has no such definition (a call or a declaration of it does not count). With `name` (the
+    function's data/functions/ name, for one defined under it, such as a class template's member in a
+    header), a definition of its unqualified name counts too."""
     text = DROPPED.sub(" ", COMMENT.sub(" ", text))
-    for m in re.finditer(rf"^([^;{{}}()=#]*?)\b(?:\w+::)*fn_{address:x}\s*\(", text, re.M):
+    found = rf"fn_{address:x}"
+    if name and not name.startswith("fn_"):
+        found = rf"(?:fn_{address:x}|{re.escape(member_name(name))})"
+    for m in re.finditer(rf"^([^;{{}}()=#]*?)\b(?:\w+::)*{found}\s*\(", text, re.M):
         depth, i = 1, m.end()
         while depth and i < len(text):  # to the end of the parameter list
             depth += {"(": 1, ")": -1}.get(text[i], 0)
@@ -196,6 +227,7 @@ class Context:
         self.data_imports = {r.sym: int.from_bytes(img.data[off:off + 8], "little")
                              for off, r in img.relocs.items() if r.sym and r.type in (257, 1025)}
         self.by_name = collections.defaultdict(list)
+        self._names: dict[int, str] | None = None
         for a, r in self.rows.items():
             self.by_name[r["name"]].append(a)
         self.port: dict[str, int] = {}
@@ -214,6 +246,12 @@ class Context:
         if len(self.by_name.get(bare, ())) == 1:
             return self.by_name[bare][0]
         return self.port.get(mangled)
+
+    def name_of(self, address: int) -> str | None:
+        """The data/functions/ name of an address, or None."""
+        if self._names is None:
+            self._names = {a: n for n, addrs in self.by_name.items() for a in addrs}
+        return self._names.get(address)
 
 
 def original_refs(code: bytes, address: int) -> set[int]:
@@ -313,7 +351,9 @@ def load(ctx: Context, obj: Path, addr: int):
         hit = special_address(sym, demangled.get(sym, sym), obj)
         if hit is not None:
             SPECIAL_DEFS.add((obj, hit))
-        return hit
+            return hit
+        # A function defined under its data/functions/ name (a class template's member, ValueOps<T>::...).
+        return ctx.address_of(sym, demangled.get(sym, sym))
 
     return pcode_emu.load_object(str(obj), resolve, demangled, anchor=anchor, address_of=defined_special), missing
 
@@ -549,7 +589,7 @@ def judge(ctx: Context, oracle, obj: Path, a: int, text: str, budget: float = 60
         start, size = lo.functions[a]
         if missing and any(start <= p < start + size for p in lo.unresolved):
             return "fail", f"string not in the original: {missing[0][:40]!r}"
-        rtype = return_type(text, a)
+        rtype = return_type(text, a, ctx.name_of(a))
         if rtype is None and (obj, a) in SPECIAL_DEFS:
             rtype = "void"  # a constructor or destructor (on AArch64 neither returns this)
         if rtype is None:
@@ -648,7 +688,7 @@ def main() -> int:
         relocs = {f.symbol: f.relocs for f in funcs}
         SOURCES[obj] = rel
         results, _, _, _ = check.diff_with_targets(funcs, ctx.orig, by_name, source=rel)
-        text = src.read_text(encoding="utf-8", errors="replace")
+        text = with_headers(src.read_text(encoding="utf-8", errors="replace"))
         for res in results:
             if res.bytes_match or ONLY.get(src.resolve(), res.address) != res.address:
                 continue
