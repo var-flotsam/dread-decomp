@@ -154,6 +154,20 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Vector descriptors: Equals, Erase, SetCopy and SetMove (2026-11-15).** These four join
+`CollectionTypeMapper<C>`, which leaves only `TypeOf` and the key-element iterators (`ConstBegin`, `ConstEnd`)
+by address. They match every reference there is with no dump (lifted, clone and hand-written copies of 12
+vectors of pointers, enums and numbers), and none of the 6063 sources that include the header changes.
+- `operator==` walks both arrays by pointer with a 64-bit down-counter and compares `*b == *a`, the shape
+  of the hand-matched copies (src/game_s1/fn_71000d25f0.cpp).
+- `EraseAt` shifts trivially copyable elements down with one `memcpy`, as in src/base/reflection/UnkArrayEraseAt_A1_b72.cpp.
+- The erase slot reaches its index through a position counted from the collection's own address and
+  back (`(origin + key) - origin`, origin being the vector cast to its element type). That is the
+  original's shape: with `data` as the origin, the round trip folds away and two instructions go missing.
+- SetCopy and SetMove return nothing. Returning the element costs an extra instruction.
+- gen_types now keeps by address only a slot that a hand-written source defines (the erase of 13 pointer
+  vectors, for example), not the whole vector.
+
 **Vector descriptor slots from CollectionTypeMapper (2026-11-15).** The functions a vector's
 CCollectionType descriptor points to are now static members of `base::reflection::CollectionTypeMapper<C>`
 (`include/base/reflection/CollectionTypeMapper.h`): the CType slots `Construct` … `Hash` (with `TypeOf`
