@@ -154,6 +154,13 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Flag sets' value operations from the same template (2026-11-15).** The 8 flag sets (`TEventPropsFlags`,
+`base::global::timeline::TLayers`, ...) share the enums' slot shapes but hash to -1, as classes do; `ValueOps`
+now hashes an enum to its value, a pointer to its address's low word and anything else to -1. Only the alias name
+survives in the game, so the value type is a struct of that name holding the 32 bits, zero by default and compared
+whole. `refl_InitType<T>` maps to `CFlagsetType::CFlagsetType<T>` as well as `CEnumType`'s. Checked here on
+`TEventPropsFlags`: the nine functions are byte-identical to the lifted ones.
+
 **Plain pointer types' value operations from the same template (2026-11-15).** A plain pointer type's nine CType
 slot functions (`T*`, `T const*`) are `ValueOps<T*>` too, with the pointer's hash its address's low word and
 `TypeOf` the type's getter (called, not tail-called, exactly as the original does). `tools/gen_types.py` parses each

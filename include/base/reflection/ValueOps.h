@@ -37,13 +37,16 @@ struct ValueOps {
     static bool Equals(const void* a, const void* b) {
         return *static_cast<const T*>(a) == *static_cast<const T*>(b);
     }
-    // An enum hashes to its value, a pointer to its address's low word.
+    // An enum hashes to its value, a pointer to its address's low word, anything else (a flag set, as
+    // every class) to -1.
     static s32 Hash(const void* obj) {
         const T& value = *static_cast<const T*>(obj);
-        if constexpr (std::is_pointer_v<T>)
+        if constexpr (std::is_enum_v<T>)
+            return static_cast<s32>(value);
+        else if constexpr (std::is_pointer_v<T>)
             return static_cast<s32>(reinterpret_cast<uintptr_t>(value));
         else
-            return static_cast<s32>(value);
+            return -1;
     }
     // The type's descriptor (specialised per type).
     static const CType& TypeOf(const void* obj);

@@ -518,7 +518,7 @@ ENUM_OPS_RE = re.compile(r"^template struct base::reflection::ValueOps<(.+)>;$",
 
 
 def reflection_names(orig: asmdiff.Original, version: str) -> dict[int, str]:
-    """data/functions/ names of the enums and pointer types written in their named form in
+    """data/functions/ names of the enums, flag sets and pointer types written in their named form in
     src/reflection_types/ (tools/gen_functions_csv.py)."""
     written = {m.group(1) for f in OUT.glob("*_types_*.cpp")
                for m in ENUM_OPS_RE.finditer(f.read_text(encoding="utf-8"))}
@@ -528,8 +528,12 @@ def reflection_names(orig: asmdiff.Original, version: str) -> dict[int, str]:
     for init, (name, _) in named.items():
         if name in written:
             out.update(enum_ops_names(orig, init, name))
+    flags = enum_names(orig, version, scan_flagsets(orig, set()))
+    for init, (name, _) in flags.items():
+        if name in written:
+            out.update(enum_ops_names(orig, init, name))
     inits = {g: i for g, _, i, _ in pairs}
-    known = frozenset(name for name, _ in named.values())
+    known = frozenset(name for name, _ in list(named.values()) + list(flags.values()))
     for g, canon in named_pointers(orig, pairs, known).items():
         if canon in written:
             out.update(pointer_ops_names(orig, inits[g], canon))
@@ -661,6 +665,29 @@ def emit_flagset(init: int, body: list[str]) -> list[str]:
             "};",
             f"template base::reflection::CFlagsetType::CFlagsetType(const base::global::CStrId&, "
             f"UnkRefl_fn_{init:x}*);"]
+
+
+def flagset_definition(name: str) -> str:
+    """A flag set's value type: its 32 bits, zero by default and compared whole. Only the alias name
+    survives in the game (its CStrId), so the value is a struct of that name."""
+    scope, _, leaf = name.rpartition("::")
+    return declare_in(scope, f"struct {leaf} {{ u32 bits = 0; bool operator==(const {leaf}& other) const "
+                             f"{{ return bits == other.bits; }} }};")
+
+
+def emit_flagset_ops(init: int, name: str, obj: int, body: list[str]) -> list[str]:
+    """A flag set's description and value operations, named by the flag set (ValueOps.h)."""
+    rest = [line for line in body if " UnkFn " not in line]
+    return [flagset_definition(name),
+            "template <>",
+            f"const CType& base::reflection::ValueOps<{name}>::TypeOf(const void*) {{ return g_unk_{obj:x}; }}",
+            f"template struct base::reflection::ValueOps<{name}>;",
+            "template <>",
+            f"struct base::reflection::FlagsetTypeDescription<{name}> "
+            f": base::reflection::ValueOpsDescription<{name}> {{",
+            *rest,
+            "};",
+            f"template base::reflection::CFlagsetType::CFlagsetType(const base::global::CStrId&, {name}*);"]
 
 
 def scan_flagsets(orig: asmdiff.Original, decls: set[str]) -> list:
@@ -918,7 +945,17 @@ def main() -> int:
     for _, o in named.values():
         decls.add(f"extern base::reflection::CType g_unk_{o:x};")
 
-    named_ptrs = named_pointers(orig, pairs, enum_names_known)
+    named_flags = enum_names(orig, args.version, flagsets)  # the same slots, named the same way
+    named_flags = {i: v for i, v in named_flags.items()
+                   if v[0] not in enum_names_known and list(named_flags.values()).count(v) == 1}
+    for _, o in named_flags.values():
+        decls.add(f"extern base::reflection::CType g_unk_{o:x};")
+    named_ptrs = named_pointers(orig, pairs, enum_names_known | {name for name, _ in named_flags.values()})
+
+    def flagset_block(init: int, body: list[str]) -> list[str]:
+        if init in named_flags:
+            return emit_flagset_ops(init, *named_flags[init], body)
+        return emit_flagset(init, body)
 
     def pointer_block(getter: int, name: str, init: int, body: list[str]) -> list[str]:
         if getter in named_ptrs:
@@ -940,7 +977,7 @@ def main() -> int:
                 + [line for i, b in colls for line in emit_collection(i, b)]
                 + [line for g, b in prims for line in emit_primitive(g, b)]
                 + [line for p in inline_ptrs for line in emit_inline_pointer(*p)]
-                + [line for i, b in flagsets for line in emit_flagset(i, b)])
+                + [line for i, b in flagsets for line in flagset_block(i, b)])
         src.write_text("\n".join(text) + "\n", encoding="utf-8")
         r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
         if r.returncode != 0:
@@ -948,6 +985,7 @@ def main() -> int:
         # The named forms' symbols carry no address: they map through the names data/functions/
         # will give them.
         expected = {n: a for i, (name, _) in named.items() for a, n in enum_ops_names(orig, i, name).items()}
+        expected.update({n: a for i, (name, _) in named_flags.items() for a, n in enum_ops_names(orig, i, name).items()})
         inits = {g: i for g, _, i, _ in pairs}
         expected.update({n: a for g, canon in named_ptrs.items()
                          for a, n in pointer_ops_names(orig, inits[g], canon).items()})
@@ -961,12 +999,16 @@ def main() -> int:
         failed = {i for i, (name, _) in named.items() if not set(enum_ops_names(orig, i, name)) <= ok}
         failed_ptrs = {g for g, canon in named_ptrs.items()
                        if not set(pointer_ops_names(orig, inits[g], canon)) | {g, inits[g]} <= ok}
-        if not failed and not failed_ptrs:
+        failed_flags = {i for i, (name, _) in named_flags.items() if not set(enum_ops_names(orig, i, name)) <= ok}
+        if not failed and not failed_ptrs and not failed_flags:
             break
         print(f"named forms that do not match, kept by address: enums {' '.join(f'{i:x}' for i in sorted(failed))}; "
               f"pointer types {' '.join(f'{g:x}' for g in sorted(failed_ptrs))}")
         named = {i: v for i, v in named.items() if i not in failed}
         named_ptrs = {g: v for g, v in named_ptrs.items() if g not in failed_ptrs}
+        named_flags = {i: v for i, v in named_flags.items() if i not in failed_flags}
+        if failed_flags:
+            print(f"flag sets kept by address: {' '.join(f'{i:x}' for i in sorted(failed_flags))}")
     for line in asmdiff.reloc_rejects(results):
         print(line)
     good = [p for p in pairs if p[0] in ok and p[2] in ok]
@@ -988,7 +1030,7 @@ def main() -> int:
     write_chunks("collection_types", [emit_collection(*c) for c in good_colls], decls,
                  [note, "// Descriptor constructors of collection types (globals built by static initialisers),",
                   "// byte-identical to the original."])
-    write_chunks("flagset_types", [emit_flagset(*f) for f in good_flagsets], decls,
+    write_chunks("flagset_types", [flagset_block(*f) for f in good_flagsets], decls,
                  [note, "// Descriptor constructors of flag sets, byte-identical to the original."])
     write_chunks("primitive_types", [emit_primitive(*p) for p in good_prims], decls,
                  [note, "// Getters (refl_GetType<T>) of plain CType descriptors, byte-identical to the original."])
@@ -1000,7 +1042,8 @@ def main() -> int:
           f"plain types: {len(prims)} getter candidates, {len(good_prims)} byte-identical; "
           f"pointer types with an inlined constructor: {len(inline_ptrs)} getter candidates, "
           f"{len(good_inline)} byte-identical; "
-          f"flag sets: {len(flagsets)} constructor candidates, {len(good_flagsets)} byte-identical")
+          f"flag sets: {len(flagsets)} constructor candidates, {len(good_flagsets)} byte-identical "
+          f"({sum(f[0] in named_flags for f in good_flagsets)} with named value operations)")
     return 0
 
 

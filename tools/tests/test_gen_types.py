@@ -216,7 +216,19 @@ class EnumValueOps(unittest.TestCase):
     def test_constructor_alias(self):
         import asmdiff
         self.assertEqual(asmdiff.name_aliases("base::reflection::refl_InitType<base::EFoo>"),
-                         ["base::reflection::CEnumType::CEnumType<base::EFoo>"])
+                         ["base::reflection::CEnumType::CEnumType<base::EFoo>",
+                          "base::reflection::CFlagsetType::CFlagsetType<base::EFoo>"])
+
+    def test_flagset_named_form(self):
+        body = ["    static constexpr u64 size = 0x4;", "    static constexpr UnkFn hash = &fn_7100000044;",
+                "    static const CType* underlying() { return fn_7100000050(); }"]
+        out = gt.emit_flagset_ops(0x7100000020, "a::TFlags", 0x7101000000, body)
+        self.assertEqual(out[0], "namespace a { struct TFlags { u32 bits = 0; bool operator==(const TFlags& other) "
+                                 "const { return bits == other.bits; } }; }")
+        self.assertIn("struct base::reflection::FlagsetTypeDescription<a::TFlags> "
+                      ": base::reflection::ValueOpsDescription<a::TFlags> {", out)
+        self.assertNotIn(body[1], out)
+        self.assertTrue(out[-1].endswith("(const base::global::CStrId&, a::TFlags*);"))
 
 
 class TypeNames(unittest.TestCase):
