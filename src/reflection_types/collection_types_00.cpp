@@ -531,26 +531,11 @@ extern base::reflection::CType g_unk_7172a00990;
 extern base::reflection::CType g_unk_7172a05d40;
 extern base::reflection::CType g_unk_7172a06930;
 extern base::reflection::CType g_unk_7172a06e68;
-void fn_710001dbd8();
-void fn_710001dbe0();
-void fn_710001dbe8();
-void fn_710001dbf8();
 void fn_710001dc08();
-void fn_710001ddec();
-void fn_710001ddf8();
 void fn_710001de1c();
 void fn_710001dffc();
 void fn_710001e1d0();
-void fn_710001e234();
 void fn_710001e23c();
-void fn_710001e248();
-void fn_710001e288();
-void fn_710001e28c();
-void fn_710001e2cc();
-void fn_710001e310();
-void fn_710001e340();
-void fn_710001ecdc();
-void fn_710001ece8();
 void fn_710001ecfc();
 void fn_710001ee0c();
 void fn_71000cb77c();
@@ -3930,41 +3915,30 @@ namespace GUI { class CDisplayObjectStateDef; }
 namespace GUI { class CSkin; }
 namespace GUI { class CSpriteSheetItem; }
 namespace GUI { class IDisplayObjectTrack; }
+namespace base::core { class AssetName; }
 namespace base::global { template <class> class CRntVector; }
 namespace base::tunable { class CTunableManager; }
 namespace engine::scene { class CSceneSlot; }
 namespace game::logic::collision { class CCollider; }
 namespace gameeditor { enum class EPersistenceTarget : u32; }
 namespace navmesh { class CDynamicSmartLinkRule; }
+#include "base/core/AssetName.h"
+extern template void base::global::CRntVector<base::core::AssetName>::InsertCopy(base::core::AssetName const&, u32);
+extern template void base::global::CRntVector<base::core::AssetName>::InsertMove(base::core::AssetName&&, u32);
 struct UnkRefl_fn_7100019dcc;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100019dcc> {
+struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100019dcc> : base::reflection::CollectionMapperDescription<base::global::CRntVector<base::core::AssetName>> {
     static constexpr u64 size = 0x28;
     static constexpr u32 kind = 0x1;
-    static constexpr UnkFn construct = &fn_710001e248;
-    static constexpr UnkFn copy_construct = &fn_710001e288;
-    static constexpr UnkFn move_construct = &fn_710001e28c;
-    static constexpr UnkFn destroy = &fn_710001e2cc;
-    static constexpr UnkFn copy_assign = &fn_710001e310;
-    static constexpr UnkFn move_assign = &fn_710001e340;
     static constexpr UnkFn equals = &fn_710001e1d0;
-    static constexpr UnkFn hash = &fn_710001e234;
     static constexpr UnkFn type_of = &fn_710001e23c;
     static const CType* key() { return fn_7100005178(); }
     static const CType* element() { return &g_unk_7101d4d998; }
     static const CType* iterator() { return fn_710001904c(); }
     static const CType* const_iterator() { return fn_710001970c(); }
-    static constexpr UnkFn count = &fn_710001dbd8;
-    static constexpr UnkFn clear = &fn_710001dbe0;
-    static constexpr UnkFn add_copy = &fn_710001dbe8;
-    static constexpr UnkFn add_move = &fn_710001dbf8;
     static constexpr UnkFn erase = &fn_710001dc08;
-    static constexpr UnkFn at = &fn_710001ddec;
-    static constexpr UnkFn find = &fn_710001ddf8;
     static constexpr UnkFn set_copy = &fn_710001de1c;
     static constexpr UnkFn set_move = &fn_710001dffc;
-    static constexpr UnkFn begin = &fn_710001ecdc;
-    static constexpr UnkFn end = &fn_710001ece8;
     static constexpr UnkFn const_begin = &fn_710001ecfc;
     static constexpr UnkFn const_end = &fn_710001ee0c;
 };
