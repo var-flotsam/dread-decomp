@@ -6,6 +6,7 @@
 
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/CMinimapData.h"
 #include "game/UnkTU2563.h"
 #include "types.h"
 
@@ -15,26 +16,8 @@ struct UnkPolyVector;
 struct UnkArraysRecord;
 void fn_7100e62e24(void*, u32);
 
-struct alignas(8) UnkRecord138_ovb0222 {
-    u8 name[8];  // a string id
-    u32 field_0x8;
-    u8 unk_0xc[4];
-    u8 field_0x10[0x8];
-    u8 field_0x18[0x28];  // an array of virtual elements, assigned out of line
-    u8 field_0x40;
-    u8 unk_0x41[0x1f];
-    u8 field_0x60;
-    u8 unk_0x61[3];
-    u32 field_0x64;
-    u32 field_0x68;
-    u32 field_0x6c;
-    u32 field_0x70;
-    u8 unk_0x74[4];
-    u8 field_0x78[0x60];  // two paths, assigned out of line
-    u8 field_0xd8[0x60];
-    ~UnkRecord138_ovb0222() { fn_7100e4e310(reinterpret_cast<char*>(this)); }
-};
-static_assert(sizeof(UnkRecord138_ovb0222) == 0x138, "layout");
+// A moving magnet surface (include/game/CMinimapData.h).
+using UnkRecord138_ovb0222 = CMinimapData::SMovingMagnetSurfaceData;
 
 void fn_7100e62084(base::global::CRntVector<UnkRecord138_ovb0222>* self, const u32* indexp, const UnkRecord138_ovb0222* item) {
     u32 index = *indexp;
@@ -49,7 +32,7 @@ void fn_7100e62084(base::global::CRntVector<UnkRecord138_ovb0222>* self, const u
                 if (src) {
                     UnkRecord138_ovb0222* dst = p;
                     for (u32 i = 0; i < self->count; ++i, ++dst, ++src) {
-                        fn_7100e51078(dst, src);
+                        new (dst) UnkRecord138_ovb0222(static_cast<UnkRecord138_ovb0222&&>(*src));
                         src->~UnkRecord138_ovb0222();
                     }
                     self->allocator->vf_0x48(self->data);
@@ -61,18 +44,18 @@ void fn_7100e62084(base::global::CRntVector<UnkRecord138_ovb0222>* self, const u
         fn_7100e62e24(self, index + 1);
     }
     UnkRecord138_ovb0222* dst = &self->data[index];
-    *reinterpret_cast<CStrId*>(dst->name) = *reinterpret_cast<const CStrId*>(item->name);
-    dst->field_0x8 = item->field_0x8;
-    fn_7100e4e898(reinterpret_cast<UnkPolyVector*>(dst->field_0x18),
-                  reinterpret_cast<const UnkPolyVector*>(item->field_0x18));
-    dst->field_0x40 = item->field_0x40;
+    *reinterpret_cast<CStrId*>(&dst->sMoveEntityID) = *reinterpret_cast<const CStrId*>(&item->sMoveEntityID);
+    dst->iEntityType = item->iEntityType;
+    fn_7100e4e898(reinterpret_cast<UnkPolyVector*>(&dst->oPathLine.field_0x8),
+                  reinterpret_cast<const UnkPolyVector*>(&item->oPathLine.field_0x8));
+    dst->oPathLine.field_0x30 = item->oPathLine.field_0x30;
     dst->field_0x60 = item->field_0x60;
     dst->field_0x64 = item->field_0x64;
     dst->field_0x68 = item->field_0x68;
     dst->field_0x6c = item->field_0x6c;
     dst->field_0x70 = item->field_0x70;
-    fn_7100e4f444(reinterpret_cast<UnkArraysRecord*>(dst->field_0x78),
-                  reinterpret_cast<const UnkArraysRecord*>(item->field_0x78));
-    fn_7100e4f444(reinterpret_cast<UnkArraysRecord*>(dst->field_0xd8),
-                  reinterpret_cast<const UnkArraysRecord*>(item->field_0xd8));
+    fn_7100e4f444(reinterpret_cast<UnkArraysRecord*>(&dst->field_0x78),
+                  reinterpret_cast<const UnkArraysRecord*>(&item->field_0x78));
+    fn_7100e4f444(reinterpret_cast<UnkArraysRecord*>(&dst->field_0xd8),
+                  reinterpret_cast<const UnkArraysRecord*>(&item->field_0xd8));
 }

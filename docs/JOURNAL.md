@@ -160,6 +160,18 @@ exactly `UnkVector`'s 0x28 bytes: the array and count at 0 and 8, growth step 10
 the allocator flags at 0x18 (0xf for the reflected vectors) and the allocator at 0x20. The class is renamed
 everywhere, with its header now `include/base/global/CRntVector.h`; no code changes. Earlier entries keep the old
 name. The allocator interface keeps its placeholder.
+**The minimap's 0x138-byte record is `CMinimapData::SMovingMagnetSurfaceData` (2026-11-15).** Four files of
+unit 2563 each had their own 0x138-byte record and called its move constructor `fn_7100e51078` as a free
+function on untyped pointers. The record is the element of `CMinimapData`'s `aMovingMagnetSurfaces` vector:
+its first three members are the reflected `sMoveEntityID` (a string id moved by taking its pointer), `iEntityType`
+and `oPathLine` (0x50 bytes, a vtable and its nodes: `UnkItem` of `include/game_s2/UnkItem50.h`, reflection's
+`SLogicSubPath`), then four words and two `UnkFreedVectorPair` records. Past +0x60 the reflected fields
+(mercury-engine-data-structures) do not line up with what the code copies (+0x74 is never copied by the move or
+the assignment), so those stay placeholders. `include/game/CMinimapData.h` holds it, with its move constructor,
+copy constructor and destructor declared at their addresses (`fn_7100e51078`, `fn_7100e50e20`, `fn_7100e4e310`).
+The four files take it from there with unchanged code (`tools/baseline.py`, 28 files with the includers); the two
+that called the move by name construct in place now. `fn_7100e51078` is the constructor itself, its members moved
+one by one: 98.3%, registers only, it passes `tools/equiv_test.py` and is in `src/`.
 
 **Element iterators' value operations from the same template (2026-11-15).** Every collection's element
 iterator (`CollectionTypeMapper<C>::TElementIterator` and `TElementConstIterator`) is eight bytes: the element it

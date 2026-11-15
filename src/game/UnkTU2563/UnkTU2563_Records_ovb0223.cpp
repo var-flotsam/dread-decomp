@@ -24,6 +24,7 @@
 #include "base/reflection/UnkReflValue.h"
 #include "game/CChangeStageNavMeshItemComponent.h"
 #include "game/CCharClassWaterPoolComponent.h"
+#include "game/CMinimapData.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU25.h"
 #include "game/UnkTU2563.h"
@@ -38,16 +39,9 @@
 // placeholders inferred from the code.
 
 
-struct UnkRec138_b0223;
-void fn_7100e50e20(void* dst, void* src);
 
-struct UnkRec138_b0223 {
-    u8 unk_0x0[0x138];
-
-    UnkRec138_b0223(UnkRec138_b0223&& other) { fn_7100e51078(this, &other); }
-    UnkRec138_b0223(const UnkRec138_b0223& other) { fn_7100e50e20(this, const_cast<UnkRec138_b0223*>(&other)); }
-    ~UnkRec138_b0223() { fn_7100e4e310(reinterpret_cast<char*>(this)); }
-};
+// A moving magnet surface (include/game/CMinimapData.h).
+using UnkRec138_b0223 = CMinimapData::SMovingMagnetSurfaceData;
 
 struct UnkRec138Vec_b0223 {
     UnkRec138_b0223* data;
