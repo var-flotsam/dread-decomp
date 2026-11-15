@@ -275,6 +275,176 @@ VALUE_OPS = {0x28: "Construct", 0x30: "CopyConstruct", 0x38: "MoveConstruct", 0x
 QUALIFIED_RE = re.compile(r"[A-Za-z_]\w*(?:::[A-Za-z_]\w*)*")
 
 
+# Type names as the game spells them ("base::global::CRntVector<CFoo>const*"): parsed so that a source can
+# declare what they name and so that data/functions/ can spell them as llvm-cxxfilt does.
+TYPE_TOKEN_RE = re.compile(r"\s*([A-Za-z_]\w*(?:::[A-Za-z_]\w*)*|[<>,*&])")
+BUILTIN_TYPES = {"unsigned": "unsigned int", "char": "char", "int": "int", "void": "void", "bool": "bool",
+                 "float": "float", "double": "double", "short": "short", "long": "long",
+                 "unsigned int": "unsigned int", "unsigned char": "unsigned char", "unsigned short": "unsigned short",
+                 "unsigned long": "unsigned long", "long long": "long long", "signed char": "signed char"}
+
+
+def parse_type(text: str):
+    """(name, template arguments or None, modifiers) for a type name made of qualified names, template
+    arguments that are types, `const` and `*`; None for anything else (a non-type template argument, a
+    member of a template, a name in std::)."""
+    toks = TYPE_TOKEN_RE.findall(text)
+    if "".join(toks) != re.sub(r"\s+", "", text):
+        return None
+
+    def one(i: int):
+        const = toks[i] == "const"
+        i += const
+        if i >= len(toks) or not re.fullmatch(r"[A-Za-z_][\w:]*", toks[i]) or toks[i] == "const":
+            raise ValueError
+        name, args = toks[i], None
+        i += 1
+        # Two-word builtins ("unsigned int", "long long", ...), as canonical spellings have them.
+        while name in ("unsigned", "signed", "long", "short") and i < len(toks) and toks[i] in ("int", "char", "short", "long"):
+            name, i = f"{name} {toks[i]}", i + 1
+        if i < len(toks) and toks[i] == "<":
+            args, i = [], i + 1
+            while True:
+                arg, i = one(i)
+                args.append(arg)
+                if toks[i] == ",":
+                    i += 1
+                elif toks[i] == ">":
+                    i += 1
+                    break
+                else:
+                    raise ValueError
+        mods = ["const"] if const else []
+        while i < len(toks) and toks[i] in ("const", "*"):
+            mods.append(toks[i])
+            i += 1
+        return (name, args, mods), i
+
+    try:
+        node, end = one(0)
+    except (ValueError, IndexError):
+        return None
+    if end != len(toks) or any(n.startswith("std::") for n in type_names(node)[0] | set(type_names(node)[1])):
+        return None
+    return node
+
+
+def type_names(node) -> tuple[set[str], dict[str, int]]:
+    """The class names and the templates (with their argument counts) a parsed type refers to."""
+    classes: set[str] = set()
+    templates: dict[str, int] = {}
+
+    def walk(n):
+        name, args, _ = n
+        if name in BUILTIN_TYPES:
+            return
+        if args is None:
+            classes.add(name)
+        else:
+            templates[name] = len(args)
+            for a in args:
+                walk(a)
+    walk(node)
+    return classes, templates
+
+
+def render_type(node) -> str:
+    """A parsed type as llvm-cxxfilt prints it: `const` after what it qualifies, `unsigned int`."""
+    name, args, mods = node
+    out = BUILTIN_TYPES.get(name, name)
+    if args is not None:
+        out += "<" + ", ".join(render_type(a) for a in args) + ">"
+    return out + "".join(" const" if m == "const" else m for m in mods)
+
+
+def canonical_type(text: str) -> str:
+    """`text` as llvm-cxxfilt prints it, or `text` itself when it does not parse."""
+    node = parse_type(text)
+    return render_type(node) if node else text
+
+
+def declare_in(scope: str, decl: str) -> str:
+    return f"namespace {scope} {{ {decl} }}" if scope else decl
+
+
+def type_declarations(node, enums: frozenset[str] = frozenset()) -> list[str]:
+    """Declarations of the classes and templates a parsed type names, `enums` declared as the enums they
+    are (enum_declaration); an enclosing class is declared as a namespace, which mangles the same."""
+    classes, templates = type_names(node)
+    out = []
+    for c in sorted(classes):
+        scope, _, leaf = c.rpartition("::")
+        out.append(enum_declaration(c) if c in enums else declare_in(scope, f"class {leaf};"))
+    for t, n in sorted(templates.items()):
+        scope, _, leaf = t.rpartition("::")
+        out.append(declare_in(scope, f"template <{', '.join(['class'] * n)}> class {leaf};"))
+    return out
+
+
+def pointer_slots(orig: asmdiff.Original, init: int) -> dict[int, int] | None:
+    """{slot offset: function} of a pointer constructor's CType slots, when every one holds a function."""
+    _, st, _ = emulate(orig, init)
+    out = {}
+    for off in VALUE_OPS:
+        v = st.get(off)
+        if not v or v[0] != "fn":
+            return None
+        out[off] = v[1]
+    return out
+
+
+def named_pointers(orig: asmdiff.Original, pairs: list, enums: frozenset[str] = frozenset()) -> dict[int, str]:
+    """{getter: name} of the plain pointer types (`T*`, `T const*`) whose value operations can come from
+    ValueOps.h: a name that parses, every CType slot a function, and no class that a name in the set
+    also uses as a scope (the two declarations would collide)."""
+    cands = {}
+    for g, name, init, _ in pairs:
+        node = parse_type(name)
+        if node and node[2] and node[2][-1] == "*" and pointer_slots(orig, init):
+            cands[g] = node
+    def scopes_of(full: str) -> set[str]:
+        parts = full.split("::")
+        return {"::".join(parts[:k]) for k in range(1, len(parts))}
+
+    # The enums count too: their declarations share the scope (and the candidates' translation unit).
+    refs = {g: (lambda c, t: c | set(t))(*type_names(n)) for g, n in cands.items()}
+    names = list(refs.values()) + [{e} for e in enums]
+    types = set().union(*names) if names else set()
+    clash = types & set().union(*(scopes_of(f) for r in names for f in r)) if names else set()
+    out: dict[int, str] = {}
+    for g, node in cands.items():
+        canon = render_type(node)
+        if not any(f in clash or scopes_of(f) & clash for f in refs[g]) and canon not in out.values():
+            out[g] = canon
+    return out
+
+
+def emit_pointer_ops(getter: int, name: str, init: int, body: list[str], canon: str,
+                     enums: frozenset[str] = frozenset()) -> list[str]:
+    """A plain pointer type's description with its CType slots from ValueOps<T> (ValueOps.h), T spelled
+    `canon`; the pointer-specific slots (get, set, increment) and the getter (whose string is `name`)
+    stay as they are."""
+    slot_members = {f" {m} = " for m in SLOTS.values() if m not in ("get", "set", "increment")}
+    rest = [line for line in body if not any(m in line for m in slot_members)]
+    out = emit(getter, name, init, rest)
+    name = canon
+    head = out.index("template <>")
+    desc = f"struct base::reflection::PointerTypeDescription<UnkRefl_fn_{init:x}> {{"
+    out[out.index(desc)] = (f"struct base::reflection::PointerTypeDescription<UnkRefl_fn_{init:x}> "
+                            f": base::reflection::ValueOpsDescription<{name}> {{")
+    ops = ["template <>",
+           f"const CType& base::reflection::ValueOps<{name}>::TypeOf(const void*) "
+           f"{{ return *base::reflection::refl_GetPointerType<UnkRefl_fn_{getter:x}>(); }}",
+           f"template struct base::reflection::ValueOps<{name}>;"]
+    return type_declarations(parse_type(canon), enums) + out[:head] + ops + out[head:]
+
+
+def pointer_ops_names(orig: asmdiff.Original, init: int, name: str) -> dict[int, str]:
+    """data/functions/ names of a plain pointer type's value operations."""
+    return {a: f"base::reflection::ValueOps<{name}>::{VALUE_OPS[off]}"
+            for off, a in (pointer_slots(orig, init) or {}).items()}
+
+
 def enum_slots(orig: asmdiff.Original, init: int) -> dict[int, int] | None:
     """{slot offset: function} of an enum constructor, when it stores a function in every CType slot."""
     _, st, _ = emulate(orig, init)
@@ -348,15 +518,21 @@ ENUM_OPS_RE = re.compile(r"^template struct base::reflection::ValueOps<(.+)>;$",
 
 
 def reflection_names(orig: asmdiff.Original, version: str) -> dict[int, str]:
-    """data/functions/ names of the enums written in their named form in src/reflection_types/
-    (tools/gen_functions_csv.py)."""
-    written = {m.group(1) for f in OUT.glob("enum_types_*.cpp")
+    """data/functions/ names of the enums and pointer types written in their named form in
+    src/reflection_types/ (tools/gen_functions_csv.py)."""
+    written = {m.group(1) for f in OUT.glob("*_types_*.cpp")
                for m in ENUM_OPS_RE.finditer(f.read_text(encoding="utf-8"))}
-    _, _, enums, _ = scan(orig)
+    pairs, _, enums, _ = scan(orig)
     out = {}
-    for init, (name, _) in enum_names(orig, version, enums).items():
+    named = enum_names(orig, version, enums)
+    for init, (name, _) in named.items():
         if name in written:
             out.update(enum_ops_names(orig, init, name))
+    inits = {g: i for g, _, i, _ in pairs}
+    known = frozenset(name for name, _ in named.values())
+    for g, canon in named_pointers(orig, pairs, known).items():
+        if canon in written:
+            out.update(pointer_ops_names(orig, inits[g], canon))
     return out
 
 
@@ -654,10 +830,16 @@ PRELUDE = ['#include "base/reflection/CCollectionType.h"',
 NAME_RE = re.compile(r"\b(?:fn|g_unk)_[0-9a-f]{10}\b")
 
 
+# The declarations of the types a named form uses (type_declarations, enum_declaration), gathered at
+# the top of each file.
+TYPE_DECL_RE = re.compile(r"^(?:namespace [\w:]+ \{ )?(?:template <[^>]*> )?(?:class|enum class) \w+(?: : u32)?;(?: \})?$")
+
+
 def write_chunks(prefix: str, blocks: list[list[str]], decls: set[str], header: list[str]) -> None:
     for k in range(0, len(blocks), CHUNK):
-        body = [line for b in blocks[k:k + CHUNK] for line in b]
-        used = used_decls(body, decls)
+        lines = [line for b in blocks[k:k + CHUNK] for line in b]
+        body = [line for line in lines if not TYPE_DECL_RE.match(line)]
+        used = used_decls(body, decls) + sorted({line for line in lines if TYPE_DECL_RE.match(line)})
         (OUT / f"{prefix}_{k // CHUNK:02d}.cpp").write_text("\n".join(header + PRELUDE + used + body) + "\n",
                                                            encoding="utf-8")
 
@@ -727,12 +909,21 @@ def main() -> int:
     # Enums named by their static initialisers get their value operations from ValueOps.h; a name
     # two descriptors share, or a named form that does not match, keeps the address form.
     named = enum_names(orig, args.version, enums)
+    # A pointer type's name may mention an enum (a dictionary of them): declared as the enum it is.
+    enum_names_known = frozenset(name for name, _ in named.values())
     counts: dict[str, int] = {}
     for name, _ in named.values():
         counts[name] = counts.get(name, 0) + 1
     named = {i: v for i, v in named.items() if counts[v[0]] == 1}
     for _, o in named.values():
         decls.add(f"extern base::reflection::CType g_unk_{o:x};")
+
+    named_ptrs = named_pointers(orig, pairs, enum_names_known)
+
+    def pointer_block(getter: int, name: str, init: int, body: list[str]) -> list[str]:
+        if getter in named_ptrs:
+            return emit_pointer_ops(getter, name, init, body, named_ptrs[getter], enum_names_known)
+        return emit(getter, name, init, body)
 
     def enum_block(init: int, body: list[str]) -> list[str]:
         if init in named:
@@ -744,7 +935,7 @@ def main() -> int:
     work.mkdir(parents=True, exist_ok=True)
     src, obj = work / "candidates.cpp", work / "candidates.o"
     for attempt in range(2):
-        text = (PRELUDE + sorted(decls) + [line for g, nm, i, b in pairs for line in emit(g, nm, i, b)]
+        text = (PRELUDE + sorted(decls) + [line for p in pairs for line in pointer_block(*p)]
                 + [line for i, b in enums for line in enum_block(i, b)]
                 + [line for i, b in colls for line in emit_collection(i, b)]
                 + [line for g, b in prims for line in emit_primitive(g, b)]
@@ -757,6 +948,9 @@ def main() -> int:
         # The named forms' symbols carry no address: they map through the names data/functions/
         # will give them.
         expected = {n: a for i, (name, _) in named.items() for a, n in enum_ops_names(orig, i, name).items()}
+        inits = {g: i for g, _, i, _ in pairs}
+        expected.update({n: a for g, canon in named_ptrs.items()
+                         for a, n in pointer_ops_names(orig, inits[g], canon).items()})
         expected.update({alias: a for n, a in list(expected.items()) for alias in asmdiff.name_aliases(n)})
         symbols = [f.symbol for f in asmdiff.read_object(obj)]
         demangled = asmdiff.demangle(symbols)
@@ -765,10 +959,14 @@ def main() -> int:
                                       strict=True)
         ok = {res.address for res in results if res.matching}
         failed = {i for i, (name, _) in named.items() if not set(enum_ops_names(orig, i, name)) <= ok}
-        if not failed:
+        failed_ptrs = {g for g, canon in named_ptrs.items()
+                       if not set(pointer_ops_names(orig, inits[g], canon)) | {g, inits[g]} <= ok}
+        if not failed and not failed_ptrs:
             break
-        print(f"named enum forms that do not match, kept by address: {' '.join(f'{i:x}' for i in sorted(failed))}")
+        print(f"named forms that do not match, kept by address: enums {' '.join(f'{i:x}' for i in sorted(failed))}; "
+              f"pointer types {' '.join(f'{g:x}' for g in sorted(failed_ptrs))}")
         named = {i: v for i, v in named.items() if i not in failed}
+        named_ptrs = {g: v for g, v in named_ptrs.items() if g not in failed_ptrs}
     for line in asmdiff.reloc_rejects(results):
         print(line)
     good = [p for p in pairs if p[0] in ok and p[2] in ok]
@@ -782,7 +980,7 @@ def main() -> int:
         shutil.rmtree(OUT)
     OUT.mkdir(parents=True)
     note = "// Generated by tools/gen_types.py from main; regenerate rather than edit."
-    write_chunks("pointer_types", [emit(*p) for p in good] + [emit_inline_pointer(*p) for p in good_inline], decls,
+    write_chunks("pointer_types", [pointer_block(*p) for p in good] + [emit_inline_pointer(*p) for p in good_inline], decls,
                  [note, "// Getters (refl_GetType<T>) and descriptor constructors (refl_InitType<T>) of pointer",
                   "// types, byte-identical to the original."])
     write_chunks("enum_types", [enum_block(*e) for e in good_enums], decls,
@@ -794,7 +992,8 @@ def main() -> int:
                  [note, "// Descriptor constructors of flag sets, byte-identical to the original."])
     write_chunks("primitive_types", [emit_primitive(*p) for p in good_prims], decls,
                  [note, "// Getters (refl_GetType<T>) of plain CType descriptors, byte-identical to the original."])
-    print(f"pointer types: {len(pairs)} getter/constructor candidates, {len(good)} pairs byte-identical; "
+    print(f"pointer types: {len(pairs)} getter/constructor candidates, {len(good)} pairs byte-identical "
+          f"({sum(p[0] in named_ptrs for p in good)} with named value operations); "
           f"enums: {len(enums)} constructor candidates, {len(good_enums)} byte-identical "
           f"({sum(e[0] in named for e in good_enums)} with named value operations); "
           f"collections: {len(colls)} constructor candidates, {len(good_colls)} byte-identical; "

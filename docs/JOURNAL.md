@@ -154,6 +154,18 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Plain pointer types' value operations from the same template (2026-11-15).** A plain pointer type's nine CType
+slot functions (`T*`, `T const*`) are `ValueOps<T*>` too, with the pointer's hash its address's low word and
+`TypeOf` the type's getter (called, not tail-called, exactly as the original does). `tools/gen_types.py` parses each
+pointer type's name as the game spells it (`base::global::CRntVector<CFoo>const*`) and declares the classes and
+templates it names (an enclosing class as a namespace); a name with a non-type template argument, a member of a
+template, a name in `std::`, or a class some other name in the set also uses as a scope keeps the address form.
+data/functions/ spells the names as llvm-cxxfilt prints them (`canonical_type`: `const` after what it qualifies,
+`unsigned int`), checked here against llvm-cxxfilt on all 147 names that qualify. The iterator types
+(`CollectionTypeMapper<C>::TElementIterator` and the like, 766 of the pointer descriptors) are values of their own
+layout and follow with the collections. Checked here on five types: their 45 value operations are byte-identical to
+the lifted ones.
+
 **Enum value operations from one template (2026-11-15).** The nine CType slot functions of an enum's
 descriptor (construct, copy and move construct, destroy, copy and move assign, equals, hash, type of) are one
 template's instantiations, `base::reflection::ValueOps<E>` (`include/base/reflection/ValueOps.h`), one per enum,

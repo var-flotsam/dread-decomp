@@ -1521,15 +1521,15 @@ address,size,name,name_source,subsystem,status
 0x710075b6a0,96,fn_710075b6a0,unknown,unknown,O
 0x710075b700,12,fn_710075b700,unknown,unknown,O
 0x710075b70c,16,fn_710075b70c,unknown,unknown,O
-0x710075b71c,20,fn_710075b71c,unknown,unknown,O
-0x710075b730,8,fn_710075b730,unknown,unknown,O
-0x710075b738,20,fn_710075b738,unknown,unknown,O
-0x710075b74c,8,fn_710075b74c,unknown,unknown,O
-0x710075b754,12,fn_710075b754,unknown,unknown,O
-0x710075b760,12,fn_710075b760,unknown,unknown,O
-0x710075b76c,4,fn_710075b76c,unknown,unknown,O
-0x710075b770,20,fn_710075b770,unknown,unknown,O
-0x710075b784,20,fn_710075b784,unknown,unknown,O
+0x710075b71c,20,base::reflection::ValueOps<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>*>::Equals,reflection,engine/reflection,O
+0x710075b730,8,base::reflection::ValueOps<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>*>::Hash,reflection,engine/reflection,O
+0x710075b738,20,base::reflection::ValueOps<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>*>::TypeOf,reflection,engine/reflection,O
+0x710075b74c,8,base::reflection::ValueOps<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>*>::Construct,reflection,engine/reflection,O
+0x710075b754,12,base::reflection::ValueOps<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>*>::CopyConstruct,reflection,engine/reflection,O
+0x710075b760,12,base::reflection::ValueOps<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>*>::MoveConstruct,reflection,engine/reflection,O
+0x710075b76c,4,base::reflection::ValueOps<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>*>::Destroy,reflection,engine/reflection,O
+0x710075b770,20,base::reflection::ValueOps<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>*>::CopyAssign,reflection,engine/reflection,O
+0x710075b784,20,base::reflection::ValueOps<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>*>::MoveAssign,reflection,engine/reflection,O
 0x710075b798,364,fn_710075b798,unknown,unknown,O
 0x710075b904,96,fn_710075b904,unknown,unknown,O
 0x710075b964,12,fn_710075b964,unknown,unknown,O
@@ -3037,15 +3037,15 @@ address,size,name,name_source,subsystem,status
 0x710079b84c,96,fn_710079b84c,unknown,unknown,O
 0x710079b8ac,12,fn_710079b8ac,unknown,unknown,O
 0x710079b8b8,16,fn_710079b8b8,unknown,unknown,O
-0x710079b8c8,20,fn_710079b8c8,unknown,unknown,O
-0x710079b8dc,8,fn_710079b8dc,unknown,unknown,O
-0x710079b8e4,20,fn_710079b8e4,unknown,unknown,O
-0x710079b8f8,8,fn_710079b8f8,unknown,unknown,O
-0x710079b900,12,fn_710079b900,unknown,unknown,O
-0x710079b90c,12,fn_710079b90c,unknown,unknown,O
-0x710079b918,4,fn_710079b918,unknown,unknown,O
-0x710079b91c,20,fn_710079b91c,unknown,unknown,O
-0x710079b930,20,fn_710079b930,unknown,unknown,O
+0x710079b8c8,20,"base::reflection::ValueOps<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>*>::Equals",reflection,engine/reflection,O
+0x710079b8dc,8,"base::reflection::ValueOps<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>*>::Hash",reflection,engine/reflection,O
+0x710079b8e4,20,"base::reflection::ValueOps<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>*>::TypeOf",reflection,engine/reflection,O
+0x710079b8f8,8,"base::reflection::ValueOps<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>*>::Construct",reflection,engine/reflection,O
+0x710079b900,12,"base::reflection::ValueOps<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>*>::CopyConstruct",reflection,engine/reflection,O
+0x710079b90c,12,"base::reflection::ValueOps<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>*>::MoveConstruct",reflection,engine/reflection,O
+0x710079b918,4,"base::reflection::ValueOps<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>*>::Destroy",reflection,engine/reflection,O
+0x710079b91c,20,"base::reflection::ValueOps<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>*>::CopyAssign",reflection,engine/reflection,O
+0x710079b930,20,"base::reflection::ValueOps<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>*>::MoveAssign",reflection,engine/reflection,O
 0x710079b944,252,fn_710079b944,unknown,unknown,O
 0x710079ba40,176,fn_710079ba40,unknown,unknown,O
 0x710079baf0,8,fn_710079baf0,unknown,unknown,O
@@ -3417,15 +3417,15 @@ address,size,name,name_source,subsystem,status
 0x71007ae178,96,fn_71007ae178,unknown,game/components?,O
 0x71007ae1d8,12,fn_71007ae1d8,unknown,game/components?,O
 0x71007ae1e4,16,fn_71007ae1e4,unknown,game/components?,O
-0x71007ae1f4,20,fn_71007ae1f4,unknown,game/components?,O
-0x71007ae208,8,fn_71007ae208,unknown,game/components?,O
-0x71007ae210,20,fn_71007ae210,unknown,game/components?,O
-0x71007ae224,8,fn_71007ae224,unknown,game/components?,O
-0x71007ae22c,12,fn_71007ae22c,unknown,game/components?,O
-0x71007ae238,12,fn_71007ae238,unknown,game/components?,O
-0x71007ae244,4,fn_71007ae244,unknown,game/components?,O
-0x71007ae248,20,fn_71007ae248,unknown,game/components?,O
-0x71007ae25c,20,fn_71007ae25c,unknown,game/components?,O
+0x71007ae1f4,20,base::reflection::ValueOps<CCutscene*>::Equals,reflection,engine/reflection,O
+0x71007ae208,8,base::reflection::ValueOps<CCutscene*>::Hash,reflection,engine/reflection,O
+0x71007ae210,20,base::reflection::ValueOps<CCutscene*>::TypeOf,reflection,engine/reflection,O
+0x71007ae224,8,base::reflection::ValueOps<CCutscene*>::Construct,reflection,engine/reflection,O
+0x71007ae22c,12,base::reflection::ValueOps<CCutscene*>::CopyConstruct,reflection,engine/reflection,O
+0x71007ae238,12,base::reflection::ValueOps<CCutscene*>::MoveConstruct,reflection,engine/reflection,O
+0x71007ae244,4,base::reflection::ValueOps<CCutscene*>::Destroy,reflection,engine/reflection,O
+0x71007ae248,20,base::reflection::ValueOps<CCutscene*>::CopyAssign,reflection,engine/reflection,O
+0x71007ae25c,20,base::reflection::ValueOps<CCutscene*>::MoveAssign,reflection,engine/reflection,O
 0x71007ae270,76,fn_71007ae270,unknown,game/components?,O
 0x71007ae2bc,336,fn_71007ae2bc,unknown,game/components?,O
 0x71007ae40c,220,fn_71007ae40c,unknown,game/components?,O

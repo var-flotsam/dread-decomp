@@ -34,7 +34,7 @@ CFlagsetType::CFlagsetType(const base::global::CStrId& name, T*)
             reinterpret_cast<UnkFn_0x58>(FlagsetTypeDescription<T>::equals),
             reinterpret_cast<UnkFn_0x60>(FlagsetTypeDescription<T>::hash),
             reinterpret_cast<UnkFn_0x68>(FlagsetTypeDescription<T>::type_of), nullptr, nullptr,
-            {FlagsetTypeDescription<T>::construct, reinterpret_cast<UnkFn_0x30>(FlagsetTypeDescription<T>::copy_construct),
+            {reinterpret_cast<UnkFn>(FlagsetTypeDescription<T>::construct), reinterpret_cast<UnkFn_0x30>(FlagsetTypeDescription<T>::copy_construct),
              reinterpret_cast<UnkFn_0x30>(FlagsetTypeDescription<T>::move_construct),
              reinterpret_cast<UnkFn_0x40>(FlagsetTypeDescription<T>::destroy),
              reinterpret_cast<UnkFn_0x48>(FlagsetTypeDescription<T>::copy_assign),

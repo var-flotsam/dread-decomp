@@ -283,28 +283,28 @@ address,size,name,name_source,subsystem,status
 0x7100e0d6dc,96,fn_7100e0d6dc,unknown,unknown,O
 0x7100e0d73c,12,fn_7100e0d73c,unknown,unknown,O
 0x7100e0d748,16,fn_7100e0d748,unknown,unknown,O
-0x7100e0d758,20,fn_7100e0d758,unknown,unknown,O
-0x7100e0d76c,8,fn_7100e0d76c,unknown,unknown,O
-0x7100e0d774,20,fn_7100e0d774,unknown,unknown,O
-0x7100e0d788,8,fn_7100e0d788,unknown,unknown,O
-0x7100e0d790,12,fn_7100e0d790,unknown,unknown,O
-0x7100e0d79c,12,fn_7100e0d79c,unknown,unknown,O
-0x7100e0d7a8,4,fn_7100e0d7a8,unknown,unknown,O
-0x7100e0d7ac,20,fn_7100e0d7ac,unknown,unknown,O
-0x7100e0d7c0,20,fn_7100e0d7c0,unknown,unknown,O
+0x7100e0d758,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef>*>::Equals",reflection,engine/reflection,O
+0x7100e0d76c,8,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef>*>::Hash",reflection,engine/reflection,O
+0x7100e0d774,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef>*>::TypeOf",reflection,engine/reflection,O
+0x7100e0d788,8,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef>*>::Construct",reflection,engine/reflection,O
+0x7100e0d790,12,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef>*>::CopyConstruct",reflection,engine/reflection,O
+0x7100e0d79c,12,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef>*>::MoveConstruct",reflection,engine/reflection,O
+0x7100e0d7a8,4,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef>*>::Destroy",reflection,engine/reflection,O
+0x7100e0d7ac,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef>*>::CopyAssign",reflection,engine/reflection,O
+0x7100e0d7c0,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef>*>::MoveAssign",reflection,engine/reflection,O
 0x7100e0d7d4,364,fn_7100e0d7d4,unknown,unknown,O
 0x7100e0d940,96,fn_7100e0d940,unknown,unknown,O
 0x7100e0d9a0,12,fn_7100e0d9a0,unknown,unknown,O
 0x7100e0d9ac,16,fn_7100e0d9ac,unknown,unknown,O
-0x7100e0d9bc,20,fn_7100e0d9bc,unknown,unknown,O
-0x7100e0d9d0,8,fn_7100e0d9d0,unknown,unknown,O
-0x7100e0d9d8,20,fn_7100e0d9d8,unknown,unknown,O
-0x7100e0d9ec,8,fn_7100e0d9ec,unknown,unknown,O
-0x7100e0d9f4,12,fn_7100e0d9f4,unknown,unknown,O
-0x7100e0da00,12,fn_7100e0da00,unknown,unknown,O
-0x7100e0da0c,4,fn_7100e0da0c,unknown,unknown,O
-0x7100e0da10,20,fn_7100e0da10,unknown,unknown,O
-0x7100e0da24,20,fn_7100e0da24,unknown,unknown,O
+0x7100e0d9bc,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef> const*>::Equals",reflection,engine/reflection,O
+0x7100e0d9d0,8,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef> const*>::Hash",reflection,engine/reflection,O
+0x7100e0d9d8,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef> const*>::TypeOf",reflection,engine/reflection,O
+0x7100e0d9ec,8,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef> const*>::Construct",reflection,engine/reflection,O
+0x7100e0d9f4,12,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef> const*>::CopyConstruct",reflection,engine/reflection,O
+0x7100e0da00,12,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef> const*>::MoveConstruct",reflection,engine/reflection,O
+0x7100e0da0c,4,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef> const*>::Destroy",reflection,engine/reflection,O
+0x7100e0da10,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef> const*>::CopyAssign",reflection,engine/reflection,O
+0x7100e0da24,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef> const*>::MoveAssign",reflection,engine/reflection,O
 0x7100e0da38,252,fn_7100e0da38,unknown,unknown,O
 0x7100e0db34,12,CLightManager::refl_Equals,reflection,game,O
 0x7100e0db40,8,CLightManager::refl_Hash,reflection,game,O
@@ -3540,15 +3540,15 @@ address,size,name,name_source,subsystem,status
 0x7100ed8dd0,96,fn_7100ed8dd0,unknown,unknown,O
 0x7100ed8e30,12,fn_7100ed8e30,unknown,unknown,O
 0x7100ed8e3c,16,fn_7100ed8e3c,unknown,unknown,O
-0x7100ed8e4c,20,fn_7100ed8e4c,unknown,unknown,O
-0x7100ed8e60,8,fn_7100ed8e60,unknown,unknown,O
-0x7100ed8e68,20,fn_7100ed8e68,unknown,unknown,O
-0x7100ed8e7c,8,fn_7100ed8e7c,unknown,unknown,O
-0x7100ed8e84,12,fn_7100ed8e84,unknown,unknown,O
-0x7100ed8e90,12,fn_7100ed8e90,unknown,unknown,O
-0x7100ed8e9c,4,fn_7100ed8e9c,unknown,unknown,O
-0x7100ed8ea0,20,fn_7100ed8ea0,unknown,unknown,O
-0x7100ed8eb4,20,fn_7100ed8eb4,unknown,unknown,O
+0x7100ed8e4c,20,base::reflection::ValueOps<CShotAudioWeaponStates*>::Equals,reflection,engine/reflection,O
+0x7100ed8e60,8,base::reflection::ValueOps<CShotAudioWeaponStates*>::Hash,reflection,engine/reflection,O
+0x7100ed8e68,20,base::reflection::ValueOps<CShotAudioWeaponStates*>::TypeOf,reflection,engine/reflection,O
+0x7100ed8e7c,8,base::reflection::ValueOps<CShotAudioWeaponStates*>::Construct,reflection,engine/reflection,O
+0x7100ed8e84,12,base::reflection::ValueOps<CShotAudioWeaponStates*>::CopyConstruct,reflection,engine/reflection,O
+0x7100ed8e90,12,base::reflection::ValueOps<CShotAudioWeaponStates*>::MoveConstruct,reflection,engine/reflection,O
+0x7100ed8e9c,4,base::reflection::ValueOps<CShotAudioWeaponStates*>::Destroy,reflection,engine/reflection,O
+0x7100ed8ea0,20,base::reflection::ValueOps<CShotAudioWeaponStates*>::CopyAssign,reflection,engine/reflection,O
+0x7100ed8eb4,20,base::reflection::ValueOps<CShotAudioWeaponStates*>::MoveAssign,reflection,engine/reflection,O
 0x7100ed8ec8,364,fn_7100ed8ec8,unknown,unknown,O
 0x7100ed9034,96,fn_7100ed9034,unknown,unknown,O
 0x7100ed9094,12,fn_7100ed9094,unknown,unknown,O
@@ -3632,15 +3632,15 @@ address,size,name,name_source,subsystem,status
 0x7100eda43c,96,fn_7100eda43c,unknown,unknown,O
 0x7100eda49c,12,fn_7100eda49c,unknown,unknown,O
 0x7100eda4a8,16,fn_7100eda4a8,unknown,unknown,O
-0x7100eda4b8,20,fn_7100eda4b8,unknown,unknown,O
-0x7100eda4cc,8,fn_7100eda4cc,unknown,unknown,O
-0x7100eda4d4,20,fn_7100eda4d4,unknown,unknown,O
-0x7100eda4e8,8,fn_7100eda4e8,unknown,unknown,O
-0x7100eda4f0,12,fn_7100eda4f0,unknown,unknown,O
-0x7100eda4fc,12,fn_7100eda4fc,unknown,unknown,O
-0x7100eda508,4,fn_7100eda508,unknown,unknown,O
-0x7100eda50c,20,fn_7100eda50c,unknown,unknown,O
-0x7100eda520,20,fn_7100eda520,unknown,unknown,O
+0x7100eda4b8,20,base::reflection::ValueOps<CShotAudioWeaponPresets*>::Equals,reflection,engine/reflection,O
+0x7100eda4cc,8,base::reflection::ValueOps<CShotAudioWeaponPresets*>::Hash,reflection,engine/reflection,O
+0x7100eda4d4,20,base::reflection::ValueOps<CShotAudioWeaponPresets*>::TypeOf,reflection,engine/reflection,O
+0x7100eda4e8,8,base::reflection::ValueOps<CShotAudioWeaponPresets*>::Construct,reflection,engine/reflection,O
+0x7100eda4f0,12,base::reflection::ValueOps<CShotAudioWeaponPresets*>::CopyConstruct,reflection,engine/reflection,O
+0x7100eda4fc,12,base::reflection::ValueOps<CShotAudioWeaponPresets*>::MoveConstruct,reflection,engine/reflection,O
+0x7100eda508,4,base::reflection::ValueOps<CShotAudioWeaponPresets*>::Destroy,reflection,engine/reflection,O
+0x7100eda50c,20,base::reflection::ValueOps<CShotAudioWeaponPresets*>::CopyAssign,reflection,engine/reflection,O
+0x7100eda520,20,base::reflection::ValueOps<CShotAudioWeaponPresets*>::MoveAssign,reflection,engine/reflection,O
 0x7100eda534,28,fn_7100eda534,unknown,unknown,O
 0x7100eda550,36,fn_7100eda550,unknown,unknown,O
 0x7100eda574,140,fn_7100eda574,unknown,unknown,O
@@ -3977,15 +3977,15 @@ address,size,name,name_source,subsystem,status
 0x7100ef0b48,96,fn_7100ef0b48,unknown,unknown,O
 0x7100ef0ba8,12,fn_7100ef0ba8,unknown,unknown,O
 0x7100ef0bb4,16,fn_7100ef0bb4,unknown,unknown,O
-0x7100ef0bc4,20,fn_7100ef0bc4,unknown,unknown,O
-0x7100ef0bd8,8,fn_7100ef0bd8,unknown,unknown,O
-0x7100ef0be0,20,fn_7100ef0be0,unknown,unknown,O
-0x7100ef0bf4,8,fn_7100ef0bf4,unknown,unknown,O
-0x7100ef0bfc,12,fn_7100ef0bfc,unknown,unknown,O
-0x7100ef0c08,12,fn_7100ef0c08,unknown,unknown,O
-0x7100ef0c14,4,fn_7100ef0c14,unknown,unknown,O
-0x7100ef0c18,20,fn_7100ef0c18,unknown,unknown,O
-0x7100ef0c2c,20,fn_7100ef0c2c,unknown,unknown,O
+0x7100ef0bc4,20,base::reflection::ValueOps<CSubareaSetup*>::Equals,reflection,engine/reflection,O
+0x7100ef0bd8,8,base::reflection::ValueOps<CSubareaSetup*>::Hash,reflection,engine/reflection,O
+0x7100ef0be0,20,base::reflection::ValueOps<CSubareaSetup*>::TypeOf,reflection,engine/reflection,O
+0x7100ef0bf4,8,base::reflection::ValueOps<CSubareaSetup*>::Construct,reflection,engine/reflection,O
+0x7100ef0bfc,12,base::reflection::ValueOps<CSubareaSetup*>::CopyConstruct,reflection,engine/reflection,O
+0x7100ef0c08,12,base::reflection::ValueOps<CSubareaSetup*>::MoveConstruct,reflection,engine/reflection,O
+0x7100ef0c14,4,base::reflection::ValueOps<CSubareaSetup*>::Destroy,reflection,engine/reflection,O
+0x7100ef0c18,20,base::reflection::ValueOps<CSubareaSetup*>::CopyAssign,reflection,engine/reflection,O
+0x7100ef0c2c,20,base::reflection::ValueOps<CSubareaSetup*>::MoveAssign,reflection,engine/reflection,O
 0x7100ef0c40,156,fn_7100ef0c40,unknown,unknown,O
 0x7100ef0cdc,292,fn_7100ef0cdc,unknown,unknown,O
 0x7100ef0e00,220,fn_7100ef0e00,unknown,unknown,O
@@ -3993,15 +3993,15 @@ address,size,name,name_source,subsystem,status
 0x7100ef1048,96,fn_7100ef1048,unknown,unknown,O
 0x7100ef10a8,12,fn_7100ef10a8,unknown,unknown,O
 0x7100ef10b4,16,fn_7100ef10b4,unknown,unknown,O
-0x7100ef10c4,20,fn_7100ef10c4,unknown,unknown,O
-0x7100ef10d8,8,fn_7100ef10d8,unknown,unknown,O
-0x7100ef10e0,20,fn_7100ef10e0,unknown,unknown,O
-0x7100ef10f4,8,fn_7100ef10f4,unknown,unknown,O
-0x7100ef10fc,12,fn_7100ef10fc,unknown,unknown,O
-0x7100ef1108,12,fn_7100ef1108,unknown,unknown,O
-0x7100ef1114,4,fn_7100ef1114,unknown,unknown,O
-0x7100ef1118,20,fn_7100ef1118,unknown,unknown,O
-0x7100ef112c,20,fn_7100ef112c,unknown,unknown,O
+0x7100ef10c4,20,base::reflection::ValueOps<CSubareaCharclassGroup*>::Equals,reflection,engine/reflection,O
+0x7100ef10d8,8,base::reflection::ValueOps<CSubareaCharclassGroup*>::Hash,reflection,engine/reflection,O
+0x7100ef10e0,20,base::reflection::ValueOps<CSubareaCharclassGroup*>::TypeOf,reflection,engine/reflection,O
+0x7100ef10f4,8,base::reflection::ValueOps<CSubareaCharclassGroup*>::Construct,reflection,engine/reflection,O
+0x7100ef10fc,12,base::reflection::ValueOps<CSubareaCharclassGroup*>::CopyConstruct,reflection,engine/reflection,O
+0x7100ef1108,12,base::reflection::ValueOps<CSubareaCharclassGroup*>::MoveConstruct,reflection,engine/reflection,O
+0x7100ef1114,4,base::reflection::ValueOps<CSubareaCharclassGroup*>::Destroy,reflection,engine/reflection,O
+0x7100ef1118,20,base::reflection::ValueOps<CSubareaCharclassGroup*>::CopyAssign,reflection,engine/reflection,O
+0x7100ef112c,20,base::reflection::ValueOps<CSubareaCharclassGroup*>::MoveAssign,reflection,engine/reflection,O
 0x7100ef1140,180,fn_7100ef1140,unknown,unknown,O
 0x7100ef11f4,300,fn_7100ef11f4,unknown,unknown,O
 0x7100ef1320,208,fn_7100ef1320,unknown,unknown,O

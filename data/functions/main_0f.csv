@@ -3651,15 +3651,15 @@ address,size,name,name_source,subsystem,status
 0x7100f8a2bc,96,fn_7100f8a2bc,unknown,unknown,O
 0x7100f8a31c,12,fn_7100f8a31c,unknown,unknown,O
 0x7100f8a328,16,fn_7100f8a328,unknown,unknown,O
-0x7100f8a338,20,fn_7100f8a338,unknown,unknown,O
-0x7100f8a34c,8,fn_7100f8a34c,unknown,unknown,O
-0x7100f8a354,20,fn_7100f8a354,unknown,unknown,O
-0x7100f8a368,8,fn_7100f8a368,unknown,unknown,O
-0x7100f8a370,12,fn_7100f8a370,unknown,unknown,O
-0x7100f8a37c,12,fn_7100f8a37c,unknown,unknown,O
-0x7100f8a388,4,fn_7100f8a388,unknown,unknown,O
-0x7100f8a38c,20,fn_7100f8a38c,unknown,unknown,O
-0x7100f8a3a0,20,fn_7100f8a3a0,unknown,unknown,O
+0x7100f8a338,20,base::reflection::ValueOps<CEnvironmentMusicPresets const*>::Equals,reflection,engine/reflection,O
+0x7100f8a34c,8,base::reflection::ValueOps<CEnvironmentMusicPresets const*>::Hash,reflection,engine/reflection,O
+0x7100f8a354,20,base::reflection::ValueOps<CEnvironmentMusicPresets const*>::TypeOf,reflection,engine/reflection,O
+0x7100f8a368,8,base::reflection::ValueOps<CEnvironmentMusicPresets const*>::Construct,reflection,engine/reflection,O
+0x7100f8a370,12,base::reflection::ValueOps<CEnvironmentMusicPresets const*>::CopyConstruct,reflection,engine/reflection,O
+0x7100f8a37c,12,base::reflection::ValueOps<CEnvironmentMusicPresets const*>::MoveConstruct,reflection,engine/reflection,O
+0x7100f8a388,4,base::reflection::ValueOps<CEnvironmentMusicPresets const*>::Destroy,reflection,engine/reflection,O
+0x7100f8a38c,20,base::reflection::ValueOps<CEnvironmentMusicPresets const*>::CopyAssign,reflection,engine/reflection,O
+0x7100f8a3a0,20,base::reflection::ValueOps<CEnvironmentMusicPresets const*>::MoveAssign,reflection,engine/reflection,O
 0x7100f8a3b4,12,fn_7100f8a3b4,unknown,unknown,O
 0x7100f8a3c0,8,fn_7100f8a3c0,unknown,unknown,O
 0x7100f8a3c8,12,fn_7100f8a3c8,unknown,unknown,O
@@ -3923,15 +3923,15 @@ address,size,name,name_source,subsystem,status
 0x7100f94ff0,96,fn_7100f94ff0,unknown,unknown,O
 0x7100f95050,12,fn_7100f95050,unknown,unknown,O
 0x7100f9505c,16,fn_7100f9505c,unknown,unknown,O
-0x7100f9506c,20,fn_7100f9506c,unknown,unknown,O
-0x7100f95080,8,fn_7100f95080,unknown,unknown,O
-0x7100f95088,20,fn_7100f95088,unknown,unknown,O
-0x7100f9509c,8,fn_7100f9509c,unknown,unknown,O
-0x7100f950a4,12,fn_7100f950a4,unknown,unknown,O
-0x7100f950b0,12,fn_7100f950b0,unknown,unknown,O
-0x7100f950bc,4,fn_7100f950bc,unknown,unknown,O
-0x7100f950c0,20,fn_7100f950c0,unknown,unknown,O
-0x7100f950d4,20,fn_7100f950d4,unknown,unknown,O
+0x7100f9506c,20,base::reflection::ValueOps<CEnvironmentSoundPresets const*>::Equals,reflection,engine/reflection,O
+0x7100f95080,8,base::reflection::ValueOps<CEnvironmentSoundPresets const*>::Hash,reflection,engine/reflection,O
+0x7100f95088,20,base::reflection::ValueOps<CEnvironmentSoundPresets const*>::TypeOf,reflection,engine/reflection,O
+0x7100f9509c,8,base::reflection::ValueOps<CEnvironmentSoundPresets const*>::Construct,reflection,engine/reflection,O
+0x7100f950a4,12,base::reflection::ValueOps<CEnvironmentSoundPresets const*>::CopyConstruct,reflection,engine/reflection,O
+0x7100f950b0,12,base::reflection::ValueOps<CEnvironmentSoundPresets const*>::MoveConstruct,reflection,engine/reflection,O
+0x7100f950bc,4,base::reflection::ValueOps<CEnvironmentSoundPresets const*>::Destroy,reflection,engine/reflection,O
+0x7100f950c0,20,base::reflection::ValueOps<CEnvironmentSoundPresets const*>::CopyAssign,reflection,engine/reflection,O
+0x7100f950d4,20,base::reflection::ValueOps<CEnvironmentSoundPresets const*>::MoveAssign,reflection,engine/reflection,O
 0x7100f950e8,364,fn_7100f950e8,unknown,unknown,O
 0x7100f95254,64,fn_7100f95254,unknown,unknown,O
 0x7100f95294,4,fn_7100f95294,unknown,unknown,O
@@ -4139,15 +4139,15 @@ address,size,name,name_source,subsystem,status
 0x7100f9c61c,96,fn_7100f9c61c,unknown,unknown,O
 0x7100f9c67c,12,fn_7100f9c67c,unknown,unknown,O
 0x7100f9c688,16,fn_7100f9c688,unknown,unknown,O
-0x7100f9c698,20,fn_7100f9c698,unknown,unknown,O
-0x7100f9c6ac,8,fn_7100f9c6ac,unknown,unknown,O
-0x7100f9c6b4,20,fn_7100f9c6b4,unknown,unknown,O
-0x7100f9c6c8,8,fn_7100f9c6c8,unknown,unknown,O
-0x7100f9c6d0,12,fn_7100f9c6d0,unknown,unknown,O
-0x7100f9c6dc,12,fn_7100f9c6dc,unknown,unknown,O
-0x7100f9c6e8,4,fn_7100f9c6e8,unknown,unknown,O
-0x7100f9c6ec,20,fn_7100f9c6ec,unknown,unknown,O
-0x7100f9c700,20,fn_7100f9c700,unknown,unknown,O
+0x7100f9c698,20,base::reflection::ValueOps<CEnvironmentVisualPresets const*>::Equals,reflection,engine/reflection,O
+0x7100f9c6ac,8,base::reflection::ValueOps<CEnvironmentVisualPresets const*>::Hash,reflection,engine/reflection,O
+0x7100f9c6b4,20,base::reflection::ValueOps<CEnvironmentVisualPresets const*>::TypeOf,reflection,engine/reflection,O
+0x7100f9c6c8,8,base::reflection::ValueOps<CEnvironmentVisualPresets const*>::Construct,reflection,engine/reflection,O
+0x7100f9c6d0,12,base::reflection::ValueOps<CEnvironmentVisualPresets const*>::CopyConstruct,reflection,engine/reflection,O
+0x7100f9c6dc,12,base::reflection::ValueOps<CEnvironmentVisualPresets const*>::MoveConstruct,reflection,engine/reflection,O
+0x7100f9c6e8,4,base::reflection::ValueOps<CEnvironmentVisualPresets const*>::Destroy,reflection,engine/reflection,O
+0x7100f9c6ec,20,base::reflection::ValueOps<CEnvironmentVisualPresets const*>::CopyAssign,reflection,engine/reflection,O
+0x7100f9c700,20,base::reflection::ValueOps<CEnvironmentVisualPresets const*>::MoveAssign,reflection,engine/reflection,O
 0x7100f9c714,12,fn_7100f9c714,unknown,unknown,O
 0x7100f9c720,8,fn_7100f9c720,unknown,unknown,O
 0x7100f9c728,12,fn_7100f9c728,unknown,unknown,O
@@ -4346,15 +4346,15 @@ address,size,name,name_source,subsystem,status
 0x7100fa6ea8,96,fn_7100fa6ea8,unknown,unknown,O
 0x7100fa6f08,12,fn_7100fa6f08,unknown,unknown,O
 0x7100fa6f14,16,fn_7100fa6f14,unknown,unknown,O
-0x7100fa6f24,20,fn_7100fa6f24,unknown,unknown,O
-0x7100fa6f38,8,fn_7100fa6f38,unknown,unknown,O
-0x7100fa6f40,20,fn_7100fa6f40,unknown,unknown,O
-0x7100fa6f54,8,fn_7100fa6f54,unknown,unknown,O
-0x7100fa6f5c,12,fn_7100fa6f5c,unknown,unknown,O
-0x7100fa6f68,12,fn_7100fa6f68,unknown,unknown,O
-0x7100fa6f74,4,fn_7100fa6f74,unknown,unknown,O
-0x7100fa6f78,20,fn_7100fa6f78,unknown,unknown,O
-0x7100fa6f8c,20,fn_7100fa6f8c,unknown,unknown,O
+0x7100fa6f24,20,base::reflection::ValueOps<CSubareaInfo*>::Equals,reflection,engine/reflection,O
+0x7100fa6f38,8,base::reflection::ValueOps<CSubareaInfo*>::Hash,reflection,engine/reflection,O
+0x7100fa6f40,20,base::reflection::ValueOps<CSubareaInfo*>::TypeOf,reflection,engine/reflection,O
+0x7100fa6f54,8,base::reflection::ValueOps<CSubareaInfo*>::Construct,reflection,engine/reflection,O
+0x7100fa6f5c,12,base::reflection::ValueOps<CSubareaInfo*>::CopyConstruct,reflection,engine/reflection,O
+0x7100fa6f68,12,base::reflection::ValueOps<CSubareaInfo*>::MoveConstruct,reflection,engine/reflection,O
+0x7100fa6f74,4,base::reflection::ValueOps<CSubareaInfo*>::Destroy,reflection,engine/reflection,O
+0x7100fa6f78,20,base::reflection::ValueOps<CSubareaInfo*>::CopyAssign,reflection,engine/reflection,O
+0x7100fa6f8c,20,base::reflection::ValueOps<CSubareaInfo*>::MoveAssign,reflection,engine/reflection,O
 0x7100fa6fa0,96,fn_7100fa6fa0,unknown,unknown,O
 0x7100fa7000,36,fn_7100fa7000,unknown,unknown,O
 0x7100fa7024,4,fn_7100fa7024,unknown,unknown,O
@@ -4898,15 +4898,15 @@ address,size,name,name_source,subsystem,status
 0x7100fbca78,88,fn_7100fbca78,unknown,unknown,O
 0x7100fbcad0,12,fn_7100fbcad0,unknown,unknown,O
 0x7100fbcadc,16,fn_7100fbcadc,unknown,unknown,O
-0x7100fbcaec,20,fn_7100fbcaec,unknown,unknown,O
-0x7100fbcb00,8,fn_7100fbcb00,unknown,unknown,O
-0x7100fbcb08,20,fn_7100fbcb08,unknown,unknown,O
-0x7100fbcb1c,8,fn_7100fbcb1c,unknown,unknown,O
-0x7100fbcb24,12,fn_7100fbcb24,unknown,unknown,O
-0x7100fbcb30,12,fn_7100fbcb30,unknown,unknown,O
-0x7100fbcb3c,4,fn_7100fbcb3c,unknown,unknown,O
-0x7100fbcb40,20,fn_7100fbcb40,unknown,unknown,O
-0x7100fbcb54,20,fn_7100fbcb54,unknown,unknown,O
+0x7100fbcaec,20,base::reflection::ValueOps<luaGameObject*>::Equals,reflection,engine/reflection,O
+0x7100fbcb00,8,base::reflection::ValueOps<luaGameObject*>::Hash,reflection,engine/reflection,O
+0x7100fbcb08,20,base::reflection::ValueOps<luaGameObject*>::TypeOf,reflection,engine/reflection,O
+0x7100fbcb1c,8,base::reflection::ValueOps<luaGameObject*>::Construct,reflection,engine/reflection,O
+0x7100fbcb24,12,base::reflection::ValueOps<luaGameObject*>::CopyConstruct,reflection,engine/reflection,O
+0x7100fbcb30,12,base::reflection::ValueOps<luaGameObject*>::MoveConstruct,reflection,engine/reflection,O
+0x7100fbcb3c,4,base::reflection::ValueOps<luaGameObject*>::Destroy,reflection,engine/reflection,O
+0x7100fbcb40,20,base::reflection::ValueOps<luaGameObject*>::CopyAssign,reflection,engine/reflection,O
+0x7100fbcb54,20,base::reflection::ValueOps<luaGameObject*>::MoveAssign,reflection,engine/reflection,O
 0x7100fbcb70,128,lua_lib::__gc,string,script/bindings,O
 0x7100fbcbf0,260,lua_lib::__eq,string,script/bindings,O
 0x7100fbcd00,512,lua_lib::__newindex,string,script/bindings,U
@@ -4966,15 +4966,15 @@ address,size,name,name_source,subsystem,status
 0x7100fc05b0,88,fn_7100fc05b0,unknown,unknown,O
 0x7100fc0608,12,fn_7100fc0608,unknown,unknown,O
 0x7100fc0614,16,fn_7100fc0614,unknown,unknown,O
-0x7100fc0624,20,fn_7100fc0624,unknown,unknown,O
-0x7100fc0638,8,fn_7100fc0638,unknown,unknown,O
-0x7100fc0640,20,fn_7100fc0640,unknown,unknown,O
-0x7100fc0654,8,fn_7100fc0654,unknown,unknown,O
-0x7100fc065c,12,fn_7100fc065c,unknown,unknown,O
-0x7100fc0668,12,fn_7100fc0668,unknown,unknown,O
-0x7100fc0674,4,fn_7100fc0674,unknown,unknown,O
-0x7100fc0678,20,fn_7100fc0678,unknown,unknown,O
-0x7100fc068c,20,fn_7100fc068c,unknown,unknown,O
+0x7100fc0624,20,base::reflection::ValueOps<GUI::CDisplayObject*>::Equals,reflection,engine/reflection,O
+0x7100fc0638,8,base::reflection::ValueOps<GUI::CDisplayObject*>::Hash,reflection,engine/reflection,O
+0x7100fc0640,20,base::reflection::ValueOps<GUI::CDisplayObject*>::TypeOf,reflection,engine/reflection,O
+0x7100fc0654,8,base::reflection::ValueOps<GUI::CDisplayObject*>::Construct,reflection,engine/reflection,O
+0x7100fc065c,12,base::reflection::ValueOps<GUI::CDisplayObject*>::CopyConstruct,reflection,engine/reflection,O
+0x7100fc0668,12,base::reflection::ValueOps<GUI::CDisplayObject*>::MoveConstruct,reflection,engine/reflection,O
+0x7100fc0674,4,base::reflection::ValueOps<GUI::CDisplayObject*>::Destroy,reflection,engine/reflection,O
+0x7100fc0678,20,base::reflection::ValueOps<GUI::CDisplayObject*>::CopyAssign,reflection,engine/reflection,O
+0x7100fc068c,20,base::reflection::ValueOps<GUI::CDisplayObject*>::MoveAssign,reflection,engine/reflection,O
 0x7100fc06a0,100,lua_lib::__gc_cab5d8,string,script/bindings,O
 0x7100fc0710,252,lua_lib::__eq_cab5d8,string,script/bindings,O
 0x7100fc0810,308,lua_lib::__newindex_cab5d8,string,script/bindings,O
@@ -5593,28 +5593,28 @@ address,size,name,name_source,subsystem,status
 0x7100fef284,96,fn_7100fef284,unknown,unknown,O
 0x7100fef2e4,12,fn_7100fef2e4,unknown,unknown,O
 0x7100fef2f0,16,fn_7100fef2f0,unknown,unknown,O
-0x7100fef300,20,fn_7100fef300,unknown,unknown,O
-0x7100fef314,8,fn_7100fef314,unknown,unknown,O
-0x7100fef31c,20,fn_7100fef31c,unknown,unknown,O
-0x7100fef330,8,fn_7100fef330,unknown,unknown,O
-0x7100fef338,12,fn_7100fef338,unknown,unknown,O
-0x7100fef344,12,fn_7100fef344,unknown,unknown,O
-0x7100fef350,4,fn_7100fef350,unknown,unknown,O
-0x7100fef354,20,fn_7100fef354,unknown,unknown,O
-0x7100fef368,20,fn_7100fef368,unknown,unknown,O
+0x7100fef300,20,base::reflection::ValueOps<sound::TMusicFile*>::Equals,reflection,engine/reflection,O
+0x7100fef314,8,base::reflection::ValueOps<sound::TMusicFile*>::Hash,reflection,engine/reflection,O
+0x7100fef31c,20,base::reflection::ValueOps<sound::TMusicFile*>::TypeOf,reflection,engine/reflection,O
+0x7100fef330,8,base::reflection::ValueOps<sound::TMusicFile*>::Construct,reflection,engine/reflection,O
+0x7100fef338,12,base::reflection::ValueOps<sound::TMusicFile*>::CopyConstruct,reflection,engine/reflection,O
+0x7100fef344,12,base::reflection::ValueOps<sound::TMusicFile*>::MoveConstruct,reflection,engine/reflection,O
+0x7100fef350,4,base::reflection::ValueOps<sound::TMusicFile*>::Destroy,reflection,engine/reflection,O
+0x7100fef354,20,base::reflection::ValueOps<sound::TMusicFile*>::CopyAssign,reflection,engine/reflection,O
+0x7100fef368,20,base::reflection::ValueOps<sound::TMusicFile*>::MoveAssign,reflection,engine/reflection,O
 0x7100fef37c,364,fn_7100fef37c,unknown,unknown,O
 0x7100fef4e8,96,fn_7100fef4e8,unknown,unknown,O
 0x7100fef548,12,fn_7100fef548,unknown,unknown,O
 0x7100fef554,16,fn_7100fef554,unknown,unknown,O
-0x7100fef564,20,fn_7100fef564,unknown,unknown,O
-0x7100fef578,8,fn_7100fef578,unknown,unknown,O
-0x7100fef580,20,fn_7100fef580,unknown,unknown,O
-0x7100fef594,8,fn_7100fef594,unknown,unknown,O
-0x7100fef59c,12,fn_7100fef59c,unknown,unknown,O
-0x7100fef5a8,12,fn_7100fef5a8,unknown,unknown,O
-0x7100fef5b4,4,fn_7100fef5b4,unknown,unknown,O
-0x7100fef5b8,20,fn_7100fef5b8,unknown,unknown,O
-0x7100fef5cc,20,fn_7100fef5cc,unknown,unknown,O
+0x7100fef564,20,base::reflection::ValueOps<sound::TMusicFile const*>::Equals,reflection,engine/reflection,O
+0x7100fef578,8,base::reflection::ValueOps<sound::TMusicFile const*>::Hash,reflection,engine/reflection,O
+0x7100fef580,20,base::reflection::ValueOps<sound::TMusicFile const*>::TypeOf,reflection,engine/reflection,O
+0x7100fef594,8,base::reflection::ValueOps<sound::TMusicFile const*>::Construct,reflection,engine/reflection,O
+0x7100fef59c,12,base::reflection::ValueOps<sound::TMusicFile const*>::CopyConstruct,reflection,engine/reflection,O
+0x7100fef5a8,12,base::reflection::ValueOps<sound::TMusicFile const*>::MoveConstruct,reflection,engine/reflection,O
+0x7100fef5b4,4,base::reflection::ValueOps<sound::TMusicFile const*>::Destroy,reflection,engine/reflection,O
+0x7100fef5b8,20,base::reflection::ValueOps<sound::TMusicFile const*>::CopyAssign,reflection,engine/reflection,O
+0x7100fef5cc,20,base::reflection::ValueOps<sound::TMusicFile const*>::MoveAssign,reflection,engine/reflection,O
 0x7100fef5e0,364,fn_7100fef5e0,unknown,unknown,O
 0x7100fef74c,96,fn_7100fef74c,unknown,unknown,O
 0x7100fef7ac,12,fn_7100fef7ac,unknown,unknown,O
@@ -5673,54 +5673,54 @@ address,size,name,name_source,subsystem,status
 0x7100ff04a4,96,fn_7100ff04a4,unknown,unknown,O
 0x7100ff0504,12,fn_7100ff0504,unknown,unknown,O
 0x7100ff0510,16,fn_7100ff0510,unknown,unknown,O
-0x7100ff0520,20,fn_7100ff0520,unknown,unknown,O
-0x7100ff0534,8,fn_7100ff0534,unknown,unknown,O
-0x7100ff053c,20,fn_7100ff053c,unknown,unknown,O
-0x7100ff0550,8,fn_7100ff0550,unknown,unknown,O
-0x7100ff0558,12,fn_7100ff0558,unknown,unknown,O
-0x7100ff0564,12,fn_7100ff0564,unknown,unknown,O
-0x7100ff0570,4,fn_7100ff0570,unknown,unknown,O
-0x7100ff0574,20,fn_7100ff0574,unknown,unknown,O
-0x7100ff0588,20,fn_7100ff0588,unknown,unknown,O
+0x7100ff0520,20,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicFile>*>::Equals,reflection,engine/reflection,O
+0x7100ff0534,8,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicFile>*>::Hash,reflection,engine/reflection,O
+0x7100ff053c,20,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicFile>*>::TypeOf,reflection,engine/reflection,O
+0x7100ff0550,8,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicFile>*>::Construct,reflection,engine/reflection,O
+0x7100ff0558,12,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicFile>*>::CopyConstruct,reflection,engine/reflection,O
+0x7100ff0564,12,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicFile>*>::MoveConstruct,reflection,engine/reflection,O
+0x7100ff0570,4,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicFile>*>::Destroy,reflection,engine/reflection,O
+0x7100ff0574,20,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicFile>*>::CopyAssign,reflection,engine/reflection,O
+0x7100ff0588,20,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicFile>*>::MoveAssign,reflection,engine/reflection,O
 0x7100ff059c,364,fn_7100ff059c,unknown,unknown,O
 0x7100ff0708,96,fn_7100ff0708,unknown,unknown,O
 0x7100ff0768,12,fn_7100ff0768,unknown,unknown,O
 0x7100ff0774,16,fn_7100ff0774,unknown,unknown,O
-0x7100ff0784,20,fn_7100ff0784,unknown,unknown,O
-0x7100ff0798,8,fn_7100ff0798,unknown,unknown,O
-0x7100ff07a0,20,fn_7100ff07a0,unknown,unknown,O
-0x7100ff07b4,8,fn_7100ff07b4,unknown,unknown,O
-0x7100ff07bc,12,fn_7100ff07bc,unknown,unknown,O
-0x7100ff07c8,12,fn_7100ff07c8,unknown,unknown,O
-0x7100ff07d4,4,fn_7100ff07d4,unknown,unknown,O
-0x7100ff07d8,20,fn_7100ff07d8,unknown,unknown,O
-0x7100ff07ec,20,fn_7100ff07ec,unknown,unknown,O
+0x7100ff0784,20,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicFile> const*>::Equals,reflection,engine/reflection,O
+0x7100ff0798,8,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicFile> const*>::Hash,reflection,engine/reflection,O
+0x7100ff07a0,20,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicFile> const*>::TypeOf,reflection,engine/reflection,O
+0x7100ff07b4,8,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicFile> const*>::Construct,reflection,engine/reflection,O
+0x7100ff07bc,12,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicFile> const*>::CopyConstruct,reflection,engine/reflection,O
+0x7100ff07c8,12,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicFile> const*>::MoveConstruct,reflection,engine/reflection,O
+0x7100ff07d4,4,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicFile> const*>::Destroy,reflection,engine/reflection,O
+0x7100ff07d8,20,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicFile> const*>::CopyAssign,reflection,engine/reflection,O
+0x7100ff07ec,20,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicFile> const*>::MoveAssign,reflection,engine/reflection,O
 0x7100ff0800,364,fn_7100ff0800,unknown,unknown,O
 0x7100ff096c,96,fn_7100ff096c,unknown,unknown,O
 0x7100ff09cc,12,fn_7100ff09cc,unknown,unknown,O
 0x7100ff09d8,16,fn_7100ff09d8,unknown,unknown,O
-0x7100ff09e8,20,fn_7100ff09e8,unknown,unknown,O
-0x7100ff09fc,8,fn_7100ff09fc,unknown,unknown,O
-0x7100ff0a04,20,fn_7100ff0a04,unknown,unknown,O
-0x7100ff0a18,8,fn_7100ff0a18,unknown,unknown,O
-0x7100ff0a20,12,fn_7100ff0a20,unknown,unknown,O
-0x7100ff0a2c,12,fn_7100ff0a2c,unknown,unknown,O
-0x7100ff0a38,4,fn_7100ff0a38,unknown,unknown,O
-0x7100ff0a3c,20,fn_7100ff0a3c,unknown,unknown,O
-0x7100ff0a50,20,fn_7100ff0a50,unknown,unknown,O
+0x7100ff09e8,20,base::reflection::ValueOps<sound::TMusicTrack*>::Equals,reflection,engine/reflection,O
+0x7100ff09fc,8,base::reflection::ValueOps<sound::TMusicTrack*>::Hash,reflection,engine/reflection,O
+0x7100ff0a04,20,base::reflection::ValueOps<sound::TMusicTrack*>::TypeOf,reflection,engine/reflection,O
+0x7100ff0a18,8,base::reflection::ValueOps<sound::TMusicTrack*>::Construct,reflection,engine/reflection,O
+0x7100ff0a20,12,base::reflection::ValueOps<sound::TMusicTrack*>::CopyConstruct,reflection,engine/reflection,O
+0x7100ff0a2c,12,base::reflection::ValueOps<sound::TMusicTrack*>::MoveConstruct,reflection,engine/reflection,O
+0x7100ff0a38,4,base::reflection::ValueOps<sound::TMusicTrack*>::Destroy,reflection,engine/reflection,O
+0x7100ff0a3c,20,base::reflection::ValueOps<sound::TMusicTrack*>::CopyAssign,reflection,engine/reflection,O
+0x7100ff0a50,20,base::reflection::ValueOps<sound::TMusicTrack*>::MoveAssign,reflection,engine/reflection,O
 0x7100ff0a64,364,fn_7100ff0a64,unknown,unknown,O
 0x7100ff0bd0,96,fn_7100ff0bd0,unknown,unknown,O
 0x7100ff0c30,12,fn_7100ff0c30,unknown,unknown,O
 0x7100ff0c3c,16,fn_7100ff0c3c,unknown,unknown,O
-0x7100ff0c4c,20,fn_7100ff0c4c,unknown,unknown,O
-0x7100ff0c60,8,fn_7100ff0c60,unknown,unknown,O
-0x7100ff0c68,20,fn_7100ff0c68,unknown,unknown,O
-0x7100ff0c7c,8,fn_7100ff0c7c,unknown,unknown,O
-0x7100ff0c84,12,fn_7100ff0c84,unknown,unknown,O
-0x7100ff0c90,12,fn_7100ff0c90,unknown,unknown,O
-0x7100ff0c9c,4,fn_7100ff0c9c,unknown,unknown,O
-0x7100ff0ca0,20,fn_7100ff0ca0,unknown,unknown,O
-0x7100ff0cb4,20,fn_7100ff0cb4,unknown,unknown,O
+0x7100ff0c4c,20,base::reflection::ValueOps<sound::TMusicTrack const*>::Equals,reflection,engine/reflection,O
+0x7100ff0c60,8,base::reflection::ValueOps<sound::TMusicTrack const*>::Hash,reflection,engine/reflection,O
+0x7100ff0c68,20,base::reflection::ValueOps<sound::TMusicTrack const*>::TypeOf,reflection,engine/reflection,O
+0x7100ff0c7c,8,base::reflection::ValueOps<sound::TMusicTrack const*>::Construct,reflection,engine/reflection,O
+0x7100ff0c84,12,base::reflection::ValueOps<sound::TMusicTrack const*>::CopyConstruct,reflection,engine/reflection,O
+0x7100ff0c90,12,base::reflection::ValueOps<sound::TMusicTrack const*>::MoveConstruct,reflection,engine/reflection,O
+0x7100ff0c9c,4,base::reflection::ValueOps<sound::TMusicTrack const*>::Destroy,reflection,engine/reflection,O
+0x7100ff0ca0,20,base::reflection::ValueOps<sound::TMusicTrack const*>::CopyAssign,reflection,engine/reflection,O
+0x7100ff0cb4,20,base::reflection::ValueOps<sound::TMusicTrack const*>::MoveAssign,reflection,engine/reflection,O
 0x7100ff0cc8,364,fn_7100ff0cc8,unknown,unknown,O
 0x7100ff0e34,96,fn_7100ff0e34,unknown,unknown,O
 0x7100ff0e94,12,fn_7100ff0e94,unknown,unknown,O
@@ -5779,54 +5779,54 @@ address,size,name,name_source,subsystem,status
 0x7100ff1dcc,96,fn_7100ff1dcc,unknown,unknown,O
 0x7100ff1e2c,12,fn_7100ff1e2c,unknown,unknown,O
 0x7100ff1e38,16,fn_7100ff1e38,unknown,unknown,O
-0x7100ff1e48,20,fn_7100ff1e48,unknown,unknown,O
-0x7100ff1e5c,8,fn_7100ff1e5c,unknown,unknown,O
-0x7100ff1e64,20,fn_7100ff1e64,unknown,unknown,O
-0x7100ff1e78,8,fn_7100ff1e78,unknown,unknown,O
-0x7100ff1e80,12,fn_7100ff1e80,unknown,unknown,O
-0x7100ff1e8c,12,fn_7100ff1e8c,unknown,unknown,O
-0x7100ff1e98,4,fn_7100ff1e98,unknown,unknown,O
-0x7100ff1e9c,20,fn_7100ff1e9c,unknown,unknown,O
-0x7100ff1eb0,20,fn_7100ff1eb0,unknown,unknown,O
+0x7100ff1e48,20,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicTrack>*>::Equals,reflection,engine/reflection,O
+0x7100ff1e5c,8,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicTrack>*>::Hash,reflection,engine/reflection,O
+0x7100ff1e64,20,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicTrack>*>::TypeOf,reflection,engine/reflection,O
+0x7100ff1e78,8,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicTrack>*>::Construct,reflection,engine/reflection,O
+0x7100ff1e80,12,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicTrack>*>::CopyConstruct,reflection,engine/reflection,O
+0x7100ff1e8c,12,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicTrack>*>::MoveConstruct,reflection,engine/reflection,O
+0x7100ff1e98,4,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicTrack>*>::Destroy,reflection,engine/reflection,O
+0x7100ff1e9c,20,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicTrack>*>::CopyAssign,reflection,engine/reflection,O
+0x7100ff1eb0,20,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicTrack>*>::MoveAssign,reflection,engine/reflection,O
 0x7100ff1ec4,364,fn_7100ff1ec4,unknown,unknown,O
 0x7100ff2030,96,fn_7100ff2030,unknown,unknown,O
 0x7100ff2090,12,fn_7100ff2090,unknown,unknown,O
 0x7100ff209c,16,fn_7100ff209c,unknown,unknown,O
-0x7100ff20ac,20,fn_7100ff20ac,unknown,unknown,O
-0x7100ff20c0,8,fn_7100ff20c0,unknown,unknown,O
-0x7100ff20c8,20,fn_7100ff20c8,unknown,unknown,O
-0x7100ff20dc,8,fn_7100ff20dc,unknown,unknown,O
-0x7100ff20e4,12,fn_7100ff20e4,unknown,unknown,O
-0x7100ff20f0,12,fn_7100ff20f0,unknown,unknown,O
-0x7100ff20fc,4,fn_7100ff20fc,unknown,unknown,O
-0x7100ff2100,20,fn_7100ff2100,unknown,unknown,O
-0x7100ff2114,20,fn_7100ff2114,unknown,unknown,O
+0x7100ff20ac,20,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicTrack> const*>::Equals,reflection,engine/reflection,O
+0x7100ff20c0,8,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicTrack> const*>::Hash,reflection,engine/reflection,O
+0x7100ff20c8,20,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicTrack> const*>::TypeOf,reflection,engine/reflection,O
+0x7100ff20dc,8,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicTrack> const*>::Construct,reflection,engine/reflection,O
+0x7100ff20e4,12,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicTrack> const*>::CopyConstruct,reflection,engine/reflection,O
+0x7100ff20f0,12,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicTrack> const*>::MoveConstruct,reflection,engine/reflection,O
+0x7100ff20fc,4,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicTrack> const*>::Destroy,reflection,engine/reflection,O
+0x7100ff2100,20,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicTrack> const*>::CopyAssign,reflection,engine/reflection,O
+0x7100ff2114,20,base::reflection::ValueOps<base::global::CRntVector<sound::TMusicTrack> const*>::MoveAssign,reflection,engine/reflection,O
 0x7100ff2128,364,fn_7100ff2128,unknown,unknown,O
 0x7100ff2294,96,fn_7100ff2294,unknown,unknown,O
 0x7100ff22f4,12,fn_7100ff22f4,unknown,unknown,O
 0x7100ff2300,16,fn_7100ff2300,unknown,unknown,O
-0x7100ff2310,20,fn_7100ff2310,unknown,unknown,O
-0x7100ff2324,8,fn_7100ff2324,unknown,unknown,O
-0x7100ff232c,20,fn_7100ff232c,unknown,unknown,O
-0x7100ff2340,8,fn_7100ff2340,unknown,unknown,O
-0x7100ff2348,12,fn_7100ff2348,unknown,unknown,O
-0x7100ff2354,12,fn_7100ff2354,unknown,unknown,O
-0x7100ff2360,4,fn_7100ff2360,unknown,unknown,O
-0x7100ff2364,20,fn_7100ff2364,unknown,unknown,O
-0x7100ff2378,20,fn_7100ff2378,unknown,unknown,O
+0x7100ff2310,20,base::reflection::ValueOps<sound::SStateFadeOut*>::Equals,reflection,engine/reflection,O
+0x7100ff2324,8,base::reflection::ValueOps<sound::SStateFadeOut*>::Hash,reflection,engine/reflection,O
+0x7100ff232c,20,base::reflection::ValueOps<sound::SStateFadeOut*>::TypeOf,reflection,engine/reflection,O
+0x7100ff2340,8,base::reflection::ValueOps<sound::SStateFadeOut*>::Construct,reflection,engine/reflection,O
+0x7100ff2348,12,base::reflection::ValueOps<sound::SStateFadeOut*>::CopyConstruct,reflection,engine/reflection,O
+0x7100ff2354,12,base::reflection::ValueOps<sound::SStateFadeOut*>::MoveConstruct,reflection,engine/reflection,O
+0x7100ff2360,4,base::reflection::ValueOps<sound::SStateFadeOut*>::Destroy,reflection,engine/reflection,O
+0x7100ff2364,20,base::reflection::ValueOps<sound::SStateFadeOut*>::CopyAssign,reflection,engine/reflection,O
+0x7100ff2378,20,base::reflection::ValueOps<sound::SStateFadeOut*>::MoveAssign,reflection,engine/reflection,O
 0x7100ff238c,364,fn_7100ff238c,unknown,unknown,O
 0x7100ff24f8,96,fn_7100ff24f8,unknown,unknown,O
 0x7100ff2558,12,fn_7100ff2558,unknown,unknown,O
 0x7100ff2564,16,fn_7100ff2564,unknown,unknown,O
-0x7100ff2574,20,fn_7100ff2574,unknown,unknown,O
-0x7100ff2588,8,fn_7100ff2588,unknown,unknown,O
-0x7100ff2590,20,fn_7100ff2590,unknown,unknown,O
-0x7100ff25a4,8,fn_7100ff25a4,unknown,unknown,O
-0x7100ff25ac,12,fn_7100ff25ac,unknown,unknown,O
-0x7100ff25b8,12,fn_7100ff25b8,unknown,unknown,O
-0x7100ff25c4,4,fn_7100ff25c4,unknown,unknown,O
-0x7100ff25c8,20,fn_7100ff25c8,unknown,unknown,O
-0x7100ff25dc,20,fn_7100ff25dc,unknown,unknown,O
+0x7100ff2574,20,base::reflection::ValueOps<sound::SStateFadeOut const*>::Equals,reflection,engine/reflection,O
+0x7100ff2588,8,base::reflection::ValueOps<sound::SStateFadeOut const*>::Hash,reflection,engine/reflection,O
+0x7100ff2590,20,base::reflection::ValueOps<sound::SStateFadeOut const*>::TypeOf,reflection,engine/reflection,O
+0x7100ff25a4,8,base::reflection::ValueOps<sound::SStateFadeOut const*>::Construct,reflection,engine/reflection,O
+0x7100ff25ac,12,base::reflection::ValueOps<sound::SStateFadeOut const*>::CopyConstruct,reflection,engine/reflection,O
+0x7100ff25b8,12,base::reflection::ValueOps<sound::SStateFadeOut const*>::MoveConstruct,reflection,engine/reflection,O
+0x7100ff25c4,4,base::reflection::ValueOps<sound::SStateFadeOut const*>::Destroy,reflection,engine/reflection,O
+0x7100ff25c8,20,base::reflection::ValueOps<sound::SStateFadeOut const*>::CopyAssign,reflection,engine/reflection,O
+0x7100ff25dc,20,base::reflection::ValueOps<sound::SStateFadeOut const*>::MoveAssign,reflection,engine/reflection,O
 0x7100ff25f0,364,fn_7100ff25f0,unknown,unknown,O
 0x7100ff275c,96,fn_7100ff275c,unknown,unknown,O
 0x7100ff27bc,12,fn_7100ff27bc,unknown,unknown,O
@@ -5883,54 +5883,54 @@ address,size,name,name_source,subsystem,status
 0x7100ff32a4,96,fn_7100ff32a4,unknown,unknown,O
 0x7100ff3304,12,fn_7100ff3304,unknown,unknown,O
 0x7100ff3310,16,fn_7100ff3310,unknown,unknown,O
-0x7100ff3320,20,fn_7100ff3320,unknown,unknown,O
-0x7100ff3334,8,fn_7100ff3334,unknown,unknown,O
-0x7100ff333c,20,fn_7100ff333c,unknown,unknown,O
-0x7100ff3350,8,fn_7100ff3350,unknown,unknown,O
-0x7100ff3358,12,fn_7100ff3358,unknown,unknown,O
-0x7100ff3364,12,fn_7100ff3364,unknown,unknown,O
-0x7100ff3370,4,fn_7100ff3370,unknown,unknown,O
-0x7100ff3374,20,fn_7100ff3374,unknown,unknown,O
-0x7100ff3388,20,fn_7100ff3388,unknown,unknown,O
+0x7100ff3320,20,base::reflection::ValueOps<base::global::CRntVector<sound::SStateFadeOut>*>::Equals,reflection,engine/reflection,O
+0x7100ff3334,8,base::reflection::ValueOps<base::global::CRntVector<sound::SStateFadeOut>*>::Hash,reflection,engine/reflection,O
+0x7100ff333c,20,base::reflection::ValueOps<base::global::CRntVector<sound::SStateFadeOut>*>::TypeOf,reflection,engine/reflection,O
+0x7100ff3350,8,base::reflection::ValueOps<base::global::CRntVector<sound::SStateFadeOut>*>::Construct,reflection,engine/reflection,O
+0x7100ff3358,12,base::reflection::ValueOps<base::global::CRntVector<sound::SStateFadeOut>*>::CopyConstruct,reflection,engine/reflection,O
+0x7100ff3364,12,base::reflection::ValueOps<base::global::CRntVector<sound::SStateFadeOut>*>::MoveConstruct,reflection,engine/reflection,O
+0x7100ff3370,4,base::reflection::ValueOps<base::global::CRntVector<sound::SStateFadeOut>*>::Destroy,reflection,engine/reflection,O
+0x7100ff3374,20,base::reflection::ValueOps<base::global::CRntVector<sound::SStateFadeOut>*>::CopyAssign,reflection,engine/reflection,O
+0x7100ff3388,20,base::reflection::ValueOps<base::global::CRntVector<sound::SStateFadeOut>*>::MoveAssign,reflection,engine/reflection,O
 0x7100ff339c,364,fn_7100ff339c,unknown,unknown,O
 0x7100ff3508,96,fn_7100ff3508,unknown,unknown,O
 0x7100ff3568,12,fn_7100ff3568,unknown,unknown,O
 0x7100ff3574,16,fn_7100ff3574,unknown,unknown,O
-0x7100ff3584,20,fn_7100ff3584,unknown,unknown,O
-0x7100ff3598,8,fn_7100ff3598,unknown,unknown,O
-0x7100ff35a0,20,fn_7100ff35a0,unknown,unknown,O
-0x7100ff35b4,8,fn_7100ff35b4,unknown,unknown,O
-0x7100ff35bc,12,fn_7100ff35bc,unknown,unknown,O
-0x7100ff35c8,12,fn_7100ff35c8,unknown,unknown,O
-0x7100ff35d4,4,fn_7100ff35d4,unknown,unknown,O
-0x7100ff35d8,20,fn_7100ff35d8,unknown,unknown,O
-0x7100ff35ec,20,fn_7100ff35ec,unknown,unknown,O
+0x7100ff3584,20,base::reflection::ValueOps<base::global::CRntVector<sound::SStateFadeOut> const*>::Equals,reflection,engine/reflection,O
+0x7100ff3598,8,base::reflection::ValueOps<base::global::CRntVector<sound::SStateFadeOut> const*>::Hash,reflection,engine/reflection,O
+0x7100ff35a0,20,base::reflection::ValueOps<base::global::CRntVector<sound::SStateFadeOut> const*>::TypeOf,reflection,engine/reflection,O
+0x7100ff35b4,8,base::reflection::ValueOps<base::global::CRntVector<sound::SStateFadeOut> const*>::Construct,reflection,engine/reflection,O
+0x7100ff35bc,12,base::reflection::ValueOps<base::global::CRntVector<sound::SStateFadeOut> const*>::CopyConstruct,reflection,engine/reflection,O
+0x7100ff35c8,12,base::reflection::ValueOps<base::global::CRntVector<sound::SStateFadeOut> const*>::MoveConstruct,reflection,engine/reflection,O
+0x7100ff35d4,4,base::reflection::ValueOps<base::global::CRntVector<sound::SStateFadeOut> const*>::Destroy,reflection,engine/reflection,O
+0x7100ff35d8,20,base::reflection::ValueOps<base::global::CRntVector<sound::SStateFadeOut> const*>::CopyAssign,reflection,engine/reflection,O
+0x7100ff35ec,20,base::reflection::ValueOps<base::global::CRntVector<sound::SStateFadeOut> const*>::MoveAssign,reflection,engine/reflection,O
 0x7100ff3600,364,fn_7100ff3600,unknown,unknown,O
 0x7100ff376c,96,fn_7100ff376c,unknown,unknown,O
 0x7100ff37cc,12,fn_7100ff37cc,unknown,unknown,O
 0x7100ff37d8,16,fn_7100ff37d8,unknown,unknown,O
-0x7100ff37e8,20,fn_7100ff37e8,unknown,unknown,O
-0x7100ff37fc,8,fn_7100ff37fc,unknown,unknown,O
-0x7100ff3804,20,fn_7100ff3804,unknown,unknown,O
-0x7100ff3818,8,fn_7100ff3818,unknown,unknown,O
-0x7100ff3820,12,fn_7100ff3820,unknown,unknown,O
-0x7100ff382c,12,fn_7100ff382c,unknown,unknown,O
-0x7100ff3838,4,fn_7100ff3838,unknown,unknown,O
-0x7100ff383c,20,fn_7100ff383c,unknown,unknown,O
-0x7100ff3850,20,fn_7100ff3850,unknown,unknown,O
+0x7100ff37e8,20,base::reflection::ValueOps<sound::TScenarioMusicPreset*>::Equals,reflection,engine/reflection,O
+0x7100ff37fc,8,base::reflection::ValueOps<sound::TScenarioMusicPreset*>::Hash,reflection,engine/reflection,O
+0x7100ff3804,20,base::reflection::ValueOps<sound::TScenarioMusicPreset*>::TypeOf,reflection,engine/reflection,O
+0x7100ff3818,8,base::reflection::ValueOps<sound::TScenarioMusicPreset*>::Construct,reflection,engine/reflection,O
+0x7100ff3820,12,base::reflection::ValueOps<sound::TScenarioMusicPreset*>::CopyConstruct,reflection,engine/reflection,O
+0x7100ff382c,12,base::reflection::ValueOps<sound::TScenarioMusicPreset*>::MoveConstruct,reflection,engine/reflection,O
+0x7100ff3838,4,base::reflection::ValueOps<sound::TScenarioMusicPreset*>::Destroy,reflection,engine/reflection,O
+0x7100ff383c,20,base::reflection::ValueOps<sound::TScenarioMusicPreset*>::CopyAssign,reflection,engine/reflection,O
+0x7100ff3850,20,base::reflection::ValueOps<sound::TScenarioMusicPreset*>::MoveAssign,reflection,engine/reflection,O
 0x7100ff3864,364,fn_7100ff3864,unknown,unknown,O
 0x7100ff39d0,96,fn_7100ff39d0,unknown,unknown,O
 0x7100ff3a30,12,fn_7100ff3a30,unknown,unknown,O
 0x7100ff3a3c,16,fn_7100ff3a3c,unknown,unknown,O
-0x7100ff3a4c,20,fn_7100ff3a4c,unknown,unknown,O
-0x7100ff3a60,8,fn_7100ff3a60,unknown,unknown,O
-0x7100ff3a68,20,fn_7100ff3a68,unknown,unknown,O
-0x7100ff3a7c,8,fn_7100ff3a7c,unknown,unknown,O
-0x7100ff3a84,12,fn_7100ff3a84,unknown,unknown,O
-0x7100ff3a90,12,fn_7100ff3a90,unknown,unknown,O
-0x7100ff3a9c,4,fn_7100ff3a9c,unknown,unknown,O
-0x7100ff3aa0,20,fn_7100ff3aa0,unknown,unknown,O
-0x7100ff3ab4,20,fn_7100ff3ab4,unknown,unknown,O
+0x7100ff3a4c,20,base::reflection::ValueOps<sound::TScenarioMusicPreset const*>::Equals,reflection,engine/reflection,O
+0x7100ff3a60,8,base::reflection::ValueOps<sound::TScenarioMusicPreset const*>::Hash,reflection,engine/reflection,O
+0x7100ff3a68,20,base::reflection::ValueOps<sound::TScenarioMusicPreset const*>::TypeOf,reflection,engine/reflection,O
+0x7100ff3a7c,8,base::reflection::ValueOps<sound::TScenarioMusicPreset const*>::Construct,reflection,engine/reflection,O
+0x7100ff3a84,12,base::reflection::ValueOps<sound::TScenarioMusicPreset const*>::CopyConstruct,reflection,engine/reflection,O
+0x7100ff3a90,12,base::reflection::ValueOps<sound::TScenarioMusicPreset const*>::MoveConstruct,reflection,engine/reflection,O
+0x7100ff3a9c,4,base::reflection::ValueOps<sound::TScenarioMusicPreset const*>::Destroy,reflection,engine/reflection,O
+0x7100ff3aa0,20,base::reflection::ValueOps<sound::TScenarioMusicPreset const*>::CopyAssign,reflection,engine/reflection,O
+0x7100ff3ab4,20,base::reflection::ValueOps<sound::TScenarioMusicPreset const*>::MoveAssign,reflection,engine/reflection,O
 0x7100ff3ac8,364,fn_7100ff3ac8,unknown,unknown,O
 0x7100ff3c34,64,fn_7100ff3c34,unknown,unknown,O
 0x7100ff3c74,4,fn_7100ff3c74,unknown,unknown,O
@@ -5989,54 +5989,54 @@ address,size,name,name_source,subsystem,status
 0x7100ff4a94,96,fn_7100ff4a94,unknown,unknown,O
 0x7100ff4af4,12,fn_7100ff4af4,unknown,unknown,O
 0x7100ff4b00,16,fn_7100ff4b00,unknown,unknown,O
-0x7100ff4b10,20,fn_7100ff4b10,unknown,unknown,O
-0x7100ff4b24,8,fn_7100ff4b24,unknown,unknown,O
-0x7100ff4b2c,20,fn_7100ff4b2c,unknown,unknown,O
-0x7100ff4b40,8,fn_7100ff4b40,unknown,unknown,O
-0x7100ff4b48,12,fn_7100ff4b48,unknown,unknown,O
-0x7100ff4b54,12,fn_7100ff4b54,unknown,unknown,O
-0x7100ff4b60,4,fn_7100ff4b60,unknown,unknown,O
-0x7100ff4b64,20,fn_7100ff4b64,unknown,unknown,O
-0x7100ff4b78,20,fn_7100ff4b78,unknown,unknown,O
+0x7100ff4b10,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset>*>::Equals",reflection,engine/reflection,O
+0x7100ff4b24,8,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset>*>::Hash",reflection,engine/reflection,O
+0x7100ff4b2c,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset>*>::TypeOf",reflection,engine/reflection,O
+0x7100ff4b40,8,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset>*>::Construct",reflection,engine/reflection,O
+0x7100ff4b48,12,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset>*>::CopyConstruct",reflection,engine/reflection,O
+0x7100ff4b54,12,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset>*>::MoveConstruct",reflection,engine/reflection,O
+0x7100ff4b60,4,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset>*>::Destroy",reflection,engine/reflection,O
+0x7100ff4b64,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset>*>::CopyAssign",reflection,engine/reflection,O
+0x7100ff4b78,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset>*>::MoveAssign",reflection,engine/reflection,O
 0x7100ff4b8c,364,fn_7100ff4b8c,unknown,unknown,O
 0x7100ff4cf8,96,fn_7100ff4cf8,unknown,unknown,O
 0x7100ff4d58,12,fn_7100ff4d58,unknown,unknown,O
 0x7100ff4d64,16,fn_7100ff4d64,unknown,unknown,O
-0x7100ff4d74,20,fn_7100ff4d74,unknown,unknown,O
-0x7100ff4d88,8,fn_7100ff4d88,unknown,unknown,O
-0x7100ff4d90,20,fn_7100ff4d90,unknown,unknown,O
-0x7100ff4da4,8,fn_7100ff4da4,unknown,unknown,O
-0x7100ff4dac,12,fn_7100ff4dac,unknown,unknown,O
-0x7100ff4db8,12,fn_7100ff4db8,unknown,unknown,O
-0x7100ff4dc4,4,fn_7100ff4dc4,unknown,unknown,O
-0x7100ff4dc8,20,fn_7100ff4dc8,unknown,unknown,O
-0x7100ff4ddc,20,fn_7100ff4ddc,unknown,unknown,O
+0x7100ff4d74,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset> const*>::Equals",reflection,engine/reflection,O
+0x7100ff4d88,8,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset> const*>::Hash",reflection,engine/reflection,O
+0x7100ff4d90,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset> const*>::TypeOf",reflection,engine/reflection,O
+0x7100ff4da4,8,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset> const*>::Construct",reflection,engine/reflection,O
+0x7100ff4dac,12,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset> const*>::CopyConstruct",reflection,engine/reflection,O
+0x7100ff4db8,12,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset> const*>::MoveConstruct",reflection,engine/reflection,O
+0x7100ff4dc4,4,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset> const*>::Destroy",reflection,engine/reflection,O
+0x7100ff4dc8,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset> const*>::CopyAssign",reflection,engine/reflection,O
+0x7100ff4ddc,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset> const*>::MoveAssign",reflection,engine/reflection,O
 0x7100ff4df0,364,fn_7100ff4df0,unknown,unknown,O
 0x7100ff4f5c,96,fn_7100ff4f5c,unknown,unknown,O
 0x7100ff4fbc,12,fn_7100ff4fbc,unknown,unknown,O
 0x7100ff4fc8,16,fn_7100ff4fc8,unknown,unknown,O
-0x7100ff4fd8,20,fn_7100ff4fd8,unknown,unknown,O
-0x7100ff4fec,8,fn_7100ff4fec,unknown,unknown,O
-0x7100ff4ff4,20,fn_7100ff4ff4,unknown,unknown,O
-0x7100ff5008,8,fn_7100ff5008,unknown,unknown,O
-0x7100ff5010,12,fn_7100ff5010,unknown,unknown,O
-0x7100ff501c,12,fn_7100ff501c,unknown,unknown,O
-0x7100ff5028,4,fn_7100ff5028,unknown,unknown,O
-0x7100ff502c,20,fn_7100ff502c,unknown,unknown,O
-0x7100ff5040,20,fn_7100ff5040,unknown,unknown,O
+0x7100ff4fd8,20,base::reflection::ValueOps<sound::TBossMusicTrack*>::Equals,reflection,engine/reflection,O
+0x7100ff4fec,8,base::reflection::ValueOps<sound::TBossMusicTrack*>::Hash,reflection,engine/reflection,O
+0x7100ff4ff4,20,base::reflection::ValueOps<sound::TBossMusicTrack*>::TypeOf,reflection,engine/reflection,O
+0x7100ff5008,8,base::reflection::ValueOps<sound::TBossMusicTrack*>::Construct,reflection,engine/reflection,O
+0x7100ff5010,12,base::reflection::ValueOps<sound::TBossMusicTrack*>::CopyConstruct,reflection,engine/reflection,O
+0x7100ff501c,12,base::reflection::ValueOps<sound::TBossMusicTrack*>::MoveConstruct,reflection,engine/reflection,O
+0x7100ff5028,4,base::reflection::ValueOps<sound::TBossMusicTrack*>::Destroy,reflection,engine/reflection,O
+0x7100ff502c,20,base::reflection::ValueOps<sound::TBossMusicTrack*>::CopyAssign,reflection,engine/reflection,O
+0x7100ff5040,20,base::reflection::ValueOps<sound::TBossMusicTrack*>::MoveAssign,reflection,engine/reflection,O
 0x7100ff5054,364,fn_7100ff5054,unknown,unknown,O
 0x7100ff51c0,96,fn_7100ff51c0,unknown,unknown,O
 0x7100ff5220,12,fn_7100ff5220,unknown,unknown,O
 0x7100ff522c,16,fn_7100ff522c,unknown,unknown,O
-0x7100ff523c,20,fn_7100ff523c,unknown,unknown,O
-0x7100ff5250,8,fn_7100ff5250,unknown,unknown,O
-0x7100ff5258,20,fn_7100ff5258,unknown,unknown,O
-0x7100ff526c,8,fn_7100ff526c,unknown,unknown,O
-0x7100ff5274,12,fn_7100ff5274,unknown,unknown,O
-0x7100ff5280,12,fn_7100ff5280,unknown,unknown,O
-0x7100ff528c,4,fn_7100ff528c,unknown,unknown,O
-0x7100ff5290,20,fn_7100ff5290,unknown,unknown,O
-0x7100ff52a4,20,fn_7100ff52a4,unknown,unknown,O
+0x7100ff523c,20,base::reflection::ValueOps<sound::TBossMusicTrack const*>::Equals,reflection,engine/reflection,O
+0x7100ff5250,8,base::reflection::ValueOps<sound::TBossMusicTrack const*>::Hash,reflection,engine/reflection,O
+0x7100ff5258,20,base::reflection::ValueOps<sound::TBossMusicTrack const*>::TypeOf,reflection,engine/reflection,O
+0x7100ff526c,8,base::reflection::ValueOps<sound::TBossMusicTrack const*>::Construct,reflection,engine/reflection,O
+0x7100ff5274,12,base::reflection::ValueOps<sound::TBossMusicTrack const*>::CopyConstruct,reflection,engine/reflection,O
+0x7100ff5280,12,base::reflection::ValueOps<sound::TBossMusicTrack const*>::MoveConstruct,reflection,engine/reflection,O
+0x7100ff528c,4,base::reflection::ValueOps<sound::TBossMusicTrack const*>::Destroy,reflection,engine/reflection,O
+0x7100ff5290,20,base::reflection::ValueOps<sound::TBossMusicTrack const*>::CopyAssign,reflection,engine/reflection,O
+0x7100ff52a4,20,base::reflection::ValueOps<sound::TBossMusicTrack const*>::MoveAssign,reflection,engine/reflection,O
 0x7100ff52b8,364,fn_7100ff52b8,unknown,unknown,O
 0x7100ff5424,96,fn_7100ff5424,unknown,unknown,O
 0x7100ff5484,12,fn_7100ff5484,unknown,unknown,O
@@ -6095,54 +6095,54 @@ address,size,name,name_source,subsystem,status
 0x7100ff62b4,96,fn_7100ff62b4,unknown,unknown,O
 0x7100ff6314,12,fn_7100ff6314,unknown,unknown,O
 0x7100ff6320,16,fn_7100ff6320,unknown,unknown,O
-0x7100ff6330,20,fn_7100ff6330,unknown,unknown,O
-0x7100ff6344,8,fn_7100ff6344,unknown,unknown,O
-0x7100ff634c,20,fn_7100ff634c,unknown,unknown,O
-0x7100ff6360,8,fn_7100ff6360,unknown,unknown,O
-0x7100ff6368,12,fn_7100ff6368,unknown,unknown,O
-0x7100ff6374,12,fn_7100ff6374,unknown,unknown,O
-0x7100ff6380,4,fn_7100ff6380,unknown,unknown,O
-0x7100ff6384,20,fn_7100ff6384,unknown,unknown,O
-0x7100ff6398,20,fn_7100ff6398,unknown,unknown,O
+0x7100ff6330,20,base::reflection::ValueOps<base::global::CRntVector<sound::TBossMusicTrack>*>::Equals,reflection,engine/reflection,O
+0x7100ff6344,8,base::reflection::ValueOps<base::global::CRntVector<sound::TBossMusicTrack>*>::Hash,reflection,engine/reflection,O
+0x7100ff634c,20,base::reflection::ValueOps<base::global::CRntVector<sound::TBossMusicTrack>*>::TypeOf,reflection,engine/reflection,O
+0x7100ff6360,8,base::reflection::ValueOps<base::global::CRntVector<sound::TBossMusicTrack>*>::Construct,reflection,engine/reflection,O
+0x7100ff6368,12,base::reflection::ValueOps<base::global::CRntVector<sound::TBossMusicTrack>*>::CopyConstruct,reflection,engine/reflection,O
+0x7100ff6374,12,base::reflection::ValueOps<base::global::CRntVector<sound::TBossMusicTrack>*>::MoveConstruct,reflection,engine/reflection,O
+0x7100ff6380,4,base::reflection::ValueOps<base::global::CRntVector<sound::TBossMusicTrack>*>::Destroy,reflection,engine/reflection,O
+0x7100ff6384,20,base::reflection::ValueOps<base::global::CRntVector<sound::TBossMusicTrack>*>::CopyAssign,reflection,engine/reflection,O
+0x7100ff6398,20,base::reflection::ValueOps<base::global::CRntVector<sound::TBossMusicTrack>*>::MoveAssign,reflection,engine/reflection,O
 0x7100ff63ac,364,fn_7100ff63ac,unknown,unknown,O
 0x7100ff6518,96,fn_7100ff6518,unknown,unknown,O
 0x7100ff6578,12,fn_7100ff6578,unknown,unknown,O
 0x7100ff6584,16,fn_7100ff6584,unknown,unknown,O
-0x7100ff6594,20,fn_7100ff6594,unknown,unknown,O
-0x7100ff65a8,8,fn_7100ff65a8,unknown,unknown,O
-0x7100ff65b0,20,fn_7100ff65b0,unknown,unknown,O
-0x7100ff65c4,8,fn_7100ff65c4,unknown,unknown,O
-0x7100ff65cc,12,fn_7100ff65cc,unknown,unknown,O
-0x7100ff65d8,12,fn_7100ff65d8,unknown,unknown,O
-0x7100ff65e4,4,fn_7100ff65e4,unknown,unknown,O
-0x7100ff65e8,20,fn_7100ff65e8,unknown,unknown,O
-0x7100ff65fc,20,fn_7100ff65fc,unknown,unknown,O
+0x7100ff6594,20,base::reflection::ValueOps<base::global::CRntVector<sound::TBossMusicTrack> const*>::Equals,reflection,engine/reflection,O
+0x7100ff65a8,8,base::reflection::ValueOps<base::global::CRntVector<sound::TBossMusicTrack> const*>::Hash,reflection,engine/reflection,O
+0x7100ff65b0,20,base::reflection::ValueOps<base::global::CRntVector<sound::TBossMusicTrack> const*>::TypeOf,reflection,engine/reflection,O
+0x7100ff65c4,8,base::reflection::ValueOps<base::global::CRntVector<sound::TBossMusicTrack> const*>::Construct,reflection,engine/reflection,O
+0x7100ff65cc,12,base::reflection::ValueOps<base::global::CRntVector<sound::TBossMusicTrack> const*>::CopyConstruct,reflection,engine/reflection,O
+0x7100ff65d8,12,base::reflection::ValueOps<base::global::CRntVector<sound::TBossMusicTrack> const*>::MoveConstruct,reflection,engine/reflection,O
+0x7100ff65e4,4,base::reflection::ValueOps<base::global::CRntVector<sound::TBossMusicTrack> const*>::Destroy,reflection,engine/reflection,O
+0x7100ff65e8,20,base::reflection::ValueOps<base::global::CRntVector<sound::TBossMusicTrack> const*>::CopyAssign,reflection,engine/reflection,O
+0x7100ff65fc,20,base::reflection::ValueOps<base::global::CRntVector<sound::TBossMusicTrack> const*>::MoveAssign,reflection,engine/reflection,O
 0x7100ff6610,364,fn_7100ff6610,unknown,unknown,O
 0x7100ff677c,96,fn_7100ff677c,unknown,unknown,O
 0x7100ff67dc,12,fn_7100ff67dc,unknown,unknown,O
 0x7100ff67e8,16,fn_7100ff67e8,unknown,unknown,O
-0x7100ff67f8,20,fn_7100ff67f8,unknown,unknown,O
-0x7100ff680c,8,fn_7100ff680c,unknown,unknown,O
-0x7100ff6814,20,fn_7100ff6814,unknown,unknown,O
-0x7100ff6828,8,fn_7100ff6828,unknown,unknown,O
-0x7100ff6830,12,fn_7100ff6830,unknown,unknown,O
-0x7100ff683c,12,fn_7100ff683c,unknown,unknown,O
-0x7100ff6848,4,fn_7100ff6848,unknown,unknown,O
-0x7100ff684c,20,fn_7100ff684c,unknown,unknown,O
-0x7100ff6860,20,fn_7100ff6860,unknown,unknown,O
+0x7100ff67f8,20,base::reflection::ValueOps<sound::TBossMusicSubStateConfig*>::Equals,reflection,engine/reflection,O
+0x7100ff680c,8,base::reflection::ValueOps<sound::TBossMusicSubStateConfig*>::Hash,reflection,engine/reflection,O
+0x7100ff6814,20,base::reflection::ValueOps<sound::TBossMusicSubStateConfig*>::TypeOf,reflection,engine/reflection,O
+0x7100ff6828,8,base::reflection::ValueOps<sound::TBossMusicSubStateConfig*>::Construct,reflection,engine/reflection,O
+0x7100ff6830,12,base::reflection::ValueOps<sound::TBossMusicSubStateConfig*>::CopyConstruct,reflection,engine/reflection,O
+0x7100ff683c,12,base::reflection::ValueOps<sound::TBossMusicSubStateConfig*>::MoveConstruct,reflection,engine/reflection,O
+0x7100ff6848,4,base::reflection::ValueOps<sound::TBossMusicSubStateConfig*>::Destroy,reflection,engine/reflection,O
+0x7100ff684c,20,base::reflection::ValueOps<sound::TBossMusicSubStateConfig*>::CopyAssign,reflection,engine/reflection,O
+0x7100ff6860,20,base::reflection::ValueOps<sound::TBossMusicSubStateConfig*>::MoveAssign,reflection,engine/reflection,O
 0x7100ff6874,364,fn_7100ff6874,unknown,unknown,O
 0x7100ff69e0,96,fn_7100ff69e0,unknown,unknown,O
 0x7100ff6a40,12,fn_7100ff6a40,unknown,unknown,O
 0x7100ff6a4c,16,fn_7100ff6a4c,unknown,unknown,O
-0x7100ff6a5c,20,fn_7100ff6a5c,unknown,unknown,O
-0x7100ff6a70,8,fn_7100ff6a70,unknown,unknown,O
-0x7100ff6a78,20,fn_7100ff6a78,unknown,unknown,O
-0x7100ff6a8c,8,fn_7100ff6a8c,unknown,unknown,O
-0x7100ff6a94,12,fn_7100ff6a94,unknown,unknown,O
-0x7100ff6aa0,12,fn_7100ff6aa0,unknown,unknown,O
-0x7100ff6aac,4,fn_7100ff6aac,unknown,unknown,O
-0x7100ff6ab0,20,fn_7100ff6ab0,unknown,unknown,O
-0x7100ff6ac4,20,fn_7100ff6ac4,unknown,unknown,O
+0x7100ff6a5c,20,base::reflection::ValueOps<sound::TBossMusicSubStateConfig const*>::Equals,reflection,engine/reflection,O
+0x7100ff6a70,8,base::reflection::ValueOps<sound::TBossMusicSubStateConfig const*>::Hash,reflection,engine/reflection,O
+0x7100ff6a78,20,base::reflection::ValueOps<sound::TBossMusicSubStateConfig const*>::TypeOf,reflection,engine/reflection,O
+0x7100ff6a8c,8,base::reflection::ValueOps<sound::TBossMusicSubStateConfig const*>::Construct,reflection,engine/reflection,O
+0x7100ff6a94,12,base::reflection::ValueOps<sound::TBossMusicSubStateConfig const*>::CopyConstruct,reflection,engine/reflection,O
+0x7100ff6aa0,12,base::reflection::ValueOps<sound::TBossMusicSubStateConfig const*>::MoveConstruct,reflection,engine/reflection,O
+0x7100ff6aac,4,base::reflection::ValueOps<sound::TBossMusicSubStateConfig const*>::Destroy,reflection,engine/reflection,O
+0x7100ff6ab0,20,base::reflection::ValueOps<sound::TBossMusicSubStateConfig const*>::CopyAssign,reflection,engine/reflection,O
+0x7100ff6ac4,20,base::reflection::ValueOps<sound::TBossMusicSubStateConfig const*>::MoveAssign,reflection,engine/reflection,O
 0x7100ff6ad8,364,fn_7100ff6ad8,unknown,unknown,O
 0x7100ff6c44,64,fn_7100ff6c44,unknown,unknown,O
 0x7100ff6c84,4,fn_7100ff6c84,unknown,unknown,O
@@ -6201,54 +6201,54 @@ address,size,name,name_source,subsystem,status
 0x7100ff7a4c,96,fn_7100ff7a4c,unknown,unknown,O
 0x7100ff7aac,12,fn_7100ff7aac,unknown,unknown,O
 0x7100ff7ab8,16,fn_7100ff7ab8,unknown,unknown,O
-0x7100ff7ac8,20,fn_7100ff7ac8,unknown,unknown,O
-0x7100ff7adc,8,fn_7100ff7adc,unknown,unknown,O
-0x7100ff7ae4,20,fn_7100ff7ae4,unknown,unknown,O
-0x7100ff7af8,8,fn_7100ff7af8,unknown,unknown,O
-0x7100ff7b00,12,fn_7100ff7b00,unknown,unknown,O
-0x7100ff7b0c,12,fn_7100ff7b0c,unknown,unknown,O
-0x7100ff7b18,4,fn_7100ff7b18,unknown,unknown,O
-0x7100ff7b1c,20,fn_7100ff7b1c,unknown,unknown,O
-0x7100ff7b30,20,fn_7100ff7b30,unknown,unknown,O
+0x7100ff7ac8,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>*>::Equals",reflection,engine/reflection,O
+0x7100ff7adc,8,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>*>::Hash",reflection,engine/reflection,O
+0x7100ff7ae4,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>*>::TypeOf",reflection,engine/reflection,O
+0x7100ff7af8,8,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>*>::Construct",reflection,engine/reflection,O
+0x7100ff7b00,12,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>*>::CopyConstruct",reflection,engine/reflection,O
+0x7100ff7b0c,12,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>*>::MoveConstruct",reflection,engine/reflection,O
+0x7100ff7b18,4,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>*>::Destroy",reflection,engine/reflection,O
+0x7100ff7b1c,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>*>::CopyAssign",reflection,engine/reflection,O
+0x7100ff7b30,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>*>::MoveAssign",reflection,engine/reflection,O
 0x7100ff7b44,364,fn_7100ff7b44,unknown,unknown,O
 0x7100ff7cb0,96,fn_7100ff7cb0,unknown,unknown,O
 0x7100ff7d10,12,fn_7100ff7d10,unknown,unknown,O
 0x7100ff7d1c,16,fn_7100ff7d1c,unknown,unknown,O
-0x7100ff7d2c,20,fn_7100ff7d2c,unknown,unknown,O
-0x7100ff7d40,8,fn_7100ff7d40,unknown,unknown,O
-0x7100ff7d48,20,fn_7100ff7d48,unknown,unknown,O
-0x7100ff7d5c,8,fn_7100ff7d5c,unknown,unknown,O
-0x7100ff7d64,12,fn_7100ff7d64,unknown,unknown,O
-0x7100ff7d70,12,fn_7100ff7d70,unknown,unknown,O
-0x7100ff7d7c,4,fn_7100ff7d7c,unknown,unknown,O
-0x7100ff7d80,20,fn_7100ff7d80,unknown,unknown,O
-0x7100ff7d94,20,fn_7100ff7d94,unknown,unknown,O
+0x7100ff7d2c,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig> const*>::Equals",reflection,engine/reflection,O
+0x7100ff7d40,8,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig> const*>::Hash",reflection,engine/reflection,O
+0x7100ff7d48,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig> const*>::TypeOf",reflection,engine/reflection,O
+0x7100ff7d5c,8,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig> const*>::Construct",reflection,engine/reflection,O
+0x7100ff7d64,12,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig> const*>::CopyConstruct",reflection,engine/reflection,O
+0x7100ff7d70,12,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig> const*>::MoveConstruct",reflection,engine/reflection,O
+0x7100ff7d7c,4,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig> const*>::Destroy",reflection,engine/reflection,O
+0x7100ff7d80,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig> const*>::CopyAssign",reflection,engine/reflection,O
+0x7100ff7d94,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig> const*>::MoveAssign",reflection,engine/reflection,O
 0x7100ff7da8,364,fn_7100ff7da8,unknown,unknown,O
 0x7100ff7f14,96,fn_7100ff7f14,unknown,unknown,O
 0x7100ff7f74,12,fn_7100ff7f74,unknown,unknown,O
 0x7100ff7f80,16,fn_7100ff7f80,unknown,unknown,O
-0x7100ff7f90,20,fn_7100ff7f90,unknown,unknown,O
-0x7100ff7fa4,8,fn_7100ff7fa4,unknown,unknown,O
-0x7100ff7fac,20,fn_7100ff7fac,unknown,unknown,O
-0x7100ff7fc0,8,fn_7100ff7fc0,unknown,unknown,O
-0x7100ff7fc8,12,fn_7100ff7fc8,unknown,unknown,O
-0x7100ff7fd4,12,fn_7100ff7fd4,unknown,unknown,O
-0x7100ff7fe0,4,fn_7100ff7fe0,unknown,unknown,O
-0x7100ff7fe4,20,fn_7100ff7fe4,unknown,unknown,O
-0x7100ff7ff8,20,fn_7100ff7ff8,unknown,unknown,O
+0x7100ff7f90,20,base::reflection::ValueOps<sound::TBossMusicSpawnGroupConfig*>::Equals,reflection,engine/reflection,O
+0x7100ff7fa4,8,base::reflection::ValueOps<sound::TBossMusicSpawnGroupConfig*>::Hash,reflection,engine/reflection,O
+0x7100ff7fac,20,base::reflection::ValueOps<sound::TBossMusicSpawnGroupConfig*>::TypeOf,reflection,engine/reflection,O
+0x7100ff7fc0,8,base::reflection::ValueOps<sound::TBossMusicSpawnGroupConfig*>::Construct,reflection,engine/reflection,O
+0x7100ff7fc8,12,base::reflection::ValueOps<sound::TBossMusicSpawnGroupConfig*>::CopyConstruct,reflection,engine/reflection,O
+0x7100ff7fd4,12,base::reflection::ValueOps<sound::TBossMusicSpawnGroupConfig*>::MoveConstruct,reflection,engine/reflection,O
+0x7100ff7fe0,4,base::reflection::ValueOps<sound::TBossMusicSpawnGroupConfig*>::Destroy,reflection,engine/reflection,O
+0x7100ff7fe4,20,base::reflection::ValueOps<sound::TBossMusicSpawnGroupConfig*>::CopyAssign,reflection,engine/reflection,O
+0x7100ff7ff8,20,base::reflection::ValueOps<sound::TBossMusicSpawnGroupConfig*>::MoveAssign,reflection,engine/reflection,O
 0x7100ff800c,364,fn_7100ff800c,unknown,unknown,O
 0x7100ff8178,96,fn_7100ff8178,unknown,unknown,O
 0x7100ff81d8,12,fn_7100ff81d8,unknown,unknown,O
 0x7100ff81e4,16,fn_7100ff81e4,unknown,unknown,O
-0x7100ff81f4,20,fn_7100ff81f4,unknown,unknown,O
-0x7100ff8208,8,fn_7100ff8208,unknown,unknown,O
-0x7100ff8210,20,fn_7100ff8210,unknown,unknown,O
-0x7100ff8224,8,fn_7100ff8224,unknown,unknown,O
-0x7100ff822c,12,fn_7100ff822c,unknown,unknown,O
-0x7100ff8238,12,fn_7100ff8238,unknown,unknown,O
-0x7100ff8244,4,fn_7100ff8244,unknown,unknown,O
-0x7100ff8248,20,fn_7100ff8248,unknown,unknown,O
-0x7100ff825c,20,fn_7100ff825c,unknown,unknown,O
+0x7100ff81f4,20,base::reflection::ValueOps<sound::TBossMusicSpawnGroupConfig const*>::Equals,reflection,engine/reflection,O
+0x7100ff8208,8,base::reflection::ValueOps<sound::TBossMusicSpawnGroupConfig const*>::Hash,reflection,engine/reflection,O
+0x7100ff8210,20,base::reflection::ValueOps<sound::TBossMusicSpawnGroupConfig const*>::TypeOf,reflection,engine/reflection,O
+0x7100ff8224,8,base::reflection::ValueOps<sound::TBossMusicSpawnGroupConfig const*>::Construct,reflection,engine/reflection,O
+0x7100ff822c,12,base::reflection::ValueOps<sound::TBossMusicSpawnGroupConfig const*>::CopyConstruct,reflection,engine/reflection,O
+0x7100ff8238,12,base::reflection::ValueOps<sound::TBossMusicSpawnGroupConfig const*>::MoveConstruct,reflection,engine/reflection,O
+0x7100ff8244,4,base::reflection::ValueOps<sound::TBossMusicSpawnGroupConfig const*>::Destroy,reflection,engine/reflection,O
+0x7100ff8248,20,base::reflection::ValueOps<sound::TBossMusicSpawnGroupConfig const*>::CopyAssign,reflection,engine/reflection,O
+0x7100ff825c,20,base::reflection::ValueOps<sound::TBossMusicSpawnGroupConfig const*>::MoveAssign,reflection,engine/reflection,O
 0x7100ff8270,364,fn_7100ff8270,unknown,unknown,O
 0x7100ff83dc,64,fn_7100ff83dc,unknown,unknown,O
 0x7100ff841c,4,fn_7100ff841c,unknown,unknown,O
@@ -6307,54 +6307,54 @@ address,size,name,name_source,subsystem,status
 0x7100ff90bc,96,fn_7100ff90bc,unknown,unknown,O
 0x7100ff911c,12,fn_7100ff911c,unknown,unknown,O
 0x7100ff9128,16,fn_7100ff9128,unknown,unknown,O
-0x7100ff9138,20,fn_7100ff9138,unknown,unknown,O
-0x7100ff914c,8,fn_7100ff914c,unknown,unknown,O
-0x7100ff9154,20,fn_7100ff9154,unknown,unknown,O
-0x7100ff9168,8,fn_7100ff9168,unknown,unknown,O
-0x7100ff9170,12,fn_7100ff9170,unknown,unknown,O
-0x7100ff917c,12,fn_7100ff917c,unknown,unknown,O
-0x7100ff9188,4,fn_7100ff9188,unknown,unknown,O
-0x7100ff918c,20,fn_7100ff918c,unknown,unknown,O
-0x7100ff91a0,20,fn_7100ff91a0,unknown,unknown,O
+0x7100ff9138,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>*>::Equals",reflection,engine/reflection,O
+0x7100ff914c,8,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>*>::Hash",reflection,engine/reflection,O
+0x7100ff9154,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>*>::TypeOf",reflection,engine/reflection,O
+0x7100ff9168,8,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>*>::Construct",reflection,engine/reflection,O
+0x7100ff9170,12,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>*>::CopyConstruct",reflection,engine/reflection,O
+0x7100ff917c,12,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>*>::MoveConstruct",reflection,engine/reflection,O
+0x7100ff9188,4,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>*>::Destroy",reflection,engine/reflection,O
+0x7100ff918c,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>*>::CopyAssign",reflection,engine/reflection,O
+0x7100ff91a0,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>*>::MoveAssign",reflection,engine/reflection,O
 0x7100ff91b4,364,fn_7100ff91b4,unknown,unknown,O
 0x7100ff9320,96,fn_7100ff9320,unknown,unknown,O
 0x7100ff9380,12,fn_7100ff9380,unknown,unknown,O
 0x7100ff938c,16,fn_7100ff938c,unknown,unknown,O
-0x7100ff939c,20,fn_7100ff939c,unknown,unknown,O
-0x7100ff93b0,8,fn_7100ff93b0,unknown,unknown,O
-0x7100ff93b8,20,fn_7100ff93b8,unknown,unknown,O
-0x7100ff93cc,8,fn_7100ff93cc,unknown,unknown,O
-0x7100ff93d4,12,fn_7100ff93d4,unknown,unknown,O
-0x7100ff93e0,12,fn_7100ff93e0,unknown,unknown,O
-0x7100ff93ec,4,fn_7100ff93ec,unknown,unknown,O
-0x7100ff93f0,20,fn_7100ff93f0,unknown,unknown,O
-0x7100ff9404,20,fn_7100ff9404,unknown,unknown,O
+0x7100ff939c,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig> const*>::Equals",reflection,engine/reflection,O
+0x7100ff93b0,8,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig> const*>::Hash",reflection,engine/reflection,O
+0x7100ff93b8,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig> const*>::TypeOf",reflection,engine/reflection,O
+0x7100ff93cc,8,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig> const*>::Construct",reflection,engine/reflection,O
+0x7100ff93d4,12,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig> const*>::CopyConstruct",reflection,engine/reflection,O
+0x7100ff93e0,12,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig> const*>::MoveConstruct",reflection,engine/reflection,O
+0x7100ff93ec,4,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig> const*>::Destroy",reflection,engine/reflection,O
+0x7100ff93f0,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig> const*>::CopyAssign",reflection,engine/reflection,O
+0x7100ff9404,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig> const*>::MoveAssign",reflection,engine/reflection,O
 0x7100ff9418,364,fn_7100ff9418,unknown,unknown,O
 0x7100ff9584,96,fn_7100ff9584,unknown,unknown,O
 0x7100ff95e4,12,fn_7100ff95e4,unknown,unknown,O
 0x7100ff95f0,16,fn_7100ff95f0,unknown,unknown,O
-0x7100ff9600,20,fn_7100ff9600,unknown,unknown,O
-0x7100ff9614,8,fn_7100ff9614,unknown,unknown,O
-0x7100ff961c,20,fn_7100ff961c,unknown,unknown,O
-0x7100ff9630,8,fn_7100ff9630,unknown,unknown,O
-0x7100ff9638,12,fn_7100ff9638,unknown,unknown,O
-0x7100ff9644,12,fn_7100ff9644,unknown,unknown,O
-0x7100ff9650,4,fn_7100ff9650,unknown,unknown,O
-0x7100ff9654,20,fn_7100ff9654,unknown,unknown,O
-0x7100ff9668,20,fn_7100ff9668,unknown,unknown,O
+0x7100ff9600,20,base::reflection::ValueOps<sound::TBossMusicPreset*>::Equals,reflection,engine/reflection,O
+0x7100ff9614,8,base::reflection::ValueOps<sound::TBossMusicPreset*>::Hash,reflection,engine/reflection,O
+0x7100ff961c,20,base::reflection::ValueOps<sound::TBossMusicPreset*>::TypeOf,reflection,engine/reflection,O
+0x7100ff9630,8,base::reflection::ValueOps<sound::TBossMusicPreset*>::Construct,reflection,engine/reflection,O
+0x7100ff9638,12,base::reflection::ValueOps<sound::TBossMusicPreset*>::CopyConstruct,reflection,engine/reflection,O
+0x7100ff9644,12,base::reflection::ValueOps<sound::TBossMusicPreset*>::MoveConstruct,reflection,engine/reflection,O
+0x7100ff9650,4,base::reflection::ValueOps<sound::TBossMusicPreset*>::Destroy,reflection,engine/reflection,O
+0x7100ff9654,20,base::reflection::ValueOps<sound::TBossMusicPreset*>::CopyAssign,reflection,engine/reflection,O
+0x7100ff9668,20,base::reflection::ValueOps<sound::TBossMusicPreset*>::MoveAssign,reflection,engine/reflection,O
 0x7100ff967c,364,fn_7100ff967c,unknown,unknown,O
 0x7100ff97e8,96,fn_7100ff97e8,unknown,unknown,O
 0x7100ff9848,12,fn_7100ff9848,unknown,unknown,O
 0x7100ff9854,16,fn_7100ff9854,unknown,unknown,O
-0x7100ff9864,20,fn_7100ff9864,unknown,unknown,O
-0x7100ff9878,8,fn_7100ff9878,unknown,unknown,O
-0x7100ff9880,20,fn_7100ff9880,unknown,unknown,O
-0x7100ff9894,8,fn_7100ff9894,unknown,unknown,O
-0x7100ff989c,12,fn_7100ff989c,unknown,unknown,O
-0x7100ff98a8,12,fn_7100ff98a8,unknown,unknown,O
-0x7100ff98b4,4,fn_7100ff98b4,unknown,unknown,O
-0x7100ff98b8,20,fn_7100ff98b8,unknown,unknown,O
-0x7100ff98cc,20,fn_7100ff98cc,unknown,unknown,O
+0x7100ff9864,20,base::reflection::ValueOps<sound::TBossMusicPreset const*>::Equals,reflection,engine/reflection,O
+0x7100ff9878,8,base::reflection::ValueOps<sound::TBossMusicPreset const*>::Hash,reflection,engine/reflection,O
+0x7100ff9880,20,base::reflection::ValueOps<sound::TBossMusicPreset const*>::TypeOf,reflection,engine/reflection,O
+0x7100ff9894,8,base::reflection::ValueOps<sound::TBossMusicPreset const*>::Construct,reflection,engine/reflection,O
+0x7100ff989c,12,base::reflection::ValueOps<sound::TBossMusicPreset const*>::CopyConstruct,reflection,engine/reflection,O
+0x7100ff98a8,12,base::reflection::ValueOps<sound::TBossMusicPreset const*>::MoveConstruct,reflection,engine/reflection,O
+0x7100ff98b4,4,base::reflection::ValueOps<sound::TBossMusicPreset const*>::Destroy,reflection,engine/reflection,O
+0x7100ff98b8,20,base::reflection::ValueOps<sound::TBossMusicPreset const*>::CopyAssign,reflection,engine/reflection,O
+0x7100ff98cc,20,base::reflection::ValueOps<sound::TBossMusicPreset const*>::MoveAssign,reflection,engine/reflection,O
 0x7100ff98e0,364,fn_7100ff98e0,unknown,unknown,O
 0x7100ff9a4c,64,fn_7100ff9a4c,unknown,unknown,O
 0x7100ff9a8c,4,fn_7100ff9a8c,unknown,unknown,O
@@ -6413,28 +6413,28 @@ address,size,name,name_source,subsystem,status
 0x7100ffa72c,96,fn_7100ffa72c,unknown,unknown,O
 0x7100ffa78c,12,fn_7100ffa78c,unknown,unknown,O
 0x7100ffa798,16,fn_7100ffa798,unknown,unknown,O
-0x7100ffa7a8,20,fn_7100ffa7a8,unknown,unknown,O
-0x7100ffa7bc,8,fn_7100ffa7bc,unknown,unknown,O
-0x7100ffa7c4,20,fn_7100ffa7c4,unknown,unknown,O
-0x7100ffa7d8,8,fn_7100ffa7d8,unknown,unknown,O
-0x7100ffa7e0,12,fn_7100ffa7e0,unknown,unknown,O
-0x7100ffa7ec,12,fn_7100ffa7ec,unknown,unknown,O
-0x7100ffa7f8,4,fn_7100ffa7f8,unknown,unknown,O
-0x7100ffa7fc,20,fn_7100ffa7fc,unknown,unknown,O
-0x7100ffa810,20,fn_7100ffa810,unknown,unknown,O
+0x7100ffa7a8,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>*>::Equals",reflection,engine/reflection,O
+0x7100ffa7bc,8,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>*>::Hash",reflection,engine/reflection,O
+0x7100ffa7c4,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>*>::TypeOf",reflection,engine/reflection,O
+0x7100ffa7d8,8,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>*>::Construct",reflection,engine/reflection,O
+0x7100ffa7e0,12,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>*>::CopyConstruct",reflection,engine/reflection,O
+0x7100ffa7ec,12,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>*>::MoveConstruct",reflection,engine/reflection,O
+0x7100ffa7f8,4,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>*>::Destroy",reflection,engine/reflection,O
+0x7100ffa7fc,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>*>::CopyAssign",reflection,engine/reflection,O
+0x7100ffa810,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>*>::MoveAssign",reflection,engine/reflection,O
 0x7100ffa824,364,fn_7100ffa824,unknown,unknown,O
 0x7100ffa990,96,fn_7100ffa990,unknown,unknown,O
 0x7100ffa9f0,12,fn_7100ffa9f0,unknown,unknown,O
 0x7100ffa9fc,16,fn_7100ffa9fc,unknown,unknown,O
-0x7100ffaa0c,20,fn_7100ffaa0c,unknown,unknown,O
-0x7100ffaa20,8,fn_7100ffaa20,unknown,unknown,O
-0x7100ffaa28,20,fn_7100ffaa28,unknown,unknown,O
-0x7100ffaa3c,8,fn_7100ffaa3c,unknown,unknown,O
-0x7100ffaa44,12,fn_7100ffaa44,unknown,unknown,O
-0x7100ffaa50,12,fn_7100ffaa50,unknown,unknown,O
-0x7100ffaa5c,4,fn_7100ffaa5c,unknown,unknown,O
-0x7100ffaa60,20,fn_7100ffaa60,unknown,unknown,O
-0x7100ffaa74,20,fn_7100ffaa74,unknown,unknown,O
+0x7100ffaa0c,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset> const*>::Equals",reflection,engine/reflection,O
+0x7100ffaa20,8,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset> const*>::Hash",reflection,engine/reflection,O
+0x7100ffaa28,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset> const*>::TypeOf",reflection,engine/reflection,O
+0x7100ffaa3c,8,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset> const*>::Construct",reflection,engine/reflection,O
+0x7100ffaa44,12,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset> const*>::CopyConstruct",reflection,engine/reflection,O
+0x7100ffaa50,12,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset> const*>::MoveConstruct",reflection,engine/reflection,O
+0x7100ffaa5c,4,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset> const*>::Destroy",reflection,engine/reflection,O
+0x7100ffaa60,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset> const*>::CopyAssign",reflection,engine/reflection,O
+0x7100ffaa74,20,"base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset> const*>::MoveAssign",reflection,engine/reflection,O
 0x7100ffaa88,372,fn_7100ffaa88,unknown,unknown,O
 0x7100ffabfc,12,fn_7100ffabfc,unknown,unknown,O
 0x7100ffac08,8,fn_7100ffac08,unknown,unknown,O
