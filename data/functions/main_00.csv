@@ -797,7 +797,7 @@ address,size,name,name_source,subsystem,status
 0x710001ddf8,36,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::core::AssetName>>::Find,reflection,engine/reflection,O
 0x710001de1c,480,fn_710001de1c,unknown,unknown,O
 0x710001dffc,468,fn_710001dffc,unknown,unknown,O
-0x710001e1d0,100,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::core::AssetName>>::Equals,reflection,engine/reflection,U
+0x710001e1d0,100,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::core::AssetName>>::Equals,reflection,engine/reflection,O
 0x710001e234,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::core::AssetName>>::Hash,reflection,engine/reflection,O
 0x710001e23c,12,fn_710001e23c,unknown,unknown,O
 0x710001e248,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::core::AssetName>>::Construct,reflection,engine/reflection,O
