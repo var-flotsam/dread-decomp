@@ -145,3 +145,4 @@ void fn_7100b7e47c(UnkReflType* self, const base::global::CStrId& name, UnkReflT
 const base::reflection::CType* fn_7100ad61f8();  // base::reflection::refl_GetType<CSubAreaManager*>.
 // Builds a value argument (a type and where the value is) from a reflected value.
 void fn_71000a1710(UnkReflValueArg* out, const base::reflection::UnkReflValue* value);
+void fn_71000a1978(base::reflection::UnkReflValue* out, const base::reflection::UnkTypedRef* src, u32, u32 kind);

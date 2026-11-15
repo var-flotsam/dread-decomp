@@ -818,15 +818,12 @@ void fn_7101233cd4(void* effect, const u32* value, u32 x2);
 void fn_7101233e14(void* effect, u64 value);
 void fn_7101233e30(void* effect, u64 value);
 void fn_7101233ebc(void* effect, f32 value);
-u64 fn_7101233880(void* effect);
 void fn_7101234ad0(void* effect, u32 value);
 void fn_7101234be0(void* effect, u32 value);
 void fn_7101234c50(void* effect, u32 value);
 void fn_7101234cc0(void* effect, f32 value);
 void fn_7101234d28(void* effect, u64 value);
-u64 fn_71012346b8(void* effect);
 void fn_7101234470(void* effect, u32 value);
-u64 fn_7101234068(void* effect);
 void fn_710120a0ac(void* player, u32 count);
 void fn_7101214bd0(void* self, u32 mode, u32 x2);
 

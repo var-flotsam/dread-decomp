@@ -154,6 +154,25 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Lean batch lean-b1: 98 ready functions, whole units to a worker (2026-11-15).** The first batch on the
+rewritten kit since workers take several functions of one unit. Queue: 98 `U` functions of 400 bytes or less
+from `tools/hubs.py --ready`, taken as whole units (13 units with four or more ready functions each, boot-slice
+units first), so 16 Sonnet workers got 1 to 10 functions each; budget 3, reference matches for 69 of 98, no Ghidra
+views (`prepare.py --ghidra` needs the Ghidra project inside the worktree). Results: 20 matches (12 on the first
+graded attempt, 4 on the second, 3 on the third), 13 registers-only, 65 that differ; 258 graded attempts. Of the
+20, 18 are in `src/`; 2 wait in `drafts/` as matches whose existing declarations name types local to another file
+(`fn_7100e3e1c0`, `fn_71000e76dc`; the note in each row). The permuter matched 3 of the 12 registers-only drafts it
+could run, and `tools/equiv_test.py` passed 3 more, now in `src/` as verified minor; 3 failed the machine test
+(the three hash-map erases of unit 270, a real difference) and 3 were inconclusive. 24 functions into `src/` in
+all, 78 drafts filed. Worker tokens: about 2.45 million for the 16 workers, about 122,000 per worker match,
+against about 736,000 in the one-function pilot of 2026-11-12. Steps after the workers that needed hands: four
+matches still included the old `base/UnkVector.h` (renamed by #450 while they ran); six placeholder struct names
+gained a second layout, fixed by giving the new files' layouts their own names and, where a header declares the
+function with the shared name, casting at entry; one global copied into a second file now lives in
+`include/game/UnkTU99.h`; `fn_71010e655c`'s caller now declares it as the definition has it (it returns an int
+and takes a reflected value). Recommendation for the next batch: keep whole units and budget 3; the first
+attempt carries most matches.
+
 **`base::UnkVector` is `base::global::CRntVector` (2026-11-15).** The reflected collections name the engine's
 growable array (`CollectionTypeMapper<base::global::CRntVector<T>>`), and their descriptors' constructors build
 exactly `UnkVector`'s 0x28 bytes: the array and count at 0 and 8, growth step 10 at 0x10, the flag byte at 0x14,

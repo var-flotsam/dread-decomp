@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "types.h"
 
+struct UnkSubareaIdLists;
 struct UnkSubareaNamedEntry;
 struct UnkSubareaNamedList;
 struct UnkSubArea;
@@ -18,3 +19,4 @@ void fn_7100fab18c(UnkGeneratorRecord_ovb0120* self, UnkGeneratorRecord_ovb0120*
 void fn_7100fac120(UnkSubArea* area, UnkMask mask, bool a, bool b, void* c, bool d);
 extern UnkSetupNamedDef g_unk_71729ee018;  // The definition the setup chain is read under.
 UnkSubareaNamedEntry* fn_7100fab838(UnkSubareaNamedList* self, const base::global::CStrId* id);
+bool fn_7100fad66c(UnkSubareaIdLists* self, const base::global::CStrId* id);

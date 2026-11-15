@@ -82,9 +82,9 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 80,0x710009bed8,0x710009c7b4,base::reflection::CPointerType,high,engine/reflection,partial,16,2248,14,0,0,0,0,2,0,1152,1152
 81,0x710009c7b4,0x71000a16c4,base::reflection::CType,high,engine/reflection,partial,186,20200,179,1,0,0,0,6,0,15632,15632
 82,0x71000a16c4,0x71000a4598,base::reflection,high,unknown,partial,135,11988,130,0,0,0,0,5,0,9184,9184
-83,0x71000a4598,0x71000e5f9c,base::reflection,low,unknown,partial,2372,268708,2358,2,2,0,0,12,0,263796,264372
+83,0x71000a4598,0x71000e5f9c,base::reflection,low,unknown,partial,2372,268708,2359,2,2,0,0,11,0,264140,264716
 84,0x71000e5f9c,0x71000e6cd8,UnkTU84,high,unknown,matched,65,3384,65,0,0,0,0,0,0,3384,3384
-85,0x71000e6ce0,0x71000e8728,UnkTU85,high,unknown,partial,25,6712,18,1,0,0,0,6,0,3412,3412
+85,0x71000e6ce0,0x71000e8728,UnkTU85,high,unknown,partial,25,6712,20,1,0,0,0,4,0,3848,3848
 86,0x71000e8728,0x71000e8a58,base::reflection::CVariable,high,engine/reflection,matched,9,816,9,0,0,0,0,0,0,816,816
 87,0x71000e8a58,0x71000e98a0,base::res::CRes,high,engine/base,partial,18,3656,15,0,0,0,0,3,0,1552,1552
 88,0x71000e98a0,0x71000ecda0,UnkTU88,high,unknown,partial,43,13560,36,1,0,0,0,6,0,7856,7856
@@ -98,7 +98,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 96,0x71000f3490,0x71000f3510,UnkTU96,high,unknown,matched,1,128,1,0,0,0,0,0,0,128,128
 97,0x71000f3510,0x71000f35d0,UnkTU97,high,unknown,matched,1,192,1,0,0,0,0,0,0,192,192
 98,0x71000f35d0,0x71000f43c0,UnkTU98,high,unknown,partial,24,3568,21,0,0,0,0,3,0,1980,1980
-99,0x71000f43c0,0x71001043e4,base::snd::CSoundSystemATK::CTunableSoundSystemATK,medium,unknown,partial,206,65520,147,7,2,1,0,51,1,22292,22724
+99,0x71000f43c0,0x71001043e4,base::snd::CSoundSystemATK::CTunableSoundSystemATK,medium,unknown,partial,206,65520,150,9,4,1,0,46,1,22996,23884
 100,0x71001043e4,0x7100104ef4,UnkTU100,high,unknown,matched,18,2820,18,0,0,0,0,0,0,2820,2820
 101,0x7100104ef4,0x71001061f4,UnkTU101,high,unknown,partial,25,4852,20,0,0,0,0,5,0,1948,1948
 102,0x71001061f4,0x7100106b64,UnkTU102,high,unknown,matched,16,2416,16,0,0,0,0,0,0,2416,2416
@@ -210,7 +210,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 208,0x710016b51c,0x710016e03c,UnkTU208,high,unknown,partial,69,10952,62,0,0,0,0,7,3,7992,7992
 209,0x710016e03c,0x710016e75c,UnkTU209,high,unknown,partial,8,1812,5,1,0,0,0,2,0,488,488
 210,0x710016e75c,0x7100190154,UnkTU210,low,unknown,partial,220,137720,116,0,0,0,0,104,0,3248,3248
-211,0x7100190154,0x7100194a9c,UnkTU211,high,unknown,partial,80,18748,62,0,0,0,0,18,0,5144,5144
+211,0x7100190154,0x7100194a9c,UnkTU211,high,unknown,partial,80,18748,63,0,0,0,0,17,0,5352,5352
 212,0x7100194a9c,0x710019545c,UnkTU212,high,unknown,partial,10,2496,9,0,0,0,0,1,0,1616,1616
 213,0x710019545c,0x710019565c,UnkTU213,high,unknown,matched,5,500,5,0,0,0,0,0,0,500,500
 214,0x710019565c,0x710019645c,UnkTU214,high,unknown,partial,16,3572,14,0,0,0,0,2,0,1772,1772
@@ -2552,7 +2552,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 2550,0x7100dde0c8,0x7100ddebbc,UnkTU2550,high,unknown,partial,9,2792,5,0,0,0,0,4,0,616,616
 2551,0x7100ddebbc,0x7100dded9c,UnkTU2551,high,unknown,matched,8,476,8,0,0,0,0,0,0,476,476
 2552,0x7100dded9c,0x7100de277c,CExplosionGfx,high,game,partial,65,14808,60,0,0,0,0,5,0,9060,9060
-2553,0x7100de277c,0x7100e04d68,CGameManager::CTunableGameManager,medium,unknown,partial,290,140748,215,6,0,0,0,69,0,53084,53084
+2553,0x7100de277c,0x7100e04d68,CGameManager::CTunableGameManager,medium,unknown,partial,290,140748,217,6,0,0,0,67,0,53608,53608
 2554,0x7100e04d68,0x7100e06ce0,CGameManager::CTunableGameManager,high,unknown,partial,86,8040,84,0,0,0,0,2,0,5532,5532
 2555,0x7100e06ce0,0x7100e07b60,UnkTU2555,high,unknown,matched,25,3712,25,0,0,0,0,0,0,3712,3712
 2556,0x7100e07b60,0x7100e0f028,CLightManager,high,unknown,partial,188,29892,180,0,0,0,0,8,0,23144,23144
@@ -2562,10 +2562,10 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 2560,0x7100e1bc3c,0x7100e1dbbc,UnkTU2560,high,unknown,partial,26,8060,22,0,0,0,0,4,0,4664,4664
 2561,0x7100e1dbc0,0x7100e1e35c,CLogicDroppedItemManager::CTunableDroppableBillboard,high,unknown,partial,2,1936,1,0,0,0,0,1,0,532,532
 2562,0x7100e1e35c,0x7100e31c18,CLogicDroppedItemManager::CTunableDroppableBillboard,medium,game,partial,92,80060,62,1,0,0,0,29,0,28192,28192
-2563,0x7100e31c18,0x7100e65204,CMinimapData,medium,unknown,partial,1284,210376,1222,16,3,0,0,46,0,155152,156296
+2563,0x7100e31c18,0x7100e65204,CMinimapData,medium,unknown,partial,1284,210376,1225,16,3,0,0,43,0,156064,157208
 2564,0x7100e65204,0x7100e768b0,CMinimapDef,medium,unknown,partial,293,71332,282,3,1,0,0,8,0,55820,56048
 2565,0x7100e768b0,0x7100e7cdfc,UnkTU2565,high,unknown,partial,150,25924,138,0,0,0,0,12,0,17304,17304
-2566,0x7100e7cdfc,0x7100eb695c,CMinimapManager::CTunableMinimapManager,medium,unknown,partial,848,236376,745,14,6,0,0,89,0,122608,125316
+2566,0x7100e7cdfc,0x7100eb695c,CMinimapManager::CTunableMinimapManager,medium,unknown,partial,848,236376,745,15,7,0,0,88,0,122608,125544
 2567,0x7100eb695c,0x7100ebf278,UnkTU2567,high,unknown,partial,45,35028,31,1,0,1,0,12,0,4720,4720
 2568,0x7100ebf278,0x7100ec32c0,UnkTU2568,high,unknown,partial,36,16440,27,0,0,0,0,9,0,5172,5172
 2569,0x7100ec32c0,0x7100ec5a2c,UnkTU2569,high,unknown,partial,13,10092,9,1,0,0,0,3,0,3980,3980
@@ -2576,7 +2576,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 2574,0x7100ecf6ac,0x7100ecf93c,UnkTU2574,high,unknown,matched,15,644,15,0,0,0,0,0,0,644,644
 2575,0x7100ecf93c,0x7100ecfb5c,UnkTU2575,high,unknown,matched,9,532,9,0,0,0,0,0,0,532,532
 2576,0x7100ecfb5c,0x7100edf654,CShotManager::CTunableShotManager,high,unknown,partial,430,64232,413,1,0,1,0,15,0,51288,51288
-2577,0x7100edf654,0x7100ef3494,CSubAreaManager::CTunableSubAreaManager,medium,unknown,partial,212,81460,164,3,0,2,0,43,0,35936,35936
+2577,0x7100edf654,0x7100ef3494,CSubAreaManager::CTunableSubAreaManager,medium,unknown,partial,212,81460,168,3,0,2,0,39,0,36928,36928
 2578,0x7100ef3494,0x7100f02740,UnkTU2578,high,unknown,partial,24,62116,17,2,0,0,0,5,0,56316,56316
 2579,0x7100f02740,0x7100f0338c,UnkTU2579,high,unknown,partial,13,3144,9,1,0,0,0,3,1,768,768
 2580,0x7100f0338c,0x7100f03af0,CHearingSensor,high,game,partial,15,1876,14,0,0,0,0,1,1,1304,1304
@@ -2606,7 +2606,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 2604,0x7100f8af0c,0x7100f92a44,UnkTU2604,high,unknown,partial,221,31532,206,1,1,0,0,14,0,22860,23024
 2605,0x7100f92a44,0x7100f977e8,UnkTU2605,high,unknown,partial,167,19872,165,0,0,0,0,2,0,18288,18288
 2606,0x7100f977e8,0x7100f97d90,STransition,high,game,matched,14,1444,14,0,0,0,0,0,0,1444,1444
-2607,0x7100f97d90,0x7100f9b32c,UnkTU2607,high,unknown,partial,47,13712,33,5,5,0,0,9,0,9528,10604
+2607,0x7100f97d90,0x7100f9b32c,UnkTU2607,high,unknown,partial,47,13712,35,5,5,0,0,7,0,9748,10824
 2608,0x7100f9b32c,0x7100f9cde8,UnkTU2608,high,unknown,partial,34,6840,33,0,0,0,0,1,0,6344,6344
 2609,0x7100f9cde8,0x7100fa1254,base::reflection,high,unknown,partial,151,17472,148,0,0,0,0,3,0,15556,15556
 2610,0x7100fa1254,0x7100fa99bc,base::reflection,high,unknown,partial,191,34664,182,0,0,0,0,9,0,24180,24180
@@ -2690,7 +2690,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 2688,0x71010d02f0,0x71010d4ac0,CMovementComponent,high,game/components,partial,75,18380,60,0,0,0,0,15,0,11320,11320
 2689,0x71010d4ac0,0x71010def48,CPlayerMovement,medium,unknown,partial,116,42084,96,0,0,0,0,20,1,25392,25392
 2690,0x71010def48,0x71010df6c0,CSteeringMovement,high,game,partial,22,1900,21,0,0,0,0,1,0,1812,1812
-2691,0x71010df6c0,0x71010e7f8c,CCameraComponent,high,unknown,partial,144,35008,129,0,0,0,0,15,0,24672,24672
+2691,0x71010df6c0,0x71010e7f8c,CCameraComponent,high,unknown,partial,144,35008,132,0,0,0,0,12,0,25404,25404
 2692,0x71010e7f8c,0x71010ecae0,CAnimatedCameraCtrl,high,game,partial,33,19276,26,0,0,0,0,7,0,3372,3372
 2693,0x71010ecae0,0x71010eee90,CCameraCtrl,high,game,partial,33,9132,27,0,0,0,0,6,0,5232,5232
 2694,0x71010eee90,0x71010f0460,CFreeCameraCtrl,high,game,partial,25,5572,22,0,0,0,0,3,0,2680,2680
