@@ -201,6 +201,33 @@ first: 9% and 39%), with one shared construct tail (6% and 7%), or with the slot
 loop that stops when the counter wraps (14% and 7%): the original also hoists the path pool's address to
 the top. `permute.py` and `equiv_test.py` find a function only as `fn_<addr>` in the source (a body
 to permute) or in the object (a symbol to run), so neither takes a template member yet.
+**Plain types' value operations from the same template (2026-11-15).** The C++ number types the game reflects
+(`bool`, `char`, `signed char`, `unsigned char`, `short`, `unsigned short`, `int`, `unsigned`, `long`, `unsigned
+long`, `long long`, `unsigned long long`, `float`, `double`) have their nine CType slot functions from `ValueOps<T>`,
+like the enums. Their hashes show the engine hashes only some plain types by value: `bool`, `int`, `unsigned`, `long`
+and `unsigned long` return the value, the rest -1 (`ValueOps.h`, `HashedByValue`). `TypeOf` tail-calls the type's getter, which Clang 9 does only when both return a `const CType&`: a `TypeOf` that dereferences a pointer-returning getter gets a `dereferenceable` return the call lacks and stays a call (as a pointer type's does, matching its original). So `refl_GetPrimitiveType<G>` now returns a reference; its own bytes are the same.
+`UnkReflPrimitiveTraits` now names its slots by role (`construct`, ..., `type_of`, and `add_attributes` for
+CType+0x70). The plain classes (`CStrId`, `CVector3D`, the colours, ...) keep the address form until their own
+operators are written.
+**Lean batch lean-b1: 98 ready functions, whole units to a worker (2026-11-15).** The first batch on the
+rewritten kit since workers take several functions of one unit. Queue: 98 `U` functions of 400 bytes or less
+from `tools/hubs.py --ready`, taken as whole units (13 units with four or more ready functions each, boot-slice
+units first), so 16 Sonnet workers got 1 to 10 functions each; budget 3, reference matches for 69 of 98, no Ghidra
+views (`prepare.py --ghidra` needs the Ghidra project inside the worktree). Results: 20 matches (12 on the first
+graded attempt, 4 on the second, 3 on the third), 13 registers-only, 65 that differ; 258 graded attempts. Of the
+20, 18 are in `src/`; 2 wait in `drafts/` as matches whose existing declarations name types local to another file
+(`fn_7100e3e1c0`, `fn_71000e76dc`; the note in each row). The permuter matched 3 of the 12 registers-only drafts it
+could run, and `tools/equiv_test.py` passed 3 more, now in `src/` as verified minor; 3 failed the machine test
+(the three hash-map erases of unit 270, a real difference) and 3 were inconclusive. 24 functions into `src/` in
+all, 78 drafts filed. Worker tokens: about 2.45 million for the 16 workers, about 122,000 per worker match,
+against about 736,000 in the one-function pilot of 2026-11-12. Steps after the workers that needed hands: four
+matches still included the old `base/UnkVector.h` (renamed by #450 while they ran); six placeholder struct names
+gained a second layout, fixed by giving the new files' layouts their own names and, where a header declares the
+function with the shared name, casting at entry; one global copied into a second file now lives in
+`include/game/UnkTU99.h`; `fn_71010e655c`'s caller now declares it as the definition has it (it returns an int
+and takes a reflected value). Recommendation for the next batch: keep whole units and budget 3; the first
+attempt carries most matches.
+
 **`base::UnkVector` is `base::global::CRntVector` (2026-11-15).** The reflected collections name the engine's
 growable array (`CollectionTypeMapper<base::global::CRntVector<T>>`), and their descriptors' constructors build
 exactly `UnkVector`'s 0x28 bytes: the array and count at 0 and 8, growth step 10 at 0x10, the flag byte at 0x14,

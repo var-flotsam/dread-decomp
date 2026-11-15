@@ -8,6 +8,7 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/CType.h"
 #include "base/reflection/UnkReflAttributes.h"
@@ -25,7 +26,6 @@ using base::reflection::UnkReflValue;
 using base::reflection::UnkTypedRef;
 
 extern void* g_unk_7101a1b540[];  // CType's vtable
-void fn_71000a1978(UnkReflValue* out, const UnkTypedRef* src, u32, u32 kind);
 const UnkReflAttrKey& fn_71000905e0();  // "AssetHash"
 
 namespace {

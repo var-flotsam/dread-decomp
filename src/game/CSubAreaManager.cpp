@@ -471,8 +471,6 @@ struct UnkPoppedRequest {
     }
     ~UnkPoppedRequest() { id.~CStrId(); }
 };
-void fn_7100ee4550(CSubAreaManager* self, const UnkPoppedRequest* request, bool a, bool b);
-void fn_7100ee4704(CSubAreaManager* self, const UnkPoppedRequest* request, bool a, bool b);
 
 // The GUI root (src/game/CCutscene.cpp) and a 0x48-byte singleton created on first use.
 #include "game/UnkSubAreaGuiCache.h"

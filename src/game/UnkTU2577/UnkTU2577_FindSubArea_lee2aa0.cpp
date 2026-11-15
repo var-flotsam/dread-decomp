@@ -2,12 +2,12 @@
 // sub-area of the array at +0x860 (0x188 bytes each) that fn_7100fad66c accepts for the id, or null.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU2611.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkSubareaIdLists;
-bool fn_7100fad66c(UnkSubareaIdLists* self, const CStrId* id);
 
 struct UnkSubAreaEntry_lee2aa0 {
     u8 pad_0x0[0x188];

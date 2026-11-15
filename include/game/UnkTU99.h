@@ -20,3 +20,9 @@ extern UnkIdMap* g_unk_7101d685c8;
 extern UnkAtkHeap g_unk_7108b69038;
 void* fn_71001039f8();
 void fn_71000ffd4c(UnkListener_7100105f94* listener, UnkInterp_7100105f94* block, s32 value);
+extern u8 g_unk_7108b6adb0[] __attribute__((visibility("hidden")));
+extern u8 g_unk_7108b6ae38[] __attribute__((visibility("hidden")));
+extern u8 g_unk_7108b6af50[] __attribute__((visibility("hidden")));
+extern u8 g_unk_7108b6afe8[] __attribute__((visibility("hidden")));
+// The payload size of each command of the sound system's second queue, by command number.
+extern const s32 g_unk_7101647aa8[] __attribute__((visibility("hidden")));

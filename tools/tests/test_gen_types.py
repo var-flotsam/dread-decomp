@@ -296,6 +296,25 @@ class TypeNames(unittest.TestCase):
         self.assertEqual(sorted(out), [1, 2, 5])
 
 
+    def test_primitive_named_form(self):
+        body = ['    static constexpr const char* name = "unsigned";', "    static constexpr u64 length = 8;",
+                "    static constexpr u64 size = 0x4;"]
+        body += [f"    static constexpr UnkFn {m} = &fn_{0x7100000040 + 4 * i:x};"
+                 for i, m in enumerate(gt.PRIMITIVE_SLOTS.values())]
+        self.assertEqual(gt.primitive_value_type(body), "unsigned int")
+        out = gt.emit_primitive(0x7100000010, body, "unsigned int")
+        self.assertIn("template struct base::reflection::ValueOps<unsigned int>;", out)
+        self.assertIn("struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_7100000010> "
+                      ": base::reflection::ValueOpsDescription<unsigned int> {", out)
+        self.assertNotIn(body[3], out)
+        self.assertIn("    static constexpr UnkFn add_attributes = &fn_7100000064;", out)
+        names = gt.primitive_ops_names(body, "unsigned int")
+        self.assertEqual(names[0x7100000040], "base::reflection::ValueOps<unsigned int>::Construct")
+        self.assertEqual(len(names), 9)
+        self.assertIsNone(gt.primitive_value_type([line.replace('"unsigned"', '"CFoo"') for line in body]))
+        self.assertIsNone(gt.primitive_value_type([line.replace("&fn_7100000044", "nullptr") for line in body]))
+
+
 class Declarations(unittest.TestCase):
     DECLS = {"void fn_7100000010();", "extern base::reflection::CType g_unk_7100000020;",
              "void fn_7100000030();"}
