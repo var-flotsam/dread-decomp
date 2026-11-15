@@ -50,10 +50,14 @@ ENUM_KIND = "base::reflection::CEnumType"
 REF_ENUM = 0x71000145E8         # a CEnumType constructor
 CHUNK = 200  # getter/constructor pairs per generated file
 
-# CType/CPointerType slots filled by the constructor: offset -> traits member.
-SLOTS = {0x28: "fn_0x28", 0x30: "fn_0x30", 0x38: "fn_0x38", 0x40: "fn_0x40", 0x48: "fn_0x48",
-         0x50: "fn_0x50", 0x58: "fn_0x58", 0x60: "fn_0x60", 0x68: "fn_0x68", 0xF0: "fn_0xf0",
-         0xF8: "fn_0xf8", 0x100: "fn_0x100"}
+# CType/CPointerType slots filled by the constructor: offset -> description member (the roles
+# ReflectedClass.h's ClassDescription names, then CPointerType's own).
+SLOTS = {0x28: "construct", 0x30: "copy_construct", 0x38: "move_construct", 0x40: "destroy",
+         0x48: "copy_assign", 0x50: "move_assign", 0x58: "equals", 0x60: "hash", 0x68: "type_of",
+         0xF0: "get", 0xF8: "set", 0x100: "increment"}
+# CCollectionType's accessors from +0x108 (CCollectionType.h).
+COLLECTION_SLOTS = ["count", "clear", "add_copy", "add_move", "erase", "at", "find", "set_copy",
+                    "set_move", "begin", "end", "const_begin", "const_end"]
 
 CS = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
 CS.detail = True
@@ -188,7 +192,7 @@ def traits(orig: asmdiff.Original, init: int, decls: set[str], local: int | None
     if not flag or flag[0] != "imm" or flag[1] not in (0, 1):
         return None
     lines = [f"    static constexpr u64 size = {size[1]:#x};",
-             f"    static constexpr bool field_0xe0 = {'true' if flag[1] else 'false'};"]
+             f"    static constexpr bool owned = {'true' if flag[1] else 'false'};"]
     for off, member in SLOTS.items():
         v = st.get(off)
         if v == ("imm", 0):
@@ -216,7 +220,7 @@ def emit(getter: int, name: str, init: int, body: list[str]) -> list[str]:
     return [f"struct UnkRefl_fn_{init:x};",
             f"struct UnkRefl_fn_{getter:x};",
             "template <>",
-            f"struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_{init:x}> {{",
+            f"struct base::reflection::PointerTypeDescription<UnkRefl_fn_{init:x}> {{",
             *body,
             "};",
             "template <>",
@@ -257,7 +261,7 @@ def enum_traits(orig: asmdiff.Original, init: int, decls: set[str]) -> list[str]
 def emit_enum(init: int, body: list[str]) -> list[str]:
     return [f"struct UnkRefl_fn_{init:x};",
             "template <>",
-            f"struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_{init:x}> {{",
+            f"struct base::reflection::EnumTypeDescription<UnkRefl_fn_{init:x}> {{",
             *body,
             "};",
             f"template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, "
@@ -290,7 +294,7 @@ def collection_traits(orig: asmdiff.Original, init: int, decls: set[str],
     if not size or size[0] != "imm" or not flag or flag[0] != "imm":
         return None
     lines = [f"    static constexpr u64 size = {size[1]:#x};",
-             f"    static constexpr u32 field_0xe0 = {flag[1]:#x};"]
+             f"    static constexpr u32 kind = {flag[1]:#x};"]
 
     def fn(off: int) -> str | None:
         v = st.get(off)
@@ -319,18 +323,18 @@ def collection_traits(orig: asmdiff.Original, init: int, decls: set[str],
             return None
         decls.add(f"const base::reflection::CType* fn_{v[1]:x}();")
         lines.append(f"    static const CType* {member}() {{ return fn_{v[1]:x}(); }}")
-    for off in range(0x108, 0x170, 8):
+    for off, member in zip(range(0x108, 0x170, 8), COLLECTION_SLOTS):
         f = fn(off)
         if f is None:
             return None
-        lines.append(f"    static constexpr UnkFn fn_{off:#x} = {f};")
+        lines.append(f"    static constexpr UnkFn {member} = {f};")
     return lines
 
 
 def emit_collection(init: int, body: list[str]) -> list[str]:
     return [f"struct UnkRefl_fn_{init:x};",
             "template <>",
-            f"struct base::reflection::UnkReflCollectionTraits<UnkRefl_fn_{init:x}> {{",
+            f"struct base::reflection::CollectionTypeDescription<UnkRefl_fn_{init:x}> {{",
             *body,
             "};",
             f"template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, "
@@ -384,7 +388,7 @@ def flagset_traits(orig: asmdiff.Original, init: int, decls: set[str]) -> list[s
 def emit_flagset(init: int, body: list[str]) -> list[str]:
     return [f"struct UnkRefl_fn_{init:x};",
             "template <>",
-            f"struct base::reflection::UnkReflFlagsetTraits<UnkRefl_fn_{init:x}> {{",
+            f"struct base::reflection::FlagsetTypeDescription<UnkRefl_fn_{init:x}> {{",
             *body,
             "};",
             f"template base::reflection::CFlagsetType::CFlagsetType(const base::global::CStrId&, "
@@ -510,7 +514,7 @@ def emit_inline_pointer(getter: int, name: str, body: list[str]) -> list[str]:
     return [f"struct UnkReflInline_{getter:x};",
             f"struct UnkRefl_fn_{getter:x};",
             "template <>",
-            f"struct base::reflection::UnkReflPointerTraits<UnkReflInline_{getter:x}> {{",
+            f"struct base::reflection::PointerTypeDescription<UnkReflInline_{getter:x}> {{",
             *body,
             "};",
             "template <>",

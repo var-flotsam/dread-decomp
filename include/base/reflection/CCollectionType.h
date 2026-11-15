@@ -10,7 +10,7 @@
 namespace base::reflection {
 
 template <class T>
-struct UnkReflCollectionTraits;
+struct CollectionTypeDescription;
 
 class CCollectionType : public CType {
 public:
@@ -47,35 +47,35 @@ static_assert(sizeof(CCollectionType) == 0x170, "CCollectionType layout");
 
 template <class T>
 CCollectionType::CCollectionType(const base::global::CStrId& name, T*, void*)
-    : CType(fn_7100001570("base::reflection::CCollectionType", 0x21), name, UnkReflCollectionTraits<T>::size,
-            reinterpret_cast<UnkFn_0x58>(UnkReflCollectionTraits<T>::fn_0x58),
-            reinterpret_cast<UnkFn_0x60>(UnkReflCollectionTraits<T>::fn_0x60),
-            reinterpret_cast<UnkFn_0x68>(UnkReflCollectionTraits<T>::fn_0x68), nullptr, nullptr,
-            {UnkReflCollectionTraits<T>::fn_0x28,
-             reinterpret_cast<UnkFn_0x30>(UnkReflCollectionTraits<T>::fn_0x30),
-             reinterpret_cast<UnkFn_0x30>(UnkReflCollectionTraits<T>::fn_0x38),
-             reinterpret_cast<UnkFn_0x40>(UnkReflCollectionTraits<T>::fn_0x40),
-             reinterpret_cast<UnkFn_0x48>(UnkReflCollectionTraits<T>::fn_0x48),
-             reinterpret_cast<UnkFn_0x48>(UnkReflCollectionTraits<T>::fn_0x50)},
+    : CType(fn_7100001570("base::reflection::CCollectionType", 0x21), name, CollectionTypeDescription<T>::size,
+            reinterpret_cast<UnkFn_0x58>(CollectionTypeDescription<T>::equals),
+            reinterpret_cast<UnkFn_0x60>(CollectionTypeDescription<T>::hash),
+            reinterpret_cast<UnkFn_0x68>(CollectionTypeDescription<T>::type_of), nullptr, nullptr,
+            {CollectionTypeDescription<T>::construct,
+             reinterpret_cast<UnkFn_0x30>(CollectionTypeDescription<T>::copy_construct),
+             reinterpret_cast<UnkFn_0x30>(CollectionTypeDescription<T>::move_construct),
+             reinterpret_cast<UnkFn_0x40>(CollectionTypeDescription<T>::destroy),
+             reinterpret_cast<UnkFn_0x48>(CollectionTypeDescription<T>::copy_assign),
+             reinterpret_cast<UnkFn_0x48>(CollectionTypeDescription<T>::move_assign)},
             false),
-      m_kind(UnkReflCollectionTraits<T>::field_0xe0), m_key(UnkReflCollectionTraits<T>::key()),
-      m_element(UnkReflCollectionTraits<T>::element()), m_iterator(nullptr), m_const_iterator(nullptr),
-      m_count(UnkReflCollectionTraits<T>::fn_0x108),
-      m_clear(UnkReflCollectionTraits<T>::fn_0x110),
-      m_add_copy(UnkReflCollectionTraits<T>::fn_0x118),
-      m_add_move(UnkReflCollectionTraits<T>::fn_0x120),
-      m_erase(UnkReflCollectionTraits<T>::fn_0x128),
-      m_at(UnkReflCollectionTraits<T>::fn_0x130),
-      m_find(UnkReflCollectionTraits<T>::fn_0x138),
-      m_set_copy(UnkReflCollectionTraits<T>::fn_0x140),
-      m_set_move(UnkReflCollectionTraits<T>::fn_0x148),
+      m_kind(CollectionTypeDescription<T>::kind), m_key(CollectionTypeDescription<T>::key()),
+      m_element(CollectionTypeDescription<T>::element()), m_iterator(nullptr), m_const_iterator(nullptr),
+      m_count(CollectionTypeDescription<T>::count),
+      m_clear(CollectionTypeDescription<T>::clear),
+      m_add_copy(CollectionTypeDescription<T>::add_copy),
+      m_add_move(CollectionTypeDescription<T>::add_move),
+      m_erase(CollectionTypeDescription<T>::erase),
+      m_at(CollectionTypeDescription<T>::at),
+      m_find(CollectionTypeDescription<T>::find),
+      m_set_copy(CollectionTypeDescription<T>::set_copy),
+      m_set_move(CollectionTypeDescription<T>::set_move),
       m_begin(nullptr), m_end(nullptr), m_const_begin(nullptr), m_const_end(nullptr) {
-    m_iterator = UnkReflCollectionTraits<T>::iterator();
-    m_begin = UnkReflCollectionTraits<T>::fn_0x150;
-    m_end = UnkReflCollectionTraits<T>::fn_0x158;
-    m_const_iterator = UnkReflCollectionTraits<T>::const_iterator();
-    m_const_begin = UnkReflCollectionTraits<T>::fn_0x160;
-    m_const_end = UnkReflCollectionTraits<T>::fn_0x168;
+    m_iterator = CollectionTypeDescription<T>::iterator();
+    m_begin = CollectionTypeDescription<T>::begin;
+    m_end = CollectionTypeDescription<T>::end;
+    m_const_iterator = CollectionTypeDescription<T>::const_iterator();
+    m_const_begin = CollectionTypeDescription<T>::const_begin;
+    m_const_end = CollectionTypeDescription<T>::const_end;
 }
 
 }  // namespace base::reflection

@@ -163,8 +163,11 @@ absent), set at a key (copy, move), begin and end, const begin and const end. Ad
 analogy with set's; the rest is read directly. A pointer type's bool at +0xe0 is whether it owns its pointee,
 and its three functions are get (the pointee's dynamic type and address), set (a no-op for some types) and
 increment. Only the class headers changed: the 20 sources that include them build to the same objects. The
-traits the generator writes (`UnkReflCollectionTraits`, `UnkReflPointerTraits`) keep their offset names until
-the type-descriptor work renames them.
+descriptions the generator writes for the four non-class kinds follow: `PointerTypeDescription`,
+`CollectionTypeDescription`, `EnumTypeDescription` and `FlagsetTypeDescription` (they were `UnkRefl*Traits`),
+with members named for these roles and for the CType value operations as `ClassDescription` names them
+(`construct`, `copy_construct`, ..., `equals`, `hash`, `type_of`). The 68 generated sources that use them build
+to the same objects.
 
 **Held equivalent drafts promoted; permuter pass over the drafts (2026-11-14).** `tools/permute.py --drafts`
 (1,500 tries each, 8 jobs, 25 min) tried 86 of the 87 registers-only drafts and matched none; `fn_7100f5d270`
