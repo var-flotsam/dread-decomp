@@ -154,6 +154,20 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Lean batch lean-b4: 98 ready functions of 16 more units (2026-11-15).** Same shape (units 2686, 2688, 811, 111,
+2647, 25, 36, 2540, 1163, 2666, 208, 1428, 2200, 1671, 2544, 2503); 16 Sonnet workers, budget 3, reference matches
+for 71 of 98. Results: 18 matches (10 on the first graded attempt, 2 on the second, 6 on the third), 15
+registers-only, 65 that differ; 255 graded attempts; about 2.48 million worker tokens, about 138,000 per match.
+16 matches are in `src/`; `fn_71010cd6f4` and `fn_710054095c` wait in `drafts/`: each matches only with its own
+layout of a type name another file defines differently (`UnkNavMeshHit`, `UnkEmmyAI2_b57a3`), and a cast to a
+local layout changes `fn_710054095c`'s code. The permuter matched 1 of 15 (held on its declaration);
+`tools/equiv_test.py` passed 7, now verified minor in `src/`. 23 functions into `src/` in all. One worker found
+`fn_7101086370` matches only with two single-member unions; the readable text differs in operations, so it stays
+a draft. Lean-b3's two `nn::atk` buffer-size functions needed `nn::audio`'s renderer parameter in the port's own
+header (`port/runtime/include/nn/audio.h`) for the port sweep. After four batches, about 70 percent of the
+worker matches came on the first attempt or the reference's own shape; the units left with four or more ready
+functions are mostly one-off helpers, so the rate is falling (20, 24, 14, 18 percent).
+
 **Lean batch lean-b3: 98 ready functions of 11 more units (2026-11-15).** Same shape as lean-b1 and lean-b2
 (units 365, 2712, 366, 2637, 229, 307, 2772, 2661, 108, 2640, 34); 14 Sonnet workers, budget 3, reference matches
 for 65 of 98. Results: 14 matches (8 on the first graded attempt, 6 on the second), 14 registers-only, 70 that

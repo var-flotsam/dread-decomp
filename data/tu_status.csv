@@ -24,7 +24,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 22,0x710001449c,0x7100014d94,UnkTU22,high,engine/base,matched,26,2296,26,0,0,0,0,0,0,2296,2296
 23,0x7100014d94,0x7100016890,UnkTU23,high,engine/base,partial,25,6900,20,0,0,0,0,5,0,5152,5152
 24,0x7100016890,0x7100018a44,base::core::CAsset,high,engine/base,partial,28,8624,24,2,1,0,0,2,1,5264,6324
-25,0x7100018a44,0x710001f9ac,UnkTU25,high,unknown,partial,180,28512,166,0,0,0,0,14,0,20016,20016
+25,0x7100018a44,0x710001f9ac,UnkTU25,high,unknown,partial,180,28512,169,0,0,0,0,11,0,20960,20960
 26,0x710001f9b0,0x710001fa30,UnkTU26,high,unknown,matched,1,128,1,0,0,0,0,0,0,128,128
 27,0x710001fa30,0x71000233dc,UnkTU27,high,unknown,partial,65,14760,62,0,0,0,0,3,0,13888,13888
 28,0x71000233e0,0x7100023460,UnkTU28,high,unknown,matched,1,128,1,0,0,0,0,0,0,128,128
@@ -110,7 +110,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 108,0x7100110c54,0x71001239b0,UnkTU108,low,unknown,partial,555,77140,530,4,3,0,0,21,0,63928,64380
 109,0x71001239b0,0x71001259f4,UnkTU109,high,unknown,partial,33,8252,26,3,1,0,0,4,0,4124,4164
 110,0x71001259f4,0x7100132c04,malloc,high,unknown,partial,113,52628,69,11,1,0,0,33,6,7564,8028
-111,0x7100132c10,0x71001395b8,base::tunable::CTunable,high,unknown,partial,198,26804,181,5,0,0,0,12,0,15760,15760
+111,0x7100132c10,0x71001395b8,base::tunable::CTunable,high,unknown,partial,198,26804,182,5,0,0,0,11,0,16016,16016
 112,0x71001395b8,0x7100140988,UnkTU112,high,unknown,partial,151,29636,141,1,0,0,0,9,0,15404,15404
 113,0x7100140990,0x7100140a9c,UnkTU113,high,unknown,matched,4,260,4,0,0,0,0,0,0,260,260
 114,0x7100140aa0,0x7100140b2c,UnkTU114,high,unknown,matched,1,140,1,0,0,0,0,0,0,140,140
@@ -207,7 +207,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 205,0x710016a37c,0x710016a62c,UnkTU205,high,unknown,partial,4,676,3,0,0,0,0,1,0,292,292
 206,0x710016a630,0x710016a6bc,UnkTU206,high,unknown,matched,1,140,1,0,0,0,0,0,0,140,140
 207,0x710016a6bc,0x710016b51c,UnkTU207,high,unknown,partial,15,3672,14,0,0,0,0,1,0,2972,2972
-208,0x710016b51c,0x710016e03c,UnkTU208,high,unknown,partial,69,10952,62,0,0,0,0,7,3,7992,7992
+208,0x710016b51c,0x710016e03c,UnkTU208,high,unknown,partial,69,10952,62,2,2,0,0,5,3,7992,8688
 209,0x710016e03c,0x710016e75c,UnkTU209,high,unknown,partial,8,1812,5,1,0,0,0,2,0,488,488
 210,0x710016e75c,0x7100190154,UnkTU210,low,unknown,partial,220,137720,116,0,0,0,0,104,0,3248,3248
 211,0x7100190154,0x7100194a9c,UnkTU211,high,unknown,partial,80,18748,63,0,0,0,0,17,0,5352,5352
@@ -810,7 +810,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 808,0x710051f250,0x710051f640,CCharClassEmmyAttackComponent,high,game/characters,matched,17,1000,17,0,0,0,0,0,0,1000,1000
 809,0x710051f640,0x71005311c8,CCharClassEmmyMovement,medium,game/characters,matched,187,72576,187,0,0,0,0,0,0,72576,72576
 810,0x71005311c8,0x7100537bf0,CEmmyOverrideDeathPositionDef,high,unknown,matched,59,27164,59,0,0,0,0,0,0,27164,27164
-811,0x7100537bf0,0x710056a378,CEmmyAIComponent,medium,unknown,partial,754,206708,659,10,3,0,0,85,0,92108,92660
+811,0x7100537bf0,0x710056a378,CEmmyAIComponent,medium,unknown,partial,754,206708,660,11,4,0,0,83,0,92440,93264
 812,0x710056a378,0x710056b050,CEmmyAttackComponent,medium,game/components,partial,24,3284,22,0,0,0,0,2,0,2056,2056
 813,0x710056b050,0x7100571348,CEmmyConfiguration,high,game,matched,42,25328,42,0,0,0,0,0,0,25328,25328
 814,0x7100571348,0x7100571b18,CEmmyMovement,high,game,matched,26,1988,26,0,0,0,0,0,0,1988,1988
@@ -1162,7 +1162,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 1160,0x71007457cc,0x7100745a7c,UnkTU1160,high,game/components,partial,7,684,6,0,0,0,0,1,0,328,328
 1161,0x7100745a7c,0x710074607c,UnkTU1161,high,game/components,done,13,1536,12,1,1,0,0,0,0,1408,1536
 1162,0x710074607c,0x71007469b0,CSwarmAttackComponent,high,game/components,matched,25,2348,25,0,0,0,0,0,0,2348,2348
-1163,0x71007469b0,0x710074eca4,CSwarmControllerComponent,high,game/components,partial,91,33520,64,0,0,0,0,27,0,9324,9324
+1163,0x71007469b0,0x710074eca4,CSwarmControllerComponent,high,game/components,partial,91,33520,64,1,1,0,0,26,0,9324,9672
 1164,0x710074eca4,0x7100750d44,CBossCameraCtrl,high,game,partial,38,8344,31,0,0,0,0,7,0,3908,3908
 1165,0x7100750d44,0x7100751c5c,CCharClassBreakableScenarioComponent,high,game/components,matched,40,3860,40,0,0,0,0,0,0,3860,3860
 1166,0x7100751c5c,0x71007534a8,CBreakableHintComponent,high,game/components,partial,29,6220,27,0,0,0,0,2,0,4912,4912
@@ -1427,7 +1427,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 1425,0x71009361b8,0x710093776c,CModelInstanceComponent,high,game/components,partial,33,5556,31,0,0,0,0,2,0,4888,4888
 1426,0x710093776c,0x7100939af0,CMultiModelUpdaterComponent,high,game/components,partial,37,9084,30,0,0,0,0,7,0,4424,4424
 1427,0x7100939af0,0x710093b200,CSamusModelUpdaterComponent,high,game/player,partial,32,5892,28,0,0,0,0,4,0,2888,2888
-1428,0x710093b200,0x71009506b0,CMorphBallMovement,medium,unknown,partial,162,87204,97,1,0,0,0,64,0,18272,18272
+1428,0x710093b200,0x71009506b0,CMorphBallMovement,medium,unknown,partial,162,87204,99,1,0,0,0,62,0,18972,18972
 1429,0x71009506b0,0x7100950df0,CCharClassMovablePlatformComponent,high,game/characters,matched,18,1852,18,0,0,0,0,0,0,1852,1852
 1430,0x7100950df0,0x7100951420,CCharClassWeightActivableMovablePlatformComponent,high,game/characters,matched,17,1584,17,0,0,0,0,0,0,1584,1584
 1431,0x7100951420,0x7100952bc0,CMovablePlatformComponent,high,game/components,partial,35,6048,31,0,0,0,0,4,0,2096,2096
@@ -2199,7 +2199,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 2197,0x7100c7ffe4,0x7100c80924,UnkTU2197,high,unknown,matched,2,2368,2,0,0,0,0,0,0,2368,2368
 2198,0x7100c80924,0x7100c81264,UnkTU2198,high,unknown,matched,2,2360,2,0,0,0,0,0,0,2360,2360
 2199,0x7100c81264,0x7100c8137c,UnkTU2199,high,unknown,matched,3,272,3,0,0,0,0,0,0,272,272
-2200,0x7100c8137c,0x7100c932c4,CCutSceneDef,medium,game/cutscene,partial,422,73536,391,1,0,0,0,30,0,53840,53840
+2200,0x7100c8137c,0x7100c932c4,CCutSceneDef,medium,game/cutscene,partial,422,73536,393,1,0,0,0,28,0,54544,54544
 2201,0x7100c932c4,0x7100c93ff8,UnkTU2201,high,unknown,matched,30,3380,30,0,0,0,0,0,0,3380,3380
 2202,0x7100c93ff8,0x7100c94244,UnkTU2202,high,unknown,partial,2,580,1,0,0,0,0,1,0,180,180
 2203,0x7100c94244,0x7100c948bc,UnkTU2203,high,unknown,matched,14,1652,14,0,0,0,0,0,0,1652,1652
@@ -2502,7 +2502,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 2500,0x7100d34e30,0x7100d35450,CCharClassUseDC_ShotOrientationTrack,high,game/characters,matched,15,1568,15,0,0,0,0,0,0,1568,1568
 2501,0x7100d35450,0x7100d36130,game::logic::collision::CBroadphaseObject,high,game,partial,31,3288,28,0,0,0,0,3,1,2436,2436
 2502,0x7100d36130,0x7100d361bc,UnkTU2502,high,game,matched,1,140,1,0,0,0,0,0,0,140,140
-2503,0x7100d361bc,0x7100d454f8,game::logic::collision::CCollider,high,unknown,partial,529,62256,506,10,2,0,0,13,0,54088,54536
+2503,0x7100d361bc,0x7100d454f8,game::logic::collision::CCollider,high,unknown,partial,529,62256,507,10,2,0,0,12,0,54428,54876
 2504,0x7100d454f8,0x7100d45df0,game::logic::collision::CColliderGroup,high,game,partial,22,2292,21,0,0,0,0,1,0,1912,1912
 2505,0x7100d45df0,0x7100d46804,UnkTU2505,high,unknown,partial,16,2576,15,0,0,0,0,1,0,1844,1844
 2506,0x7100d46804,0x7100d4bbfc,UnkTU2506,high,unknown,partial,58,21492,35,0,0,0,0,23,0,5904,5904
@@ -2646,7 +2646,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 2644,0x7101007dac,0x710101e754,sound::CMusicVolumeOverride::CTunableMusicVolumeOverride,medium,unknown,partial,238,92580,236,1,0,0,0,1,0,88636,88636
 2645,0x710101e754,0x710101facc,UnkTU2645,high,unknown,partial,16,4984,9,0,0,0,0,7,0,888,888
 2646,0x710101facc,0x710102cba4,sound::CSoundManager,high,unknown,partial,378,53464,362,0,0,0,0,16,0,42044,42044
-2647,0x710102cba4,0x710103d05c,sound::CAudioPreset,medium,unknown,partial,382,66732,371,0,0,0,0,11,0,61596,61596
+2647,0x710102cba4,0x710103d05c,sound::CAudioPreset,medium,unknown,partial,382,66732,373,0,0,0,0,9,0,62040,62040
 2648,0x710103d05c,0x7101042cbc,UnkTU2648,high,unknown,partial,172,23636,161,0,0,0,0,11,0,17044,17044
 2649,0x7101042cc0,0x7101043684,UnkTU2649,high,unknown,matched,9,2412,9,0,0,0,0,0,0,2412,2412
 2650,0x7101043684,0x7101044990,CGameObject,high,game/core,partial,21,4864,19,0,0,0,0,2,0,1848,1848
@@ -2665,7 +2665,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 2663,0x7101074120,0x71010741ac,UnkTU2663,high,unknown,matched,1,140,1,0,0,0,0,0,0,140,140
 2664,0x71010741b0,0x710107552c,lua_bind,high,script/bindings,partial,17,4904,13,0,0,0,0,4,0,1936,1936
 2665,0x710107552c,0x7101076e18,lua_lib,high,script/bindings,partial,37,6312,34,0,0,0,0,3,0,3896,3896
-2666,0x7101076e20,0x7101097e40,lua_bind,low,script/bindings,partial,635,131360,573,0,0,0,0,62,0,79516,79516
+2666,0x7101076e20,0x7101097e40,lua_bind,low,script/bindings,partial,635,131360,575,1,1,0,0,59,0,79976,80060
 2667,0x7101097e40,0x710109c64c,lua_bind,high,script/bindings,partial,76,17992,69,0,0,0,0,7,0,11708,11708
 2668,0x710109c64c,0x710109d670,UnkTU2668,high,unknown,partial,18,4020,13,3,0,0,0,2,0,2444,2444
 2669,0x710109d670,0x710109e534,UnkTU2669,high,unknown,partial,18,3768,16,0,0,0,0,2,0,2484,2484
@@ -2685,9 +2685,9 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 2683,0x71010c2340,0x71010c23cc,UnkTU2683,high,unknown,matched,1,140,1,0,0,0,0,0,0,140,140
 2684,0x71010c23cc,0x71010c7284,CComponent,high,unknown,partial,172,20152,169,0,0,0,0,3,0,18384,18384
 2685,0x71010c7284,0x71010c74dc,UnkTU2685,high,unknown,matched,3,600,3,0,0,0,0,0,0,600,600
-2686,0x71010c74dc,0x71010cef68,CEnemyMovement,high,unknown,partial,114,31372,87,0,0,0,0,27,0,10216,10216
+2686,0x71010c74dc,0x71010cef68,CEnemyMovement,high,unknown,partial,114,31372,89,1,1,0,0,24,0,10956,10968
 2687,0x71010cef68,0x71010d02f0,CFakePhysicsMovement,high,game,partial,27,5000,24,0,0,0,0,3,0,1880,1880
-2688,0x71010d02f0,0x71010d4ac0,CMovementComponent,high,game/components,partial,75,18380,60,0,0,0,0,15,0,11320,11320
+2688,0x71010d02f0,0x71010d4ac0,CMovementComponent,high,game/components,partial,75,18380,60,1,1,0,0,14,0,11320,11700
 2689,0x71010d4ac0,0x71010def48,CPlayerMovement,medium,unknown,partial,116,42084,96,0,0,0,0,20,1,25392,25392
 2690,0x71010def48,0x71010df6c0,CSteeringMovement,high,game,partial,22,1900,21,0,0,0,0,1,0,1812,1812
 2691,0x71010df6c0,0x71010e7f8c,CCameraComponent,high,unknown,partial,144,35008,132,0,0,0,0,12,0,25404,25404

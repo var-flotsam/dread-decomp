@@ -9,6 +9,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU25.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -107,7 +108,6 @@ struct UnkIdPathPairs_b62a1 {
 
 // Signature as src/base/UnkUnit25/UnkStrIdPathPairVecReserve_b45.cpp defines it.
 struct UnkStrIdPathPairVec_b45a1;
-void fn_710001e4e8(UnkStrIdPathPairVec_b45a1* self, u32 capacity);  // reserve
 
 static inline void Grow_b62a1(UnkIdPathPairs_b62a1* self, u32 index) {
     u32 capacity = self->capacity;

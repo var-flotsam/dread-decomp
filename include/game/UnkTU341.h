@@ -64,3 +64,4 @@ struct UnkHalf_cu {
     UnkHalf_cu(UnkHalf_cu&& other) asm("fn_71002458a4");
 };
 static_assert(sizeof(UnkHalf_cu) == 0x40, "UnkHalf_cu layout");
+extern char g_unk_7101a20a08[];

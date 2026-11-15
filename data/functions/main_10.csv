@@ -949,9 +949,9 @@ address,size,name,name_source,subsystem,status
 0x7101036fb8,804,fn_7101036fb8,unknown,unknown,U
 0x71010372dc,424,fn_71010372dc,unknown,unknown,O
 0x7101037484,480,fn_7101037484,unknown,unknown,O
-0x7101037664,220,fn_7101037664,unknown,unknown,U
+0x7101037664,220,fn_7101037664,unknown,unknown,O
 0x7101037740,884,fn_7101037740,unknown,unknown,U
-0x7101037ab4,224,fn_7101037ab4,unknown,unknown,U
+0x7101037ab4,224,fn_7101037ab4,unknown,unknown,O
 0x7101037b94,4,fn_7101037b94,unknown,unknown,O
 0x7101037b98,20,fn_7101037b98,unknown,unknown,O
 0x7101037bac,20,fn_7101037bac,unknown,unknown,O
@@ -2866,7 +2866,7 @@ address,size,name,name_source,subsystem,status
 0x710107ece0,200,lua_bind::GetFirstInstanceOfCharClass,string,script/bindings,O
 0x710107edb0,200,lua_bind::GetFirstAliveInstanceOfCharClass,string,script/bindings,O
 0x710107ee80,196,lua_bind::GetNumberOfAliveInstancesOfCharClass,string,script/bindings,O
-0x710107ef50,84,lua_bind::PrintCharClasses,string,script/bindings,U
+0x710107ef50,84,lua_bind::PrintCharClasses,string,script/bindings,O
 0x710107efb0,8,lua_bind::MetroidRadarForceStateOnBegin,string,script/bindings,O
 0x710107efc0,8,lua_bind::MetroidRadarForceStateOnEnd,string,script/bindings,O
 0x710107efd0,24,lua_bind::GetSamusWalkMode,string,script/bindings,O
@@ -2913,7 +2913,7 @@ address,size,name,name_source,subsystem,status
 0x7101080b10,180,lua_bind::DisableCheckerTextures,string,script/bindings,O
 0x7101080bd0,180,lua_bind::EnableMipmapTextures,string,script/bindings,O
 0x7101080c90,180,lua_bind::DisableMipmapTextures,string,script/bindings,O
-0x7101080d50,84,lua_bind::SetFramerate,string,script/bindings,U
+0x7101080d50,84,lua_bind::SetFramerate,string,script/bindings,m
 0x7101080db0,8,lua_bind::PrintEvents,string,script/bindings,O
 0x7101080dc0,8,lua_bind::FreeCameraAllowed,string,script/bindings,O
 0x7101080dd0,16,lua_bind::ExtraDebugAllowed,string,script/bindings,O
@@ -3348,7 +3348,7 @@ address,size,name,name_source,subsystem,status
 0x7101097578,328,fn_7101097578,unknown,script/bindings?,O
 0x71010976c0,292,fn_71010976c0,unknown,script/bindings?,O
 0x71010977e4,724,fn_71010977e4,unknown,script/bindings?,U
-0x7101097ab8,376,fn_7101097ab8,unknown,script/bindings?,U
+0x7101097ab8,376,fn_7101097ab8,unknown,script/bindings?,O
 0x7101097c30,528,fn_7101097c30,unknown,script/bindings?,O
 0x7101097e40,24,fn_7101097e40,unknown,script/bindings?,O
 0x7101097e60,60,lua_bind::GetDisplayObject,string,script/bindings,O
@@ -4123,7 +4123,7 @@ address,size,name,name_source,subsystem,status
 0x71010c9040,40,fn_71010c9040,unknown,unknown,O
 0x71010c9068,88,fn_71010c9068,unknown,unknown,O
 0x71010c90c0,284,fn_71010c90c0,unknown,unknown,U
-0x71010c91dc,348,fn_71010c91dc,unknown,unknown,U
+0x71010c91dc,348,fn_71010c91dc,unknown,unknown,O
 0x71010c9338,564,fn_71010c9338,unknown,unknown,O
 0x71010c956c,8,fn_71010c956c,unknown,unknown,O
 0x71010c9574,888,fn_71010c9574,unknown,unknown,U
@@ -4153,7 +4153,7 @@ address,size,name,name_source,subsystem,status
 0x71010cb488,144,fn_71010cb488,unknown,unknown,O
 0x71010cb518,40,fn_71010cb518,unknown,unknown,O
 0x71010cb540,760,fn_71010cb540,unknown,unknown,U
-0x71010cb838,392,fn_71010cb838,unknown,unknown,U
+0x71010cb838,392,fn_71010cb838,unknown,unknown,O
 0x71010cb9c0,1876,fn_71010cb9c0,unknown,unknown,U
 0x71010cc114,256,fn_71010cc114,unknown,unknown,O
 0x71010cc214,376,fn_71010cc214,unknown,unknown,U
@@ -4178,7 +4178,7 @@ address,size,name,name_source,subsystem,status
 0x71010cd6f4,236,fn_71010cd6f4,unknown,unknown,U
 0x71010cd7e0,12,fn_71010cd7e0,unknown,unknown,O
 0x71010cd7ec,1116,fn_71010cd7ec,unknown,unknown,U
-0x71010cdc48,12,fn_71010cdc48,unknown,unknown,U
+0x71010cdc48,12,fn_71010cdc48,unknown,unknown,m
 0x71010cdc54,212,fn_71010cdc54,unknown,unknown,O
 0x71010cdd28,4,fn_71010cdd28,unknown,unknown,O
 0x71010cdd2c,72,fn_71010cdd2c,unknown,unknown,O
@@ -4293,7 +4293,7 @@ address,size,name,name_source,subsystem,status
 0x71010d2f18,108,fn_71010d2f18,unknown,game/components?,O
 0x71010d2f84,368,fn_71010d2f84,unknown,game/components?,O
 0x71010d30f4,72,fn_71010d30f4,unknown,game/components?,O
-0x71010d313c,380,fn_71010d313c,unknown,game/components?,U
+0x71010d313c,380,fn_71010d313c,unknown,game/components?,m
 0x71010d32b8,52,fn_71010d32b8,unknown,game/components?,O
 0x71010d32ec,256,fn_71010d32ec,unknown,game/components?,O
 0x71010d33ec,284,fn_71010d33ec,unknown,game/components?,U

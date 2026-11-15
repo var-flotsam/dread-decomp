@@ -5,6 +5,7 @@
 
 #include "base/UnkMatrix44.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkTU208.h"
 #include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -15,7 +16,6 @@ extern "C" f32 sqrtf(f32 x);
 
 struct UnkMat4f;
 
-extern char g_unk_7101a1db18[];
 extern char g_unk_7101a1d968[];
 extern char g_unk_7101a1da28[];
 extern char g_unk_7101a1d9c8[];
@@ -98,7 +98,6 @@ void fn_710016c3e8(UnkEmitter3_ovb0167* self, UnkOwner_ovb0167* owner, bool flag
     self->field_0x18 = scene + 8;
 }
 
-extern char g_unk_7101a1db48[];
 extern char g_unk_7101a1da58[];
 
 struct UnkEntry8_ovb0167 {
