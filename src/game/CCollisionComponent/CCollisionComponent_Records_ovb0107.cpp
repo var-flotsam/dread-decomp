@@ -511,7 +511,6 @@ struct UnkCollisionShapeNode_ovb0107 {
 };
 
 // The filter the tester calls back for each candidate (vtable g_unk_7101aa8898).
-extern void* g_unk_7101aa8898[];
 struct UnkShapeFilter_ovb0107 {
     void** vtable;
     UnkCollisionShapeNode_ovb0107* node;

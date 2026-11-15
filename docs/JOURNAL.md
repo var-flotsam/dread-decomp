@@ -161,10 +161,10 @@ approved one pilot outside the batch shape: 40 ready functions of 400 to 1,000 b
 more, 8 Opus workers with 5 functions each and a budget of 5 (`prepare.py --model opus --budget 5 --per-worker
 5`). Result: 19 matches (47%: 6 on the first graded attempt, 6 on the second, 1 on the third, 4 on the fourth, 2
 on the fifth), 3 registers-only, 18 that differ; 118 graded attempts; about 1.73 million tokens, about 91,000 per
-match, below every Sonnet batch of this session. 16 matches are in `src/`; three of unit 2510 wait in `drafts/`
-on declarations (a member `Query` with a `u16` argument the original leaves unextended, and a callee whose
+match, below every Sonnet batch of this session. 14 matches are in `src/`; five wait in `drafts/`
+on declarations (a member `Query` with a `u16` argument the original leaves unextended, callees whose declarations name aliases that differ per file, and a callee whose
 definition returns another type). With the permuter (2 more, one held) and `tools/equiv_test.py` (7 verified,
-6 of them lean-b6's), 24 functions into `src/`. The workers' notes: whole-unit context matters more at this
+6 of them lean-b6's), 22 functions into `src/`. The workers' notes: whole-unit context matters more at this
 size (one worker matched all five of unit 2510's collider visitors once the list loop's stop test came first);
 several matches needed the caller's existing parameter types, kept with a cast at entry. A worker's result file
 written with a byte-order mark is not read by `coord.py record`; strip it. Recommendation: this shape (Opus,

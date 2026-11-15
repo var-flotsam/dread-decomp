@@ -2509,7 +2509,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 2507,0x7100d4bc00,0x7100d4c17c,UnkTU2507,high,unknown,partial,2,1404,1,0,0,0,0,1,0,140,140
 2508,0x7100d4c17c,0x7100d5134c,UnkTU2508,high,unknown,partial,17,20904,6,4,0,0,0,7,0,1968,1968
 2509,0x7100d5134c,0x7100d5761c,UnkTU2509,high,unknown,partial,42,25292,22,10,0,0,0,10,0,9556,9556
-2510,0x7100d5761c,0x7100d5d23c,UnkTU2510,high,unknown,partial,50,23572,31,4,1,0,0,15,0,12580,12664
+2510,0x7100d5761c,0x7100d5d23c,UnkTU2510,high,unknown,partial,50,23572,30,4,1,0,0,16,0,12160,12244
 2511,0x7100d5d23c,0x7100d5f00c,game::logic::collision::CAABoxShape2D,high,game,matched,73,7628,73,0,0,0,0,0,0,7628,7628
 2512,0x7100d5f00c,0x7100d60c6c,game::logic::collision::CCapsuleShape2D,high,game,partial,70,7260,69,0,0,0,0,1,0,7184,7184
 2513,0x7100d60c6c,0x7100d61d90,game::logic::collision::CCircleShape2D,high,game,partial,38,4384,36,0,0,0,0,2,0,4184,4184
@@ -2565,7 +2565,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 2563,0x7100e31c18,0x7100e65204,CMinimapData,medium,unknown,partial,1284,210376,1228,16,3,0,0,40,0,157648,158792
 2564,0x7100e65204,0x7100e768b0,CMinimapDef,medium,unknown,partial,293,71332,282,3,1,0,0,8,0,55820,56048
 2565,0x7100e768b0,0x7100e7cdfc,UnkTU2565,high,unknown,partial,150,25924,138,0,0,0,0,12,0,17304,17304
-2566,0x7100e7cdfc,0x7100eb695c,CMinimapManager::CTunableMinimapManager,medium,unknown,partial,848,236376,747,15,7,0,0,86,0,123448,126384
+2566,0x7100e7cdfc,0x7100eb695c,CMinimapManager::CTunableMinimapManager,medium,unknown,partial,848,236376,746,15,7,0,0,87,0,123012,125948
 2567,0x7100eb695c,0x7100ebf278,UnkTU2567,high,unknown,partial,45,35028,31,1,0,1,0,12,0,4720,4720
 2568,0x7100ebf278,0x7100ec32c0,UnkTU2568,high,unknown,partial,36,16440,27,0,0,0,0,9,0,5172,5172
 2569,0x7100ec32c0,0x7100ec5a2c,UnkTU2569,high,unknown,partial,13,10092,9,1,0,0,0,3,0,3980,3980

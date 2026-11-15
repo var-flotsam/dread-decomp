@@ -25,3 +25,5 @@ bool fn_7100d5a930(UnkTracker_7100863a8c* self, UnkCollisionObject* obj);
 void fn_7100d5abfc(void* owner, UnkStruct_7100861148_Collider* collider);
 void fn_7100d59dd8(UnkScenarioSub* self);
 bool fn_7100d5b714(void* tree, u32 mask, const UnkVec3f* from, const UnkVec3f* to, UnkFloorRef_ovb0048* hit, bool closest, bool flag, f32 radius);
+// The vtable of the collision filter a shape tester calls back for each candidate.
+extern void* g_unk_7101aa8898[];

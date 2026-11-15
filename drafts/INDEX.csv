@@ -346,6 +346,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100d595a4,528,drafts/game/UnkTU2510/fn_7100d595a4.cpp,match,100.0,0,lean-p1,matches; held: callee fn_7100d541c0 is defined in src/game_s7/fn_7100d541c0.cpp with other types (UnkContact result)
 0x7100d59dd8,1324,drafts/game/UnkTU2510/fn_7100d59dd8.cpp,control flow,11.8,288,fable1,
 0x7100d5b268,540,drafts/game/UnkTU2510/fn_7100d5b268.cpp,operations,22.2,89,pilot50,13-word copy gets merged into wide loads; init/store scheduling and hoisted out-slot compare differ
+0x7100d5b918,420,drafts/game/UnkTU2510/fn_7100d5b918.cpp,match,100.0,0,lean-p1,matches; held: copies fn_7100d5823c's declaration; whose result type is an alias that differs per file (one header first)
 0x7100d5be04,440,drafts/game/UnkTU2510/fn_7100d5be04.cpp,operations,19.1,88,pilot50,entry guard ccmp and loop shape; KIND operations
 0x7100d5c1d0,416,drafts/game/UnkTU2510/fn_7100d5c1d0.cpp,match,100.0,0,lean-p1,matches; held: declared as member UnkSubTree::Query with a u16 argument the original does not extend
 0x7100d5c370,424,drafts/game/UnkTU2510/fn_7100d5c370.cpp,match,100.0,0,lean-p1,matches; held: declared as member UnkSubTree::Query with a u16 argument the original does not extend
@@ -411,6 +412,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100e9565c,332,drafts/game/UnkTU2566/fn_7100e9565c.cpp,operations,15.7,65,lean-b1,pool global loaded PC-relative not via GOT; first-element release and shift loop differ; erase-by-value on id
 0x7100e97c60,812,drafts/game/UnkTU2566/fn_7100e97c60.cpp,conditions,93.1,14,lean,
 0x7100e98090,408,drafts/game/UnkTU2566/fn_7100e98090.cpp,registers or order,43.1,58,pilot50,register assignment only; holds an empty barrier (without it: operations 41.2%)
+0x7100e984a4,436,drafts/game/UnkTU2566/fn_7100e984a4.cpp,match,100.0,0,lean-p1,matches; held: copies fn_71003327a4's declaration; whose types are aliases that differ per file (one header first)
 0x7100e9b7d4,320,drafts/game/UnkTU2566/fn_7100e9b7d4.cpp,operations,59.0,31,lean-b1,combining found and value: original ANDs the raw call result with the flag; ours masks it and uses tst/cset
 0x7100e9c06c,492,drafts/game/UnkTU2566/fn_7100e9c06c.cpp,registers or order,92.7,9,overnight,
 0x7100e9dfcc,408,drafts/game/UnkTU2566/fn_7100e9dfcc.cpp,registers or order,97.1,3,lean-p1,fadd operand order in margin check and y bound shift

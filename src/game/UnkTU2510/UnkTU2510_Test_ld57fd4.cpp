@@ -10,6 +10,7 @@
 #include "game/UnkTU365.h"
 #include "game/logic/collision/CCollider.h"
 #include "types.h"
+#include "game/UnkTU2510.h"
 
 using base::reflection::UnkReflObject;
 
@@ -99,7 +100,6 @@ struct UnkTestedCollider_d57fd4 {
     void* owner;  // 0x158
 };
 
-extern void* g_unk_7101aa8898[];
 
 // The filter the tester calls back for each candidate (vtable g_unk_7101aa8898).
 struct UnkShapeFilter_d57fd4 {
