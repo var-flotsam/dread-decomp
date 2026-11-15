@@ -5,996 +5,465 @@
 #include "base/reflection/CFlagsetType.h"
 #include "base/reflection/CPointerType.h"
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/ValueOps.h"
 using base::reflection::CType;
 using base::reflection::UnkFn;
 const base::reflection::CType* fn_7100005178();
 const base::reflection::CType* fn_7100014768();
+extern base::reflection::CType g_unk_71727ba480;
+extern base::reflection::CType g_unk_71727bb8e8;
+extern base::reflection::CType g_unk_71727bc110;
+extern base::reflection::CType g_unk_71727bc290;
+extern base::reflection::CType g_unk_71727bc3f0;
+extern base::reflection::CType g_unk_71727bc870;
+extern base::reflection::CType g_unk_71727be388;
+extern base::reflection::CType g_unk_71727be938;
+extern base::reflection::CType g_unk_71727bea58;
+extern base::reflection::CType g_unk_71727bf6f8;
+extern base::reflection::CType g_unk_71727c0710;
+extern base::reflection::CType g_unk_71727c0bc0;
+extern base::reflection::CType g_unk_71727c0e58;
+extern base::reflection::CType g_unk_71727ca958;
+extern base::reflection::CType g_unk_71727caab8;
+extern base::reflection::CType g_unk_71727cac18;
+extern base::reflection::CType g_unk_71729cdeb8;
+extern base::reflection::CType g_unk_71729ce388;
+extern base::reflection::CType g_unk_71729ce528;
+extern base::reflection::CType g_unk_71729da710;
+extern base::reflection::CType g_unk_71729dc0b0;
+extern base::reflection::CType g_unk_71729ee248;
+extern base::reflection::CType g_unk_71729f0a98;
+extern base::reflection::CType g_unk_71729f0bf8;
+extern base::reflection::CType g_unk_71729f0d58;
+extern base::reflection::CType g_unk_71729f0eb8;
+extern base::reflection::CType g_unk_71729f1018;
+extern base::reflection::CType g_unk_71729f1178;
+extern base::reflection::CType g_unk_7172a05520;
+extern base::reflection::CType g_unk_7172a05680;
+extern base::reflection::CType g_unk_7172a057e0;
+extern base::reflection::CType g_unk_7172a073c8;
+extern base::reflection::CType g_unk_7172a07528;
+extern base::reflection::CType g_unk_7172a08f58;
+extern base::reflection::CType g_unk_7172a0a8c8;
+extern base::reflection::CType g_unk_7172a0aa28;
+extern base::reflection::CType g_unk_7172a0d1b8;
+extern base::reflection::CType g_unk_7172a0f690;
 void fn_7100014a48(void* values, u32 count);
-void fn_7100d9bd40();
-void fn_7100d9bd54();
-void fn_7100d9bd5c();
-void fn_7100d9bd68();
-void fn_7100d9bd70();
-void fn_7100d9bd7c();
-void fn_7100d9bd88();
-void fn_7100d9bd8c();
-void fn_7100d9bda0();
-void fn_7100da3e18();
-void fn_7100da3e2c();
-void fn_7100da3e34();
-void fn_7100da3e40();
-void fn_7100da3e48();
-void fn_7100da3e54();
-void fn_7100da3e60();
-void fn_7100da3e64();
-void fn_7100da3e78();
-void fn_7100da5df0();
-void fn_7100da5e04();
-void fn_7100da5e0c();
-void fn_7100da5e18();
-void fn_7100da5e20();
-void fn_7100da5e2c();
-void fn_7100da5e38();
-void fn_7100da5e3c();
-void fn_7100da5e50();
-void fn_7100daba54();
-void fn_7100daba68();
-void fn_7100daba70();
-void fn_7100daba7c();
-void fn_7100daba84();
-void fn_7100daba90();
-void fn_7100daba9c();
-void fn_7100dabaa0();
-void fn_7100dabab4();
-void fn_7100dabac8();
-void fn_7100dabadc();
-void fn_7100dabae4();
-void fn_7100dabaf0();
-void fn_7100dabaf8();
-void fn_7100dabb04();
-void fn_7100dabb10();
-void fn_7100dabb14();
-void fn_7100dabb28();
-void fn_7100db2050();
-void fn_7100db2064();
-void fn_7100db206c();
-void fn_7100db2078();
-void fn_7100db2080();
-void fn_7100db208c();
-void fn_7100db2098();
-void fn_7100db209c();
-void fn_7100db20b0();
-void fn_7100de1b24();
-void fn_7100de1b38();
-void fn_7100de1b40();
-void fn_7100de1b4c();
-void fn_7100de1b54();
-void fn_7100de1b60();
-void fn_7100de1b6c();
-void fn_7100de1b70();
-void fn_7100de1b84();
-void fn_7100e05c08();
-void fn_7100e05c1c();
-void fn_7100e05c24();
-void fn_7100e05c30();
-void fn_7100e05c38();
-void fn_7100e05c44();
-void fn_7100e05c50();
-void fn_7100e05c54();
-void fn_7100e05c68();
-void fn_7100e05c7c();
-void fn_7100e05c90();
-void fn_7100e05c98();
-void fn_7100e05ca4();
-void fn_7100e05cac();
-void fn_7100e05cb8();
-void fn_7100e05cc4();
-void fn_7100e05cc8();
-void fn_7100e05cdc();
-void fn_7100e073ec();
-void fn_7100e07400();
-void fn_7100e07408();
-void fn_7100e07414();
-void fn_7100e0741c();
-void fn_7100e07428();
-void fn_7100e07434();
-void fn_7100e07438();
-void fn_7100e0744c();
-void fn_7100e138b4();
-void fn_7100e138c8();
-void fn_7100e138d0();
-void fn_7100e138dc();
-void fn_7100e138e4();
-void fn_7100e138f0();
-void fn_7100e138fc();
-void fn_7100e13900();
-void fn_7100e13914();
-void fn_7100e1b610();
-void fn_7100e1b624();
-void fn_7100e1b62c();
-void fn_7100e1b638();
-void fn_7100e1b640();
-void fn_7100e1b64c();
-void fn_7100e1b658();
-void fn_7100e1b65c();
-void fn_7100e1b670();
-void fn_7100e1b6f8();
-void fn_7100e1b70c();
-void fn_7100e1b714();
-void fn_7100e1b720();
-void fn_7100e1b728();
-void fn_7100e1b734();
-void fn_7100e1b740();
-void fn_7100e1b744();
-void fn_7100e1b758();
-void fn_7100ead0d4();
-void fn_7100ead0e8();
-void fn_7100ead0f0();
-void fn_7100ead0fc();
-void fn_7100ead104();
-void fn_7100ead110();
-void fn_7100ead11c();
-void fn_7100ead120();
-void fn_7100ead134();
-void fn_7100ead148();
-void fn_7100ead15c();
-void fn_7100ead164();
-void fn_7100ead170();
-void fn_7100ead178();
-void fn_7100ead184();
-void fn_7100ead190();
-void fn_7100ead194();
-void fn_7100ead1a8();
-void fn_7100ead1bc();
-void fn_7100ead1d0();
-void fn_7100ead1d8();
-void fn_7100ead1e4();
-void fn_7100ead1ec();
-void fn_7100ead1f8();
-void fn_7100ead204();
-void fn_7100ead208();
-void fn_7100ead21c();
-void fn_7100ebef54();
-void fn_7100ebef68();
-void fn_7100ebef70();
-void fn_7100ebef7c();
-void fn_7100ebef84();
-void fn_7100ebef90();
-void fn_7100ebef9c();
-void fn_7100ebefa0();
-void fn_7100ebefb4();
-void fn_7100edaaf8();
-void fn_7100edab0c();
-void fn_7100edab14();
-void fn_7100edab20();
-void fn_7100edab28();
-void fn_7100edab34();
-void fn_7100edab40();
-void fn_7100edab44();
-void fn_7100edab58();
-void fn_7100edab6c();
-void fn_7100edab80();
-void fn_7100edab88();
-void fn_7100edab94();
-void fn_7100edab9c();
-void fn_7100edaba8();
-void fn_7100edabb4();
-void fn_7100edabb8();
-void fn_7100edabcc();
-void fn_7100ef05a8();
-void fn_7100ef05bc();
-void fn_7100ef05c4();
-void fn_7100ef05d0();
-void fn_7100ef05d8();
-void fn_7100ef05e4();
-void fn_7100ef05f0();
-void fn_7100ef05f4();
-void fn_7100ef0608();
-void fn_7100f14594();
-void fn_7100f145a8();
-void fn_7100f145b0();
-void fn_7100f145bc();
-void fn_7100f145c4();
-void fn_7100f145d0();
-void fn_7100f145dc();
-void fn_7100f145e0();
-void fn_7100f145f4();
-void fn_7100fb0a18();
-void fn_7100fb0a2c();
-void fn_7100fb0a34();
-void fn_7100fb0a40();
-void fn_7100fb0a48();
-void fn_7100fb0a54();
-void fn_7100fb0a60();
-void fn_7100fb0a64();
-void fn_7100fb0a78();
-void fn_7100fe06dc();
-void fn_7100fe06f0();
-void fn_7100fe06f8();
-void fn_7100fe0704();
-void fn_7100fe070c();
-void fn_7100fe0718();
-void fn_7100fe0724();
-void fn_7100fe0728();
-void fn_7100fe073c();
-void fn_7100fe0750();
-void fn_7100fe0764();
-void fn_7100fe076c();
-void fn_7100fe0778();
-void fn_7100fe0780();
-void fn_7100fe078c();
-void fn_7100fe0798();
-void fn_7100fe079c();
-void fn_7100fe07b0();
-void fn_7100fe07c4();
-void fn_7100fe07d8();
-void fn_7100fe07e0();
-void fn_7100fe07ec();
-void fn_7100fe07f4();
-void fn_7100fe0800();
-void fn_7100fe080c();
-void fn_7100fe0810();
-void fn_7100fe0824();
-void fn_7100fe0838();
-void fn_7100fe084c();
-void fn_7100fe0854();
-void fn_7100fe0860();
-void fn_7100fe0868();
-void fn_7100fe0874();
-void fn_7100fe0880();
-void fn_7100fe0884();
-void fn_7100fe0898();
-void fn_7100fe08ac();
-void fn_7100fe08c0();
-void fn_7100fe08c8();
-void fn_7100fe08d4();
-void fn_7100fe08dc();
-void fn_7100fe08e8();
-void fn_7100fe08f4();
-void fn_7100fe08f8();
-void fn_7100fe090c();
-void fn_7100fe0920();
-void fn_7100fe0934();
-void fn_7100fe093c();
-void fn_7100fe0948();
-void fn_7100fe0950();
-void fn_7100fe095c();
-void fn_7100fe0968();
-void fn_7100fe096c();
-void fn_7100fe0980();
-void fn_710111323c();
-void fn_7101113250();
-void fn_7101113258();
-void fn_7101113264();
-void fn_710111326c();
-void fn_7101113278();
-void fn_7101113284();
-void fn_7101113288();
-void fn_710111329c();
-void fn_71011132b0();
-void fn_71011132c4();
-void fn_71011132cc();
-void fn_71011132d8();
-void fn_71011132e0();
-void fn_71011132ec();
-void fn_71011132f8();
-void fn_71011132fc();
-void fn_7101113310();
-void fn_7101113324();
-void fn_7101113338();
-void fn_7101113340();
-void fn_710111334c();
-void fn_7101113354();
-void fn_7101113360();
-void fn_710111336c();
-void fn_7101113370();
-void fn_7101113384();
-void fn_71011325d0();
-void fn_71011325e4();
-void fn_71011325ec();
-void fn_71011325f8();
-void fn_7101132600();
-void fn_710113260c();
-void fn_7101132618();
-void fn_710113261c();
-void fn_7101132630();
-void fn_7101132644();
-void fn_7101132658();
-void fn_7101132660();
-void fn_710113266c();
-void fn_7101132674();
-void fn_7101132680();
-void fn_710113268c();
-void fn_7101132690();
-void fn_71011326a4();
-void fn_710113f610();
-void fn_710113f624();
-void fn_710113f62c();
-void fn_710113f638();
-void fn_710113f640();
-void fn_710113f64c();
-void fn_710113f658();
-void fn_710113f65c();
-void fn_710113f670();
-void fn_710116e98c();
-void fn_710116e9a0();
-void fn_710116e9a8();
-void fn_710116e9b4();
-void fn_710116e9bc();
-void fn_710116e9c8();
-void fn_710116e9d4();
-void fn_710116e9d8();
-void fn_710116e9ec();
-void fn_710116ea00();
-void fn_710116ea14();
-void fn_710116ea1c();
-void fn_710116ea28();
-void fn_710116ea30();
-void fn_710116ea3c();
-void fn_710116ea48();
-void fn_710116ea4c();
-void fn_710116ea60();
-void fn_71011c1370();
-void fn_71011c1384();
-void fn_71011c138c();
-void fn_71011c1398();
-void fn_71011c13a0();
-void fn_71011c13ac();
-void fn_71011c13b8();
-void fn_71011c13bc();
-void fn_71011c13d0();
-void fn_71011e7a54();
-void fn_71011e7a68();
-void fn_71011e7a70();
-void fn_71011e7a7c();
-void fn_71011e7a84();
-void fn_71011e7a90();
-void fn_71011e7a9c();
-void fn_71011e7aa0();
-void fn_71011e7ab4();
-struct UnkRefl_fn_7100d97c30;
+enum class ELightAttachment : u32;
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100d97c30> {
+const CType& base::reflection::ValueOps<ELightAttachment>::TypeOf(const void*) { return g_unk_71727ba480; }
+template struct base::reflection::ValueOps<ELightAttachment>;
+template <>
+struct base::reflection::EnumTypeDescription<ELightAttachment> : base::reflection::ValueOpsDescription<ELightAttachment> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100d9bd68;
-    static constexpr UnkFn copy_construct = &fn_7100d9bd70;
-    static constexpr UnkFn move_construct = &fn_7100d9bd7c;
-    static constexpr UnkFn destroy = &fn_7100d9bd88;
-    static constexpr UnkFn copy_assign = &fn_7100d9bd8c;
-    static constexpr UnkFn move_assign = &fn_7100d9bda0;
-    static constexpr UnkFn equals = &fn_7100d9bd40;
-    static constexpr UnkFn hash = &fn_7100d9bd54;
-    static constexpr UnkFn type_of = &fn_7100d9bd5c;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100d97c30*);
-struct UnkRefl_fn_7100da3a1c;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, ELightAttachment*);
+namespace IPath { enum class EType : u32; }
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100da3a1c> {
+const CType& base::reflection::ValueOps<IPath::EType>::TypeOf(const void*) { return g_unk_71727bb8e8; }
+template struct base::reflection::ValueOps<IPath::EType>;
+template <>
+struct base::reflection::EnumTypeDescription<IPath::EType> : base::reflection::ValueOpsDescription<IPath::EType> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100da3e40;
-    static constexpr UnkFn copy_construct = &fn_7100da3e48;
-    static constexpr UnkFn move_construct = &fn_7100da3e54;
-    static constexpr UnkFn destroy = &fn_7100da3e60;
-    static constexpr UnkFn copy_assign = &fn_7100da3e64;
-    static constexpr UnkFn move_assign = &fn_7100da3e78;
-    static constexpr UnkFn equals = &fn_7100da3e18;
-    static constexpr UnkFn hash = &fn_7100da3e2c;
-    static constexpr UnkFn type_of = &fn_7100da3e34;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100da3a1c*);
-struct UnkRefl_fn_7100da5c70;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, IPath::EType*);
+namespace SLinkType { enum class ELinkType : u32; }
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100da5c70> {
+const CType& base::reflection::ValueOps<SLinkType::ELinkType>::TypeOf(const void*) { return g_unk_71727bc110; }
+template struct base::reflection::ValueOps<SLinkType::ELinkType>;
+template <>
+struct base::reflection::EnumTypeDescription<SLinkType::ELinkType> : base::reflection::ValueOpsDescription<SLinkType::ELinkType> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100da5e18;
-    static constexpr UnkFn copy_construct = &fn_7100da5e20;
-    static constexpr UnkFn move_construct = &fn_7100da5e2c;
-    static constexpr UnkFn destroy = &fn_7100da5e38;
-    static constexpr UnkFn copy_assign = &fn_7100da5e3c;
-    static constexpr UnkFn move_assign = &fn_7100da5e50;
-    static constexpr UnkFn equals = &fn_7100da5df0;
-    static constexpr UnkFn hash = &fn_7100da5e04;
-    static constexpr UnkFn type_of = &fn_7100da5e0c;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100da5c70*);
-struct UnkRefl_fn_7100da6938;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, SLinkType::ELinkType*);
+namespace CAIManager { enum class EAIGroup : u32; }
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100da6938> {
+const CType& base::reflection::ValueOps<CAIManager::EAIGroup>::TypeOf(const void*) { return g_unk_71727bc290; }
+template struct base::reflection::ValueOps<CAIManager::EAIGroup>;
+template <>
+struct base::reflection::EnumTypeDescription<CAIManager::EAIGroup> : base::reflection::ValueOpsDescription<CAIManager::EAIGroup> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100daba7c;
-    static constexpr UnkFn copy_construct = &fn_7100daba84;
-    static constexpr UnkFn move_construct = &fn_7100daba90;
-    static constexpr UnkFn destroy = &fn_7100daba9c;
-    static constexpr UnkFn copy_assign = &fn_7100dabaa0;
-    static constexpr UnkFn move_assign = &fn_7100dabab4;
-    static constexpr UnkFn equals = &fn_7100daba54;
-    static constexpr UnkFn hash = &fn_7100daba68;
-    static constexpr UnkFn type_of = &fn_7100daba70;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100da6938*);
-struct UnkRefl_fn_7100da6cc4;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CAIManager::EAIGroup*);
+namespace CAIManager { enum class EBumpMode : u32; }
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100da6cc4> {
+const CType& base::reflection::ValueOps<CAIManager::EBumpMode>::TypeOf(const void*) { return g_unk_71727bc3f0; }
+template struct base::reflection::ValueOps<CAIManager::EBumpMode>;
+template <>
+struct base::reflection::EnumTypeDescription<CAIManager::EBumpMode> : base::reflection::ValueOpsDescription<CAIManager::EBumpMode> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100dabaf0;
-    static constexpr UnkFn copy_construct = &fn_7100dabaf8;
-    static constexpr UnkFn move_construct = &fn_7100dabb04;
-    static constexpr UnkFn destroy = &fn_7100dabb10;
-    static constexpr UnkFn copy_assign = &fn_7100dabb14;
-    static constexpr UnkFn move_assign = &fn_7100dabb28;
-    static constexpr UnkFn equals = &fn_7100dabac8;
-    static constexpr UnkFn hash = &fn_7100dabadc;
-    static constexpr UnkFn type_of = &fn_7100dabae4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100da6cc4*);
-struct UnkRefl_fn_7100daf558;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CAIManager::EBumpMode*);
+enum class EAmiibo : u32;
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100daf558> {
+const CType& base::reflection::ValueOps<EAmiibo>::TypeOf(const void*) { return g_unk_71727bc870; }
+template struct base::reflection::ValueOps<EAmiibo>;
+template <>
+struct base::reflection::EnumTypeDescription<EAmiibo> : base::reflection::ValueOpsDescription<EAmiibo> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100db2078;
-    static constexpr UnkFn copy_construct = &fn_7100db2080;
-    static constexpr UnkFn move_construct = &fn_7100db208c;
-    static constexpr UnkFn destroy = &fn_7100db2098;
-    static constexpr UnkFn copy_assign = &fn_7100db209c;
-    static constexpr UnkFn move_assign = &fn_7100db20b0;
-    static constexpr UnkFn equals = &fn_7100db2050;
-    static constexpr UnkFn hash = &fn_7100db2064;
-    static constexpr UnkFn type_of = &fn_7100db206c;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100daf558*);
-struct UnkRefl_fn_7100ddf1c0;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EAmiibo*);
+namespace CExplosionGfx { enum class ETransitionOperationMode : u32; }
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100ddf1c0> {
+const CType& base::reflection::ValueOps<CExplosionGfx::ETransitionOperationMode>::TypeOf(const void*) { return g_unk_71727be388; }
+template struct base::reflection::ValueOps<CExplosionGfx::ETransitionOperationMode>;
+template <>
+struct base::reflection::EnumTypeDescription<CExplosionGfx::ETransitionOperationMode> : base::reflection::ValueOpsDescription<CExplosionGfx::ETransitionOperationMode> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100de1b4c;
-    static constexpr UnkFn copy_construct = &fn_7100de1b54;
-    static constexpr UnkFn move_construct = &fn_7100de1b60;
-    static constexpr UnkFn destroy = &fn_7100de1b6c;
-    static constexpr UnkFn copy_assign = &fn_7100de1b70;
-    static constexpr UnkFn move_assign = &fn_7100de1b84;
-    static constexpr UnkFn equals = &fn_7100de1b24;
-    static constexpr UnkFn hash = &fn_7100de1b38;
-    static constexpr UnkFn type_of = &fn_7100de1b40;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100ddf1c0*);
-struct UnkRefl_fn_7100de441c;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CExplosionGfx::ETransitionOperationMode*);
+namespace SLoadScenarioRequest { enum class EMode : u32; }
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100de441c> {
+const CType& base::reflection::ValueOps<SLoadScenarioRequest::EMode>::TypeOf(const void*) { return g_unk_71727be938; }
+template struct base::reflection::ValueOps<SLoadScenarioRequest::EMode>;
+template <>
+struct base::reflection::EnumTypeDescription<SLoadScenarioRequest::EMode> : base::reflection::ValueOpsDescription<SLoadScenarioRequest::EMode> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100e05c30;
-    static constexpr UnkFn copy_construct = &fn_7100e05c38;
-    static constexpr UnkFn move_construct = &fn_7100e05c44;
-    static constexpr UnkFn destroy = &fn_7100e05c50;
-    static constexpr UnkFn copy_assign = &fn_7100e05c54;
-    static constexpr UnkFn move_assign = &fn_7100e05c68;
-    static constexpr UnkFn equals = &fn_7100e05c08;
-    static constexpr UnkFn hash = &fn_7100e05c1c;
-    static constexpr UnkFn type_of = &fn_7100e05c24;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100de441c*);
-struct UnkRefl_fn_7100de47a8;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, SLoadScenarioRequest::EMode*);
+enum class EDifficultyMode : u32;
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100de47a8> {
+const CType& base::reflection::ValueOps<EDifficultyMode>::TypeOf(const void*) { return g_unk_71727bea58; }
+template struct base::reflection::ValueOps<EDifficultyMode>;
+template <>
+struct base::reflection::EnumTypeDescription<EDifficultyMode> : base::reflection::ValueOpsDescription<EDifficultyMode> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100e05ca4;
-    static constexpr UnkFn copy_construct = &fn_7100e05cac;
-    static constexpr UnkFn move_construct = &fn_7100e05cb8;
-    static constexpr UnkFn destroy = &fn_7100e05cc4;
-    static constexpr UnkFn copy_assign = &fn_7100e05cc8;
-    static constexpr UnkFn move_assign = &fn_7100e05cdc;
-    static constexpr UnkFn equals = &fn_7100e05c7c;
-    static constexpr UnkFn hash = &fn_7100e05c90;
-    static constexpr UnkFn type_of = &fn_7100e05c98;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100de47a8*);
-struct UnkRefl_fn_7100e06e8c;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EDifficultyMode*);
+enum class EEntryType : u32;
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100e06e8c> {
+const CType& base::reflection::ValueOps<EEntryType>::TypeOf(const void*) { return g_unk_71727bf6f8; }
+template struct base::reflection::ValueOps<EEntryType>;
+template <>
+struct base::reflection::EnumTypeDescription<EEntryType> : base::reflection::ValueOpsDescription<EEntryType> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100e07414;
-    static constexpr UnkFn copy_construct = &fn_7100e0741c;
-    static constexpr UnkFn move_construct = &fn_7100e07428;
-    static constexpr UnkFn destroy = &fn_7100e07434;
-    static constexpr UnkFn copy_assign = &fn_7100e07438;
-    static constexpr UnkFn move_assign = &fn_7100e0744c;
-    static constexpr UnkFn equals = &fn_7100e073ec;
-    static constexpr UnkFn hash = &fn_7100e07400;
-    static constexpr UnkFn type_of = &fn_7100e07408;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100e06e8c*);
-struct UnkRefl_fn_7100e0f4d4;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EEntryType*);
+enum class ELoadingScreen : u32;
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100e0f4d4> {
+const CType& base::reflection::ValueOps<ELoadingScreen>::TypeOf(const void*) { return g_unk_71727c0710; }
+template struct base::reflection::ValueOps<ELoadingScreen>;
+template <>
+struct base::reflection::EnumTypeDescription<ELoadingScreen> : base::reflection::ValueOpsDescription<ELoadingScreen> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100e138dc;
-    static constexpr UnkFn copy_construct = &fn_7100e138e4;
-    static constexpr UnkFn move_construct = &fn_7100e138f0;
-    static constexpr UnkFn destroy = &fn_7100e138fc;
-    static constexpr UnkFn copy_assign = &fn_7100e13900;
-    static constexpr UnkFn move_assign = &fn_7100e13914;
-    static constexpr UnkFn equals = &fn_7100e138b4;
-    static constexpr UnkFn hash = &fn_7100e138c8;
-    static constexpr UnkFn type_of = &fn_7100e138d0;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100e0f4d4*);
-struct UnkRefl_fn_7100e1766c;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, ELoadingScreen*);
+enum class ETooltipCond : u32;
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100e1766c> {
+const CType& base::reflection::ValueOps<ETooltipCond>::TypeOf(const void*) { return g_unk_71727c0bc0; }
+template struct base::reflection::ValueOps<ETooltipCond>;
+template <>
+struct base::reflection::EnumTypeDescription<ETooltipCond> : base::reflection::ValueOpsDescription<ETooltipCond> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100e1b638;
-    static constexpr UnkFn copy_construct = &fn_7100e1b640;
-    static constexpr UnkFn move_construct = &fn_7100e1b64c;
-    static constexpr UnkFn destroy = &fn_7100e1b658;
-    static constexpr UnkFn copy_assign = &fn_7100e1b65c;
-    static constexpr UnkFn move_assign = &fn_7100e1b670;
-    static constexpr UnkFn equals = &fn_7100e1b610;
-    static constexpr UnkFn hash = &fn_7100e1b624;
-    static constexpr UnkFn type_of = &fn_7100e1b62c;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100e1766c*);
-struct UnkRefl_fn_7100e17b48;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, ETooltipCond*);
+enum class ETooltipType : u32;
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100e17b48> {
+const CType& base::reflection::ValueOps<ETooltipType>::TypeOf(const void*) { return g_unk_71727c0e58; }
+template struct base::reflection::ValueOps<ETooltipType>;
+template <>
+struct base::reflection::EnumTypeDescription<ETooltipType> : base::reflection::ValueOpsDescription<ETooltipType> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100e1b720;
-    static constexpr UnkFn copy_construct = &fn_7100e1b728;
-    static constexpr UnkFn move_construct = &fn_7100e1b734;
-    static constexpr UnkFn destroy = &fn_7100e1b740;
-    static constexpr UnkFn copy_assign = &fn_7100e1b744;
-    static constexpr UnkFn move_assign = &fn_7100e1b758;
-    static constexpr UnkFn equals = &fn_7100e1b6f8;
-    static constexpr UnkFn hash = &fn_7100e1b70c;
-    static constexpr UnkFn type_of = &fn_7100e1b714;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100e17b48*);
-struct UnkRefl_fn_7100e87068;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, ETooltipType*);
+enum class EMinimapFowType : u32;
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100e87068> {
+const CType& base::reflection::ValueOps<EMinimapFowType>::TypeOf(const void*) { return g_unk_71727ca958; }
+template struct base::reflection::ValueOps<EMinimapFowType>;
+template <>
+struct base::reflection::EnumTypeDescription<EMinimapFowType> : base::reflection::ValueOpsDescription<EMinimapFowType> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100ead0fc;
-    static constexpr UnkFn copy_construct = &fn_7100ead104;
-    static constexpr UnkFn move_construct = &fn_7100ead110;
-    static constexpr UnkFn destroy = &fn_7100ead11c;
-    static constexpr UnkFn copy_assign = &fn_7100ead120;
-    static constexpr UnkFn move_assign = &fn_7100ead134;
-    static constexpr UnkFn equals = &fn_7100ead0d4;
-    static constexpr UnkFn hash = &fn_7100ead0e8;
-    static constexpr UnkFn type_of = &fn_7100ead0f0;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100e87068*);
-struct UnkRefl_fn_7100e875d4;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EMinimapFowType*);
+enum class EMarkerType : u32;
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100e875d4> {
+const CType& base::reflection::ValueOps<EMarkerType>::TypeOf(const void*) { return g_unk_71727caab8; }
+template struct base::reflection::ValueOps<EMarkerType>;
+template <>
+struct base::reflection::EnumTypeDescription<EMarkerType> : base::reflection::ValueOpsDescription<EMarkerType> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100ead170;
-    static constexpr UnkFn copy_construct = &fn_7100ead178;
-    static constexpr UnkFn move_construct = &fn_7100ead184;
-    static constexpr UnkFn destroy = &fn_7100ead190;
-    static constexpr UnkFn copy_assign = &fn_7100ead194;
-    static constexpr UnkFn move_assign = &fn_7100ead1a8;
-    static constexpr UnkFn equals = &fn_7100ead148;
-    static constexpr UnkFn hash = &fn_7100ead15c;
-    static constexpr UnkFn type_of = &fn_7100ead164;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100e875d4*);
-struct UnkRefl_fn_7100e87900;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EMarkerType*);
+enum class EMapTutoType : u32;
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100e87900> {
+const CType& base::reflection::ValueOps<EMapTutoType>::TypeOf(const void*) { return g_unk_71727cac18; }
+template struct base::reflection::ValueOps<EMapTutoType>;
+template <>
+struct base::reflection::EnumTypeDescription<EMapTutoType> : base::reflection::ValueOpsDescription<EMapTutoType> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100ead1e4;
-    static constexpr UnkFn copy_construct = &fn_7100ead1ec;
-    static constexpr UnkFn move_construct = &fn_7100ead1f8;
-    static constexpr UnkFn destroy = &fn_7100ead204;
-    static constexpr UnkFn copy_assign = &fn_7100ead208;
-    static constexpr UnkFn move_assign = &fn_7100ead21c;
-    static constexpr UnkFn equals = &fn_7100ead1bc;
-    static constexpr UnkFn hash = &fn_7100ead1d0;
-    static constexpr UnkFn type_of = &fn_7100ead1d8;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100e87900*);
-struct UnkRefl_fn_7100eb71d8;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EMapTutoType*);
+namespace minimap { enum class EIconAnimID : u32; }
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100eb71d8> {
+const CType& base::reflection::ValueOps<minimap::EIconAnimID>::TypeOf(const void*) { return g_unk_71729cdeb8; }
+template struct base::reflection::ValueOps<minimap::EIconAnimID>;
+template <>
+struct base::reflection::EnumTypeDescription<minimap::EIconAnimID> : base::reflection::ValueOpsDescription<minimap::EIconAnimID> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100ebef7c;
-    static constexpr UnkFn copy_construct = &fn_7100ebef84;
-    static constexpr UnkFn move_construct = &fn_7100ebef90;
-    static constexpr UnkFn destroy = &fn_7100ebef9c;
-    static constexpr UnkFn copy_assign = &fn_7100ebefa0;
-    static constexpr UnkFn move_assign = &fn_7100ebefb4;
-    static constexpr UnkFn equals = &fn_7100ebef54;
-    static constexpr UnkFn hash = &fn_7100ebef68;
-    static constexpr UnkFn type_of = &fn_7100ebef70;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100eb71d8*);
-struct UnkRefl_fn_7100ed0188;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, minimap::EIconAnimID*);
+enum class EWeaponType : u32;
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100ed0188> {
+const CType& base::reflection::ValueOps<EWeaponType>::TypeOf(const void*) { return g_unk_71729ce388; }
+template struct base::reflection::ValueOps<EWeaponType>;
+template <>
+struct base::reflection::EnumTypeDescription<EWeaponType> : base::reflection::ValueOpsDescription<EWeaponType> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100edab20;
-    static constexpr UnkFn copy_construct = &fn_7100edab28;
-    static constexpr UnkFn move_construct = &fn_7100edab34;
-    static constexpr UnkFn destroy = &fn_7100edab40;
-    static constexpr UnkFn copy_assign = &fn_7100edab44;
-    static constexpr UnkFn move_assign = &fn_7100edab58;
-    static constexpr UnkFn equals = &fn_7100edaaf8;
-    static constexpr UnkFn hash = &fn_7100edab0c;
-    static constexpr UnkFn type_of = &fn_7100edab14;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100ed0188*);
-struct UnkRefl_fn_7100ed0694;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EWeaponType*);
+enum class EWeaponState : u32;
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100ed0694> {
+const CType& base::reflection::ValueOps<EWeaponState>::TypeOf(const void*) { return g_unk_71729ce528; }
+template struct base::reflection::ValueOps<EWeaponState>;
+template <>
+struct base::reflection::EnumTypeDescription<EWeaponState> : base::reflection::ValueOpsDescription<EWeaponState> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100edab94;
-    static constexpr UnkFn copy_construct = &fn_7100edab9c;
-    static constexpr UnkFn move_construct = &fn_7100edaba8;
-    static constexpr UnkFn destroy = &fn_7100edabb4;
-    static constexpr UnkFn copy_assign = &fn_7100edabb8;
-    static constexpr UnkFn move_assign = &fn_7100edabcc;
-    static constexpr UnkFn equals = &fn_7100edab6c;
-    static constexpr UnkFn hash = &fn_7100edab80;
-    static constexpr UnkFn type_of = &fn_7100edab88;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100ed0694*);
-struct UnkRefl_fn_7100edf860;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EWeaponState*);
+namespace CSubAreaManager { enum class ETransitionType : u32; }
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100edf860> {
+const CType& base::reflection::ValueOps<CSubAreaManager::ETransitionType>::TypeOf(const void*) { return g_unk_71729da710; }
+template struct base::reflection::ValueOps<CSubAreaManager::ETransitionType>;
+template <>
+struct base::reflection::EnumTypeDescription<CSubAreaManager::ETransitionType> : base::reflection::ValueOpsDescription<CSubAreaManager::ETransitionType> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100ef05d0;
-    static constexpr UnkFn copy_construct = &fn_7100ef05d8;
-    static constexpr UnkFn move_construct = &fn_7100ef05e4;
-    static constexpr UnkFn destroy = &fn_7100ef05f0;
-    static constexpr UnkFn copy_assign = &fn_7100ef05f4;
-    static constexpr UnkFn move_assign = &fn_7100ef0608;
-    static constexpr UnkFn equals = &fn_7100ef05a8;
-    static constexpr UnkFn hash = &fn_7100ef05bc;
-    static constexpr UnkFn type_of = &fn_7100ef05c4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100edf860*);
-struct UnkRefl_fn_7100f13198;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CSubAreaManager::ETransitionType*);
+namespace CPrologueMode { enum class SState : u32; }
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100f13198> {
+const CType& base::reflection::ValueOps<CPrologueMode::SState>::TypeOf(const void*) { return g_unk_71729dc0b0; }
+template struct base::reflection::ValueOps<CPrologueMode::SState>;
+template <>
+struct base::reflection::EnumTypeDescription<CPrologueMode::SState> : base::reflection::ValueOpsDescription<CPrologueMode::SState> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100f145bc;
-    static constexpr UnkFn copy_construct = &fn_7100f145c4;
-    static constexpr UnkFn move_construct = &fn_7100f145d0;
-    static constexpr UnkFn destroy = &fn_7100f145dc;
-    static constexpr UnkFn copy_assign = &fn_7100f145e0;
-    static constexpr UnkFn move_assign = &fn_7100f145f4;
-    static constexpr UnkFn equals = &fn_7100f14594;
-    static constexpr UnkFn hash = &fn_7100f145a8;
-    static constexpr UnkFn type_of = &fn_7100f145b0;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100f13198*);
-struct UnkRefl_fn_7100fae524;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CPrologueMode::SState*);
+enum class ESubAreaItem : u32;
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100fae524> {
+const CType& base::reflection::ValueOps<ESubAreaItem>::TypeOf(const void*) { return g_unk_71729ee248; }
+template struct base::reflection::ValueOps<ESubAreaItem>;
+template <>
+struct base::reflection::EnumTypeDescription<ESubAreaItem> : base::reflection::ValueOpsDescription<ESubAreaItem> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100fb0a40;
-    static constexpr UnkFn copy_construct = &fn_7100fb0a48;
-    static constexpr UnkFn move_construct = &fn_7100fb0a54;
-    static constexpr UnkFn destroy = &fn_7100fb0a60;
-    static constexpr UnkFn copy_assign = &fn_7100fb0a64;
-    static constexpr UnkFn move_assign = &fn_7100fb0a78;
-    static constexpr UnkFn equals = &fn_7100fb0a18;
-    static constexpr UnkFn hash = &fn_7100fb0a2c;
-    static constexpr UnkFn type_of = &fn_7100fb0a34;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100fae524*);
-struct UnkRefl_fn_7100fdee90;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, ESubAreaItem*);
+enum class SMusicPlayFlag : u32;
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100fdee90> {
+const CType& base::reflection::ValueOps<SMusicPlayFlag>::TypeOf(const void*) { return g_unk_71729f0a98; }
+template struct base::reflection::ValueOps<SMusicPlayFlag>;
+template <>
+struct base::reflection::EnumTypeDescription<SMusicPlayFlag> : base::reflection::ValueOpsDescription<SMusicPlayFlag> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100fe0704;
-    static constexpr UnkFn copy_construct = &fn_7100fe070c;
-    static constexpr UnkFn move_construct = &fn_7100fe0718;
-    static constexpr UnkFn destroy = &fn_7100fe0724;
-    static constexpr UnkFn copy_assign = &fn_7100fe0728;
-    static constexpr UnkFn move_assign = &fn_7100fe073c;
-    static constexpr UnkFn equals = &fn_7100fe06dc;
-    static constexpr UnkFn hash = &fn_7100fe06f0;
-    static constexpr UnkFn type_of = &fn_7100fe06f8;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100fdee90*);
-struct UnkRefl_fn_7100fdf21c;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, SMusicPlayFlag*);
+enum class SMusicStopFlag : u32;
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100fdf21c> {
+const CType& base::reflection::ValueOps<SMusicStopFlag>::TypeOf(const void*) { return g_unk_71729f0bf8; }
+template struct base::reflection::ValueOps<SMusicStopFlag>;
+template <>
+struct base::reflection::EnumTypeDescription<SMusicStopFlag> : base::reflection::ValueOpsDescription<SMusicStopFlag> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100fe0778;
-    static constexpr UnkFn copy_construct = &fn_7100fe0780;
-    static constexpr UnkFn move_construct = &fn_7100fe078c;
-    static constexpr UnkFn destroy = &fn_7100fe0798;
-    static constexpr UnkFn copy_assign = &fn_7100fe079c;
-    static constexpr UnkFn move_assign = &fn_7100fe07b0;
-    static constexpr UnkFn equals = &fn_7100fe0750;
-    static constexpr UnkFn hash = &fn_7100fe0764;
-    static constexpr UnkFn type_of = &fn_7100fe076c;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100fdf21c*);
-struct UnkRefl_fn_7100fdf788;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, SMusicStopFlag*);
+enum class SMusicPriority : u32;
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100fdf788> {
+const CType& base::reflection::ValueOps<SMusicPriority>::TypeOf(const void*) { return g_unk_71729f0d58; }
+template struct base::reflection::ValueOps<SMusicPriority>;
+template <>
+struct base::reflection::EnumTypeDescription<SMusicPriority> : base::reflection::ValueOpsDescription<SMusicPriority> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100fe07ec;
-    static constexpr UnkFn copy_construct = &fn_7100fe07f4;
-    static constexpr UnkFn move_construct = &fn_7100fe0800;
-    static constexpr UnkFn destroy = &fn_7100fe080c;
-    static constexpr UnkFn copy_assign = &fn_7100fe0810;
-    static constexpr UnkFn move_assign = &fn_7100fe0824;
-    static constexpr UnkFn equals = &fn_7100fe07c4;
-    static constexpr UnkFn hash = &fn_7100fe07d8;
-    static constexpr UnkFn type_of = &fn_7100fe07e0;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100fdf788*);
-struct UnkRefl_fn_7100fdfc94;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, SMusicPriority*);
+enum class SMusicManagerState : u32;
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100fdfc94> {
+const CType& base::reflection::ValueOps<SMusicManagerState>::TypeOf(const void*) { return g_unk_71729f0eb8; }
+template struct base::reflection::ValueOps<SMusicManagerState>;
+template <>
+struct base::reflection::EnumTypeDescription<SMusicManagerState> : base::reflection::ValueOpsDescription<SMusicManagerState> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100fe0860;
-    static constexpr UnkFn copy_construct = &fn_7100fe0868;
-    static constexpr UnkFn move_construct = &fn_7100fe0874;
-    static constexpr UnkFn destroy = &fn_7100fe0880;
-    static constexpr UnkFn copy_assign = &fn_7100fe0884;
-    static constexpr UnkFn move_assign = &fn_7100fe0898;
-    static constexpr UnkFn equals = &fn_7100fe0838;
-    static constexpr UnkFn hash = &fn_7100fe084c;
-    static constexpr UnkFn type_of = &fn_7100fe0854;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100fdfc94*);
-struct UnkRefl_fn_7100fdffc0;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, SMusicManagerState*);
+enum class EMusicFadeType : u32;
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100fdffc0> {
+const CType& base::reflection::ValueOps<EMusicFadeType>::TypeOf(const void*) { return g_unk_71729f1018; }
+template struct base::reflection::ValueOps<EMusicFadeType>;
+template <>
+struct base::reflection::EnumTypeDescription<EMusicFadeType> : base::reflection::ValueOpsDescription<EMusicFadeType> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100fe08d4;
-    static constexpr UnkFn copy_construct = &fn_7100fe08dc;
-    static constexpr UnkFn move_construct = &fn_7100fe08e8;
-    static constexpr UnkFn destroy = &fn_7100fe08f4;
-    static constexpr UnkFn copy_assign = &fn_7100fe08f8;
-    static constexpr UnkFn move_assign = &fn_7100fe090c;
-    static constexpr UnkFn equals = &fn_7100fe08ac;
-    static constexpr UnkFn hash = &fn_7100fe08c0;
-    static constexpr UnkFn type_of = &fn_7100fe08c8;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100fdffc0*);
-struct UnkRefl_fn_7100fe04cc;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EMusicFadeType*);
+enum class EMusicManagerInGameState : u32;
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7100fe04cc> {
+const CType& base::reflection::ValueOps<EMusicManagerInGameState>::TypeOf(const void*) { return g_unk_71729f1178; }
+template struct base::reflection::ValueOps<EMusicManagerInGameState>;
+template <>
+struct base::reflection::EnumTypeDescription<EMusicManagerInGameState> : base::reflection::ValueOpsDescription<EMusicManagerInGameState> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100fe0948;
-    static constexpr UnkFn copy_construct = &fn_7100fe0950;
-    static constexpr UnkFn move_construct = &fn_7100fe095c;
-    static constexpr UnkFn destroy = &fn_7100fe0968;
-    static constexpr UnkFn copy_assign = &fn_7100fe096c;
-    static constexpr UnkFn move_assign = &fn_7100fe0980;
-    static constexpr UnkFn equals = &fn_7100fe0920;
-    static constexpr UnkFn hash = &fn_7100fe0934;
-    static constexpr UnkFn type_of = &fn_7100fe093c;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7100fe04cc*);
-struct UnkRefl_fn_71010f4e10;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EMusicManagerInGameState*);
+enum class ELOSMode : u32;
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_71010f4e10> {
+const CType& base::reflection::ValueOps<ELOSMode>::TypeOf(const void*) { return g_unk_7172a05520; }
+template struct base::reflection::ValueOps<ELOSMode>;
+template <>
+struct base::reflection::EnumTypeDescription<ELOSMode> : base::reflection::ValueOpsDescription<ELOSMode> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7101113264;
-    static constexpr UnkFn copy_construct = &fn_710111326c;
-    static constexpr UnkFn move_construct = &fn_7101113278;
-    static constexpr UnkFn destroy = &fn_7101113284;
-    static constexpr UnkFn copy_assign = &fn_7101113288;
-    static constexpr UnkFn move_assign = &fn_710111329c;
-    static constexpr UnkFn equals = &fn_710111323c;
-    static constexpr UnkFn hash = &fn_7101113250;
-    static constexpr UnkFn type_of = &fn_7101113258;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71010f4e10*);
-struct UnkRefl_fn_71010f531c;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, ELOSMode*);
+enum class ELOSCheckLevel : u32;
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_71010f531c> {
+const CType& base::reflection::ValueOps<ELOSCheckLevel>::TypeOf(const void*) { return g_unk_7172a05680; }
+template struct base::reflection::ValueOps<ELOSCheckLevel>;
+template <>
+struct base::reflection::EnumTypeDescription<ELOSCheckLevel> : base::reflection::ValueOpsDescription<ELOSCheckLevel> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_71011132d8;
-    static constexpr UnkFn copy_construct = &fn_71011132e0;
-    static constexpr UnkFn move_construct = &fn_71011132ec;
-    static constexpr UnkFn destroy = &fn_71011132f8;
-    static constexpr UnkFn copy_assign = &fn_71011132fc;
-    static constexpr UnkFn move_assign = &fn_7101113310;
-    static constexpr UnkFn equals = &fn_71011132b0;
-    static constexpr UnkFn hash = &fn_71011132c4;
-    static constexpr UnkFn type_of = &fn_71011132cc;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71010f531c*);
-struct UnkRefl_fn_71010f57c8;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, ELOSCheckLevel*);
+namespace CAIComponent { enum class PathLimitSelectionMode : u32; }
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_71010f57c8> {
+const CType& base::reflection::ValueOps<CAIComponent::PathLimitSelectionMode>::TypeOf(const void*) { return g_unk_7172a057e0; }
+template struct base::reflection::ValueOps<CAIComponent::PathLimitSelectionMode>;
+template <>
+struct base::reflection::EnumTypeDescription<CAIComponent::PathLimitSelectionMode> : base::reflection::ValueOpsDescription<CAIComponent::PathLimitSelectionMode> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_710111334c;
-    static constexpr UnkFn copy_construct = &fn_7101113354;
-    static constexpr UnkFn move_construct = &fn_7101113360;
-    static constexpr UnkFn destroy = &fn_710111336c;
-    static constexpr UnkFn copy_assign = &fn_7101113370;
-    static constexpr UnkFn move_assign = &fn_7101113384;
-    static constexpr UnkFn equals = &fn_7101113324;
-    static constexpr UnkFn hash = &fn_7101113338;
-    static constexpr UnkFn type_of = &fn_7101113340;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71010f57c8*);
-struct UnkRefl_fn_7101123478;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CAIComponent::PathLimitSelectionMode*);
+namespace CSpawnPointComponent { enum class EDynamicSpawnPositionMode : u32; }
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7101123478> {
+const CType& base::reflection::ValueOps<CSpawnPointComponent::EDynamicSpawnPositionMode>::TypeOf(const void*) { return g_unk_7172a073c8; }
+template struct base::reflection::ValueOps<CSpawnPointComponent::EDynamicSpawnPositionMode>;
+template <>
+struct base::reflection::EnumTypeDescription<CSpawnPointComponent::EDynamicSpawnPositionMode> : base::reflection::ValueOpsDescription<CSpawnPointComponent::EDynamicSpawnPositionMode> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_71011325f8;
-    static constexpr UnkFn copy_construct = &fn_7101132600;
-    static constexpr UnkFn move_construct = &fn_710113260c;
-    static constexpr UnkFn destroy = &fn_7101132618;
-    static constexpr UnkFn copy_assign = &fn_710113261c;
-    static constexpr UnkFn move_assign = &fn_7101132630;
-    static constexpr UnkFn equals = &fn_71011325d0;
-    static constexpr UnkFn hash = &fn_71011325e4;
-    static constexpr UnkFn type_of = &fn_71011325ec;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7101123478*);
-struct UnkRefl_fn_7101123744;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CSpawnPointComponent::EDynamicSpawnPositionMode*);
+namespace CSpawnPointComponent { enum class EXCellSpawnPositionMode : u32; }
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_7101123744> {
+const CType& base::reflection::ValueOps<CSpawnPointComponent::EXCellSpawnPositionMode>::TypeOf(const void*) { return g_unk_7172a07528; }
+template struct base::reflection::ValueOps<CSpawnPointComponent::EXCellSpawnPositionMode>;
+template <>
+struct base::reflection::EnumTypeDescription<CSpawnPointComponent::EXCellSpawnPositionMode> : base::reflection::ValueOpsDescription<CSpawnPointComponent::EXCellSpawnPositionMode> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_710113266c;
-    static constexpr UnkFn copy_construct = &fn_7101132674;
-    static constexpr UnkFn move_construct = &fn_7101132680;
-    static constexpr UnkFn destroy = &fn_710113268c;
-    static constexpr UnkFn copy_assign = &fn_7101132690;
-    static constexpr UnkFn move_assign = &fn_71011326a4;
-    static constexpr UnkFn equals = &fn_7101132644;
-    static constexpr UnkFn hash = &fn_7101132658;
-    static constexpr UnkFn type_of = &fn_7101132660;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_7101123744*);
-struct UnkRefl_fn_710113a9ec;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CSpawnPointComponent::EXCellSpawnPositionMode*);
+namespace CGrabComponent { enum class ELinkMode : u32; }
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_710113a9ec> {
+const CType& base::reflection::ValueOps<CGrabComponent::ELinkMode>::TypeOf(const void*) { return g_unk_7172a08f58; }
+template struct base::reflection::ValueOps<CGrabComponent::ELinkMode>;
+template <>
+struct base::reflection::EnumTypeDescription<CGrabComponent::ELinkMode> : base::reflection::ValueOpsDescription<CGrabComponent::ELinkMode> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_710113f638;
-    static constexpr UnkFn copy_construct = &fn_710113f640;
-    static constexpr UnkFn move_construct = &fn_710113f64c;
-    static constexpr UnkFn destroy = &fn_710113f658;
-    static constexpr UnkFn copy_assign = &fn_710113f65c;
-    static constexpr UnkFn move_assign = &fn_710113f670;
-    static constexpr UnkFn equals = &fn_710113f610;
-    static constexpr UnkFn hash = &fn_710113f624;
-    static constexpr UnkFn type_of = &fn_710113f62c;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710113a9ec*);
-struct UnkRefl_fn_710116d760;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CGrabComponent::ELinkMode*);
+namespace CInterpolationComponent { enum class EInterpDirection : u32; }
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_710116d760> {
+const CType& base::reflection::ValueOps<CInterpolationComponent::EInterpDirection>::TypeOf(const void*) { return g_unk_7172a0a8c8; }
+template struct base::reflection::ValueOps<CInterpolationComponent::EInterpDirection>;
+template <>
+struct base::reflection::EnumTypeDescription<CInterpolationComponent::EInterpDirection> : base::reflection::ValueOpsDescription<CInterpolationComponent::EInterpDirection> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_710116e9b4;
-    static constexpr UnkFn copy_construct = &fn_710116e9bc;
-    static constexpr UnkFn move_construct = &fn_710116e9c8;
-    static constexpr UnkFn destroy = &fn_710116e9d4;
-    static constexpr UnkFn copy_assign = &fn_710116e9d8;
-    static constexpr UnkFn move_assign = &fn_710116e9ec;
-    static constexpr UnkFn equals = &fn_710116e98c;
-    static constexpr UnkFn hash = &fn_710116e9a0;
-    static constexpr UnkFn type_of = &fn_710116e9a8;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710116d760*);
-struct UnkRefl_fn_710116daec;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CInterpolationComponent::EInterpDirection*);
+namespace CInterpolationComponent { enum class EInterpolationType : u32; }
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_710116daec> {
+const CType& base::reflection::ValueOps<CInterpolationComponent::EInterpolationType>::TypeOf(const void*) { return g_unk_7172a0aa28; }
+template struct base::reflection::ValueOps<CInterpolationComponent::EInterpolationType>;
+template <>
+struct base::reflection::EnumTypeDescription<CInterpolationComponent::EInterpolationType> : base::reflection::ValueOpsDescription<CInterpolationComponent::EInterpolationType> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_710116ea28;
-    static constexpr UnkFn copy_construct = &fn_710116ea30;
-    static constexpr UnkFn move_construct = &fn_710116ea3c;
-    static constexpr UnkFn destroy = &fn_710116ea48;
-    static constexpr UnkFn copy_assign = &fn_710116ea4c;
-    static constexpr UnkFn move_assign = &fn_710116ea60;
-    static constexpr UnkFn equals = &fn_710116ea00;
-    static constexpr UnkFn hash = &fn_710116ea14;
-    static constexpr UnkFn type_of = &fn_710116ea1c;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_710116daec*);
-struct UnkRefl_fn_71011be27c;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CInterpolationComponent::EInterpolationType*);
+namespace GUI::CButton { enum class TextAlign : u32; }
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_71011be27c> {
+const CType& base::reflection::ValueOps<GUI::CButton::TextAlign>::TypeOf(const void*) { return g_unk_7172a0d1b8; }
+template struct base::reflection::ValueOps<GUI::CButton::TextAlign>;
+template <>
+struct base::reflection::EnumTypeDescription<GUI::CButton::TextAlign> : base::reflection::ValueOpsDescription<GUI::CButton::TextAlign> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_71011c1398;
-    static constexpr UnkFn copy_construct = &fn_71011c13a0;
-    static constexpr UnkFn move_construct = &fn_71011c13ac;
-    static constexpr UnkFn destroy = &fn_71011c13b8;
-    static constexpr UnkFn copy_assign = &fn_71011c13bc;
-    static constexpr UnkFn move_assign = &fn_71011c13d0;
-    static constexpr UnkFn equals = &fn_71011c1370;
-    static constexpr UnkFn hash = &fn_71011c1384;
-    static constexpr UnkFn type_of = &fn_71011c138c;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71011be27c*);
-struct UnkRefl_fn_71011deff0;
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, GUI::CButton::TextAlign*);
+namespace GUI::CHUD { enum class EForceVisibilityState : u32; }
 template <>
-struct base::reflection::EnumTypeDescription<UnkRefl_fn_71011deff0> {
+const CType& base::reflection::ValueOps<GUI::CHUD::EForceVisibilityState>::TypeOf(const void*) { return g_unk_7172a0f690; }
+template struct base::reflection::ValueOps<GUI::CHUD::EForceVisibilityState>;
+template <>
+struct base::reflection::EnumTypeDescription<GUI::CHUD::EForceVisibilityState> : base::reflection::ValueOpsDescription<GUI::CHUD::EForceVisibilityState> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_71011e7a7c;
-    static constexpr UnkFn copy_construct = &fn_71011e7a84;
-    static constexpr UnkFn move_construct = &fn_71011e7a90;
-    static constexpr UnkFn destroy = &fn_71011e7a9c;
-    static constexpr UnkFn copy_assign = &fn_71011e7aa0;
-    static constexpr UnkFn move_assign = &fn_71011e7ab4;
-    static constexpr UnkFn equals = &fn_71011e7a54;
-    static constexpr UnkFn hash = &fn_71011e7a68;
-    static constexpr UnkFn type_of = &fn_71011e7a70;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
-template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, UnkRefl_fn_71011deff0*);
+template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, GUI::CHUD::EForceVisibilityState*);

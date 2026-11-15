@@ -6,6 +6,7 @@
 #include "base/reflection/CFlagsetType.h"
 #include "base/reflection/CPointerType.h"
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/ValueOps.h"
 using base::reflection::CType;
 using base::reflection::UnkFn;
 extern base::reflection::CType g_unk_71729ed338;
