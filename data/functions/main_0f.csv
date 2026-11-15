@@ -6462,7 +6462,7 @@ address,size,name,name_source,subsystem,status
 0x7100ffb3d4,12,fn_7100ffb3d4,unknown,unknown,O
 0x7100ffb3e0,8,fn_7100ffb3e0,unknown,unknown,O
 0x7100ffb3e8,8,fn_7100ffb3e8,unknown,unknown,O
-0x7100ffb3f0,184,fn_7100ffb3f0,unknown,unknown,U
+0x7100ffb3f0,184,fn_7100ffb3f0,unknown,unknown,O
 0x7100ffb4a8,128,fn_7100ffb4a8,unknown,unknown,O
 0x7100ffb528,8,fn_7100ffb528,unknown,unknown,O
 0x7100ffb530,8,fn_7100ffb530,unknown,unknown,O

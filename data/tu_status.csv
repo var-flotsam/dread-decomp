@@ -107,7 +107,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 105,0x710010c194,0x710010c7a4,UnkTU105,high,unknown,matched,13,1540,13,0,0,0,0,0,0,1540,1540
 106,0x710010c7a4,0x710010d604,UnkTU106,high,unknown,partial,24,3672,23,0,0,0,0,1,0,3400,3400
 107,0x710010d604,0x7100110c54,UnkTU107,high,unknown,partial,46,13864,35,6,1,1,0,4,0,5776,6080
-108,0x7100110c54,0x71001239b0,UnkTU108,low,unknown,partial,555,77140,530,2,1,0,0,23,0,63928,63984
+108,0x7100110c54,0x71001239b0,UnkTU108,low,unknown,partial,555,77140,530,4,3,0,0,21,0,63928,64380
 109,0x71001239b0,0x71001259f4,UnkTU109,high,unknown,partial,33,8252,26,3,1,0,0,4,0,4124,4164
 110,0x71001259f4,0x7100132c04,malloc,high,unknown,partial,113,52628,69,11,1,0,0,33,6,7564,8028
 111,0x7100132c10,0x71001395b8,base::tunable::CTunable,high,unknown,partial,198,26804,181,5,0,0,0,12,0,15760,15760
@@ -306,7 +306,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 304,0x7100215c00,0x7100215c8c,UnkTU304,high,unknown,matched,1,140,1,0,0,0,0,0,0,140,140
 305,0x7100215c90,0x7100215d1c,UnkTU305,high,unknown,matched,1,140,1,0,0,0,0,0,0,140,140
 306,0x7100215d20,0x7100215dac,UnkTU306,high,unknown,matched,1,140,1,0,0,0,0,0,0,140,140
-307,0x7100215dac,0x710021685c,UnkTU307,high,unknown,partial,24,2732,19,0,0,0,0,5,0,1632,1632
+307,0x7100215dac,0x710021685c,UnkTU307,high,unknown,partial,24,2732,19,2,2,0,0,3,0,1632,1952
 308,0x710021685c,0x7100216dfc,UnkTU308,high,unknown,partial,13,1432,8,1,1,0,0,4,0,480,648
 309,0x7100216dfc,0x710021701c,UnkTU309,high,unknown,matched,4,544,4,0,0,0,0,0,0,544,544
 310,0x710021701c,0x7100217e48,UnkTU310,high,unknown,matched,27,3624,27,0,0,0,0,0,0,3624,3624
@@ -364,8 +364,8 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 362,0x7100287598,0x71002878dc,UnkTU362,high,unknown,matched,8,828,8,0,0,0,0,0,0,828,828
 363,0x71002878dc,0x71002879ec,UnkTU363,high,unknown,matched,7,272,7,0,0,0,0,0,0,272,272
 364,0x71002879ec,0x7100288e2c,UnkTU364,high,unknown,partial,13,5176,9,0,0,0,0,4,0,2152,2152
-365,0x7100288e2c,0x71002ac2f4,navmesh::CNavMeshGenerator,medium,unknown,partial,164,144536,87,2,0,0,0,75,0,21096,21096
-366,0x71002ac2f4,0x71002af630,navmesh::SNavMeshPath,high,ai/navmesh,partial,73,13112,67,0,0,0,0,6,0,10936,10936
+365,0x7100288e2c,0x71002ac2f4,navmesh::CNavMeshGenerator,medium,unknown,partial,164,144536,88,3,1,0,0,73,0,21452,21736
+366,0x71002ac2f4,0x71002af630,navmesh::SNavMeshPath,high,ai/navmesh,partial,73,13112,68,0,0,0,0,5,0,11244,11244
 367,0x71002af630,0x71002b106c,UnkTU367,high,unknown,partial,23,6716,17,2,0,0,0,4,0,1952,1952
 368,0x71002b106c,0x71002b13dc,UnkTU368,high,unknown,partial,3,868,2,0,0,0,0,1,0,352,352
 369,0x71002b13dc,0x71002b22ac,UnkTU369,high,unknown,partial,10,3780,6,1,0,0,0,3,0,2268,2268
@@ -2639,7 +2639,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 2637,0x7100fd1c7c,0x7100fdeaa4,sound::CMusicManager::CTunableMusicManager,high,unknown,partial,120,52752,88,1,0,1,0,30,0,19468,19468
 2638,0x7100fdeaa4,0x7100fe1028,UnkTU2638,high,unknown,partial,79,9592,78,0,0,0,0,1,0,7920,7920
 2639,0x7100fe1028,0x7100fe119c,UnkTU2639,high,unknown,matched,10,372,10,0,0,0,0,0,0,372,372
-2640,0x7100fe119c,0x7101007b10,UnkTU2640,low,unknown,partial,1446,158064,1414,0,0,0,0,32,0,142904,142904
+2640,0x7100fe119c,0x7101007b10,UnkTU2640,low,unknown,partial,1446,158064,1416,0,0,0,0,30,0,143348,143348
 2641,0x7101007b10,0x7101007bbc,UnkTU2641,high,unknown,matched,1,172,1,0,0,0,0,0,0,172,172
 2642,0x7101007bbc,0x7101007cbc,UnkTU2642,high,unknown,matched,7,244,7,0,0,0,0,0,0,244,244
 2643,0x7101007cbc,0x7101007dac,UnkTU2643,high,unknown,matched,7,240,7,0,0,0,0,0,0,240,240
@@ -2660,7 +2660,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 2658,0x7101061fa0,0x710106212c,UnkTU2658,high,unknown,matched,5,396,5,0,0,0,0,0,0,396,396
 2659,0x7101062130,0x71010621bc,UnkTU2659,high,unknown,matched,1,140,1,0,0,0,0,0,0,140,140
 2660,0x71010621bc,0x71010626f0,UnkTU2660,high,unknown,matched,15,1320,15,0,0,0,0,0,0,1320,1320
-2661,0x71010626f0,0x7101073b80,CCutscene::CTunableCutscene,medium,unknown,partial,317,70736,272,2,1,0,0,43,0,30872,31340
+2661,0x71010626f0,0x7101073b80,CCutscene::CTunableCutscene,medium,unknown,partial,317,70736,275,3,2,0,0,39,0,31536,32112
 2662,0x7101073b80,0x710107411c,UnkTU2662,high,unknown,partial,5,1428,4,0,0,0,0,1,0,316,316
 2663,0x7101074120,0x71010741ac,UnkTU2663,high,unknown,matched,1,140,1,0,0,0,0,0,0,140,140
 2664,0x71010741b0,0x710107552c,lua_bind,high,script/bindings,partial,17,4904,13,0,0,0,0,4,0,1936,1936
@@ -2711,7 +2711,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 2709,0x710113a330,0x710113f978,CGrabComponent,high,game/components,partial,73,22084,58,0,0,0,0,15,0,9040,9040
 2710,0x710113f978,0x7101149edc,CInventoryComponent,high,game/components,partial,66,42328,56,0,0,0,0,10,0,19764,19764
 2711,0x7101149edc,0x710114d604,CPositionalSoundComponent,high,game/components,partial,48,14112,41,0,0,0,0,7,0,9296,9296
-2712,0x710114d604,0x7101158410,CFXComponent,high,unknown,partial,115,44544,79,3,0,0,0,33,0,13700,13700
+2712,0x710114d604,0x7101158410,CFXComponent,high,unknown,partial,115,44544,79,4,1,0,0,32,0,13700,14084
 2713,0x7101158410,0x71011593e0,CCharacterLifeComponent,high,game/characters,partial,24,4032,22,0,0,0,0,2,1,2976,2976
 2714,0x71011593e0,0x710115ddb4,CEnemyLifeComponent,high,game/components,partial,61,18896,56,0,0,0,0,5,0,8408,8408
 2715,0x710115ddb4,0x7101161bb0,CLifeComponent,high,game/components,partial,64,15852,56,1,0,0,0,7,1,11980,11980
@@ -2771,4 +2771,4 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 2769,0x710120391c,0x7101203fe0,CharClassRechargePlayerAmmo,high,unknown,matched,18,1732,18,0,0,0,0,0,0,1732,1732
 2770,0x7101203fe0,0x71012046c0,CharClassRechargePlayerLife,high,unknown,matched,18,1752,18,0,0,0,0,0,0,1752,1752
 2771,0x71012046c0,0x71012063dc,nn::atk,low,middleware/nn-atk,matched,1,84,1,0,0,0,0,0,59,84,84
-2772,0x71012063dc,0x710123ac10,nn::atk,low,middleware/nn-atk,partial,291,41780,229,4,4,0,0,58,1581,20572,21300
+2772,0x71012063dc,0x710123ac10,nn::atk,low,middleware/nn-atk,partial,291,41780,235,8,8,0,0,48,1581,21496,22560

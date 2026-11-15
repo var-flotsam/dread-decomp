@@ -1313,7 +1313,7 @@ address,size,name,name_source,subsystem,status
 0x7101157884,8,CFXComponent::refl_MoveAssign,reflection,game/components,O
 0x710115788c,128,fn_710115788c,unknown,unknown,O
 0x710115790c,188,fn_710115790c,unknown,unknown,O
-0x71011579c8,384,fn_71011579c8,unknown,unknown,U
+0x71011579c8,384,fn_71011579c8,unknown,unknown,m
 0x7101157b48,192,fn_7101157b48,unknown,unknown,O
 0x7101157c08,436,fn_7101157c08,unknown,unknown,O
 0x7101157dbc,324,fn_7101157dbc,unknown,unknown,U

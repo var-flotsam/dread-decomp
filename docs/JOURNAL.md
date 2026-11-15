@@ -154,6 +154,19 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Lean batch lean-b3: 98 ready functions of 11 more units (2026-11-15).** Same shape as lean-b1 and lean-b2
+(units 365, 2712, 366, 2637, 229, 307, 2772, 2661, 108, 2640, 34); 14 Sonnet workers, budget 3, reference matches
+for 65 of 98. Results: 14 matches (8 on the first graded attempt, 6 on the second), 14 registers-only, 70 that
+differ; 257 graded attempts; about 2.08 million worker tokens, about 149,000 per match. These units are less
+alike than the first two batches' (math and audio helpers, curve evaluators), and fewer had a reference match.
+13 matches are in `src/`; `fn_7100fddf18` waits in `drafts/` (declared as a copy constructor by asm label over
+another layout). The permuter matched none of the 14 registers-only drafts, but `tools/equiv_test.py` passed 11,
+now verified minor in `src/` (one of them, `fn_71011579c8`, matches only with a union around a moved-from slot,
+so it is kept readable as tier 2); one failed the machine test. 24 functions into `src/` in all. Worth reusing:
+unit 34's curve lookups came closest with the key array as an accessor (`(f32*)(this + 1)`) for float keys and
+a one-element member for byte keys, and one shared index written after the search; a branch the original takes
+on `b.ls` for floats is `!(key <= x)`.
+
 **Lean batch lean-b2: 100 more ready functions by whole units (2026-11-15).** The same shape as lean-b1 on the
 next 11 units with four or more ready functions (units 54, 1501, 429, 2216, 110, 2702, 2657, 47, 430, 180, 2523);
 15 Sonnet workers, budget 3, reference matches for 85 of 100. Results: 24 matches (11 on the first graded
