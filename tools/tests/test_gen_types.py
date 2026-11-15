@@ -330,6 +330,12 @@ class TypeNames(unittest.TestCase):
         for other in ("base::global::CRntVector<CFoo>", "base::global::CRntDictionary<CFoo, CBar>"):
             named_other = {0x7100000520: f"base::reflection::CollectionTypeMapper<{other}>::TElementIterator"}
             self.assertIsNone(gt.mapped_vector(body, named_other, frozenset()))
+        # a class with a header that gives the mapper what it needs
+        asset = "base::global::CRntVector<base::core::AssetName>"
+        self.assertEqual(gt.mapped_vector(body, {0x7100000520: named[0x7100000520].replace("CActor*", "base::core::AssetName")},
+                                          frozenset()), (asset, "base::core::AssetName"))
+        self.assertIn('#include "base/core/AssetName.h"',
+                      gt.emit_collection_ops(0x7100000010, body, asset, "base::core::AssetName", frozenset({"count"})))
         self.assertEqual(gt.mapped_vector(body, {0x7100000520: named[0x7100000520].replace("CActor*", "EFoo")},
                                           frozenset({"EFoo"})), ("base::global::CRntVector<EFoo>", "EFoo"))
         self.assertIsNone(gt.mapped_vector(body, {0x7100000520: named[0x7100000520] + "x"}, frozenset()))
