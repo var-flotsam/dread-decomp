@@ -59,6 +59,8 @@ namespace base::global {
 
 template <class T>
 struct CRntVector {
+    using value_type = T;
+
     T* data = nullptr;
     u32 count = 0;
     u32 capacity = 0;
@@ -72,15 +74,24 @@ struct CRntVector {
 
     // Takes the source's settings and allocator, reserves its capacity and appends copies of its
     // elements (fn_710001e3b4 for base::core::AssetName; fn_71000cbae4 inlines all of it).
-    CRntVector(const CRntVector& other)
-        : step(other.step), field_0x14(other.field_0x14), flags(other.flags), allocator(other.allocator) {
-        Reserve(other.capacity);
-        if (other.count != 0) {
-            const T* end = other.data + other.count;
-            for (const T* p = other.data; p != end; ++p)
-                PushBackCopy(*p);
-        }
+    CRntVector(const CRntVector& other);
+
+    // Takes over other's array, leaving it empty (fn_710001e28c for base::core::AssetName).
+    CRntVector(CRntVector&& other)
+        : data(other.data), count(other.count), capacity(other.capacity), step(other.step),
+          field_0x14(other.field_0x14), flags(other.flags), allocator(other.allocator) {
+        other.data = nullptr;
+        other.count = 0;
+        other.capacity = 0;
     }
+
+    CRntVector& operator=(const CRntVector& other) {
+        if (this != &other)
+            Assign(other);
+        return *this;
+    }
+    // Copies other's elements over this one's (fn_710001e744).
+    void Assign(const CRntVector& other);
 
     // Equal when the counts are and every element compares equal (fn_710001e1d0).
     bool operator==(const CRntVector& other) const {
@@ -165,11 +176,7 @@ struct CRntVector {
     }
 
     // Destroys the elements, keeping the array.
-    void Clear() {
-        for (u32 i = 0; i < count; ++i)
-            data[i].~T();
-        count = 0;
-    }
+    void Clear() { Truncate(0); }
 
     // Takes over other's array after destroying the elements (the old array is not freed;
     // fn_71002b9bbc and its copies).
@@ -404,5 +411,54 @@ private:
 public:
 };
 static_assert(sizeof(CRntVector<void*>) == 0x28, "CRntVector layout");
+
+template <class T>
+CRntVector<T>::CRntVector(const CRntVector& other)
+    : step(other.step), field_0x14(other.field_0x14), flags(other.flags), allocator(other.allocator) {
+    Reserve(other.capacity);
+    if constexpr (kTrivial) {
+        __builtin_memcpy(data, other.data, (u64)other.count * sizeof(T));
+        count = other.count;
+    } else if (other.count != 0) {
+        const T* end = other.data + other.count;
+        for (const T* p = other.data; p != end; ++p) {
+            u32 n = count;
+            u32 new_capacity = capacity;
+            if (new_capacity <= n && step != 0)
+                new_capacity = (n / step + 1) * step;
+            if ((s32)n >= (s32)new_capacity)
+                for (;;) {
+                }
+            Reserve(new_capacity);
+            new (&data[count]) T(*p);
+            ++count;
+        }
+    }
+}
+
+
+template <class T>
+void CRntVector<T>::Assign(const CRntVector& other) {
+    Clear();
+    Reserve(other.capacity);
+    if constexpr (kTrivial) {
+        __builtin_memcpy(data, other.data, (u64)other.count * sizeof(T));
+        count = other.count;
+    } else if (other.count != 0) {
+        const T* end = other.data + other.count;
+        for (const T* p = other.data; p != end; ++p) {
+            u32 n = count;
+            u32 new_capacity = capacity;
+            if (new_capacity <= n && step != 0)
+                new_capacity = (n / step + 1) * step;
+            if ((s32)n >= (s32)new_capacity)
+                for (;;) {
+                }
+            Reserve(new_capacity);
+            new (&data[count]) T(*p);
+            ++count;
+        }
+    }
+}
 
 }  // namespace base::global

@@ -154,6 +154,29 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Vector descriptor slots from CollectionTypeMapper (2026-11-15).** The functions a vector's
+CCollectionType descriptor points to are now static members of `base::reflection::CollectionTypeMapper<C>`
+(`include/base/reflection/CollectionTypeMapper.h`): the CType slots `Construct` … `Hash` (with `TypeOf`
+declared, to be specialised per type) and the accessors `Count`, `Clear`, `AddCopy`, `AddMove`, `At`, `Find`,
+`Begin` and `End`. `Erase`, `SetCopy`, `SetMove`, `ConstBegin`, `ConstEnd` and the bodies of `Equals` are not
+written yet (none of their originals is lifted). They were checked with no dump, against the lifted copies of
+the originals. The lifted text compiles to the original's bytes, so compiling it is a reference: AssetName's 15
+lifted slots and all 178 lifted slots of 12 vectors of pointers and enums match byte for byte, relocations
+naming the same callees. Findings:
+- Reflection builds its vectors with allocation flags 0xf (`Construct` is `C(0xf)`). Making 0xf the default
+  and giving `CType`'s own member an explicit 0x3e shifts the registers of 476 `CEnumType` constructors, so
+  the default stays 0x3e.
+- `Clear()` is `Truncate(0)`. AssetName's slots call `Truncate` out of line, and pointer vectors inline it.
+  None of the 6013 sources that include the header (generated ones included) changes.
+- The copy constructor and the new `Assign` (the copy assignment's body, fn_710001e744 for AssetName) are
+  defined out of class. In class, they get the inline hint and are inlined into `CopyConstruct` and
+  `CopyAssign`, which the original calls. For trivially copyable elements, both reserve the source's capacity
+  and `memcpy` the elements: inlined into the slots, as in the original. Otherwise they append one element at
+  a time with the growth test written out. `PushBackCopy` called from the loop is inlined later, so the
+  constructor would look cheap enough to inline.
+- Instantiating the mapper must not need `C::value_type` at class scope: the generated iterator types
+  instantiate `CollectionTypeMapper<C>` for dictionaries and incomplete elements too.
+
 **CRntVector pilot: AssetName's helpers from the template (2026-11-15).** Pilot for generating the vector collection descriptors' slots from readable templates, on
 `base::global::CRntVector<base::core::AssetName>` (descriptor constructor 0x7100019dcc). New members of
 `include/base/global/CRntVector.h`: a copy constructor (reserve the source's capacity, append copies),
